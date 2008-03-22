@@ -3,6 +3,8 @@ overlay	chrome://navigator/content/navigator.xul	chrome://foxtrick/content/foxtr
 
 content	foxtrick	jar:chrome/foxtrick.jar!/content/foxtrick/
 
+skin	foxtrick	classic/1.0	jar:chrome/foxtrick.jar!/skin/
+
 locale	foxtrick	bg-BG	jar:chrome/foxtrick.jar!/locale/bg-BG/foxtrick/
 locale	foxtrick	ca-AD	jar:chrome/foxtrick.jar!/locale/ca-AD/foxtrick/
 locale	foxtrick	cs-CZ	jar:chrome/foxtrick.jar!/locale/cs-CZ/foxtrick/
