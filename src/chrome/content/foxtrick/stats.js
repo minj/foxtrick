@@ -900,7 +900,7 @@ stats["natstats"] =  {
                          "params"   : {"LeagueID" : "LeagueID", "LeagueOfficeTypeID" : "LeagueOfficeTypeID", "TeamID" : "TeamID" }
   }
   
-}
+};
 
 // Hattrick Today
 stats["hattricktoday"] =  { 
@@ -975,7 +975,23 @@ stats["argenstat"] =  {
         "countryidranges" : [[7, 7]], 
         "title" : "ArgenStat",
         "img" : "chrome://foxtrick/content/resources/linkicons/argenstat.png"
-};    
+};
+
+stats["u20schweiz"] =  { 
+  "url" : "http://u20schweiz.kicks-ass.net",
+  "title" : "U20 Schweiz",
+  "img" : "chrome://foxtrick/content/resources/linkicons/u20schweiz.jpg",
+  
+  "LeagueIDranges" : [[46,46]],
+  "LeagueOfficeTypeIDranges" : [[4,4]],
+  
+  "nationalteamlink" : { "path"     : "",
+                         "filters"  : ["LeagueID", "LeagueOfficeTypeID"],
+                         "params"   : []
+  }
+  
+};
+
 
 
 function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
