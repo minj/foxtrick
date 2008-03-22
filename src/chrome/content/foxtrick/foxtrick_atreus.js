@@ -9,7 +9,7 @@ function playerListStats(doc) {
     
     var links = doc.links;
 
-    var totalTSI = 0, totalAge = 0, totalForm = 0, totalExperience = 0, playerCount = 0, maxLeadership = 0;
+    var totalTSI = 0, totalAge = 0, totalForm = 0, totalExperience = 0, totalStamina = 0, playerCount = 0, maxLeadership = 0;
     var yellowCards = 0, redCards = 0, injuries = 0, injuryweeks = 0, bruises = 0, forSale = 0;
     var tsiArray = new Array();
     
@@ -63,6 +63,12 @@ function playerListStats(doc) {
                     var experience = parseInt(getSkillLevelFromLink(temp));
                     temp = findSibling(temp, "A");
                     var leadership = parseInt(getSkillLevelFromLink(temp));
+                    
+                    var skillsTable = findSibling(temp.parentNode.parentNode.parentNode.parentNode, "TABLE");
+                    var stamina = 0;
+                    if (skillsTable != null && skillsTable.rows.length == 4) {
+                       stamina = parseInt(getSkillLevelFromLink(skillsTable.rows[0].cells[1].firstChild));
+                    }
 
                     if (includeZeroTSIPlayers || (TSI > 0)) {
 /*
@@ -75,12 +81,13 @@ function playerListStats(doc) {
                             playersWithMaxLeadership[playersWithMaxLeadership.length] = links[i];
                         }
 */                      
-                        tsiArray[playerCount] = [TSI, age, playerform, experience];
+                        tsiArray[playerCount] = [TSI, age, playerform, experience, stamina];
                         
                         totalTSI += TSI;
                         totalAge += age;
                         totalForm += playerform;
                         totalExperience += experience;
+                        totalStamina += stamina;
                         playerCount++;
                     }
             }
@@ -117,8 +124,9 @@ function playerListStats(doc) {
         var avgAge = Math.round(10*totalAge/playerCount)/10;
         var avgForm = Math.round(10*totalForm/playerCount)/10;
         var avgExperience = Math.round(10*totalExperience/playerCount)/10;
+        var avgStamina = Math.round(10*totalStamina/playerCount)/10;
         
-        var avgAgeTop11, avgFormTop11, avgExperienceTop11;
+        var avgAgeTop11, avgFormTop11, avgExperienceTop11, avgStaminaTop11;
 
         if ( playerCount >= 11 ) {
 
@@ -129,17 +137,19 @@ function playerListStats(doc) {
 
             tsiArray.sort(sortMultiDimensionalDescending);            
 
-            var totalStarterTSI = 0, totalStarterAge = 0, totalStarterForm = 0, totalStarterExp = 0;
+            var totalStarterTSI = 0, totalStarterAge = 0, totalStarterForm = 0, totalStarterExp = 0, totalStarterStamina = 0;
             for (var i=0; i<11; i++) {
                 totalStarterTSI += tsiArray[i][0];
                 totalStarterAge += tsiArray[i][1];
                 totalStarterForm += tsiArray[i][2];
                 totalStarterExp += tsiArray[i][3];
+                totalStarterStamina += tsiArray[i][4];
             }
             
             avgAgeTop11 = Math.round(10*totalStarterAge / 11)/10;
             avgFormTop11 = Math.round(10*totalStarterForm / 11)/10;
             avgExperienceTop11 = Math.round(10*totalStarterExp / 11)/10;
+            avgStaminaTop11 = Math.round(10*totalStarterStamina / 11)/10;
            
         }
         
@@ -174,6 +184,7 @@ function playerListStats(doc) {
         txt += statRow("age", "avg", avgAge, avgAgeTop11);
         txt += statRow("form", "avg", avgForm, avgFormTop11);
         txt += statRow("exp", "avg", avgExperience, avgExperienceTop11);
+        if (avgStamina > 0) txt += statRow("stamina", "avg", avgStamina, avgStaminaTop11);
         
         txt += "</table>";            
         
