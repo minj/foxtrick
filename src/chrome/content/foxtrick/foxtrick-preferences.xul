@@ -90,8 +90,14 @@
 			<groupbox>
     			<vbox>
     				<checkbox id="foxtrickInStatusBar" label="&foxtrick.prefs.foxtrickinstatusbar;" />
-    				<checkbox id="alertSlider" label="&foxtrick.prefs.alertslider;" />
-    				<checkbox id="alertSliderGrowl" label="&foxtrick.prefs.alertslider; (Growl - Mac only)" />
+    				<hbox align="center">
+    					<checkbox id="alertSlider" label="&foxtrick.prefs.alertslider;" />
+    					<button label="Test" oncommand="foxtrick_showAlert('This is a test.', true);"/>
+    				</hbox>
+    				<hbox align="center">
+    					<checkbox id="alertSliderGrowl" label="&foxtrick.prefs.alertslider; (Growl - Mac only)" />
+    					<button label="Test" oncommand="foxtrick_showAlertGrowl('This is a test.', true);"/>
+    				</hbox>
     				<checkbox id="alertSound" label="&foxtrick.prefs.alertsound;" />
     				<hbox align="center">
         				<label control="alertSoundUrl" value="URL"/>

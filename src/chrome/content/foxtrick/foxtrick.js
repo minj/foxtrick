@@ -3997,60 +3997,6 @@ function foxtrick_putTextToClipboard(text) {
 	clipboard.copyString(text);
 }
 
-// slider alerts
-// (windows only)
-
-function foxtrick_showEventAlert(doc){
-    
-  if (!isNewsFlashUrl(doc.location.href)) return;
-  
-  try {
-    var expreg = new RegExp ( 'href="(.*)" target="main" class="messBold">(.+)</a>', "igm" );
-    var scriptsrc = doc.getElementsByTagName("script")[0].text;
-    
-    var tmp = expreg.exec(scriptsrc);
-    
-    if (tmp != null) {
-      if (tmp[1] != "myHattrick.asp") {
-        if (PrefsBranch.getBoolPref("alertSlider")) {
-            foxtrick_showAlert(tmp[2]);
-        }
-        if (PrefsBranch.getBoolPref("alertSliderGrowl")) {
-            foxtrick_showAlertGrowl(tmp[2]);
-        }
-        if (PrefsBranch.getBoolPref("alertSound")) {
-           try {
-             foxtrick_playSound(PrefsBranch.getCharPref("alertSoundUrl"));
-           } catch (e) {
-             foxtrickdebug(e);
-           }
-        }
-      }
-    }
-  } catch(e) {
-//    alert(e);
-  }
-}    
-
-function foxtrick_showAlert(text) {
-  try{
-    var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
-    var img = "http://hattrick.org/favicon.ico";
-    var title = "Hattrick.org";
-    var clickable = false;
-    alertsService.showAlertNotification(img, title, text, clickable, "", null);
-  } catch (e) {}
-}
-
-function foxtrick_showAlertGrowl(text) {
-	try {
-		var grn = Components.classes["@growl.info/notifications;1"].getService(Components.interfaces.grINotifications);
-		var img = "http://hattrick.org/favicon.ico";
-		var title = "Hattrick.org";
-		grn.sendNotification(title, img, title, text, null);
-	} catch (e) {}
-}
-
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
