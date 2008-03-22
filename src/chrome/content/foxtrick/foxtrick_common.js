@@ -3,9 +3,13 @@ function foxtrickdebug(e) {
 }
 
 function foxtrick_playSound(url) {
-  var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-  var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-  soundService.play(ioService.newURI(url, null, null));
+  try {
+    var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
+    var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+    soundService.play(ioService.newURI(url, null, null));
+  } catch (e) {
+    foxtrick_debug(e);
+  }
 }
 
 //--------------------------------------------------------------------------- 
@@ -91,4 +95,13 @@ function foxtrick_openDirectory(dir) {
   catch (e) {
   	alert(e);
   }
+}
+
+function foxtrick_selectFile() {
+	var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
+	fp.init(window, "", fp.modeOpen);
+	if (fp.show() == fp.returnOK ) {
+		return fp.file.path;
+	}
+	return null; 
 }

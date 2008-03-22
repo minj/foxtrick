@@ -73,4 +73,5 @@
 <!ENTITY foxtrick.prefs.forumtemplates "Modelos para a conferencia">
 <!ENTITY foxtrick.prefs.forummessagetemplates "Modelos de mensaxe para a conferencia">
 <!ENTITY foxtrick.prefs.opendirectory "Open directory">
+<!ENTITY foxtrick.prefs.selectfile "Select sound file">
 <!-- EOF -->

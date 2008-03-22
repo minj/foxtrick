@@ -94,4 +94,5 @@
 <!ENTITY foxtrick.prefs.forumtemplates "Шаблоны">
 <!ENTITY foxtrick.prefs.forummessagetemplates "Шаблоны сообщений для форума">
 <!ENTITY foxtrick.prefs.opendirectory "Open directory">
+<!ENTITY foxtrick.prefs.selectfile "Select sound file">
 <!-- EOF -->

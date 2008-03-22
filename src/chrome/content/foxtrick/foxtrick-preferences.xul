@@ -102,6 +102,8 @@
     				<hbox align="center">
         				<label control="alertSoundUrl" value="URL"/>
                         <textbox id="alertSoundUrl" maxlength="200" width="360" />
+                        <button label="&foxtrick.prefs.selectfile;"
+                                oncommand="var file = foxtrick_selectFile(); if (file != null) {document.getElementById('alertSoundUrl').value='file://' + (file)}"/>
                         <button label="Test" oncommand="foxtrick_playSound(document.getElementById('alertSoundUrl').value);"/>
                     </hbox>
     			</vbox>
