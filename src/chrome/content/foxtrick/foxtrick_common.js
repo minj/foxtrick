@@ -10,7 +10,7 @@ function foxtrick_playSound(url) {
 
 //--------------------------------------------------------------------------- 
 
-var foxtrick_dateFormats = new Array();
+var foxtrick_dateFormats = {};
 foxtrick_dateFormats["dd.mm.yyyy"] = { "delim" : ".", "d" : 0, "m": 1, "y" : 2 };
 foxtrick_dateFormats["dd/mm/yyyy"] = { "delim" : "/", "d" : 0, "m": 1, "y" : 2 };
 foxtrick_dateFormats["dd-mm-yyyy"] = { "delim" : "-", "d" : 0, "m": 1, "y" : 2 };

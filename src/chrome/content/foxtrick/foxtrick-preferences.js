@@ -114,12 +114,12 @@ function fillListFromXml(id, prefix, xmlDoc, elem, descAttr, valAttr){
     
     var values = xmlDoc.getElementsByTagName(elem);
     var menupopup = document.getElementById(id);
-    var langs = new Array();
+    var langs = [];
     
     for (var i=0; i<values.length; i++) {
         var label = values[i].attributes.getNamedItem(descAttr).textContent;
         var value = values[i].attributes.getNamedItem(valAttr).textContent;
-        langs[langs.length] = new Array(label,value);
+        langs.push([label,value]);
     }
 
     function sortfunction(a,b) {
@@ -188,7 +188,7 @@ function getCssSkins(cssSkinsDir) {
     
     var entries = cssSkinsDir.directoryEntries;
     
-   var cssSkins = new Array();
+   var cssSkins = {};
     
     while (entries.hasMoreElements()) {
       
@@ -554,10 +554,10 @@ function initWindow() {
 
 function foxtrick_getSortedKeysForArray(values, sortProperty) {
  
-  var keys = new Array();
+  var keys = [];
   
   for (var key in values) {
-    keys[keys.length] = key;
+    keys.push(key);
   }
   
   function sortfunction(a,b) {

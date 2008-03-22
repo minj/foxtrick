@@ -1,4 +1,4 @@
-var ratingDefs = new Array();
+var ratingDefs = {};
 
 ratingDefs["vnukstats"] = { base : 1.0,
                             label : "Vnukstats",

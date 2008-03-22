@@ -17,7 +17,7 @@ function foxtrick_FlagsCounter(doc) {
 		divs[i].parentNode.replaceChild(replacement, divs[i]);
 	}
 	
-	var flags = new Array();
+	var flags = [];
 	var vlaggen=0;
 	var a=0;
 	for (var i=0; i<links.length; i++) {
@@ -64,7 +64,7 @@ function foxtrick_MedianTransferPrice(doc)	{
     var table = doc.getElementsByTagName("table")[3];
     var count = table.rows.length-1;
 
-	var priceArray = new Array();
+	var priceArray = [];
 	for (var i = 1; i<count; i++) {
 		if(table.rows[i].cells[2].innerHTML.match(/br/i)){
 			var thisPrice = parseInt(table.rows[i].cells[2].lastChild.textContent.replace(/\s/g, ""));

@@ -258,13 +258,11 @@ function getLeagueLeveUnitIdFromUrl(url) {
 function getMatchDetailLinks(doc) {
  
  var links = doc.links;
- 
- var linksarray = new Array();
- var counter = 0;
+ var linksarray = [];
  
  for (var i=0; i<links.length; i++) {
     if (isMatchDetailUrl(links[i].href)) {
-        linksarray[counter++] = links[i];
+        linksarray.push(links[i]);
     }
  }
  
@@ -2323,8 +2321,7 @@ function addRatings(doc) {
     try {
      var links = doc.links;
      
-     var team1data = new Array();
-     var team2data = new Array();
+     var team1data = {}, team2data = {};
      var team1read = false;
      
      var possessiontable = null;
@@ -2771,12 +2768,12 @@ function removeLinksToTeams(doc) {
 function removeLinks(doc, regexp) {
     
   var links = doc.links;
-  var linkstoremove = new Array();
+  var linkstoremove = [];
   var counter = 0;
   
   for (var i=0; i<links.length; i++) {
     if (links[i].href.search(regexp) > -1) {
-      linkstoremove[counter++] = links[i];
+      linkstoremove.push(links[i]);
     }
   }
   
@@ -2918,8 +2915,6 @@ function adjustMatchOrders(doc) {
         mesg = mesg.replace("\r", "\\r").replace("\n", "\\n");
         form.setAttribute("onsubmit", "return formationconfirm('" + mesg + "');");
     }
-    
-    var createdFaces = new Array();
     
     var facesArchive = null;
     
@@ -3788,34 +3783,6 @@ function getMatchOrdersTable(doc) {
     
 }
 
-function extractPlayerList(doc) {
-    var form = doc.forms.namedItem('matchOrders');
-    var select = form.elements.namedItem('idKeeper');
-    
-    var i = select.options.length - 1;
-    var playerlist = new Array();
-    
-    while (i>=0 && select.options[i].textContent != '') {
-        
-        if (select.options[i].textContent != '') {
-            
-            var playerName = trim(select.options[i].textContent.replace(/\d+/, ''));
-            var playerNumber = select.options[i].textContent.match(/\d+/, '');
-            playerNumber = (playerNumber != null) ? playerNumber[0] : "";
-            var playerid = select.options[i].value;
-            
-            playerlist[playerid] = {"name" : playerName, "number" : playerNumber, "id" : playerid };
-            
-        }
-      
-      i--;
-    }
-    
-    return playerlist;
-    
-    
-}
-
 function createPlayerDiv(doc, playerinfo) {
     var div = doc.createElement("div");
     var divid = "foxtrick-player-" + playerinfo["id"];
@@ -4032,13 +3999,13 @@ var foxtrick_functions =
 
 // create stats Hash
 
-var foxtrickStatsHash = new Array();
-for (key in stats) {
+var foxtrickStatsHash = {};
+for (var key in stats) {
   var stat = stats[key];
-  for (prop in stat) {
+  for (var prop in stat) {
     if (prop.match(/link/)) {
       if (typeof(foxtrickStatsHash[prop]) == 'undefined') {
-       foxtrickStatsHash[prop] = new Array();
+       foxtrickStatsHash[prop] = {};
       }
       foxtrickStatsHash[prop][key] = stat;
     }

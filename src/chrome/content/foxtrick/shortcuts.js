@@ -1,10 +1,10 @@
-var shortcuts = new Array();
+var shortcuts = {};
 
 shortcuts["matchlineup"] = { "title" : messageBundle.GetStringFromName("foxtrick.shortcuts.matchlineup") };
 shortcuts["leaveconference"] = { "title" : messageBundle.GetStringFromName("foxtrick.shortcuts.leaveconference") };
 
 
-var tweaks = new Array();
+var tweaks = {};
 
 tweaks["bookmarkNotesColoring"] =
  { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.bookmarknotescoloring") + " !, []"};

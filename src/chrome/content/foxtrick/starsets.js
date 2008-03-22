@@ -1,6 +1,6 @@
 // a really stupid way of storing data....
 
-var starsets = new Array();
+var starsets = {};
 
 starsets["dutch"] = { "name" : "Dutch",
                       "number-of-stars" : 4,

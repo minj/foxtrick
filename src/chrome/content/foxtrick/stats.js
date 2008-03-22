@@ -1,10 +1,10 @@
-var vnukstatsranges = new Array();
+var vnukstatsranges = {};
 
 vnukstatsranges["czech"] = [[93617,93784], [115871,116382], [480223, 482270]];
 vnukstatsranges["slovakia"] = [[241335,241502]];
 
-var hscountries = new Array();
-var hslevels = new Array();
+var hscountries = {};
+var hslevels = {};
 
 hscountries["1"] = "sweden";
 hscountries["2"] = "england";
@@ -117,7 +117,7 @@ hscountries["131"] = "montenegro";
 hslevels["131"] = 3;
 
 
-var stats = new Array();
+var stats = {};
 
 // Vnukstats
 
@@ -1005,8 +1005,7 @@ stats["u20schweiz"] =  {
 
 
 function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
-    
-    var links = new Array();
+    var links = [];
     var counter = 0;
     
     for (var key in stats) {
@@ -1057,9 +1056,9 @@ function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
         }
         
         if (allowed) {
-             var link = makelink(stat, statlink, filterparams, key, doc);
+             var link = foxtrick_makelink(stat, statlink, filterparams, key, doc);
              if (link != null) {
-                links[counter++]= {"link" : getLinkElement(link, stat, doc), "stat" : stat};
+                links.push({"link" : getLinkElement(link, stat, doc), "stat" : stat});
              }
         }
 
@@ -1073,7 +1072,7 @@ function getLinks(stattype, filterparams, doc) {
   return getLinks2(foxtrickStatsHash[stattype], stattype, filterparams, doc, false);
 }
 
-function makelink(stat, statlink, filterparams, key, doc) {
+function foxtrick_makelink(stat, statlink, filterparams, key, doc) {
 
     var params = statlink["params"];
     var args = "";

@@ -11,14 +11,14 @@ function playerListStats(doc) {
 
     var totalTSI = 0, totalAge = 0, totalForm = 0, totalExperience = 0, totalStamina = 0, playerCount = 0, maxLeadership = 0;
     var yellowCards = 0, redCards = 0, injuries = 0, injuryweeks = 0, bruises = 0, forSale = 0;
-    var tsiArray = new Array();
+    var tsiArray = [];
     
     var includeZeroTSIPlayers = doc.location.href.search(/viewOldieCoaches/i) > -1;
     var playersWithMaxLeadership;
     
     // specialities
     
-	var specs = new Array();
+	var specs = {};
 	
 	for (var i=0; i<doc.links.length; i++) {
 	  var tmpNode = doc.links[i].nextSibling;
@@ -51,8 +51,7 @@ function playerListStats(doc) {
 					tsiText = tsiText.replace(/\D*=/,'');	//gets rid of 'TSI =' ; nat teams don't have that part
 					tsiText = tsiText.replace(/\s/g, ''); //removes all white space
 
-					var tsi_age= new Array();
-					tsi_age = tsiText.split(/,/);
+					var tsi_age = tsiText.split(/,/);
 
 					var TSI = (+tsi_age[0]); //turns into number
                     var age = parseInt(tsi_age[1].match(/\d{2}/)[0]);					
@@ -74,11 +73,11 @@ function playerListStats(doc) {
 /*
                         if ( leadership > maxLeadership) {
                             maxLeadership = leadership;
-                            playersWithMaxLeadership = new Array();
+                            playersWithMaxLeadership = [];
                         }
                        
                         if ( leadership == maxLeadership ) {
-                            playersWithMaxLeadership[playersWithMaxLeadership.length] = links[i];
+                            playersWithMaxLeadership.push(links[i]);
                         }
 */                      
                         tsiArray[playerCount] = [TSI, age, playerform, experience, stamina];

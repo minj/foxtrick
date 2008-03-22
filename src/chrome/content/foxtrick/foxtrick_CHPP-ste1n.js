@@ -59,7 +59,7 @@ function foxtrick_flagsInConferences(document) {
     var loc = document.location.href;
     if ((loc.search(/cn\.asp/i) == -1) && (loc.search(/cnB\.asp/i) == -1) && !foxtrick_isGuestbookUrl(loc) && !foxtrick_isSupporterListUrl(loc)) return;
    
-	var userHash = new Array();    
+	var userHash = {};
 	
 	function addUserLink(uid, a) {
 	  if (typeof(userHash[uid]) == 'undefined') userHash[uid]= [];

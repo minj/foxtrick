@@ -34,8 +34,8 @@ function foxtrick_modifyDates(doc) {
 
 function gregorianToHT(date, dateFormat) {
 
-       var months = new Array();
-       var years = new Array();
+       var months = [];
+       var years = [];
 
        months[1] = 0;
        months[2] = 31;
