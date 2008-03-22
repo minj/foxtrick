@@ -467,11 +467,11 @@ function foxtrick_starCounter(doc) {
       // don't count substituted players
       if (img.parentNode.parentNode.parentNode.getAttribute("class") != "substitute_holder"
            && (notSubstitutedParent == img.parentNode.parentNode.parentNode.parentNode)) {
-        if (img.src.match(/star\.gif$/i)) {
+        if (img.className.match(/whole/i)) {
           totalStars+=1;
-        } else if (img.src.match(/_half\.gif$/i)) {
+        } else if (img.className.match(/half/i)) {
           totalStars+=0.5;
-        } else if (img.src.match(/star_big\.gif$/i)) {
+        } else if (img.className.match(/big/i)) {
           totalStars+=5;
         }
       }
