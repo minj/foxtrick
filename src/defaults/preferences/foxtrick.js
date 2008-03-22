@@ -12,6 +12,7 @@ pref("foxtrick.userprefs.useHattrickSkin", true);
 pref("foxtrick.userprefs.useHattrickMedals", true);
 
 pref("foxtrick.userprefs.alertSlider", true);
+pref("foxtrick.userprefs.alertSliderGrowl", true);
 pref("foxtrick.userprefs.alertSound", true);
 pref("foxtrick.userprefs.alertSoundUrl", "");
 pref("foxtrick.userprefs.foxtrickInStatusBar", true);

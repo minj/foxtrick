@@ -4013,11 +4013,10 @@ function foxtrick_showEventAlert(doc){
     if (tmp != null) {
       if (tmp[1] != "myHattrick.asp") {
         if (PrefsBranch.getBoolPref("alertSlider")) {
-          try {
             foxtrick_showAlert(tmp[2]);
-          } catch (e) {
-            foxtrickdebug(e);
-          }
+        }
+        if (PrefsBranch.getBoolPref("alertSliderGrowl")) {
+            foxtrick_showAlertGrowl(tmp[2]);
         }
         if (PrefsBranch.getBoolPref("alertSound")) {
            try {
@@ -4040,12 +4039,17 @@ function foxtrick_showAlert(text) {
     var title = "Hattrick.org";
     var clickable = false;
     alertsService.showAlertNotification(img, title, text, clickable, "", null);
-  } catch (e) {
-  }
-
+  } catch (e) {}
 }
 
-
+function foxtrick_showAlertGrowl(text) {
+	try {
+		var grn = Components.classes["@growl.info/notifications;1"].getService(Components.interfaces.grINotifications);
+		var img = "http://hattrick.org/favicon.ico";
+		var title = "Hattrick.org";
+		grn.sendNotification(title, img, title, text, null);
+	} catch (e) {}
+}
 
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------

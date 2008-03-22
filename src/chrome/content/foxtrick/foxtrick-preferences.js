@@ -3,7 +3,7 @@ var PrefsBranch = prefObj.getBranch("foxtrick.userprefs.");
 
 var boolPrefs = new Array("useHattrickStars", "useHattrickSkin", "useHattrickMedals", 
                "showFormationBox", "hideLogoFrame", "resizeMainFrame", "resizeMenuFrame",
-               "foxtrickInStatusBar", "alertSlider", "alertSound",
+               "foxtrickInStatusBar", "alertSlider", "alertSliderGrowl", "alertSound",
                "useForumTemplate1", "useForumTemplate2", "useForumTemplate3", "useForumTemplate4", "useForumTemplate5",
                "useForumTemplate6", "useForumTemplate7", "useForumTemplate8", "useForumTemplate9", "useForumTemplate10",
                "useForumLinksMenu");

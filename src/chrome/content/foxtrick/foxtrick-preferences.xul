@@ -91,6 +91,7 @@
     			<vbox>
     				<checkbox id="foxtrickInStatusBar" label="&foxtrick.prefs.foxtrickinstatusbar;" />
     				<checkbox id="alertSlider" label="&foxtrick.prefs.alertslider;" />
+    				<checkbox id="alertSliderGrowl" label="&foxtrick.prefs.alertslider; (Growl - Mac only)" />
     				<checkbox id="alertSound" label="&foxtrick.prefs.alertsound;" />
     				<hbox align="center">
         				<label control="alertSoundUrl" value="URL"/>
