@@ -736,7 +736,7 @@ stats["hatstats"] =  {
 };    
 
 stats["advancedinjurycalc"] =  { 
-        "url" : "http://www.student.kun.nl/rvanaarle/injury.php",
+        "url" : "http://www.student.ru.nl/rvanaarle/injury.php",
 
         "playerhealinglink" : { "path"       : "",
                          "filters"    : [], 
