@@ -636,7 +636,7 @@ stats["hcstatshellas"] =  {
 // HTTools Friendly Manager
 
 stats["httoolsfriendlymanager"] =  { 
-        "url" : "http://friendlymanager.httools.org/",
+        "url" : "http://httoolsfriendlymanager.cretze.ro/",
 
         "challengeslink" : { "path"       : "",
                          "filters"    : [], 
