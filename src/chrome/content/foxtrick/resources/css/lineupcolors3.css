@@ -1,0 +1,40 @@
+/*
+ Special orders - images added
+*/
+
+td.foxtrick-offensive {
+ background-repeat: no-repeat; 
+ background-image: url(chrome://foxtrick/content/resources/lineup/down.png);
+ background-position: 94% 94%;
+}
+
+td.foxtrick-defensive {
+ background-repeat: no-repeat; 
+ background-image: url(chrome://foxtrick/content/resources/lineup/up.png);
+ background-position: 94% 94%;
+}
+
+td.foxtrick-towardswing.foxtrick-left { 
+ background-repeat: no-repeat; 
+ background-image: url(chrome://foxtrick/content/resources/lineup/right.png);
+ background-position: 94% 94%;
+}
+
+td.foxtrick-towardswing.foxtrick-right { 
+ background-repeat: no-repeat; 
+ background-image: url(chrome://foxtrick/content/resources/lineup/left.png);
+ background-position: 94% 94%;
+}
+
+td.foxtrick-towardsmiddle.foxtrick-right { 
+ background-repeat: no-repeat; 
+ background-image: url(chrome://foxtrick/content/resources/lineup/right.png);
+ background-position: 94% 94%;
+}
+
+td.foxtrick-towardsmiddle.foxtrick-left { 
+ background-repeat: no-repeat; 
+ background-image: url(chrome://foxtrick/content/resources/lineup/left.png);
+ background-position: 94% 94%;
+}
+

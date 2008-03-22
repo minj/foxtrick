@@ -1,0 +1,24 @@
+a[href*="bookmarks.asp"] img[src*="notebook_16x16"] {
+    opacity: 0.3;
+}
+
+a[href*="bookmarks.asp"] img[src*="notebook_16x16"][title*="!"] {
+    opacity: 1.0;
+}
+
+a[href*="bookmarks.asp"] img[src*="notebook_16x16"][title^="["][title$="]"] {
+    opacity: 1.0;
+}
+
+
+/*
+
+a[href*=""] img[src*="notebook_16x16"]:not([title*="!"]) {
+    opacity: 0.2;
+}
+
+img[src*="notebook_16x16"]:not([title^="["]), img[src*="notebook_16x16"]:not([title$="]"]) {
+    opacity: 0.2;
+}
+
+*/

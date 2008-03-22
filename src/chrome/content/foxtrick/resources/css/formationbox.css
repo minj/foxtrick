@@ -1,0 +1,24 @@
+div.foxtrick-matchordersbox {
+
+  display: table;
+
+  background-image: url(chrome://foxtrick/content/resources/lineup/50w.png);
+  text-align:center;
+  
+  padding: 3px 0px;
+  width:100%; vertical-align: middle; 
+  height: 100%; 
+  
+}
+
+span#foxtrick-formationinfo {
+ font-weight: bold;
+}
+
+span.foxtrick-badformation {
+ color: red;
+}
+
+span.foxtrick-noformationexperience {
+ color: yellow;
+}

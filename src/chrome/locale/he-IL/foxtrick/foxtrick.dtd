@@ -1,0 +1,87 @@
+<!-- he-IL
+     Gil Tal
+-->
+
+<!ENTITY foxtrick.prefs.preferences "הגדרות">
+<!ENTITY foxtrick.prefs.visuals "מראה">
+<!ENTITY foxtrick.prefs.stars "כוכבים">
+<!ENTITY foxtrick.prefs.about "אודות">
+<!ENTITY foxtrick.prefs.addstars "הוסף כוכבים">
+<!ENTITY foxtrick.prefs.replacestars "החלף כוכבים">
+<!ENTITY foxtrick.prefs.mergestars "מזג כוכבים">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "כוכבים רגילים של האטריק.">
+<!ENTITY foxtrick.prefs.cssskins "סקינים">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "השתמש בסקין ברירת המחדל">
+<!ENTITY foxtrick.menu.configurefoxtrick "הגדר את פוקסטריק">
+<!ENTITY foxtrick.prefs.faces "פנים ותלבושות (לסופורטרים)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "אל תוסיף פנים או תלבושות">
+<!ENTITY foxtrick.prefs.showfaces "הוסף פני השחקנים לדף המערך">
+<!ENTITY foxtrick.prefs.showdresses "הוסף תלבושות השחקנים לדף המערך">
+<!ENTITY foxtrick.prefs.showfacesanddresses "הוסף תלבושות ופני השחקנים לדף המערך">
+<!ENTITY foxtrick.prefs.links "קישורים לאתרים חיצוניים">
+<!ENTITY foxtrick.prefs.link "קישור">
+<!ENTITY foxtrick.prefs.show "הצג">
+<!ENTITY foxtrick.prefs.shortcuts "קיצורי דרך">
+<!ENTITY foxtrick.prefs.shortcut "קיצור דרך">
+<!ENTITY foxtrick.prefs.groupstarsby "מספרי הכוכבים מחולקים לצבעים">
+<!ENTITY foxtrick.menu.installskin "התקן סקין של Hattrick.org">
+<!ENTITY foxtrick.prefs.linkstab "לינקים ורייטינג">
+<!ENTITY foxtrick.prefs.ratings "רייטינג">
+<!ENTITY foxtrick.prefs.rating "רייטינג">
+<!ENTITY foxtrick.prefs.htlang "השפה בהאטריק">
+<!ENTITY foxtrick.prefs.language "הגדרות שפה">
+<!ENTITY foxtrick.prefs.lineupcoloring "צביעת דף המערך">
+<!ENTITY foxtrick.prefs.nolineupcoloring "אל תצבע את דף המערך">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "רק אם צבעים מוגדרים בסקין הנבחר">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "תמיד. אם סקין לא כולל צבע, השתמש בברית המחדל">
+<!ENTITY foxtrick.prefs.getmorecssskins "השג עוד סקינים">
+<!ENTITY foxtrick.prefs.shortcutstab "קיצורי דרך ושונות">
+<!ENTITY foxtrick.prefs.tweaks "שונות">
+<!ENTITY foxtrick.menu.playersintabs "פתח את השחקנים בטאב חדש">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "סגנון">
+<!ENTITY foxtrick.prefs.matchorders "הוראות משחק">
+<!ENTITY foxtrick.prefs.showformationbox "הצג תיבת מערך">
+<!ENTITY foxtrick.prefs.frameresize "שינוי גודל המסגרת">
+<!ENTITY foxtrick.prefs.hidelogoframe "הסתר מסגרת הלוגו העליון">
+<!ENTITY foxtrick.prefs.resizemainframe "שנה גודל המסגרת המרכזית">
+<!ENTITY foxtrick.prefs.resizemenuframe "שנה גודל מסגרת התפריט">
+<!ENTITY foxtrick.prefs.framewidth "רוחב">
+
+<!ENTITY foxtrick.prefs.clearplayerscache "מחק תלבושות ופני השחקנים מהמטמון">
+
+<!ENTITY foxtrick.prefs.attackdefensebars "עמודות התקפה נגד הגנה">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "הצג תמיד">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "כפתור להפעלה">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "אל תראה">
+
+
+<!ENTITY foxtrick.prefs.ratingsstyle "סגנון רייטינג">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "רייטינג חדש">
+<!ENTITY foxtrick.prefs.ratingsstyleold "רייטינג ישן">
+
+<!ENTITY foxtrick.prefs.hattricksettingstext "האפשרויות הבאות חייבות להיות מתואמות עם ההגדרות באתר">
+
+<!ENTITY foxtrick.prefs.showflags "הוסף דגלי מדינות השחקנים לדף המערך">
+<!ENTITY foxtrick.prefs.showfacesandflags "הוסף פני השחקנים ודגלי מדינות השחקנים לדף המערך">
+
+<!ENTITY foxtrick.prefs.showdressesandflags "הוסף תלבושות ודגלי מדינות השחקנים לדף המערך">
+
+<!ENTITY foxtrick.prefs.medalsets "מדליות">
+<!ENTITY foxtrick.prefs.getmoremedalsets "השג עוד מדליות">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "השתמש במדליות ברירת המחדל">
+
+
+<!ENTITY foxtrick.menu.installmedalset "התקן מדליות של Hattrick.org">
+
+<!ENTITY foxtrick.prefs.htcountry "מדינה בהאטריק">
+<!ENTITY foxtrick.prefs.htcurrency "מטבע בהאטריק">
+<!ENTITY foxtrick.prefs.main "ראשי">
+<!ENTITY foxtrick.prefs.alertslider "הצג באר התראה">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "הצג פאנל פוקסטריק בשורת המצב של פיירפוקס">
+<!ENTITY foxtrick.prefs.alertsound "השמע צליל התראה">
+<!ENTITY foxtrick.menu.createplayerad "העתק פרטי שחקן">
+<!ENTITY foxtrick.prefs.htdateformat "פורמט תאריך">
+<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!-- EOF -->

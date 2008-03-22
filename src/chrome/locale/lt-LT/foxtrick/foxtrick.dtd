@@ -1,0 +1,82 @@
+<!-- lt-LT
+     Mykolas Šaučiūnas
+-->
+
+<!ENTITY foxtrick.prefs.preferences "Nustatymai">
+<!ENTITY foxtrick.prefs.visuals "Išvaizdos tvarkymas">
+<!ENTITY foxtrick.prefs.stars "Žvaigždės">
+<!ENTITY foxtrick.prefs.about "Apie">
+<!ENTITY foxtrick.prefs.addstars "Pridėti žvaigždes">
+<!ENTITY foxtrick.prefs.replacestars "Pakeisti žvaigždes">
+<!ENTITY foxtrick.prefs.mergestars "Apjungti žvaigždes">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Naudok standartines Hattrick žvaigždes.">
+<!ENTITY foxtrick.prefs.cssskins "CSS Apvalkalai">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Naudok standartinį Hattrick apvalkalą.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Konfigūruoti FoxTrick">
+<!ENTITY foxtrick.prefs.faces "Veidai ir aprangos (rėmėjams)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Nepridėti veidų ir aprangų.">
+<!ENTITY foxtrick.prefs.showfaces "Pridėti žaidėjų veidus į rungtynių sudėties išdėstymą.">
+<!ENTITY foxtrick.prefs.showdresses "Pridėti žaidėjų aprangą į rungtynių sudėties išdėstymą.">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Pridėti žaidėjų veidus ir aprangą į rungtynių sudėties išdėstymą.">
+<!ENTITY foxtrick.prefs.links "Nuorodos į išorinius puslapius">
+<!ENTITY foxtrick.prefs.link "Nuoroda">
+<!ENTITY foxtrick.prefs.show "Rodyti">
+<!ENTITY foxtrick.prefs.shortcuts "Nuorodos">
+<!ENTITY foxtrick.prefs.shortcut "Nuoroda">
+<!ENTITY foxtrick.prefs.groupstarsby "Žvaigždžių skaičius po kelių keičiasi jų spalva: ">
+<!ENTITY foxtrick.menu.installskin "Įdiegti Hattrick.org apvalkalą">
+<!ENTITY foxtrick.prefs.linkstab "Nuorodos ir reitingai">
+<!ENTITY foxtrick.prefs.ratings "Reitingai">
+<!ENTITY foxtrick.prefs.rating "Reitingas">
+<!ENTITY foxtrick.prefs.htlang "Hattrick kalba">
+<!ENTITY foxtrick.prefs.language "Kalbos nustatymai">
+<!ENTITY foxtrick.prefs.lineupcoloring "Rungtynių išdėstymo spalvinimo schema">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Nespalvinti rungtynių išdėstymo.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Spalvinti, bet jei tik egzistuoja spalvinimo schema naudojamame apvalkale.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Visada spalvinti. Jei apvalkalas neturi spalvinimo schemos, naudoti standartinę.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Gauk daugiau CSS apvalkalų">
+<!ENTITY foxtrick.prefs.shortcutstab "Nuorodos ir pagerinimai">
+<!ENTITY foxtrick.prefs.tweaks "Pagerinimai">
+<!ENTITY foxtrick.menu.playersintabs "Atverti rastus žaidėjus naujose kortelėse">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Stilius">
+<!ENTITY foxtrick.prefs.matchorders "Rungtynių nurodymai">
+<!ENTITY foxtrick.prefs.showformationbox "Rodyti formacijos informaciją">
+<!ENTITY foxtrick.prefs.frameresize "Lango rėmo dydžio keitimas">
+<!ENTITY foxtrick.prefs.hidelogoframe "Paslėpti logo langelį">
+<!ENTITY foxtrick.prefs.resizemainframe "Pakeisti centrinio lango dydį">
+<!ENTITY foxtrick.prefs.resizemenuframe "Pakeisti meniu lango dydį">
+<!ENTITY foxtrick.prefs.framewidth "Plotis">
+<!ENTITY foxtrick.prefs.clearplayerscache "Išvalyti žaidėjų veidų ir aprangų laikinąją atmintį.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Atakos prieš Gynybą statistika">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Įterpti automatiškai.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Rodyti tik vidinę nuorodą.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Neįterpti.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Reitingų standartas">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Standartiniai reitingai.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Seno stiliaus reitingai.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "Šie nustatymai turi būti nustatyti atsižvelgiant į jūsų Hattrick.org nustatymus.">
+
+<!ENTITY foxtrick.prefs.showflags "Add players' country flags to match lineup.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Add players' faces &amp; country flags to match lineup.">
+
+<!ENTITY foxtrick.prefs.showdressesandflags "Add players' dresses &amp; country flags to match lineup.">
+
+<!ENTITY foxtrick.prefs.medalsets "Medal sets">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Get more medal sets">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Use default Hattrick medals.">
+
+
+<!ENTITY foxtrick.menu.installmedalset "Install Hattrick.org medal set">
+
+<!ENTITY foxtrick.prefs.htcountry "Hattrick country">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick currency">
+<!ENTITY foxtrick.prefs.main "Main">
+<!ENTITY foxtrick.prefs.alertslider "Show alert slider.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Display FoxTrick panel in Firefox status bar.">
+<!ENTITY foxtrick.prefs.alertsound "Play alert sound.">
+<!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
+<!ENTITY foxtrick.prefs.htdateformat "Date format">
+<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!-- EOF -->

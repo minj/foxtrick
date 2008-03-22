@@ -1,0 +1,95 @@
+<!-- fi-FI
+     Mikko Mentula
+-->
+
+<!ENTITY foxtrick.prefs.preferences "Asetukset">
+<!ENTITY foxtrick.prefs.visuals "Ulkoasu">
+<!ENTITY foxtrick.prefs.stars "Tähdet">
+<!ENTITY foxtrick.prefs.about "Tietoja">
+<!ENTITY foxtrick.prefs.addstars "Lisää tähdet">
+<!ENTITY foxtrick.prefs.replacestars "Korvaa tähdet">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Käytä Hattrickin oletustähtiä.">
+<!ENTITY foxtrick.prefs.cssskins "Css-skinit">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Käytä Hattrickin oletusskiniä.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Foxtrickin asetukset">
+<!ENTITY foxtrick.prefs.faces "Kasvot ja peliasut (supportereille)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Älä lisää kasvoja tai peliasuja.">
+<!ENTITY foxtrick.prefs.showfaces "Lisää pelaajien kasvot ottelukokoonpanoon.">
+<!ENTITY foxtrick.prefs.showdresses "Lisää pelaajien peliasut ottelukokoonpanoon.">
+<!ENTITY foxtrick.prefs.links "Linkit ulkopuolisille sivuille">
+
+<!ENTITY foxtrick.prefs.link "Linkki">
+<!ENTITY foxtrick.prefs.show "Näytä">
+<!ENTITY foxtrick.prefs.shortcuts "Oikopolut">
+<!ENTITY foxtrick.prefs.shortcut "Oikopolku">
+<!ENTITY foxtrick.prefs.groupstarsby "Tähtimäärä, joka esitetään eri värein ryhmitettynä: ">
+<!ENTITY foxtrick.menu.installskin "Asenna Hattrick.org skini">
+<!ENTITY foxtrick.prefs.linkstab "Linkit &amp; tilastot">
+<!ENTITY foxtrick.prefs.ratings "Tilastot">
+<!ENTITY foxtrick.prefs.rating "Tilasto">
+<!ENTITY foxtrick.prefs.htlang "Hattrickin kieli">
+<!ENTITY foxtrick.prefs.language "Kieliasetukset">
+<!ENTITY foxtrick.prefs.lineupcoloring "Ottelukokoonpanon väriteemat">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Älä käytä värejä ottelukokoonpanossa.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Vain jos väriteema sisältyy käytettävään skiniin.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Aina. Jos skini ei sisällä väriteema, käytä oletusteemaa.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Lataa lisää Css-skinejä">
+
+<!ENTITY foxtrick.prefs.shortcutstab "Oikopolut &amp; viritykset">
+
+<!ENTITY foxtrick.prefs.tweaks "Viritykset">
+
+<!ENTITY foxtrick.prefs.mergestars "Lomita tähdet">
+<!ENTITY foxtrick.menu.playersintabs "Avaa löydetyt pelaajat välilehtiin">
+
+<!ENTITY foxtrick.prefs.showfacesanddresses "Lisää pelaajien kasvot &amp; peliasut ottelukokoonpanoon.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Tyyli">
+<!ENTITY foxtrick.prefs.matchorders "Käskyt">
+
+<!ENTITY foxtrick.prefs.showformationbox "Näytä muodostelmalaatikko">
+<!ENTITY foxtrick.prefs.frameresize "Kehyksen koko">
+<!ENTITY foxtrick.prefs.hidelogoframe "Piilota logokehys">
+<!ENTITY foxtrick.prefs.resizemainframe "Muokkaa pääkehyksen kokoa">
+<!ENTITY foxtrick.prefs.resizemenuframe "Muokkaa valikkokehyksen kokoa">
+
+<!ENTITY foxtrick.prefs.framewidth "leveys">
+
+<!ENTITY foxtrick.prefs.clearplayerscache "Tyhjennä välimuistista pelaajien kasvot/peliasut.">
+
+<!ENTITY foxtrick.prefs.attackdefensebars "Hyökkäys vastaan puolustus -palkit">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Lisää automaattisesti.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Näytä linkkinappula.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Älä käytä.">
+
+
+<!ENTITY foxtrick.prefs.ratingsstyle "Arvostelutyyppi">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Standardit arvostelut.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Vanhat arvostelut.">
+
+<!ENTITY foxtrick.prefs.hattricksettingstext "Seuraavien asetusten tulee olla Hattrick-asetuksiesi mukaisia.">
+
+<!ENTITY foxtrick.prefs.showflags "Lisää pelaajien maiden liput ottelukokoonpanoon.">
+
+<!ENTITY foxtrick.prefs.showfacesandflags "Lisää pelaajien kasvot &amp; maiden liput ottelukokoonpanoon.">
+
+<!ENTITY foxtrick.prefs.showdressesandflags "Lisää pelaajien peliasut &amp; maiden liput ottelukokoonpanoon.">
+
+<!ENTITY foxtrick.prefs.medalsets "Mitalisetit">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Hae lisää mitalisettejä">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Käytä Hattrickin oletusmitaleja.">
+
+
+<!ENTITY foxtrick.menu.installmedalset "Asenna Hattrickin mitalisetti">
+
+<!ENTITY foxtrick.prefs.htcountry "Hattrick-maa">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick currency">
+<!ENTITY foxtrick.prefs.main "Main">
+<!ENTITY foxtrick.prefs.alertslider "Show alert slider.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Display FoxTrick panel in Firefox status bar.">
+<!ENTITY foxtrick.prefs.alertsound "Play alert sound.">
+<!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
+<!ENTITY foxtrick.prefs.htdateformat "Date format">
+<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!-- EOF -->

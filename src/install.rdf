@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+    <Description about="urn:mozilla:install-manifest">
+        <em:id>{9d1f059c-cada-4111-9696-41a62d64e3ba}</em:id>
+        <em:name>FoxTrick</em:name>
+        <em:version>0.3.55</em:version>
+        <em:description>A set of presentation enhancements for hattrick.org</em:description>
+        <em:creator>Karel Kolman</em:creator>
+        <em:homepageURL>http://foxtrick.px.cz/</em:homepageURL>
+        <!-- <em:iconURL>chrome://foxtrick/skin/foxtrick.png</em:iconURL>
+        -->
+        <em:optionsURL>chrome://foxtrick/content/foxtrick-preferences.xul</em:optionsURL>
+        <em:updateURL>http://foxtrick.px.cz/update.rdf</em:updateURL>
+
+        <!-- <em:aboutURL>chrome://foxtrick/content/about.xul</em:aboutURL>
+        -->
+        <em:file>
+            <Description about="urn:mozilla:extension:file:foxtrick.jar">
+                <em:package>content/foxtrick/</em:package>
+                <em:locale>locale/en-US/foxtrick/</em:locale>
+                <em:locale>locale/cs-CZ/foxtrick/</em:locale>
+                <em:locale>locale/it-IT/foxtrick/</em:locale>
+                <em:locale>locale/fr-FR/foxtrick/</em:locale>
+                <em:locale>locale/da-DK/foxtrick/</em:locale>
+                <em:locale>locale/es-ES/foxtrick/</em:locale>                
+                <em:locale>locale/de-DE/foxtrick/</em:locale>
+                <em:locale>locale/de-AT/foxtrick/</em:locale>                
+                <em:locale>locale/nl-NL/foxtrick/</em:locale>
+                <em:locale>locale/pt-BR/foxtrick/</em:locale>
+                <em:locale>locale/lt-LT/foxtrick/</em:locale>
+                <em:locale>locale/fi-FI/foxtrick/</em:locale>                
+                <em:locale>locale/he-IL/foxtrick/</em:locale>
+                <em:locale>locale/ru-RU/foxtrick/</em:locale>
+                <em:locale>locale/gl-ES/foxtrick/</em:locale>
+                <em:locale>locale/ca-AD/foxtrick/</em:locale>
+                <em:locale>locale/zh-CN/foxtrick/</em:locale>
+                <em:locale>locale/el-GR/foxtrick/</em:locale>
+                <em:locale>locale/pt-PT/foxtrick/</em:locale>
+                <em:locale>locale/sl-SI/foxtrick/</em:locale>
+                <em:locale>locale/sk-SK/foxtrick/</em:locale>
+                <em:locale>locale/sv-SE/foxtrick/</em:locale>
+                <em:locale>locale/nb-NO/foxtrick/</em:locale>
+                <em:locale>locale/uk-UA/foxtrick/</em:locale>
+                <em:locale>locale/bg-BG/foxtrick/</em:locale>
+                <em:locale>locale/ko-KR/foxtrick/</em:locale>
+                <em:locale>locale/sr-SR/foxtrick/</em:locale>
+                <em:locale>locale/hr-HR/foxtrick/</em:locale>
+                <em:locale>locale/et-EE/foxtrick/</em:locale>
+            </Description>
+        </em:file>
+        
+        <em:targetApplication><!-- Firefox -->
+            <Description>
+                <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+                <em:maxVersion>2.0+</em:maxVersion>
+                <em:minVersion>1.0</em:minVersion>
+            </Description>
+        </em:targetApplication>
+
+        <em:targetApplication><!-- Mozilla -->
+            <Description>
+                <em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
+                <em:minVersion>1.7</em:minVersion>                
+                <em:maxVersion>1.9</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+        
+       <em:targetApplication><!-- Netscape -->
+           <Description>
+               <em:id>{3db10fab-e461-4c80-8b97-957ad5f8ea47}</em:id>
+               <em:minVersion>0.0</em:minVersion>
+               <em:maxVersion>8.1</em:maxVersion>
+           </Description>
+       </em:targetApplication>
+
+       <em:targetApplication><!-- Flock -->
+         <Description>
+           <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
+           <em:minVersion>0.4</em:minVersion>
+           <em:maxVersion>0.8</em:maxVersion>
+         </Description>
+       </em:targetApplication>       
+
+    </Description>
+</RDF>

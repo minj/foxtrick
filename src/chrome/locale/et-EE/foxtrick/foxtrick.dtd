@@ -1,0 +1,75 @@
+<!-- et
+     Sander Piibemann
+-->
+
+<!ENTITY foxtrick.prefs.preferences "Eelistused">
+<!ENTITY foxtrick.prefs.visuals "Graafika">
+<!ENTITY foxtrick.prefs.stars "Tähed">
+<!ENTITY foxtrick.prefs.about "Info">
+<!ENTITY foxtrick.prefs.addstars "Lisa tähed">
+<!ENTITY foxtrick.prefs.replacestars "Asenda tähed">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Kasuta Hattricki vaikimisi tähti.">
+<!ENTITY foxtrick.prefs.cssskins "CSS kihid">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Kasuta Hattricki vaikimisi kihti.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Seadista FoxTricki">
+<!ENTITY foxtrick.prefs.faces "Näod ja mänguvorm (toetajatele)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Ära lisa nägusid vői mänguvorme.">
+<!ENTITY foxtrick.prefs.showfaces "Lisa näod mängijate rivistusele.">
+<!ENTITY foxtrick.prefs.showdresses "Lisa mänguvormid mängijate rivistusele.">
+<!ENTITY foxtrick.prefs.links "Viidad välistele rakendustele">
+<!ENTITY foxtrick.prefs.link "Viit">
+<!ENTITY foxtrick.prefs.show "Näita">
+<!ENTITY foxtrick.prefs.shortcuts "Otsetee">
+<!ENTITY foxtrick.prefs.shortcut "Otsetee">
+<!ENTITY foxtrick.prefs.groupstarsby "Värvi kaupa grupeeritavate tähtede arv: ">
+<!ENTITY foxtrick.menu.installskin "Paigalda Hattrick.org kiht">
+<!ENTITY foxtrick.prefs.linkstab "Viidad &amp; reitingud">
+<!ENTITY foxtrick.prefs.ratings "Reitingud">
+<!ENTITY foxtrick.prefs.rating "Reiting">
+<!ENTITY foxtrick.prefs.htlang "Hattricki keel">
+<!ENTITY foxtrick.prefs.language "Keele seaded">
+<!ENTITY foxtrick.prefs.lineupcoloring "Mängijate rivistuse värviteemad">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Pole värviteemat.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Ainult siis kui värviteema leidub kasutatavas kihis.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Alati. Kui kihil pole värviteemat, siis kasutada vaikimisi värviteemat.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Hangi CSS kihte lisaks">
+<!ENTITY foxtrick.prefs.shortcutstab "Lingid &amp; kohendused">
+<!ENTITY foxtrick.prefs.tweaks "Kohendused">
+<!ENTITY foxtrick.prefs.mergestars "Ühenda tähed">
+<!ENTITY foxtrick.menu.playersintabs "Ava leitud mängijad kaartidel">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Lisa näod &amp; mänguvormid mängijate rivistusele.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Stiil">
+<!ENTITY foxtrick.prefs.matchorders "Mängu käsud">
+<!ENTITY foxtrick.prefs.showformationbox "Näita formatsiooni kasti">
+<!ENTITY foxtrick.prefs.frameresize "Raami suuruse muutmine">
+<!ENTITY foxtrick.prefs.hidelogoframe "Peida logo raam">
+<!ENTITY foxtrick.prefs.resizemainframe "Muuda pearaami suurust">
+<!ENTITY foxtrick.prefs.resizemenuframe "Muuda menüüraami suurust">
+<!ENTITY foxtrick.prefs.framewidth "Laius">
+<!ENTITY foxtrick.prefs.clearplayerscache "Puhasta nägude/mänguvormide cache.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Rünnak vs Kaitse riba">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Sisesta automaatselt.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Näita ümberlüliti linki.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Ära sisesta.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Reitingute formaat">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Standardsed reitingud.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Vana stiili reitingud.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "Järgmised valikud peavad olema kooskőlas sinu Hattrick.org seadetega.">
+<!ENTITY foxtrick.prefs.showflags "Lisa mängijate riikide lipud mängurivistusele.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Lisa mängijate näod &amp; riikide lipud mängurivistusele.">
+<!ENTITY foxtrick.prefs.showdressesandflags "Lisa mängijate vormid &amp; riikide lipud mängurivistusele.">
+<!ENTITY foxtrick.prefs.medalsets "Medalite komplektid">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Hangi lisaks medalite komplekte">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Kasuta Hattricki vaikimisi medaleid.">
+<!ENTITY foxtrick.menu.installmedalset "Paigalda Hattrick.org medali komplekt">
+<!ENTITY foxtrick.prefs.htcurrency "Hattricki valuuta">
+<!ENTITY foxtrick.prefs.main "Pőhisätted">
+<!ENTITY foxtrick.prefs.alertslider "Näita alarmi liugurit.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Näita FoxTricki paneeli Firefoxi staatuseribal.">
+<!ENTITY foxtrick.prefs.alertsound "Mängi alarmi helinat.">
+<!ENTITY foxtrick.menu.createplayerad "Mängija kuulutus vahemälusse.">
+<!ENTITY foxtrick.prefs.htdateformat "Kuupäeva formaat">
+<!ENTITY foxtrick.menu.makelink "Liiga viit vahemällu">
+<!ENTITY foxtrick.prefs.forumtemplates "Foorumi näidised">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Foorumi standardsőnumid">
+<!-- EOF -->

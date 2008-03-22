@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<!DOCTYPE overlay [
+   <!ENTITY % foxtrickprefsDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
+   %foxtrickprefsDTD;
+]>
+  
+<overlay id="foxtrickOverlay"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:nc="http://home.netscape.com/NC-rdf#"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      >
+      
+    <script type="application/x-javascript" src="chrome://global/content/strres.js"/>
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_common.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/htlang.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/stringmanager.js" />    
+    <script type="application/x-javascript" src="chrome://foxtrick/content/skinmanager.js" />    
+    <script type="application/x-javascript" src="chrome://foxtrick/content/starsets.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/prefsmanager.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/menus.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/resources/js/transferform.js" />    
+    <script type="application/x-javascript" src="chrome://foxtrick/content/stats.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/xraylinks.js" />    
+    <script type="application/x-javascript" src="chrome://foxtrick/content/ratings.js" />    
+    <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick-preferences.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_yoar.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_marnow.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_atreus.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_fluster.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_CHPP-ste1n.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_blizarazu.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_sen.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_patrickbrans.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_brzi.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick.js" />    
+
+    <!-- Mozilla Tools menu -->
+    <menupopup id="taskPopup">
+        <menuitem id="foxtrick-config-menu" label="&foxtrick.menu.configurefoxtrick;"  oncommand="configureFoxtrick();"/>
+    </menupopup>
+    
+    <!-- Firefox Tools menu -->
+    <menupopup id="menu_ToolsPopup">
+      <menu id="hattricktools_menu" label="Hattrick">
+        <menupopup id="hattricktools_menupopup">
+          <menuitem id="foxtrick-config-menu" label="&foxtrick.menu.configurefoxtrick;" oncommand="configureFoxtrick(); "/>
+        </menupopup>
+      </menu>
+    </menupopup> 
+
+    <!-- popup menu -->
+    <popup id="contentAreaContextMenu">
+      <menu label="FoxTrick" id="foxtrick-menu">
+        <menupopup id="foxtrick-popup-menu" onpopupshowing="foxtrick_adjustWindowContextMenu(event);">
+          <menuitem id="foxtrick-popup-menu-playerad" class="menuitem-non-iconic" label="&foxtrick.menu.createplayerad;" oncommand="getPlayerAd();"/>
+          <menuitem id="foxtrick-popup-menu-makelink" class="menuitem-non-iconic" label="&foxtrick.menu.makelink;" oncommand="foxtrick_makeConfLink();"/>
+          <menuitem id="foxtrick-popup-menu-config" class="menuitem-non-iconic" label="&foxtrick.menu.configurefoxtrick;" oncommand="configureFoxtrick(); "/>
+          <menu id="foxtrick-popup-menu-skins" label="&foxtrick.prefs.cssskins;">            
+            <menupopup id="foxtrick-popup-menu-bar-skins" onpopupshowing="foxtrick_fillSkinsPopup(event);">
+              <menuitem id="foxtrick-popup-menu-defaultskin" label="&foxtrick.prefs.defaulthatrickskin;" type="checkbox" oncommand="PrefsBranch.setBoolPref('useHattrickSkin', true); "/>
+            </menupopup>
+          </menu>
+        </menupopup>
+      </menu>
+      <menuitem id="foxtrick-menu-installskin" label="&foxtrick.menu.installskin;" oncommand="installSkin(event);" />
+      <menuitem id="foxtrick-menu-installmedalset" label="&foxtrick.menu.installmedalset;" oncommand="installMedalSet(event);" />
+    </popup> 
+
+    <!-- status bar -->
+    <statusbar id="status-bar">
+      <statusbarpanel id="foxtrick-status-bar" label="FoxTrick" context="foxtrick-status-bar-menu"/>
+      <menupopup id="foxtrick-status-bar-menu" onpopupshowing="foxtrick_adjustStatusBarContextMenu(event); foxtrick_showhideMenuItems('foxtrick-status-bar-menu');">
+        <menuitem id="foxtrick-status-bar-menu-playerad" class="menuitem-non-iconic" label="&foxtrick.menu.createplayerad;" oncommand="getPlayerAd();"/>
+        <menuitem id="foxtrick-status-bar-menu-config" class="menuitem-non-iconic" label="&foxtrick.menu.configurefoxtrick;" oncommand="configureFoxtrick(); "/>
+        <menu id="foxtrick-status-bar-skins" label="&foxtrick.prefs.cssskins;">            
+          <menupopup id="foxtrick-status-bar-skins" onpopupshowing="foxtrick_fillSkinsPopup(event);">
+            <menuitem id="foxtrick-status-bar-defaultskin" label="&foxtrick.prefs.defaulthatrickskin;" type="checkbox" oncommand="PrefsBranch.setBoolPref('useHattrickSkin', true); "/>
+          </menupopup>
+        </menu>
+      </menupopup> 
+    </statusbar>    
+
+</overlay>

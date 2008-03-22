@@ -1,0 +1,77 @@
+<!-- cs-CZ
+     Karel Kolman
+-->
+
+<!ENTITY foxtrick.prefs.preferences "Nastavení">
+<!ENTITY foxtrick.prefs.visuals "Vizualizace">
+<!ENTITY foxtrick.prefs.stars "Hvězdičky">
+<!ENTITY foxtrick.prefs.about "O pluginu">
+<!ENTITY foxtrick.prefs.addstars "Přidávat hvězdičky">
+<!ENTITY foxtrick.prefs.replacestars "Nahrazovat hvězdičky">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Ponechat hvězdičky z Hattrick.org.">
+<!ENTITY foxtrick.prefs.cssskins "CSS Skiny">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Ponechat Hattrick.org skin.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Konfigurovat FoxTrick">
+<!ENTITY foxtrick.prefs.faces "Tváře a dresy (pro supportery)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Nepřidávat tváře ani dresy.">
+<!ENTITY foxtrick.prefs.showfaces "Přidávat tváře hráčů do sestav zápasů.">
+<!ENTITY foxtrick.prefs.showdresses "Přidávat dresy hráčů do sestav zápasů.">
+<!ENTITY foxtrick.prefs.showflags "Přidávat vlajky do sestav zápasů.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Přidávat tváře hráčů &amp; vlajky do sestav zápasů.">
+<!ENTITY foxtrick.prefs.showdressesandflags "Přidávat dresy hráčů &amp; vlajky do sestav zápasů.">
+<!ENTITY foxtrick.prefs.links "Odkazy na externí stránky">
+<!ENTITY foxtrick.prefs.link "Odkaz">
+<!ENTITY foxtrick.prefs.show "Zobrazovat">
+<!ENTITY foxtrick.prefs.shortcuts "Zkratky">
+<!ENTITY foxtrick.prefs.shortcut "Zkratka">
+<!ENTITY foxtrick.prefs.groupstarsby "Seskupovat hvězdičky po: ">
+<!ENTITY foxtrick.menu.installskin "Instaluj Hattrick.org skin">
+<!ENTITY foxtrick.prefs.linkstab "Odkazy &amp; ratingy">
+<!ENTITY foxtrick.prefs.ratings "Ratingy">
+<!ENTITY foxtrick.prefs.rating "Rating">
+<!ENTITY foxtrick.prefs.htlang "Jazyk Hattricku">
+<!ENTITY foxtrick.prefs.language "Jazyková nastavení">
+<!ENTITY foxtrick.prefs.lineupcoloring "Obarvování sestavy">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Neobarvovat.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Pouze když funkci podporuje vybraný skin.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Vždy. Neobsahuje-li skin schéme barev, použij implicitní.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Stáhnout další CSS skiny...">
+<!ENTITY foxtrick.prefs.shortcutstab "Zkratky &amp; další">
+<!ENTITY foxtrick.prefs.tweaks "Další">
+<!ENTITY foxtrick.prefs.mergestars "Slučovat hvězdičky">
+<!ENTITY foxtrick.menu.playersintabs "Otevření nalezených hráčů v panelech">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Přidávat tváře i dresy hráčů do sestav zápasů.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Styl">
+<!ENTITY foxtrick.prefs.matchorders "Pokyny k zápasu">
+<!ENTITY foxtrick.prefs.showformationbox "Zobrazuj formaci">
+<!ENTITY foxtrick.prefs.frameresize "Velikost rámů">
+<!ENTITY foxtrick.prefs.hidelogoframe "Schovej rám s logem">
+<!ENTITY foxtrick.prefs.resizemainframe "Změn velikost hlavního rámu">
+<!ENTITY foxtrick.prefs.resizemenuframe "Změn velikost rámu s menu">
+<!ENTITY foxtrick.prefs.framewidth "Šířka">
+<!ENTITY foxtrick.prefs.clearplayerscache "Vyprázdni hráčskou cache obličejů a dresů.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Útok vs Obrana grafy">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Vkládat automaticky.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Volitelně zobrazitelné.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Nevkládat.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Formát ratingů">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Standardní ratingy.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Starý styl ratingů.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "Následující nastavení musí být zvoleny v souladu s vašimi nastaveními na Hattrick.org.">
+<!ENTITY foxtrick.prefs.medalsets "Sady medailí">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Stáhnout další sady medailí">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Ponechat medaile z Hattrick.org.">
+<!ENTITY foxtrick.menu.installmedalset "Instaluj sadu medailí pro Hattrick.org">
+
+<!ENTITY foxtrick.prefs.htcountry "Hattrick country">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick currency">
+<!ENTITY foxtrick.prefs.main "Main">
+<!ENTITY foxtrick.prefs.alertslider "Show alert slider.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Display FoxTrick panel in Firefox status bar.">
+<!ENTITY foxtrick.prefs.alertsound "Play alert sound.">
+<!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
+<!ENTITY foxtrick.prefs.htdateformat "Date format">
+<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!-- EOF -->

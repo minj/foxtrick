@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RDF:RDF xmlns:chrome="http://www.mozilla.org/rdf/chrome#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+      <RDF:Seq about="urn:mozilla:locale:root">
+        <RDF:li resource="urn:mozilla:locale:sl-SI"/>
+      </RDF:Seq>
+    
+      <RDF:Description about="urn:mozilla:locale:sl-SI" chrome:name="sl-SI">
+        <chrome:packages>
+          <RDF:Seq about="urn:mozilla:locale:sl-SI:packages">
+            <RDF:li resource="urn:mozilla:locale:sl-SI:foxtrick"/>
+          </RDF:Seq>
+        </chrome:packages>
+      </RDF:Description>
+</RDF:RDF>

@@ -1,0 +1,74 @@
+<!-- ko-KR
+-->
+
+<!ENTITY foxtrick.prefs.preferences "기본 설정">
+<!ENTITY foxtrick.prefs.visuals "시각">
+<!ENTITY foxtrick.prefs.stars "별">
+<!ENTITY foxtrick.prefs.about "대하여">
+<!ENTITY foxtrick.prefs.addstars "별 더하기">
+<!ENTITY foxtrick.prefs.replacestars "별 대신하기">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "대폴트 Hattrick skin 사용하기.">
+<!ENTITY foxtrick.prefs.cssskins "CSS Skins">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "디폴트 Hattrick skin 사용하기.">
+<!ENTITY foxtrick.menu.configurefoxtrick "FoxTrick 구성하기">
+<!ENTITY foxtrick.prefs.faces "얼굴와 드레스 (서포터들만)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "얼굴와 드레스 더하지 말기.">
+<!ENTITY foxtrick.prefs.showfaces "선수들의 얼굴들을 경기 라인업에 더하기.">
+<!ENTITY foxtrick.prefs.showdresses "선수들의 드레스들을 경기 라인업에 더하기.">
+<!ENTITY foxtrick.prefs.links "외부 사이트로 링크">
+<!ENTITY foxtrick.prefs.link "링크">
+<!ENTITY foxtrick.prefs.show "보여주기">
+<!ENTITY foxtrick.prefs.shortcuts "지르길들">
+<!ENTITY foxtrick.prefs.shortcut "지름길">
+<!ENTITY foxtrick.prefs.groupstarsby "색깔로 모을 별수: ">
+<!ENTITY foxtrick.menu.installskin "Hattrick.org skin 설치하기">
+<!ENTITY foxtrick.prefs.linkstab "링크 &amp; 등급">
+<!ENTITY foxtrick.prefs.ratings "등급들">
+<!ENTITY foxtrick.prefs.rating "등급">
+<!ENTITY foxtrick.prefs.htlang "Hattrick 언어">
+<!ENTITY foxtrick.prefs.language "언어 기본 설정">
+<!ENTITY foxtrick.prefs.lineupcoloring "경기 라인업 색깔의 배합">
+<!ENTITY foxtrick.prefs.nolineupcoloring "경기 색깔의 배합 없이.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "사용하는 skin에 색깔의 배합이 있을경우에만.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "항상. 사용하는 skin에 색깔의 배합이 없을경우에는 디폴트를 사용하기.">
+<!ENTITY foxtrick.prefs.getmorecssskins "더한 CSS skins 얻기">
+<!ENTITY foxtrick.prefs.shortcutstab "지르길들 &amp; 미조정들">
+<!ENTITY foxtrick.prefs.tweaks "미조정">
+<!ENTITY foxtrick.prefs.mergestars "별들 합병">
+<!ENTITY foxtrick.menu.playersintabs "찾은 선수들을 tab에 열리기">
+<!ENTITY foxtrick.prefs.showfacesanddresses "선수들의 얼굴들와 &amp; 드레스들을 경기 라인업에 더하기.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Style">
+<!ENTITY foxtrick.prefs.matchorders "지시 사항">
+<!ENTITY foxtrick.prefs.showformationbox "Show formation box">
+<!ENTITY foxtrick.prefs.frameresize "Frame resizing">
+<!ENTITY foxtrick.prefs.hidelogoframe "Hide logo frame">
+<!ENTITY foxtrick.prefs.resizemainframe "Resize main frame">
+<!ENTITY foxtrick.prefs.resizemenuframe "Resize menu frame">
+<!ENTITY foxtrick.prefs.framewidth "Width">
+<!ENTITY foxtrick.prefs.clearplayerscache "선수들의 얼굴들/드레스들의 cache 지우기.">
+<!ENTITY foxtrick.prefs.attackdefensebars "공격 vs 수비 막대">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "자동으로 넣기.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "toggle 링크를 보여주기.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "넣지 말기.">
+<!ENTITY foxtrick.prefs.ratingsstyle "등급 포맷">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "보통 등급.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "전 문체 등급.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "다음 옵션들은 Hattrick.org의 기본 설정와 같아야합니다.">
+<!ENTITY foxtrick.prefs.showflags "선수들의 깃발들을 경기 라인업에 더하기.">
+<!ENTITY foxtrick.prefs.showfacesandflags "선수들의 얼굴들와 &amp; 깃발들을 경기 라인업에 더하기.">
+<!ENTITY foxtrick.prefs.showdressesandflags "선수들의 드레스들와 &amp; 깃발들을 경기 라인업에 더하기.">
+<!ENTITY foxtrick.prefs.medalsets "메달 세트">
+<!ENTITY foxtrick.prefs.getmoremedalsets "더한 메달 세트를 얻기">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "디폴트 Hattrick 메달들을 사용하기.">
+<!ENTITY foxtrick.menu.installmedalset "Hattrick.org 메달 세트 설치하기">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick 통화">
+<!ENTITY foxtrick.prefs.main "주요">
+<!ENTITY foxtrick.prefs.alertslider "경계 슬라이더 보여주기.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "FoxTrick 패널을 Firefox 상태 bar에 보여주기.">
+<!ENTITY foxtrick.prefs.alertsound "경계 소리 놀기.">
+<!ENTITY foxtrick.menu.createplayerad "선수 선전을 클립보드으로.">
+<!ENTITY foxtrick.prefs.htdateformat "날짜 포맷">
+<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!-- EOF -->

@@ -1,0 +1,10 @@
+.back { position:relative;width:30px;height:30px;left:0;top:0;float:Left;clear:left; z-index:7; }
+.back2 { position:relative;width:30px;height:30px;left:0;top:0;z-index:8;
+ /* added this */
+ float:left;
+ }
+.number1 { position: absolute; left: 0px; top: 0px; z-index:9; }
+.number2 { position: absolute; left: 0px; top: 0px; z-index:10; }
+.number3 { position: absolute; left: 0px; top: 0px; z-index:11; }
+
+

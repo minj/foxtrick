@@ -1,0 +1,49 @@
+div.foxtrick-faceanddresscontainer {
+  position: relative; left: 0px; top:0px; width: 100%; min-height: 45px; min-width: 50px;
+}
+
+div.foxtrick-face1 {
+  position: relative; float:left; left: 0px; top: 0px; z-index: 1;
+  clear: left;
+}
+
+div.foxtrick-face2 {
+  position: absolute; left: 0px; top: 0px; z-index: 1;
+  -moz-opacity: 0.28;
+}
+  
+div.foxtrick-playerinfo {
+  position: absolute; left: 0px; top:0px; text-align:center; width: 100%; 
+}  
+
+div.foxtrick-playerinfo2 {
+  position: relative; left: 0px; top:0px; text-align:center; width: 100%; 
+}  
+
+div.foxtrick-dress {
+float:right; -moz-opacity: 0.3;
+}  
+
+div.foxtrick-flag {
+  min-height: 45px;
+}  
+
+div.foxtrick-flag-right {
+  float:right;
+}
+
+div.foxtrick-flag-left {
+  position: absolute; left: 0px; top: 0px; z-index: 1; -moz-opacity: 0.85;
+}  
+
+div.foxtrick-flag-opaque {
+ -moz-opacity: 0.35;
+}
+
+div.foxtrick-flag img {
+ margin-top:12px;
+ width: 25px;
+ height: 15px; 
+}
+
+
