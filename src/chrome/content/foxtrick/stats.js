@@ -1043,6 +1043,16 @@ stats["beltrickarena"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_arena.gif"
 };
 
+stats["beltrickyouth"] =  { 
+        "url" : "http://www.beltrick.org/youthstat",
+        "youthlink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        "title" : "Beltrick YouthStat",
+        "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.jpg"
+};
+
 function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
     
     var links = new Array();

@@ -94,6 +94,10 @@ function isMemorableMomentsUrl(href) {
   return href.search(/otherEvents\.asp/i) > -1;
 }
 
+function isYouthOverviewUrl(href) {
+  return href.search(/YouthOverView\.asp/i) > -1;
+}
+
 function isRegionUrl(href) {
   return href.search(/regionDetails\.asp/i) > -1;
 }
@@ -991,82 +995,55 @@ function findTeamName(doc) {
    }
 }
 
+function foxtrick_getLinksElement(element, document, links, paddingTop, paddingBottom) {
+	var container = document.createElement("p");
+	container.style.paddingTop = paddingTop;
+	container.style.paddingBottom = paddingBottom;
+
+	for (var i=0; i<links.length; i++) {
+		foxtrick_addlink(container, document, links[i]);
+		if (i != links.length -1) {
+			container.appendChild(document.createTextNode(" "));    
+		}
+	}
+	return container;
+}
 
 //---------------------------------------------------------------------------    
 function addlinks(element, document, links, paddingTop, paddingBottom) {
+	var container = foxtrick_getLinksElement(element, document, links, paddingTop, paddingBottom);
 
-  var container = document.createElement("p");
-  
-  container.style.paddingTop = paddingTop;
-  container.style.paddingBottom = paddingBottom;
-  
-  for (var i=0; i<links.length; i++) {
-    foxtrick_addlink(container, document, links[i]);
-    if (i != links.length -1) {
-      container.appendChild(document.createTextNode(" "));    
-    }
-  }
+	var firstChild = element.firstChild
+	element.insertBefore(container, firstChild);
 
-  var firstChild = element.firstChild
-
-  element.insertBefore(container, firstChild);
-  
-  if (firstChild.localName == "BR") {
-    element.removeChild(firstChild);
-  }
-  
-  element.externalLinksAdded = "true";
-
+	if (firstChild.localName == "BR") {
+		element.removeChild(firstChild);
+	}
+	element.externalLinksAdded = "true";
 }
 
 //---------------------------------------------------------------------------    
 function addlinks2(element, document, links, paddingTop, paddingBottom) {
+	var container = foxtrick_getLinksElement(element, document, links, paddingTop, paddingBottom);
+	element.parentNode.insertBefore(container, element);
+	element.externalLinksAdded = "true";
 
-  var container = document.createElement("p");
-  
-  container.style.paddingTop = paddingTop;
-  container.style.paddingBottom = paddingBottom;
-  
-  for (var i=0; i<links.length; i++) {
-    foxtrick_addlink(container, document, links[i]);
-    if (i != links.length -1) {
-        container.appendChild(document.createTextNode(" "));    
-    }
-  }
-
-  element.parentNode.insertBefore(container, element);
-  element.externalLinksAdded = "true";
-  
-  if (element.localName == "BR") {
-    element.parentNode.removeChild(element);
-  }
-  
-  removeWhitespaceAndLineBreaksBeforeElement(container);
-
+	if (element.localName == "BR") {
+		element.parentNode.removeChild(element);
+	}
+	removeWhitespaceAndLineBreaksBeforeElement(container);
 }
 
 //---------------------------------------------------------------------------    
 function addlinks3(element, document, links, paddingTop, paddingBottom) {
-
-  var container = document.createElement("p");
-  container.style.paddingTop = paddingTop;
-  container.style.paddingBottom = paddingBottom;
-  
-  for (var i=0; i<links.length; i++) {
-    
-    foxtrick_addlink(container, document, links[i]);
-    
-    if (i != links.length -1) {
-        container.appendChild(document.createTextNode(" "));    
-    }
-    
-  }
-
-  element.parentNode.insertBefore(container, element.nextSibling);
-  element.externalLinksAdded = "true";
-  
-  removeWhitespaceAndLineBreaksBeforeElement(container);
-
+	var container = foxtrick_getLinksElement(element, document, links, paddingTop, paddingBottom);
+	if (element.nextSibling != null) {
+		element.parentNode.insertBefore(container, element.nextSibling);
+	} else {
+		element.parentNode.appendChild(container);
+	}
+	element.externalLinksAdded = "true";
+	removeWhitespaceAndLineBreaksBeforeElement(container);
 }
 
 function removeWhitespaceAndLineBreaksBeforeElement(element) {
@@ -1118,7 +1095,7 @@ function addExternalLinksToPlayerDetail(doc) {
 
         if (infotable != null) {        
     
-            tsi = infotable.rows[1].cells[1].textContent.replace(/[\s]*/gi, "");
+            tsi = infotable.rows[2].cells[1].textContent.replace(/[\s]*/gi, "");
     
             for (var i=0; i < doc.links.length; i++) {
                 if ( doc.links[i].href.match(/skillshort/i) ) {
@@ -1135,7 +1112,7 @@ function addExternalLinksToPlayerDetail(doc) {
         
         if (infotable != null) {
        
-            var container = infotable.rows[5].cells[1];
+            var container = infotable.rows[6].cells[1];
             
             if (container.textContent.search(/\d+/) > -1) {
                 
@@ -1458,6 +1435,20 @@ function addArenaLinks(doc) {
           addlinks2(elem, doc, links, "0px", "0px");
         }
     }
+}
+
+function addYouthOverviewLinks(doc) {
+	if (isYouthOverviewUrl(doc.location.href)) {
+		var path = "//a[@id='ctl00_ctl00_CM_CIR_hypChallengeTeam']";
+		var result = doc.evaluate(path,doc.documentElement,null,XPathResult.ANY_TYPE,null);
+		elem = result.iterateNext();
+
+		var links = getLinks("youthlink", { }, doc );  
+
+		if (links.length > 0) {
+			addlinks3(elem, doc, links, "0px", "0px");
+		}
+	}
 }
 
 //---------------------------------------------------------------------------    
@@ -4118,8 +4109,8 @@ var foxtrick_functions =
 		foxtrick_adjustPlayerBackgrounds,
 		foxtrick_addExternalLinksToFederationDetail,
 		teamLogoBelow,
-		addArenaLinks
-
+		addArenaLinks,
+		addYouthOverviewLinks
       ];
 
 
