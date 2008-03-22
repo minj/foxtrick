@@ -3389,10 +3389,10 @@ function matchDetailPlayerColoring(document, color1, color2) {
         var style;
         
         if (linkFgColor != null) {
-          style = "{color: " + linkFgColor + " !important; font-weight: bold; text-decoration: none;}";
+          style = "color: " + linkFgColor + " !important; font-weight: bold; text-decoration: none;";
         } else {
-          style =  "{color: " + getContrastForegroundColor(linkBgColor) + " !important; background: " +
-          linkBgColor + " !important; padding: 0px 3px; border: gray 1px solid; text-decoration: none;}";
+          style =  "color: " + getContrastForegroundColor(linkBgColor) + " !important; background: " +
+          linkBgColor + " !important; padding: 0px 3px; border: gray 1px solid; text-decoration: none;";
         }
 
         link.setAttribute("style", style);
@@ -3404,8 +3404,8 @@ function matchDetailPlayerColoring(document, color1, color2) {
 
     var tables = document.getElementsByTagName("TABLE");
 
-    var teamA = tables[1].rows[0].cells[0].childNodes[10].nodeValue;
-    var teamB = tables[1].rows[0].cells[0].childNodes[13].nodeValue;
+    var teamA = tables[1].rows[0].cells[0].childNodes[13].nodeValue;
+    var teamB = tables[1].rows[0].cells[0].childNodes[16].nodeValue;
 
     // Team B
 
