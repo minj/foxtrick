@@ -339,29 +339,6 @@ stats["todohattrick"] =  {
 };    
 
 
-// HT-Posten
-
-stats["htposten"] =  { 
-        "url" : "http://www.lokesoftware.dk/htposten/",
-
-        "leaguelink" : { "path"       : "aseries.cfm",
-                         "filters"    : ["countryid"], 
-                         "params"     : { "leaguename" : "Series",
-                                          "leagueid" : "SeriesID"
-                                        }
-                       },
-
-        "teamlink" : { "path"       : "teamplayerrating.cfm",
-                         "filters"    : ["countryid"], 
-                         "params"     : { "teamid" : "TeamID" }
-                       },
-
-        "countryidranges" : [[11, 11]],
-        "title" : "HT-Posten",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htposten.gif"
-};    
-
-
 // Eesti Hattricki statistika
 
 stats["eesti"] =  { 
@@ -885,20 +862,6 @@ stats["cyf"] =  {
         "title" : "Cross Your Fingers",
         "img" : "chrome://foxtrick/content/resources/linkicons/cyf.png"
 };
-
-// polistats
-stats["polistats"] =  { 
-        "url" : "http://stats.hattrickpoli.com/",
-
-        "teamlink" : {   "path"       : "ratings.asp",
-                         "filters"    : [], 
-                         "params"     : { "teamid" : "teamID" }
-                       },
-        
-        "title" : "PoliStats",
-       // "shorttitle" : "PoliStats"
-        "img" : "chrome://foxtrick/content/resources/linkicons/hattrickpoli.jpg"
-};    
 
 /*
 stats["econtable"] =  { 
