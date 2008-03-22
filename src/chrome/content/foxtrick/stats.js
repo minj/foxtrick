@@ -649,7 +649,7 @@ stats["httoolsfriendlymanager"] =  {
 
 // Maptrick
 stats["maptrick"] =  { 
-        "url" : "http://student.science.uva.nl/~lhoek/maptrick.php",
+        "url" : "http://maptrick.nl.eu.org/~laszlo/",
 
         "countrylink" : { "path"       : "",
                          "filters"    : [], 
