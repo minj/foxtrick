@@ -63,15 +63,16 @@
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Ponechat medaile z Hattrick.org.">
 <!ENTITY foxtrick.menu.installmedalset "Instaluj sadu medailí pro Hattrick.org">
 
-<!ENTITY foxtrick.prefs.htcountry "Hattrick country">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick currency">
-<!ENTITY foxtrick.prefs.main "Main">
+<!ENTITY foxtrick.prefs.htcountry "Hattrick země">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick měna">
+<!ENTITY foxtrick.prefs.main "Hlavní">
 <!ENTITY foxtrick.prefs.alertslider "Show alert slider.">
-<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Display FoxTrick panel in Firefox status bar.">
-<!ENTITY foxtrick.prefs.alertsound "Play alert sound.">
-<!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
-<!ENTITY foxtrick.prefs.htdateformat "Date format">
-<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
-<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
-<!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Zobrazovat FoxTrick panel ve stavové liště prohlížeče.">
+<!ENTITY foxtrick.prefs.alertsound "Zvuk při notifikaci">
+<!ENTITY foxtrick.menu.createplayerad "Hráčský inzerát do schránky">
+<!ENTITY foxtrick.prefs.htdateformat "Formát data">
+<!ENTITY foxtrick.menu.makelink "Odkaz do konference do schránky">
+<!ENTITY foxtrick.prefs.forumtemplates "Šablony pro fóra">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Šablony pro fóra/konference">
+<!ENTITY foxtrick.prefs.opendirectory "Otevřít adresář">
 <!-- EOF -->

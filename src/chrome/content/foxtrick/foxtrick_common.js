@@ -83,3 +83,12 @@ function foxtrick_showAlertGrowl(text, alertError) {
 		}
 	}
 }
+
+function foxtrick_openDirectory(dir) {
+  try {
+	dir.QueryInterface(Components.interfaces.nsILocalFile).launch();
+  }
+  catch (e) {
+  	alert(e);
+  }
+}

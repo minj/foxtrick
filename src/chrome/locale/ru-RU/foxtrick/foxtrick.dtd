@@ -93,4 +93,5 @@
 <!ENTITY foxtrick.menu.makelink "Ссылка на форум в буфер обмена">
 <!ENTITY foxtrick.prefs.forumtemplates "Шаблоны">
 <!ENTITY foxtrick.prefs.forummessagetemplates "Шаблоны сообщений для форума">
+<!ENTITY foxtrick.prefs.opendirectory "Open directory">
 <!-- EOF -->

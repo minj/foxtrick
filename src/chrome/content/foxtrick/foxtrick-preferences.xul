@@ -177,46 +177,34 @@
 			
 			<groupbox>
 			    <caption label="&foxtrick.prefs.cssskins;"/>
-				<box orient="vertical" flex="0" >
+				<hbox>
 				    <menulist id="cssSkin">
 				        <menupopup id="cssSkinPopup">
     				    </menupopup>
 				    </menulist>
-				    
-				</box>
-
-                <label value="&foxtrick.prefs.getmorecssskins;" 
-                      style="text-decoration: underline; cursor: pointer; color: blue;"
-                      tooltiptext="http://foxtrick.px.cz/?pg=Skins"
-                      onclick="window.opener.open('http://foxtrick.px.cz/?pg=Skins');" flex="0" />
-
-				<separator class="groove" />
+				    <button label="&foxtrick.prefs.opendirectory;" oncommand="foxtrick_openDirectory(getSkinsDirectory());"/>
+                  <label value="&foxtrick.prefs.getmorecssskins;" 
+                        style="text-decoration: underline; cursor: pointer; color: blue;"
+                        tooltiptext="http://foxtrick.px.cz/?pg=Skins"
+                        onclick="window.opener.open('http://foxtrick.px.cz/?pg=Skins');"/>
+				</hbox>
 				<checkbox id="useHattrickSkin" label="&foxtrick.prefs.defaulthatrickskin;" onchange="useHattrickSkinChanged();" />
-				
 			</groupbox>
-
-
 			<groupbox>
 			    <caption label="&foxtrick.prefs.medalsets;"/>
-				<box orient="vertical" flex="0" >
+				<hbox>
 				    <menulist id="medalSet">
 				        <menupopup id="medalSetPopup">
     				    </menupopup>
 				    </menulist>
-				    
-				</box>
-
-                <label value="&foxtrick.prefs.getmoremedalsets;" 
-                      style="text-decoration: underline; cursor: pointer; color: blue;"
-                      tooltiptext="http://foxtrick.px.cz/?pg=MedalSets"
-                      onclick="window.opener.open('http://foxtrick.px.cz/?pg=MedalSets');" flex="0" />
-
-				<separator class="groove" />
+				    <button label="&foxtrick.prefs.opendirectory;" oncommand="foxtrick_openDirectory(getMedalsDirectory());"/>
+                    <label value="&foxtrick.prefs.getmoremedalsets;" 
+                          style="text-decoration: underline; cursor: pointer; color: blue;"
+                          tooltiptext="http://foxtrick.px.cz/?pg=MedalSets"
+                          onclick="window.opener.open('http://foxtrick.px.cz/?pg=MedalSets');"/>
+				</hbox>
 				<checkbox id="useHattrickMedals" label="&foxtrick.prefs.defaulthattrickmedals;" onchange="useHattrickMedalsChanged();" />
-				
 			</groupbox>
-
-			
 		 </vbox>
 		</tabpanel>
 			

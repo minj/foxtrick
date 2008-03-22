@@ -74,4 +74,5 @@
 <!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
 <!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
 <!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!ENTITY foxtrick.prefs.opendirectory "Open directory">
 <!-- EOF -->

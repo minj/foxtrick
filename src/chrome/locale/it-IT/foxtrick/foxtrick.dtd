@@ -95,4 +95,5 @@
 <!ENTITY foxtrick.menu.makelink "Link conf. negli appunti">
 <!ENTITY foxtrick.prefs.forumtemplates "Forum template">
 <!ENTITY foxtrick.prefs.forummessagetemplates "Template messaggi forum">
+<!ENTITY foxtrick.prefs.opendirectory "Open directory">
 <!-- EOF -->
