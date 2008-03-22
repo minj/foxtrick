@@ -64,7 +64,7 @@ function playerListStats(doc) {
                     temp = findSibling(temp, "A");
                     var leadership = parseInt(getSkillLevelFromLink(temp));
                     
-                    var skillsTable = findSibling(temp.parentNode.parentNode.parentNode.parentNode, "TABLE");
+                    var skillsTable = findSibling(findAncestor(temp, "TABLE"), "TABLE");
                     var stamina = 0;
                     if (skillsTable != null && skillsTable.rows.length == 4) {
                        stamina = parseInt(getSkillLevelFromLink(skillsTable.rows[0].cells[1].firstChild));

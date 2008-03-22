@@ -1286,7 +1286,7 @@ function addExternalLinksToPlayerDetail(doc) {
                         var matchid = getMatchIdFromUrl(matchlink.href);
 
                         var lineuplink = doc.createElement("a");
-                        lineuplink.href = "matchLineup.asp?matchID=" + matchid+ "&teamid=" + teamid;
+                        lineuplink.href = "matchLineup.aspx?matchID=" + matchid+ "&teamid=" + teamid;
                         lineuplink.appendChild(doc.createTextNode(messageBundle.GetStringFromName("foxtrick.shortcut.matchlineup")));
 
                         matchlink.parentNode.insertBefore(doc.createTextNode(")"), matchlink.nextSibling);
@@ -2615,10 +2615,9 @@ function addGraphRow2(doc, div, val1, val2, text1, text2, tooltip1, tooltip2,
      innercellC.style.color = fgcolor1;
      
      var val = Math.round((pt1/50)*cellwidth);
-     val = val;
     
-     innercellB.style.left = val;
-     innercellB.style.width = (50-val > 0) ? 50-val  : 0;
+     innercellB.style.left = val + "px";
+     innercellB.style.width = ((50-val > 0) ? 50-val  : 0) + "px";
      
      cell.title = tooltip1;
   
@@ -2637,7 +2636,7 @@ function addGraphRow2(doc, div, val1, val2, text1, text2, tooltip1, tooltip2,
      innercellB = doc.createElement("div");
      innercellB.className = "foxtrick-graphs-bar-inner";
      innercellB.style.backgroundColor = color1;
-     innercellB.style.width = val > 0 ? val : 0;
+     innercellB.style.width = (val > 0 ? val : 0) + "px";
      innercellA.appendChild(innercellB);
 
      span = doc.createElement("span");
