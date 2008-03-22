@@ -3349,10 +3349,9 @@ function confSignatureTweak(doc) {
   foxtrick_addJavaScript(doc, "chrome://foxtrick/content/resources/js/conference.js");
 
   var path = "//div[@class='messageWrapper']/div[@class='signature']";
-  var result = doc.evaluate(path,doc.documentElement,null,XPathResult.ANY_TYPE,null);
-  var div;
-  var i=0;
-  while (div = result.iterateNext()) {
+  var result = doc.evaluate(path,doc.documentElement,null,XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,null);
+  for (var i=0; i< result.snapshotLength; i++) {
+  	 var div = result.snapshotItem(i);
       
      div.style.display="none";   
      
@@ -3365,7 +3364,6 @@ function confSignatureTweak(doc) {
     
      var target = findSibling(div.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode, "DIV");
      target.insertBefore(showSig, target.firstChild);
-
  }
     
 }
