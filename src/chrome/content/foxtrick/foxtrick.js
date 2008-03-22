@@ -3570,54 +3570,6 @@ function foxtrick_averageTransferPrice(doc)	{
     }
 }
 
-/*
-function markOwnplayersBySkill(doc) {
-  
-  if (!isPlayersListUrl(doc.location.href)) return;
-  
-  var links = doc.links;
-  
-  for (var i=0; i<links.length - 1; i++) {
-    
-    if (isPlayerDetailUrl(links[i].href) && !isPlayerDetailUrl(links[i+1].href)) {  
-      var skillsTable = findSibling(links[i], "TABLE");
-      if (skillsTable == null) {
-        skillsTable = findSibling(findAncestor(links[i], "TABLE"), "TABLE");
-      }
-      
-      function tmpSkill(r,c) {
-        return parseInt(getSkillLevelFromLink(skillsTable.rows[r].cells[c].firstChild));
-      }
-      
-      var skills = { keeper : tmpSkill(0,3),
-                     pm : tmpSkill(1,1),
-                     w  : tmpSkill(2,1),
-                     def: tmpSkill(2,3),
-                     scr: tmpSkill(3,1)
-                   };
-
-      function tmpGetPlayerClass(skills) {
-        var bestSkill = null, bestSkillLevel = 5;
-        for (skill in skills) {
-          if (skills[skill] > bestSkillLevel) {
-            bestSkillLevel = skills[skill];
-            bestSkill = skill;
-          }
-        }
-        return bestSkill;
-      }
-      
-      //alert(links[i].textContent + "\n" + tmpGetPlayerClass(skills));
-      
-    }
-
-            
-  }
-  
-}
-
- */ 
-
 
 function adjustPages(event)	{
     
@@ -3943,7 +3895,6 @@ var foxtrick_functions =
         foxtrick_addMatchLineupStyleSheets,
         addStyleSheets,
         getSupporterStatus,
-        //markOwnplayersBySkill,
         addExternalLinksToPlayerDetail,
         addExternalLinksToLeagueDetail,
         addExternalLinksToTeamDetail,
