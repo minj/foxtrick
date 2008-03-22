@@ -1013,6 +1013,18 @@ stats["gham"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/gham.png"
 };
 
+stats["brasileira"] =  { 
+        "url" : "http://www.opendev.com.br/chpp/br/",
+
+        "playerlink" : { "path"       : "",
+                         "filters"    : ["nationality"], 
+                         "params"     : []
+                       },
+        
+        "nationalityranges" : [[16, 16]],
+        "title" : "Estatísticas da Seleção Brasileira",
+        "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
+};    
 
 
 function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
