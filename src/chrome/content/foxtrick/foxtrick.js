@@ -464,7 +464,7 @@ function foxtrick_starCounter(doc) {
         notSubstitutedParent = img.parentNode.parentNode.parentNode.parentNode;
       }
 
-      // don't count subsituted players
+      // don't count substituted players
       if (img.parentNode.parentNode.parentNode.getAttribute("class") != "substitute_holder"
            && (notSubstitutedParent == img.parentNode.parentNode.parentNode.parentNode)) {
         if (img.src.match(/star\.gif$/i)) {
@@ -479,23 +479,13 @@ function foxtrick_starCounter(doc) {
     }
   }
   
-  var target = null;
-  
-  if (foxtrick_isModernLineup(doc)) {
-    var path = "//div[@id='field']";
-    var result = doc.evaluate(path,doc.documentElement,null,XPathResult.ANY_TYPE,null);
-    var div = result.iterateNext();
-    var table = findAncestor(div, "TABLE");
-    target = table.rows[1].cells[0].firstChild;
-  } else {
-    target = findSibling(notSubstitutedParent, "TABLE");
-    target = findSibling(notSubstitutedParent, "BR");
-  }
+  var experienceRuleLink = doc.links[doc.links.length - 1];
+  var target = experienceRuleLink.parentNode;
 
   var span = doc.createElement("span");
   span.innerHTML = "<b>" + messageBundle.GetStringFromName("foxtrick.matchlineup.totalstars") + "</b> " + totalStars;
-  target.parentNode.insertBefore(span, target);
-  target.parentNode.insertBefore(doc.createElement("br"), span);
+  target.appendChild(doc.createElement("br"));
+  target.appendChild(span, target);
 
 }
 
