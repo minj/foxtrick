@@ -50,6 +50,7 @@
 	<currency code="JMD" shortname="JMD" name="JMD (Jamaican dollar)" eurorate="0.05" />
 	<currency code="KZT" shortname="Tenge" name="Tenge (Kazakhstan)" eurorate="0.01" />
 	<currency code="KES" shortname="KES" name="KES (Kenyan shilling)" eurorate="0.05" />
+	<currency code="KWD" shortname="Dinar" name="Dinar (Kuwaiti dinar)" eurorate="2.5" />
 	<currency code="KGS" shortname="Som" name="Som (Kyrgyzstani som)" eurorate="0.02" />
 	<currency code="LVL" shortname="Lats" name="Lats (Latvian lat)" eurorate="2" />
 	<currency code="LTL" shortname="Lt" name="Lt (Lithuanian litas)" eurorate="0.25" />
@@ -60,6 +61,7 @@
 	<currency code="MXN" shortname="Pesos" name="Pesos (Mexican peso)" eurorate="0.1" />
 	<currency code="EGP" shortname="E£" name="E£ (Egyptian pound)" eurorate="0.25" />
 	<currency code="MNT" shortname="төгрөк" name="төгрөк (Mongolian tugrug)" eurorate="0.5" />
+	<currency code="MZM" shortname="metical" name="metical (Moçambique metical)" eurorate="0.04" />
 	<currency code="NIO" shortname="Córdoba" name="Córdoba (Nicaraguan córdoba)" eurorate="0.05" />
 	<currency code="NGN" shortname="₦" name="₦ (Nigerian naira)" eurorate="0.01" />
 	<currency code="NOK" shortname="kr" name="Krone (Norwegian krone)" eurorate="0.1" />
