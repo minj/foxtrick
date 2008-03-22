@@ -148,7 +148,7 @@
       		<reposition type="offensive" value="ofensivo" />
       		<reposition type="defensive" value="defensivo" />
       		<reposition type="towardsmiddle" value="hacia medio" />
-      		<reposition type="towardswing" value="hacia el latera" />
+      		<reposition type="towardswing" value="hacia el lateral" />
 		</repositioning>
         <tactics>
             <tactic type="normal" value="Normal" />
@@ -970,7 +970,56 @@
             <tactic type="aow" value="Uzbrukumi pa malām" />
             <tactic type="aim" value="Uzbrukumi pa centru" />
         </tactics>
-	</language>	
-    
+	</language>
+	
+    <!-- David Torrecilla (dorretxo) -->
+    <language name="eu_ES" desc="Euskara">
+      <ratingSubLevels>
+        <sublevel text="(oso baxua)" value="0.0"/>
+        <sublevel text="(baxua)" value="0.25"/>
+        <sublevel text="(altua)" value="0.50"/>
+        <sublevel text="(oso altua)" value="0.75"/>
+      </ratingSubLevels>
+      <tactics>
+        <tactic type="normal" value="Normala"/>
+        <tactic type="pressing" value="Presionatu"/>
+        <tactic type="ca" value="Kontraerasoa"/>
+        <tactic type="aow" value="Hegaletatik eraso"/>
+        <tactic type="aim" value="Erditik eraso"/>
+        <tactic type="creatively" value="Sormenez jokatu"/>
+      </tactics>
+      <repositioning>
+        <reposition type="midfielder" value="Estra erdilaria"/>
+        <reposition type="centraldefender" value="Estra atzelaria"/>
+        <reposition type="forward" value="Estra aurrelaria"/>
+        <reposition type="normal" value="Normal" />
+        <reposition type="offensive" value="Erasokor" />
+        <reposition type="defensive" value="Defentsibo" />
+        <reposition type="towardsmiddle" value="Erdirantz" />
+        <reposition type="towardswing" value="Hegalerantz" />
+      </repositioning>
+      <levels>
+        <level text="jainkotiarra" value="20" />
+        <level text="utopikoa" value="19" />
+        <level text="magikoa" value="18" />
+        <level text="mitikoa" value="17" />
+        <level text="estralurtarra" value="16" />
+        <level text="titanikoa" value="15" />
+        <level text="naturaz gaindikoa" value="14" />
+        <level text="mundiala" value="13" />
+        <level text="aparta" value="12" />
+        <level text="liluragarria" value="11" />
+        <level text="nabarmena" value="10" />
+        <level text="zoragarria" value="9" />
+        <level text="bikaina" value="8" />
+        <level text="ona" value="7" />
+        <level text="egokia" value="6" />
+        <level text="eskasa" value="5" />
+        <level text="ahula" value="4" />
+        <level text="pobrea" value="3" />
+        <level text="penagarria" value="2" />
+        <level text="negargarria" value="1" />
+      </levels>
+  </language> 	
 
 </hattricklanguages>

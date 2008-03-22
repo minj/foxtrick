@@ -49,6 +49,7 @@ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
                 <em:locale>locale/sr-SR/foxtrick/</em:locale>
                 <em:locale>locale/hr-HR/foxtrick/</em:locale>
                 <em:locale>locale/et-EE/foxtrick/</em:locale>
+                <em:locale>locale/eu-ES/foxtrick/</em:locale>
             </Description>
         </em:file>
         

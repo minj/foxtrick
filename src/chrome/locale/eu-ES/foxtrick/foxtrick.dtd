@@ -1,0 +1,92 @@
+<!-- eu-ES
+     David Torrecilla (dorretxo)
+-->
+
+<!ENTITY foxtrick.prefs.preferences "Aukerak">
+<!ENTITY foxtrick.prefs.visuals "Bisualak">
+<!ENTITY foxtrick.prefs.stars "Izarrak">
+<!ENTITY foxtrick.prefs.about "Honen kontuan">
+<!ENTITY foxtrick.prefs.addstars "Izarrak gehitu">
+<!ENTITY foxtrick.prefs.replacestars "Izarrak ordezkatu">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Hattrick-en definitutako izarrak erabili">
+<!ENTITY foxtrick.prefs.cssskins "Skins CSS">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Hattrick-en definitutako skin-a erabili">
+<!ENTITY foxtrick.menu.configurefoxtrick "Foxtrick konfiguratu">
+<!ENTITY foxtrick.prefs.faces "Aurpediak eta kamisetak (suporrter-entzako)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Aurpegi edo kamisetak ez gehitu">
+<!ENTITY foxtrick.prefs.showfaces "Partiko hamaikakoan jokalarien aurpegiak gehitu">
+<!ENTITY foxtrick.prefs.showdresses "Partiko hamaikakoan jokalarien kamisetak">
+<!ENTITY foxtrick.prefs.links "Kanpo lekuetarako estekak">
+<!ENTITY foxtrick.prefs.link "Esteka">
+<!ENTITY foxtrick.prefs.show "Aurkeztu">
+<!ENTITY foxtrick.prefs.shortcuts "Lasterbideak">
+<!ENTITY foxtrick.prefs.shortcut "Lasterbidea">
+<!ENTITY foxtrick.prefs.groupstarsby "Koloreko bilduko diren izar kupurua: ">
+<!ENTITY foxtrick.menu.installskin "Hattrick.org-rako skin-a instalatu">
+<!ENTITY foxtrick.prefs.linkstab "Estekak eta kalifikazioak">
+<!ENTITY foxtrick.prefs.ratings "Kalifikazioak">
+<!ENTITY foxtrick.prefs.rating "Kalifikazioa">
+<!ENTITY foxtrick.prefs.htlang "Hattrick-eko hizkuntza">
+<!ENTITY foxtrick.prefs.language "Hizkuntz aukerak">
+<!ENTITY foxtrick.prefs.lineupcoloring "Partiduen hamaikakorako kolore eskemak">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Hamaikakoa ez koloreztatu">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Erabilitako skin-an koloreztatzeko eskema existitzen bada.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Beti; skin batek koloreztatzeko eskema bat ez baldin badu, defektuz datorrena erabili">
+<!ENTITY foxtrick.prefs.getmorecssskins "Skin CSS gehiago lortu">
+<!ENTITY foxtrick.prefs.shortcutstab "Hobekuntzak eta lasterbideak">
+<!ENTITY foxtrick.prefs.tweaks "Hobekuntzat">
+<!ENTITY foxtrick.prefs.mergestars "Izarrak bildu">
+<!ENTITY foxtrick.menu.playersintabs "Jokalariak pestainetan ireki">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Jokalarien aurpegi eta kamiseta zenbakiak partidako hamaikakoan gehitu">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Itxura">
+<!ENTITY foxtrick.prefs.matchorders "Partiduentzako aginduak">
+<!ENTITY foxtrick.prefs.showformationbox "Formazio kaxa aurkeztu">
+<!ENTITY foxtrick.prefs.frameresize "Markoak">
+<!ENTITY foxtrick.prefs.hidelogoframe "Logo-ko markoa ezkutatu">
+<!ENTITY foxtrick.prefs.resizemainframe "Marko nagusia birdimentsionatu">
+<!ENTITY foxtrick.prefs.resizemenuframe "Menu markoa birdimentsionatu">
+<!ENTITY foxtrick.prefs.framewidth "Ancho">
+
+<!ENTITY foxtrick.prefs.clearplayerscache "Jokalarien aurpegi/kamiseten cache-a ezabatu">
+
+<!ENTITY foxtrick.prefs.attackdefensebars "Defentaa eta erasoaren grafiko konparatiboa">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Autotatikoki ezarri">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Esteka aurkeztu">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Ez ezarri">
+
+
+<!ENTITY foxtrick.prefs.ratingsstyle "Kalifikazioen formatua">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Kalifikazio estandarrak">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Itxura zaharra">
+
+<!ENTITY foxtrick.prefs.hattricksettingstext "Ondorengo aukerak hattrick-en dituzunekin bat egin behar dute¡">
+
+<!ENTITY foxtrick.prefs.showflags "Jakalari bakoitzaren herrialdeko ikurrinak hamaikakoan gehitu">
+<!ENTITY foxtrick.prefs.showfacesandflags "Jokalarien herrialdeen ikurrina eta aurpegia partiduen hamaikakoan gehitu">
+
+<!ENTITY foxtrick.prefs.showdressesandflags "Jokalarien herrialdeen ikurrina eta kamiseten zenbakia partiduen hamaikakoan gehitu">
+
+<!ENTITY foxtrick.prefs.medalsets "Txapelen eskema">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Txapelen eskema gehiago lortu">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Hattrick-en definitutako txapelak erabili">
+
+
+<!ENTITY foxtrick.menu.installmedalset "Hattrick.org-erako txapelen eskema instalatu">
+
+<!ENTITY foxtrick.prefs.htcountry "Hattrick-eko herrialdea">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick-eko txanpona">
+<!ENTITY foxtrick.prefs.main "Nagusia">
+<!ENTITY foxtrick.prefs.alertslider "Alerta emergenteak aurkeztu">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Mostrar panel FoxTrick en la barra de estado de Firefox">
+<!ENTITY foxtrick.prefs.alertsound "Soinu alarma entzun">
+<!ENTITY foxtrick.menu.createplayerad "Jokalariaren iragarkia portapaperera">
+<!ENTITY foxtrick.prefs.htdateformat "Data formatua">
+<!ENTITY foxtrick.menu.makelink "Foro honen esteka portapaperera bidali">
+<!ENTITY foxtrick.prefs.forumtemplates "Foroko txantiloiak">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Mezu txantiloiak">
+<!-- EOF -->
+
+
+
+
+

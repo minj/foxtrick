@@ -8,7 +8,7 @@ var XpiInstaller = {
 	extShortName: 'foxtrick', // The leafname of the JAR file (without the .jar part)
 	extVersion: '0.3.55',
 	extAuthor: 'Karel Kolman',
-	extLocaleNames: ['cs-CZ', 'da-DK', 'de-DE', 'de-AT', 'en-US', 'es-ES', 'fr-FR', 'it-IT', 'nl-NL', 'pt-BR', 'lt-LT', 'fi-FI', 'he-IL', 'ru-RU', 'gl-ES', 'ca-AD', 'zh-CN', 'el-GR', 'pt-PT', 'sl-SI', 'sk-SK', 'sv-SE', 'nb-NO', 'uk-UA', 'bg-BG', 'ko-KR', 'sr-SR', 'hr-HR', 'et-EE'],
+	extLocaleNames: ['cs-CZ', 'da-DK', 'de-DE', 'de-AT', 'en-US', 'es-ES', 'fr-FR', 'it-IT', 'nl-NL', 'pt-BR', 'lt-LT', 'fi-FI', 'he-IL', 'ru-RU', 'gl-ES', 'ca-AD', 'zh-CN', 'el-GR', 'pt-PT', 'sl-SI', 'sk-SK', 'sv-SE', 'nb-NO', 'uk-UA', 'bg-BG', 'ko-KR', 'sr-SR', 'hr-HR', 'et-EE', 'eu-ES'],
 	extSkinNames: null,
 	extPostInstallMessage: 'Success! Please restart your browser to finish the installation.', // Set to null for no post-install message
 	// --- Editable items end ---
