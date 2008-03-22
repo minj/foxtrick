@@ -210,7 +210,7 @@ stats["belstat"] =  {
         "title" : "BelRank",
         "img" : "chrome://foxtrick/content/resources/linkicons/belrank.png"
 
-};    
+};
 
 
 // Alltid Hattrick Statistikk, International
@@ -501,8 +501,6 @@ stats["spadkiiawanse"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/poland.gif"        
 };  
 
-
-
 stats["argentinaranking"] =  { 
         "url" : "http://www.htranking.com/",
 
@@ -520,8 +518,6 @@ stats["argentinaranking"] =  {
         "title" : "Hattrick Argentina Ranking",
         "img" : "chrome://foxtrick/content/resources/linkicons/argentinaranking.gif" 
 };  
-
-
 
 // Hattrick Chile
 stats["hattrickcl"] =  { 
@@ -542,7 +538,6 @@ stats["hattrickcl"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrick_cl.png"        
 };    
 
-
 // Estatisticas HT-Brasil
 stats["htbrasil"] =  { 
         "url" : "http://www.htbrstats.com/",
@@ -556,9 +551,6 @@ stats["htbrasil"] =  {
         "title" : "Estatisticas HT-Brasil",
         "img" : "chrome://foxtrick/content/resources/linkicons/htbrazil.gif"
 };    
-
-
-
 
 // HT-Stats Schweiz
 stats["swissstats"] =  { 
@@ -613,8 +605,6 @@ stats["statsromania"] =  {
         "img" : "/Common/images/37flag.gif"
 };    
 
-
-
 // akickku USA
 stats["akickku"] =  { 
         "url" : "http://www.akickku.com/",
@@ -634,7 +624,6 @@ stats["akickku"] =  {
         "title" : "Akickku",
         "img" : "chrome://foxtrick/content/resources/linkicons/akickku.png"
 };    
-
 
 // HC Stats - Hellas, Cyprus
 stats["hcstatshellas"] =  { 
@@ -682,7 +671,6 @@ stats["httoolsfriendlymanager"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_friendly.png"
 };    
 
-
 // Maptrick
 stats["maptrick"] =  { 
         "url" : "http://student.science.uva.nl/~lhoek/maptrick.php",
@@ -696,7 +684,6 @@ stats["maptrick"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
 };
 
-
 // HT-Dog
 stats["ht-dog"] =  { 
         "url" : "http://mikehell.kicks-ass.net/ht-dog/index.jsp",
@@ -709,7 +696,6 @@ stats["ht-dog"] =  {
         "title" : "HT-Dog",
         "img" : "chrome://foxtrick/content/resources/linkicons/ht-dog.gif"
 };    
-
 
 // Hattrick Cup Rank
 stats["cuprank"] =  { 
@@ -812,7 +798,6 @@ stats["healingkawasaki2"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/redcross_small.png"
 };
 
-
 stats["hottrickkeeper"] =  { 
         "url" : "http://www.hottrick.org/",
 
@@ -836,8 +821,6 @@ stats["htnipponkeeper"] =  {
         "title" : "Keeper Level Prediction Tool",
         "shorttitle" : "b"
 };
-
-
 
 stats["coachexperience"] =  { 
         "url" : "http://www.manager.brygge.dk/Hattrick/experience.htm",
@@ -863,20 +846,6 @@ stats["cyf"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/cyf.png"
 };
 
-/*
-stats["econtable"] =  { 
-        "url" : "http://introht.hattrick.tk/article-economists.htm",
-
-        "economylink" : { "path"       : "",
-                         "filters"    : [], 
-                         "params"     : []
-                       },
-        
-        "title" : "IntroHT Economists table",
-        "img" : "chrome://foxtrick/content/resources/linkicons/economy.jpg"
-};    
-*/
-
 stats["camelmasterecon"] =  { 
         "url" : "http://www.dulovic.com/fun/hattrick/economists.php",
 
@@ -888,8 +857,6 @@ stats["camelmasterecon"] =  {
         "title" : "Camelmasters Economist Tool",
         "img" : "chrome://foxtrick/content/resources/linkicons/camelmasters.png"
 };    
-
-
 
 stats["skillraise"] =  { 
         "url" : "http://www.avsoftware.org/hattrick/index.php",
@@ -1015,6 +982,25 @@ stats["beltrickyouth"] =  {
         "title" : "Beltrick YouthStat",
         "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.jpg"
 };
+
+// ArgenStat
+stats["argenstat"] =  { 
+        "url" : "http://argenstat.com.ar/",
+        "leaguelink" : { "path"       : "?V=L",
+                         "filters"    : ["countryid"], 
+                         "params"     : { "leagueid" : "ID" }
+                       },
+                       
+        "teamlink" : { "path"       : "?V=T",
+                         "filters"    : ["countryid"], 
+                         "params"     : { "teamid" : "ID" }
+                       },
+        
+        "countryidranges" : [[7, 7]], 
+        "title" : "ArgenStat",
+        "img" : "chrome://foxtrick/content/resources/linkicons/argenstat.png"
+};    
+
 
 function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
     
