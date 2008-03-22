@@ -8,7 +8,7 @@ function foxtrick_playSound(url) {
     var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
     soundService.play(ioService.newURI(url, null, null));
   } catch (e) {
-    foxtrick_debug(e);
+    foxtrickdebug(e);
   }
 }
 
