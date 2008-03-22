@@ -272,30 +272,7 @@ stats["htdeutsch"] =  {
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-deutschland.png"
 };    
 
-
-// Estadisticas Hattrick Espana
-
-stats["espstats"] =  { 
-        "url" : "http://poqueque.dyndns.org/EspStats/",
-
-        "leaguelink" : { "path"       : "liga.php",
-                         "filters"    : ["countryid"], 
-                         "params"     : { "leaguename" : "Liga"
-                                        }
-                       },
-
-        "teamlink" : { "path"       : "equipo.php",
-                         "filters"    : ["countryid"], 
-                         "params"     : { "teamid" : "teamID" }
-                       },
-
-        "countryidranges" : [[36, 36]], 
-        "title" : "Estadisticas Hattrick Espana",
-        "img" : "chrome://foxtrick/content/resources/linkicons/espstats.jpg"
-};    
-
 // peasohtstats
-
 stats["peasostats"] =  { 
         "url" : "http://htstats.com/",
 
@@ -318,7 +295,6 @@ stats["peasostats"] =  {
 
 
 // todohattrick
-
 stats["todohattrick"] =  { 
         "url" : "http://www.stepi.org/todohattrick/",
 
