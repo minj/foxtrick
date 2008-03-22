@@ -24,7 +24,7 @@ function foxtrick_addTeamLinkPopups(doc) {
       var par = links[i].parentNode; //rodzic
       
       var a1 = doc.createElement("a");
-      a1.setAttribute('href', '/Common/matches.asp?actionType=view&TeamID=' + value);
+      a1.setAttribute('href', '/Common/matches.aspx?actionType=view&TeamID=' + value);
       a1.setAttribute('target', 'main');
       a1.appendChild(doc.createTextNode("Matches"));
       
