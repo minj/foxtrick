@@ -246,7 +246,7 @@ ratingDefs["gardierstats"] = {
      } else if (tactics == 'aim') {
        tempTactica= (tacticsLevel * centralAtt) / 7;
      } else if (tactics == 'aow') {
-       tempTactica= (tacticsLevel * (rigthAtt + leftAtt) / 2) / 7;
+       tempTactica= (tacticsLevel * (rightAtt + leftAtt) / 2) / 7;
      } else {
        tempTactica= tempReal / 9;
      }

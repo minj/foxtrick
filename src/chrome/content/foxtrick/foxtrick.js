@@ -2277,7 +2277,7 @@ function getLevelFromLink(link) {
 }
 
 function getTacticsBaseLevelFromLink(link) {
-  var baseValue = parseInt(link.href.replace(/.+labellevel=/i, "").match(/^\d+/));
+  var baseValue = parseInt(link.href.replace(/.+ll=/i, "").match(/^\d+/));
   return baseValue;
 }
 
