@@ -1754,6 +1754,8 @@ function getSupporterStatus(doc) {
 
 function foxtrick_isModernLineup(doc) {
   
+  return true;
+  
   var path = "//div[@id='field']";
   var result = doc.evaluate(path,doc.documentElement,null,XPathResult.ANY_TYPE,null);
   if (result.iterateNext() != null) {
@@ -2169,24 +2171,6 @@ function addPlayedMatchLinks(doc) {
                   ) {
                 
                     if (typeof(doc["externalLinksAdded" + "playedmatchlink"]) == 'undefined') {
-                      
-                        var matchLineupStat = new Array();
-                        matchLineupStat["teamlineup"] =  { 
-                          "url" : "/Common/matchLineup.asp",
-                  
-                          "playedmatchlink" : { "path"       : "",
-                                           "filters"    : new Array(), 
-                                           "params"     : { "matchid" : "matchID",
-                                                            "teamid" : "teamID" 
-                                          }
-                                         },
-                          "openinthesamewindow" : "",
-                          "title" : "Team lineup (match list)",
-                          "shorttitle" : "(" + messageBundle.GetStringFromName("foxtrick.shortcut.matchlineup") + ")"
-                        };
-                      
-                        
-                        var commonparent = null;
                         
                         var matches = doc.links;
                         
@@ -2198,48 +2182,37 @@ function addPlayedMatchLinks(doc) {
                         for (var i=0; i < matches.length; i++) {
                             
                             if ( isMatchDetailUrl(matches[i].href) ) {
-                                
-                                if (commonparent == null) commonparent = matches[i].parentNode.parentNode.parentNode;
-                                
+                               
                                 var spanContainer = doc.createElement("span");
                                 
-                                if (matches[i].parentNode.parentNode.parentNode != commonparent) break;
-                                
                                 var tempLinks = matches[i].parentNode.parentNode.getElementsByTagName("a");
-                                var htLiveLinkFound = false;
+                                var htLiveLinkFound = false, matchLineupLink = false;
                                 for (var j=0; j<tempLinks.length; j++) {
+                                    if (isMatchLineupUrl(tempLinks[j].href)) {
+                                      matchLineupLink = true;
+                                    }
                                     if (isAddToHtLiveUrl(tempLinks[j].href)) {
                                       htLiveLinkFound = true;
-                                      break;
                                     }
                                 }
                                 
-                                if (htLiveLinkFound) break;
+                                if (htLiveLinkFound || !matchLineupLink) break;
                                 
                                 var matchid = getMatchIdFromUrl(matches[i].href);
                                 var links = getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid }, doc );  
                                 
                                 spanContainer.style.paddingLeft="10px";
                                 spanContainer.appendChild(doc.createTextNode(" "));
-                               
-                                if (getShowShortcut("matchlineupmatchlist") && !isCupMatchListUrl(doc.location.href)) {
-                                    var links2 = getLinks2(matchLineupStat, "playedmatchlink", { "matchid": matchid, "teamid" : teamid }, doc, true);
-                                    
-                                    for (var j=0; j<links2.length; j++) {
-                                        var linkobj = links2[j].link;
-                                        spanContainer.appendChild(linkobj);
-                                        spanContainer.appendChild(doc.createTextNode(" "));
-                                    }
-                                }
                                 
                                 for (var j=0; j<links.length; j++) {
                                     var linkobj = links[j].link;
                                     spanContainer.appendChild(linkobj);
                                     spanContainer.appendChild(doc.createTextNode(" "));
                                 }
-
-                                matches[i].parentNode.nextSibling.nextSibling.colSpan=2;
-                                matches[i].parentNode.nextSibling.nextSibling.appendChild(spanContainer);
+                                
+                                var cell = doc.createElement("td");
+                                cell.appendChild(spanContainer);
+                                matches[i].parentNode.parentNode.appendChild(cell);
                                    
                             }
                         }
@@ -2248,8 +2221,6 @@ function addPlayedMatchLinks(doc) {
                     }
                     
                 }
-        
-        
         
     }
     
@@ -2364,15 +2335,9 @@ function addRatings(doc) {
             
             var teamdata = (!team1read) ? team1data : team2data;
             
-            var ratingstable, rowindex;
-            
-            if (doc.location.href.search(/Youth=True/) == -1) {
-                ratingstable = findSibling(links[i], "TABLE")
-                rowindex = 0;
-            } else {
-                ratingstable = findAncestor(links[i], "TABLE");
-                rowindex = 2;
-            }
+            var ratingstable = findAncestor(links[i], "TABLE");
+            var rowindex = 2;
+
             if (possessiontable == null) possessiontable = findPreviousSibling(links[i].parentNode.parentNode.parentNode.parentNode, "TABLE");
             
             var ratings = ratingstable.getElementsByTagName("a");
@@ -2418,6 +2383,10 @@ function addRatings(doc) {
             teamdata["lattackText"] = ratings[temp-0].parentNode.textContent;
 
             var attackLevel = rattack + cattack + lattack; 
+            
+            var row = ratingstable.insertRow(ratingstable.rows.length);
+            var cell = row.insertCell(0);
+            cell.marginTop = "6px";
             
             for (var selectedRating in ratingDefs) {
                 if (!getShowRating(selectedRating)) continue;

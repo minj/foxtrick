@@ -1,7 +1,6 @@
 var shortcuts = new Array();
 
 shortcuts["matchlineup"] = { "title" : messageBundle.GetStringFromName("foxtrick.shortcuts.matchlineup") };
-shortcuts["matchlineupmatchlist"] = { "title" : messageBundle.GetStringFromName("foxtrick.shortcuts.matchlineupinmatchlist") };
 shortcuts["leaveconference"] = { "title" : messageBundle.GetStringFromName("foxtrick.shortcuts.leaveconference") };
 
 
