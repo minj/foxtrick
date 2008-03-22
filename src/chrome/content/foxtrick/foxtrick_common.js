@@ -53,8 +53,16 @@ function foxtrick_showAlert(text, alertError) {
     var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
     var img = "http://hattrick.org/favicon.ico";
     var title = "Hattrick.org";
-    var clickable = false;
-    alertsService.showAlertNotification(img, title, text, clickable, "", null);
+    var clickable = true;
+    var listener = { observe:
+        function(subject, topic, data) {
+            if (topic=="alertclickcallback") {
+                window.focus();
+            }
+        }
+    };
+    
+    alertsService.showAlertNotification(img, title, text, clickable, "", listener);
   } catch (e) {
   	if (alertError) {
   		alert(e);
