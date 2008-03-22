@@ -959,6 +959,16 @@ stats["beltrickyouth"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.jpg"
 };
 
+stats["arenaoptimizer"] =  { 
+        "url" : "http://www.arenaoptimizer.es/",
+        "arenalink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        "title" : "Arena Optimizer",
+        "img" : "chrome://foxtrick/content/resources/linkicons/arenaoptimizer.gif"
+};
+
 // ArgenStat
 stats["argenstat"] =  { 
         "url" : "http://argenstat.com.ar/",
