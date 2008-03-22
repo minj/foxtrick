@@ -68,7 +68,7 @@ function foxtrick_showAlertGrowl(text, alertError) {
 		var grn = Components.classes["@growl.info/notifications;1"].getService(Components.interfaces.grINotifications);
 		var img = "http://hattrick.org/favicon.ico";
 		var title = "Hattrick.org";
-		grn.sendNotification("Hattrick.org (Foxtrick)", img, title, text, null);
+		grn.sendNotification("Hattrick.org (Foxtrick)", img, title, text, "", null);
 	} catch (e) {
 		if (alertError) {
 			alert(e);
