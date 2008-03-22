@@ -707,7 +707,7 @@ stats["ht-dog"] =  {
                        },
 
         "title" : "HT-Dog",
-        "img" : "chrome://foxtrick/content/resources/linkicons/ht-dog.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/ht-dog.gif"
 };    
 
 
