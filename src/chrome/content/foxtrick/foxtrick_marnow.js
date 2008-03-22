@@ -19,32 +19,18 @@ function economicalDifference ( document ) {
     if (!isEconomyUrl(document.location.href)) return;
     if (!getShowTweak("economicalDifference")) return;
 
-	var tableLast;
-    var tableCurr;
-    var j = 0;
-    var bodies = document.getElementsByTagName("tbody");
-
-    //find correct tables
-    for (var i = 0; i < bodies.length; i++) {
-        if (j==0 && bodies[i].rows.length==10) {
-            j=1;
-            tableCurr = bodies[i];
-        }
-        else if (j==1 && bodies[i].rows.length==10) {
-            tableLast = bodies[i];
-            break;
-        }
-    };
+	var tableLast = document.getElementsByTagName("table")[3];
+    var tableCurr = document.getElementsByTagName("table")[2];
     
     var path = "body/table[1]/tbody/tr[1]/td[2]";
-    var elem = document.evaluate(path,document.documentElement,null,document.DOCUMENT_NODE,null).singleNodeValue;
     
-    var newTabDiff = elem.appendChild ( tableCurr.parentNode.cloneNode(true) );
-    
+    var heading = document.createElement("h2");
+    heading.innerHTML = messageBundle.GetStringFromName("foxtrick.economicaldifference.balance");
+    tableCurr.parentNode.appendChild(heading);
+
+    var newTabDiff = tableCurr.parentNode.appendChild ( tableCurr.cloneNode(true) );
     newTabDiff.setAttribute("style", "margin-bottom: 10px");
     var newRowsDiff = newTabDiff.tBodies[0].rows;
-
-    newRowsDiff[0].cells[0].innerHTML = '<div class="RUB2">' + messageBundle.GetStringFromName("foxtrick.economicaldifference.balance") + '</div><br />';
 
     function extractAmount(cell) {
         return parseInt(cell.textContent.replace(/\s*/g, ""));
@@ -59,23 +45,29 @@ function economicalDifference ( document ) {
        return '';
     }
 
-    for (var i = 2; i < 9; i++) {
-        if ((i != 6) && (i != 7)) {
-           lastWeekVal = extractAmount(tableLast.rows[i].cells[1]);
-           thisWeekVal = extractAmount(tableCurr.rows[i].cells[1]);
+    for (var i = 1; i < 9; i++) {
+        try {
+         lastWeekVal = extractAmount(tableLast.rows[i].cells[1]);
+         thisWeekVal = extractAmount(tableCurr.rows[i].cells[1]);
+         if (!isNaN(lastWeekVal) && !isNaN(thisWeekVal)) {
            resultDiff = thisWeekVal - lastWeekVal;
-	       resultSum = thisWeekVal + lastWeekVal;
+           resultSum = thisWeekVal + lastWeekVal;
            resultDiff = '<span ' + getColorStyle(resultDiff) + '>' + String(resultDiff).group(' ', 3) + '</span>';
            resultSum = String(resultSum).group(' ', 3);
            newRowsDiff[i].cells[1].innerHTML = resultDiff + "<br />" + resultSum ;
-        };
-        lastWeekVal = extractAmount(tableLast.rows[i].cells[4]);
-        thisWeekVal = extractAmount(tableCurr.rows[i].cells[4]);
-        resultDiff = thisWeekVal - lastWeekVal;
-	    resultSum = thisWeekVal + lastWeekVal;
-        resultDiff = '<span ' + getColorStyle(-resultDiff) + '>' + String(resultDiff).group(' ', 3) + '</span>';
-        resultSum = String(resultSum).group(' ', 3);
-        newRowsDiff[i].cells[4].innerHTML = resultDiff + "<br />" + resultSum;
+         }
+        } catch (e) {}
+        try {
+          lastWeekVal = extractAmount(tableLast.rows[i].cells[4]);
+          thisWeekVal = extractAmount(tableCurr.rows[i].cells[4]);
+          if (!isNaN(lastWeekVal) && !isNaN(thisWeekVal)) {
+            resultDiff = thisWeekVal - lastWeekVal;
+            resultSum = thisWeekVal + lastWeekVal;
+            resultDiff = '<span ' + getColorStyle(-resultDiff) + '>' + String(resultDiff).group(' ', 3) + '</span>';
+            resultSum = String(resultSum).group(' ', 3);
+            newRowsDiff[i].cells[4].innerHTML = resultDiff + "<br />" + resultSum;
+          }
+        } catch (e) {}
     };
 
     lastWeekVal = extractAmount(tableLast.rows[9].cells[1]);
