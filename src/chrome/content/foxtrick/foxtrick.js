@@ -1,4 +1,4 @@
-var foxtrick_urlmasks = [/^http:\/\/(www\d*\.){0,1}hattrick\.(org|ws)/i ];
+var foxtrick_urlmasks = [/^http:\/\/(www\d*\.){0,1}hattrick\.(org|ws)/i, /^http:\/\/(www\d*\.){0,1}hattrick\.interia\.pl/i ];
 var foxtrick_potentialurlmasks = [/^http:\/\/195\.149\.15\d\.[0-9]*/i, /^http:\/\/193\.34\.18\d\.[0-9]*/i ];
 
 //--------------------------------------------------------------------------- 
