@@ -338,8 +338,6 @@ stats["eesti"] =  {
 };    
 
 
-// htitastats
-
 stats["htfff"] =  { 
         "url" : "http://www.ht-fff.org/",
 
@@ -355,7 +353,7 @@ stats["htfff"] =  {
 
 
 // htitastats
-
+/* dead domain
 stats["htitastats"] =  { 
         "url" : "http://www.htitastats.com/",
 
@@ -383,7 +381,7 @@ stats["htitastats"] =  {
         "title" : "htitastats",
         "img" : "chrome://foxtrick/content/resources/linkicons/htitastats.png"
 };    
-
+*/
 // La Gazzetta di HT
 
 stats["lagazzetta"] =  { 
