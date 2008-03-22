@@ -1,1 +1,3 @@
 *.bak
+build/temp
+build/*.xpi

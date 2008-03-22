@@ -3,7 +3,7 @@
 @mkdir temp
 
 @echo Copying files
-@xcopy ..\extension temp /S /I /Q /Y /EXCLUDE:exclude.txt
+@xcopy ..\src temp /S /I /Q /Y /EXCLUDE:exclude.txt
 replace ..\chrome.manifest temp
 
 cd temp\chrome
