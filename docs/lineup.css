@@ -1,0 +1,80 @@
+
+/* keeper - first row, second column*/
+table[width="600"][background*="backlawn.gif"]
+tr:first-child td:first-child + td {
+     background-color: #00FF00 !important;
+}
+
+/* WB1 - 2nd row, 1st column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr
+td:first-child {
+     background-color: #00BB00 !important;
+}
+
+/* CD1 - 2nd row, 2nd column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr
+td:first-child + td{
+     background-color: #00AA00 !important;
+}
+
+/* CD2 - 2nd row, 3d column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr
+td:first-child + td + td {
+     background-color: #009900 !important;
+}
+
+/* WB2 - 2nd row, 4d column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr
+td:first-child + td + td + td{
+     background-color: #118800 !important;
+}
+
+
+/* IM1 - 3rd row, 1st column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr + tr
+td:first-child {
+     background-color: #00BB55 !important;
+}
+
+/* IM2 - 3rd row, 2nd column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr + tr
+td:first-child + td{
+     background-color: #00AA55 !important;
+}
+
+/* IM3 - 3rd row, 3d column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr + tr
+td:first-child + td + td {
+     background-color: #009955 !important;
+}
+
+/* IM4 - 3rd row, 4d column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr + tr
+td:first-child + td + td + td{
+     background-color: #118855 !important;
+}
+
+
+
+/* FWD1 - 4th row, 2nd column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr + tr +tr
+td:first-child + td{
+     background-color: #880000 !important;
+}
+
+/* FWD2 - 4th row, 3d column */
+table[width="600"][background*="backlawn.gif"]
+tr:first-child + tr + tr +tr
+td:first-child + td + td {
+     background-color: #885500 !important;
+}
+
