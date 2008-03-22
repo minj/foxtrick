@@ -986,9 +986,9 @@ function findCountryId2(document) {
 
 
 //---------------------------------------------------------------------------    
-function findTeamName(doc) {
+function foxtrick_findTeamName(doc) {
    try {
-     var temp = doc.getElementsByTagName("table")[0].rows[0].cells[0].textContent;
+     var temp = doc.getElementById("title").textContent;
      return trim(temp.substring(11, temp.length));
    } catch (e) {
      return "";
@@ -1542,7 +1542,7 @@ function addExternalLinksToTeamDetail(doc) {
         
       var teamid = getTeamIdFromUrl(doc.location.href);
       var countryid = findCountryId(doc);
-      var teamname = findTeamName(doc);
+      var teamname = foxtrick_findTeamName(doc);
       var leaguename = extractLeagueNameFromTeamPage(doc);
       var levelnum = getLevelNum(leaguename, countryid);
       
