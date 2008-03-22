@@ -20,7 +20,7 @@ function FoxtrickProtocolHandler(scheme)
 
 // attribute defaults
 FoxtrickProtocolHandler.prototype.defaultPort = -1;
-FoxtrickProtocolHandler.prototype.protocolFlags = nsIProtocolHandler.URI_NORELATIVE;
+FoxtrickProtocolHandler.prototype.protocolFlags = nsIProtocolHandler.URI_NORELATIVE && nsIProtocolHandler.URI_IS_UI_RESOURCE;
 
 FoxtrickProtocolHandler.prototype.allowPort = function(aPort, aScheme)
 {
