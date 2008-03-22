@@ -2431,10 +2431,6 @@ function addRatings(doc) {
 
     }
 
-    //extract team colors
-
-     var imgs = possessiontable.getElementsByTagName("img");
-
      var color1 = "rgb(255,255,255)";
      var color2 = "rgb(0, 0, 0)";
     
