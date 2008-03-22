@@ -1002,6 +1002,19 @@ stats["u20schweiz"] =  {
   
 };
 
+// Gham live
+stats["gham"] =  { 
+        "url" : "http://hattrickitalia.org/gham/live/",
+
+        "matchlink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : { "matchid" : "matchId" }
+                       },
+        
+        "title" : "Gham live",
+        "img" : "chrome://foxtrick/content/resources/linkicons/gham.png"
+};
+
 
 
 function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
