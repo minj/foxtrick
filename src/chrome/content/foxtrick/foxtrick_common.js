@@ -53,35 +53,25 @@ function foxtrick_showEventAlert(doc){
 }    
 
 function foxtrick_showAlert(text, alertError) {
+  try{
+    var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
     var img = "http://hattrick.org/favicon.ico";
     var title = "Hattrick.org";
-	
-    try{
-        try {
-            var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
-            var clickable = true;
-            var listener = { observe:
-                function(subject, topic, data) {
-                    if (topic=="alertclickcallback") {
-                        window.focus();
-                    }
-                }
-            };
-            alertsService.showAlertNotification(img, title, text, clickable, "", listener);
-        } catch (e) {
-            // fix for when alerts-service is not available (e.g. SUSE)
-            var alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-                .getService(Components.interfaces.nsIWindowWatcher)
-                .openWindow(null, "chrome://global/content/alerts/alert.xul",
-                            "_blank", "chrome,titlebar=no,popup=yes", null);
-            alertWin.arguments = [img, title, text, false, ""];
-            alertWin.setTimeout(function(){alertWin.close()},5000);
+    var clickable = true;
+    var listener = { observe:
+        function(subject, topic, data) {
+            if (topic=="alertclickcallback") {
+                window.focus();
+            }
         }
-    } catch (e) {
-        if (alertError) {
-            alert(e);
-        }
-    }
+    };
+    
+    alertsService.showAlertNotification(img, title, text, clickable, "", listener);
+  } catch (e) {
+  	if (alertError) {
+  		alert(e);
+  	}
+  }
 }
 
 // mac only
