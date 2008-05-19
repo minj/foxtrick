@@ -148,11 +148,26 @@ function foxtrick_attachCountryFlagToUser(uid, linksArray, document, style, line
 	
 	var flagspage = "http://flags.alltidhattrick.org/userflags/";
 	var linkpage = "http://stats.alltidhattrick.org/user/";
+	var target = "_blank";
+
+	// See if we have the Alltid Extension installed. If we do we want to show the 
+	//  user profile page as a HT-themed page inside the current frame. This makes
+	//  for nicer integration
+	var em = Components.classes["@mozilla.org/extensions/manager;1"]
+	                   .getService(Components.interfaces.nsIExtensionManager);
+	var addon = em.getItemForID("{fd048119-78ee-487f-8fb1-1668d3a6859b}");
+	if (addon) {
+		var version = addon.version;
+		if (version.substr(0,1) >= 2) {
+			linkpage = "http://supporter.alltid.org/theme/ht/user/";
+			target = "_self";
+		}
+	}
 	
     for (var i=0; i<linksArray.length; i++) {
       var link = linksArray[i];
       var mySpan = document.createElement('span');
-	  mySpan.innerHTML = ' <a href="' + linkpage + uid + '" target="_blank"><img style="vertical-align: bottom; ' + style + '" src="' + flagspage + uid + '.gif" border="0" height="12" /></a>';
+	  mySpan.innerHTML = ' <a href="' + linkpage + uid + '" target="' + target + '"><img style="vertical-align: bottom; ' + style + '" src="' + flagspage + uid + '.gif" border="0" height="12" /></a>';
 	  
 	  if (linebreak) {
 	     link.parentNode.appendChild(document.createElement('br'));
