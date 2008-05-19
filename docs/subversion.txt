@@ -1,0 +1,4 @@
+Checkout current svn trunk 
+  svn checkout https://foxtrick.googlecode.com/svn/trunk/ foxtrick-svn
+Push into svn from foxtrick bzr dir
+  bzr svn-push ../foxtrick-svn/
