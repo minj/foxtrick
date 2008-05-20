@@ -3398,12 +3398,19 @@ function matchDetailPlayerColoring(document, color1, color2) {
 
     var fcolor1 = null, fcolor2 = null;
 
-    var tables = document.getElementsByTagName("TABLE");
+    var elem = document.getElementsByTagName("span")[0];
+    var teamA, teamB;
 
-    var teamA = tables[1].rows[0].cells[0].childNodes[13].nodeValue;
-    var teamB = tables[1].rows[0].cells[0].childNodes[16].nodeValue;
-
-    // Team B
+    // derby match check
+    if (elem.nextSibling.nextSibling.localName == "A") {
+      teamA = elem.nextSibling.nextSibling.nextSibling;
+    } else {
+      teamA = elem.nextSibling;
+    }
+    teamB = teamA.nextSibling.nextSibling.nextSibling;
+    
+    teamA = teamA.nodeValue;
+    teamB = teamB.nodeValue;
 
     while (teamA.lastIndexOf(" - ") > -1) {
     	teamA = teamA.replace(/ - /, ", ");
