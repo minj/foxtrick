@@ -2428,112 +2428,117 @@ function addRatings(doc) {
 
         }
 
-
     }
-
-     var color1 = "rgb(255,255,255)";
-     var color2 = "rgb(0, 0, 0)";
     
-    if (PrefsBranch.getCharPref("attackDefenseBars") != "no") {
-         
-         if (PrefsBranch.getCharPref("attackDefenseBars") == "yes") {
-             var showLink = doc.createElement("a");
-             showLink.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.moregraphs");
-             showLink.className = "foxtrick-showgraphs";
-             showLink.id = "foxtrick-showgraphs";
-             showLink.href = "javascript:showGraphs();";
-        
-             var showLinkCell = possessiontable.insertRow(possessiontable.rows.length).insertCell(0);
-             showLinkCell.colSpan = "3";
-             showLinkCell.align = "center";
-             showLinkCell.appendChild(showLink);
-         }
-        
-         var row, cell;
-         var pt1, pt2;
-         var val1, val2;
-         
-         var rtext = messageBundle.GetStringFromName("foxtrick.matchdetail.rightshort");
-         var ctext = messageBundle.GetStringFromName("foxtrick.matchdetail.centershort");
-         var ltext = messageBundle.GetStringFromName("foxtrick.matchdetail.leftshort");
+  } catch (e) {
+    foxtrickdebug(e);
+  }
 
-         var div = doc.createElement("div");
-         div.className = "foxtrick-graphs";
-         div.id = "foxtrick-graphs";
-         div.setAttribute("align", "center");
-         
-         possessiontable.parentNode.insertBefore(div, possessiontable.nextSibling);
-
-         if (PrefsBranch.getCharPref("attackDefenseBars") == "always") {
-            div.style.display="block";
-         }
-                 
-         var fgcolor1 = getContrastForegroundColor(color1);
-         var fgcolor2 = getContrastForegroundColor(color2);
-         
-         var tempdiv = doc.createElement("div");
-         tempdiv.className = "foxtrick-graphs-table";
-         div.appendChild(tempdiv);
-         
-         row = doc.createElement("div");
-         row.className = "foxtrick-graphs-row";
-         tempdiv.appendChild(row);
-
-         cell = doc.createElement("div");
-         cell.className = "foxtrick-graphs-label";
-         cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.defence");         
-         row.appendChild(cell);
-
-         cell = doc.createElement("div");
-         cell.className = "foxtrick-graphs-label";
-         cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.attack");         
-         row.appendChild(cell);
-
-         tempdiv = doc.createElement("div");
-         tempdiv.className = "foxtrick-graphs-table";
-         div.appendChild(tempdiv);
-         
-         addGraphRow2(doc, tempdiv, team1data["rdefence"], team2data["lattack"], rtext, ltext, team1data["rdefenceText"], team2data["lattackText"], color1, color2, fgcolor1, fgcolor2);
-         addGraphRow2(doc, tempdiv, team1data["cdefence"], team2data["cattack"], ctext, ctext, team1data["cdefenceText"], team2data["cattackText"], color1, color2, fgcolor1, fgcolor2);
-         addGraphRow2(doc, tempdiv, team1data["ldefence"], team2data["rattack"], ltext, rtext, team1data["ldefenceText"], team2data["rattackText"], color1, color2, fgcolor1, fgcolor2);
-
-         tempdiv = doc.createElement("div");
-         tempdiv.className = "foxtrick-graphs-table";
-         div.appendChild(tempdiv);
-         
-         row = doc.createElement("div");
-         row.className = "foxtrick-graphs-row";
-         tempdiv.appendChild(row);
-
-         cell = doc.createElement("div");
-         cell.className = "foxtrick-graphs-label";
-         cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.attack");         
-         row.appendChild(cell);         
-         
-         cell = doc.createElement("div");
-         cell.className = "foxtrick-graphs-label";
-         cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.defence");         
-         row.appendChild(cell);
-
-         tempdiv = doc.createElement("div");
-         tempdiv.className = "foxtrick-graphs-table";
-         div.appendChild(tempdiv);
-
-         addGraphRow2(doc, tempdiv, team1data["rattack"], team2data["ldefence"], rtext, ltext, team1data["rattackText"], team2data["ldefenceText"], color1, color2, fgcolor1, fgcolor2);
-         addGraphRow2(doc, tempdiv, team1data["cattack"], team2data["cdefence"], ctext, ctext, team1data["cattackText"], team2data["cdefenceText"], color1, color2, fgcolor1, fgcolor2);
-         addGraphRow2(doc, tempdiv, team1data["lattack"], team2data["rdefence"], ltext, rtext, team1data["lattackText"], team2data["rdefenceText"], color1, color2, fgcolor1, fgcolor2);
-         
-     }
-     
-     if (getShowTweak("matchDetailPlayerColoring")) {
-        matchDetailPlayerColoring(doc, color1, color2);
-     }
-
-
+  var color1 = "rgb(255,255,255)";
+  var color2 = "rgb(0, 0, 0)";
+    
+  if (PrefsBranch.getCharPref("attackDefenseBars") != "no") {
+    try {
+      foxtrick_addAttackDefenseBars(doc, possessiontable, team1data, team2data, color1, color2);
     } catch (e) {
-        foxtrickdebug(e);
+      foxtrickdebug(e);
     }
+  }
+   
+  if (getShowTweak("matchDetailPlayerColoring")) {
+    matchDetailPlayerColoring(doc, color1, color2);
+  }
 
+}
+
+function foxtrick_addAttackDefenseBars(doc, possessiontable, team1data, team2data, color1, color2) {
+  
+   if (PrefsBranch.getCharPref("attackDefenseBars") == "yes") {
+       var showLink = doc.createElement("a");
+       showLink.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.moregraphs");
+       showLink.className = "foxtrick-showgraphs";
+       showLink.id = "foxtrick-showgraphs";
+       showLink.href = "javascript:showGraphs();";
+  
+       var showLinkCell = possessiontable.insertRow(possessiontable.rows.length).insertCell(0);
+       showLinkCell.colSpan = "3";
+       showLinkCell.align = "center";
+       showLinkCell.appendChild(showLink);
+   }
+  
+   var row, cell;
+   var pt1, pt2;
+   var val1, val2;
+   
+   var rtext = messageBundle.GetStringFromName("foxtrick.matchdetail.rightshort");
+   var ctext = messageBundle.GetStringFromName("foxtrick.matchdetail.centershort");
+   var ltext = messageBundle.GetStringFromName("foxtrick.matchdetail.leftshort");
+
+   var div = doc.createElement("div");
+   div.className = "foxtrick-graphs";
+   div.id = "foxtrick-graphs";
+   div.setAttribute("align", "center");
+   
+   possessiontable.parentNode.insertBefore(div, possessiontable.nextSibling);
+
+   if (PrefsBranch.getCharPref("attackDefenseBars") == "always") {
+      div.style.display="block";
+   }
+           
+   var fgcolor1 = getContrastForegroundColor(color1);
+   var fgcolor2 = getContrastForegroundColor(color2);
+   
+   var tempdiv = doc.createElement("div");
+   tempdiv.className = "foxtrick-graphs-table";
+   div.appendChild(tempdiv);
+   
+   row = doc.createElement("div");
+   row.className = "foxtrick-graphs-row";
+   tempdiv.appendChild(row);
+
+   cell = doc.createElement("div");
+   cell.className = "foxtrick-graphs-label";
+   cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.defence");         
+   row.appendChild(cell);
+
+   cell = doc.createElement("div");
+   cell.className = "foxtrick-graphs-label";
+   cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.attack");         
+   row.appendChild(cell);
+
+   tempdiv = doc.createElement("div");
+   tempdiv.className = "foxtrick-graphs-table";
+   div.appendChild(tempdiv);
+   
+   addGraphRow2(doc, tempdiv, team1data["rdefence"], team2data["lattack"], rtext, ltext, team1data["rdefenceText"], team2data["lattackText"], color1, color2, fgcolor1, fgcolor2);
+   addGraphRow2(doc, tempdiv, team1data["cdefence"], team2data["cattack"], ctext, ctext, team1data["cdefenceText"], team2data["cattackText"], color1, color2, fgcolor1, fgcolor2);
+   addGraphRow2(doc, tempdiv, team1data["ldefence"], team2data["rattack"], ltext, rtext, team1data["ldefenceText"], team2data["rattackText"], color1, color2, fgcolor1, fgcolor2);
+
+   tempdiv = doc.createElement("div");
+   tempdiv.className = "foxtrick-graphs-table";
+   div.appendChild(tempdiv);
+   
+   row = doc.createElement("div");
+   row.className = "foxtrick-graphs-row";
+   tempdiv.appendChild(row);
+
+   cell = doc.createElement("div");
+   cell.className = "foxtrick-graphs-label";
+   cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.attack");         
+   row.appendChild(cell);         
+   
+   cell = doc.createElement("div");
+   cell.className = "foxtrick-graphs-label";
+   cell.innerHTML = messageBundle.GetStringFromName("foxtrick.matchdetail.defence");         
+   row.appendChild(cell);
+
+   tempdiv = doc.createElement("div");
+   tempdiv.className = "foxtrick-graphs-table";
+   div.appendChild(tempdiv);
+
+   addGraphRow2(doc, tempdiv, team1data["rattack"], team2data["ldefence"], rtext, ltext, team1data["rattackText"], team2data["ldefenceText"], color1, color2, fgcolor1, fgcolor2);
+   addGraphRow2(doc, tempdiv, team1data["cattack"], team2data["cdefence"], ctext, ctext, team1data["cattackText"], team2data["cdefenceText"], color1, color2, fgcolor1, fgcolor2);
+   addGraphRow2(doc, tempdiv, team1data["lattack"], team2data["rdefence"], ltext, rtext, team1data["lattackText"], team2data["rdefenceText"], color1, color2, fgcolor1, fgcolor2);
 }
 
 function displayableRatingLevel(val) {
@@ -3395,7 +3400,6 @@ function matchDetailPlayerColoring(document, color1, color2) {
 
     }
 
-
     var fcolor1 = null, fcolor2 = null;
 
     var elem = document.getElementsByTagName("span")[0];
@@ -3409,64 +3413,33 @@ function matchDetailPlayerColoring(document, color1, color2) {
     }
     teamB = teamA.nextSibling.nextSibling.nextSibling;
     
-    teamA = teamA.nodeValue;
-    teamB = teamB.nodeValue;
-
-    while (teamA.lastIndexOf(" - ") > -1) {
-    	teamA = teamA.replace(/ - /, ", ");
-    }
-
-    var indexOfColon = teamA.lastIndexOf(": ");
-    teamA = teamA.substring(indexOfColon+2, teamA.length-1);
-    teamA = ", " + teamA;
-
-    var playersOfTeamA = new Array(11);
-
-    var index = 0;
-
-    while (teamA.lastIndexOf(", ") > -1) {
-    	var lastIndex = teamA.lastIndexOf(", ");
-    	var newPlayerName = teamA.substring(lastIndex, teamA.length); 
-    	newPlayerName = newPlayerName.replace(/, /, "");	
-
-    	teamA = teamA.substring(0, lastIndex);
-    	if (index < 11) {
-    	    if (trim(newPlayerName) != "") {
-    		    playersOfTeamA[index] = newPlayerName;
-    		}
-    	}
-    	index++;
-    }
-
-
-    // Team B
-
-    while (teamB.lastIndexOf(" - ") > -1) {
-    	teamB = teamB.replace(/ - /, ", ");
-    }
-
-    indexOfColon = teamB.lastIndexOf(": ");
-    teamB = teamB.substring(indexOfColon+2, teamB.length-1);
-    teamB = ", " + teamB;
-    
-    var playersOfTeamB = new Array(11);
-    
-    index = 0;
-    
-    while (teamB.lastIndexOf(", ") > -1) {
-    	lastIndex = teamB.lastIndexOf(", ");
-    	newPlayerName = teamB.substring(lastIndex, teamB.length); 
-    	newPlayerName = newPlayerName.replace(/, /, "");	
-    	
-    	teamB = teamB.substring(0, lastIndex);
-    	if (index < 11) {
-    	    if (trim(newPlayerName) != "") {
-    		    playersOfTeamB[index] = newPlayerName;
-    		}
-    	}
-    	index++;
+    function parsePlayers(team) {
+      var index = 0, playerArray = new Array(11);
+      
+      while (team.lastIndexOf(" - ") > -1) {
+        team = team.replace(/ - /, ", ");
+      }
+      
+      var indexOfColon = team.lastIndexOf(": ");
+      team = team.substring(indexOfColon+2, team.length-1);
+      team = ", " + team;
+      
+      while (team.lastIndexOf(", ") > -1) {
+        var lastIndex = team.lastIndexOf(", ");
+        var newPlayerName = team.substring(lastIndex, team.length); 
+        newPlayerName = newPlayerName.replace(/, /, "");	
+        
+        team = team.substring(0, lastIndex);
+        if (index < 11 && trim(newPlayerName) != "") {
+          playerArray[index++] = newPlayerName;
+        }
+      }
+      
+      return playerArray;
     }
     
+    var playersOfTeamA = parsePlayers(teamA.nodeValue);
+    var playersOfTeamB = parsePlayers(teamB.nodeValue);
     
     // setting color for player's links
     
@@ -3565,9 +3538,9 @@ function foxtrick_averageTransferPrice(doc)	{
 
 
 function adjustPages(event)	{
-    
+
   var doc = event.originalTarget;
-  
+
   try {
     if (doc.nodeType != doc.DOCUMENT_NODE) {
       doc = doc.ownerDocument;
