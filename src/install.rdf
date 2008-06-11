@@ -21,14 +21,13 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
-                   em:version="0.3.61"
+                   em:version="0.3.67"
                    em:description="A set of presentation enhancements for hattrick.org"
                    em:creator="Karel Kolman"
                    em:homepageURL="http://foxtrick.px.cz/"
                    em:iconURL="chrome://foxtrick/skin/foxtrick.png"
                    em:optionsURL="chrome://foxtrick/content/foxtrick-preferences.xul"
-                   em:updateURL="http://foxtrick.px.cz/update.rdf"
-                   em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCo6clSh6DvDsOmKqlS1WrIfURgHL9P64TUEIlVyRvo6C5RDtv74QkYL7Y0QlPgC3eGs8qdW9sKDmmIBK/XuhIm9ABHxx0ys30EmKiLIfm50Zfmrme9OjDlNmmKeNzDeQiN4F28W6TorCm8FP71R3TFPOd3ZemYYjjMOQcw/neKAQIDAQAB">
+                   em:updateURL="https://www.mozdev.org/p/updates/foxtrick/{9d1f059c-cada-4111-9696-41a62d64e3ba}/update.rdf">
     <em:targetApplication RDF:resource="rdf:#$TfQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$YfQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$1gQfX1"/>
