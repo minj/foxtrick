@@ -87,11 +87,11 @@ function isNewsFlashUrl(href) {
 }
 
 function isTransferHistoryUrl(href) {
-  return href.search(/transferHistory\.asp/i) > -1;
+  return href.search(/TransfersPlayer\.aspx/i) > -1;
 }
 
 function isMemorableMomentsUrl(href) {
-  return href.search(/otherEvents\.asp/i) > -1;
+  return href.search(/playerEvents\.asp/i) > -1;
 }
 
 function isYouthOverviewUrl(href) {

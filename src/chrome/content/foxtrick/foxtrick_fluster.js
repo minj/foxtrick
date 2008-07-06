@@ -5,28 +5,19 @@ function foxtrick_modifyDates(doc) {
        var pageToModify = false;
 
        // Transfer compare
-       if (isTransferCompareUrl(doc.location.href))
-               pageToModify = true;
-
-       // Transfer history (either player or team)
-       if (isTransferHistoryUrl(doc.location.href))
-               pageToModify = true;
-
-       // Memorable moments
-       if (isMemorableMomentsUrl(doc.location.href))
-               pageToModify = true;
-
-       if (!pageToModify)
-               return;
+       if (!isTransferCompareUrl(doc.location.href) && !isTransferHistoryUrl(doc.location.href) &&
+           !isMemorableMomentsUrl(doc.location.href)) {
+            return;
+       }
 
        var tds = doc.getElementsByTagName("td");
        var dateFormat = foxtrick_dateFormats[PrefsBranch.getCharPref("htDateFormat")];
+       var delim = dateFormat.delim;
 
        for (var i = 0; tds[i] != null; ++i) {
-           var delim = dateFormat.delim;
            var regexp = new RegExp("^\\d+\\" + delim + "\\d+\\" + delim + "\\d+", "g");
           
-           if (tds[i].innerHTML.match(regexp) != null) {
+           if (trim(tds[i].innerHTML).match(regexp) != null) {
                tds[i].innerHTML = gregorianToHT(tds[i].innerHTML, dateFormat);
            }
        }
