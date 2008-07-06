@@ -385,7 +385,7 @@ stats["htitastats"] =  {
 // La Gazzetta di HT
 
 stats["lagazzetta"] =  { 
-        "url" : "http://www.gazzettaht.org/",
+        "url" : "http://www.gazzaht.org/",
 
         "leaguelink" : { "path"       : "index.php?pag=13",
                          "filters"    : ["countryid"], 
