@@ -225,6 +225,8 @@ function foxtrick_specialists(doc) {
   if (!isOwnClubUrl(doc.location.href)) return;
   if (!getShowTweak("specialistsCost")) return;
   
+  var cost = 1800;
+  
   var currency = "";
   var rate = 1.0;
   try {
@@ -248,7 +250,7 @@ function foxtrick_specialists(doc) {
   for ( var i = 0; i < tabla.rows.length; i++ ) {
   	var tmp = doc.createElement ( "TD" );
   	var esp = parseInt ( tabla.rows[i].cells[1].textContent );
-  	tmp.innerHTML = ( "(" + foxtrick_formatNumber(esp*1500*rate) + " " + currency + ")" );
+  	tmp.innerHTML = ( "(" + foxtrick_formatNumber(esp*cost*rate) + " " + currency + ")" );
   	tmp.setAttribute ( "style", "color: gray; text-align: right;" );
   	tabla.rows[i].appendChild ( tmp );
   	tabla.rows[i].cells[1].setAttribute ( "ALIGN", "RIGHT" );
@@ -266,7 +268,7 @@ function foxtrick_specialists(doc) {
   celda.innerHTML = total;
   fila.appendChild ( celda );
   celda = doc.createElement ( "TD" );
-  celda.innerHTML = "(" + foxtrick_formatNumber ( total*1800*rate ) + " " + currency + ")";
+  celda.innerHTML = "(" + foxtrick_formatNumber ( total*cost*rate ) + " " + currency + ")";
   celda.setAttribute ( "style", "border-top: 1px solid gray; text-align: right; padding-left: 10px; color: gray;" );
   fila.appendChild ( celda );
   

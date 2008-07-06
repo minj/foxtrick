@@ -141,11 +141,11 @@ function etekina(diruKop, ekoKop)
 
 
 	if (diruKop >= 0)
-		return (diruSarrera(diruKop, ekoKop) - ((1500*rate) * ekoKop));
+		return (diruSarrera(diruKop, ekoKop) - ((1800*rate) * ekoKop));
 	else
 	{
 		if (ekoKop <= 4)
-			return (diruSarrera(diruKop, ekoKop) - ((1500*rate) * ekoKop));
+			return (diruSarrera(diruKop, ekoKop) - ((1800*rate) * ekoKop));
 		else
 			return 0;
 	}
