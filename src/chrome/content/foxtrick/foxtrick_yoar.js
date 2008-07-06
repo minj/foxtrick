@@ -266,7 +266,7 @@ function foxtrick_specialists(doc) {
   celda.innerHTML = total;
   fila.appendChild ( celda );
   celda = doc.createElement ( "TD" );
-  celda.innerHTML = "(" + foxtrick_formatNumber ( total*1500*rate ) + " " + currency + ")";
+  celda.innerHTML = "(" + foxtrick_formatNumber ( total*1800*rate ) + " " + currency + ")";
   celda.setAttribute ( "style", "border-top: 1px solid gray; text-align: right; padding-left: 10px; color: gray;" );
   fila.appendChild ( celda );
   
