@@ -1211,7 +1211,7 @@ function addExternalLinksToPlayerDetail(doc) {
     
                 // a link
                 for (var i=0; i < doc.links.length; i++) {
-                    if ( doc.links[i].href.match(/transferHistory\.asp/i) ) {
+                    if ( doc.links[i].href.match(/TransfersPlayer\.asp/i) ) {
                         if (typeof(doc.links[i].parentNode.externalLinksAdded) == 'undefined') {
                             addlinks2(doc.links[i], doc, links, "0px", "0px");
                             break;

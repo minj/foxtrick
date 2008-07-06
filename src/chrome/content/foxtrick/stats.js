@@ -833,8 +833,7 @@ stats["camelmasterecon"] =  {
 };    
 
 stats["skillraise"] =  { 
-        "url" : "http://www.avsoftware.org/hattrick/index.php",
-
+        "url" : "http://www.htdaytrading.com/",
 
         "playerlink" : { "path"       : "?page=showplayer",
                          "filters"    : ["age"], 
