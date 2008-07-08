@@ -1458,9 +1458,8 @@ function addEconomyLinks(doc) {
 
     if (isEconomyUrl(doc.location.href)) {
        
-        var path = "body/table[1]/tbody/tr[1]/td[2]//table[3]";
+        var path = "body/form/table/tbody/tr/td[2]/table[3]";
         var elem = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-        
         var links = getLinks("economylink", {  }, doc );  
 
         if (links.length > 0) {
