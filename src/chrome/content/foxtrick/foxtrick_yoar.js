@@ -68,7 +68,7 @@ function matchincome(document) {
 
 function goalDifference(document) {
     
-  if (!isLeagueDetailUrl(document.location.href) && !isPromotionUrl(document.location.href)) return;
+  if (!isPromotionUrl(document.location.href)) return;
   if (!getShowTweak("goalDifference")) return;
   
   var table;
@@ -84,24 +84,16 @@ function goalDifference(document) {
   
   var filas = table.rows;
   var filabase = 0;
-  
-  var regexp;
 
   // making the Goals column bigger to include the new goal difference column
-  if (isLeagueDetailUrl(document.location.href)) {
-    filas[filabase].innerHTML = filas[filabase].innerHTML.replace ( /COLSPAN="3"/i, "COLSPAN=\"4\"" );
-    regexp = new RegExp ( '(<TD[^>]*>(\\d+)\.<\/TD>\\s*<TD[^>]*><A[^>]*>.*<\/A><\/TD>\\s*<TD[^>]*>\\d*<\/TD>\\s*<TD[^>]*>(\\d*)<\/TD>\\s*<TD[^>]*>-<\/TD>\\s*<TD[^>]*>(\\d*))(<\/TD>\\s*<TD[^>]*>\\d*<\/TD>)', "img" );
-  } else if (isPromotionUrl(document.location.href)) {
-    filas[filabase].cells[2].colSpan = 2;
-    regexp = new RegExp ( '(<TD[^>]*>(\\d+)\.\\s*<\/TD>\\s*<TD[^>]*><A[^>]*>.*<\/A>\\s*<\/TD>\\s*<TD[^>]*>(\\d*)\\s*\\-\\s*(\\d*))(<\/TD>\\s*<TD[^>]*>\\d*<\/TD>)', "img" );
-  }
+  filas[filabase].cells[2].colSpan = 2;
+  var regexp = new RegExp ( '(<TD[^>]*>(\\d+)\.\\s*<\/TD>\\s*<TD[^>]*><A[^>]*>.*<\/A>\\s*<\/TD>\\s*<TD[^>]*>(\\d*)\\s*\\-\\s*(\\d*))(<\/TD>\\s*<TD[^>]*>\\d*<\/TD>)', "img" );
   
   for ( i = filabase+1; i < table.rows.length; i++ ) {
   	regexp.lastIndex = 0;
   	tmp = regexp.exec ( filas[i].innerHTML );
   	
   	if ( tmp != null ) {
-  	    
 		var goles = parseInt(tmp[3]) - parseInt(tmp[4]);
 		var color = "red";
 		if ( goles > 0 ) {
@@ -113,10 +105,6 @@ function goalDifference(document) {
 		}
 		filas[i].innerHTML = tmp[1] + '<td align="right" valign="top" width="1" style="color: ' + color + ';">(' + goles + ')</td>' + tmp[5];
   	}
-	else if ( filas[i].innerHTML.match ( /COLSPAN="\d+"/i ) ) {
-		// make horizontal rules bigger to include new column
-        filas[i].innerHTML = filas[i].innerHTML.replace ( /COLSPAN="\d+"/i, 'COLSPAN="100%"' );		
-	}
 	
   }  
 }
