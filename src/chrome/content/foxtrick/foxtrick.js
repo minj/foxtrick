@@ -998,7 +998,7 @@ function foxtrick_getLinksElement(element, document, links, paddingTop, paddingB
 }
 
 //---------------------------------------------------------------------------    
-function addlinks(element, document, links, paddingTop, paddingBottom) {
+function foxtrick_addLinksAsFirstChild(element, document, links, paddingTop, paddingBottom) {
 	var container = foxtrick_getLinksElement(element, document, links, paddingTop, paddingBottom);
 
 	var firstChild = element.firstChild
@@ -1011,7 +1011,7 @@ function addlinks(element, document, links, paddingTop, paddingBottom) {
 }
 
 //---------------------------------------------------------------------------    
-function addlinks2(element, document, links, paddingTop, paddingBottom) {
+function foxtrick_addLinksBeforeElement(element, document, links, paddingTop, paddingBottom) {
 	var container = foxtrick_getLinksElement(element, document, links, paddingTop, paddingBottom);
 	element.parentNode.insertBefore(container, element);
 	element.externalLinksAdded = "true";
@@ -1023,7 +1023,7 @@ function addlinks2(element, document, links, paddingTop, paddingBottom) {
 }
 
 //---------------------------------------------------------------------------    
-function addlinks3(element, document, links, paddingTop, paddingBottom) {
+function foxtrick_addLinksAfterElement(element, document, links, paddingTop, paddingBottom) {
 	var container = foxtrick_getLinksElement(element, document, links, paddingTop, paddingBottom);
 	if (element.nextSibling != null) {
 		element.parentNode.insertBefore(container, element.nextSibling);
@@ -1213,7 +1213,7 @@ function addExternalLinksToPlayerDetail(doc) {
                 for (var i=0; i < doc.links.length; i++) {
                     if ( doc.links[i].href.match(/TransfersPlayer\.asp/i) ) {
                         if (typeof(doc.links[i].parentNode.externalLinksAdded) == 'undefined') {
-                            addlinks2(doc.links[i], doc, links, "0px", "0px");
+                            foxtrick_addLinksBeforeElement(doc.links[i], doc, links, "0px", "0px");
                             break;
                         }
                     }
@@ -1223,7 +1223,7 @@ function addExternalLinksToPlayerDetail(doc) {
                 var temp = doc.getElementsByName("LinkForm");
                 for (var i=0; i < temp.length; i++) {
                     if (typeof(temp[i].parentNode.externalLinksAdded) == 'undefined') {
-                        addlinks2(temp[i], doc, links, "0px", "0px");
+                        foxtrick_addLinksBeforeElement(temp[i], doc, links, "0px", "0px");
                         break;
                     }
                 }
@@ -1306,7 +1306,7 @@ function addNewsFeedLinks(doc) {
     result.iterateNext();
     var target = findSibling(result.iterateNext(), "BR");
     
-    addlinks2(target, doc, links, "0px", "0px");
+    foxtrick_addLinksBeforeElement(target, doc, links, "0px", "0px");
     
   }
   
@@ -1329,7 +1329,7 @@ function addExternalLinksToCountryDetail(doc) {
             for (var i=0; i < temp.length; i++) {
                 if ( temp[i].href.match(/otherEvents\.asp/i) ) {
                     if (typeof(temp[i].parentNode.externalLinksAdded) == 'undefined') {
-                        addlinks2(temp[i], doc, links, "0px", "0px");
+                        foxtrick_addLinksBeforeElement(temp[i], doc, links, "0px", "0px");
                         break;
                     }
                 }
@@ -1341,7 +1341,7 @@ function addExternalLinksToCountryDetail(doc) {
             
             for (var i=0; i < temp.length; i++) {
                 if (typeof(temp[i].parentNode.externalLinksAdded) == 'undefined') {
-                    addlinks2(temp[i], doc, links, "0px", "0px");
+                    foxtrick_addLinksBeforeElement(temp[i], doc, links, "0px", "0px");
                     break;
                 }
             }
@@ -1366,7 +1366,7 @@ function foxtrick_addExternalLinksToFederationDetail(doc) {
           for (var i=0; i < temp.length; i++) {
               if ( temp[i].href.match(/allianceRules\.asp/i) ) {
                   if (typeof(temp[i].parentNode.externalLinksAdded) == 'undefined') {
-                      addlinks2(temp[i], doc, links, "0px", "0px");
+                      foxtrick_addLinksBeforeElement(temp[i], doc, links, "0px", "0px");
                       break;
                   }
               }
@@ -1378,7 +1378,7 @@ function foxtrick_addExternalLinksToFederationDetail(doc) {
           
           for (var i=0; i < temp.length; i++) {
               if (typeof(temp[i].parentNode.externalLinksAdded) == 'undefined') {
-                  addlinks2(temp[i], doc, links, "0px", "0px");
+                  foxtrick_addLinksBeforeElement(temp[i], doc, links, "0px", "0px");
                   break;
               }
           }
@@ -1400,7 +1400,7 @@ function addYouthPullLinks(doc) {
         var links = getLinks("youthpulllink", {  }, doc );  
         
         if (links.length > 0) {
-          addlinks2(elem, doc, links, "0px", "0px");
+          foxtrick_addLinksBeforeElement(elem, doc, links, "0px", "0px");
         }
     }
 }
@@ -1416,7 +1416,7 @@ function addArenaLinks(doc) {
         var targetElem = doc.getElementById("ctl00_ctl00_CM_CIR_pnlConstruct");
         
         if (links.length > 0) {
-          addlinks2(targetElem, doc, links, "0px", "0px");
+          foxtrick_addLinksBeforeElement(targetElem, doc, links, "0px", "0px");
         }
     }
 }
@@ -1430,7 +1430,7 @@ function addYouthOverviewLinks(doc) {
 		var links = getLinks("youthlink", { }, doc );  
 
 		if (links.length > 0) {
-			addlinks3(elem, doc, links, "0px", "0px");
+			foxtrick_addLinksAfterElement(elem, doc, links, "0px", "0px");
 		}
 	}
 }
@@ -1446,7 +1446,7 @@ function addChallengesLinks(doc) {
         var links = getLinks("challengeslink", {  }, doc );  
 
         if (links.length > 0) {
-          addlinks2(elem, doc, links, "0px", "0px");
+          foxtrick_addLinksBeforeElement(elem, doc, links, "0px", "0px");
         }
     }
    
@@ -1464,7 +1464,7 @@ function addEconomyLinks(doc) {
         var links = getLinks("economylink", {  }, doc );  
 
         if (links.length > 0) {
-          addlinks3(elem, doc, links, "0px", "0px");
+          foxtrick_addLinksAfterElement(elem, doc, links, "0px", "0px");
         }
     }
    
@@ -1551,7 +1551,7 @@ function addExternalLinksToTeamDetail(doc) {
       for (var i=0; i < temp.length; i++) {
         if ( temp[i].href.match(/matches\.asp/i) ) {
           var target = isNationalTeamDetailsUrl(doc.location.href) ? temp[i] : findPreviousSibling(temp[i], "A");
-          addlinks2(target, doc, links, "0px", "0px");
+          foxtrick_addLinksBeforeElement(target, doc, links, "0px", "0px");
           break;
         }
       }
@@ -1561,7 +1561,7 @@ function addExternalLinksToTeamDetail(doc) {
       
       for (var i=0; i < temp.length; i++) {
         if (typeof(temp[i].parentNode.externalLinksAdded) == 'undefined') {
-          addlinks2(temp[i], doc, links, "0px", "0px");
+          foxtrick_addLinksBeforeElement(temp[i], doc, links, "0px", "0px");
           break;
         }
       }
@@ -1627,7 +1627,7 @@ function addExternalLinksToLeagueDetail(doc) {
                    var target = temp[i];
                   
                    if (typeof(target.externalLinksAdded) == 'undefined') {
-                      addlinks2(target, doc, links, "0px", "0px");
+                      foxtrick_addLinksBeforeElement(target, doc, links, "0px", "0px");
                       break;
                    }
                 }
@@ -1639,7 +1639,7 @@ function addExternalLinksToLeagueDetail(doc) {
             
             for (var i=0; i < temp.length; i++) {
                 if (typeof(temp[i].parentNode.externalLinksAdded) == 'undefined') {
-                    addlinks(temp[i].parentNode, doc, links, "0px", "5px");
+                    foxtrick_addLinksAsFirstChild(temp[i].parentNode, doc, links, "0px", "5px");
                     break;
                 }
             }
@@ -3073,7 +3073,7 @@ function addCoachLinks(doc) {
             var links = getLinks("coachlink", {  }, doc );  
             
             if (links.length > 0) {
-                  addlinks3(doc.links[i], doc, links, "0px", "0px");
+                  foxtrick_addLinksAfterElement(doc.links[i], doc, links, "0px", "0px");
             }
         
          break;   
