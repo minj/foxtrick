@@ -1409,18 +1409,14 @@ function addArenaLinks(doc) {
    if (isArenaUrl(doc.location.href)) {
     
         var arenaTable = doc.getElementsByTagName("table")[2];
-
-        var path = "//div[@class='rub2']";
-        var result = doc.evaluate(path,doc.documentElement,null,XPathResult.ANY_TYPE,null);
-        elem = result.iterateNext();
-        
-        var links = getLinks("arenalink", { "terraces" : trim(arenaTable.rows[6].cells[1].textContent),
-                                            "basic": trim(arenaTable.rows[7].cells[1].textContent),
-                                            "roof" : trim(arenaTable.rows[8].cells[1].textContent),
-                                            "vip" : trim(arenaTable.rows[9].cells[1].textContent),  }, doc );  
+        var links = getLinks("arenalink", { "terraces" : trim(arenaTable.rows[5].cells[1].textContent),
+                                            "basic": trim(arenaTable.rows[6].cells[1].textContent),
+                                            "roof" : trim(arenaTable.rows[7].cells[1].textContent),
+                                            "vip" : trim(arenaTable.rows[8].cells[1].textContent),  }, doc );  
+        var targetElem = doc.getElementById("ctl00_ctl00_CM_CIR_pnlConstruct");
         
         if (links.length > 0) {
-          addlinks2(elem, doc, links, "0px", "0px");
+          addlinks2(targetElem, doc, links, "0px", "0px");
         }
     }
 }
