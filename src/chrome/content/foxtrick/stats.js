@@ -1019,6 +1019,28 @@ stats["czechrepublic_nt"] = {
   
 };
 
+stats["cambodia_nt"] = { 
+  "url" : "http://www.c10.ch/ant_db/index.php?action=player_submit&cat=1",
+  "img" : "chrome://foxtrick/content/resources/linkicons/cambodia_nt_tracker.png",
+  "title" : "Cambodia U20 & NT Tracker",
+  
+  "playerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+
+  "nationalteamlink" : { "path"     : "",
+                         "filters"  : ["LeagueID"],
+                         "params"   : []
+                        },
+  
+  "nationalityranges" : [[138, 138]],
+  "LeagueIDranges" : [[138,138]]
+  
+};
+
+
+
 // Gham live
 stats["gham"] =  { 
         "url" : "http://hattrickitalia.org/gham/live/",
