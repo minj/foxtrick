@@ -233,7 +233,7 @@ function foxtrick_specialists(doc) {
   	rate = 1.0;
   }
   
-  var tabla = doc.getElementsByTagName ( "TABLE" ) [3];
+  var tabla = doc.getElementsByTagName ( "TABLE" ) [2];
   var total = 0;
   for ( var i = 0; i < tabla.rows.length; i++ ) {
   	var tmp = doc.createElement ( "TD" );
