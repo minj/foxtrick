@@ -218,12 +218,16 @@ function playerListStats(doc) {
 
         var temp = doc.links;
         
-        for (var i=0; i < temp.length; i++) {
-            if (temp[i].href.match(/players\.asp/i)) {
-                temp[i].parentNode.insertBefore(div, findSibling(temp[i], "H3"));
-                break;
-            }
-
+        if (doc.location.href.search(/NTPlayers/i) > -1) {
+          var sortSelect = doc.getElementById('ctl00_ctl00_CM_CIR_ucPlayersMenu_ddlSortBy');
+          sortSelect.parentNode.insertBefore(div, findSibling(sortSelect, "H3"));
+        } else {
+          for (var i=0; i < temp.length; i++) {
+              if (temp[i].href.match(/players\.asp/i)) {
+                  temp[i].parentNode.insertBefore(div, findSibling(temp[i], "H3"));
+                  break;
+              }
+          }
         }
 
      }
