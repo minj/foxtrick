@@ -200,8 +200,8 @@ function playerDetailCountryFlag(doc) {
   if (!getShowTweak("playerDetailCountryFlag")) return;
   
   for ( var i = 0, links = doc.links; i < links.length; i++ ) {
-     if ( tmp = new RegExp ( /leagueSystemID=(\d+)/gi).exec ( links[i].href ) ) {
-         links[i].parentNode.innerHTML = "<img src=\"images/" + tmp[1] + "flag.gif\" align=\"top\" alt=\"flag\" title=\""
+     if ( tmp = new RegExp ( /\?LeagueID=(\d+)/gi).exec ( links[i].href ) ) {
+         links[i].parentNode.innerHTML = "<img src=\"/Common/images/" + tmp[1] + "flag.gif\" align=\"top\" alt=\"" + links[i].textContent + "\" title=\""
          + links[i].textContent + "\" width=\"20\" height=\"12\">" + links[i].parentNode.innerHTML;
          break;
      }
