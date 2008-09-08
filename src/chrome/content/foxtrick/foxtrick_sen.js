@@ -29,7 +29,7 @@ function foxtrick_addTeamLinkPopups(doc) {
       a1.appendChild(doc.createTextNode("Matches"));
       
       var a2 = doc.createElement("a");
-      a2.setAttribute('href', '/Common/players.asp?TeamID=' + value);
+      a2.setAttribute('href', '/Common/players/players.aspx?TeamID=' + value);
       a2.setAttribute('target', 'main');
       a2.appendChild(doc.createTextNode("Players"));
       
