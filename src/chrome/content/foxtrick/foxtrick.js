@@ -3897,6 +3897,7 @@ var foxtrick_functions =
         foxtrick_modifyDates,
         foxtrick_addTeamLinkPopups,
 		foxtrick_FlagsCounter,
+		foxtrick_visitedCountriesMap,
 		foxtrick_MedianTransferPrice,
 		foxtrick_addPostTemplates,
 		foxtrick_flagsInConferences,

@@ -32,6 +32,7 @@
     <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_fluster.js" />
     <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_CHPP-ste1n.js" />
     <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_blizarazu.js" />
+    <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_seben.js" />
     <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_sen.js" />
     <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_patrickbrans.js" />
     <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_brzi.js" />
