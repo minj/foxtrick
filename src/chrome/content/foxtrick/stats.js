@@ -999,6 +999,26 @@ stats["u20schweiz"] =  {
   
 };
 
+stats["czechrepublic_nt"] = { 
+  "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
+  "img" : "chrome://foxtrick/content/resources/linkicons/czech_nt_tracker.png",
+  "title" : "Česká republika U20 & NT Tracker",
+  
+  "playerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+
+  "nationalteamlink" : { "path"     : "",
+                         "filters"  : ["LeagueID"],
+                         "params"   : []
+                        },
+  
+  "nationalityranges" : [[52, 52]],
+  "LeagueIDranges" : [[52,52]]
+  
+};
+
 // Gham live
 stats["gham"] =  { 
         "url" : "http://hattrickitalia.org/gham/live/",
