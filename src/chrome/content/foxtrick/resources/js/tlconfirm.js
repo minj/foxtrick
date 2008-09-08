@@ -11,17 +11,17 @@ String.prototype.group = function( chr, size )
 
 function tlconfirm(mesg, tlwarning) {
     
-     var f = document.forms[1];
-     var price = f.elements['startbid'].value;
+     var f = document.forms[0];
+     var price = f.elements['ctl00$ctl00$CM$CIR$ucBidAndSell$txtPrice'].value;
      price = price.group( ".");
      mesg = mesg.replace("%s", price);
-   	 var positionId=f.elements['transferListID'].value;
-	 if(!positionId) {	
+   	 var positionId=f.elements['ctl00$ctl00$CM$CIR$ucBidAndSell$ddlTransferlistId'].value;
+	 if (positionId == 0) {	
 	 	alert(tlwarning);
 	  	return false;
 	}
 	
-	var positionText=f.elements['transferListID'].options[positionId].text;
+	var positionText=f.elements['ctl00$ctl00$CM$CIR$ucBidAndSell$ddlTransferlistId'].options[positionId].text;
 	mesg = mesg.replace("%p", positionText);
 	
      if (confirm(mesg)) {

@@ -115,7 +115,7 @@ function isAddToHtLiveUrl(href) {
 }
 
 function isFlagsUrl(href) {
-  return href.search(/teamDetails\.asp\?actionType=viewClubPage/i) > -1;
+  return ((href.search(/teamDetails\.asp\?actionType=viewClubPage/i) > -1) || (href.search(/FlagCollection\.aspx/i) > -1));
 }
 
 function isChallangespUrl(href) {
@@ -207,7 +207,7 @@ function isPlayerDetailUrl(href) {
 }
 
 function isTransferCompareUrl(href) {
-  return isPlayerDetailUrl(href) && (href.search(/transfercompare/) > -1) ;
+  return isPlayerDetailUrl(href) && (!href.match(/playerEvents/i));
 }
 
 function isCountryDetailUrl(href) {
@@ -223,7 +223,7 @@ function getTeamIdFromUrl(url) {
 }
 
 function getLeagueSystemIdFromUrl(url) {
-  return url.replace(/.+leagueSystemID=/i, "").match(/^\d+/);
+  return url.replace(/.+leagueID=/i, "").match(/^\d+/);
 }
 
 function getLeagueIdFromUrl(url) {
@@ -642,13 +642,13 @@ function getPlayerFace(playerid, document, classname) {
         var imgMouth = document.createElement("img");
         nodeMouth.appendChild(imgMouth);
         
-        imgBg.src = "/Common/Images/Faces/bg.gif";
+        imgBg.src = "/Common/players/Img.axd?res=faces&img=bg.gif";
         foxtrick_adjustPlayerBackground(imgBg, playerid);
         
-        imgFace.src="/Common/Images/Faces/" + PlayerBranch.getCharPref("face");
-        imgEyes.src="/Common/Images/Faces/" + PlayerBranch.getCharPref("eyes");
-        imgMouth.src="/Common/Images/Faces/" + PlayerBranch.getCharPref("mouth");
-        imgNose.src="/Common/Images/Faces/" + PlayerBranch.getCharPref("nose");       
+        imgFace.src="/Common/players/" + PlayerBranch.getCharPref("face");
+        imgEyes.src="/Common/players/" + PlayerBranch.getCharPref("eyes");
+        imgMouth.src="/Common/players/" + PlayerBranch.getCharPref("mouth");
+        imgNose.src="/Common/players/" + PlayerBranch.getCharPref("nose");       
         
         return nodeBgr;
         
@@ -663,9 +663,9 @@ function foxtrick_adjustPlayerBackgrounds(doc) {
     var divs = doc.getElementsByTagName("div");
     
     for (var i=0; i<divs.length; i++) {
-      if (divs[i].className == "bgr") {
+      if (divs[i].className == "faceWrapper") {
         var face = divs[i];
-        var playerhref = isPlayerDetailUrl(doc.location.href) ? doc.location.href : face.nextSibling.nextSibling.href;        
+		var playerhref = isPlayerDetailUrl(doc.location.href) ?  doc.location.href : face.parentNode.nextSibling.nextSibling.firstChild.nextSibling.href;
         var playerid = playerhref.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 
         var bgrImg = face.getElementsByTagName("img")[0];
@@ -922,7 +922,7 @@ function foxtrick_findNationality(doc) {
   var links = doc.links;
   
   for (var i=0; i<links.length; i++) {
-    if ( links[i].href.match(/changeLeagueSystem/i) ) {
+    if ( links[i].href.match(/leagueSystemDetails/i) ) {
       return getLeagueSystemIdFromUrl(links[i].href);
     }
   }
@@ -958,20 +958,6 @@ function findCountryId(document) {
   
   return null;
 }
-
-//---------------------------------------------------------------------------    
-function findCountryId2(document) {
-  var links = document.links;
-  
-  for (var i=0; i < links.length; i++) {
-    if ( links[i].href.match(/leaguesystemid=/i) ) {
-      return links[i].href.replace(/.+leaguesystemid=/i, "").match(/^\d+/)[0];
-    }
-  }
-  
-  return null;
-}
-
 
 //---------------------------------------------------------------------------    
 function foxtrick_findTeamName(doc) {
@@ -1075,7 +1061,7 @@ function addExternalLinksToPlayerDetail(doc) {
         var infotable = null;
         
         for (var i=0; i < doc.links.length; i++) {
-            if ( doc.links[i].href.match(/changeLeagueSystem/i) ) {
+            if ( doc.links[i].href.match(/leagueSystemDetails/i) ) {
                 infotable = findAncestor(doc.links[i], "TABLE");
                 break;
              }
@@ -1892,10 +1878,10 @@ function getRepositionText(type) {
         
         for (var i=0; i<divs.length; i++) {
             
-          if (divs[i].className == "bgr") {
+          if (divs[i].className == "faceWrapper") {
               
             var face = divs[i];
-            var playerhref = isPlayerDetailUrl(doc.location.href) ?  doc.location.href : face.nextSibling.nextSibling.href;
+            var playerhref = isPlayerDetailUrl(doc.location.href) ?  doc.location.href : face.parentNode.nextSibling.nextSibling.firstChild.nextSibling.href;
             var playerid = playerhref.replace(/.+playerID=/i, "").match(/^\d+/)[0];
              
             try {
@@ -1904,17 +1890,17 @@ function getRepositionText(type) {
               
               if (saveFace) {
                 
-                var divBg = face.getElementsByTagName("div")[0];
+                var divBg = face.getElementsByTagName("div")[1];
                
                 var divFace = divBg.getElementsByTagName("div")[0];
                 var divEyes = divFace.getElementsByTagName("div")[0];
                 var divNose = divEyes.getElementsByTagName("div")[0];
                 var divMouth = divNose.getElementsByTagName("div")[0];
                 
-                var imgFace = divFace.getElementsByTagName("img")[0].src.replace(/.+Faces\//, "");
-                var imgEyes  = divEyes.getElementsByTagName("img")[0].src.replace(/.+Faces\//, "");
-                var imgNose  = divNose.getElementsByTagName("img")[0].src.replace(/.+Faces\//, "");
-                var imgMouth = divMouth.getElementsByTagName("img")[0].src.replace(/.+Faces\//, "");
+                var imgFace = divFace.getElementsByTagName("img")[0].src;
+                var imgEyes  = divEyes.getElementsByTagName("img")[0].src;
+                var imgNose  = divNose.getElementsByTagName("img")[0].src;
+                var imgMouth = divMouth.getElementsByTagName("img")[0].src;
                 
                 foxtrick_savePlayerFace(playerid, imgFace, imgEyes, imgNose, imgMouth);
                 
@@ -1924,15 +1910,13 @@ function getRepositionText(type) {
               
                 // shirt number
                 
-                var temp = isPlayerDetailUrl(doc.location.href) ? face.parentNode.parentNode.previousSibling.previousSibling : face.parentNode.previousSibling.previousSibling;
+                var temp = face.parentNode.previousSibling.previousSibling;
                 var dressHTML = "";
     
                 if (temp != null) {
-                  if (temp.firstChild != null) {
-                    if (temp.firstChild.innerHTML) {
-                      dressHTML = temp.firstChild.innerHTML.replace(/title=\"[^\"]*\"/gi, "");
+                    if (temp.innerHTML) {
+                      dressHTML = temp.innerHTML.replace(/title=\"[^\"]*\"/gi, "");
                     }
-                  }
                 }
 
                 foxtrick_savePlayerDress(playerid, dressHTML);
@@ -1949,7 +1933,7 @@ function getRepositionText(type) {
       // country
       
       if (saveCountry && isPlayerDetailUrl(doc.location.href)) {
-        var country = findCountryId2(doc);
+        var country = findCountryId(doc);
         var playerid = doc.location.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
         savePlayerCountry(playerid, country);
       }
@@ -3168,11 +3152,10 @@ function bookmarkColor(link, regexp, title, color) {
 
 //by Brzi_
 function tlConfirmationBox(doc) {
-
     if (!isPlayerDetailUrl(doc.location.href)) return;
     if (!getShowTweak("tlconfirmation")) return;
-    var f = doc.forms[1];
-	if (!f.elements.namedItem("startbid")) return; //wrong form    
+    var f = doc.forms[0];
+	if (!f.elements.namedItem("ctl00$ctl00$CM$CIR$ucBidAndSell$txtPrice")) return; //wrong form    
 
     foxtrick_addJavaScript(doc, "chrome://foxtrick/content/resources/js/tlconfirm.js");
    
@@ -3180,8 +3163,7 @@ function tlConfirmationBox(doc) {
     mesg = mesg.replace("\r", "\\r").replace("\n", "\\n");
 	var tlwarning = messageBundle.GetStringFromName("foxtrick.tlwarning");
 	tlwarning = tlwarning.replace("\r", "\\r").replace("\n", "\\n");
-    f.setAttribute("onsubmit", "return tlconfirm('" + mesg +"','" + tlwarning + "');");
-    
+    f.elements.namedItem('ctl00$ctl00$CM$CIR$ucBidAndSell$btnSell').setAttribute("onclick", "return tlconfirm('" + mesg +"','" + tlwarning + "');");
 }
 
 // by Catalyst2950
@@ -3189,14 +3171,13 @@ function bidConfirmationBox(doc) {
     if (!isPlayerDetailUrl(doc.location.href)) return;
     if (!getShowTweak("bidconfirmation")) return;
     var f = doc.forms[0];
-	if (!f.elements.namedItem("bid")) return; //wrong form
+	if (!f.elements.namedItem("ctl00$ctl00$CM$CIR$ucBidAndSell$btnBid")) return; //wrong form
 	
     foxtrick_addJavaScript(doc, "chrome://foxtrick/content/resources/js/bidconfirm.js");
    
     var mesg = messageBundle.GetStringFromName("foxtrick.bidconfirmation");
     mesg = mesg.replace("\r", "\\r").replace("\n", "\\n");
-    f.setAttribute("onsubmit", "return bidconfirm('" + mesg + "');");
-    
+    f.elements.namedItem('ctl00$ctl00$CM$CIR$ucBidAndSell$btnBid').setAttribute("onclick", "return bidconfirm('" + mesg + "');");
 }
 
 function convertGoogleCoordinate(val) {

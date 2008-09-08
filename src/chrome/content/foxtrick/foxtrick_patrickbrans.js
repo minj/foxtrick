@@ -5,7 +5,7 @@ function foxtrick_FlagsCounter(doc) {
 	
 	Body = doc.getElementsByTagName("body");
 	BodyContent = Body[0].innerHTML;
-	BodyContent = BodyContent.replace(/<BR><BR>/gi,'<BR><BR><a href=\"spacer\"></a>')
+	BodyContent = BodyContent.replace(/<BR><BR>/gi,'<BR><BR><a href=\"spacer\"></a>');
 	Body[0].innerHTML = BodyContent;
 
 	var links = doc.links;
@@ -60,6 +60,7 @@ function foxtrick_MedianTransferPrice(doc)	{
     
     if (!isTransferCompareUrl(doc.location.href)) return;
 	if (!getShowTweak("transferCompareMedianPrice")) return;
+	if (doc.getElementById('ctl00_ctl00_CM_CI_pnlPlayerDetails')) return;
     
     var table = doc.getElementsByTagName("table")[3];
     var count = table.rows.length-1;

@@ -12,7 +12,7 @@ String.prototype.group = function( chr, size )
 function bidconfirm(mesg) {
     
      var f = document.forms[0];
-     var price = f.elements[0].value;
+     var price = f.elements["ctl00$ctl00$CM$CIR$ucBidAndSell$txtBid"].value;
      price = price.group( ".");
      mesg = mesg.replace("%s", price);
             
