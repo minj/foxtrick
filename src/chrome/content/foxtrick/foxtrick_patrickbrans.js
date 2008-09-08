@@ -63,6 +63,7 @@ function foxtrick_MedianTransferPrice(doc)	{
 	if (doc.getElementById('ctl00_ctl00_CM_CI_pnlPlayerDetails')) return;
     
     var table = doc.getElementsByTagName("table")[3];
+  	if (table.rows[0].cells.length < 5) return;
     var count = table.rows.length-1;
 
 	var priceArray = [];
