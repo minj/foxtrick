@@ -687,13 +687,13 @@ function foxtrick_adjustPlayerBackground(imgBg, playerid) {
      } else
      if (getShowTweak("flagsInPlayerBackground2")) {
        imgBg.src=flagUrl;
-       imgBg.style.width = 47;
-       imgBg.style.height = 49;
+       imgBg.style.width = "47px";
+       imgBg.style.height = "49px";
      } else
      if (getShowTweak("flagsInPlayerBackground3")) {
        imgBg.src=flagUrl;
-       imgBg.style.width = 30;
-       imgBg.style.height = 16;
+       imgBg.style.width = "30px";
+       imgBg.style.height = "16px";
      }
   }
 
