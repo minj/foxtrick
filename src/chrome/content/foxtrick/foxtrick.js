@@ -3743,43 +3743,39 @@ function createPlayerAd(doc) {
     try {
 
         var ad="";
-        
-        var path = "//h1[1]";
-        var obj = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-        
-        // name and playerid
-        
-        for (var i=0; i< obj.childNodes.length; i++) {
-            var child = obj.childNodes[i];
-            // a stupid check for a text node
-            if (child.localName == null) {
-                ad += child.textContent;
-            }
-        }
-        
-        ad = (trim(ad.replace(/\((\d+)\)/, "[playerid=$1]")));
-        ad += "\n";
-
+		var obj;
+    
+		var links = doc.links;
+		for (var i = 0; i < links.length; i++) {
+			if (isPlayerDetailUrl(links[i].href)) {
+				obj = links[i];
+				break;
+			}
+		}
+		
+        ad += obj.firstChild.innerHTML; //name
+		var id = obj.href.replace(/.+playerID=/i, "").match(/^\d+/)[0]; //id
+		ad += "\t[playerid=" + id + "]\n";
+		
         //age and form
         var range = doc.createRange();
-        range.setStartAfter(obj);
+        range.setStartAfter(obj.nextSibling.nextSibling.nextSibling);
         range.setEndAfter(obj.parentNode);
-        ad += trim(range.toString().replace(/\t/gi, "").replace(/\n{3,}/gi, "\n").replace(/:(.*)/, ": [b]$1[/b]"));
+        ad += trim(range.toString()) + "\n";
         
-        obj = findAncestor(obj, "TABLE");
-    
         // personality + speciality
-        
+        var obj = doc.getElementById("ctl00_ctl00_CM_CI_ucStatement_pnlStatement2");
+		var table = findSibling(obj, "TABLE");
+		
         var range = doc.createRange();
         range.setStartAfter(obj);
-        var end = findSibling(obj, "TABLE");
-        range.setEndBefore(end);
-        ad += range.toString().replace(/\t/gi, "").replace(/\n{3,}/gi, "\n").replace(/:(.*)/, ": [b]$1[/b]");
-        ad += "\n";
+        range.setEndBefore(table);
+        ad += trim(range.toString().replace(/:(.*)/, ": [b]$1[/b]\n"));
+        ad += "\n\n";
         
         // country, TSI wage, etc.
         var table = findSibling(obj, "TABLE");
-        ad += trim(table.rows[0].cells[0].textContent) + "\t" + trim(table.rows[0].cells[1].textContent) + "\n";
+        ad += trim(table.rows[0].cells[0].textContent) + "\t" + trim(table.rows[0].cells[1].textContent).replace(/\n/i, "") + "\n";
         ad += trim(table.rows[1].cells[0].textContent) + "\t" + "[b]" + trim(table.rows[1].cells[1].textContent) + "[/b]" + "\n";
         ad += trim(table.rows[2].cells[0].textContent) + "\t" + trim(table.rows[2].cells[1].textContent) + "\n";
         ad += trim(table.rows[3].cells[0].textContent) + "\t" + trim(table.rows[3].cells[1].textContent) + "\n";
@@ -3804,11 +3800,11 @@ function createPlayerAd(doc) {
             var row = skillsTable.rows[i];
             ad += trim(row.cells[0].textContent);
             ad += "\t";
-            ad += getAdjustedSkillLevelTextForAd(row.cells[1].firstChild);
+            ad += getAdjustedSkillLevelTextForAd(row.cells[1].firstChild.nextSibling);
             ad += "\t";
             ad += trim(row.cells[2].textContent);
             ad += "\t";
-            ad += getAdjustedSkillLevelTextForAd(row.cells[3].firstChild);
+            ad += getAdjustedSkillLevelTextForAd(row.cells[3].firstChild.nextSibling);
             
             ad += "\n";
         }
