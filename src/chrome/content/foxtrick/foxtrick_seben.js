@@ -7,7 +7,7 @@ function foxtrick_visitedCountriesMap(document){
 	var countryCodes = new Object();
 
 	countryCodes.c_128='IQ' // Al Iraq 
-	countryCodes.c_118='DZ ' // Al Jazair 
+	countryCodes.c_118='DZ' // Al Jazair 
 	countryCodes.c_127='KW' // Al Kuwayt 
 
 	countryCodes.c_77='MA' // Al Maghrib 
@@ -245,7 +245,7 @@ function foxtrick_visitedCountriesMap(document){
 			}
 			
 			var countryCode = countryCodes['c_'+countryId]; 		
-			if(countryCode != null){		
+			if( typeof countryCode != 'undefined'){		
 				cCodesString += countryCode
 			}
 			
