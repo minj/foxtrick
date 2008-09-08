@@ -70,7 +70,7 @@ function playerListStats(doc) {
 
                     var stamina = 0;
                     if (skillsTable != null && skillsTable.rows.length == 4) {
-                       stamina = parseInt(getSkillLevelFromLink(skillsTable.rows[0].cells[1].firstChild));
+                       stamina = parseInt(getSkillLevelFromLink(skillsTable.rows[0].cells[1].firstChild.nextSibling));
                     }
 
                     if (includeZeroTSIPlayers || (TSI > 0)) {
@@ -99,8 +99,8 @@ function playerListStats(doc) {
     for (var i=0; i<doc.images.length; i++) {
         var img = doc.images[i];
 
-        if (img.src.match(/\/yellow_card/i)) yellowCards++;
         if (img.src.match(/dual_yellow_card/i)) yellowCards+=2;
+        else if (img.src.match(/yellow_card/i)) yellowCards++;
         if (img.src.match(/red_card/i)) redCards++;
         if (img.src.match(/injured/i)) {
           injuries++;
