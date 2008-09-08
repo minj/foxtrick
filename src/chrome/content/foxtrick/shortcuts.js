@@ -48,39 +48,31 @@ tweaks["playerDetailCountryFlag"] =
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.playerdetailcountryflag") + " (by YoaR)" };
 tweaks["specialistsCost"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.specialistscost") + " (by YoaR)" };
-
-
+tweaks["mapOfVisitedCountries"] = 
+{ "title" : messageBundle.GetStringFromName("foxtrick.tweaks.mapofvisitedcountries") + " (by seben)" };
 tweaks["economicalDifference"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.economicaldifference") + " (by marnow)" };
 tweaks["addPostTemplates"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.forummessagetemplates") + " (by marnow)" };
 tweaks["teamLogoBelow"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.teamlogobelow") + " (by marnow)" };
-
-
 tweaks["matchDetailPlayerColoring"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.matchdetailplayercoloring") + " (by wurmi)" };
-
 tweaks["gregorianToHt"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.gregoriantoht") + " (by Fluster)" };
-
 tweaks["flagsInConferences"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.flagsinconferences") + " (by Bummerland, CHPP-ste1n)" };
 tweaks["colorStaffNicksInConferences"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.colorstaffnicksinconferences") + " (by CHPP-ste1n)" };
-
 tweaks["teamPopupLinks"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.teampopuplinks") + " (by sen)" };
-
 tweaks["flagsCounter"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.flagscounter") + " (by patrickbrans)" };
 tweaks["transferCompareMedianPrice"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.transfercomparemedianprice") + " (by patrickbrans)" };
-
 tweaks["flagsInPlayerBackground1"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.flagsinplayerbackground")  + " (style 1)"};
 tweaks["flagsInPlayerBackground2"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.flagsinplayerbackground")  + " (style 2)"};
 tweaks["flagsInPlayerBackground3"] = 
 { "title" : messageBundle.GetStringFromName("foxtrick.tweaks.flagsinplayerbackground")  + " (style 3)"};
-

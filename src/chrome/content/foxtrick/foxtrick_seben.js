@@ -1,5 +1,6 @@
 function foxtrick_visitedCountriesMap(document){
 	
+	if (!getShowTweak("mapOfVisitedCountries")) return;
 	if (!isFlagsUrl(document.location.href)) return;
 	
 	// country codes. see  http://code.google.com/apis/chart/#iso_codes

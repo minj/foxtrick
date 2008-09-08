@@ -61,6 +61,7 @@ pref("foxtrick.userprefs.showTweak-transferCompareMedianPrice", true);
 pref("foxtrick.userprefs.showTweak-addPostTemplates", true);
 pref("foxtrick.userprefs.showTweak-flagsInPlayerBackground1", true);
 pref("foxtrick.userprefs.showTweak-teamLogoBelow", false);
+pref("foxtrick.userprefs.showTweak-mapOfVisitedCountries", true);
 
 pref("foxtrick.userprefs.showRating-hatstatstotal", true);
 pref("foxtrick.userprefs.showRating-loddarstats", true);
