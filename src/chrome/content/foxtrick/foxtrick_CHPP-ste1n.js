@@ -88,7 +88,7 @@ function foxtrick_flagsInConferences(document) {
     		  
               var fs = a.getElementsByTagName('span');
               var hrefl = a.getAttribute("href");
-              var namel = fs[0].textContent;
+              var namel = trim(fs[0].textContent);
         		
         		if (getShowTweak("colorStaffNicksInConferences")) {
             		htreg = /^HT-/i;
