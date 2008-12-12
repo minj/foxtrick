@@ -6,15 +6,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickHideManagerAvatar = {
 	
-	init : function() {
-		if ( FoxtrickPrefs.getBool( "hideManagerAvatar" ) ) {
-			Foxtrick.registerPageHandler( 'forumViewThread',
-								FoxtrickHideManagerAvatar )
-		}
+    init : function() {
+            if ( FoxtrickPrefs.getBool( "hideManagerAvatar" ) ) {
+                    Foxtrick.registerPageHandler( 'forumViewThread',
+                                                            FoxtrickHideManagerAvatar )
+            }
     },
 
-    run : function( page ) {
-		var doc = Foxtrick.current_doc;
+    run : function( page, doc ) {
+		// var doc = Foxtrick.current_doc;
 		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].getAttribute("class")=="faceCard") {
@@ -34,8 +34,8 @@ var FoxtrickAddLeaveConfButton = {
 		}
 	},
 	
-	run : function( page ) {
-		var doc = Foxtrick.current_doc;
+	run : function( page, doc ) {
+		// var doc = Foxtrick.current_doc;
 		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/"+
 			"css/conference.css");
 		var elems = doc.getElementsByTagName("div");

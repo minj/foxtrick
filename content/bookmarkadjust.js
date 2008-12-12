@@ -11,9 +11,9 @@ var BookmarkAdjust = {
                                       BookmarkAdjust );
     },
 
-    run : function( page ) {
+    run : function( page, doc ) {
 
-        var doc = Foxtrick.current_doc;
+        // var doc = Foxtrick.current_doc;
         
         var tableObj = doc.getElementById('ctl00_CPMain_repB').childNodes[1];
         for (var i=0; i<tableObj.rows.length; i++) {

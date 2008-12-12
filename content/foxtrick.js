@@ -12,11 +12,11 @@ window.addEventListener( "load", function() { FoxtrickMain.init(); }, false );
  */
 Foxtrick.need_init = [ FoxtrickPrefs,
                        FoxtrickForumTemplates,
-					   Foxtrickl10n,
-					   BookmarkAdjust,
-					   FoxtrickHideManagerAvatar,
-					   FoxtrickForumStaffMarker,
-					   FoxtrickAddLeaveConfButton ];
+                       Foxtrickl10n,
+                       BookmarkAdjust,
+                       FoxtrickHideManagerAvatar,
+                       FoxtrickForumStaffMarker,
+                       FoxtrickAddLeaveConfButton ];
 
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
@@ -59,17 +59,13 @@ var FoxtrickMain = {
         if ( doc.nodeName != "#document" )
             return;
 
-        Foxtrick.current_doc = doc;
-
-        // save the current URL
-        Foxtrick.current_url = doc.location.href;
         
         // hattrick URL check and run if on HT
-        if ( Foxtrick.current_url.search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
+        if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
             var begin = new Date();
 
-            FoxtrickMain.run();
+            FoxtrickMain.run( doc );
 
             var end = new Date();
             var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
@@ -79,19 +75,19 @@ var FoxtrickMain = {
     },
 
     // main entry run on every ht page load
-    run : function() {
+    run : function( doc ) {
         // call all modules that registered as page listeners
         // if their page is loaded
         
         // find current page index/name and run all handlers for this page
         for ( var i in Foxtrick.ht_pages )
         {
-            if ( Foxtrick.isPage( Foxtrick.ht_pages[i] ) )
+            if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) )
             {
                 // on a specific page, run all handlers
                 Foxtrick.run_on_page[i].forEach(
                     function( fn ) {
-                        fn.run( i );
+                        fn.run( i, doc );
                     } );
             }
         }
@@ -100,8 +96,12 @@ var FoxtrickMain = {
 
 };
 
-Foxtrick.isPage = function( page ) {
-    return Foxtrick.current_url.search( page ) > -1;
+Foxtrick.isPage = function( page, doc ) {
+    return Foxtrick.getHref( doc ).search( page ) > -1;
+}
+
+Foxtrick.getHref = function( doc ) {
+    return doc.location.href;
 }
 
 Foxtrick.registerPageHandler = function( page, who ) {

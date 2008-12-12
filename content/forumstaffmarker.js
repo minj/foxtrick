@@ -14,9 +14,9 @@ var FoxtrickForumStaffMarker = {
                                       FoxtrickForumStaffMarker );
     },
 
-    run : function( page ) {
+    run : function( page, doc ) {
 		
-        var doc = Foxtrick.current_doc;
+        // var doc = Foxtrick.current_doc;
 
         switch( page )
         {

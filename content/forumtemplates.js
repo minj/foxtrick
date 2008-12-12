@@ -17,9 +17,9 @@ var FoxtrickForumTemplates = {
                                       FoxtrickForumTemplates );
     },
 
-    run : function( page ) {
+    run : function( page, doc ) {
 
-        var doc = Foxtrick.current_doc;
+        // var doc = Foxtrick.current_doc;
 
         switch( page )
         {
@@ -41,8 +41,7 @@ var FoxtrickForumTemplates = {
                             FoxtrickForumTemplates._TEMPLATES_PREFLIST );
 
                 for ( i in templates )
-                    FoxtrickForumTemplates._appendTemplate( templates[i],
-                                                            templates_div );
+                    FoxtrickForumTemplates._appendTemplate( doc, templates[i], templates_div );
 
                 // display add new template button
                 var controls_div = doc.createElement( "div" );
@@ -59,11 +58,13 @@ var FoxtrickForumTemplates = {
     },
 
     _addNewTemplate : function( ev ) {
-        var msg_window = Foxtrick.current_doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+        var doc = ev.target.ownerDocument;
+        // var msg_window = Foxtrick.current_doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
         var text = Foxtrick.stripHTML( msg_window.value );
 
         if ( FoxtrickPrefs.addPrefToList( FoxtrickForumTemplates._TEMPLATES_PREFLIST, text ) )
-            FoxtrickForumTemplates._appendTemplate( text );
+            FoxtrickForumTemplates._appendTemplate( doc, text );
         else
             alert( Foxtrickl10n.getString( 'template_exists' ) );
     },
@@ -78,14 +79,15 @@ var FoxtrickForumTemplates = {
     },
 
     _fillMsgWindow : function( ev ) {
-        var msg_window = Foxtrick.current_doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+        var doc = ev.target.ownerDocument;
+        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
         Foxtrick.insertAtCursor( msg_window, ev.target.msg );
     },
 
-    _appendTemplate : function( text, where ) {
-        var doc = Foxtrick.current_doc;
+    _appendTemplate : function( doc, text, where ) {
+        // var doc = Foxtrick.current_doc;
 
-        if ( arguments.length < 2 )
+        if ( arguments.length < 3 )
             var where = doc.getElementById( FoxtrickForumTemplates._TEMPLATES_DIV_ID );
 
         if ( !where )
