@@ -51,10 +51,14 @@ var FoxtrickAddLeaveConfButton = {
                             leaveConf.setAttribute("class",
                                     "foxtrickLeaveConf float_right");
                             leaveConf.setAttribute("title","Leave conference");
-                            leaveConf.setAttribute("onClick","alert(\"Leave this "+
+                            leaveConf.setAttribute("onClick",
+                                    /*"alert(\"Leave this "+
                                     "conference by clicking the `Leave' link"+
                                     " next to the conference name on the next page,"+
-                                    "and then clicking `Save'.\"); "+
+                                    "and then clicking `Save'.\"*/
+                                    "alert( \"" +
+                                    Foxtrickl10n.getString( 'leave_conf_button_alert' ) +
+                                    "\" ); " +
                                     "window.open(\"/MyHattrick/Preferences/"+
                                     "ForumSettings.aspx\",\"_self\");");
                             var markAsReadButton = elems[i].childNodes[0];

@@ -22,10 +22,11 @@
   </tabs>
 	<tabpanels id="tabpanels" flex="1">
 
+           <!-- Modules -->
 	   <!-- about -->
   		<tabpanel orient="vertical">
     		<vbox>
-				<label flex="1" multiline="true" class="plain" readonly="true">&foxtrick.prefs.transitioninfo;</label>
+                <label flex="1" multiline="true" class="plain" readonly="true">&foxtrick.prefs.transitioninfo;</label>
               <label value="http://foxtrick.px.cz/" 
                       style="text-decoration: underline; cursor: pointer; color: blue;"
                       tooltiptext="http://foxtrick.px.cz/"
