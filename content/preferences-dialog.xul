@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<!DOCTYPE dialog [
+   <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
+   %foxtrickDTD;
+]>
+ 
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&foxtrick.prefs.preferences;"
+	id="foxtrick-config"
+	buttons="accept, cancel"
+	ondialogaccept="return true;"
+	onload="{}"
+	persist="width height screenX screenY"
+	style="width: 640px; height: 420px;"
+	flex="1">
+
+<tabbox id="tabbox" flex="1">
+  <tabs id="tabs">
+    <tab id="AboutTab" label="&foxtrick.prefs.about;"/>
+  </tabs>
+	<tabpanels id="tabpanels" flex="1">
+
+	   <!-- about -->
+  		<tabpanel orient="vertical">
+    		<vbox>
+				<label flex="1" multiline="true" class="plain" readonly="true">&foxtrick.prefs.transitioninfo;</label>
+              <label value="http://foxtrick.px.cz/" 
+                      style="text-decoration: underline; cursor: pointer; color: blue;"
+                      tooltiptext="http://foxtrick.px.cz/"
+                      onclick="window.opener.open('http://foxtrick.px.cz/');" flex="0" />			
+              <label value="http://foxtrick.px.cz/forum/" 
+                      style="text-decoration: underline; cursor: pointer; color: blue;"
+                      tooltiptext="http://foxtrick.px.cz/forum/"
+                      onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
+    		</vbox>
+        </tabpanel>			
+
+	</tabpanels>
+</tabbox>
+</dialog>

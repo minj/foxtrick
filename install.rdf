@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$TfQfX1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:maxVersion="3.*"
+                   em:minVersion="3.0" />
+  <RDF:Description RDF:about="rdf:#$1gQfX1"
+                   em:id="{3db10fab-e461-4c80-8b97-957ad5f8ea47}"
+                   em:minVersion="8.0"
+                   em:maxVersion="9.0" />
+  <RDF:Description RDF:about="rdf:#$6gQfX1"
+                   em:id="{a463f10c-3994-11da-9945-000d60ca027b}"
+                   em:minVersion="0.4"
+                   em:maxVersion="1.0" />
+  <RDF:Description RDF:about="rdf:#$YfQfX1"
+                   em:id="{86c18b42-e466-45a9-ae7a-9b95ba6f5640}"
+                   em:minVersion="1.7"
+                   em:maxVersion="1.9" />
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
+                   em:name="FoxTrick"
+                   em:version="0.4.0"
+                   em:description="A set of presentation enhancements for hattrick.org"
+                   em:creator="Mod-PaV (formerly Karel Kolman)"
+                   em:homepageURL="http://foxtrick.px.cz/"
+                   em:iconURL="chrome://foxtrick/skin/foxtrick.png"
+                   em:optionsURL="chrome://foxtrick/content/preferences-dialog.xul"
+                   em:updateURL="https://www.mozdev.org/p/updates/foxtrick/{9d1f059c-cada-4111-9696-41a62d64e3ba}/update.rdf">
+    <em:targetApplication RDF:resource="rdf:#$TfQfX1"/>
+    <em:targetApplication RDF:resource="rdf:#$YfQfX1"/>
+    <em:targetApplication RDF:resource="rdf:#$1gQfX1"/>
+    <em:targetApplication RDF:resource="rdf:#$6gQfX1"/>
+  </RDF:Description>
+</RDF:RDF>

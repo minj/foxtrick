@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://foxtrick/locale/foxtrick.dtd">
+
+<overlay id="foxtrick"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<stringbundleset id="stringbundleset">
+    <stringbundle id="string-bundle" src="chrome://foxtrick/locale/foxtrick.properties" />
+</stringbundleset>
+
+<script type="application/x-javascript" src="chrome://foxtrick/content/preferences.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/module.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/l10n.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/forumtemplates.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick.js" />
+
+</overlay>
+

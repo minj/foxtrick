@@ -1,0 +1,6 @@
+content foxtrick content/
+overlay chrome://browser/content/browser.xul chrome://foxtrick/content/foxtrick.xul
+
+locale foxtrick en-US locale/en-US/
+
+skin	foxtrick	classic/1.0	skin/
