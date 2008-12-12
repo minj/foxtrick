@@ -15,6 +15,7 @@ Foxtrick.need_init = [ FoxtrickPrefs,
 					   Foxtrickl10n,
 					   BookmarkAdjust,
 					   FoxtrickHideManagerAvatar,
+					   FoxtrickForumStaffMarker,
 					   FoxtrickAddLeaveConfButton ];
 
 /** Modules that are to be called every time any hattrick page loads.
@@ -132,4 +133,9 @@ Foxtrick.addStyleSheet = function( doc, css ) {
 	link.setAttribute("media", "all");
 	link.setAttribute("href", css);
 	head.appendChild(link);
+}
+
+
+Foxtrick.trim = function (text) {
+  return text.replace(/^\s+/, "").replace(/\s+$/, '');
 }
