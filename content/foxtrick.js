@@ -122,3 +122,14 @@ Foxtrick.insertAtCursor = function( textarea, text ) {
                    + textarea.value.substring( textarea.selectionEnd, textarea.value.length );
 }
 
+Foxtrick.addStyleSheet = function( doc, css ) {
+	var path = "head[1]";
+	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
+	
+	var link = doc.createElement("link");
+	link.setAttribute("rel", "stylesheet");
+	link.setAttribute("type", "text/css");
+	link.setAttribute("media", "all");
+	link.setAttribute("href", css);
+	head.appendChild(link);
+}

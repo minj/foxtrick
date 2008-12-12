@@ -36,15 +36,22 @@ var FoxtrickAddLeaveConfButton = {
 	
 	run : function( page ) {
 		var doc = Foxtrick.current_doc;
-		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/conference.css");
+		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/"+
+			"css/conference.css");
 		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].getAttribute("class")=="folderHeader") {
 				
 				var leaveConf = doc.createElement("div");
-				leaveConf.setAttribute("class","foxtrickLeaveConf float_right");
+				leaveConf.setAttribute("class",
+					"foxtrickLeaveConf float_right");
 				leaveConf.setAttribute("title","Leave conference");
-				leaveConf.setAttribute("onClick","window.open(\"/MyHattrick/Preferences/ForumSettings.aspx\",\"_self\");");
+				leaveConf.setAttribute("onClick","alert(\"Leave this "+
+					"conference by clicking the `Leave' link"+
+					" next to the conference name on the next page,"+
+					"and then clicking `Save'.\"); "+
+					"window.open(\"/MyHattrick/Preferences/"+
+					"ForumSettings.aspx\",\"_self\");");
 				var markAsReadButton = elems[i].childNodes[0];
 				elems[i].insertBefore(leaveConf,markAsReadButton);
 				
