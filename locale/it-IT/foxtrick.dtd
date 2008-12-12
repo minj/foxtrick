@@ -1,0 +1,80 @@
+<!-- en-US
+     Karel Kolman
+-->
+
+<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick is currently undergoing a transition to the new Hattrick design. We are doing our best to bring all the old features to the new design. Please be patient with us and expect regular updates!">
+<!ENTITY foxtrick.prefs.mainoptions "Main options">
+<!ENTITY foxtrick.prefs.enable "Enable">
+<!ENTITY foxtrick.prefs.preferences "Preferences">
+<!ENTITY foxtrick.prefs.visuals "Visuals">
+<!ENTITY foxtrick.prefs.stars "Stars">
+<!ENTITY foxtrick.prefs.about "About">
+<!ENTITY foxtrick.prefs.addstars "Add stars">
+<!ENTITY foxtrick.prefs.replacestars "Replace stars">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Use default Hattrick stars.">
+<!ENTITY foxtrick.prefs.cssskins "CSS Skins">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Use default Hattrick skin.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Configure FoxTrick">
+<!ENTITY foxtrick.prefs.faces "Faces and Dresses (for supporters)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Don't add faces or dresses.">
+<!ENTITY foxtrick.prefs.showfaces "Add players' faces to match lineup.">
+<!ENTITY foxtrick.prefs.showdresses "Add players' dresses to match lineup.">
+<!ENTITY foxtrick.prefs.links "Links to external sites">
+<!ENTITY foxtrick.prefs.link "Link">
+<!ENTITY foxtrick.prefs.show "Show">
+<!ENTITY foxtrick.prefs.shortcuts "Shortcuts">
+<!ENTITY foxtrick.prefs.shortcut "Shortcut">
+<!ENTITY foxtrick.prefs.groupstarsby "Number of stars to group by color: ">
+<!ENTITY foxtrick.menu.installskin "Install Hattrick.org skin">
+<!ENTITY foxtrick.prefs.linkstab "Links &amp; ratings">
+<!ENTITY foxtrick.prefs.ratings "Ratings">
+<!ENTITY foxtrick.prefs.rating "Rating">
+<!ENTITY foxtrick.prefs.htlang "Hattrick language">
+<!ENTITY foxtrick.prefs.language "Language settings">
+<!ENTITY foxtrick.prefs.lineupcoloring "Match lineup coloring schemes">
+<!ENTITY foxtrick.prefs.nolineupcoloring "No match lineup coloring.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Only if a coloring scheme exists in the used skin.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Always. If a skin doesn't include a coloring scheme, use the default one.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Get more CSS skins">
+<!ENTITY foxtrick.prefs.shortcutstab "Shortcuts &amp; tweaks">
+<!ENTITY foxtrick.prefs.tweaks "Tweaks">
+<!ENTITY foxtrick.prefs.mergestars "Merge stars">
+<!ENTITY foxtrick.menu.playersintabs "Open found players in tabs">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Add players' faces &amp; dresses to match lineup.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Style">
+<!ENTITY foxtrick.prefs.matchorders "Match orders">
+<!ENTITY foxtrick.prefs.showformationbox "Show formation box">
+<!ENTITY foxtrick.prefs.frameresize "Frame resizing">
+<!ENTITY foxtrick.prefs.hidelogoframe "Hide logo frame">
+<!ENTITY foxtrick.prefs.resizemainframe "Resize main frame">
+<!ENTITY foxtrick.prefs.resizemenuframe "Resize menu frame">
+<!ENTITY foxtrick.prefs.framewidth "Width">
+<!ENTITY foxtrick.prefs.clearplayerscache "Clear player faces/dresses cache.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Attack vs Defense bars">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Insert automatically.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Show toggle link.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Don't insert.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Ratings format">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Standard ratings.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Old style ratings.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "The following options have to be set in correspondence with your Hattrick.org settings.">
+<!ENTITY foxtrick.prefs.showflags "Add players' country flags to match lineup.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Add players' faces &amp; country flags to match lineup.">
+<!ENTITY foxtrick.prefs.showdressesandflags "Add players' dresses &amp; country flags to match lineup.">
+<!ENTITY foxtrick.prefs.medalsets "Medal sets">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Get more medal sets">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Use default Hattrick medals.">
+<!ENTITY foxtrick.menu.installmedalset "Install Hattrick.org medal set">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick currency">
+<!ENTITY foxtrick.prefs.main "Main">
+<!ENTITY foxtrick.prefs.alertslider "Show alert slider.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Display FoxTrick panel in Firefox status bar.">
+<!ENTITY foxtrick.prefs.alertsound "Play alert sound.">
+<!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
+<!ENTITY foxtrick.prefs.htdateformat "Date format">
+<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Forum message templates">
+<!ENTITY foxtrick.prefs.opendirectory "Open directory">
+<!ENTITY foxtrick.prefs.selectfile "Select sound file">
+<!-- EOF -->

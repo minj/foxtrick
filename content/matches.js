@@ -41,7 +41,7 @@ var Matches = {
     	leftdiv.className='boxLeft';
     	
     	var leftdivcontent=doc.createElement('h2');
-    	leftdivcontent.innerHTML="Attack vs Defense bars";//FoxtrickPrefs.getString( "attackdefensebars" );
+    	leftdivcontent.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.attackdefensebars" );
     	
     	leftdiv.appendChild(leftdivcontent);
     	headdiv.appendChild(leftdiv);
@@ -50,14 +50,14 @@ var Matches = {
     	var bodydiv=doc.createElement('div');
         bodydiv.className='boxBody';
         
-        var labelArray=new Array('Right def - Left att',
-                       'Central def - Central att',
-                       'Left def - Right att',
-                       'Right att - Left def',
-                       'Central att - Central def',
-                       'Left att - Right def',
-                       'Ind. free kicks: def-att',
-                       'Ind. free kicks: att-def');
+        var labelArray=new Array(Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" ),
+                       Foxtrickl10n.getString( "foxtrick.matches.center" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.center" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" ),
+                       Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" ),
+                       Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" ),
+                       Foxtrickl10n.getString( "foxtrick.matches.center" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.center" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" ),
+                       Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" ),
+                       Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.attack" ),
+                       Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" )+' - '+Foxtrickl10n.getString( "foxtrick.matches.defense" ));
         
         for (i=0;i<percentArray.length;i++)
         {
