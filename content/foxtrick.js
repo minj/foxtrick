@@ -20,12 +20,13 @@ Foxtrick.need_init = [ FoxtrickPrefs,
 
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
- * Note: not implemented yet
+ * DON'T EDIT THIS, use registerAllPagesHandler() instead.
  */
 Foxtrick.run_every_page = [];
 
 /** Modules that are to be called on specific hattrick page loads.
  * Should implement a run() method.
+ * DON'T EDIT THIS, use registerPageHandler() instead.
  */
 Foxtrick.run_on_page = [];
 ////////////////////////////////////////////////////////////////////////////////
@@ -76,6 +77,12 @@ var FoxtrickMain = {
 
     // main entry run on every ht page load
     run : function( doc ) {
+        // call the modules that want to be run() on every hattrick page
+        Foxtrick.run_every_page.forEach(
+            function( fn ) {
+                fn.run( doc )
+            } );
+
         // call all modules that registered as page listeners
         // if their page is loaded
         
@@ -104,6 +111,13 @@ Foxtrick.getHref = function( doc ) {
     return doc.location.href;
 }
 
+/**
+ * Register with this method to have your module's run()
+ * function called on specific pages (names can be found
+ * in Foxtrick.ht_pages in module.js.
+ * Your function should accept two arguments:
+ * the page name (from ht_pages) and current document.
+ */
 Foxtrick.registerPageHandler = function( page, who ) {
 
     if ( who.run )
@@ -112,6 +126,20 @@ Foxtrick.registerPageHandler = function( page, who ) {
     }
 }
 
+/**
+ * Register with this method to have your module's run() function
+ * called every time any hattrick page is loaded.
+ * Please use registerPageHandler() if you need only to run
+ * on specific pages.
+ * Your run() function will be called with only one argument,
+ * the current document.
+ */
+Foxtrick.registerAllPagesHandler = function( who ) {
+    if ( who.run )
+    {
+        Foxtrick.run_every_page.push( who );
+    }
+}
 
 Foxtrick.stripHTML = function( text ) {
     return text.replace( /(<([^>]+)>)/ig,"");
