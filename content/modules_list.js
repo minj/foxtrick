@@ -12,6 +12,7 @@ Foxtrick.need_init = [ FoxtrickForumTemplates,
                        FoxtrickHideManagerAvatar,
                        FoxtrickForumStaffMarker,
                        FoxtrickMedianTransferPrice,
-                       FoxtrickAddLeaveConfButton ];
+                       FoxtrickAddLeaveConfButton,
+                       Matches ];
 ////////////////////////////////////////////////////////////////////////////////
 

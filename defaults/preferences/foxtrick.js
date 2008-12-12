@@ -12,3 +12,4 @@ pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.enabled", true );
 pref( "extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled", true );
 pref( "extensions.foxtrick.prefs.module.BookmarkAdjust.enabled", true );
 pref( "extensions.foxtrick.prefs.module.MedianTransferPrice.enabled", true );
+pref( "extensions.foxtrick.prefs.module.Matches.enabled", true );
