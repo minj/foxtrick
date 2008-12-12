@@ -1,4 +1,0 @@
-1. build xpi
-2. compute sha1 checksum for the file
-3. update the updateHash atribute to "sha1:xxxxxxxxxxchecksumxxxxxxxx"
-4. run mccoy and sign the update.rdf
