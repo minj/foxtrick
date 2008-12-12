@@ -16,7 +16,8 @@
 Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
                       'forumViewThread' : '\/Forum\/Read',
                       'forumWritePost' : '\/Forum\/Write',
-                      'bookmarks' : '\/MyHattrick\/Bookmarks'
+                      'bookmarks' : '\/MyHattrick\/Bookmarks',
+                      'TransferCompare' : '\/Club\/Transfers\/TransferCompare'
                     };
 ////////////////////////////////////////////////////////////////////////////////
 

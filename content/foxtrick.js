@@ -176,6 +176,13 @@ Foxtrick.trim = function (text) {
   return text.replace(/^\s+/, "").replace(/\s+$/, '');
 }
 
+String.prototype.group = function( chr, size )
+{
+	if ( typeof chr == 'undefined' ) chr = ",";
+	if ( typeof size == 'undefined' ) size = 3;
+	return this.split( '' ).reverse().join( '' ).replace( new RegExp( "(.{" + size + "})(?!$)", "g" ), "$1" + chr ).split( '' ).reverse().join( '' );
+}
+
 Foxtrick.isModuleEnabled = function( module_name ) {
     try {
         return FoxtrickPrefs.getBool( "module." + module_name + ".enabled" );

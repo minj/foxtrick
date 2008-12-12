@@ -16,6 +16,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/bookmarkadjust.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_larsw84.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forumstaffmarker.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/mediantransferprice.js" />
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick.js" />
