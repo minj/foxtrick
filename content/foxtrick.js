@@ -6,18 +6,6 @@
 // execute at window load
 window.addEventListener( "load", function() { FoxtrickMain.init(); }, false );
 ////////////////////////////////////////////////////////////////////////////////
-/** Modules that need to be initialized and register their page handlers
- * in the beginning.
- * Each should implement an init() method
- */
-/*Foxtrick.need_init = [ FoxtrickPrefs,
-                       FoxtrickForumTemplates,
-                       Foxtrickl10n,
-                       BookmarkAdjust,
-                       FoxtrickHideManagerAvatar,
-                       FoxtrickForumStaffMarker,
-                       FoxtrickAddLeaveConfButton ];*/
-
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
  * DON'T EDIT THIS, use registerAllPagesHandler() instead.
