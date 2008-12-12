@@ -3,10 +3,11 @@ There is a simple example module already written for forum templates in forumtem
 The module is initialized once by calling its init() function. Just put your initialization code there and remember to register as a page listener in init().
 
 Steps to add a new module are as follows:
-1. create a new module in a *.js file. Have an init() and run() functions in main class. See registerPageHandler() and registerAllPagesHandler() functions documentation in foxtrick.js for more info.
+1. create a new module in a *.js file. Have an init() and run() functions in main class. See registerPageHandler() and registerAllPagesHandler() functions documentation in foxtrick.js for more info. A MODULE_NAME string is also required in your class with your module name.
 2. register to listen for pages as needed in your init() function. Page names are in the module.js, feel free to add new ones.
 3. add the class name to Foxtrick.need_init array in modules_list.js
 4. add your .js file to foxtrick.xul ABOVE modules_list.js
+5. If you want your module to be enabled by default, add a line to foxtrick/defaults/preferences/foxtrick.js according to instructions there.
 
 Other things should be self-explanatory by looking at the code. Ask if you need help.
 

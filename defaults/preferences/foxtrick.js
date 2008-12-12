@@ -1,5 +1,12 @@
-pref( "extensions.foxtrick.prefs.usePostTemplates", true );
-pref( "extensions.foxtrick.prefs.hideManagerAvatar", false );
-pref( "extensions.foxtrick.prefs.mark_staff", true );
-pref( "extensions.foxtrick.prefs.addLeaveConfButton", true );
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
+
+
+// add here your module's default enabled/disabled state
+// the preference should be called
+// pref( "extensions.foxtrick.prefs.module.XXX.enabled", true );
+// where XXX should be the value of YourModule.MODULE_NAME
+pref( "extensions.foxtrick.prefs.module.ForumTemplates.enabled", true );
+pref( "extensions.foxtrick.prefs.module.HideManagerAvatar.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.enabled", true );
+pref( "extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled", true );
+pref( "extensions.foxtrick.prefs.module.BookmarkAdjust.enabled", true );

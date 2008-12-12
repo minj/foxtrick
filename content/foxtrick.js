@@ -17,14 +17,24 @@ Foxtrick.run_every_page = [];
  * DON'T EDIT THIS, use registerPageHandler() instead.
  */
 Foxtrick.run_on_page = [];
+
+/** Core Foxtrick modules, always used.
+ * Don't add here unless you have a good reason to. */
+Foxtrick.core_modules = [ FoxtrickPrefs,
+                          Foxtrickl10n ];
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 
     init : function() {
+        var i;
+
+        // init core modules
+        for ( i in Foxtrick.core_modules ) {
+            Foxtrick.core_modules[i].init();
+        }
 
         // create handler arrays for each recognized page
-        for ( i in Foxtrick.ht_pages )
-        {
+        for ( i in Foxtrick.ht_pages ) {
             Foxtrick.run_on_page[i] = new Array();
         }
 
@@ -33,11 +43,19 @@ var FoxtrickMain = {
         if ( appcontent) 
             appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad,
                                          true );
+
         // init all modules
-        for ( var i in Foxtrick.need_init )
-        {
-            if ( Foxtrick.need_init[i].init )
+        for ( i in Foxtrick.need_init ) {
+            // if module has an init() function and is enabled
+            if ( Foxtrick.need_init[i].MODULE_NAME
+                    && Foxtrick.isModuleEnabled( Foxtrick.need_init[i].MODULE_NAME )
+                    && Foxtrick.need_init[i].init )
+            {
                 Foxtrick.need_init[i].init();
+                dump( "Foxtrick enabled module: " + Foxtrick.need_init[i].MODULE_NAME + "\n");
+            }
+            else
+                dump( "Foxtrick disabled module: " + Foxtrick.need_init[i].MODULE_NAME + "\n" );
         }
 
    },
@@ -108,8 +126,8 @@ Foxtrick.getHref = function( doc ) {
  */
 Foxtrick.registerPageHandler = function( page, who ) {
 
-    if ( who.run )
-    {
+    // if is enabled in preferences and has a run() function
+    if ( who.run ) {
         Foxtrick.run_on_page[page].push( who );
     }
 }
@@ -129,10 +147,12 @@ Foxtrick.registerAllPagesHandler = function( who ) {
     }
 }
 
+/** Remove any occurences of tags ( "<something>" ) from text */
 Foxtrick.stripHTML = function( text ) {
     return text.replace( /(<([^>]+)>)/ig,"");
 }
 
+/** Insert text in given textarea at the current position of the cursor */
 Foxtrick.insertAtCursor = function( textarea, text ) {
     textarea.value = textarea.value.substring( 0, textarea.selectionStart )
                    + text
@@ -155,3 +175,12 @@ Foxtrick.addStyleSheet = function( doc, css ) {
 Foxtrick.trim = function (text) {
   return text.replace(/^\s+/, "").replace(/\s+$/, '');
 }
+
+Foxtrick.isModuleEnabled = function( module_name ) {
+    try {
+        return FoxtrickPrefs.getBool( "module." + module_name + ".enabled" );
+    } catch( e ) {
+        return false;
+    }
+}
+

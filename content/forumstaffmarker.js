@@ -6,6 +6,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickForumStaffMarker = {
     
+    MODULE_NAME : "ForumStaffMarker",
+
     _MARK_STAFF : "mark_staff",
 
 
@@ -22,9 +24,9 @@ var FoxtrickForumStaffMarker = {
         {
             case 'forumViewThread':
             
-                if ( !FoxtrickPrefs.getBool(
-                            FoxtrickForumStaffMarker._MARK_STAFF ) )
-                    break;
+                // if ( !FoxtrickPrefs.getBool(
+                            // FoxtrickForumStaffMarker._MARK_STAFF ) )
+                    // break;
                  
                 var userDivs = doc.evaluate(
 		    	    "//div[@class='cfHeader']",
@@ -61,6 +63,6 @@ var FoxtrickForumStaffMarker = {
     	
        			break;
         }
-	}
+    }
 };
 

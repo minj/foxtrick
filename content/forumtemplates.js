@@ -6,10 +6,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickForumTemplates = {
     
+    MODULE_NAME : "ForumTemplates",
+
     _MAX_TEMPLATE_DISP_LENGTH : 60,
     _TEMPLATES_DIV_ID : "post_templates",
     _TEMPLATES_PREFLIST : "post_templates",
-    _TEMPLATES_ENABLED : "usePostTemplates",
+    // _TEMPLATES_ENABLED : "usePostTemplates",
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
 
     init : function() {
@@ -25,9 +27,9 @@ var FoxtrickForumTemplates = {
         {
             case 'forumWritePost':
 
-                if ( !FoxtrickPrefs.getBool(
-                            FoxtrickForumTemplates._TEMPLATES_ENABLED ) )
-                    break;
+                // if ( !FoxtrickPrefs.getBool(
+                            // FoxtrickForumTemplates._TEMPLATES_ENABLED ) )
+                    // break;
 
                 // display templates above the message window
                 var msg_window = doc.getElementById(

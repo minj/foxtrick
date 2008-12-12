@@ -5,6 +5,8 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 var BookmarkAdjust = {
+
+    MODULE_NAME : "BookmarkAdjust",
     
     init : function() {
         Foxtrick.registerPageHandler( 'bookmarks',
