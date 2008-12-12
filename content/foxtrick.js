@@ -10,13 +10,13 @@ window.addEventListener( "load", function() { FoxtrickMain.init(); }, false );
  * in the beginning.
  * Each should implement an init() method
  */
-Foxtrick.need_init = [ FoxtrickPrefs,
+/*Foxtrick.need_init = [ FoxtrickPrefs,
                        FoxtrickForumTemplates,
                        Foxtrickl10n,
                        BookmarkAdjust,
                        FoxtrickHideManagerAvatar,
                        FoxtrickForumStaffMarker,
-                       FoxtrickAddLeaveConfButton ];
+                       FoxtrickAddLeaveConfButton ];*/
 
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
