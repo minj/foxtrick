@@ -1,4 +1,5 @@
 content foxtrick content/
+content	foxtrick content/ contentaccessible=yes
 overlay chrome://browser/content/browser.xul chrome://foxtrick/content/foxtrick.xul
 
 locale foxtrick en-US locale/en-US/
