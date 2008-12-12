@@ -1,0 +1,11 @@
+There is a simple example module already written for forum templates in forumtemplates.js, which registers itself as a listener for forum write page. When the user visits that page, the run() function of the module gets called so you just have to put the code in there. The module is initialized once by calling its init() function. Just put your initialization code there and remember to register as a page listener in init().
+
+Steps to add a new module are as follows:
+1. create a new module in a *.js file. Have an init() and run() functions in main class.
+2. register to listen for pages as needed in your init() function. Page names are in the module.js, feel free to add new ones.
+3. add the class name to Foxtrick.need_init array in foxtrick.js
+4. add your .js file to foxtrick.xul ABOVE foxtrick.js
+
+Other things should be self-explanatory by looking at the code. Ask here if you need help.
+
+Of course we can and want to reuse the old code, so you can just take old code, adapt it for the new design, wrap it up in run() function and done!
