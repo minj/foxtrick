@@ -20,10 +20,11 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
                       'TransferCompare' : '\/Club\/Transfers\/TransferCompare',
                       'match' : '\/Club\/Matches\/Match.aspx',
                       'matchOrders' : '\/MatchOrders\.aspx',
-					  'matchLineup' : '\/Club\/Matches\/MatchLineup.aspx',
+                      'flagCollection' : '\/Club\/Flags\/',
+                      'matchLineup' : '\/Club\/Matches\/MatchLineup.aspx',
                       'YouthPlayers' : 'YouthPlayers\.aspx',
                       'YouthPlayer' : 'YouthPlayer\.aspx',
-					  'forumSettings' : '\/MyHattrick\/Preferences\/ForumSettings.aspx'
+                      'forumSettings' : '\/MyHattrick\/Preferences\/ForumSettings.aspx'
 };
 ////////////////////////////////////////////////////////////////////////////////
 

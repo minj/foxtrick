@@ -14,10 +14,11 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickMedianTransferPrice,
                      FoxtrickYouthSkillNotes,
                      FoxtrickAddLeaveConfButton,
-					 FoxtrickLeaveConf,
+                     FoxtrickLeaveConf,
                      FoxtrickFlipSidesInMatchOrders,
-					 FoxtrickStarsCounter,
+                     FoxtrickStarsCounter,
                      FoxtrickFormationBoxInMatchOrders,
+                     FoxtrickFlagCollectionToMap,
                      Matches ];
 ////////////////////////////////////////////////////////////////////////////////
 
