@@ -19,6 +19,7 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickStarsCounter,
                      FoxtrickFormationBoxInMatchOrders,
                      FoxtrickFlagCollectionToMap,
+                     FoxtrickTransferListSearchFilters,
                      Matches ];
 ////////////////////////////////////////////////////////////////////////////////
 

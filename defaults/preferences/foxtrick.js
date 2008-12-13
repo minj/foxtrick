@@ -18,3 +18,5 @@ pref( "extensions.foxtrick.prefs.module.FlipSidesInMatchOrders.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FoxtrickStarsCounter.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FormationBoxInMatchOrders.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FlagCollectionToMap.enabled", true );
+pref( "extensions.foxtrick.prefs.module.TransferListSearchFilters.enabled", true );
+
