@@ -8,6 +8,9 @@ var FoxtrickTeamPopupLinks = {
     
     MODULE_NAME : "TeamPopupLinks",
 
+    init : function() {
+        Foxtrick.registerAllPagesHandler( FoxtrickTeamPopupLinks );
+    },
 
     run : function( doc ) {
 		
