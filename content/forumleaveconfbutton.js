@@ -15,8 +15,15 @@ var FoxtrickAddLeaveConfButton = {
     },
     
     run : function( page, doc ) {
-			
-            Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/"+
+		
+		var sUrl = Foxtrick.getHref( doc );
+		var vPos = sUrl.search(/v=/i);
+		var vValue = "";
+		if(vPos > -1) {
+			vValue = sUrl.substr(vPos+2);
+		}
+		if(vValue != "2") {
+			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/"+
                     "css/conference.css");
             var elems = doc.getElementsByTagName("div");
             for(var i=0; i < elems.length; i++) {
@@ -38,6 +45,7 @@ var FoxtrickAddLeaveConfButton = {
                             
                     }
             }
+		}
     }
 
 };
