@@ -1,0 +1,21 @@
+div.foxtrick-matchordersbox {
+  position: absolute;
+  background-image: url(chrome://foxtrick/content/resources/img/matchorders/50w.png);
+  text-align:center;
+  padding: 3px 0px;
+  top: 225px;
+  left: 446px;
+  width: 130px;
+}
+
+span#foxtrick-formationinfo {
+ font-weight: bold;
+}
+
+span.foxtrick-badformation {
+ color: red;
+}
+
+span.foxtrick-noformationexperience {
+ color: yellow;
+}

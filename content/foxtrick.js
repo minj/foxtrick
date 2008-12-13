@@ -171,6 +171,16 @@ Foxtrick.addStyleSheet = function( doc, css ) {
 	head.appendChild(link);
 }
 
+// attaches a JavaScript file to the page
+Foxtrick.addJavaScript = function( doc, js ) {
+	var path = "head[1]";
+	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
+	
+  var script = doc.createElement("script");
+  script.setAttribute("language", "JavaScript");
+  script.setAttribute("src", js);
+  head.appendChild(script);
+}
 
 Foxtrick.trim = function (text) {
   return text.replace(/^\s+/, "").replace(/\s+$/, '');
