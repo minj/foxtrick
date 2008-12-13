@@ -41,6 +41,17 @@ var FoxtrickTeamPopupLinks = {
 				}
 				var par = aLinks[i].parentNode; //rodzic
 				
+				if (par.parentNode.parentNode.parentNode.tagName == "DIV" && par.parentNode.parentNode.parentNode.className == "subMenuBox"){
+					continue;
+				}
+				if (par.parentNode.tagName == "DIV" && par.parentNode.className == "boxLeft"){
+					continue;
+				}
+				if (par.tagName == "DIV" && par.id == "teamLinks"){
+					continue;
+				}
+				
+					
 				var a1 = doc.createElement("a");
 				a1.setAttribute('href', '/Club/Matches/?TeamID=' + value);
 				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Matches' )));
@@ -65,6 +76,7 @@ var FoxtrickTeamPopupLinks = {
 				par.insertBefore(span, aLinks[i]);
 				span.appendChild(sLink);
 				span.appendChild(div);
+				
 				i=i+2;
 			}
 		}
