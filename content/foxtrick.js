@@ -182,6 +182,17 @@ Foxtrick.addJavaScript = function( doc, js ) {
   head.appendChild(script);
 }
 
+// attaches a JavaScript snippet to the page
+Foxtrick.addJavaScriptSnippet = function( doc, code ) {
+  var path = "head[1]";
+	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
+    
+  var script = doc.createElement("script");
+  script.setAttribute("language", "JavaScript");
+  script.innerHTML=code;
+  head.appendChild(script);
+}
+
 Foxtrick.trim = function (text) {
   return text.replace(/^\s+/, "").replace(/\s+$/, '');
 }
