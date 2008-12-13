@@ -15,4 +15,5 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.enabled", true );
 pref( "extensions.foxtrick.prefs.module.YouthSkillNotes.enabled", true );
 pref( "extensions.foxtrick.prefs.module.Matches.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FlipSidesInMatchOrders.enabled", true );
+pref( "extensions.foxtrick.prefs.module.FoxtrickStarsCounter.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FormationBoxInMatchOrders.enabled", true );

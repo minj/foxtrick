@@ -16,6 +16,7 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickAddLeaveConfButton,
 					 FoxtrickLeaveConf,
                      FoxtrickFlipSidesInMatchOrders,
+					 FoxtrickStarsCounter,
                      FoxtrickFormationBoxInMatchOrders,
                      Matches ];
 ////////////////////////////////////////////////////////////////////////////////
