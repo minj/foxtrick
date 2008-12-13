@@ -20,7 +20,6 @@ var FoxtrickHideManagerAvatar = {
 		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].getAttribute("class")=="faceCard") {
-                                dump( "hiding\n" );
 				elems[i].parentNode.removeChild(elems[i]);
 			}
 		}

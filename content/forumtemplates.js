@@ -35,7 +35,13 @@ var FoxtrickForumTemplates = {
                 var msg_window = doc.getElementById(
                             FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
                 var templates_div = doc.createElement( "div" );
+                templates_div.setAttribute( "class", "folderItem" );
                 templates_div.id = this._TEMPLATES_DIV_ID;
+                var templates_table = doc.createElement( "table" );
+                var templates_tbody = doc.createElement( "tbody" );
+                templates_table.appendChild( templates_tbody );
+                templates_div.appendChild( templates_table );
+
                 msg_window.parentNode.insertBefore( templates_div,
                                                     msg_window );
 
@@ -43,7 +49,10 @@ var FoxtrickForumTemplates = {
                             FoxtrickForumTemplates._TEMPLATES_PREFLIST );
 
                 for ( i in templates )
-                    FoxtrickForumTemplates._appendTemplate( doc, templates[i], templates_div );
+                {
+                    FoxtrickForumTemplates._appendTemplate( doc, templates[i], templates_tbody );
+                }
+                    // FoxtrickForumTemplates._appendTemplate( doc, templates[i], templates_div );
 
                 // display add new template button
                 var controls_div = doc.createElement( "div" );
@@ -75,8 +84,10 @@ var FoxtrickForumTemplates = {
         if ( confirm( Foxtrickl10n.getString( 'delete_template_ask' ) ) )
         {
             FoxtrickPrefs.delListPref( FoxtrickForumTemplates._TEMPLATES_PREFLIST, ev.target.msg );
-            ev.target.nextSibling.parentNode.removeChild( ev.target.nextSibling );
-            ev.target.parentNode.removeChild( ev.target );
+            // ev.target.nextSibling.parentNode.removeChild( ev.target.nextSibling );
+            // ev.target.parentNode.removeChild( ev.target );
+            // remove whole <tr>
+            ev.target.parentNode.parentNode.parentNode.removeChild( ev.target.parentNode.parentNode );
         }
     },
 
@@ -94,17 +105,26 @@ var FoxtrickForumTemplates = {
 
         if ( !where )
             return;
-
-        var remover = doc.createElement( "a" );
-        remover.style.marginRight = "1em";
-        remover.setAttribute( "href", "javascript:void(0)" );
+        
+        var tr = doc.createElement( "tr" );
+        var td1 = doc.createElement( "td" );
+        td1.setAttribute( "class", "ignore" );
+        var td2 = doc.createElement( "td" );
+        tr.appendChild( td1 );
+        tr.appendChild( td2 );
+        // var remover = doc.createElement( "a" );
+        var remover = doc.createElement( "div" );
+        // remover.style.marginRight = "1em";
+        // remover.setAttribute( "href", "javascript:void(0)" );
+        remover.setAttribute( "class", "ignore" );
         remover.msg = text;
-        remover.innerHTML = "[x]";
         remover.addEventListener( "click", FoxtrickForumTemplates._removeTemplate, false );
-        where.appendChild( remover );
+        td1.appendChild( remover );
+        // where.appendChild( remover );
+        where.appendChild( tr );
 
         var curr = doc.createElement( "a" );
-        var br = doc.createElement( "br" );
+        // var br = doc.createElement( "br" );
         curr.setAttribute( "href", "javascript:void(0)" );
         curr.msg = text;
         curr.innerHTML = text.substring( 0, FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH );
@@ -112,8 +132,9 @@ var FoxtrickForumTemplates = {
             curr.innerHTML += "...";
 
         curr.addEventListener( "click", FoxtrickForumTemplates._fillMsgWindow, false );
-        where.appendChild( curr );
-        where.appendChild( br );
+        td2.appendChild( curr );
+        // where.appendChild( curr );
+        // where.appendChild( br );
     }
 };
 
