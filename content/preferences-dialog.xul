@@ -10,7 +10,7 @@
 	title="&foxtrick.prefs.preferences;"
 	id="foxtrick-config"
 	buttons="accept, cancel"
-	ondialogaccept="return true;"
+	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
 	onload="FoxtrickPreferencesDialog.init();"
 	persist="width height screenX screenY"
 	style="width: 640px; height: 420px;"

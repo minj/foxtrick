@@ -13,32 +13,27 @@ var FoxtrickPreferencesDialog = {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
-
-        dump( "this: " + this + "\n" );
         FoxtrickPreferencesDialog._fillModulesList( document );
     },
 
     onDialogAccept : function() {
+        var listbox = document.getElementById( "modules_listbox" );
+        for ( var i = 0; i < listbox.childNodes.length; ++i ) {
+            FoxtrickPreferencesDialog.setModuleEnableState( listbox.childNodes[i].label,
+                                                            listbox.childNodes[i].checked );
+        }
         return true;
     },
 
 
     _fillModulesList : function( doc ) {
         var listbox = doc.getElementById( "modules_listbox" );
-        dump( "listbox: " + listbox + "\n" );
-
-        var test = doc.getElementById( "test_label" );
-        dump( "aa: " + test + "\n" );
-        test.setAttribute = ("value", "asdawekrlaksdfj" );
 
         for ( i in Foxtrick.modules ) {
-            dump( "doc: " + doc + "\n" );
-            dump( "adding\n" );
-            var entry = document.createElement( "p" );
-            entry.innerHTML = " aaaa ";
-            // var entry = doc.createElement( "xul:hbox" );
-            // var checkbox = doc.createElement( "xul:checkbox" );
-            // entry.appendChild( checkbox );
+            var entry = document.createElement( "listitem" );
+            entry.setAttribute( "type", "checkbox" );
+            entry.setAttribute( "label", Foxtrick.modules[i].MODULE_NAME );
+            entry.setAttribute( "checked", FoxtrickPreferencesDialog.getModuleEnableState( Foxtrick.modules[i].MODULE_NAME ) ); 
 
             listbox.appendChild( entry );
         }
@@ -47,4 +42,16 @@ var FoxtrickPreferencesDialog = {
 };
 
 FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs ];
+
+FoxtrickPreferencesDialog.getModuleEnableState = function( module_name ) {
+    try {
+        return FoxtrickPrefs.getBool( "module." + module_name + ".enabled" );
+    } catch( e ) {
+        return false;
+    }
+}
+
+FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
+    FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
+}
 
