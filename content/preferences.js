@@ -17,8 +17,12 @@ var FoxtrickPrefs = {
     },
 
     getString : function( pref_name ) {
-        return this._pref_branch.getComplexValue( pref_name,
+        try { 
+            return this._pref_branch.getComplexValue( pref_name,
                                  Components.interfaces.nsISupportsString ).data;
+        } catch( e ) {
+            return null;
+        }
     },
 
     setString : function( pref_name, value ) {
@@ -34,7 +38,11 @@ var FoxtrickPrefs = {
     },
 
     getInt : function( pref_name, value ) {
-        return this._pref_branch.getIntPref( pref_name );
+        try {
+            return this._pref_branch.getIntPref( pref_name );
+        } catch( e ) {
+            return null;
+        }
     },
 
     setBool : function( pref_name, value ) {
@@ -42,7 +50,11 @@ var FoxtrickPrefs = {
     },
 
     getBool : function( pref_name ) {
-        return this._pref_branch.getBoolPref( pref_name );
+        try {
+            return this._pref_branch.getBoolPref( pref_name );
+        } catch( e ) {
+            return null;
+        }
     },
 
     /** Add a new preference "pref_name" of under "list_name".
@@ -85,7 +97,11 @@ var FoxtrickPrefs = {
     },
 
     _getElemNames : function( list_name ) {
-        return this._pref_branch.getChildList( list_name + ".", {} );
+        try {
+            return this._pref_branch.getChildList( list_name + ".", {} );
+        } catch( e ) {
+            return null;
+        }
     },
 
     /** Remove a list element. */
