@@ -46,16 +46,22 @@ var FoxtrickMain = {
 
         // init all modules
         for ( i in Foxtrick.modules ) {
+            var module = Foxtrick.modules[i];
             // if module has an init() function and is enabled
-            if ( Foxtrick.modules[i].MODULE_NAME
-                    && Foxtrick.isModuleEnabled( Foxtrick.modules[i].MODULE_NAME )
-                    && Foxtrick.modules[i].init )
+            if ( module.MODULE_NAME
+                    && Foxtrick.isModuleEnabled( module.MODULE_NAME )
+                    && module.init )
             {
-                Foxtrick.modules[i].init();
-                dump( "Foxtrick enabled module: " + Foxtrick.modules[i].MODULE_NAME + "\n");
+                try {
+                    module.init();
+                    dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
+                } catch (e) {
+                    dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
+                    Components.utils.reportError(e);
+                }
             }
             else
-                dump( "Foxtrick disabled module: " + Foxtrick.modules[i].MODULE_NAME + "\n" );
+                dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
         }
 
    },
@@ -86,7 +92,12 @@ var FoxtrickMain = {
         // call the modules that want to be run() on every hattrick page
         Foxtrick.run_every_page.forEach(
             function( fn ) {
-                fn.run( doc )
+                try {
+                    fn.run( doc )
+                } catch (e) {
+                    dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
+                    Components.utils.reportError(e);
+                }
             } );
 
         // call all modules that registered as page listeners
@@ -100,7 +111,12 @@ var FoxtrickMain = {
                 // on a specific page, run all handlers
                 Foxtrick.run_on_page[i].forEach(
                     function( fn ) {
-                        fn.run( i, doc );
+                        try {
+                            fn.run( i, doc );
+                        } catch (e) {
+                            dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
+                            Components.utils.reportError(e);
+                        }
                     } );
             }
         }
