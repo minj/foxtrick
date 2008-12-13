@@ -11,32 +11,57 @@
 	id="foxtrick-config"
 	buttons="accept, cancel"
 	ondialogaccept="return true;"
-	onload="{}"
+	onload="FoxtrickPreferencesDialog.init();"
 	persist="width height screenX screenY"
 	style="width: 640px; height: 420px;"
 	flex="1">
 
+<script type="application/x-javascript" src="chrome://foxtrick/content/preferences.js" />
+
+
+<!-- ADD YOUR MODULE FILE HERE. Remember to add it to the foxtrick.xul too! -->
+<script type="application/x-javascript" src="chrome://foxtrick/content/forumtemplates.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/bookmarkadjust.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/matches.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_larsw84.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/forumstaffmarker.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/mediantransferprice.js" />
+
+
+<script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
+
 <tabbox id="tabbox" flex="1">
   <tabs id="tabs">
+    <tab id="ModulesTab">&foxtrick.prefs.modules;</tab>
     <tab id="AboutTab" label="&foxtrick.prefs.about;"/>
   </tabs>
 	<tabpanels id="tabpanels" flex="1">
 
            <!-- Modules -->
+           <tabpanel orient="vertical">
+              <vbox>
+                  <label>&foxtrick.prefs.modulelistlabel;</label>
+                  <label id="test_label" />
+                  <listbox id="modules_listbox">
+                  </listbox>
+              </vbox>
+           </tabpanel>
+
 	   <!-- about -->
-  		<tabpanel orient="vertical">
+           <tabpanel orient="vertical">
     		<vbox>
-                <label flex="1" multiline="true" class="plain" readonly="true">&foxtrick.prefs.transitioninfo;</label>
-              <label value="http://foxtrick.px.cz/" 
-                      style="text-decoration: underline; cursor: pointer; color: blue;"
-                      tooltiptext="http://foxtrick.px.cz/"
-                      onclick="window.opener.open('http://foxtrick.px.cz/');" flex="0" />			
-              <label value="http://foxtrick.px.cz/forum/" 
-                      style="text-decoration: underline; cursor: pointer; color: blue;"
-                      tooltiptext="http://foxtrick.px.cz/forum/"
-                      onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
-    		</vbox>
-        </tabpanel>			
+                    <label flex="1" multiline="true" class="plain" readonly="true">&foxtrick.prefs.transitioninfo;</label>
+                    <label value="http://foxtrick.px.cz/" 
+                           style="text-decoration: underline; cursor: pointer; color: blue;"
+                           tooltiptext="http://foxtrick.px.cz/"
+                           onclick="window.opener.open('http://foxtrick.px.cz/');" flex="0" />			
+                    <label value="http://foxtrick.px.cz/forum/" 
+                           style="text-decoration: underline; cursor: pointer; color: blue;"
+                           tooltiptext="http://foxtrick.px.cz/forum/"
+                           onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
+                </vbox>
+            </tabpanel>			
 
 	</tabpanels>
 </tabbox>

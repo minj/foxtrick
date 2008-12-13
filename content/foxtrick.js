@@ -45,17 +45,17 @@ var FoxtrickMain = {
                                          true );
 
         // init all modules
-        for ( i in Foxtrick.need_init ) {
+        for ( i in Foxtrick.modules ) {
             // if module has an init() function and is enabled
-            if ( Foxtrick.need_init[i].MODULE_NAME
-                    && Foxtrick.isModuleEnabled( Foxtrick.need_init[i].MODULE_NAME )
-                    && Foxtrick.need_init[i].init )
+            if ( Foxtrick.modules[i].MODULE_NAME
+                    && Foxtrick.isModuleEnabled( Foxtrick.modules[i].MODULE_NAME )
+                    && Foxtrick.modules[i].init )
             {
-                Foxtrick.need_init[i].init();
-                dump( "Foxtrick enabled module: " + Foxtrick.need_init[i].MODULE_NAME + "\n");
+                Foxtrick.modules[i].init();
+                dump( "Foxtrick enabled module: " + Foxtrick.modules[i].MODULE_NAME + "\n");
             }
             else
-                dump( "Foxtrick disabled module: " + Foxtrick.need_init[i].MODULE_NAME + "\n" );
+                dump( "Foxtrick disabled module: " + Foxtrick.modules[i].MODULE_NAME + "\n" );
         }
 
    },

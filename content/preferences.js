@@ -112,6 +112,4 @@ var FoxtrickPrefs = {
 };
 
 var Foxtrick = {
-    // current_url : "",
-    // current_doc : null
 };
