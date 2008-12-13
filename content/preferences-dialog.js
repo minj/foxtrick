@@ -9,8 +9,8 @@ var FoxtrickPreferencesDialog = {
         // var doc = ev.originalTarget;
         var i;
 
-        for ( i in FoxtrickPreferencesDialog._core_modules ) {
-            FoxtrickPreferencesDialog._core_modules[i].init()
+        for ( i in FoxtrickPreferencesDialog.core_modules ) {
+            FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
 
