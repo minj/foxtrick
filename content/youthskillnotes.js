@@ -38,14 +38,29 @@ var FoxtrickYouthSkillNotes = {
 		var doc = ev.target.ownerDocument;
 		var sUrl = Foxtrick.getHref( doc );
 		var playerid = sUrl.replace(/.+YouthPlayerID=/i, "").match(/^\d+/)[0];
+		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillGK", doc.getElementById("YskillGK").value);
+		doc.getElementById("spanYskillGK").innerHTML = doc.getElementById("YskillGK").value;
+//		dump("save YouthPlayer." + playerid + ".skillGK: "+ doc.getElementById("YskillGK").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillPM", doc.getElementById("YskillPM").value);
+		doc.getElementById("spanYskillPM").innerHTML = doc.getElementById("YskillPM").value;
+//		dump("save YouthPlayer." + playerid + ".skillPM: "+ doc.getElementById("YskillPM").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillPS", doc.getElementById("YskillPS").value);
+		doc.getElementById("spanYskillPS").innerHTML = doc.getElementById("YskillPS").value;
+//		dump("save YouthPlayer." + playerid + ".skillPS: "+ doc.getElementById("YskillPS").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillWG", doc.getElementById("YskillWG").value);
+		doc.getElementById("spanYskillWG").innerHTML = doc.getElementById("YskillWG").value;
+//		dump("save YouthPlayer." + playerid + ".skillWG: "+ doc.getElementById("YskillWG").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillDF", doc.getElementById("YskillDF").value);
+		doc.getElementById("spanYskillDF").innerHTML = doc.getElementById("YskillDF").value;
+//		dump("save YouthPlayer." + playerid + ".skillDF: "+ doc.getElementById("YskillDF").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillSC", doc.getElementById("YskillSC").value);
+		doc.getElementById("spanYskillSC").innerHTML = doc.getElementById("YskillSC").value;
+//		dump("save YouthPlayer." + playerid + ".skillSC: "+ doc.getElementById("YskillSC").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillSP", doc.getElementById("YskillSP").value);
+		doc.getElementById("spanYskillSP").innerHTML = doc.getElementById("YskillSP").value;
+//		dump("save YouthPlayer." + playerid + ".skillSP: "+ doc.getElementById("YskillSP").value + "\n");
 	
-		alert("Changes have been saved!");
+//		alert("Changes have been saved!");
 	}
 };
 
@@ -60,7 +75,7 @@ var FoxtrickYouthSkillNotes = {
 	
 	
 	function getYouthPlayerSkill(playerid, skill) {
-		
+//		dump("getYouthPlayerSkill: " + "YouthPlayer." + playerid + ".skill" + skill + "\n");
 	    var ret;
 	    try{
 	    	ret = FoxtrickPrefs.getString("YouthPlayer." + playerid + ".skill" + skill);
@@ -68,6 +83,7 @@ var FoxtrickYouthSkillNotes = {
 		catch(ex){
 			ret = "unknown";
 		}
+//		dump(ret+"\n");
 		return ret;
 	}
 	
@@ -76,49 +92,24 @@ var FoxtrickYouthSkillNotes = {
 		var sUrl = Foxtrick.getHref( doc );
 	  var playerid = sUrl.replace(/.+YouthPlayerID=/i, "").match(/^\d+/)[0];
 	  if (!isYouthPlayerUrl(sUrl)) return;
-	  /*LOCALIZATION*/
-	  //var stringsBundle = document.getElementById("string-bundle");
-	
-	  //const STR_S_PM = stringsBundle.getString('skillPlaymaking');
+	   
 	  
+	  const STR_S_H2 = Foxtrickl10n.getString( "Notes_about_skills");
+	  const STR_S_EDIT = Foxtrickl10n.getString("Edit_notes");
+	  const STR_S_SAVELINK = Foxtrickl10n.getString("Save_notes");
 	  
-	  const STR_S_H2 = "Notes about skills";
-	  const STR_S_EDIT = "Edit notes";
-	  const STR_S_SAVELINK = "Save notes";
+	  const STR_S_PM = Foxtrickl10n.getString( "Playmaking");
+	  const STR_S_WG = Foxtrickl10n.getString( "Winger");
+	  const STR_S_SC = Foxtrickl10n.getString( "Scoring");
+	  const STR_S_PS = Foxtrickl10n.getString( "Passing");
+	  const STR_S_DF = Foxtrickl10n.getString( "Defending");
+	  const STR_S_GK = Foxtrickl10n.getString( "Keeper");
+	  const STR_S_SP = Foxtrickl10n.getString( "Set pieces");
+	  const STR_S_ST = Foxtrickl10n.getString( "Stamina");
 	  
-	  const STR_S_PM = "Playmaking";
-	  const STR_S_WG = "Winger";
-	  const STR_S_SC = "Scoring";
-	  const STR_S_PS = "Passing";
-	  const STR_S_DF = "Defending";
-	  const STR_S_GK = "Keeper";
-	  const STR_S_SP = "Set pieces";
-	  const STR_S_ST = "Stamina";
-	  
-	  const STR_S_0 = "non-existent";
-	  const STR_S_1 = "disastrous";
-	  const STR_S_2 = "wretched";
-	  const STR_S_3 = "poor";
-	  const STR_S_4 = "weak";
-	  const STR_S_5 = "inadequate";
-	  const STR_S_6 = "passable";
-	  const STR_S_7 = "solid";
-	  const STR_S_8 = "excelent";
-	  const STR_S_9 = "formidable";
 	
 	  
 	  var tabulka = doc.getElementsByTagName ("TABLE")[0].parentNode.nextSibling.nextSibling;
-	 
-	   /*var refreshBtn = doc.createElement ("input");
-	  refreshBtn.setAttribute("name", "ctl00$CPMain$lnkRefresh");
-	  refreshBtn.setAttribute("id", "ctl00_CPMain_lnkRefresh");
-	  refreshBtn.setAttribute("title", "Refresh");
-	  refreshBtn.setAttribute("src", "/Img/icons/arrow_refresh.png");
-	  //refreshBtn.setAttribute("onclick", "javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions('ctl00$CPMain$lnkRefresh', '', true, '' , '', false, false))");
-	  refreshBtn.setAttribute("onclick", "'player.aspx', '', true, '' , '', false, false))");
-	  
-	  refreshBtn.setAttribute("style", "border-width: 0px;");
-	  refreshBtn.setAttribute("type", "image");*/
 	  
 	  var refreshBtn = doc.createElement ("a");
 	  refreshBtn.setAttribute("href", "/Club/Players/YouthPlayer.aspx?YouthPlayerID="+playerid);
@@ -129,11 +120,13 @@ var FoxtrickYouthSkillNotes = {
 	  
 	  var title = document.createElement("h2");
 		title.appendChild(document.createTextNode(STR_S_H2));
+		title.className = "";
 		title.appendChild(refreshBtn);
 		
 		
 	  var divED = doc.createElement ("DIV");
 	  divED.setAttribute("class", "alert");
+	  
 	  divED.setAttribute("id", "divED-foxtrick-youthSkillEditTable");
 	  divED.setAttribute("style", "display: none; width: 500px;");
 	
@@ -148,7 +141,7 @@ var FoxtrickYouthSkillNotes = {
 		div2.setAttribute("class","mainBox");
 		
 		var div1 = document.createElement("div");
-		div1.setAttribute("class","leftBox");
+		div1.setAttribute("class","mainBox");
 	  
 	  var editTable = doc.createElement ("table");
 	  editTable.setAttribute("style", "width: 300px");
@@ -211,33 +204,25 @@ var FoxtrickYouthSkillNotes = {
 	  var Btd15 = doc.createElement ("td");
 	  var Btd16 = doc.createElement ("td");
 	  
-	  /*td1.setAttribute("style", "font-weight: bold;");
-	  td2.setAttribute("style", "font-weight: bold;");
-	  td3.setAttribute("style", "font-weight: bold;");
-	  td4.setAttribute("style", "font-weight: bold;");
-	  td5.setAttribute("style", "font-weight: bold;");
-	  td6.setAttribute("style", "font-weight: bold;");
-	  td7.setAttribute("style", "font-weight: bold;");
-	  td8.setAttribute("style", "font-weight: bold;");*/
 	  
 	  var saveLink = doc.createElement ("a");
 	  var br = doc.createElement ("br");
 	  var br2 = doc.createElement ("br");
-	  saveLink.setAttribute("href", "javascript: void(0); showHide('divED-foxtrick-youthSkillEditTable');");
-	  saveLink.addEventListener( "click", FoxtrickYouthSkillNotes.saveSkills, false )
+	  var br3 = doc.createElement ("br");
+	  saveLink.setAttribute("href", "javascript: void(0); showHide('divED-foxtrick-youthSkillEditTable');showHide('foxtrick-detailsTable-noEdit');");
+	  saveLink.addEventListener( "click", FoxtrickYouthSkillNotes.saveSkills, false );
 	  saveLink.setAttribute("style", "float: right");
 	  saveLink.innerHTML = STR_S_SAVELINK;
 	  
 	  var showEditLink = doc.createElement ("a");
-	  showEditLink.setAttribute("href", "javascript: showHide('divED-foxtrick-youthSkillEditTable')");
-	  showEditLink.setAttribute("style", "margin-top: 30px");
+	  showEditLink.setAttribute("href", "javascript: showHide('divED-foxtrick-youthSkillEditTable');showHide('foxtrick-detailsTable-noEdit');");
+//	  showEditLink.setAttribute("style", "margin-top: 30px;position:relative;");
 	  showEditLink.innerHTML = STR_S_EDIT;
 	  
 	
 	  var inputST = doc.createElement ("span");
 	  inputST.setAttribute("style", "color: green");
-	  //inputST.innerHTML = "<a href=\"/Help/Rules/AppDenominations.aspx?lt=skill&ll=" +INT_I_skillST+ "#skill\" class=\"skill\">"+STR_S_skillST+"</a>";
-	  inputST.innerHTML = STR_S_4;
+	  inputST.innerHTML = Foxtrickl10n.getString("weak");
 	  
 	  var inputGK = doc.createElement ("input");
 	  inputGK.setAttribute("name", "inpGK");
@@ -246,6 +231,7 @@ var FoxtrickYouthSkillNotes = {
 	  inputGK.setAttribute("type", "text");
 	  inputGK.setAttribute("maxlength", "20");
 	  inputGK.setAttribute("size", "20");
+//	  inputGK.addEventListener( "keyup", FoxtrickYouthSkillNotes.saveSkills, false )
 //	  inputGK.setAttribute("onkeyup", "savenotes()");
 	  
 	  var inputPM = doc.createElement ("input");
@@ -305,35 +291,43 @@ var FoxtrickYouthSkillNotes = {
 	  
 	   /*------------------------*/
 	  var spanST = doc.createElement ("span");
+	  spanST.setAttribute("id", "spanYskillST");
 	  spanST.setAttribute("style", "color: green");
-	  spanST.innerHTML = STR_S_4; 
+	  spanST.innerHTML = Foxtrickl10n.getString("weak");
 	   
 	  var spanGK = doc.createElement ("span");
 	  spanGK.setAttribute("style", "color: green");
+	  spanGK.setAttribute("id", "spanYskillGK");
 	  spanGK.innerHTML = getYouthPlayerSkill(playerid, "GK");
 	  
 	  var spanPM = doc.createElement ("span");
 	  spanPM.setAttribute("style", "color: green");
+	  spanPM.setAttribute("id", "spanYskillPM");
 	  spanPM.innerHTML = getYouthPlayerSkill(playerid, "PM");
 	  
 	  var spanPS = doc.createElement ("span");
 	  spanPS.setAttribute("style", "color: green");
+	  spanPS.setAttribute("id", "spanYskillPS");
 	  spanPS.innerHTML = getYouthPlayerSkill(playerid, "PS");
 	  
 	  var spanWG = doc.createElement ("span");
 	  spanWG.setAttribute("style", "color: green");
+	  spanWG.setAttribute("id", "spanYskillWG");
 	  spanWG.innerHTML = getYouthPlayerSkill(playerid, "WG");
 	  
 	  var spanDF = doc.createElement ("span");
 	  spanDF.setAttribute("style", "color: green");
+	  spanDF.setAttribute("id", "spanYskillDF");
 	  spanDF.innerHTML = getYouthPlayerSkill(playerid, "DF");
 	  
 	  var spanSC = doc.createElement ("span");
 	  spanSC.setAttribute("style", "color: green");
+	  spanSC.setAttribute("id", "spanYskillSC");
 	  spanSC.innerHTML = getYouthPlayerSkill(playerid, "SC");
 	  
 	  var spanSP = doc.createElement ("span");
 	  spanSP.setAttribute("style", "color: green");
+	  spanSP.setAttribute("id", "spanYskillSP");
 	  spanSP.innerHTML = getYouthPlayerSkill(playerid, "SP");
 	  
 	  //radek cislo 1
@@ -438,19 +432,23 @@ var FoxtrickYouthSkillNotes = {
 	  editTable.appendChild (tr4);
 	  
 	  //innerdivobj.appendChild(title);
-		divobj.appendChild(innerdivobj);
+//		divobj.appendChild(innerdivobj);
 		divobj.appendChild(editTable);
 		divobj.appendChild(br);
 		divobj.appendChild(saveLink);
 		divED.appendChild(divobj);
 		
+//		div2.appendChild(div1);
+//		div2.appendChild(normalTable);
+//		div2.appendChild(br3);
+//		div2.appendChild(divED);
 		
-		div2.appendChild(div1);
+		div2.appendChild(title);
 		div2.appendChild(normalTable);
+		div2.appendChild(br3);
 		div2.appendChild(divED);
 		
+
 	  tabulka.parentNode.insertBefore(div2, tabulka.nextSibling);
-	  
-	
-	}
+	 }
 	
