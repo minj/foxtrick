@@ -23,6 +23,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/forumstaffmarker.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/mediantransferprice.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/youthskillnotes.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_smates.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_kolmis.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/starscounter.js" />
 
