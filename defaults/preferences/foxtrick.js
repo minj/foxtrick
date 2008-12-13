@@ -1,4 +1,3 @@
-pref( "extensions.foxtrick.prefs.show_teampopup_links", true );
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
 
 
@@ -12,4 +11,5 @@ pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.enabled", true );
 pref( "extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled", true );
 pref( "extensions.foxtrick.prefs.module.BookmarkAdjust.enabled", true );
 pref( "extensions.foxtrick.prefs.module.MedianTransferPrice.enabled", true );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.enabled", true );
 pref( "extensions.foxtrick.prefs.module.Matches.enabled", true );

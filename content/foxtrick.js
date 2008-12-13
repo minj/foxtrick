@@ -10,7 +10,7 @@ window.addEventListener( "load", function() { FoxtrickMain.init(); }, false );
  * Should implement a run() method.
  * DON'T EDIT THIS, use registerAllPagesHandler() instead.
  */
-Foxtrick.run_every_page = [];
+Foxtrick.run_every_page = [FoxtrickTeamPopupLinks];
 
 /** Modules that are to be called on specific hattrick page loads.
  * Should implement a run() method.

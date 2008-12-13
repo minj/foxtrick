@@ -12,6 +12,7 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickHideManagerAvatar,
                      FoxtrickForumStaffMarker,
                      FoxtrickMedianTransferPrice,
+                     FoxtrickTeamPopupLinks,
                      FoxtrickAddLeaveConfButton,
                      Matches ];
 ////////////////////////////////////////////////////////////////////////////////
