@@ -3,6 +3,7 @@
 //Script which remove dollars and injury images from player' face.
 //------------------
 //Author by smates
+
 var FoxtrickHideFaceTransferImages = {
 	
     MODULE_NAME : "HideFaceTransferImages",
