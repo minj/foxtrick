@@ -53,7 +53,7 @@ var FoxtrickAddLeaveConfButton = {
 
 var FoxtrickLeaveConf = {
 	
-	MODULE_NAME : "AddLeaveConfButton",
+	MODULE_NAME : "LeaveConf",
 	
 	init : function() {
             Foxtrick.registerPageHandler( 'forumSettings',

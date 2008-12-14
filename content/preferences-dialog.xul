@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
 
 <!DOCTYPE dialog [
    <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
@@ -27,6 +28,11 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/forumstaffmarker.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/mediantransferprice.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/youthskillnotes.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/forumhideavatar.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/forumleaveconfbutton.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_kolmis.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/starscounter.js" />
+
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
@@ -42,9 +48,7 @@
            <tabpanel orient="vertical">
               <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <label id="test_label" />
-                  <listbox id="modules_listbox">
-                  </listbox>
+                  <scrollbox id="modules_list" flex="1" orient="vertical" style="overflow:auto" />
               </vbox>
            </tabpanel>
 

@@ -17,25 +17,50 @@ var FoxtrickPreferencesDialog = {
     },
 
     onDialogAccept : function() {
-        var listbox = document.getElementById( "modules_listbox" );
-        for ( var i = 0; i < listbox.childNodes.length; ++i ) {
-            FoxtrickPreferencesDialog.setModuleEnableState( listbox.childNodes[i].label,
-                                                            listbox.childNodes[i].checked );
+        var modules_list = document.getElementById( "modules_list" );
+        for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
+            FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
+                                                            modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
+                                                            // modules_list.childNodes[i].checked );
+            // dump( modules_list.childNodes[i].prefname + " " + modules_list.childNodes[i].childNodes[0].childNodes[0].checked + "\n" );
         }
         return true;
     },
 
 
     _fillModulesList : function( doc ) {
-        var listbox = doc.getElementById( "modules_listbox" );
+        var modules_list = doc.getElementById( "modules_list" );
 
         for ( i in Foxtrick.modules ) {
-            var entry = document.createElement( "listitem" );
+            /*var entry = document.createElement( "listitem" );
             entry.setAttribute( "type", "checkbox" );
             entry.setAttribute( "label", Foxtrick.modules[i].MODULE_NAME );
             entry.setAttribute( "checked", FoxtrickPreferencesDialog.getModuleEnableState( Foxtrick.modules[i].MODULE_NAME ) ); 
 
-            listbox.appendChild( entry );
+            listbox.appendChild( entry );*/
+
+            var entry = document.createElement( "vbox" );
+            entry.prefname = Foxtrick.modules[i].MODULE_NAME;
+            entry.setAttribute( "class", "entry" );
+            entry.addEventListener( "click", function( ev ) { 
+                        ev.currentTarget.childNodes[0].childNodes[0].checked =
+                            !(ev.currentTarget.childNodes[0].childNodes[0].checked);
+                    }, false );
+            var hbox = document.createElement( "hbox" );
+            var check = document.createElement( "checkbox" );
+            check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
+            check.setAttribute( "checked", FoxtrickPreferencesDialog.getModuleEnableState( Foxtrick.modules[i].MODULE_NAME ) ); 
+            hbox.appendChild( check );
+            var name = document.createElement( "label" );
+            name.setAttribute( "class", "name" );
+            name.setAttribute( "value", Foxtrick.modules[i].MODULE_NAME );
+            hbox.appendChild( name );
+            entry.appendChild( hbox );
+            var desc = document.createElement( "label" );
+            desc.setAttribute( "class", "description" );
+            desc.setAttribute( "value", "No description" );
+            entry.appendChild( desc );
+            modules_list.appendChild( entry );
         }
     }
 
