@@ -8,6 +8,7 @@
 var FoxtrickHideManagerAvatar = {
 	
     MODULE_NAME : "HideManagerAvatar",
+	MODULE_CATEGORY : "forum",
 
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',

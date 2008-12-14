@@ -38,23 +38,41 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_smates.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_kolmis.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/starscounter.js" />
-
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/teampopuplinks.js" />
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
 <tabbox id="tabbox" flex="1">
   <tabs id="tabs">
-    <tab id="ModulesTab">&foxtrick.prefs.modules;</tab>
+    <tab id="ShortcutsTab">&foxtrick.prefs.shortcuts;</tab>
+	<tab id="ForumTab">&foxtrick.prefs.forum;</tab>
+	<tab id="LinksTab">&foxtrick.prefs.links;</tab>
     <tab id="AboutTab" label="&foxtrick.prefs.about;"/>
   </tabs>
 	<tabpanels id="tabpanels" flex="1">
 
-           <!-- Modules -->
+        <!-- Shortcuts -->
            <tabpanel orient="vertical">
               <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <scrollbox id="modules_list" flex="1" orient="vertical" style="overflow:auto" />
+                  <scrollbox id="shortcuts_list" flex="1" orient="vertical" style="overflow:auto" />
+              </vbox>
+           </tabpanel>
+		 
+		<!-- Forum -->
+           <tabpanel orient="vertical">
+              <vbox>
+                  <label>&foxtrick.prefs.modulelistlabel;</label>
+                  <scrollbox id="forum_list" flex="1" orient="vertical" style="overflow:auto" />
+              </vbox>
+           </tabpanel>
+		   
+		<!-- Links -->
+           <tabpanel orient="vertical">
+              <vbox>
+                  <label>&foxtrick.prefs.modulelistlabel;</label>
+                  <scrollbox id="links_list" flex="1" orient="vertical" style="overflow:auto" />
               </vbox>
            </tabpanel>
 

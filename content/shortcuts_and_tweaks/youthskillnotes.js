@@ -7,6 +7,7 @@
 var FoxtrickYouthSkillNotes = {
     
     MODULE_NAME : "YouthSkillNotes",
+	MODULE_CATEGORY : "shortcutsandtweaks",
 
     init : function() {
         Foxtrick.registerPageHandler( 'YouthPlayer',

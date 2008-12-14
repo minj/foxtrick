@@ -7,6 +7,7 @@
 var FoxtrickForumStaffMarker = {
     
     MODULE_NAME : "ForumStaffMarker",
+	MODULE_CATEGORY : "forum",
 
     _MARK_STAFF : "mark_staff",
 

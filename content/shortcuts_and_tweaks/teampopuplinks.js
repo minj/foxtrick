@@ -7,6 +7,7 @@
 var FoxtrickTeamPopupLinks = {
     
     MODULE_NAME : "TeamPopupLinks",
+	MODULE_CATEGORY : "shortcutsandtweaks",
 
     init : function() {
         Foxtrick.registerAllPagesHandler( FoxtrickTeamPopupLinks );

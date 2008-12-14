@@ -8,6 +8,7 @@
 var FoxtrickAddLeaveConfButton = {
 
     MODULE_NAME : "AddLeaveConfButton",
+	MODULE_CATEGORY : "forum",
 
     init : function() {
             Foxtrick.registerPageHandler( 'forum',

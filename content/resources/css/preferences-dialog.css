@@ -1,14 +1,14 @@
-#modules_list .entry {
+#shortcuts_list .entry, #forum_list .entry, #links_list .entry {
 }
 
-#modules_list .entry:hover {
+#shortcuts_list .entry:hover, #forum_list .entry:hover, #links_list .entry:hover {
     background-color: #cccccc;
 }
 
-#modules_list .name {
+#shortcuts_list .name, #forum_list .name, #links_list .name {
     font-weight: bold;
 }
 
-#modules_list .description {
+#shortcuts_list .description, #forum_list .description, #links_list .description {
     font-style: italic;
 }

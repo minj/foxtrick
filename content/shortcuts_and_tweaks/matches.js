@@ -7,6 +7,7 @@
 var Matches = {
     
     MODULE_NAME : "Matches",
+	MODULE_CATEGORY : "shortcutsandtweaks",
     
     init : function() {
         Foxtrick.registerPageHandler( 'match',

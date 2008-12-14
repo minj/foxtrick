@@ -26,6 +26,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_smates.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_kolmis.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/starscounter.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/teampopuplinks.js" />
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />

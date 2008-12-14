@@ -7,6 +7,7 @@
 var FoxtrickMedianTransferPrice = {
     
     MODULE_NAME : "MedianTransferPrice",
+	MODULE_CATEGORY : "shortcutsandtweaks",
 
     init : function() {
         Foxtrick.registerPageHandler( 'TransferCompare',

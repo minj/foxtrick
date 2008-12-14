@@ -8,60 +8,92 @@ var FoxtrickPreferencesDialog = {
     init : function() {
         // var doc = ev.originalTarget;
         var i;
-
+		
         for ( i in FoxtrickPreferencesDialog.core_modules ) {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
-        FoxtrickPreferencesDialog._fillModulesList( document );
+		for ( var j=0; j < Foxtrick.functionCategories.length; j++ ) {
+			FoxtrickPreferencesDialog._fillModulesList( document, 
+				Foxtrick.functionCategories[j] );
+		}
     },
 
     onDialogAccept : function() {
-        var modules_list = document.getElementById( "modules_list" );
-        for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
-            FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
+        var modules_list;
+		
+		for ( var j=0; j < Foxtrick.functionCategories.length; j++ ) {
+			switch(Foxtrick.functionCategories[j]) {
+				case 'shortcutsandtweaks':
+					modules_list = document.getElementById( 'shortcuts_list' );
+					break;
+				case 'forum':
+					modules_list = document.getElementById( 'forum_list' );
+					break;
+				case 'links':
+					modules_list = document.getElementById( 'links_list' );
+					break;
+			}
+		
+			for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
+				FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
                                                             modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
                                                             // modules_list.childNodes[i].checked );
             // dump( modules_list.childNodes[i].prefname + " " + modules_list.childNodes[i].childNodes[0].childNodes[0].checked + "\n" );
-        }
+			}
+		}
         return true;
     },
 
 
-    _fillModulesList : function( doc ) {
-        var modules_list = doc.getElementById( "modules_list" );
+    _fillModulesList : function( doc, category ) {
+		var modules_list;
+		
+		switch(category) {
+			case 'shortcutsandtweaks':
+				modules_list = doc.getElementById( 'shortcuts_list' );
+				break;
+			case 'forum':
+				modules_list = doc.getElementById( 'forum_list' );
+				break;
+			case 'links':
+				modules_list = doc.getElementById( 'links_list' );
+				break;
+		}
 
         for ( i in Foxtrick.modules ) {
             var module = Foxtrick.modules[i];
-            /*var entry = document.createElement( "listitem" );
-            entry.setAttribute( "type", "checkbox" );
-            entry.setAttribute( "label", Foxtrick.modules[i].MODULE_NAME );
-            entry.setAttribute( "checked", FoxtrickPreferencesDialog.getModuleEnableState( Foxtrick.modules[i].MODULE_NAME ) ); 
-
-            listbox.appendChild( entry );*/
-
-            var entry = document.createElement( "vbox" );
-            entry.prefname = module.MODULE_NAME;
-            entry.setAttribute( "class", "entry" );
-            entry.addEventListener( "click", function( ev ) { 
-                        ev.currentTarget.childNodes[0].childNodes[0].checked =
-                            !(ev.currentTarget.childNodes[0].childNodes[0].checked);
-                    }, false );
-            var hbox = document.createElement( "hbox" );
-            var check = document.createElement( "checkbox" );
-            check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
-            check.setAttribute( "checked", FoxtrickPreferencesDialog.getModuleEnableState( module.MODULE_NAME ) ); 
-            hbox.appendChild( check );
-            var name = document.createElement( "label" );
-            name.setAttribute( "class", "name" );
-            name.setAttribute( "value", module.MODULE_NAME );
-            hbox.appendChild( name );
-            entry.appendChild( hbox );
-            var desc = document.createElement( "label" );
-            desc.setAttribute( "class", "description" );
-            desc.setAttribute( "value", FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
-            entry.appendChild( desc );
-            modules_list.appendChild( entry );
+			
+			var module_category;
+			module_category = module.MODULE_CATEGORY;
+			if(!module_category) {
+				// MODULE_CATEGORY isn't set; use default
+				module_category = "shortcutsandtweaks";
+			}
+			if(module_category == category) {
+				var entry = document.createElement( "vbox" );
+				entry.prefname = module.MODULE_NAME;
+				entry.setAttribute( "class", "entry" );
+				entry.addEventListener( "click", function( ev ) { 
+                    ev.currentTarget.childNodes[0].childNodes[0].checked =
+                        !(ev.currentTarget.childNodes[0].childNodes[0].checked);
+                }, false );
+				var hbox = document.createElement( "hbox" );
+				var check = document.createElement( "checkbox" );
+				check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
+				check.setAttribute( "checked", FoxtrickPreferencesDialog.getModuleEnableState( module.MODULE_NAME ) ); 
+				hbox.appendChild( check );
+				var name = document.createElement( "label" );
+				name.setAttribute( "class", "name" );
+				name.setAttribute( "value", module.MODULE_NAME );
+				hbox.appendChild( name );
+				entry.appendChild( hbox );
+				var desc = document.createElement( "label" );
+				desc.setAttribute( "class", "description" );
+				desc.setAttribute( "value", FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+				entry.appendChild( desc );
+				modules_list.appendChild( entry );
+			}
         }
     }
 

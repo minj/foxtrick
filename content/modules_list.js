@@ -19,6 +19,12 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickFormationBoxInMatchOrders,
                      FoxtrickFlagCollectionToMap,
                      FoxtrickTransferListSearchFilters,
+					 FoxtrickTeamPopupLinks,
                      Matches ];
+
+// List of categories
+Foxtrick.functionCategories = [ 'shortcutsandtweaks',
+								'forum',
+								'links' ];
 ////////////////////////////////////////////////////////////////////////////////
 
