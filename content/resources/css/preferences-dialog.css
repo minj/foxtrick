@@ -1,0 +1,14 @@
+#modules_list .entry {
+}
+
+#modules_list .entry:hover {
+    background-color: #cccccc;
+}
+
+#modules_list .name {
+    font-weight: bold;
+}
+
+#modules_list .description {
+    font-style: italic;
+}
