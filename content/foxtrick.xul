@@ -28,10 +28,37 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/starscounter.js" />
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick.js" />
 
+<!-- Mozilla Tools menu -->
+<menupopup id="taskPopup">
+    <menuitem id="foxtrick-config-menu" label="&foxtrick.menu.configurefoxtrick;"  oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+</menupopup>
+    
+<!-- Firefox Tools menu -->
+<menupopup id="menu_ToolsPopup">
+    <menu id="hattricktools_menu" label="Hattrick">
+		<menupopup id="hattricktools_menupopup">
+			<menuitem id="foxtrick-config-menu" label="&foxtrick.menu.configurefoxtrick;" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+		</menupopup>
+	</menu>
+</menupopup>
+
+<!-- popup menu -->
+<popup id="contentAreaContextMenu">
+    <menu id="foxtrick_popup_menu" label="Foxtrick">
+		<menupopup id="foxtrick_popup_menupopup">
+			<menuitem id="foxtrick_popup_config_menu" label="&foxtrick.menu.configurefoxtrick;" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+		</menupopup>
+	</menu>
+</popup> 
+
 <statusbar id="status-bar">
-      <statusbarpanel id="foxtrick-status-bar" label="FoxTrick" context="foxtrick-status-bar-menu"/>
+    <statusbarpanel id="foxtrick-status-bar" label="FoxTrick" context="foxtrick-status-bar-menu"/>
+	<menupopup id="foxtrick-status-bar-menu">
+		<menuitem id="foxtrick_statusbar_config_menu" label="&foxtrick.menu.configurefoxtrick;" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+	</menupopup>
 </statusbar>
 
 </overlay>
