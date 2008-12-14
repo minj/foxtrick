@@ -12,9 +12,42 @@ var Foxtrickl10n = {
 
     getString : function( str ) {
         if ( this._strings_bundle )
-            return this._strings_bundle.getString( str );
+        {
+            try {
+                return this._strings_bundle.getString( str );
+            } catch( e ) {
+                return "** Localization error **";
+            }
+        }
         else
             return "** Localization error **";
+    },
+
+    getFormattedString : function( str, key_array )
+    {
+        if ( this._strings_bundle )
+        {
+            try {
+                return this._strings_bundle.getFormattedString( str, key_array );
+            } catch( e ) {
+                return "** Localization error **";
+            }
+        }
+        else
+            return "** Localization error **";
+    },
+
+    isStringAvailable : function( str )
+    {
+        if ( this._strings_bundle )
+        {
+            try {
+                return this._strings_bundle.getString( str ) != null;
+            } catch( e ) {
+                return false;
+            }
+        }
+        return false;
     }
 };
 
