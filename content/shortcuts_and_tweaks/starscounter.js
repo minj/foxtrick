@@ -8,7 +8,7 @@
 
 var FoxtrickStarsCounter = {
 
-	MODULE_NAME : "FoxtrickStarsCounter",
+	MODULE_NAME : "StarsCounter",
 	
 	init : function() {
 			Foxtrick.registerPageHandler( 'matchLineup',
