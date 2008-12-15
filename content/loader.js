@@ -35,7 +35,11 @@ var scripts = [
 ];
 
 for each (var script in scripts) {
-    loader.loadSubScript('chrome://foxtrick/content/' + script);
+    try {
+        loader.loadSubScript('chrome://foxtrick/content/' + script);
+    } catch (e) {
+        dump('Script loading failed - ' + script + '\n  ' + e + '\n');
+    }
 };
 
 FoxtrickMain.init();
