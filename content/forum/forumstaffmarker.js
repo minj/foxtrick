@@ -53,15 +53,18 @@ var FoxtrickForumStaffMarker = {
 							//a.innerHTML = "<SPAN style=\"background: red\"><B>" + uname + "</B></SPAN>";
 						} else if (gmreg.test(uname)) {
 							a.style.background="orange";
+							a.style.color="black";
 							//a.innerHTML = "<SPAN style=\"color: black; background: orange\"><B>" + uname + "</B></SPAN>";
 						} else if (modreg.test(uname)) {
 							a.style.background="yellow";
+							a.style.color="black";
 							//a.innerHTML = "<SPAN style=\"color: black; background: yellow\"><B>" + uname + "</B></SPAN>";
 						} else if (chppreg.test(uname)) {
 							a.style.background="blue";
 							//a.innerHTML = "<SPAN style=\"background: blue\"><B>" + uname + "</B></SPAN>";
 						} else if (lareg.test(uname)) {
 							a.style.background="white";
+							a.style.color="green";
 							//a.innerHTML = "<SPAN style=\"color: green; background: white\"><B>" + uname + "</B></SPAN>";
 						}
 					}
