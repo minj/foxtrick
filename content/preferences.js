@@ -126,6 +126,3 @@ var FoxtrickPrefs = {
             FoxtrickPrefs.setString( list_name + "." + i, values[i] );
     },
 };
-
-var Foxtrick = {
-};

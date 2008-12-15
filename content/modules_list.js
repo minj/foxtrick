@@ -23,12 +23,3 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
 					 FoxtrickTeamPopupLinks,
                      Matches,
                    ];
-
-// List of categories
-Foxtrick.functionCategories = {
-    SHORTCUTS_AND_TWEAKS : 'shortcutsandtweaks',
-    FORUM : 'forum',
-    LINKS : 'links'
-};
-////////////////////////////////////////////////////////////////////////////////
-

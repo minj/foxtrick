@@ -10,24 +10,28 @@
 </stringbundleset>
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/const.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/module.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/l10n.js" />
 
 
 <!-- ADD YOUR MODULE FILE HERE. Remember to add it to the preferences-dialog.xul too! -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumtemplates.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/bookmarkadjust.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/matches.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumleaveconfbutton.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumhideavatar.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forummovelinks.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumstaffmarker.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/bookmarkadjust.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/flagCollectionToMap.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/matches.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/matchOrdersFlipSides.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/matchOrdersFormationBox.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/mediantransferprice.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/youthskillnotes.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_smates.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_kolmis.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/starscounter.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/teampopuplinks.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/transferListSearchFilters.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/youthskillnotes.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick_smates.js" />
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />

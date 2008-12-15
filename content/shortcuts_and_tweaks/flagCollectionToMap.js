@@ -1,84 +1,4 @@
 /**
- * Flip Sides by a click in the match orders page 
- * @author kolmis
- */
-
-//Foxtrick.modules.FlipSidesInMatchOrders = {
-FoxtrickFlipSidesInMatchOrders = {
-	
-    MODULE_NAME : "FlipSidesInMatchOrders",
-
-    init : function() {
-        Foxtrick.registerPageHandler('matchOrders', this);
-    },
-
-    run : function(page, doc) {
-    
-        Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchorders.css");
-        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/matchorders.js");
-    
-        var div = doc.createElement("div");
-        div.className = "foxtrick-flipsides";
-          
-        var flipsides = doc.createElement("a");
-        flipsides.innerHTML = Foxtrickl10n.getString("foxtrick.matchorders.flipsides");
-        flipsides.href="javascript:FoxtrickMatchOrders.flipSides()";
-        div.appendChild(flipsides);
-
-        doc.getElementById('startlineup').appendChild(div);
-     }
-
-};
-
-/**
- * Formation Box - show select formation info in the match orders pages  
- * @author kolmis
- */
-
-FoxtrickFormationBoxInMatchOrders = {
-	
-    MODULE_NAME : "FormationBoxInMatchOrders",
-
-    init : function() {
-        Foxtrick.registerPageHandler('matchOrders', this);
-    },
-
-    run : function(page, doc) {
-    
-        Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchorders.css");
-        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/matchorders.js");
-                
-        var div = doc.createElement("div");
-        div.className = "foxtrick-formationbox";
-        
-        div.innerHTML = '<span>' + Foxtrickl10n.getString("foxtrick.matchorders.formation") + ': </span> \
-                         <span id="foxtrick-formationinfo"></span><br />\
-                         <span id="foxtrick-formationinfo-players-cd"></span>\
-                         <span> ' + Foxtrickl10n.getString("foxtrick.matchorders.formationcds") + ', </span>\
-                         <span id="foxtrick-formationinfo-players-im"></span>\
-                         <span> ' + Foxtrickl10n.getString("foxtrick.matchorders.formationims") + ', </span>\
-                         <span id="foxtrick-formationinfo-players-fwd"></span>\
-                         <span> ' + Foxtrickl10n.getString("foxtrick.matchorders.formationforwards") + '</span>';
-        doc.getElementById('startlineup').appendChild(div);
-        
-        Foxtrick.addJavaScriptSnippet(doc, 'FoxtrickMatchOrders.updateFormationBox();')
-        
-        var form = doc.forms.namedItem('aspnetForm');
-        for (var i=0; i< form.elements.length; i++) {
-            var element = form.elements.item(i);
-            if (element.tagName == 'SELECT') {
-                if (element.getAttribute("onclick")) {
-                    element.setAttribute("onclick", element.getAttribute("onclick") + "; FoxtrickMatchOrders.updateFormationBox()();");
-                }
-                element.setAttribute("onchange", element.getAttribute("onchange") + "; FoxtrickMatchOrders.updateFormationBox()();");
-            }
-        }
-
-    }
-
-};
-
-/**
  * Visited countries map  
  * @author seben
  */
@@ -86,6 +6,7 @@ FoxtrickFormationBoxInMatchOrders = {
 FoxtrickFlagCollectionToMap = {
 	
     MODULE_NAME : "FlagCollectionToMap",
+    MODULE_CATEGORY : Foxtrick.functionCategories.SHORTCUTS_AND_TWEAKS,
 
     init : function() {
         Foxtrick.registerPageHandler('flagCollection', this);
@@ -185,7 +106,7 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_132='BD' // Bangladesh
         this.countryCodes.c_124='BB' // Barbados
         this.countryCodes.c_91='BY' // Belarus
-        this.countryCodes.c_44='BE' // België
+        this.countryCodes.c_44='BE' // BelgiÃ«
     
         this.countryCodes.c_139='BJ' // Benin
         this.countryCodes.c_74='BO' // Bolivia
@@ -197,7 +118,7 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_126='CI' // C. d'Ivoire
         this.countryCodes.c_125='CV' // Cabo Verde
         this.countryCodes.c_17='CA' // Canada
-        this.countryCodes.c_52='CZ' // Èeská rep.
+        this.countryCodes.c_52='CZ' // ÄŒeskÃ¡ rep.
         this.countryCodes.c_18='CL' // Chile
         this.countryCodes.c_60='TW' // Chin. Taipei
     
@@ -237,7 +158,7 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_54='ID' // Indonesia
         this.countryCodes.c_85='IR' // Iran
         this.countryCodes.c_21='IE' // Ireland
-        this.countryCodes.c_38='IS' // Ísland
+        this.countryCodes.c_38='IS' // Ãsland
         this.countryCodes.c_63='IL' // Israel
         this.countryCodes.c_4='IT' // Italia
     
@@ -248,19 +169,19 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_102='KG' // Kyrgyzstan
         this.countryCodes.c_53='LV' // Latvija
     
-        this.countryCodes.c_84='LU' // Lëtzebuerg
+        this.countryCodes.c_84='LU' // LÃ«tzebuerg
         this.countryCodes.c_117='LI' // Liechtenst.
         this.countryCodes.c_66='LT' // Lietuva
         this.countryCodes.c_120='LB' // Lubnan
-        this.countryCodes.c_51='HU' // Magyarország
+        this.countryCodes.c_51='HU' // MagyarorszÃ¡g
         this.countryCodes.c_97='MK' // Makedonija
     
         this.countryCodes.c_45='MY' // Malaysia
         this.countryCodes.c_144='MV' // Maldives
         this.countryCodes.c_101='MT' // Malta
-        this.countryCodes.c_6='MX' // México
+        this.countryCodes.c_6='MX' // MÃ©xico
         this.countryCodes.c_33='EG' // Misr
-        this.countryCodes.c_135='MZ' // Moçambique
+        this.countryCodes.c_135='MZ' // MoÃ§ambique
     
         this.countryCodes.c_103='MD' // Moldova
         this.countryCodes.c_119='MN' // Mongol Uls
@@ -279,12 +200,12 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_15='AUNZCXCCNFFJNCPGSBVUFMGUKIMHNRMPPWASCKPFNUPNWSTKTOTVWF' // Oceania
     
         this.countryCodes.c_134='OM' // Oman
-        this.countryCodes.c_39='AT' // Österreich
+        this.countryCodes.c_39='AT' // Ã–sterreich
         this.countryCodes.c_71='PK' // Pakistan
     
-        this.countryCodes.c_96='PA' // Panamá
+        this.countryCodes.c_96='PA' // PanamÃ¡
         this.countryCodes.c_72='PY' // Paraguay
-        this.countryCodes.c_23='PE' // Perú
+        this.countryCodes.c_23='PE' // PerÃº
         this.countryCodes.c_55='PH' // Philippines
         this.countryCodes.c_24='PL' // Polska
         this.countryCodes.c_25='PT' // Portugal
@@ -292,7 +213,7 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_31='TH' // Prathet Thai
         this.countryCodes.c_141='QA' // Qatar
         this.countryCodes.c_88='DO' // Rep. Dom.
-        this.countryCodes.c_37='RO' // România
+        this.countryCodes.c_37='RO' // RomÃ¢nia
         this.countryCodes.c_35='RU' // Rossiya
         this.countryCodes.c_104='GE' // Sakartvelo
     
@@ -302,7 +223,7 @@ FoxtrickFlagCollectionToMap = {
         // NOT FOUND, PART OF UK
         this.countryCodes.c_26='' // Scotland
     
-        this.countryCodes.c_121='SN' // Sénégal
+        this.countryCodes.c_121='SN' // SÃ©nÃ©gal
         this.countryCodes.c_98='AL' // Shqiperia
         this.countryCodes.c_47='SG' // Singapore
     
@@ -318,7 +239,7 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_142='TZ' // Tanzania
         this.countryCodes.c_80='TN' // Tounes
         this.countryCodes.c_110='TT' // Trinidad/T.
-        this.countryCodes.c_32='TR' // Türkiye
+        this.countryCodes.c_32='TR' // TÃ¼rkiye
     
         this.countryCodes.c_83='AE' // U.A.E.
         this.countryCodes.c_143='UG' // Uganda
@@ -407,60 +328,4 @@ FoxtrickFlagCollectionToMap = {
         return orderString;
     }
 
-};
-
-/**
- * Transfer list filters 
- * @author kolmis
- */
- 
-FoxtrickTransferListSearchFilters = {
-	
-    MODULE_NAME : "TransferListSearchFilters",
-
-    init : function() {
-        Foxtrick.registerPageHandler('transferListSearchForm', this);
-    },
-
-    run : function(page, doc) {
-    
-        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/transferform.js");
-        
-        var sidebar = doc.getElementById('sidebar');
-        var div = doc.createElement("div");
-        div.className = "sidebarBox";
-        div.innerHTML = '<div class="boxHead"><div class="boxLeft"><h2>Foxtrick Filters</h2></div></div>';
-        sidebar.appendChild(div);
-        
-        var temp = doc.createElement('div');
-        temp.className = 'boxBody';
-        div.appendChild(temp);
-        
-        // filters
-        var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-        var branch = prefObj.getBranch("foxtrick.formfiller.");
-        
-        var aCount = {value:0}; 
-        
-        var list = branch.getChildList("", aCount);
-        list.sort();
-        
-        if (aCount.value>0) {
-            for (var i=0; i< list.length; i++) {
-                var link = doc.createElement("a");
-                var filter = this.getTransferSearchFormFilter(list[i]);
-                link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + filter +  "', document);";
-                link.innerHTML = list[i];
-                temp.appendChild(link);
-                temp.appendChild(doc.createElement("br"));
-            }
-        }
-    },
-    
-    getTransferSearchFormFilter : function(filterName) {
-        var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-        var branch = prefObj.getBranch("foxtrick.formfiller.");
-        return branch.getCharPref(filterName);
-    }
-    
 };
