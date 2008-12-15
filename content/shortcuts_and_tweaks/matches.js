@@ -263,8 +263,8 @@ var Matches = {
     },
     
     _loadXmlIntoDOM: function(url) {
-        	var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-            req.open("GET", "chrome://foxtrick/content/htlocales/htlang.xml", false); 
+            var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+            req.open("GET", url, false); 
             req.send(null);
             var doc = req.responseXML;
             if (doc.documentElement.nodeName == "parsererror") {

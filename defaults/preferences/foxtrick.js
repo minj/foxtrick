@@ -1,5 +1,5 @@
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
-pref( "extensions.foxtrick.prefs.htLanguage", "it");
+pref( "extensions.foxtrick.prefs.htLanguage", "en");
 
 
 // add here your module's default enabled/disabled state

@@ -27,13 +27,26 @@
 
 <tabbox id="tabbox" flex="1">
   <tabs id="tabs">
+    <tab id="MainTab">&foxtrick.prefs.mainoptions;</tab>
     <tab id="ShortcutsTab">&foxtrick.prefs.shortcuts;</tab>
-	<tab id="ForumTab">&foxtrick.prefs.forum;</tab>
-	<tab id="LinksTab">&foxtrick.prefs.links;</tab>
+    <tab id="ForumTab">&foxtrick.prefs.forum;</tab>
+    <tab id="LinksTab">&foxtrick.prefs.links;</tab>
     <tab id="AboutTab" label="&foxtrick.prefs.about;"/>
   </tabs>
 	<tabpanels id="tabpanels" flex="1">
-
+        
+        <!-- Main -->
+           <tabpanel orient="vertical">
+              <vbox>
+                  <label>&foxtrick.prefs.language;</label>
+                  <menulist id="htLanguage">
+                      <menupopup id="htLanguagePopup">
+                          
+                      </menupopup>
+                  </menulist>
+              </vbox>
+           </tabpanel>
+        
         <!-- Shortcuts -->
            <tabpanel orient="vertical">
               <vbox>
