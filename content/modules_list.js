@@ -21,11 +21,14 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickFlagCollectionToMap,
                      FoxtrickTransferListSearchFilters,
 					 FoxtrickTeamPopupLinks,
-                     Matches ];
+                     Matches,
+                   ];
 
 // List of categories
-Foxtrick.functionCategories = [ 'shortcutsandtweaks',
-								'forum',
-								'links' ];
+Foxtrick.functionCategories = {
+    SHORTCUTS_AND_TWEAKS : 'shortcutsandtweaks',
+    FORUM : 'forum',
+    LINKS : 'links'
+};
 ////////////////////////////////////////////////////////////////////////////////
 

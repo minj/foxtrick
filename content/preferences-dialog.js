@@ -13,24 +13,23 @@ var FoxtrickPreferencesDialog = {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
-		for ( var j=0; j < Foxtrick.functionCategories.length; j++ ) {
-			FoxtrickPreferencesDialog._fillModulesList( document, 
-				Foxtrick.functionCategories[j] );
-		}
+        for each ( cat in Foxtrick.functionCategories ) {
+            FoxtrickPreferencesDialog._fillModulesList( document, cat );
+        }
     },
 
     onDialogAccept : function() {
         var modules_list;
 		
-		for ( var j=0; j < Foxtrick.functionCategories.length; j++ ) {
-			switch(Foxtrick.functionCategories[j]) {
-				case 'shortcutsandtweaks':
+		for each ( cat in Foxtrick.functionCategories ) {
+			switch(cat) {
+				case Foxtrick.functionCategories.SHORTCUTS_AND_TWEAKS:
 					modules_list = document.getElementById( 'shortcuts_list' );
 					break;
-				case 'forum':
+				case Foxtrick.functionCategories.FORUM:
 					modules_list = document.getElementById( 'forum_list' );
 					break;
-				case 'links':
+				case Foxtrick.functionCategories.LINKS:
 					modules_list = document.getElementById( 'links_list' );
 					break;
 			}
