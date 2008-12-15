@@ -28,7 +28,11 @@ var Matches = {
                 
                 //finding the right table
                 var ratingstable;
-                var tables=doc.getElementById('mainBody').childNodes[3].getElementsByTagName('div');
+                var tables;
+                if (doc.getElementById('mainBody').childNodes.length>3)
+                    tables=doc.getElementById('mainBody').childNodes[3].getElementsByTagName('div');
+                else
+                    tables=doc.getElementById('mainBody').childNodes[1].getElementsByTagName('div');
                 for (i=0;i<tables.length;i++)
                 {
                     if (tables[i].className=='mainBox')
@@ -38,7 +42,13 @@ var Matches = {
                 var percentArray=this._getPercentArray(doc, ratingstable);
                 
                 var strangediv=sidebar.childNodes[7].childNodes[1].childNodes[7];
-                sidebar.appendChild(this._createBarDiv(doc, percentArray, strangediv));
+                if (strangediv)
+                    sidebar.appendChild(this._createBarDiv_extended(doc, percentArray, strangediv));
+                else
+                {
+                    strangediv=sidebar.childNodes[7].childNodes[8];
+                    sidebar.appendChild(this._createBarDiv_extended(doc, percentArray, strangediv));
+                }
                 
                 for (var selectedRating in this.ratingDefs) {
                     //If prefs: TODO
@@ -110,7 +120,8 @@ var Matches = {
         
     },
     
-    _createBarDiv: function(doc, percentArray, strangediv) {
+    _createBarDiv_extended: function(doc, percentArray, strangediv) {
+    	//Create a bar div for extended layout
     	
     	var maindiv=doc.createElement('div');
     	maindiv.className='sidebarBox';

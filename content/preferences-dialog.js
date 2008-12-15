@@ -28,9 +28,9 @@ var FoxtrickPreferencesDialog = {
             htLanguagesXml.async = false;
             htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
             
-            this.fillListFromXml("htLanguagePopup", "htLanguage-", htLanguagesXml, "language", "desc", "name");
-            
-            document.getElementById('htLanguage').selectedIndex="htLanguage-"+FoxtrickPrefs.getString("htLanguage");
+            var itemToSelect=this.fillListFromXml("htLanguagePopup", "htLanguage-", htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
+
+            document.getElementById('htLanguage').selectedIndex=itemToSelect;
             
         } catch (e) {
             alert(e);
@@ -70,8 +70,9 @@ var FoxtrickPreferencesDialog = {
         return true;
     },
     
-    fillListFromXml: function(id, prefix, xmlDoc, elem, descAttr, valAttr){
-    
+    fillListFromXml: function(id, prefix, xmlDoc, elem, descAttr, valAttr, itemToSelect){
+        
+        var indexToSelect=-1;
         var values = xmlDoc.getElementsByTagName(elem);
         var menupopup = document.getElementById(id);
         var langs = [];
@@ -100,8 +101,11 @@ var FoxtrickPreferencesDialog = {
             
             menupopup.appendChild(obj);
             
+            if (itemToSelect==value)
+                indexToSelect=i;
         }
-    
+        
+        return indexToSelect;
     },
 
     _fillModulesList : function( doc, category ) {
