@@ -20,6 +20,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/matches.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumleaveconfbutton.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumhideavatar.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/forum/forummovelinks.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumstaffmarker.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/mediantransferprice.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/youthskillnotes.js" />

@@ -10,6 +10,7 @@
 Foxtrick.modules = [ FoxtrickForumTemplates,
                      BookmarkAdjust,
                      FoxtrickHideManagerAvatar,
+					 FoxtrickMoveLinks,
                      FoxtrickForumStaffMarker,
                      FoxtrickMedianTransferPrice,
                      FoxtrickYouthSkillNotes,
