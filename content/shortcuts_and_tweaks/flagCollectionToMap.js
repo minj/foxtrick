@@ -16,7 +16,8 @@ FoxtrickFlagCollectionToMap = {
     run : function(page, document) {
         
         var path = "//div[@class='mainBox']";
-        var result = document.evaluate(path, document.documentElement, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+        var result = document.evaluate(path, document.documentElement, null,
+                                       Components.interfaces.nsIDOMXPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
         
         var mapId = 0;
         for (var i=0; i< result.snapshotLength; i++) {

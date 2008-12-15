@@ -33,7 +33,7 @@ var FoxtrickForumStaffMarker = {
 		    	    "//div[@class='cfHeader']",
 		    	    doc,
 		    	    null,
-		    	    XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
+		    	    Components.interfaces.nsIDOMXPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
 		    	    null);
 		    	
 		    	for (i=0; i< userDivs.snapshotLength; i++){
