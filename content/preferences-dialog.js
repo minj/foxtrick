@@ -41,6 +41,10 @@ var FoxtrickPreferencesDialog = {
             // dump( modules_list.childNodes[i].prefname + " " + modules_list.childNodes[i].childNodes[0].childNodes[0].checked + "\n" );
 			}
 		}
+		
+		// reinitialize
+		FoxtrickMain.init();
+		
         return true;
     },
 

@@ -3,9 +3,6 @@
  * Contact us: by HT-mail to Mod-PaV on hattrick.org
  */
 ////////////////////////////////////////////////////////////////////////////////
-// execute at window load
-window.addEventListener( "load", function() { FoxtrickMain.init(); }, false );
-////////////////////////////////////////////////////////////////////////////////
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
  * DON'T EDIT THIS, use registerAllPagesHandler() instead.
@@ -38,12 +35,6 @@ var FoxtrickMain = {
             Foxtrick.run_on_page[i] = new Array();
         }
 
-         // listen to page loads
-        var appcontent = document.getElementById( "appcontent" );
-        if ( appcontent) 
-            appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad,
-                                         true );
-
         // init all modules
         for ( i in Foxtrick.modules ) {
             var module = Foxtrick.modules[i];
@@ -64,7 +55,15 @@ var FoxtrickMain = {
                 dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
         }
 
-   },
+    },
+   
+    registerOnPageLoad : function(document) {
+         // listen to page loads
+        var appcontent = document.getElementById( "appcontent" );
+        if ( appcontent) 
+            appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad,
+                                         true );
+    },
     
     onPageLoad : function( ev ) {
         var doc = ev.originalTarget;
