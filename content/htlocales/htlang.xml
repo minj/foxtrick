@@ -346,10 +346,10 @@
 
 	<language name="de" desc="Deutsch">
 	    <ratingSubLevels>
-    		<sublevel text="(min.)" value="0.0" />
-    		<sublevel text="(tief)" value="0.25"  />
-    		<sublevel text="(hoch)" value="0.50"  />
-    		<sublevel text="(max.)" value="0.75"  />
+    		<sublevel text="min." value="0.0" />
+    		<sublevel text="tief" value="0.25"  />
+    		<sublevel text="hoch" value="0.50"  />
+    		<sublevel text="max." value="0.75"  />
 		</ratingSubLevels>
 		<repositioning>
       		<reposition type="midfielder" value="zusätzl. mittelfeld" />
@@ -707,7 +707,7 @@
 		</ratingSubLevels>
 		<repositioning>
       		<reposition type="midfielder" value="Доп. полузащитник" />
-      		<reposition type="centraldefender" value="Доп. защитник " />
+      		<reposition type="centraldefender" value="Доп. защитник" />
       		<reposition type="forward" value="Доп. нападател" />
       		<reposition type="normal" value="Нормално" />
       		<reposition type="offensive" value="Атакуващо" />
