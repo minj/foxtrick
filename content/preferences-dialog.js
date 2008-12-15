@@ -152,7 +152,8 @@ var FoxtrickPreferencesDialog = {
                                 entry.appendChild( hbox );
                                 var desc = document.createElement( "label" );
                                 desc.setAttribute( "class", "description" );
-                                desc.setAttribute( "value", FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+                                var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+                                desc.appendChild( desc_text );
                                 entry.appendChild( desc );
                                 modules_list.appendChild( entry );
                         }
