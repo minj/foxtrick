@@ -250,20 +250,28 @@ var Matches = {
     initHtLang: function ()
     {
     	try {
-            this.htLanguagesXml = document.implementation.createDocument("", "", null);
-            this.htLanguagesXml.async = false;
-            this.htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
+            this.htLanguagesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
         } catch (e) {
         	this.LOG('matches.js initHtLang: '+e);
         }
         
         try {
-            this.htCurrenciesXml = document.implementation.createDocument("", "", null);
-            this.htCurrenciesXml.async = false;
-            this.htCurrenciesXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+            this.htCurrenciesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcurrency.xml");
         } catch (e) {
         	this.LOG('matches.js initHtLang: '+e);
         }
+    },
+    
+    _loadXmlIntoDOM: function(url) {
+        	var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+            req.open("GET", "chrome://foxtrick/content/htlocales/htlang.xml", false); 
+            req.send(null);
+            var doc = req.responseXML;
+            if (doc.documentElement.nodeName == "parsererror") {
+                this.LOG("error parsing " + url);
+                return null;
+            }
+            return doc;
     },
     
     LOG: function (msg) {
