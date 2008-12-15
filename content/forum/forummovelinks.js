@@ -62,14 +62,16 @@ var FoxtrickMoveLinks = {
 			cfHeader.childNodes[0].insertBefore(leagueLink,supporterLink);
 			cfHeader.childNodes[0].insertBefore(space,supporterLink);
 		}
-		// Remove the avatar and change class of message
-		elems = doc.getElementsByTagName("div");
-		for(var k=0; k < elems.length; k++) {
-			if(elems[k].getAttribute("class")=="cfUser") {
-				elems[k].parentNode.removeChild(elems[k]);
-			}
-			if(elems[k].getAttribute("class")=="cfMessage") {
-				elems[k].setAttribute("class","cfMessageNoAvatar");
+		// If avatar is also hidden, change class of message
+		if(Foxtrick.isModuleEnabled( FoxtrickHideManagerAvatar.MODULE_NAME )) {
+			elems = doc.getElementsByTagName("div");
+			for(var k=0; k < elems.length; k++) {
+				if(elems[k].getAttribute("class")=="cfUser") {
+					elems[k].parentNode.removeChild(elems[k]);
+				}
+				if(elems[k].getAttribute("class")=="cfMessage") {
+					elems[k].setAttribute("class","cfMessageNoAvatar");
+				}
 			}
 		}
 	}
