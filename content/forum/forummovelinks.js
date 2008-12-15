@@ -26,13 +26,37 @@ var FoxtrickMoveLinks = {
 		}
 		// Move the links
 		for(var j=0; j < posts.length; j++) {
-			var cfHeader = posts[j].childNodes[3];
-			var cfUserInfo = posts[j].childNodes[4].childNodes[1];
+			var cfHeader;
+			var cfUser;
+			var cfUserInfo;
+			var countryLink;
+			var leagueLink;
 			
-			var countryLink = cfUserInfo.childNodes[4];
-			var leagueLink = cfUserInfo.childNodes[6];
+			if(posts[j].childNodes[3].className=="cfHeader") {
+				cfHeader = posts[j].childNodes[3];
+				cfUser = posts[j].childNodes[4];
+			} else {
+				// bookmarked user
+				cfHeader = posts[j].childNodes[4];
+				cfUser = posts[j].childNodes[5];
+			}
+			if(cfUser.childNodes[0].className=="cfUserInfo") {
+				// user has no avatar
+				cfUserInfo = cfUser.childNodes[0];
+			} else {
+				cfUserInfo = cfUser.childNodes[1];
+			}
+			
+			if(cfUserInfo.childNodes[2].href.search("\/Help\/Supporter\/")>-1) {
+				// user is supporter
+				countryLink = cfUserInfo.childNodes[4];
+				leagueLink = cfUserInfo.childNodes[6];
+			} else {
+				countryLink = cfUserInfo.childNodes[2];
+				leagueLink = cfUserInfo.childNodes[4];
+			}
+			
 			var space = doc.createTextNode(" ");
-			
 			var supporterLink = cfHeader.childNodes[0].childNodes[6];
 			cfHeader.childNodes[0].insertBefore(countryLink,supporterLink);
 			cfHeader.childNodes[0].insertBefore(leagueLink,supporterLink);

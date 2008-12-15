@@ -49,15 +49,20 @@ var FoxtrickForumStaffMarker = {
 						chppreg = /^CHPP-/i;
 						lareg = /^LA-/i;
 						if (htreg.test(uname)) {
-							a.innerHTML = "<SPAN style=\"background: red\"><B>" + uname + "</B></SPAN>";
+							a.style.background="red";
+							//a.innerHTML = "<SPAN style=\"background: red\"><B>" + uname + "</B></SPAN>";
 						} else if (gmreg.test(uname)) {
-							a.innerHTML = "<SPAN style=\"color: black; background: orange\"><B>" + uname + "</B></SPAN>";
+							a.style.background="orange";
+							//a.innerHTML = "<SPAN style=\"color: black; background: orange\"><B>" + uname + "</B></SPAN>";
 						} else if (modreg.test(uname)) {
-							a.innerHTML = "<SPAN style=\"color: black; background: yellow\"><B>" + uname + "</B></SPAN>";
+							a.style.background="yellow";
+							//a.innerHTML = "<SPAN style=\"color: black; background: yellow\"><B>" + uname + "</B></SPAN>";
 						} else if (chppreg.test(uname)) {
-							a.innerHTML = "<SPAN style=\"background: blue\"><B>" + uname + "</B></SPAN>";
+							a.style.background="blue";
+							//a.innerHTML = "<SPAN style=\"background: blue\"><B>" + uname + "</B></SPAN>";
 						} else if (lareg.test(uname)) {
-							a.innerHTML = "<SPAN style=\"color: green; background: white\"><B>" + uname + "</B></SPAN>";
+							a.style.background="white";
+							//a.innerHTML = "<SPAN style=\"color: green; background: white\"><B>" + uname + "</B></SPAN>";
 						}
 					}
 				}
