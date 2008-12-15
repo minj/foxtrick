@@ -40,6 +40,12 @@ var FoxtrickMoveLinks = {
 				cfHeader = posts[j].childNodes[4];
 				cfUser = posts[j].childNodes[5];
 			}
+			
+			if(cfUser.id) {
+				// Ignored user
+				cfUser = cfUser.childNodes[0];
+			}
+			
 			if(cfUser.childNodes[0].className=="cfUserInfo") {
 				// user has no avatar
 				cfUserInfo = cfUser.childNodes[0];
