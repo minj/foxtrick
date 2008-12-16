@@ -32,5 +32,12 @@
     <em:targetApplication RDF:resource="rdf:#$YfQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$1gQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$6gQfX1"/>
+    <!-- developer list -->
+    <em:developer>MoD-PaV</em:developer>
+    <em:developer>Karel Kolman [kolmis]</em:developer>
+    <!-- contributor list -->
+    <!--<em:contributor></em:contributor>-->
+    <!-- translator list -->
+    <!--<em:contributor></em:contributor>-->
   </RDF:Description>
 </RDF:RDF>
