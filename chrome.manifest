@@ -2,6 +2,11 @@ content foxtrick content/
 content	foxtrick content/ contentaccessible=yes
 overlay chrome://browser/content/browser.xul chrome://foxtrick/content/foxtrick.xul
 
+locale foxtrick cs-CZ locale/cs-CZ/
+locale foxtrick de-DE locale/de-DE/
 locale foxtrick en-US locale/en-US/
+locale foxtrick es-ES locale/es-ES/
+locale foxtrick it-IT locale/it-IT/
+locale foxtrick sr-SR locale/sr-SR/
 
 skin	foxtrick	classic/1.0	skin/
