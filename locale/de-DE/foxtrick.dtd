@@ -3,14 +3,14 @@
      utf-8 encoded language file
 -->
 
-<!ENTITY foxtrick.prefs.shortcuts "Shortcuts &amp; tweaks">
+<!ENTITY foxtrick.prefs.shortcuts "Shortcuts &amp; Tweaks">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Links">
 <!ENTITY foxtrick.prefs.modulelistlabel "Verfügbare Module. Via Checkbox können die einzelnen Module aktiviert werden.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick wird derzeit generalüberholt. Bitte wartet noch ein wenig auf ein Update. Wir arbeiten mit Hochdruck daran!">
 
 
-<!ENTITY foxtrick.prefs.mainoptions "Hauptoptionen">
+<!ENTITY foxtrick.prefs.mainoptions "Grundeinstellungen">
 <!ENTITY foxtrick.prefs.enable "Aktivieren">
 <!ENTITY foxtrick.prefs.preferences "Einstellungen">
 <!ENTITY foxtrick.prefs.visuals "Visuelles">
@@ -57,10 +57,10 @@
 <!ENTITY foxtrick.prefs.resizemainframe "Hauptframe resizen">
 <!ENTITY foxtrick.prefs.resizemenuframe "Menüframe resizen">
 <!ENTITY foxtrick.prefs.framewidth "Breite">
-<!ENTITY foxtrick.prefs.clearplayerscache "Spielergesichter- und Trikotscache löschen.">
+<!ENTITY foxtrick.prefs.clearplayerscache "Cache für Spielergesichter Trikots löschen.">
 <!ENTITY foxtrick.prefs.attackdefensebars "Teamvergleich">
 <!ENTITY foxtrick.prefs.attackdefensebarsalways "automatisch einfügen.">
-<!ENTITY foxtrick.prefs.attackdefensebarsyes "Seitenwechsellink anzeigen.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Wechsellink anzeigen.">
 <!ENTITY foxtrick.prefs.attackdefensebarsno "Nicht einfügen.">
 <!ENTITY foxtrick.prefs.ratingsstyle "Ratingsformat">
 <!ENTITY foxtrick.prefs.ratingsstylestandard "Standardratings.">
@@ -69,20 +69,22 @@
 <!ENTITY foxtrick.prefs.showflags "Länderflaggen in der Aufstellung anzeigen.">
 <!ENTITY foxtrick.prefs.showfacesandflags "Spielergesichter und Länderflaggen in der Aufstellung anzeigen.">
 <!ENTITY foxtrick.prefs.showdressesandflags "Teamtrikots und Länderflaggen in der Aufstellung anzeigen.">
-<!ENTITY foxtrick.prefs.medalsets "Auszeichnungengrafiken">
+<!ENTITY foxtrick.prefs.medalsets "Trophäen">
 <!ENTITY foxtrick.prefs.getmoremedalsets "Weitere Trophäen herunterladen">
-<!ENTITY foxtrick.prefs.defaulthattrickmedals "original Hattrick Trophäen verwenden.">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "original Hattrick.org Trophäen verwenden.">
 <!ENTITY foxtrick.menu.installmedalset "Installiere Hattrick.org Trophäen">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrickwährung">
-<!ENTITY foxtrick.prefs.main "Main">
-<!ENTITY foxtrick.prefs.alertslider "Infoslider anzeigen.">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick-Währung">
+<!ENTITY foxtrick.prefs.main "Grundeinstellungen">
+<!ENTITY foxtrick.prefs.alertsettings "Alarm-Einstellungen">
+<!ENTITY foxtrick.prefs.alertslider "Info-Slider anzeigen.">
 <!ENTITY foxtrick.prefs.foxtrickinstatusbar "FoxTrick-Panel in der Statusleiste anzeigen.">
 <!ENTITY foxtrick.prefs.alertsound "Alarmton.">
+<!ENTITY foxtrick.prefs.alertslidermac "Nachrichtenpopup anzeigen (nur Mac)">
 <!ENTITY foxtrick.menu.createplayerad "Spieleranzeige in die Zwischenablage kopieren.">
 <!ENTITY foxtrick.prefs.htdateformat "Datumsformat">
-<!ENTITY foxtrick.menu.makelink "Forenlink in die Zwischenablage kopieren.">
+<!ENTITY foxtrick.menu.makelink "Foren-Link in die Zwischenablage kopieren.">
 <!ENTITY foxtrick.prefs.forumtemplates "Foren-Templates">
-<!ENTITY foxtrick.prefs.forummessagetemplates "Forenposts-Templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Foren-Posts-Templates">
 <!ENTITY foxtrick.prefs.opendirectory "Verzeichnis öffnen">
 <!ENTITY foxtrick.prefs.selectfile "Sounddatei wählen">
 <!-- EOF -->
