@@ -29,7 +29,7 @@ var scripts = [
     'shortcuts_and_tweaks/transferListSearchFilters.js',
     'shortcuts_and_tweaks/youthskillnotes.js',
     'shortcuts_and_tweaks/foxtrickalert.js',
-    'foxtrick_smates.js',
+    'shortcuts_and_tweaks/facePlugin.js',
     
     'modules_list.js',
     'foxtrick.js',
