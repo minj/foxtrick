@@ -79,7 +79,7 @@ var FoxtrickForumTemplates = {
         if ( FoxtrickPrefs.addPrefToList( FoxtrickForumTemplates._TEMPLATES_PREFLIST, text ) )
             FoxtrickForumTemplates._appendTemplate( doc, text );
         else
-            alert( Foxtrickl10n.getString( 'template_exists' ) );
+            Foxtrick.alert( Foxtrickl10n.getString( 'template_exists' ) );
     },
 
     _removeTemplate : function( ev ) {

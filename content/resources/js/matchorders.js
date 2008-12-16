@@ -20,7 +20,7 @@ FoxtrickMatchOrders = {
             this.switchPlayers("LeftWing", "RightWing");
             this.switchPlayers("Forward1", "Forward2");
         } catch (e) {
-            alert(e);
+            Foxtrick.alert(e);
         }
     },
     

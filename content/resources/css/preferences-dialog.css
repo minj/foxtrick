@@ -11,4 +11,5 @@
 
 #shortcuts_list .description, #forum_list .description, #links_list .description {
     font-style: italic;
+    font-size: 0.7em;
 }

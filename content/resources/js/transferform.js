@@ -59,7 +59,7 @@ FoxtrickTransferListSearchFormFiller = {
                 }
             }
         } catch (e) {
-            alert (e);
+            Foxtrick.alert (e);
         }
     },
 

@@ -41,7 +41,7 @@ var FoxtrickPreferencesDialog = {
             document.getElementById('htLanguage').selectedIndex=itemToSelect;
             
         } catch (e) {
-            alert(e);
+            Foxtrick.alert(e);
         }
     },
 
