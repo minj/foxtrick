@@ -92,7 +92,7 @@ var FoxtrickMain = {
         Foxtrick.run_every_page.forEach(
             function( fn ) {
                 try {
-                    fn.run( doc )
+                    fn.run( doc );
                 } catch (e) {
                     dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
                     Components.utils.reportError(e);

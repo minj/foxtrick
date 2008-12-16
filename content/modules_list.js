@@ -22,5 +22,5 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickTransferListSearchFilters,
                      FoxtrickTeamPopupLinks,
                      Matches,
-                     FoxtrickAlert
+                     FoxtrickAlert,
                    ];
