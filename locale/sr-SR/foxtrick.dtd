@@ -1,0 +1,89 @@
+<!-- sr-SR
+     Karel Kolman
+-->
+
+<!ENTITY foxtrick.prefs.shortcuts "Precice i alati">
+<!ENTITY foxtrick.prefs.forum "Forum">
+<!ENTITY foxtrick.prefs.links "Linkovi">
+<!ENTITY foxtrick.prefs.modulelistlabel "Raspolozivi moduli. Cekiraj kucicu pored modula da ga ukljucis.">
+<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick trenutno prelazi na novi Hattrick dizajn. Cinimo sve sto je u nasoj moci da sve stare mogucnosti ponovo osposobimo za novi dizajn. Molimo vas budite strpljivi i ocekujte redovna azuriranja!">
+
+
+<!ENTITY foxtrick.prefs.mainoptions "Glavne opcije">
+<!ENTITY foxtrick.prefs.enable "Ukljuci">
+<!ENTITY foxtrick.prefs.preferences "Podesavanja">
+<!ENTITY foxtrick.prefs.visuals "Izgled">
+<!ENTITY foxtrick.prefs.stars "Zvezdice">
+<!ENTITY foxtrick.prefs.about "O foxtricku">
+<!ENTITY foxtrick.prefs.addstars "Dodaj zvezdice">
+<!ENTITY foxtrick.prefs.replacestars "Zameni zvezdice">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Koristi Hattrick zvezdice.">
+<!ENTITY foxtrick.prefs.cssskins "CSS Skinovi">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Koristi Hattrick skin.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Podesavanja za FoxTrick">
+<!ENTITY foxtrick.menu.reloadfoxtrick "Osvezi FoxTrick (za developere)">
+<!ENTITY foxtrick.prefs.faces "Lica i Dresovi (za supportere)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Iskljuci lica igraca ili dresove.">
+<!ENTITY foxtrick.prefs.showfaces "Dodaj lica igraca u naloge za postavu.">
+<!ENTITY foxtrick.prefs.showdresses "Dodaj dresove igraca u naloge za postavu.">
+<!ENTITY foxtrick.prefs.links "Linkovi za spoljne sajtove">
+<!ENTITY foxtrick.prefs.link "Link">
+<!ENTITY foxtrick.prefs.show "Prikazi">
+<!ENTITY foxtrick.prefs.shortcuts "Skracenice">
+<!ENTITY foxtrick.prefs.shortcut "Skracenica">
+<!ENTITY foxtrick.prefs.groupstarsby "Broj zvezdica za grupisanje po boji: ">
+<!ENTITY foxtrick.menu.installskin "Instaliraj Hattrick.org skin">
+<!ENTITY foxtrick.prefs.linkstab "Linkovi &amp; ocene">
+<!ENTITY foxtrick.prefs.ratings "Ocene">
+<!ENTITY foxtrick.prefs.rating "Ocena">
+<!ENTITY foxtrick.prefs.htlang "Jezik na Hattricku">
+<!ENTITY foxtrick.prefs.language "Podesavanje jezika">
+<!ENTITY foxtrick.prefs.lineupcoloring "Seme boja za naloge postave">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Bez boja u nalozima za postavu.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Samo ako semo za boje postoji u skin-u koji je postavljen.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Uvek. Ako skin nema semu za boje koristi standardnu semu.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Skini jos CSS skinova">
+<!ENTITY foxtrick.prefs.shortcutstab "Skracenice &amp; dodaci">
+<!ENTITY foxtrick.prefs.tweaks "Dodaci">
+<!ENTITY foxtrick.prefs.mergestars "Spoj zvezdice u jednu">
+<!ENTITY foxtrick.menu.playersintabs "Otvori pronadjene igrace u tabovima">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Dodaj lica igraca &amp; i dresove u naloge za postavu.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Stil">
+<!ENTITY foxtrick.prefs.matchorders "Nalozi za postavu">
+<!ENTITY foxtrick.prefs.showformationbox "Prikazi kucicu za tip formacije">
+<!ENTITY foxtrick.prefs.frameresize "Prosiri frejm">
+<!ENTITY foxtrick.prefs.hidelogoframe "Sakrij frejm logoa">
+<!ENTITY foxtrick.prefs.resizemainframe "Prosiri glavni frejm">
+<!ENTITY foxtrick.prefs.resizemenuframe "Prosiri meni frejm">
+<!ENTITY foxtrick.prefs.framewidth "Sirina">
+<!ENTITY foxtrick.prefs.clearplayerscache "Obrisi kes lica/dresova igraca.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Graficki prikaz odbrana/napad">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Ubaci automatski.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Prikazi link.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Ne prikazuj.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Format za ocene">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Standardne ocene.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Stari stil ocena.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "Ove opcije moraju biti podesene tako da budu iste kao i vasa podesavanja na Hattricku.">
+<!ENTITY foxtrick.prefs.showflags "Dodaj zastavicu igraceve maticne zemlje u postavu za mec.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Dodaj lice igraca &amp; i zastavicu maticne zemlje u postavu za mec.">
+<!ENTITY foxtrick.prefs.showdressesandflags "Dodaj dres igraca &amp; i zastavicu maticne zemlje u postavu za mec.">
+<!ENTITY foxtrick.prefs.medalsets "Kompleti za medelje">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Skini jos kompleta za medalje">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Koristi Hattrick set za medalje.">
+<!ENTITY foxtrick.menu.installmedalset "Instaliraj Hattrick set za medalje">
+<!ENTITY foxtrick.prefs.htcurrency "Valuta na Hattricku">
+<!ENTITY foxtrick.prefs.main "Glavna">
+<!ENTITY foxtrick.prefs.alertsettings "Podesavanje za obavestenja">
+<!ENTITY foxtrick.prefs.alertslider "Prikazi slajder sa obavestenjima.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Prikazi FoxTrick panel u Firefox status baru.">
+<!ENTITY foxtrick.prefs.alertsound "Ukljuci zvucna obavestenja.">
+<!ENTITY foxtrick.prefs.alertslidermac "Prikazi growl obavestenja (samo za Mac)">
+<!ENTITY foxtrick.menu.createplayerad "Iskopiraj skilove igraca za oglas na forumu.">
+<!ENTITY foxtrick.prefs.htdateformat "Format datuma">
+<!ENTITY foxtrick.menu.makelink "Iskopiraj link do foruma u clipbord">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum templates">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Predefinisane poruke za Forum">
+<!ENTITY foxtrick.prefs.opendirectory "Otvori direktorijum">
+<!ENTITY foxtrick.prefs.selectfile "Izaberi zvucni fajl">
+<!-- EOF -->
