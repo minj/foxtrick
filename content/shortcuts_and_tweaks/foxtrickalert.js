@@ -18,7 +18,7 @@ var FoxtrickAlert = {
         this.news[2] = null;
     },
 
-    run : function( page, doc ) {
+    run : function( doc ) {
     	try {
             Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
