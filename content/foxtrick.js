@@ -125,7 +125,9 @@ var FoxtrickMain = {
 };
 
 Foxtrick.isPage = function( page, doc ) {
-    return Foxtrick.getHref( doc ).search( page ) > -1;
+	var htpage_regexp = new RegExp( page, "i" );
+	dump(htpage_regexp);
+    return Foxtrick.getHref( doc ).search( htpage_regexp ) > -1;
 }
 
 Foxtrick.getHref = function( doc ) {
