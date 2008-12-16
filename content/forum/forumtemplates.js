@@ -83,7 +83,7 @@ var FoxtrickForumTemplates = {
     },
 
     _removeTemplate : function( ev ) {
-        if ( confirm( Foxtrickl10n.getString( 'delete_template_ask' ) ) )
+        if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_template_ask' ) ) )
         {
             FoxtrickPrefs.delListPref( FoxtrickForumTemplates._TEMPLATES_PREFLIST, ev.target.msg );
             // ev.target.nextSibling.parentNode.removeChild( ev.target.nextSibling );
