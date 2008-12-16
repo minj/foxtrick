@@ -28,7 +28,7 @@ var FoxtrickTeamPopupLinks = {
         var head = doc.getElementsByTagName("head")[0];
 		var style = doc.createElement("style");
 		style.setAttribute("type", "text/css");
-		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: 80px; position: absolute; left: 20px; top: -54px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}';
+		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: 100px; position: absolute; left: 20px; top: -54px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}';
 		style.appendChild(doc.createTextNode(zaw));
 		head.appendChild(style);
 		var aLinks = doc.getElementsByTagName('a'); //doc.links;
@@ -74,6 +74,7 @@ var FoxtrickTeamPopupLinks = {
 				
 				var tr3 = doc.createElement("tr");
 				var td3 = doc.createElement("td");
+				td3.setAttribute("nowrap", "nowrap");
 				var a3 = doc.createElement("a");
 				a3.setAttribute('href', '/Club/Manager/?teamId=' + value+'&ShowOldConnections=true');
 				a3.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'last_5_ips' )));
