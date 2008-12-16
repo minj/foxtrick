@@ -1,7 +1,7 @@
 /**
- * mediantransferprice.js
- * Foxtrick Add median transfer price
- * @author bummerland, original Greasemonkey script by smates 
+ * youthskillnotes.js
+ * Make your own notes about skills...
+ * @Author by smates 
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickYouthSkillNotes = {
