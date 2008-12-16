@@ -33,8 +33,8 @@
     <em:targetApplication RDF:resource="rdf:#$1gQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$6gQfX1"/>
     <!-- developer list -->
-    <em:developer>MoD-PaV</em:developer>
     <em:developer>Karel Kolman [kolmis]</em:developer>
+    <em:developer>Mod-PaV</em:developer>
     <!-- contributor list -->
     <!--<em:contributor></em:contributor>-->
     <!-- translator list -->
