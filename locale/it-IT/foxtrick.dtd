@@ -2,7 +2,13 @@
      Karel Kolman
 -->
 
+<!ENTITY foxtrick.prefs.shortcuts "Shortcuts and tweaks">
+<!ENTITY foxtrick.prefs.forum "Forum">
+<!ENTITY foxtrick.prefs.links "Links">
+<!ENTITY foxtrick.prefs.modulelistlabel "Available modules. Check the box next to a module name to enable it.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick is currently undergoing a transition to the new Hattrick design. We are doing our best to bring all the old features to the new design. Please be patient with us and expect regular updates!">
+
+
 <!ENTITY foxtrick.prefs.mainoptions "Main options">
 <!ENTITY foxtrick.prefs.enable "Enable">
 <!ENTITY foxtrick.prefs.preferences "Preferences">
@@ -68,9 +74,11 @@
 <!ENTITY foxtrick.menu.installmedalset "Install Hattrick.org medal set">
 <!ENTITY foxtrick.prefs.htcurrency "Hattrick currency">
 <!ENTITY foxtrick.prefs.main "Main">
+<!ENTITY foxtrick.prefs.alertsettings "Alert settings">
 <!ENTITY foxtrick.prefs.alertslider "Show alert slider.">
 <!ENTITY foxtrick.prefs.foxtrickinstatusbar "Display FoxTrick panel in Firefox status bar.">
 <!ENTITY foxtrick.prefs.alertsound "Play alert sound.">
+<!ENTITY foxtrick.prefs.alertslidermac "Show growl notification (Mac only)">
 <!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
 <!ENTITY foxtrick.prefs.htdateformat "Date format">
 <!ENTITY foxtrick.menu.makelink "Conference link into clipboard">

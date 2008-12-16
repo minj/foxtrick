@@ -73,9 +73,11 @@
 <!ENTITY foxtrick.menu.installmedalset "Instalar el juego de medallas del Hattrick.org">
 <!ENTITY foxtrick.prefs.htcurrency "Moneda de Hattrick">
 <!ENTITY foxtrick.prefs.main "Principal">
+<!ENTITY foxtrick.prefs.alertsettings "Alert settings">
 <!ENTITY foxtrick.prefs.alertslider "Mostrar alerta de desplazamiento.">
 <!ENTITY foxtrick.prefs.foxtrickinstatusbar "Mostrar el panel de FoxTrick panel la barra de status de Firefox.">
 <!ENTITY foxtrick.prefs.alertsound "Reproducir alerta de sonido.">
+<!ENTITY foxtrick.prefs.alertslidermac "Show growl notification (Mac only)">
 <!ENTITY foxtrick.menu.createplayerad "Pegar jugador al portapaleles.">
 <!ENTITY foxtrick.prefs.htdateformat "Formato de fecha">
 <!ENTITY foxtrick.menu.makelink "Pegar link del foro en el portapapeles">
