@@ -43,18 +43,18 @@ var FoxtrickMoveLinks = {
 				} else if (posts[j].childNodes[3].className=="cfDeleted") {
 					continue;
 				} else {
-					// bookmarked user
+					// posting user is bookmarked
 					cfHeader = posts[j].childNodes[4];
 					cfUser = posts[j].childNodes[5];
 				}
 			
 				if(cfUser.id) {
-					// Ignored user
+					// posting user is ignored
 					cfUser = cfUser.childNodes[0];
 				}
 			
 				if(cfUser.childNodes[0].className=="cfUserInfo") {
-					// user has no avatar
+					// posting user has no avatar
 					cfUserInfo = cfUser.childNodes[0];
 				} else {
 					cfUserInfo = cfUser.childNodes[1];
@@ -62,7 +62,7 @@ var FoxtrickMoveLinks = {
 			
 				if(cfUserInfo.childNodes[2].href.search("\/Help\/Supporter\/")
 					>-1) {
-					// user is supporter
+					// posting user is supporter
 					countryLink = cfUserInfo.childNodes[4];
 					leagueLink = cfUserInfo.childNodes[6];
 				} else {
@@ -72,6 +72,10 @@ var FoxtrickMoveLinks = {
 			
 				var space = doc.createTextNode(" ");
 				var authorLink = cfHeader.childNodes[0].childNodes[4];
+				if(!authorLink.href) {
+					// viewing user has no supporter
+					authorLink = cfHeader.childNodes[0].childNodes[2];
+				}
 				cfHeader.childNodes[0].insertBefore(leagueLink,authorLink.nextSibling);
 				cfHeader.childNodes[0].insertBefore(countryLink,authorLink.nextSibling);
 				cfHeader.childNodes[0].insertBefore(space,authorLink.nextSibling);
