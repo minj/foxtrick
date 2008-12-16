@@ -34,10 +34,17 @@
     <em:targetApplication RDF:resource="rdf:#$6gQfX1"/>
     <!-- developer list -->
     <em:developer>Karel Kolman [kolmis]</em:developer>
-    <em:developer>Mod-PaV</em:developer>
+	<em:developer>Mod-PaV</em:developer>
+	<em:developer>larsw84</em:developer>
+	<em:developer>bummerland</em:developer>
+	<em:developer>taised</em:developer>
+	<em:developer>smates</em:developer>
     <!-- contributor list -->
-    <!--<em:contributor></em:contributor>-->
+    <em:contributor>spambot</em:contributor>
     <!-- translator list -->
-    <!--<em:contributor></em:contributor>-->
+    <em:contributor>gucan (Cesky)</em:contributor>
+	<em:contributor>spambot (Deutsch)</em:contributor>
+	<em:contributor>franory (Espanol)</em:contributor>
+	<em:contributor>ljushaff (Srpski)</em:contributor>
   </RDF:Description>
 </RDF:RDF>
