@@ -72,6 +72,10 @@ var FoxtrickMoveLinks = {
 			
 				var space = doc.createTextNode(" ");
 				var authorLink = cfHeader.childNodes[0].childNodes[4];
+				if(!authorLink) {
+					// viewing user has no supporter
+					authorLink = cfHeader.childNodes[0].childNodes[2];
+				}
 				if(!authorLink.href) {
 					// viewing user has no supporter
 					authorLink = cfHeader.childNodes[0].childNodes[2];
