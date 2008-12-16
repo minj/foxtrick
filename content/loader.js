@@ -28,6 +28,7 @@ var scripts = [
     'shortcuts_and_tweaks/teampopuplinks.js',
     'shortcuts_and_tweaks/transferListSearchFilters.js',
     'shortcuts_and_tweaks/youthskillnotes.js',
+    'shortcuts_and_tweaks/foxtrickalert.js',
     'foxtrick_smates.js',
     
     'modules_list.js',

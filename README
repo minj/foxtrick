@@ -6,7 +6,7 @@ Steps to add a new module are as follows:
 1. create a new module in a *.js file. Have an init() and run() functions in main class. See registerPageHandler() and registerAllPagesHandler() functions documentation in foxtrick.js for more info. A MODULE_NAME string is also required in your class with your module name.
 2. register to listen for pages (can be more than one ) as needed in your init() function. Page names are in the module.js, feel free to add new ones. If you listen to more than one page, use a switch( page ) in run() function (page is supplied as an argument to run()).
 3. add the class name to Foxtrick.modules array in modules_list.js
-4. add your .js file to foxtrick.xul and preferences-dialog.xul ABOVE modules_list.js
+4. add your script file in loader.js
 5. If you want your module to be enabled by default, add a line to foxtrick/defaults/preferences/foxtrick.js according to instructions there.
 6. Add a module description in foxtrick.properties (see the file for details).
 

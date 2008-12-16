@@ -7,7 +7,7 @@
 var BookmarkAdjust = {
 
     MODULE_NAME : "BookmarkAdjust",
-	MODULE_CATEGORY : "shortcutsandtweaks",
+    MODULE_CATEGORY : "shortcutsandtweaks",
     
     init : function() {
         Foxtrick.registerPageHandler( 'bookmarks',
