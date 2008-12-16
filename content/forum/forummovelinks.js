@@ -73,12 +73,17 @@ var FoxtrickMoveLinks = {
 				var space = doc.createTextNode(" ");
 				var authorLink = cfHeader.childNodes[0].childNodes[4];
 				if(!authorLink) {
-					// viewing user has no supporter
+					// viewing user has no supporter and message is replied to all
 					authorLink = cfHeader.childNodes[0].childNodes[2];
 				}
 				if(!authorLink.href) {
-					// viewing user has no supporter
+					// viewing user has no supporter and neither does posting user
 					authorLink = cfHeader.childNodes[0].childNodes[2];
+				} else {
+					// viewing user has no supporter but posting user does
+					if(authorLink.href.search(/\/Club\/Manager\/\?userId=/i)==-1) {
+						authorLink = cfHeader.childNodes[0].childNodes[2];
+					}
 				}
 				cfHeader.childNodes[0].insertBefore(leagueLink,authorLink.nextSibling);
 				cfHeader.childNodes[0].insertBefore(countryLink,authorLink.nextSibling);
