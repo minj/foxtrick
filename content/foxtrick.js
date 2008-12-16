@@ -241,3 +241,25 @@ Foxtrick.LOG = function (msg) {
         consoleService.logStringMessage(msg);
 }
 
+Foxtrick.selectFile = function (parentWindow) {
+    try {
+    	var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
+    	fp.init(parentWindow, "", fp.modeOpen);
+    	if (fp.show() == fp.returnOK ) {
+    		return fp.file.path;
+    	}
+    	return null;
+    } catch (e) {
+        dump(e);
+    }
+}
+
+Foxtrick.playSound = function(url) {
+  try {
+    var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
+    var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+    soundService.play(ioService.newURI(url, null, null));
+  } catch (e) {
+    dump(e);
+  }
+}

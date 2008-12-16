@@ -50,7 +50,12 @@
                       <checkbox id="alertsliderpref" label="&foxtrick.prefs.alertslider;"/>
                       <checkbox id="alertslidermacpref" label="&foxtrick.prefs.alertslidermac;"/>
                       <checkbox id="alertsoundpref" label="&foxtrick.prefs.alertsound;"/>
-                      <textbox id="alertsoundurlpref"/>
+                      <hbox align="center">
+                        <textbox id="alertsoundurlpref" width="360"/>
+                        <button label="&foxtrick.prefs.selectfile;"
+                                oncommand="var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}"/>
+                        <button label="Test" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
+                      </hbox>
                     </vbox>
                   </groupbox>
               </vbox>
