@@ -73,7 +73,7 @@ var FoxtrickAlert = {
                   }
                   if (FoxtrickPrefs.getBool("alertSound")) {
                      try {
-                       FoxtrickAlert.foxtrick_playSound(PrefsBranch.getCharPref("alertSoundUrl"));
+                       FoxtrickAlert.foxtrick_playSound(FoxtrickPrefs.getString("alertSoundUrl"));
                      } catch (e) {
                        Foxtrick.LOG('playsound: '+e);
                      }
