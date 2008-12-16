@@ -7,6 +7,7 @@ locale foxtrick de-DE locale/de-DE/
 locale foxtrick en-US locale/en-US/
 locale foxtrick es-ES locale/es-ES/
 locale foxtrick it-IT locale/it-IT/
+locale foxtrick nl-NL locale/nl-NL/
 locale foxtrick sr-SR locale/sr-SR/
 
 skin	foxtrick	classic/1.0	skin/
