@@ -71,10 +71,10 @@ var FoxtrickMoveLinks = {
 				}
 			
 				var space = doc.createTextNode(" ");
-				var supporterLink = cfHeader.childNodes[0].childNodes[6];
-				cfHeader.childNodes[0].insertBefore(countryLink,supporterLink);
-				cfHeader.childNodes[0].insertBefore(leagueLink,supporterLink);
-				cfHeader.childNodes[0].insertBefore(space,supporterLink);
+				var authorLink = cfHeader.childNodes[0].childNodes[4];
+				cfHeader.childNodes[0].insertBefore(leagueLink,authorLink.nextSibling);
+				cfHeader.childNodes[0].insertBefore(countryLink,authorLink.nextSibling);
+				cfHeader.childNodes[0].insertBefore(space,authorLink.nextSibling);
 			}
 			// If avatar is also hidden, change class of message
 			if(Foxtrick.isModuleEnabled( FoxtrickHideManagerAvatar.MODULE_NAME )) {
