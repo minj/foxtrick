@@ -3,7 +3,7 @@ pref( "extensions.foxtrick.prefs.htLanguage", "en");
 pref( "extensions.foxtrick.prefs.alertSlider", true);
 pref( "extensions.foxtrick.prefs.alertSliderGrowl", false);
 pref( "extensions.foxtrick.prefs.alertSound", false);
-pref( "extensions.foxtrick.prefs.alertSoundUrl", 'chrome://foxtrick/content/resources/sounds/ding.waw');
+pref( "extensions.foxtrick.prefs.alertSoundUrl", 'chrome://foxtrick/content/resources/sounds/DingLing.wav');
 
 
 // add here your module's default enabled/disabled state
