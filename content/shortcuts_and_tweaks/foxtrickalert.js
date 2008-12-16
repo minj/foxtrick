@@ -12,7 +12,6 @@ var FoxtrickAlert = {
     
     init : function() {
         Foxtrick.registerAllPagesHandler( FoxtrickAlert );
-        //Foxtrick.registerPageHandler( 'bookmarks', FoxtrickAlert );
         this.news[0] = null;
         this.news[1] = null;
         this.news[2] = null;
@@ -30,13 +29,14 @@ var FoxtrickAlert = {
     showAlert : function(evt)
     {
         var tickerdiv=evt.originalTarget;
+        tickerdiv=tickerdiv.getElementsByTagName('div');
         try {
               var message=null;
               var elemText=new Array();
               //getting text
-              for (i=0;i<tickerdiv.childNodes.length;i++)
+              for (i=0;i<tickerdiv.length;i++)
               {
-                  var tickelem=tickerdiv.childNodes[i].firstChild.firstChild;
+                  var tickelem=tickerdiv[i].firstChild.firstChild;
                   if (tickelem.nodeType!=tickelem.TEXT_NODE)
                   {
                       //there is the strong tag
@@ -53,7 +53,7 @@ var FoxtrickAlert = {
               if (message != null)
               {
               	  var isequal=true;
-                  for (i=0;i<tickerdiv.childNodes.length;i++)
+                  for (i=0;i<tickerdiv.length;i++)
                   {
                       if (elemText[i]!=FoxtrickAlert.news[i])
                           isequal=false;
