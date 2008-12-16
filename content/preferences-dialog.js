@@ -18,6 +18,14 @@ var FoxtrickPreferencesDialog = {
         }
         
         this.initLangPref();
+        this.initAlertPref();
+    },
+    
+    initAlertPref: function() {
+    	document.getElementById('alertsliderpref').setAttribute( "checked", FoxtrickPrefs.getBool( "alertSlider" ) );
+    	document.getElementById('alertslidermacpref').setAttribute( "checked", FoxtrickPrefs.getBool( "alertSliderGrowl" ) );
+    	document.getElementById('alertsoundpref').setAttribute( "checked", FoxtrickPrefs.getBool( "alertSound" ) );
+        document.getElementById('alertsoundurlpref').setAttribute( "value", FoxtrickPrefs.getString( "alertSoundUrl" ) );
     },
     
     initLangPref: function() {
@@ -63,6 +71,12 @@ var FoxtrickPreferencesDialog = {
         
         //Lang
         FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
+        
+        //Alert
+        FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
+        FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
+        FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
+        FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
         
         // reinitialize
         FoxtrickMain.init();

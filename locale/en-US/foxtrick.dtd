@@ -74,9 +74,11 @@
 <!ENTITY foxtrick.menu.installmedalset "Install Hattrick.org medal set">
 <!ENTITY foxtrick.prefs.htcurrency "Hattrick currency">
 <!ENTITY foxtrick.prefs.main "Main">
+<!ENTITY foxtrick.prefs.alertsettings "Alert settings">
 <!ENTITY foxtrick.prefs.alertslider "Show alert slider.">
 <!ENTITY foxtrick.prefs.foxtrickinstatusbar "Display FoxTrick panel in Firefox status bar.">
 <!ENTITY foxtrick.prefs.alertsound "Play alert sound.">
+<!ENTITY foxtrick.prefs.alertslidermac "Show growl notification (Mac only)">
 <!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
 <!ENTITY foxtrick.prefs.htdateformat "Date format">
 <!ENTITY foxtrick.menu.makelink "Conference link into clipboard">

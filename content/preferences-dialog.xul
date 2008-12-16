@@ -44,6 +44,15 @@
                           
                       </menupopup>
                   </menulist>
+                  <groupbox>
+                  <caption label="&foxtrick.prefs.alertsettings;"/>
+                    <vbox>
+                      <checkbox id="alertsliderpref" label="&foxtrick.prefs.alertslider;"/>
+                      <checkbox id="alertslidermacpref" label="&foxtrick.prefs.alertslidermac;"/>
+                      <checkbox id="alertsoundpref" label="&foxtrick.prefs.alertsound;"/>
+                      <textbox id="alertsoundurlpref"/>
+                    </vbox>
+                  </groupbox>
               </vbox>
            </tabpanel>
         

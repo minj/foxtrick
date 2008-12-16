@@ -75,7 +75,7 @@ var FoxtrickAlert = {
                      try {
                        FoxtrickAlert.foxtrick_playSound(PrefsBranch.getCharPref("alertSoundUrl"));
                      } catch (e) {
-                       alert(e);
+                       Foxtrick.LOG('playsound: '+e);
                      }
                   }
                 //}
