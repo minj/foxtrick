@@ -50,6 +50,7 @@
     <statusbarpanel id="foxtrick-status-bar" label="FoxTrick" context="foxtrick-status-bar-menu"/>
 	<menupopup id="foxtrick-status-bar-menu">
 		<menuitem id="foxtrick_statusbar_config_menu" label="&foxtrick.menu.configurefoxtrick;" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+		<menuitem id="foxtrick_statusbar_reload" label="&foxtrick.menu.reloadfoxtrick;" oncommand="FoxtrickService.load();"/>
 	</menupopup>
 </statusbar>
 

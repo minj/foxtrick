@@ -15,6 +15,7 @@
 <!ENTITY foxtrick.prefs.cssskins "CSS Skins">
 <!ENTITY foxtrick.prefs.defaulthatrickskin "Use default Hattrick skin.">
 <!ENTITY foxtrick.menu.configurefoxtrick "Configure FoxTrick">
+<!ENTITY foxtrick.menu.reloadfoxtrick "Reload FoxTrick (for developers)">
 <!ENTITY foxtrick.prefs.faces "Faces and Dresses (for supporters)">
 <!ENTITY foxtrick.prefs.nodressesorfaces "Don't add faces or dresses.">
 <!ENTITY foxtrick.prefs.showfaces "Add players' faces to match lineup.">

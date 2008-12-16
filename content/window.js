@@ -4,9 +4,9 @@
  * @author kolmis
  */
  
-var myFoxtrickService = Components.classes["@foxtrick;1"].getService().wrappedJSObject;
+var FoxtrickService = Components.classes["@foxtrick;1"].getService().wrappedJSObject;
 
-var FoxtrickMain = myFoxtrickService.getFoxtrickMain();
-var Foxtrick = myFoxtrickService.getFoxtrick();
-var FoxtrickPrefs = myFoxtrickService.getFoxtrickPrefs();
-var Foxtrickl10n = myFoxtrickService.getFoxtrickl10n();
+var FoxtrickMain = FoxtrickService.getFoxtrickMain();
+var Foxtrick = FoxtrickService.getFoxtrick();
+var FoxtrickPrefs = FoxtrickService.getFoxtrickPrefs();
+var Foxtrickl10n = FoxtrickService.getFoxtrickl10n();

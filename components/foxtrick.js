@@ -32,14 +32,17 @@ class definition
 function FoxtrickService() {
     // If you only need to access your component from Javascript, uncomment the following line:
     this.wrappedJSObject = this;
-
-    var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
-                           .getService(Components.interfaces.mozIJSSubScriptLoader);
-    loader.loadSubScript('chrome://foxtrick/content/loader.js');
+    this.load();
 };
 
 // class definition
 FoxtrickService.prototype = {
+
+  load: function() {
+    var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
+                           .getService(Components.interfaces.mozIJSSubScriptLoader);
+    loader.loadSubScript('chrome://foxtrick/content/loader.js');
+  },
 
   getFoxtrick: function() {
       return Foxtrick;

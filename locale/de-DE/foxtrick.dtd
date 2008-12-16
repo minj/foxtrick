@@ -22,6 +22,7 @@
 <!ENTITY foxtrick.prefs.cssskins "CSS Skins">
 <!ENTITY foxtrick.prefs.defaulthatrickskin "den default HT-Skin benutzen">
 <!ENTITY foxtrick.menu.configurefoxtrick "FoxTrick konfigurieren">
+<!ENTITY foxtrick.menu.reloadfoxtrick "Reload FoxTrick (for developers)">
 <!ENTITY foxtrick.prefs.faces "Gesichter und Trikots (für Supporter)">
 <!ENTITY foxtrick.prefs.nodressesorfaces "Keine Gesichter und Trikots.">
 <!ENTITY foxtrick.prefs.showfaces "Füge Spielergesichter der Aufstellung hinzu.">
