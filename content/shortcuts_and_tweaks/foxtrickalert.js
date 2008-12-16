@@ -73,7 +73,7 @@ var FoxtrickAlert = {
                   }
                   if (FoxtrickPrefs.getBool("alertSound")) {
                      try {
-                       FoxtrickAlert.foxtrick_playSound(FoxtrickPrefs.getString("alertSoundUrl"));
+                       Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
                      } catch (e) {
                        Foxtrick.LOG('playsound: '+e);
                      }
@@ -124,15 +124,5 @@ var FoxtrickAlert = {
     	} catch (e) {
     		Foxtrick.LOG(e);
     	}
-    },
-    
-    foxtrick_playSound: function(url) {
-      try {
-        var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-        var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-        soundService.play(ioService.newURI(url, null, null));
-      } catch (e) {
-        Foxtrick.LOG(e);
-      }
     }
 };
