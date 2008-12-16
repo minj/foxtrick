@@ -35,6 +35,8 @@ var FoxtrickMoveLinks = {
 			if(posts[j].childNodes[3].className=="cfHeader") {
 				cfHeader = posts[j].childNodes[3];
 				cfUser = posts[j].childNodes[4];
+			} else if (posts[j].childNodes[3].className=="cfDeleted") {
+				continue;
 			} else {
 				// bookmarked user
 				cfHeader = posts[j].childNodes[4];
