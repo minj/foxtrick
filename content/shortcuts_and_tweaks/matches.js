@@ -50,68 +50,71 @@ var Matches = {
                     sidebar.appendChild(this._createBarDiv_extended(doc, percentArray, strangediv));
                 }
                 
-                for (var selectedRating in this.ratingDefs) {
-                    //If prefs: TODO
-                    if (selectedRating!='hatstats') continue;
-                    
-                    var row = ratingstable.insertRow(8);
-                    
-                    var cell = row.insertCell(0);
-                    cell.className='ch';
-                    cell.innerHTML = this.ratingDefs[selectedRating].label;
-                    
-                    for (i=1;i<3;i++)
-                    {
-                        var midfieldLevel=this._getStatFromCell(ratingstable.rows[1].cells[i]);
-                        var lattack=this._getStatFromCell(ratingstable.rows[2].cells[i]);
-                        var cattack=this._getStatFromCell(ratingstable.rows[3].cells[i]);
-                        var rattack=this._getStatFromCell(ratingstable.rows[4].cells[i]);
-                        var ldefence=this._getStatFromCell(ratingstable.rows[5].cells[i]);
-                        var cdefence=this._getStatFromCell(ratingstable.rows[6].cells[i]);
-                        var rdefence=this._getStatFromCell(ratingstable.rows[7].cells[i]);
-                        var tactics=null; //TO DO
-                        var tacticsLevel=null; //TO DO
+                if (percentArray.length>0)
+                {
+                    for (var selectedRating in this.ratingDefs) {
+                        //If prefs: TODO
+                        if (selectedRating!='hatstats') continue;
                         
-                        var defenceLevel = ldefence + cdefence + rdefence;
-                        var attackLevel = rattack + cattack + lattack;
+                        var row = ratingstable.insertRow(8);
                         
-                        var cell = row.insertCell(i);
-                        try {
-                            if (typeof (this.ratingDefs[selectedRating]["total2"]) != 'undefined') {
-                                if (tactics != null) {
-                                cell.innerHTML = "<b>" + 
-                                                 this.ratingDefs[selectedRating]["total2"](midfieldLevel, lattack, cattack, rattack,
-                                                                                                     ldefence, cdefence, rdefence,
-                                                                                                     tactics, tacticsLevel
-                                                                                                     )
-                                               + "</b>";
-                                            }
-                            } else {
-                                cell.innerHTML = "<b>" + 
-                                                 this.ratingDefs[selectedRating]["total"](midfieldLevel, attackLevel, defenceLevel)
-                                               + "</b>";
+                        var cell = row.insertCell(0);
+                        cell.className='ch';
+                        cell.innerHTML = this.ratingDefs[selectedRating].label;
+                        
+                        for (i=1;i<3;i++)
+                        {
+                            var midfieldLevel=this._getStatFromCell(ratingstable.rows[1].cells[i]);
+                            var lattack=this._getStatFromCell(ratingstable.rows[2].cells[i]);
+                            var cattack=this._getStatFromCell(ratingstable.rows[3].cells[i]);
+                            var rattack=this._getStatFromCell(ratingstable.rows[4].cells[i]);
+                            var ldefence=this._getStatFromCell(ratingstable.rows[5].cells[i]);
+                            var cdefence=this._getStatFromCell(ratingstable.rows[6].cells[i]);
+                            var rdefence=this._getStatFromCell(ratingstable.rows[7].cells[i]);
+                            var tactics=null; //TO DO
+                            var tacticsLevel=null; //TO DO
+                            
+                            var defenceLevel = ldefence + cdefence + rdefence;
+                            var attackLevel = rattack + cattack + lattack;
+                            
+                            var cell = row.insertCell(i);
+                            try {
+                                if (typeof (this.ratingDefs[selectedRating]["total2"]) != 'undefined') {
+                                    if (tactics != null) {
+                                    cell.innerHTML = "<b>" + 
+                                                     this.ratingDefs[selectedRating]["total2"](midfieldLevel, lattack, cattack, rattack,
+                                                                                                         ldefence, cdefence, rdefence,
+                                                                                                         tactics, tacticsLevel
+                                                                                                         )
+                                                   + "</b>";
+                                                }
+                                } else {
+                                    cell.innerHTML = "<b>" + 
+                                                     this.ratingDefs[selectedRating]["total"](midfieldLevel, attackLevel, defenceLevel)
+                                                   + "</b>";
+                                }
+                             }
+                            catch (e) {
+                                this.LOG('matches.js rating print: '+e);
                             }
-                         }
-                        catch (e) {
-                            this.LOG('matches.js rating print: '+e);
                         }
+                        /*insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "defence",
+                              messageBundle.GetStringFromName("foxtrick.matchdetail.defence"), defenceLevel);
+                        insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "special",
+                              messageBundle.GetStringFromName("foxtrick.matchdetail.defence"),  rdefence, cdefence, ldefence);
+                        
+                        insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "midfield",
+                              messageBundle.GetStringFromName("foxtrick.matchdetail.midfield"), midfieldLevel);
+                        insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "mystyle",
+                              messageBundle.GetStringFromName("foxtrick.matchdetail.midfield"), midfieldLevel);
+                              
+                        insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "attack",
+                              messageBundle.GetStringFromName("foxtrick.matchdetail.attack"),  attackLevel);
+                        insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "special",
+                              messageBundle.GetStringFromName("foxtrick.matchdetail.attack"),  rattack, cattack, lattack);
+                        
+                        row = ratingstable.insertRow(ratingstable.rows.length);*/
                     }
-                    /*insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "defence",
-                          messageBundle.GetStringFromName("foxtrick.matchdetail.defence"), defenceLevel);
-                    insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "special",
-                          messageBundle.GetStringFromName("foxtrick.matchdetail.defence"),  rdefence, cdefence, ldefence);
-                    
-                    insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "midfield",
-                          messageBundle.GetStringFromName("foxtrick.matchdetail.midfield"), midfieldLevel);
-                    insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "mystyle",
-                          messageBundle.GetStringFromName("foxtrick.matchdetail.midfield"), midfieldLevel);
-                          
-                    insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "attack",
-                          messageBundle.GetStringFromName("foxtrick.matchdetail.attack"),  attackLevel);
-                    insertRatingsRow(ratingstable, this.ratingDefs[selectedRating], "special",
-                          messageBundle.GetStringFromName("foxtrick.matchdetail.attack"),  rattack, cattack, lattack);
-                    
-                    row = ratingstable.insertRow(ratingstable.rows.length);*/
                 }
             }
         } catch (e) {
