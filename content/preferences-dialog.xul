@@ -18,10 +18,6 @@
 	style="width: 640px; height: 420px;"
 	flex="1">
 
-<stringbundleset id="stringbundleset">
-    <stringbundle id="string-bundle" src="chrome://foxtrick/locale/foxtrick.properties" />
-</stringbundleset>
-
 <script type="application/x-javascript" src="chrome://foxtrick/content/window.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
