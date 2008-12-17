@@ -90,7 +90,7 @@ var FoxtrickMoveLinks = {
 				cfHeader.childNodes[0].insertBefore(space,authorLink.nextSibling);
 			}
 			// If avatar is also hidden, change class of message
-			if(Foxtrick.isModuleEnabled( FoxtrickHideManagerAvatar.MODULE_NAME )) {
+			if(Foxtrick.isModuleEnabled( FoxtrickHideManagerAvatar )) {
 				elems = doc.getElementsByTagName("div");
 				for(var k=0; k < elems.length; k++) {
 					if(elems[k].getAttribute("class")=="cfUser") {

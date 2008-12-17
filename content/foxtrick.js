@@ -40,7 +40,7 @@ var FoxtrickMain = {
             var module = Foxtrick.modules[i];
             // if module has an init() function and is enabled
             if ( module.MODULE_NAME
-                    && Foxtrick.isModuleEnabled( module.MODULE_NAME )
+                    && Foxtrick.isModuleEnabled( module )
                     && module.init )
             {
                 try {
@@ -233,9 +233,10 @@ String.prototype.group = function( chr, size )
 	return this.split( '' ).reverse().join( '' ).replace( new RegExp( "(.{" + size + "})(?!$)", "g" ), "$1" + chr ).split( '' ).reverse().join( '' );
 }
 
-Foxtrick.isModuleEnabled = function( module_name ) {
+Foxtrick.isModuleEnabled = function( module ) {
     try {
-        return FoxtrickPrefs.getBool( "module." + module_name + ".enabled" );
+        var val = FoxtrickPrefs.getBool( "module." + module.MODULE_NAME + ".enabled" );
+        return (val != null) ? val : module.DEFAULT_ENABLED; 
     } catch( e ) {
         return false;
     }
