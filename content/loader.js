@@ -18,6 +18,7 @@ var scripts = [
     'forum/forumhideavatar.js',
     'forum/forummovelinks.js',
     'forum/forumstaffmarker.js',
+	'forum/forumalltidflags.js',
     'shortcuts_and_tweaks/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/matches.js',

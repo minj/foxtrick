@@ -1,0 +1,139 @@
+# Module descriptions
+# WARNING: your module description has to have the name foxtrick.MODULE_NAME.desc
+foxtrick.ForumTemplates.desc=Permite convertir mensajes de la conferencia en plantillas para su uso posterior
+foxtrick.HideManagerAvatar.desc=Oculta el avatar del manager en la conferencia, pero no los link de la liga y bandera del país
+foxtrick.AddLeaveConfButton.desc=Añade un botón de 'Abandonar Conferencia' en cada carpeta de la conferencia
+foxtrick.StarsCounter.desc=Añade el número total de estrellas en la página de alineación del partido
+foxtrick.MoveLinks.desc=Mueve los links de liga y bandera del país a la cabecera del mensaje en la conferencia. Nota: La opción de 'Mostrar avatar' debe estar activada en las Preferencias de la Conferencia para que funcione !
+foxtrick.Matches.desc=Añade barras de ataque/defensa y calificaciones (Hatstats y otras) a la página del partido
+foxtrick.BookmarkAdjust.desc=Cambia el icnono asociado a favoritos, insertando en el comentantario del favorito el código correspondienteentre corchetes: Ej. [cyan] mostrará el icono 'cyan'. Posible valores: aqua, B, black, blue, brown, cyan, darkpurple, green, idea, lightblue, lightgreen, orange, pink, purple, red, white, yellow
+foxtrick.FoxtrickAlert.desc=Reliza una notificación sonora ante una noticia de Hattrick
+
+# menu
+foxtrick.menu.configurefoxtrick=Configurar Foxtrick
+
+# Stars counter
+total_stars=Total estrellas: 
+
+# FoxtrickAddLeaveConfButton
+leave_conf_button_alert=Presiona 'Guardar' en la siguietne página para abandonar esta conferencia.
+
+# ForumTemplates
+make_template_from_post=Crear plantilla a partir de este mensaje
+template_exists=La plantilla ya existe o esta vacía
+delete_template_ask=¿Borra la plantilla?
+
+transfercompare_medianprice=Mediana del precio
+transfercompare_avgprice=Precio promedio
+
+#YouthSkillNotes
+Notes_about_skills=Notas sobre habilidades
+Edit_notes=Editar notas
+Save_notes=Guardar notas
+
+#Skilltypes
+Playmaking=Jugadas
+Winger=Lateral
+Scoring=Anotación
+Passing=Pases
+Defending=Defensa
+Keeper=Portería
+Set pieces=Balón parado
+Stamina=Condición
+
+#Skills
+weak=Débil
+
+foxtrick.menu.savefilter=Guardar filtro
+foxtrick.menu.removefilter=Eliminar Filtro
+foxtrick.menu.selectfiltername=Seeccionar nombre del filtro:
+foxtrick.menu.removeallfilters=Eliminar todos
+foxtrick.matchlineup.totalstars=Número total de estrellas:
+foxtrick.shortcuts.matchlineup=Atajo a la alineación del partido
+foxtrick.shortcuts.leaveconference=Atajo para abandonar la conferencia
+foxtrick.matchdetail.midfield=Mediocampo
+foxtrick.matchdetail.attack=Ataque
+foxtrick.matchdetail.defence=Defensa
+foxtrick.shortcut.matchlineup=alineación
+foxtrick.tweaks.nolinkstorules=Mostrar nivel de habilidades como texto, no como enlaces de hipertexto
+foxtrick.tweaks.hideteamlinksintransferlist=No mostrar enlace al equipo dentro de la lista de transferencias (sólo texto)
+
+# as in 2,3,4 stars
+foxtrick.prefs.stars=estrellas
+foxtrick.prefs.mergemoderec=Modo de funsión recomendado
+foxtrick.tweaks.bookmarknotescoloring=Resaltar notas de favoritos según importancia. Etiquetas disponibles:
+foxtrick.tweaks.flipsides=Botón para cambiar de lado las órdenes del partido
+foxtrick.matchorders.flipsides=Cambiar lados
+foxtrick.matchorders.formation=Formación
+foxtrick.matchorders.formationcds=CD
+foxtrick.matchorders.formationims=MC
+foxtrick.matchorders.formationforwards=DEL
+foxtrick.matchdetail.right=Derecha
+foxtrick.matchdetail.center=Centro
+foxtrick.matchdetail.left=Izquierda
+foxtrick.matchdetail.moregraphs=Más gráficas
+foxtrick.matchdetail.rightshort=D
+foxtrick.matchdetail.centershort=C
+foxtrick.matchdetail.leftshort=I
+foxtrick.tweaks.addskilllevelnumbertooltips=Añadir recuadro (tooltip) con el nivel de habilidad en forma númerica
+foxtrick.tweaks.characterspresentation=Presentación visual de la personalidad (carácter, honestidad, agresividad)
+foxtrick.tweaks.bookmarksnotesdisplay=Mostrar comentarios de jugadores favoritos en la lista de favoritos.
+foxtrick.bidconfirmation=¿Deseas ofrecer por este jugador? \nEl precio es %s
+foxtrick.tlconfirmation=¿Deseas poner a este jugador en la lista de transferencias?\nLa posición es %p y el precio solicitado es %s
+foxtrick.tlwarning=Hattrick solicita que colocques al jugador en una lista de transferencias. Elije una del menú desplegable
+foxtrick.tweaks.bidconfirmation=Confirmación de oferta
+foxtrick.tweaks.tlconfirmation=Confirmación de transferencia del jugador
+foxtrick.tweaks.matchincome=Ingresos del partido en la página de detalles del partido
+foxtrick.tweaks.signaturetoggle=Ocultar firmas en la conferencia. Mostrar el link para mostrar la firma
+foxtrick.conferences.signaturetoggle=Firma
+foxtrick.tweaks.playerliststats=Lista de estadísticas del jugador (TSI, edad)
+foxtrick.tweaks.goaldifference=Diferencia de goles en la tabla de clasificación de la liga
+foxtrick.tweaks.matchdetailplayercoloring=Colores de los jugadores en la página de detalles del partido
+foxtrick.tweaks.flagsincountrieslist=Banderas en la lista de países (menú)
+foxtrick.playertransfercompare.avgprice=Precio promedio
+foxtrick.tweaks.transfercompareaverageprice=Precio promedio en el comparador de transderencias
+foxtrick.tweaks.formationconfirmation=Confirmación de la formación
+foxtrick.formationconfirmation=¿Estás seguro que deseas mandar la formación %s?
+foxtrick.tweaks.serieshistorygraphlabel=Gráfico histórico de la liga
+foxtrick.tweaks.serieshistorygraph1=Gráfico histórico de la liga (automático)
+foxtrick.tweaks.serieshistorygraph2=Gráfico histórico de la liga (mediante click)
+foxtrick.tweaks.economicaldifference=Diferencia económica semanal
+foxtrick.economicaldifference.diff=Diferencia semanal
+foxtrick.economicaldifference.expecteddiff=Diferencia esperada
+foxtrick.playerliststats.weeks=seamanas
+foxtrick.playerliststats.stats=Estadísticas
+foxtrick.playerliststats.tsi=TSI
+foxtrick.playerliststats.age=edad
+foxtrick.playerliststats.form=forma
+foxtrick.playerliststats.exp=experiencia
+foxtrick.playerliststats.stamina=condición
+foxtrick.tweaks.playerdetailcountryflag=Bandera del país en la página del jugador
+foxtrick.tweaks.gregoriantoht=Adjuntar información semana/temporada de Hattrick hasta la fecha
+foxtrick.tweaks.specialistscost=Gasto de especialistas
+foxtrick.tweaks.flagsinconferences=Mostrar bandera del país de los usuarios en la conferencia
+foxtrick.tweaks.colorstaffnicksinconferences=Colorear nicks del staff de Hattrick en las conferencias
+foxtrick.economicaldifference.balance=Balance/diferencia de dos semanas
+foxtrick.tweaks.teampopuplinks=Popup con atajos del equipo
+foxtrick.tweaks.flagscounter=Añadir contador de banderas
+foxtrick.tweaks.transfercomparemedianprice=Mostrar mediana del precio en el comparador de transferencias
+foxtrick.playertransfercompare.medianprice=Mediana del precio 
+foxtrick.tweaks.forummessagetemplates=Plantillas de mensajes para la conferencia
+foxtrick.tweaks.flagsinplayerbackground=Bandera del país como fondo de la cara del jugador
+foxtrick.tweaks.teamlogobelow=Ajustar para mostrar logos grnades
+foxtrick.playerliststats.stamina=condición
+foxtrick.tweaks.mapofvisitedcountries=Mapa de países visitados (en la página de COlección de Banderas)
+
+#matches
+foxtrick.matches.attackdefensebars=Comparación Ataque vs Defensa
+foxtrick.matches.right=Derecha
+foxtrick.matches.left=Izquierda
+foxtrick.matches.center=Centro
+foxtrick.matches.defense=def
+foxtrick.matches.attack=at
+foxtrick.matches.indfreekick=Tiro indirecto
+foxtrick.matches.wronglang=Foxtrick: No se pueden mostrar las estadísticas porque tu idioma no esta registrado o las preferencias del idioma son incorrectas
+
+Matches=Partidos
+Players=Jugadores
+last_5_ips=Últimas 5 conexiones
+###EOF
