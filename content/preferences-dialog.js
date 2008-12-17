@@ -157,7 +157,7 @@ var FoxtrickPreferencesDialog = {
                                 var hbox = document.createElement( "hbox" );
                                 var check = document.createElement( "checkbox" );
                                 check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
-                                check.setAttribute( "checked", FoxtrickPreferencesDialog.getModuleEnableState( module.MODULE_NAME ) ); 
+                                check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) ); 
                                 hbox.appendChild( check );
                                 var name = document.createElement( "label" );
                                 name.setAttribute( "class", "name" );
@@ -177,14 +177,6 @@ var FoxtrickPreferencesDialog = {
 };
 
 FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
-
-FoxtrickPreferencesDialog.getModuleEnableState = function( module_name ) {
-    try {
-        return FoxtrickPrefs.getBool( "module." + module_name + ".enabled" );
-    } catch( e ) {
-        return false;
-    }
-}
 
 FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
     FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
