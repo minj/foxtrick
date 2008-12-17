@@ -9,6 +9,7 @@ var FoxtrickMoveLinks = {
 	
     MODULE_NAME : "MoveLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	DEFAULT_ENABLED : true,
 
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',

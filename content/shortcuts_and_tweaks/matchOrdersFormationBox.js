@@ -7,6 +7,7 @@ FoxtrickFormationBoxInMatchOrders = {
 	
     MODULE_NAME : "FormationBoxInMatchOrders",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    DEFAULT_ENABLED : true,
 
     init : function() {
         Foxtrick.registerPageHandler('matchOrders', this);
