@@ -47,6 +47,5 @@ var FoxtrickAlltidFlags = {
 				}
 			}
 		}
-		Foxtrick.alert("So far so good");
 	}
 };
