@@ -7,7 +7,7 @@
 var FoxtrickAlert = {
 
     MODULE_NAME : "FoxtrickAlert",
-    MODULE_CATEGORY : "shortcutsandtweaks",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     news : {},
     
     init : function() {

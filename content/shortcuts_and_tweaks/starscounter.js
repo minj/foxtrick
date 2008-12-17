@@ -9,7 +9,7 @@
 var FoxtrickStarsCounter = {
 
 	MODULE_NAME : "StarsCounter",
-	MODULE_CATEGORY : "shortcutsandtweaks",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	
 	init : function() {
 			Foxtrick.registerPageHandler( 'matchLineup',

@@ -7,7 +7,7 @@
 var FoxtrickHideFaceTransferImages = {
 	
     MODULE_NAME : "HideFaceTransferImages",
-    MODULE_CATEGORY : "shortcutsandtweaks",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     init : function() {
             // if ( FoxtrickPrefs.getBool("hideFaceTransferImages")) {
             Foxtrick.registerPageHandler( 'Player',
@@ -37,7 +37,7 @@ var elems = document.getElementsByTagName("img");
 var FoxtrickHideFaceInjuryImages = {
 	
     MODULE_NAME : "HideFaceInjuryImages",
-    MODULE_CATEGORY : "shortcutsandtweaks",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     init : function() {
             // if ( FoxtrickPrefs.getBool("hideFaceInjuryImages")) {
             Foxtrick.registerPageHandler( 'Player',
@@ -67,7 +67,7 @@ var elems = document.getElementsByTagName("img");
 var FoxtrickColouredYouthFaces = {
 	
     MODULE_NAME : "ColouredYouthFaces",
-    MODULE_CATEGORY : "shortcutsandtweaks",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     init : function() {
             // if ( FoxtrickPrefs.getBool("showColouredYouthFaces")) {
             Foxtrick.registerPageHandler( 'YouthPlayer',

@@ -7,6 +7,7 @@
 FoxtrickFlipSidesInMatchOrders = {
 	
     MODULE_NAME : "FlipSidesInMatchOrders",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 
     init : function() {
         Foxtrick.registerPageHandler('matchOrders', this);

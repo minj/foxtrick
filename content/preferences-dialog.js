@@ -13,7 +13,7 @@ var FoxtrickPreferencesDialog = {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
-        for each ( cat in Foxtrick.functionCategories ) {
+        for each ( cat in Foxtrick.moduleCategories ) {
             FoxtrickPreferencesDialog._fillModulesList( document, cat );
         }
         
@@ -48,15 +48,15 @@ var FoxtrickPreferencesDialog = {
     onDialogAccept : function() {
         var modules_list;
                 
-        for each ( cat in Foxtrick.functionCategories ) {
+        for each ( cat in Foxtrick.moduleCategories ) {
                 switch(cat) {
-                        case Foxtrick.functionCategories.SHORTCUTS_AND_TWEAKS:
+                        case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
                                 modules_list = document.getElementById( 'shortcuts_list' );
                                 break;
-                        case Foxtrick.functionCategories.FORUM:
+                        case Foxtrick.moduleCategories.FORUM:
                                 modules_list = document.getElementById( 'forum_list' );
                                 break;
-                        case Foxtrick.functionCategories.LINKS:
+                        case Foxtrick.moduleCategories.LINKS:
                                 modules_list = document.getElementById( 'links_list' );
                                 break;
                 }

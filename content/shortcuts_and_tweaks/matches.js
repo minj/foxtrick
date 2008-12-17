@@ -7,7 +7,7 @@
 var Matches = {
     
     MODULE_NAME : "Matches",
-    MODULE_CATEGORY : "shortcutsandtweaks",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     htLanguagesXml : null,
     htCurrenciesXml : null,
     ratingDefs : {},

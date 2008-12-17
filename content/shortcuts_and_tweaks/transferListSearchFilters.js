@@ -6,7 +6,7 @@
 FoxtrickTransferListSearchFilters = {
 	
     MODULE_NAME : "TransferListSearchFilters",
-    MODULE_CATEGORY : Foxtrick.functionCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 
     init : function() {
         Foxtrick.registerPageHandler('transferListSearchForm', this);

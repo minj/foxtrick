@@ -8,7 +8,7 @@ var FoxtrickForumTemplates = {
     
     MODULE_NAME : "ForumTemplates",
     MODULE_AUTHOR : "Mod-PaV",
-    MODULE_CATEGORY : "forum",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 
     _MAX_TEMPLATE_DISP_LENGTH : 60,
     _TEMPLATES_DIV_ID : "post_templates",
