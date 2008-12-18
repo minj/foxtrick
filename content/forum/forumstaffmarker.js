@@ -21,7 +21,83 @@ var FoxtrickForumStaffMarker = {
     run : function( page, doc ) {
 		
         // var doc = Foxtrick.current_doc;
-
+		var editorsArray = ["1636ince",
+			"7areega",
+			"Abu_Ahmed",
+			"accull",
+			"alea_iacta_est",
+			"Aleksandar-GIGANT",
+			"animator",
+			"Arlequin",
+			"AroKing",
+			"Assim",
+			"bischhoffshausen",
+			"ChatJam",
+			"christ14",
+			"CoachDinamo",
+			"dancing_rob",
+			"daZOOpolitis",
+			"dekios",
+			"Dr_Ed",
+			"eblaise",
+			"Editor-Bekurute",
+			"Editor-Fileppi",
+			"Editor-Huberth",
+			"Ed-valkyria",
+			"-erko-",
+			"Gandalf28",
+			"gibbo101",
+			"GM-Mjoelnir",
+			"GM-Sowjon",
+			"Goats34",
+			"GZ-Turkoo",
+			"hallenberg",
+			"ishuaia",
+			"ivo_stoyanov",
+			"Jugemon",
+			"julianignacio",
+			"kikso",
+			"Krat64",
+			"krespim",
+			"LA-acarl",
+			"LA-GQPOZ",
+			"LA-monad",
+			"Maauwke",
+			"MachimoI",
+			"Magnus47",
+			"McOrionTT4",
+			"MELAFEFON-omerzigdon",
+			"mikesoft",
+			"Mnord",
+			"MOD-Gizmo",
+			"Mod-Hurrican",
+			"Mod-Karlthegreat",
+			"Mod-Suso",
+			"pacsey",
+			"Pedro-Dusbaum",
+			"Peluza",
+			"Petrovitsj",
+			"PuCeK17",
+			"rcesantos",
+			"Reallo",
+			"Richard_B_Riddick",
+			"rolacity",
+			"sarfaraz",
+			"sgtflint",
+			"SH-Patrick",
+			"Simsern",
+			"Sir-Kiko",
+			"SkyfireX",
+			"snedy",
+			"Suli_sul",
+			"tha-king",
+			"tobinov",
+			"unrockbar",
+			"Viriatus",
+			"Yami-Yugi",
+			"Yarka",
+			"Yndy_",
+			"ZurrieqGiants",];
         switch( page )
         {
             case 'forumViewThread':
@@ -67,6 +143,8 @@ var FoxtrickForumStaffMarker = {
 							a.style.background="white";
 							a.style.color="green";
 							//a.innerHTML = "<SPAN style=\"color: green; background: white\"><B>" + uname + "</B></SPAN>";
+						} else if (editorsArray.join().search(uname) > -1) {
+							a.style.background="green";
 						}
 					}
 				}
