@@ -87,4 +87,6 @@
 <!ENTITY foxtrick.prefs.forummessagetemplates "Foren-Posts-Templates">
 <!ENTITY foxtrick.prefs.opendirectory "Verzeichnis öffnen">
 <!ENTITY foxtrick.prefs.selectfile "Sounddatei wählen">
+<!ENTITY foxtrick.prefs.stagesettings "Stage settings">
+<!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
 <!-- EOF -->

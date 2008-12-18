@@ -86,4 +86,6 @@
 <!ENTITY foxtrick.prefs.forummessagetemplates "Predefinisane poruke za Forum">
 <!ENTITY foxtrick.prefs.opendirectory "Otvori direktorijum">
 <!ENTITY foxtrick.prefs.selectfile "Izaberi zvučni fajl">
+<!ENTITY foxtrick.prefs.stagesettings "Stage settings">
+<!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
 <!-- EOF -->

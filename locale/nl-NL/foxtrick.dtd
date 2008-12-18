@@ -86,4 +86,6 @@
 <!ENTITY foxtrick.prefs.forummessagetemplates "Forum bericht sjablonen">
 <!ENTITY foxtrick.prefs.opendirectory "Open folder">
 <!ENTITY foxtrick.prefs.selectfile "Selecteer bestand met geluid">
+<!ENTITY foxtrick.prefs.stagesettings "Stage instellingen">
+<!ENTITY foxtrick.prefs.disableonstage "Schakel Foxtrick uit op Stage server">
 <!-- EOF -->
