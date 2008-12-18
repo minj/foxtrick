@@ -86,6 +86,6 @@
 <!ENTITY foxtrick.prefs.forummessagetemplates "Modèles de message">
 <!ENTITY foxtrick.prefs.opendirectory "Ouvrir le répertoire">
 <!ENTITY foxtrick.prefs.selectfile "Sélectionnez le fichier son">
-<!ENTITY foxtrick.prefs.stagesettings "Stage settings">
-<!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
+<!ENTITY foxtrick.prefs.stagesettings "Paramètres Stage">
+<!ENTITY foxtrick.prefs.disableonstage "Désactiver Foxtrick sur le serveur Stage">
 <!-- EOF -->
