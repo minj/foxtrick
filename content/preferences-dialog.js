@@ -19,7 +19,44 @@ var FoxtrickPreferencesDialog = {
         
         this.initLangPref();
         this.initAlertPref();
-		this.initStagePref();
+        this.initMatchRatingPref();
+	this.initStagePref();
+    },
+    
+    initMatchRatingPref:function() {
+    	try {
+            //Finding the matches module (there is a smarter way?)
+    	    for (module in Foxtrick.modules)
+    	        if (Foxtrick.modules[module].MODULE_NAME=='Matches')
+    	        {
+    	            var ratingDefs =Foxtrick.modules[module].initHtRatings();
+    	            break;
+    	        }
+
+    	    var ratinglist = document.getElementById('matchrating_list');
+    	    for (var selectedRating in ratingDefs) {
+    	        var check = document.createElement( "checkbox" );
+                //check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
+                check.setAttribute( "checked", FoxtrickPrefs.getBool( "matchstat."+selectedRating ) ); 
+                check.setAttribute( "label", ratingDefs[selectedRating].label);
+                check.prefname="matchstat."+selectedRating;
+                ratinglist.appendChild(check);
+    	    }
+    	} catch (e) {
+    	    alert(e);
+    	}
+    },
+    
+    setMatchRatingPref: function() {
+    	try {
+            var ratinglist = document.getElementById('matchrating_list');
+            for (i=0;i<ratinglist.childNodes.length;i++)
+            {
+                FoxtrickPrefs.setBool(ratinglist.childNodes[i].prefname, ratinglist.childNodes[i].checked);
+            }
+        } catch (e) {
+    	    alert(e);
+    	}
     },
     
     initAlertPref: function() {
@@ -83,8 +120,11 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
         
-		//Stage
-		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
+        //Match ratings
+        FoxtrickPreferencesDialog.setMatchRatingPref();
+        
+        //Stage
+	FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
         // reinitialize
         FoxtrickMain.init();
                 
