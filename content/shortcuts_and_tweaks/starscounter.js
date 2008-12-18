@@ -44,7 +44,12 @@ var FoxtrickStarsCounter = {
 			}
 		}
 		
-		var experienceRuleLink = doc.links[doc.links.length - 7];
+		var experienceRuleLink;
+		for(var j = 0; j < doc.links.length; j++ {
+			if(doc.links[j].className=="skill") {
+				experienceRuleLink = doc.links[j];
+			}
+		}
 		var target = experienceRuleLink.parentNode;
 		var span = doc.createElement("span");
 		span.innerHTML = "<b>" + Foxtrickl10n.getString('total_stars') + "</b> " + totalStars;

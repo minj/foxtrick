@@ -1,4 +1,4 @@
-﻿<!-- nl-NL
+<!-- nl-NL
      Maarten Eekels (eekels)
 -->
 
@@ -87,5 +87,5 @@
 <!ENTITY foxtrick.prefs.opendirectory "Open folder">
 <!ENTITY foxtrick.prefs.selectfile "Selecteer bestand met geluid">
 <!ENTITY foxtrick.prefs.stagesettings "Stage instellingen">
-<!ENTITY foxtrick.prefs.disableonstage "Schakel Foxtrick uit op Stage server">
+<!ENTITY foxtrick.prefs.disableonstage "Schakel Foxtrick op de Stage server uit">
 <!-- EOF -->
