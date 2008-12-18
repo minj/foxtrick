@@ -62,11 +62,11 @@ var FoxtrickMoveLinks = {
 		if(Foxtrick.isModuleEnabled( FoxtrickHideManagerAvatar )) {
 			allDivs = doc.getElementsByTagName("div");
 			for(var m=0; m < allDivs.length; m++) {
-				if(allDivs[m].getAttribute("class")=="cfUser") {
+				if(allDivs[m].className=="cfUser") {
 					allDivs[m].parentNode.removeChild(allDivs[m]);
 				}
-				if(elems[k].getAttribute("class")=="cfMessage") {
-					elems[k].setAttribute("class","cfMessageNoAvatar");
+				if(allDivs[m].className=="cfMessage") {
+					allDivs[m].className="cfMessageNoAvatar";
 				}
 			}
 		}
