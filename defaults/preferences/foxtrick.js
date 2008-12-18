@@ -4,3 +4,4 @@ pref( "extensions.foxtrick.prefs.alertSlider", true);
 pref( "extensions.foxtrick.prefs.alertSliderGrowl", false);
 pref( "extensions.foxtrick.prefs.alertSound", false);
 pref( "extensions.foxtrick.prefs.alertSoundUrl", 'chrome://foxtrick/content/resources/sounds/DingLing.wav');
+pref( "extensions.foxtrick.prefs.disableOnStage", false );

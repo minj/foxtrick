@@ -34,12 +34,14 @@
         <!-- Main -->
            <tabpanel orient="vertical">
               <vbox>
-                  <label>&foxtrick.prefs.language;</label>
-                  <menulist id="htLanguage">
+				  <groupbox>
+					<caption label="&foxtrick.prefs.language;"/>
+					<menulist id="htLanguage">
                       <menupopup id="htLanguagePopup">
                           
                       </menupopup>
-                  </menulist>
+					</menulist>
+				  </groupbox>
                   <groupbox>
                   <caption label="&foxtrick.prefs.alertsettings;"/>
                     <vbox>
@@ -54,6 +56,10 @@
                       </hbox>
                     </vbox>
                   </groupbox>
+				  <groupbox>
+				    <caption label="&foxtrick.prefs.stagesettings;"/>
+				    <checkbox id="stagepref" label="&foxtrick.prefs.disableonstage;"/>
+				  </groupbox>
               </vbox>
            </tabpanel>
         

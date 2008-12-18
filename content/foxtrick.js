@@ -126,8 +126,14 @@ var FoxtrickMain = {
 
 Foxtrick.isPage = function( page, doc ) {
 	var htpage_regexp = new RegExp( page, "i" );
+	var stage_regexp = /http:\/\/stage.hattrick.org/i;
 	dump(htpage_regexp);
-    return Foxtrick.getHref( doc ).search( htpage_regexp ) > -1;
+	if(!( FoxtrickPrefs.getBool("disableOnStage") &&
+		Foxtrick.getHref( doc).search( stage_regexp )) > -1) {
+		return Foxtrick.getHref( doc ).search( htpage_regexp ) > -1;
+	} else { 
+		return false;
+	}
 }
 
 Foxtrick.getHref = function( doc ) {

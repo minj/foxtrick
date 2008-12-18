@@ -19,6 +19,7 @@ var FoxtrickPreferencesDialog = {
         
         this.initLangPref();
         this.initAlertPref();
+		this.initStagePref();
     },
     
     initAlertPref: function() {
@@ -44,6 +45,10 @@ var FoxtrickPreferencesDialog = {
             Foxtrick.alert(e);
         }
     },
+	
+	initStagePref : function() {
+		document.getElementById('stagepref').setAttribute( "checked", FoxtrickPrefs.getBool( "disableOnStage" ) );
+	},
 
     onDialogAccept : function() {
         var modules_list;
@@ -78,6 +83,8 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
         
+		//Stage
+		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
         // reinitialize
         FoxtrickMain.init();
                 
