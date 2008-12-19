@@ -189,7 +189,7 @@ var Matches = {
 			var ifkdefText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
 			var ifkattText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
             
-			if (true) { // TODO: make some preference for this!
+			if (false) { // TODO: make some preference for this!
 				bodydiv.style.textAlign = "center";
 				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchgraphs.css");
 				
