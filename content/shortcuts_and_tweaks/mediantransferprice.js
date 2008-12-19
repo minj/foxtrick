@@ -44,10 +44,10 @@ var FoxtrickMedianTransferPrice = {
 				avg = Math.round(avg / lengte)+"";
 				
 				if(lengte % 2 ==1){
-					median = priceArray[(lengte-1)/2]+"";
+					median = Math.round(priceArray[(lengte-1)/2])+"";
 				}
 				else {
-					median = ((priceArray[(lengte/2)-1]+priceArray[lengte/2])/2)+"";
+					median = Math.round((priceArray[(lengte/2)-1]+priceArray[lengte/2])/2)+"";
 				}
 				if (count>0) {
 			        
