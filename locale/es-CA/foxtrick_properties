@@ -122,6 +122,8 @@ foxtrick.tweaks.flagsinplayerbackground=Bandera del país como fondo de la cara 
 foxtrick.tweaks.teamlogobelow=Ajustar para mostrar logos grnades
 foxtrick.playerliststats.stamina=condición
 foxtrick.tweaks.mapofvisitedcountries=Mapa de países visitados (en la página de COlección de Banderas)
+foxtrick.tweaks.sendmessage=Send message
+foxtrick.tweaks.actions=Actions
 
 #matches
 foxtrick.matches.attackdefensebars=Comparación Ataque vs Defensa

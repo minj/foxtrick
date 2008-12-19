@@ -48,7 +48,8 @@ var FoxtrickShowMessageButton = {
 				ownBoxLeftHeader.className = "boxLeft";
 				ownBoxHead.appendChild(ownBoxLeftHeader);
 				var ownHeader = doc.createElement("h2");
-				ownHeader.innerHTML = "Actions";
+				ownHeader.innerHTML = Foxtrickl10n.getString( 
+					"foxtrick.tweaks.actions" );
 				ownBoxLeftHeader.appendChild(ownHeader);
 				var ownBoxBody = doc.createElement("div");
 				ownBoxBody.className = "boxBody";
@@ -57,11 +58,12 @@ var FoxtrickShowMessageButton = {
 				messageLink.className = "inner";
 				messageLink.href = "../?TeamID=" + teamID + 
 					"&SendMessage=true";
-				messageLink.title = "Send message";
+				messageLink.title = Foxtrickl10n.getString( 
+					"foxtrick.tweaks.sendmessage" );
 				ownBoxBody.appendChild(messageLink);
 				var img = doc.createElement("img");
 				img.className = "actionIcon";
-				img.alt = "Send message";
+				img.alt = Foxtrickl10n.getString( "sendmessage" );
 				img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
 				messageLink.appendChild(img);
 				var ownBoxFooter = doc.createElement("div");
@@ -74,8 +76,28 @@ var FoxtrickShowMessageButton = {
 				
 				// Append the message form to the sidebar
 				var sidebar = doc.getElementById("sidebar");
-				var firstChild = sidebar.firstChild;
-				sidebar.insertBefore(ownSidebarBox,firstChild);
+				var firstDiv = sidebar.getElementsByTagName("div")[0];
+				var subDivs = firstDiv.getElementsByTagName("div");
+				var divBoxHead;
+				var divBoxBody;
+				for(var j = 0; j < subDivs.length; j++) {
+					switch(subDivs[j].className) {
+						case "boxHead":
+							divBoxHead = subDivs[j];
+							break;
+						case "boxBody":
+							divBoxBody = subDivs[j];
+							break;
+					}
+				}
+				var divBoxLeft = divBoxHead.getElementsByTagName("div")[0];
+				var header = divBoxLeft.getElementsByTagName("h2")[0];
+				if(header.innerHTML == Foxtrickl10n.getString(
+					"foxtrick.tweaks.actions")) {
+					divBoxBody.insertBefore(messageLink,divBoxBody.firstChild);
+				} else {
+					sidebar.insertBefore(ownSidebarBox,firstDiv);
+				}
 				break;
 				
 			case 'teamPage':

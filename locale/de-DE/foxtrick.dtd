@@ -1,4 +1,4 @@
-<!-- de-DE (rev. 196)
+<!-- de-DE (rev. 225)
      spambot
      utf-8 encoded language file
 -->
@@ -7,7 +7,7 @@
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Links">
 <!ENTITY foxtrick.prefs.modulelistlabel "Verfügbare Module. Via Checkbox können die einzelnen Module aktiviert werden.">
-<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick wird derzeit generalüberholt. Bitte wartet noch ein wenig auf ein Update. Wir arbeiten mit Hochdruck daran!">
+<!ENTITY foxtrick.prefs.transitioninfo "FoxTrick wird derzeit generalüberholt, somit sind noch nicht alle gewünschten Funktionen verfügbar. Wir arbeiten mit Hochdruck daran!">
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Grundeinstellungen">
@@ -83,10 +83,10 @@
 <!ENTITY foxtrick.menu.createplayerad "Spieleranzeige in die Zwischenablage kopieren.">
 <!ENTITY foxtrick.prefs.htdateformat "Datumsformat">
 <!ENTITY foxtrick.menu.makelink "Foren-Link in die Zwischenablage kopieren.">
-<!ENTITY foxtrick.prefs.forumtemplates "Foren-Templates">
-<!ENTITY foxtrick.prefs.forummessagetemplates "Foren-Posts-Templates">
+<!ENTITY foxtrick.prefs.forumtemplates "Foren-Vorlagen">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Foren-Posts-Vorlagen">
 <!ENTITY foxtrick.prefs.opendirectory "Verzeichnis öffnen">
 <!ENTITY foxtrick.prefs.selectfile "Sounddatei wählen">
-<!ENTITY foxtrick.prefs.stagesettings "Stage settings">
-<!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
+<!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
+<!ENTITY foxtrick.prefs.disableonstage "Foxtrick auf Stage Server deaktivieren">
 <!-- EOF -->
