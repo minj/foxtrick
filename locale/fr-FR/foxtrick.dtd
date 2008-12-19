@@ -5,6 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Raccourcis &amp; Fonctionnalités avancées">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Liens">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Modules disponibles. Cochez la case à côté du nom du module pour l'activer.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick est actuellement en cours de transition vers le nouveau design d'Hattrick. Nous faisons de notre mieux pour mettre toutes les anciennes fonctions de ce nouveau design. S'il vous plaît soyez patient avec nous et attendez-vous à des mises à jour régulières!">
 
@@ -88,4 +89,6 @@
 <!ENTITY foxtrick.prefs.selectfile "Sélectionnez le fichier son">
 <!ENTITY foxtrick.prefs.stagesettings "Paramètres Stage">
 <!ENTITY foxtrick.prefs.disableonstage "Désactiver Foxtrick sur le serveur Stage">
+<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
+<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
 <!-- EOF -->

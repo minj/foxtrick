@@ -89,5 +89,6 @@
 <!ENTITY foxtrick.prefs.selectfile "Select sound file">
 <!ENTITY foxtrick.prefs.stagesettings "Stage settings">
 <!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
-
+<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
+<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
 <!-- EOF -->

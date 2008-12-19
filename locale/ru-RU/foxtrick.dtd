@@ -5,6 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Настройки">
 <!ENTITY foxtrick.prefs.forum "Форум">
 <!ENTITY foxtrick.prefs.links "Ссылки">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Доступные модули. Отметьте модуль для его подключения.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick на данный момент находится на переработке для соответствия новому дизайну Hattrick. Мы прилагаем все усилия для скорейшего включения всех ранее существовавших возможностей дополнения для работы с новым дизайном. Пожалуйста, будьте терпеливы и регулярно следите за обновлениями!">
 
@@ -88,4 +89,6 @@
 <!ENTITY foxtrick.prefs.selectfile "Выбрать звуковой файл">
 <!ENTITY foxtrick.prefs.stagesettings "Stage settings">
 <!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
+<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
+<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
 <!-- EOF -->

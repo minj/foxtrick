@@ -5,6 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Skróty i modyfikacje">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Linki">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Poni¿ej znajduje siê lista modyfikacji dostêpnych w wybranej kategorii. Aby aktywowaæ dany dodatek, zaznacz pole widoczne po lewej stronie od jego nazwy.">
 <!ENTITY foxtrick.prefs.transitioninfo "Obecnie dostosowujemy FoxTrick do nowego wygl¹du Hattricka. Robimy wszystko, co w naszej mocy, aby dodatki znane z poprzednich wersji FoxTricka, by³y dostêpne równie¿ teraz. B¹dŸ zatem cierpliwy i spodziewaj siê czêstych aktualizacji!">
 
@@ -88,5 +89,7 @@
 <!ENTITY foxtrick.prefs.selectfile "Wybierz plik dŸwiêkowy">
 <!ENTITY foxtrick.prefs.stagesettings "Stage settings">
 <!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
+<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
+<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
 
 <!-- EOF -->

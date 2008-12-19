@@ -26,7 +26,8 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickHideFaceTransferImages,
                      FoxtrickHideFaceInjuryImages,
                      FoxtrickColouredYouthFaces,
-					 FoxtrickAlltidFlags,
-					 FoxtrickShowMessageButton,
+				 FoxtrickAlltidFlags,
+		     FoxtrickLinksLeague,
+ 					 FoxtrickShowMessageButton,
 					 FoxtrickTruncateLongNicks
                    ];

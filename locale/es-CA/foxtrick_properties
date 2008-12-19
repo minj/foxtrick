@@ -8,6 +8,11 @@ foxtrick.MoveLinks.desc=Mueve los links de liga y bandera del país a la cabecer
 foxtrick.Matches.desc=Añade barras de ataque/defensa y calificaciones (Hatstats y otras) a la página del partido
 foxtrick.BookmarkAdjust.desc=Cambia el icnono asociado a favoritos, insertando en el comentantario del favorito el código correspondienteentre corchetes: Ej. [cyan] mostrará el icono 'cyan'. Posible valores: aqua, B, black, blue, brown, cyan, darkpurple, green, idea, lightblue, lightgreen, orange, pink, purple, red, white, yellow
 foxtrick.FoxtrickAlert.desc=Reliza una notificación sonora ante una noticia de Hattrick
+foxtrick.AlltidFlags.desc=Adds Alltid flags  and links of both posters on forum page
+foxtrick.LinksLeague.desc=Adds some external links to the league page
+
+# links
+foxtrick.links.boxheader=Links
 
 # menu
 foxtrick.menu.configurefoxtrick=Configurar Foxtrick

@@ -6,6 +6,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Shortcuts &amp; Tweaks">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Links">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Verfügbare Module. Via Checkbox können die einzelnen Module aktiviert werden.">
 <!ENTITY foxtrick.prefs.transitioninfo "FoxTrick wird derzeit generalüberholt, somit sind noch nicht alle gewünschten Funktionen verfügbar. Wir arbeiten mit Hochdruck daran!">
 
@@ -89,4 +90,8 @@
 <!ENTITY foxtrick.prefs.selectfile "Sounddatei wählen">
 <!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
 <!ENTITY foxtrick.prefs.disableonstage "Foxtrick auf Stage Server deaktivieren">
+<!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
+<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
+<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
+
 <!-- EOF -->

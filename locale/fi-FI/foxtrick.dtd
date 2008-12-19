@@ -4,6 +4,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Oikopolut ja viritykset">
 <!ENTITY foxtrick.prefs.forum "Foorumi">
 <!ENTITY foxtrick.prefs.links "Linkit">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Käytettävissä olevat moduulit. Tarkista moduulin nimen vieressä oleva laatikko salliaksesi sen.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick kokee tällä hetkellä muutoksia Hattrickin uuteen ulkoasuun. Teemme parhaamme tuodaksemme kaikki vanhat ominaisuudet takaisin, olkaa kärsivällisiä ja odottakaamme päivityksiä!">
 
@@ -87,4 +88,6 @@
 <!ENTITY foxtrick.prefs.selectfile "Valitse äänitiedosto">
 <!ENTITY foxtrick.prefs.stagesettings "Stage-asetukset">
 <!ENTITY foxtrick.prefs.disableonstage "Estä Foxtrick Stage-serverillä">
+<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
+<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
 <!-- EOF -->

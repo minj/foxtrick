@@ -13,3 +13,5 @@ pref( "extensions.foxtrick.prefs.matchstat.loddarstats", true);
 pref( "extensions.foxtrick.prefs.matchstat.peasostats", true);
 pref( "extensions.foxtrick.prefs.matchstat.htitavals", true);
 pref( "extensions.foxtrick.prefs.matchstat.gardierstats", true);
+pref( "extensions.foxtrick.prefs.module.LinksLeague.enabled", true );
+pref( "extensions.foxtrick.prefs.module.AlltidFlags.enabled", false );

@@ -285,3 +285,19 @@ Foxtrick.playSound = function(url) {
     dump(e);
   }
 }
+
+
+// create stats Hash
+
+var foxtrickStatsHash = {};
+for (var key in stats) {
+  var stat = stats[key];
+  for (var prop in stat) {
+    if (prop.match(/link/)) {
+      if (typeof(foxtrickStatsHash[prop]) == 'undefined') {
+       foxtrickStatsHash[prop] = {};
+      }
+      foxtrickStatsHash[prop][key] = stat;
+    }
+  }
+} 

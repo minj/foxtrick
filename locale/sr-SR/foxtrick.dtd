@@ -5,6 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Prečice i alati">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Linkovi">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Raspoloživi moduli. Čekiraj kućicu pored modula da ga uključiš.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick trenutno prelazi na novi Hattrick dizajn. Činimo sve što je u nasoj moći da sve stare funkcije ponovo osposobimo za novi dizajn. Molimo vas budite strpljivi i očekujte redovna ažuriranja!">
 
@@ -88,4 +89,6 @@
 <!ENTITY foxtrick.prefs.selectfile "Izaberi zvučni fajl">
 <!ENTITY foxtrick.prefs.stagesettings "Stage settings">
 <!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
+<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
+<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
 <!-- EOF -->

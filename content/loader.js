@@ -10,6 +10,7 @@ var scripts = [
     'preferences.js',
     'const.js',
     'module.js',
+    'stats.js',
     'l10n.js',
 
     // individual modules
@@ -33,6 +34,8 @@ var scripts = [
     'shortcuts_and_tweaks/foxtrickalert.js',
     'shortcuts_and_tweaks/facePlugin.js',
 	'shortcuts_and_tweaks/showmessagebutton.js',
+    'links/linksleague.js',
+
 	    
     'modules_list.js',
     'foxtrick.js',
