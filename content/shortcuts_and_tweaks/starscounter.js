@@ -45,7 +45,7 @@ var FoxtrickStarsCounter = {
 		}
 		
 		var experienceRuleLink;
-		for(var j = 0; j < doc.links.length; j++ {
+		for(var j = 0; j < doc.links.length; j++) {
 			if(doc.links[j].className=="skill") {
 				experienceRuleLink = doc.links[j];
 			}

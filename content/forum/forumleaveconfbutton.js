@@ -1,5 +1,5 @@
 /**
- * foxtrick_larsw84.js
+ * foxtrickleaveconfbutton.js
  * Foxtrick Leave Conference module
  * @author larsw84
  */
