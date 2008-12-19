@@ -7,7 +7,7 @@
 var Matches = {
 
     MODULE_NAME : "Matches",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
     DEFAULT_ENABLED : true,
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle"),
     htLanguagesXml : null,

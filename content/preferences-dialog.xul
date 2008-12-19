@@ -25,6 +25,7 @@
   <tabs id="tabs">
     <tab id="MainTab">&foxtrick.prefs.mainoptions;</tab>
     <tab id="ShortcutsTab">&foxtrick.prefs.shortcuts;</tab>
+	<tab id="MatchesTab">&foxtrick.prefs.matches;</tab>
     <tab id="ForumTab">&foxtrick.prefs.forum;</tab>
     <tab id="LinksTab">&foxtrick.prefs.links;</tab>
     <tab id="AboutTab" label="&foxtrick.prefs.about;"/>
@@ -56,11 +57,6 @@
                       </hbox>
                     </vbox>
                   </groupbox>
-                  <groupbox>
-                  <caption label="&foxtrick.prefs.ratings;"/>
-                    <vbox id="matchrating_list">
-                    </vbox>
-                  </groupbox>
 				  <groupbox>
 				    <caption label="&foxtrick.prefs.stagesettings;"/>
 				    <checkbox id="stagepref" label="&foxtrick.prefs.disableonstage;"/>
@@ -73,6 +69,19 @@
               <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
                   <scrollbox id="shortcuts_list" flex="1" orient="vertical" style="overflow:auto" />
+              </vbox>
+           </tabpanel>
+		   
+		<!-- Matches -->
+		    <tabpanel orient="vertical">
+			  <groupbox>
+                <caption label="&foxtrick.prefs.ratings;"/>
+                <vbox id="matchrating_list">
+                </vbox>
+              </groupbox>
+			  <vbox>
+                  <label>&foxtrick.prefs.modulelistlabel;</label>
+                  <scrollbox id="matchfunctions_list" flex="1" orient="vertical" style="overflow:auto" />
               </vbox>
            </tabpanel>
 		 

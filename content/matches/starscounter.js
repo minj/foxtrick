@@ -9,7 +9,7 @@
 var FoxtrickStarsCounter = {
 
 	MODULE_NAME : "StarsCounter",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
 	
 	init : function() {

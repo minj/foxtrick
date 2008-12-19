@@ -20,18 +20,19 @@ var FoxtrickPreferencesDialog = {
         this.initLangPref();
         this.initAlertPref();
         this.initMatchRatingPref();
-	this.initStagePref();
+		this.initStagePref();
     },
     
     initMatchRatingPref:function() {
     	try {
             //Finding the matches module (there is a smarter way?)
-    	    for (module in Foxtrick.modules)
+    	    for (module in Foxtrick.modules) {
     	        if (Foxtrick.modules[module].MODULE_NAME=='Matches')
     	        {
     	            var ratingDefs =Foxtrick.modules[module].initHtRatings();
     	            break;
     	        }
+			}
 
     	    var ratinglist = document.getElementById('matchrating_list');
     	    for (var selectedRating in ratingDefs) {
@@ -94,7 +95,10 @@ var FoxtrickPreferencesDialog = {
                 switch(cat) {
                         case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
                                 modules_list = document.getElementById( 'shortcuts_list' );
-                                break;
+								break;
+						case Foxtrick.moduleCategories.MATCHES:
+								modules_list = document.getElementById( 'matchfunctions_list' );
+								break;
                         case Foxtrick.moduleCategories.FORUM:
                                 modules_list = document.getElementById( 'forum_list' );
                                 break;
@@ -137,7 +141,7 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPreferencesDialog.setMatchRatingPref();
         
         //Stage
-	FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
+		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
         // reinitialize
         FoxtrickMain.init();
                 
@@ -186,20 +190,22 @@ var FoxtrickPreferencesDialog = {
                 var modules_list;
                 
                 switch(category) {
-                        case 'shortcutsandtweaks':
-                                modules_list = doc.getElementById( 'shortcuts_list' );
+						case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
+                                modules_list = document.getElementById( 'shortcuts_list' );
+								break;
+						case Foxtrick.moduleCategories.MATCHES:
+								modules_list = document.getElementById( 'matchfunctions_list' );
+								break;
+                        case Foxtrick.moduleCategories.FORUM:
+                                modules_list = document.getElementById( 'forum_list' );
                                 break;
-                        case 'forum':
-                                modules_list = doc.getElementById( 'forum_list' );
-                                break;
-                        case 'links':
-                                modules_list = doc.getElementById( 'links_list' );
+                        case Foxtrick.moduleCategories.LINKS:
+                                modules_list = document.getElementById( 'links_list' );
                                 break;
                 }
 
-        for ( i in Foxtrick.modules ) {
-            var module = Foxtrick.modules[i];
-                        
+				for ( i in Foxtrick.modules ) {
+					var module = Foxtrick.modules[i];  
                         var module_category;
                         module_category = module.MODULE_CATEGORY;
                         if(!module_category) {
@@ -258,14 +264,15 @@ var FoxtrickPreferencesDialog = {
 										selected = false;
 									}
 									radio.setAttribute( "selected", selected);
-									radio.setAttribute( "label", FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] ));
+									radio.setAttribute( "label", FoxtrickPreferencesDialog.getModuleDescription( 
+										module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] ));
 	                                radiogroup.appendChild( radio );
 								}
 								hbox.appendChild( radiogroup );
                                 
                                 modules_list.appendChild( entry );
 							} else {
-                                var entry = document.createElement( "vbox" );
+								var entry = document.createElement( "vbox" );
                                 entry.prefname = module.MODULE_NAME;
                                 entry.setAttribute( "class", "entry" );
                                 entry.addEventListener( "click", function( ev ) { 
