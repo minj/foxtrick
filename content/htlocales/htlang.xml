@@ -277,7 +277,7 @@
       		<reposition type="normal" value="normaal" />
       		<reposition type="offensive" value="aanvallend" />
       		<reposition type="defensive" value="verdedigend" />
-      		<reposition type="towardsmiddle" value="naar het midde" />
+      		<reposition type="towardsmiddle" value="naar het midden" />
       		<reposition type="towardswing" value="naar de vleugel" />
 		</repositioning>
         <tactics>
@@ -287,6 +287,33 @@
             <tactic type="aow" value="vleugelaanval" />
             <tactic type="aim" value="centrumaanval" />
             <tactic type="creatively" value="creatief spel" />
+        </tactics>		
+	</language>
+	
+	<language name="fy" desc="Frysk">
+	    <ratingSubLevels>
+    		<sublevel text="(Hiel leech)" value="0.0" />
+    		<sublevel text="(Leech)" value="0.25"  />
+    		<sublevel text="(Heech)" value="0.50"  />
+    		<sublevel text="(Hiel heech)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+      		<reposition type="midfielder" value="ekstra sintrale middenfjilder" />
+      		<reposition type="centraldefender" value="ekstra sintrale ferdigener" />
+      		<reposition type="forward" value="ekstra oanfaller" />
+      		<reposition type="normal" value="normaal" />
+      		<reposition type="offensive" value="oanfallend" />
+      		<reposition type="defensive" value="ferdigenjend" />
+      		<reposition type="towardsmiddle" value="nei it midden" />
+      		<reposition type="towardswing" value="nei de wjuk" />
+		</repositioning>
+        <tactics>
+            <tactic type="normal" value="normaal" />
+            <tactic type="pressing" value="druk sette" />
+            <tactic type="ca" value="tsjinoanfallen" />
+            <tactic type="aow" value="oanfal oer de wjukken" />
+            <tactic type="aim" value="oanfal troch it midden" />
+            <tactic type="creatively" value="kreatyf spul" />
         </tactics>		
 	</language>
 
