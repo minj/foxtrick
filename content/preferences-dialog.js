@@ -104,9 +104,8 @@ var FoxtrickPreferencesDialog = {
                 }
 				
 				for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
-					if (modules_list.childNodes[i].prefname == "Matches") {
-						var value;
-						var radiogroup = modules_list.childNodes[i].childNodes[0].childNodes[1].childNodes;
+					if (modules_list.childNodes[i].radio) {
+						var radiogroup = modules_list.childNodes[i].childNodes[1].childNodes[0].childNodes;
 						for (var j = 0; j < radiogroup.length; j++) {
 							if (radiogroup[j].selected) {
 								FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
@@ -208,9 +207,10 @@ var FoxtrickPreferencesDialog = {
                                 module_category = "shortcutsandtweaks";
                         }
                         if(module_category == category) {
-							if (module.MODULE_NAME == "Matches") {
+							if (module.RADIO_OPTIONS != null) {
 								var entry = document.createElement( "vbox" );
                                 entry.prefname = module.MODULE_NAME;
+								entry.radio = true;
                                 entry.setAttribute( "class", "entry" );
                                 var hbox = document.createElement( "hbox" );
 								
@@ -218,27 +218,19 @@ var FoxtrickPreferencesDialog = {
                                 check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
                                 check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) ); 
                                 hbox.appendChild( check );
-								entry.addEventListener( "click", function( ev ) { 
-				                    ev.currentTarget.childNodes[0].childNodes[0].checked =
-				                        !(ev.currentTarget.childNodes[0].childNodes[0].checked);
+								hbox.addEventListener( "click", function( ev ) { 
+				                    ev.currentTarget.childNodes[0].checked = !(ev.currentTarget.childNodes[0].checked);
+									if (!ev.currentTarget.childNodes[0].checked) {
+										var radios = ev.currentTarget.nextSibling.childNodes[0].childNodes;
+										for (var i = 0; i < radios.length; i++) {
+											radios[i].setAttribute( "selected", false);
+										}
+									} else {
+										ev.currentTarget.nextSibling.childNodes[0].childNodes[0].setAttribute( "selected", true);
+									}
 				                }, false );
 								
-								var radiogroup = document.createElement( "radiogroup" );
-								for (var i = 0; i < 2; i++) {
-									var radio = document.createElement( "radio" );
-									radio.addEventListener( "click", function( ev ) { ev.target.setAttribute( "selected", !ev.target.selected) }, true );
-									var selected;
-									if (Foxtrick.getModuleValue( module ) == i) {
-										selected = true;
-									} else {
-										selected = false;
-									}
-									radio.setAttribute( "selected", selected);
-	                                radiogroup.appendChild( radio );
-								}
-								hbox.appendChild( radiogroup );
-								
-                                var name = document.createElement( "label" );
+								var name = document.createElement( "label" );
                                 name.setAttribute( "class", "name" );
                                 name.setAttribute( "value", module.MODULE_NAME );
                                 hbox.appendChild( name );
@@ -247,7 +239,29 @@ var FoxtrickPreferencesDialog = {
                                 desc.setAttribute( "class", "description" );
                                 var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
                                 desc.appendChild( desc_text );
-                                entry.appendChild( desc );
+                                hbox.appendChild( desc );
+								
+								hbox = document.createElement( "hbox" );
+								entry.appendChild( hbox );
+								var radiogroup = document.createElement( "radiogroup" );
+								for (var i = 0; i < module.RADIO_OPTIONS.length; i++) {
+									var radio = document.createElement( "radio" );
+									radio.addEventListener( "click", function( ev ) {
+										ev.target.setAttribute( "selected", true);
+										ev.target.parentNode.parentNode.previousSibling.childNodes[0].checked = true;
+									}, true );
+									var selected;
+									if (Foxtrick.getModuleValue( module ) == i) {
+										selected = true;
+									} else {
+										selected = false;
+									}
+									radio.setAttribute( "selected", selected);
+									radio.setAttribute( "label", FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] ));
+	                                radiogroup.appendChild( radio );
+								}
+								hbox.appendChild( radiogroup );
+                                
                                 modules_list.appendChild( entry );
 							} else {
                                 var entry = document.createElement( "vbox" );

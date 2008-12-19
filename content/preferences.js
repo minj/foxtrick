@@ -46,7 +46,6 @@ var FoxtrickPrefs = {
     },
 
     setBool : function( pref_name, value ) {
-		dump(pref_name + ".value = " + value + "\n");
         this._pref_branch.setBoolPref( pref_name, value );
     },
 
