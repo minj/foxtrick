@@ -189,7 +189,7 @@ var Matches = {
 			var ifkdefText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
 			var ifkattText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
             
-			if (false) { // TODO: make some preference for this!
+			if (FoxtrickPrefs.getInt("module." + Matches.MODULE_NAME + ".value") == 0) {
 				bodydiv.style.textAlign = "center";
 				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchgraphs.css");
 				
@@ -200,6 +200,7 @@ var Matches = {
 				Matches._createGraphRow(doc, bodydiv, ratingsArray[1][0], ratingsArray[4][1], cdefText, cattText);
 				Matches._createGraphRow(doc, bodydiv, ratingsArray[2][0], ratingsArray[3][1], ldefText, rattText);
 				bodydiv.appendChild(doc.createElement('br'));
+				bodydiv.appendChild(doc.createElement('br'));
 				
 				p = doc.createElement('p');
 				p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.attack" ) + " A - " + Foxtrickl10n.getString( "foxtrick.matches.defense" ) + " B";
@@ -207,6 +208,7 @@ var Matches = {
 				Matches._createGraphRow(doc, bodydiv, ratingsArray[3][0], ratingsArray[2][1], rattText, ldefText);
 				Matches._createGraphRow(doc, bodydiv, ratingsArray[4][0], ratingsArray[1][1], cattText, cdefText);
 				Matches._createGraphRow(doc, bodydiv, ratingsArray[5][0], ratingsArray[0][1], lattText, rdefText);
+				bodydiv.appendChild(doc.createElement('br'));
 				bodydiv.appendChild(doc.createElement('br'));
 				
 				p = doc.createElement('p');

@@ -102,10 +102,24 @@ var FoxtrickPreferencesDialog = {
                                 modules_list = document.getElementById( 'links_list' );
                                 break;
                 }
-        
-        for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
-                FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
+				
+				for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
+					if (modules_list.childNodes[i].prefname == "Matches") {
+						var value;
+						var radiogroup = modules_list.childNodes[i].childNodes[0].childNodes[1].childNodes;
+						for (var j = 0; j < radiogroup.length; j++) {
+							if (radiogroup[j].selected) {
+								FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
                                                    modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
+								FoxtrickPreferencesDialog.setModuleValue( modules_list.childNodes[i].prefname, j );
+								break;
+							}
+						}
+					}
+					else {
+						FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
+                                                   modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
+					}
                                                    // modules_list.childNodes[i].checked );
             // dump( modules_list.childNodes[i].prefname + " " + modules_list.childNodes[i].childNodes[0].childNodes[0].checked + "\n" );
                 }
@@ -194,13 +208,55 @@ var FoxtrickPreferencesDialog = {
                                 module_category = "shortcutsandtweaks";
                         }
                         if(module_category == category) {
+							if (module.MODULE_NAME == "Matches") {
+								var entry = document.createElement( "vbox" );
+                                entry.prefname = module.MODULE_NAME;
+                                entry.setAttribute( "class", "entry" );
+                                var hbox = document.createElement( "hbox" );
+								
+								var check = document.createElement( "checkbox" );
+                                check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
+                                check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) ); 
+                                hbox.appendChild( check );
+								entry.addEventListener( "click", function( ev ) { 
+				                    ev.currentTarget.childNodes[0].childNodes[0].checked =
+				                        !(ev.currentTarget.childNodes[0].childNodes[0].checked);
+				                }, false );
+								
+								var radiogroup = document.createElement( "radiogroup" );
+								for (var i = 0; i < 2; i++) {
+									var radio = document.createElement( "radio" );
+									radio.addEventListener( "click", function( ev ) { ev.target.setAttribute( "selected", !ev.target.selected) }, true );
+									var selected;
+									if (Foxtrick.getModuleValue( module ) == i) {
+										selected = true;
+									} else {
+										selected = false;
+									}
+									radio.setAttribute( "selected", selected);
+	                                radiogroup.appendChild( radio );
+								}
+								hbox.appendChild( radiogroup );
+								
+                                var name = document.createElement( "label" );
+                                name.setAttribute( "class", "name" );
+                                name.setAttribute( "value", module.MODULE_NAME );
+                                hbox.appendChild( name );
+                                entry.appendChild( hbox );
+                                var desc = document.createElement( "label" );
+                                desc.setAttribute( "class", "description" );
+                                var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+                                desc.appendChild( desc_text );
+                                entry.appendChild( desc );
+                                modules_list.appendChild( entry );
+							} else {
                                 var entry = document.createElement( "vbox" );
                                 entry.prefname = module.MODULE_NAME;
                                 entry.setAttribute( "class", "entry" );
                                 entry.addEventListener( "click", function( ev ) { 
-                    ev.currentTarget.childNodes[0].childNodes[0].checked =
-                        !(ev.currentTarget.childNodes[0].childNodes[0].checked);
-                }, false );
+				                    ev.currentTarget.childNodes[0].childNodes[0].checked =
+				                        !(ev.currentTarget.childNodes[0].childNodes[0].checked);
+				                }, false );
                                 var hbox = document.createElement( "hbox" );
                                 var check = document.createElement( "checkbox" );
                                 check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
@@ -217,6 +273,7 @@ var FoxtrickPreferencesDialog = {
                                 desc.appendChild( desc_text );
                                 entry.appendChild( desc );
                                 modules_list.appendChild( entry );
+							}
                         }
         }
     }
@@ -227,6 +284,10 @@ FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
 
 FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
     FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
+}
+
+FoxtrickPreferencesDialog.setModuleValue = function( module_name, value ) {
+    FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
 }
 
 FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {

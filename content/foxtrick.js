@@ -248,6 +248,15 @@ Foxtrick.isModuleEnabled = function( module ) {
     }
 }
 
+Foxtrick.getModuleValue = function( module ) {
+    try {
+        var val = FoxtrickPrefs.getInt( "module." + module.MODULE_NAME + ".value" );
+        return (val != null) ? val : module.DEFAULT_ENABLED; 
+    } catch( e ) {
+        return false;
+    }
+}
+
 Foxtrick.LOG = function (msg) {
         var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
                                  .getService(Components.interfaces.nsIConsoleService);

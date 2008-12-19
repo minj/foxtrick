@@ -37,7 +37,7 @@ var FoxtrickPrefs = {
         this._pref_branch.setIntPref( pref_name, value );
     },
 
-    getInt : function( pref_name, value ) {
+    getInt : function( pref_name ) {
         try {
             return this._pref_branch.getIntPref( pref_name );
         } catch( e ) {
@@ -46,6 +46,7 @@ var FoxtrickPrefs = {
     },
 
     setBool : function( pref_name, value ) {
+		dump(pref_name + ".value = " + value + "\n");
         this._pref_branch.setBoolPref( pref_name, value );
     },
 

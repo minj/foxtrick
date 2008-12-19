@@ -35,32 +35,42 @@ div.foxtrick-graphs {
 
 div.foxtrick-graphs-table {
   width: 100%;
-  display: table;
+/*  display: table;*/
+  float:left;
+  
   margin-bottom: 1px;
   border-spacing :2px;
 }
 
 div.foxtrick-graphs-row {
-  display: table-row;
+/*  display: table-row;*/
+  clear:both;
+  padding:1px 0px 0px 0px;
 }
 
 div.foxtrick-graphs-cell {
-  display: table-cell;
+/*  display: table-cell;*/ 
+ float:left; 
+ padding:0px 2px 0px 2px;
+ font-size:9px;  
 }
 
 div.foxtrick-graphs-label {
- display: table-cell;
+ /*display: table-cell;*/
+ float:left;
  width: 50%;
 }
 
 div.foxtrick-graphs-left-bar {
- display: table-cell;
+ /*display: table-cell;*/
+ float:left;
  position: relative;
  width: 50px;
  text-align: left; 
  border:1px solid #000000;
  font-size:9px; 
 }
+
 
 div.foxtrick-graphs-bar-container {
   width: 100%; 
@@ -79,9 +89,13 @@ div.foxtrick-graphs-bar-values {
 }
 
 div.foxtrick-graphs-right-bar {
- display: table-cell;
+ /*display: table-cell;*/
+ float:left;
  width: 50px;
  border:1px solid #000000;
  background-color: #CC0000; 
  font-size:9px;
+ 
+ padding-left: 1px;
+ border-left:1px solid #ffa34f; 
 }
