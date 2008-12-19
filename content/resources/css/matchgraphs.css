@@ -43,7 +43,7 @@ div.foxtrick-graphs-table {
 
 div.foxtrick-graphs-header {
   padding: 0px;
-  margin: none;
+  margin: 0px;
 /*  border: 1px solid red;*/
   clear:both;
   font-weight:bold;

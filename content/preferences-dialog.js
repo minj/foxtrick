@@ -246,6 +246,7 @@ var FoxtrickPreferencesDialog = {
 								var radiogroup = document.createElement( "radiogroup" );
 								for (var i = 0; i < module.RADIO_OPTIONS.length; i++) {
 									var radio = document.createElement( "radio" );
+									radio.style.marginLeft = "30px";
 									radio.addEventListener( "click", function( ev ) {
 										ev.target.setAttribute( "selected", true);
 										ev.target.parentNode.parentNode.previousSibling.childNodes[0].checked = true;

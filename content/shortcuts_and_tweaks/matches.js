@@ -9,7 +9,7 @@ var Matches = {
     MODULE_NAME : "Matches",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-    RADIO_OPTIONS : new Array("oldstyle", "newstyle"),
+	RADIO_OPTIONS : new Array("newstyle", "oldstyle"),
     htLanguagesXml : null,
     htCurrenciesXml : null,
     ratingDefs : {},
@@ -70,11 +70,11 @@ var Matches = {
 
                 var strangediv=sidebar.childNodes[7].childNodes[1].childNodes[7];
                 if (strangediv)
-                    sidebar.appendChild(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray));
+                    sidebar.insertBefore(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray), sidebar.childNodes[8]);
                 else
                 {
                     strangediv=sidebar.childNodes[7].childNodes[8];
-                    sidebar.appendChild(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray));
+                    sidebar.insertBefore(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray), sidebar.childNodes[8]);
                 }
 
                 if (percentArray.length>0)
@@ -189,7 +189,7 @@ var Matches = {
                         var ifkdefText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
                         var ifkattText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
 
-                        if (FoxtrickPrefs.getInt("module." + Matches.MODULE_NAME + ".value") == 0) {
+                        if (FoxtrickPrefs.getInt("module." + Matches.MODULE_NAME + ".value") == 1) {
                                 Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchgraphs.css");
 
                                 var barsdiv = doc.createElement("div");
@@ -205,6 +205,8 @@ var Matches = {
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rdefText, lattText);
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cdefText, cattText);
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], ldefText, rattText);
+								tablediv.appendChild(doc.createElement('br'));
+								Matches._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], ifkdefText, ifkattText);
                                 barsdiv.appendChild(tablediv);
                                 barsdiv.appendChild(doc.createElement('br'));
 
@@ -217,10 +219,12 @@ var Matches = {
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rattText, ldefText);
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cattText, cdefText);
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lattText, rdefText);
+								tablediv.appendChild(doc.createElement('br'));
+								Matches._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], ifkattText, ifkdefText);
                                 barsdiv.appendChild(tablediv);
                                 barsdiv.appendChild(doc.createElement('br'));
 
-                                var tablediv = doc.createElement("div");
+         /*                       var tablediv = doc.createElement("div");
                                 tablediv.className = "foxtrick-graphs-table";
                                 var p = doc.createElement('div');
                                 p.className = "foxtrick-graphs-header";
@@ -228,7 +232,7 @@ var Matches = {
                                 barsdiv.appendChild(p);
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], ifkdefText, ifkattText);
                                 Matches._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], ifkattText, ifkdefText);
-                                barsdiv.appendChild(tablediv);
+                                barsdiv.appendChild(tablediv);*/
 
                                 bodydiv.appendChild(barsdiv);
                         }
