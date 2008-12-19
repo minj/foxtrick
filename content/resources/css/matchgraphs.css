@@ -38,8 +38,16 @@ div.foxtrick-graphs-table {
   display: table;
   margin-bottom: 1px;
   border-spacing :2px;
+/*  border:1px solid blue;*/
 }
 
+div.foxtrick-graphs-header {
+  padding: 0px;
+  margin: none;
+/*  border: 1px solid red;*/
+  clear:both;
+  font-weight:bold;
+}
 div.foxtrick-graphs-row {
   display: table-row;
 }
