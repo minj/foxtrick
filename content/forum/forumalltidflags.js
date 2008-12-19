@@ -31,6 +31,7 @@ var FoxtrickAlltidFlags = {
 				for (var j=0; j<linksArray.length; j++) {
 					var link = linksArray[j];
 					if (link.href.search(/userId=/i) > -1) {
+						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var userId = link.href.substring(link.href.lastIndexOf('userId=')+7);
 						mySpan.innerHTML = ' <a href="' + linkpage + userId +
@@ -43,6 +44,12 @@ var FoxtrickAlltidFlags = {
 							target=linksArray[j+1].nextSibling;
 						}
 						link.parentNode.insertBefore(mySpan, target);
+					} else if (	link.href.search(/Read.aspx/i) > -1 && 
+						!link.id) {
+						// Replace "as answer to"
+						var asAnswerTo = link.previousSibling;
+						var newText = doc.createTextNode(" => ");
+						asAnswerTo.parentNode.replaceChild(newText,asAnswerTo);
 					}
 				}
 			}

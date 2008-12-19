@@ -19,6 +19,7 @@ var scripts = [
     'forum/forummovelinks.js',
     'forum/forumstaffmarker.js',
 	'forum/forumalltidflags.js',
+	'forum/forumtruncatelongnicks.js',
     'shortcuts_and_tweaks/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/matches.js',
@@ -32,7 +33,7 @@ var scripts = [
     'shortcuts_and_tweaks/foxtrickalert.js',
     'shortcuts_and_tweaks/facePlugin.js',
 	'shortcuts_and_tweaks/showmessagebutton.js',
-    
+	    
     'modules_list.js',
     'foxtrick.js',
 ];
