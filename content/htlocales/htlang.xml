@@ -292,10 +292,10 @@
 	
 	<language name="fy" desc="Frysk">
 	    <ratingSubLevels>
-    		<sublevel text="(Hiel leech)" value="0.0" />
+    		<sublevel text="(Tige leech)" value="0.0" />
     		<sublevel text="(Leech)" value="0.25"  />
     		<sublevel text="(Heech)" value="0.50"  />
-    		<sublevel text="(Hiel heech)" value="0.75"  />
+    		<sublevel text="(Tige heech)" value="0.75"  />
 		</ratingSubLevels>
 		<repositioning>
       		<reposition type="midfielder" value="ekstra sintrale middenfjilder" />
