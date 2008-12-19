@@ -11,11 +11,12 @@ var FoxtrickTeamPopupLinks = {
 	DEFAULT_ENABLED : true,
 
     init : function() {
-        Foxtrick.registerAllPagesHandler( FoxtrickTeamPopupLinks );
+    	Foxtrick.registerAllPagesHandler( FoxtrickTeamPopupLinks );
     },
 
     run : function( doc ) {
-		
+		if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
+			return;
 		var sUrl = Foxtrick.getHref( doc );
 		if (sUrl.search(/ShowOldConnections=true/i) > -1){
 			var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
