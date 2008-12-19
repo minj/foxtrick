@@ -1,4 +1,4 @@
-div.foxtrick-showgraph {
+/*div.foxtrick-showgraph {
  float:right;
 }
 
@@ -13,64 +13,54 @@ a.foxtrick-showgraphs:hover {
  background-color: inherit !important;
  border-style: none !important;
 
-}
+}*/
 
-span.foxtrick-showgraphs {
+div.foxtrick-showgraphs {
  background-color: #FFFFFF !important;
- float: right;
- opacity: 0.6;
+  text-align:center;
  color: #000000 !important;
  padding-left: 2px; padding-right: 2px;
 }
 
 /*------------------------*/
 
+/*
 div.foxtrick-graphs {
   width: 203;
   display: none;
   text-align:center;
   margin: 0px;
   padding: 0px;
-}
+}*/
 
 div.foxtrick-graphs-table {
   width: 100%;
-/*  display: table;*/
-  float:left;
-  
+  display: table;
   margin-bottom: 1px;
   border-spacing :2px;
 }
 
 div.foxtrick-graphs-row {
-/*  display: table-row;*/
-  clear:both;
-  padding:1px 0px 0px 0px;
+  display: table-row;
 }
 
 div.foxtrick-graphs-cell {
-/*  display: table-cell;*/ 
- float:left; 
- padding:0px 2px 0px 2px;
- font-size:9px;  
+  display: table-cell;
 }
 
 div.foxtrick-graphs-label {
- /*display: table-cell;*/
- float:left;
+ display: table-cell;
  width: 50%;
 }
 
 div.foxtrick-graphs-left-bar {
- /*display: table-cell;*/
- float:left;
+ display: table-cell;
  position: relative;
  width: 50px;
  text-align: left; 
  border:1px solid #000000;
  font-size:9px; 
 }
-
 
 div.foxtrick-graphs-bar-container {
   width: 100%; 
@@ -89,13 +79,9 @@ div.foxtrick-graphs-bar-values {
 }
 
 div.foxtrick-graphs-right-bar {
- /*display: table-cell;*/
- float:left;
+ display: table-cell;
  width: 50px;
  border:1px solid #000000;
  background-color: #CC0000; 
  font-size:9px;
- 
- padding-left: 1px;
- border-left:1px solid #ffa34f; 
 }
