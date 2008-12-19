@@ -23,14 +23,8 @@ var FoxtrickYouthSkillNotes = {
         	
             case 'YouthPlayer':
             	//////////////////////////////////////////////////////////////////////////////////////////////////////
-				
-				
 				foxtrick_youthskilltable(doc); //uncomment for greasemonkey
 
-            	
-            	
-            	
-            	
                 break;
         }
 	},
@@ -120,8 +114,8 @@ var FoxtrickYouthSkillNotes = {
 	  refreshBtn.innerHTML = "&nbsp;&nbsp;<img src=\"/Img/icons/arrow_refresh.png\" class=\"refreshIcon\" title=\"Refresh\" alt=\"Refresh\">";
 	  
 	  
-	  var title = document.createElement("h2");
-		title.appendChild(document.createTextNode(STR_S_H2));
+	  var title = doc.createElement("h2");
+		title.appendChild(doc.createTextNode(STR_S_H2));
 		title.className = "";
 		title.appendChild(refreshBtn);
 		
@@ -133,16 +127,16 @@ var FoxtrickYouthSkillNotes = {
 	  divED.setAttribute("style", "display: none; width: 500px;");
 	
 	
-	  var divobj = document.createElement("div");
+	  var divobj = doc.createElement("div");
 		divobj.setAttribute("class","mainBox");
 		
-		var innerdivobj = document.createElement("div");
+		var innerdivobj = doc.createElement("div");
 		innerdivobj.setAttribute("class","leftBox");
 	  
-	   var div2 = document.createElement("div");
+	   var div2 = doc.createElement("div");
 		div2.setAttribute("class","mainBox");
 		
-		var div1 = document.createElement("div");
+		var div1 = doc.createElement("div");
 		div1.setAttribute("class","mainBox");
 	  
 	  var editTable = doc.createElement ("table");

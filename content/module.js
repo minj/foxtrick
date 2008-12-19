@@ -27,7 +27,8 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
                       'YouthPlayer' : 'YouthPlayer\.aspx',
                       'forumSettings' : '\/MyHattrick\/Preferences\/ForumSettings.aspx',
 					  'managerPage' : '\/Club\/Manager\/',
-					  'teamPage' : '\/Club\/\\?TeamID'
+					  'teamPage' : '\/Club\/\\?TeamID',
+					  'players' : '\/Club\/Players\/'
 };
 ////////////////////////////////////////////////////////////////////////////////
 
