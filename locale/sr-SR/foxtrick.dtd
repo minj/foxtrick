@@ -1,4 +1,4 @@
-<!-- sr-SR
+﻿<!-- sr-SR
      Karel Kolman
 -->
 
@@ -91,4 +91,12 @@
 <!ENTITY foxtrick.prefs.disableonstage "Isključi Foxtrick na Stage serveru">
 <!ENTITY foxtrick.prefs.alltidflags "Dodaje Alltid zastavice i linkove oba korisnika u okvir poruke na stranici foruma">
 <!ENTITY foxtrick.prefs.linksleague "Dodaje neke spoljne linkove na stranici lige">
+<!ENTITY foxtrick.prefs.linksteams "Dodaje neke spoljne linkove na stranici tima">
+<!ENTITY foxtrick.prefs.linkscountry "Dodaje neke spoljne linkove na stranici države">
+<!ENTITY foxtrick.prefs.linkschallenges "Dodaje neke spoljne linkove na stranici izazova">
+<!ENTITY foxtrick.prefs.linkseconomy "Dodaje neke spoljne linkove na stranici finansija">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Dodaje neke spoljne linkove na stranici omladinske akademije">
+<!ENTITY foxtrick.prefs.linksarena "Dodaje neke spoljne linkove na stranici stadiona">
+<!ENTITY foxtrick.prefs.linkscoach "Dodaje neke spoljne linkove na stranici za promenu trenera">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Dodaje neke spoljne linkove na stranici igrača">
 <!-- EOF -->

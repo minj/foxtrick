@@ -37,5 +37,6 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
 					 FoxtrickLinksCoach,
 					 FoxtrickLinksPlayerDetail,
 					 FoxtrickShowMessageButton,
-					 FoxtrickTruncateLongNicks
+					 FoxtrickTruncateLongNicks,
+					 FoxtrickAddDefaultFaceCard
                    ];

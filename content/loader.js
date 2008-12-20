@@ -21,6 +21,7 @@ var scripts = [
     'forum/forumstaffmarker.js',
 	'forum/forumalltidflags.js',
 	'forum/forumtruncatelongnicks.js',
+	'forum/forumadddefaultfacecard.js',
     'matches/matches.js',
     'matches/matchOrdersFlipSides.js',
     'matches/matchOrdersFormationBox.js',
