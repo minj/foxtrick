@@ -5,6 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Prečice i alati">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Linkovi">
+<!ENTITY foxtrick.prefs.matches "Mečevi">
 <!ENTITY foxtrick.prefs.modulelistlabel "Raspoloživi moduli. Čekiraj kućicu pored modula da ga uključiš.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick trenutno prelazi na novi Hattrick dizajn. Činimo sve što je u nasoj moći da sve stare funkcije ponovo osposobimo za novi dizajn. Molimo vas budite strpljivi i očekujte redovna ažuriranja!">
 
@@ -88,12 +89,6 @@
 <!ENTITY foxtrick.prefs.selectfile "Izaberi zvučni fajl">
 <!ENTITY foxtrick.prefs.stagesettings "Stage podešavanja">
 <!ENTITY foxtrick.prefs.disableonstage "Isključi Foxtrick na Stage serveru">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
+<!ENTITY foxtrick.prefs.alltidflags "Dodaje Alltid zastavice i linkove oba korisnika u okvir poruke na stranici foruma">
+<!ENTITY foxtrick.prefs.linksleague "Dodaje neke spoljne linkove na stranici lige">
 <!-- EOF -->

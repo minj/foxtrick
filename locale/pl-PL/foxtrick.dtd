@@ -5,7 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Skróty i modyfikacje">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Linki">
-<!ENTITY foxtrick.prefs.matches "Matches">
+<!ENTITY foxtrick.prefs.matches "Mecze">
 <!ENTITY foxtrick.prefs.modulelistlabel "Poni¿ej znajduje siê lista modyfikacji dostêpnych w wybranej kategorii. Aby aktywowaæ dany dodatek, zaznacz pole widoczne po lewej stronie od jego nazwy.">
 <!ENTITY foxtrick.prefs.transitioninfo "Obecnie dostosowujemy FoxTrick do nowego wygl¹du Hattricka. Robimy wszystko, co w naszej mocy, aby dodatki znane z poprzednich wersji FoxTricka, by³y dostêpne równie¿ teraz. B¹dŸ zatem cierpliwy i spodziewaj siê czêstych aktualizacji!">
 
@@ -87,17 +87,17 @@
 <!ENTITY foxtrick.prefs.forummessagetemplates "Szablony postów na forum">
 <!ENTITY foxtrick.prefs.opendirectory "Otwórz folder">
 <!ENTITY foxtrick.prefs.selectfile "Wybierz plik dŸwiêkowy">
-<!ENTITY foxtrick.prefs.stagesettings "Stage settings">
-<!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
-<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
-<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
+<!ENTITY foxtrick.prefs.stagesettings "Ustawienia Stage'a">
+<!ENTITY foxtrick.prefs.disableonstage "Dezaktywuj FoxTricka na Stage'u">
+<!ENTITY foxtrick.prefs.alltidflags "Dodaje linki i flagi Alltida do nicków obu postujących na forum">
+<!ENTITY foxtrick.prefs.linksleague "Dodaje linki do zewnętrznych stron na stronie ligi">
+<!ENTITY foxtrick.prefs.linksteams "Dodaje linki do zewnętrznych stron na stronie drużyny">
+<!ENTITY foxtrick.prefs.linkscountry "Dodaje linki do zewnętrznych stron na stronie kraju">
+<!ENTITY foxtrick.prefs.linkschallenges "Dodaje linki do zewnętrznych stron w dziale Wyzwania">
+<!ENTITY foxtrick.prefs.linkseconomy "Dodaje linki do zewnętrznych stron w dziale Finanse">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Dodaje linki do zewnętrznych stron na stronie głównej juniorów">
+<!ENTITY foxtrick.prefs.linksarena "Dodaje linki do zewnętrznych stron w dziale Stadion">
+<!ENTITY foxtrick.prefs.linkscoach "Dodaje linki do zewnętrznych stron w dziale Zmień trenera">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Dodaje linki do zewnętrznych stron na stronie zawodnika">
 
 <!-- EOF -->
