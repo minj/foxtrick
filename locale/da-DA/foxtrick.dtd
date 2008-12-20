@@ -1,0 +1,104 @@
+<!—dk-DK
+ Lasse Svendsen og Erik Thomsen aka LasseSvendsen [clubid=6779565]
+ og 05erth [clubid=6446650]
+
+-->
+
+<!ENTITY foxtrick.prefs.shortcuts "Genveje og finindstillinger">
+<!ENTITY foxtrick.prefs.forum "Forum">
+<!ENTITY foxtrick.prefs.links "Links">
+<!ENTITY foxtrick.prefs.modulelistlabel "Tilgængelige moduler. Tjek boksen ved siden af modul navn, for at aktivere den.">
+<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick er i øjeblikket i gang med en overgang til det nye Hattrick design. Vi gør vores bedste, for at bringe de gamle funtioner til det nye design. Vær tålmodig med os og forvent regelmæssige opdateringer!">
+
+
+<!ENTITY foxtrick.prefs.mainoptions "Vigtigste muligheder">
+<!ENTITY foxtrick.prefs.enable "Aktivere">
+<!ENTITY foxtrick.prefs.preferences "Konfigurere">
+<!ENTITY foxtrick.prefs.visuals "Visuals">
+<!ENTITY foxtrick.prefs.stars "Stjerner">
+<!ENTITY foxtrick.prefs.about "Om">
+<!ENTITY foxtrick.prefs.addstars "Tilføj stjerner">
+<!ENTITY foxtrick.prefs.replacestars "Erstat stjerner">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Brug standard Hattrick stjerner.">
+<!ENTITY foxtrick.prefs.cssskins "CSS Skins">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Brug standard Hattrick skins.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Konfigurere FoxTrick">
+<!ENTITY foxtrick.menu.reloadfoxtrick "Gænindlæs FoxTrick (for udviklere)">
+<!ENTITY foxtrick.prefs.faces "Ansigter og Tøj (for supportere)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Ikke tilføj ansigter eller tøj.">
+<!ENTITY foxtrick.prefs.showfaces "Tilføj spilleres ansigter til kampopstilling.">
+<!ENTITY foxtrick.prefs.showdresses "Tilføj spilleres tøj til kampopstilling.">
+<!ENTITY foxtrick.prefs.links "Links til eksterne websider">
+<!ENTITY foxtrick.prefs.link "Link">
+<!ENTITY foxtrick.prefs.show "Vis">
+<!ENTITY foxtrick.prefs.shortcuts "Genveje">
+<!ENTITY foxtrick.prefs.shortcut "Genvej">
+<!ENTITY foxtrick.prefs.groupstarsby "Antallet af stjerner til gruppen af farve: ">
+<!ENTITY foxtrick.menu.installskin "Installer Hattrick.org skin">
+<!ENTITY foxtrick.prefs.linkstab "Links &amp; ratings">
+<!ENTITY foxtrick.prefs.ratings "Ratings">
+<!ENTITY foxtrick.prefs.rating "Rating">
+<!ENTITY foxtrick.prefs.htlang "Hattrick sprog">
+<!ENTITY foxtrick.prefs.language "Sprog opsætning">
+<!ENTITY foxtrick.prefs.lineupcoloring "Kampopstilling farve ordninger">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Ingen kampopstilling farver.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Kun hvis en farvesammensætning findes i det anvendte skin.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Altid. Hvis et skin ikke omfatter en farvesammensætning, så brug standarden.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Hent flere CSS skins">
+<!ENTITY foxtrick.prefs.shortcutstab "Genveje &amp; Finindstillinger">
+<!ENTITY foxtrick.prefs.tweaks "Finindstillinger">
+<!ENTITY foxtrick.prefs.mergestars "Flettede stjerner">
+<!ENTITY foxtrick.menu.playersintabs "Åben fundet spiller i en fane">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Tilføj spilleres ansigter &amp; tøj til kampopstilling.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Farvesammensætnings tema">
+<!ENTITY foxtrick.prefs.matchorders "Kamp ordrer">
+<!ENTITY foxtrick.prefs.showformationbox "Vis formation kasse">
+<!ENTITY foxtrick.prefs.frameresize "Ramme størrelse">
+<!ENTITY foxtrick.prefs.hidelogoframe "Gemme logo ramme">
+<!ENTITY foxtrick.prefs.resizemainframe "Ændre chassisramme">
+<!ENTITY foxtrick.prefs.resizemenuframe "Ændre chassisramme">
+<!ENTITY foxtrick.prefs.framewidth "Bredde">
+<!ENTITY foxtrick.prefs.clearplayerscache "Ryd spiller ansigter/tøj cache.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Angribe vs Forsvar linje">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Indlæst automatisk.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Vis toggle link.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Ikke indsæt.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Ratings formater">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Standard ratings.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Gammel tema ratings.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "De følgende funktioner er nød til at være I korrespondance med dine hattrick.org indstillinger.">
+<!ENTITY foxtrick.prefs.showflags "Tilføj spillers lands flag til kampopstilling.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Tilføj spilleres ansigter &amp; lands flag til kampopstilling.">
+<!ENTITY foxtrick.prefs.showdressesandflags " Tilføj spilleres ansigter &amp; lands flag til kampopstilling.">
+<!ENTITY foxtrick.prefs.medalsets "Medalje sæt">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Få flere medalje sæt">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Brug standard Hattrick medaljer.">
+<!ENTITY foxtrick.menu.installmedalset "Installer Hattrick.org medalje sæt">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
+<!ENTITY foxtrick.prefs.main "Hoved">
+<!ENTITY foxtrick.prefs.alertsettings "Alarm indstillinger">
+<!ENTITY foxtrick.prefs.alertslider "Vis alarm slider.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Vis FoxTrick panel i Firefox statuslinjen.">
+<!ENTITY foxtrick.prefs.alertsound "Afspil alarm lyd.">
+<!ENTITY foxtrick.prefs.alertslidermac "Vis knurre anmeldelse (kun Mac)">
+<!ENTITY foxtrick.menu.createplayerad "Tilføj spiller til udklipsholderen.">
+<!ENTITY foxtrick.prefs.htdateformat "Dato format">
+<!ENTITY foxtrick.menu.makelink "Konference link til udklipsholderen.">
+<!ENTITY foxtrick.prefs.forumtemplates "Forum skabeloner">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Skabeloner til forums beskeder templates">
+<!ENTITY foxtrick.prefs.opendirectory "Åben fil">
+<!ENTITY foxtrick.prefs.selectfile "Vælg lydfil">
+<!ENTITY foxtrick.prefs.stagesettings "Stage indstillinger">
+<!ENTITY foxtrick.prefs.disableonstage "Deaktiver Foxtrick på Stage server">
+<!ENTITY foxtrick.prefs.alltidflags "Tilføjer Alltid flag og links til både reklame- og conferencesidenAdds">
+<!ENTITY foxtrick.prefs.linksleague "Tilføj nogle eksterne links til divisionssiden">
+<!ENTITY foxtrick.prefs.linksteams "Tilføj nogle eksterne links til holdsiden">
+<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
+<!ENTITY foxtrick.prefs.linkschallenges " Tilføj nogle eksterne links til land-siden">
+<!ENTITY foxtrick.prefs.linkseconomy "Tilføj nogle eksterne links til økonomisiden">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Tilføj nogle links til ungdoms-oversigtsiden ">
+<!ENTITY foxtrick.prefs.linksarena "Tilføj nogle eksterne links til stadionsiden">
+<!ENTITY foxtrick.prefs.linkscoach " Tilføj nogle eksterne links til trænersiden">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Tilføj nogle eksterne links til spiller-detaljesiden">
+
+<!-- EOF -->

@@ -53,6 +53,28 @@ var FoxtrickHideFaceInjuryImages = {
 	}
 };
 
+var FoxtrickHideFaceSuspendedImages = {
+	
+    MODULE_NAME : "HideFaceSuspendedImages",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	DEFAULT_ENABLED : true,
+	
+    init : function() {
+        Foxtrick.registerPageHandler( 'players',
+            FoxtrickHideFaceSuspendedImages);
+    },
+
+    run : function( page, doc ) {
+		
+		var elems = doc.getElementsByTagName("img");
+		for(var i=0; i < elems.length; i++) {
+			if( elems[i].src.match(/\/Img\/Avatar\/misc\/red/i) ) {
+				elems[i].parentNode.removeChild(elems[i]);
+			}
+		} 
+	}
+};
+
 //-----------------------------------------------------------------------------
 
 var FoxtrickColouredYouthFaces = {
