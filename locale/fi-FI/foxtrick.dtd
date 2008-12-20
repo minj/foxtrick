@@ -91,12 +91,12 @@
 <!ENTITY foxtrick.prefs.disableonstage "Estä Foxtrick Stage-serverillä">
 <!ENTITY foxtrick.prefs.alltidflags "Lisää Alltid liput ja molempien postereiden linkit foorumi sivulla">
 <!ENTITY foxtrick.prefs.linksleague "Lisää joitain ulkoisia linkkejä sarjasivulle">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
+<!ENTITY foxtrick.prefs.linksteams "Lisää joitain ulkoisia linkkejä joukkuesivulle">
+<!ENTITY foxtrick.prefs.linkscountry "Lisää joitain ulkoisia linkkejä maasivulle">
+<!ENTITY foxtrick.prefs.linkschallenges "Lisää joitain ulkoisia linkkejä haastesivulle">
+<!ENTITY foxtrick.prefs.linkseconomy "Lisää joitain ulkoisia linkkejä talous-sivulle">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Lisää joitain ulkoisia linkkejä juniorijoukkueen yleiskatsaus sivulle">
+<!ENTITY foxtrick.prefs.linksarena "Lisää joitain ulkoisia linkkejä stadionsivulle">
+<!ENTITY foxtrick.prefs.linkscoach "Lisää joitain ulkoisia linkkejä valmentajasivulle">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Lisää joitain ulkoisia linkkejä pelaajan henkilötieto sivulle">
 <!-- EOF -->

@@ -127,7 +127,6 @@ var FoxtrickMain = {
 Foxtrick.isPage = function( page, doc ) {
 	var htpage_regexp = new RegExp( page, "i" );
 	var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-	dump(htpage_regexp);
 	if(!( FoxtrickPrefs.getBool("disableOnStage") &&
 		Foxtrick.getHref( doc).search( stage_regexp ) > -1)) {
 		return Foxtrick.getHref( doc ).search( htpage_regexp ) > -1;
@@ -300,4 +299,143 @@ for (var key in stats) {
       foxtrickStatsHash[prop][key] = stat;
     }
   }
-} 
+}
+
+/* Foxtrick.addBoxToSidebar
+* Parameters:
+* doc - the document the box needs to be added to
+* newBoxHeader - the title of the new box
+* newBoxContent - the content of the new box (should be a DOM element)
+* referenceHeader - the header of the reference-object: the new box will be placed *before* this reference-object;
+* --> Should be a string with the header, e.g. "Actions"
+* --> or a string "last" if it should be put at the very bottom of the sidebar
+* --> or a string "first" if it should be put at the very top
+*
+* Note: if the header is the same as one of the other boxes in the sidebar,
+* the content will be added to that sidebarbox instead of creating a new one
+*
+* Note: if the reference header cannot be found, the box will be placed on top
+*/
+Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, 
+	referenceHeader ) {
+	// Check if this is the simple or standard layout
+	var layout;
+	var sidebar = doc.getElementById("sidebar");
+	
+	var firstDiv = sidebar.getElementsByTagName("div")[0];
+	var firstBox;
+	if(firstDiv.id) {
+		// The sideboxes might be wrapped in another div with an id
+		// See for an example the playersdetail page
+		sidebar = sidebar.getElementsByTagName("div")[0];
+		firstBox = sidebar.getElementsByTagName("div")[0];
+	} else {
+		firstBox = firstDiv;
+	}
+	
+	while(firstBox.className != "sidebarBox") {
+		firstBox = firstBox.nextSibling;
+	}
+	if(firstBox.getElementsByTagName("div").length) {
+		layout = 1; // standard
+	} else { 
+		layout = 0; // simple
+	}
+	
+	// Check if any of the other sidebarboxes have the same header
+	// and find the reference-object in the process
+	var otherBox = false;
+	var referenceObject = false;
+	var currentBox = firstBox;
+	do {
+		// Check if this child is a sidebarbox
+		if(currentBox.className=="sidebarBox") {
+			var header = currentBox.getElementsByTagName("h2")[0];
+			if(header.innerHTML == newBoxHeader) {
+				otherBox = currentBox;
+			}
+			if(header.innerHTML == referenceHeader) {
+				referenceObject = currentBox;
+			}
+		}
+		currentBox = currentBox.nextSibling;
+	} while(currentBox.nextSibling);
+	
+	if(!referenceObject && referenceHeader != "first" 
+		&& referenceHeader != "last") {
+		// the reference header could not be found
+		// place the box on top
+		dump( "addBoxToSidebar: Could not find referenceHeader " + 
+			referenceHeader + "\n" );
+		referenceHeader = "first";
+	}
+	if(referenceHeader == "first") {
+		referenceObject = sidebar.firstChild;
+	}
+	
+	if(layout) {
+		if(otherBox) {
+			var subDivs = otherBox.getElementsByTagName("div");
+			for(var i = 0; i < subDivs.length; i++) {
+				if(subDivs[i].className=="boxBody") {
+					subDivs[i].insertBefore(newBoxContent,
+						subDivs[i].firstChild);
+				}
+			}
+		} else {
+			// create the sidebarbox
+			var ownSidebarBox = doc.createElement("div");
+			ownSidebarBox.className = "sidebarBox";
+			// create the boxhead
+			var ownBoxHead = doc.createElement("div");
+			ownBoxHead.className = "boxHead";
+			ownSidebarBox.appendChild(ownBoxHead);
+			var ownBoxLeftHeader = doc.createElement("div");
+			ownBoxLeftHeader.className = "boxLeft";
+			ownBoxHead.appendChild(ownBoxLeftHeader);
+			// create the header
+			var ownHeader = doc.createElement("h2");
+			ownHeader.innerHTML = newBoxHeader;
+			ownBoxLeftHeader.appendChild(ownHeader);
+			// create the boxbody
+			var ownBoxBody = doc.createElement("div");
+			ownBoxBody.className = "boxBody";
+			ownSidebarBox.appendChild(ownBoxBody);
+			// insert the content
+			ownBoxBody.appendChild(newBoxContent);
+			// create the footer
+			var ownBoxFooter = doc.createElement("div");
+			ownBoxFooter.className = "boxFooter";
+			ownSidebarBox.appendChild(ownBoxFooter);
+			var ownBoxLeftFooter = doc.createElement("div");
+			ownBoxLeftFooter.className = "boxLeft";
+			ownBoxLeftFooter.innerHTML = "&nbsp;";			
+			ownBoxFooter.appendChild(ownBoxLeftFooter);
+			if(referenceHeader == "last") {
+				sidebar.appendChild(ownSidebarBox);
+			} else {
+				sidebar.insertBefore(ownSidebarBox,referenceObject);
+			}
+		}
+	} else {
+		if(otherBox) {
+			var otherBoxHeader = otherBox.getElementsByTagName("h2")[0];
+			otherBox.insertBefore(newBoxContent,otherBoxHeader.nextSibling);
+		} else {
+			// create the sidebarbox
+			var ownSidebarBox = doc.createElement("div");
+			ownSidebarBox.className = "sidebarBox";
+			// create the header
+			var ownHeader = doc.createElement("h2");
+			ownHeader.innerHTML = newBoxHeader;
+			ownSidebarBox.appendChild(ownHeader);
+			// insert the content
+			ownSidebarBox.appendChild(newBoxContent);
+			if(referenceHeader == "last") {
+				sidebar.appendChild(ownSidebarBox);
+			} else {
+				sidebar.insertBefore(ownSidebarBox,referenceObject);
+			}
+		}
+	}
+}

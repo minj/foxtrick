@@ -138,10 +138,20 @@ var FoxtrickLinksLeague = {
              
 
 					if (links.length > 0) {
-					// find a place to insert the link
-					
-					var ownSidebarBox = doc.createElement("div");
-                                ownSidebarBox.className = "sidebarBox";
+						var ownBoxBody = doc.createElement("div");
+                                
+						for (var k = 0; k < links.length; k++) {
+							links[k].link.className ="inner";
+							ownBoxBody.appendChild(doc.createTextNode(" "));
+							ownBoxBody.appendChild(links[k].link);
+						}
+						
+						Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
+							"foxtrick.links.boxheader" ), ownBoxBody, "first");
+							
+						/*
+						var ownSidebarBox = doc.createElement("div");
+								ownSidebarBox.className = "sidebarBox";
                                 var ownBoxHead = doc.createElement("div");
                                 ownBoxHead.className = "boxHead";
                                 ownSidebarBox.appendChild(ownBoxHead);
@@ -188,7 +198,7 @@ var FoxtrickLinksLeague = {
                                 var divBoxLeft = divBoxHead.getElementsByTagName("div")[0];
                                 var header = divBoxLeft.getElementsByTagName("h2")[0];
                                 sidebar.insertBefore(ownSidebarBox,firstDiv.nextSibling);                                
-                                break;
+                                break;*/
                 }
             break;  
 			}

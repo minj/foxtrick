@@ -39,65 +39,24 @@ var FoxtrickShowMessageButton = {
 					}
 				}
 
-				var ownSidebarBox = doc.createElement("div");
-				ownSidebarBox.className = "sidebarBox";
-				var ownBoxHead = doc.createElement("div");
-				ownBoxHead.className = "boxHead";
-				ownSidebarBox.appendChild(ownBoxHead);
-				var ownBoxLeftHeader = doc.createElement("div");
-				ownBoxLeftHeader.className = "boxLeft";
-				ownBoxHead.appendChild(ownBoxLeftHeader);
-				var ownHeader = doc.createElement("h2");
-				ownHeader.innerHTML = Foxtrickl10n.getString( 
-					"foxtrick.tweaks.actions" );
-				ownBoxLeftHeader.appendChild(ownHeader);
-				var ownBoxBody = doc.createElement("div");
-				ownBoxBody.className = "boxBody";
-				ownSidebarBox.appendChild(ownBoxBody);
 				var messageLink = doc.createElement("a");
 				messageLink.className = "inner";
 				messageLink.href = "../?TeamID=" + teamID + 
 					"&SendMessage=true";
 				messageLink.title = Foxtrickl10n.getString( 
 					"foxtrick.tweaks.sendmessage" );
-				ownBoxBody.appendChild(messageLink);
+				
 				var img = doc.createElement("img");
 				img.className = "actionIcon";
 				img.alt = Foxtrickl10n.getString( "sendmessage" );
 				img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
 				messageLink.appendChild(img);
-				var ownBoxFooter = doc.createElement("div");
-				ownBoxFooter.className = "boxFooter";
-				ownSidebarBox.appendChild(ownBoxFooter);
-				var ownBoxLeftFooter = doc.createElement("div");
-				ownBoxLeftFooter.className = "boxLeft";
-				ownBoxLeftFooter.innerHTML = "&nbsp;";			
-				ownBoxFooter.appendChild(ownBoxLeftFooter);
 				
-				// Append the message form to the sidebar
-				var sidebar = doc.getElementById("sidebar");
-				var firstDiv = sidebar.getElementsByTagName("div")[0];
-				var subDivs = firstDiv.getElementsByTagName("div");
-				var divBoxHead;
-				var divBoxBody;
-				for(var j = 0; j < subDivs.length; j++) {
-					switch(subDivs[j].className) {
-						case "boxHead":
-							divBoxHead = subDivs[j];
-							break;
-						case "boxBody":
-							divBoxBody = subDivs[j];
-							break;
-					}
-				}
-				var divBoxLeft = divBoxHead.getElementsByTagName("div")[0];
-				var header = divBoxLeft.getElementsByTagName("h2")[0];
-				if(header.innerHTML == Foxtrickl10n.getString(
-					"foxtrick.tweaks.actions")) {
-					divBoxBody.insertBefore(messageLink,divBoxBody.firstChild);
-				} else {
-					sidebar.insertBefore(ownSidebarBox,firstDiv);
-				}
+					
+				
+				// Append the box to the sidebar
+				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+					"foxtrick.tweaks.actions" ), messageLink, "first");
 				break;
 				
 			case 'teamPage':
