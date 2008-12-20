@@ -57,24 +57,48 @@ var Matches = {
                                                                                         this._getStatFromCell(ratingstable.rows[6].cells[2]));
                                 var lattack=new Array(this._getStatFromCell(ratingstable.rows[7].cells[1]),
                                                                                         this._getStatFromCell(ratingstable.rows[7].cells[2]));
-                                var ifkdefence=new Array(this._getStatFromCell(ratingstable.rows[10].cells[1]),
-                                                                                        this._getStatFromCell(ratingstable.rows[10].cells[2]));
-                                var ifkattack=new Array(this._getStatFromCell(ratingstable.rows[11].cells[1]),
-                                                                                        this._getStatFromCell(ratingstable.rows[11].cells[2]));
-                                var tactics=new Array(this._getTacticsFromCell(ratingstable.rows[14].cells[1]),
-                                                                                        this._getTacticsFromCell(ratingstable.rows[14].cells[2]));
-                                var tacticsLevel=new Array(this._getTacticsLevelFromCell(ratingstable.rows[15].cells[1]),
-                                                                                        this._getTacticsLevelFromCell(ratingstable.rows[15].cells[2]));
+								if (ratingstable.rows.length > 12) {
+	                                var ifkdefence=new Array(this._getStatFromCell(ratingstable.rows[10].cells[1]),
+	                                                                                        this._getStatFromCell(ratingstable.rows[10].cells[2]));
+	                                var ifkattack=new Array(this._getStatFromCell(ratingstable.rows[11].cells[1]),
+	                                                                                        this._getStatFromCell(ratingstable.rows[11].cells[2]));
+	                                var tactics=new Array(this._getTacticsFromCell(ratingstable.rows[14].cells[1]),
+	                                                                                        this._getTacticsFromCell(ratingstable.rows[14].cells[2]));
+	                                var tacticsLevel=new Array(this._getTacticsLevelFromCell(ratingstable.rows[15].cells[1]),
+	                                                                                        this._getTacticsLevelFromCell(ratingstable.rows[15].cells[2]));
 
-                                var ratingsArray = new Array(rdefence, cdefence, ldefence, rattack, cattack, lattack, ifkdefence, ifkattack);
+	                                var ratingsArray = new Array(rdefence, cdefence, ldefence, rattack, cattack, lattack, ifkdefence, ifkattack);
+								}
+								else  {
+									var tactics=new Array(this._getTacticsFromCell(ratingstable.rows[9].cells[1]),
+	                                                                                        this._getTacticsFromCell(ratingstable.rows[9].cells[2]));
+	                                var tacticsLevel=new Array(this._getTacticsLevelFromCell(ratingstable.rows[10].cells[1]),
+	                                                                                        this._getTacticsLevelFromCell(ratingstable.rows[10].cells[2]));
+									var ratingsArray = new Array(rdefence, cdefence, ldefence, rattack, cattack, lattack);
+								}
+								
+                                var rdefenceText=new Array(ratingstable.rows[2].cells[1], ratingstable.rows[2].cells[2]);
+                                var cdefenceText=new Array(ratingstable.rows[3].cells[1], ratingstable.rows[3].cells[2]);
+                                var ldefenceText=new Array(ratingstable.rows[4].cells[1], ratingstable.rows[4].cells[2]);
+                                var rattackText=new Array(ratingstable.rows[5].cells[1], ratingstable.rows[5].cells[2]);
+                                var cattackText=new Array(ratingstable.rows[6].cells[1], ratingstable.rows[6].cells[2]);
+                                var lattackText=new Array(ratingstable.rows[7].cells[1], ratingstable.rows[7].cells[2]);
+								if (ratingstable.rows.length > 12) {
+	                                var ifkdefenceText=new Array(ratingstable.rows[10].cells[1], ratingstable.rows[10].cells[2]);
+	                                var ifkattackText=new Array(ratingstable.rows[11].cells[1], ratingstable.rows[11].cells[2]);
+									var ratingsTextArray = new Array(rdefenceText, cdefenceText, ldefenceText, rattackText, cattackText, lattackText, ifkdefenceText, ifkattackText);
+								}
+								else {
+									var ratingsTextArray = new Array(rdefenceText, cdefenceText, ldefenceText, rattackText, cattackText, lattackText);
+								}
 
                 var strangediv=sidebar.childNodes[7].childNodes[1].childNodes[7];
                 if (strangediv)
-                    sidebar.insertBefore(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray), sidebar.childNodes[8]);
+                    sidebar.insertBefore(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray, ratingsTextArray), sidebar.childNodes[8]);
                 else
                 {
                     strangediv=sidebar.childNodes[7].childNodes[8];
-                    sidebar.insertBefore(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray), sidebar.childNodes[8]);
+                    sidebar.insertBefore(this._createBarDiv_extended(doc, percentArray, strangediv, ratingsArray, ratingsTextArray), sidebar.childNodes[8]);
                 }
 
                 if (percentArray.length>0)
@@ -156,7 +180,7 @@ var Matches = {
 
 },
 
-    _createBarDiv_extended: function(doc, percentArray, strangediv, ratingsArray) {
+    _createBarDiv_extended: function(doc, percentArray, strangediv, ratingsArray, ratingsTextArray) {
             //Create a bar div for extended layout
 
             var maindiv=doc.createElement('div');
@@ -191,9 +215,13 @@ var Matches = {
 
                         if (FoxtrickPrefs.getInt("module." + Matches.MODULE_NAME + ".value") == 1) {
                                 Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchgraphs.css");
+								
+								var rText = Foxtrickl10n.getString( "foxtrick.matchdetail.rightshort" );
+								var cText = Foxtrickl10n.getString( "foxtrick.matchdetail.centershort" );
+								var lText = Foxtrickl10n.getString( "foxtrick.matchdetail.leftshort" );
+								var iText = Foxtrickl10n.getString( "foxtrick.matchdetail.ifkshort" );
 
                                 var barsdiv = doc.createElement("div");
-                        //        barsdiv.style.textAlign = "center";
                                 barsdiv.className = "foxtrick-showgraphs";
 
                                 var tablediv = doc.createElement("div");
@@ -202,11 +230,13 @@ var Matches = {
                                 p.className = "foxtrick-graphs-header";
                                 p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.defense" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.attack" );
                                 barsdiv.appendChild(p);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rdefText, lattText);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cdefText, cattText);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], ldefText, rattText);
-								tablediv.appendChild(doc.createElement('br'));
-								Matches._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], ifkdefText, ifkattText);
+                                Matches._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
+                                Matches._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
+                                Matches._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], lText, rText, ratingsTextArray[2][0], ratingsTextArray[3][1]);
+								if (ratingsArray.length > 6) {
+									tablediv.appendChild(doc.createElement('br'));
+									Matches._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+								}
                                 barsdiv.appendChild(tablediv);
                                 barsdiv.appendChild(doc.createElement('br'));
 
@@ -216,11 +246,13 @@ var Matches = {
                                 p.className = "foxtrick-graphs-header";
                                 p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.attack" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.defense" );
                                 barsdiv.appendChild(p);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rattText, ldefText);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cattText, cdefText);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lattText, rdefText);
-								tablediv.appendChild(doc.createElement('br'));
-								Matches._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], ifkattText, ifkdefText);
+                                Matches._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
+                                Matches._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
+                                Matches._createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lText, rText, ratingsTextArray[5][0], ratingsTextArray[0][1]);
+								if (ratingsArray.length > 6) {
+									tablediv.appendChild(doc.createElement('br'));
+									Matches._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
+								}
                                 barsdiv.appendChild(tablediv);
                                 barsdiv.appendChild(doc.createElement('br'));
 
@@ -300,7 +332,7 @@ var Matches = {
              return val;
     },
 
-        _createGraphRow: function (doc, div, val1, val2, tooltip1, tooltip2) {
+        _createGraphRow: function (doc, div, val1, val2, text1, text2, tooltip1, tooltip2) {
 
                 var color1 = "#FFFFFF";
                 var color2 = "#000000";
@@ -342,7 +374,7 @@ var Matches = {
              var innercellC = doc.createElement("div");
              innercellC.className = "foxtrick-graphs-bar-values";
              innercellA.appendChild(innercellC);
-             innercellC.innerHTML = Matches._displayableRatingLevel(val1+1);
+             innercellC.innerHTML = text1 + " " + Matches._displayableRatingLevel(val1+1);
              innercellC.style.color = fgcolor1;
 
              var val = Math.round((pt1/50)*cellwidth);
@@ -350,7 +382,7 @@ var Matches = {
              innercellB.style.left = val + "px";
              innercellB.style.width = ((50-val > 0) ? 50-val  : 0) + "px";
 
-             cell.title = tooltip1;
+             cell.title = tooltip1.textContent;
 
              cell = doc.createElement("div");
              row.appendChild(cell);
@@ -377,11 +409,11 @@ var Matches = {
              innercellC = doc.createElement("div");
              innercellC.className = "foxtrick-graphs-bar-values";
              innercellA.appendChild(innercellC);
-             innercellC.innerHTML = Matches._displayableRatingLevel(val2+1);
+             innercellC.innerHTML = Matches._displayableRatingLevel(val2+1) + " " + text2;
              innercellC.style.textAlign = "right";
              innercellC.style.color = fgcolor2;
 
-             cell.title = tooltip2;
+             cell.title = tooltip2.textContent;
 
              cell = doc.createElement("div");
              cell.className = "foxtrick-graphs-cell";
@@ -406,16 +438,18 @@ var Matches = {
                 values.push(Math.round(percentage));
                 stamp+=val1+' '+val2+' ';
             }
-            val1=this._getStatFromCell(table.rows[10].cells[1]);
-            val2=this._getStatFromCell(table.rows[11].cells[2]);
-            percentage=(val1/(val1+val2))*100;
-            //values.push(percentage.toFixed(2));
-            values.push(Math.round(percentage));
-            val1=this._getStatFromCell(table.rows[11].cells[1]);
-            val2=this._getStatFromCell(table.rows[10].cells[2]);
-            percentage=(val1/(val1+val2))*100;
-            //values.push(percentage.toFixed(2));
-            values.push(Math.round(percentage));
+			if (table.rows.length > 12) {
+	            val1=this._getStatFromCell(table.rows[10].cells[1]);
+	            val2=this._getStatFromCell(table.rows[11].cells[2]);
+	            percentage=(val1/(val1+val2))*100;
+	            //values.push(percentage.toFixed(2));
+	            values.push(Math.round(percentage));
+	            val1=this._getStatFromCell(table.rows[11].cells[1]);
+	            val2=this._getStatFromCell(table.rows[10].cells[2]);
+	            percentage=(val1/(val1+val2))*100;
+	            //values.push(percentage.toFixed(2));
+	            values.push(Math.round(percentage));
+			}
         }
 
         //alert(stamp);
@@ -425,7 +459,7 @@ var Matches = {
 
     _getStatFromCell: function(cell)
     {
-        var link = cell.firstChild;
+		var link = cell.firstChild;
         var baseValue = parseInt(link.href.replace(/.+lt=skill/i, "").replace(/.+ll=/i, "").match(/^\d+/)) - 1;
         var subLevelValue=0;
         try {
