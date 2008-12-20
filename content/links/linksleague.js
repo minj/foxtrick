@@ -173,7 +173,7 @@ var FoxtrickLinksLeague = {
                                 ownSidebarBox.appendChild(ownBoxFooter);
                                 var ownBoxLeftFooter = doc.createElement("div");
                                 ownBoxLeftFooter.className = "boxLeft";
-                                ownBoxLeftFooter.innerHTML = " ";                       
+                                ownBoxLeftFooter.innerHTML = "&nbsp;";                       
                                 ownBoxFooter.appendChild(ownBoxLeftFooter);
                                 
                                 // Append the message form to the sidebar
