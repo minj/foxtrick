@@ -19,6 +19,18 @@ function findCountryId(element) {
   return null;
 }
 
+function findTeamId(element) {
+  var links = element.getElementsByTagName('a');
+  
+  for (var i=0; i < links.length; i++) {
+    if ( links[i].href.match(/TeamID=/i) ) {
+      return links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0];
+    }
+  }
+  
+  return null;
+}
+
 function getTeamIdFromUrl(url) {
   return url.replace(/.+TeamID=/i, "").match(/^\d+/);
 }
@@ -134,7 +146,7 @@ var FoxtrickLinksTeam = {
 					var thisdiv = alldivs[j];
 					var countryid = findCountryId(thisdiv);
   
-					var teamid = getTeamIdFromUrl(doc.location.href);
+					var teamid = findTeamId(thisdiv);
 					var teamname = extractTeamName(thisdiv);
 					var leaguename = extractLeagueNameFromElement(thisdiv);
 					var levelnum = getLevelNum(leaguename, countryid);

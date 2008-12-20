@@ -377,7 +377,7 @@ stats["xrayHTPE"] =  {
                        },
         
         "title" : "hattriX-Ray HTPE",
-        "shorttitle" : "HTPE"
+        "img" : "chrome://foxtrick/content/resources/linkicons/htpe.png"
 };    
 
 // Hattrick Hall of Fame
@@ -423,7 +423,7 @@ stats["xrayarenasizer"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/xray_arenasizer.png"
 };
 
-
+/*
 // Vnukstats
 stats["vnukstats"] =  { 
         "url" : "http://vnukstats.no-ip.com/",
@@ -448,10 +448,10 @@ stats["vnukstats"] =  {
         "teamidranges" : vnukstatsranges["czech"],
         "title" : "Vnukstats",
         "img" : "chrome://foxtrick/content/resources/linkicons/vnukstats.png"
-};    
+};*/    
 
+/*
 // Vnukstats Slovensko
-
 stats["vnukstats_sk"] =  { 
         "url" : "http://vnukstats.hattrick-sk.com/",
 
@@ -476,6 +476,7 @@ stats["vnukstats_sk"] =  {
         "title" : "Vnukstats Slovensko",
         "img" : "chrome://foxtrick/content/resources/linkicons/vnukstats.png"
 };    
+*/
 
 // Statristix, Belgium
 /*
@@ -497,6 +498,7 @@ stats["statristix"] =  {
 };    
 */
 
+/*
 // BelRank
 stats["belstat"] =  { 
         "url" : "http://belrank.be/",
@@ -514,7 +516,7 @@ stats["belstat"] =  {
         "title" : "BelRank",
         "img" : "chrome://foxtrick/content/resources/linkicons/belrank.png"
 
-};
+};*/
 
 
 // Alltid Hattrick Statistikk, International
@@ -570,7 +572,11 @@ stats["htdeutsch"] =  {
                    "filters"    : ["countryid"], 
                    "params"     : { "teamid" : "teamID" }
                  },
-  
+ 
+ "countrylink" : { "path"       : "overview.php",
+                   "filters"    : ["countryid"], 
+                   "params"     : { "teamid" : "teamID" }
+				},
   "countryidranges" : [[3, 3]], 
   "title" : "HT-Deutschland",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-deutschland.png"
@@ -589,6 +595,10 @@ stats["peasostats"] =  {
         "teamlink" : { "path"       : "equipo.php",
                          "filters"    : ["countryid"], 
                          "params"     : { "teamid" : "htequipo" }
+                       },
+       "countrylink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
                        },
 
         "countryidranges" : [[36, 36]], 
@@ -618,9 +628,8 @@ stats["todohattrick"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/todohattrick.png"
 };    
 
-
+/*
 // Eesti Hattricki statistika
-
 stats["eesti"] =  { 
         "url" : "http://hattrick.luanvi.ee/",
 
@@ -640,7 +649,7 @@ stats["eesti"] =  {
         "title" : "Eesti Hattricki statistika",
         "img" : "chrome://foxtrick/content/resources/linkicons/eesti.gif"
 };    
-
+*/
 
 stats["htfff"] =  { 
         "url" : "http://www.ht-fff.org/",
@@ -701,7 +710,7 @@ stats["lagazzetta"] =  {
         "title" : "La Gazzetta di Hattrick",
         "img" : "chrome://foxtrick/content/resources/linkicons/lagazzetta.jpg"
 };    
-
+/*
 stats["playitcool"] =  { 
         "url" : "http://www.playitcool.it/",
 
@@ -714,7 +723,7 @@ stats["playitcool"] =  {
         //"img" : "chrome://foxtrick/content/resources/linkicons/lagazzetta.jpg",
         "shorttitle" : "Play It Cool"
 };    
-
+*/
 
 
 
@@ -737,7 +746,7 @@ stats["francestats"] =  {
 };  
 
 
-
+/*
 // htpl
 stats["htpl"] =  { 
         "url" : "http://student.owsiiz.edu.pl/~wo4020/ht/index.php",
@@ -756,11 +765,11 @@ stats["htpl"] =  {
         "title" : "Statystyki polskiego Hattricka by marnow",
         "img" : "chrome://foxtrick/content/resources/linkicons/htpl.gif"        
 };  
-
+*/
 
 // Polish stats
 // no more available ?
-
+/*
 stats["spadkiiawanse"] =  { 
         "url" : "http://www.hottrick.org/aphro/fire/",
 
@@ -777,8 +786,10 @@ stats["spadkiiawanse"] =  {
 	    "countryidranges" : [[24, 24]],
         "title" : "Spadki i awanse",
         "img" : "chrome://foxtrick/content/resources/linkicons/poland.gif"        
-};  
+};*/  
 
+
+// not working probably. need dome input fromargentina there
 stats["argentinaranking"] =  { 
         "url" : "http://www.htranking.com/",
 
@@ -815,7 +826,7 @@ stats["hattrickcl"] =  {
         "title" : "Estadisticas Chile",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrick_cl.png"        
 };    
-
+/*
 // Estatisticas HT-Brasil
 stats["htbrasil"] =  { 
         "url" : "http://www.htbrstats.com/",
@@ -828,7 +839,7 @@ stats["htbrasil"] =  {
         "countryidranges" : [[16, 16]], 
         "title" : "Estatisticas HT-Brasil",
         "img" : "chrome://foxtrick/content/resources/linkicons/htbrazil.gif"
-};    
+}; */   
 
 // HT-Stats Schweiz
 stats["swissstats"] =  { 
@@ -869,7 +880,7 @@ stats["hattristics"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrist.png"
 };    
 
-
+/*
 // Stats Engine Romania
 stats["statsromania"] =  { 
         "url" : "http://www.fubar.ro/stats/",
@@ -882,7 +893,7 @@ stats["statsromania"] =  {
         "countryidranges" : [[37, 37]], 
         "title" : "Stats Engine Romania",
         "img" : "/Common/images/37flag.gif"
-};    
+}; */   
 
 // akickku USA
 stats["akickku"] =  { 
@@ -935,9 +946,8 @@ stats["hcstatshellas"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hcstats_hellas.png"        
 };    
 
-
+/*
 // HTTools Friendly Manager
-
 stats["httoolsfriendlymanager"] =  { 
         "url" : "http://httoolsfriendlymanager.cretze.ro/",
 
@@ -948,8 +958,9 @@ stats["httoolsfriendlymanager"] =  {
         
         "title" : "HTTools Friendly Manager",
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_friendly.png"
-};    
+};  */  
 
+/*
 // Maptrick
 stats["maptrick"] =  { 
         "url" : "http://maptrick.nl.eu.org/~laszlo/",
@@ -961,7 +972,7 @@ stats["maptrick"] =  {
         
         "title" : "Maptrick",
         "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
-};
+};*/
 
 // HT-Dog
 stats["ht-dog"] =  { 
@@ -999,8 +1010,7 @@ stats["cuprank"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/cuprank.png"
 };    
 
-
-
+*/
 // Hatstats
 
 stats["hatstats"] =  { 
@@ -1022,6 +1032,11 @@ stats["hatstats"] =  {
                          "params"     : { "teamid" : "teamid",
                                           "levelnum" : "level" }
                        },
+        "countrylink" : {   "path"       : "",
+                         "filters"    : [], 
+                         "params"     : { "teamid" : "teamid",
+                                          "levelnum" : "level" }
+                       },
                        
         "allowlink" : function(filterparams, stattype) {
             
@@ -1039,7 +1054,7 @@ stats["hatstats"] =  {
 
         "title" : "HatStats",
         "img" : "chrome://foxtrick/content/resources/linkicons/hatstats.png"        
-}; */   
+};    
 
 stats["advancedinjurycalc"] =  { 
         "url" : "http://www.student.ru.nl/rvanaarle/injury.php",
@@ -1087,7 +1102,7 @@ stats["hottrickkeeper"] =  {
                        },
         
         "title" : "Hottrick Keeper Tool",
-        "shorttitle" : "a"
+        "img" : "chrome://foxtrick/content/resources/linkicons/hottrick_small.png" 
 };
 
 stats["htnipponkeeper"] =  { 
@@ -1099,7 +1114,7 @@ stats["htnipponkeeper"] =  {
                        },
         
         "title" : "Keeper Level Prediction Tool",
-        "shorttitle" : "b"
+        "img" : "chrome://foxtrick/content/resources/linkicons/hattricknippon_small.png"
 };
 
 stats["coachexperience"] =  { 
@@ -1114,6 +1129,7 @@ stats["coachexperience"] =  {
         "shorttitle" : "Coach experience table"
 };
 
+/*
 stats["cyf"] =  { 
         "url" : "http://cyf.hattrickitalia.org/",
 
@@ -1124,7 +1140,7 @@ stats["cyf"] =  {
         
         "title" : "Cross Your Fingers",
         "img" : "chrome://foxtrick/content/resources/linkicons/cyf.png"
-};
+};*/
 
 stats["camelmasterecon"] =  { 
         "url" : "http://www.dulovic.com/fun/hattrick/economists.php",
@@ -1138,6 +1154,7 @@ stats["camelmasterecon"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/camelmasters.png"
 };    
 
+/*  // illegal site. don't include again before CHPP approval
 stats["skillraise"] =  { 
         "url" : "http://www.htdaytrading.com/",
 
@@ -1154,7 +1171,7 @@ stats["skillraise"] =  {
 
         "title" : "SkillRaise Tool",
         "img" : "chrome://foxtrick/content/resources/linkicons/skillraise.jpg"
-};    
+};  */  
 
 stats["HATTRICKSTATS_fr"] =  { 
         "url" : "http://friendly.cup.free.fr/",
@@ -1173,7 +1190,7 @@ stats["HATTRICKSTATS_fr"] =  {
         "title" : "HATTRICKSTATS.WeB.SiTe",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrickstats_fr.gif"
 };    
-
+/*
 stats["EstadisticasHTTP"] =  { 
         "url" : "http://ht-tp.dnsalias.com/http/",
 
@@ -1191,7 +1208,7 @@ stats["EstadisticasHTTP"] =  {
         "levelnumranges" : [[1, 6]],
         "title" : "Estadisticas HTTP",
         "img" : "chrome://foxtrick/content/resources/linkicons/http.png"        
-};    
+}; */   
 
 stats["natstats"] =  { 
   "url" : "http://www.natstats.org/",
@@ -1241,7 +1258,7 @@ stats["magicyp"] =  {
         "title" : "Magic Youthpull",
         "img" : "chrome://foxtrick/content/resources/linkicons/magicyp.png"
 };
-
+/*
 stats["beltrickarena"] =  { 
         "url" : "http://www.beltrick.org/calculator",
         "arenalink" : { "path"       : "",
@@ -1260,7 +1277,7 @@ stats["beltrickyouth"] =  {
                        },
         "title" : "Beltrick YouthStat",
         "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.jpg"
-};
+};*/
 
 stats["arenaoptimizer"] =  { 
         "url" : "http://www.arenaoptimizer.es/",
@@ -1283,6 +1300,10 @@ stats["argenstat"] =  {
         "teamlink" : { "path"       : "?V=T",
                          "filters"    : ["countryid"], 
                          "params"     : { "teamid" : "ID" }
+                       },
+        "countrylink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
                        },
         
         "countryidranges" : [[7, 7]], 

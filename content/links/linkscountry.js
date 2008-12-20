@@ -4,6 +4,19 @@
  * @author convinced
  */
 
+ //---------------------------------------------------------------------------    
+function findCountryId(element) {
+  var links = element.getElementsByTagName('a');
+  
+  for (var i=0; i < links.length; i++) {
+    if ( links[i].href.match(/League\.aspx/i) ) {
+      return links[i].href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
+    }
+  }
+  
+  return null;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksCountry = {
 	
@@ -20,8 +33,15 @@ var FoxtrickLinksCountry = {
     run : function( page, doc ) {
 
 		//addExternalLinksToCountryDetail
-        var countryid = doc.location.href.replace(/.+leagueID=/i, "").match(/^\d+/)[0];
-        
+        var countryid;
+		var alldivs = doc.getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="main mainRegular") {
+					var thisdiv = alldivs[j];
+					countryid = findCountryId(thisdiv);
+					}
+			}
+			
         var links = getLinks("countrylink", { "countryid": countryid }, doc );  
         
 		if (links.length > 0) {

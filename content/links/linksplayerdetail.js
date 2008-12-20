@@ -7,6 +7,19 @@
  
 ////////////////////////////////////////////////////////////////////////////////
 //---------------------------------------------------------------------------    
+function findPlayerId(element) {
+  var links = element.getElementsByTagName('a');
+  
+  for (var i=0; i < links.length; i++) {
+    if ( links[i].href.match(/playerID=/i) ) {
+      return links[i].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+    }
+  }
+  
+  return null;
+}
+
+
 function findTeamId(element) {
   var links = element.getElementsByTagName('a');
   
@@ -57,7 +70,8 @@ var FoxtrickLinksPlayerDetail = {
 				var thisdiv = alldivs[j];
 				var teamid = findTeamId(thisdiv);
 				var nationality = findCountryId(thisdiv);
-				var playerid = doc.location.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				//var playerid = doc.location.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				var playerid = findPlayerId(thisdiv);
 				var form = null, age = null, tsi = null, exp = null;
 				var stamina = 0, goalkeeping = 0, playmaking = 0, passing = 0, winger = 0, defending = 0, scoring = 0, setpieces = 0;
 				

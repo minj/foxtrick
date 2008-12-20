@@ -15,6 +15,20 @@ function getLeagueLeveUnitIdFromUrl(url) {
 
 
 //---------------------------------------------------------------------------    
+function findLeagueLeveUnitId(element) {
+  var links = element.getElementsByTagName('a');
+  
+  for (var i=0; i < links.length; i++) {
+    if ( links[i].href.match(/Series\/Default\.aspx/i) ) {
+      return links[i].href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
+    }
+  }
+  
+  return null;
+}
+
+
+//---------------------------------------------------------------------------    
 function findCountryId(element) {
   var links = element.getElementsByTagName('a');
   
@@ -26,6 +40,7 @@ function findCountryId(element) {
   
   return null;
 }
+
 function extractLeagueName(element) {
  
  var links = element.getElementsByTagName('a');
@@ -116,7 +131,7 @@ var FoxtrickLinksLeague = {
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="main mainRegular") {
 					var thisdiv = alldivs[j];
-					var leagueid = getLeagueLeveUnitIdFromUrl(doc.location.href);
+					var leagueid = findLeagueLeveUnitId(thisdiv);;
 					var countryid = findCountryId(thisdiv);
         
 					var leaguename = extractLeagueName(thisdiv);
