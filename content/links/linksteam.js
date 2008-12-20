@@ -1,19 +1,11 @@
 /**
- * linksleague.js
- * Foxtrick add links to league pages
+ * linksteam.js
+ * Foxtrick add links to team pages
  * @author convinced
  */
 
+ 
 ////////////////////////////////////////////////////////////////////////////////
-function isSeriesDetailUrl(href) {
-  return href.match(/Series\/Default\.aspx/i) ;
-}
-
-function getLeagueLeveUnitIdFromUrl(url) {
-   return url.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/);
-}
-
-
 //---------------------------------------------------------------------------    
 function findCountryId(element) {
   var links = element.getElementsByTagName('a');
@@ -26,18 +18,42 @@ function findCountryId(element) {
   
   return null;
 }
-function extractLeagueName(element) {
+
+function getTeamIdFromUrl(url) {
+  return url.replace(/.+TeamID=/i, "").match(/^\d+/);
+}
+
+function isTeamDetailUrl(href) {
+  return href.match(/.+TeamID=/i) ;
+}
+
+
+function extractTeamName(element) {
  
  var links = element.getElementsByTagName('a');
  
  for (var i=0; i<links.length; i++) {
-    if (isSeriesDetailUrl(links[i].href)) {
+    if (isTeamDetailUrl(links[i].href)) {
         return Foxtrick.trim(links[i].text);
     } 
  }
  
  return null;
     
+}
+
+function isLeagueDetailUrl(href) {
+  return href.match(/World\/Series\/Default\.aspx/i) ;
+}
+
+function extractLeagueNameFromElement(element) {
+ var links = element.getElementsByTagName('a');
+ for (var i=0; i<links.length; i++) {
+    if (isLeagueDetailUrl(links[i].href)) {
+        return links[i].textContent;
+    } 
+ }
+ return null;
 }
 
 function getSeriesNum(leaguename) {
@@ -97,50 +113,40 @@ function foxtrick_romantodecimal(roman) {
     }
 }
 
-var FoxtrickLinksLeague = {
+var FoxtrickLinksTeam = {
 	
-    MODULE_NAME : "LinksLeague",
+    MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'league',
-                                          FoxtrickLinksLeague );
+            Foxtrick.registerPageHandler( 'teamPage',
+                                          FoxtrickLinksTeam );
     },
 
     run : function( page, doc ) {
-
-			//addExternalLinksToLeagueDetail
-			var alldivs = doc.getElementsByTagName('div');
-			for (var j = 0; j < alldivs.length; j++) {
-				if (alldivs[j].className=="main mainRegular") {
+		//addExternalLinksToCountryDetail
+		
+		var alldivs = doc.getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="main mainRegular") {
 					var thisdiv = alldivs[j];
-					var leagueid = getLeagueLeveUnitIdFromUrl(doc.location.href);
 					var countryid = findCountryId(thisdiv);
-        
-					var leaguename = extractLeagueName(thisdiv);
-					var leaguename2 = leaguename;
-					var leaguename3 = leaguename;
-        
-					var seriesnum = getSeriesNum(leaguename);
+  
+					var teamid = getTeamIdFromUrl(doc.location.href);
+					var teamname = extractTeamName(thisdiv);
+					var leaguename = extractLeagueNameFromElement(thisdiv);
 					var levelnum = getLevelNum(leaguename, countryid);
-
-        
+      
 					if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
-						leaguename2="I";
-						leaguename3="1";
-						}
-        
-					var links = getLinks("leaguelink", { "countryid": countryid, "leagueid": leagueid, 
-										"levelnum" : levelnum, "seriesnum": seriesnum,
-										"leaguename" : leaguename, "leaguename2" : leaguename2, "leaguename3" : leaguename3 }, doc );  
-             
-
+						leaguename="I";
+					} 
+       
+					links = getLinks("teamlink", { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum  }, doc );
+				
 					if (links.length > 0) {
-					// find a place to insert the link
-					
-					var ownSidebarBox = doc.createElement("div");
+								var ownSidebarBox = doc.createElement("div");
                                 ownSidebarBox.className = "sidebarBox";
                                 var ownBoxHead = doc.createElement("div");
                                 ownBoxHead.className = "boxHead";
@@ -154,8 +160,7 @@ var FoxtrickLinksLeague = {
                                 var ownBoxBody = doc.createElement("div");
                                 ownBoxBody.className = "boxBody";
                                 ownSidebarBox.appendChild(ownBoxBody);
-                                
-								for (var k = 0; k < links.length; k++) {
+                                for (var k = 0; k < links.length; k++) {
 									links[k].link.className ="inner";
 									
 									ownBoxBody.appendChild(doc.createTextNode(" "));
@@ -187,12 +192,11 @@ var FoxtrickLinksLeague = {
                                 }
                                 var divBoxLeft = divBoxHead.getElementsByTagName("div")[0];
                                 var header = divBoxLeft.getElementsByTagName("h2")[0];
-                                sidebar.insertBefore(ownSidebarBox,firstDiv.nextSibling);                                
-                                break;
-                }
-            break;  
+                                sidebar.insertBefore(ownSidebarBox,firstDiv.nextSibling);                                                                
+					}
+			break;
 			}
 		}
-	}	
+   }	
  
 };

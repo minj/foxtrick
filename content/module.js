@@ -18,7 +18,13 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
                       'forumWritePost' : '\/Forum\/Write',
                       'bookmarks' : '\/MyHattrick\/Bookmarks',
                       'league' : '\/World\/Series\/',
-                      'TransferCompare' : '\/Club\/Transfers\/TransferCompare',
+					  'country' : '\/World\/Leagues\/',
+					  'challenges' : '\/Club\/Challenges\/',
+					  'economy' : '\/Club\/Finances\/',
+					  'youthoverview' : '\/Club\/Youth\/Default\.aspx',
+					  'arena' : '\/Club\/Arena\/Default\.aspx',
+					  'coach' : '\/Club\/Training\/ChangeCoach\.aspx',
+					  'TransferCompare' : '\/Club\/Transfers\/TransferCompare',
                       'match' : '\/Club\/Matches\/Match.aspx',
                       'matchOrders' : '\/MatchOrders\.aspx',
                       'flagCollection' : '\/Club\/Flags\/',
@@ -29,7 +35,9 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
                       'forumSettings' : '\/MyHattrick\/Preferences\/ForumSettings.aspx',
 					  'managerPage' : '\/Club\/Manager\/',
 					  'teamPage' : '\/Club\/\\?TeamID',
-					  'players' : '\/Club\/Players\/'
+					  'players' : '\/Club\/Players\/',
+					  'playerdetail' : '\/Club\/Players\/Player\.aspx'
+					  
 };
 ////////////////////////////////////////////////////////////////////////////////
 

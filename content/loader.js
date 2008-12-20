@@ -35,6 +35,14 @@ var scripts = [
     'shortcuts_and_tweaks/facePlugin.js',
 	'shortcuts_and_tweaks/showmessagebutton.js',
     'links/linksleague.js',
+	'links/linksteam.js',
+	'links/linkscountry.js',
+	'links/linkschallenges.js',
+	'links/linkseconomy.js',
+	'links/linksyouthoverview.js',
+	'links/linksarena.js',
+	'links/linkscoach.js',
+	'links/linksplayerdetail.js',
 
 	    
     'modules_list.js',

@@ -91,4 +91,12 @@
 <!ENTITY foxtrick.prefs.disableonstage "Schakel Foxtrick op de Stage server uit">
 <!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
 <!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
+<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
+<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
+<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
+<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
+<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
+<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
 <!-- EOF -->
