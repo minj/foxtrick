@@ -575,7 +575,7 @@ stats["htdeutsch"] =  {
  
  "countrylink" : { "path"       : "overview.php",
                    "filters"    : ["countryid"], 
-                   "params"     : { "teamid" : "teamID" }
+                   "params"     : []
 				},
   "countryidranges" : [[3, 3]], 
   "title" : "HT-Deutschland",
@@ -700,12 +700,21 @@ stats["htitastats"] =  {
 stats["lagazzetta"] =  { 
         "url" : "http://www.gazzaht.org/",
 
-        "leaguelink" : { "path"       : "index.php?pag=13",
+        "teamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     : []
+                       },
+		"leaguelink" : { "path"       : "index.php?pag=13",
                          "filters"    : ["countryid"], 
                          "params"     : { "leagueid" : "girone"
                                         }
                        },
+		"countrylink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []                                        
+                       },
 
+        
         "countryidranges" : [[4, 4]], 
         "title" : "La Gazzetta di Hattrick",
         "img" : "chrome://foxtrick/content/resources/linkicons/lagazzetta.jpg"
@@ -738,6 +747,10 @@ stats["francestats"] =  {
         "teamlink" : {   "path"       : "show_team.php",
                          "filters"    : ["countryid"],         
                          "params"     : { "teamid" : "teamid" }
+                       },
+       "countrylink" : { "path"       : "",
+                         "filters"    : ["countryid"],         
+                         "params"     : []
                        },
 
 	    "countryidranges" : [[5, 5]],
@@ -854,7 +867,10 @@ stats["swissstats"] =  {
                          "filters"    : ["countryid"], 
                          "params"     : { "teamid" : "t_id" }
                        },
-        
+        "countrylink" : {   "path"       : "news.cgi",
+                         "filters"    : ["countryid"], 
+                         "params"     : []
+                       },
         "countryidranges" : [[46, 46]], 
         "title" : "HT-Stats Schweiz",
         "img" : "chrome://foxtrick/content/resources/linkicons/statsschweiz.png"
@@ -873,7 +889,10 @@ stats["hattristics"] =  {
                          "filters"    : ["countryid"], 
                          "params"     : { "teamid" : "teamID" }
                        },
-        
+        "teamlink" : {   "path"       : "index.php",
+                         "filters"    : ["countryid"], 
+                         "params"     : []
+                       },
         "countryidranges" : [[46, 46]], 
 		"levelnumranges" : [[1, 5]],
         "title" : "Hattristics",
@@ -909,7 +928,10 @@ stats["akickku"] =  {
                          "params"     : { "teamid" : "id",
                                           "teamname" : "name"}
                        },
-        
+        "countrylink" : {   "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     : []
+                       },
         "countryidranges" : [[8, 8]],
         "title" : "Akickku",
         "img" : "chrome://foxtrick/content/resources/linkicons/akickku.png"
@@ -917,9 +939,9 @@ stats["akickku"] =  {
 
 // HC Stats - Hellas, Cyprus
 stats["hcstatshellas"] =  { 
-        "url" : "http://www.hattrick.gr/~hcstats/",
+        "url" : "http://www.hattrick.gr/",  //"http://www.hattrick.gr/~hcstats/", stats page not working atm
 
-        "leaguelink" : { "path"       : "content/db/series.php?lang=gr",
+        "leaguelink" : { "path"       : "", 			//"content/db/series.php?lang=gr",
                          "filters"    : ["countryid"], 
                          "params"     : {
                                         "leaguename" : "name",
@@ -936,11 +958,14 @@ stats["hcstatshellas"] =  {
                         }                                        
                        },
 
-        "teamlink" : {   "path"       : "content/db/team.php?lang=gr",        
+        "teamlink" : {   "path"       : "", //"content/db/team.php?lang=gr",        
                          "filters"    : ["countryid"], 
                          "params"     : { "teamid" : "teamId", "countryid" : "country" }
                        },
-        
+        "countrylink" : {   "path"       : "",        
+                         "filters"    : ["countryid"], 
+                         "params"     : []
+                       },        
         "countryidranges" : [[50, 50], [89, 89]], 
         "title" : "HC Stats",
         "img" : "chrome://foxtrick/content/resources/linkicons/hcstats_hellas.png"        
@@ -1034,8 +1059,7 @@ stats["hatstats"] =  {
                        },
         "countrylink" : {   "path"       : "",
                          "filters"    : [], 
-                         "params"     : { "teamid" : "teamid",
-                                          "levelnum" : "level" }
+                         "params"     : []
                        },
                        
         "allowlink" : function(filterparams, stattype) {
@@ -1185,7 +1209,11 @@ stats["HATTRICKSTATS_fr"] =  {
                          "filters"    : ["countryid"], 
                          "params"     : { "teamid" : "team" }
                        },
-        
+        "countrylink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     : []
+                       },
+                
         "countryidranges" : [[5, 5]], 
         "title" : "HATTRICKSTATS.WeB.SiTe",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrickstats_fr.gif"
