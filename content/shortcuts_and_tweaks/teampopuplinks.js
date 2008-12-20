@@ -30,7 +30,9 @@ var FoxtrickTeamPopupLinks = {
         var head = doc.getElementsByTagName("head")[0];
 		var style = doc.createElement("style");
 		style.setAttribute("type", "text/css");
-		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: 100px; position: absolute; left: 20px; top: -54px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}';
+		//determine width of the floating box - Stephan
+		var maxwidth = Math.max(Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, Foxtrickl10n.getString( 'last_5_ips' ).length); //Stephan
+		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top: -54px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}'; //Stephan
 		style.appendChild(doc.createTextNode(zaw));
 		head.appendChild(style);
 		var aLinks = doc.getElementsByTagName('a'); //doc.links;
