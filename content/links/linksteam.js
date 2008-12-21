@@ -125,6 +125,12 @@ function foxtrick_romantodecimal(roman) {
     }
 }
 
+function isTeamPage(doc) {
+	var site=doc.location.href;
+	var remain=site.substr(site.search('Club\/')+5);
+    return (remain=="" || remain.search(/TeamID=/i)==1);
+}
+
 var FoxtrickLinksTeam = {
 	
     MODULE_NAME : "LinksTeam",
@@ -133,13 +139,14 @@ var FoxtrickLinksTeam = {
 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'teamPage',
+            Foxtrick.registerPageHandler( 'teamPageGeneral',
                                           FoxtrickLinksTeam );
     },
 
     run : function( page, doc ) {
+		if (!isTeamPage(doc)) {return;}
+	
 		//addExternalLinksToCountryDetail
-		
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {

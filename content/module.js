@@ -35,6 +35,7 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
                       'forumSettings' : '\/MyHattrick\/Preferences\/ForumSettings.aspx',
 					  'managerPage' : '\/Club\/Manager\/',
 					  'teamPage' : '\/Club\/\\?TeamID',
+					  'teamPageGeneral' : '\/Club\/',
 					  'players' : '\/Club\/Players\/',
 					  'playerdetail' : '\/Club\/Players\/Player\.aspx'
 					  

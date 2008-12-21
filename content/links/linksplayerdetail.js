@@ -162,13 +162,10 @@ var FoxtrickLinksPlayerDetail = {
 					// keeper links
 					var klinks = getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
                                                          "form" : form, "goalkeeping" : goalkeeping }, doc );  
-					goalkeeperskillnode.parentNode.appendChild(doc.createTextNode("[ "));
 					for (var j=0; j< klinks.length; j++) {
 						goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
 						goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
-						}					
-					goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" ]"));
-					
+						}										
 				}
 				
 				var ownBoxBody = doc.createElement("div");

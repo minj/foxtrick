@@ -1562,7 +1562,7 @@ function getLinkElement(link, stat, doc) {
         img.alt = stat.title;
         img.title = stat.title;
         img.style.border="0";
-        img.src = stat.img;
+		img.src = stat.img;
         statslink.appendChild(img);
     }
     
