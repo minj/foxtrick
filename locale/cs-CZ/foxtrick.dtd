@@ -5,7 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Zkratky a vylepšení">
 <!ENTITY foxtrick.prefs.forum "Konference">
 <!ENTITY foxtrick.prefs.links "Odkazy">
-<!ENTITY foxtrick.prefs.matches "Matches">
+<!ENTITY foxtrick.prefs.matches "Zápasy">
 <!ENTITY foxtrick.prefs.modulelistlabel "Dostupné moduly. Pro zapnutí modulu zaškrtni okénko vedle názvu příslušného modulu.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick v současné době přechází na nový vzhled Hattricku. Děláme vše pro to, abychom v novém vzhledu zprovoznili všechny původní funkce. Buďte proto trpěliví a těšte se na pravidelné aktualizace!">
 
@@ -89,16 +89,15 @@
 <!ENTITY foxtrick.prefs.selectfile "Vybrat zvukový soubor">
 <!ENTITY foxtrick.prefs.stagesettings "Nastavení Stage">
 <!ENTITY foxtrick.prefs.disableonstage "Vypnout Foxtrick na serveru Stage">
-<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
-<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
-
+<!ENTITY foxtrick.prefs.alltidflags "Přidává vlajky ze serveru Alltid s odkazy u pisatele i adresáta">
+<!ENTITY foxtrick.prefs.linksleague "Na stránku ligy přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linksteams "Na stránku týmu přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linkscountry "Na stránku státu přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linkschallenges "Na stránku výzev přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linkseconomy "Na stránku financí přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Na stránku s přehledem dorosteneckého týmu přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linksarena "Na stránku stadionu přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linkscoach "Na stránku trenéra přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Na stránku s detaily o hráči přidává několik externích odkazů">
+<!ENTITY foxtrick.prefs.linksmatch "Na stránku zápasu přidává několik externích odkazů">
 <!-- EOF -->
