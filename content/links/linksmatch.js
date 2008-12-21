@@ -26,9 +26,16 @@ function findIsArchievedMatch(element) {
       return (links[i].href.match(/useArchive/i));
     }
   }
-  
-  return null;
+    return false;
 }
+
+function findIsYouthMatch(href) {
+  if (href.match(/Club\/Matches\/Match\.aspx/i) ) {
+      return (href.match(/isYouth/i));
+    }
+  return false;
+}
+
 
 function findTeamId(element) {
   var links = element.getElementsByTagName('a');
@@ -69,6 +76,7 @@ var FoxtrickLinksMatch = {
 
     run : function( page, doc ) {
 
+		if (findIsYouthMatch(doc.location.href)) {return;}
 		var isarchivedmatch=true;
 		var matchid,teamid;
 		var alldivs = doc.getElementsByTagName('div');
