@@ -1,4 +1,4 @@
-<!-- de-DE (rev. 247)
+<!-- de-DE (rev. 293)
      spambot
      utf-8 encoded language file
 -->
@@ -91,16 +91,16 @@
 <!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
 <!ENTITY foxtrick.prefs.disableonstage "Foxtrick auf Stage Server deaktivieren">
 <!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
-<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
-<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
+<!ENTITY foxtrick.prefs.alltidflags "Alltid-Flaggen bei beiden Foren-Postern anzeigen">
+<!ENTITY foxtrick.prefs.linksleague "Hinzufügen externer Links zur Liga-Seite">
+<!ENTITY foxtrick.prefs.linksteams "Hinzufügen externer Links zur Team-Seite">
+<!ENTITY foxtrick.prefs.linkscountry "Hinzufügen externer Links zur Länder-Seite">
+<!ENTITY foxtrick.prefs.linkschallenges "Hinzufügen externer Links zur Stadion-Seite">
+<!ENTITY foxtrick.prefs.linkseconomy "Hinzufügen externer Links zur Finanzen-Seiten">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Hinzufügen externer Links zur Jugend-Seite">
+<!ENTITY foxtrick.prefs.linksarena "Hinzufügen externer Links zur Stadion-Seite">
+<!ENTITY foxtrick.prefs.linkscoach "Hinzufügen externer Links zur Trainer-Seite">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Hinzufügen externer Links zu den Spieler-Details">
+<!ENTITY foxtrick.prefs.linksmatch "Hinzufügen externer Links zu der Spiele-Seite">
 
 <!-- EOF -->
