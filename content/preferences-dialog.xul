@@ -114,6 +114,37 @@
                            tooltiptext="http://foxtrick.px.cz/forum/"
                            onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
                 </vbox>
+				<vbox>
+					<label value="Head Developer" 
+                           style="font-weight: bold;" />
+                    <label value="Mod-PaV (872922)" />
+					<label value="Project owners" 
+                           style="font-weight: bold;" />
+                    <label value="kolmis (116321), larsw84 (504255)" />
+					<label value="Developers" 
+                           style="font-weight: bold;" />
+                    <label value="taised (234678), bummerland (1141309), Jestar (513519), convinced (1142953),"/>
+					<label value="spambot (333791), smates (1682965), OBarros (864555)" />
+					<label value="Translations"
+							style="font-weight: bold;" />
+					<label value="* Bosnian (by Masterix (1617453))" />
+					<label value="* Cesky (by gucan (480304))" />
+					<label value="* Dansk (by 05erth (1499168), LasseSvendsen (403068))" />
+					<label value="* Deutch (by spambot (333791))" />
+					<label value="* English (developers)" />
+					<label value="* Español (by franory (1369028))" />
+					<label value="* Español, Centroamericano (by baler0 (26877))" />
+					<label value="* Français (by stephan57 (1751312))" />
+					<label value="* Frysk (by LA-Fryslanner-777 (440454))" />
+					<label value="* Italiano (by caracca (240459))" />
+					<label value="* Nederlands (by eekels (768188))" />
+					<label value="* Polski (by Homzik (79468))" />
+					<label value="* Português (by _recluso_ (738571))" />
+					<label value="* Português, Brasil (by MarceloFBrandao (715122))" />
+					<label value="* Russian (by _KOHb_ (28914))" />
+					<label value="* Srpski (by ljushaff (1103875))" />
+					<label value="* Suomi (by Pyntsa (554581), Leach71 (259106))" />
+				</vbox>
             </tabpanel>			
 
 	</tabpanels>
