@@ -7,7 +7,7 @@
 <!ENTITY foxtrick.prefs.links "Linki">
 <!ENTITY foxtrick.prefs.matches "Mecze">
 <!ENTITY foxtrick.prefs.modulelistlabel "Poniżej znajduje sie lista modyfikacji dostepnych w wybranej kategorii. Aby aktywować dany dodatek, zaznacz pole widoczne po lewej stronie od jego nazwy.">
-<!ENTITY foxtrick.prefs.transitioninfo "Obecnie dostosowujemy FoxTrick do nowego wyglądu Hattricka. Robimy wszystko, co w naszej mocy, aby dodatki znane z poprzednich wersji FoxTricka były dostepne również teraz. Bądź zatem cierpliwy i spodziewaj sie częstych aktualizacji!">
+<!ENTITY foxtrick.prefs.transitioninfo "Obecnie dostosowujemy FoxTrick do nowego wyglądu Hattricka. Robimy wszystko, co w naszej mocy, aby dodatki znane z poprzednich wersji FoxTricka były dostepne również teraz. Bądź zatem cierpliwy i spodziewaj się częstych aktualizacji!">
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Główne">
@@ -88,7 +88,7 @@
 <!ENTITY foxtrick.prefs.opendirectory "Otwórz folder">
 <!ENTITY foxtrick.prefs.selectfile "Wybierz plik dźwiękowy">
 <!ENTITY foxtrick.prefs.stagesettings "Ustawienia Stage'a">
-<!ENTITY foxtrick.prefs.disableonstage "Dezaktywuj FoxTricka na Stage'u">
+<!ENTITY foxtrick.prefs.disableonstage "Wyłącz FoxTricka na Stage'u">
 <!ENTITY foxtrick.prefs.alltidflags "Dodaje linki i flagi Alltida do nicków obu postujących na forum">
 <!ENTITY foxtrick.prefs.linksleague "Dodaje linki do zewnętrznych stron na stronie ligi">
 <!ENTITY foxtrick.prefs.linksteams "Dodaje linki do zewnętrznych stron na stronie drużyny">
