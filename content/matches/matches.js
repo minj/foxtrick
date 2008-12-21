@@ -256,16 +256,6 @@ var Matches = {
                                 barsdiv.appendChild(tablediv);
                                 barsdiv.appendChild(doc.createElement('br'));
 
-         /*                       var tablediv = doc.createElement("div");
-                                tablediv.className = "foxtrick-graphs-table";
-                                var p = doc.createElement('div');
-                                p.className = "foxtrick-graphs-header";
-                                p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" );
-                                barsdiv.appendChild(p);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], ifkdefText, ifkattText);
-                                Matches._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], ifkattText, ifkdefText);
-                                barsdiv.appendChild(tablediv);*/
-
                                 bodydiv.appendChild(barsdiv);
                         }
             else {
@@ -470,7 +460,7 @@ var Matches = {
 
         //var subLevel = Foxtrick.trim(link.parentNode.textContent.replace(link.textContent, ""));
         try {
-            var subLevel = Foxtrick.trim(link.parentNode.lastChild.nodeValue);
+            var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));
             var path = "hattricklanguages/language[@name='" + lang + "']/ratingSubLevels/sublevel[@text='" + subLevel + "']";
             //this.LOG('matches.js path: '+path);
             var obj = this.htLanguagesXml.evaluate(path,this.htLanguagesXml,null,this.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
