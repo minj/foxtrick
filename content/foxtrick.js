@@ -231,6 +231,9 @@ Foxtrick.trim = function (text) {
   return text.replace(/^\s+/, "").replace(/\s+$/, '');
 }
 
+Foxtrick.trimnum = function (text) {
+  return text.replace(/[\D\s]/g, '');
+}
 String.prototype.group = function( chr, size )
 {
 	if ( typeof chr == 'undefined' ) chr = ",";

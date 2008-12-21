@@ -26,10 +26,10 @@ var FoxtrickLinksArena = {
 				var thisdiv = alldivs[j];
 				var arenaTable = thisdiv.getElementsByTagName("table")[0];
 
- 				var links = getLinks("arenalink", { "terraces" : Foxtrick.trim(arenaTable.rows[3].cells[1].textContent),
-                                            "basic": Foxtrick.trim(arenaTable.rows[4].cells[1].textContent),
-                                            "roof" : Foxtrick.trim(arenaTable.rows[5].cells[1].textContent),
-                                            "vip" : Foxtrick.trim(arenaTable.rows[6].cells[1].textContent),  }, doc );  
+ 				var links = getLinks("arenalink", { "terraces" : Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
+                                            "basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
+                                            "roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
+                                            "vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  }, doc );  
 				if (links.length > 0) {
 					var ownBoxBody = doc.createElement("div");
                                 
