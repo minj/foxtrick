@@ -5,7 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Raccourcis &amp; Fonctionnalités avancées">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Liens">
-<!ENTITY foxtrick.prefs.matches "Matches">
+<!ENTITY foxtrick.prefs.matches "Matchs">
 <!ENTITY foxtrick.prefs.modulelistlabel "Modules disponibles. Cochez la case à côté du nom du module pour l'activer.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick est actuellement en cours de transition vers le nouveau design d'Hattrick. Nous faisons de notre mieux pour mettre toutes les anciennes fonctions de ce nouveau design. S'il vous plaît soyez patient avec nous et attendez-vous à des mises à jour régulières!">
 
@@ -27,7 +27,7 @@
 <!ENTITY foxtrick.prefs.nodressesorfaces "N'afficher ni les visages ni les tenues.">
 <!ENTITY foxtrick.prefs.showfaces "Afficher les visages sur la composition d'équipe.">
 <!ENTITY foxtrick.prefs.showdresses "Afficher les tenues sur la composition d'équipe.">
-<!ENTITY foxtrick.prefs.links "Liens vers sites externes">
+<!ENTITY foxtrick.prefs.links "Liens sites externes">
 <!ENTITY foxtrick.prefs.link "Lien">
 <!ENTITY foxtrick.prefs.show "Montrer">
 <!ENTITY foxtrick.prefs.shortcuts "Raccourcis">
@@ -58,7 +58,7 @@
 <!ENTITY foxtrick.prefs.resizemenuframe "Redimensionner le cadre du menu">
 <!ENTITY foxtrick.prefs.framewidth "Largeur">
 <!ENTITY foxtrick.prefs.clearplayerscache "Effacer le cache des visages/tenues.">
-<!ENTITY foxtrick.prefs.attackdefensebars "Barres attaques vs défenses">
+<!ENTITY foxtrick.prefs.attackdefensebars "Attaques vs Défenses">
 <!ENTITY foxtrick.prefs.attackdefensebarsalways "Insérer automatiquement.">
 <!ENTITY foxtrick.prefs.attackdefensebarsyes "Afficher un lien.">
 <!ENTITY foxtrick.prefs.attackdefensebarsno "Ne pas insérer.">
@@ -88,16 +88,16 @@
 <!ENTITY foxtrick.prefs.opendirectory "Ouvrir le répertoire">
 <!ENTITY foxtrick.prefs.selectfile "Sélectionnez le fichier son">
 <!ENTITY foxtrick.prefs.stagesettings "Paramètres Stage">
-<!ENTITY foxtrick.prefs.disableonstage "Désactiver Foxtrick sur le serveur Stage">
-<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
-<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
+<!ENTITY foxtrick.prefs.disableonstage "Désactiver Foxtrick sur le serveur Stage.">
+<!ENTITY foxtrick.prefs.alltidflags "Ajoute les drapeaux et liens Alltid dans les messages du forum.">
+<!ENTITY foxtrick.prefs.linksleague "Ajoute quelques liens externes à la page Poule.">
+<!ENTITY foxtrick.prefs.linksteams "Ajoute quelques liens externes à la page Équipe.">
+<!ENTITY foxtrick.prefs.linkscountry "Ajoute quelques liens externes à la page Pays.">
+<!ENTITY foxtrick.prefs.linkschallenges "Ajoute quelques liens externes à la page Défis.">
+<!ENTITY foxtrick.prefs.linkseconomy "Ajoute quelques liens externes à la page Finances.">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Ajoute quelques liens externes à la page Aperçu Équipe junior.">
+<!ENTITY foxtrick.prefs.linksarena "Ajoute quelques liens externes à la page Stade.">
+<!ENTITY foxtrick.prefs.linkscoach "Ajoute quelques liens externes à la page Entraineur.">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Ajoute quelques liens externes à la page Détails du joueur.">
+<!ENTITY foxtrick.prefs.linksmatch "Ajoute quelques liens externes à la page Matchs.">
 <!-- EOF -->
