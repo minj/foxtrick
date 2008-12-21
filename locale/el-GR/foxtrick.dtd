@@ -1,0 +1,104 @@
+<!-- el-GR
+     GTTWINS (5055092)
+	 UTF-8 encoded file
+-->
+
+<!ENTITY foxtrick.prefs.shortcuts "Óõíôïìåýóåéò êáé ðñïóáñìïãÝò">
+<!ENTITY foxtrick.prefs.forum "ÄéÜóêåøç">
+<!ENTITY foxtrick.prefs.links "Óýíäåóìïé">
+<!ENTITY foxtrick.prefs.matches "Áãþíåò">
+<!ENTITY foxtrick.prefs.modulelistlabel "ÄéáèÝóéìá óôïé÷åßá. ÔóÝêáñå ôï êïõôÜêé äßðëá óôï üíïìá ôïõ óôïé÷åßïõ ãéá íá ôï åíåñãïðïéÞóåéò.">
+<!ENTITY foxtrick.prefs.transitioninfo "Ôï Foxtrick âñßóêåôáé óå ìåôáâáôéêü óôÜäéï ðñïóáñìïãÞò óôç íÝá ó÷åäßáóç ôïõ Hattrick. Ðñïóðáèïýìå íá åðáíáöÝñïõìå üëåò ôéò ðáëéÝò ëåéôïõñãßåò óôç íÝá ó÷åäßáóç. Ðáñáêáëïýìå íá åßóôå õðïìïíåôéêïß êáé íá ðåñéìÝíåôå ôéò áíáâáèìßóåéò !">
+
+
+<!ENTITY foxtrick.prefs.mainoptions "ÂáóéêÝò åðéëïãÝò">
+<!ENTITY foxtrick.prefs.enable "Åíåñãïðïßçóå">
+<!ENTITY foxtrick.prefs.preferences "ÐñïôéìÞóåéò">
+<!ENTITY foxtrick.prefs.visuals "ÅéêáóôéêÜ">
+<!ENTITY foxtrick.prefs.stars "ÁóôÝñéá">
+<!ENTITY foxtrick.prefs.about "Ó÷åôéêÜ">
+<!ENTITY foxtrick.prefs.addstars "Ðñüóèåóå áóôÝñéá">
+<!ENTITY foxtrick.prefs.replacestars "ÁíôéêáôÝóôçóå áóôÝñéá">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "×ñçóéìïðïßçóå ôá ðñïåðéëåãìÝíá áóôÝñéá ôïõ Hattrick.">
+<!ENTITY foxtrick.prefs.cssskins "CSS èÝìáôá">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "×ñçóéìïðïßçóå ôï ðñïåðéëåãìÝíï èÝìá ôïõ Hattrick.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Äéáìüñöùóå ôï FoxTrick">
+<!ENTITY foxtrick.menu.reloadfoxtrick "Reload FoxTrick (for developers)">
+<!ENTITY foxtrick.prefs.faces "Ðñüóùðá êáé ÓôïëÝò (ãéá õðïóôçñéêôÝò)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "Ìçí ðñïóèÝôåéò ðñüóùðá Þ óôïëÝò.">
+<!ENTITY foxtrick.prefs.showfaces "ÂÜëå ôá ðñüóùðá ôùí ðáéêôþí óôçí óåëßäá ó÷çìáôéóìïý.">
+<!ENTITY foxtrick.prefs.showdresses "ÂÜëå ôéò óôïëÝò ôùí ðáéêôþí óôç óåëßäá ó÷çìáôéóìïý.">
+<!ENTITY foxtrick.prefs.links "Óýíäåóìïé ãéá Üëëåò óåëßäåò">
+<!ENTITY foxtrick.prefs.link "Óýíäåóìïò">
+<!ENTITY foxtrick.prefs.show "Äåßîå">
+<!ENTITY foxtrick.prefs.shortcuts "Óõíôïìåýóåéò">
+<!ENTITY foxtrick.prefs.shortcut "Óõíôüìåõóç">
+<!ENTITY foxtrick.prefs.groupstarsby "Áñéèìüò áóôåñéþí áíá ÷ñþìá: ">
+<!ENTITY foxtrick.menu.installskin "Install Hattrick.org skin">
+<!ENTITY foxtrick.prefs.linkstab "Links &amp; ratings">
+<!ENTITY foxtrick.prefs.ratings "ÁîéïëïãÞóåéò">
+<!ENTITY foxtrick.prefs.rating "Áîéïëüãçóç">
+<!ENTITY foxtrick.prefs.htlang "Ãëþóóá ôïõ Hattrick">
+<!ENTITY foxtrick.prefs.language "Ñõìßóåéò ãëþóóáò">
+<!ENTITY foxtrick.prefs.lineupcoloring "Match lineup coloring schemes">
+<!ENTITY foxtrick.prefs.nolineupcoloring "No match lineup coloring.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Only if a coloring scheme exists in the used skin.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Always. If a skin doesn't include a coloring scheme, use the default one.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Get more CSS skins">
+<!ENTITY foxtrick.prefs.shortcutstab "Óõíôïìåýóåéò &amp; ðñïóáñìïãÝò">
+<!ENTITY foxtrick.prefs.tweaks "ÐñïóáñìïãÝò">
+<!ENTITY foxtrick.prefs.mergestars "Óõã÷þíåõóå áóôÝñéá">
+<!ENTITY foxtrick.menu.playersintabs "Open found players in tabs">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Add players' faces &amp; dresses to match lineup.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Óôõë">
+<!ENTITY foxtrick.prefs.matchorders "ÅíôïëÝò áãþíá">
+<!ENTITY foxtrick.prefs.showformationbox "Äåßîå êïõôß ó÷çìáôéóìïý">
+<!ENTITY foxtrick.prefs.frameresize "ÁëëáãÞ ìåãÝèïõò ðëáéóßïõ">
+<!ENTITY foxtrick.prefs.hidelogoframe "Hide logo frame">
+<!ENTITY foxtrick.prefs.resizemainframe "ÁëëáãÞ ìåãÝèïõò êýñéïõ ðëáéóßïõ">
+<!ENTITY foxtrick.prefs.resizemenuframe "ÁëëáãÞ ìåãÝèïõò ðëáéóßïõ ìåíïý">
+<!ENTITY foxtrick.prefs.framewidth "ÐëÜôïò">
+<!ENTITY foxtrick.prefs.clearplayerscache "Clear player faces/dresses cache.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Åðßèåóç åí. Áìõíáò ìðÜñåò">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Áõôüìáôç åéóáãùãÞ.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Show toggle link.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "Ìçí åéóÜãåéò.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Ìïñöïðïßçóç áîéïëïãÞóåùí">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "ÊáíïíéêÞ áîéïëüãéóç.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Áîéïëüãéóç ðáëáéïý óôõë.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "Ïé ðáñáêÜôù åðéëïãÝò ðñÝðåé íá ôåèïýí óå óõíÜñôçóç ìå ôéò ñõèìßóåéò óáò óôï Hattrick.org.">
+<!ENTITY foxtrick.prefs.showflags "Add players' country flags to match lineup.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Add players' faces &amp; country flags to match lineup.">
+<!ENTITY foxtrick.prefs.showdressesandflags "Add players' dresses &amp; country flags to match lineup.">
+<!ENTITY foxtrick.prefs.medalsets "Óåô ìåôáëëßùí">
+<!ENTITY foxtrick.prefs.getmoremedalsets "ÂÜëå ðåñéóóüôåñá óåô ìåôáëëßùí">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Use default Hattrick medals.">
+<!ENTITY foxtrick.menu.installmedalset "Install Hattrick.org medal set">
+<!ENTITY foxtrick.prefs.htcurrency "Íüìéóìá Hattrick">
+<!ENTITY foxtrick.prefs.main "Âáóéêü">
+<!ENTITY foxtrick.prefs.alertsettings "Ñõèìßóåéò åéäïðïéÞóåùí">
+<!ENTITY foxtrick.prefs.alertslider "ÄÝéîå áíáäõüìåíç åéäïðïßçóç.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Åìöáíßæåé åéêïíßäéï FoxTrick óôçí ãñáììÞ êáôÜóôáóçò ôïõ Firefox.">
+<!ENTITY foxtrick.prefs.alertsound "Ðáßîå ðñïåéäïðïéçôéêü Þ÷ï.">
+<!ENTITY foxtrick.prefs.alertslidermac "Show growl notification (Mac only)">
+<!ENTITY foxtrick.menu.createplayerad "Player ad into clipboard.">
+<!ENTITY foxtrick.prefs.htdateformat "ÌïñöïðïÞóç çìåñïìçíßáò">
+<!ENTITY foxtrick.menu.makelink "Conference link into clipboard">
+<!ENTITY foxtrick.prefs.forumtemplates "ðñüôõðá äéáóêÝøåùí">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Ðñüôõðï ìÞíõìá äéÜóêåøçò">
+<!ENTITY foxtrick.prefs.opendirectory "Áíïéîå êáôÜëïãï">
+<!ENTITY foxtrick.prefs.selectfile "ÅðÝëåîå áñ÷åßï Þ÷ïõ">
+<!ENTITY foxtrick.prefs.stagesettings "ñõèìßóåéò Stage">
+<!ENTITY foxtrick.prefs.disableonstage "Áðåíåñãïðïßçóç Foxtrick óôïí óåñâåñ ôïõ Stage">
+<!ENTITY foxtrick.prefs.alltidflags "ÐñïóèÝôåé óçìáßåò áðï ôï Alltid êáé óõíäÝóìïõò óôïõò ÷ñÞóôåò óôç óåëßäá äéáóêÝøåùí">
+<!ENTITY foxtrick.prefs.linksleague "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá ðñùôáèëÞìáôïò">
+<!ENTITY foxtrick.prefs.linksteams "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá ïìÜäáò">
+<!ENTITY foxtrick.prefs.linkscountry "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá ÷þñáò">
+<!ENTITY foxtrick.prefs.linkschallenges "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá ðñïóêëÞóåùí">
+<!ENTITY foxtrick.prefs.linkseconomy "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá ïéêïíïìßáò">
+<!ENTITY foxtrick.prefs.linksyouthoverview "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá áêáäçìßáò">
+<!ENTITY foxtrick.prefs.linksarena "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá ãçðÝäïõ">
+<!ENTITY foxtrick.prefs.linkscoach "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá ðñïðïíçôÞ">
+<!ENTITY foxtrick.prefs.linksplayerdetail "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá óôïé÷åßùí ôïõ ðáßêôç">
+<!ENTITY foxtrick.prefs.linksmatch "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá áãþíùí">
+<!-- EOF -->
