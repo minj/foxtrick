@@ -1,4 +1,4 @@
-<!-- pl-PL
+﻿<!-- pl-PL
      Kamil Homziak
 -->
 
@@ -6,30 +6,30 @@
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Linki">
 <!ENTITY foxtrick.prefs.matches "Mecze">
-<!ENTITY foxtrick.prefs.modulelistlabel "Poni¿ej znajduje siê lista modyfikacji dostêpnych w wybranej kategorii. Aby aktywowaæ dany dodatek, zaznacz pole widoczne po lewej stronie od jego nazwy.">
-<!ENTITY foxtrick.prefs.transitioninfo "Obecnie dostosowujemy FoxTrick do nowego wygl¹du Hattricka. Robimy wszystko, co w naszej mocy, aby dodatki znane z poprzednich wersji FoxTricka, by³y dostêpne równie¿ teraz. B¹dŸ zatem cierpliwy i spodziewaj siê czêstych aktualizacji!">
+<!ENTITY foxtrick.prefs.modulelistlabel "Poniżej znajduje sie lista modyfikacji dostepnych w wybranej kategorii. Aby aktywować dany dodatek, zaznacz pole widoczne po lewej stronie od jego nazwy.">
+<!ENTITY foxtrick.prefs.transitioninfo "Obecnie dostosowujemy FoxTrick do nowego wyglądu Hattricka. Robimy wszystko, co w naszej mocy, aby dodatki znane z poprzednich wersji FoxTricka były dostepne również teraz. Bądź zatem cierpliwy i spodziewaj sie częstych aktualizacji!">
 
 
-<!ENTITY foxtrick.prefs.mainoptions "G³ówne">
-<!ENTITY foxtrick.prefs.enable "W³¹cz">
+<!ENTITY foxtrick.prefs.mainoptions "Główne">
+<!ENTITY foxtrick.prefs.enable "Włącz">
 <!ENTITY foxtrick.prefs.preferences "Opcje">
 <!ENTITY foxtrick.prefs.visuals "Graficzne">
 <!ENTITY foxtrick.prefs.stars "Gwiazdki">
 <!ENTITY foxtrick.prefs.about "O FoxTricku">
 <!ENTITY foxtrick.prefs.addstars "Dodaj gwiazdki">
-<!ENTITY foxtrick.prefs.replacestars "Zamieñ gwiazdki">
-<!ENTITY foxtrick.prefs.defaulthattrickstars "U¿yj domyœlnych gwiazdek Hattricka">
+<!ENTITY foxtrick.prefs.replacestars "Zamień gwiazdki">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Użyj domyślnych gwiazdek Hattricka">
 <!ENTITY foxtrick.prefs.cssskins "Motywy">
-<!ENTITY foxtrick.prefs.defaulthatrickskin "U¿yj domyœlnego motywu Hattricka">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Użyj domyślnego motywu Hattricka">
 <!ENTITY foxtrick.menu.configurefoxtrick "Konfiguruj FoxTrick">
-<!ENTITY foxtrick.menu.reloadfoxtrick "Prze³aduj FoxTrick (dla twórców)">
+<!ENTITY foxtrick.menu.reloadfoxtrick "Przeładuj FoxTrick (dla twórców)">
 <!ENTITY foxtrick.prefs.faces "Twarze i stroje (dla Supporterów)">
 <!ENTITY foxtrick.prefs.nodressesorfaces "Nie pokazuj twarzy i strojów">
 <!ENTITY foxtrick.prefs.showfaces "Pokazuj twarze przy ustawieniu meczowym">
 <!ENTITY foxtrick.prefs.showdresses "Pokazuj stroje przy ustawieniu meczowym">
-<!ENTITY foxtrick.prefs.links "Linki do zewnêtrznych stron">
+<!ENTITY foxtrick.prefs.links "Linki do zewnętrznych stron">
 <!ENTITY foxtrick.prefs.link "Link">
-<!ENTITY foxtrick.prefs.show "Poka¿">
+<!ENTITY foxtrick.prefs.show "Pokaż">
 <!ENTITY foxtrick.prefs.shortcuts "Skróty">
 <!ENTITY foxtrick.prefs.shortcut "Skrót">
 <!ENTITY foxtrick.prefs.groupstarsby "Liczba gwiazdek do zgrupowania w kolor:">
@@ -37,56 +37,56 @@
 <!ENTITY foxtrick.prefs.linkstab "Linki i oceny">
 <!ENTITY foxtrick.prefs.ratings "Oceny">
 <!ENTITY foxtrick.prefs.rating "Ocena">
-<!ENTITY foxtrick.prefs.htlang "Jêzyk Hattricka">
-<!ENTITY foxtrick.prefs.language "Wybierz jêzyk">
+<!ENTITY foxtrick.prefs.htlang "Język Hattricka">
+<!ENTITY foxtrick.prefs.language "Wybierz język">
 <!ENTITY foxtrick.prefs.lineupcoloring "Kolorowanie ustawienia meczowego">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Nie koloruj ustawienia meczowego">
-<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Tylko jeœli wybrany motyw zawiera schemat kolorowania">
-<!ENTITY foxtrick.prefs.yeslineupcoloring "Zawsze. Jeœli wybrany motyw nie zawiera schematu kolorowania, u¿yj schematu domyœlnego">
-<!ENTITY foxtrick.prefs.getmorecssskins "Pobierz wiêcej motywów">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Tylko jeśli wybrany motyw zawiera schemat kolorowania">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Zawsze. Jeśli wybrany motyw nie zawiera schematu kolorowania, użyj schematu domyślnego">
+<!ENTITY foxtrick.prefs.getmorecssskins "Pobierz więcej motywów">
 <!ENTITY foxtrick.prefs.shortcutstab "Skróty i modyfikacje">
 <!ENTITY foxtrick.prefs.tweaks "Modyfikacje">
-<!ENTITY foxtrick.prefs.mergestars "£¹cz gwiazdki w grupy">
+<!ENTITY foxtrick.prefs.mergestars "Łącz gwiazdki w grupy">
 <!ENTITY foxtrick.menu.playersintabs "Otwieraj znalezionych zawodników w nowej karcie">
-<!ENTITY foxtrick.prefs.showfacesanddresses "Pokazuj twarze i stroje pi³karzy w ustawieniu meczowym">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Pokazuj twarze i stroje piłkarzy w ustawieniu meczowym">
 <!ENTITY foxtrick.prefs.lineupcoloringstyle "Styl kolorowania">
 <!ENTITY foxtrick.prefs.matchorders "Ustawienia meczowe">
-<!ENTITY foxtrick.prefs.showformationbox "Poka¿ okno formacji">
+<!ENTITY foxtrick.prefs.showformationbox "Pokaż okno formacji">
 <!ENTITY foxtrick.prefs.frameresize "Skalowanie ramki">
-<!ENTITY foxtrick.prefs.hidelogoframe "Ukryj ramkê z logo">
-<!ENTITY foxtrick.prefs.resizemainframe "Skaluj g³own¹ ramkê">
-<!ENTITY foxtrick.prefs.resizemenuframe "Skaluj ramkê menu">
-<!ENTITY foxtrick.prefs.framewidth "Szerokoœæ">
-<!ENTITY foxtrick.prefs.clearplayerscache "Wyczyœæ cache twarzy/strojów">
+<!ENTITY foxtrick.prefs.hidelogoframe "Ukryj ramkę z logo">
+<!ENTITY foxtrick.prefs.resizemainframe "Skaluj głowną ramkę">
+<!ENTITY foxtrick.prefs.resizemenuframe "Skaluj ramkę menu">
+<!ENTITY foxtrick.prefs.framewidth "Szerokość">
+<!ENTITY foxtrick.prefs.clearplayerscache "Wyczyść cache twarzy/strojów">
 <!ENTITY foxtrick.prefs.attackdefensebars "Atak vs Obrona">
 <!ENTITY foxtrick.prefs.attackdefensebarsalways "Pokazuj automatycznie">
-<!ENTITY foxtrick.prefs.attackdefensebarsyes "Pokazuj po klikniêciu">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Pokazuj po kliknięciu">
 <!ENTITY foxtrick.prefs.attackdefensebarsno "Nie pokazuj">
 <!ENTITY foxtrick.prefs.ratingsstyle "Format ocen">
 <!ENTITY foxtrick.prefs.ratingsstylestandard "Oceny standardowe">
 <!ENTITY foxtrick.prefs.ratingsstyleold "Stary typ ocen">
-<!ENTITY foxtrick.prefs.hattricksettingstext "Poni¿sze opcje musz¹ byæ zgodne z ustawieniami Twojego konta na Hattrick.org">
+<!ENTITY foxtrick.prefs.hattricksettingstext "Poniższe opcje muszą być zgodne z ustawieniami Twojego konta na Hattrick.org">
 <!ENTITY foxtrick.prefs.showflags "Pokazuj flagi graczy przy ustawieniu meczowym">
 <!ENTITY foxtrick.prefs.showfacesandflags "Pokazuj flagi i twarze graczy przy ustawieniu meczowym">
 <!ENTITY foxtrick.prefs.showdressesandflags "Pokazuj flagi i stroje graczy przy ustawieniu meczowym">
 <!ENTITY foxtrick.prefs.medalsets "Zestawy medali">
-<!ENTITY foxtrick.prefs.getmoremedalsets "Pobierz wiêcej zestawów medali">
-<!ENTITY foxtrick.prefs.defaulthattrickmedals "U¿yj domyœlnych medali Hattricka">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Pobierz więcej zestawów medali">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Użyj domyślnych medali Hattricka">
 <!ENTITY foxtrick.menu.installmedalset "Zainstaluj zestaw medali Hattrick.org">
 <!ENTITY foxtrick.prefs.htcurrency "Waluta Hattricka">
-<!ENTITY foxtrick.prefs.main "G³ówne">
-<!ENTITY foxtrick.prefs.alertsettings "Ustawienia powiadomieñ">
-<!ENTITY foxtrick.prefs.alertslider "W³¹cz wysuwane powiadomienia">
-<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Pokazuj panel FoxTricka w pasku zadañ Firefoxa">
-<!ENTITY foxtrick.prefs.alertsound "W³¹cz powiadomienia dŸwiêkowe">
-<!ENTITY foxtrick.prefs.alertslidermac "W³¹cz powiadomienia growl (tylko dla Maca)">
-<!ENTITY foxtrick.menu.createplayerad "Kopiuj reklamê pi³karza do schowka">
+<!ENTITY foxtrick.prefs.main "Główne">
+<!ENTITY foxtrick.prefs.alertsettings "Ustawienia powiadomień">
+<!ENTITY foxtrick.prefs.alertslider "Włącz wysuwane powiadomienia">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Pokazuj panel FoxTricka w pasku zadań Firefoxa">
+<!ENTITY foxtrick.prefs.alertsound "Włącz powiadomienia dźwiękowe">
+<!ENTITY foxtrick.prefs.alertslidermac "Włącz powiadomienia growl (tylko dla Maca)">
+<!ENTITY foxtrick.menu.createplayerad "Kopiuj reklamę piłkarza do schowka">
 <!ENTITY foxtrick.prefs.htdateformat "Format daty">
-<!ENTITY foxtrick.menu.makelink "Kopiuj odnoœnik forum do schowka">
+<!ENTITY foxtrick.menu.makelink "Kopiuj odnośnik forum do schowka">
 <!ENTITY foxtrick.prefs.forumtemplates "Szablony forum">
 <!ENTITY foxtrick.prefs.forummessagetemplates "Szablony postów na forum">
 <!ENTITY foxtrick.prefs.opendirectory "Otwórz folder">
-<!ENTITY foxtrick.prefs.selectfile "Wybierz plik dŸwiêkowy">
+<!ENTITY foxtrick.prefs.selectfile "Wybierz plik dźwiękowy">
 <!ENTITY foxtrick.prefs.stagesettings "Ustawienia Stage'a">
 <!ENTITY foxtrick.prefs.disableonstage "Dezaktywuj FoxTricka na Stage'u">
 <!ENTITY foxtrick.prefs.alltidflags "Dodaje linki i flagi Alltida do nicków obu postujących na forum">
