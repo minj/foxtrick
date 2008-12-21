@@ -23,19 +23,37 @@ var FoxtrickAlltidFlags = {
 
 		var alldivs = doc.getElementsByTagName('div');
 		for (var i = 0; i < alldivs.length; i++) {
-			if (alldivs[i].className=="cfHeader") {
+			if (alldivs[i].className=="cfWrapper") {
 				var style ="margin-right:3px; padding-left:3px; " + 
 					"background-repeat:repeat-x; background-position: 0% 50%;";
 				var target = "_blank";
 				var linksArray = alldivs[i].getElementsByTagName('a');
+				
+				var titlecountry1="";
+				// get country
 				for (var j=0; j<linksArray.length; j++) {
 					var link = linksArray[j];
-					if (link.href.search(/userId=/i) > -1) {
+					if (link.href.search(/LeagueId=/i) > -1) {
+						titlecountry1 = link.getElementsByTagName('img')[0].title;
+						break;
+					}	
+				} 
+				var innerdivs = alldivs[i].getElementsByTagName('div');
+				for (var k = 0; k < innerdivs.length; k++) {
+				  if (innerdivs[k].className=="cfHeader") { //Foxtrick.alert("W");
+				    var count=0;
+				    var linksArray = innerdivs[k].getElementsByTagName('a');
+				
+				    for (var j=0; j<linksArray.length; j++) {
+					  var link = linksArray[j];
+					  if (link.href.search(/userId=/i) > -1) {
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var userId = link.href.substring(link.href.lastIndexOf('userId=')+7);
+						var thistitlecountry="";
+						if (count==0) thistitlecountry = titlecountry1;
 						mySpan.innerHTML = ' <a href="' + linkpage + userId +
-							'" target="' + target + ' "><img style="' + 
+							'" target="' + target + ' "><img title="'+thistitlecountry+'" " style="' + 
 							'vertical-align: middle; ' + style + '" src="' + 
 							flagspage + userId + '.gif" border="0"' +
 							'height="12" /></a>';
@@ -44,14 +62,19 @@ var FoxtrickAlltidFlags = {
 							target=linksArray[j+1].nextSibling;
 						}
 						link.parentNode.insertBefore(mySpan, target);
-					} else if (	link.href.search(/Read.aspx/i) > -1 && 
+						if (count==1){break;}
+						count++;
+					  } else if (	link.href.search(/Read.aspx/i) > -1 && 
 						!link.id) {
 						// Replace "as answer to"
 						var asAnswerTo = link.previousSibling;
 						var newText = doc.createTextNode(" => ");
 						asAnswerTo.parentNode.replaceChild(newText,asAnswerTo);
+					  }
 					}
+				  }
 				}
+				
 			}
 		}
 	}
