@@ -1,7 +1,7 @@
 /**
  * youthskillnotes.js
  * Make your own notes about skills...
- * @Author by smates 
+ * @Authors:  smates, larsw84
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickYouthSkillNotes = {

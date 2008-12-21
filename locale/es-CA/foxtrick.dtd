@@ -1,11 +1,11 @@
-r269
+r278
 
-<!-- en-US
-     Español, Centroamericano
+<!-- es-CA
+     baler0
 -->
 
 <!ENTITY foxtrick.prefs.shortcuts "Atajos y trucos">
-<!ENTITY foxtrick.prefs.forum "Conferencia">
+<!ENTITY foxtrick.prefs.forum "Foro">
 <!ENTITY foxtrick.prefs.links "Links">
 <!ENTITY foxtrick.prefs.matches "Partidos">
 <!ENTITY foxtrick.prefs.modulelistlabel "Módulos disponibles. Selecciona la casilla junto al nombre del módulo para activarlo.">
@@ -85,8 +85,8 @@ r269
 <!ENTITY foxtrick.menu.createplayerad "Pegar jugador al portapaleles.">
 <!ENTITY foxtrick.prefs.htdateformat "Formato de fecha">
 <!ENTITY foxtrick.menu.makelink "Pegar link del foro en el portapapeles">
-<!ENTITY foxtrick.prefs.forumtemplates "Plantillas de la conferencia">
-<!ENTITY foxtrick.prefs.forummessagetemplates "Plantillas de mensajes de la conferencia">
+<!ENTITY foxtrick.prefs.forumtemplates "Plantillas del foro">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Plantillas de mensajes del foro">
 <!ENTITY foxtrick.prefs.opendirectory "Abrir directorio">
 <!ENTITY foxtrick.prefs.selectfile "Seleccionar archivo de sonido">
 <!ENTITY foxtrick.prefs.stagesettings "Configuración de Stage">
@@ -100,6 +100,6 @@ r269
 <!ENTITY foxtrick.prefs.linksyouthoverview "Añadir links externos a la Vista general del equipo de juveniles">
 <!ENTITY foxtrick.prefs.linksarena "Añadir links externos a la página de Estadio">
 <!ENTITY foxtrick.prefs.linkscoach "Añadir links externos a la página del Mánager">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Añadir links externos a la página de detalles del jugador">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Añadir links externos a la página de Detalles del Jugador">
+<!ENTITY foxtrick.prefs.linksmatch "Añadir links externos a la página de Partidos">
 <!-- EOF -->
