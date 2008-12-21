@@ -102,15 +102,27 @@ var FoxtrickLinksMatch = {
 		if (!isarchivedmatch) { 
 			var sidediv = doc.getElementById("sidebar");
 			var teamid2 = findSecondTeamId(sidediv,teamid);
-			if (teamid2!=0) { 
+			if (teamid2!=0) { 				
 				var ownBoxBody = doc.createElement("div");
                              
 				var HTD = doc.createElement("a");
 		        HTD.innerHTML = '<a target=_blank class="inner"  title="Alltid team compare" href="http://alltid.org/teamcompare/'+teamid+','+teamid2+'/" ><img  src="chrome://foxtrick/content/resources/linkicons/ahstats.png" style="background:none" /> </a>';
-		        
+		        HTD.className ="inner";
+				
 				ownBoxBody.appendChild(doc.createTextNode(" "));
 				ownBoxBody.appendChild(HTD);
-						
+				var links = getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid  }, doc );  
+				for (var k = 0; k < links.length; k++) {
+							links[k].link.className ="inner";
+							ownBoxBody.appendChild(doc.createTextNode(" "));
+							ownBoxBody.appendChild(links[k].link);
+						}		
+				var links2 = getLinks("matchlink", { "matchid": matchid, "teamid" : teamid  }, doc );  
+				for (var k = 0; k < links2.length; k++) {
+							links2[k].link.className ="inner";
+							ownBoxBody.appendChild(doc.createTextNode(" "));
+							ownBoxBody.appendChild(links2[k].link);
+						}		
 				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
 							"foxtrick.links.boxheader" ), ownBoxBody, "first");
 				

@@ -237,7 +237,7 @@ stats["xraysunray"] =  {
                        },
         
         "title" : "hattriX-Ray sunray",
-        "post" : "true",
+        //"post" : "true",
         "img" : "chrome://foxtrick/content/resources/linkicons/xray_sunray.png"
 };
 
@@ -423,7 +423,7 @@ stats["xrayarenasizer"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/xray_arenasizer.png"
 };
 
-/*
+/* // down
 // Vnukstats
 stats["vnukstats"] =  { 
         "url" : "http://vnukstats.no-ip.com/",
@@ -450,7 +450,7 @@ stats["vnukstats"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/vnukstats.png"
 };*/    
 
-/*
+/*  // down
 // Vnukstats Slovensko
 stats["vnukstats_sk"] =  { 
         "url" : "http://vnukstats.hattrick-sk.com/",
@@ -479,7 +479,7 @@ stats["vnukstats_sk"] =  {
 */
 
 // Statristix, Belgium
-/*
+/*  // down
 stats["statristix"] =  { 
         "url" : "http://statristix.be/",
 
@@ -498,7 +498,7 @@ stats["statristix"] =  {
 };    
 */
 
-/*
+/*// down
 // BelRank
 stats["belstat"] =  { 
         "url" : "http://belrank.be/",
@@ -632,7 +632,7 @@ stats["todohattrick"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/todohattrick.png"
 };    
 
-/*
+/*  // down
 // Eesti Hattricki statistika
 stats["eesti"] =  { 
         "url" : "http://hattrick.luanvi.ee/",
@@ -669,36 +669,6 @@ stats["htfff"] =  {
 };    
 
 
-// htitastats
-/* dead domain
-stats["htitastats"] =  { 
-        "url" : "http://www.htitastats.com/",
-
-        "leaguelink" : { "path"       : "index_girone.php",
-                         "filters"    : ["countryid", "levelnum"], 
-                         "params"     : { "leaguename" : "GIRONE"
-                                        }
-                       },
-
-        "playerlink" : { "path"       : "dettaglio_giocatore.php",
-                         "filters"    : new Array("teamid"), 
-                         "params"     : { "playerid" : "id_giocatore" }
-                       },
-
-
-        "teamlink" : { "path"       : "dettaglio_squadra.php",
-                         "filters"    : ["countryid", "levelnum"], 
-                         "params"     : { "teamid" : "id_squadra" }
-                       },
-
-        "countryidranges" : [[4, 4]], 
-        "levelnumranges" : [[1, 8]], 
-        
-        "teamidranges" : [[9080, 9247], [49448, 52007], [232807, 240998], [544247, 552438], [722711, 730902], [850067, 858258]],
-        "title" : "htitastats",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htitastats.png"
-};    
-*/
 // La Gazzetta di HT
 
 stats["lagazzetta"] =  { 
@@ -723,7 +693,7 @@ stats["lagazzetta"] =  {
         "title" : "La Gazzetta di Hattrick",
         "img" : "chrome://foxtrick/content/resources/linkicons/lagazzetta.jpg"
 };    
-/*
+/* // down
 stats["playitcool"] =  { 
         "url" : "http://www.playitcool.it/",
 
@@ -764,7 +734,7 @@ stats["francestats"] =  {
 
 
 /*
-// htpl
+// htpl  // down
 stats["htpl"] =  { 
         "url" : "http://student.owsiiz.edu.pl/~wo4020/ht/index.php",
 
@@ -784,29 +754,8 @@ stats["htpl"] =  {
 };  
 */
 
-// Polish stats
-// no more available ?
-/*
-stats["spadkiiawanse"] =  { 
-        "url" : "http://www.hottrick.org/aphro/fire/",
 
-        "leaguelink" : { "path"       : "?what=1",
-                         "filters"    : ["countryid"], 
-                         "params"     : { "leaguename" : "name"}
-                       },
-
-        "teamlink" : {   "path"       : "?what=2",
-                         "filters"    : ["countryid"],         
-                         "params"     : { "teamid" : "teamid" }
-                       },
-
-	    "countryidranges" : [[24, 24]],
-        "title" : "Spadki i awanse",
-        "img" : "chrome://foxtrick/content/resources/linkicons/poland.gif"        
-};*/  
-
-
-// not working probably. need dome input fromargentina there
+// not working properly. need some input from argentina there
 stats["argentinaranking"] =  { 
         "url" : "http://www.htranking.com/",
 
@@ -858,7 +807,7 @@ stats["hattrickcl2"] = {
         "countryidranges" : [[18, 18]] 
 };
     
-/*
+/*  // down
 // Estatisticas HT-Brasil
 stats["htbrasil"] =  { 
         "url" : "http://www.htbrstats.com/",
@@ -918,7 +867,7 @@ stats["hattristics"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrist.png"
 };    
 
-/*
+/*  // down
 // Stats Engine Romania
 stats["statsromania"] =  { 
         "url" : "http://www.fubar.ro/stats/",
@@ -990,7 +939,7 @@ stats["hcstatshellas"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hcstats_hellas.png"        
 };    
 
-/*
+/* // down
 // HTTools Friendly Manager
 stats["httoolsfriendlymanager"] =  { 
         "url" : "http://httoolsfriendlymanager.cretze.ro/",
@@ -1004,7 +953,7 @@ stats["httoolsfriendlymanager"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_friendly.png"
 };  */  
 
-/*
+/* // down
 // Maptrick
 stats["maptrick"] =  { 
         "url" : "http://maptrick.nl.eu.org/~laszlo/",
@@ -1031,30 +980,6 @@ stats["ht-dog"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/ht-dog.gif"
 };    
 
-/*
-// Hattrick Cup Rank
-stats["cuprank"] =  { 
-        "url" : "http://www.rembrandt.net/hattrick/",
-
-        "countrylink" : { "path"       : "rank.cgi",
-                         "filters"    : [], 
-                         "params"     : { "countryid" : "LeagueID" }
-                       },
-                       
-        "leaguelink" : { "path"       : "league.cgi",
-                         "filters"    : [], 
-                         "params"     : {
-                                        "leaguename" : "SeriesName",
-                                        "countryid" : "LeagueID"
-                                        }
-                       },
-                       
-        
-        "title" : "Hattrick Cup Rank II",
-        "img" : "chrome://foxtrick/content/resources/linkicons/cuprank.png"
-};    
-
-*/
 // Hatstats
 
 stats["hatstats"] =  { 
@@ -1172,7 +1097,7 @@ stats["coachexperience"] =  {
         "shorttitle" : "Coach experience table"
 };
 
-/*
+/*  // down
 stats["cyf"] =  { 
         "url" : "http://cyf.hattrickitalia.org/",
 
@@ -1237,7 +1162,7 @@ stats["HATTRICKSTATS_fr"] =  {
         "title" : "HATTRICKSTATS.WeB.SiTe",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrickstats_fr.gif"
 };    
-/*
+/*  // down
 stats["EstadisticasHTTP"] =  { 
         "url" : "http://ht-tp.dnsalias.com/http/",
 
@@ -1269,10 +1194,11 @@ stats["natstats"] =  {
   
 };
 
+
 // Hattrick Today
 stats["hattricktoday"] =  { 
-        "url" : "http://www.hattricktoday.org/",
-        "matchlink" : { "path"       : "Viewer/index.php",
+        "url" : "http://www.frelive.net/",
+        "matchlink" : { "path"       : "HT2D/Viewer/index.php",
                          "filters"    : [], 
                          "params"     : { "matchid" : "urlMatches" }
                        },
@@ -1280,19 +1206,20 @@ stats["hattricktoday"] =  {
         "title" : "Hattrick Today",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday.png",
 };
-/*
+
+ 
 // Hattrick Today
 stats["hattricktodayplayed"] =  { 
-        "url" : "http://www.hattricktoday.org/",
+        "url" : "http://www.frelive.net/",
         
-        "playedmatchlink" : { "path"       : "Viewer/index.php",
+        "playedmatchlink" : { "path"       : "HT2D/Viewer/index.php",
                          "filters"    : [], 
                          "params"     : { "matchid" : "urlMatches" }
                        },
         
         "title" : "Hattrick Today (played matches)",
-        "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday_small.png"
-};*/
+        "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday.png"
+};
 
 stats["magicyp"] =  { 
         "url" : "http://www.rodelhang.at/magicyp",
@@ -1305,7 +1232,8 @@ stats["magicyp"] =  {
         "title" : "Magic Youthpull",
         "img" : "chrome://foxtrick/content/resources/linkicons/magicyp.png"
 };
-/*
+
+/*  // down
 stats["beltrickarena"] =  { 
         "url" : "http://www.beltrick.org/calculator",
         "arenalink" : { "path"       : "",
@@ -1325,6 +1253,16 @@ stats["beltrickyouth"] =  {
         "title" : "Beltrick YouthStat",
         "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.jpg"
 };*/
+
+stats["hyouthclub"] =  { 
+        "url" : "http://www.hattrick-youthclub.org/",
+        "youthlink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        "title" : "hattrick youthclub",
+        "img" : "chrome://foxtrick/content/resources/linkicons/hyouthclub.png"
+};
 
 stats["arenaoptimizer"] =  { 
         "url" : "http://www.arenaoptimizer.es/",
