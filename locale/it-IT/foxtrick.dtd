@@ -7,10 +7,10 @@
 <!ENTITY foxtrick.prefs.links "Collegamenti">
 <!ENTITY foxtrick.prefs.matches "Partite">
 <!ENTITY foxtrick.prefs.modulelistlabel "Moduli disponibili. Per attivare il modulo si deve spuntare la relativa casella di fianco.">
-<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick Ã¨ al momento sottoposto ad una transizione verso il nuovo design di Hattrick. Stiamo facendo del nostro meglio per portare tutte le vecchie funzionalitÃ  nel nuovo design. Siate pazienti e aspettatevi aggiornamenti regolari!">
+<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick è al momento sottoposto ad una transizione verso il nuovo design di Hattrick. Stiamo facendo del nostro meglio per portare tutte le vecchie funzionalità nel nuovo design. Siate pazienti e aspettatevi aggiornamenti regolari!">
 
 <!ENTITY foxtrick.prefs.mainoptions "Opzioni principali">
-<!ENTITY foxtrick.prefs.enable "Enable">
+<!ENTITY foxtrick.prefs.enable "Abilita">
 <!ENTITY foxtrick.prefs.preferences "Preferenze">
 <!ENTITY foxtrick.prefs.visuals "Visuali (?)">
 <!ENTITY foxtrick.prefs.stars "Stelle">
@@ -42,7 +42,7 @@
 <!ENTITY foxtrick.prefs.nolineupcoloring "Non usare colorazione per la formazione">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Solo se lo schema di colorazione esiste nella skin utilizzata">
 <!ENTITY foxtrick.prefs.yeslineupcoloring "Sempre. Se la skin non utilizza una colorazione, usare quella di default">
-<!ENTITY foxtrick.prefs.getmorecssskins "Ottieni piÃ¹ skins CSS">
+<!ENTITY foxtrick.prefs.getmorecssskins "Ottieni più skins CSS">
 <!ENTITY foxtrick.prefs.shortcutstab "Collegamenti &amp; tweaks">
 <!ENTITY foxtrick.prefs.tweaks "Tweaks">
 <!ENTITY foxtrick.prefs.mergestars "Raggruppa stelle">
@@ -69,7 +69,7 @@
 <!ENTITY foxtrick.prefs.showfacesandflags "Visualizza volti &amp; bandiere nella formazione">
 <!ENTITY foxtrick.prefs.showdressesandflags "Visualizza divise &amp; bandiere nella formazione">
 <!ENTITY foxtrick.prefs.medalsets "Set di medaglie">
-<!ENTITY foxtrick.prefs.getmoremedalsets "Ottieni piÃ¹ set di medaglie">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Ottieni più set di medaglie">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Usa medaglie standard di Hattrick">
 <!ENTITY foxtrick.menu.installmedalset "Installa set di medaglie Hattrick.org">
 <!ENTITY foxtrick.prefs.htcurrency "Valuta Hattrick">
@@ -90,14 +90,13 @@
 <!ENTITY foxtrick.prefs.disableonstage "Disabilita Foxtrick sui server Stage">
 <!ENTITY foxtrick.prefs.alltidflags "Aggiungi bandiere e collegamenti Alltid per entrambi i 'poster' nella pagina del forum">
 <!ENTITY foxtrick.prefs.linksleague "Aggiungi collegamenti esterni alla pagina della serie">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
+<!ENTITY foxtrick.prefs.linksteams "Aggiungi collegamenti esterni alla pagina della squadra">
+<!ENTITY foxtrick.prefs.linkscountry "Aggiungi collegamenti esterni alla pagina della nazione">
+<!ENTITY foxtrick.prefs.linkschallenges "Aggiungi collegamenti esterni alla pagina delle sfide">
+<!ENTITY foxtrick.prefs.linkseconomy "Aggiungi collegamenti esterni alla pagina dell'economia">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Aggiungi collegamenti esterni alla pagina delle giovanili">
+<!ENTITY foxtrick.prefs.linksarena "Aggiungi collegamenti esterni alla pagina dello stadio">
+<!ENTITY foxtrick.prefs.linkscoach "Aggiungi collegamenti esterni alla pagina dell'allenatore">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Aggiungi collegamenti esterni alla pagina di dettaglio del giocatore">
+<!ENTITY foxtrick.prefs.linksmatch "Aggiungi collegamenti esterni alla pagina delle partite">
 <!-- EOF -->
-
