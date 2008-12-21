@@ -32,6 +32,7 @@ foxtrick.LinksYouthOverview.desc=Añadir links externos a la Vista general del e
 foxtrick.LinksArena.desc=Añadir links externos a la página de Estadio
 foxtrick.LinksCoach.desc=Añadir links externos a la página del Mánager
 foxtrick.LinksPlayerDetail.desc=Añadir links externos a la página de detalles del jugador
+foxtrick.LinksMatch.desc=Adds some external links to the match page
 foxtrick.TruncateLongNicks.desc=Muestra solo los primeros 9 caracteres de usuarios con nombres largos, dentro de los mensajes del foro
 foxtrick.AddDefaultFaceCard.desc=Añade una cara por defencto a los mensajes del foro de usuarios que no especificaron una
 foxtrick.HideFaceTransferImages.desc=Muestra la cara normal de jugadores que han sido puesto como transferibles

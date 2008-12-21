@@ -100,5 +100,6 @@
 <!ENTITY foxtrick.prefs.linksarena "Tilføj nogle eksterne links til stadionsiden">
 <!ENTITY foxtrick.prefs.linkscoach " Tilføj nogle eksterne links til trænersiden">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Tilføj nogle eksterne links til spiller-detaljesiden">
+<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
 
 <!-- EOF -->

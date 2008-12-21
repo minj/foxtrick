@@ -44,6 +44,7 @@ var scripts = [
 	'links/linksarena.js',
 	'links/linkscoach.js',
 	'links/linksplayerdetail.js',
+	'links/linksmatch.js',
 
 	    
     'modules_list.js',

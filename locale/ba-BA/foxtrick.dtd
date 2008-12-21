@@ -98,4 +98,5 @@
 <!ENTITY foxtrick.prefs.linksarena "Dodaj neke vanjske linkove na stranici stadiona">
 <!ENTITY foxtrick.prefs.linkscoach "Dodaj neke vanjske linkove na stranici promjeni trenera">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Dodaj neke vanjske linkove na stranici igrača">
+<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
 <!-- EOF -->

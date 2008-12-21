@@ -99,4 +99,5 @@
 <!ENTITY foxtrick.prefs.linksarena "Lisää joitain ulkoisia linkkejä stadionsivulle">
 <!ENTITY foxtrick.prefs.linkscoach "Lisää joitain ulkoisia linkkejä valmentajasivulle">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Lisää joitain ulkoisia linkkejä pelaajan henkilötieto sivulle">
+<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
 <!-- EOF -->

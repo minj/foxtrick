@@ -101,4 +101,5 @@ r269
 <!ENTITY foxtrick.prefs.linksarena "Añadir links externos a la página de Estadio">
 <!ENTITY foxtrick.prefs.linkscoach "Añadir links externos a la página del Mánager">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Añadir links externos a la página de detalles del jugador">
+<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
 <!-- EOF -->

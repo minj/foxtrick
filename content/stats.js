@@ -266,7 +266,7 @@ stats["xraylivejrplayed"] =  {
                        },
         
         "title" : "hattriX-Ray live! (played matches)",
-        "img" : "chrome://foxtrick/content/resources/linkicons/xray_live_s.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/xray_live_review.png"
 };
 
 // hattriX-Ray head to head
@@ -279,7 +279,7 @@ stats["xrayh2h"] =  {
                        },
         
         "title" : "hattriX-Ray head to head (played matches)",
-        "img" : "chrome://foxtrick/content/resources/linkicons/xray_h2h_s.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/xray_h2h.png"
 };
 
 
@@ -388,7 +388,7 @@ stats["hhofmatch"] =  {
                          "params"     : { "matchid" : "matchid" }
                        },
         "title" : "Hattrick Hall of Fame (match)",
-        "img" : "chrome://foxtrick/content/resources/linkicons/hhof_small.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/hhof.png"
 };    
 
 stats["hhofteam"] =  { 
@@ -550,7 +550,11 @@ stats["ahstats"] =  {
                          "filters"    : [], 
                          "params"     : { "federationid" : "" }
                        },
-
+		"playedmatchlink" : { "path"       : "match/",
+                         "filters"    : [], 
+                         "params"     : { "matchid" : "","match":"" }
+                       },
+        
         "title" : "Alltid Hattrick Statistikk International",
         "img" : "chrome://foxtrick/content/resources/linkicons/ahstats.png"
 };    
@@ -838,7 +842,22 @@ stats["hattrickcl"] =  {
         "countryidranges" : [[18, 18]], 
         "title" : "Estadisticas Chile",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrick_cl.png"        
-};    
+};
+
+
+stats["hattrickcl2"] = { 
+  "url" : "http://www.hattrick.cl/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/hattrick_cl.png",
+  "title" : "hattrick.cl",
+  
+        "countrylink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+        
+        "countryidranges" : [[18, 18]] 
+};
+    
 /*
 // Estatisticas HT-Brasil
 stats["htbrasil"] =  { 
@@ -1261,7 +1280,7 @@ stats["hattricktoday"] =  {
         "title" : "Hattrick Today",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday.png",
 };
-
+/*
 // Hattrick Today
 stats["hattricktodayplayed"] =  { 
         "url" : "http://www.hattricktoday.org/",
@@ -1273,7 +1292,7 @@ stats["hattricktodayplayed"] =  {
         
         "title" : "Hattrick Today (played matches)",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday_small.png"
-};
+};*/
 
 stats["magicyp"] =  { 
         "url" : "http://www.rodelhang.at/magicyp",
@@ -1316,6 +1335,17 @@ stats["arenaoptimizer"] =  {
         "title" : "Arena Optimizer",
         "img" : "chrome://foxtrick/content/resources/linkicons/arenaoptimizer.gif"
 };
+
+stats["eco_arena"] =  { 
+        "url" : "http://nrgjack.altervista.org/",
+        "arenalink" : { "path"       : "eco.php/",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        "title" : "Enterprise Construction Online",
+        "img" : "chrome://foxtrick/content/resources/linkicons/eco.png"
+};
+
 
 // ArgenStat
 stats["argenstat"] =  { 
@@ -1372,6 +1402,19 @@ stats["czechrepublic_nt"] = {
   "nationalityranges" : [[52, 52]],
   "LeagueIDranges" : [[52,52]]
   
+};
+
+stats["hattrick-cz"] = { 
+  "url" : "http://www.hattrick-cz.com/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/czech_nt_tracker.png",
+  "title" : "hattrick-cz",
+  
+        "countrylink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+        
+        "countryidranges" : [[52, 52]] 
 };
 
 stats["cambodia_nt"] = { 

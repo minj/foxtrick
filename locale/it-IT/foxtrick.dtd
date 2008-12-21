@@ -98,5 +98,6 @@
 <!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
 <!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
+<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
 <!-- EOF -->
 
