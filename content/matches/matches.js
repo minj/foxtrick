@@ -594,8 +594,8 @@ var Matches = {
                        };
 
     ratingDefs["hatstats"] = {   base : 1.0, weight : 4.0,
-                         label : "HatStats",
-                         title : "HatStats",
+                         label : "HatStats (detailed)",
+                         title : "HatStats (detailed)",
 
                          attack : function(attackLevel) {
                                                      return (3.0*this.base + this.weight*attackLevel);
@@ -613,7 +613,7 @@ var Matches = {
                                                     }
                        };
 
-    ratingDefs["hatstatstotal"] = { label : "HatStats",
+    ratingDefs["hatstatstotal"] = { label : "HatStats (short)",
                                  title : "HatStats Total only",
                          total: function(midfieldLevel, attackLevel, defenceLevel) {
                                      return ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
