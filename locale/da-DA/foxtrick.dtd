@@ -5,6 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Genveje og finindstillinger">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Links">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Tilgængelige moduler. Tjek boksen ved siden af modul navn, for at aktivere den.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick er i øjeblikket i gang med en overgang til det nye Hattrick design. Vi gør vores bedste, for at bringe de gamle funtioner til det nye design. Vær tålmodig med os og forvent regelmæssige opdateringer!">
 
