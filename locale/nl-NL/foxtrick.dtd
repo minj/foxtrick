@@ -5,7 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Snelkoppelingen en tweaks">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Links">
-<!ENTITY foxtrick.prefs.matches "Matches">
+<!ENTITY foxtrick.prefs.matches "Wedstrijden">
 <!ENTITY foxtrick.prefs.modulelistlabel "Beschikbare modules. Vink het vakje naast de naam van een module aan, om deze aan te zetten.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick ondergaat op dit moment een herontwikkeling naar het nieuwe design van Hattrick. We doen ons best om alle oude features ook in het nieuwe design te laten werken. We vragen je geduld, je kunt regelmatig updates verwachten.">
 
@@ -89,15 +89,15 @@
 <!ENTITY foxtrick.prefs.selectfile "Selecteer bestand met geluid">
 <!ENTITY foxtrick.prefs.stagesettings "Stage instellingen">
 <!ENTITY foxtrick.prefs.disableonstage "Schakel Foxtrick op de Stage server uit">
-<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
-<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
+<!ENTITY foxtrick.prefs.alltidflags "Toont Alltid vlaggetjes en links van beide auteurs in een bericht op het forum">
+<!ENTITY foxtrick.prefs.linksleague "Toont een aantal nuttige externe links op de competitiepagina">
+<!ENTITY foxtrick.prefs.linksteams "Toont een aantal nuttige externe links op de team pagina">
+<!ENTITY foxtrick.prefs.linkscountry "Toont een aantal nuttige externe links op de landen pagina">
+<!ENTITY foxtrick.prefs.linkschallenges "Toont een aantal nuttige externe links op de uitdagingen pagina">
+<!ENTITY foxtrick.prefs.linkseconomy "Toont een aantal nuttige externe links op de financien pagina">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Toont een aantal nuttige externe links op de jeugd pagina">
+<!ENTITY foxtrick.prefs.linksarena "Toont een aantal nuttige externe links op de stadion pagina">
+<!ENTITY foxtrick.prefs.linkscoach "Toont een aantal nuttige externe links op de nieuwe trainer pagina">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Toont een aantal nuttige externe links op de speler pagina">
+<!ENTITY foxtrick.prefs.linksmatch "Toont een aantal nuttige externe links op de wedstrijd pagina">
 <!-- EOF -->
