@@ -40,5 +40,6 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
 					 FoxtrickLinksMatch,
 					 FoxtrickShowMessageButton,
 					 FoxtrickTruncateLongNicks,
-					 FoxtrickAddDefaultFaceCard
+					 FoxtrickAddDefaultFaceCard,
+					 FoxtrickConfirmPlayerBid
                    ];
