@@ -23,6 +23,7 @@ var scripts = [
 	'forum/forumalltidflags.js',
 	'forum/forumtruncatelongnicks.js',
 	'forum/forumadddefaultfacecard.js',
+    'matches/matches.js',
     'matches/ratings.js',
     'matches/attvsdef.js',
     'matches/matchOrdersFlipSides.js',
