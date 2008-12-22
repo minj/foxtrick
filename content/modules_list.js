@@ -45,5 +45,6 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
 					 FoxtrickAddDefaultFaceCard,
 					 FoxtrickConfirmPlayerBid,
 					 FoxtrickEconomyDifference,
-					 FoxtrickForumNextAndPrevious
+					 FoxtrickForumNextAndPrevious,
+					 FoxtrickPersonalityImages
                    ];
