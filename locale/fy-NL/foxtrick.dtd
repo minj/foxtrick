@@ -5,7 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Snelkoppelings en oanpassings">
 <!ENTITY foxtrick.prefs.forum "Foarum">
 <!ENTITY foxtrick.prefs.links "Koppelings">
-<!ENTITY foxtrick.prefs.matches "Matches">
+<!ENTITY foxtrick.prefs.matches "Wedstriden">
 <!ENTITY foxtrick.prefs.modulelistlabel "Beskikbere modules. Set in fink yn it fakje neist de modulenamme om it yn te skeakeljen.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick wurdt op it stuit omboud foar it nije Hattrick-ûntwerp. Wy dogge ús bêst om alle âlde funksjes nei it nije ûntwerp om te setten. Atst geduldich bist, kinst regelmjittich bywurkings ferwachtsje!">
 
@@ -19,7 +19,7 @@
 <!ENTITY foxtrick.prefs.addstars "Stjerren tafoegje">
 <!ENTITY foxtrick.prefs.replacestars "Stjerren ferfange">
 <!ENTITY foxtrick.prefs.defaulthattrickstars "Standert Hattrickstjerren brûke.">
-<!ENTITY foxtrick.prefs.cssskins "CSS Skins">
+<!ENTITY foxtrick.prefs.cssskins "CSS-Skins">
 <!ENTITY foxtrick.prefs.defaulthatrickskin "Brûk standert Hattrick skin.">
 <!ENTITY foxtrick.menu.configurefoxtrick "FoxTrick ynstelle">
 <!ENTITY foxtrick.menu.reloadfoxtrick "FoxTrick herlade (foar ûntwikkelers)">
@@ -89,15 +89,15 @@
 <!ENTITY foxtrick.prefs.selectfile "Selektear lûdsbestân">
 <!ENTITY foxtrick.prefs.stagesettings "Stageynstellings">
 <!ENTITY foxtrick.prefs.disableonstage "Skeakelje Foxtrick út op de Stageserver">
-<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
-<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
+<!ENTITY foxtrick.prefs.alltidflags "Foegje Alltidflaggen en links ta oan beide posters op de foarums">
+<!ENTITY foxtrick.prefs.linksleague "Foegje in tal eksterne koppelings ta oan de kompetysjeside">
+<!ENTITY foxtrick.prefs.linksteams "Foegje in tal eksterne koppelings ta oan de ploechside">
+<!ENTITY foxtrick.prefs.linkscountry "Foegje in tal eksterne koppelings ta oan de lânside">
+<!ENTITY foxtrick.prefs.linkschallenges "Foegje in tal eksterne koppelings ta oan de lânside">
+<!ENTITY foxtrick.prefs.linkseconomy "Foegje in tal eksterne koppelings ta oan de finansiënside">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Foegje in tal eksterne koppelings ta oan de jeugdploechoersjochside">
+<!ENTITY foxtrick.prefs.linksarena "Foegje in tal eksterne koppelings ta oan de stadionside">
+<!ENTITY foxtrick.prefs.linkscoach "Foegje in tal eksterne koppelings ta oan de trenerside">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Foegje in tal eksterne koppelings ta oan de spilerdetailside">
+<!ENTITY foxtrick.prefs.linksmatch "Foegje in tal eksterne koppelings ta oan de wedstriidside">
 <!-- EOF -->
