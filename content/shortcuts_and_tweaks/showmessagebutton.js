@@ -25,9 +25,16 @@ var FoxtrickShowMessageButton = {
 
 				var allDivs = doc.getElementsByTagName("div");
 				var teamID;
+				var ownerID;
 				
 				// Get the teamID
 				for(var i = 0; i < allDivs.length; i++) {
+					//Retrieve owner manager ID - Stephan
+					if(allDivs[i].id=="teamLinks") {
+						var teamLinks_a = allDivs[i].
+							getElementsByTagName("a")[0];
+						ownerID = teamLinks_a.href.substr(teamLinks_a.href.search(/TeamID=/i)+7);
+					}
 					if(allDivs[i].className=="main mainRegular") {
 						var divBoxHead = allDivs[i].
 							getElementsByTagName("div")[0];
@@ -38,7 +45,10 @@ var FoxtrickShowMessageButton = {
 						teamID = a.href.substr(a.href.search(/TeamID=/i)+7);
 					}
 				}
-
+			
+				//Do not add send message button for owner manager page. - Stephan
+				if (ownerID==teamID) return;
+				
 				var messageLink = doc.createElement("a");
 				messageLink.className = "inner";
 				messageLink.href = "../?TeamID=" + teamID + 
@@ -48,11 +58,9 @@ var FoxtrickShowMessageButton = {
 				
 				var img = doc.createElement("img");
 				img.className = "actionIcon";
-				img.alt = Foxtrickl10n.getString( "sendmessage" );
+				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessage" );
 				img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
 				messageLink.appendChild(img);
-				
-					
 				
 				// Append the box to the sidebar
 				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
