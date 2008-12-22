@@ -1,4 +1,4 @@
-<!-- fr-FR
+﻿<!-- fr-FR
      Stéphan CARDOT - Manager du FC Korkis (1751312)
 -->
 
@@ -90,14 +90,14 @@
 <!ENTITY foxtrick.prefs.stagesettings "Paramètres Stage">
 <!ENTITY foxtrick.prefs.disableonstage "Désactiver Foxtrick sur le serveur Stage.">
 <!ENTITY foxtrick.prefs.alltidflags "Ajoute les drapeaux et liens Alltid dans les messages du forum.">
-<!ENTITY foxtrick.prefs.linksleague "Ajoute quelques liens externes à la page Poule.">
-<!ENTITY foxtrick.prefs.linksteams "Ajoute quelques liens externes à la page Équipe.">
-<!ENTITY foxtrick.prefs.linkscountry "Ajoute quelques liens externes à la page Pays.">
-<!ENTITY foxtrick.prefs.linkschallenges "Ajoute quelques liens externes à la page Défis.">
-<!ENTITY foxtrick.prefs.linkseconomy "Ajoute quelques liens externes à la page Finances.">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Ajoute quelques liens externes à la page Aperçu Équipe junior.">
-<!ENTITY foxtrick.prefs.linksarena "Ajoute quelques liens externes à la page Stade.">
-<!ENTITY foxtrick.prefs.linkscoach "Ajoute quelques liens externes à la page Entraineur.">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Ajoute quelques liens externes à la page Détails du joueur.">
-<!ENTITY foxtrick.prefs.linksmatch "Ajoute quelques liens externes à la page Matchs.">
+<!ENTITY foxtrick.prefs.linksleague "Ajoute des liens externes à la page Poule.">
+<!ENTITY foxtrick.prefs.linksteams "Ajoute des liens externes à la page Équipe.">
+<!ENTITY foxtrick.prefs.linkscountry "Ajoute des liens externes à la page Pays.">
+<!ENTITY foxtrick.prefs.linkschallenges "Ajoute des liens externes à la page Défis.">
+<!ENTITY foxtrick.prefs.linkseconomy "Ajoute des liens externes à la page Finances.">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Ajoute des liens externes à la page Aperçu Équipe junior.">
+<!ENTITY foxtrick.prefs.linksarena "Ajoute des liens externes à la page Stade.">
+<!ENTITY foxtrick.prefs.linkscoach "Ajoute des liens externes à la page Entraineur.">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Ajoute des liens externes à la page Détails du joueur.">
+<!ENTITY foxtrick.prefs.linksmatch "Ajoute des liens externes à la page Matchs.">
 <!-- EOF -->
