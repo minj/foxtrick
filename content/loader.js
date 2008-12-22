@@ -17,6 +17,7 @@ var scripts = [
     'forum/forumtemplates.js',
     'forum/forumleaveconfbutton.js',
     'forum/forumhideavatar.js',
+    'forum/forumhideavataruserinfo.js',
     'forum/forummovelinks.js',
     'forum/forumstaffmarker.js',
 	'forum/forumalltidflags.js',
