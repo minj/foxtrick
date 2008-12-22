@@ -160,7 +160,7 @@ var AttVsDef = {
 		barsdiv.appendChild(doc.createElement('br'));
 
 		bodydiv.appendChild(barsdiv);
-	}
+	},
 	
 	_newStyleBars: function (doc, bodydiv, percentArray, strangediv) {
 		var rdefText = Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
