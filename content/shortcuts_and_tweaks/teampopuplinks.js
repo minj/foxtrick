@@ -18,6 +18,8 @@ var FoxtrickTeamPopupLinks = {
 		if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
 			return;
 		var sUrl = Foxtrick.getHref( doc );
+		//do not display pop-up on Forum pages
+		if (sUrl.search(/Forum/i) != -1) return;
 		if (sUrl.search(/ShowOldConnections=true/i) > -1){
 			var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
 			if (a){
