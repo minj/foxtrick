@@ -4,7 +4,7 @@ overlay chrome://browser/content/browser.xul chrome://foxtrick/content/foxtrick.
 
 locale foxtrick ba-BA locale/ba-BA/
 locale foxtrick cs-CZ locale/cs-CZ/
-locale foxtrick da-DA locale/da-DA/
+locale foxtrick da-DK locale/da-DK/
 locale foxtrick de-DE locale/de-DE/
 locale foxtrick el-GR locale/el-GR/
 locale foxtrick en-US locale/en-US/
