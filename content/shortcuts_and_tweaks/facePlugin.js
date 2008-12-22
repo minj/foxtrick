@@ -1,8 +1,8 @@
-//foxtrick_smates.js
-//------------------
-//Script which remove dollars and injury images from player' face.
-//------------------
-//Author by smates
+/**
+ * facePlugin.js
+ * Script which remove dollars, red cards and injury images from player' face, and colours youth faces
+ * @author smates
+ */
 
 var FoxtrickHideFaceTransferImages = {
 	

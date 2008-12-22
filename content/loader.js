@@ -37,6 +37,7 @@ var scripts = [
     'shortcuts_and_tweaks/facePlugin.js',
 	'shortcuts_and_tweaks/showmessagebutton.js',
 	'shortcuts_and_tweaks/confirmplayerbid.js',
+	'shortcuts_and_tweaks/economyDifference.js',
     'links/linksleague.js',
 	'links/linksteam.js',
 	'links/linkscountry.js',
