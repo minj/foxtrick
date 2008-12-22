@@ -21,7 +21,8 @@ var FoxtrickForumStaffMarker = {
     run : function( page, doc ) {
 		
         // var doc = Foxtrick.current_doc;
-		var editorsArray = ["1636ince",
+		var editorsArray = [
+			"1636ince",
 			"7areega",
 			"Abu_Ahmed",
 			"accull",
@@ -98,6 +99,36 @@ var FoxtrickForumStaffMarker = {
 			"Yarka",
 			"Yndy_",
 			"ZurrieqGiants",];
+		var foxtrickersArray = [
+			"_KOHb_",
+			"_recluso_",
+			"05erth",
+			"baler0",
+			"bummerland",
+			"caracca",
+			"convinced",
+			"eekels",
+			"franory",
+			"GTTWINS",
+			"gucan",
+			"Homzik",
+			"Jestar",
+			"koba4ever",
+			"kolmis",
+			"LA-Fryslanner-777",
+			"larsw84",
+			"LasseSvendsen",
+			"Leach71",
+			"ljushaff",
+			"MarceloFBrandao",
+			"Masterix",
+			"obarros",
+			"Pyntsa",
+			"smates",
+			"spambot",
+			"stephan57",
+			"taised",
+			"Theboyce",];		
         switch( page )
         {
             case 'forumViewThread':
@@ -145,7 +176,10 @@ var FoxtrickForumStaffMarker = {
 							//a.innerHTML = "<SPAN style=\"color: green; background: white\"><B>" + uname + "</B></SPAN>";
 						} else if (editorsArray.join().search(uname) > -1) {
 							a.style.background="green";
-						}
+						} else if (foxtrickersArray.join().search(uname) > -1) {
+							a.style.background="#c3d9ff";
+							a.style.color="black";							
+						}						
 					}
 				}
     	
