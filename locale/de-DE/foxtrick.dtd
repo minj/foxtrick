@@ -1,8 +1,9 @@
-<!-- de-DE (rev. 293)
+<!-- de-DE (rev. 363)
      spambot
      utf-8 encoded language file
 -->
 
+<!ENTITY foxtrick.prefs.mainoptions "Grundeinstellungen">
 <!ENTITY foxtrick.prefs.shortcuts "Shortcuts &amp; Tweaks">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Links">
@@ -10,8 +11,6 @@
 <!ENTITY foxtrick.prefs.modulelistlabel "Verfügbare Module. Via Checkbox können die einzelnen Module aktiviert werden.">
 <!ENTITY foxtrick.prefs.transitioninfo "FoxTrick wird derzeit generalüberholt, somit sind noch nicht alle gewünschten Funktionen verfügbar. Wir arbeiten mit Hochdruck daran!">
 
-
-<!ENTITY foxtrick.prefs.mainoptions "Grundeinstellungen">
 <!ENTITY foxtrick.prefs.enable "Aktivieren">
 <!ENTITY foxtrick.prefs.preferences "Einstellungen">
 <!ENTITY foxtrick.prefs.visuals "Visuelles">
@@ -31,7 +30,6 @@
 <!ENTITY foxtrick.prefs.links "Links zu externen Seiten">
 <!ENTITY foxtrick.prefs.link "Link">
 <!ENTITY foxtrick.prefs.show "Zeige">
-<!ENTITY foxtrick.prefs.shortcuts "Shortcuts">
 <!ENTITY foxtrick.prefs.shortcut "Shortcut">
 <!ENTITY foxtrick.prefs.groupstarsby "Anzahl der Sterne je Farbgruppe: ">
 <!ENTITY foxtrick.menu.installskin "Installiere Hattrick.org Skin">
