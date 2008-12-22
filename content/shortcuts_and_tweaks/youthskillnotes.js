@@ -412,14 +412,12 @@ var FoxtrickYouthSkillNotes = {
 	  normalTable.appendChild (Btr4);
 	
 	  //normalTable.appendChild (div2);
-	   
 	  
-	  
-	  
-	  if( page == "YouthPlayer" ) {
 	  normalTable.appendChild(br);
 	  normalTable.appendChild(br2);
 	  normalTable.appendChild(showEditLink);
+	  
+	  
 	  
 	  /*-------------------------*/
 	  //radek cislo 1
@@ -472,7 +470,6 @@ var FoxtrickYouthSkillNotes = {
 		divobj.appendChild(editTable);
 		divobj.appendChild(br);
 		divobj.appendChild(saveLink);
-		}
 		divED.appendChild(divobj);
 		
 //		div2.appendChild(div1);
@@ -484,12 +481,10 @@ var FoxtrickYouthSkillNotes = {
 			div2.appendChild(title);
 		}
 		div2.appendChild(normalTable);
-		//ja div2.appendChild(br3);
-		
+		div2.appendChild(br3);
 		//div2.appendChild(divED);
-		if( page == "YouthPlayer" ) {
+		
 		reference.parentNode.insertBefore(divED, reference.nextSibling);
-		}
 		reference.parentNode.insertBefore(div2, reference.nextSibling);
 	 }
 	
