@@ -178,7 +178,7 @@ var FoxtrickForumNextAndPrevious = {
 
     var elems = document.getElementsByTagName("img");
 		for(var i=0; i < elems.length; i++) {
-			if(elems[i].className == "disabled first" || elems[i].className == "disabled prev") {
+			if(elems[i].className == "disabled first") {
 			
 				elems[i].parentNode.removeChild(elems[i]);
          }
@@ -187,6 +187,16 @@ var FoxtrickForumNextAndPrevious = {
 			
 				elems[i].parentNode.removeChild(elems[i]);
          }
+         
+     if(elems[i].className == "disabled next") {
+			
+				elems[i].parentNode.removeChild(elems[i]);
+         }
+         
+    if(elems[i].className == "disabled last") {
+			
+				elems[i].parentNode.removeChild(elems[i]);
+         }       
        } 
    
 
