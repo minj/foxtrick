@@ -2,6 +2,7 @@
  * forummovelinks.js
  * Foxtrick Move Links in forum posts module
  * @author larsw84
+ * Author of FoxtrickForumNextAndPrevious by smates
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -159,4 +160,38 @@ var FoxtrickMoveLinks = {
 			}
 		}*/
 	}
+};
+
+
+var FoxtrickForumNextAndPrevious = {
+	
+    MODULE_NAME : "ForumNextAndPrevious",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	DEFAULT_ENABLED : true,
+
+    init : function() {
+            Foxtrick.registerPageHandler( 'forumViewThread',
+                                          FoxtrickForumNextAndPrevious );
+    },
+
+    run : function( page, doc ) {
+
+    var elems = document.getElementsByTagName("img");
+		for(var i=0; i < elems.length; i++) {
+			if(elems[i].className == "disabled first" || elems[i].className == "disabled prev") {
+			
+				elems[i].parentNode.removeChild(elems[i]);
+         }
+         
+      if(elems[i].className == "disabled prev") {
+			
+				elems[i].parentNode.removeChild(elems[i]);
+         }
+       } 
+   
+
+
+
+}
+
 };

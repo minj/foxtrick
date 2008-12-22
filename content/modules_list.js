@@ -44,5 +44,6 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
 					 FoxtrickTruncateLongNicks,
 					 FoxtrickAddDefaultFaceCard,
 					 FoxtrickConfirmPlayerBid,
-					 FoxtrickEconomyDifference
+					 FoxtrickEconomyDifference,
+					 FoxtrickForumNextAndPrevious
                    ];
