@@ -17,7 +17,7 @@ var FoxtrickAddDefaultFaceCard = {
     },
 
     run : function( page, doc ) {
-		if(Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar.MODULE_NAME)) {
+		if(!Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar)) {
 			var elems = doc.getElementsByTagName("div");
 			for(var i=0; i < elems.length; i++) {
 				if(elems[i].className=="cfUser") {

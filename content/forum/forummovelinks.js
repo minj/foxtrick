@@ -49,7 +49,7 @@ var FoxtrickMoveLinks = {
 					}
 				}
 				var space = doc.createTextNode(" ");
-				if(authorLink) {
+				if(authorLink && countryLink && leagueLink) {
 					authorLink.parentNode.insertBefore(leagueLink,
 						authorLink.nextSibling);
 					authorLink.parentNode.insertBefore(countryLink,
