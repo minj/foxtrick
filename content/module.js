@@ -38,7 +38,8 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
 					  'teamPageGeneral' : '\/Club\/',
 					  'players' : '\/Club\/Players\/',
 					  'playerdetail' : '\/Club\/Players\/Player\.aspx',
-					  'finances' : '\/Club\/Finances/'
+					  'finances' : '\/Club\/Finances/',
+					  'all' : '\/',
 };
 ////////////////////////////////////////////////////////////////////////////////
 
