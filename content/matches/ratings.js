@@ -169,7 +169,7 @@ var Ratings = {
 		this.ratingDefs["hatstatstotal"] = { label : "HatStats (short)",
 			title : "HatStats Total only",
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
+				return Ratings.ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
 			}
 		};
 

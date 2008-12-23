@@ -68,41 +68,19 @@ var AttVsDef = {
 	},
 	
 	_oldStyleBars: function (doc, ratingstable, bodydiv) {
-		var rdefence=new Array(Matches._getStatFromCell(ratingstable.rows[2].cells[1]), Matches._getStatFromCell(ratingstable.rows[2].cells[2]));
-		var cdefence=new Array(Matches._getStatFromCell(ratingstable.rows[3].cells[1]), Matches._getStatFromCell(ratingstable.rows[3].cells[2]));
-		var ldefence=new Array(Matches._getStatFromCell(ratingstable.rows[4].cells[1]), Matches._getStatFromCell(ratingstable.rows[4].cells[2]));
-		var rattack=new Array(Matches._getStatFromCell(ratingstable.rows[5].cells[1]), Matches._getStatFromCell(ratingstable.rows[5].cells[2]));
-		var cattack=new Array(Matches._getStatFromCell(ratingstable.rows[6].cells[1]), Matches._getStatFromCell(ratingstable.rows[6].cells[2]));
-		var lattack=new Array(Matches._getStatFromCell(ratingstable.rows[7].cells[1]), Matches._getStatFromCell(ratingstable.rows[7].cells[2]));
-		
-		var ratingsArray;
-		if (ratingstable.rows.length > 12) {
-			var ifkdefence=new Array(Matches._getStatFromCell(ratingstable.rows[10].cells[1]), Matches._getStatFromCell(ratingstable.rows[10].cells[2]));
-			var ifkattack=new Array(Matches._getStatFromCell(ratingstable.rows[11].cells[1]), Matches._getStatFromCell(ratingstable.rows[11].cells[2]));
-
-			ratingsArray = new Array(rdefence, cdefence, ldefence, rattack, cattack, lattack, ifkdefence, ifkattack);
-		}
-		else  {
-			ratingsArray = new Array(rdefence, cdefence, ldefence, rattack, cattack, lattack);
+		var ratingsArray = new Array();
+		var ratingsTextArray = new Array();
+		for (var i = 2; i <= 7; i++) { // normal ratings in rows 2 to 7
+			ratingsArray.push(new Array(Matches._getStatFromCell(ratingstable.rows[i].cells[1]), Matches._getStatFromCell(ratingstable.rows[i].cells[2])));
+			ratingsTextArray.push(new Array(ratingstable.rows[i].cells[1], ratingstable.rows[i].cells[2]));
 		}
 		
-		var rdefenceText=new Array(ratingstable.rows[2].cells[1], ratingstable.rows[2].cells[2]);
-		var cdefenceText=new Array(ratingstable.rows[3].cells[1], ratingstable.rows[3].cells[2]);
-		var ldefenceText=new Array(ratingstable.rows[4].cells[1], ratingstable.rows[4].cells[2]);
-		var rattackText=new Array(ratingstable.rows[5].cells[1], ratingstable.rows[5].cells[2]);
-		var cattackText=new Array(ratingstable.rows[6].cells[1], ratingstable.rows[6].cells[2]);
-		var lattackText=new Array(ratingstable.rows[7].cells[1], ratingstable.rows[7].cells[2]);
-		
-		var ratingsTextArray;
-		if (ratingstable.rows.length > 12) {
-			var ifkdefenceText=new Array(ratingstable.rows[10].cells[1], ratingstable.rows[10].cells[2]);
-			var ifkattackText=new Array(ratingstable.rows[11].cells[1], ratingstable.rows[11].cells[2]);
-			ratingsTextArray = new Array(rdefenceText, cdefenceText, ldefenceText, rattackText, cattackText, lattackText, ifkdefenceText, ifkattackText);
+		if (ratingstable.rows.length > 12) { // if there are ratings for indirect free kicks, they are in rows 10 and 11
+			for (var i = 10; i <= 11; i++) {
+				ratingsArray.push(new Array(Matches._getStatFromCell(ratingstable.rows[i].cells[1]), Matches._getStatFromCell(ratingstable.rows[i].cells[2])));
+				ratingsTextArray.push(new Array(ratingstable.rows[i].cells[1], ratingstable.rows[i].cells[2]));
+			}
 		}
-		else {
-			ratingsTextArray = new Array(rdefenceText, cdefenceText, ldefenceText, rattackText, cattackText, lattackText);
-		}
-
 		
 		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchgraphs.css");
 		
@@ -304,31 +282,25 @@ var AttVsDef = {
 	_getPercentArray: function(doc, table) {
 		var values=new Array();
 
-		var stamp='';
-
-		//checking if language is correctly set
 		for (j=2;j<8;j++)
 		{
 			var val1=Matches._getStatFromCell(table.rows[j].cells[1]);
 			var val2=Matches._getStatFromCell(table.rows[9-j].cells[2]);
 			var percentage=(val1/(val1+val2))*100;
-			//values.push(percentage.toFixed(2)); //TOO large
 			values.push(Math.round(percentage));
-			stamp+=val1+' '+val2+' ';
 		}
 		if (table.rows.length > 12) {
 			val1=Matches._getStatFromCell(table.rows[10].cells[1]);
 			val2=Matches._getStatFromCell(table.rows[11].cells[2]);
 			percentage=(val1/(val1+val2))*100;
-			//values.push(percentage.toFixed(2));
 			values.push(Math.round(percentage));
 			val1=Matches._getStatFromCell(table.rows[11].cells[1]);
 			val2=Matches._getStatFromCell(table.rows[10].cells[2]);
 			percentage=(val1/(val1+val2))*100;
-			//values.push(percentage.toFixed(2));
 			values.push(Math.round(percentage));
 		}
 		
 		return values;
 	}
+
 };
