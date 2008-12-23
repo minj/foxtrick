@@ -1,4 +1,4 @@
-<!-- de-DE (rev. 366)
+<!-- de-DE (rev. 395)
      spambot
      utf-8 encoded language file
 -->
@@ -41,9 +41,9 @@
 <!ENTITY foxtrick.prefs.lineupcoloring "Farbschema in der Aufstellung">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Keine farblichen Effekte in der Aufstellung.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Nur falls der verwendete Skin Farben beinhaltet.">
-<!ENTITY foxtrick.prefs.yeslineupcoloring "Immer. Falls der Skin keine Farben beinhalten, benutze die Standardfarben.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Immer. Falls der Skin keine Farben beinhaltet, benutze die Standardfarben.">
 <!ENTITY foxtrick.prefs.getmorecssskins "Mehr CSS Skins herunterladen">
-<!ENTITY foxtrick.prefs.shortcutstab "Shortcuts &amp; tweaks">
+<!ENTITY foxtrick.prefs.shortcutstab "Shortcuts &amp; Tweaks">
 <!ENTITY foxtrick.prefs.tweaks "Tweaks">
 <!ENTITY foxtrick.prefs.mergestars "Sterne zusammenstellen">
 <!ENTITY foxtrick.menu.playersintabs "Gefundene Spieler in Tabs öffnen">
@@ -78,7 +78,7 @@
 <!ENTITY foxtrick.prefs.alertslider "Info-Slider anzeigen.">
 <!ENTITY foxtrick.prefs.foxtrickinstatusbar "FoxTrick-Panel in der Statusleiste anzeigen.">
 <!ENTITY foxtrick.prefs.alertsound "Alarmton.">
-<!ENTITY foxtrick.prefs.alertslidermac "Nachrichtenpopup anzeigen (nur Mac)">
+<!ENTITY foxtrick.prefs.alertslidermac "Nachrichtenpopup anzeigen ('Growl' für Mac)">
 <!ENTITY foxtrick.menu.createplayerad "Spieleranzeige in die Zwischenablage kopieren.">
 <!ENTITY foxtrick.prefs.htdateformat "Datumsformat">
 <!ENTITY foxtrick.menu.makelink "Foren-Link in die Zwischenablage kopieren.">
