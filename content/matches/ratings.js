@@ -138,7 +138,7 @@ var Ratings = {
 
 			mystyle: function(level) {
 				var lev = this.base+level;
-				var temp = lev + " ";
+				var temp = " " + lev;
 				if (temp.search(/\.25/) > -1) return temp.replace(/\.25/,"-");
 				else if (temp.search(/\.5/) > -1)  return temp.replace(/\.5/, "+");
 				else if (temp.search(/\.75/) > -1) return temp.replace(/\.75/, "*");
