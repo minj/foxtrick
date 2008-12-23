@@ -353,6 +353,14 @@ for (var key in stats) {
 */
 Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, 
 	referenceHeader ) {
+	// If we already added this, return
+	var boxId = "foxtrick_" + newBoxHeader + "_box";
+	var boxContentId = "foxtrick_" + newBoxHeader + "_content";
+	if( doc.getElementById( boxId ) ) {
+		return;
+	}
+	// Make the same check possible for the content
+	newBoxContent.setAttribute( "id", boxContentId );
 	// Check if this is the simple or standard layout
 	var layout;
 	var sidebar = doc.getElementById("sidebar");
@@ -410,17 +418,20 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent,
 	
 	if(layout) {
 		if(otherBox) {
-			var subDivs = otherBox.getElementsByTagName("div");
-			for(var i = 0; i < subDivs.length; i++) {
-				if(subDivs[i].className=="boxBody") {
-					subDivs[i].insertBefore(newBoxContent,
-						subDivs[i].firstChild);
+			if( !doc.getElementById( boxContentId ) ) {
+				var subDivs = otherBox.getElementsByTagName("div");
+				for(var i = 0; i < subDivs.length; i++) {
+					if(subDivs[i].className=="boxBody") {
+						subDivs[i].insertBefore(newBoxContent,
+							subDivs[i].firstChild);
+					}
 				}
 			}
 		} else {
 			// create the sidebarbox
 			var ownSidebarBox = doc.createElement("div");
 			ownSidebarBox.className = "sidebarBox";
+			ownSidebarBox.setAttribute("id", boxId );
 			// create the boxhead
 			var ownBoxHead = doc.createElement("div");
 			ownBoxHead.className = "boxHead";
