@@ -53,6 +53,7 @@ var FoxtrickAlltidFlags = {
 						var spanId = "foxtrick_alltidspan_"+flagsCounter;
 						mySpan.setAttribute( "id", spanId );
 						var userId = link.href.substring(link.href.lastIndexOf('userId=')+7);
+						dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
 						mySpan.innerHTML = ' <a href="' + linkpage + userId +
@@ -67,7 +68,10 @@ var FoxtrickAlltidFlags = {
 						if ( !doc.getElementById( spanId ) ) {
 							link.parentNode.insertBefore(mySpan, target);
 						}
-						if (count==1){break;}
+						if (count==1) {
+							flagsCounter++;
+							break;
+						}
 						count++;
 						flagsCounter++;
 					  } else if (	link.href.search(/Read.aspx/i) > -1 && 
