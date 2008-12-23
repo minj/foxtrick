@@ -34,7 +34,7 @@ var FoxtrickTeamPopupLinks = {
 		style.setAttribute("type", "text/css");
 		//determine width of the floating box - Stephan
 		var maxwidth = Math.max(Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, Foxtrickl10n.getString( 'last_5_ips' ).length); //Stephan
-		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:-22px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}'; //Stephan
+		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:-55px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}'; //Stephan
 		style.appendChild(doc.createTextNode(zaw));
 		head.appendChild(style);
 		var aLinks = doc.getElementsByTagName('a'); //doc.links;
@@ -46,9 +46,12 @@ var FoxtrickTeamPopupLinks = {
 				if (value.match(/&/)) {
 					value = value.substr(0,value.search(/&/));
 				}
-				var par = aLinks[i].parentNode; //rodzic
+				var par = aLinks[i].parentNode;
 				
 				if (par.parentNode.parentNode.parentNode.tagName == "DIV" && par.parentNode.parentNode.parentNode.className == "subMenuBox"){
+					continue;
+				}
+				if (par.parentNode.parentNode.tagName == "DIV" && par.parentNode.parentNode.className == "subMenuBox"){
 					continue;
 				}
 				if (par.parentNode.tagName == "DIV" && par.parentNode.className == "boxLeft"){
