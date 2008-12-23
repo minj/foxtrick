@@ -58,17 +58,35 @@ var FoxtrickMain = {
     },
    
     registerOnPageLoad : function(document) {
-         // listen to page loads
         var appcontent = document.getElementById( "appcontent" );
-        if ( appcontent) 
-            appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad,
+        if ( appcontent) {
+			// listen to page loads
+			//FoxtrickMain.onPageLoad.appcontent = appcontent;
+			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad,
                                          true );
+		}								 
     },
-    
+	
+	onPageChange : function( ev ) {
+		var doc = ev.originalTarget.ownerDocument;
+		if ( doc.nodeName != "#document" )
+            return;
+		var content = doc.getElementById("content");
+		// remove event listener while Foxtrick executes
+		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+		var begin = new Date();
+		FoxtrickMain.run( doc );
+		var end = new Date();
+        var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+                 + end.getMilliseconds() - begin.getMilliseconds();
+        dump( "Foxtrick run time: " + time + " ms\n" );
+		// re-add event listener
+		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+    },
+	
     onPageLoad : function( ev ) {
-        var doc = ev.originalTarget;
-
-        if ( doc.nodeName != "#document" )
+		var doc = ev.originalTarget;
+		if ( doc.nodeName != "#document" )
             return;
 
         
@@ -83,6 +101,11 @@ var FoxtrickMain = {
             var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                      + end.getMilliseconds() - begin.getMilliseconds();
             dump( "Foxtrick run time: " + time + " ms\n" );
+			// listen to page content changes
+			var content = doc.getElementById("content");
+			if( content ) {
+				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+			}
         }
     },
 

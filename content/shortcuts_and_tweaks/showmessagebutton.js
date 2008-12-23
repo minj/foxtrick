@@ -69,10 +69,12 @@ var FoxtrickShowMessageButton = {
 				
 			case 'teamPage':
 				var sUrl = Foxtrick.getHref( doc );
-				var sendPos = sUrl.search(/SendMessage=true/i);
+				var sendPos = sUrl.search(/&SendMessage=true/i);
 				if (sendPos > -1){
 					var a = doc.getElementById('ctl00_CPSidebar_ucVisitorActions_lnkMail');
-					if (a){
+					var divMessage = doc.getElementById('ctl00_CPSidebar_ucVisitorActions_pnlMessage');
+					if (a && !divMessage){
+						// don't execute when the send message box is already there
 						var func = a.href;
 						if (func){
 							doc.location.href = func;
