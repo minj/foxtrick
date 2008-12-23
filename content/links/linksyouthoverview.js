@@ -10,16 +10,17 @@ var FoxtrickLinksYouthOverview = {
     MODULE_NAME : "LinksYouthOverview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 	
 
     init : function() {
             Foxtrick.registerPageHandler( 'youthoverview',
                                           FoxtrickLinksYouthOverview );
-    },
+			Foxtrick.initOptionsLinks(this,"youthlink");	
+	    },
 
     run : function( page, doc ) {
 		//addExternalLinksToYouthOverview
-        var links = getLinks("youthlink", { }, doc );  
+        var links = getLinks("youthlink", { }, doc,this);  
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");
                                 

@@ -117,11 +117,12 @@ var FoxtrickLinksLeague = {
     MODULE_NAME : "LinksLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 
 
     init : function() {
             Foxtrick.registerPageHandler( 'league',
                                           FoxtrickLinksLeague );
+			Foxtrick.initOptionsLinks(this,"leaguelink");
     },
 
     run : function( page, doc ) {
@@ -149,7 +150,7 @@ var FoxtrickLinksLeague = {
         
 					var links = getLinks("leaguelink", { "countryid": countryid, "leagueid": leagueid, 
 										"levelnum" : levelnum, "seriesnum": seriesnum,
-										"leaguename" : leaguename, "leaguename2" : leaguename2, "leaguename3" : leaguename3 }, doc );  
+										"leaguename" : leaguename, "leaguename2" : leaguename2, "leaguename3" : leaguename3 }, doc, this);  
              
 
 					if (links.length > 0) {

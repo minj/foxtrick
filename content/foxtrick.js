@@ -485,3 +485,25 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent,
 		}
 	}
 }
+
+Foxtrick.initOptionsLinks = function(module,linktype) {
+		
+			module.OPTIONS = new Array();
+			for (var key in stats) { 
+				if (stats[key][linktype]!=null) {
+					module.OPTIONS.push(key);
+				}
+			}			
+}
+
+Foxtrick.initOptionsLinksArray = function(module,linktypes) {
+
+		module.OPTIONS = new Array();
+		for (var linktype=0; linktype< linktypes.length; linktype++) { 
+			for (var key in stats) { 
+				if (stats[key][linktypes[linktype]]!=null) {
+					module.OPTIONS.push(key);
+				}
+			}			
+		}
+}

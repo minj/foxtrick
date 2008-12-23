@@ -10,17 +10,18 @@ var FoxtrickLinksEconomy = {
     MODULE_NAME : "LinksEconomy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 
 
     init : function() {
             Foxtrick.registerPageHandler( 'economy',
                                           FoxtrickLinksEconomy );
+			Foxtrick.initOptionsLinks(this,"economylink");
     },
 
     run : function( page, doc ) {
 
 		//addExternalLinksToEconomyDetail
-        var links = getLinks("economylink", {  }, doc );  
+        var links = getLinks("economylink", {  }, doc, this);  
 
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");

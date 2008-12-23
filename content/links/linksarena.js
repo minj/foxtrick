@@ -10,11 +10,12 @@ var FoxtrickLinksArena = {
     MODULE_NAME : "LinksArena",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 
 
     init : function() {
             Foxtrick.registerPageHandler( 'arena',
                                           FoxtrickLinksArena );
+			Foxtrick.initOptionsLinks(this,"arenalink");
     },
 
     run : function( page, doc ) { 
@@ -29,7 +30,7 @@ var FoxtrickLinksArena = {
  				var links = getLinks("arenalink", { "terraces" : Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
                                             "basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
                                             "roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
-                                            "vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  }, doc );  
+                                            "vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  }, doc, this );  
 				if (links.length > 0) {
 					var ownBoxBody = doc.createElement("div");
                                 

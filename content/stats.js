@@ -121,7 +121,7 @@ var stats = {};
 
 //HT Newsfeeds
 
-stats["xraynewsfeed"] =  { 
+stats["xray_newsfeed"] =  { 
        "url" : "http://www.databased.at/hattrick/",  
        "newslink" : { "path" : "rss/",
                       "filters"    : []
@@ -132,7 +132,7 @@ stats["xraynewsfeed"] =  {
 }
 
 // hattriX-Ray Crossover
-stats["xraycrossover"] =  { 
+stats["xray_crossover"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/",  
         "playerlink" : { "path"       : "?starter=crossover",
                          "filters"    : [], 
@@ -145,7 +145,7 @@ stats["xraycrossover"] =  {
 
 
 // hattriX-Ray Backdraft
-stats["xraybackdraft"] =  { 
+stats["xray_backdraft"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",  
         "teamlink" : { "path"       : "?starter=backdraft",
                          "filters"    : [], 
@@ -157,7 +157,7 @@ stats["xraybackdraft"] =  {
 };    
 
 // hattriX-Ray ClubRay
-stats["xrayclubray"] =  { 
+stats["xray_clubray"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "teamlink" : { "path"       : "?starter=clubray",
@@ -172,7 +172,7 @@ stats["xrayclubray"] =  {
 
 // hattriX-Ray Friendlier
 
-stats["xrayfriendlier"] =  { 
+stats["xray_friendlier"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "challengeslink" : { "path"       : "?starter=friendlier",
@@ -187,7 +187,7 @@ stats["xrayfriendlier"] =  {
 
 
 // hattriX-Ray Rounds 2 go
-stats["xrayroundstogo"] =  { 
+stats["xray_roundstogo"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "leaguelink" : { "path"       : "?starter=rounds2Go",
@@ -200,7 +200,7 @@ stats["xrayroundstogo"] =  {
 };    
 
 // hattriX-Ray roundrate
-stats["xrayroundrate"] =  { 
+stats["xray_roundrate"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "leaguelink" : { "path"       : "?starter=roundrate",
@@ -214,7 +214,7 @@ stats["xrayroundrate"] =  {
 
 
 // hattriX-Ray leaguemates
-stats["xrayleaguemates"] =  { 
+stats["xray_leaguemates"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "leaguelink" : { "path"       : "?starter=leaguemates",
@@ -228,7 +228,7 @@ stats["xrayleaguemates"] =  {
 
 
 // hattriX-Ray sunray
-stats["xraysunray"] =  { 
+stats["xray_sunray"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "nextmatchlink" : { "path"       : "?starter=sunray",
@@ -243,7 +243,7 @@ stats["xraysunray"] =  {
 
 
 // hattriX-Ray live!
-stats["xraylivejr"] =  { 
+stats["xray_live"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "matchlink" : { "path"       : "?starter=live",
@@ -257,7 +257,7 @@ stats["xraylivejr"] =  {
 
 
 // hattriX-Ray live! review
-stats["xraylivejrplayed"] =  { 
+stats["xray_livereview"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playedmatchlink" : { "path"       : "?starter=livereview",
@@ -270,7 +270,7 @@ stats["xraylivejrplayed"] =  {
 };
 
 // hattriX-Ray head to head
-stats["xrayh2h"] =  { 
+stats["xray_h2h"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playedmatchlink" : { "path"       : "?starter=headtohead",
@@ -284,7 +284,7 @@ stats["xrayh2h"] =  {
 
 
 // hattriX-Ray healing
-stats["xrayhealing"] =  { 
+stats["xray_healing"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playerhealinglink" : { "path"       : "?starter=healing",
@@ -297,7 +297,7 @@ stats["xrayhealing"] =  {
 };
 
 // hattriX-Ray healing TSI
-stats["xrayhealingtsi"] =  { 
+stats["xray_healingtsi"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playerhealinglink" : { "path"       : "?starter=healingTSI",
@@ -310,7 +310,7 @@ stats["xrayhealingtsi"] =  {
 };
 
 // hattriX-Ray youngster
-stats["xrayyoungster"] =  { 
+stats["xray_youngster"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp?starter=youngster",
 
         "youthpulllink" : { "path"       : "",
@@ -324,7 +324,7 @@ stats["xrayyoungster"] =  {
 
 
 // hattriX-Ray youngster
-stats["xrayeconray"] =  { 
+stats["xray_econray"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "economylink" : { "path"       : "?starter=econray",
@@ -336,7 +336,7 @@ stats["xrayeconray"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/xray_econray.png"
 };
 
-stats["xraykeeper"] =  { 
+stats["xray_keeper"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "keeperlink" : { "path"       : "?starter=keepersup",
@@ -349,7 +349,7 @@ stats["xraykeeper"] =  {
 };
 
 
-stats["xraycoach"] =  { 
+stats["xray_coach"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/pages/coach.asp",
 
         "coachlink" : { "path"       : "",
@@ -363,7 +363,7 @@ stats["xraycoach"] =  {
 
 
 // hattriX-Ray HTPE
-stats["xrayHTPE"] =  { 
+stats["HTPE"] =  { 
         "url" : "http://www.databased.at/hattrick/htpe/",
 
         "transfercomparelink" : { "path"       : "",
@@ -381,7 +381,7 @@ stats["xrayHTPE"] =  {
 };    
 
 // Hattrick Hall of Fame
-stats["hhofmatch"] =  { 
+stats["halloffame_match"] =  { 
         "url" : "http://www.databased.at/hattrick/halloffame/",
         "playedmatchlink" : { "path"       : "",
                          "filters"    : [], 
@@ -391,7 +391,7 @@ stats["hhofmatch"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hhof.png"
 };    
 
-stats["hhofteam"] =  { 
+stats["halloffame_team"] =  { 
         "url" : "http://www.databased.at/hattrick/halloffame/",
         "teamlink" : { "path"       : "",
                          "filters"    : [], 
@@ -401,7 +401,7 @@ stats["hhofteam"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hhof.png"
 };    
 
-stats["hhofplayer"] =  { 
+stats["halloffame_player"] =  { 
         "url" : "http://www.databased.at/hattrick/halloffame/",
         "playerlink" : { "path"       : "",
                          "filters"    : [], 
@@ -412,7 +412,7 @@ stats["hhofplayer"] =  {
 };    
 
 // hattriX-Ray arenasizer
-stats["xrayarenasizer"] =  { 
+stats["xray_arenasizer"] =  { 
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
         "arenalink" : { "path"       : "?starter=arenasizer",
                          "filters"    : [], 
@@ -522,7 +522,7 @@ stats["belstat"] =  {
 // Alltid Hattrick Statistikk, International
 // Thomas Johnsenn
 
-stats["ahstats"] =  { 
+stats["alltid"] =  { 
     
         "url" : "http://alltid.org/",
 
@@ -562,7 +562,7 @@ stats["ahstats"] =  {
 
 
 // HT-Deutschland
-stats["htdeutsch"] =  { 
+stats["ht_deutschland"] =  { 
   "url" : "http://www.ht-deutschland.de/",
   
   "leaguelink" : { "path"       : "liga.php",
@@ -655,7 +655,7 @@ stats["eesti"] =  {
 };    
 */
 
-stats["htfff"] =  { 
+stats["ht-fff"] =  { 
         "url" : "http://www.ht-fff.org/",
 
         "playerlink" : { "path"       : "dtn_submitting.php",
@@ -756,7 +756,7 @@ stats["htpl"] =  {
 
 
 // not working properly. need some input from argentina there
-stats["argentinaranking"] =  { 
+/*stats["argentinaranking"] =  { 
         "url" : "http://www.htranking.com/",
 
         "leaguelink" : { "path"       : "ligas.asp",
@@ -772,10 +772,10 @@ stats["argentinaranking"] =  {
 	    "countryidranges" : [[7, 7]],
         "title" : "Hattrick Argentina Ranking",
         "img" : "chrome://foxtrick/content/resources/linkicons/argentinaranking.gif" 
-};  
+}; */ 
 
 // Hattrick Chile
-stats["hattrickcl"] =  { 
+stats["estadisticas.hattrick.cl"] =  { 
         "url" : "http://estadisticas.hattrick.cl/",
 
         "leaguelink" : { "path"       : "leagues/view/",
@@ -794,7 +794,7 @@ stats["hattrickcl"] =  {
 };
 
 
-stats["hattrickcl2"] = { 
+stats["hattrick.cl"] = { 
   "url" : "http://www.hattrick.cl/",
   "img" : "chrome://foxtrick/content/resources/linkicons/hattrick_cl.png",
   "title" : "hattrick.cl",
@@ -1049,18 +1049,6 @@ stats["healingkawasaki"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/redcross_small.png"
 };
 
-stats["healingkawasaki2"] =  { 
-        "url" : "http://club.hattrick.org/KawasakiTigers/default.asp?site=http://av2.hattricknippon.org",
-
-        "playerhealinglink" : { "path"       : "",
-                         "filters"    : [], 
-                         "params"     : { }
-                       },
-        
-        "title" : "Kawasaki Tigers Injury Healing Time Prediction Tool 2",
-        "img" : "chrome://foxtrick/content/resources/linkicons/redcross_small.png"
-};
-
 stats["hottrickkeeper"] =  { 
         "url" : "http://www.hottrick.org/",
 
@@ -1110,7 +1098,7 @@ stats["cyf"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/cyf.png"
 };*/
 
-stats["camelmasterecon"] =  { 
+stats["camelmaster_economists"] =  { 
         "url" : "http://www.dulovic.com/fun/hattrick/economists.php",
 
         "economylink" : { "path"       : "",
@@ -1141,7 +1129,7 @@ stats["skillraise"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/skillraise.jpg"
 };  */  
 
-stats["HATTRICKSTATS_fr"] =  { 
+stats["Hattrickstats_fr"] =  { 
         "url" : "http://friendly.cup.free.fr/",
 
         "leaguelink" : { "path"       : "Stats.php",
@@ -1202,25 +1190,16 @@ stats["hattricktoday"] =  {
                          "filters"    : [], 
                          "params"     : { "matchid" : "urlMatches" }
                        },
+         "playedmatchlink" : { "path"       : "HT2D/Viewer/index.php",
+                         "filters"    : [], 
+                         "params"     : { "matchid" : "urlMatches" }
+                       },
         
         "title" : "Hattrick Today",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday.png",
 };
 
  
-// Hattrick Today
-stats["hattricktodayplayed"] =  { 
-        "url" : "http://www.frelive.net/",
-        
-        "playedmatchlink" : { "path"       : "HT2D/Viewer/index.php",
-                         "filters"    : [], 
-                         "params"     : { "matchid" : "urlMatches" }
-                       },
-        
-        "title" : "Hattrick Today (played matches)",
-        "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday.png"
-};
-
 stats["magicyp"] =  { 
         "url" : "http://www.rodelhang.at/magicyp",
 
@@ -1254,7 +1233,7 @@ stats["beltrickyouth"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.jpg"
 };*/
 
-stats["hyouthclub"] =  { 
+stats["hattrick-youthclub"] =  { 
         "url" : "http://www.hattrick-youthclub.org/",
         "youthlink" : { "path"       : "",
                          "filters"    : [], 
@@ -1404,17 +1383,16 @@ stats["brasileira"] =  {
 };    
 
 
-function getLinks2(stats, stattype, filterparams, doc, overridesettings) { 
+function getLinks2(stats, stattype, filterparams, doc, overridesettings, module) { 
     var links = [];
     var counter = 0;
     
     for (var key in stats) {
 
-        if (false &&//!getShowLink(key) && // to do: remove false and add getshow later in preferences
+        if (!Foxtrick.isModuleFeatureEnabled(module, key)  && 
 			!overridesettings) {
-			Foxtrick.alert("cont2");
-           continue;
-        }
+			 continue;
+        } 
         var stat = stats[key];
         var statlink = stat[stattype];
         var filters = statlink["filters"];
@@ -1469,8 +1447,8 @@ function getLinks2(stats, stattype, filterparams, doc, overridesettings) {
 
 }
 
-function getLinks(stattype, filterparams, doc) { 
-  return getLinks2(foxtrickStatsHash[stattype], stattype, filterparams, doc, false);
+function getLinks(stattype, filterparams, doc, module) { 
+  return getLinks2(foxtrickStatsHash[stattype], stattype, filterparams, doc, false, module);
 }
 
 function foxtrick_makelink(stat, statlink, filterparams, key, doc) { 

@@ -10,17 +10,18 @@ var FoxtrickLinksChallenges = {
     MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
+	OPTIONS : {}, 
 
-
-    init : function() {
+	init : function() {
             Foxtrick.registerPageHandler( 'challenges',
                                           FoxtrickLinksChallenges );
+			Foxtrick.initOptionsLinks(this,"challengeslink");
     },
 
     run : function( page, doc ) {
 
 		//addExternalLinksToChallengesDetail
-        var links = getLinks("challengeslink", {  }, doc );  
+        var links = getLinks("challengeslink", {  }, doc, this);  
 
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");

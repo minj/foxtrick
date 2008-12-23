@@ -15,7 +15,6 @@ function findCountryId(element) {
       return links[i].href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
     }
   }
-  
   return null;
 }
 
@@ -27,7 +26,6 @@ function findTeamId(element) {
       return links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0];
     }
   }
-  
   return null;
 }
 
@@ -136,11 +134,12 @@ var FoxtrickLinksTeam = {
     MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 
 
     init : function() {
             Foxtrick.registerPageHandler( 'teamPageGeneral',
                                           FoxtrickLinksTeam );
+			Foxtrick.initOptionsLinks(this,"teamlink");
     },
 
     run : function( page, doc ) {
@@ -162,7 +161,7 @@ var FoxtrickLinksTeam = {
 						leaguename="I";
 					} 
        
-					links = getLinks("teamlink", { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum  }, doc );
+					links = getLinks("teamlink", { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum  }, doc, this );
 				
 					if (links.length > 0) {
 						var ownBoxBody = doc.createElement("div");

@@ -10,17 +10,18 @@ var FoxtrickLinksCoach = {
     MODULE_NAME : "LinksCoach",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 
 
     init : function() {
             Foxtrick.registerPageHandler( 'coach',
                                           FoxtrickLinksCoach );
+			Foxtrick.initOptionsLinks(this,"coachlink");
     },
 
     run : function( page, doc ) {
 
 		//addExternalLinksToCoachPage
-		var links = getLinks("coachlink", {  }, doc );  
+		var links = getLinks("coachlink", {  }, doc, this);  
                   
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");

@@ -67,11 +67,12 @@ var FoxtrickLinksMatch = {
     MODULE_NAME : "LinksMatch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 
 
     init : function() {
             Foxtrick.registerPageHandler( 'match',
                                           FoxtrickLinksMatch);
+			Foxtrick.initOptionsLinks(this,"playedmatchlink");
     },
 
     run : function( page, doc ) {
@@ -88,7 +89,7 @@ var FoxtrickLinksMatch = {
 				isarchivedmatch = findIsArchievedMatch(thisdiv)
 				//addExternalLinksToPlayedMatch
 				if (isarchivedmatch) {
-					var links = getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid }, doc );  
+					var links = getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid }, doc, this);  
 
 					if (links.length > 0) {
 						var ownBoxBody = doc.createElement("div");

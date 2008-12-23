@@ -54,11 +54,13 @@ var FoxtrickLinksPlayerDetail = {
     MODULE_NAME : "LinksPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
-
+	OPTIONS : {}, 
+	
     init : function() {
             Foxtrick.registerPageHandler( 'playerdetail',
                                           FoxtrickLinksPlayerDetail );
+			var linktypes = new Array("playerhealinglink","playerlink","keeperlink","transfercomparelink");
+			Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
     run : function( page, doc ) {
@@ -102,7 +104,7 @@ var FoxtrickLinksPlayerDetail = {
 				if (container.textContent.search(/\d+/) > -1) {
 					var injuredweeks = container.textContent.match(/\d+/)[0];
 					var links = getLinks("playerhealinglink", { "playerid": playerid,
-							"form": form, "age" : age, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc );  
+							"form": form, "age" : age, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);  
 					for (var j=0; j< links.length; j++) {
 						var linkobj = links[j].link;
 						container.appendChild(doc.createTextNode(" "));
@@ -151,17 +153,17 @@ var FoxtrickLinksPlayerDetail = {
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces
 						};
-				links[0] = getLinks("playerlink", params, doc );
-				links[1] = getLinks("transfercomparelink", params, doc );
+				links[0] = getLinks("playerlink", params, doc,this);
+				links[1] = getLinks("transfercomparelink", params, doc,this);
                 
 				} else {
 					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality };
-					links[0] = getLinks("playerlink", params, doc );		
+					links[0] = getLinks("playerlink", params, doc,this);		
 				}
 				if (goalkeeping > 3) {					
 					// keeper links
 					var klinks = getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
-                                                         "form" : form, "goalkeeping" : goalkeeping }, doc );  
+                                                         "form" : form, "goalkeeping" : goalkeeping }, doc,this);  
 					for (var j=0; j< klinks.length; j++) {
 						goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
 						goalkeeperskillnode.parentNode.appendChild(klinks[j].link);

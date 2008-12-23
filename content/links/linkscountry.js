@@ -23,11 +23,12 @@ var FoxtrickLinksCountry = {
     MODULE_NAME : "LinksCountry",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-
+	OPTIONS : {}, 
 
     init : function() {
             Foxtrick.registerPageHandler( 'country',
                                           FoxtrickLinksCountry );
+			Foxtrick.initOptionsLinks(this,"countrylink");
     },
 
     run : function( page, doc ) {
@@ -42,7 +43,7 @@ var FoxtrickLinksCountry = {
 					}
 			}
 			
-        var links = getLinks("countrylink", { "countryid": countryid }, doc );  
+        var links = getLinks("countrylink", { "countryid": countryid }, doc, this);  
         
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");
