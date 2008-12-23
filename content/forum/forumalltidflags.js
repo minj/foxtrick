@@ -22,6 +22,7 @@ var FoxtrickAlltidFlags = {
 		var linkpage = "http://stats.alltidhattrick.org/user/";
 
 		var alldivs = doc.getElementsByTagName('div');
+		var flagsCounter = 0;
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfWrapper") {
 				var style ="margin-right:3px; padding-left:3px; " + 
@@ -49,6 +50,8 @@ var FoxtrickAlltidFlags = {
 					  if (link.href.search(/userId=/i) > -1) {
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
+						var spanId = "foxtrick_alltidspan_"+flagsCounter;
+						mySpan.setAttribute( "id", spanId );
 						var userId = link.href.substring(link.href.lastIndexOf('userId=')+7);
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
@@ -61,9 +64,12 @@ var FoxtrickAlltidFlags = {
 						if (j+1!=linksArray.length && linksArray[j+1].href.lastIndexOf('Supporter') > -1) {
 							target=linksArray[j+1].nextSibling;
 						}
-						link.parentNode.insertBefore(mySpan, target);
+						if ( !doc.getElementById( spanId ) ) {
+							link.parentNode.insertBefore(mySpan, target);
+						}
 						if (count==1){break;}
 						count++;
+						flagsCounter++;
 					  } else if (	link.href.search(/Read.aspx/i) > -1 && 
 						!link.id) {
 						// Replace "as answer to"
