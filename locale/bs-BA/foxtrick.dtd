@@ -5,6 +5,7 @@
 <!ENTITY foxtrick.prefs.shortcuts "Prečice i oznake">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Linkovi">
+<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Dostupni moduli. Potvrdite kutijicu do imena modula da ga osposobite.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick se trenutno prilagođava novomm dizajnu Hattricka. Maksimalno se trudimo da omogućimo sve stare opcije.. Molimo da budete strpljivi i očekujte nove dorade!">
 
@@ -33,7 +34,7 @@
 <!ENTITY foxtrick.prefs.shortcut "Prečica">
 <!ENTITY foxtrick.prefs.groupstarsby "Broj zvijezda grupisan po boji: ">
 <!ENTITY foxtrick.menu.installskin "Instaliraj skin Hattrick.org ">
-<!ENTITY foxtrick.prefs.linkstab "Linkovi &amp; ocjene">
+<!ENTITY foxtrick.prefs.linkstab "Linkovi & ocjene">
 <!ENTITY foxtrick.prefs.ratings "Ocjene">
 <!ENTITY foxtrick.prefs.rating "Ocjena">
 <!ENTITY foxtrick.prefs.htlang "Jezik Hattricka">
@@ -43,11 +44,11 @@
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Samo ako šema boje postoji u korištenom skinu.">
 <!ENTITY foxtrick.prefs.yeslineupcoloring "Uvijek. Ako skin ne ukljucuje šemu boje koristi originalan.">
 <!ENTITY foxtrick.prefs.getmorecssskins "Još CSS skinova">
-<!ENTITY foxtrick.prefs.shortcutstab "Prečice &amp; oznake">
+<!ENTITY foxtrick.prefs.shortcutstab "Prečice & oznake">
 <!ENTITY foxtrick.prefs.tweaks "Oznake">
 <!ENTITY foxtrick.prefs.mergestars "Objedini zvijezde">
 <!ENTITY foxtrick.menu.playersintabs "Otvori nađene igrače u tabovima">
-<!ENTITY foxtrick.prefs.showfacesanddresses "Dodaj lica igrača &amp; dresove u postavi.">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Dodaj lica igrača & dresove u postavi.">
 <!ENTITY foxtrick.prefs.lineupcoloringstyle "Stil">
 <!ENTITY foxtrick.prefs.matchorders "Postavke utakmice">
 <!ENTITY foxtrick.prefs.showformationbox "Pokaži kutiju formacije">
@@ -66,8 +67,8 @@
 <!ENTITY foxtrick.prefs.ratingsstyleold "Stari stil ocjenjivanja.">
 <!ENTITY foxtrick.prefs.hattricksettingstext "Sljedeće opcije moraju biti usaglašene sa vašim postavkama na Hattricku.">
 <!ENTITY foxtrick.prefs.showflags "Dodaj zastavu države igrača u postavu.">
-<!ENTITY foxtrick.prefs.showfacesandflags "Dodaj lica igrača &amp; zastave država u postavi.">
-<!ENTITY foxtrick.prefs.showdressesandflags "Dodaj dresove igrača &amp; zastave država u postavi."
+<!ENTITY foxtrick.prefs.showfacesandflags "Dodaj lica igrača & zastave država u postavi.">
+<!ENTITY foxtrick.prefs.showdressesandflags "Dodaj dresove igrača & zastave država u postavi."
 <!ENTITY foxtrick.prefs.medalsets "Setovi medalja">
 <!ENTITY foxtrick.prefs.getmoremedalsets "Još setova medalja">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Koristi originalne Hattrickove medalje.">

@@ -2,7 +2,7 @@ content foxtrick content/
 content	foxtrick content/ contentaccessible=yes
 overlay chrome://browser/content/browser.xul chrome://foxtrick/content/foxtrick.xul
 
-locale foxtrick ba-BA locale/ba-BA/
+locale foxtrick bs-BA locale/bs-BA/
 locale foxtrick cs-CZ locale/cs-CZ/
 locale foxtrick da-DK locale/da-DK/
 locale foxtrick de-DE locale/de-DE/
