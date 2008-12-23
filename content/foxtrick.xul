@@ -45,12 +45,23 @@
 </popup> 
 
 <statusbar id="status-bar">
-    <statusbarpanel id="foxtrick-status-bar" label="FoxTrick" context="foxtrick-status-bar-menu"/>
-	<menupopup id="foxtrick-status-bar-menu">
-		<menuitem id="foxtrick_statusbar_config_menu" label="&foxtrick.menu.configurefoxtrick;" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
-		<menuitem id="foxtrick_statusbar_reload" label="&foxtrick.menu.reloadfoxtrick;" oncommand="FoxtrickService.load();"/>
-	</menupopup>
+    <vbox flex="0" pack="right">
+        <image
+            id="foxtrick-status-bar-img"
+            src="chrome://foxtrick/skin/foxtrick.png" 
+            style="width:16px ; height:16px;"
+			context="foxtrick-status-bar-menu"
+            onclick="FoxtrickPreferencesDialog.configureFoxtrick();"
+        />
+    </vbox>
+    
+    <vbox flex="0" pack="right">
+        <statusbarpanel id="foxtrick-status-bar" label="FoxTrick" context="foxtrick-status-bar-menu"/>
+        <menupopup id="foxtrick-status-bar-menu" image="chrome://foxtrick/skin/foxtrick.png">
+            <menuitem id="foxtrick_statusbar_config_menu" label="&foxtrick.menu.configurefoxtrick;" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+            <menuitem id="foxtrick_statusbar_reload" label="&foxtrick.menu.reloadfoxtrick;" oncommand="FoxtrickService.load();"/>
+        </menupopup>
+    </vbox>
 </statusbar>
-
 </overlay>
 
