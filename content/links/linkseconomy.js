@@ -19,6 +19,8 @@ var FoxtrickLinksEconomy = {
 
     run : function( page, doc ) {
 
+		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
+
 		//addExternalLinksToEconomyDetail
         var links = getLinks("economylink", {  }, doc );  
 

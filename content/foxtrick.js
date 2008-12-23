@@ -485,3 +485,90 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent,
 		}
 	}
 }
+
+
+Foxtrick.SidebarExist = function( doc,newBoxHeader ) {
+	var layout;
+	var sidebar = doc.getElementById("sidebar");
+	
+	var firstDiv = sidebar.getElementsByTagName("div")[0];
+	var firstBox;
+	if(firstDiv.id) {
+		// The sideboxes might be wrapped in another div with an id
+		// See for an example the playersdetail page
+		sidebar = sidebar.getElementsByTagName("div")[0];
+		firstBox = sidebar.getElementsByTagName("div")[0];
+	} else {
+		firstBox = firstDiv;
+	}
+	
+	while(firstBox.className != "sidebarBox") {
+		firstBox = firstBox.nextSibling;
+	}
+	if(firstBox.getElementsByTagName("div").length) {
+		layout = 1; // standard
+	} else { 
+		layout = 0; // simple
+	}
+	
+	// Check if any of the other sidebarboxes have the same header
+	// and find the reference-object in the process
+	var otherBox = false;
+	var currentBox = firstBox;
+	do {
+		// Check if this child is a sidebarbox
+		if(currentBox.className=="sidebarBox") {
+			var header = currentBox.getElementsByTagName("h2")[0];
+			if(header.innerHTML == newBoxHeader) {
+				otherBox = currentBox;
+				return true;
+			}			
+		}
+		currentBox = currentBox.nextSibling;
+	} while(currentBox.nextSibling);
+	return false;
+}
+
+
+Foxtrick.SidebarExist = function( doc,newBoxHeader ) {
+	var layout;
+	var sidebar = doc.getElementById("sidebar");
+	
+	var firstDiv = sidebar.getElementsByTagName("div")[0];
+	var firstBox;
+	if(firstDiv.id) {
+		// The sideboxes might be wrapped in another div with an id
+		// See for an example the playersdetail page
+		sidebar = sidebar.getElementsByTagName("div")[0];
+		firstBox = sidebar.getElementsByTagName("div")[0];
+	} else {
+		firstBox = firstDiv;
+	}
+	
+	while(firstBox.className != "sidebarBox") {
+		firstBox = firstBox.nextSibling;
+	}
+	if(firstBox.getElementsByTagName("div").length) {
+		layout = 1; // standard
+	} else { 
+		layout = 0; // simple
+	}
+	
+	// Check if any of the other sidebarboxes have the same header
+	// and find the reference-object in the process
+	var otherBox = false;
+	var currentBox = firstBox;
+	do {
+		// Check if this child is a sidebarbox
+		if(currentBox.className=="sidebarBox") {
+			var header = currentBox.getElementsByTagName("h2")[0];
+			if(header.innerHTML == newBoxHeader) {
+				otherBox = currentBox;
+				return true;
+			}			
+		}
+		currentBox = currentBox.nextSibling;
+	} while(currentBox.nextSibling);
+	return false;
+}
+		
