@@ -72,7 +72,8 @@ var FoxtrickLinksMatch = {
     init : function() {
             Foxtrick.registerPageHandler( 'match',
                                           FoxtrickLinksMatch);
-			Foxtrick.initOptionsLinks(this,"playedmatchlink");
+			var linktypes = new Array("playedmatchlink","nextmatchlink","matchlink");
+			Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
     run : function( page, doc ) {
@@ -120,13 +121,13 @@ var FoxtrickLinksMatch = {
 				
 				ownBoxBody.appendChild(doc.createTextNode(" "));
 				ownBoxBody.appendChild(HTD);
-				var links = getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid  }, doc );  
+				var links = getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid  }, doc,this);  
 				for (var k = 0; k < links.length; k++) {
 							links[k].link.className ="inner";
 							ownBoxBody.appendChild(doc.createTextNode(" "));
 							ownBoxBody.appendChild(links[k].link);
 						}		
-				var links2 = getLinks("matchlink", { "matchid": matchid, "teamid" : teamid  }, doc );  
+				var links2 = getLinks("matchlink", { "matchid": matchid, "teamid" : teamid  }, doc,this);  
 				for (var k = 0; k < links2.length; k++) {
 							links2[k].link.className ="inner";
 							ownBoxBody.appendChild(doc.createTextNode(" "));
