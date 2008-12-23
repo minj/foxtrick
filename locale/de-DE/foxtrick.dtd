@@ -1,4 +1,4 @@
-<!-- de-DE (rev. 363)
+<!-- de-DE (rev. 366)
      spambot
      utf-8 encoded language file
 -->
@@ -87,9 +87,8 @@
 <!ENTITY foxtrick.prefs.opendirectory "Verzeichnis öffnen">
 <!ENTITY foxtrick.prefs.selectfile "Sounddatei wählen">
 <!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
-<!ENTITY foxtrick.prefs.disableonstage "Foxtrick auf Stage Server deaktivieren">
-<!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
-<!ENTITY foxtrick.prefs.alltidflags "Alltid-Flaggen bei beiden Foren-Postern anzeigen">
+<!ENTITY foxtrick.prefs.disableonstage "FoxTrick auf Stage Server deaktivieren">
+<!ENTITY foxtrick.prefs.alltidflags "Alltid-Länderflaggen bei beiden Foren-Postern anzeigen">
 <!ENTITY foxtrick.prefs.linksleague "Hinzufügen externer Links zur Liga-Seite">
 <!ENTITY foxtrick.prefs.linksteams "Hinzufügen externer Links zur Team-Seite">
 <!ENTITY foxtrick.prefs.linkscountry "Hinzufügen externer Links zur Länder-Seite">
