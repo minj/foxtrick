@@ -9,19 +9,28 @@ var Ratings = {
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
-	OPTIONS : new Array("vnukstats", "hatstats", "hatstatstotal", "ahpoints", "loddarstats", "peasostats", "htitavals", "gardierstats"),
-	ratingDefs : {},
+	OPTIONS : {}, // will be filled in initRatings
+	ratingDefs : {}, // will be filled in initOptions
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'match', this );
-		this.ratingDefs=this.initHtRatings();
 		Matches.init();
+		this.initHtRatings();
+		this.initOptions();
 	},
 
 	run : function( page, doc ) {
 		try {
 			var ratingstable = Matches._getRatingsTable(doc);
-			if ((ratingstable == null) || (Matches._getStatFromCell(ratingstable.rows[2].cells[1]) == 0)) return;
+			if (ratingstable == null) return;
+			if (Matches._isWalkOver(ratingstable)) return;
+			if (!Matches._isCorrectLanguage(ratingstable)) { // incorrect language
+				var row = ratingstable.insertRow(8);
+				var cell = row.insertCell(0);
+				cell.setAttribute("colspan" , 3);
+				cell.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
+				return;
+			}
 
 			var midfieldLevel=new Array(Matches._getStatFromCell(ratingstable.rows[1].cells[1]), Matches._getStatFromCell(ratingstable.rows[1].cells[2]));
 			var rdefence=new Array(Matches._getStatFromCell(ratingstable.rows[2].cells[1]), Matches._getStatFromCell(ratingstable.rows[2].cells[2]));
@@ -38,8 +47,8 @@ var Ratings = {
 				tacticsLevel=new Array(Matches._getTacticsLevelFromCell(ratingstable.rows[15].cells[1]), Matches._getTacticsLevelFromCell(ratingstable.rows[15].cells[2]));
 			}
 			else  {
-				tactics=new Array(Matches._getTacticsFromCell(ratingstable.rows[9].cells[1]), Matches._getTacticsFromCell(ratingstable.rows[9].cells[2]));
-				tacticsLevel=new Array(Matches._getTacticsLevelFromCell(ratingstable.rows[10].cells[1]), Matches._getTacticsLevelFromCell(ratingstable.rows[10].cells[2]));
+				tactics=new Array(Matches._getTacticsFromCell(ratingstable.rows[10].cells[1]), Matches._getTacticsFromCell(ratingstable.rows[10].cells[2]));
+				tacticsLevel=new Array(Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[1]), Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[2]));
 			}
 			
 			var defenceLevel = new Array();
@@ -62,37 +71,36 @@ var Ratings = {
 					try {
 						if (typeof (this.ratingDefs[selectedRating]["total2"]) != 'undefined') {
 							if (tactics[i] != null) {
-							cell.innerHTML = "<b>" +
-											 this.ratingDefs[selectedRating]["total2"](midfieldLevel[i], lattack[i], cattack[i], rattack[i],
-																								 ldefence[i], cdefence[i], rdefence[i],
-																								 tactics[i], tacticsLevel[i]
-																								 )
-										   + "</b>";
-										}
+								cell.innerHTML = "<b>" +
+													this.ratingDefs[selectedRating]["total2"](midfieldLevel[i], lattack[i], cattack[i], rattack[i],
+																										ldefence[i], cdefence[i], rdefence[i],
+																										tactics[i], tacticsLevel[i]
+																										)
+												+ "</b>";
+							}
 						} else {
 							cell.innerHTML = "<b>" +
-											 this.ratingDefs[selectedRating]["total"](midfieldLevel[i], attackLevel[i], defenceLevel[i])
-										   + "</b>";
+												this.ratingDefs[selectedRating]["total"](midfieldLevel[i], attackLevel[i], defenceLevel[i])
+											+ "</b>";
 						}
-					 }
-					catch (e) {
+					} catch (e) {
 						dump('ratings.js error in rating print ('+selectedRating+'): '+e+"\n");
 					}
 
 					this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "defence",
-						  Foxtrickl10n.getString( "foxtrick.matchdetail.defence" ), defenceLevel[i]);
+							 Foxtrickl10n.getString( "foxtrick.matchdetail.defence" ), defenceLevel[i]);
 					this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "special",
-						  Foxtrickl10n.getString( "foxtrick.matchdetail.defence" ),  rdefence[i], cdefence[i], ldefence[i]);
+							 Foxtrickl10n.getString( "foxtrick.matchdetail.defence" ),  rdefence[i], cdefence[i], ldefence[i]);
 
 					this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "midfield",
-						  Foxtrickl10n.getString( "foxtrick.matchdetail.midfield" ), midfieldLevel[i]);
+							 Foxtrickl10n.getString( "foxtrick.matchdetail.midfield" ), midfieldLevel[i]);
 					this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "mystyle",
-						  Foxtrickl10n.getString( "foxtrick.matchdetail.midfield" ), midfieldLevel[i]);
+							 Foxtrickl10n.getString( "foxtrick.matchdetail.midfield" ), midfieldLevel[i]);
 
 					this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "attack",
-						  Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  attackLevel[i]);
+							 Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  attackLevel[i]);
 					this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "special",
-						  Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  rattack[i], cattack[i], lattack[i]);
+							 Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  rattack[i], cattack[i], lattack[i]);
 				}
 			}
 		} catch (e) {
@@ -105,241 +113,235 @@ var Ratings = {
 		if (typeof(rating[ratingType]) == 'undefined') return;
 		cell.innerHTML+="<br />"+label+": <b>" + rating[ratingType](midfieldLevel, attackLevel, defenceLevel) + "</b>";
 	},
+	
+	initOptions: function() {
+		this.OPTIONS = new Array();
+		for (var selectedRating in this.ratingDefs) {
+			this.OPTIONS.push(selectedRating);
+		}
+	},
 
 	initHtRatings: function () {
-			ratingDefs=new Array();
-		ratingDefs["vnukstats"] = { base : 1.0,
-							label : "Vnukstats",
-							title : "Vnukstats",
+		this.ratingDefs=new Array();
+		this.ratingDefs["vnukstats"] = { base : 1.0,
+			label : "Vnukstats",
+			title : "Vnukstats",
 
-						 special : function(rattack, cattack, lattack) {
-													return this.mystyle(rattack) + " " + this.mystyle(cattack)
-													 + " " + this.mystyle(lattack);
-												   },
+			special : function(rattack, cattack, lattack) {
+			return this.mystyle(rattack) + " " + this.mystyle(cattack)
+				+ " " + this.mystyle(lattack);
+			},
 
-						 total: function(midfieldLevel, attackLevel, defenceLevel) {
-													return Math.round(100*(11.0 + 5*midfieldLevel + attackLevel + defenceLevel)/11)/100;
-									},
+			total: function(midfieldLevel, attackLevel, defenceLevel) {
+				return Math.round(100*(11.0 + 5*midfieldLevel + attackLevel + defenceLevel)/11)/100;
+			},
 
-						 mystyle: function(level) {
-							var lev = this.base+level;
-							var temp = lev + " ";
-							if (temp.search(/\./) > -1) {
-								if (temp.search(/\.25/) > -1) return temp.replace(/\.25/,"-");
-								if (temp.search(/\.5/) > -1)  return temp.replace(/\.5/, "+");
-								if (temp.search(/\.75/) > -1) return temp.replace(/\.75/, "*");
+			mystyle: function(level) {
+				var lev = this.base+level;
+				var temp = lev + " ";
+				if (temp.search(/\.25/) > -1) return temp.replace(/\.25/,"-");
+				else if (temp.search(/\.5/) > -1)  return temp.replace(/\.5/, "+");
+				else if (temp.search(/\.75/) > -1) return temp.replace(/\.75/, "*");
+				else return lev+"!";
+			}
+		};
 
-							} else {
-								return lev+"!";
-							}
+		this.ratingDefs["hatstats"] = {	base : 1.0, weight : 4.0,
+			label : "HatStats (detailed)",
+			title : "HatStats (detailed)",
 
-						 }
-					   };
+			attack : function(attackLevel) {
+				return (3.0*this.base + this.weight*attackLevel);
+			},
+			defence : function(defenceLevel) {
+				return (3.0*this.base + this.weight*defenceLevel);
+			},
+			midfield : function(midfieldLevel) {
+				return 3.0*(this.base + this.weight*midfieldLevel);
+			},
+			total: function(midfieldLevel, attackLevel, defenceLevel) {
+				return this.attack(attackLevel)+
+					this.defence(defenceLevel)+
+					this.midfield(midfieldLevel);
+			}
+		};
 
-	ratingDefs["hatstats"] = {   base : 1.0, weight : 4.0,
-						 label : "HatStats (detailed)",
-						 title : "HatStats (detailed)",
+		this.ratingDefs["hatstatstotal"] = { label : "HatStats (short)",
+			title : "HatStats Total only",
+			total: function(midfieldLevel, attackLevel, defenceLevel) {
+				return ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
+			}
+		};
 
-						 attack : function(attackLevel) {
-													 return (3.0*this.base + this.weight*attackLevel);
-												   },
-						 defence : function(defenceLevel) {
-													return (3.0*this.base + this.weight*defenceLevel);
-												},
-						 midfield : function(midfieldLevel) {
-													return 3.0*(this.base + this.weight*midfieldLevel);
-														},
-						 total: function(midfieldLevel, attackLevel, defenceLevel) {
-													return this.attack(attackLevel)+
-														   this.defence(defenceLevel)+
-														   this.midfield(midfieldLevel);
-													}
-					   };
+		this.ratingDefs["ahpoints"] = {	base : 1.0, weight : 4.0,
+			label : "AH-poeng",
+			title : "AH-poeng",
 
-	ratingDefs["hatstatstotal"] = { label : "HatStats (short)",
-								 title : "HatStats Total only",
-						 total: function(midfieldLevel, attackLevel, defenceLevel) {
-									 return ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
-								}
-					   };
+			attack : function(attackLevel) {
+				return (3.0*this.base + this.weight*attackLevel);
+			},
+			defence : function(defenceLevel) {
+				return (3.0*this.base + this.weight*defenceLevel);
+			},
+			midfield : function(midfieldLevel) {
+				return 3.0*(this.base + this.weight*midfieldLevel);
+			},
+			total: function(midfieldLevel, attackLevel, defenceLevel) {
+				return this.attack(attackLevel)+
+					this.defence( defenceLevel)+
+					this.midfield(midfieldLevel);
+			}
+		};
 
-	ratingDefs["ahpoints"] = {   base : 1.0, weight : 4.0,
-						 label : "AH-poeng",
-						 title : "AH-poeng",
+		this.ratingDefs["loddarstats"] = {	base : 1.0, weight : 4.0,
+			label : "LoddarStats",
+			title : "LoddarStats",
 
-						 attack : function(attackLevel) {
-									  return (3.0*this.base + this.weight*attackLevel);
-								  },
-						 defence : function(defenceLevel) {
-									  return (3.0*this.base + this.weight*defenceLevel);
-								  },
-						 midfield : function(midfieldLevel) {
-									  return 3.0*(this.base + this.weight*midfieldLevel);
-								  },
-						 total: function(midfieldLevel, attackLevel, defenceLevel) {
-									return this.attack(attackLevel)+
-										   this.defence( defenceLevel)+
-										   this.midfield(midfieldLevel);
-								}
-					   };
+			HQ : function(x) {
+				return 2.0*(x/(x+80));
+			},
 
-	ratingDefs["loddarstats"] = {   base : 1.0, weight : 4.0,
-						 label : "LoddarStats",
-						 title : "LoddarStats",
+			total2: function( midfieldLevel, lattack, cattack, rattack,
+											ldefence, cdefence, rdefence,
+										tactics, tacticsLevel ) {
 
-						 HQ : function(x) {
-							return 2.0*(x/(x+80));
-						 },
+				midfieldLevel = this.base + this.weight*midfieldLevel;
+				lattack = this.base + this.weight*lattack;
+				cattack = this.base + this.weight*cattack;
+				rattack = this.base + this.weight*rattack;
 
-						 total2: function( midfieldLevel, lattack, cattack, rattack,
-														 ldefence, cdefence, rdefence,
-														tactics, tacticsLevel
-						 ) {
+				ldefence = this.base + this.weight*ldefence;
+				cdefence = this.base + this.weight*cdefence;
+				rdefence = this.base + this.weight*rdefence;
 
-								midfieldLevel = this.base + this.weight*midfieldLevel;
-								lattack = this.base + this.weight*lattack;
-								cattack = this.base + this.weight*cattack;
-								rattack = this.base + this.weight*rattack;
+				var MFS = 0.0;
 
-								ldefence = this.base + this.weight*ldefence;
-								cdefence = this.base + this.weight*cdefence;
-								rdefence = this.base + this.weight*rdefence;
+				var VF = 0.47;
+				var AF = 1.0 - VF;
 
-								var MFS = 0.0;
+				var ZG = 0.37;
+				var AG = (1.0 - ZG)/2.0;
 
-								var VF = 0.47;
-								var AF = 1.0 - VF;
+				var KG = 0.25;
 
-								var ZG = 0.37;
-								var AG = (1.0 - ZG)/2.0;
+				var MFF = MFS + (1-MFS)*this.HQ(midfieldLevel);
 
-								var KG = 0.25;
+				var KK = 0;
+				if (tactics == 'ca') {
+					KK = KG*2*tacticsLevel/(tacticsLevel+20);
+				}
 
-								var MFF = MFS + (1-MFS)*this.HQ(midfieldLevel);
+				var KZG = ZG;
+				if (tactics == 'aim') {
+					KZG += 0.2*(tacticsLevel - 1.0)/19.0 + 0.2;
+				} else if (tactics == 'aow') {
+					KZG -= 0.2*(tacticsLevel - 1.0)/19.0 + 0.2;
+				}
 
-								var KK = 0;
-								if (tactics == 'ca') {
-									KK = KG*2*tacticsLevel/(tacticsLevel+20);
-								}
+				var KAG = (1.0 - KZG) / 2.0;
 
-								var KZG = ZG;
-								if (tactics == 'aim') {
-									KZG += 0.2*(tacticsLevel - 1.0)/19.0 + 0.2;
-								} else if (tactics == 'aow') {
-									KZG -= 0.2*(tacticsLevel - 1.0)/19.0 + 0.2;
-								}
+				var attackValue = (AF+KK)*(KZG*this.HQ(cattack) + KAG*(this.HQ(lattack) + this.HQ(rattack)));
+				var defenceValue = VF*(ZG*this.HQ(cdefence) + AG*(this.HQ(ldefence) + this.HQ(rdefence)) );
 
-								var KAG = (1.0 - KZG) / 2.0;
+				var value = 80*MFF*(attackValue + defenceValue);
 
-								var attackValue = (AF+KK)*(KZG*this.HQ(cattack) + KAG*(this.HQ(lattack) + this.HQ(rattack)));
-								var defenceValue = VF*(ZG*this.HQ(cdefence) + AG*(this.HQ(ldefence) + this.HQ(rdefence)) );
+				var rounded = Math.round(value*100)/100;
+				
+				return rounded;
+			}
 
-								var value = 80*MFF*(attackValue + defenceValue);
-								//dump("LoddarStats: " + value);
+		 };
 
-								var rounded = Math.round(value*100)/100;
+		this.ratingDefs["peasostats"] = {	base : 1.0, weight : 4.0,
+			label : "PStats",
+			title : "PStats",
 
-								//return rounded + " " + getTextRepresentionOfLevel(rounded);
-								return rounded;
+			total2: function( midfieldLevel, lattack, cattack, rattack,
+											ldefence, cdefence, rdefence,
+										tactics, tacticsLevel ) {
 
-							 }
+				midfieldLevel = this.base + this.weight*midfieldLevel;
+				lattack = this.base + this.weight*lattack;
+				cattack = this.base + this.weight*cattack;
+				rattack = this.base + this.weight*rattack;
 
-					  };
+				ldefence = this.base + this.weight*ldefence;
+				cdefence = this.base + this.weight*cdefence;
+				rdefence = this.base + this.weight*rdefence;
 
-	ratingDefs["peasostats"] = {   base : 1.0, weight : 4.0,
-						 label : "PStats",
-						 title : "PStats",
+				var value = 0.46*midfieldLevel +
+				0.32*(0.3*(lattack+rattack) + 0.4*cattack) +
+				0.22*(0.3*(ldefence+rdefence) + 0.4*cdefence);
 
-						 total2: function( midfieldLevel, lattack, cattack, rattack,
-														 ldefence, cdefence, rdefence,
-														tactics, tacticsLevel
-						 ) {
+				var rounded = Math.round(value*100)/100;
+				return rounded;
 
-								midfieldLevel = this.base + this.weight*midfieldLevel;
-								lattack = this.base + this.weight*lattack;
-								cattack = this.base + this.weight*cattack;
-								rattack = this.base + this.weight*rattack;
+			}
+		};
 
-								ldefence = this.base + this.weight*ldefence;
-								cdefence = this.base + this.weight*cdefence;
-								rdefence = this.base + this.weight*rdefence;
+		this.ratingDefs["htitavals"] = {	base : 1.0, weight : 4.0,
+			label : "HTitaVal",
+			title : "HTitaVal",
 
-								var value = 0.46*midfieldLevel +
-								0.32*(0.3*(lattack+rattack) + 0.4*cattack) +
-								0.22*(0.3*(ldefence+rdefence) + 0.4*cdefence);
+			total2: function( midfieldLevel, lattack, cattack, rattack,
+											ldefence, cdefence, rdefence,
+										tactics, tacticsLevel ) {
 
-								var rounded = Math.round(value*100)/100;
-								return rounded;
+				midfieldLevel = this.base + this.weight*midfieldLevel;
+				lattack = this.base + this.weight*lattack;
+				cattack = this.base + this.weight*cattack;
+				rattack = this.base + this.weight*rattack;
 
-							 }
-					   };
+				ldefence = this.base + this.weight*ldefence;
+				cdefence = this.base + this.weight*cdefence;
+				rdefence = this.base + this.weight*rdefence;
 
-	ratingDefs["htitavals"] = {   base : 1.0, weight : 4.0,
-						 label : "HTitaVal",
-						 title : "HTitaVal",
+				var value = 3*midfieldLevel +
+				0.8*(lattack+rattack) + 1.4*cattack +
+				0.64*(ldefence+rdefence) + 1.12*cdefence;
 
-						 total2: function( midfieldLevel, lattack, cattack, rattack,
-														 ldefence, cdefence, rdefence,
-														tactics, tacticsLevel
-						 ) {
+				var rounded = Math.round(value*10)/10;
+				return rounded;
 
-								midfieldLevel = this.base + this.weight*midfieldLevel;
-								lattack = this.base + this.weight*lattack;
-								cattack = this.base + this.weight*cattack;
-								rattack = this.base + this.weight*rattack;
+			}
+		};
 
-								ldefence = this.base + this.weight*ldefence;
-								cdefence = this.base + this.weight*cdefence;
-								rdefence = this.base + this.weight*rdefence;
+		this.ratingDefs["gardierstats"] = {
+			base : 1.0, weight : 4.0,
+			label : "GardierStats",
+			title : "GardierStats",
 
-								var value = 3*midfieldLevel +
-								0.8*(lattack+rattack) + 1.4*cattack +
-								0.64*(ldefence+rdefence) + 1.12*cdefence;
+			total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
 
-								var rounded = Math.round(value*10)/10;
-								return rounded;
+				leftAtt = (this.base + this.weight*leftAtt);
+				centralAtt = (this.base + this.weight*centralAtt);
+				rightAtt = (this.base + this.weight*rightAtt);
 
-							 }
-					   };
+				leftDef = (this.base + this.weight*leftDef);
+				centralDef = (this.base + this.weight*centralDef);
+				rightDef = (this.base + this.weight*rightDef);
 
-	ratingDefs["gardierstats"] = {
-	   base : 1.0, weight : 4.0,
-	   label : "GardierStats",
-	   title : "GardierStats",
+				midfield = (this.base + this.weight*midfield);
 
-	   total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
+				var defense = 0.275*rightDef + 0.45*centralDef + 0.275*leftDef;
+				var attack = 0.275*rightAtt + 0.45*centralAtt + 0.275*leftAtt;
+				var tempReal = 4.15*midfield + 2.77*attack + 2.08*defense;
 
-		 leftAtt = (this.base + this.weight*leftAtt);
-		 centralAtt = (this.base + this.weight*centralAtt);
-		 rightAtt = (this.base + this.weight*rightAtt);
+				if (tactics == 'ca') {
+				tempTactica= (tacticsLevel * defense) / 10;
+				} else if (tactics == 'aim') {
+				tempTactica= (tacticsLevel * centralAtt) / 7;
+				} else if (tactics == 'aow') {
+				tempTactica= (tacticsLevel * (rightAtt + leftAtt) / 2) / 7;
+				} else {
+				tempTactica= tempReal / 9;
+				}
 
-		 leftDef = (this.base + this.weight*leftDef);
-		 centralDef = (this.base + this.weight*centralDef);
-		 rightDef = (this.base + this.weight*rightDef);
-
-		 midfield = (this.base + this.weight*midfield);
-
-		 var defense = 0.275*rightDef + 0.45*centralDef + 0.275*leftDef;
-		 var attack = 0.275*rightAtt + 0.45*centralAtt + 0.275*leftAtt;
-		 var tempReal = 4.15*midfield + 2.77*attack + 2.08*defense;
-
-		 if (tactics == 'ca') {
-		   tempTactica= (tacticsLevel * defense) / 10;
-		 } else if (tactics == 'aim') {
-		   tempTactica= (tacticsLevel * centralAtt) / 7;
-		 } else if (tactics == 'aow') {
-		   tempTactica= (tacticsLevel * (rightAtt + leftAtt) / 2) / 7;
-		 } else {
-		   tempTactica= tempReal / 9;
-		 }
-
-		 var value = tempReal + tempTactica;
-		 var rounded = Math.round(value);
-		 return rounded;
-
-	   }
-	 };
-	 return ratingDefs;
-   }
+				var value = tempReal + tempTactica;
+				var rounded = Math.round(value);
+				return rounded;
+			}
+		};
+	}
 
 };

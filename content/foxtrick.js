@@ -304,10 +304,10 @@ Foxtrick.selectFile = function (parentWindow) {
     	if (fp.show() == fp.returnOK ) {
     		return fp.file.path;
     	}
-    	return null;
     } catch (e) {
         dump(e);
     }
+	return null;
 }
 
 Foxtrick.playSound = function(url) {

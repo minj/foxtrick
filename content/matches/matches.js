@@ -22,13 +22,46 @@ var Matches = {
 				divs=doc.getElementById('mainBody').childNodes[3].getElementsByTagName('div');
 			else
 				divs=doc.getElementById('mainBody').childNodes[1].getElementsByTagName('div');
-			for (i=0;i<divs.length;i++)
-			{
-				if (divs[i].className=='mainBox')
-					ratingstable=divs[i].getElementsByTagName('table').item(0);
+			for (i=0;i<divs.length;i++) {
+				if (divs[i].className=='mainBox') {
+					ratingstable = divs[i].getElementsByTagName('table').item(0);
+					break;
+				}
 			}
 		}
 		return ratingstable;
+	},
+	
+	_isWalkOver: function(ratingstable) {
+		try {
+			for (var i = 1; i <= 7; i++) {
+				for (var j = 1; j <= 2; j++) {
+					var value = this._getStatFromCell(ratingstable.rows[i].cells[j]);
+					if (value > 0) { // no Walk-over
+						return false;
+					}
+				}
+			}
+		} catch (e) {
+			dump('matches.js _isWalkOver: ' +e + "\n");
+		}
+		return true;
+	},
+	
+	_isCorrectLanguage: function(ratingstable) {
+		try {
+			for (var i = 1; i <= 7; i++) {
+				for (var j = 1; j <= 2; j++) {
+					var value = this._getStatFromCell(ratingstable.rows[i].cells[j]);
+					if (value < 0) { // wrong language
+						return false;
+					}
+				}
+			}
+		} catch (e) {
+			dump('matches.js _isCorrectLanguage: ' +e + "\n");
+		}
+		return true;
 	},
 
 	_getStatFromCell: function(cell)
@@ -54,7 +87,7 @@ var Matches = {
 			else
 				return -1;
 		} catch (e) {
-			dump('matches.js _getStatFromCell: '+e);
+			dump('matches.js _getStatFromCell: '+e + "\n");
 		}
 
 		return baseValue+subLevelValue;
@@ -83,8 +116,9 @@ var Matches = {
 			return obj.attributes.getNamedItem("type").textContent;
 
 		} catch (e) {
-			return null;
+			dump('matches.js _getTacticsFromCell: '+e + "\n");
 		}
+		return null;
 
 	},
 

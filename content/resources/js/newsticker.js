@@ -13,7 +13,7 @@ function FoxtrickCheckNews() {
     var showAlert=false;
     var alertMessage=null;
     
-    for (i=0;i<newsList.length;i++)
+    for (var i=0;i<newsList.length;i++)
     {
         if (newsList[i].innerHTML.indexOf('strong')>0)
         {
