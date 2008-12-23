@@ -5,12 +5,25 @@
 */
 
 ////////////////////////////////////////////////// //////////////////////////////
+//---------------------------------------------------------------------------    
+function findLeagueLeveUnitId(element) {
+  var links = element.getElementsByTagName('a');
+  
+  for (var i=0; i < links.length; i++) {
+    if ( links[i].href.match(/Series\/Default\.aspx/i) ) {
+      return links[i].href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
+    }
+  }
+  
+  return null;
+}
 
 var FoxtrickAlltidFlags = {
 
 	MODULE_NAME : "AlltidFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
+	RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -20,16 +33,16 @@ var FoxtrickAlltidFlags = {
 	run : function( page, doc ) {
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
 		var linkpage = "http://stats.alltidhattrick.org/user/";
-
+		var style ="margin-right:3px; padding-left:3px; " + 
+					"background-repeat:repeat-x; background-position: 0% 50%;";
+		
 		var alldivs = doc.getElementsByTagName('div');
 		var flagsCounter = 0;
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfWrapper") {
-				var style ="margin-right:3px; padding-left:3px; " + 
-					"background-repeat:repeat-x; background-position: 0% 50%;";
+				var LeagueId=findLeagueLeveUnitId(alldivs[i]);
 				var target = "_blank";
 				var linksArray = alldivs[i].getElementsByTagName('a');
-				
 				var titlecountry1="";
 				// get country
 				for (var j=0; j<linksArray.length; j++) {
@@ -56,11 +69,18 @@ var FoxtrickAlltidFlags = {
 						dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
-						mySpan.innerHTML = ' <a href="' + linkpage + userId +
+						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1) {
+							mySpan.innerHTML = ' <a href="' + linkpage + userId +
 							'" target="' + target + ' "><img title="'+thistitlecountry+'" " style="' + 
 							'vertical-align: middle; ' + style + '" src="' + 
 							flagspage + userId + '.gif" border="0"' +
-							'height="12" /></a>';
+							'height="12" /></a>';}
+						else {
+							mySpan.innerHTML = ' <a href="/World/Series/Default.aspx?LeagueLevelUnitID=' + LeagueId +
+							'" target="_self"><img title="'+thistitlecountry+'" style="' + 
+							'vertical-align: middle; ' + style + '" src="' + 
+							flagspage + userId + '.gif" border="0"' +
+							'height="12" /></a>';}
 						target = link.nextSibling;
 						if (j+1!=linksArray.length && linksArray[j+1].href.lastIndexOf('Supporter') > -1) {
 							target=linksArray[j+1].nextSibling;
