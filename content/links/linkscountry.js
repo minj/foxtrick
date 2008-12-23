@@ -32,8 +32,6 @@ var FoxtrickLinksCountry = {
 
     run : function( page, doc ) {
 
-		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
-
 		//addExternalLinksToCountryDetail
         var countryid;
 		var alldivs = doc.getElementsByTagName('div');

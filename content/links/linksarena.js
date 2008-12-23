@@ -18,9 +18,6 @@ var FoxtrickLinksArena = {
     },
 
     run : function( page, doc ) { 
-	
-		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
-
 		//addExternalLinksToArenaPage
 		
 		var alldivs = doc.getElementsByTagName('div');

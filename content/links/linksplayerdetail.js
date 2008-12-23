@@ -62,9 +62,6 @@ var FoxtrickLinksPlayerDetail = {
     },
 
     run : function( page, doc ) {
-
-		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
-		
 		//addExternalLinksToPlayerDetail
 		
 		var alldivs = doc.getElementsByTagName('div');

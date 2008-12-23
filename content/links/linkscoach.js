@@ -19,8 +19,6 @@ var FoxtrickLinksCoach = {
 
     run : function( page, doc ) {
 
-		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
-
 		//addExternalLinksToCoachPage
 		var links = getLinks("coachlink", {  }, doc );  
                   

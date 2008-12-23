@@ -32,8 +32,8 @@
   </tabs>
 	<tabpanels id="tabpanels">
         <!-- Main -->
-           <tabpanel orient="vertical">
-              <vbox style="border:1px solid black;overflow:auto;height:675px;" >
+           <tabpanel orient="vertical" style="height:500px; overflow:auto;">
+              <vbox>
 				  <groupbox>
 					<caption label="&foxtrick.prefs.language;"/>
 					<menulist id="htLanguage">
@@ -64,39 +64,39 @@
            </tabpanel>
         
         <!-- Shortcuts -->
-           <tabpanel orient="vertical">
-              <vbox style="border:1px solid black;overflow:auto;height:675px;">
+           <tabpanel orient="vertical" style="height:500px; overflow:auto;">
+              <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <scrollbox id="shortcuts_list" flex="1" orient="vertical" style="overflow:auto" />
+                  <vbox id="shortcuts_list" flex="1" orient="vertical" />
               </vbox>
            </tabpanel>
 		   
 		<!-- Matches -->
-		    <tabpanel orient="vertical">
-			  <vbox style="border:1px solid black;overflow:auto;height:675px;">
+		    <tabpanel orient="vertical" style="height:500px; overflow:auto;">
+			  <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <scrollbox id="matchfunctions_list" flex="1" orient="vertical" style="overflow:auto" />
+                  <vbox id="matchfunctions_list" flex="1" orient="vertical" />
               </vbox>
            </tabpanel>
 		 
 		<!-- Forum -->
-           <tabpanel orient="vertical">
-              <vbox style="border:1px solid black;overflow:auto;height:675px;">
+           <tabpanel orient="vertical" style="height:500px; overflow:auto;">
+              <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <scrollbox id="forum_list" flex="1" orient="vertical" style="overflow:auto" />
+                  <vbox id="forum_list" flex="1" orient="vertical" />
               </vbox>
            </tabpanel>
 		   
 		<!-- Links -->
-           <tabpanel orient="vertical">
-              <vbox style="border:1px solid black;overflow:auto;height:675px;">
+           <tabpanel orient="vertical" style="height:500px; overflow:auto;">
+              <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <scrollbox id="links_list" flex="1" orient="vertical" style="overflow:auto" />
+                  <vbox id="links_list" flex="1" orient="vertical" style="overflow:auto" />
               </vbox>
            </tabpanel>
 
 	   <!-- about -->
-           <tabpanel orient="vertical"  style="border:1px solid black;overflow:auto;height:675px;">
+           <tabpanel orient="vertical" style="height:500px; overflow:auto;">
     		    <vbox>
                     <label flex="1" multiline="true" class="plain" style="padding:5px 5px 10px 5px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
                     <label value="http://foxtrick.px.cz/" 

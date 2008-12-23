@@ -76,9 +76,7 @@ var FoxtrickLinksMatch = {
 
     run : function( page, doc ) {
 
-		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
 		if (findIsYouthMatch(doc.location.href)) {return;}
-
 		var isarchivedmatch=true;
 		var matchid,teamid;
 		var alldivs = doc.getElementsByTagName('div');

@@ -136,7 +136,7 @@ var FoxtrickLinksTeam = {
     MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : true,
-	//OPTIONS : new Array("bbbats", " bats"}, 
+
 
     init : function() {
             Foxtrick.registerPageHandler( 'teamPageGeneral',
@@ -144,9 +144,7 @@ var FoxtrickLinksTeam = {
     },
 
     run : function( page, doc ) {
-
 		if (!isTeamPage(doc)) {return;}
-		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
 	
 		//addExternalLinksToCountryDetail
 		var alldivs = doc.getElementsByTagName('div');

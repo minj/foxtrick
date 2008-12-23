@@ -64,7 +64,6 @@ function getSeriesNum(leaguename) {
 }
 
 function getLevelNum(leaguename, countryid) {
-
     if (leaguename == null || countryid == null) return null;
   
     if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
@@ -126,8 +125,6 @@ var FoxtrickLinksLeague = {
     },
 
     run : function( page, doc ) {
-
-			if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
 
 			//addExternalLinksToLeagueDetail
 			var alldivs = doc.getElementsByTagName('div');

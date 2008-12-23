@@ -18,9 +18,6 @@ var FoxtrickLinksYouthOverview = {
     },
 
     run : function( page, doc ) {
-
-		if (Foxtrick.SidebarExist (doc,Foxtrickl10n.getString("foxtrick.links.boxheader" ))) {return;}
-
 		//addExternalLinksToYouthOverview
         var links = getLinks("youthlink", { }, doc );  
 		if (links.length > 0) {
