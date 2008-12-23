@@ -34,6 +34,9 @@ var FoxtrickForumTemplates = {
                             // FoxtrickForumTemplates._TEMPLATES_ENABLED ) )
                     // break;
 
+                var sControlsID = "foxtrick_forumtemplates_controls_div";
+                if (doc.getElementById(sControlsID))
+                	return;
                 // display templates above the message window
                 var msg_window = doc.getElementById(
                             FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
@@ -59,6 +62,7 @@ var FoxtrickForumTemplates = {
 
                 // display add new template button
                 var controls_div = doc.createElement( "div" );
+                controls_div.id = sControlsID;
                 controls_div.style.marginTop = "1em";
                 var new_button = doc.createElement( "a" );
                 new_button.setAttribute( "href", "javascript:void(0)" );
