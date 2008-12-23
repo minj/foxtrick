@@ -351,7 +351,9 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
         return "No description";
 }
 
-FoxtrickPreferencesDialog.configureFoxtrick = function( ) {
+FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
+	if(!button) {
         window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
                       "", "centerscreen, chrome, modal, resizable=yes");
+	}
 }
