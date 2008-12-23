@@ -25,14 +25,23 @@ var FoxtrickEconomyDifference = {
     	var path = "body/table[0]/tbody/tr[1]/td[2]";
        
 		var heading = doc.createElement("h2");
+		var headingId = "foxtrick_eD_heading";
 		heading.setAttribute("class","tblBox");
+		heading.setAttribute("id",headingId);
 		heading.innerHTML =  STR_S_TABLE_NAME;
-    	tableCurr.parentNode.parentNode.appendChild(heading);
-     
-		var newTabDiff = tableCurr.parentNode.parentNode.appendChild(
-			tableCurr.cloneNode(true) );
+		if( !doc.getElementById( headingId ) ) {
+			tableCurr.parentNode.parentNode.appendChild(heading);
+		}
+		
+		var newTabDiff = tableCurr.cloneNode(true);
+		//var newTabDiff = tableCurr.parentNode.parentNode.appendChild(
+		//	tableCurr.cloneNode(true) );
+		var newTabDiffId = "foxtrick_eD_newTabDiff";
+		newTabDiff.setAttribute("id", newTabDiffId);
 		newTabDiff.setAttribute("style", "margin-bottom: 10px");
 		newTabDiff.setAttribute("class","indent");
+		tableCurr.parentNode.parentNode.appendChild(newTabDiff);
+		
 		var newRowsDiff = newTabDiff.tBodies[0].rows;
 		
 		var prijmy_ted_vstupne = FoxtrickEconomyDifference.extractAmount(

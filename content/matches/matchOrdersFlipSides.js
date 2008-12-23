@@ -25,14 +25,19 @@ FoxtrickFlipSidesInMatchOrders = {
     
 			var div = doc.createElement("div");
 			div.className = "foxtrick-flipsides";
+			var divId = "foxtrick-flipsides-div";
+			div.setAttribute( "id", divId );
           
 			var flipsides = doc.createElement("a");
 			flipsides.innerHTML = Foxtrickl10n.getString("foxtrick.matchorders"
 				+ ".flipsides");
 			flipsides.href="javascript:FoxtrickMatchOrders.flipSides()";
 			div.appendChild(flipsides);
-
-			startLineupElement.appendChild(div);
+			
+			if( !doc.getElementById( divId ) ) {
+				// Only do this if it's not already there
+				startLineupElement.appendChild(div);
+			}
 		}
      }
 
