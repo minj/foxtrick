@@ -58,7 +58,7 @@
 <!ENTITY foxtrick.prefs.resizemenuframe "Redimensionner le cadre du menu">
 <!ENTITY foxtrick.prefs.framewidth "Largeur">
 <!ENTITY foxtrick.prefs.clearplayerscache "Effacer le cache des visages/tenues.">
-<!ENTITY foxtrick.prefs.attackdefensebars "Attaques vs Défenses">
+<!ENTITY foxtrick.prefs.attackdefensebars "Attaques / Défenses">
 <!ENTITY foxtrick.prefs.attackdefensebarsalways "Insérer automatiquement.">
 <!ENTITY foxtrick.prefs.attackdefensebarsyes "Afficher un lien.">
 <!ENTITY foxtrick.prefs.attackdefensebarsno "Ne pas insérer.">
