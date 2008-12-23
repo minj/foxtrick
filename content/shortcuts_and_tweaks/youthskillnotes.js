@@ -117,40 +117,42 @@ var FoxtrickYouthSkillNotes = {
 	
 	function foxtrick_youthskilltable( doc, page, playerid, reference ) {
 		
-	  const STR_S_H2 = Foxtrickl10n.getString( "Notes_about_skills");
-	  const STR_S_EDIT = Foxtrickl10n.getString("Edit_notes");
-	  const STR_S_SAVELINK = Foxtrickl10n.getString("Save_notes");
+		const STR_S_H2 = Foxtrickl10n.getString( "Notes_about_skills");
+		const STR_S_EDIT = Foxtrickl10n.getString("Edit_notes");
+		const STR_S_SAVELINK = Foxtrickl10n.getString("Save_notes");
 	  
-	  const STR_S_PM = Foxtrickl10n.getString( "Playmaking");
-	  const STR_S_WG = Foxtrickl10n.getString( "Winger");
-	  const STR_S_SC = Foxtrickl10n.getString( "Scoring");
-	  const STR_S_PS = Foxtrickl10n.getString( "Passing");
-	  const STR_S_DF = Foxtrickl10n.getString( "Defending");
-	  const STR_S_GK = Foxtrickl10n.getString( "Keeper");
-	  const STR_S_SP = Foxtrickl10n.getString( "Set pieces");
-	  const STR_S_ST = Foxtrickl10n.getString( "Stamina");
+		const STR_S_PM = Foxtrickl10n.getString( "Playmaking");
+		const STR_S_WG = Foxtrickl10n.getString( "Winger");
+		const STR_S_SC = Foxtrickl10n.getString( "Scoring");
+		const STR_S_PS = Foxtrickl10n.getString( "Passing");
+		const STR_S_DF = Foxtrickl10n.getString( "Defending");
+		const STR_S_GK = Foxtrickl10n.getString( "Keeper");
+		const STR_S_SP = Foxtrickl10n.getString( "Set pieces");
+		const STR_S_ST = Foxtrickl10n.getString( "Stamina");
 		
-	  
+	    	
 	    if( page == 'YouthPlayer' ) {
 			var refreshBtn = doc.createElement("a");
-			refreshBtn.setAttribute("href", "/Club/Players/YouthPlayer.aspx"
+				refreshBtn.setAttribute("href","/Club/Players/YouthPlayer.aspx"
 				+ "?YouthPlayerID="+playerid);
 			refreshBtn.setAttribute("style", "text-decoration: none; "
 				+ "font-weight: none;");
-	  		refreshBtn.innerHTML = "&nbsp;&nbsp;<img src=\"/Img/icons/arrow_"
+			refreshBtn.innerHTML="&nbsp;&nbsp;<img src=\"/Img/icons/arrow_"
 				+ "refresh.png\" class=\"refreshIcon\" title=\"Refresh\""
 				+ "alt=\"Refresh\">";
+			
 			var title = doc.createElement("h2");
 			title.appendChild(doc.createTextNode(STR_S_H2));
 			title.appendChild(refreshBtn);
 		}
 		
+		var divEDId = "divED-foxtrick-youthSkillEditTable-"+playerid;
+		var divtwoId = "foxtrick_ysn_divtwo";
 		
-	  var divED = doc.createElement ("DIV");
-	  divED.setAttribute("class", "alert");
-	  
-	  divED.setAttribute("id", "divED-foxtrick-youthSkillEditTable-"+playerid);
-	  divED.setAttribute("style", "display: none; width: 500px; float:left;");
+		var divED = doc.createElement ("DIV");
+		divED.setAttribute("class", "alert");
+		divED.setAttribute("id", divEDId );
+		divED.setAttribute("style", "display: none; width: 500px; float:left;");
 	
 	
 		var divobj = doc.createElement("div");
@@ -158,6 +160,7 @@ var FoxtrickYouthSkillNotes = {
 		var div1 = doc.createElement("div");
 		divobj.setAttribute("class","mainBox");
 		div2.setAttribute("class","mainBox");
+		div2.setAttribute("id", divtwoId);
 		div1.setAttribute("class","mainBox");
 		
 		if( page == 'YouthPlayers')	{
@@ -236,9 +239,8 @@ var FoxtrickYouthSkillNotes = {
 	  var br = doc.createElement ("br");
 	  var br2 = doc.createElement ("br");
 	  var br3 = doc.createElement ("br");
-	  saveLink.setAttribute("href", "javascript: void(0); showHide('divED-"
-		+ "foxtrick-youthSkillEditTable-"+playerid+"');showHide('foxtrick-"
-		+ "detailsTable-noEdit-"+playerid+"');");
+	  saveLink.setAttribute("href", "javascript: void(0); showHide('" + divEDId
+		+"');showHide('foxtrick-detailsTable-noEdit-"+playerid+"');");
 	  FoxtrickYouthSkillNotes.saveSkills.doc = doc;
 	  saveLink.setAttribute("name", playerid);
 	  saveLink.addEventListener( "click", FoxtrickYouthSkillNotes.saveSkills, false );
@@ -246,9 +248,8 @@ var FoxtrickYouthSkillNotes = {
 	  saveLink.innerHTML = STR_S_SAVELINK;
 	  
 	  var showEditLink = doc.createElement ("a");
-	  showEditLink.setAttribute("href", "javascript: showHide('divED-foxtrick-"
-		+"youthSkillEditTable-"+playerid+"');showHide('foxtrick-detailsTable-"
-		+"noEdit-"+playerid+"');");
+	  showEditLink.setAttribute("href", "javascript: showHide('" + divEDId
+		+ "');showHide('foxtrick-detailsTable-noEdit-"+playerid+"');");
 //	  showEditLink.setAttribute("style", "margin-top: 30px;position:relative;");
 	  showEditLink.innerHTML = STR_S_EDIT;
 	  
@@ -484,7 +485,11 @@ var FoxtrickYouthSkillNotes = {
 		div2.appendChild(br3);
 		//div2.appendChild(divED);
 		
-		reference.parentNode.insertBefore(divED, reference.nextSibling);
-		reference.parentNode.insertBefore(div2, reference.nextSibling);
+		if( !doc.getElementById( divEDId ) ) {
+			reference.parentNode.insertBefore(divED, reference.nextSibling);
+		}
+		if( !doc.getElementById( divtwoId ) ) {
+			reference.parentNode.insertBefore(div2, reference.nextSibling);
+		}
 	 }
 	
