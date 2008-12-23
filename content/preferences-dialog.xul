@@ -28,7 +28,7 @@
 	<tab id="MatchesTab">&foxtrick.prefs.matches;</tab>
     <tab id="ForumTab">&foxtrick.prefs.forum;</tab>
     <tab id="LinksTab">&foxtrick.prefs.links;</tab>
-    <tab id="AboutTab" label="&foxtrick.prefs.about;"/>
+    <tab id="AboutTab">&foxtrick.prefs.about;</tab>
   </tabs>
 	<tabpanels id="tabpanels">
         <!-- Main -->
