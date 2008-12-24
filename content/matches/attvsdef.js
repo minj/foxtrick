@@ -9,7 +9,7 @@ var AttVsDef = {
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
-	RADIO_OPTIONS : new Array("newstyle", "oldstyle"),
+	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseperated"),
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'match', this );
@@ -32,7 +32,7 @@ var AttVsDef = {
 			bodydiv.setAttribute( "id", bodydivid );
 			
 			if (Matches._isCorrectLanguage(ratingstable)) {
-				if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1) {
+				if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") >= 1) {
 					this._oldStyleBars(doc, ratingstable, bodydiv);
 				}
 				else {
@@ -87,7 +87,7 @@ var AttVsDef = {
 		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
 		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
 		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], lText, rText, ratingsTextArray[2][0], ratingsTextArray[3][1]);
-		if (ratingsArray.length > 6) {
+		if ((ratingsArray.length > 6) && (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1)) {
 			tablediv.appendChild(doc.createElement('br'));
 			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
 		}
@@ -103,12 +103,25 @@ var AttVsDef = {
 		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
 		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
 		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lText, rText, ratingsTextArray[5][0], ratingsTextArray[0][1]);
-		if (ratingsArray.length > 6) {
+		if ((ratingsArray.length > 6) && (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1)) {
 			tablediv.appendChild(doc.createElement('br'));
 			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
 		}
 		barsdiv.appendChild(tablediv);
 		barsdiv.appendChild(doc.createElement('br'));
+		
+		if ((ratingsArray.length > 6) && (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 2)) {
+			var tablediv = doc.createElement("div");
+			tablediv.className = "foxtrick-graphs-table";
+			var p = doc.createElement('div');
+			p.className = "foxtrick-graphs-header";
+			p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" );
+			barsdiv.appendChild(p);
+			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
+			barsdiv.appendChild(tablediv);
+			barsdiv.appendChild(doc.createElement('br'));
+		}
 
 		bodydiv.appendChild(barsdiv);
 	},
