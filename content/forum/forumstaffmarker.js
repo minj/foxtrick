@@ -9,6 +9,7 @@ var FoxtrickForumStaffMarker = {
     MODULE_NAME : "ForumStaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
+	OPTIONS : new Array("HT", "MOD", "GM", "LA", "CHPP", "editor", "foxtrick-dev"),
 
     _MARK_STAFF : "mark_staff",
 
@@ -156,27 +157,27 @@ var FoxtrickForumStaffMarker = {
 						modreg = /^MOD-/i;
 						chppreg = /^CHPP-/i;
 						lareg = /^LA-/i;
-						if (htreg.test(uname)) {
+						if (Foxtrick.isModuleFeatureEnabled( this, "HT") && htreg.test(uname)) {
 							a.style.background="red";
 							//a.innerHTML = "<SPAN style=\"background: red\"><B>" + uname + "</B></SPAN>";
-						} else if (gmreg.test(uname)) {
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "GM") && gmreg.test(uname)) {
 							a.style.background="orange";
 							a.style.color="black";
 							//a.innerHTML = "<SPAN style=\"color: black; background: orange\"><B>" + uname + "</B></SPAN>";
-						} else if (modreg.test(uname)) {
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "MOD") && modreg.test(uname)) {
 							a.style.background="yellow";
 							a.style.color="black";
 							//a.innerHTML = "<SPAN style=\"color: black; background: yellow\"><B>" + uname + "</B></SPAN>";
-						} else if (chppreg.test(uname)) {
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "CHPP") && chppreg.test(uname)) {
 							a.style.background="blue";
 							//a.innerHTML = "<SPAN style=\"background: blue\"><B>" + uname + "</B></SPAN>";
-						} else if (lareg.test(uname)) {
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "LA") && lareg.test(uname)) {
 							a.style.background="white";
 							a.style.color="green";
 							//a.innerHTML = "<SPAN style=\"color: green; background: white\"><B>" + uname + "</B></SPAN>";
-						} else if (editorsArray.join().search(uname) > -1) {
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "editor") && editorsArray.join().search(uname) > -1) {
 							a.style.background="green";
-						} else if (foxtrickersArray.join().search(uname) > -1) {
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") && foxtrickersArray.join().search(uname) > -1) {
 							a.style.background="#c3d9ff";
 							a.style.color="black";							
 						}						
