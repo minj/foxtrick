@@ -22,12 +22,7 @@ var FoxtrickAddLeaveConfButton = {
 		
 		switch( page ) {
 			case 'forum':
-				var sUrl = Foxtrick.getHref( doc );
-				var vPos = sUrl.search(/v=/i);
-				var vValue = "";
-				if(vPos > -1) {
-					vValue = sUrl.substr(vPos+2);
-				}
+				var vValue = this.getVValue( doc );
 				if(vValue != "2") {
 					Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/conference.css");
@@ -37,28 +32,8 @@ var FoxtrickAddLeaveConfButton = {
 						if(elems[i].className=="folderHeader"){
 							var divLeaveConfBtn = doc.getElementById(
 								"ftLC-btn" + foldersCounter);
-							if(!divLeaveConfBtn) {
-								// Only add if it's not already there
-								var a = elems[i].getElementsByTagName("a");
-								var confName = Foxtrick.trim( 
-									a[0].lastChild.data );
-								var leaveConf = doc.createElement("div");
-								leaveConf.setAttribute("id", "ftLC-btn" + 
-									foldersCounter);
-								leaveConf.setAttribute("class","foxtrick" +
-									"LeaveConf float_right");
-								leaveConf.setAttribute( "title",
-									"Leave conference" );
-								leaveConf.setAttribute("onClick","alert( \"" +
-									Foxtrickl10n.getString('leave_conf_button'
-									+ '_alert')	+ "\" ); window.open(\"" 
-									+ "/MyHattrick/Preferences/ForumSettings."
-									+ "aspx?LeaveConf=" + confName
-									+"\",\"_self\");");
-								var markAsReadButton = elems[i].childNodes[0];
-								elems[i].insertBefore( leaveConf, 
-									markAsReadButton);
-							}
+							this.addButton ( doc, divLeaveConfBtn, elems[i],
+								foldersCounter);
 							foldersCounter++;
 						}
 					}
@@ -88,6 +63,52 @@ var FoxtrickAddLeaveConfButton = {
 	},
 	
 	change : function( page, doc ) {
+		switch( page ) {
+			case 'forum':
+				var vValue = this.getVValue( doc );
+				if(vValue != "2") {
+					var elems = doc.getElementsByTagName("div");
+					var foldersCounter = 0;
+					for(var i=0; i < elems.length; i++) {
+						if(elems[i].className=="folderHeader"){
+							var divLeaveConfBtn = doc.getElementById(
+								"ftLC-btn" + foldersCounter);
+							if(!divLeaveConfBtn) {
+								this.addButton( doc, divLeaveConfBtn, elems[i],
+									foldersCounter );
+							}
+							foldersCounter++;
+						}
+					}
+				}
+				break;
+			case 'forumSettings':
+				break;
+		}
+	},
 	
+	getVValue : function( doc ) {
+		var sUrl = Foxtrick.getHref( doc );
+		var vPos = sUrl.search(/v=/i);
+		var vValue = "";
+		if(vPos > -1) {
+			vValue = sUrl.substr(vPos+2);
+		}
+		return vValue;
+	},
+	
+	addButton : function( doc, divId, folderHeader, foldersCounter ) {
+		var a = folderHeader.getElementsByTagName("a");
+		var confName = Foxtrick.trim( a[0].lastChild.data );
+		var leaveConf = doc.createElement("div");
+		leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
+		leaveConf.setAttribute("class","foxtrick" +	"LeaveConf float_right");
+		leaveConf.setAttribute( "title", "Leave conference" );
+		leaveConf.setAttribute("onClick","alert( \"" +	Foxtrickl10n.getString(
+			'leave_conf_button_alert')	+ "\" ); window.open(\"/MyHattrick/"
+			+ "Preferences/ForumSettings.aspx?LeaveConf=" + confName
+			+ "\",\"_self\");");
+		var markAsReadButton = folderHeader.childNodes[0];
+		folderHeader.insertBefore( leaveConf, markAsReadButton);
 	}
 };
