@@ -147,7 +147,7 @@ var FoxtrickYouthSkillNotes = {
 		}
 		
 		var divEDId = "divED-foxtrick-youthSkillEditTable-"+playerid;
-		var divtwoId = "foxtrick_ysn_divtwo";
+		var divtwoId = "foxtrick-ysn-divtwo-"+playerid;
 		
 		var divED = doc.createElement ("DIV");
 		divED.setAttribute("class", "alert");
