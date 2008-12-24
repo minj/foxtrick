@@ -74,6 +74,10 @@ var FoxtrickForumTemplates = {
                 break;
         }
     },
+	
+	change : function( page, doc ) {
+	
+	},
 
     _addNewTemplate : function( ev ) {
         var doc = ev.target.ownerDocument;

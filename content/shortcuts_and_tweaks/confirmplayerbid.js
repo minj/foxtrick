@@ -31,6 +31,10 @@ var FoxtrickConfirmPlayerBid = {
             	}
               break;
         }
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };
 

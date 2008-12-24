@@ -46,7 +46,9 @@ FoxtrickFormationBoxInMatchOrders = {
 				}
 			}
 		}
-
-    }
-
+    },
+	
+	change : function( page, doc ) {
+	
+	}
 };

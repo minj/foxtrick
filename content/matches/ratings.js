@@ -108,6 +108,10 @@ var Ratings = {
 		}
 
 	},
+	
+	change : function( page, doc ) {
+	
+	},
 
 	insertRatingsDet: function (cell, rating, ratingType, label, midfieldLevel, attackLevel, defenceLevel) {
 		if (typeof(rating[ratingType]) == 'undefined') return;

@@ -36,5 +36,9 @@ var FoxtrickHideSignatures = {
 				}
             }
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

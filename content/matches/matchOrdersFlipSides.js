@@ -39,6 +39,9 @@ FoxtrickFlipSidesInMatchOrders = {
 				startLineupElement.appendChild(div);
 			}
 		}
-     }
-
+    },
+	
+	change : function( page, doc ) {
+	
+	}
 };

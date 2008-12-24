@@ -24,5 +24,9 @@ var FoxtrickHideManagerAvatar = {
 				elems[i].parentNode.removeChild(elems[i]);
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

@@ -25,6 +25,10 @@ var FoxtrickHideFaceTransferImages = {
 				elems[i].parentNode.removeChild(elems[i]);
 			}
 		} 
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };
 
@@ -50,6 +54,10 @@ var FoxtrickHideFaceInjuryImages = {
 				elems[i].parentNode.removeChild(elems[i]);
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };
 
@@ -72,6 +80,10 @@ var FoxtrickHideFaceSuspendedImages = {
 				elems[i].parentNode.removeChild(elems[i]);
 			}
 		} 
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };
 
@@ -98,5 +110,9 @@ var FoxtrickColouredYouthFaces = {
 				elems[i].src = elems[i].src.replace( /y_/, "" );
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

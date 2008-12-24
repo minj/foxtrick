@@ -85,5 +85,9 @@ var FoxtrickAddLeaveConfButton = {
 				}
 				break;
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

@@ -122,6 +122,10 @@ var FoxtrickEconomyDifference = {
 			FoxtrickEconomyDifference.getColorStyle(twoWeekBalance) + '>' + 
 			String(twoWeekBalance).group(' ', 3) + '</span>';            
 		
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };
 

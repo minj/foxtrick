@@ -12,76 +12,97 @@ var FoxtrickShowMessageButton = {
 	DEFAULT_ENABLED : true,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'managerPage',
-                                          FoxtrickShowMessageButton );
-			Foxtrick.registerPageHandler( 'teamPage',
-                                          FoxtrickShowMessageButton );
+        Foxtrick.registerPageHandler( 'managerPage',
+                                        FoxtrickShowMessageButton );
+		Foxtrick.registerPageHandler( 'teamPage', 
+										FoxtrickShowMessageButton );
     },
     
     run : function( page, doc ) {
-		
 		switch( page ) {
 			case 'managerPage':
-
-				var allDivs = doc.getElementsByTagName("div");
-				var teamID;
-				var ownerID;
-				
-				// Get the teamID
-				for(var i = 0; i < allDivs.length; i++) {
-					//Retrieve owner manager ID - Stephan
-					if(allDivs[i].id=="teamLinks") {
-						var teamLinks_a = allDivs[i].
-							getElementsByTagName("a")[0];
-						ownerID = teamLinks_a.href.substr(teamLinks_a.href.search(/TeamID=/i)+7);
-					}
-					if(allDivs[i].className=="main mainRegular") {
-						var divBoxHead = allDivs[i].
-							getElementsByTagName("div")[0];
-						var divBoxLeft = divBoxHead.
-									getElementsByTagName("div")[0];
-						var header = divBoxLeft.getElementsByTagName("h2")[0];
-						var a = header.getElementsByTagName("a")[0];
-						teamID = a.href.substr(a.href.search(/TeamID=/i)+7);
-					}
-				}
-			
-				//Do not add send message button for owner manager page. - Stephan
-				if (ownerID==teamID) return;
-				
-				var messageLink = doc.createElement("a");
-				messageLink.className = "inner";
-				messageLink.href = "../?TeamID=" + teamID + 
-					"&SendMessage=true";
-				messageLink.title = Foxtrickl10n.getString( 
-					"foxtrick.tweaks.sendmessage" );
-				
-				var img = doc.createElement("img");
-				img.className = "actionIcon";
-				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessage" );
-				img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
-				messageLink.appendChild(img);
-				
-				// Append the box to the sidebar
-				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
-					"foxtrick.tweaks.actions" ), messageLink, "first");
+				this.addMessageBox( doc );
 				break;
 				
 			case 'teamPage':
-				var sUrl = Foxtrick.getHref( doc );
-				var sendPos = sUrl.search(/&SendMessage=true/i);
-				if (sendPos > -1){
-					var a = doc.getElementById('ctl00_CPSidebar_ucVisitorActions_lnkMail');
-					var divMessage = doc.getElementById('ctl00_CPSidebar_ucVisitorActions_pnlMessage');
-					if (a && !divMessage){
-						// don't execute when the send message box is already there
-						var func = a.href;
-						if (func){
-							doc.location.href = func;
-						}
-					}
+				this.showMessageForm( doc );
+				break;
+		}
+	},
+	
+	change : function( page, doc ) {
+		switch( page ) {
+			case 'managerPage':
+				var newBoxId = "foxtrick_actions_box";
+				if( !Foxtrick.hasElement( newBoxId ) ) {
+					this.addMessageBox( doc );
 				}
 				break;
+			case 'teamPage':
+				var divMessage = doc.getElementById(
+					'ctl00_CPSidebar_ucVisitorActions_pnlMessage');
+				if( !divMessage ) {
+					this.showMessageForm( doc );
+				}
+				break;
+		}
+	},
+	
+	addMessageBox : function( doc ) {
+		var allDivs = doc.getElementsByTagName("div");
+		var teamID;
+		var ownerID;
+				
+		// Get the teamID
+		for(var i = 0; i < allDivs.length; i++) {
+			//Retrieve owner manager ID - Stephan
+			if(allDivs[i].id=="teamLinks") {
+				var teamLinks_a = allDivs[i].getElementsByTagName("a")[0];
+				ownerID = teamLinks_a.href.substr(
+					teamLinks_a.href.search( /TeamID=/i )+7 );
+			}
+			if(allDivs[i].className=="main mainRegular") {
+				var divBoxHead = allDivs[i].getElementsByTagName( "div" )[0];
+				var divBoxLeft = divBoxHead.getElementsByTagName( "div" )[0];
+				var header = divBoxLeft.getElementsByTagName( "h2" )[0];
+				var a = header.getElementsByTagName( "a" )[0];
+				teamID = a.href.substr( a.href.search( /TeamID=/i )+7 );
+			}
+		}
+			
+		//Do not add send message button for owner manager page. - Stephan
+		if ( ownerID==teamID ) return;
+				
+		var messageLink = doc.createElement("a");
+		messageLink.id = "foxtrick_sendmessage_link";
+		messageLink.className = "inner";
+		messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
+		messageLink.title = Foxtrickl10n.getString( 
+			"foxtrick.tweaks.sendmessage" );
+				
+		var img = doc.createElement("img");
+		img.className = "actionIcon";
+		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessage" );
+		img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
+		messageLink.appendChild(img);
+				
+		// Append the box to the sidebar
+		var newBoxId = "foxtrick_actions_box";
+		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+			"foxtrick.tweaks.actions" ), newBoxId, messageLink, "first");
+	},
+	
+	showMessageForm : function( doc ) {
+		var sUrl = Foxtrick.getHref( doc );
+		var sendPos = sUrl.search(/&SendMessage=true/i);
+		if (sendPos > -1){
+			var a = doc.getElementById('ctl00_CPSidebar_ucVisitorActions_lnkMail');
+			if (a){
+				var func = a.href;
+				if (func){
+					doc.location.href = func;
+				}
+			}
 		}
 	}
 };

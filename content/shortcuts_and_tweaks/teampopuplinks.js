@@ -108,6 +108,10 @@ var FoxtrickTeamPopupLinks = {
 				i=i+2;
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };
 

@@ -43,6 +43,10 @@ FoxtrickFlagCollectionToMap = {
         }
 
     },
+	
+	change : function( page, doc ) {
+	
+	},
     
     insertBeforeOrAppend : function(parent, what, beforeWhat) {
         if (beforeWhat == null) {

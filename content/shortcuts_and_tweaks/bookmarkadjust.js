@@ -50,6 +50,10 @@ var BookmarkAdjust = {
         }
         
     },
+	
+	change : function( page, doc ) {
+	
+	},
 
     _bookmarkColor : function( imageObj, regexp, commentObj, color ) {
         if (commentObj.firstChild.nodeValue.search(regexp) > -1) {

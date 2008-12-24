@@ -47,6 +47,10 @@ FoxtrickTransferListSearchFilters = {
             }
         }
     },
+	
+	change : function( page, doc ) {
+	
+	},
     
     getTransferSearchFormFilter : function(filterName) {
         var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);

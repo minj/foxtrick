@@ -127,98 +127,55 @@ var FoxtrickLinksLeague = {
 
     run : function( page, doc ) {
 
-			//addExternalLinksToLeagueDetail
-			var alldivs = doc.getElementsByTagName('div');
-			for (var j = 0; j < alldivs.length; j++) {
-				if (alldivs[j].className=="main mainRegular") {
-					var thisdiv = alldivs[j];
-					var leagueid = findLeagueLeveUnitId(thisdiv);;
-					var countryid = findCountryId(thisdiv);
+		//addExternalLinksToLeagueDetail
+		var alldivs = doc.getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="main mainRegular") {
+				var thisdiv = alldivs[j];
+				var leagueid = findLeagueLeveUnitId(thisdiv);;
+				var countryid = findCountryId(thisdiv);
         
-					var leaguename = extractLeagueName(thisdiv);
-					var leaguename2 = leaguename;
-					var leaguename3 = leaguename;
+				var leaguename = extractLeagueName(thisdiv);
+				var leaguename2 = leaguename;
+				var leaguename3 = leaguename;
         
-					var seriesnum = getSeriesNum(leaguename);
-					var levelnum = getLevelNum(leaguename, countryid);
+				var seriesnum = getSeriesNum(leaguename);
+				var levelnum = getLevelNum(leaguename, countryid);
+        
+				if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
+					leaguename2="I";
+					leaguename3="1";
+					}
+        
+				var links = getLinks("leaguelink", { "countryid": countryid,
+					"leagueid": leagueid, "levelnum" : levelnum,
+					"seriesnum": seriesnum,	"leaguename" : leaguename,
+					"leaguename2" : leaguename2, "leaguename3" : leaguename3 },
+					doc, this);  
 
-        
-					if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
-						leaguename2="I";
-						leaguename3="1";
-						}
-        
-					var links = getLinks("leaguelink", { "countryid": countryid, "leagueid": leagueid, 
-										"levelnum" : levelnum, "seriesnum": seriesnum,
-										"leaguename" : leaguename, "leaguename2" : leaguename2, "leaguename3" : leaguename3 }, doc, this);  
-             
-
-					if (links.length > 0) {
-						var ownBoxBody = doc.createElement("div");
-                                
-						for (var k = 0; k < links.length; k++) {
-							links[k].link.className ="inner";
-							ownBoxBody.appendChild(doc.createTextNode(" "));
-							ownBoxBody.appendChild(links[k].link);
-						}
+				if (links.length > 0) {
+					var ownBoxBody = doc.createElement("div");
+					var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+					var ownBoxId = "foxtrick_" + header + "_box";
+					var ownBoxBodyId = "foxtrick_" + header + "_content";
+					ownBoxBody.setAttribute( "id", ownBoxBodyId );
+                               
+					for (var k = 0; k < links.length; k++) {
+						links[k].link.className ="inner";
+						ownBoxBody.appendChild(doc.createTextNode(" "));
+						ownBoxBody.appendChild(links[k].link);
+					}
 						
-						Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
-							"foxtrick.links.boxheader" ), ownBoxBody, "first");
-							
-						/*
-						var ownSidebarBox = doc.createElement("div");
-								ownSidebarBox.className = "sidebarBox";
-                                var ownBoxHead = doc.createElement("div");
-                                ownBoxHead.className = "boxHead";
-                                ownSidebarBox.appendChild(ownBoxHead);
-                                var ownBoxLeftHeader = doc.createElement("div");
-                                ownBoxLeftHeader.className = "boxLeft";
-                                ownBoxHead.appendChild(ownBoxLeftHeader);
-                                var ownHeader = doc.createElement("h2");
-                                ownHeader.innerHTML = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-                                ownBoxLeftHeader.appendChild(ownHeader);
-                                var ownBoxBody = doc.createElement("div");
-                                ownBoxBody.className = "boxBody";
-                                ownSidebarBox.appendChild(ownBoxBody);
-                                
-								for (var k = 0; k < links.length; k++) {
-									links[k].link.className ="inner";
-									
-									ownBoxBody.appendChild(doc.createTextNode(" "));
-									ownBoxBody.appendChild(links[k].link);
-								}
-								var ownBoxFooter = doc.createElement("div");
-                                ownBoxFooter.className = "boxFooter";
-                                ownSidebarBox.appendChild(ownBoxFooter);
-                                var ownBoxLeftFooter = doc.createElement("div");
-                                ownBoxLeftFooter.className = "boxLeft";
-                                ownBoxLeftFooter.innerHTML = "&nbsp;";                       
-                                ownBoxFooter.appendChild(ownBoxLeftFooter);
-                                
-                                // Append the message form to the sidebar
-                                var sidebar = doc.getElementById("sidebar");
-                                var firstDiv = sidebar.getElementsByTagName("div")[0];
-                                var subDivs = firstDiv.getElementsByTagName("div");
-                                var divBoxHead;
-                                var divBoxBody;
-                                for(var j = 0; j < subDivs.length; j++) {
-                                        switch(subDivs[j].className) {
-                                                case "boxHead":
-                                                        divBoxHead = subDivs[j];
-                                                        break;
-                                                case "boxBody":
-                                                        divBoxBody = subDivs[j];
-                                                        break;
-                                        }
-                                }
-                                var divBoxLeft = divBoxHead.getElementsByTagName("div")[0];
-                                var header = divBoxLeft.getElementsByTagName("h2")[0];
-                                sidebar.insertBefore(ownSidebarBox,firstDiv.nextSibling);                                
-                                break;*/
-                }
-            break;  
+					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+					
+				}
+				break;  
 			}
 		}
-	}	
- 
+	},
+	
+	change : function( page, doc ) {
+	
+	}
 };

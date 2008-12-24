@@ -75,7 +75,7 @@ var FoxtrickMain = {
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 		var begin = new Date();
-		FoxtrickMain.run( doc );
+		FoxtrickMain.change( doc );
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
@@ -144,6 +144,43 @@ var FoxtrickMain = {
         }
 
     },
+	
+	// function run on every ht page change
+	change : function( doc ) {
+		// call the modules that want to be run() on every hattrick page
+        Foxtrick.run_every_page.forEach(
+            function( fn ) {
+                try {
+                    //fn.change( doc );
+					fn.run( doc );
+                } catch (e) {
+                    dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception: \n  " + e + "\n" );
+                    Components.utils.reportError(e);
+                }
+            } );
+
+        // call all modules that registered as page listeners
+        // if their page is loaded
+        
+        // find current page index/name and run all handlers for this page
+        for ( var i in Foxtrick.ht_pages )
+        {
+            if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) )
+            {
+                // on a specific page, run all handlers
+                Foxtrick.run_on_page[i].forEach(
+                    function( fn ) {
+                        try {
+                            fn.change( i, doc );
+							//fn.run(i,doc);
+                        } catch (e) {
+                            dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n  " + e + "\n" );
+                            Components.utils.reportError(e);
+                        }
+                    } );
+            }
+        }
+	}
 
 };
 
@@ -336,31 +373,44 @@ for (var key in stats) {
   }
 }
 
+Foxtrick.hasElement = function( doc, id ) {
+	if( doc.getElementById( id ) ) {
+		return true;
+	}
+	return false;
+}
+
 /* Foxtrick.addBoxToSidebar
 * Parameters:
 * doc - the document the box needs to be added to
 * newBoxHeader - the title of the new box
 * newBoxContent - the content of the new box (should be a DOM element)
+* boxId - the id the new box should get (has to be unique!)
 * referenceHeader - the header of the reference-object: the new box will be placed *before* this reference-object;
 * --> Should be a string with the header, e.g. "Actions"
 * --> or a string "last" if it should be put at the very bottom of the sidebar
 * --> or a string "first" if it should be put at the very top
+* altReferenceHeader - specify an alternative header if the referenceHeader cannot be found
+* --> Can be left empty
 *
 * Note: if the header is the same as one of the other boxes in the sidebar,
 * the content will be added to that sidebarbox instead of creating a new one
 *
 * Note: if the reference header cannot be found, the box will be placed on top
 */
-Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, 
-	referenceHeader ) {
+Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
+	referenceHeader, altReferenceHeader ) {
 	// If we already added this, return
-	var boxId = "foxtrick_" + newBoxHeader + "_box";
-	var boxContentId = "foxtrick_" + newBoxHeader + "_content";
-	if( doc.getElementById( boxId ) ) {
+	// Should ideally be checked by the change() function already
+	var boxContentId = newBoxContent.getAttribute("id");
+	if(!boxContentId) {
+		dump("addBoxToSideBar: error: box content should have an id.\n");
 		return;
 	}
-	// Make the same check possible for the content
-	newBoxContent.setAttribute( "id", boxContentId );
+	if( Foxtrick.hasElement( doc, boxId ) ||
+		Foxtrick.hasElement( doc, boxContentId )) {
+		return;
+	}
 	// Check if this is the simple or standard layout
 	var layout;
 	var sidebar = doc.getElementById("sidebar");
@@ -386,9 +436,10 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent,
 	}
 	
 	// Check if any of the other sidebarboxes have the same header
-	// and find the reference-object in the process
+	// and find the (alternative/normal) reference-object in the process
 	var otherBox = false;
 	var referenceObject = false;
+	var altReferenceObject = false;
 	var currentBox = firstBox;
 	do {
 		// Check if this child is a sidebarbox
@@ -400,17 +451,28 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent,
 			if(header.innerHTML == referenceHeader) {
 				referenceObject = currentBox;
 			}
+			if(header.innerHTML == altReferenceHeader) {
+				altReferenceObject = currentBox;
+			}
 		}
 		currentBox = currentBox.nextSibling;
 	} while(currentBox.nextSibling);
 	
 	if(!referenceObject && referenceHeader != "first" 
 		&& referenceHeader != "last") {
-		// the reference header could not be found
-		// place the box on top
-		dump( "addBoxToSidebar: Could not find referenceHeader " + 
-			referenceHeader + "\n" );
-		referenceHeader = "first";
+		// the reference header could not be found; try the alternative
+		if(!altReferenceObject && altReferenceHeader != "first"
+			&& altReferenceHeader != "last") {
+			// alternative header couldn't be found either
+			// place the box on top
+			dump( "addBoxToSidebar: Could not find referenceHeader " + 
+			referenceHeader + "\n" + "nor alternative referenceHeader " +
+			altReferenceHeader + "\n");
+			referenceHeader = "first";
+		} else {
+			referenceObject = altReferenceObject;
+			referenceHeader = altReferenceHeader;
+		}
 	}
 	if(referenceHeader == "first") {
 		referenceObject = sidebar.firstChild;
@@ -418,13 +480,11 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent,
 	
 	if(layout) {
 		if(otherBox) {
-			if( !doc.getElementById( boxContentId ) ) {
-				var subDivs = otherBox.getElementsByTagName("div");
-				for(var i = 0; i < subDivs.length; i++) {
-					if(subDivs[i].className=="boxBody") {
-						subDivs[i].insertBefore(newBoxContent,
-							subDivs[i].firstChild);
-					}
+			var subDivs = otherBox.getElementsByTagName("div");
+			for(var i = 0; i < subDivs.length; i++) {
+				if(subDivs[i].className=="boxBody") {
+					subDivs[i].insertBefore(newBoxContent,
+						subDivs[i].firstChild);
 				}
 			}
 		} else {

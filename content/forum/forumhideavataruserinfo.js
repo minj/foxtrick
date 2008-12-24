@@ -26,5 +26,9 @@ var FoxtrickHideManagerAvatarUserInfo = {
 				}
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

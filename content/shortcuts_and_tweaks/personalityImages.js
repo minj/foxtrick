@@ -16,25 +16,21 @@ var FoxtrickPersonalityImages = {
     },
 
     run : function( page, doc ) {
-		  switch( page )
-        {
-        case 'playerdetail':
-  var css = "chrome://foxtrick/content/resources/personality/characters.css";           
-	var path = "head[1]";
-  var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
+		var css = "chrome://foxtrick/content/resources/personality/"+
+			"characters.css";
+		var path = "head[1]";
+		var head = doc.evaluate(path,doc.documentElement,null,
+			doc.DOCUMENT_NODE,null).singleNodeValue;
 
-  var link = doc.createElement("link");
-  link.setAttribute("rel", "stylesheet");
-  link.setAttribute("type", "text/css");
-  link.setAttribute("media", "all");
-  link.setAttribute("href", css);
-  head.appendChild(link);
-		
-		
+		var link = doc.createElement("link");
+		link.setAttribute("rel", "stylesheet");
+		link.setAttribute("type", "text/css");
+		link.setAttribute("media", "all");
+		link.setAttribute("href", css);
+		head.appendChild(link);
+	},
 	
-  break;
-        }
-}
-
-
+	change : function( page, doc ) {
+	
+	}
 };

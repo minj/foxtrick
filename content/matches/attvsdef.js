@@ -18,30 +18,19 @@ var AttVsDef = {
 
 	run : function( page, doc ) {
 		try {
-			var sidebar = doc.getElementById('sidebar');
 			var ratingstable = Matches._getRatingsTable(doc);
 			if (ratingstable == null) return;
 			if (Matches._isWalkOver(ratingstable)) return;
 			
-			var maindiv=doc.createElement('div');
-			maindiv.className='sidebarBox';
-
-			var headdiv=doc.createElement('div');
-			headdiv.className='boxHead';
-
-			var leftdiv=doc.createElement('div');
-			leftdiv.className='boxLeft';
-
-			var leftdivcontent=doc.createElement('h2');
-			leftdivcontent.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.attackdefensebars" );
-
-			leftdiv.appendChild(leftdivcontent);
-			headdiv.appendChild(leftdiv);
-			maindiv.appendChild(headdiv);
+			var header = Foxtrickl10n.getString( 
+				"foxtrick.matches.attackdefensebars" );
+			var boxId = "foxtrick_attvsdefbars_box";
 
 			var bodydiv=doc.createElement('div');
 			bodydiv.className='boxBody';
-
+			var bodydivid = "foxtrick_attvsdefbars_content";
+			bodydiv.setAttribute( "id", bodydivid );
+			
 			if (Matches._isCorrectLanguage(ratingstable)) {
 				if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1) {
 					this._oldStyleBars(doc, ratingstable, bodydiv);
@@ -52,19 +41,16 @@ var AttVsDef = {
 			} else {
 				bodydiv.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
 			}
-
-			maindiv.appendChild(bodydiv);
-
-			var footerdiv = doc.createElement('div');
-			footerdiv.className="boxFooter";
-			footerdiv.innerHTML='<div class="boxLeft">&nbsp;</div>';
-			maindiv.appendChild(footerdiv);
-			
-			sidebar.insertBefore(maindiv, sidebar.childNodes[8]);
+			var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
+			Foxtrick.addBoxToSidebar( doc, header, bodydiv, boxId, suppstats, "last");
 		} catch (e) {
 			dump('attvsdef.js run: '+e+"\n");
 		}
 
+	},
+	
+	change : function( page, doc ) {
+	
 	},
 	
 	_oldStyleBars: function (doc, ratingstable, bodydiv) {

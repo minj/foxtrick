@@ -107,5 +107,9 @@ var FoxtrickAlltidFlags = {
 				
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

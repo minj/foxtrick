@@ -185,6 +185,10 @@ var FoxtrickForumStaffMarker = {
     	
        			break;
         }
-    }
+    },
+	
+	change : function( page, doc ) {
+	
+	}
 };
 

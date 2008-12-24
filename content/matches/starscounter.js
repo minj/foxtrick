@@ -55,5 +55,9 @@ var FoxtrickStarsCounter = {
 		span.innerHTML = "<b>" + Foxtrickl10n.getString('total_stars') + "</b> " + totalStars;
 		target.appendChild(doc.createElement("br"));
 		target.appendChild(span, target);
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

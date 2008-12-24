@@ -32,5 +32,9 @@ var FoxtrickAddDefaultFaceCard = {
 				}
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 };

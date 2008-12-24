@@ -48,6 +48,9 @@ var FoxtrickYouthSkillNotes = {
         }
 	},
 	
+	change : function( page, doc ) {
+	
+	},
 	
 	saveSkills : function (ev) {
 		var doc = FoxtrickYouthSkillNotes.saveSkills.doc;

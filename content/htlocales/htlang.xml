@@ -53,6 +53,33 @@
         </levels>
 	</language>
 	
+	<language name="bs" desc="Bosnian">
+	    <ratingSubLevels>
+    		<sublevel text="(veoma nisko)" value="0.0" />
+    		<sublevel text="(nisko)" value="0.25"  />
+    		<sublevel text="(visoko)" value="0.50"  />
+    		<sublevel text="(veoma visoko)" value="0.75"  />
+		</ratingSubLevels>	
+		<repositioning>
+      		<reposition type="midfielder" value="dodatni vezni" />
+      		<reposition type="centraldefender" value="dodatni centralni odbrambeni" />
+      		<reposition type="forward" value="dodatni napadač" />
+      		<reposition type="normal" value="normalno" />
+      		<reposition type="offensive" value="istureni" />
+      		<reposition type="defensive" value="povučeni" />
+      		<reposition type="towardsmiddle" value="prema sredini" />
+      		<reposition type="towardswing" value="prema krilu" />
+		</repositioning>
+        <tactics>
+            <tactic type="normal" value="normalno" />
+            <tactic type="pressing" value="presing" />
+            <tactic type="ca" value="kontranapadi" />
+            <tactic type="aow" value="napad preko krila" />
+            <tactic type="aim" value="napad kroz sredinu" />
+            <tactic type="creatively" value="igraj kreativno" />
+        </tactics>
+	</language>	
+	
 	<language name="cz" desc="Čeština">
 	    <ratingSubLevels>
     		<sublevel text="(mnohem horší)" value="0.0" />

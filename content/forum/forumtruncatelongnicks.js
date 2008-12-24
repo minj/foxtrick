@@ -33,5 +33,9 @@ var FoxtrickTruncateLongNicks = {
 				}
 			}
 		}
+	},
+	
+	change : function( page, doc ) {
+	
 	}
 }

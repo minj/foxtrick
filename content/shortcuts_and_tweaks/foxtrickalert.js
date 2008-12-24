@@ -26,6 +26,10 @@ var FoxtrickAlert = {
             Foxtrick.LOG('FoxtrickAlert.js run: '+e);
         }
     },
+	
+	change : function( page, doc ) {
+	
+	},
     
     showAlert : function(evt)
     {

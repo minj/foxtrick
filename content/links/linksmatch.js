@@ -94,6 +94,11 @@ var FoxtrickLinksMatch = {
 
 					if (links.length > 0) {
 						var ownBoxBody = doc.createElement("div");
+						var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+						var ownBoxId = "foxtrick_" + header + "_box";
+						var ownBoxBodyId = "foxtrick_" + header + "_content";
+						ownBoxBody.setAttribute( "id", ownBoxBodyId );
                                 
 						for (var k = 0; k < links.length; k++) {
 							links[k].link.className ="inner";
@@ -101,8 +106,7 @@ var FoxtrickLinksMatch = {
 							ownBoxBody.appendChild(links[k].link);
 						}
 						
-					Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
-							"foxtrick.links.boxheader" ), ownBoxBody, "first");
+						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 					}
 			    }
 			break;
@@ -114,6 +118,10 @@ var FoxtrickLinksMatch = {
 			var teamid2 = findSecondTeamId(sidediv,teamid);
 			if (teamid2!=0) { 				
 				var ownBoxBody = doc.createElement("div");
+				var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+				var ownBoxBodyId = "foxtrick_" + header + "_box";
+				ownBoxBody.setAttribute( "id", ownBoxBodyId );
                              
 				var HTD = doc.createElement("a");
 		        HTD.innerHTML = '<a target=_blank class="inner"  title="Alltid team compare" href="http://alltid.org/teamcompare/'+teamid+','+teamid2+'/" ><img  src="chrome://foxtrick/content/resources/linkicons/ahstats.png" style="background:none" /> </a>';
@@ -133,11 +141,13 @@ var FoxtrickLinksMatch = {
 							ownBoxBody.appendChild(doc.createTextNode(" "));
 							ownBoxBody.appendChild(links2[k].link);
 						}		
-				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
-							"foxtrick.links.boxheader" ), ownBoxBody, "first");
+				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, "first");
 				
 			}
         }    
-    }	
- 
+    },
+	
+	change : function( page, doc ) {
+	
+	}
 };

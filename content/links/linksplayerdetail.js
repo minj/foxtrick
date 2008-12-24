@@ -171,6 +171,11 @@ var FoxtrickLinksPlayerDetail = {
 				}
 				
 				var ownBoxBody = doc.createElement("div");
+				var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+				var ownBoxId = "foxtrick_" + header + "_box";
+				var ownBoxBodyId = "foxtrick_" + header + "_content";
+				ownBoxBody.setAttribute( "id", ownBoxBodyId );
                                 
 				for (var l = 0; l < links.length; l++) {
 					if (links[l]!=null) {
@@ -182,12 +187,14 @@ var FoxtrickLinksPlayerDetail = {
 					}
 				}
 						
-				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
-					"foxtrick.links.boxheader" ), ownBoxBody, "first");
+				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 				
 				break;
 			}
 		}
-   }	
- 
+    },
+	
+	change : function( page, doc ) {
+	
+	}
 };
