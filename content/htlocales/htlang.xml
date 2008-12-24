@@ -103,6 +103,7 @@
             <tactic type="ca" value="Contropiede" />
             <tactic type="aow" value="Attacco sulle fasce" />
             <tactic type="aim" value="Attacco al centro" />
+			<tactic type="creatively" value="Libertà d'inventiva" />
         </tactics>		
 	</language>
 
@@ -129,7 +130,7 @@
             <tactic type="ca" value="Contre-attaques" />
             <tactic type="aow" value="Attaquer sur les ailes" />
             <tactic type="aim" value="Attaquer au centre" />
-
+			<tactic type="creatively" value="Jeu créatif" />
         </tactics> 
 	</language>
 
@@ -156,6 +157,7 @@
             <tactic type="ca" value="Contraataques" />
             <tactic type="aow" value="Atacar por las bandas" />
             <tactic type="aim" value="Atacar por el centro" />
+			<tactic type="creatively" value="Jugar creativamente" />
         </tactics>
 	</language>
 
@@ -182,6 +184,7 @@
             <tactic type="ca" value="Contraatacar" />
             <tactic type="aow" value="Atacar por las bandas" />
             <tactic type="aim" value="Atacar por el centro" />
+			<tactic type="creatively" value="Jugar creativamente" />
         </tactics>
     </language>
     
@@ -208,6 +211,7 @@
         <tactic type="ca" value="Contraataques" />
         <tactic type="aow" value="Atacar por las bandas" />
         <tactic type="aim" value="Atacar por el centro" />
+		<tactic type="creatively" value="Jugar creativamente" />
       </tactics>
     </language>     
 
@@ -234,6 +238,7 @@
             <tactic type="ca" value="Kontra-atak" />
             <tactic type="aow" value="Kanattan Atak" />
             <tactic type="aim" value="Ortadan Atak" />
+			<tactic type="creatively" value="Yaratıcı oyna" />
         </tactics>            
 	</language>
 
@@ -260,6 +265,7 @@
             <tactic type="ca" value="Ellentámadás" />
             <tactic type="aow" value="Széleken támadás" />
             <tactic type="aim" value="Középen támadás" />
+			<tactic type="creatively" value="Kreatív játék" />
         </tactics>            
 	</language>
 
@@ -368,6 +374,7 @@
             <tactic type="ca" value="Kontringsspel" />
             <tactic type="aow" value="Anfall på kanterna" />
             <tactic type="aim" value="Anfall i mitten" />
+			<tactic type="creatively" value="Spela kreativt" />
         </tactics>		
 	</language>
 
@@ -394,6 +401,7 @@
             <tactic type="ca" value="auf Konter spielen" />
             <tactic type="aow" value="Angriff über die Flügel" />
             <tactic type="aim" value="Angriff durch die Mitte" />
+			<tactic type="creatively" value="kreativ spielen" />
         </tactics>		
 	</language>
 
@@ -420,6 +428,7 @@
             <tactic type="ca" value="Kontratakos" />
             <tactic type="aow" value="Atakos kraštais" />
             <tactic type="aim" value="Atakos centru" />
+			<tactic type="creatively" value="Žaisti išradingai" />
         </tactics>		
 	</language>
 
@@ -534,6 +543,7 @@
             <tactic type="ca" value="Vastahyökkäykset" />
             <tactic type="aow" value="Hyökkäys laidoilta" />
             <tactic type="aim" value="Hyökkäys keskeltä" />
+			<tactic type="creatively" value="Luova peli" />
         </tactics>
 		
 	</language>
@@ -561,6 +571,7 @@
             <tactic type="ca" value="Gra z kontry" />
             <tactic type="aow" value="Atak skrzydłami" />
             <tactic type="aim" value="Atak środkiem" />
+			<tactic type="creatively" value="Gra kreatywna" />
         </tactics>
 		
 	</language>
@@ -589,6 +600,7 @@
             <tactic type="ca" value="Kontraangreb" />
             <tactic type="aow" value="Angrib fra fløjene" />
             <tactic type="aim" value="Angrib fra midten" />
+			<tactic type="creatively" value="Spil kreativt" />
         </tactics>
 	</language>
 
@@ -615,6 +627,7 @@
     		<tactic type="ca" value="Контратаки" />
     		<tactic type="aow" value="Атака по флангам" />
     		<tactic type="aim" value="Атака в центре" />
+			<tactic type="creatively" value="Играть творчески" />
 	    </tactics>
 	</language>
 	
@@ -643,6 +656,7 @@
             <tactic type="ca" value="Contra-ataque" />
             <tactic type="aow" value="Ataque pelas alas" />
             <tactic type="aim" value="Ataque pelo meio" />
+			<tactic type="creatively" value="Espontaneidade" />
         </tactics>		
 		
 	</language>
@@ -670,6 +684,7 @@
             <tactic type="ca" value="Contraatacs" />
             <tactic type="aow" value="Atac per les bandes" />
             <tactic type="aim" value="Atac pel centre" />
+			<tactic type="creatively" value="Joc d'especialitats" />
         </tactics>		
 	</language>
 	
@@ -696,6 +711,7 @@
         <tactic type="ca" value="Contraataques" />
         <tactic type="aow" value="Atacar polas bandas" />
         <tactic type="aim" value="Atacar polo centro" />
+		<tactic type="creatively" value="Xogar creativamente" />
       </tactics>
     </language> 	
 	
@@ -722,6 +738,7 @@
             <tactic type="ca" value="Contraatac" />
             <tactic type="aow" value="Atac pe Flancuri" />
             <tactic type="aim" value="Atac pe Centru" />
+			<tactic type="creatively" value="Joacă creativ" />
         </tactics>        
     </language>
 
@@ -748,6 +765,7 @@
             <tactic type="ca" value="Контра атаки" />
             <tactic type="aow" value="Атака по крилата" />
             <tactic type="aim" value="Атака в средата" />
+			<tactic type="creatively" value="Играй креативно" />
         </tactics>		
     </language>
 
@@ -774,6 +792,7 @@
             <tactic type="ca" value="התקפות מתפרצות" />
             <tactic type="aow" value="התקפות מהאגפים" />
             <tactic type="aim" value="התקפות מהמרכז" />
+			<tactic type="creatively" value="משחק יצירתי" />
         </tactics>
     </language>
 	
@@ -800,6 +819,7 @@
             <tactic type="ca" value="Protiútoky" />
             <tactic type="aow" value="Útok po krídlach" />
             <tactic type="aim" value="Útok stredom" />
+			<tactic type="creatively" value="Kreatívna hra" />
         </tactics>
 	</language>	
     
@@ -826,6 +846,7 @@
             <tactic type="ca" value="防守反击" />
             <tactic type="aow" value="边路进攻" />
             <tactic type="aim" value="中路进攻" />
+			<tactic type="creatively" value="无限创意" />
         </tactics>
 	</language>
     
@@ -852,6 +873,7 @@
             <tactic type="ca" value="Kontringsfotball" />
             <tactic type="aow" value="Angrep på kantene" />
             <tactic type="aim" value="Angrep i midten" />
+			<tactic type="creatively" value="Spill kreativt" />
         </tactics>
 	</language>
 
@@ -878,6 +900,7 @@
             <tactic type="ca" value="Контранапади" />
             <tactic type="aow" value="Напад преко крила" />
             <tactic type="aim" value="Напад по средини" />
+			<tactic type="creatively" value="Креативна игра" />
         </tactics>
     </language>
 
@@ -904,6 +927,7 @@
             <tactic type="ca" value="Αντεπιθέσεις" />
             <tactic type="aow" value="Επίθεση από το κέντρο" />
             <tactic type="aim" value="Επίθεση από τα πλάγια" />
+			<tactic type="creatively" value="Δημιουργικό Παιχνίδι" />
         </tactics>
     </language>
     
@@ -996,6 +1020,7 @@
             <tactic type="ca" value="Pretuzbrukumi" />
             <tactic type="aow" value="Uzbrukumi pa malām" />
             <tactic type="aim" value="Uzbrukumi pa centru" />
+			<tactic type="creatively" value="Radoša spēle" />
         </tactics>
 	</language>
 	
