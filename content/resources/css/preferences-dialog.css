@@ -1,19 +1,15 @@
-#shortcuts_list .entry, #forum_list .entry,
-#links_list .entry, #matchfunctions_list .entry {
+#shortcuts_list .entry, #forum_list .entry, #links_list .entry, #matchfunctions_list .entry {
 }
 
-#shortcuts_list .entry:hover, #forum_list .entry:hover,
-#links_list .entry:hover, #matchfunctions_list .entry:hover {
+#shortcuts_list .entry:hover, #forum_list .entry:hover, #links_list .entry:hover, #matchfunctions_list .entry:hover {
     background-color: #cccccc;
 }
 
-#shortcuts_list .name, #forum_list .name, 
-#links_list .name, #matchfunctions_list .name {
+#shortcuts_list .name, #forum_list .name, #links_list .name, #matchfunctions_list .name {
     font-weight: bold;
 }
 
-#shortcuts_list .description, #forum_list .description,
-#links_list .description , #matchfunctions_list .description {
+#shortcuts_list .description, #forum_list .description, #links_list .description , #matchfunctions_list .description {
     /*font-style: italic;*/
     font-size: .9em;
 }
