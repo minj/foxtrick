@@ -402,7 +402,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	referenceHeader, altReferenceHeader ) {
 	// If we already added this, return
 	// Should ideally be checked by the change() function already
-	var boxContentId = newBoxContent.getAttribute("id");
+	var boxContentId = newBoxContent.id;
 	if(!boxContentId) {
 		dump("addBoxToSideBar: error: box content should have an id.\n");
 		return;

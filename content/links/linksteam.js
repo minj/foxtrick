@@ -123,12 +123,6 @@ function foxtrick_romantodecimal(roman) {
     }
 }
 
-function isTeamPage(doc) {
-	var site=doc.location.href;
-	var remain=site.substr(site.search('Club\/')+5);
-    return (remain=="" || remain.search(/TeamID=/i)==1);
-}
-
 var FoxtrickLinksTeam = {
 	
     MODULE_NAME : "LinksTeam",
@@ -143,31 +137,42 @@ var FoxtrickLinksTeam = {
     },
 
     run : function( page, doc ) {
-		if (!isTeamPage(doc)) {return;}
-	
-		//addExternalLinksToCountryDetail
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
-					var thisdiv = alldivs[j];
-					var countryid = findCountryId(thisdiv);
-  
-					var teamid = findTeamId(thisdiv);
-					var teamname = extractTeamName(thisdiv);
-					var leaguename = extractLeagueNameFromElement(thisdiv);
-					var levelnum = getLevelNum(leaguename, countryid);
-      
-					if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
-						leaguename="I";
-					} 
-       
-					links = getLinks("teamlink", { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum  }, doc, this );
-				
+				var links = this.gatherLinks( alldivs[j], doc );
+				if (links.length > 0) {
+					var ownBoxBody = doc.createElement("div");
+					var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+					var ownBoxId = "foxtrick_" + header + "_box";
+					var ownBoxBodyId = "foxtrick_" + header + "_content";
+					ownBoxBody.setAttribute( "id", ownBoxBodyId );
+                                
+					for (var k = 0; k < links.length; k++) {
+						links[k].link.className ="inner";
+						ownBoxBody.appendChild(doc.createTextNode(" "));
+						ownBoxBody.appendChild(links[k].link);
+					}
+						
+					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
+				}
+				break;
+			}
+		}
+    },
+	
+	change : function( page, doc ) {
+		var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+		var ownBoxId = "foxtrick_" + header + "_box";
+		if( !doc.getElementById ( ownBoxId ) ) {
+			var alldivs = doc.getElementsByTagName('div');
+			for (var j = 0; j < alldivs.length; j++) {
+				if (alldivs[j].className=="main mainRegular") {
+					var links = this.gatherLinks( alldivs[j], doc );
 					if (links.length > 0) {
 						var ownBoxBody = doc.createElement("div");
-						var header = Foxtrickl10n.getString(
-							"foxtrick.links.boxheader" );
-						var ownBoxId = "foxtrick_" + header + "_box";
 						var ownBoxBodyId = "foxtrick_" + header + "_content";
 						ownBoxBody.setAttribute( "id", ownBoxBodyId );
                                 
@@ -179,13 +184,25 @@ var FoxtrickLinksTeam = {
 						
 						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
 					}
-			break;
+					break;
+				}
 			}
 		}
-    },
+	},
 	
-	change : function( page, doc ) {
-	
+	gatherLinks : function( thisdiv, doc ) {
+		var countryid = findCountryId(thisdiv);
+  
+		var teamid = findTeamId(thisdiv);
+		var teamname = extractTeamName(thisdiv);
+		var leaguename = extractLeagueNameFromElement(thisdiv);
+		var levelnum = getLevelNum(leaguename, countryid);
+      
+		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
+			leaguename="I";
+		} 
+       
+		return getLinks("teamlink", { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum  }, doc, this );
 	}
  
 };

@@ -89,7 +89,7 @@ var FoxtrickShowMessageButton = {
 		// Append the box to the sidebar
 		var newBoxId = "foxtrick_actions_box";
 		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
-			"foxtrick.tweaks.actions" ), newBoxId, messageLink, "first");
+			"foxtrick.tweaks.actions" ), messageLink, newBoxId, "first", "");
 	},
 	
 	showMessageForm : function( doc ) {
