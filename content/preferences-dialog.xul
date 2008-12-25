@@ -2,169 +2,172 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
   <?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
 
-<!DOCTYPE dialog [
+<!DOCTYPE window [
    <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
    %foxtrickDTD;
 ]>
 
  
-<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	title="&foxtrick.prefs.preferences;"
-	buttons="accept, cancel"
     id="foxtrick-config"
 	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
-	onload="FoxtrickPreferencesDialog.init();sizeToContent();"
+	onload="FoxtrickPreferencesDialog.init();"
+    resizable="yes"
+    width="600px"
+    height="530px"
+    persist="width height screenX screenY"
 >
     <keyset>
-      <key id="save-key" modifiers="accel" key="S"/>
-      <key id="close-key" modifiers="accel" key="C"/>
+      <key id="save-key"  modifiers="accel" key="S" oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();"/>
+      <key id="close-key" modifiers="accel" key="C" oncommand="close();"/>
+      <key id="escape-key"      keycode="VK_ESCAPE" oncommand="close();"/>
     </keyset>
-	<!--
-    <menubar>
-      <menu id="pref-menu" label="Menu">
-        <menupopup id="pref-popup">
-          <menuitem label="OK"     key="save-key"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); acceptDialog();"/>
-          <menuitem label="Cancel" key="close-key"  oncommand="cancelDialog();"/>
-        </menupopup>
-      </menu>
-    </menubar>
-	-->
+
 <script type="application/x-javascript" src="chrome://foxtrick/content/window.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
-<box flex="1">
-<tabbox id="tabbox" flex="1" style="overflow:auto">
+<box flex="1" style="padding:5px;">
+  <tabbox id="tabbox" flex="1" style="overflow:auto;border-bottom:1px solid #AAA">
+    <tabs id="tabs" flex="0">
+      <tab id="MainTab">&foxtrick.prefs.mainoptions;</tab>
+      <tab id="ShortcutsTab">&foxtrick.prefs.shortcuts;</tab>
+	  <tab id="MatchesTab">&foxtrick.prefs.matches;</tab>
+      <tab id="ForumTab">&foxtrick.prefs.forum;</tab>
+      <tab id="LinksTab">&foxtrick.prefs.links;</tab>
+      <tab id="AboutTab">&foxtrick.prefs.about;</tab>
+    </tabs>
 
-  <tabs id="tabs">
-    <tab id="MainTab">&foxtrick.prefs.mainoptions;</tab>
-    <tab id="ShortcutsTab">&foxtrick.prefs.shortcuts;</tab>
-	<tab id="MatchesTab">&foxtrick.prefs.matches;</tab>
-    <tab id="ForumTab">&foxtrick.prefs.forum;</tab>
-    <tab id="LinksTab">&foxtrick.prefs.links;</tab>
-    <tab id="AboutTab">&foxtrick.prefs.about;</tab>
-  </tabs>
-
-  <tabpanels id="tabpanels">
-        <!-- Main -->
-           <tabpanel orient="vertical" >
+    <tabpanels id="tabpanels">
+            <!-- Main -->
+            <tabpanel orient="vertical">
               <vbox style="width: 300px;">
-			<groupbox style="width: 300px;">
-			  <caption label="&foxtrick.prefs.language;"/>
-			  <menulist id="htLanguage">
-                            <menupopup id="htLanguagePopup" >
+			    <groupbox style="width: 300px;">
+			      <caption label="&foxtrick.prefs.language;"/>
+			      <menulist id="htLanguage">
+                    <menupopup id="htLanguagePopup" >
                           
-                          </menupopup>
-					</menulist>
-				  </groupbox>
-				  <groupbox>
-					<caption label="&foxtrick.prefs.showonstatusbar;"/>
-                    <vbox>
-                      <checkbox id="statusbarpref" label="&foxtrick.prefs.enable;"/>
-                    </vbox>
-                  </groupbox>                  
-                  <groupbox>
+                    </menupopup>
+				  </menulist>
+				</groupbox>
+				<groupbox>
+				  <caption label="&foxtrick.prefs.showonstatusbar;"/>
+                  <vbox>
+                    <checkbox id="statusbarpref" label="&foxtrick.prefs.enable;"/>
+                  </vbox>
+                </groupbox>                  
+                <groupbox>
                   <caption label="&foxtrick.prefs.alertsettings;"/>
-                    <vbox>
-                      <checkbox id="alertsliderpref" label="&foxtrick.prefs.alertslider;"/>
-                      <checkbox id="alertslidermacpref" label="&foxtrick.prefs.alertslidermac;"/>
-                      <checkbox id="alertsoundpref" label="&foxtrick.prefs.alertsound;"/>
-                      <hbox align="center">
-                        <textbox id="alertsoundurlpref" width="300"/>
-                        <button label="&foxtrick.prefs.selectfile;"
+                  <vbox>
+                    <checkbox id="alertsliderpref" label="&foxtrick.prefs.alertslider;"/>
+                    <checkbox id="alertslidermacpref" label="&foxtrick.prefs.alertslidermac;"/>
+                    <checkbox id="alertsoundpref" label="&foxtrick.prefs.alertsound;"/>
+                    <hbox align="center">
+                      <textbox id="alertsoundurlpref" width="300"/>
+                      <button label="&foxtrick.prefs.selectfile;"
                                 oncommand="var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}"/>
-                        <button label="Test" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
-                      </hbox>
-                    </vbox>
-                  </groupbox>
-				  <groupbox>
-				    <caption label="&foxtrick.prefs.stagesettings;"/>
-				    <checkbox id="stagepref" label="&foxtrick.prefs.disableonstage;"/>
-				  </groupbox>
+                      <button label="Test" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
+                    </hbox>
+                  </vbox>
+                </groupbox>
+				<groupbox>
+				  <caption label="&foxtrick.prefs.stagesettings;"/>
+				  <checkbox id="stagepref" label="&foxtrick.prefs.disableonstage;"/>
+				</groupbox>
               </vbox>
-           </tabpanel>
+            </tabpanel>
         
-        <!-- Shortcuts -->
-           <tabpanel orient="vertical">
+            <!-- Shortcuts -->
+            <tabpanel orient="vertical">
               <vbox>
-                  <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <vbox id="shortcuts_list" flex="1" orient="vertical" />
+                <label>&foxtrick.prefs.modulelistlabel;</label>
+                <vbox id="shortcuts_list" flex="1" orient="vertical" />
               </vbox>
-           </tabpanel>
+             </tabpanel>
 		   
-		<!-- Matches -->
+		    <!-- Matches -->
 		    <tabpanel orient="vertical" >
 			  <vbox>
-                  <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <vbox id="matchfunctions_list" orient="vertical" />
+                <label>&foxtrick.prefs.modulelistlabel;</label>
+                <vbox id="matchfunctions_list" orient="vertical" />
               </vbox>
-           </tabpanel>
+            </tabpanel>
 		 
-		<!-- Forum -->
-           <tabpanel orient="vertical" style="overflow:auto;"   flex="1" pack="justify">
+		    <!-- Forum -->
+            <tabpanel orient="vertical" style="overflow:auto;"   flex="1" pack="justify">
               <vbox>
-                  <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <vbox id="forum_list" flex="1" orient="vertical" />
+                <label>&foxtrick.prefs.modulelistlabel;</label>
+                <vbox id="forum_list" flex="1" orient="vertical" />
               </vbox>
-           </tabpanel>
+            </tabpanel>
 		   
-		<!-- Links -->
-           <tabpanel orient="vertical"  style="overflow:auto;">
+		    <!-- Links -->
+            <tabpanel orient="vertical"  style="overflow:auto;">
               <vbox>
-                  <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <vbox id="links_list" orient="vertical" />
+                <label>&foxtrick.prefs.modulelistlabel;</label>
+                <vbox id="links_list" orient="vertical" />
               </vbox>
-           </tabpanel>
+            </tabpanel>
 
-	   <!-- about -->
-           <tabpanel orient="vertical" >
-    		    <vbox>
-                    <label flex="1" multiline="true" class="plain" style="padding:5px 5px 10px 5px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
-                    <label value="http://foxtrick.px.cz/" 
-                           style="text-decoration: underline; cursor: pointer; color: blue;"
-                           tooltiptext="http://foxtrick.px.cz/"
-                           onclick="window.opener.open('http://foxtrick.px.cz/');" flex="0" />			
-                    <label value="http://foxtrick.px.cz/forum/" 
-                           style="text-decoration: underline; cursor: pointer; color: blue;"
-                           tooltiptext="http://foxtrick.px.cz/forum/"
-                           onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
-                </vbox>
-				<vbox>
-					<label value="Head Developer" 
-                           style="font-weight: bold;" />
-                    <label value="Mod-PaV (872922)" />
-					<label value="Project owners" 
-                           style="font-weight: bold;" />
-                    <label value="kolmis (116321), larsw84 (504255)" />
-					<label value="Developers" 
-                           style="font-weight: bold;" />
-                    <label value="taised (234678), bummerland (1141309), Jestar (513519), convinced (1142953),"/>
-					<label value="spambot (333791), smates (1682965), OBarros (864555), stephan57 (1751312)," />
-					<label value="LA-Fryslanner-777 (440454)" />
-					<label value="Translations"
-							style="font-weight: bold;" />
-					<label value="* Bosnian (by Masterix (1617453))" />
-					<label value="* Cesky (by gucan (480304))" />
-					<label value="* Dansk (by 05erth (1499168), LasseSvendsen (403068))" />
-					<label value="* Deutch (by spambot (333791))" />
-					<label value="* Ellinika (by GTTWINS (900949))" />
-					<label value="* English (developers)" />
-					<label value="* Español (by franory (1369028))" />
-					<label value="* Español, Centroamericano (by baler0 (26877))" />
-					<label value="* Français (by stephan57 (1751312))" />
-					<label value="* Frysk (by LA-Fryslanner-777 (440454))" />
-					<label value="* Italiano (by caracca (240459))" />
-					<label value="* Nederlands (by eekels (768188))" />
-					<label value="* Polski (by Homzik (79468))" />
-					<label value="* Português (by _recluso_ (738571))" />
-					<label value="* Português, Brasil (by MarceloFBrandao (715122))" />
-					<label value="* Russian (by _KOHb_ (28914))" />
-					<label value="* Srpski (by ljushaff (1103875))" />
-					<label value="* Suomi (by Pyntsa (554581), Leach71 (259106))" />
-				</vbox>
-
-            </tabpanel>			
+	        <!-- about -->
+            <tabpanel orient="vertical" >
+    		  <vbox>
+                <label flex="1" multiline="true" class="plain" style="padding:5px 5px 10px 5px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
+                <label value="http://foxtrick.px.cz/" 
+                       style="text-decoration: underline; cursor: pointer; color: blue;"
+                       tooltiptext="http://foxtrick.px.cz/"
+                       onclick="window.opener.open('http://foxtrick.px.cz/');" flex="0" />			
+                <label value="http://foxtrick.px.cz/forum/" 
+                       style="text-decoration: underline; cursor: pointer; color: blue;"
+                       tooltiptext="http://foxtrick.px.cz/forum/"
+                       onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
+              </vbox>
+			  <vbox>
+				<label value="Head Developer" 
+                       style="font-weight: bold;" />
+                <label value="Mod-PaV (872922)" />
+				<label value="Project owners" 
+                       style="font-weight: bold;" />
+                <label value="kolmis (116321), larsw84 (504255)" />
+				<label value="Developers" 
+                       style="font-weight: bold;" />
+                <label value="taised (234678), bummerland (1141309), Jestar (513519), convinced (1142953),"/>
+				<label value="spambot (333791), smates (1682965), OBarros (864555), stephan57 (1751312)," />
+				<label value="LA-Fryslanner-777 (440454)" />
+				<label value="Translations"
+				       style="font-weight: bold;" />
+				<label value="* Bosnian (by Masterix (1617453))" />
+				<label value="* Cesky (by gucan (480304))" />
+				<label value="* Dansk (by 05erth (1499168), LasseSvendsen (403068))" />
+				<label value="* Deutch (by spambot (333791))" />
+				<label value="* Ellinika (by GTTWINS (900949))" />
+				<label value="* English (developers)" />
+				<label value="* Español (by franory (1369028))" />
+				<label value="* Español, Centroamericano (by baler0 (26877))" />
+				<label value="* Français (by stephan57 (1751312))" />
+				<label value="* Frysk (by LA-Fryslanner-777 (440454))" />
+				<label value="* Italiano (by caracca (240459))" />
+				<label value="* Nederlands (by eekels (768188))" />
+				<label value="* Polski (by Homzik (79468))" />
+				<label value="* Português (by _recluso_ (738571))" />
+				<label value="* Português, Brasil (by MarceloFBrandao (715122))" />
+				<label value="* Russian (by _KOHb_ (28914))" />
+				<label value="* Srpski (by ljushaff (1103875))" />
+				<label value="* Suomi (by Pyntsa (554581), Leach71 (259106))" />
+			  </vbox>
+			</tabpanel>			
 	</tabpanels>
-
-</tabbox>
+  </tabbox>
 </box>
-</dialog>
+
+<vbox flex="0">
+  <hbox flex="1">    
+    <button label="OK"     oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
+    <button label="Cancel" oncommand="close();" />
+    <vbox pack="end" flex="1">
+      <resizer dir="bottomright" />
+    </vbox>
+  </hbox>  
+</vbox>
+
+</window>

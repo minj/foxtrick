@@ -21,13 +21,29 @@ var FoxtrickPreferencesDialog = {
         this.initStatusbarPref();        
         this.initAlertPref();
 		this.initStagePref();
-        document.getElementById('foxtrick-config').setAttribute( "width", "600px" );
-        document.getElementById('foxtrick-config').setAttribute( "height", "530px" );
+        this.initResizer();
     },
     
     initStatusbarPref : function() {
     	document.getElementById('statusbarpref').setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshow" ) );
         
+    },    
+    
+    initResizer : function() {
+    // setting a minimum window-size
+        function onResize()
+        {
+            const WINDOW_WIDTH = 400;
+            const WINDOW_HEIGHT = 400;
+            var tHeight = WINDOW_HEIGHT;
+            var tWidth = WINDOW_WIDTH;
+            if (this.outerHeight >= WINDOW_HEIGHT)
+                tHeight = this.outerHeight;
+            if (this.outerWidth >= WINDOW_WIDTH)
+                tWidth = this.outerWidth;
+            this.resizeTo(tWidth, tHeight);
+        }
+        window.addEventListener('resize', onResize, false);
     },    
     
     initAlertPref: function() {
@@ -364,7 +380,7 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
 
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
-        window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
-                      "", "centerscreen, chrome, modal, resizable=yes, width=530px, height=600px");
+        window.open("chrome://foxtrick/content/preferences-dialog.xul",
+                      "", "centerscreen, chrome, modal");
 	}
 }
