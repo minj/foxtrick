@@ -27,9 +27,9 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/window.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
-<box flex="1" style="padding:5px;">
-  <tabbox id="tabbox" flex="1" style="overflow:auto;border-bottom:1px solid #AAA">
-    <tabs id="tabs" flex="0">
+<box flex="1">
+  <tabbox id="tabbox" flex="1" style="overflow:auto;border-bottom:1px solid #AAA" align="start">
+    <tabs id="tabs">
       <tab id="MainTab">&foxtrick.prefs.mainoptions;</tab>
       <tab id="ShortcutsTab">&foxtrick.prefs.shortcuts;</tab>
 	  <tab id="MatchesTab">&foxtrick.prefs.matches;</tab>
@@ -38,9 +38,9 @@
       <tab id="AboutTab">&foxtrick.prefs.about;</tab>
     </tabs>
 
-    <tabpanels id="tabpanels">
+    <tabpanels id="tabpanels" flex="1">
             <!-- Main -->
-            <tabpanel orient="vertical">
+            <tabpanel orient="vertical" flex="1">
               <vbox style="width: 300px;">
 			    <groupbox style="width: 300px;">
 			      <caption label="&foxtrick.prefs.language;"/>
@@ -78,7 +78,7 @@
             </tabpanel>
         
             <!-- Shortcuts -->
-            <tabpanel orient="vertical">
+            <tabpanel orient="vertical" flex="1">
               <vbox>
                 <label>&foxtrick.prefs.modulelistlabel;</label>
                 <vbox id="shortcuts_list" flex="1" orient="vertical" />
@@ -86,7 +86,7 @@
              </tabpanel>
 		   
 		    <!-- Matches -->
-		    <tabpanel orient="vertical" >
+		    <tabpanel orient="vertical" flex="1">
 			  <vbox>
                 <label>&foxtrick.prefs.modulelistlabel;</label>
                 <vbox id="matchfunctions_list" orient="vertical" />
@@ -94,7 +94,7 @@
             </tabpanel>
 		 
 		    <!-- Forum -->
-            <tabpanel orient="vertical" style="overflow:auto;"   flex="1" pack="justify">
+            <tabpanel orient="vertical" flex="1">
               <vbox>
                 <label>&foxtrick.prefs.modulelistlabel;</label>
                 <vbox id="forum_list" flex="1" orient="vertical" />
@@ -102,7 +102,7 @@
             </tabpanel>
 		   
 		    <!-- Links -->
-            <tabpanel orient="vertical"  style="overflow:auto;">
+            <tabpanel orient="vertical" flex="1">
               <vbox>
                 <label>&foxtrick.prefs.modulelistlabel;</label>
                 <vbox id="links_list" orient="vertical" />
@@ -110,7 +110,7 @@
             </tabpanel>
 
 	        <!-- about -->
-            <tabpanel orient="vertical" >
+            <tabpanel orient="vertical" flex="1">
     		  <vbox>
                 <label flex="1" multiline="true" class="plain" style="padding:5px 5px 10px 5px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
                 <label value="http://foxtrick.px.cz/" 
@@ -164,7 +164,7 @@
   <hbox flex="1">    
     <button label="OK"     oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
     <button label="Cancel" oncommand="close();" />
-    <vbox pack="end" flex="1">
+    <vbox pack="end" flex="1"  align="end">
       <resizer dir="bottomright" />
     </vbox>
   </hbox>  

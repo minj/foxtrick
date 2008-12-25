@@ -11,5 +11,11 @@
 
 #shortcuts_list .description, #forum_list .description, #links_list .description , #matchfunctions_list .description {
     /*font-style: italic;*/
-    font-size: .9em;
+    font-size: 0.9em;
+}
+
+tab {
+  margin: 0px 2px 0px 0px;
+  padding: 2px 5px 2px 5px;
+  border: 1px solid #AAA;
 }
