@@ -42,6 +42,12 @@
                       </menupopup>
 					</menulist>
 				  </groupbox>
+				  <groupbox>
+					<caption label="&foxtrick.prefs.showonstatusbar;"/>
+                    <vbox>
+                      <checkbox id="statusbarpref" label="&foxtrick.prefs.enable;"/>
+                    </vbox>
+                  </groupbox>                  
                   <groupbox>
                   <caption label="&foxtrick.prefs.alertsettings;"/>
                     <vbox>

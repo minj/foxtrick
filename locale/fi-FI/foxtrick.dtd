@@ -14,6 +14,7 @@
 <!ENTITY foxtrick.prefs.enable "Salli">
 <!ENTITY foxtrick.prefs.preferences "Asetukset">
 <!ENTITY foxtrick.prefs.visuals "Visuaalit">
+<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.stars "Tähdet">
 <!ENTITY foxtrick.prefs.about "Lisätietoa">
 <!ENTITY foxtrick.prefs.addstars "Lisää tähdet">

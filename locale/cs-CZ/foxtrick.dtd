@@ -14,6 +14,7 @@
 <!ENTITY foxtrick.prefs.enable "Zapnout">
 <!ENTITY foxtrick.prefs.preferences "Předvolby">
 <!ENTITY foxtrick.prefs.visuals "Úpravy vzhledu">
+<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.stars "Hvězdičky">
 <!ENTITY foxtrick.prefs.about "O rozšíření">
 <!ENTITY foxtrick.prefs.addstars "Přidat hvězdičky">

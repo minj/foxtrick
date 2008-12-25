@@ -14,6 +14,7 @@
 <!ENTITY foxtrick.prefs.enable "Ynskeakelje">
 <!ENTITY foxtrick.prefs.preferences "Foarkeuren">
 <!ENTITY foxtrick.prefs.visuals "Uterlik">
+<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.stars "Stjerren">
 <!ENTITY foxtrick.prefs.about "Oer Foxtrick">
 <!ENTITY foxtrick.prefs.addstars "Stjerren tafoegje">

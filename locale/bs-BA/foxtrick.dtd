@@ -13,6 +13,7 @@
 <!ENTITY foxtrick.prefs.mainoptions "Glavne opcije">
 <!ENTITY foxtrick.prefs.enable "Omoguci">
 <!ENTITY foxtrick.prefs.preferences "Postavke">
+<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.visuals "Izgled">
 <!ENTITY foxtrick.prefs.stars "Zvijezde">
 <!ENTITY foxtrick.prefs.about "O nama">

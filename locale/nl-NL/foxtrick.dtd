@@ -14,6 +14,7 @@
 <!ENTITY foxtrick.prefs.enable "Aanzetten">
 <!ENTITY foxtrick.prefs.preferences "Voorkeuren">
 <!ENTITY foxtrick.prefs.visuals "Beeld">
+<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.stars "Sterren">
 <!ENTITY foxtrick.prefs.about "Over">
 <!ENTITY foxtrick.prefs.addstars "Voeg sterren toe">

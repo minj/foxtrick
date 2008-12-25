@@ -18,9 +18,14 @@ var FoxtrickPreferencesDialog = {
         }
         
         this.initLangPref();
+        this.initStatusbarPref();        
         this.initAlertPref();
 		this.initStagePref();
     },
+    
+    initStatusbarPref : function() {
+    	document.getElementById('statusbarpref').setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshow" ) );
+    },    
     
     initAlertPref: function() {
     	document.getElementById('alertsliderpref').setAttribute( "checked", FoxtrickPrefs.getBool( "alertSlider" ) );
@@ -94,6 +99,9 @@ var FoxtrickPreferencesDialog = {
         //Lang
         FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
         
+        //Statusbar
+        FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);        
+
         //Alert
         FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
         FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);

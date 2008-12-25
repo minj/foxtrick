@@ -14,6 +14,7 @@
 <!ENTITY foxtrick.prefs.enable "Enable">
 <!ENTITY foxtrick.prefs.preferences "Preferences">
 <!ENTITY foxtrick.prefs.visuals "Visuals">
+<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.stars "Stars">
 <!ENTITY foxtrick.prefs.about "About">
 <!ENTITY foxtrick.prefs.addstars "Add stars">

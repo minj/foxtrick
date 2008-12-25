@@ -8,6 +8,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/window.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/stats.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/statusbar.js"/>
 
 
 <script type="text/javascript">
