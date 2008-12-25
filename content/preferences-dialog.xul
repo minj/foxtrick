@@ -2,13 +2,13 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
   <?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
 
-<!DOCTYPE dialog [
+<!DOCTYPE window [
    <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
    %foxtrickDTD;
 ]>
 
  
-<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	title="&foxtrick.prefs.preferences;"
 	buttons="accept, cancel"
     id="foxtrick-config"
@@ -16,14 +16,14 @@
 	onload="FoxtrickPreferencesDialog.init();"
 >
     <keyset>
-      <key id="save-key" modifiers="accel" key="S"/>
-      <key id="close-key" modifiers="accel" key="C"/>
+      <key id="save-key"  modifiers="accel" key="S" oncommand="FoxtrickPreferencesDialog.onDialogAccept(); window.close();"/>
+      <key id="close-key" modifiers="accel" key="C" oncommand="window.close();"/>
     </keyset>
     <menubar>
-      <menu id="pref-menu" label="Menu">
+      <menu id="pref-menu" label="Menu" style="font-weight: bold;">
         <menupopup id="pref-popup">
-          <menuitem label="OK"     key="save-key"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); acceptDialog();"/>
-          <menuitem label="Cancel" key="close-key"  oncommand="cancelDialog();"/>
+          <menuitem label="OK"     key="save-key"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); window.close();"/>
+          <menuitem label="Cancel" key="close-key"  oncommand="window.close();"/>
         </menupopup>
       </menu>
     </menubar>
@@ -106,7 +106,7 @@
            <tabpanel orient="vertical" style="width: 400px; height:350px; overflow:auto; flex=1">
               <vbox>
                   <label>&foxtrick.prefs.modulelistlabel;</label>
-                  <vbox id="links_list" flex="1" orient="vertical" style="overflow:auto" />
+                  <vbox id="links_list" flex="1" orient="vertical" />
               </vbox>
            </tabpanel>
 
@@ -160,4 +160,4 @@
             </tabpanel>			
 	</tabpanels>
 </tabbox>
-</dialog>
+</window>

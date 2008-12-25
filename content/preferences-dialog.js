@@ -22,7 +22,7 @@ var FoxtrickPreferencesDialog = {
         this.initAlertPref();
 		this.initStagePref();
         document.getElementById('foxtrick-config').setAttribute( "width", "600px" );
-        document.getElementById('foxtrick-config').setAttribute( "height", "530px" );
+        document.getElementById('foxtrick-config').setAttribute( "height", "475px" );
     },
     
     initStatusbarPref : function() {
@@ -364,7 +364,7 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
 
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
-        window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
-                      "", "centerscreen, chrome, modal, resizable=yes width=530px, height=600px");
+        window.openWindow("chrome://foxtrick/content/preferences-dialog.xul",
+                      "", "centerscreen, chrome, modal, resizable=yes width=475px, height=600px");
 	}
 }
