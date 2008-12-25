@@ -27,7 +27,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/window.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
-<box flex="1">
+<box flex="1" style="padding:5px;">
   <tabbox id="tabbox" flex="1" style="overflow:auto;border-bottom:1px solid #AAA" align="start">
     <tabs id="tabs">
       <tab id="MainTab">&foxtrick.prefs.mainoptions;</tab>
@@ -137,9 +137,10 @@
 				<label value="Translations"
 				       style="font-weight: bold;" />
 				<label value="* Bosnian (by Masterix (1617453))" />
+                <label value="* Catalan (by ?)" />
 				<label value="* Cesky (by gucan (480304))" />
 				<label value="* Dansk (by 05erth (1499168), LasseSvendsen (403068))" />
-				<label value="* Deutch (by spambot (333791))" />
+				<label value="* Deutsch (by spambot (333791))" />
 				<label value="* Ellinika (by GTTWINS (900949))" />
 				<label value="* English (developers)" />
 				<label value="* Español (by franory (1369028))" />

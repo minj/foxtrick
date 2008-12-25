@@ -1,0 +1,105 @@
+<!-- ca-AD
+     carlesmu
+     utf-8 encoded language file
+-->
+
+<!ENTITY foxtrick.prefs.shortcuts "Shortcuts and tweaks">
+<!ENTITY foxtrick.prefs.forum "Fòrum">
+<!ENTITY foxtrick.prefs.links "Links">
+<!ENTITY foxtrick.prefs.matches "Partits">
+<!ENTITY foxtrick.prefs.modulelistlabel "Mòduls disponibles. Marqueu la caixa de selecció que hi ha al costat d'un mòdul per habilitar-lo.">
+<!ENTITY foxtrick.prefs.transitioninfo "Actualment foxtrick està en plena transició al nou disseny de hattrick. Fem el que podem per fer funcionar en el nou disseny totes les antigues funcionalitats. Sigueu pacients amb nosaltres i espereu actualitzacions freqüents.">
+
+
+<!ENTITY foxtrick.prefs.mainoptions "Opcions principals">
+<!ENTITY foxtrick.prefs.enable "Habilita">
+<!ENTITY foxtrick.prefs.preferences "Preferències">
+<!ENTITY foxtrick.prefs.visuals "Visuals">
+<!ENTITY foxtrick.prefs.showonstatusbar "Mostra la icona a la barra d'estat">
+<!ENTITY foxtrick.prefs.stars "Estrelles">
+<!ENTITY foxtrick.prefs.about "Quant a…">
+<!ENTITY foxtrick.prefs.addstars "Afegeix estrelles">
+<!ENTITY foxtrick.prefs.replacestars "Substitueix estrelles">
+<!ENTITY foxtrick.prefs.defaulthattrickstars "Empra les estrelles per defecte de Hattrick.">
+<!ENTITY foxtrick.prefs.cssskins "Aparences CSS">
+<!ENTITY foxtrick.prefs.defaulthatrickskin "Empra l'aparença per defecte de Hattrick.">
+<!ENTITY foxtrick.menu.configurefoxtrick "Configura foxtrick">
+<!ENTITY foxtrick.menu.reloadfoxtrick "Recarrega foxtrick (per desenvolupadors)">
+<!ENTITY foxtrick.prefs.faces "Cares i equipaments (per supporters)">
+<!ENTITY foxtrick.prefs.nodressesorfaces "No afegeixis ni cares ni equipaments.">
+<!ENTITY foxtrick.prefs.showfaces "Afegeix les cares dels jugadors a les alineacions dels partits.">
+<!ENTITY foxtrick.prefs.showdresses "Afegeix l'equipament a les alineacions dels partits.">
+<!ENTITY foxtrick.prefs.links "Enllaços a llocs externs">
+<!ENTITY foxtrick.prefs.link "Enllaç">
+<!ENTITY foxtrick.prefs.show "Mostra">
+<!ENTITY foxtrick.prefs.shortcuts "Dreceres">
+<!ENTITY foxtrick.prefs.shortcut "Drecera">
+<!ENTITY foxtrick.prefs.groupstarsby "Nombre d'estrelles a agrupar en colors:">
+<!ENTITY foxtrick.menu.installskin "Instaŀla aparença de Hattrick.org">
+<!ENTITY foxtrick.prefs.linkstab "Enllaços i qualificacions">
+<!ENTITY foxtrick.prefs.ratings "Qualificacions">
+<!ENTITY foxtrick.prefs.rating "Qualificació">
+<!ENTITY foxtrick.prefs.htlang "Idioma de hattrick">
+<!ENTITY foxtrick.prefs.language "Ajustaments d'idioma">
+<!ENTITY foxtrick.prefs.lineupcoloring "Esquema de colors de l'alineació del partit">
+<!ENTITY foxtrick.prefs.nolineupcoloring "Sense acoloriment de l'alineació.">
+<!ENTITY foxtrick.prefs.skinonlylineupcoloring "Només si existeix un esquema de colors en l'aparença emprada.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Sempre. Si l'aparença no te un esquema de colors, empra el que hi ha per defecte.">
+<!ENTITY foxtrick.prefs.getmorecssskins "Obté més aparences CSS">
+<!ENTITY foxtrick.prefs.shortcutstab "Dreceres i paràmetres">
+<!ENTITY foxtrick.prefs.tweaks "Paràmetres">
+<!ENTITY foxtrick.prefs.mergestars "Fusiona estrelles">
+<!ENTITY foxtrick.menu.playersintabs "Obre en pestanyes els jugadors trobats">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Afegeix cares i l'equipament a les alineacions dels partits.">
+<!ENTITY foxtrick.prefs.lineupcoloringstyle "Estil">
+<!ENTITY foxtrick.prefs.matchorders "Ordres del partit">
+<!ENTITY foxtrick.prefs.showformationbox "Mostra el quadre de formació">
+<!ENTITY foxtrick.prefs.frameresize "Canvi de mida dels marcs">
+<!ENTITY foxtrick.prefs.hidelogoframe "Amaga el marc del logotip">
+<!ENTITY foxtrick.prefs.resizemainframe "Canvia la mida del marc principal">
+<!ENTITY foxtrick.prefs.resizemenuframe "Canvia la mida del marc del menú">
+<!ENTITY foxtrick.prefs.framewidth "Amplada">
+<!ENTITY foxtrick.prefs.clearplayerscache "Neteja les cares i equipaments dels jugadors de la memòria cau.">
+<!ENTITY foxtrick.prefs.attackdefensebars "Barres de qualificacions">
+<!ENTITY foxtrick.prefs.attackdefensebarsalways "Insereix automàticament.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Mostra enllaç commutat.">
+<!ENTITY foxtrick.prefs.attackdefensebarsno "No insereixis.">
+<!ENTITY foxtrick.prefs.ratingsstyle "Format de qualificacions">
+<!ENTITY foxtrick.prefs.ratingsstylestandard "Qualificacions estàndards.">
+<!ENTITY foxtrick.prefs.ratingsstyleold "Estil de qualificacions antic.">
+<!ENTITY foxtrick.prefs.hattricksettingstext "Les següents opcions han de coincidir amb les que tingueu a hattrick.org.">
+<!ENTITY foxtrick.prefs.showflags "Afegeix les banderes a les alineacions dels partits.">
+<!ENTITY foxtrick.prefs.showfacesandflags "Afegeix les cares dels jugadors i les banderes a les alineacions dels partits.">
+<!ENTITY foxtrick.prefs.showdressesandflags "Afegeix l'equipament de jugadors i banderes a les alineacions dels partits.">
+<!ENTITY foxtrick.prefs.medalsets "Grups de trofeus">
+<!ENTITY foxtrick.prefs.getmoremedalsets "Obté més grups de trofeus">
+<!ENTITY foxtrick.prefs.defaulthattrickmedals "Empra els trofeus per defecte de hattrick.">
+<!ENTITY foxtrick.menu.installmedalset "Instaŀla el grup de trofeus de hattrick.org">
+<!ENTITY foxtrick.prefs.htcurrency "Moneda de hattrick">
+<!ENTITY foxtrick.prefs.main "Principal">
+<!ENTITY foxtrick.prefs.alertsettings "Ajustaments d'avís">
+<!ENTITY foxtrick.prefs.alertslider "Mostra un avís emergent.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Mostra el plafó de foxtrick en la barra de navegació del navegador.">
+<!ENTITY foxtrick.prefs.alertsound "Reprodueix un avís sonor.">
+<!ENTITY foxtrick.prefs.alertslidermac "Mostra la notificació de grunyit (growl) (tant sols per Mac)">
+<!ENTITY foxtrick.menu.createplayerad "Anunci de jugador a porta-retalls.">
+<!ENTITY foxtrick.prefs.htdateformat "Format de data">
+<!ENTITY foxtrick.menu.makelink "Enllaços dels fòrums al porta-retalls">
+<!ENTITY foxtrick.prefs.forumtemplates "Plantilles dels fòrums">
+<!ENTITY foxtrick.prefs.forummessagetemplates "Plantilles dels missatges dels fòrums">
+<!ENTITY foxtrick.prefs.opendirectory "Directori obert">
+<!ENTITY foxtrick.prefs.selectfile "Seleccioneu-lo">
+<!ENTITY foxtrick.prefs.stagesettings "Ajustaments d'stage">
+<!ENTITY foxtrick.prefs.disableonstage "Inhabilita foxtrick en el servidor «stage»">
+<!ENTITY foxtrick.prefs.alltidflags "Afegeix la bandera d'Alltid i enllaços als autors de missatges a la pàgina del fòrum">
+<!ENTITY foxtrick.prefs.linksleague "Afegeix enllaços externs a la pàgina de la lliga">
+<!ENTITY foxtrick.prefs.linksteams "Afegeix enllaços externs a la pàgina d'equip">
+<!ENTITY foxtrick.prefs.linkscountry "Afegeix enllaços externs a la pàgina de països">
+<!ENTITY foxtrick.prefs.linkschallenges "Afegeix enllaços externs a la pàgina d'amistosos">
+<!ENTITY foxtrick.prefs.linkseconomy "Afegeix enllaços externs a la pàgina d'economia">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Afegeix enllaços externs a la pàgina de la visió general de l'equip juvenil">
+<!ENTITY foxtrick.prefs.linksarena "Afegeix enllaços externs a la pàgina de l'estadi">
+<!ENTITY foxtrick.prefs.linkscoach "Afegeix enllaços externs a la pàgina de l'entrenador">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Afegeix enllaços externs a la pàgina de detalls dels jugadors">
+<!ENTITY foxtrick.prefs.linksmatch "Afegeix enllaços externs a la pàgina del partit">
+<!-- EOF -->
