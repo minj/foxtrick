@@ -27,7 +27,7 @@ var FoxtrickHTThreadMarker = {
 			{
 				var title = links[i].childNodes[0].childNodes[0].getAttribute( "title" );
 
-				if ( title.match( /.* by HT-[a-zA-Z\d]*$/i ) )
+				if ( title.match( /.* HT-[^\s]*$/i ) )
 				{
 					// dump( "matched: " + title + "\n" );
 					var curr_class = links[i].childNodes[0].getAttribute( "class" );
