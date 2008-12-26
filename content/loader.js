@@ -31,6 +31,7 @@ var scripts = [
     'matches/matchOrdersFlipSides.js',
     'matches/matchOrdersFormationBox.js',
 	'matches/starscounter.js',
+        'matches/advancedStarsCounter.js',
 	'shortcuts_and_tweaks/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/mediantransferprice.js',
