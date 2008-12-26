@@ -29,8 +29,8 @@ var FoxtrickMain = {
         for ( i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
         }
-
-        // create handler arrays for each recognized page
+		
+		// create handler arrays for each recognized page
         for ( i in Foxtrick.ht_pages ) {
             Foxtrick.run_on_page[i] = new Array();
         }
@@ -566,4 +566,13 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 				}
 			}			
 		}
+}
+
+Foxtrick.setStatusIconStyle = function(ev) {
+	var image = ev.target;
+	if (FoxtrickPrefs.getBool( "statusbarshow" )) {
+		image.style.display = "display";
+	} else {
+        image.style.display = "none";
+    }
 }

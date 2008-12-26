@@ -11,7 +11,7 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Main options">
-<!ENTITY foxtrick.prefs.enable "Enable">
+<!ENTITY foxtrick.prefs.enable "Enable (requires restart)">
 <!ENTITY foxtrick.prefs.preferences "Preferences">
 <!ENTITY foxtrick.prefs.visuals "Visuals">
 <!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
