@@ -41,7 +41,7 @@ var scripts = [
     'shortcuts_and_tweaks/youthskillnotes.js',
     'shortcuts_and_tweaks/foxtrickalert.js',
     'shortcuts_and_tweaks/facePlugin.js',
-	'shortcuts_and_tweaks/showmessagebutton.js',
+	'shortcuts_and_tweaks/addmanagerbuttons.js',
 	'shortcuts_and_tweaks/confirmplayerbid.js',
 	'shortcuts_and_tweaks/economyDifference.js',
 	'shortcuts_and_tweaks/personalityImages.js',

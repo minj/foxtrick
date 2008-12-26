@@ -1,27 +1,27 @@
 /**
- * showmessagebutton.js
- * Foxtrick Leave Conference module
+ * addmanagerbuttons.js
+ * Adds Send Message and Write in Guestbook buttons to manager page
  * @author larsw84
  */
 
  ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickShowMessageButton = {
+var FoxtrickAddManagerButtons = {
 
-    MODULE_NAME : "ShowMessageButton",
+    MODULE_NAME : "AddManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
 
     init : function() {
         Foxtrick.registerPageHandler( 'managerPage',
-                                        FoxtrickShowMessageButton );
+                                        FoxtrickAddManagerButtons );
 		Foxtrick.registerPageHandler( 'teamPage', 
-										FoxtrickShowMessageButton );
+										FoxtrickAddManagerButtons );
     },
     
     run : function( page, doc ) {
 		switch( page ) {
 			case 'managerPage':
-				this.addMessageBox( doc );
+				this.addActionsBox( doc );
 				break;
 				
 			case 'teamPage':
@@ -35,7 +35,7 @@ var FoxtrickShowMessageButton = {
 			case 'managerPage':
 				var newBoxId = "foxtrick_actions_box";
 				if( !Foxtrick.hasElement( newBoxId ) ) {
-					this.addMessageBox( doc );
+					this.addActionsBox( doc );
 				}
 				break;
 			case 'teamPage':
@@ -48,7 +48,7 @@ var FoxtrickShowMessageButton = {
 		}
 	},
 	
-	addMessageBox : function( doc ) {
+	addActionsBox : function( doc ) {
 		var allDivs = doc.getElementsByTagName("div");
 		var teamID;
 		var ownerID;
@@ -72,9 +72,11 @@ var FoxtrickShowMessageButton = {
 			
 		//Do not add send message button for owner manager page. - Stephan
 		if ( ownerID==teamID ) return;
-				
+		
+		var parentDiv = doc.createElement("div");
+		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
+		
 		var messageLink = doc.createElement("a");
-		messageLink.id = "foxtrick_sendmessage_link";
 		messageLink.className = "inner";
 		messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
 		messageLink.title = Foxtrickl10n.getString( 
@@ -85,11 +87,26 @@ var FoxtrickShowMessageButton = {
 		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessage" );
 		img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
 		messageLink.appendChild(img);
+		
+		var guestbookLink = doc.createElement("a");
+		guestbookLink.className = "inner";
+		guestbookLink.href = "Guestbook.aspx?teamid=" + teamID;
+		guestbookLink.title = Foxtrickl10n.getString(
+			"foxtrick.tweaks.writeinguestbook");
+			
+		var img = doc.createElement("img");
+		img.className = "actionIcon";
+		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
+		img.src = "chrome://foxtrick/content/resources/img/writeinguestbook.png";
+		guestbookLink.appendChild(img);
+			
+		parentDiv.appendChild(messageLink);
+		parentDiv.appendChild(guestbookLink);
 				
 		// Append the box to the sidebar
 		var newBoxId = "foxtrick_actions_box";
 		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
-			"foxtrick.tweaks.actions" ), messageLink, newBoxId, "first", "");
+			"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
 	},
 	
 	showMessageForm : function( doc ) {

@@ -11,12 +11,10 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Pääasetukset">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Salli">
 <!ENTITY foxtrick.prefs.preferences "Asetukset">
 <!ENTITY foxtrick.prefs.visuals "Visuaalit">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
+<!ENTITY foxtrick.prefs.showonstatusbar "Näytä tilapalkki-ikoni">
 <!ENTITY foxtrick.prefs.stars "Tähdet">
 <!ENTITY foxtrick.prefs.about "Lisätietoa">
 <!ENTITY foxtrick.prefs.addstars "Lisää tähdet">
@@ -80,7 +78,7 @@
 <!ENTITY foxtrick.prefs.main "Main">
 <!ENTITY foxtrick.prefs.alertsettings "Hälytys-asetukset">
 <!ENTITY foxtrick.prefs.alertslider "Näytä halytys-liukupalkki.">
-<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Näytä Foxtrickin paneeli Firefoxin asemapalkissa.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "Näytä Foxtrickin paneeli Firefoxin tehtäväpalkissa.">
 <!ENTITY foxtrick.prefs.alertsound "Soita hälytys ääni.">
 <!ENTITY foxtrick.prefs.alertslidermac "Näytä murahdus-ilmoitus (Mac only)">
 <!ENTITY foxtrick.menu.createplayerad "Luo pelaajamainos leikepöytiin.">
