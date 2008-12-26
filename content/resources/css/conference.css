@@ -11,3 +11,7 @@ div.foxtrickLeaveConf:hover {
 	height: 16px;
 	background: url('chrome://foxtrick/content/resources/linkicons/crossRed_bigger.png') 50% no-repeat;
 }
+
+.HT_thread {
+    background: #FF7A7A;
+}

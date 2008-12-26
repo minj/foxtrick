@@ -25,6 +25,7 @@ var scripts = [
 	'forum/forumadddefaultfacecard.js',
 	'forum/forumhidesignatures.js',
 	'forum/forumnextandprevious.js',
+        'forum/htthreadmarker.js',
     'matches/matches.js',
     'matches/ratings.js',
     'matches/attvsdef.js',
