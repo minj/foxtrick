@@ -1,21 +1,97 @@
-#shortcuts_list .entry, #forum_list .entry, #links_list .entry, #matchfunctions_list .entry {
+#shortcuts_list .entry, 
+#forum_list .entry, 
+#links_list .entry, 
+#matchfunctions_list .entry {
+ /* nothing set */
 }
 
-#shortcuts_list .entry:hover, #forum_list .entry:hover, #links_list .entry:hover, #matchfunctions_list .entry:hover {
-    background-color: #cccccc;
+#shortcuts_list .entry:hover, 
+#forum_list .entry:hover, 
+#links_list .entry:hover, 
+#matchfunctions_list .entry:hover {
+   background-color: #eeeeee;
 }
 
-#shortcuts_list .name, #forum_list .name, #links_list .name, #matchfunctions_list .name {
+#shortcuts_list .name, 
+#forum_list .name, 
+#links_list .name, 
+#matchfunctions_list .name {
     font-weight: bold;
 }
 
-#shortcuts_list .description, #forum_list .description, #links_list .description , #matchfunctions_list .description {
+#shortcuts_list .description, 
+#forum_list .description, 
+#links_list .description , 
+#matchfunctions_list .description {
     /*font-style: italic;*/
     font-size: 0.9em;
+    padding : 0px;    
+}
+.description_normal {
+    padding-left : 25px;
 }
 
+vbox, box, hbox {
+   
+}
+vbox:hover, box:hover, hbox:hover {
+   
+}
 tab {
-  margin: 0px 2px 0px 0px;
+  margin:  0px 2px 0px 0px;
   padding: 2px 5px 2px 5px;
-  border: 1px solid #AAA;
+  border:  1px solid #aaaaaa;
+  font-weight: bold;
+  font-color:  #000000;
+ 
+}
+tab:hover {
+  font-weight: bold;
+  font-color: #222222;
+}
+.checkbox_in_group, .radio_in_group {
+  /* childs of a module (checkbox / radio) */
+  padding: 0px;
+  margin:  0px 0px 0px 20px;
+}
+
+.checkbox_normal{
+  /* normal checkbox module */
+  padding: 0px;
+  margin:  0px;
+}
+
+.checkbox_group_box, .radio_group_box{
+  /* the box itselfe with iths child*/
+  padding: 3px 0px 3px 3px;
+  margin:  0px 5px 1px 0px;
+  border-left: 1px solid #fff;
+  border-top:  1px solid #fff;
+  border-right:  1px solid #888;
+  border-bottom: 1px solid #888;
+}
+
+.checkbox_group, .radiobox_group {
+  padding: 0px;
+  margin: 0px;
+}
+.normal_entry {
+  /* normal checkbox with desc & module name */
+  padding-left: 4px;
+}
+
+.panel, .dialog, .box , .tabpanels {
+   
+}
+.tabbox {
+ overflow: auto;
+ border-bottom: 1px solid #888;
+ margin: 3px 5px 0px 2px;"
+}
+
+.box {
+  padding: 0px 0px 5px 0px; 
+}
+.slider {
+  
 }

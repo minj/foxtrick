@@ -214,15 +214,16 @@ var FoxtrickPreferencesDialog = {
     },
 	
 	_radioModule : function( module ) {
-		var entry = document.createElement( "groupbox" );
+		var entry = document.createElement( "vbox" );
 		entry.prefname = module.MODULE_NAME;
 		entry.radio = true;
-		entry.setAttribute( "class", "entry" );
+        entry.setAttribute( "class", "radio_group_box" );
 		var hbox = document.createElement( "hbox" );
 		
 		var check = document.createElement( "checkbox" );
 		check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
 		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) ); 
+        check.setAttribute( "class", "radiobox_group" ); 
 		hbox.appendChild( check );
 		hbox.addEventListener( "click", function( ev ) { 
 			ev.currentTarget.childNodes[0].checked = !(ev.currentTarget.childNodes[0].checked);
@@ -230,10 +231,12 @@ var FoxtrickPreferencesDialog = {
 			if (!ev.currentTarget.childNodes[0].checked) {
 				for (var i = 0; i < radios.length; i++) {
 					radios[i].setAttribute( "disabled", true);
+                    radios[i].setAttribute( "hidden", true);
 				}
 			} else {
 				for (var i = 0; i < radios.length; i++) {
 					radios[i].setAttribute( "disabled", false);
+                    radios[i].setAttribute( "hidden", false);
 				}
 			}
 		}, false );
@@ -255,7 +258,7 @@ var FoxtrickPreferencesDialog = {
 		var selectedValue = Foxtrick.getModuleValue( module );
 		for (var i = 0; i < module.RADIO_OPTIONS.length; i++) {
 			var radio = document.createElement( "radio" );
-			radio.style.marginLeft = "30px";
+            radio.setAttribute( "class", "radio_in_group" );
 			radio.addEventListener( "click", function( ev ) {
 				if (!ev.target.disabled) {
 					ev.target.setAttribute( "selected", true);
@@ -271,7 +274,7 @@ var FoxtrickPreferencesDialog = {
 			radio.setAttribute( "label", FoxtrickPreferencesDialog.getModuleDescription( 
 				module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] ));
 			if (!Foxtrick.isModuleEnabled( module )) {
-				radio.setAttribute( "disabled", true);;
+				radio.setAttribute( "disabled", true);
 			}
 			radiogroup.appendChild( radio );
 		}
@@ -280,15 +283,16 @@ var FoxtrickPreferencesDialog = {
 	},
 	
 	_checkboxModule : function (module) {
-		var entry = document.createElement( "groupbox" );
+		var entry = document.createElement( "vbox" );
 		entry.prefname = module.MODULE_NAME;
 		entry.checkbox = true;
-		entry.setAttribute( "class", "entry" );
+		entry.setAttribute( "class", "checkbox_group_box" );
 		var hbox = document.createElement( "hbox" );
 		
 		var check = document.createElement( "checkbox" );
 		check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
-		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) ); 
+		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) );
+        check.setAttribute( "class", "checkbox_group" ); 
 		hbox.appendChild( check );
 		hbox.addEventListener( "click", function( ev ) { 
 			ev.currentTarget.childNodes[0].checked = !(ev.currentTarget.childNodes[0].checked);
@@ -296,10 +300,12 @@ var FoxtrickPreferencesDialog = {
 			if (!ev.currentTarget.childNodes[0].checked) {
 				for (var i = 0; i < checkboxes.length; i++) {
 					checkboxes[i].setAttribute( "disabled", true);
+                    checkboxes[i].setAttribute( "hidden", true);
 				}
 			} else {
 				for (var i = 0; i < checkboxes.length; i++) {
 					checkboxes[i].setAttribute( "disabled", false);
+                    checkboxes[i].setAttribute( "hidden", false);
 				}
 			}
 		}, false );
@@ -319,10 +325,10 @@ var FoxtrickPreferencesDialog = {
 		entry.appendChild( hbox );
 		for (var i = 0; i < module.OPTIONS.length; i++) {
 			var checkbox = document.createElement( "checkbox" );
-			checkbox.style.marginLeft = "30px";
 			checkbox.setAttribute( "checked", Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[i]) );
 			checkbox.setAttribute( "label", module.OPTIONS[i] );
 			checkbox.setAttribute( "id", module.OPTIONS[i]);
+            checkbox.setAttribute( "class", "checkbox_in_group" );
 			if (!Foxtrick.isModuleEnabled( module )) {
 				checkbox.setAttribute( "disabled", true);;
 			}
@@ -334,8 +340,8 @@ var FoxtrickPreferencesDialog = {
 	
 	_normalModule : function (module) {
 		var entry = document.createElement( "vbox" );
-		entry.prefname = module.MODULE_NAME;
-		entry.setAttribute( "class", "entry" );
+        entry.prefname = module.MODULE_NAME;
+		entry.setAttribute( "class", "normal_entry" );
 		entry.addEventListener( "click", function( ev ) { 
 			ev.currentTarget.childNodes[0].childNodes[0].checked =
 				!(ev.currentTarget.childNodes[0].childNodes[0].checked);
@@ -344,6 +350,7 @@ var FoxtrickPreferencesDialog = {
 		var check = document.createElement( "checkbox" );
 		check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
 		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) ); 
+        check.setAttribute( "class", "checkbox_normal" );
 		hbox.appendChild( check );
 		var name = document.createElement( "label" );
 		name.setAttribute( "class", "name" );
@@ -351,7 +358,7 @@ var FoxtrickPreferencesDialog = {
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
 		var desc = document.createElement( "label" );
-		desc.setAttribute( "class", "description" );
+		desc.setAttribute( "class", "description_normal" );
 		var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
 		desc.appendChild( desc_text );
 		entry.appendChild( desc );
