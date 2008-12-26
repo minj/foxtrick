@@ -11,6 +11,8 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Hlavní nastavení">
+<!ENTITY foxtrick.prefs.btnlabelsave "Save">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Zapnout">
 <!ENTITY foxtrick.prefs.preferences "Předvolby">
 <!ENTITY foxtrick.prefs.visuals "Úpravy vzhledu">

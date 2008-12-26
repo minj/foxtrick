@@ -10,6 +10,8 @@
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick e' momento sottoposto ad una transizione verso il nuovo design di Hattrick. Stiamo facendo del nostro meglio per portare tutte le vecchie funzionalita' nel nuovo design. Siate pazienti e aspettatevi aggiornamenti regolari!">
 
 <!ENTITY foxtrick.prefs.mainoptions "Opzioni principali">
+<!ENTITY foxtrick.prefs.btnlabelsave "Save">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Abilita">
 <!ENTITY foxtrick.prefs.preferences "Preferenze">
 <!ENTITY foxtrick.prefs.visuals "Visuali">

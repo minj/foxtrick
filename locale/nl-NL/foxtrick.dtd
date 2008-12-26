@@ -11,6 +11,8 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Hoofdopties">
+<!ENTITY foxtrick.prefs.btnlabelsave "Save">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Aanzetten">
 <!ENTITY foxtrick.prefs.preferences "Voorkeuren">
 <!ENTITY foxtrick.prefs.visuals "Beeld">

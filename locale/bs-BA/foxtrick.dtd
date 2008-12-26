@@ -12,6 +12,8 @@
 
 <!ENTITY foxtrick.prefs.mainoptions "Glavne opcije">
 <!ENTITY foxtrick.prefs.enable "Omoguci">
+<!ENTITY foxtrick.prefs.btnlabelsave "Save">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.preferences "Postavke">
 <!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.visuals "Izgled">

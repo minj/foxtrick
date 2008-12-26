@@ -12,6 +12,8 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Opcions principals">
+<!ENTITY foxtrick.prefs.btnlabelsave "Save">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Habilita">
 <!ENTITY foxtrick.prefs.preferences "Preferències">
 <!ENTITY foxtrick.prefs.visuals "Visuals">

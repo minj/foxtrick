@@ -137,7 +137,7 @@
 				<label value="Translations"
 				       style="font-weight: bold;" />
 				<label value="* Bosnian (by Masterix (1617453))" />
-                <label value="* Catalan (by ?)" />
+                <label value="* Catalan (by carlesmu (311845))" />
 				<label value="* Cesky (by gucan (480304))" />
 				<label value="* Dansk (by 05erth (1499168), LasseSvendsen (403068))" />
 				<label value="* Deutsch (by spambot (333791))" />
@@ -163,8 +163,8 @@
 
 <vbox flex="0">
   <hbox flex="1">    
-    <button label="OK"     oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
-    <button label="Cancel" oncommand="close();" />
+    <button label="&foxtrick.prefs.btnlabelsave;"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
+    <button label="&foxtrick.prefs.btnlabelcancel;" oncommand="close();" />
     <vbox pack="end" flex="1"  align="end">
       <resizer dir="bottomright" />
     </vbox>

@@ -1,4 +1,4 @@
-<!-- de-DE (rev. 395)
+<!-- de-DE (rev. 433)
      spambot
      utf-8 encoded language file
 -->
@@ -11,7 +11,9 @@
 <!ENTITY foxtrick.prefs.modulelistlabel "Verfügbare Module. Via Checkbox können die einzelnen Module aktiviert werden.">
 <!ENTITY foxtrick.prefs.transitioninfo "FoxTrick wird derzeit generalüberholt, somit sind noch nicht alle gewünschten Funktionen verfügbar. Wir arbeiten mit Hochdruck daran!">
 
-<!ENTITY foxtrick.prefs.enable "Aktivieren">
+<!ENTITY foxtrick.prefs.enable "Aktivieren (Neustart erforderlich)">
+<!ENTITY foxtrick.prefs.btnlabelsave "Speichern">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Abbrechen">
 <!ENTITY foxtrick.prefs.preferences "Einstellungen">
 <!ENTITY foxtrick.prefs.visuals "Visuelles">
 <!ENTITY foxtrick.prefs.showonstatusbar "FoxTrick in der Statusbar anzeigen">

@@ -11,6 +11,8 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Pääasetukset">
+<!ENTITY foxtrick.prefs.btnlabelsave "Save">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Salli">
 <!ENTITY foxtrick.prefs.preferences "Asetukset">
 <!ENTITY foxtrick.prefs.visuals "Visuaalit">

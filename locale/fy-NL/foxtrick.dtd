@@ -11,6 +11,8 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Haadopsjes">
+<!ENTITY foxtrick.prefs.btnlabelsave "Save">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Ynskeakelje">
 <!ENTITY foxtrick.prefs.preferences "Foarkeuren">
 <!ENTITY foxtrick.prefs.visuals "Uterlik">
