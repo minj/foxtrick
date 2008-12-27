@@ -1,4 +1,4 @@
-﻿<!-- sr-SR
+<!-- sr-SR
      ljushaff
 -->
 
@@ -92,7 +92,7 @@
 <!ENTITY foxtrick.prefs.selectfile "Изабери звучни фајл">
 <!ENTITY foxtrick.prefs.stagesettings "Стејџ подешавања">
 <!ENTITY foxtrick.prefs.disableonstage "Искључи Фокстрик на Стејџ серверу">
-<!ENTITY foxtrick.prefs.alltidflags "Додаје Алтид заставице и линкове корисника у оквир поруке на страници форума">
+<!ENTITY foxtrick.prefs.alltidflags "Додаје Аллтид заставице и линкове за лиге корисника у оквир поруке на страници форума">
 <!ENTITY foxtrick.prefs.linksleague "Додаје неке спољне линкове на страници лиге">
 <!ENTITY foxtrick.prefs.linksteams "Додаје неке спољне линкове на страници тима">
 <!ENTITY foxtrick.prefs.linkscountry "Додаје неке спољне линкове на страници државе">

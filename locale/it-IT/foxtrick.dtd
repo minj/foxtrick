@@ -7,15 +7,15 @@
 <!ENTITY foxtrick.prefs.links "Collegamenti">
 <!ENTITY foxtrick.prefs.matches "Partite">
 <!ENTITY foxtrick.prefs.modulelistlabel "Moduli disponibili. Per attivare il modulo si deve spuntare la relativa casella di fianco.">
-<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick e' momento sottoposto ad una transizione verso il nuovo design di Hattrick. Stiamo facendo del nostro meglio per portare tutte le vecchie funzionalita' nel nuovo design. Siate pazienti e aspettatevi aggiornamenti regolari!">
+<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick e' al momento sottoposto ad una transizione verso il nuovo design di Hattrick. Stiamo facendo del nostro meglio per portare tutte le vecchie funzionalita' nel nuovo design. Siate pazienti e aspettatevi aggiornamenti regolari!">
 
 <!ENTITY foxtrick.prefs.mainoptions "Opzioni principali">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
+<!ENTITY foxtrick.prefs.btnlabelsave "Salva">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Annulla">
 <!ENTITY foxtrick.prefs.enable "Abilita">
 <!ENTITY foxtrick.prefs.preferences "Preferenze">
 <!ENTITY foxtrick.prefs.visuals "Visuali">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
+<!ENTITY foxtrick.prefs.showonstatusbar "Visualizza icona nella barra di stato">
 <!ENTITY foxtrick.prefs.stars "Stelle">
 <!ENTITY foxtrick.prefs.about "Informazioni su">
 <!ENTITY foxtrick.prefs.addstars "Aggiungi stelle">

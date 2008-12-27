@@ -11,8 +11,6 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Opções principais">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Activar">
 <!ENTITY foxtrick.prefs.preferences "Preferências">
 <!ENTITY foxtrick.prefs.visuals "Visuais">
@@ -90,17 +88,17 @@
 <!ENTITY foxtrick.prefs.forummessagetemplates "Templates das mensagens do fórum">
 <!ENTITY foxtrick.prefs.opendirectory "Abrir directório">
 <!ENTITY foxtrick.prefs.selectfile "Seleccionar ficheiro de som">
-<!ENTITY foxtrick.prefs.stagesettings "Stage settings">
-<!ENTITY foxtrick.prefs.disableonstage "Disable Foxtrick on Stage server">
-<!ENTITY foxtrick.prefs.alltidflags "Adds Alltid flags  and links of both posters on forum page">
-<!ENTITY foxtrick.prefs.linksleague "Adds some external links to the league page">
-<!ENTITY foxtrick.prefs.linksteams "Adds some external links to the teams page">
-<!ENTITY foxtrick.prefs.linkscountry "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkschallenges "Adds some external links to the country page">
-<!ENTITY foxtrick.prefs.linkseconomy "Adds some external links to the economy page">
-<!ENTITY foxtrick.prefs.linksyouthoverview "Adds some external links to the youth overview page">
-<!ENTITY foxtrick.prefs.linksarena "Adds some external links to the arena page">
-<!ENTITY foxtrick.prefs.linkscoach "Adds some external links to the coach page">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
+<!ENTITY foxtrick.prefs.stagesettings "Definições do Stage">
+<!ENTITY foxtrick.prefs.disableonstage "Desabilitar FoxTrick no servidor do Stage">
+<!ENTITY foxtrick.prefs.alltidflags "Adiciona as bandeiras do Alltid e links de ambos os autores das mensagens à página do fórum">
+<!ENTITY foxtrick.prefs.linksleague "Adiciona alguns links externos à página da série">
+<!ENTITY foxtrick.prefs.linksteams "Adiciona alguns links externos à página das equipas">
+<!ENTITY foxtrick.prefs.linkscountry "Adiciona alguns links externos à página do país">
+<!ENTITY foxtrick.prefs.linkschallenges "Adiciona alguns links externos à página de desafios">
+<!ENTITY foxtrick.prefs.linkseconomy "Adiciona alguns links externos à página de contabilidade">
+<!ENTITY foxtrick.prefs.linksyouthoverview "Adiciona alguns links externos à página principal da Academia">
+<!ENTITY foxtrick.prefs.linksarena "Adiciona alguns links externos à página do estádio">
+<!ENTITY foxtrick.prefs.linkscoach "Adiciona alguns links externos à página do treinador">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Adiciona alguns links externos à página de detalhes dos jogadores">
+<!ENTITY foxtrick.prefs.linksmatch "Adiciona alguns links externos à página de jogos">
 <!-- EOF -->
