@@ -27,7 +27,6 @@ var AttVsDef = {
 			var boxId = "foxtrick_attvsdefbars_box";
 
 			var bodydiv=doc.createElement('div');
-			bodydiv.className='boxBody';
 			var bodydivid = "foxtrick_attvsdefbars_content";
 			bodydiv.setAttribute( "id", bodydivid );
 			

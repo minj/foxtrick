@@ -170,33 +170,13 @@ var Ratings = {
 			}
 		};
 
-		this.ratingDefs["hatstatstotal"] = { label : "HatStats (short)",
+		this.ratingDefs["hatstatstotal"] = { label : "HatStats (total only)",
 			title : "HatStats Total only",
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
 				return Ratings.ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
 			}
 		};
-
-		this.ratingDefs["ahpoints"] = {	base : 1.0, weight : 4.0,
-			label : "AH-poeng",
-			title : "AH-poeng",
-
-			attack : function(attackLevel) {
-				return (3.0*this.base + this.weight*attackLevel);
-			},
-			defence : function(defenceLevel) {
-				return (3.0*this.base + this.weight*defenceLevel);
-			},
-			midfield : function(midfieldLevel) {
-				return 3.0*(this.base + this.weight*midfieldLevel);
-			},
-			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return this.attack(attackLevel)+
-					this.defence( defenceLevel)+
-					this.midfield(midfieldLevel);
-			}
-		};
-
+		
 		this.ratingDefs["loddarstats"] = {	base : 1.0, weight : 4.0,
 			label : "LoddarStats",
 			title : "LoddarStats",
