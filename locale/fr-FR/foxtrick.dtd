@@ -11,12 +11,12 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Général">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
+<!ENTITY foxtrick.prefs.btnlabelsave "Sauver">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Annuler">
 <!ENTITY foxtrick.prefs.enable "Activer">
 <!ENTITY foxtrick.prefs.preferences "Préférences">
 <!ENTITY foxtrick.prefs.visuals "Eléments visuels">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
+<!ENTITY foxtrick.prefs.showonstatusbar "Afficher l'icône Foxtrick dans la barre d'état">
 <!ENTITY foxtrick.prefs.stars "Etoiles">
 <!ENTITY foxtrick.prefs.about "A propos de">
 <!ENTITY foxtrick.prefs.addstars "Affichage classique">
