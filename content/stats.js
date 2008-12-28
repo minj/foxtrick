@@ -1110,6 +1110,18 @@ stats["camelmaster_economists"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/camelmasters.png"
 };    
 
+stats["htlinks_economists"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/Economist-Checker.html",
+
+        "economylink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        
+        "title" : "HT-Links.de Economist Checker",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htl_econ.png"
+};    
+
 /*  // illegal site. don't include again before CHPP approval
 stats["skillraise"] =  { 
         "url" : "http://www.htdaytrading.com/",
