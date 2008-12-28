@@ -52,14 +52,19 @@ var FoxtrickAddManagerButtons = {
 		var allDivs = doc.getElementsByTagName("div");
 		var teamID;
 		var ownerID;
+		var HTSupporter;
 				
 		// Get the teamID
 		for(var i = 0; i < allDivs.length; i++) {
-			//Retrieve owner manager ID - Stephan
+			//Retrieve owner manager ID - Stephan57
 			if(allDivs[i].id=="teamLinks") {
 				var teamLinks_a = allDivs[i].getElementsByTagName("a")[0];
 				ownerID = teamLinks_a.href.substr(
 					teamLinks_a.href.search( /TeamID=/i )+7 );
+			}
+			//Determine if teamID is HT-Supporter - Stephan57
+			if(allDivs[i].id=="ctl00_CPMain_ucManagerFace_pnlAvatar") {
+				HTSupporter=true;
 			}
 			if(allDivs[i].className=="main mainRegular") {
 				var divBoxHead = allDivs[i].getElementsByTagName( "div" )[0];
@@ -70,7 +75,7 @@ var FoxtrickAddManagerButtons = {
 			}
 		}
 			
-		//Do not add send message button for owner manager page. - Stephan
+		//Do not add send message button for owner manager page. - Stephan57
 		if ( ownerID==teamID ) return;
 		
 		var parentDiv = doc.createElement("div");
@@ -88,21 +93,25 @@ var FoxtrickAddManagerButtons = {
 		img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
 		messageLink.appendChild(img);
 		
-		var guestbookLink = doc.createElement("a");
-		guestbookLink.className = "inner";
-		guestbookLink.href = "Guestbook.aspx?teamid=" + teamID;
-		guestbookLink.title = Foxtrickl10n.getString(
-			"foxtrick.tweaks.writeinguestbook");
-			
-		var img = doc.createElement("img");
-		img.className = "actionIcon";
-		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
-		img.src = "chrome://foxtrick/content/resources/img/writeinguestbook.png";
-		guestbookLink.appendChild(img);
-			
 		parentDiv.appendChild(messageLink);
-		parentDiv.appendChild(guestbookLink);
-				
+
+		//Display GuestBook button only if teamid is HT-Supporter - Stephan57
+		if (HTSupporter) {	
+			var guestbookLink = doc.createElement("a");
+			guestbookLink.className = "inner";
+			guestbookLink.href = "Guestbook.aspx?teamid=" + teamID;
+			guestbookLink.title = Foxtrickl10n.getString(
+				"foxtrick.tweaks.writeinguestbook");
+			
+			var img = doc.createElement("img");
+			img.className = "actionIcon";
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
+			img.src = "chrome://foxtrick/content/resources/img/writeinguestbook.png";
+			guestbookLink.appendChild(img);
+			
+			parentDiv.appendChild(guestbookLink);
+		}
+		
 		// Append the box to the sidebar
 		var newBoxId = "foxtrick_actions_box";
 		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
