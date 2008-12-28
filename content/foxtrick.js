@@ -544,6 +544,18 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	}
 }
 
+function getSortedLinks(links) {
+  function sortfunction(a,b) {
+    return a.link.title.localeCompare(b.link.title);
+  }
+  links.sort(sortfunction);
+  return links;
+}
+
+function keysortfunction(a,b) {
+    return a.localeCompare(b);
+  }
+
 Foxtrick.initOptionsLinks = function(module,linktype) {
 		
 			module.OPTIONS = new Array();
@@ -551,7 +563,8 @@ Foxtrick.initOptionsLinks = function(module,linktype) {
 				if (stats[key][linktype]!=null) {
 					module.OPTIONS.push(key);
 				}
-			}			
+			}	
+			module.OPTIONS.sort(keysortfunction); 
 }
 
 Foxtrick.initOptionsLinksArray = function(module,linktypes) {
@@ -564,6 +577,7 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 				}
 			}			
 		}
+		module.OPTIONS.sort(keysortfunction);
 }
 
 Foxtrick.setStatusIconStyle = function(ev) {
