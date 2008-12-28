@@ -111,74 +111,78 @@ var FoxtrickMain = {
 
     // main entry run on every ht page load
     run : function( doc ) {
-        // call the modules that want to be run() on every hattrick page
-        Foxtrick.run_every_page.forEach(
-            function( fn ) {
-                try {
-                    fn.run( doc );
-                } catch (e) {
-                    dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
-                    Components.utils.reportError(e);
-                }
-            } );
+		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
+		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
+		if(!( FoxtrickPrefs.getBool("disableOnStage") &&
+			Foxtrick.getHref( doc).search( stage_regexp ) > -1)) {
+	
+			// call the modules that want to be run() on every hattrick page
+			Foxtrick.run_every_page.forEach(
+				function( fn ) {
+					try {
+						fn.run( doc );
+					} catch (e) {
+						dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
+						Components.utils.reportError(e);
+					}
+				} );
 
-        // call all modules that registered as page listeners
-        // if their page is loaded
+			// call all modules that registered as page listeners
+			// if their page is loaded
         
-        // find current page index/name and run all handlers for this page
-        for ( var i in Foxtrick.ht_pages )
-        {
-            if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) )
-            {
-                // on a specific page, run all handlers
-                Foxtrick.run_on_page[i].forEach(
-                    function( fn ) {
-                        try {
-                            fn.run( i, doc );
-                        } catch (e) {
-                            dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
-                            Components.utils.reportError(e);
-                        }
-                    } );
-            }
-        }
-
+			// find current page index/name and run all handlers for this page
+			for ( var i in Foxtrick.ht_pages ) {
+				if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {
+					// on a specific page, run all handlers
+					Foxtrick.run_on_page[i].forEach(
+						function( fn ) {
+							try {
+								fn.run( i, doc );
+							} catch (e) {
+								dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
+								Components.utils.reportError(e);
+							}
+						} );
+				}
+			}
+		}
     },
 	
 	// function run on every ht page change
 	change : function( doc ) {
-		// call the modules that want to be run() on every hattrick page
-        Foxtrick.run_every_page.forEach(
-            function( fn ) {
-                try {
-                    //fn.change( doc );
-					fn.run( doc );
-                } catch (e) {
-                    dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception: \n  " + e + "\n" );
-                    Components.utils.reportError(e);
-                }
-            } );
+		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
+		if(!( FoxtrickPrefs.getBool("disableOnStage") &&
+			Foxtrick.getHref( doc).search( stage_regexp ) > -1)) {
+			
+			// call the modules that want to be run() on every hattrick page
+			Foxtrick.run_every_page.forEach(
+				function( fn ) {
+					try {
+						fn.change( doc );
+					} catch (e) {
+						dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception: \n  " + e + "\n" );
+						Components.utils.reportError(e);
+					}
+				} );
 
-        // call all modules that registered as page listeners
-        // if their page is loaded
+			// call all modules that registered as page listeners
+			// if their page is loaded
         
-        // find current page index/name and run all handlers for this page
-        for ( var i in Foxtrick.ht_pages )
-        {
-            if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) )
-            {
-                // on a specific page, run all handlers
-                Foxtrick.run_on_page[i].forEach(
-                    function( fn ) {
-                        try {
-                            fn.change( i, doc );
-							//fn.run(i,doc);
-                        } catch (e) {
-                            dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n  " + e + "\n" );
-                            Components.utils.reportError(e);
-                        }
-                    } );
-            }
+			// find current page index/name and run all handlers for this page
+			for ( var i in Foxtrick.ht_pages ) {
+				if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {
+					// on a specific page, run all handlers
+					Foxtrick.run_on_page[i].forEach(
+						function( fn ) {
+							try {
+								fn.change( i, doc );
+							} catch (e) {
+								dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n  " + e + "\n" );
+								Components.utils.reportError(e);
+							}
+						} );
+				}
+			}
         }
 	}
 
@@ -186,13 +190,7 @@ var FoxtrickMain = {
 
 Foxtrick.isPage = function( page, doc ) {
 	var htpage_regexp = new RegExp( page, "i" );
-	var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-	if(!( FoxtrickPrefs.getBool("disableOnStage") &&
-		Foxtrick.getHref( doc).search( stage_regexp ) > -1)) {
-		return Foxtrick.getHref( doc ).search( htpage_regexp ) > -1;
-	} else { 
-		return false;
-	}
+	return Foxtrick.getHref( doc ).search( htpage_regexp ) > -1;
 }
 
 Foxtrick.getHref = function( doc ) {
