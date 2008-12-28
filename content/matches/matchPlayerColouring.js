@@ -1,6 +1,6 @@
 /**
- * Colours the player name in the match report.
- *  * @author tychobrailleur
+ * Colors the player name in the match report.
+ *  * @author tychobrailleur & Stephan57
  */
 
 FoxtrickMatchPlayerColouring = {
@@ -20,6 +20,7 @@ FoxtrickMatchPlayerColouring = {
         var teamA = null;
         var teamB = null;
         var regexp = new RegExp(":([^\\.]*?)\\.");
+		var FirstTeam = true; 
         var matchteamA = regexp.exec(content);
         if (matchteamA) {
             var resultat = doc.getElementById("resultat");
@@ -50,14 +51,36 @@ FoxtrickMatchPlayerColouring = {
                          link.style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
                      }                 
                  }
-             }
+             } 
+			 //Colors the name of the teams  on the right box like the players
+			 else { 
+			     if (FoxtrickMatchPlayerColouring._isLinkTeam(link.href)) {
+					 if (link.parentNode.parentNode.parentNode.parentNode.tagName=="TBODY") {
+						link.style.border = "1px solid #ccc";
+						if (FirstTeam) {
+							link.style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
+							link.style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+							FirstTeam = false;
+						}
+						else {
+						    link.style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+						}
+					 }
+				}
+			 }
          }
-      
     },
     
     _isLinkPlayer : function(url) {
         if (url) {
             return url.match(/Player\.aspx/);
+        }
+        return false;
+    },
+
+	_isLinkTeam : function(url) {
+        if (url) {
+            return url.match(/Club\/\?TeamID=/i);
         }
         return false;
     }
