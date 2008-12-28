@@ -22,14 +22,14 @@ var FoxtrickLinksTeam = {
     run : function( page, doc ) {
 		if (!this.isTeamPage(doc)) {return;}
 
+		
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var links = this.gatherLinks( alldivs[j], doc );
 				if (links.length > 0) {
 					var ownBoxBody = doc.createElement("div");
-					var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+					var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 					var ownBoxId = "foxtrick_" + header + "_box";
 					var ownBoxBodyId = "foxtrick_" + header + "_content";
 					ownBoxBody.setAttribute( "id", ownBoxBodyId );
@@ -39,7 +39,6 @@ var FoxtrickLinksTeam = {
 						ownBoxBody.appendChild(doc.createTextNode(" "));
 						ownBoxBody.appendChild(links[k].link);
 					}
-						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
 				}
 				break;
@@ -48,30 +47,10 @@ var FoxtrickLinksTeam = {
     },
 	
 	change : function( page, doc ) {
-		var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 		var ownBoxId = "foxtrick_" + header + "_box";
 		if( !doc.getElementById ( ownBoxId ) ) {
-			var alldivs = doc.getElementsByTagName('div');
-			for (var j = 0; j < alldivs.length; j++) {
-				if (alldivs[j].className=="main mainRegular") {
-					var links = this.gatherLinks( alldivs[j], doc );
-					if (links.length > 0) {
-						var ownBoxBody = doc.createElement("div");
-						var ownBoxBodyId = "foxtrick_" + header + "_content";
-						ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                                
-						for (var k = 0; k < links.length; k++) {
-							links[k].link.className ="inner";
-							ownBoxBody.appendChild(doc.createTextNode(" "));
-							ownBoxBody.appendChild(links[k].link);
-						}
-						
-						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
-					}
-					break;
-				}
-			}
+			this.run( page, doc );
 		}
 	},
 	

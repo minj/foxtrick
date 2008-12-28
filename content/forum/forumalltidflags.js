@@ -54,7 +54,7 @@ var FoxtrickAlltidFlags = {
 				} 
 				var innerdivs = alldivs[i].getElementsByTagName('div');
 				for (var k = 0; k < innerdivs.length; k++) {
-				  if (innerdivs[k].className=="cfHeader") { //Foxtrick.alert("W");
+				  if (innerdivs[k].className=="cfHeader") {
 				    var count=0;
 				    var linksArray = innerdivs[k].getElementsByTagName('a');
 				
@@ -110,6 +110,10 @@ var FoxtrickAlltidFlags = {
 	},
 	
 	change : function( page, doc ) {
-	
-	}
+		var spanId = "foxtrick_alltidspan_0";  // id of first added flag
+		if( !doc.getElementById ( spanId ) ) {
+			this.run( page, doc );
+		}
+	},	
+						
 };

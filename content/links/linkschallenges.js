@@ -43,6 +43,10 @@ var FoxtrickLinksChallenges = {
     },
 	
 	change : function( page, doc ) {
-	
-	}
+		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
+		var ownBoxId = "foxtrick_" + header + "_box";
+		if( !doc.getElementById ( ownBoxId ) ) {
+			this.run( page, doc );
+		}
+	},
 };

@@ -1436,15 +1436,13 @@ function getLinks2(stats, stattype, filterparams, doc, overridesettings, module)
         
         if (allowed) {
              var link = foxtrick_makelink(stat, statlink, filterparams, key, doc);
-             if (link != null) {
+             if (link != null) { 
                 links.push({"link" : getLinkElement(link, stat, doc), "stat" : stat});
              }
         }
 
     }
-
-  return links;
-
+  return getSortedLinks(links);
 }
 
 function getLinks(stattype, filterparams, doc, module) { 
@@ -1517,8 +1515,7 @@ function foxtrick_makelink(stat, statlink, filterparams, key, doc) {
         
     }
     
-    return link;
-    
+    return link;    
 }
 
 
@@ -1550,3 +1547,10 @@ function getLinkElement(link, stat, doc) {
     
 }
 
+function getSortedLinks(links) {
+  function sortfunction(a,b) {
+    return a.link.title.localeCompare(b.link.title);
+  }
+  links.sort(sortfunction);
+  return links;
+}
