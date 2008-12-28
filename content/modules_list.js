@@ -24,6 +24,7 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickFlagCollectionToMap,
                      FoxtrickTransferListSearchFilters,
                      FoxtrickTeamPopupLinks,
+					 FoxtrickMatchPlayerColouring,
                      AttVsDef, // AttVsDef should be placed before Ratings
 					 Ratings,
                      FoxtrickAlert,

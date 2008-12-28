@@ -27,6 +27,7 @@ var scripts = [
 	'forum/forumnextandprevious.js',
         'forum/htthreadmarker.js',
     'matches/matches.js',
+	'matches/matchPlayerColouring.js',
     'matches/ratings.js',
     'matches/attvsdef.js',
     'matches/matchOrdersFlipSides.js',
