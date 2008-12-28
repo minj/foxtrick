@@ -19,51 +19,92 @@ FoxtrickMatchPlayerColouring = {
         var content = doc.getElementsByTagName("h1")[0].parentNode.textContent;
         var teamA = null;
         var teamB = null;
-        var regexp = new RegExp(":([^\\.]*?)\\.");
+        var regexp = new RegExp(": ([^\\.]*?)\\.");
 		var FirstTeam = true; 
         var matchteamA = regexp.exec(content);
         if (matchteamA) {
-            var resultat = doc.getElementById("resultat");
             teamA = matchteamA[1].replace(/ \- /g, ", ").split(", ");
         }
 
         content = content.substring(content.indexOf(matchteamA[0])+matchteamA[0].length);
         var matchteamB = regexp.exec(content);
         if (matchteamB) {
-            var resultat = doc.getElementById("resultat");
             teamB = matchteamB[1].replace(/ \- /g, ", ").split(", ");
          }
          
+		 //Retrieve substitutions
+		 var spans = doc.getElementsByTagName("span");
+		 for (var i=0; i<spans.length; i++) {
+			var span_a = spans[i].getElementsByTagName("a");
+			for (var j=0; j<span_a.length; j++) {
+				if (FoxtrickMatchPlayerColouring._isLinkPlayer(span_a[j].href)) {
+					if (span_a[j].id == "") {
+						//Player Out
+						var SubPlayerName = span_a[j].textContent;
+						var b = SubPlayerName.indexOf(" ");
+						var l = SubPlayerName.length;
+						if (b>=0) {
+							var PlayerOut = SubPlayerName.substr(b+1,l-b+1);
+						} else {
+							var PlayerOut = SubPlayerName;
+						}
+						//Player In
+						var SubPlayerName = span_a[j+1].textContent;
+						var b = SubPlayerName.indexOf(" ");
+						var l = SubPlayerName.length;
+						if (b>=0) {
+							var PlayerIn = SubPlayerName.substr(b+1,l-b+1);
+						} else {
+							var PlayerIn = SubPlayerName;
+						}
+						//Add Player In to the players list
+						if (teamA.indexOf(PlayerOut) >=0) {
+								teamA = teamA + "," + PlayerIn;
+							}
+						if (teamB.indexOf(PlayerOut) >=0) {
+								teamB = teamB + "," + PlayerIn;
+							}
+						j=j+1;
+					}
+				}
+			}
+		 }
+		 
          var links = doc.getElementsByTagName("a");
-         for each(link in links) {
-             if (FoxtrickMatchPlayerColouring._isLinkPlayer(link.href)) {
-                 link.style.border = "1px solid #ccc";
-                 var playerName = link.textContent;
-                 for each(player in teamA) {
-                     if (playerName.indexOf(player) >=0) {
-                         link.style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
-                     }
+		 for (var i=0; i<links.length; i++) {
+             if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
+                 links[i].style.border = "1px solid #ccc";
+  				 var playerFullName = links[i].textContent;
+				 var b = playerFullName.indexOf(" ");
+				 var l = playerFullName.length;
+				 if (b>=0) {
+					var playerName = playerFullName.substr(b+1,l-b+1);
+				 } else {
+					var playerName = playerFullName;
+				 }
+
+                 if (teamA.indexOf(playerName) >=0) {
+                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+                     links[i].style.color = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
                  }
-                 
-                 for each(player in teamB) {
-                     if (playerName.indexOf(player) >=0) {
-                         link.style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
-                         link.style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
-                     }                 
-                 }
+                 if (teamB.indexOf(playerName) >=0) {
+                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
+                     links[i].style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+                 }                 
              } 
 			 //Colors the name of the teams  on the right box like the players
 			 else { 
-			     if (FoxtrickMatchPlayerColouring._isLinkTeam(link.href)) {
-					 if (link.parentNode.parentNode.parentNode.parentNode.tagName=="TBODY") {
-						link.style.border = "1px solid #ccc";
+			     if (FoxtrickMatchPlayerColouring._isLinkTeam(links[i].href)) {
+					 if (links[i].parentNode.parentNode.parentNode.parentNode.tagName=="TBODY") {
+						links[i].style.border = "1px solid #ccc";
 						if (FirstTeam) {
-							link.style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
-							link.style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+							links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+							links[i].style.color = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
 							FirstTeam = false;
 						}
 						else {
-						    link.style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+						    links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
+							links[i].style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
 						}
 					 }
 				}
@@ -84,5 +125,4 @@ FoxtrickMatchPlayerColouring = {
         }
         return false;
     }
-
 };
