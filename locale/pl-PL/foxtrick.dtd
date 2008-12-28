@@ -1,8 +1,8 @@
-<!-- pl-PL
+﻿<!-- pl-PL
      Kamil Homziak
 -->
 
-<!ENTITY foxtrick.prefs.shortcuts "Skróty i modyfikacje">
+<!ENTITY foxtrick.prefs.shortcuts "Modyfikacje">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Linki">
 <!ENTITY foxtrick.prefs.matches "Mecze">
@@ -11,12 +11,12 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Główne">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
+<!ENTITY foxtrick.prefs.btnlabelsave "Zapisz">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Anuluj">
 <!ENTITY foxtrick.prefs.enable "Włącz">
 <!ENTITY foxtrick.prefs.preferences "Opcje">
 <!ENTITY foxtrick.prefs.visuals "Graficzne">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
+<!ENTITY foxtrick.prefs.showonstatusbar "Pokazuj ikonę na pasku zadań Firefoxa">
 <!ENTITY foxtrick.prefs.stars "Gwiazdki">
 <!ENTITY foxtrick.prefs.about "O FoxTricku">
 <!ENTITY foxtrick.prefs.addstars "Dodaj gwiazdki">
