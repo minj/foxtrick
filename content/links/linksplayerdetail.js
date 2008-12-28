@@ -6,49 +6,6 @@
 
  
 ////////////////////////////////////////////////////////////////////////////////
-//---------------------------------------------------------------------------    
-function findPlayerId(element) {
-  var links = element.getElementsByTagName('a');
-  
-  for (var i=0; i < links.length; i++) {
-    if ( links[i].href.match(/playerID=/i) ) {
-      return links[i].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-    }
-  }
-  
-  return null;
-}
-
-
-function findTeamId(element) {
-  var links = element.getElementsByTagName('a');
-  
-  for (var i=0; i < links.length; i++) {
-    if ( links[i].href.match(/Club\/\?TeamID=/i) ) {
-      return links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0];
-    }
-  }
-  
-  return null;
-}
-
-function findCountryId(element) {
-  var links = element.getElementsByTagName('a');
-  
-  for (var i=0; i < links.length; i++) {
-    if ( links[i].href.match(/League\.aspx/i) ) {
-      return links[i].href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
-    }
-  }
-  
-  return null;
-}
-
-function getSkillLevelFromLink(link) {
-  var value = link.href.replace(/.+(ll|labellevel)=/i, "").match(/^\d+/);   
-  return value;
-}
-
 var FoxtrickLinksPlayerDetail = {
 	
     MODULE_NAME : "LinksPlayerDetail",
@@ -70,10 +27,9 @@ var FoxtrickLinksPlayerDetail = {
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
-				var teamid = findTeamId(thisdiv);
-				var nationality = findCountryId(thisdiv);
-				//var playerid = doc.location.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-				var playerid = findPlayerId(thisdiv);
+				var teamid = FoxtrickHelper.findTeamId(thisdiv);
+				var nationality = FoxtrickHelper.findCountryId(thisdiv);
+				var playerid = FoxtrickHelper.findPlayerId(thisdiv);
 				var form = null, age = null, tsi = null, exp = null;
 				var stamina = 0, goalkeeping = 0, playmaking = 0, passing = 0, winger = 0, defending = 0, scoring = 0, setpieces = 0;
 				
@@ -94,8 +50,8 @@ var FoxtrickLinksPlayerDetail = {
 				var links= thisdiv.getElementsByTagName('a');
 				for (var i=0; i < links.length; i++) {
 					if ( links[i].href.match(/skillshort/i) ) {
-						if (count==0) {form = getSkillLevelFromLink(links[i]);}
-						else if (count==1) {sta = getSkillLevelFromLink(links[i]);}
+						if (count==0) {form = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
+						else if (count==1) {sta = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
 						else if (count==2) break;
 						count++;
 						}
@@ -116,24 +72,24 @@ var FoxtrickLinksPlayerDetail = {
 					if ( divs[j].className=="mainBox" ) {
 						var PlayerDetailTable = divs[j].getElementsByTagName("table")[0];
 						if (PlayerDetailTable.rows.length==4) {  // old table
-							stamina = getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[1].getElementsByTagName('a')[0]);
-							goalkeeping = getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[3].getElementsByTagName('a')[0]);
-							playmaking = getSkillLevelFromLink(PlayerDetailTable.rows[1].cells[1].getElementsByTagName('a')[0]);
-							passing = getSkillLevelFromLink(PlayerDetailTable.rows[1].cells[3].getElementsByTagName('a')[0]);
-							winger = getSkillLevelFromLink(PlayerDetailTable.rows[2].cells[1].getElementsByTagName('a')[0]);
-							defending = getSkillLevelFromLink(PlayerDetailTable.rows[2].cells[3].getElementsByTagName('a')[0]);
-							scoring = getSkillLevelFromLink(PlayerDetailTable.rows[3].cells[1].getElementsByTagName('a')[0]);
-							setpieces = getSkillLevelFromLink(PlayerDetailTable.rows[3].cells[3].getElementsByTagName('a')[0]);
+							stamina = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[1].getElementsByTagName('a')[0]);
+							goalkeeping = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[3].getElementsByTagName('a')[0]);
+							playmaking = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[1].cells[1].getElementsByTagName('a')[0]);
+							passing = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[1].cells[3].getElementsByTagName('a')[0]);
+							winger = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[2].cells[1].getElementsByTagName('a')[0]);
+							defending = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[2].cells[3].getElementsByTagName('a')[0]);
+							scoring = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[3].cells[1].getElementsByTagName('a')[0]);
+							setpieces = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[3].cells[3].getElementsByTagName('a')[0]);
 							goalkeeperskillnode = PlayerDetailTable.rows[0].cells[3].getElementsByTagName('a')[0];
 						}
 						if (PlayerDetailTable.rows.length==7) { //new table
-							goalkeeping = getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[1].getElementsByTagName('a')[0]);
-							defending = getSkillLevelFromLink(PlayerDetailTable.rows[1].cells[1].getElementsByTagName('a')[0]);
-							playmaking = getSkillLevelFromLink(PlayerDetailTable.rows[2].cells[1].getElementsByTagName('a')[0]);
-							winger = getSkillLevelFromLink(PlayerDetailTable.rows[3].cells[1].getElementsByTagName('a')[0]);
-							passing = getSkillLevelFromLink(PlayerDetailTable.rows[4].cells[1].getElementsByTagName('a')[0]);
-							scoring = getSkillLevelFromLink(PlayerDetailTable.rows[5].cells[1].getElementsByTagName('a')[0]);
-							setpieces = getSkillLevelFromLink(PlayerDetailTable.rows[6].cells[1].getElementsByTagName('a')[0]);
+							goalkeeping = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[1].getElementsByTagName('a')[0]);
+							defending = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[1].cells[1].getElementsByTagName('a')[0]);
+							playmaking = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[2].cells[1].getElementsByTagName('a')[0]);
+							winger = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[3].cells[1].getElementsByTagName('a')[0]);
+							passing = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[4].cells[1].getElementsByTagName('a')[0]);
+							scoring = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[5].cells[1].getElementsByTagName('a')[0]);
+							setpieces = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[6].cells[1].getElementsByTagName('a')[0]);
 							goalkeeperskillnode = PlayerDetailTable.rows[0].cells[1];
 						}
 						else {  // something is wrong

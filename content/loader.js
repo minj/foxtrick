@@ -12,6 +12,7 @@ var scripts = [
     'module.js',
     'stats.js',
     'l10n.js',
+	'helper.js',
 
     // individual modules
     'forum/forumtemplates.js',

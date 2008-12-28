@@ -53,4 +53,5 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickPersonalityImages,
                      FoxtrickSkinPlugin,
                      FoxtrickHTThreadMarker,
+					 FoxtrickHelper,
                    ];

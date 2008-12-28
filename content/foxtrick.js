@@ -574,3 +574,5 @@ Foxtrick.setStatusIconStyle = function(ev) {
         image.style.display = "none";
     }
 }
+
+
