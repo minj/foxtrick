@@ -9,7 +9,7 @@
  * "params"     : { "infocode" : "" }   -> info[infocode]  // eg alltid
  * "params"     : { "" : "#text" }   -> #text   			//eg maptrick , first letter non alphanumeric
  * "params"     : { "infocode" : "," }   -> ,info[infocode]   //eg alltid, first letter non alphanumeric
- /*
+ */
  
 var vnukstatsranges = {};
 
@@ -1130,7 +1130,7 @@ stats["coachexperience"] =  {
                        },
         
         "title" : "Coach experience table",
-        "shorttitle" : "Coach experience table"
+        "shorttitle" : "Cet"
 };
 
 /*  // down
@@ -1313,16 +1313,27 @@ stats["arenaoptimizer"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/arenaoptimizer.gif"
 };
 
-stats["eco_arena"] =  { 
+stats["nrg_eco_arena"] =  { 
         "url" : "http://nrgjack.altervista.org/",
         "arenalink" : { "path"       : "eco.php/",
                          "filters"    : [], 
-                         "params"     : []
+                         "params"     : { "terraces" : "terraces", "basic": "basic", "roof" : "roof", "vip" : "vip"}                       
                        },
+
         "title" : "Enterprise Construction Online",
-        "img" : "chrome://foxtrick/content/resources/linkicons/eco.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/nrg.png"
 };
 
+stats["nrg_newcoach"] =  { 
+        "url" : "http://nrgjack.altervista.org/",
+	    "coachlink" : { "path"       : "fc.php/",
+                         "filters"    : [], 
+                         "params"     : {  }
+                       },
+ 
+        "title" : "NRG Future Coach",
+        "img" : "chrome://foxtrick/content/resources/linkicons/nrg.png"
+};
 
 // ArgenStat
 stats["argenstat"] =  { 
