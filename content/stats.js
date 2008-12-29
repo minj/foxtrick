@@ -1,3 +1,16 @@
+/**
+ * stats.js
+ * Foxtrick links collection
+ * @author other,convinced
+ */
+
+/*
+ * "params"     : { "infocode" : "text" }   -> ?text=info[infocode]
+ * "params"     : { "infocode" : "" }   -> info[infocode]  // eg alltid
+ * "params"     : { "" : "#text" }   -> #text   			//eg maptrick , first letter non alphanumeric
+ * "params"     : { "infocode" : "," }   -> ,info[infocode]   //eg alltid, first letter non alphanumeric
+ /*
+ 
 var vnukstatsranges = {};
 
 vnukstatsranges["czech"] = [[93617,93784], [115871,116382], [480223, 482270]];
@@ -554,6 +567,11 @@ stats["alltid"] =  {
                          "filters"    : [], 
                          "params"     : { "matchid" : "","match":"" }
                        },
+        "matchlink" : { "path"       : "teamcompare/",
+                         "filters"    : [], 
+                         "params"     : { "teamid" : "","teamid2":"," }
+                       },
+        
         
         "title" : "Alltid Hattrick Statistikk International",
         "img" : "chrome://foxtrick/content/resources/linkicons/ahstats.png"
@@ -953,19 +971,49 @@ stats["httoolsfriendlymanager"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_friendly.png"
 };  */  
 
-/* // down
-// Maptrick
-stats["maptrick"] =  { 
-        "url" : "http://maptrick.nl.eu.org/~laszlo/",
+ // Maptrick
 
-        "countrylink" : { "path"       : "",
-                         "filters"    : [], 
-                         "params"     : { "countryid" : "leagueid" }
-                       },
+stats["maptrick_coolness"] =  { 
+        "url" : "http://www.maptrick.org/",
+ 
+        "teamlink" : { "path"		: "coolness.php",
+						"filters"	: [],
+						"params"	: { "teamid" : "team" ,"":"#results"}
+						},
+         
+        "title" : "Maptrick Coolness",
+         "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
+};
+
+stats["maptrick_hoc"] =  { 
+        "url" : "http://www.maptrick.org/",
+
+        "countrylink" : { "path"	: "hallofcool.php",
+						"filters"	: [],
+						"params"	: { "countryid" : "country" }
+						},
+		
+		"leaguelink" : { "path"		: "hallofcool.php",
+						"filters"	: [],
+						"params"	: { "leagueid" : "league" }
+						},
         
-        "title" : "Maptrick",
+        "title" : "Maptrick Hall of Cool",
         "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
-};*/
+};
+
+stats["maptrick_botmap"] =  { 
+        "url" : "http://www.maptrick.org/",
+
+        "countrylink" : { "path"	: "botmap.php",
+						"filters"	: [],
+						"params"	: { "countryid" : "country" }
+						},
+        
+        "title" : "Maptrick Botmap",
+        "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
+};
+ 
 
 // HT-Dog
 stats["ht-dog"] =  { 
@@ -1475,10 +1523,12 @@ function foxtrick_makelink(stat, statlink, filterparams, key, doc) {
              } else {
                 temp = "&";
              }
-             
+			 	
+             if (!params[paramkey].charAt(0).match(/\w+/)) {temp="";}
              if (filterparams[paramkey] != null) {
-                args += (params[paramkey] != "" ? (temp + params[paramkey] + "=") : "")+ encodeURIComponent(filterparams[paramkey]);
-             }
+                args += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(filterparams[paramkey]);
+				}
+			else {args += (params[paramkey] != "" ? temp + params[paramkey] : "");}
         }
 
     } else {
