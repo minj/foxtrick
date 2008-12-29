@@ -35,7 +35,7 @@ var AttVsDef = {
 					this._oldStyleBars(doc, ratingstable, bodydiv);
 				}
 				else {
-					this._newStyleBars(doc, ratingstable, bodydiv, sidebar);
+					this._newStyleBars(doc, ratingstable, bodydiv);
 				}
 			} else {
 				bodydiv.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
@@ -125,7 +125,8 @@ var AttVsDef = {
 		bodydiv.appendChild(barsdiv);
 	},
 	
-	_newStyleBars: function (doc, ratingstable, bodydiv, sidebar) {
+	_newStyleBars: function (doc, ratingstable, bodydiv) {
+		var sidebar = doc.getElementById("sidebar");
 		var percentArray=this._getPercentArray(doc, ratingstable);
 		var strangediv=sidebar.childNodes[7].childNodes[1].childNodes[7];
 		if (strangediv) {}
