@@ -26,6 +26,8 @@ var FoxtrickGoToPostBox = {
 				aSelectBoxes.push(selectBoxBottom);
 			for (i=0; i<aSelectBoxes.length;i++){
 				var boxId = 'foxtrick_forum_postbox_' + i;
+				if (doc.getElementById(boxId))
+					continue;
 				var selectBox = aSelectBoxes[i];
 				var inputBoxTop = doc.createElement('input');
 				var goButton = doc.createElement('input');
