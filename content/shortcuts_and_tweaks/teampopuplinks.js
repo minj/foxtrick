@@ -9,10 +9,11 @@ var FoxtrickTeamPopupLinks = {
     MODULE_NAME : "TeamPopupLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
-	OPTIONS : new Array("Matches", "Players", "last_5_ips", "Guestbook"),
+	OPTIONS : {},
 
     init : function() {
     	Foxtrick.registerAllPagesHandler( FoxtrickTeamPopupLinks );
+		this.initOptions();
     },
 
     run : function( doc ) {
@@ -150,6 +151,13 @@ var FoxtrickTeamPopupLinks = {
 	
 	change : function( page, doc ) {
 	
+	},
+	
+	initOptions : function() {
+		this.OPTIONS = new Array( Foxtrickl10n.getString( "Matches" ),
+								  Foxtrickl10n.getString( "Players" ),
+								  Foxtrickl10n.getString( "last_5_ips" ),
+								  Foxtrickl10n.getString( "Guestbook" ));
 	}
 };
 
