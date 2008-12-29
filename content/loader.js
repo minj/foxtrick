@@ -27,6 +27,7 @@ var scripts = [
 	'forum/forumhidesignatures.js',
 	'forum/forumnextandprevious.js',
         'forum/htthreadmarker.js',
+        'forum/forumgotopostbox.js',
     'matches/matches.js',
 	'matches/matchPlayerColouring.js',
     'matches/ratings.js',

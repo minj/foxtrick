@@ -14,6 +14,7 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
 					 FoxtrickHideManagerAvatarUserInfo,
                      FoxtrickForumStaffMarker,
+                     FoxtrickGoToPostBox,
                      FoxtrickMedianTransferPrice,
                      FoxtrickYouthSkillNotes,
                      FoxtrickAddLeaveConfButton,
