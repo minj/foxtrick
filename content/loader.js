@@ -49,6 +49,7 @@ var scripts = [
 	'shortcuts_and_tweaks/economyDifference.js',
 	'shortcuts_and_tweaks/personalityImages.js',
 	'shortcuts_and_tweaks/skinPlugin.js',
+	'shortcuts_and_tweaks/teamStats.js',
     'links/linksleague.js',
 	'links/linksteam.js',
 	'links/linkscountry.js',
