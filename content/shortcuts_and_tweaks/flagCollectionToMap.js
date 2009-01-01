@@ -75,15 +75,18 @@ FoxtrickFlagCollectionToMap = {
         mapDiv.id = 'foxtrick-map' + mapId;
         mapDiv.style.padding = '5 0 5 0';
         mapDiv.style.display = 'none';
-        mapDiv.style.width = '355px';
+        mapDiv.style.width = '550px'; 
     
         var openMapA = document.createElement('A');
-        openMapA.appendChild(document.createTextNode("Show map"));
+		//Add localization - Stephan57
+        const ShowMap = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.ShowMap");
+        const HideMap = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.HideMap");
+        openMapA.appendChild(document.createTextNode(ShowMap));
         openMapA.name = 'flags' + mapId;
         openMapA.href = '#';
         openMapA.id = 'flagsA' + mapId;
-        openMapA.setAttribute('onClick', 'if(document.getElementById(\'foxtrick-map' + mapId + '\').style.display == \'none\'){document.getElementById(\'foxtrick-map' + mapId + '\').style.display = \'block\'; document.getElementById(\'flagsA' + mapId +'\').innerHTML = \'Hide map\'; }else {document.getElementById(\'foxtrick-map' + mapId +'\').style.display = \'none\';document.getElementById(\'flagsA' + mapId +'\').innerHTML = \'Show map\';}; return false');
-
+        openMapA.setAttribute('onClick', 'if(document.getElementById(\'foxtrick-map' + mapId + '\').style.display == \'none\'){document.getElementById(\'foxtrick-map' + mapId + '\').style.display = \'block\'; document.getElementById(\'flagsA' + mapId + '\').innerHTML = \'' + HideMap + '\'; }else {document.getElementById(\'foxtrick-map' + mapId +'\').style.display = \'none\';document.getElementById(\'flagsA' + mapId +'\').innerHTML = \'' + ShowMap + '\';}; return false');
+		
         this.insertBeforeOrAppend(parent, mapDiv, insertBefore);
         this.insertBeforeOrAppend(parent, document.createElement('br'), insertBefore);
         this.insertBeforeOrAppend(parent, openMapA, insertBefore);
@@ -287,13 +290,20 @@ FoxtrickFlagCollectionToMap = {
     
     getMapHtml: function(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId){
         var href = '#';
-        
-        var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';return false;">Africa</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';return false;">Asia</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';return false;">Europe</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';return false;">Middle East</a>  | ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';return false;">South America</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';return false;">World</a><br/>';
+		//Get locale name of the continents - Stephan57
+        const Africa = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Africa");
+		const Asia = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Asia");
+		const Europe = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Europe");
+		const MEast = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.MEast");
+		const SAmerica = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.SAmerica");
+		const World = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.World");
+		
+        var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';return false;">' + Africa + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';return false;">' + Asia + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';return false;">' + Europe + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';return false;">' + MEast + '</a>  | ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';return false;">' + SAmerica + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';return false;">' + World + '</a><br/>';
         mapHtml +=    '<img alt="Map" id="foxtrick-img-map-'+anchorId+'" src="' + urlWorld + '"/>';
         return mapHtml;
     },
@@ -305,7 +315,8 @@ FoxtrickFlagCollectionToMap = {
     getMapUrl : function(areaParam, countryCodes, colorOrder) {
         var base = 'http://chart.apis.google.com/chart';
         var chartType = '?cht=t';
-        var dimensions = '&chs=355x180';
+		var dimensions = '&chs=440x220';
+
         var colors = '&chco=ffffff,339933,339933';
         var order = '&chd=s:' + colorOrder;
         var countries = '&chld=' + countryCodes;
