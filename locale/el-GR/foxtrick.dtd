@@ -1,6 +1,5 @@
-<!-- el-GR
-     GTTWINS (5055092)
-	 UTF-8 encoded file
+<!-- en-US
+     Karel Kolman
 -->
 
 <!ENTITY foxtrick.prefs.shortcuts "Óõíôïìåýóåéò êáé ðñïóáñìïãÝò">
@@ -12,12 +11,10 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "ÂáóéêÝò åðéëïãÝò">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Åíåñãïðïßçóå">
 <!ENTITY foxtrick.prefs.preferences "ÐñïôéìÞóåéò">
 <!ENTITY foxtrick.prefs.visuals "ÅéêáóôéêÜ">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
+<!ENTITY foxtrick.prefs.showonstatusbar "Åìöáíßæåé åéêïíßäéï óôçí ãñáììÞ êáôÜóôáóçò">
 <!ENTITY foxtrick.prefs.stars "ÁóôÝñéá">
 <!ENTITY foxtrick.prefs.about "Ó÷åôéêÜ">
 <!ENTITY foxtrick.prefs.addstars "Ðñüóèåóå áóôÝñéá">
@@ -105,3 +102,5 @@
 <!ENTITY foxtrick.prefs.linksplayerdetail "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá óôïé÷åßùí ôïõ ðáßêôç">
 <!ENTITY foxtrick.prefs.linksmatch "ÐñïóèÝôåé åîùôåñéêïýò óõíäÝóìïõò óôç óåëßäá áãþíùí">
 <!-- EOF -->
+
+

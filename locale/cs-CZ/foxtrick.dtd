@@ -11,12 +11,12 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Hlavní nastavení">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
+<!ENTITY foxtrick.prefs.btnlabelsave "Uložit">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Zrušit">
 <!ENTITY foxtrick.prefs.enable "Zapnout">
 <!ENTITY foxtrick.prefs.preferences "Předvolby">
 <!ENTITY foxtrick.prefs.visuals "Úpravy vzhledu">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
+<!ENTITY foxtrick.prefs.showonstatusbar "Zobrazit ikonu ve stavové liště">
 <!ENTITY foxtrick.prefs.stars "Hvězdičky">
 <!ENTITY foxtrick.prefs.about "O rozšíření">
 <!ENTITY foxtrick.prefs.addstars "Přidat hvězdičky">

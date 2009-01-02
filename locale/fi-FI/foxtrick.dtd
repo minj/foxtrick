@@ -11,7 +11,9 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Pääasetukset">
-<!ENTITY foxtrick.prefs.enable "Salli">
+<!ENTITY foxtrick.prefs.btnlabelsave "Tallenna">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Peruuta">
+<!ENTITY foxtrick.prefs.enable "Salli (vaatii uudelleenkäynnistyksen)">
 <!ENTITY foxtrick.prefs.preferences "Asetukset">
 <!ENTITY foxtrick.prefs.visuals "Visuaalit">
 <!ENTITY foxtrick.prefs.showonstatusbar "Näytä tilapalkki-ikoni">
@@ -77,9 +79,9 @@
 <!ENTITY foxtrick.prefs.htcurrency "Hattrick valuutta">
 <!ENTITY foxtrick.prefs.main "Main">
 <!ENTITY foxtrick.prefs.alertsettings "Hälytys-asetukset">
-<!ENTITY foxtrick.prefs.alertslider "Näytä halytys-liukupalkki.">
+<!ENTITY foxtrick.prefs.alertslider "Näytä halytys-liukupalkki">
 <!ENTITY foxtrick.prefs.foxtrickinstatusbar "Näytä Foxtrickin paneeli Firefoxin tehtäväpalkissa.">
-<!ENTITY foxtrick.prefs.alertsound "Soita hälytys ääni.">
+<!ENTITY foxtrick.prefs.alertsound "Soita hälytys-ääni">
 <!ENTITY foxtrick.prefs.alertslidermac "Näytä murahdus-ilmoitus (Mac only)">
 <!ENTITY foxtrick.menu.createplayerad "Luo pelaajamainos leikepöytiin.">
 <!ENTITY foxtrick.prefs.htdateformat "Päiväyksen muoto">
@@ -90,15 +92,15 @@
 <!ENTITY foxtrick.prefs.selectfile "Valitse äänitiedosto">
 <!ENTITY foxtrick.prefs.stagesettings "Stage-asetukset">
 <!ENTITY foxtrick.prefs.disableonstage "Estä Foxtrick Stage-serverillä">
-<!ENTITY foxtrick.prefs.alltidflags "Lisää Alltid liput ja molempien postereiden linkit foorumi sivulla">
-<!ENTITY foxtrick.prefs.linksleague "Lisää joitain ulkoisia linkkejä sarja -sivulle">
-<!ENTITY foxtrick.prefs.linksteams "Lisää joitain ulkoisia linkkejä joukkue -sivulle">
-<!ENTITY foxtrick.prefs.linkscountry "Lisää joitain ulkoisia linkkejä maa -sivulle">
-<!ENTITY foxtrick.prefs.linkschallenges "Lisää joitain ulkoisia linkkejä haaste -sivulle">
+<!ENTITY foxtrick.prefs.alltidflags "Lisää Alltid liput ja molempien postereiden linkit foorumisivulla">
+<!ENTITY foxtrick.prefs.linksleague "Lisää joitain ulkoisia linkkejä sarjasivulle">
+<!ENTITY foxtrick.prefs.linksteams "Lisää joitain ulkoisia linkkejä joukkuesivulle">
+<!ENTITY foxtrick.prefs.linkscountry "Lisää joitain ulkoisia linkkejä maasivulle">
+<!ENTITY foxtrick.prefs.linkschallenges "Lisää joitain ulkoisia linkkejä haastesivulle">
 <!ENTITY foxtrick.prefs.linkseconomy "Lisää joitain ulkoisia linkkejä talous-sivulle">
 <!ENTITY foxtrick.prefs.linksyouthoverview "Lisää joitain ulkoisia linkkejä juniorijoukkueen yleiskatsaus-sivulle">
-<!ENTITY foxtrick.prefs.linksarena "Lisää joitain ulkoisia linkkejä stadion -sivulle">
-<!ENTITY foxtrick.prefs.linkscoach "Lisää joitain ulkoisia linkkejä valmentaja -sivulle">
-<!ENTITY foxtrick.prefs.linksplayerdetail "Lisää joitain ulkoisia linkkejä pelaajien henkilötieto -sivulle">
+<!ENTITY foxtrick.prefs.linksarena "Lisää joitain ulkoisia linkkejä stadionsivulle">
+<!ENTITY foxtrick.prefs.linkscoach "Lisää joitain ulkoisia linkkejä valmentaja-sivulle">
+<!ENTITY foxtrick.prefs.linksplayerdetail "Lisää joitain ulkoisia linkkejä pelaajien henkilötieto-sivulle">
 <!ENTITY foxtrick.prefs.linksmatch "Lisää joitain ulkoisia linkkejä ottelut -sivulle">
 <!-- EOF -->

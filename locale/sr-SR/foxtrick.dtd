@@ -13,7 +13,7 @@
 <!ENTITY foxtrick.prefs.mainoptions "Главне опције">
 <!ENTITY foxtrick.prefs.btnlabelsave "Сачувај">
 <!ENTITY foxtrick.prefs.btnlabelcancel "Одустани">
-<!ENTITY foxtrick.prefs.enable "Укључи">
+<!ENTITY foxtrick.prefs.enable "Укључи (потребан је рестарт)">
 <!ENTITY foxtrick.prefs.preferences "Подешавања">
 <!ENTITY foxtrick.prefs.visuals "Изглед">
 <!ENTITY foxtrick.prefs.showonstatusbar "Прикажи иконицу у статус бару">

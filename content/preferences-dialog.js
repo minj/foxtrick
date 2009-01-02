@@ -369,18 +369,23 @@ var FoxtrickPreferencesDialog = {
         desc.setAttribute( "multiline", "true" );
         desc.setAttribute( "flex", "0" );
         desc.setAttribute( "style", "overflow:hidden;" );
-        var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
-		desc.appendChild( desc_text );
+		var desc_text = FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME );
+		var desc_text_trunc = desc_text;
+		if( desc_text.length > 75 ) {
+			desc_text_trunc = desc_text_trunc.substr(0,72) + "...";
+		}
+        var desc_textnode = document.createTextNode( desc_text_trunc );
+		desc.appendChild( desc_textnode );
         desc_box.appendChild( desc );
-        if (FoxtrickPreferencesDialog.getModuleDescription_More( module.MODULE_NAME )) {
+        if ( desc_text.length > 75 ) {
             var info = document.createElement( "image" );
             info.setAttribute ( "align", "start");
             info.setAttribute ( "flex", "1");
             info.setAttribute ( "class", "btnhelp" );
             info.addEventListener( "click", function ()  {
                                  FoxtrickPreferencesDialog.prefhelp_show(
-                                   module.MODULE_NAME,
-                                   FoxtrickPreferencesDialog.getModuleDescription_More( module.MODULE_NAME ), 
+								   module.MODULE_NAME,
+                                   FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ), 
                                    this) 
                                  }, false );
             var spacer = document.createElement( "spacer" );

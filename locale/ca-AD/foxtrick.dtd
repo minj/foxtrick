@@ -12,14 +12,14 @@
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Opcions principals">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
-<!ENTITY foxtrick.prefs.enable "Habilita">
+<!ENTITY foxtrick.prefs.btnlabelsave "Desa">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Canceŀla">
+<!ENTITY foxtrick.prefs.enable "Habilita (cal reiniciar)">
 <!ENTITY foxtrick.prefs.preferences "Preferències">
 <!ENTITY foxtrick.prefs.visuals "Visuals">
 <!ENTITY foxtrick.prefs.showonstatusbar "Mostra la icona a la barra d'estat">
 <!ENTITY foxtrick.prefs.stars "Estrelles">
-<!ENTITY foxtrick.prefs.about "Quant a…">
+<!ENTITY foxtrick.prefs.about "Quant a">
 <!ENTITY foxtrick.prefs.addstars "Afegeix estrelles">
 <!ENTITY foxtrick.prefs.replacestars "Substitueix estrelles">
 <!ENTITY foxtrick.prefs.defaulthattrickstars "Empra les estrelles per defecte de Hattrick.">

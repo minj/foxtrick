@@ -138,25 +138,25 @@
 				<label value="LA-Fryslanner-777 (440454), Kurdy_Malloy (1105139)" />
 				<label value="Translations"
 				       style="font-weight: bold;" />
-				<label value="* Bosnian (by Masterix (1617453))" />
-                <label value="* Catalan (by carlesmu (311845))" />
-				<label value="* Cesky (by gucan (480304))" />
-				<label value="* Dansk (by 05erth (1499168), LasseSvendsen (403068))" />
-				<label value="* Deutsch (by spambot (333791))" />
-				<label value="* Ellinika (by GTTWINS (900949))" />
-				<label value="* English (developers)" />
-				<label value="* Español (by franory (1369028))" />
-				<label value="* Español, Centroamericano (by baler0 (26877))" />
-				<label value="* Français (by stephan57 (1751312))" />
-				<label value="* Frysk (by LA-Fryslanner-777 (440454))" />
-				<label value="* Italiano (by caracca (240459))" />
-				<label value="* Nederlands (by eekels (768188))" />
-				<label value="* Polski (by Homzik (79468))" />
-				<label value="* Português (by _recluso_ (738571))" />
-				<label value="* Português, Brasil (by MarceloFBrandao (715122))" />
-				<label value="* Russian (by _KOHb_ (28914))" />
-				<label value="* Srpski (by ljushaff (1103875))" />
-				<label value="* Suomi (by Pyntsa (554581), Leach71 (259106))" />
+				<label value="* Bosnian - Masterix (1617453)" />
+				<label value="* Catalan - carlesmu (311845)" />
+				<label value="* Cesky - gucan (480304)" />
+				<label value="* Dansk - 05erth (1499168), LasseSvendsen (403068)" />
+				<label value="* Deutsch - spambot (333791)" />
+				<label value="* Ellinika - GTTWINS (900949)" />
+				<label value="* English - (developers)" />
+				<label value="* Español - franory (1369028)" />
+				<label value="* Español, Centroamericano - baler0 (26877)" />
+				<label value="* Français - stephan57 (1751312)" />
+				<label value="* Frysk - LA-Fryslanner-777 (440454)" />
+				<label value="* Italiano - caracca (240459)" />
+				<label value="* Nederlands - eekels (768188)" />
+				<label value="* Polski - Homzik (79468)" />
+				<label value="* Português - _recluso_ (738571)" />
+				<label value="* Português, Brasil - MarceloFBrandao (715122)" />
+				<label value="* Russian - _KOHb_ (28914)" />
+				<label value="* Srpski - ljushaff (1103875)" />
+				<label value="* Suomi - Pyntsa (554581), Leach71 (259106)" />
 			  </vbox>
 			</tabpanel>			
 	</tabpanels>

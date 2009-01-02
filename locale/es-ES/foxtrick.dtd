@@ -5,18 +5,18 @@
 <!ENTITY foxtrick.prefs.shortcuts "Atajos y trucos">
 <!ENTITY foxtrick.prefs.forum "Conferencia">
 <!ENTITY foxtrick.prefs.links "Links">
-<!ENTITY foxtrick.prefs.matches "Matches">
+<!ENTITY foxtrick.prefs.matches "Partidos">
 <!ENTITY foxtrick.prefs.modulelistlabel "Módulos disponibles. Selecciona la casilla junto al nombre del módulo para activarlo.">
-<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick esta en proceso de transición al nuevo diseño de Hattrick.Estamos haciendo nuestro mejor esfuerzo para trae todas las antiguas funciones al nuevo diseño. Por favor se paciente y espera actualizaciones constantes!">
+<!ENTITY foxtrick.prefs.transitioninfo "Foxtrick está en proceso de transición al nuevo diseño de Hattrick. Estamos haciendo nuestro mejor esfuerzo para actualizar todas las antiguas funciones al nuevo diseño. Por favor se paciente y espera actualizaciones constantes!">
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Opciones Principales">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
+<!ENTITY foxtrick.prefs.btnlabelsave "Guardar">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Cancelar">
 <!ENTITY foxtrick.prefs.enable "Habilitar">
 <!ENTITY foxtrick.prefs.preferences "Preferencias">
 <!ENTITY foxtrick.prefs.visuals "Visuales">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
+<!ENTITY foxtrick.prefs.showonstatusbar "Mostrar icono en la barra de status">
 <!ENTITY foxtrick.prefs.stars "Estrellas">
 <!ENTITY foxtrick.prefs.about "Acerca de">
 <!ENTITY foxtrick.prefs.addstars "Añadir estrellas">
@@ -42,28 +42,28 @@
 <!ENTITY foxtrick.prefs.rating "Calificación">
 <!ENTITY foxtrick.prefs.htlang "Idioma de Hattrick">
 <!ENTITY foxtrick.prefs.language "Configuración de Idioma">
-<!ENTITY foxtrick.prefs.lineupcoloring "Esqeumas de color para la alineación del partido">
+<!ENTITY foxtrick.prefs.lineupcoloring "Esquemas de color para la alineación del partido">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Sin color para la alineación del partido.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Solo si existe esquema de colores en ele skin actual.">
-<!ENTITY foxtrick.prefs.yeslineupcoloring "Siemrpre. Si el skin no incluye es quema de colores, usar el esquema por defecto.">
+<!ENTITY foxtrick.prefs.yeslineupcoloring "Siempre. Si el skin no incluye es quema de colores, usar el esquema por defecto.">
 <!ENTITY foxtrick.prefs.getmorecssskins "Obtener más skins CSS">
-<!ENTITY foxtrick.prefs.shortcutstab "atajos &amp; trucos">
+<!ENTITY foxtrick.prefs.shortcutstab "Atajos &amp; trucos">
 <!ENTITY foxtrick.prefs.tweaks "Trucos">
 <!ENTITY foxtrick.prefs.mergestars "Agrupar estrellas">
-<!ENTITY foxtrick.menu.playersintabs "Abrir a los jugadores encontrados en pesteñas">
+<!ENTITY foxtrick.menu.playersintabs "Abrir a los jugadores encontrados en pestañas">
 <!ENTITY foxtrick.prefs.showfacesanddresses "Añadir las caras y equipaciones de los jugadores a la alineación del partido.">
 <!ENTITY foxtrick.prefs.lineupcoloringstyle "Estilo">
 <!ENTITY foxtrick.prefs.matchorders "Órdenes del partido">
 <!ENTITY foxtrick.prefs.showformationbox "Mostrar formación">
 <!ENTITY foxtrick.prefs.frameresize "Cambiar el tamaño de los frames">
 <!ENTITY foxtrick.prefs.hidelogoframe "Ocultar el frame del logo">
-<!ENTITY foxtrick.prefs.resizemainframe "Cambiar el tamaño del fram principal">
+<!ENTITY foxtrick.prefs.resizemainframe "Cambiar el tamaño del frame principal">
 <!ENTITY foxtrick.prefs.resizemenuframe "Cambiar el tamaño del frame del menú">
 <!ENTITY foxtrick.prefs.framewidth "Ancho">
-<!ENTITY foxtrick.prefs.clearplayerscache "Limpiar caché de casras/uniformes de los jugadores.">
+<!ENTITY foxtrick.prefs.clearplayerscache "Limpiar caché de caras/uniformes de los jugadores.">
 <!ENTITY foxtrick.prefs.attackdefensebars "Comparación Ataque vs Defensa">
 <!ENTITY foxtrick.prefs.attackdefensebarsalways "Insertar automáticamente.">
-<!ENTITY foxtrick.prefs.attackdefensebarsyes "Mostrar link de intermcabio.">
+<!ENTITY foxtrick.prefs.attackdefensebarsyes "Mostrar link de intercambio.">
 <!ENTITY foxtrick.prefs.attackdefensebarsno "No insertar.">
 <!ENTITY foxtrick.prefs.ratingsstyle "Formato de calificaciones">
 <!ENTITY foxtrick.prefs.ratingsstylestandard "Calificaciones estándar.">
@@ -83,7 +83,7 @@
 <!ENTITY foxtrick.prefs.foxtrickinstatusbar "Mostrar el panel de FoxTrick panel la barra de status de Firefox.">
 <!ENTITY foxtrick.prefs.alertsound "Reproducir alerta de sonido.">
 <!ENTITY foxtrick.prefs.alertslidermac "Mostrar notificación 'Growl' (Sólo para Mac)">
-<!ENTITY foxtrick.menu.createplayerad "Pegar jugador al portapaleles.">
+<!ENTITY foxtrick.menu.createplayerad "Pegar jugador al portapapeles.">
 <!ENTITY foxtrick.prefs.htdateformat "Formato de fecha">
 <!ENTITY foxtrick.menu.makelink "Pegar link del foro en el portapapeles">
 <!ENTITY foxtrick.prefs.forumtemplates "Plantillas de la conferencia">
@@ -92,7 +92,7 @@
 <!ENTITY foxtrick.prefs.selectfile "Seleccionar archivo de sonido">
 <!ENTITY foxtrick.prefs.stagesettings "Configuración de Stage">
 <!ENTITY foxtrick.prefs.disableonstage "Deshabilitar Foxtrick al entrar a un servidor de Stage">
-<!ENTITY foxtrick.prefs.alltidflags "Añadir banderas de Alltid y limks en ambos posters de la conferencia">
+<!ENTITY foxtrick.prefs.alltidflags "Añadir banderas de Alltid y links en ambos posteadores de la conferencia">
 <!ENTITY foxtrick.prefs.linksleague "Añadir algunos links externos en la página de la liga">
 <!ENTITY foxtrick.prefs.linksteams "Añadir algunos links externos en la página de los equipos">
 <!ENTITY foxtrick.prefs.linkscountry "Añadir algunos links externos en la página del país">
