@@ -41,6 +41,7 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
 					  'finances' : '\/Club\/Finances/',
 					  'all' : '\/',
 					  'myhattrick':'\/MyHattrick\/',
+					  'training':'\/Club\/Training\/',
 };
 ////////////////////////////////////////////////////////////////////////////////
 

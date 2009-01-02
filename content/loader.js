@@ -60,6 +60,7 @@ var scripts = [
 	'links/linkscoach.js',
 	'links/linksplayerdetail.js',
 	'links/linksmatch.js',
+	'links/linkstraining.js',
 
 	    
     'modules_list.js',

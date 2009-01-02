@@ -1451,6 +1451,18 @@ stats["brasileira"] =  {
         "nationalityranges" : [[16, 16]],
         "title" : "Estatísticas da Seleção Brasileira",
         "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
+};   
+
+stats["htlinks_trainingspeedchecker"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/TrainingsSpeedCheckerE.html",
+
+        "traininglink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        
+        "title" : "ht-links.de TrainingSpeedChecker",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htl_training.png"
 };    
 
 
