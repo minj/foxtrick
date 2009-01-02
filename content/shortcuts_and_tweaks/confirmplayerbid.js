@@ -17,7 +17,11 @@ var FoxtrickConfirmPlayerBid = {
 
     run : function( page, doc ) {
 		
-        var submitButton = doc.getElementById("ctl00_CPMain_btnBid");
+        
+	},
+	
+	change : function( page, doc ) {
+		var submitButton = doc.getElementById("ctl00_CPMain_btnBid");
         if (submitButton){
         	var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
         	if (sOnclick.search(/confirm/) == -1){ // already added?
@@ -28,10 +32,6 @@ var FoxtrickConfirmPlayerBid = {
 	       		submitButton.setAttribute("onClick", sOnclick);
 	       	}
         }
-	},
-	
-	change : function( page, doc ) {
-	
 	}
 };
 
