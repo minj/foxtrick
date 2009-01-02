@@ -101,8 +101,6 @@ tab:hover {
 .btnhelp{
   background-image: url(chrome://foxtrick/content/resources/linkicons/pref_info.png);
   background-repeat: no-repeat;
-  width: 10px;
-  height: 10px;
   margin: none;
   padding: none;
   border: none;

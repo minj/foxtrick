@@ -379,7 +379,7 @@ var FoxtrickPreferencesDialog = {
             info.setAttribute ( "class", "btnhelp" );
             info.addEventListener( "click", function ()  {
                                  FoxtrickPreferencesDialog.prefhelp_show(
-                                   FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ),
+                                   module.MODULE_NAME,
                                    FoxtrickPreferencesDialog.getModuleDescription_More( module.MODULE_NAME ), 
                                    this) 
                                  }, false );
