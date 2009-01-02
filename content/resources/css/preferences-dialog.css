@@ -28,9 +28,15 @@
     padding : 0px;    
 }
 .description_normal {
-    padding-left : 25px;
+  padding: 0px;
+  margin:0px;
+  padding-left : 30px;
+  /*border:1px solid green;*/
 }
-
+.cleaner {
+  clear: both;
+  float:left;
+}
 vbox, box, hbox {
    
 }
@@ -64,7 +70,7 @@ tab:hover {
 .checkbox_group_box, .radio_group_box{
   /* the box itselfe with iths child*/
   padding: 3px 0px 3px 3px;
-  margin:  0px 5px 1px 0px;
+  margin:  0px 5px 3px 0px;
   border-left: 1px solid #fff;
   border-top:  1px solid #fff;
   border-right:  1px solid #888;
@@ -80,9 +86,6 @@ tab:hover {
   padding-left: 4px;
 }
 
-.panel, .dialog, .box , .tabpanels {
-   
-}
 .tabbox {
  overflow: auto;
  border-bottom: 1px solid #888;
@@ -94,4 +97,18 @@ tab:hover {
 }
 .slider {
   
+}
+.btnhelp{
+  background-image: url(chrome://foxtrick/content/resources/linkicons/pref_info.png);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  margin: none;
+  padding: none;
+  border: none;
+  cursor:pointer;
+}
+
+.help_Label {
+    font-weight: bold;
 }

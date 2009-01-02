@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-  <?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
+<?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
 
 <!DOCTYPE window [
    <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
@@ -14,8 +14,8 @@
 	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
 	onload="FoxtrickPreferencesDialog.init();"
     resizable="yes"
-    width="600px"
-    height="530px"
+    width="400px"
+    height="300px"
     persist="width height screenX screenY"
     class="dialog"
 >
@@ -29,21 +29,21 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
 <box flex="1" class="box">
-  <tabbox id="tabbox" flex="1" class="tabbox" align="start">
-    <tabs id="tabs">
-      <tab id="MainTab">&foxtrick.prefs.mainoptions;</tab>
-      <tab id="ShortcutsTab">&foxtrick.prefs.shortcuts;</tab>
-	  <tab id="MatchesTab">&foxtrick.prefs.matches;</tab>
-      <tab id="ForumTab">&foxtrick.prefs.forum;</tab>
-      <tab id="LinksTab">&foxtrick.prefs.links;</tab>
-      <tab id="AboutTab">&foxtrick.prefs.about;</tab>
+  <tabbox id="tabbox" flex="1" class="tabbox" align="start" >
+    <tabs id="tabs" >
+      <tab id="MainTab"      onclick="FoxtrickPreferencesDialog.pref_show('main_list');"           >&foxtrick.prefs.mainoptions;</tab>
+      <tab id="ShortcutsTab" onclick="FoxtrickPreferencesDialog.pref_show('shortcuts_list');"      >&foxtrick.prefs.shortcuts;</tab>
+      <tab id="MatchesTab"   onclick="FoxtrickPreferencesDialog.pref_show('matchfunctions_list');" >&foxtrick.prefs.matches;</tab>
+      <tab id="ForumTab"     onclick="FoxtrickPreferencesDialog.pref_show('forum_list');"          >&foxtrick.prefs.forum;</tab>
+      <tab id="LinksTab"     onclick="FoxtrickPreferencesDialog.pref_show('links_list');"          >&foxtrick.prefs.links;</tab>
+      <tab id="AboutTab"     onclick="FoxtrickPreferencesDialog.pref_show('about_list');"          >&foxtrick.prefs.about;</tab>
     </tabs>
 
-    <tabpanels id="tabpanels" class="tabpanels" flex="1">
+    <tabpanels id="tabpanels" class="tabpanels" flex="1" >
             <!-- Main -->
-            <tabpanel class="panel" orient="vertical" flex="1">
-              <vbox style="width: 300px;">
-			    <groupbox style="width: 300px;">
+            <tabpanel class="panel" orient="vertical" flex="1" >
+              <vbox id="main_list" style="display:run-in" >
+			    <groupbox>
 			      <caption label="&foxtrick.prefs.language;"/>
 			      <menulist id="htLanguage">
                     <menupopup id="htLanguagePopup" >
@@ -64,7 +64,7 @@
                     <checkbox id="alertslidermacpref" label="&foxtrick.prefs.alertslidermac;"/>
                     <checkbox id="alertsoundpref" label="&foxtrick.prefs.alertsound;"/>
                     <hbox align="center">
-                      <textbox id="alertsoundurlpref" width="300"/>
+                      <textbox id="alertsoundurlpref" />
                       <button label="&foxtrick.prefs.selectfile;"
                                 oncommand="var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}"/>
                       <button label="Test" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
@@ -82,15 +82,16 @@
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
                 <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
-                <vbox id="shortcuts_list" flex="1" orient="vertical" />
+                <vbox id="shortcuts_list" flex="1" orient="vertical" style="display:run-in"/>
               </vbox>
+              
              </tabpanel>
 		   
 		    <!-- Matches -->
 		    <tabpanel class="panel" orient="vertical" flex="1">
 			  <vbox>
                 <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
-                <vbox id="matchfunctions_list" orient="vertical" />
+                <vbox id="matchfunctions_list" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
 		 
@@ -98,22 +99,22 @@
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
                 <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
-                <vbox id="forum_list" flex="1" orient="vertical" />
+                <vbox id="forum_list" flex="1" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
 		   
 		    <!-- Links -->
-            <tabpanel class="panel" orient="vertical" flex="1">
+            <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox>
                 <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
-                <vbox id="links_list" orient="vertical" />
+                <vbox id="links_list" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
 
 	        <!-- about -->
             <tabpanel class="panel" orient="vertical" flex="1">
     		  <vbox>
-                <label flex="1" multiline="true" class="plain" style="padding:5px 5px 10px 5px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
+                <label flex="0" multiline="true" class="plain" style="padding:5px 5px 10px 5px; width:300px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
                 <label value="http://foxtrick.px.cz/" 
                        style="text-decoration: underline; cursor: pointer; color: blue;"
                        tooltiptext="http://foxtrick.px.cz/"
@@ -123,7 +124,7 @@
                        tooltiptext="http://foxtrick.px.cz/forum/"
                        onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
               </vbox>
-			  <vbox>
+			  <vbox id="about_list" style="display:run-in">
 				<label value="Head Developer" 
                        style="font-weight: bold;" />
                 <label value="Mod-PaV (872922)" />

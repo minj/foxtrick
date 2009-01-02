@@ -22,6 +22,7 @@ var FoxtrickPreferencesDialog = {
         this.initAlertPref();
 		this.initStagePref();
         this.initResizer();
+        FoxtrickPreferencesDialog.pref_show ('main_list');
     },
     
     initStatusbarPref : function() {
@@ -330,8 +331,11 @@ var FoxtrickPreferencesDialog = {
 			checkbox.setAttribute( "id", module.OPTIONS[i]);
             checkbox.setAttribute( "class", "checkbox_in_group" );
 			if (!Foxtrick.isModuleEnabled( module )) {
-				checkbox.setAttribute( "disabled", true);;
-			}
+				checkbox.setAttribute( "disabled", true);
+                checkbox.setAttribute( "hidden", true);
+            } else {
+                //checkbox.setAttribute( "hidden", false);            
+            }
 			hbox.appendChild( checkbox );
 		}
 		
@@ -342,11 +346,12 @@ var FoxtrickPreferencesDialog = {
 		var entry = document.createElement( "vbox" );
         entry.prefname = module.MODULE_NAME;
 		entry.setAttribute( "class", "normal_entry" );
-		entry.addEventListener( "click", function( ev ) { 
-			ev.currentTarget.childNodes[0].childNodes[0].checked =
-				!(ev.currentTarget.childNodes[0].childNodes[0].checked);
-		}, false );
 		var hbox = document.createElement( "hbox" );
+		hbox.addEventListener( "click", function( ev ) { 
+			ev.currentTarget.childNodes[0].checked =
+				!(ev.currentTarget.childNodes[0].checked);
+		}, false );
+
 		var check = document.createElement( "checkbox" );
 		check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
 		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) ); 
@@ -357,14 +362,35 @@ var FoxtrickPreferencesDialog = {
 		name.setAttribute( "value", module.MODULE_NAME );
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
-		var desc = document.createElement( "label" );
+		
+        var desc_box = document.createElement( "hbox" );
+        var desc = document.createElement( "label" );
 		desc.setAttribute( "class", "description_normal" );
-		var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+        desc.setAttribute( "multiline", "true" );
+        desc.setAttribute( "flex", "0" );
+        desc.setAttribute( "style", "overflow:hidden;" );
+        var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
 		desc.appendChild( desc_text );
-		entry.appendChild( desc );
+        desc_box.appendChild( desc );
+        if (FoxtrickPreferencesDialog.getModuleDescription_More( module.MODULE_NAME )) {
+            var info = document.createElement( "image" );
+            info.setAttribute ( "align", "start");
+            info.setAttribute ( "flex", "1");
+            info.setAttribute ( "class", "btnhelp" );
+            info.addEventListener( "click", function ()  {
+                                 FoxtrickPreferencesDialog.prefhelp_show(
+                                   FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ),
+                                   FoxtrickPreferencesDialog.getModuleDescription_More( module.MODULE_NAME ), 
+                                   this) 
+                                 }, false );
+            var spacer = document.createElement( "spacer" );
+            spacer.width = "5";
+            desc_box.appendChild( spacer );
+            desc_box.appendChild( info );
+        }
+        entry.appendChild (desc_box);
 		return entry;
 	}
-
 };
 
 FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
@@ -385,9 +411,47 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
         return "No description";
 }
 
+FoxtrickPreferencesDialog.getModuleDescription_More = function( module_name ) {
+    var name = "foxtrick." + module_name + ".desc.more";
+    if ( Foxtrickl10n.isStringAvailable( name ) )
+        return Foxtrickl10n.getString( name );
+    else
+        return false;
+}
+
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
         window.open("chrome://foxtrick/content/preferences-dialog.xul",
-                      "", "centerscreen, chrome, modal");
+                      "", 
+                      "centerscreen, chrome, modal");
 	}
+}
+
+FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
+    VBOXES = ["main_list", "shortcuts_list", "matchfunctions_list", "forum_list", "links_list", "about_list"];
+    var box;
+    for (var i = 0; i < VBOXES.length; i++) {
+        try { 
+            box = document.getElementById( VBOXES[i] );
+            if ( VBOXES[i] == vbox) {
+                box.style.height = "100%";
+                box.style.overflow = "hidden";
+            }
+            else {
+                box.style.height = "300px";
+                box.style.overflow = "hidden";
+            }
+        }
+        catch (e) {
+            Foxtrick.alert(e);
+        }
+    }
+}
+
+FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where ) {
+    openDialog("chrome://foxtrick/content/preferences-help.xul",
+               "FoxTrick Help",
+               "titlebar=no, modal, left=" + (where.boxObject.screenX + 20) + ", top=" + (where.boxObject.screenY - 10),
+               HelpTitle, 
+               HelpDesc);
 }
