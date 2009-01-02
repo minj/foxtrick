@@ -41,6 +41,8 @@
 <!ENTITY foxtrick.prefs.rating "Bewertung">
 <!ENTITY foxtrick.prefs.htlang "Hattricksprache">
 <!ENTITY foxtrick.prefs.language "Spracheinstellungen">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick-Währung">
+<!ENTITY foxtrick.prefs.currency "Währungseinstellungen">
 <!ENTITY foxtrick.prefs.lineupcoloring "Farbschema in der Aufstellung">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Keine farblichen Effekte in der Aufstellung.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Nur falls der verwendete Skin Farben beinhaltet.">
@@ -75,7 +77,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Weitere Trophäen herunterladen">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "original Hattrick.org Trophäen verwenden.">
 <!ENTITY foxtrick.menu.installmedalset "Installiere Hattrick.org Trophäen">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick-Währung">
 <!ENTITY foxtrick.prefs.main "Grundeinstellungen">
 <!ENTITY foxtrick.prefs.alertsettings "Alarm-Einstellungen">
 <!ENTITY foxtrick.prefs.alertslider "Info-Slider anzeigen.">

@@ -5,6 +5,30 @@
  */
 
 ////////////////////////////////////////////////////////////////////////////////
+
+function GetCurrency()
+{
+  var currency = "";
+  var rate = 1.0;
+  try {
+    var currencyCode = PrefsBranch.getCharPref("htCurrency");
+  } catch (e) {
+    currencyCode = "EUR";
+  }
+
+  try {
+    var path = "hattrickcurrencies/currency[@code='" + currencyCode + "']";
+    var obj = htCurrenciesXml.evaluate(path,htCurrenciesXml,null,htCurrenciesXml.DOCUMENT_NODE,null).singleNodeValue;
+    currency = obj.attributes.getNamedItem("shortname").textContent;
+    rate = 1.0/parseFloat(obj.attributes.getNamedItem("eurorate").textContent);
+  } catch (e) {
+    currency = "&euro;";
+    rate = 1.0;
+  } 
+ return {"currencyCode":currencyCode,"Currency":currency,"eurorate":rate};
+ }
+
+
 var FoxtrickLinksEconomy = {
 	
     MODULE_NAME : "LinksEconomy",
@@ -21,7 +45,25 @@ var FoxtrickLinksEconomy = {
     run : function( page, doc ) {
 
 		//addExternalLinksToEconomyDetail
-        var links = getLinks("economylink", {  }, doc, this);  
+		var Curr=GetCurrency();
+		var Cash=0;
+		var alldivs = doc.getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="main mainRegular") {
+	          var CashTable = alldivs[j].getElementsByTagName("table")[0];
+				var content=CashTable.rows[0].cells[1].innerHTML;
+				var tmp = doc.createElement("span");
+				tmp.innerHTML=Curr["Currency"];
+        		var last1=content.indexOf(tmp.innerHTML);
+				Cash=Foxtrick.trimnum(content.substring(0,last1));
+        		break;
+			}
+		}
+		if (Curr["currencyCode"]!="EUR" && Curr["currencyCode"]!="CHF"){
+			Cash*=Curr["eurorate"];
+			Curr["currencyCode"]="EUR";
+		}
+		var links = getLinks("economylink", { "Cash":Cash,"Currency":Curr["currencyCode"]}, doc, this);  
 
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");

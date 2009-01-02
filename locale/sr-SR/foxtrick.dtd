@@ -42,6 +42,8 @@
 <!ENTITY foxtrick.prefs.rating "Оцена">
 <!ENTITY foxtrick.prefs.htlang "Језик на Хеттрику">
 <!ENTITY foxtrick.prefs.language "Подешавање језика">
+<!ENTITY foxtrick.prefs.htcurrency "Валута на Хеттрику">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Шеме боја за меч налоге">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Без боја у меч налозима.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Само ако шема за боје постоји у скину који је постављен.">
@@ -76,7 +78,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Скини још комплета за медаље">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Користи Хеттрик медаље.">
 <!ENTITY foxtrick.menu.installmedalset "Инсталирај Хеттрик медаље">
-<!ENTITY foxtrick.prefs.htcurrency "Валута на Хеттрику">
 <!ENTITY foxtrick.prefs.main "Главна">
 <!ENTITY foxtrick.prefs.alertsettings "Подешавање за обавештења">
 <!ENTITY foxtrick.prefs.alertslider "Прикажи слајдер са обавештењима.">

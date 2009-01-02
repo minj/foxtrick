@@ -40,6 +40,8 @@
 <!ENTITY foxtrick.prefs.rating "Classificação">
 <!ENTITY foxtrick.prefs.htlang "Linguagem Hattrick">
 <!ENTITY foxtrick.prefs.language "Configurações de linguagem">
+<!ENTITY foxtrick.prefs.htcurrency "Moeda Hattrick">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Esquemas de cor da formação inicial">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Não colorir formação inicial.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Somente se um esquema de cor existir na skin utilizada.">
@@ -74,7 +76,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Obter mais conjuntos de medalhas">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Utilizar medalhas padrão do Hattrick.">
 <!ENTITY foxtrick.menu.installmedalset "Instalar conjunto de medalhas Hattrick.org">
-<!ENTITY foxtrick.prefs.htcurrency "Moeda Hattrick">
 <!ENTITY foxtrick.prefs.main "Principal">
 <!ENTITY foxtrick.prefs.alertsettings "Configurações de alertas">
 <!ENTITY foxtrick.prefs.alertslider "Mostrar alerta deslizante.">

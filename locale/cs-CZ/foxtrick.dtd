@@ -42,6 +42,8 @@
 <!ENTITY foxtrick.prefs.rating "Rating">
 <!ENTITY foxtrick.prefs.htlang "Jazyk Hattricku">
 <!ENTITY foxtrick.prefs.language "Jazyková nastavení">
+<!ENTITY foxtrick.prefs.htcurrency "Měna na Hattricku">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Schémata obarvování sestavy">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Žádné obarvování sestavy.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Pouze, když je schéma součástí zvoleného skinu.">
@@ -76,7 +78,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Stáhnout další sady medailí">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Zachovat medaile z Hattricku.">
 <!ENTITY foxtrick.menu.installmedalset "Nainstalovat sadu medailí z Hattricku">
-<!ENTITY foxtrick.prefs.htcurrency "Měna na Hattricku">
 <!ENTITY foxtrick.prefs.main "Hlavní">
 <!ENTITY foxtrick.prefs.alertsettings "Nastavení upozorňování">
 <!ENTITY foxtrick.prefs.alertslider "Vysouvat upozorňovací okénko.">

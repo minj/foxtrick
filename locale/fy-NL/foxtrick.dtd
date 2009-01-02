@@ -42,6 +42,8 @@
 <!ENTITY foxtrick.prefs.rating "Wurdearring">
 <!ENTITY foxtrick.prefs.htlang "Hattricktaal">
 <!ENTITY foxtrick.prefs.language "Taalynstellings">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick jildsoart">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Kleurenskema's opstelling">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Gjin kleuren by opstelling.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Allinnich as de brûkte skin in kleurenskema hat.">
@@ -76,7 +78,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Mear medaljesets ophelje">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Brûk standert Hattrick-medaljes.">
 <!ENTITY foxtrick.menu.installmedalset "Ynstallearje Hattrick.org medaljeset">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick jildsoart">
 <!ENTITY foxtrick.prefs.main "Algemien">
 <!ENTITY foxtrick.prefs.alertsettings "Warskôgingsynstellings">
 <!ENTITY foxtrick.prefs.alertslider "Toan warskôgingsskerm.">

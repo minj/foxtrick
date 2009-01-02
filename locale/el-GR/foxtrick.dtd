@@ -40,6 +40,8 @@
 <!ENTITY foxtrick.prefs.rating "Áîéïëüãçóç">
 <!ENTITY foxtrick.prefs.htlang "Ãëþóóá ôïõ Hattrick">
 <!ENTITY foxtrick.prefs.language "Ñõìßóåéò ãëþóóáò">
+<!ENTITY foxtrick.prefs.htcurrency "Íüìéóìá Hattrick">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Match lineup coloring schemes">
 <!ENTITY foxtrick.prefs.nolineupcoloring "No match lineup coloring.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Only if a coloring scheme exists in the used skin.">
@@ -74,7 +76,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "ÂÜëå ðåñéóóüôåñá óåô ìåôáëëßùí">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Use default Hattrick medals.">
 <!ENTITY foxtrick.menu.installmedalset "Install Hattrick.org medal set">
-<!ENTITY foxtrick.prefs.htcurrency "Íüìéóìá Hattrick">
 <!ENTITY foxtrick.prefs.main "Âáóéêü">
 <!ENTITY foxtrick.prefs.alertsettings "Ñõèìßóåéò åéäïðïéÞóåùí">
 <!ENTITY foxtrick.prefs.alertslider "ÄÝéîå áíáäõüìåíç åéäïðïßçóç.">

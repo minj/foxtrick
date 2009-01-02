@@ -38,6 +38,8 @@
 <!ENTITY foxtrick.prefs.rating "Ocjena">
 <!ENTITY foxtrick.prefs.htlang "Jezik Hattricka">
 <!ENTITY foxtrick.prefs.language "Podešavanje jezika">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Šeme boja u postavi.">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Bez šeme boja u postavi.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Samo ako šema boje postoji u korištenom skinu.">
@@ -73,7 +75,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Još setova medalja">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Koristi originalne Hattrickove medalje.">
 <!ENTITY foxtrick.menu.installmedalset "Instaliraj set madalja sa Hattrick.org">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.main "Glavno">
 <!ENTITY foxtrick.prefs.alertsettings "Štimanje upozorenja">
 <!ENTITY foxtrick.prefs.alertslider "Prikaži klizače upozorenja.">

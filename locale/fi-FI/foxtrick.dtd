@@ -42,6 +42,8 @@
 <!ENTITY foxtrick.prefs.rating "Arvostelu">
 <!ENTITY foxtrick.prefs.htlang "Hattrick kieli">
 <!ENTITY foxtrick.prefs.language "Kieliasetukset">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuutta">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Ottelukokoonpanon väriteemat">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Älä käytä värejä ottelukokoonpanossa.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Vain jos väriteema sisältyy käytettävään skiniin.">
@@ -76,7 +78,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Hae lisää mitalisettejä">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Käytä Hattrickin oletusmitaleja.">
 <!ENTITY foxtrick.menu.installmedalset "Asenna Hattrick.org mitalisetti">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuutta">
 <!ENTITY foxtrick.prefs.main "Main">
 <!ENTITY foxtrick.prefs.alertsettings "Hälytys-asetukset">
 <!ENTITY foxtrick.prefs.alertslider "Näytä halytys-liukupalkki">

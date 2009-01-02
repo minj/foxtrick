@@ -66,6 +66,14 @@ var FoxtrickPreferencesDialog = {
 
             document.getElementById('htLanguage').selectedIndex=itemToSelect;
             
+			var htCurrencyXml = document.implementation.createDocument("", "", null);
+            htCurrencyXml.async = false;
+            htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+            
+            var itemToSelect2=this.fillListFromXml("htCurrencyPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
+
+            document.getElementById('htCurrency').selectedIndex=itemToSelect2;
+			
         } catch (e) {
             Foxtrick.alert(e);
         }

@@ -42,6 +42,8 @@
 <!ENTITY foxtrick.prefs.rating "Rating">
 <!ENTITY foxtrick.prefs.htlang "Hattrick taal">
 <!ENTITY foxtrick.prefs.language "Taalinstellingen">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Kleurschema's teamopstelling">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Geen kleuren in teamopstelling.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Alleen als een kleurschema bestaat in de gebruikte skin.">
@@ -76,7 +78,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Meer medailles">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Gebruik de standaard Hattrick medailles.">
 <!ENTITY foxtrick.menu.installmedalset "Installeer Hattrick.org medailles">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.main "Hoofd">
 <!ENTITY foxtrick.prefs.alertsettings "Instellingen voor waarschuwingen">
 <!ENTITY foxtrick.prefs.alertslider "Toon waarschuwing slider.">

@@ -1163,11 +1163,23 @@ stats["htlinks_economists"] =  {
 
         "economylink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : []
+                         "params"     : {"Cash" : "Cash","Currency":"Currency"}
                        },
         
         "title" : "HT-Links.de Economist Checker",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htl_econ.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
+};    
+
+stats["htlinks_trainingspeedchecker"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/TrainingsSpeedCheckerE.html",
+
+        "traininglink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        
+        "title" : "HT-Links.de TrainingSpeedChecker",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };    
 
 /*  // illegal site. don't include again before CHPP approval
@@ -1452,18 +1464,6 @@ stats["brasileira"] =  {
         "title" : "Estatísticas da Seleção Brasileira",
         "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
 };   
-
-stats["htlinks_trainingspeedchecker"] =  { 
-        "url" : "http://www.ht-links.de/Hattrick/TrainingsSpeedCheckerE.html",
-
-        "traininglink" : { "path"       : "",
-                         "filters"    : [], 
-                         "params"     : []
-                       },
-        
-        "title" : "ht-links.de TrainingSpeedChecker",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htl_training.png"
-};    
 
 
 function getLinks2(stats, stattype, filterparams, doc, overridesettings, module) { 

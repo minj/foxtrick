@@ -43,6 +43,8 @@
 <!ENTITY foxtrick.prefs.rating "Qualificació">
 <!ENTITY foxtrick.prefs.htlang "Idioma de hattrick">
 <!ENTITY foxtrick.prefs.language "Ajustaments d'idioma">
+<!ENTITY foxtrick.prefs.htcurrency "Moneda de hattrick">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Esquema de colors de l'alineació del partit">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Sense acoloriment de l'alineació.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Només si existeix un esquema de colors en l'aparença emprada.">
@@ -77,7 +79,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Obté més grups de trofeus">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Empra els trofeus per defecte de hattrick.">
 <!ENTITY foxtrick.menu.installmedalset "Instaŀla el grup de trofeus de hattrick.org">
-<!ENTITY foxtrick.prefs.htcurrency "Moneda de hattrick">
 <!ENTITY foxtrick.prefs.main "Principal">
 <!ENTITY foxtrick.prefs.alertsettings "Ajustaments d'avís">
 <!ENTITY foxtrick.prefs.alertslider "Mostra un avís emergent.">

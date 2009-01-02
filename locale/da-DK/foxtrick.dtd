@@ -42,6 +42,8 @@
 <!ENTITY foxtrick.prefs.rating "Rating">
 <!ENTITY foxtrick.prefs.htlang "Hattrick sprog">
 <!ENTITY foxtrick.prefs.language "Sprog opsætning">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
+<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Kampopstilling farve ordninger">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Ingen kampopstilling farver.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Kun hvis en farvesammensætning findes i det anvendte skin.">
@@ -76,7 +78,6 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Få flere medalje sæt">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Brug standard Hattrick medaljer.">
 <!ENTITY foxtrick.menu.installmedalset "Installer Hattrick.org medalje sæt">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.main "Hoved">
 <!ENTITY foxtrick.prefs.alertsettings "Alarm indstillinger">
 <!ENTITY foxtrick.prefs.alertslider "Vis alarm slider.">

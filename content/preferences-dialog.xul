@@ -52,6 +52,14 @@
 				  </menulist>
 				</groupbox>
 				<groupbox>
+			      <caption label="&foxtrick.prefs.currency;"/>
+			      <menulist id="htCurrency">
+                    <menupopup id="htCurrencyPopup" >
+                          
+                    </menupopup>
+				  </menulist>
+				</groupbox>
+				<groupbox>
 				  <caption label="&foxtrick.prefs.showonstatusbar;"/>
                   <vbox>
                     <checkbox id="statusbarpref" label="&foxtrick.prefs.enable;"/>
