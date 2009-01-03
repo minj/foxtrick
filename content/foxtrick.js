@@ -553,7 +553,7 @@ function getSortedLinks(links) {
 }
 
 function keysortfunction(a,b) {
-    return a.localeCompare(b);
+    return a["title"].localeCompare(b["title"]);
   }
 
 Foxtrick.initOptionsLinks = function(module,linktype) {
@@ -561,7 +561,7 @@ Foxtrick.initOptionsLinks = function(module,linktype) {
 			module.OPTIONS = new Array();
 			for (var key in stats) { 
 				if (stats[key][linktype]!=null) {
-					module.OPTIONS.push(key);
+					module.OPTIONS.push({"key":key,"title":stats[key]["title"]});
 				}
 			}	
 			module.OPTIONS.sort(keysortfunction); 
@@ -573,7 +573,13 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 		for (var linktype=0; linktype< linktypes.length; linktype++) { 
 			for (var key in stats) { 
 				if (stats[key][linktypes[linktype]]!=null) {
-					module.OPTIONS.push(key);
+					var has_entry=false;
+					for (var i = 0; i < module.OPTIONS.length; i++) {
+						if (module.OPTIONS[i]["key"]!=null && module.OPTIONS[i]["key"]==key) {
+							has_entry=true;
+						}
+					}
+					if (!has_entry) {module.OPTIONS.push({"key":key,"title":stats[key]["title"]});}
 				}
 			}			
 		}

@@ -334,9 +334,12 @@ var FoxtrickPreferencesDialog = {
 		entry.appendChild( hbox );
 		for (var i = 0; i < module.OPTIONS.length; i++) {
 			var checkbox = document.createElement( "checkbox" );
-			checkbox.setAttribute( "checked", Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[i]) );
-			checkbox.setAttribute( "label", module.OPTIONS[i] );
-			checkbox.setAttribute( "id", module.OPTIONS[i]);
+			var key,title;
+			if (module.OPTIONS[i]["key"]==null){key=module.OPTIONS[i];title=module.OPTIONS[i];}
+			else {key=module.OPTIONS[i]["key"];title=module.OPTIONS[i]["title"];}
+			checkbox.setAttribute( "checked", Foxtrick.isModuleFeatureEnabled( module, key) );
+			checkbox.setAttribute( "label", title );
+			checkbox.setAttribute( "id", key);
             checkbox.setAttribute( "class", "checkbox_in_group" );
 			if (!Foxtrick.isModuleEnabled( module )) {
 				checkbox.setAttribute( "disabled", true);
