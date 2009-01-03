@@ -116,10 +116,13 @@ var FoxtrickPreferencesDialog = {
 					} else if (modules_list.childNodes[i].checkbox) {
 						var checkboxes = modules_list.childNodes[i].childNodes[1].childNodes;
 						for (var j = 0; j < checkboxes.length; j++) {
-							FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].checked );
+							if (checkboxes[j].id.search(/_text$/) == -1)
+								FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].checked );
+							else
+								FoxtrickPreferencesDialog.setModuleOptionsText( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].value );
 						}
-					}
-                                                   // modules_list.childNodes[i].checked );
+					}                                                   
+						// modules_list.childNodes[i].checked );
             // dump( modules_list.childNodes[i].prefname + " " + modules_list.childNodes[i].childNodes[0].childNodes[0].checked + "\n" );
                 }
         }
@@ -213,7 +216,8 @@ var FoxtrickPreferencesDialog = {
 							if (module.RADIO_OPTIONS != null) {
 								entry = FoxtrickPreferencesDialog._radioModule(module);
 							} else if (module.OPTIONS != null) {
-                                entry = FoxtrickPreferencesDialog._checkboxModule(module);
+								var bOptionTexts = (module.OPTION_TEXTS != null && module.OPTION_TEXTS);
+                entry = FoxtrickPreferencesDialog._checkboxModule(module, bOptionTexts);
 							} else {
 								entry = FoxtrickPreferencesDialog._normalModule(module);
 							}
@@ -291,7 +295,7 @@ var FoxtrickPreferencesDialog = {
 		return entry;
 	},
 	
-	_checkboxModule : function (module) {
+	_checkboxModule : function (module, bOptionTexts) {
 		var entry = document.createElement( "vbox" );
 		entry.prefname = module.MODULE_NAME;
 		entry.checkbox = true;
@@ -348,6 +352,14 @@ var FoxtrickPreferencesDialog = {
                 //checkbox.setAttribute( "hidden", false);            
             }
 			hbox.appendChild( checkbox );
+			if (bOptionTexts){
+				var textbox = document.createElement("textbox");
+				textbox.setAttribute("id", key + "_text");
+				textbox.setAttribute("style", "margin-left:20px;width:200px");
+				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
+				textbox.setAttribute("value", val);
+				hbox.appendChild(textbox);
+			}
 		}
 		
 		return entry;
@@ -413,6 +425,10 @@ FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
 
 FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
     FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
+}
+
+FoxtrickPreferencesDialog.setModuleOptionsText = function( module_name, value ) {
+    FoxtrickPrefs.setString( "module." + module_name, value );
 }
 
 FoxtrickPreferencesDialog.setModuleValue = function( module_name, value ) {
