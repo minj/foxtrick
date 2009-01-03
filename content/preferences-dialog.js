@@ -353,12 +353,15 @@ var FoxtrickPreferencesDialog = {
             }
 			hbox.appendChild( checkbox );
 			if (bOptionTexts){
+				var htextbox = document.createElement("hbox");
 				var textbox = document.createElement("textbox");
 				textbox.setAttribute("id", key + "_text");
-				textbox.setAttribute("style", "margin-left:20px;width:200px");
+				textbox.setAttribute("style", "margin-left:20px;");
+				textbox.setAttribute("width", "300px");
 				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
 				textbox.setAttribute("value", val);
-				hbox.appendChild(textbox);
+				htextbox.appendChild(textbox);
+				hbox.appendChild(htextbox);
 			}
 		}
 		
@@ -386,37 +389,37 @@ var FoxtrickPreferencesDialog = {
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
 		
-        var desc_box = document.createElement( "hbox" );
-        var desc = document.createElement( "label" );
+    var desc_box = document.createElement( "hbox" );
+    var desc = document.createElement( "label" );
 		desc.setAttribute( "class", "description_normal" );
-        desc.setAttribute( "multiline", "true" );
-        desc.setAttribute( "flex", "0" );
-        desc.setAttribute( "style", "overflow:hidden;" );
+    desc.setAttribute( "multiline", "true" );
+    desc.setAttribute( "flex", "0" );
+    desc.setAttribute( "style", "overflow:hidden;" );
 		var desc_text = FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME );
 		var desc_text_trunc = desc_text;
 		if( desc_text.length > 75 ) {
 			desc_text_trunc = desc_text_trunc.substr(0,72) + "...";
 		}
-        var desc_textnode = document.createTextNode( desc_text_trunc );
+    var desc_textnode = document.createTextNode( desc_text_trunc );
 		desc.appendChild( desc_textnode );
-        desc_box.appendChild( desc );
-        if ( desc_text.length > 75 ) {
-            var info = document.createElement( "image" );
-            info.setAttribute ( "align", "start");
-            info.setAttribute ( "flex", "1");
-            info.setAttribute ( "class", "btnhelp" );
-            info.addEventListener( "click", function ()  {
-                                 FoxtrickPreferencesDialog.prefhelp_show(
-								   module.MODULE_NAME,
-                                   FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ), 
-                                   this) 
-                                 }, false );
-            var spacer = document.createElement( "spacer" );
-            spacer.width = "5";
-            desc_box.appendChild( spacer );
-            desc_box.appendChild( info );
-        }
-        entry.appendChild (desc_box);
+    desc_box.appendChild( desc );
+    if ( desc_text.length > 75 ) {
+        var info = document.createElement( "image" );
+        info.setAttribute ( "align", "start");
+        info.setAttribute ( "flex", "1");
+        info.setAttribute ( "class", "btnhelp" );
+        info.addEventListener( "click", function ()  {
+                             FoxtrickPreferencesDialog.prefhelp_show(
+						   module.MODULE_NAME,
+                               FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ), 
+                               this) 
+                             }, false );
+        var spacer = document.createElement( "spacer" );
+        spacer.width = "5";
+        desc_box.appendChild( spacer );
+        desc_box.appendChild( info );
+    }
+    entry.appendChild (desc_box);
 		return entry;
 	}
 };
