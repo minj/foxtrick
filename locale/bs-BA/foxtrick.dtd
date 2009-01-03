@@ -1,4 +1,4 @@
-<!-- bs-BA-Latn
+﻿<!-- bs-BA-Latn
      Masterix
 -->
 
@@ -9,7 +9,10 @@
 <!ENTITY foxtrick.prefs.modulelistlabel "Dostupni moduli. Potvrdite kutijicu do imena modula da ga osposobite.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick se trenutno prilagođava novom dizajnu Hattricka. Maksimalno se trudimo da omogućimo sve stare opcije.. Molimo da budete strpljivi i očekujte nove dorade!">
  
+ 
 <!ENTITY foxtrick.prefs.mainoptions "Glavne opcije">
+<!ENTITY foxtrick.prefs.btnlabelsave "Sačuvaj">
+<!ENTITY foxtrick.prefs.btnlabelcancel "Odustani">
 <!ENTITY foxtrick.prefs.enable "Omogući">
 <!ENTITY foxtrick.prefs.preferences "Karakteristike">
 <!ENTITY foxtrick.prefs.visuals "Vizualizacija">
@@ -38,7 +41,6 @@
 <!ENTITY foxtrick.prefs.rating "Ocjena">
 <!ENTITY foxtrick.prefs.htlang "Jezik Hattricka">
 <!ENTITY foxtrick.prefs.language "Podešavanje jezika">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Šeme boja u postavi.">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Bez šeme boja u postavi.">
@@ -49,10 +51,9 @@
 <!ENTITY foxtrick.prefs.tweaks "Oznake">
 <!ENTITY foxtrick.prefs.mergestars "Objedini zvijezde">
 <!ENTITY foxtrick.menu.playersintabs "Otvori nađene igrače u tabovima">
-<!ENTITY foxtrick.prefs.showfacesanddresses "Dodaj lica igrača &amp; dresove u postavi.">
+<!ENTITY foxtrick.prefs.showfacesanddresses "Dodaj lica igrača i dresove u postavi.">
 <!ENTITY foxtrick.prefs.lineupcoloringstyle "Stil">
 <!ENTITY foxtrick.prefs.matchorders "Postavke utakmice">
-
 <!ENTITY foxtrick.prefs.showformationbox "Pokaži kutiju formacije">
 <!ENTITY foxtrick.prefs.frameresize "Promjena veličinu okvira">
 <!ENTITY foxtrick.prefs.hidelogoframe "Sakrij okvir loga">
@@ -75,6 +76,7 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Još setova medalja">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Koristi originalne Hattrickove medalje.">
 <!ENTITY foxtrick.menu.installmedalset "Instaliraj set madalja sa Hattrick.org">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.main "Glavno">
 <!ENTITY foxtrick.prefs.alertsettings "Štimanje upozorenja">
 <!ENTITY foxtrick.prefs.alertslider "Prikaži klizače upozorenja.">
