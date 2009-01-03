@@ -42,8 +42,8 @@
 <!ENTITY foxtrick.prefs.rating "Performance">
 <!ENTITY foxtrick.prefs.htlang "Langue Hattrick">
 <!ENTITY foxtrick.prefs.language "Choix de la langue">
-<!ENTITY foxtrick.prefs.htcurrency "Device Hattrick">
-<!ENTITY foxtrick.prefs.currency "Currency settings">
+<!ENTITY foxtrick.prefs.htcurrency "Monnaie Hattrick">
+<!ENTITY foxtrick.prefs.currency "Choix de la monnaie">
 <!ENTITY foxtrick.prefs.lineupcoloring "Couleur de la composition d'équipe">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Ne pas colorier la composition d'équipe.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Seulement si un schéma existe dans le thème utilisé.">
