@@ -13,7 +13,7 @@
 <!ENTITY foxtrick.prefs.mainoptions "Général">
 <!ENTITY foxtrick.prefs.btnlabelsave "Sauver">
 <!ENTITY foxtrick.prefs.btnlabelcancel "Annuler">
-<!ENTITY foxtrick.prefs.enable "Activer">
+<!ENTITY foxtrick.prefs.enable "Activer (nécessite un redémarrage)">
 <!ENTITY foxtrick.prefs.preferences "Préférences">
 <!ENTITY foxtrick.prefs.visuals "Eléments visuels">
 <!ENTITY foxtrick.prefs.showonstatusbar "Afficher l'icône Foxtrick dans la barre d'état">
