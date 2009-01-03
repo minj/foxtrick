@@ -21,26 +21,43 @@ var FoxtrickLinksTraining = {
     run : function( page, doc ) {
 
 		//addExternalLinksToCoachPage
-		var links = getLinks("traininglink", {  }, doc, this);  
-                  
-		if (links.length > 0) {
-			var ownBoxBody = doc.createElement("div");
-			var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_" + header + "_box";
-			var ownBoxBodyId = "foxtrick_" + header + "_content";
-			ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                                
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className ="inner";
-				ownBoxBody.appendChild(doc.createTextNode(" "));
-				ownBoxBody.appendChild(links[k].link);
-			}
+		
+		var alldivs = doc.getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="main mainRegular") {
+				var Coach,TI,STA,TrainingType; 
+				var alllinks = alldivs[j].getElementsByTagName('a');
+				for (var i = 0; i < alllinks.length; i++) {
+					if (alllinks[i].href.match(/skillshort/i)) { 
+						Coach = FoxtrickHelper.getSkillLevelFromLink(alllinks[i]);
+						break;
+					}
+				}
+				STA = doc.getElementById("ctl00_CPMain_txtTrainingLevelStamina").value;
+				TI = doc.getElementById("ctl00_CPMain_txtTrainingLevel").value;
+				TrainingType= doc.getElementById("ctl00_CPMain_ddlTrainingType").value;
 						
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			
+				var links = getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType}, doc, this);  
+                  
+				if (links.length > 0) {
+					var ownBoxBody = doc.createElement("div");
+					var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
+					var ownBoxId = "foxtrick_" + header + "_box";
+					var ownBoxBodyId = "foxtrick_" + header + "_content";
+					ownBoxBody.setAttribute( "id", ownBoxBodyId );
+                                
+					for (var k = 0; k < links.length; k++) {
+						links[k].link.className ="inner";
+						ownBoxBody.appendChild(doc.createTextNode(" "));
+						ownBoxBody.appendChild(links[k].link);
+					}
+						
+					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			                                                        
-        }
-            
+				}
+            }
+		}
     },
 	
 	change : function( page, doc ) {

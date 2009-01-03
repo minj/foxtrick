@@ -1175,7 +1175,7 @@ stats["htlinks_trainingspeedchecker"] =  {
 
         "traininglink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : []
+                         "params"     : {"Coach":"Trainer","TI":"TI","STA":"KO","TrainingType":"TrainingType"}
                        },
         
         "title" : "HT-Links.de TrainingSpeedChecker",
