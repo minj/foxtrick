@@ -50,6 +50,7 @@ var scripts = [
 	'shortcuts_and_tweaks/personalityImages.js',
 	'shortcuts_and_tweaks/skinPlugin.js',
 	'shortcuts_and_tweaks/teamStats.js',
+	'shortcuts_and_tweaks/largeflags.js',
     'links/linksleague.js',
 	'links/linksteam.js',
 	'links/linkscountry.js',
