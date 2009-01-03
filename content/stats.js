@@ -1327,7 +1327,7 @@ stats["arenaoptimizer"] =  {
 
 stats["nrg_eco_arena"] =  { 
         "url" : "http://nrgjack.altervista.org/",
-        "arenalink" : { "path"       : "eco.php/",
+        "arenalink" : { "path"       : "eco.php",
                          "filters"    : [], 
                          "params"     : { "terraces" : "terraces", "basic": "basic", "roof" : "roof", "vip" : "vip"}                       
                        },
@@ -1338,7 +1338,7 @@ stats["nrg_eco_arena"] =  {
 
 stats["nrg_newcoach"] =  { 
         "url" : "http://nrgjack.altervista.org/",
-	    "coachlink" : { "path"       : "fc.php/",
+	    "coachlink" : { "path"       : "fc.php",
                          "filters"    : [], 
                          "params"     : {  }
                        },

@@ -342,7 +342,7 @@ var FoxtrickPreferencesDialog = {
 			if (module.OPTIONS[i]["key"]==null){key=module.OPTIONS[i];title=module.OPTIONS[i];}
 			else {key=module.OPTIONS[i]["key"];title=module.OPTIONS[i]["title"];}
 			checkbox.setAttribute( "checked", Foxtrick.isModuleFeatureEnabled( module, key) );
-			checkbox.setAttribute( "label", title );
+			checkbox.setAttribute( "label", Foxtrick._from_utf8(title) );
 			checkbox.setAttribute( "id", key);
             checkbox.setAttribute( "class", "checkbox_in_group" );
 			if (!Foxtrick.isModuleEnabled( module )) {

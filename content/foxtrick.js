@@ -290,7 +290,8 @@ Foxtrick.trim = function (text) {
 }
 
 Foxtrick.trimnum = function (text) {
-  return text.replace(/[\D\s]/g, '');
+  //return text.replace(/[\D\s]/g, '');  
+  return text.replace(/&nbsp;/g,"").replace(/[\s]/g, '').match(/-\d+|\d+/);
 }
 String.prototype.group = function( chr, size )
 {
@@ -596,3 +597,60 @@ Foxtrick.setStatusIconStyle = function(ev) {
 }
 
 
+/**********************************************************************
+ *
+ *  Unicode ? UTF-8
+ *
+ *  Copyright (c) 2005 AOK <soft@aokura.com>
+ *
+ **********************************************************************/
+
+Foxtrick._to_utf8 = function(s) {
+  var c, d = "";
+  for (var i = 0; i < s.length; i++) {
+    c = s.charCodeAt(i);
+    if (c <= 0x7f) {
+      d += s.charAt(i);
+    } else if (c >= 0x80 && c <= 0x7ff) {
+      d += String.fromCharCode(((c >> 6) & 0x1f) | 0xc0);
+      d += String.fromCharCode((c & 0x3f) | 0x80);
+    } else {
+      d += String.fromCharCode((c >> 12) | 0xe0);
+      d += String.fromCharCode(((c >> 6) & 0x3f) | 0x80);
+      d += String.fromCharCode((c & 0x3f) | 0x80);
+    }
+  }
+  return d;
+}
+
+Foxtrick._from_utf8 = function(s) {
+  var c, d = "", flag = 0, tmp;
+  for (var i = 0; i < s.length; i++) {
+    c = s.charCodeAt(i);
+    if (flag == 0) {
+      if ((c & 0xe0) == 0xe0) {
+        flag = 2;
+        tmp = (c & 0x0f) << 12;
+      } else if ((c & 0xc0) == 0xc0) {
+        flag = 1;
+        tmp = (c & 0x1f) << 6;
+      } else if ((c & 0x80) == 0) {
+        d += s.charAt(i);
+      } else {
+        flag = 0;
+      }
+    } else if (flag == 1) {
+      flag = 0;
+      d += String.fromCharCode(tmp | (c & 0x3f));
+    } else if (flag == 2) {
+      flag = 3;
+      tmp |= (c & 0x3f) << 6;
+    } else if (flag == 3) {
+      flag = 0;
+      d += String.fromCharCode(tmp | (c & 0x3f));
+    } else {
+      flag = 0;
+    }
+  }
+  return d;
+}
