@@ -1,4 +1,4 @@
-<!-- it-IT
+﻿<!-- it-IT
      Caracca
 -->
 
@@ -9,10 +9,11 @@
 <!ENTITY foxtrick.prefs.modulelistlabel "Moduli disponibili. Per attivare il modulo si deve spuntare la relativa casella di fianco.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick e' al momento sottoposto ad una transizione verso il nuovo design di Hattrick. Stiamo facendo del nostro meglio per portare tutte le vecchie funzionalita' nel nuovo design. Siate pazienti e aspettatevi aggiornamenti regolari!">
 
+
 <!ENTITY foxtrick.prefs.mainoptions "Opzioni principali">
 <!ENTITY foxtrick.prefs.btnlabelsave "Salva">
 <!ENTITY foxtrick.prefs.btnlabelcancel "Annulla">
-<!ENTITY foxtrick.prefs.enable "Abilita">
+<!ENTITY foxtrick.prefs.enable "Abilita (sarà necessario riavviare il Firefox)">
 <!ENTITY foxtrick.prefs.preferences "Preferenze">
 <!ENTITY foxtrick.prefs.visuals "Visuali">
 <!ENTITY foxtrick.prefs.showonstatusbar "Visualizza icona nella barra di stato">
@@ -41,7 +42,7 @@
 <!ENTITY foxtrick.prefs.rating "Valutazione">
 <!ENTITY foxtrick.prefs.htlang "Linguaggio Hattrick">
 <!ENTITY foxtrick.prefs.language "Opzioni lingua">
-<!ENTITY foxtrick.prefs.htcurrency "Valuta Hattrick">
+
 <!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Schemi di colore per la formazione">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Non usare colorazione per la formazione">
@@ -77,6 +78,7 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Ottieni piu' set di medaglie">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Usa medaglie standard di Hattrick">
 <!ENTITY foxtrick.menu.installmedalset "Installa set di medaglie Hattrick.org">
+<!ENTITY foxtrick.prefs.htcurrency "Valuta Hattrick">
 <!ENTITY foxtrick.prefs.main "Principale">
 <!ENTITY foxtrick.prefs.alertsettings "Impostazioni Avvisi">
 <!ENTITY foxtrick.prefs.alertslider "Visualizza Slider Avvisi">
