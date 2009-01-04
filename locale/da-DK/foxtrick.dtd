@@ -1,22 +1,20 @@
-<!-- dk-DK
+<!—dk-DK
+ Lasse Svendsen og Erik Thomsen aka LasseSvendsen [clubid=6779565]
+ og 05erth [clubid=6446650]
 
 -->
 
 <!ENTITY foxtrick.prefs.shortcuts "Genveje og finindstillinger">
 <!ENTITY foxtrick.prefs.forum "Forum">
 <!ENTITY foxtrick.prefs.links "Links">
-<!ENTITY foxtrick.prefs.matches "Matches">
 <!ENTITY foxtrick.prefs.modulelistlabel "Tilgængelige moduler. Tjek boksen ved siden af modul navn, for at aktivere den.">
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick er i øjeblikket i gang med en overgang til det nye Hattrick design. Vi gør vores bedste, for at bringe de gamle funtioner til det nye design. Vær tålmodig med os og forvent regelmæssige opdateringer!">
 
 
 <!ENTITY foxtrick.prefs.mainoptions "Vigtigste muligheder">
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.enable "Aktivere">
 <!ENTITY foxtrick.prefs.preferences "Konfigurere">
 <!ENTITY foxtrick.prefs.visuals "Visuals">
-<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.stars "Stjerner">
 <!ENTITY foxtrick.prefs.about "Om">
 <!ENTITY foxtrick.prefs.addstars "Tilføj stjerner">
@@ -42,8 +40,6 @@
 <!ENTITY foxtrick.prefs.rating "Rating">
 <!ENTITY foxtrick.prefs.htlang "Hattrick sprog">
 <!ENTITY foxtrick.prefs.language "Sprog opsætning">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
-<!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Kampopstilling farve ordninger">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Ingen kampopstilling farver.">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Kun hvis en farvesammensætning findes i det anvendte skin.">
@@ -78,6 +74,7 @@
 <!ENTITY foxtrick.prefs.getmoremedalsets "Få flere medalje sæt">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Brug standard Hattrick medaljer.">
 <!ENTITY foxtrick.menu.installmedalset "Installer Hattrick.org medalje sæt">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.main "Hoved">
 <!ENTITY foxtrick.prefs.alertsettings "Alarm indstillinger">
 <!ENTITY foxtrick.prefs.alertslider "Vis alarm slider.">
@@ -103,6 +100,5 @@
 <!ENTITY foxtrick.prefs.linksarena "Tilføj nogle eksterne links til stadionsiden">
 <!ENTITY foxtrick.prefs.linkscoach " Tilføj nogle eksterne links til trænersiden">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Tilføj nogle eksterne links til spiller-detaljesiden">
-<!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
 
 <!-- EOF -->
