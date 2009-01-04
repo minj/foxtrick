@@ -52,7 +52,7 @@ var FoxtrickAddManagerButtons = {
 		var allDivs = doc.getElementsByTagName("div");
 		var teamID;
 		var ownerID;
-		var HTSupporter;
+		var HTSupporter = true;
 				
 		// Get the teamID
 		for(var i = 0; i < allDivs.length; i++) {
@@ -63,9 +63,14 @@ var FoxtrickAddManagerButtons = {
 					teamLinks_a.href.search( /TeamID=/i )+7 );
 			}
 			//Determine if teamID is HT-Supporter - Stephan57
+			/*
+			 * This doesn't work if a user has the 'Show faces' option disabled
+			 * For now we'll go back to always displaying the Write in Guestbook-button
+			 * until a better solution is available.
 			if(allDivs[i].id=="ctl00_CPMain_ucManagerFace_pnlAvatar") {
 				HTSupporter=true;
 			}
+			*/
 			if(allDivs[i].className=="main mainRegular") {
 				var divBoxHead = allDivs[i].getElementsByTagName( "div" )[0];
 				var divBoxLeft = divBoxHead.getElementsByTagName( "div" )[0];
