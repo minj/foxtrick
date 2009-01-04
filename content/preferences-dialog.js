@@ -116,10 +116,11 @@ var FoxtrickPreferencesDialog = {
 					} else if (modules_list.childNodes[i].checkbox) {
 						var checkboxes = modules_list.childNodes[i].childNodes[1].childNodes;
 						for (var j = 0; j < checkboxes.length; j++) {
+							dump(checkboxes[j].value + "\n");
 							if (checkboxes[j].id.search(/_text$/) == -1)
 								FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].checked );
 							else
-								FoxtrickPreferencesDialog.setModuleOptionsText( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].value );
+								FoxtrickPreferencesDialog.setModuleOptionsText( modules_list.childNodes[i].prefname + "." + checkboxes[j].firstChild.id, checkboxes[j].firstChild.value );
 						}
 					}                                                   
 						// modules_list.childNodes[i].checked );
@@ -354,11 +355,17 @@ var FoxtrickPreferencesDialog = {
 			hbox.appendChild( checkbox );
 			if (bOptionTexts){
 				var htextbox = document.createElement("hbox");
+				htextbox.setAttribute("id", "hbox_" + key + "_text");
 				var textbox = document.createElement("textbox");
 				textbox.setAttribute("id", key + "_text");
 				textbox.setAttribute("style", "margin-left:20px;");
 				textbox.setAttribute("width", "300px");
 				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
+				dump("val:" + val + "\n");
+				if (!val && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]){
+					dump("default:" + module.OPTION_TEXTS_DEFAULT_VALUES[i] + "\n");
+					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
+				}
 				textbox.setAttribute("value", val);
 				htextbox.appendChild(textbox);
 				hbox.appendChild(htextbox);
@@ -427,11 +434,11 @@ var FoxtrickPreferencesDialog = {
 FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
 
 FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
-    FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
+	  FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
 }
 
 FoxtrickPreferencesDialog.setModuleOptionsText = function( module_name, value ) {
-    FoxtrickPrefs.setString( "module." + module_name, value );
+	  FoxtrickPrefs.setString( "module." + module_name, value );
 }
 
 FoxtrickPreferencesDialog.setModuleValue = function( module_name, value ) {

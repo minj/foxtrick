@@ -5,14 +5,22 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickForumStaffMarker = {
-    
-    MODULE_NAME : "ForumStaffMarker",
+   
+   
+  MODULE_NAME : "ForumStaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
 	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("background:red;", 
+																					"background:orange; color:black;",
+																					"background:yellow; color:black;",
+																					"background:blue; color:black;",
+																					"background:white; color:green;",
+																					"background:green;",
+																					"background:#c3d9ff; color:black;"
+																					),
 	OPTIONS : new Array("HT", "MOD", "GM", "LA", "CHPP", "editor", "foxtrick-dev"),
 
-    _MARK_STAFF : "mark_staff",
 
 
     init : function() {
@@ -161,37 +169,37 @@ var FoxtrickForumStaffMarker = {
 						if (Foxtrick.isModuleFeatureEnabled( this, "HT") && htreg.test(uname)) {
 							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text");
 							if (!stl)
-								stl = "background:red;";
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[0];
 							a.setAttribute("style", stl);
 						} else if (Foxtrick.isModuleFeatureEnabled( this, "GM") && gmreg.test(uname)) {
 							var stl = FoxtrickPrefs.getString("modules." + this.MODULE_NAME + "." + "GM_text");
 							if (!stl)
-								stl = "background:orange; color:black;";
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[1];
 							a.setAttribute("style", stl);
 						} else if (Foxtrick.isModuleFeatureEnabled( this, "MOD") && modreg.test(uname)) {
 							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MOD_text");
 							if (!stl)
-								stl = "background:yellow; color:black;";
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[2];
 							a.setAttribute("style", stl);
 						} else if (Foxtrick.isModuleFeatureEnabled( this, "CHPP") && chppreg.test(uname)) {
 							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CHPP_text");
 							if (!stl)
-								stl = "background:blue; color:black;";
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[3];
 							a.setAttribute("style", stl);
 						} else if (Foxtrick.isModuleFeatureEnabled( this, "LA") && lareg.test(uname)) {
 							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "LA_text");
 							if (!stl)
-								stl = "background:white; color:green;";
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[4];
 							a.setAttribute("style", stl);
 						} else if (Foxtrick.isModuleFeatureEnabled( this, "editor") && editorsArray.join().search(uname) > -1) {
 							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "editor_text");
 							if (!stl)
-								stl = "background:green;";
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[5];
 							a.setAttribute("style", stl);
 						} else if (Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") && foxtrickersArray.join().search(uname) > -1) {
 							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
 							if (!stl)
-								stl = "background:#c3d9ff; color:black;";
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[6];
 							a.setAttribute("style", stl);
 						}						
 					}
