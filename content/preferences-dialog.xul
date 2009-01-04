@@ -3,7 +3,7 @@
 <?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
 
 <!DOCTYPE window [
-   <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/content/foxtrick.dtd" >
+   <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
    %foxtrickDTD;
 ]>
 
