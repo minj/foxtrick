@@ -60,12 +60,12 @@ var FoxtrickAlltidFlags = {
 				
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1) {
+					  if (link.href.search(/userId=/i) > -1) { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+flagsCounter;
 						mySpan.setAttribute( "id", spanId );
-						var userId = link.href.substring(link.href.lastIndexOf('userId=')+7);
+						var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
 						dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;

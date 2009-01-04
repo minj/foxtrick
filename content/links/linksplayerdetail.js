@@ -59,12 +59,12 @@ var FoxtrickLinksPlayerDetail = {
 				var container = PlayerInfoTable.rows[4].cells[1];
 				if (container.textContent.search(/\d+/) > -1) {
 					var injuredweeks = container.textContent.match(/\d+/)[0];
-					var links = getLinks("playerhealinglink", { "playerid": playerid,
+					var ilinks = getLinks("playerhealinglink", { "playerid": playerid,
 							"form": form, "age" : age, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);  
 					for (var j=0; j< links.length; j++) {
-						var linkobj = links[j].link;
+						ilinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
 						container.appendChild(doc.createTextNode(" "));
-						container.appendChild(linkobj);
+						container.appendChild(ilinks[j].link);
 					}
 				}
 			    var goalkeeperskillnode;   
@@ -109,42 +109,44 @@ var FoxtrickLinksPlayerDetail = {
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces
 						};
-				links[0] = getLinks("playerlink", params, doc,this);
-				links[1] = getLinks("transfercomparelink", params, doc,this);
+				links[0] = getLinks("playerlink", params, doc,this); 
+				links[1] = getLinks("transfercomparelink", params, doc,this); 
                 
 				} else {
 					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality };
-					links[0] = getLinks("playerlink", params, doc,this);		
+					links[0] = getLinks("playerlink", params, doc,this); 	
 				}
 				if (goalkeeping > 3) {					
 					// keeper links
 					var klinks = getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
-                                                         "form" : form, "goalkeeping" : goalkeeping }, doc,this);  
+                                                         "form" : form, "goalkeeping" : goalkeeping, "age" : age }, doc,this);  
 					for (var j=0; j< klinks.length; j++) {
+						klinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
 						goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
 						goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
 						}										
 				}
 				
-				var ownBoxBody = doc.createElement("div");
-				var header = Foxtrickl10n.getString(
+				if (links[0].length+links[1].length>0) {
+					var ownBoxBody = doc.createElement("div");
+					var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-				var ownBoxId = "foxtrick_" + header + "_box";
-				var ownBoxBodyId = "foxtrick_" + header + "_content";
-				ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                                
-				for (var l = 0; l < links.length; l++) {
-					if (links[l]!=null) {
-						for (var k = 0; k < links[l].length; k++) {
-							links[l][k].link.className ="inner"
-							ownBoxBody.appendChild(doc.createTextNode(" "));
-							ownBoxBody.appendChild(links[l][k].link);
+					var ownBoxId = "foxtrick_" + header + "_box";
+					var ownBoxBodyId = "foxtrick_" + header + "_content";
+					ownBoxBody.setAttribute( "id", ownBoxBodyId );
+                            
+					for (var l = 0; l < links.length; l++) {
+						if (links[l]!=null) {
+							for (var k = 0; k < links[l].length; k++) {
+								links[l][k].link.className ="inner"
+								ownBoxBody.appendChild(doc.createTextNode(" "));
+								ownBoxBody.appendChild(links[l][k].link);
+							}
 						}
 					}
-				}
 						
-				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-				
+					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+				}
 				break;
 			}
 		}
@@ -152,8 +154,9 @@ var FoxtrickLinksPlayerDetail = {
 	
 	change : function( page, doc ) {
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_" + header + "_box";
-		if( !doc.getElementById ( ownBoxId ) ) {
+		if( !doc.getElementById ( "foxtrick_" + header + "_box" ) 
+			&& !doc.getElementById ( "foxtrick_keeperlink_0" ) 
+			&& !doc.getElementById ( "foxtrick_injurylink_0" ) ) {
 			this.run( page, doc );
 		}
 	},
