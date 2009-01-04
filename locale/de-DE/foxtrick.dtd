@@ -92,6 +92,7 @@
 <!ENTITY foxtrick.prefs.selectfile "Sounddatei wählen">
 <!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
 <!ENTITY foxtrick.prefs.disableonstage "FoxTrick auf Stage Server deaktivieren">
+<!ENTITY foxtrick.prefs.copypostid "Copy PostId to clipboard instead of just showing on forum page">
 <!ENTITY foxtrick.prefs.alltidflags "Alltid-Länderflaggen bei beiden Foren-Postern anzeigen">
 <!ENTITY foxtrick.prefs.linksleague "Hinzufügen externer Links zur Liga-Seite">
 <!ENTITY foxtrick.prefs.linksteams "Hinzufügen externer Links zur Team-Seite">
@@ -103,5 +104,6 @@
 <!ENTITY foxtrick.prefs.linkscoach "Hinzufügen externer Links zur Trainer-Seite">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Hinzufügen externer Links zu den Spieler-Details">
 <!ENTITY foxtrick.prefs.linksmatch "Hinzufügen externer Links zu der Spiele-Seite">
+<!ENTITY foxtrick.prefs.redirmanagertoteam "Redirect links from manager page to user page on forum links">
 
 <!-- EOF -->

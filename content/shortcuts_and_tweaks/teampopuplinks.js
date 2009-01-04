@@ -35,11 +35,15 @@ var FoxtrickTeamPopupLinks = {
 		var style = doc.createElement("style");
 		style.setAttribute("type", "text/css");
 		//determine width of the floating box - Stephan
-		var maxwidth = Math.max(Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, Foxtrickl10n.getString( 'last_5_ips' ).length, Foxtrickl10n.getString( 'Guestbook' ).length); //Stephan
+		var maxwidth = Math.max(Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, 
+						Foxtrickl10n.getString( 'last_5_ips' ).length, Foxtrickl10n.getString( 'Guestbook' ).length,
+						Foxtrickl10n.getString( 'TransferHistory' ).length,Foxtrickl10n.getString( 'LastLineup').length); //Stephan
 		var bMatches = Foxtrick.isModuleFeatureEnabled( this, "Matches");
 		var bPlayers = Foxtrick.isModuleFeatureEnabled( this, "Players");
 		var bLast5IPs = Foxtrick.isModuleFeatureEnabled( this, "last_5_ips");
 		var bGuestbook = Foxtrick.isModuleFeatureEnabled( this, "Guestbook");
+		var bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
+		var bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
 		var top = 0;
 		if (bMatches)
 			top = top - 20;
@@ -48,6 +52,10 @@ var FoxtrickTeamPopupLinks = {
 		if (bLast5IPs)
 			top = top - 20;
 		if (bGuestbook)
+			top = top - 20;
+		if (bTransferHistory)
+			top = top - 20;
+		if (bLastLineup)
 			top = top - 20;
 		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}'; //Stephan
 		style.appendChild(doc.createTextNode(zaw));
@@ -128,6 +136,30 @@ var FoxtrickTeamPopupLinks = {
 					td4.appendChild(a4);
 					tr4.appendChild(td4);
 					tbl.appendChild(tr4);
+				}	
+				if (bTransferHistory){
+					var tr5 = doc.createElement("tr");
+					tr5.setAttribute("height", "20");
+					var td5 = doc.createElement("td");
+					td5.setAttribute("nowrap", "nowrap");
+					var a5 = doc.createElement("a");
+					a5.setAttribute('href', '/Club/Transfers/transfersTeam.aspx?teamId=' + value);
+					a5.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'TransferHistory' )));
+					td5.appendChild(a5);
+					tr5.appendChild(td5);
+					tbl.appendChild(tr5);
+				}	
+				if (bLastLineup){
+					var tr6 = doc.createElement("tr");
+					tr6.setAttribute("height", "20");
+					var td6 = doc.createElement("td");
+					td6.setAttribute("nowrap", "nowrap");
+					var a6 = doc.createElement("a");
+					a6.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+value+'&useArchive=True');
+					a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
+					td6.appendChild(a6);
+					tr6.appendChild(td6);
+					tbl.appendChild(tr6);
 				}
 				
 				var span = doc.createElement("span");
@@ -157,7 +189,9 @@ var FoxtrickTeamPopupLinks = {
 		this.OPTIONS = new Array( Foxtrickl10n.getString( "Matches" ),
 								  Foxtrickl10n.getString( "Players" ),
 								  Foxtrickl10n.getString( "last_5_ips" ),
-								  Foxtrickl10n.getString( "Guestbook" ));
+								  Foxtrickl10n.getString( "Guestbook" ),
+								  Foxtrickl10n.getString( "TransferHistory" ),
+								  Foxtrickl10n.getString( "LastLineup" ));
 	}
 };
 

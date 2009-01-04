@@ -10,7 +10,7 @@
  * "params"     : { "" : "#text" }   -> #text   			//eg maptrick , first letter non alphanumeric
  * "params"     : { "infocode" : "," }   -> ,info[infocode]   //eg alltid, first letter non alphanumeric
  */
- 
+  
 var vnukstatsranges = {};
 
 vnukstatsranges["czech"] = [[93617,93784], [115871,116382], [480223, 482270]];
@@ -1181,6 +1181,18 @@ stats["htlinks_trainingspeedchecker"] =  {
         "title" : "HT-Links.de TrainingSpeedChecker",
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };    
+
+stats["htlinks_Goalkeeper_Checker"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/Goalkeeper-Checker.html",
+
+        "keeperlink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : { "tsi" : "TSI", "form": "Form","age":"Age"}
+                       },
+        
+        "title" : "www.ht-links.de - Goalkeeper-Checker",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_small.png"
+};
 
 /*  // illegal site. don't include again before CHPP approval
 stats["skillraise"] =  { 

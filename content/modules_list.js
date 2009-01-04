@@ -10,8 +10,10 @@
 Foxtrick.modules = [ FoxtrickForumTemplates,
                      BookmarkAdjust,
                      FoxtrickHideManagerAvatar,
-                     FoxtrickMoveLinks,
+                     FoxtrickRedirManagerToTeam,
+					 FoxtrickMoveLinks,
                      FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
+					 FoxtrickCopyPostID,  
 					 FoxtrickHideManagerAvatarUserInfo,
                      FoxtrickForumStaffMarker,
                      FoxtrickGoToPostBox,
