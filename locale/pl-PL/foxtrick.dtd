@@ -109,7 +109,7 @@
 <!ENTITY foxtrick.prefs.confirmtl "Dodaje potwierdzenie przed wystawieniem piłkarza na sprzedaż">
 <!ENTITY foxtrick.prefs.htthreadmarker "Koloruje wątki na forum utworzone przez HT-ków">
 <!ENTITY foxtrick.prefs.largeflags "Zamienia małą flagę na dużą na stronie zawodnika">
-<!ENTITY foxtrick.prefs.gopostbox "Dodaje pole "Przejdź do postu nr" na forum">
-<!ENTITY foxtrick.prefs.addmanagerbuttons "Dodaje przyciski "Wyślij wiadomość" oraz "Wpisz się do Księgi gości" na stronie Prezes">
+<!ENTITY foxtrick.prefs.gotopostbox "Dodaje pole 'Przejdź do postu nr' na forum">
+<!ENTITY foxtrick.prefs.addmanagerbuttons "Dodaje przyciski 'Wyślij wiadomość' oraz 'Wpisz się do Księgi gości' na stronie Prezes">
 
 <!-- EOF -->
