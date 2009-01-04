@@ -20,7 +20,7 @@ var Ratings = {
 	},
 
 	run : function( page, doc ) {
-		try {
+		try {  
 			var ratingstable = Matches._getRatingsTable(doc);
 			if (ratingstable == null) return;
 			if (Matches._isWalkOver(ratingstable)) return;
@@ -64,8 +64,8 @@ var Ratings = {
 
 				var cell = row.insertCell(0);
 				cell.className='ch';
-				cell.innerHTML = this.ratingDefs[selectedRating].label;
-
+				cell.innerHTML = this.ratingDefs[selectedRating]["label"]();
+				
 				for (i=0;i<2;i++) {
 					var cell = row.insertCell(i+1);
 					try {
@@ -128,8 +128,8 @@ var Ratings = {
 	initHtRatings: function () {
 		this.ratingDefs=new Array();
 		this.ratingDefs["vnukstats"] = { base : 1.0,
-			label : "Vnukstats",
-			title : "Vnukstats",
+			label : function(){return "Vnukstats";},
+			title : function(){return "Vnukstats";},
 
 			special : function(rattack, cattack, lattack) {
 			return this.mystyle(rattack) + " " + this.mystyle(cattack)
@@ -151,8 +151,8 @@ var Ratings = {
 		};
 
 		this.ratingDefs["hatstats"] = {	base : 1.0, weight : 4.0,
-			label : "HatStats (detailed)",
-			title : "HatStats (detailed)",
+			label : function(){return Foxtrickl10n.getString('HatStatsDetailed');},
+			title : function(){return Foxtrickl10n.getString('HatStatsDetailed');},
 
 			attack : function(attackLevel) {
 				return (3.0*this.base + this.weight*attackLevel);
@@ -170,16 +170,17 @@ var Ratings = {
 			}
 		};
 
-		this.ratingDefs["hatstatstotal"] = { label : "HatStats (total only)",
-			title : "HatStats Total only",
+		this.ratingDefs["hatstatstotal"] = { 
+			label : function(){return Foxtrickl10n.getString("HatStatsTotalOnly");},
+			title : function(){return Foxtrickl10n.getString("HatStatsTotalOnly");},
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
 				return Ratings.ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
 			}
 		};
 		
 		this.ratingDefs["loddarstats"] = {	base : 1.0, weight : 4.0,
-			label : "LoddarStats",
-			title : "LoddarStats",
+			label : function(){return "LoddarStats";},
+			title : function(){return "LoddarStats";},
 
 			HQ : function(x) {
 				return 2.0*(x/(x+80));
@@ -237,8 +238,8 @@ var Ratings = {
 		 };
 
 		this.ratingDefs["peasostats"] = {	base : 1.0, weight : 4.0,
-			label : "PStats",
-			title : "PStats",
+			label : function(){return "PStats";},
+			title : function(){return "PStats";},
 
 			total2: function( midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
@@ -264,8 +265,8 @@ var Ratings = {
 		};
 
 		this.ratingDefs["htitavals"] = {	base : 1.0, weight : 4.0,
-			label : "HTitaVal",
-			title : "HTitaVal",
+			label : function(){return "HTitaVal";},
+			title : function(){return "HTitaVal";},
 
 			total2: function( midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
@@ -292,8 +293,8 @@ var Ratings = {
 
 		this.ratingDefs["gardierstats"] = {
 			base : 1.0, weight : 4.0,
-			label : "GardierStats",
-			title : "GardierStats",
+			label : function(){return "GardierStats";},
+			title : function(){return "GardierStats";},
 
 			total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
 

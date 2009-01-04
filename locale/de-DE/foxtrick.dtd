@@ -107,7 +107,7 @@
 <!ENTITY foxtrick.prefs.redirmanagertoteam "Weiterleitung auf die Manager-Seite beim Klicken von Links im Forum">
 <!ENTITY foxtrick.prefs.htthreadmarker "Hebt den Titel von Threads hervor, welche von HT's erstellt wurden">
 <!ENTITY foxtrick.prefs.largeflags "Anzeige großer Flaggen anstelle der kleinen">
-<!ENTITY foxtrick.prefs.gopostbox "stub">
+<!ENTITY foxtrick.prefs.gotopostbox "stub">
 <!ENTITY foxtrick.prefs.addmanagerbuttons "stub">
 
 <!-- EOF -->
