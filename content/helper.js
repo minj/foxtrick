@@ -25,6 +25,10 @@ var FoxtrickHelper = {
 		this.getOwnTeamInfo(doc);	
 	},
 
+	change : function( page, doc ) {
+		
+	},
+
 
 	//---------------------------------------------------------------------------    
 	isSeriesDetailUrl : function(href) {
