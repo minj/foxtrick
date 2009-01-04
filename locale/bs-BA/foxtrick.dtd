@@ -1,4 +1,4 @@
-﻿<!-- bs-BA-Latn
+<!-- bs-BA-Latn
      Masterix
 -->
 
@@ -16,6 +16,7 @@
 <!ENTITY foxtrick.prefs.enable "Omogući">
 <!ENTITY foxtrick.prefs.preferences "Karakteristike">
 <!ENTITY foxtrick.prefs.visuals "Vizualizacija">
+<!ENTITY foxtrick.prefs.showonstatusbar "Display status bar icon">
 <!ENTITY foxtrick.prefs.stars "Zvijezde">
 <!ENTITY foxtrick.prefs.about "O nama">
 <!ENTITY foxtrick.prefs.addstars "Dodaj zvijezde">
@@ -41,6 +42,7 @@
 <!ENTITY foxtrick.prefs.rating "Ocjena">
 <!ENTITY foxtrick.prefs.htlang "Jezik Hattricka">
 <!ENTITY foxtrick.prefs.language "Podešavanje jezika">
+<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.currency "Currency settings">
 <!ENTITY foxtrick.prefs.lineupcoloring "Šeme boja u postavi.">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Bez šeme boja u postavi.">
@@ -71,12 +73,11 @@
 <!ENTITY foxtrick.prefs.hattricksettingstext "Sljedeće opcije moraju biti usaglašene sa vašim postavkama na Hattricku.">
 <!ENTITY foxtrick.prefs.showflags "Dodaj zastavu države igrača u postavu.">
 <!ENTITY foxtrick.prefs.showfacesandflags "Dodaj lica igrača &amp; zastave država u postavi.">
-<!ENTITY foxtrick.prefs.showdressesandflags "Dodaj dresove igrača &amp; zastave država u postavi."
+<!ENTITY foxtrick.prefs.showdressesandflags "Dodaj dresove igrača &amp; zastave država u postavi.">
 <!ENTITY foxtrick.prefs.medalsets "Setovi medalja">
 <!ENTITY foxtrick.prefs.getmoremedalsets "Još setova medalja">
 <!ENTITY foxtrick.prefs.defaulthattrickmedals "Koristi originalne Hattrickove medalje.">
 <!ENTITY foxtrick.menu.installmedalset "Instaliraj set madalja sa Hattrick.org">
-<!ENTITY foxtrick.prefs.htcurrency "Hattrick valuta">
 <!ENTITY foxtrick.prefs.main "Glavno">
 <!ENTITY foxtrick.prefs.alertsettings "Štimanje upozorenja">
 <!ENTITY foxtrick.prefs.alertslider "Prikaži klizače upozorenja.">
@@ -92,6 +93,7 @@
 <!ENTITY foxtrick.prefs.selectfile "Izaberi zvučni dosje">
 <!ENTITY foxtrick.prefs.stagesettings "Štimanje platforme">
 <!ENTITY foxtrick.prefs.disableonstage "Onesposobi Foxtrick na serveru Platforme">
+<!ENTITY foxtrick.prefs.copypostid "Copy PostId to clipboard instead of just showing on forum page">
 <!ENTITY foxtrick.prefs.alltidflags "Dodaj Alltidove zastave i linkove na stranici foruma">
 <!ENTITY foxtrick.prefs.linksleague "Dodaj neke vanjske linkove na stranici lige">
 <!ENTITY foxtrick.prefs.linksteams "Dodaj neke vanjske linkove na stranici tima">
@@ -103,5 +105,11 @@
 <!ENTITY foxtrick.prefs.linkscoach "Dodaj neke vanjske linkove na stranici promjeni trenera">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Dodaj neke vanjske linkove na stranici igrača">
 <!ENTITY foxtrick.prefs.linksmatch "Dodaje neke vanjske linkove na stranicu utakmice">
+<!ENTITY foxtrick.prefs.redirmanagertoteam "Redirect links from manager page to user page on forum links">
+<!ENTITY foxtrick.prefs.confirmtl "Adds player transferlist confirm box">
+<!ENTITY foxtrick.prefs.htthreadmarker "Marks threads created by HTs">
+<!ENTITY foxtrick.prefs.largeflags "Replaces the tiny country flag on player pages with a large one">
+<!ENTITY foxtrick.prefs.gotopostbox "Adds box a GoToPostX box to forum page">
+<!ENTITY foxtrick.prefs.addmanagerbuttons "Adds Send Message and Write in Guestbook buttons to manager page">
 
 <!-- EOF -->
