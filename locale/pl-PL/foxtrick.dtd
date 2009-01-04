@@ -24,7 +24,7 @@
 <!ENTITY foxtrick.prefs.defaulthattrickstars "Użyj domyślnych gwiazdek Hattricka">
 <!ENTITY foxtrick.prefs.cssskins "Motywy">
 <!ENTITY foxtrick.prefs.defaulthatrickskin "Użyj domyślnego motywu Hattricka">
-<!ENTITY foxtrick.menu.configurefoxtrick "Konfiguruj FoxTrick">
+<!ENTITY foxtrick.menu.configurefoxtrick "Dostosuj FoxTrick">
 <!ENTITY foxtrick.menu.reloadfoxtrick "Przeładuj FoxTrick (dla twórców)">
 <!ENTITY foxtrick.prefs.faces "Twarze i stroje (dla Supporterów)">
 <!ENTITY foxtrick.prefs.nodressesorfaces "Nie pokazuj twarzy i strojów">
@@ -43,7 +43,7 @@
 <!ENTITY foxtrick.prefs.htlang "Język Hattricka">
 <!ENTITY foxtrick.prefs.language "Wybierz język">
 <!ENTITY foxtrick.prefs.htcurrency "Waluta Hattricka">
-<!ENTITY foxtrick.prefs.currency "Currency settings">
+<!ENTITY foxtrick.prefs.currency "Wybierz walutę">
 <!ENTITY foxtrick.prefs.lineupcoloring "Kolorowanie ustawienia meczowego">
 <!ENTITY foxtrick.prefs.nolineupcoloring "Nie koloruj ustawienia meczowego">
 <!ENTITY foxtrick.prefs.skinonlylineupcoloring "Tylko jeśli wybrany motyw zawiera schemat kolorowania">
