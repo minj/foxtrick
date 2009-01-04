@@ -44,7 +44,8 @@
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox id="main_list" style="display:run-in" >
 			    <groupbox>
-			      <caption label="&foxtrick.prefs.language;"/>
+			      <!-- <caption label="&foxtrick.prefs.language;"/> -->
+				  <caption id="captionHTLanguage"/>
 			      <menulist id="htLanguage">
                     <menupopup id="htLanguagePopup" >
                           

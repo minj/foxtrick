@@ -12,6 +12,8 @@ var FoxtrickPreferencesDialog = {
         for ( i in FoxtrickPreferencesDialog.core_modules ) {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
+		
+		this.initCaptionsAndLabels( document );
 
         for each ( cat in Foxtrick.moduleCategories ) {
             FoxtrickPreferencesDialog._fillModulesList( document, cat );
@@ -24,6 +26,12 @@ var FoxtrickPreferencesDialog = {
         this.initResizer();
         FoxtrickPreferencesDialog.pref_show ('main_list');
     },
+	
+	initCaptionsAndLabels : function( document ) {
+		var captionHTLanguage = document.getElementById("captionHTLanguage");
+		captionHTLanguage.setAttribute( "label", Foxtrickl10n.getString(
+			"foxtrick.prefs.language") );
+	},
     
     initStatusbarPref : function() {
     	document.getElementById('statusbarpref').setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshow" ) );
