@@ -1,4 +1,4 @@
-<!-- en-US
+﻿<!-- en-US
      Karel Kolman
 -->
 
@@ -106,10 +106,10 @@
 <!ENTITY foxtrick.prefs.linksplayerdetail "Adds some external links to the players detail page">
 <!ENTITY foxtrick.prefs.linksmatch "Adds some external links to the matches page">
 <!ENTITY foxtrick.prefs.redirmanagertoteam "Redirect links from manager page to user page on forum links">
-<!ENTITY foxtrick.prefs.confirmtl "stub">
-<!ENTITY foxtrick.prefs.htthreadmarker "stub">
-<!ENTITY foxtrick.prefs.largeflags "stub">
-<!ENTITY foxtrick.prefs.gotopostbox "stub">
-<!ENTITY foxtrick.prefs.addmanagerbuttons "stub">
+<!ENTITY foxtrick.prefs.confirmtl "Adds player transferlist confirm box">
+<!ENTITY foxtrick.prefs.htthreadmarker "Marks threads created by HTs">
+<!ENTITY foxtrick.prefs.largeflags "Replaces the tiny country flag on player pages with a large one">
+<!ENTITY foxtrick.prefs.gotopostbox "Adds box a GoToPostX box to forum page">
+<!ENTITY foxtrick.prefs.addmanagerbuttons "Adds Send Message and Write in Guestbook buttons to manager page">
 
 <!-- EOF -->

@@ -92,7 +92,8 @@
 <!ENTITY foxtrick.prefs.opendirectory "Otwórz folder">
 <!ENTITY foxtrick.prefs.selectfile "Wybierz plik dźwiękowy">
 <!ENTITY foxtrick.prefs.stagesettings "Ustawienia Stage'a">
-<!ENTITY foxtrick.prefs.disableonstage "Wyłącz FoxTricka na Stage'u">
+<!ENTITY foxtrick.prefs.disableonstage "Wyłącz FoxTricka na Stage'u (wymagany restart Firefoxa)">
+<!ENTITY foxtrick.prefs.copypostid "Kopiuje PostID do schowka zamiast pokazywać go na stronie forum">
 <!ENTITY foxtrick.prefs.alltidflags "Dodaje linki i flagi Alltida do nicków obu postujących na forum">
 <!ENTITY foxtrick.prefs.linksleague "Dodaje linki do zewnętrznych stron na stronie ligi">
 <!ENTITY foxtrick.prefs.linksteams "Dodaje linki do zewnętrznych stron na stronie drużyny">
@@ -104,5 +105,11 @@
 <!ENTITY foxtrick.prefs.linkscoach "Dodaje linki do zewnętrznych stron w dziale Zmień trenera">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Dodaje linki do zewnętrznych stron na stronie zawodnika">
 <!ENTITY foxtrick.prefs.linksmatch "Dodaje linki do zewnętrznych stron na stronie Mecze">
+<!ENTITY foxtrick.prefs.redirmanagertoteam "Po kliknięciu na forum w nick prezesa, przekierowuje na stronę zespołu, a nie prezesa">
+<!ENTITY foxtrick.prefs.confirmtl "Dodaje potwierdzenie przed wystawieniem piłkarza na sprzedaż">
+<!ENTITY foxtrick.prefs.htthreadmarker "Koloruje wątki na forum utworzone przez HT-ków">
+<!ENTITY foxtrick.prefs.largeflags "Zamienia małą flagę na dużą na stronie zawodnika">
+<!ENTITY foxtrick.prefs.gopostbox "Dodaje pole "Przejdź do postu nr" na forum">
+<!ENTITY foxtrick.prefs.addmanagerbuttons "Dodaje przyciski "Wyślij wiadomość" oraz "Wpisz się do Księgi gości" na stronie Prezes">
 
 <!-- EOF -->
