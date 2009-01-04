@@ -423,7 +423,7 @@
       		<reposition type="towardswing" value="nach außen" />
 		</repositioning>
         <tactics>
-            <tactic type="normal" value="Normal" />
+            <tactic type="normal" value="normal" />
             <tactic type="pressing" value="Pressing" />
             <tactic type="ca" value="auf Konter spielen" />
             <tactic type="aow" value="Angriff über die Flügel" />
