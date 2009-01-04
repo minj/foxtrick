@@ -5,12 +5,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 var Foxtrickl10n = {
     _strings_bundle : null,
+	_strings_bundle_default : null,
 
     init : function() {
         this._strings_bundle =
              Components.classes["@mozilla.org/intl/stringbundle;1"] 
              .getService(Components.interfaces.nsIStringBundleService)  
              .createBundle("chrome://foxtrick/locale/foxtrick.properties");
+        this._strings_bundle_default =
+             Components.classes["@mozilla.org/intl/stringbundle;1"] 
+             .getService(Components.interfaces.nsIStringBundleService)  
+             .createBundle("chrome://foxtrick/content/foxtrick.properties");
     },
 
     getString : function( str ) {
@@ -19,8 +24,12 @@ var Foxtrickl10n = {
             try {
                 return this._strings_bundle.GetStringFromName( str );
             } catch( e ) {
-                return "** Localization error **";
-            }
+				try {
+					if ( this._strings_bundle_default ) return this._strings_bundle_default.GetStringFromName( str );
+				} catch( ee ) {
+					return "** Localization error **";
+				}
+			}            
         }
         else
             return "** Localization error **";
@@ -33,8 +42,12 @@ var Foxtrickl10n = {
             try {
                 return this._strings_bundle.formatStringFromName( str, key_array );
             } catch( e ) {
-                return "** Localization error **";
-            }
+				try {
+					return this._strings_bundle_default.formatStringFromName( str, key_array );
+				} catch( ee ) {
+					return "** Localization error **";
+				}  
+			}
         }
         else
             return "** Localization error **";
@@ -46,10 +59,14 @@ var Foxtrickl10n = {
         {
             try {
                 return this._strings_bundle.GetStringFromName( str ) != null;
-            } catch( e ) {
-                return false;
+			} catch( e ) {  
+                try {
+					return this._strings_bundle_default.GetStringFromName( str ) != null;
+				} catch( e ) {  
+					return false;
+				}
             }
-        }
+        } 
         return false;
     }
 };
