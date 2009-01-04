@@ -442,8 +442,10 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
     var name = "foxtrick." + module_name + ".desc";
     if ( Foxtrickl10n.isStringAvailable( name ) )
         return Foxtrickl10n.getString( name );
-    else
+    else {
+        dump( "Foxtrick string " + module_name + ".desc missing!\n");
         return "No description";
+    }
 }
 
 FoxtrickPreferencesDialog.getModuleDescription_More = function( module_name ) {
@@ -478,7 +480,7 @@ FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
             }
         }
         catch (e) {
-            Foxtrick.alert(e);
+            dump(e);
         }
     }
 }

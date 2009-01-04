@@ -1,4 +1,4 @@
-<!-- de-DE (rev. 433)
+<!-- de-DE (rev. 505)
      spambot
      utf-8 encoded language file
 -->
@@ -80,9 +80,9 @@
 <!ENTITY foxtrick.prefs.main "Grundeinstellungen">
 <!ENTITY foxtrick.prefs.alertsettings "Alarm-Einstellungen">
 <!ENTITY foxtrick.prefs.alertslider "Info-Slider anzeigen.">
-<!ENTITY foxtrick.prefs.foxtrickinstatusbar "FoxTrick-Panel in der Statusleiste anzeigen.">
+<!ENTITY foxtrick.prefs.foxtrickinstatusbar "FoxTrick-Symbol in der Statusleiste anzeigen.">
 <!ENTITY foxtrick.prefs.alertsound "Alarmton.">
-<!ENTITY foxtrick.prefs.alertslidermac "Nachrichtenpopup anzeigen ('Growl' für Mac)">
+<!ENTITY foxtrick.prefs.alertslidermac "Nachrichtenpopup anzeigen ('Growl' nur für Mac)">
 <!ENTITY foxtrick.menu.createplayerad "Spieleranzeige in die Zwischenablage kopieren.">
 <!ENTITY foxtrick.prefs.htdateformat "Datumsformat">
 <!ENTITY foxtrick.menu.makelink "Foren-Link in die Zwischenablage kopieren.">
@@ -91,8 +91,8 @@
 <!ENTITY foxtrick.prefs.opendirectory "Verzeichnis öffnen">
 <!ENTITY foxtrick.prefs.selectfile "Sounddatei wählen">
 <!ENTITY foxtrick.prefs.stagesettings "Stage Einstellungen">
-<!ENTITY foxtrick.prefs.disableonstage "FoxTrick auf Stage Server deaktivieren">
-<!ENTITY foxtrick.prefs.copypostid "Copy PostId to clipboard instead of just showing on forum page">
+<!ENTITY foxtrick.prefs.disableonstage "FoxTrick auf Stage Server deaktivieren (Neustart erforderlich)">
+<!ENTITY foxtrick.prefs.copypostid "Kopiert die PostId in die Zwischenablage anstelle die komplette ID anzuzeigen">
 <!ENTITY foxtrick.prefs.alltidflags "Alltid-Länderflaggen bei beiden Foren-Postern anzeigen">
 <!ENTITY foxtrick.prefs.linksleague "Hinzufügen externer Links zur Liga-Seite">
 <!ENTITY foxtrick.prefs.linksteams "Hinzufügen externer Links zur Team-Seite">
@@ -104,9 +104,9 @@
 <!ENTITY foxtrick.prefs.linkscoach "Hinzufügen externer Links zur Trainer-Seite">
 <!ENTITY foxtrick.prefs.linksplayerdetail "Hinzufügen externer Links zu den Spieler-Details">
 <!ENTITY foxtrick.prefs.linksmatch "Hinzufügen externer Links zu der Spiele-Seite">
-<!ENTITY foxtrick.prefs.redirmanagertoteam "Redirect links from manager page to user page on forum links">
-<!ENTITY foxtrick.prefs.htthreadmarker "stub">
-<!ENTITY foxtrick.prefs.largeflags "stub">
+<!ENTITY foxtrick.prefs.redirmanagertoteam "Weiterleitung auf die Manager-Seite beim Klicken von Links im Forum">
+<!ENTITY foxtrick.prefs.htthreadmarker "Hebt den Titel von Threads hervor, welche von HT's erstellt wurden">
+<!ENTITY foxtrick.prefs.largeflags "Anzeige großer Flaggen anstelle der kleinen">
 <!ENTITY foxtrick.prefs.gopostbox "stub">
 <!ENTITY foxtrick.prefs.addmanagerbuttons "stub">
 
