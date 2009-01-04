@@ -105,5 +105,9 @@
 <!ENTITY foxtrick.prefs.linksplayerdetail "Hinzufügen externer Links zu den Spieler-Details">
 <!ENTITY foxtrick.prefs.linksmatch "Hinzufügen externer Links zu der Spiele-Seite">
 <!ENTITY foxtrick.prefs.redirmanagertoteam "Redirect links from manager page to user page on forum links">
+<!ENTITY foxtrick.prefs.htthreadmarker "stub">
+<!ENTITY foxtrick.prefs.largeflags "stub">
+<!ENTITY foxtrick.prefs.gopostbox "stub">
+<!ENTITY foxtrick.prefs.addmanagerbuttons "stub">
 
 <!-- EOF -->
