@@ -1341,11 +1341,11 @@ stats["nrg_eco_arena"] =  {
         "url" : "http://nrgjack.altervista.org/",
         "arenalink" : { "path"       : "eco.php",
                          "filters"    : [], 
-                         "params"     : { "terraces" : "terraces", "basic": "basic", "roof" : "roof", "vip" : "vip"}                       
+                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
 
         "title" : "Enterprise Construction Online",
-        "img" : "chrome://foxtrick/content/resources/linkicons/nrg.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/eco.jpg"
 };
 
 stats["nrg_newcoach"] =  { 
