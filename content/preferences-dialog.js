@@ -153,7 +153,6 @@ var FoxtrickPreferencesDialog = {
 					} else if (modules_list.childNodes[i].checkbox) {
 						var checkboxes = modules_list.childNodes[i].childNodes[3].childNodes;
 						for (var j = 0; j < checkboxes.length; j++) {
-							dump(checkboxes[j].value + "\n");
 							if (checkboxes[j].id.search(/_text$/) == -1)
 								FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].checked );
 							else
@@ -463,9 +462,7 @@ var FoxtrickPreferencesDialog = {
 				textbox.setAttribute("style", "margin-left:20px;");
 				textbox.setAttribute("width", "300px");
 				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
-				dump("val:" + val + "\n");
 				if (!val && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]){
-					dump("default:" + module.OPTION_TEXTS_DEFAULT_VALUES[i] + "\n");
 					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
 				textbox.setAttribute("value", val);
