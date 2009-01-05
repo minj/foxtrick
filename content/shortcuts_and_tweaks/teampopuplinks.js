@@ -47,19 +47,19 @@ var FoxtrickTeamPopupLinks = {
 		var top = 0;
 		/*
 		if (bMatches)
-			top = top - 20;
+			top = top + 120;
 		if (bPlayers)
-			top = top - 20;
+			top = top + 120;
 		if (bLast5IPs)
-			top = top - 20;
+			top = top + 120;
 		if (bGuestbook)
-			top = top - 20;
+			top = top + 120;
 		if (bTransferHistory)
-			top = top - 20;
+			top = top + 120;
 		if (bLastLineup)
-			top = top - 20;
+			top = top + 120;
 		*/
-		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}'; //Stephan
+		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; margin-top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}'; //Stephan
 		style.appendChild(doc.createTextNode(zaw));
 		head.appendChild(style);
 		var aLinks = doc.getElementsByTagName('a'); //doc.links;
