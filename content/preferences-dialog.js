@@ -28,6 +28,9 @@ var FoxtrickPreferencesDialog = {
     },
 	
 	initCaptionsAndLabels : function( document ) {
+		// Window title
+		window.title = Foxtrickl10n.getString( "foxtrick.prefs.preferences" );
+		// Captions and labels
 		var allLabels = [ "MainTab", "ShortcutsTab", "MatchesTab",
 						  "ForumTab", "LinksTab", "AboutTab",
 						  "captionHTLanguage", "captionHTCurrency",

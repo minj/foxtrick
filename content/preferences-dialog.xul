@@ -9,8 +9,7 @@
 
  
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="&foxtrick.prefs.preferences;"
-    id="foxtrick-config"
+	id="foxtrick-config"
 	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
 	onload="FoxtrickPreferencesDialog.init();"
     resizable="yes"
