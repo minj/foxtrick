@@ -188,12 +188,12 @@ var FoxtrickTeamPopupLinks = {
 	},
 	
 	initOptions : function() {
-		this.OPTIONS = new Array( Foxtrickl10n.getString( "Matches" ),
-								  Foxtrickl10n.getString( "Players" ),
-								  Foxtrickl10n.getString( "last_5_ips" ),
-								  Foxtrickl10n.getString( "Guestbook" ),
-								  Foxtrickl10n.getString( "TransferHistory" ),
-								  Foxtrickl10n.getString( "LastLineup" ));
+		this.OPTIONS = new Array( "Matches" ,
+								  "Players" ,
+								  "last_5_ips" ,
+								  "Guestbook" ,
+								  "TransferHistory" ,
+								  "LastLineup" );
 	}
 };
 

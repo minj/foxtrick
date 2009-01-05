@@ -45,8 +45,8 @@ var FoxtrickSkillColoring = {
 	},
     
     initOptions : function() {
-		this.OPTIONS = new Array( Foxtrickl10n.getString( "skill_color" ),
-								  Foxtrickl10n.getString( "skill_number" ),
-								  Foxtrickl10n.getString( "skill_select" ));
+		this.OPTIONS = new Array( "skill_color",
+								  "skill_number",
+								  "skill_select");
 	}
 };
