@@ -45,6 +45,7 @@ var FoxtrickTeamPopupLinks = {
 		var bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
 		var bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
 		var top = 0;
+		/*
 		if (bMatches)
 			top = top - 20;
 		if (bPlayers)
@@ -57,6 +58,7 @@ var FoxtrickTeamPopupLinks = {
 			top = top - 20;
 		if (bLastLineup)
 			top = top - 20;
+		*/
 		var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}'; //Stephan
 		style.appendChild(doc.createTextNode(zaw));
 		head.appendChild(style);
