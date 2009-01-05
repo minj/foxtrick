@@ -28,9 +28,20 @@ var FoxtrickPreferencesDialog = {
     },
 	
 	initCaptionsAndLabels : function( document ) {
-		var captionHTLanguage = document.getElementById("captionHTLanguage");
-		captionHTLanguage.setAttribute( "label", Foxtrickl10n.getString(
-			"foxtrick.prefs.language") );
+		var allLabels = [ "MainTab", "ShortcutsTab", "MatchesTab",
+						  "ForumTab", "LinksTab", "AboutTab",
+						  "captionHTLanguage", "captionHTCurrency",
+						  "captionShowOnStatusBar", "statusbarpref",
+						  "captionAlertSettings", "alertsliderpref",
+						  "alertslidermacpref", "alertsoundpref",
+						  "buttonSelectFile", "buttonTest",
+						  "captionStageSettings", "stagepref",
+						  "buttonSave", "buttonCancel" ];
+		for(var i = 0; i < allLabels.length; i++) {
+			var thisElement = document.getElementById(allLabels[i]);
+			thisElement.setAttribute( "label", Foxtrickl10n.getString(
+				"foxtrick.prefs." + allLabels[i]) );
+		}
 	},
     
     initStatusbarPref : function() {
@@ -461,14 +472,6 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
         dump( "Foxtrick string " + module_name + ".desc missing!\n");
         return "No description";
     }
-}
-
-FoxtrickPreferencesDialog.getModuleDescription_More = function( module_name ) {
-    var name = "foxtrick." + module_name + ".desc.more";
-    if ( Foxtrickl10n.isStringAvailable( name ) )
-        return Foxtrickl10n.getString( name );
-    else
-        return false;
 }
 
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {

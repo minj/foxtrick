@@ -31,12 +31,12 @@
 <box flex="1" class="box">
   <tabbox id="tabbox" flex="1" class="tabbox" align="start" >
     <tabs id="tabs" >
-      <tab id="MainTab"      onclick="FoxtrickPreferencesDialog.pref_show('main_list');"           >&foxtrick.prefs.mainoptions;</tab>
-      <tab id="ShortcutsTab" onclick="FoxtrickPreferencesDialog.pref_show('shortcuts_list');"      >&foxtrick.prefs.shortcuts;</tab>
-      <tab id="MatchesTab"   onclick="FoxtrickPreferencesDialog.pref_show('matchfunctions_list');" >&foxtrick.prefs.matches;</tab>
-      <tab id="ForumTab"     onclick="FoxtrickPreferencesDialog.pref_show('forum_list');"          >&foxtrick.prefs.forum;</tab>
-      <tab id="LinksTab"     onclick="FoxtrickPreferencesDialog.pref_show('links_list');"          >&foxtrick.prefs.links;</tab>
-      <tab id="AboutTab"     onclick="FoxtrickPreferencesDialog.pref_show('about_list');"          >&foxtrick.prefs.about;</tab>
+      <tab id="MainTab"      onclick="FoxtrickPreferencesDialog.pref_show('main_list');"           ></tab>
+      <tab id="ShortcutsTab" onclick="FoxtrickPreferencesDialog.pref_show('shortcuts_list');"      ></tab>
+      <tab id="MatchesTab"   onclick="FoxtrickPreferencesDialog.pref_show('matchfunctions_list');" ></tab>
+      <tab id="ForumTab"     onclick="FoxtrickPreferencesDialog.pref_show('forum_list');"          ></tab>
+      <tab id="LinksTab"     onclick="FoxtrickPreferencesDialog.pref_show('links_list');"          ></tab>
+      <tab id="AboutTab"     onclick="FoxtrickPreferencesDialog.pref_show('about_list');"          ></tab>
     </tabs>
 
     <tabpanels id="tabpanels" class="tabpanels" flex="1" >
@@ -44,8 +44,7 @@
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox id="main_list" style="display:run-in" >
 			    <groupbox>
-			      <!-- <caption label="&foxtrick.prefs.language;"/> -->
-				  <caption id="captionHTLanguage"/>
+			      <caption id="captionHTLanguage"/>
 			      <menulist id="htLanguage">
                     <menupopup id="htLanguagePopup" >
                           
@@ -53,7 +52,7 @@
 				  </menulist>
 				</groupbox>
 				<groupbox>
-			      <caption label="&foxtrick.prefs.currency;"/>
+			      <caption id="captionHTCurrency"/>
 			      <menulist id="htCurrency">
                     <menupopup id="htCurrencyPopup" >
                           
@@ -61,28 +60,28 @@
 				  </menulist>
 				</groupbox>
 				<groupbox>
-				  <caption label="&foxtrick.prefs.showonstatusbar;"/>
+				  <caption id="captionShowOnStatusBar"/>
                   <vbox>
-                    <checkbox id="statusbarpref" label="&foxtrick.prefs.enable;"/>
+                    <checkbox id="statusbarpref"/>
                   </vbox>
                 </groupbox>                  
                 <groupbox>
-                  <caption label="&foxtrick.prefs.alertsettings;"/>
+                  <caption id="captionAlertSettings"/>
                   <vbox>
-                    <checkbox id="alertsliderpref" label="&foxtrick.prefs.alertslider;"/>
-                    <checkbox id="alertslidermacpref" label="&foxtrick.prefs.alertslidermac;"/>
-                    <checkbox id="alertsoundpref" label="&foxtrick.prefs.alertsound;"/>
+                    <checkbox id="alertsliderpref"/>
+                    <checkbox id="alertslidermacpref"/>
+                    <checkbox id="alertsoundpref"/>
                     <hbox align="center">
                       <textbox id="alertsoundurlpref" />
-                      <button label="&foxtrick.prefs.selectfile;"
+                      <button id="buttonSelectFile"
                                 oncommand="var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}"/>
-                      <button label="Test" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
+                      <button id="buttonTest" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
                     </hbox>
                   </vbox>
                 </groupbox>
 				<groupbox>
-				  <caption label="&foxtrick.prefs.stagesettings;"/>
-				  <checkbox id="stagepref" label="&foxtrick.prefs.disableonstage;"/>
+				  <caption id="captionStageSettings"/>
+				  <checkbox id="stagepref"/>
 				</groupbox>
               </vbox>
             </tabpanel>
@@ -90,7 +89,6 @@
             <!-- Shortcuts -->
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
-                <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
                 <vbox id="shortcuts_list" flex="1" orient="vertical" style="display:run-in"/>
               </vbox>
               
@@ -99,7 +97,6 @@
 		    <!-- Matches -->
 		    <tabpanel class="panel" orient="vertical" flex="1">
 			  <vbox>
-                <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
                 <vbox id="matchfunctions_list" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
@@ -107,7 +104,6 @@
 		    <!-- Forum -->
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
-                <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
                 <vbox id="forum_list" flex="1" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
@@ -115,7 +111,6 @@
 		    <!-- Links -->
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox>
-                <!-- <label>&foxtrick.prefs.modulelistlabel;</label> -->
                 <vbox id="links_list" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
@@ -123,7 +118,7 @@
 	        <!-- about -->
             <tabpanel class="panel" orient="vertical" flex="1">
     		  <vbox>
-                <label flex="0" multiline="true" class="plain" style="padding:5px 5px 10px 5px; width:300px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
+				<label flex="0" multiline="true" class="plain" style="padding:5px 5px 10px 5px; width:300px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
                 <label value="http://foxtrick.px.cz/" 
                        style="text-decoration: underline; cursor: pointer; color: blue;"
                        tooltiptext="http://foxtrick.px.cz/"
@@ -174,8 +169,8 @@
 
 <vbox flex="0">
   <hbox flex="1">    
-    <button label="&foxtrick.prefs.btnlabelsave;"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
-    <button label="&foxtrick.prefs.btnlabelcancel;" oncommand="close();" />
+    <button id="buttonSave"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
+    <button id="buttonCancel" oncommand="close();" />
     <vbox pack="end" flex="1"  align="end">
       <resizer dir="bottomright" class="slider" />
     </vbox>
