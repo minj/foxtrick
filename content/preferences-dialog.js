@@ -3,8 +3,9 @@
  * @author Mod-PaV
  */
 ////////////////////////////////////////////////////////////////////////////////
+var CUT_AFTER = FoxtrickPrefs.getInt( "cutwordsafter" ); 
 var FoxtrickPreferencesDialog = {
-
+      
     init : function() {
         // var doc = ev.originalTarget;
         var i;
@@ -20,7 +21,7 @@ var FoxtrickPreferencesDialog = {
         }
         
         this.initLangPref();
-        this.initStatusbarPref();        
+        this.initSpecialPrefs();        
         this.initAlertPref();
 		this.initStagePref();
         this.initResizer();
@@ -39,6 +40,7 @@ var FoxtrickPreferencesDialog = {
 						  "alertslidermacpref", "alertsoundpref",
 						  "buttonSelectFile", "buttonTest",
 						  "captionStageSettings", "stagepref",
+                          "captionCutDescription",
 						  "buttonSave", "buttonCancel" ];
 		for(var i = 0; i < allLabels.length; i++) {
 			var thisElement = document.getElementById(allLabels[i]);
@@ -47,8 +49,21 @@ var FoxtrickPreferencesDialog = {
 		}
 	},
     
-    initStatusbarPref : function() {
-    	document.getElementById('statusbarpref').setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshow" ) );
+    initSpecialPrefs : function() {
+    	document.getElementById("labelCutDescription").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelCutDescription" ));
+        try { 
+            var cut_value = FoxtrickPrefs.getInt( "cutwordsafter" );
+            if (cut_value < 50 || cut_value > 100) cut_value = 75;
+            document.getElementById('cutwordspref').value = cut_value;
+            CUT_AFTER = cut_value;
+        }
+        catch (e) {
+           document.getElementById('cutwordspref').value = "75";
+           CUT_AFTER = 75;
+           dump('Foxtrick: cutword - value cant be set! ' + e + '\n');
+        }
+
+        document.getElementById('statusbarpref').setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshow" ) );
         
     },    
     
@@ -56,7 +71,7 @@ var FoxtrickPreferencesDialog = {
     // setting a minimum window-size
         function onResize()
         {
-            const WINDOW_WIDTH = 400;
+            const WINDOW_WIDTH = 500;
             const WINDOW_HEIGHT = 400;
             var tHeight = WINDOW_HEIGHT;
             var tWidth = WINDOW_WIDTH;
@@ -128,7 +143,7 @@ var FoxtrickPreferencesDialog = {
 					FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
                                                    modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
 					if (modules_list.childNodes[i].radio) {
-						var radiogroup = modules_list.childNodes[i].childNodes[1].childNodes[0].childNodes;
+						var radiogroup = modules_list.childNodes[i].childNodes[3].childNodes[0].childNodes;
 						for (var j = 0; j < radiogroup.length; j++) {
 							if (radiogroup[j].selected) {
 								FoxtrickPreferencesDialog.setModuleValue( modules_list.childNodes[i].prefname, j );
@@ -136,7 +151,7 @@ var FoxtrickPreferencesDialog = {
 							}
 						}
 					} else if (modules_list.childNodes[i].checkbox) {
-						var checkboxes = modules_list.childNodes[i].childNodes[1].childNodes;
+						var checkboxes = modules_list.childNodes[i].childNodes[3].childNodes;
 						for (var j = 0; j < checkboxes.length; j++) {
 							dump(checkboxes[j].value + "\n");
 							if (checkboxes[j].id.search(/_text$/) == -1)
@@ -154,7 +169,11 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
         
         //Statusbar
-        FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);        
+        FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
+
+        //cut long descriptions
+        FoxtrickPrefs.setInt( "cutwordsafter", document.getElementById("cutwordspref").value);
+
 
         //Alert
         FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
@@ -263,7 +282,7 @@ var FoxtrickPreferencesDialog = {
 		hbox.appendChild( check );
 		hbox.addEventListener( "click", function( ev ) { 
 			ev.currentTarget.childNodes[0].checked = !(ev.currentTarget.childNodes[0].checked);
-			var radios = ev.currentTarget.nextSibling.childNodes[0].childNodes;
+			var radios = ev.currentTarget.nextSibling.nextSibling.nextSibling.childNodes[0].childNodes;
 			if (!ev.currentTarget.childNodes[0].checked) {
 				for (var i = 0; i < radios.length; i++) {
 					radios[i].setAttribute( "disabled", true);
@@ -282,11 +301,40 @@ var FoxtrickPreferencesDialog = {
 		name.setAttribute( "value", module.MODULE_NAME );
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
+
+		var desc_box = document.createElement( "hbox" );
 		var desc = document.createElement( "label" );
-		desc.setAttribute( "class", "description" );
-		var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
-		desc.appendChild( desc_text );
-		hbox.appendChild( desc );
+		desc.setAttribute( "class", "description_normal" );
+		desc.setAttribute( "multiline", "true" );
+		desc.setAttribute( "flex", "0" );
+		desc.setAttribute( "style", "overflow:hidden;" );
+		var desc_text = FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME );
+		var desc_text_trunc = desc_text;
+		if( desc_text.length > CUT_AFTER ) {
+			desc_text_trunc = desc_text_trunc.substr(0,CUT_AFTER-3) + "...";
+		}
+    	var desc_textnode = document.createTextNode( desc_text_trunc );
+		desc.appendChild( desc_textnode );
+		desc_box.appendChild( desc );
+		if ( desc_text.length > CUT_AFTER ) {
+            var info = document.createElement( "image" );
+            info.setAttribute ( "align", "start");
+            info.setAttribute ( "flex", "1");
+            info.setAttribute ( "class", "btnhelp" );
+            info.addEventListener( "click", function ()  {
+                FoxtrickPreferencesDialog.prefhelp_show(
+                    module.MODULE_NAME,
+                    FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ),this) 
+            }, false );
+            var spacer = document.createElement( "spacer" );
+            spacer.width = "5";
+            desc_box.appendChild( spacer );
+            desc_box.appendChild( info );
+        }
+        entry.appendChild (desc_box);
+        var spacer = document.createElement( "spacer" );
+        spacer.height = "5";
+        entry.appendChild( spacer );
 		
 		hbox = document.createElement( "hbox" );
 		entry.appendChild( hbox );
@@ -332,7 +380,7 @@ var FoxtrickPreferencesDialog = {
 		hbox.appendChild( check );
 		hbox.addEventListener( "click", function( ev ) { 
 			ev.currentTarget.childNodes[0].checked = !(ev.currentTarget.childNodes[0].checked);
-			var checkboxes = ev.currentTarget.nextSibling.childNodes;
+			var checkboxes = ev.currentTarget.nextSibling.nextSibling.nextSibling.childNodes;
 			if (!ev.currentTarget.childNodes[0].checked) {
 				for (var i = 0; i < checkboxes.length; i++) {
 					checkboxes[i].setAttribute( "disabled", true);
@@ -351,11 +399,40 @@ var FoxtrickPreferencesDialog = {
 		name.setAttribute( "value", module.MODULE_NAME );
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
+		
+		var desc_box = document.createElement( "hbox" );
 		var desc = document.createElement( "label" );
-		desc.setAttribute( "class", "description" );
-		var desc_text = document.createTextNode( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
-		desc.appendChild( desc_text );
-		hbox.appendChild( desc );
+		desc.setAttribute( "class", "description_normal" );
+		desc.setAttribute( "multiline", "true" );
+		desc.setAttribute( "flex", "0" );
+		desc.setAttribute( "style", "overflow:hidden;" );
+		var desc_text = FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME );
+		var desc_text_trunc = desc_text;
+		if( desc_text.length > CUT_AFTER ) {
+			desc_text_trunc = desc_text_trunc.substr(0,CUT_AFTER-3) + "...";
+		}
+    	var desc_textnode = document.createTextNode( desc_text_trunc );
+		desc.appendChild( desc_textnode );
+		desc_box.appendChild( desc );
+		if ( desc_text.length > CUT_AFTER ) {
+            var info = document.createElement( "image" );
+            info.setAttribute ( "align", "start");
+            info.setAttribute ( "flex", "1");
+            info.setAttribute ( "class", "btnhelp" );
+            info.addEventListener( "click", function ()  {
+                FoxtrickPreferencesDialog.prefhelp_show(
+                    module.MODULE_NAME,
+                    FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ),this) 
+            }, false );
+            var spacer = document.createElement( "spacer" );
+            spacer.width = "5";
+            desc_box.appendChild( spacer );
+            desc_box.appendChild( info );
+        }
+        entry.appendChild (desc_box);
+        var spacer = document.createElement( "spacer" );
+        spacer.height = "5";
+        entry.appendChild( spacer );
 		
 		hbox = document.createElement( "vbox" );
 		entry.appendChild( hbox );
@@ -418,37 +495,36 @@ var FoxtrickPreferencesDialog = {
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
 		
-    var desc_box = document.createElement( "hbox" );
-    var desc = document.createElement( "label" );
+		var desc_box = document.createElement( "hbox" );
+		var desc = document.createElement( "label" );
 		desc.setAttribute( "class", "description_normal" );
-    desc.setAttribute( "multiline", "true" );
-    desc.setAttribute( "flex", "0" );
-    desc.setAttribute( "style", "overflow:hidden;" );
+		desc.setAttribute( "multiline", "true" );
+		desc.setAttribute( "flex", "0" );
+		desc.setAttribute( "style", "overflow:hidden;" );
 		var desc_text = FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME );
 		var desc_text_trunc = desc_text;
-		if( desc_text.length > 75 ) {
-			desc_text_trunc = desc_text_trunc.substr(0,72) + "...";
+		if( desc_text.length > CUT_AFTER ) {
+			desc_text_trunc = desc_text_trunc.substr(0,CUT_AFTER-3) + "...";
 		}
-    var desc_textnode = document.createTextNode( desc_text_trunc );
+    	var desc_textnode = document.createTextNode( desc_text_trunc );
 		desc.appendChild( desc_textnode );
-    desc_box.appendChild( desc );
-    if ( desc_text.length > 75 ) {
-        var info = document.createElement( "image" );
-        info.setAttribute ( "align", "start");
-        info.setAttribute ( "flex", "1");
-        info.setAttribute ( "class", "btnhelp" );
-        info.addEventListener( "click", function ()  {
-                             FoxtrickPreferencesDialog.prefhelp_show(
-						   module.MODULE_NAME,
-                               FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ), 
-                               this) 
-                             }, false );
-        var spacer = document.createElement( "spacer" );
-        spacer.width = "5";
-        desc_box.appendChild( spacer );
-        desc_box.appendChild( info );
-    }
-    entry.appendChild (desc_box);
+		desc_box.appendChild( desc );
+		if ( desc_text.length > CUT_AFTER ) {
+            var info = document.createElement( "image" );
+            info.setAttribute ( "align", "start");
+            info.setAttribute ( "flex", "1");
+            info.setAttribute ( "class", "btnhelp" );
+            info.addEventListener( "click", function ()  {
+                FoxtrickPreferencesDialog.prefhelp_show(
+                    module.MODULE_NAME,
+                    FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ),this) 
+            }, false );
+            var spacer = document.createElement( "spacer" );
+            spacer.width = "5";
+            desc_box.appendChild( spacer );
+            desc_box.appendChild( info );
+        }
+        entry.appendChild (desc_box);
 		return entry;
 	}
 };

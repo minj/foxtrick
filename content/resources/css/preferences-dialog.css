@@ -37,6 +37,14 @@
   clear: both;
   float:left;
 }
+.cut_after {
+  border: 1px solid #000000;
+  height: 18px;
+  padding: 0px;
+  margin: 0px;
+  width: 40px;
+  font-weight:bold;
+}
 vbox, box, hbox {
    
 }

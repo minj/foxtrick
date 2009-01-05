@@ -25,8 +25,8 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
 <box flex="1" class="box">
-  <tabbox id="tabbox" flex="1" class="tabbox" align="start" >
-    <tabs id="tabs" >
+  <tabbox id="tabbox" flex="1" class="tabbox" align="start">
+    <tabs id="tabs">
       <tab id="MainTab"      onclick="FoxtrickPreferencesDialog.pref_show('main_list');"           ></tab>
       <tab id="ShortcutsTab" onclick="FoxtrickPreferencesDialog.pref_show('shortcuts_list');"      ></tab>
       <tab id="MatchesTab"   onclick="FoxtrickPreferencesDialog.pref_show('matchfunctions_list');" ></tab>
@@ -35,7 +35,7 @@
       <tab id="AboutTab"     onclick="FoxtrickPreferencesDialog.pref_show('about_list');"          ></tab>
     </tabs>
 
-    <tabpanels id="tabpanels" class="tabpanels" flex="1" >
+    <tabpanels id="tabpanels" class="tabpanels" flex="1"  style="width:500px">
             <!-- Main -->
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox id="main_list" style="display:run-in" >
@@ -67,14 +67,23 @@
                     <checkbox id="alertsliderpref"/>
                     <checkbox id="alertslidermacpref"/>
                     <checkbox id="alertsoundpref"/>
+                    <textbox id="alertsoundurlpref" />
                     <hbox align="center">
-                      <textbox id="alertsoundurlpref" />
                       <button id="buttonSelectFile"
                                 oncommand="var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}"/>
                       <button id="buttonTest" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
                     </hbox>
                   </vbox>
                 </groupbox>
+
+                <groupbox>
+                  <caption id="captionCutDescription"/>
+                    <hbox>
+                      <label id="labelCutDescription" value="test" style="padding-top:4px"/>
+                      <textbox id="cutwordspref" class="cut_after" flex="0" decimalplaces="0" hidespinbuttons="false" increment="1" max="100" min="50" multiline="false" align="end" type="number"/>
+                    </hbox>  
+                </groupbox>
+                
 				<groupbox>
 				  <caption id="captionStageSettings"/>
 				  <checkbox id="stagepref"/>
