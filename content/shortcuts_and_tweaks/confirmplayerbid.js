@@ -16,8 +16,15 @@ var FoxtrickConfirmPlayerBid = {
     },
 
     run : function( page, doc ) {
-		
-        
+		var submitButton = doc.getElementById("ctl00_CPMain_btnBid");
+        if (submitButton){
+        	var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
+        	sConfirmString = Foxtrickl10n.getString( "foxtrick.bidconfirmation" );
+	       	sReplace = "document.getElementById('ctl00_CPMain_txtBid').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
+	       	sStr = "var str = '"+sConfirmString+"';";
+	       	sOnclick = sStr + " if (confirm(str.replace(/\%s/, " + sReplace + "))){" + sOnclick + "} else {return false;}";
+	       	submitButton.setAttribute("onClick", sOnclick);
+        }
 	},
 	
 	change : function( page, doc ) {

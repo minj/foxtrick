@@ -35,7 +35,7 @@
       <tab id="AboutTab"     onclick="FoxtrickPreferencesDialog.pref_show('about_list');"          ></tab>
     </tabs>
 
-    <tabpanels id="tabpanels" class="tabpanels" flex="1"  style="width:500px">
+    <tabpanels id="tabpanels" class="tabpanels" flex="1" style="width: 600px;">
             <!-- Main -->
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox id="main_list" style="display:run-in" >
