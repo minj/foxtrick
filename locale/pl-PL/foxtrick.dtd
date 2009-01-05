@@ -1,11 +1,1 @@
-﻿<!-- pl-PL
-     Kamil Homziak
--->
-<!ENTITY foxtrick.prefs.transitioninfo "Obecnie dostosowujemy FoxTrick do nowego wyglądu Hattricka. Robimy wszystko, co w naszej mocy, aby dodatki znane z poprzednich wersji FoxTricka były dostepne również teraz. Bądź zatem cierpliwy i spodziewaj się częstych aktualizacji!">
-
-<!ENTITY foxtrick.prefs.preferences "Opcje">
-
-<!ENTITY foxtrick.menu.configurefoxtrick "Dostosuj FoxTrick">
-<!ENTITY foxtrick.menu.reloadfoxtrick "Przeładuj FoxTrick (dla twórców)">
-
-<!-- EOF -->
+﻿
