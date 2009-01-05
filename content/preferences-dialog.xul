@@ -2,10 +2,7 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
 
-<!DOCTYPE window [
-   <!ENTITY % foxtrickDTD SYSTEM "chrome://foxtrick/locale/foxtrick.dtd" >
-   %foxtrickDTD;
-]>
+<!DOCTYPE window>
 
  
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
@@ -117,15 +114,14 @@
 	        <!-- about -->
             <tabpanel class="panel" orient="vertical" flex="1">
     		  <vbox>
-				<label flex="0" multiline="true" class="plain" style="padding:5px 5px 10px 5px; width:300px;" readonly="true">&foxtrick.prefs.transitioninfo;</label>
-                <label value="http://foxtrick.px.cz/" 
+				<label value="http://www.ht-foxtrick.com/" 
                        style="text-decoration: underline; cursor: pointer; color: blue;"
-                       tooltiptext="http://foxtrick.px.cz/"
-                       onclick="window.opener.open('http://foxtrick.px.cz/');" flex="0" />			
-                <label value="http://foxtrick.px.cz/forum/" 
+                       tooltiptext="http://www.ht-foxtrick.com/"
+                       onclick="window.opener.open('http://www.ht-foxtrick.com/');" flex="0" />			
+                <label value="http://www.ht-foxtrick.com/forum/" 
                        style="text-decoration: underline; cursor: pointer; color: blue;"
-                       tooltiptext="http://foxtrick.px.cz/forum/"
-                       onclick="window.opener.open('http://foxtrick.px.cz/forum');" flex="0" />			
+                       tooltiptext="http://www.ht-foxtrick.com/forum/"
+                       onclick="window.opener.open('http://www.ht-foxtrick.com/forum');" flex="0" />			
               </vbox>
 			  <vbox id="about_list" style="display:run-in">
 				<label value="Head Developer" 
