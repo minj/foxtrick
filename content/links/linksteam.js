@@ -22,16 +22,15 @@ var FoxtrickLinksTeam = {
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
-		
-		if (doc.location.href.search('\/Club\/Players\/')!=-1  
-		&& doc.location.href.search(/redir=true/)!=-1 ) {
+		if (doc.location.href.search(/\/Club\/Players\//i)!=-1  
+		&& doc.location.href.search(/redir=true/i)!=-1 ) { 
 			// redirect to coach
 			var alldivs = doc.getElementsByTagName('div');
 			for (var j = 0; j < alldivs.length; j++) {
-				if (alldivs[j].className=="sidebarBox") {
+				if (alldivs[j].className=="sidebarBox") { 
 					var CoachId = FoxtrickHelper.findPlayerId(alldivs[j]);
-					var serv = doc.location.href.match(/(\w+).hattrick.org/)[0];
-					var tar = "http://"+serv+"/Club/Players/Player.aspx?playerId="+CoachId;
+					var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
+					var tar = serv+"/Players/Player.aspx?playerId="+CoachId;
 					doc.location.replace(tar);
 					break;					
 				}
@@ -51,7 +50,7 @@ var FoxtrickLinksTeam = {
 				bl_header[0].parentNode.appendChild(li);
 
 				// coach make link
-				if (doc.location.href.search('\/Club\/NationalTeam\/')==-1) {
+				if (doc.location.href.search(/\/Club\/NationalTeam\//i)==-1) {
 					if (teamid<3000||teamid>=5000) { // no matchpages of NTs
 						var li2 = doc.createElement("li");
 						var coachlink = doc.createElement("a");
@@ -116,7 +115,7 @@ var FoxtrickLinksTeam = {
 	
 	isTeamPage : function(doc) {
         var site=doc.location.href;
-        var remain=site.substr(site.search('Club\/')+5);
+        var remain=site.substr(site.search(/Club\//i)+5);
     return (remain=="" || remain.search(/TeamID=/i)==1);
 	},
 	

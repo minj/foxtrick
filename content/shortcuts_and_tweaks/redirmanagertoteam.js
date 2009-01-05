@@ -17,21 +17,21 @@ var FoxtrickRedirManagerToTeam = {
     },
 
     run : function( page, doc ) { 
-		if (doc.location.href.search('\/Club\/Manager\/')!=-1 ) { 
-			if (doc.location.href.search(/redir=true/)!=-1 ) {
+		if (doc.location.href.search(/\/Club\/Manager/i)!=-1 ) { 
+			if (doc.location.href.search(/redir=true/i)!=-1 ) {
 				var alldivs = doc.getElementsByTagName('div');
 				for (var j = 0; j < alldivs.length; j++) {
 					if (alldivs[j].className=="playerInfo") {
 						var teamid=FoxtrickHelper.findTeamId(alldivs[j]);
-						var serv=doc.location.href.match(/(\w+).hattrick.org/)[0];
-						var tar="http://"+serv+"\/Club\/\?TeamID="+teamid;
+						var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
+						var tar=serv+"\/\?TeamID="+teamid;
 						doc.location.replace(tar);
 						break;
 					}
 				}
 			}
 		}
-		else if (doc.location.href.search('\/Forum\/Read')!=-1 ) {	 
+		else if (doc.location.href.search(/\/Forum\/Read/i)!=-1 ) {	 
 				var innerdivs = doc.getElementsByTagName('div');
 				for (var k = 0; k < innerdivs.length; k++) {
 				  if (innerdivs[k].className=="cfHeader") {
