@@ -44,16 +44,21 @@ var FoxtrickLinksTeam = {
 				var lastmatchlink = doc.createElement("a");
 				lastmatchlink.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True');
 				lastmatchlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
+				var ownlastmatchlinkId = "foxtrick_content_lastmatch";
+				lastmatchlink.setAttribute( "id", ownlastmatchlinkId );
 				li.appendChild(lastmatchlink);
+                    
 				bl_header[0].parentNode.appendChild(li);
 
 				// coach make link
 				if (doc.location.href.search('\/Club\/NationalTeam\/')==-1) {
-					if (teamid<3000||teamid>=5000) {
+					if (teamid<3000||teamid>=5000) { // no matchpages of NTs
 						var li2 = doc.createElement("li");
 						var coachlink = doc.createElement("a");
 						coachlink.setAttribute('href', '/Club/Players/?TeamID='+teamid+'&redir=true');
 						coachlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
+						var owncoachlinkId = "foxtrick_content_coach";
+						coachlink.setAttribute( "id", owncoachlinkId );
 						li2.appendChild(coachlink);
 						bl_header[0].parentNode.appendChild(li2);					
 					}
@@ -65,6 +70,8 @@ var FoxtrickLinksTeam = {
 					var coachlink = doc.createElement("a");
 					coachlink.setAttribute('href','/Club/Players/Player.aspx?playerId='+CoachId);
 					coachlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
+					var owncoachlinkId = "foxtrick_content_coach";
+					coachlink.setAttribute( "id", owncoachlinkId );
 					li2.appendChild(coachlink);
 					bl_header[0].parentNode.appendChild(li2);
 				}
@@ -98,7 +105,11 @@ var FoxtrickLinksTeam = {
 	change : function( page, doc ) {
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 		var ownBoxId = "foxtrick_" + header + "_box";
-		if( !doc.getElementById ( ownBoxId ) ) {
+		var owncoachlinkId = "foxtrick_content_coach";
+		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
+						if( !doc.getElementById ( ownBoxId ) 
+						&& !doc.getElementById ( owncoachlinkId )
+						&& !doc.getElementById ( ownlastmatchlinkId ) ) {
 			this.run( page, doc );
 		}
 	},
