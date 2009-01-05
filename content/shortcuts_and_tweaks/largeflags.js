@@ -31,7 +31,7 @@ var FoxtrickLargeFlags = {
 					newPos = parseInt(pos) / 20 * 105;
 					newStyle = newStyle + newPos + "px 0pt";
 					img.style.background = newStyle;
-					img.style.width = "100px";
+					img.style.width = "105px";
 					img.style.height = "70px";
 					// Move the link
 					var br1 = doc.createElement("br");

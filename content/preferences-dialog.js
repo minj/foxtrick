@@ -167,6 +167,9 @@ var FoxtrickPreferencesDialog = {
         
         //Lang
         FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
+		
+		//Currency
+        FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
         
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
