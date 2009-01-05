@@ -12,14 +12,14 @@ var FoxtrickForumStaffMarker = {
 	DEFAULT_ENABLED : true,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("background:red;", //HT
-											"background:yellow; color:black;", //MOD
 											"background:orange; color:black;", //GM
+                                            "background:yellow; color:black;", //MOD
 											"background:white; color:green;", //LA
 											"background:green; color:white;", //CHPP
 											"background:green;", //editor
 											"background:#c3d9ff; color:black;" //foxtrick-dev 
 											),
-	OPTIONS : new Array("HT", "MOD", "GM", "LA", "CHPP", "editor", "foxtrick-dev"),
+	OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev"),
 
 
 
