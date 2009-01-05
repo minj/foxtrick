@@ -1,0 +1,49 @@
+/* CSS Document */
+
+/* SKILL NUMBERS */
+a[href*="ll=0#skill"]:after, a[href*="ll=0#"]:after
+{content:" (0)" !important;font-size:xx-small !important;}
+a[href*="ll=1#skill"]:after, a[href*="ll=1#"]:after
+{content:" (1)" !important;font-size:xx-small !important;}
+a[href*="ll=2#skill"]:after, a[href*="ll=2#"]:after
+{content:" (2)" !important;font-size:xx-small !important;}
+a[href*="ll=3#skill"]:after, a[href*="ll=3#"]:after 
+{content:" (3)" !important;font-size:xx-small !important;}
+a[href*="ll=4#skill"]:after, a[href*="ll=4#"]:after 
+{content:" (4)" !important;font-size:xx-small !important;}
+a[href*="ll=5#skill"]:after, a[href*="ll=5#"]:after 
+{content:" (5)" !important;font-size:xx-small !important;}
+a[href*="ll=6#skill"]:after, a[href*="ll=6#"]:after 
+{content:" (6)" !important;font-size:xx-small !important;}
+a[href*="ll=7#skill"]:after, a[href*="ll=7#"]:after 
+{content:" (7)" !important;font-size:xx-small !important;}
+a[href*="ll=8#skill"]:after, a[href*="ll=8#"]:after 
+{content:" (8)" !important;font-size:xx-small !important;}
+a[href*="ll=9#skill"]:after, a[href*="ll=9#"]:after 
+{content:" (9)" !important;font-size:xx-small !important;}
+a[href*="ll=10#skill"]:after, a[href*="ll=10#"]:after 
+{content:" (10)" !important;font-size:xx-small !important;}
+a[href*="ll=11#skill"]:after, a[href*="ll=11#"]:after 
+{content:" (11)" !important;font-size:xx-small !important;}
+a[href*="ll=12#skill"]:after, a[href*="ll=12#"]:after 
+{content:" (12)" !important;font-size:xx-small !important;}
+a[href*="ll=13#skill"]:after, a[href*="ll=13#"]:after 
+{content:" (13)" !important;font-size:xx-small !important;}
+a[href*="ll=14#skill"]:after, a[href*="ll=14#"]:after 
+{content:" (14)" !important;font-size:xx-small !important;}
+a[href*="ll=15#skill"]:after, a[href*="ll=15#"]:after 
+{content:" (15)" !important;font-size:xx-small !important;}
+a[href*="ll=16#skill"]:after, a[href*="ll=16#"]:after 
+{content:" (16)" !important;font-size:xx-small !important;}
+a[href*="ll=17#skill"]:after, a[href*="ll=17#"]:after 
+{content:" (17)" !important;font-size:xx-small !important;}
+a[href*="ll=18#skill"]:after, a[href*="ll=18#"]:after 
+{content:" (18)" !important;font-size:xx-small !important;}
+a[href*="ll=19#skill"]:after, a[href*="ll=19#"]:after 
+{content:" (19)" !important;font-size:xx-small !important;}
+a[href*="ll=20#skill"]:after, a[href*="ll=20#"]:after 
+{content:" (20)" !important;font-size:xx-small !important;}
+a[href*="ll=21#skill"]:after, a[href*="ll=21#"]:after 
+{content:" (21)" !important;font-size:xx-small !important;}
+
+div#mainBody.boxBody>div.playerInfo {width:400px !important;}
