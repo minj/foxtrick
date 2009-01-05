@@ -23,7 +23,7 @@ var FoxtrickSkillColoring = {
                     Foxtrick.isModuleFeatureEnabled( this, "skill_number"), 
                     Foxtrick.isModuleFeatureEnabled( this, "skill_select") ];
         for (var i = 0; i < skillstyles.length; i++) {
-            dump ('SKILLS: ' + i + ' - ' + displaystyles[i] + ' enabled.\n');
+            // dump ('SKILLS: ' + i + ' - ' + displaystyles[i] + ' enabled.\n');
             if (displaystyles[i]) {
                 
                 var css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + ".css";

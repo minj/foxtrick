@@ -441,7 +441,11 @@ var FoxtrickPreferencesDialog = {
 		for (var i = 0; i < module.OPTIONS.length; i++) {
 			var checkbox = document.createElement( "checkbox" );
 			var key,title;
-			if (module.OPTIONS[i]["key"]==null){key=module.OPTIONS[i];title=module.OPTIONS[i];}
+			if (module.OPTIONS[i]["key"]==null){
+                key=module.OPTIONS[i];
+                //title=module.OPTIONS[i];
+                title = FoxtrickPreferencesDialog.getModuleElementDescription( module.MODULE_NAME, module.OPTIONS[i] );
+            }
 			else {key=module.OPTIONS[i]["key"];title=module.OPTIONS[i]["title"];}
 			checkbox.setAttribute( "checked", Foxtrick.isModuleFeatureEnabled( module, key) );
 			checkbox.setAttribute( "label", title);
@@ -548,8 +552,19 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
     if ( Foxtrickl10n.isStringAvailable( name ) )
         return Foxtrickl10n.getString( name );
     else {
-        dump( "Foxtrick string " + module_name + ".desc missing!\n");
+        dump( "Foxtrick string MODULE " + module_name + " missing!\n");
         return "No description";
+    }
+}
+
+FoxtrickPreferencesDialog.getModuleElementDescription = function( module_name, option ) {
+    var name = "foxtrick." + module_name + "." + option + ".desc";
+    if ( Foxtrickl10n.isStringAvailable( name ) )
+        return Foxtrickl10n.getString( name );
+    else {
+        dump( "Foxtrick string ELEMENT " + name + " missing!\n");
+        //return "No description";
+        return option;
     }
 }
 
