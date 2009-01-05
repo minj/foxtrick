@@ -3,8 +3,6 @@
 -->
 <!ENTITY foxtrick.prefs.transitioninfo "Foxtrick is currently undergoing a transition to the new Hattrick design. We are doing our best to bring all the old features to the new design. Please be patient with us and expect regular updates!">
 
-<!ENTITY foxtrick.prefs.btnlabelsave "Save">
-<!ENTITY foxtrick.prefs.btnlabelcancel "Cancel">
 <!ENTITY foxtrick.prefs.preferences "Preferences">
 
 <!ENTITY foxtrick.menu.configurefoxtrick "Configure FoxTrick">
