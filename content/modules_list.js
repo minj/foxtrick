@@ -8,6 +8,7 @@
  * Register your page handlers in it.
  */
 Foxtrick.modules = [ FoxtrickForumTemplates,
+                     FoxtrickForumPreview,
                      BookmarkAdjust,
                      FoxtrickHideManagerAvatar,
                      FoxtrickRedirManagerToTeam,

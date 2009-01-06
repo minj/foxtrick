@@ -40,7 +40,8 @@ var FoxtrickPreferencesDialog = {
 						  "alertslidermacpref", "alertsoundpref",
 						  "buttonSelectFile", "buttonTest",
 						  "captionStageSettings", "stagepref",
-                          "captionCutDescription",
+                          "captionCutDescription", "captionCleanupBranch",
+                          "buttonCleanupBranch",
 						  "buttonSave", "buttonCancel" ];
 		for(var i = 0; i < allLabels.length; i++) {
 			var thisElement = document.getElementById(allLabels[i]);
@@ -50,7 +51,9 @@ var FoxtrickPreferencesDialog = {
 	},
     
     initSpecialPrefs : function() {
-    	document.getElementById("labelCutDescription").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelCutDescription" ));
+    	
+        document.getElementById("labelCleanupBranch").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch" ));
+        document.getElementById("labelCutDescription").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelCutDescription" ));
         try { 
             var cut_value = FoxtrickPrefs.getInt( "cutwordsafter" );
             if (cut_value < 50 || cut_value > 100) cut_value = 75;
@@ -603,4 +606,19 @@ FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where 
                "titlebar=no, modal, left=" + (where.boxObject.screenX + 20) + ", top=" + (where.boxObject.screenY - 10),
                HelpTitle, 
                HelpDesc);
+}
+FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
+    if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
+        try {
+            var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+            var branch = prefObj.getBranch("extensions.foxtrick.");
+            branch.deleteBranch("prefs");
+            FoxtrickPrefs.setInt( "cutwordsafter", document.getElementById("cutwordspref").value);
+            close();
+        }
+        catch (e) {
+            dump(e);
+        }
+    } 
+    return true;            
 }

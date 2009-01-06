@@ -328,7 +328,7 @@ Foxtrick.isModuleEnabled = function( module ) {
 Foxtrick.isModuleFeatureEnabled = function( module , feature ) {
     try {
 		var val = FoxtrickPrefs.getBool( "module." + module.MODULE_NAME + "." + feature + ".enabled" );
-        return (val != null) ? val : module.DEFAULT_ENABLED; 
+        return (val != null) ? val : module.DEFAULT_ENABLED;
     } catch( e ) {
         return false;
     }

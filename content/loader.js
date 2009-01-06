@@ -16,6 +16,7 @@ var scripts = [
 
     // individual modules
     'forum/forumtemplates.js',
+    'forum/forumpreview.js',
     'forum/forumleaveconfbutton.js',
     'forum/forumhideavatar.js',
     'forum/forumhideavataruserinfo.js',
@@ -27,8 +28,8 @@ var scripts = [
 	'forum/forumadddefaultfacecard.js',
 	'forum/forumhidesignatures.js',
 	'forum/forumnextandprevious.js',
-        'forum/htthreadmarker.js',
-        'forum/forumgotopostbox.js',
+    'forum/htthreadmarker.js',
+    'forum/forumgotopostbox.js',
     'matches/matches.js',
 	'matches/matchPlayerColouring.js',
     'matches/ratings.js',
@@ -36,7 +37,7 @@ var scripts = [
     'matches/matchOrdersFlipSides.js',
     'matches/matchOrdersFormationBox.js',
 	'matches/starscounter.js',
-        'matches/advancedStarsCounter.js',
+    'matches/advancedStarsCounter.js',
 	'shortcuts_and_tweaks/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/mediantransferprice.js',

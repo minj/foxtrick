@@ -88,6 +88,13 @@
 				  <caption id="captionStageSettings"/>
 				  <checkbox id="stagepref"/>
 				</groupbox>
+				<groupbox>
+				  <caption id="captionCleanupBranch"/>
+                  <hbox>
+                    <label id="labelCleanupBranch" value="Cleanup" style="padding-top:4px"/>
+				    <button id="buttonCleanupBranch" oncommand="FoxtrickPreferencesDialog.confirmCleanupBranch();" flex="0"/>
+                  </hbox>  
+				</groupbox>                
               </vbox>
             </tabpanel>
         
