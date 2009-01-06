@@ -27,7 +27,6 @@ var FoxtrickForumPreview = {
                 // display templates above the message window
                 var msg_window = doc.getElementById(
                             FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
-				msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
 				
                 var preview_ctrl_div = doc.createElement( "div" );
                 preview_ctrl_div.style.marginTop = "1em";
@@ -35,6 +34,7 @@ var FoxtrickForumPreview = {
                 var new_button = doc.createElement( "a" );
                 new_button.setAttribute( "href", "javascript:showHide('forum_preview');" );
                 new_button.innerHTML = Foxtrickl10n.getString( 'show_preview_from_post' );
+				new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
                 preview_ctrl_div.appendChild( new_button );
                 msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );                 
 				                
@@ -61,6 +61,19 @@ var FoxtrickForumPreview = {
 	
 	change : function( page, doc ) {
 	
+	},
+	
+	_toggleListener : function( ev ) {
+		var doc = ev.target.ownerDocument;
+		var msg_window = doc.getElementById( FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
+        var prev_div = doc.getElementById( "forum_preview" );
+		
+		if( prev_div.style.display == "block" ) {
+			msg_window.removeEventListener( "keyup", FoxtrickForumPreview._preview, false );
+		} else {
+			msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
+			FoxtrickForumPreview._preview( ev );
+		}
 	},
         
     _preview : function ( ev ) {
