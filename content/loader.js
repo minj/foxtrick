@@ -17,6 +17,7 @@ var scripts = [
     // individual modules
     'forum/forumtemplates.js',
     'forum/forumpreview.js',
+    'forum/forumyouthicons.js',
     'forum/forumleaveconfbutton.js',
     'forum/forumhideavatar.js',
     'forum/forumhideavataruserinfo.js',

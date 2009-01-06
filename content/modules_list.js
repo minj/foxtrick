@@ -9,6 +9,7 @@
  */
 Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickForumPreview,
+                     FoxtrickForumYouthIcons,
                      BookmarkAdjust,
                      FoxtrickHideManagerAvatar,
                      FoxtrickRedirManagerToTeam,
