@@ -45,6 +45,7 @@ var FoxtrickTeamPopupLinks = {
                 var bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 var bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
                 var top = 0;
+				
                 if (bMatches)
                         top = top - 20;
                 if (bPlayers)
@@ -57,8 +58,9 @@ var FoxtrickTeamPopupLinks = {
                         top = top - 20;
                 if (bLastLineup)
                         top = top - 20;
+
                 var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';
-                style.appendChild(doc.createTextNode(zaw));
+				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
                 var aLinks = doc.getElementsByTagName('a'); //doc.links;
                 for (var i=0; i<aLinks.length; i++) {
@@ -166,7 +168,6 @@ var FoxtrickTeamPopupLinks = {
                                 span.setAttribute('class', 'myht1');
                                 var div = doc.createElement("div");
                                 div.setAttribute('class', 'mainBox myht2');
-
                                 div.appendChild(tbl);
                                 par.insertBefore(span, aLinks[i]);
                                 span.appendChild(sLink);
@@ -182,11 +183,11 @@ var FoxtrickTeamPopupLinks = {
         },
         
         initOptions : function() {
-                this.OPTIONS = new Array( Foxtrickl10n.getString( "Matches" ),
-                                                                  Foxtrickl10n.getString( "Players" ),
-                                                                  Foxtrickl10n.getString( "last_5_ips" ),
-                                                                  Foxtrickl10n.getString( "Guestbook" ),
-                                                                  Foxtrickl10n.getString( "TransferHistory" ),
-                                                                  Foxtrickl10n.getString( "LastLineup" ));
+                this.OPTIONS = new Array( "Matches" ,
+                                          "Players" ,
+                                          "last_5_ips" ,
+                                          "Guestbook" ,
+                                          "TransferHistory" ,
+                                          "LastLineup" );
         }
 };
