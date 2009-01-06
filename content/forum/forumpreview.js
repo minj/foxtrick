@@ -12,7 +12,7 @@ var FoxtrickForumPreview = {
     DEFAULT_ENABLED : true,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
-
+	
     init : function() {
         Foxtrick.registerPageHandler( 'forumWritePost',
                                       FoxtrickForumPreview );
@@ -27,26 +27,26 @@ var FoxtrickForumPreview = {
                 // display templates above the message window
                 var msg_window = doc.getElementById(
                             FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
-                
+				msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
+				
                 var preview_ctrl_div = doc.createElement( "div" );
                 preview_ctrl_div.style.marginTop = "1em";
                 
                 var new_button = doc.createElement( "a" );
-                new_button.setAttribute( "href", "javascript:void(0)" );
+                new_button.setAttribute( "href", "javascript:showHide('forum_preview');" );
                 new_button.innerHTML = Foxtrickl10n.getString( 'show_preview_from_post' );
-                new_button.addEventListener( "click", FoxtrickForumPreview._preview, false );
                 preview_ctrl_div.appendChild( new_button );
                 msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );                 
-                
+				                
                 var preview_div = doc.createElement( "div" );
                 preview_div.id = "forum_preview";
                 preview_div.setAttribute( "class", "cfMessageNoAvatar" );
-                preview_div.style.border = "0px";
-                preview_div.style.width = "465px";
-                preview_div.style.margin = "0px";
-                preview_div.style.padding = "0px";
+				preview_div.style.display = "none";
+                preview_div.style.border = "1px dotted grey";
+				preview_div.style.width = "465px";
+                preview_div.style.margin = "5px";
+				preview_div.style.padding = "10px";
                 preview_div.style.background = "#fcf6df";
-                
                 
                 var preview_message = doc.createElement( "div" );
                 preview_message.id = "message_preview";
@@ -64,7 +64,7 @@ var FoxtrickForumPreview = {
 	},
         
     _preview : function ( ev ) {
-        search = new Array(
+		search = new Array(
           
           /\[playerid=(.*?)\]/,
           /\[teamid=(.*?)\]/,
@@ -100,7 +100,7 @@ var FoxtrickForumPreview = {
         );
        
         var doc = ev.target.ownerDocument;
-        var msg_window = doc.getElementById( FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
+		var msg_window = doc.getElementById( FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
         var prev_div = doc.getElementById( "forum_preview" );
         var text = Foxtrick.stripHTML( msg_window.value );
         
@@ -111,9 +111,6 @@ var FoxtrickForumPreview = {
             }
         }   
         
-        prev_div.style.margin = "5px";
-        prev_div.style.padding = "10px";
-        prev_div.style.border = "1px dotted grey";
         prev_div.innerHTML = text;
         
     },
