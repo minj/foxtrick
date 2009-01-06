@@ -153,7 +153,18 @@ var FoxtrickForumStaffMarker = {
 		    	    null,
 		    	    Components.interfaces.nsIDOMXPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
 		    	    null);
-		    	
+                
+				htreg = /^HT-/i;
+				gmreg = /^GM-/i;
+				modreg = /^MOD-/i;
+				chppreg = /^CHPP-/i;
+				lareg = /^LA-/i;		    	
+                
+                var SELECT_ELEMENTS = [ "ctl00_CPMain_ucThread_ucPagerTop_filterUser",
+                                        "ctl00_CPMain_ucThread_ucPagerBottom_filterUser"
+                                      ];
+
+                
 		    	for (i=0; i< userDivs.snapshotLength; i++){
 		    		var user = userDivs.snapshotItem(i);
 					var as = user.getElementsByTagName('a');
@@ -161,11 +172,7 @@ var FoxtrickForumStaffMarker = {
 						var a = as[j];
 						if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1) continue;
 						var uname = Foxtrick.trim(a.textContent);
-						htreg = /^HT-/i;
-						gmreg = /^GM-/i;
-						modreg = /^MOD-/i;
-						chppreg = /^CHPP-/i;
-						lareg = /^LA-/i;
+
 						if (Foxtrick.isModuleFeatureEnabled( this, "HT") && htreg.test(uname)) {
 							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text");
 							if (!stl)
@@ -204,7 +211,55 @@ var FoxtrickForumStaffMarker = {
 						}						
 					}
 				}
-    	
+                
+                //SelectBox - Staff-Color
+                for (var boxes = 0; boxes < SELECT_ELEMENTS.length; boxes++) {
+                    var el_Select = doc.getElementById( SELECT_ELEMENTS[boxes] );
+                    for (var i = 0; i < el_Select.length; i++) {
+                        
+                        var uname = Foxtrick.trim( el_Select.options[i].text );
+                        uname = uname.substring(0, uname.indexOf(' '));
+                        
+						if (Foxtrick.isModuleFeatureEnabled( this, "HT") && htreg.test(uname)) {
+							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text");
+							if (!stl)
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[0];
+							el_Select.options[i].setAttribute("style", stl);
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "GM") && gmreg.test(uname)) {
+							var stl = FoxtrickPrefs.getString("modules." + this.MODULE_NAME + "." + "GM_text");
+							if (!stl)
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[1];
+							el_Select.options[i].setAttribute("style", stl);
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "MOD") && modreg.test(uname)) {
+							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MOD_text");
+							if (!stl)
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[2];
+							el_Select.options[i].setAttribute("style", stl);
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "CHPP") && chppreg.test(uname)) {
+							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CHPP_text");
+							if (!stl)
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[3];
+							el_Select.options[i].setAttribute("style", stl);
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "LA") && lareg.test(uname)) {
+							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "LA_text");
+							if (!stl)
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[4];
+							el_Select.options[i].setAttribute("style", stl);
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "editor") && editorsArray.join().search(uname) > -1) {
+							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "editor_text");
+							if (!stl)
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[5];
+							el_Select.options[i].setAttribute("style", stl);
+						} else if (Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") && foxtrickersArray.join().search(uname) > -1) {
+							var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
+							if (!stl)
+								stl = this.OPTION_TEXTS_DEFAULT_VALUES[6];
+							el_Select.options[i].setAttribute("style", stl);
+						}                
+                    }   
+                }
+                
+                
        			break;
         }
     },
