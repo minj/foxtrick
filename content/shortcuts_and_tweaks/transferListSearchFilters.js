@@ -69,6 +69,7 @@ FoxtrickTransferListSearchFilters = {
         var table = doc.createElement("table");
         table.setAttribute("id", "table_transfer_filters");
         table.setAttribute("width", "100%");
+        table.style.padding = "2px";
         for (var i=0; i< namelist.length; i++) {
         
 	        var tr = doc.createElement("tr");
@@ -85,12 +86,10 @@ FoxtrickTransferListSearchFilters = {
 					var filter = FoxtrickPrefs.getString("transferfilter." + namelist[i]);
 					link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + filter +  "', document);";
 					link.innerHTML = namelist[i];
+					link.className = "inner";
 					td1.appendChild(link);
-	//				temp.appendChild(doc.createElement("br"));
 					
 					var remover = doc.createElement( "a" );
-	        // remover.style.marginRight = "1em";
-	        // remover.setAttribute( "href", "javascript:void(0)" );
 	        remover.setAttribute( "class", "ignore" );
 	        remover.innerHTML = "X";
 	        remover.msg = namelist[i];
@@ -107,60 +106,6 @@ FoxtrickTransferListSearchFilters = {
 			
 			
 			
-//        var sidebar = doc.getElementById('sidebar');
-//        var div = doc.createElement("div");
-//        div.className = "sidebarBox";
-//        div.innerHTML = '<div class="boxHead"><div class="boxLeft"><h2>Foxtrick Filters</h2></div></div>';
-//        sidebar.appendChild(div);
-//        
-//        var temp = doc.createElement('div');
-//        temp.className = 'boxBody';
-//        div.appendChild(temp);
-//        
-//        // add link
-//
-//        var addlink = doc.createElement("a");
-//				addlink.href = "#addnewfilter";
-//				addlink.name = "addnewfilter";
-//				addlink.addEventListener( "click", FoxtrickTransferListSearchFilters.addNewFilter, false );
-//				addlink.innerHTML = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
-//				temp.appendChild(addlink);
-//				temp.appendChild(doc.createElement("br"));
-        
-//				var namelist = FoxtrickPrefs.getList("transferfilterlist");
-//        namelist.sort();
-//        var table = doc.createElement("table");
-//        table.setAttribute("width", "100%");
-//        for (var i=0; i< namelist.length; i++) {
-//        
-//	        var tr = doc.createElement("tr");
-//	        var td1 = doc.createElement("td");
-//	        var td2 = doc.createElement("td");
-//	        td2.setAttribute( "class", "ignore" );
-//	        td2.setAttribute( "align", "right" );
-//	        table.appendChild(tr);
-//	        tr.appendChild(td1);
-//	        tr.appendChild(td2);
-//	        
-//	      	var link = doc.createElement("a");
-//					var filter = FoxtrickPrefs.getString("transferfilter." + namelist[i]);
-//					link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + filter +  "', document);";
-//					link.innerHTML = namelist[i];
-//					td1.appendChild(link);
-//	//				temp.appendChild(doc.createElement("br"));
-//					
-//					var remover = doc.createElement( "a" );
-//	        // remover.style.marginRight = "1em";
-//	        // remover.setAttribute( "href", "javascript:void(0)" );
-//	        remover.setAttribute( "class", "ignore" );
-//	        remover.innerHTML = "X";
-//	        remover.msg = namelist[i];
-//	        remover.href="#addnewfilter";
-//	        remover.addEventListener( "click", FoxtrickTransferListSearchFilters.deleteFilter, false );
-//	        td2.appendChild( remover );
-//                
-//      }
-//      temp.appendChild(table);
 
     },
 	
@@ -208,9 +153,6 @@ FoxtrickTransferListSearchFilters = {
 		      }
 		      formString = formString + "</root>";
 					
-//					var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-//					var branch = prefObj.getBranch("foxtrick.formfiller.");
-//					branch.setCharPref(filtername, formString);
 						FoxtrickPrefs.setString("transferfilter." + filtername, formString);
 						FoxtrickPrefs.addPrefToList("transferfilterlist", filtername);
 						var table = doc.getElementById("table_transfer_filters");
@@ -230,11 +172,8 @@ FoxtrickTransferListSearchFilters = {
 							link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + formString +  "', document);";
 							link.innerHTML = filtername;
 							td1.appendChild(link);
-			//				temp.appendChild(doc.createElement("br"));
 							
 							var remover = doc.createElement( "a" );
-			        // remover.style.marginRight = "1em";
-			        // remover.setAttribute( "href", "javascript:void(0)" );
 			        remover.setAttribute( "class", "ignore" );
 			        remover.innerHTML = "X";
 			        remover.msg = filtername;
@@ -255,10 +194,6 @@ FoxtrickTransferListSearchFilters = {
         	   var el = doc.getElementById("filter_" + ev.target.msg);
         	   if (el)
         	   	el.parentNode.removeChild(el);
-            // ev.target.nextSibling.parentNode.removeChild( ev.target.nextSibling );
-            // ev.target.parentNode.removeChild( ev.target );
-            // remove whole <tr>
-//            ev.target.parentNode.parentNode.parentNode.removeChild( ev.target.parentNode.parentNode );
         }
     },
     
