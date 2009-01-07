@@ -67,10 +67,12 @@ FoxtrickTransferListSearchFilters = {
         var namelist = FoxtrickPrefs.getList("transferfilterlist");
         namelist.sort();
         var table = doc.createElement("table");
+        table.setAttribute("id", "table_transfer_filters");
         table.setAttribute("width", "100%");
         for (var i=0; i< namelist.length; i++) {
         
 	        var tr = doc.createElement("tr");
+	        tr.setAttribute("id", "filter_" + namelist[i]);
 	        var td1 = doc.createElement("td");
 	        var td2 = doc.createElement("td");
 	        td2.setAttribute( "class", "ignore" );
@@ -211,15 +213,48 @@ FoxtrickTransferListSearchFilters = {
 //					branch.setCharPref(filtername, formString);
 						FoxtrickPrefs.setString("transferfilter." + filtername, formString);
 						FoxtrickPrefs.addPrefToList("transferfilterlist", filtername);
+						var table = doc.getElementById("table_transfer_filters");
+						if (table) {
+							var tr = doc.createElement("tr");
+			        tr.setAttribute("id", "filter_" + filtername);
+			        var td1 = doc.createElement("td");
+			        var td2 = doc.createElement("td");
+			        td2.setAttribute( "class", "ignore" );
+			        td2.setAttribute( "align", "right" );
+			        table.appendChild(tr);
+			        tr.appendChild(td1);
+			        tr.appendChild(td2);
+			        
+			      	var link = doc.createElement("a");
+							var filter = FoxtrickPrefs.getString("transferfilter." + filtername);
+							link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + formString +  "', document);";
+							link.innerHTML = filtername;
+							td1.appendChild(link);
+			//				temp.appendChild(doc.createElement("br"));
+							
+							var remover = doc.createElement( "a" );
+			        // remover.style.marginRight = "1em";
+			        // remover.setAttribute( "href", "javascript:void(0)" );
+			        remover.setAttribute( "class", "ignore" );
+			        remover.innerHTML = "X";
+			        remover.msg = filtername;
+			        remover.href="#addnewfilter";
+			        remover.addEventListener( "click", FoxtrickTransferListSearchFilters.deleteFilter, false );
+			        td2.appendChild( remover );
+						}
         } catch (e) {
             dump(e);
         }
     },
     
   deleteFilter : function( ev ) {
+  	var doc = ev.target.ownerDocument;
         if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'foxtrick.transferfilter.delete_filter_ask' ) ) )
         {
         	   FoxtrickPrefs.delListPref( "transferfilterlist", ev.target.msg );
+        	   var el = doc.getElementById("filter_" + ev.target.msg);
+        	   if (el)
+        	   	el.parentNode.removeChild(el);
             // ev.target.nextSibling.parentNode.removeChild( ev.target.nextSibling );
             // ev.target.parentNode.removeChild( ev.target );
             // remove whole <tr>
