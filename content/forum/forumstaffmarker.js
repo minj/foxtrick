@@ -119,6 +119,7 @@ var FoxtrickForumStaffMarker = {
 			"convinced",
 			"eekels",
 			"franory",
+            "Grif_07",
 			"GTTWINS",
 			"gucan",
 			"Homzik",
