@@ -68,5 +68,7 @@ FoxtrickTransferListSearchFormFiller = {
         if (els.length > 0) return els[0];
         return null;
     }
+    
+    
 
 };
