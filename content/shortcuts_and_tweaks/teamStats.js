@@ -5,7 +5,7 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FTTeamStats= {
-    
+
     MODULE_NAME : "FTTeamStats",
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
         DEFAULT_ENABLED : true,
@@ -16,11 +16,11 @@ var FTTeamStats= {
     },
 
     run : function( page, doc ) {
-
+         
         var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "div" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
-			
+
 			if( allDivs2[i].className == "playerInfo" ) {
 				var specc = allDivs2[i];
 				if(specc) {
@@ -39,13 +39,13 @@ var FTTeamStats= {
 		}
 
 		var boxrightt=doc.getElementById('sidebar');
-		var txt;
+		var txt = '';
 
         var specsTable = "";
         for (var spec in specs) {
           specsTable += "<tr><td class=\"ch\">" + spec.replace(/\[|\]/g,"") + "</td><td>" + specs[spec] + "</td></tr>";
         }
-      
+
         var transferListed = getElementsByClass( "transferListed", doc );
         var img_lis = '<img style="width: 10px; height: 18px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dollar.gif" src="/Img/Icons/dollar.gif" class="transferListed" title="">';
         if (transferListed.length > 0) {
@@ -59,10 +59,10 @@ var FTTeamStats= {
             try {
                 for (var j = 0; j < yellow.length; j++) {
                     var head = yellow[j].parentNode;
-                    
-                    if (head.innerHTML.indexOf('yel', 0) != -1 ) yels += 1;              
+
+                    if (head.innerHTML.indexOf('yel', 0) != -1 ) yels += 1;
                 }
-            } 
+            }
             catch(e) {
                 dump(e);
             }
@@ -82,10 +82,10 @@ var FTTeamStats= {
             try {
                 for (var j = 0; j < red.length; j++) {
                     var head = red[j].parentNode;
-                    
-                    if (head.innerHTML.indexOf('red', 0) != -1 ) reds += 1;              
+
+                    if (head.innerHTML.indexOf('red', 0) != -1 ) reds += 1;
                 }
-            } 
+            }
             catch(e) {
                 dump(e);
             }
@@ -104,9 +104,9 @@ var FTTeamStats= {
             try {
                 for (var j = 0; j < injuries.length; j++) {
                     var head = injuries[j].parentNode;
-                    weeks += parseInt(substr(head.innerHTML, strrpos( head.innerHTML, "<span>")+6, 1));              
+                    weeks += parseInt(head.innerHTML.substring(head.innerHTML.IndexOf("<span>")+6, 1));
                 }
-            } 
+            }
             catch(e) {
                 dump(e);
             }
@@ -115,13 +115,10 @@ var FTTeamStats= {
         if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
         if (specsTable != "") txt = '<table class="smallText">' + specsTable + "</table>";
 
-        
-		
-
 		var contentDiv = boxrightt.innerHTML;
 
-		var NovaVar; 
-		
+		var NovaVar;
+
 		NovaVar = '<div class="sidebarBox">';
 		NovaVar += '<div class="boxHead">';
 		NovaVar += '<div class="boxLeft">';
@@ -135,45 +132,10 @@ var FTTeamStats= {
 		NovaVar += '</div>';
 		NovaVar += '</div>';
 
-		boxrightt.innerHTML = contentDiv + NovaVar;
+		if (txt !="") boxrightt.innerHTML = contentDiv + NovaVar;
         },
-        
+
         change : function( page, doc ) {
-        
+
         }
 };
-
-function strrpos( haystack, needle, offset){
-    var i = (haystack+'').lastIndexOf( needle, offset ); // returns -1
-    return i >= 0 ? i : false;
-}
-function substr( f_string, f_start, f_length ) {
-    // http://kevin.vanzonneveld.net
-    // +     original by: Martijn Wieringa
-    // +     bugfixed by: T.Wild
-    // +      tweaked by: Onno Marsman
-    // *       example 1: substr('abcdef', 0, -1);
-    // *       returns 1: 'abcde'
-    // *       example 2: substr(2, 0, -6);
-    // *       returns 2: ''
- 
-    f_string += '';
- 
-    if(f_start < 0) {
-        f_start += f_string.length;
-    }
- 
-    if(f_length == undefined) {
-        f_length = f_string.length;
-    } else if(f_length < 0){
-        f_length += f_string.length;
-    } else {
-        f_length += f_start;
-    }
- 
-    if(f_length < f_start) {
-        f_length = f_start;
-    }
- 
-    return f_string.substring(f_start, f_length);
-}
