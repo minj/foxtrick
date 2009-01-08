@@ -21,7 +21,7 @@ var FoxtrickLinksMatch = {
 
     run : function( page, doc ) {
 
-		if (FoxtrickHelper.findIsYouthMatch(doc.location.href)) {return;}
+		var youthmatch = FoxtrickHelper.findIsYouthMatch(doc.location.href);
 		var isarchivedmatch=true;
 		var matchid,teamid;
 		var alldivs = doc.getElementsByTagName('div');
@@ -30,10 +30,13 @@ var FoxtrickLinksMatch = {
 				var thisdiv = alldivs[j];
 				matchid = FoxtrickHelper.findMatchId(thisdiv); 
 				teamid = FoxtrickHelper.findTeamId(thisdiv);
-				isarchivedmatch = FoxtrickHelper.findIsArchievedMatch(thisdiv);
+				if (youthmatch) {isarchivedmatch =!doc.getElementById("ctl00_CPMain_lblMatchInfo");}
+				else {isarchivedmatch = FoxtrickHelper.findIsArchievedMatch(thisdiv);}
 				//addExternalLinksToPlayedMatch
 				if (isarchivedmatch) {
-					var links = getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid }, doc, this);  
+					var links;
+					if (youthmatch) {links = getLinks("playedyouthmatchlink", { "matchid": matchid, "teamid" : teamid }, doc, this); }
+					else {links = getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid }, doc, this); }
 
 					if (links.length > 0) {
 						var ownBoxBody = doc.createElement("div");
@@ -50,15 +53,17 @@ var FoxtrickLinksMatch = {
 						}
 						
 						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-
-						FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".played" );	
+						
+						var prefset=this.MODULE_NAME+".played";
+						if (youthmatch) {this.MODULE_NAME+".youth.played";}
+						FoxtrickLinksCustom.add( page, doc,ownBoxBody,prefset);	
 					}
 			    }
 			break;
 			}
         }    
 		//addExternalLinksToCommingMatch
-		if (!isarchivedmatch) { 
+		if (!isarchivedmatch && !youthmatch) { 
 			var sidediv = doc.getElementById("sidebar");
 			var teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);
 			if (teamid2!=0) { 				

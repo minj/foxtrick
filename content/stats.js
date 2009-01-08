@@ -605,7 +605,7 @@ stats["ht_deutschland"] =  {
 };    
 
 // peasohtstats
-stats["peasostats"] =  { 
+stats["htstats"] =  { 
         "url" : "http://htstats.com/",
 
         "leaguelink" : { "path"       : "liga.php",
@@ -626,10 +626,22 @@ stats["peasostats"] =  {
         "countryidranges" : [[36, 36]], 
         
         "title" : "Peaso Hattrick Stats",
-        "img" : "chrome://foxtrick/content/resources/linkicons/peasohtstats.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/htstats.png"
 };    
 
-
+stats["htstats_all"] =  { 
+        "url" : "http://www.htstats.com/",
+        "playedmatchlink" : { "path"       : "matchinfo",
+                         "filters"    : [], 
+                         "params"     : { "matchid" : "-" }
+                       },
+        "playedyouthmatchlink" : { "path"       : "matchinfoy",
+                         "filters"    : [], 
+                         "params"     : { "matchid" : "-" }
+                       },
+        "title" : "htstats (played match)",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htstats.png"        
+};
 // todohattrick
 stats["todohattrick"] =  { 
         "url" : "http://www.stepi.org/todohattrick/",
@@ -1053,7 +1065,6 @@ stats["hatstats"] =  {
                          "filters"    : [], 
                          "params"     : []
                        },
-                       
         "allowlink" : function(filterparams, stattype) {
             
             var maxlevel = 4;
@@ -1071,6 +1082,7 @@ stats["hatstats"] =  {
         "title" : "HatStats",
         "img" : "chrome://foxtrick/content/resources/linkicons/hatstats.png"        
 };    
+
 
 stats["advancedinjurycalc"] =  { 
         "url" : "http://www.student.ru.nl/rvanaarle/injury.php",
