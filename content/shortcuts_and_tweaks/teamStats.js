@@ -66,7 +66,7 @@ var FTTeamStats= {
             catch(e) {
                 dump(e);
             }
-          specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yels + "</td></tr>";
+            if (yels > 0) specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yels + "</td></tr>";
         }
 
         var yellow_2 = getElementsByClass( "cardsTwo", doc );
@@ -89,7 +89,7 @@ var FTTeamStats= {
             catch(e) {
                 dump(e);
             }
-          specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + reds + "</td></tr>";
+            if (reds > 0) specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + reds + "</td></tr>";
         }
 
         var injuries = getElementsByClass( "injuryBruised", doc );
