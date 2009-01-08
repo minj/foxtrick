@@ -24,12 +24,14 @@ FoxtrickMatchPlayerColouring = {
         var matchteamA = regexp.exec(content);
         if (matchteamA) {
             teamA = matchteamA[1].replace(/ \- /g, ", ").split(", ");
+            //dump(teamA + '\n');
         }
 
         content = content.substring(content.indexOf(matchteamA[0])+matchteamA[0].length);
         var matchteamB = regexp.exec(content);
         if (matchteamB) {
             teamB = matchteamB[1].replace(/ \- /g, ", ").split(", ");
+            //dump(teamB + '\n');
          }
          
 		 //Retrieve substitutions
@@ -39,32 +41,37 @@ FoxtrickMatchPlayerColouring = {
 			for (var j=0; j<span_a.length; j++) {
 				if (FoxtrickMatchPlayerColouring._isLinkPlayer(span_a[j].href)) {
 					if (span_a[j].id == "") {
-						//Player Out
-						var SubPlayerName = span_a[j].textContent;
-						var b = SubPlayerName.indexOf(" ");
-						var l = SubPlayerName.length;
-						if (b>=0) {
-							var PlayerOut = SubPlayerName.substr(b+1,l-b+1);
-						} else {
-							var PlayerOut = SubPlayerName;
-						}
-						//Player In
-						var SubPlayerName = span_a[j+1].textContent;
-						var b = SubPlayerName.indexOf(" ");
-						var l = SubPlayerName.length;
-						if (b>=0) {
-							var PlayerIn = SubPlayerName.substr(b+1,l-b+1);
-						} else {
-							var PlayerIn = SubPlayerName;
-						}
-						//Add Player In to the players list
-						if (teamA.indexOf(PlayerOut) >=0) {
-								teamA = teamA + "," + PlayerIn;
-							}
-						if (teamB.indexOf(PlayerOut) >=0) {
-								teamB = teamB + "," + PlayerIn;
-							}
-						j=j+1;
+                        try {
+                            //Player Out
+                            var SubPlayerName = span_a[j].textContent;
+                            var b = SubPlayerName.lastIndexOf(" ");
+                            var l = SubPlayerName.length;
+                            if (b>=0) {
+                                var PlayerOut = SubPlayerName.substr(b+1,l-b+1);
+                            } else {
+                                var PlayerOut = SubPlayerName;
+                            }
+                            //Player In
+                            var SubPlayerName = span_a[j+1].textContent;
+                            var b = SubPlayerName.lastIndexOf(" ");
+                            var l = SubPlayerName.length;
+                            if (b>=0) {
+                                var PlayerIn = SubPlayerName.substr(b+1,l-b+1);
+                            } else {
+                                var PlayerIn = SubPlayerName;
+                            }
+                            //Add Player In to the players list
+                            if (teamA.indexOf(PlayerOut) >=0) {
+                                    teamA = teamA + "," + PlayerIn;
+                                }
+                            if (teamB.indexOf(PlayerOut) >=0) {
+                                    teamB = teamB + "," + PlayerIn;
+                                }
+                            j=j+1;
+                        }
+                        catch(e) {
+                            dump('FoxtrickMatchPlayerColouring => Substitution=> ' + e);
+                        }
 					}
 				}
 			}
@@ -75,7 +82,7 @@ FoxtrickMatchPlayerColouring = {
              if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
                  links[i].style.border = "1px solid #ccc";
   				 var playerFullName = links[i].textContent;
-				 var b = playerFullName.indexOf(" ");
+				 var b = playerFullName.lastIndexOf(" ");
 				 var l = playerFullName.length;
 				 if (b>=0) {
 					var playerName = playerFullName.substr(b+1,l-b+1);
