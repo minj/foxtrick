@@ -134,7 +134,7 @@ var FoxtrickForumStaffMarker = {
 			"ljushaff",
 			"MarceloFBrandao",
 			"Masterix",
-			"obarros",
+			"OBarros",
 			"Pyntsa",
 			"smates",
 			"spambot",
