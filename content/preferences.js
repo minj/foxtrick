@@ -125,4 +125,8 @@ var FoxtrickPrefs = {
         for ( i in values )
             FoxtrickPrefs.setString( list_name + "." + i, values[i] );
     },
+    
+    deleteValue : function( value_name ){
+    	this._pref_branch.deleteBranch( value_name );
+    },
 };
