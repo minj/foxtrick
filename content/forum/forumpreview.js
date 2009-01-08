@@ -118,7 +118,7 @@ var FoxtrickForumPreview = {
         var text = Foxtrick.stripHTML( msg_window.value );
 
         text = text.replace(/\n/g, "<br />");
-        var count = substr_count(text, '[');
+        var count = Foxtrick.substr_count(text, '[');
         for (var j = 0; j < count; j++) {
             for ( var i = 0; i < search.length; i++) {
                 text = text.replace(search[i],replace[i]);
@@ -130,22 +130,3 @@ var FoxtrickForumPreview = {
     },
 
 };
-
-function substr_count( haystack, needle, offset, length ) {
-    // http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
-    // Returns count of needle in a haystack.
-    var pos = 0, cnt = 0;
-    haystack += '';
-    needle += '';
-    if(isNaN(offset)) offset = 0;
-    if(isNaN(length)) length = 0;
-    offset--;
-    while( (offset = haystack.indexOf(needle, offset+1)) != -1 ){
-        if(length > 0 && (offset+needle.length) > length){
-            return false;
-        } else{
-            cnt++;
-        }
-    }
-    return cnt;
-}

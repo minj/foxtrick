@@ -309,6 +309,26 @@ Foxtrick.trimnum = function (text) {
   //return text.replace(/[\D\s]/g, '');  
   return text.replace(/&nbsp;/g,"").replace(/[\s]/g, '').match(/-\d+|\d+/);
 }
+
+Foxtrick.substr_count = function ( haystack, needle, offset, length ) {
+    // http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
+    // Returns count of needle in a haystack.
+    var pos = 0, cnt = 0;
+    haystack += '';
+    needle += '';
+    if(isNaN(offset)) offset = 0;
+    if(isNaN(length)) length = 0;
+    offset--;
+    while( (offset = haystack.indexOf(needle, offset+1)) != -1 ){
+        if(length > 0 && (offset+needle.length) > length){
+            return false;
+        } else{
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
 String.prototype.group = function( chr, size )
 {
 	if ( typeof chr == 'undefined' ) chr = ",";
@@ -669,4 +689,22 @@ Foxtrick._from_utf8 = function(s) {
     }
   }
   return d;
+}
+
+function getElementsByClass(searchClass,node,tag) {
+	var classElements = new Array();
+	if ( node == null )
+		node = document;
+	if ( tag == null )
+		tag = '*';
+	var els = node.getElementsByTagName(tag);
+	var elsLen = els.length;
+	var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+	for (i = 0, j = 0; i < elsLen; i++) {
+		if ( pattern.test(els[i].className) ) {
+			classElements[j] = els[i];
+			j++;
+		}
+	}
+	return classElements;
 }
