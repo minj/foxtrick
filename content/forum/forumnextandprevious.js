@@ -18,19 +18,19 @@ var FoxtrickForumNextAndPrevious = {
     run : function( page, doc ) {
 		var elems = doc.getElementsByTagName("img");
 		for(var i=0; i < elems.length; i++) {
-			if(elems[i].className == "disabled first") {
+			if(elems[i].className == "disabledFirst") {
 				elems[i].parentNode.removeChild(elems[i]);
 			}
          
-			if(elems[i].className == "disabled prev") {
+			if(elems[i].className == "disabledPrev") {
 				elems[i].parentNode.removeChild(elems[i]);
 			}
          
-			if(elems[i].className == "disabled next") {
+			if(elems[i].className == "disabledNext") {
 				elems[i].parentNode.removeChild(elems[i]);
 			}
          
-			if(elems[i].className == "disabled last") {
+			if(elems[i].className == "disabledLast") {
 				elems[i].parentNode.removeChild(elems[i]);
 			}       
         } 
