@@ -98,7 +98,10 @@ var FoxtrickPrefs = {
 
     _getElemNames : function( list_name ) {
         try {
-            return this._pref_branch.getChildList( list_name + ".", {} );
+			if( list_name != "" )
+				return this._pref_branch.getChildList( list_name + ".", {} );
+			else
+				return this._pref_branch.getChildList( "", {} );
         } catch( e ) {
             return null;
         }

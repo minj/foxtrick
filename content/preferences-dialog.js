@@ -610,14 +610,20 @@ FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where 
 FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
     if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
-            var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-            var branch = prefObj.getBranch("extensions.foxtrick.");
-            branch.deleteBranch("prefs");
+			//var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+            //var branch = prefObj.getBranch("extensions.foxtrick.");
+            //branch.deleteBranch("prefs");
+			var array = FoxtrickPrefs._getElemNames("");
+			for(var i = 0; i < array.length; i++) {
+				if( array[i].search( "YouthPlayer" ) == -1 ) {
+					FoxtrickPrefs.deleteValue(array[i]);
+				}
+			}
             FoxtrickPrefs.setInt( "cutwordsafter", document.getElementById("cutwordspref").value);
             close();
         }
         catch (e) {
-            dump(e);
+			dump(e);
         }
     } 
     return true;            

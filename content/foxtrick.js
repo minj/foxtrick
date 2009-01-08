@@ -51,8 +51,9 @@ var FoxtrickMain = {
                     Components.utils.reportError(e);
                 }
             }
-            else
+            else {
                 dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
+			}
         }
 
     },
