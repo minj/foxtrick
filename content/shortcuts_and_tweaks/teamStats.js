@@ -60,7 +60,18 @@ var FTTeamStats= {
         var yellow = getElementsByClass( "cardsOne", doc );
         var img_yel = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" src="/Img/Icons/yellow_card.gif" class="cardsOne" title="">';
         if (yellow.length > 0) {
-          specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow.length + "</td></tr>";
+            var yels = 0;
+            try {
+                for (var j = 0; j < yellow.length; j++) {
+                    var head = yellow[j].parentNode;
+                    
+                    if (head.innerHTML.indexOf('yel', 0) != -1 ) yels += 1;              
+                }
+            } 
+            catch(e) {
+                dump(e);
+            }
+          specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yels + "</td></tr>";
         }
 
         var yellow_2 = getElementsByClass( "cardsTwo", doc );
@@ -72,7 +83,18 @@ var FTTeamStats= {
         var red = getElementsByClass( "cardsOne", doc );
         var img_red = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" src="/Img/Icons/red_card.gif" class="cardsOne" title="">';
         if (red.length > 0) {
-          specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + red.length + "</td></tr>";
+            var reds = 0;
+            try {
+                for (var j = 0; j < red.length; j++) {
+                    var head = red[j].parentNode;
+                    
+                    if (head.innerHTML.indexOf('red', 0) != -1 ) reds += 1;              
+                }
+            } 
+            catch(e) {
+                dump(e);
+            }
+          specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + reds + "</td></tr>";
         }
 
         var injuries = getElementsByClass( "injuryBruised", doc );
@@ -95,7 +117,7 @@ var FTTeamStats= {
             }
         }
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
-        if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (" + weeks + ")" + "</td></tr>";
+        if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
         if (specsTable != "") txt = '<table class="smallText">' + specsTable + "</table>";
 
 		
