@@ -46,23 +46,42 @@ var FTTeamStats= {
 			}
 		}
 
-		var boxrightt=doc.getElementById('ctl00_CPSidebar_UpdatePanel1');
+		var boxrightt=doc.getElementById('sidebar');
 	//	boxrightt.style.display='none';
 
 		var txt;
 
         var specsTable = "";
         for (var spec in specs) {
-          specsTable += "<tr><th>" + spec.replace(/\[|\]/g,"") + "</th><td>" + specs[spec] + "</td></tr>";
+          specsTable += "<tr><td class=\"ch\">" + spec.replace(/\[|\]/g,"") + "</td><td>" + specs[spec] + "</td></tr>";
+        }
+      
+    
+        var yellow = getElementsByClass( "cardsOne", doc );
+        var img_yel = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" src="/Img/Icons/yellow_card.gif" class="cardsOne" title="">';
+        if (yellow.length > 0) {
+          specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow.length + "</td></tr>";
+        }
+
+        var yellow_2 = getElementsByClass( "cardsTwo", doc );
+        var img_yel = '<img style="width: 17px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dual_yellow_card.gif" src="/Img/Icons/dual_yellow_card.gif" class="cardsTwo" title="">';
+        if (yellow_2.length > 0) {
+          specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow_2.length + "</td></tr>";
         }
         
+        var red = getElementsByClass( "cardsOne", doc );
+        var img_red = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" src="/Img/Icons/red_card.gif" class="cardsOne" title="">';
+        if (red.length > 0) {
+          specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + red.length + "</td></tr>";
+        }
+
         var injuries = getElementsByClass( "injuryBruised", doc );
+        var img_bru = '<img style="width: 19px; height: 8px;" ilo-full-src="http://www.hattrick.org/Img/Icons/bruised.gif" src="/Img/Icons/bruised.gif" class="injuryBruised" title="">';
         if (injuries.length > 0) {
-          specsTable += "<tr><th>Pflaster </th><td>" + injuries.length + "</td></tr>";
+          specsTable += "<tr><td class=\"ch\">" + img_bru + "</td><td>" + injuries.length + "</td></tr>";
         }
 
         var injuries = getElementsByClass( "injuryInjured", doc );
-
         if (injuries) {
             var weeks = 0;
             try {
@@ -75,9 +94,9 @@ var FTTeamStats= {
                 dump(e);
             }
         }
-        
-        if (weeks > 0) specsTable += "<tr><th>Verletzt </th><td>" + injuries.length +  " (" + weeks + " w)" + "</td></tr>";
-        if (specsTable != "") txt = '<table class="foxtrick-playerlist foxtrick-playerlistspecs">' + specsTable + "</table>";
+        var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
+        if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (" + weeks + ")" + "</td></tr>";
+        if (specsTable != "") txt = '<table class="smallText">' + specsTable + "</table>";
 
 		
 
@@ -92,13 +111,13 @@ var FTTeamStats= {
 		NovaVar += '</div>';
 		NovaVar += '</div>';
 		NovaVar += '<div class="boxBody">';
-		if (txt !="") NovaVar += "<br>" + txt;
+		if (txt !="") NovaVar += txt;
 		NovaVar += '</div>';
 		NovaVar += '<div class="boxFooter"><div class="boxLeft">&nbsp;</div>';
 		NovaVar += '</div>';
 		NovaVar += '</div>';
 
-		boxrightt.innerHTML = NovaVar + contentDiv;
+		boxrightt.innerHTML = contentDiv + NovaVar;
         },
         
         change : function( page, doc ) {
