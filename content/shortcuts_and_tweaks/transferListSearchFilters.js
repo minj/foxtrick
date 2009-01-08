@@ -43,55 +43,67 @@ FoxtrickTransferListSearchFilters = {
     run : function(page, doc) {
     
         Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/transferform.js");
-        var ownBoxBody = doc.createElement("div");
-		var header = Foxtrickl10n.getString(
-                "foxtrick.transferfilter.Foxtrick_Filters" );
-		var ownBoxId = "foxtrick_transferfilter_box";
-		var ownBoxBodyId = "foxtrick_transferfilter_content";
-		ownBoxBody.setAttribute( "id", ownBoxBodyId );
-	      
-	    // add link
-        var addlink = doc.createElement("a");
-		addlink.href = "javascript:void(0);";
-		addlink.className = "inner";
-		addlink.addEventListener( "click", FoxtrickTransferListSearchFilters.addNewFilter, false );
-		addlink.innerHTML = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
-		ownBoxBody.appendChild(addlink);
-		ownBoxBody.appendChild(doc.createElement("br"));
         
-        var namelist = FoxtrickPrefs.getList("transferfilterlist");
-        namelist.sort();
-        var table = doc.createElement("table");
-        table.setAttribute("id", "table_transfer_filters");
-        table.setAttribute("width", "100%");
-        table.style.padding = "2px";
-        for (var i=0; i< namelist.length; i++) {
+        var head = doc.getElementsByTagName("head")[0];
+        var style = doc.createElement("style");
+        style.setAttribute("type", "text/css");
+        
 
-            var tr = doc.createElement("tr");
-	        tr.setAttribute("id", "filter_" + namelist[i]);
-	        
-            var td_remove = doc.createElement("td");
-	        table.appendChild(tr);
-	        tr.appendChild(td_remove);
-            
-            var td_fname = doc.createElement("td");
-            td_fname.style.width= "100%";
-            tr.appendChild(td_fname);	        
-	        
-	      	var link = doc.createElement("a");
-			var filter = FoxtrickPrefs.getString("transferfilter." + namelist[i]);
-			link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + filter +  "', document);";
-			link.innerHTML = namelist[i];
-			link.className = "inner";
-			td_fname.appendChild(link);
-			
-            var remover = doc.createElement( "img" );
-            remover.setAttribute( "class", "ignore" );
-            remover.msg = namelist[i];
-            remover.href="javascript:void(0);";
-            remover.addEventListener( "click", FoxtrickTransferListSearchFilters.deleteFilter, false );
-            remover.src = "chrome://foxtrick/content/resources/linkicons/cross_bigger.png";
-            td_remove.appendChild( remover );
+        var newStyle = 'div.ignore{cursor: pointer;width: 10px;height: 18px;background: url("../../Img/Icons/cross_small.png") no-repeat center center;} div.ignore:hover { background: url("../../Img/Icons/crossRed_small.png") no-repeat center center; }';
+				style.appendChild(doc.createTextNode(newStyle));
+        head.appendChild(style);
+        
+        var ownBoxBody = doc.createElement("div");
+				var header = Foxtrickl10n.getString(
+		                "foxtrick.transferfilter.Foxtrick_Filters" );
+				var ownBoxId = "foxtrick_transferfilter_box";
+				var ownBoxBodyId = "foxtrick_transferfilter_content";
+				ownBoxBody.setAttribute( "id", ownBoxBodyId );
+			      
+			    // add link
+		        var addlink = doc.createElement("a");
+				addlink.href = "javascript:void(0);";
+				addlink.className = "inner";
+				addlink.addEventListener( "click", FoxtrickTransferListSearchFilters.addNewFilter, false );
+				addlink.innerHTML = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
+				ownBoxBody.appendChild(addlink);
+				ownBoxBody.appendChild(doc.createElement("br"));
+				ownBoxBody.appendChild(doc.createElement("br"));
+		        
+		    var namelist = FoxtrickPrefs.getList("transferfilterlist");
+		    namelist.sort();
+		    var table = doc.createElement("table");
+		    table.setAttribute("id", "table_transfer_filters");
+		    table.setAttribute("width", "100%");
+//		    table.setAttribute("border", "1");
+		    table.setAttribute("cell-padding", "3");
+		    for (var i=0; i< namelist.length; i++) {
+
+					var tr = doc.createElement("tr");
+					tr.setAttribute("id", "filter_" + namelist[i]);
+					
+					table.appendChild(tr);
+					
+					var td_fname = doc.createElement("td");
+					td_fname.style.width= "99%";
+					tr.appendChild(td_fname);	        
+					var td_remove = doc.createElement("td");
+					td_remove.setAttribute("valign", "middle");
+					tr.appendChild(td_remove);
+					
+					var link = doc.createElement("a");
+					var filter = FoxtrickPrefs.getString("transferfilter." + namelist[i]);
+					link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + filter +  "', document);";
+					link.innerHTML = namelist[i];
+					link.className = "inner";
+					td_fname.appendChild(link);
+					
+					var remover = doc.createElement( "div" );
+					remover.setAttribute( "class", "ignore" );
+					remover.setAttribute( "height", "100%" );
+					remover.msg = namelist[i];
+					remover.addEventListener( "click", FoxtrickTransferListSearchFilters.deleteFilter, false );
+					td_remove.appendChild( remover );
       }
       ownBoxBody.appendChild(table);
       Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
@@ -139,37 +151,45 @@ FoxtrickTransferListSearchFilters = {
                 }
             }
             formString = formString + "</root>";
-                    
+            
+            var namelist = FoxtrickPrefs.getList("transferfilterlist");
+            var bExists = false;
+            for (var i=0; i< namelist.length; i++) {
+            	if (namelist[i] == filtername){
+            		bExists = true;
+            		break;
+            	}
+            }
             FoxtrickPrefs.setString("transferfilter." + filtername, formString);
+            if (bExists){
+            	FoxtrickPrefs.delListPref("transferfilterlist", filtername);
+            	var el = doc.getElementById("filter_" + filtername);
+		        	if (el)
+		                el.parentNode.removeChild(el);
+            }
             FoxtrickPrefs.addPrefToList("transferfilterlist", filtername);
             var table = doc.getElementById("table_transfer_filters");
             if (table) {
                 var tr = doc.createElement("tr");
                 tr.setAttribute("id", "filter_" + filtername);
                 var td_fname = doc.createElement("td");
-                td_fname.style.width= "100%";
+                td_fname.style.width= "99%";
                 var td_remove = doc.createElement("td");
-                //td_remove.setAttribute( "class", "ignore" );
-                //td_remove.setAttribute( "align", "left" );
-                //td_remove.setAttribute( "width", "20px" );
-                //td_remove.style.width = "20px" ;
-
+                
                 table.appendChild(tr);
-                tr.appendChild(td_remove);
                 tr.appendChild(td_fname);
-            
+            		tr.appendChild(td_remove);
+                
                 var link = doc.createElement("a");
                 var filter = FoxtrickPrefs.getString("transferfilter." + filtername);
                 link.href = "javascript:FoxtrickTransferListSearchFormFiller.fillForm('" + formString +  "', document);";
                 link.innerHTML = filtername;
                 td_fname.appendChild(link);
                     
-                var remover = doc.createElement( "img" );
+                var remover = doc.createElement( "div" );
                 remover.setAttribute( "class", "ignore" );
                 remover.msg = filtername;
-                remover.href="javascript:void(0);";
                 remover.addEventListener( "click", FoxtrickTransferListSearchFilters.deleteFilter, false );
-                remover.src = "chrome://foxtrick/content/resources/linkicons/cross_bigger.png";
                 
                 td_remove.appendChild( remover );
             }
