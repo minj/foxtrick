@@ -17,38 +17,28 @@ var FTTeamStats= {
 
     run : function( page, doc ) {
 
-   		 var specs = {};
-		// var elemsover = doc.getElementById("ctl00_CPSidebar_UpdatePanel1");
-		// elemsover.style.display="none";
+        var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "div" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
 			
 			if( allDivs2[i].className == "playerInfo" ) {
 				var specc = allDivs2[i];
 				if(specc) {
-					
-					    // specialities
-
-              var specMatch = specc.textContent.match(/\[\D+\]/g);
-              if (specMatch != null) {
-                var spec = specMatch[0];
-                if (typeof(specs[spec]) == 'undefined') {
-                  specs[spec] = 1;
-                } else {
-                  specs[spec]++;
-                }
-          	  }
-
-					
-					
-					
+					// specialities
+                    var specMatch = specc.textContent.match(/\[\D+\]/g);
+                    if (specMatch != null) {
+                        var spec = specMatch[0];
+                        if (typeof(specs[spec]) == 'undefined') {
+                            specs[spec] = 1;
+                        } else {
+                            specs[spec]++;
+                        }
+                    }
 				}
 			}
 		}
 
 		var boxrightt=doc.getElementById('sidebar');
-	//	boxrightt.style.display='none';
-
 		var txt;
 
         var specsTable = "";
@@ -56,7 +46,12 @@ var FTTeamStats= {
           specsTable += "<tr><td class=\"ch\">" + spec.replace(/\[|\]/g,"") + "</td><td>" + specs[spec] + "</td></tr>";
         }
       
-    
+        var transferListed = getElementsByClass( "transferListed", doc );
+        var img_lis = '<img style="width: 10px; height: 18px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dollar.gif" src="/Img/Icons/dollar.gif" class="transferListed" title="">';
+        if (transferListed.length > 0) {
+          specsTable += "<tr><td class=\"ch\">" + img_lis + "</td><td>" + transferListed.length + "</td></tr>";
+        }
+
         var yellow = getElementsByClass( "cardsOne", doc );
         var img_yel = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" src="/Img/Icons/yellow_card.gif" class="cardsOne" title="">';
         if (yellow.length > 0) {
@@ -79,7 +74,7 @@ var FTTeamStats= {
         if (yellow_2.length > 0) {
           specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow_2.length + "</td></tr>";
         }
-        
+
         var red = getElementsByClass( "cardsOne", doc );
         var img_red = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" src="/Img/Icons/red_card.gif" class="cardsOne" title="">';
         if (red.length > 0) {
@@ -120,6 +115,7 @@ var FTTeamStats= {
         if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
         if (specsTable != "") txt = '<table class="smallText">' + specsTable + "</table>";
 
+        
 		
 
 		var contentDiv = boxrightt.innerHTML;
