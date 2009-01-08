@@ -46,4 +46,4 @@ a[href*="ll=20#skill"]:after, a[href*="ll=20#"]:after
 a[href*="ll=21#skill"]:after, a[href*="ll=21#"]:after 
 {content:" (21)" !important;font-size:xx-small !important;}
 
-div#mainBody.boxBody>div.playerInfo {width:400px !important;}
+/* div#mainBody.boxBody>div.playerInfo {width:400px !important;} */
