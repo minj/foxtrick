@@ -41,7 +41,7 @@ var FoxtrickGoToPostBox = {
 				inputBoxTop.setAttribute('id', boxId);
 
    				var inputBoxLabel = doc.createElement('span');
-                inputBoxLabel.innerHTML = '&nbsp;Post:&nbsp;';
+                inputBoxLabel.innerHTML = '&nbsp;' + Foxtrickl10n.getString("foxtrick.GoToPostBox.label") + ':&nbsp;';
                 selectBox.parentNode.appendChild(inputBoxLabel);
 
 				selectBox.parentNode.appendChild(inputBoxTop);
@@ -49,6 +49,7 @@ var FoxtrickGoToPostBox = {
                 var inputBoxLabel2 = doc.createElement('span');
                 inputBoxLabel2.innerHTML = '&nbsp';
                 selectBox.parentNode.appendChild(inputBoxLabel2);
+                
 				selectBox.parentNode.appendChild(goButton);
 			}
 			
