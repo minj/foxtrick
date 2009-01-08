@@ -66,7 +66,7 @@ var FTTeamStats= {
 		NovaVar = '<div class="sidebarBox">';
 		NovaVar += '<div class="boxHead">';
 		NovaVar += '<div class="boxLeft">';
-		NovaVar += '<h2 class="">Team overview</h2>';
+		NovaVar += '<h2 class="">'+ Foxtrickl10n.getString("foxtrick.FTTeamStats.label") + '</h2>';
 		NovaVar += '</div>';
 		NovaVar += '</div>';
 		NovaVar += '<div class="boxBody">';
