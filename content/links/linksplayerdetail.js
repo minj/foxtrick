@@ -146,6 +146,8 @@ var FoxtrickLinksPlayerDetail = {
 					}
 						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+
+					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME);	
 				}
 				break;
 			}

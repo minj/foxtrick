@@ -50,6 +50,8 @@ var FoxtrickLinksMatch = {
 						}
 						
 						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+
+						FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".played" );	
 					}
 			    }
 			break;
@@ -77,6 +79,8 @@ var FoxtrickLinksMatch = {
 							ownBoxBody.appendChild(links2[k].link);
 						}		
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, "first");
+
+				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" );	
 				}
         }    
     },

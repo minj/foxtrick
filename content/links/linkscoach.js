@@ -39,9 +39,9 @@ var FoxtrickLinksCoach = {
 						
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			                                                        
+			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME );	
         }
-            
-    },
+	},
 	
 	change : function( page, doc ) {
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );

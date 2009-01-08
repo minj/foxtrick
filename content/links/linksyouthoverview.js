@@ -35,6 +35,8 @@ var FoxtrickLinksYouthOverview = {
 				ownBoxBody.appendChild(links[k].link);
 			}
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+
+			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME );	
 		}
     },
 	
