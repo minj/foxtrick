@@ -611,8 +611,8 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
     if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
             var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-            var branch = prefObj.getBranch("extensions.foxtrick.prefs.");
-            branch.deleteBranch("transferfilter");
+            var branch = prefObj.getBranch("extensions.foxtrick.");
+            branch.deleteBranch("prefs");
             FoxtrickPrefs.setInt( "cutwordsafter", document.getElementById("cutwordspref").value);
             close();
         }

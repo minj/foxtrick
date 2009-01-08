@@ -183,7 +183,6 @@ FoxtrickTransferListSearchFilters = {
         if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'foxtrick.transferfilter.delete_filter_ask' ) ) )
         {
             FoxtrickPrefs.delListPref( "transferfilterlist", ev.target.msg );
-            FoxtrickPrefs.delListPref( "transferfilter", ev.target.msg );
         	var el = doc.getElementById("filter_" + ev.target.msg);
         	if (el)
                 el.parentNode.removeChild(el);
