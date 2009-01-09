@@ -37,11 +37,12 @@ var FoxtrickTeamPopupLinks = {
                 //determine width of the floating box - Stephan
                 var maxwidth = Math.max(Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, 
                                                 Foxtrickl10n.getString( 'last_5_ips' ).length, Foxtrickl10n.getString( 'Guestbook' ).length,
-                                                Foxtrickl10n.getString( 'TransferHistory' ).length,Foxtrickl10n.getString( 'LastLineup').length); //Stephan
+                                                Foxtrickl10n.getString( 'Coach' ).length,Foxtrickl10n.getString( 'TransferHistory' ).length,Foxtrickl10n.getString( 'LastLineup').length); //Stephan
                 var bMatches = Foxtrick.isModuleFeatureEnabled( this, "Matches");
                 var bPlayers = Foxtrick.isModuleFeatureEnabled( this, "Players");
                 var bLast5IPs = Foxtrick.isModuleFeatureEnabled( this, "last_5_ips");
                 var bGuestbook = Foxtrick.isModuleFeatureEnabled( this, "Guestbook");
+                var bCoach = Foxtrick.isModuleFeatureEnabled( this, "Coach");
                 var bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 var bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
                 var top = 0;
@@ -53,6 +54,8 @@ var FoxtrickTeamPopupLinks = {
                 if (bLast5IPs)
                         top = top - 20;
                 if (bGuestbook)
+                        top = top - 20;
+                if (bCoach)
                         top = top - 20;
                 if (bTransferHistory)
                         top = top - 20;
@@ -139,17 +142,29 @@ var FoxtrickTeamPopupLinks = {
                                         tr4.appendChild(td4);
                                         tbl.appendChild(tr4);
                                 }       
-                                if (bTransferHistory){
+                                if (bCoach){
                                         var tr5 = doc.createElement("tr");
                                         tr5.setAttribute("height", "20");
                                         var td5 = doc.createElement("td");
                                         td5.setAttribute("nowrap", "nowrap");
                                         var a5 = doc.createElement("a");
-                                        a5.setAttribute('href', '/Club/Transfers/transfersTeam.aspx?teamId=' + value);
-                                        a5.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'TransferHistory' )));
+                                        a5.setAttribute('href', '/Club/Players/?TeamID='+value+'&redir=true');
+                                        a5.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
                                         td5.appendChild(a5);
                                         tr5.appendChild(td5);
                                         tbl.appendChild(tr5);
+									}
+                                if (bTransferHistory){
+                                        var tr7 = doc.createElement("tr");
+                                        tr7.setAttribute("height", "20");
+                                        var td7 = doc.createElement("td");
+                                        td7.setAttribute("nowrap", "nowrap");
+                                        var a7 = doc.createElement("a");
+                                        a7.setAttribute('href', '/Club/Transfers/transfersTeam.aspx?teamId=' + value);
+                                        a7.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'TransferHistory' )));
+                                        td7.appendChild(a7);
+                                        tr7.appendChild(td7);
+                                        tbl.appendChild(tr7);
                                 }       
                                 if (bLastLineup){
                                         var tr6 = doc.createElement("tr");
@@ -187,7 +202,8 @@ var FoxtrickTeamPopupLinks = {
                                           "Players" ,
                                           "last_5_ips" ,
                                           "Guestbook" ,
+                                          "Coach",
                                           "TransferHistory" ,
-                                          "LastLineup" );
+										  "LastLineup" );
         }
 };
