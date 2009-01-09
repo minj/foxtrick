@@ -16,12 +16,12 @@ var FoxtrickTeamSelectBox= {
     },
 
     run : function( page, doc ) {
-
-		var alldivs = doc.getElementsByTagName('div');
+	if (doc.location.href.search(/TeamID=/i)==-1) {return;}
+    	var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="sidebarBox" ) {
 				var header = alldivs[j].getElementsByTagName("h2")[0];
-				if (header.innerHTML == Foxtrickl10n.getString("foxtrick.tweaks.overview" )) {
+				if (header.innerHTML == Foxtrickl10n.getString("foxtrick.tweaks.overview" )) { 
 					var selectbox = doc.createElement("select");
 					selectbox.className = "ownselectbox";
 					selectbox.addEventListener('change',FoxtrickTeamSelectBox_Select,false);
@@ -36,7 +36,7 @@ var FoxtrickTeamSelectBox= {
 					try {
                         var player = alldivs[j].getElementsByTagName("a")[0];
                         var pn=player.parentNode;
-                        while (player){
+                        while (player!=null){
                             var option = doc.createElement("option");
                             option.setAttribute("value",player.href);
                             option.innerHTML=player.innerHTML;
