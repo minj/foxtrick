@@ -32,11 +32,11 @@ var FoxtrickForumYouthIcons = {
                 
                 var youthbar = doc.createElement( "div" );
                 youthbar.setAttribute( "class" , "HTMLToolbar");
-                youthbar.setAttribute( "style" , "background-color:#FFFFFF; width:485px;");
+                youthbar.setAttribute( "style" , "width:130px;height:auto;background-color:#ABCDEF;margin-top:6px;text-align:center;");
 
                 var youthbar_label = doc.createElement( "div" );
-                youthbar_label.innerHTML = "Youth Links (Beta)&nbsp;";
-                youthbar_label.setAttribute( "style" , "width:135px;height:auto;background-color:#FFFFFF;float:left;margin-top:6px;text-align:right;");
+                youthbar_label.innerHTML = "Youth Links (Beta)";
+                youthbar_label.setAttribute( "style" , "width:130px;height:auto;background-color:#FEDCBA;margin-top:6px;text-align:center;");
                 youthbar.appendChild( youthbar_label);                
                 
                 var newimage = doc.createElement( "img" );
