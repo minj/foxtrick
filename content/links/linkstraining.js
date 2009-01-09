@@ -20,6 +20,7 @@ var FoxtrickLinksTraining = {
 
     run : function( page, doc ) {
 
+	if (doc.location.href.search(/ChangeCoach/i)>-1) {return;}
 		//addExternalLinksToCoachPage
 		
 		var alldivs = doc.getElementsByTagName('div');

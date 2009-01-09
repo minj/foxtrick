@@ -37,6 +37,7 @@ var FoxtrickLinksPlayerDetail = {
 				var PlayerInfoTable = thisdiv.getElementsByTagName("table")[0];
 				tsi = parseInt(PlayerInfoTable.rows[1].cells[1].textContent.replace(/[\s]*/gi, "")); 
 				
+				
 				// age
 				var divs= thisdiv.getElementsByTagName('div');
 				for (var j=0; j < divs.length; j++) {
@@ -45,29 +46,34 @@ var FoxtrickLinksPlayerDetail = {
 						break;
 					}
 				} 
+				
 				// form +sta
 				var count = 0;
 				var links= thisdiv.getElementsByTagName('a');
-				for (var i=0; i < links.length; i++) {
-					if ( links[i].href.match(/skillshort/i) ) {
-						if (count==0) {form = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
-						else if (count==1) {sta = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
-						else if (count==2) break;
-						count++;
+				if (links!=null) { 
+					for (var i=0; i < links.length; i++) {
+						if ( links[i].href.match(/skillshort/i) ) {
+							if (count==0) {form = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
+							else if (count==1) {sta = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
+							else if (count==2) break;
+							count++;
 						}
 					} 
+				}
+				
 				var container = PlayerInfoTable.rows[4].cells[1];
 				if (container.textContent.search(/\d+/) > -1) {
 					var injuredweeks = container.textContent.match(/\d+/)[0];
 					var ilinks = getLinks("playerhealinglink", { "playerid": playerid,
 							"form": form, "age" : age, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);  
-					for (var j=0; j< links.length; j++) {
+					for (var j=0; j< ilinks.length; j++) {
 						ilinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
 						container.appendChild(doc.createTextNode(" "));
 						container.appendChild(ilinks[j].link);
 					}
 				}
-			    var goalkeeperskillnode;   
+			   
+				var goalkeeperskillnode;   
 				for (var j=0; j < divs.length; j++) {
 					if ( divs[j].className=="mainBox" ) {
 						var PlayerDetailTable = divs[j].getElementsByTagName("table")[0];
@@ -126,8 +132,9 @@ var FoxtrickLinksPlayerDetail = {
 						goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
 						}										
 				}
-				
-				if (links[0].length+links[1].length>0) {
+				var num_links=links[0].length;
+				if (links[1]!=null) {num_links+=links[1].length;}
+				if (num_links>0) {
 					var ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
