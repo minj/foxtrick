@@ -118,6 +118,10 @@ FoxtrickMatchPlayerColouring = {
 			 }
          }
     },
+
+    change : function(url) {
+        
+    },        
     
     _isLinkPlayer : function(url) {
         if (url) {
