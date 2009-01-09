@@ -113,5 +113,10 @@ var FoxtrickAdvancedStarsCounter = {
 		span.innerHTML = starsHtml
 		target.appendChild(doc.createElement("br"));
 		target.appendChild(span, target);
-	}
+	},
+
+    change: function( page, doc ) {
+  
+    }
+        
 };
