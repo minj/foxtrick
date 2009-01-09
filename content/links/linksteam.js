@@ -104,6 +104,10 @@ var FoxtrickLinksTeam = {
 		}
 	},
 	
+	change : function( page, doc ) {
+	
+	},
+	
 	isTeamPage : function(doc) {
         var site=doc.location.href;
         var remain=site.substr(site.search(/Club\//i)+5);
