@@ -103,7 +103,7 @@ var FoxtrickAddLeaveConfButton = {
 		var leaveConf = doc.createElement("div");
 		leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
 		leaveConf.setAttribute("class","foxtrick" +	"LeaveConf float_right");
-		leaveConf.setAttribute( "title", "Leave conference" );
+		leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
 		leaveConf.setAttribute("onClick","alert( \"" +	Foxtrickl10n.getString(
 			'leave_conf_button_alert')	+ "\" ); window.open(\"/MyHattrick/"
 			+ "Preferences/ForumSettings.aspx?LeaveConf=" + confName

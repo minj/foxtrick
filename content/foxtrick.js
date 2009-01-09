@@ -96,7 +96,7 @@ var FoxtrickMain = {
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
-        dump( "Foxtrick run time: " + time + " ms\n" );
+        // dump( "Foxtrick run time: " + time + " ms\n" );
 		// re-add event listener
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
     },

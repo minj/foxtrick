@@ -27,12 +27,19 @@ var Foxtrickl10n = {
 				try {
 					if ( this._strings_bundle_default ) return this._strings_bundle_default.GetStringFromName( str );
 				} catch( ee ) {
-					return "** Localization error **";
+                    // DEBUG FOR RELEASE 0.4.3
+                    dump("** Localization error 1 ** '" + str + "'\n");
+                    // DEBUG FOR RELEASE 0.4.3
+                    return "** Localization error 1 **";
 				}
 			}            
         }
-        else
-            return "** Localization error **";
+        else {
+            // DEBUG FOR RELEASE 0.4.3
+            dump("** Localization error 2 ** '" + str + "'\n");
+            // DEBUG FOR RELEASE 0.4.3
+            return "** Localization error 2 **";
+        }
     },
 
     getFormattedString : function( str, key_array )
