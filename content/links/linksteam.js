@@ -36,7 +36,16 @@ var FoxtrickLinksTeam = {
 					break;					
 				}
 			}
-		}				
+		}
+	if (doc.location.href.search(/\/Club\/Training\//i)!=-1  
+		&& doc.location.href.search(/redir=true/i)!=-1 ) { 
+			// redirect to coach
+			var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
+			var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
+			var tar = serv+"/Players/Player.aspx?playerId="+CoachId;
+			doc.location.replace(tar);
+			
+		}		
 		//if (teamid!=FoxtrickHelper.ownteamid) 
 				{				
 				// last lineup
@@ -56,7 +65,9 @@ var FoxtrickLinksTeam = {
 					if (teamid<3000||teamid>=5000) { // no matchpages of NTs
 						var li2 = doc.createElement("li");
 						var coachlink = doc.createElement("a");
-						coachlink.setAttribute('href', '/Club/Players/?TeamID='+teamid+'&redir=true');
+						if (teamid!=FoxtrickHelper.ownteamid) {
+							coachlink.setAttribute('href', '/Club/Players/?TeamID='+teamid+'&redir=true');}
+						else { coachlink.setAttribute('href', '/Club/Training/?redir=true');}
 						coachlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
 						var owncoachlinkId = "foxtrick_content_coach";
 						coachlink.setAttribute( "id", owncoachlinkId );
