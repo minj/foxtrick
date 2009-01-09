@@ -12,7 +12,7 @@ var FoxtrickLinksCustom = {
 
     MODULE_NAME : "LinksCustom",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 
     init : function() {
 	
@@ -89,7 +89,7 @@ var FoxtrickLinksCustom = {
 		divED.setAttribute("class", "alert");
 		divED.setAttribute("id", divEDId );
 		divED.setAttribute("style", "display: none;");
-		divED.innerHTML ="Add personal links";
+		divED.innerHTML =Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink" );
 		
 		// href edit field
 		var inputHref = doc.createElement ("input");
@@ -98,7 +98,7 @@ var FoxtrickLinksCustom = {
 		inputHref.setAttribute("value", "http://example.org");
 		inputHref.setAttribute("type", "text");
 		inputHref.setAttribute("maxlength", "200");
-		inputHref.setAttribute("size", "25");
+		inputHref.setAttribute("size", "20");
 		inputHref.className ="inner";
 		divED.appendChild (inputHref);
 
@@ -123,7 +123,7 @@ var FoxtrickLinksCustom = {
 		var buttonnode= doc.createElement('input');
 		buttonnode.setAttribute('type','button');
 		buttonnode.setAttribute('name','button');
-		buttonnode.setAttribute('value','get icon');
+		buttonnode.setAttribute('value',Foxtrickl10n.getString("foxtrick.linkscustom.selecticon" ));
 		buttonnode.className ="inner";
 		buttonnode.parentdoc=doc.defaultView;
 		buttonnode.result=div;
@@ -141,13 +141,13 @@ var FoxtrickLinksCustom = {
 		saveLink.setAttribute("name", "savelinkname");
 		saveLink.className ="inner";
 		saveLink.addEventListener( "click", FoxtrickLinksCustom.saveMyLink, false );
-		saveLink.innerHTML = "save";
+		saveLink.innerHTML = Foxtrickl10n.getString("foxtrick.prefs.buttonSave" );
 		divED.appendChild(saveLink);
 
 		// add link
 		var showEditLink = doc.createElement ("a");
 		showEditLink.setAttribute("href", "javascript: showHide('" + divEDId + "');");
-    	showEditLink.innerHTML ="add link";
+    	showEditLink.innerHTML =Foxtrickl10n.getString("foxtrick.linkscustom.addlink" );
 		showEditLink.setAttribute("id", "showEditID");
 		showEditLink.className ="inner";
 
@@ -197,7 +197,7 @@ function FoxtrickLinksGetDelLink (doc,mylink,baseprefnl) {
 		delLink.setAttribute("name", "dellinkname");
 		delLink.className ="inner";
 		delLink.addEventListener( "click", FoxtrickLinksCustom.delMyLink, false );
-		delLink.innerHTML = "del";
+		delLink.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.remove");
 		delLink.baseprefnl = baseprefnl;
 		delLink.mylink = mylink; 
 		return delLink;

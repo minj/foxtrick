@@ -27,3 +27,4 @@ pref( "extensions.foxtrick.prefs.module.LinksArena.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksCoach.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksPlayerDetail.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksMatch.enabled", true );
+pref( "extensions.foxtrick.prefs.module.LinksCustom.enabled", false );
