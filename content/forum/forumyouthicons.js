@@ -35,7 +35,7 @@ var FoxtrickForumYouthIcons = {
                 youthbar.setAttribute( "style" , "width:130px;height:auto;background-color:#ABCDEF;margin-top:6px;text-align:center;");
 
                 var youthbar_label = doc.createElement( "div" );
-                youthbar_label.innerHTML = "Youth Links (Beta)";
+                youthbar_label.innerHTML = Foxtrickl10n.getString("ForumYouthIcons.label");
                 youthbar_label.setAttribute( "style" , "width:130px;height:auto;background-color:#FEDCBA;margin-top:6px;text-align:center;");
                 youthbar.appendChild( youthbar_label);                
                 
@@ -43,28 +43,28 @@ var FoxtrickForumYouthIcons = {
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthplayer , false );
                 newimage.setAttribute( "class", "f_player");
-                newimage.title = "add_youthplayer_link";
+                newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthplayerid");
                 youthbar.appendChild( newimage );
 
                 var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthteam , false );
                 newimage.setAttribute( "class", "f_team");
-                newimage.title = "add_youthplayer_team";
+                newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthteamid");
                 youthbar.appendChild( newimage );
                 
                 var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthmatch , false );
                 newimage.setAttribute( "class", "f_match");
-                newimage.title = "add_youthplayer_match";
+                newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthmatchid");
                 youthbar.appendChild( newimage );                
                 
                 var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthseries , false );
                 newimage.setAttribute( "class", "f_series");
-                newimage.title = "add_youthplayer_series";
+                newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthseries");
                 youthbar.appendChild( newimage );
                 var head = toolbar.parentNode;
                 				

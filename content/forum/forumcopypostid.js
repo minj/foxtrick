@@ -30,7 +30,7 @@ var FoxtrickCopyPostID = {
 						var PostID=link.href.match(/\d+\.\d+/g)[0]; 
 						link.href='javascript:void(0);';
 						//link.href='javascript:alert(document.lastModified);';
-						link.title='Copy to clipboard';
+						link.title=Foxtrickl10n.getString( 'foxtrick.CopyPostID' );
 						link.setAttribute("name",PostID);
 						link.setAttribute("id","_"+this.MODULE_NAME+num);
 						link.addEventListener( "click", FoxtrickCopyPostID._copy_postid_to_clipboard, false );	

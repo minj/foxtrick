@@ -42,23 +42,32 @@ var FoxtrickRedirectedPlayers = {
                     // dump( ' TEST ' );
                     var player_id = playerdivs[i].parentNode.id;
                     var player_pos = Foxtrick.trim(playerdivs[i].innerHTML);
-                    dump('#' + i + ': ' + player_pos + ' - ' + player_id + '\n');
+                    //dump('#' + i + ': ' + player_pos + ' - ' + player_id + '\n');
                     switch ( player_id ) {
                         case this.PLAYERIDS[0]: 
                             if (player_pos != Foxtrickl10n.getString('foxtrick.matches.Keeper')) 
                                 playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT ); 
+                            dump('#' + i + ': [' + player_pos + '] - ' + player_id + ' = [' + Foxtrickl10n.getString('foxtrick.matches.Keeper') + ']\n');
                             break;
                         case this.PLAYERIDS[1]: 
-                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.LeftBack')) playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.LeftBack')) 
+                                playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            dump('#' + i + ': [' + player_pos + '] - ' + player_id + ' = [' + Foxtrickl10n.getString('foxtrick.matches.LeftBack') + ']\n');
                             break;
                         case this.PLAYERIDS[2]: 
-                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.CentralDefender')) playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.CentralDefender')) 
+                                playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            dump('#' + i + ': [' + player_pos + '] - ' + player_id + ' = [' + Foxtrickl10n.getString('foxtrick.matches.CentralDefender') + ']\n');
                             break;
                         case this.PLAYERIDS[3]: 
-                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.CentralDefender')) playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.CentralDefender')) 
+                                playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            dump('#' + i + ': [' + player_pos + '] - ' + player_id + ' = [' + Foxtrickl10n.getString('foxtrick.matches.CentralDefender') + ']\n');
                             break;
                         case this.PLAYERIDS[4]: 
-                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.RightBack')) playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            if (player_pos != Foxtrickl10n.getString('foxtrick.matches.RightBack')) 
+                                playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
+                            dump('#' + i + ': [' + player_pos + '] - ' + player_id + ' = [' + Foxtrickl10n.getString('foxtrick.matches.RightBack') + ']\n');
                             break;
                         case this.PLAYERIDS[5]: 
                             if (player_pos != Foxtrickl10n.getString('foxtrick.matches.Leftwinger')) playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );

@@ -33,18 +33,23 @@ var FoxtrickTeamSelectBox= {
 					option.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.selectplayer" );
 					selectbox.appendChild(option);	
 						
-					var player = alldivs[j].getElementsByTagName("a")[0];
-					var pn=player.parentNode;
-					while (player){
-						var option = doc.createElement("option");
-						option.setAttribute("value",player.href);
-						option.innerHTML=player.innerHTML;
-						selectbox.appendChild(option);
-						pn.removeChild(player);	
-						player=alldivs[j].getElementsByTagName("a")[0];																
-					}
-					pn.appendChild(selectbox);
-					break;
+					try {
+                        var player = alldivs[j].getElementsByTagName("a")[0];
+                        var pn=player.parentNode;
+                        while (player){
+                            var option = doc.createElement("option");
+                            option.setAttribute("value",player.href);
+                            option.innerHTML=player.innerHTML;
+                            selectbox.appendChild(option);
+                            pn.removeChild(player);	
+                            player=alldivs[j].getElementsByTagName("a")[0];																
+                        }
+                        pn.appendChild(selectbox);
+                        break;
+                    }
+                    catch(e) {
+                        dump('FoxtrickTeamSelectBox => ' + e + '\n')
+                    }
 				}
 			}
 		}
