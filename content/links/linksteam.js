@@ -105,7 +105,15 @@ var FoxtrickLinksTeam = {
 	},
 	
 	change : function( page, doc ) {
-	
+		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
+		var ownBoxId = "foxtrick_" + header + "_box";
+		var owncoachlinkId = "foxtrick_content_coach";
+		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
+		if( !doc.getElementById ( ownBoxId ) 
+			&& !doc.getElementById ( owncoachlinkId )
+			&& !doc.getElementById ( ownlastmatchlinkId ) ) {
+			this.run( page, doc );
+		}	
 	},
 	
 	isTeamPage : function(doc) {

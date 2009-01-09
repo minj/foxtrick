@@ -615,7 +615,8 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
             //branch.deleteBranch("prefs");
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
-				if( array[i].search( "YouthPlayer" ) == -1 ) {
+				if( array[i].search( "YouthPlayer" ) == -1 
+					&& array[i].search( "CustomLinks" ) == -1) {
 					FoxtrickPrefs.deleteValue(array[i]);
 				}
 			}

@@ -63,5 +63,6 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickHTThreadMarker,
 					 FoxtrickHelper,
 					 FTTeamStats,
-					 FoxtrickLargeFlags
+					 FoxtrickLargeFlags,
+					 FoxtrickTeamSelectBox
                    ];
