@@ -1,6 +1,6 @@
 /**
  * forumyouthicons.js
- * Foxtrick forum post youth icons
+ * Foxtrick forum post youth icons 
  * @author spambot
  */
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,33 +30,47 @@ var FoxtrickForumYouthIcons = {
                 
                 FoxtrickForumYouthIcons._DOC = doc;
                 
+                var youthbar = doc.createElement( "div" );
+                youthbar.setAttribute( "class" , "HTMLToolbar");
+                youthbar.setAttribute( "style" , "background-color:#FFFFFF; width:485px;");
+
+                var youthbar_label = doc.createElement( "div" );
+                youthbar_label.innerHTML = "Youth Links (Beta)&nbsp;";
+                youthbar_label.setAttribute( "style" , "width:135px;height:auto;background-color:#FFFFFF;float:left;margin-top:6px;text-align:right;");
+                youthbar.appendChild( youthbar_label);                
+                
                 var newimage = doc.createElement( "img" );
-                newimage.src = "chrome://foxtrick/content/resources/linkicons/format_player_y.png";
+                newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthplayer , false );
                 newimage.setAttribute( "class", "f_player");
                 newimage.title = "add_youthplayer_link";
-                toolbar.appendChild( newimage );
+                youthbar.appendChild( newimage );
 
                 var newimage = doc.createElement( "img" );
-                newimage.src = "chrome://foxtrick/content/resources/linkicons/format_team_y.png";
+                newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthteam , false );
                 newimage.setAttribute( "class", "f_team");
                 newimage.title = "add_youthplayer_team";
-                toolbar.appendChild( newimage );
+                youthbar.appendChild( newimage );
                 
                 var newimage = doc.createElement( "img" );
-                newimage.src = "chrome://foxtrick/content/resources/linkicons/format_match_y.png";
+                newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthmatch , false );
                 newimage.setAttribute( "class", "f_match");
                 newimage.title = "add_youthplayer_match";
-                toolbar.appendChild( newimage );                
+                youthbar.appendChild( newimage );                
                 
                 var newimage = doc.createElement( "img" );
-                newimage.src = "chrome://foxtrick/content/resources/linkicons/format_series_y.png";
+                newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._youthseries , false );
                 newimage.setAttribute( "class", "f_series");
                 newimage.title = "add_youthplayer_series";
-                toolbar.appendChild( newimage );                
+                youthbar.appendChild( newimage );
+                var head = toolbar.parentNode;
+                				
+                head.insertBefore( youthbar, toolbar );                
+
+                
                 
                 break;
         }

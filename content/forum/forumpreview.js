@@ -80,7 +80,9 @@ var FoxtrickForumPreview = {
 		search = new Array(
 
           /\[playerid=(.*?)\]/,
+          /\[youthplayerid=(.*?)\]/,
           /\[teamid=(.*?)\]/,
+          /\[youthteamid=(.*?)\]/,
           /\[matchid=(.*?)\]/,
           /\[federationid=(.*?)\]/,
           /\[message=(.*?)\]/,
@@ -96,6 +98,8 @@ var FoxtrickForumPreview = {
           );
 
         replace = new Array(
+          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
+          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
           "<a href=\"$1\" target=\"\_blank\">($1)</a>",
           "<a href=\"$1\" target=\"\_blank\">($1)</a>",
           "<a href=\"$1\" target=\"\_blank\">($1)</a>",
