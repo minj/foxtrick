@@ -50,7 +50,7 @@ var FoxtrickLinksCustom = {
 	},
 
 	add : function( page, doc,ownBoxBody,pagemodule ) {
-
+					
 			var basepref="module."+this.MODULE_NAME+'.'+pagemodule;
 			// get number of personal links
 			var num_personal_links=FoxtrickPrefs.getInt(basepref+'.num_personal_links');
@@ -60,17 +60,19 @@ var FoxtrickLinksCustom = {
 			}
 			// add personal links
 			for (var nl=1;nl<num_personal_links+1;nl++) {		
-				if (FoxtrickPrefs.getString(basepref+'.'+nl+'.href')==null) {continue;}
-				var mylink = doc.createElement ("a");
-				mylink.setAttribute("name", "mylink");
-				mylink.className ="inner";
-				mylink.setAttribute("href", FoxtrickPrefs.getString(basepref+'.'+nl+'.href'));
-				mylink.setAttribute("title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title'));
-				mylink.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"'>";		
+				if (FoxtrickPrefs.getString(basepref+'.'+nl+'.href')==null) {continue;}				
+
+				var div = doc.createElement ("div"); 
+				div.setAttribute("style","cursor:pointer; width: 16px; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
+				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title') );
+				div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
+				div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent20.png'>";
+				div.className ="inner";
 				ownBoxBody.appendChild(doc.createTextNode(" "));
-				ownBoxBody.appendChild(mylink);
+				ownBoxBody.appendChild(div);
+
 				if (Foxtrick.isModuleEnabled(this)) {
-					ownBoxBody.appendChild(FoxtrickLinksGetDelLink(doc,mylink,basepref+'.'+nl));
+					ownBoxBody.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl));
 				}
 			}
 
@@ -110,13 +112,13 @@ var FoxtrickLinksCustom = {
 		inputTitle.setAttribute("size", "10");
 		divED.appendChild (inputTitle);
 
-		var myimg = doc.createElement ("a");
-		myimg.setAttribute("name", "myimg");
-		myimg.setAttribute("id", "inputImgID");
-		myimg.className ="inner";
-		var src="";
-		myimg.innerHTML =src;
-		
+		var div = doc.createElement ("div"); 
+		div.imgref="myimg";
+		div.setAttribute("id", "inputImgID");
+		div.setAttribute( "title", 'title') ;
+		div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent20.png'>";
+		div.className ="inner";
+								
 		// load image button
 		var buttonnode= doc.createElement('input');
 		buttonnode.setAttribute('type','button');
@@ -124,11 +126,11 @@ var FoxtrickLinksCustom = {
 		buttonnode.setAttribute('value','get icon');
 		buttonnode.className ="inner";
 		buttonnode.parentdoc=doc.defaultView;
-		buttonnode.result=myimg;
+		buttonnode.result=div;
 		buttonnode.addEventListener('click',FoxtrickLinksLoadDialog,false);
 		
 		divED.appendChild(buttonnode);
-		divED.appendChild (myimg);
+		divED.appendChild (div);
 
 		// save link
 		FoxtrickLinksCustom.saveMyLink.doc=doc;
@@ -172,22 +174,21 @@ var FoxtrickLinksCustom = {
 		nl+=1;
 		FoxtrickPrefs.setString(basepref+'.'+nl+'.href',doc.getElementById ("inputHrefID" ).value );
 		FoxtrickPrefs.setString(basepref+'.'+nl+'.title',doc.getElementById ( "inputTitleID" ).value);
-		FoxtrickPrefs.setString(basepref+'.'+nl+'.img',doc.getElementById ( "inputImgID" ).name);
+		FoxtrickPrefs.setString(basepref+'.'+nl+'.img',doc.getElementById ( "inputImgID" ).imgref);
 		FoxtrickPrefs.setInt(basepref+'.num_personal_links',nl);
-						
-		var mylink = doc.createElement ("a");
-		mylink.setAttribute("name", "mylink");
-		mylink.className ="inner";
-		
-		mylink.setAttribute("href", FoxtrickPrefs.getString(basepref+'.'+nl+'.href'));
-		mylink.setAttribute("title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title'));
-		mylink.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"'>";
+				
+		var div = doc.createElement ("div"); 
+		div.setAttribute("style","cursor:pointer; width: 16px; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
+		div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title') );
+		div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
+		div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent20.png'>";
+		div.className ="inner";
 		var elem=doc.getElementById("showEditID").previousSibling;
 		elem.parentNode.insertBefore(doc.createTextNode(" "),elem);
-		elem.parentNode.insertBefore(mylink,elem);
-		var dellink=FoxtrickLinksGetDelLink(doc,mylink,basepref+'.'+nl);
-		elem.parentNode.insertBefore(dellink,elem);				
-	},		
+		elem.parentNode.insertBefore(div,elem);
+		var dellink=FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl);
+		elem.parentNode.insertBefore(dellink,elem);	
+		},
 };
 
 function FoxtrickLinksGetDelLink (doc,mylink,baseprefnl) { 
@@ -271,8 +272,7 @@ function FoxtrickLinksLoadDialog (evt)
 				stream2.close();
 			} 
 		} catch(e){}
-	
 		//return 
-		evt["target"]["result"].innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/ownicons/"+imgfile+"'>";
-		evt["target"]["result"].setAttribute("name", imgfile);
+		evt["target"]["result"].imgref=imgfile;
+		evt["target"]["result"].setAttribute("style","cursor:pointer; width: 20px; height: 20px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+imgfile+"') 100% no-repeat;");
 	}
