@@ -37,7 +37,8 @@ var FoxtrickLinksTeam = {
 				}
 			}
 		}				
-		if (teamid!=FoxtrickHelper.ownteamid) {				
+		//if (teamid!=FoxtrickHelper.ownteamid) 
+				{				
 				// last lineup
 				var bl_header=boxleft.getElementsByTagName('li');
 				var li = doc.createElement("li");
