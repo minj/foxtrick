@@ -63,11 +63,10 @@ var FoxtrickLinksCustom = {
 				if (FoxtrickPrefs.getString(basepref+'.'+nl+'.href')==null) {continue;}				
 
 				var div = doc.createElement ("div"); 
-				div.setAttribute("style","cursor:pointer; width: 16px; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
+				div.setAttribute("style","cursor:pointer; display:inline-block; width: 26; height: 26px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
 				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title') );
 				div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
 				div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent20.png'>";
-				div.className ="inner";
 				ownBoxBody.appendChild(doc.createTextNode(" "));
 				ownBoxBody.appendChild(div);
 
@@ -98,7 +97,7 @@ var FoxtrickLinksCustom = {
 		inputHref.setAttribute("value", "http://example.org");
 		inputHref.setAttribute("type", "text");
 		inputHref.setAttribute("maxlength", "200");
-		inputHref.setAttribute("size", "20");
+		//inputHref.setAttribute("size", "20");
 		inputHref.className ="inner";
 		divED.appendChild (inputHref);
 
@@ -106,18 +105,18 @@ var FoxtrickLinksCustom = {
 		var inputTitle = doc.createElement ("input");
 		inputTitle.setAttribute("name", "inputTitle");
 		inputTitle.setAttribute("id", "inputTitleID");
-		inputTitle.setAttribute("value", "title");
+		inputTitle.setAttribute("value", "Title");
 		inputTitle.setAttribute("type", "text");
 		inputTitle.setAttribute("maxlength", "100");
-		inputTitle.setAttribute("size", "10");
+		//inputTitle.setAttribute("size", "20");
 		divED.appendChild (inputTitle);
 
 		var div = doc.createElement ("div"); 
-		div.imgref="myimg";
+		div.imgref="";
 		div.setAttribute("id", "inputImgID");
-		div.setAttribute( "title", 'title') ;
+		div.setAttribute( "title", 'Title') ;
 		div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent20.png'>";
-		div.className ="inner";
+		div.setAttribute("style","cursor: pointer; display: inline-block; margin-left: 6px; width: 28px; height: 28px; background: url('chrome://foxtrick/content/resources/linkicons/empty20.png') 50% no-repeat;");
 								
 		// load image button
 		var buttonnode= doc.createElement('input');
@@ -131,7 +130,7 @@ var FoxtrickLinksCustom = {
 		
 		divED.appendChild(buttonnode);
 		divED.appendChild (div);
-
+		
 		// save link
 		FoxtrickLinksCustom.saveMyLink.doc=doc;
 		FoxtrickLinksCustom.saveMyLink.basepref=basepref;
@@ -139,7 +138,6 @@ var FoxtrickLinksCustom = {
 		var saveLink = doc.createElement ("a");	
 		saveLink.setAttribute("href", "javascript: void(0); showHide('" + divEDId +"');");
 		saveLink.setAttribute("name", "savelinkname");
-		saveLink.className ="inner";
 		saveLink.addEventListener( "click", FoxtrickLinksCustom.saveMyLink, false );
 		saveLink.innerHTML = Foxtrickl10n.getString("foxtrick.prefs.buttonSave" );
 		divED.appendChild(saveLink);
@@ -149,7 +147,6 @@ var FoxtrickLinksCustom = {
 		showEditLink.setAttribute("href", "javascript: showHide('" + divEDId + "');");
     	showEditLink.innerHTML =Foxtrickl10n.getString("foxtrick.linkscustom.addlink" );
 		showEditLink.setAttribute("id", "showEditID");
-		showEditLink.className ="inner";
 
 		ownBoxBody.appendChild(doc.createTextNode(" "));
 		ownBoxBody.appendChild(showEditLink);		  
@@ -178,11 +175,12 @@ var FoxtrickLinksCustom = {
 		FoxtrickPrefs.setInt(basepref+'.num_personal_links',nl);
 				
 		var div = doc.createElement ("div"); 
-		div.setAttribute("style","cursor:pointer; width: 16px; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
+		div.setAttribute("style","cursor:pointer; display:inline-block; width: 16px; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
 		div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title') );
 		div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
 		div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent20.png'>";
-		div.className ="inner";
+		
+		//div.className ="inner";
 		var elem=doc.getElementById("showEditID").previousSibling;
 		elem.parentNode.insertBefore(doc.createTextNode(" "),elem);
 		elem.parentNode.insertBefore(div,elem);
@@ -195,13 +193,13 @@ function FoxtrickLinksGetDelLink (doc,mylink,baseprefnl) {
 		var delLink = doc.createElement ("a");	
 		delLink.setAttribute("href", "javascript: void(0);");
 		delLink.setAttribute("name", "dellinkname");
-		delLink.className ="inner";
+		delLink.className="inner";
 		delLink.addEventListener( "click", FoxtrickLinksCustom.delMyLink, false );
 		delLink.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.remove");
 		delLink.baseprefnl = baseprefnl;
 		delLink.mylink = mylink; 
 		return delLink;
-		}
+}
 
 
 function FoxtrickLinksLoadDialog (evt)
@@ -274,5 +272,5 @@ function FoxtrickLinksLoadDialog (evt)
 		} catch(e){}
 		//return 
 		evt["target"]["result"].imgref=imgfile;
-		evt["target"]["result"].setAttribute("style","cursor:pointer; width: 20px; height: 20px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+imgfile+"') 100% no-repeat;");
+		evt["target"]["result"].setAttribute("style","cursor:pointer; display:inline-block; margin-left: 6px; width: 28px; height: 28px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+imgfile+"') 100% no-repeat;");
 	}
