@@ -127,14 +127,14 @@ var FoxtrickLinksTeam = {
 		}
 	},
 	
-	change : function( page, doc ) {
+	change : function( page, doc ) { 
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_" + header + "_box";
+		var ownBoxId = "foxtrick_" + header + "_content";
 		var owncoachlinkId = "foxtrick_content_coach";
 		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
 		if( !doc.getElementById ( ownBoxId ) 
 			&& !doc.getElementById ( owncoachlinkId )
-			&& !doc.getElementById ( ownlastmatchlinkId ) ) {
+			&& !doc.getElementById ( ownlastmatchlinkId ) ) { 
 			this.run( page, doc );
 		}	
 	},

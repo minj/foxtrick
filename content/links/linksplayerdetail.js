@@ -163,7 +163,7 @@ var FoxtrickLinksPlayerDetail = {
 	
 	change : function( page, doc ) {
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		if( !doc.getElementById ( "foxtrick_" + header + "_box" ) 
+		if( !doc.getElementById ( "foxtrick_" + header + "_content" ) 
 			&& !doc.getElementById ( "foxtrick_keeperlink_0" ) 
 			&& !doc.getElementById ( "foxtrick_injurylink_0" ) ) {
 			this.run( page, doc );

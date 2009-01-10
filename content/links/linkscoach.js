@@ -45,7 +45,7 @@ var FoxtrickLinksCoach = {
 	
 	change : function( page, doc ) {
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_" + header + "_box";
+		var ownBoxId = "foxtrick_" + header + "_content";
 		if( !doc.getElementById ( ownBoxId ) ) {
 			this.run( page, doc );
 		}

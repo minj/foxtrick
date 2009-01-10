@@ -13,7 +13,9 @@ var FoxtrickLinksCustom = {
     MODULE_NAME : "LinksCustom",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : false,
-
+	_ownBoxBody:"",
+	_basepref:"",
+	
     init : function() {
 	
 		// check if personal icons still in chrome & if not resore them
@@ -46,23 +48,23 @@ var FoxtrickLinksCustom = {
     run : function( page, doc ) {	
 	},
 	
-	change : function( page, doc ) {
+	change : function( page, doc ) { 
 	},
 	
-	HeaderClick : function(evt) {
-		try { 
-			var module=FoxtrickLinksCustom.HeaderClick.module;
-			var doc=FoxtrickLinksCustom.HeaderClick.doc;
-			FoxtrickPrefs.setBool( "module." + module.MODULE_NAME + ".enabled", !Foxtrick.isModuleEnabled(module) );
-			doc.location.reload();
-		}
-		catch(e) { dump("LinksCustom->HeaderClick->"+e); }
-	},
-
-//extensions.foxtrick.prefs.module.AddDefaultFaceCard.enabled 
-//foxtrick_Links_box
 	add : function( page, doc,ownBoxBody,pagemodule ) {
-		try {			
+		try {	
+			dump("by "+pagemodule+"\n");
+			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
+							"resources/css/conference.css");
+					
+			var basepref="module."+this.MODULE_NAME+'.'+pagemodule;
+			var num_personal_links=FoxtrickPrefs.getInt(basepref+'.num_personal_links');
+			if (num_personal_links==null) {
+				FoxtrickPrefs.setInt(basepref+'.num_personal_links',0);
+				num_personal_links=0;
+				dump('CustomLink->'+pagemodule+': firstlink');
+			}
+
 			var alldivs = doc.getElementsByTagName('div');
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="sidebarBox" ) {
@@ -73,29 +75,31 @@ var FoxtrickLinksCustom = {
 						var div = doc.createElement("div");
 						div.appendChild(hh);
 						div.setAttribute("style","cursor:pointer;");
-						div.setAttribute("id", "ownselectboxHeaderID");
-						div.addEventListener( "click", this.HeaderClick, false );
-						FoxtrickLinksCustom.HeaderClick.module=this;
-						FoxtrickLinksCustom.HeaderClick.doc=doc;
+						div.addEventListener( "click", FoxtrickLinksCustomHeaderClick, false );
+						FoxtrickLinksCustomHeaderClick.module=this;
+						FoxtrickLinksCustomHeaderClick.doc=doc;
+						FoxtrickLinksCustomHeaderClick.ownBoxBody=ownBoxBody;
+						FoxtrickLinksCustomHeaderClick.basepref=basepref;
 						pn.insertBefore(div,pn.firstChild);
+						break;
 					}
 				}
 			}
-					
-			var basepref="module."+this.MODULE_NAME+'.'+pagemodule;
-			// get number of personal links
-			var num_personal_links=FoxtrickPrefs.getInt(basepref+'.num_personal_links');
-			if (num_personal_links==null) {
-				FoxtrickPrefs.setInt(basepref+'.num_personal_links',0);
-				num_personal_links=0;
-			}
+								
 			if (Foxtrick.isModuleEnabled(this)) {
-				// show options
-				this.show_edit( doc , ownBoxBody, basepref);
+				this.showEdit( doc , ownBoxBody, basepref);
 			}
 			else {
-				// just show links
-				for (var nl=1;nl<num_personal_links+1;nl++) {		
+				this.showLinks(doc,ownBoxBody,basepref);
+			}
+		}
+		catch(e){dump("CustomLinks->"+e);}
+	},
+	
+	showLinks : function(doc,ownBoxBody,basepref){
+		try { 
+			var num_personal_links=FoxtrickPrefs.getInt(basepref+'.num_personal_links');
+			for (var nl=1;nl<num_personal_links+1;nl++) {		
 				if (FoxtrickPrefs.getString(basepref+'.'+nl+'.href')==null) {continue;}				
 
 				var div = doc.createElement ("div"); 
@@ -103,16 +107,16 @@ var FoxtrickLinksCustom = {
 				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title') );
 				div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
 				div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+				div.setAttribute('id','LinksCustomLink'+nl);
 				ownBoxBody.appendChild(doc.createTextNode(" "));
 				ownBoxBody.appendChild(div);
-				}
 			}
 		}
-		catch(e){dump("CustomLinks->"+e);}
+		catch(e){dump("CustomLinks->showLinks->"+e);}
 	},
 	
-	show_edit : function( doc , ownBoxBody, basepref) {
-		try {
+	showEdit : function( doc , ownBoxBody, basepref) {
+		try { 
 			var num_personal_links=FoxtrickPrefs.getInt(basepref+'.num_personal_links');
 
 			// box
@@ -142,10 +146,18 @@ var FoxtrickLinksCustom = {
 				td1.width=20;					
 				var td2 = doc.createElement ("td");
 				td2.setAttribute("style","vertical-align:middle;");
+				td2.width=100;					
+				var title = doc.createTextNode(FoxtrickPrefs.getString(basepref+'.'+nl+'.title'));
+				var td3 = doc.createElement ("td");
+				td3.setAttribute("style","vertical-align:middle;");
+				td3.width=20;					
+				
 				td1.appendChild(div);
-				td2.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl));
+				td2.appendChild(title);
+				td3.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl));
 				tr1.appendChild(td1);
 				tr1.appendChild(td2);
+				tr1.appendChild(td3);
 				table.appendChild(tr1);
 			}		
 			var trn = doc.createElement ("tr");
@@ -206,7 +218,7 @@ var FoxtrickLinksCustom = {
 			inputTitle.setAttribute("value", "Title");
 			inputTitle.setAttribute('onfocus', 'if(this.value==\'Title\')this.value=\'\'');
 			inputTitle.setAttribute("type", "text");
-			inputTitle.setAttribute("maxlength", "100");
+			inputTitle.setAttribute("maxlength", "18");
 			//inputTitle.setAttribute("size", "20");
 			divED.appendChild (inputTitle);
 
@@ -227,12 +239,19 @@ var FoxtrickLinksCustom = {
 	},
 		
 	delMyLink : function (evt) { 
-		var mylink = evt["target"]["mylink"];
-		var baseprefnl = evt["target"]["baseprefnl"];
-		FoxtrickPrefs.delListPref(baseprefnl+'.href');
-		FoxtrickPrefs.delListPref(baseprefnl+'.title');
-		FoxtrickPrefs.delListPref(baseprefnl+'.img');
-		mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
+		try {
+			var doc = FoxtrickLinksCustom.delMyLink.doc;
+			var Check = doc.defaultView.confirm(Foxtrickl10n.getString("foxtrick.linkscustom.confirmremove"));
+			if (Check == false) return;
+
+			var mylink = evt["target"]["mylink"];
+			var baseprefnl = evt["target"]["baseprefnl"];
+			FoxtrickPrefs.delListPref(baseprefnl+'.href');
+			FoxtrickPrefs.delListPref(baseprefnl+'.title');
+			FoxtrickPrefs.delListPref(baseprefnl+'.img');
+			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
+		}
+		catch (e) {dump("LinksCustom->delMyLink->"+e);}
 	},
 
 	saveMyLink : function (evt) { 
@@ -258,10 +277,19 @@ var FoxtrickLinksCustom = {
 			td1.width=20;					
 			var td2 = doc.createElement ("td");
 			td2.setAttribute("style","vertical-align:middle;");
+			var title = doc.createTextNode(FoxtrickPrefs.getString(basepref+'.'+nl+'.title'));
+			td2.width=100;					
+			var td3 = doc.createElement ("td");
+			td3.setAttribute("style","vertical-align:middle;");
+			td3.width=20;					
+				
 			td1.appendChild(div);
-			td2.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl));
+			td2.appendChild(title);
+			td3.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl));
 			tr1.appendChild(td1);
 			tr1.appendChild(td2);
+			tr1.appendChild(td3);
+			
 			var table=doc.getElementById("LinksCustomTableID");
 			table.insertBefore(tr1,table.lastChild.previousSibling);
 		}
@@ -270,15 +298,17 @@ var FoxtrickLinksCustom = {
 };
 
 function FoxtrickLinksGetDelLink (doc,mylink,baseprefnl) { 
-		var delLink = doc.createElement ("a");	
-		delLink.setAttribute("href", "javascript: void(0);");
-		delLink.setAttribute("name", "dellinkname");
-		delLink.className="inner";
+	try {	
+		var delLink = doc.createElement("div");
+		delLink.setAttribute("class","foxtrick" +	"LeaveConf float_right");
+		delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
 		delLink.addEventListener( "click", FoxtrickLinksCustom.delMyLink, false );
-		delLink.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.remove");
 		delLink.baseprefnl = baseprefnl;
 		delLink.mylink = mylink; 
+		FoxtrickLinksCustom.delMyLink.doc=doc;
 		return delLink;
+	} 
+	catch(e) {dump("LinksCustom->FoxtrickLinksGetDelLink->"+e);}		
 }
 
 
@@ -353,4 +383,31 @@ function FoxtrickLinksLoadDialog (evt)
 		//return 
 		evt["target"]["result"].imgref=imgfile;
 		evt["target"]["result"].setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+imgfile+"') 100% no-repeat;");
+	}
+
+	
+	function FoxtrickLinksCustomHeaderClick(evt) {
+		try { 
+			var module=FoxtrickLinksCustomHeaderClick.module; 
+			var doc=FoxtrickLinksCustomHeaderClick.doc;
+			var ownBoxBody=FoxtrickLinksCustomHeaderClick.ownBoxBody;
+			var basepref=FoxtrickLinksCustomHeaderClick.basepref;
+			FoxtrickPrefs.setBool( "module." + module.MODULE_NAME + ".enabled", !Foxtrick.isModuleEnabled(module) );
+			
+			if (Foxtrick.isModuleEnabled(module)) { 
+				var num_personal_links=FoxtrickPrefs.getInt(basepref+'.num_personal_links');
+				for (var nl=1;nl<num_personal_links+1;nl++) {		
+					if (FoxtrickPrefs.getString(basepref+'.'+nl+'.href')==null) {continue;}				
+					var mylink=doc.getElementById('LinksCustomLink'+nl);
+					mylink.parentNode.removeChild(mylink);
+				}
+				FoxtrickLinksCustom.showEdit(doc,ownBoxBody,basepref);							
+			}
+			else { 		
+				var editbox=doc.getElementById("divEDId");
+				editbox.parentNode.removeChild(editbox);
+				FoxtrickLinksCustom.showLinks(doc,ownBoxBody,basepref);
+			}
+		}
+		catch(e) { dump("LinksCustom->HeaderClick->"+e+'\n'); }
 	}
