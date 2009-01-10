@@ -32,28 +32,32 @@ var FoxtrickLinksTeam = {
 		if (doc.location.href.search(/\/Club\/Players\//i)!=-1  
 		&& doc.location.href.search(/redir=true/i)!=-1 ) {  dump("redirect to coach\n");
 			// redirect to coach
-			var alldivs = doc.getElementsByTagName('div');
-			for (var j = 0; j < alldivs.length; j++) {
-				if (alldivs[j].className=="sidebarBox") { 
-					var CoachId = FoxtrickHelper.findPlayerId(alldivs[j]);
-					var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
-					var tar = serv+"/Players/Player.aspx?playerId="+CoachId;
-					doc.location.replace(tar);
-					break;					
+			try {
+				var alldivs = doc.getElementsByTagName('div');
+				for (var j = 0; j < alldivs.length; j++) {
+					if (alldivs[j].className=="sidebarBox") { 
+						var CoachId = FoxtrickHelper.findPlayerId(alldivs[j]);
+						var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
+						var tar = serv+"/Players/Player.aspx?playerId="+CoachId;
+						doc.location.replace(tar);
+						break;					
+					}
 				}
 			}
+			catch (e) {dump("teamlinks->"+e);}
 		}
 	if (doc.location.href.search(/\/Club\/Training\//i)!=-1  
 		&& doc.location.href.search(/redir=true/i)!=-1 ) {   dump("redirect to own coach\n");
+			try {
 			// redirect to coach
-			var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
-			var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
-			var tar = serv+"/Players/Player.aspx?playerId="+CoachId;
-			doc.location.replace(tar);
-			
+				var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
+				var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
+				var tar = serv+"/Players/Player.aspx?playerId="+CoachId;
+				doc.location.replace(tar);
+			}
+			catch (e) {dump("teamlinks->"+e);}
 		}		
-		//if (teamid!=FoxtrickHelper.ownteamid) 
-				{	 			
+		try {					 			
 				// last lineup
 				var bl_header=boxleft.getElementsByTagName('li');
 				var li = doc.createElement("li");
@@ -94,6 +98,7 @@ var FoxtrickLinksTeam = {
 					bl_header[0].parentNode.appendChild(li2);
 				}
 			}
+			catch (e) {dump("teamlinks->add_leftlinks->"+e);}
 				
 		if (!this.isTeamPage(doc)) {return;}
 		var alldivs = doc.getElementsByTagName('div');

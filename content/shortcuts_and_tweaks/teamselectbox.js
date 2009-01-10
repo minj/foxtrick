@@ -16,8 +16,9 @@ var FoxtrickTeamSelectBox= {
     },
 
     run : function( page, doc ) {
-	if (doc.location.href.search(/TeamID=/i)==-1) {return;}
+		if (doc.location.href.search(/TeamID=/i)==-1) {return;}
 		FoxtrickPrefs.setBool("ShowPlayerAsList",false);
+		
      	var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="sidebarBox" ) {
@@ -33,7 +34,8 @@ var FoxtrickTeamSelectBox= {
 					FoxtrickTeamSelectBox.HeaderClick.doc=doc;
 					pn.insertBefore(div,pn.firstChild);
 					
-					this.toSelectBox(doc);
+					if (doc.location.href.search(/YouthPlayers/i)!=-1) {FoxtrickPrefs.setBool("ShowPlayerAsList",true);;}
+					else {this.toSelectBox(doc);}
 					break;
 				}
 			}
