@@ -46,7 +46,7 @@ var FoxtrickLinksTeam = {
 			}
 			catch (e) {dump("teamlinks->"+e);}
 		}
-	if (doc.location.href.search(/\/Club\/Training\//i)!=-1  
+		if (doc.location.href.search(/\/Club\/Training\//i)!=-1  
 		&& doc.location.href.search(/redir=true/i)!=-1 ) {   dump("redirect to own coach\n");
 			try {
 			// redirect to coach
@@ -57,7 +57,13 @@ var FoxtrickLinksTeam = {
 			}
 			catch (e) {dump("teamlinks->"+e);}
 		}		
-		try {					 			
+		this.AddLinksLeft(page,doc);
+		this.AddLinksRight(page,doc);
+	},
+
+	
+    AddLinksLeft : function( page, doc ) {
+			try {
 				// last lineup
 				var bl_header=boxleft.getElementsByTagName('li');
 				var li = doc.createElement("li");
@@ -99,43 +105,51 @@ var FoxtrickLinksTeam = {
 				}
 			}
 			catch (e) {dump("teamlinks->add_leftlinks->"+e);}
-				
+	},		
+
+	
+    AddLinksRight : function( page, doc ) {
+		try {
 		if (!this.isTeamPage(doc)) {return;}
 		var alldivs = doc.getElementsByTagName('div');
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="main mainRegular") {
-				var teaminfo = this.gatherLinks( alldivs[j], doc ); 
+			for (var j = 0; j < alldivs.length; j++) {
+				if (alldivs[j].className=="main mainRegular") {
+					var teaminfo = this.gatherLinks( alldivs[j], doc ); 
 		
-				var links = getLinks("teamlink", teaminfo, doc, this );				
-				if (links.length > 0) {
-					var ownBoxBody = doc.createElement("div");
-					var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-					var ownBoxId = "foxtrick_" + header + "_box";
-					var ownBoxBodyId = "foxtrick_" + header + "_content";
-					ownBoxBody.setAttribute( "id", ownBoxBodyId );
+					var links = getLinks("teamlink", teaminfo, doc, this );				
+					if (links.length > 0) {
+						var ownBoxBody = doc.createElement("div");
+						var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
+						var ownBoxId = "foxtrick_" + header + "_box";
+						var ownBoxBodyId = "foxtrick_" + header + "_content";
+						ownBoxBody.setAttribute( "id", ownBoxBodyId );
                		                 
-					for (var k = 0; k < links.length; k++) {
-						links[k].link.className ="inner";
-						ownBoxBody.appendChild(doc.createTextNode(" "));
-						ownBoxBody.appendChild(links[k].link);
+						for (var k = 0; k < links.length; k++) {
+							links[k].link.className ="inner";
+							ownBoxBody.appendChild(doc.createTextNode(" "));
+							ownBoxBody.appendChild(links[k].link);
+						}
+						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
+	
+						FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME );	
 					}
-					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
-
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME );	
 				}
 			}
 		}
+		catch (e) {dump("teamlinks->add_leftright->"+e);}
 	},
 	
-	change : function( page, doc ) { 
+	change : function( page, doc ) {  dump('change : LinksTeam\n');
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 		var ownBoxId = "foxtrick_" + header + "_content";
 		var owncoachlinkId = "foxtrick_content_coach";
 		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
-		if( !doc.getElementById ( ownBoxId ) 
-			&& !doc.getElementById ( owncoachlinkId )
-			&& !doc.getElementById ( ownlastmatchlinkId ) ) { 
-			this.run( page, doc );
+		if( !doc.getElementById ( ownBoxId )) { 	dump('run again : LinksTeamRight\n');	
+			this.AddLinksRight(page,doc);
+		}
+		if (!doc.getElementById ( owncoachlinkId )
+			&& !doc.getElementById ( ownlastmatchlinkId ) ) { dump('run again : LinksTeamLeft\n');
+			this.AddLinksLeft(page,doc);
 		}	
 	},
 	
