@@ -20,8 +20,6 @@ var FoxtrickLinksLeague = {
     },
 
     run : function( page, doc ) {
-//var own=FoxtrickHelper.getOwnTeamInfo(doc);
-//Foxtrick.alert(FoxtrickHelper.ownseriesnum);
 		//addExternalLinksToLeagueDetail
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {

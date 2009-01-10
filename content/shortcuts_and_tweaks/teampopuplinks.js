@@ -31,7 +31,13 @@ var FoxtrickTeamPopupLinks = {
                                 }
                         }
                 }
-        var head = doc.getElementsByTagName("head")[0];
+				
+				var teamdiv = doc.getElementById('teamLinks');
+				FoxtrickHelper.ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
+				if (FoxtrickHelper.ownleagueid!=null) {
+					FoxtrickHelper.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
+				}		
+				var head = doc.getElementsByTagName("head")[0];
                 var style = doc.createElement("style");
                 style.setAttribute("type", "text/css");
                 //determine width of the floating box - Stephan

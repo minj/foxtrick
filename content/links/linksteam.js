@@ -23,8 +23,14 @@ var FoxtrickLinksTeam = {
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
+		var teamdiv = doc.getElementById('teamLinks');
+				FoxtrickHelper.ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
+				if (FoxtrickHelper.ownleagueid!=null) {
+					FoxtrickHelper.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
+				}		
+		
 		if (doc.location.href.search(/\/Club\/Players\//i)!=-1  
-		&& doc.location.href.search(/redir=true/i)!=-1 ) { 
+		&& doc.location.href.search(/redir=true/i)!=-1 ) {  dump("redirect to coach");
 			// redirect to coach
 			var alldivs = doc.getElementsByTagName('div');
 			for (var j = 0; j < alldivs.length; j++) {
@@ -38,7 +44,7 @@ var FoxtrickLinksTeam = {
 			}
 		}
 	if (doc.location.href.search(/\/Club\/Training\//i)!=-1  
-		&& doc.location.href.search(/redir=true/i)!=-1 ) { 
+		&& doc.location.href.search(/redir=true/i)!=-1 ) {   dump("redirect to own coach");
 			// redirect to coach
 			var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
 			var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
@@ -47,7 +53,7 @@ var FoxtrickLinksTeam = {
 			
 		}		
 		//if (teamid!=FoxtrickHelper.ownteamid) 
-				{				
+				{	 dump("add last lineup");			
 				// last lineup
 				var bl_header=boxleft.getElementsByTagName('li');
 				var li = doc.createElement("li");
@@ -59,7 +65,7 @@ var FoxtrickLinksTeam = {
 				li.appendChild(lastmatchlink);
                     
 				bl_header[0].parentNode.appendChild(li);
-
+						 dump("add coach link");
 				// coach make link
 				if (doc.location.href.search(/\/Club\/NationalTeam\//i)==-1) {
 					if (teamid<3000||teamid>=5000) { // no matchpages of NTs
