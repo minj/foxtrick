@@ -1,14 +1,14 @@
 /**
- * redirectedplayers.js
- * Foxtrick colors redirected Players
+ * repositionedplayers.js
+ * Foxtrick colors repositioned Players
  * @author spambot
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickRedirectedPlayers = {
+var FoxtrickRepositionedPlayers = {
 
-	MODULE_NAME : "RedirectedPlayers",
+	MODULE_NAME : "RepositionedPlayers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
 
@@ -29,7 +29,7 @@ var FoxtrickRedirectedPlayers = {
 
 	init : function() {
 			Foxtrick.registerPageHandler( 'matchLineup',
-                                          FoxtrickRedirectedPlayers );
+                                          FoxtrickRepositionedPlayers );
     },
 
     run : function( page, doc ) {

@@ -38,7 +38,7 @@ var scripts = [
     'matches/matchOrdersFlipSides.js',
     'matches/matchOrdersFormationBox.js',
 	'matches/starscounter.js',
-    'matches/redirectedplayers.js',
+    'matches/repositionedplayers.js',
     'matches/advancedStarsCounter.js',
 	'shortcuts_and_tweaks/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
