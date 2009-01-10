@@ -17,15 +17,38 @@ var FoxtrickTeamSelectBox= {
 
     run : function( page, doc ) {
 	if (doc.location.href.search(/TeamID=/i)==-1) {return;}
-    	var alldivs = doc.getElementsByTagName('div');
+		FoxtrickPrefs.setBool("ShowPlayerAsList",false);
+     	var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="sidebarBox" ) {
 				var header = alldivs[j].getElementsByTagName("h2")[0];
 				if (header.innerHTML == Foxtrickl10n.getString("foxtrick.tweaks.overview" )) { 
-					var selectbox = doc.createElement("select");
-					selectbox.className = "ownselectbox";
+					var pn=header.parentNode;
+					var hh=pn.removeChild(header);
+					var div = doc.createElement("div");
+					div.appendChild(hh);
+					div.setAttribute("style","cursor:pointer;");
+					div.setAttribute("id", "ownselectboxHeaderID");
+					div.addEventListener( "click", this.HeaderClick, false );
+					FoxtrickTeamSelectBox.HeaderClick.doc=doc;
+					pn.insertBefore(div,pn.firstChild);
+					
+					this.toSelectBox(doc);
+					break;
+				}
+			}
+		}
+	},
+	
+    toSelectBox : function( doc ) { 
+		var alldivs = doc.getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="sidebarBox" ) {
+				var header = alldivs[j].getElementsByTagName("h2")[0];
+				if (header.innerHTML == Foxtrickl10n.getString("foxtrick.tweaks.overview" )) { 
+					var selectbox = doc.createElement("select"); 
+					selectbox.setAttribute("id","ft_ownselectboxID");
 					selectbox.addEventListener('change',FoxtrickTeamSelectBox_Select,false);
-					selectbox.setAttribute("id", "ownselectboxID" );
 					FoxtrickTeamSelectBox_Select.doc=doc;
 					
 					var option = doc.createElement("option");
@@ -36,7 +59,7 @@ var FoxtrickTeamSelectBox= {
 					try {
                         var player = alldivs[j].getElementsByTagName("a")[0];
                         var pn=player.parentNode;
-                        while (player!=null){
+                        while (player!=null){ 
                             var option = doc.createElement("option");
                             option.setAttribute("value",player.href);
                             option.innerHTML=player.innerHTML;
@@ -48,18 +71,57 @@ var FoxtrickTeamSelectBox= {
                         break;
                     }
                     catch(e) {
-                        dump('FoxtrickTeamSelectBox => ' + e + '\n')
+                        dump('FoxtrickTeamSelectBox_toselectbox => ' + e + '\n')
                     }
+				}
+			}
+		}		
+	},
+    
+	toList : function( doc ) { 
+		var alldivs = doc.getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="sidebarBox" ) {
+				var header = alldivs[j].getElementsByTagName("h2")[0];
+				if (header.innerHTML == Foxtrickl10n.getString("foxtrick.tweaks.overview" )) { 
+					try {
+                        var option = alldivs[j].getElementsByTagName("option")[0];
+						var pn=option.parentNode;
+                        pn.removeChild(option);	
+                        option=alldivs[j].getElementsByTagName("option")[0];
+                        while (option!=null){ 
+                            var player = doc.createElement("a");
+                            player.href=option.value;
+                            player.innerHTML=option.innerHTML;
+                            pn.parentNode.appendChild(player);
+                            pn.removeChild(option);	
+                            option=alldivs[j].getElementsByTagName("option")[0];																
+                        }
+                        var selectbox = alldivs[j].getElementsByTagName("select")[0];
+                        pn.parentNode.removeChild(selectbox);
+                        break; 
+					}
+					catch(e) {
+						dump('FoxtrickTeamSelectBox_tolist => ' + e + '\n') 						
+					}
 				}
 			}
 		}
 	},
-        
+	
     change : function( page, doc ) {
-		if( !doc.getElementById ( "ownselectboxID" ) ) {
+		if( !doc.getElementById ( "ownselectboxHeaderID" ) ) {
 			this.run( page, doc );
 		}	
 	},
+
+	HeaderClick : function(evt) {
+		var doc=FoxtrickTeamSelectBox.HeaderClick.doc;
+		FoxtrickPrefs.setBool("ShowPlayerAsList",!FoxtrickPrefs.getBool("ShowPlayerAsList"));
+		if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {FoxtrickTeamSelectBox.toList(doc);}
+		else {FoxtrickTeamSelectBox.toSelectBox(doc);}		
+	},
+
 };
 
 function FoxtrickTeamSelectBox_Select(evt) {
