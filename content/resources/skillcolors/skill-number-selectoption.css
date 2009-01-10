@@ -1,4 +1,4 @@
-/* CSS Document */
+/* CSS Document by baumanns*/
 
 /* Option Skillnumbers */
 select[id*="Skill"] option[value="0"]:after {content:" (0)" !important; color: grey !important;}

@@ -1,4 +1,4 @@
-/* CSS Document */
+/* CSS Document  by baumanns */
 
 /* SKILL NUMBERS */
 a[href*="ll=0#skill"]:after, a[href*="ll=0#"]:after
@@ -43,7 +43,5 @@ a[href*="ll=19#skill"]:after, a[href*="ll=19#"]:after
 {content:" (19)" !important;font-size:xx-small !important;}
 a[href*="ll=20#skill"]:after, a[href*="ll=20#"]:after 
 {content:" (20)" !important;font-size:xx-small !important;}
-a[href*="ll=21#skill"]:after, a[href*="ll=21#"]:after 
-{content:" (21)" !important;font-size:xx-small !important;}
 
 div#mainBody.boxBody>div.playerInfo {width:390px !important;}
