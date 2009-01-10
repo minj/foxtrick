@@ -994,7 +994,7 @@ stats["maptrick_coolness"] =  {
 						},
          
         "title" : "Maptrick Coolness",
-         "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
+         "img" : "chrome://foxtrick/content/resources/linkicons/maptrick_cool.png"
 };
 
 stats["maptrick_hoc"] =  { 
@@ -1011,7 +1011,7 @@ stats["maptrick_hoc"] =  {
 						},
         
         "title" : "Maptrick Hall of Cool",
-        "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/maptrick_hoc.png"
 };
 
 stats["maptrick_botmap"] =  { 
@@ -1023,7 +1023,7 @@ stats["maptrick_botmap"] =  {
 						},
         
         "title" : "Maptrick Botmap",
-        "img" : "chrome://foxtrick/content/resources/linkicons/maptrick.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/maptrick_bot.png"
 };
  
 
@@ -1292,7 +1292,7 @@ stats["hattricktoday"] =  {
                        },
         
         "title" : "Hattrick Today",
-        "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday.png",
+        "img" : "chrome://foxtrick/content/resources/linkicons/hattricktoday.png"
 };
 
  
