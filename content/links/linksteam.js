@@ -64,6 +64,9 @@ var FoxtrickLinksTeam = {
 	
     AddLinksLeft : function( page, doc ) {
 			try {
+				var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+				if (boxleft==null) {return;}
+				var teamid=FoxtrickHelper.findTeamId(boxleft); 
 				// last lineup
 				var bl_header=boxleft.getElementsByTagName('li');
 				var li = doc.createElement("li");
