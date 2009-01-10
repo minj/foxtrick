@@ -19,7 +19,7 @@ var FoxtrickTeamSelectBox= {
 	try {
 		if (doc.location.href.search(/TeamID=/i)==-1) {return;}
 		FoxtrickPrefs.setBool("ShowPlayerAsList",false);
-		
+		dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
      	var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="sidebarBox" ) {
