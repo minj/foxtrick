@@ -60,7 +60,7 @@ var FTTeamStats= {
                 for (var j = 0; j < yellow.length; j++) {
                     var head = yellow[j].parentNode;
                     
-                    if (head.innerHTML.indexOf('yel', 0) != -1 ) yels += 1;              
+                    if (head.innerHTML.indexOf('yellow_card', 0) != -1 ) yels += 1;              
                 }
             } 
             catch(e) {
@@ -83,7 +83,7 @@ var FTTeamStats= {
                 for (var j = 0; j < red.length; j++) {
                     var head = red[j].parentNode;
                     
-                    if (head.innerHTML.indexOf('red', 0) != -1 ) reds += 1;              
+                    if (head.innerHTML.indexOf('red_card', 0) != -1 ) reds += 1;              
                 }
             } 
             catch(e) {
