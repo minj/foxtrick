@@ -16,6 +16,7 @@ var FoxtrickTeamSelectBox= {
     },
 
     run : function( page, doc ) {
+	try {
 		if (doc.location.href.search(/TeamID=/i)==-1) {return;}
 		FoxtrickPrefs.setBool("ShowPlayerAsList",false);
 		
@@ -40,10 +41,11 @@ var FoxtrickTeamSelectBox= {
 				}
 			}
 		}
+	} catch (e) {dump("SelectBox->run: "+e+'\n');}
 	},
 	
-    toSelectBox : function( doc ) { 
-		var alldivs = doc.getElementsByTagName('div');
+    toSelectBox : function( doc ) {  dump("do:toSelectBox\n");
+	try {	var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="sidebarBox" ) {
 				var header = alldivs[j].getElementsByTagName("h2")[0];
@@ -58,8 +60,7 @@ var FoxtrickTeamSelectBox= {
 					option.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.selectplayer" );
 					selectbox.appendChild(option);	
 						
-					try {
-                        var player = alldivs[j].getElementsByTagName("a")[0];
+					    var player = alldivs[j].getElementsByTagName("a")[0];
                         var pn=player.parentNode;
                         while (player!=null){ 
                             var option = doc.createElement("option");
@@ -71,23 +72,21 @@ var FoxtrickTeamSelectBox= {
                         }
                         pn.appendChild(selectbox);
                         break;
-                    }
-                    catch(e) {
-                        dump('FoxtrickTeamSelectBox_toselectbox => ' + e + '\n')
-                    }
 				}
 			}
-		}		
+		}
+	}
+	 catch (e) {dump("SelectBox->toSelectBox: "+e+'\n');}	
 	},
     
-	toList : function( doc ) { 
+	toList : function( doc ) { dump("do:tolist\n");
+	try {
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="sidebarBox" ) {
 				var header = alldivs[j].getElementsByTagName("h2")[0];
 				if (header.innerHTML == Foxtrickl10n.getString("foxtrick.tweaks.overview" )) { 
-					try {
-                        var option = alldivs[j].getElementsByTagName("option")[0];
+					    var option = alldivs[j].getElementsByTagName("option")[0];
 						var pn=option.parentNode;
                         pn.removeChild(option);	
                         option=alldivs[j].getElementsByTagName("option")[0];
@@ -101,14 +100,11 @@ var FoxtrickTeamSelectBox= {
                         }
                         var selectbox = alldivs[j].getElementsByTagName("select")[0];
                         pn.parentNode.removeChild(selectbox);
-                        break; 
-					}
-					catch(e) {
-						dump('FoxtrickTeamSelectBox_tolist => ' + e + '\n') 						
-					}
+                        break; 					
 				}
 			}
 		}
+	} catch (e) {dump("SelectBox->toList: "+e+'\n');}	
 	},
 	
     change : function( page, doc ) {
@@ -118,15 +114,19 @@ var FoxtrickTeamSelectBox= {
 	},
 
 	HeaderClick : function(evt) {
-		var doc=FoxtrickTeamSelectBox.HeaderClick.doc;
+	try {
+	var doc=FoxtrickTeamSelectBox.HeaderClick.doc;
 		FoxtrickPrefs.setBool("ShowPlayerAsList",!FoxtrickPrefs.getBool("ShowPlayerAsList"));
 		if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {FoxtrickTeamSelectBox.toList(doc);}
 		else {FoxtrickTeamSelectBox.toSelectBox(doc);}		
+	} catch (e) {dump("SelectBox->HeaderClick: "+e+'\n');}
 	},
 
 };
 
 function FoxtrickTeamSelectBox_Select(evt) {
-		var doc=FoxtrickTeamSelectBox_Select.doc;
+try {
+			var doc=FoxtrickTeamSelectBox_Select.doc;
 		doc.location.href=evt["target"]["value"];						
+	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
 }
