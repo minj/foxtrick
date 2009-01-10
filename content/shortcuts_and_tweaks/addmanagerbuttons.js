@@ -93,6 +93,7 @@ var FoxtrickAddManagerButtons = {
 			"foxtrick.tweaks.sendmessage" );
 				
 		var img = doc.createElement("img");
+		img.style.padding = "0px 5px 0px 0px";
 		img.className = "actionIcon";
 		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessage" );
 		img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
@@ -109,6 +110,7 @@ var FoxtrickAddManagerButtons = {
 				"foxtrick.tweaks.writeinguestbook");
 			
 			var img = doc.createElement("img");
+			img.style.padding = "0px 5px 0px 0px";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
 			img.src = "chrome://foxtrick/content/resources/img/writeinguestbook.png";

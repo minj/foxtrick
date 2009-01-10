@@ -192,6 +192,7 @@ var FoxtrickLinksCustom = {
 			inputHref.setAttribute("name", "inputHref");
 			inputHref.setAttribute("id", "inputHrefID");
 			inputHref.setAttribute("value", "http://example.org");
+			inputHref.setAttribute('onfocus', 'if(this.value==\'http://example.org\')this.value=\'http://\'');
 			inputHref.setAttribute("type", "text");
 			inputHref.setAttribute("maxlength", "200");
 			//inputHref.setAttribute("size", "20");
@@ -203,6 +204,7 @@ var FoxtrickLinksCustom = {
 			inputTitle.setAttribute("name", "inputTitle");
 			inputTitle.setAttribute("id", "inputTitleID");
 			inputTitle.setAttribute("value", "Title");
+			inputTitle.setAttribute('onfocus', 'if(this.value==\'Title\')this.value=\'\'');
 			inputTitle.setAttribute("type", "text");
 			inputTitle.setAttribute("maxlength", "100");
 			//inputTitle.setAttribute("size", "20");

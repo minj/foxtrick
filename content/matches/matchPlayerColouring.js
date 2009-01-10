@@ -81,6 +81,7 @@ FoxtrickMatchPlayerColouring = {
 		 for (var i=0; i<links.length; i++) {
              if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
                  links[i].style.border = "1px solid #ccc";
+				 links[i].style.padding = "0px 2px";
   				 var playerFullName = links[i].textContent;
 				 var b = playerFullName.lastIndexOf(" ");
 				 var l = playerFullName.length;
@@ -104,6 +105,7 @@ FoxtrickMatchPlayerColouring = {
 			     if (FoxtrickMatchPlayerColouring._isLinkTeam(links[i].href)) {
 					 if (links[i].parentNode.parentNode.parentNode.parentNode.tagName=="TBODY") {
 						links[i].style.border = "1px solid #ccc";
+						links[i].style.padding = "0px 2px";
 						if (FirstTeam) {
 							links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
 							links[i].style.color = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
