@@ -115,6 +115,7 @@ var FoxtrickForumStaffMarker = {
 			"_recluso_",
 			"05erth",
 			"baler0",
+            "baumanns",
 			"bummerland",
 			"caracca",
 			"convinced",
