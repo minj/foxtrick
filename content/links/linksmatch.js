@@ -55,8 +55,8 @@ var FoxtrickLinksMatch = {
 						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 						
 						var prefset=this.MODULE_NAME+".played";
-						if (youthmatch) {this.MODULE_NAME+".youth.played";}
-						FoxtrickLinksCustom.add( page, doc,ownBoxBody,prefset,{});	
+						if (youthmatch) {prefset=this.MODULE_NAME+".youth.played";}
+						FoxtrickLinksCustom.add( page, doc,ownBoxBody,prefset,{ "matchid": matchid, "teamid" : teamid });	
 					}
 			    }
 			break;
@@ -85,7 +85,7 @@ var FoxtrickLinksMatch = {
 						}		
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, "first");
 
-				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{});	
+				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });	
 				}
         }    
     },

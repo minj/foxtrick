@@ -62,7 +62,9 @@ var FoxtrickLinksLeague = {
 						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 					
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME );	
+					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,
+					"leagueid": leagueid, "levelnum" : levelnum,
+					"seriesnum": seriesnum,	"leaguename" : leaguename} );	
 				}
 				break;  
 			}

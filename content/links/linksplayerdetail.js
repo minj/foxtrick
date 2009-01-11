@@ -61,9 +61,10 @@ var FoxtrickLinksPlayerDetail = {
 					} 
 				}
 				
+				var injuredweeks=0;
 				var container = PlayerInfoTable.rows[4].cells[1];
 				if (container.textContent.search(/\d+/) > -1) {
-					var injuredweeks = container.textContent.match(/\d+/)[0];
+					injuredweeks = container.textContent.match(/\d+/)[0];
 					var ilinks = getLinks("playerhealinglink", { "playerid": playerid,
 							"form": form, "age" : age, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);  
 					for (var j=0; j< ilinks.length; j++) {
@@ -154,7 +155,13 @@ var FoxtrickLinksPlayerDetail = {
 						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{});	
+					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
+						"teamid": teamid, "playerid": playerid, "nationality": nationality,
+						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,
+						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
+						"passing" : passing, "winger" : winger, "defending" : defending,
+						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks
+						});	
 				}
 				break;
 			}

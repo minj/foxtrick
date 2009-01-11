@@ -56,6 +56,15 @@ var FoxtrickLinksCustom = {
 	add : function( page, doc,ownBoxBody,pagemodule,info ) {
 		try {	
 			this._info=info;
+			/*this._info=new  Array();
+			for (var key in info) { 
+					this._info.push( {"key":key, "value":info[key]} );
+			}
+			for (var key in FoxtrickHelper.OWNTEAMINFO) { 
+					this._info.push( {"key":key, "value":FoxtrickHelper.OWNTEAMINFO[key]} );
+				dump (key+'\n');
+			}*/
+			
 			//dump("LinksCustom called by "+pagemodule+"\n");
 			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/conference.css");
@@ -110,7 +119,10 @@ var FoxtrickLinksCustom = {
 					for (var i=0;i<mykeytag.length;i++)
 					{
 					var mykey=mykeytag[i].replace(/\[/,"").replace(/\]/,"");
-					if (this._info) href=href.replace(mykeytag[i],this._info[mykey]);
+					try{
+						if (this._info[mykey]) href=href.replace (mykeytag[i], Foxtrick._to_utf8(this._info[mykey]) );
+						else href=href.replace( mykeytag[i], Foxtrick._to_utf8(FoxtrickHelper.OWNTEAMINFO[mykey]) );
+					}catch(e){dump(e);};
 					}
 				}
 				var div = doc.createElement ("div"); 
@@ -158,13 +170,16 @@ var FoxtrickLinksCustom = {
 				var td2 = doc.createElement ("td");
 				td2.setAttribute("style","vertical-align:middle;");
 				td2.width=100;					
-				var title = doc.createTextNode(FoxtrickPrefs.getString(basepref+'.'+nl+'.title'));
+				var tdiv = doc.createElement ("div"); 
+				tdiv.setAttribute("style","width:100px");
+				var title = doc.createTextNode(FoxtrickPrefs.getString(basepref+'.'+nl+'.title').substr(0,16));
 				var td3 = doc.createElement ("td");
 				td3.setAttribute("style","vertical-align:middle;");
 				td3.width=20;					
 				
 				td1.appendChild(div);
-				td2.appendChild(title);
+				tdiv.appendChild(title);
+				td2.appendChild(tdiv);
 				td3.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl));
 				tr1.appendChild(td1);
 				tr1.appendChild(td2);
@@ -220,7 +235,8 @@ var FoxtrickLinksCustom = {
 			inputTitle.setAttribute("value", "Title");
 			inputTitle.setAttribute('onfocus', 'if(this.value==\'Title\')this.value=\'\'');
 			inputTitle.setAttribute("type", "text");
-			inputTitle.setAttribute("maxlength", "18");
+			inputTitle.setAttribute("maxlength", "100");
+			inputTitle.setAttribute("style","width:100%");
 			var trn4 = doc.createElement ("tr");
 			var tdn4 = doc.createElement ("td");
 			var divn4 = doc.createElement ("div"); 
@@ -237,11 +253,11 @@ var FoxtrickLinksCustom = {
 			inputHref.setAttribute('onfocus', 'if(this.value==\'http://example.org\')this.value=\'http://\'');
 			inputHref.setAttribute("type", "text");
 			inputHref.setAttribute("maxlength", "200");
+			inputHref.setAttribute("style","width:100%");
 			//inputHref.setAttribute("size", "20");
 			inputHref.className ="inner";
 			var trn3 = doc.createElement ("tr");
 			var tdn3 = doc.createElement ("td");
-			tdn3.width=100;					
 			var divn3 = doc.createElement ("div"); 
 			divn3.appendChild(inputHref);
 			tdn3.appendChild(divn3);				
@@ -251,7 +267,8 @@ var FoxtrickLinksCustom = {
 			// tag select list
 			var selectbox = doc.createElement("select"); 
 			selectbox.setAttribute("title",Foxtrickl10n.getString("foxtrick.linkscustom.addtag" ));
-			selectbox.setAttribute("id","ft_ownselecttagbaxID");
+			selectbox.setAttribute("id","ft_ownselecttagboxID");
+			selectbox.setAttribute("style","width:100%");
 			selectbox.addEventListener('change',FoxtrickLinksCustomSelectBox_Select,false);
 			FoxtrickLinksCustomSelectBox_Select.doc=doc;
 			var option = doc.createElement("option");
@@ -259,13 +276,23 @@ var FoxtrickLinksCustom = {
 			option.innerHTML=Foxtrickl10n.getString("foxtrick.linkscustom.tags" );
 			selectbox.appendChild(option);	
 						
+			//for (var i=0;i<this._info.length;i++) { 
 			for (var key in this._info) { 
+			//	var key=this._info[i]["key"];
 				var option = doc.createElement("option");
 				option.setAttribute("value",key);
 				option.innerHTML='['+key+']';
+				option.setAttribute("style","width:100%");
+				selectbox.appendChild(option);					
+			//}
+			}
+			for (var key in FoxtrickHelper.OWNTEAMINFO) { 
+				var option = doc.createElement("option");
+				option.setAttribute("value",key);
+				option.innerHTML='['+key+']';
+				option.setAttribute("style","width:100%");
 				selectbox.appendChild(option);					
 			}
-
 			var trn2 = doc.createElement ("tr");
 			var tdn2 = doc.createElement ("td");
 			var divn2 = doc.createElement ("div"); 
@@ -326,7 +353,7 @@ var FoxtrickLinksCustom = {
 				
 			var div = doc.createElement ("div"); 
 			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
-			div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title') );
+			div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.href') );
 			div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
 			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
 			
@@ -336,14 +363,17 @@ var FoxtrickLinksCustom = {
 			td1.width=20;					
 			var td2 = doc.createElement ("td");
 			td2.setAttribute("style","vertical-align:middle;");
-			var title = doc.createTextNode(FoxtrickPrefs.getString(basepref+'.'+nl+'.title'));
+			var tdiv = doc.createElement ("div"); 
+			tdiv.setAttribute("style","width:100%");
+			var title = doc.createTextNode(FoxtrickPrefs.getString(basepref+'.'+nl+'.title').substr(0,16));
 			td2.width=100;					
 			var td3 = doc.createElement ("td");
 			td3.setAttribute("style","vertical-align:middle;");
 			td3.width=20;					
 				
 			td1.appendChild(div);
-			td2.appendChild(title);
+			tdiv.appendChild(title);
+			td2.appendChild(tdiv);
 			td3.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+nl));
 			tr1.appendChild(td1);
 			tr1.appendChild(td2);

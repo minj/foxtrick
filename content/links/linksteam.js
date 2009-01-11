@@ -20,13 +20,14 @@ var FoxtrickLinksTeam = {
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var ownteamid=0;
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
 		var teamdiv = doc.getElementById('teamLinks');
-				FoxtrickHelper.ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				if (FoxtrickHelper.ownleagueid!=null) {
-					FoxtrickHelper.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
+		var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
+				if (ownleagueid!=null) {
+					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
 				}		
 		
 		if (doc.location.href.search(/\/Club\/Players\//i)!=-1  
@@ -64,6 +65,12 @@ var FoxtrickLinksTeam = {
 	
     AddLinksLeft : function( page, doc ) {
 			try {
+				var teamdiv = doc.getElementById('teamLinks');
+				var ownteamid=0;
+				var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
+				if (ownleagueid!=null) {
+					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
+				}		
 				var boxleft=doc.getElementById('ctl00_pnlSubMenu');
 				if (boxleft==null) {return;}
 				var teamid=FoxtrickHelper.findTeamId(boxleft); 
@@ -84,7 +91,7 @@ var FoxtrickLinksTeam = {
 					if (teamid<3000||teamid>=5000) { // no matchpages of NTs
 						var li2 = doc.createElement("li");
 						var coachlink = doc.createElement("a");
-						if (teamid!=FoxtrickHelper.ownteamid) {
+						if (teamid!=ownteamid) {
 							coachlink.setAttribute('href', '/Club/Players/?TeamID='+teamid+'&redir=true');}
 						else { coachlink.setAttribute('href', '/Club/Training/?redir=true');}
 						coachlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
@@ -134,7 +141,7 @@ var FoxtrickLinksTeam = {
 						}
 						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
 	
-						FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,teaminfo,{} );	
+						FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);	
 					}
 				}
 			}

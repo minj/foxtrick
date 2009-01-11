@@ -33,9 +33,10 @@ var FoxtrickTeamPopupLinks = {
                 }
 				
 				var teamdiv = doc.getElementById('teamLinks');
-				FoxtrickHelper.ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				if (FoxtrickHelper.ownleagueid!=null) {
-					FoxtrickHelper.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
+				var ownleagueid = findLeagueLeveUnitId(teamdiv);
+				var ownteamid=0;
+				if (ownleagueid!=null) {
+					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
 				}		
 				var head = doc.getElementsByTagName("head")[0];
                 var style = doc.createElement("style");
@@ -154,7 +155,7 @@ var FoxtrickTeamPopupLinks = {
                                         var td5 = doc.createElement("td");
                                         td5.setAttribute("nowrap", "nowrap");
                                         var a5 = doc.createElement("a");
-										if (value!=FoxtrickHelper.ownteamid) {
+										if (value!=ownteamid) {
 											a5.setAttribute('href', '/Club/Players/?TeamID='+value+'&redir=true');}
                                         else {a5.setAttribute('href', '/Club/Training/?redir=true');}
                                         a5.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));

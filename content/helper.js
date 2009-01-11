@@ -4,17 +4,12 @@
 */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickHelper = {
-	ownteamid:"",
-	ownteamname:"",
-	ownleagueid:"",
-	ownleaguename:"",
-	ownseriesnum :"",
-	ownlevelnum:"",
-	owncountryid:"",
+
 	
 	MODULE_NAME : "Helper",
 	DEFAULT_ENABLED : true,
-
+	OWNTEAMINFO:"",
+	
 	init : function() {
 		Foxtrick.registerPageHandler( 'myhattrick',
 		FoxtrickHelper );
@@ -220,16 +215,21 @@ var FoxtrickHelper = {
 	//---------------------------------------------------------------------------    
 	getOwnTeamInfo : function(doc) {
 		var teamdiv = doc.getElementById('teamLinks');
-		this.ownleagueid = this.findLeagueLeveUnitId(teamdiv);
-		if (this.ownleagueid!=null) {
-			this.ownteamid = this.findTeamId(teamdiv);
-			this.ownteamname = this.extractTeamName(teamdiv);	
-			this.owncountryid = this.findCountryId(teamdiv);
-			this.ownleaguename = this.extractLeagueName(teamdiv);        		
-			this.ownseriesnum = this.getSeriesNum(this.ownleaguename);
-			this.ownlevelnum = this.getLevelNum(this.ownleaguename, this.owncountryid);
-			//	return {"leagueid":leagueid,"countryid":countryid,"leaguename":leaguename,"seriesnum":seriesnum,"levelnum":levelnum};
-		} //else {return null;}
+		var ownleagueid = this.findLeagueLeveUnitId(teamdiv);
+		if (ownleagueid!=null) {
+			var owncountryid =this.findCountryId(teamdiv);
+			var ownleaguename= this.extractLeagueName(teamdiv);        		
+			var ownseriesnum =this.getSeriesNum(ownleaguename);
+			var ownlevelnum = this.getLevelNum(ownleaguename, owncountryid);
+			
+			this.OWNTEAMINFO={"ownteamid": this.findTeamId(teamdiv),
+				"ownteamname" : this.extractTeamName(teamdiv),	
+				"owncountryid" : owncountryid,
+				"ownleaguename" : ownleaguename,        		
+				"ownseriesnum" : ownseriesnum,
+				"ownlevelnum" : ownlevelnum};
+			
+		} 
 	}
 };
 

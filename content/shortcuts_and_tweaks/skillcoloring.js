@@ -30,7 +30,7 @@ var FoxtrickSkillColoring = {
                 var css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + ".css";
                 if  ( (i == 1) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) {
                     css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + "-personal.css";
-                    dump ('personal\n');
+                    //dump ('personal\n');
                 }
                 var path = "head[1]";
                 var head = doc.evaluate(path,doc.documentElement,null,

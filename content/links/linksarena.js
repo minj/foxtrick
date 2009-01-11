@@ -47,7 +47,10 @@ var FoxtrickLinksArena = {
 						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");				
 
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});	
+					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "terraces" : Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
+                                            "basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
+                                            "roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
+                                            "vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  });	
 					}
 				break;
 			}
