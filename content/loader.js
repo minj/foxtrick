@@ -71,7 +71,7 @@ var scripts = [
 	'links/linksplayerdetail.js',
 	'links/linksmatch.js',
 	'links/linkstraining.js',
-
+	'links/linksalliances.js',
 	    
     'modules_list.js',
     'foxtrick.js',

@@ -43,6 +43,7 @@ Foxtrick.ht_pages = { 'forum' : "\/Forum\/",
 					  'myhattrick':'\/MyHattrick\/',
 					  'training':'\/Club\/Training\/',
 					  'managerRedir':"\/Club\/Manager\/|\/Forum\/Read|\/Club",
+					  'federation' : "\/Community\/Federations\/Federation\.aspx"
 };
 ////////////////////////////////////////////////////////////////////////////////
 
