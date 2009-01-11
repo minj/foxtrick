@@ -196,6 +196,16 @@ var FoxtrickPlayerAdToClipboard = {
 				ad += "\n";
 			}
 			
+			var bidDiv = doc.getElementById("ctl00_CPMain_updBid");
+			if (bidDiv){
+				ad += "\n";
+				var paragraphs = bidDiv.getElementsByTagName("p");
+				for (i=0; i<paragraphs.length; i++){
+					ad += Foxtrick.trim(paragraphs[i].textContent);
+					ad += "\n";
+				}
+			}
+			
 			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copied"));
 			Foxtrick.copyStringToClipboard(ad);
 			
