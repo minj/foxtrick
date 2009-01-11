@@ -38,7 +38,7 @@ var FoxtrickRepositionedPlayers = {
 				var playerbox = getElementsByClass( "box_lineup", doc );
 
 				var useCode=Foxtrickl10n.isStringAvailableLocal( 'foxtrick.matches.Keeper' );
-				dump (FoxtrickRepositionedPlayers+'->locale available: "+useCode+'\n');
+				dump (FoxtrickRepositionedPlayers+'->locale available: ' + useCode + '\n');
     
                 for (var i = 0; i < playerdivs.length; i++) {
                     var player_id = playerdivs[i].parentNode.id;
