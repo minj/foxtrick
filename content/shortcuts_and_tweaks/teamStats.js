@@ -17,6 +17,9 @@ var FTTeamStats= {
 
     run : function( page, doc ) {
 
+		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
+		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
+	
         var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "div" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
