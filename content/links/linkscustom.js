@@ -56,7 +56,7 @@ var FoxtrickLinksCustom = {
 	add : function( page, doc,ownBoxBody,pagemodule,info ) {
 		try {	
 			this._info=info;
-			dump("LinksCustom called by "+pagemodule+"\n");
+			//dump("LinksCustom called by "+pagemodule+"\n");
 			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/conference.css");
 					
@@ -65,7 +65,7 @@ var FoxtrickLinksCustom = {
 			if (num_personal_links==null) {
 				FoxtrickPrefs.setInt(basepref+'.num_personal_links',0);
 				num_personal_links=0;
-				dump('CustomLink->'+pagemodule+': firstlink');
+				//dump('CustomLink->'+pagemodule+': firstlink');
 			}
 
 			var alldivs = doc.getElementsByTagName('div');
