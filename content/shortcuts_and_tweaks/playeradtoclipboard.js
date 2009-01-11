@@ -201,7 +201,12 @@ var FoxtrickPlayerAdToClipboard = {
 				ad += "\n";
 				var paragraphs = bidDiv.getElementsByTagName("p");
 				for (i=0; i<paragraphs.length; i++){
-					ad += Foxtrick.trim(paragraphs[i].textContent);
+					var cellCopy = paragraphs[i].cloneNode(true);
+					var popupLinks = cellCopy.getElementsByTagName("a");
+					for(var j = 1; j < popupLinks.length; j++) {
+						popupLinks[j].innerHTML = "";
+					}
+					ad += Foxtrick.trim(cellCopy.textContent);
 					ad += "\n";
 				}
 			}
