@@ -83,7 +83,8 @@ var FoxtrickPlayerAdToClipboard = {
 					substring = substring.substr(startPosNat);
 					var endPosNat = substring.search("\" ");
 					var nationality = substring.substr(0,endPosNat);
-					ad += "Born in: " + nationality + "\n\n";
+					ad += Foxtrickl10n.getString("foxtrick.tweaks.bornin");
+					ad += ": " + nationality + "\n\n";
 					break;
 				}
 			}
