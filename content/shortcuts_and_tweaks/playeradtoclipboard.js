@@ -10,8 +10,13 @@ var FoxtrickPlayerAdToClipboard = {
     MODULE_NAME : "CopyPlayerAdToClipboard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
-
-    init : function() {
+	
+	_PLAYMAKING : 3,
+	_PASSING : 5,
+	_WINGER : 4,
+	_DEFENDING : 2,
+	
+	init : function() {
         Foxtrick.registerPageHandler( 'playerdetail',
                                         FoxtrickPlayerAdToClipboard );
     },
@@ -89,8 +94,16 @@ var FoxtrickPlayerAdToClipboard = {
 				}
 			}
 			
+			// create player skills array, needed for skillbars
+			
+			var skillLinks = [];
+			var skillNames = [];
 			// form, stamina, personality + speciality
 			var obj = doc.getElementById("ctl00_CPMain_pnlplayerInfo");
+			var staminaLink = obj.getElementsByTagName("a")[1];
+			skillLinks.push(staminaLink);
+			skillNames.push(Foxtrickl10n.getString("Stamina")+":");
+			
 			var innerP = obj.getElementsByTagName("p")[0].innerHTML;
 			innerP = innerP.replace(/<br>/g,"\n");
 			for( var i=0; i < 7; i++) {
@@ -105,35 +118,87 @@ var FoxtrickPlayerAdToClipboard = {
 			var table = obj.getElementsByTagName("table")[0];
 			for(var i = 0; i < 5; i++) {
 				ad += Foxtrick.trim(table.rows[i].cells[0].textContent);
-				ad += "\t" + Foxtrick.trim(table.rows[i].cells[1].textContent).
-					replace(/\n/g,"").replace(/     /g,"") + "\n";
+				// remove teampopuplinks
+				var cellCopy = table.rows[i].cells[1].cloneNode(true);
+				var popupLinks = cellCopy.getElementsByTagName("a");
+				for(var j = 1; j < popupLinks.length; j++) {
+					popupLinks[j].innerHTML = "";
+				}
+				ad += "\t" + cellCopy.textContent.replace(/\n/g,"").replace(/     /g,"") + "\n";
 			}
 			ad += "\n";
 			    
 			// skills
+			var skillBars = false;
 			for( var i=0; i < allDivs.length; i++) {
 				if(allDivs[i].className == "mainBox") {
-					var skillsTable = allDivs[i].getElementsByTagName("table")[0];
+					var skillsTable = allDivs[i].
+						getElementsByTagName("table")[0];
                 
 					for (var i=0; i<skillsTable.rows.length; i++) {
 						var row = skillsTable.rows[i];
-						ad += Foxtrick.trim(row.cells[0].textContent);
-						ad += "\t";
-						ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
-							row.cells[1].firstChild.nextSibling);
-						ad += "\t";
-						ad += Foxtrick.trim(row.cells[2].textContent);
-						ad += "\t";
-						ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
-							row.cells[3].firstChild.nextSibling);
-						ad += "\n";
+						if(row.cells[0].className == "right") {
+							// skillbars
+							skillBars = true;
+							skillNames.push(Foxtrick.trim(
+								row.cells[0].textContent));
+							skillLinks.push(row.cells[1].
+								getElementsByTagName("a")[0]);
+						} else {
+							if(i > 0) {
+								skillNames.push(Foxtrick.trim(
+									row.cells[0].textContent));
+								skillLinks.push(row.cells[1].
+									getElementsByTagName("a")[0]);
+							}
+							skillNames.push(Foxtrick.trim(
+								row.cells[2].textContent));
+							skillLinks.push(row.cells[3].
+								getElementsByTagName("a")[0]);
+							
+						}
 					}
 					break;
 				}
 			}
+			// Add the player skills
+			for(var i = 0; i < 4; i++) {
+				var posOne;
+				var posTwo;
+				if(skillBars) {
+					switch(i) {
+						case 1:
+							posOne = FoxtrickPlayerAdToClipboard._PLAYMAKING;
+							posTwo = FoxtrickPlayerAdToClipboard._PASSING;
+							break;
+						case 2:
+							posOne = FoxtrickPlayerAdToClipboard._WINGER;
+							posTwo = FoxtrickPlayerAdToClipboard._DEFENDING;
+							break;
+						default:
+							posOne = 2*i;
+							posTwo = 2*i+1;
+							break;
+					}
+				} else {
+					posOne = 2*i;
+					posTwo = 2*i + 1;
+				}
+				ad += skillNames[posOne];
+				ad += "\t";
+				ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
+					skillLinks[posOne]);
+				ad += "\t";
+				ad += skillNames[posTwo];
+				ad += "\t";
+				ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
+					skillLinks[posTwo]);
+				ad += "\n";
+			}
+			
 			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copied"));
 			Foxtrick.copyStringToClipboard(ad);
-
+			
 		} catch (e) {
 			Foxtrick.alert(e);
 		}
