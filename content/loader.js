@@ -52,6 +52,7 @@ var scripts = [
 	'shortcuts_and_tweaks/confirmplayerbid.js',
 	'shortcuts_and_tweaks/economyDifference.js',
 	'shortcuts_and_tweaks/personalityImages.js',
+	'shortcuts_and_tweaks/playeradtoclipboard.js',
 	'shortcuts_and_tweaks/skillcoloring.js',
 	//'shortcuts_and_tweaks/skinPlugin.js',
 	'shortcuts_and_tweaks/teamStats.js',

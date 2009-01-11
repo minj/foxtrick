@@ -51,7 +51,6 @@ var FoxtrickCopyPostID = {
 
 	_copy_postid_to_clipboard : function(ev) { 
 		var postid = ev.target.getAttribute("name");
-		var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
-		gClipboardHelper.copyString(postid);
+		Foxtrick.copyStringToClipboard(postid);
 	},	
 };

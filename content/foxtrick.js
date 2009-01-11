@@ -709,3 +709,8 @@ function getElementsByClass(searchClass,node,tag) {
 	}
 	return classElements;
 }
+
+Foxtrick.copyStringToClipboard = function ( string ) {
+	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
+	gClipboardHelper.copyString(string);
+}
