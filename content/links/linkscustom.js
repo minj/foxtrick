@@ -17,7 +17,7 @@ var FoxtrickLinksCustom = {
 	_basepref:"",
 	
     init : function() {
-	
+		try {
 		// check if personal icons still in chrome & if not resore them
 		var MY_ID = "{9d1f059c-cada-4111-9696-41a62d64e3ba}";
 		var file = Components.classes["@mozilla.org/extensions/manager;1"].
@@ -43,6 +43,7 @@ var FoxtrickLinksCustom = {
 				}
 			}
 		}
+		catch (e) {dump('LinksCustomInit: load old icons failed!');}
     },
     
     run : function( page, doc ) {	
