@@ -75,6 +75,19 @@ var Foxtrickl10n = {
             }
         } 
         return false;
+    },
+	
+	isStringAvailableLocal : function( str )
+    {
+        if ( this._strings_bundle )
+        {
+            try {
+                return this._strings_bundle.GetStringFromName( str ) != null;
+			}  catch( e ) {  
+					return false;
+			}
+        } 
+        return false;
     }
 };
 
