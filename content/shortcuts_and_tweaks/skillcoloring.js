@@ -18,6 +18,7 @@ var FoxtrickSkillColoring = {
     },
 
     run : function( page, doc ) {
+        dump(this.MODULE_NAME + '\n');
         skillstyles = ["skill-color", "skill-number", "skill-number-selectoption"];
         displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"), 
                     Foxtrick.isModuleFeatureEnabled( this, "skill_number"), 
@@ -27,6 +28,10 @@ var FoxtrickSkillColoring = {
             if (displaystyles[i]) {
                 
                 var css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + ".css";
+                if  ( (i == 1) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) {
+                    css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + "-personal.css";
+                    dump ('personal\n');
+                }
                 var path = "head[1]";
                 var head = doc.evaluate(path,doc.documentElement,null,
                     doc.DOCUMENT_NODE,null).singleNodeValue;
