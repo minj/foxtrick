@@ -447,8 +447,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		Foxtrick.hasElement( doc, boxContentId )) {
 		return;
 	}
-	// Check if this is the simple or standard layout
-	var layout;
+	
 	var sidebar = doc.getElementById("sidebar");
 	
 	var firstDiv = sidebar.getElementsByTagName("div")[0];
@@ -465,12 +464,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	while(firstBox.className != "sidebarBox") {
 		firstBox = firstBox.nextSibling;
 	}
-	if(firstBox.getElementsByTagName("div").length) {
-		layout = 1; // standard
-	} else { 
-		layout = 0; // simple
-	}
-	
+		
 	// Check if any of the other sidebarboxes have the same header
 	// and find the (alternative/normal) reference-object in the process
 	var otherBox = false;
@@ -514,13 +508,16 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		referenceObject = sidebar.firstChild;
 	}
 	
-	if(layout) {
+	if(Foxtrick.isStandardLayout) {
+		// Standard layout
 		if(otherBox) {
+			newBoxContent.style.display = "inline";
 			var subDivs = otherBox.getElementsByTagName("div");
 			for(var i = 0; i < subDivs.length; i++) {
 				if(subDivs[i].className=="boxBody") {
-					subDivs[i].insertBefore(newBoxContent,
-						subDivs[i].firstChild);
+					var firstDiv = subDivs[i].getElementsByTagName("div")[0];
+					firstDiv.setAttribute("style","display: inline;");
+					subDivs[i].insertBefore(newBoxContent,firstDiv);
 				}
 			}
 		} else {
@@ -560,8 +557,10 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 			}
 		}
 	} else {
+		// Simple layout
 		if(otherBox) {
 			var otherBoxHeader = otherBox.getElementsByTagName("h2")[0];
+			Foxtrick.alert(otherBoxHeader);
 			otherBox.insertBefore(newBoxContent,otherBoxHeader.nextSibling);
 		} else {
 			// create the sidebarbox
@@ -713,4 +712,10 @@ function getElementsByClass(searchClass,node,tag) {
 Foxtrick.copyStringToClipboard = function ( string ) {
 	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
 	gClipboardHelper.copyString(string);
+}
+
+Foxtrick.isStandardLayout = function ( doc ) {
+	// Check if this is the simple or standard layout
+	var link = doc.getElementsByTagName("link")[0];
+	return link.href.search("Simple") == -1; // 1 = standard 0 = simple
 }
