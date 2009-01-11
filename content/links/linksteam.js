@@ -147,7 +147,9 @@ var FoxtrickLinksTeam = {
 		var ownBoxId = "foxtrick_" + header + "_content";
 		var owncoachlinkId = "foxtrick_content_coach";
 		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
-		if( !doc.getElementById ( ownBoxId )) { 	dump('run again : LinksTeamRight\n');	
+		if( !doc.getElementById ( ownBoxId )
+		   && this.isTeamPage(doc)) {
+		 	dump('run again : LinksTeamRight\n');	
 			this.AddLinksRight(page,doc);
 		}
 		if (!doc.getElementById ( owncoachlinkId )
