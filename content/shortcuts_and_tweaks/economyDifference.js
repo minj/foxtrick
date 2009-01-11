@@ -20,9 +20,16 @@ var FoxtrickEconomyDifference = {
 		const STR_S_TABLE_NAME = Foxtrickl10n.getString(
 			"foxtrick.tweaks.twoweekbalance");
 		
-		var tableLast = doc.getElementsByTagName("table")[2];
+		/*var tableLast = doc.getElementsByTagName("table")[2];
 		var tableCurr = doc.getElementsByTagName("table")[1];
-    	var path = "body/table[0]/tbody/tr[1]/td[2]";
+                var path = "body/table[0]/tbody/tr[1]/td[2]";*/
+
+
+                var mainBody = doc.getElementById( "mainBody" );
+                var tables = doc.getElementsByTagName( "table" );
+                var tableLast = tables[ 2 ];
+                var tableCurr = tables[ 1 ];
+
        
 		var heading = doc.createElement("h2");
 		var headingId = "foxtrick_eD_heading";
