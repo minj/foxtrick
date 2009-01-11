@@ -364,7 +364,10 @@ var FoxtrickPreferencesDialog = {
 				module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] ));
 			if (!Foxtrick.isModuleEnabled( module )) {
 				radio.setAttribute( "disabled", true);
-			}
+                radio.setAttribute( "hidden", true);
+            } else {
+                radio.setAttribute( "hidden", false);            
+            }            
 			radiogroup.appendChild( radio );
 		}
 		hbox.appendChild( radiogroup );
@@ -458,7 +461,8 @@ var FoxtrickPreferencesDialog = {
 				checkbox.setAttribute( "disabled", true);
                 checkbox.setAttribute( "hidden", true);
             } else {
-                //checkbox.setAttribute( "hidden", false);            
+                checkbox.setAttribute( "disabled", false);
+                checkbox.setAttribute( "hidden", false);
             }
 			hbox.appendChild( checkbox );
 			if (bOptionTexts){
