@@ -21,7 +21,7 @@ var FoxtrickHideManagerAvatarUserInfo = {
 		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].getAttribute("class")=="cfUserInfo") {
-                {                dump( "hiding\n" );
+                {               //  dump( "hiding\n" );
 				elems[i].parentNode.removeChild(elems[i]);
 				}
 			}
