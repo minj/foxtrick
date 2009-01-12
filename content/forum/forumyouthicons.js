@@ -104,11 +104,10 @@ var FoxtrickForumYouthIcons = {
                 youthbar.appendChild( newimage );
                 
                 var newimage = doc.createElement( "img" );
-                newimage.src = "chrome://foxtrick/content/resources/linkicons/format_br.png";
+                newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._br , false );
                 newimage.setAttribute( "class", "f_hr");
-				newimage.setAttribute("style","margin:2px");
-                //newimage.setAttribute("style","background: url('chrome://foxtrick/content/resources/linkicons/format_br.png')");
+                newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
                 youthbar.appendChild( newimage );
 
