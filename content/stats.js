@@ -9,6 +9,7 @@
  * "params"     : { "infocode" : "" }   -> info[infocode]  // eg alltid
  * "params"     : { "" : "#text" }   -> #text   			//eg maptrick , first letter non alphanumeric
  * "params"     : { "infocode" : "," }   -> ,info[infocode]   //eg alltid, first letter non alphanumeric
+ * for others use the 'paramfunction' eg natstats
  */
   
 var vnukstatsranges = {};
@@ -1271,13 +1272,22 @@ stats["EstadisticasHTTP"] =  {
 }; */   
 
 stats["natstats"] =  { 
-  "url" : "http://www.natstats.org/",
+  "url" : "http://doof92.co.uk/",
   "title" : "NatStats",
   "img" : "chrome://foxtrick/content/resources/linkicons/natstats.png",
   
-  "nationalteamlink" : { "path"     : "natstats.asp",
+  "nationalteamlink" : { "path"     : "",
                          "filters"  : [],
-                         "params"   : {"LeagueID" : "LeagueID", "LeagueOfficeTypeID" : "LeagueOfficeTypeID", "TeamID" : "TeamID" }
+                         "params"   : {"ntteamid" : "id","LeagueOfficeTypeID":"LeagueOfficeTypeID" },
+						 "paramfunction" : function(params) {
+                            
+                            if (params["LeagueOfficeTypeID"] == 2) {
+                             return "HT/team.asp?id=" + params["ntteamid"];
+                            } else {
+                             return "/HT/u20team.asp?id=" + params["ntteamid"];                
+                            }
+                            
+                        } 
   }
   
 };
@@ -1445,24 +1455,20 @@ stats["hattrick-cz"] = {
         "countryidranges" : [[52, 52]] 
 };
 
-stats["cambodia_nt"] = { 
-  "url" : "http://www.c10.ch/ant_db/index.php?action=player_submit&cat=1",
-  "img" : "chrome://foxtrick/content/resources/linkicons/cambodia_nt_tracker.png",
-  "title" : "Cambodia U20 & NT Tracker",
+stats["u20_nt_tracker"] = { 
+  "url" : "http://www.c10.ch/ant_db/index.php",
+  "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
+  "title" : "U20 & NT Tracker",
   
-  "playerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+  "youthlink" : { "path"       : "?action=player_submit&cat=1",
+                   "filters"    : [], 
                    "params"     : []
                  },
 
-  "nationalteamlink" : { "path"     : "",
-                         "filters"  : ["LeagueID"],
-                         "params"   : []
-                        },
-  
-  "nationalityranges" : [[138, 138]],
-  "LeagueIDranges" : [[138,138]]
-  
+  "nationalteamlink" : { "path"     : "?action=select_country",
+                         "filters"  : [],
+                         "params"   : {"countryid" : "id"}
+                        },  
 };
 
 
