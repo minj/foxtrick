@@ -70,7 +70,7 @@ var FoxtrickAlltidFlags = {
 						var spanId = "foxtrick_alltidspan_"+flagsCounter;
 						mySpan.setAttribute( "id", spanId );
 						var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
-						dump(spanId+"\n"+userId+"\n");
+						//dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
 						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 || titlecountry1=="") {
