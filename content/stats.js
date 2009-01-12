@@ -573,7 +573,7 @@ stats["alltid"] =  {
                        },
         
         
-        "title" : "Alltid Hattrick Statistikk International",
+        "title" : "Alltid Hattrick Statistics International",
         "img" : "chrome://foxtrick/content/resources/linkicons/ahstats.png"
 };    
 
@@ -1009,6 +1009,10 @@ stats["maptrick_hoc"] =  {
 						"filters"	: [],
 						"params"	: { "leagueid" : "league" }
 						},
+		"federationlink" : { "path"	: "hallofcool.php",
+						"filters"	: [],
+						"params"	: { "federationid" : "alliance" }
+						},
         
         "title" : "Maptrick Hall of Cool",
         "img" : "chrome://foxtrick/content/resources/linkicons/maptrick_hoc.png"
@@ -1411,7 +1415,7 @@ stats["u20schweiz"] =  {
 stats["czechrepublic_nt"] = { 
   "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
   "img" : "chrome://foxtrick/content/resources/linkicons/czech_nt_tracker.png",
-  "title" : "ÄŒeskÃ¡ republika U20 & NT Tracker",
+  "title" : "Ceská republika U20 & NT Tracker",
   
   "playerlink" : { "path"       : "",
                    "filters"    : ["nationality"], 
@@ -1485,7 +1489,7 @@ stats["brasileira"] =  {
                        },
         
         "nationalityranges" : [[16, 16]],
-        "title" : "EstatÃ­sticas da SeleÃ§Ã£o Brasileira",
+        "title" : "Estatísticas da Seleção Brasileira",
         "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
 };   
 
