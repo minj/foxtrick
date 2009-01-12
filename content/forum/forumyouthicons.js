@@ -95,6 +95,23 @@ var FoxtrickForumYouthIcons = {
                 newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthseries");
                 youthbar.appendChild( newimage );
 
+                var newimage = doc.createElement( "img" );
+                newimage.src = "/Img/Icons/transparent.gif";
+                newimage.addEventListener( "click", this._hr , false );
+                newimage.setAttribute( "class", "f_hr");
+				newimage.setAttribute("style","margin:2px");
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
+                youthbar.appendChild( newimage );
+                
+                var newimage = doc.createElement( "img" );
+                newimage.src = "chrome://foxtrick/content/resources/linkicons/format_br.png";
+                newimage.addEventListener( "click", this._br , false );
+                newimage.setAttribute( "class", "f_hr");
+				newimage.setAttribute("style","margin:2px");
+                //newimage.setAttribute("style","background: url('chrome://foxtrick/content/resources/linkicons/format_br.png')");
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
+                youthbar.appendChild( newimage );
+
                 var head = toolbar.parentNode;
                 head.insertBefore( youthbar, toolbar.nextSibling );
 
@@ -124,6 +141,15 @@ var FoxtrickForumYouthIcons = {
         clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[link=/World/Series/YouthSeries.aspx?YouthLeagueId=xxx]", null, "xxx", null);    
             
     }, 
+        
+    _hr : function (  ) {
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[hr]", null, null, null);
+    },         
+
+    _br : function (  ) {
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[br]", null, null, null);
+    },         
+        
     _fillMsgWindow : function( string ) {
         try {
             var msg_window = FoxtrickForumYouthIcons._DOC.getElementById( FoxtrickForumYouthIcons._NEW_MESSAGE_WINDOW );
