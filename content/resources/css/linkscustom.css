@@ -1,0 +1,14 @@
+div.foxtrickCopy {
+	cursor: pointer;
+	width: 14px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/img/copy_small.png') 50% no-repeat;
+}
+
+div.foxtrickCopy:hover {
+	cursor: pointer;
+	width: 14px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png') 50% no-repeat;
+}
+

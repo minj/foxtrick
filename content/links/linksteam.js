@@ -149,7 +149,7 @@ var FoxtrickLinksTeam = {
 		catch (e) {dump("teamlinks->add_leftright->"+e);}
 	},
 	
-	change : function( page, doc ) {  dump('change : LinksTeam\n');
+	change : function( page, doc ) { // dump('change : LinksTeam\n');
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 		var ownBoxId = "foxtrick_" + header + "_content";
 		var owncoachlinkId = "foxtrick_content_coach";
