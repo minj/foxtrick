@@ -20,7 +20,7 @@ var FoxtrickForumYouthIcons = {
     },
 
     run : function( page, doc ) {
-
+        
         switch( page )
         {
             case 'forumWritePost':
@@ -108,19 +108,21 @@ var FoxtrickForumYouthIcons = {
         
 
     _youthplayer : function (  ) {
-        FoxtrickForumYouthIcons._fillMsgWindow( "[youthplayerid=xxx]" ); 
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthplayerid=xxx]", null, "xxx", null);
     }, 
 
     _youthteam : function (  ) { 
-        FoxtrickForumYouthIcons._fillMsgWindow( "[youthteamid=xxx]"); 
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthteamid=xxx]", null, "xxx", null);
     }, 
 
     _youthmatch : function (  ) { 
-        FoxtrickForumYouthIcons._fillMsgWindow( "[link=/Club/Matches/Match.aspx?matchID=xxx&isYouth=True]"); 
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[link=/Club/Matches/Match.aspx?isYouth=True&matchID=xxx]", null, "xxx", null);
+
     }, 
 
     _youthseries : function (  ) { 
-        FoxtrickForumYouthIcons._fillMsgWindow( "[link=/World/Series/YouthSeries.aspx?YouthLeagueId=xxx]"); 
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[link=/World/Series/YouthSeries.aspx?YouthLeagueId=xxx]", null, "xxx", null);    
+            
     }, 
     _fillMsgWindow : function( string ) {
         try {
@@ -132,3 +134,121 @@ var FoxtrickForumYouthIcons = {
         }
     },        
 };
+
+function clickHandler(ta, openingTag, closingTag, replaceText, counter) {
+    if (ta) {
+        // link tags
+        if (replaceText) {
+            var s = getSelection(ta);
+            var newText = (s.selectionLength > 0)
+						? openingTag.replace(replaceText, s.selectedText)
+						: openingTag;
+            // Opera, Mozilla
+            if (ta.selectionStart || ta.selectionStart == '0') {
+                ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
+                if ((openingTag.indexOf(' ') > 0) && (openingTag.indexOf(' ') < openingTag.length - 1)) {
+                    ta.selectionStart = s.selectionStart + openingTag.lastIndexOf('=') + 1;
+                    ta.selectionEnd = ta.selectionStart + openingTag.indexOf(' ') - openingTag.lastIndexOf('=') - 1;
+                }
+                // MessageID
+                else {
+                    if (s.selectionLength == 0) {
+                        ta.selectionStart = s.selectionStart + openingTag.lastIndexOf('=') + 1;
+                        ta.selectionEnd = ta.selectionStart + openingTag.indexOf(']') - openingTag.lastIndexOf('=') - 1;
+                    }
+                    else {
+                        ta.selectionStart = s.selectionStart + newText.length;
+                        ta.selectionEnd = ta.selectionStart;
+                    }
+                }
+            }
+            // Others
+            else {
+                ta.value += newText;
+            }
+        }
+        // start/end tags
+        else if ((closingTag) && (counter >= 0)) {
+            var s = getSelection(ta);
+            var newText = (s.selectionLength > 0)
+						? openingTag + s.selectedText + closingTag
+						: (counter % 2 == 1)
+							? openingTag
+							: closingTag;
+            // Opera, Mozilla
+            if (ta.selectionStart || ta.selectionStart == '0') {
+                ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
+                ta.selectionStart = s.selectionStart + newText.length;
+                ta.selectionEnd = ta.selectionStart;
+            }
+            // Others
+            else {
+                ta.value += newText;
+            }
+        }
+        // Quote
+        else if ((closingTag) && !(counter)) {
+            ta.value = quoteText + '\n' + ta.value;
+        }
+        // HR
+        else {
+            var s = getSelection(ta);
+            // Opera, Mozilla
+            if (ta.selectionStart || ta.selectionStart == '0') {
+                ta.value = s.textBeforeSelection + s.selectedText + openingTag + s.textAfterSelection;
+                ta.selectionStart = s.selectionEnd + openingTag.length;
+                ta.selectionEnd = ta.selectionStart;
+            }
+            // Others
+            else {
+                ta.value += newText;
+            }
+        }
+    }
+}
+
+function getSelection(ta) {
+    if (ta) {
+        ta.focus();
+        var textAreaContents = {
+            completeText: '',
+            selectionStart: 0,
+            selectionEnd: 0,
+            selectionLength: 0,
+            textBeforeSelection: '',
+            selectedText: '',
+            textAfterSelection: ''
+        };
+		if (ta.selectionStart || ta.selectionStart == '0') {
+            textAreaContents.completeText = ta.value;
+            textAreaContents.selectionStart = ta.selectionStart;
+			if ((ta.selectionEnd - ta.selectionStart) != 0) {
+				while (ta.value.charAt(ta.selectionEnd-1) == ' ') ta.selectionEnd--;
+			}
+            textAreaContents.selectionEnd = ta.selectionEnd;
+            textAreaContents.selectionLength = ta.selectionEnd - ta.selectionStart;
+            textAreaContents.textBeforeSelection = ta.value.substring(0, ta.selectionStart);
+            var st = ta.value.substring(ta.selectionStart, ta.selectionEnd);
+            textAreaContents.selectedText = st;
+            textAreaContents.textAfterSelection = ta.value.substring(ta.selectionEnd, ta.value.length);
+            return textAreaContents;
+        }
+        else if (document.selection) {
+            var tr = document.selection.createRange();
+ 			while (tr.text.charAt(tr.text.length - 1) == ' ') {
+				tr.moveEnd('character', -1);
+				tr.select();
+				tr = document.selection.createRange();
+			}
+            textAreaContents.completeText = ta.value;
+            textAreaContents.selectionStart = 0;
+            textAreaContents.selectionEnd = 0;
+            textAreaContents.selectionLength = tr.text.length;
+            textAreaContents.textBeforeSelection = '';
+            var st = tr.text;
+            textAreaContents.selectedText = st;
+            textAreaContents.textAfterSelection = '';
+            return textAreaContents;
+        }
+    }
+}
