@@ -21,6 +21,10 @@ var FoxtrickAddManagerButtons = {
     run : function( page, doc ) {
 		switch( page ) {
 			case 'managerPage':
+				if(!doc.getElementById('sidebar')) {
+					// Guestbook page
+					break;
+				}
 				this.addActionsBox( doc );
 				break;
 				
