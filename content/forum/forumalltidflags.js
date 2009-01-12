@@ -31,6 +31,7 @@ var FoxtrickAlltidFlags = {
 	},
 
 	run : function( page, doc ) {
+	try{	
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
 		var linkpage = "http://stats.alltidhattrick.org/user/";
 		var style ="margin-right:3px; padding-left:3px; " + 
@@ -44,14 +45,17 @@ var FoxtrickAlltidFlags = {
 				var target = "_blank";
 				var linksArray = alldivs[i].getElementsByTagName('a');
 				var titlecountry1="";
-				// get country
-				for (var j=0; j<linksArray.length; j++) {
-					var link = linksArray[j];
-					if (link.href.search(/LeagueId=/i) > -1) {
-						titlecountry1 = link.getElementsByTagName('img')[0].title;
-						break;
-					}	
-				} 
+				try {
+					// get country
+					for (var j=0; j<linksArray.length; j++) {
+						var link = linksArray[j];
+						if (link.href.search(/LeagueId=/i) > -1) {
+							titlecountry1 = link.getElementsByTagName('img')[0].title;
+							break;
+						}	
+					}
+				}
+				catch (e) {dump('manager avatar turned of in ht-option. can\'t show country as title.\n')}; 
 				var innerdivs = alldivs[i].getElementsByTagName('div');
 				for (var k = 0; k < innerdivs.length; k++) {
 				  if (innerdivs[k].className=="cfHeader") {
@@ -69,7 +73,7 @@ var FoxtrickAlltidFlags = {
 						dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
-						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1) {
+						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 || titlecountry1=="") {
 							mySpan.innerHTML = ' <a href="' + linkpage + userId +
 							'" target="' + target + ' "><img title="'+thistitlecountry+'" " style="' + 
 							'vertical-align: middle; ' + style + '" src="' + 
@@ -107,6 +111,7 @@ var FoxtrickAlltidFlags = {
 				
 			}
 		}
+	} catch (e) {dump('ForumShowAlltidFlags->'+e+'\n');}
 	},
 	
 	change : function( page, doc ) {
