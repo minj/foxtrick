@@ -15,7 +15,8 @@ var FoxtrickLinksTeam = {
     init : function() {
             Foxtrick.registerPageHandler( 'teamPageGeneral',
                                           FoxtrickLinksTeam );
-			Foxtrick.initOptionsLinks(this,"teamlink");
+			Foxtrick.initOptionsLinks(this,"teamlink",
+					{'LastLineUp':Foxtrickl10n.getString( 'LastLineup' ), 'Coach':Foxtrickl10n.getString( 'Coach' )} );
     },
 
     run : function( page, doc ) {
@@ -87,19 +88,21 @@ var FoxtrickLinksTeam = {
 				var boxleft=doc.getElementById('ctl00_pnlSubMenu');
 				if (boxleft==null) {return;}
 				var teamid=FoxtrickHelper.findTeamId(boxleft); 
-				// last lineup
 				var bl_header=boxleft.getElementsByTagName('li');
-				var li = doc.createElement("li");
-				var lastmatchlink = doc.createElement("a");
-				lastmatchlink.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True');
-				lastmatchlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
-				var ownlastmatchlinkId = "foxtrick_content_lastmatch";
-				lastmatchlink.setAttribute( "id", ownlastmatchlinkId );
-				li.appendChild(lastmatchlink);
+					// last lineup
+				if (Foxtrick.isModuleFeatureEnabled(this,"LastLineUp")) {
+					var li = doc.createElement("li");
+					var lastmatchlink = doc.createElement("a");
+					lastmatchlink.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True');
+					lastmatchlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
+					var ownlastmatchlinkId = "foxtrick_content_lastmatch";
+					lastmatchlink.setAttribute( "id", ownlastmatchlinkId );
+					li.appendChild(lastmatchlink);
                     
-				bl_header[0].parentNode.appendChild(li);
-						 
+					bl_header[0].parentNode.appendChild(li);
+				}		 
 				// coach make link
+				if (Foxtrick.isModuleFeatureEnabled( this, "Coach")) {
 						var li2 = doc.createElement("li");
 						var coachlink = doc.createElement("a");
 						if (teamid<3000||teamid>=5000) { // normal teams
@@ -119,7 +122,8 @@ var FoxtrickLinksTeam = {
 						var owncoachlinkId = "foxtrick_content_coach";
 						coachlink.setAttribute( "id", owncoachlinkId );
 						li2.appendChild(coachlink);
-						bl_header[0].parentNode.appendChild(li2);														
+						bl_header[0].parentNode.appendChild(li2);
+				}
 			}
 			catch (e) {dump("teamlinks->add_leftlinks->"+e);}
 	},		

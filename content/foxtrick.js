@@ -593,15 +593,17 @@ function keysortfunction(a,b) {
     return a["title"].localeCompare(b["title"]);
   }
 
-Foxtrick.initOptionsLinks = function(module,linktype) {
-		
+Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 			module.OPTIONS = new Array();
 			for (var key in stats) { 
 				if (stats[key][linktype]!=null) { 
 					module.OPTIONS.push({"key":key,"title":stats[key]["title"]});
 				}
-			}	
+			}			
 			module.OPTIONS.sort(keysortfunction); 
+			for (var key in extra_options) {  
+					module.OPTIONS.push({"key":key,"title":extra_options[key]});
+			}
 }
 
 Foxtrick.initOptionsLinksArray = function(module,linktypes) {
