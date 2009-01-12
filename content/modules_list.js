@@ -38,6 +38,7 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
                      FoxtrickHideFaceInjuryImages,
                      FoxtrickHideFaceSuspendedImages,
                      FoxtrickColouredYouthFaces,
+					 FoxtrickPlayerAdToClipboard,
                      FoxtrickLinksCustom,
                      FoxtrickLinksLeague,
                      FoxtrickLinksCountry,
@@ -68,5 +69,4 @@ Foxtrick.modules = [ FoxtrickForumTemplates,
 					 FTTeamStats,
 					 FoxtrickLargeFlags,
 					 FoxtrickTeamSelectBox,
-					 FoxtrickPlayerAdToClipboard
                    ];
