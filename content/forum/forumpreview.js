@@ -79,14 +79,14 @@ var FoxtrickForumPreview = {
     _preview : function ( ev ) {
 		search = new Array(
 
-          /\[playerid=(.*?)\]/,
-          /\[youthplayerid=(.*?)\]/,
-          /\[teamid=(.*?)\]/,
-          /\[youthteamid=(.*?)\]/,
-          /\[matchid=(.*?)\]/,
-          /\[federationid=(.*?)\]/,
-          /\[message=(.*?)\]/,
-          /\[leagueid=(.*?)\]/,
+            /\[playerid=(\d+)\]/,
+            /\[youthplayerid=(\d+)\]/,
+            /\[teamid=(\d+)\]/,
+            /\[youthteamid=(\d+)\]/,
+            /\[matchid=(\d+)\]/,
+            /\[federationid=(\d+)\]/,
+            /\[message\=(\d+)\.(\d+)\]/,
+            /\[leagueid=(\d+)\]/,
           /\[link=(.*?)\]/,
 
           /\[q\](.*?)\[\/q\]/,
@@ -98,14 +98,14 @@ var FoxtrickForumPreview = {
           );
 
         replace = new Array(
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
-          "<a href=\"$1\" target=\"\_blank\">($1)</a>",
+            "<a href=\"\/Club\/Players\/Player\.aspx\?playerId\=$1\" target=\"\_blank\">($1)</a>",
+            "<a href=\"\/Club\/Players\/YouthPlayer\.aspx\?YouthPlayerID\=$1\" target=\"\_blank\">($1)</a>",
+            "<a href=\"\/Club\/\?TeamID\=$1\" target=\"\_blank\">($1)</a>",
+            "<a href=\"\/Club\/Youth\/\?YouthTeamID\=$1\" target=\"\_blank\">($1)</a>",
+            "<a href=\"\/Club\/Matches\/Match\.aspx\?matchID\=$1\" target=\"\_blank\">($1)</a>",
+            "<a href=\"\/Community\/Federations\/Federation.aspx\?AllianceID\=$1\" target=\"\_blank\">($1)</a>",
+            "<a href=\"\/Forum\/Read\.aspx\?t\=$1\&n\=$2\" target=\"\_blank\">($1.$2)</a>",
+            "<a href=\"\/World\/Series\/Default\.aspx\?LeagueLevelUnitID\=$1\" target=\"\_blank\">($1)</a>",
           "<a href=\"$1\" target=\"\_blank\">($1)</a>",
 
           "<span class='quote'>$1</span>",
