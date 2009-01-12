@@ -111,10 +111,8 @@ var FoxtrickLinksCustom = {
 					for (var i=0;i<mykeytag.length;i++)
 					{
 					var mykey=mykeytag[i].replace(/\[/,"").replace(/\]/,"");
-					try{ 
-						if (this._info[mykey]) href=href.replace (mykeytag[i],this._info[mykey] );
-						else href=href.replace( mykeytag[i], OWNTEAMINFO[mykey] );
-					}catch(e){dump(e);};
+					if (this._info[mykey]) href=href.replace (mykeytag[i],this._info[mykey] );
+					else  href=href.replace( mykeytag[i], FoxtrickHelper.OWNTEAMINFO[mykey] );
 					}
 				}
 				var div = doc.createElement ("div"); 
@@ -277,13 +275,15 @@ var FoxtrickLinksCustom = {
 				selectbox.appendChild(option);					
 			//}
 			}
-			for (var key in FoxtrickHelper.OWNTEAMINFO) { 
+			try {		
+				for (var key in FoxtrickHelper.OWNTEAMINFO) { 
 				var option = doc.createElement("option");
 				option.setAttribute("value",key);
 				option.innerHTML='['+key+']';
 				option.setAttribute("style","width:100%;");
 				selectbox.appendChild(option);					
-			}
+				}
+			} catch(e){dump('tags: ownteaminfo not available\n');}
 			var trn2 = doc.createElement ("tr");
 			var tdn2 = doc.createElement ("td");
 			var divn2 = doc.createElement ("div"); 

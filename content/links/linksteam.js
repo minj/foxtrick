@@ -47,6 +47,19 @@ var FoxtrickLinksTeam = {
 			}
 			catch (e) {dump("teamlinks->"+e);}
 		}
+		if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1  
+		&& doc.location.href.search(/redir=true/i)!=-1 ) {  dump("redirect to coach\n");
+			// redirect to coach
+			try {
+				var ntinfo=doc.getElementById('teamInfo');
+				var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
+				var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
+				var tar = serv+'/Players/Player.aspx?playerId='+CoachId;
+				doc.location.replace(tar);
+				}
+			
+			catch (e) {dump("teamlinks->"+e);}
+		}
 		if (doc.location.href.search(/\/Club\/Training\//i)!=-1  
 		&& doc.location.href.search(/redir=true/i)!=-1 ) {   dump("redirect to own coach\n");
 			try {
@@ -87,32 +100,26 @@ var FoxtrickLinksTeam = {
 				bl_header[0].parentNode.appendChild(li);
 						 
 				// coach make link
-				if (doc.location.href.search(/\/Club\/NationalTeam\//i)==-1) {
-					if (teamid<3000||teamid>=5000) { // no matchpages of NTs
 						var li2 = doc.createElement("li");
 						var coachlink = doc.createElement("a");
-						if (teamid!=ownteamid) {
-							coachlink.setAttribute('href', '/Club/Players/?TeamID='+teamid+'&redir=true');}
-						else { coachlink.setAttribute('href', '/Club/Training/?redir=true');}
+						if (teamid<3000||teamid>=5000) { // normal teams
+							if (teamid!=ownteamid) {
+								coachlink.setAttribute('href', '/Club/Players/?TeamID='+teamid+'&redir=true');}
+							else { coachlink.setAttribute('href', '/Club/Training/?redir=true');}
+						}
+						else {   // nt teams
+							if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1) {
+								var ntinfo=doc.getElementById('teamInfo');
+								var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
+								coachlink.setAttribute('href','/Club/Players/Player.aspx?playerId='+CoachId);
+							}
+							else {coachlink.setAttribute('href', '/Club/NationalTeam/NationalTeam.aspx?teamId='+teamid+'&redir=true');}
+						}
 						coachlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
 						var owncoachlinkId = "foxtrick_content_coach";
 						coachlink.setAttribute( "id", owncoachlinkId );
 						li2.appendChild(coachlink);
-						bl_header[0].parentNode.appendChild(li2);					
-					}
-				}
-				else {
-					var ntinfo=doc.getElementById('teamInfo');
-					var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
-					var li2 = doc.createElement("li");
-					var coachlink = doc.createElement("a");
-					coachlink.setAttribute('href','/Club/Players/Player.aspx?playerId='+CoachId);
-					coachlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
-					var owncoachlinkId = "foxtrick_content_coach";
-					coachlink.setAttribute( "id", owncoachlinkId );
-					li2.appendChild(coachlink);
-					bl_header[0].parentNode.appendChild(li2);
-				}
+						bl_header[0].parentNode.appendChild(li2);														
 			}
 			catch (e) {dump("teamlinks->add_leftlinks->"+e);}
 	},		

@@ -228,7 +228,7 @@ var FoxtrickHelper = {
 				"ownleaguename" : ownleaguename,        		
 				"ownseriesnum" : ownseriesnum,
 				"ownlevelnum" : ownlevelnum};
-			
+				dump('got ownteaminfo\n');
 		} 
 	}
 };
