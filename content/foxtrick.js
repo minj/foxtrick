@@ -597,8 +597,8 @@ Foxtrick.initOptionsLinks = function(module,linktype) {
 		
 			module.OPTIONS = new Array();
 			for (var key in stats) { 
-				if (stats[key][linktype]!=null) {
-					module.OPTIONS.push({"key":key,"title":Foxtrick._from_utf8(stats[key]["title"])});
+				if (stats[key][linktype]!=null) { 
+					module.OPTIONS.push({"key":key,"title":stats[key]["title"]});
 				}
 			}	
 			module.OPTIONS.sort(keysortfunction); 
@@ -616,7 +616,7 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 							has_entry=true;
 						}
 					}
-					if (!has_entry) {module.OPTIONS.push({"key":key,"title":Foxtrick._from_utf8(stats[key]["title"])});}
+					if (!has_entry) {module.OPTIONS.push({"key":key,"title":stats[key]["title"]});}
 				}
 			}			
 		}
