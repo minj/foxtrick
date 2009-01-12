@@ -27,6 +27,7 @@ var FoxtrickForumYouthIcons = {
                 
                 var toolbar = getElementsByClass( "HTMLToolbar", doc );
                 toolbar = toolbar[0];
+                var toolbar_main = toolbar;
 				toolbar.setAttribute("style","float:left; margin-right:3px;");
 				
 				// Set styles of all buttons
@@ -37,6 +38,27 @@ var FoxtrickForumYouthIcons = {
 						nextElement = nextElement.nextSibling;
 					} catch(e) { nextElement = nextElement.nextSibling; }
 				}
+                
+                //simple test if new icons are set up by HTs
+                var toolbar_test = getElementsByClass( "f_hr", doc );
+                //dump('Document child class "f_hr": ['+toolbar_test+']\n');
+                if (toolbar_test.length != null) {
+                    var newimage = doc.createElement( "img" );
+                    newimage.src = "/Img/Icons/transparent.gif";
+                    newimage.addEventListener( "click", this._br , false );
+                    newimage.setAttribute( "class", "f_hr");
+                    newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
+                    newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
+                    toolbar.appendChild( newimage );
+                    
+                    var newimage = doc.createElement( "img" );
+                    newimage.src = "/Img/Icons/transparent.gif";
+                    newimage.addEventListener( "click", this._hr , false );
+                    newimage.setAttribute( "class", "f_hr");
+                    newimage.setAttribute("style","margin:2px");
+                    newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
+                    toolbar.appendChild( newimage );                    
+                }                
 				
 				var toolbar_label = doc.createElement( "div" );
                 toolbar_label.innerHTML = Foxtrickl10n.getString("ForumYouthIcons.labelToolbar");
@@ -94,23 +116,7 @@ var FoxtrickForumYouthIcons = {
 				newimage.setAttribute("style","margin:2px");
                 newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthseries");
                 youthbar.appendChild( newimage );
-
-                var newimage = doc.createElement( "img" );
-                newimage.src = "/Img/Icons/transparent.gif";
-                newimage.addEventListener( "click", this._hr , false );
-                newimage.setAttribute( "class", "f_hr");
-				newimage.setAttribute("style","margin:2px");
-                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
-                youthbar.appendChild( newimage );
                 
-                var newimage = doc.createElement( "img" );
-                newimage.src = "/Img/Icons/transparent.gif";
-                newimage.addEventListener( "click", this._br , false );
-                newimage.setAttribute( "class", "f_hr");
-                newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
-                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
-                youthbar.appendChild( newimage );
-
                 var head = toolbar.parentNode;
                 head.insertBefore( youthbar, toolbar.nextSibling );
 
