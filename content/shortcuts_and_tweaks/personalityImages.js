@@ -16,7 +16,7 @@ var FoxtrickPersonalityImages = {
     },
 
     run : function( page, doc ) {
-        dump(this.MODULE_NAME + '\n');
+        // dump(this.MODULE_NAME + '\n');
 		var css = "chrome://foxtrick/content/resources/personality/"+
 			"characters.css";
 		var path = "head[1]";

@@ -18,7 +18,7 @@ var FoxtrickSkillColoring = {
     },
 
     run : function( page, doc ) {
-        dump(this.MODULE_NAME + '\n');
+        // dump(this.MODULE_NAME + '\n');
         skillstyles = ["skill-color", "skill-number", "skill-number-selectoption"];
         displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"), 
                     Foxtrick.isModuleFeatureEnabled( this, "skill_number"), 

@@ -98,19 +98,22 @@ FoxtrickTransferListDeadline = {
         {
             Days = Math.floor(deadline_s/86400);
             deadline_s = deadline_s-Days*86400;
-            DeadlineText += Days + "d ";
+            if (Days > 1) 
+                DeadlineText += Days + '&nbsp;' + Foxtrickl10n.getString("TransferlistDeadLine.days") + '&nbsp;'
+            else
+                DeadlineText += Days + '&nbsp;' + Foxtrickl10n.getString("TransferlistDeadLine.day") + '&nbsp;';
         }
         
         if (( deadline_s >= 3600 ) || ( Days > 0 ))
         {
             Hours = Math.floor(deadline_s/3600);
             deadline_s = deadline_s-Hours*3600;
-            DeadlineText += Hours + "h ";
+            DeadlineText += Hours + Foxtrickl10n.getString("TransferlistDeadLine.hours") + '&nbsp;';
         }    
             
         Minutes = Math.floor(deadline_s/60);
         deadline_s = deadline_s-Minutes*60;
-        DeadlineText += Minutes + "m";
+        DeadlineText += Minutes + Foxtrickl10n.getString("TransferlistDeadLine.minutes");
         
         return DeadlineText;
     }

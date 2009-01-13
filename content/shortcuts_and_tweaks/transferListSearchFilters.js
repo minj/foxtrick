@@ -41,7 +41,9 @@ FoxtrickTransferListSearchFilters = {
     },
 
     run : function(page, doc) {
-    
+        
+        if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
+        
         Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/transferform.js");
         
         var head = doc.getElementsByTagName("head")[0];
