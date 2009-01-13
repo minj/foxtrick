@@ -162,40 +162,42 @@ var FoxtrickPlayerAdToClipboard = {
 				}
 			}
 			// Add the player skills
-			for(var i = 0; i < 4; i++) {
-				var posOne;
-				var posTwo;
-				if(skillBars) {
-					switch(i) {
-						case 1:
-							posOne = FoxtrickPlayerAdToClipboard._PLAYMAKING;
-							posTwo = FoxtrickPlayerAdToClipboard._PASSING;
-							break;
-						case 2:
-							posOne = FoxtrickPlayerAdToClipboard._WINGER;
-							posTwo = FoxtrickPlayerAdToClipboard._DEFENDING;
-							break;
-						default:
-							posOne = 2*i;
-							posTwo = 2*i+1;
-							break;
+			// Test a link, if it doesn't have a href, there are no skills present
+			if(skillLinks[1]) {
+				for(var i = 0; i < 4; i++) {
+					var posOne;
+					var posTwo;
+					if(skillBars) {
+						switch(i) {
+							case 1:
+								posOne = FoxtrickPlayerAdToClipboard._PLAYMAKING;
+								posTwo = FoxtrickPlayerAdToClipboard._PASSING;
+								break;
+							case 2:
+								posOne = FoxtrickPlayerAdToClipboard._WINGER;
+								posTwo = FoxtrickPlayerAdToClipboard._DEFENDING;
+								break;
+							default:
+								posOne = 2*i;
+								posTwo = 2*i+1;
+								break;
+						}
+					} else {
+						posOne = 2*i;
+						posTwo = 2*i + 1;
 					}
-				} else {
-					posOne = 2*i;
-					posTwo = 2*i + 1;
+					ad += skillNames[posOne];
+					ad += "\t";
+					ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
+						skillLinks[posOne]);
+					ad += "\t";
+					ad += skillNames[posTwo];
+					ad += "\t";
+					ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
+						skillLinks[posTwo]);
+					ad += "\n";
 				}
-				ad += skillNames[posOne];
-				ad += "\t";
-				ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
-					skillLinks[posOne]);
-				ad += "\t";
-				ad += skillNames[posTwo];
-				ad += "\t";
-				ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
-					skillLinks[posTwo]);
-				ad += "\n";
 			}
-			
 			var bidDiv = doc.getElementById("ctl00_CPMain_updBid");
 			if (bidDiv){
 				ad += "\n";
