@@ -35,21 +35,27 @@ var FoxtrickAddManagerButtons = {
 	},
 	
 	change : function( page, doc ) {
-		switch( page ) {
-			case 'managerPage':
-				var newBoxId = "foxtrick_actions_box";
-				if( !Foxtrick.hasElement( newBoxId ) ) {
-					this.addActionsBox( doc );
-				}
-				break;
-			case 'teamPage':
-				var divMessage = doc.getElementById(
-					'ctl00_CPSidebar_ucVisitorActions_pnlMessage');
-				if( !divMessage ) {
-					this.showMessageForm( doc );
-				}
-				break;
-		}
+        try {
+            switch( page ) {
+                case 'managerPage':
+                    var newBoxId = "foxtrick_actions_box";
+                    if( !Foxtrick.hasElement( newBoxId ) ) {
+                        this.addActionsBox( doc );
+                    }
+                    break;
+                case 'teamPage':
+                    var divMessage = doc.getElementById(
+                        'ctl00_CPSidebar_ucVisitorActions_pnlMessage');
+                    if( !divMessage ) {
+                        this.showMessageForm( doc );
+                    }
+                    break;
+            }
+        } 
+        catch (e) {
+            dump('  Redirection on Manager Page?\n');
+            dump('  ' + e + '\n');
+        } 
 	},
 	
 	addActionsBox : function( doc ) {
