@@ -27,9 +27,17 @@ FoxtrickTransferListDeadline = {
                 var spans = doc.getElementsByTagName('span');
                 var j = 0;
                 for (var i=0; i<spans.length; i++) {
-                    cell = "ctl00_CPMain_dl_ctrl" + j + "_TransferPlayer_lblDeadline";
+                    
+                    var cell = "ctl00_CPMain_dl_ctrl" + j + "_TransferPlayer_lblDeadline";
                     var selltime_elm = doc.getElementById( cell );
-                    if  (selltime_elm == null ) return;
+
+                    if  (selltime_elm == null ) {
+                        // supporters check
+                        cell =  "ctl00_CPMain_lstBids_ctr" + j + "_jsonDeadLine";                    
+                        selltime_elm = doc.getElementById( cell );
+                    }
+
+                    if (selltime_elm == null ) return;
 
                     var selltime = selltime_elm.innerHTML;
                     
