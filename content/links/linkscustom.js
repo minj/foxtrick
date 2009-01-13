@@ -29,9 +29,9 @@ var FoxtrickLinksCustom = {
 		file.append("ownicons");
 		if ( !file.exists() || !file.isDirectory() ) {   // if it doesn't exist, create
 			try{file.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 600);					
-			} catch(e){}
+			} catch(e){dump('failed to create ownicons directory in extension folder\n');}
 				
-			var aFile = Components.classes["@mozilla.org/file/directory_service;1"]
+			try {var aFile = Components.classes["@mozilla.org/file/directory_service;1"]
 						.getService(Components.interfaces.nsIProperties)
 						.get("ProfD", Components.interfaces.nsIFile);
 			aFile.append("foxtrick");
@@ -42,8 +42,10 @@ var FoxtrickLinksCustom = {
 				if (item.isFile()) {
 					item.copyTo(file,"");
 				}
+			}  
+			} catch(e){dump('failed to copy own icons. probably there are none to copy\n');}
 			}
-		}
+		
 	} catch (e) {dump('LinksCustomInit: load old icons failed! ->'+e+'\n');}
     },
     
