@@ -26,7 +26,7 @@ var FoxtrickEconomyDifference = {
 
 
                 var mainBody = doc.getElementById( "mainBody" );
-                var tables = doc.getElementsByTagName( "table" );
+                var tables = mainBody.getElementsByTagName( "table" );
                 var tableLast = tables[ 2 ];
                 var tableCurr = tables[ 1 ];
 
