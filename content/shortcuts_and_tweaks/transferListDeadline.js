@@ -51,12 +51,16 @@ FoxtrickTransferListDeadline = {
                 var spans = getElementsByClass( "alert", doc );
                 if (spans == null) break;
                 
-                var selltime_elm = spans[1].getElementsByTagName( "p" );
-                if (selltime_elm[0] == null) break;
+				var selltime_elm = spans[1].getElementsByTagName( "p" )[0];
+                var selltime_clone = selltime_elm.cloneNode(true);
+                if (selltime_clone == null) break;
                 
-                selltime = Foxtrick.trim(selltime_elm[0].innerHTML);
-                
-                selltime = substr(selltime, strrpos( selltime, ";")+1, selltime.length);
+                selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
+				var startPos = selltimeInner.search("<a ");
+				if(startPos != -1) {
+					selltime = selltimeInner.substr(0,startPos);
+				}
+				selltime = substr(selltime, strrpos( selltime, ";")+1, selltime.length);
                 // dump('ST: ' + selltime + '\n');
 
                 ST_date = this._getDatefromCellHTML( selltime );
@@ -67,7 +71,7 @@ FoxtrickTransferListDeadline = {
                     var DeadlineText = this._DeadlineToText (deadline_s);
                     
                     // dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
-                    selltime_elm[0].innerHTML +=  '<span style="margin-left:10px; font-weight:bold; color:#800000">(' + DeadlineText + ')</span>';
+                    selltime_elm.innerHTML +=  '<span style="margin-left:10px; font-weight:bold; color:#800000">(' + DeadlineText + ')</span>';
 
                 break;
         }
