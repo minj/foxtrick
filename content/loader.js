@@ -45,6 +45,7 @@ var scripts = [
     'shortcuts_and_tweaks/mediantransferprice.js',
     'shortcuts_and_tweaks/teampopuplinks.js',
     'shortcuts_and_tweaks/transferListSearchFilters.js',
+    'shortcuts_and_tweaks/transferListDeadline.js',
     'shortcuts_and_tweaks/youthskillnotes.js',
     'shortcuts_and_tweaks/foxtrickalert.js',
     'shortcuts_and_tweaks/facePlugin.js',

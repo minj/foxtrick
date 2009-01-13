@@ -14,7 +14,9 @@ FoxtrickFormationBoxInMatchOrders = {
     },
 
     run : function(page, doc) {
-    
+        
+        if (doc.getElementById( 'ctl00_CPMain_pnlFlash' ) != null ) return;
+            
         Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/matchorders.css");
         Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/matchorders.js");
                 
