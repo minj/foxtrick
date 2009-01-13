@@ -41,22 +41,23 @@ var FoxtrickAlltidFlags = {
 		var flagsCounter = 0;
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfWrapper") {
-				var LeagueId=findLeagueLeveUnitId(alldivs[i]);
-				var target = "_blank";
-				var linksArray = alldivs[i].getElementsByTagName('a');
-				var titlecountry1="";
-				try {
-					// get country
-					for (var j=0; j<linksArray.length; j++) {
-						var link = linksArray[j];
-						if (link.href.search(/LeagueId=/i) > -1) {
-							titlecountry1 = link.getElementsByTagName('img')[0].title;
-							break;
-						}	
-					}
-				}
-				catch (e) {dump('manager avatar turned of in ht-option. can\'t show country as title.\n')}; 
 				var innerdivs = alldivs[i].getElementsByTagName('div');
+				var LeagueId=0;
+				var titlecountry1="";
+				for (var k = 0; k < innerdivs.length; k++) {
+							if (innerdivs[k].className=="cfUserInfo") {
+							LeagueId=findLeagueLeveUnitId(innerdivs[k]);
+							var linksArray = innerdivs[k].getElementsByTagName('a');
+							// get country
+							for (var j=0; j<linksArray.length; j++) {
+								var link = linksArray[j];
+								if (link.href.search(/LeagueId=/i) > -1) {
+									titlecountry1 = link.getElementsByTagName('img')[0].title;
+								break;
+								}
+							}	
+						}
+				}
 				for (var k = 0; k < innerdivs.length; k++) {
 				  if (innerdivs[k].className=="cfHeader") {
 				    var count=0;
@@ -73,9 +74,9 @@ var FoxtrickAlltidFlags = {
 						//dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
-						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 || titlecountry1=="") {
+						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 || titlecountry1=="" || LeagueId==0) {
 							mySpan.innerHTML = ' <a href="' + linkpage + userId +
-							'" target="' + target + ' "><img title="'+thistitlecountry+'" " style="' + 
+							'"target="_blank"><img title="'+thistitlecountry+'" " style="' + 
 							'vertical-align: middle; ' + style + '" src="' + 
 							flagspage + userId + '.gif" border="0"' +
 							'height="12" /></a>';}
@@ -85,7 +86,7 @@ var FoxtrickAlltidFlags = {
 							'vertical-align: middle; ' + style + '" src="' + 
 							flagspage + userId + '.gif" border="0"' +
 							'height="12" /></a>';}
-						target = link.nextSibling;
+						var target = link.nextSibling;
 						if (j+1!=linksArray.length && linksArray[j+1].href.lastIndexOf('Supporter') > -1) {
 							target=linksArray[j+1].nextSibling;
 						}
