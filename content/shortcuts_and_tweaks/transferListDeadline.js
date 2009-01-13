@@ -56,10 +56,15 @@ FoxtrickTransferListDeadline = {
                 if (selltime_clone == null) break;
                 
                 selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
-				var startPos = selltimeInner.search("<a ");
-				if(startPos != -1) {
-					selltime = selltimeInner.substr(0,startPos);
-				}
+
+                var selltime = selltimeInner;
+                
+                // suporters check
+                var startPos = selltimeInner.search("<a ");
+                if(startPos != -1) {
+                    selltime = selltimeInner.substr(0,startPos);
+                }
+                
 				selltime = substr(selltime, strrpos( selltime, ";")+1, selltime.length);
                 // dump('ST: ' + selltime + '\n');
 
