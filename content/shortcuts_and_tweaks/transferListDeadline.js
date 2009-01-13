@@ -27,29 +27,29 @@ FoxtrickTransferListDeadline = {
                 var spans = doc.getElementsByTagName('span');
                 var j = 0;
                 for (var i=0; i<spans.length; i++) {
-                    
-                    var cell = "ctl00_CPMain_dl_ctrl" + j + "_TransferPlayer_lblDeadline";
-                    var selltime_elm = doc.getElementById( cell );
+                    try {
+                        var cell = "ctl00_CPMain_dl_ctrl" + j + "_TransferPlayer_lblDeadline";
+                        var selltime_elm = doc.getElementById( cell );
+                        if  (selltime_elm == null ) {
+                            // supporters check
+                            cell =  "ctl00_CPMain_lstBids_ctr" + j + "_jsonDeadLine";                    
+                            selltime_elm = doc.getElementById( cell );
+                        }
 
-                    if  (selltime_elm == null ) {
-                        // supporters check
-                        cell =  "ctl00_CPMain_lstBids_ctr" + j + "_jsonDeadLine";                    
-                        selltime_elm = doc.getElementById( cell );
+                        if (selltime_elm != null ) {
+                            var selltime = selltime_elm.innerHTML;
+                            ST_date = this._getDatefromCellHTML( selltime );
+                            if (ST_date != null ) {
+                                var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
+                                var DeadlineText = this._DeadlineToText (deadline_s);
+                                //dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
+                                selltime_elm.innerHTML +=  '<br><span style="font-weight:bold; color:#800000">' + DeadlineText + '</span>';
+                            }
+                        }
                     }
-
-                    if (selltime_elm == null ) return;
-
-                    var selltime = selltime_elm.innerHTML;
-                    
-                    ST_date = this._getDatefromCellHTML( selltime );
-                    if (!ST_date) return;
-                    
-                    var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
-                    
-                    var DeadlineText = this._DeadlineToText (deadline_s);
-                    
-                    //dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
-                    selltime_elm.innerHTML +=  '<br><span style="font-weight:bold; color:#800000">' + DeadlineText + '</span>';
+                    catch (e) {
+                        dump (e);
+                    }
                     j++;
                 }
                 break;
