@@ -65,10 +65,13 @@ FoxtrickTransferListDeadline = {
     },
 	
 	change : function( page, doc ) {
+		var httime = doc.getElementById( "time" ).innerHTML;
+		HT_date = this._getDatefromCellHTML( httime );
+        if (!HT_date) return;
+		
         switch ( page ) {
               
             case 'players' :
-                
                 this._PlayerDetailsDeatline ( doc );
                 break;
                 
@@ -76,11 +79,10 @@ FoxtrickTransferListDeadline = {
 	},
     
      _PlayerDetailsDeatline : function ( doc ) {
-        
         if ( doc.location.href.search(/Player.aspx/i) < 0 ) return;
         try {
             //Check if deadline already set
-            var deadline_span = doc.getElementById( "ft_deadline" );
+			var deadline_span = doc.getElementById( "ft_deadline" );
             if  (deadline_span != null ) return;
                 
             var spans = getElementsByClass( "alert", doc );
