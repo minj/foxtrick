@@ -56,44 +56,60 @@ FoxtrickTransferListDeadline = {
                 
             case 'players' :
                 
-                var spans = getElementsByClass( "alert", doc );
-                if (spans == null) break;
-                
-				var selltime_elm = spans[1].getElementsByTagName( "p" )[0];
-                var selltime_clone = selltime_elm.cloneNode(true);
-                if (selltime_clone == null) break;
-                
-                selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
-
-                var selltime = selltimeInner;
-                
-                // suporters check
-                var startPos = selltimeInner.search("<a ");
-                if(startPos != -1) {
-                    selltime = selltimeInner.substr(0,startPos);
-                }
-                
-				selltime = substr(selltime, strrpos( selltime, ";")+1, selltime.length);
-                // dump('ST: ' + selltime + '\n');
-
-                ST_date = this._getDatefromCellHTML( selltime );
-                    if (!ST_date) break;
-                    
-                    var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
-                    
-                    var DeadlineText = this._DeadlineToText (deadline_s);
-                    
-                    // dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
-                    selltime_elm.innerHTML +=  '<span style="margin-left:10px; font-weight:bold; color:#800000">(' + DeadlineText + ')</span>';
-
+                this._PlayerDetailsDeatline ( doc );
                 break;
+                
         }
     },
 	
 	change : function( page, doc ) {
-	
+        switch ( page ) {
+              
+            case 'players' :
+                
+                this._PlayerDetailsDeatline ( doc );
+                break;
+                
+        }	
 	},
     
+     _PlayerDetailsDeatline : function ( doc ) {
+        
+        //Check if deadline already set
+        var deadline_span = doc.getElementById( "ft_deadline" );
+        if  (deadline_span != null ) return;
+            
+        var spans = getElementsByClass( "alert", doc );
+        if (spans == null) return;
+        
+        var selltime_elm = spans[1].getElementsByTagName( "p" )[0];
+        var selltime_clone = selltime_elm.cloneNode(true);
+        if (selltime_clone == null) return;
+        
+        selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
+
+        var selltime = selltimeInner;
+        
+        // suporters check
+        var startPos = selltimeInner.search("<a ");
+        if(startPos != -1) {
+            selltime = selltimeInner.substr(0,startPos);
+        }
+        
+        selltime = substr(selltime, strrpos( selltime, ";")+1, selltime.length);
+        // dump('ST: ' + selltime + '\n');
+
+        ST_date = this._getDatefromCellHTML( selltime );
+        if (!ST_date) return;
+            
+        var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
+            
+        var DeadlineText = this._DeadlineToText (deadline_s);
+            
+        // dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
+         selltime_elm.innerHTML +=  '<span id="ft_deadline" style="margin-left:10px; font-weight:bold; color:#800000">(' + DeadlineText + ')</span>';
+    },
+        
     _getDatefromCellHTML : function( cell ) {
         if (cell == '') return false;
             var SY = cell.substr(6,4);
