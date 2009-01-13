@@ -711,6 +711,34 @@ function getElementsByClass(searchClass,node,tag) {
 	return classElements;
 }
 
+
+function substr( f_string, f_start, f_length ) {
+    f_string += '';
+ 
+    if(f_start < 0) {
+        f_start += f_string.length;
+    }
+ 
+    if(f_length == undefined) {
+        f_length = f_string.length;
+    } else if(f_length < 0){
+        f_length += f_string.length;
+    } else {
+        f_length += f_start;
+    }
+ 
+    if(f_length < f_start) {
+        f_length = f_start;
+    }
+ 
+    return f_string.substring(f_start, f_length);
+}
+
+function strrpos( haystack, needle, offset){
+    var i = (haystack+'').lastIndexOf( needle, offset ); // returns -1
+    return i >= 0 ? i : false;
+}
+
 Foxtrick.copyStringToClipboard = function ( string ) {
 	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
 	gClipboardHelper.copyString(string);
