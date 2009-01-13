@@ -23,6 +23,7 @@ FoxtrickTransferListDeadline = {
         
         switch ( page ) {
             case 'transferListSearchResult' :
+                
                 var spans = doc.getElementsByTagName('span');
                 var j = 0;
                 for (var i=0; i<spans.length; i++) {
@@ -44,20 +45,22 @@ FoxtrickTransferListDeadline = {
                     j++;
                 }
                 break;
+                
             case 'players' :
                 
                 var spans = getElementsByClass( "alert", doc );
-                if (spans == null) return;
+                if (spans == null) break;
                 
                 var selltime_elm = spans[1].getElementsByTagName( "p" );
-                if (selltime_elm == null) return;
+                if (selltime_elm[0] == null) break;
                 
                 selltime = Foxtrick.trim(selltime_elm[0].innerHTML);
+                
                 selltime = substr(selltime, strrpos( selltime, ";")+1, selltime.length);
                 // dump('ST: ' + selltime + '\n');
 
                 ST_date = this._getDatefromCellHTML( selltime );
-                    if (!ST_date) return;
+                    if (!ST_date) break;
                     
                     var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
                     
