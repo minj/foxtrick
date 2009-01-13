@@ -44,7 +44,7 @@ var FoxtrickLinksCustom = {
 				}
 			}
 		}
-	} catch (e) {dump('LinksCustomInit: load old icons failed!');}
+	} catch (e) {dump('LinksCustomInit: load old icons failed! ->'+e+'\n');}
     },
     
     run : function( page, doc ) {	
