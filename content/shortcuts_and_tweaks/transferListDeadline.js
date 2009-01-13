@@ -83,6 +83,7 @@ FoxtrickTransferListDeadline = {
         if (spans == null) return;
         
         var selltime_elm = spans[1].getElementsByTagName( "p" )[0];
+        if (selltime_elm == null) return;
         var selltime_clone = selltime_elm.cloneNode(true);
         if (selltime_clone == null) return;
         
