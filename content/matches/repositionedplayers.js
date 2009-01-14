@@ -11,7 +11,8 @@ var FoxtrickRepositionedPlayers = {
 	MODULE_NAME : "RepositionedPlayers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
-
+    
+    COLOR : "#ffa500",
 
     PLAYERIDS : new Array (
                             "ctl00_CPMain_ucKeeper_pnlbox",
@@ -26,6 +27,20 @@ var FoxtrickRepositionedPlayers = {
                             "ctl00_CPMain_ucForward1_pnlbox",
                             "ctl00_CPMain_ucForward2_pnlbox"
                           ),
+                          
+    PLAYERDESC : new Array (
+                            "Keeper",
+                            "LeftBack",
+                            "CentralDefender",
+                            "CentralDefender",
+                            "RightBack",
+                            "Leftwinger",
+                            "InnerMidfield",
+                            "InnerMidfield",
+                            "Rightwinger",
+                            "Forward",
+                            "Forward"
+                          ),                          
 
 	init : function() {
 			Foxtrick.registerPageHandler( 'matchLineup',
@@ -33,7 +48,7 @@ var FoxtrickRepositionedPlayers = {
     },
 
     run : function( page, doc ) {
-                var HIGHLIGHT = "#FF4040";
+                
                 var playerdivs = getElementsByClass( "position", doc );
 				var playerbox = getElementsByClass( "box_lineup", doc );
 
@@ -50,128 +65,73 @@ var FoxtrickRepositionedPlayers = {
                     switch ( player_id ) {
                         case this.PLAYERIDS[0]:
                             if (useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.Keeper'))
-                            {
-                                playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.Keeper') + ')'
-                                    );
-                            }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
 							else 
                             break;
                         case this.PLAYERIDS[1]:
                             if ( (useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.LeftBack'))
 								|| (!useCode && (player_ypos<72-20||player_ypos>72+20
 								|| (player_xpos!=480&&player_xpos!=464))))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.LeftBack') + ')'
-                                    );
-                                }
-							break;
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
+                            break;
                         case this.PLAYERIDS[2]:
                             if ( (useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.CentralDefender'))
 								|| (!useCode && (player_ypos<72-20||player_ypos>72+20)))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.CentralDefender') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                         case this.PLAYERIDS[3]:
                             if ( (useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.CentralDefender'))
 								|| (!useCode && (player_ypos<72-20||player_ypos>72+20)))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.CentralDefender') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                         case this.PLAYERIDS[4]:
                             if ((useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.RightBack'))
 								|| (!useCode && (player_ypos<72-20||player_ypos>72+20 
 								|| (player_xpos!=30&&player_xpos!=46))))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.RightBack') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                         case this.PLAYERIDS[5]:
                             if ( (useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.Leftwinger'))
 								|| (!useCode &&  (player_ypos<141-20||player_ypos>141+20
 								|| (player_xpos!=480&&player_xpos!=464))))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.Leftwinger') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                         case this.PLAYERIDS[6]:
                             if ((useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.InnerMidfield'))
 								|| (!useCode &&  (player_ypos<141-20||player_ypos>141+20)))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.InnerMidfield') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                         case this.PLAYERIDS[7]:
                             if ((useCode && player_pos!= Foxtrickl10n.getString('foxtrick.matches.InnerMidfield'))
 								|| (!useCode &&  (player_ypos<141-20||player_ypos>141+20)))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.InnerMidfield') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                         case this.PLAYERIDS[8]:
                             if ((useCode && player_pos!= Foxtrickl10n.getString('foxtrick.matches.Rightwinger'))
 								|| (!useCode &&  (player_ypos<141-20||player_ypos>141+20
 								|| (player_xpos!=30&&player_xpos!=46))))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.Rightwinger') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                         case this.PLAYERIDS[9]:
                             if ((useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.Forward'))
 								|| (!useCode &&  (player_ypos<210-20||player_ypos>210+20)))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.Forward') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
+                            break;
                             break;
                         case this.PLAYERIDS[10]:
                             if ((useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.Forward'))
 								|| (!useCode &&  (player_ypos<210-20||player_ypos>210+20)))
-                                {
-                                    playerdivs[i].setAttribute( "style", "color :" + HIGHLIGHT );
-                                        playerdivs[i].setAttribute( "title", 
-                                        Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
-                                        Foxtrickl10n.getString('foxtrick.matches.Forward') + ')'
-                                    );
-                                }
+                                this._colorize( playerdivs[i], this.PLAYERDESC[i] )
+                            else
                             break;
                     }
                 }
@@ -179,5 +139,17 @@ var FoxtrickRepositionedPlayers = {
 
 	change : function( page, doc ) {
 
-	}
+	},
+        
+    _colorize : function ( elm , playerdesc ) {
+        elm.setAttribute( "style", "color :" + this.COLOR );
+        if (Foxtrickl10n.isStringAvailableLocal('foxtrick.matches.'+ playerdesc ))
+            elm.setAttribute( "title",
+                ( 
+                    Foxtrickl10n.getString('foxtrick.matches.RepositionedPlayers.titel')  + ' (' + 
+                    Foxtrickl10n.getString('foxtrick.matches.'+ playerdesc ) + ')'
+                )
+            );
+    }
+        
 };
