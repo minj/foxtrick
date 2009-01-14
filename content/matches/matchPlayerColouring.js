@@ -16,25 +16,23 @@ FoxtrickMatchPlayerColouring = {
     },
     
     run : function( page, doc ) {
-        var content = doc.getElementsByTagName("h1")[0].parentNode.textContent;
-        var teamA = null;
-        var teamB = null;
+        var teamA = "";
+        var teamB = "";
+       var content = doc.getElementsByTagName("h1")[0].parentNode.textContent;
         var regexp = new RegExp(": ([^\\.]*?)\\.");
 		var FirstTeam = true; 
         var matchteamA = regexp.exec(content);
         if (matchteamA) {
             teamA = matchteamA[1].replace(/ \- /g, ", ").split(", ");
-            //dump(teamA + '\n');
+        //    dump(teamA + '\n');
         }
-
-        content = content.substring(content.indexOf(matchteamA[0])+matchteamA[0].length);
+		content = content.substring(content.indexOf(matchteamA[0])+matchteamA[0].length);
         var matchteamB = regexp.exec(content);
         if (matchteamB) {
             teamB = matchteamB[1].replace(/ \- /g, ", ").split(", ");
-            //dump(teamB + '\n');
+           // dump(teamB + '\n');
          }
-         
-		 //Retrieve substitutions
+		//Retrieve substitutions
 		 var spans = doc.getElementsByTagName("span");
 		 for (var i=0; i<spans.length; i++) {
 			var span_a = spans[i].getElementsByTagName("a");
@@ -62,10 +60,10 @@ FoxtrickMatchPlayerColouring = {
                             }
                             //Add Player In to the players list
                             if (teamA.indexOf(PlayerOut) >=0) {
-                                    teamA = teamA + "," + PlayerIn;
-                                }
+                                    teamA.push(PlayerIn);
+								 }
                             if (teamB.indexOf(PlayerOut) >=0) {
-                                    teamB = teamB + "," + PlayerIn;
+                                    teamB.push(PlayerIn);
                                 }
                             j=j+1;
                         }
@@ -77,7 +75,9 @@ FoxtrickMatchPlayerColouring = {
 			}
 		 }
 		 
-         var links = doc.getElementsByTagName("a");
+ 
+ 
+		var links = doc.getElementsByTagName("a");
 		 for (var i=0; i<links.length; i++) {
              if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
                  links[i].style.border = "1px solid #ccc";
@@ -90,15 +90,23 @@ FoxtrickMatchPlayerColouring = {
 				 } else {
 					var playerName = playerFullName;
 				 }
-
-                 if (teamA.indexOf(playerName) >=0) {
+				playerName=links[i].textContent;// dump('p: '+ playerName+'\n');
+				var foundA =false;
+				for (var k=0;k<teamA.length;k++) { //dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\n');
+					if (playerName.indexOf(teamA[k])>-1) foundA=true; 
+				}
+				var foundB =false;
+				for (var k=0;k<teamB.length;k++) { //dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\n');
+					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
+				}
+                if (foundA && !foundB) {
                      links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
                      links[i].style.color = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
                  }
-                 if (teamB.indexOf(playerName) >=0) {
+				 if (foundB && !foundA) {
                      links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
                      links[i].style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
-                 }                 
+                 }                
              } 
 			 //Colors the name of the teams  on the right box like the players
 			 else { 
