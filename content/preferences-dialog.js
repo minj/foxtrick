@@ -74,7 +74,18 @@ var FoxtrickPreferencesDialog = {
     // setting a minimum window-size
         function onResize()
         {
-            const WINDOW_WIDTH = 700; 
+            /* suggestion: tabpanels need adjustment
+			const WINDOW_WIDTH = 700; 
+            const WINDOW_HEIGHT = 650; 
+            var tHeight = WINDOW_HEIGHT;
+            var tWidth = WINDOW_WIDTH;
+            if (screen.availHeight <= tHeight)
+                tHeight = screen.availHeight;
+            if (screen.availWidth <= tWidth)
+                tWidth = screen.availWidth;
+			 this.resizeTo(tWidth, tHeight);*
+
+			 const WINDOW_WIDTH = 700; 
             const WINDOW_HEIGHT = 650; 
             var tHeight = WINDOW_HEIGHT;
             var tWidth = WINDOW_WIDTH;
