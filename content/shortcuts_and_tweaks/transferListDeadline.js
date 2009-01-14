@@ -31,6 +31,8 @@ FoxtrickTransferListDeadline = {
             case 'players' :
                 
                 this._PlayerDetailsDeatline ( doc );
+                this._Player_Joined ( doc );
+                this._Player_Bonus (doc);
                 break;
                 
             case 'transfer' :
@@ -91,6 +93,7 @@ FoxtrickTransferListDeadline = {
         
     _PlayerDetailsDeatline : function ( doc ) {
         if ( doc.location.href.search(/Player.aspx/i) < 0 ) return;
+        
         try {
             //Check if deadline already set
 			var deadline_span = doc.getElementById( "ft_deadline" );
@@ -133,12 +136,80 @@ FoxtrickTransferListDeadline = {
             dump(e);
         }
     },
+            
+
+    _Player_Joined  : function ( doc ) {        
+        // Player in team since...
+        try {
+            var joined_elm = getElementsByClass( "shy", doc )[0];
+            if (joined_elm == null) return;
+            
+            joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
+            
+            var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+            var ar = reg.exec(joinedtimeInner);
+            
+            var joinedtime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+            
+            joinedtime = substr(joinedtime, strrpos( joinedtime, ";")+1, joinedtime.length);
+
+            JT_date = this._getDatefromCellHTML( joinedtime );
+            if (!JT_date) return;
+                
+            var joined_s = Math.floor( (HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
+                
+            var JoinedText = this._DeadlineToText (joined_s , true);
+                
+            if (JoinedText.search("NaN") == -1) {
+                part1 = substr(joined_elm.innerHTML, 0, strrpos( joined_elm.innerHTML, ")"));
+                part1 = part1.replace('(', '<br><span id ="ft_since">(');
+                joined_elm.innerHTML = part1 + ', ' + JoinedText + ')</span>';
+            }
+            else dump('  Could not create jointime (NaN)\n'); 
+        } catch (e) {
+            dump(e);
+        }
+    },
+        
+    _Player_Bonus  : function ( doc ) {        
+        // Player in team since...
+        try {
+            var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
+            var table_elm = div.getElementsByTagName( "td" );
+            if (table_elm.length == 0) return;
+            
+            for ( var i = 0; i < table_elm.length; i++) {
+                var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
+                try {
+                    if (strrpos( table_inner, "%") > 0 ) {
+                        var table_elm_bonus = table_elm[i];
+                        break;
+                    }
+                }
+                catch(e) {dump('    >' + e + '\n');}
+            }
+            table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
+
+            var part = substr(table_inner, 0, table_inner.lastIndexOf("&nbsp;"));
+
+            var part_1_save = part;
+            var part_2_save = substr(table_inner, table_inner.lastIndexOf("&nbsp;") + 6, table_inner.length );
+
+            part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
+            part = ReturnFormatedValue (part, ' ');
+                           
+            if (part != 'NaN') table_elm_bonus.innerHTML = part_1_save + '&nbsp;(' + part + ')&nbsp;' + part_2_save;
+
+        } catch (e) {
+            dump('  PlayerBonus: ' + e + '\n');
+        }
+    },
         
     _getDatefromCellHTML : function( cell ) {
         if (cell == '') return false;
             cell +=' ';
             
-            dump ('CELL :[' + cell + ']\n');
+            dump ('  CELL :[' + cell + ']\n');
 
             var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
             var ar = reg.exec(cell);
@@ -148,12 +219,12 @@ FoxtrickTransferListDeadline = {
             var SH = ar[7];
 			var SMn = ar[9];
 			var SS = '00';
-             dump('SELLTIME:' + cell + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
+             dump('  TIME:' + cell + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
             var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
         return CellDate;
     },
         
-    _DeadlineToText : function( deadline_s ) {        
+    _DeadlineToText : function( deadline_s, short ) {        
         var DeadlineText = "";
         var Days = 0; var Minutes = 0; var Hours = 0;
         
@@ -162,10 +233,13 @@ FoxtrickTransferListDeadline = {
             Days = Math.floor(deadline_s/86400);
             deadline_s = deadline_s-Days*86400;
             if (Days > 1) 
-                DeadlineText += Days + '&nbsp;' + Foxtrickl10n.getString("TransferlistDeadLine.days") + '&nbsp;'
+                DeadlineText += Days + '&nbsp;' + Foxtrickl10n.getString("TransferlistDeadLine.days")
             else
-                DeadlineText += Days + '&nbsp;' + Foxtrickl10n.getString("TransferlistDeadLine.day") + '&nbsp;';
+                DeadlineText += Days + '&nbsp;' + Foxtrickl10n.getString("TransferlistDeadLine.day");
         }
+        if (short) return DeadlineText;
+        if (DeadlineText != "") DeadlineText += "&nbsp;";
+        
         
         if (( deadline_s >= 3600 ) || ( Days > 0 ))
         {
