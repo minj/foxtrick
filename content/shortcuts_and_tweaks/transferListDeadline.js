@@ -12,6 +12,7 @@ FoxtrickTransferListDeadline = {
     init : function() {
         Foxtrick.registerPageHandler('transferListSearchResult', this);
         Foxtrick.registerPageHandler('players', this);
+        Foxtrick.registerPageHandler('transfer', this);
     },
 
     run : function(page, doc) {
@@ -24,41 +25,17 @@ FoxtrickTransferListDeadline = {
         switch ( page ) {
             case 'transferListSearchResult' :
                 
-                var spans = doc.getElementsByTagName('span');
-                var j = 0;
-                for (var i=0; i<spans.length; i++) {
-                    try {
-                        var cell = "ctl00_CPMain_dl_ctrl" + j + "_TransferPlayer_lblDeadline";
-                        var selltime_elm = doc.getElementById( cell );
-                        if  (selltime_elm == null ) {
-                            // supporters check
-                            cell =  "ctl00_CPMain_lstBids_ctr" + j + "_jsonDeadLine";                    
-                            selltime_elm = doc.getElementById( cell );
-                        }
-
-                        if (selltime_elm != null ) {
-                            var selltime = selltime_elm.innerHTML;
-                            ST_date = this._getDatefromCellHTML( selltime );
-                            if (ST_date != null ) {
-                                var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
-                                var DeadlineText = this._DeadlineToText (deadline_s);
-                                //dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
-                                if (DeadlineText.search("NaN") == -1)
-                                    selltime_elm.innerHTML +=  '<br><span id="ft_deadline" style="font-weight:bold; color:#800000">' + DeadlineText + '</span>';
-                                else dump('  Could not create deadline (NaN)\n'); 
-                            }
-                        }
-                    }
-                    catch (e) {
-                        dump (e);
-                    }
-                    j++;
-                }
+                this._PlayerListDeatline ( doc, 'span' );
                 break;
                 
             case 'players' :
                 
                 this._PlayerDetailsDeatline ( doc );
+                break;
+                
+            case 'transfer' :
+                
+                this._PlayerListDeatline ( doc, 'div' );
                 break;
                 
         }
@@ -78,7 +55,41 @@ FoxtrickTransferListDeadline = {
         }	
 	},
     
-     _PlayerDetailsDeatline : function ( doc ) {
+    _PlayerListDeatline : function ( doc, element ) {
+        var spans = doc.getElementsByTagName( element );
+        var j = 0;
+        for (var i=0; i<spans.length; i++) {
+            try {
+                var cell = "ctl00_CPMain_lstBids_ctrl"+ j + "_jsonDeadLine";
+                var selltime_elm = doc.getElementById( cell );
+                
+                if (selltime_elm == null) {
+                    var cell = "ctl00_CPMain_dl_ctrl"+ j +"_TransferPlayer_lblDeadline";
+                    var selltime_elm = doc.getElementById( cell );
+                }
+
+                if (selltime_elm != null ) {
+                    var selltime = Foxtrick.trim(selltime_elm.innerHTML);
+                    // dump ('\n>>>>>' + selltime + '<<<<<\n');
+                    var ST_date = this._getDatefromCellHTML( selltime );
+                    if (ST_date != null ) {
+                        var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
+                        var DeadlineText = this._DeadlineToText (deadline_s);
+                        // dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
+                        if (DeadlineText.search("NaN") == -1)
+                            selltime_elm.innerHTML +=  '<span id="ft_deadline" style="margin-left:10px; font-weight:bold; color:#800000">(' + DeadlineText + ')</span>';
+                        else dump('  Could not create deadline (NaN)\n'); 
+                    }
+                }
+            }
+            catch (e) {
+                dump (e);
+            }
+            j++;
+        }
+    },
+        
+    _PlayerDetailsDeatline : function ( doc ) {
         if ( doc.location.href.search(/Player.aspx/i) < 0 ) return;
         try {
             //Check if deadline already set
@@ -126,7 +137,7 @@ FoxtrickTransferListDeadline = {
     _getDatefromCellHTML : function( cell ) {
         if (cell == '') return false;
             cell +=' ';
-        
+            
             dump ('CELL :[' + cell + ']\n');
 
             var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
@@ -137,7 +148,7 @@ FoxtrickTransferListDeadline = {
             var SH = ar[7];
 			var SMn = ar[9];
 			var SS = '00';
-             dump('\nSELLTIME:' + cell + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
+             dump('SELLTIME:' + cell + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
             var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
         return CellDate;
     },
