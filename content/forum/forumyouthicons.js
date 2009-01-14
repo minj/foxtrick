@@ -68,7 +68,7 @@ var FoxtrickForumYouthIcons = {
 				
 				var toolbar_label = doc.createElement( "div" );
                 toolbar_label.innerHTML = Foxtrickl10n.getString("ForumYouthIcons.labelToolbar");
-                toolbar_label.setAttribute( "style" , "background-color:#FEDCBA;margin-bottom:3px;text-align:center;");
+                toolbar_label.setAttribute( "style" , "background-color:#D0D0D0;;margin-bottom:3px;text-align:center;");
                 toolbar.insertBefore( toolbar_label, toolbar.firstChild );
 							
 				// Set styles of next siblings
@@ -88,7 +88,7 @@ var FoxtrickForumYouthIcons = {
 
                 var youthbar_label = doc.createElement( "div" );
                 youthbar_label.innerHTML = Foxtrickl10n.getString("ForumYouthIcons.label");
-                youthbar_label.setAttribute( "style" , "background-color:#FEDCBA;margin-bottom:3px;text-align:center;");
+                youthbar_label.setAttribute( "style" , "background-color:#D0D0D0;;margin-bottom:3px;text-align:center;");
                 youthbar.appendChild( youthbar_label);                
                 
                 var newimage = doc.createElement( "img" );

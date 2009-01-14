@@ -44,7 +44,7 @@ FoxtrickTransferListDeadline = {
                                 var DeadlineText = this._DeadlineToText (deadline_s);
                                 //dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
                                 if (DeadlineText.search("NaN") == -1)
-                                    selltime_elm.innerHTML +=  '<br><span style="font-weight:bold; color:#800000">' + DeadlineText + '</span>';
+                                    selltime_elm.innerHTML +=  '<br><span id="ft_deadline" style="font-weight:bold; color:#800000">' + DeadlineText + '</span>';
                                 else dump('  Could not create deadline (NaN)\n'); 
                             }
                         }
