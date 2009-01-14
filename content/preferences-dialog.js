@@ -74,19 +74,19 @@ var FoxtrickPreferencesDialog = {
     // setting a minimum window-size
         function onResize()
         {
-            const WINDOW_WIDTH = 500;
-            const WINDOW_HEIGHT = 400;
+            const WINDOW_WIDTH = 700; 
+            const WINDOW_HEIGHT = 650; 
             var tHeight = WINDOW_HEIGHT;
             var tWidth = WINDOW_WIDTH;
-            if (this.outerHeight >= WINDOW_HEIGHT)
-                tHeight = this.outerHeight;
-            if (this.outerWidth >= WINDOW_WIDTH)
-                tWidth = this.outerWidth;
-            this.resizeTo(tWidth, tHeight);
+            if (screen.availHeight <= tHeight)
+                tHeight = screen.availHeight;
+            if (screen.availWidth <= tWidth)
+                tWidth = screen.availWidth;
+			 this.resizeTo(tWidth, tHeight);
         }
         window.addEventListener('resize', onResize, false);
     },    
-    
+	
     initAlertPref: function() {
     	document.getElementById('alertsliderpref').setAttribute( "checked", FoxtrickPrefs.getBool( "alertSlider" ) );
     	document.getElementById('alertslidermacpref').setAttribute( "checked", FoxtrickPrefs.getBool( "alertSliderGrowl" ) );
