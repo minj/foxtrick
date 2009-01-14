@@ -125,20 +125,19 @@ FoxtrickTransferListDeadline = {
         
     _getDatefromCellHTML : function( cell ) {
         if (cell == '') return false;
-			var SD = cell.substr(0,2);
-            var SM = cell.substr(3,2);
-			if(SM.search("-") == -1) {
-				var SY = cell.substr(6,4);
-				var SH = cell.substr(11,2);
-				var SMn = cell.substr(14,2);
-			} else {
-				var SM = cell.substr(3,1);
-				var SY = cell.substr(5,4);
-				var SH = cell.substr(10,2);
-				var SMn = cell.substr(13,2);
-			}
+            cell +=' ';
+        
+            dump ('CELL :[' + cell + ']\n');
+
+            var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+            var ar = reg.exec(cell);
+			var SD = ar[1];
+            var SM = ar[3];
+			var SY = ar[5];
+            var SH = ar[7];
+			var SMn = ar[9];
 			var SS = '00';
-            // dump('\nSELLTIME:' + cell + ':' + SY + '-' + (SM) + '-' + SD + '-' + SH + '-' + SMn + '-' + SS + '!\n');
+             dump('\nSELLTIME:' + cell + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
             var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
         return CellDate;
     },
