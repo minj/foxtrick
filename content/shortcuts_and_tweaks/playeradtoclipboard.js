@@ -116,7 +116,7 @@ var FoxtrickPlayerAdToClipboard = {
 			        
 			// owner, TSI wage, etc.
 			var table = obj.getElementsByTagName("table")[0];
-			for(var i = 0; i < 5; i++) {
+			for(var i = 0; i < table.rows.length; i++) {
 				ad += Foxtrick.trim(table.rows[i].cells[0].textContent);
 				// remove teampopuplinks
 				var cellCopy = table.rows[i].cells[1].cloneNode(true);
