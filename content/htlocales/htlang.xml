@@ -958,7 +958,13 @@
         </tactics>
     </language>
     
-    <language name="ee" desc="Estonian">
+    <language name="ee" desc="Eesti">
+		<ratingSubLevels>
+            <sublevel text="(väga madal)" value="0.0" />
+            <sublevel text="(madal)" value="0.25" />
+            <sublevel text="(kõrge)" value="0.50" />
+            <sublevel text="(väga kõrge)" value="0.75" />
+        </ratingSubLevels>
         <tactics>
             <tactic type="normal" value="Tavaline" />
             <tactic type="pressing" value="Pressing" />
