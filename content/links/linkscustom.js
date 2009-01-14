@@ -18,35 +18,6 @@ var FoxtrickLinksCustom = {
 	_info:"",
 	
     init : function() {
-	try {
-		// check if personal icons still in chrome & if not resore them
-		var MY_ID = "{9d1f059c-cada-4111-9696-41a62d64e3ba}";
-		var file = Components.classes["@mozilla.org/extensions/manager;1"].
-					getService(Components.interfaces.nsIExtensionManager).
-					getInstallLocation(MY_ID).getItemFile(MY_ID, "content");
-		file.append("resources");
-		file.append("linkicons");
-		file.append("ownicons");
-		if ( !file.exists() || !file.isDirectory() ) {   // if it doesn't exist, create
-			try{file.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 600);					
-			} catch(e){dump('failed to create ownicons directory in extension folder\n');}
-				
-			try {var aFile = Components.classes["@mozilla.org/file/directory_service;1"]
-						.getService(Components.interfaces.nsIProperties)
-						.get("ProfD", Components.interfaces.nsIFile);
-			aFile.append("foxtrick");
-			aFile.append("ownicons");
-			var items = aFile.directoryEntries;
-			while (items.hasMoreElements()) {
-				var item = items.getNext().QueryInterface(Components.interfaces.nsIFile);
-				if (item.isFile()) {
-					item.copyTo(file,"");
-				}
-			}  
-			} catch(e){dump('failed to copy own icons. probably there are none to copy\n');}
-			}
-		
-	} catch (e) {dump('LinksCustomInit: load old icons failed! ->'+e+'\n');}
     },
     
     run : function( page, doc ) {	
@@ -68,7 +39,6 @@ var FoxtrickLinksCustom = {
 			if (num_personal_links==null) {
 				FoxtrickPrefs.setInt(basepref+'.num_personal_links',0);
 				num_personal_links=0;
-				//dump('CustomLink->'+pagemodule+': firstlink');
 			}
 
 			var alldivs = doc.getElementsByTagName('div');
@@ -117,8 +87,8 @@ var FoxtrickLinksCustom = {
 					else  href=href.replace( mykeytag[i], FoxtrickHelper.OWNTEAMINFO[mykey] );
 					}
 				}
-				var div = doc.createElement ("div"); 
-				div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
+				var div = doc.createElement ("div");  
+				div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
 				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.title') );
 				div.setAttribute("onClick","window.open(\""+href+"\",\"_blank\");");
 				div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
@@ -152,7 +122,7 @@ var FoxtrickLinksCustom = {
 				if (FoxtrickPrefs.getString(basepref+'.'+nl+'.href')==null) {continue;}				
 
 				var div = doc.createElement ("div"); 
-				div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
+				div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
 				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.href') );
 				div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
 				div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
@@ -190,8 +160,10 @@ var FoxtrickLinksCustom = {
 			var div = doc.createElement ("div"); 
 			div.imgref="";
 			div.setAttribute("id", "inputImgID");
-			div.setAttribute( "title", 'Title') ;
-			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			div.setAttribute( "title", 'Tinntle') ;
+			div.setAttribute( "id", 'inputImgDivIDName') ;
+			div.setAttribute( "imgref", "") ;
+			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
 			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/empty16.png') 50% no-repeat;");
 								
 			// load image button
@@ -201,7 +173,9 @@ var FoxtrickLinksCustom = {
 			loadIcon.addEventListener( "click", FoxtrickLinksLoadDialog, false );
 			loadIcon.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
 			loadIcon.parentdoc = doc.defaultView;
+			loadIcon.doc = doc;
 			loadIcon.result = div; 
+			FoxtrickLinksLoadDialog.doc =doc;
 		
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -245,7 +219,6 @@ var FoxtrickLinksCustom = {
 			inputHref.setAttribute("type", "text");
 			inputHref.setAttribute("maxlength", "200");
 			inputHref.setAttribute("style","width:100%;");
-			//inputHref.setAttribute("size", "20");
 			inputHref.className ="inner";
 			var trn3 = doc.createElement ("tr");
 			var tdn3 = doc.createElement ("td");
@@ -267,15 +240,12 @@ var FoxtrickLinksCustom = {
 			option.innerHTML=Foxtrickl10n.getString("foxtrick.linkscustom.tags" );
 			selectbox.appendChild(option);	
 						
-			//for (var i=0;i<this._info.length;i++) { 
 			for (var key in this._info) { 
-			//	var key=this._info[i]["key"];
 				var option = doc.createElement("option");
 				option.setAttribute("value",key);
 				option.innerHTML='['+key+']';
 				option.setAttribute("style","width:100%;");
 				selectbox.appendChild(option);					
-			//}
 			}
 			try {		
 				for (var key in FoxtrickHelper.OWNTEAMINFO) { 
@@ -341,7 +311,7 @@ var FoxtrickLinksCustom = {
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
 			doc.getElementById("inputImgID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
-			doc.getElementById ( "inputImgID" ).imgref = FoxtrickPrefs.getString(baseprefnl+'.img');
+			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
 		catch (e) {dump("LinksCustom->editOldLink->"+e+'\n');}
 	},
@@ -349,16 +319,17 @@ var FoxtrickLinksCustom = {
 	saveMyLink : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.saveMyLink.doc;
+
 			var basepref = FoxtrickLinksCustom.saveMyLink.basepref;
 			var nl=FoxtrickPrefs.getInt(basepref+'.num_personal_links');
 			nl+=1;
 			FoxtrickPrefs.setString(basepref+'.'+nl+'.href',doc.getElementById ("inputHrefID" ).value );
 			FoxtrickPrefs.setString(basepref+'.'+nl+'.title',doc.getElementById ( "inputTitleID" ).value);
-			FoxtrickPrefs.setString(basepref+'.'+nl+'.img',doc.getElementById ( "inputImgID" ).imgref);
+			FoxtrickPrefs.setString(basepref+'.'+nl+'.img',doc.getElementById('inputImgDivIDName').imgref);
 			FoxtrickPrefs.setInt(basepref+'.num_personal_links',nl);
 				
 			var div = doc.createElement ("div"); 
-			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
+			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+nl+'.img')+"') 50% no-repeat;");
 			div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+nl+'.href') );
 			div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+nl+'.href')+"\",\"_blank\");");
 			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
@@ -428,6 +399,7 @@ function FoxtrickLinksGetEditOldLink (doc,mylink,baseprefnl) {
 function FoxtrickLinksLoadDialog (evt)
 	{	
 		var path="file://"+Foxtrick.selectFile(evt["target"]["parentdoc"]);
+		var doc=FoxtrickLinksLoadDialog.doc;
 		var pathdel="\\";
 		if (path.charAt(7)=="/") {pathdel="/";}
 		var imgfile=path.substr(path.lastIndexOf(pathdel)+1);
@@ -440,63 +412,16 @@ function FoxtrickLinksLoadDialog (evt)
 			var url = ios.newURI(path, null, null);
 			if (!url || !url.schemeIs("file")) {throw "Expected a file URL.";}
 			var pngFile = url.QueryInterface(Components.interfaces.nsIFileURL).file;
-			var istream = Components.classes["@mozilla.org/network/file-input-stream;1"]
-                        .createInstance(Components.interfaces.nsIFileInputStream);
-			istream.init(pngFile, -1, -1, false);
-			var bstream = Components.classes["@mozilla.org/binaryinputstream;1"]
-                        .createInstance(Components.interfaces.nsIBinaryInputStream);
-			bstream.setInputStream(istream);
-			pngBinary = bstream.readBytes(bstream.available());
-		}
-		catch(e) {Foxtrick.alert(aFileURL+" not found");return;}
-
-		// save to preference folder
-		try {
-			var aFile = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-			aFile.append("foxtrick");
-			aFile.append("ownicons");
-			aFile.append(imgfile);
-			aFile.create( Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 600);
-			var stream = Components.classes["@mozilla.org/network/safe-file-output-stream;1"]
-                       .createInstance(Components.interfaces.nsIFileOutputStream);
-			stream.init(aFile, 0x04 | 0x08 | 0x20, 0600, 0); // write, create, truncate
-			stream.write(pngBinary, pngBinary.length);
-			if (stream instanceof Components.interfaces.nsISafeOutputStream) {
-				stream.finish();
-			} else {
-				stream.close();
-			}
-		}
-		catch(e) {}
-	
-		// save to extension folder
-		try{
-			var MY_ID = "{9d1f059c-cada-4111-9696-41a62d64e3ba}";
-			var file = Components.classes["@mozilla.org/extensions/manager;1"].
-					getService(Components.interfaces.nsIExtensionManager).
-					getInstallLocation(MY_ID).getItemFile(MY_ID, "content");
-			file.append("resources");
-			file.append("linkicons");
-			file.append("ownicons");
-			file.append(imgfile);
-			file.create( Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 600);
-			var filestring = file.path; 
-			var stream2 = Components.classes["@mozilla.org/network/safe-file-output-stream;1"]
-                       .createInstance(Components.interfaces.nsIFileOutputStream);
-			stream2.init(file, 0x04 | 0x08 | 0x20, 0600, 0); // write, create, truncate
-			stream2.write(pngBinary, pngBinary.length);
-			if (stream2 instanceof Components.interfaces.nsISafeOutputStream) {
-				stream2.finish();
-			} else {
-				stream2.close();
-			} 
-		} catch(e){}
-		//return 
-		evt["target"]["result"].imgref=imgfile;
-		evt["target"]["result"].setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+imgfile+"') 100% no-repeat;");
-	}
+			var image=generateDataURI(pngFile); 
+			if (image.length>2000) {Foxtrick.alert("Image too large.");return;}
+			var div=doc.getElementById('inputImgDivIDName');
+			div.imgref=image;
+			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+div.imgref+"') 50% no-repeat;");
+			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			 			
+ 		}
+		catch(e) {dump('FoxtrickLinksLoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
+}
 
 	
 	function FoxtrickLinksCustomHeaderClick(evt) {
@@ -533,4 +458,21 @@ function FoxtrickLinksLoadDialog (evt)
 		value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
 		doc.getElementById ( "inputHrefID" ).value=value;
 	} catch (e) {dump("FoxtrickLinksCustomSelectBox_Select: "+e+'\n');}
+}
+
+
+function generateDataURI(file) {
+try { 
+  var contentType = Components.classes["@mozilla.org/mime;1"]
+                              .getService(Components.interfaces.nsIMIMEService)
+                              .getTypeFromFile(file);
+  var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
+                              .createInstance(Components.interfaces.nsIFileInputStream);
+  inputStream.init(file, 0x01, 0600, 0);
+  var stream = Components.classes["@mozilla.org/binaryinputstream;1"]
+                         .createInstance(Components.interfaces.nsIBinaryInputStream);
+  stream.setInputStream(inputStream);
+  var encoded = btoa(stream.readBytes(stream.available()));
+  return "data:" + contentType + ";base64," + encoded;
+} catch (e) {dump("FoxtrickLinks generateDataURI: "+e+'\n');}
 }
