@@ -51,7 +51,9 @@ var FoxtrickLinksCustom = {
 						var div = doc.createElement("div");
 						div.appendChild(hh);
 						div.setAttribute("style","cursor:pointer;");
+						div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
 						div.addEventListener( "click", FoxtrickLinksCustomHeaderClick, false );
+						//div.addEventListener( "MouseOut", "javascript:this.style.backgroundColor='#FFFFFF';",false);
 						FoxtrickLinksCustomHeaderClick.module=this;
 						FoxtrickLinksCustomHeaderClick.doc=doc;
 						FoxtrickLinksCustomHeaderClick.ownBoxBody=ownBoxBody;
@@ -158,12 +160,10 @@ var FoxtrickLinksCustom = {
 			table.appendChild(trn);				
 			
 			var div = doc.createElement ("div"); 
-			div.imgref="";
 			div.setAttribute("id", "inputImgID");
 			div.setAttribute( "title", 'Tinntle') ;
 			div.setAttribute( "id", 'inputImgDivIDName') ;
-			div.setAttribute( "imgref", "") ;
-			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/aiga.gif'>";
 			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/empty16.png') 50% no-repeat;");
 								
 			// load image button
@@ -283,6 +283,9 @@ var FoxtrickLinksCustom = {
 			divED.appendChild(table2);
 
 			ownBoxBody.appendChild(divED);
+			
+			div.imgref=doc.getElementById('inputImgIDName').src ;
+			
 		}
 		catch (e) {dump("LinksCustom->show_edit->"+e+'\n');}
 	},

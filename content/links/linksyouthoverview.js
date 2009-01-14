@@ -19,8 +19,24 @@ var FoxtrickLinksYouthOverview = {
 	    },
 
     run : function( page, doc ) {
+	var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var ownteamid=0;
+		var countryid=0;
+		if (boxleft==null) {return;}
+		var teamid=FoxtrickHelper.findTeamId(boxleft); 
+		if (teamid=="") {return;}
+		var teamdiv = doc.getElementById('teamLinks');
+		var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
+				if (ownleagueid!=null) {
+					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
+					countryid = FoxtrickHelper.findCountryId(teamdiv);
+					
+				}		
+		
+	
+	
 		//addExternalLinksToYouthOverview
-        var links = getLinks("youthlink", { }, doc,this);  
+        var links = getLinks("youthlink", { "countryid": countryid }, doc,this);  
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

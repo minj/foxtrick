@@ -599,7 +599,15 @@ stats["ht_deutschland"] =  {
  "countrylink" : { "path"       : "overview.php",
                    "filters"    : ["countryid"], 
                    "params"     : []
-				},
+				}, 
+ "nationalteamlink" : { "path"       : "scouting/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+ "youthlink" : { "path"       : "scouting/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
   "countryidranges" : [[3, 3]], 
   "title" : "HT-Deutschland",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-deutschland.png"
@@ -1451,6 +1459,10 @@ stats["hattrick-cz"] = {
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
+        "nationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
         
         "countryidranges" : [[52, 52]] 
 };
@@ -1461,14 +1473,15 @@ stats["u20_nt_tracker"] = {
   "title" : "U20 & NT Tracker",
   
   "youthlink" : { "path"       : "?action=player_submit&cat=1",
-                   "filters"    : [], 
+                   "filters"    : ["countryid"], 
                    "params"     : []
                  },
 
   "nationalteamlink" : { "path"     : "?action=select_country",
-                         "filters"  : [],
+                         "filters"  : ["countryid"],
                          "params"   : {"countryid" : "id"}
                         },  
+	  "countryidranges" : [[1,2],[4,200]] 
 };
 
 
