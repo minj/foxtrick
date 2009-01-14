@@ -129,7 +129,6 @@ var FoxtrickLinksPlayerDetail = {
                                                          "form" : form, "goalkeeping" : goalkeeping, "age" : age }, doc,this);  
 					for (var j=0; j< klinks.length; j++) {
 						klinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
-						klinks[j].link.style.paddingRight = "3px";
 						goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
 						goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
 						}										

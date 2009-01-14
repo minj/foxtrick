@@ -198,7 +198,7 @@ FoxtrickTransferListDeadline = {
             part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
             part = ReturnFormatedValue (part, ' ');
                            
-            if (part != 'NaN') table_elm_bonus.innerHTML = part_1_save + '&nbsp;(' + part + ')&nbsp;' + part_2_save;
+            if (part != 'NaN') table_elm_bonus.innerHTML = part_1_save + '&nbsp;<span style="color:#666666;>(' + part + ')</span>&nbsp;' + part_2_save;
 
         } catch (e) {
             dump('  PlayerBonus: ' + e + '\n');
