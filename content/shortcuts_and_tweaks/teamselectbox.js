@@ -20,7 +20,7 @@ var FoxtrickTeamSelectBox= {
 		try {
 			if (doc.location.href.search(/TeamID=/i)==-1) {return;}
 			FoxtrickPrefs.setBool("ShowPlayerAsList",false);
-			dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
+			//dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
 			this.listbox=null;
 			var listbox2=null;
 			var maxlinks=0;
@@ -58,7 +58,7 @@ var FoxtrickTeamSelectBox= {
 		catch (e) {dump("SelectBox->run: "+e+'\n');}
 	},
 	
-    toSelectBox : function( doc ) {  dump("do:toSelectBox\n");
+    toSelectBox : function( doc ) { // dump("do:toSelectBox\n");
 	try {	
 	if (this.listbox!=null) {
 			var selectbox = doc.createElement("select"); 
@@ -86,7 +86,7 @@ var FoxtrickTeamSelectBox= {
 	 catch (e) {dump("SelectBox->toSelectBox: "+e+'\n');}	
 	},
     
-	toList : function( doc ) { dump("do:tolist\n");
+	toList : function( doc ) { //dump("do:tolist\n");
 		try {	
 			if (this.listbox!=null) {
 					    var option = this.listbox.getElementsByTagName("option")[0];
