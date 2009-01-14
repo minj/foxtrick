@@ -83,7 +83,7 @@ var FoxtrickPreferencesDialog = {
                 tHeight = screen.availHeight;
             if (screen.availWidth <= tWidth)
                 tWidth = screen.availWidth;
-			 this.resizeTo(tWidth, tHeight);*
+			 this.resizeTo(tWidth, tHeight);*/
 
 			 const WINDOW_WIDTH = 700; 
             const WINDOW_HEIGHT = 650; 
