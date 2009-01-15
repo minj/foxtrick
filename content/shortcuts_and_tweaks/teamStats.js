@@ -28,9 +28,11 @@ var FTTeamStats= {
 				var specc = allDivs2[i];
 				if(specc) {
 					// specialities
-                    var specMatch = specc.textContent.match(/\[\D+\]/g);
+                    var specMatch = specc.textContent.match(/\.\ \[\D+\]/g);
+                    dump(' ==>' + specMatch+'\n');
                     if (specMatch != null) {
-                        var spec = specMatch[0];
+                        dump(' == ==>' + specMatch+'\n');
+                        var spec = substr(specMatch[0], 2, specMatch[0].length);
                         if (typeof(specs[spec]) == 'undefined') {
                             specs[spec] = 1;
                         } else {
