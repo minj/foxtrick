@@ -52,5 +52,6 @@ var FoxtrickCopyPostID = {
 	_copy_postid_to_clipboard : function(ev) { 
 		var postid = ev.target.getAttribute("name");
 		Foxtrick.copyStringToClipboard(postid);
+        ev.target.innerHTML=postid;
 	},	
 };
