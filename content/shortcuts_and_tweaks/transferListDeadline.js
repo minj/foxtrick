@@ -79,7 +79,7 @@ FoxtrickTransferListDeadline = {
                         var DeadlineText = this._DeadlineToText (deadline_s);
                         // dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
                         if (DeadlineText.search("NaN") == -1)
-                            selltime_elm.innerHTML +=  '<span id="ft_deadline" style="margin-left:10px; font-weight:bold; color:#800000">(' + DeadlineText + ')</span>';
+                            selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
                         else dump('  Could not create deadline (NaN)\n'); 
                     }
                 }
@@ -130,7 +130,7 @@ FoxtrickTransferListDeadline = {
                 
             // dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
             if (DeadlineText.search("NaN") == -1)
-                selltime_elm.innerHTML +=  '<span id="ft_deadline" style="margin-left:10px; font-weight:bold; color:#800000">(' + DeadlineText + ')</span>'
+                selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
             else dump('  Could not create deadline (NaN)\n'); 
         } catch (e) {
             dump(e);
@@ -162,7 +162,7 @@ FoxtrickTransferListDeadline = {
                 
             if (JoinedText.search("NaN") == -1) {
                 part1 = substr(joined_elm.innerHTML, 0, strrpos( joined_elm.innerHTML, ")"));
-                part1 = part1.replace('(', '<br><span id ="ft_since">(');
+                part1 = part1.replace('(', '<br><span class="date smallText" id ="ft_since">(');
                 joined_elm.innerHTML = part1 + ', ' + JoinedText + ')</span>';
             }
             else dump('  Could not create jointime (NaN)\n'); 
@@ -198,7 +198,7 @@ FoxtrickTransferListDeadline = {
             part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
             part = ReturnFormatedValue (part, ' ');
                            
-            if (part != 'NaN') table_elm_bonus.innerHTML = part_1_save + '&nbsp;<span style="color:#666666;>(' + part + ')</span>&nbsp;' + part_2_save;
+            if (part != 'NaN') table_elm_bonus.innerHTML = part_1_save + '&nbsp;<span class="smallText" style="color:#666666;>(' + part + ')</span>&nbsp;' + part_2_save;
 
         } catch (e) {
             dump('  PlayerBonus: ' + e + '\n');
