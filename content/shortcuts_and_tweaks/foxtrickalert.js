@@ -35,56 +35,44 @@ var FoxtrickAlert = {
         var tickerdiv=evt.originalTarget;
         tickerdiv=tickerdiv.getElementsByTagName('div');
         try {
-              var message=null;
-              var elemText=new Array();
-              //getting text
-              for (i=0;i<tickerdiv.length;i++)
-              {
-                  var tickelem=tickerdiv[i].firstChild.firstChild;
-                  if (tickelem.nodeType!=tickelem.TEXT_NODE)
-                  {
-                      //there is the strong tag
-                      elemText[i]=tickelem.firstChild.nodeValue;
-                      message=tickelem.firstChild.nodeValue;
-                  }
-                  else
-                  {
-                      elemText[i]=tickelem.nodeValue;
-                  }
-              }
-              
-              //Now checking if we haven't already sent the alert
-              if (message != null)
-              {
-              	  var isequal=true;
-                  for (i=0;i<tickerdiv.length;i++)
-                  {
-                      if (elemText[i]!=Foxtrick.news[i])
-                          isequal=false;
-                      Foxtrick.news[i]=elemText[i];
-                  }
-                  if (isequal)
-                      message=null;
-              }
-              
-              if (message != null) {
-                //if (tmp[1] != "myHattrick.asp") {
-                  if (FoxtrickPrefs.getBool("alertSlider")) {
-                      FoxtrickAlert.foxtrick_showAlert(message);
-                  }
-                  if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
-                      FoxtrickAlert.foxtrick_showAlertGrowl(message);
-                  }
-                  if (FoxtrickPrefs.getBool("alertSound")) {
-                     try {
-                       Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
-                     } catch (e) {
-                       Foxtrick.LOG('playsound: '+e);
-                     }
-                  }
-                //}
-              }
-            } catch(e) { Foxtrick.LOG('error showalert '+e); }
+            var message=null;
+            var elemText=new Array();
+            //getting text
+            for (i=0;i<tickerdiv.length;i++)
+            {
+				var tickelem=tickerdiv[i].firstChild.firstChild;
+                if (tickelem.nodeType!=tickelem.TEXT_NODE)
+                {
+                    //there is the strong tag
+					elemText[i]=tickelem.firstChild.nodeValue;
+                    message=tickelem.firstChild.nodeValue;
+					var isequal=true;
+					for (j=0;j<=i;j++)
+					{
+						if (elemText[j]!=Foxtrick.news[j])
+							isequal=false;
+						Foxtrick.news[j]=elemText[j];
+                    }
+                    if (!isequal) {
+						if (FoxtrickPrefs.getBool("alertSlider")) {
+							FoxtrickAlert.foxtrick_showAlert(message);
+						}
+						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
+							FoxtrickAlert.foxtrick_showAlertGrowl(message);
+						}
+						if (FoxtrickPrefs.getBool("alertSound")) {
+							try {
+								Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
+							} catch (e) {
+								Foxtrick.LOG('playsound: '+e);
+							}
+						}
+					}
+                } else {
+					elemText[i]=tickelem.nodeValue;
+				}
+            } 
+        } catch(e) { Foxtrick.LOG('error showalert '+e); }
     },
 
     foxtrick_showAlert: function(text, alertError) {
