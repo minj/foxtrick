@@ -50,10 +50,9 @@ FoxtrickTransferListDeadline = {
 		
         switch ( page ) {
               
-            case 'players' :
+            case 'playerdetail' :
                 this._PlayerDetailsDeatline ( doc );
                 break;
-                
         }	
 	},
     
@@ -151,11 +150,16 @@ FoxtrickTransferListDeadline = {
             
             var joinedtime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
             
-            joinedtime = substr(joinedtime, strrpos( joinedtime, ";")+1, joinedtime.length);
+            joinedtime = substr(joinedtime, strrpos( joinedtime, ";"), joinedtime.length);
 
+            // dump('  Joindate: ' + joinedtime + '\n');
+            // dump('  HT Week: ' + this._gregorianToHT(joinedtime) + '\n');
+
+            var ht_week = this._gregorianToHT(joinedtime);
+            
             JT_date = this._getDatefromCellHTML( joinedtime );
             if (!JT_date) return;
-                
+            
             var joined_s = Math.floor( (HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
                 
             var JoinedText = this._DeadlineToText (joined_s , true);
@@ -163,7 +167,7 @@ FoxtrickTransferListDeadline = {
             if (JoinedText.search("NaN") == -1) {
                 part1 = substr(joined_elm.innerHTML, 0, strrpos( joined_elm.innerHTML, ")"));
                 part1 = part1.replace('(', '<br><span class="date smallText" id ="ft_since">(');
-                joined_elm.innerHTML = part1 + ', ' + JoinedText + ')</span>';
+                joined_elm.innerHTML = part1 + ' '+ ht_week + ', ' + JoinedText + ')</span>';
             }
             else dump('  Could not create jointime (NaN)\n'); 
         } catch (e) {
@@ -188,6 +192,7 @@ FoxtrickTransferListDeadline = {
                 }
                 catch(e) {dump('    >' + e + '\n');}
             }
+            if (table_elm_bonus == null) return;
             table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
 
             var part = substr(table_inner, 0, table_inner.lastIndexOf("&nbsp;"));
@@ -226,7 +231,7 @@ FoxtrickTransferListDeadline = {
         
     _DeadlineToText : function( deadline_s, short ) {        
         var DeadlineText = "";
-        var Days = 0; var Minutes = 0; var Hours = 0;
+        var Years = 0; var Days = 0; var Minutes = 0; var Hours = 0;
 
         if ( Math.floor(deadline_s) < 0 ) 
             return 'NaN';
@@ -241,6 +246,7 @@ FoxtrickTransferListDeadline = {
                 DeadlineText += Days + '&nbsp;' + Foxtrickl10n.getString("TransferlistDeadLine.day");
         }
         if (short) return DeadlineText;
+        
         if (DeadlineText != "") DeadlineText += "&nbsp;";
         
         
@@ -256,5 +262,65 @@ FoxtrickTransferListDeadline = {
         DeadlineText += Minutes + Foxtrickl10n.getString("TransferlistDeadLine.minutes");
         
         return DeadlineText
-    }
+    },
+    
+    _gregorianToHT : function ( date ) {
+       var months = [];
+       var years = [];
+
+       months[1] = 0;
+       months[2] = 31;
+       months[3] = 59;
+       months[4] = 90;
+       months[5] = 120;
+       months[6] = 151;
+       months[7] = 181;
+       months[8] = 212;
+       months[9] = 243;
+       months[10] = 273;
+       months[11] = 304;
+       months[12] = 334;
+
+       years[0] = 833;         // From 2000
+       years[1] = 1199;
+       years[2] = 1564;
+       years[3] = 1929;
+       years[4] = 2294;
+       years[5] = 2660;
+       years[6] = 3025;
+       years[7] = 3390;
+       years[8] = 3755;
+       years[9] = 4121;
+       years[10] = 4486;       // = 2010
+
+       var dateParts = date.split('.');
+
+       var day = parseInt(dateParts[0],10);
+       var month = parseInt(dateParts[1],10);
+       var year = parseInt(dateParts[2],10);
+
+       var dayCount = years[year-2000] + months[month] + (day-1);
+
+       // leap day
+       if (year % 4 == 0 && month > 2)
+               ++dayCount;
+
+       // This function wont work for dates before season 11
+       if (dayCount < 1120)
+               return this._htDatePrintFormat(date, -1, -1, -1);
+
+       var htDate = this._htDatePrintFormat(date, (Math.floor(dayCount/(16*7)) + 1),
+                      (Math.floor((dayCount%(16*7))/7) + 1), dayCount%7 + 1);
+
+       return htDate;
+    },
+        
+    _htDatePrintFormat : function (originalDate, season, week, day) {
+       // Days go from 1 = Saturday to 7 = Friday
+       if (season < 11)
+               // return originalDate + " (old)";
+           return "(old)";
+       // return originalDate + " (" + week + "/" + season + ")";
+           return "(" + week + "/" + season + ")";
+    }        
 };
