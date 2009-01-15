@@ -28,4 +28,4 @@ pref( "extensions.foxtrick.prefs.module.LinksCoach.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksPlayerDetail.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksMatch.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksCustom.enabled", false );
-pref( "extensions.foxtrick.prefs.module.ATeamShortCuts.value", 0 );
+pref( "extensions.foxtrick.prefs.module.SeniorTeamShortCuts.value", 0 );

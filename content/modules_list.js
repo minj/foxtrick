@@ -72,6 +72,6 @@ Foxtrick.modules = [
 					 FTTeamStats,
 					 FoxtrickLargeFlags,
 					 FoxtrickTeamSelectBox,
-					 FoxtrickATeamShortCuts,
+					 FoxtrickSeniorTeamShortCuts,
 					 FoxtrickCustomMedals,
                    ];

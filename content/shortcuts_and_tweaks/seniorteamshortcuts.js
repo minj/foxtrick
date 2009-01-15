@@ -1,20 +1,20 @@
 /**
- * ateamshortcuts.js
+ * seniorshortcuts.js
  * Foxtrick add coach and lastlineup links to team pages
  * @author convinced
  */
 ////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickATeamShortCuts = {
+var FoxtrickSeniorTeamShortCuts = {
 	
-    MODULE_NAME : "ATeamShortCuts",
+    MODULE_NAME : "SeniorTeamShortCuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
 	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"), 
 	
     init : function() {
             Foxtrick.registerPageHandler( 'teamPageGeneral',
-                                          FoxtrickATeamShortCuts );
+                                          FoxtrickSeniorTeamShortCuts );
    },
 
     run : function( page, doc ) {
