@@ -163,7 +163,7 @@ var FoxtrickLinksCustom = {
 			div.setAttribute("id", "inputImgID");
 			div.setAttribute( "title", 'Tinntle') ;
 			div.setAttribute( "id", 'inputImgDivIDName') ;
-			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/aiga.gif'>";
+			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/aiga.png'>";
 			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/empty16.png') 50% no-repeat;");
 								
 			// load image button
@@ -184,12 +184,13 @@ var FoxtrickLinksCustom = {
 			td2.width="100%";					
 			td1.appendChild(div);
 			td2.appendChild(loadIcon);
+			td2.setAttribute("colspan","2");
 			tr1.appendChild(td1);
 			tr1.appendChild(td2);
 			table.appendChild(tr1);
 				
 			divED.appendChild(table);	
-		
+			
 			var table2=doc.createElement ("table"); 
 			table2.setAttribute('id','LinksCustomTable2ID');					 
 			
@@ -207,6 +208,7 @@ var FoxtrickLinksCustom = {
 			var divn4 = doc.createElement ("div"); 
 			divn4.appendChild(inputTitle);
 			tdn4.appendChild(divn4);				
+			tdn4.setAttribute("colspan","3");
 			trn4.appendChild(tdn4);				
 			table2.appendChild(trn4);
 
@@ -225,6 +227,7 @@ var FoxtrickLinksCustom = {
 			var divn3 = doc.createElement ("div"); 
 			divn3.appendChild(inputHref);
 			tdn3.appendChild(divn3);				
+			tdn3.setAttribute("colspan","3");
 			trn3.appendChild(tdn3);				
 			table2.appendChild(trn3);
 
@@ -261,6 +264,7 @@ var FoxtrickLinksCustom = {
 			var divn2 = doc.createElement ("div"); 
 			divn2.appendChild(selectbox);
 			tdn2.appendChild(divn2);				
+			tdn2.setAttribute("colspan","3");
 			trn2.appendChild(tdn2);				
 			table2.appendChild(trn2);
 			
@@ -275,10 +279,25 @@ var FoxtrickLinksCustom = {
 			saveLink.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.addlink" );
 			var trn5 = doc.createElement ("tr");
 			var tdn5 = doc.createElement ("td");
+			tdn5.setAttribute("colspan","2");
 			var divn5 = doc.createElement ("div"); 
 			divn5.appendChild(saveLink);
-			tdn5.appendChild(divn5);				
+			tdn5.appendChild(divn5);
+			
+			var helpdiv = doc.createElement("div");
+			helpdiv.setAttribute("class","foxtrick" +	"Help float_right");
+			helpdiv.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.help"));
+		
+			var helplink = doc.createElement ("a");	
+			helplink.setAttribute("href", "javascript: alert('"+Foxtrickl10n.getString('foxtrick.linkscustom.helptext')+"');");
+			helplink.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			helpdiv.appendChild(helplink);
+			
+			var tdn5b = doc.createElement ("td");
+			tdn5b.appendChild(helpdiv);
+			
 			trn5.appendChild(tdn5);				
+			trn5.appendChild(tdn5b);				
 			table2.appendChild(trn5);
 			divED.appendChild(table2);
 

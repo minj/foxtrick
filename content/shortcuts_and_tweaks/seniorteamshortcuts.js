@@ -76,7 +76,6 @@ var FoxtrickSeniorTeamShortCuts = {
 				var boxleft=doc.getElementById('ctl00_pnlSubMenu');
 				if (boxleft==null) {return;}
 				var teamid=FoxtrickHelper.findTeamId(boxleft); 
-				dump (teamid+' '+ ownteamid+'\n');
 				if (teamid==ownteamid && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) return; 
  			
 				var pos1=-1; var pos2=-1;
@@ -84,6 +83,7 @@ var FoxtrickSeniorTeamShortCuts = {
 				var bllink=boxleft.getElementsByTagName('a');
 				for (var j = 0; j < bllink.length; j++) {
 					if (pos1==-1 && bllink[j].href.search(/\/Club\/Players\/\?TeamID/i)>0) pos1=j;
+					if (pos1==-1 && bllink[j].href.search(/\/Club\/NationalTeam\/NTPlayers/i)>0) pos1=j;					
 					if (pos2==-1 && bllink[j].href.search(/\/Club\/Matches\/\?TeamID/i)>0) pos2=j;
 				}
 				
@@ -96,7 +96,7 @@ var FoxtrickSeniorTeamShortCuts = {
 					lastmatchlink.setAttribute( "id", ownlastmatchlinkId );
 					li.appendChild(lastmatchlink);
                     
-					if (pos2) bl_header[pos2].parentNode.insertBefore(li,bl_header[pos2].nextSibling);
+					if (pos2!=-1) bl_header[pos2].parentNode.insertBefore(li,bl_header[pos2].nextSibling);
 					else bl_header[0].parentNode.appendChild(li);
 						 
 				// coach make link
@@ -119,7 +119,7 @@ var FoxtrickSeniorTeamShortCuts = {
 						var owncoachlinkId = "foxtrick_content_coach";
 						coachlink.setAttribute( "id", owncoachlinkId );
 						li2.appendChild(coachlink);
-						if (pos1) bl_header[pos1].parentNode.insertBefore(li2,bl_header[pos1].nextSibling);
+						if (pos1!=-1) bl_header[pos1].parentNode.insertBefore(li2,bl_header[pos1].nextSibling);
 						else bl_header[0].parentNode.appendChild(li2);
 						
 				
