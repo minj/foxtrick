@@ -26,11 +26,11 @@ FoxtrickFixcssProblems = {
             
             if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[i]  ) ) {
                 var css = "chrome://foxtrick/content/resources/css/fixes/" + this.OPTIONS[i] + ".css";
-                if ( ( (LAYOUTSWITCH[i] == 'standard' ) || (LAYOUTSWITCH[i] == 'all') ) && Foxtrick.isStandardLayout ) {
+                if ( ( (LAYOUTSWITCH[i] == 'standard' ) || (LAYOUTSWITCH[i] == 'all') ) && (Foxtrick.isStandardLayout == -1) ) {
                     dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet( doc, css );
                 } 
-                else if ( ((LAYOUTSWITCH[i] == 'simple' ) || (LAYOUTSWITCH[i] == 'all')) && !Foxtrick.isStandardLayout ) {
+                else if ( ((LAYOUTSWITCH[i] == 'simple' ) || (LAYOUTSWITCH[i] == 'all')) && (Foxtrick.isStandardLayout == 0) ) {
                     dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet ( doc, css );
                 } 
