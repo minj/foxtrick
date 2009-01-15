@@ -740,11 +740,15 @@ stats["ht-fff"] =  {
         "url" : "http://www.ht-fff.org/",
 
         "playerlink" : { "path"       : "dtn_submitting.php",
-                         "filters"    : new Array("nationality"), 
+                         "filters"    : ["nationality"], 
                          "params"     : []
                        },
-        //"scoutinglink
+		"nationalteamlink" : { "path"       : "dtn_submitting.php",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
         "nationalityranges" : [[5, 5]],
+        "countryidranges" : [[5, 5]],
         "title" : "ht-fff.org | french scouting group.",
         "img" : "chrome://foxtrick/content/resources/linkicons/htfff.png"
 };    
@@ -1501,34 +1505,33 @@ stats["u20schweiz"] =  {
   "title" : "U20 Schweiz",
   "img" : "chrome://foxtrick/content/resources/linkicons/u20schweiz.jpg",
   
-  "LeagueIDranges" : [[46,46]],
+  "countryidranges" : [[46,46]],
   "LeagueOfficeTypeIDranges" : [[4,4]],
   
   "nationalteamlink" : { "path"     : "",
-                         "filters"  : ["LeagueID", "LeagueOfficeTypeID"],
+                         "filters"  : ["countryid", "LeagueOfficeTypeID"],
+                         "params"   : []
+  },
+  "ageranges" : [[17,20]],
+  "nationalityranges" : [[46,46]],
+  
+  "playerlink" : { "path"     : "",
+                         "filters"  :["nationality","age"],
                          "params"   : []
   }
-  
 };
 
 stats["czechrepublic_nt"] = { 
   "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
   "img" : "chrome://foxtrick/content/resources/linkicons/czech_nt_tracker.png",
-  "title" : "Ceská republika U20 & NT Tracker",
+  "title" : "Ceská republika U20 Tracker",
   
   "playerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality","age"], 
                    "params"     : []
-                 },
-
-  "nationalteamlink" : { "path"     : "",
-                         "filters"  : ["LeagueID"],
-                         "params"   : []
-                        },
-  
+                 },  
   "nationalityranges" : [[52, 52]],
-  "LeagueIDranges" : [[52,52]]
-  
+  "ageranges" : [[17,20]],  
 };
 
 stats["hattrick-cz"] = { 
@@ -1545,25 +1548,37 @@ stats["hattrick-cz"] = {
                          "params"     :  []
                        },
         
-        "countryidranges" : [[52, 52]] 
+        "countryidranges" : [[52, 52]] ,
 };
 
 stats["u20_nt_tracker"] = { 
   "url" : "http://www.c10.ch/ant_db/index.php",
   "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
-  "title" : "U20 & NT Tracker",
+  "title" : "Global U20 & NT Tracker",
   
-  "youthlink" : { "path"       : "?action=player_submit&cat=1",
-                   "filters"    : ["countryid"], 
+  "nationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "playerlink" : { "path"       : "?action=player_submit&cat=1",
+                   "filters"    : ["nationality"], 
                    "params"     : []
                  },
+	"countryidranges" : [[1,2],[4,200]] ,
+	"nationalityranges" : [[1,2],[4,200]], 
+};
 
+/*
+stats["u20_nt_stats"] = { 
+  "url" : "http://www.c10.ch/ant_db/index.php",
+  "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
+  "title" : "U20 & NT Stats",
+  
   "nationalteamlink" : { "path"     : "?action=select_country",
-                         "filters"  : ["countryid"],
+                         "filters"  : [],
                          "params"   : {"countryid" : "id"}
                         },  
-	  "countryidranges" : [[1,2],[4,200]] 
-};
+};*/
 
 
 
