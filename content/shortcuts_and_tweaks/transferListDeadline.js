@@ -265,6 +265,15 @@ FoxtrickTransferListDeadline = {
     },
     
     _gregorianToHT : function ( date ) {
+        
+       if (date == '') return false;
+       date +=' ';
+            
+       // dump ('  DATE :[' + date + ']\n');
+
+       var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+       var ar = reg.exec(date);
+       
        var months = [];
        var years = [];
 
@@ -293,12 +302,12 @@ FoxtrickTransferListDeadline = {
        years[9] = 4121;
        years[10] = 4486;       // = 2010
 
-       var dateParts = date.split('.');
-
-       var day = parseInt(dateParts[0],10);
-       var month = parseInt(dateParts[1],10);
-       var year = parseInt(dateParts[2],10);
-
+       var day = parseInt(ar[1]);
+       var month = parseInt(ar[3]);
+       var year = parseInt(ar[5]);
+       
+       // dump ('  DATE :[' + year + '-' + month + '-' + day + ']\n');
+       
        var dayCount = years[year-2000] + months[month] + (day-1);
 
        // leap day
