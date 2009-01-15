@@ -145,12 +145,12 @@
                 <label value="Mod-PaV (872922)" />
 				<label value="Project owners" 
                        style="font-weight: bold;" />
-                <label value="kolmis (116321), larsw84 (504255)" />
+                <label value="larsw84 (504255), spambot (333791)" />
 				<label value="Developers" 
                        style="font-weight: bold;" />
-                <label value="taised (234678), bummerland (1141309), Jestar (513519), convinced (1142953),"/>
-				<label value="spambot (333791), smates (1682965), OBarros (864555), stephan57 (1751312)," />
-				<label value="LA-Fryslanner-777 (440454), Kurdy_Malloy (1105139), baumanns (244464)" />
+                <label value="kolmis (116321), taised (234678), bummerland (1141309), Jestar (513519), convinced (1142953),"/>
+				<label value="smates (1682965), OBarros (864555), stephan57 (1751312)," />
+				<label value="LA-Foppe (440454), Kurdy_Malloy (1105139), baumanns (244464)" />
 				<label value="Translations"
 				       style="font-weight: bold;" />
 				<label value="* Bosnian - LA-Masterix (1617453)" />
