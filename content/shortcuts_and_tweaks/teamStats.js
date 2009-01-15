@@ -29,9 +29,9 @@ var FTTeamStats= {
 				if(specc) {
 					// specialities
                     var specMatch = specc.textContent.match(/\[\D+\]/g);
-                    dump(' ==>' + specMatch+'\n');
+                    // dump(' ==>' + specMatch+'\n');
                     if (specMatch != null) {
-                        dump(' == ==>' + specMatch+'\n');
+                        // dump(' == ==>' + specMatch+'\n');
                         var spec = substr(specMatch[0], 0, specMatch[0].length);
                         if (typeof(specs[spec]) == 'undefined') {
                             specs[spec] = 1;
@@ -44,8 +44,7 @@ var FTTeamStats= {
 		}
 
 		var boxrightt=doc.getElementById('sidebar');
-		var txt ='';
-
+		
         var specsTable = "";
         for (var spec in specs) {
           specsTable += "<tr><td class=\"ch\">" + spec.replace(/\[|\]/g,"") + "</td><td>" + specs[spec] + "</td></tr>";
@@ -118,12 +117,52 @@ var FTTeamStats= {
         }
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
         if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
-        if (specsTable != "") txt = '<table class="smallText">' + specsTable + "</table>";
+                
+        if (true) {
+		//<p>Aktueller Verein: <a href="/Club/?TeamID=1720048" title="&amp;FC&amp; BESIKTAS">&FC& BESIKTAS</a> (Türkiye)</p>
 
+            var countries = {};
+            var found = false;
+            var allDivs2 = doc.getElementsByTagName( "p" );
+            for( var i = 0; i < allDivs2.length; i++ ) {
+                
+                if( allDivs2[i].textContent.match(/\:/g) ) {
+                    var ctrc = allDivs2[i];
+                    if(ctrc) {
+                        // specialities
+                        var ctrMatch = ctrc.textContent.match(/\(\D+\)/g);
+                        dump(' ==>' + ctrMatch+'\n');
+                        if (ctrMatch != null) {
+                            dump(' == ==>' + ctrMatch+'\n');
+                            var land = substr(ctrMatch[0], 0, ctrMatch[0].length);
+                            if (typeof(countries[land]) == 'undefined') {
+                                countries[land] = 1;
+                                found = true;
+                            } else {
+                                countries[land]++;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if (found){
+                var countriesTable = '';
+                countriesTable += '<tr><td class="ch"><u>'+ Foxtrickl10n.getString("foxtrick.FTTeamStats.countries.label") + '</u></td></td>';
+                for (var land in countries) {
+                    countriesTable += "<tr><td class=\"\">" + land.replace(/\(|\)/g,"") + "</td><td>" + countries[land] + "</td></tr>";
+                }
+                specsTable += countriesTable;            
+                // dump(countries);
+            }
+            
+        }
         
-		
+		var boxrightt=doc.getElementById('sidebar');
+        var contentDiv = boxrightt.innerHTML;
 
-		var contentDiv = boxrightt.innerHTML;
+        var txt ='';
+        if (specsTable != "") txt = '<table class="smallText">' + specsTable + "</table>";
 
 		var NovaVar; 
 		
