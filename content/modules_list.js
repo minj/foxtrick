@@ -14,8 +14,7 @@ Foxtrick.modules = [
                      FoxtrickForumYouthIcons,
                      BookmarkAdjust,
                      FoxtrickHideManagerAvatar,
-                     FoxtrickRedirManagerToTeam,
-					 FoxtrickMoveLinks,
+                     FoxtrickMoveLinks,
                      FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
 					 FoxtrickCopyPostID,  
 					 FoxtrickHideManagerAvatarUserInfo,
@@ -74,4 +73,5 @@ Foxtrick.modules = [
 					 FoxtrickTeamSelectBox,
 					 FoxtrickSeniorTeamShortCuts,
 					 FoxtrickCustomMedals,
+					 FoxtrickForumRedirManagerToTeam,					 
                    ];

@@ -1,19 +1,19 @@
 /**
- * redirmanagertoteam.js
+ * forumredirmanagertoteam.js
  * Foxtrick redirect from manager to team page
  * @author convinced
  */
 
 ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickRedirManagerToTeam = {
+var FoxtrickForumRedirManagerToTeam = {
 	
-    MODULE_NAME : "RedirManagerToTeam",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_NAME : "ForumRedirManagerToTeam",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
 
 	init : function() {
             Foxtrick.registerPageHandler( 'managerRedir',
-                                          FoxtrickRedirManagerToTeam);
+                                          FoxtrickForumRedirManagerToTeam);
     },
 
     run : function( page, doc ) { 
