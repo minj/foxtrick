@@ -124,7 +124,9 @@ var FoxtrickPlayerAdToClipboard = {
 				for(var j = 1; j < popupLinks.length; j++) {
 					popupLinks[j].innerHTML = "";
 				}
-				ad += "\t" + cellCopy.textContent.replace(/\n/g,"").replace(/     /g,"") + "\n";
+				// bolding for speciality
+				ad += "\t" + (i==table.rows.length-1?"[b]":"") + cellCopy.textContent.replace(/\n/g,"").replace(/     /g,"") + 
+				             (i==table.rows.length-1?"[/b]":"") + "\n";
 			}
 			ad += "\n";
 			    
