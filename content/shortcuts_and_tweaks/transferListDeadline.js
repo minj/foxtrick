@@ -13,6 +13,9 @@ FoxtrickTransferListDeadline = {
         Foxtrick.registerPageHandler('transferListSearchResult', this);
         Foxtrick.registerPageHandler('playerdetail', this);
         Foxtrick.registerPageHandler('transfer', this);
+        Foxtrick.registerPageHandler('transfersTeam', this);
+        Foxtrick.registerPageHandler('TransfersPlayer', this);
+        Foxtrick.registerPageHandler('matches', this);
     },
 
     run : function(page, doc) {
@@ -38,6 +41,18 @@ FoxtrickTransferListDeadline = {
             case 'transfer' :
                 
                 this._PlayerListDeatline ( doc, 'div' );
+                break;
+                
+            case 'transfersTeam' :
+                this._modifyDates ( doc, true );
+                break;
+            
+            case 'TransfersPlayer' :
+                this._modifyDates ( doc, true );
+                break;                
+
+            case 'matches' :
+                this._modifyDates ( doc );
                 break;
                 
         }
@@ -248,4 +263,29 @@ FoxtrickTransferListDeadline = {
         
         return DeadlineText
     },
+ 
+    _modifyDates : function ( doc, short ) {
+        /*
+        Returns HT-Week & Season
+        short == true => Date is without time.
+        */
+        var tds = doc.getElementsByTagName("td");
+        for (var i = 0; tds[i] != null; ++i) {
+            dt_inner = Foxtrick.trim(tds[i].innerHTML);
+            if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
+                // dump (i + ' - ' + dt_inner + '\n' );
+                var reg = /^(\d+)(.*?)(\d+)(.*?)(\d{4})(.*?)/g;
+                var ar = reg.exec(dt_inner);
+            
+                if (ar != null) {
+                    // dump (i + ' ====> ' + ar + '\n');
+                    var td_date = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+                
+                    if (Foxtrick.trim(td_date).match(reg) != null) {
+                        tds[i].innerHTML = dt_inner + '&nbsp;' + gregorianToHT(td_date);
+                    }
+                }
+            }
+        }
+    }
 };
