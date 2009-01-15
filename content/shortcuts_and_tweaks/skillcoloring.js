@@ -12,17 +12,17 @@ var FoxtrickSkillColoring = {
     OPTIONS : {},
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'all',
-                                          FoxtrickSkillColoring);
+            Foxtrick.registerPageHandler( 'all', FoxtrickSkillColoring);
             this.initOptions();                          
     },
 
     run : function( page, doc ) {
         // dump(this.MODULE_NAME + '\n');
         skillstyles = ["skill-color", "skill-number", "skill-number-selectoption"];
-        displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"), 
-                    Foxtrick.isModuleFeatureEnabled( this, "skill_number"), 
-                    Foxtrick.isModuleFeatureEnabled( this, "skill_select") ];
+        displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"  ), 
+                          Foxtrick.isModuleFeatureEnabled( this, "skill_number" ), 
+                          Foxtrick.isModuleFeatureEnabled( this, "skill_select" ) 
+                        ];
         for (var i = 0; i < skillstyles.length; i++) {
             // dump ('SKILLS: ' + i + ' - ' + displaystyles[i] + ' enabled.\n');
             if (displaystyles[i]) {
@@ -32,16 +32,7 @@ var FoxtrickSkillColoring = {
                     css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + "-personal.css";
                     //dump ('personal\n');
                 }
-                var path = "head[1]";
-                var head = doc.evaluate(path,doc.documentElement,null,
-                    doc.DOCUMENT_NODE,null).singleNodeValue;
-
-                var link = doc.createElement("link");
-                link.setAttribute("rel", "stylesheet");
-                link.setAttribute("type", "text/css");
-                link.setAttribute("media", "all");
-                link.setAttribute("href", css);
-                head.appendChild(link);
+                Foxtrick.addStyleSheet( doc, css );
             }   
         }
 	},

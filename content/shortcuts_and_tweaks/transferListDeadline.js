@@ -227,6 +227,9 @@ FoxtrickTransferListDeadline = {
     _DeadlineToText : function( deadline_s, short ) {        
         var DeadlineText = "";
         var Days = 0; var Minutes = 0; var Hours = 0;
+
+        if ( Math.floor(deadline_s) < 0 ) 
+            return 'NaN';
         
         if(deadline_s >= 86400)
         {
@@ -252,6 +255,6 @@ FoxtrickTransferListDeadline = {
         deadline_s = deadline_s-Minutes*60;
         DeadlineText += Minutes + Foxtrickl10n.getString("TransferlistDeadLine.minutes");
         
-        return DeadlineText;
+        return DeadlineText
     }
 };

@@ -17,6 +17,8 @@ FoxtrickFixcssProblems = {
     },
 
     run : function(page, doc) {
+        
+        // standard | simpe | all
         var LAYOUTSWITCH = new Array (
             "standard"
         );
@@ -44,6 +46,7 @@ FoxtrickFixcssProblems = {
 	},
         
     initOptions : function() {
+        // Name of css file
 		this.OPTIONS = new Array( 
                                     "Forum_Hover_Links"
 								);
