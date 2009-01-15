@@ -104,9 +104,10 @@ var FoxtrickPlayerAdToClipboard = {
 			skillLinks.push(staminaLink);
 			skillNames.push(Foxtrickl10n.getString("Stamina")+":");
 			
-			var innerP = obj.getElementsByTagName("p")[0].innerHTML;
+			var innerPElement = obj.getElementsByTagName("p")[0];
+			var innerP=innerPElement.innerHTML;
 			innerP = innerP.replace(/<br>/g,"\n");
-			for( var i=0; i < 7; i++) {
+			for( var i=0; i < innerPElement.getElementsByTagName("a").length; i++) {
 				var startPos = innerP.search("<a ");
 				var endPos = innerP.search(">")+1;
 				innerP = innerP.replace(innerP.substr(startPos,endPos-startPos),"");
@@ -125,8 +126,8 @@ var FoxtrickPlayerAdToClipboard = {
 					popupLinks[j].innerHTML = "";
 				}
 				// bolding for speciality
-				ad += "\t" + (i==table.rows.length-1?"[b]":"") + cellCopy.textContent.replace(/\n/g,"").replace(/     /g,"") + 
-				             (i==table.rows.length-1?"[/b]":"") + "\n";
+				ad += "\t" + (i==5?"[b]":"") + cellCopy.textContent.replace(/\n/g,"").replace(/     /g,"") + 
+				             (i==5?"[/b]":"") + "\n";				
 			}
 			ad += "\n";
 			    
