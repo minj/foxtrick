@@ -21,18 +21,18 @@ var FTTeamStats= {
 		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 	
         var specs = {};
-		var allDivs2 = doc.getElementsByTagName( "div" );
+		var allDivs2 = doc.getElementsByTagName( "p" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
 			
-			if( allDivs2[i].className == "playerInfo" ) {
+			if( allDivs2[i].textContent.match(/TSI\ \=/g) ) {
 				var specc = allDivs2[i];
 				if(specc) {
 					// specialities
-                    var specMatch = specc.textContent.match(/\.\ \[\D+\]/g);
+                    var specMatch = specc.textContent.match(/\[\D+\]/g);
                     dump(' ==>' + specMatch+'\n');
                     if (specMatch != null) {
                         dump(' == ==>' + specMatch+'\n');
-                        var spec = substr(specMatch[0], 2, specMatch[0].length);
+                        var spec = substr(specMatch[0], 0, specMatch[0].length);
                         if (typeof(specs[spec]) == 'undefined') {
                             specs[spec] = 1;
                         } else {
