@@ -11,7 +11,7 @@ FoxtrickTransferListDeadline = {
     
     init : function() {
         Foxtrick.registerPageHandler('transferListSearchResult', this);
-        Foxtrick.registerPageHandler('players', this);
+        Foxtrick.registerPageHandler('playerdetail', this);
         Foxtrick.registerPageHandler('transfer', this);
     },
 
@@ -28,7 +28,7 @@ FoxtrickTransferListDeadline = {
                 this._PlayerListDeatline ( doc, 'span' );
                 break;
                 
-            case 'players' :
+            case 'playerdetail' :
                 
                 this._PlayerDetailsDeatline ( doc );
                 this._Player_Joined ( doc );

@@ -60,6 +60,7 @@ var scripts = [
 	'shortcuts_and_tweaks/largeflags.js',
     'shortcuts_and_tweaks/redirmanagertoteam.js',
     'shortcuts_and_tweaks/teamselectbox.js',
+	'shortcuts_and_tweaks/ateamshortcuts.js',
 	'shortcuts_and_tweaks/custommedals.js',
     'shortcuts_and_tweaks/fixcssproblems.js',
     'links/linkscustom.js',

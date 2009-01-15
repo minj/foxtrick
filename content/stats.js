@@ -650,10 +650,6 @@ stats["ht_deutschland"] =  {
                    "filters"    : ["countryid"], 
                    "params"     : []
 				}, 
- "youthlink" : { "path"       : "scouting/index.php?language=2",
-                   "filters"    : ["countryid"], 
-                   "params"     : []
-				}, 
   "countryidranges" : [[3, 3]], 
   "title" : "HT-Deutschland",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-deutschland.png"
@@ -747,7 +743,7 @@ stats["ht-fff"] =  {
                          "filters"    : new Array("nationality"), 
                          "params"     : []
                        },
-        
+        //"scoutinglink
         "nationalityranges" : [[5, 5]],
         "title" : "ht-fff.org | french scouting group.",
         "img" : "chrome://foxtrick/content/resources/linkicons/htfff.png"
@@ -792,6 +788,22 @@ stats["playitcool"] =  {
         "shorttitle" : "Play It Cool"
 };    
 */
+
+
+
+
+// ht-tools 
+stats["ekonomer"] =  { 
+        "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.html",
+
+        "economylink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     : {"Cash" : "Cash"} 
+                       },
+		"countryidranges" : [[1, 1]], 
+        "title" : "Ekonomkalkylatorn",
+        "img" : "chrome://foxtrick/content/resources/linkicons/httools_economy.png"
+};
 
 
 
@@ -1265,6 +1277,19 @@ stats["htlinks_Goalkeeper_Checker"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_small.png"
 };
 
+
+stats["htlinks_ti_schrauber"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/TISchrauber.html",
+
+        "keeperlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     : { "tsi" : "TSI"}
+                       },
+         "countryidranges" : [[3, 3]], 
+        "title" : "www.ht-links.de - TISchrauber",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_small.png"
+};
+
 /*  // illegal site. don't include again before CHPP approval
 stats["skillraise"] =  { 
         "url" : "http://www.htdaytrading.com/",
@@ -1415,6 +1440,16 @@ stats["arenaoptimizer"] =  {
                        },
         "title" : "Arena Optimizer",
         "img" : "chrome://foxtrick/content/resources/linkicons/arenaoptimizer.gif"
+};
+
+stats["htarena"] =  { 
+        "url" : "http://www.htarena.org/",
+        "arenalink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        "title" : "HTArena - the calculator",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htarena.png"
 };
 
 stats["nrg_eco_arena"] =  { 

@@ -15,7 +15,6 @@ var FoxtrickPrefs = {
 
         this._pref_branch = prefs.getBranch( "extensions.foxtrick.prefs." );
 		
-		FoxtrickLinksCustom.init();		// copy backup icons to chrome
     },
 
     getString : function( pref_name ) {
