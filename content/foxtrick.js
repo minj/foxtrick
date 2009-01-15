@@ -19,6 +19,10 @@ Foxtrick.run_on_page = [];
  * Don't add here unless you have a good reason to. */
 Foxtrick.core_modules = [ FoxtrickPrefs,
                           Foxtrickl10n ];
+						
+/** Global news ticker variable
+ */
+Foxtrick.news = [];
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 

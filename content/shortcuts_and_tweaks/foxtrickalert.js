@@ -9,13 +9,12 @@ var FoxtrickAlert = {
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-    news : {},
-    
+        
     init : function() {
         Foxtrick.registerAllPagesHandler( FoxtrickAlert );
-        this.news[0] = null;
-        this.news[1] = null;
-        this.news[2] = null;
+        Foxtrick.news[0] = null;
+        Foxtrick.news[1] = null;
+        Foxtrick.news[2] = null;
     },
 
     run : function( doc ) {
@@ -60,9 +59,9 @@ var FoxtrickAlert = {
               	  var isequal=true;
                   for (i=0;i<tickerdiv.length;i++)
                   {
-                      if (elemText[i]!=FoxtrickAlert.news[i])
+                      if (elemText[i]!=Foxtrick.news[i])
                           isequal=false;
-                      FoxtrickAlert.news[i]=elemText[i];
+                      Foxtrick.news[i]=elemText[i];
                   }
                   if (isequal)
                       message=null;
