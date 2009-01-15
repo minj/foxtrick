@@ -18,17 +18,7 @@ var FoxtrickSeniorTeamShortCuts = {
    },
 
     run : function( page, doc ) {
-		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
-		var ownteamid=0;
-		if (boxleft==null) {return;}
-		var teamid=FoxtrickHelper.findTeamId(boxleft); 
-		if (teamid=="") {return;}
-		var teamdiv = doc.getElementById('teamLinks');
-		var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				if (ownleagueid!=null) {
-					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-				}		
-		
+	
 		if (doc.location.href.search(/\/Club\/Players\//i)!=-1  
 		&& doc.location.href.search(/redir=true/i)!=-1 ) {  dump("redirect to coach\n");
 			// redirect to coach
@@ -70,34 +60,25 @@ var FoxtrickSeniorTeamShortCuts = {
 			}
 			catch (e) {dump("ateamshortcuts->"+e);}
 		}
-		if (teamid!=ownteamid || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1) { 
- 			this.AddLinksLeft(page,doc);	
-		}
+		this.AddLinksLeft(page,doc);	
+		
 	},
 	
 	change : function( page, doc ) {
-/*		var owncoachlinkId = "foxtrick_content_coach";
-		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
-		if (!doc.getElementById ( owncoachlinkId )
-			&& !doc.getElementById ( ownlastmatchlinkId ) ) { //dump('run again : LinksTeamLeft\n');
-			this.AddLinksLeft(page,doc);
-		}	*/
 	},
 	
     AddLinksLeft : function( page, doc ) {
-			if (!this.isTeamPage(doc)) {return;}
 
 			try {
 				var teamdiv = doc.getElementById('teamLinks');
-				var ownteamid=0;
-				var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				if (ownleagueid!=null) {
-					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-				}		
+				var ownteamid = FoxtrickHelper.findTeamId(teamdiv);;
+						
 				var boxleft=doc.getElementById('ctl00_pnlSubMenu');
 				if (boxleft==null) {return;}
 				var teamid=FoxtrickHelper.findTeamId(boxleft); 
-				
+				dump (teamid+' '+ ownteamid+'\n');
+				if (teamid==ownteamid && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) return; 
+ 			
 				var pos1=-1; var pos2=-1;
 				var bl_header=boxleft.getElementsByTagName('li');
 				var bllink=boxleft.getElementsByTagName('a');
@@ -146,10 +127,4 @@ var FoxtrickSeniorTeamShortCuts = {
 			catch (e) {dump("ateamshortcuts->add_leftlinks->"+e);}
 	},		
 	
-	
-	isTeamPage : function(doc) {
-        var site=doc.location.href;
-        var remain=site.substr(site.search(/Club\//i)+5);
-    return (remain=="" || remain.search(/TeamID=/i)==1);
-	},
-};	
+};
