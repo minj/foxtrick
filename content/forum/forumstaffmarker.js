@@ -136,6 +136,7 @@ var FoxtrickForumStaffMarker = {
 			"ljushaff",
 			"MarceloFBrandao",
 			"Nanouk_HT33",
+            "Mod-summercloud",
 			"OBarros",
 			"Pyntsa",
 			"smates",
