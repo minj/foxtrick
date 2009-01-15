@@ -147,10 +147,16 @@ var FTTeamStats= {
             }
             
             if (found){
-                var countriesTable = '';
+				// put in array and sort
+				var landarray = new Array();
+				for (var land in countries) { landarray.push({"land":land,"value":countries[land]});}			
+				landarray.sort(function (a,b) { return a["land"].localeCompare(b["land"])}); 
+				landarray.sort(function (a,b) { return a["value"]<b["value"]}); 
+				
+				var countriesTable = '';
                 countriesTable += '<tr><td class="ch"><u>'+ Foxtrickl10n.getString("foxtrick.FTTeamStats.countries.label") + '</u></td></td>';
-                for (var land in countries) {
-                    countriesTable += "<tr><td class=\"\">" + land.replace(/\(|\)/g,"") + "</td><td>" + countries[land] + "</td></tr>";
+                for (var i=0;i< landarray.length;i++) {
+                    countriesTable += "<tr><td class=\"\">" + landarray[i].land.replace(/\(|\)/g,"") + "</td><td>" + landarray[i].value + "</td></tr>";
                 }
                 specsTable += countriesTable;            
                 // dump(countries);
