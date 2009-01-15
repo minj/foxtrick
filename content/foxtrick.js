@@ -765,5 +765,5 @@ Foxtrick.copyStringToClipboard = function ( string ) {
 Foxtrick.isStandardLayout = function ( doc ) {
 	// Check if this is the simple or standard layout
 	var link = doc.getElementsByTagName("link")[0];
-	return link.href.search("Simple") == -1; // 1 = standard 0 = simple
+	return link.href.search("Simple") == -1; // true = standard / false = simple
 }
