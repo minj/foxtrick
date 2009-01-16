@@ -17,7 +17,12 @@ FoxtrickTransferListDeadline = {
         Foxtrick.registerPageHandler('TransfersPlayer', this);
         Foxtrick.registerPageHandler('TransferCompare', this);
         Foxtrick.registerPageHandler('matches', this);
+        // Foxtrick.registerPageHandler('match', this);
+        Foxtrick.registerPageHandler('matchesarchiv', this);
         Foxtrick.registerPageHandler('teamPageGeneral', this);
+        Foxtrick.registerPageHandler('achievements', this);
+        Foxtrick.registerPageHandler('teamevents', this);
+        
     },
 
     run : function(page, doc) {
@@ -52,11 +57,19 @@ FoxtrickTransferListDeadline = {
             case 'TransfersPlayer' :
                 this._modifyDates ( doc, true, 'td', '&nbsp;', '' );
                 break;
-
+/*
+            case 'match' :
+                this._modifyDates ( doc, false, 'div', '&nbsp;' , '' );
+                break;
+*/                
             case 'matches' :
                 this._modifyDates ( doc, false, 'td', '&nbsp;' , '' );
                 break;
 
+            case 'matchesarchiv' :
+                this._modifyDates ( doc, false, 'span', '&nbsp;' , '' );
+                break;
+                
             case 'teamPageGeneral' :
                 this._modifyDates ( doc, false, 'span', '<br>', '' );
                 break;
@@ -64,8 +77,15 @@ FoxtrickTransferListDeadline = {
             case 'TransferCompare' :
                 this._modifyDates ( doc, true, 'td', '&nbsp;', '' );
                 break;
-
-
+                
+            case 'achievements' :
+                this._modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                break;
+                
+            case 'teamevents' :
+                this._modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                break;
+                
         }
     },
 
@@ -268,9 +288,9 @@ FoxtrickTransferListDeadline = {
                 var units = Days % 10;
                 if (Math.floor((Days % 100)/10) == 1)
                   DeadlineText += d5;
-                else
+            else
                   DeadlineText += (units==1)?d1:((units>4)?d5:d2);
-              }
+        }
             }
         }
         if (short) return DeadlineText;
@@ -298,6 +318,7 @@ FoxtrickTransferListDeadline = {
         short == true => Date is without time.
         */
         var tds = doc.getElementsByTagName( elm );
+        dump ('ELEMENT => ' + elm+'\n');
         for (var i = 0; tds[i] != null; ++i) {
             dt_inner = Foxtrick.trim(tds[i].innerHTML);
             if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
