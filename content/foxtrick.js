@@ -374,6 +374,22 @@ Foxtrick.LOG = function (msg) {
         consoleService.logStringMessage(msg);
 }
 
+
+
+Foxtrick.selectFileSave = function (parentWindow) {
+    try {
+    	var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
+    	fp.init(parentWindow, "", fp.modeSave);
+    	var ret=fp.show();
+		if ( ret == fp.returnOK || ret==fp.returnReplace ) { 
+    		return fp.file.path;
+    	}
+    } catch (e) {
+        dump(e);
+    }
+	return null;
+}
+
 Foxtrick.selectFile = function (parentWindow) {
     try {
     	var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);

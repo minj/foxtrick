@@ -94,7 +94,18 @@
                     <label id="labelCleanupBranch" value="Cleanup" style="padding-top:4px"/>
 				    <button id="buttonCleanupBranch" oncommand="FoxtrickPreferencesDialog.confirmCleanupBranch();" flex="0"/>
                   </hbox>  
-				</groupbox>                
+				</groupbox>  
+					<groupbox>
+				  <caption id="captionLoadSavePrefs"/>
+                  <hbox>
+                    <label id="labelSavePrefs" value="Save" style="padding-top:4px"/>
+				    <button id="buttonSavePrefs" oncommand="FoxtrickPreferencesDialog.SavePrefs();" flex="0"/>
+                  </hbox> 
+					<hbox>
+                    <label id="labelLoadPrefs" value="Load" style="padding-top:4px"/>
+				    <button id="buttonLoadPrefs" oncommand="FoxtrickPreferencesDialog.LoadPrefs();" flex="0"/>
+                  </hbox>				  
+				</groupbox>  				
               </vbox>
             </tabpanel>
         

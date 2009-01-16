@@ -41,7 +41,8 @@ var FoxtrickPreferencesDialog = {
 						  "buttonSelectFile", "buttonTest",
 						  "captionStageSettings", "stagepref",
                           "captionCutDescription", "captionCleanupBranch",
-                          "buttonCleanupBranch",
+                          "buttonCleanupBranch","captionLoadSavePrefs",
+                          "buttonSavePrefs","buttonLoadPrefs",
 						  "buttonSave", "buttonCancel" ];
 		for(var i = 0; i < allLabels.length; i++) {
 			var thisElement = document.getElementById(allLabels[i]);
@@ -53,6 +54,8 @@ var FoxtrickPreferencesDialog = {
     initSpecialPrefs : function() {
     	
         document.getElementById("labelCleanupBranch").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch" ));
+        document.getElementById("labelSavePrefs").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs" ));
+        document.getElementById("labelLoadPrefs").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelLoadPrefs" ));
         document.getElementById("labelCutDescription").setAttribute( "value", Foxtrickl10n.getString("foxtrick.prefs.labelCutDescription" ));
         try { 
             var cut_value = FoxtrickPrefs.getInt( "cutwordsafter" );
@@ -622,6 +625,7 @@ FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where 
                HelpTitle, 
                HelpDesc);
 }
+
 FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
     if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
@@ -646,3 +650,77 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
     } 
     return true;            
 }
+
+FoxtrickPreferencesDialog.SavePrefs = function () {
+        try {
+			var locpath=Foxtrick.selectFileSave(window);
+			if (locpath==null) {return;}
+			var File = Components.classes["@mozilla.org/file/local;1"].
+                     createInstance(Components.interfaces.nsILocalFile);
+			File.initWithPath(locpath);
+			
+			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
+                         createInstance(Components.interfaces.nsIFileOutputStream);
+			foStream.init(File, 0x02 | 0x08 | 0x20, 0666, 0); 
+			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
+                   .createInstance(Components.interfaces.nsIConverterOutputStream);
+			os.init(foStream, "UTF-8", 0, 0x0000);
+
+			var array = FoxtrickPrefs._getElemNames("");
+			for(var i = 0; i < array.length; i++) {
+					var value=FoxtrickPrefs.getString(array[i]);
+					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value+'");\n');
+					else { value=FoxtrickPrefs.getInt(array[i]);
+						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
+						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
+						}
+				}
+			os.close();
+			foStream.close(); 
+			
+			close();
+		}
+		catch (e) {
+			Foxtrick.alert(e);
+        }     	
+    return true;            
+}            
+
+FoxtrickPreferencesDialog.LoadPrefs = function () {
+        try {
+			// nsifile
+			var locpath=Foxtrick.selectFile(window);
+			if (locpath==null) return;
+			var File = Components.classes["@mozilla.org/file/local;1"].
+                     createInstance(Components.interfaces.nsILocalFile);
+			File.initWithPath(locpath);
+			// converter			
+			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"]
+                          .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
+			converter.charset = "UTF-8";
+			var fis = Components.classes["@mozilla.org/network/file-input-stream;1"]
+                    .createInstance(Components.interfaces.nsIFileInputStream);
+			fis.init(File, -1, -1, 0);
+			var lis = fis.QueryInterface(Components.interfaces.nsILineInputStream);
+			var lineData = {};
+			var cont;
+			do {
+				cont = lis.readLine(lineData);
+				var line = converter.ConvertToUnicode(lineData.value);
+				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
+				var value = line.match(/\",(.+)\)\;/)[1];
+				var strval = value.match(/\"(.+)\"/);
+				if (strval != null) FoxtrickPrefs.setString(key,strval[1]);
+				else if (value == "true") FoxtrickPrefs.setBool(key,true);
+				else if (value == "false") FoxtrickPrefs.setBool(key,false);
+				else FoxtrickPrefs.setInt(key,value);
+			} while (cont);
+			
+			fis.close();
+			close();	
+		}
+		catch (e) {
+			Foxtrick.alert(e);
+        }     	
+    return true;            
+}            
