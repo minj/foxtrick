@@ -251,8 +251,12 @@ FoxtrickTransferListDeadline = {
             Days = Math.floor(deadline_s/86400);
             deadline_s = deadline_s-Days*86400;
             var d1 = Foxtrickl10n.getString("TransferlistDeadLine.day");
-            var d2 = Foxtrickl10n.getString("TransferlistDeadLine.days234");
             var d5 = Foxtrickl10n.getString("TransferlistDeadLine.days");
+            try {
+              var d2 = Foxtrickl10n.getString("TransferlistDeadLine.days234");
+            } catch(e) {
+              d2 = d5;
+            }
             DeadlineText += Days + '&nbsp;';
             if (Days == 1)
               DeadlineText += d1;
