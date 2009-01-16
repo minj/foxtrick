@@ -25,3 +25,18 @@ div.foxtrickHelp:hover {
 	height: 16px;
 	background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') 50% no-repeat;
 }
+
+
+div.foxtrickExport {
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png') 50% no-repeat;
+}
+
+div.foxtrickExport:hover {
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png') 50% no-repeat;
+}
