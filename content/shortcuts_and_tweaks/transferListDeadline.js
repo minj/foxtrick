@@ -15,6 +15,7 @@ FoxtrickTransferListDeadline = {
         Foxtrick.registerPageHandler('transfer', this);
         Foxtrick.registerPageHandler('transfersTeam', this);
         Foxtrick.registerPageHandler('TransfersPlayer', this);
+        Foxtrick.registerPageHandler('TransferCompare', this);
         Foxtrick.registerPageHandler('matches', this);
         Foxtrick.registerPageHandler('teamPageGeneral', this);
     },
@@ -58,7 +59,13 @@ FoxtrickTransferListDeadline = {
                 
             case 'teamPageGeneral' :
                 this._modifyDates ( doc, false, 'span', '<br>', '' );
+                break;                
+
+            case 'TransferCompare' :
+                this._modifyDates ( doc, true, 'td', '&nbsp;', '' );
                 break;
+                
+                
         }
     },
 	
