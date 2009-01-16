@@ -288,9 +288,9 @@ FoxtrickTransferListDeadline = {
                 var units = Days % 10;
                 if (Math.floor((Days % 100)/10) == 1)
                   DeadlineText += d5;
-            else
-                  DeadlineText += (units==1)?d1:((units>4)?d5:d2);
-        }
+                else
+                  DeadlineText += (units==1)?d1:(((units>1)&&(units<5))?d2:d5);
+              }
             }
         }
         if (short) return DeadlineText;
