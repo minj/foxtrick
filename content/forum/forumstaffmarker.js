@@ -64,6 +64,7 @@ var FoxtrickForumStaffMarker = {
 			"hallenberg",
 			"ishuaia",
 			"ivo_stoyanov",
+            "JAM3SoN",
 			"Jugemon",
 			"julianignacio",
 			"kikso",
