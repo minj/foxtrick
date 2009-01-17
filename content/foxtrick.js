@@ -878,7 +878,101 @@ function getDatefromCellHTML ( date ) {
         var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
     return CellDate;
 }
+
+TimeDifferenceToText = function( time_sec, short ) {
+    
+    // Returns the time differnce as DDD days, HHh MMm
+    // if short, only DDD day(s) will be returned
+    
+    var Text = "";
+    var Days = 0; var Minutes = 0; var Hours = 0;
+
+    if ( Math.floor(time_sec) < 0 )
+        return 'NaN';
+
+    //days
+    if(time_sec >= 86400) {
+        Days = Math.floor(time_sec/86400);
+        time_sec = time_sec-Days*86400;
+        var d1 = Foxtrickl10n.getString("foxtrick.datetimestrings.day");
+        var d5 = Foxtrickl10n.getString("foxtrick.datetimestrings.days");
+        try {
+            //days for slavian numbers (2 3 4)
+            var d2 = Foxtrickl10n.getString("foxtrick.datetimestrings.days234");
+        } catch(e) {
+            d2 = d5;
+        }
         
+        Text += Days + '&nbsp;';
+        if ( Days == 1 ) // 1 single day
+            Text += d1
+        else {
+            // same word for 2-4 and 0,5-9
+            if ( d2 == d5 )
+                Text += d2;
+            else {
+                var units = Days % 10;
+                if ( Math.floor( ( Days % 100 ) / 10 ) == 1 )
+                    Text += d5;
+                else
+                    Text += ( units==1 ) ? d1 :( ( ( units > 1 ) && ( units < 5) ) ? d2 : d5 );
+            }
+        }
+    }
+    // only days returned 
+    if ( short ) {
+        if ( Days == 0 ) {
+            Text += '0&nbsp;' + Foxtrickl10n.getString("foxtrick.datetimestrings.days");
+        }
+        return Text;
+    }
+
+    //insert white space between days and hours
+    if (Text != "") Text += "&nbsp;";
+
+    //hours
+    if (( time_sec >= 3600 ) || ( Days > 0 ))
+    {
+        Hours = Math.floor(time_sec/3600);
+        time_sec = time_sec-Hours*3600;
+        Text += Hours + Foxtrickl10n.getString("foxtrick.datetimestrings.hours") + '&nbsp;';
+    }
+
+    //minutes
+    Minutes = Math.floor( time_sec/60 );
+    time_sec = time_sec - Minutes * 60;
+    Text += Minutes + Foxtrickl10n.getString( "foxtrick.datetimestrings.minutes" );
+
+    return Text;
+    
+}
+
+modifyDates = function ( doc, short, elm, before, after ) {
+    /*
+    Returns HT-Week & Season
+    short == true => Date is without time.
+    */
+    var tds = doc.getElementsByTagName( elm );
+    dump ('ELEMENT => ' + elm+'\n');
+    for (var i = 0; tds[i] != null; ++i) {
+        dt_inner = Foxtrick.trim(tds[i].innerHTML);
+        if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
+             dump (i + ' - ' + dt_inner + '\n' );
+            var reg = /^(\d+)(.*?)(\d+)(.*?)(\d{4})(.*?)/g;
+            var ar = reg.exec(dt_inner);
+
+            if (ar != null) {
+                // dump (i + ' ====> ' + ar + '\n');
+                var td_date = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+
+                if (Foxtrick.trim(td_date).match(reg) != null) {
+                    tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
+                }
+            }
+        }
+    }
+}
+
 Foxtrick.copyStringToClipboard = function ( string ) {
 	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
 	gClipboardHelper.copyString(string);

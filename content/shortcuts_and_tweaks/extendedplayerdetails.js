@@ -1,0 +1,105 @@
+/**
+ * ExtendedPlayerDetails (displays wage without 20% Bouns and time since player joined a team)
+ * @author spambot
+ */
+
+FoxtrickExtendedPlayerDetails = {
+
+    MODULE_NAME : "ExtendedPlayerDetails",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    DEFAULT_ENABLED : true,
+
+    init : function() {
+        Foxtrick.registerPageHandler('playerdetail', this);
+    },
+
+    run : function(page, doc) {
+
+        switch ( page ) {
+
+            case 'playerdetail' :
+
+                this._Player_Joined ( doc );
+                this._Player_Bonus (doc);
+                break;
+        }
+    },
+
+	change : function( page, doc ) {
+
+	},
+
+    _Player_Joined  : function ( doc ) {
+        // Player in team since...
+        try {
+            var joined_elm = getElementsByClass( "shy", doc )[0];
+            if (joined_elm == null) return;
+
+            joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
+
+            var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+            var ar = reg.exec(joinedtimeInner);
+
+            var joinedtime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+
+            joinedtime = substr(joinedtime, strrpos( joinedtime, ";"), joinedtime.length);
+
+            // dump('  Joindate: ' + joinedtime + '\n');
+            // dump('  HT Week: ' + this._gregorianToHT(joinedtime) + '\n');
+
+            var ht_week = gregorianToHT(joinedtime);
+
+            JT_date = getDatefromCellHTML( joinedtime );
+            if (!JT_date) return;
+
+            var joined_s = Math.floor( (HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
+
+            var JoinedText = TimeDifferenceToText (joined_s , true);
+    
+            if (JoinedText.search("NaN") == -1) {
+                part1 = substr(joined_elm.innerHTML, 0, strrpos( joined_elm.innerHTML, ")"));
+                part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
+                joined_elm.innerHTML = part1 + ' '+ ht_week + ', ' + JoinedText + ')</span>';
+            }
+            else dump('  Could not create jointime (NaN)\n');
+        } catch (e) {
+            dump(e);
+        }
+    },
+
+    _Player_Bonus  : function ( doc ) {
+        // Player in team since...
+        
+        try {
+            var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
+            var table_elm = div.getElementsByTagName( "td" );
+            if (table_elm.length == 0) return;
+
+            for ( var i = 0; i < table_elm.length; i++) {
+                var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
+                try {
+                    if (strrpos( table_inner, "%") > 0 ) {
+                        var table_elm_bonus = table_elm[i];
+                        break;
+                    }
+                }
+                catch(e) {dump('    >' + e + '\n');}
+            }
+            if (table_elm_bonus == null) return;
+            table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
+
+            var part = substr(table_inner, 0, table_inner.lastIndexOf("&nbsp;"));
+
+            var part_1_save = part;
+            var part_2_save = substr(table_inner, table_inner.lastIndexOf("&nbsp;") + 6, table_inner.length );
+
+            part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
+            part = ReturnFormatedValue (part, ' ');
+
+            if (part != 'NaN') table_elm_bonus.innerHTML = part_1_save + '&nbsp;<span class="smallText" style="color:#666666;>(' + part + ')</span>&nbsp;' + part_2_save;
+
+        } catch (e) {
+            dump('  PlayerBonus: ' + e + '\n');
+        }
+    }
+};

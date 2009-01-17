@@ -33,6 +33,7 @@ Foxtrick.modules = [
                      FoxtrickFlagCollectionToMap,
                      FoxtrickTransferListSearchFilters,
                      FoxtrickTransferListDeadline,
+                     FoxtrickExtendedPlayerDetails,
                      FoxtrickTeamPopupLinks,
 					 FoxtrickMatchPlayerColouring,
                      AttVsDef, // AttVsDef should be placed before Ratings
