@@ -12,67 +12,83 @@ var FoxtrickForumPreview = {
     DEFAULT_ENABLED : true,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
+    _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_tbBody',
+    _PAGE : {},
 
     init : function() {
-        Foxtrick.registerPageHandler( 'forumWritePost',
-                                      FoxtrickForumPreview );
+        Foxtrick.registerPageHandler( 'forumWritePost', this );
+        Foxtrick.registerPageHandler( 'messageWritePost', this );
     },
-
+        
     run : function( page, doc ) {
-
-        switch( page )
-        {
-            case 'forumWritePost':
-
-                // display templates above the message window
-                var msg_window = doc.getElementById(
-                            FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
-
-                var preview_ctrl_div = doc.createElement( "div" );
-                preview_ctrl_div.style.marginTop = "1em";
-
-                var new_button = doc.createElement( "a" );
-                new_button.setAttribute( "href", "javascript:showHide('forum_preview');" );
-                new_button.innerHTML = Foxtrickl10n.getString( 'show_preview_from_post' );
-				new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
-                preview_ctrl_div.appendChild( new_button );
-                msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
-
-                var preview_div = doc.createElement( "div" );
-                preview_div.id = "forum_preview";
-                preview_div.setAttribute( "class", "cfMessageNoAvatar" );
-				preview_div.style.display = "none";
-                preview_div.style.border = "1px dotted grey";
-				preview_div.style.width = "465px";
-                preview_div.style.margin = "5px";
-				preview_div.style.padding = "10px";
-                preview_div.style.background = "#fcf6df";
-
-                var preview_message = doc.createElement( "div" );
-                preview_message.id = "message_preview";
-                preview_message.setAttribute( "class", "message" );
-                preview_div.appendChild( preview_message );
-
-                msg_window.parentNode.insertBefore( preview_div, msg_window );
-
+        this._PAGE = page;
+        switch  ( this._PAGE ) {
+            case 'forumWritePost' :  
+                var msg_window = doc.getElementById( this._NEW_MESSAGE_WINDOW ); 
+                break;
+                
+            case 'messageWritePost' :  
+                var msg_window = doc.getElementById( this._MAIL_MESSAGE_WINDOW ); 
                 break;
         }
+        dump (' => RUN: ' + this._PAGE + ' > '  + msg_window + '\n');
+        // display preview and button above the message window
+
+        var preview_ctrl_div = doc.createElement( "div" );
+        preview_ctrl_div.style.marginTop = "1em";
+
+        var new_button = doc.createElement( "a" );
+        new_button.setAttribute( "href", "javascript:showHide('forum_preview');" );
+        new_button.innerHTML = Foxtrickl10n.getString( 'show_preview_from_post' );
+        new_button.addEventListener( "click", this._toggleListener, false );
+        preview_ctrl_div.appendChild( new_button );
+        msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
+
+        var preview_div = doc.createElement( "div" );
+        preview_div.id = "forum_preview";
+        preview_div.setAttribute( "class", "cfMessageNoAvatar" );
+        preview_div.style.display = "none";
+        preview_div.style.border = "1px dotted grey";
+        preview_div.style.width = "465px";
+        preview_div.style.margin = "5px";
+        preview_div.style.padding = "10px";
+        preview_div.style.background = "#fcf6df";
+
+        var preview_message = doc.createElement( "div" );
+        preview_message.id = "message_preview";
+        preview_message.setAttribute( "class", "message" );
+        preview_div.appendChild( preview_message );
+
+        msg_window.parentNode.insertBefore( preview_div, msg_window );
+
     },
 
 	change : function( page, doc ) {
-
+        this._PAGE = page;
+        dump (' => CHG: ' + this._PAGE + '\n');
 	},
 
 	_toggleListener : function( ev ) {
-		var doc = ev.target.ownerDocument;
-		var msg_window = doc.getElementById( FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
+		
+        var doc = ev.target.ownerDocument;
+		switch  ( this._PAGE )  {
+            case 'forumWritePost' :  
+                var msg_window = doc.getElementById( this._NEW_MESSAGE_WINDOW ); 
+                break;
+            case 'messageWritePost' :  
+                var msg_window = doc.getElementById( this._MAIL_MESSAGE_WINDOW ); 
+                break;
+        }
+        
+        dump (' => TGL: ' + this._PAGE + ' > '  + msg_window + '\n');
+        
         var prev_div = doc.getElementById( "forum_preview" );
 
 		if( prev_div.style.display == "block" ) {
-			msg_window.removeEventListener( "keyup", FoxtrickForumPreview._preview, false );
+			msg_window.removeEventListener( "keyup", this._preview, false );
 		} else {
-			msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
-			FoxtrickForumPreview._preview( ev );
+			msg_window.addEventListener( "keyup", this._preview, false );
+			this._preview( ev );
 		}
 	},
 
@@ -117,7 +133,11 @@ var FoxtrickForumPreview = {
         );
 
         var doc = ev.target.ownerDocument;
-		var msg_window = doc.getElementById( FoxtrickForumPreview._NEW_MESSAGE_WINDOW );
+		switch  ( this._PAGE )  {
+            case 'forumWritePost' :  var msg_window = doc.getElementById( this._NEW_MESSAGE_WINDOW ); break;
+            case 'messageWritePost' :  var msg_window = doc.getElementById( this._MAIL_MESSAGE_WINDOW ); break;
+        }
+        dump (' => PRE: ' + this._PAGE + ' > '  + msg_window + '\n');
         var prev_div = doc.getElementById( "forum_preview" );
         var text = Foxtrick.stripHTML( msg_window.value );
 
