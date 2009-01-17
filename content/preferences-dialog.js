@@ -669,7 +669,7 @@ FoxtrickPreferencesDialog.SavePrefs = function () {
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
 					var value=FoxtrickPrefs.getString(array[i]);
-					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value+'");\n');
+					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
 					else { value=FoxtrickPrefs.getInt(array[i]);
 						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
 						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
@@ -708,7 +708,7 @@ FoxtrickPreferencesDialog.LoadPrefs = function () {
 				cont = lis.readLine(lineData);
 				var line = converter.ConvertToUnicode(lineData.value);
 				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
-				var value = line.match(/\",(.+)\)\;/)[1];
+				var value=line.match(/\",(.+)\)\;/)[1];				
 				var strval = value.match(/\"(.+)\"/);
 				if (strval != null) FoxtrickPrefs.setString(key,strval[1]);
 				else if (value == "true") FoxtrickPrefs.setBool(key,true);
