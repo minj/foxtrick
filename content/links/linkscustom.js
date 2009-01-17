@@ -157,9 +157,9 @@ var FoxtrickLinksCustom = {
 				td1.appendChild(div);
 				tdiv.appendChild(title);
 				td2.appendChild(tdiv);
-				td5.appendChild(FoxtrickLinksGetExportLink(doc,div,basepref+'.'+key));
+				if (key.length>3) td5.appendChild(FoxtrickLinksGetExportLink(doc,div,basepref+'.'+key));
 				td3.appendChild(FoxtrickLinksGetEditOldLink(doc,div,basepref+'.'+key));
-				if (key.length>3) td4.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+key)); // prevent export of oldstyle keys
+				td4.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+key)); // prevent export of oldstyle keys
 				tr1.appendChild(td1);
 				tr1.appendChild(td2);
 				tr1.appendChild(td5);
@@ -357,7 +357,7 @@ var FoxtrickLinksCustom = {
 	Export : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.Export.doc;
-			var baseprefnl = evt["target"]["baseprefnl"];
+			var baseprefnl = evt["target"]["baseprefnl"];		_
 			
 			var locpath=Foxtrick.selectFileSave(doc.defaultView);
 			if (locpath==null) {return;}
