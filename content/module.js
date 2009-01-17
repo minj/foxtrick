@@ -19,6 +19,7 @@ Foxtrick.ht_pages = {
     'forum'                     : '\/Forum\/',
     'forumViewThread'           : '\/Forum\/Read',
     'forumWritePost'            : '\/Forum\/Write',
+    'messageWritePost'          : '\/MyHattrick\/Inbox/',
     'forumSettings'             : '\/MyHattrick\/Preferences\/ForumSettings.aspx',
     'bookmarks'                 : '\/MyHattrick\/Bookmarks',
     'league'                    : '\/World\/Series\/Default\.aspx',
