@@ -35,7 +35,7 @@
       <tab id="AboutTab"     onclick="FoxtrickPreferencesDialog.pref_show('about_list');"          ></tab>
     </tabs>
 
-    <tabpanels id="tabpanels" class="tabpanels" flex="1" style="width: 600px;">
+    <tabpanels id="tabpanels" class="tabpanels" flex="1" style="width: 1240px;">
             <!-- Main -->
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox id="main_list" style="display:run-in" >
@@ -75,15 +75,7 @@
                     </hbox>
                   </vbox>
                 </groupbox>
-
-                <groupbox>
-                  <caption id="captionCutDescription"/>
-                    <hbox>
-                      <label id="labelCutDescription" value="test" style="padding-top:4px"/>
-                      <textbox id="cutwordspref" class="cut_after" flex="0" decimalplaces="0" hidespinbuttons="false" increment="1" max="100" min="50" multiline="false" align="end" type="number"/>
-                    </hbox>  
-                </groupbox>
-                
+               
 				<groupbox>
 				  <caption id="captionStageSettings"/>
 				  <checkbox id="stagepref"/>
