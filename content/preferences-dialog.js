@@ -88,16 +88,16 @@ var FoxtrickPreferencesDialog = {
                 tWidth = screen.availWidth;
 			 this.resizeTo(tWidth, tHeight);*/
 
-			 const WINDOW_WIDTH = 700; 
-            const WINDOW_HEIGHT = 650; 
+            const WINDOW_WIDTH = 500;
+            const WINDOW_HEIGHT = 400;
             var tHeight = WINDOW_HEIGHT;
             var tWidth = WINDOW_WIDTH;
-            if (screen.availHeight <= tHeight)
-                tHeight = screen.availHeight;
-            if (screen.availWidth <= tWidth)
-                tWidth = screen.availWidth;
-			 this.resizeTo(tWidth, tHeight);
-        }
+            if (this.outerHeight >= WINDOW_HEIGHT)
+                tHeight = this.outerHeight;
+            if (this.outerWidth >= WINDOW_WIDTH)
+                tWidth = this.outerWidth;
+            this.resizeTo(tWidth, tHeight);
+         }
         window.addEventListener('resize', onResize, false);
     },    
 	
