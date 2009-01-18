@@ -15,7 +15,7 @@ var FoxtrickPreferencesDialog = {
         }
 		
 		this.initCaptionsAndLabels( document );
-´       this.initMainPref( document );
+        this.initMainPref( document );
 
 		for each ( cat in Foxtrick.moduleCategories ) {
             this._fillModulesList( document, cat );
