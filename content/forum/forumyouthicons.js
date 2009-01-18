@@ -15,8 +15,8 @@ var FoxtrickForumYouthIcons = {
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
 
     init : function() {
-        Foxtrick.registerPageHandler( 'forumWritePost', this );
-        Foxtrick.registerPageHandler( 'messageWritePost', this );
+        Foxtrick.registerPageHandler( 'forumWritePost', FoxtrickForumYouthIcons );
+        Foxtrick.registerPageHandler( 'messageWritePost', FoxtrickForumYouthIcons );
     },
 
     run : function( page, doc ) {
@@ -25,6 +25,17 @@ var FoxtrickForumYouthIcons = {
         toolbar = toolbar[0];
         if ( toolbar == null ) return;
         var toolbar_main = toolbar;
+                
+        if ( (page == 'messageWritePost' ) && ( !Foxtrick.isStandardLayout( doc ) ) ) 
+            try {
+                var mainbbox = getElementsByClass( "mainBox", doc )[0];
+                mainbbox.setAttribute( "style", "padding-bottom:25px;");
+            }
+            catch (e)
+            {
+                dump('YouthIcons: mainBox not found ' + e + '\n');
+            }
+            
         toolbar.setAttribute("style","float:left; margin-right:3px;");
         
         // Set styles of all buttons
@@ -48,7 +59,7 @@ var FoxtrickForumYouthIcons = {
             target=target.nextSibling;
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
-            newimage.addEventListener( "click", this._br , false );
+            newimage.addEventListener( "click", FoxtrickForumYouthIcons._br , false );
             newimage.setAttribute( "class", "f_hr");
             newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
@@ -57,7 +68,7 @@ var FoxtrickForumYouthIcons = {
             if ( page != 'messageWritePost' ) {
                 var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
-                newimage.addEventListener( "click", this._hr , false );
+                newimage.addEventListener( "click", FoxtrickForumYouthIcons._hr , false );
                 newimage.setAttribute( "class", "f_hr");
                 newimage.setAttribute("style","margin:2px");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
@@ -79,7 +90,7 @@ var FoxtrickForumYouthIcons = {
             } catch(e) { nextElement = nextElement.nextSibling; }
         }
         
-        this._DOC = doc;
+        FoxtrickForumYouthIcons._DOC = doc;
         
         var youthbar = doc.createElement( "div" );
         youthbar.setAttribute( "class" , "HTMLToolbar");
@@ -92,7 +103,7 @@ var FoxtrickForumYouthIcons = {
         
         var newimage = doc.createElement( "img" );
         newimage.src = "/Img/Icons/transparent.gif";
-        newimage.addEventListener( "click", this._youthplayer , false );
+        newimage.addEventListener( "click", FoxtrickForumYouthIcons._youthplayer , false );
         newimage.setAttribute( "class", "f_player");
         newimage.setAttribute("style","margin:2px");
         newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthplayerid");
@@ -100,7 +111,7 @@ var FoxtrickForumYouthIcons = {
 
         var newimage = doc.createElement( "img" );
         newimage.src = "/Img/Icons/transparent.gif";
-        newimage.addEventListener( "click", this._youthteam , false );
+        newimage.addEventListener( "click", FoxtrickForumYouthIcons._youthteam , false );
         newimage.setAttribute( "class", "f_team");
         newimage.setAttribute("style","margin:2px");
         newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthteamid");
@@ -108,7 +119,7 @@ var FoxtrickForumYouthIcons = {
         
         var newimage = doc.createElement( "img" );
         newimage.src = "/Img/Icons/transparent.gif";
-        newimage.addEventListener( "click", this._youthmatch , false );
+        newimage.addEventListener( "click", FoxtrickForumYouthIcons._youthmatch , false );
         newimage.setAttribute( "class", "f_match");
         newimage.setAttribute("style","margin:2px");
         newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthmatchid");
@@ -116,7 +127,7 @@ var FoxtrickForumYouthIcons = {
         
         var newimage = doc.createElement( "img" );
         newimage.src = "/Img/Icons/transparent.gif";
-        newimage.addEventListener( "click", this._youthseries , false );
+        newimage.addEventListener( "click", FoxtrickForumYouthIcons._youthseries , false );
         newimage.setAttribute( "class", "f_series");
         newimage.setAttribute("style","margin:2px");
         newimage.title = Foxtrickl10n.getString("ForumYouthIcons.youthseries");
@@ -132,34 +143,34 @@ var FoxtrickForumYouthIcons = {
         
 
     _youthplayer : function (  ) {
-        clickHandler(this._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthplayerid=xxx]", null, "xxx", null);
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthplayerid=xxx]", null, "xxx", null);
     }, 
 
     _youthteam : function (  ) { 
-        clickHandler(this._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthteamid=xxx]", null, "xxx", null);
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthteamid=xxx]", null, "xxx", null);
     }, 
 
     _youthmatch : function (  ) { 
-        clickHandler(this._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[link=/Club/Matches/Match.aspx?isYouth=True&matchID=xxx]", null, "xxx", null);
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[link=/Club/Matches/Match.aspx?isYouth=True&matchID=xxx]", null, "xxx", null);
 
     }, 
 
     _youthseries : function (  ) { 
-        clickHandler(this._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[link=/World/Series/YouthSeries.aspx?YouthLeagueId=xxx]", null, "xxx", null);    
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[link=/World/Series/YouthSeries.aspx?YouthLeagueId=xxx]", null, "xxx", null);    
             
     }, 
         
     _hr : function (  ) {
-        clickHandler(this._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[hr]", null, null, null);
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[hr]", null, null, null);
     },         
 
     _br : function (  ) {
-        clickHandler(this._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[br]", null, null, null);
+        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[br]", null, null, null);
     },         
         
     _fillMsgWindow : function( string ) {
         try {
-            var msg_window = this._DOC.getElementById( this._NEW_MESSAGE_WINDOW );
+            var msg_window = FoxtrickForumYouthIcons._DOC.getElementById( FoxtrickForumYouthIcons._NEW_MESSAGE_WINDOW );
             msg_window.value += string;
             msg_window.focus();        
         } catch(e) {
