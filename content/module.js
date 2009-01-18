@@ -27,6 +27,7 @@ Foxtrick.ht_pages = {
     'challenges'                : '\/Club\/Challenges\/',
     'economy'                   : '\/Club\/Finances\/',
     'achievements'              : '\/Club\/Achievements\/',
+    'history'                   : '\/Club\/History\/',
     'teamevents'                : '\/Club\/TeamEvents/',
     'youthoverview'             : '\/Club\/Youth\/Default\.aspx',
     'arena'                     : '\/Club\/Arena\/Default\.aspx',

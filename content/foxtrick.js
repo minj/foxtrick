@@ -793,30 +793,34 @@ function gregorianToHT( date ) {
     var months = [];
     var years = [];
 
-    months[1] = 0;
-    months[2] = 31;
-    months[3] = 59;
-    months[4] = 90;
-    months[5] = 120;
-    months[6] = 151;
-    months[7] = 181;
-    months[8] = 212;
-    months[9] = 243;
-    months[10] = 273;
-    months[11] = 304;
-    months[12] = 334;
+    months[1]  = 0;
+    months[2]  = months[1]  + 31;
+    months[3]  = months[2]  + 28;
+    months[4]  = months[3]  + 31;
+    months[5]  = months[4]  + 30;
+    months[6]  = months[5]  + 31;
+    months[7]  = months[6]  + 30;
+    months[8]  = months[7]  + 31;
+    months[9]  = months[8]  + 31;
+    months[10] = months[9]  + 30;
+    months[11] = months[10] + 31;
+    months[12] = months[11] + 30;
 
-    years[0] = 833;         // From 2000
-    years[1] = 1199;
-    years[2] = 1564;
-    years[3] = 1929;
-    years[4] = 2294;
-    years[5] = 2660;
-    years[6] = 3025;
-    years[7] = 3390;
-    years[8] = 3755;
-    years[9] = 4121;
-    years[10] = 4486;       // = 2010
+
+    // Check http://www.hattrick.org/Club/History/Default.aspx?teamId=100
+    // The season start/end was not really a fixed date.
+
+    years[0]  = 830;            // From 2000
+    years[1]  = years[0] + 366; // leap year
+    years[2]  = years[1] + 365;
+    years[3]  = years[2] + 365;
+    years[4]  = years[3] + 365;
+    years[5]  = years[4] + 366; // leap year
+    years[6]  = years[5] + 365;
+    years[7]  = years[6] + 365;
+    years[8]  = years[7] + 365;
+    years[9]  = years[8] + 366; // leap year
+    years[10] = years[9] + 365;
 
     for (i = 0; i < ar.length; i++) {
         ar[i] = ar[i].replace( /^(0+)/g, '' );
@@ -829,29 +833,30 @@ function gregorianToHT( date ) {
 
     // dump ('  DATE => :[' + year + '-' + month + '-' + day + ']\n');
 
-    var dayCount = years[year-2000] + months[month] + (day-1);
+    var dayCount = years[year-2000] + months[month] + (day);
 
     // leap day
     if (year % 4 == 0 && month > 2)
         ++dayCount;
 
-    // This function wont work for dates before season 11
-    if (dayCount < 1120)
-       return htDatePrintFormat(date, -1, -1, -1);
-
-    var htDate = htDatePrintFormat(date, (Math.floor(dayCount/(16*7)) + 1),
-              (Math.floor((dayCount%(16*7))/7) + 1), dayCount%7 + 1);
+    var htDate = htDatePrintFormat(
+                    year, 
+                    ( Math.floor(dayCount/(16*7)) + 1 ), 
+                    ( Math.floor((dayCount%(16*7))/7) +1 ), 
+                    dayCount%7 + 1 );
 
     return htDate;
 }
     
-function htDatePrintFormat(originalDate, season, week, day) {
-   // Days go from 1 = Saturday to 7 = Friday
-   if (season < 11)
-           // return originalDate + " (old)";
-       return "(old)";
-   // return originalDate + " (" + week + "/" + season + ")";
-       return "(" + week + "/" + season + ")";
+function htDatePrintFormat(year, season, week, day) {
+    if ( year <= 2000 ) 
+        return "(&nbsp;old&nbsp;)"; 
+    else {
+        if ( week < 10 )
+            return "(&nbsp;&nbsp;" + week + "/" + season + ")";
+        else 
+            return "(" + week + "/" + season + ")";
+    }
 }
 
 function getDatefromCellHTML ( date ) {

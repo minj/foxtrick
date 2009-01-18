@@ -22,6 +22,8 @@ FoxtrickTransferListDeadline = {
         Foxtrick.registerPageHandler('teamPageGeneral', this);
         Foxtrick.registerPageHandler('achievements', this);
         Foxtrick.registerPageHandler('teamevents', this);
+        Foxtrick.registerPageHandler('history', this);
+        
         
     },
 
@@ -84,6 +86,10 @@ FoxtrickTransferListDeadline = {
                 modifyDates ( doc, true, 'td', '&nbsp;', '' );
                 break;
                 
+            case 'history' :
+                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                break;
+                                
         }
     },
 
