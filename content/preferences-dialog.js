@@ -275,10 +275,10 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
         
-      /*  //Stage
+        //Stage
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
         // reinitialize
-    */    FoxtrickMain.init();
+        FoxtrickMain.init();
                 
         return true;
     },
