@@ -17,7 +17,19 @@ var FoxtrickGoToPostBox = {
     },
 
     run : function( page, doc ) {
-			var selectBoxTop = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
+			
+            //set up tab on left forums menu
+            var tab = ''
+            try {
+                var forumtabs = getElementsByClass( 'active', doc )[0];
+                var reg = /^(.*?)\&v\=(\d+)(.*?)/;
+                var ar = reg.exec(+' ' + forumtabs.href + ' ');
+                if (ar[2] != null) {
+                    tab = '&v=' + ar[2];
+                }
+            } catch(e) {}
+            
+            var selectBoxTop = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
 			var selectBoxBottom = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_filterUser');
 			var aSelectBoxes = new Array();
 			if (selectBoxTop)
@@ -42,12 +54,10 @@ var FoxtrickGoToPostBox = {
 				goButton.setAttribute('onClick', 
 					'var val=document.getElementById("' + boxId + '").value; ' + 
 					'if (val.indexOf(".") > 0) {var aTemp = val.split("."); val = aTemp[0] + "&n=" + aTemp[1];} ' + 
-					'else {val = "' + iTopicId + '&n=" + val} ' + 
-					'location.href="/Forum/Read.aspx?t=" + val + "&v=2"'
+					'else {val = "' + iTopicId + tab + '&n=" + val} ' + 
+					'location.href="/Forum/Read.aspx?t=" + val + ""'
 					);
 				
-
-
    				var inputBoxLabel = doc.createElement('span');
                 inputBoxLabel.innerHTML = '&nbsp;' + Foxtrickl10n.getString("foxtrick.GoToPostBox.label") + ':&nbsp;';
                 selectBox.parentNode.appendChild(inputBoxLabel);
