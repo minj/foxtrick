@@ -853,7 +853,8 @@ function htDatePrintFormat(year, season, week, day) {
         return "(&nbsp;old&nbsp;)"; 
     else {
         if ( week < 10 )
-            return "(&nbsp;&nbsp;" + week + "/" + season + ")";
+            // return "(&nbsp;&nbsp;" + week + "/" + season + ")";
+            return "(" + week + "/" + season + ")";
         else 
             return "(" + week + "/" + season + ")";
     }

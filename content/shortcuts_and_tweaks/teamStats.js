@@ -118,9 +118,8 @@ var FTTeamStats= {
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
         if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
                 
-        if (true) {
-		//<p>Aktueller Verein: <a href="/Club/?TeamID=1720048" title="&amp;FC&amp; BESIKTAS">&FC& BESIKTAS</a> (Türkiye)</p>
-
+        if ( false ) {
+		// Early test of country counter. Works, but has no finished design
             var countries = {};
             var found = false;
             var allDivs2 = doc.getElementsByTagName( "p" );
