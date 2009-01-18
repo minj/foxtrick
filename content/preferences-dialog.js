@@ -365,8 +365,8 @@ var FoxtrickPreferencesDialog = {
 	_getWrapableBox : function( desc_text ) {
 		var desc_box = document.createElement( "hbox" );
 		var desc = document.createElement("textbox"); 
-		// desc.setAttribute( "class", "plain");
-		desc.setAttribute( "style", "background-color: transparent;color: #000000;");
+		desc.setAttribute( "class", "plain");
+		desc.setAttribute( "style", "background-color: transparent !important; color: #000000;");
 		desc.setAttribute( "height", "20 ");
 		desc.setAttribute( "flex", "1");
 		desc.setAttribute( "multiline", "true");
