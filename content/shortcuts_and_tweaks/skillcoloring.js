@@ -18,6 +18,15 @@ var FoxtrickSkillColoring = {
 
     run : function( page, doc ) {
         // dump(this.MODULE_NAME + '\n');
+		if ( !Foxtrick.isStandardLayout ( doc ) &&
+				(doc.location.href.search(/Club\/Manager\/\?teamId/i) != -1 ||
+				doc.location.href.search(/Club\/Players\/Player\.aspx\?PlayerID/i) != -1 ||
+				doc.location.href.search(/Club\/Players\/YouthPlayers\.aspx\?YouthTeamID/i) != -1 )) {  
+					Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/skillcolors/skill-numbers-largeflag-fix.css");
+		}
+				
+ 
+		
         skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-selectoption"];
         displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"  ), 
                           Foxtrick.isModuleFeatureEnabled( this, "only_skill_color" ), 

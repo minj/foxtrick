@@ -1,0 +1,6 @@
+div#mainBody.boxBody>div.playerInfo 
+{   background-color: red;
+
+	width:150pc !important;
+}
+
