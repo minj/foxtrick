@@ -84,15 +84,22 @@ var FoxtrickPlayerAdToClipboard = {
 					inner = inner.replace(/<br>/g,"");
 					inner = Foxtrick.trim(inner);
 					ad += inner + "\n\n";
-					var startPosNat = substring.search("alt=")+5;
-					substring = substring.substr(startPosNat);
+					break;
+					}
+				}
+			var alla = doc.getElementsByTagName("a");
+			for(var i = 0; i < alla.length; i++) {
+				if(alla[i].className.search("flag")!=-1) {
+					var inner = alla[i].innerHTML; 
+					var startPosNat = inner.search("alt=")+5; 
+					var substring = inner.substr(startPosNat); 
 					var endPosNat = substring.search("\" ");
 					var nationality = substring.substr(0,endPosNat);
 					ad += Foxtrickl10n.getString("foxtrick.tweaks.bornin");
 					ad += ": " + nationality + "\n\n";
 					break;
+					}
 				}
-			}
 			
 			// create player skills array, needed for skillbars
 			
