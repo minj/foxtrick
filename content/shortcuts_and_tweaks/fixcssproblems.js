@@ -20,7 +20,8 @@ FoxtrickFixcssProblems = {
         
         // standard | simpe | all
         var LAYOUTSWITCH = new Array (
-            "standard"
+            "standard",
+            "all"
         );
         // dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
         for (var i = 0; i < this.OPTIONS.length; i++) {
@@ -49,7 +50,8 @@ FoxtrickFixcssProblems = {
     initOptions : function() {
         // Name of css file
 		this.OPTIONS = new Array( 
-                                    "Forum_Hover_Links"
+                                    "Forum_Hover_Links",
+                                    "Forum_Post_Header"
 								);
 	}        
 };
