@@ -39,65 +39,7 @@
             <!-- Main -->
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox id="main_list" style="display:run-in" >
-			    <groupbox>
-			      <caption id="captionHTLanguage"/>
-			      <menulist id="htLanguage">
-                    <menupopup id="htLanguagePopup" >
-                          
-                    </menupopup>
-				  </menulist>
-				</groupbox>
-				<groupbox>
-			      <caption id="captionHTCurrency"/>
-			      <menulist id="htCurrency">
-                    <menupopup id="htCurrencyPopup" >
-                          
-                    </menupopup>
-				  </menulist>
-				</groupbox>
-				<groupbox>
-				  <caption id="captionShowOnStatusBar"/>
-                  <vbox>
-                    <checkbox id="statusbarpref"/>
-                  </vbox>
-                </groupbox>                  
-                <groupbox>
-                  <caption id="captionAlertSettings"/>
-                  <vbox>
-                    <checkbox id="alertsliderpref"/>
-                    <checkbox id="alertslidermacpref"/>
-                    <checkbox id="alertsoundpref"/>
-                    <textbox id="alertsoundurlpref" />
-                    <hbox align="center">
-                      <button id="buttonSelectFile"
-                                oncommand="var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}"/>
-                      <button id="buttonTest" oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);"/>
-                    </hbox>
-                  </vbox>
-                </groupbox>
-               
-				<groupbox>
-				  <caption id="captionStageSettings"/>
-				  <checkbox id="stagepref"/>
-				</groupbox>
-				<groupbox>
-				  <caption id="captionCleanupBranch"/>
-                  <hbox>
-                    <label id="labelCleanupBranch" value="Cleanup" style="padding-top:4px"/>
-				    <button id="buttonCleanupBranch" oncommand="FoxtrickPreferencesDialog.confirmCleanupBranch();" flex="0"/>
-                  </hbox>  
-				</groupbox>  
-					<groupbox>
-				  <caption id="captionLoadSavePrefs"/>
-                  <hbox>
-                    <label id="labelSavePrefs" value="Save" style="padding-top:4px"/>
-				    <button id="buttonSavePrefs" oncommand="FoxtrickPreferencesDialog.SavePrefs();" flex="0"/>
-                  </hbox> 
-					<hbox>
-                    <label id="labelLoadPrefs" value="Load" style="padding-top:4px"/>
-				    <button id="buttonLoadPrefs" oncommand="FoxtrickPreferencesDialog.LoadPrefs();" flex="0"/>
-                  </hbox>				  
-				</groupbox>  				
+
               </vbox>
             </tabpanel>
         
@@ -151,9 +93,10 @@
                 <label value="larsw84 (504255), spambot (333791)" />
 				<label value="Developers" 
                        style="font-weight: bold;" />
-                <label value="kolmis (116321), taised (234678), bummerland (1141309), Jestar (513519), convinced (1142953),"/>
-				<label value="smates (1682965), OBarros (864555), stephan57 (1751312)," />
-				<label value="LA-Foppe (440454), Kurdy_Malloy (1105139), baumanns (244464)" />
+                <label value="kolmis (116321), taised (234678), bummerland (1141309),"/>
+				<label value="Jestar (513519),convinced (1142953), smates (1682965), " />
+				<label value="OBarros (864555), stephan57 (1751312), LA-Foppe (440454)," />
+				<label value="Kurdy_Malloy (1105139), baumanns (244464)" />
 				<label value="Translations"
 				       style="font-weight: bold;" />
 				<label value="* Bosnian - LA-Masterix (1617453)" />
