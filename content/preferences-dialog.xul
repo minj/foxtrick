@@ -10,8 +10,8 @@
 	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
 	onload="FoxtrickPreferencesDialog.init();"
     resizable="yes"
-    width="400px"
-    height="300px"
+    width="600px"
+    height="600px"
     persist="width height screenX screenY"
     class="dialog"
 >
