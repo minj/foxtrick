@@ -67,14 +67,21 @@ var FoxtrickConfirmTL = {
 	
 	change : function( page, doc ) {
 		try {
+            dump('1\n >> ConfirmTL GO...\n'); 
             var submitButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
+            dump('2\n >> ConfirmTL Submit:'+ submitButton + '\n'); 
             if (submitButton){
                 var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
+                dump('3\n >> ConfirmTL sOnclick:'+ sOnclick + '\n'); 
                 if (sOnclick.search(/confirm/) == -1){ // already added?
+                    dump('4\n >> ConfirmTL already added\n');
                     sConfirmString = Foxtrickl10n.getString( "foxtrick.tlconfirmation" );
+                    dump('5\n >> ConfirmTL sConfirmString:'+sConfirmString+'\n');
                     sReplace = "document.getElementById('ctl00_CPSidebar_ucOwnerActions_txtPrice').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
                     sStr = "var str = \""+sConfirmString+"\";";
+                    dump('6\n >> ConfirmTL sStr:'+sStr+'\n');
                     sOnclick = sStr + " if (confirm(str.replace(/\%s/, " + sReplace + "))){" + sOnclick + ";} else {return false;}";
+                    dump('7\n >> ConfirmTL sOnclick:'+sOnclick+'\n');
                     submitButton.setAttribute("onClick", sOnclick);
                 }
             }
