@@ -18,14 +18,6 @@ var FoxtrickSkillColoring = {
 
     run : function( page, doc ) {
         // dump(this.MODULE_NAME + '\n');
-		/* seems to cause a problem, it disables the skillcoloring on the StandardLayout, because it only loads the skill-numbers-width-fix.css
-		if ( !Foxtrick.isStandardLayout ( doc ) &&
-				(doc.location.href.search(/Club\/Manager\/\?teamId/i) != -1 ||
-				doc.location.href.search(/Club\/Players\/Player\.aspx\?PlayerID/i) != -1 ||
-				doc.location.href.search(/Club\/Players\/YouthPlayers\.aspx\?YouthTeamID/i) != -1 )) {  
-					Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/skillcolors/skill-numbers-width-fix.css");
-		} 
-		*/
 				
  		
         skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-selectoption"];
@@ -39,20 +31,26 @@ var FoxtrickSkillColoring = {
             if (displaystyles[i]) {
                 
                 var css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + ".css";
-                if  ( (i == 1) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) {
+                if  ( (i == 2) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) {
                     css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + "-personal.css";
                     //dump ('personal\n');
                 }
                 Foxtrick.addStyleSheet( doc, css );
             }   
         }
+		// seems to cause a problem, it disables the player personalitiy on the simpleLayout, because it only loads the skill-numbers-width-fix.css
+		if ( !Foxtrick.isStandardLayout ( doc ) &&
+				(doc.location.href.search(/Club\/Players\/Player\.aspx\?PlayerID/i) != -1 ||
+				doc.location.href.search(/Club\/Players\/YouthPlayers\.aspx\?YouthTeamID/i) != -1 )) {  
+					Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/skillcolors/skill-numbers-width-fix.css");
+		}
 	},
 	
 	change : function( page, doc ) {
 	},
     
     initOptions : function() {
-		this.OPTIONS = new Array( "skill_color",
+	this.OPTIONS = new Array( "skill_color",
 								  "only_skill_color",
 								  "skill_number",
 								  "skill_select");
