@@ -118,9 +118,14 @@ var FoxtrickPlayerAdToClipboard = {
 			innerP = innerP.replace(/<br>/g,"\n");
 			for( var i=0; i < innerPElement.getElementsByTagName("a").length; i++) {
 				var startPos = innerP.search("<a ");
-				var endPos = innerP.search(">")+1;
-				innerP = innerP.replace(innerP.substr(startPos,endPos-startPos),"");
-				innerP = innerP.replace("</a>","");
+				if (startPos!=-1) {
+					var endPos = innerP.search(">")+1;
+					innerP = innerP.replace(innerP.substr(startPos,endPos-startPos),"");
+					var startPos = innerP.search("<img ");
+					var endPos = innerP.search(">")+1;
+					if (startPos!=-1) innerP = innerP.replace(innerP.substr(startPos,endPos-startPos),"");
+					innerP = innerP.replace("</a>","");
+				}
 			}
 			ad += Foxtrick.trim(innerP) + "\n\n";
 			        

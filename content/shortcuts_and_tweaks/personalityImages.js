@@ -1,7 +1,7 @@
 /**
  * personalityImages.js
  * Script which add character image
- * @author smates
+ * @author smates/convinced
  */
 
 var FoxtrickPersonalityImages = {
@@ -16,13 +16,28 @@ var FoxtrickPersonalityImages = {
     },
 
     run : function( page, doc ) {
-        // dump(this.MODULE_NAME + '\n');
-		var css = "chrome://foxtrick/content/resources/personality/"+
-			"characters.css";
-		Foxtrick.addStyleSheet( doc, css );
-	},
+		
+		try {
+			displaystyles = ["red_1.jpg","orange_2.jpg","yellow_3.jpg","lightgreen_4.jpg","darkgreen_5.jpg","blue_6.jpg"];
+			var style="width:8px; height:8px; margin-left:2px;";
+			var outerdiv = doc.getElementById('ctl00_CPMain_pnlplayerInfo');
+			var linksArray = outerdiv.getElementsByTagName('a');
+				for (var j=0; j<linksArray.length; j++) {
+					link = linksArray[j];  // lt=aggressiveness lt=gentleness
+					if (link.href.search(/lt\=honesty/i) > -1 
+						|| link.href.search(/lt\=aggressiveness/i) > -1
+						|| link.href.search(/lt\=gentleness/i) > -1 ) { 
+						var level = link.href.match(/ll\=(\d)/)[1];
+						var img = '<img style="vertical-align: middle important!; ' + style + 
+								'" src=" chrome://foxtrick/content/resources/personality/' + 
+									displaystyles[level] +'" border="0" height="12" /></a>';
+						link.innerHTML += img;
+					  } 
+				}				
+			
+		} catch (e) {dump('PersonalityImages->'+e+'\n');}
+	},	
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	}
 };
