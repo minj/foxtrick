@@ -50,6 +50,7 @@ var Ratings = {
 				tactics=new Array(Matches._getTacticsFromCell(ratingstable.rows[10].cells[1]), Matches._getTacticsFromCell(ratingstable.rows[10].cells[2]));
 				tacticsLevel=new Array(Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[1]), Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[2]));
 			}
+            dump('Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
 			
 			var defenceLevel = new Array();
 			defenceLevel[0]=ldefence[0] + cdefence[0] + rdefence[0];
@@ -70,6 +71,9 @@ var Ratings = {
 					var cell = row.insertCell(i+1);
 					try {
 						if (typeof (this.ratingDefs[selectedRating]["total2"]) != 'undefined') {
+                            if (tactics[i] == null) {
+                                tactics[i] = -1;
+                            }
 							if (tactics[i] != null) {
 								cell.innerHTML = "<b>" +
 													this.ratingDefs[selectedRating]["total2"](midfieldLevel[i], lattack[i], cattack[i], rattack[i],
@@ -190,6 +194,7 @@ var Ratings = {
 											ldefence, cdefence, rdefence,
 										tactics, tacticsLevel ) {
 
+                if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
 				midfieldLevel = this.base + this.weight*midfieldLevel;
 				lattack = this.base + this.weight*lattack;
 				cattack = this.base + this.weight*cattack;
@@ -297,6 +302,8 @@ var Ratings = {
 			title : function(){return "GardierStats";},
 
 			total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
+                
+                if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
 
 				leftAtt = (this.base + this.weight*leftAtt);
 				centralAtt = (this.base + this.weight*centralAtt);
