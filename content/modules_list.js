@@ -75,5 +75,7 @@ Foxtrick.modules = [
 					 FoxtrickTeamSelectBox,
 					 FoxtrickSeniorTeamShortCuts,
 					 FoxtrickCustomMedals,
-					 FoxtrickForumRedirManagerToTeam,					 
+					 FoxtrickForumRedirManagerToTeam,
+					 //FoxtrickRedirections,
+                     FoxtrickGuestbookAlltidFlags,
                    ];

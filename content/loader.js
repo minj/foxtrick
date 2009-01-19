@@ -13,7 +13,8 @@ var scripts = [
     'stats.js',
     'l10n.js',
 	'helper.js',
-
+//	'redirections.js',
+	
     // individual modules
     'forum/forumtemplates.js',
     'forum/forumpreview.js',
@@ -65,6 +66,7 @@ var scripts = [
 	'shortcuts_and_tweaks/seniorteamshortcuts.js',
 	'shortcuts_and_tweaks/custommedals.js',
     'shortcuts_and_tweaks/fixcssproblems.js',
+	'shortcuts_and_tweaks/guestbookalltidflags.js',
     'links/linkscustom.js',
 	'links/linksleague.js',
 	'links/linksteam.js',

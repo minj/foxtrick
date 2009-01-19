@@ -56,5 +56,6 @@ Foxtrick.ht_pages = {
     'finances'                  : '\/Club\/Finances/',
     'federation'                : '\/Community\/Federations\/Federation\.aspx',
     'national'                  : '\/Club\/NationalTeam\/NationalTeam\.aspx',
+	'guestbook'					: '\/Club\/Manager\/Guestbook\.aspx',
 };
 ////////////////////////////////////////////////////////////////////////////////
