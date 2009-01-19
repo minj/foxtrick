@@ -73,7 +73,7 @@ var FoxtrickLinksPlayerDetail = {
 						container.appendChild(ilinks[j].link);
 					}
 				}
-			   
+			    var newtable=false;
 				var goalkeeperskillnode;   
 				for (var j=0; j < divs.length; j++) {
 					if ( divs[j].className=="mainBox" ) {
@@ -90,6 +90,7 @@ var FoxtrickLinksPlayerDetail = {
 							goalkeeperskillnode = PlayerDetailTable.rows[0].cells[3].getElementsByTagName('a')[0];
 						}
 						if (PlayerDetailTable.rows.length==7) { //new table
+							newtable=true;
 							goalkeeping = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[1].getElementsByTagName('a')[0]);
 							defending = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[1].cells[1].getElementsByTagName('a')[0]);
 							playmaking = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[2].cells[1].getElementsByTagName('a')[0]);
@@ -129,6 +130,7 @@ var FoxtrickLinksPlayerDetail = {
                                                          "form" : form, "goalkeeping" : goalkeeping, "age" : age }, doc,this);  
 					for (var j=0; j< klinks.length; j++) {
 						klinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
+						if (newtable) klinks[j].link.setAttribute("style", "margin-left:5px !important;");
 						goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
 						goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
 						}										
