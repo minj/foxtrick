@@ -78,10 +78,12 @@ var FoxtrickPlayerAdToClipboard = {
 				if(allDivs[i].className == "byline") {
 					var inner = allDivs[i].innerHTML;
 					var startPos = inner.search("<a ");
-					var endPos = inner.search("</a>")+4;
-					var substring = inner.substr(startPos,endPos-startPos);
-					inner = inner.replace(substring,"");
-					inner = inner.replace(/<br>/g,"");
+					if (startPos!=-1) {
+						var endPos = inner.search("</a>")+4;
+						var substring = inner.substr(startPos,endPos-startPos);
+						inner = inner.replace(substring,"");
+						inner = inner.replace(/<br>/g,"");
+					}
 					inner = Foxtrick.trim(inner);
 					ad += inner + "\n\n";
 					break;
