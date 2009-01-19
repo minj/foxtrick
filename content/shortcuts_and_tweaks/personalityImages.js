@@ -30,7 +30,7 @@ var FoxtrickPersonalityImages = {
 						var level = link.href.match(/ll\=(\d)/)[1];
 						var img = '<img style="vertical-align: middle important!; ' + style + 
 								'" src=" chrome://foxtrick/content/resources/personality/' + 
-									displaystyles[level] +'" border="0" height="12" /></a>';
+									displaystyles[level-1] +'" border="0" height="12" /></a>';
 						link.innerHTML += img;
 					  } 
 				}				
