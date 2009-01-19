@@ -36,9 +36,9 @@ var FoxtrickGuestbookAlltidFlags = {
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+count;
-						//mySpan.setAttribute( "id", spanId );
+						mySpan.setAttribute( "id", spanId );
 						var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
-						dump(spanId+"\n"+userId+"\n");
+						//dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						mySpan.innerHTML = ' <a href="' + linkpage + userId +
 							'"target="_blank"><img title="'+thistitlecountry+'" " style="' + 
