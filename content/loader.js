@@ -47,6 +47,7 @@ var scripts = [
     'shortcuts_and_tweaks/teampopuplinks.js',
     'shortcuts_and_tweaks/transferListSearchFilters.js',
     'shortcuts_and_tweaks/transferListDeadline.js',
+    'shortcuts_and_tweaks/htdateformat.js',
     'shortcuts_and_tweaks/extendedplayerdetails.js',
     'shortcuts_and_tweaks/youthskillnotes.js',
     'shortcuts_and_tweaks/foxtrickalert.js',

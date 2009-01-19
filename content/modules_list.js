@@ -33,6 +33,7 @@ Foxtrick.modules = [
                      FoxtrickFlagCollectionToMap,
                      FoxtrickTransferListSearchFilters,
                      FoxtrickTransferListDeadline,
+                     FoxtrickHTDateFormat,
                      FoxtrickExtendedPlayerDetails,
                      FoxtrickTeamPopupLinks,
 					 FoxtrickMatchPlayerColouring,
