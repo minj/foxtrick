@@ -959,19 +959,20 @@ modifyDates = function ( doc, short, elm, before, after ) {
     short == true => Date is without time.
     */
     var tds = doc.getElementsByTagName( elm );
-    dump ('ELEMENT => ' + elm+'\n');
+    // dump ('ELEMENT => ' + elm+'\n');
     for (var i = 0; tds[i] != null; ++i) {
         dt_inner = Foxtrick.trim(tds[i].innerHTML);
         if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
-             dump (i + ' - ' + dt_inner + '\n' );
+            // dump (i + ' - ' + dt_inner + '\n' );
             var reg = /^(\d+)(.*?)(\d+)(.*?)(\d{4})(.*?)/g;
             var ar = reg.exec(dt_inner);
 
             if (ar != null) {
                 // dump (i + ' ====> ' + ar + '\n');
                 var td_date = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
-
-                if (Foxtrick.trim(td_date).match(reg) != null) {
+                // dump(' =====> [' + td_date + ']\n');
+                // dump(' =====> [' + ar + ']\n');
+                if (Foxtrick.trim(td_date).match(reg) != null && ar[0] != '' && ar[2] != '' && ar[4] != '') {
                     tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
                 }
             }

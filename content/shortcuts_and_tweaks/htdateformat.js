@@ -54,6 +54,7 @@ FoxtrickHTDateFormat = {
                 
             case 'teamPageGeneral' :
                 modifyDates ( doc, false, 'span', '&nbsp;', '' );
+                modifyDates ( doc, false, 'td', '&nbsp;', '' );
                 break;
 
             case 'TransferCompare' :
