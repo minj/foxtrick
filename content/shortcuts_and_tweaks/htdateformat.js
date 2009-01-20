@@ -21,6 +21,8 @@ FoxtrickHTDateFormat = {
         Foxtrick.registerPageHandler('teamevents', this);
         Foxtrick.registerPageHandler('history', this);
         Foxtrick.registerPageHandler('arena', this);
+        Foxtrick.registerPageHandler('league', this);
+        
     },
 
     run : function(page, doc) {
@@ -79,6 +81,12 @@ FoxtrickHTDateFormat = {
             case 'arena' :
                 modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;
+                
+            case 'league' :
+                modifyDates ( mainBody, true, 'h3', '&nbsp;', '' );
+                break;
+                
+                
         }
     },
 

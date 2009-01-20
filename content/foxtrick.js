@@ -964,15 +964,17 @@ modifyDates = function ( doc, short, elm, before, after ) {
         dt_inner = Foxtrick.trim(tds[i].innerHTML);
         if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
             // dump (i + ' - ' + dt_inner + '\n' );
-            var reg = /^(\d+)(.*?)(\d+)(.*?)(\d{4})(.*?)/g;
+            var reg = /(\d{2,4})(\W{1})(\d{2})(\W{1})(\d{2,4})(.*?)/g;
             var ar = reg.exec(dt_inner);
 
             if (ar != null) {
                 // dump (i + ' ====> ' + ar + '\n');
-                var td_date = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+                var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
                 // dump(' =====> [' + td_date + ']\n');
                 // dump(' =====> [' + ar + ']\n');
-                if (Foxtrick.trim(td_date).match(reg) != null && ar[0] != '' && ar[2] != '' && ar[4] != '') {
+                if (ar[5].length != 4) {td_date = ar[5] + '.' + ar[3] + '.' + ar[1] + ' 00.00.01';}
+                // dump(' =====> [' + td_date + ']\n');
+                if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
                     tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
                 }
             }
