@@ -1,7 +1,7 @@
 /**
  * teamStats.js
  * Foxtrick team overview
- * @author OBarros
+ * @author OBarros & spambot
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FTTeamStats= {
@@ -20,12 +20,43 @@ var FTTeamStats= {
 		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
 		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 	
+		var NT_players = doc.location.href.indexOf("NTPlayers");
+		var total_NT = 0;
+		
         var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "p" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
 			
 			if( allDivs2[i].textContent.match(/TSI\ \=/g) ) {
-				var specc = allDivs2[i];
+				
+
+
+				dump (' >> NT_players:[' + NT_players + ']\n');
+
+
+				if (NT_players > 1) {
+					var specc = allDivs2[i];
+					try {
+	
+						var tsipos1 = parseInt(specc.textContent.indexOf("TSI = ") + 6);				
+						var tsitot_in = specc.textContent.substr(tsipos1, 8);
+						
+						tsitot_in = tsitot_in.replace(/[\(\)\.\-\s,]/g, "");
+						
+						dump (' >> tsitot_in_depois:[' + tsitot_in + ']\n');
+						
+						tsitot_in = parseInt(tsitot_in);
+						
+						total_NT = parseInt(total_NT) + tsitot_in;
+						
+						dump (' >> total_NT:[' + total_NT + ']\n');
+						
+					}				
+					catch(e) {
+						dump(e);
+					}
+				}
+				
 				if(specc) {
 					// specialities
                     var specMatch = specc.textContent.match(/\[\D+\]/g);
@@ -46,6 +77,26 @@ var FTTeamStats= {
 		var boxrightt=doc.getElementById('sidebar');
 		
         var specsTable = "";
+		
+		
+		
+		function addSpace(nStr)
+		{
+			nStr += '';
+			x = nStr.split('.');
+			x1 = x[0];
+			x2 = x.length > 1 ? '.' + x[1] : '';
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(x1)) {
+				x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+			}
+			return x1 + x2;
+		}
+		
+		
+        specsTable += "<tr><td class=\"ch\">TOTAL TSI</td><td>" + addSpace(total_NT) + "</td></tr>";
+
+		
         for (var spec in specs) {
           specsTable += "<tr><td class=\"ch\">" + spec.replace(/\[|\]/g,"") + "</td><td>" + specs[spec] + "</td></tr>";
         }
