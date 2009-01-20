@@ -136,7 +136,7 @@ var FoxtrickForumPreview = {
           "<a href=\"$1\" target=\"\_blank\">($1)</a>",
 
           "<span class='quote'>$1</span>",
-          "<span class='quote'><b>$1</b><br>$2</span>",
+          "<span class='quote'><b>$1&nbsp;wrote:</b><br>$2</span>",
           "<b>$1</b>",
           "<u>$1</u>",
           "<i>$1</i>",
