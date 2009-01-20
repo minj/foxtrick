@@ -42,14 +42,13 @@ var FoxtrickForumYouthIcons = {
         var nextElement = toolbar.firstChild;
         while (nextElement) {
             try {
-                if (nextElement.id = 'Toolbar_AvailTags') {
+                if (nextElement.id == 'Toolbar_AvailTags' || nextElement.href != null ) {
                     nextElement.setAttribute("style","display:none") 
                 }
                 else {
                     nextElement.setAttribute("style","margin:2px");
-                    nextElement = nextElement.nextSibling;
                 }
-                    
+                nextElement = nextElement.nextSibling;
             } catch(e) { nextElement = nextElement.nextSibling; }
         }
         
@@ -141,15 +140,6 @@ var FoxtrickForumYouthIcons = {
         
         var head = toolbar.parentNode;
         head.insertBefore( youthbar, toolbar.nextSibling );
-        /*
-        var alertbox = doc.getElementById( "Toolbar_AvailTags" );
-        if (alertbox != null) {
-            
-            alertbox.setAttribute("style", "border:1px solid red; display:none");
-            
-            dump ('hiding alert\n');
-        }
-        */
     },
 	
 	change : function( page, doc ) {
