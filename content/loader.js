@@ -59,7 +59,7 @@ var scripts = [
 	'shortcuts_and_tweaks/personalityImages.js',
 	'shortcuts_and_tweaks/playeradtoclipboard.js',
 	'shortcuts_and_tweaks/skillcoloring.js',
-	//'shortcuts_and_tweaks/skinPlugin.js',
+	'shortcuts_and_tweaks/skinPlugin.js',
 	'shortcuts_and_tweaks/teamStats.js',
 	'shortcuts_and_tweaks/largeflags.js',
     'shortcuts_and_tweaks/teamselectbox.js',

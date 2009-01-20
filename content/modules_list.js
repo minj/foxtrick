@@ -68,7 +68,7 @@ Foxtrick.modules = [
                      FoxtrickForumNextAndPrevious,
                      FoxtrickPersonalityImages,
                      FoxtrickSkillColoring,
-                     //FoxtrickSkinPlugin,
+                     FoxtrickSkinPlugin,
 					 FoxtrickHelper,
 					 FTTeamStats,
 					 FoxtrickLargeFlags,
