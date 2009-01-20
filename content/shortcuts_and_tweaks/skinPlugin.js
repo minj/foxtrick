@@ -24,9 +24,9 @@ var FoxtrickSkinPlugin = {
         var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
        
         if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
+        
         if (FoxtrickPrefs.getBool("module.SkinPlugin.enabled")){
-       
-            sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+       if(!sss.sheetRegistered(uri, sss.USER_SHEET)){sss.loadAndRegisterSheet(uri, sss.USER_SHEET);}
 
             /*OLD MEDALS SCRIPT*/
             var sidebar = doc.getElementById('sidebar');
