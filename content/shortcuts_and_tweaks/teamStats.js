@@ -29,27 +29,16 @@ var FTTeamStats= {
 			
 			if( allDivs2[i].textContent.match(/TSI\ \=/g) ) {
 				
-
-
-				dump (' >> NT_players:[' + NT_players + ']\n');
-
-
+				//JB: If is National team page counts Total TSI
 				if (NT_players > 1) {
 					var specc = allDivs2[i];
 					try {
 	
 						var tsipos1 = parseInt(specc.textContent.indexOf("TSI = ") + 6);				
 						var tsitot_in = specc.textContent.substr(tsipos1, 8);
-						
 						tsitot_in = tsitot_in.replace(/[\(\)\.\-\s,]/g, "");
-						
-						dump (' >> tsitot_in_depois:[' + tsitot_in + ']\n');
-						
 						tsitot_in = parseInt(tsitot_in);
-						
 						total_NT = parseInt(total_NT) + tsitot_in;
-						
-						dump (' >> total_NT:[' + total_NT + ']\n');
 						
 					}				
 					catch(e) {
@@ -80,6 +69,8 @@ var FTTeamStats= {
 		
 		
 		
+		//JB: Function to format numbers with spaces
+		
 		function addSpace(nStr)
 		{
 			nStr += '';
@@ -93,8 +84,8 @@ var FTTeamStats= {
 			return x1 + x2;
 		}
 		
-		
-        specsTable += "<tr><td class=\"ch\">TOTAL TSI</td><td>" + addSpace(total_NT) + "</td></tr>";
+		//If NT displays Total TSI
+        if (NT_players > 1) specsTable += "<tr><td class=\"ch\">TOTAL TSI</td><td>" + addSpace(total_NT) + "</td></tr>";
 
 		
         for (var spec in specs) {
