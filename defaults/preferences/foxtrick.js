@@ -29,3 +29,4 @@ pref( "extensions.foxtrick.prefs.module.LinksPlayerDetail.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksMatch.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LinksCustom.enabled", false );
 pref( "extensions.foxtrick.prefs.module.SeniorTeamShortCuts.value", 0 );
+pref( "extensions.foxtrick.prefs.cssSkin.value", "chrome://foxtrick/content/resources/css/mainr.css");
