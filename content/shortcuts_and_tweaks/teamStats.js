@@ -30,8 +30,8 @@ var FTTeamStats= {
 			if( allDivs2[i].textContent.match(/TSI\ \=/g) ) {
 				
 				//JB: If is National team page counts Total TSI
+				var specc = allDivs2[i];
 				if (NT_players > 1) {
-					var specc = allDivs2[i];
 					try {
 	
 						var tsipos1 = parseInt(specc.textContent.indexOf("TSI = ") + 6);				
@@ -160,7 +160,7 @@ var FTTeamStats= {
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
         if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
                 
-        if ( false ) {
+        if ( true ) {
 		// Early test of country counter. Works, but has no finished design
             var countries = {};
             var found = false;
@@ -200,7 +200,7 @@ var FTTeamStats= {
                     countriesTable += "<tr><td class=\"\">" + landarray[i].land.replace(/\(|\)/g,"") + "</td><td>" + landarray[i].value + "</td></tr>";
                 }
                 specsTable += countriesTable;            
-                // dump(countries);
+                 dump(countries);
             }
             
         }
