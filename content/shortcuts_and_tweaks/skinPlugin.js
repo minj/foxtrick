@@ -1,7 +1,7 @@
 /**
  * skinPlugin.js
  * Script which including skins
- *
+ *chrome://foxtrick/content/resources/css/mainr.css
  * @author smates
  */
 var FoxtrickSkinPlugin = {
@@ -18,9 +18,10 @@ var FoxtrickSkinPlugin = {
 
     run : function( page, doc ) {  
 		
-		
+	try {
 var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+
 
 var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
 
@@ -52,6 +53,7 @@ var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
 		/*END*/
 		}
 		if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
+		} catch(e){}
 	},
 
 		
