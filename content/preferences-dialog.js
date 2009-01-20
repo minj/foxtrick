@@ -624,7 +624,7 @@ FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
         window.open("chrome://foxtrick/content/preferences-dialog.xul",
                       "", 
-                      "centerscreen, chrome, modal");
+                      "centerscreen, chrome, modal, resizable=yes");
 	}
 }
 
@@ -742,7 +742,8 @@ FoxtrickPreferencesDialog.LoadPrefs = function () {
 				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
 				var value=line.match(/\",(.+)\)\;/)[1];				
 				var strval = value.match(/\"(.+)\"/);
-				if (strval != null) FoxtrickPrefs.setString(key,strval[1]);
+				if (value == "\"\"") FoxtrickPrefs.setString(key,"");
+				else if (strval != null) FoxtrickPrefs.setString(key,strval[1]);
 				else if (value == "true") FoxtrickPrefs.setBool(key,true);
 				else if (value == "false") FoxtrickPrefs.setBool(key,false);
 				else FoxtrickPrefs.setInt(key,value);
