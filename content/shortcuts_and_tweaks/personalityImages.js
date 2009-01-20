@@ -25,14 +25,20 @@ var FoxtrickPersonalityImages = {
 				for (var j=0; j<linksArray.length; j++) {
 					link = linksArray[j];  // lt=aggressiveness lt=gentleness
 					if (link.href.search(/lt\=honesty/i) > -1 
-						|| link.href.search(/lt\=aggressiveness/i) > -1
 						|| link.href.search(/lt\=gentleness/i) > -1 ) { 
-						var level = link.href.match(/ll\=(\d)/)[1];
-						var img = '<img style="vertical-align: middle important!; ' + style + 
-								'" src=" chrome://foxtrick/content/resources/personality/' + 
-									displaystyles[level-1] +'" border="0" height="12" /></a>';
-						link.innerHTML += img;
-					  } 
+                            var level = link.href.match(/ll\=(\d)/)[1];
+                            var img = '<img style="vertical-align: middle important!; ' + style + 
+                                      '" src=" chrome://foxtrick/content/resources/personality/' + 
+                            displaystyles[level] +'" border="0" height="12" /></a>';
+                            link.innerHTML += img;
+					}
+					if ( link.href.search(/lt\=aggressiveness/i) > -1 ) { 
+                            var level = link.href.match(/ll\=(\d)/)[1];
+                            var img = '<img style="vertical-align: middle important!; ' + style + 
+                                      '" src=" chrome://foxtrick/content/resources/personality/' + 
+                            displaystyles[4-(level)] +'" border="0" height="12" /></a>';
+                            link.innerHTML += img;
+					}                        
 				}				
 			
 		} catch (e) {dump('PersonalityImages->'+e+'\n');}
