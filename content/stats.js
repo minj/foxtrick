@@ -646,14 +646,27 @@ stats["ht_deutschland"] =  {
                    "filters"    : ["countryid"], 
                    "params"     : []
 				}, 
- "nationalteamlink" : { "path"       : "scouting/index.php?language=2",
-                   "filters"    : ["countryid"], 
-                   "params"     : []
-				}, 
   "countryidranges" : [[3, 3]], 
   "title" : "HT-Deutschland",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-deutschland.png"
 };    
+
+stats["ht_scouting"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "playerlink" : { "path"       : "scouting/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "scouting/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[3, 3]], 
+  "countryidranges" : [[3, 3]], 
+  "title" : "HT-Scouting",
+  "img" : "chrome://foxtrick/content/resources/linkicons/htscout_adduser.png"
+}
 
 // peasohtstats
 stats["htstats"] =  { 
@@ -1294,7 +1307,7 @@ stats["htlinks_ti_schrauber"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_small.png"
 };
 
-/*  // illegal site. don't include again before CHPP approval
+  // CHPP approval unclear
 stats["skillraise"] =  { 
         "url" : "http://www.htdaytrading.com/",
 
@@ -1311,7 +1324,7 @@ stats["skillraise"] =  {
 
         "title" : "SkillRaise Tool",
         "img" : "chrome://foxtrick/content/resources/linkicons/skillraise.jpg"
-};  */  
+};    
 
 stats["Hattrickstats_fr"] =  { 
         "url" : "http://friendly.cup.free.fr/",
@@ -1456,26 +1469,28 @@ stats["htarena"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htarena.png"
 };
 
-stats["nrg_eco_arena"] =  { 
+stats["nrg_tools"] =  { 
         "url" : "http://nrgjack.altervista.org/",
         "arenalink" : { "path"       : "eco.php",
                          "filters"    : [], 
                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
-
-        "title" : "Enterprise Construction Online",
-        "img" : "chrome://foxtrick/content/resources/linkicons/eco.jpg"
-};
-
-stats["nrg_newcoach"] =  { 
-        "url" : "http://nrgjack.altervista.org/",
 	    "coachlink" : { "path"       : "fc.php",
                          "filters"    : [], 
                          "params"     : {  }
                        },
- 
-        "title" : "NRG Future Coach",
-        "img" : "chrome://foxtrick/content/resources/linkicons/nrg.png"
+					   
+		// CHPP approval unclear 
+        "playerlink" : { "path"       : "pop.php",
+                         "filters"    : [], 
+                         "params"     : { "tsi" : "tsi", "form" : "fo",
+                                          "stamina" : "st",  "playmaking" : "pm",
+                                          "passing" : "pa", "winger" : "wi", "defending" : "df",
+                                          "scoring" : "sc" }
+                          },
+
+        "title" : "NRG Tools",
+        "img" : "chrome://foxtrick/content/resources/linkicons/eco.jpg"
 };
 
 // ArgenStat
@@ -1505,9 +1520,10 @@ stats["u20schweiz"] =  {
   "title" : "U20 Schweiz",
   "img" : "chrome://foxtrick/content/resources/linkicons/u20schweiz.jpg",
   
-  "countryidranges" : [[46,46]],
-  "LeagueOfficeTypeIDranges" : [[4,4]],
-  
+  "playerlink" : { "path"     : "",
+                         "filters"  :["nationality","age"],
+                         "params"   : []
+  },
   "nationalteamlink" : { "path"     : "",
                          "filters"  : ["countryid", "LeagueOfficeTypeID"],
                          "params"   : []
@@ -1515,10 +1531,8 @@ stats["u20schweiz"] =  {
   "ageranges" : [[17,20]],
   "nationalityranges" : [[46,46]],
   
-  "playerlink" : { "path"     : "",
-                         "filters"  :["nationality","age"],
-                         "params"   : []
-  }
+  "countryidranges" : [[46,46]],
+  "LeagueOfficeTypeIDranges" : [[4,4]],  
 };
 
 stats["czechrepublic_nt"] = { 
@@ -1564,8 +1578,8 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
-	"countryidranges" : [[1,2],[4,200]] ,
-	"nationalityranges" : [[1,2],[4,200]], 
+	"countryidranges" : [[1,2],[4,4],[6,45],[47,51],[53,200]] ,
+	"nationalityranges" : [[1,2],[4,4],[6,45],[47,51],[53,200]], 
 };
 
 /*
