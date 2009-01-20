@@ -145,21 +145,25 @@ var FoxtrickLinksCustom = {
 				var td1 = doc.createElement ("td");
 				var td2 = doc.createElement ("td");
 				td2.setAttribute("style","vertical-align:middle;");
+				td2.width="100%";
 				var tdiv = doc.createElement ("div"); 
 				var title = doc.createTextNode(FoxtrickPrefs.getString(basepref+'.'+key+'.title').substr(0,8));
 				var td3 = doc.createElement ("td");
 				td3.setAttribute("style","vertical-align:middle;");
+				td3.width="16px";
 				var td4 = doc.createElement ("td");
 				td4.setAttribute("style","vertical-align:middle;");
+				td4.width="16px";
 				var td5 = doc.createElement ("td");
 				td5.setAttribute("style","vertical-align:middle;");
+				td5.width="16px";
 				
 				td1.appendChild(div);
 				tdiv.appendChild(title);
 				td2.appendChild(tdiv);
-				if (key.length>3) td5.appendChild(FoxtrickLinksGetExportLink(doc,div,basepref+'.'+key));
+				if (key.length>3) td5.appendChild(FoxtrickLinksGetExportLink(doc,div,basepref+'.'+key)); // prevent export of oldstyle keys
 				td3.appendChild(FoxtrickLinksGetEditOldLink(doc,div,basepref+'.'+key));
-				td4.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+key)); // prevent export of oldstyle keys
+				td4.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+key)); 
 				tr1.appendChild(td1);
 				tr1.appendChild(td2);
 				tr1.appendChild(td5);
@@ -175,13 +179,18 @@ var FoxtrickLinksCustom = {
 			tdn.appendChild(divn);				
 			trn.appendChild(tdn);				
 			table.appendChild(trn);				
+
+			divED.appendChild(table);	
+			
+			var table2=doc.createElement ("table"); 
+			table2.setAttribute('id','LinksCustomTable2ID');					 
 			
 			var div = doc.createElement ("div"); 
-			div.setAttribute("id", "inputImgID");
+			div.setAttribute("id", "inputImgDivID");
 			div.setAttribute( "title", 'Tinntle') ;
 			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/aiga.png'>";
 			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/empty16.png') 50% no-repeat;");
-								
+							
 			// load image button
 			var loadIcon = doc.createElement ("a");	
 			loadIcon.setAttribute("href", "javascript: void(0);");
@@ -195,20 +204,17 @@ var FoxtrickLinksCustom = {
 		
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
+			td1.width="20px";					
 			var td2 = doc.createElement ("td");
 			td2.setAttribute("style","vertical-align:middle;");
 			td2.width="100%";					
 			td1.appendChild(div);
 			td2.appendChild(loadIcon);
-			td2.setAttribute("colspan","2");
+			td2.setAttribute("colspan","4");
 			tr1.appendChild(td1);
 			tr1.appendChild(td2);
 			table.appendChild(tr1);
 				
-			divED.appendChild(table);	
-			
-			var table2=doc.createElement ("table"); 
-			table2.setAttribute('id','LinksCustomTable2ID');					 
 			
 			// titel edit field
 			var inputTitle = doc.createElement ("input");
@@ -319,7 +325,8 @@ var FoxtrickLinksCustom = {
 
 			ownBoxBody.appendChild(divED);
 			
-			div.imgref=doc.getElementById('inputImgIDName').src ;
+			div.imgref=doc.getElementById('inputImgDivID').src ;
+			div.imgref=doc.getElementById('inputImgDivID').src ;
 			
 		}
 		catch (e) {dump("LinksCustom->show_edit->"+e+'\n');}
@@ -348,7 +355,7 @@ var FoxtrickLinksCustom = {
 			var baseprefnl = evt["target"]["baseprefnl"];
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
-			doc.getElementById("inputImgID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
+			doc.getElementById("inputImgDivID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
 		catch (e) {dump("LinksCustom->editOldLink->"+e+'\n');}
@@ -357,7 +364,7 @@ var FoxtrickLinksCustom = {
 	Export : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.Export.doc;
-			var baseprefnl = evt["target"]["baseprefnl"];		_
+			var baseprefnl = evt["target"]["baseprefnl"];		
 			
 			var locpath=Foxtrick.selectFileSave(doc.defaultView);
 			if (locpath==null) {return;}
@@ -395,7 +402,7 @@ var FoxtrickLinksCustom = {
 			
 			FoxtrickPrefs.setString(baseprefnl+'.href',doc.getElementById ("inputHrefID" ).value );
 			FoxtrickPrefs.setString(baseprefnl+'.title',doc.getElementById ( "inputTitleID" ).value);
-			FoxtrickPrefs.setString(baseprefnl+'.img',doc.getElementById('inputImgID').imgref);
+			FoxtrickPrefs.setString(baseprefnl+'.img',doc.getElementById('inputImgDivID').imgref);
 				
 			var div = doc.createElement ("div"); 
 			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
@@ -492,7 +499,7 @@ function FoxtrickLinksLoadDialog (evt)
 	
 		var pngBinary;		
 		// load from file
-		try {
+		try { 
 			var ios = Components.classes["@mozilla.org/network/io-service;1"]
 					.getService(Components.interfaces.nsIIOService);
 			var url = ios.newURI(path, null, null);
@@ -500,7 +507,7 @@ function FoxtrickLinksLoadDialog (evt)
 			var pngFile = url.QueryInterface(Components.interfaces.nsIFileURL).file;
 			var image=generateDataURI(pngFile); 
 			if (image.length>2000) {Foxtrick.alert("Image too large.");return;}
-			var div=doc.getElementById('inputImgDivIDName');
+			var div=doc.getElementById('inputImgDivID');
 			div.imgref=image;
 			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+div.imgref+"') 50% no-repeat;");
 			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
