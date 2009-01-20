@@ -132,6 +132,8 @@ var FoxtrickPreferencesDialog = {
 		textbox.setAttribute('id',"alertsoundurlpref");
         textbox.setAttribute( "value", FoxtrickPrefs.getString( "alertSoundUrl" ) );
  		vbox.appendChild(textbox);
+ 		
+ 		
 		var hbox= doc.createElement("hbox");
 		hbox.setAttribute('align',"center");
 		vbox.appendChild(hbox);
@@ -150,6 +152,22 @@ var FoxtrickPreferencesDialog = {
 		groupbox.appendChild(caption);
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
+
+    // Skin
+		var groupbox= doc.createElement("groupbox");
+		var caption= doc.createElement("caption");
+		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionSkinSettings"));
+		var vbox= doc.createElement("vbox");
+		var textbox= doc.createElement("textbox");
+		textbox.setAttribute('id',"cssskinpref");
+    textbox.setAttribute( "value", FoxtrickPrefs.getString( "cssSkin" ) );
+ 		vbox.appendChild(textbox);
+        
+		vbox.appendChild(textbox);
+		groupbox.appendChild(caption);
+		groupbox.appendChild(vbox);
+		modules_list.appendChild(groupbox);
+
 
 		// stage
 		var groupbox= doc.createElement("groupbox");
@@ -274,6 +292,9 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
         FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
+        
+        //Skins
+        FoxtrickPrefs.setString("cssSkin", document.getElementById("cssskinpref").value);
         
         //Stage
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
