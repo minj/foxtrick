@@ -30,51 +30,54 @@ FoxtrickHTDateFormat = {
         HT_date = getDatefromCellHTML( httime );
         if (!HT_date) return;
 
+        var mainBody = doc.getElementById( "mainBody" );
+        if (!mainBody) return;
+        
         switch ( page ) {
 
             case 'transfersTeam' :
-                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;
 
             case 'TransfersPlayer' :
-                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;
 /*
             case 'match' :
-                this._modifyDates ( doc, false, 'div', '&nbsp;' , '' );
+                this._modifyDates ( mainBody, false, 'div', '&nbsp;' , '' );
                 break;
 */                
             case 'matches' :
-                modifyDates ( doc, false, 'td', '&nbsp;' , '' );
+                modifyDates ( mainBody, false, 'td', '&nbsp;' , '' );
                 break;
 
             case 'matchesarchiv' :
-                modifyDates ( doc, false, 'span', '&nbsp;' , '' );
+                modifyDates ( mainBody, false, 'span', '&nbsp;' , '' );
                 break;
                 
             case 'teamPageGeneral' :
-                modifyDates ( doc, false, 'span', '&nbsp;', '' );
-                modifyDates ( doc, false, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, false, 'span', '&nbsp;', '' );
+                modifyDates ( mainBody, false, 'td', '&nbsp;', '' );
                 break;
 
             case 'TransferCompare' :
-                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;
                 
             case 'achievements' :
-                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;
                 
             case 'teamevents' :
-                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;
                 
             case 'history' :
-                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;                
 
             case 'arena' :
-                modifyDates ( doc, true, 'td', '&nbsp;', '' );
+                modifyDates ( mainBody, true, 'td', '&nbsp;', '' );
                 break;
         }
     },
