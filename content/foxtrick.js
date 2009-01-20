@@ -786,8 +786,8 @@ function gregorianToHT( date ) {
     date +=' ';
 
     // dump ('  DATE => :[' + date + ']\n');
-
-    var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+    //var reg = /(\d{2,4})(\W{1})(\d{2})(\W{1})(\d{2,4})(.{1})(\d{2})(\W{1})(\d{2})(.*?)/g;
+     var reg = /(\d{2,4})(.*?)(\d{2})(.*?)(\d{2,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
     var ar = reg.exec(date);
     // dump ('  ARRAY => :[' + ar + ']\n');
     var months = [];
@@ -874,6 +874,7 @@ function getDatefromCellHTML ( date ) {
 
         var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
         var ar = reg.exec(date);
+        if (ar[5].length != 4) {var tmp = ar[5]; ar[5] = ar[1]; ar[1] = tmp;}
         var SD = ar[1];
         var SM = ar[3];
         var SY = ar[5];
