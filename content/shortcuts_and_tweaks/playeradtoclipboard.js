@@ -59,8 +59,8 @@ var FoxtrickPlayerAdToClipboard = {
 
 			var ad="";
 			var obj;
-    
-			var links = doc.links;
+			var main = doc.getElementById("mainWrapper");					
+			var links = main.getElementsByTagName("a");;
 			for (var i = 0; i < links.length; i++) {
 				if (links[i].href.match(/Club\/Players\/Player\.aspx/i)) {
 					obj = links[i];

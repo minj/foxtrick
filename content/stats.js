@@ -664,7 +664,7 @@ stats["ht_scouting"] =  {
 				}, 
   "nationalityranges" : [[3, 3]], 
   "countryidranges" : [[3, 3]], 
-  "title" : "HT-Scouting",
+  "title" : "HT-Deutschland Scouting DB",
   "img" : "chrome://foxtrick/content/resources/linkicons/htscout_adduser.png"
 }
 
