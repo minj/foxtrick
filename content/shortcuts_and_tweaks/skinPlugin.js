@@ -6,10 +6,10 @@
  */
 var FoxtrickSkinPlugin = {
     
-  MODULE_NAME : "SkinPlugin",
+    MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	DEFAULT_ENABLED : true,
-  OPTIONS : {},
+	DEFAULT_ENABLED : false,
+    OPTIONS : {},
   
     init : function() {
         Foxtrick.registerPageHandler('all',this);
@@ -18,58 +18,54 @@ var FoxtrickSkinPlugin = {
 
     run : function( page, doc ) {  
 		
-	try {
-var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-
-
-var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
-
+    try {
+        var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+        var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+        var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
        
-       if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
-       if (FoxtrickPrefs.getBool("module.SkinPlugin.enabled")){
+        if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
+        if (FoxtrickPrefs.getBool("module.SkinPlugin.enabled")){
        
-		   sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+            sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
 
-		/*OLD MEDALS SCRIPT*/
-		var sidebar = doc.getElementById('sidebar');
-		if( sidebar ) {
-			var images = sidebar.getElementsByTagName('img');
-			for(var i = 0; i < images.length; i++) {
-				var img = images[i];
-				var imgSrc = img.src;
-				var customMedals = "oldhtmedals";
-				var oldString = "Trophy";
-				var newString = "chrome://foxtrick/content/resources/img/"
-					+ "custommedals/" + customMedals + "/";
-				if(imgSrc.search(oldString) != -1) {
-					var startPos = imgSrc.lastIndexOf("=") + 1;
-					imgSrc = imgSrc.substr(startPos);
-					imgSrc = imgSrc.replace("png","gif");
-					img.src = newString + imgSrc;
-				}
-			}
-		}
-		/*END*/
-		}
-		if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
-		} catch(e){}
-	},
+            /*OLD MEDALS SCRIPT*/
+            var sidebar = doc.getElementById('sidebar');
+            if( sidebar ) {
+                var images = sidebar.getElementsByTagName('img');
+                for(var i = 0; i < images.length; i++) {
+                    var img = images[i];
+                    var imgSrc = img.src;
+                    var customMedals = "oldhtmedals";
+                    var oldString = "Trophy";
+                    var newString = "chrome://foxtrick/content/resources/img/"
+                        + "custommedals/" + customMedals + "/";
+                    if(imgSrc.search(oldString) != -1) {
+                        var startPos = imgSrc.lastIndexOf("=") + 1;
+                        imgSrc = imgSrc.substr(startPos);
+                        imgSrc = imgSrc.replace("png","gif");
+                        img.src = newString + imgSrc;
+                    }
+                }
+            }
+            /*END*/
+        }
+        if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
+        } 
+        catch(e) {
+            dump ('> SkinPlugin ' + e + '\n');
+        }
+    },
 
-		
-	
-	change : function( page, doc ) {
+    change : function( page, doc ) {
 	
 	},
-	initOptions : function() {
+
+    initOptions : function() {
         
-		this.OPTIONS = new Array( 
+        this.OPTIONS = new Array( 
                                     "ActiveSkin"
-                                    
-								);
+                                );
 	}
-	
-	
 };
 
 
