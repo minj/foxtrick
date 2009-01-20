@@ -814,11 +814,11 @@ stats["ekonomer"] =  {
         "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.html",
 
         "economylink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["owncountryid"], 
                          "params"     : {"Cash" : "Cash"} 
                        },
-		"countryidranges" : [[1, 1]], 
-        "title" : "Ekonomkalkylatorn",
+		"owncountryidranges" : [[1, 1]], 
+        "title" : "Ekonomkalkylatorn",   
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_economy.png"
 };
 

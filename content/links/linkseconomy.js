@@ -43,7 +43,9 @@ var FoxtrickLinksEconomy = {
     },
 
     run : function( page, doc ) {
-
+		var teamdiv = doc.getElementById('teamLinks');
+		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
+		
 		//addExternalLinksToEconomyDetail
 		var Curr=GetCurrency();
 		var Cash=0;
@@ -63,7 +65,7 @@ var FoxtrickLinksEconomy = {
 			Cash*=Curr["eurorate"];
 			Curr["currencyCode"]="EUR";
 		}
-		var links = getLinks("economylink", { "Cash":Cash,"Currency":Curr["currencyCode"]}, doc, this);  
+		var links = getLinks("economylink", { "Cash":Cash,"Currency":Curr["currencyCode"],"owncountryid":owncountryid}, doc, this);  
 
 		if (links.length > 0) {
 			var ownBoxBody = doc.createElement("div");
