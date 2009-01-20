@@ -164,39 +164,60 @@ var FoxtrickForumYouthIcons = {
         
 
     _youthplayer : function (  ) {
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthplayerid=xxx]", null, "xxx", null);
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthplayerid=xxx]", null, "xxx", null)
+        else 
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthplayerid=xxx]", null, "xxx", null)
     }, 
 
     _youthteam : function (  ) { 
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthteamid=xxx]", null, "xxx", null);
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthteamid=xxx]", null, "xxx", null)
+        else
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthteamid=xxx]", null, "xxx", null)
     }, 
 
     _youthmatch : function (  ) { 
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthmatchid=xxx]", null, "xxx", null);
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthmatchid=xxx]", null, "xxx", null)
+        else 
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthmatchid=xxx]", null, "xxx", null)
 
     }, 
 
     _youthseries : function (  ) { 
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthleagueid=xxx]", null, "xxx", null);    
-            
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthleagueid=xxx]", null, "xxx", null)
+        else
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthleagueid=xxx]", null, "xxx", null)            
     }, 
     
     _userid : function (  ) { 
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[userid=xxx]", null, "xxx", null);    
-            
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[userid=xxx]", null, "xxx", null)
+        else
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[userid=xxx]", null, "xxx", null)
     },         
         
     _articleid : function (  ) { 
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[articleid=xxx]", null, "xxx", null);    
-            
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[articleid=xxx]", null, "xxx", null)
+        else
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[articleid=xxx]", null, "xxx", null)    
     }, 
         
     _hr : function (  ) {
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[hr]", null, null, null);
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[hr]", null, null, null)
+        else
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[hr]", null, null, null)
     },         
 
     _br : function (  ) {
-        clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[br]", null, null, null);
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[br]", null, null, null)
+        else
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[br]", null, null, null)
     },         
         
     _fillMsgWindow : function( string ) {
