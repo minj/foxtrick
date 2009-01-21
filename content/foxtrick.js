@@ -785,11 +785,8 @@ function gregorianToHT( date ) {
     if (date == '') return false;
     date +=' ';
 
-    // dump ('  DATE => :[' + date + ']\n');
-    //var reg = /(\d{2,4})(\W{1})(\d{2})(\W{1})(\d{2,4})(.{1})(\d{2})(\W{1})(\d{2})(.*?)/g;
-     var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+    var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
     var ar = reg.exec(date);
-    // dump ('  ARRAY => :[' + ar + ']\n');
     var months = [];
     var years = [];
 
@@ -824,14 +821,11 @@ function gregorianToHT( date ) {
 
     for (i = 0; i < ar.length; i++) {
         ar[i] = ar[i].replace( /^(0+)/g, '' );
-        // dump ('  ARRAY ==> :[' + ar[i] + ']\n');    
     }
     
     var day = parseInt(ar[1]);
     var month = parseInt(ar[3]);
     var year = parseInt(ar[5]);
-
-    // dump ('  DATE => :[' + year + '-' + month + '-' + day + ']\n');
 
     var dayCount = years[year-2000] + months[month] + (day);
 
@@ -843,20 +837,17 @@ function gregorianToHT( date ) {
                     year, 
                     ( Math.floor(dayCount/(16*7)) + 1 ), 
                     ( Math.floor((dayCount%(16*7))/7) +1 ), 
-                    dayCount%7 + 1 );
+                    dayCount%7 + 1,
+                    date );
 
     return htDate;
 }
     
-function htDatePrintFormat(year, season, week, day) {
+function htDatePrintFormat(year, season, week, day, date) {
     if ( year <= 2000 ) 
-        return "(&nbsp;old&nbsp;)"; 
+        return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
     else {
-        if ( week < 10 )
-            // return "(&nbsp;&nbsp;" + week + "/" + season + ")";
-            return "(" + week + "/" + season + ")";
-        else 
-            return "(" + week + "/" + season + ")";
+        return "(" + week + "/" + season + ")" + "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + " <b>[" + date + "]</b>)</font>";
     }
 }
 
@@ -866,7 +857,6 @@ function getDatefromCellHTML ( date ) {
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
     separator or leading zero is irrelevant        
     */
-    //21.1.2009 15.26
     if (date == '') return false;
         date +=' ';
         
@@ -874,10 +864,28 @@ function getDatefromCellHTML ( date ) {
 
         var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
         var ar = reg.exec(date);
-        if (ar[5].length != 4) {var tmp = ar[5]; ar[5] = ar[1]; ar[1] = tmp;}
-        var SD = ar[1];
-        var SM = ar[3];
-        var SY = ar[5];
+        
+        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+        dump('DATEFORMAT: ' + DATEFORMAT + '\n');
+
+        switch ( DATEFORMAT ) {
+            case 'ddmmyyyy':
+                var SD = ar[1];
+                var SM = ar[3];
+                var SY = ar[5];
+                break;
+            case 'mmddyyyy':
+                var SD = ar[3];
+                var SM = ar[1];
+                var SY = ar[5];
+                break;
+            case 'yyyymmdd':
+                var SD = ar[5];
+                var SM = ar[3];
+                var SY = ar[1];
+                break;
+        }
+        
         var SH = ar[7];
         var SMn = ar[9];
         var SS = '00';
@@ -959,22 +967,31 @@ modifyDates = function ( doc, short, elm, before, after ) {
     Returns HT-Week & Season
     short == true => Date is without time.
     */
+    var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+    dump('DATEFORMAT: ' + DATEFORMAT + '\n');
+
     var tds = doc.getElementsByTagName( elm );
-    // dump ('ELEMENT => ' + elm+'\n');
     for (var i = 0; tds[i] != null; ++i) {
         dt_inner = Foxtrick.trim(tds[i].innerHTML);
         if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
-            // dump (i + ' - ' + dt_inner + '\n' );
             var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
             var ar = reg.exec(dt_inner);
 
             if (ar != null) {
-                // dump (i + ' ====> ' + ar + '\n');
                 var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
-                // dump(' =====> [' + td_date + ']\n');
-                // dump(' =====> [' + ar + ']\n');
-                if (ar[5].length != 4) {td_date = ar[5] + '.' + ar[3] + '.' + ar[1] + ' 00.00.01';}
-                // dump(' =====> [' + td_date + ']\n');
+
+                switch ( DATEFORMAT ) {
+                    case 'ddmmyyyy':
+                        td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
+                        break;
+                    case 'mmddyyyy':
+                        td_date = ar[3] + '.' + ar[1] + '.' + ar[5] + ' 00.00.01';                        
+                        break;
+                    case 'yyyymmdd':
+                        td_date = ar[5] + '.' + ar[3] + '.' + ar[1] + ' 00.00.01';                                                
+                        break;
+                }
+
                 if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
                     tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
                 }
