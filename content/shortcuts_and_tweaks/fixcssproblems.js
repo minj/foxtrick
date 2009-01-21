@@ -7,7 +7,7 @@ FoxtrickFixcssProblems = {
 	
     MODULE_NAME : "FixcssProblems",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    DEFAULT_ENABLED : true,
+    DEFAULT_ENABLED : false,
     
     OPTIONS : {},
     
@@ -24,7 +24,9 @@ FoxtrickFixcssProblems = {
             "all",
             "all",
             "all",
-            "all"
+            "all",
+            "simple"
+            
         );
         // dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
         for (var i = 0; i < this.OPTIONS.length; i++) {
@@ -57,7 +59,8 @@ FoxtrickFixcssProblems = {
                                     "Forum_Post_Header",
                                     "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
-                                    "Page_Minimum_Height"
+                                    "Page_Minimum_Height",
+                                    "Forum_Header_Smallsize"
 								);
 	}        
 };

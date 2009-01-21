@@ -51,6 +51,7 @@ var FoxtrickPreferencesDialog = {
         vbox1.setAttribute('flex',"1");
         var caption1= doc.createElement("caption");
         caption1.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage"));
+        caption1.setAttribute("style","background-color:transparent !important");        
         var menulist1= doc.createElement("menulist");
         menulist1.setAttribute('id',"htLanguage");
         var menupopup1= doc.createElement("menupopup");
@@ -60,6 +61,7 @@ var FoxtrickPreferencesDialog = {
         vbox2.setAttribute('flex',"1");
         var caption2= doc.createElement("caption");
         caption2.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency"));
+        caption2.setAttribute("style","background-color:transparent !important");        
         var menulist2= doc.createElement("menulist");
         menulist2.setAttribute('id',"htCurrency");
         var menupopup2= doc.createElement("menupopup");
@@ -69,6 +71,7 @@ var FoxtrickPreferencesDialog = {
         vbox3.setAttribute('flex',"1");
         var caption3= doc.createElement("caption");
         caption3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat"));
+        caption3.setAttribute("style","background-color:transparent !important");        
         var menulist3= doc.createElement("menulist");
         menulist3.setAttribute('id',"htDateformat");
         var menupopup3= doc.createElement("menupopup");
