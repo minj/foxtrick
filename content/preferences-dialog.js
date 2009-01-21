@@ -43,55 +43,50 @@ var FoxtrickPreferencesDialog = {
 	initMainPref : function( doc ) {
 		var modules_list = doc.getElementById( "main_list" );
 
-		// language
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute('label',Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage"));
-		var vbox= doc.createElement("vbox");
-		var menulist= doc.createElement("menulist");
-		menulist.setAttribute('id',"htLanguage");
-		var menupopup= doc.createElement("menupopup");
-		menupopup.setAttribute('id',"htLanguagePopup");
-		var spacer= doc.createElement("spacer");
-		spacer.setAttribute('flex',"1");
-		
-		menulist.appendChild(menupopup);
-		vbox.appendChild(menulist);
-		vbox.appendChild(spacer);
-		groupbox.appendChild(caption);
-		groupbox.appendChild(vbox);
-		modules_list.appendChild(groupbox);
-		
+        // language & currency
+        var groupbox= doc.createElement("groupbox");
+        var hbox= doc.createElement("hbox");
+
+        var vbox1= doc.createElement("vbox");
+        vbox1.setAttribute('flex',"1");
+        var caption1= doc.createElement("caption");
+        caption1.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage"));
+        var menulist1= doc.createElement("menulist");
+        menulist1.setAttribute('id',"htLanguage");
+        var menupopup1= doc.createElement("menupopup");
+        menupopup1.setAttribute('id',"htLanguagePopup");
+
+        var vbox2= doc.createElement("vbox");
+        vbox2.setAttribute('flex',"1");
+        var caption2= doc.createElement("caption");
+        caption2.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency"));
+        var menulist2= doc.createElement("menulist");
+        menulist2.setAttribute('id',"htCurrency");
+        var menupopup2= doc.createElement("menupopup");
+        menupopup2.setAttribute('id',"htCurrencyPopup");
+        
+        menulist1.appendChild(menupopup1);
+        vbox1.appendChild(caption1);
+        vbox1.appendChild(menulist1);
+        menulist2.appendChild(menupopup2);
+        vbox2.appendChild(caption2);
+        vbox2.appendChild(menulist2);
+        hbox.appendChild(vbox1);
+        hbox.appendChild(vbox2);
+        groupbox.appendChild(hbox);
+        modules_list.appendChild(groupbox);
+
         var htLanguagesXml = doc.implementation.createDocument("", "", null);
         htLanguagesXml.async = false;
         htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
         var itemToSelect=this.fillListFromXml("htLanguagePopup", "htLanguage-", htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
-        menulist.selectedIndex=itemToSelect;
+        document.getElementById("htLanguage").selectedIndex=itemToSelect;
  
-		// currency
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency"));
-		var vbox= doc.createElement("vbox");
-		var menulist= doc.createElement("menulist");
-		menulist.setAttribute('id',"htCurrency");
-		var menupopup= doc.createElement("menupopup");
-		menupopup.setAttribute('id',"htCurrencyPopup");
-		var spacer= doc.createElement("spacer");
-		spacer.setAttribute('flex',"1");
-		
-		menulist.appendChild(menupopup);
-		vbox.appendChild(menulist);
-		vbox.appendChild(spacer);
-		groupbox.appendChild(caption);
-		groupbox.appendChild(vbox);
-		modules_list.appendChild(groupbox);
-		 
-		var htCurrencyXml = document.implementation.createDocument("", "", null);
+        var htCurrencyXml = document.implementation.createDocument("", "", null);
         htCurrencyXml.async = false;
         htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
         var itemToSelect2=this.fillListFromXml("htCurrencyPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
-        document.getElementById('htCurrency').selectedIndex=itemToSelect2;
+        document.getElementById("htCurrency").selectedIndex=itemToSelect2;
 
 		// ShowOnStatusBar
 		var groupbox= doc.createElement("groupbox");
