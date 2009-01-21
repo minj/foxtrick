@@ -787,7 +787,7 @@ function gregorianToHT( date ) {
 
     // dump ('  DATE => :[' + date + ']\n');
     //var reg = /(\d{2,4})(\W{1})(\d{2})(\W{1})(\d{2,4})(.{1})(\d{2})(\W{1})(\d{2})(.*?)/g;
-     var reg = /(\d{2,4})(.*?)(\d{2})(.*?)(\d{2,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+     var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
     var ar = reg.exec(date);
     // dump ('  ARRAY => :[' + ar + ']\n');
     var months = [];
@@ -965,7 +965,7 @@ modifyDates = function ( doc, short, elm, before, after ) {
         dt_inner = Foxtrick.trim(tds[i].innerHTML);
         if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
             // dump (i + ' - ' + dt_inner + '\n' );
-            var reg = /(\d{2,4})(\W{1})(\d{2})(\W{1})(\d{2,4})(.*?)/g;
+            var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
             var ar = reg.exec(dt_inner);
 
             if (ar != null) {
