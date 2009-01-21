@@ -33,6 +33,7 @@ var scripts = [
     'forum/htthreadmarker.js',
     'forum/forumgotopostbox.js',
     'forum/forumredirmanagertoteam.js',
+    'forum/forumanchors.js',
     'matches/matches.js',
 	'matches/matchPlayerColouring.js',
     'matches/ratings.js',
