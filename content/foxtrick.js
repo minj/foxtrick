@@ -866,11 +866,11 @@ function getDatefromCellHTML ( date ) {
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
     separator or leading zero is irrelevant        
     */
-    
+    //21.1.2009 15.26
     if (date == '') return false;
         date +=' ';
         
-        // dump ('  CELL :[' + date + ']\n');
+        dump ('  CELL :[' + date + ']\n');
 
         var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
         var ar = reg.exec(date);
@@ -881,7 +881,7 @@ function getDatefromCellHTML ( date ) {
         var SH = ar[7];
         var SMn = ar[9];
         var SS = '00';
-        // dump('  TIME:' + date + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
+        dump('  TIME:' + date + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
         var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
     return CellDate;
 }

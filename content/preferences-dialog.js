@@ -65,14 +65,27 @@ var FoxtrickPreferencesDialog = {
         var menupopup2= doc.createElement("menupopup");
         menupopup2.setAttribute('id',"htCurrencyPopup");
         
+        var vbox3= doc.createElement("vbox");
+        vbox3.setAttribute('flex',"1");
+        var caption3= doc.createElement("caption");
+        caption3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat"));
+        var menulist3= doc.createElement("menulist");
+        menulist3.setAttribute('id',"htDateformat");
+        var menupopup3= doc.createElement("menupopup");
+        menupopup3.setAttribute('id',"htDateformatPopup");
+        
         menulist1.appendChild(menupopup1);
         vbox1.appendChild(caption1);
         vbox1.appendChild(menulist1);
         menulist2.appendChild(menupopup2);
         vbox2.appendChild(caption2);
         vbox2.appendChild(menulist2);
+        menulist3.appendChild(menupopup3);
+        vbox3.appendChild(caption3);
+        vbox3.appendChild(menulist3);
         hbox.appendChild(vbox1);
         hbox.appendChild(vbox2);
+        hbox.appendChild(vbox3);
         groupbox.appendChild(hbox);
         modules_list.appendChild(groupbox);
 
@@ -88,6 +101,12 @@ var FoxtrickPreferencesDialog = {
         var itemToSelect2=this.fillListFromXml("htCurrencyPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
         document.getElementById("htCurrency").selectedIndex=itemToSelect2;
 
+        var htDateFormatXml = document.implementation.createDocument("", "", null);
+        htDateFormatXml.async = false;
+        htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
+        var itemToSelect3=this.fillListFromXml("htDateformatPopup", "htDateformat-", htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
+        document.getElementById("htDateformat").selectedIndex=itemToSelect3;
+        
 		// ShowOnStatusBar
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
@@ -279,6 +298,9 @@ var FoxtrickPreferencesDialog = {
 		//Currency
         FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
         
+		//Dateformat
+        FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
+
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
 
