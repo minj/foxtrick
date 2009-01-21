@@ -22,6 +22,8 @@ FoxtrickFixcssProblems = {
         var LAYOUTSWITCH = new Array (
             "standard",
             "all",
+            "all",
+            "all",
             "all"
         );
         // dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
@@ -53,7 +55,9 @@ FoxtrickFixcssProblems = {
 		this.OPTIONS = new Array( 
                                     "Forum_Hover_Links",
                                     "Forum_Post_Header",
-                                    "Club_Menu_Teamnames"
+                                    "Forum_FoxLink_Headers",
+                                    "Club_Menu_Teamnames",
+                                    "Page_Minimum_Height"
 								);
 	}        
 };
