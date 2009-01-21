@@ -167,17 +167,34 @@ var FoxtrickPreferencesDialog = {
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
 
-    // Skin
+    // Skin settings
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionSkinSettings"));
 		var vbox= doc.createElement("vbox");
-		var textbox= doc.createElement("textbox");
+		
+    var textbox= doc.createElement("textbox");
 		textbox.setAttribute('id',"cssskinpref");
     textbox.setAttribute( "value", FoxtrickPrefs.getString( "cssSkin" ) );
  		vbox.appendChild(textbox);
-        
-		vbox.appendChild(textbox);
+		
+    var hbox= doc.createElement("hbox");
+		hbox.setAttribute('align',"center");
+		vbox.appendChild(hbox);
+		
+    var button= doc.createElement("button");
+		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.skinButtonSelectFile"));
+		button.setAttribute('id',"skinButtonSelectFile");
+		button.setAttribute('oncommand',"var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('cssskinpref').value='file://' + (file)}");
+		hbox.appendChild(button);
+    
+		var checkbox= doc.createElement("checkbox");
+		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.activeSkin"));
+		checkbox.setAttribute('id',"skinActivedSkin");
+		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("ActiveSkin"));
+		vbox.appendChild(checkbox);
+		
+		
 		groupbox.appendChild(caption);
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
@@ -310,8 +327,9 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
         
-        //Skins
+        //Skin settings
         FoxtrickPrefs.setString("cssSkin", document.getElementById("cssskinpref").value);
+        FoxtrickPrefs.setBool("ActiveSkin", document.getElementById("skinActivedSkin").checked);
         
         //Stage
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
