@@ -9,11 +9,11 @@ var FoxtrickSkinPlugin = {
     MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : false,
-    OPTIONS : {},
+   // OPTIONS : {},
   
     init : function() {
         Foxtrick.registerPageHandler('all',this);
-            this.initOptions();
+           // this.initOptions();
     },
 
     run : function( page, doc ) {  
@@ -23,7 +23,7 @@ var FoxtrickSkinPlugin = {
         var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
         var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
        
-        if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
+        if (!FoxtrickPrefs.getBool("ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
         
         if (FoxtrickPrefs.getBool("module.SkinPlugin.enabled")){
        if(!sss.sheetRegistered(uri, sss.USER_SHEET)){sss.loadAndRegisterSheet(uri, sss.USER_SHEET);}
@@ -49,7 +49,7 @@ var FoxtrickSkinPlugin = {
             }
             /*END*/
         }
-        if (!Foxtrick.isModuleFeatureEnabled( this, "ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
+        if (!FoxtrickPrefs.getBool("ActiveSkin")){sss.unregisterSheet(uri, sss.USER_SHEET);}
         } 
         catch(e) {
             dump ('> SkinPlugin ' + e + '\n');
@@ -58,14 +58,14 @@ var FoxtrickSkinPlugin = {
 
     change : function( page, doc ) {
 	
-	},
+	}/*,
 
     initOptions : function() {
         
         this.OPTIONS = new Array( 
                                     "ActiveSkin"
                                 );
-	}
+	}*/
 };
 
 
