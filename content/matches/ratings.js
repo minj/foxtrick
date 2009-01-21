@@ -193,7 +193,6 @@ var Ratings = {
 			total2: function( midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
 										tactics, tacticsLevel ) {
-
                 if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
 				midfieldLevel = this.base + this.weight*midfieldLevel;
 				lattack = this.base + this.weight*lattack;
@@ -237,7 +236,9 @@ var Ratings = {
 
 				var rounded = Math.round(value*100)/100;
 				
-				return rounded;
+                if (tactics == 'longshots') return '<font color="#808080">' + rounded + '</font>';
+				
+                return rounded;
 			}
 
 		 };
@@ -304,8 +305,8 @@ var Ratings = {
 			total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
                 
                 if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
-
-				leftAtt = (this.base + this.weight*leftAtt);
+                
+                leftAtt = (this.base + this.weight*leftAtt);
 				centralAtt = (this.base + this.weight*centralAtt);
 				rightAtt = (this.base + this.weight*rightAtt);
 
@@ -331,7 +332,8 @@ var Ratings = {
 
 				var value = tempReal + tempTactica;
 				var rounded = Math.round(value);
-				return rounded;
+				if (tactics == 'longshots') return '<font color="#808080">' + rounded + '</font>';
+                return rounded;
 			}
 		};
 	}
