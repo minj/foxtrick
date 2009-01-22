@@ -845,9 +845,10 @@ function gregorianToHT( date ) {
     
 function htDatePrintFormat(year, season, week, day, date) {
     if ( year <= 2000 ) 
-        return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
+        // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
+        return "<font color='#808080'>(old)</font>"; 
     else {
-        return "(" + week + "/" + season + ")" + "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + " <b>[" + date + "]</b>)</font>";
+        return "(" + week + "/" + season + ")";
     }
 }
 
@@ -959,7 +960,6 @@ TimeDifferenceToText = function( time_sec, short ) {
     Text += Minutes + Foxtrickl10n.getString( "foxtrick.datetimestrings.minutes" );
 
     return Text;
-    
 }
 
 modifyDates = function ( doc, short, elm, before, after ) {
@@ -1009,4 +1009,33 @@ Foxtrick.isStandardLayout = function ( doc ) {
 	// Check if this is the simple or standard layout
 	var link = doc.getElementsByTagName("link")[0];
 	return link.href.search("Simple") == -1; // true = standard / false = simple
+}
+
+function GetSeasonOffset( doc ) {
+    var offset = 0;
+    try {
+        var country = PrefsBranch.getCharPref("htCountry");
+    } catch (e) {
+        country = "Sweden";
+    }
+
+    try {
+    var htCountryXml = doc.implementation.createDocument("", "", null);
+        htCountryXml.async = false;
+        htCountryXml.load("chrome://foxtrick/content/htlocales/htcountries.xml", "text/xml");
+    } catch (e) {
+        dump('XML: ' + e + '\n');
+    }
+
+
+    try {
+        var path = "hattrickcountries/country[@name='" + country + "']";
+        var obj = htCountryXml.evaluate(path,htCountryXml,null,htCountryXml.DOCUMENT_NODE,null).singleNodeValue;
+        offset = parseFloat(obj.attributes.getNamedItem("offset").textContent);
+    } catch (e) {
+        dump('XML-PARSE : ' + e + '\n');
+        country = "Sweden";
+        offset = 0;
+    } 
+    return {"country":country,"offset":offset};
 }
