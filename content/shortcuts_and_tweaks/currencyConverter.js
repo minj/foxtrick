@@ -44,7 +44,7 @@ FoxtrickCurrencyConverter = {
 
 
 drawNewCurrency : function (doc,table_elm_bonus,table_inner,currencySymbol,currencyRate) {
-var rata = currencyRate/100;
+var rata = currencyRate/10;
 try {
             
             if (table_elm_bonus == null) return;
