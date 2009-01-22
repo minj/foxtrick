@@ -847,7 +847,8 @@ function htDatePrintFormat(year, season, week, day, date) {
     var offset = FoxtrickPrefs.getInt("htSeasonOffset")
     if ( year <= 2000 ) 
         // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
-        return "<font color='#808080'>(old)</font>"; 
+        // return "<font color='#808080'>(old)</font>"; 
+        return '';
     else {
         return "(" + week + "/" + (Math.floor(season) - offset) + ")";
     }

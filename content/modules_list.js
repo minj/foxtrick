@@ -80,5 +80,6 @@ Foxtrick.modules = [ FoxtrickMovePlayerStatement,
 					 FoxtrickForumRedirManagerToTeam,
 					 //FoxtrickRedirections,
                      FoxtrickGuestbookAlltidFlags,
-                     FoxtrickCurrencyConverter
+                     FoxtrickCurrencyConverter,
+                     FoxtrickTickerColoring
                    ];

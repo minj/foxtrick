@@ -69,6 +69,7 @@ var scripts = [
     'shortcuts_and_tweaks/fixcssproblems.js',
   	'shortcuts_and_tweaks/guestbookalltidflags.js',
   	'shortcuts_and_tweaks/currencyConverter.js',
+    'shortcuts_and_tweaks/tickercoloring.js',
     'links/linkscustom.js',
 	'links/linksleague.js',
 	'links/linksteam.js',
