@@ -143,12 +143,12 @@ var FoxtrickPreferencesDialog = {
         caption_head.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyConverter"));
         
        
-        var caption0= doc.createElement("caption");
+        /*var caption0= doc.createElement("caption");
         caption0.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyRateInfo"));
         caption0.setAttribute("style","text-decoration: underline; cursor: pointer; color: blue;"); 
         caption0.setAttribute("onclick","window.opener.open('http://www.hattrick.org/Help/Rules/AppCurrencies.aspx');"); 
         caption0.setAttribute("flex","0"); 
-        caption0.setAttribute("tooltiptext","hattrick.org/Help/Rules/AppCurrencies.aspx"); 
+        caption0.setAttribute("tooltiptext","hattrick.org/Help/Rules/AppCurrencies.aspx"); */
      
  	     	var vbox4= doc.createElement("vbox");
         vbox4.setAttribute('flex',"1");
@@ -169,9 +169,6 @@ var FoxtrickPreferencesDialog = {
         
         
         hbox.appendChild(vbox4);
-        hbox.appendChild(caption0);
-        
-        
         
         groupbox.appendChild(caption_head);
         groupbox.appendChild(hbox);
