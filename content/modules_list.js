@@ -79,4 +79,5 @@ Foxtrick.modules = [
 					 FoxtrickForumRedirManagerToTeam,
 					 //FoxtrickRedirections,
                      FoxtrickGuestbookAlltidFlags,
+                     FoxtrickCurrencyConverter
                    ];
