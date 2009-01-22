@@ -116,3 +116,47 @@ var FoxtrickColouredYouthFaces = {
 	
 	}
 };
+
+var FoxtrickMovePlayerStatement = {
+	
+    MODULE_NAME : "MovePlayerStatement",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	  DEFAULT_ENABLED : true,
+	
+    init : function() {
+            Foxtrick.registerPageHandler('playerdetail',this);
+            
+    },
+
+    run : function( page, doc ) {
+    try {
+		var contentSpeak = "none";
+		var elems = doc.getElementsByTagName("em");
+		for(var i=0; i < elems.length; i++) {
+			if( elems[i].getAttribute("class","shy") ) {
+       contentSpeak = elems[i].innerHTML;
+       
+				elems[i].parentNode.removeChild(elems[i]);
+         }
+       }
+   
+         var newImg = doc.createElement("img");
+            newImg.setAttribute("src","chrome://foxtrick/content/resources/img/speak.PNG");
+            newImg.setAttribute("title",contentSpeak+" ");
+            newImg.setAttribute("style","left: 65px; top: 134px;");
+        var elemsa = doc.getElementsByTagName("img");
+	     	for(var b=0; b < elemsa.length; b++) {
+		    	if( elemsa[b].src.match(/\/Avatar\/numbers/i)) {
+			
+		    		elemsa[b].parentNode.appendChild(newImg);
+		    		
+           }
+         }
+		
+		}catch (e){dump('  PlrStatement>' + e + '\n');}
+	},
+	
+	change : function( page, doc ) {
+	
+	}
+};

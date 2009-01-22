@@ -7,7 +7,7 @@
  * Each should implement an init() method, which will be called only once.
  * Register your page handlers in it.
  */
-Foxtrick.modules = [ 
+Foxtrick.modules = [ FoxtrickMovePlayerStatement,
                      FoxtrickFixcssProblems,
                      FoxtrickForumTemplates,
                      FoxtrickForumPreview,
@@ -70,6 +70,7 @@ Foxtrick.modules = [
                      FoxtrickPersonalityImages,
                      FoxtrickSkillColoring,
                      FoxtrickSkinPlugin,
+                     
 					 FoxtrickHelper,
 					 FTTeamStats,
 					 FoxtrickLargeFlags,
