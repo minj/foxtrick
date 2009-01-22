@@ -21,10 +21,10 @@ FoxtrickCurrencyConverter = {
    var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
    var currencyRateNewCurr = "1";
    
-   /*if (oldCurrencySymbol == "€"){
+   if (oldCurrencySymbol == "€"){
    var currencyRateNewCurr = currencyRate;
   var currencyRate = "1";
-  }*/
+  }
    
    var div = doc.getElementById( 'page' );
    
