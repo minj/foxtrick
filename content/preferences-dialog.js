@@ -135,6 +135,83 @@ var FoxtrickPreferencesDialog = {
             dump(e);
         }
         
+        
+     // currency converter
+        var groupbox= doc.createElement("groupbox");
+        var hbox= doc.createElement("hbox");
+        var caption_head= doc.createElement("caption");
+        caption_head.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyConverter"));
+        
+        
+        var caption0= doc.createElement("caption");
+        caption0.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyRateInfo"));
+        caption0.setAttribute("style","text-decoration: underline; cursor: pointer; color: blue;"); 
+        caption0.setAttribute("onclick","window.opener.open('http://www.hattrick.org/Help/Rules/AppCurrencies.aspx');"); 
+        caption0.setAttribute("flex","0"); 
+        
+        
+        var vbox2= doc.createElement("vbox");
+        var caption2= doc.createElement("caption");
+        caption2.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyRate"));
+        caption2.setAttribute("style","background-color:transparent !important"); 
+        var textbox2= doc.createElement("textbox");
+		    textbox2.setAttribute("id","currencyRate");
+        textbox2.setAttribute("value", FoxtrickPrefs.getString("currencyRate"));
+        
+ 	     	var vbox4= doc.createElement("vbox");
+        vbox4.setAttribute('flex',"1");
+        var caption4= doc.createElement("caption");
+        caption4.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolFrom"));
+        caption4.setAttribute("style","background-color:transparent !important");        
+        var menulist= doc.createElement("menulist");
+        menulist.setAttribute('id',"htCurrencyFrom");
+        var menupopup= doc.createElement("menupopup");
+        menupopup.setAttribute('id',"htCurrencyFromPopup");
+ 	     	
+ 	     	var vbox3= doc.createElement("vbox");
+        vbox3.setAttribute('flex',"1");
+        var caption3= doc.createElement("caption");
+        caption3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolTo"));
+        caption3.setAttribute("style","background-color:transparent !important");   
+        var menulist1= doc.createElement("menulist");
+        menulist1.setAttribute('id',"htCurrencyTo");
+        var menupopup1= doc.createElement("menupopup");
+        menupopup1.setAttribute('id',"htCurrencyToPopup");
+ 	     	
+ 	     	vbox2.appendChild(caption2);
+        vbox2.appendChild(textbox2);
+ 	     	
+        menulist1.appendChild(menupopup1);
+        vbox3.appendChild(caption3);
+        vbox3.appendChild(menulist1);
+        
+        menulist.appendChild(menupopup);
+        vbox4.appendChild(caption4);
+        vbox4.appendChild(menulist);
+        
+        hbox.appendChild(vbox4);
+        hbox.appendChild(vbox2);
+        hbox.appendChild(vbox3);
+        hbox.appendChild(caption0);
+        
+        groupbox.appendChild(caption_head);
+        groupbox.appendChild(hbox);
+        modules_list.appendChild(groupbox);
+        
+        var htCurrencyXml = document.implementation.createDocument("", "", null);
+        htCurrencyXml.async = false;
+        htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+        var itemToSelect2=this.fillListFromXml("htCurrencyFromPopup", "htCurrency-", htCurrencyXml, "currency", "name", "shortname", FoxtrickPrefs.getString("oldCurrencySymbol"));
+        document.getElementById("htCurrencyFrom").selectedIndex=itemToSelect2;
+
+        var htCurrencyXml3 = document.implementation.createDocument("", "", null);
+        htCurrencyXml3.async = false;
+        htCurrencyXml3.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+        var itemToSelect23=this.fillListFromXml("htCurrencyToPopup", "htCurrency-", htCurrencyXml, "currency", "name", "shortname", FoxtrickPrefs.getString("currencySymbol"));
+        document.getElementById("htCurrencyTo").selectedIndex=itemToSelect23;
+   
+        
+        
 		// ShowOnStatusBar
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
@@ -342,7 +419,12 @@ var FoxtrickPreferencesDialog = {
 		
 		//Currency
         FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
-        
+    
+    //Currency Converter
+      FoxtrickPrefs.setString("currencyRate", document.getElementById("currencyRate").value);
+      FoxtrickPrefs.setString("oldCurrencySymbol", document.getElementById("htCurrencyFrom").value);
+      FoxtrickPrefs.setString("currencySymbol", document.getElementById("htCurrencyTo").value);
+          
 		//Dateformat
         FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
         
