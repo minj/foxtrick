@@ -44,7 +44,7 @@ FoxtrickCurrencyConverter = {
 
 
 drawNewCurrency : function (doc,table_elm_bonus,table_inner,currencySymbol,currencyRate) {
-
+var rata = currencyRate/100;
 try {
             
             if (table_elm_bonus == null) return;
@@ -62,7 +62,7 @@ try {
                   var part = part.replace('&nbsp;', ''); 
                  }
                  
-            part = Math.floor(parseInt(part.replace('&nbsp;', '')) * currencyRate);
+            part = Math.floor(parseInt(part.replace('&nbsp;', '')) * rata);
             part = ReturnFormatedValue (part, ' ');
 
             if (part != 'NaN'){ 
