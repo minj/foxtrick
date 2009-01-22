@@ -15,9 +15,16 @@ FoxtrickCurrencyConverter = {
     run : function(page, doc) {
     
     /*CURRENCY TYPE AND RATE*/
-   var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");
-   var currencySymbol = FoxtrickPrefs.getString("currencySymbol");
-   var currencyRate = FoxtrickPrefs.getString("currencyRate");
+  
+   var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
+   var currencySymbol = FoxtrickPrefs.getString("currencySymbol");//
+   var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
+   var currencyRateNewCurr = "1";
+   
+   /*if (oldCurrencySymbol == "€"){
+   var currencyRateNewCurr = currencyRate;
+  var currencyRate = "1";
+  }*/
    
    var div = doc.getElementById( 'page' );
    
@@ -30,7 +37,7 @@ FoxtrickCurrencyConverter = {
                 try {
                     if (strrpos( table_inner, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter") {
                     var table_elm_bonus = table_elm[i];
-                        this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate);
+                        this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr);
                     }
                 }
                 catch(e) {dump('    >' + e + '\n');}
@@ -43,8 +50,8 @@ FoxtrickCurrencyConverter = {
 	},
 
 
-drawNewCurrency : function (doc,table_elm_bonus,table_inner,currencySymbol,currencyRate) {
-var rata = currencyRate/10;
+drawNewCurrency : function (doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr) {
+
 try {
             
             if (table_elm_bonus == null) return;
@@ -62,7 +69,8 @@ try {
                   var part = part.replace('&nbsp;', ''); 
                  }
                  
-            part = Math.floor(parseInt(part.replace('&nbsp;', '')) * rata);
+            //part = Math.floor(parseInt(part.replace('&nbsp;', '')) * rata);
+            part = Math.floor(parseInt(part.replace('&nbsp;', ''))  * currencyRate / currencyRateNewCurr);
             part = ReturnFormatedValue (part, ' ');
 
             if (part != 'NaN'){ 
@@ -76,6 +84,5 @@ try {
         }
 
 }
-
 	
 };
