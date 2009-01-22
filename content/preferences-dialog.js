@@ -127,7 +127,7 @@ var FoxtrickPreferencesDialog = {
         try {
             var htCountryXml = document.implementation.createDocument("", "", null);
             htCountryXml.async = false;
-            htCountryXml.load("chrome://foxtrick/content/htlocales/htcountry.xml", "text/xml");
+            htCountryXml.load("chrome://foxtrick/content/htlocales/htcountries.xml", "text/xml");
             var itemToSelect4=this.fillListFromXml("htCountryPopup", "htCountry-", htCountryXml, "country", "name", "name", FoxtrickPrefs.getString("htCountry"));
             document.getElementById("htCountry").selectedIndex=itemToSelect4;
         }
