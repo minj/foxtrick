@@ -43,7 +43,7 @@ var FoxtrickPreferencesDialog = {
 	initMainPref : function( doc ) {
 		var modules_list = doc.getElementById( "main_list" );
 
-        // language & currency
+        // language & currency & dateformat & county
         var groupbox= doc.createElement("groupbox");
         var hbox= doc.createElement("hbox");
 
@@ -75,7 +75,17 @@ var FoxtrickPreferencesDialog = {
         var menulist3= doc.createElement("menulist");
         menulist3.setAttribute('id',"htDateformat");
         var menupopup3= doc.createElement("menupopup");
-        menupopup3.setAttribute('id',"htDateformatPopup");
+        menupopup3.setAttribute('id',"htDateformatPopup");        
+
+        var vbox4= doc.createElement("vbox");
+        vbox4.setAttribute('flex',"1");
+        var caption4= doc.createElement("caption");
+        caption4.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry"));
+        caption4.setAttribute("style","background-color:transparent !important");        
+        var menulist4= doc.createElement("menulist");
+        menulist4.setAttribute('id',"htCountry");
+        var menupopup4= doc.createElement("menupopup");
+        menupopup4.setAttribute('id',"htCountryPopup");
         
         menulist1.appendChild(menupopup1);
         vbox1.appendChild(caption1);
@@ -86,9 +96,13 @@ var FoxtrickPreferencesDialog = {
         menulist3.appendChild(menupopup3);
         vbox3.appendChild(caption3);
         vbox3.appendChild(menulist3);
+        menulist4.appendChild(menupopup4);
+        vbox4.appendChild(caption4);
+        vbox4.appendChild(menulist4);
         hbox.appendChild(vbox1);
         hbox.appendChild(vbox2);
         hbox.appendChild(vbox3);
+        hbox.appendChild(vbox4);
         groupbox.appendChild(hbox);
         modules_list.appendChild(groupbox);
 
@@ -109,6 +123,17 @@ var FoxtrickPreferencesDialog = {
         htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
         var itemToSelect3=this.fillListFromXml("htDateformatPopup", "htDateformat-", htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
         document.getElementById("htDateformat").selectedIndex=itemToSelect3;
+        
+        try {
+            var htCountryXml = document.implementation.createDocument("", "", null);
+            htCountryXml.async = false;
+            htCountryXml.load("chrome://foxtrick/content/htlocales/htcountry.xml", "text/xml");
+            var itemToSelect4=this.fillListFromXml("htCountryPopup", "htCountry-", htCountryXml, "country", "name", "name", FoxtrickPrefs.getString("htCountry"));
+            document.getElementById("htCountry").selectedIndex=itemToSelect4;
+        }
+        catch(e) {
+            dump(e);
+        }
         
 		// ShowOnStatusBar
 		var groupbox= doc.createElement("groupbox");
@@ -320,6 +345,9 @@ var FoxtrickPreferencesDialog = {
         
 		//Dateformat
         FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
+        
+		//Country
+        FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
 
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
