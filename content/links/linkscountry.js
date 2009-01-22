@@ -21,6 +21,7 @@ var FoxtrickLinksCountry = {
     run : function( page, doc ) {
 
 		//addExternalLinksToCountryDetail
+		var ownBoxBody=null;
         var countryid;
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
@@ -33,7 +34,7 @@ var FoxtrickLinksCountry = {
         var links = getLinks("countrylink", { "countryid": countryid }, doc, this);  
         
 		if (links.length > 0) {
-			var ownBoxBody = doc.createElement("div");
+			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 			var ownBoxId = "foxtrick_" + header + "_box";
@@ -47,9 +48,8 @@ var FoxtrickLinksCountry = {
 			}
 						
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-			
-			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );	
-		}            
+		}	
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );			            
     },
 	
 	change : function( page, doc ) {

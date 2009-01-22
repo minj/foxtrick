@@ -36,6 +36,16 @@ var FoxtrickLinksCustom = {
 					
 			var basepref="module."+this.MODULE_NAME+'.'+pagemodule;
 
+			if (ownBoxBody==null) {
+				ownBoxBody = doc.createElement("div");
+				var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
+				var ownBoxId = "foxtrick_" + header + "_box";
+				var ownBoxBodyId = "foxtrick_" + header + "_content";
+				ownBoxBody.setAttribute( "id", ownBoxBodyId );
+                                
+				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			}
+			
 			var alldivs = doc.getElementsByTagName('div');
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="sidebarBox" ) {
@@ -189,8 +199,9 @@ var FoxtrickLinksCustom = {
 			div.setAttribute("id", "inputImgDivID");
 			div.setAttribute( "title", 'Tinntle') ;
 			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/aiga.png'>";
+			div.imgref='chrome://foxtrick/content/resources/linkicons/aiga.png';
 			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/empty16.png') 50% no-repeat;");
-							
+				
 			// load image button
 			var loadIcon = doc.createElement ("a");	
 			loadIcon.setAttribute("href", "javascript: void(0);");
@@ -198,10 +209,8 @@ var FoxtrickLinksCustom = {
 			loadIcon.addEventListener( "click", FoxtrickLinksLoadDialog, false );
 			loadIcon.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
 			loadIcon.parentdoc = doc.defaultView;
-			loadIcon.doc = doc;
-			loadIcon.result = div; 
 			FoxtrickLinksLoadDialog.doc =doc;
-		
+			
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
 			td1.width="20px";					
@@ -324,10 +333,7 @@ var FoxtrickLinksCustom = {
 			divED.appendChild(table2);
 
 			ownBoxBody.appendChild(divED);
-			
-			div.imgref=doc.getElementById('inputImgDivID').src ;
-			div.imgref=doc.getElementById('inputImgDivID').src ;
-			
+						
 		}
 		catch (e) {dump("LinksCustom->show_edit->"+e+'\n');}
 	},

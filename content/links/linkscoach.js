@@ -22,9 +22,10 @@ var FoxtrickLinksCoach = {
 
 		//addExternalLinksToCoachPage
 		var links = getLinks("coachlink", {  }, doc, this);  
+		var ownBoxBody=null;
                   
 		if (links.length > 0) {
-			var ownBoxBody = doc.createElement("div");
+			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 			var ownBoxId = "foxtrick_" + header + "_box";
@@ -38,9 +39,8 @@ var FoxtrickLinksCoach = {
 			}
 						
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-			                                                        
-			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});	
-        }
+			}
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});	        
 	},
 	
 	change : function( page, doc ) {

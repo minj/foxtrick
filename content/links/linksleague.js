@@ -22,6 +22,7 @@ var FoxtrickLinksLeague = {
     run : function( page, doc ) {
 		//addExternalLinksToLeagueDetail
 		var alldivs = doc.getElementsByTagName('div');
+		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
@@ -47,7 +48,7 @@ var FoxtrickLinksLeague = {
 					doc, this);  
 
 				if (links.length > 0) {
-					var ownBoxBody = doc.createElement("div");
+					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 					var ownBoxId = "foxtrick_" + header + "_box";
@@ -61,11 +62,10 @@ var FoxtrickLinksLeague = {
 					}
 						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-					
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,
+				}	
+				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,
 					"leagueid": leagueid, "levelnum" : levelnum,
 					"seriesnum": seriesnum,	"leaguename" : leaguename} );	
-				}
 				break;  
 			}
 		}

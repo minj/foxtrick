@@ -24,6 +24,7 @@ var FoxtrickLinksPlayerDetail = {
 		//addExternalLinksToPlayerDetail
 		
 		var alldivs = doc.getElementsByTagName('div');
+		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
@@ -138,7 +139,7 @@ var FoxtrickLinksPlayerDetail = {
 				var num_links=links[0].length;
 				if (links[1]!=null) {num_links+=links[1].length;}
 				if (num_links>0) {
-					var ownBoxBody = doc.createElement("div");
+					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 					var ownBoxId = "foxtrick_" + header + "_box";
@@ -156,15 +157,15 @@ var FoxtrickLinksPlayerDetail = {
 					}
 						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+				}
 
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
+				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
 						"teamid": teamid, "playerid": playerid, "nationality": nationality,
 						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks
 						});	
-				}
 				break;
 			}
 		}

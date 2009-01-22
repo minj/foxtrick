@@ -24,6 +24,7 @@ var FoxtrickLinksTraining = {
 		//addExternalLinksToCoachPage
 		
 		var alldivs = doc.getElementsByTagName('div');
+		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var Coach,TI,STA,TrainingType; 
@@ -42,7 +43,7 @@ var FoxtrickLinksTraining = {
 				var links = getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType}, doc, this);  
                   
 				if (links.length > 0) {
-					var ownBoxBody = doc.createElement("div");
+					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 					var ownBoxId = "foxtrick_" + header + "_box";
 					var ownBoxBodyId = "foxtrick_" + header + "_content";
@@ -55,9 +56,9 @@ var FoxtrickLinksTraining = {
 					}
 						
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-			                                                        
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );	
-				}
+			    }                                                   
+					FoxtrickLinksCustom.add( page, doc,ownBoxBody,
+							this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );					
             }
 		}
     },

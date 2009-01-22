@@ -19,7 +19,7 @@ var FoxtrickLinksYouthOverview = {
 	    },
 
     run : function( page, doc ) {
-	var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
 		var ownteamid=0;
 		var countryid=0;
 		if (boxleft==null) {return;}
@@ -36,9 +36,10 @@ var FoxtrickLinksYouthOverview = {
 	
 	
 		//addExternalLinksToYouthOverview
-        var links = getLinks("youthlink", { "countryid": countryid }, doc,this);  
+        var ownBoxBody=null;
+		var links = getLinks("youthlink", { "countryid": countryid }, doc,this);  
 		if (links.length > 0) {
-			var ownBoxBody = doc.createElement("div");
+			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 			var ownBoxId = "foxtrick_" + header + "_box";
@@ -51,9 +52,8 @@ var FoxtrickLinksYouthOverview = {
 				ownBoxBody.appendChild(links[k].link);
 			}
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-
-			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});	
 		}
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});			
     },
 	
 	change : function( page, doc ) {
