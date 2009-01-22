@@ -83,7 +83,7 @@
 	<currency code="TND" shortname="Dinar" name="Dinar (Tunisian Dinar)" eurorate="0.7" />
 	<currency code="TTD" shortname="TT$" name="TT$ (Trinidad and Tobago dollar)" eurorate="0.1" />
 	<currency code="TRY" shortname="YTL" name="YTL (Turkish new lira)" eurorate="1" />
-	<currency code="UAH" shortname="грн." name="грн. (Ukrainian hryvnia)" eurorate="0.2" />
+	<currency code="UAH" shortname="hryvnia" name="грн. (Ukrainian hryvnia)" eurorate="0.2" />
 	<currency code="AED" shortname="Dirham" name="Dirham (United Arab Emirates)" eurorate="0.4" />
 	<currency code="UYU" shortname="Pesos" name="Pesos (Uruguayan peso)" eurorate="0.1" />
 	<currency code="VEB" shortname="Bs" name="Bs (Venezuelan bolívar)" eurorate="1" />
