@@ -93,6 +93,12 @@ FoxtrickExtendedPlayerDetails = {
             var part_1_save = part;
             var part_2_save = substr(table_inner, table_inner.lastIndexOf("&nbsp;") + 6, table_inner.length );
 
+             //this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
+                 var part = part;
+                 for ( i=0; i<10; i++ ) { 
+                  var part = part.replace('&nbsp;', ''); 
+                 }
+             
             part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
             part = ReturnFormatedValue (part, ' ');
 
