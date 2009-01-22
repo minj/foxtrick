@@ -140,6 +140,7 @@ var FoxtrickForumStaffMarker = {
 			"Nanouk_HT33",
             "Mod-summercloud",
 			"OBarros",
+            "Piper_101",
 			"Pyntsa",
 			"smates",
 			"spambot",
