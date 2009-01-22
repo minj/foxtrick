@@ -398,6 +398,7 @@ var FoxtrickPreferencesDialog = {
       
       FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
       FoxtrickPrefs.setString("currencySymbol", this.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"new",htCurrencyXml_c));
+      FoxtrickPrefs.setString("currencyRateTo", this.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"rate",htCurrencyXml_c));
       
       FoxtrickPrefs.setString("oldCurrencySymbol", this.getConverterCurrValue(FoxtrickPrefs.getString("htCurrency"),"old",htCurrencyXml_c));
       FoxtrickPrefs.setString("currencyRate", this.getConverterCurrValue(document.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
