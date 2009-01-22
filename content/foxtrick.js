@@ -844,11 +844,12 @@ function gregorianToHT( date ) {
 }
     
 function htDatePrintFormat(year, season, week, day, date) {
+    var offset = FoxtrickPrefs.getInt("htSeasonOffset")
     if ( year <= 2000 ) 
         // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
         return "<font color='#808080'>(old)</font>"; 
     else {
-        return "(" + week + "/" + season + ")";
+        return "(" + week + "/" + (Math.floor(season) - offset) + ")";
     }
 }
 
@@ -861,13 +862,13 @@ function getDatefromCellHTML ( date ) {
     if (date == '') return false;
         date +=' ';
         
-        dump ('  CELL :[' + date + ']\n');
+        // dump ('  CELL :[' + date + ']\n');
 
         var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
         var ar = reg.exec(date);
         
         var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-        dump('DATEFORMAT: ' + DATEFORMAT + '\n');
+        // dump('DATEFORMAT: ' + DATEFORMAT + '\n');
 
         switch ( DATEFORMAT ) {
             case 'ddmmyyyy':
@@ -890,7 +891,7 @@ function getDatefromCellHTML ( date ) {
         var SH = ar[7];
         var SMn = ar[9];
         var SS = '00';
-        dump('  TIME:' + date + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
+        // dump('  TIME:' + date + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
         var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
     return CellDate;
 }
@@ -968,7 +969,7 @@ modifyDates = function ( doc, short, elm, before, after ) {
     short == true => Date is without time.
     */
     var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-    dump('DATEFORMAT: ' + DATEFORMAT + '\n');
+    // dump('DATEFORMAT: ' + DATEFORMAT + '\n');
 
     var tds = doc.getElementsByTagName( elm );
     for (var i = 0; tds[i] != null; ++i) {
@@ -1009,33 +1010,4 @@ Foxtrick.isStandardLayout = function ( doc ) {
 	// Check if this is the simple or standard layout
 	var link = doc.getElementsByTagName("link")[0];
 	return link.href.search("Simple") == -1; // true = standard / false = simple
-}
-
-function GetSeasonOffset( doc ) {
-    var offset = 0;
-    try {
-        var country = PrefsBranch.getCharPref("htCountry");
-    } catch (e) {
-        country = "Sweden";
-    }
-
-    try {
-    var htCountryXml = doc.implementation.createDocument("", "", null);
-        htCountryXml.async = false;
-        htCountryXml.load("chrome://foxtrick/content/htlocales/htcountries.xml", "text/xml");
-    } catch (e) {
-        dump('XML: ' + e + '\n');
-    }
-
-
-    try {
-        var path = "hattrickcountries/country[@name='" + country + "']";
-        var obj = htCountryXml.evaluate(path,htCountryXml,null,htCountryXml.DOCUMENT_NODE,null).singleNodeValue;
-        offset = parseFloat(obj.attributes.getNamedItem("offset").textContent);
-    } catch (e) {
-        dump('XML-PARSE : ' + e + '\n');
-        country = "Sweden";
-        offset = 0;
-    } 
-    return {"country":country,"offset":offset};
 }

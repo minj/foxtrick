@@ -3,6 +3,7 @@ pref( "extensions.foxtrick.prefs.htLanguage", "en");
 pref( "extensions.foxtrick.prefs.htCurrency", "EUR");
 pref( "extensions.foxtrick.prefs.Dateformat", "ddmmyyyy");
 pref( "extensions.foxtrick.prefs.htCountry", "Sweden");
+pref( "extensions.foxtrick.prefs.htSeasonOffset", 0);
 pref( "extensions.foxtrick.prefs.statusbarshow", true);
 pref( "extensions.foxtrick.prefs.cutwordsafter", 75);
 pref( "extensions.foxtrick.prefs.alertSlider", true);
