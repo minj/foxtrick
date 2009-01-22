@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hattrickcountries>
+    <country name="Albania" continent="Europe" region="Eastern Europe" offset="23"/>
+    <country name="Algeria" continent="Africa" region="Asia, Africa, Oceania" offset="26"/>
+    <country name="Andorra" continent="Europe" region="Southwestern Europe" offset="24"/>
+    <country name="Angola" continent="Africa" region="Asia, Africa, Oceania" offset="29"/>
+    <country name="Argentina" continent="S. America" region="South America" offset="0"/>
+    <country name="Armenia" continent="Asia" region="Asia, Africa, Oceania" offset="26"/>
+    <country name="Austria" continent="Europe" region="Central Europe" offset="13"/>
+    <country name="Azerbaijan" continent="Asia" region="Asia, Africa, Oceania" offset="28"/>
+    <country name="Bahrain" continent="Asia" region="Asia, Africa, Oceania" offset="27"/>
+    <country name="Bangladesh" continent="Asia" region="Asia, Africa, Oceania" offset="29"/>
+    <country name="Barbados" continent="N. America" region="North America" offset="27"/>
+    <country name="Belarus" continent="Europe" region="Eastern Europe" offset="22"/>
+    <country name="Belgium" continent="Europe" region="Western Europe" offset="13"/>
+    <country name="Benin" continent="Africa" region="Asia, Africa, Oceania" offset="33"/>
+    <country name="Bolivia" continent="S. America" region="South America" offset="20"/>
+    <country name="Bosnia and Herzegovina" continent="Europe" region="Eastern Europe" offset="18"/>
+    <country name="Brazil" continent="S. America" region="South America" offset="12"/>
+    <country name="Brunei" continent="Asia" region="Asia, Africa, Oceania" offset="32"/>
+    <country name="Bulgaria" continent="Europe" region="Eastern Europe" offset="16"/>
+    <country name="Cambodia" continent="Asia" region="Asia, Africa, Oceania" offset="32"/>
+    <country name="Canada" continent="N. America" region="North America" offset="12"/>
+    <country name="Cape Verde" continent="Africa" region="Asia, Africa, Oceania" offset="27"/>
+    <country name="Chile" continent="S. America" region="South America" offset="12"/>
+    <country name="Chinese Taipei" continent="Asia" region="Asia, Africa, Oceania" offset="16"/>
+    <country name="Colombia" continent="S. America" region="South America" offset="12"/>
+    <country name="Costa Rica" continent="N. America" region="North America" offset="21"/>
+    <country name="Côte d’Ivoire" continent="Africa" region="Asia, Africa, Oceania" offset="27"/>
+    <country name="Croatia" continent="Europe" region="Eastern Europe" offset="15"/>
+    <country name="Cyprus" continent="Europe" region="Eastern Europe" offset="21"/>
+    <country name="Czech Republic" continent="Europe" region="Central Europe" offset="15"/>
+    <country name="Denmark" continent="Europe" region="Northern Europe" offset="0"/>
+    <country name="Dominican Republic" continent="N. America" region="North America" offset="21"/>
+    <country name="Ecuador" continent="S. America" region="South America" offset="20"/>
+    <country name="Egypt" continent="Africa" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="El Salvador" continent="N. America" region="North America" offset="23"/>
+    <country name="England" continent="Europe" region="Western Europe" offset="0"/>
+    <country name="Estonia" continent="Europe" region="Northern Europe" offset="15"/>
+    <country name="Faroe Islands" continent="Europe" region="Northern Europe" offset="20"/>
+    <country name="Finland" continent="Europe" region="Northern Europe" offset="0"/>
+    <country name="France" continent="Europe" region="Southwestern Europe" offset="0"/>
+    <country name="FYR Macedonia" continent="Europe" region="Eastern Europe" offset="22"/>
+    <country name="Georgia" continent="Asia" region="Asia, Africa, Oceania" offset="24"/>
+    <country name="Germany" continent="Europe" region="Central Europe" offset="0"/>
+    <country name="Ghana" continent="Africa" region="Asia, Africa, Oceania" offset="32"/>
+    <country name="Greece" continent="Europe" region="Eastern Europe" offset="15"/>
+    <country name="Guatemala" continent="N. America" region="North America" offset="24"/>
+    <country name="Honduras" continent="N. America" region="North America" offset="23"/>
+    <country name="Hong Kong" continent="Asia" region="Asia, Africa, Oceania" offset="16"/>
+    <country name="Hungary" continent="Europe" region="Central Europe" offset="15"/>
+    <country name="Iceland" continent="Europe" region="Northern Europe" offset="13"/>
+    <country name="India" continent="Asia" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="Indonesia" continent="Asia" region="Asia, Africa, Oceania" offset="15"/>
+    <country name="Iran" continent="Asia" region="Asia, Africa, Oceania" offset="21"/>
+    <country name="Iraq" continent="Asia" region="Asia, Africa, Oceania" offset="28"/>
+    <country name="Ireland" continent="Europe" region="Western Europe" offset="12"/>
+    <country name="Israel" continent="Asia" region="Asia, Africa, Oceania" offset="16"/>
+    <country name="Italy" continent="Europe" region="Southwestern Europe" offset="0"/>
+    <country name="Jamaica" continent="N. America" region="North America" offset="22"/>
+    <country name="Japan" continent="Asia" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="Jordan" continent="Asia" region="Asia, Africa, Oceania" offset="24"/>
+    <country name="Kazakhstan" continent="Asia" region="Asia, Africa, Oceania" offset="25"/>
+    <country name="Kenya" continent="Africa" region="Asia, Africa, Oceania" offset="22"/>
+    <country name="Kuwait" continent="Asia" region="Asia, Africa, Oceania" offset="28"/>
+    <country name="Kyrgyzstan" continent="Asia" region="Asia, Africa, Oceania" offset="23"/>
+    <country name="Latvia" continent="Europe" region="Northern Europe" offset="15"/>
+    <country name="Lebanon" continent="Asia" region="Asia, Africa, Oceania" offset="26"/>
+    <country name="Liechtenstein" continent="Europe" region="Central Europe" offset="26"/>
+    <country name="Lithuania" continent="Europe" region="Northern Europe" offset="18"/>
+    <country name="Luxembourg" continent="Europe" region="Western Europe" offset="21"/>
+    <country name="Malaysia" continent="Asia" region="Asia, Africa, Oceania" offset="13"/>
+    <country name="Maldives" continent="Asia" region="Asia, Africa, Oceania" offset="35"/>
+    <country name="Malta" continent="Europe" region="Southwestern Europe" offset="23"/>
+    <country name="Mexico" continent="N. America" region="North America" offset="0"/>
+    <country name="Moldova" continent="Europe" region="Eastern Europe" offset="23"/>
+    <country name="Mongolia" continent="Asia" region="Asia, Africa, Oceania" offset="26"/>
+    <country name="Montenegro" continent="Europe" region="Eastern Europe" offset="29"/>
+    <country name="Morocco" continent="Africa" region="Asia, Africa, Oceania" offset="20"/>
+    <country name="Mozambique" continent="Africa" region="Asia, Africa, Oceania" offset="32"/>
+    <country name="Netherlands" continent="Europe" region="Western Europe" offset="11"/>
+    <country name="Nicaragua" continent="N. America" region="North America" offset="25"/>
+    <country name="Nigeria" continent="Africa" region="Asia, Africa, Oceania" offset="20"/>
+    <country name="Northern Ireland" continent="Europe" region="Western Europe" offset="22"/>
+    <country name="Norway" continent="Europe" region="Northern Europe" offset="11"/>
+    <country name="Oceania" continent="Oceania" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="Oman" continent="Asia" region="Asia, Africa, Oceania" offset="30"/>
+    <country name="Pakistan" continent="Asia" region="Asia, Africa, Oceania" offset="18"/>
+    <country name="Panama" continent="N. America" region="North America" offset="22"/>
+    <country name="Paraguay" continent="S. America" region="South America" offset="20"/>
+    <country name="People's Republic of China" continent="Asia" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="Peru" continent="S. America" region="South America" offset="12"/>
+    <country name="Philippines" continent="Asia" region="Asia, Africa, Oceania" offset="15"/>
+    <country name="Poland" continent="Europe" region="Central Europe" offset="12"/>
+    <country name="Portugal" continent="Europe" region="Southwestern Europe" offset="12"/>
+    <country name="Qatar" continent="Asia" region="Asia, Africa, Oceania" offset="34"/>
+    <country name="Romania" continent="Europe" region="Eastern Europe" offset="12"/>
+    <country name="Russia" continent="Europe" region="Eastern Europe" offset="12"/>
+    <country name="Saudi Arabia" continent="Asia" region="Asia, Africa, Oceania" offset="21"/>
+    <country name="Scotland" continent="Europe" region="Western Europe" offset="12"/>
+    <country name="Senegal" continent="Africa" region="Asia, Africa, Oceania" offset="26"/>
+    <country name="Serbia" continent="Europe" region="Eastern Europe" offset="15"/>
+    <country name="Singapore" continent="Asia" region="Asia, Africa, Oceania" offset="13"/>
+    <country name="Slovakia" continent="Europe" region="Central Europe" offset="18"/>
+    <country name="Slovenia" continent="Europe" region="Central Europe" offset="16"/>
+    <country name="South Africa" continent="Africa" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="South Korea" continent="Asia" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="Spain " continent="Europe " region="Southwestern Europe " offset="12"/>
+    <country name="Suriname" continent="S. America" region="South America" offset="25"/>
+    <country name="Sweden" continent="Europe" region="Northern Europe" offset="0"/>
+    <country name="Switzerland" continent="Europe" region="Central Europe" offset="13"/>
+    <country name="Syria" continent="Asia" region="Asia, Africa, Oceania" offset="33"/>
+    <country name="Tanzania" continent="Africa" region="Asia, Africa, Oceania" offset="34"/>
+    <country name="Thailand" continent="Asia" region="Asia, Africa, Oceania" offset="12"/>
+    <country name="Trinidad & Tobago" continent="N. America" region="North America" offset="25"/>
+    <country name="Tunisia" continent="Africa" region="Asia, Africa, Oceania" offset="21"/>
+    <country name="Turkey" continent="Europe" region="Eastern Europe" offset="12"/>
+    <country name="Uganda" continent="Africa" region="Asia, Africa, Oceania" offset="35"/>
+    <country name="Ukraine" continent="Europe" region="Eastern Europe" offset="18"/>
+    <country name="United Arab Emirates" continent="Asia" region="Asia, Africa, Oceania" offset="21"/>
+    <country name="Uruguay" continent="S. America" region="South America" offset="12"/>
+    <country name="USA" continent="N. America" region="North America" offset="0"/>
+    <country name="Venezuela" continent="S. America" region="South America" offset="12"/>
+    <country name="Vietnam" continent="Asia" region="Asia, Africa, Oceania" offset="18"/>
+    <country name="Wales" continent="Europe" region="Western Europe" offset="16"/>
+    <country name="Yemen" continent="Asia" region="Asia, Africa, Oceania" offset="30"/>
+</hattrickcountries>
