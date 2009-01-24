@@ -44,6 +44,7 @@ var FoxtrickGoToPostBox = {
 				var inputBoxTop = doc.createElement('input');
 				inputBoxTop.setAttribute('type', 'text');
 				inputBoxTop.setAttribute('size', '3');
+				inputBoxTop.setAttribute('maxlength', '4');
 				var goButton = doc.createElement('input');
 				goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
 				inputBoxTop.setAttribute('id', boxId);
