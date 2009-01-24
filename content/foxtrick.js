@@ -847,7 +847,10 @@ function gregorianToHT( date ) {
 }
     
 function htDatePrintFormat(year, season, week, day, date) {
-    var offset = FoxtrickPrefs.getInt("htSeasonOffset")
+    var offset = 0;
+    if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, FoxtrickHTDateFormat.OPTIONS[0] ))
+        offset = FoxtrickPrefs.getInt("htSeasonOffset");
+    dump ('offset:' + offset + '\n');
     if ( year <= 2000 ) 
         // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
         // return "<font color='#808080'>(old)</font>"; 

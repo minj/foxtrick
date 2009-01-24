@@ -633,7 +633,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 		entry.appendChild (desc_box);
 
 		var spacer = document.createElement( "spacer" );
-        spacer.height = "5";
+        spacer.height = "1";
         entry.appendChild( spacer );
 
 		hbox = document.createElement( "hbox" );
@@ -707,7 +707,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 		entry.appendChild (desc_box);
 
         var spacer = document.createElement( "spacer" );
-        spacer.height = "5";
+        spacer.height = "1";
         entry.appendChild( spacer );
 
 		hbox = document.createElement( "vbox" );

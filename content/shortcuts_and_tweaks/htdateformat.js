@@ -8,6 +8,7 @@ FoxtrickHTDateFormat = {
     MODULE_NAME : "HTDateFormat",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
+    OPTIONS : {},
 
     init : function() {
         Foxtrick.registerPageHandler('transfersTeam', this);
@@ -23,6 +24,7 @@ FoxtrickHTDateFormat = {
         Foxtrick.registerPageHandler('arena', this);
         Foxtrick.registerPageHandler('league', this);
         
+        this.initOptions();     
     },
 
     run : function(page, doc) {
@@ -92,5 +94,11 @@ FoxtrickHTDateFormat = {
 
 	change : function( page, doc ) {
 
-	}
+	},
+    
+    initOptions : function() { 
+        this.OPTIONS = new Array( 
+                                    "LocalSaison"
+                                );        
+    }
 };
