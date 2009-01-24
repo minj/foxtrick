@@ -64,7 +64,7 @@ FoxtrickExtendedPlayerDetails = {
                 JoinedText = TimeDifferenceToText (joined_s , true);
             } 
             catch(ee) {
-                dump(ee);
+                dump('  JoinedText >' + ee + '\n');
             }
     
             if (JoinedText.search("NaN") == -1) {
