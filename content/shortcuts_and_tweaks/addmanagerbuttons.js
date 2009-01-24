@@ -16,15 +16,20 @@ var FoxtrickAddManagerButtons = {
                                         FoxtrickAddManagerButtons );
 		Foxtrick.registerPageHandler( 'teamPage', 
 										FoxtrickAddManagerButtons );
+		Foxtrick.registerPageHandler( 'youthoverview', 
+										FoxtrickAddManagerButtons );
     },
     
-    run : function( page, doc ) {
+    run : function( page, doc ) { 
 		switch( page ) {
 			case 'managerPage':
 				if(!doc.getElementById('sidebar')) {
 					// Guestbook page
 					break;
 				}
+				this.addActionsBox( doc );
+				break;
+			case 'youthoverview':
 				this.addActionsBox( doc );
 				break;
 				
@@ -38,6 +43,12 @@ var FoxtrickAddManagerButtons = {
         try {
             switch( page ) {
                 case 'managerPage':
+                    var newBoxId = "foxtrick_actions_box";
+                    if( !Foxtrick.hasElement( newBoxId ) ) {
+                        this.addActionsBox( doc );
+                    }
+                    break;
+                case 'youthoverview':
                     var newBoxId = "foxtrick_actions_box";
                     if( !Foxtrick.hasElement( newBoxId ) ) {
                         this.addActionsBox( doc );
@@ -65,28 +76,22 @@ var FoxtrickAddManagerButtons = {
 		var HTSupporter = true;
 				
 		// Get the teamID
-		for(var i = 0; i < allDivs.length; i++) {
+		for(var i = 0; i < allDivs.length; i++) { 
 			//Retrieve owner manager ID - Stephan57
 			if(allDivs[i].id=="teamLinks") {
 				var teamLinks_a = allDivs[i].getElementsByTagName("a")[0];
 				ownerID = teamLinks_a.href.substr(
 					teamLinks_a.href.search( /TeamID=/i )+7 );
 			}
-			//Determine if teamID is HT-Supporter - Stephan57
-			/*
-			 * This doesn't work if a user has the 'Show faces' option disabled
-			 * For now we'll go back to always displaying the Write in Guestbook-button
-			 * until a better solution is available.
+			//Determine if teamID is HT-Supporter - Stephan57 
+			// only works if script is executed before AddDefaultFaceCard
+			// does not work on youthoverview page
 			if(allDivs[i].id=="ctl00_CPMain_ucManagerFace_pnlAvatar") {
 				HTSupporter=true;
 			}
-			*/
-			if(allDivs[i].className=="main mainRegular") {
-				var divBoxHead = allDivs[i].getElementsByTagName( "div" )[0];
-				var divBoxLeft = divBoxHead.getElementsByTagName( "div" )[0];
-				var header = divBoxLeft.getElementsByTagName( "h2" )[0];
-				var a = header.getElementsByTagName( "a" )[0];
-				teamID = a.href.substr( a.href.search( /TeamID=/i )+7 );
+			
+			if(allDivs[i].className=="subMenuBox") {
+				teamID = FoxtrickHelper.findTeamId(allDivs[i]);
 			}
 		}
 			
@@ -115,7 +120,7 @@ var FoxtrickAddManagerButtons = {
 		if (HTSupporter) {	
 			var guestbookLink = doc.createElement("a");
 			guestbookLink.className = "inner";
-			guestbookLink.href = "Guestbook.aspx?teamid=" + teamID;
+			guestbookLink.href = "\/Club\/Manager\/Guestbook.aspx?teamid=" + teamID;
 			guestbookLink.title = Foxtrickl10n.getString(
 				"foxtrick.tweaks.writeinguestbook");
 			

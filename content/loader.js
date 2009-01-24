@@ -13,7 +13,7 @@ var scripts = [
     'stats.js',
     'l10n.js',
 	'helper.js',
-//	'redirections.js',
+	'redirections.js',
 	
     // individual modules
     'forum/forumtemplates.js',

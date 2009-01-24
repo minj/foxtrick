@@ -12,26 +12,15 @@ var FoxtrickForumRedirManagerToTeam = {
 	DEFAULT_ENABLED : true,
 
 	init : function() {
-            Foxtrick.registerPageHandler( 'managerRedir',
+            Foxtrick.registerPageHandler( 'forumViewThread',
+                                          FoxtrickForumRedirManagerToTeam);
+            Foxtrick.registerPageHandler( 'teamPageGeneral',
                                           FoxtrickForumRedirManagerToTeam);
     },
 
     run : function( page, doc ) { 
-		if (doc.location.href.search(/\/Club\/Manager/i)!=-1 ) { 
-			if (doc.location.href.search(/redir=true/i)!=-1 ) {
-				var alldivs = doc.getElementsByTagName('div');
-				for (var j = 0; j < alldivs.length; j++) {
-					if (alldivs[j].className=="playerInfo") {
-						var teamid=FoxtrickHelper.findTeamId(alldivs[j]);
-						var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
-						var tar=serv+"\/\?TeamID="+teamid;
-						doc.location.replace(tar);
-						break;
-					}
-				}
-			}
-		}
-		else if (doc.location.href.search(/\/Forum\/Read/i)!=-1 ) {	 
+		// manager to team in forum
+		if (doc.location.href.search(/\/Forum\/Read/i)!=-1 ) {	 
 				var innerdivs = doc.getElementsByTagName('div');
 				for (var k = 0; k < innerdivs.length; k++) {
 				  if (innerdivs[k].className=="cfHeader") {
@@ -39,13 +28,14 @@ var FoxtrickForumRedirManagerToTeam = {
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
 					  if (link.href.search(/userId=/i) > -1) { 
-						link.href+="&redir=true";
+						link.href+="&redir_to_team=true";
 					  }
 					}
 				  }
 				}
 			}
-		else if (doc.location.href.search('\/Club')!=-1 ) {	
+		// manager to team for last visitors
+		else if (doc.location.href.search('\/Club\/|\/World\/Series\/')!=-1 ) {	
 			var alldivs = doc.getElementsByTagName('div');
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="sidebarBox") { 
@@ -55,7 +45,7 @@ var FoxtrickForumRedirManagerToTeam = {
 						for (var k=0; k<linksArray.length; k++) {
 							var link = linksArray[k];
 							if (link.href.search(/userId=/i) > -1) { 
-								link.href+="&redir=true"; 
+								link.href+="&redir_to_team=true"; 
 							}
 						}
 						break;

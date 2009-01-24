@@ -156,8 +156,8 @@ var FoxtrickTeamPopupLinks = {
                                         td5.setAttribute("nowrap", "nowrap");
                                         var a5 = doc.createElement("a");
 										if (value!=ownteamid) {
-											a5.setAttribute('href', '/Club/Players/?TeamID='+value+'&redir=true');}
-                                        else {a5.setAttribute('href', '/Club/Training/?redir=true');}
+											a5.setAttribute('href', '/Club/Players/?TeamID='+value+'&redir_to_coach=true');}
+                                        else {a5.setAttribute('href', '/Club/Training/?redir_to_coach=true');}
                                         a5.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
                                         td5.appendChild(a5);
                                         tr5.appendChild(td5);
