@@ -848,9 +848,14 @@ function gregorianToHT( date ) {
     
 function htDatePrintFormat(year, season, week, day, date) {
     var offset = 0;
-    if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, FoxtrickHTDateFormat.OPTIONS[0] ))
-        offset = FoxtrickPrefs.getInt("htSeasonOffset");
-    dump ('offset:' + offset + '\n');
+    try {
+        if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, FoxtrickHTDateFormat.OPTIONS[0] ))
+            offset = FoxtrickPrefs.getInt("htSeasonOffset");
+    } catch(e) {
+        dump('offset: ' + e + '\n');
+        offset = 0;
+    }
+    // dump ('offset:' + offset + '\n');
     if ( year <= 2000 ) 
         // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
         // return "<font color='#808080'>(old)</font>"; 
@@ -873,8 +878,15 @@ function getDatefromCellHTML ( date ) {
 
         var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
         var ar = reg.exec(date);
+        var DATEFORMAT = 'ddmmyyyy';
         
-        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+        try {
+            DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+        }
+        catch (e) {
+            dump ('DATEFORMAT ' + e + '\n');
+            DATEFORMAT = 'ddmmyyyy';
+        }
         // dump('DATEFORMAT: ' + DATEFORMAT + '\n');
 
         switch ( DATEFORMAT ) {
@@ -1026,7 +1038,14 @@ modifyDates = function ( doc, short, elm, before, after ) {
     Returns HT-Week & Season
     short == true => Date is without time.
     */
-    var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+    var DATEFORMAT = 'ddmmyyyy';
+    try {
+        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+    }
+    catch (e) {
+        dump ('DATEFORMAT ' + e + '\n');
+        DATEFORMAT = 'ddmmyyyy';
+    }
     // dump('DATEFORMAT: ' + DATEFORMAT + '\n');
 
     var tds = doc.getElementsByTagName( elm );
