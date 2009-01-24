@@ -95,10 +95,14 @@ FoxtrickTransferListDeadline = {
 			var deadline_span = doc.getElementById( "ft_deadline" );
             if  (deadline_span != null ) return;
 
-            var spans = getElementsByClass( "alert", doc );
+            var div = doc.getElementById( 'ctl00_CPMain_updBid' );
+            if (div == null ) return;
+            
+            var spans = getElementsByClass( "alert", div );
             if (spans == null) return;
-
-            var selltime_elm = spans[1].getElementsByTagName( "p" )[0];
+            
+            var selltime_elm = spans[0].getElementsByTagName( "p" )[0];
+            
             if (selltime_elm == null) return;
             var selltime_clone = selltime_elm.cloneNode(true);
             if (selltime_clone == null) return;

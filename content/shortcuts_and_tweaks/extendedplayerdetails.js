@@ -32,8 +32,12 @@ FoxtrickExtendedPlayerDetails = {
     _Player_Joined  : function ( doc ) {
         // Player in team since...
         try {
-            var joined_elm = getElementsByClass( "shy", doc )[0];
-            if (joined_elm == null) return;
+            var div = doc.getElementById( "ctl00_CPMain_pnlplayerInfo" );
+            if (div == null) return;
+            
+            var joined_elm = getElementsByClass( "shy", div )[0];
+            if (joined_elm == null) return;            
+            //dump('\n'+joined_elm.parentNode.innerHTML+'\n');
 
             joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
 
@@ -102,7 +106,13 @@ FoxtrickExtendedPlayerDetails = {
             part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
             part = ReturnFormatedValue (part, ' ');
 
-            if (part != 'NaN') table_elm_bonus.innerHTML = part_1_save + '&nbsp;<span class="smallText" style="color:#666666;>(' + part + ')</span>&nbsp;' + part_2_save;
+            if (part != 'NaN') 
+                table_elm_bonus.innerHTML = 
+                    part_1_save + 
+                    '&nbsp;<span class="smallText" style="color:#666666;>(' + 
+                    part + 
+                    ')</span>&nbsp;' + 
+                    part_2_save;
 
         } catch (e) {
             dump('  PlayerBonus: ' + e + '\n');
