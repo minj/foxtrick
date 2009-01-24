@@ -43,8 +43,12 @@ var FoxtrickGoToPostBox = {
 				var selectBox = aSelectBoxes[i];
 				var inputBoxTop = doc.createElement('input');
 				inputBoxTop.setAttribute('type', 'text');
-				inputBoxTop.setAttribute('size', '3');
-				inputBoxTop.setAttribute('maxlength', '4');
+				inputBoxTop.setAttribute('size', '4');
+                inputBoxTop.setAttribute('value', '(xxx.)yyy');
+                inputBoxTop.setAttribute('class', 'quickViewBox viewInactive');
+                inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
+                inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
+                
 				var goButton = doc.createElement('input');
 				goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
 				inputBoxTop.setAttribute('id', boxId);
