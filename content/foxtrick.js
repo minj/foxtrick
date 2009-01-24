@@ -878,16 +878,8 @@ function getDatefromCellHTML ( date ) {
 
         var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
         var ar = reg.exec(date);
-        var DATEFORMAT = 'ddmmyyyy';
-        
-        try {
-            DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-        }
-        catch (e) {
-            dump ('DATEFORMAT ' + e + '\n');
-            DATEFORMAT = 'ddmmyyyy';
-        }
-        // dump('DATEFORMAT: ' + DATEFORMAT + '\n');
+        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+        if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
 
         switch ( DATEFORMAT ) {
             case 'ddmmyyyy':
@@ -958,13 +950,8 @@ TimeDifferenceToText = function( time_sec, short ) {
     }
     // only days returned 
     if ( short ) {
-        try {
-            var display_option = FoxtrickPrefs.getInt("module." + FoxtrickExtendedPlayerDetails.MODULE_NAME + ".value");
-        }
-        catch (edisp) {
-            dump(edisp + '\n');
-            var display_option = 0;
-        }
+        var display_option = FoxtrickPrefs.getInt("module." + FoxtrickExtendedPlayerDetails.MODULE_NAME + ".value");
+        if (display_option == null) var display_option = 0;
         var PJD_D = Math.floor(org_time / 86400);
         var PJD_W = Math.floor(PJD_D / 7);
         var PJD_S = Math.floor(PJD_D / (16*7));
