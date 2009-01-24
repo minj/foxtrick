@@ -905,6 +905,7 @@ function getDatefromCellHTML ( date ) {
 
 TimeDifferenceToText = function( time_sec, short ) {
     
+    var org_time = time_sec;
     // Returns the time differnce as DDD days, HHh MMm
     // if short, only DDD day(s) will be returned
     
@@ -945,6 +946,49 @@ TimeDifferenceToText = function( time_sec, short ) {
     }
     // only days returned 
     if ( short ) {
+        var display_option = FoxtrickPrefs.getInt("module." + FoxtrickExtendedPlayerDetails.MODULE_NAME + ".value");
+        var PJD_D = Math.floor(org_time / 86400);
+        var PJD_W = Math.floor(PJD_D / 7);
+        var PJD_S = Math.floor(PJD_D / (16*7));
+        var print_S = ''; var print_W = ''; var print_D = '';
+        dump ( display_option + ': ' + PJD_D + '/' + PJD_W + '/' + PJD_S + '\n');
+        try {
+            switch ( display_option ) {  //( "SWD", "SW", "SD", "WD", "D" )
+                case 0: //SWD
+                    print_S = PJD_S;
+                    print_W = PJD_W - (print_S * 16);
+                    print_D = PJD_D - (print_S * 16 * 7) - (print_W * 7);
+                break;
+                
+                case 1: //SW
+                    print_S = PJD_S;
+                    print_W = PJD_W - (print_S * 16);
+                    break;
+                
+                case 2: //SD
+                    print_S = PJD_S;
+                    print_D = PJD_D - (print_S * 16 * 7);
+                break;            
+                
+                case 3: //WD
+                    print_W = PJD_W;
+                    print_D = PJD_D - (print_W * 7);
+                break;
+                
+                case 4: //D
+                    print_D = PJD_D;
+                break;            
+            } // switch
+        } // try
+        catch(ee) {
+            dump(ee);
+        }
+        if (print_S == 0 ) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons") + '&nbsp;';}
+        if (print_W == 0 ) {print_W = '';} else {print_W = '<b>' + print_W + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks") + '&nbsp;';} 
+        if (print_D == 0 ) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days") + '&nbsp;';} 
+        
+        dump ( display_option + ': ' + print_D + '/' + print_W + '/' + print_S + '\n');                
+        return print_S + print_W + print_D;
         if ( Days == 0 ) {
             Text += '0&nbsp;' + Foxtrickl10n.getString("foxtrick.datetimestrings.days");
         }

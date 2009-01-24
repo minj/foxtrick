@@ -8,6 +8,7 @@ FoxtrickExtendedPlayerDetails = {
     MODULE_NAME : "ExtendedPlayerDetails",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
+    RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
     init : function() {
         Foxtrick.registerPageHandler('playerdetail', this);
@@ -57,8 +58,14 @@ FoxtrickExtendedPlayerDetails = {
             if (!JT_date) return;
 
             var joined_s = Math.floor( (HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
-
-            var JoinedText = TimeDifferenceToText (joined_s , true);
+            
+            var JoinedText = 'NaN';
+            try {
+                JoinedText = TimeDifferenceToText (joined_s , true);
+            } 
+            catch(ee) {
+                dump(ee);
+            }
     
             if (JoinedText.search("NaN") == -1) {
                 part1 = substr(joined_elm.innerHTML, 0, strrpos( joined_elm.innerHTML, ")"));
