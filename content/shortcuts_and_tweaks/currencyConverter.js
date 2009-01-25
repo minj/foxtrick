@@ -9,7 +9,7 @@ FoxtrickCurrencyConverter = {
     DEFAULT_ENABLED : false,
 
     init : function() {
-        Foxtrick.registerPageHandler('all', this);
+        Foxtrick.registerPageHandler('all_late', this);
     },
 
     run : function(page, doc) {
@@ -28,15 +28,15 @@ FoxtrickCurrencyConverter = {
 
    var div = doc.getElementById( 'page' );
    
-             
+           
    var table_elm = div.getElementsByTagName( 'td' );
            
             
             for ( var i = 0; i < table_elm.length; i++) {
                 var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
-                try {
+                try {  
                     if (strrpos( table_inner, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter") {
-                    var table_elm_bonus = table_elm[i];
+						var table_elm_bonus = table_elm[i];    
                         this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr);
                     }
                 }
@@ -53,31 +53,32 @@ FoxtrickCurrencyConverter = {
 drawNewCurrency : function (doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr) {
 
 try {
+			var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
             
-            if (table_elm_bonus == null) return;
-            table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
-
-            var part = substr(table_inner, 0, table_inner.lastIndexOf("&nbsp;"));
-            var mezera = "&nbsp;";
-            var part_1_save = part;
-            var part_2_save = substr(table_inner, table_inner.lastIndexOf("&nbsp;") + mezera.length , table_inner.length );
-       
-
-              //this loop removing 10 &nbsp;  From 15 000 000 make 15000000  
-                 var part = part;
-                 for ( i=0; i<10; i++ ) { 
-                  var part = part.replace('&nbsp;', ''); 
-                 }
-                 
-            //part = Math.floor(parseInt(part.replace('&nbsp;', '')) * rata);
-            part = Math.floor(parseInt(part.replace('&nbsp;', ''))  * currencyRate / currencyRateNewCurr);
-            part = ReturnFormatedValue (part, ' ');
-
-            if (part != 'NaN'){ 
-            table_elm_bonus.innerHTML = part_1_save +'&nbsp;'+ part_2_save + '&nbsp;<br><span class="smallText" style="color:green;white-space: nowrap;">(' + part + '&nbsp;' + currencySymbol + ')</span>&nbsp;';
-            table_elm_bonus.id="foxtrick-currency-converter";
-
-}
+            var table_inner_stripped="";
+			var newtext="";
+			var newnum="";
+			var symbol="";
+			for (var i=0;i<table_inner.length;i++){
+				table_inner_stripped += table_inner.charAt(i);
+				if (table_inner.charAt(i).search(/\d/)!=-1) {if (newnum=="") {symbol="";} newnum+=table_inner.charAt(i); }
+				else if (newnum!="") {  
+					symbol+=table_inner.charAt(i); 
+					if (symbol==" " || symbol=="&nbsp;") symbol="";
+					if (symbol.charAt(0)!='&' && symbol.length==oldCurrencySymbol.length) {
+						if (symbol==oldCurrencySymbol) {
+							var conv=ReturnFormatedValue(Math.floor(newnum * currencyRate / currencyRateNewCurr),'&nbsp;');
+							table_inner_stripped+=' <span class="smallText" style="color:green;white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span> '; 
+							newnum=""; 
+							symbol=""; 
+						}
+						else {symbol="";newnum="";}
+					}
+				}
+			}
+			
+            table_elm_bonus.innerHTML = table_inner_stripped;
+			table_elm_bonus.id="foxtrick-currency-converter";
 
         } catch (e) {
             dump('  CurrencyConverter: ' + e + '\n');
