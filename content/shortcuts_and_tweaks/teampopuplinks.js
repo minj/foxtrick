@@ -71,12 +71,7 @@ var FoxtrickTeamPopupLinks = {
                 if (bLastLineup)
                         top = top - 20;
 
-                var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover'
-						+ ' div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top 
-						+ ' px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}' 
-						+ ' div.playerInfo {overflow: visible !important;} '//div.cfHeader {overflow: visible !important;}'
-						+ ' span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';  
-				style.appendChild(doc.createTextNode(zaw));
+				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
                 var aLinks = doc.getElementsByTagName('a'); //doc.links;
                 for (var i=0; i<aLinks.length; i++) {
