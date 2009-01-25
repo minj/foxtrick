@@ -42,7 +42,7 @@ FoxtrickTransferListSearchFilters = {
         "_29" : "ctl00$CPMain$txtBidMax",
         "_30" : "ctl00_CPMain_txtBidMax_ClientState",
         "_31" : "ctl00$CPMain$ddlGlobalSkillMax",
-        "_32" : "ctl00$CPMain$butSearch"
+        "_32" : "ctl00$CPMain$chkUseGlobalMax"
     },
 
     init : function() {
@@ -154,12 +154,19 @@ FoxtrickTransferListSearchFilters = {
                         el = FoxtrickTransferListSearchFilters.findFormElement(subst, doc);
                     }
                 }
-                if (el != null && el.type != "radio") {
+                if (el != null && el.type != "radio" && el.type != "checkbox" ) {
                     formString = formString + "<elem>";
                     formString = formString + "<name>" + i + "</name>";
                     formString = formString + "<value>" + el.value + "</value>";
                     formString = formString + "</elem>";           
                 }
+                
+                if (el != null && el.type != "radio" && el.type == "checkbox" ) {
+                    formString = formString + "<elem>";
+                    formString = formString + "<name>" + i + "</name>";
+                    formString = formString + "<value>" + el.checked + "</value>";
+                    formString = formString + "</elem>";           
+                }                
             }
             formString = formString + "</root>";
             

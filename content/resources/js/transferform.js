@@ -32,7 +32,7 @@ FoxtrickTransferListSearchFormFiller = {
         "_29" : "ctl00$CPMain$txtBidMax",
         "_30" : "ctl00_CPMain_txtBidMax_ClientState",
         "_31" : "ctl00$CPMain$ddlGlobalSkillMax",
-        "_32" : "ctl00$CPMain$butSearch"
+        "_32" : "ctl00$CPMain$chkUseGlobalMax"
     },
     
     fillForm : function(filter, doc) {
@@ -46,7 +46,8 @@ FoxtrickTransferListSearchFormFiller = {
             var root = obj.firstChild;
             
             for (var i=0; i<root.childNodes.length; i++) {
-            		var name = root.childNodes[i].childNodes[0].textContent;
+            	var name = root.childNodes[i].childNodes[0].textContent;
+                dump(name + ' ');
                 
                 var value;
                 if (root.childNodes[i].childNodes[1].childNodes.length >0) {
@@ -54,7 +55,7 @@ FoxtrickTransferListSearchFormFiller = {
                 } else {
                     value="";
                 }
-                
+                dump(value + ' ');
                 // set the value in form
                 var el = this.findFormElement(name, doc);
                 if (el == null) {
@@ -66,6 +67,10 @@ FoxtrickTransferListSearchFormFiller = {
                 if (el != null && el.type != "radio") {
                     el.value=value;
                 }
+                dump(el.type + ' ');
+                dump(el.value + '\n');
+                if (el.type == 'checkbox' && value == 'true' ) {el.checked = true;} else {el.checked = false;}
+                el.disabled = false;
             }
         } catch (e) {
             dump(e);
