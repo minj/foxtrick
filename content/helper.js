@@ -47,6 +47,11 @@ var FoxtrickHelper = {
 	},
 
 	//---------------------------------------------------------------------------    
+	getUserIdFromUrl : function(url) {
+		return url.replace(/.+UserID=/i, "").match(/^\d+/);
+	},
+
+	//---------------------------------------------------------------------------    
 	getTeamIdFromUrl : function(url) {
 		return url.replace(/.+TeamID=/i, "").match(/^\d+/);
 	},

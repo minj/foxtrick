@@ -20,8 +20,10 @@ var FoxtrickTeamPopupLinks = {
                 if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
                         return;
                 var sUrl = Foxtrick.getHref( doc );
+				
                 //do not display pop-up on Forum pages
-                if (sUrl.search(/Forum/i) != -1) return;
+                var redir_from_forum=false;
+				if (sUrl.search(/Forum/i) != -1) return;// redir_from_forum=true;   ***remove return to get popups on forum akctivated***
                 if (sUrl.search(/ShowOldConnections=true/i) > -1){
                         var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
                         if (a){
@@ -37,7 +39,7 @@ var FoxtrickTeamPopupLinks = {
 				var ownteamid=0;
 				if (ownleagueid!=null) {
 					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-				}		
+				}
 				var head = doc.getElementsByTagName("head")[0];
                 var style = doc.createElement("style");
                 style.setAttribute("type", "text/css");
@@ -69,19 +71,26 @@ var FoxtrickTeamPopupLinks = {
                 if (bLastLineup)
                         top = top - 20;
 
-                var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';
+                var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover'
+						+ ' div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top 
+						+ ' px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999}' 
+						+ ' div.playerInfo {overflow: visible !important;} '//div.cfHeader {overflow: visible !important;}'
+						+ ' span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';  
 				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
                 var aLinks = doc.getElementsByTagName('a'); //doc.links;
                 for (var i=0; i<aLinks.length; i++) {
-                        if (aLinks[i].href.search(/Club\/\?TeamID=/i) > -1) {
-                                var sLink = aLinks[i];
-                                var pocz = sLink.href.search(/teamID=/i);
-                                var value = sLink.href.substr(pocz+7,7);
-                                if (value.match(/&/)) {
-                                        value = value.substr(0,value.search(/&/));
-                                }
-                                var par = aLinks[i].parentNode;
+						
+						if (aLinks[i].href.search(/ft_popuplink=true/i)!=-1) continue;  // don't add to own popup links
+
+						var forumuserlink = redir_from_forum && aLinks[i].href.search(/Club\/Manager\/\?UserID=/i)!=-1 
+															&& aLinks[i].parentNode.id.search(/foxtrick_alltidspan/i)==-1;
+                        if ( (aLinks[i].href.search(/Club\/\?TeamID=/i) > -1  && !redir_from_forum) || forumuserlink) {
+                                var sLink = aLinks[i]; 
+                                var value = FoxtrickHelper.getTeamIdFromUrl(sLink.href);
+								if (forumuserlink) value = FoxtrickHelper.getUserIdFromUrl(sLink.href);
+                                
+								var par = aLinks[i].parentNode;
                                 
                                 if (par.parentNode.parentNode.parentNode.tagName == "DIV" && par.parentNode.parentNode.parentNode.className == "subMenuBox"){
                                         continue;
@@ -105,7 +114,8 @@ var FoxtrickTeamPopupLinks = {
                                         tr1.setAttribute("height", "20");
                                         var td1 = doc.createElement("td");
                                         var a1 = doc.createElement("a");
-                                        a1.setAttribute('href', '/Club/Matches/?TeamID=' + value);
+                                        if (forumuserlink) a1.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_matches=true'+'&ft_popuplink=true');
+		                                else a1.setAttribute('href', '/Club/Matches/?TeamID=' + value+'&ft_popuplink=true');
                                         a1.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Matches' )));
                                         td1.appendChild(a1);
                                         tr1.appendChild(td1);
@@ -117,7 +127,8 @@ var FoxtrickTeamPopupLinks = {
                                         tr2.setAttribute("height", "20");
                                         var td2 = doc.createElement("td");
                                         var a2 = doc.createElement("a");
-                                        a2.setAttribute('href', '/Club/Players/?TeamID=' + value);
+                                        if (forumuserlink) a2.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_players=true'+'&ft_popuplink=true');
+		                                else a2.setAttribute('href', '/Club/Players/?TeamID=' + value+'&ft_popuplink=true');
                                         a2.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Players' )));
                                         td2.appendChild(a2);
                                         tr2.appendChild(td2);
@@ -130,7 +141,8 @@ var FoxtrickTeamPopupLinks = {
                                         var td3 = doc.createElement("td");
                                         td3.setAttribute("nowrap", "nowrap");
                                         var a3 = doc.createElement("a");
-                                        a3.setAttribute('href', '/Club/Manager/?teamId=' + value+'&ShowOldConnections=true');
+                                        if (forumuserlink) a3.setAttribute('href', '/Club/Manager/?userId=' + value+'&ShowOldConnections=true'+'&ft_popuplink=true');
+                                        else a3.setAttribute('href', '/Club/Manager/?teamId=' + value+'&ShowOldConnections=true'+'&ft_popuplink=true');
                                         a3.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'last_5_ips' )));
                                         td3.appendChild(a3);
                                         tr3.appendChild(td3);
@@ -143,22 +155,27 @@ var FoxtrickTeamPopupLinks = {
                                         var td4 = doc.createElement("td");
                                         td4.setAttribute("nowrap", "nowrap");
                                         var a4 = doc.createElement("a");
-                                        a4.setAttribute('href', '/Club/Manager/Guestbook.aspx?teamid=' + value);
+                                        if (forumuserlink) a4.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_guestbook=true'+'&ft_popuplink=true');
+		                                else a4.setAttribute('href', '/Club/Manager/Guestbook.aspx?teamid=' + value+'&ft_popuplink=true');
                                         a4.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Guestbook' )));
                                         td4.appendChild(a4);
                                         tr4.appendChild(td4);
                                         tbl.appendChild(tr4);
                                 }       
+								
                                 if (bCoach){
                                         var tr5 = doc.createElement("tr");
                                         tr5.setAttribute("height", "20");
                                         var td5 = doc.createElement("td");
                                         td5.setAttribute("nowrap", "nowrap");
                                         var a5 = doc.createElement("a");
-										if (value!=ownteamid) {
-											a5.setAttribute('href', '/Club/Players/?TeamID='+value+'&redir_to_coach=true');}
-                                        else {a5.setAttribute('href', '/Club/Training/?redir_to_coach=true');}
-                                        a5.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));
+										if (forumuserlink) a5.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_coach=true'+'&ft_popuplink=true');
+		                                else {
+											if (value!=ownteamid) {
+												a5.setAttribute('href', '/Club/Players/?TeamID='+value+'&redir_to_coach=true'+'&ft_popuplink=true');}
+											else {a5.setAttribute('href', '/Club/Training/?redir_to_coach=true'+'&ft_popuplink=true');}
+											}
+										a5.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Coach' )));										
                                         td5.appendChild(a5);
                                         tr5.appendChild(td5);
                                         tbl.appendChild(tr5);
@@ -169,8 +186,9 @@ var FoxtrickTeamPopupLinks = {
                                         var td7 = doc.createElement("td");
                                         td7.setAttribute("nowrap", "nowrap");
                                         var a7 = doc.createElement("a");
-                                        a7.setAttribute('href', '/Club/Transfers/transfersTeam.aspx?teamId=' + value);
-                                        a7.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'TransferHistory' )));
+                                        if (forumuserlink) a7.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_transferhistory=true'+'&ft_popuplink=true');
+		                                else a7.setAttribute('href', '/Club/Transfers/transfersTeam.aspx?teamId=' + value+'&ft_popuplink=true');
+        								a7.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'TransferHistory' )));
                                         td7.appendChild(a7);
                                         tr7.appendChild(td7);
                                         tbl.appendChild(tr7);
@@ -181,31 +199,43 @@ var FoxtrickTeamPopupLinks = {
                                         var td6 = doc.createElement("td");
                                         td6.setAttribute("nowrap", "nowrap");
                                         var a6 = doc.createElement("a");
-                                        a6.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+value+'&useArchive=True');
+                                        if (forumuserlink) a6.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_lastlineup=true'+'&ft_popuplink=true');
+										else a6.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+value+'&useArchive=True'+'&ft_popuplink=true');										
                                         a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
                                         td6.appendChild(a6);
                                         tr6.appendChild(td6);
                                         tbl.appendChild(tr6);
                                 }
                                 
-                                var span = doc.createElement("span");
-                                span.setAttribute('class', 'myht1');
-                                var div = doc.createElement("div");
-                                div.setAttribute('class', 'mainBox myht2');
-                                div.appendChild(tbl);
-                                par.insertBefore(span, aLinks[i]);
-                                span.appendChild(sLink);
-                                span.appendChild(div);
-                                
-                                i=i+2;
+								if (forumuserlink) {
+									var span = doc.createElement("span");
+									span.setAttribute('class', 'myht1');
+									var div = doc.createElement("div");
+									div.setAttribute('class', 'mainBox myht2');
+									div.appendChild(tbl);
+									par.insertBefore(span, aLinks[i]);
+									span.appendChild(sLink);
+									span.appendChild(div);
+								
+								}
+                                else {
+									var span = doc.createElement("span");
+									span.setAttribute('class', 'myht1');
+									var div = doc.createElement("div");
+									div.setAttribute('class', 'mainBox myht2');
+									div.appendChild(tbl);
+									par.insertBefore(span, aLinks[i]);
+									span.appendChild(sLink);
+									span.appendChild(div);
+								}
                         }
                 }
         },
         
-        change : function( page, doc ) {
+        change : function( page, doc ) {        
+		},
         
-        },
-        
+
         initOptions : function() {
                 this.OPTIONS = new Array( "Matches" ,
                                           "Players" ,

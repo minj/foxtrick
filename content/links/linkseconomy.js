@@ -5,30 +5,6 @@
  */
 
 ////////////////////////////////////////////////////////////////////////////////
-
-function GetCurrency()
-{
-  var currency = "";
-  var rate = 1.0;
-  try {
-    var currencyCode = PrefsBranch.getCharPref("htCurrency");
-  } catch (e) {
-    currencyCode = "EUR";
-  }
-
-  try {
-    var path = "hattrickcurrencies/currency[@code='" + currencyCode + "']";
-    var obj = htCurrenciesXml.evaluate(path,htCurrenciesXml,null,htCurrenciesXml.DOCUMENT_NODE,null).singleNodeValue;
-    currency = obj.attributes.getNamedItem("shortname").textContent;
-    rate = 1.0/parseFloat(obj.attributes.getNamedItem("eurorate").textContent);
-  } catch (e) {
-    currency = "&euro;";
-    rate = 1.0;
-  } 
- return {"currencyCode":currencyCode,"Currency":currency,"eurorate":rate};
- }
-
-
 var FoxtrickLinksEconomy = {
 	
     MODULE_NAME : "LinksEconomy",
@@ -47,7 +23,6 @@ var FoxtrickLinksEconomy = {
 		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
 		
 		//addExternalLinksToEconomyDetail
-		var Curr=GetCurrency();
 		var Cash=0;
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
@@ -55,17 +30,18 @@ var FoxtrickLinksEconomy = {
 	          var CashTable = alldivs[j].getElementsByTagName("table")[0];
 				var content=CashTable.rows[0].cells[1].innerHTML;
 				var tmp = doc.createElement("span");
-				tmp.innerHTML=Curr["Currency"];
+				tmp.innerHTML=FoxtrickPrefs.getString("oldCurrencySymbol");
         		var last1=content.indexOf(tmp.innerHTML);
 				Cash=Foxtrick.trimnum(content.substring(0,last1));
         		break;
 			}
 		}
-		if (Curr["currencyCode"]!="EUR" && Curr["currencyCode"]!="CHF"){
-			Cash*=Curr["eurorate"];
-			Curr["currencyCode"]="EUR";
+		var CurrCode=FoxtrickPrefs.getString("currencyCode")
+		if (CurrCode!="EUR" && CurrCode!="CHF"){
+			Cash*=FoxtrickPrefs.getString("currencyRate");
+			CurrCode="EUR";
 		}
-		var links = getLinks("economylink", { "Cash":Cash,"Currency":Curr["currencyCode"],"owncountryid":owncountryid}, doc, this);  
+		var links = getLinks("economylink", { "Cash":Cash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);  
 		var ownBoxBody=null
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
@@ -83,7 +59,7 @@ var FoxtrickLinksEconomy = {
 						
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":Curr["currencyCode"]} );					
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":CurrCode} );					
     },
 	
 	change : function( page, doc ) {

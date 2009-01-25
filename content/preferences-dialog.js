@@ -404,9 +404,10 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setString("currencySymbol", this.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"new",htCurrencyXml_c));
         FoxtrickPrefs.setString("currencyRateTo", this.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"rate",htCurrencyXml_c));
     
-        FoxtrickPrefs.setString("oldCurrencySymbol", this.getConverterCurrValue(FoxtrickPrefs.getString("htCurrency"),"old",htCurrencyXml_c));
+        FoxtrickPrefs.setString("oldCurrencySymbol", this.getConverterCurrValue(document.getElementById("htCurrency").value,"old",htCurrencyXml_c));
         FoxtrickPrefs.setString("currencyRate", this.getConverterCurrValue(document.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
-
+		FoxtrickPrefs.setString("currencyCode", this.getConverterCurrValue(document.getElementById("htCurrency").value,"code",htCurrencyXml_c));
+        
 		//Dateformat
         FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
 
@@ -490,6 +491,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
             if (options == "old" && itemToSearch==code){returnedItemToSearch = sname;}
             if (options == "new" && itemToSearch==code){returnedItemToSearch = sname;}
             if (options == "rate" && itemToSearch==code){returnedItemToSearch = eurorate;}
+            if (options == "code" && itemToSearch==code){returnedItemToSearch = code;}
         }
 
       return returnedItemToSearch;

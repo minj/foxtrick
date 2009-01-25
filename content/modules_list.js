@@ -70,7 +70,7 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
                      FoxtrickPersonalityImages,
                      FoxtrickSkillColoring,
                      FoxtrickSkinPlugin,
-                     
+                     FoxtrickMatchIncome,                   
 					 FoxtrickHelper,
 					 FTTeamStats,
 					 FoxtrickLargeFlags,
@@ -80,6 +80,6 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
 					 FoxtrickForumRedirManagerToTeam,
 					 FoxtrickRedirections,
                      FoxtrickGuestbookAlltidFlags,
-                     FoxtrickCurrencyConverter,
-                     FoxtrickTickerColoring
-                   ];
+                     FoxtrickCurrencyConverter,  
+                     FoxtrickTickerColoring,
+					];
