@@ -42,7 +42,7 @@ var FoxtrickMatchIncome = {
 				tr2.appendChild(td2b);
 				td2a.innerHTML=Foxtrickl10n.getString('foxtrick.matches.income');
 				td2a.setAttribute('class','ch');
-				td2b.innerHTML=Math.floor(sum)+' '+FoxtrickPrefs.getString("oldCurrencySymbol");
+				td2b.innerHTML=ReturnFormatedValue (Math.floor(sum), '&nbsp;')+'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol");
 			}
         }    
     },
