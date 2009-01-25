@@ -1,6 +1,11 @@
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
 pref( "extensions.foxtrick.prefs.htLanguage", "en");
 pref( "extensions.foxtrick.prefs.htCurrency", "EUR");
+pref( "extensions.foxtrick.prefs.currencyRateTo","1.0");
+pref( "extensions.foxtrick.prefs.currencySymbol","€");
+pref( "extensions.foxtrick.prefs.oldCurrencySymbol","€");
+pref( "extensions.foxtrick.prefs.htCurrencyTo","EUR");
+pref( "extensions.foxtrick.prefs.module.CurrencyConverter.enabled",false);
 pref( "extensions.foxtrick.prefs.htDateformat", "ddmmyyyy");
 pref( "extensions.foxtrick.prefs.htCountry", "Sweden");
 pref( "extensions.foxtrick.prefs.htSeasonOffset", 0);
