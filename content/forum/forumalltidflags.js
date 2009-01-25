@@ -65,7 +65,7 @@ var FoxtrickAlltidFlags = {
 				
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1) { 
+					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1) { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+flagsCounter;

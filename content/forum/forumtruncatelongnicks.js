@@ -23,7 +23,7 @@ var FoxtrickTruncateLongNicks = {
 				var linksArray = alldivs[i].getElementsByTagName('a');
 				for (var j=0; j<linksArray.length; j++) {
 					var link = linksArray[j];
-					if (link.href.search(/userId=/i) > -1) {
+					if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1) {
 						var userName = link.innerHTML;
 						if(userName.length > 12) {
 							link.innerHTML = userName.substr(0,9) +

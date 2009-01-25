@@ -23,7 +23,8 @@ var FoxtrickTeamPopupLinks = {
 				
                 //do not display pop-up on Forum pages
                 var redir_from_forum=false;
-				if (sUrl.search(/Forum/i) != -1) return;// redir_from_forum=true;   ***remove return to get popups on forum akctivated***
+				if (sUrl.search(/Forum\/Default/i) != -1) return;
+                if (sUrl.search(/Forum/i) != -1) return true;//redir_from_forum=true; //  ***remove return to get popups on forum activated***  also use new 'zaw' bellow
                 if (sUrl.search(/ShowOldConnections=true/i) > -1){
                         var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
                         if (a){
@@ -55,6 +56,8 @@ var FoxtrickTeamPopupLinks = {
                 var bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 var bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
                 var top = 0;
+				if (redir_from_forum )  { if (Foxtrick.isStandardLayout(doc)) top -= 15; else top -= 20;}
+				else if (!Foxtrick.isStandardLayout(doc)) top-=20;
 				
                 if (bMatches)
                         top = top - 20;
@@ -70,8 +73,11 @@ var FoxtrickTeamPopupLinks = {
                         top = top - 20;
                 if (bLastLineup)
                         top = top - 20;
-
-				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';				style.appendChild(doc.createTextNode(zaw));
+				// old
+				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';
+				// new
+				//var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;}';
+                style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
                 var aLinks = doc.getElementsByTagName('a'); //doc.links;
                 for (var i=0; i<aLinks.length; i++) {
@@ -79,7 +85,8 @@ var FoxtrickTeamPopupLinks = {
 						if (aLinks[i].href.search(/ft_popuplink=true/i)!=-1) continue;  // don't add to own popup links
 
 						var forumuserlink = redir_from_forum && aLinks[i].href.search(/Club\/Manager\/\?UserID=/i)!=-1 
-															&& aLinks[i].parentNode.id.search(/foxtrick_alltidspan/i)==-1;
+															&& aLinks[i].parentNode.id.search(/foxtrick_alltidspan/i)==-1
+															&& aLinks[i].parentNode.className!="cfUserInfo";
                         if ( (aLinks[i].href.search(/Club\/\?TeamID=/i) > -1  && !redir_from_forum) || forumuserlink) {
                                 var sLink = aLinks[i]; 
                                 var value = FoxtrickHelper.getTeamIdFromUrl(sLink.href);
