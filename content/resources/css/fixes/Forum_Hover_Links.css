@@ -1,4 +1,4 @@
-div.message a:hover, div.cfFooter > div a:hover
+div.message a:hover, div.cfUserInfo a:hover, div.cfFooter > div a:hover
 {
     color: #3f7137;
 }
