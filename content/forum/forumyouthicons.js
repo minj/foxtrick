@@ -21,6 +21,9 @@ var FoxtrickForumYouthIcons = {
 
     run : function( page, doc ) {
         
+        var div = doc.getElementById( "ft_youth_icons");
+        if (div != null) return;
+        
         var toolbar = getElementsByClass( "HTMLToolbar", doc );
         toolbar = toolbar[0];
         if ( toolbar == null ) return;
@@ -118,6 +121,7 @@ var FoxtrickForumYouthIcons = {
         youthbar.setAttribute( "style" , "float:left;");
 
         var youthbar_label = doc.createElement( "div" );
+        youthbar_label.id = "ft_youth_icons";
         youthbar_label.innerHTML = Foxtrickl10n.getString("ForumYouthIcons.label");
         youthbar_label.setAttribute( "style" , "background-color:#D0D0D0;;margin-bottom:3px;text-align:center;");
         youthbar.appendChild( youthbar_label);                
@@ -159,7 +163,8 @@ var FoxtrickForumYouthIcons = {
     },
 	
 	change : function( page, doc ) {
-	
+        var div = doc.getElementById( "ft_youth_icons");
+        if (div != null) return;
 	},
         
 
