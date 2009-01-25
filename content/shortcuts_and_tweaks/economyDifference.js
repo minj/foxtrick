@@ -19,7 +19,8 @@ var FoxtrickEconomyDifference = {
 		// localize this
 		const STR_S_TABLE_NAME = Foxtrickl10n.getString(
 			"foxtrick.tweaks.twoweekbalance");
-		
+		var cs= FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
+            
 		/*var tableLast = doc.getElementsByTagName("table")[2];
 		var tableCurr = doc.getElementsByTagName("table")[1];
                 var path = "body/table[0]/tbody/tr[1]/td[2]";*/
@@ -68,19 +69,19 @@ var FoxtrickEconomyDifference = {
 		
 		newTabDiff.rows[1].cells[1].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(prijmy_ted_vstupne) + '>'
-			+ String(prijmy_ted_vstupne).group(' ', 3) + '</span>';
+			+ String(prijmy_ted_vstupne).group(' ', 3) + cs+'</span>';
 		newTabDiff.rows[2].cells[1].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(prijmy_ted_sponzori) + '>'
-			+ String(prijmy_ted_sponzori).group(' ', 3) + '</span>';
+			+ String(prijmy_ted_sponzori).group(' ', 3) + cs+'</span>';
 		newTabDiff.rows[3].cells[1].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(prijmy_ted_investice) + '>'
-			+ String(prijmy_ted_investice).group(' ', 3) + '</span>';
+			+ String(prijmy_ted_investice).group(' ', 3) + cs+'</span>';
 		newTabDiff.rows[4].cells[1].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(prijmy_ted_m) + '>' + 
-			String(prijmy_ted_m).group(' ', 3) + '</span>';
+			String(prijmy_ted_m).group(' ', 3) + cs+'</span>';
         newTabDiff.rows[8].cells[1].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(prijmy_all) + '>' + 
-			String(prijmy_all).group(' ', 3) + '</span>'; 
+			String(prijmy_all).group(' ', 3) + cs+'</span>'; 
 
 		var vydaje_arena = FoxtrickEconomyDifference.extractAmount(tableCurr.
 			rows[1].cells[3])+FoxtrickEconomyDifference.extractAmount(
@@ -104,30 +105,30 @@ var FoxtrickEconomyDifference = {
 
 		newTabDiff.rows[1].cells[3].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(-vydaje_arena) + '>' + 
-			String(vydaje_arena).group(' ', 3) + '</span>';
+			String(vydaje_arena).group(' ', 3) + cs+'</span>';
 		newTabDiff.rows[2].cells[3].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(-vydaje_wages) + '>' + 
-			String(vydaje_wages).group(' ', 3) + '</span>';
+			String(vydaje_wages).group(' ', 3) + cs+'</span>';
 		newTabDiff.rows[3].cells[3].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(-vydaje_u) + '>' + 
-			String(vydaje_u).group(' ', 3) + '</span>';
+			String(vydaje_u).group(' ', 3) + cs+'</span>';
 		newTabDiff.rows[4].cells[3].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(-vydaje_m) + '>' + 
-			String(vydaje_m).group(' ', 3) + '</span>';
+			String(vydaje_m).group(' ', 3) + cs+'</span>';
 		newTabDiff.rows[5].cells[3].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(-vydaje_z) + '>' + 
-			String(vydaje_z).group(' ', 3) + '</span>';            
+			String(vydaje_z).group(' ', 3) + cs+'</span>';            
 		newTabDiff.rows[6].cells[3].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(-vydaje_j) + '>' + 
-			String(vydaje_j).group(' ', 3) + '</span>';            
+			String(vydaje_j).group(' ', 3) + cs+'</span>';            
 		newTabDiff.rows[8].cells[3].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(-vydaje_all) + '>' + 
-			String(vydaje_all).group(' ', 3) + '</span>';            
+			String(vydaje_all).group(' ', 3) + cs+'</span>';            
 
 		var twoWeekBalance = prijmy_all - vydaje_all;
 		newTabDiff.rows[10].cells[1].innerHTML = '<span ' + 
 			FoxtrickEconomyDifference.getColorStyle(twoWeekBalance) + '>' + 
-			String(twoWeekBalance).group(' ', 3) + '</span>';            
+			String(twoWeekBalance).group(' ', 3) + cs+'</span>';            
 		
 	},
 	
