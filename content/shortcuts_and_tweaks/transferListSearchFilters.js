@@ -59,9 +59,8 @@ FoxtrickTransferListSearchFilters = {
         var style = doc.createElement("style");
         style.setAttribute("type", "text/css");
         
-
         var newStyle = 'div.ignore{cursor: pointer;width: 10px;height: 18px;background: url("../../Img/Icons/cross_small.png") no-repeat center center;} div.ignore:hover { background: url("../../Img/Icons/crossRed_small.png") no-repeat center center; }';
-				style.appendChild(doc.createTextNode(newStyle));
+        style.appendChild(doc.createTextNode(newStyle));
         head.appendChild(style);
         
         var ownBoxBody = doc.createElement("div");

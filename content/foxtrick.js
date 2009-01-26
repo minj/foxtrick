@@ -1033,22 +1033,20 @@ modifyDates = function ( doc, short, elm, before, after ) {
         dump ('DATEFORMAT ' + e + '\n');
         DATEFORMAT = 'ddmmyyyy';
     }
-    // dump('DATEFORMAT: ' + DATEFORMAT + '\n');
 
     var tds = doc.getElementsByTagName( elm );
     for (var i = 0; tds[i] != null; ++i) {
-        
-        if (tds[i].id == 'ft_HTDateFormat') return;
+        // if (tds[i].id == 'ft_HTDateFormat') return;
         dt_inner = Foxtrick.trim(tds[i].innerHTML);
-        //dump (dt_inner + '\n');
+        
         
         if ( !strrpos( dt_inner, "ft_HTDateFormat") ) { 
-        //dump (dt_inner + '\n');
             if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
                 var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
                 var ar = reg.exec(dt_inner);
 
                 if (ar != null) {
+                    dump (' == > HTDATEFORMAT CHECK: ' + dt_inner + '\n');
                     var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
 
                     switch ( DATEFORMAT ) {
@@ -1065,7 +1063,7 @@ modifyDates = function ( doc, short, elm, before, after ) {
 
                     if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
                         tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
-                        dump ('>> HTDF ['+ DATEFORMAT+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+                        dump (' == > HTDF ['+ DATEFORMAT+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
                     }
                 }
             }
