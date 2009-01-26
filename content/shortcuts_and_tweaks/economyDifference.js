@@ -143,9 +143,9 @@ FoxtrickEconomyDifference.extractAmount = function( cell ) {
 
 FoxtrickEconomyDifference.getColorStyle = function( val ) {
     if (val < 0) {
-		return 'style="color: #ff0000;font-weight: bold;"';
+		return 'style="color: #aa0000;font-weight: bold;"';
     } else if (val > 0) {
-        return 'style="color: #339900;font-weight: bold;"';
+        return 'style="color: #377f31;font-weight: bold;"';
     }
     return '';
 }

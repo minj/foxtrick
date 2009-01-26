@@ -46,7 +46,8 @@ FoxtrickCurrencyConverter = {
 
 drawNewCurrency : function (doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr) {
 
-try {
+try {	
+
 			var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
             var table_inner_stripped="";
 			var newtext="";
@@ -68,9 +69,14 @@ try {
 							var conv=ReturnFormatedValue(Math.floor(newnum * currencyRate / currencyRateNewCurr),'&nbsp;');
 							conv=conv.replace(/\-\&nbsp\;/,'-'); 
 							br='<mybr>';
-							var color="green";
-							if (conv.charAt(0)=='-') color="maroon";
-							table_inner_stripped+=' '+br+'<span class="smallText" style="color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span> '; 
+							var color='#377f31';
+							if (table_elm_bonus.firstChild && table_elm_bonus.firstChild.style) {
+									color = table_elm_bonus.firstChild.style.color;	
+							}
+							if (conv.charAt(0)=='-') color='#aa0000';
+							if (newnum==0)  color="black";
+							
+							table_inner_stripped+=' '+br+'<span class="smallText" style="font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span> '; 
 							newnum=""; 
 							symbol=""; 
 						}
