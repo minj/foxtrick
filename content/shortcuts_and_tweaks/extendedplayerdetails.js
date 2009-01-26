@@ -32,6 +32,9 @@ FoxtrickExtendedPlayerDetails = {
 
     _Player_Joined  : function ( doc ) {
         // Player in team since...
+        var div = doc.getElementById( "ft_since" );
+        if (div != null) return;
+        
         try {
             var div = doc.getElementById( "ctl00_CPMain_pnlplayerInfo" );
             if (div == null) return;
@@ -80,6 +83,8 @@ FoxtrickExtendedPlayerDetails = {
 
     _Player_Bonus  : function ( doc ) {
         // Player in team since...
+        var div = doc.getElementById( "ft_bonuswage" );
+        if (div != null) return;
         
         try {
             var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
