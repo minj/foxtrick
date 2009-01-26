@@ -60,6 +60,7 @@ FoxtrickHTDateFormat = {
                 break;
                 
             case 'teamPageGeneral' :
+                if (doc.location.href.search(/Club\/Players\/Player\.aspx\?PlayerID/i) != -1) return;
                 modifyDates ( mainBody, false, 'span', '&nbsp;', '' );
                 modifyDates ( mainBody, false, 'td', '&nbsp;', '' );
                 break;

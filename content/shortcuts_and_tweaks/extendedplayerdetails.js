@@ -73,7 +73,7 @@ FoxtrickExtendedPlayerDetails = {
             if (JoinedText.search("NaN") == -1) {
                 part1 = substr(joined_elm.innerHTML, 0, strrpos( joined_elm.innerHTML, ")"));
                 part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
-                joined_elm.innerHTML = part1 + ' '+ ht_week + ', ' + JoinedText + ')</span>';
+                joined_elm.innerHTML = part1 + ' <span id="ft_HTDateFormat">'+ ht_week + '</span>, ' + JoinedText + ')</span>';
             }
             else dump('  Could not create jointime (NaN)\n');
         } catch (e) {

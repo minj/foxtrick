@@ -861,7 +861,7 @@ function htDatePrintFormat(year, season, week, day, date) {
         // return "<font color='#808080'>(old)</font>"; 
         return '';
     else {
-        return "(" + week + "/" + (Math.floor(season) - offset) + ")";
+        return "<span id='ft_HTDateFormat'>(" + week + "/" + (Math.floor(season) - offset) + ")</span>";
     }
 }
 
@@ -1037,28 +1037,36 @@ modifyDates = function ( doc, short, elm, before, after ) {
 
     var tds = doc.getElementsByTagName( elm );
     for (var i = 0; tds[i] != null; ++i) {
+        
+        if (tds[i].id == 'ft_HTDateFormat') return;
         dt_inner = Foxtrick.trim(tds[i].innerHTML);
-        if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
-            var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
-            var ar = reg.exec(dt_inner);
+        //dump (dt_inner + '\n');
+        
+        if ( !strrpos( dt_inner, "ft_HTDateFormat") ) { 
+        //dump (dt_inner + '\n');
+            if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
+                var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
+                var ar = reg.exec(dt_inner);
 
-            if (ar != null) {
-                var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
+                if (ar != null) {
+                    var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
 
-                switch ( DATEFORMAT ) {
-                    case 'ddmmyyyy':
-                        td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
-                        break;
-                    case 'mmddyyyy':
-                        td_date = ar[3] + '.' + ar[1] + '.' + ar[5] + ' 00.00.01';                        
-                        break;
-                    case 'yyyymmdd':
-                        td_date = ar[5] + '.' + ar[3] + '.' + ar[1] + ' 00.00.01';                                                
-                        break;
-                }
+                    switch ( DATEFORMAT ) {
+                        case 'ddmmyyyy':
+                            td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
+                            break;
+                        case 'mmddyyyy':
+                            td_date = ar[3] + '.' + ar[1] + '.' + ar[5] + ' 00.00.01';                        
+                            break;
+                        case 'yyyymmdd':
+                            td_date = ar[5] + '.' + ar[3] + '.' + ar[1] + ' 00.00.01';                                                
+                            break;
+                    }
 
-                if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
-                    tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
+                    if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
+                        tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
+                        dump ('>> HTDF ['+ DATEFORMAT+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+                    }
                 }
             }
         }

@@ -34,8 +34,8 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
                      FoxtrickFlagCollectionToMap,
                      FoxtrickTransferListSearchFilters,
                      FoxtrickTransferListDeadline,
-                     FoxtrickHTDateFormat,
                      FoxtrickExtendedPlayerDetails,
+                     FoxtrickHTDateFormat,
                      FoxtrickTeamPopupLinks,
 					 FoxtrickMatchPlayerColouring,
                      AttVsDef, // AttVsDef should be placed before Ratings
