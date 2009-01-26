@@ -116,7 +116,7 @@ FoxtrickExtendedPlayerDetails = {
             if (part != 'NaN') 
                 table_elm_bonus.innerHTML = 
                     part_1_save +'&nbsp;'+ FoxtrickPrefs.getString("oldCurrencySymbol")+
-                    '&nbsp;<span class="smallText" style="color:#666666;>(' + 
+                    '&nbsp;<span id="ft_bonuswage" style="color:#666666;>(' + 
                     part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
                     ')</span>&nbsp;' + 
                     part_2_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
