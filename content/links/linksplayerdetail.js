@@ -31,7 +31,7 @@ var FoxtrickLinksPlayerDetail = {
 				var teamid = FoxtrickHelper.findTeamId(thisdiv);
 				var nationality = FoxtrickHelper.findCountryId(thisdiv);
 				var playerid = FoxtrickHelper.findPlayerId(thisdiv);
-				var form = null, age = null, tsi = null, exp = null, wage= null;
+				var form = null, age = null, tsi = null, exp = null, wage= null, ls=null;
 				var stamina = 0, goalkeeping = 0, playmaking = 0, passing = 0, winger = 0, defending = 0, scoring = 0, setpieces = 0;
 				
 				//tsi
@@ -54,10 +54,11 @@ var FoxtrickLinksPlayerDetail = {
 				var links= thisdiv.getElementsByTagName('a');
 				if (links!=null) { 
 					for (var i=0; i < links.length; i++) {
-						if ( links[i].href.match(/skillshort/i) ) {
+						if ( links[i].href.match(/skill/i) ) {
 							if (count==0) {form = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
 							else if (count==1) {sta = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
-							else if (count==2) break;
+							else if (count==2) {exp = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
+							else if (count==3) {ls = FoxtrickHelper.getSkillLevelFromLink(links[i]);}
 							count++;
 						}
 					} 
@@ -114,7 +115,7 @@ var FoxtrickLinksPlayerDetail = {
 				if (PlayerDetailTable != null) {
 					params = {
 						"teamid": teamid, "playerid": playerid, "nationality": nationality,
-						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,
+						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces,"wage":wage
@@ -162,7 +163,7 @@ var FoxtrickLinksPlayerDetail = {
 
 				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
 						"teamid": teamid, "playerid": playerid, "nationality": nationality,
-						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,
+						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks,"wage":wage
