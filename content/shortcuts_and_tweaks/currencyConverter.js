@@ -60,7 +60,7 @@ try {
 				if (table_inner.charAt(i)=='<' || inside_span==true) {inside_span=true; continue;}
 				table_inner_stripped += table_inner.charAt(i);
 				if (table_inner.charAt(i).search(/\d|-/)!=-1) {
-					if (newnum=="" && symbol!="") {only_one_number=false; symbol="";dump('nf');} 
+					if (newnum=="" && symbol!="") {only_one_number=false; symbol="";} 
 					newnum+=table_inner.charAt(i); 
 				}
 				else if (newnum!="") {  
@@ -82,7 +82,7 @@ try {
 							newnum=""; 
 							symbol="";  
 						}
-						else {symbol="";newnum="";only_one_number=false;dump('of');}
+						else {symbol="";newnum="";only_one_number=false;}
 					}
 				
 				
