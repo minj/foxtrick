@@ -15,6 +15,7 @@
  */
 Foxtrick.ht_pages = { 
     'all'                       : '\/',
+    'playerdetail'              : '\/Club\/Players\/Player\.aspx',
     'myhattrick'                : '\/MyHattrick\/',                        
     'forum'                     : '\/Forum\/',
     'forumViewThread'           : '\/Forum\/Read',
@@ -47,7 +48,6 @@ Foxtrick.ht_pages = {
     'teamPage'                  : '\/Club\/\\?TeamID',
     'teamPageGeneral'           : '\/Club\/|\/World\/Series\/',
     'players'                   : '\/Club\/Players\/|\/Club\/NationalTeam\/NTPlayers\.aspx',
-    'playerdetail'              : '\/Club\/Players\/Player\.aspx',
     'YouthPlayers'              : 'YouthPlayers\.aspx',
     'YouthPlayer'               : 'YouthPlayer\.aspx',
     'training'                  : '\/Club\/Training\/',
