@@ -27,19 +27,29 @@ FoxtrickCurrencyConverter = {
    var table_elm = div.getElementsByTagName( 'td' );
            
             for ( var i = 0; i < table_elm.length; i++) {
-				if (table_elm[i].getElementsByTagName('td').length!=0) continue;
-                var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
-                try {  
-                    if (strrpos( table_inner, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter"){
+				try {  
+                if (table_elm[i].getElementsByTagName('td').length!=0) continue;
+                if (strrpos( table_elm[i].innerHTML, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter"){
+						var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
 						var table_elm_bonus = table_elm[i];  
-						dump(table_inner+'\n');
 						this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr); 
-						
-						//break;
                     }
                 }
                 catch(e) {dump('    >' + e + '\n');} 
-            }         
+            }  
+
+		table_elm = div.getElementsByTagName( 'p' );
+   		for ( var i = 0; i < table_elm.length; i++) {
+				try {  
+                if (table_elm[i].getElementsByTagName('p').length!=0) continue;
+                    if (strrpos( table_elm[i].innerHTML, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter"){
+						var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
+						var table_elm_bonus = table_elm[i];  
+						this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr); 
+                    }
+                }
+                catch(e) {dump('    >' + e + '\n');} 
+            } 	
     },
 
 	change : function( page, doc ) {
@@ -71,7 +81,7 @@ try {
 					symbol+=table_inner.charAt(i); 
 					if (symbol==" " || symbol=="&nbsp;") symbol="";
 					if (symbol.charAt(0)!='&' && symbol.length==oldCurrencySymbol.length) {
-						if (symbol==oldCurrencySymbol) { dump(' add ');
+						if (symbol==oldCurrencySymbol) { 
 							var conv=ReturnFormatedValue(Math.floor(newnum * currencyRate / currencyRateNewCurr),'&nbsp;');
 							conv=conv.replace(/\-\&nbsp\;/,'-'); 
 							br='<mybr>';
