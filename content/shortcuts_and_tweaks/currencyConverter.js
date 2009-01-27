@@ -56,9 +56,9 @@ try {
 			var only_one_number=true;
 			var inside_span=false;
 			for (var i=0;i<table_inner.length;i++){
+				table_inner_stripped += table_inner.charAt(i);
 				if (table_inner.charAt(i)=='>') { inside_span=false; continue;}
 				if (table_inner.charAt(i)=='<' || inside_span==true) {inside_span=true; continue;}
-				table_inner_stripped += table_inner.charAt(i);
 				if (table_inner.charAt(i).search(/\d|-/)!=-1) {
 					if (newnum=="" && symbol!="") {only_one_number=false; symbol="";} 
 					newnum+=table_inner.charAt(i); 
