@@ -31,14 +31,15 @@ var FoxtrickLinksPlayerDetail = {
 				var teamid = FoxtrickHelper.findTeamId(thisdiv);
 				var nationality = FoxtrickHelper.findCountryId(thisdiv);
 				var playerid = FoxtrickHelper.findPlayerId(thisdiv);
-				var form = null, age = null, tsi = null, exp = null, wage= null, ls=null;
+				var form = null, age = null, tsi = null, exp = null, wage= null, ls=null, wagebonus=null;
 				var stamina = 0, goalkeeping = 0, playmaking = 0, passing = 0, winger = 0, defending = 0, scoring = 0, setpieces = 0;
 				
 				//tsi
 				var PlayerInfoTable = thisdiv.getElementsByTagName("table")[0];
 				tsi = parseInt(PlayerInfoTable.rows[1].cells[1].textContent.replace(/[\s]*/gi, "")); 
 				wage = parseInt((Foxtrick.trimnum(PlayerInfoTable.rows[2].cells[1].textContent)+' ').match(/\d+/)[0]); 
-				
+				wagebonus='0';
+				if (nationality!=FoxtrickHelper.OWNTEAMINFO['owncountryid']) {wagebonus=wage/6.0; wage/=1.2;}
 				
 				// age
 				var divs= thisdiv.getElementsByTagName('div');
@@ -118,7 +119,7 @@ var FoxtrickLinksPlayerDetail = {
 						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
-						"scoring" : scoring, "setpieces" : setpieces,"wage":wage
+						"scoring" : scoring, "setpieces" : setpieces,"wage":wage,"wagebonus":wagebonus
 						};
 				links[0] = getLinks("playerlink", params, doc,this); 
 				links[1] = getLinks("transfercomparelink", params, doc,this); 
@@ -166,7 +167,7 @@ var FoxtrickLinksPlayerDetail = {
 						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
-						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks,"wage":wage
+						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks,"wage":wage,"wagebonus":wagebonus
 						});	
 				break;
 			}
