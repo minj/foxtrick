@@ -91,7 +91,9 @@ var FoxtrickLinksCustom = {
 			}
 			for (key in keys)  { 
 				var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
-				if (href==null) {continue;}				
+				var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
+				var title=FoxtrickPrefs.getString(basepref+'.'+key+'.title');
+				if (href==null||imgref==null||title==null) {dump('customLink '+key+' incomplete\n');continue; }				
 				// replace tags
 				var mykeytag=href.match(/\[\w+\]/ig);
 				if (mykeytag && mykeytag.length>0) {
@@ -144,8 +146,10 @@ var FoxtrickLinksCustom = {
 			}
 			for (key in keys)  { 
 				var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
-				if (href==null) {continue;}				
-			
+				var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
+				var title=FoxtrickPrefs.getString(basepref+'.'+key+'.title');
+				if (href==null||imgref==null||title==null) {continue;}			
+				
 				var div = doc.createElement ("div"); 
 				div.setAttribute("style","cursor:pointer; display:ikeyine-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+key+'.img')+"') 50% no-repeat;");
 				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+key+'.href') );
@@ -541,7 +545,9 @@ function FoxtrickLinksLoadDialog (evt)
 				}
 				for (key in keys)  { 
 					var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
-					if (href==null) {continue;}				
+					var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
+					var title=FoxtrickPrefs.getString(basepref+'.'+key+'.title');
+					if (href==null||imgref==null||title==null) {continue; }				
 					var mylink=doc.getElementById('LinksCustomLinkID'+key);
 					mylink.parentNode.removeChild(mylink);
 				}
