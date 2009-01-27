@@ -27,11 +27,15 @@ FoxtrickCurrencyConverter = {
    var table_elm = div.getElementsByTagName( 'td' );
            
             for ( var i = 0; i < table_elm.length; i++) {
+				if (table_elm[i].getElementsByTagName('td').length!=0) continue;
                 var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
                 try {  
-                    if (strrpos( table_inner, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter") {
+                    if (strrpos( table_inner, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter"){
 						var table_elm_bonus = table_elm[i];  
+						dump(table_inner+'\n');
 						this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr); 
+						
+						//break;
                     }
                 }
                 catch(e) {dump('    >' + e + '\n');} 
@@ -61,13 +65,13 @@ try {
 				if (table_inner.charAt(i)=='<' || inside_span==true) {inside_span=true; continue;}
 				if (table_inner.charAt(i).search(/\d|-/)!=-1) {
 					if (newnum=="" && symbol!="") {only_one_number=false; symbol="";} 
-					newnum+=table_inner.charAt(i); 
+					newnum+=table_inner.charAt(i);
 				}
 				else if (newnum!="") {  
 					symbol+=table_inner.charAt(i); 
 					if (symbol==" " || symbol=="&nbsp;") symbol="";
 					if (symbol.charAt(0)!='&' && symbol.length==oldCurrencySymbol.length) {
-						if (symbol==oldCurrencySymbol) { 
+						if (symbol==oldCurrencySymbol) { dump(' add ');
 							var conv=ReturnFormatedValue(Math.floor(newnum * currencyRate / currencyRateNewCurr),'&nbsp;');
 							conv=conv.replace(/\-\&nbsp\;/,'-'); 
 							br='<mybr>';
@@ -88,6 +92,7 @@ try {
 				
 				}
 				else {if (table_inner.charAt(i).search(/\S/)!=-1) only_one_number=false;}
+				
 			} 
 			if (only_one_number==true) table_inner_stripped=table_inner_stripped.replace('<mybr>','<br>');
 			else table_inner_stripped=table_inner_stripped.replace('<mybr>','');
