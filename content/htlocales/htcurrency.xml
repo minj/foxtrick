@@ -34,7 +34,7 @@
 	<currency code="TWD" shortname="NT$" name="NT$ (New Taiwan dollar)" eurorate="1" />
 	<currency code="CRC" shortname="Colón" name="Colón (Costa Rican colón)" eurorate="0.4" />
 	<currency code="CYP" shortname="CYP" name="CYP (Cypriot pound)" eurorate="0.5" />
-	<currency code="DKK" shortname="Krone" name="Krone (Danish krone)" eurorate="0.1" />
+	<currency code="DKK" shortname="Kroner" name="Krone (Danish krone)" eurorate="0.1" />
 	<currency code="EEK" shortname="Kroon" name="Kroon (Estonian kroon)" eurorate="0.05" />
 	<currency code="FDKK" shortname="Króna" name="Króna (Faroese króna)" eurorate="0.1" />
 	<currency code="MKD" shortname="MKD" name="MKD (Macedonian denar)" eurorate="0.05" />
