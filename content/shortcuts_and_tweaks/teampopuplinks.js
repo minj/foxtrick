@@ -12,16 +12,15 @@ var FoxtrickTeamPopupLinks = {
         OPTIONS : {},
 
     init : function() {
-        Foxtrick.registerAllPagesHandler( FoxtrickTeamPopupLinks );
+        Foxtrick.registerPageHandler('all_late', FoxtrickTeamPopupLinks );
                 this.initOptions();
     },
 
-    run : function( doc ) {
+    run : function( page,doc ) {
                 if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
                         return;
                 var sUrl = Foxtrick.getHref( doc );
 				
-                //do not display pop-up on Forum pages
                 var redir_from_forum=false;
 				if (sUrl.search(/Forum\/Default/i) != -1) return;
                 if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; //  ***remove return to get popups on forum activated***  also use new 'zaw' bellow
@@ -56,23 +55,24 @@ var FoxtrickTeamPopupLinks = {
                 var bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 var bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
                 var top = 0;
-				if (redir_from_forum )  { if (Foxtrick.isStandardLayout(doc)) top -= 15; else top -= 20;}
+				var offset = 20;
+				if (redir_from_forum )  { offset=20; if (Foxtrick.isStandardLayout(doc)) top -= 0; else top -= 20;}
 				//else if (!Foxtrick.isStandardLayout(doc)) top-=20; best position in simple varies unfortunatelly. i move it down again, so it at least i always can be used.
 				
                 if (bMatches)
-                        top = top - 20;
+                        top = top - offset;
                 if (bPlayers)
-                        top = top - 20;
+                        top = top - offset;
                 if (bLast5IPs)
-                        top = top - 20;
+                        top = top - offset;
                 if (bGuestbook)
-                        top = top - 20;
+                        top = top - offset;
                 if (bCoach)
-                        top = top - 20;
+                        top = top - offset;
                 if (bTransferHistory)
-                        top = top - 20;
+                        top = top - offset;
                 if (bLastLineup)
-                        top = top - 20;
+                        top = top - offset;
 				// old
 //				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';
 				// new
