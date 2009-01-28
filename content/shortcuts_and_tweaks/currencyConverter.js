@@ -16,104 +16,75 @@ FoxtrickCurrencyConverter = {
     
     /*CURRENCY TYPE AND RATE*/
   
-   var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
-   var currencySymbol = FoxtrickPrefs.getString("currencySymbol");//
-   var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
-   var currencyRateNewCurr = FoxtrickPrefs.getString("currencyRateTo");
+	var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
+	var currencySymbol = FoxtrickPrefs.getString("currencySymbol");//
+	var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
+	var currencyRateNewCurr = FoxtrickPrefs.getString("currencyRateTo");
+	var myReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol);
+	var myDelReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol+'|<.+>');   
    
-   var div = doc.getElementById( 'page' );
-   
-           
-   var table_elm = div.getElementsByTagName( 'td' );
-           
-            for ( var i = 0; i < table_elm.length; i++) {
-				try {  
-                if (table_elm[i].getElementsByTagName('td').length!=0) continue;
-                if (strrpos( table_elm[i].innerHTML, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter"){
-						var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
-						var table_elm_bonus = table_elm[i];  
-						this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr); 
-                    }
-                }
-                catch(e) {dump('    >' + e + '\n');} 
-            }  
-
-		table_elm = div.getElementsByTagName( 'p' );
-   		for ( var i = 0; i < table_elm.length; i++) {
-				try {  
-                if (table_elm[i].getElementsByTagName('p').length!=0) continue;
-                    if (strrpos( table_elm[i].innerHTML, oldCurrencySymbol) > 0 && table_elm[i].id != "foxtrick-currency-converter"){
-						var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
-						var table_elm_bonus = table_elm[i];  
-						this.drawNewCurrency(doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr); 
-                    }
-                }
-                catch(e) {dump('    >' + e + '\n');} 
-            } 	
+    // near all currencies are im tables
+   	this.drawNewCurrency(doc, 'td',  oldCurrencySymbol, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);                 
+	// some might be in alert boxes which use <p>
+    this.drawNewCurrency(doc, 'p',  oldCurrencySymbol, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);                 
     },
 
 	change : function( page, doc ) {
-
 	},
 
-
-drawNewCurrency : function (doc,table_elm_bonus,table_inner,currencySymbol,currencyRate,currencyRateNewCurr) {
-
-try {	
-
-			var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
-            var table_inner_stripped="";
-			var newtext="";
-			var newnum="";
-			var symbol="";
-			var br="";
-			var only_one_number=true;
-			var inside_span=false;
-			for (var i=0;i<table_inner.length;i++){
-				table_inner_stripped += table_inner.charAt(i);
-				if (table_inner.charAt(i)=='>') { inside_span=false; continue;}
-				if (table_inner.charAt(i)=='<' || inside_span==true) {inside_span=true; continue;}
-				if (table_inner.charAt(i).search(/\d|-/)!=-1) {
-					if (newnum=="" && symbol!="") {only_one_number=false; symbol="";} 
-					newnum+=table_inner.charAt(i);
-				}
-				else if (newnum!="") {  
-					symbol+=table_inner.charAt(i); 
-					if (symbol==" " || symbol=="&nbsp;") symbol="";
-					if (symbol.charAt(0)!='&' && symbol.length==oldCurrencySymbol.length) {
-						if (symbol==oldCurrencySymbol) { 
-							var conv=ReturnFormatedValue(Math.floor(newnum * currencyRate / currencyRateNewCurr),'&nbsp;');
-							conv=conv.replace(/\-\&nbsp\;/,'-'); 
-							br='<mybr>';
-							var color='#377f31';
-							if (table_elm_bonus.firstChild && table_elm_bonus.firstChild.style) {
-									color = table_elm_bonus.firstChild.style.color;	
-							}
-							if (conv.charAt(0)=='-') color='#aa0000';
-							if (newnum==0)  color="black";
-							
-							table_inner_stripped+=' '+br+'<span class="smallText" style="font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span> '; 
-							newnum=""; 
-							symbol="";  
-						}
-						else {symbol="";newnum="";only_one_number=false;}
-					}
-				
-				
-				}
-				else {if (table_inner.charAt(i).search(/\S/)!=-1) only_one_number=false;}
-				
-			} 
-			if (only_one_number==true) table_inner_stripped=table_inner_stripped.replace('<mybr>','<br>');
-			else table_inner_stripped=table_inner_stripped.replace('<mybr>','');
-			
-            table_elm_bonus.innerHTML = table_inner_stripped;
-			table_elm_bonus.id="foxtrick-currency-converter";
-
-        } catch (e) {
-            dump('  CurrencyConverter: ' + e + '\n');
-        }
-
-}
 	
+	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {
+	try {	
+		var div = doc.getElementById( 'page' );
+		var table_elm = div.getElementsByTagName( tagname );
+   		for ( var i = 0; i < table_elm.length; i++) {
+			if (table_elm[i].getElementsByTagName(tagname).length!=0) continue;  // don't do nested. only most inner gets converted
+			
+            var pos = table_elm[i].innerHTML.search(oldCurrencySymbol);
+			if (pos > 0 && table_elm[i].id != "foxtrick-currency-converter"){
+				var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
+				
+				res="";
+				var only_one_number=false; 
+				var first=true;
+				while (pos!=-1) {
+					var table_inner_stripped = table_elm[i].innerHTML.replace(/\s|\&nbsp\;/g,''); 					
+					if (first==true && table_elm[i].innerHTML.replace(myDelReg,'')=='') only_one_number=true; // remove html tags and currency to check if this is the only real entry. 
+					var val=table_inner_stripped.match(myReg)[1]; 
+					var conv=ReturnFormatedValue(Math.floor(val * currencyRate / currencyRateNewCurr),'&nbsp;');
+					conv=conv.replace(/\-\&nbsp\;/,'-'); 
+										
+					// add a <b> if there is onyl one entry
+					var br='';
+					if (only_one_number==true) br='<br>';
+					// add a space at the end if the next symbol is not ')'
+					var space=' ';
+					if (table_elm[i].innerHTML.charAt(pos+1)==')') space='';
+					if (table_elm[i].innerHTML.charAt(pos+1)=='<') {
+						if (table_elm[i].innerHTML.substr(pos+1).replace(myDelReg,'').charAt(0)==')') space='';
+					}
+					// std color green. but use color of span if there is one. 
+					var color='#377f31';
+					if (table_elm[i].firstChild && table_elm[i].firstChild.style) {
+						color = table_elm[i].firstChild.style.color;	
+					}
+					if (conv.charAt(0)=='-') color='#aa0000';   // neg number red
+					if (val==0)  color="black";					// zero black
+			
+					// add left part plus converted 
+					res+=table_elm[i].innerHTML.substr(0,pos+1)+' '+br+'<span class="smallText" style="font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span>'+space; 
+					
+					// get the remains and check them in next loop
+					table_elm[i].innerHTML = table_elm[i].innerHTML.substr(pos+1);		   
+					pos= table_elm[i].innerHTML.search(oldCurrencySymbol);	
+					first=false;			
+				}
+				table_elm[i].innerHTML=res+table_elm[i].innerHTML;
+		
+				table_elm[i].id="foxtrick-currency-converter";
+			}
+		}
+    }
+    catch(e) {dump('    >' + e + '\n');} 
+    }  
 };
