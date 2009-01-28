@@ -14,13 +14,21 @@ var FoxtrickShortcutsStatistics = {
         Foxtrick.registerPageHandler( 'all', this);
     },
 
+	change : function( page, doc ) {
+        var elm = doc.getElementById( 'ft_shortcutsstatistics' );
+        if (elm != null) return;
+	},
 
     run : function( page, doc ) {
         
+        var elm = doc.getElementById( 'ft_shortcutsstatistics' );
+        if (elm != null) return;
+
         var targetNode = doc.getElementById ( 'shortcuts' );
         if (targetNode) {
             try {
                 var link = doc.createElement('a');                
+                link.id = 'ft_shortcutsstatistics';
                 link.href = "../../World/Stats/";
                 link.setAttribute("style", "padding:3px 0px 0px 5px;");
                 
@@ -28,7 +36,7 @@ var FoxtrickShortcutsStatistics = {
                 img1.setAttribute( "class", "scLive");
                 img1.src = "/Img/Icons/transparent.gif";
                 img1.setAttribute("style","background-image: url('http://famfamfam.com/lab/icons/silk/icons/chart_bar.png') !important;");
-                img1.title = 'Statistics';
+                img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                 link.appendChild(img1);
                 
