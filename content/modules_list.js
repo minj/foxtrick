@@ -76,6 +76,7 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
 					 FoxtrickLargeFlags,
 					 FoxtrickTeamSelectBox,
 					 FoxtrickSeniorTeamShortCuts,
+                     FoxtrickShortcutsStatistics,
 					 FoxtrickCustomMedals,
 					 FoxtrickForumRedirManagerToTeam,
 					 FoxtrickRedirections,
