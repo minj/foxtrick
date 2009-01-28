@@ -17,23 +17,25 @@ FoxtrickCurrencyConverter = {
     /*CURRENCY TYPE AND RATE*/
   
 	var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
+	var oldSymbolLength = oldCurrencySymbol.length;
 	var currencySymbol = FoxtrickPrefs.getString("currencySymbol");//
 	var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
 	var currencyRateNewCurr = FoxtrickPrefs.getString("currencyRateTo");
 	var myReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol);
 	var myDelReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol+'|<.+>');   
    
+   
     // near all currencies are im tables
-   	this.drawNewCurrency(doc, 'td',  oldCurrencySymbol, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);                 
+   	this.drawNewCurrency(doc, 'td',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);                 
 	// some might be in alert boxes which use <p>
-    this.drawNewCurrency(doc, 'p',  oldCurrencySymbol, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);                 
+    this.drawNewCurrency(doc, 'p',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);                 
     },
 
 	change : function( page, doc ) {
 	},
 
 	
-	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {
+	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, oldSymbolLength, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {
 	try {	
 		var div = doc.getElementById( 'page' );
 		var table_elm = div.getElementsByTagName( tagname );
@@ -47,7 +49,7 @@ FoxtrickCurrencyConverter = {
 				res="";
 				var only_one_number=false; 
 				var first=true;
-				while (pos!=-1) {
+				while (pos!=-1) { pos+=oldSymbolLength;
 					var table_inner_stripped = table_elm[i].innerHTML.replace(/\s|\&nbsp\;/g,''); 					
 					if (first==true && table_inner_stripped.replace(myDelReg,'')=='') only_one_number=true; // remove html tags and currency to check if this is the only real entry. 
 					try {
@@ -62,10 +64,10 @@ FoxtrickCurrencyConverter = {
 					if (only_one_number==true) br='<br>';
 					// add a space at the end if the next symbol is not ')'
 					var space=' ';
-					var next_char=table_elm[i].innerHTML.charAt(pos+1);
+					var next_char=table_elm[i].innerHTML.charAt(pos);
 					if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',') space='';
-					if (table_elm[i].innerHTML.charAt(pos+1)=='<') {
-						next_char=table_elm[i].innerHTML.substr(pos+1).replace(myDelReg,'').charAt(0);
+					if (table_elm[i].innerHTML.charAt(pos)=='<') {
+						next_char=table_elm[i].innerHTML.substr(pos).replace(myDelReg,'').charAt(0);
 						if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',') space='';
 					}
 					// std color green. but use color of span if there is one. 
@@ -77,10 +79,10 @@ FoxtrickCurrencyConverter = {
 					if (val==0)  color="black";					// zero black
 			
 					// add left part plus converted 
-					res+=table_elm[i].innerHTML.substr(0,pos+1)+' '+br+'<span class="smallText" style="font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span>'+space; 
+					res+=table_elm[i].innerHTML.substr(0,pos)+' '+br+'<span class="smallText" style="font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span>'+space; 
 					
 					// get the remains and check them in next loop
-					table_elm[i].innerHTML = table_elm[i].innerHTML.substr(pos+1);		   
+					table_elm[i].innerHTML = table_elm[i].innerHTML.substr(pos);		   
 					pos= table_elm[i].innerHTML.search(oldCurrencySymbol);	
 					first=false;			
 				}
