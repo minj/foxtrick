@@ -18,10 +18,10 @@ FoxtrickFixcssProblems = {
 
     run : function(page, doc) {
         
-        // standard | simpe | all
+        // standard | simpe | all | alternate
         var LAYOUTSWITCH = new Array (
             "standard",
-            "all",
+            "alternate",
             "all",
             "all",
             "all",
@@ -33,6 +33,7 @@ FoxtrickFixcssProblems = {
             
             if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[i]  ) ) {
                 var css = "chrome://foxtrick/content/resources/css/fixes/" + this.OPTIONS[i] + ".css";
+                var css_simple = "chrome://foxtrick/content/resources/css/fixes/" + this.OPTIONS[i] + "_simple.css";
                 if ( ( (LAYOUTSWITCH[i] == 'standard' ) || (LAYOUTSWITCH[i] == 'all') ) && (Foxtrick.isStandardLayout( doc ) == true) ) {
                     // dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet( doc, css );
@@ -40,7 +41,12 @@ FoxtrickFixcssProblems = {
                 else if ( ((LAYOUTSWITCH[i] == 'simple' ) || (LAYOUTSWITCH[i] == 'all')) && (Foxtrick.isStandardLayout( doc ) == false) ) {
                     // dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet ( doc, css );
-                } 
+                }
+				else if ( LAYOUTSWITCH[i] == 'alternate' ) {
+                    // dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
+                    if (Foxtrick.isStandardLayout( doc ) == false)  Foxtrick.addStyleSheet ( doc, css_simple );
+                    else  Foxtrick.addStyleSheet ( doc, css );
+                }				
                 else {
                     // dump ('  FIXES: ' + i + ' - ' + this.OPTIONS[i] + ' disabled.\n');
                 }
