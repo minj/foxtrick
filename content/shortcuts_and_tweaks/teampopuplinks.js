@@ -57,7 +57,7 @@ var FoxtrickTeamPopupLinks = {
                 var bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
                 var top = 0;
 				if (redir_from_forum )  { if (Foxtrick.isStandardLayout(doc)) top -= 15; else top -= 20;}
-				else if (!Foxtrick.isStandardLayout(doc)) top-=20;
+				//else if (!Foxtrick.isStandardLayout(doc)) top-=20; best position in simple varies unfortunatelly. i move it down again, so it at least i always can be used.
 				
                 if (bMatches)
                         top = top - 20;

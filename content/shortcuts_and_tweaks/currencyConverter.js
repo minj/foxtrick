@@ -49,19 +49,24 @@ FoxtrickCurrencyConverter = {
 				var first=true;
 				while (pos!=-1) {
 					var table_inner_stripped = table_elm[i].innerHTML.replace(/\s|\&nbsp\;/g,''); 					
-					if (first==true && table_elm[i].innerHTML.replace(myDelReg,'')=='') only_one_number=true; // remove html tags and currency to check if this is the only real entry. 
-					var val=table_inner_stripped.match(myReg)[1]; 
-					var conv=ReturnFormatedValue(Math.floor(val * currencyRate / currencyRateNewCurr),'&nbsp;');
-					conv=conv.replace(/\-\&nbsp\;/,'-'); 
-										
+					if (first==true && table_inner_stripped.replace(myDelReg,'')=='') only_one_number=true; // remove html tags and currency to check if this is the only real entry. 
+					try {
+						var val=table_inner_stripped.match(myReg)[1]; 					
+					}
+					catch (e){return;} // catching currency symbol of tranfer bid
+					var conv = ReturnFormatedValue(Math.floor(val * currencyRate / currencyRateNewCurr),'&nbsp;');
+					conv = conv.replace(/\-\&nbsp\;/,'-'); 
+					
 					// add a <b> if there is onyl one entry
 					var br='';
 					if (only_one_number==true) br='<br>';
 					// add a space at the end if the next symbol is not ')'
 					var space=' ';
-					if (table_elm[i].innerHTML.charAt(pos+1)==')') space='';
+					var next_char=table_elm[i].innerHTML.charAt(pos+1);
+					if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',') space='';
 					if (table_elm[i].innerHTML.charAt(pos+1)=='<') {
-						if (table_elm[i].innerHTML.substr(pos+1).replace(myDelReg,'').charAt(0)==')') space='';
+						next_char=table_elm[i].innerHTML.substr(pos+1).replace(myDelReg,'').charAt(0);
+						if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',') space='';
 					}
 					// std color green. but use color of span if there is one. 
 					var color='#377f31';
