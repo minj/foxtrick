@@ -104,10 +104,11 @@ var FoxtrickAddLeaveConfButton = {
 	getVValue : function( doc ) {
 		var sUrl = Foxtrick.getHref( doc );
 		var vPos = sUrl.search(/v=/i);
-		var vValue = "";
+		var vValue = 1;
 		if(vPos > -1) {
-			vValue = sUrl.substr(vPos+2);
+			vValue = sUrl.substr(vPos+2,1);
 		}
+        dump (' => vValue: ' + vValue + '\n');
 		return vValue;
 	},
 	
