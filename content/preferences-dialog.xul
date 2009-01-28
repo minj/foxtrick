@@ -29,6 +29,7 @@
     <tabs id="tabs">
       <tab id="MainTab"      onclick="FoxtrickPreferencesDialog.pref_show('main_list');"           ></tab>
       <tab id="ShortcutsTab" onclick="FoxtrickPreferencesDialog.pref_show('shortcuts_list');"      ></tab>
+      <tab id="PresentationTab" onclick="FoxtrickPreferencesDialog.pref_show('presentation_list');"      ></tab>
       <tab id="MatchesTab"   onclick="FoxtrickPreferencesDialog.pref_show('matchfunctions_list');" ></tab>
       <tab id="ForumTab"     onclick="FoxtrickPreferencesDialog.pref_show('forum_list');"          ></tab>
       <tab id="LinksTab"     onclick="FoxtrickPreferencesDialog.pref_show('links_list');"          ></tab>
@@ -51,7 +52,14 @@
               
              </tabpanel>
 		   
-		    <!-- Matches -->
+		    <!-- Presenation -->
+            <tabpanel class="panel" orient="vertical" flex="1">
+              <vbox>
+                <vbox id="presentation_list" flex="1" orient="vertical" style="display:run-in"/>
+              </vbox>
+              
+             </tabpanel>
+		   <!-- Matches -->
 		    <tabpanel class="panel" orient="vertical" flex="1">
 			  <vbox>
                 <vbox id="matchfunctions_list" orient="vertical" style="display:run-in"/>

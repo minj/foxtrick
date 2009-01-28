@@ -30,7 +30,7 @@ var FoxtrickPreferencesDialog = {
 		// Window title
 		window.title = Foxtrickl10n.getString( "foxtrick.prefs.preferences" );
 		// Captions and labels
-		var allLabels = [ "MainTab", "ShortcutsTab", "MatchesTab",
+		var allLabels = [ "MainTab", "ShortcutsTab", "PresentationTab", "MatchesTab",
 						  "ForumTab", "LinksTab", "AboutTab",
 						  "buttonSave", "buttonCancel" ];
 		for(var i = 0; i < allLabels.length; i++) {
@@ -343,6 +343,9 @@ var FoxtrickPreferencesDialog = {
                 switch(cat) {
                         case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
                                 modules_list = document.getElementById( 'shortcuts_list' );
+								break;
+                        case Foxtrick.moduleCategories.PRESENTATION:
+                                modules_list = document.getElementById( 'presentation_list' );
 								break;
 						case Foxtrick.moduleCategories.MATCHES:
 								modules_list = document.getElementById( 'matchfunctions_list' );
