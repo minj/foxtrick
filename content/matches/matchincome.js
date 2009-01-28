@@ -30,7 +30,7 @@ var FoxtrickMatchIncome = {
 				var sum=Foxtrick.trimnum(table.rows[0].cells[1].textContent)*6.5
 					+ Foxtrick.trimnum(table.rows[1].cells[1].textContent)*9.5
 					+ Foxtrick.trimnum(table.rows[2].cells[1].textContent)*18
-					+ Foxtrick.trimnum(table.rows[3].cells[1].textContent)*33;
+					+ Foxtrick.trimnum(table.rows[3].cells[1].textContent)*32.5;
 					
 				sum/=FoxtrickPrefs.getString("currencyRate");
 									
