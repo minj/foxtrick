@@ -108,7 +108,7 @@ var FoxtrickAddLeaveConfButton = {
 		if(vPos > -1) {
 			vValue = sUrl.substr(vPos+2,1);
 		}
-        dump (' => vValue: ' + vValue + '\n');
+        // dump (' => vValue: ' + vValue + '\n');
 		return vValue;
 	},
 	
