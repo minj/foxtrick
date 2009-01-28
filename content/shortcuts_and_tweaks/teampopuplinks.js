@@ -24,7 +24,7 @@ var FoxtrickTeamPopupLinks = {
                 //do not display pop-up on Forum pages
                 var redir_from_forum=false;
 				if (sUrl.search(/Forum\/Default/i) != -1) return;
-                if (sUrl.search(/Forum/i) != -1) return true;//redir_from_forum=true; //  ***remove return to get popups on forum activated***  also use new 'zaw' bellow
+                if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; //  ***remove return to get popups on forum activated***  also use new 'zaw' bellow
                 if (sUrl.search(/ShowOldConnections=true/i) > -1){
                         var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
                         if (a){
@@ -74,9 +74,9 @@ var FoxtrickTeamPopupLinks = {
                 if (bLastLineup)
                         top = top - 20;
 				// old
-				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';
+//				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width: maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td:hover { background-color:#C3E7C7 !important;}';
 				// new
-				//var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;}';
+				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; top:' + top + 'px !important; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;}';
                 style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
                 var aLinks = doc.getElementsByTagName('a'); //doc.links;
