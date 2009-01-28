@@ -202,6 +202,7 @@ var FoxtrickForumStaffMarker = {
                 for (var j=0; j<as.length; j++) {
                     var a = as[j];
                     if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1) continue;
+                    if (a.getAttribute("href").search(/redir_to_league=true/i) != -1) continue;
                     var uname = Foxtrick.trim(a.textContent);
 
                     if (Foxtrick.isModuleFeatureEnabled( this, "HT") && this.htreg.test(uname)) {

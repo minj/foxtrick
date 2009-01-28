@@ -23,6 +23,7 @@ var FoxtrickRedirections = {
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="playerInfo") {
 				var teamid=FoxtrickHelper.findTeamId(alldivs[j]);
+				var leagueid=findLeagueLeveUnitId(alldivs[j]);
 				var ownteamid=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));				
 				var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
 				var target="";
@@ -42,6 +43,8 @@ var FoxtrickRedirections = {
 								tar=serv+'/Players/?TeamID='+teamid;
 					else if (doc.location.href.search(/redir_to_matches=true/i)!=-1 ) 
 								tar=serv+'/Matches/?TeamID='+teamid;					 						
+					else if (doc.location.href.search(/redir_to_league=true/i)!=-1 ) 
+								tar=serv.replace(/club/i,'')+'World/Series/Default.aspx?LeagueLevelUnitID='+leagueid;					 						
 				}
 				doc.location.replace(tar);
 				break;

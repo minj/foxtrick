@@ -27,7 +27,7 @@ var FoxtrickForumRedirManagerToTeam = {
 				    var linksArray = innerdivs[k].getElementsByTagName('a');
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1) { 
+					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 && link.href.search(/redir_to_league=true/i)==-1) { 
 						link.href+="&redir_to_team=true";
 					  }
 					}

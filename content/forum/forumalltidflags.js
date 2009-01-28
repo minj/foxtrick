@@ -65,7 +65,7 @@ var FoxtrickAlltidFlags = {
 				
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1) { 
+					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 && link.href.search('redir_to_league=true')==-1) { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+flagsCounter;
@@ -74,9 +74,15 @@ var FoxtrickAlltidFlags = {
 						//dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
-						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 || titlecountry1=="" || LeagueId==0) {
-							mySpan.innerHTML = ' <a href="' + linkpage + userId +
-							'"target="_blank"><img title="'+thistitlecountry+'" " style="' + 
+						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 || titlecountry1=="" || LeagueId==0) {		
+							var href= linkpage + userId;
+							target='_blank';
+							if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) {
+								href='/Club/Manager/?userId='+userId+'&redir_to_league=true';
+								target='_self';
+							}
+							mySpan.innerHTML = ' <a href="' +href+
+							'"target="'+target+'"><img title="'+thistitlecountry+'" " style="' + 
 							'vertical-align: middle; ' + style + '" src="' + 
 							flagspage + userId + '.gif" border="0"' +
 							'height="12" /></a>';}
