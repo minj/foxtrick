@@ -9,6 +9,7 @@ FoxtrickMatchPlayerColouring = {
 	DEFAULT_ENABLED : true,
 	WHITE_COLOUR : "#fff",
 	BLACK_COLOUR : "#000",
+    UNKNOWN_COLOUR : "#F0F0F0",
 	
 	init : function() {
         Foxtrick.registerPageHandler( "match",
@@ -16,9 +17,12 @@ FoxtrickMatchPlayerColouring = {
     },
     
     run : function( page, doc ) {
+        
+        var content_div = doc.getElementById('content');
+        if (content_div == null) return;
         var teamA = "";
         var teamB = "";
-       var content = doc.getElementsByTagName("h1")[0].parentNode.textContent;
+        var content = content_div.getElementsByTagName("h1")[0].parentNode.textContent;
         var regexp = new RegExp(": ([^\\.]*?)\\.");
 		var FirstTeam = true; 
         var matchteamA = regexp.exec(content);
@@ -33,7 +37,7 @@ FoxtrickMatchPlayerColouring = {
            // dump(teamB + '\n');
          }
 		//Retrieve substitutions
-		 var spans = doc.getElementsByTagName("span");
+		 var spans = content_div.getElementsByTagName("span");
 		 for (var i=0; i<spans.length; i++) {
 			var span_a = spans[i].getElementsByTagName("a");
 			for (var j=0; j<span_a.length; j++) {
@@ -77,7 +81,7 @@ FoxtrickMatchPlayerColouring = {
 		 
  
  
-		var links = doc.getElementsByTagName("a");
+		var links = content_div.getElementsByTagName("a");
 		 for (var i=0; i<links.length; i++) {
              if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
                  links[i].style.border = "1px solid #ccc";
@@ -102,11 +106,14 @@ FoxtrickMatchPlayerColouring = {
                 if (foundA && !foundB) {
                      links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
                      links[i].style.color = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
-                 }
-				 if (foundB && !foundA) {
+                 } 
+				 else if (foundB && !foundA) {
                      links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
                      links[i].style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
-                 }                
+                 }    
+                 else {
+                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
+                 }
              } 
 			 //Colors the name of the teams  on the right box like the players
 			 else { 
