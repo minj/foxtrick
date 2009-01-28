@@ -550,6 +550,9 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 						case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
                                 modules_list = document.getElementById( 'shortcuts_list' );
 								break;
+						case Foxtrick.moduleCategories.PRESENTATION:
+                                modules_list = document.getElementById( 'presentation_list' );
+								break;
 						case Foxtrick.moduleCategories.MATCHES:
 								modules_list = document.getElementById( 'matchfunctions_list' );
 								break;
@@ -830,7 +833,7 @@ FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 }
 
 FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
-    VBOXES = ["main_list", "shortcuts_list", "matchfunctions_list", "forum_list", "links_list", "about_list"];
+    VBOXES = ["main_list", "shortcuts_list","presentation_list", "matchfunctions_list", "forum_list", "links_list", "about_list"];
     var box;
     for (var i = 0; i < VBOXES.length; i++) {
         try {

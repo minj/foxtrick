@@ -7,7 +7,7 @@
 var FoxtrickSkillColoring = {
 	
     MODULE_NAME : "SkillColoring",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
     OPTIONS : {},
 	

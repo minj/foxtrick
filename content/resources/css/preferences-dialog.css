@@ -1,4 +1,5 @@
 #shortcuts_list .entry, 
+#presentation_list .entry, 
 #forum_list .entry, 
 #links_list .entry, 
 #matchfunctions_list .entry {
@@ -6,6 +7,7 @@
 }
 
 #shortcuts_list .entry:hover, 
+#presentation_list .entry:hover, 
 #forum_list .entry:hover, 
 #links_list .entry:hover, 
 #matchfunctions_list .entry:hover {
@@ -13,6 +15,7 @@
 }
 
 #shortcuts_list .name, 
+#presentation_list .name, 
 #forum_list .name, 
 #links_list .name, 
 #matchfunctions_list .name {
@@ -20,6 +23,7 @@
 }
 
 #shortcuts_list .description, 
+#presentation_list .description, 
 #forum_list .description, 
 #links_list .description , 
 #matchfunctions_list .description {

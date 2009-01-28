@@ -7,7 +7,7 @@
 var FoxtrickSkinPlugin = {
     
     MODULE_NAME : "SkinPlugin",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : false,
    // OPTIONS : {},
   

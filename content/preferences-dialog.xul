@@ -52,7 +52,7 @@
               
              </tabpanel>
 		   
-		    <!-- Presenation -->
+		    <!-- Presentation -->
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
                 <vbox id="presentation_list" flex="1" orient="vertical" style="display:run-in"/>

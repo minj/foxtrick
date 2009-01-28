@@ -7,7 +7,7 @@
 var FoxtrickHideFaceTransferImages = {
 	
     MODULE_NAME : "HideFaceTransferImages",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
 	
     init : function() {
@@ -37,7 +37,7 @@ var FoxtrickHideFaceTransferImages = {
 var FoxtrickHideFaceInjuryImages = {
 	
     MODULE_NAME : "HideFaceInjuryImages",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
 	
     init : function() {
@@ -64,7 +64,7 @@ var FoxtrickHideFaceInjuryImages = {
 var FoxtrickHideFaceSuspendedImages = {
 	
     MODULE_NAME : "HideFaceSuspendedImages",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
 	
     init : function() {
@@ -92,7 +92,7 @@ var FoxtrickHideFaceSuspendedImages = {
 var FoxtrickColouredYouthFaces = {
 	
     MODULE_NAME : "ColouredYouthFaces",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
 	
     init : function() {
@@ -120,7 +120,7 @@ var FoxtrickColouredYouthFaces = {
 var FoxtrickMovePlayerStatement = {
 	
     MODULE_NAME : "MovePlayerStatement",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : false,
 	
     init : function() {

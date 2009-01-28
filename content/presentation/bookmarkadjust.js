@@ -7,7 +7,7 @@
 var BookmarkAdjust = {
 
     MODULE_NAME : "BookmarkAdjust",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : true,
     
     init : function() {
