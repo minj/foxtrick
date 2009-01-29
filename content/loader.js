@@ -91,12 +91,16 @@ var scripts = [
     'foxtrick.js',
 ];
 
+var all_loaded=true;
 for each (var script in scripts) {
-    try {
-        loader.loadSubScript('chrome://foxtrick/content/' + script);
-    } catch (e) {
-        dump('Script loading failed - ' + script + '\n  ' + e + '\n');
-    }
+	try {
+        loader.loadSubScript('chrome://foxtrick/content/' + script);     
+	} catch (e) {
+        dump('Script loading failed -- ' + script + '\n  ' + e + '\n');
+		all_loaded=false;
+	}
 };
+if (!all_loaded) Foxtrick.alert (' --------------- Foxtrick: failed to load one or more scripts -----------------------\n');
+
 
 FoxtrickMain.init();
