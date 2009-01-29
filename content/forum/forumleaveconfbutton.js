@@ -28,7 +28,7 @@ var FoxtrickAddLeaveConfButton = {
                     if(vValue != "2") {
                         Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
                                 "resources/css/conference.css");
-                        var elems = doc.getElementsByTagName("div");
+                        var elems = doc.getElementsById('myForums').getElementsByTagName("div");
                         var foldersCounter = 0;
                         for(var i=0; i < elems.length; i++) {
                             if(elems[i].className=="folderHeader"){

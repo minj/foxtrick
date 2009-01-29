@@ -17,7 +17,7 @@ var FoxtrickTruncateLongNicks = {
     },
 
     run : function( page, doc ) {
-		var alldivs = doc.getElementsByTagName('div');
+		var alldivs = doc.getElementsById('mainBody').getElementsByTagName('div');
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfHeader") {
 				var linksArray = alldivs[i].getElementsByTagName('a');

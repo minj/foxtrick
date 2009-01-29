@@ -37,7 +37,7 @@ var FoxtrickAlltidFlags = {
 		var style ="margin-right:3px; padding-left:3px; " + 
 					"background-repeat:repeat-x; background-position: 0% 50%;";
 		
-		var alldivs = doc.getElementsByTagName('div');
+		var alldivs = doc.getElementsById('mainBody').getElementsByTagName('div');
 		var flagsCounter = 0;
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfWrapper") {
@@ -65,7 +65,9 @@ var FoxtrickAlltidFlags = {
 				
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 && link.href.search('redir_to_league=true')==-1) { 
+					  if (link.href.search(/Club\/Manager\/userId=/i) > -1)
+							// folloing needed if teampopups executed earlier							
+							// && link.href.search(/ft_popuplink=true/i)==-1)  { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+flagsCounter;

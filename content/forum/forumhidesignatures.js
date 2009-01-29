@@ -17,7 +17,7 @@ var FoxtrickHideSignatures = {
 
     run : function( page, doc ) { 
 		var p = 0;
-		var elems = doc.getElementsByTagName("div");
+		var elems = doc.getElementsById('mainBody').getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if( elems[i].className == "signature" ||
 				elems[i].className == "signature-trunc") {

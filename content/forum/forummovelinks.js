@@ -18,7 +18,7 @@ var FoxtrickMoveLinks = {
 
     run : function( page, doc ) {
 	
-		var allDivs = doc.getElementsByTagName("div");
+		var allDivs = doc.getElementsById('mainBody').getElementsByTagName("div");
 		
 		for(var i = 0; i < allDivs.length; i++) {
 			if(allDivs[i].className=="cfWrapper") {
