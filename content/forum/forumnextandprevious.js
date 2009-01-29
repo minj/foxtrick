@@ -11,8 +11,7 @@ var FoxtrickForumNextAndPrevious = {
 	DEFAULT_ENABLED : true,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickForumNextAndPrevious );
+            Foxtrick.registerPageHandler( 'forumViewThread', this );
     },
 
     run : function( page, doc ) {

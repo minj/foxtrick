@@ -3,7 +3,7 @@
  * Foxtrick forum template handling service
  * @author Mod-PaV
  */
-////////////////////////////////////////////////////////////////////////////////
+
 var FoxtrickForumTemplates = {
     
     MODULE_NAME : "ForumTemplates",

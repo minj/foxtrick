@@ -1,10 +1,9 @@
-/** 
+/**
  * forumredirmanagertoteam.js
  * Foxtrick redirect from manager to team page
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
 var FoxtrickForumRedirManagerToTeam = {
 	
     MODULE_NAME : "ForumRedirManagerToTeam",
@@ -21,13 +20,13 @@ var FoxtrickForumRedirManagerToTeam = {
     run : function( page, doc ) { 
 		// manager to team in forum
 		if (doc.location.href.search(/\/Forum\/Read/i)!=-1 ) {	 
-				var innerdivs = doc.getElementById('mainBody').getElementsByTagName('div');
+				var innerdivs = doc.getElementsByTagName('div');
 				for (var k = 0; k < innerdivs.length; k++) {
 				  if (innerdivs[k].className=="cfHeader") {
 				    var linksArray = innerdivs[k].getElementsByTagName('a');
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 && link.href.search('redir_to_league=true')==-1) {
+					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 && link.href.search(/redir_to_league=true/i)==-1) { 
 						link.href+="&redir_to_team=true";
 					  }
 					}
@@ -44,7 +43,7 @@ var FoxtrickForumRedirManagerToTeam = {
 						var linksArray = alldivs[j].getElementsByTagName('a'); 
 						for (var k=0; k<linksArray.length; k++) {
 							var link = linksArray[k];
-							if (link.href.search(/Club\/Manager\/userId=/i) > -1) { 
+							if (link.href.search(/userId=/i) > -1) { 
 								link.href+="&redir_to_team=true"; 
 							}
 						}

@@ -3,8 +3,8 @@
  * Marks threads created by HTs.
  * @author Mod-PaV
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickHTThreadMarker = {
+
+ var FoxtrickHTThreadMarker = {
 
     MODULE_NAME : "HTThreadMarker",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,

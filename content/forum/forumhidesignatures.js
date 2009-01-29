@@ -2,7 +2,7 @@
  * forumhidesignature.js
  * Script which hides signatures on the forums, but shows a 'Show sig' link
  * @author smates, larsw84
- */ 
+ */
 
 var FoxtrickHideSignatures = {
 	
@@ -11,13 +11,12 @@ var FoxtrickHideSignatures = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickHideSignatures);
+            Foxtrick.registerPageHandler( 'forumViewThread', this);
     },
 
     run : function( page, doc ) { 
 		var p = 0;
-		var elems = doc.getElementById('mainBody').getElementsByTagName("div");
+		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if( elems[i].className == "signature" ||
 				elems[i].className == "signature-trunc") {

@@ -3,7 +3,7 @@
  * Foxtrick forum post preview
  * @author spambot
  */
-////////////////////////////////////////////////////////////////////////////////
+
 var FoxtrickForumPreview = {
 
     MODULE_NAME : "ForumPreview",

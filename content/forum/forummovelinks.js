@@ -2,9 +2,8 @@
  * forummovelinks.js
  * Foxtrick Move Links in forum posts module
  * @author larsw84
- */ 
+ */
 
-////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMoveLinks = {
 	
     MODULE_NAME : "MoveLinks",
@@ -18,7 +17,7 @@ var FoxtrickMoveLinks = {
 
     run : function( page, doc ) {
 	
-		var allDivs = doc.getElementById('mainBody').getElementsByTagName("div");
+		var allDivs = doc.getElementsByTagName("div");
 		
 		for(var i = 0; i < allDivs.length; i++) {
 			if(allDivs[i].className=="cfWrapper") {

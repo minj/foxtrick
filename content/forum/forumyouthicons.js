@@ -3,8 +3,8 @@
  * Foxtrick forum post youth icons 
  * @author spambot
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickForumYouthIcons = {
+
+ var FoxtrickForumYouthIcons = {
     
     _DOC : {},
     MODULE_NAME : "ForumYouthIcons",

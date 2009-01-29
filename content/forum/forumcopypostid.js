@@ -2,10 +2,7 @@
 * forumcopypostid.js
 * Foxtrick Copies post id to clipboard
 * @author convinced
-*/ 
-
-////////////////////////////////////////////////// //////////////////////////////
-//---------------------------------------------------------------------------    
+*/
 
 var FoxtrickCopyPostID = {
 
@@ -19,7 +16,7 @@ var FoxtrickCopyPostID = {
 	},
 	
 	run : function( page, doc ) { 
-		var alldivs = doc.getElementById('mainBody').getElementsByTagName('div');
+		var alldivs = doc.getElementsByTagName('div');
 		var num=0;
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfWrapper") {

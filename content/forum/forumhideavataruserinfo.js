@@ -2,9 +2,8 @@
  * forumhideavataruserinfo.js
  * Foxtrick Hide Manager Avatar User Info module
  * @author larsw84/convinced
- */ 
+ */
 
-////////////////////////////////////////////////////////////////////////////////
 var FoxtrickHideManagerAvatarUserInfo = {
 	
     MODULE_NAME : "HideManagerAvatarUserInfo",
@@ -18,7 +17,7 @@ var FoxtrickHideManagerAvatarUserInfo = {
 
     run : function( page, doc ) {
 		if (Foxtrick.isModuleEnabled(FoxtrickMoveLinks)) {return;}
-		var elems = doc.getElementById('mainBody').getElementsByTagName("div");
+		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].getAttribute("class")=="cfUserInfo") {
                 {               //  dump( "hiding\n" );

@@ -3,7 +3,7 @@
  * Foxtrick forum staff (HT, GM, Mod, CHPP, LA) marker
  * @author bummerland
  */
-////////////////////////////////////////////////////////////////////////////////
+
 var FoxtrickForumStaffMarker = {
 
     MODULE_NAME : "ForumStaffMarker",

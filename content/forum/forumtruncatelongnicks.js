@@ -2,9 +2,8 @@
  * forumtruncatelongnicks.js
  * Foxtrick Truncate long nicks in forum posts module
  * @author larsw84
- */ 
+ */
 
-////////////////////////////////////////////////////////////////////////////////
 var FoxtrickTruncateLongNicks = {
 	
     MODULE_NAME : "TruncateLongNicks",
@@ -17,7 +16,7 @@ var FoxtrickTruncateLongNicks = {
     },
 
     run : function( page, doc ) {
-		var alldivs = doc.getElementById('mainBody').getElementsByTagName('div');
+		var alldivs = doc.getElementsByTagName('div');
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfHeader") {
 				var linksArray = alldivs[i].getElementsByTagName('a');

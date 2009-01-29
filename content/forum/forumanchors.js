@@ -38,7 +38,7 @@ var FoxtrickForumAnchors = {
                     }
                 }
                 catch(e) {
-                    // dump(e);
+                    dump(e);
                 }
             }
         }
