@@ -26,7 +26,7 @@ var FoxtrickTeamPopupLinks = {
                 this.initOptions();
     },
 
-    run : function( page,doc ) {
+    run : function( page,doc ) {  
                 if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
                         return;
                 var sUrl = Foxtrick.getHref( doc );
@@ -134,7 +134,7 @@ var FoxtrickTeamPopupLinks = {
     popupshow : function( event) {
 	try { 
 		var doc = FoxtrickTeamPopupLinks.popupshow.doc;
-        event.target.parentNode.lastChild.setAttribute('style','display:inline');
+        if (event.target.style==null) event.target.setAttribute('style','display:inline');
   		event.target.parentNode.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
         var value = FoxtrickHelper.getTeamIdFromUrl(event.target.href);
 		if (FoxtrickTeamPopupLinks.forumuserlink) value = FoxtrickHelper.getUserIdFromUrl(event.target.href);

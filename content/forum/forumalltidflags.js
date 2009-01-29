@@ -28,18 +28,19 @@ var FoxtrickAlltidFlags = {
 			FoxtrickAlltidFlags );
 	},
 
-	run : function( page, doc ) {
+	run : function( page, doc ) {  
 	try{	
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
 		var linkpage = "http://stats.alltidhattrick.org/user/";
-		var style ="margin-right:3px; padding-left:3px; " + 
+		var style ="margin-right:3px; margin-bottom:3px; padding-left:3px; " + 
 					"background-repeat:repeat-x; background-position: 0% 50%;";
 		
-		var alldivs = doc.getElementsByTagName('div');
 		var flagsCounter = 0;
-		for (var i = 0; i < alldivs.length; i++) {
-			if (alldivs[i].className=="cfWrapper") {
-				var innerdivs = alldivs[i].getElementsByTagName('div');
+		var body = doc.getElementById("mainBody");
+        if (body != null) {
+			var alldivs = getElementsByClass("cfWrapper", body);
+        	for (var i = 0; i < alldivs.length; i++) {
+            	var innerdivs = alldivs[i].getElementsByTagName('div');
 				var LeagueId=0;
 				var titlecountry1="";
 				for (var k = 0; k < innerdivs.length; k++) {

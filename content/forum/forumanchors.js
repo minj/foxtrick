@@ -17,11 +17,11 @@ var FoxtrickForumAnchors = {
     run : function( page, doc ) {
         var body = doc.getElementById("mainBody");
         if (body != null) {
-            var elems = getElementsByClass("float_right", body);
+			var elems = getElementsByClass("float_right", body);
             for (var i = 0; i < elems.length; i++) {
                 try {
                     var time = elems[i].innerHTML.match(/(\d{2})\:(\d{2})/);
-                    if ( time[1] != null && time[2] != null ) {
+                    if ( time!=null && time[1] != null && time[2] != null ) {
                         var anchor = doc.createElement( "a" );
                         anchor.href = "#logo";
                         anchor.title = "TOP";
