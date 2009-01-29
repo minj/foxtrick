@@ -35,7 +35,7 @@ var FoxtrickShortcutsStatistics = {
                 var img1 = doc.createElement('img');
                 img1.setAttribute( "class", "scLive");
                 img1.src = "/Img/Icons/transparent.gif";
-                img1.setAttribute("style","background-image: url('http://famfamfam.com/lab/icons/silk/icons/chart_bar.png') !important;");
+                img1.setAttribute("style","background-image: url('chrome://foxtrick/content/resources/linkicons/chart_bar.png') !important;");
                 img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                 link.appendChild(img1);
