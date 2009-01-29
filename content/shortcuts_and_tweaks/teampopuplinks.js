@@ -31,6 +31,7 @@ var FoxtrickTeamPopupLinks = {
                         return;
                 var sUrl = Foxtrick.getHref( doc );
 				
+				this.forumuserlink=false;
                 var redir_from_forum=false;
 				if (sUrl.search(/Forum\/Default/i) != -1) return;
                 if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; //  ***remove return to get popups on forum activated***  also use new 'zaw' bellow
