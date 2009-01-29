@@ -2,7 +2,7 @@
  * forumadddefaultfacecard.js
  * Foxtrick Add default faceCard module
  * @author larsw84
- */
+ */ 
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickAddDefaultFaceCard = {
@@ -18,7 +18,7 @@ var FoxtrickAddDefaultFaceCard = {
 
     run : function( page, doc ) {
 		if(!Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar)) {
-			var elems = doc.getElementsById('mainBody').getElementsByTagName("div");
+			var elems = doc.getElementById('mainBody').getElementsByTagName("div");
 			for(var i=0; i < elems.length; i++) {
 				if(elems[i].className=="cfUser") {
 					var firstDiv = elems[i].getElementsByTagName("div")[0];
