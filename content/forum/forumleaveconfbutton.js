@@ -113,16 +113,24 @@ var FoxtrickAddLeaveConfButton = {
 	
 	addButton : function( doc, divId, folderHeader, foldersCounter ) {
 		try {
+            // if (doc == null) return;
             var a = folderHeader.getElementsByTagName("a");
+            if (a == null || a[0].lastChild == null || a[0].lastChild.data == null || a[0].innerHTML == null) return;
+            // dump('=> anchors: ' + a.length +'\n');
+            //  dump('=> a[0]: ' + a[0].innerHTML +'\n');
+            
             var confName = Foxtrick.trim( a[0].lastChild.data );
+            // dump('=> confName: ' + confName +'\n');
+            
             var leaveConf = doc.createElement("div");
             leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
+            //  dump('=>counter: ' + foldersCounter +'\n');
             leaveConf.setAttribute("class","foxtrick" +	"LeaveConf float_right");
             leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
-            leaveConf.setAttribute("onClick","alert( \"" +	Foxtrickl10n.getString(
-                'leave_conf_button_alert')	+ "\" ); window.open(\"/MyHattrick/"
+            leaveConf.setAttribute("onClick","if (confirm( \"" +	Foxtrickl10n.getString(
+                'leave_conf_button_alert')	+ "\" )) {window.open(\"/MyHattrick/"
                 + "Preferences/ForumSettings.aspx?LeaveConf=" + confName
-                + "\",\"_self\");");
+                + "\",\"_self\");} else return false;");
             var markAsReadButton = folderHeader.childNodes[0];
             folderHeader.insertBefore( leaveConf, markAsReadButton);
         } 
