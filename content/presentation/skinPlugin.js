@@ -39,24 +39,27 @@ var FoxtrickSkinPlugin = {
                 }
 
                 /*OLD MEDALS SCRIPT*/
-                var sidebar = doc.getElementById('sidebar');
-                if( sidebar ) {
-                    var images = sidebar.getElementsByTagName('img');
-                    for(var i = 0; i < images.length; i++) {
-                        var img = images[i];
-                        var imgSrc = img.src;
-                        var customMedals = "oldhtmedals";
-                        var oldString = "Trophy";
-                        var newString = "chrome://foxtrick/content/resources/img/"
-                            + "custommedals/" + customMedals + "/";
-                        if(imgSrc.search(oldString) != -1) {
-                            var startPos = imgSrc.lastIndexOf("=") + 1;
-                            imgSrc = imgSrc.substr(startPos);
-                            imgSrc = imgSrc.replace("png","gif");
-                            img.src = newString + imgSrc;
-                        }
-                    } //images
-                } //sidebar
+                if (FoxtrickPrefs.getBool("module.CustomMedals.enabled")){                    
+                    var sidebar = doc.getElementById('sidebar');
+                    if( sidebar ) {
+                        var images = sidebar.getElementsByTagName('img');
+                        for(var i = 0; i < images.length; i++) {
+                            dump(' => MEDAL ' + images[i].src + '\n');
+                            var img = images[i];
+                            var imgSrc = img.src;
+                            var customMedals = "oldhtmedals";
+                            var oldString = "Trophy";
+                            var newString = "chrome://foxtrick/content/resources/img/"
+                                + "custommedals/" + customMedals + "/";
+                            if(imgSrc.search(oldString) != -1) {
+                                var startPos = imgSrc.lastIndexOf("=") + 1;
+                                imgSrc = imgSrc.substr(startPos);
+                                imgSrc = imgSrc.replace("png","gif");
+                                img.src = newString + imgSrc;
+                            }
+                        } //images
+                    } //sidebar
+                } //old medals
                 /*END*/
             }//module enabled
             
