@@ -21,10 +21,10 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
-                   em:version="0.4.4"
+                   em:version="0.4.4.1"
                    em:description="A set of presentation enhancements for hattrick.org"
                    em:creator="Karel Kolman"
-                   em:homepageURL="http://foxtrick.px.cz/"
+                   em:homepageURL="http://ht-foxtrick.com/"
                    em:iconURL="chrome://foxtrick/skin/foxtrick.png"
                    em:optionsURL="chrome://foxtrick/content/preferences-dialog.xul"
                    em:updateURL="https://www.mozdev.org/p/updates/foxtrick/{9d1f059c-cada-4111-9696-41a62d64e3ba}/update.rdf">
@@ -36,15 +36,33 @@
     <em:developer>Karel Kolman [kolmis]</em:developer>
 	<em:developer>Mod-PaV</em:developer>
 	<em:developer>larsw84</em:developer>
-	<em:developer>bummerland</em:developer>
+	<em:developer>spambot</em:developer>
+    <em:developer>bummerland</em:developer>
 	<em:developer>taised</em:developer>
 	<em:developer>smates</em:developer>
-    <!-- contributor list -->
-    <em:contributor>spambot</em:contributor>
     <!-- translator list -->
-    <em:contributor>gucan (Cesky)</em:contributor>
-	<em:contributor>spambot (Deutsch)</em:contributor>
-	<em:contributor>franory (Espanol)</em:contributor>
-	<em:contributor>ljushaff (Srpski)</em:contributor>
+	<em:contributor>Bosnian: LA-Masterix</em:contributor>
+	<em:contributor>Catalan: carlesmu</em:contributor>
+	<em:contributor>Cesky: gucan</em:contributor>
+	<em:contributor>Dansk: 05erth, LasseSvendsen</em:contributor>
+	<em:contributor>Deutsch: spambot</em:contributor>
+    <em:contributor>Dutch: eekels</em:contributor>
+	<em:contributor>Ellinika: GTTWINS</em:contributor>
+	<em:contributor>Espanol: franory</em:contributor>
+	<em:contributor>Espanol, Centroamericano: baler0</em:contributor>
+	<em:contributor>Espanol, Galego: Piper_101</em:contributor>
+	<em:contributor>Français: stephan57</em:contributor>
+	<em:contributor>Frysk: LA-Foppe</em:contributor>
+	<em:contributor>Italiano: caracca</em:contributor>
+	<em:contributor>Lithuanian: Mod-summercloud</em:contributor>
+	<em:contributor>Polski: Homzik</em:contributor>
+	<em:contributor>Portugues: _recluso_</em:contributor>
+	<em:contributor>Portugues, Brasil: MarceloFBrandao</em:contributor>
+	<em:contributor>Russian: _KOHb_</em:contributor>
+	<em:contributor>Slovak: JAM3SoN</em:contributor>
+	<em:contributor>Srpski: ljushaff</em:contributor>
+	<em:contributor>Suomi: Pyntsa, Leachey</em:contributor>
+	<em:contributor>Svenska: Nanouk_HT33</em:contributor>
+	<em:contributor>Ukrainian: Grif_07</em:contributor>
   </RDF:Description>
 </RDF:RDF>
