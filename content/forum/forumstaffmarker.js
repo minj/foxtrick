@@ -187,17 +187,12 @@ var FoxtrickForumStaffMarker = {
     _MarkAliases_thread : function () {
         try {
             doc = this._DOC;
-            userDivs = doc.evaluate(
-		    	    "//div[@class='cfHeader']",
-		    	    doc,
-		    	    null,
-		    	    Components.interfaces.nsIDOMXPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
-		    	    null);
+            userDivs = getElementsByClass("cfHeader", doc);
 
-            // dump('forumViewThread => Alias\n');
+            //dump('forumViewThread => Alias\n');
 
-            for (i=0; i< userDivs.snapshotLength; i++){
-                var user = userDivs.snapshotItem(i);
+            for (i=0; i< userDivs.length; i++){
+                var user = userDivs[i];
                 var as = user.getElementsByTagName('a');
                 for (var j=0; j<as.length; j++) {
                     var a = as[j];
