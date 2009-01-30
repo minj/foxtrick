@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hattrickcountries>
+    <country id="128" name="Al Iraq" />
+	<country id="127" name="Al Kuwayt" />
+	<country id="77" name="Al Maghrib" />
+	<country id="106" name="Al Urdun" />
+
+	<country id="133" name="Al Yaman" />
+	<country id="118" name="Algérie" />
+	<country id="105" name="Andorra" />
+	<country id="130" name="Angola" />
+	<country id="7" name="Argentina" />
+	<country id="129" name="Az?rbaycan" />
+
+	<country id="123" name="Bahrain" />
+	<country id="132" name="Bangladesh" />
+	<country id="124" name="Barbados" />
+	<country id="91" name="Belarus" />
+	<country id="44" name="België" />
+	<country id="139" name="Benin" />
+
+	<country id="74" name="Bolivia" />
+	<country id="69" name="Bosna i Hercegovina" />
+	<country id="16" name="Brasil" />
+	<country id="136" name="Brunei" />
+	<country id="62" name="Bulgaria" />
+	<country id="125" name="Cabo Verde" />
+
+	<country id="17" name="Canada" />
+	<country id="52" name="Ceská republika" />
+	<country id="18" name="Chile" />
+	<country id="34" name="China" />
+	<country id="60" name="Chinese Taipei" />
+	<country id="19" name="Colombia" />
+
+	<country id="81" name="Costa Rica" />
+	<country id="126" name="Côte d’Ivoire" />
+	<country id="131" name="Crna Gora" />
+	<country id="61" name="Cymru" />
+	<country id="89" name="Cyprus" />
+	<country id="11" name="Danmark" />
+
+	<country id="141" name="Dawlat Qatar" />
+	<country id="3" name="Deutschland" />
+	<country id="144" name="Dhivehi Raajje" />
+	<country id="73" name="Ecuador" />
+	<country id="56" name="Eesti" />
+	<country id="100" name="El Salvador" />
+
+	<country id="2" name="England" />
+	<country id="36" name="España" />
+	<country id="76" name="Føroyar" />
+	<country id="5" name="France" />
+	<country id="137" name="Ghana" />
+	<country id="107" name="Guatemala" />
+
+	<country id="30" name="Hanguk" />
+	<country id="122" name="Hayastan" />
+	<country id="50" name="Hellas" />
+	<country id="99" name="Honduras" />
+	<country id="59" name="Hong Kong" />
+	<country id="58" name="Hrvatska" />
+
+	<country id="20" name="India" />
+	<country id="54" name="Indonesia" />
+	<country id="85" name="Iran" />
+	<country id="21" name="Ireland" />
+	<country id="38" name="Ísland" />
+	<country id="63" name="Israel" />
+
+	<country id="4" name="Italia" />
+	<country id="94" name="Jamaica" />
+	<country id="138" name="Kampuchea" />
+	<country id="112" name="Kazakhstan" />
+	<country id="95" name="Kenya" />
+	<country id="102" name="Kyrgyzstan" />
+
+	<country id="53" name="Latvija" />
+	<country id="84" name="Lëtzebuerg" />
+	<country id="117" name="Liechtenstein" />
+	<country id="66" name="Lietuva" />
+	<country id="120" name="Lubnan" />
+	<country id="51" name="Magyarország" />
+
+	<country id="97" name="Makedonija" />
+	<country id="45" name="Malaysia" />
+	<country id="101" name="Malta" />
+	<country id="6" name="México" />
+	<country id="33" name="Misr" />
+	<country id="135" name="Moçambique" />
+
+	<country id="103" name="Moldova" />
+	<country id="119" name="Mongol Uls" />
+	<country id="14" name="Nederland" />
+	<country id="111" name="Nicaragua" />
+	<country id="75" name="Nigeria" />
+	<country id="22" name="Nippon" />
+
+	<country id="9" name="Norge" />
+	<country id="93" name="Northern Ireland" />
+	<country id="15" name="Oceania" />
+	<country id="134" name="Oman" />
+	<country id="39" name="Österreich" />
+	<country id="71" name="Pakistan" />
+
+	<country id="96" name="Panamá" />
+	<country id="72" name="Paraguay" />
+	<country id="23" name="Perú" />
+	<country id="55" name="Philippines" />
+	<country id="24" name="Polska" />
+	<country id="25" name="Portugal" />
+
+	<country id="31" name="Prathet Thai" />
+	<country id="88" name="Republica Dominicana" />
+	<country id="37" name="România" />
+	<country id="35" name="Rossiya" />
+	<country id="104" name="Sakartvelo" />
+	<country id="79" name="Saudi Arabia" />
+
+	<country id="46" name="Schweiz" />
+	<country id="26" name="Scotland" />
+	<country id="121" name="Sénégal" />
+	<country id="98" name="Shqiperia" />
+	<country id="47" name="Singapore" />
+	<country id="64" name="Slovenija" />
+
+	<country id="67" name="Slovensko" />
+	<country id="27" name="South Africa" />
+	<country id="57" name="Srbija" />
+	<country id="12" name="Suomi" />
+	<country id="113" name="Suriname" />
+	<country id="140" name="Suriyah" />
+
+	<country id="1" name="Sverige" />
+	<country id="142" name="Tanzania" />
+	<country id="80" name="Tounes" />
+	<country id="110" name="Trinidad &amp; Tobago" />
+	<country id="32" name="Türkiye" />
+
+	<country id="143" name="Uganda" />
+	<country id="68" name="Ukraina" />
+	<country id="83" name="United Arab Emirates" />
+	<country id="28" name="Uruguay" />
+	<country id="8" name="USA" />
+	<country id="29" name="Venezuela" />
+
+	<country id="70" name="Vietnam" />
+</hattrickcountries>
