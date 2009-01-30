@@ -19,9 +19,10 @@ var FoxtrickEconomyDifference = {
 		// localize this
         
         var DIFF_OPTION = FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value");
+        var DIFF_OPTION_STR = new Array(Foxtrickl10n.getString("foxtrick.TwoWeekBalance.plus.desc"),Foxtrickl10n.getString("foxtrick.TwoWeekBalance.minus.desc"));
         if (DIFF_OPTION == null) DIFF_OPTION = 0;
 		const STR_S_TABLE_NAME = Foxtrickl10n.getString(
-			"foxtrick.tweaks.twoweekbalance") + '&nbsp;(' + this.RADIO_OPTIONS[DIFF_OPTION] + ')';
+			"foxtrick.tweaks.twoweekbalance") + '&nbsp;(' + DIFF_OPTION_STR[DIFF_OPTION] + ')';
 		var cs= FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
             
 		/*var tableLast = doc.getElementsByTagName("table")[2];
