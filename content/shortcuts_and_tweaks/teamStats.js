@@ -7,8 +7,8 @@
 var FTTeamStats= {
     
     MODULE_NAME : "FTTeamStats",
-        MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-        DEFAULT_ENABLED : true,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    DEFAULT_ENABLED : true,
 
     init : function() {
             Foxtrick.registerPageHandler( 'players',
@@ -167,23 +167,26 @@ var FTTeamStats= {
             var allDivs2 = doc.getElementsByTagName( "p" );
             for( var i = 0; i < allDivs2.length; i++ ) {
                 
-                if( allDivs2[i].textContent.match(/\:/g) ) {
-                    var ctrc = allDivs2[i];
+                if( allDivs2[i].innerHTML.indexOf('TeamID=', 0) != -1 ) {
+                    var ctrc = allDivs2[i].innerHTML;
+                    // dump('    ['+ctrc + ']\n');
                     if(ctrc) {
                         // specialities
-                        var ctrMatch = ctrc.textContent.match(/\(\D+\)/g);
-                        dump(' ==>' + ctrMatch+'\n');
+                        var ctrMatch = this._checkCountry( ctrc );
+                        
+                        // dump(' ==>' + ctrMatch+'\n');
                         if (ctrMatch != null) {
-                            dump(' == ==>' + ctrMatch+'\n');
-                            var land = substr(ctrMatch[0], 0, ctrMatch[0].length);
-                            if (typeof(countries[land]) == 'undefined') {
-                                countries[land] = 1;
+                            // dump(' == ==>' + ctrMatch + '\n');
+                            if (typeof(countries[ctrMatch]) == 'undefined') {
+                                countries[ctrMatch] = 1;
                                 found = true;
                             } else {
-                                countries[land]++;
+                                countries[ctrMatch]++;
                             }
                         }
                     }
+                } else {
+                    // dump('    ['+allDivs2[i].innerHTML + ']\n');                
                 }
             }
             
@@ -200,7 +203,7 @@ var FTTeamStats= {
                     countriesTable += "<tr><td class=\"\">" + landarray[i].land.replace(/\(|\)/g,"") + "</td><td>" + landarray[i].value + "</td></tr>";
                 }
                 specsTable += countriesTable;            
-                 dump(countries);
+                // dump(countries);
             }
             
         }
@@ -229,7 +232,150 @@ var FTTeamStats= {
 		if (txt !="") boxrightt.innerHTML = contentDiv + NovaVar;
         },
         
+        _checkCountry : function ( ctrc ) {
+            if (ctrc == null ) return;
+            ctrc = substr(ctrc, strrpos( ctrc, "</a>")+4, ctrc.lebgth);
+            // dump('=> stripped => ' + ctrc + '\n');
+            var found = -1;
+            for (var i = 0; i < this.COUNTRYLIST.length; i++) {
+                if (strrpos( ctrc, this.COUNTRYLIST[i]) > 0 ) {
+                    found = i;
+                    break;
+                }
+            }
+            if ( found != -1) {
+                return this.COUNTRYLIST[found];
+            }
+            return false;
+        },
+        
         change : function( page, doc ) {
         
-        }
+        },
+
+        COUNTRYLIST : new Array (
+        "Al Iraq",
+        "Al Kuwayt",
+        "Al Maghrib",
+        "Al Urdun",
+        "Al Yaman",
+        "Algérie",
+        "Andorra",
+        "Angola",
+        "Argentina",
+        "Az?rbaycan",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "België",
+        "Benin",
+        "Bolivia",
+        "Bosna i Hercegovina",
+        "Brasil",
+        "Brunei",
+        "Bulgaria",
+        "Cabo Verde",
+        "Canada",
+        "Ceská republika",
+        "Chile",
+        "China",
+        "Chinese Taipei",
+        "Colombia",
+        "Costa Rica",
+        "Côte d’Ivoire",
+        "Crna Gora",
+        "Cymru",
+        "Cyprus",
+        "Danmark",
+        "Dawlat Qatar",
+        "Deutschland",
+        "Dhivehi Raajje",
+        "Ecuador",
+        "Eesti",
+        "El Salvador",
+        "England",
+        "España",
+        "Føroyar",
+        "France",
+        "Ghana",
+        "Guatemala",
+        "Hanguk",
+        "Hayastan",
+        "Hellas",
+        "Honduras",
+        "Hong Kong",
+        "Hrvatska",
+        "India",
+        "Indonesia",
+        "Iran",
+        "Ireland",
+        "Ísland",
+        "Israel",
+        "Italia",
+        "Jamaica",
+        "Kampuchea",
+        "Kazakhstan",
+        "Kenya",
+        "Kyrgyzstan",
+        "Latvija",
+        "Lëtzebuerg",
+        "Liechtenstein",
+        "Lietuva",
+        "Lubnan",
+        "Magyarország",
+        "Makedonija",
+        "Malaysia",
+        "Malta",
+        "México",
+        "Misr",
+        "Moçambique",
+        "Moldova",
+        "Mongol Uls",
+        "Nederland",
+        "Nicaragua",
+        "Nigeria",
+        "Nippon",
+        "Norge",
+        "Northern Ireland",
+        "Oceania",
+        "Oman",
+        "Österreich",
+        "Pakistan",
+        "Panamá",
+        "Paraguay",
+        "Perú",
+        "Philippines",
+        "Polska",
+        "Portugal",
+        "Prathet Thai",
+        "Republica Dominicana",
+        "România",
+        "Rossiya",
+        "Sakartvelo",
+        "Saudi Arabia",
+        "Schweiz",
+        "Scotland",
+        "Sénégal",
+        "Shqiperia",
+        "Singapore",
+        "Slovenija",
+        "Slovensko",
+        "South Africa",
+        "Srbija",
+        "Suomi",
+        "Suriname",
+        "Suriyah",
+        "Sverige",
+        "Tanzania",
+        "Tounes",
+        "Trinidad &amp; Tobago",
+        "Türkiye",
+        "Uganda",
+        "Ukraina",
+        "United Arab Emirates",
+        "Uruguay",
+        "USA",
+        "Venezuela",
+        "Vietnam")            
 };
