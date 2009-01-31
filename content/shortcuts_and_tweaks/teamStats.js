@@ -234,8 +234,8 @@ var FTTeamStats= {
         
         _checkCountry : function ( ctrc ) {
             if (ctrc == null ) return;
-            ctrc = substr(ctrc, strrpos( ctrc, "</a>")+4, ctrc.lebgth);
-            // dump('=> stripped => ' + ctrc + '\n');
+            ctrc = Foxtrick._to_utf8(substr(ctrc, strrpos( ctrc, "</a>")+4, ctrc.lebgth));
+            dump('=> stripped => ' + ctrc + '\n');
             var found = -1;
             for (var i = 0; i < this.COUNTRYLIST.length; i++) {
                 if (strrpos( ctrc, this.COUNTRYLIST[i]) > 0 ) {
@@ -244,8 +244,9 @@ var FTTeamStats= {
                 }
             }
             if ( found != -1) {
-                return this.COUNTRYLIST[found];
+                return Foxtrick._from_utf8(this.COUNTRYLIST[found]);
             }
+            dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
             return false;
         },
         
@@ -259,16 +260,16 @@ var FTTeamStats= {
         "Al Maghrib",
         "Al Urdun",
         "Al Yaman",
-        "AlgÈrie",
+        "Alg√©rie",
         "Andorra",
         "Angola",
         "Argentina",
-        "Az?rbaycan",
+        "Az…ôrbaycan",
         "Bahrain",
         "Bangladesh",
         "Barbados",
         "Belarus",
-        "BelgiÎ",
+        "Belgi√´",
         "Benin",
         "Bolivia",
         "Bosna i Hercegovina",
@@ -277,13 +278,13 @@ var FTTeamStats= {
         "Bulgaria",
         "Cabo Verde",
         "Canada",
-        "Cesk· republika",
+        "ƒåesk√° republika",
         "Chile",
         "China",
         "Chinese Taipei",
         "Colombia",
         "Costa Rica",
-        "CÙte díIvoire",
+        "C√¥te d‚ÄôIvoire",
         "Crna Gora",
         "Cymru",
         "Cyprus",
@@ -295,8 +296,8 @@ var FTTeamStats= {
         "Eesti",
         "El Salvador",
         "England",
-        "EspaÒa",
-        "F¯royar",
+        "Espa√±a",
+        "F√∏royar",
         "France",
         "Ghana",
         "Guatemala",
@@ -310,7 +311,7 @@ var FTTeamStats= {
         "Indonesia",
         "Iran",
         "Ireland",
-        "Õsland",
+        "√çsland",
         "Israel",
         "Italia",
         "Jamaica",
@@ -319,17 +320,17 @@ var FTTeamStats= {
         "Kenya",
         "Kyrgyzstan",
         "Latvija",
-        "LÎtzebuerg",
+        "L√´tzebuerg",
         "Liechtenstein",
         "Lietuva",
         "Lubnan",
-        "Magyarorsz·g",
+        "Magyarorsz√°g",
         "Makedonija",
         "Malaysia",
         "Malta",
-        "MÈxico",
+        "M√©xico",
         "Misr",
-        "MoÁambique",
+        "Mo√ßambique",
         "Moldova",
         "Mongol Uls",
         "Nederland",
@@ -340,23 +341,23 @@ var FTTeamStats= {
         "Northern Ireland",
         "Oceania",
         "Oman",
-        "÷sterreich",
+        "√ñsterreich",
         "Pakistan",
-        "Panam·",
+        "Panam√°",
         "Paraguay",
-        "Per˙",
+        "Per√∫",
         "Philippines",
         "Polska",
         "Portugal",
         "Prathet Thai",
         "Republica Dominicana",
-        "Rom‚nia",
+        "Rom√¢nia",
         "Rossiya",
         "Sakartvelo",
         "Saudi Arabia",
         "Schweiz",
         "Scotland",
-        "SÈnÈgal",
+        "S√©n√©gal",
         "Shqiperia",
         "Singapore",
         "Slovenija",
@@ -370,7 +371,7 @@ var FTTeamStats= {
         "Tanzania",
         "Tounes",
         "Trinidad &amp; Tobago",
-        "T¸rkiye",
+        "T√ºrkiye",
         "Uganda",
         "Ukraina",
         "United Arab Emirates",
