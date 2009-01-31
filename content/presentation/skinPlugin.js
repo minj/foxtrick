@@ -32,6 +32,18 @@ var FoxtrickSkinPlugin = {
                 }
             }
             
+			// unload on login page
+			var loginpage=new RegExp(FoxtrickPrefs.getString("HTURL")+'\/$');
+			if (doc.location.href.search(loginpage)!=-1) { dump('login\n');
+				try {sss.unregisterSheet(uri, sss.USER_SHEET);}
+				catch(e){}
+				return;
+			}
+			// only load on myht
+			if (doc.location.href.search(/\/MyHattrick\/$|Default.aspx\?authCode/)==-1) { dump('in\n');
+				return;
+			}
+			
             if (FoxtrickPrefs.getBool("module.SkinPlugin.enabled")){
                 
                 if(!sss.sheetRegistered(uri, sss.USER_SHEET)){
