@@ -34,7 +34,7 @@ var FoxtrickSkinPlugin = {
             
 			// unload on login page
 			var loginpage=new RegExp(FoxtrickPrefs.getString("HTURL")+'\/$');
-			if (doc.location.href.search(loginpage)!=-1) { dump('login\n');
+			if (doc.location.href.search(loginpage)!=-1) { 
 				try {sss.unregisterSheet(uri, sss.USER_SHEET);}
 				catch(e){}
 				return;

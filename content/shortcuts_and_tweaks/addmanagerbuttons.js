@@ -42,19 +42,19 @@ var FoxtrickAddManagerButtons = {
 	change : function( page, doc ) {
         try {
             switch( page ) {
-                case 'managerPage':
+                case 'managerPage': 
                     var newBoxId = "foxtrick_actions_box";
-                    if( !Foxtrick.hasElement( newBoxId ) ) {
+                    if( !Foxtrick.hasElement( doc, newBoxId ) ) {
                         this.addActionsBox( doc );
                     }
                     break;
                 case 'youthoverview':
                     var newBoxId = "foxtrick_actions_box";
-                    if( !Foxtrick.hasElement( newBoxId ) ) {
+                    if( !Foxtrick.hasElement( doc, newBoxId ) ) {
                         this.addActionsBox( doc );
                     }
                     break;
-                case 'teamPage':
+                case 'teamPage': 
                     var divMessage = doc.getElementById(
                         'ctl00_CPSidebar_ucVisitorActions_pnlMessage');
                     if( !divMessage ) {
@@ -64,7 +64,7 @@ var FoxtrickAddManagerButtons = {
             }
         } 
         catch (e) {
-            dump('  Redirection on Manager Page?\n');
+            dump('AddManagerButtons:  Redirection on Manager Page?\n');
             dump('  ' + e + '\n');
         } 
 	},
