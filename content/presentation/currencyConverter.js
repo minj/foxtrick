@@ -13,7 +13,7 @@ FoxtrickCurrencyConverter = {
     },
 
     run : function(page, doc) {
-	if (doc.location.href.search(/Forum/i) != -1) return;                
+	if ( doc.location.href.search(/Forum/i) != -1 || doc.location.href.search(/\/Club\/ClassicYouth\/Default\.aspx/i) != -1 ) return;                
     
     /*CURRENCY TYPE AND RATE*/
   
