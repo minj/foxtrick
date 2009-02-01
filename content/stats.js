@@ -1267,7 +1267,7 @@ stats["htlinks_economists"] =  {
                        },
         
         "title" : "HT-Links.de Economist Checker",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_lupe.png"
 };    
 
 stats["htlinks_trainingspeedchecker"] =  { 
@@ -1279,7 +1279,7 @@ stats["htlinks_trainingspeedchecker"] =  {
                        },
         
         "title" : "HT-Links.de TrainingSpeedChecker",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_lupe.png"
 };    
 
 stats["htlinks_Goalkeeper_Checker"] =  { 
@@ -1298,16 +1298,16 @@ stats["htlinks_Goalkeeper_Checker"] =  {
 stats["htlinks_ti_schrauber"] =  { 
         "url" : "http://www.ht-links.de/Hattrick/TISchrauber.html",
 
-        "keeperlink" : { "path"       : "",
+        "traininglink" : { "path"       : "",
                          "filters"    : ["countryid"], 
                          "params"     : { "tsi" : "TSI"}
                        },
          "countryidranges" : [[3, 3]], 
         "title" : "www.ht-links.de - TISchrauber",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_small.png"
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };
 
-  // CHPP approval unclear
+  
 stats["skillraise"] =  { 
         "url" : "http://www.htdaytrading.com/",
 
