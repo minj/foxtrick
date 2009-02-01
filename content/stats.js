@@ -811,11 +811,11 @@ stats["playitcool"] =  {
 
 // ht-tools 
 stats["ekonomer"] =  { 
-        "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.html",
+        "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.asp",
 
         "economylink" : { "path"       : "",
                          "filters"    : ["owncountryid"], 
-                         "params"     : {"Cash" : "Cash"} 
+                         "params"     : {"Cash" : "resultat","kassa":"kassa"} 
                        },
 		"owncountryidranges" : [[1, 1]], 
         "title" : "Ekonomkalkylatorn",   
@@ -1197,6 +1197,19 @@ stats["healingkawasaki"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/redcross_small.png"
 };
 
+stats["healingkawasaki2"] =  { 
+        "url" : "http://club.hattrick.org/KawasakiTigers/default.asp?site=http://av2.hattricknippon.org",
+
+        "playerhealinglink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : { }
+                       },
+        
+        "title" : "Kawasaki Tigers Injury Healing Time Prediction Tool 2",
+        "img" : "chrome://foxtrick/content/resources/linkicons/redcross_small.png"
+};
+
+
 stats["hottrickkeeper"] =  { 
         "url" : "http://www.hottrick.org/",
 
@@ -1263,7 +1276,16 @@ stats["htlinks_economists"] =  {
 
         "economylink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : {"Cash" : "Cash","Currency":"Currency"}
+                         //"params"     : {"Cash" : "Cash","Currency":"Currency"}
+						 "paramfunction" : function(params) {
+							var Cash=params["Cash"];
+							var CurrCode=params["Currency"];
+                            if (CurrCode!="EUR" && CurrCode!="CHF"){
+								Cash=Math.round(Cash*FoxtrickPrefs.getString("currencyRate"));
+								CurrCode="EUR";
+							}
+                            return "?Cash=" + Cash + "&Currency=" + CurrCode;                                                        
+						 } 
                        },
         
         "title" : "HT-Links.de Economist Checker",
