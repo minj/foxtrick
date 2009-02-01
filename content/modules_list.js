@@ -83,4 +83,5 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
                      FoxtrickGuestbookAlltidFlags,
                      FoxtrickCurrencyConverter,  
                      FoxtrickTickerColoring,
+					 FoxtrickCopyMatchID,
 					];
