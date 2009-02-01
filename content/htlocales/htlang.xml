@@ -707,7 +707,7 @@
         
     </language>
 
-    <language name="ca_ES" desc="Català">
+    <language name="ca" desc="Català">
         <ratingSubLevels>
             <sublevel text="molt baix" value="0.0" />
             <sublevel text="baix" value="0.25"  />
