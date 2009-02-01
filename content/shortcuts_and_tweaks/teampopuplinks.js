@@ -94,6 +94,7 @@ var FoxtrickTeamPopupLinks = {
                 for (var i=0; i<aLinks.length; i++) {
 						
 						if (aLinks[i].href.search(/ft_popuplink=true/i)!=-1) continue;  // don't add to own popup links
+						if (aLinks[i].innerHTML.search(/^<img/i)!=-1) continue;  // don't add to buttons
 
 						var myforumuserlink = aLinks[i].href.search(/Club\/Manager\/\?UserID=/i)!=-1 
 															&& aLinks[i].parentNode.id.search(/foxtrick_alltidspan/i)==-1

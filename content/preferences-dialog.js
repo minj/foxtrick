@@ -989,6 +989,7 @@ FoxtrickPreferencesDialog.LoadPrefs = function () {
 			} while (cont);
 
 			fis.close();
+			FoxtrickMain.init();            
 			close();
 		}
 		catch (e) {
