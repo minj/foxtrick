@@ -160,7 +160,7 @@ var FTTeamStats= {
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
         if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
                 
-        if ( true ) {
+        if ( NT_players < 1 ) {
 		// Early test of country counter. Works, but has no finished design
             var countries = {};
             var found = false;
