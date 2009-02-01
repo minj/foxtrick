@@ -20,7 +20,11 @@ var FTTeamStats= {
 		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
 		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 	
-		var NT_players = doc.location.href.indexOf("NTPlayers");
+		var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
+        var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
+        var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
+        
+        
 		var total_NT = 0;
 		
         var specs = {};
@@ -31,7 +35,7 @@ var FTTeamStats= {
 				
 				//JB: If is National team page counts Total TSI
 				var specc = allDivs2[i];
-				if (NT_players > 1) {
+				if (!Youth_players) {
 					try {
 	
 						var tsipos1 = parseInt(specc.textContent.indexOf("TSI = ") + 6);				
@@ -85,7 +89,7 @@ var FTTeamStats= {
 		}
 		
 		//If NT displays Total TSI
-        if (NT_players > 1) specsTable += "<tr><td class=\"ch\">TOTAL TSI</td><td>" + addSpace(total_NT) + "</td></tr>";
+        if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">TOTAL TSI</td><td>" + addSpace(total_NT) + "</td></tr>";
 
 		
         for (var spec in specs) {
@@ -160,7 +164,7 @@ var FTTeamStats= {
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
         if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
                 
-        if ( NT_players < 1 ) {
+        if ( !NT_players ) {
 		// Early test of country counter. Works, but has no finished design
             var countries = {};
             var found = false;
