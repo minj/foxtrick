@@ -286,12 +286,15 @@ var FoxtrickPreferencesDialog = {
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
 
-		// CleanupBranch
+		// changin all prefs
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCleanupBranch"));
 		groupbox.appendChild(caption);
+				
+		// CleanupBranch
 		var hbox= doc.createElement("hbox");
+		groupbox.appendChild(hbox);		
 		var button= doc.createElement("button");
 		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonCleanupBranch"));
 		button.setAttribute('id',"buttonCleanupBranch");
@@ -300,7 +303,19 @@ var FoxtrickPreferencesDialog = {
 		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch") );
 		desc_box.setAttribute("flex","1");
 		hbox.appendChild(desc_box);
-		groupbox.appendChild(hbox);
+		modules_list.appendChild(groupbox);
+		
+		// disable all
+		var hbox3= doc.createElement("hbox");
+		groupbox.appendChild(hbox3);
+		var button3= doc.createElement("button");
+		button3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonDisableAll"));
+		button3.setAttribute('id',"buttonDiableAll");
+		button3.setAttribute('oncommand',"FoxtrickPreferencesDialog.disableAll();");
+		hbox3.appendChild(button3);
+		var desc_box3 = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll") );
+		desc_box3.setAttribute("flex","1");
+		hbox3.appendChild(desc_box3);
 		modules_list.appendChild(groupbox);
 
 		// LoadSavePrefs
@@ -878,13 +893,33 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
 					FoxtrickPrefs.deleteValue(array[i]);
 				}
 			}
-            close();
+			close();
         }
         catch (e) {
 			dump(e);
         }
     }
     return true;
+}
+
+
+FoxtrickPreferencesDialog.disableAll = function ( ) {
+    if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
+        try {
+			var array = FoxtrickPrefs._getElemNames("");
+			for(var i = 0; i < array.length; i++) {
+				if( array[i].search( /enabled$/ ) != -1) {
+						FoxtrickPrefs.setBool( array[i], false );
+				}
+			}
+			FoxtrickMain.init();
+            close();
+        }
+        catch (e) {
+			dump(e);
+        }
+    } 
+	return true;
 }
 
 FoxtrickPreferencesDialog.SavePrefs = function () {
