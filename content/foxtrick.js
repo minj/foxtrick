@@ -35,30 +35,30 @@ var FoxtrickMain = {
         }
 		
 		// create handler arrays for each recognized page
-        for ( i in Foxtrick.ht_pages ) {
-            Foxtrick.run_on_page[i] = new Array();
-        }
+		for ( i in Foxtrick.ht_pages ) {
+			Foxtrick.run_on_page[i] = new Array();
+		}
 
-        // init all modules
-        for ( i in Foxtrick.modules ) {
-            var module = Foxtrick.modules[i];
-            // if module has an init() function and is enabled
-            if ( module.MODULE_NAME
-                    && Foxtrick.isModuleEnabled( module )
-                    && module.init )
-            {
-                try {
-                    module.init();
-                    dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
-                } catch (e) {
-                    dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
-                    Components.utils.reportError(e);
-                }
-            }
-            else {
-                dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
+		// init all modules
+		for ( i in Foxtrick.modules ) {
+			var module = Foxtrick.modules[i];
+			// if module has an init() function and is enabled
+			if ( module.MODULE_NAME
+                   && Foxtrick.isModuleEnabled( module )
+                   && module.init )
+			{
+				try {
+					module.init();
+					dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
+				} catch (e) {
+					dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
+					Components.utils.reportError(e);
+				}
 			}
-        }
+			else {
+				dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
+			}
+		}
 
     },
    
@@ -133,9 +133,11 @@ var FoxtrickMain = {
     // main entry run on every ht page load
     run : function( doc ) {
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
+		// or temporary disable
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-		if(!( FoxtrickPrefs.getBool("disableOnStage") &&
-			Foxtrick.getHref( doc).search( stage_regexp ) > -1)) {
+		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
+			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
+			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
 	
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
@@ -172,8 +174,9 @@ var FoxtrickMain = {
 	// function run on every ht page change
 	change : function( doc ) {
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-		if(!( FoxtrickPrefs.getBool("disableOnStage") &&
-			Foxtrick.getHref( doc).search( stage_regexp ) > -1)) {
+		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
+			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
+			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
 			
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(

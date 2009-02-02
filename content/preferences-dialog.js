@@ -271,15 +271,22 @@ var FoxtrickPreferencesDialog = {
 		modules_list.appendChild(groupbox);
 
 
-		// stage
+		// disable options
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionStageSettings"));
+		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionDisableSettings"));
 		var vbox= doc.createElement("vbox");
+		// stage
 		var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.stagepref"));
 		checkbox.setAttribute('id',"stagepref");
 		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "disableOnStage" ) );
+		vbox.appendChild(checkbox);
+		// temporary
+		var checkbox= doc.createElement("checkbox");
+		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel"));
+		checkbox.setAttribute('id',"disableTemporary");
+		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "disableTemporary" ) );
 
 		vbox.appendChild(checkbox);
 		groupbox.appendChild(caption);
@@ -444,9 +451,11 @@ var FoxtrickPreferencesDialog = {
 
         //Stage
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
-        // reinitialize
+        FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
+        
+		// reinitialize
         FoxtrickMain.init();
-
+		
         return true;
     },
 
