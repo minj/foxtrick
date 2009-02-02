@@ -20,11 +20,12 @@ var FoxtrickSkillColoring = {
         // dump(this.MODULE_NAME + '\n');
 				
  		
-        skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-selectoption"];
+        skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-selectoption", "no-skill-links"];
         displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"  ), 
                           Foxtrick.isModuleFeatureEnabled( this, "only_skill_color" ), 
                           Foxtrick.isModuleFeatureEnabled( this, "skill_number" ), 
-                          Foxtrick.isModuleFeatureEnabled( this, "skill_select" ) 
+                          Foxtrick.isModuleFeatureEnabled( this, "skill_select" ),
+						  Foxtrick.isModuleFeatureEnabled( this, "no_skill_links" ),
                         ];
         for (var i = 0; i < skillstyles.length; i++) {
             // dump ('SKILLS: ' + i + ' - ' + displaystyles[i] + ' enabled.\n');
@@ -53,6 +54,7 @@ var FoxtrickSkillColoring = {
 	this.OPTIONS = new Array( "skill_color",
 								  "only_skill_color",
 								  "skill_number",
-								  "skill_select");
+								  "skill_select",
+								  "no_skill_links");
 	}
 };
