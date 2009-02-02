@@ -48,6 +48,14 @@ FoxtrickCurrencyConverter = {
 			if (pos > 0 && table_elm[i].id != "foxtrick-currency-converter"){ 
 				var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
 				var inner_raw = table_elm[i].innerHTML;
+				var bdo_br='';
+				if (doc.location.href.search(/Club\/Finances\//)!=-1) bdo_br='<br>';
+				if (inner_raw.search(/bdo dir="ltr"/)!=-1) { 
+					//bdo_br='<br>';
+				//	var style = 'style="direction:ltr !important;';
+					//if (table_elm[i].getElementsByTagName('bdo')[0].className == 'red') style += ' color:#aa0000 !important;';
+					inner_raw = table_elm[i].innerHTML.replace(/<bdo dir="ltr">/,'').replace(/<\/bdo>/,'') ;
+					}
 				res="";
 				var only_one_number = false; 
 				var first = true;
@@ -81,12 +89,12 @@ FoxtrickCurrencyConverter = {
 					if (val==0)  color="black";					// zero black
 			
 					// add left part plus converted 
-					res+=inner_raw.substr(0,pos)+' '+br+'<span class="smallText" style="font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span>'+space; 
+					res+=inner_raw.substr(0,pos)+' '+br+'<span class="smallText" style="direction:ltr !important; font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span>'+space+bdo_br; 
 					
 					// get the remains and check them in next loop
 					inner_raw = inner_raw.substring(pos);		   
 					pos= inner_raw.search(oldCurrencySymbol);	
-					first=false;		
+					first=false;	bdo_br='';	
 				} 
 				
 				table_elm[i].innerHTML = res + inner_raw;

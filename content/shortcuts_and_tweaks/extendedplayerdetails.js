@@ -116,12 +116,12 @@ FoxtrickExtendedPlayerDetails = {
                  }
              
             part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
-            part = ReturnFormatedValue (part, ' ');
+            part = ReturnFormatedValue (part, '&nbsp;');
 
             if (part != 'NaN') 
                 table_elm_bonus.innerHTML = 
                     part_1_save +'&nbsp;'+ FoxtrickPrefs.getString("oldCurrencySymbol")+
-                    '&nbsp;<span id="ft_bonuswage" style="color:#666666;>(' + 
+                    '&nbsp;<span id="ft_bonuswage" style="color:#666666; direction:ltr !important;>(' + 
                     part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
                     ')</span>&nbsp;' + 
                     part_2_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
