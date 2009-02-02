@@ -10,6 +10,7 @@ var FoxtrickTeamPopupLinks = {
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
         DEFAULT_ENABLED : true,
         OPTIONS : {},
+		bTeam : "",
 		bMatches : "",
 		bPlayers : "",
 		bLast5IPs : "",
@@ -55,9 +56,10 @@ var FoxtrickTeamPopupLinks = {
                 var style = doc.createElement("style");
                 style.setAttribute("type", "text/css");
                 //determine width of the floating box - Stephan
-                var maxwidth = Math.max(Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, 
+                var maxwidth = Math.max(Foxtrickl10n.getString( 'Team' ).length, Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, 
                                                 Foxtrickl10n.getString( 'last_5_ips' ).length, Foxtrickl10n.getString( 'Guestbook' ).length,
                                                 Foxtrickl10n.getString( 'Coach' ).length,Foxtrickl10n.getString( 'TransferHistory' ).length,Foxtrickl10n.getString( 'LastLineup').length); //Stephan
+                this.bTeam = Foxtrick.isModuleFeatureEnabled( this, "Team");
                 this.bMatches = Foxtrick.isModuleFeatureEnabled( this, "Matches");
                 this.bPlayers = Foxtrick.isModuleFeatureEnabled( this, "Players");
                 this.bLast5IPs = Foxtrick.isModuleFeatureEnabled( this, "last_5_ips");
@@ -70,6 +72,8 @@ var FoxtrickTeamPopupLinks = {
 				if (redir_from_forum )  { offset=20; if (Foxtrick.isStandardLayout(doc)) top -= 0; else top -= 20;}
 				//else if (!Foxtrick.isStandardLayout(doc)) top-=20; best position in simple varies unfortunatelly. i move it down again, so it at least i always can be used.
 				
+                if (this.bTeam && redir_from_forum)
+                        top = top - offset;
                 if (this.bMatches)
                         top = top - offset;
                 if (this.bPlayers)
@@ -161,6 +165,18 @@ var FoxtrickTeamPopupLinks = {
                                         tr1.appendChild(td1);
                                         tbl.appendChild(tr1);
                                 }*/
+								if (FoxtrickTeamPopupLinks.bTeam && forumuserlink){
+                                        var tr1 = doc.createElement("tr");
+                                        tr1.setAttribute("height", "20");
+                                        var td1 = doc.createElement("td");
+                                        var a1 = doc.createElement("a");
+                                        a1.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_team=true'+'&ft_popuplink=true');
+		                                a1.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Team' )));
+                                        td1.appendChild(a1);
+                                        tr1.appendChild(td1);
+                                        tbl.appendChild(tr1);
+                                }
+
 								if (FoxtrickTeamPopupLinks.bMatches || owntopteamlinks){
                                         var tr1 = doc.createElement("tr");
                                         tr1.setAttribute("height", "20");
@@ -269,7 +285,8 @@ var FoxtrickTeamPopupLinks = {
 },
 
         initOptions : function() {
-                this.OPTIONS = new Array( "Matches" ,
+                this.OPTIONS = new Array( "Team",
+										  "Matches" ,
                                           "Players" ,
                                           "last_5_ips" ,
                                           "Guestbook" ,
