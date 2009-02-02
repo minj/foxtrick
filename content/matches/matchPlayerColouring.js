@@ -7,8 +7,13 @@ FoxtrickMatchPlayerColouring = {
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
-	WHITE_COLOUR : "#fff",
-	BLACK_COLOUR : "#000",
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("background:#c3d9ff; color:black;", //My team
+											"background:white; color:black;", //Home
+                                            "background:black; color:white;" //Away
+											),
+	OPTIONS : new Array("My Team", "Home", "Away"),
+						
     UNKNOWN_COLOUR : "#F0F0F0",
 	
 	init : function() {
@@ -18,6 +23,30 @@ FoxtrickMatchPlayerColouring = {
     
     run : function( page, doc ) {
         
+		//Retrieve teams id
+		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
+		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
+		
+		//Retrieve colour parameters
+		if (Foxtrick.isModuleFeatureEnabled( this, "My Team")) {
+            var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "My Team_text");
+            if (!stlMyTeam) stlMyTeam = this.OPTION_TEXTS_DEFAULT_VALUES[0];
+		}
+		if (Foxtrick.isModuleFeatureEnabled( this, "Home")) {
+            var stlTeamA = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Home_text");
+            if (!stlTeamA) stlTeamA = this.OPTION_TEXTS_DEFAULT_VALUES[1];
+        }
+ 		if (Foxtrick.isModuleFeatureEnabled( this, "Away")) {
+            var stlTeamB = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Away_text");
+            if (!stlTeamB) stlTeamB = this.OPTION_TEXTS_DEFAULT_VALUES[2];
+        }
+	
+		//Replace myTeam colour
+		if (HomeTeamId == myTeamId) stlTeamA = stlMyTeam;
+		else if (AwayTeamId == myTeamId) stlTeamB = stlMyTeam;
+				
         var content_div = doc.getElementById('content');
         if (content_div == null) return;
         var teamA = "";
@@ -104,15 +133,13 @@ FoxtrickMatchPlayerColouring = {
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
                 if (foundA && !foundB) {
-                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
-                     links[i].style.color = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
-                 } 
+					links[i].setAttribute("style", stlTeamA + 'border:1px solid #ccc;padding:0px 2px;'); 
+                } 
 				 else if (foundB && !foundA) {
-                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
-                     links[i].style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+					links[i].setAttribute("style", stlTeamB + 'border:1px solid #ccc;padding:0px 2px;'); 
                  }    
                  else {
-                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
+                    links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
                  }
              } 
 			 //Colors the name of the teams  on the right box like the players
@@ -122,13 +149,11 @@ FoxtrickMatchPlayerColouring = {
 						links[i].style.border = "1px solid #ccc";
 						links[i].style.padding = "0px 2px";
 						if (FirstTeam) {
-							links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
-							links[i].style.color = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
-							FirstTeam = false;
+							links[i].setAttribute("style", stlTeamA + 'border:1px solid #ccc;padding:0px 2px;'); 
+ 							FirstTeam = false;
 						}
 						else {
-						    links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.BLACK_COLOUR;
-							links[i].style.color = FoxtrickMatchPlayerColouring.WHITE_COLOUR;
+							links[i].setAttribute("style", stlTeamB + 'border:1px solid #ccc;padding:0px 2px;'); 
 						}
 					 }
 				}
