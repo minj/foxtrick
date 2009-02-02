@@ -10,6 +10,8 @@ var FoxtrickTeamPopupLinks = {
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
         DEFAULT_ENABLED : true,
         OPTIONS : {},
+		bTeamLinks : "",
+		bUserLinks : "",
 		bTeam : "",
 		bMatches : "",
 		bPlayers : "",
@@ -31,7 +33,7 @@ var FoxtrickTeamPopupLinks = {
                         return;
                 var sUrl = Foxtrick.getHref( doc );
 				
-				this.forumuserlink=false;
+				this.userlink=false;
                 var redir_from_forum=false;
 				//if (sUrl.search(/Forum\/Default/i) != -1) return;
                 if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; //  ***remove return to get popups on forum activated***  also use new 'zaw' bellow
@@ -59,6 +61,8 @@ var FoxtrickTeamPopupLinks = {
                 var maxwidth = Math.max(Foxtrickl10n.getString( 'Team' ).length, Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, 
                                                 Foxtrickl10n.getString( 'last_5_ips' ).length, Foxtrickl10n.getString( 'Guestbook' ).length,
                                                 Foxtrickl10n.getString( 'Coach' ).length,Foxtrickl10n.getString( 'TransferHistory' ).length,Foxtrickl10n.getString( 'LastLineup').length); //Stephan
+                this.bTeamLinks = Foxtrick.isModuleFeatureEnabled( this, "TeamLinks");
+                this.bUserLinks = Foxtrick.isModuleFeatureEnabled( this, "UserLinks");
                 this.bTeam = Foxtrick.isModuleFeatureEnabled( this, "Team");
                 this.bMatches = Foxtrick.isModuleFeatureEnabled( this, "Matches");
                 this.bPlayers = Foxtrick.isModuleFeatureEnabled( this, "Players");
@@ -100,10 +104,11 @@ var FoxtrickTeamPopupLinks = {
 						if (aLinks[i].href.search(/ft_popuplink=true/i)!=-1) continue;  // don't add to own popup links
 						if (aLinks[i].innerHTML.search(/^<img/i)!=-1) continue;  // don't add to buttons
 
-						var myforumuserlink = aLinks[i].href.search(/Club\/Manager\/\?UserID=/i)!=-1 
+						var myuserlink = aLinks[i].href.search(/Club\/Manager\/\?UserID=/i)!=-1 
 															&& aLinks[i].parentNode.id.search(/foxtrick_alltidspan/i)==-1
 															&& aLinks[i].parentNode.className!="cfUserInfo";
-						if ( (aLinks[i].href.search(/Club\/\?TeamID=/i) > -1) || myforumuserlink) {
+						if ( ( aLinks[i].href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
+								|| (myuserlink && this.bUserLinks)) {
                                 var sLink = aLinks[i]; 
                                 
 								var par = aLinks[i].parentNode;
@@ -140,11 +145,11 @@ var FoxtrickTeamPopupLinks = {
 		if (event.target.style==null) event.target.setAttribute('style','display:inline');
   		event.target.parentNode.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
         var value = FoxtrickHelper.getTeamIdFromUrl(event.target.href);
-		var forumuserlink = event.target.href.search(/Club\/Manager\/\?UserID=/i)!=-1 
+		var userlink = event.target.href.search(/Club\/Manager\/\?UserID=/i)!=-1 
 															&& event.target.parentNode.id.search(/foxtrick_alltidspan/i)==-1
 															&& event.target.parentNode.className!="cfUserInfo";
 						
-        if (forumuserlink) value = FoxtrickHelper.getUserIdFromUrl(event.target.href);
+        if (userlink) value = FoxtrickHelper.getUserIdFromUrl(event.target.href);
 		var owntopteamlinks=false;
 		if (event.target.parentNode.parentNode.tagName == "DIV" 
 			&& event.target.parentNode.parentNode.id == "teamLinks") owntopteamlinks=true;
@@ -165,7 +170,7 @@ var FoxtrickTeamPopupLinks = {
                                         tr1.appendChild(td1);
                                         tbl.appendChild(tr1);
                                 }*/
-								if (FoxtrickTeamPopupLinks.bTeam && forumuserlink){
+								if (FoxtrickTeamPopupLinks.bTeam && userlink){
                                         var tr1 = doc.createElement("tr");
                                         tr1.setAttribute("height", "20");
                                         var td1 = doc.createElement("td");
@@ -182,7 +187,7 @@ var FoxtrickTeamPopupLinks = {
                                         tr1.setAttribute("height", "20");
                                         var td1 = doc.createElement("td");
                                         var a1 = doc.createElement("a");
-                                        if (forumuserlink) a1.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_matches=true'+'&ft_popuplink=true');
+                                        if (userlink) a1.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_matches=true'+'&ft_popuplink=true');
 		                                else a1.setAttribute('href', '/Club/Matches/?TeamID=' + value+'&ft_popuplink=true');
                                         a1.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Matches' )));
                                         td1.appendChild(a1);
@@ -195,7 +200,7 @@ var FoxtrickTeamPopupLinks = {
                                         tr2.setAttribute("height", "20");
                                         var td2 = doc.createElement("td");
                                         var a2 = doc.createElement("a");
-                                        if (forumuserlink) a2.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_players=true'+'&ft_popuplink=true');
+                                        if (userlink) a2.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_players=true'+'&ft_popuplink=true');
 		                                else a2.setAttribute('href', '/Club/Players/?TeamID=' + value+'&ft_popuplink=true');
                                         a2.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Players' )));
                                         td2.appendChild(a2);
@@ -209,7 +214,7 @@ var FoxtrickTeamPopupLinks = {
                                         var td3 = doc.createElement("td");
                                         td3.setAttribute("nowrap", "nowrap");
                                         var a3 = doc.createElement("a");
-                                        if (forumuserlink) a3.setAttribute('href', '/Club/Manager/?userId=' + value+'&ShowOldConnections=true'+'&ft_popuplink=true');
+                                        if (userlink) a3.setAttribute('href', '/Club/Manager/?userId=' + value+'&ShowOldConnections=true'+'&ft_popuplink=true');
                                         else a3.setAttribute('href', '/Club/Manager/?teamId=' + value+'&ShowOldConnections=true'+'&ft_popuplink=true');
                                         a3.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'last_5_ips' )));
                                         td3.appendChild(a3);
@@ -223,7 +228,7 @@ var FoxtrickTeamPopupLinks = {
                                         var td4 = doc.createElement("td");
                                         td4.setAttribute("nowrap", "nowrap");
                                         var a4 = doc.createElement("a");
-                                        if (forumuserlink) a4.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_guestbook=true'+'&ft_popuplink=true');
+                                        if (userlink) a4.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_guestbook=true'+'&ft_popuplink=true');
 		                                else a4.setAttribute('href', '/Club/Manager/Guestbook.aspx?teamid=' + value+'&ft_popuplink=true');
                                         a4.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Guestbook' )));
                                         td4.appendChild(a4);
@@ -237,7 +242,7 @@ var FoxtrickTeamPopupLinks = {
                                         var td5 = doc.createElement("td");
                                         td5.setAttribute("nowrap", "nowrap");
                                         var a5 = doc.createElement("a");
-										if (forumuserlink) a5.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_coach=true'+'&ft_popuplink=true');
+										if (userlink) a5.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_coach=true'+'&ft_popuplink=true');
 		                                else {
 											if (value!=FoxtrickTeamPopupLinks.ownteamid) {
 												a5.setAttribute('href', '/Club/Players/?TeamID='+value+'&redir_to_coach=true'+'&ft_popuplink=true');}
@@ -254,7 +259,7 @@ var FoxtrickTeamPopupLinks = {
                                         var td7 = doc.createElement("td");
                                         td7.setAttribute("nowrap", "nowrap");
                                         var a7 = doc.createElement("a");
-                                        if (forumuserlink) a7.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_transferhistory=true'+'&ft_popuplink=true');
+                                        if (userlink) a7.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_transferhistory=true'+'&ft_popuplink=true');
 		                                else a7.setAttribute('href', '/Club/Transfers/transfersTeam.aspx?teamId=' + value+'&ft_popuplink=true');
         								a7.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'TransferHistory' )));
                                         td7.appendChild(a7);
@@ -267,7 +272,7 @@ var FoxtrickTeamPopupLinks = {
                                         var td6 = doc.createElement("td");
                                         td6.setAttribute("nowrap", "nowrap");
                                         var a6 = doc.createElement("a");
-                                        if (forumuserlink) a6.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_lastlineup=true'+'&ft_popuplink=true');
+                                        if (userlink) a6.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_lastlineup=true'+'&ft_popuplink=true');
 										else a6.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+value+'&useArchive=True'+'&ft_popuplink=true');										
                                         a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
                                         td6.appendChild(a6);
@@ -285,7 +290,9 @@ var FoxtrickTeamPopupLinks = {
 },
 
         initOptions : function() {
-                this.OPTIONS = new Array( "Team",
+                this.OPTIONS = new Array( "TeamLinks",
+										  "UserLinks",
+										  "Team",
 										  "Matches" ,
                                           "Players" ,
                                           "last_5_ips" ,
