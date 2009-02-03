@@ -25,7 +25,6 @@ var FTTeamStats= {
         var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
         
 		var total_NT = 0;
-		const _TSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.TSI");
         const _totalTSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.totalTSI.label");
         var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "p" );
@@ -38,7 +37,7 @@ var FTTeamStats= {
 				if (!Youth_players) {
 					try {
 	
-						var tsipos1 = parseInt(specc.textContent.indexOf( _TSI + " = ") + _TSI.length + 3);				
+						var tsipos1 = parseInt(specc.textContent.indexOf( " = ") + 3);				
 						var tsitot_in = specc.textContent.substr(tsipos1, 8);
 						tsitot_in = tsitot_in.replace(/[\(\)\.\-\s,]/g, "");
 						tsitot_in = parseInt(tsitot_in);
