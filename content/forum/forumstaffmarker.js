@@ -141,6 +141,7 @@ var FoxtrickForumStaffMarker = {
             "Mod-summercloud",
 			"OBarros",
             "Piper_101",
+            "poceh_b",
 			"Pyntsa",
 			"smates",
 			"spambot",

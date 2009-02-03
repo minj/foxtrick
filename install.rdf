@@ -21,7 +21,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
-                   em:version="0.4.4.1"
+                   em:version="0.4.4.2"
                    em:description="A set of presentation enhancements for hattrick.org"
                    em:creator="Karel Kolman"
                    em:homepageURL="http://ht-foxtrick.com/"
@@ -42,6 +42,7 @@
 	<em:developer>smates</em:developer>
     <!-- translator list -->
 	<em:contributor>Bosnian: LA-Masterix</em:contributor>
+    <em:contributor>Bulgarian: poceh_b</em:contributor>
 	<em:contributor>Catalan: carlesmu</em:contributor>
 	<em:contributor>Cesky: gucan</em:contributor>
 	<em:contributor>Dansk: 05erth, LasseSvendsen</em:contributor>
@@ -51,7 +52,7 @@
 	<em:contributor>Espanol: franory</em:contributor>
 	<em:contributor>Espanol, Centroamericano: baler0</em:contributor>
 	<em:contributor>Espanol, Galego: Piper_101</em:contributor>
-	<em:contributor>Français: stephan57</em:contributor>
+	<em:contributor>Francais: stephan57</em:contributor>
 	<em:contributor>Frysk: LA-Foppe</em:contributor>
 	<em:contributor>Italiano: caracca</em:contributor>
 	<em:contributor>Lithuanian: Mod-summercloud</em:contributor>
