@@ -25,7 +25,8 @@ FoxtrickFixcssProblems = {
             "all",
             "all",
             "all",
-            "simple"
+            "simple",
+            "all"
             
         );
         // dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
@@ -66,7 +67,8 @@ FoxtrickFixcssProblems = {
                                     "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
                                     "Page_Minimum_Height",
-                                    "Forum_Header_Smallsize"
+                                    "Forum_Header_Smallsize",
+                                    "MatchOrder_Lineheight"
 								);
 	}        
 };

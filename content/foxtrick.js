@@ -314,7 +314,9 @@ Foxtrick.trim = function (text) {
 }
 
 Foxtrick.trimnum = function (text) {
-  //return text.replace(/[\D\s]/g, '');  
+  //return text.replace(/[\D\s]/g, '');
+  text +='';
+  if (text == null || text.length == 0) return 0;
   return text.replace(/&nbsp;/g,"").replace(/[\s]/g, '').match(/-\d+|\d+/);
 }
 
