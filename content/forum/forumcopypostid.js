@@ -63,8 +63,15 @@ var FoxtrickCopyPostID = {
 	},	
 
 	_copy_postid_to_clipboard : function(ev) { 
-		var postid = ev.target.getAttribute("name");
-		Foxtrick.copyStringToClipboard(postid);
-        ev.target.innerHTML=postid;
+		var PostID = ev.target.getAttribute("name");
+		Foxtrick.copyStringToClipboard(PostID);
+        ev.target.innerHTML=PostID; 
+		ev.target.addEventListener( "click", FoxtrickCopyPostID._to_top, false );	
+		ev.target.RemoveEventListener( "click", FoxtrickCopyPostID._copy_postid_to_clipboard, false );	
+	},	
+	
+	_to_top : function(ev) {
+		var PostID = ev.target.getAttribute("name");
+		ev.target.href='/Forum/Read.aspx?t='+PostID.replace(/\.\d+/,'')+'&n='+PostID.replace(/\d+\./,'');	
 	},	
 };
