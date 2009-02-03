@@ -58,7 +58,7 @@ var FoxtrickAlltidFlags = {
 						}
 				}
 				for (var k = 0; k < innerdivs.length; k++) {
-				  if (innerdivs[k].className=="cfHeader") {
+				  if (innerdivs[k].className=="cfHeader" || innerdivs[k].className=="cfHeader doubleLine") {
 				    var count=0;
 				    var linksArray = innerdivs[k].getElementsByTagName('a');
 				
