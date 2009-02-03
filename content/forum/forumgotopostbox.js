@@ -29,8 +29,13 @@ var FoxtrickGoToPostBox = {
             } catch(e) {}
             var HTGotoInput = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_txtMessageNumber');
 			var HTGotoButton = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_btnViewMessage');
+			var HTGotoInput2 = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_txtMessageNumber');
+			var HTGotoButton2 = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_btnViewMessage');
+			
 			HTGotoInput.parentNode.removeChild(HTGotoInput);
 			HTGotoButton.parentNode.removeChild(HTGotoButton);
+			HTGotoInput2.parentNode.removeChild(HTGotoInput2);
+			HTGotoButton2.parentNode.removeChild(HTGotoButton2);
 			
 			
             var selectBoxTop = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
