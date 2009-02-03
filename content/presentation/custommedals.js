@@ -22,7 +22,7 @@ var FoxtrickCustomMedals = {
 		if( sidebar ) {
 			var images = sidebar.getElementsByTagName('img');
 			for(var i = 0; i < images.length; i++) {
-                dump(' => MEDAL ' + images[i].src + '\n');
+                //dump(' => MEDAL ' + images[i].src + '\n');
 				var img = images[i];
 				var imgSrc = img.src;
 				var customMedals = "oldhtmedals";

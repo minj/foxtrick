@@ -201,12 +201,12 @@ var FoxtrickForumStaffMarker = {
                     var uname = Foxtrick.trim(a.textContent);
 
                     if (Foxtrick.isModuleFeatureEnabled( this, "HT") && this.htreg.test(uname)) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text");
+                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text"); 
                         if (!stl)
                             stl = this.OPTION_TEXTS_DEFAULT_VALUES[0];
                         a.setAttribute("style", stl);
                     } else if (Foxtrick.isModuleFeatureEnabled( this, "GM") && this.gmreg.test(uname)) {
-                        var stl = FoxtrickPrefs.getString("modules." + this.MODULE_NAME + "." + "GM_text");
+                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text");
                         if (!stl)
                             stl = this.OPTION_TEXTS_DEFAULT_VALUES[1];
                         a.setAttribute("style", stl);
@@ -267,7 +267,7 @@ var FoxtrickForumStaffMarker = {
                                 stl = this.OPTION_TEXTS_DEFAULT_VALUES[0];
                             el_Select.options[i].setAttribute("style", stl);
                         } else if (Foxtrick.isModuleFeatureEnabled( this, "GM") && this.gmreg.test(uname)) {
-                            var stl = FoxtrickPrefs.getString("modules." + this.MODULE_NAME + "." + "GM_text");
+                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text");
                             if (!stl)
                                 stl = this.OPTION_TEXTS_DEFAULT_VALUES[1];
                             el_Select.options[i].setAttribute("style", stl);
