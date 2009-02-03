@@ -56,11 +56,9 @@ var FoxtrickAlltidFlags = {
 								}
 							}	
 						}
-				}
-				for (var k = 0; k < innerdivs.length; k++) {
-				  if (innerdivs[k].className=="cfWrapper") {
-				    var count=0;
-				    var linksArray = innerdivs[k].getElementsByTagName('a');
+				} 
+				    var count=0; 
+				    var linksArray = alldivs[i].getElementsByTagName('a');
 				
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
@@ -111,8 +109,6 @@ var FoxtrickAlltidFlags = {
 						var newText = doc.createTextNode(" => ");
 						asAnswerTo.parentNode.replaceChild(newText,asAnswerTo);
 					  }
-					}
-				  }
 				}
 				
 			}
