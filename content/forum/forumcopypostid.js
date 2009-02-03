@@ -21,17 +21,25 @@ var FoxtrickCopyPostID = {
 		for (var i = 0; i < alldivs.length; i++) {
 			if (alldivs[i].className=="cfWrapper") {
 				var linksArray = alldivs[i].getElementsByTagName('a');
+				var count=0;
 				for (var j=0; j<linksArray.length; j++) {
 					var link = linksArray[j];
 					if (link.href.search(/showMInd/) > -1) {
 						var PostID=link.href.match(/\d+\.\d+/g)[0]; 
+						if (count==0) {
 						link.href='javascript:void(0);';
 						//link.href='javascript:alert(document.lastModified);';
-						link.title=Foxtrickl10n.getString( 'foxtrick.CopyPostID' );
+						link.title+=' & '+Foxtrickl10n.getString( 'foxtrick.CopyPostID' );
 						link.setAttribute("name",PostID);
 						link.setAttribute("id","_"+this.MODULE_NAME+num);
 						link.addEventListener( "click", FoxtrickCopyPostID._copy_postid_to_clipboard, false );	
-						break;
+						}
+						else { 
+							link.href='/Forum/Read.aspx?t='+PostID.replace(/\.\d+/,'')+'&n='+PostID.replace(/\d+\./,'');	
+							link.title="";						
+						}
+						count++;
+						if (count==2) break;
 					}
 				} 
 				num++;
