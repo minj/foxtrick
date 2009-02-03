@@ -17,7 +17,7 @@ var FoxtrickForumStaffMarker = {
 											"background:green; color:white;", //CHPP
 											"background:green;", //editor
 											"background:#c3d9ff; color:black;", //foxtrick-dev
-											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background:yellow;" //own
+											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background:yellow;'" //own
 											),
 	OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own"),
 
