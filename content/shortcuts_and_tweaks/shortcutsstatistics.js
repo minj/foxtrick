@@ -41,6 +41,20 @@ var FoxtrickShortcutsStatistics = {
                 link.appendChild(img1);
                 
                 targetNode.insertBefore(link, targetNode.lastChild);
+                var link = doc.createElement('a');                
+                link.id = 'ft_shortcutsstatistics';
+                link.href = "../../Club/Transfers/";
+                link.setAttribute("style", "padding:3px 0px 0px 5px;");
+                
+                var img1 = doc.createElement('img');
+                img1.setAttribute( "class", "scLive");
+                img1.src = "/Img/Icons/transparent.gif";
+                img1.setAttribute("style","background-image: url('chrome://foxtrick/content/resources/linkicons/dollar.png') !important;");
+                img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
+
+                link.appendChild(img1);
+                
+                targetNode.insertBefore(link, targetNode.lastChild);
             }
             catch(e) {
                 dump( ' => shortcutsstatistics: ' + e + '\n');
