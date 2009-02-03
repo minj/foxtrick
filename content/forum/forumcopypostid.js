@@ -16,6 +16,14 @@ var FoxtrickCopyPostID = {
 	},
 	
 	run : function( page, doc ) { 
+	
+	var mainbody = doc.getElementById('mainBody');
+	var forumprefs = doc.createElement('a');
+	forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
+	forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
+	forumprefs.setAttribute('class','forumSettings');
+	mainbody.insertBefore(forumprefs,mainbody.firstChild);
+ 
 		var alldivs = doc.getElementsByTagName('div');
 		var num=0;
 		for (var i = 0; i < alldivs.length; i++) {
