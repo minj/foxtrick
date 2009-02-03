@@ -27,7 +27,12 @@ var FoxtrickGoToPostBox = {
                     tab = '&v=' + ar[2];
                 }
             } catch(e) {}
-            
+            var HTGotoInput = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_txtMessageNumber');
+			var HTGotoButton = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_btnViewMessage');
+			HTGotoInput.parentNode.removeChild(HTGotoInput);
+			HTGotoButton.parentNode.removeChild(HTGotoButton);
+			
+			
             var selectBoxTop = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
 			var selectBoxBottom = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_filterUser');
 			var aSelectBoxes = new Array();
