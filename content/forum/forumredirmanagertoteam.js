@@ -22,7 +22,7 @@ var FoxtrickForumRedirManagerToTeam = {
 		if (doc.location.href.search(/\/Forum\/Read/i)!=-1 ) {	 
 				var innerdivs = doc.getElementsByTagName('div');
 				for (var k = 0; k < innerdivs.length; k++) {
-				  if (innerdivs[k].className=="cfHeader" || innerdivs[k].className=="cfHeader doubleLine") {
+				  if (innerdivs[k].className=="cfWrapper") {
 				    var linksArray = innerdivs[k].getElementsByTagName('a');
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
