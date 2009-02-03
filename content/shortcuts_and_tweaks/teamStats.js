@@ -24,21 +24,20 @@ var FTTeamStats= {
         var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
         var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
         
-        
 		var total_NT = 0;
-		
+		const _TSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.TSI");
         var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "p" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
 			
-			if( allDivs2[i].textContent.match(/TSI\ \=/g) ) {
+			if( allDivs2[i].textContent.match(/\ \=\ /g) ) {
 				
 				//JB: If is National team page counts Total TSI
 				var specc = allDivs2[i];
 				if (!Youth_players) {
 					try {
 	
-						var tsipos1 = parseInt(specc.textContent.indexOf("TSI = ") + 6);				
+						var tsipos1 = parseInt(specc.textContent.indexOf( _TSI + " = ") + _TSI.length + 3);				
 						var tsitot_in = specc.textContent.substr(tsipos1, 8);
 						tsitot_in = tsitot_in.replace(/[\(\)\.\-\s,]/g, "");
 						tsitot_in = parseInt(tsitot_in);
