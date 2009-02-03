@@ -52,15 +52,20 @@ var FoxtrickAddLeaveConfButton = {
 				var confPos = sUrl.search(/LeaveConf=/i);
 				if (confPos > -1){
 					var confName =sUrl.substr(confPos+10).replace(/\%20/g," ");
-					var tdElems = doc.getElementsByTagName("td");
-					for(var i=0; i < tdElems.length; i++) {
-						if(tdElems[i].innerHTML == confName) {
-							var aChildNodes = tdElems[i].parentNode.childNodes;
-							var a=aChildNodes[aChildNodes.length-2].firstChild;
-							if (a){
-								var func = a.href;
-								if (func){
-									doc.location.href = func;
+					var ul = doc.getElementById("ctl00_CPMain_rlFolders__rbl");
+					var liElems = ul.getElementsByTagName("li");
+					for(var i=0; i < liElems.length; i++) {
+						var subDivs = liElems[i].getElementsByTagName("div");
+						if(Foxtrick.trim(subDivs[0].innerHTML) == confName) {
+							var inputs = subDivs[1].getElementsByTagName("input");
+							for(var j=0; j < inputs.length; j++) {
+								if (inputs[j].className == "leave"){
+									var func = "javascript:__doPostBack('";
+									func += inputs[j].getAttribute("name");
+									func += "','')";
+									if (func){
+										doc.location.href = func;
+									}
 								}
 							}
 						}
