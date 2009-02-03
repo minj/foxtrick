@@ -26,6 +26,7 @@ var FTTeamStats= {
         
 		var total_NT = 0;
 		const _TSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.TSI");
+        const _totalTSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.totalTSI.label");
         var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "p" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
@@ -88,7 +89,7 @@ var FTTeamStats= {
 		}
 		
 		//If NT displays Total TSI
-        if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">TOTAL TSI</td><td>" + addSpace(total_NT) + "</td></tr>";
+        if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">" + _totalTSI + "</td><td>" + addSpace(total_NT) + "</td></tr>";
 
 		
         for (var spec in specs) {
