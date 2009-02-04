@@ -133,7 +133,7 @@ var FoxtrickForumStaffMarker = {
 			"Jestar",
 			"koba4ever",
 			"kolmis",
-			"LA-Foppe",
+			"-Foppe",
 			"LA-Masterix",
 			"larsw84",
 			"LasseSvendsen",
@@ -174,10 +174,15 @@ var FoxtrickForumStaffMarker = {
 			var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
             if (!utext)
 				utext = this.OPTION_TEXTS_DEFAULT_VALUES[7];
-            var users=utext.match(/userid=(\d+)/ig);
-			for (var ii=0;ii<users.length;ii++) {
-				var ustyle=utext.substring(utext.search(users[ii])).match(/style=\'(.+)\'/)[1];
-				this.ulist[users[ii].replace(/userid=/i,'')]=ustyle;
+            var users = '';
+			if (Foxtrick.isModuleFeatureEnabled( this, "own")) {
+				users = utext.match(/userid=(\d+)/ig);
+				for (var ii=0;ii<users.length;ii++) {
+					try {
+						var ustyle = utext.substring(utext.search(users[ii])).match(/style=\'(.+)\'/)[1];
+						this.ulist[users[ii].replace(/userid=/i,'')]=ustyle;
+					} catch (e) {Foxtrick.alert('ForumStaffMarker: Error in Style for user'+ users[ii]);}
+				}
 			}
 			
         switch( page )
@@ -254,7 +259,7 @@ var FoxtrickForumStaffMarker = {
                         a.setAttribute("style", stl);
                     } 
 					if (Foxtrick.isModuleFeatureEnabled( this, "own") && this.ulist[uid]!=null) { 
-                        a.setAttribute("style", this.ulist[uid]); dump('user\n');
+                        a.setAttribute("style", this.ulist[uid]); 
                     }
                 }
             }
@@ -317,8 +322,7 @@ var FoxtrickForumStaffMarker = {
                             if (!stl)
                                 stl = this.OPTION_TEXTS_DEFAULT_VALUES[6];
                             el_Select.options[i].setAttribute("style", stl);
-                        }  
-						
+                        }  						
 						if (Foxtrick.isModuleFeatureEnabled( this, "own") && this.ulist[uid]!=null) { 
 							el_Select.options[i].setAttribute("style", this.ulist[uid]);
 						}
