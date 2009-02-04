@@ -1329,7 +1329,7 @@ stats["htlinks_ti_schrauber"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };
 
-  
+/*  // claims to have CHPP but doesn't. hence illegal
 stats["skillraise"] =  { 
         "url" : "http://www.htdaytrading.com/",
 
@@ -1346,7 +1346,7 @@ stats["skillraise"] =  {
 
         "title" : "SkillRaise Tool",
         "img" : "chrome://foxtrick/content/resources/linkicons/skillraise.jpg"
-};    
+};  */  
 
 stats["Hattrickstats_fr"] =  { 
         "url" : "http://friendly.cup.free.fr/",
