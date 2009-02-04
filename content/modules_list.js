@@ -17,8 +17,10 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
                      FoxtrickHideManagerAvatar,
                      FoxtrickAddDefaultFaceCard,
                      FoxtrickMoveLinks,
-                     FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
-					 FoxtrickHideManagerAvatarUserInfo,
+                     FoxtrickTeamPopupLinks,
+					 FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
+					 FoxtrickTruncateLongNicks,
+                     FoxtrickHideManagerAvatarUserInfo,
                      FoxtrickGoToPostBox,
 					 FoxtrickCopyPostID,  
                      FoxtrickForumStaffMarker,
@@ -36,8 +38,7 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
                      FoxtrickTransferListDeadline,
                      FoxtrickExtendedPlayerDetails,
                      FoxtrickHTDateFormat,
-                     FoxtrickTeamPopupLinks,
-					 FoxtrickMatchPlayerColouring,
+                     FoxtrickMatchPlayerColouring,
                      AttVsDef, // AttVsDef should be placed before Ratings
 					 Ratings,
                      FoxtrickAlert,
@@ -60,7 +61,6 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
                      FoxtrickLinksTraining,
 					 FoxtrickLinksAlliances,
 					 FoxtrickLinksNational,
-                     FoxtrickTruncateLongNicks,
                      FoxtrickConfirmPlayerBid,
 					 FoxtrickConfirmTL,
                      FoxtrickEconomyDifference,

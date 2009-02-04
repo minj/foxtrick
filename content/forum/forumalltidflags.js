@@ -102,13 +102,7 @@ var FoxtrickAlltidFlags = {
 						}
 						count++;
 						flagsCounter++;
-					  } else if (	link.href.search(/Read.aspx/i) > -1 && 
-						!link.id) {
-						// Replace "as answer to"
-						var asAnswerTo = link.previousSibling;
-						var newText = doc.createTextNode(" => ");
-						asAnswerTo.parentNode.replaceChild(newText,asAnswerTo);
-					  }
+					  } 
 				}
 				
 			}
