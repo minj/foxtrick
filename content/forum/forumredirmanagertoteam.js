@@ -20,14 +20,18 @@ var FoxtrickForumRedirManagerToTeam = {
     run : function( page, doc ) { 
 		// manager to team in forum
 		if (doc.location.href.search(/\/Forum\/Read/i)!=-1 ) {	 
-				var innerdivs = doc.getElementsByTagName('div');
-				for (var k = 0; k < innerdivs.length; k++) {
-				  if (innerdivs[k].className=="cfWrapper") {
-				    var linksArray = innerdivs[k].getElementsByTagName('a');
+			var body = doc.getElementById("mainBody");
+			if (body != null) {
+				var alldivs = getElementsByClass("cfHeader", body);
+				for (var i = 0; i < alldivs.length; i++) {
+				var linksArray = alldivs[i].getElementsByTagName('a');
 				    for (var j=0; j<linksArray.length; j++) {
 					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 && link.href.search(/redir_to_league=true/i)==-1) { 
-						link.href+="&redir_to_team=true";
+					  if (link.href.search(/userId=/i) > -1 
+						&& link.href.search(/ft_popuplink=true/i)==-1 
+						&& link.href.search(/redir_to_league=true/i)==-1) { 
+						
+							link.href+="&redir_to_team=true";
 					  }
 					}
 				  }
