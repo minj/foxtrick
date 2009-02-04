@@ -247,13 +247,13 @@ var FoxtrickForumStaffMarker = {
                             stl = this.OPTION_TEXTS_DEFAULT_VALUES[5];
                         a.setAttribute("style", stl);
                     } else if (Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") && this.foxtrickersArray.join().search(uname) > -1) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
+                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text"); 
                         if (!stl)
                             stl = this.OPTION_TEXTS_DEFAULT_VALUES[6];
                         a.setAttribute("style", stl);
-                    }
+                    } 
 					if (Foxtrick.isModuleFeatureEnabled( this, "own") && this.ulist[uid]!=null) { 
-                        a.setAttribute("style", this.ulist[uid]);
+                        a.setAttribute("style", this.ulist[uid]); dump('user\n');
                     }
                 }
             }
@@ -311,7 +311,13 @@ var FoxtrickForumStaffMarker = {
                             if (!stl)
                                 stl = this.OPTION_TEXTS_DEFAULT_VALUES[5];
                             el_Select.options[i].setAttribute("style", stl);
-                        } 
+                        } else if (Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") && this.foxtrickersArray.join().search(uname) > -1) {
+                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
+                            if (!stl)
+                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[6];
+                            el_Select.options[i].setAttribute("style", stl);
+                        }  
+						
 						if (Foxtrick.isModuleFeatureEnabled( this, "own") && this.ulist[uid]!=null) { 
 							el_Select.options[i].setAttribute("style", this.ulist[uid]);
 						}
