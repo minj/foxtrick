@@ -336,15 +336,37 @@ var FoxtrickPreferencesDialog = {
 		var hbox2= doc.createElement("hbox");
 		groupbox.appendChild(hbox2);
 
+		var vbox= doc.createElement("vbox");
+		hbox.appendChild(vbox);
 		var button= doc.createElement("button");
 		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonSavePrefs"));
 		button.setAttribute('id',"buttonSavePrefs");
 		button.setAttribute('oncommand',"FoxtrickPreferencesDialog.SavePrefs();");
-		hbox.appendChild(button);
+		vbox.appendChild(button);
+		var spacer = document.createElement( "spacer" );
+        spacer.setAttribute('flex','1');
+        vbox.appendChild( spacer );
+
+		var vbox= doc.createElement("vbox");
+		vbox.setAttribute('flex','1');
+        hbox.appendChild(vbox);
 		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs") );
 		desc_box.setAttribute("flex","1");
-		hbox.appendChild(desc_box);
-
+		vbox.appendChild(desc_box);
+		
+		var checkbox = doc.createElement( "checkbox" );
+		checkbox.setAttribute( "checked",  FoxtrickPrefs.getBool( "SavePrefs_Prefs" ) );
+		checkbox.setAttribute( "label", Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs_Prefs"));
+		checkbox.setAttribute( "id", 'saveprefsid');
+        checkbox.setAttribute( "class", "checkbox_in_group" );
+		vbox.appendChild(checkbox);		
+		var checkbox2 = doc.createElement( "checkbox" );
+		checkbox2.setAttribute( "checked", FoxtrickPrefs.getBool( "SavePrefs_Notes" ) );
+		checkbox2.setAttribute( "label", Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs_Notes"));
+		checkbox2.setAttribute( "id", 'savenotesid');
+        checkbox2.setAttribute( "class", "checkbox_in_group" );
+		vbox.appendChild(checkbox2);
+		
 		var button= doc.createElement("button");
 		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
 		button.setAttribute('id',"buttonLoadPrefs");
@@ -453,6 +475,10 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
         FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
         
+		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);
+        FoxtrickPrefs.setBool("SavePrefs_Notes", document.getElementById("savenotesid").checked);
+        
+		
 		// reinitialize
         FoxtrickMain.init();
 		
@@ -887,6 +913,14 @@ FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where 
                HelpDesc);
 }
 
+
+FoxtrickPreferencesDialog.isPrefSetting = function ( setting) {
+	return  setting.search( "YouthPlayer" ) == -1
+			&& setting.search( "transferfilter" ) == -1
+			&& setting.search( "post_templates" ) == -1
+			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
+}
+				
 FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
     if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
@@ -895,10 +929,7 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
             //branch.deleteBranch("prefs");
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
-				if( array[i].search( "YouthPlayer" ) == -1
-					&& array[i].search( "transferfilter" ) == -1
-					&& array[i].search( "post_templates" ) == -1
-					&& (array[i].search( "LinksCustom" ) == -1 || array[i].search( "LinksCustom.enabled" ) != -1) ){
+				if (FoxtrickPreferencesDialog.isPrefSetting(array[i])) {
 					FoxtrickPrefs.deleteValue(array[i]);
 				}
 			}
@@ -947,13 +978,17 @@ FoxtrickPreferencesDialog.SavePrefs = function () {
 			os.init(foStream, "UTF-8", 0, 0x0000);
 
 			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
+			for(var i = 0; i < array.length; i++) {					
+				if ((FoxtrickPreferencesDialog.isPrefSetting(array[i]) && document.getElementById("saveprefsid").checked)
+					|| (!FoxtrickPreferencesDialog.isPrefSetting(array[i]) && document.getElementById("savenotesid").checked)) {
+					
 					var value=FoxtrickPrefs.getString(array[i]);
 					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
 					else { value=FoxtrickPrefs.getInt(array[i]);
 						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
 						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
 						}
+					}
 				}
 			os.close();
 			foStream.close();
