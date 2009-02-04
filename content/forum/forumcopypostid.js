@@ -17,6 +17,10 @@ var FoxtrickCopyPostID = {
 	
 	run : function( page, doc ) { 
 	
+    if (Foxtrick.isStandardLayout ( doc ) ) {
+		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
+                                "resources/css/conference_settings.css");
+	}
 	var mainbody = doc.getElementById('mainBody');
 	var forumprefs = doc.createElement('a');
 	forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
