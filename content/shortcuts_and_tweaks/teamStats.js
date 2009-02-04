@@ -26,20 +26,29 @@ var FTTeamStats= {
         
 		var total_NT = 0;
         const _totalTSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.totalTSI.label");
+		const TSI = Foxtrickl10n.getString("foxtrick.playerliststats.tsi"); 
         var specs = {};
 		var allDivs2 = doc.getElementsByTagName( "p" );
 		for( var i = 0; i < allDivs2.length; i++ ) {
+			var tsiregexp1 = new RegExp(TSI);
 			
-			if( allDivs2[i].textContent.match(/\ \=\ /g) ) {
+			//if( allDivs2[i].textContent.match(/\ \=\ /g) ) {
+			if( tsiregexp1.test(allDivs2[i].textContent) ) {
 				
 				//JB: If is National team page counts Total TSI
 				var specc = allDivs2[i];
 				if (!Youth_players) {
-					try {
+					try { 
 	
-						var tsipos1 = parseInt(specc.textContent.indexOf( " = ") + 3);				
-						var tsitot_in = specc.textContent.substr(tsipos1, 8);
-						tsitot_in = tsitot_in.replace(/[\(\)\.\-\s,]/g, "");
+						var tsiregexp2 = new RegExp(TSI+' '+'(\\S+)');
+						var tsiregexp3 = new RegExp(TSI+' = '+'(\\S+)');
+			
+						var tsitot_in = tsiregexp2.exec(allDivs2[i].textContent); 
+						if (tsitot_in == null || tsitot_in[1].search(/\d/) == -1 ) 
+									tsitot_in = tsiregexp3.exec(allDivs2[i].textContent);
+						/*var tsipos1 = parseInt(specc.textContent.indexOf( " = ") + 3);				
+						var tsitot_in = specc.textContent.substr(tsipos1, 8);*/
+						tsitot_in = tsitot_in[1].replace(/[\(\)\.\-\s,]/g, "");
 						tsitot_in = parseInt(tsitot_in);
 						total_NT = parseInt(total_NT) + tsitot_in;
 						
