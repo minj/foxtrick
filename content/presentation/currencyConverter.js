@@ -5,7 +5,7 @@
 FoxtrickCurrencyConverter = {
 
     MODULE_NAME : "CurrencyConverter",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
     DEFAULT_ENABLED : false,
 
     init : function() {

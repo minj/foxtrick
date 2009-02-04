@@ -60,6 +60,8 @@ var FoxtrickMain = {
 			}
 		}
 
+		// reload skins
+		FoxtrickSkinPlugin.load(null,true);
     },
    
     registerOnPageLoad : function(document) {
