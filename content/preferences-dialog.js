@@ -45,7 +45,6 @@ var FoxtrickPreferencesDialog = {
 
         // language & currency & dateformat & county
         var groupbox= doc.createElement("groupbox");
-        var hbox= doc.createElement("hbox");
 
         var vbox1= doc.createElement("vbox");
         vbox1.setAttribute('flex',"1");
@@ -99,11 +98,17 @@ var FoxtrickPreferencesDialog = {
         menulist4.appendChild(menupopup4);
         vbox4.appendChild(caption4);
         vbox4.appendChild(menulist4);
-        hbox.appendChild(vbox1);
-        hbox.appendChild(vbox2);
-        hbox.appendChild(vbox3);
-        hbox.appendChild(vbox4);
-        groupbox.appendChild(hbox);
+        var hbox1= doc.createElement("vbox");
+        var hbox2= doc.createElement("vbox");
+        var vbox= doc.createElement("hbox");
+
+        hbox1.appendChild(vbox1);
+        hbox1.appendChild(vbox2);
+        hbox2.appendChild(vbox3);
+        hbox2.appendChild(vbox4);
+        vbox.appendChild(hbox1);
+        vbox.appendChild(hbox2);
+        groupbox.appendChild(vbox);
         modules_list.appendChild(groupbox);
 
         var htLanguagesXml = doc.implementation.createDocument("", "", null);
@@ -159,12 +164,16 @@ var FoxtrickPreferencesDialog = {
 
 
         menulist.appendChild(menupopup);
+		caption4.setAttribute('flex','0');        
         vbox4.appendChild(caption4);
+		menulist.setAttribute('flex','0');        
         vbox4.appendChild(menulist);
-
-
+		vbox4.setAttribute('flex','0');        
 
         hbox.appendChild(vbox4);
+		var spacer = document.createElement( "spacer" );
+        spacer.setAttribute('flex','1');
+        hbox.appendChild( spacer );
 
         groupbox.appendChild(caption_head);
         groupbox.appendChild(hbox);
