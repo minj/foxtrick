@@ -26,7 +26,7 @@ var scripts = [
     'forum/forumstaffmarker.js',
     'forum/forumalltidflags.js',
     'forum/forumcopypostid.js',
-    'forum/forumtruncatelongnicks.js',
+    'forum/forumalterheaderline.js',
     'forum/forumadddefaultfacecard.js',
     'forum/forumhidesignatures.js',
     'forum/forumnextandprevious.js',

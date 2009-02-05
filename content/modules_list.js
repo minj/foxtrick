@@ -16,11 +16,11 @@ Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefa
                      BookmarkAdjust,
                      FoxtrickHideManagerAvatar,
                      FoxtrickAddDefaultFaceCard,
-                     FoxtrickMoveLinks,
+                     FoxtrickMoveLinks,   // keep before FoxtrickHideManagerAvatarUserInfo
+                     FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
+					 FoxtrickForumAlterHeaderLine,
                      FoxtrickTeamPopupLinks,
-					 FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
-					 FoxtrickTruncateLongNicks,
-                     FoxtrickHideManagerAvatarUserInfo,
+					 FoxtrickHideManagerAvatarUserInfo,
                      FoxtrickGoToPostBox,
 					 FoxtrickCopyPostID,  
                      FoxtrickForumStaffMarker,

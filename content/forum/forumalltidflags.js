@@ -36,33 +36,37 @@ var FoxtrickAlltidFlags = {
 					"background-repeat:repeat-x; background-position: 0% 50%;";
 		
 		var flagsCounter = 0;
-		var body = doc.getElementById("mainBody");
-        if (body != null) {
-			var alldivs = getElementsByClass("cfHeader", body);
-        	for (var i = 0; i < alldivs.length; i++) {
-            	var innerdivs = alldivs[i].getElementsByTagName('div');
-				var LeagueId=0;
+		var alldivs = doc.getElementsByTagName('div');
+        for (var i = 0; i < alldivs.length; i++) {
+            if (alldivs[i].className=='cfWrapper') { 
 				var titlecountry1="";
+				var teamname='';
+				var teamid='';
+				
+				var innerdivs = alldivs[i].getElementsByTagName('div');
 				for (var k = 0; k < innerdivs.length; k++) {
-							if (innerdivs[k].className=="cfUserInfo") {
-							LeagueId=findLeagueLeveUnitId(innerdivs[k]);
+						if (innerdivs[k].className=="cfUser") {
 							var linksArray = innerdivs[k].getElementsByTagName('a');
 							// get country
 							for (var j=0; j<linksArray.length; j++) {
 								var link = linksArray[j];
 								if (link.href.search(/LeagueId=/i) > -1) {
 									titlecountry1 = link.getElementsByTagName('img')[0].title;
-								break;
+								}
+								else if (link.href.search(/TeamID=/i)>-1) {
+									teamid = FoxtrickHelper.getTeamIdFromUrl(link.href); 
+									teamname = link.innerHTML; 														
 								}
 							}	
 						}
-				} 
-				    var count=0; 
-				    var linksArray = alldivs[i].getElementsByTagName('a');
+				}
+				var count=0; 
+				var linksArray = alldivs[i+1].getElementsByTagName('a');
 				
-				    for (var j=0; j<linksArray.length; j++) {
-					  var link = linksArray[j];
-					  if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 && link.href.search('redir_to_league=true')==-1) { 
+				for (var j=0; j<linksArray.length; j++) {
+					var link = linksArray[j];
+					if (link.href.search(/userId=/i) > -1 && link.href.search(/ft_popuplink=true/i)==-1 
+					     && link.href.search('redir_to_league=true')==-1) { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+flagsCounter;
@@ -71,7 +75,8 @@ var FoxtrickAlltidFlags = {
 						//dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						if (count==0) thistitlecountry = titlecountry1;
-						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 || titlecountry1=="" || LeagueId==0) {		
+						if (count==1 || FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1 
+									|| titlecountry1=="" || teamid==0) {		
 							var href= linkpage + userId;
 							target='_blank';
 							if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) {
@@ -83,12 +88,14 @@ var FoxtrickAlltidFlags = {
 							'vertical-align: middle; ' + style + '" src="' + 
 							flagspage + userId + '.gif" border="0"' +
 							'height="12" /></a>';}
-						else {
-							mySpan.innerHTML = ' <a href="/World/Series/Default.aspx?LeagueLevelUnitID=' + LeagueId +
-							'" target="_self"><img title="'+thistitlecountry+'" style="' + 
-							'vertical-align: middle; ' + style + '" src="' + 
-							flagspage + userId + '.gif" border="0"' +
-							'height="12" /></a>';}
+						else { 
+							var flaglink = doc.createElement('a');
+							flaglink.href = '/World/Series/Default.aspx?LeagueLevelUnitID=' + teamid;
+							flaglink.innerHTML = "<img title="+thistitlecountry+" style='vertical-align: middle;" + style + "' src="+flagspage + userId + ".gif border=0 height=12 />";
+							link.setAttribute('teamid',teamid);
+							link.setAttribute('teamname',teamname);			
+							mySpan.appendChild(flaglink);
+						}
 						var target = link.nextSibling;
 						if (j+1!=linksArray.length && linksArray[j+1].href.lastIndexOf('Supporter') > -1) {
 							target=linksArray[j+1].nextSibling;
@@ -102,7 +109,7 @@ var FoxtrickAlltidFlags = {
 						}
 						count++;
 						flagsCounter++;
-					  } 
+					} 
 				}
 				
 			}

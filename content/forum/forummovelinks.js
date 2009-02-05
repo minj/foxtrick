@@ -25,6 +25,9 @@ var FoxtrickMoveLinks = {
 				var authorLink = false;
 				var countryLink;
 				var leagueLink;
+				var teamLink;
+				var teamid='';
+				var teamname='';
 				for(var k = 0; k < divsInMessage.length; k++) {
 					var linksInMessage = 
 							divsInMessage[k].getElementsByTagName("a");
@@ -43,16 +46,31 @@ var FoxtrickMoveLinks = {
 							} else if(linksInMessage[j].href.search(
 								/LeagueLevelUnitID=/i)>-1) {
 								leagueLink = linksInMessage[j];
+							} else if(linksInMessage[j].href.search(
+								/TeamID=/i)>-1) {
+								teamlink = linksInMessage[j];
+								teamid = FoxtrickHelper.getTeamIdFromUrl(linksInMessage[j].href); 
+								teamname = linksInMessage[j].innerHTML; 
 							}
 						}
 					}
 				}
 				var space = doc.createTextNode(" ");
 				if(authorLink && countryLink && leagueLink) {
+					authorLink.setAttribute('teamid',teamid);
+					authorLink.setAttribute('teamname',teamname);
+			
+					/*if (!Foxtrick.isModuleEnabled( FoxtrickForumSingleHeaderLine)) {
+						authorLink.parentNode.insertBefore(teamlink.cloneNode(true),
+						authorLink.nextSibling);					 	
+						authorLink.parentNode.insertBefore(doc.createTextNode(' '),
+						authorLink.nextSibling);					 	
+					}*/
+			
 					authorLink.parentNode.insertBefore(leagueLink,
 						authorLink.nextSibling);
 					authorLink.parentNode.insertBefore(countryLink,
-						authorLink.nextSibling);
+						authorLink.nextSibling);							
 					authorLink.parentNode.insertBefore(space,
 						authorLink.nextSibling);
 				}

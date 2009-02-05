@@ -39,12 +39,13 @@ var FoxtrickCopyPostID = {
 					if (link.href.search(/showMInd/) > -1) {
 						var PostID=link.href.match(/\d+\.\d+/g)[0]; 
 						if (count==0) {
-						link.href='javascript:void(0);';
-						//link.href='javascript:alert(document.lastModified);';
-						link.title+=' & '+Foxtrickl10n.getString( 'foxtrick.CopyPostID' );
-						link.setAttribute("name",PostID);
-						link.setAttribute("id","_"+this.MODULE_NAME+num);
-						link.addEventListener( "click", FoxtrickCopyPostID._copy_postid_to_clipboard, false );	
+							
+							link.href='javascript:void(0);';
+							//link.href='javascript:alert(document.lastModified);';
+							link.title+=' & '+Foxtrickl10n.getString( 'foxtrick.CopyPostID' );
+							link.setAttribute("name",PostID);
+							link.setAttribute("id","_"+this.MODULE_NAME+num);
+							link.addEventListener( "click", FoxtrickCopyPostID._copy_postid_to_clipboard, false );	
 						}
 						else { 
 							link.href='/Forum/Read.aspx?t='+PostID.replace(/\.\d+/,'')+'&n='+PostID.replace(/\d+\./,'');	
@@ -67,9 +68,19 @@ var FoxtrickCopyPostID = {
 	},	
 
 	_copy_postid_to_clipboard : function(ev) { 
-		var PostID = ev.target.getAttribute("name");
+		var PostID = ev.target.getAttribute("name");		
 		Foxtrick.copyStringToClipboard(PostID);
         ev.target.innerHTML=PostID; 
+
+		var HeaderDiv = ev.target.parentNode.parentNode; 
+		if (Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine , "SingleHeaderLine")
+			&& HeaderDiv.className=="cfHeader singleLine") {
+			
+			if (HeaderDiv.firstChild.offsetWidth > HeaderDiv.offsetWidth - HeaderDiv.lastChild.offsetWidth - 30 ) {
+					HeaderDiv.className = "cfHeader doubleLine";	
+			}
+		}
+			
 		ev.target.addEventListener( "click", FoxtrickCopyPostID._to_top, false );	
 		ev.target.RemoveEventListener( "click", FoxtrickCopyPostID._copy_postid_to_clipboard, false );	
 	},	
