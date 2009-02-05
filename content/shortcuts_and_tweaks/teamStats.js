@@ -28,28 +28,23 @@ var FTTeamStats= {
         const _totalTSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.totalTSI.label");
 		const TSI = Foxtrickl10n.getString("foxtrick.playerliststats.tsi"); 
         var specs = {};
-		var allDivs2 = doc.getElementsByTagName( "p" );
-		for( var i = 0; i < allDivs2.length; i++ ) {
-			var tsiregexp1 = new RegExp(TSI);
+		
+		var body = doc.getElementById("mainBody");
+		var allDivs = getElementsByClass("playerInfo", body);
+		
+		for( var i = 0; i < allDivs.length; i++ ) {
+				var allDivs2 = allDivs[i].getElementsByTagName( "p" )[0];
 			
-			//if( allDivs2[i].textContent.match(/\ \=\ /g) ) {
-			if( tsiregexp1.test(allDivs2[i].textContent) ) {
-				
 				//JB: If is National team page counts Total TSI
-				var specc = allDivs2[i];
+				var specc = allDivs2;
 				if (!Youth_players) {
 					try { 
-	
-						var tsiregexp2 = new RegExp(TSI+' '+'(\\S+)');
-						var tsiregexp3 = new RegExp(TSI+' = '+'(\\S+)');
-			
-						var tsitot_in = tsiregexp2.exec(allDivs2[i].textContent); 
-						if (tsitot_in == null || tsitot_in[1].search(/\d/) == -1 ) 
-									tsitot_in = tsiregexp3.exec(allDivs2[i].textContent);
-						/*var tsipos1 = parseInt(specc.textContent.indexOf( " = ") + 3);				
-						var tsitot_in = specc.textContent.substr(tsipos1, 8);*/
-						tsitot_in = tsitot_in[1].replace(/[\(\)\.\-\s,]/g, "");
-						tsitot_in = parseInt(tsitot_in);
+						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>')); 
+						var lastindex = tsitot_in.lastIndexOf(' ');  
+						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
+						tsitot_in = tsitot_in.substr(lastindex+1);
+						tsitot_in = tsitot_in.replace(/[\(\)\.\-\s,]/g, "");
+						tsitot_in = parseInt(tsitot_in);  
 						total_NT = parseInt(total_NT) + tsitot_in;
 						
 					}				
@@ -72,7 +67,7 @@ var FTTeamStats= {
                         }
                     }
 				}
-			}
+			
 		}
 
 		var boxrightt=doc.getElementById('sidebar');
@@ -81,23 +76,9 @@ var FTTeamStats= {
 		
 		
 		
-		//JB: Function to format numbers with spaces
-		
-		function addSpace(nStr)
-		{
-			nStr += '';
-			x = nStr.split('.');
-			x1 = x[0];
-			x2 = x.length > 1 ? '.' + x[1] : '';
-			var rgx = /(\d+)(\d{3})/;
-			while (rgx.test(x1)) {
-				x1 = x1.replace(rgx, '$1' + ' ' + '$2');
-			}
-			return x1 + x2;
-		}
 		
 		//If NT displays Total TSI
-        if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">" + _totalTSI + "</td><td>" + addSpace(total_NT) + "</td></tr>";
+        if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">" + _totalTSI + "</td><td>" + ReturnFormatedValue(total_NT,'&nbsp;') + "</td></tr>";
 
 		
         for (var spec in specs) {
