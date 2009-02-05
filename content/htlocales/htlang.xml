@@ -72,11 +72,11 @@
             <reposition type="towardswing" value="prema krilu" />
         </repositioning>
         <tactics>
-            <tactic type="normal" value="normalno" />
-            <tactic type="pressing" value="presing" />
-            <tactic type="ca" value="kontranapadi" />
-            <tactic type="aow" value="napad preko krila" />
-            <tactic type="aim" value="napad kroz sredinu" />
+            <tactic type="normal" value="Normalno" />
+            <tactic type="pressing" value="Presing" />
+            <tactic type="ca" value="Kontranapadi" />
+            <tactic type="aow" value="Napad preko krila" />
+            <tactic type="aim" value="Napad kroz sredinu" />
             <tactic type="creatively" value="Igraj kreativno" />
             <tactic type="longshots" value="Dalekometni šutevi" />
         </tactics>
