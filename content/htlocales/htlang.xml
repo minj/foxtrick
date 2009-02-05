@@ -56,10 +56,10 @@
 
     <language name="bs" desc="Bosnian">
         <ratingSubLevels>
-            <sublevel text="(veoma nisko)" value="0.0" />
-            <sublevel text="(nisko)" value="0.25"  />
-            <sublevel text="(visoko)" value="0.50"  />
-            <sublevel text="(veoma visoko)" value="0.75"  />
+            <sublevel text="(Veoma nisko)" value="0.0" />
+            <sublevel text="(Nisko)" value="0.25"  />
+            <sublevel text="(Visoko)" value="0.50"  />
+            <sublevel text="(Veoma visoko)" value="0.75"  />
         </ratingSubLevels>	
         <repositioning>
             <reposition type="midfielder" value="dodatni vezni" />
