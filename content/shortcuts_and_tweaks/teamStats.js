@@ -42,8 +42,7 @@ var FTTeamStats= {
 						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>')); 
 						var lastindex = tsitot_in.lastIndexOf(' ');  
 						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
-						tsitot_in = tsitot_in.substr(lastindex+1);
-						tsitot_in = tsitot_in.replace(/[\(\)\.\-\s,]/g, "");
+						tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;',''); 
 						tsitot_in = parseInt(tsitot_in);  
 						total_NT = parseInt(total_NT) + tsitot_in;
 						
