@@ -21,6 +21,7 @@ var FTTeamStats= {
 		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 	
 		var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
+        var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
         var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
         var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
         
@@ -39,13 +40,14 @@ var FTTeamStats= {
 				var specc = allDivs2;
 				if (!Youth_players) {
 					try { 
-						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>')); 
+						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
+                        if (Oldies) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
+                        // dump (' => tsitot_in => [' + tsitot_in + ']\n');
 						var lastindex = tsitot_in.lastIndexOf(' ');  
 						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
 						tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;',''); 
 						tsitot_in = parseInt(tsitot_in);  
 						total_NT = parseInt(total_NT) + tsitot_in;
-						
 					}				
 					catch(e) {
 						dump(e);
@@ -227,7 +229,7 @@ var FTTeamStats= {
         _checkCountry : function ( ctrc ) {
             if (ctrc == null ) return;
             ctrc = Foxtrick._to_utf8(substr(ctrc, strrpos( ctrc, "</a>")+4, ctrc.lebgth));
-            dump('=> stripped => ' + ctrc + '\n');
+            // dump('=> stripped => ' + ctrc + '\n');
             var found = -1;
             for (var i = 0; i < this.COUNTRYLIST.length; i++) {
                 if (strrpos( ctrc, this.COUNTRYLIST[i]) > 0 ) {
@@ -238,7 +240,7 @@ var FTTeamStats= {
             if ( found != -1) {
                 return Foxtrick._from_utf8(this.COUNTRYLIST[found]);
             }
-            dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
+            // dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
             return false;
         },
         
