@@ -41,8 +41,8 @@ var FTTeamStats= {
 				if (!Youth_players) {
 					try { 
 						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
-                        if (Oldies) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
-                        // dump (' => tsitot_in => [' + tsitot_in + ']\n');
+                        if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
+                         dump (' => tsitot_in => [' + tsitot_in + ']\n');
 						var lastindex = tsitot_in.lastIndexOf(' ');  
 						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
 						tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;',''); 
