@@ -35,8 +35,7 @@ var FoxtrickTeamPopupLinks = {
 				
 				this.userlink=false;
                 var redir_from_forum=false;
-				if (sUrl.search(/Forum\/Default/i) != -1) return;  // not on forum overview
-                if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; 
+				if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; 
                 if (sUrl.search(/ShowOldConnections=true/i) > -1){
                         var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
                         if (a){
@@ -100,7 +99,12 @@ var FoxtrickTeamPopupLinks = {
                                 if (par.parentNode.tagName == "DIV" && par.parentNode.className == "boxLeft"){
                                         continue;
                                 }
-                                      
+                                
+								if (sUrl.search(/Forum\/Default/i) != -1  // not on forum overview
+									&& !(par.tagName == "DIV" && par.id == "teamLinks")) {  // only this one is allowed
+                                        continue;
+                                }
+                                
 								var span = doc.createElement("span");
 								span.setAttribute('class', 'myht1');
 								par.insertBefore(span, aLinks[i]);
