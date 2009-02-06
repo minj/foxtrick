@@ -16,18 +16,7 @@ var FoxtrickCopyPostID = {
 	},
 	
 	run : function( page, doc ) { 
-	
-    if (Foxtrick.isStandardLayout ( doc ) ) {
-		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-                                "resources/css/conference_settings.css");
-	}
-	var mainbody = doc.getElementById('mainBody');
-	var forumprefs = doc.createElement('a');
-	forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
-	forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
-	forumprefs.setAttribute('class','forumSettings');
-	mainbody.insertBefore(forumprefs,mainbody.firstChild);
- 
+	 
 		var alldivs = doc.getElementsByTagName('div');
 		var num=0;
 		for (var i = 0; i < alldivs.length; i++) {
@@ -88,5 +77,36 @@ var FoxtrickCopyPostID = {
 	_to_top : function(ev) {
 		var PostID = ev.target.getAttribute("name");
 		ev.target.href='/Forum/Read.aspx?t='+PostID.replace(/\.\d+/,'')+'&n='+PostID.replace(/\d+\./,'');	
+	},	
+};
+
+
+var FoxtrickShowForumPrefButton = {
+
+	MODULE_NAME : "ShowForumPrefButton",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	DEFAULT_ENABLED : true,
+
+	init : function() {
+		Foxtrick.registerPageHandler( 'forumViewThread',
+			FoxtrickShowForumPrefButton );
+	},
+	
+	run : function( page, doc ) { 
+	
+    if (Foxtrick.isStandardLayout ( doc ) ) {
+		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
+                                "resources/css/conference_settings.css");
+	}
+	var mainbody = doc.getElementById('mainBody');
+	var forumprefs = doc.createElement('a');
+	forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
+	forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
+	forumprefs.setAttribute('class','forumSettings');
+	mainbody.insertBefore(forumprefs,mainbody.firstChild);
+	},
+ 
+ 	
+	change : function( page, doc ) {
 	},	
 };

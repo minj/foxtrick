@@ -35,8 +35,8 @@ var FoxtrickTeamPopupLinks = {
 				
 				this.userlink=false;
                 var redir_from_forum=false;
-				//if (sUrl.search(/Forum\/Default/i) != -1) return;
-                if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; //  ***remove return to get popups on forum activated***  also use new 'zaw' bellow
+				if (sUrl.search(/Forum\/Default/i) != -1) return;  // not on forum overview
+                if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; 
                 if (sUrl.search(/ShowOldConnections=true/i) > -1){
                         var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
                         if (a){

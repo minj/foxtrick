@@ -392,11 +392,19 @@ var FoxtrickPreferencesDialog = {
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
 
-    },
+
+		// add space at the end
+		var spacer = doc.createElement('spacer');
+		spacer.setAttribute('flex',0);
+		spacer.setAttribute('height',20);
+				
+		modules_list.appendChild( spacer );
+	},
 
 
     onDialogAccept : function() {
-        var modules_list;
+	try {
+		var modules_list;
 
         for each ( cat in Foxtrick.moduleCategories ) {
                 switch(cat) {
@@ -421,8 +429,9 @@ var FoxtrickPreferencesDialog = {
 						default : continue;
 								break;
                 }
-
+					
 				for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
+					if (modules_list.childNodes[i].nodeName =='spacer') continue;
 					FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
                                                    modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
 					if (modules_list.childNodes[i].radio) {
@@ -505,6 +514,8 @@ var FoxtrickPreferencesDialog = {
         FoxtrickMain.init();
 		
         return true;
+		
+		} catch(e) {Foxtrick.alert(e);}
     },
 
 getOffsetValue: function (itemToSearch, xmlDoc) {
@@ -661,7 +672,12 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 							}
 							modules_list.appendChild( entry );
                         }
-        }
+				}
+				var spacer = doc.createElement('spacer');
+				spacer.setAttribute('flex',0);
+				spacer.setAttribute('height',20);
+				
+				modules_list.appendChild( spacer );
     },
 
 	_getWrapableBox : function( desc_text ) {
