@@ -20,6 +20,7 @@ var FoxtrickCopyMatchID = {
 	run : function( page, doc ) { 
 	try {
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		var count = 0;
 		for (var i = 0; i < table.rows.length; i++) { 
 				if (table.rows[i].cells.length<2) continue;
 			 	var matchid=FoxtrickHelper.findMatchId(table.rows[i]); 
@@ -29,9 +30,10 @@ var FoxtrickCopyMatchID = {
 				link.innerHTML=img;
 				link.href='javascript:void(0);';
 				link.setAttribute("matchid",matchid);
-				link.setAttribute("id","_"+this.MODULE_NAME+i);
+				link.setAttribute("id","_"+this.MODULE_NAME+count);
 				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
 				table.rows[i].cells[1].appendChild(link);
+				count++; 
 		}
 	} catch(e) {dump('FoxtrickCopyMatchID: '+e+'\n');}
 	},
