@@ -83,16 +83,28 @@ var FoxtrickTeamPopupLinks = {
 				
 				// all in mainWrapper (ie. not left boxes)
 				if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
-				http://www83.hattrick.org/Club/?TeamID=1142953&BrowseIds=980041,999157,1142953,1136884,1003974,819472,128135,128222
-				var aLinks = doc.getElementById('mainWrapper').getElementsByTagName('a'); 
+				var aLinks = doc.getElementById('mainBody').getElementsByTagName('a'); 
 				var i = 0, aLink;
                 while ( aLink = aLinks[i++] ) {
 					if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons				
 					if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
 					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
 						this._addSpan( aLink );
+					}  
+				}
+				var sidebar = doc.getElementById('sidebar');
+				if (sidebar) {
+					aLinks = sidebar.getElementsByTagName('a'); 
+					var i = 0, aLink;
+					while ( aLink = aLinks[i++] ) {
+						if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons				
+						if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
+						|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
+							this._addSpan( aLink );
+						}  
 					}
 				}
+				
 		} catch(e) {dump('TeamPopups: '+e+'\n');}
 	},
 	
