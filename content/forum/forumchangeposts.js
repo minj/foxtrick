@@ -282,11 +282,11 @@ var FoxtrickForumChangePosts = {
 				
 				// add default facecard ----------------------------
 				if (do_default_facecard && user && !user_avatar) {
-						var defaultCardDiv = doc.createElement("div");
-						defaultCardDiv.className = "faceCard";
-						defaultCardDiv.setAttribute("style","background-image:"
+						var user_avatar = doc.createElement("div");
+						user_avatar.className = "faceCard";
+						user_avatar.setAttribute("style","background-image:"
 							+ " url(/Img/Avatar/silhouettes/sil1.png);");
-						user.insertBefore(defaultCardDiv,user.fisrtChild);					
+						user.insertBefore(user_avatar,user.firstChild);					
 				} //dump ('end add default facecard \n');
 				
 				
@@ -296,7 +296,7 @@ var FoxtrickForumChangePosts = {
 					user_info = null;
 					// all gone? make space for message
 					if ( user_avatar == null ) { 
-						message.setAttribute('style','width:97%'),
+						message.setAttribute('style','width:96%'),
 						wrapper.removeChild(user);	
 						user = null;
 					}
