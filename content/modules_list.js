@@ -86,6 +86,5 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickCurrencyConverter,  
                      FoxtrickTickerColoring,
 					 FoxtrickCopyMatchID,
-					 FoxtrickShowForumPrefButton
                      // FoxtrickMatchDayTables //just added, no functions so far
 					];
