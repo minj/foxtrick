@@ -161,11 +161,39 @@ var FoxtrickForumStaffMarker = {
                                   "ctl00_CPMain_ddlRecipient"
     ),
 
+		stl_HT :'',
+		stl_GM : '',
+		stl_MOD : '',
+		stl_CHPP : '',
+		stl_LA : '',
+		stl_editor : '', 
+		editorsArray_joined : '',
+		stl_foxtrick_dev : '',
+		foxtrickersArray_joined :'',
+
     init : function() {
         Foxtrick.registerPageHandler( 'forumViewThread',
                                       FoxtrickForumStaffMarker );
         Foxtrick.registerPageHandler( 'forumWritePost',
                                       FoxtrickForumStaffMarker );
+									  
+		this.stl_HT = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text"); 
+        if (!this.stl_HT) this.stl_HT = this.OPTION_TEXTS_DEFAULT_VALUES[0];
+        this.stl_GM = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text"); 
+        if (!this.stl_GM) this.stl_GM = this.OPTION_TEXTS_DEFAULT_VALUES[1];
+        this.stl_MOD = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MOD_text"); 
+        if (!this.stl_MOD) this.stl_MOD = this.OPTION_TEXTS_DEFAULT_VALUES[2];
+        this.stl_CHPP = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CHPP_text"); 
+        if (!this.stl_CHPP) this.stl_CHPP = this.OPTION_TEXTS_DEFAULT_VALUES[3];
+        this.stl_LA = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "LA_text"); 
+        if (!this.stl_LA) this.stl_LA = this.OPTION_TEXTS_DEFAULT_VALUES[4];
+        this.stl_editor = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "editor_text"); 
+        if (!this.stl_editor) this.stl_editor = this.OPTION_TEXTS_DEFAULT_VALUES[5];
+		this.editorsArray_joined = this.editorsArray.join();
+		this.stl_foxtrick_dev = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text"); 
+        if (!this.stl_foxtrick_dev) this.stl_foxtrick_dev = this.OPTION_TEXTS_DEFAULT_VALUES[6];
+        this.foxtrickersArray_joined = this.foxtrickersArray.join();							  
+									  
     },
 
     run : function( page, doc ) {
@@ -178,11 +206,12 @@ var FoxtrickForumStaffMarker = {
             var users = '';
 			if (Foxtrick.isModuleFeatureEnabled( this, "own")) {
 				users = utext.match(/userid=(\d+)/ig);
-				for (var ii=0;ii<users.length;ii++) {
+				var ii=0,user;
+				while ( user = users[ii++] ) {
 					try {
-						var ustyle = utext.substring(utext.search(users[ii])).match(/style=\'(.+)\'/)[1];
-						this.ulist[users[ii].replace(/userid=/i,'')]=ustyle;
-					} catch (e) {Foxtrick.alert('ForumStaffMarker: Error in Style for user'+ users[ii]);}
+						var ustyle = utext.substring(utext.search(user)).match(/style=\'(.+)\'/)[1];
+						this.ulist[user.replace(/userid=/i,'')] = ustyle;
+					} catch (e) {Foxtrick.alert('ForumStaffMarker: Error in Style for user'+ user);}
 				}
 			}
 			
@@ -209,64 +238,50 @@ var FoxtrickForumStaffMarker = {
     _MarkAliases_thread : function () {
         try {
             doc = this._DOC;
-            userDivs = getElementsByClass("cfHeader", doc);
-
-            //dump('forumViewThread => Alias\n');
+ 
+			var do_HT = Foxtrick.isModuleFeatureEnabled( this, "HT") ;
+			var do_GM = Foxtrick.isModuleFeatureEnabled( this, "GM") ;
+			var do_MOD = Foxtrick.isModuleFeatureEnabled( this, "MOD") ;
+			var do_CHPP = Foxtrick.isModuleFeatureEnabled( this, "CHPP") ;
+			var do_LA = Foxtrick.isModuleFeatureEnabled( this, "LA") ;
+			var do_editor = Foxtrick.isModuleFeatureEnabled( this, "editor") ;
+			var do_foxtrick_dev = Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") ;
+			var do_own = Foxtrick.isModuleFeatureEnabled( this, "own");
 			
-            for (i=0; i< userDivs.length; i++){
-                var user = userDivs[i];
+			var userDivs = getElementsByClass("float_left", doc.getElementById('mainWrapper'));
+			var i=0, user;
+            while ( user = userDivs[i++] ) {
                 var as = user.getElementsByTagName('a');
-                for (var j=0; j<as.length; j++) {
-                    var a = as[j];
+				var j=0, a;
+                while ( a = as[j++] ) {
                     if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1) continue;
                     if (a.getAttribute("href").search(/redir_to_league=true/i) != -1) continue;
                     var uname = Foxtrick.trim(a.textContent);
-					var uid=a.href.replace(/.+userId=/i, "").match(/^\d+/);
+					var uid = a.href.replace(/.+userId=/i, "").match(/^\d+/);
                         
-                    if (Foxtrick.isModuleFeatureEnabled( this, "HT") && this.htreg.test(uname)) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text"); 
-                        if (!stl)
-                            stl = this.OPTION_TEXTS_DEFAULT_VALUES[0];
-                        a.setAttribute("style", stl);
-                    } else if (Foxtrick.isModuleFeatureEnabled( this, "GM") && this.gmreg.test(uname)) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text");
-                        if (!stl)
-                            stl = this.OPTION_TEXTS_DEFAULT_VALUES[1];
-                        a.setAttribute("style", stl);
-                    } else if (Foxtrick.isModuleFeatureEnabled( this, "MOD") && this.modreg.test(uname)) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MOD_text");
-                        if (!stl)
-                            stl = this.OPTION_TEXTS_DEFAULT_VALUES[2];
-                        a.setAttribute("style", stl);
-                    } else if (Foxtrick.isModuleFeatureEnabled( this, "CHPP") && this.chppreg.test(uname)) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CHPP_text");
-                        if (!stl)
-                            stl = this.OPTION_TEXTS_DEFAULT_VALUES[3];
-                        a.setAttribute("style", stl);
-                    } else if (Foxtrick.isModuleFeatureEnabled( this, "LA") && this.lareg.test(uname)) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "LA_text");
-                        if (!stl)
-                            stl = this.OPTION_TEXTS_DEFAULT_VALUES[4];
-                        a.setAttribute("style", stl);
-                    } else if (Foxtrick.isModuleFeatureEnabled( this, "editor") && this.editorsArray.join().search(uname) > -1) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "editor_text");
-                        if (!stl)
-                            stl = this.OPTION_TEXTS_DEFAULT_VALUES[5];
-                        a.setAttribute("style", stl);
-                    } else if (Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") && this.foxtrickersArray.join().search(uname) > -1) {
-                        var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text"); 
-                        if (!stl)
-                            stl = this.OPTION_TEXTS_DEFAULT_VALUES[6];
-                        a.setAttribute("style", stl);
+                    if (do_HT && this.htreg.test(uname)) {
+                        a.setAttribute("style", this.stl_HT);
+                    } else if (do_GM && this.gmreg.test(uname)) {
+                         a.setAttribute("style", this.stl_GM);
+                    } else if (do_MOD && this.modreg.test(uname)) {
+                        a.setAttribute("style", this.stl_MOD);
+                    } else if (do_CHPP && this.chppreg.test(uname)) {
+                        a.setAttribute("style", this.stl_CHPP);
+                    } else if (do_LA && this.lareg.test(uname)) {
+                        a.setAttribute("style", this.stl_LA);
+                    } else if (do_editor && this.editorsArray_joined.search(uname) > -1) {
+                        a.setAttribute("style", this.stl_editor);
+                    } else if (do_foxtrick_dev && this.foxtrickersArray_joined.search(uname) > -1) {
+                         a.setAttribute("style", this.stl_foxtrick_dev);
                     } 
-					if (Foxtrick.isModuleFeatureEnabled( this, "own") && this.ulist[uid]!=null) { 
+					if (do_own && this.ulist[uid]!=null) { 
                         a.setAttribute("style", this.ulist[uid]); 
                     }
                 }
             }
         }
         catch(e) {
-            dump(e);
+            dump('_MarkAliases_thread: '+e+'\n');
         }
     },
 
@@ -274,58 +289,46 @@ var FoxtrickForumStaffMarker = {
     _MarkAliases_select : function () {
         try {
             doc = this._DOC;
+			var do_HT = Foxtrick.isModuleFeatureEnabled( this, "HT") ;
+			var do_GM = Foxtrick.isModuleFeatureEnabled( this, "GM") ;
+			var do_MOD = Foxtrick.isModuleFeatureEnabled( this, "MOD") ;
+			var do_CHPP = Foxtrick.isModuleFeatureEnabled( this, "CHPP") ;
+			var do_LA = Foxtrick.isModuleFeatureEnabled( this, "LA") ;
+			var do_editor = Foxtrick.isModuleFeatureEnabled( this, "editor") ;
+			var do_foxtrick_dev = Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") ;
+			var do_own = Foxtrick.isModuleFeatureEnabled( this, "own");
 
             // dump('forumSELECT => select\n');
             for (var boxes = 0; boxes < this.SELECT_ELEMENTS.length; boxes++) {
                 var el_Select = doc.getElementById( this.SELECT_ELEMENTS[boxes] );
                 if (el_Select != null){
                     // dump('forumSELECT => select box:'+ boxes + '.\n');
-                    for (var i = 1; i < el_Select.length; i++) {
-                        // dump('forumSELECT => select i:'+ i + '.\n');
-						var uname = Foxtrick.trim( el_Select.options[i].text );
+					var i = 1, option;
+                    while ( option = el_Select.options[i++] ) {
+                        //dump('forumSELECT => select i:'+ i + '.\n');
+						var uname = Foxtrick.trim( option.text );
                         uname = uname.substring(0, uname.indexOf(' '));
-                        if (uname == '') uname = Foxtrick.trim( el_Select.options[i].text );
+                        if (uname == '') uname = Foxtrick.trim( option.text );
                         if  (uname == '') break;
-						var uid=el_Select.options[i].value;
+						var uid=option.value;
 			
-                        if (Foxtrick.isModuleFeatureEnabled( this, "HT") && this.htreg.test(uname)) {
-                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text");
-                            if (!stl)
-                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[0];
-                            el_Select.options[i].setAttribute("style", stl);
-                        } else if (Foxtrick.isModuleFeatureEnabled( this, "GM") && this.gmreg.test(uname)) {
-                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text");
-                            if (!stl)
-                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[1];
-                            el_Select.options[i].setAttribute("style", stl);
-                        } else if (Foxtrick.isModuleFeatureEnabled( this, "MOD") && this.modreg.test(uname)) {
-                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MOD_text");
-                            if (!stl)
-                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[2];
-                            el_Select.options[i].setAttribute("style", stl);
-                        } else if (Foxtrick.isModuleFeatureEnabled( this, "CHPP") && this.chppreg.test(uname)) {
-                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CHPP_text");
-                            if (!stl)
-                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[3];
-                            el_Select.options[i].setAttribute("style", stl);
-                        } else if (Foxtrick.isModuleFeatureEnabled( this, "LA") && this.lareg.test(uname)) {
-                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "LA_text");
-                            if (!stl)
-                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[4];
-                            el_Select.options[i].setAttribute("style", stl);
-                        } else if (Foxtrick.isModuleFeatureEnabled( this, "editor") && this.editorsArray.join().search(uname) > -1) {
-                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "editor_text");
-                            if (!stl)
-                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[5];
-                            el_Select.options[i].setAttribute("style", stl);
-                        } else if (Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") && this.foxtrickersArray.join().search(uname) > -1) {
-                            var stl = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
-                            if (!stl)
-                                stl = this.OPTION_TEXTS_DEFAULT_VALUES[6];
-                            el_Select.options[i].setAttribute("style", stl);
-                        }  						
-						if (Foxtrick.isModuleFeatureEnabled( this, "own") && this.ulist[uid]!=null) { 
-							el_Select.options[i].setAttribute("style", this.ulist[uid]);
+						if (do_HT && this.htreg.test(uname)) {
+							option.setAttribute("style", this.stl_HT);
+						} else if (do_GM && this.gmreg.test(uname)) {
+							option.setAttribute("style", this.stl_GM);
+						} else if (do_MOD && this.modreg.test(uname)) {
+							option.setAttribute("style", this.stl_MOD);
+						} else if (do_CHPP && this.chppreg.test(uname)) {
+							option.setAttribute("style", this.stl_CHPP);
+						} else if (do_LA && this.lareg.test(uname)) {
+							option.setAttribute("style", this.stl_LA);
+						} else if (do_editor && this.editorsArray_joined.search(uname) > -1) {
+							option.setAttribute("style", this.stl_editor);
+						} else if (do_foxtrick_dev && this.foxtrickersArray_joined.search(uname) > -1) {
+							option.setAttribute("style", this.stl_foxtrick_dev);
+						} 
+						if (do_own && this.ulist[uid]!=null) { 
+							option.setAttribute("style", this.ulist[uid]); 
 						}
                     }
                 }
