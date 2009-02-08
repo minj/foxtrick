@@ -41,7 +41,8 @@ var FoxtrickForumChangePosts = {
 
 		// part of FoxtrickForumAnchors
 		var anchor = doc.createElement( "a" );
-        anchor.href = "#logo";
+        anchor.href = '#';
+		anchor.setAttribute('onclick','window.scrollTo(0,0); return false;');
         anchor.title = "TOP";
         var img = doc.createElement("img");
         img.setAttribute('style','margin-left:3px;');
