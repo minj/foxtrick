@@ -15,7 +15,7 @@ var FoxtrickAddDefaultFaceCard = {
                                           FoxtrickAddDefaultFaceCard );
     },
 
-    run : function( page, doc ) {
+    run : function( page, doc ) { return;
 		if(!Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar)) {
 			var elems = doc.getElementsByTagName("div");
 			for(var i=0; i < elems.length; i++) {

@@ -16,6 +16,7 @@ var scripts = [
     'redirections.js',
 
     // individual modules
+    'forum/forumchangeposts.js',
     'forum/forumtemplates.js',
     'forum/forumpreview.js',
     'forum/forumyouthicons.js',
@@ -30,7 +31,8 @@ var scripts = [
     'forum/forumadddefaultfacecard.js',
     'forum/forumhidesignatures.js',
     'forum/forumnextandprevious.js',
-    'forum/htthreadmarker.js',
+    'forum/forumshowprefbutton.js',    
+	'forum/htthreadmarker.js',
     'forum/forumgotopostbox.js',
     'forum/forumredirmanagertoteam.js',
     'forum/forumanchors.js',

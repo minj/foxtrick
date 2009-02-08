@@ -7,7 +7,9 @@
  * Each should implement an init() method, which will be called only once.
  * Register your page handlers in it.
  */
-Foxtrick.modules = [ FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
+Foxtrick.modules = [ FoxtrickForumChangePosts,
+					 FoxtrickShowForumPrefButton,
+					 FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
                      FoxtrickMovePlayerStatement,
                      FoxtrickFixcssProblems,
                      FoxtrickForumTemplates,

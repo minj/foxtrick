@@ -15,7 +15,7 @@ var FoxtrickHideManagerAvatar = {
                                           FoxtrickHideManagerAvatar );
     },
 
-    run : function( page, doc ) {
+    run : function( page, doc ) { return;
 		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].getAttribute("class")=="faceCard") {

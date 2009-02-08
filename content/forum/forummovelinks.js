@@ -15,30 +15,24 @@ var FoxtrickMoveLinks = {
                                           FoxtrickMoveLinks );
     },
 
-    run : function( page, doc ) {
+    run : function( page, doc ) { return;
 	
-		var allDivs = doc.getElementsByTagName("div");
+		var allDivs = doc.getElementById('mainBody').getElementsByTagName("div");
 		
 		for(var i = 0; i < allDivs.length; i++) {
 			if(allDivs[i].className=="cfWrapper") {
 				var divsInMessage = allDivs[i].getElementsByTagName("div");
-				var authorLink = false;
-				var countryLink;
+				var countryLink; 
 				var leagueLink;
 				var teamLink;
 				var teamid='';
 				var teamname='';
-				for(var k = 0; k < divsInMessage.length; k++) {
-					var linksInMessage = 
+				var divsInMessage_length = divsInMessage.length; 
+				var authorLink = allDivs[i].getElementsByTagName("a")[1];
+				for(var k = 4; k < divsInMessage_length; ++k) { 
+					if(divsInMessage[k].className=="cfUserInfo") { 
+						var linksInMessage = 
 							divsInMessage[k].getElementsByTagName("a");
-					if(divsInMessage[k].className=="float_left") {
-						for(var j = 0; j < linksInMessage.length; j++) {
-							if(!authorLink && linksInMessage[j].href.search(
-								/userId=/i)	> -1) {
-								authorLink = linksInMessage[j];
-							}
-						}
-					} else if(divsInMessage[k].className=="cfUserInfo") {
 						for(var j = 0; j < linksInMessage.length; j++) {
 							if(linksInMessage[j].href.search(
 								/LeagueID=/i)>-1) {

@@ -18,7 +18,7 @@ var FoxtrickForumRedirManagerToTeam = {
     },
 
     run : function( page, doc ) { 
-		// manager to team in forum
+		/*// manager to team in forum
 		if (doc.location.href.search(/\/Forum\/Read/i)!=-1 ) {	 
 			var body = doc.getElementById("mainBody");
 			if (body != null) {
@@ -38,7 +38,7 @@ var FoxtrickForumRedirManagerToTeam = {
 				}
 			}
 		// manager to team for last visitors
-		else if (doc.location.href.search('\/Club\/|\/World\/Series\/')!=-1 ) {	
+		else */if (doc.location.href.search('\/Club\/|\/World\/Series\/')!=-1 ) {	
 			var alldivs = doc.getElementsByTagName('div');
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="sidebarBox") { 

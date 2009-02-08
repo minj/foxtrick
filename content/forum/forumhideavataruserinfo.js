@@ -15,13 +15,22 @@ var FoxtrickHideManagerAvatarUserInfo = {
                                           FoxtrickHideManagerAvatarUserInfo );
     },
 
-    run : function( page, doc ) {
-		var elems = doc.getElementsByTagName("div");
+    run : function( page, doc ) { return;
+	try {
+
+		/*var elems = doc.getElementById('mainBody').getElementsByTagName('div');
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].getAttribute("class")=="cfUserInfo") {
-				var teamid='';
+				var userinfo = elems[i]; dump(userinfo.id+'\n');
+				var userinfo2 = doc.getElementById('cfUserInfo0'); 
+			dump(userinfo2+'\n');*/
+		var i = -1; 
+		var userinfo; 
+		while (userinfo = doc.getElementById('cfUserInfo'+(++i))) { {
+				
+				/*var teamid='';
 				var teamname='';
-				var linksInMessage = elems[i].getElementsByTagName("a");
+				var linksInMessage = userinfo.getElementsByTagName("a");
 				for(var j = 0; j < linksInMessage.length; j++) {
 						if(linksInMessage[j].href.search(/TeamID=/i)>-1) {
 								teamid = FoxtrickHelper.getTeamIdFromUrl(linksInMessage[j].href); 
@@ -29,20 +38,20 @@ var FoxtrickHideManagerAvatarUserInfo = {
 								break;
 						}
 				}
-							
-                var user = elems[i].parentNode;
-				var uhlink = user.parentNode.getElementsByTagName("a")[1];
-				dump(uhlink.href+'\n');
+				*/			
+                var user = userinfo.parentNode;
+				/*var uhlink = user.parentNode.getElementsByTagName("a")[1];
 				uhlink.setAttribute('teamid',teamid);
 				uhlink.setAttribute('teamname',teamname);
-				
-				user.removeChild(elems[i]);
+				*/
+				user.removeChild(userinfo);
 				if (user.firstChild==null) {
 					user.nextSibling.setAttribute('style','width:90%'),
 					user.parentNode.removeChild(user);				
 				}
 			}
 		}
+	}catch(e){dump('HideUserInfo: '+e+'\n');}
 	},
 	
 	change : function( page, doc ) {

@@ -16,7 +16,7 @@ var FoxtrickForumAlterHeaderLine = {
                                           FoxtrickForumAlterHeaderLine );
     },
 
-    run : function( page, doc ) { 
+    run : function( page, doc ) {  return;
 	
 	try {
 		var trunclength = 10;
