@@ -72,7 +72,7 @@ var FoxtrickTeamPopupLinks = {
                 this.bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 this.bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
 
-				var zaw = 'a.myht1 {position: relative} div.myht2 {display: none} a.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} a.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
+				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
 				//var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
 				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
@@ -110,9 +110,6 @@ var FoxtrickTeamPopupLinks = {
 	
 
 	_addSpan : function ( aLink ) {
-		aLink.setAttribute('class', 'myht1');
-		aLink.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
-		return;
 		var par = aLink.parentNode;                                                               								
 		var span = doc.createElement("span");
 		span.setAttribute('class', 'myht1');
@@ -154,8 +151,8 @@ var FoxtrickTeamPopupLinks = {
 			}
 		}
 		var owntopteamlinks=false;
-		if (event.target.parentNode.tagName == "DIV" 
-			&& event.target.parentNode.id == "teamLinks") owntopteamlinks=true;
+		if (event.target.parentNode.parentNode.tagName == "DIV" 
+			&& event.target.parentNode.parentNode.id == "teamLinks") owntopteamlinks=true;
 									
                                 var tbl = doc.createElement("table");
                                 tbl.setAttribute("cell-padding", "2");
@@ -302,8 +299,8 @@ var FoxtrickTeamPopupLinks = {
 									/*if (event.target.parentNode.parentNode.tagName == "DIV" && event.target.parentNode.parentNode.id == "teamLinks") div.setAttribute('class', 'mainBox myht2_low');
 									else*/ div.setAttribute('class', 'mainBox myht2');
 									div.setAttribute('style','top:'+top+'px');
-									div.appendChild(tbl);		event.target.appendChild(div);							
-									//event.target.parentNode.appendChild(div);
+									div.appendChild(tbl);		//event.target.appendChild(div);							
+									event.target.parentNode.appendChild(div);
 									event.target.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
 		
 	} catch(e){dump(e+'\n');}
