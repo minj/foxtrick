@@ -29,14 +29,15 @@ var FoxtrickTeamPopupLinks = {
     },
 
     run : function( page,doc ) {  
+		try { 
                 if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
                         return;
                 var sUrl = Foxtrick.getHref( doc );
 				
-				this.userlink=false;
-                var redir_from_forum=false;
-				if (sUrl.search(/Forum/i) != -1) redir_from_forum=true; 
-                if (sUrl.search(/ShowOldConnections=true/i) > -1){
+				this.userlink = false;
+                var redir_from_forum = false;
+				if (sUrl.search(/Forum/i) != -1) redir_from_forum = true; 
+                if (sUrl.search(/ShowOldConnections=true/i) != -1) {
                         var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
                         if (a){
                                 var func = a.href;
@@ -49,7 +50,7 @@ var FoxtrickTeamPopupLinks = {
 				var teamdiv = doc.getElementById('teamLinks');
 				var ownleagueid = findLeagueLeveUnitId(teamdiv);
 				this.ownteamid=0;
-				if (ownleagueid!=null) {
+				if (ownleagueid != null) {
 					this.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
 				}
 				FoxtrickTeamPopupLinks.popupshow.doc=doc;
@@ -71,54 +72,49 @@ var FoxtrickTeamPopupLinks = {
                 this.bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 this.bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
 
-				// new
-				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.shortened_short {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
+				var zaw = 'a.myht1 {position: relative} div.myht2 {display: none} a.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} a.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
+				//var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
 				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
-                var aLinks = doc.getElementsByTagName('a'); //doc.links;
-                for (var i=0; i<aLinks.length; i++) {
-						
-						if (aLinks[i].href.search(/ft_popuplink=true/i)!=-1) continue;  // don't add to own popup links
-						if (aLinks[i].innerHTML.search(/^<img/i)!=-1) continue;  // don't add to buttons
+				
+				//  team links
+                var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0]; 
+				if (aLink) this._addSpan( aLink );
+				
+				// all in mainWrapper (ie. not left boxes)
+				if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
+				
+				var aLinks = doc.getElementById('mainWrapper').getElementsByTagName('a'); 
+				var i = 0, aLink;
+                while ( aLink = aLinks[i++] ) {
+					if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons				
+					if ( ( aLink.href.search(/\?TeamID=/i) > -1 && this.bTeamLinks) 
+					|| (aLink.href.search(/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
+						this._addSpan( aLink );
+					}
+				}
+		} catch(e) {dump('TeamPopups: '+e+'\n');}
+	},
+	
 
-						var myuserlink = aLinks[i].href.search(/Club\/Manager\/\?UserID=/i)!=-1 
-															&& aLinks[i].parentNode.id.search(/foxtrick_alltidspan/i)==-1
-															&& aLinks[i].parentNode.className!="cfUserInfo";
-						if ( ( aLinks[i].href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
-								|| (myuserlink && this.bUserLinks)) {
-                                var sLink = aLinks[i]; 
-                                
-								var par = aLinks[i].parentNode;
-                                
-                                if (par.parentNode.parentNode.parentNode.tagName == "DIV" && par.parentNode.parentNode.parentNode.className == "subMenuBox"){
-                                        continue;
-                                }
-                                if (par.parentNode.parentNode.tagName == "DIV" && par.parentNode.parentNode.className == "subMenuBox"){
-                                        continue;
-                                }
-                                if (par.parentNode.tagName == "DIV" && par.parentNode.className == "boxLeft"){
-                                        continue;
-                                }
-                                
-								if (sUrl.search(/Forum\/Default/i) != -1  // not on forum overview
-									&& !(par.tagName == "DIV" && par.id == "teamLinks")) {  // only this one is allowed
-                                        continue;
-                                }
-                                
-								var span = doc.createElement("span");
-								span.setAttribute('class', 'myht1');
-								par.insertBefore(span, aLinks[i]);
-								span.appendChild(sLink);
-								span.addEventListener("mouseover",this.popupshow,false);								
-                        }
-                }
-		
-        },
+	_addSpan : function ( aLink ) {
+		aLink.setAttribute('class', 'myht1');
+		aLink.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
+		return;
+		var par = aLink.parentNode;                                                               								
+		var span = doc.createElement("span");
+		span.setAttribute('class', 'myht1');
+		par.insertBefore(span, aLink);
+		span.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
+		span.appendChild(aLink);                            		
+	},
         
-    change : function( page, doc ) {        
+
+	change : function( page, doc ) {        
 	},
   
-    popupshow : function( event) {
+
+	popupshow : function( event) {
 	try { 
 		var doc = FoxtrickTeamPopupLinks.popupshow.doc;
 		if (event.target.style==null) event.target.setAttribute('style','display:inline');
@@ -137,7 +133,7 @@ var FoxtrickTeamPopupLinks = {
         var teamid=null;
 		var teamname=null;
 		if (userlink) {
-			value = FoxtrickHelper.getUserIdFromUrl(event.target.href);
+			value = FoxtrickHelper.getUserIdFromUrl(event.target.href); 
 			teamid = event.target.getAttribute('teamid'); 
 			teamname = event.target.getAttribute('teamname'); 
 			if (teamid != null) {
@@ -146,8 +142,8 @@ var FoxtrickTeamPopupLinks = {
 			}
 		}
 		var owntopteamlinks=false;
-		if (event.target.parentNode.parentNode.tagName == "DIV" 
-			&& event.target.parentNode.parentNode.id == "teamLinks") owntopteamlinks=true;
+		if (event.target.parentNode.tagName == "DIV" 
+			&& event.target.parentNode.id == "teamLinks") owntopteamlinks=true;
 									
                                 var tbl = doc.createElement("table");
                                 tbl.setAttribute("cell-padding", "2");
@@ -184,7 +180,7 @@ var FoxtrickTeamPopupLinks = {
 										top = top - 20;
                                 }
 
-								if (FoxtrickTeamPopupLinks.bMatches || owntopteamlinks){
+								if (FoxtrickTeamPopupLinks.bMatches || owntopteamlinks) {
                                         var tr1 = doc.createElement("tr");
                                         tr1.setAttribute("height", "20");
                                         var td1 = doc.createElement("td");
@@ -294,8 +290,10 @@ var FoxtrickTeamPopupLinks = {
 									/*if (event.target.parentNode.parentNode.tagName == "DIV" && event.target.parentNode.parentNode.id == "teamLinks") div.setAttribute('class', 'mainBox myht2_low');
 									else*/ div.setAttribute('class', 'mainBox myht2');
 									div.setAttribute('style','top:'+top+'px');
-									div.appendChild(tbl);									
-									event.target.parentNode.appendChild(div);
+									div.appendChild(tbl);		event.target.appendChild(div);							
+									//event.target.parentNode.appendChild(div);
+									event.target.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
+		
 	} catch(e){dump(e+'\n');}
         
 },

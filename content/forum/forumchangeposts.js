@@ -208,7 +208,7 @@ var FoxtrickForumChangePosts = {
 				// redir to team ------------------------------------------
 				if ( do_redir_to_team ) {
 					poster_link1.href += "&redir_to_team=true";
-					if (poster_link2) poster_link1.href += "&redir_to_team=true";				
+					if (poster_link2) poster_link2.href += "&redir_to_team=true";				
 				}
 				
 				

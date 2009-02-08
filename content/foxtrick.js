@@ -210,6 +210,7 @@ var FoxtrickMain = {
 				}
 			}
         }
+		else dump('Foxtrick modules deactivated\n');
 	}
 
 };
