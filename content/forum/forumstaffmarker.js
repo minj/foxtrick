@@ -122,6 +122,7 @@ var FoxtrickForumStaffMarker = {
 			"caracca",
             "carlesmu",
 			"convinced",
+            "damyr",
 			"eekels",
             "ei04004",
 			"franory",
