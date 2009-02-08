@@ -73,26 +73,38 @@ var FoxtrickForumChangePosts = {
 				
 				// get post_links, poster_links, poster_id from header
 				var header_left_links = header_left.getElementsByTagName('a');
-				var post_link1 = header_left_links[0];
-				var poster_link1 = header_left_links[1];
-				var poster_id1 = poster_link1.href.match(/\d+$/);	
+				var post_link1 = null;
+				var poster_link1 = null;
+				var poster_id1 = null;	
 				var post_link2 = null;
 				var poster_link2 = null;
 				var poster_id2 = null;
 				var supporter_link1 = null;
 				var supporter_link2 = null;
 				
-				var k = 1, header_left_link; 
-				while ( header_left_link = header_left_links[++k]) {
-					if (!post_link2 && header_left_link.href.search(/Supporter/i) != -1) {
-						supporter_link1 = header_left_link;
-					} else if (header_left_link.href.search(/showMInd/) != -1) {
-						post_link2 = header_left_link;
-						poster_link2 = header_left_links[k+1];
-						poster_id2 = poster_link2.href.match(/\d+$/);										
-					}
-					else if (post_link2 && header_left_link.href.search(/Supporter/i) != -1) {
-						supporter_link2 = header_left_link;		
+				var k = 0, header_left_link; 
+				while ( header_left_link = header_left_links[k++]) {
+					if (!poster_link1) { 
+						if (header_left_link.href.search(/showMInd/) != -1) post_link1 = header_left_link;
+						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
+							poster_link1 = header_left_link; 
+							poster_id1 = poster_link1.href.match(/\d+$/);
+							if (header_left_links[k] 
+								&& header_left_links[k].href.search(/Supporter/i) != -1) {
+									supporter_link1 = header_left_links[k];
+							}
+						}					
+						
+					} else { 
+						if (header_left_link.href.search(/showMInd/) != -1) post_link2 = header_left_link;
+						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
+							poster_link2 = header_left_link;
+							poster_id2 = poster_link2.href.match(/\d+$/);
+							if (header_left_links[k] 
+								&& header_left_links[k].href.search(/Supporter/i) != -1) {
+									supporter_link2 = header_left_links[k];
+							}
+						}												
 					}
 				}
 				
@@ -260,7 +272,7 @@ var FoxtrickForumChangePosts = {
 				
 				
 				// move links -----------------------------------------
-				if ( do_move_links && countryLink && leagueLink) {
+				if ( do_move_links && countryLink && leagueLink && !do_alltid_flags) {
 					var placenode;
 					if (supporter_link1) placenode = supporter_link1.nextSibling;
 					else placenode = poster_link1.nextSibling;
