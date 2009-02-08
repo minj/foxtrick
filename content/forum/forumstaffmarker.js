@@ -148,6 +148,7 @@ var FoxtrickForumStaffMarker = {
             "poceh_b",
 			"Pyntsa",
             "Skoglund",
+            "slader",
 			"smates",
 			"spambot",
 			"stephan57",
