@@ -795,7 +795,7 @@ function gregorianToHT( date ) {
     */
     if (date == '') return false;
     date +=' ';
-
+        
     var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
     var ar = reg.exec(date);
     var months = [];
@@ -834,12 +834,33 @@ function gregorianToHT( date ) {
         ar[i] = ar[i].replace( /^(0+)/g, '' );
     }
     
+    var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+    if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+
     var day = parseInt(ar[1]);
     var month = parseInt(ar[3]);
     var year = parseInt(ar[5]);
-
+    
+    switch ( DATEFORMAT ) {
+        case 'ddmmyyyy':
+            var day = parseInt(ar[1]);
+            var month = parseInt(ar[3]);
+            var year = parseInt(ar[5]);
+            break;
+        case 'mmddyyyy':
+            var day = parseInt(ar[3]);
+            var month = parseInt(ar[1]);
+            var year = parseInt(ar[5]);
+            break;
+        case 'yyyymmdd':
+            var day = parseInt(ar[5]);
+            var month = parseInt(ar[3]);
+            var year = parseInt(ar[1]);
+            break;
+    }
+            
     var dayCount = years[year-2000] + months[month] + (day);
-
+    dump ( ' > DATEFORMAT: ' + DATEFORMAT + ' [ ' + date + '] ' + day + '/' + month + '/' + year + '\n');
     // leap day
     if (year % 4 == 0 && month > 2)
         ++dayCount;
