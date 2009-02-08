@@ -200,7 +200,7 @@ var FoxtrickForumChangePosts = {
 								
 								if (poster_link2) {
 									var asAnswerTo = post_link2.previousSibling; 
-									var newText = doc.createTextNode(" => ");
+									var newText = doc.createTextNode("=> ");
 									header_left.replaceChild(newText,asAnswerTo);
 									var asAnswerTo2 = post_link2.nextSibling; 
 									var newText2 = doc.createTextNode(": ");
@@ -276,7 +276,9 @@ var FoxtrickForumChangePosts = {
 					var placenode;
 					if (supporter_link1) placenode = supporter_link1.nextSibling;
 					else placenode = poster_link1.nextSibling;
-					header_left.insertBefore(leagueLink, placenode);
+					var space = doc.createTextNode(" ");						
+					header_left.insertBefore(space, placenode);
+					header_left.insertBefore(leagueLink, space);
 					header_left.insertBefore(countryLink, leagueLink);							
 					var space = doc.createTextNode(" ");						
 					header_left.insertBefore(space, countryLink);
