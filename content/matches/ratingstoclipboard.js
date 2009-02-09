@@ -7,7 +7,7 @@
 var FoxtrickCopyRatingsToClipboard = {
 
     MODULE_NAME : "CopyRatingsToClipboard",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : false,
 
 	init : function() {
@@ -59,7 +59,7 @@ var FoxtrickCopyRatingsToClipboard = {
         for (var row = 0; row < table.rows.length; row ++) {
             if (row != table.rows.length-3 )  {
                 try {
-                    if ( table.rows[row].cells[1] && table.rows[row].cells[1].innerHTML.indexOf( '<br>' ) != -1 ) {} else {
+                    // if ( table.rows[row].cells[1] && table.rows[row].cells[1].innerHTML.indexOf( '' ) != -1 ) {} else {
                     //no hatstats detailes and no pic/mots/normal, i hope :)
                     ad += '[tr][td]';
                     if (table.rows[row].cells[0]) ad += table.rows[row].cells[0].textContent;
@@ -68,7 +68,7 @@ var FoxtrickCopyRatingsToClipboard = {
                     ad += '[/td][td]';
                     if (table.rows[row].cells[2]) ad += table.rows[row].cells[2].textContent;            
                     ad += '[/td][/tr]';
-                    }
+                    // }
                 } catch (e) {}
             }
         }
