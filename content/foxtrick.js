@@ -1113,6 +1113,16 @@ Foxtrick.isStandardLayout = function ( doc ) {
 	return link.href.search("Simple") == -1; // true = standard / false = simple
 }
 
+Foxtrick.hasMainBodyScroll = function ( doc ) {
+	// Check if scrolling is on for MainBody
+	var mainBodyChildren = doc.getElementById('mainBody').childNodes;
+	var i = 0, child;
+	while (child = mainBodyChildren[i++]) 
+		if (child.nodeNamec == 'SCRIPT' && child.innerHTML && child.innerHTML.search('adjustHeight') != -1) return  true;
+	return false;
+	}
+
+
 function setActiveTextBox(field, cssClass, text) {
     var fieldObj = document.getElementById(field);
     fieldObj.className = cssClass;

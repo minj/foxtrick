@@ -34,6 +34,7 @@ var FoxtrickForumChangePosts = {
 		if (do_alter_header &&  do_single_header)
 				Foxtrick.addStyleSheet ( doc,'chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css' );
         
+		var hasScroll = Foxtrick.hasMainBodyScroll(doc);
 		
 		// part of FoxtrickAlltidflags
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
@@ -45,7 +46,8 @@ var FoxtrickForumChangePosts = {
 
 		// part of FoxtrickForumAnchors
 		var anchor = doc.createElement( "a" );
-        anchor.href = "javascript:goAnchor('');";
+        if (!hasScroll) anchor.href = "javascript:goAnchor('');";
+		else anchor.href = "javascript:goAnchor('mainBody');";
 		anchor.title = "TOP";
         var img = doc.createElement("img");
         img.setAttribute('style','margin-left:3px;');
@@ -182,44 +184,7 @@ var FoxtrickForumChangePosts = {
 					}	 
 				}  // end copy post id
 				
-				
-				// single header line ---------------------------------------
-				if (do_truncate_nicks) {
-						var userName1 = poster_link1.innerHTML;
-						if (userName1.length > trunclength) {
-							poster_link1.innerHTML = userName1.substr(0,trunclength-2) +"..";
-						}
-						if (poster_link2) {
-							var userName2 = poster_link2.innerHTML;
-							if (userName2.length > trunclength) {
-								poster_link2.innerHTML = userName2.substr(0,trunclength-2) +"..";
-							}
-						}
-				}
-					
-				if (do_single_header) {
-								var asAnswerTo0 = post_link1.nextSibling; 
-								var newText0 = doc.createTextNode(": ");
-								header_left.replaceChild(newText0,asAnswerTo0);								
 								
-								if (poster_link2) {
-									var asAnswerTo = post_link2.previousSibling; 
-									var newText = doc.createTextNode("=> ");
-									header_left.replaceChild(newText,asAnswerTo);
-									var asAnswerTo2 = post_link2.nextSibling; 
-									var newText2 = doc.createTextNode(": ");
-									header_left.replaceChild(newText2,asAnswerTo2);
-								}
-								if (header.className == "cfHeader doubleLine") {			
-									var br = header_left.getElementsByTagName('br')[0];
-									if (br) header_left.removeChild(br);
-									header.setAttribute('style','height:16px !important;');
-									/*if (header_left.offsetWidth > header.offsetWidth - header_right.offsetWidth - 30) {
-										header.style.height='30px !important;';
-									}*/
-								}
-				}  // end single header line
-				
 				
 				// redir to team ------------------------------------------
 				if ( do_redir_to_team ) {
@@ -290,6 +255,44 @@ var FoxtrickForumChangePosts = {
 				}// dump('end move links \n');
 				
 				
+								// single header line ---------------------------------------
+				if (do_truncate_nicks) {
+						var userName1 = poster_link1.innerHTML;
+						if (userName1.length > trunclength) {
+							poster_link1.innerHTML = userName1.substr(0,trunclength-2) +"..";
+						}
+						if (poster_link2) {
+							var userName2 = poster_link2.innerHTML;
+							if (userName2.length > trunclength) {
+								poster_link2.innerHTML = userName2.substr(0,trunclength-2) +"..";
+							}
+						}
+				}
+					
+				if (do_single_header) {
+								var asAnswerTo0 = post_link1.nextSibling; 
+								var newText0 = doc.createTextNode(": ");
+								header_left.replaceChild(newText0,asAnswerTo0);								
+								
+								if (poster_link2) {
+									var asAnswerTo = post_link2.previousSibling; 
+									var newText = doc.createTextNode("=> ");
+									header_left.replaceChild(newText,asAnswerTo);
+									var asAnswerTo2 = post_link2.nextSibling; 
+									var newText2 = doc.createTextNode(": ");
+									header_left.replaceChild(newText2,asAnswerTo2);
+								}
+								if (header.className == "cfHeader doubleLine") {			
+									var br = header_left.getElementsByTagName('br')[0];
+									if (br) header_left.removeChild(br);
+									//dump(header.offsetTop-header_right.offsetTop+'\n');
+									if (do_single_header || header.offsetTop-header_right.offsetTop >= -3 ) {
+										header.setAttribute('style','height:16px');
+										//header.setAttribute('style','height:32px !important');
+									}
+								}
+				}  // end single header line
+
 				
 				// hide  avatar ----------------------------------
 				if ( do_hide_avatar && user_avatar ) {
