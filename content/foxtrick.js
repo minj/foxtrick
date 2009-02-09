@@ -1118,7 +1118,7 @@ Foxtrick.hasMainBodyScroll = function ( doc ) {
 	var mainBodyChildren = doc.getElementById('mainBody').childNodes;
 	var i = 0, child; 
 	while (child = mainBodyChildren[i++]) 
-		if (child.nodeName == 'SCRIPT' && child.innerHTML && child.innerHTML.search('adjustHeight') != -1) return  true;
+		if (child.nodeName == 'SCRIPT' && child.innerHTML && child.innerHTML.search(/adjustHeight\(\'mainBody\'/) != -1) return  true;
 	return false;
 	}
 

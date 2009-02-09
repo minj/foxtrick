@@ -8,7 +8,7 @@ var FoxtrickShowForumPrefButton = {
 
 	MODULE_NAME : "ShowForumPrefButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -17,20 +17,17 @@ var FoxtrickShowForumPrefButton = {
 	
 	run : function( page, doc ) { 
 	
-	if (Foxtrick.hasMainBodyScroll(doc)) return;  // don't display with scrollbars.
-		
-
-	
+	var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+	if (boxHead.className!='boxHead') return;
     if (Foxtrick.isStandardLayout ( doc ) ) {
 		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
                                 "resources/css/conference_settings.css");
 	}
-	var mainbody = doc.getElementById('mainBody');
 	var forumprefs = doc.createElement('a');
 	forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
 	forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
 	forumprefs.setAttribute('class','forumSettings');
-	mainbody.insertBefore(forumprefs,mainbody.firstChild);
+	boxHead.insertBefore(forumprefs,boxHead.firstChild);
 	},
  
  	
