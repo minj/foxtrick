@@ -18,19 +18,19 @@ var FoxtrickForumPreview = {
         Foxtrick.registerPageHandler( 'forumWritePost', this );
         Foxtrick.registerPageHandler( 'messageWritePost', this );
     },
-        
+
     run : function( page, doc ) {
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' ); 
-            if (msg_window == null) 
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' ); 
-            if (msg_window == null) 
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' );
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
+            if (msg_window == null)
                 return;
         }
         catch(e) {
             dump(e);
         }
-        
+
         // display preview and button above the message window
 
         var preview_ctrl_div = doc.createElement( "div" );
@@ -68,26 +68,26 @@ var FoxtrickForumPreview = {
 	},
 
 	_toggleListener : function( ev ) {
-		
+
         var doc = ev.target.ownerDocument;
 
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' ); 
-            if (msg_window == null) 
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' ); 
-            if (msg_window == null) 
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' );
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
+            if (msg_window == null)
                 return;
         }
         catch(e) {
             dump(e);
         }
-        
+
         var prev_div = doc.getElementById( "forum_preview" );
-        
+
         try {
             if( prev_div.style.display == "block" ) {
                 msg_window.removeEventListener( "keyup", FoxtrickForumPreview._preview, false );
-                
+
             } else {
                 msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
                 FoxtrickForumPreview._preview( ev );
@@ -119,7 +119,10 @@ var FoxtrickForumPreview = {
           /\[u\](.*?)\[\/u\]/,
           /\[i\](.*?)\[\/i\]/,
           /\[br\]/,
-          /\[hr\]/
+          /\[hr\]/,
+          /\[table\](.*?)\[\/table\]/,
+          /\[tr\](.*?)\[\/tr\]/,
+          /\[td\](.*?)\[\/td\]/
           );
 
         replace = new Array(
@@ -141,22 +144,25 @@ var FoxtrickForumPreview = {
           "<u>$1</u>",
           "<i>$1</i>",
           "<br>",
-          "<hr>"
+          "<hr>",
+          "<table><tbody>$1</tbody></table>",
+          "<tr>$1</tr>",
+          "<td>$1</td>"
         );
 
         var doc = ev.target.ownerDocument;
 
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' ); 
-            if (msg_window == null) 
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' ); 
-            if (msg_window == null) 
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' );
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
+            if (msg_window == null)
                 return;
         }
         catch(e) {
             dump(e);
         }
-        
+
         try {
             var prev_div = doc.getElementById( "forum_preview" );
             var text = Foxtrick.stripHTML( msg_window.value );
@@ -171,7 +177,7 @@ var FoxtrickForumPreview = {
 
             prev_div.innerHTML = text;
         }
-        catch(e) { 
+        catch(e) {
             dump(e);
         }
 
