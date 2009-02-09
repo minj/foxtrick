@@ -3,7 +3,7 @@
 * Foxtrick Copies post id to clipboard
 * @author convinced
 */
-
+  
 var FoxtrickForumChangePosts = {
 
 	MODULE_NAME : "ForumChangePosts",
@@ -31,6 +31,10 @@ var FoxtrickForumChangePosts = {
 		var do_redir_to_team = Foxtrick.isModuleEnabled( FoxtrickForumRedirManagerToTeam ); 
 		
 		
+		if (do_alter_header &&  do_single_header)
+				Foxtrick.addStyleSheet ( doc,'chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css' );
+        
+		
 		// part of FoxtrickAlltidflags
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
 		var linkpage = "http://stats.alltidhattrick.org/user/";
@@ -41,9 +45,8 @@ var FoxtrickForumChangePosts = {
 
 		// part of FoxtrickForumAnchors
 		var anchor = doc.createElement( "a" );
-        anchor.href = '#';
-		anchor.setAttribute('onclick','window.scrollTo(0,0); return false;');
-        anchor.title = "TOP";
+        anchor.href = "javascript:goAnchor('');";
+		anchor.title = "TOP";
         var img = doc.createElement("img");
         img.setAttribute('style','margin-left:3px;');
         img.alt = "anchor_top";

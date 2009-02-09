@@ -29,6 +29,10 @@ FoxtrickMatchPlayerColouring = {
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
 		
+		dump ('ownteam: '+myTeamId+'\n');
+		dump ('HomeTeamId: '+HomeTeamId+'\n');
+		dump ('AwayTeamId: '+AwayTeamId+'\n');
+		
 		//Retrieve colour parameters
 		if (Foxtrick.isModuleFeatureEnabled( this, "My Team")) {
             var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "My Team_text");
