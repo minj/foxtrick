@@ -44,7 +44,7 @@ var FoxtrickShortcutsStatistics = {
                     targetNode.insertBefore(link, targetNode.lastChild);
                 }
                 
-                if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) {                
+                if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {                
                     var link = doc.createElement('a');                
                     link.id = 'ft_shortcutsstatistics';
                     link.href = "../../Club/Transfers/";
