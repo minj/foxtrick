@@ -9,7 +9,7 @@ var FoxtrickForumAlterHeaderLine = {
     MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : false,
-	OPTIONS : new Array("SingleHeaderLine", "TruncateLongNick"),
+	OPTIONS : new Array("SingleHeaderLine", "TruncateLongNick","CheckDesign"),
 
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',

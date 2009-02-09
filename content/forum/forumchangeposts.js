@@ -26,12 +26,14 @@ var FoxtrickForumChangePosts = {
 		var do_move_links = Foxtrick.isModuleEnabled(FoxtrickMoveLinks);
 		var do_alter_header = Foxtrick.isModuleEnabled(FoxtrickForumAlterHeaderLine);
 		var do_single_header = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SingleHeaderLine"); 
+		var do_single_header_allways = do_alter_header && do_single_header && !Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "CheckDesign"); 
+		dump(do_single_header_allways+'\n');
 		var do_truncate_nicks = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick"); 
 		var do_alltid_flags = Foxtrick.isModuleEnabled( FoxtrickAlltidFlags ); 
 		var do_redir_to_team = Foxtrick.isModuleEnabled( FoxtrickForumRedirManagerToTeam ); 
 		
 		
-		if (do_alter_header &&  do_single_header)
+		if (do_alter_header &&  do_single_header && do_single_header_allways)
 				Foxtrick.addStyleSheet ( doc,'chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css' );
         
 		var hasScroll = Foxtrick.hasMainBodyScroll(doc);
@@ -285,10 +287,8 @@ var FoxtrickForumChangePosts = {
 								if (header.className == "cfHeader doubleLine") {			
 									var br = header_left.getElementsByTagName('br')[0];
 									if (br) header_left.removeChild(br);
-									//dump(header.offsetTop-header_right.offsetTop+'\n');
-									if (do_single_header || header.offsetTop-header_right.offsetTop >= -3 ) {
+									if (do_single_header_allways || header.offsetTop-header_right.offsetTop >= -3 ) {
 										header.setAttribute('style','height:16px');
-										//header.setAttribute('style','height:32px !important');
 									}
 								}
 				}  // end single header line
@@ -335,7 +335,11 @@ var FoxtrickForumChangePosts = {
 	_copy_postid_to_clipboard : function(ev) { 
 		var PostID = ev.target.getAttribute("PostID");		
 		Foxtrick.copyStringToClipboard(PostID);
-        ev.target.innerHTML = PostID; 			
+        ev.target.innerHTML = PostID; 
+		header = ev.target.parentNode.parentNode;
+		if (header.offsetTop-header.lastChild.offsetTop < -3 ) {
+										header.setAttribute('style','height:30px');
+									}		
 		ev.target.addEventListener( "click", FoxtrickForumChangePosts._copy_postid_to_top, false );	
 		ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._copy_postid_to_clipboard, false );	
 	},	
