@@ -8,7 +8,7 @@ var FoxtrickHeaderFix = {
 	
     MODULE_NAME : "HeaderFix",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	
     init : function() {
             Foxtrick.registerPageHandler( 'all',
