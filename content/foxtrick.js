@@ -1116,9 +1116,9 @@ Foxtrick.isStandardLayout = function ( doc ) {
 Foxtrick.hasMainBodyScroll = function ( doc ) {
 	// Check if scrolling is on for MainBody
 	var mainBodyChildren = doc.getElementById('mainBody').childNodes;
-	var i = 0, child;
+	var i = 0, child; 
 	while (child = mainBodyChildren[i++]) 
-		if (child.nodeNamec == 'SCRIPT' && child.innerHTML && child.innerHTML.search('adjustHeight') != -1) return  true;
+		if (child.nodeName == 'SCRIPT' && child.innerHTML && child.innerHTML.search('adjustHeight') != -1) return  true;
 	return false;
 	}
 

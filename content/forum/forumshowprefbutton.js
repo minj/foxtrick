@@ -8,7 +8,7 @@ var FoxtrickShowForumPrefButton = {
 
 	MODULE_NAME : "ShowForumPrefButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -16,6 +16,10 @@ var FoxtrickShowForumPrefButton = {
 	},
 	
 	run : function( page, doc ) { 
+	
+	if (Foxtrick.hasMainBodyScroll(doc)) return;  // don't display with scrollbars.
+		
+
 	
     if (Foxtrick.isStandardLayout ( doc ) ) {
 		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
