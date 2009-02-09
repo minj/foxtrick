@@ -8,7 +8,7 @@ var FoxtrickShortcutsStatistics = {
 
     MODULE_NAME : "shortcutsstatistics",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    DEFAULT_ENABLED : true,
+    DEFAULT_ENABLED : false,
 
     init : function() {
         Foxtrick.registerPageHandler( 'all', this);
