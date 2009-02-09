@@ -52,6 +52,9 @@ var FoxtrickCopyRatingsToClipboard = {
 	},
 	
 	createRatings : function( ev ) {
+        var _d = Foxtrickl10n.getString("foxtrick.matchdetail.defence" );
+        var _m = Foxtrickl10n.getString("foxtrick.matchdetail.midfield" );
+        var _a = Foxtrickl10n.getString("foxtrick.matchdetail.attack" );
         
 		var doc = ev.target.ownerDocument;
         var ad = '[table]';
@@ -64,9 +67,9 @@ var FoxtrickCopyRatingsToClipboard = {
                     ad += '[tr][td]';
                     if (table.rows[row].cells[0]) ad += table.rows[row].cells[0].textContent;
                     ad += '[/td][td]';
-                    if (table.rows[row].cells[1]) ad += table.rows[row].cells[1].textContent;
+                    if (table.rows[row].cells[1]) ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                     ad += '[/td][td]';
-                    if (table.rows[row].cells[2]) ad += table.rows[row].cells[2].textContent;            
+                    if (table.rows[row].cells[2]) ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                     ad += '[/td][/tr]';
                     // }
                 } catch (e) {}
