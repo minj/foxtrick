@@ -76,6 +76,7 @@ var scripts = [
     'presentation/guestbookalltidflags.js',
     'presentation/currencyConverter.js',
     'presentation/tickercoloring.js',
+	'presentation/headerfix.js',
     'links/linkscustom.js',
     'links/linksleague.js',
     'links/linksteam.js',
