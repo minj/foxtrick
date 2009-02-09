@@ -15,29 +15,32 @@ var FoxtrickCopyRatingsToClipboard = {
     },
     
     run : function( page, doc ) {
+        var mainBody = doc.getElementById('mainBody');
+        var table = mainBody.getElementsByTagName('table')[0];
+        if (table == null ) return;
         
         try {
-		var parentDiv = doc.createElement("div");
-		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
-		
-		var messageLink = doc.createElement("a");
-		messageLink.className = "inner";
-		messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
-		messageLink.setAttribute("style","cursor: pointer;");
-		messageLink.addEventListener("click", this.createRatings, false)
-		
-		var img = doc.createElement("img");
-		img.style.padding = "0px 5px 0px 0px;";
-		img.className = "actionIcon";
-		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
-		img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
-		messageLink.appendChild(img);
-				
-		parentDiv.appendChild(messageLink);
-		
-		var newBoxId = "foxtrick_actions_box";
-		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
-			"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+            var parentDiv = doc.createElement("div");
+            parentDiv.id = "foxtrick_addactionsbox_parentDiv";
+            
+            var messageLink = doc.createElement("a");
+            messageLink.className = "inner";
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            messageLink.setAttribute("style","cursor: pointer;");
+            messageLink.addEventListener("click", this.createRatings, false)
+            
+            var img = doc.createElement("img");
+            img.style.padding = "0px 5px 0px 0px;";
+            img.className = "actionIcon";
+            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+            messageLink.appendChild(img);
+                    
+            parentDiv.appendChild(messageLink);
+            
+            var newBoxId = "foxtrick_actions_box";
+            Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+                "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
         } catch(e) { dump(e) }
 	},
 	
