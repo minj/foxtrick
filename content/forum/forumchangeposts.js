@@ -68,13 +68,16 @@ var FoxtrickForumChangePosts = {
 		
 		var alldivs = doc.getElementById('mainBody').childNodes;
 		var i = 0, wrapper;
-		while ( wrapper = alldivs[++i]) {
-			if (wrapper.className=="cfWrapper") {
+		while ( wrapper = alldivs[++i] ) {  
+		  if ( wrapper.className=="cfWrapper" ) {
+		    var allwrapperdivs = wrapper.childNodes;
+		    var ii = 0, header;
+		    while ( header = allwrapperdivs[++ii] ) {
+			  if ( header.className && header.className.search(/cfHeader/)!=-1 ) {
 				
 				// +++++++++++ gather info and nodes +++++++++++++++++++++++++
 				
 				// get header, header_left, header_right
-				var header = wrapper.childNodes[1];
 				if (header.className == 'cfDeleted') continue;
 				
 				var header_left = header.childNodes[0];
@@ -324,9 +327,11 @@ var FoxtrickForumChangePosts = {
 						user = null;
 					}
 				}  //dump ('end hide user info \n');
-			//dump (num_wrapper+'\n');
-			++num_wrapper;				
+			  //dump (num_wrapper+'\n');
+			  ++num_wrapper;				
+			  }
 			}
+		  }
 		}
 	} catch (e) { dump('forum '+e+'\n');} 
 	},
