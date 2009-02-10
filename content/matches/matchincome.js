@@ -17,7 +17,8 @@ var FoxtrickMatchIncome = {
 	},
 
     run : function( page, doc ) {
-
+        var ft_match = doc.getElementById ('ft_matchincome');
+        if (ft_match != null) return;
 		var youthmatch = FoxtrickHelper.findIsYouthMatch(doc.location.href);
 		
 		var isarchivedmatch=doc.location.href.search(/useArchive=true/i)!=-1;
@@ -42,6 +43,7 @@ var FoxtrickMatchIncome = {
 				tr2.appendChild(td2b);
 				td2a.innerHTML=Foxtrickl10n.getString('foxtrick.matches.income');
 				td2a.setAttribute('class','ch');
+                td2a.id = 'ft_matchincome';
 				td2b.innerHTML=ReturnFormatedValue (Math.floor(sum), '&nbsp;')+'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol");
 			}
         }    
