@@ -35,7 +35,7 @@ var FoxtrickSeniorTeamShortCuts = {
 					if (pos1==-1 && bllink[j].href.search(/\/Club\/NationalTeam\/NTPlayers/i)>0) pos1=j;					
 					if (pos2==-1 && bllink[j].href.search(/\/Club\/Matches\/\?TeamID/i)>0) pos2=j;
 				}
-				
+					if (pos1==-1) return; // not a team leftbox
 				// last lineup
 					var li = doc.createElement("li");
 					var lastmatchlink = doc.createElement("a");

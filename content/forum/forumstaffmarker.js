@@ -212,7 +212,7 @@ var FoxtrickForumStaffMarker = {
 					try {
 						var ustyle = utext.substring(utext.search(user)).match(/style=\'(.+)\'/)[1];
 						this.ulist[user.replace(/userid=/i,'')] = ustyle;
-					} catch (e) {Foxtrick.alert('ForumStaffMarker: Error in Style for user'+ user);}
+					} catch (e) {Foxtrick.alert('ForumStaffMarker: Error in Style for: '+ user);}
 				}
 			}
 			
