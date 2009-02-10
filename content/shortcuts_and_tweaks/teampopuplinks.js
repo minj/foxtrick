@@ -28,9 +28,9 @@ var FoxtrickTeamPopupLinks = {
                 this.initOptions();
     },
 
-    run : function( page,doc ) {  
-		try { 
-                if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
+    run : function( page, doc ) {  
+		try {  
+				if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
                         return;
                 var sUrl = Foxtrick.getHref( doc );
 				
@@ -46,7 +46,7 @@ var FoxtrickTeamPopupLinks = {
                                 }
                         }
                 }
-				
+			   	
 				var teamdiv = doc.getElementById('teamLinks');
 				var ownleagueid = findLeagueLeveUnitId(teamdiv);
 				this.ownteamid=0;
@@ -79,7 +79,7 @@ var FoxtrickTeamPopupLinks = {
 				
 				//  team links
                 var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0]; 
-				if (aLink) this._addSpan( aLink );
+				if (aLink) this._addSpan( doc, aLink );
 				
 				// all in mainWrapper (ie. not left boxes)
 				if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
@@ -89,7 +89,7 @@ var FoxtrickTeamPopupLinks = {
 					if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons				
 					if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
 					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
-						this._addSpan( aLink );
+						this._addSpan(doc, aLink );
 					}  
 				}
 				var sidebar = doc.getElementById('sidebar');
@@ -100,7 +100,7 @@ var FoxtrickTeamPopupLinks = {
 						if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons				
 						if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
 						|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
-							this._addSpan( aLink );
+							this._addSpan(doc,  aLink );
 						}  
 					}
 				}
@@ -109,7 +109,7 @@ var FoxtrickTeamPopupLinks = {
 	},
 	
 
-	_addSpan : function ( aLink ) {
+	_addSpan : function ( doc, aLink ) {
 		var par = aLink.parentNode;                                                               								
 		var span = doc.createElement("span");
 		span.setAttribute('class', 'myht1');
@@ -303,7 +303,7 @@ var FoxtrickTeamPopupLinks = {
 									event.target.parentNode.appendChild(div);
 									event.target.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
 		
-	} catch(e){dump(e+'\n');}
+	} catch(e){dump('popupshow '+e+'\n');}
         
 },
 
