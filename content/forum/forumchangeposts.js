@@ -25,17 +25,14 @@ var FoxtrickForumChangePosts = {
 		var do_default_facecard = !do_hide_avatar && Foxtrick.isModuleEnabled(FoxtrickAddDefaultFaceCard);				
 		var do_move_links = Foxtrick.isModuleEnabled(FoxtrickMoveLinks);
 		var do_alter_header = Foxtrick.isModuleEnabled(FoxtrickForumAlterHeaderLine);
-		var do_single_header = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SingleHeaderLine"); 
-		var do_single_header_allways = do_alter_header && do_single_header && !Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "CheckDesign"); 
-		dump(do_single_header_allways+'\n');
-		var do_truncate_nicks = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick"); 
 		var do_alltid_flags = Foxtrick.isModuleEnabled( FoxtrickAlltidFlags ); 
 		var do_redir_to_team = Foxtrick.isModuleEnabled( FoxtrickForumRedirManagerToTeam ); 
 		
-		
-		if (do_alter_header &&  do_single_header && do_single_header_allways)
-				Foxtrick.addStyleSheet ( doc,'chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css' );
-        
+		var do_single_header = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SingleHeaderLine"); 
+		var do_small_header_font = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SmallHeaderFont"); 
+		var do_single_header_allways = do_alter_header && do_single_header && !Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "CheckDesign"); 
+		var do_truncate_nicks = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick"); 
+			
 		var hasScroll = Foxtrick.hasMainBodyScroll(doc);
 		
 		// part of FoxtrickAlltidflags
@@ -61,7 +58,11 @@ var FoxtrickForumChangePosts = {
 		// part of alter header
 		var trunclength = 10;
 		if (Foxtrick.isStandardLayout ( doc ) ) trunclength = 14;
-		
+		if (do_small_header_font) {
+			var css = "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css";
+			Foxtrick.addStyleSheet ( doc, css );
+		}
+		var singleHeaderStyle = 'height:16px; '; 
 		
 		var num_wrapper = 0;  // message counter
 		
@@ -272,10 +273,10 @@ var FoxtrickForumChangePosts = {
 				}
 					
 				if (do_single_header) {
-								var asAnswerTo0 = post_link1.nextSibling; 
+								var asAnswerTo0 = post_link1.nextSibling;// small_header_font
 								var newText0 = doc.createTextNode(": ");
 								header_left.replaceChild(newText0,asAnswerTo0);								
-								
+									
 								if (poster_link2) {
 									var asAnswerTo = post_link2.previousSibling; 
 									var newText = doc.createTextNode("=> ");
@@ -285,12 +286,13 @@ var FoxtrickForumChangePosts = {
 									header_left.replaceChild(newText2,asAnswerTo2);
 								}
 								if (header.className == "cfHeader doubleLine") {			
-									var br = header_left.getElementsByTagName('br')[0];
-									if (br) header_left.removeChild(br);
+									var br = header_left.getElementsByTagName('br')[0]; 
+									if (br) header_left.removeChild(br); 
 									if (do_single_header_allways || header.offsetTop-header_right.offsetTop >= -3 ) {
-										header.setAttribute('style','height:16px');
+										header.setAttribute('style',singleHeaderStyle); 
 									}
 								}
+								
 				}  // end single header line
 
 				
