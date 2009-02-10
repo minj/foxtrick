@@ -29,9 +29,9 @@ FoxtrickMatchPlayerColouring = {
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
 		
-		dump ('ownteam: '+myTeamId+'\n');
-		dump ('HomeTeamId: '+HomeTeamId+'\n');
-		dump ('AwayTeamId: '+AwayTeamId+'\n');
+		//dump ('ownteam: '+myTeamId+'\n');
+		//dump ('HomeTeamId: '+HomeTeamId+'\n');
+		//dump ('AwayTeamId: '+AwayTeamId+'\n');
 		
 		//Retrieve colour parameters
 		if (Foxtrick.isModuleFeatureEnabled( this, "My Team")) {
@@ -55,28 +55,39 @@ FoxtrickMatchPlayerColouring = {
         if (content_div == null) return;
         var teamA = "";
         var teamB = "";
-        var content = content_div.getElementsByTagName("h1")[0].parentNode.textContent;
-        var regexp = new RegExp(": ([^\\.]*?)\\.");
-		var FirstTeam = true; 
-        var matchteamA = regexp.exec(content);
-        if (matchteamA) {
-            teamA = matchteamA[1].replace(/ \- /g, ", ").split(", ");
-        //    dump(teamA + '\n');
+        var content = content_div.getElementsByTagName("h1")[0].parentNode.innerHTML;;
+		var contentA = content.substring(0,content.search('.<br><br>'));
+		contentA=contentA.substring(contentA.lastIndexOf('.')); 
+		//dump('A: ' + contentA+'\n------\n');
+        var contentB = content.substring(content.search('.<br><br>')+9); 
+		contentB=contentB.substring(0,contentB.search('.<br><br>')); 
+		contentB=contentB.substring(contentB.lastIndexOf('.')); 
+		//dump('B: '+ contentB+'\n--------\n');
+
+        var FirstTeam = true; 
+        if (contentA) {
+            teamA = contentA.replace(/ \- /g, ", ").split(", ");
         }
-		content = content.substring(content.indexOf(matchteamA[0])+matchteamA[0].length);
-        var matchteamB = regexp.exec(content);
-        if (matchteamB) {
-            teamB = matchteamB[1].replace(/ \- /g, ", ").split(", ");
-           // dump(teamB + '\n');
-         }
+		if (teamA[0].search(':')!=-1) teamA[0]=teamA[0].substring(teamA[0].search(':')+2);
+		else teamA[0]=teamA[0].substring(teamA[0].lastIndexOf(' ')+1);
+		//for (var k=0;k<teamA.length;k++)  dump(k+': '+teamA[k]+'\n');
+		if (contentB) {
+            teamB = contentB.replace(/ \- /g, ", ").split(", ");
+        }
+		if (teamB[0].search(':')!=-1) teamB[0]=teamB[0].substring(teamB[0].search(':')+2);
+		else teamB[0]=teamB[0].substring(teamB[0].lastIndexOf(' ')+1);
+ 		//for (var k=0;k<teamB.length;k++)  dump(k+': '+teamB[k]+'\n');
+				
 		//Retrieve substitutions
-		 var spans = content_div.getElementsByTagName("span");
+		 var spans = content_div.getElementsByTagName("td");
 		 for (var i=0; i<spans.length; i++) {
 			var span_a = spans[i].getElementsByTagName("a");
-			for (var j=0; j<span_a.length; j++) {
-				if (FoxtrickMatchPlayerColouring._isLinkPlayer(span_a[j].href)) {
+			var span_img = spans[i].getElementsByTagName("img");
+			for (var j=0; j<span_img.length; j++) {
+				if (span_img[j].src.search(/sub_out/)!=-1) {
+				//if (FoxtrickMatchPlayerColouring._isLinkPlayer(span_a[j].href)) {
 					if (span_a[j].id == "") {
-                        try {
+                        try { 
                             //Player Out
                             var SubPlayerName = span_a[j].textContent;
                             var b = SubPlayerName.lastIndexOf(" ");
@@ -85,7 +96,8 @@ FoxtrickMatchPlayerColouring = {
                                 var PlayerOut = SubPlayerName.substr(b+1,l-b+1);
                             } else {
                                 var PlayerOut = SubPlayerName;
-                            }
+                            } // dump('sum out:'+PlayerOut+'\n');
+					
                             //Player In
                             var SubPlayerName = span_a[j+1].textContent;
                             var b = SubPlayerName.lastIndexOf(" ");
@@ -94,12 +106,12 @@ FoxtrickMatchPlayerColouring = {
                                 var PlayerIn = SubPlayerName.substr(b+1,l-b+1);
                             } else {
                                 var PlayerIn = SubPlayerName;
-                            }
+                            } //dump('sum in:'+PlayerIn+'\n');
                             //Add Player In to the players list
-                            if (teamA.indexOf(PlayerOut) >=0) {
+                            if (contentA.indexOf(PlayerOut) >=0) {
                                     teamA.push(PlayerIn);
 								 }
-                            if (teamB.indexOf(PlayerOut) >=0) {
+                            if (contentB.indexOf(PlayerOut) >=0) {
                                     teamB.push(PlayerIn);
                                 }
                             j=j+1;
@@ -127,13 +139,13 @@ FoxtrickMatchPlayerColouring = {
 				 } else {
 					var playerName = playerFullName;
 				 }
-				playerName=links[i].textContent;// dump('p: '+ playerName+'\n');
+				playerName=links[i].textContent; //dump('p: '+ playerName+'\n');
 				var foundA =false;
-				for (var k=0;k<teamA.length;k++) { //dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\n');
+				for (var k=0;k<teamA.length;k++) {// dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\n');
 					if (playerName.indexOf(teamA[k])>-1) foundA=true; 
 				}
 				var foundB =false;
-				for (var k=0;k<teamB.length;k++) { //dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\n');
+				for (var k=0;k<teamB.length;k++) {// dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\n');
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
                 if (foundA && !foundB) {
