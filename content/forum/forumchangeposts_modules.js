@@ -118,6 +118,34 @@ var FoxtrickMoveLinks = {
 
 //**********************************************************
 /**
+ * forumhideavataruserinfo.js
+ * Foxtrick Hide Manager Avatar User Info module
+ * @author larsw84/convinced
+ */
+
+var FoxtrickHideManagerAvatarUserInfo = {
+       
+    MODULE_NAME : "HideManagerAvatarUserInfo",
+        MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+        DEFAULT_ENABLED : false,
+
+    init : function() {
+            Foxtrick.registerPageHandler( 'forumViewThread',
+                                          FoxtrickHideManagerAvatarUserInfo );
+    },
+
+    run : function( page, doc ) { 
+	},
+       
+    change : function( page, doc ) {
+    }
+};
+
+
+
+
+//**********************************************************
+/**
  * forumanchors.js
  * Foxtrick Sets anchors to the top of a page
  * @author spambot

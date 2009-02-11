@@ -23,6 +23,7 @@ var FoxtrickTeamPopupLinks = {
 		bLastLineup : "",
 		bMessage : "",
 		bChallenge:"",
+		bAchievemants:"",
 		bMore:"",
 		ownteamid:"",
 				
@@ -44,6 +45,7 @@ var FoxtrickTeamPopupLinks = {
                                           "Guestbook" ,
                                           "SendMessage" ,
 										  "Challenge",
+										  "Achievements",
                                           "Coach",
                                           "TransferHistory" ,
 										  "LastLineup" );
@@ -69,7 +71,7 @@ var FoxtrickTeamPopupLinks = {
                 }
 			   	
 				var teamdiv = doc.getElementById('teamLinks');
-				var ownleagueid = findLeagueLeveUnitId(teamdiv);
+				var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
 				this.ownteamid=0;
 				if (ownleagueid != null) {
 					this.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
@@ -95,6 +97,7 @@ var FoxtrickTeamPopupLinks = {
                 this.bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
 				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "Message");
 				this.bChallenge= Foxtrick.isModuleFeatureEnabled( this, "Challenge");
+                this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
                 this.bMore = FoxtrickPrefs.getBool("module.TeamPopupLinksMore.enabled"); 
 				
 				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
@@ -174,8 +177,10 @@ var FoxtrickTeamPopupLinks = {
 		
         var teamid=null;
 		var teamname=null;
+		var userid='';
 		if (userlink) {
 			value = FoxtrickHelper.getUserIdFromUrl(org_link.href); 
+			userid = value;
 			teamid = org_link.getAttribute('teamid'); 
 			teamname = org_link.getAttribute('teamname'); 
 			if (teamid != null) {
@@ -327,7 +332,23 @@ var FoxtrickTeamPopupLinks = {
                                         tbl.appendChild(tr6);
 										top = top - 20;
                                 }
-                                if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bCoach)
+                                if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bAchievements)
+													|| (show_more && FoxtrickTeamPopupLinksMore.bAchievements))) {
+                                        var tr6 = doc.createElement("tr");
+                                        tr6.setAttribute("height", "20");
+                                        var td6 = doc.createElement("td");
+                                        td6.setAttribute("nowrap", "nowrap");
+                                        var a6 = doc.createElement("a");
+                                        if (!userlink && userid!='') a6.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+value+'&ft_popuplink=true');
+										else if (userlink) a6.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_achievements=true'+'&ft_popuplink=true');
+										else a6.setAttribute('href', '/Club/Manager/?teamId='+value+'&redir_to_achievements=true'+'&ft_popuplink=true');										
+                                        a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Achievements' )));
+                                        td6.appendChild(a6);
+                                        tr6.appendChild(td6);
+                                        tbl.appendChild(tr6);
+										top = top - 20;
+                                }
+								if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bCoach)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bCoach))) {
                                         var tr5 = doc.createElement("tr");
                                         tr5.setAttribute("height", "20");
@@ -434,6 +455,7 @@ var FoxtrickTeamPopupLinksMore = {
 		bLastLineup : "",
 		bMessage : "",
 		bChallenge:"",
+		bAchievements:"",
 		
     init : function() {
         Foxtrick.registerPageHandler('all_late', FoxtrickTeamPopupLinksMore );
@@ -449,6 +471,7 @@ var FoxtrickTeamPopupLinksMore = {
                 this.bGuestbook = Foxtrick.isModuleFeatureEnabled( this, "Guestbook");
 				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "Message");
                 this.bChallenge= Foxtrick.isModuleFeatureEnabled( this, "Challenge");
+                this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
                 this.bCoach = Foxtrick.isModuleFeatureEnabled( this, "Coach");
                 this.bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 this.bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
@@ -467,6 +490,7 @@ var FoxtrickTeamPopupLinksMore = {
                                           "Guestbook" ,
 										  "SendMessage",
 										  "Challenge",
+ 										  "Achievements",
                                           "Coach",
                                           "TransferHistory" ,
 										  "LastLineup");

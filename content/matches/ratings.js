@@ -19,10 +19,10 @@ var Ratings = {
 		this.initOptions();
 	},
 
-	run : function( page, doc ) {
+	run : function( page, doc ) { dump('in\n')
 		try {  
 			var ratingstable = Matches._getRatingsTable(doc);
-			if (ratingstable == null) return;
+			if (ratingstable == null) return; dump('got table\n')
 			if (Matches._isWalkOver(ratingstable)) return;
 			if (!Matches._isCorrectLanguage(ratingstable)) { // incorrect language
 				var row = ratingstable.insertRow(8);
@@ -39,7 +39,7 @@ var Ratings = {
 			var rattack=new Array(Matches._getStatFromCell(ratingstable.rows[5].cells[1]), Matches._getStatFromCell(ratingstable.rows[5].cells[2]));
 			var cattack=new Array(Matches._getStatFromCell(ratingstable.rows[6].cells[1]), Matches._getStatFromCell(ratingstable.rows[6].cells[2]));
 			var lattack=new Array(Matches._getStatFromCell(ratingstable.rows[7].cells[1]), Matches._getStatFromCell(ratingstable.rows[7].cells[2]));
-			
+			dump('got rating:'+lattack+'\n');
 			var tactics;
 			var tacticsLevel;
 			if (ratingstable.rows.length > 12) {

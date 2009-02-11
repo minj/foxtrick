@@ -22,8 +22,11 @@ var FoxtrickRedirections = {
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="playerInfo") {
 				var teamid=FoxtrickHelper.findTeamId(alldivs[j]);
-				var leagueid=findLeagueLeveUnitId(alldivs[j]);
-				var ownteamid=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));				
+				var leagueid=FoxtrickHelper.findLeagueLeveUnitId(alldivs[j]);
+				var ownteamid=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));	
+				var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1];
+				
+				
 				var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
 				var target="";
 				if (doc.location.href.search(/\/Club\/Manager/i)!=-1) { 
@@ -42,6 +45,8 @@ var FoxtrickRedirections = {
 								tar=serv+'/?TeamID='+teamid+'&SendMessage=true';
 					else if (doc.location.href.search(/redir_to_guestbook=true/i)!=-1 ) 
 								tar=serv+'/Manager/Guestbook.aspx?teamid='+teamid;
+					else if (doc.location.href.search(/redir_to_achievements=true/i)!=-1 ) { dump('/Achievements/?userID='+userid+'&teamid='+teamid+'\n');
+								tar=serv+'/Achievements/?userID='+userid+'&teamid='+teamid;}
 					else if (doc.location.href.search(/redir_to_players=true/i)!=-1 ) 
 								tar=serv+'/Players/?TeamID='+teamid;
 					else if (doc.location.href.search(/redir_to_matches=true/i)!=-1 ) 
