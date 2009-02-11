@@ -208,7 +208,7 @@ var FoxtrickTeamPopupLinks = {
                                         tbl.appendChild(tr1);
 										top = top - 20;
                                 }*/
-								if ((userlink || teamname!=null) && ((!show_more && FoxtrickTeamPopupLinks.bTeam)
+								if ((userlink) && ((!show_more && FoxtrickTeamPopupLinks.bTeam)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bTeam))) {
                                         var tr1 = doc.createElement("tr");
                                         tr1.setAttribute("height", "20");
@@ -220,7 +220,6 @@ var FoxtrickTeamPopupLinks = {
 										}
 										else {
 											a1.setAttribute('href', '/Club/?TeamID='+value+'&ft_popuplink=true');
-											org_link.title += ' : '+teamname;
 											a1.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Team' )));											
 										}
                                         td1.appendChild(a1);
@@ -228,6 +227,11 @@ var FoxtrickTeamPopupLinks = {
                                         tbl.appendChild(tr1);
 										top = top - 20;
                                 }
+								if (teamname!=null) {
+									if (org_link.title.search(teamname)==-1)
+											org_link.title += ' : '+teamname;																				
+								}
+								
 								if ((!owntopteamlinks && !userlink) && ((!show_more && FoxtrickTeamPopupLinks.bManager)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bManager))) {
                                         var tr1 = doc.createElement("tr");
