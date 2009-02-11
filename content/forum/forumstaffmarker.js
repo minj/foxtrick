@@ -109,7 +109,7 @@ var FoxtrickForumStaffMarker = {
 			"Yami-Yugi",
 			"Yarka",
 			"Yndy_",
-			"ZurrieqGiants",
+			"ZurrieqGiants"
     ),
 
 	foxtrickersArray : new Array (
