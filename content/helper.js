@@ -83,6 +83,7 @@ var FoxtrickHelper = {
 		return null;
 	},
 
+	/* obsolete
 	//---------------------------------------------------------------------------    
 	findIsArchievedMatch : function(element) {
 		var links = element.getElementsByTagName('a');
@@ -92,7 +93,7 @@ var FoxtrickHelper = {
 			}
 		}
 		return false;
-	},
+	},*/
 
 	//---------------------------------------------------------------------------    
 	findIsYouthMatch : function(href) {

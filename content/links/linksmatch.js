@@ -31,8 +31,7 @@ var FoxtrickLinksMatch = {
 				var thisdiv = alldivs[j];
 				matchid = FoxtrickHelper.findMatchId(thisdiv); 
 				teamid = FoxtrickHelper.findTeamId(thisdiv);
-				if (youthmatch) {isarchivedmatch =!doc.getElementById("ctl00_CPMain_lblMatchInfo");}
-				else {isarchivedmatch = FoxtrickHelper.findIsArchievedMatch(thisdiv);}
+				isarchivedmatch =!doc.getElementById("ctl00_CPMain_lblMatchInfo");
 				//addExternalLinksToPlayedMatch
 				if (isarchivedmatch) {
 					var links;
