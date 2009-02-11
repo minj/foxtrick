@@ -34,14 +34,6 @@
 	</menu>
 </menupopup>
 
-<!-- popup menu -->
-<popup id="contentAreaContextMenu">
-    <menu id="foxtrick_popup_menu" label="Foxtrick">
-		<menupopup id="foxtrick_popup_menupopup">
-			<menuitem id="foxtrick_popup_config_menu" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
-		</menupopup>
-	</menu>
-</popup> 
 
 <statusbar id="status-bar">
 	<statusbarpanel	id="foxtrick-status-bar-image" context="foxtrick-status-bar-menu">
