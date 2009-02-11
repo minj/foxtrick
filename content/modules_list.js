@@ -22,6 +22,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
 					 FoxtrickForumAlterHeaderLine,
                      FoxtrickTeamPopupLinks,
+					 FoxtrickTeamPopupLinksMore,
 					 FoxtrickHideManagerAvatarUserInfo,
                      FoxtrickGoToPostBox,
 					 FoxtrickCopyPostID,  

@@ -16,8 +16,7 @@ var FoxtrickRedirections = {
 
     run : function( doc ) { 
 
-	if (doc.location.href.search(/redir_to_.+\=true/i)==-1) return; 
-	
+	if (doc.location.href.search(/challenge|redir_to_.+\=true/i)==-1) return; 
 	// redirect from manager 
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
@@ -34,9 +33,13 @@ var FoxtrickRedirections = {
 					else if (doc.location.href.search(/redir_to_transferhistory=true/i)!=-1 ) 
 								tar=serv+'/Transfers/transfersTeam.aspx?teamId='+teamid;
 					else if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) { 
-							if (teamid!=ownteamid) tar=serv+'/Players/?TeamID='+teamid+'&redir_to_coach=true';
-							else tar=serv+'/Training/?redir_to_coach=true';							
-						}
+						if (teamid!=ownteamid) tar=serv+'/Players/?TeamID='+teamid+'&redir_to_coach=true';
+						else tar=serv+'/Training/?redir_to_coach=true';							
+					}					
+					else if (doc.location.href.search(/redir_to_challenge=true/i)!=-1 ) 
+								tar=serv+'/Challenges/?TeamID='+teamid+'&challenge=true';
+					else if (doc.location.href.search(/redir_to_sendmessage=true/i)!=-1 ) 
+								tar=serv+'/?TeamID='+teamid+'&SendMessage=true';
 					else if (doc.location.href.search(/redir_to_guestbook=true/i)!=-1 ) 
 								tar=serv+'/Manager/Guestbook.aspx?teamid='+teamid;
 					else if (doc.location.href.search(/redir_to_players=true/i)!=-1 ) 
@@ -46,11 +49,16 @@ var FoxtrickRedirections = {
 					else if (doc.location.href.search(/redir_to_league=true/i)!=-1 ) 
 								tar=serv.replace(/club/i,'')+'World/Series/Default.aspx?LeagueLevelUnitID='+leagueid;					 						
 				}
-				doc.location.replace(tar);
+				if (tar!='') doc.location.replace(tar);
 				break;
 			}
 		}
-		
+	//challenge
+	if (doc.location.href.search(/challenge=true/i)!=-1 ) { 
+		var teamid_input = doc.getElementById('ctl00_CPSidebar_tbNewChallangeTeamId');
+		teamid_input.value = FoxtrickHelper.getTeamIdFromUrl(doc.location.href);
+	}
+	
 	// redirect to coach		
 	if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) { 		
 		if (doc.location.href.search(/\/Club\/Players\//i)!=-1 ) {  
