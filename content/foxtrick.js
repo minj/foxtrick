@@ -77,9 +77,6 @@ var FoxtrickMain = {
 		var toolsMenu = document.getElementById( "foxtrick-config-menu" );
 		toolsMenu.setAttribute( "label", Foxtrickl10n.getString( 
 			"foxtrick.menu.configurefoxtrick") );
-		var popupMenu = document.getElementById( "foxtrick_popup_config_menu");
-		popupMenu.setAttribute( "label", Foxtrickl10n.getString( 
-			"foxtrick.menu.configurefoxtrick") );
 		
 		var appcontent = document.getElementById( "appcontent" );
         if ( appcontent) {
