@@ -1,5 +1,5 @@
-# MASTER language file
-# utf-8 encoded ENGLISH MASTER
+# Romanian language file
+# utf-8 encoded
 # By slader
 
 # Module descriptions
