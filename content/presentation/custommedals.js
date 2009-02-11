@@ -22,18 +22,16 @@ var FoxtrickCustomMedals = {
 		if( sidebar ) {
 			var images = sidebar.getElementsByTagName('img');
 			for(var i = 0; i < images.length; i++) {
-                //dump(' => MEDAL ' + images[i].src + '\n');
-				var img = images[i];
-				var imgSrc = img.src;
+                var img = images[i];
+				var imgClass = img.className;
 				var customMedals = "oldhtmedals";
-				var oldString = "Trophy";
+				var oldString = "trophy";
 				var newString = "chrome://foxtrick/content/resources/img/"
 					+ "custommedals/" + customMedals + "/";
-				if(imgSrc.search(oldString) != -1) {
-					var startPos = imgSrc.lastIndexOf("=") + 1;
-					imgSrc = imgSrc.substr(startPos);
-					imgSrc = imgSrc.replace("png","gif");
-					img.src = newString + imgSrc;
+				if(imgClass.search(oldString) != -1) {
+					newString = 'background-image: url(' + newString + imgClass + 
+						".gif" + '); padding: 0px;';
+					img.setAttribute('style',newString);
 				}
 			}
 		}
