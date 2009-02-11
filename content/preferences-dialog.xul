@@ -4,7 +4,7 @@
 
 <!DOCTYPE window>
 
- 
+
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="foxtrick-config"
 	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
@@ -43,21 +43,21 @@
 
               </vbox>
             </tabpanel>
-        
+
             <!-- Shortcuts -->
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
                 <vbox id="shortcuts_list" flex="1" orient="vertical" style="display:run-in"/>
               </vbox>
-              
+
              </tabpanel>
-		   
+
 		    <!-- Presentation -->
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
                 <vbox id="presentation_list" flex="1" orient="vertical" style="display:run-in"/>
               </vbox>
-              
+
              </tabpanel>
 		   <!-- Matches -->
 		    <tabpanel class="panel" orient="vertical" flex="1">
@@ -65,14 +65,14 @@
                 <vbox id="matchfunctions_list" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
-		 
+
 		    <!-- Forum -->
             <tabpanel class="panel" orient="vertical" flex="1">
               <vbox>
                 <vbox id="forum_list" flex="1" orient="vertical" style="display:run-in"/>
               </vbox>
             </tabpanel>
-		   
+
 		    <!-- Links -->
             <tabpanel class="panel" orient="vertical" flex="1" >
               <vbox>
@@ -83,23 +83,23 @@
 	        <!-- about -->
             <tabpanel class="panel" orient="vertical" flex="1">
     		  <vbox>
-				<label value="http://www.ht-foxtrick.com/" 
+				<label value="http://www.ht-foxtrick.com/"
                        style="text-decoration: underline; cursor: pointer; color: blue;"
                        tooltiptext="http://www.ht-foxtrick.com/"
-                       onclick="window.opener.open('http://www.ht-foxtrick.com/');" flex="0" />			
-                <label value="http://www.ht-foxtrick.com/forum/" 
+                       onclick="window.opener.open('http://www.ht-foxtrick.com/');" flex="0" />
+                <label value="http://www.ht-foxtrick.com/forum/"
                        style="text-decoration: underline; cursor: pointer; color: blue;"
                        tooltiptext="http://www.ht-foxtrick.com/forum/"
-                       onclick="window.opener.open('http://www.ht-foxtrick.com/forum');" flex="0" />			
+                       onclick="window.opener.open('http://www.ht-foxtrick.com/forum');" flex="0" />
               </vbox>
 			  <vbox id="about_list" style="display:run-in">
-				<label value="Head Developer" 
+				<label value="Head Developer"
                        style="font-weight: bold;" />
                 <label value="Mod-PaV (872922)" />
-				<label value="Project owners" 
+				<label value="Project owners"
                        style="font-weight: bold;" />
                 <label value="larsw84 (504255), spambot (333791)" />
-				<label value="Developers" 
+				<label value="Developers"
                        style="font-weight: bold;" />
                 <label value="kolmis (116321), taised (234678), bummerland (1141309),"/>
 				<label value="Jestar (513519),convinced (1142953), smates (1682965), " />
@@ -117,6 +117,7 @@
 				<label value="* Ellinika - GTTWINS (900949)" />
 				<label value="* English - (developers)" />
 				<label value="* Español - franory (1369028)" />
+				<label value="* Español, Argentina - nickmpad (500892)" />
 				<label value="* Español, Centroamericano - baler0 (26877)" />
 				<label value="* Français - stephan57 (1751312)" />
 				<label value="* Frysk - LA-Foppe (440454)" />
@@ -128,7 +129,7 @@
 				<label value="* Polski - Homzik (79468)" />
 				<label value="* Português - _recluso_ (738571), ei04004 (734257), McTripas (735654)" />
 				<label value="* Português, Brasil - MarceloFBrandao (715122)" />
-				<label value="* Romanian - Slader (36264)" />                
+				<label value="* Romanian - Slader (36264)" />
 				<label value="* Russian - _KOHb_ (28914)" />
                 <label value="* Slovak - JAM3SoN (1124157)" />
 				<label value="* Srpski - ljushaff (1103875)" />
@@ -136,19 +137,19 @@
 				<label value="* Svenska - Nanouk_HT33 (41903)" />
                 <label value="* Ukrainian - Grif_07 (527635)" />
 			  </vbox>
-			</tabpanel>			
+			</tabpanel>
 	</tabpanels>
   </tabbox>
 </box>
 
 <vbox flex="0">
-  <hbox flex="1">    
+  <hbox flex="1">
     <button id="buttonSave"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
     <button id="buttonCancel" oncommand="close();" />
     <vbox pack="end" flex="1"  align="end">
       <resizer dir="bottomright" class="slider" />
     </vbox>
-  </hbox>  
+  </hbox>
 </vbox>
 
 </window>
