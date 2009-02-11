@@ -482,13 +482,13 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	if (!firstDiv) return;  // no sidebar. can't add something. someone consider creating sidebar later.
 	
 	var firstBox;
-	/*if(firstDiv.id && firstDiv.id.search(/foxtrick_.+\_box/)==-1) {
+	if(firstDiv.id && firstDiv.id.search(/foxtrick_.+\_box/)==-1) {
 		// The sideboxes might be wrapped in another div with an id
 		// See for an example the playersdetail page
 		// own already added boxes might have an id though
 		sidebar = sidebar.getElementsByTagName("div")[0];
 		firstBox = sidebar.getElementsByTagName("div")[0];
-	} else */{
+	} else {
 		firstBox = firstDiv;
 	}
 	
