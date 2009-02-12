@@ -917,6 +917,14 @@ FoxtrickPreferencesDialog.getModuleElementDescription = function( module_name, o
     }
 }
 
+
+FoxtrickPreferencesDialog.deactivate = function( button ) {
+	if(!button) { 
+		FoxtrickPrefs.setBool("disableTemporary",!FoxtrickPrefs.getBool("disableTemporary"));
+		FoxtrickMain.init();	
+	}
+}
+
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
         window.open("chrome://foxtrick/content/preferences-dialog.xul",

@@ -47,8 +47,9 @@
 	</statusbarpanel>
     <menupopup id="foxtrick-status-bar-menu">
         <menuitem id="foxtrick_statusbar_config_menu" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
-        <menuitem id="foxtrick_statusbar_reload" oncommand="FoxtrickService.load();"/>
-    </menupopup>
+        <menuitem id="foxtrick_statusbar_reload" oncommand="FoxtrickService.load();" />
+        <menuitem id="foxtrick_statusbar_deactivate" oncommand="FoxtrickPreferencesDialog.deactivate();" type="checkbox" autocheck="true"/>
+   </menupopup>
 </statusbar>
 </overlay>
 

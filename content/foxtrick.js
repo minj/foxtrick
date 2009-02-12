@@ -74,6 +74,11 @@ var FoxtrickMain = {
 			"foxtrick_statusbar_reload" );
 		statusbarReload.setAttribute( "label", Foxtrickl10n.getString( 
 			"foxtrick.menu.reloadfoxtrick") );
+		var statusbarDeactivate = document.getElementById(
+			"foxtrick_statusbar_deactivate" );
+		statusbarDeactivate.setAttribute( "label", Foxtrickl10n.getString(
+			"foxtrick.prefs.disableTemporaryLabel") );
+		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 		var toolsMenu = document.getElementById( "foxtrick-config-menu" );
 		toolsMenu.setAttribute( "label", Foxtrickl10n.getString( 
 			"foxtrick.menu.configurefoxtrick") );
