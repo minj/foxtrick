@@ -42,7 +42,8 @@ FoxtrickCurrencyConverter = {
 		var div = doc.getElementById( 'page' );
 		var table_elm = div.getElementsByTagName( tagname );
    		for ( var i = 0; i < table_elm.length; i++) { 
-			if (table_elm[i].getElementsByTagName(tagname).length!=0) continue;  // don't do nested. only most inner gets converted
+			if (table_elm[i].getElementsByTagName('td').length!=0) continue;  // don't do nested. only most inner gets converted
+			else if (table_elm[i].getElementsByTagName('p').length!=0) continue;  // don't do nested. only most inner gets converted
 			
             var pos = table_elm[i].innerHTML.search(oldCurrencySymbol);
 			if (pos > 0 && table_elm[i].id != "foxtrick-currency-converter"){ 
