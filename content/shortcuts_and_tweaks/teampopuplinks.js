@@ -306,7 +306,7 @@ var FoxtrickTeamPopupLinks = {
                                         tr4.appendChild(td4);
                                         tbl.appendChild(tr4);
 										top = top - 20;
-                                }       dump(show_more+' '+ FoxtrickTeamPopupLinksMore.bMessage+'\n')
+                                }       
 								if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bMessage)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bMessage))) {
                                         var tr9 = doc.createElement("tr");

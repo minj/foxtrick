@@ -622,35 +622,83 @@ function keysortfunction(a,b) {
   }
 
 Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
+	try {
 			module.OPTIONS = new Array();
 			for (var key in stats) { 
 				if (stats[key][linktype]!=null) { 
-					module.OPTIONS.push({"key":key,"title":stats[key]["title"]});
+					var title = stats[key]["title"];
+					
+					var filters = stats[key][linktype]["filters"]; 
+					for (var i=0; i<filters.length; i++) {
+						var filtertype = filters[i]; 
+						if (filtertype == "countryid" 
+							&& stats[key]["countryidranges"] 
+							&& stats[key]["countryidranges"].length!=0) {
+								title += " --- team country: " ;
+								var i=0,range;
+								while (range = stats[key]["countryidranges"][i++]) {
+									title += '[' + range[0]+'-'
+									+ range[1]+ ']';
+									if (stats[key]["countryidranges"][i]) title+=',';
+								}
+						}
+					}	
+				
+					module.OPTIONS.push({"key":key,"title":title});
+					module.OPTIONS.sort(keysortfunction); 
+					for (var key in extra_options) {  
+						module.OPTIONS.push({"key":key,"title":extra_options[key]});
+					}
 				}
-			}			
-			module.OPTIONS.sort(keysortfunction); 
-			for (var key in extra_options) {  
-					module.OPTIONS.push({"key":key,"title":extra_options[key]});
-			}
+			}	
+	} catch(e) {dump('initOptionsLinks '+e+'\n');}
 }
 
 Foxtrick.initOptionsLinksArray = function(module,linktypes) {
-
+	try{ 
 		module.OPTIONS = new Array();
 		for (var linktype=0; linktype< linktypes.length; linktype++) { 
 			for (var key in stats) { 
 				if (stats[key][linktypes[linktype]]!=null) {
+					var title = stats[key]["title"];
+					
+					var filters = stats[key][linktypes[linktype]]["filters"];
+					for (var i=0; i<filters.length; i++) {
+						var filtertype = filters[i]; 
+						if (filtertype == "nationality")
+							if (stats[key]["nationalityranges"] && stats[key]["nationalityranges"].length!=0) { 
+								title += " --- player nationality: " ;
+								var k=0,range;
+								while (range = stats[key]["nationalityranges"][k++]) {
+									title += '[' + range[0]+'-'
+									+ range[1]+ ']';
+									if (stats[key]["nationalityranges"][k]) title+=',';
+								}
+							}
+						}
+						if (filtertype == "countryid" 
+							&& stats[key]["countryidranges"] 
+							&& stats[key]["countryidranges"].length!=0) {
+								title += " --- team country: " ;
+								var i=0,range;
+								while (range = stats[key]["countryidranges"][i++]) {
+									title += '[' + range[0]+'-'
+									+ range[1]+ ']';
+									if (stats[key]["countryidranges"][i]) title+=',';
+								}
+						}
 					var has_entry=false;
 					for (var i = 0; i < module.OPTIONS.length; i++) {
 						if (module.OPTIONS[i]["key"]!=null && module.OPTIONS[i]["key"]==key) {
 							has_entry=true;
 						}
 					}
-					if (!has_entry) {module.OPTIONS.push({"key":key,"title":stats[key]["title"]});}
+					if (!has_entry) {module.OPTIONS.push({"key":key,"title":title});}
 				}
 			}			
 		}
 		module.OPTIONS.sort(keysortfunction);
+	} catch(e) {dump('Foxtrick.initOptionsLinksArray : '+e+'\n');}
 }
 
 Foxtrick.setStatusIconStyle = function(ev) {

@@ -651,22 +651,6 @@ stats["ht_deutschland"] =  {
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-deutschland.png"
 };    
 
-stats["ht_scouting"] =  { 
-  "url" : "http://www.ht-deutschland.de/",
- 
-  "playerlink" : { "path"       : "scouting/index.php?language=2",
-                   "filters"    : ["nationality"], 
-                   "params"     : []
-				}, 
-  "nationalteamlink" : { "path"       : "scouting/index.php?language=2",
-                   "filters"    : ["countryid"], 
-                   "params"     : []
-				}, 
-  "nationalityranges" : [[3, 3]], 
-  "countryidranges" : [[3, 3]], 
-  "title" : "HT-Deutschland Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
-}
 
 // peasohtstats
 stats["htstats"] =  { 
@@ -748,23 +732,7 @@ stats["eesti"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/eesti.gif"
 };    
 */
-
-stats["ht-fff"] =  { 
-        "url" : "http://www.ht-fff.org/",
-
-        "playerlink" : { "path"       : "dtn_submitting.php",
-                         "filters"    : ["nationality"], 
-                         "params"     : []
-                       },
-		"nationalteamlink" : { "path"       : "dtn_submitting.php",
-                   "filters"    : ["countryid"], 
-                   "params"     : []
-				}, 
-        "nationalityranges" : [[5, 5]],
-        "countryidranges" : [[5, 5]],
-        "title" : "ht-fff.org | french scouting group.",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htfff.png"
-};    
+   
 
 
 // La Gazzetta di HT
@@ -814,10 +782,10 @@ stats["ekonomer"] =  {
         "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.asp",
 
         "economylink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["countryid"], 
                          "params"     : {"Cash" : "resultat","kassa":"kassa"} 
                        },
-		"owncountryidranges" : [[1, 1]], 
+		"countryidranges" : [[1, 1]], 
         "title" : "Ekonomkalkylatorn",   
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_economy.png"
 };
@@ -1502,8 +1470,7 @@ stats["nrg_tools"] =  {
                          "params"     : {  }
                        },
 					   
-		// CHPP approval unclear 
-        "playerlink" : { "path"       : "pop.php",
+		"playerlink" : { "path"       : "pop.php",
                          "filters"    : [], 
                          "params"     : { "tsi" : "tsi", "form" : "fo",
                                           "stamina" : "st",  "playmaking" : "pm",
@@ -1537,6 +1504,95 @@ stats["argenstat"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/argenstat.png"
 };
 
+
+
+
+// Gham live
+stats["gham"] =  { 
+        "url" : "http://hattrickitalia.org/gham/live/",
+
+        "matchlink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : { "matchid" : "matchId" }
+                       },
+        
+        "title" : "Gham live",
+        "img" : "chrome://foxtrick/content/resources/linkicons/gham.png"
+};
+   
+// ----------------------------------------------------------------------
+// -------------- tracker & national teams ------------------------------
+// ----------------------------------------------------------------------
+
+
+stats["ht_scouting"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "playerlink" : { "path"       : "scouting/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "scouting/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[3, 3]], 
+  "countryidranges" : [[3, 3]], 
+  "title" : "HT-Deutschland Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+};
+
+
+stats["ht-fff"] =  { 
+        "url" : "http://www.ht-fff.org/",
+
+        "playerlink" : { "path"       : "dtn_submitting.php",
+                         "filters"    : ["nationality"], 
+                         "params"     : []
+                       },
+		"nationalteamlink" : { "path"       : "dtn_submitting.php",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+        "nationalityranges" : [[5, 5]],
+        "countryidranges" : [[5, 5]],
+        "title" : "ht-fff.org | french scouting group.",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htfff.png"
+}; 
+
+
+stats["scouting_mexico"] =  { 
+  "url" : "http://www.hattrick.org.mx/SN/",
+ 
+  "playerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[6, 6]], 
+  "countryidranges" : [[6, 6]], 
+  "title" : "Hattrick México",
+  "img" : "chrome://foxtrick/content/resources/linkicons/Mexico_scouting.png"
+};
+
+stats["brasileira"] =  { 
+        "url" : "http://www.opendev.com.br/chpp/br/",
+
+        "playerlink" : { "path"       : "",
+                         "filters"    : ["nationality"], 
+                         "params"     : []
+                       },
+        
+        "nationalityranges" : [[16, 16]],
+        "title" : "Estatísticas da Seleção Brasileira",
+        "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
+};
+
+
+
 stats["u20schweiz"] =  { 
   "url" : "http://u20schweiz.kicks-ass.net",
   "title" : "U20 Schweiz",
@@ -1557,6 +1613,8 @@ stats["u20schweiz"] =  {
   "LeagueOfficeTypeIDranges" : [[4,4]],  
 };
 
+
+
 stats["czechrepublic_nt"] = { 
   "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
   "img" : "chrome://foxtrick/content/resources/linkicons/czech_nt_tracker.png",
@@ -1569,6 +1627,7 @@ stats["czechrepublic_nt"] = {
   "nationalityranges" : [[52, 52]],
   "ageranges" : [[17,20]],  
 };
+
 
 stats["hattrick-cz"] = { 
   "url" : "http://www.hattrick-cz.com/",
@@ -1587,22 +1646,61 @@ stats["hattrick-cz"] = {
         "countryidranges" : [[52, 52]] ,
 };
 
-stats["u20_nt_tracker"] = { 
-  "url" : "http://www.c10.ch/ant_db/index.php",
-  "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
-  "title" : "Global U20 & NT Tracker",
+stats["crotracker"] = { 
+  "url" : "http://cro-tracker.com/index.php",
+  "img" : "chrome://foxtrick/content/resources/linkicons/cro-tracker.gif",
+  "title" : "Hrvatska NT U20 Tracker",
   
   "nationalteamlink" : { "path"       : "",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "playerlink" : { "path"       : "?action=player_submit&cat=1",
+  "playerlink" : { "path"       : "",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
-	"countryidranges" : [[1,2],[4,4],[6,45],[47,51],[53,200]] ,
-	"nationalityranges" : [[1,2],[4,4],[6,45],[47,51],[53,200]], 
+	"countryidranges" : [[58,58]] ,
+	"nationalityranges" : [[58,58]], 
 };
+
+
+
+stats["ht_scouting_bahrain"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "playerlink" : { "path"       : "bahrain/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "bahrain/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[123, 123]], 
+  "countryidranges" : [[123, 123]], 
+  "title" : "Bahrain Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/bahrain_tracker.png"
+}
+
+
+
+stats["ghanatracker"] = { 
+  "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ghana_tracker.gif",
+  "title" : "Ghana U20/NT Tracker",
+  
+  "nationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "playerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[137,137]] ,
+	"nationalityranges" : [[137,137]], 
+};
+
 
 /*
 stats["u20_nt_stats"] = { 
@@ -1618,31 +1716,27 @@ stats["u20_nt_stats"] = {
 
 
 
-// Gham live
-stats["gham"] =  { 
-        "url" : "http://hattrickitalia.org/gham/live/",
-
-        "matchlink" : { "path"       : "",
-                         "filters"    : [], 
-                         "params"     : { "matchid" : "matchId" }
+stats["u20_nt_tracker"] = { 
+  "url" : "http://www.c10.ch/ant_db/index.php",
+  "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
+  "title" : "Global U20 & NT Tracker",
+  
+  "nationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
                        },
-        
-        "title" : "Gham live",
-        "img" : "chrome://foxtrick/content/resources/linkicons/gham.png"
-};
+  "playerlink" : { "path"       : "?action=player_submit&cat=1",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[1,2],[4,4],[7,15],[17,45],[47,51],[53,57],[59,122],[124,136],[138,200]] ,
+	"nationalityranges" : [[1,2],[4,4],[7,15],[17,45],[47,51],[53,57],[59,122],[124,136],[138,200]], 
+};  // own tracker: exclude 3,5,6,16,46,52,58,123,137
 
-stats["brasileira"] =  { 
-        "url" : "http://www.opendev.com.br/chpp/br/",
 
-        "playerlink" : { "path"       : "",
-                         "filters"    : ["nationality"], 
-                         "params"     : []
-                       },
-        
-        "nationalityranges" : [[16, 16]],
-        "title" : "Estatísticas da Seleção Brasileira",
-        "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
-};   
+
+//------------------------------------------------------------------
+// -----------------------------------------------------------------
 
 
 function getLinks2(stats, stattype, filterparams, doc, overridesettings, module) { 
