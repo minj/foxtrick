@@ -675,7 +675,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 				}
 				var spacer = doc.createElement('spacer');
 				spacer.setAttribute('flex',0);
-				spacer.setAttribute('height',80);
+				spacer.setAttribute('height',150);
 				
 				modules_list.appendChild( spacer );
     },
