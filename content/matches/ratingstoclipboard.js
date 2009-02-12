@@ -57,25 +57,38 @@ var FoxtrickCopyRatingsToClipboard = {
         var _a = Foxtrickl10n.getString("foxtrick.matchdetail.attack" );
         
 		var doc = ev.target.ownerDocument;
-        var ad = '[table]';
+        var ad = '\n[table]\n';
         var table = doc.getElementsByTagName('table')[0];
         for (var row = 0; row < table.rows.length; row ++) {
             if (row != table.rows.length-3 )  {
                 try {
                     // if ( table.rows[row].cells[1] && table.rows[row].cells[1].innerHTML.indexOf( '' ) != -1 ) {} else {
                     //no hatstats detailes and no pic/mots/normal, i hope :)
-                    ad += '[tr][td]';
+                    ad += '[tr]\n\n[td]';
                     if (table.rows[row].cells[0]) ad += table.rows[row].cells[0].textContent;
-                    ad += '[/td][td]';
-                    if (table.rows[row].cells[1]) ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
-                    ad += '[/td][td]';
-                    if (table.rows[row].cells[2]) ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
-                    ad += '[/td][/tr]';
+                    ad += '[/td]\n[td]';
+                    if (table.rows[row].cells[1]) {
+                        if (row == 0) {
+                            ad += '[b]' + table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + '[/b]';
+                        } else {
+                            ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
+                        }
+                    }
+                    ad += '[/td]\n[td]';
+                    if (table.rows[row].cells[2]) {
+                        if (row == 0) {
+                            ad += '[b]' + table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + '[/b]';
+                        } else {
+                            ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
+                        }
+                    }
+
+                    ad += '[/td]\n\n[/tr]\n';
                     // }
                 } catch (e) {}
             }
         }
-        ad += '[/table]';        
+        ad += '\n[/table]\n';        
 		try {
 
 			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"));
