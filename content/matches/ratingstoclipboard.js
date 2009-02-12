@@ -8,7 +8,7 @@ var FoxtrickCopyRatingsToClipboard = {
 
     MODULE_NAME : "CopyRatingsToClipboard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 
 	init : function() {
         Foxtrick.registerPageHandler( 'match', this );
