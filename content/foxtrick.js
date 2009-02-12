@@ -624,67 +624,89 @@ function keysortfunction(a,b) {
 Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 	try {
 			module.OPTIONS = new Array();
+			country_options = new Array();
+			
 			for (var key in stats) { 
 				if (stats[key][linktype]!=null) { 
 					var title = stats[key]["title"];
 					
 					var filters = stats[key][linktype]["filters"]; 
+					var countries='';
+					
 					for (var i=0; i<filters.length; i++) {
 						var filtertype = filters[i]; 
 						if (filtertype == "countryid" 
 							&& stats[key]["countryidranges"] 
 							&& stats[key]["countryidranges"].length!=0) {
-								title += " --- team country: " ;
-								var i=0,range;
-								while (range = stats[key]["countryidranges"][i++]) {
-									title += '[' + range[0]+'-'
-									+ range[1]+ ']';
-									if (stats[key]["countryidranges"][i]) title+=',';
+								
+								var k=0,range;
+								while (range = stats[key]["countryidranges"][k++]) {
+									var r0=String(range[0]); 
+									if (k==1) { 
+											if (r0.length==2) r0='0'+r0;
+											else  if (r0.length==1) r0='00'+r0;
+									}
+									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
+									else countries += '[' + r0+']';
+									if (stats[key]["countryidranges"][k]) 	countries+=',';
 								}
 						}
-					}	
-				
-					module.OPTIONS.push({"key":key,"title":title});
-					module.OPTIONS.sort(keysortfunction); 
-					for (var key in extra_options) {  
-						module.OPTIONS.push({"key":key,"title":extra_options[key]});
-					}
+					}					
+					if (countries!='') country_options.push({"key":key,"title":countries+' : '+title}); 					
+					else  module.OPTIONS.push({"key":key,"title":title}); 
 				}
 			}	
+			module.OPTIONS.sort(keysortfunction); 
+			country_options.sort(keysortfunction); 
+			var i=0,country_option;
+			while (country_option = country_options[i++]) {module.OPTIONS.push({"key":country_option.key,"title":country_option.title.replace(/^\[0+/,'[')});}
+			for (var key in extra_options) {  
+						module.OPTIONS.push({"key":key,"title":extra_options[key]});
+			}
+					
 	} catch(e) {dump('initOptionsLinks '+e+'\n');}
 }
 
 Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 	try{ 
 		module.OPTIONS = new Array();
+		country_options = new Array();
 		for (var linktype=0; linktype< linktypes.length; linktype++) { 
 			for (var key in stats) { 
 				if (stats[key][linktypes[linktype]]!=null) {
 					var title = stats[key]["title"];
-					
 					var filters = stats[key][linktypes[linktype]]["filters"];
+					var countries='';
 					for (var i=0; i<filters.length; i++) {
 						var filtertype = filters[i]; 
 						if (filtertype == "nationality")
 							if (stats[key]["nationalityranges"] && stats[key]["nationalityranges"].length!=0) { 
-								title += " --- player nationality: " ;
 								var k=0,range;
 								while (range = stats[key]["nationalityranges"][k++]) {
-									title += '[' + range[0]+'-'
-									+ range[1]+ ']';
-									if (stats[key]["nationalityranges"][k]) title+=',';
+									var r0=String(range[0]); 
+									if (countries=='') { 
+											if (r0.length==2) r0='0'+r0;
+											else  if (r0.length==1) r0='00'+r0;
+									}
+									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
+									else countries += '[' + r0+']';
+									if (stats[key]["nationalityranges"][k]) 	countries+=',';
 								}
 							}
 						}
 						if (filtertype == "countryid" 
 							&& stats[key]["countryidranges"] 
 							&& stats[key]["countryidranges"].length!=0) {
-								title += " --- team country: " ;
-								var i=0,range;
-								while (range = stats[key]["countryidranges"][i++]) {
-									title += '[' + range[0]+'-'
-									+ range[1]+ ']';
-									if (stats[key]["countryidranges"][i]) title+=',';
+								var k=0,range;
+								while (range = stats[key]["countryidranges"][k++]) {
+									var r0=String(range[0]); 
+									if (countries=='') { 
+											if (r0.length==2) r0='0'+r0;
+											else  if (r0.length==1) r0='00'+r0;
+									}
+									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
+									else countries += '[' + r0+']';
+									if (stats[key]["countryidranges"][k]) 	countries+=',';
 								}
 						}
 					var has_entry=false;
@@ -693,11 +715,16 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 							has_entry=true;
 						}
 					}
-					if (!has_entry) {module.OPTIONS.push({"key":key,"title":title});}
+					if (!has_entry)
+					if (countries!='') country_options.push({"key":key,"title":countries+' : '+title}); 					
+					else  module.OPTIONS.push({"key":key,"title":title}); 
 				}
 			}			
 		}
 		module.OPTIONS.sort(keysortfunction);
+		country_options.sort(keysortfunction); 
+		var i=0,country_option;
+		while (country_option = country_options[i++]) {module.OPTIONS.push({"key":country_option.key,"title":country_option.title.replace(/^\[0+/,'[')});}
 	} catch(e) {dump('Foxtrick.initOptionsLinksArray : '+e+'\n');}
 }
 
