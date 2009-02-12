@@ -99,8 +99,8 @@ var FoxtrickTeamPopupLinks = {
 				this.bChallenge= Foxtrick.isModuleFeatureEnabled( this, "Challenge");
                 this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
                 this.bMore = FoxtrickPrefs.getBool("module.TeamPopupLinksMore.enabled"); 
-				
-				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
+				 
+				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.message, div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo {overflow: visible !important;}';
 				//var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
 				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
@@ -430,8 +430,10 @@ var FoxtrickTeamPopupLinks = {
 									/*if (org_link.parentNode.parentNode.tagName == "DIV" && org_link.parentNode.parentNode.id == "teamLinks") div.setAttribute('class', 'mainBox myht2_low');
 									else*/ div.setAttribute('class', 'mainBox myht2');
 									div.setAttribute('style','top:'+top+'px');
+									//var po=getPositionTop(doc.getElementById('mainBody'));
+									//dump(' '+' '+  doc.getElementById('mainBody').scrollHeight-org_link.offsetParent.offsetTop+'\n');
 									div.appendChild(tbl);		//org_link.appendChild(div);
-									if (org_link.parentNode.lastChild.className=='mainBox myht2') 
+									if (org_link.parentNode.parentNode.lastChild.className=='mainBox myht2') 
 											org_link.parentNode.removeChild(org_link.parentNode.lastChild);
 									org_link.parentNode.appendChild(div);
 									org_link.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
@@ -502,4 +504,11 @@ var FoxtrickTeamPopupLinksMore = {
         }
 };
 
-		
+	
+
+function getPositionTop(This){
+var el = This;var pT = 0;
+while(el){pT+=el.offsetTop;el=el.offsetParent;}
+return pT;
+}
+	
