@@ -35,7 +35,7 @@ var FoxtrickShortcutsStatistics = {
                     link.setAttribute("style", "padding:3px 0px 0px 5px;");
                     
                     var img1 = doc.createElement('img');
-                    img1.setAttribute( "class", "scLive");
+                    img1.setAttribute( "class", "ftSuppStats");
                     img1.src = "/Img/Icons/transparent.gif";
                     img1.setAttribute("style","background-image: url('chrome://foxtrick/content/resources/linkicons/chart_bar.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
@@ -51,7 +51,7 @@ var FoxtrickShortcutsStatistics = {
                     link.setAttribute("style", "padding:3px 0px 0px 5px;");
                     
                     var img1 = doc.createElement('img');
-                    img1.setAttribute( "class", "scLive");
+                    img1.setAttribute( "class", "ftMyTransfers");
                     img1.src = "/Img/Icons/transparent.gif";
                     img1.setAttribute("style","background-image: url('chrome://foxtrick/content/resources/linkicons/dollar.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
