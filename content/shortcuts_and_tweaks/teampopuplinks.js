@@ -95,7 +95,7 @@ var FoxtrickTeamPopupLinks = {
                 this.bCoach = Foxtrick.isModuleFeatureEnabled( this, "Coach");
                 this.bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
                 this.bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
-				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "Message");
+				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "SendMessage");
 				this.bChallenge= Foxtrick.isModuleFeatureEnabled( this, "Challenge");
                 this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
                 this.bMore = FoxtrickPrefs.getBool("module.TeamPopupLinksMore.enabled"); 
@@ -306,20 +306,20 @@ var FoxtrickTeamPopupLinks = {
                                         tr4.appendChild(td4);
                                         tbl.appendChild(tr4);
 										top = top - 20;
-                                }       
+                                }       dump(show_more+' '+ FoxtrickTeamPopupLinksMore.bMessage+'\n')
 								if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bMessage)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bMessage))) {
-                                        var tr6 = doc.createElement("tr");
-                                        tr6.setAttribute("height", "20");
-                                        var td6 = doc.createElement("td");
-                                        td6.setAttribute("nowrap", "nowrap");
-                                        var a6 = doc.createElement("a");
-                                        if (userlink) a6.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_sendmessage=true'+'&ft_popuplink=true');
-										else a6.setAttribute('href', '/Club/?TeamID='+value+'&SendMessage=true'+'&ft_popuplink=true');										
-                                        a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'SendMessage' )));
-                                        td6.appendChild(a6);
-                                        tr6.appendChild(td6);
-                                        tbl.appendChild(tr6);
+                                        var tr9 = doc.createElement("tr");
+                                        tr9.setAttribute("height", "20");
+                                        var td9 = doc.createElement("td");
+                                        td9.setAttribute("nowrap", "nowrap");
+                                        var a9 = doc.createElement("a");
+                                        if (userlink) a9.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_sendmessage=true'+'&ft_popuplink=true');
+										else a9.setAttribute('href', '/Club/?TeamID='+value+'&SendMessage=true'+'&ft_popuplink=true');										
+                                        a9.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'SendMessage' )));
+                                        td9.appendChild(a9);
+                                        tr9.appendChild(td9);
+                                        tbl.appendChild(tr9);
 										top = top - 20;
                                 }
 								if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bChallenge)
@@ -339,18 +339,18 @@ var FoxtrickTeamPopupLinks = {
                                 }
                                 if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bAchievements)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bAchievements))) {
-                                        var tr6 = doc.createElement("tr");
-                                        tr6.setAttribute("height", "20");
-                                        var td6 = doc.createElement("td");
-                                        td6.setAttribute("nowrap", "nowrap");
-                                        var a6 = doc.createElement("a");
-                                        if (!userlink && userid!='') a6.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+value+'&ft_popuplink=true');
-										else if (userlink) a6.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_achievements=true'+'&ft_popuplink=true');
-										else a6.setAttribute('href', '/Club/Manager/?teamId='+value+'&redir_to_achievements=true'+'&ft_popuplink=true');										
-                                        a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Achievements' )));
-                                        td6.appendChild(a6);
-                                        tr6.appendChild(td6);
-                                        tbl.appendChild(tr6);
+                                        var tr8 = doc.createElement("tr");
+                                        tr8.setAttribute("height", "20");
+                                        var td8 = doc.createElement("td");
+                                        td8.setAttribute("nowrap", "nowrap");
+                                        var a8 = doc.createElement("a");
+                                        if (!userlink && userid!='') a8.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+value+'&ft_popuplink=true');
+										else if (userlink) a8.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_achievements=true'+'&ft_popuplink=true');
+										else a8.setAttribute('href', '/Club/Manager/?teamId='+value+'&redir_to_achievements=true'+'&ft_popuplink=true');										
+                                        a8.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'Achievements' )));
+                                        td8.appendChild(a8);
+                                        tr8.appendChild(td8);
+                                        tbl.appendChild(tr8);
 										top = top - 20;
                                 }
 								if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bCoach)
@@ -474,7 +474,7 @@ var FoxtrickTeamPopupLinksMore = {
                 this.bPlayers = Foxtrick.isModuleFeatureEnabled( this, "Players");
                 this.bLast5IPs = Foxtrick.isModuleFeatureEnabled( this, "last_5_ips");
                 this.bGuestbook = Foxtrick.isModuleFeatureEnabled( this, "Guestbook");
-				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "Message");
+				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "SendMessage");
                 this.bChallenge= Foxtrick.isModuleFeatureEnabled( this, "Challenge");
                 this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
                 this.bCoach = Foxtrick.isModuleFeatureEnabled( this, "Coach");
