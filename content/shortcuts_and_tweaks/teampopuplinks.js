@@ -196,18 +196,6 @@ var FoxtrickTeamPopupLinks = {
                                 tbl.setAttribute("cell-padding", "2");
                                 tbl.setAttribute("cell-spacing", "0");
                                 
-                                /*if (owntopteamlinks){
-                                        var tr1 = doc.createElement("tr");
-                                        tr1.setAttribute("height", "20");
-                                        var td1 = doc.createElement("td");
-                                        var a1 = doc.createElement("a");
-                                        a1.setAttribute('href', '/Club/?TeamID=' + value+'&ft_popuplink=true');
-                                        a1.appendChild(doc.createTextNode(org_link.innerHTML));
-                                        td1.appendChild(a1);
-                                        tr1.appendChild(td1);
-                                        tbl.appendChild(tr1);
-										top = top - 20;
-                                }*/
 								if ((userlink) && ((!show_more && FoxtrickTeamPopupLinks.bTeam)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bTeam))) {
                                         var tr1 = doc.createElement("tr");
@@ -427,12 +415,13 @@ var FoxtrickTeamPopupLinks = {
 								    if (owntopteamlinks) top = -40; 
 									
 									var div = doc.createElement("div");
-									/*if (org_link.parentNode.parentNode.tagName == "DIV" && org_link.parentNode.parentNode.id == "teamLinks") div.setAttribute('class', 'mainBox myht2_low');
-									else*/ div.setAttribute('class', 'mainBox myht2');
+									div.setAttribute('class', 'mainBox myht2');									
+									// absolut position
+									// var pL=getPosition(org_link)['left'];
+									// var pT=getPosition(org_link,mainBody)['top'] - mainBody.scrollTop + getPosition(mainBody)['top'] + top+5;									
 									div.setAttribute('style','top:'+top+'px');
-									//var po=getPositionTop(doc.getElementById('mainBody'));
-									//dump(' '+' '+  doc.getElementById('mainBody').scrollHeight-org_link.offsetParent.offsetTop+'\n');
-									div.appendChild(tbl);		//org_link.appendChild(div);
+									div.appendChild(tbl);		
+									
 									if (org_link.parentNode.parentNode.lastChild.className=='mainBox myht2') 
 											org_link.parentNode.removeChild(org_link.parentNode.lastChild);
 									org_link.parentNode.appendChild(div);
@@ -505,10 +494,11 @@ var FoxtrickTeamPopupLinksMore = {
 };
 
 	
+	
 
-function getPositionTop(This){
-var el = This;var pT = 0;
-while(el){pT+=el.offsetTop;el=el.offsetParent;}
-return pT;
+function getPosition(This,ref){
+var el = This;var pT = 0; var pL = 0;
+while(el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
+return {'top':pT,'left':pL};
 }
 	
