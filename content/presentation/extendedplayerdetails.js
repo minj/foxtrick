@@ -6,7 +6,7 @@
 FoxtrickExtendedPlayerDetails = {
 
     MODULE_NAME : "ExtendedPlayerDetails",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
     RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
@@ -116,12 +116,12 @@ FoxtrickExtendedPlayerDetails = {
                  }
              
             part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
-            part = ReturnFormatedValue (part, ' ');
+            part = ReturnFormatedValue (part, '&nbsp;');
 
             if (part != 'NaN') 
                 table_elm_bonus.innerHTML = 
                     part_1_save +'&nbsp;'+ FoxtrickPrefs.getString("oldCurrencySymbol")+
-                    '&nbsp;<span id="ft_bonuswage" style="color:#666666;>(' + 
+                    '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' + 
                     part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
                     ')</span>&nbsp;' + 
                     part_2_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
