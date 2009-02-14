@@ -56,12 +56,18 @@ FoxtrickMatchPlayerColouring = {
         var teamA = "";
         var teamB = "";
         var content = content_div.getElementsByTagName("h1")[0].parentNode.innerHTML;;
+		
+		// get part between fisrt '.' after formation and end of paragraph
 		var contentA = content.substring(0,content.search('.<br><br>'));		
-		contentA=contentA.substring(contentA.search(/\d-\d-\d/)); 
-		//dump('A: ' + contentA+'\n------\n'+contentA.lastIndexOf('. ')+'\n');
-        var contentB = content.substring(content.search('.<br><br>')+9); 
+		contentA=contentA.substring(contentA.search(/\d-\d-\d/));
+		contentA=contentA.substring(contentA.indexOf('.'));
+//		dump('A: ' + contentA+'\n------\n'+contentA.indexOf('.')+'\n');
+
+        // get part between fisrt '.' after formation and end of paragraph
+		var contentB = content.substring(content.search('.<br><br>')+9); 
 		contentB=contentB.substring(0,contentB.search('.<br><br>')); 
-		contentB=contentB.substring(contentB.search(/\d-\d-\d/)); 
+		contentB=contentB.substring(contentB.search(/\d-\d-\d/));
+		contentB=contentB.substring(contentA.indexOf('.')); 
 		//dump('B: '+ contentB+'\n--------\n');
 
         var FirstTeam = true; 
@@ -70,13 +76,13 @@ FoxtrickMatchPlayerColouring = {
         }
 		if (teamA[0].search(':')!=-1) teamA[0]=teamA[0].substring(teamA[0].search(':')+2);
 		else teamA[0]=teamA[0].substring(teamA[0].lastIndexOf(' ')+1);
-		//for (var k=0;k<teamA.length;k++)  dump(k+': '+teamA[k]+'\n');
+		for (var k=0;k<teamA.length;k++)  dump(k+1+': '+teamA[k]+'\n');
 		if (contentB) {
             teamB = contentB.replace(/ \- /g, ", ").split(", ");
         }
 		if (teamB[0].search(':')!=-1) teamB[0]=teamB[0].substring(teamB[0].search(':')+2);
 		else teamB[0]=teamB[0].substring(teamB[0].lastIndexOf(' ')+1);
- 		//for (var k=0;k<teamB.length;k++)  dump(k+': '+teamB[k]+'\n');
+ 		for (var k=0;k<teamB.length;k++)  dump(k+1+': '+teamB[k]+'\n');
 				
 		//Retrieve substitutions
 		 var spans = content_div.getElementsByTagName("td");
