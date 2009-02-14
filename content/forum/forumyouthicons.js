@@ -72,7 +72,18 @@
             newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
             toolbar.insertBefore( newimage,target );
-                
+
+            if ( page != 'messageWritePost' ) {
+                var newimage = doc.createElement( "img" );
+                newimage.src = "/Img/Icons/transparent.gif";
+                newimage.addEventListener( "click", FoxtrickForumYouthIcons._hr , false );
+                newimage.setAttribute( "class", "f_hr");
+                newimage.setAttribute("style","margin:2px");
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
+                toolbar.insertBefore( newimage,target );                                        
+            }
+
+          
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", FoxtrickForumYouthIcons._userid , false );
@@ -89,15 +100,6 @@
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.article");
             toolbar.insertBefore( newimage,target );                                                        
             
-            if ( page != 'messageWritePost' ) {
-                var newimage = doc.createElement( "img" );
-                newimage.src = "/Img/Icons/transparent.gif";
-                newimage.addEventListener( "click", FoxtrickForumYouthIcons._hr , false );
-                newimage.setAttribute( "class", "f_hr");
-                newimage.setAttribute("style","margin:2px");
-                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
-                toolbar.insertBefore( newimage,target );                                        
-            }
         }                
         
         var toolbar_label = doc.createElement( "div" );
