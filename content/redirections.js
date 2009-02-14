@@ -16,7 +16,7 @@ var FoxtrickRedirections = {
 
     run : function( doc ) { 
 
-	if (doc.location.href.search(/challenge|redir_to_.+\=true/i)==-1) return; 
+	if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return; 
 	// redirect from manager 
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
@@ -62,6 +62,13 @@ var FoxtrickRedirections = {
 	if (doc.location.href.search(/challenge=true/i)!=-1 ) { 
 		var teamid_input = doc.getElementById('ctl00_CPSidebar_tbNewChallangeTeamId');
 		teamid_input.value = FoxtrickHelper.getTeamIdFromUrl(doc.location.href);
+	}
+	//mailto
+	if (doc.location.href.search(/mailto=/i)!=-1 ) { 
+		var teamid_input = doc.getElementById('ctl00_CPMain_tbTo');
+		var username = doc.location.href.replace(/.+mailto=/i,'');
+		if (username.search(/&/)!=-1) username=username.replace(/&.+/,'');
+		teamid_input.value = username;
 	}
 	
 	// redirect to coach		

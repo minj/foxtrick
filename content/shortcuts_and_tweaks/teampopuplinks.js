@@ -183,6 +183,8 @@ var FoxtrickTeamPopupLinks = {
 															&& org_link.parentNode.className!="cfUserInfo";
 		var forumuserlink = org_link.href.search(/Club\/Manager\/\?UserID=/i)!=-1 && doc.location.href.search(/Forum\/Read/i)!=-1 ; 
 		var forumlink = doc.location.href.search(/Forum\/Read/i)!=-1 ; 
+		var username='';
+		if (userlink || forumuserlink) username = org_link.text;
 		
 		var top = -18; if (Foxtrick.isStandardLayout(doc) ) top = 0;
 		if (forumuserlink) {top = -18; if (Foxtrick.isStandardLayout(doc)) top = 0;}
@@ -315,7 +317,8 @@ var FoxtrickTeamPopupLinks = {
                                         var td9 = doc.createElement("td");
                                         td9.setAttribute("nowrap", "nowrap");
                                         var a9 = doc.createElement("a");
-                                        if (userlink) a9.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_sendmessage=true'+'&ft_popuplink=true');
+                                        if (username!='') a9.setAttribute('href', 'http://www94.hattrick.org/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username);
+										//if (userlink) a9.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_sendmessage=true'+'&ft_popuplink=true');
 										else a9.setAttribute('href', '/Club/?TeamID='+value+'&SendMessage=true'+'&ft_popuplink=true');										
                                         a9.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'SendMessage' )));
                                         td9.appendChild(a9);
