@@ -30,9 +30,12 @@
 			cname = link.getAttribute( "class" );
 			if ( cname ==  "url" )
 			{	var div = link.childNodes[0];
-				var title = div.childNodes[0].getAttribute( "title" ).replace(div.childNodes[0].innerHTML,'');
+				//var title = div.childNodes[0].getAttribute( "title" ).replace(div.childNodes[0].innerHTML,'');
+				var title = div.childNodes[0].getAttribute( "title" );
+				var poster = title.substring(title.lastIndexOf(' '));
 
-				if ( title.match(/ HT-\S+/))		//old:  (/.* HT-[^\s]*$/i ) )
+				
+				if ( poster.match(/ HT-\S+/))		//old:  (/.* HT-[^\s]*$/i ) )
 				{
 					var curr_class = div.getAttribute( "class" );
 					if (!curr_class) curr_class='';
