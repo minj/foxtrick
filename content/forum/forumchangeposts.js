@@ -37,11 +37,11 @@ var FoxtrickForumChangePosts = {
 		
 		// part of FoxtrickAlltidflags
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
-		var linkpage = "http://stats.alltidhattrick.org/user/";
+		var linkpage = "http://stats.alltidhattrick.org/team/";
 		var style ="margin-right:3px; margin-bottom:3px; padding-left:3px; " + 
 					"background-repeat:repeat-x; background-position: 0% 50%;";
-		var link_to_alltid = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 1);
-		var redir_to_team = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 0);
+		//var link_to_alltid = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 1);
+		//var redir_to_team = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 0);
 
 		// part of FoxtrickForumAnchors
 		var anchor = doc.createElement( "a" );
@@ -141,6 +141,7 @@ var FoxtrickForumChangePosts = {
 				// get info & nodes from user_info
 				var teamid = null;
 				var teamname = null;
+				var leagueid = null;
 				var countryLink = null;
 				var leagueLink = null;
 				if (user_info) {
@@ -158,6 +159,7 @@ var FoxtrickForumChangePosts = {
 								countryLink = user_info_link;								
 						} else if (user_info_link.href.search(/LeagueLevelUnitID=/i) != -1) {
 								leagueLink = user_info_link;
+								leagueid = FoxtrickHelper.getLeagueLeveUnitIdFromUrl(user_info_link.href); 
 						} 	
 					}
 				} // get user info
@@ -203,10 +205,10 @@ var FoxtrickForumChangePosts = {
 				if (do_alltid_flags) {					
 						var flaglink = doc.createElement('a');						
 						flaglink.setAttribute('style','margin-left:3px !important;');
-						if (link_to_alltid || !user_info) {	
+						if (!user_info) { //	link_to_alltid || 
 							var target='_blank';
 							var href;
-							if (redir_to_team) {
+							if (true) { //redir_to_team
 								href = '/Club/Manager/?userId='  +poster_id1 + '&redir_to_league=true';
 								target='_self';
 							}
@@ -216,7 +218,7 @@ var FoxtrickForumChangePosts = {
 							flaglink.innerHTML='<img  src="'+flagspage + poster_id1 + '.gif" />';
 						}
 						else {
-							flaglink.setAttribute('href','/World/Series/Default.aspx?LeagueLevelUnitID=' + teamid);
+							flaglink.setAttribute('href','/World/Series/Default.aspx?LeagueLevelUnitID=' + leagueid);
 							flaglink.innerHTML = "<img title=" + countryLink.getElementsByTagName('img')[0].title 
 												+ " src=" + flagspage + poster_id1 + ".gif border=0 height=12 />";
 						}
@@ -228,7 +230,7 @@ var FoxtrickForumChangePosts = {
 						if (poster_link2) {	
 							var target='_blank';
 							var href;
-							if (redir_to_team) {
+							if (true ) { // redir_to_team
 								href = '/Club/Manager/?userId=' + poster_id2 + '&redir_to_league=true';
 								target='_self';
 							}

@@ -261,7 +261,7 @@ var FoxtrickAlltidFlags = {
 	MODULE_NAME : "AlltidFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
-	RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
+	//RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
