@@ -422,7 +422,7 @@ var FoxtrickTeamPopupLinks = {
 									div.setAttribute('style','top:'+top+'px');
 									div.appendChild(tbl);		
 									
-									if (org_link.parentNode.parentNode.lastChild.className=='mainBox myht2') 
+									if (org_link.parentNode.lastChild.className=='mainBox myht2') 
 											org_link.parentNode.removeChild(org_link.parentNode.lastChild);
 									org_link.parentNode.appendChild(div);
 									org_link.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
