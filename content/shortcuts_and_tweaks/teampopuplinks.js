@@ -26,7 +26,8 @@ var FoxtrickTeamPopupLinks = {
 		bAchievemants:"",
 		bMore:"",
 		ownteamid:"",
-				
+		maxwidth:"",
+		hasScroll:"",		
 
     init : function() {
         Foxtrick.registerPageHandler('all_late', FoxtrickTeamPopupLinks );
@@ -80,11 +81,23 @@ var FoxtrickTeamPopupLinks = {
 				var head = doc.getElementsByTagName("head")[0];
                 var style = doc.createElement("style");
                 style.setAttribute("type", "text/css");
+				this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
+						               
                 //determine width of the floating box - Stephan
-                var maxwidth = Math.max(Foxtrickl10n.getString( 'Team' ).length, Foxtrickl10n.getString( 'Matches' ).length, Foxtrickl10n.getString( 'Players' ).length, 
-                                                Foxtrickl10n.getString( 'last_5_ips' ).length, Foxtrickl10n.getString( 'Guestbook' ).length,
-                                                Foxtrickl10n.getString( 'Coach' ).length,Foxtrickl10n.getString( 'TransferHistory' ).length,Foxtrickl10n.getString( 'LastLineup').length); //Stephan
-                this.bTeamLinks = Foxtrick.isModuleFeatureEnabled( this, "TeamLinks");
+                this.maxwidth = 5*Math.max(Foxtrickl10n.getString( 'Team' ).length, 
+											Foxtrickl10n.getString( 'Team' ).length, 
+											Foxtrickl10n.getString( 'Manager' ).length, 
+											Foxtrickl10n.getString( 'Matches' ).length, 
+											Foxtrickl10n.getString( 'Players' ).length, 
+                                            Foxtrickl10n.getString( 'last_5_ips' ).length,
+											Foxtrickl10n.getString( 'Guestbook' ).length,
+                                            Foxtrickl10n.getString( 'SendMessage' ).length,
+                                            Foxtrickl10n.getString( 'Challenge' ).length,
+                                            Foxtrickl10n.getString( 'Achievements' ).length,
+                                            Foxtrickl10n.getString( 'Coach' ).length,
+											Foxtrickl10n.getString( 'TransferHistory' ).length,
+											Foxtrickl10n.getString( 'LastLineup').length ); //Stephan
+				this.bTeamLinks = Foxtrick.isModuleFeatureEnabled( this, "TeamLinks");
                 this.bUserLinks = Foxtrick.isModuleFeatureEnabled( this, "UserLinks");
 				this.bManager = Foxtrick.isModuleFeatureEnabled( this, "Manager");
                 this.bTeam = Foxtrick.isModuleFeatureEnabled( this, "Team");
@@ -98,9 +111,9 @@ var FoxtrickTeamPopupLinks = {
 				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "SendMessage");
 				this.bChallenge= Foxtrick.isModuleFeatureEnabled( this, "Challenge");
                 this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
-                this.bMore = FoxtrickPrefs.getBool("module.TeamPopupLinksMore.enabled"); 
-				 
-				var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.message, div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo {overflow: visible !important;}';
+                this.bMore = FoxtrickPrefs.getBool("module.TeamPopupLinksMore.enabled"); 						
+				
+				var zaw = 'span.myht1 {position: relative;width:+'+this.maxwidth+';} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; position: absolute; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.message, div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo {overflow: visible !important;}';
 				//var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
 				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
@@ -416,10 +429,24 @@ var FoxtrickTeamPopupLinks = {
 									
 									var div = doc.createElement("div");
 									div.setAttribute('class', 'mainBox myht2');									
+							
+									var mainBody = doc.getElementById('mainBody');
 									// absolut position
 									// var pL=getPosition(org_link)['left'];
 									// var pT=getPosition(org_link,mainBody)['top'] - mainBody.scrollTop + getPosition(mainBody)['top'] + top+5;									
-									div.setAttribute('style','top:'+top+'px');
+									
+									var left = 20;
+									if (!owntopteamlinks && FoxtrickTeamPopupLinks.hasScroll) {
+										/*var pL = getPosition(org_link, mainBody)['left'];
+										if ( pL> mainBody.offsetWidth - FoxtrickTeamPopupLinks.maxwidth) left = -FoxtrickTeamPopupLinks.maxwidth;
+										*/								
+										var pT = getPosition(org_link,mainBody)['top'] - mainBody.scrollTop;
+										if ( pT < mainBody.offsetHeight/2) top = -10;  // = popdown
+									}
+									//dump('left: '+pL+' '+mainBody.offsetWidth+' '+ FoxtrickTeamPopupLinks.maxwidth+'\n');
+									//dump('top: '+pT+' '+mainBody.offsetHeight+' '+top+'\n');
+									
+									div.setAttribute('style','top:'+top+'px;'+'left:'+left+'px;'+'width:'+FoxtrickTeamPopupLinks.maxwidth);
 									div.appendChild(tbl);		
 									
 									if (org_link.parentNode.lastChild.className=='mainBox myht2') 
@@ -498,7 +525,7 @@ var FoxtrickTeamPopupLinksMore = {
 
 function getPosition(This,ref){
 var el = This;var pT = 0; var pL = 0;
-while(el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
+while(el && el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
 return {'top':pT,'left':pL};
 }
 	
