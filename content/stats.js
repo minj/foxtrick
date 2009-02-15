@@ -782,10 +782,10 @@ stats["ekonomer"] =  {
         "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.asp",
 
         "economylink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["owncountryid"], 
                          "params"     : {"Cash" : "resultat","kassa":"kassa"} 
                        },
-		"countryidranges" : [[1, 1]], 
+		"owncountryidranges" : [[1, 1]], 
         "title" : "Ekonomkalkylatorn",   
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_economy.png"
 };
@@ -1280,7 +1280,7 @@ stats["htlinks_Goalkeeper_Checker"] =  {
                          "params"     : { "tsi" : "TSI", "form": "Form","age":"Age"}
                        },
         
-        "title" : "www.ht-links.de - Goalkeeper-Checker",
+        "title" : "HT-Links.de  - Goalkeeper-Checker",
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks_small.png"
 };
 
@@ -1293,9 +1293,22 @@ stats["htlinks_ti_schrauber"] =  {
                          "params"     : { "tsi" : "TSI"}
                        },
          "countryidranges" : [[3, 3]], 
-        "title" : "www.ht-links.de - TISchrauber",
+        "title" : "HT-Links.de  - TISchrauber",
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };
+
+stats["htlinks_general"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/Errungenschaften.html",
+
+        "achievementslink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : []
+                       },
+         "owncountryidranges" : [[3, 3]], 
+        "title" : "HT-Links.de - Info",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
+};
+
 
 /*  // claims to have CHPP but doesn't. hence illegal
 stats["skillraise"] =  { 
@@ -1519,6 +1532,23 @@ stats["gham"] =  {
         "title" : "Gham live",
         "img" : "chrome://foxtrick/content/resources/linkicons/gham.png"
 };
+   
+   
+   
+// HT-bet
+stats["ht_bet"] =  { 
+        "url" : "http://www.ht-bet.org/predict.php",
+
+        "leaguelink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : { "leagueid" : "league_id" }
+                       },
+        
+        "title" : "HT-bet",
+        "img" : "chrome://foxtrick/content/resources/linkicons/ht_bet.png"
+};    
+   
+   
    
 // ----------------------------------------------------------------------
 // -------------- tracker & national teams ------------------------------
