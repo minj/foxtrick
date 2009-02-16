@@ -317,7 +317,7 @@ var FoxtrickTeamPopupLinks = {
                                         var td9 = doc.createElement("td");
                                         td9.setAttribute("nowrap", "nowrap");
                                         var a9 = doc.createElement("a");
-                                        if (username!='') a9.setAttribute('href', 'http://www94.hattrick.org/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username);
+                                        if (username!='') a9.setAttribute('href', '/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username);
 										//if (userlink) a9.setAttribute('href', '/Club/Manager/?userId='+value+'&redir_to_sendmessage=true'+'&ft_popuplink=true');
 										else a9.setAttribute('href', '/Club/?TeamID='+value+'&SendMessage=true'+'&ft_popuplink=true');										
                                         a9.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'SendMessage' )));
