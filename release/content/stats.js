@@ -1747,7 +1747,7 @@ stats["u20_nt_stats"] = {
 
 
 stats["u20_nt_tracker"] = { 
-  "url" : "http://static-customer.6.2.138.91.yetnet.ch/ant_db/index.php",
+  "url" : "http://www.oribi.org/ant_db/index.php",
   "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
   "title" : "Global U20 & NT Tracker",
   
