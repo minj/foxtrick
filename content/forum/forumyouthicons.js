@@ -68,8 +68,8 @@
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", FoxtrickForumYouthIcons._br , false );
-            newimage.setAttribute( "class", "f_hr");
-            newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
+            newimage.setAttribute( "class", "ft_br");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
             toolbar.insertBefore( newimage,target );
 
@@ -78,7 +78,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", FoxtrickForumYouthIcons._hr , false );
                 newimage.setAttribute( "class", "f_hr");
-                newimage.setAttribute("style","margin:2px");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
                 toolbar.insertBefore( newimage,target );                                        
             }
@@ -87,16 +87,16 @@
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", FoxtrickForumYouthIcons._userid , false );
-            newimage.setAttribute( "class", "f_hr");
-            newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_user.png') !important;");
+            newimage.setAttribute( "class", "ft_uid");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_user.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.user");
             toolbar.insertBefore( newimage,target );                                                        
             
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", FoxtrickForumYouthIcons._articleid , false );
-            newimage.setAttribute( "class", "f_hr");
-            newimage.setAttribute("style","margin:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_article.png') !important;");
+            newimage.setAttribute( "class", "ft_aid");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_article.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.article");
             toolbar.insertBefore( newimage,target );                                                        
             
