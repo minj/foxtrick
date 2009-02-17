@@ -49,6 +49,8 @@ pref( "extensions.foxtrick.prefs.module.SkillColoring.no_skill_links.enabled", f
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLongNick.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", true );
 
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.OpenNewTab.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TeamAtAlltid.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.last_5_ips.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.Guestbook.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.SendMessage.enabled", false );
@@ -57,6 +59,7 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.Achievements.enabled", fa
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.Coach.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.LastLineup.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink.enabled", false );
 
 
 

@@ -25,7 +25,8 @@ var scripts = [
     'forum/forumstaffmarker.js',
     'forum/forumhidesignatures.js',
     'forum/forumnextandprevious.js',
-    'forum/forumshowprefbutton.js',    
+    'forum/forumshowprefbutton.js',
+	'forum/forumwritecreatespace.js',    
 	'forum/htthreadmarker.js',
     'forum/forumgotopostbox.js',
     'matches/matches.js',
@@ -63,6 +64,7 @@ var scripts = [
     'shortcuts_and_tweaks/shortcutsstatistics.js',
     'shortcuts_and_tweaks/copymatchid.js',
     'shortcuts_and_tweaks/matchdaytables.js',
+    'shortcuts_and_tweaks/contextmenue.js',
     'matches/ratingstoclipboard.js',    
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',
@@ -84,7 +86,12 @@ var scripts = [
     'links/linkstraining.js',
     'links/linksalliances.js',
     'links/linksnational.js',
-        
+    'links/linksmanager.js',
+    'links/linksachievements.js',
+    'links/linksplayers.js',
+    'links/linksfans.js',
+    'links/linksstaff.js',
+
     'modules_list.js',
     'foxtrick.js',
 ];

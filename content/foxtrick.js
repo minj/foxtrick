@@ -62,7 +62,7 @@ var FoxtrickMain = {
 
 		// reload skins
 		FoxtrickSkinPlugin.load(null,true);
-    },
+	},
    
     registerOnPageLoad : function(document) {
 		// init menu titles
@@ -79,6 +79,14 @@ var FoxtrickMain = {
 		statusbarDeactivate.setAttribute( "label", Foxtrickl10n.getString(
 			"foxtrick.prefs.disableTemporaryLabel") );
 		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+		
+		var popupMenu = document.getElementById( "foxtrick_popup_menu");
+		popupMenu.setAttribute( "label", "Foxtrick-"+Foxtrickl10n.getString( "foxtrick.CopyPostID") );
+		popupMenu.setAttribute( "hidden", true); 
+		Foxtrick.popupMenu = popupMenu;
+		Foxtrick.popup = document.getElementById( "contentAreaContextMenu");
+		
+		
 		var toolsMenu = document.getElementById( "foxtrick-config-menu" );
 		toolsMenu.setAttribute( "label", Foxtrickl10n.getString( 
 			"foxtrick.menu.configurefoxtrick") );
@@ -131,9 +139,10 @@ var FoxtrickMain = {
 			if( content ) {
 				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 			}
-        }
+	    }
     },
 
+	
     // main entry run on every ht page load
     run : function( doc ) {
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
@@ -171,6 +180,8 @@ var FoxtrickMain = {
 							}
 						} );
 				}
+			// context menue
+			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
 			}
 		}
     },
@@ -654,6 +665,25 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 									else countries += '[' + r0+']';
 									if (stats[key]["countryidranges"][k]) 	countries+=',';
+								}
+						}
+					}
+					for (var i=0; i<filters.length; i++) {
+						var filtertype = filters[i]; 
+						if (filtertype == "owncountryid" 
+							&& stats[key]["owncountryidranges"] 
+							&& stats[key]["owncountryidranges"].length!=0) {
+								
+								var k=0,range;
+								while (range = stats[key]["owncountryidranges"][k++]) {
+									var r0=String(range[0]); 
+									if (k==1) { 
+											if (r0.length==2) r0='0'+r0;
+											else  if (r0.length==1) r0='00'+r0;
+									}
+									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
+									else countries += '[' + r0+']';
+									if (stats[key]["owncountryidranges"][k]) 	countries+=',';
 								}
 						}
 					}					
@@ -1217,4 +1247,12 @@ function setInactiveTextBox(field, cssClass, text) {
     }
     return true;
 }
+
+	
+function FoxtrickGetElementPosition(This,ref){
+	var el = This;var pT = 0; var pL = 0;
+	while(el && el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
+	return {'top':pT,'left':pL};
+}
+	
 

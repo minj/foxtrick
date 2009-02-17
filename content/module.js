@@ -32,6 +32,8 @@ Foxtrick.ht_pages = {
     'teamevents'                : '\/Club\/TeamEvents/',
     'youthoverview'             : '\/Club\/Youth\/Default\.aspx',
     'arena'                     : '\/Club\/Arena\/Default\.aspx',
+    'staff'                     : '\/Club\/Staff',
+    'fans'                     : '\/Club\/Fans',
     'coach'                     : '\/Club\/Training\/ChangeCoach\.aspx',
     'transfer'                  : '\/Club\/Transfers',
     'TransferCompare'           : '\/Club\/Transfers\/TransferCompare',

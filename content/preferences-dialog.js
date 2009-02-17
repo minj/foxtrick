@@ -675,7 +675,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 				}
 				var spacer = doc.createElement('spacer');
 				spacer.setAttribute('flex',0);
-				spacer.setAttribute('height',150);
+				spacer.setAttribute('height',20);
 				
 				modules_list.appendChild( spacer );
     },
@@ -834,7 +834,10 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
                 checkbox.setAttribute( "hidden", false);
             }
 			hbox.appendChild( checkbox );
-			if (bOptionTexts){
+			if (bOptionTexts 
+				&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+				dump (module.MODULE_NAME+' '+module.OPTION_TEXTS_DISABLED_LIST+'\n');
+				if (module.OPTION_TEXTS_DISABLED_LIST) dump(module.OPTION_TEXTS_DISABLED_LIST[i]+'\n');
 				var htextbox = document.createElement("hbox");
 				htextbox.setAttribute("id", "hbox_" + key + "_text");
 				var textbox = document.createElement("textbox");
@@ -917,6 +920,14 @@ FoxtrickPreferencesDialog.getModuleElementDescription = function( module_name, o
     }
 }
 
+FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
+	if(!button) {
+        window.open("chrome://foxtrick/content/preferences-dialog.xul",
+                      "",
+                      "centerscreen, chrome, modal, resizable=yes");
+	}
+}
+	
 
 FoxtrickPreferencesDialog.deactivate = function( button ) {
 	if(!button) { 
@@ -925,13 +936,6 @@ FoxtrickPreferencesDialog.deactivate = function( button ) {
 	}
 }
 
-FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
-	if(!button) {
-        window.open("chrome://foxtrick/content/preferences-dialog.xul",
-                      "",
-                      "centerscreen, chrome, modal, resizable=yes");
-	}
-}
 
 FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
     VBOXES = ["main_list", "shortcuts_list","presentation_list", "matchfunctions_list", "forum_list", "links_list", "about_list"];
@@ -1092,3 +1096,13 @@ FoxtrickPreferencesDialog.LoadPrefs = function () {
         }
     return true;
 }
+
+
+FoxtrickPreferencesDialog.copy_id = function( button ) {
+	if(!button) {
+    	var ID=Foxtrick.CopyID;
+		Foxtrick.copyStringToClipboard(ID);
+		Foxtrick.popupMenu.setAttribute( "hidden", true); 
+		
+	}
+}	

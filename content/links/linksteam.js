@@ -78,12 +78,13 @@ var FoxtrickLinksTeam = {
 		var teamname = FoxtrickHelper.extractTeamName(thisdiv);
 		var leaguename = FoxtrickHelper.extractLeagueName(thisdiv);
 		var levelnum = FoxtrickHelper.getLevelNum(leaguename, countryid);
-      
+		var leagueid = FoxtrickHelper.findLeagueLeveUnitId(thisdiv);;
+				
 		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 			leaguename="I";
 		} 
        
-		return { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum  };
+		return { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum ,"leagueid": leagueid };
 	},
 };
 	

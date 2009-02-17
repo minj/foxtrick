@@ -19,6 +19,7 @@ var FoxtrickCopyPostID = {
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : false,
+	OPTIONS : new Array("AddCopyIcon","SecondPostIdOneClickLink"), 
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -226,7 +227,7 @@ var FoxtrickAddDefaultFaceCard = {
 //**********************************************************
 /**
 * forumcollapsbookmarks.js
-* Foxtrick Copies post id to clipboard
+* Foxtrick collaps bookmarks to one expandable icon
 * @author convinced
 */
 
