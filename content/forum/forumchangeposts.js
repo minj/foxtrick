@@ -308,11 +308,13 @@ var FoxtrickForumChangePosts = {
 				if (do_truncate_nicks) {
 						var userName1 = poster_link1.innerHTML;
 						if (userName1.length > trunclength) {
+							poster_link1.setAttribute('longnick',poster_link1.innerHTML);
 							poster_link1.innerHTML = userName1.substr(0,trunclength-2) +"..";
 						}
 						if (poster_link2) {
 							var userName2 = poster_link2.innerHTML;
 							if (userName2.length > trunclength) {
+								poster_link2.setAttribute('longnick',poster_link2.innerHTML);
 								poster_link2.innerHTML = userName2.substr(0,trunclength-2) +"..";
 							}
 						}
