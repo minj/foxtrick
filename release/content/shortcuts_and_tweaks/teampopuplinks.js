@@ -211,7 +211,7 @@ var FoxtrickTeamPopupLinks = {
                                 tbl.setAttribute("cell-padding", "2");
                                 tbl.setAttribute("cell-spacing", "0");
                                 
-								if ((userlink) && ((!show_more && FoxtrickTeamPopupLinks.bTeam)
+								if ((org_link.href.search(/Club\/Manager\/\?UserID=/i)!=-1 ) && ((!show_more && FoxtrickTeamPopupLinks.bTeam)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bTeam))) {
                                         var tr1 = doc.createElement("tr");
                                         tr1.setAttribute("height", "20");
@@ -235,7 +235,7 @@ var FoxtrickTeamPopupLinks = {
 											org_link.title += ' : '+teamname;																				
 								}
 								
-								if ((!owntopteamlinks && !userlink) && ((!show_more && FoxtrickTeamPopupLinks.bManager)
+								if ((!owntopteamlinks && (org_link.href.search(/Club\/Manager\/\?UserID=/i)==-1 )) && ((!show_more && FoxtrickTeamPopupLinks.bManager)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bManager))) {
                                         var tr1 = doc.createElement("tr");
                                         tr1.setAttribute("height", "20");
