@@ -1298,9 +1298,9 @@ stats["htlinks_ti_schrauber"] =  {
 };
 
 stats["htlinks_general"] =  { 
-        "url" : "http://www.ht-links.de/Hattrick/Errungenschaften.html",
+        "url" : "http://www.ht-links.de/",
 
-        "achievementslink" : { "path"       : "",
+        "achievementslink" : { "path"       : "Hattrick/Errungenschaften.html",
                          "filters"    : ["owncountryid"], 
                          "params"     : []
                        },
@@ -1308,6 +1308,20 @@ stats["htlinks_general"] =  {
         "title" : "HT-Links.de - Info",
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };
+
+
+
+stats["Hattrick_training_speed_tool"] =  { 
+        "url" : "http://trainingspeed.freehostia.com/",
+
+        "traininglink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : {"Coach":"Coach","TI":"TI","STA":"KO","TrainingType":"TrainingType"}
+                       },
+        
+        "title" : "Hattrick training speed tool",
+        "img" : "chrome://foxtrick/content/resources/linkicons/trainingspeed.png"
+};    
 
 
 /*  // claims to have CHPP but doesn't. hence illegal
