@@ -184,8 +184,11 @@ var FoxtrickTeamPopupLinks = {
 		var forumuserlink = org_link.href.search(/Club\/Manager\/\?UserID=/i)!=-1 && doc.location.href.search(/Forum\/Read/i)!=-1 ; 
 		var forumlink = doc.location.href.search(/Forum\/Read/i)!=-1 ; 
 		var username='';
-		if (userlink || forumuserlink) username = org_link.text;
-		
+		if (userlink || forumuserlink) {
+			username = org_link.text;
+			var longnick = org_link.getAttribute('longnick');
+			if (longnick) username = longnick; 
+		}
 		var top = -18; if (Foxtrick.isStandardLayout(doc) ) top = 0;
 		if (forumuserlink) {top = -18; if (Foxtrick.isStandardLayout(doc)) top = 0;}
 		else if (userlink) top = +0;
