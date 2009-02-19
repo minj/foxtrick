@@ -97,5 +97,6 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickCopyMatchID,
                      // FoxtrickMatchDayTables //just added, no functions so far
 					 FoxtrickHeaderFix,
-                     FoxtrickCopyRatingsToClipboard
+                     FoxtrickCopyRatingsToClipboard,
+					 FoxtrickNewMail
 					];

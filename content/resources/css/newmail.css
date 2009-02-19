@@ -1,0 +1,16 @@
+/* New Mail by htbaumanns */
+
+div.subMenuBox>div.boxBody>ul>li>span,
+div#folders.sidebarBox>div.boxBody>p>span,
+div#folders.sidebarBox>p>span,
+div#header>div#menu>a>span,
+div#ctl00_pnlSubMenu.subMenu>div.subMenuBox>ul>li>span
+{
+	color:red !important;
+	font-weight:bold !important;
+}
+
+
+img.scNewMail {
+	background-image: url('chrome://foxtrick/content/resources/linkicons/new_mail.png') !important;
+}

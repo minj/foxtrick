@@ -72,6 +72,7 @@ var scripts = [
     'presentation/currencyConverter.js',
     'presentation/tickercoloring.js',
 	'presentation/headerfix.js',
+	'presentation/newmail.js',
     'links/linkscustom.js',
     'links/linksleague.js',
     'links/linksteam.js',
