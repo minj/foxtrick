@@ -12,5 +12,5 @@ div#ctl00_pnlSubMenu.subMenu>div.subMenuBox>ul>li>span
 
 
 img.scNewMail {
-	background-image: url('chrome://foxtrick/content/resources/linkicons/new_mail.png') !important;
+	background: url('chrome://foxtrick/content/resources/linkicons/new_mail.png') !important;
 }
