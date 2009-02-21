@@ -63,12 +63,29 @@ var FoxtrickForumWriteCreateSpace = {
 				
 			}
 		if(!Foxtrick.isStandardLayout( doc )) {
+			
 			otr1.insertBefore(otd1,otr1.firstChild);
 			otr1.insertBefore(otd3,otr1.firstChild.nextSibling);
 			otr1.insertBefore(otd5,otr1.firstChild.nextSibling.nextSibling);
-			otr2.insertBefore(otd2,otr2.firstChild);
+			otr2.insertBefore(otd2,otr2.firstChild);			
 			otr2.insertBefore(otd4,otr2.firstChild.nextSibling);
 			otr2.insertBefore(otd6,otr2.firstChild.nextSibling.nextSibling);
+			
+			var span1 = doc.getElementById('ctl00_CPMain_valFolder');
+			if (span1) {
+				var otr3 = doc.createElement('tr');
+				otr2.parentNode.appendChild(otr3);
+				var otd31 = doc.createElement('td');
+				otr3.appendChild(otd31);
+				var otd32 = doc.createElement('td');
+				otr3.appendChild(otd32);
+				
+				span1=span1.parentNode.removeChild(span1); 
+				otr3.cells[0].appendChild(span1);
+				var span2 = doc.getElementById('ctl00_CPMain_valThreadName');
+				span2=span2.parentNode.removeChild(span2);
+				otr3.cells[1].appendChild(span2);
+			}
 			
 		}
 			var header = doc.getElementById( "ctl00_CPMain_hdrMain" );
