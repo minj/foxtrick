@@ -57,6 +57,11 @@ var FoxtrickHelper = {
 	},
 
 	//---------------------------------------------------------------------------    
+	getMatchIdFromUrl : function(url) {
+		return url.replace(/.+matchID=/i, "").match(/^\d+/);
+	},
+
+	//---------------------------------------------------------------------------    
 	isTeamDetailUrl : function(href) {
 		return href.match(/.+TeamID=/i) ;
 	},
@@ -98,7 +103,7 @@ var FoxtrickHelper = {
 	//---------------------------------------------------------------------------    
 	findIsYouthMatch : function(href) {
 		if (href.match(/Club\/Matches\/Match\.aspx/i) ) {
-			return (href.match(/isYouth/i));
+			return (href.search(/isYouth=true/i)!=-1);
 		}
 		return false;
 	},
@@ -114,6 +119,18 @@ var FoxtrickHelper = {
 		return false;
 	},
 
+	//---------------------------------------------------------------------------    
+	findUserId : function(element) {
+		var links = element.getElementsByTagName('a');
+		for (var i=0; i < links.length; i++) {
+			if ( links[i].href.match(/UserID=/i) ) {
+				return links[i].href.replace(/.+UserID=/i, "").match(/^\d+/);
+			}
+		}
+		return false;
+	},
+	
+	
 	//---------------------------------------------------------------------------    
 	findSecondTeamId : function(element,firstteamid) {
 		var links = element.getElementsByTagName('a');
