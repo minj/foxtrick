@@ -30,10 +30,11 @@
 			cname = link.getAttribute( "class" );
 			if ( cname ==  "url" )
 			{	var div = link.childNodes[0];
-				//var title = div.childNodes[0].getAttribute( "title" ).replace(div.childNodes[0].innerHTML,'');
-				var title = div.childNodes[0].getAttribute( "title" );
-				var poster = title.substring(title.lastIndexOf(' '));
-
+				var title = div.childNodes[0].getAttribute( "title" ).replace(div.childNodes[0].innerHTML,'');
+				//var title = div.childNodes[0].getAttribute( "title" );
+				var poster = title;//.substring(title.lastIndexOf(' '));
+				//dump (title+' '+poster+'\n');
+				
 				
 				if ( poster.match(/ HT-\S+/))		//old:  (/.* HT-[^\s]*$/i ) )
 				{
