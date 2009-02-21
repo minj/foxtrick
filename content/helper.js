@@ -57,6 +57,11 @@ var FoxtrickHelper = {
 	},
 
 	//---------------------------------------------------------------------------    
+	getMatchIdFromUrl : function(url) {
+		return url.replace(/.+matchID=/i, "").match(/^\d+/);
+	},
+
+	//---------------------------------------------------------------------------    
 	isTeamDetailUrl : function(href) {
 		return href.match(/.+TeamID=/i) ;
 	},
@@ -98,7 +103,7 @@ var FoxtrickHelper = {
 	//---------------------------------------------------------------------------    
 	findIsYouthMatch : function(href) {
 		if (href.match(/Club\/Matches\/Match\.aspx/i) ) {
-			return (href.match(/isYouth/i));
+			return (href.search(/isYouth=true/i)!=-1);
 		}
 		return false;
 	},
