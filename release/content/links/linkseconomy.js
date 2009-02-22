@@ -41,8 +41,8 @@ var FoxtrickLinksEconomy = {
 			Cash*=FoxtrickPrefs.getString("currencyRate");
 			CurrCode="EUR";
 		}*/
-		var links = getLinks("economylink", { "Cash":Cash,"Currency":CurrCode,"countryid":owncountryid}, doc, this);  
-		var ownBoxBody=null
+		var links = getLinks("economylink", { "Cash":Cash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);  
+		var ownBoxBody=null; dump('owncontryid: '+owncountryid+'\n');
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
