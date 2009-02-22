@@ -552,7 +552,11 @@ var FoxtrickTeamPopupLinks = {
 									var left = 20;
 									if (!owntopteamlinks && FoxtrickTeamPopupLinks.hasScroll) {
 										var pT = FoxtrickGetElementPosition(org_link,mainBody)['top'] - mainBody.scrollTop;
-										if ( pT < mainBody.offsetHeight/2) top = -10;  // = popdown
+										if ( pT < mainBody.offsetHeight/2) {// = popdown
+											top = -10;  
+											var more=tbl.removeChild(tbl.lastChild);
+											tbl.insertBefore(more,tbl.firstChild);
+										}
 									}
 									
 									div.setAttribute('style','top:'+top+'px;'+'left:'+left+'px;');
