@@ -21,16 +21,15 @@
 		this.ColorLatest (doc, "ctl00_CPMain_updLatestThreads", "folderitem");
 		
 		var myForums = doc.getElementById( "myForums" );
-		var links = myForums.getElementsByTagName( "td" );
+		var divs = myForums.getElementsByTagName( "div" );
 		var cname;
 
         // dump( "found " + links.length + "\n" );
-		var i = 0, link;
-		while ( link = links[++i] ) {
-			cname = link.getAttribute( "class" );
+		var i = 0, div;
+		while ( div = divs[++i] ) {
+			cname = div.getAttribute( "class" ); 
 			if ( cname ==  "url" )
-			{	var div = link.childNodes[0];
-				var title = div.childNodes[0].getAttribute( "title" ).replace(div.childNodes[0].innerHTML,'');
+			{	var title = div.childNodes[0].getAttribute( "title" ).replace(div.childNodes[0].innerHTML,'');
 				//var title = div.childNodes[0].getAttribute( "title" );
 				var poster = title;//.substring(title.lastIndexOf(' '));
 				//dump (title+' '+poster+'\n');
