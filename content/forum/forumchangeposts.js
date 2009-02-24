@@ -32,6 +32,7 @@ var FoxtrickForumChangePosts = {
 		var do_small_header_font = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SmallHeaderFont"); 
 		var do_single_header_allways = do_alter_header && do_single_header && !Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "CheckDesign"); 
 		var do_truncate_nicks = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick"); 
+		var do_short_postid = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId"); 
 			
 		var hasScroll = Foxtrick.hasMainBodyScroll(doc);
 		
@@ -272,23 +273,27 @@ var FoxtrickForumChangePosts = {
 							}
 						}
 				}
+				
+				if (do_short_postid && bDetailedHeader) {
+					var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
+					var PostID_message = post_link1.title.replace(/\d+\./,'');
+					post_link1.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&amp;n="+PostID_message+"&amp;v=2',%20'"+PostID_thread+"."+PostID_message+"');"
+					post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
+					post_link1.innerHTML='#'+String(PostID_message);
+					if (poster_link2) {
+						var PostID_thread = post_link2.title.replace(/\.\d+/g,'');
+						var PostID_message = post_link2.title.replace(/\d+\./,'');
+						post_link2.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&amp;n="+PostID_message+"&amp;v=2',%20'"+PostID_thread+"."+PostID_message+"');"
+						post_link2.setAttribute('id',PostID_thread+"-"+PostID_message);
+						post_link2.innerHTML='#'+String(PostID_message);
+					}
+					
+				}
 					
 				if (do_single_header) {
-								var asAnswerTo0 = post_link1.nextSibling;// small_header_font
-								var newText0 = doc.createTextNode(": ");
-								header_left.replaceChild(newText0,asAnswerTo0);								
-									
-								if (poster_link2) {
-									var asAnswerTo = post_link2.previousSibling; 
-									var newText = doc.createTextNode("=> ");
-									header_left.replaceChild(newText,asAnswerTo);
-									var asAnswerTo2 = post_link2.nextSibling; 
-									var newText2 = doc.createTextNode(": ");
-									header_left.replaceChild(newText2,asAnswerTo2);
-								}
 								if (header.className == "cfHeader doubleLine") {			
 									var br = header_left.getElementsByTagName('br')[0]; 
-									if (br) header_left.removeChild(br); 
+									if (br) header_left.replaceChild(doc.createTextNode(' '),br); 
 									if (do_single_header_allways || header.offsetTop-header_right.offsetTop >= -3 ) {
 										header.setAttribute('style',singleHeaderStyle); 
 									}
