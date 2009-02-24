@@ -1707,7 +1707,42 @@ stats["crotracker"] = {
 	"nationalityranges" : [[58,58]], 
 };
 
+http://www.ht-deutschland.de/nigeria/
 
+
+stats["ht_scouting_nigeria"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "playerlink" : { "path"       : "nigeria/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "nigeria/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[75, 75]], 
+  "countryidranges" : [[75, 75]], 
+  "title" : "Nigeria Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
+
+stats["ht_scouting_alyaman"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "playerlink" : { "path"       : "alyaman/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "alyaman/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[133, 133]], 
+  "countryidranges" : [[133, 133]], 
+  "title" : "Al Yaman Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
 
 stats["ht_scouting_bahrain"] =  { 
   "url" : "http://www.ht-deutschland.de/",
@@ -1723,7 +1758,7 @@ stats["ht_scouting_bahrain"] =  {
   "nationalityranges" : [[123, 123]], 
   "countryidranges" : [[123, 123]], 
   "title" : "Bahrain Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/bahrain_tracker.png"
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
 }
 
 
@@ -1773,8 +1808,8 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
-	"countryidranges" : [[1,2],[4,4],[7,15],[17,45],[47,51],[53,57],[59,122],[124,136],[138,200]] ,
-	"nationalityranges" : [[1,2],[4,4],[7,15],[17,45],[47,51],[53,57],[59,122],[124,136],[138,200]], 
+	"countryidranges" : [[1,2],[4,4],[7,15],[17,45],[47,51],[53,57],[59,74],[76,122],[124,132],[134,136],[138,200]] ,
+	"nationalityranges" : [[1,2],[4,4],[7,15],[17,45],[47,51],[53,57],[59,74],[76,122],[124,132],[134,136],[138,200]], 
 };  // own tracker: exclude 3,5,6,16,46,52,58,123,137
 
 
