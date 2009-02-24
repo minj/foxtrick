@@ -23,6 +23,8 @@ var FoxtrickForumTemplates = {
     },
 
     run : function( page, doc ) {
+			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
+							"resources/css/conference.css");
 
         // var doc = Foxtrick.current_doc;
 
@@ -110,24 +112,26 @@ var FoxtrickForumTemplates = {
 
     _appendTemplate : function( doc, text, where ) {
         // var doc = Foxtrick.current_doc;
-
-        if ( arguments.length < 3 )
-            var where = doc.getElementById( FoxtrickForumTemplates._TEMPLATES_DIV_ID );
-
+        if ( arguments.length < 3 ) {
+            var where = doc.getElementById( FoxtrickForumTemplates._TEMPLATES_DIV_ID ).getElementsByTagName('tbody')[0];
+		}
         if ( !where )
             return;
         
         var tr = doc.createElement( "tr" );
         var td1 = doc.createElement( "td" );
-        td1.setAttribute( "class", "ignore" );
+		td1.setAttribute("style","vertical-align:middle;");
+		td1.width="16px";				
+        //td1.setAttribute( "class", "ignore" );
         var td2 = doc.createElement( "td" );
-        tr.appendChild( td1 );
+        td2.setAttribute("style","vertical-align:middle;");
+		tr.appendChild( td1 );
         tr.appendChild( td2 );
         // var remover = doc.createElement( "a" );
         var remover = doc.createElement( "div" );
         // remover.style.marginRight = "1em";
         // remover.setAttribute( "href", "javascript:void(0)" );
-        remover.setAttribute( "class", "ignore" );
+        remover.setAttribute( "class", "foxtrick" +	"LeaveConf" );
         remover.msg = text;
         remover.addEventListener( "click", FoxtrickForumTemplates._removeTemplate, false );
         td1.appendChild( remover );
