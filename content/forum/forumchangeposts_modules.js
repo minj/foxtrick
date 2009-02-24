@@ -19,7 +19,7 @@ var FoxtrickCopyPostID = {
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : false,
-	OPTIONS : new Array("AddCopyIcon","SecondPostIdOneClickLink"), 
+	OPTIONS : new Array("AddCopyIcon"), 
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -140,33 +140,6 @@ var FoxtrickHideManagerAvatarUserInfo = {
        
     change : function( page, doc ) {
     }
-};
-
-
-
-
-//**********************************************************
-/**
- * forumanchors.js
- * Foxtrick Sets anchors to the top of a page
- * @author spambot
- */
-
-var FoxtrickForumAnchors = {
-	
-    MODULE_NAME : "ForumAnchors",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : false,
-
-    init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread', this );
-    },
-
-    run : function( page, doc ) {
-	},	
-	
-	change : function( page, doc ) {	
-	}
 };
 
 
