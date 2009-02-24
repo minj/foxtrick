@@ -136,6 +136,7 @@ var FoxtrickForumStaffMarker = {
 			"kolmis",
 			"-Foppe",
 			"LA-Masterix",
+			"LA-csajszi",
 			"larsw84",
 			"LasseSvendsen",
 			"Leachey",
