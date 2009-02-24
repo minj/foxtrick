@@ -8,7 +8,7 @@ var FoxtrickHideSignatures = {
 	
     MODULE_NAME : "HideSignatures",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread', this);

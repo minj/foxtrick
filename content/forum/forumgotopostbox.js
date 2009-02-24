@@ -8,7 +8,7 @@ var FoxtrickGoToPostBox = {
 	
     MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',

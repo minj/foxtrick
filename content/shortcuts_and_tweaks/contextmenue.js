@@ -8,7 +8,7 @@ var FoxtrickContextMenueCopyId = {
 
     MODULE_NAME : "ContextMenueCopyId",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    DEFAULT_ENABLED : false,
+    DEFAULT_ENABLED : true,
 	ID:'',
      
     init : function() {

@@ -101,7 +101,7 @@ var FoxtrickMoveLinks = {
 	
     MODULE_NAME : "MoveLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',
@@ -181,7 +181,7 @@ var FoxtrickAddDefaultFaceCard = {
 	
     MODULE_NAME : "AddDefaultFaceCard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',
@@ -208,7 +208,7 @@ var FoxtrickAlltidFlags = {
 
 	MODULE_NAME : "AlltidFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	//RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
 
 	init : function() {
