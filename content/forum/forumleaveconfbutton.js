@@ -55,16 +55,19 @@ var FoxtrickAddLeaveConfButton = {
 					var ul = doc.getElementById("ctl00_CPMain_rlFolders__rbl");
 					var liElems = ul.getElementsByTagName("li");
 					for(var i=0; i < liElems.length; i++) {
-						var subDivs = liElems[i].getElementsByTagName("div");
-						if(Foxtrick.trim(subDivs[0].innerHTML) == confName) {
-							var inputs = subDivs[1].getElementsByTagName("input");
-							for(var j=0; j < inputs.length; j++) {
-								if (inputs[j].className == "leave"){
-									var func = "javascript:__doPostBack('";
-									func += inputs[j].getAttribute("name");
-									func += "','')";
-									if (func){
-										doc.location.href = func;
+						var subDivs = liElems[i].firstChild.getElementsByTagName("div");
+						for(var k = 0; k < subDivs.length; k++) {
+							if(subDivs[k].className == "float_left prioFolderName"
+								&& Foxtrick.trim(subDivs[k].innerHTML) == confName) {
+								var inputs = subDivs[k+1].getElementsByTagName("input");
+								for(var j=0; j < inputs.length; j++) {
+									if (inputs[j].className == "leave"){
+										var func = "javascript:__doPostBack('";
+										func += inputs[j].getAttribute("name");
+										func += "','')";
+										if (func){
+											doc.location.href = func;
+										}
 									}
 								}
 							}
