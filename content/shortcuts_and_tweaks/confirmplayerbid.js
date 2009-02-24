@@ -97,3 +97,51 @@ var FoxtrickConfirmTL = {
         }
 	}
 };
+
+/**
+* Adds NT add/remove from squad confirm box
+* @author larsw84
+*/
+var FoxtrickNTConfirmAddRemove = {
+	
+	MODULE_NAME : "NTConfirmAddRemove",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	DEFAULT_ENABLED : true,
+
+    init : function() {
+        Foxtrick.registerPageHandler( 'playerdetail',
+                                      FoxtrickNTConfirmAddRemove );
+    },
+	
+	run : function( page, doc ) {
+		try {
+            var submitLink = doc.getElementById("ctl00_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction");
+			if (submitLink){
+                var sOnclick = submitLink.href.replace(/javascript\:/, "");
+                if (sOnclick.search(/confirm/) == -1){ // already added?
+                    sConfirmString = Foxtrickl10n.getString( "foxtrick.ntremoveconfirmation" );
+                    sOnclick = "javascript:if(confirm(\"" + sConfirmString + "\")){" + sOnclick + ";}";
+                    submitLink.href=sOnclick;
+                }
+            }
+        } catch(e) { 
+            dump('FoxtrickNTConfirmRemove RUN ' + e + '\n'); 
+        }		
+	},
+	
+	change : function( page, doc ) {
+		try {
+            var submitLink = doc.getElementById("ctl00_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction");
+            if (submitLink){
+                var sOnclick = submitLink.href.replace(/javascript\:/, "");
+                if (sOnclick.search(/confirm/) == -1){ // already added?
+                    sConfirmString = Foxtrickl10n.getString( "foxtrick.ntremoveconfirmation" );
+                    sOnclick = "javascript:if(confirm(\"" + sConfirmString + "\")){" + sOnclick + ";}";
+                    submitLink.href=sOnclick;
+                }
+            }
+        } catch(e) { 
+            dump('FoxtrickNTConfirmRemove CHG ' + e + '\n'); 
+        }
+	}
+};
