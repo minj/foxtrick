@@ -49,18 +49,17 @@ var FoxtrickForumChangePosts = {
 		// part of alter header
 		var trunclength = 10;
 		if (Foxtrick.isStandardLayout ( doc ) ) trunclength = 14;
-		dump (do_small_header_font+' '+do_single_header_allways+'\n');
 		if (do_small_header_font && !do_single_header_allways) {
 			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css";
-			Foxtrick.addStyleSheet ( doc, css ); dump('Forum_Header_Smallsize\n');
+			Foxtrick.addStyleSheet ( doc, css ); 
 		} 
 		else if (do_small_header_font && do_single_header_allways) {
 			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css";
-			Foxtrick.addStyleSheet ( doc, css ); dump('Forum_Header_Smallsize_Single\n');
+			Foxtrick.addStyleSheet ( doc, css );
 		} 
 		else if (do_single_header_allways) {
 			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css";
-			Foxtrick.addStyleSheet ( doc, css ); dump('Forum_Header_Single\n');
+			Foxtrick.addStyleSheet ( doc, css );
 		} 
 		
 		var singleHeaderStyle = 'height:16px; '; 
