@@ -1,0 +1,10 @@
+.cfHeader, .cfHeader img, .cfHeader a, .cfHeader .float_right {
+    padding-left:0px;
+    padding-right:0px;
+    font-size:10px;
+}
+
+
+div[class="cfHeader doubleLine"] br {display:none !important; padding: 5px;}
+div[class="cfHeader doubleLine"] br:after {content:" " !important;}
+div[class="cfHeader doubleLine"] {height:14px!important;}

@@ -49,10 +49,20 @@ var FoxtrickForumChangePosts = {
 		// part of alter header
 		var trunclength = 10;
 		if (Foxtrick.isStandardLayout ( doc ) ) trunclength = 14;
-		if (do_small_header_font) {
-			var css = "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css";
-			Foxtrick.addStyleSheet ( doc, css );
-		}
+		dump (do_small_header_font+' '+do_single_header_allways+'\n');
+		if (do_small_header_font && !do_single_header_allways) {
+			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css";
+			Foxtrick.addStyleSheet ( doc, css ); dump('Forum_Header_Smallsize\n');
+		} 
+		else if (do_small_header_font && do_single_header_allways) {
+			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css";
+			Foxtrick.addStyleSheet ( doc, css ); dump('Forum_Header_Smallsize_Single\n');
+		} 
+		else if (do_single_header_allways) {
+			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css";
+			Foxtrick.addStyleSheet ( doc, css ); dump('Forum_Header_Single\n');
+		} 
+		
 		var singleHeaderStyle = 'height:16px; '; 
 		
 		var num_wrapper = 0;  // message counter
@@ -275,26 +285,28 @@ var FoxtrickForumChangePosts = {
 				}
 				
 				if (do_short_postid && bDetailedHeader) {
-					var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
 					var PostID_message = post_link1.title.replace(/\d+\./,'');
-					post_link1.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&amp;n="+PostID_message+"&amp;v=2',%20'"+PostID_thread+"."+PostID_message+"');"
-					post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
+					if (!do_add_copy_icon) {
+						var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
+						post_link1.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&amp;n="+PostID_message+"&amp;v=2',%20'"+PostID_thread+"."+PostID_message+"');"
+						post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
+					}
 					post_link1.innerHTML='#'+String(PostID_message);
 					if (poster_link2) {
-						var PostID_thread = post_link2.title.replace(/\.\d+/g,'');
+						//var PostID_thread = post_link2.title.replace(/\.\d+/g,'');
 						var PostID_message = post_link2.title.replace(/\d+\./,'');
-						post_link2.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&amp;n="+PostID_message+"&amp;v=2',%20'"+PostID_thread+"."+PostID_message+"');"
-						post_link2.setAttribute('id',PostID_thread+"-"+PostID_message);
+						//post_link2.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&amp;n="+PostID_message+"&amp;v=2',%20'"+PostID_thread+"."+PostID_message+"');"
+						//post_link2.setAttribute('id',PostID_thread+"-"+PostID_message);
 						post_link2.innerHTML='#'+String(PostID_message);
 					}
 					
 				}
 					
-				if (do_single_header) {
+				if (do_single_header && !do_single_header_allways) {
 								if (header.className == "cfHeader doubleLine") {			
 									var br = header_left.getElementsByTagName('br')[0]; 
 									if (br) header_left.replaceChild(doc.createTextNode(' '),br); 
-									if (do_single_header_allways || header.offsetTop-header_right.offsetTop >= -3 ) {
+									if (header.offsetTop-header_right.offsetTop >= -3 ) {
 										header.setAttribute('style',singleHeaderStyle); 
 									}
 								}
