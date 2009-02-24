@@ -65,6 +65,7 @@ var scripts = [
     'shortcuts_and_tweaks/copymatchid.js',
     'shortcuts_and_tweaks/matchdaytables.js',
     'shortcuts_and_tweaks/contextmenue.js',
+	'shortcuts_and_tweaks/copyTrainingReport.js',
     'matches/ratingstoclipboard.js',    
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',
