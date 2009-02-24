@@ -224,32 +224,6 @@ var FoxtrickAddDefaultFaceCard = {
 };
 
 
-//**********************************************************
-/**
-* forumcollapsbookmarks.js
-* Foxtrick collaps bookmarks to one expandable icon
-* @author convinced
-*/
-
-var FoxtrickCollapseBookmarks = {
-
-	MODULE_NAME : "CollapseBookmarks",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
-
-	init : function() {
-		Foxtrick.registerPageHandler( 'forumViewThread',
-			FoxtrickCollapseBookmarks );
-	},
-	
-	run : function( page, doc ) {  return;
-	},
-	
-	change : function( page, doc ) { return;
-	},	
-};
-
-
 /**
 * forumalltidflags.js
 * Foxtrick Show Alltid flags in forum posts module
