@@ -36,7 +36,7 @@ pref( "extensions.foxtrick.prefs.module.SkillColoring.no_skill_links.enabled", f
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLongNick.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SingleHeaderLine.enabled", true );
-pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SmallHeaderFont.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SmallHeaderFont.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ShortPostId.enabled", true );
 
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.OpenNewTab.enabled", false );
