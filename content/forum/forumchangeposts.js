@@ -37,7 +37,7 @@ var FoxtrickForumChangePosts = {
 		
 		
 		var hasScroll = Foxtrick.hasMainBodyScroll(doc);
-		
+		var isStandardLayout = Foxtrick.isStandardLayout ( doc ) ;
 		// part of FoxtrickAlltidflags
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
 		var linkpage = "http://stats.alltidhattrick.org/team/";
@@ -63,7 +63,7 @@ var FoxtrickForumChangePosts = {
 	
 		// part of alter header
 		var trunclength = 10;
-		if (Foxtrick.isStandardLayout ( doc ) ) trunclength = 14;
+		if (isStandardLayout) trunclength = 14;
 		if (do_small_header_font && !do_single_header_allways) {
 			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css";
 			Foxtrick.addStyleSheet ( doc, css ); 
@@ -112,7 +112,8 @@ var FoxtrickForumChangePosts = {
 				var poster_id2 = null;
 				var supporter_link1 = null;
 				var supporter_link2 = null;
-				//var bookmark_link = new Array();
+				var league_link1 = null;
+				var league_link2 = null;
 				
 				
 				var k = 0, header_left_link; 
@@ -123,26 +124,26 @@ var FoxtrickForumChangePosts = {
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
 							poster_link1 = header_left_link; 
 							poster_id1 = poster_link1.href.match(/\d+$/);
-							if (header_left_links[k] 
+							if ((do_alltid_flags || do_move_links ) && header_left_links[k] 
 								&& header_left_links[k].href.search(/Supporter/i) != -1) {
 									supporter_link1 = header_left_links[k];
 							}
 						}					
-						
 					} else { 
 						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link2 = header_left_link;
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
 							poster_link2 = header_left_link;
 							poster_id2 = poster_link2.href.match(/\d+$/);
-							if (header_left_links[k] 
+							if ((do_alltid_flags || do_move_links ) && header_left_links[k] 
 								&& header_left_links[k].href.search(/Supporter/i) != -1) {
 									supporter_link2 = header_left_links[k];
 							}
 						}												
-					}
-					if (header_left_link.href.search(/Bookmarks/) != -1) {
-					   bookmark_link.push(header_left_link);
-					}
+					}					
+					if (!isStandardLayout) {
+						if (!league_link1 && header_left_link.href.search(/LeagueLevelUnitID/i) != -1) league_link1 = header_left_link;
+						else if (header_left_link.href.search(/LeagueLevelUnitID/i) != -1) league_link2 = header_left_link;
+					 }					
 				}
 				
 				// get user, user_info, user_avater: all maybe = null !!!
@@ -285,6 +286,19 @@ var FoxtrickForumChangePosts = {
 								poster_link2.innerHTML = userName2.substr(0,trunclength-2) +"..";
 							}
 						}
+						if (league_link1) {
+							var league_name1 = league_link1.innerHTML;
+							if (league_name1.length > trunclength) {
+								league_link1.innerHTML = league_name1.substr(0,trunclength-2) +"..";
+							}
+						}
+						if (league_link2) {
+							var league_name2 = league_link2.innerHTML;
+							if (league_name2.length > trunclength) {
+								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
+							}
+						}
+						
 				}
 				
 				if (do_short_postid && this.bDetailedHeader) {
