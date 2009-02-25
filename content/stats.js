@@ -1486,17 +1486,28 @@ stats["htarena"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htarena.png"
 };
 
-stats["nrg_tools"] =  { 
+stats["nrg_eco"] =  { 
         "url" : "http://nrgjack.altervista.org/",
         "arenalink" : { "path"       : "eco.php",
                          "filters"    : [], 
                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
+        "title" : "NRG ECO",
+        "img" : "chrome://foxtrick/content/resources/linkicons/eco.jpg"
+};
+
+stats["nrg_fc"] =  { 
+        "url" : "http://nrgjack.altervista.org/",
 	    "coachlink" : { "path"       : "fc.php",
                          "filters"    : [], 
                          "params"     : {  }
                        },
+        "title" : "NRG FC",
+        "img" : "chrome://foxtrick/content/resources/linkicons/nrg_fc.png"
+};
 					   
+stats["nrg_pop"] =  { 
+        "url" : "http://nrgjack.altervista.org/",
 		"playerlink" : { "path"       : "pop.php",
                          "filters"    : [], 
                          "params"     : { "tsi" : "tsi", "form" : "fo",
@@ -1504,9 +1515,8 @@ stats["nrg_tools"] =  {
                                           "passing" : "pa", "winger" : "wi", "defending" : "df",
                                           "scoring" : "sc" }
                           },
-
-        "title" : "NRG Tools",
-        "img" : "chrome://foxtrick/content/resources/linkicons/eco.jpg"
+        "title" : "NRG Pop",
+        "img" : "chrome://foxtrick/content/resources/linkicons/nrg_pop.png"
 };
 
 // ArgenStat
