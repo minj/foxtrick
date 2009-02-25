@@ -9,7 +9,8 @@ var FoxtrickAlert = {
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-        
+    last_num_message:0,
+    
     init : function() {
         Foxtrick.registerAllPagesHandler( FoxtrickAlert );
         Foxtrick.news[0] = null;
@@ -18,10 +19,12 @@ var FoxtrickAlert = {
     },
 
     run : function( doc ) {
-    	try {
+    	try { 
+			
             Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
-        } catch (e) {
+            doc.getElementById('menu').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
+		} catch (e) {
             Foxtrick.LOG('FoxtrickAlert.js run: '+e);
         }
     },
@@ -29,10 +32,36 @@ var FoxtrickAlert = {
 	change : function( page, doc ) {
 	
 	},
-    
+	
+    showMailAlert : function(evt)
+    {   
+		var message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
+		if (message) { 
+				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
+				if (num_message > FoxtrickAlert.last_num_message) {
+						
+						var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
+						if (FoxtrickPrefs.getBool("alertSlider")) {
+							FoxtrickAlert.foxtrick_showAlert(message);
+						}
+						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
+							FoxtrickAlert.foxtrick_showAlertGrowl(message);
+						}
+						if (FoxtrickPrefs.getBool("alertSound")) {
+							try {
+								Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
+							} catch (e) {
+								Foxtrick.LOG('playsound: '+e);
+							}
+						}					
+						FoxtrickAlert.last_num_message = num_message;
+				}
+			}
+	},
+	
     showAlert : function(evt)
-    {
-        var tickerdiv=evt.originalTarget;
+    {   
+		var tickerdiv=evt.originalTarget;
         tickerdiv=tickerdiv.getElementsByTagName('div');
         try {
             var message=null;
