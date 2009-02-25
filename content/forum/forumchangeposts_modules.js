@@ -45,7 +45,7 @@ var FoxtrickForumAlterHeaderLine = {
 	
     MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","SmallHeaderFont","ShortPostId"),
 
     init : function() {
@@ -181,7 +181,7 @@ var FoxtrickAddDefaultFaceCard = {
 	
     MODULE_NAME : "AddDefaultFaceCard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',
