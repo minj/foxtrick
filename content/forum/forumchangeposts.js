@@ -35,7 +35,6 @@ var FoxtrickForumChangePosts = {
 		var do_truncate_nicks = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick"); 
 		var do_short_postid = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId"); 
 		
-		
 		var hasScroll = Foxtrick.hasMainBodyScroll(doc);
 		var isStandardLayout = Foxtrick.isStandardLayout ( doc ) ;
 		// part of FoxtrickAlltidflags
@@ -64,23 +63,23 @@ var FoxtrickForumChangePosts = {
 		// part of alter header
 		var trunclength = 10;
 		if (isStandardLayout) trunclength = 14;
-		if (do_small_header_font && !do_single_header_allways) {
-			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css";
+		if (do_small_header_font) {
+			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css";
 			Foxtrick.addStyleSheet ( doc, css ); 
 		} 
-		else if (do_small_header_font && do_single_header_allways) {
-			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css";
-			Foxtrick.addStyleSheet ( doc, css );
-		} 
-		else if (do_single_header_allways) {
+		else if (do_single_header) 
+		{
 			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css";
-			Foxtrick.addStyleSheet ( doc, css );
+			Foxtrick.addStyleSheet ( doc, css ); dump("DD");
 		} 
+		var doubleHeaderStyle = 'height:30px !important; '; 
+		var alt_supporter=doc.createElement('a');
+		alt_supporter.href="/Help/Supporter/";
+		alt_supporter.innerHTML='*';
+		alt_supporter.setAttribute('title',"Hattrick Supporter");
 		
-		var singleHeaderStyle = 'height:16px; '; 
-		
+		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
-		
 		var alldivs = doc.getElementById('mainBody').childNodes;
 		var i = 0, wrapper;
 		while ( wrapper = alldivs[++i] ) {  
@@ -101,7 +100,7 @@ var FoxtrickForumChangePosts = {
 					if (header_part.className.search(/float_left/)!=-1 ) header_left = header_part;
 					if (header_part.className.search(/float_right/)!=-1 ) header_right = header_part;
 				}
-				
+								
 				// get post_links, poster_links, poster_id from header
 				var header_left_links = header_left.getElementsByTagName('a');
 				var post_link1 = null;
@@ -124,7 +123,7 @@ var FoxtrickForumChangePosts = {
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
 							poster_link1 = header_left_link; 
 							poster_id1 = poster_link1.href.match(/\d+$/);
-							if ((do_alltid_flags || do_move_links ) && header_left_links[k] 
+							if (header_left_links[k] 
 								&& header_left_links[k].href.search(/Supporter/i) != -1) {
 									supporter_link1 = header_left_links[k];
 							}
@@ -134,7 +133,7 @@ var FoxtrickForumChangePosts = {
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
 							poster_link2 = header_left_link;
 							poster_id2 = poster_link2.href.match(/\d+$/);
-							if ((do_alltid_flags || do_move_links ) && header_left_links[k] 
+							if (header_left_links[k] 
 								&& header_left_links[k].href.search(/Supporter/i) != -1) {
 									supporter_link2 = header_left_links[k];
 							}
@@ -273,7 +272,7 @@ var FoxtrickForumChangePosts = {
 				
 				
 				// single header line ---------------------------------------
-				if (do_truncate_nicks) {
+				if (do_truncate_nicks && do_single_header_allways) {
 						var userName1 = poster_link1.innerHTML;
 						if (userName1.length > trunclength) {
 							poster_link1.setAttribute('longnick',poster_link1.innerHTML);
@@ -297,8 +296,7 @@ var FoxtrickForumChangePosts = {
 							if (league_name2.length > trunclength) {
 								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
 							}
-						}
-						
+						}						
 				}
 				
 				if (do_short_postid && this.bDetailedHeader) {
@@ -308,23 +306,58 @@ var FoxtrickForumChangePosts = {
 						post_link1.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&amp;n="+PostID_message+"&amp;v=2',%20'"+PostID_thread+"."+PostID_message+"');"
 						post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
 					}
-					post_link1.innerHTML='#'+String(PostID_message);
+					post_link1.innerHTML=String(PostID_message);
 					post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
 					if (poster_link2) {
 						var PostID_message = post_link2.title.replace(/\d+\./,'');
-						post_link2.innerHTML='#'+String(PostID_message);
+						post_link2.innerHTML=String(PostID_message);
 					}
 					
 				}
-					
+				if (do_single_header) {
+					if (supporter_link1) {
+						header_left.insertBefore(alt_supporter.cloneNode(true),poster_link1.nextSibling);
+					}
+					if (supporter_link2) {
+						header_left.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
+					}
+				}
+				
 				if (do_single_header && !do_single_header_allways) {
-								if (header.className == "cfHeader doubleLine") {			
-									var br = header_left.getElementsByTagName('br')[0]; 
-									if (br) header_left.replaceChild(doc.createTextNode(' '),br); 
-									if (header.offsetTop-header_right.offsetTop >= -3 ) {
-										header.setAttribute('style',singleHeaderStyle); 
-									}
-								}
+				  if (header.className == "cfHeader doubleLine") {			
+					if (header.offsetTop-header_right.offsetTop < -3 ) {
+					  if (do_truncate_nicks) {
+						var userName1 = poster_link1.innerHTML;
+						if (userName1.length > trunclength) {
+							poster_link1.setAttribute('longnick',poster_link1.innerHTML);
+							poster_link1.innerHTML = userName1.substr(0,trunclength-2) +"..";
+						}
+						if (poster_link2) {
+							var userName2 = poster_link2.innerHTML;
+							if (userName2.length > trunclength) {
+								poster_link2.setAttribute('longnick',poster_link2.innerHTML);
+								poster_link2.innerHTML = userName2.substr(0,trunclength-2) +"..";
+							}
+						}
+						if (league_link1) {
+							var league_name1 = league_link1.innerHTML;
+							if (league_name1.length > trunclength) {
+								league_link1.innerHTML = league_name1.substr(0,trunclength-2) +"..";
+							}
+						}
+						if (league_link2) {
+							var league_name2 = league_link2.innerHTML;
+							if (league_name2.length > trunclength) {
+								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
+							}
+						}						
+					    if (header.offsetTop-header_right.offsetTop < -3 ) {						
+						  header.setAttribute('style',doubleHeaderStyle); 
+					    }
+					  }
+					  else 	header.setAttribute('style',doubleHeaderStyle); 					
+					}
+				  }
 								
 				}  // end single header line
 

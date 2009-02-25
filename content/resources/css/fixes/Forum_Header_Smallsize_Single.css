@@ -1,10 +1,20 @@
+.cfHeader a[class="flag inner"] img { 
+	margin: 0 0px 2px 0 !important; 
+	border: 0px solid #DDDDDD !important;
+}
+
+
 .cfHeader, .cfHeader img, .cfHeader a, .cfHeader .float_right {
     padding-left:0px;
     padding-right:0px;
     font-size:10px;
+	padding-right:0px;
+	line-height: 12px !important;
 }
 
-
+.cfHeader img[src="/Img/Icons/micro_star.gif"] {display:none !important; padding-left: -3px;}
+ 
 div[class="cfHeader doubleLine"] br {display:none !important; padding: 5px;}
 div[class="cfHeader doubleLine"] br:after {content:" " !important;}
-div[class="cfHeader doubleLine"] {height:14px!important;}
+div[class="cfHeader doubleLine"] {height:12px!important;}
+div[class="cfHeader singleLine"] {height:12px!important;}
