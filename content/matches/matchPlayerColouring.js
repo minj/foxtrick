@@ -70,20 +70,27 @@ FoxtrickMatchPlayerColouring = {
 		contentB=contentB.substring(contentA.indexOf('.')); 
 		//dump('B: '+ contentB+'\n--------\n');
 
+		var num_unknown_namesA=0;
         var FirstTeam = true; 
         if (contentA) {
             teamA = contentA.replace(/ \- /g, ", ").split(", ");
         }
 		if (teamA[0].search(':')!=-1) teamA[0]=teamA[0].substring(teamA[0].search(':')+2);
 		else teamA[0]=teamA[0].substring(teamA[0].lastIndexOf(' ')+1);
-		for (var k=0;k<teamA.length;k++)  dump(k+1+': '+teamA[k]+'\n');
-		if (contentB) {
+		for (var k=0;k<teamA.length;k++) { 
+			if (teamA[k]=='') {++num_unknown_namesA;teamA[k]='##################'; }// replace empty string with something which will not be found in text again
+			dump(k+1+': "'+teamA[k]+'"\n');
+		}
+		var num_unknown_namesB=0;
+        if (contentB) {
             teamB = contentB.replace(/ \- /g, ", ").split(", ");
         }
 		if (teamB[0].search(':')!=-1) teamB[0]=teamB[0].substring(teamB[0].search(':')+2);
 		else teamB[0]=teamB[0].substring(teamB[0].lastIndexOf(' ')+1);
- 		for (var k=0;k<teamB.length;k++)  dump(k+1+': '+teamB[k]+'\n');
-				
+ 		for (var k=0;k<teamB.length;k++) { 
+			if (teamB[k]=='') {++num_unknown_namesB;teamB[k]='##################'; } // replace empty string with something which will not be found in text again
+			dump(k+1+': "'+teamB[k]+'"\n');
+		}		
 		//Retrieve substitutions
 		 var spans = content_div.getElementsByTagName("td");
 		 for (var i=0; i<spans.length; i++) {
@@ -137,17 +144,17 @@ FoxtrickMatchPlayerColouring = {
 				 }
 				playerName=links[i].textContent; //dump('p: '+ playerName+'\n');
 				var foundA =false;
-				for (var k=0;k<teamA.length;k++) {// dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\n');
+				for (var k=0;k<teamA.length;k++) { //dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\n');
 					if (playerName.indexOf(teamA[k])>-1) foundA=true; 
 				}
 				var foundB =false;
 				for (var k=0;k<teamB.length;k++) {// dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\n');
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
-                if (foundA && !foundB) {
+                if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
 					links[i].setAttribute("style", stlTeamA + 'border:1px solid #ccc;padding:0px 2px;'); 
                 } 
-				 else if (foundB && !foundA) {
+				 else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
 					links[i].setAttribute("style", stlTeamB + 'border:1px solid #ccc;padding:0px 2px;'); 
                  }    
                  else {
