@@ -366,6 +366,7 @@ var FoxtrickLinksCustom = {
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
 			doc.getElementById("inputImgDivID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
+			doc.getElementById("inputImgDivID").imgref=FoxtrickPrefs.getString(baseprefnl+'.img');	
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
 		catch (e) {dump("LinksCustom->editOldLink->"+e+'\n');}

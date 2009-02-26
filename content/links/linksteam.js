@@ -73,18 +73,21 @@ var FoxtrickLinksTeam = {
 	},
 	
 	gatherLinks : function( thisdiv, doc ) {
+	try{
 		var countryid = FoxtrickHelper.findCountryId(thisdiv);
   		var teamid = FoxtrickHelper.findTeamId(thisdiv);
 		var teamname = FoxtrickHelper.extractTeamName(thisdiv);
 		var leaguename = FoxtrickHelper.extractLeagueName(thisdiv);
 		var levelnum = FoxtrickHelper.getLevelNum(leaguename, countryid);
 		var leagueid = FoxtrickHelper.findLeagueLeveUnitId(thisdiv);;
+		var userid = FoxtrickHelper.findUserId(thisdiv);
 				
 		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 			leaguename="I";
 		} 
        
-		return { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum ,"leagueid": leagueid };
+		return { "teamid": teamid, "teamname": teamname, "countryid" : countryid, "levelnum" : levelnum ,"leagueid": leagueid,"userid":userid };
+	} catch(e){ dump ('LinksTeam->gatherLinks: '+e+'\n');}
 	},
 };
 	

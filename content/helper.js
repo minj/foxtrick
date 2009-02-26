@@ -47,6 +47,16 @@ var FoxtrickHelper = {
 	},
 
 	//---------------------------------------------------------------------------    
+	findUserId : function(element) {
+		var links = element.getElementsByTagName('a');  
+		for (var i=0; i < links.length; i++) {
+			if ( links[i].href.match(/userId/i) ) {
+				return links[i].href.replace(/.+userId=/i, "").match(/^\d+/)[0];
+			}
+		}
+		return null;
+	},
+	//---------------------------------------------------------------------------    
 	getUserIdFromUrl : function(url) {
 		return url.replace(/.+UserID=/i, "").match(/^\d+/);
 	},
