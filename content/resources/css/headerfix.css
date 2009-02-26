@@ -17,7 +17,7 @@ z-index: 9999;
 width: 765px !important;
 margin-left:10px !important;
 }
-	
+
 /* add whitespace below header */
 #hattrick #menu {
 margin-bottom: 6px;
@@ -41,4 +41,9 @@ min-height: 630px !important; /* temporary height hack before sticky footer */
 
 div#shortcuts {
 padding-right: 10px;
+}
+
+/* fix for forumbookmark z-index 99999 */
+.cfWrapper .bookmarkMessage {
+	z-index: 9 !important;
 }
