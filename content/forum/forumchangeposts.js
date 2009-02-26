@@ -33,6 +33,7 @@ var FoxtrickForumChangePosts = {
 		var do_small_header_font = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SmallHeaderFont"); 
 		var do_single_header_allways = do_alter_header && do_single_header && !Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "CheckDesign"); 
 		var do_truncate_nicks = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick"); 
+		var do_truncate_leaguename = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLeagueName"); 
 		var do_short_postid = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId"); 
 		var do_replace_supporter_star = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ReplaceSupporterStar"); 
 		
@@ -180,7 +181,7 @@ var FoxtrickForumChangePosts = {
 				var teamname = null;
 				var leagueid = null;
 				var countryLink = null;
-				var leagueLink = null;
+				var leagueLinkUserInfo = null;
 				if (user_info) {
 					var user_info_links = user_info.getElementsByTagName("a");
 					var k = 0, user_info_link;
@@ -195,7 +196,7 @@ var FoxtrickForumChangePosts = {
 						if (user_info_link.href.search(/LeagueID=/i) != -1) {
 								countryLink = user_info_link;								
 						} else if (user_info_link.href.search(/LeagueLevelUnitID=/i) != -1) {
-								leagueLink = user_info_link;
+								leagueLinkUserInfo = user_info_link;
 								leagueid = FoxtrickHelper.getLeagueLeveUnitIdFromUrl(user_info_link.href); 
 						} 	
 					}
@@ -269,14 +270,14 @@ var FoxtrickForumChangePosts = {
 				
 				
 				// move links -----------------------------------------
-				if ( do_move_links && countryLink && leagueLink && !do_alltid_flags) {
+				if ( do_move_links && countryLink && leagueLinkUserInfo && !do_alltid_flags) {
 					var placenode;
 					if (supporter_link1) placenode = supporter_link1.nextSibling;
 					else placenode = poster_link1.nextSibling;
 					var space = doc.createTextNode(" ");						
 					header_left.insertBefore(space, placenode);
-					header_left.insertBefore(leagueLink, space);
-					header_left.insertBefore(countryLink, leagueLink);							
+					header_left.insertBefore(leagueLinkUserInfo, space);
+					header_left.insertBefore(countryLink, leagueLinkUserInfo);							
 					var space = doc.createTextNode(" ");						
 					header_left.insertBefore(space, countryLink);
 					
@@ -311,7 +312,18 @@ var FoxtrickForumChangePosts = {
 						}						
 				}
 				
-				if (do_short_postid && this.bDetailedHeader) {// dump(do_short_postid+ ' '+ this.bDetailedHeader+'\n');
+				if (do_truncate_leaguename) {
+						if (league_link1) {
+							league_link1.innerHTML = league_link1.innerHTML.replace(/\..+/,'');
+							if (league_link1.innerHTML.length>3)  league_link1.innerHTML='I';
+						}
+						if (league_link2) {
+							league_link2.innerHTML = league_link2.innerHTML.replace(/\..+/,'');
+							if (league_link2.innerHTML.length>3)  league_link2.innerHTML='I';
+						}
+				}
+				
+				if (do_short_postid && this.bDetailedHeader) {
 					var PostID_message = post_link1.title.replace(/\d+\./,'');
 					if (!do_add_copy_icon) {
 						var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
@@ -342,7 +354,7 @@ var FoxtrickForumChangePosts = {
 				}
 				
 				if (do_single_header && !do_single_header_allways) {
-				  if (header.className == "cfHeader doubleLine") {			
+				  if (header.className == "cfHeader doubleLine") {	//dump('d'+String(header.offsetTop-header_right.offsetTop)+'\n');		
 					if (header.offsetTop-header_right.offsetTop < -3 ) {
 					  if (do_truncate_nicks) {
 						var userName1 = poster_link1.innerHTML;
@@ -369,11 +381,9 @@ var FoxtrickForumChangePosts = {
 								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
 							}
 						}						
-					    if (header.offsetTop-header_right.offsetTop < -3 ) {						
-						  header.setAttribute('style',doubleHeaderStyle); 
-					    }
+						if (header.offsetTop-header_right.offsetTop < -3 ) header.setAttribute('style',doubleHeaderStyle);												
 					  }
-					  else 	header.setAttribute('style',doubleHeaderStyle); 					
+					  else header.setAttribute('style',doubleHeaderStyle); 
 					}
 				  }
 								
