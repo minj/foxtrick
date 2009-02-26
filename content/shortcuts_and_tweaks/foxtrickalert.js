@@ -9,7 +9,8 @@ var FoxtrickAlert = {
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-    last_num_message:0,
+    OPTIONS : new Array("NewMail"), 
+	last_num_message:0,
     
     init : function() {
         Foxtrick.registerAllPagesHandler( FoxtrickAlert );
@@ -23,7 +24,9 @@ var FoxtrickAlert = {
 			
             Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
-            doc.getElementById('menu').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
+            if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
+					doc.getElementById('menu').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
+			}
 		} catch (e) {
             Foxtrick.LOG('FoxtrickAlert.js run: '+e);
         }
