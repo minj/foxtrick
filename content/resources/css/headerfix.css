@@ -12,6 +12,11 @@ background-color: white !important;
 z-index: 9999;
 }
 
+/* getting borders on top 10 px */
+#page {
+margin-top: -10px;
+}
+
 /* compensate for fixed header, move menu from the edge */
 #hattrick #menu,
 #hattrickNoSupporter #menu {
@@ -35,6 +40,13 @@ padding-top: 100px !important;
 #hattrick #content .subMenu,
 #hattrickNoSupporter #content .subMenu {
 position: fixed;
+/* getting borders right if menu overflows content */
+background: white;
+margin-left: -11px; 
+padding-left: 11px;
+border-color: #DDDDDD;
+border-style: solid ;
+border-width:  0 0 0 1px;
 }
 
 /* compensate for fixed left submenu */
