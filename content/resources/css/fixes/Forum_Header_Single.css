@@ -1,11 +1,7 @@
 .cfHeader a[class="flag inner"] img { 
 	margin: 0 0px 2px 0 !important;
 }
-
-.cfHeader img[src="/Img/Icons/micro_star.gif"] {
-	display:none !important; 
-	padding-left: -3px;
-}
+div[class="cfHeader doubleLine"] b:after {content:" " !important;}
 
 div[class="cfHeader doubleLine"] {height:14px!important;}
 div[class="cfHeader singleLine"] {height:14px!important;}
