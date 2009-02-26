@@ -13,28 +13,33 @@ z-index: 9999;
 }
 
 /* compensate for fixed header, move menu from the edge */
-#hattrick #menu {
+#hattrick #menu,
+#hattrickNoSupporter #menu {
 width: 765px !important;
 margin-left:10px !important;
 }
 
 /* add whitespace below header */
-#hattrick #menu {
+#hattrick #menu,
+#hattrickNoSupporter #menu {
 margin-bottom: 6px;
 }
 
 /* compensate for fixed header */
-#hattrick #content {
+#hattrick #content,
+#hattrickNoSupporter #content {
 padding-top: 100px !important;
 }
 
 /* fix left submenu */
-#hattrick #content .subMenu {
+#hattrick #content .subMenu
+#hattrickNoSupporter #content .subMenu {
 position: fixed;
 }
 
 /* compensate for fixed left submenu */
-#hattrick #content #mainWrapper {
+#hattrick #content #mainWrapper
+#hattrickNoSupporter #content #mainWrapper {
 margin-left: 135px;
 min-height: 630px !important; /* temporary height hack before sticky footer */
 }
