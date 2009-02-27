@@ -102,18 +102,19 @@ var FoxtrickForumChangePosts = {
 				
 				// get header, header_left, header_right
 				if (header.className == 'cfDeleted') continue;
+				
 				var header_left = null;
 				var header_right = null;
-				var header_right2 = null;
+				var header_right_inner = null;
 				
 				var k = 0, header_part; 
 				while ( header_part = header.childNodes[k++]) {
 					if (header_part.className.search(/float_left/)!=-1 ) header_left = header_part;
 					if (header_part.className.search(/float_right/)!=-1 ) 
-						if (!header_right) header_right = header_part;
-						else header_right2 = header_part;
+						if (header_right==null)header_right = header_part;
 				}
-								
+				header_right_inner=header_right.getElementsByTagName('div')[0];
+							
 				// get post_links, poster_links, poster_id from header
 				var header_left_links = header_left.getElementsByTagName('a');
 				var post_link1 = null;
@@ -129,7 +130,7 @@ var FoxtrickForumChangePosts = {
 				
 				
 				var k = 0, header_left_link; 
-				if (header_left_links[0].href.search(/showMInd/)==-1 ) this.bDetailedHeader = true; //dump(this.bDetailedHeader+'\n');
+				if (header_left_links[0].href.search(/showMInd/)==-1 ) this.bDetailedHeader = true; 
 				while ( header_left_link = header_left_links[k++]) {
 					if (!poster_link1) { 
 						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link1 = header_left_link;
@@ -347,10 +348,12 @@ var FoxtrickForumChangePosts = {
 					}
 				}
 				
-				if (do_single_header && header_right2) {
-					var bookmark = header_right2.getElementsByTagName('a')[0];
-					header_right.appendChild(bookmark);
-					header.removeChild(header_right2);
+				if (do_single_header && this.bDetailedHeader && header_right_inner) { 
+					var bookmark = header_right_inner.getElementsByTagName('a')[0];
+					if (bookmark) { 
+						bookmark = bookmark.parentNode.removeChild(bookmark);
+						header_right.insertBefore(bookmark,header_right_inner);
+					 }
 				}
 				
 				if (do_single_header && !do_single_header_allways) {
