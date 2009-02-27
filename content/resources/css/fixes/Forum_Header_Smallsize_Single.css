@@ -3,6 +3,8 @@
 	border: 0px solid #DDDDDD !important;
 }
 
+.cfHeader a[class="bookmarkMessage"] img {margin: 0 0px -6px 0 !important;}
+
 div[class="cfHeader doubleLine"] b:after {content:" " !important;}
 
 .cfHeader, .cfHeader img, .cfHeader a, .cfHeader .float_right {
