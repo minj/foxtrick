@@ -97,5 +97,6 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickCopyRatingsToClipboard,
 					 FoxtrickNewMail,
 					 FoxtrickNTConfirmAddRemove,
-					 FoxtrickCopyTrainingReport
+					 FoxtrickCopyTrainingReport,
+					 FoxtrickPlayerBirthday
 					];
