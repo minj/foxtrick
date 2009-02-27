@@ -1340,7 +1340,7 @@ stats["skillraise"] =  {
         "ageranges" : [[17, 19]], 
 
         "title" : "SkillRaise Tool",
-        "img" : "chrome://foxtrick/content/resources/linkicons/skillraise.jpg"
+        "img" : "chrome://foxtrick/content/resources/linkicons/skillraise.png"
 };  */  
 
 stats["Hattrickstats_fr"] =  { 
@@ -1453,7 +1453,7 @@ stats["beltrickyouth"] =  {
                          "params"     : []
                        },
         "title" : "Beltrick YouthStat",
-        "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.jpg"
+        "img" : "chrome://foxtrick/content/resources/linkicons/beltrick_youthstat.png"
 };*/
 
 stats["hattrick-youthclub"] =  { 
@@ -1493,7 +1493,7 @@ stats["nrg_eco"] =  {
                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
         "title" : "NRG ECO",
-        "img" : "chrome://foxtrick/content/resources/linkicons/eco.jpg"
+        "img" : "chrome://foxtrick/content/resources/linkicons/eco.png"
 };
 
 stats["nrg_fc"] =  { 
