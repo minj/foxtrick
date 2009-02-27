@@ -348,7 +348,7 @@ var FoxtrickForumChangePosts = {
 				}
 				
 				if (do_single_header && header_right2) {
-					var bookmark = header_right2.getElementByTagName('a');
+					var bookmark = header_right2.getElementByTagName('a')[0];
 					header_right.appendChild(bookmark);
 					header.removeChild(header_right2);
 				}
