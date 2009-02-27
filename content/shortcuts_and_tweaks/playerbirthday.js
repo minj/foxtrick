@@ -37,7 +37,7 @@ var FoxtrickPlayerBirthday = {
 			var TextAgeTmp=String(PlayerInfo.match(regText)[1]).replace(/,/,''); 
 
 			if (PlayerAge[2]>105 || PlayerAge[2] == 0) {     // player who will have birthday in 7 days or who have birthday today
-				ArrayPlayers[a] = new Array(4); //dump(PlayerName[i]+' '+PlayerAge[2]+'\n');
+				ArrayPlayers[a] = new Array(5); //dump(PlayerName[i]+' '+PlayerAge[2]+'\n');
 				ArrayPlayers[a][1] = PlayerName[i];            // player's name
 				ArrayPlayers[a][2] = PlayerAge[1];             // player's PlayerAge (years)
 				ArrayPlayers[a][3] = PlayerAge[2];             // player's PlayerAge (days)
@@ -45,7 +45,7 @@ var FoxtrickPlayerBirthday = {
 				a++;
 			}
 			if (PlayerAge[2]<7 && PlayerAge[2] > 0) {        // player who had birthday 7 or fewer days ago
-				ArrayPlayersLate[b] = new Array(4);
+				ArrayPlayersLate[b] = new Array(5);
 				ArrayPlayersLate[b][1] = PlayerName[i];
 				ArrayPlayersLate[b][2] = PlayerAge[1];
 				ArrayPlayersLate[b][3] = PlayerAge[2];
@@ -76,7 +76,10 @@ var FoxtrickPlayerBirthday = {
 			newDiv.appendChild(newBR);
 			var newBR = doc.createElement('br');
 			var newT = doc.createTextNode(ArrayPlayers[i][4]);
-			newDiv.appendChild(newT);
+			var newSpan = doc.createElement('span');
+			newSpan.setAttribute('class',"smallText");
+			newSpan.appendChild(newT);
+			newDiv.appendChild(newSpan);
 			newDiv.appendChild(newBR);
 		}
 		if (ArrayPlayers.length>0) parentDiv.appendChild(newDiv);
@@ -86,18 +89,25 @@ var FoxtrickPlayerBirthday = {
 		var newStrongLate = doc.createElement("strong");
 		var newStrongTextLate = doc.createTextNode(Foxtrickl10n.getString( 'foxtrick.tweaks.BirthdayLastWeek' ));
 		newStrongLate.appendChild(newStrongTextLate);
+		var newBR = doc.createElement('br');
+		newDivLate.appendChild(newBR);
 		newDivLate.appendChild(newStrongLate);
+		var newBR = doc.createElement('br');
 		newDivLate.appendChild(newBR);
 
 		for (var i = 0; i < ArrayPlayersLate.length; i++) {
 			var newBR = doc.createElement('br');
 			var newT = doc.createTextNode(ArrayPlayersLate[i][1]);
-			newDiv.appendChild(newT);
-			newDiv.appendChild(newBR);
+			newDivLate.appendChild(newT);
 			var newBR = doc.createElement('br');
+			newDivLate.appendChild(newBR);
 			var newT = doc.createTextNode(ArrayPlayersLate[i][4]);
-			newDiv.appendChild(newT);
-			newDiv.appendChild(newBR);
+			var newSpan = doc.createElement('span');
+			newSpan.setAttribute('class',"smallText");
+			newSpan.appendChild(newT);
+			newDivLate.appendChild(newSpan);
+			var newBR = doc.createElement('br');
+			newDivLate.appendChild(newBR);
 		}
 		
 		if (ArrayPlayersLate.length>0) parentDiv.appendChild(newDivLate);
