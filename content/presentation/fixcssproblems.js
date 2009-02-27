@@ -26,17 +26,17 @@ FoxtrickFixcssProblems = {
             "all",
             "all",
             "simple",
-            "all"
-            
+            "all",
+            "standard"
         );
-        // dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
+        dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
         for (var i = 0; i < this.OPTIONS.length; i++) {
             
             if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[i]  ) ) {
                 var css = "chrome://foxtrick/content/resources/css/fixes/" + this.OPTIONS[i] + ".css";
                 var css_simple = "chrome://foxtrick/content/resources/css/fixes/" + this.OPTIONS[i] + "_simple.css";
                 if ( ( (LAYOUTSWITCH[i] == 'standard' ) || (LAYOUTSWITCH[i] == 'all') ) && (Foxtrick.isStandardLayout( doc ) == true) ) {
-                    // dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
+                    dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet( doc, css );
                 } 
                 else if ( ((LAYOUTSWITCH[i] == 'simple' ) || (LAYOUTSWITCH[i] == 'all')) && (Foxtrick.isStandardLayout( doc ) == false) ) {
@@ -68,7 +68,8 @@ FoxtrickFixcssProblems = {
                                     "Club_Menu_Teamnames",
                                     "Page_Minimum_Height",
                                     "Forum_Header_Smallsize",
-                                    "MatchOrder_Lineheight"
+                                    "MatchOrder_Lineheight",
+									"Temp_Avatar_Fix"
 								);
 	}        
 };

@@ -1,0 +1,5 @@
+.cfWrapper .bookmarkMessage img{
+	height: 20px;
+}
+
+div[class="cfHeader singleLine"] { height:17px !important;}
