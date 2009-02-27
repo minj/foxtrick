@@ -34,20 +34,22 @@ var FoxtrickPlayerBirthday = {
 			var PlayerAge = PlayerInfo.match(reg);
 
 			var regText=/(\d+\D+\d+\s\S+)/; // regular expression for getting the whole PlayerAge string
-			var TextAge = String(PlayerInfo.match(regText)[1]).replace(/,/,'');
+			var TextAgeTmp=String(PlayerInfo.match(regText)[1]).replace(/,/,''); 
 
 			if (PlayerAge[2]>105 || PlayerAge[2] == 0) {     // player who will have birthday in 7 days or who have birthday today
-				ArrayPlayers[a] = new Array(3); dump(PlayerName[i]+' '+PlayerAge[2]+'\n');
+				ArrayPlayers[a] = new Array(4); //dump(PlayerName[i]+' '+PlayerAge[2]+'\n');
 				ArrayPlayers[a][1] = PlayerName[i];            // player's name
 				ArrayPlayers[a][2] = PlayerAge[1];             // player's PlayerAge (years)
 				ArrayPlayers[a][3] = PlayerAge[2];             // player's PlayerAge (days)
+				ArrayPlayers[a][4] = TextAgeTmp             // player's PlayerAge (days)
 				a++;
 			}
 			if (PlayerAge[2]<7 && PlayerAge[2] > 0) {        // player who had birthday 7 or fewer days ago
-				ArrayPlayersLate[b] = new Array(3);
+				ArrayPlayersLate[b] = new Array(4);
 				ArrayPlayersLate[b][1] = PlayerName[i];
 				ArrayPlayersLate[b][2] = PlayerAge[1];
 				ArrayPlayersLate[b][3] = PlayerAge[2];
+				ArrayPlayersLate[b][4] = TextAgeTmp;
 				b++;
 			}
 		}
@@ -73,7 +75,7 @@ var FoxtrickPlayerBirthday = {
 			newDiv.appendChild(newT);
 			newDiv.appendChild(newBR);
 			var newBR = doc.createElement('br');
-			var newT = doc.createTextNode(TextAge);
+			var newT = doc.createTextNode(ArrayPlayers[i][4]);
 			newDiv.appendChild(newT);
 			newDiv.appendChild(newBR);
 		}
@@ -93,7 +95,7 @@ var FoxtrickPlayerBirthday = {
 			newDiv.appendChild(newT);
 			newDiv.appendChild(newBR);
 			var newBR = doc.createElement('br');
-			var newT = doc.createTextNode(TextAge);
+			var newT = doc.createTextNode(ArrayPlayersLate[i][4]);
 			newDiv.appendChild(newT);
 			newDiv.appendChild(newBR);
 		}
