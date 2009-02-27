@@ -54,6 +54,7 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.Coach.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.LastLineup.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", false );
 
 
 
