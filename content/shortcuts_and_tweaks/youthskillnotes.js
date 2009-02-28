@@ -488,11 +488,18 @@ var FoxtrickYouthSkillNotes = {
 		div2.appendChild(br3);
 		//div2.appendChild(divED);
 		
+		var notesdiv=doc.createElement('div');
+		notesdiv.setAttribute('class','youthnotes');
+		reference.parentNode.insertBefore(notesdiv, reference.nextSibling)
+		
 		if( !doc.getElementById( divEDId ) ) {
-			reference.parentNode.insertBefore(divED, reference.nextSibling);
+			notesdiv.appendChild(divED);
 		}
 		if( !doc.getElementById( divtwoId ) ) {
-			reference.parentNode.insertBefore(div2, reference.nextSibling);
+			notesdiv.appendChild(div2);
 		}
+		var notesdiv=doc.createElement('div');
+		reference.parentNode.insertBefore(notesdiv, reference.nextSibling)
+		
 	 }
 	

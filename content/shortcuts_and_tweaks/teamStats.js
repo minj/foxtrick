@@ -25,7 +25,8 @@ var FTTeamStats= {
         var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
         var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
         var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
-        
+        var facecards=false;
+		
 		var total_NT = 0;
         const _totalTSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.totalTSI.label");
 		const TSI = Foxtrickl10n.getString("foxtrick.playerliststats.tsi"); 
@@ -69,9 +70,13 @@ var FTTeamStats= {
                         }
                     }
 				}
-			
+				
 		}
 
+		if (body.getElementsByTagName("div")[0].className=='faceCard' || body.getElementsByTagName("div")[1].className=='faceCard') facecards=true;;
+		
+			
+		
 		var boxrightt=doc.getElementById('sidebar');
 		
         var specsTable = "";
@@ -228,7 +233,10 @@ var FTTeamStats= {
 		
 		// add filters
 		var sortbybox= doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy"); 		
+		if (Youth_players) sortbybox= doc.getElementById("ctl00_CPMain_ddlSortBy");
+		sortbybox.setAttribute('style','font-size:1.05em;');
 		var filterselect=doc.createElement('select');
+		filterselect.setAttribute('style','font-size:1.05em;');
 		filterselect.setAttribute('class','sorting');
 		filterselect.addEventListener('change',FTTeamStats_Filter,false);
 		var option=doc.createElement('option');
@@ -243,16 +251,24 @@ var FTTeamStats= {
 		option.setAttribute('value','Injured');
 		option.innerHTML='Injured';
 		filterselect.appendChild(option);
-		var option=doc.createElement('option');
-		option.setAttribute('value','TransferListed');
-		option.innerHTML='TransferListed';
-		filterselect.appendChild(option);
+		if (!Youth_players) {
+			var option=doc.createElement('option');
+			option.setAttribute('value','TransferListed');
+			option.innerHTML='TransferListed';
+			filterselect.appendChild(option);
+		}
 		
 		for (var spec in specs) {
 			purspec=spec.replace(/\[|\]/g,'');
 			var option = doc.createElement('option');
 			option.setAttribute('value',purspec);
 			option.innerHTML = purspec
+			filterselect.appendChild(option);
+		}
+		if (facecards) {
+			var option=doc.createElement('option');
+			option.setAttribute('value','Pictures');
+			option.innerHTML='Pictures';
 			filterselect.appendChild(option);
 		}
 		
@@ -422,32 +438,42 @@ function FTTeamStats_Filter(ev){
 			if (allDivs[i].className=='playerInfo') { 
 				if (ev.target.value=='Cards' && allDivs[i].innerHTML.search('card.gif')==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('cards');
+						hide = true; dump('hide');
 				}
 				else if (ev.target.value=='Injured' 
 							&& (allDivs[i].innerHTML.search('bruised.gif')==-1 && allDivs[i].innerHTML.search('injured.gif')==-1))  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('injured');
+						hide = true; dump('hide');
 				}
 				else if (ev.target.value=='TransferListed' && allDivs[i].innerHTML.search('dollar.gif')==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('trans');
+						hide = true; dump('hide');
 				} 
-				else if (ev.target.value!='Cards' && ev.target.value!='Injured' && ev.target.value!='TransferListed' 
+				else if (ev.target.value=='Pictures')  {
+						allDivs[i].setAttribute('style','display:none !important;');
+						hide = true; dump('hide');
+				} 
+				else if (ev.target.value!='Cards' && ev.target.value!='Injured' && ev.target.value!='TransferListed' && ev.target.value!='Pictures'
 							&& allDivs[i].innerHTML.search(ev.target.value)==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('spec');
-				}
+						hide = true; dump('hide');
+				}				
 				else {
 					 	allDivs[i].setAttribute('style','');
-						hide = false; dump('none');
+						hide = false; dump('show');
 				}
+				if (hide && ev.target.value!='Pictures') { 
+					if (i && allDivs[i-1].className=='faceCard') {
+						if (allDivs[i-1].style.display) allDivs[i-1].style.display='none !important;'; 
+						else allDivs[i-1].setAttribute('style',allDivs[i-1].getAttribute('style')+'display:none !important;'); 
+					}
+				}
+				else { if (i && allDivs[i-1].className=='faceCard') allDivs[i-1].style.display=''; }
 				dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
 			}
-			else if(allDivs[i].className=='borderSeparator') {
+			else if(allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') {
 				if (hide==true) {allDivs[i].setAttribute('style','display:none !important;');}
 				else {allDivs[i].setAttribute('style','');}						
-				hide = false;
 			}
 		}
 	}catch(e) {dump('FTTeamStats_Filter: '+e+'\n');}
