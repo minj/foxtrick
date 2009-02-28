@@ -28,6 +28,7 @@ var FoxtrickShortcutsStatistics = {
         var targetNode = doc.getElementById ( 'shortcuts' );
         if (targetNode) {
             try {
+				var num_added=0;
                 if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) {
                     var link = doc.createElement('a');                
                     link.id = 'ft_shortcutsstatistics';
@@ -42,6 +43,7 @@ var FoxtrickShortcutsStatistics = {
 
                     link.appendChild(img1);
                     targetNode.insertBefore(link, targetNode.lastChild);
+					++num_added;
                 }
                 
                 if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {                
@@ -58,7 +60,16 @@ var FoxtrickShortcutsStatistics = {
 
                     link.appendChild(img1);
                     targetNode.insertBefore(link, targetNode.lastChild);
+					++num_added;
                 }
+				if (!Foxtrick.isStandardLayout ( doc )) {	
+					var head = doc.getElementsByTagName("head")[0];
+					var style = doc.createElement("style");
+					style.setAttribute("type", "text/css");
+					var zaw = 'div#ticker div { width:'+(305-num_added*22) +'px !important; overflow:auto !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+					style.appendChild(doc.createTextNode(zaw));
+					head.appendChild(style);
+				}				
             }
             catch(e) {
                 dump( ' => shortcutsstatistics: ' + e + '\n');

@@ -90,9 +90,6 @@ var FoxtrickTeamPopupLinks = {
 					this.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
 				}
 				FoxtrickTeamPopupLinks.popupshow.doc=doc;
-				var head = doc.getElementsByTagName("head")[0];
-                var style = doc.createElement("style");
-                style.setAttribute("type", "text/css");
 				this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
 						               
                 //determine width of the floating box - Stephan
@@ -136,7 +133,10 @@ var FoxtrickTeamPopupLinks = {
 				if (Foxtrick.isModuleFeatureEnabled( this, "OpenNewTab")) this.Target = '_blank';
                 
 				
-				var zaw = 'span.myht1 {position: relative;width:+'+this.maxwidth+';} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; position: absolute; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo {overflow: visible !important;} div.message {overflow:auto;} div.message span.myht1:hover div.myht2 {display: none;';
+				var head = doc.getElementsByTagName("head")[0];
+                var style = doc.createElement("style");
+                style.setAttribute("type", "text/css");
+				var zaw = 'span.myht1 {position: relative;width:+'+this.maxwidth+';} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; position: absolute; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo {overflow: visible !important;} div.message {overflow:auto;} #ticker div, div.message span.myht1:hover div.myht2 {display: none;';
 				//var zaw = 'span.myht1 {position: relative} div.myht2 {display: none} span.myht1:hover div.myht2 {display: inline; width:maxwidth; position: absolute; left: 20px; background-color: #FFFFFF; border: solid 1px #267F30; padding: 0px; z-index:999} div.playerInfo {overflow: visible !important;} span.myht1 table>tr>td>a { font-weight:normal !important; text-decoration:underline !important; color: #3f7137 !important;} table>tr>td:hover { background-color:#C3E7C7 !important;} div.cfHeader {overflow: visible !important;} div.feedItem {overflow: visible !important;} div.cfUserInfo {overflow: visible !important;}';
 				style.appendChild(doc.createTextNode(zaw));
                 head.appendChild(style);
