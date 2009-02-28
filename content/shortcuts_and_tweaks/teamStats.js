@@ -245,16 +245,16 @@ var FTTeamStats= {
 		filterselect.appendChild(option);
 		var option=doc.createElement('option');
 		option.setAttribute('value','Cards');
-		option.innerHTML='Cards';
+		option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.Cards.label");
 		filterselect.appendChild(option);
 		var option=doc.createElement('option');
 		option.setAttribute('value','Injured');
-		option.innerHTML='Injured';
+		option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.Injured.label");;
 		filterselect.appendChild(option);
 		if (!Youth_players) {
 			var option=doc.createElement('option');
 			option.setAttribute('value','TransferListed');
-			option.innerHTML='TransferListed';
+			option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.TransferListed.label");;
 			filterselect.appendChild(option);
 		}
 		
@@ -268,7 +268,7 @@ var FTTeamStats= {
 		if (facecards) {
 			var option=doc.createElement('option');
 			option.setAttribute('value','Pictures');
-			option.innerHTML='Pictures';
+			option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.Pictures.label");
 			filterselect.appendChild(option);
 		}
 		
@@ -432,6 +432,8 @@ function FTTeamStats_Filter(ev){
 		var doc = FTTeamStats_Filter.doc;
 		var body = doc.getElementById("mainBody");
 		var allDivs = body.getElementsByTagName('div');
+		var lastborderSeparator=null;
+		var count=0;
 		
 		var hide = false;
 		for( var i = 0; i < allDivs.length; i++ ) {			
@@ -470,11 +472,17 @@ function FTTeamStats_Filter(ev){
 				}
 				else { if (i && allDivs[i-1].className=='faceCard') allDivs[i-1].style.display=''; }
 				dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
+				if (!hide || ev.target.value=='Pictures') ++count;
 			}
 			else if(allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') {
 				if (hide==true) {allDivs[i].setAttribute('style','display:none !important;');}
 				else {allDivs[i].setAttribute('style','');}						
 			}
+			if(allDivs[i].className=='borderSeparator') lastborderSeparator=allDivs[i];
 		}
+		if (ev.target.value == 'Pictures') lastborderSeparator.style.display='';
+		var h = body.getElementsByTagName('h1')[0];
+		h.innerHTML = h.innerHTML.replace(/ \d+/,' '+String(count));
+		
 	}catch(e) {dump('FTTeamStats_Filter: '+e+'\n');}
 }

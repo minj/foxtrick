@@ -1495,6 +1495,22 @@ stats["ht_scouting_TrinidadTobago"] =  {
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
 }
 
+stats["ht_scouting_Malta"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "playerlink" : { "path"       : "malta/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "malta/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[101, 101]], 
+  "countryidranges" : [[101, 101]], 
+  "title" : "Malta Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
 
 stats["ghanatracker"] = { 
   "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
@@ -1674,7 +1690,7 @@ stats["polskatracker"] = {
 
 stats["qatartracker"] = { 
   "url" : "http://www.tracker.comyr.com/",
-  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "img" : "chrome://foxtrick/content/resources/linkicons/qatartracker.png",
   "title" : "Dawlat Qatar U20/NT Tracker",
   
   "nationalteamlink" : { "path"       : "",
@@ -1755,11 +1771,11 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,109],
-							[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]] ,
-	"nationalityranges" : [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,109],
-						[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]], 
-};  // own tracker: exclude 3,5,6,16,46,52,58,123,137
+	"countryidranges" :   [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,100],
+						[102,109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]],
+	"nationalityranges" : [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,100],
+						[102,109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]], 
+};  // own tracker: exclude all above
 
 
 
