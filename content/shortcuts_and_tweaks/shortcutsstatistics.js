@@ -66,7 +66,7 @@ var FoxtrickShortcutsStatistics = {
 					var head = doc.getElementsByTagName("head")[0];
 					var style = doc.createElement("style");
 					style.setAttribute("type", "text/css");
-					var zaw = 'div#ticker div { width:'+(305-num_added*22) +'px !important; overflow:auto !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+					var zaw = '#ticker {left: 180px !important;} div#ticker div { width:'+(353-num_added*22) +'px !important; overflow:auto !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 					style.appendChild(doc.createTextNode(zaw));
 					head.appendChild(style);
 				}				
