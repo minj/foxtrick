@@ -42,7 +42,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                     link.appendChild(img1);
-                    targetNode.insertBefore(link, targetNode.lastChild);
+                    targetNode.insertBefore(link, targetNode.firstChild);
 					++num_added;
                 }
                 
@@ -59,7 +59,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
 
                     link.appendChild(img1);
-                    targetNode.insertBefore(link, targetNode.lastChild);
+                    targetNode.insertBefore(link, targetNode.firstChild);
 					++num_added;
                 }
 				if (!Foxtrick.isStandardLayout ( doc )) {	
