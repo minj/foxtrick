@@ -17,7 +17,10 @@ var FoxtrickRedirections = {
     run : function( doc ) {  
 
 	if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return; 
-	// redirect from manager 
+	
+	var serv = 'http://'+doc.location.hostname;//href.match(/(\S+)Club/i)[0]; 
+		
+		// redirect from manager 
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="playerInfo") {
@@ -27,7 +30,6 @@ var FoxtrickRedirections = {
 				var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
 				
 				
-				var serv = 'http://'+doc.location.hostname;//href.match(/(\S+)Club/i)[0]; 
 				var target="_self"; dump(serv+'\n');
 				var tar='';
 				if (doc.location.href.search(/\/Club\/Manager/i)!=-1) {  dump('in\n');
@@ -90,7 +92,6 @@ var FoxtrickRedirections = {
 				for (var j = 0; j < alldivs.length; j++) {
 					if (alldivs[j].className=="sidebarBox") { 
 						var CoachId = FoxtrickHelper.findPlayerId(alldivs[j]);
-						var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
 						var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
 						doc.location.replace(tar);
 						break;					
@@ -103,7 +104,6 @@ var FoxtrickRedirections = {
 			try {
 				var ntinfo=doc.getElementById('teamInfo');
 				var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
-				var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
 				var tar = serv+'/Club/Players/Player.aspx?playerId='+CoachId;
 				doc.location.replace(tar);
 				}
@@ -114,7 +114,6 @@ var FoxtrickRedirections = {
 			try {
 			// redirect to coach
 				var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
-				var serv = doc.location.href.match(/(\S+)Club/i)[0]; 
 				var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
 				doc.location.replace(tar);
 			}
