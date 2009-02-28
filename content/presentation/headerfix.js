@@ -9,7 +9,7 @@ var FoxtrickHeaderFix = {
     MODULE_NAME : "HeaderFix",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : false,
-	
+
     init : function() {
             Foxtrick.registerPageHandler( 'all',
                                           FoxtrickHeaderFix);
@@ -19,7 +19,9 @@ var FoxtrickHeaderFix = {
         // dump(this.MODULE_NAME + '\n');
 		if ( !Foxtrick.isStandardLayout ( doc ) ) {
 		var css = "chrome://foxtrick/content/resources/css/headerfix.css";
-        Foxtrick.addStyleSheet( doc, css );
+        if (Foxtrick.isRTLLayout(doc)) css = "chrome://foxtrick/content/resources/css/headerfix_rtl.css";
+		dump(css+'\n');
+		Foxtrick.addStyleSheet( doc, css );
 		}
 	},
 	

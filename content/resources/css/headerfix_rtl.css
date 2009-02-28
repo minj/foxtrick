@@ -1,0 +1,66 @@
+/* HeaderFix by Catalyst2950 */
+
+/* Fix the header on screen */
+#header {
+position: fixed !important;
+top: 0px; 
+margin-left: -11px;
+margin-right: -11px;
+width: 764px;
+padding-right:10px;
+padding-left: 11px;
+background-color: white !important;
+z-index: 9999;
+border-color: #DDDDDD;
+border-style: solid;
+border-width:  0 1px 0 1px;
+}
+
+
+/* compensate for fixed header, move menu from the edge */
+#hattrick #menu,
+#hattrickNoSupporter #menu {
+width: 765px !important;
+margin-left:10px !important;
+}
+
+/* add whitespace below header */
+#hattrick #menu,
+#hattrickNoSupporter #menu {
+margin-bottom: 6px;
+}
+
+/* compensate for fixed header */
+#hattrick #content,
+#hattrickNoSupporter #content {
+padding-top: 100px !important;
+}
+
+/* fix left submenu */
+#hattrick #content .subMenu,
+#hattrickNoSupporter #content .subMenu {
+position: fixed;
+/* getting borders right if menu overflows content */
+background: white;
+margin-right: -11px; 
+padding-right: 11px;
+border-color: #DDDDDD;
+border-style: solid ;
+border-width:  0 1px 0 0;
+}
+
+/* compensate for fixed left submenu */
+#hattrick #content #mainWrapper,
+#hattrickNoSupporter #content #mainWrapper {
+margin-right: 135px;
+min-height: 630px !important; /* temporary height hack before sticky footer */
+}
+
+div#shortcuts {
+padding-right: 10px;
+}
+
+/* fix for forumbookmark z-index 99999 */
+.cfWrapper .bookmarkMessage {
+	z-index: 9 !important;
+}

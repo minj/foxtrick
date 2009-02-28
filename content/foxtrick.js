@@ -552,7 +552,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		referenceObject = sidebar.firstChild;
 	}
 	
-	if(Foxtrick.isStandardLayout) {
+	if(Foxtrick.isStandardLayout(doc)) {	
 		// Standard layout
 		if(otherBox) {
 			newBoxContent.style.display = "inline";
@@ -574,7 +574,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 			ownBoxHead.className = "boxHead";
 			ownSidebarBox.appendChild(ownBoxHead);
 			var ownBoxLeftHeader = doc.createElement("div");
-			ownBoxLeftHeader.className = "boxLeft";
+			ownBoxLeftHeader.className = "boxLeft";  
 			ownBoxHead.appendChild(ownBoxLeftHeader);
 			// create the header
 			var ownHeader = doc.createElement("h2");
@@ -1219,6 +1219,17 @@ Foxtrick.isStandardLayout = function ( doc ) {
 	var link = doc.getElementsByTagName("link")[0];
 	return link.href.search("Simple") == -1; // true = standard / false = simple
 }
+
+Foxtrick.isRTLLayout = function ( doc ) {
+	// Check if this is the simple or standard layout
+	var links = doc.getElementsByTagName("head")[0].getElementsByTagName("link");
+	var rtl=false;
+	var i=0,link;
+	while (link=links[i++]) {if  (link.href.search("_rtl.css") != -1) rtl = true;
+	dump('rtl: '+(link.href.search("_rtl.css") != -1)+'\n'+link.href+'\n');}
+	return rtl;
+}
+
 
 Foxtrick.hasMainBodyScroll = function ( doc ) {
 	// Check if scrolling is on for MainBody
