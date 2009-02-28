@@ -30,7 +30,12 @@ var FoxtrickPlayerBirthday = {
 
 		for (var i = 0; i < ClassPlayer.length; i++) {
 			var PlayerName = Array();
-			PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[0];    // player name
+      Player = ClassPlayer[i].getElementsByTagName('a')[0];
+      if (Player.getElementsByTagName('img').length != -1) {
+        PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[1];    // player name - if the player is national team player, the first <a> tag is a link to national team containing <img> tags
+      } else {
+        PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[0];    // player name
+      }
 			PlayerInfo = ClassPlayer[i].getElementsByTagName('p')[0].innerHTML;
 			if (PlayerInfo.search(/\<br\>/) !=-1) PlayerInfo=PlayerInfo.match(/.+\<br\>/i)[0];       // player info (PlayerAge, form and stamina)
 			var reg=/(\d+)\D+(\d+).+/; // regular expression for getting the PlayerAge, works with Czech format, for example "18 let a 11 dní"
