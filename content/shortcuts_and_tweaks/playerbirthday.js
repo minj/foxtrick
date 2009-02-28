@@ -30,7 +30,7 @@ var FoxtrickPlayerBirthday = {
 
 		for (var i = 0; i < ClassPlayer.length; i++) {
 			var PlayerName = Array();
-			PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[0].innerHTML;    // player name
+			PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[0];    // player name
 			PlayerInfo = ClassPlayer[i].getElementsByTagName('p')[0].innerHTML;
 			if (PlayerInfo.search(/\<br\>/) !=-1) PlayerInfo=PlayerInfo.match(/.+\<br\>/i)[0];       // player info (PlayerAge, form and stamina)
 			var reg=/(\d+)\D+(\d+).+/; // regular expression for getting the PlayerAge, works with Czech format, for example "18 let a 11 dní"
@@ -73,16 +73,15 @@ var FoxtrickPlayerBirthday = {
 		newDiv.appendChild(newBR);
 
 		for (var i = 0; i < ArrayPlayers.length; i++) {
-			var newBR = doc.createElement('br');
-			var newT = doc.createTextNode(ArrayPlayers[i][1]);
-			newDiv.appendChild(newT);
-			newDiv.appendChild(newBR);
-			var newBR = doc.createElement('br');
+			var player =ArrayPlayers[i][1].cloneNode(true);
+			player.setAttribute('style','padding: 2px 0 0 0;');
+			newDiv.appendChild(player);
 			var newT = doc.createTextNode(ArrayPlayers[i][4]);
 			var newSpan = doc.createElement('span');
 			newSpan.setAttribute('class',"smallText");
 			newSpan.appendChild(newT);
 			newDiv.appendChild(newSpan);
+			var newBR = doc.createElement('br');
 			newDiv.appendChild(newBR);
 		}
 		if (ArrayPlayers.length>0) parentDiv.appendChild(newDiv);
@@ -99,11 +98,9 @@ var FoxtrickPlayerBirthday = {
 		newDivLate.appendChild(newBR);
 
 		for (var i = 0; i < ArrayPlayersLate.length; i++) {
-			var newBR = doc.createElement('br');
-			var newT = doc.createTextNode(ArrayPlayersLate[i][1]);
-			newDivLate.appendChild(newT);
-			var newBR = doc.createElement('br');
-			newDivLate.appendChild(newBR);
+			var player =ArrayPlayersLate[i][1].cloneNode(true);
+			player.setAttribute('style','padding: 2px 0 0 0;');
+			newDivLate.appendChild(player);
 			var newT = doc.createTextNode(ArrayPlayersLate[i][4]);
 			var newSpan = doc.createElement('span');
 			newSpan.setAttribute('class',"smallText");
