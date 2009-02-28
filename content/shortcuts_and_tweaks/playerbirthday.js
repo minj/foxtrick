@@ -30,8 +30,8 @@ var FoxtrickPlayerBirthday = {
 
 		for (var i = 0; i < ClassPlayer.length; i++) {
 			var PlayerName = Array();
-      Player = ClassPlayer[i].getElementsByTagName('a')[0];
-      if (Player.getElementsByTagName('img').length != -1) {
+      var Player = ClassPlayer[i].getElementsByTagName('a')[0];
+      if (Player.getElementsByTagName('img').length > 0) {
         PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[1];    // player name - if the player is national team player, the first <a> tag is a link to national team containing <img> tags
       } else {
         PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[0];    // player name
