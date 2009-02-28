@@ -17,9 +17,10 @@ var FTTeamStats= {
 
     run : function( page, doc ) {
 
+	
 		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
 		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
-	
+			
 		var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
         var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
         var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
@@ -224,6 +225,40 @@ var FTTeamStats= {
 		NovaVar += '</div>';
 
 		if (txt !="") boxrightt.innerHTML = contentDiv + NovaVar;
+		
+		// add filters
+		var sortbybox= doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy"); 		
+		var filterselect=doc.createElement('select');
+		filterselect.setAttribute('class','sorting');
+		filterselect.addEventListener('change',FTTeamStats_Filter,false);
+		var option=doc.createElement('option');
+		option.setAttribute('value','');
+		option.innerHTML='---';
+		filterselect.appendChild(option);
+		var option=doc.createElement('option');
+		option.setAttribute('value','Cards');
+		option.innerHTML='Cards';
+		filterselect.appendChild(option);
+		var option=doc.createElement('option');
+		option.setAttribute('value','Injured');
+		option.innerHTML='Injured';
+		filterselect.appendChild(option);
+		var option=doc.createElement('option');
+		option.setAttribute('value','TransferListed');
+		option.innerHTML='TransferListed';
+		filterselect.appendChild(option);
+		
+		for (var spec in specs) {
+			purspec=spec.replace(/\[|\]/g,'');
+			var option = doc.createElement('option');
+			option.setAttribute('value',purspec);
+			option.innerHTML = purspec
+			filterselect.appendChild(option);
+		}
+		
+		sortbybox.parentNode.insertBefore(filterselect,sortbybox);
+		FTTeamStats_Filter.doc=doc;
+		
         },
         
         _checkCountry : function ( ctrc ) {
@@ -374,3 +409,46 @@ var FTTeamStats= {
         "Venezuela",
         "Vietnam")            
 };
+
+
+function FTTeamStats_Filter(ev){
+	try {
+		var doc = FTTeamStats_Filter.doc;
+		var body = doc.getElementById("mainBody");
+		var allDivs = body.getElementsByTagName('div');
+		
+		var hide = false;
+		for( var i = 0; i < allDivs.length; i++ ) {			
+			if (allDivs[i].className=='playerInfo') { 
+				if (ev.target.value=='Cards' && allDivs[i].innerHTML.search('card.gif')==-1)  {
+						allDivs[i].setAttribute('style','display:none !important;');
+						hide = true; dump('cards');
+				}
+				else if (ev.target.value=='Injured' 
+							&& (allDivs[i].innerHTML.search('bruised.gif')==-1 && allDivs[i].innerHTML.search('injured.gif')==-1))  {
+						allDivs[i].setAttribute('style','display:none !important;');
+						hide = true; dump('injured');
+				}
+				else if (ev.target.value=='TransferListed' && allDivs[i].innerHTML.search('dollar.gif')==-1)  {
+						allDivs[i].setAttribute('style','display:none !important;');
+						hide = true; dump('trans');
+				} 
+				else if (ev.target.value!='Cards' && ev.target.value!='Injured' && ev.target.value!='TransferListed' 
+							&& allDivs[i].innerHTML.search(ev.target.value)==-1)  {
+						allDivs[i].setAttribute('style','display:none !important;');
+						hide = true; dump('spec');
+				}
+				else {
+					 	allDivs[i].setAttribute('style','');
+						hide = false; dump('none');
+				}
+				dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
+			}
+			else if(allDivs[i].className=='borderSeparator') {
+				if (hide==true) {allDivs[i].setAttribute('style','display:none !important;');}
+				else {allDivs[i].setAttribute('style','');}						
+				hide = false;
+			}
+		}
+	}catch(e) {dump('FTTeamStats_Filter: '+e+'\n');}
+}
