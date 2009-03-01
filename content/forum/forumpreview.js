@@ -36,7 +36,7 @@ var FoxtrickForumPreview = {
 		var head = doc.getElementsByTagName("head")[0];
         var cssstyle = doc.createElement("style");
         cssstyle.setAttribute("type", "text/css");
-		cssstyle.appendChild(doc.createTextNode("#ctl00_CPMain_btnOK {font-weight:bold;}"));
+		cssstyle.appendChild(doc.createTextNode("#ctl00_CPMain_btnOK, #ctl00_CPMain_btnSendNew {font-weight:bold;}"));
         head.appendChild(cssstyle);
 
 		var preview_ctrl_div = doc.createElement( "div" );

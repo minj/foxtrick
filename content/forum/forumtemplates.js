@@ -16,10 +16,13 @@ var FoxtrickForumTemplates = {
     _TEMPLATES_PREFLIST : "post_templates",
     // _TEMPLATES_ENABLED : "usePostTemplates",
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
-
+    
     init : function() {
         Foxtrick.registerPageHandler( 'forumWritePost',
                                       FoxtrickForumTemplates );
+		Foxtrick.registerPageHandler( 'messageWritePost',
+									  FoxtrickForumTemplates );
+    
     },
 
     run : function( page, doc ) {
@@ -27,10 +30,22 @@ var FoxtrickForumTemplates = {
 							"resources/css/conference.css");
 
         // var doc = Foxtrick.current_doc;
-
-        switch( page )
+		switch( page )
         {
             case 'forumWritePost':
+				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "post_templates";
+				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "post_templates";
+				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucEditor_tbBody';
+			break;
+			case 'messageWritePost':
+				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_tbBody';
+				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "mail_templates";
+				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "mail_templates";
+			break;
+		}
+        //switch( page )
+        {
+          //  case 'forumWritePost':
 
                 // if ( !FoxtrickPrefs.getBool(
                             // FoxtrickForumTemplates._TEMPLATES_ENABLED ) )
@@ -44,7 +59,7 @@ var FoxtrickForumTemplates = {
                             FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
                 var templates_div = doc.createElement( "div" );
                 templates_div.setAttribute( "class", "folderItem" );
-                templates_div.id = this._TEMPLATES_DIV_ID;
+                templates_div.id = FoxtrickForumTemplates._TEMPLATES_DIV_ID;
                 var templates_table = doc.createElement( "table" );
                 var templates_tbody = doc.createElement( "tbody" );
                 templates_table.appendChild( templates_tbody );
@@ -73,7 +88,7 @@ var FoxtrickForumTemplates = {
                 controls_div.appendChild( new_button );
                 msg_window.parentNode.insertBefore( controls_div, msg_window ); 
  
-                break;
+               // break;
         }
     },
 	

@@ -973,6 +973,7 @@ FoxtrickPreferencesDialog.isPrefSetting = function ( setting) {
 	return  setting.search( "YouthPlayer" ) == -1
 			&& setting.search( "transferfilter" ) == -1
 			&& setting.search( "post_templates" ) == -1
+			&& setting.search( "mail_templates" ) == -1
 			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
 }
 				
