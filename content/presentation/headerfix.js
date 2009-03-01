@@ -20,7 +20,7 @@ var FoxtrickHeaderFix = {
 		if ( !Foxtrick.isStandardLayout ( doc ) ) {
 		var css = "chrome://foxtrick/content/resources/css/headerfix.css";
         if (Foxtrick.isRTLLayout(doc)) css = "chrome://foxtrick/content/resources/css/headerfix_rtl.css";
-		dump(css+'\n');
+		//dump(css+'\n');
 		Foxtrick.addStyleSheet( doc, css );
 		}
 	},

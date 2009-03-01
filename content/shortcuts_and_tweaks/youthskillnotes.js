@@ -33,15 +33,19 @@ var FoxtrickYouthSkillNotes = {
 				}
                 break;
 			case 'YouthPlayers':
+			
+				if (!Foxtrick.isStandardLayout(doc)) Foxtrick.addStyleSheet( doc, "chrome://foxtrick/content/resources/css/youthskill_simple.css" );
+				var faceCardOn=false;
 				var allDivs = doc.getElementsByTagName("div");
 				for(var i = 0; i < allDivs.length; i++) {
+					if (allDivs[i].className=="faceCard") faceCardOn=true;
 					if(allDivs[i].className=="playerInfo") {
 						var a = allDivs[i].getElementsByTagName("a")[0];
 						var startPos = a.href.search("=")+1;
 						var endPos = a.href.search("&");
 						var diff = endPos - startPos;
 						var playerid = a.href.substr(startPos,diff);
-						foxtrick_youthskilltable( doc, page, playerid, allDivs[i] );
+						foxtrick_youthskilltable( doc, page, playerid, allDivs[i],faceCardOn );
 					}
 				}
 				break;
@@ -118,7 +122,7 @@ var FoxtrickYouthSkillNotes = {
 		return ret;
 	}
 	
-	function foxtrick_youthskilltable( doc, page, playerid, reference ) {
+	function foxtrick_youthskilltable( doc, page, playerid, reference,faceCardOn ) {
 		
 		const STR_S_H2 = Foxtrickl10n.getString( "Notes_about_skills");
 		const STR_S_EDIT = Foxtrickl10n.getString("Edit_notes");
@@ -167,7 +171,28 @@ var FoxtrickYouthSkillNotes = {
 		div1.setAttribute("class","mainBox");
 		
 		if( page == 'YouthPlayers')	{
-			var style = "float:left; padding:10px 5px 0 10px; width:72%";
+			var style = "float:left; padding:10px 5px 0 10px; width:95%";
+			var tablestyle="width:95%";
+			if (!Foxtrick.isStandardLayout(doc))  {
+				var tdstyle=''; 
+				if (faceCardOn) {
+					 style = "float:left; padding:10px 5px 0 10px; width:295px";
+					 tablestyle= "width:295px"
+					 tdstyle = "div.youthnotes .mainBox td { width:70px !important;}"
+				}
+				else  {
+					style = "float:left; padding:10px 5px 0 10px; width:415px";	
+					tablestyle= "width:415px"					 
+					tdstyle = "div.youthnotes .mainBox td { width:100px !important;}"				
+				}
+				//Foxtrick.addStyleSheet( doc, tdstyle);
+				var head = doc.getElementsByTagName("head")[0];
+                var cssstyle = doc.createElement("style");
+                cssstyle.setAttribute("type", "text/css");
+				cssstyle.appendChild(doc.createTextNode(tdstyle));
+                head.appendChild(cssstyle);
+				
+			}
 			divobj.setAttribute("style",style);
 			div2.setAttribute("style",style);
 			div1.setAttribute("style",style);
@@ -177,12 +202,12 @@ var FoxtrickYouthSkillNotes = {
 		innerdivobj.setAttribute("class","leftBox");
 	  
 	  var editTable = doc.createElement ("table");
-	  editTable.setAttribute("style", "width: 300px");
+	  editTable.setAttribute("style", "width: 405px");
 	  editTable.setAttribute("id", "foxtrick-detailsTable-"+playerid);
 	  editTable.setAttribute("class", "thin nowrap");
 	  
 	  var normalTable = doc.createElement ("table");
-	   normalTable.setAttribute("style", "width: 300px");
+	   normalTable.setAttribute("style", tablestyle );
 	   normalTable.setAttribute("id", "foxtrick-detailsTable-noEdit-"+playerid);
 	   normalTable.setAttribute("class", "thin nowrap");
 	   
@@ -417,9 +442,6 @@ var FoxtrickYouthSkillNotes = {
 	
 	  //normalTable.appendChild (div2);
 	  
-	  normalTable.appendChild(br);
-	  normalTable.appendChild(br2);
-	  normalTable.appendChild(showEditLink);
 	  
 	  
 	  
@@ -485,6 +507,10 @@ var FoxtrickYouthSkillNotes = {
 			div2.appendChild(title);
 		}
 		div2.appendChild(normalTable);
+		
+		//normalTable.appendChild(br);
+		div2.appendChild(showEditLink);
+		div2.appendChild(br2);
 		div2.appendChild(br3);
 		//div2.appendChild(divED);
 		
@@ -492,11 +518,11 @@ var FoxtrickYouthSkillNotes = {
 		notesdiv.setAttribute('class','youthnotes');
 		reference.parentNode.insertBefore(notesdiv, reference.nextSibling)
 		
-		if( !doc.getElementById( divEDId ) ) {
-			notesdiv.appendChild(divED);
-		}
 		if( !doc.getElementById( divtwoId ) ) {
 			notesdiv.appendChild(div2);
+		}
+		if( !doc.getElementById( divEDId ) ) {
+			notesdiv.appendChild(divED);
 		}
 		var notesdiv=doc.createElement('div');
 		reference.parentNode.insertBefore(notesdiv, reference.nextSibling)

@@ -1225,8 +1225,9 @@ Foxtrick.isRTLLayout = function ( doc ) {
 	var links = doc.getElementsByTagName("head")[0].getElementsByTagName("link");
 	var rtl=false;
 	var i=0,link;
-	while (link=links[i++]) {if  (link.href.search("_rtl.css") != -1) rtl = true;
-	dump('rtl: '+(link.href.search("_rtl.css") != -1)+'\n'+link.href+'\n');}
+	while (link=links[i++]) {
+		if  (link.href.search("_rtl.css") != -1) rtl = true;
+	}
 	return rtl;
 }
 
