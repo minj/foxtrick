@@ -37,27 +37,33 @@ var FoxtrickForumPreview = {
         var cssstyle = doc.createElement("style");
         cssstyle.setAttribute("type", "text/css");
 		cssstyle.appendChild(doc.createTextNode("#ctl00_CPMain_btnOK, #ctl00_CPMain_btnSendNew {font-weight:bold;}"));
+        //cssstyle.appendChild(doc.createTextNode("#idFTPreview {display:inline-block;float:right;}"));
         head.appendChild(cssstyle);
-
+		
+		
 		var preview_ctrl_div = doc.createElement( "div" );
         preview_ctrl_div.style.marginTop = "1em";
 
-        var button_ok=doc.getElementById("ctl00_CPMain_btnOK");
-		var index =11;
-		if (!button_ok) {button_ok=doc.getElementById("ctl00_CPMain_btnSendNew"); index=5;}
-		button_ok.setAttribute( "tabindex",  index);
-		button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
-		var button_cancel=doc.getElementById("ctl00_CPMain_btnCancel");
-		if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
+        //var button_ok=doc.getElementById("ctl00_CPMain_btnOK");
+		var target=doc.getElementById("ctl00_CPMain_btnCancel");
+		//var index =11;
+		var index =12;
+		if (!target) {target=doc.getElementById("ctl00_CPMain_btnSendNew"); index=6;/*index=5;*/}
+		//button_ok.setAttribute( "tabindex",  index);
+		//button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
+		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
      	
 		var new_button = doc.createElement( "input" );
         new_button.setAttribute( "value", Foxtrickl10n.getString( 'preview' ));
         new_button.setAttribute( "title",  Foxtrickl10n.getString( 'show_preview_from_post' ) );
         new_button.setAttribute( "id",  "idFTPreview" );
         new_button.setAttribute( "type",  "button" );
-        new_button.setAttribute( "tabindex",  index-1 );
+        //new_button.setAttribute( "tabindex",  index-1 );
+     	new_button.setAttribute( "tabindex",  index);
+     	//new_button.setAttribute( "style",  "float:right;");
      	new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
-        button_ok.parentNode.insertBefore(new_button,button_ok);
+        //button_ok.parentNode.insertBefore(new_button,button_ok);
+		target.parentNode.insertBefore(new_button,target.nextSibling);
 		
 		msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
 
@@ -66,8 +72,10 @@ var FoxtrickForumPreview = {
         preview_div.setAttribute( "class", "cfMessageNoAvatar" );
         preview_div.style.display = "none";
         preview_div.style.border = "1px dotted grey";
-        // preview_div.style.width = "465px";
-        preview_div.style.width = (msg_window.style.width - 30);
+        //preview_div.style.width = "465px";
+        //preview_div.style.width = (msg_window.style.width - 30);
+		if (msg_window.style.width=='95%')  preview_div.style.width ='89.5%' ;
+        else preview_div.style.width ='93%' ;
         preview_div.style.margin = "5px";
         preview_div.style.padding = "10px";
         preview_div.style.background = "#fcf6df";
