@@ -44,7 +44,7 @@ var FTTeamStats= {
 					try { 
 						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
                         if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
-                         dump (' => tsitot_in => [' + tsitot_in + ']\n');
+                        // dump (' => tsitot_in => [' + tsitot_in + ']\n');
 						var lastindex = tsitot_in.lastIndexOf(' ');  
 						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
 						tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;',''); 
@@ -440,29 +440,29 @@ function FTTeamStats_Filter(ev){
 			if (allDivs[i].className=='playerInfo') { 
 				if (ev.target.value=='Cards' && allDivs[i].innerHTML.search('card.gif')==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('hide');
+						hide = true; //dump('hide');
 				}
 				else if (ev.target.value=='Injured' 
 							&& (allDivs[i].innerHTML.search('bruised.gif')==-1 && allDivs[i].innerHTML.search('injured.gif')==-1))  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('hide');
+						hide = true; //dump('hide');
 				}
 				else if (ev.target.value=='TransferListed' && allDivs[i].innerHTML.search('dollar.gif')==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('hide');
+						hide = true; //dump('hide');
 				} 
 				else if (ev.target.value=='Pictures')  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('hide');
+						hide = true; //dump('hide');
 				} 
 				else if (ev.target.value!='Cards' && ev.target.value!='Injured' && ev.target.value!='TransferListed' && ev.target.value!='Pictures'
 							&& allDivs[i].innerHTML.search(ev.target.value)==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
-						hide = true; dump('hide');
+						hide = true; //dump('hide');
 				}				
 				else {
 					 	allDivs[i].setAttribute('style','');
-						hide = false; dump('show');
+						hide = false; //dump('show');
 				}
 				if (hide && ev.target.value!='Pictures') { 
 					if (i && allDivs[i-1].className=='faceCard') {
@@ -471,7 +471,7 @@ function FTTeamStats_Filter(ev){
 					}
 				}
 				else { if (i && allDivs[i-1].className=='faceCard') allDivs[i-1].style.display=''; }
-				dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
+				//dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
 				if (!hide || ev.target.value=='Pictures') ++count;
 			}
 			else if(allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') {

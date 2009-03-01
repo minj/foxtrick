@@ -171,17 +171,20 @@ var FoxtrickYouthSkillNotes = {
 		div1.setAttribute("class","mainBox");
 		
 		if( page == 'YouthPlayers')	{
-			var style = "float:left; padding:10px 5px 0 10px; width:95%";
+			var float_dir="float:left;";
+			if (Foxtrick.isRTLLayout ( doc ) ) float_dir="float:right;";
+			var style = float_dir+"padding:10px 5px 0 10px; width:95%";
+			if (faceCardOn) style = float_dir+"padding:10px 5px 0 10px; width:72%";
 			var tablestyle="width:95%";
 			if (!Foxtrick.isStandardLayout(doc))  {
 				var tdstyle=''; 
 				if (faceCardOn) {
-					 style = "float:left; padding:10px 5px 0 10px; width:295px";
+					 style = float_dir+"padding:10px 5px 0 10px; width:295px";
 					 tablestyle= "width:295px"
-					 tdstyle = "div.youthnotes .mainBox td { width:70px !important;}"
+					 tdstyle = float_dir+"div.youthnotes .mainBox td { width:70px !important;}"
 				}
 				else  {
-					style = "float:left; padding:10px 5px 0 10px; width:415px";	
+					style =  float_dir+"padding:10px 5px 0 10px; width:415px";	
 					tablestyle= "width:415px"					 
 					tdstyle = "div.youthnotes .mainBox td { width:100px !important;}"				
 				}
@@ -510,10 +513,11 @@ var FoxtrickYouthSkillNotes = {
 		
 		//normalTable.appendChild(br);
 		div2.appendChild(showEditLink);
-		div2.appendChild(br2);
-		div2.appendChild(br3);
+		if (!Foxtrick.isStandardLayout(doc)) {
+			div2.appendChild(br2);
+			div2.appendChild(br3);
 		//div2.appendChild(divED);
-		
+		}
 		var notesdiv=doc.createElement('div');
 		notesdiv.setAttribute('class','youthnotes');
 		reference.parentNode.insertBefore(notesdiv, reference.nextSibling)
