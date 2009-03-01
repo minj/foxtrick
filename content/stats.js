@@ -1494,7 +1494,7 @@ stats["ht_scouting_TrinidadTobago"] =  {
   "title" : "Trinidad & Tobago Scouting DB",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
 }
-
+/*
 stats["ht_scouting_Malta"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
@@ -1510,7 +1510,7 @@ stats["ht_scouting_Malta"] =  {
   "countryidranges" : [[101, 101]], 
   "title" : "Malta Scouting DB",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
-}
+}*/
 
 stats["ghanatracker"] = { 
   "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
@@ -1771,10 +1771,10 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,100],
-						[102,109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,100],
-						[102,109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]], 
+	"countryidranges" :   [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,/*100],
+						[102,*/109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]],
+	"nationalityranges" : [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,/*100],
+						[102,*/109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]], 
 };  // own tracker: exclude all above
 
 

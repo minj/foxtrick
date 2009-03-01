@@ -33,15 +33,31 @@ var FoxtrickForumPreview = {
 
         // display preview and button above the message window
 
-        var preview_ctrl_div = doc.createElement( "div" );
+		var head = doc.getElementsByTagName("head")[0];
+        var cssstyle = doc.createElement("style");
+        cssstyle.setAttribute("type", "text/css");
+		cssstyle.appendChild(doc.createTextNode("#ctl00_CPMain_btnOK {font-weight:bold;}"));
+        head.appendChild(cssstyle);
+
+		var preview_ctrl_div = doc.createElement( "div" );
         preview_ctrl_div.style.marginTop = "1em";
 
-        var new_button = doc.createElement( "a" );
-        new_button.setAttribute( "href", "javascript:showHide('forum_preview');" );
-        new_button.innerHTML = Foxtrickl10n.getString( 'show_preview_from_post' );
-        new_button.addEventListener( "click", this._toggleListener, false );
-        preview_ctrl_div.appendChild( new_button );
-        msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
+        var button_ok=doc.getElementById("ctl00_CPMain_btnOK");
+		button_ok.setAttribute( "tabindex",  "11" );
+		button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
+		var button_cancel=doc.getElementById("ctl00_CPMain_btnCancel");
+		button_cancel.setAttribute( "tabindex",  "12" );
+     	
+		var new_button = doc.createElement( "input" );
+        new_button.setAttribute( "value", Foxtrickl10n.getString( 'preview' ));
+        new_button.setAttribute( "title",  Foxtrickl10n.getString( 'show_preview_from_post' ) );
+        new_button.setAttribute( "id",  "idFTPreview" );
+        new_button.setAttribute( "type",  "button" );
+        new_button.setAttribute( "tabindex",  "10" );
+     	new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
+        button_ok.parentNode.insertBefore(new_button,button_ok);
+		
+		msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
 
         var preview_div = doc.createElement( "div" );
         preview_div.id = "forum_preview";
@@ -68,9 +84,17 @@ var FoxtrickForumPreview = {
 	},
 
 	_toggleListener : function( ev ) {
-
+	
         var doc = ev.target.ownerDocument;
-
+		
+		var obj = doc.getElementById('forum_preview');
+		if (obj.style.display == 'block') {
+			obj.style.display = 'none';
+		}
+		else if (obj.style.display == 'none') {
+			obj.style.display = 'block';
+		}
+	
         try {
             var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' );
             if (msg_window == null)
@@ -85,10 +109,10 @@ var FoxtrickForumPreview = {
         var prev_div = doc.getElementById( "forum_preview" );
 
         try {
-            if( prev_div.style.display == "block" ) {
+            if( prev_div.style.display == "none" ) { 
                 msg_window.removeEventListener( "keyup", FoxtrickForumPreview._preview, false );
 
-            } else {
+            } else {  
                 msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
                 FoxtrickForumPreview._preview( ev );
             }
