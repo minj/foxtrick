@@ -42,6 +42,7 @@ pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ShortPostId.enabled
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLeagueName.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ReplaceSupporterStar.enabled", true );
 pref( "extensions.foxtrick.prefs.module.CopyPostID.AddCopyIcon.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumTemplates.CustomWidth.enabled", false );
 
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.OpenNewTab.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TeamAtAlltid.enabled", false );

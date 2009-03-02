@@ -10,9 +10,13 @@ var FoxtrickForumTemplates = {
     MODULE_AUTHOR : "Mod-PaV",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
     DEFAULT_ENABLED : true,
-	OPTIONS : new Array("DefaultShow"),
+	OPTIONS : new Array("DefaultShow","CustomWidth"),
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("","125"),        
+	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
     _MAX_TEMPLATE_DISP_LENGTH : 60,
+	_DISPLAY_WIDTH:125,
     _TEMPLATES_DIV_ID : "post_templates",
     _TEMPLATES_PREFLIST : "post_templates",
     // _TEMPLATES_ENABLED : "usePostTemplates",
@@ -45,6 +49,15 @@ var FoxtrickForumTemplates = {
 			break;
 		}
 		
+		FoxtrickForumTemplates._DISPLAY_WIDTH=125; 
+		if (Foxtrick.isModuleFeatureEnabled( this, "CustomWidth")) {
+			var widthtext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomWidth_text"); 
+			if (!widthtext) widthtext = this.OPTION_TEXTS_DEFAULT_VALUES[1]; 
+			if (!(FoxtrickForumTemplates._DISPLAY_WIDTH=parseInt(widthtext)))
+				FoxtrickForumTemplates._DISPLAY_WIDTH=125; 
+		}
+                 						
+				
                 var sControlsID = "foxtrick_forumtemplates_controls_div";
                 if (doc.getElementById(sControlsID))
                 	return;
@@ -235,11 +248,11 @@ var FoxtrickForumTemplates = {
 		}
 		
 		var tr = doc.createElement( "div" );
-		tr.setAttribute('style','display:inline-block !important; width:100px;padding-top:5px;');
+		tr.setAttribute('style','display:inline-block !important; width:'+FoxtrickForumTemplates._DISPLAY_WIDTH+'px;padding-top:5px;');
         var td1 = doc.createElement( "div" );
 		td1.setAttribute("style","display:inline-block !important; vertical-align:middle;width:17px;");
 		var td2 = doc.createElement( "div" );
-        td2.setAttribute("style","width:75px; display:inline-block !important; overflow:hidden; vertical-align:middle; white-space:nowrap !important;");
+        td2.setAttribute("style","width:"+parseInt(FoxtrickForumTemplates._DISPLAY_WIDTH-25)+"px; display:inline-block !important; overflow:hidden; vertical-align:middle; white-space:nowrap !important;");
 		tr.appendChild( td1 );
         tr.appendChild( td2 );
         var remover = doc.createElement( "div" );
