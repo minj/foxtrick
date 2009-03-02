@@ -40,7 +40,7 @@ pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SingleHeaderLine.en
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SmallHeaderFont.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ShortPostId.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLeagueName.enabled", false );
-pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ReplaceSupporterStar.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ReplaceSupporterStar.enabled", false );
 pref( "extensions.foxtrick.prefs.module.CopyPostID.AddCopyIcon.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumTemplates.CustomWidth.enabled", false );
 
