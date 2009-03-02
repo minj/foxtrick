@@ -10,6 +10,7 @@ var FoxtrickForumTemplates = {
     MODULE_AUTHOR : "Mod-PaV",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
     DEFAULT_ENABLED : true,
+	OPTIONS : new Array("DefaultShow"),
 
     _MAX_TEMPLATE_DISP_LENGTH : 60,
     _TEMPLATES_DIV_ID : "post_templates",
@@ -43,23 +44,17 @@ var FoxtrickForumTemplates = {
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "mail_templates";
 			break;
 		}
-        //switch( page )
-        {
-          //  case 'forumWritePost':
-
-                // if ( !FoxtrickPrefs.getBool(
-                            // FoxtrickForumTemplates._TEMPLATES_ENABLED ) )
-                    // break;
-
+		
                 var sControlsID = "foxtrick_forumtemplates_controls_div";
                 if (doc.getElementById(sControlsID))
                 	return;
                 // display templates above the message window
                 var msg_window = doc.getElementById(
                             FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+				if (!msg_window) return; // ie mailbox overview
                 var templates_div = doc.createElement( "div" );
                 templates_div.setAttribute( "class", "folderItem" );
-				templates_div.setAttribute('style','padding-top:5px;');
+				templates_div.setAttribute('style','display:none; padding-top:5px;');
                 templates_div.id = FoxtrickForumTemplates._TEMPLATES_DIV_ID;
                 
                 msg_window.parentNode.insertBefore( templates_div,
@@ -76,19 +71,76 @@ var FoxtrickForumTemplates = {
                 // display add new template button
                 var controls_div = doc.createElement( "div" );
                 controls_div.id = sControlsID;
-                controls_div.style.marginTop = "1em";
+                controls_div.style.paddingTop = "5px";
                 var new_button = doc.createElement( "a" );
                 new_button.setAttribute( "id", 'addTemplateId');
 				new_button.setAttribute( "href", "javascript:void(0)" );
-                new_button.setAttribute("style", "margin-right:10px;");
+                new_button.setAttribute("style", "display:inline-block;margin-right:10px;");
 				new_button.setAttribute("tabIndex", "3");
 				new_button.innerHTML = Foxtrickl10n.getString( 'make_template_from_post' );
                 new_button.addEventListener( "click", FoxtrickForumTemplates._addNewTitle, false );
                 controls_div.appendChild( new_button );
-                msg_window.parentNode.insertBefore( controls_div, msg_window ); 
- 
-               // break;
-        }
+            
+			if (!Foxtrick.isModuleFeatureEnabled( this, "DefaultShow")) {
+				var show_button = doc.createElement( "a" );
+                show_button.setAttribute( "id", 'showTemplateId');
+				show_button.setAttribute( "href", "javascript:void(0);" );
+                show_button.setAttribute("style", "display:inline-block; margin-right:10px;");
+				//show_button.setAttribute("tabIndex", "3");
+				show_button.innerHTML = Foxtrickl10n.getString( 'show_templates' );
+                show_button.addEventListener( "click", FoxtrickForumTemplates._ShowTemplates, false );
+				controls_div.appendChild( show_button );
+				
+				var hide_button = doc.createElement( "a" );
+                hide_button.setAttribute( "id", 'hideTemplateId');
+				hide_button.setAttribute( "href", "javascript:void(0);" );
+                hide_button.setAttribute("style", "display:none; margin-right:10px;");
+				//hide_button.setAttribute("tabIndex", "3");
+				hide_button.innerHTML = Foxtrickl10n.getString( 'hide_templates' );
+                hide_button.addEventListener( "click", FoxtrickForumTemplates._HideTemplates, false );
+				controls_div.appendChild( hide_button );
+            }
+			else templates_div.style.display="inline";
+                
+						
+           	var inputTitleDiv;
+			inputTitleDiv = doc.createElement ("div");
+			inputTitleDiv.setAttribute("id", "ForumTemplatesinputTitleDivId");
+			inputTitleDiv.setAttribute("style", "display:none; padding-top:5px;");
+		
+			var TitleDesc = doc.createTextNode(Foxtrickl10n.getString( 'template_title' ));
+			inputTitleDiv.appendChild(TitleDesc);
+		
+			var inputTitle = doc.createElement ("input");
+			inputTitle.setAttribute("id", "ForumTemplatesInputTitleId");
+			inputTitle.setAttribute("value","");// text.substr(0,20));
+			inputTitle.setAttribute("type", "text");
+			inputTitle.setAttribute("maxlength", "20");
+			inputTitle.setAttribute("size", "20");
+			inputTitle.setAttribute("tabIndex", "3");
+			inputTitle.setAttribute("style", "margin-left:5px;margin-right:5px;");
+			inputTitleDiv.appendChild(inputTitle);
+			inputTitle.focus(); 
+			
+			var button_ok = doc.createElement( "input" );
+			button_ok.setAttribute( "value", Foxtrickl10n.getString( 'ok' ));
+			button_ok.setAttribute( "id",  "ForumTemplatesOKId" );
+			button_ok.setAttribute( "type",  "button" );
+			button_ok.setAttribute( "tabindex", "5" );
+			button_ok.addEventListener( "click", FoxtrickForumTemplates._addNewTemplate, false );
+			inputTitleDiv.appendChild(button_ok);
+			
+			var button_cancel = doc.createElement( "input" );
+			button_cancel.setAttribute( "value", Foxtrickl10n.getString( 'foxtrick.prefs.buttonCancel' ));
+			button_cancel.setAttribute( "id",  "ForumTemplatesCancelId" );
+			button_cancel.setAttribute( "type",  "button" );
+			//button_cancel.setAttribute( "tabindex", "" ); 
+			button_cancel.addEventListener( "click", FoxtrickForumTemplates._CancelTitle, false );
+			inputTitleDiv.appendChild(button_cancel);
+			
+			msg_window.parentNode.insertBefore( controls_div, msg_window ); 
+			msg_window.parentNode.insertBefore(inputTitleDiv, msg_window);
+					
     },
 	
 	change : function( page, doc ) {
@@ -121,49 +173,42 @@ var FoxtrickForumTemplates = {
         var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
         var text = Foxtrick.stripHTML( msg_window.value );
 		if (text==""){ Foxtrick.alert( Foxtrickl10n.getString( 'template_exists' ) ); return;}
-		var addTemplate_link = doc.getElementById('addTemplateId' );
-               
-		var inputTitleDiv = doc.getElementById( "ForumTemplatesinputTitleDivId" );
-        if (inputTitleDiv) {
-		}
-		else {
-			inputTitleDiv = doc.createElement ("div");
-			inputTitleDiv.setAttribute("id", "ForumTemplatesinputTitleDivId");
-			inputTitleDiv.setAttribute("style", "display:inline-block;");
-		
-			var TitleDesc = doc.createTextNode(Foxtrickl10n.getString( 'template_title' ));
-			inputTitleDiv.appendChild(TitleDesc);
-		
-			var inputTitle = doc.createElement ("input");
-			inputTitle.setAttribute("id", "ForumTemplatesInputTitleId");
-			inputTitle.setAttribute("value", text.substr(0,20));
-			inputTitle.setAttribute("type", "text");
-			inputTitle.setAttribute("maxlength", "20");
-			inputTitle.setAttribute("size", "20");
-			inputTitle.setAttribute("tabIndex", "3");
-			inputTitle.setAttribute("style", "margin-left:5px;margin-right:5px;");
-			inputTitleDiv.appendChild(inputTitle);
-			inputTitle.focus(); 
-			
-			var new_button = doc.createElement( "input" );
-			new_button.setAttribute( "value", Foxtrickl10n.getString( 'ok' ));
-			new_button.setAttribute( "id",  "ForumTemplatesOKId" );
-			new_button.setAttribute( "type",  "button" );
-			new_button.setAttribute( "tabindex", "5" );
-			new_button.addEventListener( "click", FoxtrickForumTemplates._addNewTemplate, false );
-			inputTitleDiv.appendChild(new_button);
-			
-			addTemplate_link.parentNode.insertBefore(inputTitleDiv, addTemplate_link.nextSibling);				
-		}
+		var inputTitleDiv = doc.getElementById("ForumTemplatesinputTitleDivId");
+		inputTitleDiv.style.display="inline-block";               					
+		var inputTitle = doc.getElementById ("ForumTemplatesInputTitleId");
+		inputTitle.setAttribute("value",text.substr(0,20));		dump(text.substr(0,20)+'\n');	
+	},
+
+	 _CancelTitle : function( ev ) {
+		var doc = ev.target.ownerDocument;
+        var inputTitleDiv = doc.getElementById("ForumTemplatesinputTitleDivId");
+		inputTitleDiv.style.display="none";               					
 	},
 	
+	 _ShowTemplates : function( ev ) {
+		var doc = ev.target.ownerDocument;
+        var div = doc.getElementById(FoxtrickForumTemplates._TEMPLATES_DIV_ID);
+		div.style.display="inline";               					
+	    var div = doc.getElementById("showTemplateId");
+		div.style.display="none";               					
+	    var div = doc.getElementById("hideTemplateId");
+		div.style.display="inline-block";               					
+	},
+
+	 _HideTemplates : function( ev ) {
+		var doc = ev.target.ownerDocument;
+        var div = doc.getElementById(FoxtrickForumTemplates._TEMPLATES_DIV_ID);
+		div.style.display="none";               					
+	    var div = doc.getElementById("showTemplateId");
+		div.style.display="inline-block";               					
+	    var div = doc.getElementById("hideTemplateId");
+		div.style.display="none";               					
+	},
+
     _removeTemplate : function( ev ) {
         if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_template_ask' ) ) )
         {
             FoxtrickPrefs.delListPref( FoxtrickForumTemplates._TEMPLATES_PREFLIST, ev.target.msg );
-            // ev.target.nextSibling.parentNode.removeChild( ev.target.nextSibling );
-            // ev.target.parentNode.removeChild( ev.target );
-            // remove whole <tr>
             ev.target.parentNode.parentNode.parentNode.removeChild( ev.target.parentNode.parentNode );
         }
     },
