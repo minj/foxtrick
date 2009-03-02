@@ -115,7 +115,7 @@ var FoxtrickForumTemplates = {
 			inputTitle.setAttribute("id", "ForumTemplatesInputTitleId");
 			inputTitle.setAttribute("value","");// text.substr(0,20));
 			inputTitle.setAttribute("type", "text");
-			inputTitle.setAttribute("maxlength", "20");
+			inputTitle.setAttribute("maxlength", "200");
 			inputTitle.setAttribute("size", "20");
 			inputTitle.setAttribute("tabIndex", "3");
 			inputTitle.setAttribute("style", "margin-left:5px;margin-right:5px;");
@@ -252,7 +252,8 @@ var FoxtrickForumTemplates = {
         var curr = doc.createElement( "a" );
         curr.setAttribute( "href", "javascript:void(0)" );
         curr.msg = text;		
-        curr.innerHTML = title.substring( 0, FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH );
+        curr.title = title;//.substring( 0, FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH );
+        curr.innerHTML = title;//.substring( 0, FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH );
         /*if ( title.length > FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH )
             curr.innerHTML += "...";
 		*/
