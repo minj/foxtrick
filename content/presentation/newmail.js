@@ -9,19 +9,14 @@ var FoxtrickNewMail = {
     MODULE_NAME : "NewMail",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
+	CSS:  "chrome://foxtrick/content/resources/css/newmail.css",
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'all',
-                                          FoxtrickNewMail);
     },
 
     run : function( page, doc ) {
-        // dump(this.MODULE_NAME + '\n');
-		var css = "chrome://foxtrick/content/resources/css/newmail.css";
-        Foxtrick.addStyleSheet( doc, css );
-	},
+ 	},
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	}
 };
