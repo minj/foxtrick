@@ -439,7 +439,17 @@ function FTTeamStats_Filter(ev){
 		var hide_category = true;
 		var last_category = null;
 		for( var i = 0; i < allDivs.length; i++ ) {			
-			if (allDivs[i].className=='playerInfo') { 
+			if (allDivs[i].className=='playerInfo') {
+				if ((allDivs[i].previousSibling && allDivs[i].className=='category') 
+				    || (allDivs[i].previousSibling.previousSibling && allDivs[i].className=='category')){
+					if (last_category) { 
+						if (hide_category==true || ev.target.value=='Pictures')  last_category.setAttribute('style','display:none !important;');
+						else last_category.style.display='';
+					}	
+					if (allDivs[i].previousSibling && allDivs[i].className=='category') last_category=allDivs[i].previousSibling;
+					else last_category = allDivs[i].previousSibling.previousSibling;
+					hide_category = true;
+				}
 				if (ev.target.value=='Cards' && allDivs[i].innerHTML.search('card.gif')==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
@@ -479,15 +489,7 @@ function FTTeamStats_Filter(ev){
 			}
 			else if (allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') {
 				if (hide==true) allDivs[i].setAttribute('style','display:none !important;');
-			}
-			else if (allDivs[i].className=='category') {
-				if (last_category) { 
-					if (hide_category==true || ev.target.value=='Pictures')  last_category.setAttribute('style','display:none !important;');
-					else last_category.style.display='';
-				}	
-				last_category = allDivs[i];
-				hide_category = true;
-			}
+			}			
 			if (allDivs[i].className=='borderSeparator') lastborderSeparator=allDivs[i];
 		}
 		if (ev.target.value == 'Pictures') lastborderSeparator.style.display='';
