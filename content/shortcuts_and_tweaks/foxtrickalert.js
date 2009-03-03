@@ -28,7 +28,7 @@ var FoxtrickAlert = {
             Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
             if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
-					doc.getElementById('menu').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
+					doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
 			}
 		} catch (e) {
             Foxtrick.LOG('FoxtrickAlert.js run: '+e);
@@ -39,8 +39,8 @@ var FoxtrickAlert = {
 	
 	},
 	
-    showMailAlert : function(evt)
-    {   
+    showMailAlert : function(evt) {
+   	try { 
 		var window = evt.originalTarget.ownerDocument.defaultView;
 		
 		var message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
@@ -50,7 +50,7 @@ var FoxtrickAlert = {
 						
 						var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
 						if (FoxtrickPrefs.getBool("alertSlider")) {
-							FoxtrickAlert.ALERTS.push(message);
+							FoxtrickAlert.ALERTS.push(message);dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
 						}
 						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 							FoxtrickAlert.foxtrick_showAlertGrowl(message);
@@ -59,14 +59,14 @@ var FoxtrickAlert = {
 				}
 			}
 		FoxtrickAlert.foxtrick_showAlert(window,false);
+	} catch (e) {dump ('showMailAlert: '+e+'\n');}
 	},
 	
     showAlert : function(evt)
-    {   
-		var window = evt.originalTarget.ownerDocument.defaultView;
+    {   try {
+        var window = evt.originalTarget.ownerDocument.defaultView;
 		var tickerdiv=evt.originalTarget;
         tickerdiv=tickerdiv.getElementsByTagName('div');
-        try {
             var message=null;
             var elemText = new Array();
             //getting text
@@ -86,8 +86,8 @@ var FoxtrickAlert = {
 						Foxtrick.news[j]=elemText[j];
                     }
                     if (!isequal) {
-						if (FoxtrickPrefs.getBool("alertSlider")) {
-							FoxtrickAlert.ALERTS.push(message);				
+						if (FoxtrickPrefs.getBool("alertSlider")) {		
+							FoxtrickAlert.ALERTS.push(message);	dump('->add ticker alert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');			
 						}
 						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 							FoxtrickAlert.foxtrick_showAlertGrowl(message);
@@ -96,20 +96,25 @@ var FoxtrickAlert = {
                 } else {
 					elemText[i]=tickelem.nodeValue;
 				}
-            } 
+            } 	
 			FoxtrickAlert.foxtrick_showAlert(window, false);
-        } catch(e) { Foxtrick.LOG('error showalert '+e); }
+        } catch(e) { dump('error showalert '+e); }
     },
 
     foxtrick_showAlert: function(window, from_timer) { 
-		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) return;
+       try{ 
+	     dump (' -- foxtrick_showAlert --\n');
+	    dump(' called from timer: '+from_timer+'\n');
+		dump (' one alert is showing, dont execute double: '+String(!from_timer && FoxtrickAlert.ALERT_RUNNING) +'\n');
+		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n\n');
+		
+ 		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) return;
 		FoxtrickAlert.ALERT_RUNNING = true;
-		if ( FoxtrickAlert.ALERTS.length==0) {FoxtrickAlert.ALERT_RUNNING = false; return;}	
+		if ( FoxtrickAlert.ALERTS.length==0) { FoxtrickAlert.ALERT_RUNNING = false; return;}	
 		var text = FoxtrickAlert.ALERTS.pop(); 
         var img = "http://hattrick.org/favicon.ico";
         var title = "Hattrick.org";
 				
-        try{
             try { 
                 var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 var clickable = true;
@@ -134,7 +139,7 @@ var FoxtrickAlert = {
 				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,window,true);			
             }
         } catch (e) { 
-            Foxtrick.LOG(e);
+            dump(e);
         }
 		if (FoxtrickPrefs.getBool("alertSound")) {
 			try {

@@ -31,10 +31,9 @@ function FoxtrickCheckNews() {
 		var num_message = message.innerHTML.replace(/\(|\)/g,'');
 		if (num_message>last_num_message) {
 			var objEvent = document.createEvent("Events");
-            objEvent.initEvent("FoxtrickTickerEvent", true, false);
+            objEvent.initEvent("FoxtrickMailEvent", true, false);
             document.getElementById('menu').dispatchEvent(objEvent);
-        
-			last_num_message=num_message;
+ 			last_num_message=num_message;			
 		}
 	}
 	else last_num_message=0;
