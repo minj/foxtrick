@@ -87,7 +87,7 @@ var FoxtrickAlert = {
                     }
                     if (!isequal) {
 						if (FoxtrickPrefs.getBool("alertSlider")) {
-							FoxtrickAlert.ALERTS.push(message);FoxtrickAlert.ALERTS.push(message);						
+							FoxtrickAlert.ALERTS.push(message);				
 						}
 						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 							FoxtrickAlert.foxtrick_showAlertGrowl(message);
@@ -97,7 +97,7 @@ var FoxtrickAlert = {
 					elemText[i]=tickelem.nodeValue;
 				}
             } 
-		FoxtrickAlert.foxtrick_showAlert(window, false);
+			FoxtrickAlert.foxtrick_showAlert(window, false);
         } catch(e) { Foxtrick.LOG('error showalert '+e); }
     },
 
