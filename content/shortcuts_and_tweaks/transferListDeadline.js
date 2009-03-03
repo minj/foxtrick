@@ -133,7 +133,7 @@ FoxtrickTransferListDeadline = {
                 selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
             else dump('  Could not create deadline (NaN)\n');
         } catch (e) {
-            dump(e);
+            dump('FoxtrickTransferListDeadline'+e);
         }
     }
 };

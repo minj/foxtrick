@@ -77,7 +77,7 @@ FoxtrickExtendedPlayerDetails = {
             }
             else dump('  Could not create jointime (NaN)\n');
         } catch (e) {
-            dump(e);
+            dump('FoxtrickExtendedPlayerDetails'+e);
         }
     },
 

@@ -338,7 +338,7 @@ var FoxtrickForumStaffMarker = {
             }
         }
         catch(e) {
-            dump(e);
+            dump('FoxtrickForumStaffMarker'+e);
         }
     },
 };

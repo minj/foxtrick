@@ -233,7 +233,7 @@
             msg_window.value += string;
             msg_window.focus();        
         } catch(e) {
-            dump(e);
+            dump('FoxtrickForumYouthIcons'+e);
         }
     },        
 };

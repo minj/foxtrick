@@ -28,7 +28,7 @@ var FoxtrickForumPreview = {
                 return;
         }
         catch(e) {
-            dump(e);
+            dump('FoxtrickForumPreview'+e);
         }
 
         // display preview and button above the message window
@@ -113,7 +113,7 @@ var FoxtrickForumPreview = {
                 return;
         }
         catch(e) {
-            dump(e);
+            dump('FoxtrickForumPreview'+e);
         }
 
         var prev_div = doc.getElementById( "forum_preview" );
@@ -127,7 +127,7 @@ var FoxtrickForumPreview = {
                 FoxtrickForumPreview._preview( ev );
             }
         } catch(e) {
-            dump (' ERROR ' + e) ;
+            dump (' FoxtrickForumPreview._toggleListener ' + e) ;
         }
 	},
 
@@ -196,7 +196,7 @@ var FoxtrickForumPreview = {
                 return;
         }
         catch(e) {
-            dump(e);
+            dump('FoxtrickForumPreview'+e);
         }
 
         try {
@@ -214,7 +214,7 @@ var FoxtrickForumPreview = {
             prev_div.innerHTML = text;
         }
         catch(e) {
-            dump(e);
+            dump('FoxtrickForumPreview'+e);
         }
 
     }

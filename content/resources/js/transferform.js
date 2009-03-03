@@ -73,7 +73,7 @@ FoxtrickTransferListSearchFormFiller = {
                 el.disabled = false;
             }
         } catch (e) {
-            dump(e);
+            dump('FoxtrickTransferListSearchFormFiller'+e);
         }
     },
 

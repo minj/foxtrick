@@ -52,7 +52,7 @@ var FTTeamStats= {
 						total_NT = parseInt(total_NT) + tsitot_in;
 					}				
 					catch(e) {
-						dump(e);
+						dump('FTTeamStats'+e);
 					}
 				}
 				
@@ -110,7 +110,7 @@ var FTTeamStats= {
                 }
             } 
             catch(e) {
-                dump(e);
+                dump('FTTeamStats'+e);
             }
             if (yels > 0) specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yels + "</td></tr>";
         }
@@ -133,7 +133,7 @@ var FTTeamStats= {
                 }
             } 
             catch(e) {
-                dump(e);
+                dump('FTTeamStats'+e);
             }
             if (reds > 0) specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + reds + "</td></tr>";
         }
@@ -154,7 +154,7 @@ var FTTeamStats= {
                 }
             } 
             catch(e) {
-                dump(e);
+                dump('FTTeamStats'+e);
             }
         }
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';

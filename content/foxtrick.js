@@ -443,7 +443,7 @@ Foxtrick.selectFileSave = function (parentWindow) {
     		return fp.file.path;
     	}
     } catch (e) {
-        dump(e);
+        dump('selectFileSave'+e);
     }
 	return null;
 }
@@ -456,7 +456,7 @@ Foxtrick.selectFile = function (parentWindow) {
     		return fp.file.path;
     	}
     } catch (e) {
-        dump(e);
+        dump('selectFile'+e);
     }
 	return null;
 }
@@ -467,7 +467,7 @@ Foxtrick.playSound = function(url) {
     var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
     soundService.play(ioService.newURI(url, null, null));
   } catch (e) {
-    dump(e);
+    dump('playSound'+e);
   }
 }
 
@@ -1196,7 +1196,7 @@ TimeDifferenceToText = function( time_sec, short ) {
             } // switch
         } // try
         catch(e_print) {
-            dump(e_print);
+            dump('TimeDifferenceToText'+e_print);
         }
         if (print_S == 0 ) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons");}
         if (print_W != 0 && print_S != '') print_S += '&nbsp;';
