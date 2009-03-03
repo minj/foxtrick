@@ -436,6 +436,8 @@ function FTTeamStats_Filter(ev){
 		var count=0;
 		
 		var hide = false;
+		var hide_category = true;
+		var last_category = null;
 		for( var i = 0; i < allDivs.length; i++ ) {			
 			if (allDivs[i].className=='playerInfo') { 
 				if (ev.target.value=='Cards' && allDivs[i].innerHTML.search('card.gif')==-1)  {
@@ -463,6 +465,7 @@ function FTTeamStats_Filter(ev){
 				else {
 					 	allDivs[i].setAttribute('style','');
 						hide = false; //dump('show');
+						hide_category = false;										
 				}
 				if (hide && ev.target.value!='Pictures') { 
 					if (i && allDivs[i-1].className=='faceCard') {
@@ -474,13 +477,24 @@ function FTTeamStats_Filter(ev){
 				//dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
 				if (!hide || ev.target.value=='Pictures') ++count;
 			}
-			else if(allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') {
-				if (hide==true) {allDivs[i].setAttribute('style','display:none !important;');}
-				else {allDivs[i].setAttribute('style','');}						
+			else if (allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') {
+				if (hide==true) allDivs[i].setAttribute('style','display:none !important;');
 			}
-			if(allDivs[i].className=='borderSeparator') lastborderSeparator=allDivs[i];
+			else if (allDivs[i].className=='category') {
+				if (last_category) { 
+					if (hide_category==true || ev.target.value=='Pictures')  last_category.setAttribute('style','display:none !important;');
+					else last_category.style.display='';
+				}	
+				last_category = allDivs[i];
+				hide_category = true;
+			}
+			if (allDivs[i].className=='borderSeparator') lastborderSeparator=allDivs[i];
 		}
 		if (ev.target.value == 'Pictures') lastborderSeparator.style.display='';
+		if (last_category) { 
+			if (hide_category==true || ev.target.value=='Pictures')  last_category.setAttribute('style','display:none !important;');
+			else last_category.setAttribute('style','');
+		}
 		var h = body.getElementsByTagName('h1')[0];
 		h.innerHTML = h.innerHTML.replace(/ \d+/,' '+String(count));
 		
