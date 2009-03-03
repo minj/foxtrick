@@ -24,6 +24,7 @@ var FoxtrickAlert = {
 
     run : function( doc ) {
     	try { 
+			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
 			
             Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
@@ -31,7 +32,7 @@ var FoxtrickAlert = {
 					doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
 			}
 		} catch (e) {
-            Foxtrick.LOG('FoxtrickAlert.js run: '+e);
+            dump('FoxtrickAlert.js run: '+e);
         }
     },
 	
@@ -40,9 +41,8 @@ var FoxtrickAlert = {
 	},
 	
     showMailAlert : function(evt) {
-   	try { 
+   	try { 		
 		var window = evt.originalTarget.ownerDocument.defaultView;
-		
 		var message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
@@ -64,7 +64,7 @@ var FoxtrickAlert = {
 	
     showAlert : function(evt)
     {   try {
-        var window = evt.originalTarget.ownerDocument.defaultView;
+        var window  = evt.originalTarget.ownerDocument.defaultView;
 		var tickerdiv=evt.originalTarget;
         tickerdiv=tickerdiv.getElementsByTagName('div');
             var message=null;
@@ -102,9 +102,12 @@ var FoxtrickAlert = {
     },
 
     foxtrick_showAlert: function(window, from_timer) { 
-       try{ 
-	     dump (' -- foxtrick_showAlert --\n');
-	    dump(' called from timer: '+from_timer+'\n');
+     try{ 
+	    var window = FoxtrickAlert.foxtrick_showAlert.window;
+		dump (' -- foxtrick_showAlert --\n');
+		try {dump('location: '+window.location.href+'\n');}
+		catch(e){dump('window propertiy not available\n');}
+		dump(' called from timer: '+from_timer+'\n');
 		dump (' one alert is showing, dont execute double: '+String(!from_timer && FoxtrickAlert.ALERT_RUNNING) +'\n');
 		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n\n');
 		
@@ -139,7 +142,7 @@ var FoxtrickAlert = {
 				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,window,true);			
             }
         } catch (e) { 
-            dump(e);
+            dump('foxtrick_showAlert'+e);
         }
 		if (FoxtrickPrefs.getBool("alertSound")) {
 			try {
