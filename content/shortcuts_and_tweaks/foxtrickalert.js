@@ -25,7 +25,10 @@ var FoxtrickAlert = {
     run : function( doc ) {
     	try { 
 			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
-			
+			FoxtrickAlert.ALERT_RUNNING=false;
+			FoxtrickAlert.foxtrick_showAlert(doc.defaultView, false);
+        
+	
             Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
             if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
@@ -96,7 +99,7 @@ var FoxtrickAlert = {
                 } else {
 					elemText[i]=tickelem.nodeValue;
 				}
-            } 	
+            } 				
 			FoxtrickAlert.foxtrick_showAlert(window, false);
         } catch(e) { dump('error showalert '+e); }
     },
