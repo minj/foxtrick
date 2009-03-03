@@ -10,6 +10,9 @@ var FoxtrickAlert = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
     OPTIONS : new Array("NewMail"), 
+	
+	ALERTS: new Array(),
+	ALERT_RUNNING:false,
 	last_num_message:0,
     
     init : function() {
@@ -38,6 +41,8 @@ var FoxtrickAlert = {
 	
     showMailAlert : function(evt)
     {   
+		var window = evt.originalTarget.ownerDocument.defaultView;
+		
 		var message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
@@ -45,32 +50,27 @@ var FoxtrickAlert = {
 						
 						var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
 						if (FoxtrickPrefs.getBool("alertSlider")) {
-							FoxtrickAlert.foxtrick_showAlert(message);
+							FoxtrickAlert.ALERTS.push(message);
 						}
 						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 							FoxtrickAlert.foxtrick_showAlertGrowl(message);
-						}
-						if (FoxtrickPrefs.getBool("alertSound")) {
-							try {
-								Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
-							} catch (e) {
-								Foxtrick.LOG('playsound: '+e);
-							}
-						}					
+						}											
 						FoxtrickAlert.last_num_message = num_message;
 				}
 			}
+		FoxtrickAlert.foxtrick_showAlert(window,false);
 	},
 	
     showAlert : function(evt)
     {   
+		var window = evt.originalTarget.ownerDocument.defaultView;
 		var tickerdiv=evt.originalTarget;
         tickerdiv=tickerdiv.getElementsByTagName('div');
         try {
             var message=null;
-            var elemText=new Array();
+            var elemText = new Array();
             //getting text
-            for (i=0;i<tickerdiv.length;i++)
+            for (i=0; i<tickerdiv.length;i++)
             {
 				var tickelem=tickerdiv[i].firstChild.firstChild;
                 if (tickelem.nodeType!=tickelem.TEXT_NODE)
@@ -78,7 +78,7 @@ var FoxtrickAlert = {
                     //there is the strong tag
 					elemText[i]=tickelem.firstChild.nodeValue;
                     message=tickelem.firstChild.nodeValue;
-					var isequal=true;
+					var isequal = true;
 					for (j=0;j<=i;j++)
 					{
 						if (elemText[j]!=Foxtrick.news[j])
@@ -87,32 +87,30 @@ var FoxtrickAlert = {
                     }
                     if (!isequal) {
 						if (FoxtrickPrefs.getBool("alertSlider")) {
-							FoxtrickAlert.foxtrick_showAlert(message);
+							FoxtrickAlert.ALERTS.push(message);FoxtrickAlert.ALERTS.push(message);						
 						}
 						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 							FoxtrickAlert.foxtrick_showAlertGrowl(message);
-						}
-						if (FoxtrickPrefs.getBool("alertSound")) {
-							try {
-								Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
-							} catch (e) {
-								Foxtrick.LOG('playsound: '+e);
-							}
-						}
+						}						
 					}
                 } else {
 					elemText[i]=tickelem.nodeValue;
 				}
             } 
+		FoxtrickAlert.foxtrick_showAlert(window, false);
         } catch(e) { Foxtrick.LOG('error showalert '+e); }
     },
 
-    foxtrick_showAlert: function(text, alertError) {
+    foxtrick_showAlert: function(window, from_timer) { 
+		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) return;
+		FoxtrickAlert.ALERT_RUNNING = true;
+		if ( FoxtrickAlert.ALERTS.length==0) {FoxtrickAlert.ALERT_RUNNING = false; return;}	
+		var text = FoxtrickAlert.ALERTS.pop(); 
         var img = "http://hattrick.org/favicon.ico";
         var title = "Hattrick.org";
-    	
+				
         try{
-            try {
+            try { 
                 var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 var clickable = true;
                 var listener = { observe:
@@ -123,21 +121,31 @@ var FoxtrickAlert = {
                     }
                 };
                 alertsService.showAlertNotification(img, title, text, clickable, "", listener);
-            } catch (e) {
+				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,window,true);
+				
+            } catch (e) { 
                 // fix for when alerts-service is not available (e.g. SUSE)
                 var alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
                     .getService(Components.interfaces.nsIWindowWatcher)
                     .openWindow(null, "chrome://global/content/alerts/alert.xul",
                                 "_blank", "chrome,titlebar=no,popup=yes", null);
                 alertWin.arguments = [img, title, text, false, ""];
-                alertWin.setTimeout(function(){alertWin.close()},5000);
+                alertWin.setTimeout( function(){alertWin.close();}, 5000 );
+				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,window,true);			
             }
-        } catch (e) {
+        } catch (e) { 
             Foxtrick.LOG(e);
         }
+		if (FoxtrickPrefs.getBool("alertSound")) {
+			try {
+				Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
+			} catch (e) {
+				Foxtrick.LOG('playsound: '+e);
+			}
+		}
     },
-    
-    
+        
+	
     foxtrick_showAlertGrowl: function(text, alertError) {
     	// mac only
     	try {
@@ -148,5 +156,12 @@ var FoxtrickAlert = {
     	} catch (e) {
     		Foxtrick.LOG(e);
     	}
+		if (FoxtrickPrefs.getBool("alertSound")) {
+			try {
+				Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
+			} catch (e) {
+				Foxtrick.LOG('playsound: '+e);
+			}
+		}
     }
 };
