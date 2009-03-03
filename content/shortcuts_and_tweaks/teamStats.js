@@ -438,7 +438,7 @@ function FTTeamStats_Filter(ev){
 		}
 		var lastborderSeparator=null;
 		var count=0;
-		
+		dump('in\n');
 		var hide = false;
 		var hide_category = true;
 		var last_category = null;
@@ -492,8 +492,10 @@ function FTTeamStats_Filter(ev){
 				//dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
 				if (!hide || ev.target.value=='Pictures') ++count;
 			}
-			else if (allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') {
+			else if (allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') { //dump('border hide:'+hide+'\n');
 				if (hide==true) allDivs[i].setAttribute('style','display:none !important;');
+				else allDivs[i].setAttribute('style','');
+				
 			}			
 			if (allDivs[i].className=='borderSeparator') lastborderSeparator=allDivs[i];
 		}
