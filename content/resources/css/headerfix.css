@@ -26,7 +26,7 @@ margin-left:10px !important;
 /* add whitespace below header */
 #hattrick #menu,
 #hattrickNoSupporter #menu {
-margin-bottom: 6px;
+margin-bottom: 6px !important;
 }
 
 /* compensate for fixed header */
@@ -38,20 +38,20 @@ padding-top: 100px !important;
 /* fix left submenu */
 #hattrick #content .subMenu,
 #hattrickNoSupporter #content .subMenu {
-position: fixed;
+position: fixed !important;
 /* getting borders right if menu overflows content */
-background: white;
-margin-left: -11px; 
-padding-left: 11px;
-border-color: #DDDDDD;
-border-style: solid ;
-border-width:  0 0 0 1px;
+background: white !important;
+margin-left: -11px !important; 
+padding-left: 11px !important;
+border-color: #DDDDDD !important;
+border-style: solid !important;
+border-width:  0 0 0 1px !important;
 }
 
 /* compensate for fixed left submenu */
 #hattrick #content #mainWrapper,
 #hattrickNoSupporter #content #mainWrapper {
-margin-left: 135px;
+margin-left: 135px !important;
 min-height: 630px !important; /* temporary height hack before sticky footer */
 }
 

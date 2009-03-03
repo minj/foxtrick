@@ -61,7 +61,7 @@ var FoxtrickMain = {
 		}
 
 		// reload skins
-		FoxtrickSkinPlugin.load(null,true);
+		FoxtrickSkinPlugin.load( null);
 	},
    
     registerOnPageLoad : function(document) {
@@ -145,12 +145,48 @@ var FoxtrickMain = {
 	
     // main entry run on every ht page load
     run : function( doc ) {
+	try {
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
+	
+			// check permanant css
+			var isStandard = Foxtrick.isStandardLayout(doc);
+			var isRTL = Foxtrick.isRTLLayout(doc); 
+			for ( i in Foxtrick.modules ) {
+				var module = Foxtrick.modules[i];
+				// if module has an css) function and is enabled
+				if ( module.MODULE_NAME ) {
+					if ( module.CSS_SIMPLE ) {
+						if ( Foxtrick.isModuleEnabled( module ) && !isStandard)  { 
+							if (!isRTL || !module.CSS_SIMPLE_RTL) {Foxtrick.load_css_permanent ( module.CSS_SIMPLE );dump('load '+module.CSS_SIMPLE+'\n');}	 
+							else {Foxtrick.load_css_permanent ( module.CSS_SIMPLE_RTL ) ;dump('load '+module.CSS_SIMPLE+'\n');}
+													
+						}
+						else {
+							Foxtrick.unload_css_permanent ( module.CSS_SIMPLE ) ;
+							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
+							dump('unload '+module.CSS_SIMPLE+'\n');
+						}							
+					}
+					if ( module.CSS ) { 
+						if ( Foxtrick.isModuleEnabled( module ) && ( !module.CSS_SIMPLE || isStandard ) ) {
+							if (!isRTL || !module.CSS_RTL) Foxtrick.load_css_permanent ( module.CSS) ; 
+							else Foxtrick.load_css_permanent ( module.CSS_RTL) ;
+							dump('load '+module.CSS+'\n');
+						}
+						else {
+							Foxtrick.unload_css_permanent ( module.CSS) ;  
+							if (module.CSS_RTL) Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
+							dump('unload '+module.CSS+'\n');
+						}             
+					}
+				}
+			}
+				
 	
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
@@ -184,6 +220,7 @@ var FoxtrickMain = {
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
 			}
 		}
+	}catch(e){dump('Foxtrick.run: '+e+'\n');}
     },
 	
 	// function run on every ht page change
@@ -433,6 +470,43 @@ Foxtrick.playSound = function(url) {
     dump(e);
   }
 }
+
+
+Foxtrick.reload_css_permanent = function( css ) {  	
+	Foxtrick.unload_css_permanent ( css ) ; 	
+	Foxtrick.load_css_permanent ( css ) ;  	
+}
+
+Foxtrick.unload_css_permanent = function( css ) {  	
+        try {
+			try {
+				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				var uri = ios.newURI(css, null, null);
+            } catch(e) {return;} 
+			// try unload
+			if (sss.sheetRegistered(uri, sss.USER_SHEET)) 
+					sss.unregisterSheet(uri, sss.USER_SHEET);
+        } catch(e) {
+            dump ('> load_css_permanent ' + e + '\n');
+        }
+}
+            
+Foxtrick.load_css_permanent = function( css) {  	
+		try {
+			try {
+				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				var uri = ios.newURI(css, null, null);
+            } catch(e) {return;} 
+			// load		
+			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) 
+						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);						
+		} 
+        catch(e) {
+            dump ('> load_css_permanent ' + e + '\n');
+        }
+ }
 
 
 // create stats Hash
@@ -1266,5 +1340,7 @@ function FoxtrickGetElementPosition(This,ref){
 	while(el && el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
 	return {'top':pT,'left':pL};
 }
+	
+	
 	
 
