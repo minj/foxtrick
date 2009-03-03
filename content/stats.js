@@ -1494,23 +1494,41 @@ stats["ht_scouting_TrinidadTobago"] =  {
   "title" : "Trinidad & Tobago Scouting DB",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
 }
-/*
-stats["ht_scouting_Malta"] =  { 
+
+stats["ht_scouting_malaysia"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "playerlink" : { "path"       : "malta/index.php?language=2",
+  "playerlink" : { "path"       : "malaysia/index.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
-  "nationalteamlink" : { "path"       : "malta/index.php?language=2",
+  "nationalteamlink" : { "path"       : "malaysia/index.php?language=2",
                    "filters"    : ["countryid"], 
                    "params"     : []
 				}, 
-  "nationalityranges" : [[101, 101]], 
-  "countryidranges" : [[101, 101]], 
-  "title" : "Malta Scouting DB",
+  "nationalityranges" : [[45, 45]], 
+  "countryidranges" : [[45, 45]], 
+  "title" : "Malaysia Scouting DB",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
-}*/
+}
+
+stats["ht_scouting_kyrgyzstan"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "playerlink" : { "path"       : "kyrgyzstan/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "nationalteamlink" : { "path"       : "kyrgyzstan/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[102, 102]], 
+  "countryidranges" : [[102, 102]], 
+  "title" : "Kyrgyzstan Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
+
 
 stats["ghanatracker"] = { 
   "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
@@ -1653,6 +1671,23 @@ stats["israeltracker"] = {
 	"nationalityranges" : [[63,63]], 
 };
 
+stats["suriyahtracker"] = { 
+  "url" : "http://suriyah.ht.quickly.co.il/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Suriyah U20/NT Tracker",
+  
+  "nationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "playerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[140,140]] , 
+	"nationalityranges" : [[140,140]], 
+};
+
 
 stats["nederlandtracker"] = { 
   "url" : "http://www.dutchstats.nl/",
@@ -1771,10 +1806,10 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,/*100],
-						[102,*/109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[45,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,/*100],
-						[102,*/109],[111,112],[114,121],[124,132],[134,136],[138,140],[142,142],[144,200]], 
+	"countryidranges" :   [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,101],
+						[103,109],[111,112],[114,121],[124,132],[134,136],[138,139],[142,142],[144,200]],
+	"nationalityranges" : [[1,1],[4,4],[7,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,57],[59,59],[61,62],[64,74],[76,88],[90,101],
+						[103,109],[111,112],[114,121],[124,132],[134,136],[138,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
 
 
