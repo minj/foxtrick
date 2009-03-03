@@ -11,7 +11,7 @@ var FTTeamStats= {
     DEFAULT_ENABLED : true,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'all',//'players',
+            Foxtrick.registerPageHandler( 'players',
                                           FTTeamStats);
     },
 
@@ -19,7 +19,7 @@ var FTTeamStats= {
 
 	
 		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
-		//if (remain!="" && remain.search(/TeamID=/i)==-1) return;
+		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 			
 		var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
         var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
