@@ -11,7 +11,7 @@ var FTTeamStats= {
     DEFAULT_ENABLED : true,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'players',
+            Foxtrick.registerPageHandler( 'all',//'players',
                                           FTTeamStats);
     },
 
@@ -19,7 +19,7 @@ var FTTeamStats= {
 
 	
 		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
-		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
+		//if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 			
 		var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
         var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
@@ -432,24 +432,29 @@ function FTTeamStats_Filter(ev){
 		var doc = FTTeamStats_Filter.doc;
 		var body = doc.getElementById("mainBody");
 		var allDivs = body.getElementsByTagName('div');
+		
+		for( var i = 0; i < allDivs.length; i++ ) {
+			if (allDivs[i].className=='playerList') { allDivs=allDivs[i].childNodes;break;}
+		}
 		var lastborderSeparator=null;
 		var count=0;
 		
 		var hide = false;
 		var hide_category = true;
 		var last_category = null;
+		var last_face = null;
+		
 		for( var i = 0; i < allDivs.length; i++ ) {			
-			if (allDivs[i].className=='playerInfo') {
-				if ((allDivs[i].previousSibling && allDivs[i].className=='category') 
-				    || (allDivs[i].previousSibling.previousSibling && allDivs[i].className=='category')){
-					if (last_category) { 
+			if (allDivs[i].className=='category') {
+				    if (last_category) { 
 						if (hide_category==true || ev.target.value=='Pictures')  last_category.setAttribute('style','display:none !important;');
 						else last_category.style.display='';
 					}	
-					if (allDivs[i].previousSibling && allDivs[i].className=='category') last_category=allDivs[i].previousSibling;
-					else last_category = allDivs[i].previousSibling.previousSibling;
+					last_category = allDivs[i]; 
 					hide_category = true;
-				}
+			}
+			else if (allDivs[i].className=='faceCard') last_face=allDivs[i]; 
+			else if (allDivs[i].className=='playerInfo') {
 				if (ev.target.value=='Cards' && allDivs[i].innerHTML.search('card.gif')==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
@@ -478,12 +483,12 @@ function FTTeamStats_Filter(ev){
 						hide_category = false;										
 				}
 				if (hide && ev.target.value!='Pictures') { 
-					if (i && allDivs[i-1].className=='faceCard') {
-						if (allDivs[i-1].style.display) allDivs[i-1].style.display='none !important;'; 
-						else allDivs[i-1].setAttribute('style',allDivs[i-1].getAttribute('style')+'display:none !important;'); 
+					if (last_face) { 
+						if (last_face.style.display) last_face.style.display='none !important;'; 
+						else last_face.setAttribute('style',last_face.getAttribute('style')+'display:none !important;'); 
 					}
 				}
-				else { if (i && allDivs[i-1].className=='faceCard') allDivs[i-1].style.display=''; }
+				else { if (last_face) last_face.style.display=''; }
 				//dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
 				if (!hide || ev.target.value=='Pictures') ++count;
 			}
