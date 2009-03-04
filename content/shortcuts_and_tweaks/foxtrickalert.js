@@ -26,7 +26,7 @@ var FoxtrickAlert = {
     	try { 
 			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
 			FoxtrickAlert.ALERT_RUNNING = false;
-			FoxtrickAlert.foxtrick_showAlert(doc.defaultView, false);
+			FoxtrickAlert.foxtrick_showAlert(false);
         
 	
             Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
@@ -98,7 +98,7 @@ var FoxtrickAlert = {
 					elemText[i]=tickelem.nodeValue;
 				}
             } 				
-			FoxtrickAlert.foxtrick_showAlert(window, false);
+			FoxtrickAlert.foxtrick_showAlert(false);
         } catch(e) { dump('error showalert '+e); }
     },
 
