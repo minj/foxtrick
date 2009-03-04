@@ -176,8 +176,8 @@ var FoxtrickForumTemplates = {
             Foxtrick.alert( Foxtrickl10n.getString( 'template_exists' ) );
 			
 		var inputTitleDiv = doc.getElementById( "ForumTemplatesinputTitleDivId" );
-		inputTitleDiv.parentNode.removeChild(inputTitleDiv);
-		new_button.addEventListener( "click", FoxtrickForumTemplates._addNewTitle, false );
+		inputTitleDiv.style.display="none";               					
+		//new_button.addEventListener( "click", FoxtrickForumTemplates._addNewTitle, false );
         		
 	},
 
