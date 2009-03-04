@@ -11,7 +11,7 @@ var FTTeamStats= {
     DEFAULT_ENABLED : true,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'players',
+            Foxtrick.registerPageHandler('players',
                                           FTTeamStats);
     },
 
@@ -426,29 +426,32 @@ var FTTeamStats= {
         "Vietnam")            
 };
 
-
+// by convinced
 function FTTeamStats_Filter(ev){
 	try {
 		var doc = FTTeamStats_Filter.doc;
 		var body = doc.getElementById("mainBody");
 		var allDivs = body.getElementsByTagName('div');
 		
+		var no_playerlist=true;
 		for( var i = 0; i < allDivs.length; i++ ) {
-			if (allDivs[i].className=='playerList') { allDivs=allDivs[i].childNodes;break;}
-		}
+			if (allDivs[i].className=='playerList') {no_playerlist=false; allDivs=allDivs[i].childNodes;break;}
+		} 
+		if (no_playerlist)  allDivs=body.childNodes;
+		
 		var lastborderSeparator=null;
 		var count=0;
-		dump('in\n');
+		
 		var hide = false;
 		var hide_category = true;
 		var last_category = null;
 		var last_face = null;
 		
-		for( var i = 0; i < allDivs.length; i++ ) {			
+		for( var i = 0; i < allDivs.length; i++ ) {	//	dump(allDivs[i].className+'\n');	
 			if (allDivs[i].className=='category') {
 				    if (last_category) { 
 						if (hide_category==true || ev.target.value=='Pictures')  last_category.setAttribute('style','display:none !important;');
-						else last_category.style.display='';
+						else last_category.style.display=''; //dump(hide+' '+last_category.innerHTML+'\n');
 					}	
 					last_category = allDivs[i]; 
 					hide_category = true;
