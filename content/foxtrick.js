@@ -25,7 +25,10 @@ Foxtrick.core_modules = [ FoxtrickPrefs,
 Foxtrick.news = [];
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
-
+	new_start:true,
+	isStandard:true,
+	isRTL:false,
+	
     init : function() {
         var i;
 
@@ -62,6 +65,7 @@ var FoxtrickMain = {
 
 		// reload skins
 		FoxtrickSkinPlugin.load( null);
+		FoxtrickMain.new_start = true;		
 	},
    
     registerOnPageLoad : function(document) {
@@ -152,42 +156,25 @@ var FoxtrickMain = {
 		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
-	
-			// check permanant css
-			var isStandard = Foxtrick.isStandardLayout(doc);
-			var isRTL = Foxtrick.isRTLLayout(doc); 
-			for ( i in Foxtrick.modules ) {
-				var module = Foxtrick.modules[i];
-				// if module has an css) function and is enabled
-				if ( module.MODULE_NAME ) {
-					if ( module.CSS_SIMPLE ) {
-						if ( Foxtrick.isModuleEnabled( module ) && !isStandard)  { 
-							if (!isRTL || !module.CSS_SIMPLE_RTL) {Foxtrick.load_css_permanent ( module.CSS_SIMPLE );dump('load '+module.CSS_SIMPLE+'\n');}	 
-							else {Foxtrick.load_css_permanent ( module.CSS_SIMPLE_RTL ) ;dump('load '+module.CSS_SIMPLE+'\n');}
-													
-						}
-						else {
-							Foxtrick.unload_css_permanent ( module.CSS_SIMPLE ) ;
-							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
-							dump('unload '+module.CSS_SIMPLE+'\n');
-						}							
-					}
-					if ( module.CSS ) { 
-						if ( Foxtrick.isModuleEnabled( module ) && ( !module.CSS_SIMPLE || isStandard ) ) {
-							if (!isRTL || !module.CSS_RTL) Foxtrick.load_css_permanent ( module.CSS) ; 
-							else Foxtrick.load_css_permanent ( module.CSS_RTL) ;
-							dump('load '+module.CSS+'\n');
-						}
-						else {
-							Foxtrick.unload_css_permanent ( module.CSS) ;  
-							if (module.CSS_RTL) Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
-							dump('unload '+module.CSS+'\n');
-						}             
-					}
+		    dump(FoxtrickMain.new_start+' '+FoxtrickMain.isStandard+' '+FoxtrickMain.isRTL+'\n');
+			// check newstart or design change and reload modul css if needed
+			if (FoxtrickMain.new_start) {
+				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
+				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc); 
+				Foxtrick.reload_module_css(doc);
+				FoxtrickMain.new_start = false;				
+			}
+			else {
+				var curr_isStandard = Foxtrick.isStandardLayout(doc);
+				var curr_isRTL = Foxtrick.isRTLLayout(doc); 
+				if (curr_isStandard != FoxtrickMain.isStandard || curr_isRTL != FoxtrickMain.isRTL)
+				{				
+					FoxtrickMain.isStandard = curr_isStandard;
+					FoxtrickMain.isRTL = curr_isRTL; 
+					Foxtrick.reload_module_css(doc);  
 				}
 			}
-				
-	
+
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
@@ -471,6 +458,42 @@ Foxtrick.playSound = function(url) {
   }
 }
 
+
+Foxtrick.reload_module_css = function(doc) {  	dump('reload_module_css\n');
+			// check permanant css
+			var isStandard = Foxtrick.isStandardLayout(doc);
+			var isRTL = Foxtrick.isRTLLayout(doc); 
+			for ( i in Foxtrick.modules ) {
+				var module = Foxtrick.modules[i];
+				// if module has an css) function and is enabled
+				if ( module.MODULE_NAME ) {
+					if ( module.CSS_SIMPLE ) {
+						if ( Foxtrick.isModuleEnabled( module ) && !isStandard)  { 
+							if (!isRTL || !module.CSS_SIMPLE_RTL) {Foxtrick.load_css_permanent ( module.CSS_SIMPLE ); Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL );dump('load '+module.CSS_SIMPLE+'\n');}	 
+							else {Foxtrick.load_css_permanent ( module.CSS_SIMPLE_RTL ) ; Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );dump('load '+module.CSS_SIMPLE_RTL+'\n');}
+													
+						}
+						else {
+							Foxtrick.unload_css_permanent ( module.CSS_SIMPLE ) ;
+							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
+							dump('unload '+module.CSS_SIMPLE+'\n');
+						}							
+					}
+					if ( module.CSS ) { 
+						if ( Foxtrick.isModuleEnabled( module ) && ( !module.CSS_SIMPLE || isStandard ) ) {
+							if (!isRTL || !module.CSS_RTL){ Foxtrick.load_css_permanent ( module.CSS) ; Foxtrick.unload_css_permanent ( module.CSS_RTL); }
+							else {Foxtrick.load_css_permanent ( module.CSS_RTL); Foxtrick.unload_css_permanent ( module.CSS); }
+							dump('load '+module.CSS+'\n');
+						}
+						else {
+							Foxtrick.unload_css_permanent ( module.CSS) ;  
+							if (module.CSS_RTL) Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
+							dump('unload '+module.CSS+'\n');
+						}             
+					}
+				}
+			}
+}				
 
 Foxtrick.reload_css_permanent = function( css ) {  	
 	Foxtrick.unload_css_permanent ( css ) ; 	

@@ -10,9 +10,26 @@ var FoxtrickShortcutsStatistics = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : false,
 	OPTIONS : new Array("Supporterstats", "Transfers"),
-
+	
     init : function() {
         Foxtrick.registerPageHandler( 'all', this);
+		
+		var num_shown=0;
+		if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) ++num_shown;
+        if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) ++num_shown;
+        if (num_shown==0) {
+			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_one.css");
+			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_two.css");
+		}
+        else if (num_shown==1) {
+			Foxtrick.load_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_one.css");
+			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_two.css");
+		}
+        else if (num_shown==2) {
+			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_one.css");
+			Foxtrick.load_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_two.css");
+		}
+        
     },
 
 	change : function( page, doc ) {
@@ -33,7 +50,7 @@ var FoxtrickShortcutsStatistics = {
                     var link = doc.createElement('a');                
                     link.id = 'ft_shortcutsstatistics';
                     link.href = "../../World/Stats/";
-                    link.setAttribute("style", "padding:3px 0px 0px 5px;");
+                    link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSuppStats");
@@ -42,7 +59,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                     link.appendChild(img1);
-                    targetNode.insertBefore(link, targetNode.firstChild);
+                    targetNode.appendChild(link);
 					++num_added;
                 }
                 
@@ -50,7 +67,7 @@ var FoxtrickShortcutsStatistics = {
                     var link = doc.createElement('a');                
                     link.id = 'ft_shortcutsstatistics';
                     link.href = "../../Club/Transfers/";
-                    link.setAttribute("style", "padding:3px 0px 0px 5px;");
+                    link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftMyTransfers");
@@ -59,7 +76,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
 
                     link.appendChild(img1);
-                    targetNode.insertBefore(link, targetNode.firstChild);
+                    targetNode.appendChild(link);
 					++num_added;
                 }
 				if (!Foxtrick.isStandardLayout ( doc )) {	
