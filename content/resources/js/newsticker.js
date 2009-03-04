@@ -1,5 +1,4 @@
 var ticktimer;
-var last_num_message;
 InitFoxtrickNews();
 
 function InitFoxtrickNews() {
@@ -28,13 +27,8 @@ function FoxtrickCheckNews() {
     }
     var message = document.getElementById('menu').getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 	if (message) { 
-		var num_message = message.innerHTML.replace(/\(|\)/g,'');
-		if (num_message>last_num_message) {
-			var objEvent = document.createEvent("Events");
-            objEvent.initEvent("FoxtrickMailEvent", true, false);
-            document.getElementById('menu').dispatchEvent(objEvent);
- 			last_num_message=num_message;			
-		}
+		var objEvent = document.createEvent("Events");
+        objEvent.initEvent("FoxtrickMailEvent", true, false);
+        document.getElementById('menu').dispatchEvent(objEvent);
 	}
-	else last_num_message=0;
 }

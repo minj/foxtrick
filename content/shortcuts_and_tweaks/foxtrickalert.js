@@ -25,7 +25,7 @@ var FoxtrickAlert = {
     run : function( doc ) {
     	try { 
 			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
-			FoxtrickAlert.ALERT_RUNNING=false;
+			FoxtrickAlert.ALERT_RUNNING = false;
 			FoxtrickAlert.foxtrick_showAlert(doc.defaultView, false);
         
 	
@@ -45,7 +45,6 @@ var FoxtrickAlert = {
 	
     showMailAlert : function(evt) {
    	try { 		
-		var window = evt.originalTarget.ownerDocument.defaultView;
 		var message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
@@ -58,17 +57,16 @@ var FoxtrickAlert = {
 						if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 							FoxtrickAlert.foxtrick_showAlertGrowl(message);
 						}											
-						FoxtrickAlert.last_num_message = num_message;
-				}
+					}	
+				FoxtrickAlert.last_num_message = num_message;
 			}
-		FoxtrickAlert.foxtrick_showAlert(window,false);
+		FoxtrickAlert.foxtrick_showAlert(false);
 	} catch (e) {dump ('showMailAlert: '+e+'\n');}
 	},
 	
     showAlert : function(evt)
     {   try {
-        var window  = evt.originalTarget.ownerDocument.defaultView;
-		var tickerdiv=evt.originalTarget;
+        var tickerdiv=evt.originalTarget;
         tickerdiv=tickerdiv.getElementsByTagName('div');
             var message=null;
             var elemText = new Array();
@@ -104,7 +102,7 @@ var FoxtrickAlert = {
         } catch(e) { dump('error showalert '+e); }
     },
 
-    foxtrick_showAlert: function(window, from_timer) { 
+    foxtrick_showAlert: function( from_timer) { 
      try{ 
 	    var window = FoxtrickAlert.foxtrick_showAlert.window;
 		dump (' -- foxtrick_showAlert --\n');
@@ -132,7 +130,7 @@ var FoxtrickAlert = {
                     }
                 };
                 alertsService.showAlertNotification(img, title, text, clickable, "", listener);
-				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,window,true);
+				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,true);
 				
             } catch (e) { 
                 // fix for when alerts-service is not available (e.g. SUSE)
@@ -141,8 +139,8 @@ var FoxtrickAlert = {
                     .openWindow(null, "chrome://global/content/alerts/alert.xul",
                                 "_blank", "chrome,titlebar=no,popup=yes", null);
                 alertWin.arguments = [img, title, text, false, ""];
-                alertWin.setTimeout( function(){alertWin.close();}, 5000 );
-				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,window,true);			
+                window.setTimeout( function(){alertWin.close();}, 5000 );
+				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,8000,true);			
             }
         } catch (e) { 
             dump('foxtrick_showAlert'+e);
