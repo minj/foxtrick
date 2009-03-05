@@ -1,4 +1,5 @@
 /* New Mail by htbaumanns */
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 div.subMenuBox>div.boxBody>ul>li>span,
 div#folders.sidebarBox>div.boxBody>p>span,
@@ -10,7 +11,8 @@ div#ctl00_pnlSubMenu.subMenu>div.subMenuBox>ul>li>span
 	font-weight:bold !important;
 }
 
-
 img.scNewMail {
 	background: url('chrome://foxtrick/content/resources/linkicons/new_mail.png') !important;
+}
+
 }

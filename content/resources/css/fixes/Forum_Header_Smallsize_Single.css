@@ -1,10 +1,9 @@
-#hattrick  .cfHeader a[class="flag inner"] img ,
-#hattrickNoSupporter  .cfHeader a[class="flag inner"] img 
+ @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+.cfHeader a[class="flag inner"] img 
 { border: 0px solid #DDDDDD !important; }
 
-
-#hattrick .cfHeader, #hattrick .cfHeader img, #hattrick  .cfHeader a, #hattrick .cfHeader  .float_right ,
-#hattrickNoSupporter  .cfHeader, #hattrickNoSupporter .cfHeader img, #hattrickNoSupporter .cfHeader a, #hattrickNoSupporter  .cfHeader .float_right 
+.cfHeader, .cfHeader img, .cfHeader a,  .cfHeader .float_right 
 {
     padding-left:0px;
     padding-right:0px;
@@ -13,3 +12,4 @@
 	line-height: 12px !important;
 }
  
+}

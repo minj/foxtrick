@@ -1,5 +1,9 @@
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
 .cfHeader {
     height:auto;
     min-height:18px;
     overflow:hidden;
+}
+
 }

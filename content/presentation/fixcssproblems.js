@@ -9,14 +9,31 @@ FoxtrickFixcssProblems = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : false,
     
-    OPTIONS : {},
-    
-    init : function() {
+    OPTIONS :  new Array( 	        "Forum_FoxLink_Headers",
+                                    "Club_Menu_Teamnames",
+                                    "Page_Minimum_Height",
+                                    "Forum_Header_Smallsize",
+                                    "MatchOrder_Lineheight",
+									"RTL_Fixes",
+									"ForumScrollBarFix"
+				),
+				
+    OPTIONS_CSS: new Array (
+				"chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
+				"chrome://foxtrick/content/resources/css/fixes/Club_Menu_Teamnames.css",
+				"chrome://foxtrick/content/resources/css/fixes/Page_Minimum_Height.css",
+				"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css",
+				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
+				"chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
+				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css"
+				),
+				
+	init : function() {
         Foxtrick.registerPageHandler( 'all' , this );
-        this.initOptions(); 
     },
 
-    run : function(page, doc) {
+									
+    run : function(page, doc) { return;
         
         // standard | simpe | all | alternate
         var LAYOUTSWITCH = new Array (
@@ -57,19 +74,5 @@ FoxtrickFixcssProblems = {
 	
 	change : function( page, doc ) {
 
-	},
-        
-    initOptions : function() {
-        // Name of css file
-		this.OPTIONS = new Array( 
-                                   // "Forum_Hover_Links",
-                                   // "Forum_Post_Header",
-                                    "Forum_FoxLink_Headers",
-                                    "Club_Menu_Teamnames",
-                                    "Page_Minimum_Height",
-                                    "Forum_Header_Smallsize",
-                                    "MatchOrder_Lineheight",
-									"RTL_Fixes"
-								);
-	}        
+	}     
 };

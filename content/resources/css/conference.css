@@ -1,3 +1,5 @@
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
 div.foxtrickLeaveConf {
 	cursor: pointer;
 	width: 14px;
@@ -14,4 +16,6 @@ div.foxtrickLeaveConf:hover {
 
 .HT_thread {
     background: #FF7A7A;
+}
+
 }

@@ -1,2 +1,5 @@
-#hattrick div#shortcuts {width: 234px;}
-#hattrickNoSupporter div#shortcuts {width: 130px;}
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+div#shortcuts {width: 130px;}
+
+}

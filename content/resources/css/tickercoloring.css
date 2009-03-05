@@ -1,4 +1,5 @@
 /* Ticker colors by htbaumanns*/
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 #ticker a[href="/MyHattrick/"] {color:#277F31; background-color:#ACEFB3;}
 #ticker a[href*="teamId"] {color:#5F2A00; background-color:#E7CBB4;}
@@ -8,3 +9,4 @@
 #ticker a[href*="/Inbox/"] {color:#000; background-color:#FFF9B7;}
 #ticker a {margin:2px;}
 #ticker a:hover {color:#000 !important; background-color: transparent !important;}
+}

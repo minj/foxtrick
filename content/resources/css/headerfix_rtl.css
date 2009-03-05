@@ -1,8 +1,8 @@
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 /* HeaderFix by Catalyst2950 */
 
 /* Fix the header on screen */
-#hattrick #header,
-#hattrickNoSupporter #header  {
+#header  {
 position: fixed !important;
 top: 0px; 
 margin-left: -11px;
@@ -19,27 +19,23 @@ border-width:  0 1px 0 1px;
 
 
 /* compensate for fixed header, move menu from the edge */
-#hattrick #menu,
-#hattrickNoSupporter #menu {
+#menu {
 width: 765px !important;
 margin-left:10px !important;
 }
 
 /* add whitespace below header */
-#hattrick #menu,
-#hattrickNoSupporter #menu {
+#menu {
 margin-bottom: 6px !important;
 }
 
 /* compensate for fixed header */
-#hattrick #content,
-#hattrickNoSupporter #content {
+#content {
 padding-top: 100px !important;
 }
 
 /* fix left submenu */
-#hattrick #content .subMenu,
-#hattrickNoSupporter #content .subMenu {
+#content .subMenu {
 position: fixed;
 /* getting borders right if menu overflows content */
 background: white;
@@ -51,19 +47,18 @@ border-width:  0 1px 0 0 !important;
 }
 
 /* compensate for fixed left submenu */
-#hattrick #content #mainWrapper,
-#hattrickNoSupporter #content #mainWrapper {
+#content #mainWrapper {
 margin-right: 135px !important;
 min-height: 630px !important; /* temporary height hack before sticky footer */
 }
 
-#hattrick  div#shortcuts,
-#hattrickNoSupporter  div#shortcuts {
+div#shortcuts {
 padding-right: 10px !important;
 }
 
 /* fix for forumbookmark z-index 99999 */
-#hattrick .cfWrapper .bookmarkMessage,
-#hattrickNoSupporter .cfWrapper .bookmarkMessage {
+.cfWrapper .bookmarkMessage {
 	z-index: 9 !important;
+}
+
 }

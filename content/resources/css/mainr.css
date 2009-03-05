@@ -2,9 +2,7 @@
 
 @namespace url(http://www.w3.org/1999/xhtml);
 
-@-moz-document domain("hattrick.org") {
-
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 body
 {

@@ -1,3 +1,6 @@
-div.coachInfo, div.playerInfo {
-	float:right;
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+div.coachInfo, div.playerInfo,
+{	float:right; }
+
 }
