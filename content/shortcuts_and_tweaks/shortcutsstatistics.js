@@ -10,26 +10,25 @@ var FoxtrickShortcutsStatistics = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : false,
 	OPTIONS : new Array("Supporterstats", "Transfers"),
+	CSS:"",
 	
     init : function() {
         Foxtrick.registerPageHandler( 'all', this);
+		Foxtrick.unload_css_permanent ( this.CSS );
 		
-	/*	var num_shown=0;
+		var num_shown=0;
 		if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) ++num_shown;
         if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) ++num_shown;
         if (num_shown==0) {
-			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_one.css");
-			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_two.css");
+			this.CSS="";
 		}
         else if (num_shown==1) {
-			Foxtrick.load_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_one.css");
-			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_two.css");
+			this.CSS="chrome://foxtrick/content/resources/css/shortcuts_one.css";
 		}
         else if (num_shown==2) {
-			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_one.css");
-			Foxtrick.load_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_two.css");
+			this.CSS="chrome://foxtrick/content/resources/css/shortcuts_two.css";
 		}
-      */  
+        
     },
 
 	change : function( page, doc ) {
@@ -44,7 +43,7 @@ var FoxtrickShortcutsStatistics = {
 
         var shortcuts = doc.getElementById ( 'shortcuts' );
 		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div')[0];  // =scContainer
-        if (targetNode) {
+		if (targetNode) {
             try {
 				var num_added=0;
                 if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) {
@@ -80,8 +79,6 @@ var FoxtrickShortcutsStatistics = {
                     targetNode.appendChild(link);
 					++num_added;
                 }
-				shortcuts.style.width += 26*num_added;
-				targetNode.style.width += 26*num_added;
 				
 				if (!Foxtrick.isStandardLayout ( doc )) {	
 					var head = doc.getElementsByTagName("head")[0];
