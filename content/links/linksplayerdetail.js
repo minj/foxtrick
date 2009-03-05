@@ -25,6 +25,7 @@ var FoxtrickLinksPlayerDetail = {
 		
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
+		var added=0;
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
@@ -155,14 +156,26 @@ var FoxtrickLinksPlayerDetail = {
 								links[l][k].link.className ="inner"
 								ownBoxBody.appendChild(doc.createTextNode(" "));
 								ownBoxBody.appendChild(links[l][k].link);
+								++added;
 							}
 						}
 					}
-						
-					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 				}
 
-				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
+		if (Foxtrick.isModuleEnabled(FoxtrickLinksTracker)) {		
+			var links2 = getLinks("trackerplayerlink", params, doc,this); 
+			if (links2.length > 0) {
+				for (var k = 0; k < links2.length; k++) {
+					links2[k].link.className ="inner";
+					ownBoxBody.appendChild(doc.createTextNode(" "));
+					ownBoxBody.appendChild(links2[k].link);
+					++added;
+				}					
+			}	
+		}
+		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+		
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
 						"teamid": teamid, "playerid": playerid, "nationality": nationality,
 						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
@@ -182,4 +195,32 @@ var FoxtrickLinksPlayerDetail = {
 			this.run( page, doc );
 		}
 	},
+};
+
+
+
+
+/**
+ * linkstracker.js
+ * Foxtrick add links to national pages
+ * @author convinced
+ */
+
+////////////////////////////////////////////////////////////////////////////////
+var FoxtrickLinksTracker = {
+	
+    MODULE_NAME : "LinksTracker",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	DEFAULT_ENABLED : true,
+	OPTIONS : {}, 
+
+    init : function() {
+ 		//var linktypes = new Array("trackernationalteamlink","trackerplayerlink");
+		//Foxtrick.initOptionsLinksArray(this,linktypes);
+		Foxtrick.initOptionsLinks(this,"trackerplayerlink");    
+ 	 },
+
+    run : function( page, doc ) {
+	},
+	
 };

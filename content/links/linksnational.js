@@ -36,6 +36,7 @@ var FoxtrickLinksNational = {
 			
         var links = getLinks("nationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);  
         
+		var added=0;
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -48,11 +49,25 @@ var FoxtrickLinksNational = {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(doc.createTextNode(" "));
 				ownBoxBody.appendChild(links[k].link);
+				++added;
 			}
-						
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+					
 		}	
-			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID } );	   
+		if (Foxtrick.isModuleEnabled(FoxtrickLinksTracker)) { 			
+			var links2 = getLinks("trackerplayerlink", { "nationality": countryid}, doc, this);  
+   			if (links2.length > 0) {
+				for (var k = 0; k < links2.length; k++) {
+					links2[k].link.className ="inner";
+					ownBoxBody.appendChild(doc.createTextNode(" "));
+					ownBoxBody.appendChild(links2[k].link);
+					++added;
+				}					
+			}	
+		}
+		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+		
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID } );	   
+		
 		}catch(e){dump("linksnational->"+e+'\n');}
     },
 	
