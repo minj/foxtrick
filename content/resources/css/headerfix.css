@@ -1,7 +1,11 @@
 /* HeaderFix by Catalyst2950 */
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("hattrick.org") {
 
 /* Fix the header on screen */
-#header {
+#hattrick #header,
+#hattrickNoSupporter #header {
 position: fixed !important;
 top: 0px; 
 margin-left: -11px;
@@ -62,4 +66,6 @@ padding-right: 10px;
 /* fix for forumbookmark z-index 99999 */
 .cfWrapper .bookmarkMessage {
 	z-index: 9 !important;
+}
+
 }

@@ -46,13 +46,21 @@ var FoxtrickForumAlterHeaderLine = {
     MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : false,
-	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName","SmallHeaderFont","ShortPostId","ReplaceSupporterStar"),
-
+	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName",
+						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar"),
+	OPTIONS_CSS: new Array ("chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css",
+							"",
+							"",
+							"",
+							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css",
+							"",
+							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_RemoveSupporterStar.css"),
+							
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickForumAlterHeaderLine );
+                                          FoxtrickForumAlterHeaderLine );										  			
     },
-
+	
     run : function( page, doc ) {
 	},
 	

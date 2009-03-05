@@ -31,35 +31,37 @@ var FoxtrickMain = {
 	
     init : function() {
         var i;
-
+		
         // init core modules
         for ( i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
         }
-		
+						
 		// create handler arrays for each recognized page
 		for ( i in Foxtrick.ht_pages ) {
 			Foxtrick.run_on_page[i] = new Array();
 		}
-
+			
 		// init all modules
 		for ( i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
 			// if module has an init() function and is enabled
 			if ( module.MODULE_NAME
-                   && Foxtrick.isModuleEnabled( module )
-                   && module.init )
+                   && Foxtrick.isModuleEnabled( module ) )
 			{
-				try {
-					module.init();
-					dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
-				} catch (e) {
-					dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
-					Components.utils.reportError(e);
+				if (module.init)
+				{
+					try {
+						module.init();
+						dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
+					} catch (e) {
+						dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
+						Components.utils.reportError(e);
+					}
 				}
-			}
-			else {
-				dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
+				else {
+					dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
+				}
 			}
 		}
 
@@ -156,7 +158,7 @@ var FoxtrickMain = {
 		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
-		    dump(FoxtrickMain.new_start+' '+FoxtrickMain.isStandard+' '+FoxtrickMain.isRTL+'\n');
+		    			
 			// check newstart or design change and reload modul css if needed
 			if (FoxtrickMain.new_start) {
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
@@ -207,7 +209,20 @@ var FoxtrickMain = {
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
 			}
 		}
-	}catch(e){dump('Foxtrick.run: '+e+'\n');}
+		else { 
+			// potenial disable cleanup
+			var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
+			if( FoxtrickMain.new_start && ((( FoxtrickPrefs.getBool("disableOnStage") &&
+				Foxtrick.getHref( doc).search( stage_regexp ) != -1))
+				|| ( FoxtrickPrefs.getBool("disableTemporary"))) ) { 			
+				
+				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
+				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc); 
+				FoxtrickMain.new_start = false;				
+				Foxtrick.unload_module_css();
+			}
+		}
+	} catch(e) { dump('Foxtrick.run: '+e+'\n'); }
     },
 	
 	// function run on every ht page change
@@ -459,7 +474,7 @@ Foxtrick.playSound = function(url) {
 }
 
 
-Foxtrick.reload_module_css = function(doc) {  	dump('reload_module_css\n');
+Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
 			// check permanant css
 			var isStandard = Foxtrick.isStandardLayout(doc);
 			var isRTL = Foxtrick.isRTLLayout(doc); 
@@ -467,33 +482,70 @@ Foxtrick.reload_module_css = function(doc) {  	dump('reload_module_css\n');
 				var module = Foxtrick.modules[i];
 				// if module has an css) function and is enabled
 				if ( module.MODULE_NAME ) {
-					if ( module.CSS_SIMPLE ) {
+					if ( module.CSS_SIMPLE && module.CSS_SIMPLE!="") {
 						if ( Foxtrick.isModuleEnabled( module ) && !isStandard)  { 
-							if (!isRTL || !module.CSS_SIMPLE_RTL) {Foxtrick.load_css_permanent ( module.CSS_SIMPLE ); Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL );dump('load '+module.CSS_SIMPLE+'\n');}	 
-							else {Foxtrick.load_css_permanent ( module.CSS_SIMPLE_RTL ) ; Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );dump('load '+module.CSS_SIMPLE_RTL+'\n');}
-													
+							if (!isRTL || !module.CSS_SIMPLE_RTL) {
+								Foxtrick.load_css_permanent ( module.CSS_SIMPLE ); 
+								if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL );
+							}	 
+							else {
+								Foxtrick.load_css_permanent ( module.CSS_SIMPLE_RTL ) ; 
+								Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );
+								}													
 						}
 						else {
 							Foxtrick.unload_css_permanent ( module.CSS_SIMPLE ) ;
 							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
-							dump('unload '+module.CSS_SIMPLE+'\n');
 						}							
 					}
-					if ( module.CSS ) { 
+					if ( module.CSS && module.CSS!="") { 
 						if ( Foxtrick.isModuleEnabled( module ) && ( !module.CSS_SIMPLE || isStandard ) ) {
-							if (!isRTL || !module.CSS_RTL){ Foxtrick.load_css_permanent ( module.CSS) ; Foxtrick.unload_css_permanent ( module.CSS_RTL); }
-							else {Foxtrick.load_css_permanent ( module.CSS_RTL); Foxtrick.unload_css_permanent ( module.CSS); }
-							dump('load '+module.CSS+'\n');
+							if (!isRTL || !module.CSS_RTL){ 
+								Foxtrick.load_css_permanent ( module.CSS) ; 
+								if (module.CSS_RTL) Foxtrick.unload_css_permanent ( module.CSS_RTL); 
+							}
+							else {
+								Foxtrick.load_css_permanent ( module.CSS_RTL); 
+								Foxtrick.unload_css_permanent ( module.CSS); 
+							}							
 						}
 						else {
 							Foxtrick.unload_css_permanent ( module.CSS) ;  
-							if (module.CSS_RTL) Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
-							dump('unload '+module.CSS+'\n');
+							if (module.CSS_RTL&& module.CSS!="") Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
 						}             
+					}
+					if (module.OPTIONS_CSS) { dump(module.MODULE_NAME+' '+module.OPTIONS_CSS.length+'\n');
+						for (var k=0; k<module.OPTIONS_CSS.length;++k ) {
+							if (module.OPTIONS_CSS[k] != "")
+							{ 	if (Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
+									Foxtrick.load_css_permanent ( module.OPTIONS_CSS[k]) ;  
+								else Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k]) ; 	
+							}
+						}
 					}
 				}
 			}
 }				
+
+Foxtrick.unload_module_css = function() { dump('unload permanents css\n');
+			for ( i in Foxtrick.modules ) {
+				var module = Foxtrick.modules[i];
+				if ( module.MODULE_NAME ) {
+					if ( module.CSS_SIMPLE ) 
+						Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );
+					if (module.CSS_SIMPLE_RTL) 
+						Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
+					if ( module.CSS )  
+						 Foxtrick.unload_css_permanent ( module.CSS); 
+					if (module.CSS_RTL) 
+						Foxtrick.unload_css_permanent ( module.CSS_RTL);
+					if (module.OPTIONS_CSS) 
+						for (var k=0; k<module.OPTIONS_CSS.length; ++k ) 
+							if (module.OPTIONS_CSS[k] != "") Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k] ) ; 							
+				}
+			}
+}				
+
 
 Foxtrick.reload_css_permanent = function( css ) {  	
 	Foxtrick.unload_css_permanent ( css ) ; 	
@@ -501,7 +553,7 @@ Foxtrick.reload_css_permanent = function( css ) {
 }
 
 Foxtrick.unload_css_permanent = function( css ) {  	
-        try {
+        try { dump('unload '+css+'\n');
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
@@ -516,7 +568,7 @@ Foxtrick.unload_css_permanent = function( css ) {
 }
             
 Foxtrick.load_css_permanent = function( css) {  	
-		try {
+		try { dump('load '+css+'\n');
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);

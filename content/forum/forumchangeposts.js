@@ -13,7 +13,7 @@ var FoxtrickForumChangePosts = {
 	
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
-			FoxtrickForumChangePosts );
+			FoxtrickForumChangePosts );		
 	},
 	
 	run : function( page, doc ) { 
@@ -66,20 +66,7 @@ var FoxtrickForumChangePosts = {
 		// part of alter header
 		var trunclength = 10;
 		if (isStandardLayout) trunclength = 14;
-		if (do_small_header_font) {
-			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css";
-			Foxtrick.addStyleSheet ( doc, css ); 
-		} 
-		else if (do_single_header) 
-		{
-			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css";
-			Foxtrick.addStyleSheet ( doc, css ); 
-		} 
-		if (do_replace_supporter_star) 
-		{
-			var css= "chrome://foxtrick/content/resources/css/fixes/Forum_Header_RemoveSupporterStar.css";
-			Foxtrick.addStyleSheet ( doc, css ); 
-		} 
+		
 		
 		var doubleHeaderStyle = 'height:30px !important; '; 
 		var alt_supporter=doc.createElement('a');
@@ -114,7 +101,15 @@ var FoxtrickForumChangePosts = {
 						if (header_right==null)header_right = header_part;
 				}
 				header_right_inner=header_right.getElementsByTagName('div')[0];
-							
+	
+				/* add someting to test removal later			
+				var forumprefs = doc.createElement('a');
+				forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
+				forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
+				forumprefs.setAttribute('class','bookmarkMessage');
+				if (header_right_inner) header_right_inner.appendChild(forumprefs);
+				*/
+				
 				// get post_links, poster_links, poster_id from header
 				var header_left_links = header_left.getElementsByTagName('a');
 				var post_link1 = null;
@@ -353,6 +348,7 @@ var FoxtrickForumChangePosts = {
 					if (bookmark) { 
 						bookmark = bookmark.parentNode.removeChild(bookmark);
 						header_right.insertBefore(bookmark,header_right_inner);
+						header_right.removeChild(header_right_inner);
 					 }
 				}
 				
@@ -384,9 +380,9 @@ var FoxtrickForumChangePosts = {
 								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
 							}
 						}						
-						if (header.offsetTop-header_right.offsetTop < -3 ) header.setAttribute('style',doubleHeaderStyle);												
+						if (header.offsetTop-header_right.offsetTop < -3 ) header.setAttribute.style+=doubleHeaderStyle;												
 					  }
-					  else header.setAttribute('style',doubleHeaderStyle); 
+					  else header.setAttribute.style+=doubleHeaderStyle; 
 					}
 				  }
 								

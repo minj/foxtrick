@@ -7,5 +7,4 @@ div[class="cfHeader doubleLine"] b:after {content:" " !important;}
 
 div[class="cfHeader doubleLine"] {height:14px!important;}
 div[class="cfHeader singleLine"] {height:14px!important;}
-div[class="cfHeader doubleLine"] br:after {content:" " !important;}
 div[class="cfHeader doubleLine"] br {display:none !important; padding: 5px;}

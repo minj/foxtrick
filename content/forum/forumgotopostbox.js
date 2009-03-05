@@ -9,7 +9,8 @@ var FoxtrickGoToPostBox = {
     MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : false,
-
+	CSS: "chrome://foxtrick/content/resources/css/gotopostbox.css",
+	
     init : function() {
             Foxtrick.registerPageHandler( 'forumViewThread',
                                           FoxtrickGoToPostBox );
@@ -33,10 +34,10 @@ var FoxtrickGoToPostBox = {
 			var HTGotoInput2 = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_txtMessageNumber');
 			var HTGotoButton2 = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_btnViewMessage');
 			
-			if (HTGotoInput) HTGotoInput.parentNode.removeChild(HTGotoInput);
-			if (HTGotoButton) HTGotoButton.parentNode.removeChild(HTGotoButton);
-			if (HTGotoInput2) HTGotoInput2.parentNode.removeChild(HTGotoInput2);
-			if (HTGotoButton2) HTGotoButton2.parentNode.removeChild(HTGotoButton2);
+			//if (HTGotoInput) HTGotoInput.parentNode.removeChild(HTGotoInput);
+			//if (HTGotoButton) HTGotoButton.parentNode.removeChild(HTGotoButton);
+			//if (HTGotoInput2) HTGotoInput2.parentNode.removeChild(HTGotoInput2);
+			//if (HTGotoButton2) HTGotoButton2.parentNode.removeChild(HTGotoButton2);
 			
 			
             var selectBoxTop = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
