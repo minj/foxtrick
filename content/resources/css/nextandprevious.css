@@ -1,5 +1,9 @@
-img.disabledFirst {display:none;}
-img.disabledPrev {display:none;}
-img.disabledNext {display:none;}
-img.disabledLast {display:none;}
+#hattrick img.disabledFirst ,
+#hattrick img.disabledPrev ,
+#hattrick  img.disabledNext ,
+#hattrick  img.disabledLast,
+#hattrickNoSupporter  img.disabledFirst ,
+#hattrickNoSupporter  img.disabledPrev ,
+#hattrickNoSupporter  img.disabledNext ,
+#hattrickNoSupporter  img.disabledLast {display:none;}
 

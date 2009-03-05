@@ -1,7 +1,8 @@
 /* HeaderFix by Catalyst2950 */
 
 /* Fix the header on screen */
-#header {
+#hattrick #header,
+#hattrickNoSupporter #header  {
 position: fixed !important;
 top: 0px; 
 margin-left: -11px;
@@ -56,11 +57,13 @@ margin-right: 135px !important;
 min-height: 630px !important; /* temporary height hack before sticky footer */
 }
 
-div#shortcuts {
+#hattrick  div#shortcuts,
+#hattrickNoSupporter  div#shortcuts {
 padding-right: 10px !important;
 }
 
 /* fix for forumbookmark z-index 99999 */
-.cfWrapper .bookmarkMessage {
+#hattrick .cfWrapper .bookmarkMessage,
+#hattrickNoSupporter .cfWrapper .bookmarkMessage {
 	z-index: 9 !important;
 }

@@ -1,9 +1,11 @@
-.cfHeader a[class="flag inner"] img { 
-	border: 0px solid #DDDDDD !important;
-}
+#hattrick  .cfHeader a[class="flag inner"] img ,
+#hattrickNoSupporter  .cfHeader a[class="flag inner"] img 
+{ border: 0px solid #DDDDDD !important; }
 
 
-.cfHeader, .cfHeader img, .cfHeader a, .cfHeader .float_right {
+#hattrick .cfHeader, #hattrick .cfHeader img, #hattrick  .cfHeader a, #hattrick .cfHeader  .float_right ,
+#hattrickNoSupporter  .cfHeader, #hattrickNoSupporter .cfHeader img, #hattrickNoSupporter .cfHeader a, #hattrickNoSupporter  .cfHeader .float_right 
+{
     padding-left:0px;
     padding-right:0px;
     font-size:10px;
