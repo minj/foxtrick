@@ -80,8 +80,8 @@ var FoxtrickShortcutsStatistics = {
                     targetNode.appendChild(link);
 					++num_added;
                 }
-				shortcuts.style.width += 27*num_added;
-				target.style.width += 27*num_added;
+				shortcuts.style.width += 29*num_added;
+				target.style.width += 29*num_added;
 				
 				if (!Foxtrick.isStandardLayout ( doc )) {	
 					var head = doc.getElementsByTagName("head")[0];
