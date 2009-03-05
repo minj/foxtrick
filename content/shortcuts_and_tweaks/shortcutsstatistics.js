@@ -14,7 +14,7 @@ var FoxtrickShortcutsStatistics = {
     init : function() {
         Foxtrick.registerPageHandler( 'all', this);
 		
-		var num_shown=0;
+	/*	var num_shown=0;
 		if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) ++num_shown;
         if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) ++num_shown;
         if (num_shown==0) {
@@ -29,7 +29,7 @@ var FoxtrickShortcutsStatistics = {
 			Foxtrick.unload_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_one.css");
 			Foxtrick.load_css_permanent ("chrome://foxtrick/content/resources/css/shortcuts_two.css");
 		}
-        
+      */  
     },
 
 	change : function( page, doc ) {
@@ -42,7 +42,7 @@ var FoxtrickShortcutsStatistics = {
         var elm = doc.getElementById( 'ft_shortcutsstatistics' );
         if (elm != null) return;
 
-        var targetNode = doc.getElementById ( 'shortcuts' );
+        var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div')[0];
         if (targetNode) {
             try {
 				var num_added=0;
@@ -50,7 +50,7 @@ var FoxtrickShortcutsStatistics = {
                     var link = doc.createElement('a');                
                     link.id = 'ft_shortcutsstatistics';
                     link.href = "../../World/Stats/";
-                    link.setAttribute("style", "padding:3px 0px 0px 4px;");
+                    //link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSuppStats");
@@ -67,7 +67,7 @@ var FoxtrickShortcutsStatistics = {
                     var link = doc.createElement('a');                
                     link.id = 'ft_shortcutsstatistics';
                     link.href = "../../Club/Transfers/";
-                    link.setAttribute("style", "padding:3px 0px 0px 4px;");
+                    //link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftMyTransfers");
@@ -85,7 +85,7 @@ var FoxtrickShortcutsStatistics = {
 					style.setAttribute("type", "text/css");
 					var zaw = '#ticker {left: 180px !important;} div#ticker div { width:'+(353-num_added*22) +'px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 					style.appendChild(doc.createTextNode(zaw));
-					head.appendChild(style);
+					//head.appendChild(style);
 				}				
             }
             catch(e) {
