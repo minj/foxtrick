@@ -42,7 +42,8 @@ var FoxtrickShortcutsStatistics = {
         var elm = doc.getElementById( 'ft_shortcutsstatistics' );
         if (elm != null) return;
 
-        var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div')[0];
+        var shortcuts = doc.getElementById ( 'shortcuts' );
+		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div')[0];  // =scContainer
         if (targetNode) {
             try {
 				var num_added=0;
@@ -79,6 +80,9 @@ var FoxtrickShortcutsStatistics = {
                     targetNode.appendChild(link);
 					++num_added;
                 }
+				shortcuts.style.width += 26*num_added;
+				target.style.width += 26*num_added;
+				
 				if (!Foxtrick.isStandardLayout ( doc )) {	
 					var head = doc.getElementsByTagName("head")[0];
 					var style = doc.createElement("style");
