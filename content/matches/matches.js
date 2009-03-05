@@ -17,17 +17,7 @@ var Matches = {
 		var sidebar = doc.getElementById('sidebar');
 		if (sidebar.childNodes.length > 7) { //match is ended
 			//finding the right table
-			var divs;
-			if (doc.getElementById('mainBody').childNodes.length>3)
-				divs=doc.getElementById('mainBody').childNodes[3].getElementsByTagName('div');
-			else
-				divs=doc.getElementById('mainBody').childNodes[1].getElementsByTagName('div');
-			for (i=0;i<divs.length;i++) {
-				if (divs[i].className=='mainBox') {
-					ratingstable = divs[i].getElementsByTagName('table').item(0);
-					break;
-				}
-			}
+			ratingstable = doc.getElementById('mainBody').getElementsByTagName('table').item(0);
 		}
 		return ratingstable;
 	},
