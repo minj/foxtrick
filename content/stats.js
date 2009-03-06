@@ -1882,6 +1882,24 @@ stats["mozambiquetracker"] = {
 	"nationalityranges" : [[135,135]], 
 };
 
+stats["srbijatracker"] = { 
+  "url" : "http://srbija-nt.awardspace.com/homelist.php",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Serbian U-20/NT DB",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[57,57]] ,
+	"nationalityranges" : [[57,57]], 
+};
+
+
 // global tracker
 stats["u20_nt_tracker"] = { 
   "url" : "http://www.oribi.org/ant_db/index.php",
@@ -1896,10 +1914,10 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,11],[13,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,57],[59,59],
+	"countryidranges" :   [[1,1],[4,4],[7,11],[13,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,56],[59,59],
 						[61,62],[64,74],[76,78],[80,88],[90,100],
 						[103,109],[111,112],[114,121],[124,132],[134,134],[138,139],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,11],[13,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,57],[59,59],
+	"nationalityranges" : [[1,1],[4,4],[7,11],[13,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,56],[59,59],
 						[61,62],[64,74],[76,78],[80,88],[90,100],
 						[103,109],[111,112],[114,121],[124,132],[134,134],[138,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
