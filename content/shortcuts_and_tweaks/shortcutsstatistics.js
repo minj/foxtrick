@@ -80,13 +80,14 @@ var FoxtrickShortcutsStatistics = {
 					++num_added;
                 }
 				
-				if (!Foxtrick.isStandardLayout ( doc )) {	
+				if (!Foxtrick.isStandardLayout ( doc )) 
+				{	
 					var head = doc.getElementsByTagName("head")[0];
 					var style = doc.createElement("style");
-					style.setAttribute("type", "text/css");
-					var zaw = '#ticker {left: 180px !important;} div#ticker div { width:'+(313-num_added*22) +'px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+					style.setAttribute("type", "text/css"); // +(353-num_added*22)+'
+					var zaw = '#ticker {left: 190px !important;} div#ticker div { width:300px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 					style.appendChild(doc.createTextNode(zaw));
-					//head.appendChild(style);
+					head.appendChild(style);
 				}				
             }
             catch(e) {
