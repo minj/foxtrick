@@ -2,6 +2,7 @@
 
 a.forumSettings
 {
-	top: -5px;
+	top: -5px !important;
 }
 
+}
