@@ -9,7 +9,7 @@ var FoxtrickShortcutsStatistics = {
     MODULE_NAME : "shortcutsstatistics",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : false,
-	OPTIONS : new Array("Supporterstats", "Transfers"),
+	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers"),
 	CSS:"",
 	
     init : function() {
@@ -59,7 +59,8 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                     link.appendChild(img1);
-                    targetNode.appendChild(link);
+                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.appendChild(link);
+					else targetNode.insertBefore(link,targetNode.firstChild);
 					++num_added;
                 }
                 
@@ -76,7 +77,8 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
 
                     link.appendChild(img1);
-                    targetNode.appendChild(link);
+                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.appendChild(link);
+					else targetNode.insertBefore(link,targetNode.firstChild);
 					++num_added;
                 }
 				
