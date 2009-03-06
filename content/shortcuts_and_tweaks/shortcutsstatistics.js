@@ -42,6 +42,7 @@ var FoxtrickShortcutsStatistics = {
         if (elm != null) return;
 
         var shortcuts = doc.getElementById ( 'shortcuts' );
+		if (!shortcuts) return;
 		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div')[0];  // =scContainer
 		if (targetNode) {
             try {

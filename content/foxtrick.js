@@ -493,7 +493,7 @@ Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
 								Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );
 								}													
 						}
-						else {
+						else { 
 							Foxtrick.unload_css_permanent ( module.CSS_SIMPLE ) ;
 							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
 						}							
@@ -509,15 +509,15 @@ Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
 								Foxtrick.unload_css_permanent ( module.CSS); 
 							}							
 						}
-						else {
+						else {  
 							Foxtrick.unload_css_permanent ( module.CSS) ;  
 							if (module.CSS_RTL&& module.CSS!="") Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
 						}             
 					}
-					if (module.OPTIONS_CSS) { dump(module.MODULE_NAME+' '+module.OPTIONS_CSS.length+'\n');
+					if (module.OPTIONS_CSS) { 
 						for (var k=0; k<module.OPTIONS_CSS.length;++k ) {
 							if (module.OPTIONS_CSS[k] != "")
-							{ 	if (Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
+							{ 	if ( Foxtrick.isModuleEnabled( module ) && Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
 									Foxtrick.load_css_permanent ( module.OPTIONS_CSS[k]) ;  
 								else Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k]) ; 	
 							}
