@@ -64,7 +64,8 @@ var FoxtrickMain = {
 				}
 			}
 		}
-
+		if(Foxtrick && Foxtrick.statusbarDeactivate) Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));						
+		
 		// reload skins
 		FoxtrickSkinPlugin.load( null);
 		FoxtrickMain.new_start = true;		
@@ -85,12 +86,12 @@ var FoxtrickMain = {
 		statusbarDeactivate.setAttribute( "label", Foxtrickl10n.getString(
 			"foxtrick.prefs.disableTemporaryLabel") );
 		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+		Foxtrick.statusbarDeactivate=statusbarDeactivate;
 		
 		var popupMenu = document.getElementById( "foxtrick_popup_menu");
 		popupMenu.setAttribute( "label", "Foxtrick-"+Foxtrickl10n.getString( "foxtrick.CopyPostID") );
 		popupMenu.setAttribute( "hidden", true); 
 		Foxtrick.popupMenu = popupMenu;
-		Foxtrick.popup = document.getElementById( "contentAreaContextMenu");
 		
 		
 		var toolsMenu = document.getElementById( "foxtrick-config-menu" );
@@ -151,16 +152,15 @@ var FoxtrickMain = {
 	
     // main entry run on every ht page load
     run : function( doc ) {
-	try {
+	try {  	
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
-		    			
-			// check newstart or design change and reload modul css if needed
-			if (FoxtrickMain.new_start) {
+		    // check newstart or design change and reload modul css if needed
+			if (FoxtrickMain.new_start) { 
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc); 
 				Foxtrick.reload_module_css(doc);

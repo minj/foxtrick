@@ -50,7 +50,7 @@ var FoxtrickForumPreview = {
 		var index =12;
 		if (!target) {target=doc.getElementById("ctl00_CPMain_btnSendNew"); index=6;/*index=5;*/}
 		//button_ok.setAttribute( "tabindex",  index);
-		if (button_ok) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
+		if (button_ok && Foxtrickl10n.isStringAvailableLocal("sendmessage")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
 		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
      	
 		var new_button = doc.createElement( "input" );
