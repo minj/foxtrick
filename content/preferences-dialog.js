@@ -43,7 +43,23 @@ var FoxtrickPreferencesDialog = {
 	initMainPref : function( doc ) {
 		var modules_list = doc.getElementById( "main_list" );
 
-        // language & currency & dateformat & county
+        // prefs at deafult warning
+		if (!FoxtrickPrefs.getBool( "PrefsSavedOnce" )) {
+			var groupbox= doc.createElement("groupbox");
+			groupbox.setAttribute("style","background-color:#FCF6DF !important");
+			var caption= doc.createElement("caption");
+			caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningLabel"));
+			caption.setAttribute("style","background-color:#FCF6DF !important");
+			var vbox= doc.createElement("vbox");
+			var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText"));		
+			vbox.appendChild(desc_box);
+			groupbox.appendChild(caption);
+			groupbox.appendChild(vbox);
+			modules_list.appendChild(groupbox);
+		}
+
+
+		// language & currency & dateformat & county
         var groupbox= doc.createElement("groupbox");
 
         var vbox1= doc.createElement("vbox");
@@ -456,6 +472,9 @@ var FoxtrickPreferencesDialog = {
                 }
         }
 
+		// disable warning
+		FoxtrickPrefs.setBool( "PrefsSavedOnce" ,true);
+		
         //Lang
         FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
 
