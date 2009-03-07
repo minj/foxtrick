@@ -3,7 +3,7 @@
 img.disabledFirst ,
 img.disabledPrev ,
 img.disabledNext ,
-img.disabledLast {display:none;}
+img.disabledLast {visibility:hidden !important;}
 
 }
 
