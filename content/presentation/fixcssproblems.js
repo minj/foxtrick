@@ -24,6 +24,15 @@ FoxtrickFixcssProblems = {
 				"chrome://foxtrick/content/resources/css/fixes/Page_Minimum_Height.css",
 				"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css",
 				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
+				"",
+				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css"
+				),
+	OPTIONS_CSS_RTL: new Array (
+				"chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
+				"chrome://foxtrick/content/resources/css/fixes/Club_Menu_Teamnames.css",
+				"chrome://foxtrick/content/resources/css/fixes/Page_Minimum_Height.css",
+				"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css",
+				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
 				"chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
 				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css"
 				),

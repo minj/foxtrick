@@ -516,10 +516,30 @@ Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
 					}
 					if (module.OPTIONS_CSS) { 
 						for (var k=0; k<module.OPTIONS_CSS.length;++k ) {
-							if (module.OPTIONS_CSS[k] != "")
-							{ 	if ( Foxtrick.isModuleEnabled( module ) && Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
-									Foxtrick.load_css_permanent ( module.OPTIONS_CSS[k]) ;  
-								else Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k]) ; 	
+							if ( Foxtrick.isModuleEnabled( module ) && Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
+							{	if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
+							 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "") 
+											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ; 	
+									Foxtrick.load_css_permanent ( module.OPTIONS_CSS[k] ) ;  
+								}
+								else {
+									if (module.OPTIONS_CSS[k] != "") 
+											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k] ) ; 	
+									if (isRTL) {
+										if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "") 
+											Foxtrick.load_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ; 
+									}
+									else {
+										if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "") 
+											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ; 
+									}
+								}
+							}
+							else {
+								if (module.OPTIONS_CSS[k] != "") 
+										Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k]) ; 	
+								if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")  
+										Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ; 	
 							}
 						}
 					}
@@ -542,6 +562,9 @@ Foxtrick.unload_module_css = function() { dump('unload permanents css\n');
 					if (module.OPTIONS_CSS) 
 						for (var k=0; k<module.OPTIONS_CSS.length; ++k ) 
 							if (module.OPTIONS_CSS[k] != "") Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k] ) ; 							
+					if (module.OPTIONS_CSS_RTL) 
+						for (var k=0; k<module.OPTIONS_CSS_RTL.length; ++k ) 
+							if (module.OPTIONS_CSS_RTL[k] != "") Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ; 							
 				}
 			}
 }				
@@ -553,30 +576,34 @@ Foxtrick.reload_css_permanent = function( css ) {
 }
 
 Foxtrick.unload_css_permanent = function( css ) {  	
-        try { dump('unload '+css+'\n');
+        try { 
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 				var uri = ios.newURI(css, null, null);
             } catch(e) {return;} 
 			// try unload
-			if (sss.sheetRegistered(uri, sss.USER_SHEET)) 
+			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
 					sss.unregisterSheet(uri, sss.USER_SHEET);
+					dump('unload '+css+'\n');
+			}
         } catch(e) {
             dump ('> load_css_permanent ' + e + '\n');
         }
 }
             
 Foxtrick.load_css_permanent = function( css) {  	
-		try { dump('load '+css+'\n');
+		try { 
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 				var uri = ios.newURI(css, null, null);
             } catch(e) {return;} 
 			// load		
-			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) 
-						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);						
+			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
+						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);	
+						dump('load '+css+'\n');
+			}
 		} 
         catch(e) {
             dump ('> load_css_permanent ' + e + '\n');
