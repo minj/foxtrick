@@ -17,5 +17,5 @@ Of course we can and want to reuse the old code, so you can just take old code, 
 
 Localization:
 PLEASE MAKE SURE YOU LOCALIZE YOUR MODULE PROPERLY. Each message string you use in your .js file should be done in the following way:
-1. add a line with that message to locale/en-US/foxtrick.properties (and other locales if you can) under some_name that allows it to be identified easily
+1. add a line with that message to content/foxtrick.properties (and other locales if you can) under some_name that allows it to be identified easily
 2. in place of that message string in .js file use Foxtrickl10n.getString( 'some_name' )
