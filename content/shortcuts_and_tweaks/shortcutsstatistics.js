@@ -84,7 +84,7 @@ var FoxtrickShortcutsStatistics = {
                 }
 				
 				if (!Foxtrick.isStandardLayout ( doc )) 
-				{	
+				{	// here
 					var head = doc.getElementsByTagName("head")[0];
 					var style = doc.createElement("style");
 					style.setAttribute("type", "text/css"); // +(353-num_added*22)+'
