@@ -786,6 +786,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 			// create the sidebarbox
 			var ownSidebarBox = doc.createElement("div");
 			ownSidebarBox.className = "sidebarBox";
+			ownSidebarBox.setAttribute("id", boxId );
 			// create the header
 			var ownHeader = doc.createElement("h2");
 			ownHeader.innerHTML = newBoxHeader;

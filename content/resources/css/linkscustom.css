@@ -40,3 +40,10 @@ div.foxtrickExport:hover {
 	height: 16px;
 	background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png') 50% no-repeat;
 }
+
+
+/* Link dropdown image */
+div.sidebarBoxCollapsed h2 {background: url('chrome://foxtrick/content/resources/img/dropdown.gif') 161px 2px no-repeat;}
+
+/* Link fold image */
+div.sidebarBoxUnfolded  h2 {background: url('chrome://foxtrick/content/resources/img/up.png') 161px 2px no-repeat;}
