@@ -1654,7 +1654,7 @@ stats["canadatracker"] = {
 	"nationalityranges" : [[17,17]], 
 };
 
-stats["suomiracker"] = { 
+stats["suomitracker"] = { 
   "url" : "http://suomi.nattrick.ca",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Suomi U20/NT Tracker",
@@ -1669,6 +1669,59 @@ stats["suomiracker"] = {
                  },
 	"countryidranges" : [[12,12]] ,
 	"nationalityranges" : [[12,12]], 
+};
+
+
+stats["oceaniatracker"] = { 
+  "url" : "http://oceania.nattrick.ca",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Oceania U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[15,15]] ,
+	"nationalityranges" : [[15,15]], 
+};
+
+
+stats["kenyatracker"] = { 
+  "url" : "http://kenya.nattrick.ca",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Kenya U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[95,95]] ,
+	"nationalityranges" : [[95,95]], 
+};
+
+stats["indiatracker"] = { 
+  "url" : "http://india.nattrick.ca",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "India U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[20,20]] ,
+	"nationalityranges" : [[20,20]], 
 };
 
 
@@ -1935,11 +1988,11 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,11],[13,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,54],[56,56],[59,59],
-						[61,62],[64,74],[76,78],[80,88],[90,100],
+	"countryidranges" :   [[1,1],[4,4],[7,11],[13,13],[18,18],[21,23],[25,36],[38,43],[46,51],[53,54],[56,56],[59,59],
+						[61,62],[64,74],[76,78],[80,88],[90,94],[96,100],
 						[103,109],[111,112],[114,121],[124,132],[134,134],[138,139],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,11],[13,13],[15,15],[18,18],[20,23],[25,36],[38,43],[46,51],[53,54],[56,56],[59,59],
-						[61,62],[64,74],[76,78],[80,88],[90,100],
+	"nationalityranges" : [[1,1],[4,4],[7,11],[13,13],[18,18],[21,23],[25,36],[38,43],[46,51],[53,54],[56,56],[59,59],
+						[61,62],[64,74],[76,78],[80,88],[90,94],[96,100],
 						[103,109],[111,112],[114,121],[124,132],[134,134],[138,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
 
