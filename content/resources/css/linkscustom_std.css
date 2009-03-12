@@ -1,12 +1,26 @@
 
 /* Link dropdown image */
-div.sidebarBoxCollapsed h2 {
-background: url('chrome://foxtrick/content/resources/img/link-down.png') 161px 5px no-repeat;
+div.sidebarBoxCollapsed>div.boxLeft>div>h2 {
+background: url('chrome://foxtrick/content/resources/img/link-down.png') 175px 8px no-repeat;
 background-color:#849D84;
+margin-left:1px !important;
+margin-bottom:-5px !important;
+margin-top:1px !important;
+padding:7px 10px;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-topright: 10px;
+color: #fff !important; 
 }
 
 /* Link fold image */
-div.sidebarBoxUnfolded  h2 {
-background: url('chrome://foxtrick/content/resources/img/link-up.png') 161px 4px no-repeat;
+div.sidebarBoxUnfolded>div.boxLeft>div>h2 {
+background: url('chrome://foxtrick/content/resources/img/link-up.png') 175px 7px no-repeat;
 background-color:#849D84;
+margin-left:1px !important;
+margin-bottom:-5px !important;
+margin-top:1px !important;
+padding:7px 10px;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-topright: 10px;
+color: #fff !important; 
 }
