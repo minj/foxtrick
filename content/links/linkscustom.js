@@ -88,7 +88,7 @@ var FoxtrickLinksCustom = {
 			var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 			var ownBoxId = "foxtrick_" + header + "_box";
 			var div=doc.getElementById(ownBoxId).firstChild;	
-			div.setAttribute("class","sidebarBoxCollapsed");
+			div.setAttribute("class","boxHead sidebarBoxCollapsed");
 						
 			// get custon links from pref
 			var keys={};
@@ -134,7 +134,7 @@ var FoxtrickLinksCustom = {
 			var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 			var ownBoxId = "foxtrick_" + header + "_box";
 			var div=doc.getElementById(ownBoxId).firstChild;	
-			div.setAttribute("class","sidebarBoxUnfolded");
+			div.setAttribute("class","boxHead sidebarBoxUnfolded");
 			
 			var divED = doc.createElement ("div");
 			divED.setAttribute("class", "alert");
