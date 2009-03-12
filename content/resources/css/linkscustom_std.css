@@ -1,6 +1,6 @@
 
 /* Link dropdown image */
-div.sidebarBoxCollapsed>div.boxLeft>div>h2 {
+div.sidebarBoxCollapsed>div.boxLeft h2 {
 background: url('chrome://foxtrick/content/resources/img/link-down.png') 175px 8px no-repeat;
 background-color:#849D84;
 margin-left:1px !important;
@@ -13,7 +13,7 @@ color: #fff !important;
 }
 
 /* Link fold image */
-div.sidebarBoxUnfolded>div.boxLeft>div>h2 {
+div.sidebarBoxUnfolded>div.boxLeft h2 {
 background: url('chrome://foxtrick/content/resources/img/link-up.png') 175px 7px no-repeat;
 background-color:#849D84;
 margin-left:1px !important;
