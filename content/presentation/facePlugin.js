@@ -93,7 +93,7 @@ var FoxtrickColouredYouthFaces = {
 	
     MODULE_NAME : "ColouredYouthFaces",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	
     init : function() {
             Foxtrick.registerPageHandler( 'YouthPlayer',
