@@ -44,12 +44,12 @@ div.foxtrickExport:hover {
 
 /* Link dropdown image */
 div.sidebarBoxCollapsed h2 {
-background: url('chrome://foxtrick/content/resources/img/dropdown.gif') 161px 2px no-repeat;
+background: url('chrome://foxtrick/content/resources/img/link-down.png') 161px 5px no-repeat;
 background-color:#849D84;
 }
 
 /* Link fold image */
 div.sidebarBoxUnfolded  h2 {
-background: url('chrome://foxtrick/content/resources/img/up.png') 161px 4px no-repeat;
+background: url('chrome://foxtrick/content/resources/img/link-up.png') 161px 4px no-repeat;
 background-color:#849D84;
 }
