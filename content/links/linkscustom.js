@@ -33,7 +33,11 @@ var FoxtrickLinksCustom = {
 							"resources/css/conference.css");
 			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/linkscustom.css");
-					
+			
+			if (Foxtrick.isStandardLayout(doc) )
+				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std.css");
+			else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple.css");
+						
 			var basepref="module."+this.MODULE_NAME+'.'+pagemodule;
 
 			if (ownBoxBody==null) {
