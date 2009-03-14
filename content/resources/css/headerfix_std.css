@@ -1,0 +1,54 @@
+/* HeaderFix by Catalyst2950 */
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+/* Fix the header on screen */
+#header {
+position: fixed !important;
+top: 0px; 
+width: 949px;
+z-index: 9999;
+}
+
+/* compensate for fixed header, move menu from the edge */
+#menu {
+width: 953px !important;
+margin-left:0px !important;
+padding:0px !important;
+-moz-border-radius-topright: 10px;
+-moz-border-radius-bottomright: 10px;
+}
+
+/* add whitespace below header */
+#menu {
+margin-bottom: 6px !important;
+}
+
+/* compensate for fixed header */
+#content {
+padding-top: 100px !important;
+}
+
+/* fix left submenu */
+#content .subMenu {
+position: fixed !important;
+}
+
+/* compensate for fixed left submenu */
+#content #mainWrapper {
+margin-left: 175px !important;
+min-height: 620px !important; /* temporary height hack before sticky footer */
+}
+
+/* compensate for fixed left submenu Forum */
+#content #mainWrapper>div[class="main mainConf"] {
+float:left!important; 
+margin-left: -175px !important;
+width:655px !important;
+}
+
+/* fix for forumbookmark z-index 99999 */
+.cfWrapper .bookmarkMessage {
+z-index: 0 !important;
+}
+
+}
