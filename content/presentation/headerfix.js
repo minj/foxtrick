@@ -11,7 +11,7 @@ var FoxtrickHeaderFix = {
 	DEFAULT_ENABLED : false,
 	CSS_SIMPLE:"chrome://foxtrick/content/resources/css/headerfix.css",
 	CSS_SIMPLE_RTL:"chrome://foxtrick/content/resources/css/headerfix_rtl.css",
-	CSS_STANDARD:"chrome://foxtrick/content/resources/css/headerfix_std.css",
+	CSS:"chrome://foxtrick/content/resources/css/headerfix_std.css",
 	
     init : function() {
     },
