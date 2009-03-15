@@ -380,11 +380,11 @@ var FoxtrickForumChangePosts = {
 								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
 							}
 						}						
-						if (header.offsetTop-header_right.offsetTop < -3 ) header.setAttribute.style+=doubleHeaderStyle;												
+						if (header.offsetTop-header_right.offsetTop < -3 )  {header.setAttribute('class','cfHeader ftdoubleLine');}												
 					  }
-					  else header.setAttribute.style+=doubleHeaderStyle; 
+					  else {header.setAttribute('class','cfHeader ftdoubleLine');}
 					}
-				  }
+				}
 								
 				}  // end single header line
 
