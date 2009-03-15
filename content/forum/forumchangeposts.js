@@ -433,8 +433,10 @@ var FoxtrickForumChangePosts = {
 	_copy_postid_to_clipboard : function(ev) { 
 		var PostID = ""; 
 		if (FoxtrickForumChangePosts.bDetailedHeader) PostID=ev.target.parentNode.nextSibling.title;
-		else PostID= ev.target.parentNode.nextSibling.href.match(/\d+\.\d+/g)[0];
-							
+		else { 
+			try {PostID= ev.target.parentNode.nextSibling.href.match(/\d+\.\d+/g)[0];}
+			catch(e){PostID=ev.target.parentNode.nextSibling.title;}
+		}
 		Foxtrick.copyStringToClipboard(PostID);
     },	
 		
