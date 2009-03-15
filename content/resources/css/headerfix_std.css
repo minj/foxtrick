@@ -13,9 +13,14 @@ z-index: 9999;
 #menu {
 width: 953px !important;
 margin-left:0px !important;
-padding:0px !important;
+padding:0px 0px 0px 4px !important;
 -moz-border-radius-topright: 10px;
 -moz-border-radius-bottomright: 10px;
+}
+
+/* Logout botton +radius */
+#menu .logout {
+margin-right:11px !important; 
 }
 
 /* add whitespace below header */
