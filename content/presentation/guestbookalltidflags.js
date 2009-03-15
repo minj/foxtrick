@@ -22,29 +22,22 @@ var FoxtrickGuestbookAlltidFlags = {
 	try{	//dump('in\n');
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
 		var linkpage = "http://stats.alltidhattrick.org/user/";
-		var style ="margin-right:3px; padding-left:3px; " + 
-					"background-repeat:repeat-x; background-position: 0% 50%;";
+		var style ="vertical-align: middle; background-color:#849D84;";
 		
 		var outerdiv = doc.getElementById('mainWrapper');
-		var count =0; //dump(outerdiv+' \n');
-		//while (outerdiv!=null) 
-			{
-			//var teamid=FoxtrickHelper.findTeamId(outerdiv);
-			var linksArray = outerdiv.getElementsByTagName('a');
+		var count =0; 
+		var linksArray = outerdiv.getElementsByTagName('a');
 				for (var j=0; j<linksArray.length-1; j++) {
 					link = linksArray[j]; //dump(link.href+'\n');
 					if (link.href.search(/userId=/i) > -1 && linksArray[j+1].href.search(/Supporter/i)!=-1 ) { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+count;
-						//mySpan.setAttribute( "id", spanId );
+						mySpan.setAttribute( "id", spanId );
 						var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
-						//dump(userId+"\n");
-						//dump(spanId+"\n"+userId+"\n");
 						var thistitlecountry="";
 						mySpan.innerHTML = ' <a href="' + linkpage + userId +
-							'"target="_blank"><img title="'+thistitlecountry+'" " style="' + 
-							'vertical-align: middle; ' + style + '" src="' + 
+							'"target="_blank"><img style="' + style + '" src="' + 
 							flagspage + userId + '.gif" border="0"' +
 							'height="12" /></a>';
 						var target = link.nextSibling;
@@ -54,12 +47,10 @@ var FoxtrickGuestbookAlltidFlags = {
 						if ( !doc.getElementById( spanId ) ) {
 							link.parentNode.insertBefore(mySpan, target);
 						}
-						//break;
+						count++;						
 					  } 
 					}				
-				count++;
-				//outerdiv = doc.getElementById('ctl00_CPMain_grdGB_ctl00__'+count);					
-			}
+				
 		} catch (e) {dump('FoxtrickGuestbookAlltidFlags->'+e+'\n');}
 	},
 	
