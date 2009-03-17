@@ -43,7 +43,10 @@ var FoxtrickShortcutsStatistics = {
 
         var shortcuts = doc.getElementById ( 'shortcuts' );
 		if (!shortcuts) return;
-		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div')[0];  // =scContainer
+		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div');
+		var i=0, scCont=null;
+		while (scCont=targetNode[i++]) {if (scCont.className=='scContainer') break;}
+		targetNode=scCont;
 		if (targetNode) {
             try {
 				var num_added=0;
@@ -55,8 +58,8 @@ var FoxtrickShortcutsStatistics = {
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSuppStats");
-                    img1.src = "/Img/Icons/transparent.gif";
-                    img1.setAttribute("style","background-image: url('chrome://foxtrick/content/resources/linkicons/chart_bar.png') !important;");
+                    img1.src = "chrome://foxtrick/content/resources/img/transparent.gif";
+                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/chart_bar.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                     link.appendChild(img1);
@@ -73,8 +76,8 @@ var FoxtrickShortcutsStatistics = {
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftMyTransfers");
-                    img1.src = "/Img/Icons/transparent.gif";
-                    img1.setAttribute("style","background-image: url('chrome://foxtrick/content/resources/linkicons/dollar.png') !important;");
+                    img1.src = "chrome://foxtrick/content/resources/img/transparent.gif";
+                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome://foxtrick/content/resources/linkicons/dollar.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
 
                     link.appendChild(img1);
@@ -83,14 +86,14 @@ var FoxtrickShortcutsStatistics = {
 					++num_added;
                 }
 				
-				if (!Foxtrick.isStandardLayout ( doc )) 
+				//if (!Foxtrick.isStandardLayout ( doc )) 
 				{	// here
 					var head = doc.getElementsByTagName("head")[0];
 					var style = doc.createElement("style");
 					style.setAttribute("type", "text/css"); // +(353-num_added*22)+'
-					var zaw = '#ticker {left: 190px !important;} div#ticker div { width:300px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+					var zaw = '#ticker {width:275px; left: 165px !important;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 					if (Foxtrick.isRTLLayout(doc)) 
-							zaw = 'div#ticker div { width:250px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+							zaw = '#ticker {width:275px;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 					
 					style.appendChild(doc.createTextNode(zaw));
 					head.appendChild(style);
