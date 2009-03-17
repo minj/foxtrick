@@ -11,8 +11,8 @@ var FoxtrickHideFaceTransferImages = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            //Foxtrick.registerPageHandler( 'player',
-            //                              FoxtrickHideFaceTransferImages);
+            Foxtrick.registerPageHandler( 'playerdetails',
+                                          FoxtrickHideFaceTransferImages);
             Foxtrick.registerPageHandler( 'players',
                                           FoxtrickHideFaceTransferImages);
     },

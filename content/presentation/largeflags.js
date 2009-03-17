@@ -11,16 +11,17 @@ var FoxtrickLargeFlags = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-        Foxtrick.registerPageHandler( 'players',
+        Foxtrick.registerPageHandler( 'playerdetail',
                                       FoxtrickLargeFlags);
     },
 
     run : function( page, doc ) {
+	try{
 		var allDivs = doc.getElementsByTagName( "div" );
 		for( var i = 0; i < allDivs.length; i++ ) {
 			if( allDivs[i].className == "byline" ) {
 				var link = allDivs[i].getElementsByTagName("a")[0];
-				if(link) {
+				if(link) { 
 					var img = link.childNodes[0];
 					var oldStyle = img.style.background;
 					var newStyle = "transparent url(chrome://foxtrick/content/"
@@ -58,6 +59,7 @@ var FoxtrickLargeFlags = {
 				}
 			}
 		}
+	}catch(e){dump('FoxtrickLargeFlags: '+e+'\n');}
 	},
 	
 	change : function( page, doc ) {
