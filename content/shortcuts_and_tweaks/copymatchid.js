@@ -33,6 +33,9 @@ var FoxtrickCopyMatchID = {
 				link.setAttribute("id","_"+this.MODULE_NAME+count);
 				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
 				table.rows[i].cells[1].appendChild(link);
+				var img_n = table.rows[i].cells[1].getElementsByTagName('img')[0];
+				img_n.setAttribute('title',img_n.title+ ' : '+Foxtrickl10n.getString( 'foxtrick.CopyPostID')); 
+				
 				count++; 
 		}
 	} catch(e) {dump('FoxtrickCopyMatchID: '+e+'\n');}
