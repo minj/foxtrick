@@ -86,19 +86,23 @@ var FoxtrickShortcutsStatistics = {
 					++num_added;
                 }
 				
-				//if (!Foxtrick.isStandardLayout ( doc )) 
-				{	// here
-					var head = doc.getElementsByTagName("head")[0];
-					var style = doc.createElement("style");
-					style.setAttribute("type", "text/css"); // +(353-num_added*22)+'
-					var zaw = '#ticker {width:275px; left: 165px !important;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+				var head = doc.getElementsByTagName("head")[0];
+				var style = doc.createElement("style");
+				style.setAttribute("type", "text/css"); // +(353-num_added*22)+'
+					// here
+					var zaw = '#ticker {width:400px; left: 235px !important;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 					if (Foxtrick.isRTLLayout(doc)) 
-							zaw = '#ticker {width:275px;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
-					
+							zaw = '#ticker {width:400px; left: 350px;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+						
+					if (!Foxtrick.isStandardLayout ( doc )) 
+						{	 zaw = '#ticker {width:275px; left: 165px !important;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+						if (Foxtrick.isRTLLayout(doc)) 
+							zaw = '#ticker {width:275px; left: 350px;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+						}			
 					style.appendChild(doc.createTextNode(zaw));
 					head.appendChild(style);
-				}				
-            }
+				
+			}
             catch(e) {
                 dump( ' => shortcutsstatistics: ' + e + '\n');
             }
