@@ -23,6 +23,9 @@ FoxtrickMatchPlayerColouring = {
     
     run : function( page, doc ) {
         
+		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
+		if (!isarchivedmatch) return;
+		
 		//Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];

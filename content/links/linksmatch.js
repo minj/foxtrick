@@ -23,12 +23,22 @@ var FoxtrickLinksMatch = {
 
 		// get ids
 		var youthmatch = FoxtrickHelper.findIsYouthMatch(doc.location.href);
-		var sidediv = doc.getElementById("sidebar");
-		var teamid = FoxtrickHelper.findTeamId(sidediv);
-		var teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);
+		var teamid,teamid2;
+
 		var alldivs = doc.getElementsByTagName('div');
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
+		dump('isarchivedmatch:'+isarchivedmatch+'\n');
+		if (isarchivedmatch) {
+			var sidediv = doc.getElementById("sidebar");
+			teamid = FoxtrickHelper.findTeamId(sidediv);
+			teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);		
+		}
+		else {
+			var sidediv = doc.getElementById("ctl00_CPMain_pnlTeamInfo");
+			teamid = FoxtrickHelper.findTeamId(sidediv);
+			teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);				
+		}
 		var links,links2;
 		var add_links=false;
 		//addExternalLinksToPlayedMatch
