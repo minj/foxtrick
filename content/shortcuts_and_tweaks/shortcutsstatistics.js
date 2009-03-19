@@ -63,8 +63,15 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                     link.appendChild(img1);
-                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.appendChild(link);
-					else targetNode.insertBefore(link,targetNode.firstChild);
+                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					else { 
+						if (targetNode.lastChild.nodeName=='BR') {
+							targetNode.insertBefore(link,targetNode.lastChild);
+						}
+						else {
+							targetNode.appendChild(link);
+						}
+					}
 					++num_added;
                 }
                 
@@ -81,8 +88,15 @@ var FoxtrickShortcutsStatistics = {
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
 
                     link.appendChild(img1);
-                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.appendChild(link);
-					else targetNode.insertBefore(link,targetNode.firstChild);
+                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					else { 
+						if (targetNode.lastChild.nodeName=='BR') { 
+							targetNode.insertBefore(link,targetNode.lastChild);
+						}
+						else {
+							targetNode.appendChild(link);
+						}
+					}
 					++num_added;
                 }
 				
