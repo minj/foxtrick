@@ -58,5 +58,6 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink.enabled", fals
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", false );
 
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );
+pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace_simple.enabled", false );
 
 

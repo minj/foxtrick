@@ -15,7 +15,8 @@ FoxtrickFixcssProblems = {
                                     "Forum_Header_Smallsize",
                                     "MatchOrder_Lineheight",
 									"RTL_Fixes",
-									"ForumScrollBarFix"
+									"ForumScrollBarFix",
+									"Forum_ThreadlistSpace_simple"
 				),
 				
     OPTIONS_CSS: new Array (
@@ -25,7 +26,8 @@ FoxtrickFixcssProblems = {
 				"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css",
 				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
 				"",
-				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css"
+				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
+				"chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css"
 				),
 	OPTIONS_CSS_RTL: new Array (
 				"chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -34,7 +36,8 @@ FoxtrickFixcssProblems = {
 				"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize.css",
 				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
 				"chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
-				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css"
+				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
+				"chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css"
 				),
 				
 	init : function() {
