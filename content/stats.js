@@ -1311,6 +1311,8 @@ stats["ht_bet"] =  {
 // -------------- tracker & national teams ------------------------------
 // ----------------------------------------------------------------------
 
+// ht-deutschland tracker
+
 
 stats["ht_scouting"] =  { 
   "url" : "http://www.ht-deutschland.de/",
@@ -1328,97 +1330,6 @@ stats["ht_scouting"] =  {
   "title" : "HT-Deutschland Scouting DB",
   "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
 };
-
-
-stats["ht-fff"] =  { 
-        "url" : "http://www.ht-fff.org/",
-
-        "trackerplayerlink" : { "path"       : "dtn_submitting.php",
-                         "filters"    : ["nationality"], 
-                         "params"     : []
-                       },
-		"trackernationalteamlink" : { "path"       : "dtn_submitting.php",
-                   "filters"    : ["countryid"], 
-                   "params"     : []
-				}, 
-        "nationalityranges" : [[5, 5]],
-        "countryidranges" : [[5, 5]],
-        "title" : "ht-fff.org | french scouting group.",
-        "img" : "chrome://foxtrick/content/resources/linkicons/htfff.png"
-}; 
-
-
-stats["scouting_mexico"] =  { 
-  "url" : "http://www.hattrick.org.mx/SN/",
- 
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
-                   "params"     : []
-				}, 
-  "trackernationalteamlink" : { "path"       : "",
-                   "filters"    : ["countryid"], 
-                   "params"     : []
-				}, 
-  "nationalityranges" : [[6, 6]], 
-  "countryidranges" : [[6, 6]], 
-  "title" : "Hattrick México",
-  "img" : "chrome://foxtrick/content/resources/linkicons/Mexico_scouting.png"
-};
-
-stats["brasileira_tracker"] =  { 
-        "url" : "http://www.opendev.com.br/chpp/br/",
-
-        "trackerplayerlink" : { "path"       : "",
-                         "filters"    : ["nationality"], 
-                         "params"     : []
-                       },
-        "trackernationalteamlink" : { "path"       : "",
-                   "filters"    : ["countryid"], 
-                   "params"     : []
-				}, 
-		"countryidranges" : [[16, 16]],   
-        "nationalityranges" : [[16, 16]],
-        "title" : "Estatísticas da Seleção Brasileira",
-        "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
-};
-
-
-stats["czechrepublic_nt"] = { 
-  "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
-  "img" : "chrome://foxtrick/content/resources/linkicons/czech_nt_tracker.png",
-  "title" : "Ceská republika U20-NT Tracker",
-  
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
-                   "params"     : []
-                 },  
-    "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
-                         "params"     :  []
-                       },
-        
-    "countryidranges" : [[52, 52]] ,
-	"nationalityranges" : [[52, 52]],
-};
-
-
-stats["crotracker"] = { 
-  "url" : "http://cro-tracker.com/index.php",
-  "img" : "chrome://foxtrick/content/resources/linkicons/cro-tracker.gif",
-  "title" : "Hrvatska NT U20 Tracker",
-  
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
-                   "params"     : []
-                 },
-	"countryidranges" : [[58,58]] ,
-	"nationalityranges" : [[58,58]], 
-};
-
 
 
 stats["ht_scouting_nigeria"] =  { 
@@ -1629,6 +1540,93 @@ stats["ht_scouting_almaghrib"] =  {
 }
 
 
+stats["ht_scouting_alkuwayt"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "alkuwayt/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "alkuwayt/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[127, 127]], 
+  "countryidranges" : [[127, 127]], 
+  "title" : "Al Kuwayt Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
+
+stats["ht_scouting_andorra"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "andorra/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "andorra/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[105, 105]], 
+  "countryidranges" : [[105, 105]], 
+  "title" : "Andorra Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
+
+stats["ht_scouting_armenia"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "hayastan/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "hayastan/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[122, 122]], 
+  "countryidranges" : [[122, 122]], 
+  "title" : "Hayastan NT Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
+
+stats["ht_scouting_eesti"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "eesti/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "eesti/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[56, 56]], 
+  "countryidranges" : [[56, 56]], 
+  "title" : "Eesti NT Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
+
+
+stats["ht_scouting_liechtenstein"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "liechtenstein/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "liechtenstein/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[117, 117]], 
+  "countryidranges" : [[117, 117]], 
+  "title" : "Liechtenstein NT Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+}
+
+
 
 // ------------------------- nattrick tracker --------------------------------
 
@@ -1755,6 +1753,41 @@ stats["usatracker"] = {
 };
 
 
+stats["irantracker"] = { 
+  "url" : "http://iran.nattrick.ca",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Iran U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[85,85]] ,
+	"nationalityranges" : [[85,85]], 
+};
+
+stats["lebanontracker"] = { 
+  "url" : "http://lebanon.nattrick.ca",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Lebanon U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[120,120]] ,
+	"nationalityranges" : [[120,120]], 
+};
+
+
 
 // -------- ht.quickly.co.il  tracker-----------------------
 
@@ -1810,9 +1843,167 @@ stats["philippinestracker"] = {
 	"nationalityranges" : [[55,55]], 
 };
 
+stats["barbadostracker"] = { 
+  "url" : "http://barbados.ht.quickly.co.il/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Barbados U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[124,124]] , 
+	"nationalityranges" : [[124,124]], 
+};
+
+
+stats["indonesiatracker"] = { 
+  "url" : "http://indonesia.ht.quickly.co.il/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Indonesia U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[54,54]] , 
+	"nationalityranges" : [[54,54]], 
+};
+
+stats["moldovatracker"] = { 
+  "url" : "http://moldova.ht.quickly.co.il/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Moldova U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[103,103]] , 
+	"nationalityranges" : [[103,103]], 
+};
+
+stats["omantracker"] = { 
+  "url" : "http://oman.ht.quickly.co.il/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Oman U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[134,134]] , 
+	"nationalityranges" : [[134,134]], 
+};
 
 
 // --------------- own trackers --------------------------------
+
+stats["ht-fff"] =  { 
+        "url" : "http://www.ht-fff.org/",
+
+        "trackerplayerlink" : { "path"       : "dtn_submitting.php",
+                         "filters"    : ["nationality"], 
+                         "params"     : []
+                       },
+		"trackernationalteamlink" : { "path"       : "dtn_submitting.php",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+        "nationalityranges" : [[5, 5]],
+        "countryidranges" : [[5, 5]],
+        "title" : "ht-fff.org | french scouting group.",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htfff.png"
+}; 
+
+
+stats["scouting_mexico"] =  { 
+  "url" : "http://www.hattrick.org.mx/SN/",
+ 
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[6, 6]], 
+  "countryidranges" : [[6, 6]], 
+  "title" : "Hattrick México",
+  "img" : "chrome://foxtrick/content/resources/linkicons/Mexico_scouting.png"
+};
+
+stats["brasileira_tracker"] =  { 
+        "url" : "http://www.opendev.com.br/chpp/br/",
+
+        "trackerplayerlink" : { "path"       : "",
+                         "filters"    : ["nationality"], 
+                         "params"     : []
+                       },
+        "trackernationalteamlink" : { "path"       : "",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+		"countryidranges" : [[16, 16]],   
+        "nationalityranges" : [[16, 16]],
+        "title" : "Estatísticas da Seleção Brasileira",
+        "img" : "chrome://foxtrick/content/resources/linkicons/brasileira.png"
+};
+
+
+stats["czechrepublic_nt"] = { 
+  "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
+  "img" : "chrome://foxtrick/content/resources/linkicons/czech_nt_tracker.png",
+  "title" : "Ceská republika U20-NT Tracker",
+  
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },  
+    "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+        
+    "countryidranges" : [[52, 52]] ,
+	"nationalityranges" : [[52, 52]],
+};
+
+
+stats["crotracker"] = { 
+  "url" : "http://cro-tracker.com/index.php",
+  "img" : "chrome://foxtrick/content/resources/linkicons/cro-tracker.gif",
+  "title" : "Hrvatska NT U20 Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[58,58]] ,
+	"nationalityranges" : [[58,58]], 
+};
+
 
 stats["ghanatracker"] = { 
   "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
@@ -1832,10 +2023,10 @@ stats["ghanatracker"] = {
 };
 
 
-stats["armeniatracker"] = { 
+stats["armenia_u20tracker"] = { 
   "url" : "http://www.hayastan-u20.de.tl/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
-  "title" : "Hayastan U20/NT Tracker",
+  "title" : "Hayastan U20 Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
                          "filters"    : ["countryid"], 
@@ -2058,6 +2249,59 @@ stats["srbijatracker"] = {
 	"nationalityranges" : [[57,57]], 
 };
 
+stats["scotlandtracker"] = { 
+  "url" : "http://www.htscotland.co.uk",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Scotland U-20/NT DB",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[26,26]] ,
+	"nationalityranges" : [[26,26]], 
+};
+
+  	 
+stats["tanzaniatracker"] = { 
+  "url" : "http://hattricktanzania.ic.cz",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Tanzania U-20/NT DB",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[142,142]] ,
+	"nationalityranges" : [[142,142]], 
+};
+
+stats["turkeytracker"] = { 
+  "url" : "http://www.ht-turkiye.com",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Türkiye & Azebaycan Player Database",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[32,32],[129,129]] ,
+	"nationalityranges" : [[32,32],[129,129]], 
+};
+
+
 //  ------------- spreadsheets trackers ----------------
 stats["mongoltracker"] = { 
   "url" : "http://spreadsheets.google.com/viewform?formkey=cGhyMThkSzVUdURSdmlWWHdmRldqUXc6MA..",
@@ -2124,12 +2368,12 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,36],[38,43],[46,51],[53,54],[56,56],[59,59],
-						[61,62],[64,74],[76,76],[78,78],[80,83],[85,88],[90,94],[97,100],
-						[103,109],[111,112],[114,119],[120,121],[124,131],[134,134],[138,139],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,36],[38,43],[46,51],[53,54],[56,56],[59,59],
-						[61,62],[64,74],[76,76],[78,78],[80,83],[85,88],[90,94],[97,100],
-						[103,109],[111,112],[114,119],[120,121],[124,131],[134,134],[138,139],[142,142],[144,200]], 
+	"countryidranges" :   [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,25],[27,36],[38,43],[46,51],[53,53],[56,56],[59,59],
+						[61,62],[64,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
+						[104,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[138,139],[142,142],[144,200]],
+	"nationalityranges" : [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,25],[27,36],[38,43],[46,51],[53,53],[56,56],[59,59],
+						[61,62],[64,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
+						[104,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[138,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
 
 
