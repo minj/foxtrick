@@ -206,6 +206,8 @@ var FoxtrickTeamPopupLinks = {
 															&& org_link.parentNode.className!="cfUserInfo";
 		var forumuserlink = org_link.href.search(/Club\/Manager\/\?UserID=/i)!=-1 && doc.location.href.search(/Forum\/Read/i)!=-1 ; 
 		var forumlink = doc.location.href.search(/Forum\/Read/i)!=-1 ; 
+		var ismatchpreview = doc.getElementById("ctl00_CPMain_pnlPreMatch");
+		
 		var username='';
 		if (userlink || forumuserlink) {
 			username = org_link.text; 
@@ -557,7 +559,14 @@ var FoxtrickTeamPopupLinks = {
 											var more=tbl.removeChild(tbl.lastChild);
 											tbl.insertBefore(more,tbl.firstChild);
 										}
+									} 
+									if (!owntopteamlinks && ismatchpreview) {
+										top = -10;  
+										if (Foxtrick.isStandardLayout(doc)) top=10;
+										var more=tbl.removeChild(tbl.lastChild);
+										tbl.insertBefore(more,tbl.firstChild);
 									}
+									
 									
 									div.setAttribute('style','top:'+top+'px;'+'left:'+left+'px;');
 									div.appendChild(tbl);		

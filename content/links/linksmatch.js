@@ -27,8 +27,8 @@ var FoxtrickLinksMatch = {
 
 		var alldivs = doc.getElementsByTagName('div');
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
-		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
-		dump('isarchivedmatch:'+isarchivedmatch+'\n');
+		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")==null);
+		//dump('isarchivedmatch:'+isarchivedmatch+'\n');
 		if (isarchivedmatch) {
 			var sidediv = doc.getElementById("sidebar");
 			teamid = FoxtrickHelper.findTeamId(sidediv);
