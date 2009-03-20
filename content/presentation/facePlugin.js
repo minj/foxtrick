@@ -11,7 +11,7 @@ var FoxtrickHideFaceTransferImages = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'playerdetails',
+            Foxtrick.registerPageHandler( 'playerdetail',
                                           FoxtrickHideFaceTransferImages);
             Foxtrick.registerPageHandler( 'players',
                                           FoxtrickHideFaceTransferImages);
@@ -41,6 +41,8 @@ var FoxtrickHideFaceInjuryImages = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
+            Foxtrick.registerPageHandler( 'playerdetail',
+                                          FoxtrickHideFaceInjuryImages);
             Foxtrick.registerPageHandler( 'players',
                                           FoxtrickHideFaceInjuryImages);
     },
@@ -68,6 +70,8 @@ var FoxtrickHideFaceSuspendedImages = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
+        Foxtrick.registerPageHandler( 'playerdetail',
+                                          FoxtrickHideFaceSuspendedImages);
         Foxtrick.registerPageHandler( 'players',
             FoxtrickHideFaceSuspendedImages);
     },
