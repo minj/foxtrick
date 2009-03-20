@@ -1189,6 +1189,18 @@ stats["hattrick-youthclub"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hyouthclub.png"
 };
 
+stats["srbijayadb"] =  { 
+        "url" : "http://srbijayadb.freehostia.com/newslist.php",
+        "youthlink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : []
+                       },
+		"owncountryidranges" : [[57, 57]], 
+        "title" : "Srbija YA DB",
+        "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
+};
+
+
 stats["arenaoptimizer"] =  { 
         "url" : "http://www.arenaoptimizer.es/",
         "arenalink" : { "path"       : "",
