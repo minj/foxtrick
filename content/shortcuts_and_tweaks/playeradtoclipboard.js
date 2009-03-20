@@ -72,11 +72,13 @@ var FoxtrickPlayerAdToClipboard = {
 			var id = obj.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 			ad += "\t[playerid=" + id + "]\n";
 		
+			var isEnglish=false;
 			//nationality, age and next birthday
 			var allDivs = doc.getElementsByTagName("div");
 			for(var i = 0; i < allDivs.length; i++) {
 				if(allDivs[i].className == "byline") {
 					var inner = allDivs[i].innerHTML;
+					isEnglish = (inner.search(/ years /)!=-1); dump(inner+ ' '+isEnglish+'\n');
 					var startPos = inner.search("<a ");
 					if (startPos!=-1) {
 						var endPos = inner.search("</a>")+4;
@@ -97,7 +99,8 @@ var FoxtrickPlayerAdToClipboard = {
 					var substring = inner.substr(startPosNat); 
 					var endPosNat = substring.search("\" ");
 					var nationality = substring.substr(0,endPosNat);
-					ad += Foxtrickl10n.getString("foxtrick.tweaks.bornin");
+					if (!isEnglish) ad += Foxtrickl10n.getString("foxtrick.tweaks.bornin");
+					else ad += "Born in";
 					ad += ": " + nationality + "\n\n";
 					break;
 					}
@@ -111,8 +114,8 @@ var FoxtrickPlayerAdToClipboard = {
 			var obj = doc.getElementById("ctl00_CPMain_pnlplayerInfo");
 			var staminaLink = obj.getElementsByTagName("a")[1];
 			skillLinks.push(staminaLink);
-			skillNames.push(Foxtrickl10n.getString("Stamina")+":");
-			
+			if (!isEnglish) skillNames.push(Foxtrickl10n.getString("Stamina")+":");
+			else skillNames.push("Stamina:");
 			var innerPElement = obj.getElementsByTagName("p")[0];
 			var innerP=innerPElement.innerHTML;
 			innerP = innerP.replace(/<br>/g,"\n");
