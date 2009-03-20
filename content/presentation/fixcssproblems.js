@@ -27,7 +27,7 @@ FoxtrickFixcssProblems = {
 				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
 				"",
 				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-				"chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css"
+				""
 				),
 	OPTIONS_CSS_RTL: new Array (
 				"chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -37,16 +37,26 @@ FoxtrickFixcssProblems = {
 				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
 				"chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
 				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-				"chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css"
+				""
 				),
 				
 	init : function() {
-        Foxtrick.registerPageHandler( 'all' , this );
+        Foxtrick.registerPageHandler( 'all' , this );		
+		
     },
 
 									
-    run : function(page, doc) { return;
-        
+    run : function(page, doc) { 
+	
+		if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace_simple" ) &&  !Foxtrick.isStandardLayout( doc ) ) {
+			var css = "chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css";
+            Foxtrick.addStyleSheet( doc, css );
+        }
+		return;
+    
+
+		// old version
+		
         // standard | simpe | all | alternate
         var LAYOUTSWITCH = new Array (
            // "standard",
