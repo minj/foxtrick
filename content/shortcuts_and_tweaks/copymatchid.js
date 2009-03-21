@@ -15,28 +15,53 @@ var FoxtrickCopyMatchID = {
 			FoxtrickCopyMatchID );
 		Foxtrick.registerPageHandler( 'matchesarchiv',
 			FoxtrickCopyMatchID );
+		Foxtrick.registerPageHandler( 'matchLineup',
+			FoxtrickCopyMatchID );
 	},
 	
 	run : function( page, doc ) { 
-	try {
-		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+	try { 
 		var count = 0;
-		for (var i = 0; i < table.rows.length; i++) { 
-				if (table.rows[i].cells.length<2) continue;
-			 	var matchid=FoxtrickHelper.findMatchId(table.rows[i]); 
+
+		if (page=='matchesarchiv' || page =='matches') {
+			var cells = doc.getElementById('mainBody').getElementsByTagName('td');
+			for (var i = 0; i < cells.length; i++) { 
+				if (cells[i].innerHTML.search(/matchLeague|matchFriendly|matchMasters|matchCup/)==-1) continue;
+				var matchid=FoxtrickHelper.findMatchId(cells[i+1]); 
 				var link=doc.createElement('a');
-				var img=table.rows[i].cells[1].innerHTML;
-				table.rows[i].cells[1].innerHTML="";
+				var img=cells[i].innerHTML;
+				cells[i].innerHTML="";
 				link.innerHTML=img;
 				link.href='javascript:void(0);';
 				link.setAttribute("matchid",matchid);
 				link.setAttribute("id","_"+this.MODULE_NAME+count);
 				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
-				table.rows[i].cells[1].appendChild(link);
-				var img_n = table.rows[i].cells[1].getElementsByTagName('img')[0];
+				cells[i].appendChild(link);
+				var img_n = cells[i].getElementsByTagName('img')[0];
 				img_n.setAttribute('title',img_n.title+ ' : '+Foxtrickl10n.getString( 'foxtrick.CopyPostID')); 
 				
 				count++; 
+			}
+		}	
+		if (page=='matchLineup') {
+			var images = doc.getElementById('mainBody').getElementsByTagName('img');
+			for (var i = 0; i < images.length; i++) {
+				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup/)==-1) continue;
+				var div=images[i].parentNode;
+				var matchid=FoxtrickHelper.findMatchId(doc.getElementById('mainWrapper')); 
+				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.CopyPostID')); 
+				var link=doc.createElement('a');
+				link.appendChild(images[i].cloneNode(true));
+				link.href='javascript:void(0);';
+				link.setAttribute("matchid",matchid);
+				link.setAttribute("id","_"+this.MODULE_NAME+count);
+				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
+				div.replaceChild(link,images[i]);
+				
+				count++; 
+				break;
+				
+			}
 		}
 	} catch(e) {dump('FoxtrickCopyMatchID: '+e+'\n');}
 	},
