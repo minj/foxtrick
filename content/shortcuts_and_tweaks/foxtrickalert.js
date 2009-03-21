@@ -28,8 +28,7 @@ var FoxtrickAlert = {
 			FoxtrickAlert.ALERT_RUNNING = false;
 			FoxtrickAlert.foxtrick_showAlert(false);
         
-	
-            Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
+	        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
             if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
 					doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
@@ -79,13 +78,12 @@ var FoxtrickAlert = {
                     //there is the strong tag
 					elemText[i]=tickelem.firstChild.nodeValue;
                     message=tickelem.firstChild.nodeValue;
-					var isequal = true;
-					for (j=0;j<=i;j++)
+					var isequal = false;
+					for (j=0;j<=3;j++)
 					{
-						if (elemText[j]!=Foxtrick.news[j])
-							isequal=false;
-						Foxtrick.news[j]=elemText[j];
-                    }
+						if (elemText[i]==Foxtrick.news[j])
+							isequal=true;
+					}	
                     if (!isequal) {
 						if (FoxtrickPrefs.getBool("alertSlider")) {		
 							FoxtrickAlert.ALERTS.push(message);	dump('->add ticker alert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');			
@@ -98,6 +96,10 @@ var FoxtrickAlert = {
 					elemText[i]=tickelem.nodeValue;
 				}
             } 				
+            for (i=0; i<tickerdiv.length;i++)
+            {
+			    Foxtrick.news[i]=elemText[i];
+			}
 			FoxtrickAlert.foxtrick_showAlert(false);
         } catch(e) { dump('error showalert '+e); }
     },
