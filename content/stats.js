@@ -1105,6 +1105,7 @@ stats["skillraise"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/skillraise.png"
 };  */  
 
+
 stats["Hattrickstats_fr"] =  { 
         "url" : "http://friendly.cup.free.fr/",
 
@@ -1305,6 +1306,21 @@ stats["ht_bet"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/ht_bet.png"
 };    
    
+
+// HT-bet
+stats["tppc"] =  { 
+        "url" : "http://www.adrianomoutinho.com/hattrick/index.php",
+
+        "leaguelink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : { "leagueid" : "leagueid" }
+                       },
+        
+        "title" : "Team Position Probability Calculator",
+        "img" : "chrome://foxtrick/content/resources/linkicons/tppc.png"
+};    
+   
+  	 
    
    
 // ----------------------------------------------------------------------
