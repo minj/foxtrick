@@ -42,6 +42,8 @@ Foxtrick.ht_pages = {
     'match'                     : '\/Club\/Matches\/Match.aspx',
     'matches'                   : '\/Club\/Matches\/.TeamID=|\/Club\/Matches\/$|\/Club/\Matches\/Default|\/World\/Matches\/$',
     'matchesarchiv'             : '\/Club\/Matches\/Archive.aspx|\/Club\/Matches\/YouthArchive',
+    'matchesLatest'             : '\/Club\/Matches\/LatestMatches.aspx',
+    'matcheshistory'            : '\/Club\/Matches\/history.aspx',
     'matchLineup'               : '\/Club\/Matches\/MatchLineup.aspx',
     'matchOrders'               : '\/MatchOrders\.aspx',
     'flagCollection'            : '\/Club\/Flags\/',

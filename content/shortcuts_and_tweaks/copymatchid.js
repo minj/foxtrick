@@ -15,6 +15,10 @@ var FoxtrickCopyMatchID = {
 			FoxtrickCopyMatchID );
 		Foxtrick.registerPageHandler( 'matchesarchiv',
 			FoxtrickCopyMatchID );
+		Foxtrick.registerPageHandler( 'matcheshistory',
+			FoxtrickCopyMatchID );
+		Foxtrick.registerPageHandler( 'matchesLatest',
+			FoxtrickCopyMatchID );
 		Foxtrick.registerPageHandler( 'matchLineup',
 			FoxtrickCopyMatchID );
 	},
@@ -23,7 +27,7 @@ var FoxtrickCopyMatchID = {
 	try { 
 		var count = 0;
 
-		if (page=='matchesarchiv' || page =='matches') {
+		if (page=='matchesarchiv' || page =='matches'|| page =='matcheshistory' || page =='matchesLatest') {
 			var cells = doc.getElementById('mainBody').getElementsByTagName('td');
 			for (var i = 0; i < cells.length; i++) { 
 				if (cells[i].innerHTML.search(/matchLeague|matchFriendly|matchMasters|matchCup/)==-1) continue;
