@@ -55,7 +55,7 @@ var FoxtrickCopyMatchID = {
 		if (page=='matchLineup'||page=='match') {
 			var images = doc.getElementById('mainBody').getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
-				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup/)==-1) continue;
+				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
 				var div=images[i].parentNode;
 				var matchid=FoxtrickHelper.findMatchId(doc.getElementById('mainWrapper')); 
 				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
