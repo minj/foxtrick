@@ -35,7 +35,7 @@ var FoxtrickCopyMatchID = {
 		if (page=='matchesarchiv' || page =='matches'|| page =='matcheshistory' || page =='matchesLatest'||page=='arena') {
 			var cells = doc.getElementById('mainBody').getElementsByTagName('td');
 			for (var i = 0; i < cells.length; i++) { 
-				if (cells[i].innerHTML.search(/matchLeague|matchFriendly|matchMasters|matchCup/)==-1) continue;
+				if (cells[i].innerHTML.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
 				var matchid=FoxtrickHelper.findMatchId(cells[i+1]); 
 				var link=doc.createElement('a');
 				var img=cells[i].innerHTML;
