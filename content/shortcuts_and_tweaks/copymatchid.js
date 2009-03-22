@@ -47,7 +47,7 @@ var FoxtrickCopyMatchID = {
 				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
 				cells[i].appendChild(link);
 				var img_n = cells[i].getElementsByTagName('img')[0];
-				img_n.setAttribute('title',img_n.title+ ' : '+Foxtrickl10n.getString( 'foxtrick.CopyPostID')); 
+				img_n.setAttribute('title',img_n.title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
 				
 				count++; 
 			}
@@ -58,7 +58,7 @@ var FoxtrickCopyMatchID = {
 				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup/)==-1) continue;
 				var div=images[i].parentNode;
 				var matchid=FoxtrickHelper.findMatchId(doc.getElementById('mainWrapper')); 
-				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.CopyPostID')); 
+				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
 				var link=doc.createElement('a');
 				link.appendChild(images[i].cloneNode(true));
 				link.href='javascript:void(0);';
