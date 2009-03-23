@@ -144,7 +144,7 @@ var FoxtrickMovePlayerStatement = {
             }
 
             var newImg = doc.createElement("img");
-            newImg.setAttribute("src","chrome://foxtrick/content/resources/img/speak.PNG");
+            newImg.setAttribute("src","chrome://foxtrick/content/resources/img/speak.png");
             newImg.setAttribute("title",contentSpeak+"");
             newImg.setAttribute("style","left: 65px; top: 134px;");
             var elemsa = doc.getElementsByTagName("img");
