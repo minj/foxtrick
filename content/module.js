@@ -51,7 +51,7 @@ Foxtrick.ht_pages = {
     'transferListSearchResult'  : '\/World\/Transfers\/TransfersSearchResult.aspx',
     'teamPage'                  : '\/Club\/.TeamID=',
     'teamPageGeneral'           : '\/Club\/|\/World\/Series\/',
-    'players'                   : '\/Club\/Players\/.TeamID=|\/Club\/NationalTeam\/NTPlayers\.aspx|\/Club\/Players\/Oldies\.aspx|\/Club\/Players\/Coaches\.aspx',
+    'players'                   : '\/Club\/Players\/.TeamID=|\/Club\/Players\/default\.aspx.TeamID=|\/Club\/NationalTeam\/NTPlayers\.aspx|\/Club\/Players\/Oldies\.aspx|\/Club\/Players\/Coaches\.aspx',
     'YouthPlayers'              : 'YouthPlayers\.aspx',
     'YouthPlayer'               : 'YouthPlayer\.aspx',
     'training'                  : '\/Club\/Training\/',
