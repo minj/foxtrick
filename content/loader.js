@@ -14,6 +14,7 @@ var scripts = [
     'l10n.js',
     'helper.js',
     'redirections.js',
+	//'read_ht_pref_changes.js',
 
     // individual modules
     'forum/forumchangeposts_modules.js',
@@ -28,7 +29,7 @@ var scripts = [
     'forum/forumshowprefbutton.js',
 	'forum/htthreadmarker.js',
     'forum/forumgotopostbox.js',
-    'matches/matches.js',
+	'matches/matches.js',
     'matches/matchPlayerColouring.js',
     'matches/ratings.js',
     'matches/attvsdef.js',
@@ -66,6 +67,7 @@ var scripts = [
     'shortcuts_and_tweaks/contextmenue.js',
 	'shortcuts_and_tweaks/copyTrainingReport.js',
     'shortcuts_and_tweaks/playerbirthday.js',
+    'shortcuts_and_tweaks/addhtlivetoongoing.js',
     'matches/ratingstoclipboard.js',    
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',

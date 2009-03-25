@@ -99,5 +99,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickNewMail,
 					 FoxtrickNTConfirmAddRemove,
 					 FoxtrickCopyTrainingReport,
-					 FoxtrickPlayerBirthday
+					 FoxtrickPlayerBirthday,
+					 FoxtrickAddHtLiveToOngoing,					 
+					 //FoxtrickReadHtPrefs					 
 					];
