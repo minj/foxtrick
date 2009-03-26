@@ -47,7 +47,8 @@ var FoxtrickAddHtLiveToOngoing = {
 		}
 		
 		if (page=='match' && doc.getElementById('ctl00_CPMain_pnlPreMatch')==null
-				&& doc.getElementById('mainBody').getElementsByTagName('table').length==0){
+				&& doc.getElementById('mainBody').getElementsByTagName('table').length==0 
+				&& doc.getElementById('mainBody').innerHTML.search(/addMatch/)==-1) {
 			var img=doc.getElementById('mainBody').getElementsByTagName('img')[0]; 
 			var matchID=FoxtrickHelper.findMatchId(doc.getElementById('mainWrapper').getElementsByTagName('h2')[0]);								
 			var a=doc.createElement('a');
