@@ -20,6 +20,9 @@
 	
 		this.ColorLatest (doc, "ctl00_CPMain_updLatestThreads", "folderitem");
 		
+		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
+                                "resources/css/ht_thread.css");
+                    
 		var myForums = doc.getElementById( "myForums" );
 		var divs = myForums.getElementsByTagName( "div" );
 		var cname;
