@@ -47,7 +47,7 @@ border-width:  0 0 0 1px !important;
 
 /* compensate for fixed left submenu */
 #content #mainWrapper {
-margin-left: 135px !important;
+margin-left: 135px;
 min-height: 630px !important; /* temporary height hack before sticky footer */
 }
 

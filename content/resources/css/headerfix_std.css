@@ -40,14 +40,14 @@ position: fixed !important;
 
 /* compensate for fixed left submenu */
 #content #mainWrapper {
-margin-left: 175px !important;
+margin-left: 175px ;
 min-height: 620px !important; /* temporary height hack before sticky footer */
 }
 
 /* compensate for fixed left submenu Forum */
 #content #mainWrapper>div[class="main mainConf"] {
 float:left!important; 
-margin-left: -175px !important;
+margin-left: -175px;
 width:655px !important;
 }
 
