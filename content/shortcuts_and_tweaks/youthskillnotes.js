@@ -134,7 +134,7 @@ var FoxtrickYouthSkillNotes = {
 		const STR_S_PS = Foxtrickl10n.getString( "Passing");
 		const STR_S_DF = Foxtrickl10n.getString( "Defending");
 		const STR_S_GK = Foxtrickl10n.getString( "Keeper");
-		const STR_S_SP = Foxtrickl10n.getString( "Set pieces");
+		const STR_S_SP = Foxtrickl10n.getString( "Set_pieces");
 		const STR_S_ST = Foxtrickl10n.getString( "Stamina");
 		
 	    	
