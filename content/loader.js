@@ -14,7 +14,7 @@ var scripts = [
     'l10n.js',
     'helper.js',
     'redirections.js',
-	//'read_ht_pref_changes.js',
+	'read_ht_pref_changes.js',
 
     // individual modules
     'forum/forumchangeposts_modules.js',

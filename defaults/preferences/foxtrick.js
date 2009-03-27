@@ -1,5 +1,6 @@
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
 pref( "extensions.foxtrick.prefs.htLanguage", "en");
+pref( "extensions.foxtrick.prefs.module.FoxtrickReadHtPrefs.enabled",true );
 pref( "extensions.foxtrick.prefs.htCurrency", "EUR");
 pref( "extensions.foxtrick.prefs.currencyRateTo", "1.0");
 pref( "extensions.foxtrick.prefs.currencyCode", "EUR");

@@ -8,23 +8,31 @@ var Foxtrickl10n = {
 	_strings_bundle_default : null,
 
     init : function() {
-        this._strings_bundle =
-             Components.classes["@mozilla.org/intl/stringbundle;1"] 
-             .getService(Components.interfaces.nsIStringBundleService)  
-             .createBundle("chrome://foxtrick/locale/foxtrick.properties");
         this._strings_bundle_default =
              Components.classes["@mozilla.org/intl/stringbundle;1"] 
              .getService(Components.interfaces.nsIStringBundleService)  
              .createBundle("chrome://foxtrick/content/foxtrick.properties");
+		this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage")); 
     },
 
+	
+	get_strings_bundle :function ( localecode ) { 
+	  try {
+		this._strings_bundle =
+             Components.classes["@mozilla.org/intl/stringbundle;1"] 
+             .getService(Components.interfaces.nsIStringBundleService)  
+             .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
+	  } catch (e) { dump('Foxtrickl10n->get_strings_bundle: Error reading language file: '+e+'\n');}
+	},
+
+	
     getString : function( str ) {
         if ( this._strings_bundle )
         {
             try {
                 return this._strings_bundle.GetStringFromName( str );
             } catch( e ) {
-				try {
+				try {  
 					if ( this._strings_bundle_default ) return this._strings_bundle_default.GetStringFromName( str );
 				} catch( ee ) {
                     // DEBUG FOR RELEASE 0.4.3

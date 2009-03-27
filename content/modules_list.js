@@ -101,5 +101,5 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickCopyTrainingReport,
 					 FoxtrickPlayerBirthday,
 					 FoxtrickAddHtLiveToOngoing,					 
-					 //FoxtrickReadHtPrefs					 
+					 FoxtrickReadHtPrefs					 
 					];
