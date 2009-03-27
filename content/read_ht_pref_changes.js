@@ -77,8 +77,10 @@ var FoxtrickReadHtPrefs = {
 		FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
 		Foxtrickl10n.get_strings_bundle(this.codes[langval]);
 	    var confirmbox = doc.getElementById('ctl00_pnlPageOK');	
-		confirmbox.appendChild(doc.createElement('br'));
-	    confirmbox.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
+		var alertdiv=doc.createElement('div');
+		alertdiv.setAttribute('class','alert');
+		alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
+		confirmbox.parentNode.insertBefore(alertdiv,confirmbox.nextSibling);
 	    
 	},
 	
