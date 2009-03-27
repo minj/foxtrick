@@ -145,7 +145,6 @@ var FoxtrickForumStaffMarker = {
             "McTripas",
             "Mod-summercloud",
             "Nanouk_HT33",
-            "nickmpad",
 			"OBarros",
             "Piper_101",
             "poceh_b",
@@ -156,7 +155,6 @@ var FoxtrickForumStaffMarker = {
 			"spambot",
 			"stephan57",
 			"taised",
-			"Theboyce"
     ),
 
     SELECT_ELEMENTS : new Array ( "ctl00_CPMain_ucThread_ucPagerTop_filterUser",
