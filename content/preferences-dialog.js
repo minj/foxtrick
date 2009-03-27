@@ -70,14 +70,17 @@ var FoxtrickPreferencesDialog = {
         caption1.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage"));
         caption1.setAttribute("style","background-color:white");
         
-		var vbox1= doc.createElement("hbox");
-        //vbox1.setAttribute('flex',"1");
+		var vbox1= doc.createElement("vbox");
+        vbox1.setAttribute('flex',"1");
         var menulist1= doc.createElement("menulist");
         menulist1.setAttribute('id',"htLanguage");
         var menupopup1= doc.createElement("menupopup");
         menupopup1.setAttribute('id',"htLanguagePopup");
 		menulist1.appendChild(menupopup1);
-        vbox1.appendChild(menulist1);
+        var spacer = document.createElement( "spacer" );
+        spacer.setAttribute('flex','1');
+        vbox1.appendChild( spacer );
+		vbox1.appendChild(menulist1);
         var spacer = document.createElement( "spacer" );
         spacer.setAttribute('flex','1');
         vbox1.appendChild( spacer );
