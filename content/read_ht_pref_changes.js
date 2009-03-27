@@ -76,7 +76,10 @@ var FoxtrickReadHtPrefs = {
 		var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
 		FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
 		Foxtrickl10n.get_strings_bundle(this.codes[langval]);
-	   
+	    var confirmbox = doc.getElementById('ctl00_pnlPageOK');	
+		confirmbox.appendChild(doc.createElement('br'));
+	    confirmbox.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
+	    
 	},
 	
 	change : function(page, doc ) {
