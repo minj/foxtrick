@@ -61,4 +61,29 @@ padding-right: 10px !important;
 	z-index: 9 !important;
 }
 
+
+
+/* STADIONIMAGEFIX */
+
+/* moves Arena to the bottom */
+#ctl00_CPMain_pnlPreMatch object#ARENA {
+float:right !important;
+margin-top:675px !important;
+}
+
+/* moves Arena info to the bottom */
+#ctl00_CPMain_pnlPreMatch div.arenaInfo {
+float:right !important;
+width: 200px !important;
+margin-top:-250px !important;
+}
+
+/* moves rest to the top */
+#ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
+margin-top:-950px !important;
+float:left !important;
+}
+
+/* --------------- */
+
 }
