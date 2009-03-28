@@ -49,12 +49,16 @@ var FoxtrickAddHtLiveToOngoing = {
 		if (page=='match' && doc.getElementById('ctl00_CPMain_pnlPreMatch')==null
 				&& doc.getElementById('mainBody').getElementsByTagName('table').length==0 
 				&& doc.getElementById('mainBody').innerHTML.search(/addMatch/)==-1) {
-			var img=doc.getElementById('mainBody').getElementsByTagName('img')[0]; 
-			var matchID=FoxtrickHelper.findMatchId(doc.getElementById('mainWrapper').getElementsByTagName('h2')[0]);								
-			var a=doc.createElement('a');
-			a.href="/Club/Matches/Live.aspx?actionType=addMatch&matchID="+matchID;
-			a.innerHTML='<img style="position:absolute; right:10px;" class="matchHTLive" title="HT Live" alt="HT Live" src="/Img/Icons/transparent.gif"/>';
-			img.parentNode.appendChild(a);
+			var imgs=doc.getElementById('mainBody').getElementsByTagName('img'); 
+			var img=null,i=0;
+			while (img=imgs[i++])  {if (img.src.search(/weather/i)!=-1) break;}
+			if (img!=null) {
+				var matchID=FoxtrickHelper.findMatchId(doc.getElementById('mainWrapper').getElementsByTagName('h2')[0]);								
+				var a=doc.createElement('a');
+				a.href="/Club/Matches/Live.aspx?actionType=addMatch&matchID="+matchID;
+				a.innerHTML='<img style="position:absolute; right:10px;" class="matchHTLive" title="HT Live" alt="HT Live" src="/Img/Icons/transparent.gif"/>';
+				img.parentNode.appendChild(a);
+			}
 		}
 		} catch(e) {dump('FoxtrickAddHtLiveToOngoing: '+e+'\n');}
 	},
