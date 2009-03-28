@@ -64,6 +64,8 @@ padding-right: 10px;
 
 /* STADIONIMAGEFIX */
 
+/* -------1------- */
+
 /* moves Arena to the bottom */
 #aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch object#ARENA {
 float:right !important;
@@ -81,6 +83,39 @@ margin-top:-250px !important;
 #aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
 margin-top:-970px !important;
 float:left !important;
+}
+
+/* -------2------- */
+
+/* moves Arena to the bottom */
+object#ARENA>embed {
+margin-top:150px !important;
+}
+
+/* moves rest to the top */
+div#ctl00_CPMain_pnlMain>div.mainBox {
+margin-top:-475px !important;
+}
+
+div#ctl00_CPMain_pnlMain>div.mainBox table {
+margin-top:-425px !important;
+}
+
+/* moves Arena info to the bottom */
+div#ctl00_CPMain_pnlMain>div.arenaInfo {
+width:180px !important; 
+float:right !important; 
+margin-top:-260px !important;
+margin-right:15px;
+}
+
+
+div[class="main mainRegular"]>div#mainBody.boxBody {
+margin-top:135px; 
+}
+
+div#ctl00_CPMain_pnlMain>h1.hasByline {
+margin-top:-125px !important;
 }
 
 /* --------------- */
