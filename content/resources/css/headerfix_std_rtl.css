@@ -2,7 +2,7 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 /* Fix the header on screen */
-#header {
+#aspnetForm:not([action*="useFlashVersion=True"]) #header {
 position: fixed !important;
 top: 0px; 
 width: 949px;
@@ -10,7 +10,7 @@ z-index: 9999;
 }
 
 /* compensate for fixed header, move menu from the edge */
-#menu {
+#aspnetForm:not([action*="useFlashVersion=True"])  #menu {
 width: 953px !important;
 margin-right:0px !important;
 padding:0px 0px 0px 4px !important;
@@ -19,41 +19,41 @@ padding:0px 0px 0px 4px !important;
 }
 
 /* Logout botton +radius */
-#menu .logout {
+#aspnetForm:not([action*="useFlashVersion=True"])  #menu .logout {
 margin-left:11px !important; 
 }
 
 /* add whitespace below header */
-#menu {
+#aspnetForm:not([action*="useFlashVersion=True"])  #menu {
 margin-bottom: 6px !important;
 }
 
 /* compensate for fixed header */
-#content {
+#aspnetForm:not([action*="useFlashVersion=True"])  #content {
 padding-top: 100px !important;
 }
 
 /* fix left submenu */
-#content .subMenu {
+#aspnetForm:not([action*="useFlashVersion=True"])  #content .subMenu {
 position: fixed !important;
 }
 
-content .subMenu .subMenuBox {
+#aspnetForm:not([action*="useFlashVersion=True"])  content .subMenu .subMenuBox {
 margin-right: 0px !important;
 }
 
 /* compensate for fixed left submenu */
-#content #mainWrapper {
+#aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper {
 margin-right: 175px !important;
 min-height: 620px !important; /* temporary height hack before sticky footer */
 }
 
-#content #mainWrapper .main {
+#aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper .main {
 margin-right: 10px !important;
 }
 
 /* compensate for fixed left submenu Forum */
-#content #mainWrapper>div[class="main mainConf"] {
+#aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper>div[class="main mainConf"] {
 float:right !important; 
 margin-right: -175px !important;
 width:655px !important;
@@ -70,19 +70,19 @@ z-index: 0 !important;
 /* STADIONIMAGEFIX */
 
 /* moves Arena to the bottom */
-#ctl00_CPMain_pnlPreMatch object#ARENA {
+#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch object#ARENA {
 float:right !important;
-margin-top:600px !important;
+margin-top:615px !important;
 }
 
 /* moves Arena info to the bottom */
-#ctl00_CPMain_pnlPreMatch div.arenaInfo {
+#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div.arenaInfo {
 margin-top:600px !important;
 }
 
 /* moves rest to the top */
-#ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
-margin-top:-850px !important;
+#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
+margin-top:-870px !important;
 float:left !important;
 }
 

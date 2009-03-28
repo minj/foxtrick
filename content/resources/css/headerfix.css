@@ -2,7 +2,7 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 /* Fix the header on screen */
-#header {
+#aspnetForm:not([action*="useFlashVersion=True"]) #header {
 position: fixed !important;
 top: 0px; 
 margin-left: -11px;
@@ -18,23 +18,23 @@ border-width:  0 1px 0 1px;
 
 
 /* compensate for fixed header, move menu from the edge */
-#menu {
+#aspnetForm:not([action*="useFlashVersion=True"]) #menu {
 width: 765px !important;
 margin-left:10px !important;
 }
 
 /* add whitespace below header */
-#menu {
+#aspnetForm:not([action*="useFlashVersion=True"]) #menu {
 margin-bottom: 6px !important;
 }
 
 /* compensate for fixed header */
-#content {
+#aspnetForm:not([action*="useFlashVersion=True"]) #content {
 padding-top: 100px !important;
 }
 
 /* fix left submenu */
-#content .subMenu {
+#aspnetForm:not([action*="useFlashVersion=True"]) #content .subMenu {
 position: fixed !important;
 /* getting borders right if menu overflows content */
 background: white !important;
@@ -46,17 +46,17 @@ border-width:  0 0 0 1px !important;
 }
 
 /* compensate for fixed left submenu */
-#content #mainWrapper {
+#aspnetForm:not([action*="useFlashVersion=True"]) #content #mainWrapper {
 margin-left: 135px;
 min-height: 630px !important; /* temporary height hack before sticky footer */
 }
 
-div#shortcuts {
+#aspnetForm:not([action*="useFlashVersion=True"]) div#shortcuts {
 padding-right: 10px;
 }
 
 /* fix for forumbookmark z-index 99999 */
-.cfWrapper .bookmarkMessage {
+#aspnetForm:not([action*="useFlashVersion=True"]) .cfWrapper .bookmarkMessage {
 	z-index: 9 !important;
 }
 
@@ -65,21 +65,21 @@ padding-right: 10px;
 /* STADIONIMAGEFIX */
 
 /* moves Arena to the bottom */
-#ctl00_CPMain_pnlPreMatch object#ARENA {
+#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch object#ARENA {
 float:right !important;
-margin-top:675px !important;
+margin-top:690px !important;
 }
 
 /* moves Arena info to the bottom */
-#ctl00_CPMain_pnlPreMatch div.arenaInfo {
+#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div.arenaInfo {
 float:right !important;
 width: 200px !important;
 margin-top:-250px !important;
 }
 
 /* moves rest to the top */
-#ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
-margin-top:-950px !important;
+#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
+margin-top:-970px !important;
 float:left !important;
 }
 
