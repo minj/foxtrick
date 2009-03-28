@@ -13,6 +13,8 @@ var FTTeamStats= {
     init : function() {
             Foxtrick.registerPageHandler('players',
                                           FTTeamStats);
+            Foxtrick.registerPageHandler('YouthPlayers',
+                                          FTTeamStats);
     },
 
     run : function( page, doc ) {
