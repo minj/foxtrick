@@ -143,6 +143,8 @@ var FoxtrickForumStaffMarker = {
 			"ljushaff",
 			"MarceloFBrandao",
             "McTripas",
+            "Mod-Karlthegreat",
+			"Mod-spambot",
             "Mod-summercloud",
             "Nanouk_HT33",
 			"OBarros",
@@ -152,7 +154,6 @@ var FoxtrickForumStaffMarker = {
             "Skoglund",
             "slader",
 			"smates",
-			"spambot",
 			"stephan57",
 			"taised"
     ),

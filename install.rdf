@@ -4,7 +4,7 @@
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <RDF:Description RDF:about="rdf:#$TfQfX1"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:maxVersion="3.*"
+                   em:maxVersion="3.0.*"
                    em:minVersion="3.0" />
   <RDF:Description RDF:about="rdf:#$1gQfX1"
                    em:id="{3db10fab-e461-4c80-8b97-957ad5f8ea47}"
@@ -17,7 +17,7 @@
   <RDF:Description RDF:about="rdf:#$YfQfX1"
                    em:id="{86c18b42-e466-45a9-ae7a-9b95ba6f5640}"
                    em:minVersion="1.7"
-                   em:maxVersion="1.9" />
+                   em:maxVersion="1.8" />
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
@@ -62,6 +62,7 @@
 	<em:contributor>Hungarian: LA-csajszi</em:contributor>
 	<em:contributor>Italiano: caracca</em:contributor>
 	<em:contributor>Lithuanian: Mod-summercloud</em:contributor>
+    <em:contributor>Luxembourgish: Mod-Karlthegreat</em:contributor>
     <em:contributor>Norwegian, bokmal: Skoglund</em:contributor>
 	<em:contributor>Polski: Homzik</em:contributor>
 	<em:contributor>Portugues: _recluso_, ei04004, McTripas</em:contributor>
