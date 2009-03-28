@@ -154,7 +154,7 @@ var FoxtrickForumStaffMarker = {
 			"smates",
 			"spambot",
 			"stephan57",
-			"taised",
+			"taised"
     ),
 
     SELECT_ELEMENTS : new Array ( "ctl00_CPMain_ucThread_ucPagerTop_filterUser",
