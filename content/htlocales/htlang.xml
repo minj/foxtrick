@@ -1142,4 +1142,57 @@
         </levels>
     </language> 	
 
+	    <language name="lb_LU" desc="Lëtzebuergesch">
+    <!-- rating sublevels appearing in match detail page -->
+        <ratingSubLevels>
+            <sublevel text="(Ganz niddereg)" value="0.0" />
+            <sublevel text="(Niddereg)" value="0.25"  />
+            <sublevel text="(Héich)" value="0.50"  />
+            <sublevel text="(Ganz héich)" value="0.75"  />
+        </ratingSubLevels>
+        <!-- tactics appearing in match detail page -->
+        <tactics>
+            <tactic type="normal" value="Normal" />
+            <tactic type="pressing" value="Pressen" />
+            <tactic type="ca" value="Konteren" />
+            <tactic type="aow" value="Attack iwwer d'Säiten" />
+            <tactic type="aim" value="Attack iwwer d'Mëtt" />
+            <tactic type="creatively" value="Kreativ spillen" />
+            <tactic type="longshots" value="Wäitschëss" />
+        </tactics>
+        <!-- repositioning word connections appearing in match lineup page -->
+        <repositioning>
+            <reposition type="midfielder" value="Zous. zentr. Mëttelf." />
+            <reposition type="centraldefender" value="Zous. zentr. Vert." />
+            <reposition type="forward" value="Zous. Stiermer" />
+            <reposition type="normal" value="Normal" />
+            <reposition type="offensive" value="Offensiv" />
+            <reposition type="defensive" value="Defensiv" />
+            <reposition type="towardsmiddle" value="an d'Mëtt" />
+            <reposition type="towardswing" value="no baussen" />
+        </repositioning>
+        <levels>
+            <level text="gëttlech" value="20" />
+            <level text="utopesch" value="19" />
+            <level text="magesch" value="18" />
+            <level text="phänomenal" value="17" />
+            <level text="ausserierdesch" value="16" />
+            <level text="onheemlech" value="15" />
+            <level text="iwwernatierlech" value="14" />
+            <level text="sensationell" value="13" />
+            <level text="fantastesch" value="12" />
+            <level text="brilliant" value="11" />
+            <level text="impressionant" value="10" />
+            <level text="formidabel" value="9" />
+            <level text="excellent" value="8" />
+            <level text="staark" value="7" />
+            <level text="passabel" value="6" />
+            <level text="mëttelméisseg" value="5" />
+            <level text="schwaach" value="4" />
+            <level text="aarmséileg" value="3" />
+            <level text="erbäermlech" value="2" />
+            <level text="katastrophal" value="1" />
+        </levels>
+    </language> 	
+
 </hattricklanguages>
