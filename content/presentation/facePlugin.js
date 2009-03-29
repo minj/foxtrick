@@ -11,14 +11,10 @@ var FoxtrickHideFaceTransferImages = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'playerdetail',
-                                          FoxtrickHideFaceTransferImages);
-            Foxtrick.registerPageHandler( 'players',
-                                          FoxtrickHideFaceTransferImages);
-            Foxtrick.registerPageHandler( 'YouthPlayer',
-                                          FoxtrickHideFaceTransferImages);
-            Foxtrick.registerPageHandler( 'YouthPlayers',
-                                          FoxtrickHideFaceTransferImages);
+            Foxtrick.registerPageHandler( 'playerdetail', this);
+            Foxtrick.registerPageHandler( 'players', this);
+            Foxtrick.registerPageHandler( 'YouthPlayer', this);
+            Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -45,14 +41,10 @@ var FoxtrickHideFaceInjuryImages = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'playerdetail',
-                                          FoxtrickHideFaceInjuryImages);
-            Foxtrick.registerPageHandler( 'players',
-                                          FoxtrickHideFaceInjuryImages);
-            Foxtrick.registerPageHandler( 'YouthPlayer',
-                                          FoxtrickHideFaceTransferImages);
-            Foxtrick.registerPageHandler( 'YouthPlayers',
-                                          FoxtrickHideFaceTransferImages);
+            Foxtrick.registerPageHandler( 'playerdetail', this);
+            Foxtrick.registerPageHandler( 'players', this);
+            Foxtrick.registerPageHandler( 'YouthPlayer', this);
+            Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -78,14 +70,10 @@ var FoxtrickHideFaceSuspendedImages = {
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-        Foxtrick.registerPageHandler( 'playerdetail',
-                                          FoxtrickHideFaceSuspendedImages);
-        Foxtrick.registerPageHandler( 'players',
-										FoxtrickHideFaceSuspendedImages);
-        Foxtrick.registerPageHandler( 'YouthPlayer',
-                                          FoxtrickHideFaceTransferImages);
-        Foxtrick.registerPageHandler( 'YouthPlayers',
-                                          FoxtrickHideFaceTransferImages);
+        Foxtrick.registerPageHandler( 'playerdetail', this);
+        Foxtrick.registerPageHandler( 'players', this);
+        Foxtrick.registerPageHandler( 'YouthPlayer', this);
+        Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -112,10 +100,8 @@ var FoxtrickColouredYouthFaces = {
 	DEFAULT_ENABLED : false,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'YouthPlayer',
-                                          FoxtrickColouredYouthFaces);
-            Foxtrick.registerPageHandler( 'YouthPlayers',
-                                          FoxtrickColouredYouthFaces);
+            Foxtrick.registerPageHandler( 'YouthPlayer', this);
+            Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -141,6 +127,8 @@ var FoxtrickMovePlayerStatement = {
 	
     init : function() {
             Foxtrick.registerPageHandler('playerdetail',this);
+			Foxtrick.registerPageHandler( 'YouthPlayer',this);
+
     },
 
     run : function( page, doc ) {
