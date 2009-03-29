@@ -52,14 +52,14 @@ var FoxtrickReadHtPrefs = {
 			this.codes['14']='ru';
 			this.codes['34']='gr';
 			this.codes['40']='he_IL';
-			
+			this.codes['111']='lb_LU';
+	
 			// follwoing don't have an own locale file yet
 	/*
 	<option value="85">Albanian</option>
 	<option value="113">Furlan</option>
 	<option value="90">Georgian</option>
 	<option value="86">Kyrgyz</option>
-	<option value="111">Lëtzebuergesch</option>
 	<option value="75">?????</option> Farsi
 	<option value="84">??????????</option>  Belarusian
 	<option value="15">??(??)</option> Chinese Simplified
@@ -71,17 +71,23 @@ var FoxtrickReadHtPrefs = {
 
     run : function(page, doc ) {  
 
-		if (doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)==-1) return; 
+		if (doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {
 		
-		var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
-		FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
-		Foxtrickl10n.get_strings_bundle(this.codes[langval]);
-	    var confirmbox = doc.getElementById('ctl00_pnlPageOK');	
-		var alertdiv=doc.createElement('div');
-		alertdiv.setAttribute('class','alert');
-		alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
-		confirmbox.parentNode.insertBefore(alertdiv,confirmbox.nextSibling);
-	    
+			var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
+			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
+			FoxtrickPrefs.setString("temp_htLanguage", 'notset');
+			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+			var confirmbox = doc.getElementById('ctl00_pnlPageOK');	
+			var alertdiv=doc.createElement('div');
+			alertdiv.setAttribute('class','alert');
+			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
+			confirmbox.parentNode.insertBefore(alertdiv,confirmbox.nextSibling);
+			
+	    }
+		/*if (doc.location.href.search(/\/MyHattrick\/$/)!=-1( {
+			var langval=doc.getElementById('ctl00_CPSidebar_AllLanguages_ddlLanguages');
+			FoxtrickPrefs.setString("temp_htLanguage", this.codes[langval]);
+		}*/	
 	},
 	
 	change : function(page, doc ) {
