@@ -20,6 +20,11 @@ var FoxtrickTeamSelectBox= {
     run : function( page, doc ) {
 		try {
 			if (doc.location.href.search(/TeamID=/i)==-1) {return;}
+			
+			if (Foxtrick.isStandardLayout(doc) )
+				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std.css");
+			else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple.css");
+
 			FoxtrickPrefs.setBool("ShowPlayerAsList",false);
 			//dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
 			this.listbox=null;
@@ -44,14 +49,20 @@ var FoxtrickTeamSelectBox= {
 			// add headerclick
 			var header = this.listbox.getElementsByTagName("h2")[0];
 			var pn=header.parentNode;
-            var hh=pn.removeChild(header);
-            var div = doc.createElement("div");
-            div.appendChild(hh);
-            div.setAttribute("style","cursor:pointer;");
+			var div=null;
+			if (pn.className!='boxLeft') {
+				var hh=pn.removeChild(header);
+				div = doc.createElement("div");
+				div.appendChild(hh);
+				pn.insertBefore(div,pn.firstChild);
+			}
+			else div=pn.parentNode;
+			div.setAttribute("style","cursor:pointer;");
             div.setAttribute("id", "ownselectboxHeaderID");
-            div.addEventListener( "click", this.HeaderClick, false );
+            if (FoxtrickPrefs.getBool("ShowPlayerAsList")) div.setAttribute("class","boxHead sidebarBoxUnfolded");
+            else div.setAttribute("class","boxHead sidebarBoxCollapsed");
+			div.addEventListener( "click", this.HeaderClick, false );
             FoxtrickTeamSelectBox.HeaderClick.doc=doc;
-            pn.insertBefore(div,pn.firstChild);
                                        
             if (doc.location.href.search(/YouthPlayers/i)!=-1 && !Foxtrick.isModuleFeatureEnabled( this, "AlsoYouthPlayers" ) ) 
 				{FoxtrickPrefs.setBool("ShowPlayerAsList",true);}
@@ -121,8 +132,14 @@ var FoxtrickTeamSelectBox= {
 		try { 
 			var doc=FoxtrickTeamSelectBox.HeaderClick.doc;
 			FoxtrickPrefs.setBool("ShowPlayerAsList",!FoxtrickPrefs.getBool("ShowPlayerAsList"));
-			if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {FoxtrickTeamSelectBox.toList(doc);}
-			else {FoxtrickTeamSelectBox.toSelectBox(doc);}		
+			var div=doc.getElementById("ownselectboxHeaderID");
+            
+			if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {
+				FoxtrickTeamSelectBox.toList(doc);
+				div.setAttribute("class","boxHead sidebarBoxUnfolded");
+			}
+			else {FoxtrickTeamSelectBox.toSelectBox(doc);
+				div.setAttribute("class","boxHead sidebarBoxCollapsed");}	
 		} 
 		catch (e) {dump("SelectBox->HeaderClick: "+e+'\n');}
 	},
