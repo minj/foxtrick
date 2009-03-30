@@ -21,10 +21,15 @@ var FoxtrickTeamSelectBox= {
 		try {
 			if (doc.location.href.search(/TeamID=/i)==-1) {return;}
 			
-			if (Foxtrick.isStandardLayout(doc) )
-				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std.css");
-			else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple.css");
-
+			if (Foxtrick.isStandardLayout(doc) )  {
+				if (!Foxtrick.isRTLLayout(doc))  Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std.css");
+				else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std_rtl.css");
+			}
+			else  {
+				if (!Foxtrick.isRTLLayout(doc)) Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple.css");
+				else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple_rtl.css");
+			}
+			
 			FoxtrickPrefs.setBool("ShowPlayerAsList",false);
 			//dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
 			this.listbox=null;

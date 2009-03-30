@@ -1,0 +1,26 @@
+
+/* Link dropdown image */
+div.sidebarBoxCollapsed>div.boxLeft h2 {
+background: url('chrome://foxtrick/content/resources/img/link-down.png') 16px 8px no-repeat;
+background-color:#849D84;
+margin-left:1px !important;
+margin-bottom:-5px !important;
+margin-top:1px !important;
+padding:7px 10px;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-topright: 10px;
+color: #fff !important; 
+}
+
+/* Link fold image */
+div.sidebarBoxUnfolded>div.boxLeft h2 {
+background: url('chrome://foxtrick/content/resources/img/link-up.png') 16px 7px no-repeat;
+background-color:#849D84;
+margin-left:1px !important;
+margin-bottom:-5px !important;
+margin-top:1px !important;
+padding:7px 10px;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-topright: 10px;
+color: #fff !important; 
+}
