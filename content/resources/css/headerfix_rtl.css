@@ -67,13 +67,13 @@ padding-right: 10px !important;
 
 /* moves Arena to the bottom */
 #aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch object#ARENA {
-float:right !important;
+float:left !important;
 margin-top:690px !important;
 }
 
 /* moves Arena info to the bottom */
 #aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div.arenaInfo {
-float:right !important;
+float:left !important;
 width: 200px !important;
 margin-top:-250px !important;
 }
@@ -81,7 +81,34 @@ margin-top:-250px !important;
 /* moves rest to the top */
 #aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
 margin-top:-970px !important;
+float:right !important;
+}
+
+/* part 2*/
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>h1.hasByline {
+margin-top:-125px !important;
+}
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>div.mainBox {
+margin-top:-475px !important;
+}
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>div.mainBox table {
+margin-top:-425px !important;
+}
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>div.arenaInfo {
+width:180px !important;
 float:left !important;
+margin-top:-260px !important;
+margin-left:15px }
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] div[class="main mainRegular"]>div#mainBody.boxBody {
+margin-top:135px;
+}
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] object#ARENA>embed {
+margin-top:150px !important;
 }
 
 /* --------------- */

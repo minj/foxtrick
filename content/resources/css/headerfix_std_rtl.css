@@ -71,7 +71,7 @@ z-index: 0 !important;
 
 /* moves Arena to the bottom */
 #aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch object#ARENA {
-float:right !important;
+float:left !important;
 margin-top:615px !important;
 }
 
@@ -83,8 +83,24 @@ margin-top:600px !important;
 /* moves rest to the top */
 #aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
 margin-top:-870px !important;
-float:left !important;
+float:right !important;
 }
+
+/*part 2*/
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="]  div#ctl00_CPMain_pnlMain>div.mainBox {
+margin-top:-420px !important;
+}
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>div.mainBox table {
+margin-top:-360px !important;
+}
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>div.arenaInfo {
+margin-top:100px !important;
+}
+
+#aspnetForm[action*="/Club/Arena/Default.aspx?ArenaID="] object#ARENA>embed {
+margin-top:125px !important;
 
 /* --------------- */
 
