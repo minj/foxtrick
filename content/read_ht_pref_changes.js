@@ -13,7 +13,7 @@ var FoxtrickReadHtPrefs = {
 	codes:{},
 	
     init : function() {
-            Foxtrick.registerPageHandler('prefSettings',FoxtrickReadHtPrefs);
+            Foxtrick.registerPageHandler('prefSettings',this);
 
 			this.codes['2']='en';
 			this.codes['3']='de';
@@ -75,7 +75,6 @@ var FoxtrickReadHtPrefs = {
 		
 			var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
 			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
-			FoxtrickPrefs.setString("temp_htLanguage", 'notset');
 			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
 			var confirmbox = doc.getElementById('ctl00_pnlPageOK');	
 			var alertdiv=doc.createElement('div');
@@ -84,10 +83,6 @@ var FoxtrickReadHtPrefs = {
 			confirmbox.parentNode.insertBefore(alertdiv,confirmbox.nextSibling);
 			
 	    }
-		/*if (doc.location.href.search(/\/MyHattrick\/$/)!=-1( {
-			var langval=doc.getElementById('ctl00_CPSidebar_AllLanguages_ddlLanguages');
-			FoxtrickPrefs.setString("temp_htLanguage", this.codes[langval]);
-		}*/	
 	},
 	
 	change : function(page, doc ) {
