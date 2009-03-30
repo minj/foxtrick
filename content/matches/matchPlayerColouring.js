@@ -70,7 +70,7 @@ FoxtrickMatchPlayerColouring = {
 		var contentB = content.substring(content.search('.<br><br>')+9); 
 		contentB=contentB.substring(0,contentB.search('.<br><br>')); 
 		contentB=contentB.substring(contentB.search(/\d-\d-\d/));
-		contentB=contentB.substring(contentA.indexOf('.')); 
+		contentB=contentB.substring(contentB.indexOf('.')); 
 		//dump('B: '+ contentB+'\n--------\n');
 
 		var num_unknown_namesA=0;
@@ -82,7 +82,7 @@ FoxtrickMatchPlayerColouring = {
 		else teamA[0]=teamA[0].substring(teamA[0].lastIndexOf(' ')+1);
 		for (var k=0;k<teamA.length;k++) { 
 			if (teamA[k]=='') {++num_unknown_namesA;teamA[k]='##################'; }// replace empty string with something which will not be found in text again
-			dump(k+1+': "'+teamA[k]+'"\n');
+			//dump(k+1+': "'+teamA[k]+'"\n');
 		}
 		var num_unknown_namesB=0;
         if (contentB) {
@@ -92,7 +92,7 @@ FoxtrickMatchPlayerColouring = {
 		else teamB[0]=teamB[0].substring(teamB[0].lastIndexOf(' ')+1);
  		for (var k=0;k<teamB.length;k++) { 
 			if (teamB[k]=='') {++num_unknown_namesB;teamB[k]='##################'; } // replace empty string with something which will not be found in text again
-			dump(k+1+': "'+teamB[k]+'"\n');
+			//dump(k+1+': "'+teamB[k]+'"\n');
 		}		
 		//Retrieve substitutions
 		 var spans = content_div.getElementsByTagName("td");
