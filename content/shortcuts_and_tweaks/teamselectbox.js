@@ -9,11 +9,12 @@ var FoxtrickTeamSelectBox= {
     MODULE_NAME : "TeamSelectBox",
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
         DEFAULT_ENABLED : true,
+		OPTIONS : new Array("AlsoYouthPlayers"), 
 		listbox:"",
 
     init : function() {
-            Foxtrick.registerPageHandler( 'players',
-                                          FoxtrickTeamSelectBox);
+            Foxtrick.registerPageHandler( 'players',this);
+            Foxtrick.registerPageHandler( 'YouthPlayers',this);
     },
 
     run : function( page, doc ) {
@@ -52,7 +53,8 @@ var FoxtrickTeamSelectBox= {
             FoxtrickTeamSelectBox.HeaderClick.doc=doc;
             pn.insertBefore(div,pn.firstChild);
                                        
-            if (doc.location.href.search(/YouthPlayers/i)!=-1) {FoxtrickPrefs.setBool("ShowPlayerAsList",true);;}
+            if (doc.location.href.search(/YouthPlayers/i)!=-1 && !Foxtrick.isModuleFeatureEnabled( this, "AlsoYouthPlayers" ) ) 
+				{FoxtrickPrefs.setBool("ShowPlayerAsList",true);}
             else {this.toSelectBox(doc);}
 		} 
 		catch (e) {dump("SelectBox->run: "+e+'\n');}

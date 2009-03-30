@@ -60,5 +60,6 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", 
 
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace_simple.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
 
 
