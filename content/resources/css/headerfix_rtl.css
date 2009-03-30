@@ -111,6 +111,16 @@ margin-top:135px;
 margin-top:150px !important;
 }
 
+
+/* part 3 */
+/* Kitdesignerfix */
+#aspnetForm[action*="?TeamID="] div#mainWrapper>div[class="main mainFull"] {
+margin-right:-135px !important;
+width: 765px !important;}
+
+
+
+
 /* --------------- */
 
 }
