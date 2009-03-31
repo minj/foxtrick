@@ -84,8 +84,12 @@ var FoxtrickForumPreview = {
         preview_message.id = "message_preview";
         preview_message.setAttribute( "class", "message" );
         preview_div.appendChild( preview_message );
-
-        msg_window.parentNode.insertBefore( preview_div, msg_window );
+		
+		
+		var divs=doc.getElementById('mainBody').getElementsByTagName('div');
+		var i=0,div;
+		while (div=divs[i++]) if (div.className=='HTMLToolbar') break;
+        div.parentNode.insertBefore( preview_div,div );
 
     },
 
