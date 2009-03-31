@@ -1220,6 +1220,44 @@ function getDatefromCellHTML ( date ) {
     return CellDate;
 }
 
+function getUniqueDayfromCellHTML ( date ) {
+    /*
+    Returns Date for given input
+    date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
+    separator or leading zero is irrelevant        
+    */
+    if (date == '') return false;
+        date +=' ';
+        
+        // dump ('  CELL :[' + date + ']\n');
+
+        var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+        var ar = reg.exec(date);
+        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+        if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+
+        switch ( DATEFORMAT ) {
+            case 'ddmmyyyy':
+                var SD = ar[1];
+                var SM = ar[3];
+                var SY = ar[5];
+                break;
+            case 'mmddyyyy':
+                var SD = ar[3];
+                var SM = ar[1];
+                var SY = ar[5];
+                break;
+            case 'yyyymmdd':
+                var SD = ar[5];
+                var SM = ar[3];
+                var SY = ar[1];
+                break;
+        }
+        
+        var CellDays = SY*31*12+SM*31+SD;
+    return CellDays;
+}
+
 TimeDifferenceToText = function( time_sec, short ) {
     
     var org_time = time_sec;
@@ -1335,7 +1373,7 @@ TimeDifferenceToText = function( time_sec, short ) {
     return Text;
 }
 
-modifyDates = function ( doc, short, elm, before, after ) {
+modifyDates = function ( doc, short, elm, before, after, return_standardized ) {
     /*
     Returns HT-Week & Season
     short == true => Date is without time.
@@ -1377,7 +1415,8 @@ modifyDates = function ( doc, short, elm, before, after ) {
                     }
 
                     if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
-                        tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
+                        if (return_standardized==null) tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
+						else return gregorianToHT(td_date);
                         dump (' == > HTDF ['+ DATEFORMAT+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
                     }
                 }
