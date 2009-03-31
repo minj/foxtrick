@@ -1255,6 +1255,32 @@ stats["nrg_pop"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/nrg_pop.png"
 };
 
+stats["nrg_deffor"] =  { 
+        "url" : "http://nrgjack.altervista.org/",
+		"playerlink" : { "path"       : "trequartista.php",
+                         "filters"    : [], 
+                         "params"     : { "playmaking" : "pm", "passing" : "pa", 
+                                          "winger" : "wi", "defending" : "df",
+                                          "scoring" : "sc", "goalkeeping" : "gk" }
+                          },
+        "allowlink" : function(filterparams, stattype) {
+            var pa=filterparams["passing"];
+            var sc=filterparams["scoring"];
+            if ((pa >= filterparams["playmaking"] && pa > filterparams["winger"] 
+				&& pa > filterparams["defending"] && pa > filterparams["goalkeeping"])
+			|| (sc >= filterparams["playmaking"] && sc > filterparams["winger"] 
+				&& sc > filterparams["defending"] && sc > filterparams["goalkeeping"])) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        "title" : "NRG The Perfect Defensive Forward",
+        "img" : "chrome://foxtrick/content/resources/linkicons/nrg_deffor.gif"
+};
+
+
+
 // ArgenStat
 stats["argenstat"] =  { 
         "url" : "http://argenstat.com.ar/",
