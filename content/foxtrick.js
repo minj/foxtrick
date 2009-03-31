@@ -1231,13 +1231,13 @@ function getUniqueDayfromCellHTML ( date ) {
         
         // dump ('  CELL :[' + date + ']\n');
 
-        var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-        var ar = reg.exec(date);
+        var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})/i;
+		var ar = reg.exec(date);
         var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
         if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
 
         switch ( DATEFORMAT ) {
-            case 'ddmmyyyy':
+            case 'ddmmyyyy': 
                 var SD = ar[1];
                 var SM = ar[3];
                 var SY = ar[5];
@@ -1253,7 +1253,7 @@ function getUniqueDayfromCellHTML ( date ) {
                 var SY = ar[1];
                 break;
         }
-        
+        //dump(date+' '+ar+' SY:'+SY+'\n');
         var CellDays = SY*31*12+SM*31+SD;
     return CellDays;
 }
