@@ -1071,7 +1071,7 @@ function ReturnFormatedValue( number, separator ) {
         return number;
 }
 
-function gregorianToHT( date ) {
+function gregorianToHT( date,weekdayoffset ) {
     /*
     Returns HT Week and Season like (15/37)
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
@@ -1079,7 +1079,7 @@ function gregorianToHT( date ) {
     */
     if (date == '') return false;
     date +=' ';
-        
+    if(!weekdayoffset) weekdayoffset=0;
     var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
     var ar = reg.exec(date);
     var months = [];
@@ -1143,8 +1143,8 @@ function gregorianToHT( date ) {
             break;
     }
             
-    var dayCount = years[year-2000] + months[month] + (day);
-    dump ( ' > DATEFORMAT: ' + DATEFORMAT + ' [ ' + date + '] ' + day + '/' + month + '/' + year + '\n');
+    var dayCount = years[year-2000] + months[month] + (day) -parseInt(weekdayoffset);
+    dump ( ' > DATEFORMAT: ' + DATEFORMAT + ' [ ' + date + '] ' + day + '/' + month + '/' + year + ':dayoff='+weekdayoffset+'\n');
     // leap day
     if (year % 4 == 0 && month > 2)
         ++dayCount;
@@ -1162,13 +1162,13 @@ function gregorianToHT( date ) {
 function htDatePrintFormat(year, season, week, day, date) {
     var offset = 0;
     try {
-        if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, FoxtrickHTDateFormat.OPTIONS[0] ))
+        if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison"))
             offset = FoxtrickPrefs.getInt("htSeasonOffset");
     } catch(e) {
         dump('offset: ' + e + '\n');
         offset = 0;
     }
-    // dump ('offset:' + offset + '\n');
+     dump ('offset:' +Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison")+' '+ offset + '\n');
     if ( year <= 2000 ) 
         // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
         // return "<font color='#808080'>(old)</font>"; 
@@ -1373,7 +1373,7 @@ TimeDifferenceToText = function( time_sec, short ) {
     return Text;
 }
 
-modifyDates = function ( doc, short, elm, before, after, return_standardized ) {
+modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
     /*
     Returns HT-Week & Season
     short == true => Date is without time.
@@ -1399,7 +1399,7 @@ modifyDates = function ( doc, short, elm, before, after, return_standardized ) {
                 var ar = reg.exec(dt_inner);
 
                 if (ar != null) {
-                    dump (' == > HTDATEFORMAT CHECK: ' + dt_inner + '\n');
+                    //dump (' == > HTDATEFORMAT CHECK: ' + dt_inner + '\n');
                     var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
 
                     switch ( DATEFORMAT ) {
@@ -1415,9 +1415,8 @@ modifyDates = function ( doc, short, elm, before, after, return_standardized ) {
                     }
 
                     if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
-                        if (return_standardized==null) tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date) + after;
-						else return gregorianToHT(td_date);
-                        dump (' == > HTDF ['+ DATEFORMAT+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+                        tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date,weekdayoffset) + after;
+						//dump (' == > HTDF ['+ DATEFORMAT+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
                     }
                 }
             }
