@@ -1263,13 +1263,15 @@ stats["nrg_deffor"] =  {
                                           "winger" : "wi", "defending" : "df",
                                           "scoring" : "sc", "goalkeeping" : "gk" }
                           },
-        "allowlink" : function(filterparams, stattype) {
-            var pa=filterparams["passing"];
+        "allowlink" : function(filterparams, stattype) { 
+			if (parseInt(filterparams["passing"])+ parseInt(filterparams["scoring"])+ parseInt(filterparams["playmaking"]) > 
+				2*(parseInt(filterparams["winger"]) + parseInt(filterparams["defending"]) + parseInt(filterparams["goalkeeping"])))
+			/*var pa=filterparams["passing"];
             var sc=filterparams["scoring"];
             if ((pa >= filterparams["playmaking"] && pa > filterparams["winger"] 
 				&& pa > filterparams["defending"] && pa > filterparams["goalkeeping"])
 			|| (sc >= filterparams["playmaking"] && sc > filterparams["winger"] 
-				&& sc > filterparams["defending"] && sc > filterparams["goalkeeping"])) {
+				&& sc > filterparams["defending"] && sc > filterparams["goalkeeping"]))*/ {
                 return true;
             } else {
                 return false;
