@@ -16,7 +16,8 @@ FoxtrickFixcssProblems = {
                                     "MatchOrder_Lineheight",
 									"RTL_Fixes",
 									"ForumScrollBarFix",
-									"Forum_ThreadlistSpace_simple"
+									"Forum_ThreadlistSpace_simple",
+									"HideAssistant"
 				),
 				
     OPTIONS_CSS: new Array (
@@ -27,7 +28,8 @@ FoxtrickFixcssProblems = {
 				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
 				"",
 				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-				""
+				"",
+				"chrome://foxtrick/content/resources/css/fixes/HideAssistant.css"				
 				),
 	OPTIONS_CSS_RTL: new Array (
 				"chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -37,7 +39,8 @@ FoxtrickFixcssProblems = {
 				"chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
 				"chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
 				"chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-				""
+				"",
+				"chrome://foxtrick/content/resources/css/fixes/HideAssistant.css"				
 				),
 				
 	init : function() {
@@ -45,13 +48,26 @@ FoxtrickFixcssProblems = {
 		
     },
 
-									
+	
+	assiover: function(ev) {
+	try{
+		var x=parseInt(ev.currentTarget.getAttribute('style').match(/(\d+)/g)[0])+Math.floor(Math.random()*20-10);
+		var y=parseInt(ev.currentTarget.getAttribute('style').match(/(\d+)/g)[1])+Math.floor(Math.random()*20-10);
+		ev.currentTarget.setAttribute('style',"right:"+x+"px; bottom:"+y+"px; position:fixed;");
+	} catch(e){dump('assiover '+e+'\n');}
+	},
     run : function(page, doc) { 
 	
 		if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace_simple" ) &&  !Foxtrick.isStandardLayout( doc ) ) {
 			var css = "chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css";
             Foxtrick.addStyleSheet( doc, css );
         }
+		
+		var assi=doc.getElementById('assistant');
+		if (assi==null) return;
+		
+		assi.addEventListener('mouseover',this.assiover,false);
+		
 		return;
     
 
