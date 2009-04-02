@@ -89,3 +89,62 @@ var FoxtrickReadHtPrefs = {
 	},
 		
 };
+
+
+
+/**
+ * FoxtrickMyHT
+ * MyHT message after new foxtrick version
+ * @author convinced
+ */
+////////////////////////////////////////////////////////////////////////////////
+
+var FoxtrickMyHT = {
+	
+    MODULE_NAME : "MyHT",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
+	DEFAULT_ENABLED : true,
+	
+    init : function() {
+            Foxtrick.registerPageHandler('myhattrick',this);
+   },
+
+    run : function(page, doc ) {  
+    try{
+			var curVersion=FoxtrickPrefs.getString("curVersion"); 
+			var oldVersion=FoxtrickPrefs.getString("oldVersion");
+			if (oldVersion<curVersion) {
+				var mainBody = doc.getElementById('mainBody');	
+				var alertdiv=doc.createElement('div');
+				alertdiv.setAttribute('class','alert');
+				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px;');
+				alertdiv.innerHTML = "<h2>FoxTrick "+curVersion+"</h2>";
+				alertdiv.innerHTML += '<h3>'+Foxtrickl10n.getString("NewOrChangedModules")+' '+oldVersion+'</h3>';
+						
+						
+				
+		
+				for ( i in Foxtrick.modules ) {
+					var module = Foxtrick.modules[i];
+					if ( module.NEW_AFTER_VERSION && curVersion > module.NEW_AFTER_VERSION) {
+					  var Tab="";
+					  if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
+					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
+					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.PRESENTATION) Tab=Foxtrickl10n.getString("foxtrick.prefs.ShortcutsTab");
+					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
+					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
+					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
+				
+					  alertdiv.innerHTML += module.MODULE_NAME+' ('+Tab+')<br>';
+					}
+				}
+				mainBody.insertBefore(alertdiv,mainBody.firstChild);
+				//FoxtrickPrefs.setString("oldVersion",curVersion);			
+			}
+	} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
+	},
+	
+	change : function(page, doc ) {
+	},
+		
+};

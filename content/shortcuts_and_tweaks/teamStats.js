@@ -9,6 +9,7 @@ var FTTeamStats= {
     MODULE_NAME : "FTTeamStats",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.6.1",
 	latestMatch:0,
 
     init : function() {

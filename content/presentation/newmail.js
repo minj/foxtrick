@@ -9,6 +9,7 @@ var FoxtrickNewMail = {
     MODULE_NAME : "NewMail",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.6.1",
 	CSS:  "",
 	OPTIONS : new Array("CustomColor","HighlightNewMailIcon"),
 	OPTION_TEXTS : true,
