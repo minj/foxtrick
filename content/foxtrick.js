@@ -1482,6 +1482,7 @@ function FoxtrickGetElementPosition(This,ref){
 	return {'top':pT,'left':pL};
 }
 	
-	
-	
+function FoxtrickGetDataURIText(filetext){
+	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
+}	
 
