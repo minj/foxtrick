@@ -127,15 +127,36 @@ var FoxtrickMyHT = {
 				for ( i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i];
 					if ( module.NEW_AFTER_VERSION && curVersion > module.NEW_AFTER_VERSION) {
-					  var Tab="";
-					  if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
-					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
-					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.PRESENTATION) Tab=Foxtrickl10n.getString("foxtrick.prefs.ShortcutsTab");
-					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
-					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
-					  else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
+						var Tab="";
+						if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.PRESENTATION) Tab=Foxtrickl10n.getString("foxtrick.prefs.ShortcutsTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
 				
-					  alertdiv.innerHTML += module.MODULE_NAME+' ('+Tab+')<br>';
+						if (module.SCREENSHOT) {
+							var a=doc.createElement('a');
+							a.href=module.SCREENSHOT;
+							a.title=Foxtrickl10n.getString("Screenshot");
+							a.target="_blank";
+							a.innerHTML=module.MODULE_NAME;
+							alertdiv.appendChild(a);
+						}
+						else alertdiv.appendChild(doc.createTextNode(module.MODULE_NAME));
+				
+						alertdiv.appendChild(doc.createTextNode(' '));
+						
+						if (module.PREF_SCREENSHOT) {
+							var a=doc.createElement('a');
+							a.href=module.PREF_SCREENSHOT;
+							a.title=Foxtrickl10n.getString("PreferenceScreenshot");
+							a.target="_blank";
+							a.innerHTML='('+Tab+')';
+							alertdiv.appendChild(a);
+						}
+						else alertdiv.appendChild(doc.createTextNode('('+Tab+')'));
+						alertdiv.appendChild(doc.createElement('br'));
 					}
 				}
 				mainBody.insertBefore(alertdiv,mainBody.firstChild);

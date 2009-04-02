@@ -10,6 +10,8 @@ var FoxtrickTeamSelectBox= {
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
         DEFAULT_ENABLED : true,
 		NEW_AFTER_VERSION: "0.4.6.1",	
+		SCREENSHOT:"http://www.ht-foxtrick.com/forum/portal.php",
+		PREF_SCREENSHOT:"http://www.ht-foxtrick.com/forum/portal.php",
 		OPTIONS : new Array("AlsoYouthPlayers"), 
 		listbox:"",
 
