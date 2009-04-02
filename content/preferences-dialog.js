@@ -385,9 +385,9 @@ var FoxtrickPreferencesDialog = {
 		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch") );
 		desc_box.setAttribute("flex","1");
 		hbox.appendChild(desc_box);
-		modules_list.appendChild(groupbox);
 		
-			// disable all
+		
+		// disable all
 		var hbox3= doc.createElement("hbox");
 		groupbox.appendChild(hbox3);
 		var button3= doc.createElement("button");
@@ -398,9 +398,29 @@ var FoxtrickPreferencesDialog = {
 		var desc_box3 = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll") );
 		desc_box3.setAttribute("flex","1");
 		hbox3.appendChild(desc_box3);
-		modules_list.appendChild(groupbox);
+		
+		var vbox_ov= doc.createElement("vbox");
+        vbox_ov.setAttribute('flex',"1");
+        groupbox.appendChild(vbox_ov);		
+		var caption_ov= doc.createElement("caption");
+        caption_ov.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.labelShowFoxtrickMyHTAgain"));
+        caption_ov.setAttribute("style","background-color:transparent !important");
+        var menulist_ov= doc.createElement("menulist");
+        menulist_ov.setAttribute('id',"htOldVersion");
+        var menupopup_ov= doc.createElement("menupopup");
+        menupopup_ov.setAttribute('id',"htOldVersionPopup");
+		menulist_ov.appendChild(menupopup_ov);
+        vbox_ov.appendChild(caption_ov);
+        vbox_ov.appendChild(menulist_ov);
+        modules_list.appendChild(groupbox);
+				
+		var htVersionsXml = document.implementation.createDocument("", "", null);
+        htVersionsXml.async = false;
+        htVersionsXml.load("chrome://foxtrick/content/htlocales/htversions.xml", "text/xml");
+        var itemToSelect3=this.fillListFromXml("htOldVersionPopup", "htVersion-", htVersionsXml, "version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
+        document.getElementById("htOldVersion").selectedIndex=itemToSelect3;
 
-
+		
 		// disable options
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
@@ -553,10 +573,14 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setString("cssSkin", document.getElementById("cssskinpref").value);
         FoxtrickPrefs.setBool("module.SkinPlugin.enabled", document.getElementById("skinActivedSkin").checked); 
 
-        //Stage
-		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
-        FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
+        //disable
+		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);        
+		FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
         
+		// other
+		FoxtrickPrefs.setString("oldVersion", document.getElementById("htOldVersion").value);
+
+		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);
         FoxtrickPrefs.setBool("SavePrefs_Notes", document.getElementById("savenotesid").checked);
         
@@ -675,6 +699,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
         }
 
         return indexToSelect;
+	
     },
 
     _fillModulesList : function( doc, category ) {

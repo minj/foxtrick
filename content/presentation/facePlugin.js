@@ -8,6 +8,9 @@ var FoxtrickHideFaceTransferImages = {
 	
     MODULE_NAME : "HideFaceTransferImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	NEW_AFTER_VERSION: "0.4.0",	
+	SCREENSHOT:"",
+	PREF_SCREENSHOT:"",
 	DEFAULT_ENABLED : true,
 	
     init : function() {
