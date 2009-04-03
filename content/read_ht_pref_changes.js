@@ -105,6 +105,8 @@ var FoxtrickMyHT = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	DEFAULT_ENABLED : true,
 	
+	NewModules:null,
+	
     init : function() {
             Foxtrick.registerPageHandler('myhattrick',this);
    },
@@ -114,33 +116,8 @@ var FoxtrickMyHT = {
 			var curVersion=FoxtrickPrefs.getString("curVersion"); 
 			var oldVersion=FoxtrickPrefs.getString("oldVersion");
 			if (oldVersion<curVersion) {
-				var mainBody = doc.getElementById('mainBody');	
-				var alertdiv=doc.createElement('div');
-				alertdiv.setAttribute('class','alert');
-				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px;');
-				alertdiv.innerHTML = "<h2>FoxTrick "+curVersion+"</h2>";
-				alertdiv.innerHTML += '<h3>'+Foxtrickl10n.getString("NewOrChangedModules")+' '+oldVersion+'</h3>';
-						
-				var table=doc.createElement('table');		
-				alertdiv.appendChild(table);
-				var tr=doc.createElement('tr');
-				table.appendChild(tr);
-				var td1=doc.createElement('td');
-				var h1=doc.createElement('h2');
-				h1.appendChild(doc.createTextNode(Foxtrickl10n.getString("Module")));				
-				td1.appendChild(h1);
-				tr.appendChild(td1);
-				var td2=doc.createElement('td');
-				var h2=doc.createElement('h2');
-				h2.appendChild(doc.createTextNode(Foxtrickl10n.getString("PreferenceTab")));				
-				td2.appendChild(h2);
-				tr.appendChild(td2);
-				var td3=doc.createElement('td');
-				var h3=doc.createElement('h2');
-				h3.appendChild(doc.createTextNode(Foxtrickl10n.getString("NewAfter")));				
-				td3.appendChild(h3);
-				tr.appendChild(td3);
 				
+				this.NewModules = new Array();
 						
 				for ( i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i];
@@ -156,48 +133,141 @@ var FoxtrickMyHT = {
 						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
 						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
 						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
-				
-						var tr=doc.createElement('tr');
-						table.appendChild(tr);
-						var td1=doc.createElement('td');
-						
-						if (module.SCREENSHOT) {
-							var a=doc.createElement('a');
-							a.href=module.SCREENSHOT;
-							a.title=Foxtrickl10n.getString("Screenshot");
-							a.target="_blank";
-							a.innerHTML=module.MODULE_NAME;
-							td1.appendChild(a);
-						}
-						else td1.appendChild(doc.createTextNode(module.MODULE_NAME));
-						tr.appendChild(td1);
-				
-						var td2=doc.createElement('td');						
-						if (module.PREF_SCREENSHOT) {
-							var a=doc.createElement('a');
-							a.href=module.PREF_SCREENSHOT;
-							a.title=Foxtrickl10n.getString("PreferenceScreenshot");
-							a.target="_blank";
-							a.innerHTML=Tab;
-							td2.appendChild(a);
-						}
-						else td2.appendChild(doc.createTextNode(Tab));
-						tr.appendChild(td2);
-				
-						var td3=doc.createElement('td');	
+															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.7.4";
-						td3.appendChild(doc.createTextNode(new_after));
-						tr.appendChild(td3);
 						
+						this.NewModules.push([module.MODULE_NAME,module.SCREENSHOT,Tab,module.PREF_SCREENSHOT,new_after]);        
 					}
 				}
-				mainBody.insertBefore(alertdiv,mainBody.firstChild);
+				
+				this.NewModules.sort(this.sortfunction4);
+				this.NewModules.sort(this.sortfunction0);
+				this.NewModules.sort(this.sortfunction2);
+				
+				this.ShowAlert(doc);
+													
 				FoxtrickPrefs.setString("oldVersion",curVersion);			
 			}
 	} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
 	},
 	
+	ShowAlert :function(doc) {
+				var mainBody = doc.getElementById('mainBody');	
+				var oldAlert=doc.getElementById('idFoxtrickMyHT');
+				if (oldAlert) mainBody.removeChild(oldAlert);
+				
+				var curVersion=FoxtrickPrefs.getString("curVersion"); 
+				var oldVersion=FoxtrickPrefs.getString("oldVersion"); 
+			
+				var alertdiv=doc.createElement('div');
+				alertdiv.setAttribute('id','idFoxtrickMyHT');
+				alertdiv.setAttribute('class','alert');
+				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px;');
+				alertdiv.innerHTML = "<h2>FoxTrick "+curVersion+"</h2>";
+				alertdiv.innerHTML += '<h3>'+Foxtrickl10n.getString("NewOrChangedModules")+' '+oldVersion+'</h3>';
+						
+				var table=doc.createElement('table');		
+				alertdiv.appendChild(table);
+				var tr=doc.createElement('tr');
+				table.appendChild(tr);
+				var td1=doc.createElement('td');
+				var h1=doc.createElement('h2');
+				var a1=doc.createElement('a');
+				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString("Module")));
+				a1.addEventListener( "click", FoxtrickMyHT.Sort0, false );
+				FoxtrickMyHT.Sort0.doc=doc;
+                a1.href='javascript:void();'
+				a1.title=Foxtrickl10n.getString("SortBy");
+				h1.appendChild(a1);
+				td1.appendChild(h1);
+				tr.appendChild(td1);
+				
+				var td2=doc.createElement('td');
+				var h2=doc.createElement('h2');
+				var a2=doc.createElement('a');
+				a2.appendChild(doc.createTextNode(Foxtrickl10n.getString("PreferenceTab")));				
+				a2.addEventListener( "click", FoxtrickMyHT.Sort2, false );
+				FoxtrickMyHT.Sort2.doc=doc;
+                a2.href='javascript:void();'
+				a2.title=Foxtrickl10n.getString("SortBy");
+				h2.appendChild(a2);
+				td2.appendChild(h2);
+				tr.appendChild(td2);
+				
+				var td3=doc.createElement('td');
+				var h3=doc.createElement('h2');
+				var a3=doc.createElement('a');
+				a3.appendChild(doc.createTextNode(Foxtrickl10n.getString("NewAfter")));				
+				a3.addEventListener( "click", FoxtrickMyHT.Sort4, false );
+				FoxtrickMyHT.Sort4.doc=doc;
+				a3.href='javascript:void();'
+				a3.title=Foxtrickl10n.getString("SortBy");
+				h3.appendChild(a3);				
+				td3.appendChild(h3);
+				tr.appendChild(td3);
+
+				for (var i=0;i<this.NewModules.length;++i) {
+						var tr=doc.createElement('tr');
+						table.appendChild(tr);
+						
+						var td1=doc.createElement('td');
+						if (this.NewModules[i][1]) {
+							var a=doc.createElement('a');
+							a.href=this.NewModules[i][1];
+							a.title=Foxtrickl10n.getString("Screenshot");
+							a.target="_blank";
+							a.innerHTML=this.NewModules[i][0]
+							td1.appendChild(a);
+						}
+						else td1.appendChild(doc.createTextNode(this.NewModules[i][0]));
+						tr.appendChild(td1);
+
+						var td2=doc.createElement('td');						
+						if (this.NewModules[i][3]) {
+							var a=doc.createElement('a');
+							a.href=this.NewModules[i][3];
+							a.title=Foxtrickl10n.getString("PreferenceScreenshot");
+							a.target="_blank";
+							a.innerHTML=this.NewModules[i][2];
+							td2.appendChild(a);
+						}
+						else td2.appendChild(doc.createTextNode(this.NewModules[i][2]));
+						tr.appendChild(td2);
+
+						var td3=doc.createElement('td');	
+						td3.appendChild(doc.createTextNode(this.NewModules[i][4]));
+						tr.appendChild(td3);
+				}
+				
+				alertdiv.appendChild(doc.createElement('br'));				
+				var p=doc.createElement('p');				
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
+				alertdiv.appendChild(p);				
+				mainBody.insertBefore(alertdiv,mainBody.firstChild);
+	},
+	
+	sortfunction0: function(a,b) {return a[0].localeCompare(b[0]);},
+	sortfunction2: function(a,b) {return a[2].localeCompare(b[2]);},
+	sortfunction4: function(a,b) {return a[4].localeCompare(b[4]);},
+
+	Sort0 :function(ev){
+	 var doc=FoxtrickMyHT.Sort0.doc;
+ 	 FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction0);
+	 FoxtrickMyHT.ShowAlert(doc);
+	},
+	
+	Sort2 :function(ev){
+	 var doc=FoxtrickMyHT.Sort2.doc;
+ 	 FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction2);
+	 FoxtrickMyHT.ShowAlert(doc);
+	},
+
+	Sort4 :function(ev){
+	 var doc=FoxtrickMyHT.Sort4.doc;
+ 	 FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction4);
+	 FoxtrickMyHT.ShowAlert(doc);
+	},
 	change : function(page, doc ) {
 	},
 		
