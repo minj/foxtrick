@@ -45,7 +45,7 @@ margin-right: 0px !important;
 /* compensate for fixed left submenu */
 #aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper {
 margin-right: 175px !important;
-min-height: 620px !important; /* temporary height hack before sticky footer */
+/* min-height: 620px !important; /* temporary height hack before sticky footer */
 }
 
 #aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper .main {
