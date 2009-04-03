@@ -8,7 +8,7 @@ FoxtrickHTDateFormat = {
     MODULE_NAME : "HTDateFormat",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : true,
-    NEW_AFTER_VERSION: "0.4.6.1",	
+    NEW_AFTER_VERSION: "0.4.6.2",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
 	OPTIONS :  new Array("LocalSaison","FirstDayOfWeekOffset"), 

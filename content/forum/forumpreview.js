@@ -10,7 +10,7 @@ var FoxtrickForumPreview = {
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.6.1",	
+	NEW_AFTER_VERSION: "0.4.6.2",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
 	

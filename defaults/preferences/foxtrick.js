@@ -1,4 +1,4 @@
-pref( "extensions.foxtrick.prefs.curVersion", "0.4.6.3");   // update with each release
+pref( "extensions.foxtrick.prefs.curVersion", "0.4.7");   // update with each release
 pref( "extensions.foxtrick.prefs.oldVersion", "0.4.6.2");   // don't change!! (unless you know what you do). 
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
 pref( "extensions.foxtrick.prefs.htLanguage", "en");

@@ -10,6 +10,10 @@ var FoxtrickReadHtPrefs = {
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.6.2",
+	SCREENSHOT:"",
+	PREF_SCREENSHOT:"",
+	
 	codes:{},
 	
     init : function() {
@@ -115,12 +119,13 @@ var FoxtrickMyHT = {
     try{
 			var curVersion=FoxtrickPrefs.getString("curVersion"); 
 			var oldVersion=FoxtrickPrefs.getString("oldVersion");
+			
 			if (oldVersion<curVersion) {
-				
 				this.NewModules = new Array();
 						
 				for ( i in Foxtrick.modules ) {
-					var module = Foxtrick.modules[i];
+					var module = Foxtrick.modules[i]; 
+					
 					if ( (module.NEW_AFTER_VERSION && curVersion > module.NEW_AFTER_VERSION) 
 						|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
 						
