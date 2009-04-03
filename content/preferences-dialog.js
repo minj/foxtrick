@@ -398,21 +398,30 @@ var FoxtrickPreferencesDialog = {
 		var desc_box3 = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll") );
 		desc_box3.setAttribute("flex","1");
 		hbox3.appendChild(desc_box3);
+		modules_list.appendChild(groupbox);
 		
-		var vbox_ov= doc.createElement("vbox");
-        vbox_ov.setAttribute('flex',"1");
-        groupbox.appendChild(vbox_ov);		
+		
 		var caption_ov= doc.createElement("caption");
-        caption_ov.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.labelShowFoxtrickMyHTAgain"));
-        caption_ov.setAttribute("style","background-color:transparent !important");
+        caption_ov.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionFoxtrickMyHT"));
+        //caption_ov.setAttribute("style","background-color:transparent !important");
         var menulist_ov= doc.createElement("menulist");
         menulist_ov.setAttribute('id',"htOldVersion");
         var menupopup_ov= doc.createElement("menupopup");
         menupopup_ov.setAttribute('id',"htOldVersionPopup");
 		menulist_ov.appendChild(menupopup_ov);
-        vbox_ov.appendChild(caption_ov);
-        vbox_ov.appendChild(menulist_ov);
-        modules_list.appendChild(groupbox);
+        var hbox_ov= doc.createElement("hbox");
+		var desc_box_ov = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelFoxtrickMyHT") );
+		desc_box_ov.setAttribute("flex","1");
+		hbox_ov.appendChild(menulist_ov);
+        hbox_ov.appendChild(desc_box_ov);
+		
+        var vbox_ov= doc.createElement("vbox");
+        vbox_ov.setAttribute('flex',"1");
+        vbox_ov.appendChild(hbox_ov);
+        var groupbox= doc.createElement("groupbox");
+        groupbox.appendChild(caption_ov);
+		groupbox.appendChild(vbox_ov);		
+		modules_list.appendChild(groupbox);
 				
 		var htVersionsXml = document.implementation.createDocument("", "", null);
         htVersionsXml.async = false;
