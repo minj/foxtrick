@@ -49,7 +49,7 @@ border-width:  0 1px 0 0 !important;
 /* compensate for fixed left submenu */
 #aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper {
 margin-right: 135px !important;
-/* min-height: 630px !important; /* temporary height hack before sticky footer */
+min-height: 400px !important; /* temporary height hack before sticky footer */
 }
 
 #aspnetForm:not([action*="useFlashVersion=True"])  div#shortcuts {
