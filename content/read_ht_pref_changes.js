@@ -146,7 +146,6 @@ var FoxtrickMyHT = {
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.7.4";
-						dump(module.MODULE_NAME+module.SCREENSHOT+Tab,module.PREF_SCREENSHOT+new_after+module.LASTEST_CHANGE+'\n');
 						this.NewModules.push([module.MODULE_NAME,module.SCREENSHOT,Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE]);        
 					}
 				}
