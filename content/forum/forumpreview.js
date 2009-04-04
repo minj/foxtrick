@@ -13,6 +13,7 @@ var FoxtrickForumPreview = {
 	NEW_AFTER_VERSION: "0.4.6.2",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
+	LASTEST_CHANGE:"Preview moved above toolbar",
 	
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
     _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_tbBody',

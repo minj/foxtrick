@@ -12,6 +12,7 @@ var FoxtrickTeamSelectBox= {
 		NEW_AFTER_VERSION: "0.4.6.2",	
 		SCREENSHOT:"http://www.ht-foxtrick.com/forum/portal.php",
 		PREF_SCREENSHOT:"http://www.ht-foxtrick.com/forum/portal.php",
+		LASTEST_CHANGE:"TeamSelectBox eneabled for youth players. Dropdown image added",
 		OPTIONS : new Array("AlsoYouthPlayers"), 
 		listbox:"",
 

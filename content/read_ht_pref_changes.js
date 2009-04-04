@@ -13,6 +13,7 @@ var FoxtrickReadHtPrefs = {
 	NEW_AFTER_VERSION: "0.4.6.2",
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
+	LASTEST_CHANGE:"Locale now independent from Firefox locale. Option to auto-change language if hatricks language gets changed (default on)",
 	
 	codes:{},
 	
@@ -105,9 +106,13 @@ var FoxtrickReadHtPrefs = {
 
 var FoxtrickMyHT = {
 	
-    MODULE_NAME : "MyHT",
+    MODULE_NAME : "FoxtrickMyHT",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.6.2",
+	SCREENSHOT:"",
+	PREF_SCREENSHOT:"",
+	LASTEST_CHANGE:"FoxTrick MyHT message after version updates. Option to show old changes again.",
 	
 	NewModules:null,
 	
@@ -133,16 +138,16 @@ var FoxtrickMyHT = {
 						
 						var Tab="";
 						if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.PRESENTATION) Tab=Foxtrickl10n.getString("foxtrick.prefs.ShortcutsTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.ShortcutsTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.PRESENTATION) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
+						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.ForumTab");
 						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.7.4";
-						
-						this.NewModules.push([module.MODULE_NAME,module.SCREENSHOT,Tab,module.PREF_SCREENSHOT,new_after]);        
+						dump(module.MODULE_NAME+module.SCREENSHOT+Tab,module.PREF_SCREENSHOT+new_after+module.LASTEST_CHANGE+'\n');
+						this.NewModules.push([module.MODULE_NAME,module.SCREENSHOT,Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE]);        
 					}
 				}
 				
@@ -170,14 +175,14 @@ var FoxtrickMyHT = {
 				alertdiv.setAttribute('class','alert');
 				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px;');
 				alertdiv.innerHTML = "<h2>FoxTrick "+curVersion+"</h2>";
-				alertdiv.innerHTML += '<h3>'+Foxtrickl10n.getString("NewOrChangedModules")+' '+oldVersion+'</h3>';
+				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' '+oldVersion;
 						
 				var table=doc.createElement('table');		
 				alertdiv.appendChild(table);
 				var tr=doc.createElement('tr');
 				table.appendChild(tr);
 				var td1=doc.createElement('td');
-				var h1=doc.createElement('h2');
+				var h1=doc.createElement('h3');
 				var a1=doc.createElement('a');
 				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString("Module")));
 				a1.addEventListener( "click", FoxtrickMyHT.Sort0, false );
@@ -189,7 +194,7 @@ var FoxtrickMyHT = {
 				tr.appendChild(td1);
 				
 				var td2=doc.createElement('td');
-				var h2=doc.createElement('h2');
+				var h2=doc.createElement('h3');
 				var a2=doc.createElement('a');
 				a2.appendChild(doc.createTextNode(Foxtrickl10n.getString("PreferenceTab")));				
 				a2.addEventListener( "click", FoxtrickMyHT.Sort2, false );
@@ -201,7 +206,7 @@ var FoxtrickMyHT = {
 				tr.appendChild(td2);
 				
 				var td3=doc.createElement('td');
-				var h3=doc.createElement('h2');
+				var h3=doc.createElement('h3');
 				var a3=doc.createElement('a');
 				a3.appendChild(doc.createTextNode(Foxtrickl10n.getString("NewAfter")));				
 				a3.addEventListener( "click", FoxtrickMyHT.Sort4, false );
@@ -242,6 +247,7 @@ var FoxtrickMyHT = {
 
 						var td3=doc.createElement('td');	
 						td3.appendChild(doc.createTextNode(this.NewModules[i][4]));
+						if (this.NewModules[i][5]) td3.setAttribute('title',this.NewModules[i][5]);
 						tr.appendChild(td3);
 				}
 				

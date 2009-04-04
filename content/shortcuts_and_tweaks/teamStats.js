@@ -12,6 +12,7 @@ var FTTeamStats= {
 	NEW_AFTER_VERSION: "0.4.6.2",
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
+	LASTEST_CHANGE:"Played/not played last match filter added",
 	latestMatch:0,
 
     init : function() {
