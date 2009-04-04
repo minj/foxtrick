@@ -156,7 +156,6 @@ var FoxtrickMyHT = {
 				
 				this.ShowAlert(doc);
 													
-				FoxtrickPrefs.setString("oldVersion",curVersion);			
 			}
 	} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
 	},
@@ -263,7 +262,16 @@ var FoxtrickMyHT = {
 				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
 				a.target="_blank";
 				p.appendChild(a);				
-				alertdiv.appendChild(p);				
+				alertdiv.appendChild(p);
+
+				var p=doc.createElement('p');				
+				var a=doc.createElement('a');
+				a.href="javascript:void();";
+				a.innerHTML=Foxtrickl10n.getString("Close");
+				a.addEventListener( "click", FoxtrickMyHT.Close, false );
+				FoxtrickMyHT.Close.doc=doc;
+				p.appendChild(a);				
+				alertdiv.appendChild(p);
 				
 				mainBody.insertBefore(alertdiv,mainBody.firstChild);
 	},
@@ -273,22 +281,34 @@ var FoxtrickMyHT = {
 	sortfunction4: function(a,b) {return a[4].localeCompare(b[4]);},
 
 	Sort0 :function(ev){
-	 var doc=FoxtrickMyHT.Sort0.doc;
- 	 FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction0);
-	 FoxtrickMyHT.ShowAlert(doc);
+		var doc=FoxtrickMyHT.Sort0.doc;
+		FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction0);
+		FoxtrickMyHT.ShowAlert(doc);
 	},
 	
 	Sort2 :function(ev){
-	 var doc=FoxtrickMyHT.Sort2.doc;
- 	 FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction2);
-	 FoxtrickMyHT.ShowAlert(doc);
+		var doc=FoxtrickMyHT.Sort2.doc;
+		FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction2);
+		FoxtrickMyHT.ShowAlert(doc);
 	},
 
 	Sort4 :function(ev){
-	 var doc=FoxtrickMyHT.Sort4.doc;
- 	 FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction4);
-	 FoxtrickMyHT.ShowAlert(doc);
+		var doc=FoxtrickMyHT.Sort4.doc;
+		FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction4);
+		FoxtrickMyHT.ShowAlert(doc);
 	},
+	
+	Close :function(ev){
+		var doc=FoxtrickMyHT.Close.doc;
+ 	 
+		var mainBody = doc.getElementById('mainBody');				
+		var oldAlert=doc.getElementById('idFoxtrickMyHT');
+		if (oldAlert) mainBody.removeChild(oldAlert);
+		
+		var curVersion=FoxtrickPrefs.getString("curVersion"); 				
+		FoxtrickPrefs.setString("oldVersion",curVersion);							
+	},
+	
 	change : function(page, doc ) {
 	},
 		
