@@ -253,7 +253,18 @@ var FoxtrickMyHT = {
 				alertdiv.appendChild(doc.createElement('br'));				
 				var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
+				alertdiv.appendChild(p);
+				
+				var p=doc.createElement('p');				
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtReleaseNotes")));				
+				p.appendChild(doc.createTextNode(" "));				
+				var a=doc.createElement('a');
+				a.href=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
+				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
+				a.target="_blank";
+				p.appendChild(a);				
 				alertdiv.appendChild(p);				
+				
 				mainBody.insertBefore(alertdiv,mainBody.firstChild);
 	},
 	
