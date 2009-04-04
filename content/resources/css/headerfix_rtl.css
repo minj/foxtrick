@@ -51,6 +51,10 @@ border-width:  0 1px 0 0 !important;
 margin-right: 135px !important;
 min-height: 400px !important; /* temporary height hack before sticky footer */
 }
+/* Alltid fix */
+#aspnetForm[action*="Default.aspx?path=country"] #content #mainWrapper {
+min-height:0px !important ; 
+}
 
 #aspnetForm:not([action*="useFlashVersion=True"])  div#shortcuts {
 padding-right: 10px !important;
