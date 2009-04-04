@@ -153,6 +153,7 @@ var FoxtrickEconomyDifference = {
             var diff_m = this.extractAmount(tableCurr.
                 rows[4].cells[3])+this.extractAmount(
                 tableLast.rows[4].cells[3]);
+			if (exclude_temp) diff_m=0;            
             var diff_z = this.extractAmount(tableCurr.
                 rows[5].cells[3])+this.extractAmount(
                 tableLast.rows[5].cells[3]);
@@ -173,6 +174,7 @@ var FoxtrickEconomyDifference = {
             var diff_m = this.extractAmount(tableCurr.
                 rows[4].cells[3])-this.extractAmount(
                 tableLast.rows[4].cells[3]);
+			if (exclude_temp) diff_m=0;            
             var diff_z = this.extractAmount(tableCurr.
                 rows[5].cells[3])-this.extractAmount(
                 tableLast.rows[5].cells[3]);
