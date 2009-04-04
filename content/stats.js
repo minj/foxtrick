@@ -2277,17 +2277,19 @@ stats["mozambiquetracker"] = {
 };
 
 stats["srbijatracker"] = { 
-  "url" : "http://srbija-nt.awardspace.com/homelist.php",
+  "url" : "http://srbija-nt.awardspace.com/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Serbian U-20/NT DB",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "homelist.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
                    "filters"    : ["nationality"], 
-                   "params"     : []
+                   "params"     : {"playerid":"playerID", "playername":"name", "age":"years", "age_days":"days",
+									"teamname":"team","teamid":"teamID","exp":"exp","stamina":"sta","playmaking":"ply",
+									"winger":"win","scoring":"sco","goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
                  },
 	"countryidranges" : [[57,57]] ,
 	"nationalityranges" : [[57,57]], 

@@ -30,10 +30,13 @@ var FoxtrickLinksPlayerDetail = {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
 				var teamid = FoxtrickHelper.findTeamId(thisdiv);
+				var teamname=thisdiv.getElementsByTagName("h2")[0].getElementsByTagName("a")[0].innerHTML;
 				var nationality = FoxtrickHelper.findCountryId(thisdiv);
 				var playerid = FoxtrickHelper.findPlayerId(thisdiv);
+				var playername=thisdiv.getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML;;
 				var form = null, age = null, tsi = null, exp = null, wage= null, ls=null, wagebonus=null;
 				var stamina = 0, goalkeeping = 0, playmaking = 0, passing = 0, winger = 0, defending = 0, scoring = 0, setpieces = 0;
+				var age_days;
 				
 				//tsi
 				var PlayerInfoTable = thisdiv.getElementsByTagName("table")[0];
@@ -47,6 +50,7 @@ var FoxtrickLinksPlayerDetail = {
 				for (var j=0; j < divs.length; j++) {
 					if ( divs[j].className=="byline" ) { 
 						age = divs[j].textContent.match(/\d+/)[0];
+						age_days = divs[j].textContent.match(/(\d+)/g)[1]; 
 						break;
 					}
 				} 
@@ -116,8 +120,8 @@ var FoxtrickLinksPlayerDetail = {
 				var links = new Array(2);
 				if (PlayerDetailTable != null) {
 					params = {
-						"teamid": teamid, "playerid": playerid, "nationality": nationality,
-						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,"leadership":ls,
+						"teamid": teamid,"teamname":teamname, "playerid": playerid, "playername":playername,"nationality": nationality,
+						"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces,"wage":wage,"wagebonus":wagebonus
