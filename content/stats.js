@@ -951,6 +951,17 @@ stats["healingkawasaki2"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/redcross_small.png"
 };
 
+stats["htbox_heal"] =  { 
+        "url" : "http://www.ht-box.ru/",
+
+        "playerhealinglink" : { "path"       : "healing.php",
+                         "filters"    : [], 
+                        "params"     : { "age" : "age", "injuredweeks" : "inj", "tsi" : "tsi"  }
+                        },
+        
+        "title" : "HTBox Healing",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htbox_heal.gif"
+};
 
 stats["hottrickkeeper"] =  { 
         "url" : "http://www.hottrick.org/",
