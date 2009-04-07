@@ -96,21 +96,21 @@ margin-top:-125px !important;
 margin-top:-475px !important;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>div.mainBox table {
+#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick div#ctl00_CPMain_pnlMain>div.mainBox table {
 margin-top:-425px !important;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>div.arenaInfo {
+#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick div#ctl00_CPMain_pnlMain>div.arenaInfo {
 width:180px !important;
 float:right !important;
 margin-top:-260px !important;
 margin-right:15px }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] div[class="main mainRegular"]>div#mainBody.boxBody {
+#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick div[class="main mainRegular"]>div#mainBody.boxBody {
 margin-top:135px;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] object#ARENA>embed {
+#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick object#ARENA>embed {
 margin-top:150px !important;
 }
 
