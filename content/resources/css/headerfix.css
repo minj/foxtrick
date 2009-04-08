@@ -87,7 +87,7 @@ margin-top:-970px !important;
 float:left !important;
 }
 
-/* part 2*/
+/* part 2 not needed now
 #aspnetForm[action*="Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>h1.hasByline {
 margin-top:-125px !important;
 }
@@ -96,24 +96,24 @@ margin-top:-125px !important;
 margin-top:-475px !important;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick div#ctl00_CPMain_pnlMain>div.mainBox table {
+#aspnetForm[action*="Default.aspx?ArenaID="]  div#ctl00_CPMain_pnlMain>div.mainBox table {
 margin-top:-425px !important;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick div#ctl00_CPMain_pnlMain>div.arenaInfo {
+#aspnetForm[action*="Default.aspx?ArenaID="]  div#ctl00_CPMain_pnlMain>div.arenaInfo {
 width:180px !important;
 float:right !important;
 margin-top:-260px !important;
 margin-right:15px }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick div[class="main mainRegular"]>div#mainBody.boxBody {
+#aspnetForm[action*="Default.aspx?ArenaID="]  div[class="main mainRegular"]>div#mainBody.boxBody {
 margin-top:135px;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="] #hattrick object#ARENA>embed {
+#aspnetForm[action*="Default.aspx?ArenaID="]  object#ARENA>embed {
 margin-top:150px !important;
 }
-
+*/
 
 /* part 3 */
 /* Kitdesignerfix */
