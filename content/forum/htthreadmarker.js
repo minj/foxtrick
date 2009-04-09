@@ -32,7 +32,11 @@
 		while ( div = divs[++i] ) {
 			cname = div.getAttribute( "class" ); 
 			if ( cname ==  "url" )
-			{	var title = div.childNodes[0].getAttribute( "title" ).replace(div.childNodes[0].innerHTML,'');
+			{	
+				var inner =div.childNodes[0].innerHTML;
+				var strong=div.getElementsByTagName('strong');
+				if (strong!=null && strong[0]!=null) {inner=strong[0].innerHTML;}
+				var title = div.childNodes[0].getAttribute( "title" ).replace(inner,'');
 				//var title = div.childNodes[0].getAttribute( "title" );
 				var poster = title;//.substring(title.lastIndexOf(' '));
 				//dump (title+' '+poster+'\n');
