@@ -46,7 +46,6 @@ pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLeagueName.
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ReplaceSupporterStar.enabled", false );
 pref( "extensions.foxtrick.prefs.module.CopyPostID.AddCopyIcon.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumTemplates.CustomWidth.enabled", false );
-
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.OpenNewTab.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TeamAtAlltid.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.last_5_ips.enabled", false );
@@ -59,9 +58,9 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.enabled",
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.LastLineup.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", false );
-
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace_simple.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
+pref( "extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", true );
 
 

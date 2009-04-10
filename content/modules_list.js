@@ -96,6 +96,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickCopyMatchID,
                      // FoxtrickMatchDayTables //just added, no functions so far
 					 FoxtrickHeaderFix,
+                     FoxtrickHeaderFixLeft,
                      FoxtrickNewMail,
 					 FoxtrickNTConfirmAddRemove,
 					 FoxtrickCopyTrainingReport,
