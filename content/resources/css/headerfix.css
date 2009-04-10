@@ -33,18 +33,6 @@ margin-bottom: 6px !important;
 padding-top: 100px !important;
 }
 
-/* fix left submenu */
-#aspnetForm:not([action*="useFlashVersion=True"]) #content .subMenu {
-position: fixed !important;
-/* getting borders right if menu overflows content */
-background: white !important;
-margin-left: -11px !important; 
-padding-left: 11px !important;
-border-color: #DDDDDD !important;
-border-style: solid !important;
-border-width:  0 0 0 1px !important;
-}
-
 /* compensate for fixed left submenu */
 #aspnetForm:not([action*="useFlashVersion=True"]) #content #mainWrapper {
 margin-left: 135px;
