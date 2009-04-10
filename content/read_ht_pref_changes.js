@@ -122,11 +122,21 @@ var FoxtrickMyHT = {
 
     run : function(page, doc ) {  
     try{
-			var curVersion=FoxtrickPrefs.getString("curVersion"); 
-			var oldVersion=FoxtrickPrefs.getString("oldVersion");
+			
+			var curVersion = FoxtrickPrefs.getString("curVersion"); 
+			var oldVersion = FoxtrickPrefs.getString("oldVersion");
 			
 			if (oldVersion<curVersion) {
-				this.NewModules = new Array();
+				this.getNewModules(curVersion,oldVersion);			
+				this.ShowAlert(doc, oldVersion);
+													
+			}
+		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
+	},
+
+	getNewModules : function(curVersion,oldVersion) {
+				
+				FoxtrickMyHT.NewModules = new Array();
 						
 				for ( i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i]; 
@@ -146,34 +156,62 @@ var FoxtrickMyHT = {
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.7.4";
-						this.NewModules.push([module.MODULE_NAME,module.SCREENSHOT,Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE]);        
+						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,module.SCREENSHOT,Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE]);        
 					}
 				}
 				
-				this.NewModules.sort(this.sortfunction4);
-				this.NewModules.sort(this.sortfunction0);
-				this.NewModules.sort(this.sortfunction2);
-				
-				this.ShowAlert(doc);
-													
-			}
-	} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
+				FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction4);
+				FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction0);
+				FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction2);
 	},
 	
-	ShowAlert :function(doc) {
+	ShowAlert :function(doc, oldVersion) {
+		try {  
 				var mainBody = doc.getElementById('mainBody');	
 				var oldAlert=doc.getElementById('idFoxtrickMyHT');
 				if (oldAlert) mainBody.removeChild(oldAlert);
 				
 				var curVersion=FoxtrickPrefs.getString("curVersion"); 
-				var oldVersion=FoxtrickPrefs.getString("oldVersion"); 
-			
+				
 				var alertdiv=doc.createElement('div');
 				alertdiv.setAttribute('id','idFoxtrickMyHT');
 				alertdiv.setAttribute('class','alert');
 				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px;');
-				alertdiv.innerHTML = "<h2>FoxTrick "+curVersion+"</h2>";
-				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' '+oldVersion;
+				alertdiv.innerHTML = "<h2 style='background-color:#FCF6DF;'>FoxTrick "+curVersion+"</h2>";
+				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
+				
+				var selectbox = doc.createElement("select"); 
+				selectbox.setAttribute("id","ft_ownselectboxID");
+				FoxtrickMyHT.VersionBox_Select.doc = doc;
+				selectbox.addEventListener('change',FoxtrickMyHT.VersionBox_Select,false);
+				
+				var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+				req.open("GET", "chrome://foxtrick/content/htlocales/htversions.xml", false);
+				req.send(null);
+				var response = req.responseXML;
+				if (response.documentElement.nodeName == "parsererror") {
+					dump("error parsing " + url+"\n");
+					return null;
+				}	
+				
+				var versions = response.evaluate("hattrickversions/version", response, null, 7 , null);
+				for (var i = 0; i < versions.snapshotLength-1; i++) {
+					version = versions.snapshotItem(i);
+					var value = version.getAttribute('code');
+					var label = version.getAttribute('name');
+        			
+					var option = doc.createElement("option");
+					option.setAttribute("value",value);
+					option.innerHTML=label;
+					selectbox.appendChild(option);	
+			
+					if (oldVersion==value)
+						indexToSelect=i;
+				}
+				selectbox.selectedIndex=indexToSelect;
+
+				alertdiv.appendChild(selectbox);
+				
 						
 				var table=doc.createElement('table');		
 				alertdiv.appendChild(table);
@@ -274,6 +312,7 @@ var FoxtrickMyHT = {
 				alertdiv.appendChild(p);
 				
 				mainBody.insertBefore(alertdiv,mainBody.firstChild);
+		} catch(e){dump('MyHtShowAlert '+e+'\n');}
 	},
 	
 	sortfunction0: function(a,b) {return a[0].localeCompare(b[0]);},
@@ -296,6 +335,20 @@ var FoxtrickMyHT = {
 		var doc=FoxtrickMyHT.Sort4.doc;
 		FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction4);
 		FoxtrickMyHT.ShowAlert(doc);
+	},
+	
+		
+	VersionBox_Select :function(ev){
+		try{
+			var doc = FoxtrickMyHT.VersionBox_Select.doc;
+		
+			var selectbox = doc.getElementById("ft_ownselectboxID");
+			var oldVersion = selectbox.getElementsByTagName("option")[selectbox.selectedIndex].value; 
+						
+			FoxtrickMyHT.getNewModules(FoxtrickPrefs.getString("curVersion"),oldVersion);			
+			FoxtrickMyHT.ShowAlert(doc, oldVersion);
+			
+		} catch(e) {dump('FoxtrickMyHT.VersionBox_Select'+e+'\n');}
 	},
 	
 	Close :function(ev){
