@@ -6,13 +6,19 @@
 var Foxtrickl10n = {
     _strings_bundle : null,
 	_strings_bundle_default : null,
-
+	_strings_bundle_screenshots:null,
+	
     init : function() {
         this._strings_bundle_default =
              Components.classes["@mozilla.org/intl/stringbundle;1"] 
              .getService(Components.interfaces.nsIStringBundleService)  
              .createBundle("chrome://foxtrick/content/foxtrick.properties");
 		this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage")); 
+		
+		this._strings_bundle_screenshots =
+             Components.classes["@mozilla.org/intl/stringbundle;1"] 
+             .getService(Components.interfaces.nsIStringBundleService)  
+             .createBundle("chrome://foxtrick/content/foxtrick.screenshots");		
     },
 
 	
@@ -96,6 +102,21 @@ var Foxtrickl10n = {
 			}
         } 
         return false;
-    }
+    },
+	
+	getScreenshot : function( str ) {
+        if ( this._strings_bundle_screenshots )
+        {
+            try {
+                return this._strings_bundle_screenshots.GetStringFromName( str );
+            } catch( e ) {
+				return "";
+			}            
+        }
+        else {
+            dump("** _strings_bundle_screenshots error  ** \n");
+            return "";
+        }
+    },
 };
 

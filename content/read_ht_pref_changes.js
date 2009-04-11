@@ -156,7 +156,7 @@ var FoxtrickMyHT = {
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.7.4";
-						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,module.SCREENSHOT,Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE]);        
+						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,"",Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE]);        
 					}
 				}
 				
@@ -257,10 +257,11 @@ var FoxtrickMyHT = {
 						var tr=doc.createElement('tr');
 						table.appendChild(tr);
 						
-						var td1=doc.createElement('td');
-						if (this.NewModules[i][1]) {
+						var td1=doc.createElement('td'); 
+						var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]);
+						if (screenshot) {
 							var a=doc.createElement('a');
-							a.href=this.NewModules[i][1];
+							a.href=screenshot;
 							a.title=Foxtrickl10n.getString("Screenshot");
 							a.target="_blank";
 							a.innerHTML=this.NewModules[i][0]
