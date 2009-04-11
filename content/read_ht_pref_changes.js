@@ -156,7 +156,9 @@ var FoxtrickMyHT = {
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.7.4";
-						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,"",Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE]);        
+						var screenshot=Foxtrickl10n.getScreenshot(module.MODULE_NAME);						
+						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE,module]); 
+												
 					}
 				}
 				
@@ -258,16 +260,46 @@ var FoxtrickMyHT = {
 						table.appendChild(tr);
 						
 						var td1=doc.createElement('td'); 
-						var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]);
-						if (screenshot) {
+						if (this.NewModules[i][1]) {
 							var a=doc.createElement('a');
-							a.href=screenshot;
+							a.href=this.NewModules[i][1];
 							a.title=Foxtrickl10n.getString("Screenshot");
 							a.target="_blank";
 							a.innerHTML=this.NewModules[i][0]
 							td1.appendChild(a);
 						}
 						else td1.appendChild(doc.createTextNode(this.NewModules[i][0]));
+						
+						if (this.NewModules[i][6].OPTIONS) {						
+							for (var k=0; k < this.NewModules[i][6].OPTIONS.length; ++k) {
+								var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]+'.'+this.NewModules[i][6].OPTIONS[k]);						
+								if (screenshot) {
+									td1.appendChild(doc.createElement('br'));
+									td1.appendChild(doc.createTextNode('» '));
+									var a=doc.createElement('a');
+									a.href=screenshot;
+									a.title=Foxtrickl10n.getString("Screenshot");
+									a.target="_blank";
+									a.innerHTML=this.NewModules[i][6].OPTIONS[k];
+									td1.appendChild(a);
+								}	
+							}
+						}
+						if (this.NewModules[i][6].RADIO_OPTIONS) {						
+							for (var k=0; k < this.NewModules[i][6].RADIO_OPTIONS.length; ++k) {
+								var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]+'.'+this.NewModules[i][6].RADIO_OPTIONS[k]);						
+								if (screenshot) {
+									td1.appendChild(doc.createElement('br'));
+									td1.appendChild(doc.createTextNode('» '));
+									var a=doc.createElement('a');
+									a.href=screenshot;
+									a.title=Foxtrickl10n.getString("Screenshot");
+									a.target="_blank";
+									a.innerHTML=this.NewModules[i][6].RADIO_OPTIONS[k];
+									td1.appendChild(a);
+								}	
+							}
+						}
 						tr.appendChild(td1);
 
 						var td2=doc.createElement('td');						
