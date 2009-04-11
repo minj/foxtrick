@@ -1,12 +1,28 @@
 /* Ticker colors by htbaumanns*/
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
+/* */
 #ticker a[href="/MyHattrick/"] {color:#277F31; background-color:#ACEFB3;}
+
+/* */
 #ticker a[href*="teamId"] {color:#5F2A00; background-color:#E7CBB4;}
+
+/* Forum - Posting reply to me */
 #ticker a[href*="/Forum/"] {color:#413FFF; background-color:#CFD0FF;}
+
+/* Player - Player on Transfer market */
 #ticker a[href*="/Players/"] {color:#000; background-color:#F6FFA7;}
+
+/* */
 #ticker a[href*="/Myhattrick/"] {color:#000; background-color:#A7A7A7;}
+
+/* Inbox - I've got mail */
 #ticker a[href*="/Inbox/"] {color:#000; background-color:#FFF9B7;}
+
+/* small margins */
 #ticker a {margin:2px;}
+
+/* Hovering no background */
 #ticker a:hover {color:#000 !important; background-color: transparent !important;}
+
 }
