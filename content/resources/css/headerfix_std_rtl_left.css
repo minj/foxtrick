@@ -1,0 +1,37 @@
+/* HeaderFix by Catalyst2950 */
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+/* fix left submenu */
+#aspnetForm:not([action*="useFlashVersion=True"])  #content .subMenu {
+position: fixed !important;
+}
+
+#aspnetForm:not([action*="useFlashVersion=True"])  content .subMenu .subMenuBox {
+margin-right: 0px !important;
+}
+
+/* compensate for fixed left submenu */
+#aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper {
+margin-right: 175px !important;
+/* min-height: 620px !important; /* temporary height hack before sticky footer */
+}
+
+#aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper .main {
+margin-right: 10px !important;
+}
+
+/* compensate for fixed left submenu Forum */
+#aspnetForm:not([action*="useFlashVersion=True"])  #content #mainWrapper>div[class="main mainConf"] {
+float:right !important; 
+margin-right: -175px !important;
+width:655px !important;
+}
+
+/* part 3 */
+/* Kitdesignerfix */
+#aspnetForm[action*="?TeamID="] div#mainWrapper>div[class="main mainFull"] {
+margin-right:-175px !important;
+width: 950px !important;
+}
+
+}

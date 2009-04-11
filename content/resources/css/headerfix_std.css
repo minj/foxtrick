@@ -33,23 +33,6 @@ margin-bottom: 6px !important;
 padding-top: 100px !important;
 }
 
-/* fix left submenu */
-#aspnetForm:not([action*="useFlashVersion=True"]) #content .subMenu {
-position: fixed !important;
-}
-
-/* compensate for fixed left submenu */
-#aspnetForm:not([action*="useFlashVersion=True"]) #content #mainWrapper {
-margin-left: 175px ;
-/* min-height: 620px !important; /* temporary height hack before sticky footer */
-}
-
-/* compensate for fixed left submenu Forum */
-#aspnetForm:not([action*="useFlashVersion=True"]) #content #mainWrapper>div[class="main mainConf"] {
-float:left!important; 
-margin-left: -175px;
-width:655px !important;
-}
 
 /* fix for forumbookmark z-index 99999 */
 .cfWrapper .bookmarkMessage {
@@ -93,16 +76,6 @@ margin-top:100px !important;
 #aspnetForm[action*="Default.aspx?ArenaID="]  object#ARENA>embed {
 margin-top:125px !important;
 }*/
-
-
-/* part 3 */
-/* Kitdesignerfix */
-#aspnetForm[action*="?TeamID="] div#mainWrapper>div[class="main mainFull"] {
-margin-left:-175px !important;
-width: 950px !important;}
-
-
-
 
 /* --------------- */
 
