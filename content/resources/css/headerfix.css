@@ -48,7 +48,7 @@ padding-right: 10px;
 }
 
 /* fix for forumbookmark z-index 99999 */
-#aspnetForm:not([action*="useFlashVersion=True"]) .cfWrapper .bookmarkMessage {
+.cfWrapper .bookmarkMessage {
 	z-index: 9 !important;
 }
 
