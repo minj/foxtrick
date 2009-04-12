@@ -956,11 +956,40 @@ stats["htbox_heal"] =  {
 
         "playerhealinglink" : { "path"       : "healing.php",
                          "filters"    : [], 
-                        "params"     : { "age" : "age", "injuredweeks" : "inj", "tsi" : "tsi"  }
+                        "params"     : { "age" : "age",
+										"injuredweeks" : "inj", 
+										"tsi" : "tsi" 
+									 }
                         },
         
         "title" : "HTBox Healing",
         "img" : "chrome://foxtrick/content/resources/linkicons/htbox_heal.gif"
+};
+
+
+stats["htbox_training"] =  { 
+        "url" : "http://www.ht-box.ru/",
+
+        "playerlink" : { "path"       : "training.php",
+                         "filters"    : [], 
+                        "params"     : { "age" : "yr", 
+										"age_days" : "dy",
+										"goalkeeping" : "goalkeeping", 
+										"defending":"defending",
+										"playmaking":"playmaking",
+										"winger":"winger", 
+										"passing":"passing",
+										"scoring":"scoring",
+										"setpieces":"setpieces" 
+										}
+                        },
+        
+		"traininglink" : { "path"       : "training.php",
+                         "filters"    : [], 
+                         "params"     : {"Coach":"coach","TI":"ti","STA":"ko","TrainingType":"type"}
+						},
+        "title" : "HTBox Training",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htbox_train.png"
 };
 
 stats["hottrickkeeper"] =  { 
@@ -2519,8 +2548,9 @@ function foxtrick_makelink(stat, statlink, filterparams, key, doc) {
              } else {
                 temp = "&";
              }
-			 	
+			 
              if (!params[paramkey].charAt(0).match(/\w+/)) {temp="";}
+			 //dump(params[paramkey].charAt(0)+' '+ (!params[paramkey].charAt(0).match(/\w+/))+' '+temp+' '+filterparams[paramkey]+'\n');	
              if (filterparams[paramkey] != null) {
                 args += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(filterparams[paramkey]);
 				}

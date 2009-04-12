@@ -181,7 +181,7 @@ var FoxtrickLinksPlayerDetail = {
 		
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
 						"teamid": teamid, "playerid": playerid, "nationality": nationality,
-						"tsi" : tsi, "age" : age, "form" : form, "exp" : exp,"leadership":ls,
+						"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks,"wage":wage,"wagebonus":wagebonus
