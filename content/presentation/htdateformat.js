@@ -14,7 +14,7 @@ FoxtrickHTDateFormat = {
 	LASTEST_CHANGE:"Option to set first day of week added",
 	OPTIONS :  new Array("LocalSaison","FirstDayOfWeekOffset"), 
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("","-2"),
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("","0"),
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
     init : function() {
