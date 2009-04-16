@@ -35,13 +35,17 @@ var FoxtrickHeaderFix = {
 var FoxtrickHeaderFixLeft = {
 	
     MODULE_NAME : "HeaderFixLeft",
-    DEFAULT_ENABLED : false,
+    DEFAULT_ENABLED : false,	
 	CSS_SIMPLE:"chrome://foxtrick/content/resources/css/headerfix_left.css",
 	CSS_SIMPLE_RTL:"chrome://foxtrick/content/resources/css/headerfix_rtl_left.css",
 	CSS:"chrome://foxtrick/content/resources/css/headerfix_std_left.css",
 	CSS_RTL:"chrome://foxtrick/content/resources/css/headerfix_std_rtl_left.css",
 	
-    init : function() {    
+    init : function() {  
+	
+	if (!Foxtrick.isModuleEnabled("FoxtrickHeaderFix"))
+		FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );  
+		
     },
 
     run : function( page, doc ) { 
