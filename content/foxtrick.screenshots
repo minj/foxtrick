@@ -1,6 +1,10 @@
+# Main options
+ReadHtPrefs=http://easycaptures.com/8330507225
+FoxtrickMyHT=http://easycaptures.com/3773167321
+
 # Shortcuts and Add-ons
 AddManagerButtons=http://easycaptures.com/5569697629
-teampopuplinks=http://easycaptures.com/0922514090
+TeamPopupLinks=http://easycaptures.com/0922514090
 TeamPopupLinksMore=http://easycaptures.com/6373944256
 ContextMenueCopyId=http://easycaptures.com/6279843522
 MedianTransferPrice=http://easycaptures.com/7360720823
@@ -14,7 +18,7 @@ FTTeamStats=http://easycaptures.com/7395522562
 FoxtrickAlert=http://easycaptures.com/5505524522
 ConfirmPlayerBid=http://easycaptures.com/5497856826
 ConfirmTL=http://easycaptures.com/2033329237
-twoweekbalance=http://easycaptures.com/4667726830
+TwoWeekBalance=http://easycaptures.com/4667726830
 TeamSelectBox=http://easycaptures.com/4876854434
 SeniorTeamShortCuts=http://easycaptures.com/5499840697
 shortcutsstatistics=http://easycaptures.com/6852684317
@@ -74,7 +78,7 @@ ForumAlterHeaderLine.SingleHeaderLine=http://easycaptures.com/4729488429
 ForumAlterHeaderLine.TruncateLongNick.=http://easycaptures.com/5623213480
 HideManagerAvatarUserInfo=http://easycaptures.com/1619254812
 GoToPostBox=http://easycaptures.com/1857028772
-CopyPostID.AddCopyIcon=http://easycaptures.com/1004809133
+CopyPostID=http://easycaptures.com/1004809133
 ForumStaffMarker=http://easycaptures.com/3282960047
 HTThreadMarker=http://easycaptures.com/5583813079
 AddLeaveConfButton=http://easycaptures.com/6763482219
