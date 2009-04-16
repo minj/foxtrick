@@ -275,7 +275,7 @@ var FoxtrickMyHT = {
 								var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]+'.'+this.NewModules[i][6].OPTIONS[k]);						
 								if (screenshot) {
 									td1.appendChild(doc.createElement('br'));
-									td1.appendChild(doc.createTextNode('» '));
+									td1.appendChild(doc.createTextNode('»\u00a0'));
 									var a=doc.createElement('a');
 									a.href=screenshot;
 									a.title=Foxtrickl10n.getString("Screenshot");
@@ -290,7 +290,7 @@ var FoxtrickMyHT = {
 								var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]+'.'+this.NewModules[i][6].RADIO_OPTIONS[k]);						
 								if (screenshot) {
 									td1.appendChild(doc.createElement('br'));
-									td1.appendChild(doc.createTextNode('» '));
+									td1.appendChild(doc.createTextNode('»\u00a0'));
 									var a=doc.createElement('a');
 									a.href=screenshot;
 									a.title=Foxtrickl10n.getString("Screenshot");
