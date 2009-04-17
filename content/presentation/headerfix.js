@@ -23,6 +23,9 @@ var FoxtrickHeaderFix = {
 		if (Foxtrick.isModuleFeatureEnabled( this, "FixLeft"))
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", true );				
 		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
+	
+		dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
+    
     },
 
     run : function( page, doc ) { 
@@ -43,9 +46,9 @@ var FoxtrickHeaderFixLeft = {
 	
     init : function() {  
 	
-	if (!Foxtrick.isModuleEnabled("FoxtrickHeaderFix"))
+	if (!Foxtrick.isModuleEnabled(FoxtrickHeaderFix))
 		FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );  
-		
+	dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
     },
 
     run : function( page, doc ) { 
