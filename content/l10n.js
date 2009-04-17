@@ -7,6 +7,7 @@ var Foxtrickl10n = {
     _strings_bundle : null,
 	_strings_bundle_default : null,
 	_strings_bundle_screenshots:null,
+	_strings_bundle_screenshots_default:null,
 	
     init : function() {
         this._strings_bundle_default =
@@ -15,7 +16,7 @@ var Foxtrickl10n = {
              .createBundle("chrome://foxtrick/content/foxtrick.properties");
 		this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage")); 
 		
-		this._strings_bundle_screenshots =
+		this._strings_bundle_screenshots_default =
              Components.classes["@mozilla.org/intl/stringbundle;1"] 
              .getService(Components.interfaces.nsIStringBundleService)  
              .createBundle("chrome://foxtrick/content/foxtrick.screenshots");		
@@ -28,6 +29,10 @@ var Foxtrickl10n = {
              Components.classes["@mozilla.org/intl/stringbundle;1"] 
              .getService(Components.interfaces.nsIStringBundleService)  
              .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
+		this._strings_bundle_screenshots =
+             Components.classes["@mozilla.org/intl/stringbundle;1"] 
+             .getService(Components.interfaces.nsIStringBundleService)  
+             .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
 	  } catch (e) { dump('Foxtrickl10n->get_strings_bundle: Error reading language file: '+e+'\n');}
 	},
 
@@ -105,18 +110,21 @@ var Foxtrickl10n = {
     },
 	
 	getScreenshot : function( str ) {
+		var link="";
         if ( this._strings_bundle_screenshots )
         {
             try {
-                return this._strings_bundle_screenshots.GetStringFromName( str );
+                link = this._strings_bundle_screenshots.GetStringFromName( str );				
             } catch( e ) {
-				return "";
-			}            
-        }
-        else {
-            dump("** _strings_bundle_screenshots error  ** \n");
-            return "";
-        }
+			}
+		}
+		if (link=="") {
+			try { 
+				if ( this._strings_bundle_screenshots_default ) link = this._strings_bundle_screenshots_default.GetStringFromName( str );
+				} catch( ee ) { 
+				}
+		}
+		return link;
     },
 };
 
