@@ -10,6 +10,9 @@ var FoxtrickAddManagerButtons = {
     MODULE_NAME : "AddManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.6.2",
+	LASTEST_CHANGE:"sendmail opens large mail box now",
+	
 
     init : function() {
         Foxtrick.registerPageHandler( 'managerPage',
@@ -32,10 +35,10 @@ var FoxtrickAddManagerButtons = {
 			case 'youthoverview':
 				this.addActionsBox( doc );
 				break;
-				
+			/*	
 			case 'teamPage':
 				this.showMessageForm( doc );
-				break;
+				break;*/
 		}
 	},
 	
@@ -93,8 +96,11 @@ var FoxtrickAddManagerButtons = {
 			if(allDivs[i].className=="subMenuBox") {
 				teamID = FoxtrickHelper.findTeamId(allDivs[i]);
 			}
-		}
 			
+		}
+		var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
+		username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');				
+		
 		//Do not add send message button for owner manager page. - Stephan57
 		if ( ownerID==teamID ) return;
 		
@@ -103,7 +109,9 @@ var FoxtrickAddManagerButtons = {
 		
 		var messageLink = doc.createElement("a");
 		messageLink.className = "inner";
-		messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
+		
+		messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
+		//messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
 		messageLink.title = Foxtrickl10n.getString( 
 			"foxtrick.tweaks.sendmessage" );
 				
