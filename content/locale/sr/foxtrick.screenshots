@@ -1,3 +1,7 @@
+# NOTE TO TRANSLATORS
+# you can add a similar file to your locale folder to add translated screenshots.
+# links available there will be used. if links are missing default links are used.
+
 # Preferences
 main=http://gliglif.foundationhorizont.org/hattrick/FoxtrickGavneOpcije.html
 shortcuts_and_tweaks=
