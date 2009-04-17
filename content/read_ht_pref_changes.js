@@ -11,8 +11,6 @@ var FoxtrickReadHtPrefs = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.6.2",
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Locale now independent from Firefox locale. Option to auto-change language if hatricks language gets changed (default on)",
 	
 	codes:{},
@@ -110,8 +108,6 @@ var FoxtrickMyHT = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.6.2",
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"FoxTrick MyHT message after version updates. Option to show old changes again.",
 	
 	NewModules:null,
@@ -157,7 +153,7 @@ var FoxtrickMyHT = {
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.7.4";
 						var screenshot=Foxtrickl10n.getScreenshot(module.MODULE_NAME);						
-						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.PREF_SCREENSHOT,new_after,module.LASTEST_CHANGE,module]); 
+						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.MODULE_CATEGORY,new_after,module.LASTEST_CHANGE,module]); 
 												
 					}
 				}
@@ -302,10 +298,12 @@ var FoxtrickMyHT = {
 						}
 						tr.appendChild(td1);
 
-						var td2=doc.createElement('td');						
-						if (this.NewModules[i][3]) {
+						var td2=doc.createElement('td');
+						var prefscreenshot="";
+						var prefscreenshot = Foxtrickl10n.getScreenshot(this.NewModules[i][3]);	
+						if (prefscreenshot) {
 							var a=doc.createElement('a');
-							a.href=this.NewModules[i][3];
+							a.href=prefscreenshot;
 							a.title=Foxtrickl10n.getString("PreferenceScreenshot");
 							a.target="_blank";
 							a.innerHTML=this.NewModules[i][2];
