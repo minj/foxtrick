@@ -582,16 +582,30 @@ stats["htstats"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htstats.png"
 };    
 
-stats["htstats_all"] =  { 
+stats["htstats_all"] =  {  
         "url" : "http://www.htstats.com/",
-        "playedmatchlink" : { "path"       : "matchinfo",
+        "playedmatchlink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : { "matchid" : "-" }
-                       },
-        "playedyouthmatchlink" : { "path"       : "matchinfoy",
-                         "filters"    : [], 
-                         "params"     : { "matchid" : "-" }
-                       },
+                         "paramfunction" : function(params) {
+							var matchid=params["matchid"];
+							var lang=FoxtrickPrefs.getString("htLanguage"); 
+                            if (lang=='ca') lang='cat';
+							else if (lang=='es') lang='es';
+                            else lang='en';
+                            return "matchinfo-" + matchid + "&setlang=" + lang;
+							}
+						 }, 
+        "playedyouthmatchlink" : { "path"       : "",
+							"filters"    : [], 
+							"paramfunction" : function(params) {
+							var matchid=params["matchid"];
+							var lang=FoxtrickPrefs.getString("htLanguage"); 
+                            if (lang=='ca') lang='cat';
+							else if (lang=='es') lang='es';
+                            else lang='en';
+                            return "matchinfoy-" + matchid + "&setlang=" + lang;
+							}
+						 }, 
         "title" : "htstats (played match)",
         "img" : "chrome://foxtrick/content/resources/linkicons/htstats.png"        
 };
