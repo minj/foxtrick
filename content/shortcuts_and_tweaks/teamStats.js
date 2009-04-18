@@ -14,6 +14,7 @@ var FTTeamStats= {
 	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Played/not played last match filter added",
 	latestMatch:0,
+	top11star:0,
 
     init : function() {
             Foxtrick.registerPageHandler('players',
@@ -42,6 +43,7 @@ var FTTeamStats= {
 		var body = doc.getElementById("mainBody");
 		var allDivs = getElementsByClass("playerInfo", body);
 		this.latestMatch=-1;
+		var stars=new Array();
 		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				
@@ -80,6 +82,14 @@ var FTTeamStats= {
                     }
 				}
 				
+				var imgs = allDivs[i].getElementsByTagName( "img" );
+				var img,k=0,num_star=0;
+				while (img=imgs[k++]) {
+					if (img.className=="starWhole") num_star+=1;
+					else if (img.className=="starHalf") num_star+=0.5;
+				}
+				stars.push(num_star);
+				
 				var as=allDivs[i].getElementsByTagName('a');
 				var j=0,a=null;
 				while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
@@ -87,9 +97,11 @@ var FTTeamStats= {
 				if (a) matchday=getUniqueDayfromCellHTML(a.innerHTML); 
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
 		}
+		stars.sort(starsortfunction);
+		this.top11star=stars[10]; 
 
-		if (body.getElementsByTagName("div")[0].className=='faceCard' || body.getElementsByTagName("div")[1].className=='faceCard') facecards=true;;
 		
+		if (body.getElementsByTagName("div")[0].className=='faceCard' || body.getElementsByTagName("div")[1].className=='faceCard') facecards=true;;		
 			
 		
 		var boxrightt=doc.getElementById('sidebar');
@@ -252,7 +264,7 @@ var FTTeamStats= {
 		sortbybox.setAttribute('style','font-size:1.05em;');
 		var filterselect=doc.createElement('select');
 		filterselect.setAttribute('style','font-size:1.05em;');
-		filterselect.setAttribute('class','sorting');
+		//filterselect.setAttribute('class','sorting');
 		filterselect.addEventListener('change',FTTeamStats_Filter,false);
 		var option=doc.createElement('option');
 		option.setAttribute('value','');
@@ -283,6 +295,11 @@ var FTTeamStats= {
 		option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.NotPlayedLatest.label");;
 		filterselect.appendChild(option);
 		
+		/*var option=doc.createElement('option');
+		option.setAttribute('value','TopPlayers');
+		option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.TopPlayers.label");;
+		filterselect.appendChild(option);*/
+
 		for (var spec in specs) {
 			purspec=spec.replace(/\[|\]/g,'');
 			var option = doc.createElement('option');
@@ -297,7 +314,26 @@ var FTTeamStats= {
 			filterselect.appendChild(option);
 		}
 		
-		sortbybox.parentNode.insertBefore(filterselect,sortbybox);
+		var mainBody= doc.getElementById('mainBody');
+		sortbybox=mainBody.removeChild(sortbybox);
+		sortbybox.className="";
+		sortbybox.setAttribute('style','width:100%');
+		var table=doc.createElement('table');
+		table.setAttribute('style','float:right; width:auto');
+		var tbody=doc.createElement('tbody');
+		table.appendChild(tbody);
+		var tr=doc.createElement('tr');
+		tbody.appendChild(tr);
+		var td=doc.createElement('td');
+		tr.appendChild(td);
+		td.appendChild(sortbybox);
+		var tr=doc.createElement('tr');
+		tbody.appendChild(tr);
+		var td=doc.createElement('td');
+		tr.appendChild(td);
+		td.appendChild(filterselect);
+		mainBody.insertBefore(table,mainBody.firstChild);
+		//sortbybox.parentNode.insertBefore(filterselect,sortbybox);
 		FTTeamStats_Filter.doc=doc;
 		
         },
@@ -451,6 +487,9 @@ var FTTeamStats= {
         "Vietnam")            
 };
 
+function starsortfunction(a,b) {return a[0]>b[0];};
+
+
 // by convinced
 function FTTeamStats_Filter(ev){
 	try {
@@ -482,7 +521,16 @@ function FTTeamStats_Filter(ev){
 					hide_category = true;
 			}
 			else if (allDivs[i].className=='faceCard') last_face=allDivs[i]; 
-			else if (allDivs[i].className=='playerInfo') {
+
+			else if (allDivs[i].className=='playerInfo') {			
+				// count stars
+				var imgs = allDivs[i].getElementsByTagName( "img" );	
+				var img,k=0,num_star=0;
+				while (img=imgs[k++]) {
+					if (img.className=="starWhole") num_star+=1;
+					else if (img.className=="starHalf") num_star+=0.5;
+				} 
+
 				var as=allDivs[i].getElementsByTagName('a');
 				var j=0,a=null;
 				while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
@@ -514,9 +562,13 @@ function FTTeamStats_Filter(ev){
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
 				}
+				else if (ev.target.value=='TopPlayers' && num_star < FTTeamStats.top11star)  {
+						allDivs[i].setAttribute('style','display:none !important;');
+						hide = true; //dump('hide');
+				}
 				else if (ev.target.value!='Cards' && ev.target.value!='Injured' && ev.target.value!='TransferListed' 
 							&& ev.target.value!='Pictures' && ev.target.value!='PlayedLatest'  && ev.target.value!='NotPlayedLatest' 
-							&& allDivs[i].innerHTML.search(ev.target.value)==-1)  {
+							&& ev.target.value!='TopPlayers' && allDivs[i].innerHTML.search(ev.target.value)==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
 				}				
