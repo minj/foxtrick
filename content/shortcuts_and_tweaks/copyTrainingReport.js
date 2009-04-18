@@ -9,7 +9,9 @@ var FoxtrickCopyTrainingReport = {
 	MODULE_NAME : "CopyTrainingReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : false,
-
+	NEW_AFTER_VERSION: "0.4.6.2",
+	LASTEST_CHANGE:"Copies plain text to match htyouthclub requirement",
+	
 	init : function() {
 		Foxtrick.registerPageHandler( 'YouthTraining',
 			FoxtrickCopyTrainingReport );
