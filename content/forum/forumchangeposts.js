@@ -443,7 +443,7 @@ var FoxtrickForumChangePosts = {
 	_postid_adjust_height : function(ev) { 
 		header = ev.target.parentNode.parentNode; 
 		if (header.offsetTop-header.lastChild.offsetTop < -3 ) {
-			header.setAttribute('style','height:30px');
+			header.setAttribute('class','cfHeader ftdoubleLine');
 		}		
 		ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );	
 	},
