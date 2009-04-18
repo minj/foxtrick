@@ -56,13 +56,19 @@ var FoxtrickCopyTrainingReport = {
 		for(var i = 0; i < subDivs.length; i++) {
 			if(subDivs[i].className == "playerInfo") {
 				var clone = subDivs[i].cloneNode(true);
-				for(var j = 0; j < 8; j++) {
+				for(var j = 0; j < 5; j++) {
 					clone.removeChild(clone.firstChild);
 				}
 				for(var j = 0; j < 6; j++) {
 					clone.removeChild(clone.lastChild);
 				}
-				Foxtrick.copyStringToClipboard(clone.innerHTML);
+				var plain = clone.innerHTML;
+				plain=plain.replace(/  /g,'');
+				plain=plain.replace(/\n/g,'');
+				plain=plain.replace(/\<br\>/ig,'\n');
+				
+				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
+				Foxtrick.copyStringToClipboard(plain);
 				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));
 			}
 		}
