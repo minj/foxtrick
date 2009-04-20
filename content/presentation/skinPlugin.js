@@ -46,11 +46,23 @@ var FoxtrickSkinPlugin = {
 		if (doc==null) prefs_changed = true;
 		
         try {
-			try {
+			try { // unload old
+				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				var uri = ios.newURI(FoxtrickPrefs.getString("cssSkinOld"), null, null);
+				try {
+                    if (sss.sheetRegistered(uri, sss.USER_SHEET)) sss.unregisterSheet(uri, sss.USER_SHEET);
+                } 
+                catch (ee) {
+                    dump ( ' TOP sss.unregisterSheet old: ' + ee + '\n');
+                }            
+            } catch(e) {dump('no or wrong skin url old:'+FoxtrickPrefs.getString("cssSkinOld") +'\n');} 
+			
+			try {			
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 				var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
-            } catch(e) {dump('no or wrong skin url\n');return;} 
+            } catch(e) {dump('no or wrong skin url:'+FoxtrickPrefs.getString("cssSkin")+'\n');return;} 
             // unloading (if inactive or on login page)
 			var loginpage = new RegExp(FoxtrickPrefs.getString("HTURL")+'\/$'); 
 			if (!FoxtrickPrefs.getBool("module.SkinPlugin.enabled") || (!prefs_changed && doc.location.href.search(loginpage)!=-1)) {				
