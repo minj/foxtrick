@@ -8,8 +8,10 @@ var FoxtrickSkinPlugin = {
     
     MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
-	DEFAULT_ENABLED : false,
-   
+	DEFAULT_ENABLED : false,   
+	NEW_AFTER_VERSION: "0.4.6.2",
+	LASTEST_CHANGE:"fixed skin unloading when chaning skins",
+	
     init : function() {
         Foxtrick.registerAllPagesHandler(this);
     },
