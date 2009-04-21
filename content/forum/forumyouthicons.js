@@ -73,6 +73,7 @@
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
             toolbar.insertBefore( newimage,target );
 
+            /*
             if ( page != 'messageWritePost' ) {
                 var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
@@ -82,6 +83,7 @@
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.hr");
                 toolbar.insertBefore( newimage,target );                                        
             }
+            */
 
           
             var newimage = doc.createElement( "img" );
@@ -171,58 +173,59 @@
         
 
     _youthplayer : function (  ) {
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthplayerid=xxx]", null, "xxx", null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[youthplayerid=xxx]", null, "xxx", null)
         else 
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthplayerid=xxx]", null, "xxx", null)
     }, 
 
     _youthteam : function (  ) { 
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthteamid=xxx]", null, "xxx", null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[youthteamid=xxx]", null, "xxx", null)
         else
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthteamid=xxx]", null, "xxx", null)
     }, 
 
     _youthmatch : function (  ) { 
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthmatchid=xxx]", null, "xxx", null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[youthmatchid=xxx]", null, "xxx", null)
         else 
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthmatchid=xxx]", null, "xxx", null)
 
     }, 
 
     _youthseries : function (  ) { 
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[youthleagueid=xxx]", null, "xxx", null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[youthleagueid=xxx]", null, "xxx", null)
         else
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[youthleagueid=xxx]", null, "xxx", null)            
     }, 
     
     _userid : function (  ) { 
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[userid=xxx]", null, "xxx", null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[userid=xxx]", null, "xxx", null)
         else
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[userid=xxx]", null, "xxx", null)
     },         
         
     _articleid : function (  ) { 
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[articleid=xxx]", null, "xxx", null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[articleid=xxx]", null, "xxx", null)
         else
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[articleid=xxx]", null, "xxx", null)    
     }, 
         
+    /*
     _hr : function (  ) {
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[hr]", null, null, null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[hr]", null, null, null)
         else
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[hr]", null, null, null)
     },         
-
+    */
     _br : function (  ) {
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody') != null )
-            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditor_tbBody'), "[br]", null, null, null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucTextEditor_tbBody'), "[br]", null, null, null)
         else
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbBody'), "[br]", null, null, null)
     },         
