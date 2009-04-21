@@ -64,7 +64,7 @@ FoxtrickMatchPlayerColouring = {
 		var contentA = content.substring(0,content.search('.<br><br>'));		
 		contentA=contentA.substring(contentA.search(/\d-\d-\d/));
 		contentA=contentA.substring(contentA.indexOf('.'));
-//		dump('A: ' + contentA+'\n------\n'+contentA.indexOf('.')+'\n');
+		//dump('A: ' + contentA+'\n------\n'+contentA.indexOf('.')+'\n');
 
         // get part between fisrt '.' after formation and end of paragraph
 		var contentB = content.substring(content.search('.<br><br>')+9); 
@@ -106,11 +106,12 @@ FoxtrickMatchPlayerColouring = {
                         try { 
                             //Player Out
                             var PlayerOut = span_a[0].textContent;
-                            //dump('sub out:'+j+' '+PlayerOut+'\n');
-					
-                            //Player In
+                            var PlayerOut = PlayerOut.substr(PlayerOut.search(" ")+1);
+                            //dump('sub out:'+j+' '+span_a[0].textContent+' = '+PlayerOut+'\n');
+							//Player In
 							var PlayerIn = span_a[1].textContent;
-                            //dump('sub in:'+in_j+' '+PlayerIn+'\n');
+                            var PlayerIn = PlayerIn.substr(PlayerIn.search(" ")+1);
+                            //dump('sub in:'+j+' '+' '+span_a[1].textContent+' = '+PlayerIn+'\n');
                             //Add Player In to the players list
 							//dump (j+' '+teamA.length+' '+teamB.length+'\n');
 							for (var k=0;k<teamA.length;k++) { //dump(k+' '+teamA[k]+' '+PlayerOut+'\n');
@@ -128,9 +129,7 @@ FoxtrickMatchPlayerColouring = {
 					}
 				}
 			}
-		 }
-		 dump('next\n');
- 
+		 }		 
  
 		var links = content_div.getElementsByTagName("a");
 		 for (var i=0; i<links.length; i++) {
@@ -138,31 +137,33 @@ FoxtrickMatchPlayerColouring = {
                  links[i].style.border = "1px solid #ccc";
 				 links[i].style.padding = "0px 2px";
   				 var playerFullName = links[i].textContent;
-				 var b = playerFullName.lastIndexOf(" ");
+				 if  (playerFullName.charAt(0)==" ") playerFullName = playerFullName.substr(1);
+				 var b = playerFullName.search(" ");
 				 var l = playerFullName.length;
 				 if (b>=0) {
 					var playerName = playerFullName.substr(b+1,l-b+1);
 				 } else {
 					var playerName = playerFullName;
 				 }
-				playerName=links[i].textContent; //dump('p: '+ playerName+'\n');
+				//playerName=links[i].textContent; 
 				var foundA =false;
-				for (var k=0;k<teamA.length;k++) { //dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\n');
+				for (var k=0;k<teamA.length;k++) { //dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\t');
 					if (playerName.indexOf(teamA[k])>-1) foundA=true; 
 				}
 				var foundB =false;
-				for (var k=0;k<teamB.length;k++) {// dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\n');
+				for (var k=0;k<teamB.length;k++) { //dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\t');
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
                 if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
 					links[i].setAttribute("style", stlTeamA + 'border:1px solid #ccc;padding:0px 2px;'); 
                 } 
-				 else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
+				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
 					links[i].setAttribute("style", stlTeamB + 'border:1px solid #ccc;padding:0px 2px;'); 
                  }    
-                 else {
+                else {
                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
                  }
+				 //dump('\np: "'+ playerName+'" A: '+foundA+' B: '+foundB+'\n');
              } 
 			 //Colors the name of the teams  on the right box like the players
 			 else { 
