@@ -20,7 +20,7 @@ var FoxtrickForumTemplates = {
     _TEMPLATES_DIV_ID : "post_templates",
     _TEMPLATES_PREFLIST : "post_templates",
     // _TEMPLATES_ENABLED : "usePostTemplates",
-    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
+    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucTextEditor_tbBody',
     
     init : function() {
         Foxtrick.registerPageHandler( 'forumWritePost',
@@ -40,7 +40,7 @@ var FoxtrickForumTemplates = {
             case 'forumWritePost':
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "post_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "post_templates";
-				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucEditor_tbBody';
+				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucTextEditor_tbBody';
 			break;
 			case 'messageWritePost':
 				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_tbBody';

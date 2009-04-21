@@ -15,7 +15,7 @@ var FoxtrickForumPreview = {
 	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Preview moved above toolbar",
 	
-    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
+    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucTextEditor_tbBody',
     _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_tbBody',
 
     init : function() {
@@ -25,7 +25,7 @@ var FoxtrickForumPreview = {
 
     run : function( page, doc ) {
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucTextEditor_tbBody' );
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
             if (msg_window == null)
@@ -114,7 +114,7 @@ var FoxtrickForumPreview = {
 		}
 	
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucTextEditor_tbBody' );
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
             if (msg_window == null)
@@ -197,7 +197,7 @@ var FoxtrickForumPreview = {
         var doc = ev.target.ownerDocument;
 
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucEditor_tbBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucTextEditor_tbBody' );
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
             if (msg_window == null)
