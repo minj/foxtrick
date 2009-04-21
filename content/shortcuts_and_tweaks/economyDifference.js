@@ -21,6 +21,18 @@ var FoxtrickEconomyDifference = {
 
     run : function( page, doc ) {
 			
+			
+		var head = doc.getElementsByTagName("head")[0];
+        var style = doc.createElement("style");
+        style.setAttribute("type", "text/css");
+		var zaw = "#divfoxtrick_eD_heading .tblBox {background: url('chrome://foxtrick/content/resources/img/dropdown.gif') 410px 0 no-repeat;padding-right:20px;}";
+		if (Foxtrick.isStandardLayout(doc) )
+			zaw="#divfoxtrick_eD_heading .tblBox {background: url('chrome://foxtrick/content/resources/img/link-down.png') #999999 508px 4px no-repeat;padding-right:20px;}";			
+		style.appendChild(doc.createTextNode(zaw));
+        head.appendChild(style);
+				
+			
+			
 		// localize this
         
         var DIFF_OPTION = FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value");
@@ -58,9 +70,10 @@ var FoxtrickEconomyDifference = {
 			var heading = doc.createElement("h2");
 			var headingId = "foxtrick_eD_heading";
 			heading.setAttribute("class","tblBox");
+			
 			heading.setAttribute("id",headingId);
 			heading.innerHTML =  STR_S_TABLE_NAME;
-			
+						
 			// add headerclick
 			heading.setAttribute('title',Foxtrickl10n.getString("foxtrick.TwoWeekBalanceToogle"));
 			var div = doc.createElement("div");
