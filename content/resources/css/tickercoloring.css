@@ -23,7 +23,7 @@
 #ticker a[href*="/Inbox/"] {color:#000; background-color:#E7B7FF;}
 
 /* Guestbook - AQUA */
-#ticker a[href*="/Manager/"] {color:#000; background-color:#8FFFFD;}
+#ticker a[href*="/Manager/Guestbook"] {color:#000; background-color:#8FFFFD;}
 
 /* small margins */
 #ticker a {margin:2px;}
