@@ -22,8 +22,8 @@
 /* Inbox - I've got mail - LILA */
 #ticker a[href*="/Inbox/"] {color:#000; background-color:#E7B7FF;}
 
-/* Challenges - AQUA */
-#ticker a[href*="/Challenges/"] {color:#000; background-color:#8FFFFD;}
+/* Guestbook - AQUA */
+#ticker a[href*="/Manager/"] {color:#000; background-color:#8FFFFD;}
 
 /* small margins */
 #ticker a {margin:2px;}
