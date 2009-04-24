@@ -1444,7 +1444,7 @@ stats["ht_scouting_nigeria"] =  {
   "nationalityranges" : [[75, 75]], 
   "countryidranges" : [[75, 75]], 
   "title" : "Nigeria Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_alyaman"] =  { 
@@ -1461,7 +1461,7 @@ stats["ht_scouting_alyaman"] =  {
   "nationalityranges" : [[133, 133]], 
   "countryidranges" : [[133, 133]], 
   "title" : "Al Yaman Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_bahrain"] =  { 
@@ -1478,7 +1478,7 @@ stats["ht_scouting_bahrain"] =  {
   "nationalityranges" : [[123, 123]], 
   "countryidranges" : [[123, 123]], 
   "title" : "Bahrain Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 
@@ -1496,7 +1496,7 @@ stats["ht_scouting_taiwan"] =  {
   "nationalityranges" : [[60, 60]], 
   "countryidranges" : [[60, 60]], 
   "title" : "Taiwan Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_TrinidadTobago"] =  { 
@@ -1513,7 +1513,7 @@ stats["ht_scouting_TrinidadTobago"] =  {
   "nationalityranges" : [[110, 110]], 
   "countryidranges" : [[110, 110]], 
   "title" : "Trinidad & Tobago Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_malaysia"] =  { 
@@ -1530,7 +1530,7 @@ stats["ht_scouting_malaysia"] =  {
   "nationalityranges" : [[45, 45]], 
   "countryidranges" : [[45, 45]], 
   "title" : "Malaysia Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_kyrgyzstan"] =  { 
@@ -1547,7 +1547,7 @@ stats["ht_scouting_kyrgyzstan"] =  {
   "nationalityranges" : [[102, 102]], 
   "countryidranges" : [[102, 102]], 
   "title" : "Kyrgyzstan Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 
@@ -1565,7 +1565,7 @@ stats["ht_scouting_saudiarabia"] =  {
   "nationalityranges" : [[79, 79]], 
   "countryidranges" : [[79, 79]], 
   "title" : "Saudi Arabia Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_brunei"] =  { 
@@ -1582,7 +1582,7 @@ stats["ht_scouting_brunei"] =  {
   "nationalityranges" : [[136, 136]], 
   "countryidranges" : [[136, 136]], 
   "title" : "Brunei Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_malta"] =  { 
@@ -1599,7 +1599,7 @@ stats["ht_scouting_malta"] =  {
   "nationalityranges" : [[101, 101]], 
   "countryidranges" : [[101, 101]], 
   "title" : "Malta Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 
@@ -1617,7 +1617,7 @@ stats["ht_scouting_letzebuerg"] =  {
   "nationalityranges" : [[84, 84]], 
   "countryidranges" : [[84, 84]], 
   "title" : "Letzebuerg Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_almaghrib"] =  { 
@@ -1634,7 +1634,7 @@ stats["ht_scouting_almaghrib"] =  {
   "nationalityranges" : [[77, 77]], 
   "countryidranges" : [[77, 77]], 
   "title" : "Al Maghrib Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 
@@ -1652,7 +1652,7 @@ stats["ht_scouting_alkuwayt"] =  {
   "nationalityranges" : [[127, 127]], 
   "countryidranges" : [[127, 127]], 
   "title" : "Al Kuwayt Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_andorra"] =  { 
@@ -1669,7 +1669,7 @@ stats["ht_scouting_andorra"] =  {
   "nationalityranges" : [[105, 105]], 
   "countryidranges" : [[105, 105]], 
   "title" : "Andorra Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_armenia"] =  { 
@@ -1686,7 +1686,7 @@ stats["ht_scouting_armenia"] =  {
   "nationalityranges" : [[122, 122]], 
   "countryidranges" : [[122, 122]], 
   "title" : "Hayastan NT Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_eesti"] =  { 
@@ -1703,7 +1703,7 @@ stats["ht_scouting_eesti"] =  {
   "nationalityranges" : [[56, 56]], 
   "countryidranges" : [[56, 56]], 
   "title" : "Eesti NT Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
 
@@ -1721,9 +1721,42 @@ stats["ht_scouting_liechtenstein"] =  {
   "nationalityranges" : [[117, 117]], 
   "countryidranges" : [[117, 117]], 
   "title" : "Liechtenstein NT Scouting DB",
-  "img" : "chrome://foxtrick/content/resources/linkicons/ht-d-scout.gif"
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
+stats["ht_scouting_kampuchea"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "scouting/kampuchea/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "scouting/kampuchea/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[138, 138]], 
+  "countryidranges" : [[138, 138]], 
+  "title" : "Kampuchea NT Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
+}
+
+stats["ht_scouting_alurdun"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "alurdun/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "alurdun/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[106, 106]], 
+  "countryidranges" : [[106, 106]], 
+  "title" : "Al Urdun NT Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
+}
 
 
 // ------------------------- nattrick tracker --------------------------------
@@ -2468,12 +2501,12 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,25],[27,36],[38,43],[46,51],[53,53],[56,56],[59,59],
+	"countryidranges" :   [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,25],[27,36],[38,43],[46,51],[53,53],[59,59],
 						[61,62],[64,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
-						[104,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[138,139],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,25],[27,36],[38,43],[46,51],[53,53],[56,56],[59,59],
+						[104,105,],[107,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
+	"nationalityranges" : [[1,1],[4,4],[7,7],[9,11],[13,13],[18,18],[21,21],[23,23],[25,25],[27,36],[38,43],[46,51],[53,53],[59,59],
 						[61,62],[64,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
-						[104,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[138,139],[142,142],[144,200]], 
+						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
 
 
