@@ -365,7 +365,7 @@ Foxtrick.alert = function( msg ) {
 }
 
 Foxtrick.trim = function (text) {
-  return text.replace(/^\s+/, "").replace(/\s+$/, '');
+  return text.replace(/^\s+/, "").replace(/\s+$/, '').replace(/&nbsp;/g,"");
 }
 
 Foxtrick.trimnum = function (text) {
@@ -1142,9 +1142,8 @@ function gregorianToHT( date,weekdayoffset ) {
             var year = parseInt(ar[1]);
             break;
     }
-            
     var dayCount = years[year-2000] + months[month] + (day) -parseInt(weekdayoffset);
-    dump ( ' > DATEFORMAT: ' + DATEFORMAT + ' [ ' + date + '] ' + day + '/' + month + '/' + year + ':dayoff='+weekdayoffset+'\n');
+    //dump ( ' > DATEFORMAT: ' + DATEFORMAT + ' [ ' + date + '] ' + day + '/' + month + '/' + year + ':dayoff='+weekdayoffset+'\n');
     // leap day
     if (year % 4 == 0 && month > 2)
         ++dayCount;
@@ -1155,7 +1154,6 @@ function gregorianToHT( date,weekdayoffset ) {
                     ( Math.floor((dayCount%(16*7))/7) +1 ), 
                     dayCount%7 + 1,
                     date );
-
     return htDate;
 }
     
@@ -1378,14 +1376,6 @@ modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
     Returns HT-Week & Season
     short == true => Date is without time.
     */
-    var DATEFORMAT = 'ddmmyyyy';
-    try {
-        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-    }
-    catch (e) {
-        dump ('DATEFORMAT ' + e + '\n');
-        DATEFORMAT = 'ddmmyyyy';
-    }
 
     var tds = doc.getElementsByTagName( elm );
     for (var i = 0; tds[i] != null; ++i) {
@@ -1399,24 +1389,11 @@ modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
                 var ar = reg.exec(dt_inner);
 
                 if (ar != null) {
-                    //dump (' == > HTDATEFORMAT CHECK: ' + dt_inner + '\n');
                     var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
-
-                    switch ( DATEFORMAT ) {
-                        case 'ddmmyyyy':
-                            td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
-                            break;
-                        case 'mmddyyyy':
-                            td_date = ar[3] + '.' + ar[1] + '.' + ar[5] + ' 00.00.01';                        
-                            break;
-                        case 'yyyymmdd':
-                            td_date = ar[5] + '.' + ar[3] + '.' + ar[1] + ' 00.00.01';                                                
-                            break;
-                    }
 
                     if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
                         tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date,weekdayoffset) + after;
-						//dump (' == > HTDF ['+ DATEFORMAT+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+						//dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
                     }
                 }
             }
