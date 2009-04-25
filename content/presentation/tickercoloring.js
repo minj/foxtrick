@@ -11,7 +11,7 @@ var FoxtrickTickerColoring = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.7",
 	LASTEST_CHANGE:"Option to use custom color added",	
-	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","Hover"),
+	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages","Hover"),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:#000; background-color:#DFEFC2;",  // LoginWelcome
 											"color:#000; background-color:#FFE8CF;",  // LoginSupporters
@@ -20,6 +20,7 @@ var FoxtrickTickerColoring = {
 											"color:#000; background-color:#FFDFE0;",  // Challenges
 											"color:#000; background-color:#DFFFFD;",  // Guestbook
 											"color:#000; background-color:#EEDFFF;",  // MailToMe
+											"color:#000; background-color:#DFDFDF;",  // MyHTMessages
 											"color:#000 !important; background-color: transparent !important;"  // Hover
 											),        
 	CSS:"",
@@ -46,10 +47,12 @@ var FoxtrickTickerColoring = {
 		+'#ticker a[href*="/Club/Manager/Guestbook.aspx?teamid="] {'+this.get_color(this.OPTIONS[5])+'}'
 		/* MailToMe */
 		+'#ticker a[href*="/Inbox/"] {'+this.get_color(this.OPTIONS[6])+'}'
+		/* MyHT Messages (e.g. raising bids) */
+		+'#ticker a[href*="/Myhattrick/?actionType"] {'+this.get_color(this.OPTIONS[7])+'}'
 		/* small margins */
 		+'#ticker a {margin:2px;}'
 		/* Hover */
-		+'#ticker a:hover {'+this.get_color(this.OPTIONS[7])+'}'
+		+'#ticker a:hover {'+this.get_color(this.OPTIONS[8])+'}'
 		+'}'
 		;
 		
