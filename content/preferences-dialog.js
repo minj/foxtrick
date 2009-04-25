@@ -579,6 +579,7 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
 
         //Skin settings
+        FoxtrickPrefs.setString("cssSkinOld",  FoxtrickPrefs.getString("cssSkin"));
         FoxtrickPrefs.setString("cssSkin", document.getElementById("cssskinpref").value);
         FoxtrickPrefs.setBool("module.SkinPlugin.enabled", document.getElementById("skinActivedSkin").checked); 
 
