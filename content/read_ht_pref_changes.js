@@ -137,8 +137,8 @@ var FoxtrickMyHT = {
 						
 				for ( i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i]; 
-					//dump (curVersion+' > ' +module.NEW_AFTER_VERSION+' '+(curVersion > module.NEW_AFTER_VERSION)+'\n');
-					if ( (module.NEW_AFTER_VERSION && curVersion > module.NEW_AFTER_VERSION) 
+					//dump (oldVersion+' > ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\n');
+					if ( (module.NEW_AFTER_VERSION && oldVersion <= module.NEW_AFTER_VERSION) 
 						|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
 						
 						if (!module.MODULE_CATEGORY) continue;

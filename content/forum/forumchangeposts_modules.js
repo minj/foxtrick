@@ -43,7 +43,7 @@ var FoxtrickCopyPosting = {
 
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	NEW_AFTER_VERSION: "0.4.7.0",	
+	NEW_AFTER_VERSION: "0.4.7",	
 	LASTEST_CHANGE:"Added option to copy forum posting",
 	DEFAULT_ENABLED : false,
 
