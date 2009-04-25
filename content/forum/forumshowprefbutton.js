@@ -1,6 +1,6 @@
 /**
 * forumshowprefbutton.js
-* Foxtrick Copies post id to clipboard
+* Foxtrick shows forum preference button on all forum pages
 * @author convinced
 */
 

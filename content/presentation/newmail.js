@@ -10,7 +10,6 @@ var FoxtrickNewMail = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.6.2",
-	SCREENSHOT:"http://www.ht-foxtrick.com/forum/portal.php",
 	LASTEST_CHANGE:"Option to use custom color added",
 	CSS:  "",
 	OPTIONS : new Array("CustomColor","HighlightNewMailIcon"),

@@ -30,8 +30,6 @@ var FoxtrickLinksCustom = {
 		try {	
 			this._info=info;
 			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/conference.css");
-			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/linkscustom.css");
 			
 			if (Foxtrick.isStandardLayout(doc) )  {
@@ -477,7 +475,7 @@ var FoxtrickLinksCustom = {
 function FoxtrickLinksGetDelLink (doc,mylink,baseprefnl) { 
 	try {	
 		var delLink = doc.createElement("div");
-		delLink.setAttribute("class","foxtrick" +	"LeaveConf");
+		delLink.setAttribute("class","foxtrick" + "Remove");
 		delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
 		delLink.addEventListener( "click", FoxtrickLinksCustom.delMyLink, false );
 		delLink.baseprefnl = baseprefnl;
