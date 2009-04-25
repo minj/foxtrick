@@ -8,15 +8,18 @@ FoxtrickFixcssProblems = {
     MODULE_NAME : "FixcssProblems",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : false,
-   
+	NEW_AFTER_VERSION: "0.4.7",
+	LASTEST_CHANGE:"Option to add vertical lines to league tables added",	
+	   
     OPTIONS :  new Array(               "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
                                     "Page_Minimum_Height",
                                     "Forum_Header_Smallsize",
                                     "MatchOrder_Lineheight",
-                                                                        "RTL_Fixes",
-                                                                        "ForumScrollBarFix",
-                                                                        "Forum_ThreadlistSpace_simple"
+                                    "RTL_Fixes",
+                                    "ForumScrollBarFix",
+                                    "Forum_ThreadlistSpace_simple",
+									"League_Table"
                                 ),
                                
     OPTIONS_CSS: new Array (
@@ -27,7 +30,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
                                 "",
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-                                ""
+                                "",
+								"chrome://foxtrick/content/resources/css/fixes/League_Table.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -37,7 +41,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
                                 "chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-                                ""
+                                "",
+								"chrome://foxtrick/content/resources/css/fixes/League_Table.css"
                                 ),
                                
         init : function() {

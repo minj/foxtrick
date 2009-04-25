@@ -21,6 +21,7 @@ var FoxtrickForumChangePosts = {
 	
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID); 
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon"); 
+		var do_copy_posting = Foxtrick.isModuleEnabled(FoxtrickCopyPosting); 
 		var do_hide_user_info = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatarUserInfo);
 		var do_hide_avatar = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar);				
 		var do_default_facecard = !do_hide_avatar && Foxtrick.isModuleEnabled(FoxtrickAddDefaultFaceCard);				
@@ -55,13 +56,21 @@ var FoxtrickForumChangePosts = {
 		var img = doc.createElement('img');
 		img.setAttribute('src',"chrome://foxtrick/content/resources/img/copy_yellow_small.png");
 		img.setAttribute('style',"vertical-align: middle; margin-right:3px;");
-		//img.addEventListener( "click", FoxtrickForumChangePosts._copy_postid_to_clipboard, false );
 						
 		var copy_link1 = doc.createElement('a');
 		copy_link1.setAttribute('href','javascript:void(0);');
 		copy_link1.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPostID' ));
 		copy_link1.appendChild(img);					
 	
+		// part of copy_posting_link
+		var img2 = doc.createElement('img');
+		img2.setAttribute('src',"chrome://foxtrick/content/resources/img/copy_yellow_small.png");
+		img2.setAttribute('style',"vertical-align: middle; margin-left:3px;");
+						
+		var copy_posting_link = doc.createElement('a');
+		copy_posting_link.setAttribute('href','javascript:void(0);');
+		copy_posting_link.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPosting' ));
+		copy_posting_link.appendChild(img2);					
 	
 		// part of alter header
 		var trunclength = 10;
@@ -210,6 +219,12 @@ var FoxtrickForumChangePosts = {
 					}
 				}  // end copy post id
 				
+				
+				if (do_copy_posting) { 
+						var copy_link=copy_posting_link.cloneNode(true);
+						copy_link.firstChild.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );		
+						header_right.appendChild(copy_link);
+				}  // end copy post id
 							
 				// redir to team ------------------------------------------
 				if ( do_redir_to_team ) {
@@ -430,7 +445,7 @@ var FoxtrickForumChangePosts = {
 	change : function( page, doc ) {
 	},	
 
-	_copy_postid_to_clipboard : function(ev) { 
+	_copy_postid_to_clipboard : function(ev) {  
 		var PostID = ""; 
 		if (FoxtrickForumChangePosts.bDetailedHeader) PostID=ev.target.parentNode.nextSibling.title;
 		else { 
@@ -438,11 +453,83 @@ var FoxtrickForumChangePosts = {
 			catch(e){PostID=ev.target.parentNode.nextSibling.title;}
 		}
 		Foxtrick.copyStringToClipboard(PostID);
+		Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postidcopied"));
+    },	
+		
+	_copy_posting_to_clipboard : function(ev) {  
+		try{
+				var header=ev.target.parentNode.parentNode.parentNode;
+		
+				var header_left = null;
+				var header_right = null;
+				var header_right_inner = null;
+				
+				var k = 0, header_part; 
+				while ( header_part = header.childNodes[k++]) {
+					if (header_part.className.search(/float_left/)!=-1 ) header_left = header_part;
+					if (header_part.className.search(/float_right/)!=-1 ) 
+						if (header_right==null)header_right = header_part;
+				}
+				header_right_inner=header_right.getElementsByTagName('div')[0];
+	
+				
+				// get post_links, poster_links, poster_id from header
+				var header_left_links = header_left.getElementsByTagName('a');
+				var post_link1 = null;
+				var poster_link1 = null;
+				var poster_id1 = null;	
+				var post_link2 = null;
+				var poster_link2 = null;
+				var poster_id2 = null;
+				var supporter_link1 = null;
+				var supporter_link2 = null;
+				var league_link1 = null;
+				var league_link2 = null;
+				
+				
+				var k = 0, header_left_link; 
+				if (header_left_links[0].href.search(/showMInd/)==-1 ) this.bDetailedHeader = true; 
+				while ( header_left_link = header_left_links[k++]) {
+					if (!poster_link1) { 
+						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link1 = header_left_link;
+						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
+							poster_link1 = header_left_link; 
+							poster_id1 = poster_link1.href.match(/\d+$/);
+							if (header_left_links[k] 
+								&& header_left_links[k].href.search(/Supporter/i) != -1) {
+									supporter_link1 = header_left_links[k];
+							}
+						}					
+					} else { 
+						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link2 = header_left_link;
+						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
+							poster_link2 = header_left_link;
+							poster_id2 = poster_link2.href.match(/\d+$/);
+							if (header_left_links[k] 
+								&& header_left_links[k].href.search(/Supporter/i) != -1) {
+									supporter_link2 = header_left_links[k];
+							}
+						}												
+					}					
+					/*if (!isStandardLayout) {
+						if (!league_link1 && header_left_link.href.search(/LeagueLevelUnitID/i) != -1) league_link1 = header_left_link;
+						else if (header_left_link.href.search(/LeagueLevelUnitID/i) != -1) league_link2 = header_left_link;
+					 }*/					
+				}
+		
+			var headstr = post_link1.title+': '+poster_link1.title+' » ';
+			if (poster_link2)  headstr+=post_link2.title+': '+poster_link2.title+'<br>';
+			else headstr+='all<br>';
+			dump (headstr+'\n');
+			dump(header.nextSibling.firstChild.innerHTML+'\n\n');
+			Foxtrick.copyStringToClipboard(headstr+header.nextSibling.firstChild.innerHTML); 
+			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postingcopied"));
+		} catch(e){ dump('_copy_posting_to_clipboard :'+e+'\n');}
     },	
 		
 	_postid_adjust_height : function(ev) { 
 		header = ev.target.parentNode.parentNode; 
-		if (header.offsetTop-header.lastChild.offsetTop < -3 ) {
+		if (header.offsetTop-header.lastChild.offsetTop < -3 ) { 
 			header.setAttribute('class','cfHeader ftdoubleLine');
 		}		
 		ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );	

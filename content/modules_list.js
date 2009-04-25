@@ -9,6 +9,7 @@
  */
 Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickShowForumPrefButton,
+					 FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
 					 FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
                      FoxtrickMovePlayerStatement,
                      FoxtrickFixcssProblems,
@@ -93,6 +94,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickGuestbookAlltidFlags,
                      FoxtrickCurrencyConverter,  
                      FoxtrickTickerColoring,
+					 FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
 					 FoxtrickCopyMatchID,
                      // FoxtrickMatchDayTables //just added, no functions so far
 					 FoxtrickHeaderFix,
@@ -103,5 +105,9 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickPlayerBirthday,
 					 FoxtrickAddHtLiveToOngoing,					 
 					 FoxtrickReadHtPrefs,
-					 FoxtrickMyHT
+					 FoxtrickMyHT,
+					 FoxtrickLeagueNewsFilter,
+					 FoxtrickShortPAs,
+					 FoxtrickCopyPosting,
+					 FoxtrickMoveManagerOnline
 					];

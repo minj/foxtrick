@@ -121,7 +121,8 @@ var FoxtrickMyHT = {
 			
 			var curVersion = FoxtrickPrefs.getString("curVersion"); 
 			var oldVersion = FoxtrickPrefs.getString("oldVersion");
-			
+			//dump (curVersion+' > ' +oldVersion+' '+(curVersion > oldVersion)+'\n');
+					
 			if (oldVersion<curVersion) {
 				this.getNewModules(curVersion,oldVersion);			
 				this.ShowAlert(doc, oldVersion);
@@ -136,7 +137,7 @@ var FoxtrickMyHT = {
 						
 				for ( i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i]; 
-					
+					//dump (curVersion+' > ' +module.NEW_AFTER_VERSION+' '+(curVersion > module.NEW_AFTER_VERSION)+'\n');
 					if ( (module.NEW_AFTER_VERSION && curVersion > module.NEW_AFTER_VERSION) 
 						|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
 						
@@ -151,7 +152,7 @@ var FoxtrickMyHT = {
 						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
 															
 						var new_after=module.NEW_AFTER_VERSION;
-						if (!new_after) new_after="0.3.7.4";
+						if (!new_after) new_after="0.3.73";
 						var screenshot=Foxtrickl10n.getScreenshot(module.MODULE_NAME);						
 						FoxtrickMyHT.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.MODULE_CATEGORY,new_after,module.LASTEST_CHANGE,module]); 
 												

@@ -84,6 +84,7 @@ var FoxtrickCopyMatchID = {
 
 	_copy_matchid_to_clipboard : function(ev) { 
 		var matchid = ev.target.parentNode.getAttribute("matchid");
-		Foxtrick.copyStringToClipboard(matchid);        
+		Foxtrick.copyStringToClipboard(matchid);
+		Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"));
 	},	
 };

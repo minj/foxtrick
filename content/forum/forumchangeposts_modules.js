@@ -23,7 +23,7 @@ var FoxtrickCopyPostID = {
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
-			FoxtrickCopyPostID );
+			this );
 	},
 	
 	run : function( page, doc ) {
@@ -33,6 +33,31 @@ var FoxtrickCopyPostID = {
 	},	
 };
 
+//**********************************************************
+/**
+* forumcopyposting.js
+* Foxtrick Copies posting to clipboard
+* @author convinced
+*/
+var FoxtrickCopyPosting = {
+
+	MODULE_NAME : "CopyPosting",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	NEW_AFTER_VERSION: "0.4.7.0",	
+	LASTEST_CHANGE:"Added option to copy forum posting",
+	DEFAULT_ENABLED : false,
+
+	init : function() {
+		Foxtrick.registerPageHandler( 'forumViewThread',
+			this );
+	},
+	
+	run : function( page, doc ) {
+	},
+	
+	change : function( page, doc ) { return;
+	},	
+};
 
 //**********************************************************
 /**

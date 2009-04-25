@@ -12,7 +12,7 @@ var FTTeamStats= {
 	NEW_AFTER_VERSION: "0.4.6.2",
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Played/not played last match filter added",
+	LASTEST_CHANGE:"Highlight youth players over 19 yrs. Show number of youth players <19 and >=19 in teamstats box",
 	latestMatch:0,
 	top11star:0,
 
@@ -44,7 +44,10 @@ var FTTeamStats= {
 		var allDivs = getElementsByClass("playerInfo", body);
 		this.latestMatch=-1;
 		var stars=new Array();
+		var num_too_old=0;
+		var num_not_too_old=0;
 		
+	
 		for( var i = 0; i < allDivs.length; i++ ) {
 				
 				var allDivs2 = allDivs[i].getElementsByTagName( "p" )[0];
@@ -65,6 +68,15 @@ var FTTeamStats= {
 					catch(e) {
 						dump('FTTeamStats'+e);
 					}
+				}
+				else {
+					var age = specc.innerHTML.match(/\d+/); 
+					var ageday = specc.innerHTML.match(/(\d+)/g)[1];
+					if (age>=19) {
+						allDivs2.setAttribute('style','color:red; font-weight:bold;');
+						++num_too_old;
+					}
+					else ++num_not_too_old;
 				}
 				
 				if(specc) {
@@ -234,6 +246,12 @@ var FTTeamStats= {
             }
             
         }
+		if (Youth_players) {
+		  var style='';
+		  if (num_not_too_old<9) style='color:red !important; font-weight:bold !important';
+          specsTable += "<tr style='"+style+"'><td class=\"ch\">" + Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayerNotToOld.label") + "</td><td>" + num_not_too_old + "</td></tr>";
+          if (num_too_old>0) specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayerToOld.label") + "</td><td>" + num_too_old + "</td></tr>";                    
+		}
         
 		var boxrightt=doc.getElementById('sidebar');
         var contentDiv = boxrightt.innerHTML;

@@ -14,7 +14,7 @@
  * backslashes (as you can see below).
  */
 Foxtrick.ht_pages = { 
-    'all'                       : '\/',
+    'all'                       : '',
     'playerdetail'              : '\/Club\/Players\/Player\.aspx',
     'myhattrick'                : '\/MyHattrick\/$',                        
     'forum'                     : '\/Forum\/',
@@ -27,7 +27,8 @@ Foxtrick.ht_pages = {
     'league'                    : '\/World\/Series\/Default\.aspx',
     'youthleague'               : '\/World\/Series\/YouthSeries\.aspx',
     'country'                   : '\/World\/Leagues\/League\.aspx',
-    'challenges'                : '\/Club\/Challenges\/',
+	'region'                   : '\/World\/Regions\/Region\.aspx',
+	'challenges'                : '\/Club\/Challenges\/',
     'economy'                   : '\/Club\/Finances\/',
     'achievements'              : '\/Club\/Achievements\/',
     'history'                   : '\/Club\/History\/',
