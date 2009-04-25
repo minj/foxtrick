@@ -1006,6 +1006,21 @@ stats["htbox_training"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htbox_train.png"
 };
 
+
+stats["ht-u20"] =  { 
+        "url" : "http://age.ht-u20.com/",
+
+        "playerlink" : { "path"       : "",
+                         "filters"    : ["age"], 
+                        "params"     : { "age" : "years", 
+										"age_days" : "days",
+										}
+                        },
+        "ageranges" : [[15, 20]],         
+        "title" : "HT-U20 Check age vs U-20 matches",
+        "img" : "chrome://foxtrick/content/resources/linkicons/u20.png"
+};
+
 stats["hottrickkeeper"] =  { 
         "url" : "http://www.hottrick.org/",
 
