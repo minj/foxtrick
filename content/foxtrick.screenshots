@@ -38,6 +38,7 @@ shortcutsstatistics=http://gliglif.foundationhorizont.org/hattrick/images/685268
 CopyMatchID=http://gliglif.foundationhorizont.org/hattrick/images/3107155739.jpg
 CopyTrainingReport=http://gliglif.foundationhorizont.org/hattrick/images/3743589980.png
 PlayerBirthday=http://gliglif.foundationhorizont.org/hattrick/images/3598475278.jpg
+SeasonStats=http://gliglif.foundationhorizont.org/hattrick/images/SeasonStats.jpg
 
 #Presentation and Tweaks
 MovePlayerStatement=http://gliglif.foundationhorizont.org/hattrick/images/2153974988.jpg
@@ -64,6 +65,11 @@ HeaderFix.FixLeft=http://gliglif.foundationhorizont.org/hattrick/images/86879051
 NewMail=http://gliglif.foundationhorizont.org/hattrick/images/1676973530.png
 NewMail.CustomColor=http://gliglif.foundationhorizont.org/hattrick/images/1676973530.png
 NewMail.HighlightNewMailIcon=http://gliglif.foundationhorizont.org/hattrick/images/1676973530.png
+FixcssProblems=http://gliglif.foundationhorizont.org/hattrick/images/FixcssProblems_League_Table.jpg
+LeagueNewsFilter=http://gliglif.foundationhorizont.org/hattrick/images/LeagueNewsFilter.jpg
+MoveManagerOnline=http://gliglif.foundationhorizont.org/hattrick/images/MoveManagerOnline.jpg
+MovePlayerSelectbox=http://gliglif.foundationhorizont.org/hattrick/images/MovePlayerSelectbox.jpg
+ShortPAs=http://gliglif.foundationhorizont.org/hattrick/images/ShortPAs.jpg
 
 # Matches
 FlipSidesInMatchOrders=http://gliglif.foundationhorizont.org/hattrick/images/9977903032.jpg
@@ -97,3 +103,4 @@ HTThreadMarker=http://gliglif.foundationhorizont.org/hattrick/images/5583813079.
 AddLeaveConfButton=http://gliglif.foundationhorizont.org/hattrick/images/6763482219.png
 HideSignatures=http://gliglif.foundationhorizont.org/hattrick/images/5389436441.png
 ForumNextAndPrevious=http://gliglif.foundationhorizont.org/hattrick/images/2651609465.jpg
+CopyPosting=http://gliglif.foundationhorizont.org/hattrick/images/CopyPosting.jpg
