@@ -159,7 +159,9 @@ var FoxtrickShortPAs = {
 		var p=item.getElementsByTagName('p')[0];
 		p.style.display='none';
 		var morediv=doc.createElement('div');
-		morediv.setAttribute('style',"position:absolute; display:inline; right: 10px;");
+		var right=10;
+		if (Foxtrick.isStandardLayout(doc)) right=27;
+		morediv.setAttribute('style',"position:absolute; display:inline; right: "+right+"px;");
 		var a=doc.createElement('a');
 		a.innerHTML=Foxtrickl10n.getString("foxtrick.ShortPAs.more");
 		a.href='javascript:void(0);';
