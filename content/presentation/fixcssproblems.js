@@ -11,18 +11,18 @@ FoxtrickFixcssProblems = {
 	NEW_AFTER_VERSION: "0.4.7",
 	LASTEST_CHANGE:"Option to add vertical lines to league tables added",	
 	   
-    OPTIONS :  new Array(               "Forum_FoxLink_Headers",
+    OPTIONS :  new Array(           "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
                                     "Page_Minimum_Height",
                                     "Forum_Header_Smallsize",
                                     "MatchOrder_Lineheight",
                                     "RTL_Fixes",
                                     "ForumScrollBarFix",
-                                    "Forum_ThreadlistSpace_simple",
+                                    "Forum_ThreadlistSpace",
 									"League_Table"
                                 ),
                                
-    OPTIONS_CSS: new Array (
+		OPTIONS_CSS: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Club_Menu_Teamnames.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Page_Minimum_Height.css",
@@ -53,11 +53,18 @@ FoxtrickFixcssProblems = {
                                                                        
     run : function(page, doc) {
        
-                if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace_simple" ) &&  !Foxtrick.isStandardLayout( doc ) ) {
+            if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace_simple" )) {
+				if (!Foxtrick.isStandardLayout( doc ) ) {
                         var css = "chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css";
-            Foxtrick.addStyleSheet( doc, css );
-        }
-                return;
+						Foxtrick.addStyleSheet( doc, css );
+				}
+				else {
+				        var css = "chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace.css";
+						Foxtrick.addStyleSheet( doc, css );
+				}				
+			}
+             
+	return;
    
 
                 // old version
