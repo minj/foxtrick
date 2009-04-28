@@ -104,10 +104,10 @@ FoxtrickExtendedPlayerDetails = {
             if (table_elm_bonus == null) return;
             table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
 
-            var part = substr(table_inner, 0, table_inner.lastIndexOf("&nbsp;"));
+            var part = substr(table_inner, 0, table_inner.search('/')-1);
 
             var part_1_save = part;
-            var part_2_save = substr(table_inner, table_inner.lastIndexOf("&nbsp;") + 6, table_inner.length );
+            var part_2_save = table_inner.substring(table_inner.search('/'));
 
              //this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
                  var part = part;
@@ -124,7 +124,7 @@ FoxtrickExtendedPlayerDetails = {
                     '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' + 
                     part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
                     ')</span>&nbsp;' + 
-                    part_2_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
+                    part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 
         } catch (e) {
             dump('  PlayerBonus: ' + e + '\n');
