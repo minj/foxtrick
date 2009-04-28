@@ -143,6 +143,7 @@ var FoxtrickForumPreview = {
 
         search = new Array(
 
+            /\[userid=(\d+)\]/,
             /\[playerid=(\d+)\]/,
             /\[youthplayerid=(\d+)\]/,
             /\[teamid=(\d+)\]/,
@@ -169,6 +170,7 @@ var FoxtrickForumPreview = {
           );
 
         replace = new Array(
+            "<a href=\"\/Club\/Manager\/\?userId\=$1\" target=\"\_blank\">($1)</a>",
             "<a href=\"\/Club\/Players\/Player\.aspx\?playerId\=$1\" target=\"\_blank\">($1)</a>",
             "<a href=\"\/Club\/Players\/YouthPlayer\.aspx\?YouthPlayerID\=$1\" target=\"\_blank\">($1)</a>",
             "<a href=\"\/Club\/\?TeamID\=$1\" target=\"\_blank\">($1)</a>",
