@@ -52,6 +52,35 @@ var FoxtrickLeagueNewsFilter = {
 	newsfeed.insertBefore(selectdiv,newsfeed.firstChild);
 	select.value=FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value"); 
 	selectdiv.appendChild(select);
+
+	var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
+
+	var item=null;
+	var items = newsfeed.getElementsByTagName('div');
+	for (var i=0;i<items.length;++i) {
+		item=items[i];
+		if (item.className!='feedItem' && item.className!='feedItem user') continue;
+
+		var as=item.getElementsByTagName('a');
+		if (item.className=='feedItem user') { // 4 = PAs, className = 'feedItem user'
+			item.setAttribute('ft_news','4');
+		}
+		else if (as.length==1 && item.className!='feedItem user') {  // 1 = friendlies, not above & one link
+			item.setAttribute('ft_news','1');
+		}
+		else if (as.length==2) {		// two links for transfers and lineup	
+		
+			var is_transfer= (as[0].href.search('PlayerID=')!=-1 ||		// is_transfer	= one link in a player link 
+								as[1].href.search('PlayerID=')!=-1 );
+			
+			if (is_transfer ) {
+				item.setAttribute('ft_news','2');
+			}
+			else if (as[1].href.search('javascript')==-1 ) {	// 3 = lineup changes, 2 links, second link not ShortPA link,not above
+				item.setAttribute('ft_news','3');
+			}
+		}
+	}
 	
 	this.ShowHide();
 	},
@@ -69,6 +98,8 @@ var FoxtrickLeagueNewsFilter = {
 	for (var i=0;i<items.length;++i) {
 		item=items[i];
 		if (item.className!='feedItem' && item.className!='feedItem user') continue;
+		
+		// show last date if there was an entry shown for that date
 		if (item.previousSibling.previousSibling.className=='feed') {
 			if (last_feed) {
 				if (feed_count==0) last_feed.style.display='none';
@@ -77,43 +108,14 @@ var FoxtrickLeagueNewsFilter = {
 			last_feed=item.previousSibling.previousSibling;
 			feed_count=0;
 		}
-		var as=item.getElementsByTagName('a');
-		if (selected==0) {   							//		0 = show all
+		// show selected
+		if (selected==0 || item.getAttribute('ft_news')==selected) { 
 			item.style.display='block';
-			++feed_count;
+			++feed_count;		
 		}
-		else if (item.className=='feedItem user' && selected==4) { // 4 = PAs, className = 'feedItem user'
-			item.style.display='block';
-			++feed_count;
-		}
-		else if (as.length==1 && selected==1 && item.className!='feedItem user') {  // 1 = friendlies, not above & one link
-			item.style.display='block';
-			++feed_count;
-		}
-		else if (as.length==2 && (selected==2 || selected==3)) {		// two links for transfers and lineup	
-		
-			var is_transfer= (as[0].href.search('PlayerID=')!=-1 ||		// is_transfer	= one link in a player link 
-								as[1].href.search('PlayerID=')!=-1 );
-			
-			if ( selected==2)  {									// 2 =  transfers, not above, 2 links, is_transfers
-				if (is_transfer ) {
-					item.style.display='block';
-					++feed_count;
-				}
-				else item.style.display='none';						// don't show. transfers selected but not found
-			}
-			else if ( selected==3) {
-				if (!is_transfer && as[1].href.search('javascript:void(0);')!=-1 ) {	// 3 = lineup changes, 2 links, second link not ShortPA link,not above
-					item.style.display='block';
-					++feed_count;
-				}
-				else item.style.display='none';						// don't show. lineup changes selected but not found
-			} 
-			else item.style.display='none';						// don't show. lineup changes, or transfers selected but not found
-		}
-		else item.style.display='none';								// don't show. any selected but not found
-		
+		else item.style.display='none';										
 	}
+	// show very last date if there was an entry shown for that date		
 	if (last_feed) {
 		if (feed_count==0) last_feed.style.display='none';
 		else last_feed.style.display='block';
