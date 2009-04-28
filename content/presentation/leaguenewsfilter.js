@@ -78,37 +78,40 @@ var FoxtrickLeagueNewsFilter = {
 			feed_count=0;
 		}
 		var as=item.getElementsByTagName('a');
-		if (selected==0) {
+		if (selected==0) {   							//		0 = show all
 			item.style.display='block';
 			++feed_count;
 		}
-		else if (item.className=='feedItem user' && selected==4) {
+		else if (item.className=='feedItem user' && selected==4) { // 4 = PAs, className = 'feedItem user'
 			item.style.display='block';
 			++feed_count;
 		}
-		else if (as.length==1 && selected==1 && item.className!='feedItem user') {
+		else if (as.length==1 && selected==1 && item.className!='feedItem user') {  // 1 = friendlies, not above & one link
 			item.style.display='block';
 			++feed_count;
 		}
-		else if (as.length==2 && (selected==2 || selected==3)) {
-			var is_transfer= (as[0].href.search('PlayerID=')!=-1 ||
+		else if (as.length==2 && (selected==2 || selected==3)) {		// two links for transfers and lineup	
+		
+			var is_transfer= (as[0].href.search('PlayerID=')!=-1 ||		// is_transfer	= one link in a player link 
 								as[1].href.search('PlayerID=')!=-1 );
 			
-			if ( selected==2)  {
+			if ( selected==2)  {									// 2 =  transfers, not above, 2 links, is_transfers
 				if (is_transfer ) {
 					item.style.display='block';
 					++feed_count;
 				}
-				else item.style.display='none';
+				else item.style.display='none';						// don't show. transfers selected but not found
 			}
-			else if (!is_transfer ) {
+			else if ( selected==3) {
+				if (!is_transfer && as[1].href.search('javascript:void(0);')!=-1 ) {	// 3 = lineup changes, 2 links, second link not ShortPA link,not above
 					item.style.display='block';
 					++feed_count;
 				}
-				else item.style.display='none';
-			
+				else item.style.display='none';						// don't show. lineup changes selected but not found
+			} 
+			else item.style.display='none';						// don't show. lineup changes, or transfers selected but not found
 		}
-		else item.style.display='none';
+		else item.style.display='none';								// don't show. any selected but not found
 		
 	}
 	if (last_feed) {
@@ -179,4 +182,5 @@ var FoxtrickShortPAs = {
 
 function FoxtrickShortPAs_click(ev) {
 	ev.target.parentNode.nextSibling.style.display='block';
+	ev.target.parentNode.style.display='none';	
 }
