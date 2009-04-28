@@ -41,3 +41,16 @@ div.foxtrickExport:hover {
 	background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png') 50% no-repeat;
 }
 
+div.foxtrickRemove {
+	cursor: pointer;
+	width: 14px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/linkicons/cross_bigger.png') 50% no-repeat;
+}
+
+div.foxtrickRemove:hover {
+	cursor: pointer;
+	width: 14px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/linkicons/crossRed_bigger.png') 50% no-repeat;
+}
