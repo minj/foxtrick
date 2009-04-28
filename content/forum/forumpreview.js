@@ -15,8 +15,8 @@ var FoxtrickForumPreview = {
 	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Preview moved above toolbar",
 	
-    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucTextEditor_tbBody',
-    _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_tbBody',
+    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
+    _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditorMain_txtBody',
 
     init : function() {
         Foxtrick.registerPageHandler( 'forumWritePost', this );
@@ -25,9 +25,9 @@ var FoxtrickForumPreview = {
 
     run : function( page, doc ) {
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucTextEditor_tbBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' );
             if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' );
             if (msg_window == null)
                 return;
         }
@@ -114,9 +114,9 @@ var FoxtrickForumPreview = {
 		}
 	
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucTextEditor_tbBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' );
             if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' );
             if (msg_window == null)
                 return;
         }
@@ -199,9 +199,9 @@ var FoxtrickForumPreview = {
         var doc = ev.target.ownerDocument;
 
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucTextEditor_tbBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' );
             if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbBody' );
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' );
             if (msg_window == null)
                 return;
         }
