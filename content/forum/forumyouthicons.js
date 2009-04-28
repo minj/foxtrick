@@ -100,6 +100,14 @@
             
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
+            newimage.addEventListener( "click", FoxtrickForumYouthIcons._kitid , false );
+            newimage.setAttribute( "class", "ft_kit");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_kit.png') !important;");
+            newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.kit");
+            toolbar.insertBefore( newimage,target );                                                        
+
+            var newimage = doc.createElement( "img" );
+            newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", FoxtrickForumYouthIcons._articleid , false );
             newimage.setAttribute( "class", "ft_aid");
             newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_article.png') !important;");
@@ -212,6 +220,13 @@
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody'), "[userid=xxx]", null, "xxx", null)
     },         
         
+    _kitid : function (  ) { 
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody') != null )
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody'), "[kitid=xxx]", null, "xxx", null)
+        else
+            clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody'), "[kitid=xxx]", null, "xxx", null)
+    },         
+
     _articleid : function (  ) { 
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody') != null )
             clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody'), "[articleid=xxx]", null, "xxx", null)
