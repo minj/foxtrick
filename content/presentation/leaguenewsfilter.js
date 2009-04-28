@@ -9,8 +9,8 @@ var FoxtrickLeagueNewsFilter = {
     MODULE_NAME : "LeagueNewsFilter",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.7",
-	LASTEST_CHANGE:"Added filter for league news (default off)",
+	NEW_AFTER_VERSION: "0.4.7.5",
+	LASTEST_CHANGE:"Fixed problems with ShortPAs and repeated useage",
 	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),
 	
     init : function() {
@@ -147,8 +147,8 @@ var FoxtrickShortPAs = {
     MODULE_NAME : "ShortPAs",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.7",
-	LASTEST_CHANGE:"Added option to show expandable PA headers only",
+	NEW_AFTER_VERSION: "0.4.7.5",
+	LASTEST_CHANGE:"Hide more link after usage",
 	
     init : function() {
 	Foxtrick.registerPageHandler( 'league', this);

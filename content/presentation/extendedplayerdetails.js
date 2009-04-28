@@ -8,6 +8,8 @@ FoxtrickExtendedPlayerDetails = {
     MODULE_NAME : "ExtendedPlayerDetails",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.7.5",
+	LASTEST_CHANGE:"Fixed wage without bonus",
     RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
     init : function() {

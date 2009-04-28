@@ -10,8 +10,8 @@ var FoxtrickSeasonStats = {
     MODULE_NAME : "SeasonStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.7",
-	LASTEST_CHANGE:"Shows some stats on the matches archive pages",
+	NEW_AFTER_VERSION: "0.4.7.5",
+	LASTEST_CHANGE:"Fixed wrong goal counting",
 	
     init : function() {
             Foxtrick.registerPageHandler( 'matchesarchiv',
