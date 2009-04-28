@@ -71,7 +71,8 @@ var FoxtrickCopyTrainingReport = {
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
-				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));
+				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
+					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));
 			}
 		}
 	}

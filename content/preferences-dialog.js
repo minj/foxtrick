@@ -468,6 +468,20 @@ var FoxtrickPreferencesDialog = {
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
 
+		// additional options
+		var groupbox= doc.createElement("groupbox");
+		var caption= doc.createElement("caption");
+		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.AdditionalOptions"));
+		var vbox= doc.createElement("vbox");
+		var checkbox= doc.createElement("checkbox");
+		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"));
+		checkbox.setAttribute('id',"copyfeedback");
+		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "copyfeedback" ) );
+
+		vbox.appendChild(checkbox);
+		groupbox.appendChild(caption);
+		groupbox.appendChild(vbox);
+		modules_list.appendChild(groupbox);
 
 		// add space at the end
 		var spacer = doc.createElement('spacer');
@@ -589,6 +603,9 @@ var FoxtrickPreferencesDialog = {
         
 		// other
 		FoxtrickPrefs.setString("oldVersion", document.getElementById("htOldVersion").value);
+
+		// additional options
+		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").value);
 
 		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);

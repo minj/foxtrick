@@ -453,7 +453,8 @@ var FoxtrickForumChangePosts = {
 			catch(e){PostID=ev.target.parentNode.nextSibling.title;}
 		}
 		Foxtrick.copyStringToClipboard(PostID);
-		Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postidcopied"));
+		if (FoxtrickPrefs.getBool( "copyfeedback" )) 
+			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postidcopied"));
     },	
 		
 	_copy_posting_to_clipboard : function(ev) {  
@@ -523,7 +524,8 @@ var FoxtrickForumChangePosts = {
 			dump (headstr+'\n');
 			dump(header.nextSibling.firstChild.innerHTML+'\n\n');
 			Foxtrick.copyStringToClipboard(headstr+header.nextSibling.firstChild.innerHTML); 
-			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postingcopied"));
+			if (FoxtrickPrefs.getBool( "copyfeedback" )) 
+				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postingcopied"));
 		} catch(e){ dump('_copy_posting_to_clipboard :'+e+'\n');}
     },	
 		

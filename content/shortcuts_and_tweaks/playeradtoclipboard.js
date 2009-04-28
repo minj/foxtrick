@@ -233,8 +233,9 @@ var FoxtrickPlayerAdToClipboard = {
 				}
 			}
 			
-			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copied"));
 			Foxtrick.copyStringToClipboard(ad);
+			if (FoxtrickPrefs.getBool( "copyfeedback" )) 
+				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copied"));
 			
 		} catch (e) {
 			Foxtrick.alert(e);
