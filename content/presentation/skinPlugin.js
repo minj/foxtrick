@@ -14,6 +14,18 @@ var FoxtrickSkinPlugin = {
 	
     init : function() {
         Foxtrick.registerAllPagesHandler(this);
+		try { // unload old
+				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				var uri = ios.newURI(FoxtrickPrefs.getString("cssSkinOld"), null, null);
+				try {
+                    if (sss.sheetRegistered(uri, sss.USER_SHEET)) sss.unregisterSheet(uri, sss.USER_SHEET);
+                } 
+                catch (ee) {
+                    dump ( ' TOP sss.unregisterSheet old: ' + ee + '\n');
+                }            
+            } catch(e) {dump('no or wrong skin url old:'+FoxtrickPrefs.getString("cssSkinOld") +'\n');} 
+			
     },
 
     run : function(doc ) {
@@ -48,17 +60,6 @@ var FoxtrickSkinPlugin = {
 		if (doc==null) prefs_changed = true;
 		
         try {
-			try { // unload old
-				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-				var uri = ios.newURI(FoxtrickPrefs.getString("cssSkinOld"), null, null);
-				try {
-                    if (sss.sheetRegistered(uri, sss.USER_SHEET)) sss.unregisterSheet(uri, sss.USER_SHEET);
-                } 
-                catch (ee) {
-                    dump ( ' TOP sss.unregisterSheet old: ' + ee + '\n');
-                }            
-            } catch(e) {dump('no or wrong skin url old:'+FoxtrickPrefs.getString("cssSkinOld") +'\n');} 
 			
 			try {			
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
