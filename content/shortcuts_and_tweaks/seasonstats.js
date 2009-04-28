@@ -23,13 +23,14 @@ var FoxtrickSeasonStats = {
 		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
                                 "resources/css/seasonstats.css");
         	
-		var TeamName=FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')); 
+		var TeamName=FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15); 
 		var sum_matches=new Array(12);
 		for (var i = 0; i < sum_matches.length; ++i)
 			sum_matches[i] = {'type':"",'num':0,'won':0,'lost':0,'draw':0,'goal0':0,'goal1':0};
 
 		var matchestable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-		for (var i=0;i<matchestable.rows.length;++i) {
+		for (var i=0;i<matchestable.rows.length;++i) { 
+			//dump(TeamName+' '+matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title+' '+matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.search(TeamName)+'\n');
 			var type=0;
 			if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchLeague') type=0;
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchFriendly') type=1;
