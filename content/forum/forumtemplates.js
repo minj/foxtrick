@@ -15,12 +15,17 @@ var FoxtrickForumTemplates = {
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","125"),        
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
+	NEW_AFTER_VERSION: "0.4.7",	
+	SCREENSHOT:"",
+	PREF_SCREENSHOT:"",
+	LASTEST_CHANGE:"Adapted to HT-changes",
+    
     _MAX_TEMPLATE_DISP_LENGTH : 60,
 	_DISPLAY_WIDTH:125,
     _TEMPLATES_DIV_ID : "post_templates",
     _TEMPLATES_PREFLIST : "post_templates",
     // _TEMPLATES_ENABLED : "usePostTemplates",
-    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucTextEditor_tbBody',
+    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
     
     init : function() {
         Foxtrick.registerPageHandler( 'forumWritePost',
@@ -40,10 +45,10 @@ var FoxtrickForumTemplates = {
             case 'forumWritePost':
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "post_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "post_templates";
-				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucTextEditor_tbBody';
+				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucHattrickMLEditor_txtBody';
 			break;
 			case 'messageWritePost':
-				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_tbBody';
+				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucEditorMain_txtBody';
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "mail_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "mail_templates";
 			break;

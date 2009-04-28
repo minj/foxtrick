@@ -14,7 +14,7 @@
 	NEW_AFTER_VERSION: "0.4.7",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Addapted to HT-changes",
+	LASTEST_CHANGE:"Adapted to HT-changes",
     
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
 
