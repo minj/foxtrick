@@ -1166,7 +1166,7 @@ function htDatePrintFormat(year, season, week, day, date) {
         dump('offset: ' + e + '\n');
         offset = 0;
     }
-     dump ('offset:' +Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison")+' '+ offset + '\n');
+     //dump ('offset:' +Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison")+' '+ offset + '\n');
     if ( year <= 2000 ) 
         // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
         // return "<font color='#808080'>(old)</font>"; 

@@ -35,26 +35,31 @@ var FoxtrickSeasonStats = {
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchFriendly') type=1;
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchCup') type=2;
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchMasters') type=3;
-			var ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.search(TeamName)==0?1:2; 
+			var ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.search(TeamName)==0?1:2;
 			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won'; 
 			var islost = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='lost'; 
 			var isdraw = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='draw'; 
 			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].innerHTML.match(/\d+/g); 
-			
+			var goals0=parseInt(goals[0]);
+			var goals1=parseInt(goals[1]);
+			if (ishome==2) { // away. own goals second
+				goals0=parseInt(goals[1]);
+				goals1=parseInt(goals[0]);
+			}
 			sum_matches[type*3]["type"] = matchestable.rows[i].cells[1].getElementsByTagName('img')[0].title ;			
 			sum_matches[type*3]["num"]++;
 			if (iswon) sum_matches[type*3]["won"]++;
 			if (islost) sum_matches[type*3]["lost"]++;
 			if (isdraw) sum_matches[type*3]["draw"]++;
-			sum_matches[type*3]["goal0"]+=parseInt(goals[0]);
-			sum_matches[type*3]["goal1"]+=parseInt(goals[1]);
+			sum_matches[type*3]["goal0"]+=goals0;
+			sum_matches[type*3]["goal1"]+=goals1;
 						
 			sum_matches[type*3+ishome]["num"]++;
 			if (iswon) sum_matches[type*3+ishome]["won"]++;
 			if (islost) sum_matches[type*3+ishome]["lost"]++;
 			if (isdraw) sum_matches[type*3+ishome]["draw"]++;
-			sum_matches[type*3+ishome]["goal0"]+=parseInt(goals[0]);
-			sum_matches[type*3+ishome]["goal1"]+=parseInt(goals[1]);		
+			sum_matches[type*3+ishome]["goal0"]+=goals0;
+			sum_matches[type*3+ishome]["goal1"]+=goals1;
 		}
 		
 		ownBoxBody = doc.createElement("div");
