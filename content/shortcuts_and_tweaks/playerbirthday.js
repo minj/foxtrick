@@ -37,13 +37,15 @@ var FoxtrickPlayerBirthday = {
         PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[0];    // player name
       }
 			PlayerInfo = ClassPlayer[i].getElementsByTagName('p')[0].innerHTML;
-			if (PlayerInfo.search(/\<br\>/) !=-1) PlayerInfo=PlayerInfo.match(/.+\<br\>/i)[0];       // player info (PlayerAge, form and stamina)
+			if (PlayerInfo.search(/\<br\>/) !=-1)       // player info (PlayerAge, form and stamina)
+				PlayerInfo=PlayerInfo.substring(0, PlayerInfo.search(/\<br\>/)); // we need the first occurence
+			
+			if (PlayerInfo.search(/^\s*TSI/) != -1) PlayerInfo = PlayerInfo.replace(/.+,/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
+			
 			var reg=/(\d+)\D+(\d+).+/; // regular expression for getting the PlayerAge, works with Czech format, for example "18 let a 11 dní"
-
-			if (PlayerInfo.search(/^\s+TSI/) != -1) PlayerInfo=PlayerInfo.replace(/.+,/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
 			
 			var PlayerAge = PlayerInfo.match(reg);
-
+			
 			var regText=/(\d+\D+\d+\s\S+)/; // regular expression for getting the whole PlayerAge string
 			
 			var TextAgeTmp=String(PlayerInfo.match(regText)[1]).replace(/,/,'');
