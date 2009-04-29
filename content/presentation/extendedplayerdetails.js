@@ -13,14 +13,14 @@ FoxtrickExtendedPlayerDetails = {
     RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
     init : function() {
-        Foxtrick.registerPageHandler('playerdetail', this);
+        Foxtrick.registerPageHandler('playerdetail', this); 
     },
 
     run : function(page, doc) {
 
         switch ( page ) {
 
-            case 'playerdetail' :
+            case 'playerdetail' : 
 
                 this._Player_Joined ( doc );
                 this._Player_Bonus (doc);
@@ -104,28 +104,32 @@ FoxtrickExtendedPlayerDetails = {
                 catch(e) {dump('    >' + e + '\n');}
             }
             if (table_elm_bonus == null) return;
-            table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
+            table_inner = table_elm_bonus.innerHTML;
 
-            var part = substr(table_inner, 0, table_inner.search('/')-1);
+            var part = substr(table_inner, 0, table_inner.search('/'));
 
             var part_1_save = part;
             var part_2_save = table_inner.substring(table_inner.search('/'));
 
-             //this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
-                 var part = part;
+			//this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
+                 var part = Foxtrick.trim(part);
                  for ( i=0; i<10; i++ ) { 
                   var part = part.replace('&nbsp;', ''); 
                  }
              
-            part = Math.floor(parseInt(part.replace('&nbsp;', '')) / 1.2);
+            part = Math.floor(parseInt(part.replace('&nbsp;', '').replace(/ /g, '')) / 1.2);
             part = ReturnFormatedValue (part, '&nbsp;');
-
+			
+			part_1_save=part_1_save.replace(" "+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
+			part_1_save=part_1_save.replace("&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
+			part_1_save=part_1_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"));
+			
             if (part != 'NaN') 
                 table_elm_bonus.innerHTML = 
-                    part_1_save +'&nbsp;'+ FoxtrickPrefs.getString("oldCurrencySymbol")+
+                    part_1_save +//'&nbsp;'+ 
                     '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' + 
                     part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
-                    ')</span>&nbsp;' + 
+                    ')</span> ' + 
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 
         } catch (e) {
