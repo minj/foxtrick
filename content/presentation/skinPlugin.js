@@ -10,7 +10,7 @@ var FoxtrickSkinPlugin = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	DEFAULT_ENABLED : false,   
 	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"fix unloading bug fix",
+	LASTEST_CHANGE:"Fixed skin unloading bug fix",
 	
     init : function() {
         Foxtrick.registerAllPagesHandler(this);

@@ -19,7 +19,7 @@ var FoxtrickCopyPostID = {
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"added confirmation alert. option to turn ALL copy confirmations off in preferences",
+	LASTEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
 	DEFAULT_ENABLED : false,
 	OPTIONS : new Array("AddCopyIcon"), 
 

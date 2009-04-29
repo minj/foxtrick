@@ -11,7 +11,8 @@ var FoxtrickSeasonStats = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"Fixed wrong goal counting",
+	LASTEST_CHANGE:"Fixed wrong goal counting. Improved home team detection for truncated team names",
+	CSS:"chrome://foxtrick/content/resources/css/seasonstats.css",
 	
     init : function() {
             Foxtrick.registerPageHandler( 'matchesarchiv',
@@ -20,9 +21,7 @@ var FoxtrickSeasonStats = {
 
     run : function( page, doc ) {
 	try {
-		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-                                "resources/css/seasonstats.css");
-        	
+			
 		var TeamName=FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15); 
 		var sum_matches=new Array(12);
 		for (var i = 0; i < sum_matches.length; ++i)

@@ -13,6 +13,9 @@ var FoxtrickLinksCustom = {
     MODULE_NAME : "LinksCustom",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.4.7.5",
+	LASTEST_CHANGE:"Fixed removed delete button for custom links",
+    	 	
 	_ownBoxBody:"",
 	_basepref:"",
 	_info:"",

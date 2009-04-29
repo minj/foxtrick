@@ -98,6 +98,7 @@ var scripts = [
     'links/linksplayers.js',
     'links/linksfans.js',
     'links/linksstaff.js',
+    'links/linkstracker.js',
 
     'modules_list.js',
     'foxtrick.js',
