@@ -24,7 +24,8 @@ var FoxtrickTickerColoring = {
 											"color:#000 !important; background-color: transparent !important;"  // Hover
 											),        
 	CSS:"",
-        	
+    OLD_CSS:"",
+	
     init : function() {
             Foxtrick.registerPageHandler( 'all',
                                           FoxtrickTickerColoring);
@@ -32,39 +33,30 @@ var FoxtrickTickerColoring = {
 		var zaw = ''
 		/* Ticker colors by htbaumanns*/
 		+'@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
-		+'{';
-		
+		+'{'
 		/* LoginWelcome */
-		if (Foxtrick.isModuleFeatureEnabled( this, "LoginWelcome"))
-			zaw+='#ticker a[href="/MyHattrick/"] {'+this.get_color(this.OPTIONS[0])+'}';
+		+'#ticker a[href="/MyHattrick/"] {'+this.get_color(this.OPTIONS[0])+'}'
 		/* LoginSupporters */
-		if (Foxtrick.isModuleFeatureEnabled( this, "LoginSupporters"))
-			zaw+='#ticker a[href*="/Club/Manager/?teamId="] {'+this.get_color(this.OPTIONS[1])+'}';
+		+'#ticker a[href*="/Club/Manager/?teamId="] {'+this.get_color(this.OPTIONS[1])+'}'
 		/* ForumReplyToMe */
-		if (Foxtrick.isModuleFeatureEnabled( this, "ForumReplyToMe"))
-			zaw+='#ticker a[href*="/Forum/"] {'+this.get_color(this.OPTIONS[2])+'}';
+		+'#ticker a[href*="/Forum/"] {'+this.get_color(this.OPTIONS[2])+'}'
 		/* TransferMarket */
-		if (Foxtrick.isModuleFeatureEnabled( this, "TransferMarket"))
-			zaw+='#ticker a[href*="/Players/"] {'+this.get_color(this.OPTIONS[3])+'}';
+		+'#ticker a[href*="/Players/"] {'+this.get_color(this.OPTIONS[3])+'}'
 		/* Challenges */
-		if (Foxtrick.isModuleFeatureEnabled( this, "Challenges"))
-			zaw+='#ticker a[href*="/Challenges/"] {'+this.get_color(this.OPTIONS[4])+'}';
+		+'#ticker a[href*="/Challenges/"] {'+this.get_color(this.OPTIONS[4])+'}'
 		/* Guestbook */
-		if (Foxtrick.isModuleFeatureEnabled( this, "Guestbook"))
-			zaw+='#ticker a[href*="/Club/Manager/Guestbook.aspx?teamid="] {'+this.get_color(this.OPTIONS[5])+'}';
+		+'#ticker a[href*="/Club/Manager/Guestbook.aspx?teamid="] {'+this.get_color(this.OPTIONS[5])+'}'
 		/* MailToMe */
-		if (Foxtrick.isModuleFeatureEnabled( this, "MailToMe"))
-			zaw+='#ticker a[href*="/Inbox/"] {'+this.get_color(this.OPTIONS[6])+'}'
+		+'#ticker a[href*="/Inbox/"] {'+this.get_color(this.OPTIONS[6])+'}'
 		/* MyHT Messages (e.g. raising bids) */
-		if (Foxtrick.isModuleFeatureEnabled( this, "MyHTMessages"))
-			zaw+='#ticker a[href*="/Myhattrick/?actionType"] {'+this.get_color(this.OPTIONS[7])+'}';
+		+'#ticker a[href*="/Myhattrick/?actionType"] {'+this.get_color(this.OPTIONS[7])+'}'
 		/* small margins */
 		+'#ticker a {margin:2px;}'
 		/* Hover */
-		if (Foxtrick.isModuleFeatureEnabled( this, "Hover"))
-			zaw+='#ticker a:hover {'+this.get_color(this.OPTIONS[8])+'}';
-		zaw+='}';
-		
+		+'#ticker a:hover {'+this.get_color(this.OPTIONS[8])+'}'
+		+'}'
+		;
+		this.OLD_CSS = this.CSS;
 		this.CSS = FoxtrickGetDataURIText(zaw);
 										  
     },

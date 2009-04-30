@@ -482,6 +482,9 @@ Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
 				var module = Foxtrick.modules[i];
 				// if module has an css) function and is enabled
 				if ( module.MODULE_NAME ) {
+					if ( module.OLD_CSS && module.OLD_CSS!="") { 
+						Foxtrick.unload_css_permanent ( module.OLD_CSS ); 
+					}
 					if ( module.CSS_SIMPLE && module.CSS_SIMPLE!="") {
 						if ( Foxtrick.isModuleEnabled( module ) && !isStandard)  { 
 							if (!isRTL || !module.CSS_SIMPLE_RTL) {
@@ -551,6 +554,8 @@ Foxtrick.unload_module_css = function() { dump('unload permanents css\n');
 			for ( i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 				if ( module.MODULE_NAME ) {
+					if ( module.OLD_CSS && module.OLD_CSS!="") 
+						Foxtrick.unload_css_permanent ( module.OLD_CSS ); 
 					if ( module.CSS_SIMPLE ) 
 						Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );
 					if (module.CSS_SIMPLE_RTL) 

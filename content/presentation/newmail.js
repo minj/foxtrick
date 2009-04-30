@@ -12,6 +12,8 @@ var FoxtrickNewMail = {
 	NEW_AFTER_VERSION: "0.4.6.2",
 	LASTEST_CHANGE:"Option to use custom color added",
 	CSS:  "",
+    OLD_CSS:"",
+	
 	OPTIONS : new Array("CustomColor","HighlightNewMailIcon"),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("red",""),        
@@ -19,6 +21,7 @@ var FoxtrickNewMail = {
 	NewMailColor:"red",
 	
     init : function() {
+	FoxtrickNewMail.NewMailColor="";
 	if (Foxtrick.isModuleFeatureEnabled( this, "CustomColor")) {
 			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomColor_text"); 
 			if (color) 	FoxtrickNewMail.NewMailColor=color;
@@ -40,6 +43,7 @@ var FoxtrickNewMail = {
 		HighlightNewMailIconCss +		
 		'}';
 		
+	this.OLD_CSS = this.CSS;		
 	this.CSS=FoxtrickGetDataURIText(zaw);
     },
 
