@@ -42,7 +42,6 @@ var scripts = [
     'presentation/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/mediantransferprice.js',
-    'shortcuts_and_tweaks/teampopuplinks.js',
     'shortcuts_and_tweaks/transferListSearchFilters.js',
     'shortcuts_and_tweaks/transferListDeadline.js',
     'presentation/extendedplayerdetails.js',
@@ -73,7 +72,6 @@ var scripts = [
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',
     'presentation/guestbookalltidflags.js',
-    'presentation/currencyConverter.js',
     'presentation/tickercoloring.js',
 	'presentation/headerfix.js',
 	'presentation/newmail.js',
@@ -99,6 +97,10 @@ var scripts = [
     'links/linksfans.js',
     'links/linksstaff.js',
     'links/linkstracker.js',
+
+	// following modules all run on 'all_late' pages. order of execution is determined be following order 
+    'presentation/currencyConverter.js',
+    'shortcuts_and_tweaks/teampopuplinks.js', // keep behind others
 
     'modules_list.js',
     'foxtrick.js',
