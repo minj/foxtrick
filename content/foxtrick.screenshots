@@ -8,7 +8,7 @@ shortcuts_and_tweaks=
 presentation=
 matches=
 forum=
-links=
+links=http://gliglif.foundationhorizont.org/hattrick/images/LinksCustom.jpg
 
 # Main options
 ReadHtPrefs=http://gliglif.foundationhorizont.org/hattrick/images/8330507225.png
@@ -104,3 +104,6 @@ AddLeaveConfButton=http://gliglif.foundationhorizont.org/hattrick/images/6763482
 HideSignatures=http://gliglif.foundationhorizont.org/hattrick/images/5389436441.png
 ForumNextAndPrevious=http://gliglif.foundationhorizont.org/hattrick/images/2651609465.jpg
 CopyPosting=http://gliglif.foundationhorizont.org/hattrick/images/CopyPosting.jpg
+
+#links
+LinksCustom=http://gliglif.foundationhorizont.org/hattrick/images/LinksCustom.jpg
