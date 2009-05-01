@@ -41,15 +41,17 @@ var FoxtrickPreferencesDialog = {
 	},
 
 	initMainPref : function( doc ) {
+		
 		var modules_list = doc.getElementById( "main_list" );
+		modules_list.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 
         // prefs at deafult warning
 		if (!FoxtrickPrefs.getBool( "PrefsSavedOnce" )) {
 			var groupbox= doc.createElement("groupbox");
-			groupbox.setAttribute("style","background-color:#FCF6DF !important");
+			groupbox.setAttribute("style","background-color:#FCF6DF; color:black;");
 			var caption= doc.createElement("caption");
 			caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningLabel"));
-			caption.setAttribute("style","background-color:#FCF6DF !important");
+			caption.setAttribute("style","background-color:#FCF6DF; color:black;");
 			var vbox= doc.createElement("vbox");
 			var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText"));		
 			vbox.appendChild(desc_box);
@@ -68,8 +70,8 @@ var FoxtrickPreferencesDialog = {
         
 		var caption1= doc.createElement("caption");
         caption1.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage"));
-        caption1.setAttribute("style","background-color:white");
-        
+        caption1.setAttribute( "style", "background-color:Window; color: WindowText;");
+		
 		var vbox1= doc.createElement("vbox");
         vbox1.setAttribute('flex',"1");
         var menulist1= doc.createElement("menulist");
@@ -111,7 +113,7 @@ var FoxtrickPreferencesDialog = {
         vbox2.setAttribute('flex',"1");
         var caption2= doc.createElement("caption");
         caption2.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency"));
-        caption2.setAttribute("style","background-color:transparent !important");
+        caption2.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
         var menulist2= doc.createElement("menulist");
         menulist2.setAttribute('id',"htCurrency");
         var menupopup2= doc.createElement("menupopup");
@@ -121,7 +123,7 @@ var FoxtrickPreferencesDialog = {
         vbox3.setAttribute('flex',"1");
         var caption3= doc.createElement("caption");
         caption3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat"));
-        caption3.setAttribute("style","background-color:transparent !important");
+        caption3.setAttribute( "style", "background-color:Window; color: WindowText;");
         var menulist3= doc.createElement("menulist");
         menulist3.setAttribute('id',"htDateformat");
         var menupopup3= doc.createElement("menupopup");
@@ -131,8 +133,8 @@ var FoxtrickPreferencesDialog = {
         vbox4.setAttribute('flex',"1");
         var caption4= doc.createElement("caption");
         caption4.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry"));
-        caption4.setAttribute("style","background-color:transparent !important");
-        var menulist4= doc.createElement("menulist");
+        caption4.setAttribute( "style", "background-color:Window; color: WindowText;");
+		var menulist4= doc.createElement("menulist");
         menulist4.setAttribute('id',"htCountry");
         var menupopup4= doc.createElement("menupopup");
         menupopup4.setAttribute('id',"htCountryPopup");
@@ -189,7 +191,8 @@ var FoxtrickPreferencesDialog = {
         var hbox= doc.createElement("hbox");
         var caption_head= doc.createElement("caption");
         caption_head.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyConverter"));
-
+		caption_head.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
+        
 
         /*var caption0= doc.createElement("caption");
         caption0.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyRateInfo"));
@@ -202,8 +205,8 @@ var FoxtrickPreferencesDialog = {
         vbox4.setAttribute('flex',"1");
         var caption4= doc.createElement("caption");
         caption4.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolTo"));
-        caption4.setAttribute("style","background-color:transparent !important");
-        var menulist= doc.createElement("menulist");
+        caption4.setAttribute( "style", "background-color:Window; color: WindowText;");
+		var menulist= doc.createElement("menulist");
         menulist.setAttribute('id',"htCurrencyTo");
         var menupopup= doc.createElement("menupopup");
         menupopup.setAttribute('id',"htCurrencyToPopup");
@@ -242,6 +245,7 @@ var FoxtrickPreferencesDialog = {
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionSkinSettings"));
+		caption.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 		var vbox= doc.createElement("vbox");
 
 		var textbox= doc.createElement("textbox");
@@ -273,6 +277,7 @@ var FoxtrickPreferencesDialog = {
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionAlertSettings"));
+		caption.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 		var vbox= doc.createElement("vbox");
 		var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.alertsliderpref"));
@@ -319,6 +324,7 @@ var FoxtrickPreferencesDialog = {
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionLoadSavePrefs"));
+		caption.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 		groupbox.appendChild(caption);
 
 		var hbox= doc.createElement("hbox");
@@ -372,6 +378,7 @@ var FoxtrickPreferencesDialog = {
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCleanupBranch"));
+		caption.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 		groupbox.appendChild(caption);
 				
 			// CleanupBranch
@@ -403,8 +410,8 @@ var FoxtrickPreferencesDialog = {
 		
 		var caption_ov= doc.createElement("caption");
         caption_ov.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionFoxtrickMyHT"));
-        //caption_ov.setAttribute("style","background-color:transparent !important");
-        var menulist_ov= doc.createElement("menulist");
+        caption_ov.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
+		var menulist_ov= doc.createElement("menulist");
         menulist_ov.setAttribute('id',"htOldVersion");
         var menupopup_ov= doc.createElement("menupopup");
         menupopup_ov.setAttribute('id',"htOldVersionPopup");
@@ -434,6 +441,7 @@ var FoxtrickPreferencesDialog = {
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionDisableSettings"));
+		caption.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 		var vbox= doc.createElement("vbox");
 		// stage
 		var checkbox= doc.createElement("checkbox");
@@ -457,6 +465,7 @@ var FoxtrickPreferencesDialog = {
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionShowOnStatusBar"));
+		caption.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 		var vbox= doc.createElement("vbox");
 		var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.statusbarpref"));
@@ -472,6 +481,7 @@ var FoxtrickPreferencesDialog = {
 		var groupbox= doc.createElement("groupbox");
 		var caption= doc.createElement("caption");
 		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.AdditionalOptions"));
+		caption.setAttribute( "style", "background-color:Window !important; color: WindowText !important;");
 		var vbox= doc.createElement("vbox");
 		var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"));
@@ -786,8 +796,8 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 	_getWrapableBox : function( desc_text ) {
 		var desc_box = document.createElement( "hbox" );
 		var desc = document.createElement("textbox");
-		desc.setAttribute( "class", "plain");
-		desc.setAttribute( "style", "background-color: transparent !important; color: #000000;");
+		desc.setAttribute( "class", "plain");//#ece9d7
+		desc.setAttribute( "style", "background-color:Window; color: WindowText;");
 		desc.setAttribute( "height", "20 ");
 		desc.setAttribute( "flex", "1");
 		desc.setAttribute( "multiline", "true");
@@ -1050,11 +1060,13 @@ FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
                 box.style.width = "100%";
                 box.style.height = "100%";
                 box.style.overflow = "hidden";
+				box.setAttribute("style", "color:WindowText !important; background-color:Window !important;");				
             }
             else {
                 box.style.width = "100%";
                 box.style.height = "300px";
                 box.style.overflow = "hidden";
+				box.setAttribute("style", "color:WindowText !important; background-color:Window !important;");
             }
         }
         catch (e) {
