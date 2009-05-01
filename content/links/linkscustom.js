@@ -14,7 +14,7 @@ var FoxtrickLinksCustom = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"Fixed removed delete button for custom links",
+	LASTEST_CHANGE:"Fixed removed delete button for custom links. Added remove button to standard links",
     	 	
 	_ownBoxBody:"",
 	_basepref:"",
@@ -77,7 +77,22 @@ var FoxtrickLinksCustom = {
 					}
 				}
 			}
-								
+						
+
+			var all_links=ownBoxBody.getElementsByTagName('a');
+			for (var i=0;i<all_links.length;++i) { 
+				var key = all_links[i].getAttribute('key');
+				var module_name = all_links[i].getAttribute('module');
+				if (key && module_name) {
+					var delLink = doc.createElement("div");
+					delLink.setAttribute("class","foxtrick" + "Remove");
+					delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
+					delLink.setAttribute( "style","display:none;margin-left:2px;margin-right:6px;");
+					delLink.addEventListener( "click", FoxtrickLinksCustom.delStdLink, false );
+					ownBoxBody.insertBefore(delLink,all_links[i].nextSibling);
+				}
+			}
+						
 			if (Foxtrick.isModuleEnabled(this)) {
 				this.showEdit( doc , ownBoxBody, basepref);
 			}
@@ -94,6 +109,12 @@ var FoxtrickLinksCustom = {
 			var ownBoxId = "foxtrick_" + header + "_box";
 			var div=doc.getElementById(ownBoxId).firstChild;	
 			div.setAttribute("class","boxHead sidebarBoxCollapsed");
+			
+			var all_links=ownBoxBody.getElementsByTagName('a');
+			for (var i=0;i<all_links.length;++i) { 
+				var key = all_links[i].getAttribute('key');
+				if (key) all_links[i].nextSibling.style.display="none";
+			}
 						
 			// get custon links from pref
 			var keys={};
@@ -141,6 +162,12 @@ var FoxtrickLinksCustom = {
 			var div=doc.getElementById(ownBoxId).firstChild;	
 			div.setAttribute("class","boxHead sidebarBoxUnfolded");
 			
+			var all_links=ownBoxBody.getElementsByTagName('a');
+			for (var i=0;i<all_links.length;++i) { 
+				var key = all_links[i].getAttribute('key');
+				if (key) all_links[i].nextSibling.style.display="inline-block";
+			}
+									
 			var divED = doc.createElement ("div");
 			divED.setAttribute("class", "alert");
 			divED.setAttribute("id", "divEDId" );
@@ -361,6 +388,22 @@ var FoxtrickLinksCustom = {
 		catch (e) {dump("LinksCustom->show_edit->"+e+'\n');}
 	},
 		
+	delStdLink : function (evt) { 
+		try {
+			var doc = FoxtrickLinksCustom.delMyLink.doc;
+			//var Check = doc.defaultView.confirm(Foxtrickl10n.getString("foxtrick.linkscustom.confirmremove"));
+			//if (Check == false) return;
+
+			var key = evt["target"].previousSibling.getAttribute("key");
+			var module_name = evt["target"].previousSibling.getAttribute("module");
+			var par=evt["target"].parentNode;
+			par.removeChild(evt["target"].previousSibling);
+			par.removeChild(evt["target"]);
+			FoxtrickPrefs.setBool( "module." + module_name+'.'+key + ".enabled",false);			
+		}
+		catch (e) {dump("LinksCustom->edityLink->"+e+'\n');}
+	},
+
 	delMyLink : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.delMyLink.doc;

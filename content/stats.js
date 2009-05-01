@@ -2712,7 +2712,7 @@ function getLinks2(stats, stattype, filterparams, doc, overridesettings, module)
         if (allowed) {
              var link = foxtrick_makelink(stat, statlink, filterparams, key, doc);
              if (link != null) { 
-                links.push({"link" : getLinkElement(link, stat, doc), "stat" : stat});
+                links.push({"link" : getLinkElement(link, stat, doc, key, module.MODULE_NAME), "stat" : stat});
              }
         }
 
@@ -2797,7 +2797,7 @@ function foxtrick_makelink(stat, statlink, filterparams, key, doc) {
 }
 
 
-function getLinkElement(link, stat, doc) {
+function getLinkElement(link, stat, doc, key, module_name) {
 
     var statslink = doc.createElement("a");
     if (typeof(stat["post"]) == 'undefined') {
@@ -2807,7 +2807,9 @@ function getLinkElement(link, stat, doc) {
     }
     statslink.title = stat.title;
     //statslink.style.verticalAlign = "middle";
-    
+    statslink.setAttribute('key',key);
+	statslink.setAttribute('module',module_name); 
+	
     if (typeof(stat["img"]) == 'undefined') {
         statslink.appendChild(doc.createTextNode(stat.shorttitle));
      } else {
