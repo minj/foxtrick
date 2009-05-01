@@ -605,7 +605,7 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setString("oldVersion", document.getElementById("htOldVersion").value);
 
 		// additional options
-		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").value);
+		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
 
 		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);
