@@ -115,7 +115,7 @@ var FoxtrickLinksCustom = {
 				var key = all_links[i].getAttribute('key');
 				if (key) {
 					all_links[i].nextSibling.style.display="none";
-					all_links[i].style.margin="0 0 0 0";
+					all_links[i].style.padding="0 0 0 0";
 				}
 			}
 						
@@ -170,7 +170,7 @@ var FoxtrickLinksCustom = {
 				var key = all_links[i].getAttribute('key');
 				if (key) {
 					all_links[i].nextSibling.style.display="inline-block";
-					all_links[i].style.margin="0 30px 0 0";
+					all_links[i].style.padding="0 30px 0 0";
 				}
 			}
 									
