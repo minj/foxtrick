@@ -87,7 +87,7 @@ var FoxtrickLinksCustom = {
 					var delLink = doc.createElement("div");
 					delLink.setAttribute("class","foxtrick" + "Remove");
 					delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
-					delLink.setAttribute( "style","display:none;margin-left:2px;margin-right:6px;");
+					delLink.setAttribute( "style","display:none;margin-left:-28px;margin-right:6px;");
 					delLink.addEventListener( "click", FoxtrickLinksCustom.delStdLink, false );
 					ownBoxBody.insertBefore(delLink,all_links[i].nextSibling);
 				}
@@ -113,7 +113,10 @@ var FoxtrickLinksCustom = {
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) { 
 				var key = all_links[i].getAttribute('key');
-				if (key) all_links[i].nextSibling.style.display="none";
+				if (key) {
+					all_links[i].nextSibling.style.display="none";
+					all_links[i].style.margin="0 0 0 0";
+				}
 			}
 						
 			// get custon links from pref
@@ -165,7 +168,10 @@ var FoxtrickLinksCustom = {
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) { 
 				var key = all_links[i].getAttribute('key');
-				if (key) all_links[i].nextSibling.style.display="inline-block";
+				if (key) {
+					all_links[i].nextSibling.style.display="inline-block";
+					all_links[i].style.margin="0 30px 0 0";
+				}
 			}
 									
 			var divED = doc.createElement ("div");
