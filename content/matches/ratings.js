@@ -19,8 +19,11 @@ var Ratings = {
 		this.initOptions();
 	},
 
-	run : function( page, doc ) { dump('in\n')
+	run : function( page, doc ) { 
 		try {  
+			var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+			if (isprematch) return;
+			
 			var ratingstable = Matches._getRatingsTable(doc);
 			if (ratingstable == null) return; dump('got table\n')
 			if (Matches._isWalkOver(ratingstable)) return;

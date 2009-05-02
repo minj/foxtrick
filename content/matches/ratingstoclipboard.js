@@ -15,7 +15,10 @@ var FoxtrickCopyRatingsToClipboard = {
     },
     
     run : function( page, doc ) {
-        var mainBody = doc.getElementById('mainBody');
+        var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+		if (isprematch) return;
+
+		var mainBody = doc.getElementById('mainBody');
         var table = mainBody.getElementsByTagName('table')[0];
         if (table == null ) return;
         
