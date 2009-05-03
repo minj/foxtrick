@@ -35,24 +35,28 @@ var FoxtrickCopyMatchID = {
 		if (page=='matchesarchiv' || page =='matches'|| page =='matcheshistory' || page =='matchesLatest'||page=='arena') {
 			var cells = doc.getElementById('mainBody').getElementsByTagName('td');
 			for (var i = 0; i < cells.length; i++) { 
-				if (cells[i].innerHTML.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
-				var matchid=FoxtrickHelper.findMatchId(cells[i+1]); 
-				var link=doc.createElement('a');
-				var img=cells[i].innerHTML;
-				cells[i].innerHTML="";
-				link.innerHTML=img;
-				link.href='javascript:void(0);';
-				link.setAttribute("matchid",matchid);
-				link.setAttribute("id","_"+this.MODULE_NAME+count);
-				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
-				cells[i].appendChild(link);
-				var img_n = cells[i].getElementsByTagName('img')[0];
-				img_n.setAttribute('title',img_n.title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
+				var images = cells[i].getElementsByTagName('img');
+				for (var j = 0; j < images.length; j++) {
+					if (images[j].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
+					
+					var matchid = FoxtrickHelper.findMatchId(cells[i+1]); 
+					var link = doc.createElement('a');
+					var inner = cells[i].innerHTML;
+					cells[i].innerHTML="";
+					link.innerHTML=inner;
+					link.href='javascript:void(0);';
+					link.setAttribute("matchid",matchid);
+					link.setAttribute("id","_"+this.MODULE_NAME+count);
+					link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
+					cells[i].appendChild(link);
+					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
 				
-				count++; 
+					count++; 
+				}
 			}
 		}	
-		if (page=='matchLineup'||page=='match') {
+		if (page=='matchLineup'||page=='match') 
+			{
 			var images = doc.getElementById('mainBody').getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
 				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
