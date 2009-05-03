@@ -55,7 +55,7 @@ var FoxtrickCopyMatchID = {
 				}
 			}
 		}	
-		if (page=='matchLineup'||page=='match') 
+		else if (page=='matchLineup'||page=='match') 
 			{
 			var images = doc.getElementById('mainBody').getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
