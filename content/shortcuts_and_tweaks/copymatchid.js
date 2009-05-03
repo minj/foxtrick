@@ -32,9 +32,13 @@ var FoxtrickCopyMatchID = {
 	try { 
 		var count = 0;
 
-		if (page=='matchesarchiv' || page =='matches'|| page =='matcheshistory' || page =='matchesLatest'||page=='arena') {
+		if (page=='matchesarchiv' || page =='matches' || page =='matcheshistory' || page =='matchesLatest'||page=='arena') {
 			var cells = doc.getElementById('mainBody').getElementsByTagName('td');
 			for (var i = 0; i < cells.length; i++) { 
+				// nested table check
+				var td = cells[i].getElementsByTagName('td').length; 
+				if (td!=0) continue;
+				
 				var images = cells[i].getElementsByTagName('img');
 				for (var j = 0; j < images.length; j++) {
 					if (images[j].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
