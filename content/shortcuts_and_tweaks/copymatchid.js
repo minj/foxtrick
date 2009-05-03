@@ -41,15 +41,15 @@ var FoxtrickCopyMatchID = {
 					
 					var matchid = FoxtrickHelper.findMatchId(cells[i+1]); 
 					var link = doc.createElement('a');
-					var inner = cells[i].innerHTML;
-					cells[i].innerHTML="";
-					link.innerHTML=inner;
+					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
+					var link=doc.createElement('a');
+					link.appendChild(images[j].cloneNode(true));
 					link.href='javascript:void(0);';
 					link.setAttribute("matchid",matchid);
 					link.setAttribute("id","_"+this.MODULE_NAME+count);
 					link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
-					cells[i].appendChild(link);
-					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
+					var div=images[j].parentNode;
+					div.replaceChild(link,images[j]);
 				
 					count++; 
 				}
@@ -60,7 +60,7 @@ var FoxtrickCopyMatchID = {
 			var images = doc.getElementById('mainBody').getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
 				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
-				var div=images[i].parentNode;
+
 				var matchid=FoxtrickHelper.findMatchId(doc.getElementById('mainWrapper')); 
 				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
 				var link=doc.createElement('a');
@@ -69,6 +69,7 @@ var FoxtrickCopyMatchID = {
 				link.setAttribute("matchid",matchid);
 				link.setAttribute("id","_"+this.MODULE_NAME+count);
 				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
+				var div=images[i].parentNode;
 				div.replaceChild(link,images[i]);
 				
 				count++; 
