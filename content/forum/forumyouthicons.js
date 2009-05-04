@@ -49,8 +49,12 @@
         var nextElement = toolbar.firstChild;
         while (nextElement) {
             try {
-                if (nextElement.id == 'ctl00_CPMain_ucHattrickMLEditor_pnlTags' || nextElement.id == 'ctl00_CPMain_ucEditorMain_pnlTags' || nextElement.href != null ) {
-                    nextElement.setAttribute("style","display:none") 
+                if ( nextElement.id == 'ctl00_CPMain_ucHattrickMLEditor_pnlTags' || 
+                     nextElement.id == 'ctl00_CPMain_ucActionEditor_pnlTags' || 
+                     nextElement.id == 'ctl00_CPMain_ucEditorMain_pnlTags' || 
+                     nextElement.href != null 
+                   ) {
+                        nextElement.setAttribute("style","display:none") 
                 }
                 else {
                     nextElement.setAttribute("style","margin:2px");

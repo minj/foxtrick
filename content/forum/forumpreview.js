@@ -21,22 +21,26 @@ var FoxtrickForumPreview = {
     init : function() {
         Foxtrick.registerPageHandler( 'forumWritePost', this );
         Foxtrick.registerPageHandler( 'messageWritePost', this );
+        Foxtrick.registerPageHandler( 'guestbook', this );
     },
 
     run : function( page, doc ) {
+        
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum
             if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' );
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket
             if (msg_window == null)
                 return;
         }
         catch(e) {
-            dump('FoxtrickForumPreview'+e);
+            dump('n' + 'FoxtrickForumPreview' + e + '\n');
         }
 
         // display preview and button above the message window
-
+        dump('n' + 'FoxtrickForumPreview' + '>>>>>>>>><<<<<<<<<<<<<<<<<' + '\n');
 		var head = doc.getElementsByTagName("head")[0];
         var cssstyle = doc.createElement("style");
         cssstyle.setAttribute("type", "text/css");
@@ -49,10 +53,42 @@ var FoxtrickForumPreview = {
         preview_ctrl_div.style.marginTop = "1em";
 
         var button_ok=doc.getElementById("ctl00_CPMain_btnOK");
-		var target=doc.getElementById("ctl00_CPMain_btnCancel");
+		var target = doc.getElementById("ctl00_CPMain_btnCancel");  // Forum
+        var msg_type = 0; 
 		//var index =11;
-		var index =12;
-		if (!target) {target=doc.getElementById("ctl00_CPMain_btnSendNew"); index=6;/*index=5;*/}
+		
+        var index =12;
+        dump('\n ==> ' + msg_type + '\n');
+		
+        if (!target) {
+                target=doc.getElementById("ctl00_CPMain_btnSendNew");  // Mail
+                index=6;
+                /*index=5;*/ 
+                var msg_type = 1;
+            } 
+        
+        if (!target) {
+                target=doc.getElementById("ctl00_CPMain_btnActionSend");  // Ticket
+                if (target) {
+                    msg_window.setAttribute( "tabindex",  1);
+                    target.setAttribute( "tabindex",  2);
+                    index=3; /*index=5;*/ 
+                    dump ('>> .' + target.tabindex + '.\n')                
+                    var msg_type = 2;
+                }
+            } 
+        if (!target) {
+                target=doc.getElementById("ctl00_CPMain_btnAdd");  // GB
+                if (target) {
+                    msg_window.setAttribute( "tabindex",  1);                
+                    target.setAttribute( "tabindex",  2);
+                    index=3; /*index=5;*/ 
+                    dump ('>> .' + target.tabindex + '.\n')                
+                    var msg_type = 3;
+                }
+        }
+        dump('\n ==> ' + msg_type + '\n');
+        
 		//button_ok.setAttribute( "tabindex",  index);
 		if (button_ok && Foxtrickl10n.isStringAvailableLocal("sendmessage")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
 		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
@@ -64,6 +100,7 @@ var FoxtrickForumPreview = {
         new_button.setAttribute( "type",  "button" );
         //new_button.setAttribute( "tabindex",  index-1 );
      	new_button.setAttribute( "tabindex",  index);
+        if (msg_type == 2) new_button.setAttribute( "style", "margin-left:10px;");
      	//new_button.setAttribute( "style",  "float:right;");
      	new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
         //button_ok.parentNode.insertBefore(new_button,button_ok);
@@ -114,9 +151,11 @@ var FoxtrickForumPreview = {
 		}
 	
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum
             if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' );
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket                
             if (msg_window == null)
                 return;
         }
@@ -201,9 +240,11 @@ var FoxtrickForumPreview = {
         var doc = ev.target.ownerDocument;
 
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' );
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum
             if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' );
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail 
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket                
             if (msg_window == null)
                 return;
         }
