@@ -22,12 +22,13 @@ var FoxtrickForumPreview = {
         Foxtrick.registerPageHandler( 'forumWritePost', this );
         Foxtrick.registerPageHandler( 'messageWritePost', this );
         Foxtrick.registerPageHandler( 'guestbook', this );
+        Foxtrick.registerPageHandler( 'announcements', this );
     },
 
     run : function( page, doc ) {
         
         try {
-            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum
+            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum / PA
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
             if (msg_window == null)
@@ -40,7 +41,6 @@ var FoxtrickForumPreview = {
         }
 
         // display preview and button above the message window
-        dump('n' + 'FoxtrickForumPreview' + '>>>>>>>>><<<<<<<<<<<<<<<<<' + '\n');
 		var head = doc.getElementsByTagName("head")[0];
         var cssstyle = doc.createElement("style");
         cssstyle.setAttribute("type", "text/css");
@@ -58,7 +58,6 @@ var FoxtrickForumPreview = {
 		//var index =11;
 		
         var index =12;
-        dump('\n ==> ' + msg_type + '\n');
 		
         if (!target) {
                 target=doc.getElementById("ctl00_CPMain_btnSendNew");  // Mail
@@ -73,7 +72,6 @@ var FoxtrickForumPreview = {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
                     index=3; /*index=5;*/ 
-                    dump ('>> .' + target.tabindex + '.\n')                
                     var msg_type = 2;
                 }
             } 
@@ -83,11 +81,10 @@ var FoxtrickForumPreview = {
                     msg_window.setAttribute( "tabindex",  1);                
                     target.setAttribute( "tabindex",  2);
                     index=3; /*index=5;*/ 
-                    dump ('>> .' + target.tabindex + '.\n')                
                     var msg_type = 3;
                 }
         }
-        dump('\n ==> ' + msg_type + '\n');
+        dump('\n ==> Message Type ' + msg_type + '\n');
         
 		//button_ok.setAttribute( "tabindex",  index);
 		if (button_ok && Foxtrickl10n.isStringAvailableLocal("sendmessage")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
@@ -100,7 +97,8 @@ var FoxtrickForumPreview = {
         new_button.setAttribute( "type",  "button" );
         //new_button.setAttribute( "tabindex",  index-1 );
      	new_button.setAttribute( "tabindex",  index);
-        if (msg_type == 2) new_button.setAttribute( "style", "margin-left:10px;");
+        //if (msg_type != -1) 
+        new_button.setAttribute( "style", "margin-left:10px;");
      	//new_button.setAttribute( "style",  "float:right;");
      	new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
         //button_ok.parentNode.insertBefore(new_button,button_ok);
