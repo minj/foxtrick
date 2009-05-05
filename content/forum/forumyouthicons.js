@@ -11,16 +11,18 @@
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.7",	
+	NEW_AFTER_VERSION: "0.4.8",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Adapted to HT-changes",
+	LASTEST_CHANGE:"Added to PAs and guestbooks",
     
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
 
     init : function() {
-        Foxtrick.registerPageHandler( 'forumWritePost', FoxtrickForumYouthIcons );
-        Foxtrick.registerPageHandler( 'messageWritePost', FoxtrickForumYouthIcons );
+        Foxtrick.registerPageHandler( 'forumWritePost', this );
+        Foxtrick.registerPageHandler( 'messageWritePost', this );
+        Foxtrick.registerPageHandler( 'guestbook', this );
+        Foxtrick.registerPageHandler( 'announcements', this );
     },
 
     run : function( page, doc ) {
@@ -45,6 +47,16 @@
             
         toolbar.setAttribute("style","float:left; margin-right:3px;");
         
+        if (page == 'guestbook' ) 
+            try {
+                var textbox = doc.getElementById( "ctl00_CPMain_ucHattrickMLEditor_txtBody" );
+                textbox.setAttribute( "style", "height:100px;");
+            }
+            catch (e)
+            {
+                dump('YouthIcons: textbox not found ' + e + '\n');
+            }        
+        
         // Set styles of all buttons
         var nextElement = toolbar.firstChild;
         while (nextElement) {
@@ -63,6 +75,7 @@
             } catch(e) { nextElement = nextElement.nextSibling; }
         }
         
+        
         //simple test if new icons are set up by HTs
         var toolbar_test = getElementsByClass( "f_hr", doc );
         //dump('Document child class "f_hr": ['+toolbar_test+']\n');
@@ -75,7 +88,7 @@
             target=target.nextSibling;
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
-            newimage.addEventListener( "click", FoxtrickForumYouthIcons._br , false );
+            newimage.addEventListener( "click", this._br , false );
             newimage.setAttribute( "class", "ft_br");
             newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
@@ -96,7 +109,7 @@
           
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
-            newimage.addEventListener( "click", FoxtrickForumYouthIcons._userid , false );
+            newimage.addEventListener( "click", this._userid , false );
             newimage.setAttribute( "class", "ft_uid");
             newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_user.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.user");
@@ -104,7 +117,7 @@
             
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
-            newimage.addEventListener( "click", FoxtrickForumYouthIcons._kitid , false );
+            newimage.addEventListener( "click", this._kitid , false );
             newimage.setAttribute( "class", "ft_kit");
             newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_kit.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.kit");
@@ -112,7 +125,7 @@
 
             var newimage = doc.createElement( "img" );
             newimage.src = "/Img/Icons/transparent.gif";
-            newimage.addEventListener( "click", FoxtrickForumYouthIcons._articleid , false );
+            newimage.addEventListener( "click", this._articleid , false );
             newimage.setAttribute( "class", "ft_aid");
             newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_article.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.article");
