@@ -65,8 +65,8 @@ var FoxtrickCopyTrainingReport = {
 					clone.removeChild(clone.lastChild);
 				}
 				var plain = clone.innerHTML;
-				plain=plain.replace(/  /g,'');
-				plain=plain.replace(/\n/g,'');
+				plain=plain.replace(/\n/g,' ');
+				plain=plain.replace(/  /g,' ');
 				plain=plain.replace(/\<br\>/ig,'\n');
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
