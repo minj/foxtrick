@@ -100,6 +100,7 @@ var FoxtrickForumStaffMarker = {
 			"SH-Patrick",
 			"Sir-Kiko",
 			"SkyfireX",
+            "SLV-Stakvik";
 			"snedy",
 			"Suli_sul",
 			"tha-king",
