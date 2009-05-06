@@ -19,6 +19,8 @@ var FoxtrickCopyTrainingReport = {
 	
 	run : function( page, doc ) {
 		try {
+			if (doc.getElementById('ctl00_CPMain_butReadAll')!=null) return;
+		
 			var parentDiv = doc.createElement("div");
 			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv";
 		
@@ -65,8 +67,8 @@ var FoxtrickCopyTrainingReport = {
 					clone.removeChild(clone.lastChild);
 				}
 				var plain = clone.innerHTML;
-				plain=plain.replace(/\n/g,' ');
-				plain=plain.replace(/  /g,' ');
+				plain=plain.replace(/\s+/g,' ');
+				plain=plain.replace(/\<br\> /ig,'\n');
 				plain=plain.replace(/\<br\>/ig,'\n');
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
