@@ -9,6 +9,8 @@ var FoxtrickCopyMatchID = {
 	MODULE_NAME : "CopyMatchID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.4.8",
+	LASTEST_CHANGE:"Fix for match preview page",
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'matches',

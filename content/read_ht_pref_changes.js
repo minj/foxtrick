@@ -122,13 +122,14 @@ var FoxtrickMyHT = {
 			var curVersion = FoxtrickPrefs.getString("curVersion"); 
 			var oldVersion = FoxtrickPrefs.getString("oldVersion");
 			//dump (curVersion+' > ' +oldVersion+' '+(curVersion > oldVersion)+'\n');
-					
+			
+			// show foxtrickMyHT
 			if (oldVersion<curVersion) {
 				this.getNewModules(curVersion,oldVersion);			
-				this.ShowAlert(doc, oldVersion);
-													
+				this.ShowAlert(doc, oldVersion);													
 			}
-		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
+						
+			} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
 	},
 
 	getNewModules : function(curVersion,oldVersion) {
@@ -391,8 +392,25 @@ var FoxtrickMyHT = {
 		if (oldAlert) mainBody.removeChild(oldAlert);
 		
 		var curVersion=FoxtrickPrefs.getString("curVersion"); 				
-		FoxtrickPrefs.setString("oldVersion",curVersion);							
+		FoxtrickPrefs.setString("oldVersion",curVersion);	
+
+		FoxtrickMyHT.ShowOnce();
 	},
+	
+	ShowOnce : function() {
+			// show_once messages
+			if (!FoxtrickPrefs.getBool("v0481.show_once")) {
+			
+				// turn off youthskillnotes		
+				if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
+				&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes')))  {
+					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false); 
+				}
+				FoxtrickPrefs.setBool("v0481.show_once", true); 
+				
+			}
+	},
+	
 	
 	change : function(page, doc ) {
 	},
