@@ -401,11 +401,18 @@ var FoxtrickMyHT = {
 			// show_once messages
 			if (!FoxtrickPrefs.getBool("v0481.show_once")) {
 			
+				var prefs_changed=false;
+				
 				// turn off youthskillnotes		
 				if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
 				&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes')))  {
 					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false); 
+					prefs_changed=true;
 				}
+
+				// reinitialize
+				if (prefs_changed) FoxtrickMain.init();
+
 				FoxtrickPrefs.setBool("v0481.show_once", true); 
 				
 			}
