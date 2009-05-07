@@ -60,15 +60,16 @@ var FoxtrickCopyTrainingReport = {
 		for(var i = 0; i < subDivs.length; i++) {
 			if(subDivs[i].className == "playerInfo") {
 				var clone = subDivs[i].cloneNode(true);
-				for(var j = 0; j < 5; j++) {
+				for(var j = 0; j < 5; j++) {  // remove greeting
 					clone.removeChild(clone.firstChild);
 				}
-				for(var j = 0; j < 6; j++) {
+				for(var j = 0; j < 6; j++) { // remove end phrase
 					clone.removeChild(clone.lastChild);
 				}
 				var plain = clone.innerHTML;
-				plain=plain.replace(/\s+/g,' ');
-				plain=plain.replace(/\<br\> /ig,'\n');
+				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
+				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
+				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
 				plain=plain.replace(/\<br\>/ig,'\n');
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
