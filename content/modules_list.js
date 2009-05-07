@@ -109,5 +109,6 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickLeagueNewsFilter,
 					 FoxtrickShortPAs,
 					 FoxtrickCopyPosting,
-					 FoxtrickMoveManagerOnline
+					 FoxtrickMoveManagerOnline,
+					 FoxtrickForumSearch
 					];
