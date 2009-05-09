@@ -314,7 +314,7 @@ var FoxtrickForumStaffMarker = {
                     // dump('forumSELECT => select box:'+ boxes + '.\n');
 					var i = 1, option;
                     while ( option = el_Select.options[i++] ) {
-
+                        new_style = '';
                         //dump('forumSELECT => select i:'+ i + '.\n');
 						var uname = Foxtrick.trim( option.text );
                         uname = uname.substring(0, uname.indexOf(' '));
@@ -341,7 +341,7 @@ var FoxtrickForumStaffMarker = {
 							new_style = this.ulist[uid]; 
 						}
                         if (do_flag) {
-                            new_style += 'background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif"); background-position:2px 50%; background-repeat:no-repeat; padding:3px 0px 0px 23px;';
+                            new_style += 'background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif"); background-position:2px 50%; background-repeat:no-repeat; padding-left:24px;';
                         }
 
                         option.setAttribute("style", new_style); 
