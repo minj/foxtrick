@@ -176,8 +176,8 @@ var FoxtrickMyHT = {
 				var alertdiv=doc.createElement('div');
 				alertdiv.setAttribute('id','idFoxtrickMyHT');
 				alertdiv.setAttribute('class','alert');
-				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px;');
-				alertdiv.innerHTML = "<h2 style='background-color:#FCF6DF;'>FoxTrick "+curVersion+"</h2>";
+				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
+				alertdiv.innerHTML = "<h2 style='background-color:#EFEFFF; text-align:center !important; color:#2F31FF !important; font-size:1.1em; '>FoxTrick "+curVersion+"</h2>";
 				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
 				
 				var selectbox = doc.createElement("select"); 
