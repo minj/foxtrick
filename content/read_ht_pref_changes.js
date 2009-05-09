@@ -83,6 +83,7 @@ var FoxtrickReadHtPrefs = {
 			var alertdiv=doc.createElement('div');
 			alertdiv.setAttribute('class','alert');
 			alertdiv.setAttribute('id','idFoxtrickLocaleChanged');
+			alertdiv.setAttribute('style', 'margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
 			confirmbox.parentNode.insertBefore(alertdiv,confirmbox.nextSibling);
 			
