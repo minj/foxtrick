@@ -319,12 +319,9 @@ var FoxtrickMyHT = {
 						if (this.NewModules[i][5]) td3.setAttribute('title',this.NewModules[i][5]);
 						tr.appendChild(td3);
 				}
-				
+								
 				alertdiv.appendChild(doc.createElement('br'));				
-				var p=doc.createElement('p');				
-				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
-				alertdiv.appendChild(p);
-				
+
 				var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtReleaseNotes")));				
 				p.appendChild(doc.createTextNode(" "));				
@@ -333,6 +330,21 @@ var FoxtrickMyHT = {
 				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
 				a.target="_blank";
 				p.appendChild(a);				
+				alertdiv.appendChild(p);
+
+				var p=doc.createElement('p');				
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtScreenshotList")));				
+				p.appendChild(doc.createTextNode(" "));				
+				var a=doc.createElement('a');
+				a.href="http://gliglif.foundationhorizont.org/hattrick/index.html";
+				a.innerHTML="http://gliglif.foundationhorizont.org/hattrick/index.html";
+				a.target="_blank";
+				p.appendChild(a);				
+				alertdiv.appendChild(p);
+
+				alertdiv.appendChild(doc.createElement('br'));				
+				var p=doc.createElement('p');				
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
 				alertdiv.appendChild(p);
 
 				var p=doc.createElement('p');				
