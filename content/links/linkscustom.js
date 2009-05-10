@@ -177,6 +177,7 @@ var FoxtrickLinksCustom = {
 			var divED = doc.createElement ("div");
 			divED.setAttribute("class", "alert");
 			divED.setAttribute("id", "divEDId" );
+			divED.setAttribute('style', 'border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 			
 			var table=doc.createElement ("table"); 
 			table.width="120px";
