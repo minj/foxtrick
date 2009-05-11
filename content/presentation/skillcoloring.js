@@ -10,6 +10,11 @@ var FoxtrickSkillColoring = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
     OPTIONS : {},
+	NEW_AFTER_VERSION: "0.4.8",	
+	SCREENSHOT:"",
+	PREF_SCREENSHOT:"",
+	LASTEST_CHANGE:"Disabled on Forums",
+    
 	
     init : function() {
             Foxtrick.registerPageHandler( 'all', FoxtrickSkillColoring);
@@ -18,8 +23,12 @@ var FoxtrickSkillColoring = {
 
     run : function( page, doc ) {
         // dump(this.MODULE_NAME + '\n');
-				
+		var url = Foxtrick.getHref( doc );
+        var isMessage = (url.match(/Forum/i) || url.match(/Inbox/i));
+        // dump( '\n >> ' + url + '\n');
+        if (isMessage) return;
  		
+        
         skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-selectoption", "no-skill-links"];
         displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"  ), 
                           Foxtrick.isModuleFeatureEnabled( this, "only_skill_color" ), 
