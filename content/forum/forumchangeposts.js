@@ -10,6 +10,7 @@ var FoxtrickForumChangePosts = {
 	//MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
 	bDetailedHeader:false,
+
 	
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -29,6 +30,7 @@ var FoxtrickForumChangePosts = {
 		var do_alter_header = Foxtrick.isModuleEnabled(FoxtrickForumAlterHeaderLine);
 		var do_alltid_flags = Foxtrick.isModuleEnabled( FoxtrickAlltidFlags ); 
 		var do_redir_to_team = Foxtrick.isModuleEnabled( FoxtrickForumRedirManagerToTeam ); 
+		//var do_forum_search = Foxtrick.isModuleEnabled( FoxtrickForumSearch ); 
 		
 		var do_single_header = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SingleHeaderLine"); 
 		var do_small_header_font = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "SmallHeaderFont"); 
@@ -47,10 +49,7 @@ var FoxtrickForumChangePosts = {
 		var style ="margin-right:3px; margin-bottom:3px; padding-left:3px; " + 
 					"background-repeat:repeat-x; background-position: 0% 50%;";
 		//var link_to_alltid = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 1);
-		//var redir_to_team = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 0);
-		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/linkscustom.css");
-			
+		//var redir_to_team = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 0);			
 
 		// part of copypostid
 		var img = doc.createElement('img');
@@ -209,7 +208,17 @@ var FoxtrickForumChangePosts = {
 				
 				
 				// +++++++++++++ moduls +++++++++++++++++++++++++++++++++++
-								
+				
+				// save for search ---------------------------------------------
+				/*if (do_forum_search) {
+					var headstr = post_link1.title+': '+poster_link1.title+' » ';
+					if (poster_link2)  headstr+=post_link2.title+': '+poster_link2.title+'\n';
+					else headstr+='all\n';
+					headstr = Foxtrick.stripHTML(header_right.innerHTML)+"  "+headstr;
+			
+					this._SaveForSearch();
+				} // save for search
+				*/		
 				// copy post id ---------------------------------------------
 				if (do_copy_post_id) { 
 					if (do_add_copy_icon) {					
@@ -220,11 +229,12 @@ var FoxtrickForumChangePosts = {
 				}  // end copy post id
 				
 				
+				// copy posting ---------------------------------------------
 				if (do_copy_posting) { 
 						var copy_link=copy_posting_link.cloneNode(true);
 						copy_link.firstChild.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );		
 						header_right.appendChild(copy_link);
-				}  // end copy post id
+				}  // end copy posting
 							
 				// redir to team ------------------------------------------
 				if ( do_redir_to_team ) {
@@ -276,7 +286,7 @@ var FoxtrickForumChangePosts = {
 							if (supporter_link2) placenode = supporter_link2.nextSibling;
 							else placenode = poster_link2.nextSibling;
 							header_left.insertBefore(flaglink, placenode);						
-						}
+						}											
 					}	//dump('Add Alltid flags \n');
 				
 				
@@ -400,8 +410,16 @@ var FoxtrickForumChangePosts = {
 					  else {header.setAttribute('class','cfHeader ftdoubleLine');}
 					}
 				}
-								
+				
 				}  // end single header line
+
+				// check design broken
+				if (!this.bDetailedHeader && do_alltid_flags)
+				{ 	if (header.offsetTop-header_right.offsetTop < -3 )  {header.setAttribute('class','cfHeader ftdoubleLine');}	
+					post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+					if (post_link2) post_link2.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+				}
+								
 
 				
 				// hide  avatar ----------------------------------
@@ -544,4 +562,30 @@ var FoxtrickForumChangePosts = {
 		var PostID = ev.target.getAttribute("PostID");
 		ev.target.href='/Forum/Read.aspx?t='+PostID.replace(/\.\d+/,'')+'&n='+PostID.replace(/\d+\./,'');	
 	},	
+	
+	_SaveForSearch : function (str) {
+        try {
+			var locpath="C:\\tmp\\sdf";//Foxtrick.selectFileSave(doc.defaultView); 
+			dump(locpath+'\n');
+			if (locpath==null) {return;}
+			var File = Components.classes["@mozilla.org/file/local;1"].
+                     createInstance(Components.interfaces.nsILocalFile);
+			File.initWithPath(locpath);
+
+			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
+                         createInstance(Components.interfaces.nsIFileOutputStream);
+			foStream.init(File, 0x02 | 0x08 | 0x20 | 0x10, 0666, 0);
+			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
+                   .createInstance(Components.interfaces.nsIConverterOutputStream);
+			os.init(foStream, "UTF-8", 0, 0x0000);
+			os.writeString(str+'\c\n');						
+			os.close();
+			foStream.close();
+		}
+		catch (e) {
+			Foxtrick.alert(e);
+        }
+    return true;
+	},
+
 };

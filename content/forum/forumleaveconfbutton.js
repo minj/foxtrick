@@ -9,7 +9,8 @@ var FoxtrickAddLeaveConfButton = {
     MODULE_NAME : "AddLeaveConfButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
-
+	CSS:"chrome://foxtrick/content/resources/css/conference.css",
+	
     init : function() {
             Foxtrick.registerPageHandler( 'forum',
                                           FoxtrickAddLeaveConfButton );
@@ -24,8 +25,7 @@ var FoxtrickAddLeaveConfButton = {
             case 'forum':
                 try {
                     var vValue = this.getVValue( doc );
-                    Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-                                "resources/css/conference.css");
+
                     if(vValue != "2") {
                         var elems = doc.getElementsByTagName("div");
                         var foldersCounter = 0;

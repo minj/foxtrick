@@ -22,6 +22,7 @@ var FoxtrickCopyPostID = {
 	LASTEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
 	DEFAULT_ENABLED : false,
 	OPTIONS : new Array("AddCopyIcon"), 
+	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -48,6 +49,7 @@ var FoxtrickCopyPosting = {
 	NEW_AFTER_VERSION: "0.4.7",	
 	LASTEST_CHANGE:"Added option to copy forum posting",
 	DEFAULT_ENABLED : false,
+	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
@@ -245,6 +247,34 @@ var FoxtrickAlltidFlags = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : false,
 	//RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
+	CSS:"chrome://foxtrick/content/resources/css/conference.css",
+
+	init : function() {
+		Foxtrick.registerPageHandler( 'forumViewThread',
+			FoxtrickAlltidFlags );
+	},
+
+	run : function( page, doc ) {  
+	},
+	
+	change : function( page, doc ) { 
+	},	
+						
+};
+
+
+/**
+* forumsearch.js
+* Foxtrick Show Alltid flags in forum posts module
+* @author convinced
+*/
+
+//**********************************************************
+var FoxtrickForumSearch = {
+
+	MODULE_NAME : "ForumSearch",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	DEFAULT_ENABLED : false,
 
 	init : function() {
 		Foxtrick.registerPageHandler( 'forumViewThread',
