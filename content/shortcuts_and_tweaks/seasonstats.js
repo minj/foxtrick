@@ -22,7 +22,8 @@ var FoxtrickSeasonStats = {
     run : function( page, doc ) {
 	try {
 			
-		var TeamName=FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15); 
+		var TeamName=FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15).replace(/\W/g,''); 
+		
 		var sum_matches=new Array(12);
 		for (var i = 0; i < sum_matches.length; ++i)
 			sum_matches[i] = {'type':"",'num':0,'won':0,'lost':0,'draw':0,'goal0':0,'goal1':0};
@@ -35,7 +36,7 @@ var FoxtrickSeasonStats = {
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchFriendly') type=1;
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchCup') type=2;
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchMasters') type=3;
-			var ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.search(TeamName)==0?1:2;
+			var ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/\W/g,'').search(TeamName)==0?1:2;
 			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won'; 
 			var islost = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='lost'; 
 			var isdraw = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='draw'; 
