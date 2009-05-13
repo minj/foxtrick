@@ -10,18 +10,64 @@ var FoxtrickSeasonStats = {
     MODULE_NAME : "SeasonStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"Fixed wrong goal counting. Improved home team detection for truncated team names",
+	NEW_AFTER_VERSION: "0.4.8",
+	LASTEST_CHANGE:"Added season select box",
 	CSS:"chrome://foxtrick/content/resources/css/seasonstats.css",
 	
+	_season:-1,
+	
     init : function() {
-            Foxtrick.registerPageHandler( 'matchesarchiv',
-                                          this );
+            Foxtrick.registerPageHandler( 'matchesarchiv',this );
+			Foxtrick.registerPageHandler( 'matches', this );
+										  
    },
 
     run : function( page, doc ) {
-	try {
+	try  {
+	
+		// ----------------------------- season select box ---------------------------------
+	
+		// get current season
+		if (doc.location.href.search(/archive/i)==-1) {
+			var as = doc.getElementById('sidebar').getElementsByTagName('a');
+			for (var i=0;i<as.length;++i) { 
+				if (as[i].href.search(/archive/i)!=-1) {
+					this._season = as[i].href.match(/season=(\d+)/i)[1];
+					return;
+				}
+			}
+			return;
+		}
 			
+		// get range of local seasons
+		var selected_season = doc.location.href.match(/season=(\d+)/i)[1];
+		var season_diff = this._season - selected_season;	
+		
+		var selected_local_season = doc.getElementById('mainBody').getElementsByTagName('h2')[0].innerHTML.match(/\d+/i);
+		var local_season = parseInt(selected_local_season) + season_diff;
+		
+		// add season select box
+		var selectbox = doc.createElement("select"); 
+		selectbox.setAttribute("id","ft_seaon_selectboxID");
+		selectbox.setAttribute("style","float:right");
+		
+		selectbox.addEventListener('change',FoxtrickSeasonSelectBox_Select,false);
+		FoxtrickSeasonSelectBox_Select.doc=doc;
+		
+		s=this._season;
+		for (var ls=local_season;ls>0;--ls) {		
+			var option = doc.createElement("option");
+            option.setAttribute("value",s);
+            option.innerHTML=ls;
+            selectbox.appendChild(option);
+			--s;
+        }
+		selectbox.value=selected_season;
+        doc.getElementById('mainBody').insertBefore(selectbox,doc.getElementById('ctl00_CPMain_ddlMatchType'));        
+	    
+		
+		// ------------------------------ season stats --------------------------------------
+		
 		var TeamName=FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15).replace(/\W/g,''); 
 		
 		var sum_matches=new Array(12);
@@ -171,3 +217,10 @@ var FoxtrickSeasonStats = {
 	},
 		
 };
+
+function FoxtrickSeasonSelectBox_Select(evt) {
+	try {
+		var doc=FoxtrickSeasonSelectBox_Select.doc;
+		doc.location.href=doc.location.href.replace(/season=\d+/,'season='+evt["target"]["value"]);						
+	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
+}
