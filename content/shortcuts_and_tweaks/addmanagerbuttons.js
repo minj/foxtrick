@@ -10,8 +10,8 @@ var FoxtrickAddManagerButtons = {
     MODULE_NAME : "AddManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.6.2",
-	LASTEST_CHANGE:"sendmail opens large mail box now",
+	NEW_AFTER_VERSION: "0.4.8",
+	LASTEST_CHANGE:"Fixed sendmessages on youthoverview page",
 	
 
     init : function() {
@@ -35,10 +35,10 @@ var FoxtrickAddManagerButtons = {
 			case 'youthoverview':
 				this.addActionsBox( doc );
 				break;
-			/*	
+				
 			case 'teamPage':
 				this.showMessageForm( doc );
-				break;*/
+				break;
 		}
 	},
 	
@@ -111,6 +111,7 @@ var FoxtrickAddManagerButtons = {
 		messageLink.className = "inner";
 		
 		messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
+		if  (doc.location.href.search(/\/Club\/Youth/)) messageLink.href='/Club/?TeamID='+teamID+'&SendMessage=true';
 		//messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
 		messageLink.title = Foxtrickl10n.getString( 
 			"foxtrick.tweaks.sendmessage" );
