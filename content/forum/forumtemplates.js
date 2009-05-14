@@ -15,10 +15,10 @@ var FoxtrickForumTemplates = {
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","125"),        
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
-	NEW_AFTER_VERSION: "0.4.7",	
+	NEW_AFTER_VERSION: "0.4.8",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Adapted to HT-changes",
+	LASTEST_CHANGE:"Added HT Press Templates for Staff",
     
     _MAX_TEMPLATE_DISP_LENGTH : 60,
 	_DISPLAY_WIDTH:125,
@@ -28,12 +28,9 @@ var FoxtrickForumTemplates = {
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
     
     init : function() {
-        Foxtrick.registerPageHandler( 'forumWritePost',
-                                      FoxtrickForumTemplates );
-		Foxtrick.registerPageHandler( 'messageWritePost',
-									  FoxtrickForumTemplates );
-		Foxtrick.registerPageHandler( 'htpress',
-									  FoxtrickForumTemplates );
+        Foxtrick.registerPageHandler( 'forumWritePost',     FoxtrickForumTemplates );
+		Foxtrick.registerPageHandler( 'messageWritePost',   FoxtrickForumTemplates );
+		Foxtrick.registerPageHandler( 'htpress',            FoxtrickForumTemplates );
     },
 
     run : function( page, doc ) {
@@ -53,7 +50,7 @@ var FoxtrickForumTemplates = {
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "mail_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "mail_templates";
 			break;
-			case 'htpress':
+			case 'htpress': // For Staff! Users have another  MESSAGE_WINDOW ID !
 				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_txtComment';
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "htpress_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "htpress_templates";
