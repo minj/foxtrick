@@ -32,7 +32,8 @@ var FoxtrickForumTemplates = {
                                       FoxtrickForumTemplates );
 		Foxtrick.registerPageHandler( 'messageWritePost',
 									  FoxtrickForumTemplates );
-    
+		Foxtrick.registerPageHandler( 'htpress',
+									  FoxtrickForumTemplates );
     },
 
     run : function( page, doc ) {
@@ -52,6 +53,11 @@ var FoxtrickForumTemplates = {
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "mail_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "mail_templates";
 			break;
+			case 'htpress':
+				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_txtComment';
+				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "htpress_templates";
+				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "htpress_templates";
+			break;            
 		}
 		
 		FoxtrickForumTemplates._DISPLAY_WIDTH=125; 

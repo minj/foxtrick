@@ -65,7 +65,9 @@ Foxtrick.ht_pages = {
     'federation'                : '\/Community\/Federations\/Federation\.aspx',
     'national'                  : '\/Club\/NationalTeam\/NationalTeam\.aspx',
 	'guestbook'					: '\/Club\/Manager\/Guestbook\.aspx',
-    'announcements'					: '\/Club\/Announcements/\New.aspx',
+    'announcements'			    : '\/Club\/Announcements/\New\.aspx',
+    'htpress'                   : '\/Community\/Press\/Default\.aspx',
+
     
 	'all_late'					: '\/',
     
