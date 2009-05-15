@@ -48,8 +48,10 @@ var FoxtrickSeasonStats = {
 		
 		// add season select box
 		var selectbox = doc.createElement("select"); 
-		selectbox.setAttribute("id","ft_seaon_selectboxID");
-		selectbox.setAttribute("style","float:right");
+		selectbox.setAttribute("id","ft_season_selectboxID");
+		if (Foxtrick.isStandardLayout(doc)) selectbox.setAttribute("style","float:right; margin-top:20px;");
+		else  selectbox.setAttribute("style","float:right");
+
 		
 		selectbox.addEventListener('change',FoxtrickSeasonSelectBox_Select,false);
 		FoxtrickSeasonSelectBox_Select.doc=doc;
