@@ -1464,7 +1464,39 @@ function FoxtrickGetElementPosition(This,ref){
 	return {'top':pT,'left':pL};
 }
 	
-function FoxtrickGetDataURIText(filetext){
+function FoxtrickGetDataURIText(filetext) {
 	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
 }	
 
+
+Foxtrick.LoadXML = function (xmlfile) {
+	var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+	req.open("GET", xmlfile, false);
+	req.send(null);
+	var response = req.responseXML;
+	if (response.documentElement.nodeName == "parsererror") {
+		dump("error parsing " + xmlfile + "\n");
+		return null;
+	}	
+	return response;
+}
+				
+Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
+	var result = new Array();
+	if (xmlresponse) {
+		var nodes = xmlresponse.evaluate(basenodestr, xmlresponse, null, 7 , null);
+		for (var i = 0; i < nodes.snapshotLength; i++) {
+			node = nodes.snapshotItem(i);
+			var label = node.getAttribute(labelstr);
+			var value = node.getAttribute(valuestr);
+			var value2=null;
+			var value3=null;
+			
+			if (value2str) value2 = node.getAttribute(value2str);
+			if (value3str) value3 = node.getAttribute(value3str);
+			
+			result.push([label,value,value2,value3]);  
+		}
+	}
+	return result;
+}        			

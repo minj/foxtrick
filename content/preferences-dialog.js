@@ -1000,39 +1000,6 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 
 FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
 
-FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
-	  FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
-}
-
-FoxtrickPreferencesDialog.setModuleOptionsText = function( module_name, value ) {
-	  FoxtrickPrefs.setString( "module." + module_name, value );
-}
-
-FoxtrickPreferencesDialog.setModuleValue = function( module_name, value ) {
-    FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
-}
-
-FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
-    var name = "foxtrick." + module_name + ".desc";
-    if ( Foxtrickl10n.isStringAvailable( name ) )
-        return Foxtrickl10n.getString( name );
-    else {
-        dump( "Foxtrick string MODULE " + module_name + " missing!\n");
-        return "No description";
-    }
-}
-
-FoxtrickPreferencesDialog.getModuleElementDescription = function( module_name, option ) {
-    var name = "foxtrick." + module_name + "." + option + ".desc";
-    if ( Foxtrickl10n.isStringAvailable( name ) )
-        return Foxtrickl10n.getString( name );
-    else {
-        dump( "Foxtrick string ELEMENT " + name + " missing!\n");
-        //return "No description";
-        return option;
-    }
-}
-
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
         window.open("chrome://foxtrick/content/preferences-dialog.xul",
@@ -1048,6 +1015,15 @@ FoxtrickPreferencesDialog.deactivate = function( button ) {
 		FoxtrickMain.init();	
 	}
 }
+
+FoxtrickPreferencesDialog.copy_id = function( button ) {
+	if(!button) {
+    	var ID=Foxtrick.CopyID;
+		Foxtrick.copyStringToClipboard(ID);
+		Foxtrick.popupMenu.setAttribute( "hidden", true); 
+		
+	}
+}	
 
 
 FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
@@ -1081,6 +1057,43 @@ FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where 
                "titlebar=no, modal, left=" + (where.boxObject.screenX + 20) + ", top=" + (where.boxObject.screenY - 10),
                HelpTitle,
                HelpDesc);
+}
+
+
+
+// ---------------------- common function --------------------------------------
+
+FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
+	  FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
+}
+
+FoxtrickPreferencesDialog.setModuleOptionsText = function( module_name, value ) {
+	  FoxtrickPrefs.setString( "module." + module_name, value );
+}
+
+FoxtrickPreferencesDialog.setModuleValue = function( module_name, value ) {
+    FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
+}
+
+FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
+    var name = "foxtrick." + module_name + ".desc";
+    if ( Foxtrickl10n.isStringAvailable( name ) )
+        return Foxtrickl10n.getString( name );
+    else {
+        dump( "Foxtrick string MODULE " + module_name + " missing!\n");
+        return "No description";
+    }
+}
+
+FoxtrickPreferencesDialog.getModuleElementDescription = function( module_name, option ) {
+    var name = "foxtrick." + module_name + "." + option + ".desc";
+    if ( Foxtrickl10n.isStringAvailable( name ) )
+        return Foxtrickl10n.getString( name );
+    else {
+        dump( "Foxtrick string ELEMENT " + name + " missing!\n");
+        //return "No description";
+        return option;
+    }
 }
 
 
@@ -1214,11 +1227,3 @@ FoxtrickPreferencesDialog.LoadPrefs = function () {
 }
 
 
-FoxtrickPreferencesDialog.copy_id = function( button ) {
-	if(!button) {
-    	var ID=Foxtrick.CopyID;
-		Foxtrick.copyStringToClipboard(ID);
-		Foxtrick.popupMenu.setAttribute( "hidden", true); 
-		
-	}
-}	

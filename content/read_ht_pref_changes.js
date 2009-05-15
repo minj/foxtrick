@@ -187,28 +187,21 @@ var FoxtrickMyHT = {
 				FoxtrickMyHT.VersionBox_Select.doc = doc;
 				selectbox.addEventListener('change',FoxtrickMyHT.VersionBox_Select,false);
 				
-				var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-				req.open("GET", "chrome://foxtrick/content/htlocales/htversions.xml", false);
-				req.send(null);
-				var response = req.responseXML;
-				if (response.documentElement.nodeName == "parsererror") {
-					dump("error parsing " + url+"\n");
-					return null;
-				}	
+				var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");				
+				var versions = Foxtrick.XML_evaluate(xmlresponse, "hattrickversions/version", "name", "code");
 				
-				var versions = response.evaluate("hattrickversions/version", response, null, 7 , null);
-				for (var i = 0; i < versions.snapshotLength-1; i++) {
-					version = versions.snapshotItem(i);
-					var value = version.getAttribute('code');
-					var label = version.getAttribute('name');
-        			
+				var indexToSelect=0;
+				for (var i = 0; i < versions.length; i++) {
+					var label = versions[i][0];
+        			var value = versions[i][1]; 
+					
 					var option = doc.createElement("option");
 					option.setAttribute("value",value);
 					option.innerHTML=label;
 					selectbox.appendChild(option);	
 			
-					if (oldVersion==value)
-						indexToSelect=i;
+					if (oldVersion==value) 
+						indexToSelect=i; 
 				}
 				selectbox.selectedIndex=indexToSelect;
 
