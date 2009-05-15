@@ -56,25 +56,6 @@ padding-right: 10px;
 
 /* STADIONIMAGEFIX */
 
-/* moves Arena to the bottom */
-#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch object#ARENA {
-float:left !important;
-margin-top:690px !important;
-}
-
-/* moves Arena info to the bottom */
-#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div.arenaInfo {
-float:left !important;
-width: 200px !important;
-margin-top:-250px !important;
-}
-
-/* moves rest to the top */
-#aspnetForm:not([action*="isYouth=True"])  #ctl00_CPMain_pnlPreMatch div#ctl00_CPMain_pnlTeamInfo {
-margin-top:-970px !important;
-float:right !important;
-}
-
 /* part 2 not needed now 
 #aspnetForm[action*="Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>h1.hasByline {
 margin-top:-125px !important;

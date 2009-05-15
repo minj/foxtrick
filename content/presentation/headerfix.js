@@ -9,10 +9,8 @@ var FoxtrickHeaderFix = {
     MODULE_NAME : "HeaderFix",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.6.2",
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Moved fixing of submenue to a seperate option (default on)",
+	NEW_AFTER_VERSION: "0.4.8",
+	LASTEST_CHANGE:"Stadium image on match preview page now moved down using js. More flickering but saver. Same disabled on nt match preview page",
 	OPTIONS : new Array("FixLeft"),
 	CSS_SIMPLE:"chrome://foxtrick/content/resources/css/headerfix.css",
 	CSS:"chrome://foxtrick/content/resources/css/headerfix_std.css",
@@ -26,9 +24,45 @@ var FoxtrickHeaderFix = {
 	
 		dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
     
+        Foxtrick.registerPageHandler( 'match',this);
     },
 
     run : function( page, doc ) { 
+	
+	if (doc.location.href.search(/\/Club\/Matches\/Match.aspx/i)==-1) return;
+	if (doc.location.href.search(/isYouth/i)!=-1) return;
+	
+	var ctl00_CPMain_pnlPreMatch = doc.getElementById("ctl00_CPMain_pnlPreMatch");
+	var ctl00_CPMain_pnlTeamInfo = doc.getElementById("ctl00_CPMain_pnlTeamInfo");
+	if (!ctl00_CPMain_pnlPreMatch || !ctl00_CPMain_pnlTeamInfo) return;	
+	var ctl00_CPMain_pnlArenaFlash = doc.getElementById("ctl00_CPMain_pnlArenaFlash");
+	var divs = ctl00_CPMain_pnlPreMatch.getElementsByTagName('div');
+	var arenaInfo = ctl00_CPMain_pnlArenaFlash.nextSibling;
+	var separator=null;
+	for (var i=0;i<divs.length;++i) { 
+		if (divs[i].className=='arenaInfo') {arenaInfo=divs[i];}
+		if (divs[i].className=='separator') {separator=divs[i];}
+	}
+
+	ctl00_CPMain_pnlTeamInfo.setAttribute('style','float:left !important; margin-top:-20px;');
+
+	if (separator) {
+		separator = ctl00_CPMain_pnlPreMatch.removeChild(separator);	
+		ctl00_CPMain_pnlPreMatch.appendChild(separator);
+	}
+
+	if (arenaInfo) {
+		arenaInfo = ctl00_CPMain_pnlPreMatch.removeChild(arenaInfo);	
+		ctl00_CPMain_pnlPreMatch.appendChild(arenaInfo);
+		if (Foxtrick.isStandardLayout(doc)) arenaInfo.setAttribute('style','float:right !important;');
+		else arenaInfo.setAttribute('style','float:right !important; width:190px !important;');
+	}
+
+	ctl00_CPMain_pnlArenaFlash = ctl00_CPMain_pnlPreMatch.removeChild(ctl00_CPMain_pnlArenaFlash);
+	ctl00_CPMain_pnlPreMatch.appendChild(ctl00_CPMain_pnlArenaFlash);
+	ctl00_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px;');
+
+	
 	},
 	
 	change : function( page, doc ) {	
