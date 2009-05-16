@@ -13,7 +13,7 @@ var FoxtrickForumPreview = {
 	NEW_AFTER_VERSION: "0.4.8",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Added to PAs, guestbooks and ticket system, added post-Tag",
+	LASTEST_CHANGE:"Added to PAs, guestbooks and ticket system, added post-Tag, added table-tags",
 	
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
     _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditorMain_txtBody',
@@ -203,10 +203,18 @@ var FoxtrickForumPreview = {
           /\[i\](.*?)\[\/i\]/,
           /\[br\]/,
           /\[hr\]/,
+          
           /\[table\](.*?)\[\/table\]/,
-          /\[tr\](.*?)\[\/tr\]/,
-          /\[td\](.*?)\[\/td\]/
-          );
+          /\[th(.*?)\](.*?)\[\/th\]/,
+          /\[tr(.*?)\](.*?)\[\/tr\]/,
+          /\[td(.*?)\](.*?)\[\/td\]/,
+          
+          /\<\/td\>\<br \/\>/,
+          /\<\/th\>\<br \/\>/,
+          /\<\/tr\>\<br \/\>/,
+          /\<tr(.*?)\>\<br \/\>/,
+          /\<tbody\>\<br \/\>/
+        );
 
         replace = new Array(
             "<a href=\"\/Community\/KitSearch\/\?KitID\=$1\" target=\"\_blank\">($1)</a>",
@@ -232,9 +240,17 @@ var FoxtrickForumPreview = {
           "<i>$1</i>",
           "<br>",
           "<hr>",
-          "<table><tbody>$1</tbody></table>",
-          "<tr>$1</tr>",
-          "<td>$1</td>"
+          
+          "<table class='htMlTable'><tbody>$1</tbody></table>",
+          "<th $1>$2</th>",
+          "<tr $1>$2</tr>",
+          "<td $1>$2</td>",
+          
+          "</td>",
+          "</th>",
+          "</tr>",
+          "<tr$1>",
+          "<tbody>"
         );
 
         var doc = ev.target.ownerDocument;
