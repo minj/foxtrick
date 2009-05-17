@@ -9,6 +9,10 @@ var FoxtrickCopyRatingsToClipboard = {
     MODULE_NAME : "CopyRatingsToClipboard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.8.1",	
+	SCREENSHOT:"",
+	PREF_SCREENSHOT:"",
+	LASTEST_CHANGE:"new table format, added matchID and result",    
 
 	init : function() {
         Foxtrick.registerPageHandler( 'match', this );
@@ -60,33 +64,52 @@ var FoxtrickCopyRatingsToClipboard = {
         var _a = Foxtrickl10n.getString("foxtrick.matchdetail.attack" );
         
 		var doc = ev.target.ownerDocument;
+        
+        var headder = doc.getElementsByTagName('h1')[0].innerHTML;
+        headder=Foxtrick.trim(headder);
+        var start = strrpos(headder, '<span>(') +7;
+        var end = strrpos(headder, ')</span>');
+        
+        var gameid = headder.substr(start, end-start);
+        
+        start = strrpos(headder, ' - ');
+        var gameresult_h = Foxtrick.trim(headder.substr(start-2, 2));
+        var gameresult_a = Foxtrick.trim(headder.substr(start+3, 2));            
+        
+        
         var ad = '\n[table]\n';
         var table = doc.getElementsByTagName('table')[0];
+        var youth = '';
+        if (strrpos(table.rows[0].cells[1].innerHTML, 'isYouth=True')) youth = 'youth';
+        Foxtrick.alert(table.rows[0].cells[1].innerHTML);
+
         for (var row = 0; row < table.rows.length; row ++) {
             if (row != table.rows.length-3 )  {
                 try {
                     // if ( table.rows[row].cells[1] && table.rows[row].cells[1].innerHTML.indexOf( '' ) != -1 ) {} else {
                     //no hatstats detailes and no pic/mots/normal, i hope :)
-                    ad += '[tr]\n\n[td]';
-                    if (table.rows[row].cells[0]) ad += table.rows[row].cells[0].textContent;
-                    ad += '[/td]\n[td]';
+                    ad += '[tr]\n\n[th]';
+                    if ((table.rows[row].cells[0]) && row == 0) {ad += '['+  youth + 'matchid=' + gameid + ']';}
+                      else 
+                        if (table.rows[row].cells[0]) {ad += table.rows[row].cells[0].textContent;}
+                    if (row == 0) ad += '[/th]\n[th]'; else ad += '[/th]\n[td]';
                     if (table.rows[row].cells[1]) {
                         if (row == 0) {
-                            ad += '[b]' + table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + '[/b]';
+                            ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' ' + gameresult_h + '';
                         } else {
                             ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
                     }
-                    ad += '[/td]\n[td]';
+                    if (row == 0) ad += '[/th]\n[th]'; else ad += '[/td]\n[td]';
                     if (table.rows[row].cells[2]) {
                         if (row == 0) {
-                            ad += '[b]' + table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + '[/b]';
+                            ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' ' + gameresult_a + '';
                         } else {
                             ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
                     }
 
-                    ad += '[/td]\n\n[/tr]\n';
+                    if (row == 0) ad += '[/th]\n\n[/tr]\n'; else ad += '[/td]\n\n[/tr]\n';
                     // }
                 } catch (e) {}
             }
