@@ -87,6 +87,7 @@ var FoxtrickLinksPlayerDetail = {
 				for (var j=0; j < divs.length; j++) {
 					if ( divs[j].className=="mainBox" ) {
 						var PlayerDetailTable = divs[j].getElementsByTagName("table")[0];
+						if (PlayerDetailTable.innerHTML.search(/\/Club\/Matches\/Match.aspx\?matchID=/i)!=-1) continue;
 						if (PlayerDetailTable.rows.length==4) {  // old table
 							stamina = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[1].getElementsByTagName('a')[0]);
 							goalkeeping = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[3].getElementsByTagName('a')[0]);
