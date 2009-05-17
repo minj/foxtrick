@@ -83,10 +83,13 @@ var FoxtrickLinksPlayerDetail = {
 					}
 				}
 			    var newtable=false;
-				var goalkeeperskillnode;   
+				var goalkeeperskillnode=null; 
 				for (var j=0; j < divs.length; j++) {
 					if ( divs[j].className=="mainBox" ) {
-						var PlayerDetailTable = divs[j].getElementsByTagName("table")[0];
+						try  {
+						var Tables = divs[j].getElementsByTagName("table");
+						if (!Tables) continue;
+						var PlayerDetailTable = Tables[0];
 						if (PlayerDetailTable.innerHTML.search(/\/Club\/Matches\/Match.aspx\?matchID=/i)!=-1) continue;
 						if (PlayerDetailTable.rows.length==4) {  // old table
 							stamina = FoxtrickHelper.getSkillLevelFromLink(PlayerDetailTable.rows[0].cells[1].getElementsByTagName('a')[0]);
@@ -113,7 +116,8 @@ var FoxtrickLinksPlayerDetail = {
 						else {  // something is wrong
 						}
 						break;
-					}
+					} catch(e) {} // no or wrong table	
+					} 				
 				}
 				
 				// links
@@ -141,8 +145,10 @@ var FoxtrickLinksPlayerDetail = {
 					for (var j=0; j< klinks.length; j++) {
 						klinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
 						if (newtable) klinks[j].link.setAttribute("style", "margin-left:5px !important;");
-						goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
-						goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
+						if (goalkeeperskillnode) {
+							goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
+							goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
+						}
 						}										
 				}
 				var num_links=links[0].length;
