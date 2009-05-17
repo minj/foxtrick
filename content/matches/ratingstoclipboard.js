@@ -9,7 +9,7 @@ var FoxtrickCopyRatingsToClipboard = {
     MODULE_NAME : "CopyRatingsToClipboard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.1",	
+	NEW_AFTER_VERSION: "0.4.8",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"new table format, added matchID and result",    
@@ -81,7 +81,7 @@ var FoxtrickCopyRatingsToClipboard = {
         var table = doc.getElementsByTagName('table')[0];
         var youth = '';
         if (strrpos(table.rows[0].cells[1].innerHTML, 'isYouth=True')) youth = 'youth';
-        Foxtrick.alert(table.rows[0].cells[1].innerHTML);
+        // Foxtrick.alert(table.rows[0].cells[1].innerHTML);
 
         for (var row = 0; row < table.rows.length; row ++) {
             if (row != table.rows.length-3 )  {
