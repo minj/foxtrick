@@ -1500,3 +1500,28 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 	}
 	return result;
 }        			
+
+Foxtrick.getSelectBoxFromXML = function (doc,xmlfile, basenodestr, labelstr, valuestr, selected_value_str) {
+
+	var selectbox = doc.createElement("select"); 
+				
+	var xmlresponse = Foxtrick.LoadXML(xmlfile);				
+	var versions = Foxtrick.XML_evaluate(xmlresponse, basenodestr, labelstr, valuestr);
+				
+	var indexToSelect=0;
+	for (var i = 0; i < versions.length; i++) {
+		var label = versions[i][0];
+		var value = versions[i][1]; 
+					
+		var option = doc.createElement("option");
+		option.setAttribute("value",value);
+		option.innerHTML=label;
+		selectbox.appendChild(option);	
+			
+		if (selected_value_str==value) 
+			indexToSelect=i; 
+	}
+	selectbox.selectedIndex=indexToSelect;
+	
+	return selectbox;
+}
