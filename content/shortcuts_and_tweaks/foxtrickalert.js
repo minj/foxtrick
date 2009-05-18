@@ -26,6 +26,11 @@ var FoxtrickAlert = {
     run : function( doc ) {
     	try { 
 			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
+            var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Components.interfaces.nsIWindowMediator);
+			var mainWindow = wm.getMostRecentWindow("navigator:browser");
+			FoxtrickAlert.foxtrick_showAlert.tab = mainWindow.getBrowser().selectedTab;
+			
 			FoxtrickAlert.ALERT_RUNNING = false;
 			FoxtrickAlert.foxtrick_showAlert(false);
         
@@ -122,7 +127,7 @@ var FoxtrickAlert = {
 		if ( FoxtrickAlert.ALERTS.length==0) { FoxtrickAlert.ALERT_RUNNING = false; return;}	
 		var alert = FoxtrickAlert.ALERTS.pop(); 
         var text = alert.message;  
-        var href = alert.href;		dump(text+' '+href+'\n');
+        var href = alert.href;		
         var img = "http://hattrick.org/favicon.ico";
         var title = "Hattrick.org";
 		var clickable = true;
@@ -131,14 +136,14 @@ var FoxtrickAlert = {
                         try{
 						if (topic=="alertclickcallback") {
 							dump('alertclickcallback:' +'link to: '+data+'\n');
-							var window = FoxtrickAlert.foxtrick_showAlert.window;
-							window.document.location.href = href;
-                            window.focus();
-						}
+							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+									.getService(Components.interfaces.nsIWindowMediator);
+							openAndReuseOneTabPerURL(href);
+					}
 						}catch(e){dump('alertclickcallback: '+e+'\n');}
                     }
         };
-                		
+    		
             try { 
                 var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 alertsService.showAlertNotification(img, title, text, clickable, href, listener);
@@ -188,3 +193,51 @@ var FoxtrickAlert = {
 		}
     }
 };
+
+// find first occurence of host and open+focus there
+function openAndReuseOneTabPerURL(url) {
+  var host = url.match(/(http:\/\/[a-zA-Z0-9_.]+)/)[1];
+  
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                     .getService(Components.interfaces.nsIWindowMediator);
+  var browserEnumerator = wm.getEnumerator("navigator:browser");
+
+  // Check each browser instance for our URL
+  var found = false;
+  while (!found && browserEnumerator.hasMoreElements()) {
+    var browserWin = browserEnumerator.getNext();
+    var tabbrowser = browserWin.getBrowser();
+
+    // Check each tab of this browser instance
+    var numTabs = tabbrowser.browsers.length;
+    for(var index=0; index<numTabs; index++) {
+      var currentBrowser = tabbrowser.getBrowserAtIndex(index); 
+      if (currentBrowser.currentURI.spec.search(host)!=-1) 
+		{
+
+        // The URL is already opened. Select this tab.
+        tabbrowser.selectedTab = tabbrowser.mTabs[index];
+
+        // Focus *this* browser-window
+		browserWin.loadURI(url )
+        browserWin.focus();
+
+        found = true;
+        break;
+      }
+    }
+  }
+
+  // Our URL isn't open. Open it now.
+  if (!found) {
+    var recentWindow = wm.getMostRecentWindow("navigator:browser");
+    if (recentWindow) {
+      // Use an existing browser window
+      recentWindow.delayedOpenTab(url, null, null, null, null);
+    }
+    else {
+      // No browser windows are open, so open a new one.
+      window.open(url);
+    }
+  }
+}
