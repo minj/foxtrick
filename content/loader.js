@@ -39,6 +39,7 @@ var scripts = [
     'matches/repositionedplayers.js',
     'matches/advancedStarsCounter.js',
     'matches/matchincome.js',
+    'matches/promotion.js',
     'presentation/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/mediantransferprice.js',
