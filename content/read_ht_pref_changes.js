@@ -56,10 +56,10 @@ var FoxtrickReadHtPrefs = {
 			this.codes['34']='gr';
 			this.codes['40']='he_IL';
 			this.codes['111']='lb_LU';
+			this.codes['85']='sq';
 	
 			// follwoing don't have an own locale file yet
 	/*
-	<option value="85">Albanian</option>
 	<option value="113">Furlan</option>
 	<option value="90">Georgian</option>
 	<option value="86">Kyrgyz</option>
@@ -182,32 +182,12 @@ var FoxtrickMyHT = {
 				alertdiv.innerHTML = "<h2 style='background-color:#EFEFFF; text-align:center !important; color:#2F31FF !important; font-size:1.1em; '>FoxTrick "+curVersion+"</h2>";
 				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
 				
-				var selectbox = doc.createElement("select"); 
+				var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
 				selectbox.setAttribute("id","ft_ownselectboxID");
 				FoxtrickMyHT.VersionBox_Select.doc = doc;
 				selectbox.addEventListener('change',FoxtrickMyHT.VersionBox_Select,false);
-				
-				var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");				
-				var versions = Foxtrick.XML_evaluate(xmlresponse, "hattrickversions/version", "name", "code");
-				
-				var indexToSelect=0;
-				for (var i = 0; i < versions.length; i++) {
-					var label = versions[i][0];
-        			var value = versions[i][1]; 
-					
-					var option = doc.createElement("option");
-					option.setAttribute("value",value);
-					option.innerHTML=label;
-					selectbox.appendChild(option);	
-			
-					if (oldVersion==value) 
-						indexToSelect=i; 
-				}
-				selectbox.selectedIndex=indexToSelect;
-
 				alertdiv.appendChild(selectbox);
-				
-						
+										
 				var table=doc.createElement('table');		
 				alertdiv.appendChild(table);
 				var tr=doc.createElement('tr');

@@ -1196,4 +1196,32 @@
         </levels>
     </language> 	
 
+    <language name="sq" desc="Albanian">
+        <ratingSubLevels>
+            <sublevel text="(Sh. ulët)" value="0.0" />
+            <sublevel text="(Ulët)" value="0.25"  />
+            <sublevel text="(Lartë)" value="0.50"  />
+            <sublevel text="(Sh. lartë)" value="0.75"  />
+        </ratingSubLevels>	
+        <repositioning>
+            <reposition type="midfielder" value="Mesfushor Tjetër Qëndre" />
+            <reposition type="centraldefender" value="Mbrojtës Tjetër Qëndre" />
+            <reposition type="forward" value="Sulmues Tjetër" />
+            <reposition type="normal" value="Normal" />
+            <reposition type="offensive" value="I avancuar" />
+            <reposition type="defensive" value="I tërhequr" />
+            <reposition type="towardsmiddle" value="Drejt Qëndrës" />
+            <reposition type="towardswing" value="Drejt Krahut" />
+        </repositioning>
+        <tactics>
+            <tactic type="normal" value="Normal" />
+            <tactic type="pressing" value="Presing" />
+            <tactic type="ca" value="Kundër sulmet" />
+            <tactic type="aow" value="Sulmo nga krahët" />
+            <tactic type="aim" value="Sulmo në qëndër" />
+            <tactic type="creatively" value="Lojë me fantazi" />
+            <tactic type="longshots" value="Goditje nga distanca" />
+        </tactics>
+    </language>	
+
 </hattricklanguages>
