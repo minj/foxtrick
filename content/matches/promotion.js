@@ -6,7 +6,7 @@
 
 var FoxtrickPromotionTable = {
 
-    MODULE_NAME : "GoaldifferenceToPropotion",
+    MODULE_NAME : "GoaldifferenceToPromotion",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.0",	
