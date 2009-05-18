@@ -232,9 +232,9 @@ var FoxtrickForumPreview = {
             "<a href=\"\/World\/Series\/YouthSeries\.aspx\?YouthLeagueId\=$1\" target=\"\_blank\">($1)</a>",
           "<a href=\"$1\" target=\"\_blank\">($1)</a>",
 
-          "<span class='quote'>$1</span>",
-          "<span class='quote'><b>$1&nbsp;wrote:</b><br>$2</span>",
-          "<span class='quote'><b>$1&nbsp;wrote:</b><br>$2</span>",
+          "<div class='quote'>$1</div>",
+          "<div class='quote'><b>$1&nbsp;wrote:</b><br>$2</div>",
+          "<div class='quote'><b>$1&nbsp;wrote:</b><br>$2</div>",
           "<b>$1</b>",
           "<u>$1</u>",
           "<i>$1</i>",
