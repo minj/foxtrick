@@ -1557,7 +1557,7 @@ stats["tppc"] =  {
 stats["ht_scouting"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "scouting/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "scouting/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1576,7 +1576,7 @@ stats["ht_scouting"] =  {
 stats["ht_scouting_nigeria"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "nigeria/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "nigeria/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1593,7 +1593,7 @@ stats["ht_scouting_nigeria"] =  {
 stats["ht_scouting_alyaman"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "alyaman/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "alyaman/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1610,7 +1610,7 @@ stats["ht_scouting_alyaman"] =  {
 stats["ht_scouting_bahrain"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "bahrain/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "bahrain/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1628,7 +1628,7 @@ stats["ht_scouting_bahrain"] =  {
 stats["ht_scouting_taiwan"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "taiwan/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "taiwan/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1645,7 +1645,7 @@ stats["ht_scouting_taiwan"] =  {
 stats["ht_scouting_TrinidadTobago"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "trinidadandtobago/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "trinidadandtobago/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1662,7 +1662,7 @@ stats["ht_scouting_TrinidadTobago"] =  {
 stats["ht_scouting_malaysia"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "malaysia/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "malaysia/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1679,7 +1679,7 @@ stats["ht_scouting_malaysia"] =  {
 stats["ht_scouting_kyrgyzstan"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "kyrgyzstan/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "kyrgyzstan/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1697,7 +1697,7 @@ stats["ht_scouting_kyrgyzstan"] =  {
 stats["ht_scouting_saudiarabia"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "saudiarabia/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "saudiarabia/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1714,7 +1714,7 @@ stats["ht_scouting_saudiarabia"] =  {
 stats["ht_scouting_brunei"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "brunei/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "brunei/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1731,7 +1731,7 @@ stats["ht_scouting_brunei"] =  {
 stats["ht_scouting_malta"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "malta/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "malta/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1749,7 +1749,7 @@ stats["ht_scouting_malta"] =  {
 stats["ht_scouting_letzebuerg"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "letzebuerg/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "letzebuerg/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1766,7 +1766,7 @@ stats["ht_scouting_letzebuerg"] =  {
 stats["ht_scouting_almaghrib"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "almaghrib/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "almaghrib/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1784,7 +1784,7 @@ stats["ht_scouting_almaghrib"] =  {
 stats["ht_scouting_alkuwayt"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "alkuwayt/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "alkuwayt/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1801,7 +1801,7 @@ stats["ht_scouting_alkuwayt"] =  {
 stats["ht_scouting_andorra"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "andorra/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "andorra/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1818,7 +1818,7 @@ stats["ht_scouting_andorra"] =  {
 stats["ht_scouting_armenia"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "hayastan/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "hayastan/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1835,7 +1835,7 @@ stats["ht_scouting_armenia"] =  {
 stats["ht_scouting_eesti"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "eesti/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "eesti/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1853,7 +1853,7 @@ stats["ht_scouting_eesti"] =  {
 stats["ht_scouting_liechtenstein"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "liechtenstein/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "liechtenstein/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1870,7 +1870,7 @@ stats["ht_scouting_liechtenstein"] =  {
 stats["ht_scouting_kampuchea"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "scouting/kampuchea/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "scouting/kampuchea/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1887,7 +1887,7 @@ stats["ht_scouting_kampuchea"] =  {
 stats["ht_scouting_alurdun"] =  { 
   "url" : "http://www.ht-deutschland.de/",
  
-  "trackerplayerlink" : { "path"       : "alurdun/index.php?language=2",
+  "trackerplayerlink" : { "path"       : "alurdun/scouting.php?language=2",
                    "filters"    : ["nationality"], 
                    "params"     : []
 				}, 
@@ -1905,15 +1905,15 @@ stats["ht_scouting_alurdun"] =  {
 // ------------------------- nattrick tracker --------------------------------
 
 stats["canadatracker"] = { 
-  "url" : "http://nattrick.ca",
+  "url" : "http://nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Canada U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -1922,15 +1922,15 @@ stats["canadatracker"] = {
 };
 
 stats["suomitracker"] = { 
-  "url" : "http://suomi.nattrick.ca",
+  "url" : "http://suomi.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Suomi U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -1940,15 +1940,15 @@ stats["suomitracker"] = {
 
 
 stats["oceaniatracker"] = { 
-  "url" : "http://oceania.nattrick.ca",
+  "url" : "http://oceania.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Oceania U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -1958,11 +1958,11 @@ stats["oceaniatracker"] = {
 
 
 stats["kenyatracker"] = { 
-  "url" : "http://kenya.nattrick.ca",
+  "url" : "http://kenya.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Kenya U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
@@ -1975,15 +1975,15 @@ stats["kenyatracker"] = {
 };
 
 stats["indiatracker"] = { 
-  "url" : "http://india.nattrick.ca",
+  "url" : "http://india.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "India U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -1992,15 +1992,15 @@ stats["indiatracker"] = {
 };
 
 stats["panamatracker"] = { 
-  "url" : "http://panama.nattrick.ca",
+  "url" : "http://panama.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Panama U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -2010,15 +2010,15 @@ stats["panamatracker"] = {
 
 
 stats["usatracker"] = { 
-  "url" : "http://usa.nattrick.ca",
+  "url" : "http://usa.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "USA U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -2028,15 +2028,15 @@ stats["usatracker"] = {
 
 
 stats["irantracker"] = { 
-  "url" : "http://iran.nattrick.ca",
+  "url" : "http://iran.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Iran U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -2045,15 +2045,15 @@ stats["irantracker"] = {
 };
 
 stats["lebanontracker"] = { 
-  "url" : "http://lebanon.nattrick.ca",
+  "url" : "http://lebanon.nattrick.ca/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Lebanon U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "list.php",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "update.php",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
@@ -2579,15 +2579,15 @@ stats["turkeytracker"] = {
 
 
 stats["southafricatracker"] = { 
-  "url" : "http://www.gooey.co.za/zahtdb",
+  "url" : "http://www.gooey.co.za/zahtdb/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "South Africa U-20/NT DB",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "latestNews.aspx",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "",
+  "trackerplayerlink" : { "path"       : "submitPlayerHT.aspx",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
