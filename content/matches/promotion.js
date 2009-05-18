@@ -9,7 +9,7 @@ var FoxtrickPromotionTable = {
     MODULE_NAME : "GoaldifferenceToPromotion",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.0",	
+	NEW_AFTER_VERSION: "0.4.8",	
 	SCREENSHOT:"",
 	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"adds goal difference to promotion table",    
