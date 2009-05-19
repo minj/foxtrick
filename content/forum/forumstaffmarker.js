@@ -20,8 +20,10 @@ var FoxtrickForumStaffMarker = {
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'", //own
                                             "background-color:white; color:black;" //flag
 											),
-	OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own", "flag"),
-
+	// OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own", "flag"),
+    
+    OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own"),
+    
     _DOC : {},
 
 	htreg : /^HT-/i,
@@ -304,7 +306,8 @@ var FoxtrickForumStaffMarker = {
 			var do_editor = Foxtrick.isModuleFeatureEnabled( this, "editor") ;
 			var do_foxtrick_dev = Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") ;
 			var do_own = Foxtrick.isModuleFeatureEnabled( this, "own");
-            var do_flag = Foxtrick.isModuleFeatureEnabled( this, "flag");
+            
+            var do_flag = false; //Foxtrick.isModuleFeatureEnabled( this, "flag");
             
             var new_style = '';
             // dump('forumSELECT => select\n');
@@ -340,6 +343,7 @@ var FoxtrickForumStaffMarker = {
 						if (do_own && this.ulist[uid]!=null) { 
 							new_style = this.ulist[uid]; 
 						}
+                        
                         if (do_flag) {
                             new_style += 'background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif"); background-position:2px 50%; background-repeat:no-repeat; padding-left:24px;';
                         }
