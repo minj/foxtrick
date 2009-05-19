@@ -9,6 +9,8 @@ var FoxtrickForumStaffMarker = {
     MODULE_NAME : "ForumStaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.8.1",
+	LASTEST_CHANGE:"added flags dumdidum",
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-color:red;", //HT
 											"background-color:orange; color:black;", //GM

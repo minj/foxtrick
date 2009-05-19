@@ -16,6 +16,7 @@ var FoxtrickPreferencesDialog = {
 
 		this.initCaptionsAndLabels( document );
         this.initMainPref( document );
+        this.initAboutPref( document );
 
 		for each ( cat in Foxtrick.moduleCategories ) {
             this._fillModulesList( document, cat );
@@ -381,7 +382,7 @@ var FoxtrickPreferencesDialog = {
 		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
 		groupbox.appendChild(caption);
 				
-			// CleanupBranch
+		// CleanupBranch
 		var hbox= doc.createElement("hbox");
 		groupbox.appendChild(hbox);		
 		var button= doc.createElement("button");
@@ -497,10 +498,92 @@ var FoxtrickPreferencesDialog = {
 		var spacer = doc.createElement('spacer');
 		spacer.setAttribute('flex',0);
 		spacer.setAttribute('height',20);
-				
 		modules_list.appendChild( spacer );
 	},
 
+	initAboutPref : function( doc ) {
+
+		var modules_list = doc.getElementById( "about_list" );
+		modules_list.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
+
+		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");				
+
+		var vbox= doc.createElement("vbox");
+		var label= doc.createElement("label");
+		label.setAttribute("value",Foxtrickl10n.getString('foxtrick.prefs.'+Foxtrick.XML_evaluate(xmlresponse, "about/links", "value")[0]));
+		label.setAttribute("style","font-weight: bold;");
+		vbox.appendChild(label);
+		var links = Foxtrick.XML_evaluate(xmlresponse, "about/links/link", "title", "value");
+		for (var i=0;i<links.length;++i) {
+			var label= doc.createElement("label");
+			label.setAttribute("value",Foxtrickl10n.getString('foxtrick.prefs.'+links[i][0])+': '+links[i][1]);
+			label.setAttribute("style","text-decoration: underline; cursor: pointer; color: blue;");
+			label.setAttribute("tooltiptext",links[i][1]);
+			label.setAttribute("onclick","window.opener.open('"+links[i][1]+"');");
+			label.setAttribute("flex","0");
+			vbox.appendChild(label);
+		}		
+		modules_list.appendChild(vbox);        
+
+		var vbox= doc.createElement("vbox");
+		vbox.setAttribute("style","display:run-in");
+
+		// head_developer
+		var label= doc.createElement("label");
+		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/head_developer", "value")[0]);
+		label.setAttribute("style","font-weight: bold;");
+		vbox.appendChild(label);
+		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/head_developer/label", "value");		
+		for (var i=0;i<labels.length;++i) {			
+			var label= doc.createElement("label");
+			label.setAttribute("value",labels[i]);
+			vbox.appendChild(label);		
+		}
+		modules_list.appendChild(vbox);
+
+		// project_owners
+		var label= doc.createElement("label");
+		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/project_owners", "value")[0]);
+		label.setAttribute("style","font-weight: bold;");
+		vbox.appendChild(label);
+		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/label", "value");		
+		for (var i=0;i<labels.length;++i) {			
+			var label= doc.createElement("label");
+			label.setAttribute("value",labels[i]);
+			vbox.appendChild(label);		
+		}
+		modules_list.appendChild(vbox);
+		var spacer = doc.createElement('spacer');
+		spacer.setAttribute('flex',1);
+		spacer.setAttribute('height','10px');
+		modules_list.appendChild( spacer );
+
+		// developers
+		var label= doc.createElement("label");
+		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/developers", "value")[0]);
+		label.setAttribute("style","font-weight: bold;");
+		vbox.appendChild(label);
+		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/developers/label", "value");		
+		for (var i=0;i<labels.length;++i) {			
+			var label= doc.createElement("label");
+			label.setAttribute("value",labels[i]);
+			vbox.appendChild(label);		
+		}
+		modules_list.appendChild(vbox);
+
+		// translations
+		var label= doc.createElement("label");
+		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/translations", "value")[0]);
+		label.setAttribute("style","font-weight: bold;");
+		vbox.appendChild(label);
+		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/translations/label", "value");		
+		for (var i=0;i<labels.length;++i) {			
+			var label= doc.createElement("label");
+			label.setAttribute("value",labels[i]);
+			vbox.appendChild(label);		
+		}
+		modules_list.appendChild(vbox);
+	},
 
     onDialogAccept : function() {
 	try {
@@ -1105,19 +1188,19 @@ FoxtrickPreferencesDialog.isPrefSetting = function ( setting) {
 			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
 }
 				
-FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
-    if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
+FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ev ) {
+    if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
+	if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
-			//var prefObj = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-            //var branch = prefObj.getBranch("extensions.foxtrick.");
-            //branch.deleteBranch("prefs");
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
 				if (FoxtrickPreferencesDialog.isPrefSetting(array[i])) {
 					FoxtrickPrefs.deleteValue(array[i]);
 				}
 			}
-			close();
+			FoxtrickMain.init();
+            if (!ev) close();
+			else document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
 			dump(e);
@@ -1127,8 +1210,9 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ) {
 }
 
 
-FoxtrickPreferencesDialog.disableAll = function ( ) {
-    if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
+FoxtrickPreferencesDialog.disableAll = function (ev ) {
+    if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
+	if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
         try {
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
@@ -1137,7 +1221,8 @@ FoxtrickPreferencesDialog.disableAll = function ( ) {
 				}
 			}
 			FoxtrickMain.init();
-            close();
+            if (!ev) close();
+			else document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
 			dump(e);
@@ -1146,8 +1231,9 @@ FoxtrickPreferencesDialog.disableAll = function ( ) {
 	return true;
 }
 
-FoxtrickPreferencesDialog.SavePrefs = function () {
+FoxtrickPreferencesDialog.SavePrefs = function (ev) {
         try {
+			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
 			var locpath=Foxtrick.selectFileSave(window);
 			if (locpath==null) {return;}
 			var File = Components.classes["@mozilla.org/file/local;1"].
@@ -1177,7 +1263,7 @@ FoxtrickPreferencesDialog.SavePrefs = function () {
 			os.close();
 			foStream.close();
 
-			close();
+			if(!ev) close();
 		}
 		catch (e) {
 			Foxtrick.alert(e);
@@ -1185,9 +1271,10 @@ FoxtrickPreferencesDialog.SavePrefs = function () {
     return true;
 }
 
-FoxtrickPreferencesDialog.LoadPrefs = function () {
+FoxtrickPreferencesDialog.LoadPrefs = function (ev) {
         try {
 			// nsifile
+			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
 			var locpath=Foxtrick.selectFile(window);
 			if (locpath==null) return;
 			var File = Components.classes["@mozilla.org/file/local;1"].
@@ -1218,7 +1305,9 @@ FoxtrickPreferencesDialog.LoadPrefs = function () {
 
 			fis.close();
 			FoxtrickMain.init();            
-			close();
+			if (!ev) close();
+			else document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+		
 		}
 		catch (e) {
 			Foxtrick.alert(e);

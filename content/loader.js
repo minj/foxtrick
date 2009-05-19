@@ -15,6 +15,8 @@ var scripts = [
     'helper.js',
     'redirections.js',
 	'read_ht_pref_changes.js',
+    'preferences-dialog.js',
+    'preferences-dialog-html.js',
 
     // individual modules
     'forum/forumchangeposts_modules.js',

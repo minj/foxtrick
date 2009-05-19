@@ -1488,14 +1488,16 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 		for (var i = 0; i < nodes.snapshotLength; i++) {
 			node = nodes.snapshotItem(i);
 			var label = node.getAttribute(labelstr);
-			var value = node.getAttribute(valuestr);
+			var value = null;
 			var value2=null;
 			var value3=null;
 			
+			if (valuestr) value = node.getAttribute(valuestr);
 			if (value2str) value2 = node.getAttribute(value2str);
 			if (value3str) value3 = node.getAttribute(value3str);
 			
-			result.push([label,value,value2,value3]);  
+			if (valuestr) result.push([label,value,value2,value3]);  
+			else result.push(label);
 		}
 	}
 	return result;

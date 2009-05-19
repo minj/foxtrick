@@ -110,6 +110,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickShortPAs,
 					 FoxtrickCopyPosting,
 					 FoxtrickMoveManagerOnline,
-                     FoxtrickPromotionTable
-					 //FoxtrickForumSearch
+					 //FoxtrickForumSearch,
+					 FoxtrickPrefsDialogHTML,
+                     FoxtrickPromotionTable,
 					];

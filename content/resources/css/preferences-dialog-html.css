@@ -1,0 +1,19 @@
+#foxtrick_prefs {border: 1px solid rgb(47, 49, 255); margin-top: 20px; margin-bottom: 20px; background-color: rgb(239, 239, 255);} 		
+		
+.ft_pref_head  { margin-top:3px; margin-right:3px; display:inline-block;}
+
+.ft_pref_head_active { background-color:red !important;}
+
+#foxtrick_prefsave { display:inline;  margin-left:10px;}
+
+#foxtrick_prefcancel {display:inline;  margin-left:10px;}
+
+.ft_pref_modul { border: 1px solid rgb(47, 49, 255); margin: 5px 5px 5px 5px;  padding: 5px 5px 5px 5px;  }
+
+.ft_pref_checkbox_group { margin-left:10px;}
+
+.ft_pref_radio_group { margin-left:10px;}
+
+.ft_pref_input_option_text {width:100%;}
+
+.checkbox_label {display:inline;}

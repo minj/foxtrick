@@ -167,18 +167,12 @@ var FoxtrickMyHT = {
 				FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction2);
 	},
 	
-	ShowAlert :function(doc, oldVersion) {
-		try {  
-				var mainBody = doc.getElementById('mainBody');	
-				var oldAlert=doc.getElementById('idFoxtrickMyHT');
-				if (oldAlert) mainBody.removeChild(oldAlert);
 				
+	ShowAlertCommon :function(doc, oldVersion) {
+	
+				var alertdiv = doc.getElementById('FoxtrickMyHTCommon');
 				var curVersion=FoxtrickPrefs.getString("curVersion"); 
-				
-				var alertdiv=doc.createElement('div');
-				alertdiv.setAttribute('id','idFoxtrickMyHT');
-				alertdiv.setAttribute('class','alert');
-				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
+
 				alertdiv.innerHTML = "<h2 style='background-color:#EFEFFF; text-align:center !important; color:#2F31FF !important; font-size:1.1em; '>FoxTrick "+curVersion+"</h2>";
 				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
 				
@@ -306,6 +300,26 @@ var FoxtrickMyHT = {
 				a.target="_blank";
 				p.appendChild(a);				
 				alertdiv.appendChild(p);
+				
+	},
+	
+	ShowAlert :function(doc, oldVersion) {
+		try {  
+				var mainBody = doc.getElementById('mainBody');	
+				var oldAlert=doc.getElementById('idFoxtrickMyHT');
+				if (oldAlert) mainBody.removeChild(oldAlert);
+								
+				var alertdiv=doc.createElement('div');
+				alertdiv.setAttribute('id','idFoxtrickMyHT');
+				alertdiv.setAttribute('class','alert');
+				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
+				mainBody.insertBefore(alertdiv,mainBody.firstChild);
+		
+				var commondiv=doc.createElement('div');
+				commondiv.setAttribute('id','FoxtrickMyHTCommon');
+				alertdiv.appendChild(commondiv);				
+				
+				this.ShowAlertCommon(doc, oldVersion);
 
 				var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtScreenshotList")));				
@@ -331,7 +345,6 @@ var FoxtrickMyHT = {
 				p.appendChild(a);				
 				alertdiv.appendChild(p);
 				
-				mainBody.insertBefore(alertdiv,mainBody.firstChild);
 		} catch(e){dump('MyHtShowAlert '+e+'\n');}
 	},
 	
@@ -366,7 +379,7 @@ var FoxtrickMyHT = {
 			var oldVersion = selectbox.getElementsByTagName("option")[selectbox.selectedIndex].value; 
 						
 			FoxtrickMyHT.getNewModules(FoxtrickPrefs.getString("curVersion"),oldVersion);			
-			FoxtrickMyHT.ShowAlert(doc, oldVersion);
+			FoxtrickMyHT.ShowAlertCommon(doc, oldVersion);
 			
 		} catch(e) {dump('FoxtrickMyHT.VersionBox_Select'+e+'\n');}
 	},
