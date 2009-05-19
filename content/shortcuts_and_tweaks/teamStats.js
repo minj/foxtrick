@@ -9,10 +9,8 @@ var FTTeamStats= {
     MODULE_NAME : "FTTeamStats",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.6.2",
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Highlight youth players over 19 yrs. Show number of youth players <19 and >=19 in teamstats box",
+	NEW_AFTER_VERSION: "0.4.8",
+	LASTEST_CHANGE:"Fix for former players",
 	latestMatch:0,
 	top11star:0,
 
