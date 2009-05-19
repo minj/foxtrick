@@ -605,12 +605,12 @@ function FTTeamStats_Filter(ev){
 				//dump(' '+ev.target.value+' '+allDivs[i].getElementsByTagName('a')[0].innerHTML+'\n');
 				if (!hide || ev.target.value=='Pictures') ++count;
 			}
-			else if (allDivs[i].className=='borderSeparator' || allDivs[i].className=='youthnotes') { //dump('border hide:'+hide+'\n');
+			else if (allDivs[i].className=='borderSeparator' || allDivs[i].className=='separator' || allDivs[i].className=='youthnotes') { //dump('border hide:'+hide+'\n');
 				if (hide==true) allDivs[i].setAttribute('style','display:none !important;');
 				else allDivs[i].setAttribute('style','');
 				
 			}			
-			if (allDivs[i].className=='borderSeparator') lastborderSeparator=allDivs[i];
+			if (allDivs[i].className=='borderSeparator' || allDivs[i].className=='separator') lastborderSeparator=allDivs[i];
 		}
 		if (ev.target.value == 'Pictures') lastborderSeparator.style.display='';
 		if (last_category) { 
