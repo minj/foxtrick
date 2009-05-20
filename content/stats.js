@@ -2651,13 +2651,13 @@ stats["bangladeshtracker"] = {
 
 // global tracker
 stats["u20_nt_tracker"] = { 
-  "url" : "http://www.oribi.org/ant_db/index.php",
+  "url" : "http://www.ant-db.net/index.php",
   "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
   "title" : "Global U20 & NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "",
+  "trackernationalteamlink" : { "path"       : "?action=select_country",
                          "filters"    : ["countryid"], 
-                         "params"     :  []
+                         "params"     :  { "countryid" : "id" }
                        },
   "trackerplayerlink" : { "path"       : "?action=player_submit&cat=1",
                    "filters"    : ["nationality"], 

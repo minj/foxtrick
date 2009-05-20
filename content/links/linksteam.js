@@ -67,9 +67,9 @@ var FoxtrickLinksTeam = {
 	},
 	
 	isTeamPage : function(doc) {
-        var site=doc.location.href;
-        var remain=site.substr(site.search(/Club\//i)+5);
-    return (remain=="" || remain.search(/TeamID=/i)==1);
+        var site=doc.location.href; 
+        var remain=site.substr(site.search(/Club\//i)+5);  //dump(remain+' '+remain.search(/TeamID=/i)+'\n');
+    return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
 	},
 	
 	gatherLinks : function( thisdiv, doc ) {
