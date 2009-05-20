@@ -81,15 +81,13 @@ var FoxtrickPrefsDialogHTML = {
 
 		var prefdiv=doc.createElement('div');	
 		prefdiv.setAttribute('id','foxtrick_prefs');
+		prefdiv.setAttribute('style','display:none'); 
 		mainBody.appendChild(prefdiv);
 		
-		// tab heads
-		var preftabheaddiv=doc.createElement('div');	
-		preftabheaddiv.setAttribute('id','foxtrick_prefs_head');
-		prefdiv.appendChild(preftabheaddiv);
-				
+		
 		// save+cancel		
 		var prefsavediv=doc.createElement('div');	
+		prefsavediv.setAttribute('id','foxtrick_prefs_save');
 		prefdiv.appendChild(prefsavediv);
 		
 		var prefsave=doc.createElement('input');	
@@ -100,19 +98,27 @@ var FoxtrickPrefsDialogHTML = {
 		prefsave.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
 		prefsavediv.appendChild(prefsave);
 		
-		var prefcancel=doc.createElement('input');	
+		/*var prefcancel=doc.createElement('input');	
 		prefcancel.setAttribute('id','foxtrick_prefcancel'); 
 		prefcancel.setAttribute('type','button'); 
 		prefcancel.setAttribute('value',Foxtrickl10n.getString("foxtrick.prefs.buttonCancel")); 
 		prefcancel.addEventListener('click',FoxtrickPrefsDialogHTML.cancel,false);
-		prefsavediv.appendChild(prefcancel);
+		prefsavediv.appendChild(prefcancel);*/
+
+		var prefdiv_body=doc.createElement('div');	
+		prefdiv_body.setAttribute('id','foxtrick_prefs_body');
+		prefdiv.appendChild(prefdiv_body);
 		
+		// tab heads
+		var preftabheaddiv=doc.createElement('div');	
+		preftabheaddiv.setAttribute('id','foxtrick_prefs_head');
+		prefdiv_body.appendChild(preftabheaddiv);
+						
 		
 		// tabs
 		var preftabdiv=doc.createElement('div');	
 		preftabdiv.setAttribute('id','foxtrick_preftabs'); 
-		preftabdiv.setAttribute('style','display:none;'); 
-		prefdiv.appendChild(preftabdiv);
+		prefdiv_body.appendChild(preftabdiv);
 
 		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.MAIN) ;
 		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) ;
@@ -124,14 +130,14 @@ var FoxtrickPrefsDialogHTML = {
 		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.HELP) ;		
 		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.ABOUT) ;		
 
-		preftabdiv.setAttribute('style','display:inline'); 
+		prefdiv.setAttribute('style','display:inline'); 
 		
 		try {
 			if (doc.location.href.search(/highlight=/i)!=-1) { 
 				var highlight=doc.location.href.match(/highlight=(\w+)/i)[1];
 				dump(highlight+'\n')
 				var elem=doc.getElementById(highlight);
-				elem.parentNode.setAttribute('style','background:red !important;');
+				elem.parentNode.setAttribute('style','background:#7F80FF !important;');
 			}
 		} catch (e){}
 		
