@@ -7,6 +7,8 @@ FoxtrickFlagCollectionToMap = {
 	
     MODULE_NAME : "FlagCollectionToMap",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"Fix for missing countries",
     DEFAULT_ENABLED : true,
 
     init : function() {

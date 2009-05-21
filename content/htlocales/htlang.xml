@@ -1224,4 +1224,32 @@
         </tactics>
     </language>	
 
+	    <language name="mk" desc="Macedonian">
+        <ratingSubLevels>
+            <sublevel text="(Многу ниско)" value="0.0" />
+            <sublevel text="(Ниско)" value="0.25"  />
+            <sublevel text="(Високо)" value="0.50"  />
+            <sublevel text="(Многу високо)" value="0.75"  />
+        </ratingSubLevels>	
+        <repositioning>
+            <reposition type="midfielder" value="Додатен Играч во Средина" />
+            <reposition type="centraldefender" value="Додатен Одбрамбен" />
+            <reposition type="forward" value="Додатен Напаѓач" />
+            <reposition type="normal" value="Нормално" />
+            <reposition type="offensive" value="Офанзивно" />
+            <reposition type="defensive" value="Дефанзивно" />
+            <reposition type="towardsmiddle" value="Према Средина" />
+            <reposition type="towardswing" value="Према Крило" />
+        </repositioning>
+        <tactics>
+            <tactic type="normal" value="Нормално" />
+            <tactic type="pressing" value="Пресинг" />
+            <tactic type="ca" value="Контра напад" />
+            <tactic type="aow" value="Напад преку крила" />
+            <tactic type="aim" value="Напад по средина" />
+            <tactic type="creatively" value="Играј креативно" />
+            <tactic type="longshots" value="Удари од далечина" />
+        </tactics>
+    </language>	
+
 </hattricklanguages>
