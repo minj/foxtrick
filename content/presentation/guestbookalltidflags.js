@@ -12,7 +12,10 @@ var FoxtrickGuestbookAlltidFlags = {
 	MODULE_NAME : "GuestbookAlltidFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
-
+	NEW_AFTER_VERSION: "0.4.8.1",
+	LASTEST_CHANGE:"Option to hide answer-to links",
+	OPTIONS : new Array("AddAlltidFlags","HideAnswerToLinks"),
+	
 	init : function() {
 		Foxtrick.registerPageHandler( 'guestbook',
 			FoxtrickGuestbookAlltidFlags );
@@ -20,6 +23,10 @@ var FoxtrickGuestbookAlltidFlags = {
 
 	run : function( page, doc ) {
 	try{	//dump('in\n');
+		var AddAlltidFlags = Foxtrick.isModuleFeatureEnabled( this, "AddAlltidFlags");
+		var HideAnswerToLinks = Foxtrick.isModuleFeatureEnabled( this, "HideAnswerToLinks");
+;		
+		
 		var flagspage = "http://flags.alltidhattrick.org/userflags/";
 		var linkpage = "http://stats.alltidhattrick.org/user/";
 		var style ="vertical-align: middle; background-color:#849D84;";
@@ -29,7 +36,7 @@ var FoxtrickGuestbookAlltidFlags = {
 		var linksArray = outerdiv.getElementsByTagName('a');
 				for (var j=0; j<linksArray.length-1; j++) {
 					link = linksArray[j]; //dump(link.href+'\n');
-					if (link.href.search(/userId=/i) > -1 && linksArray[j+1].href.search(/Supporter/i)!=-1 ) { 
+					if (AddAlltidFlags && link.href.search(/userId=/i) > -1 && linksArray[j+1].href.search(/Supporter/i)!=-1 ) { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+count;
@@ -48,9 +55,11 @@ var FoxtrickGuestbookAlltidFlags = {
 							link.parentNode.insertBefore(mySpan, target);
 						}
 						count++;						
-					  } 
+					  }
+					if (HideAnswerToLinks && link.href.search(/Guestbook.aspx/i)!=-1) {
+						link.parentNode.style.display='none';
 					}				
-				
+				}
 		} catch (e) {dump('FoxtrickGuestbookAlltidFlags->'+e+'\n');}
 	},
 	

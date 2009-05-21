@@ -8,8 +8,8 @@ FoxtrickFixcssProblems = {
     MODULE_NAME : "FixcssProblems",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.7",
-	LASTEST_CHANGE:"Option to add vertical lines to league tables added",	
+	NEW_AFTER_VERSION: "0.4.8.1",
+	LASTEST_CHANGE:"Option to change guestbook layout",	
 	   
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
@@ -19,7 +19,8 @@ FoxtrickFixcssProblems = {
                                     "RTL_Fixes",
                                     "ForumScrollBarFix",
                                     "Forum_ThreadlistSpace",
-									"League_Table"
+									"League_Table",
+									"Guestbook"
                                 ),
                                
 		OPTIONS_CSS: new Array (
@@ -31,7 +32,8 @@ FoxtrickFixcssProblems = {
                                 "",
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
                                 "",
-								"chrome://foxtrick/content/resources/css/fixes/League_Table.css"
+								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
+                                "chrome://foxtrick/content/resources/css/fixes/Guestbook.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -42,7 +44,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
                                 "",
-								"chrome://foxtrick/content/resources/css/fixes/League_Table.css"
+								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
+                                "chrome://foxtrick/content/resources/css/fixes/Guestbook.css"
                                 ),
                                
         init : function() {
