@@ -70,6 +70,8 @@ FoxtrickFlagCollectionToMap = {
         var urlMEast = this.getMapUrl('middle_east', countryCodes, colouringOrder);
         var urlSAmerica = this.getMapUrl('south_america', countryCodes, colouringOrder);
         var urlWorld = this.getMapUrl('world', countryCodes, colouringOrder);
+		var fixWorld = this.getMapFixWorld(countryIds);
+		var fixEurope = this.getMapFixEurope(countryIds);
     
         var mapDiv = document.createElement("div");
         mapDiv.id = 'foxtrick-map' + mapId;
@@ -91,7 +93,7 @@ FoxtrickFlagCollectionToMap = {
         this.insertBeforeOrAppend(parent, document.createElement('br'), insertBefore);
         this.insertBeforeOrAppend(parent, openMapA, insertBefore);
         
-        document.getElementById('foxtrick-map'+mapId).innerHTML = this.getMapHtml(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId);
+        document.getElementById('foxtrick-map'+mapId).innerHTML = this.getMapHtml(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId, fixWorld, fixEurope);
     },
     
     setupCountryCodes : function() {
@@ -265,7 +267,11 @@ FoxtrickFlagCollectionToMap = {
         // uk is divided to 4 parts in hattrick but google charts only support uk as a whole
         // solution: only if user has visited all parts of uk we paint uk on the map.
         // 61 cymru, 2   england, 93  n ireland, 26  scotland
+		// serbia and montenegro is divided to 4 parts in hattrick but google charts only support both as a whole
+        // 57 serbia, 131  Crna Gora
+
         var ukIds = 0;
+        var yuIds = 0;
        
         var cCodesString = '';
         for(var i = 0; i < countryIds.length; i++){
@@ -280,6 +286,15 @@ FoxtrickFlagCollectionToMap = {
                 }
             }
            
+            // yu hack
+            if(countryId == 57 || countryId == 131){
+                yuIds++;
+               
+                if(yuIds == 2) {
+                    cCodesString += 'CS';
+                }
+            }
+
             var countryCode = this.countryCodes['c_'+countryId];                
             if (typeof countryCode != 'undefined') {        
                 cCodesString += countryCode
@@ -288,7 +303,7 @@ FoxtrickFlagCollectionToMap = {
         return cCodesString;
     },
     
-    getMapHtml: function(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId){
+    getMapHtml: function(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId, fixWorld, fixEurope){
         var href = '#';
 		//Get locale name of the continents - Stephan57
         const Africa = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Africa");
@@ -298,13 +313,15 @@ FoxtrickFlagCollectionToMap = {
 		const SAmerica = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.SAmerica");
 		const World = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.World");
 		
-        var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';return false;">' + Africa + '</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';return false;">' + Asia + '</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';return false;">' + Europe + '</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';return false;">' + MEast + '</a>  | ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';return false;">' + SAmerica + '</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';return false;">' + World + '</a><br/>';
+        var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + Africa + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + Asia + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'inline-block\';return false;">' + Europe + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + MEast + '</a>  | ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + SAmerica + '</a> |  '; 
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + World + '</a><br/>';
         mapHtml +=    '<img alt="Map" id="foxtrick-img-map-'+anchorId+'" src="' + urlWorld + '"/>';
+		mapHtml += 	  '<div id="foxtrick-img-map-fix-world-'+anchorId+'">' + fixWorld + '</div>';
+        mapHtml += 	  '<div id="foxtrick-img-map-fix-europe-'+anchorId+'" ' +'style="display:none">' + fixEurope + '</div>';
         return mapHtml;
     },
     
@@ -343,6 +360,88 @@ FoxtrickFlagCollectionToMap = {
             orderString += 'A';
         }
         return orderString;
-    }
+    },
+		
+	getMapFixWorld : function(countryIds) {
 
+        // uk is divided to 4 parts in hattrick but google charts only support uk as a whole
+        // solution: only if user has visited all parts of uk we paint uk on the map.
+        // 61 cymru, 2  england, 93  n ireland, 26  scotland
+        
+		// serbia and montenegro is divided to 4 parts in hattrick but google charts only support both as a whole
+        // 57 serbia, 131  Crna Gora
+        
+        var ukIds = 0;
+        var yuIds = 0;
+       
+        var cImgString = '';
+        for(var i = 0; i < countryIds.length; i++){
+            var countryId = countryIds[i];
+           
+            if(countryId == 61 || countryId == 2 || countryId == 93 || countryId == 26)
+                ukIds++;
+            if(countryId == 57 || countryId == 131)
+                yuIds++;
+		}
+		
+		for(var i = 0; i < countryIds.length; i++){
+            var countryId = countryIds[i];
+            var offset=0;
+            // uk hack
+            if(ukIds != 4) {  //only if not added before
+                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_cy.png"> ';}
+                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_en.png"> ';}
+                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_nie.png"> ';}
+                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_sc.png"> ';}
+			}
+            // yu hack
+			if(yuIds != 2) {
+                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_rs.png"> ';}
+                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_me.png">';}
+            }
+        }
+        return cImgString;
+    },
+
+	
+
+	getMapFixEurope : function(countryIds) {
+        // uk is divided to 4 parts in hattrick but google charts only support uk as a whole
+        // solution: only if user has visited all parts of uk we paint uk on the map.
+        // 61 cymru, 2  england, 93  n ireland, 26  scotland
+        
+		// serbia and montenegro is divided to 4 parts in hattrick but google charts only support both as a whole
+        // 57 serbia, 131  Crna Gora
+        
+        var ukIds = 0;
+        var yuIds = 0;
+       
+        var cImgString = '';
+        for(var i = 0; i < countryIds.length; i++){
+            var countryId = countryIds[i];
+           
+            if(countryId == 61 || countryId == 2 || countryId == 93 || countryId == 26)
+                ukIds++;
+            if(countryId == 57 || countryId == 131)
+                yuIds++;
+		}
+		
+		for(var i = 0; i < countryIds.length; i++){
+            var countryId = countryIds[i];
+            var offset=0;
+            // uk hack
+            if(ukIds != 4) {  //only if not added before
+                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_cy.png"> ';}
+                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_en.png"> ';}
+                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_nie.png"> ';}
+                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_sc.png"> ';}
+			}
+            // yu hack
+			if(yuIds != 2) {
+                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_rs.png"> ';}
+                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_me.png">';}
+            }
+        }
+        return cImgString;
+    },
 };
