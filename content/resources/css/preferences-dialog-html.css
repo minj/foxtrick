@@ -35,6 +35,7 @@ margin-bottom:10px;
 #foxtrick_prefcancel {display:inline;  margin-left:10px;}
 
 .ft_pref_modul { border: 1px solid rgb(47, 49, 255); margin: 5px 5px 5px 5px;  padding: 5px 5px 5px 5px;  }
+.ft_pref_modul:hover {background-color:#F8F8FF; border: 1px solid rgb(0,0,0); }
 
 .ft_pref_checkbox_group { margin-left:10px;}
 
@@ -43,3 +44,9 @@ margin-bottom:10px;
 .ft_pref_input_option_text {width:100%;}
 
 .checkbox_label {display:inline;}
+
+div[id*="a"]>div.ft_pref_group_caption,
+div[id*="o"]>div.ft_pref_group_caption,
+div[id*="i"]>div.ft_pref_group_caption,
+div[id*="e"]>div.ft_pref_group_caption {text-align:center; font-size:1.1em; margin-top:10px; }
+div.ft_pref_group_caption {font-weight:bold;}
