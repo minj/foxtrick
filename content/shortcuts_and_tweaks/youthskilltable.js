@@ -36,7 +36,7 @@ var FoxtrickYouthSkillTable = {
 				table.appendChild(tr);
 				tablediv.appendChild(table);
 				
-				var sn=['Player','GK','VT','PM','WI','PS','SC','SP'];
+				var sn=['Player','GK','DF','PM','WI','PS','SC','SP'];
 				for(var j = 0; j < 8; j++) {
 							var th = doc.createElement('th');
 							th.innerHTML = Foxtrickl10n.getString(sn[j]);
