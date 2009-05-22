@@ -95,9 +95,14 @@ function FoxtrickYouthSkillTableHeaderClick(evt) {
  try{
 	var doc=FoxtrickYouthSkillTableHeaderClick.doc;
 	var tablediv = doc.getElementById('ft_youthskilltable');
-	tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_youthskilltable_unfold');
 	var table = tablediv.getElementsByTagName('table')[0]
-	if (table.style.display=='none') table.style.display='inline';
-	else table.style.display='none';						
+	if (table.style.display=='none')  {
+		table.style.display='inline';
+		tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_youthskilltable_unfold');
+	}
+	else  {
+		table.style.display='none';						
+		tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_youthskilltable_collapsed');
+	}
 } catch(e) {dump(e);}
 }
