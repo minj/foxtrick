@@ -54,3 +54,6 @@ div[id*="o"]>div.ft_pref_group_caption,
 div[id*="i"]>div.ft_pref_group_caption,
 div[id*="e"]>div.ft_pref_group_caption {text-align:center; font-size:1.1em; margin-top:10px; }
 div.ft_pref_group_caption {font-weight:bold;}
+
+#foxtrick_preftabs h2 {margin-left:0px}
+div#FoxtrickMyHTCommon {padding:0px 5px;}
