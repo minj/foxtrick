@@ -113,4 +113,6 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 //FoxtrickForumSearch,
 					 FoxtrickPrefsDialogHTML,
                      FoxtrickPromotionTable,
+					 FoxtrickYouthSkillHideUnknown,
+					 FoxtrickYouthSkillTable,
 					];
