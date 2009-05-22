@@ -2595,6 +2595,25 @@ stats["southafricatracker"] = {
 	"nationalityranges" : [[27,27]], 
 };
 
+stats["norwayU20tracker"] = { 
+  "url" : "http://tracker.sletholt.net/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Norway U-20 DB",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid","LeagueOfficeTypeID"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality","age"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[9,9]] ,
+	"LeagueOfficeTypeIDranges": [[3,4]],
+	"nationalityranges" : [[9,9]],
+	"ageranges" : [[17,19]], 	
+};
+
 
 //  ------------- spreadsheets trackers ----------------
 stats["mongoltracker"] = { 
