@@ -116,8 +116,9 @@ FoxtrickExtendedPlayerDetails = {
                  for ( i=0; i<10; i++ ) { 
                   var part = part.replace('&nbsp;', ''); 
                  }
-             
-            part = Math.floor(parseInt(part.replace('&nbsp;', '').replace(/ /g, '')) / 1.2);
+            
+			var wage = parseInt(part.replace('&nbsp;', '').replace(/ /g, '')); 
+            part =  Math.floor( wage / 1.2);
             part = ReturnFormatedValue (part, '&nbsp;');
 			
 			part_1_save=part_1_save.replace(" "+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
@@ -125,13 +126,16 @@ FoxtrickExtendedPlayerDetails = {
 			part_1_save=part_1_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"));
 			
             if (part != 'NaN') 
-                table_elm_bonus.innerHTML = 
+            {    table_elm_bonus.innerHTML = 
                     part_1_save +//'&nbsp;'+ 
                     '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' + 
                     part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
                     ')</span> ' + 
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
-
+			
+				table_elm_bonus.innerHTML += '<br>'+ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
+             }   
+				
         } catch (e) {
             dump('  PlayerBonus: ' + e + '\n');
         }
