@@ -137,7 +137,7 @@ var FoxtrickPrefsDialogHTML = {
 				var highlight=doc.location.href.match(/highlight=(\w+)/i)[1];
 				dump(highlight+'\n')
 				var elem=doc.getElementById(highlight);
-				elem.parentNode.setAttribute('style','background:#7F80FF !important;');
+				elem.parentNode.setAttribute('class', elem.parentNode.getAttribute('class')+' ft_pref_highlight');
 			}
 		} catch (e){}
 		

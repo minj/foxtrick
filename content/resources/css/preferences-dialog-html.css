@@ -30,6 +30,10 @@ margin-bottom:10px;
 	text-decoration:underline;
 }
 
+.ft_pref_highlight {
+	background-color:#7F80FF !important;
+}
+
 #foxtrick_prefsave { display:inline;  margin-left:10px;}
 
 #foxtrick_prefcancel {display:inline;  margin-left:10px;}
