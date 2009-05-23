@@ -28,6 +28,7 @@ TransferListSearchFilters=http://gliglif.foundationhorizont.org/hattrick/Transfe
 TransferListDeadline=http://gliglif.foundationhorizont.org/hattrick/TransferListDeadline.html
 CopyPlayerAdToClipboard=http://gliglif.foundationhorizont.org/hattrick/CopyPlayerAdToClipboard.html
 ExtendedPlayerDetails=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetails.html
+ExtendedPlayerDetails.perseason=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetails_perseason.html
 FTTeamStats=http://gliglif.foundationhorizont.org/hattrick/FTTeamStats.html
 FoxtrickAlert=http://gliglif.foundationhorizont.org/hattrick/FoxtrickAlert.html
 ConfirmPlayerBid=http://gliglif.foundationhorizont.org/hattrick/ConfirmPlayerBid.html
