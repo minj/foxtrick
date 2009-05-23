@@ -57,7 +57,8 @@ var FoxtrickGuestbookAlltidFlags = {
 						count++;						
 					  }
 					if (HideAnswerToLinks && link.href.search(/Guestbook.aspx/i)!=-1) {
-						link.parentNode.style.display='none';
+						link.style.display='none';
+						link.parentNode.setAttribute('style'"margin-bottom:2px; margin-top:-10px; float: right;");
 					}				
 				}
 		} catch (e) {dump('FoxtrickGuestbookAlltidFlags->'+e+'\n');}
