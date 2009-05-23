@@ -55,4 +55,4 @@ div[id*="i"]>div.ft_pref_group_caption,
 div[id*="e"]>div.ft_pref_group_caption {text-align:center; font-size:1.1em; margin-top:10px; }
 div.ft_pref_group_caption {font-weight:bold;}
 
-#foxtrick_preftabs div#FoxtrickMyHTCommon {margin-left:10px; padding-right:5px;}
+#foxtrick_preftabs div#FoxtrickPrefsDialogHTMLCommon {margin-left:10px; padding-right:5px;}

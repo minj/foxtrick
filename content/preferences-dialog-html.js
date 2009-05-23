@@ -268,8 +268,10 @@ var FoxtrickPrefsDialogHTML = {
 		FoxtrickPrefs.setBool("disableTemporary", doc.getElementById("disableTemporary").checked);
         
 		// other
+		/* obsolete
 		FoxtrickPrefs.setString("oldVersion", doc.getElementById("htOldVersion").value);
-
+		*/
+		
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", doc.getElementById("copyfeedback").checked);
 
@@ -652,6 +654,7 @@ var FoxtrickPrefsDialogHTML = {
         caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll")));
 		td.appendChild(caption1);
 		
+		/* obsolete
 		// old versions myht
 		var groupbox2= doc.createElement("div");
 		groupbox2.setAttribute('class',"ft_pref_modul");
@@ -674,7 +677,7 @@ var FoxtrickPrefsDialogHTML = {
         caption1.appendChild(a);
 		caption1.setAttribute("style","display:inline;");
 		groupbox2.appendChild(caption1);
-
+		*/
 		
 		// disable options
 		var groupbox= doc.createElement("div");
@@ -872,7 +875,10 @@ var FoxtrickPrefsDialogHTML = {
 		else caption1.appendChild(doc.createTextNode(headstr));
 		preftab.appendChild(caption1);
 		
-		var oldVersion = FoxtrickPrefs.getString("oldVersion");
+		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");				
+		var versions = Foxtrick.XML_evaluate(xmlresponse,  "hattrickversions/version", "name", "code");
+		var oldVersion = versions[versions.length-2][1];
+		
 		var curVersion = FoxtrickPrefs.getString("curVersion"); 
 		FoxtrickPrefsDialogHTML.getNewModules(curVersion,oldVersion);	
 		

@@ -127,7 +127,9 @@ var FoxtrickMyHT = {
 			
 			// show foxtrickMyHT
 			if (oldVersion<curVersion) {
-				this.ShowAlert(doc, oldVersion);													
+				this.ShowAlert(doc, oldVersion);
+				// uncomment before next release and then leave it uncommented
+				//FoxtrickPrefs.setString("oldVersion",curVersion);							
 			}
 						
 		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
