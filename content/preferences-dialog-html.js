@@ -468,6 +468,8 @@ var FoxtrickPrefsDialogHTML = {
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
 
+		
+		// skin plugin
 		var groupbox= doc.createElement("div");
 		groupbox.setAttribute('class',"ft_pref_modul");
 		preftab.appendChild(groupbox);
@@ -494,7 +496,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		var checked = FoxtrickPrefs.getBool("module.SkinPlugin.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'SkinPlugin', Foxtrickl10n.getString("foxtrick.prefs.activeSkin"), checked ) 
-		checkdiv.setAttribute("style","display:inline-block;");
+		checkdiv.setAttribute("style","display:inline-block;margin-left:10px; vertical-align:middel;");
 		groupbox.appendChild(checkdiv);
 
 		
@@ -1033,26 +1035,44 @@ var FoxtrickPrefsDialogHTML = {
 		
 	_getCheckBox : function (doc, name, label,  checked , option_text) {
 		var div = doc.createElement( "div" );	
+		div.setAttribute('class','ft_prefs_check_div');
+		var table = doc.createElement( "table" );	
+		div.appendChild( table );
+		var tr = doc.createElement( "tr" );	
+		table.appendChild( tr );
+
+		var td = doc.createElement( "td" );	
+		td.setAttribute('class','ft_prefs_check_td');
+		tr.appendChild( td );		
 		var check = doc.createElement( "input" );	
 		check.setAttribute( "type", "checkbox" );
 		check.setAttribute( "name", name );
 		check.setAttribute( "id", name );
 		if (checked) check.setAttribute( "checked", "checked" );
-		div.appendChild( check );
+		td.appendChild( check );
 		
-		var screenshot = Foxtrickl10n.getScreenshot(name);
+		var td = doc.createElement( "td" );	
+		tr.appendChild( td );
 		var divlabel = doc.createElement( "div" );	
 		divlabel.setAttribute( "class", "checkbox_label" );
+		divlabel.appendChild( doc.createTextNode(label) );
+		td.appendChild( divlabel );
+		
+		var td = doc.createElement( "td" );	
+		td.setAttribute('class','ft_prefs_screenshot_td');
+		tr.appendChild( td );
+		var screenshot = Foxtrickl10n.getScreenshot(name);		
 		if (screenshot) {
 			var a = doc.createElement('a');
-			a.href = Foxtrickl10n.getScreenshot(name);
+			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.appendChild(doc.createTextNode(label));
-			divlabel.appendChild( a );
+			var img=doc.createElement('img');
+			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
+			a.appendChild(img);
+			td.appendChild( a );
 		}
-		else divlabel.appendChild( doc.createTextNode(label) );
-		div.appendChild( divlabel );
-								
+		
 		if (option_text) {
 			check.addEventListener( "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
@@ -1135,6 +1155,8 @@ var FoxtrickPrefsDialogHTML = {
 				selectbox.setAttribute("id","ft_ownselectboxID");
 				selectbox.addEventListener('change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
 				alertdiv.appendChild(selectbox);
+
+				alertdiv.innerHTML +='<br>'+Foxtrickl10n.getString("FoxtrickChangeLogHint");
 
 				var alertdivInner = doc.createElement('div');
 				alertdivInner.setAttribute('id','changesalertdivInner');
@@ -1257,8 +1279,10 @@ var FoxtrickPrefsDialogHTML = {
 
 						var td3=doc.createElement('td');	
 						td3.appendChild(doc.createTextNode(this.NewModules[i][4]));
-						if (this.NewModules[i][5]) td3.setAttribute('title',this.NewModules[i][5]);
+						if (this.NewModules[i][5]) {
+						td3.setAttribute('title',this.NewModules[i][5]);
 						tr.appendChild(td3);
+						}						
 				}
 								
 				alertdiv.appendChild(doc.createElement('br'));	

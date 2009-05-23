@@ -56,3 +56,9 @@ div[id*="e"]>div.ft_pref_group_caption {text-align:center; font-size:1.1em; marg
 div.ft_pref_group_caption {font-weight:bold;}
 
 #foxtrick_preftabs div#FoxtrickPrefsDialogHTMLCommon {margin-left:10px; padding-right:5px;}
+
+
+div.ft_pref_modul > div > table > tr > td > div.checkbox_label {font-weight:bold;}
+
+.ft_prefs_check_td { width:14px;}
+.ft_prefs_screenshot_td { width:16px;}
