@@ -147,8 +147,8 @@ var FoxtrickShortPAs = {
     MODULE_NAME : "ShortPAs",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"Hide more link after usage",
+	NEW_AFTER_VERSION: "0.4.8.1",
+	LASTEST_CHANGE:"Fox for PAs with horizontal lines",
 	
     init : function() {
 	Foxtrick.registerPageHandler( 'league', this);
@@ -161,8 +161,12 @@ var FoxtrickShortPAs = {
 	for (var i=0;i<items.length;++i) {
 		item=items[i];
 		if (item.className!='feedItem user') continue;
-		var p=item.getElementsByTagName('p')[0];
-		p.style.display='none';
+		var body=item.innerHTML.replace(/.+<\/b>/,'');  //dump(body+'\n');
+		item.innerHTML=item.innerHTML.match(/.+<\/b>/); //dump(item.innerHTML+'\n');
+		var newdiv=doc.createElement('div');		
+		newdiv.innerHTML=body;
+		newdiv.style.display='none';
+		item.appendChild(newdiv);
 		var morediv=doc.createElement('div');
 		var margin=10;
 		if (Foxtrick.isStandardLayout(doc)) margin=27;
