@@ -26,9 +26,9 @@ var FoxtrickPrefsDialogHTML = {
     },
 
     run : function( doc ) { 
-		if (doc.location.href.search(/\/MyHattrick\/|Default.aspx\?authCode/)==-1) return;
+		if (doc.location.href.search(/\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
 		FoxtrickPrefsDialogHTML._doc=doc;
-		if (doc.location.href.search(/\/MyHattrick\/Preferences/)!=-1) { 
+		if (doc.location.href.search(/\/MyHattrick|\/Community/)!=-1) { 
 			FoxtrickPrefsDialogHTML.add_pref_links_right(doc);			
 		}	
 		if (doc.location.href.search(/configure_foxtrick=true/i)!=-1) { 
@@ -42,22 +42,35 @@ var FoxtrickPrefsDialogHTML = {
 	
 	add_pref_links_right : function( doc) {
 		if (doc.getElementById('id_configure_foxtrick')) return;
+		try{
 		var foxtrick_pref_link = doc.createElement('a');
 		foxtrick_pref_link.setAttribute('id','id_configure_foxtrick');
-		foxtrick_pref_link.setAttribute('href','/MyHattrick/Preferences?configure_foxtrick=true&category=main');
-		foxtrick_pref_link.innerHTML = Foxtrickl10n.getString("foxtrick.menu.configurefoxtrick");	
-		doc.getElementById('sidebar').getElementsByTagName('a')[0].parentNode.appendChild(foxtrick_pref_link);	
+		foxtrick_pref_link.setAttribute('href','/MyHattrick/?configure_foxtrick=true&category=main');
+		foxtrick_pref_link.appendChild(doc.createTextNode('FoxTrick'));//Foxtrickl10n.getString("foxtrick.menu.configurefoxtrick")));	
+		var li = doc.createElement('li');
+		li.appendChild(foxtrick_pref_link);
+		doc.getElementById('ctl00_pnlSubMenu').getElementsByTagName('ul')[0].appendChild(li);	
+		}catch(e){dump(e);}
 	},
 	
 	
 	show_pref_header: function (doc) {
 		if (doc.getElementById('foxtrick_config')) return;
+		
+		doc.getElementById('sidebar').style.display='none';
 		var mainWrapper=doc.getElementById('mainWrapper');
+		mainWrapper.getElementsByTagName('div')[0].style.width='100%';
+		
+		var myhttext=doc.getElementById('ctl00_pnlSubMenu').getElementsByTagName('h2')[0].innerHTML;
+				
 		var header = mainWrapper.getElementsByTagName('h2')[0];
-		var htprefheader_links = header.getElementsByTagName('a');
+		
+		header.innerHTML='<a href="/MyHattrick/">Mein Hattrick</a>'; 
+		 
+		/*var htprefheader_links = header.getElementsByTagName('a');
 				
 		var sub_pref_header_foxtrick_sub = htprefheader_links[2];
-		if (!sub_pref_header_foxtrick_sub) {
+		if (!sub_pref_header_foxtrick_sub)*/ {
 			header.appendChild(doc.createTextNode(' » '));
 			sub_pref_header_foxtrick_sub = doc.createElement('a');
 			header.appendChild(sub_pref_header_foxtrick_sub);
@@ -164,7 +177,7 @@ var FoxtrickPrefsDialogHTML = {
 	
 	tabhead_mouseover : function( ev ) {
 		var doc = FoxtrickPrefsDialogHTML._doc;
-		doc.defaultView.status = '/MyHattrick/Preferences?configure_foxtrick=true&category='+ev.target.getAttribute('tab');		
+		doc.defaultView.status = '/MyHattrick/?configure_foxtrick=true&category='+ev.target.getAttribute('tab');		
 	},
 
 	
@@ -268,14 +281,14 @@ var FoxtrickPrefsDialogHTML = {
 		
 		// reinitialize
         FoxtrickMain.init();
-		doc.location.href="/MyHattrick/Preferences?configure_foxtrick=true&status=saved";
+		doc.location.href="/MyHattrick/?configure_foxtrick=true&status=saved";
 		
 	} catch (e) { dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');}
 	},
 
 	cancel : function( ev ) {
 		var doc = FoxtrickPrefsDialogHTML._doc;
-		doc.location.href="/MyHattrick/Preferences?configure_foxtrick=true&status=canceled";		
+		doc.location.href="/MyHattrick/?configure_foxtrick=true&status=canceled";		
 	},
 	
 	selectfile : function( ev ) { 
@@ -865,7 +878,7 @@ var FoxtrickPrefsDialogHTML = {
 		var commondiv=doc.createElement('div');
 		commondiv.setAttribute('id','FoxtrickMyHTCommon');
 		preftab.appendChild(commondiv);				
-		FoxtrickMyHT.ShowAlertCommon(doc, oldVersion);
+		FoxtrickMyHT.ShowAlertCommon(doc, oldVersion,true);
 
 	},
 	

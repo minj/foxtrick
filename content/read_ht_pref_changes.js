@@ -169,12 +169,29 @@ var FoxtrickMyHT = {
 	},
 	
 				
-	ShowAlertCommon :function(doc, oldVersion) {
+	ShowAlertCommon :function(doc, oldVersion, show_inner) {
 	
 				var alertdiv = doc.getElementById('FoxtrickMyHTCommon');
 				var curVersion=FoxtrickPrefs.getString("curVersion"); 
 
 				alertdiv.innerHTML = "<h2 style='background-color:#EFEFFF; text-align:center !important; color:#2F31FF !important; font-size:1.1em; '>FoxTrick "+curVersion+"</h2>";
+				
+				if (show_inner) FoxtrickMyHT.ShowAlertCommonInner(alertdiv,curVersion,oldVersion);
+				
+				var p=doc.createElement('p');				
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtReleaseNotes")));				
+				p.appendChild(doc.createTextNode(" "));				
+				var a=doc.createElement('a');
+				a.href=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
+				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
+				a.target="_blank";
+				p.appendChild(a);				
+				alertdiv.appendChild(p);
+				
+	},
+	
+	
+	ShowAlertCommonInner :function(alertdiv,curVersion,oldVersion) {
 				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
 				
 				var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
@@ -291,17 +308,6 @@ var FoxtrickMyHT = {
 				}
 								
 				alertdiv.appendChild(doc.createElement('br'));				
-
-				var p=doc.createElement('p');				
-				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtReleaseNotes")));				
-				p.appendChild(doc.createTextNode(" "));				
-				var a=doc.createElement('a');
-				a.href=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
-				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
-				a.target="_blank";
-				p.appendChild(a);				
-				alertdiv.appendChild(p);
-				
 	},
 	
 	ShowAlert :function(doc, oldVersion) {
@@ -320,9 +326,9 @@ var FoxtrickMyHT = {
 				commondiv.setAttribute('id','FoxtrickMyHTCommon');
 				alertdiv.appendChild(commondiv);				
 				
-				this.ShowAlertCommon(doc, oldVersion);
-
-				var p=doc.createElement('p');				
+				this.ShowAlertCommon(doc, oldVersion,false);
+				
+				/*var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtScreenshotList")));				
 				p.appendChild(doc.createTextNode(" "));				
 				var a=doc.createElement('a');
@@ -330,21 +336,31 @@ var FoxtrickMyHT = {
 				a.innerHTML="http://gliglif.foundationhorizont.org/hattrick/index.html";
 				a.target="_blank";
 				p.appendChild(a);				
+				alertdiv.appendChild(p);*/
+
+				var p=doc.createElement('p');				
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.ChangesTab")+': '));				
+				p.appendChild(doc.createTextNode(" "));				
+				var a=doc.createElement('a');
+				a.href="/MyHattrick/?configure_foxtrick=true&category=changes";
+				a.innerHTML="/MyHattrick/?configure_foxtrick=true&category=changes";
+				a.target="_self";
+				p.appendChild(a);				
 				alertdiv.appendChild(p);
 
-				alertdiv.appendChild(doc.createElement('br'));				
+
+/*				alertdiv.appendChild(doc.createElement('br'));				
 				var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
 				alertdiv.appendChild(p);
-
-				var p=doc.createElement('p');				
+*/
 				var a=doc.createElement('a');
 				a.href="javascript:void();";
 				a.innerHTML=Foxtrickl10n.getString("Close");
 				a.addEventListener( "click", FoxtrickMyHT.Close, false );
 				FoxtrickMyHT.Close.doc=doc;
-				p.appendChild(a);				
-				alertdiv.appendChild(p);
+				alertdiv.appendChild(a);				
+				
 				
 		} catch(e){dump('MyHtShowAlert '+e+'\n');}
 	},
