@@ -90,21 +90,17 @@ FoxtrickExtendedPlayerDetails = {
         
         try {
             var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
-            var table_elm = div.getElementsByTagName( "td" );
-            if (table_elm.length == 0) return;
-
-            for ( var i = 0; i < table_elm.length; i++) {
-                var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
-                try {
-                    if (strrpos( table_inner, "%") > 0 ) {
-                        var table_elm_bonus = table_elm[i];
-                        break;
-                    }
-                }
-                catch(e) {dump('    >' + e + '\n');}
+            try {
+                var table_elm_bonus = div.getElementsByTagName( "table" )[0].rows[2].cells[1];
+            } catch(e) {dump('    >' + e + '\n');}
+			
+            var has_bonus=false;
+			var table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
+            if (strrpos( table_inner, "%") > 0 ) {
+                has_bonus=true;
             }
-            if (table_elm_bonus == null) return;
-            table_inner = table_elm_bonus.innerHTML;
+            
+			table_inner = table_elm_bonus.innerHTML;
 
             var part = substr(table_inner, 0, table_inner.search('/'));
 
@@ -126,13 +122,14 @@ FoxtrickExtendedPlayerDetails = {
 			part_1_save=part_1_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"));
 			
             if (part != 'NaN') 
-            {    table_elm_bonus.innerHTML = 
+            {    if (has_bonus) {
+					table_elm_bonus.innerHTML = 
                     part_1_save +//'&nbsp;'+ 
                     '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' + 
                     part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
                     ')</span> ' + 
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
-			
+				}
 				table_elm_bonus.innerHTML += '<br>'+ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
              }   
 				
