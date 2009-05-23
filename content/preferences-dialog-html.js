@@ -478,13 +478,15 @@ var FoxtrickPrefsDialogHTML = {
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionSkinSettings")));
 		groupbox.appendChild(caption1);
+		var div= doc.createElement("div");
+		groupbox.appendChild(div);
         
 		var input_option_text = doc.createElement( "input" );	
 		input_option_text.setAttribute( "type", "text" );
 		input_option_text.setAttribute( "id", 'cssskinpref' );
 		input_option_text.setAttribute( "value",FoxtrickPrefs.getString( "cssSkin" ));
 		input_option_text.setAttribute( "class", "ft_pref_input_option_text");
-		groupbox.appendChild( input_option_text);		
+		div.appendChild( input_option_text);		
 
 		var button= doc.createElement("input");
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.skinButtonSelectFile"));
@@ -492,39 +494,41 @@ var FoxtrickPrefsDialogHTML = {
 		button.setAttribute('inputid',"cssskinpref");
 		button.setAttribute('id',"skinButtonSelectFile");
 		button.addEventListener('click',FoxtrickPrefsDialogHTML.selectfile,false);
-		groupbox.appendChild(button);
+		div.appendChild(button);
 
 		var checked = FoxtrickPrefs.getBool("module.SkinPlugin.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'SkinPlugin', Foxtrickl10n.getString("foxtrick.prefs.activeSkin"), checked ) 
 		checkdiv.setAttribute("style","display:inline-block;margin-left:10px; vertical-align:middel;");
-		groupbox.appendChild(checkdiv);
-
+		div.appendChild(checkdiv);
 		
 		
 		// alert slider
 		var groupbox= doc.createElement("div");
 		groupbox.setAttribute('class',"ft_pref_modul");
 		preftab.appendChild(groupbox);
-		
+
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionAlertSettings")));
 		groupbox .appendChild(caption1);
+
+		var div= doc.createElement("div");
+		groupbox.appendChild(div);
 		
         var checked = FoxtrickPrefs.getBool("alertSlider");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertsliderpref', Foxtrickl10n.getString("foxtrick.prefs.alertsliderpref"), checked ) 
-		groupbox.appendChild(checkdiv);
+		div.appendChild(checkdiv);
 
 		var checked = FoxtrickPrefs.getBool("alertSliderGrowl");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertslidermacpref', Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"), checked ) 
-		groupbox.appendChild(checkdiv);
+		div.appendChild(checkdiv);
 
 		var input_option_text = doc.createElement( "input" );	
 		input_option_text.setAttribute( "type", "text" );
 		input_option_text.setAttribute( "id", 'alertsoundurlpref' );
 		input_option_text.setAttribute( "value",FoxtrickPrefs.getString( "alertSoundUrl" ));
 		input_option_text.setAttribute( "class", "ft_pref_input_option_text");
-		groupbox.appendChild( input_option_text);		
+		div.appendChild( input_option_text);		
 
 		var button= doc.createElement("input");
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonSelectFile"));
@@ -532,18 +536,18 @@ var FoxtrickPrefsDialogHTML = {
 		button.setAttribute('inputid',"alertsoundurlpref");
 		button.setAttribute('id',"buttonSelectFile");
 		button.addEventListener('click',FoxtrickPrefsDialogHTML.selectfile,false);
-		groupbox.appendChild(button);
+		div.appendChild(button);
 
 		var button= doc.createElement("input");
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonTest"));
 		button.setAttribute( "type", "button" );		
 		button.setAttribute('id',"buttonTest");
 		button.addEventListener('click',FoxtrickPrefsDialogHTML.playsound,false);
-		groupbox.appendChild(button);
+		div.appendChild(button);
 
 		var checked = FoxtrickPrefs.getBool("alertSound");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertsoundpref', Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"), checked ) 
-		groupbox.appendChild(checkdiv);
+		div.appendChild(checkdiv);
 
 
 
@@ -690,16 +694,18 @@ var FoxtrickPrefsDialogHTML = {
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionDisableSettings")));
 		groupbox .appendChild(caption1);
+		var div= doc.createElement("div");
+		groupbox.appendChild(div);
 		
         // stage
 		var checked = FoxtrickPrefs.getBool("disableOnStage");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'stagepref', Foxtrickl10n.getString("foxtrick.prefs.stagepref"), checked ) 
-		groupbox.appendChild(checkdiv);
+		div.appendChild(checkdiv);
 
 		// temporary
 		var checked = FoxtrickPrefs.getBool("disableTemporary");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'disableTemporary', Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel"), checked ) 
-		groupbox.appendChild(checkdiv);
+		div.appendChild(checkdiv);
 
 		
 		// statusbar
@@ -712,9 +718,12 @@ var FoxtrickPrefsDialogHTML = {
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionShowOnStatusBar")));
 		groupbox .appendChild(caption1);
 		
+		var div= doc.createElement("div");
+		groupbox.appendChild(div);
+
         var checked = FoxtrickPrefs.getBool("statusbarshow");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'statusbarpref', Foxtrickl10n.getString("foxtrick.prefs.statusbarpref"), checked ) 
-		groupbox.appendChild(checkdiv);
+		div.appendChild(checkdiv);
 		
 		// AdditionalOptions
 		var groupbox= doc.createElement("div");
@@ -726,9 +735,12 @@ var FoxtrickPrefsDialogHTML = {
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.AdditionalOptions")));
 		groupbox .appendChild(caption1);
 		
+		var div= doc.createElement("div");
+		groupbox.appendChild(div);
+
  		var checked = FoxtrickPrefs.getBool("copyfeedback");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'copyfeedback', Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"), checked ) 
-		groupbox.appendChild(checkdiv);
+		div.appendChild(checkdiv);
 		
 	},
 	
