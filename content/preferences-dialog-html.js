@@ -438,7 +438,7 @@ var FoxtrickPrefsDialogHTML = {
 		selectbox.setAttribute("id","htCountry");
 		groupbox2.appendChild(selectbox);
 
-		
+		// currency converter
         var groupbox= doc.createElement("div");
 		groupbox.setAttribute('class',"ft_pref_modul");
 		preftab.appendChild(groupbox);
@@ -454,6 +454,7 @@ var FoxtrickPrefsDialogHTML = {
         table.appendChild(tr);
 		
 		var td= doc.createElement("td");
+		td.setAttribute('style',"width:260px");
         tr.appendChild(td);
 		td.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolTo")));
 		var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htcurrency.xml", "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
@@ -462,7 +463,10 @@ var FoxtrickPrefsDialogHTML = {
 		td.appendChild(selectbox);
 				
 		var td= doc.createElement("td");
+        td.setAttribute('style',"vertical-align:middle;");
         tr.appendChild(td);
+		var br= doc.createElement("br");
+        td.appendChild(br);
 		var checked = FoxtrickPrefs.getBool("module.CurrencyConverter.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'activeCurrencyConverter', Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"), checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
@@ -498,7 +502,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		var checked = FoxtrickPrefs.getBool("module.SkinPlugin.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'SkinPlugin', Foxtrickl10n.getString("foxtrick.prefs.activeSkin"), checked ) 
-		checkdiv.setAttribute("style","display:inline-block;margin-left:10px; vertical-align:middel;");
+		checkdiv.setAttribute("style","display:inline-block;margin-left:10px; vertical-align:middle;");
 		div.appendChild(checkdiv);
 		
 		
@@ -952,9 +956,10 @@ var FoxtrickPrefsDialogHTML = {
 		entry.appendChild( checkdiv );			
 		entry.appendChild (doc.createTextNode(FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) ));
 		
-		checkdiv.firstChild.addEventListener( "click", function( ev ) {
-				var checked = ev.currentTarget.checked;
-				var optiondiv =ev.currentTarget.parentNode.nextSibling.nextSibling;	
+		checkdiv.firstChild.addEventListener( "click", function( ev ) { 
+				var check=ev.currentTarget.getElementsByTagName('input')[0];
+				var checked = check.checked; 
+				var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(check.id+'_radio');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
 			}, false );
@@ -995,13 +1000,15 @@ var FoxtrickPrefsDialogHTML = {
 		entry.appendChild (doc.createTextNode(FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) ));
 
 		checkdiv.firstChild.addEventListener( "click", function( ev ) {
-				var checked = ev.currentTarget.checked;
-				var optiondiv =ev.currentTarget.parentNode.nextSibling.nextSibling;	
+				var check=ev.currentTarget.getElementsByTagName('input')[0];
+				var checked = check.checked; 
+				var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(check.id+'_options');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
 			}, false );
 
 		var optiondiv = doc.createElement( "div" );
+		optiondiv.setAttribute( "id", module.MODULE_NAME+"_options" );
 		optiondiv.setAttribute( "class", "ft_pref_checkbox_group" );
 		for (var i = 0; i < module.OPTIONS.length; i++) {
 			var key,title;
@@ -1088,13 +1095,12 @@ var FoxtrickPrefsDialogHTML = {
 		if (option_text) {
 			check.addEventListener( "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
-					var optiondiv =ev.currentTarget.nextSibling.nextSibling.nextSibling;
+					var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(ev.currentTarget.id+'_text');
 					if (checked) optiondiv.style.display='block';
 					else optiondiv.style.display='none'; 			
 				}, false );
 
-			div.appendChild( doc.createElement('br') );
-		
+			
 			var input_option_text = doc.createElement( "input" );	
 			input_option_text.setAttribute( "type", "text" );
 			input_option_text.setAttribute( "name", name+'_text' );
