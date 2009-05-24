@@ -139,7 +139,9 @@ var FoxtrickForumChangePosts = {
 						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link1 = header_left_link;
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
 							poster_link1 = header_left_link; 
-							poster_id1 = poster_link1.href.match(/\d+$/);
+                            
+							poster_id1 = poster_link1.href.replace(/\&browseIds\=/, '').match(/\d+$/);
+                            
 							if (header_left_links[k] 
 								&& header_left_links[k].href.search(/Supporter/i) != -1) {
 									supporter_link1 = header_left_links[k];
@@ -149,7 +151,7 @@ var FoxtrickForumChangePosts = {
 						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link2 = header_left_link;
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
 							poster_link2 = header_left_link;
-							poster_id2 = poster_link2.href.match(/\d+$/);
+							poster_id2 = poster_link2.href.replace(/\&browseIds\=/, '').match(/\d+$/);
 							if (header_left_links[k] 
 								&& header_left_links[k].href.search(/Supporter/i) != -1) {
 									supporter_link2 = header_left_links[k];
@@ -244,50 +246,52 @@ var FoxtrickForumChangePosts = {
 				
 				
 				// Add Alltid flags -----------------------------------
-				if (do_alltid_flags) {					
-						var flaglink = doc.createElement('a');						
-						flaglink.setAttribute('style','margin-left:3px !important;');
-						if (!user_info) { //	link_to_alltid || 
-							var target='_blank';
-							var href;
-							if (true) { //redir_to_team
-								href = '/Club/Manager/?userId='  +poster_id1 + '&redir_to_league=true';
-								target='_self';
-							}
-							else href = linkpage + poster_id1;
-							flaglink.setAttribute( "target", target );
-							flaglink.setAttribute('href', href);
-							flaglink.innerHTML='<img  src="'+flagspage + poster_id1 + '.gif" />';
-						}
-						else {
-							flaglink.setAttribute('href','/World/Series/Default.aspx?LeagueLevelUnitID=' + leagueid);
-							flaglink.innerHTML = "<img title=" + countryLink.getElementsByTagName('img')[0].title 
-												+ " src=" + flagspage + poster_id1 + ".gif border=0 height=12 />";
-						}
-						var placenode;
-						if (supporter_link1) placenode = supporter_link1.nextSibling;
-						else placenode = poster_link1.nextSibling;
-						header_left.insertBefore(flaglink, placenode);						
-						
-						if (poster_link2) {	
-							var target='_blank';
-							var href;
-							if (true ) { // redir_to_team
-								href = '/Club/Manager/?userId=' + poster_id2 + '&redir_to_league=true';
-								target='_self';
-							}
-							else href = linkpage + poster_id2;
-							var flaglink = doc.createElement('a');
-							flaglink.setAttribute( "target", target );
-							flaglink.setAttribute('style','margin-left:3px !important;');
-							flaglink.setAttribute('href', href);
-							flaglink.innerHTML='<img style="vertical-align: middle;" src="' + flagspage + poster_id2 + '.gif" />';
-							var placenode;
-							if (supporter_link2) placenode = supporter_link2.nextSibling;
-							else placenode = poster_link2.nextSibling;
-							header_left.insertBefore(flaglink, placenode);						
-						}											
-					}	//dump('Add Alltid flags \n');
+				if (do_alltid_flags) {
+                        try {
+                            var flaglink = doc.createElement('a');						
+                            flaglink.setAttribute('style','margin-left:3px !important;');
+                            if (!user_info) { //	link_to_alltid || 
+                                var target='_blank';
+                                var href;
+                                if (true) { //redir_to_team
+                                    href = '/Club/Manager/?userId='  +poster_id1 + '&redir_to_league=true';
+                                    target='_self';
+                                }
+                                else href = linkpage + poster_id1;
+                                flaglink.setAttribute( "target", target );
+                                flaglink.setAttribute('href', href);
+                                flaglink.innerHTML='<img  src="'+flagspage + poster_id1 + '.gif" />';
+                            }
+                            else {
+                                flaglink.setAttribute('href','/World/Series/Default.aspx?LeagueLevelUnitID=' + leagueid);
+                                flaglink.innerHTML = "<img title=" + countryLink.getElementsByTagName('img')[0].title 
+                                                    + " src=" + flagspage + poster_id1 + ".gif border=0 height=12 />";
+                            }
+                            var placenode;
+                            if (supporter_link1) placenode = supporter_link1.nextSibling;
+                            else placenode = poster_link1.nextSibling;
+                            header_left.insertBefore(flaglink, placenode);						
+                            
+                            if (poster_link2) {	
+                                var target='_blank';
+                                var href;
+                                if (true ) { // redir_to_team
+                                    href = '/Club/Manager/?userId=' + poster_id2 + '&redir_to_league=true';
+                                    target='_self';
+                                }
+                                else href = linkpage + poster_id2;
+                                var flaglink = doc.createElement('a');
+                                flaglink.setAttribute( "target", target );
+                                flaglink.setAttribute('style','margin-left:3px !important;');
+                                flaglink.setAttribute('href', href);
+                                flaglink.innerHTML='<img style="vertical-align: middle;" src="' + flagspage + poster_id2 + '.gif" />';
+                                var placenode;
+                                if (supporter_link2) placenode = supporter_link2.nextSibling;
+                                else placenode = poster_link2.nextSibling;
+                                header_left.insertBefore(flaglink, placenode);						
+                            }											
+                        } catch(eee) {dump(eee)}
+					}	dump('Add Alltid flags \n');
 				
 				
 				// move links -----------------------------------------
