@@ -49,10 +49,8 @@ margin-bottom:10px;
 
 .checkbox_label {display:inline;}
 
-div[id*="a"]>div.ft_pref_group_caption,
-div[id*="o"]>div.ft_pref_group_caption,
-div[id*="i"]>div.ft_pref_group_caption,
-div[id*="e"]>div.ft_pref_group_caption {text-align:center; font-size:1.1em; margin-top:10px; }
+.ft_pref_list_caption {font-weight:bold; text-align:center; font-size:1.2em; margin-top:10px; }
+
 div.ft_pref_group_caption {font-weight:bold;}
 
 #foxtrick_preftabs div#FoxtrickPrefsDialogHTMLCommon {margin-left:10px; padding-right:5px;}

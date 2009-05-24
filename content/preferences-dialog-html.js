@@ -353,19 +353,33 @@ var FoxtrickPrefsDialogHTML = {
 	fill_main_list : function( doc ) {
 		var preftab = doc.getElementById('main');
 		
+		var table = doc.createElement( "table" );	
+		preftab.appendChild( table );
+		var tr = doc.createElement( "tr" );	
+		table.appendChild( tr );
+		var td = doc.createElement( "td" );	
+		tr.appendChild( td );
+
 		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['main']);
 		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_group_caption");
-		var screenshot = Foxtrickl10n.getScreenshot('main');
+        caption1.setAttribute('class',"ft_pref_list_caption");
+		caption1.appendChild(doc.createTextNode(headstr));
+		td.appendChild(caption1);
+
+		var td = doc.createElement( "td" );	
+		td.setAttribute('class','ft_prefs_screenshot_td');
+		tr.appendChild( td );
+		var screenshot = Foxtrickl10n.getScreenshot('main');		
 		if (screenshot) {
 			var a = doc.createElement('a');
-			a.href = screenshot
+			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.appendChild(doc.createTextNode(headstr));
-			caption1.appendChild(a);
+			var img=doc.createElement('img');
+			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
+			a.appendChild(img);
+			td.appendChild( a );
 		}
-		else caption1.appendChild(doc.createTextNode(headstr));
-		preftab.appendChild(caption1);
         
 		
 		// language & currency & dateformat & country
@@ -751,19 +765,33 @@ var FoxtrickPrefsDialogHTML = {
 	fill_help_list : function( doc ) {
 		var preftab = doc.getElementById('help');
 
+		var table = doc.createElement( "table" );	
+		preftab.appendChild( table );
+		var tr = doc.createElement( "tr" );	
+		table.appendChild( tr );
+		var td = doc.createElement( "td" );	
+		tr.appendChild( td );
+
 		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['help']);
 		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_group_caption");
-		var screenshot = Foxtrickl10n.getScreenshot('help');
+        caption1.setAttribute('class',"ft_pref_list_caption");
+		caption1.appendChild(doc.createTextNode(headstr));
+		td.appendChild(caption1);
+
+		var td = doc.createElement( "td" );	
+		td.setAttribute('class','ft_prefs_screenshot_td');
+		tr.appendChild( td );
+		var screenshot = Foxtrickl10n.getScreenshot('help');		
 		if (screenshot) {
 			var a = doc.createElement('a');
-			a.href = screenshot
+			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.appendChild(doc.createTextNode(headstr));
-			caption1.appendChild(a);
+			var img=doc.createElement('img');
+			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
+			a.appendChild(img);
+			td.appendChild( a );
 		}
-		else caption1.appendChild(doc.createTextNode(headstr));
-		preftab.appendChild(caption1);
  		
 		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
 		
@@ -801,19 +829,33 @@ var FoxtrickPrefsDialogHTML = {
 
 		var preftab = doc.getElementById('about');
 
+		var table = doc.createElement( "table" );	
+		preftab.appendChild( table );
+		var tr = doc.createElement( "tr" );	
+		table.appendChild( tr );
+		var td = doc.createElement( "td" );	
+		tr.appendChild( td );
+
 		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['about']);
 		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_group_caption");
-		var screenshot = Foxtrickl10n.getScreenshot('about');
+        caption1.setAttribute('class',"ft_pref_list_caption");
+		caption1.appendChild(doc.createTextNode(headstr));
+		td.appendChild(caption1);
+
+		var td = doc.createElement( "td" );	
+		td.setAttribute('class','ft_prefs_screenshot_td');
+		tr.appendChild( td );
+		var screenshot = Foxtrickl10n.getScreenshot('about');		
 		if (screenshot) {
 			var a = doc.createElement('a');
-			a.href = screenshot
+			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.appendChild(doc.createTextNode(headstr));
-			caption1.appendChild(a);
+			var img=doc.createElement('img');
+			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
+			a.appendChild(img);
+			td.appendChild( a );
 		}
-		else caption1.appendChild(doc.createTextNode(headstr));
-		preftab.appendChild(caption1);
  		
 		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
 
@@ -879,19 +921,33 @@ var FoxtrickPrefsDialogHTML = {
 	try{
 		var preftab = doc.getElementById('changes');
 
+		var table = doc.createElement( "table" );	
+		preftab.appendChild( table );
+		var tr = doc.createElement( "tr" );	
+		table.appendChild( tr );
+		var td = doc.createElement( "td" );	
+		tr.appendChild( td );
+
 		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['changes']);
 		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_group_caption");
-		var screenshot = Foxtrickl10n.getScreenshot('changes');
+        caption1.setAttribute('class',"ft_pref_list_caption");
+		caption1.appendChild(doc.createTextNode(headstr));
+		td.appendChild(caption1);
+
+		var td = doc.createElement( "td" );	
+		td.setAttribute('class','ft_prefs_screenshot_td');
+		tr.appendChild( td );
+		var screenshot = Foxtrickl10n.getScreenshot('changes');		
 		if (screenshot) {
 			var a = doc.createElement('a');
-			a.href = screenshot
+			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.appendChild(doc.createTextNode(headstr));
-			caption1.appendChild(a);
+			var img=doc.createElement('img');
+			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
+			a.appendChild(img);
+			td.appendChild( a );
 		}
-		else caption1.appendChild(doc.createTextNode(headstr));
-		preftab.appendChild(caption1);
 		
 		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");				
 		var versions = Foxtrick.XML_evaluate(xmlresponse,  "hattrickversions/version", "name", "code");
@@ -911,20 +967,33 @@ var FoxtrickPrefsDialogHTML = {
 	fill_list : function( doc, category ) {
 		var preftab = doc.getElementById(category);
 		
+		var table = doc.createElement( "table" );	
+		preftab.appendChild( table );
+		var tr = doc.createElement( "tr" );	
+		table.appendChild( tr );
+		var td = doc.createElement( "td" );	
+		tr.appendChild( td );
+
 		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames[category]);
 		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_group_caption");
-		var screenshot = Foxtrickl10n.getScreenshot(category);
+        caption1.setAttribute('class',"ft_pref_list_caption");
+		caption1.appendChild(doc.createTextNode(headstr));
+		td.appendChild(caption1);
+
+		var td = doc.createElement( "td" );	
+		td.setAttribute('class','ft_prefs_screenshot_td');
+		tr.appendChild( td );
+		var screenshot = Foxtrickl10n.getScreenshot(category);		
 		if (screenshot) {
 			var a = doc.createElement('a');
-			a.href = screenshot
+			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.appendChild(doc.createTextNode(headstr));
-			caption1.appendChild(a);
+			var img=doc.createElement('img');
+			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
+			a.appendChild(img);
+			td.appendChild( a );
 		}
-		else caption1.appendChild(doc.createTextNode(headstr));
-		preftab.appendChild(caption1);
- 
 		
 		for ( i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
@@ -946,6 +1015,7 @@ var FoxtrickPrefsDialogHTML = {
             }
 		}
     },
+
 	
 	_radioModule : function(doc, module ) {
 		var entry = doc.createElement( "div" );
@@ -990,6 +1060,7 @@ var FoxtrickPrefsDialogHTML = {
 		return entry;
 	},
 	
+
 	_checkboxModule : function (doc, module) {
 		var entry = doc.createElement( "div" );
 		entry.setAttribute( "class", "ft_pref_modul" );
@@ -1126,7 +1197,8 @@ var FoxtrickPrefsDialogHTML = {
 		return div;
 	},
 	
-		getNewModules : function(curVersion,oldVersion) {
+		
+	getNewModules : function(curVersion,oldVersion) {
 				
 				FoxtrickPrefsDialogHTML.NewModules = new Array();
 						
