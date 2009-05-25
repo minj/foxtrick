@@ -26,5 +26,13 @@
 	border-bottom: 1px solid #dddddd
 }
 
+.ft_youthskilltable_td_small {
+	padding:0 2px 0 0 !important;
+}
+
+.ft_youthskilltable_td_normal {
+	padding:0 6px 0 0 !important;
+}
+
 }
 

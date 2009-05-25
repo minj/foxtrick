@@ -36,12 +36,34 @@ var FoxtrickYouthSkillTable = {
 				table.appendChild(tr);
 				tablediv.appendChild(table);
 				
-				var sn=['Player','GK','DF','PM','WI','PS','SC','SP'];
-				for(var j = 0; j < 8; j++) {
+				var sn=['Player','YearsDays','GK','DF','PM','WI','PS','SC','SP'];
+				for(var j = 0; j < 9; j++) {
 							var th = doc.createElement('th');
+							if (j>0) th.setAttribute('class','ft_youthskilltable_td_normal');
 							th.innerHTML = Foxtrickl10n.getString(sn[j]);
 							tr.appendChild(th);
 				}
+				
+				var th = doc.createElement('th');
+				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.innerHTML = '<img alt="Y" class="cardsOne" src="/Img/Icons/yellow_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" style="width: 8px; height: 12px;"/>';					
+				tr.appendChild(th);
+				
+				var th = doc.createElement('th');
+				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.innerHTML = '<img alt="R" class="cardsOne" src="/Img/Icons/red_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" style="width: 8px; height: 12px;"/>';					
+				tr.appendChild(th);
+				
+				var th = doc.createElement('th');
+				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.innerHTML = '<img alt="(+)" class="injuryBruised" src="/Img/Icons/bruised.gif" style="width: 11px; height: 11px;"/>';					
+				tr.appendChild(th);
+				
+				var th = doc.createElement('th');
+				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.innerHTML = '<img alt="+" class="injuryInjured" src="/Img/Icons/injured.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" style="width: 11px; height: 11px;"/>';					
+				tr.appendChild(th);
+
 				var count =0;
 				for(var i = 0; i < allDivs.length; i++) {
 					
@@ -50,16 +72,31 @@ var FoxtrickYouthSkillTable = {
 						var tr = doc.createElement('tr');
 						if (count==4) {tr.setAttribute('class','ft_skilltable_blockend'); count=0;}
 						table.appendChild(tr);
+						
+						// name (linked)
 						var td = doc.createElement('td');
 						td.appendChild(allDivs[i].getElementsByTagName("a")[0].cloneNode(true));
 						tr.appendChild(td);
 						
-						var even = true;			
-						var trs = allDivs[i].getElementsByTagName("tr");
+						var even = true;
+						
+						// age
+						var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+).+(\d+)/);						
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						td.innerHTML=age[1]+'.'+age[2];
+						tr.appendChild(td);
+							
+						// skills
+						var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");
+						
+						if (trs.length<7) return;  // not your own team. quit
+						
 						for(var j = 0; j < trs.length; j++) {
 							var td = doc.createElement('td');
-							if (even) {td.setAttribute('class','ft_table_even'); even=false;}
-							else {td.setAttribute('class','ft_table_odd'); even=true;}
+							if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_normal'); even=false;}
+							else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_normal'); even=true;}
 							tr.appendChild(td);
 							
 							var tds = trs[j].getElementsByTagName("td");
@@ -79,6 +116,50 @@ var FoxtrickYouthSkillTable = {
 								}
 							}
 						}
+						
+						// card+injuries
+						var cardsyellow=0;
+						var cardsred=0;
+						var bruised=0;
+						var injured=0;						
+						var img = allDivs[i].getElementsByTagName("img");
+						
+						for(var j = 0; j < img.length; j++) {
+							if (img[j].className=='cardsOne') {
+							    if (img[j].parentNode.innerHTML.indexOf('red_card', 0) != -1 ) cardsred = 1;   
+								else cardsyellow=1;
+							}
+							if (img[j].className=='cardsTwo') {
+							    cardsyellow=2;
+							}
+							if (img[j].className=='injuryBruised') bruised=1;
+							if (img[j].className=='injuryInjured') injured = img[j].nextSibling.innerHTML;
+						}
+						
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						if (cardsyellow>0) td.appendChild(doc.createTextNode(cardsyellow));
+						tr.appendChild(td);
+						
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						if (cardsred>0) td.appendChild(doc.createTextNode(cardsred));
+						tr.appendChild(td);
+						
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						if (bruised>0) td.appendChild(doc.createTextNode(bruised));
+						tr.appendChild(td);
+						
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						if (injured>0) td.appendChild(doc.createTextNode(injured));
+						tr.appendChild(td);
+						
 					}
 				}
 				
