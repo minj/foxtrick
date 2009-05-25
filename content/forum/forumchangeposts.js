@@ -291,7 +291,7 @@ var FoxtrickForumChangePosts = {
                                 header_left.insertBefore(flaglink, placenode);						
                             }											
                         } catch(eee) {dump(eee)}
-					}	dump('Add Alltid flags \n');
+					}	//dump('Add Alltid flags \n');
 				
 				
 				// move links -----------------------------------------
@@ -366,11 +366,11 @@ var FoxtrickForumChangePosts = {
 				if (do_replace_supporter_star) { 
 					if (supporter_link1) {
 						header_left.insertBefore(alt_supporter.cloneNode(true),poster_link1.nextSibling);
-                        dump('\nSTAR1\n');
+                        // dump('\nSTAR1\n');
 					}
 					if (supporter_link2) {
 						header_left.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
-                        dump('\nSTAR2\n');
+                        // dump('\nSTAR2\n');
 					}
 				}
 				
