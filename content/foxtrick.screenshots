@@ -87,7 +87,7 @@ MatchPlayerColouring=http://gliglif.foundationhorizont.org/hattrick/MatchPlayerC
 AttVsDef=http://gliglif.foundationhorizont.org/hattrick/Ratings.html
 MatchIncome=http://gliglif.foundationhorizont.org/hattrick/Ratings.html
 CopyRatingsToClipboard=http://gliglif.foundationhorizont.org/hattrick/Ratings.html
-GoaldifferenceToPromotion=http://gliglif.foundationhorizont.org/hattrick/GoaldifferenceToPromotion.html
+GoaldifferenceToTables=http://gliglif.foundationhorizont.org/hattrick/GoaldifferenceToTables.html
 
 # Forum
 ShowForumPrefButton=http://gliglif.foundationhorizont.org/hattrick/ShowForumPrefButton.html
