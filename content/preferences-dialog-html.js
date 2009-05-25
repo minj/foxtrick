@@ -26,12 +26,13 @@ var FoxtrickPrefsDialogHTML = {
     },
 
     run : function( doc ) { 
-		if (doc.location.pathname.search(/\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
+//		dump(doc.location.pathname+' '+doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)+' '+doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)+'\n');
+		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
 		FoxtrickPrefsDialogHTML._doc=doc;
-		if (doc.location.href.search(/\/$|\/MyHattrick|\/Community/)!=-1) { 
+		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
 			FoxtrickPrefsDialogHTML.add_pref_links_right(doc);			
 		}	
-		if (doc.location.href.search(/configure_foxtrick=true/i)!=-1) { 
+		if (doc.location.pathname.search(/configure_foxtrick=true/i)!=-1) { 
 			FoxtrickPrefsDialogHTML.show_pref(doc);			
 		}
 	},
