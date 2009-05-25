@@ -960,6 +960,7 @@ var FoxtrickPrefsDialogHTML = {
 		commondiv.setAttribute('id','FoxtrickPrefsDialogHTMLCommon');
 		preftab.appendChild(commondiv);				
 		FoxtrickPrefsDialogHTML.ShowAlertCommon(doc, oldVersion);
+		
 	}catch(e){dump('changestab '+e+'\n');}
 	},
 	
@@ -1246,7 +1247,8 @@ var FoxtrickPrefsDialogHTML = {
 				selectbox.addEventListener('change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
 				alertdiv.appendChild(selectbox);
 
-				alertdiv.innerHTML +='<br>'+Foxtrickl10n.getString("FoxtrickChangeLogHint");
+				alertdiv.appendChild(doc.createElement('br'));
+				alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickChangeLogHint")));
 
 				var alertdivInner = doc.createElement('div');
 				alertdivInner.setAttribute('id','changesalertdivInner');
@@ -1262,6 +1264,7 @@ var FoxtrickPrefsDialogHTML = {
 				a.target="_blank";
 				p.appendChild(a);				
 				alertdiv.appendChild(p);
+				
 		} catch(e) {dump('ShowAlertCommon '+e+'\n');}		
 	},
 	
