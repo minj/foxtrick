@@ -94,7 +94,7 @@ var FoxtrickCrossTable = {
 
             var crosstable = doc.createElement('table');
             crosstable.id = 'ft_cross';
-            crosstable.setAttribute("style", "100%");
+            crosstable.setAttribute("style", "margin-top:20px;");
             var tb=doc.createElement("tbody");
 
             crosstable.appendChild(tb);
@@ -110,7 +110,7 @@ var FoxtrickCrossTable = {
 
                     for (i = 0; i<8; i++){
                         var cell = doc.createElement("th");
-                        cell.setAttribute("style", "text-align:center;width:20%");
+                        cell.setAttribute("style", "text-align:center");
                         var cnt = doc.createTextNode(cross[i][0].substring(0,6).replace(/\s/i,""));
                         cell.appendChild(cnt);
                         row.appendChild(cell);
@@ -123,11 +123,11 @@ var FoxtrickCrossTable = {
                     if (y==0) var cell = doc.createElement("th");
                     else var cell = doc.createElement("td");
                     if (cross[x][y] != -1) {
-                            if (cross[x][y].split('-')[0] > cross[x][y].split('-')[1])
+                            if (cross[x][y].split('-')[0] > cross[x][y].split('-')[1] && (y!=0))
                                 cell.setAttribute("style", "font-weight:bold;text-align:center;color:green");
-                            if (cross[x][y].split('-')[0] == cross[x][y].split('-')[1])
+                            if (cross[x][y].split('-')[0] == cross[x][y].split('-')[1] && (y!=0))
                                 cell.setAttribute("style", "font-weight:bold;text-align:center;color:gray");
-                            if (cross[x][y].split('-')[0] < cross[x][y].split('-')[1])
+                            if (cross[x][y].split('-')[0] < cross[x][y].split('-')[1] && (y!=0))
                                 cell.setAttribute("style", "font-weight:bold;text-align:center;color:red");
                             var cnt = doc.createTextNode(cross[x][y]);
                         }
