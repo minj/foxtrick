@@ -26,22 +26,24 @@ var FoxtrickPrefsDialogHTML = {
     },
 
     run : function( doc ) { 
-//		dump(doc.location.pathname+' '+doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)+' '+doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)+'\n');
+	try{
+		//dump(doc.location.pathname+' '+doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)+' '+doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)+'\n');
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
 		FoxtrickPrefsDialogHTML._doc=doc;
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
-			FoxtrickPrefsDialogHTML.add_pref_links_right(doc);			
+			FoxtrickPrefsDialogHTML.add_pref_links(doc);			
 		}	
-		if (doc.location.pathname.search(/configure_foxtrick=true/i)!=-1) { 
+		if (doc.location.href.search(/configure_foxtrick=true/i)!=-1) { 
 			FoxtrickPrefsDialogHTML.show_pref(doc);			
 		}
+	}catch (e){dump('HTMLPrefs '+e+'\n');}
 	},
 
 	change : function( doc ) { 
 		FoxtrickPrefsDialogHTML._doc=doc;	   
 	},
 	
-	add_pref_links_right : function( doc) {
+	add_pref_links : function( doc) {
 		if (doc.getElementById('id_configure_foxtrick')) return;
 		try{
 		var foxtrick_pref_link = doc.createElement('a');
