@@ -70,6 +70,7 @@ Foxtrick.ht_pages = {
 	'guestbook'					: '\/Club\/Manager\/Guestbook\.aspx',
     'announcements'			    : '\/Club\/Announcements/\New\.aspx',
     'htpress'                   : '\/Community\/Press\/Default\.aspx',
+    'cupmatches'                : '\/World\/Cup\/CupMatches\.aspx',
 
     
 	'all_late'					: '\/',

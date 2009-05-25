@@ -83,6 +83,7 @@ var scripts = [
 	'presentation/newmail.js',
     'presentation/leaguenewsfilter.js',
     'presentation/moveplayerselectbox.js',
+	'presentation/highlightcupwins.js',
     'links/linkscustom.js',
     'links/linksleague.js',
     'links/linksteam.js',
