@@ -37,6 +37,15 @@ var FoxtrickCrossTable = {
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1));
 
+            var crossgame = new Array(  new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
+                                    new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
+                                    new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
+                                    new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
+                                    new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
+                                    new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
+                                    new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
+                                    new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1));
+
             //Teams
             var tblBodyObj = tbl_fix.tBodies[0];
             for (var i = 0; i < 4; i++) {
@@ -44,8 +53,8 @@ var FoxtrickCrossTable = {
                 dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
                 // dump('['+ dummy + ']\n');
 
-                cross[i*2][0] = dummy[0];
-                cross[i*2 + 1][0] = dummy[1];
+                cross[i*2][0] = dummy[0]; crossgame[i*2][0] = dummy[0];
+                cross[i*2 + 1][0] = dummy[1]; crossgame[i*2+1][0] = dummy[1];
                 // dump('' + cross[i*2] + '\n' + cross[i*2+1]+'\n');
             }
 
@@ -59,6 +68,8 @@ var FoxtrickCrossTable = {
                     var dummy = tblBodyObj.rows[row].cells[1].innerHTML;
 
                     dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
+                    
+                    var crossID = tblBodyObj.rows[row].cells[1].innerHTML.split('matchID=')[1].split('&amp;TeamId=')[0];
                     // dump('row [' + row + ']  "'+ dummy[0] + '" "' + dummy[1] + '"\n');
                     var home = -1;
                     var away = -1;
@@ -71,20 +82,26 @@ var FoxtrickCrossTable = {
                         if ((home != -1) && (away != -1)) {
 
                             result = tblBodyObj.rows[row].cells[2].innerHTML.split('-');
+                            
+                            crossgame[home][away+1] = crossID;
 
                             if (!result[1]) {
                                 result[0] = -1;
                                 result[1] = -1;
+                                
                             }
                             else {
                                 result[0] = Foxtrick.trim(result[0]);
                                 result[1] = Foxtrick.trim(result[1]);
                                 tblBodyObj.rows[row].cells[2].innerHTML = result[0] + ':' + result[1];
                             }
-                            if ((homegame) && (result[0] != -1))
+                            if ((homegame) && (result[0] != -1)) {
                                 cross[home][away+1] = result[0] + '-' + result[1];
-                                else cross[home][away+1] = '-';
-                            // dump ('[' + home + ' - '+ away+'] ' + result[0]+':'+result[1] + '\n');
+                            }
+                            else {
+                                cross[home][away+1] = '-';
+                            }
+                            //dump ('[' + home + ' - '+ away+'] ' + result[0]+':'+result[1] + '|' + crossgame[home][away+1] + '\n');
                             break;
                         }
                     }
@@ -102,7 +119,7 @@ var FoxtrickCrossTable = {
                 var row = doc.createElement("tr");
                 row.id = "ft_ct_row"+x;
                 tb.appendChild(row);
-                if (x==0) {
+                if (x==0) { //head
                     var cell = doc.createElement("th");
                     var cnt = doc.createTextNode('');
                     cell.appendChild(cnt);
@@ -119,17 +136,26 @@ var FoxtrickCrossTable = {
                     row.id = "ft_ct_row"+x;
                     tb.appendChild(row);
                 }
-                for (var y=0; y < 9; y++){
-                    if (y==0) var cell = doc.createElement("th");
-                    else var cell = doc.createElement("td");
-                    if (cross[x][y] != -1) {
-                            if (cross[x][y].split('-')[0] > cross[x][y].split('-')[1] && (y!=0))
-                                cell.setAttribute("style", "font-weight:bold;text-align:center;color:green");
-                            if (cross[x][y].split('-')[0] == cross[x][y].split('-')[1] && (y!=0))
-                                cell.setAttribute("style", "font-weight:bold;text-align:center;color:gray");
-                            if (cross[x][y].split('-')[0] < cross[x][y].split('-')[1] && (y!=0))
-                                cell.setAttribute("style", "font-weight:bold;text-align:center;color:red");
-                            var cnt = doc.createTextNode(cross[x][y]);
+                for (var y=0; y < 9; y++){ //zeile
+                    if (y==0) var cell = doc.createElement("th"); //left head
+                    else var cell = doc.createElement("td"); //inner result
+                    if (cross[x][y] != -1) { //result
+                            if (y ==0)
+                                var cnt = doc.createTextNode(cross[x][y]);
+                            else {
+                                cell.setAttribute("style", "text-align:center");
+                                var a = doc.createElement("a");
+                                a.title = cross[x][y];
+                                a.innerHTML = cross[x][y];
+                                if (cross[x][y].split('-')[0] > cross[x][y].split('-')[1] && (y!=0))
+                                    a.setAttribute("style", "font-weight:bold;text-align:center;color:green;text-decoration:none;");
+                                if (cross[x][y].split('-')[0] == cross[x][y].split('-')[1] && (y!=0))
+                                    a.setAttribute("style", "font-weight:bold;text-align:center;color:gray;text-decoration:none;");
+                                if (cross[x][y].split('-')[0] < cross[x][y].split('-')[1] && (y!=0))
+                                    a.setAttribute("style", "font-weight:bold;text-align:center;color:red;text-decoration:none;");
+                                a.href = '/Club/Matches/Match.aspx?matchID=' + crossgame[x][y];
+                                var cnt = a;// //doc.createTextNode(cross[x][y] + '|' + crossgame[x][y]);
+                            }
                         }
                     else
                         var cnt = doc.createTextNode('');
