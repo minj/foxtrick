@@ -127,7 +127,7 @@ var FoxtrickCrossTable = {
 
                     for (i = 0; i<8; i++){
                         var cell = doc.createElement("th");
-                        cell.setAttribute("style", "text-align:center");
+                        cell.setAttribute("style", "text-align:center;");
                         var cnt = doc.createTextNode(cross[i][0].substring(0,5).replace(/\s/i,""));
                         cell.appendChild(cnt);
                         row.appendChild(cell);
@@ -140,7 +140,7 @@ var FoxtrickCrossTable = {
                     if (y==0) var cell = doc.createElement("th"); //left head
                     else var cell = doc.createElement("td"); //inner result
                     if (cross[x][y] != -1) { //result
-                            if (y ==0)
+                            if (y ==0) //teamnames
                                 var cnt = doc.createTextNode(cross[x][y]);
                             else {
                                 cell.setAttribute("style", "text-align:center");
@@ -154,7 +154,7 @@ var FoxtrickCrossTable = {
                                 if (cross[x][y].split('-')[0] < cross[x][y].split('-')[1] && (y!=0))
                                     a.setAttribute("style", "font-weight:bold;text-align:center;color:red;text-decoration:none;");
                                 a.href = '/Club/Matches/Match.aspx?matchID=' + crossgame[x][y];
-                                var cnt = a;// //doc.createTextNode(cross[x][y] + '|' + crossgame[x][y]);
+                                var cnt = a;
                             }
                         }
                     else
@@ -163,7 +163,6 @@ var FoxtrickCrossTable = {
                     row.appendChild(cell);
                 }
             }
-            //div.appendChild(crosstable);
              div.insertBefore(crosstable, div.firstChild.nextSibling.nextSibling);  
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
