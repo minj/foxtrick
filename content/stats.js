@@ -2631,6 +2631,25 @@ stats["danmarktracker"] = {
 	"nationalityranges" : [[11,11]],	
 };
 
+
+stats["ukrainatracker"] = { 
+  "url" : "http://nt.ht-bet.org/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Ukraina NT/U-20 DB",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "update.php",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[68,68]] ,
+	"nationalityranges" : [[68,68]],	
+};
+
+
 //  ------------- spreadsheets trackers ----------------
 stats["mongoltracker"] = { 
   "url" : "http://spreadsheets.google.com/viewform?formkey=cGhyMThkSzVUdURSdmlWWHdmRldqUXc6MA..",
@@ -2699,10 +2718,10 @@ stats["u20_nt_tracker"] = {
                    "params"     : []
                  },    
 	"countryidranges" :   [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,51],[53,53],[59,59],
-						[61,62],[64,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
+						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105,],[107,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
 	"nationalityranges" : [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,51],[53,53],[59,59],
-						[61,62],[64,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
+						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
 
