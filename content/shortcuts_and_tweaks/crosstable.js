@@ -94,7 +94,7 @@ var FoxtrickCrossTable = {
 
             var crosstable = doc.createElement('table');
             crosstable.id = 'ft_cross';
-            crosstable.setAttribute("style", "margin-top:20px;");
+            crosstable.setAttribute("style", "width:440px;margin:10px 0px -10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             var tb=doc.createElement("tbody");
 
             crosstable.appendChild(tb);
@@ -111,7 +111,7 @@ var FoxtrickCrossTable = {
                     for (i = 0; i<8; i++){
                         var cell = doc.createElement("th");
                         cell.setAttribute("style", "text-align:center");
-                        var cnt = doc.createTextNode(cross[i][0].substring(0,6).replace(/\s/i,""));
+                        var cnt = doc.createTextNode(cross[i][0].substring(0,5).replace(/\s/i,""));
                         cell.appendChild(cnt);
                         row.appendChild(cell);
                     }
@@ -137,7 +137,8 @@ var FoxtrickCrossTable = {
                     row.appendChild(cell);
                 }
             }
-            div.appendChild(crosstable);
+            //div.appendChild(crosstable);
+             div.insertBefore(crosstable, div.firstChild.nextSibling.nextSibling);  
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
 
