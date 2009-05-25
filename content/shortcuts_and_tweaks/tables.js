@@ -1,6 +1,6 @@
 /**
- * promotion.js
- * adds goal difference to promotion table
+ * tables.js
+ * adds goal difference to tables
  * @author spambot
  */
 
@@ -10,6 +10,8 @@ var FoxtrickTables = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",	
+	SCREENSHOT:"",
+	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"adds goal difference to tables",    
 
 	init : function() {
@@ -19,8 +21,8 @@ var FoxtrickTables = {
     },
     
     run : function( page, doc ) {
-        var tbl_promo = (doc.getElementById("ft_goaldiff")!=null);
-		if (tbl_promo) return;
+        var tbl_goaldiff = (doc.getElementById("ft_goaldiff")!=null);
+		if (tbl_goaldiff) return;
         
         try {
             var goalcell = 2;

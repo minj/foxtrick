@@ -74,6 +74,7 @@ var scripts = [
 	'shortcuts_and_tweaks/youthskillsHideUnknown.js',	
 	'shortcuts_and_tweaks/youthskilltable.js',	
     'shortcuts_and_tweaks/tables.js',
+    'shortcuts_and_tweaks/crosstable.js',        
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',
     'presentation/guestbookalltidflags.js',

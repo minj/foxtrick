@@ -57,6 +57,7 @@ Foxtrick.ht_pages = {
     'oldseries'                 : '\/World\/Series\/OldSeries\.aspx',
     'marathon'                  : '\/World\/Series\/Marathon\.aspx',
     'promotion'                 : '\/World\/Series\/Promotion\.aspx',
+    'fixtures'                 : '\/World\/Series\/Fixtures\.aspx',
     'players'                   : '\/Club\/Players\/.TeamID=|\/Club\/Players\/default\.aspx.TeamID=|\/Club\/NationalTeam\/NTPlayers\.aspx|\/Club\/Players\/Oldies\.aspx|\/Club\/Players\/Coaches\.aspx',
     'YouthPlayers'              : 'YouthPlayers\.aspx',
     'YouthPlayer'               : 'YouthPlayer\.aspx',
