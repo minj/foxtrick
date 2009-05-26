@@ -1,5 +1,5 @@
 /**
- * promotion.js
+ * crosstable.js
  * adds cross table to fixtures
  * @author spambot
  */
@@ -163,7 +163,7 @@ var FoxtrickCrossTable = {
                     row.appendChild(cell);
                 }
             }
-             div.insertBefore(crosstable, div.firstChild.nextSibling.nextSibling);  
+            div.insertBefore(crosstable, div.firstChild.nextSibling.nextSibling);
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
 

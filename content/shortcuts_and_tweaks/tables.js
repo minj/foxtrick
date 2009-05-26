@@ -7,14 +7,14 @@
 var FoxtrickTables = {
 
     MODULE_NAME : "GoaldifferenceToTables",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.1",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"adds goal difference to tables",    
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    DEFAULT_ENABLED : true,
+    NEW_AFTER_VERSION: "0.4.8.1",	
+    SCREENSHOT:"",
+    PREF_SCREENSHOT:"",
+    LASTEST_CHANGE:"adds goal difference to tables",    
 
-	init : function() {
+    init : function() {
         Foxtrick.registerPageHandler( 'promotion', this );
         Foxtrick.registerPageHandler( 'oldseries', this );
         Foxtrick.registerPageHandler( 'marathon', this );
@@ -22,7 +22,7 @@ var FoxtrickTables = {
     
     run : function( page, doc ) {
         var tbl_goaldiff = (doc.getElementById("ft_goaldiff")!=null);
-		if (tbl_goaldiff) return;
+        if (tbl_goaldiff) return;
         
         try {
             var goalcell = 2;
@@ -54,12 +54,12 @@ var FoxtrickTables = {
                 }
             }        
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
-	},
-	
-	change : function( page, doc ) {
-		var id = "ft_goaldiff";
-		if(!doc.getElementById(id)) {
-			this.run( page, doc );
-		}
-	}
+    },
+    
+    change : function( page, doc ) {
+        var id = "ft_goaldiff";
+        if(!doc.getElementById(id)) {
+            this.run( page, doc );
+        }
+    }
 };

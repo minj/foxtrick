@@ -41,7 +41,7 @@ var scripts = [
     'matches/repositionedplayers.js',
     'matches/advancedStarsCounter.js',
     'matches/matchincome.js',
-	'matches/ratingstoclipboard.js',    
+	'matches/ratingstoclipboard.js',
     'presentation/bookmarkadjust.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/mediantransferprice.js',
@@ -70,11 +70,12 @@ var scripts = [
 	'shortcuts_and_tweaks/copyTrainingReport.js',
     'shortcuts_and_tweaks/playerbirthday.js',
     'shortcuts_and_tweaks/addhtlivetoongoing.js',
-	'shortcuts_and_tweaks/seasonstats.js',	
-	'shortcuts_and_tweaks/youthskillsHideUnknown.js',	
-	'shortcuts_and_tweaks/youthskilltable.js',	
+	'shortcuts_and_tweaks/seasonstats.js',
+	'shortcuts_and_tweaks/youthskillsHideUnknown.js',
+	'shortcuts_and_tweaks/youthskilltable.js',
     'shortcuts_and_tweaks/tables.js',
-    'shortcuts_and_tweaks/crosstable.js',        
+    'shortcuts_and_tweaks/crosstable.js',
+    'shortcuts_and_tweaks/electiontable.js',
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',
     'presentation/guestbookalltidflags.js',
@@ -105,7 +106,7 @@ var scripts = [
     'links/linksstaff.js',
     'links/linkstracker.js',
 
-	// following modules all run on 'all_late' pages. order of execution is determined be following order 
+	// following modules all run on 'all_late' pages. order of execution is determined be following order
     'presentation/currencyConverter.js',
     'shortcuts_and_tweaks/teampopuplinks.js', // keep behind others
 
@@ -116,7 +117,7 @@ var scripts = [
 var all_loaded=true;
 for each (var script in scripts) {
 	try {
-        loader.loadSubScript('chrome://foxtrick/content/' + script);     
+        loader.loadSubScript('chrome://foxtrick/content/' + script);
 	} catch (e) {
         dump('Script loading failed -- ' + script + '\n  ' + e + '\n');
 		all_loaded=false;
