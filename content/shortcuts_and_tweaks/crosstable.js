@@ -10,10 +10,9 @@ var FoxtrickCrossTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"adds cross table to fixtures",
-
+	//OPTIONS : new Array("DefaultShow"), 
+		
 	init : function() {
         Foxtrick.registerPageHandler( 'fixtures', this );
     },
@@ -22,6 +21,8 @@ var FoxtrickCrossTable = {
         var tbl_cross = (doc.getElementById("ft_cross")!=null);
 		if (tbl_cross) return;
 
+		//var DefaultShow = Foxtrick.isModuleFeatureEnabled( this, "DefaultShow" );
+		
         try {
             var div = doc.getElementById('mainBody');
             tbl_fix = div.getElementsByTagName('TABLE')[0];
@@ -106,12 +107,25 @@ var FoxtrickCrossTable = {
                         }
                     }
                 }
-            }
+			}
 
+			var dayhead=0;
+			for (var j = 0; j<tblBodyObj.rows.length; j++){ 				
+				if (dayhead==0) { 
+					tblBodyObj.rows[j].cells[1].innerHTML = '<br/>'+tblBodyObj.rows[j].cells[0].innerHTML;
+					tblBodyObj.rows[j].cells[1].setAttribute('class','ch');
+					tblBodyObj.rows[j].setAttribute('style','margin-top:10px;');
+				}
+				++dayhead;
+				if  (dayhead==5) dayhead=0;
+				tblBodyObj.rows[j].deleteCell(3);
+				tblBodyObj.rows[j].deleteCell(0);				
+			}
+             
 
             var crosstable = doc.createElement('table');
             crosstable.id = 'ft_cross';
-            crosstable.setAttribute("style", "width:440px;margin:10px 0px -10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+            crosstable.setAttribute("style", "width:440px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             var tb=doc.createElement("tbody");
 
             crosstable.appendChild(tb);
@@ -163,7 +177,7 @@ var FoxtrickCrossTable = {
                     row.appendChild(cell);
                 }
             }
-            div.insertBefore(crosstable, div.firstChild.nextSibling.nextSibling);
+            div.insertBefore(crosstable, div.getElementsByTagName('h1')[0].nextSibling);
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
 
