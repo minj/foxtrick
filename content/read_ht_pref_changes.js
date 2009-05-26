@@ -80,13 +80,13 @@ var FoxtrickReadHtPrefs = {
 			var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
 			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
 			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
-			var confirmbox = doc.getElementById('ctl00_pnlPageOK');	
+			var mainBody = doc.getElementById('mainBody');	
 			var alertdiv=doc.createElement('div');
 			alertdiv.setAttribute('class','alert');
 			alertdiv.setAttribute('id','idFoxtrickLocaleChanged');
 			alertdiv.setAttribute('style', 'margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
-			confirmbox.parentNode.insertBefore(alertdiv,confirmbox.nextSibling);
+			mainBody.insertBefore(alertdiv,mainBody.firstChild);
 			
 	    }
 	},
