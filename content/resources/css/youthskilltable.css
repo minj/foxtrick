@@ -40,8 +40,8 @@ h2.ft_youthskilltable_unfold {background: url("chrome://foxtrick/content/resourc
 
 
 /*Standard drop down*/
-h2.ft_youthskilltable_collapsed_std {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat 510px 5px;}
-h2.ft_youthskilltable_unfold_std {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat 510px 5px;}
+h2.ft_youthskilltable_collapsed_std {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat 510px 0px;}
+h2.ft_youthskilltable_unfold_std {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat 510px 0px;}
 
 }
 
