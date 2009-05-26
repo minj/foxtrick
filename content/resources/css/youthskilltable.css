@@ -34,6 +34,11 @@
 	padding:0 6px 0 0 !important;
 }
 
+div#ft_youthskilltable td {
+	border-bottom: 1px solid #DCE0DC; 
+	border-collapse:separate;
+} 
+
 /*simple drop down*/
 h2.ft_youthskilltable_collapsed {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat 410px 2px;}
 h2.ft_youthskilltable_unfold {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat 410px 2px;}
