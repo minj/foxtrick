@@ -1398,6 +1398,17 @@ stats["srbijayadb"] =  {
 };
 
 
+stats["englandyadb"] =  { 
+        "url" : "http://www.realfootball.co.uk/hattrick/ya/",
+        "youthlink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : []
+                       },
+		"owncountryidranges" : [[2, 2]], 
+        "title" : "England YA DB",
+        "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
+};
+
 stats["arenaoptimizer"] =  { 
         "url" : "http://www.arenaoptimizer.es/",
         "arenalink" : { "path"       : "",
