@@ -13,11 +13,20 @@ var FoxtrickYouthSkillTable = {
 	LASTEST_CHANGE:"Show youth skills as table",
     CSS: "chrome://foxtrick/content/resources/css/youthskilltable.css",
 	
+	_collaped_class:'',
+	_unfold_class:'',
+	
     init : function() {
         Foxtrick.registerPageHandler( 'YouthPlayers', this );
     },
 
     run : function( page, doc ) {
+				this._collaped_class='ft_youthskilltable_collapsed';
+				this._unfold_class='ft_youthskilltable_unfold';
+				if (Foxtrick.isStandardLayout(doc)) {
+					this._collaped_class='ft_youthskilltable_collapsed_std';
+					this._unfold_class='ft_youthskilltable_unfold_std';				
+				}
 				var allDivs = doc.getElementsByTagName("div");
 				
 				
@@ -27,7 +36,7 @@ var FoxtrickYouthSkillTable = {
 				h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
 				FoxtrickYouthSkillTableHeaderClick.doc=doc;
 				h2.addEventListener( "click", FoxtrickYouthSkillTableHeaderClick, true );						
-				h2.setAttribute('class','ft_youthskilltable_collapsed');
+				h2.setAttribute('class',this._collaped_class);
 				tablediv.appendChild(h2);
 				
 				var table = doc.createElement('table');
@@ -179,11 +188,11 @@ function FoxtrickYouthSkillTableHeaderClick(evt) {
 	var table = tablediv.getElementsByTagName('table')[0]
 	if (table.style.display=='none')  {
 		table.style.display='inline';
-		tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_youthskilltable_unfold');
+		tablediv.getElementsByTagName('h2')[0].setAttribute('class',FoxtrickYouthSkillTable._unfold_class);
 	}
 	else  {
 		table.style.display='none';						
-		tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_youthskilltable_collapsed');
+		tablediv.getElementsByTagName('h2')[0].setAttribute('class',FoxtrickYouthSkillTable._collaped_class);
 	}
 } catch(e) {dump(e);}
 }

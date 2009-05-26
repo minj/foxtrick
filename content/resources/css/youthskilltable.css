@@ -34,5 +34,14 @@
 	padding:0 6px 0 0 !important;
 }
 
+/*simple drop down*/
+h2.ft_youthskilltable_collapsed {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat 410px 2px;}
+h2.ft_youthskilltable_unfold {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat 410px 2px;}
+
+
+/*Standard drop down*/
+h2.ft_youthskilltable_collapsed_std {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat 510px 5px;}
+h2.ft_youthskilltable_unfold_std {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat 510px 5px;}
+
 }
 
