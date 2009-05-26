@@ -27,8 +27,6 @@
     },
 
     run : function( page, doc ) {
-        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");                
-        
         var div = doc.getElementById( "ft_youth_icons");
         if (div != null) return;
 
@@ -267,7 +265,7 @@
     }, 
         
     _br : function (  ) {
-        if ( FoxtrickForumYouthIcons._DOC.getElementById('ucHattrickMLEditor_txtBody') != null ) clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ucHattrickMLEditor_txtBody'), "[br]", null, null, null)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody') != null ) clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody'), "[br]", null, null, null)
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody') != null ) clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody'), "[br]", null, null, null)
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtBody') != null ) clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtBody'), "[br]", null, null, null)
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert') != null ) clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert'), "[br]", null, null, null)

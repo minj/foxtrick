@@ -1,4 +1,5 @@
 var bc = 0; qc=0; uc =0; ic=0;
+
 function insertQuoteAll(form, text, fieldCounter, maxLength) {
     clickHandler(form, text, null, null, null, fieldCounter, maxLength);
 }
