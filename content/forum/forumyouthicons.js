@@ -281,5 +281,6 @@
         } catch(e) {
             dump('FoxtrickForumYouthIcons'+e);
         }
-    },        
+    }
 };
+
