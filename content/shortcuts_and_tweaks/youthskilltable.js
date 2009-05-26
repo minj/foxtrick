@@ -84,7 +84,7 @@ var FoxtrickYouthSkillTable = {
 						
 						// name (linked)
 						var td = doc.createElement('td');
-						td.appendChild(allDivs[i].getElementsByTagName("a")[0].cloneNode(true));
+						td.innerHTML = allDivs[i].getElementsByTagName("b")[0].innerHTML;
 						tr.appendChild(td);
 						
 						var even = true;
