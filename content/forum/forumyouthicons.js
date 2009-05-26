@@ -27,6 +27,9 @@
     },
 
     run : function( page, doc ) {
+    
+        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");
+         
         var div = doc.getElementById( "ft_youth_icons");
         if (div != null) return;
 
@@ -279,6 +282,8 @@
         } catch(e) {
             dump('FoxtrickForumYouthIcons'+e);
         }
-    }
+    },
+    
+    
 };
 
