@@ -81,11 +81,11 @@ var FoxtrickYouthSkillTable = {
 						var even = true;
 						
 						// age
-						var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+).+(\d+)/);						
+						var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);						
 						var td = doc.createElement('td');
-						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
-						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
-						td.innerHTML=age[1]+'.'+age[2];
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_normal'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_normal'); even=true;}
+						td.innerHTML=age[0]+'.'+age[1]; 
 						tr.appendChild(td);
 							
 						// skills
