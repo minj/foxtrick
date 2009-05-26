@@ -24,6 +24,7 @@ CopyMatchID=http://gliglif.foundationhorizont.org/hattrick/CopyMatchID.html
 CopyPlayerAdToClipboard=http://gliglif.foundationhorizont.org/hattrick/CopyPlayerAdToClipboard.html
 CopyTrainingReport=http://gliglif.foundationhorizont.org/hattrick/CopyTrainingReport.html
 CrossTable=http://gliglif.foundationhorizont.org/hattrick/CrossTable.html
+ElectionTable=http://gliglif.foundationhorizont.org/hattrick/ElectionTable.html
 ExtendedPlayerDetails.perseason=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetails_perseason.html
 ExtendedPlayerDetails=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetails.html
 FlagCollectionToMap=http://gliglif.foundationhorizont.org/hattrick/FlagCollectionToMap.html
@@ -47,7 +48,6 @@ YouthSkillTable=http://gliglif.foundationhorizont.org/hattrick/YouthSkillTable.h
 #Presentation and Tweaks
 ColouredYouthFaces=http://gliglif.foundationhorizont.org/hattrick/ColouredYouthFaces.html
 CustomMedals=http://gliglif.foundationhorizont.org/hattrick/CustomMedals.html
-ElectionTable=http://gliglif.foundationhorizont.org/hattrick/ElectionTable.html
 FixcssProblems.Guestbook=http://gliglif.foundationhorizont.org/hattrick/FixcssProblems_Guestbook.html
 FixcssProblems.League_Table=http://gliglif.foundationhorizont.org/hattrick/FixcssProblems_League_Table.html
 GuestbookAlltidFlags.AddAlltidFlags=http://gliglif.foundationhorizont.org/hattrick/GuestbookAlltidFlags.html
