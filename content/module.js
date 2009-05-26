@@ -72,6 +72,7 @@ Foxtrick.ht_pages = {
     'htpress'                   : '\/Community\/Press\/Default\.aspx',
     'cupmatches'                : '\/World\/Cup\/CupMatches\.aspx',
     'election'                  : '\/World\/Elections\/Default\.aspx',
+    'ads'                       : '\/Community\/Ads\/',
 
 
     'all_late'                  : '\/',

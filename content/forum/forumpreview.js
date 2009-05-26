@@ -23,6 +23,8 @@ var FoxtrickForumPreview = {
         Foxtrick.registerPageHandler( 'messageWritePost', this );
         Foxtrick.registerPageHandler( 'guestbook', this );
         Foxtrick.registerPageHandler( 'announcements', this );
+        Foxtrick.registerPageHandler( 'ads', this );
+        
     },
 
     run : function( page, doc ) {
@@ -33,6 +35,8 @@ var FoxtrickForumPreview = {
                 msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_txtInsert' ); //ads                
             if (msg_window == null)
                 return;
         }
@@ -84,6 +88,15 @@ var FoxtrickForumPreview = {
                     var msg_type = 3;
                 }
         }
+        if (!target) {
+                target=doc.getElementById("ctl00_CPMain_btnCreateInsert");  // ads
+                if (target) {
+                    msg_window.setAttribute( "tabindex",  1);                
+                    target.setAttribute( "tabindex",  2);
+                    index=3; /*index=5;*/ 
+                    var msg_type = 3;
+                }
+        }
         dump('\n ==> Message Type ' + msg_type + '\n');
         
 		//button_ok.setAttribute( "tabindex",  index);
@@ -128,6 +141,7 @@ var FoxtrickForumPreview = {
 		var divs=doc.getElementById('mainBody').getElementsByTagName('div');
 		var i=0,div;
 		while (div=divs[i++]) if (div.className=='HTMLToolbar') break;
+        if (page == 'ads') div = doc.getElementById('ctl00_CPMain_txtInsert');
         div.parentNode.insertBefore( preview_div,div );
 
     },
@@ -154,6 +168,8 @@ var FoxtrickForumPreview = {
                 msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket                
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_txtInsert' ); //ads                
             if (msg_window == null)
                 return;
         }
@@ -261,6 +277,8 @@ var FoxtrickForumPreview = {
                 msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail 
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket                
+            if (msg_window == null)
+                msg_window = doc.getElementById( 'ctl00_CPMain_txtInsert' ); //ads                
             if (msg_window == null)
                 return;
         }
