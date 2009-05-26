@@ -233,8 +233,8 @@ var FoxtrickForumPreview = {
           "<a href=\"$1\" target=\"\_blank\">($1)</a>",
 
           "<blockquote class='quote'>$1</blockquote>",
-          "<blockquote class='quote'><b>$1&nbsp;wrote:</b><br>$2</blockquote>",
-          "<blockquote class='quote'><b>$1&nbsp;wrote:</b><br>$2</blockquote>",
+          "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
+          "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
           "<b>$1</b>",
           "<u>$1</u>",
           "<i>$1</i>",
