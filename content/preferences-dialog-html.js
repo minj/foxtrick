@@ -63,7 +63,8 @@ var FoxtrickPrefsDialogHTML = {
 		
 		doc.getElementById('sidebar').style.display='none';
 		var mainWrapper=doc.getElementById('mainWrapper');
-		mainWrapper.getElementsByTagName('div')[0].style.width='100%';
+		if (Foxtrick.isStandardLayout(doc)) mainWrapper.getElementsByTagName('div')[0].style.width='765px';
+		else mainWrapper.getElementsByTagName('div')[0].style.width='620px';
 		
 		var myhttext=doc.getElementById('ctl00_pnlSubMenu').getElementsByTagName('h2')[0].innerHTML;
 				
