@@ -411,9 +411,15 @@ var FoxtrickForumChangePosts = {
 								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
 							}
 						}						
-						if (header.offsetTop-header_right.offsetTop < -3 )  {header.setAttribute('class','cfHeader ftdoubleLine');}												
+						if (header.offsetTop-header_right.offsetTop < -3 )  {
+							header.setAttribute('class','cfHeader ftdoubleLine');
+							//header.setAttribute('style','height: 30px !important;'); doesn't work
+						}												
 					  }
-					  else {header.setAttribute('class','cfHeader ftdoubleLine');}
+					  else {
+						header.setAttribute('class','cfHeader ftdoubleLine');
+						//header.setAttribute('style','height: 30px !important;'); doesn't work
+					  }
 					}
 				}
 				
@@ -421,7 +427,10 @@ var FoxtrickForumChangePosts = {
 
 				// check design broken
 				if (!this.bDetailedHeader && do_alltid_flags)
-				{ 	if (header.offsetTop-header_right.offsetTop < -3 )  {header.setAttribute('class','cfHeader ftdoubleLine');}	
+				{ 	if (header.offsetTop-header_right.offsetTop < -3 )  {
+						header.setAttribute('style','height: 30px !important;');
+						//header.setAttribute('class','cfHeader ftdoubleLine'); doesn't work well
+					}	
 					post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
 					if (post_link2) post_link2.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
 				}
@@ -568,7 +577,9 @@ var FoxtrickForumChangePosts = {
 	_postid_adjust_height : function(ev) { 
 		header = ev.target.parentNode.parentNode; 
 		if (header.offsetTop-header.lastChild.offsetTop < -3 ) { 
+			// just to be on the save side do both
 			header.setAttribute('class','cfHeader ftdoubleLine');
+			header.setAttribute('style','height: 30px !important;');			
 		}		
 		ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );	
 	},
