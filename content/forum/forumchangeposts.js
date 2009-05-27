@@ -509,13 +509,22 @@ var FoxtrickForumChangePosts = {
 				var supporter_link2 = null;
 				var league_link1 = null;
 				var league_link2 = null;
+				var post_id1 = null;
+				var post_id2 = null;
 				
 				
 				var k = 0, header_left_link; 
 				if (header_left_links[0].href.search(/showMInd/)==-1 ) this.bDetailedHeader = true; 
 				while ( header_left_link = header_left_links[k++]) {
 					if (!poster_link1) { 
-						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link1 = header_left_link;
+						if (header_left_link.href.search(/showMInd/) != -1) { 
+							post_id1 = header_left_link.href.match(/(\d+)-\d+/)[1]+'.'+header_left_link.href.match(/\d+-(\d+)/,'')[1];
+							post_link1 = header_left_link;
+						}
+						else if (header_left_link.href.search(/Forum\/Read\.aspx/) != -1) {
+							post_id1 = header_left_link.title; 
+							post_link1 = header_left_link;
+						}
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) { 
 							poster_link1 = header_left_link; 
 							poster_id1 = poster_link1.href.match(/\d+$/);
@@ -540,15 +549,15 @@ var FoxtrickForumChangePosts = {
 						else if (header_left_link.href.search(/LeagueLevelUnitID/i) != -1) league_link2 = header_left_link;
 					 }*/					
 				}
-		
-			var headstr = post_link1.title+': '+poster_link1.title+' » ';
-			if (poster_link2)  headstr+=post_link2.title+': '+poster_link2.title+'\n';
+		 
+			var headstr = post_id1+': '+poster_link1.title+' » ';
+			if (poster_link2 && post_link2)  headstr+=post_link2.title+': '+poster_link2.title+'\n';
 			else headstr+='all\n';
-			headstr = header_right_inner+"  \n"+headstr+'\n';
+			headstr = header_right_inner.replace(/^ /,'')+"  \n"+headstr+'\n';
 			
 			var message_raw = header.nextSibling.firstChild.innerHTML;
 			message_raw=message_raw.replace(/\<hr\>|\<br\>/g,'\n');
-			var message = Foxtrick.stripHTML(message_raw);
+			var message = (Foxtrick.stripHTML(message_raw)).replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<');
 			
 			Foxtrick.copyStringToClipboard(headstr+message); 
 			if (FoxtrickPrefs.getBool( "copyfeedback" )) 
