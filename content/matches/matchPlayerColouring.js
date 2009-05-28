@@ -62,13 +62,17 @@ FoxtrickMatchPlayerColouring = {
 		
 		// get part between fisrt '.' after formation and end of paragraph
 		var contentA = content.substring(0,content.search('.<br><br>'));		
-		contentA=contentA.substring(contentA.search(/\d-\d-\d/));
+		var formationindex=contentA.indexOf('ft_mR_format');
+		if (formationindex==-1) formationindex=contentA.search(/\d-\d-\d/);
+		contentA=contentA.substring(formationindex);
 		contentA=contentA.substring(contentA.indexOf('.'));
 		//dump('A: ' + contentA+'\n------\n'+contentA.indexOf('.')+'\n');
 
         // get part between fisrt '.' after formation and end of paragraph
-		var contentB = content.substring(content.search('.<br><br>')+9); 
-		contentB=contentB.substring(0,contentB.search('.<br><br>')); 
+		var contentB = content.substring(content.search('.<br>')+9); 
+		contentB=contentB.substring(0,contentB.search('.<br>')); 
+		var formationindex=contentA.indexOf('ft_mR_format');
+		if (formationindex==-1) formationindex=contentB.search(/\d-\d-\d/)
 		contentB=contentB.substring(contentB.search(/\d-\d-\d/));
 		contentB=contentB.substring(contentB.indexOf('.')); 
 		//dump('B: '+ contentB+'\n--------\n');
