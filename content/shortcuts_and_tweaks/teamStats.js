@@ -56,8 +56,9 @@ var FTTeamStats= {
 					try { 
 						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
                         if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
-                        // dump (' => tsitot_in => [' + tsitot_in + ']\n');
-						var lastindex = tsitot_in.lastIndexOf(' ');  
+                        //dump (' => tsitot_in => [' + tsitot_in + ']\n');
+						if (tsitot_in.search(/^\s*TSI/) != -1) tsitot_in = tsitot_in.replace(/,.+/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
+						var lastindex = tsitot_in.lastIndexOf(' ');
 						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
 						tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;',''); 
 						tsitot_in = parseInt(tsitot_in);  
