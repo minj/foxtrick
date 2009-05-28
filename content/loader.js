@@ -33,6 +33,7 @@ var scripts = [
     'forum/forumgotopostbox.js',
 	'matches/matches.js',
     'matches/matchPlayerColouring.js',
+    'matches/matchReport.js',    
     'matches/ratings.js',
     'matches/attvsdef.js',
     'matches/matchOrdersFlipSides.js',
