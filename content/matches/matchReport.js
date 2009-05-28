@@ -23,7 +23,19 @@ FoxtrickMatchReportFormat = {
         var div = doc.getElementById('mainBody');
         var div_check = getElementsByClass('ft_mR_format', div);
         if  (div_check.length > 0) return;
+
+        var links = div.getElementsByTagName('a');
+        var supporter = false;
+        for (i=0; i < links.length; i++) {
+            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
+            if (links[i].href.search('Book') > 0) {
+                supporter = true;
+                break;
+            }
+        }
+
         var div_inner = getElementsByClass('', div)[2];
+        if (!supporter) div_inner = getElementsByClass('', div)[1];
         // dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
