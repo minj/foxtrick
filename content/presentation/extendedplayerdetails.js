@@ -8,8 +8,8 @@ FoxtrickExtendedPlayerDetails = {
     MODULE_NAME : "ExtendedPlayerDetails",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Added wage per season",
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
     RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
     init : function() {
@@ -23,7 +23,6 @@ FoxtrickExtendedPlayerDetails = {
             case 'playerdetail' : 
 
                 this._Player_Joined ( doc );
-                this._Player_Bonus (doc);
                 break;
         }
     },
@@ -83,6 +82,36 @@ FoxtrickExtendedPlayerDetails = {
         }
     },
 
+};
+
+
+FoxtrickExtendedPlayerDetailsWage = {
+
+    MODULE_NAME : "ExtendedPlayerDetailsWage",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
+    OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
+
+	    init : function() {
+        Foxtrick.registerPageHandler('playerdetail', this); 
+    },
+
+    run : function(page, doc) {
+
+        switch ( page ) {
+
+            case 'playerdetail' : 
+
+                this._Player_Bonus ( doc );
+                break;
+        }
+    },
+
+	change : function( page, doc ) {
+
+	},
     _Player_Bonus  : function ( doc ) {
         // Player in team since...
         var div = doc.getElementById( "ft_bonuswage" );
@@ -122,7 +151,7 @@ FoxtrickExtendedPlayerDetails = {
 			part_1_save=part_1_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"));
 			
             if (part != 'NaN') 
-            {    if (has_bonus) {
+            {    if (has_bonus && Foxtrick.isModuleFeatureEnabled( this, "WageWithoutBonus") ) {
 					table_elm_bonus.innerHTML = 
                     part_1_save +//'&nbsp;'+ 
                     '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' + 
@@ -130,11 +159,13 @@ FoxtrickExtendedPlayerDetails = {
                     ')</span> ' + 
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 				}
-				table_elm_bonus.innerHTML += '<br>'+ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
+				if (has_bonus && Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") ) 
+						table_elm_bonus.innerHTML += '<br>'+ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
              }   
 				
         } catch (e) {
             dump('  PlayerBonus: ' + e + '\n');
         }
     }
+
 };
