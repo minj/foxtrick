@@ -132,19 +132,22 @@ FoxtrickMatchPlayerColouring = {
 		 }		 
  
 		var links = content_div.getElementsByTagName("a");
+        
 		 for (var i=0; i<links.length; i++) {
-             if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
-                 links[i].style.border = "1px solid #ccc";
-				 links[i].style.padding = "0px 2px";
-  				 var playerFullName = links[i].textContent;
-				 if  (playerFullName.charAt(0)==" ") playerFullName = playerFullName.substr(1);
-				 var b = playerFullName.search(" ");
-				 var l = playerFullName.length;
-				 if (b>=0) {
+            if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
+                dump('['+links[i].href +']\n');
+                links[i].href+='&colored';
+                links[i].style.border = "1px solid #ccc";
+				links[i].style.padding = "0px 2px";
+  				var playerFullName = links[i].textContent;
+				if  (playerFullName.charAt(0)==" ") playerFullName = playerFullName.substr(1);
+				var b = playerFullName.search(" ");
+				var l = playerFullName.length;
+				if (b>=0) {
 					var playerName = playerFullName.substr(b+1,l-b+1);
-				 } else {
+				} else {
 					var playerName = playerFullName;
-				 }
+				}
 				//playerName=links[i].textContent; 
 				var foundA =false;
 				for (var k=0;k<teamA.length;k++) { //dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\t');

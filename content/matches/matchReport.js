@@ -35,9 +35,13 @@ FoxtrickMatchReportFormat = {
         part[1] = this.nl2br(part[1]);
         
         search = new Array(
+            /\=(\d+)/g,
+            /\-(\d+)/g,
             /\s(\d+)/g
             );
         replace = new Array(
+            "=$1&formatted",
+            "<span style='font-weight:bold;color:red'>&nbsp;$1</span>",
             "<span style='font-weight:bold;color:red'>&nbsp;$1</span>"
             );
         for (var i = 0; i<search.length; i++) {
