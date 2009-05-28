@@ -27,7 +27,7 @@ FoxtrickMatchReportFormat = {
         var links = div.getElementsByTagName('a');
         var supporter = false;
         for (i=0; i < links.length; i++) {
-            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
+//            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
             if (links[i].href.search('Book') > 0) {
                 supporter = true;
                 break;
@@ -44,7 +44,7 @@ FoxtrickMatchReportFormat = {
         part[0] = div_inner.innerHTML.substr(0, start);
         part[1] = div_inner.innerHTML.substr(start, end-start);
         part[2] = div_inner.innerHTML.substr(end, div_inner.innerHTML.length-end );
-        dump('start[' + start + '|' + end + ']');
+        // dump('start[' + start + '|' + end + ']');
         // dump(part[1]);
         part[1] = this.nl2br(part[1]);
         
