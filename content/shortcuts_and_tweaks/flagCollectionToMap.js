@@ -1,15 +1,115 @@
 /**
  * Visited countries map  
- * @author seben
- */
+ * @author seben, fixes convincedd
+ */ 
  
 FoxtrickFlagCollectionToMap = {
 	
     MODULE_NAME : "FlagCollectionToMap",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Fix for missing countries",
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"Colored NonHt countries",
     DEFAULT_ENABLED : true,
+
+	non_HT_countries:[
+	"AF",
+	"AG",
+	"AI",
+	"AN",
+	"AQ",
+	"AW",
+	"AX",
+	"BF",
+	"BI",
+	"BL",
+	"BM",
+	"BS",
+	"BT",
+	"BV",
+	"BW",
+	"BZ",
+	"CD",
+	"CF",
+	"CG",
+	"CM",
+	"CU",
+	"DJ",
+	"DM",
+	"EH",
+	"ER",
+	"ET",
+	"FK",
+	"GA",
+	"GD",	
+	"GG",
+	"GI",
+	"GL",
+	"GM",
+	"GN",
+	"GP",
+	"GQ",
+	"GS",
+	"GW",
+	"GY",
+	"HM",
+	"HT",
+	"IM",
+	"IO",
+	"JE",
+	"KM",
+	"KN",
+	"KP",
+	"KY",
+	"LA",
+	"LC",
+	"LK",
+	"LR",
+	"LS",
+	"LY",
+	"MC",
+	"MF",
+	"MG",
+	"ML",
+	"MM",
+	"MO",
+	"MQ",
+	"MR",
+	"MS",
+	"MU",
+	"MW",
+	"NA",
+	"NE",
+	"NP",
+	"PM",
+	"PR",
+	"PS",
+	"RE",
+	"RW",
+	"SC",
+	"SD",
+	"SH",
+	"SJ",
+	"SL",
+	"SM",
+	"SO",
+	"ST",
+	"SZ",
+	"TC",
+	"TD",
+	"TG",
+	"TJ",
+	"TL",
+	"TM",
+	"UM",
+	"UZ",
+	"VA",
+	"VC",
+	"VG",
+	"VI",
+	"YT",
+	"ZM",
+	"ZW"],
+
 
     init : function() {
         Foxtrick.registerPageHandler('flagCollection', this);
@@ -64,6 +164,13 @@ FoxtrickFlagCollectionToMap = {
     
         var countryCodes = this.getCountryCodes(countryIds);
         var colouringOrder = this.getOrder(countryCodes);
+        
+		for(var i = 0; i < this.non_HT_countries.length ; i++){
+            countryCodes += this.non_HT_countries[i];
+        }
+		for(var i = 0; i < this.non_HT_countries.length-1 ; i++){
+            colouringOrder += '2,';
+        } colouringOrder += '2';
         
         // get all required urls
         var urlAfrica = this.getMapUrl('africa', countryCodes, colouringOrder);
@@ -156,7 +263,7 @@ FoxtrickFlagCollectionToMap = {
          
         this.countryCodes.c_36='ES' // Espana
         this.countryCodes.c_76='FO' // Foroyar
-        this.countryCodes.c_5='FR' // France
+        this.countryCodes.c_5='FRGFTF' // France  PF part of oceania?
         this.countryCodes.c_137='GH' // Ghana
         this.countryCodes.c_107='GT' // Guatemala
         this.countryCodes.c_30='KR' // Hanguk
@@ -302,7 +409,8 @@ FoxtrickFlagCollectionToMap = {
                 cCodesString += countryCode
             }
         }
-        return cCodesString;
+		
+		return cCodesString;
     },
     
     getMapHtml: function(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId, fixWorld, fixEurope){
@@ -336,13 +444,15 @@ FoxtrickFlagCollectionToMap = {
         var chartType = '?cht=t';
 		var dimensions = '&chs=440x220';
 
-        var colors = '&chco=ffffff,339933,339933';
-        var order = '&chd=s:' + colorOrder;
-        var countries = '&chld=' + countryCodes;
+        var colors = '&chco=ffffff,ff0000,339933,000000';  // background,own,flags,non-ht
+        var order = '&chd=t:' + colorOrder;
+        var colorrange = '&chds=0,2';
+		var countries = '&chld=' + countryCodes;
+		
         var area = '&chtm=' + areaParam;
         var background = '&chf=bg,s,EAF7FE';
 
-        var url = base + chartType + dimensions + colors + area + background + order  + countries;
+        var url = base + chartType + dimensions + colors + area + background + order  + colorrange + countries;
 
         return url;
     },
@@ -359,9 +469,9 @@ FoxtrickFlagCollectionToMap = {
         if(countryCodes == null || countryCodes.length == 0) return '';
 
         for(var i = 0; i < countryCodes.length / 2; i++){
-            orderString += 'A';
+            orderString += '1,';
         }
-        return orderString;
+       return orderString;
     },
 		
 	getMapFixWorld : function(countryIds) {
