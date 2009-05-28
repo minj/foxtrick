@@ -47,7 +47,7 @@ FoxtrickMatchReportFormat = {
         var dummy = part[1].split('<br><br>');
         // Foxtrick.alert(dummy[1]);
         
-        part[0] += '<br><br>' + dummy[0] + '<br><br>' + dummy[1] + '<br><br>';
+        part[0] += '' + dummy[0] + '<br><br>' + dummy[1] + '<br>';
         part[1] = dummy[2] + '<br><br>' + dummy[3] + '<br><br>' + dummy[4] ;
         
         part[2] = div_inner.innerHTML.substr(end, div_inner.innerHTML.length-end );
