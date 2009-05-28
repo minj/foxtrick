@@ -190,6 +190,18 @@ FoxtrickFlagCollectionToMap = {
 				colouringOrder = '0,' + colouringOrder;
 		}
 		
+		// serbia & montrnegro haack
+		if (this.own_countryid == 57 || this.own_countryid == 131) {
+                countryCodes = 'CS' + countryCodes; 
+           		colouringOrder = '0,' + colouringOrder;		
+        }
+		// uk hack
+        if (this.own_countryid == 61 || this.own_countryid == 2 || this.own_countryid == 93 || this.own_countryid == 26){
+                countryCodes = 'GB' + countryCodes; 
+           		colouringOrder = '0,' + colouringOrder;		
+        }
+           
+		
         // get all required urls
         var urlAfrica = this.getMapUrl('africa', countryCodes, colouringOrder);
         var urlAsia = this.getMapUrl('asia', countryCodes, colouringOrder);
