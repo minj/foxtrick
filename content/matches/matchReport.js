@@ -42,7 +42,14 @@ FoxtrickMatchReportFormat = {
         
         var part = new Array('','','');
         part[0] = div_inner.innerHTML.substr(0, start);
+        
         part[1] = div_inner.innerHTML.substr(start, end-start);
+        var dummy = part[1].split('<br><br>');
+        // Foxtrick.alert(dummy[1]);
+        
+        part[0] += '<br><br>' + dummy[0] + '<br><br>' + dummy[1] + '<br><br>';
+        part[1] = dummy[2] + '<br><br>' + dummy[3] + '<br><br>' + dummy[4] ;
+        
         part[2] = div_inner.innerHTML.substr(end, div_inner.innerHTML.length-end );
         // dump('start[' + start + '|' + end + ']');
         // dump(part[1]);
@@ -50,21 +57,25 @@ FoxtrickMatchReportFormat = {
         
         search = new Array(
             /\=(\d+)/g,
-            /\-(\d+)/g,
-            /\s(\d+)/g,
+            /\-(\d{1,3})/g,
+            /\s(\d{1,3})/g,
             /(\s{5,})/g,
             /\<br \/\>br\<br \/\>br/g
+            // /\<br\>(.{5,})\<br\>/i
             );
         replace = new Array(
             "=$1&formatted",
-            "<span class='ft_mR_format' style='font-weight:bold;color:red'>&nbsp;$1</span>",
+            "-<span class='ft_mR_format' style='font-weight:bold;color:red'>$1</span>",
             "<span class='ft_mR_format' style='font-weight:bold;color:red'>&nbsp;$1</span>",
             "br",
             "<br>"
+            // "<div>$1</div>"
             );
+        
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
         }
+        
         div_inner.innerHTML = part[0] + part[1] + part[2];
         // dump(part[1]);
         //Foxtrick.alert(part[1]);
