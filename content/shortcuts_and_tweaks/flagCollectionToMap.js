@@ -8,9 +8,13 @@ FoxtrickFlagCollectionToMap = {
     MODULE_NAME : "FlagCollectionToMap",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Colored NonHt countries",
+	LASTEST_CHANGE:"Colored NonHt countries, own country in red if missing",
     DEFAULT_ENABLED : true,
 
+	own_countryid:0,
+	own_countryvisited:false,
+	own_countryCodes:'XX',
+	
 	non_HT_countries:[
 	"AF",
 	"AG",
@@ -122,6 +126,8 @@ FoxtrickFlagCollectionToMap = {
         var result = document.evaluate(path, document.documentElement, null,
                                        Components.interfaces.nsIDOMXPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
         
+		this.own_countryid = FoxtrickHelper.findCountryId(document.getElementById('teamLinks'));
+		
         var mapId = 0;
         for (var i=0; i< result.snapshotLength; i++) {
             var divElement = result.snapshotItem(i);
@@ -171,7 +177,19 @@ FoxtrickFlagCollectionToMap = {
 		for(var i = 0; i < this.non_HT_countries.length-1 ; i++){
             colouringOrder += '2,';
         } colouringOrder += '2';
-        
+		
+        /*if (this.own_countryvisited) {
+		    countryCodes = this.onw_countryCodes + countryCodes;
+            colouringOrder = '0,' + colouringOrder;
+		}*/
+		
+		// own country. add to front. is overwriten by visited color if visited
+        this.own_countryCodes = this.countryCodes['c_'+this.own_countryid];                
+        if (typeof this.own_countryCodes != 'undefined') {        
+                countryCodes = this.own_countryCodes + countryCodes;
+				colouringOrder = '0,' + colouringOrder;
+		}
+		
         // get all required urls
         var urlAfrica = this.getMapUrl('africa', countryCodes, colouringOrder);
         var urlAsia = this.getMapUrl('asia', countryCodes, colouringOrder);
@@ -385,7 +403,7 @@ FoxtrickFlagCollectionToMap = {
         var cCodesString = '';
         for(var i = 0; i < countryIds.length; i++){
             var countryId = countryIds[i];
-           
+
             // uk hack
             if(countryId == 61 || countryId == 2 || countryId == 93 || countryId == 26){
                 ukIds++;
@@ -444,7 +462,7 @@ FoxtrickFlagCollectionToMap = {
         var chartType = '?cht=t';
 		var dimensions = '&chs=440x220';
 
-        var colors = '&chco=ffffff,ff0000,339933,000000';  // background,own,flags,non-ht
+        var colors = '&chco=ffffff,dd2222,339933,000000';  // background,own-noflagged,flags,non-ht
         var order = '&chd=t:' + colorOrder;
         var colorrange = '&chds=0,2';
 		var countries = '&chld=' + countryCodes;
