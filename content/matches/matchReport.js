@@ -65,17 +65,28 @@ FoxtrickMatchReportFormat = {
             );
         replace = new Array(
             "=$1&formatted",
-            "-<span class='ft_mR_format' style='font-weight:bold;color:red'>$1</span>",
-            "<span class='ft_mR_format' style='font-weight:bold;color:red'>&nbsp;$1</span>",
+            "-<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>",
+            "<span class='ft_mR_format' style='font-weight:bold;color:black'>&nbsp;$1</span>",
             "br",
-            "<br>"
+            "<br>\n"
             // "<div>$1</div>"
             );
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:red'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:red'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:red'>$3</span> ");
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:red'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:red'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:red'>$3</span> ");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
         }
+        
+        dummy = part[1].split('\n');
+        part[1]= '';
+        for (i=0; i<dummy.length;i++) {
+            if (i%2 ==1) {var bg='#f0f0f0';} else {var bg='#f8f8f8';}
+            if (Foxtrick.trim(dummy[i]) == '<br>') dummy[i] = '';
+            if (!(dummy[i].indexOf('<br><br>')<0)) var bg='#ddd';
+            dummy[i] = dummy[i].replace(/\<br\>/g, '');
+            part[1] += '<div style="border:0px solid blue;margin-top:5px; background:' +bg+ ';">' + dummy[i] + '</div>';
+        }
+        
         
         div_inner.innerHTML = part[0] + part[1] + part[2];
         // dump(part[1]);
