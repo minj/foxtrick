@@ -89,7 +89,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 
     MODULE_NAME : "ExtendedPlayerDetailsWage",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    DEFAULT_ENABLED : true,
+    DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
     OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
