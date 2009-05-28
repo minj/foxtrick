@@ -21,8 +21,10 @@ FoxtrickMatchReportFormat = {
 		if (!isarchivedmatch) return;
         
         var div = doc.getElementById('mainBody');
+        var div_check = getElementsByClass('ft_mR_format', div);
+        if  (div_check.length > 0) return;
         var div_inner = getElementsByClass('', div)[2];
-        // dump('>>>>>>>>>>>>>>>>>>>>' + div_inner.innerHTML + '<<<<<<<<<<<<<<<<<<');
+        // dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
         
@@ -37,12 +39,16 @@ FoxtrickMatchReportFormat = {
         search = new Array(
             /\=(\d+)/g,
             /\-(\d+)/g,
-            /\s(\d+)/g
+            /\s(\d+)/g,
+            /(\s{5,})/g,
+            /\<br \/\>br\<br \/\>br/g
             );
         replace = new Array(
             "=$1&formatted",
-            "<span style='font-weight:bold;color:red'>&nbsp;$1</span>",
-            "<span style='font-weight:bold;color:red'>&nbsp;$1</span>"
+            "<span class='ft_mR_format' style='font-weight:bold;color:red'>&nbsp;$1</span>",
+            "<span class='ft_mR_format' style='font-weight:bold;color:red'>&nbsp;$1</span>",
+            "br",
+            "<br>"
             );
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
@@ -50,16 +56,12 @@ FoxtrickMatchReportFormat = {
         div_inner.innerHTML = part[0] + part[1] + part[2];
         // dump(part[1]);
         //Foxtrick.alert(part[1]);
-        
-        
         //dump(div.innerHTML);
-        
-		
-		
     },
 
-    change : function(url) {
-        if (!doc.getElementById('ft_format')) return;
+	change : function( page, doc ) {
+        var div_check = getElementsByClass('ft_mR_format', doc);
+        if  (div_check.length > 0) return;
     },
     nl2br : function(text) {
         text = escape(text);

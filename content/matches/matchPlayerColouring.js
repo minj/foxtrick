@@ -135,7 +135,7 @@ FoxtrickMatchPlayerColouring = {
         
 		 for (var i=0; i<links.length; i++) {
             if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
-                dump('['+links[i].href +']\n');
+                //dump('['+links[i].href +']\n');
                 links[i].href+='&colored';
                 links[i].style.border = "1px solid #ccc";
 				links[i].style.padding = "0px 2px";
