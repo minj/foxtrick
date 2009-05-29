@@ -44,8 +44,9 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickExtendedPlayerDetails,
                      FoxtrickExtendedPlayerDetailsWage,
 					 FoxtrickHTDateFormat,
-                     FoxtrickMatchReportFormat,
+
                      FoxtrickMatchPlayerColouring,                     
+                     FoxtrickMatchReportFormat,
                      AttVsDef, // AttVsDef should be placed before Ratings
 					 Ratings,
                      FTTeamStats,  // before FoxtrickLinksPlayers
