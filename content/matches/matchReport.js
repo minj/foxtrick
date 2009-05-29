@@ -81,19 +81,23 @@ FoxtrickMatchReportFormat = {
         part[1]= '';
         var stage = 0; 
         var fulltext = 0;
+        var marg = '';
+        var bg = '';
+        var padd = '';
+        var next = 0;
         for (i=0; i<dummy.length;i++) {
-            var marg='margin-top:10px; '
-            var padd='padding:2px; '
-            if (i%2 ==1) {var bg='#f0f0f0; ';} else {var bg='#f8f8f8; ';}
+            marg='margin-top:10px; '
+            padd='padding:2px; '
+            if (i%2 ==1) {bg='#f0f0f0; ';} else {bg='#f8f8f8; ';}
             dummy[i] =Foxtrick.trim(dummy[i]);
             if  (dummy[i] == '<br>') dummy[i] = '';
             if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
-                var bg='#ddd; ';
+                bg='#ccc; ';
                 marg = 'margin-top:20px; margin-bottom:20px; '
             }
             dummy[i] = dummy[i].replace(/\<br\>/g, '');
             if (dummy[i] != '') {
-                // dump(i + ' [' + dummy[i] + ']\n');
+                dump(i + ' [' + dummy[i] + ']\n');
                 if (dummy[i].split(' - ').length == 2 && stage == 0) { //headder
                     // dump('TEAMS FOUND\n');
                     var names = dummy[i].split(' - ');
@@ -112,11 +116,19 @@ FoxtrickMatchReportFormat = {
                     if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;
                         dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:#803">' + team1 + '</span>');
+                        if (fulltext <= 2) bg='#ccc; ';
                     }
                     if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;                 
                         dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:#83F">' + team2 + '</span>');
+                        if (fulltext <= 2) { 
+                            bg='#ccc; ';
+                            next = i+2;
+                            dump('>>>' + next + '\n');
+                        }
+                        
                     }
+                    if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
                     part[1] += '<div style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>';
                 }
                 else part[1] += dummy[i];
