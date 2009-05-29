@@ -21,7 +21,7 @@ FoxtrickMatchPlayerColouring = {
                                       FoxtrickMatchPlayerColouring );
     },
     
-    run : function( page, doc ) {
+    run : function( page, doc ) { dump('FoxtrickMatchPlayerColouring\n');
         
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
@@ -56,27 +56,45 @@ FoxtrickMatchPlayerColouring = {
 				
         var content_div = doc.getElementById('content');
         if (content_div == null) return;
-        var teamA = "";
-        var teamB = "";
-        var content = content_div.getElementsByTagName("h1")[0].parentNode.innerHTML;;
+        
+		var content = content_div.getElementsByTagName("h1")[0].parentNode.innerHTML;		
+		if (content.indexOf('ft_mR_format')==-1) { 		       
+			// get part between fisrt '.' after formation and end of paragraph	
+			var contentA = content.substring(0,content.search('.<br><br>'));		
+			contentA=contentA.substring(contentA.search(/\d-\d-\d/));
+			contentA=contentA.substring(contentA.indexOf('.'));
+				
+			// get part between fisrt '.' after formation and end of paragraph
+			var contentB = content.substring(content.search('.<br>')+9); 
+			contentB=contentB.substring(0,contentB.search('.<br>')); 
+			contentB=contentB.substring(contentB.search(/\d-\d-\d/));
+			contentB=contentB.substring(contentB.indexOf('.')); 
+		}
+		else {  // matchreport coloring active
+			var contentA=null;
+			var contentB='';
+			
+			var divs=content_div.getElementsByTagName("h1")[0].parentNode.getElementsByTagName('div');
+			for (var i=0;i<divs.length;++i) {
+				if (divs[i].innerHTML.indexOf('ft_mR_format')!=-1) { 
+					if (contentA==null) {
+						contentA=divs[i+1].innerHTML; 
+						contentA=contentA.substring(0,contentA.length-1);			
+					}
+					else{ 
+						contentB=divs[i+1].innerHTML; 
+						contentB=contentB.substring(0,contentB.length-1);
+						break;
+					}
+				}
+			}
+		}
+
+		//dump('A: ' + contentA+'\n------\n');
+		//dump('B: '+ contentB+'\n--------\n');
 		
-		// get part between fisrt '.' after formation and end of paragraph
-		var contentA = content.substring(0,content.search('.<br><br>'));		
-		var formationindex=contentA.indexOf('ft_mR_format');
-		if (formationindex==-1) formationindex=contentA.search(/\d-\d-\d/);
-		contentA=contentA.substring(formationindex);
-		contentA=contentA.substring(contentA.indexOf('.'));
-		dump('A: ' + contentA+'\n------\n'+contentA.indexOf('.')+'\n');
-
-        // get part between fisrt '.' after formation and end of paragraph
-		var contentB = content.substring(content.search('.<br>')+9); 
-		contentB=contentB.substring(0,contentB.search('.<br>')); 
-		var formationindex=contentA.indexOf('ft_mR_format');
-		if (formationindex==-1) formationindex=contentB.search(/\d-\d-\d/)
-		contentB=contentB.substring(contentB.search(/\d-\d-\d/));
-		contentB=contentB.substring(contentB.indexOf('.')); 
-		dump('B: '+ contentB+'\n--------\n');
-
+		var teamA = "";
+        var teamB = "";
 		var num_unknown_namesA=0;
         var FirstTeam = true; 
         if (contentA) {
@@ -162,10 +180,10 @@ FoxtrickMatchPlayerColouring = {
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
                 if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
-					links[i].setAttribute("style", stlTeamA + 'border:1px solid #ccc;padding:0px 2px;'); 
+					links[i].setAttribute("style", stlTeamA + ' border:1px solid #ccc;padding:0px 2px;'); 
                 } 
 				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
-					links[i].setAttribute("style", stlTeamB + 'border:1px solid #ccc;padding:0px 2px;'); 
+					links[i].setAttribute("style", stlTeamB + ' border:1px solid #ccc;padding:0px 2px;'); 
                  }    
                 else {
                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
@@ -179,11 +197,11 @@ FoxtrickMatchPlayerColouring = {
 						links[i].style.border = "1px solid #ccc";
 						links[i].style.padding = "0px 2px";
 						if (FirstTeam) {
-							links[i].setAttribute("style", stlTeamA + 'border:1px solid #ccc;padding:0px 2px;'); 
+							links[i].setAttribute("style", stlTeamA + ' border:1px solid #ccc;padding:0px 2px;'); 
  							FirstTeam = false;
 						}
 						else {
-							links[i].setAttribute("style", stlTeamB + 'border:1px solid #ccc;padding:0px 2px;'); 
+							links[i].setAttribute("style", stlTeamB + ' border:1px solid #ccc;padding:0px 2px;'); 
 						}
 					 }
 				}
