@@ -135,7 +135,7 @@ FoxtrickMatchReportFormat = {
                         
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
-                    part[1] += '<div style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>';
+                    part[1] += '<div id="ft_mR_div_' + i + '" style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>';
                 }
                 else part[1] += dummy[i];
             }
