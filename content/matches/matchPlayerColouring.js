@@ -66,7 +66,7 @@ FoxtrickMatchPlayerColouring = {
 		if (formationindex==-1) formationindex=contentA.search(/\d-\d-\d/);
 		contentA=contentA.substring(formationindex);
 		contentA=contentA.substring(contentA.indexOf('.'));
-		//dump('A: ' + contentA+'\n------\n'+contentA.indexOf('.')+'\n');
+		dump('A: ' + contentA+'\n------\n'+contentA.indexOf('.')+'\n');
 
         // get part between fisrt '.' after formation and end of paragraph
 		var contentB = content.substring(content.search('.<br>')+9); 
@@ -75,7 +75,7 @@ FoxtrickMatchPlayerColouring = {
 		if (formationindex==-1) formationindex=contentB.search(/\d-\d-\d/)
 		contentB=contentB.substring(contentB.search(/\d-\d-\d/));
 		contentB=contentB.substring(contentB.indexOf('.')); 
-		//dump('B: '+ contentB+'\n--------\n');
+		dump('B: '+ contentB+'\n--------\n');
 
 		var num_unknown_namesA=0;
         var FirstTeam = true; 
