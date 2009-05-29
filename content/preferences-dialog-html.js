@@ -148,12 +148,19 @@ var FoxtrickPrefsDialogHTML = {
 
 		prefdiv.setAttribute('style','display:inline'); 
 		
+		// highlight elements: url ... &highlight=id1+id2+id3
 		try {
 			if (doc.location.href.search(/highlight=/i)!=-1) { 
-				var highlight=doc.location.href.match(/highlight=(\w+)/i)[1];
-				dump(highlight+'\n')
-				var elem=doc.getElementById(highlight);
-				elem.parentNode.setAttribute('class', elem.parentNode.getAttribute('class')+' ft_pref_highlight');
+				var highlightlist=doc.location.href.match(/highlight=([\w\.\+]+)/);
+				var highlight=highlightlist[1].match(/([\w\.]+)/g);				
+				for (var i=0;i<highlight.length;++i) {
+					var element=doc.getElementById(highlight[i]); 
+					var parent=element.parentNode;
+					if (element.getAttribute('type') && element.getAttribute('type')=='checkbox') 
+						parent=element.parentNode.parentNode.parentNode.parentNode;  // parent div
+				 
+					parent.setAttribute('class', parent.getAttribute('class')+' ft_pref_highlight');
+				}
 			}
 		} catch (e){}
 		

@@ -34,6 +34,9 @@ margin-bottom:10px;
 	background-color:#7F80FF !important;
 }
 
+.ft_pref_highlight:hover {
+	background-color:#7F80FF !important; // didn't have a better idea
+}
 #foxtrick_prefsave { display:inline;  margin-left:10px;}
 
 #foxtrick_prefcancel {display:inline;  margin-left:10px;}
