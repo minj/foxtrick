@@ -80,27 +80,27 @@ FoxtrickMatchReportFormat = {
         dummy = (part[0] + part[1]).split('\n');
         part[1]= '';
         var stage = 0; 
+        var fulltext = 0;
         for (i=0; i<dummy.length;i++) {
             var marg='margin-top:10px; '
             var padd='padding:2px; '
             if (i%2 ==1) {var bg='#f0f0f0; ';} else {var bg='#f8f8f8; ';}
             dummy[i] =Foxtrick.trim(dummy[i]);
             if  (dummy[i] == '<br>') dummy[i] = '';
-            if (!(dummy[i].indexOf('<br><br>')<0)) {
+            if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
                 var bg='#ddd; ';
-                marg = 'margin-top:10px; margin-bottom:20px; '
+                marg = 'margin-top:20px; margin-bottom:20px; '
             }
             dummy[i] = dummy[i].replace(/\<br\>/g, '');
             if (dummy[i] != '') {
-                dump(i + ' [' + dummy[i] + ']\n');
+                // dump(i + ' [' + dummy[i] + ']\n');
                 if (dummy[i].split(' - ').length == 2 && stage == 0) { //headder
-                    dump('TEAMS FOUND\n');
+                    // dump('TEAMS FOUND\n');
                     var names = dummy[i].split(' - ');
                     var team1 = names[0].split('  ')[0];
                     var team2 = names[1].split('  ')[1];
                     stage = 1;
                     dump('TEAMS [' + team1 + '|' + team2 + ']\n');
-                    
                 }
                 if (stage==1 && dummy[i].indexOf('<span>(')!=-1) {
                     dump('MATCHID\n');
@@ -109,12 +109,19 @@ FoxtrickMatchReportFormat = {
                 if (dummy[i].indexOf('/Arena/') != -1) stage +=1;
                 
                 if (stage>1) { //full report
-                    dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:#803">' + team1 + '</span>');
-                    dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:#83F">' + team2 + '</span>');
+                    if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
+                        fulltext++;
+                        dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:#803">' + team1 + '</span>');
+                    }
+                    if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
+                        fulltext++;                 
+                        dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:#83F">' + team2 + '</span>');
+                    }
                     part[1] += '<div style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>';
                 }
                 else part[1] += dummy[i];
             }
+            // else dump(i + ' DROPED ' + dummy[i] + ']\n');
         }
         
         
