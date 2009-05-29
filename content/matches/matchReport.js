@@ -60,7 +60,7 @@ FoxtrickMatchReportFormat = {
         part[1] = this.nl2br(part[1]);
         
         search = new Array(
-            /\=(\d+)/g,
+//            /\=(\d+)/g,
             /\-(\d{1,3})/g,
             /\s(\d{1,3})/g,
             /(\s{5,})/g,
@@ -68,15 +68,15 @@ FoxtrickMatchReportFormat = {
             // /\<br\>(.{5,})\<br\>/i
             );
         replace = new Array(
-            "=$1&formatted",
+//            "=$1&formatted",
             "-<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>",
             "<span class='ft_mR_format' style='font-weight:bold;color:black'> $1</span>",
             "br",
             "<br>\n"
             // "<div>$1</div>"
             );
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span><!--PLAYERSSTART-->");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-<!--PLAYERSSTART-->");
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
         }
@@ -90,6 +90,7 @@ FoxtrickMatchReportFormat = {
         var bg = '';
         var padd = '';
         var next = 0;
+        var player = false;
         for (i=0; i<dummy.length;i++) {
             marg='margin-top:10px; '
             padd='padding:2px; '
@@ -98,12 +99,12 @@ FoxtrickMatchReportFormat = {
             if  (dummy[i] == '<br>') dummy[i] = '';
             if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
                 if (dummy[i].indexOf('/Players/')<0) bg='#ccc; ';
-                marg = 'margin-top:20px; margin-bottom:20px; ';
+                marg = 'margin-top:10px; margin-bottom:30px; ';
                 if (dummy[i].indexOf('/Players/')>0) marg = 'margin-top:30px; margin-bottom:10px; ';
             }
             dummy[i] = dummy[i].replace(/\<br\>/g, '');
             if (dummy[i] != '') {
-//                dump(i + ' [' + dummy[i] + ']\n');
+                //dump(i + ' [' + dummy[i] + ']\n');
                 if (dummy[i].split(' - ').length == 2 && stage == 0) { //headder
                     // dump('TEAMS FOUND\n');
                     var names = dummy[i].split(' - ');
@@ -130,14 +131,16 @@ FoxtrickMatchReportFormat = {
                         if (fulltext <= 2) { 
                             bg='#ccc; ';
                             next = i+2;
-                            dump('>>>' + next + '\n');
+                            //dump('>>>' + next + '\n');
                         }
                         
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
-                    part[1] += '<div id="ft_mR_div_' + i + '" style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>';
+                    if (next == i-1 ) part[1] += '<!--PLAYERSEND-->';
+                    
+                    part[1] += '<div id="ft_mR_div_' + i + '" style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
                 }
-                else part[1] += dummy[i];
+                else part[1] += dummy[i] + '\n\n';
             }
             // else dump(i + ' DROPED ' + dummy[i] + ']\n');
         }
