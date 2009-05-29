@@ -46,9 +46,13 @@ FoxtrickMatchReportFormat = {
         part[1] = div_inner.innerHTML.substr(start, end-start);
         var dummy = part[1].split('<br><br>');
         // Foxtrick.alert(dummy[1]);
-        
+
         part[0] += '' + dummy[0] + '<br><br>' + dummy[1] + '<br>';
-        part[1] = dummy[2] + '<br><br>' + dummy[3] + '<br><br>' + dummy[4] ;
+        part[1] = '';
+        for (i = 2; i< dummy.length; i++) {
+            part[1] += dummy[i] + '<br><br>';
+        }
+        
         
         part[2] = div_inner.innerHTML.substr(end, div_inner.innerHTML.length-end );
         // dump('start[' + start + '|' + end + ']');
@@ -78,6 +82,7 @@ FoxtrickMatchReportFormat = {
         }
         
         dummy = (part[0] + part[1]).split('\n');
+
         part[1]= '';
         var stage = 0; 
         var fulltext = 0;
@@ -92,12 +97,13 @@ FoxtrickMatchReportFormat = {
             dummy[i] =Foxtrick.trim(dummy[i]);
             if  (dummy[i] == '<br>') dummy[i] = '';
             if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
-                bg='#ccc; ';
-                marg = 'margin-top:20px; margin-bottom:20px; '
+                if (dummy[i].indexOf('/Players/')<0) bg='#ccc; ';
+                marg = 'margin-top:20px; margin-bottom:20px; ';
+                if (dummy[i].indexOf('/Players/')>0) marg = 'margin-top:30px; margin-bottom:10px; ';
             }
             dummy[i] = dummy[i].replace(/\<br\>/g, '');
             if (dummy[i] != '') {
-                dump(i + ' [' + dummy[i] + ']\n');
+//                dump(i + ' [' + dummy[i] + ']\n');
                 if (dummy[i].split(' - ').length == 2 && stage == 0) { //headder
                     // dump('TEAMS FOUND\n');
                     var names = dummy[i].split(' - ');
