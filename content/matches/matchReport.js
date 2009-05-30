@@ -144,12 +144,31 @@ FoxtrickMatchReportFormat = {
             }
             // else dump(i + ' DROPED ' + dummy[i] + ']\n');
         }
-        
-        
         div_inner.innerHTML = part[1] + part[2];
-        // dump(part[1]);
-        //Foxtrick.alert(part[1]);
-        //dump(div.innerHTML);
+
+        var standing = new Array(0,0);
+        var reg = /\ (\d{1,2})\ \-\ (\d{1,2})(.*?)/i;
+        var divs = div.getElementsByTagName('div');
+        for (i=0; i < divs.length; i++) {
+            // dump(i + ': ' + divs[i].textContent + '\n\n');
+            var text = divs[i].textContent;
+            var score = reg.exec(text);
+            if (score && i > 4) {
+                dump('[' + score + ']\n');
+                if (score[1] > standing[0]) {
+                    standing[0]++;
+                    divs[i].style.border ='3px solid red';
+                    // dump('A \n');
+                }
+                if (score[2] > standing[1]) {
+                    standing[1]++;
+                    divs[i].style.border ='3px solid blue';
+                    // dump('B \n');
+                }
+            }
+            
+        }
+        
     },
 
 	change : function( page, doc ) {
