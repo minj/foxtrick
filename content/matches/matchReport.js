@@ -92,14 +92,14 @@ FoxtrickMatchReportFormat = {
         var next = 0;
         var player = false;
         for (i=0; i<dummy.length;i++) {
-            marg='margin-top:10px; '
-            padd='padding:2px; '
-            if (i%2 ==1) {bg='#f0f0f0; ';} else {bg='#f8f8f8; ';}
+            marg='margin-top:10px; border:1px solid #ccc;'
+            padd='padding:2px; border:1px solid #ccc;'
+            if (i%2 ==1) {bg='#EFFFEF; ';} else {bg='#EFFFEF; ';}
             dummy[i] =Foxtrick.trim(dummy[i]);
             if  (dummy[i] == '<br>') dummy[i] = '';
             if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
-                if (dummy[i].indexOf('/Players/')<0) bg='#ccc; ';
-                marg = 'margin-top:10px; margin-bottom:30px; ';
+                if (dummy[i].indexOf('/Players/')<0) bg='#D2EFD1; ';
+                marg = 'margin-top:10px; margin-bottom:30px; border:1px solid #ccc; ';
                 if (dummy[i].indexOf('/Players/')>0) marg = 'margin-top:30px; margin-bottom:10px; ';
             }
             dummy[i] = dummy[i].replace(/\<br\>/g, '');
@@ -122,14 +122,14 @@ FoxtrickMatchReportFormat = {
                 if (stage>1) { //full report
                     if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;
-                        dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:#803">' + team1 + '</span>');
-                        if (fulltext <= 2) bg='#ccc; ';
+                        dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:#9F0202">' + team1 + '</span>');
+                        if (fulltext <= 2) bg='#D2EFD1; ';
                     }
                     if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;                 
-                        dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:#83F">' + team2 + '</span>');
+                        dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:#16029F">' + team2 + '</span>');
                         if (fulltext <= 2) { 
-                            bg='#ccc; ';
+                            bg='#D2EFD1; ';
                             next = i+2;
                             //dump('>>>' + next + '\n');
                         }
@@ -157,12 +157,14 @@ FoxtrickMatchReportFormat = {
                 dump('[' + score + ']\n');
                 if (score[1] > standing[0]) {
                     standing[0]++;
-                    divs[i].style.border ='3px solid red';
+                    divs[i].style.border ='1px solid red';
+					divs[i].style.background ='#FFECEC';
                     // dump('A \n');
                 }
                 if (score[2] > standing[1]) {
                     standing[1]++;
-                    divs[i].style.border ='3px solid blue';
+                    divs[i].style.border ='1px solid blue';
+					divs[i].style.background ='#EEECFF';
                     // dump('B \n');
                 }
             }
