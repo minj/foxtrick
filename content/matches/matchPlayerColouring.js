@@ -180,10 +180,10 @@ FoxtrickMatchPlayerColouring = {
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
                 if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
-					links[i].setAttribute("style", stlTeamA + ' border:1px solid #666;padding:0px 2px; background:#FFAFAF; text-decoration:none;'); 
+					links[i].setAttribute("style", stlTeamA + ' border:1px solid #666;padding:0px 2px; background:#FFAFAF; text-decoration:none; color:#000;'); 
                 } 
 				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
-					links[i].setAttribute("style", stlTeamB + ' border:1px solid #666;padding:0px 2px; background:#AFB0FF; text-decoration:none;'); 
+					links[i].setAttribute("style", stlTeamB + ' border:1px solid #666;padding:0px 2px; background:#AFB0FF; text-decoration:none; color:#000;'); 
                  }    
                 else {
                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
