@@ -108,7 +108,7 @@
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", this._br , false );
             newimage.setAttribute( "class", "ft_br");
-            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
             toolbar.insertBefore( newimage,target );
 
@@ -129,7 +129,7 @@
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", this._userid , false );
             newimage.setAttribute( "class", "ft_uid");
-            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_user.png') !important;");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_user.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.user");
             toolbar.insertBefore( newimage,target );                                                        
             
@@ -137,7 +137,7 @@
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", this._kitid , false );
             newimage.setAttribute( "class", "ft_kit");
-            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_kit.png') !important;");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_kit.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.kit");
             toolbar.insertBefore( newimage,target );                                                        
 
@@ -145,7 +145,7 @@
             newimage.src = "/Img/Icons/transparent.gif";
             newimage.addEventListener( "click", this._articleid , false );
             newimage.setAttribute( "class", "ft_aid");
-            newimage.setAttribute("style","margin:2px; width:22px; height:22px; background-image: url('chrome://foxtrick/content/resources/linkicons/format_article.png') !important;");
+            newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_article.png') !important;");
             newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.article");
             toolbar.insertBefore( newimage,target );                                                        
             
