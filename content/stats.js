@@ -12,11 +12,6 @@
  * for others use the 'paramfunction' eg natstats
  */
   
-var vnukstatsranges = {};
-
-vnukstatsranges["czech"] = [[93617,93784], [115871,116382], [480223, 482270]];
-vnukstatsranges["slovakia"] = [[241335,241502]];
-
 var countryflags = {};
 var hscountries = {};
 var hslevels = {};
@@ -690,8 +685,7 @@ stats["htstats"] =  {
 
         "leaguelink" : { "path"       : "liga.php",
                          "filters"    : ["countryid"], 
-                         "params"     : { "leagueid" : "htliga"
-                                        }
+                         "params"     : { "leagueid" : "htliga"}
                        },
 
         "teamlink" : { "path"       : "equipo.php",
@@ -736,6 +730,32 @@ stats["htstats_all"] =  {
         "title" : "htstats (played match)",
         "img" : "chrome://foxtrick/content/resources/linkicons/htstats.png"        
 };
+
+
+// Vnukstats
+
+stats["vnukstats"] =  { 
+        "url" : "http://vnukstats.hattrick-sk.com/",
+
+        "leaguelink" : { "path"       : "?pg=table",
+                         "filters"    : ["countryid"], 
+                         "params"     : { "leagueid" : "leagueID" }
+                       },
+
+       /* "playerlink" : { "path"       : "?page=showplayer",
+                         "filters"    : ["teamid"], 
+                         "params"     : { "playerid" : "plid" }
+                       },*/
+        "teamlink" : { "path"       : "?pg=teamDetails",
+                         "filters"    : ["countryid"], 
+                         "params"     : { "teamid" : "teamID" }
+                       },
+
+        "countryidranges" : [[52, 52],[67, 67]],  // CZ+SK
+        "title" : "Vnukstats",
+        "img" : "chrome://foxtrick/content/resources/linkicons/vnukstats.png"
+};    
+
 
 // todohattrick
 stats["todohattrick"] =  { 
