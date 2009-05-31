@@ -79,6 +79,7 @@ var FoxtrickLinksMatch = {
 		
 		// add custom links
 		if (isarchivedmatch) {
+			var prefset=this.MODULE_NAME+".played";
 			if (youthmatch) {prefset=this.MODULE_NAME+".youth.played";}
 			FoxtrickLinksCustom.add( page, doc,ownBoxBody,prefset,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });						
 		}    

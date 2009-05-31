@@ -28,10 +28,10 @@ var FoxtrickSeasonStats = {
 		// ----------------------------- season select box ---------------------------------
 	
 		// get current season
-		if (doc.location.href.search(/archive/i)==-1) {
+		if (doc.location.href.search(/\/archive/i)==-1) {
 			var as = doc.getElementById('sidebar').getElementsByTagName('a');
 			for (var i=0;i<as.length;++i) { 
-				if (as[i].href.search(/archive/i)!=-1) {
+				if (as[i].href.search(/\/archive/i)!=-1) {
 					this._season = as[i].href.match(/season=(\d+)/i)[1];
 					return;
 				}
