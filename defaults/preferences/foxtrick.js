@@ -38,6 +38,7 @@ pref( "extensions.foxtrick.prefs.matchstat.gardierstats", true);
 pref( "extensions.foxtrick.prefs.module.SeniorTeamShortCuts.value", 0 );
 pref( "extensions.foxtrick.prefs.cssSkin.value", "chrome://foxtrick/content/resources/css/mainr.css");
 pref( "extensions.foxtrick.prefs.module.SkillColoring.no_skill_links.enabled", false );
+pref( "extensions.foxtrick.prefs.module.SkillColoring.skill-number-translated.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLongNick.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SingleHeaderLine.enabled", true );

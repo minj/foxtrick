@@ -10,10 +10,8 @@ var FoxtrickSkillColoring = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
     OPTIONS : {},
-	NEW_AFTER_VERSION: "0.4.8",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
-	LASTEST_CHANGE:"Disabled on Forums",
+	NEW_AFTER_VERSION: "0.4.8.2",	
+	LASTEST_CHANGE:"Optional translated skills",
     
 	
     init : function() {
@@ -29,10 +27,11 @@ var FoxtrickSkillColoring = {
         if (isMessage) return;
  		
         
-        skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-selectoption", "no-skill-links"];
+        skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-translated", "skill-number-selectoption", "no-skill-links"];
         displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"  ), 
                           Foxtrick.isModuleFeatureEnabled( this, "only_skill_color" ), 
                           Foxtrick.isModuleFeatureEnabled( this, "skill_number" ), 
+                          Foxtrick.isModuleFeatureEnabled( this, "skill_number_translated" ), 
                           Foxtrick.isModuleFeatureEnabled( this, "skill_select" ),
 						  Foxtrick.isModuleFeatureEnabled( this, "no_skill_links" ),
                         ];
@@ -41,7 +40,7 @@ var FoxtrickSkillColoring = {
             if (displaystyles[i]) {
                 
                 var css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + ".css";
-                if  ( (i == 2) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) {
+                if  ( (i == 2 || i == 3) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) {
                     css = "chrome://foxtrick/content/resources/skillcolors/" + skillstyles[i] + "-personal.css";
                     //dump ('personal\n');
                 }
@@ -63,6 +62,7 @@ var FoxtrickSkillColoring = {
 	this.OPTIONS = new Array( "skill_color",
 								  "only_skill_color",
 								  "skill_number",
+								  "skill_number_translated",
 								  "skill_select",
 								  "no_skill_links");
 	}
