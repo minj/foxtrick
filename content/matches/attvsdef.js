@@ -191,10 +191,10 @@ var AttVsDef = {
 
 	_createGraphRow: function (doc, div, val1, val2, text1, text2, tooltip1, tooltip2) {
 
-			var color1 = "#FFFFFF";
-			var color2 = "#000000";
+			var color1 = "#FFAFAF";
+			var color2 = "#AFB0FF";
 			var fgcolor1 = "#000000";
-			var fgcolor2 = "#FFFFFF";
+			var fgcolor2 = "#000000";
 
 			var pt1 = Math.round(100 * val1 / (val1 + val2));
 			var pt2 = 100 - pt1;
@@ -233,6 +233,7 @@ var AttVsDef = {
 		 innercellA.appendChild(innercellC);
 		 innercellC.innerHTML = text1 + " " + AttVsDef._displayableRatingLevel(val1+1);
 		 innercellC.style.color = fgcolor1;
+		 innercellC.style.paddingLeft = "2px";
 
 		 var val = Math.round((pt1/50)*cellwidth);
 
@@ -269,6 +270,7 @@ var AttVsDef = {
 		 innercellC.innerHTML = AttVsDef._displayableRatingLevel(val2+1) + " " + text2;
 		 innercellC.style.textAlign = "right";
 		 innercellC.style.color = fgcolor2;
+		 innercellC.style.paddingRight = "2px";
 
 		 cell.title = tooltip2.textContent;
 
