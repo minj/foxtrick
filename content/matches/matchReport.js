@@ -75,8 +75,8 @@ FoxtrickMatchReportFormat = {
             "<br>\n"
             // "<div>$1</div>"
             );
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span><!--PLAYERSSTART-->");
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-<!--PLAYERSSTART-->");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
         }
@@ -133,10 +133,8 @@ FoxtrickMatchReportFormat = {
                             next = i+2;
                             //dump('>>>' + next + '\n');
                         }
-                        
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
-                    if (next == i-1 ) part[1] += '<!--PLAYERSEND-->';
                     
                     part[1] += '<div id="ft_mR_div_' + i + '" style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
                 }
