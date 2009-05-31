@@ -86,6 +86,7 @@ var scripts = [
     'presentation/leaguenewsfilter.js',
     'presentation/moveplayerselectbox.js',
 	'presentation/highlightcupwins.js',
+    'presentation/skilltranslation.js',
     'links/linkscustom.js',
     'links/linksleague.js',
     'links/linksteam.js',

@@ -73,7 +73,8 @@ Foxtrick.ht_pages = {
     'cupmatches'                : '\/World\/Cup\/CupMatches\.aspx',
     'election'                  : '\/World\/Elections\/Default\.aspx',
     'ads'                       : '\/Community\/Ads\/',
-
+	'denominations'             : '\/Help\/Rules\/AppDenominations.aspx',
+	
 
     'all_late'                  : '\/',
     

@@ -120,4 +120,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickYouthSkillTable,
 					 FoxtrickHighlightCupwins,
                      FoxtrickElectionTable,
+					 FoxtrickSkillTranslation,
 					];
+
+					
