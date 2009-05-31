@@ -18,7 +18,7 @@ var FoxtrickRedirections = {
 
 	if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return; 
 	
-	var serv = 'http://'+doc.location.hostname;//href.match(/(\S+)Club/i)[0]; 
+	var serv = 'http://'+doc.location.hostname;
 		
 		// redirect from manager 
 		var alldivs = doc.getElementsByTagName('div');
@@ -30,17 +30,23 @@ var FoxtrickRedirections = {
 				var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
 				
 				
-				var target="_self"; dump(serv+'\n');
+				var target="_self"; 
 				var tar='';
-				if (doc.location.href.search(/\/Club\/Manager/i)!=-1) {  dump('in\n');
+				if (doc.location.href.search(/\/Club\/Manager/i)!=-1) {  
 					if (doc.location.href.search(/redir_to_team=true/i)!=-1 ) 
 								tar=serv+"/Club/?TeamID="+teamid;
 					else if (doc.location.href.search(/redir_to_team_at_alltid=true/i)!=-1 ) 
-								{tar="http://alltid.org/team/"+teamid; target='_blank'; dump('tar:'+tar+'\n');}
+								{tar="http://alltid.org/team/"+teamid; target='_blank';}
 					else if (doc.location.href.search(/redir_to_lastlineup=true/i)!=-1 ) 
 								tar=serv+'/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True';
+					else if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 ) 
+								tar=serv+'/Club/Matches/?TeamID='+teamid+'&redir_to_nextmatch=true';
+					else if (doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 ) 
+								tar=serv+'/Club/Matches/?TeamID='+teamid+'&redir_to_addnextmatch=true';
 					else if (doc.location.href.search(/redir_to_transferhistory=true/i)!=-1 ) 
 								tar=serv+'/Club/Transfers/transfersTeam.aspx?teamId='+teamid;
+					else if (doc.location.href.search(/redir_to_teamhistory=true/i)!=-1 ) 
+								tar=serv+'/Club/History/?teamId='+teamid;
 					else if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) { 
 						if (teamid!=ownteamid) tar=serv+'/Club/Players/?TeamID='+teamid+'&redir_to_coach=true';
 						else tar=serv+'/Club/Training/?redir_to_coach=true';							
@@ -120,6 +126,30 @@ var FoxtrickRedirections = {
 			catch (e) {dump("ateamshortcuts->"+e);}
 		}
 	  }
+	
+		if (doc.location.href.search(/\/Club\/Matches\/\?TeamID=/i)!=-1 && 
+				(doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 ||
+				doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )) { 
+			try{ 
+			var table = doc.getElementById('mainWrapper').getElementsByTagName('table')[0];
+			var headercount=0;
+			for (var i=0;i<table.rows.length;++i) {
+				if (table.rows[i].getElementsByTagName('h2')[0]) { 
+					headercount++;
+					if (headercount==1) continue;
+					
+					var matchid = table.rows[i+1].innerHTML.match(/matchid=(\d+)/i)[1];	
+				
+	 				if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 ) 
+								tar=serv+'/Club/Matches/Match.aspx?matchID='+matchid;
+					else if (doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 ) 
+								tar=serv+'/Club/Matches/Live.aspx?actionType=addMatch&matchID='+matchid;
+					doc.location.replace(tar);
+					break;
+				}
+			}
+			} catch(e){ dump('redir_to_(add)nextlineup: '+e+'\n');}
+		}
 	},
 	
 	change : function( doc ) {

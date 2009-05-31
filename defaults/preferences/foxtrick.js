@@ -56,7 +56,10 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.Challenge.enabled", false
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.Achievements.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.Coach.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHistory.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.LastLineup.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.NextMatch.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.AddNextMatch.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", false );
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );

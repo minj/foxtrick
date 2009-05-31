@@ -9,6 +9,8 @@ var FoxtrickTeamPopupLinks = {
     MODULE_NAME : "TeamPopupLinks",
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
         DEFAULT_ENABLED : true,
+		NEW_AFTER_VERSION: "0.4.8.2",	
+		LASTEST_CHANGE:"Added teamhistory, next match and addnextmatch(to htlive) (default off)",
         OPTIONS :  new Array( "OpenNewTab",
 							"TeamLinks",
 							"UserLinks",
@@ -24,11 +26,14 @@ var FoxtrickTeamPopupLinks = {
 							"Achievements",
                             "Coach",
                             "TransferHistory" ,
+                            "TeamHistory" ,
 							"LastLineup",
+							"NextMatch",
+							"AddNextMatch",
 							"CustomLink"),
 		OPTION_TEXTS : true,
-		OPTION_TEXTS_DEFAULT_VALUES : new Array("","","","","","","","","","","","","","","","","<a href='http://www.alltid.org/team/[teamid]'>mylink</a> "),        
-		OPTION_TEXTS_DISABLED_LIST : new Array(true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false),
+		OPTION_TEXTS_DEFAULT_VALUES : new Array("","","","","","","","","","","","","","","","","","","","<a href='http://www.alltid.org/team/[teamid]'>mylink</a> "),        
+		OPTION_TEXTS_DISABLED_LIST : new Array(true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false),
 
 		bTeamLinks : "",
 		bUserLinks : "",
@@ -41,7 +46,10 @@ var FoxtrickTeamPopupLinks = {
 		bGuestbook : "",
 		bCoach : "",
 		bTransferHistory : "",
+		bTeamHistory : "",
 		bLastLineup : "",
+		bNextMatch : "",
+		bAddNextMatch : "",
 		bMessage : "",
 		bChallenge:"",
 		bAchievemants:"",
@@ -105,7 +113,10 @@ var FoxtrickTeamPopupLinks = {
                                             Foxtrickl10n.getString( 'Achievements' ).length,
                                             Foxtrickl10n.getString( 'Coach' ).length,
 											Foxtrickl10n.getString( 'TransferHistory' ).length,
-											Foxtrickl10n.getString( 'LastLineup').length ); //Stephan
+											Foxtrickl10n.getString( 'TeamHistory' ).length,
+											Foxtrickl10n.getString( 'NextMatch').length, 
+											Foxtrickl10n.getString( 'AddNextMatch').length,
+											Foxtrickl10n.getString( 'LastLineup').length ); 
 				this.bTeamLinks = Foxtrick.isModuleFeatureEnabled( this, "TeamLinks");
                 this.bUserLinks = Foxtrick.isModuleFeatureEnabled( this, "UserLinks");
 				this.bManager = Foxtrick.isModuleFeatureEnabled( this, "Manager");
@@ -117,7 +128,10 @@ var FoxtrickTeamPopupLinks = {
                 this.bGuestbook = Foxtrick.isModuleFeatureEnabled( this, "Guestbook");
                 this.bCoach = Foxtrick.isModuleFeatureEnabled( this, "Coach");
                 this.bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
+                this.bTeamHistory = Foxtrick.isModuleFeatureEnabled( this, "TeamHistory");
                 this.bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
+                this.bNextMatch = Foxtrick.isModuleFeatureEnabled( this, "NextMatch");
+                this.bAddNextMatch = Foxtrick.isModuleFeatureEnabled( this, "AddNextMatch");
 				this.bMessage= Foxtrick.isModuleFeatureEnabled( this, "SendMessage");
 				this.bChallenge= Foxtrick.isModuleFeatureEnabled( this, "Challenge");
                 this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
@@ -463,6 +477,23 @@ var FoxtrickTeamPopupLinks = {
                                         tbl.appendChild(tr7);
 										top = top - 20;
                                 }       
+                               if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bTeamHistory)
+													|| (show_more && FoxtrickTeamPopupLinksMore.bTeamHistory))) {
+                                        var tr7 = doc.createElement("tr");
+                                        tr7.setAttribute("height", "20");
+                                        var td7 = doc.createElement("td");
+                                        td7.setAttribute("nowrap", "nowrap");
+                                        var a7 = doc.createElement("a");
+                                        if (teamid==null) a7.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_teamhistory=true'+'&ft_popuplink=true');
+		                                else a7.setAttribute('href', '/Club/History/?teamId=' + teamid+'&ft_popuplink=true');
+        								a7.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+										a7.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'TeamHistory' )));
+                                        a7.innerHTML= a7.innerHTML.replace(/ /g,'&nbsp;');
+										td7.appendChild(a7);
+                                        tr7.appendChild(td7);
+                                        tbl.appendChild(tr7);
+										top = top - 20;
+                                }       
                                 if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bLastLineup)
 													|| (show_more && FoxtrickTeamPopupLinksMore.bLastLineup))) {
                                         var tr6 = doc.createElement("tr");
@@ -474,6 +505,40 @@ var FoxtrickTeamPopupLinks = {
 										else a6.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True'+'&ft_popuplink=true');										
                                         a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
 										a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
+                                        a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
+										td6.appendChild(a6);
+                                        tr6.appendChild(td6);
+                                        tbl.appendChild(tr6);
+										top = top - 20;
+                                } 
+								if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bNextMatch)
+													|| (show_more && FoxtrickTeamPopupLinksMore.bNextMatch))) {
+                                        var tr6 = doc.createElement("tr");
+                                        tr6.setAttribute("height", "20");
+                                        var td6 = doc.createElement("td");
+                                        td6.setAttribute("nowrap", "nowrap");
+                                        var a6 = doc.createElement("a");
+                                        if (teamid==null) a6.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_nextmatch=true'+'&ft_popuplink=true');
+										else a6.setAttribute('href', '/Club/Matches/?TeamID='+teamid+'&redir_to_nextmatch=true'+'&ft_popuplink=true');										
+                                        a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+										a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'NextMatch' )));
+                                        a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
+										td6.appendChild(a6);
+                                        tr6.appendChild(td6);
+                                        tbl.appendChild(tr6);
+										top = top - 20;
+                                } 
+								if (!owntopteamlinks && ((!show_more && FoxtrickTeamPopupLinks.bAddNextMatch)
+													|| (show_more && FoxtrickTeamPopupLinksMore.bAddNextMatch))) {
+                                        var tr6 = doc.createElement("tr");
+                                        tr6.setAttribute("height", "20");
+                                        var td6 = doc.createElement("td");
+                                        td6.setAttribute("nowrap", "nowrap");
+                                        var a6 = doc.createElement("a");
+                                        if (teamid==null) a6.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_addnextmatch=true'+'&ft_popuplink=true');
+										else a6.setAttribute('href', '/Club/Matches/?TeamID='+teamid+'&redir_to_addnextmatch=true'+'&ft_popuplink=true');										
+                                        a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+										a6.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'AddNextMatch' )));
                                         a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
 										td6.appendChild(a6);
                                         tr6.appendChild(td6);
@@ -599,12 +664,15 @@ var FoxtrickTeamPopupLinksMore = {
 							"Achievements",
                             "Coach",
                             "TransferHistory" ,
+                            "TeamHistory" ,
 							"LastLineup",
+							"NextMatch",
+							"AddNextMatch",
 							"CustomLink"),
 		OPTION_TEXTS : true,
-		OPTION_TEXTS_DEFAULT_VALUES : new Array("","","","","","","","","","","","","",
+		OPTION_TEXTS_DEFAULT_VALUES : new Array("","","","","","","","","","","","","","","","",
 												"<a href='http://www.alltid.org/user/[userid]'>mylink</a> <a href='/club/?teamid=[teamid]'>mylink2</a> "),        
-		OPTION_TEXTS_DISABLED_LIST : new Array(true,true,true,true,true,true,true,true,true,true,true,true,true,false),
+		OPTION_TEXTS_DISABLED_LIST : new Array(true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false),
 
 		bManager : "",
 		bTeam : "",
@@ -615,7 +683,10 @@ var FoxtrickTeamPopupLinksMore = {
 		bGuestbook : "",
 		bCoach : "",
 		bTransferHistory : "",
+		bTeamHistory : "",
 		bLastLineup : "",
+		bNextMatch : "",
+		bAddNextMatch : "",
 		bMessage : "",
 		bChallenge:"",
 		bAchievements:"",
@@ -639,7 +710,10 @@ var FoxtrickTeamPopupLinksMore = {
                 this.bAchievements= Foxtrick.isModuleFeatureEnabled( this, "Achievements");
                 this.bCoach = Foxtrick.isModuleFeatureEnabled( this, "Coach");
                 this.bTransferHistory = Foxtrick.isModuleFeatureEnabled( this, "TransferHistory");
+                this.bTeamHistory = Foxtrick.isModuleFeatureEnabled( this, "TeamHistory");
                 this.bLastLineup = Foxtrick.isModuleFeatureEnabled( this, "LastLineup");
+                this.bNextMatch = Foxtrick.isModuleFeatureEnabled( this, "NextMatch");
+                this.bAddNextMatch = Foxtrick.isModuleFeatureEnabled( this, "AddNextMatch");
 				this.bCustomLink = Foxtrick.isModuleFeatureEnabled( this, "CustomLink");
 				this.utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
 				if (!this.utext) this.utext = this.OPTION_TEXTS_DEFAULT_VALUES[13];				
