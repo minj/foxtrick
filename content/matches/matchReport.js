@@ -45,6 +45,18 @@ FoxtrickMatchReportFormat = {
         if  (div_check.length > 0) return;
 
 
+		var head = doc.getElementsByTagName("head")[0];
+        var style = doc.createElement("style");
+        style.setAttribute("type", "text/css");
+		var zaw =
+			'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td+td {'
+			+'background:#FFCDCD;border-bottom:1px solid #CF8181;border-collapse:separate;}'
+			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td+td+td {'
+			+'background:#D2CDFF;border-bottom:1px solid #8981CF;border-collapse:separate;}'
+			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td {padding-left:2px;}';
+		style.appendChild(doc.createTextNode(zaw));
+		head.appendChild(style);
+
         //Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
