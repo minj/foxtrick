@@ -25,7 +25,8 @@ CopyPlayerAdToClipboard=http://gliglif.foundationhorizont.org/hattrick/CopyPlaye
 CopyTrainingReport=http://gliglif.foundationhorizont.org/hattrick/CopyTrainingReport.html
 CrossTable=http://gliglif.foundationhorizont.org/hattrick/CrossTable.html
 ElectionTable=http://gliglif.foundationhorizont.org/hattrick/ElectionTable.html
-ExtendedPlayerDetails.perseason=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetails_perseason.html
+ExtendedPlayerDetailsWage.SeasonWage=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetailsWage_SeasonWage.html
+ExtendedPlayerDetailsWage.WageWithoutBonus=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetailsWage_WageWithoutBonus.html
 ExtendedPlayerDetails=http://gliglif.foundationhorizont.org/hattrick/ExtendedPlayerDetails.html
 FlagCollectionToMap=http://gliglif.foundationhorizont.org/hattrick/FlagCollectionToMap.html
 FoxtrickAlert=http://gliglif.foundationhorizont.org/hattrick/FoxtrickAlert.html
@@ -76,7 +77,9 @@ SkillColoring.only_skill_color=http://gliglif.foundationhorizont.org/hattrick/Sk
 SkillColoring.skill_color=http://gliglif.foundationhorizont.org/hattrick/SkillColoring_skill_color.html
 SkillColoring.skill_number=http://gliglif.foundationhorizont.org/hattrick/SkillColoring_skill_number.html
 SkillColoring.skill_select=http://gliglif.foundationhorizont.org/hattrick/SkillColoring_skill_select.html
+SkillColoring.skill_number_translated=http://gliglif.foundationhorizont.org/hattrick/SkillColoring_skill_number_translated.html
 SkillColoring=http://gliglif.foundationhorizont.org/hattrick/SkillColoring.html
+SkillTranslation=http://gliglif.foundationhorizont.org/hattrick/SkillTranslation.html
 TickerColoring=http://gliglif.foundationhorizont.org/hattrick/TickerColoring.html
 
 # Matches
@@ -88,6 +91,7 @@ FormationBoxInMatchOrders=http://gliglif.foundationhorizont.org/hattrick/Formati
 GoaldifferenceToTables=http://gliglif.foundationhorizont.org/hattrick/GoaldifferenceToTables.html
 MatchIncome=http://gliglif.foundationhorizont.org/hattrick/Ratings.html
 MatchPlayerColouring=http://gliglif.foundationhorizont.org/hattrick/MatchPlayerColouring.html
+MatchReportFormat=http://gliglif.foundationhorizont.org/hattrick/MatchReportFormat.html
 Ratings=http://gliglif.foundationhorizont.org/hattrick/Ratings.html
 RepositionedPlayers=http://gliglif.foundationhorizont.org/hattrick/RepositionedPlayers.html
 StarsCounter=http://gliglif.foundationhorizont.org/hattrick/StarsCounter.html
