@@ -191,8 +191,8 @@ var AttVsDef = {
 
 	_createGraphRow: function (doc, div, val1, val2, text1, text2, tooltip1, tooltip2) {
 
-			var color1 = "#FFAFAF";
-			var color2 = "#AFB0FF";
+			var color1 = "#FFCDCD";
+			var color2 = "#D2CDFF";
 			var fgcolor1 = "#000000";
 			var fgcolor2 = "#000000";
 

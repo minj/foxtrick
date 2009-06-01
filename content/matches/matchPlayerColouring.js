@@ -9,8 +9,8 @@ FoxtrickMatchPlayerColouring = {
 	DEFAULT_ENABLED : true,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team
-											"background:#FFAFAF; color:black;", //Home
-                                            "background:#AFB0FF; color:black;" //Away
+											"background:#FFCDCD; color:black; border:1px solid #CF8181;", //Home #FFAFAF 
+                                            "background:#D2CDFF; color:black; border:1px solid #8981CF;" //Away #AFB0FF
 											),
 	OPTIONS : new Array("My Team", "Home", "Away"),
 						
@@ -180,10 +180,10 @@ FoxtrickMatchPlayerColouring = {
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
                 if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
-					links[i].setAttribute("style", stlTeamA + ' border:1px solid #666; padding:0px 2px; text-decoration:none;'); 
+					links[i].setAttribute("style", stlTeamA + 'padding:0px 2px; text-decoration:none;'); 
                 } 
 				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
-					links[i].setAttribute("style", stlTeamB + ' border:1px solid #666; padding:0px 2px; text-decoration:none;'); 
+					links[i].setAttribute("style", stlTeamB + 'padding:0px 2px; text-decoration:none;'); 
                  }    
                 else {
                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;

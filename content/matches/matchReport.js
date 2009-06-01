@@ -75,7 +75,7 @@ FoxtrickMatchReportFormat = {
             "<br>\n"
             // "<div>$1</div>"
             );
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>");
         part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
@@ -92,14 +92,14 @@ FoxtrickMatchReportFormat = {
         var next = 0;
         var player = false;
         for (i=0; i<dummy.length;i++) {
-            marg='margin-top:10px; border:1px solid #ccc;'
-            padd='padding:2px; border:1px solid #ccc;'
+            marg='margin-top:10px;'
+            padd='padding:2px; border:1px solid #9DCF9B; '
             if (i%2 ==1) {bg='#EFFFEF; ';} else {bg='#EFFFEF; ';}
             dummy[i] =Foxtrick.trim(dummy[i]);
             if  (dummy[i] == '<br>') dummy[i] = '';
             if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
                 if (dummy[i].indexOf('/Players/')<0) bg='#D2EFD1; ';
-                marg = 'margin-top:10px; margin-bottom:30px; border:1px solid #ccc; ';
+                marg = 'margin-top:10px; margin-bottom:30px; ';
                 if (dummy[i].indexOf('/Players/')>0) marg = 'margin-top:30px; margin-bottom:10px; ';
             }
             dummy[i] = dummy[i].replace(/\<br\>/g, '');
@@ -156,13 +156,13 @@ FoxtrickMatchReportFormat = {
                 if (score[1] > standing[0]) {
                     standing[0]++;
                     divs[i].style.border ='1px solid red';
-					divs[i].style.background ='#FFECEC';
+					divs[i].style.background ='#FFF4F4';
                     // dump('A \n');
                 }
                 if (score[2] > standing[1]) {
                     standing[1]++;
                     divs[i].style.border ='1px solid blue';
-					divs[i].style.background ='#EEECFF';
+					divs[i].style.background ='#F5F4FF';
                     // dump('B \n');
                 }
             }
