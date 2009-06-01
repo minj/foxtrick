@@ -113,8 +113,8 @@ FoxtrickExtendedPlayerDetailsWage = {
 
 	},
     _Player_Bonus  : function ( doc ) {
-        // Player in team since...
-        var div = doc.getElementById( "ft_bonuswage" );
+        
+		var div = doc.getElementById( "ft_bonuswage" );
         if (div != null) return;
         
         try {
@@ -150,7 +150,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 			part_1_save=part_1_save.replace("&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
 			part_1_save=part_1_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"));
 			
-            if (part != 'NaN') 
+			if (part != 'NaN') 
             {    if (has_bonus && Foxtrick.isModuleFeatureEnabled( this, "WageWithoutBonus") ) {
 					table_elm_bonus.innerHTML = 
                     part_1_save +//'&nbsp;'+ 
@@ -159,7 +159,7 @@ FoxtrickExtendedPlayerDetailsWage = {
                     ')</span> ' + 
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 				}
-				if (has_bonus && Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") ) 
+				if (Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") ) 
 						table_elm_bonus.innerHTML += '<br>'+ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
              }   
 				
