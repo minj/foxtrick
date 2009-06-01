@@ -37,10 +37,6 @@ FoxtrickMatchPlayerColouring = {
 		//dump ('AwayTeamId: '+AwayTeamId+'\n');
 		
 		//Retrieve colour parameters
-		if (Foxtrick.isModuleFeatureEnabled( this, "My Team")) {
-            var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "My Team_text");
-            if (!stlMyTeam) stlMyTeam = this.OPTION_TEXTS_DEFAULT_VALUES[0];
-		}
 		if (Foxtrick.isModuleFeatureEnabled( this, "Home")) {
             var stlTeamA = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Home_text");
             if (!stlTeamA) stlTeamA = this.OPTION_TEXTS_DEFAULT_VALUES[1];
@@ -49,10 +45,14 @@ FoxtrickMatchPlayerColouring = {
             var stlTeamB = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Away_text");
             if (!stlTeamB) stlTeamB = this.OPTION_TEXTS_DEFAULT_VALUES[2];
         }
+		if (Foxtrick.isModuleFeatureEnabled( this, "My Team")) {
+            var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "My Team_text");
+            if (!stlMyTeam) stlMyTeam = this.OPTION_TEXTS_DEFAULT_VALUES[0];
+			//Replace myTeam colour
+			if (HomeTeamId == myTeamId) stlTeamA = stlMyTeam;
+			else if (AwayTeamId == myTeamId) stlTeamB = stlMyTeam;
+		}
 	
-		//Replace myTeam colour
-		if (HomeTeamId == myTeamId) stlTeamA = stlMyTeam;
-		else if (AwayTeamId == myTeamId) stlTeamB = stlMyTeam;
 				
         var content_div = doc.getElementById('content');
         if (content_div == null) return;
@@ -104,7 +104,7 @@ FoxtrickMatchPlayerColouring = {
 		else teamA[0]=teamA[0].substring(teamA[0].lastIndexOf(' ')+1);
 		for (var k=0;k<teamA.length;k++) { 
 			if (teamA[k]=='') {++num_unknown_namesA;teamA[k]='##################'; }// replace empty string with something which will not be found in text again
-			//dump(k+1+': "'+teamA[k]+'"\n');
+			dump(k+1+': "'+teamA[k]+'"\n');
 		}
 		var num_unknown_namesB=0;
         if (contentB) {
@@ -114,7 +114,7 @@ FoxtrickMatchPlayerColouring = {
 		else teamB[0]=teamB[0].substring(teamB[0].lastIndexOf(' ')+1);
  		for (var k=0;k<teamB.length;k++) { 
 			if (teamB[k]=='') {++num_unknown_namesB;teamB[k]='##################'; } // replace empty string with something which will not be found in text again
-			//dump(k+1+': "'+teamB[k]+'"\n');
+			dump(k+1+': "'+teamB[k]+'"\n');
 		}		
 		//Retrieve substitutions
 		 var spans = content_div.getElementsByTagName("td");
