@@ -1039,7 +1039,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 				var textbox = document.createElement("textbox");
 				textbox.setAttribute("id", key + "_text");
 				textbox.setAttribute("style", "margin-left:20px;");
-				textbox.setAttribute("width", "300px");
+				textbox.setAttribute("width", "500px");
 				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
 				if (!val && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]){
 					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
