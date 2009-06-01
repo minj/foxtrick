@@ -191,10 +191,10 @@ var AttVsDef = {
 
 	_createGraphRow: function (doc, div, val1, val2, text1, text2, tooltip1, tooltip2) {
 
-			var color1 = "#FFCDCD";
-			var color2 = "#D2CDFF";
+			var color1 = "#FFFFFF";
+			var color2 = "#849D84";
 			var fgcolor1 = "#000000";
-			var fgcolor2 = "#000000";
+			var fgcolor2 = "#FFFFFF";
 
 			var pt1 = Math.round(100 * val1 / (val1 + val2));
 			var pt2 = 100 - pt1;
