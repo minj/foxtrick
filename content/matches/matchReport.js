@@ -24,59 +24,59 @@ FoxtrickMatchReportFormat = {
                                               "#D2EFD1"   //helf time text 13
 											),
 	OPTIONS : new Array("Text My Team", "Text Home", "Text Away", "BG My Team", "BG Home", "BG Away", "border width normal", "border width goal", "border color non goal", "border color goal my", "border color goal home", "border color goal away", "normal text", "half time" ),
-						
+
     UNKNOWN_COLOUR : "#F0F0F0",
-    
+
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some format of match report for better reading",
-	//OPTIONS : new Array("DefaultShow"), 
-	
+	//OPTIONS : new Array("DefaultShow"),
+
 	init : function() {
         Foxtrick.registerPageHandler( "match", this );
     },
-    
+
     run : function( page, doc ) {
-        
+
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
-        
+
         var div = doc.getElementById('mainBody');
         var div_check = getElementsByClass('ft_mR_format', div);
         if  (div_check.length > 0) return;
 
-		
+
         //Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
-		
+
 		dump ('ownteam: '+myTeamId+'\n');
 		dump ('HomeTeamId: '+HomeTeamId+'\n');
 		dump ('AwayTeamId: '+AwayTeamId+'\n');
-        
+
         var headder = doc.getElementsByTagName('h1')[0].innerHTML;
         headder=Foxtrick.trim(headder);
         var start = strrpos(headder, '<span>(') +7;
         var end = strrpos(headder, ')</span>');
-        
-        var gameid = headder.substr(start, end-start);		
-        
+
+        var gameid = headder.substr(start, end-start);
+
 		//Retrieve style parameters
        var txt_col_my = this._getPrefs( 0 );
          var txt_col_hm = this._getPrefs( 1 );
          var txt_col_aw = this._getPrefs( 2 );
        var bg_col_my = this._getPrefs( 3 );
-         var bg_col_hm = this._getPrefs( 4 );        
+         var bg_col_hm = this._getPrefs( 4 );
          var bg_col_aw = this._getPrefs( 5 );
-         var borders_normal = this._getPrefs( 6 );        
+         var borders_normal = this._getPrefs( 6 );
          var borders_goal = this._getPrefs( 7 );
          var border_color = this._getPrefs( 8 );
        var border_color_my = this._getPrefs( 9 );
          var border_color_hm = this._getPrefs( 10 );
          var border_color_aw = this._getPrefs( 11 );
-         var text_normal = this._getPrefs( 12 );        
-         var text_dark = this._getPrefs( 13 );        
+         var text_normal = this._getPrefs( 12 );
+         var text_dark = this._getPrefs( 13 );
 
         //Replace myTeam colour
 		if (HomeTeamId == myTeamId) {
@@ -85,7 +85,7 @@ FoxtrickMatchReportFormat = {
             txt_col_hm = txt_col_my;
             table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + '">' + table.rows[0].cells[1].textContent +'</a>';
             table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_aw + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + '">' + table.rows[0].cells[2].textContent +'</a>';
-            
+
         }
 		else if (AwayTeamId == myTeamId) {
             bg_col_aw = bg_col_my;
@@ -94,6 +94,8 @@ FoxtrickMatchReportFormat = {
             table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + '">' + table.rows[0].cells[2].textContent +'</a>';
             table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + '">' + table.rows[0].cells[1].textContent +'</a>';
         }
+        
+        
         
         var links = div.getElementsByTagName('a');
         var supporter = false;
@@ -110,10 +112,10 @@ FoxtrickMatchReportFormat = {
         // dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
-        
+
         var part = new Array('','','');
         part[0] = div_inner.innerHTML.substr(0, start);
-        
+
         part[1] = div_inner.innerHTML.substr(start, end-start);
         var dummy = part[1].split('<br><br>');
         // Foxtrick.alert(dummy[1]);
@@ -123,13 +125,13 @@ FoxtrickMatchReportFormat = {
         for (i = 2; i< dummy.length; i++) {
             part[1] += dummy[i] + '<br><br>';
         }
-        
-        
+
+
         part[2] = div_inner.innerHTML.substr(end, div_inner.innerHTML.length-end );
         // dump('start[' + start + '|' + end + ']');
         // dump(part[1]);
         part[1] = this.nl2br(part[1]);
-        
+
         search = new Array(
 //            /\=(\d+)/g,
             /\-(\d{1,3})/g,
@@ -151,11 +153,11 @@ FoxtrickMatchReportFormat = {
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
         }
-        
+
         dummy = (part[0] + part[1]).split('\n');
 
         part[1]= '';
-        var stage = 0; 
+        var stage = 0;
         var fulltext = 0;
         var marg = '';
         var bg = '';
@@ -189,7 +191,7 @@ FoxtrickMatchReportFormat = {
                     dummy[i] = dummy[i].replace(/\<span\>\(/,'<span> (');
                 }
                 if (dummy[i].indexOf('/Arena/') != -1) stage +=1;
-                
+
                 if (stage>1) { //full report
                     if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;
@@ -197,16 +199,16 @@ FoxtrickMatchReportFormat = {
                         if (fulltext <= 2) bg= text_dark + '; ';
                     }
                     if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
-                        fulltext++;                 
+                        fulltext++;
                         dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:'+ txt_col_aw +'">' + team2 + '</span>');
-                        if (fulltext <= 2) { 
+                        if (fulltext <= 2) {
                             bg= text_dark + '; ';
                             next = i+2;
                             //dump('>>>' + next + '\n');
                         }
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
-                    
+
                     part[1] += '<div id="ft_mR_div_' + i + '" style="'+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
                 }
                 else part[1] += dummy[i] + '\n\n';
@@ -239,9 +241,25 @@ FoxtrickMatchReportFormat = {
                     // dump('B \n');
                 }
             }
-            
+
         }
+        var headder = doc.getElementsByTagName('h1')[0];
+        headder.setAttribute( 'style', 'color:black');
+        headder.innerHTML = headder.innerHTML.replace(team1, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_hm +'">' + team1 + '</span>');
+        headder.innerHTML = headder.innerHTML.replace(team2, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_aw +'">' + team1 + '</span>');
         
+        var sidebar = doc.getElementById('sidebar');
+        var links = sidebar.getElementsByTagName('a');
+        for (i=0; i < links.length; i++) {
+//            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
+            if (links[i].href.search('TeamID=' + HomeTeamId) > 0) {
+                links[i].setAttribute('style', 'color:' + txt_col_hm);
+            }
+            if (links[i].href.search('TeamID=' + AwayTeamId) > 0) {
+                links[i].setAttribute('style', 'color:' + txt_col_aw);
+            }            
+        }
+
     },
 
 	change : function( page, doc ) {
@@ -258,11 +276,11 @@ FoxtrickMatchReportFormat = {
             re_nlchar = /%0D/g ;
         }
         return unescape( text.replace(re_nlchar,'<br />') );
-    },    
+    },
 
     _getPrefs : function( value ) {
         var dummy = '';
-        
+
         if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[value])) {
             dummy = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + this.OPTIONS[value] + '_text');
             if (!dummy) dummy = this.OPTION_TEXTS_DEFAULT_VALUES[value];
