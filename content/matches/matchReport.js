@@ -7,6 +7,26 @@ FoxtrickMatchReportFormat = {
 	MODULE_NAME : "MatchReportFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	DEFAULT_ENABLED : true,
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("#5555FF;", //Text My team name     0
+											  "#9F0202",  //Text Home team name   1
+                                              "#16029F",  //Text Away team name   2
+                                            "#E3E9FF",  //BG My Team            3
+                                              "#FFF4F4",  //BG Home               4
+                                              "#F5F4FF",  //BG Away               5
+                                              "1",        //borders_normal        6
+                                              "1",        //borders_goal          7
+                                              "#9DCF9B",  //border_color_non_goal 8
+                                            "#AAAAFF",    //border_color_goal my  9
+                                              "red",      //border_color_goal home 10
+                                              "blue",     //border_color_goal away 11
+                                              "#EFFFEF",  //normal text 12
+                                              "#D2EFD1"   //helf time text 13
+											),
+	OPTIONS : new Array("Text My Team", "Text Home", "Text Away", "BG My Team", "BG Home", "BG Away", "border width normal", "border width goal", "border color non goal", "border color goal my", "border color goal home", "border color goal away", "normal text", "half time" ),
+						
+    UNKNOWN_COLOUR : "#F0F0F0",
+    
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some format of match report for better reading",
 	//OPTIONS : new Array("DefaultShow"), 
@@ -24,6 +44,57 @@ FoxtrickMatchReportFormat = {
         var div_check = getElementsByClass('ft_mR_format', div);
         if  (div_check.length > 0) return;
 
+		
+        //Retrieve teams id
+		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
+		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
+		
+		dump ('ownteam: '+myTeamId+'\n');
+		dump ('HomeTeamId: '+HomeTeamId+'\n');
+		dump ('AwayTeamId: '+AwayTeamId+'\n');
+        
+        var headder = doc.getElementsByTagName('h1')[0].innerHTML;
+        headder=Foxtrick.trim(headder);
+        var start = strrpos(headder, '<span>(') +7;
+        var end = strrpos(headder, ')</span>');
+        
+        var gameid = headder.substr(start, end-start);		
+        
+		//Retrieve style parameters
+       var txt_col_my = this._getPrefs( 0 );
+         var txt_col_hm = this._getPrefs( 1 );
+         var txt_col_aw = this._getPrefs( 2 );
+       var bg_col_my = this._getPrefs( 3 );
+         var bg_col_hm = this._getPrefs( 4 );        
+         var bg_col_aw = this._getPrefs( 5 );
+         var borders_normal = this._getPrefs( 6 );        
+         var borders_goal = this._getPrefs( 7 );
+         var border_color = this._getPrefs( 8 );
+       var border_color_my = this._getPrefs( 9 );
+         var border_color_hm = this._getPrefs( 10 );
+         var border_color_aw = this._getPrefs( 11 );
+         var text_normal = this._getPrefs( 12 );        
+         var text_dark = this._getPrefs( 13 );        
+
+        //Replace myTeam colour
+		if (HomeTeamId == myTeamId) {
+            bg_col_hm = bg_col_my;
+            border_color_hm = border_color_my;
+            txt_col_hm = txt_col_my;
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + '">' + table.rows[0].cells[1].textContent +'</a>';
+            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_aw + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + '">' + table.rows[0].cells[2].textContent +'</a>';
+            
+        }
+		else if (AwayTeamId == myTeamId) {
+            bg_col_aw = bg_col_my;
+            border_color_aw = border_color_my;
+            txt_col_aw = txt_col_my;
+            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + '">' + table.rows[0].cells[2].textContent +'</a>';
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + '">' + table.rows[0].cells[1].textContent +'</a>';
+        }
+        
         var links = div.getElementsByTagName('a');
         var supporter = false;
         for (i=0; i < links.length; i++) {
@@ -75,7 +146,7 @@ FoxtrickMatchReportFormat = {
             "<br>\n"
             // "<div>$1</div>"
             );
-        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>");
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
         part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
@@ -93,12 +164,12 @@ FoxtrickMatchReportFormat = {
         var player = false;
         for (i=0; i<dummy.length;i++) {
             marg='margin-top:10px;'
-            padd='padding:2px; border:1px solid #9DCF9B; '
-            if (i%2 ==1) {bg='#EFFFEF; ';} else {bg='#EFFFEF; ';}
+            padd='padding:2px; border:' + borders_normal+ 'px solid ' + border_color + '; ';
+            if (i%2 ==1) {bg = text_normal + '; ';} else {bg = text_normal + '; ';}
             dummy[i] =Foxtrick.trim(dummy[i]);
             if  (dummy[i] == '<br>') dummy[i] = '';
             if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
-                if (dummy[i].indexOf('/Players/')<0) bg='#D2EFD1; ';
+                if (dummy[i].indexOf('/Players/')<0) bg = text_dark + '; ';
                 marg = 'margin-top:10px; margin-bottom:30px; ';
                 if (dummy[i].indexOf('/Players/')>0) marg = 'margin-top:30px; margin-bottom:10px; ';
             }
@@ -122,21 +193,21 @@ FoxtrickMatchReportFormat = {
                 if (stage>1) { //full report
                     if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;
-                        dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:#9F0202">' + team1 + '</span>');
-                        if (fulltext <= 2) bg='#D2EFD1; ';
+                        dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:'+ txt_col_hm +'">' + team1 + '</span>');
+                        if (fulltext <= 2) bg= text_dark + '; ';
                     }
                     if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;                 
-                        dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:#16029F">' + team2 + '</span>');
+                        dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:'+ txt_col_aw +'">' + team2 + '</span>');
                         if (fulltext <= 2) { 
-                            bg='#D2EFD1; ';
+                            bg= text_dark + '; ';
                             next = i+2;
                             //dump('>>>' + next + '\n');
                         }
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
                     
-                    part[1] += '<div id="ft_mR_div_' + i + '" style="border:0px solid blue; '+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
+                    part[1] += '<div id="ft_mR_div_' + i + '" style="'+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
                 }
                 else part[1] += dummy[i] + '\n\n';
             }
@@ -155,14 +226,16 @@ FoxtrickMatchReportFormat = {
                 dump('[' + score + ']\n');
                 if (score[1] > standing[0]) {
                     standing[0]++;
-                    divs[i].style.border ='1px solid red';
-					divs[i].style.background ='#FFF4F4';
+                    divs[i].style.border = borders_goal+ 'px solid ' + border_color_hm;
+                    dump (borders_goal+ 'px solid ' + border_color_hm  + ';\n');
+					divs[i].style.background = bg_col_hm;
                     // dump('A \n');
                 }
                 if (score[2] > standing[1]) {
                     standing[1]++;
-                    divs[i].style.border ='1px solid blue';
-					divs[i].style.background ='#F5F4FF';
+                    divs[i].style.border = borders_goal+ 'px solid ' + border_color_aw;
+                    dump (borders_goal+ 'px solid ' + border_color_aw  + ';\n');
+					divs[i].style.background = bg_col_aw;
                     // dump('B \n');
                 }
             }
@@ -186,5 +259,15 @@ FoxtrickMatchReportFormat = {
         }
         return unescape( text.replace(re_nlchar,'<br />') );
     },    
-    
+
+    _getPrefs : function( value ) {
+        var dummy = '';
+        
+        if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[value])) {
+            dummy = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + this.OPTIONS[value] + '_text');
+            if (!dummy) dummy = this.OPTION_TEXTS_DEFAULT_VALUES[value];
+        }
+        dump('Pref_[' + value + '] - [' + dummy + '] "' + this.OPTIONS[value] + '" returned\n');
+        return dummy;
+    },
 };
