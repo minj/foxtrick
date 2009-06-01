@@ -91,8 +91,8 @@ FoxtrickMatchReportFormat = {
             bg_col_aw = bg_col_my;
             border_color_aw = border_color_my;
             txt_col_aw = txt_col_my;
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + '">' + table.rows[0].cells[1].textContent +'</a>';
             table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + '">' + table.rows[0].cells[2].textContent +'</a>';
-            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + '">' + table.rows[0].cells[1].textContent +'</a>';
         }
         
         
@@ -246,7 +246,7 @@ FoxtrickMatchReportFormat = {
         var headder = doc.getElementsByTagName('h1')[0];
         headder.setAttribute( 'style', 'color:black');
         headder.innerHTML = headder.innerHTML.replace(team1, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_hm +'">' + team1 + '</span>');
-        headder.innerHTML = headder.innerHTML.replace(team2, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_aw +'">' + team1 + '</span>');
+        headder.innerHTML = headder.innerHTML.replace(team2, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_aw +'">' + team2 + '</span>');
         
         var sidebar = doc.getElementById('sidebar');
         var links = sidebar.getElementsByTagName('a');
