@@ -1135,13 +1135,10 @@ FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
         try {
             box = document.getElementById( VBOXES[i] );
             if ( VBOXES[i] == vbox) {
-                box.style.width = "100%";
-                box.style.height = "100%";
                 box.style.overflow = "hidden";
 				box.setAttribute("style", "color:ButtonText !important; background-color:ButtonFace !important;");				
             }
             else {
-                box.style.width = "100%";
                 box.style.height = "300px";
                 box.style.overflow = "hidden";
 				box.setAttribute("style", "color:ButtonText !important; background-color:ButtonFace !important;");
