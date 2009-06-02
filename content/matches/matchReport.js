@@ -23,7 +23,7 @@ FoxtrickMatchReportFormat = {
                                              "#EFFFEF",  //normal text 12
                                              "#D2EFD1"   //helf time text 13
 										),
-	OPTIONS : new Array("Text_My_Team", "Text_Home", "Text_Away", "BG_My_Team", "BG_Home", "BG_Away", "border_width_normal", "border_width_goal", "border_color_non_goal", "border_color_goal_my", "border_color_goal_home", "border_color_goal_away", "normal_text", "half_time"),
+	OPTIONS : new Array("Text_My_Team", "Text_Home", "Text_Away", "BG_My_Team", "BG_Home", "BG_Away", "border_width_normal", "border_width_goal", "border_color_non_goal", "border_color_goal_my", "border_color_goal_home", "border_color_goal_away", "normaltext", "half_time"),
 
     UNKNOWN_COLOUR : "#F0F0F0",
 
