@@ -229,14 +229,17 @@ FoxtrickMatchReportFormat = {
         div_inner.innerHTML = part[1] + part[2];
 
         var standing = new Array(0,0);
-        var reg = /\ (\d{1,2})\ \-\ (\d{1,2})(.*?)/i;
+        var reg = /\ (\d{1,2})\-(\d{1,2})(.*?)/i;
         var divs = div.getElementsByTagName('div');
         for (i=0; i < divs.length; i++) {
             // dump(i + ': ' + divs[i].textContent + '\n\n');
             var text = divs[i].textContent;
+            var toreplace = ' - ';
+            text = text.replace(toreplace, '-');
             var score = reg.exec(text);
-            if (score && i > 4) {
-                // dump('[' + score + ']\n');
+            
+            if (score && i > 5) {
+                dump( i + '[' + score + '] [' + standing + ']\n');
                 if (score[1] > standing[0]) {
                     standing[0]++;
                     divs[i].style.border = borders_goal+ 'px solid ' + border_color_hm;
