@@ -100,14 +100,20 @@ var FoxtrickForumSearch = {
 		dump('searchfor: ' + searchfor + '\n');
         var threadlist = FoxtrickPrefs.getList("forum_post_list");
         var IDlist = FoxtrickPrefs._getElemNames("forum_post_list");
+        var count = 0;
+        var cancel = false;
         for (var i = 0; i < threadlist.length; i++) {
              
             var results = new Array();
             
             for (var i=0; i< threadlist.length; i++) {
-            	if (threadlist[i].toLowerCase().search(searchfor) > -1) {
+            	if (threadlist[i].toLowerCase().search(searchfor) > -1 && !cancel) {
             		results.push (threadlist[i]);
                     try {
+                        count ++;
+                        if (count > 100) {
+                            if (Foxtrick.confirmDialog( 'Too much results! Stop here?' )) cancel = true;
+                        }
                         var table = doc.getElementById("ft_searchLinks");
                         if (table) {
                             var tr = doc.createElement("tr");
