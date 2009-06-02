@@ -131,10 +131,10 @@ FoxtrickExtendedPlayerDetailsWage = {
             
 			table_inner = table_elm_bonus.innerHTML;
 
-            var part = substr(table_inner, 0, table_inner.search('/'));
+            var part = substr(table_inner, 0, table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+1);
 
             var part_1_save = part;
-            var part_2_save = table_inner.substring(table_inner.search('/'));
+            var part_2_save = table_inner.substring(table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+1);
 
 			//this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
                  var part = Foxtrick.trim(part);
@@ -146,6 +146,7 @@ FoxtrickExtendedPlayerDetailsWage = {
             part =  Math.floor( wage / 1.2);
             part = ReturnFormatedValue (part, '&nbsp;');
 			
+			// get space before currency symbol
 			part_1_save=part_1_save.replace(" "+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
 			part_1_save=part_1_save.replace("&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
 			part_1_save=part_1_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"));
