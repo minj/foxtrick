@@ -68,3 +68,43 @@ pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace.ena
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", true );
 pref( "extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.Text_My_Team.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.Text_Home.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.Text_Away.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.BG_My_Team.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.BG_Home.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.BG_Away.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_width_normal.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_width_goal.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_color_non_goal.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_color_goal_my.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_color_goal_home.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_color_goal_away.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.normal_text.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchReportFormat.half_time.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchPlayerColouring.Home.enabled", false );
+pref( "extensions.foxtrick.prefs.module.MatchPlayerColouring.Away.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.HT.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.GM.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.MOD.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.LA.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.CHPP.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.editor.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.foxtrick-dev.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.own.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.flag.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumTemplates.CustomWidth.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.LoginWelcome.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.LoginSupporters.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.ForumReplyToMe.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.TransferMarket.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.Challenges.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.Guestbook.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.MailToMe.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.MyHTMessages.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TickerColoring.Hover.enabled", false );
+pref( "extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled", false );
+pref( "extensions.foxtrick.prefs.module.NewMail.CustomColor.enabled", false );
+
+	
+    	

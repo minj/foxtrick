@@ -73,7 +73,7 @@ var FoxtrickTickerColoring = {
 			return color;
 		}
 		for (var i=0;i<this.OPTIONS.length;++i) {
-			if (this.OPTIONS[i]==option) return OPTION_TEXTS_DEFAULT_VALUES[i];
+			if (this.OPTIONS[i]==option) return this.OPTION_TEXTS_DEFAULT_VALUES[i];
 		}
 		return "";
 	}

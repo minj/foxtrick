@@ -12,7 +12,7 @@ FoxtrickMatchPlayerColouring = {
 											"background:#FFCDCD; color:black; border:1px solid #CF8181;", //Home #FFAFAF 
                                             "background:#D2CDFF; color:black; border:1px solid #8981CF;" //Away #AFB0FF
 											),
-	OPTIONS : new Array("My Team", "Home", "Away"),
+	OPTIONS : new Array("MyTeam", "Home", "Away"),
 						
     UNKNOWN_COLOUR : "#F0F0F0",
 	
