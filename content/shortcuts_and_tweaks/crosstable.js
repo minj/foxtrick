@@ -94,7 +94,7 @@ var FoxtrickCrossTable = {
                             else {
                                 result[0] = Foxtrick.trim(result[0]);
                                 result[1] = Foxtrick.trim(result[1]);
-                                tblBodyObj.rows[row].cells[2].innerHTML = result[0] + ':' + result[1];
+                                tblBodyObj.rows[row].cells[2].innerHTML = result[0] + ' - ' + result[1];
                             }
                             if ((homegame) && (result[0] != -1)) {
                                 cross[home][away+1] = result[0] + '-' + result[1];
