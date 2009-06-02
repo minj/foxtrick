@@ -1032,7 +1032,19 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 			hbox.appendChild( checkbox );
 			if (bOptionTexts 
 				&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
-				dump (module.MODULE_NAME+' '+module.OPTION_TEXTS_DISABLED_LIST+'\n');
+				
+				checkbox.addEventListener( "click", function( ev ) {
+					var checked = ev.currentTarget.checked;
+					var optiondiv = document.getElementById(ev.currentTarget.id+'_text');
+					if (checked)  {
+						optiondiv.setAttribute( "disabled", true);
+						optiondiv.setAttribute( "hidden", true);
+					} else {
+						optiondiv.setAttribute( "disabled", false);
+						optiondiv.setAttribute( "hidden", false);
+					}
+				}, false );
+				
 				if (module.OPTION_TEXTS_DISABLED_LIST) dump(module.OPTION_TEXTS_DISABLED_LIST[i]+'\n');
 				var htextbox = document.createElement("hbox");
 				htextbox.setAttribute("id", "hbox_" + key + "_text");
@@ -1045,6 +1057,13 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
 				textbox.setAttribute("value", val);
+				if (!Foxtrick.isModuleFeatureEnabled( module, key) ) {
+					textbox.setAttribute( "disabled", true);
+					textbox.setAttribute( "hidden", true);
+				} else {
+					textbox.setAttribute( "disabled", false);
+					textbox.setAttribute( "hidden", false);
+				}
 				htextbox.appendChild(textbox);
 				hbox.appendChild(htextbox);
 			}
