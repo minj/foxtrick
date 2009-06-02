@@ -24,6 +24,9 @@ var FoxtrickForumSearch = {
             dump('--- ForumSearch --- \n');
             var box = getElementsByClass('subMenuBox', doc)[0];
             var links = box.getElementsByTagName('a');
+            
+            var threadlist = FoxtrickPrefs.getList("forum_post_list");
+            
             for (var i = 0; i < links.length; i++) {
                 if (links[i].href.search(/\/Read\.aspx/) > -1) {
                     var title = links[i].textContent;
@@ -49,7 +52,7 @@ var FoxtrickForumSearch = {
 				inputBox.setAttribute('type', 'text');
                 inputBox.setAttribute('id', 'ft_searchField');
 				inputBox.setAttribute('size', '20');
-                inputBox.setAttribute('value', 'xxx');
+                inputBox.setAttribute('value', threadlist.length + ' Threads');
                 inputBox.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "viewActive", "xxx")');
                 inputBox.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "viewInactive", "xxx")');
                 inputBox.setAttribute('onsubmit', 'return false;');
@@ -93,6 +96,7 @@ var FoxtrickForumSearch = {
         var searchfor = doc.getElementById('ft_searchField').value.toLowerCase();
 		dump('searchfor: ' + searchfor + '\n');
         var threadlist = FoxtrickPrefs.getList("forum_post_list");
+        var IDlist = FoxtrickPrefs._getElemNames("forum_post_list");
         for (var i = 0; i < threadlist.length; i++) {
              
             var results = new Array();
@@ -116,7 +120,7 @@ var FoxtrickForumSearch = {
                             
                             var link = doc.createElement("a");
                             
-                            link.href = "#";
+                            link.href = "/Forum/Read.aspx?t=" + IDlist[i].replace(/forum\_post\_list\./, '') + "&v=1&n=1";
                             link.innerHTML = threadlist[i];
                             td_fname.appendChild(link);
                         }                    
