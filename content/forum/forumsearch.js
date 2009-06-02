@@ -34,9 +34,9 @@ var FoxtrickForumSearch = {
                     var thread_act = FoxtrickPrefs.getString("forum_post_list." + postid);
                     if (thread_act == null) {
                         FoxtrickPrefs.setString("forum_post_list." + postid, title);
-                        dump ( i + ' - ' + postid + ' | "' + title+ '" ADDED \n');
+                        // dump ( i + ' - ' + postid + ' | "' + title+ '" ADDED \n');
                     } else {
-                        dump ( i + ' - ' + postid + ' | "' + title+ '" DUPLICATE \n');
+                        // dump ( i + ' - ' + postid + ' | "' + title+ '" DUPLICATE \n');
                     }
                 }
             }
@@ -74,11 +74,14 @@ var FoxtrickForumSearch = {
     },
 
 	change : function( page, doc ) {
-        this.run(page, doc);
+        var value = doc.getElementById('ft_searchField').value;
+        if (value.search('Threads') != -1) {
+            dump('Search running '  + '\n');
+            this.run(page, doc);
+        }
 	},
     
 	_search_type : function(e){
-		dump( '[]\n');
         var doc = e.target.ownerDocument;
         
         var searchlinks = doc.getElementById('ft_searchLinks');
@@ -129,7 +132,7 @@ var FoxtrickForumSearch = {
                     }
                                         
                     
-                    dump(threadlist[i] + '\n');
+                    // dump(threadlist[i] + '\n');
             	}
             }
             // dump('>>> ' + threadlist + ' <<< \n');
