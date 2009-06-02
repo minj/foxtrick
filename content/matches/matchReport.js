@@ -44,19 +44,6 @@ FoxtrickMatchReportFormat = {
         var div_check = getElementsByClass('ft_mR_format', div);
         if  (div_check.length > 0) return;
 
-
-		var head = doc.getElementsByTagName("head")[0];
-        var style = doc.createElement("style");
-        style.setAttribute("type", "text/css");
-		var zaw =
-			'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td+td {'
-			+'background:#FFCDCD;border-bottom:1px solid #CF8181;border-collapse:separate;}'
-			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td+td+td {'
-			+'background:#D2CDFF;border-bottom:1px solid #8981CF;border-collapse:separate;}'
-			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td {padding-left:2px;}';
-		style.appendChild(doc.createTextNode(zaw));
-		head.appendChild(style);
-
         //Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
@@ -106,8 +93,20 @@ FoxtrickMatchReportFormat = {
             table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + '">' + table.rows[0].cells[1].textContent +'</a>';
             table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + '">' + table.rows[0].cells[2].textContent +'</a>';
         }
-        
-        
+
+		// color ratings
+		var head = doc.getElementsByTagName("head")[0];
+        var style = doc.createElement("style");
+        style.setAttribute("type", "text/css");
+		var zaw =
+			'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td+td {'
+			+'background:'+bg_col_hm+';border-bottom:1px solid '+border_color_hm+';border-collapse:separate;}'
+			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td+td+td {'
+			+'background:'+bg_col_aw+';border-bottom:1px solid '+border_color_aw+';border-collapse:separate;}'
+			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td {padding-left:2px;}';
+		style.appendChild(doc.createTextNode(zaw));
+		head.appendChild(style);
+        //dump(zaw+'\n');
         
         var links = div.getElementsByTagName('a');
         var supporter = false;
@@ -196,7 +195,7 @@ FoxtrickMatchReportFormat = {
                     var team1 = names[0].split('  ')[0];
                     var team2 = names[1].split('  ')[1];
                     stage = 1;
-                    dump('TEAMS [' + team1 + '|' + team2 + ']\n');
+                    //dump('TEAMS [' + team1 + '|' + team2 + ']\n');
                 }
                 if (stage==1 && dummy[i].indexOf('<span>(')!=-1) {
                     // dump('MATCHID\n');
