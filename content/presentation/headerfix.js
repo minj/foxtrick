@@ -25,43 +25,61 @@ var FoxtrickHeaderFix = {
 		dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
     
         Foxtrick.registerPageHandler( 'match',this);
+        Foxtrick.registerPageHandler( 'arena',this);
     },
 
     run : function( page, doc ) { 
 	
-	if (doc.location.href.search(/\/Club\/Matches\/Match.aspx/i)==-1) return;
 	if (doc.location.href.search(/isYouth/i)!=-1) return;
 	
-	var ctl00_CPMain_pnlPreMatch = doc.getElementById("ctl00_CPMain_pnlPreMatch");
+	var ctl00_CPMain_pnl = doc.getElementById("ctl00_CPMain_pnlPreMatch");
+	if (page=='arena')  ctl00_CPMain_pnl = doc.getElementById("ctl00_CPMain_pnlMain"); 
 	var ctl00_CPMain_pnlTeamInfo = doc.getElementById("ctl00_CPMain_pnlTeamInfo");
-	if (!ctl00_CPMain_pnlPreMatch || !ctl00_CPMain_pnlTeamInfo) return;	
+	
+	// check right page and ia supporter
+	if (page=='match' && (!ctl00_CPMain_pnl || !ctl00_CPMain_pnlTeamInfo)) return;	
+	if (page=='arena' && !ctl00_CPMain_pnl) return; 
+	
+	// get some divs to move
 	var ctl00_CPMain_pnlArenaFlash = doc.getElementById("ctl00_CPMain_pnlArenaFlash");
-	var divs = ctl00_CPMain_pnlPreMatch.getElementsByTagName('div');
 	var arenaInfo = ctl00_CPMain_pnlArenaFlash.nextSibling;
 	var separator=null;
+	var mainBox=null;
+	var divs = ctl00_CPMain_pnl.getElementsByTagName('div');
 	for (var i=0;i<divs.length;++i) { 
 		if (divs[i].className=='arenaInfo') {arenaInfo=divs[i];}
 		if (divs[i].className=='separator') {separator=divs[i];}
+		if (divs[i].className=='mainBox') {mainBox=divs[i];}		
 	}
 
-	ctl00_CPMain_pnlTeamInfo.setAttribute('style','float:left !important; margin-top:-20px;');
-
-	if (separator) {
-		separator = ctl00_CPMain_pnlPreMatch.removeChild(separator);	
-		ctl00_CPMain_pnlPreMatch.appendChild(separator);
+	// reduce margins of new top div
+	if (ctl00_CPMain_pnlTeamInfo) ctl00_CPMain_pnlTeamInfo.setAttribute('style','float:left !important; margin-top:-20px;');
+	else {
+		mainBox.getElementsByTagName('h2')[0].setAttribute('style',' margin-top:-20px;');
+		if (Foxtrick.isStandardLayout(doc)) mainBox.setAttribute('style',' margin-bottom:0px;');
 	}
-
+	
+	// move or delete seperator
+	if (separator && (page=='match' || !Foxtrick.isStandardLayout(doc))) {
+		separator = ctl00_CPMain_pnl.removeChild(separator);	
+		ctl00_CPMain_pnl.appendChild(separator);
+	}
+	// move areainfo
 	if (arenaInfo) {
-		arenaInfo = ctl00_CPMain_pnlPreMatch.removeChild(arenaInfo);	
-		ctl00_CPMain_pnlPreMatch.appendChild(arenaInfo);
+		arenaInfo = ctl00_CPMain_pnl.removeChild(arenaInfo);	
+		ctl00_CPMain_pnl.appendChild(arenaInfo);
+		if (page=='arena') margin='margin-right:18px';
+		else margin='';
 		if (Foxtrick.isStandardLayout(doc)) arenaInfo.setAttribute('style','float:right !important;');
-		else arenaInfo.setAttribute('style','float:right !important; width:190px !important;');
+		else arenaInfo.setAttribute('style','float:right !important; width:190px !important;'+margin);
 	}
 
-	ctl00_CPMain_pnlArenaFlash = ctl00_CPMain_pnlPreMatch.removeChild(ctl00_CPMain_pnlArenaFlash);
-	ctl00_CPMain_pnlPreMatch.appendChild(ctl00_CPMain_pnlArenaFlash);
+	// move flash
+	ctl00_CPMain_pnlArenaFlash = ctl00_CPMain_pnl.removeChild(ctl00_CPMain_pnlArenaFlash);
+	ctl00_CPMain_pnl.appendChild(ctl00_CPMain_pnlArenaFlash);
 	ctl00_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px;');
-
+    if (page=='arena') 	ctl00_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px; margin-left:-8px !important; margin-right:-3px !important;');
+	
 	
 	},
 	
