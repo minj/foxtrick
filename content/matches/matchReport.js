@@ -13,15 +13,15 @@ FoxtrickMatchReportFormat = {
                                              "#16029F",  //Text Away team name   2
                                              "#E3E9FF",  //BG My Team            3
                                              "#FFF4F4",  //BG Home               4
-                                             "#F5F4FF",  //BG Away               5
-                                             "1",        //borders_normal        6
-                                             "1",        //borders_goal          7
+                                             "#E0EFE0",  //BG Away               5
+                                             "0",        //borders_normal        6
+                                             "0",        //borders_goal          7
                                              "#9DCF9B",  //border_color_non_goal 8
-                                             "#AAAAFF",    //border_color_goal my  9
-                                             "red",      //border_color_goal home 10
-                                             "blue",     //border_color_goal away 11
-                                             "#EFFFEF",  //normal text 12
-                                             "#D2EFD1"   //helf time text 13
+                                             "#AAAAFF",  //border_color_goal my  9
+                                             "#9F0202",      //border_color_goal home 10
+                                             "#5555FF",     //border_color_goal away 11
+                                             "#F5F5F5",  //normal text 12
+                                             "#E0E0E0"   //helf time text 13
 										),
 	OPTIONS : new Array("Text_My_Team", "Text_Home", "Text_Away", "BG_My_Team", "BG_Home", "BG_Away", "border_width_normal", "border_width_goal", "border_color_non_goal", "border_color_goal_my", "border_color_goal_home", "border_color_goal_away", "normaltext", "half_time"),
 
@@ -105,7 +105,7 @@ FoxtrickMatchReportFormat = {
 			+'background:'+bg_col_aw+';border-bottom:1px solid '+border_color_aw+';border-collapse:separate;}'
 			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td {padding-left:2px;}';
 		style.appendChild(doc.createTextNode(zaw));
-		head.appendChild(style);
+		//head.appendChild(style);
         //dump(zaw+'\n');
         
         var links = div.getElementsByTagName('a');
