@@ -1,3 +1,5 @@
+
+
 /**
  * Foxtrick - an extension for hattrick.org
  * Contact us: by HT-mail to Mod-PaV on hattrick.org
@@ -26,13 +28,18 @@ Foxtrick.core_modules = [ FoxtrickPrefs,
 /** Global news ticker variable
  */
 Foxtrick.news = [];
+
+var vars=[]; for(var v in this){vars.push(v);} vars.sort();
+
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 	new_start:true,
 	isStandard:true,
 	isRTL:false,
+	vars:null,
 	
-    init : function() {
+    init : function() { 
+		for ( var i=0;i<vars.length;++i ) dump('global: ' +vars[i]+'\n');
         var i;
 		
         // init core modules
