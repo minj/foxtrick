@@ -194,7 +194,7 @@ var AttVsDef = {
 			var color1 = "#FFFFFF";
 			var color2 = "#849D84";
 			var fgcolor1 = "#000000";
-			var fgcolor2 = "#FFFFFF";
+			var fgcolor2 = "#000000";
 
 			var pt1 = Math.round(100 * val1 / (val1 + val2));
 			var pt2 = 100 - pt1;
