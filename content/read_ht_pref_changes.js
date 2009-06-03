@@ -108,7 +108,7 @@ var FoxtrickReadHtPrefs = {
 var FoxtrickMyHT = {
 	
     MODULE_NAME : "FoxtrickMyHT",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
+	//MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"FoxTrick MyHT message shorted. Changes moved to html preferences. Shown only once again",

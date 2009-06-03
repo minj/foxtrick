@@ -1179,7 +1179,7 @@ FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
     if ( Foxtrickl10n.isStringAvailable( name ) )
         return Foxtrickl10n.getString( name );
     else {
-        dump( "Foxtrick string MODULE " + module_name + " missing!\n");
+        //dump( "Foxtrick string MODULE " + module_name + " missing!\n");
         return "No description";
     }
 }

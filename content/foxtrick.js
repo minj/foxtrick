@@ -15,6 +15,9 @@ Foxtrick.run_every_page = [];
  */
 Foxtrick.run_on_page = [];
 
+/* temp array  which stored pages that run on currently dispalyed page */
+Foxtrick.run_on_cur_page = [];
+
 /** Core Foxtrick modules, always used.
  * Don't add here unless you have a good reason to. */
 Foxtrick.core_modules = [ FoxtrickPrefs,
@@ -177,6 +180,9 @@ var FoxtrickMain = {
 				}
 			}
 
+			// empty
+			Foxtrick.run_on_cur_page.splice(0,Foxtrick.run_on_cur_page.length);
+
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
@@ -198,6 +204,8 @@ var FoxtrickMain = {
 					Foxtrick.run_on_page[i].forEach(
 						function( fn ) {
 							try {
+								//dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );								
+								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
 								fn.run( i, doc );
 							} catch (e) {
 								dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
@@ -205,9 +213,15 @@ var FoxtrickMain = {
 							}
 						} );
 				}
+			}
+			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
+				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );								
+								
+			}
+			FoxtrickOnPagePrefs.run(doc, Foxtrick.run_on_cur_page);
 			// context menue
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
-			}
+			
 		}
 		else { 
 			// potenial disable cleanup
