@@ -234,8 +234,9 @@ FoxtrickMatchReportFormat = {
         for (i=0; i < divs.length; i++) {
             // dump(i + ': ' + divs[i].textContent + '\n\n');
             var text = divs[i].textContent;
-            var toreplace = ' - ';
+            var toreplace = /\ \-\ /g;
             text = text.replace(toreplace, '-');
+            // dump(i + ': ' + text + '\n');
             var score = reg.exec(text);
             
             if (score && i > 5) {
