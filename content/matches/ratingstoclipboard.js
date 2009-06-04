@@ -67,12 +67,12 @@ var FoxtrickCopyRatingsToClipboard = {
         
         var headder = doc.getElementsByTagName('h1')[0].innerHTML;
         headder=Foxtrick.trim(headder);
-        var start = strrpos(headder, '<span>(') +7;
-        var end = strrpos(headder, ')</span>');
+        var start = Foxtrick.strrpos(headder, '<span>(') +7;
+        var end = Foxtrick.strrpos(headder, ')</span>');
         
         var gameid = headder.substr(start, end-start);
         
-        start = strrpos(headder, ' - ');
+        start = Foxtrick.strrpos(headder, ' - ');
         var gameresult_h = Foxtrick.trim(headder.substr(start-2, 2));
         var gameresult_a = Foxtrick.trim(headder.substr(start+3, 2));            
         
@@ -80,7 +80,7 @@ var FoxtrickCopyRatingsToClipboard = {
         var ad = '\n[table]\n';
         var table = doc.getElementsByTagName('table')[0];
         var youth = '';
-        if (strrpos(table.rows[0].cells[1].innerHTML, 'isYouth=True')) youth = 'youth';
+        if (Foxtrick.strrpos(table.rows[0].cells[1].innerHTML, 'isYouth=True')) youth = 'youth';
         // Foxtrick.alert(table.rows[0].cells[1].innerHTML);
 
         for (var row = 0; row < table.rows.length; row ++) {

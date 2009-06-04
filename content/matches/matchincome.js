@@ -44,7 +44,7 @@ var FoxtrickMatchIncome = {
 				td2a.innerHTML=Foxtrickl10n.getString('foxtrick.matches.income');
 				td2a.setAttribute('class','ch');
                 td2a.id = 'ft_matchincome';
-				td2b.innerHTML=ReturnFormatedValue (Math.floor(sum), '&nbsp;')+'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol");
+				td2b.innerHTML=Foxtrick.ReturnFormatedValue (Math.floor(sum), '&nbsp;')+'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol");
 			}
         }    
     },

@@ -22,7 +22,7 @@ var FoxtrickForumSearch = {
     run : function( page, doc ) {
         try {
             dump('--- ForumSearch --- \n');
-            var box = getElementsByClass('subMenuBox', doc)[0];
+            var box = Foxtrick.getElementsByClass('subMenuBox', doc)[0];
             var links = box.getElementsByTagName('a');
             
             var threadlist = FoxtrickPrefs.getList("forum_post_list");
@@ -53,8 +53,8 @@ var FoxtrickForumSearch = {
                 inputBox.setAttribute('id', 'ft_searchField');
 				inputBox.setAttribute('size', '20');
                 inputBox.setAttribute('value', threadlist.length + ' Threads');
-                inputBox.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "viewActive", "xxx")');
-                inputBox.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "viewInactive", "xxx")');
+                inputBox.setAttribute('onfocus', 'Foxtrick.setActiveTextBox("' + boxId + '", "viewActive", "xxx")');
+                inputBox.setAttribute('onblur', 'Foxtrick.setInactiveTextBox("' + boxId + '", "viewInactive", "xxx")');
                 inputBox.setAttribute('onsubmit', 'return false;');
                   new_div.appendChild(inputBox);
                 

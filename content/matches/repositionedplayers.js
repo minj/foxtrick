@@ -49,8 +49,8 @@ var FoxtrickRepositionedPlayers = {
 
     run : function( page, doc ) {
                 
-                var playerdivs = getElementsByClass( "position", doc );
-				var playerbox = getElementsByClass( "box_lineup", doc );
+                var playerdivs = Foxtrick.getElementsByClass( "position", doc );
+				var playerbox = Foxtrick.getElementsByClass( "box_lineup", doc );
 
 				var useCode=Foxtrickl10n.isStringAvailableLocal( 'foxtrick.matches.Keeper' );
 				dump ('FoxtrickRepositionedPlayers->locale available: ' + useCode + '\n');

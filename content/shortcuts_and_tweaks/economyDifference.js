@@ -139,19 +139,19 @@ var FoxtrickEconomyDifference = {
         }
 		newTabDiff.rows[1].cells[1].innerHTML = '<span " ' + 
 			this.getColorStyle(econ_ted_crowd) + '>'+ 
-			ReturnFormatedValue(econ_ted_crowd,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+			Foxtrick.ReturnFormatedValue(econ_ted_crowd,'&nbsp;') + '&nbsp;' +  cs+'</span>';
 		newTabDiff.rows[2].cells[1].innerHTML = '<span " ' + 
 			this.getColorStyle(econ_ted_sponsors) + '>' +
-			ReturnFormatedValue(econ_ted_sponsors,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+			Foxtrick.ReturnFormatedValue(econ_ted_sponsors,'&nbsp;') + '&nbsp;' +  cs+'</span>';
 		newTabDiff.rows[3].cells[1].innerHTML = '<span " ' + 
 			this.getColorStyle(econ_ted_financial ) + '>' + 
-            ReturnFormatedValue(econ_ted_financial ,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+            Foxtrick.ReturnFormatedValue(econ_ted_financial ,'&nbsp;') + '&nbsp;' +  cs+'</span>';
 		newTabDiff.rows[4].cells[1].innerHTML = '<span " ' + 
 			this.getColorStyle(econ_ted_temporary) + '>' + 
-			ReturnFormatedValue(econ_ted_temporary,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+			Foxtrick.ReturnFormatedValue(econ_ted_temporary,'&nbsp;') + '&nbsp;' +  cs+'</span>';
         newTabDiff.rows[8].cells[1].innerHTML = '<span " ' + 
 			this.getColorStyle(econ_all) + '>' + 
-			ReturnFormatedValue(econ_all,'&nbsp;') + '&nbsp;' +  cs+'</span>'; 
+			Foxtrick.ReturnFormatedValue(econ_all,'&nbsp;') + '&nbsp;' +  cs+'</span>'; 
 
         if (DIFF_OPTION == 0) {
             var diff_arena = this.extractAmount(tableCurr.
@@ -199,31 +199,31 @@ var FoxtrickEconomyDifference = {
 
 		newTabDiff.rows[1].cells[3].innerHTML = '<span " ' + 
 			this.getColorStyle(-diff_arena) + '>' + 
-			ReturnFormatedValue(diff_arena,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+			Foxtrick.ReturnFormatedValue(diff_arena,'&nbsp;') + '&nbsp;' +  cs+'</span>';
 		newTabDiff.rows[2].cells[3].innerHTML = '<span " ' + 
 			this.getColorStyle(-diff_wages) + '>' + 
-			ReturnFormatedValue(diff_wages,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+			Foxtrick.ReturnFormatedValue(diff_wages,'&nbsp;') + '&nbsp;' +  cs+'</span>';
 		newTabDiff.rows[3].cells[3].innerHTML = '<span " ' + 
 			this.getColorStyle(-diff_u) + '>' + 
-			ReturnFormatedValue(diff_u,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+			Foxtrick.ReturnFormatedValue(diff_u,'&nbsp;') + '&nbsp;' +  cs+'</span>';
 		newTabDiff.rows[4].cells[3].innerHTML = '<span " ' + 
 			this.getColorStyle(-diff_m) + '>' + 
-			ReturnFormatedValue(diff_m,'&nbsp;') + '&nbsp;' +  cs+'</span>';
+			Foxtrick.ReturnFormatedValue(diff_m,'&nbsp;') + '&nbsp;' +  cs+'</span>';
 		newTabDiff.rows[5].cells[3].innerHTML = '<span " ' + 
 			this.getColorStyle(-diff_z) + '>' + 
-			ReturnFormatedValue(diff_z,'&nbsp;') + '&nbsp;' +  cs+'</span>';            
+			Foxtrick.ReturnFormatedValue(diff_z,'&nbsp;') + '&nbsp;' +  cs+'</span>';            
 		newTabDiff.rows[6].cells[3].innerHTML = '<span " ' + 
 			this.getColorStyle(-diff_j) + '>' + 
-			ReturnFormatedValue(diff_j,'&nbsp;') + '&nbsp;' +  cs+'</span>';            
+			Foxtrick.ReturnFormatedValue(diff_j,'&nbsp;') + '&nbsp;' +  cs+'</span>';            
 		newTabDiff.rows[8].cells[3].innerHTML = '<span " ' + 
 			this.getColorStyle(-diff_all) + '>' + 
-			ReturnFormatedValue(diff_all,'&nbsp;') + '&nbsp;' +  cs+'</span>';            
+			Foxtrick.ReturnFormatedValue(diff_all,'&nbsp;') + '&nbsp;' +  cs+'</span>';            
 
 		var twoWeekBalance = econ_all - diff_all;
 
 		newTabDiff.rows[10].cells[1].innerHTML = '<span " ' + 
 			this.getColorStyle(twoWeekBalance) + '>' + 
-			ReturnFormatedValue(twoWeekBalance,'&nbsp;') + '&nbsp;' +  cs+'</span>';            						
+			Foxtrick.ReturnFormatedValue(twoWeekBalance,'&nbsp;') + '&nbsp;' +  cs+'</span>';            						
 			
 	},
 	

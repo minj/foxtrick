@@ -48,7 +48,7 @@ var FoxtrickElectionTable = {
                 }
             }
             var cnt = doc.createElement('div');
-            cnt.innerHTML = '<b>&Sigma: ' + ReturnFormatedValue(sum,'.') + '</b>';
+            cnt.innerHTML = '<b>&Sigma: ' + Foxtrick.ReturnFormatedValue(sum,'.') + '</b>';
             cnt.setAttribute('style', 'padding-top: 10px;');
             div.appendChild(cnt);
             

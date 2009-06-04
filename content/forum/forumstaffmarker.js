@@ -259,7 +259,7 @@ var FoxtrickForumStaffMarker = {
 			var do_foxtrick_dev = Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") ;
 			var do_own = Foxtrick.isModuleFeatureEnabled( this, "own");
 			
-			var userDivs = getElementsByClass("float_left", doc.getElementById('mainWrapper'));
+			var userDivs = Foxtrick.getElementsByClass("float_left", doc.getElementById('mainWrapper'));
 			var i=0, user;
             while ( user = userDivs[i++] ) {
                 var as = user.getElementsByTagName('a');

@@ -40,7 +40,7 @@ FoxtrickExtendedPlayerDetails = {
             var div = doc.getElementById( "ctl00_CPMain_pnlplayerInfo" );
             if (div == null) return;
             
-            var joined_elm = getElementsByClass( "shy", div )[0];
+            var joined_elm = Foxtrick.getElementsByClass( "shy", div )[0];
             if (joined_elm == null) return;            
             //dump('\n'+joined_elm.parentNode.innerHTML+'\n');
 
@@ -51,14 +51,14 @@ FoxtrickExtendedPlayerDetails = {
 
             var joinedtime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
 
-            joinedtime = substr(joinedtime, strrpos( joinedtime, ";"), joinedtime.length);
+            joinedtime = Foxtrick.substr(joinedtime, Foxtrick.strrpos( joinedtime, ";"), joinedtime.length);
 
             // dump('  Joindate: ' + joinedtime + '\n');
-            // dump('  HT Week: ' + this._gregorianToHT(joinedtime) + '\n');
+            // dump('  HT Week: ' + this._Foxtrick.gregorianToHT(joinedtime) + '\n');
 
-            var ht_week = gregorianToHT(joinedtime);
+            var ht_week = Foxtrick.gregorianToHT(joinedtime);
 
-            JT_date = getDatefromCellHTML( joinedtime );
+            JT_date = Foxtrick.getDatefromCellHTML( joinedtime );
             if (!JT_date) return;
 
             var joined_s = Math.floor( (HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
@@ -72,7 +72,7 @@ FoxtrickExtendedPlayerDetails = {
             }
     
             if (JoinedText.search("NaN") == -1) {
-                part1 = substr(joined_elm.innerHTML, 0, strrpos( joined_elm.innerHTML, ")"));
+                part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
                 part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
                 joined_elm.innerHTML = part1 + ' <span id="ft_HTDateFormat">'+ ht_week + '</span>, ' + JoinedText + ')</span>';
             }
@@ -125,13 +125,13 @@ FoxtrickExtendedPlayerDetailsWage = {
 			
             var has_bonus=false;
 			var table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
-            if (strrpos( table_inner, "%") > 0 ) {
+            if (Foxtrick.strrpos( table_inner, "%") > 0 ) {
                 has_bonus=true;
             }
             
 			table_inner = table_elm_bonus.innerHTML;
 
-            var part = substr(table_inner, 0, table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+1);
+            var part = Foxtrick.substr(table_inner, 0, table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+1);
 
             var part_1_save = part;
             var part_2_save = table_inner.substring(table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+1);
@@ -144,7 +144,7 @@ FoxtrickExtendedPlayerDetailsWage = {
             
 			var wage = parseInt(part.replace('&nbsp;', '').replace(/ /g, '')); 
             part =  Math.floor( wage / 1.2);
-            part = ReturnFormatedValue (part, '&nbsp;');
+            part = Foxtrick.ReturnFormatedValue (part, '&nbsp;');
 			
 			// get space before currency symbol
 			part_1_save=part_1_save.replace(" "+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
@@ -161,7 +161,7 @@ FoxtrickExtendedPlayerDetailsWage = {
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 				}
 				if (Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") ) 
-						table_elm_bonus.innerHTML += '<br>'+ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
+						table_elm_bonus.innerHTML += '<br>'+Foxtrick.ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
              }   
 				
         } catch (e) {

@@ -37,7 +37,7 @@ Foxtrick.TeamStats= {
         var specs = {};
 		
 		var body = doc.getElementById("mainBody");
-		var allDivs = getElementsByClass("playerInfo", body);
+		var allDivs = Foxtrick.getElementsByClass("playerInfo", body);
 		this.latestMatch=-1;
 		var stars=new Array();
 		var num_too_old=0;
@@ -82,7 +82,7 @@ Foxtrick.TeamStats= {
                     // dump(' ==>' + specMatch+'\n');
                     if (specMatch != null) {
                         // dump(' == ==>' + specMatch+'\n');
-                        var spec = substr(specMatch[0], 0, specMatch[0].length);
+                        var spec = Foxtrick.substr(specMatch[0], 0, specMatch[0].length);
                         if (typeof(specs[spec]) == 'undefined') {
                             specs[spec] = 1;
                         } else {
@@ -103,7 +103,7 @@ Foxtrick.TeamStats= {
 				var j=0,a=null;
 				while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
 				var matchday=0;
-				if (a) matchday=getUniqueDayfromCellHTML(a.innerHTML); 
+				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
 		}
 		stars.sort(starsortfunction);
@@ -121,20 +121,20 @@ Foxtrick.TeamStats= {
 		
 		
 		//If NT displays Total TSI
-        if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">" + _totalTSI + "</td><td>" + ReturnFormatedValue(total_NT,'&nbsp;') + "</td></tr>";
+        if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">" + _totalTSI + "</td><td>" + Foxtrick.ReturnFormatedValue(total_NT,'&nbsp;') + "</td></tr>";
 
 		
         for (var spec in specs) {
           specsTable += "<tr><td class=\"ch\">" + spec.replace(/\[|\]/g,"") + "</td><td>" + specs[spec] + "</td></tr>";
         }
       
-        var transferListed = getElementsByClass( "transferListed", doc );
+        var transferListed = Foxtrick.getElementsByClass( "transferListed", doc );
         var img_lis = '<img style="width: 10px; height: 18px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dollar.gif" src="/Img/Icons/dollar.gif" class="transferListed" title="">';
         if (transferListed.length > 0) {
           specsTable += "<tr><td class=\"ch\">" + img_lis + "</td><td>" + transferListed.length + "</td></tr>";
         }
 
-        var yellow = getElementsByClass( "cardsOne", doc );
+        var yellow = Foxtrick.getElementsByClass( "cardsOne", doc );
         var img_yel = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" src="/Img/Icons/yellow_card.gif" class="cardsOne" title="">';
         if (yellow.length > 0) {
             var yels = 0;
@@ -151,13 +151,13 @@ Foxtrick.TeamStats= {
             if (yels > 0) specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yels + "</td></tr>";
         }
 
-        var yellow_2 = getElementsByClass( "cardsTwo", doc );
+        var yellow_2 = Foxtrick.getElementsByClass( "cardsTwo", doc );
         var img_yel = '<img style="width: 17px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dual_yellow_card.gif" src="/Img/Icons/dual_yellow_card.gif" class="cardsTwo" title="">';
         if (yellow_2.length > 0) {
           specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow_2.length + "</td></tr>";
         }
 
-        var red = getElementsByClass( "cardsOne", doc );
+        var red = Foxtrick.getElementsByClass( "cardsOne", doc );
         var img_red = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" src="/Img/Icons/red_card.gif" class="cardsOne" title="">';
         if (red.length > 0) {
             var reds = 0;
@@ -174,19 +174,19 @@ Foxtrick.TeamStats= {
             if (reds > 0) specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + reds + "</td></tr>";
         }
 
-        var injuries = getElementsByClass( "injuryBruised", doc );
+        var injuries = Foxtrick.getElementsByClass( "injuryBruised", doc );
         var img_bru = '<img style="width: 19px; height: 8px;" ilo-full-src="http://www.hattrick.org/Img/Icons/bruised.gif" src="/Img/Icons/bruised.gif" class="injuryBruised" title="">';
         if (injuries.length > 0) {
           specsTable += "<tr><td class=\"ch\">" + img_bru + "</td><td>" + injuries.length + "</td></tr>";
         }
 
-        var injuries = getElementsByClass( "injuryInjured", doc );
+        var injuries = Foxtrick.getElementsByClass( "injuryInjured", doc );
         if (injuries) {
             var weeks = 0;
             try {
                 for (var j = 0; j < injuries.length; j++) {
                     var head = injuries[j].parentNode;
-                    weeks += parseInt(substr(head.innerHTML, strrpos( head.innerHTML, "<span>")+6, 1));              
+                    weeks += parseInt(Foxtrick.substr(head.innerHTML, Foxtrick.strrpos( head.innerHTML, "<span>")+6, 1));              
                 }
             } 
             catch(e) {
@@ -355,11 +355,11 @@ Foxtrick.TeamStats= {
         
         _checkCountry : function ( ctrc ) {
             if (ctrc == null ) return;
-            ctrc = Foxtrick._to_utf8(substr(ctrc, strrpos( ctrc, "</a>")+4, ctrc.lebgth));
+            ctrc = Foxtrick._to_utf8(Foxtrick.substr(ctrc, Foxtrick.strrpos( ctrc, "</a>")+4, ctrc.lebgth));
             // dump('=> stripped => ' + ctrc + '\n');
             var found = -1;
             for (var i = 0; i < this.COUNTRYLIST.length; i++) {
-                if (strrpos( ctrc, this.COUNTRYLIST[i]) > 0 ) {
+                if (Foxtrick.strrpos( ctrc, this.COUNTRYLIST[i]) > 0 ) {
                     found = i;
                     break;
                 }
@@ -550,7 +550,7 @@ function FTTeamStats_Filter(ev){
 				var j=0,a=null;
 				while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
 				var matchday=0;
-				if (a) matchday=getUniqueDayfromCellHTML(a.innerHTML); 
+				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 
 				if (ev.target.value=='Cards' && allDivs[i].innerHTML.search('card.gif')==-1)  {
 						allDivs[i].setAttribute('style','display:none !important;');

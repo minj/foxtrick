@@ -46,7 +46,7 @@
             anchor.parentNode.insertBefore( div, anchor );
         }
         
-        var toolbar = getElementsByClass( "HTMLToolbar", doc );
+        var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
         toolbar = toolbar[0];
         if  (( toolbar == null ) && (!page == 'ads' )) return;
         var toolbar_main = toolbar;
@@ -55,7 +55,7 @@
         
         if ( (page == 'messageWritePost' ) && ( !Foxtrick.isStandardLayout( doc ) ) ) 
             try {
-                var mainbbox = getElementsByClass( "mainBox", doc )[0];
+                var mainbbox = Foxtrick.getElementsByClass( "mainBox", doc )[0];
                 mainbbox.setAttribute( "style", "padding-bottom:25px;");
             }
             catch (e)
@@ -95,7 +95,7 @@
         
         
         //simple test if new icons are set up by HTs
-        var toolbar_test = getElementsByClass( "f_hr", doc );
+        var toolbar_test = Foxtrick.getElementsByClass( "f_hr", doc );
         //dump('Document child class "f_hr": ['+toolbar_test+']\n');
         if (toolbar_test.length != null) {
             var target=toolbar.lastChild;

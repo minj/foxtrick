@@ -21,7 +21,7 @@ var FoxtrickGoToPostBox = {
             //set up tab on left forums menu
             var tab = ''
             try {
-                var forumtabs = getElementsByClass( 'active', doc )[0];
+                var forumtabs = Foxtrick.getElementsByClass( 'active', doc )[0];
                 var reg = /^(.*?)\&v\=(\d+)(.*?)/;
                 var ar = reg.exec(+' ' + forumtabs.href + ' ');
                 if (ar[2] != null) {
@@ -57,8 +57,8 @@ var FoxtrickGoToPostBox = {
 				inputBoxTop.setAttribute('size', '4');
                 inputBoxTop.setAttribute('value', '(xxx.)yyy');
                 inputBoxTop.setAttribute('class', 'quickViewBox viewInactive');
-                inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
-                inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
+                inputBoxTop.setAttribute('onfocus', 'Foxtrick.setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
+                inputBoxTop.setAttribute('onblur', 'Foxtrick.setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
                 
 				var goButton = doc.createElement('input');
 				goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);

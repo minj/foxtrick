@@ -41,7 +41,7 @@ FoxtrickMatchReportFormat = {
 		if (!isarchivedmatch) return;
 
         var div = doc.getElementById('mainBody');
-        var div_check = getElementsByClass('ft_mR_format', div);
+        var div_check = Foxtrick.getElementsByClass('ft_mR_format', div);
         if  (div_check.length > 0) return;
 
         //Retrieve teams id
@@ -56,8 +56,8 @@ FoxtrickMatchReportFormat = {
 
         var headder = doc.getElementsByTagName('h1')[0].innerHTML;
         headder=Foxtrick.trim(headder);
-        var start = strrpos(headder, '<span>(') +7;
-        var end = strrpos(headder, ')</span>');
+        var start = Foxtrick.strrpos(headder, '<span>(') +7;
+        var end = Foxtrick.strrpos(headder, ')</span>');
 
         var gameid = headder.substr(start, end-start);
 
@@ -118,8 +118,8 @@ FoxtrickMatchReportFormat = {
             }
         }
 
-        var div_inner = getElementsByClass('', div)[2];
-        if (!supporter) div_inner = getElementsByClass('', div)[1];
+        var div_inner = Foxtrick.getElementsByClass('', div)[2];
+        if (!supporter) div_inner = Foxtrick.getElementsByClass('', div)[1];
         // dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
@@ -278,7 +278,7 @@ FoxtrickMatchReportFormat = {
     },
 
 	change : function( page, doc ) {
-        var div_check = getElementsByClass('ft_mR_format', doc);
+        var div_check = Foxtrick.getElementsByClass('ft_mR_format', doc);
         if  (div_check.length > 0) return;
     },
     nl2br : function(text) {

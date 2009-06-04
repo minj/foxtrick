@@ -812,7 +812,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	}
 }
 
-function getSortedLinks(links) {
+Foxtrick.getSortedLinks = function(links) {
   function sortfunction(a,b) {
     return a.link.title.localeCompare(b.link.title);
   }
@@ -820,7 +820,7 @@ function getSortedLinks(links) {
   return links;
 }
 
-function keysortfunction(a,b) {
+Foxtrick.keysortfunction = function(a,b) {
     return a["title"].localeCompare(b["title"]);
   }
 
@@ -829,21 +829,22 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 			module.OPTIONS = new Array();
 			country_options = new Array();
 			
-			for (var key in stats) { 
-				if (stats[key][linktype]!=null) { 
-					var title = stats[key]["title"];
+			for (var key in Foxtrick.LinkCollection.stats) {
+				var stat = Foxtrick.LinkCollection.stats[key];
+				if (stat[linktype]!=null) { 
+					var title = stat["title"];
 					
-					var filters = stats[key][linktype]["filters"]; 
+					var filters = stat[linktype]["filters"]; 
 					var countries='';
 					
 					for (var i=0; i<filters.length; i++) {
 						var filtertype = filters[i]; 
 						if (filtertype == "countryid" 
-							&& stats[key]["countryidranges"] 
-							&& stats[key]["countryidranges"].length!=0) {
+							&& stat["countryidranges"] 
+							&& stat["countryidranges"].length!=0) {
 								
 								var k=0,range;
-								while (range = stats[key]["countryidranges"][k++]) {
+								while (range = stat["countryidranges"][k++]) {
 									var r0=String(range[0]); 
 									if (k==1) { 
 											if (r0.length==2) r0='0'+r0;
@@ -851,18 +852,18 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 									}
 									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 									else countries += '[' + r0+']';
-									if (stats[key]["countryidranges"][k]) 	countries+=',';
+									if (stat["countryidranges"][k]) 	countries+=',';
 								}
 						}
 					}
 					for (var i=0; i<filters.length; i++) {
 						var filtertype = filters[i]; 
 						if (filtertype == "owncountryid" 
-							&& stats[key]["owncountryidranges"] 
-							&& stats[key]["owncountryidranges"].length!=0) {
+							&& stat["owncountryidranges"] 
+							&& stat["owncountryidranges"].length!=0) {
 								
 								var k=0,range;
-								while (range = stats[key]["owncountryidranges"][k++]) {
+								while (range = stat["owncountryidranges"][k++]) {
 									var r0=String(range[0]); 
 									if (k==1) { 
 											if (r0.length==2) r0='0'+r0;
@@ -870,7 +871,7 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 									}
 									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 									else countries += '[' + r0+']';
-									if (stats[key]["owncountryidranges"][k]) 	countries+=',';
+									if (stat["owncountryidranges"][k]) 	countries+=',';
 								}
 						}
 					}					
@@ -878,8 +879,8 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 					else  module.OPTIONS.push({"key":key,"title":title}); 
 				}
 			}	
-			module.OPTIONS.sort(keysortfunction); 
-			country_options.sort(keysortfunction); 
+			module.OPTIONS.sort(Foxtrick.keysortfunction); 
+			country_options.sort(Foxtrick.keysortfunction); 
 			var i=0,country_option;
 			while (country_option = country_options[i++]) {module.OPTIONS.push({"key":country_option.key,"title":country_option.title.replace(/^\[0+/,'[')});}
 			for (var key in extra_options) {  
@@ -894,17 +895,18 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 		module.OPTIONS = new Array();
 		country_options = new Array();
 		for (var linktype=0; linktype< linktypes.length; linktype++) { 
-			for (var key in stats) { 
-				if (stats[key][linktypes[linktype]]!=null) {
-					var title = stats[key]["title"];
-					var filters = stats[key][linktypes[linktype]]["filters"];
+			for (var key in Foxtrick.LinkCollection.stats) { 
+				var stat = Foxtrick.LinkCollection.stats[key];
+				if (stat[linktypes[linktype]]!=null) {
+					var title = stat["title"];
+					var filters = stat[linktypes[linktype]]["filters"];
 					var countries='';
 					for (var i=0; i<filters.length; i++) {
 						var filtertype = filters[i]; 
 						if (filtertype == "nationality")
-							if (stats[key]["nationalityranges"] && stats[key]["nationalityranges"].length!=0) { 
+							if (stat["nationalityranges"] && stat["nationalityranges"].length!=0) { 
 								var k=0,range;
-								while (range = stats[key]["nationalityranges"][k++]) {
+								while (range = stat["nationalityranges"][k++]) {
 									var r0=String(range[0]); 
 									if (countries=='') { 
 											if (r0.length==2) r0='0'+r0;
@@ -912,15 +914,15 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 									}
 									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 									else countries += '[' + r0+']';
-									if (stats[key]["nationalityranges"][k]) 	countries+=',';
+									if (stat["nationalityranges"][k]) 	countries+=',';
 								}
 							}
 						}
 						if (filtertype == "countryid" 
-							&& stats[key]["countryidranges"] 
-							&& stats[key]["countryidranges"].length!=0) {
+							&& stat["countryidranges"] 
+							&& stat["countryidranges"].length!=0) {
 								var k=0,range;
-								while (range = stats[key]["countryidranges"][k++]) {
+								while (range = stat["countryidranges"][k++]) {
 									var r0=String(range[0]); 
 									if (countries=='') { 
 											if (r0.length==2) r0='0'+r0;
@@ -928,7 +930,7 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 									}
 									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 									else countries += '[' + r0+']';
-									if (stats[key]["countryidranges"][k]) 	countries+=',';
+									if (stat["countryidranges"][k]) 	countries+=',';
 								}
 						}
 					var has_entry=false;
@@ -943,8 +945,8 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 				}
 			}			
 		}
-		module.OPTIONS.sort(keysortfunction);
-		country_options.sort(keysortfunction); 
+		module.OPTIONS.sort(Foxtrick.keysortfunction);
+		country_options.sort(Foxtrick.keysortfunction); 
 		var i=0,country_option;
 		while (country_option = country_options[i++]) {module.OPTIONS.push({"key":country_option.key,"title":country_option.title.replace(/^\[0+/,'[')});}
 	} catch(e) {dump('Foxtrick.initOptionsLinksArray : '+e+'\n');}
@@ -1018,7 +1020,7 @@ Foxtrick._from_utf8 = function(s) {
   return d;
 }
 
-function getElementsByClass(searchClass,node,tag) {
+Foxtrick.getElementsByClass = function(searchClass,node,tag) {
 	var classElements = new Array();
 	if ( node == null )
 		node = document;
@@ -1037,7 +1039,7 @@ function getElementsByClass(searchClass,node,tag) {
 }
 
 
-function substr( f_string, f_start, f_length ) {
+Foxtrick.substr = function( f_string, f_start, f_length ) {
     f_string += '';
  
     if(f_start < 0) {
@@ -1059,12 +1061,12 @@ function substr( f_string, f_start, f_length ) {
     return f_string.substring(f_start, f_length);
 }
 
-function strrpos( haystack, needle, offset){
+Foxtrick.strrpos = function( haystack, needle, offset){
     var i = (haystack+'').lastIndexOf( needle, offset ); // returns -1
     return i >= 0 ? i : false;
 }
 
-function ReturnFormatedValue( number, separator ) {
+Foxtrick.ReturnFormatedValue = function( number, separator ) {
     number = '' + number;
     if (number.length > 3) {
         var mod = number.length % 3;
@@ -1081,7 +1083,7 @@ function ReturnFormatedValue( number, separator ) {
         return number;
 }
 
-function gregorianToHT( date,weekdayoffset ) {
+Foxtrick.gregorianToHT  = function( date,weekdayoffset ) {
     /*
     Returns HT Week and Season like (15/37)
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
@@ -1158,7 +1160,7 @@ function gregorianToHT( date,weekdayoffset ) {
     if (year % 4 == 0 && month > 2)
         ++dayCount;
 
-    var htDate = htDatePrintFormat(
+    var htDate = Foxtrick.htDatePrintFormat(
                     year, 
                     ( Math.floor(dayCount/(16*7)) + 1 ), 
                     ( Math.floor((dayCount%(16*7))/7) +1 ), 
@@ -1167,7 +1169,7 @@ function gregorianToHT( date,weekdayoffset ) {
     return htDate;
 }
     
-function htDatePrintFormat(year, season, week, day, date) {
+Foxtrick.htDatePrintFormat = function(year, season, week, day, date) {
     var offset = 0;
     try {
         if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison"))
@@ -1186,7 +1188,7 @@ function htDatePrintFormat(year, season, week, day, date) {
     }
 }
 
-function getDatefromCellHTML ( date ) {
+Foxtrick.getDatefromCellHTML = function( date ) {
     /*
     Returns Date for given input
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
@@ -1228,7 +1230,7 @@ function getDatefromCellHTML ( date ) {
     return CellDate;
 }
 
-function getUniqueDayfromCellHTML ( date ) {
+Foxtrick.getUniqueDayfromCellHTML = function( date ) {
     /*
     Returns Date for given input
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
@@ -1381,7 +1383,7 @@ TimeDifferenceToText = function( time_sec, short ) {
     return Text;
 }
 
-modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
+Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
     /*
     Returns HT-Week & Season
     short == true => Date is without time.
@@ -1393,7 +1395,7 @@ modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
         dt_inner = Foxtrick.trim(tds[i].innerHTML);
         
         
-        if ( !strrpos( dt_inner, "ft_HTDateFormat") ) { 
+        if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) { 
             if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
                 var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
                 var ar = reg.exec(dt_inner);
@@ -1402,8 +1404,8 @@ modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
                     var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
 
                     if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
-                        tds[i].innerHTML = dt_inner + before + gregorianToHT(td_date,weekdayoffset) + after;
-						//dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+                        tds[i].innerHTML = dt_inner + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
+						//dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + Foxtrick.gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
                     }
                 }
             }
@@ -1444,7 +1446,7 @@ Foxtrick.hasMainBodyScroll = function ( doc ) {
 	}
 
 
-function setActiveTextBox(field, cssClass, text) {
+Foxtrick.setActiveTextBox = function (field, cssClass, text) {
     var fieldObj = document.getElementById(field);
     fieldObj.className = cssClass;
     if (fieldObj.value == text) {
@@ -1453,7 +1455,7 @@ function setActiveTextBox(field, cssClass, text) {
     }
 }
 
-function setInactiveTextBox(field, cssClass, text) {
+Foxtrick.setInactiveTextBox = function (field, cssClass, text) {
     var fieldObj = document.getElementById(field);
     if (fieldObj.value.length === 0) {
         fieldObj.className = cssClass;
@@ -1463,13 +1465,13 @@ function setInactiveTextBox(field, cssClass, text) {
 }
 
 	
-function FoxtrickGetElementPosition(This,ref){
+Foxtrick.GetElementPosition = function (This,ref){
 	var el = This;var pT = 0; var pL = 0;
 	while(el && el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
 	return {'top':pT,'left':pL};
 }
 	
-function FoxtrickGetDataURIText(filetext) {
+Foxtrick.GetDataURIText = function (filetext) {
 	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
 }	
 

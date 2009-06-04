@@ -19,7 +19,7 @@ FoxtrickTransferListDeadline = {
 
         var httime = doc.getElementById( "time" ).innerHTML;
 
-        HT_date = getDatefromCellHTML( httime );
+        HT_date = Foxtrick.getDatefromCellHTML( httime );
         if (!HT_date) return;
 
         switch ( page ) {
@@ -42,7 +42,7 @@ FoxtrickTransferListDeadline = {
 
 	change : function( page, doc ) {
 		var httime = doc.getElementById( "time" ).innerHTML;
-		HT_date = getDatefromCellHTML( httime );
+		HT_date = Foxtrick.getDatefromCellHTML( httime );
         if (!HT_date) return;
 
         switch ( page ) {
@@ -69,7 +69,7 @@ FoxtrickTransferListDeadline = {
                 if (selltime_elm != null ) {
                     var selltime = Foxtrick.trim(selltime_elm.innerHTML);
                     // dump ('\n>>>>>' + selltime + '<<<<<\n');
-                    var ST_date = getDatefromCellHTML( selltime );
+                    var ST_date = Foxtrick.getDatefromCellHTML( selltime );
                     if (ST_date != null ) {
                         var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
                         var DeadlineText = TimeDifferenceToText (deadline_s);
@@ -98,7 +98,7 @@ FoxtrickTransferListDeadline = {
             var div = doc.getElementById( 'ctl00_CPMain_updBid' );
             if (div == null ) return;
             
-            var spans = getElementsByClass( "alert", div );
+            var spans = Foxtrick.getElementsByClass( "alert", div );
             if (spans == null) return;
             
             var selltime_elm = spans[0].getElementsByTagName( "p" )[0];
@@ -118,10 +118,10 @@ FoxtrickTransferListDeadline = {
                 selltime = selltimeInner.substr(0,startPos);
             }
 
-            selltime = substr(selltime, strrpos( selltime, ";")+1, selltime.length);
+            selltime = Foxtrick.substr(selltime, Foxtrick.strrpos( selltime, ";")+1, selltime.length);
             // dump('ST: ' + selltime + '\n');
 
-            ST_date = getDatefromCellHTML( selltime );
+            ST_date = Foxtrick.getDatefromCellHTML( selltime );
             if (!ST_date) return;
 
             var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
