@@ -29,6 +29,7 @@ Foxtrick.core_modules = [ FoxtrickPrefs,
  */
 Foxtrick.news = [];
 
+// remove before release
 var vars=[]; for(var v in this){vars.push(v);} vars.sort();
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -39,9 +40,10 @@ var FoxtrickMain = {
 	vars:null,
 	
     init : function() { 
+		// remove before release
 		for ( var i=0;i<vars.length;++i ) dump('global: ' +vars[i]+'\n');
-        var i;
-		
+        
+		var i;		
         // init core modules
         for ( i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();

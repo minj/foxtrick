@@ -115,9 +115,7 @@ Foxtrick.Loader = function(){
     'links/linksfans.js',
     'links/linksstaff.js',
     'links/linkstracker.js',
-    // HT-Scripts
-    //'resources/js/HattrickML.js',
-
+    
 	// following modules all run on 'all_late' pages. order of execution is determined be following order
     'presentation/currencyConverter.js',
     'shortcuts_and_tweaks/teampopuplinks.js', // keep behind others
