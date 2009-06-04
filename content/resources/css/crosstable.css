@@ -8,7 +8,19 @@
 }
 
 .ft_graph_div {
-position:relative;
-top:0px;
-left:0px;
+    position:relative;
+    top:0px;
+    left:0px;
+}
+.ft_graph_team{
+    font-size: 10px;
+    font-Family: Verdana,Tahoma;
+    color:#222222;
+    font-weight:bold;
+    border:1px dotted black;
+    height:15px;
+    overflow:hidden;
+    margin: 0px 0px -1px 0px;
+    padding: 0px 0px 0px 0px;
+    background: white;
 }

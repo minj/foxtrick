@@ -15,6 +15,7 @@ var FoxtrickCrossTable = {
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some style options",
 		
+    _week : 14,
 	init : function() {
         Foxtrick.registerPageHandler( 'fixtures', this );
     },
@@ -129,6 +130,9 @@ var FoxtrickCrossTable = {
                             }
                             else {
                                 cross[home][away+1] = '-';
+                                week[home][j+1] = week[home][j];
+                                week[away][j+1] = week[away][j];
+                                
                             }
                             //dump ('[' + home + ' - '+ away+'] ' + result[0]+':'+result[1] + '|' + crossgame[home][away+1] + '\n');
                             break;
@@ -213,16 +217,29 @@ var FoxtrickCrossTable = {
             div.insertBefore(crosstable, div.getElementsByTagName('h1')[0].nextSibling);
 
             var css = "chrome://foxtrick/content/resources/css/crosstable.css";
-			Foxtrick.addStyleSheet( doc, css );            
+			Foxtrick.addStyleSheet( doc, css );           
             var divmap = doc.createElement('div');
             divmap.id = 'ft_graph';
             divmap.className = 'ft_graph_div';
-            divmap.setAttribute('style', 'border : 1px dotted blue; height:300px; width:420px;');
+            divmap.setAttribute('style', 'border : 1px dotted blue; width:420px; height:128px;');
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
-            for (var draw=0; draw < 14*8; draw ++) {this.DrawLine(doc, draw,draw, 420-draw,300-draw, '#800000');}
+            for (var draw=14; draw > 0; draw--) {
+                this._week = draw;
+                week.sort(this.numComparisonDesc);
+                if (draw == 14) {
+                    for (var teams = 0; teams <8; teams ++){
+                        var name = doc.createElement('div');
+                        name.id = 'ft_graph_t_' + teams;
+                        name.className = 'ft_graph_team';
+                        name.innerHTML = week[teams][0].substring(0,6).replace(/\s/i,"");
+                        divmap.appendChild(name);
+                    }
+                }
+                this.DrawLine(doc, draw+64,draw+8, 420-draw-8,128-draw-8, '#800000');
+            }
             
-            week.sort(this.numComparisonDesc);
-            dump('\n\n>' + week + '<\n\n');                           
+            
+            dump('\n\n>' + week + '<\n\n');                       
             
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
@@ -235,7 +252,7 @@ var FoxtrickCrossTable = {
 	},
     
     numComparisonDesc : function(a, b)	{
-        return b[2]-a[2];
+        return b[this._week]-a[this._week];
     },
 
     PlotPixel : function (doc, x, y, c) {
@@ -244,8 +261,8 @@ var FoxtrickCrossTable = {
         pixel.style.borderColor = c;
         pixel.style.left = x + 'px';
         pixel.style.top = y + 'px';
-        pixel.innerHTML = x + '*' + y;
-        // pixel.innerHTML = '';
+        //pixel.innerHTML = x + '*' + y;
+         pixel.innerHTML = '';
         doc.getElementById("ft_graph").appendChild(pixel);
     },
 
