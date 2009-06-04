@@ -1494,7 +1494,7 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 	if (xmlresponse) {
 		var nodes = xmlresponse.evaluate(basenodestr, xmlresponse, null, 7 , null);
 		for (var i = 0; i < nodes.snapshotLength; i++) {
-			node = nodes.snapshotItem(i);
+			var node = nodes.snapshotItem(i);
 			var label = node.getAttribute(labelstr);
 			var value = null;
 			var value2=null;

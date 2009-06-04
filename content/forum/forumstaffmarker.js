@@ -299,7 +299,7 @@ var FoxtrickForumStaffMarker = {
     //SelectBox - Staff-Color
     _MarkAliases_select : function () {
         try {
-            doc = this._DOC;
+            var doc = this._DOC;
 			var do_HT = Foxtrick.isModuleFeatureEnabled( this, "HT") ;
 			var do_GM = Foxtrick.isModuleFeatureEnabled( this, "GM") ;
 			var do_MOD = Foxtrick.isModuleFeatureEnabled( this, "MOD") ;

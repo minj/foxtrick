@@ -53,7 +53,7 @@ var FoxtrickPrefsDialogHTML = {
 		var li = doc.createElement('li');
 		li.appendChild(foxtrick_pref_link);
 		var ul = doc.getElementById('ctl00_pnlSubMenu').getElementsByTagName('ul');
-		if (ul) ul[0].appendChild(li);	
+		if (ul && ul[0]) ul[0].appendChild(li);	
 		}catch(e){dump(e);}
 	},
 	
@@ -74,7 +74,7 @@ var FoxtrickPrefsDialogHTML = {
 		header.innerHTML='<a href="/MyHattrick/">Mein Hattrick</a>'; 
 		 
 		header.appendChild(doc.createTextNode(' » '));
-		sub_pref_header_foxtrick_sub = doc.createElement('a');
+		var sub_pref_header_foxtrick_sub = doc.createElement('a');
 		header.appendChild(sub_pref_header_foxtrick_sub);
 			
 		sub_pref_header_foxtrick_sub.innerHTML = "FoxTrick";	
@@ -1251,7 +1251,7 @@ var FoxtrickPrefsDialogHTML = {
 				
 				FoxtrickPrefsDialogHTML.NewModules = new Array();
 						
-				for ( i in Foxtrick.modules ) {
+				for ( var i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i]; 
 					//dump (oldVersion+' > ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\n');
 					if ( (module.NEW_AFTER_VERSION && oldVersion <= module.NEW_AFTER_VERSION) 
@@ -1563,9 +1563,8 @@ var FoxtrickOnPagePrefs = {
 				div.appendChild(header);
 				div.setAttribute("style","cursor:pointer;");
 				div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
-				div.addEventListener( "click", this.HeaderClick, false );
-				this.HeaderClick.doc = doc;
-				this.HeaderClick.ownBoxBody = ownBoxBody;
+				div.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClick, false );
+				FoxtrickOnPagePrefs.HeaderClick.doc = doc;
 				pn.insertBefore(div,pn.firstChild);
 		
 	} catch (e){dump('FoxtrickOnPagePrefs '+e+'\n');}

@@ -84,7 +84,7 @@ var FoxtrickForumTemplates = {
                 var templates = FoxtrickPrefs.getList(
                             FoxtrickForumTemplates._TEMPLATES_PREFLIST );
 
-                for ( i in templates )
+                for ( var  i in templates )
                 {
                     FoxtrickForumTemplates._appendTemplate( doc, templates[i], templates_div );
                 }

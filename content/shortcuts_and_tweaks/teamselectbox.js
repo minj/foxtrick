@@ -80,17 +80,17 @@ var FoxtrickTeamSelectBox= {
 	
     toSelectBox : function( doc ) { // dump("do:toSelectBox\n");
 	try {	
-	if (this.listbox!=null) {
+	if (FoxtrickTeamSelectBox.listbox!=null) {
 			var selectbox = doc.createElement("select"); 
 			selectbox.setAttribute("id","ft_ownselectboxID");
-			selectbox.addEventListener('change',this.Select,false);
+			selectbox.addEventListener('change',FoxtrickTeamSelectBox.Select,false);
 			FoxtrickTeamSelectBox.Select.doc=doc;
 		var option = doc.createElement("option");
 		option.setAttribute("value","");
 		option.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.selectplayer" );
 		selectbox.appendChild(option);	
 						
-		var player = this.listbox.getElementsByTagName("a")[0];
+		var player = FoxtrickTeamSelectBox.listbox.getElementsByTagName("a")[0];
 		var pn=player.parentNode;
 		while (player!=null){ 
             var option = doc.createElement("option");

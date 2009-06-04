@@ -19,6 +19,7 @@ var FoxtrickMovePlayerSelectbox= {
     run : function( page, doc ) {
 		try {
 		var select =doc.getElementById('ctl00_CPSidebar_ddlSquad');
+		if (!select) return;
 		var box=select.parentNode;
 		if (box.className!='sidebarBox') box=box.parentNode;
 		box=box.parentNode.removeChild(box);

@@ -47,7 +47,7 @@ var FoxtrickGoToPostBox = {
 				aSelectBoxes.push(selectBoxTop);
 			if (selectBoxBottom)
 				aSelectBoxes.push(selectBoxBottom);
-			for (i=0; i<aSelectBoxes.length;i++){
+			for (var i=0; i<aSelectBoxes.length;i++){
 				var boxId = 'foxtrick_forum_postbox_postboxnum_' + i;
 				if (doc.getElementById(boxId))
 					continue;
