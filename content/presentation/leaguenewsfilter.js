@@ -160,7 +160,7 @@ var FoxtrickShortPAs = {
 	
 	var items = newsfeed.getElementsByTagName('div');
 	for (var i=0;i<items.length;++i) {
-		item=items[i];
+		var item=items[i];
 		if (item.className!='feedItem user') continue;
 		var body=item.innerHTML.replace(/.+<\/b>/,'');  //dump(body+'\n');
 		item.innerHTML=item.innerHTML.match(/.+<\/b>/); //dump(item.innerHTML+'\n');

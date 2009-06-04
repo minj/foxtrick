@@ -107,7 +107,7 @@ FoxtrickTransferListDeadline = {
             var selltime_clone = selltime_elm.cloneNode(true);
             if (selltime_clone == null) return;
 
-            selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
+            var selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
 
             var selltime = selltimeInner;
 

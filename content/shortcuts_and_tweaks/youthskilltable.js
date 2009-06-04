@@ -111,9 +111,9 @@ var FoxtrickYouthSkillTable = {
 							var tds = trs[j].getElementsByTagName("td");
 							var imgs = tds[1].getElementsByTagName('img');
 							if (imgs.length!=0) {
-								max = imgs[0].getAttribute('title').match(/\d/);
-								cur = imgs[1].title.match(/-?\d/);
-								unknown = imgs[1].title.match(/-1/); 
+								var max = imgs[0].getAttribute('title').match(/\d/);
+								var cur = imgs[1].title.match(/-?\d/);
+								var unknown = imgs[1].title.match(/-1/); 
 								if (!cur) {
 									td.innerHTML = max+'/'+max;
 									td.setAttribute('class', td.getAttribute('class')+' ft_table_skill_maxed'); 							
@@ -172,7 +172,7 @@ var FoxtrickYouthSkillTable = {
 					}
 				}
 				
-				header=doc.getElementsByTagName('h1')[0];
+				var header=doc.getElementsByTagName('h1')[0];
 				header.parentNode.insertBefore(tablediv,header.nextSibling);
 	},
 	

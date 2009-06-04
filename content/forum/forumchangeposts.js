@@ -575,7 +575,7 @@ var FoxtrickForumChangePosts = {
     },	
 		
 	_postid_adjust_height : function(ev) { 
-		header = ev.target.parentNode.parentNode; 
+		var header = ev.target.parentNode.parentNode; 
 		if (header.offsetTop-header.lastChild.offsetTop < -3 ) { 
 			// just to be on the save side do both
 			header.setAttribute('class','cfHeader ftdoubleLine');

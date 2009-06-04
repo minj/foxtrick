@@ -1393,7 +1393,7 @@ Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset)
     var tds = doc.getElementsByTagName( elm );
     for (var i = 0; tds[i] != null; ++i) {
         // if (tds[i].id == 'ft_HTDateFormat') return;
-        dt_inner = Foxtrick.trim(tds[i].innerHTML);
+        var dt_inner = Foxtrick.trim(tds[i].innerHTML);
         
         
         if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) { 

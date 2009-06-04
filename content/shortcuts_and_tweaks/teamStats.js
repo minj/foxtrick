@@ -316,7 +316,7 @@ Foxtrick.TeamStats= {
 		filterselect.appendChild(option);*/
 
 		for (var spec in specs) {
-			purspec=spec.replace(/\[|\]/g,'');
+			var purspec=spec.replace(/\[|\]/g,'');
 			var option = doc.createElement('option');
 			option.setAttribute('value',purspec);
 			option.innerHTML = purspec
