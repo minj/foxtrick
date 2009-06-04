@@ -1134,7 +1134,7 @@ var FoxtrickPrefsDialogHTML = {
 																
 			var checked = Foxtrick.isModuleFeatureEnabled( module, key)
 			var group = module.MODULE_NAME + '.' + key;
-			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, on_page ));
+			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, on_page, true ));
 		}
 		if (module_checked) optiondiv.setAttribute( "style", "display:block;" );
 		else optiondiv.setAttribute( "style", "display:none;" );
@@ -1154,7 +1154,7 @@ var FoxtrickPrefsDialogHTML = {
 		return entry;
 	},
 		
-	_getCheckBox : function (doc, name, label, label_long, checked , option_text, on_page) { 
+	_getCheckBox : function (doc, name, label, label_long, checked , option_text, on_page, suboption) { 
 		var div = doc.createElement( "div" );	
 		div.setAttribute('class','ft_prefs_check_div');
 		var table = doc.createElement( "table" );	
@@ -1179,7 +1179,8 @@ var FoxtrickPrefsDialogHTML = {
 		divlabel.setAttribute( "class", "checkbox_label" );
 		if (on_page) {
 			var divlabelinner = doc.createElement( "div" );	
-			divlabelinner.setAttribute( "style", "width:105px; overflow:hidden;" );
+			if (!suboption) divlabelinner.setAttribute( "style", "width:115px; overflow:hidden;" );
+			else divlabelinner.setAttribute( "style", "width:105px; overflow:hidden;" );
 			divlabelinner.appendChild( doc.createTextNode(label) );
 			divlabelinner.setAttribute('title', label_long );
 			divlabel.appendChild( divlabelinner );
