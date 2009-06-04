@@ -36,7 +36,7 @@ var FoxtrickPlayerBirthday = {
       } else {
         PlayerName[i] = ClassPlayer[i].getElementsByTagName('a')[0];    // player name
       }
-			PlayerInfo = ClassPlayer[i].getElementsByTagName('p')[0].innerHTML;
+			var PlayerInfo = ClassPlayer[i].getElementsByTagName('p')[0].innerHTML;
 			if (PlayerInfo.search(/\<br\>/) !=-1)       // player info (PlayerAge, form and stamina)
 				PlayerInfo=PlayerInfo.substring(0, PlayerInfo.search(/\<br\>/)); // we need the first occurence
 			

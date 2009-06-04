@@ -52,7 +52,8 @@ var FoxtrickPrefsDialogHTML = {
 		foxtrick_pref_link.appendChild(doc.createTextNode('FoxTrick'));//Foxtrickl10n.getString("foxtrick.menu.configurefoxtrick")));	
 		var li = doc.createElement('li');
 		li.appendChild(foxtrick_pref_link);
-		doc.getElementById('ctl00_pnlSubMenu').getElementsByTagName('ul')[0].appendChild(li);	
+		var ul = doc.getElementById('ctl00_pnlSubMenu').getElementsByTagName('ul');
+		if (ul) ul[0].appendChild(li);	
 		}catch(e){dump(e);}
 	},
 	
@@ -191,7 +192,7 @@ var FoxtrickPrefsDialogHTML = {
 	try { 
 		var doc = FoxtrickPrefsDialogHTML._doc;
 
-		for ( i in Foxtrick.modules ) {
+		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
 			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN || !doc.getElementById(module.MODULE_NAME)) continue;
 			
@@ -1015,7 +1016,7 @@ var FoxtrickPrefsDialogHTML = {
 			td.appendChild( a );
 		}
 		
-		for ( i in Foxtrick.modules ) {
+		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
             var module_category = module.MODULE_CATEGORY;
             if (!module_category) {
@@ -1505,7 +1506,7 @@ var FoxtrickOnPagePrefs = {
 
 			
 				// add box
-				ownBoxBody = doc.createElement("div");
+				var ownBoxBody = doc.createElement("div");
 				var header = 'FoxTrick OnPagePrefs';//Foxtrickl10n.getString("foxtrick.links.boxheader" );
 				var ownBoxId = "foxtrick_OnPagePrefs_box";
 				var ownBoxBodyId = "foxtrick_OnPagePrefs_content";

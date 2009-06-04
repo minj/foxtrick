@@ -27,8 +27,8 @@ var FoxtrickSkillColoring = {
         if (isMessage) return;
  		
         
-        skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-translated", "skill-number-selectoption", "no-skill-links"];
-        displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"  ), 
+        var skillstyles = ["skill-color", "only-skill-color", "skill-number", "skill-number-translated", "skill-number-selectoption", "no-skill-links"];
+        var displaystyles = [ Foxtrick.isModuleFeatureEnabled( this, "skill_color"  ), 
                           Foxtrick.isModuleFeatureEnabled( this, "only_skill_color" ), 
                           Foxtrick.isModuleFeatureEnabled( this, "skill_number" ), 
                           Foxtrick.isModuleFeatureEnabled( this, "skill_number_translated" ), 

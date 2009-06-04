@@ -35,7 +35,7 @@ var FoxtrickGuestbookAlltidFlags = {
 		var count =0; 
 		var linksArray = outerdiv.getElementsByTagName('a');
 				for (var j=0; j<linksArray.length-1; j++) {
-					link = linksArray[j]; //dump(link.href+'\n');
+					var link = linksArray[j]; //dump(link.href+'\n');
 					if (AddAlltidFlags && link.href.search(/userId=/i) > -1 && linksArray[j+1].href.search(/Supporter/i)!=-1 ) { 
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');

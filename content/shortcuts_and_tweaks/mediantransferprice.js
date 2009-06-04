@@ -54,7 +54,7 @@ var FoxtrickMedianTransferPrice = {
 		    cell = row.insertCell(1);
 		    cell.setAttribute("style", "text-align: right; font-weight: bold");
 		    cell.colSpan = 2;
-		    cell.innerHTML = median.group(" ") + " " + currency;
+		    cell.innerHTML = this.group(median," ") + " " + currency;
 			        
 		    row = table.insertRow(table.rows.length);
 		    cell = row.insertCell(0);
@@ -64,12 +64,17 @@ var FoxtrickMedianTransferPrice = {
 		    cell = row.insertCell(1);
 		    cell.setAttribute("style", "text-align: right; font-weight: bold");
 		    cell.colSpan = 2;
-		    cell.innerHTML = avg.group(" ") + " " + currency;
+		    cell.innerHTML = this.group(avg," ") + " " + currency;
 	    }
 	},
 	
-	change : function( page, doc ) {
+	change : function ( page, doc ) {	
+	},
 	
+	group : function (astring, chr, size ) {
+		if ( typeof chr == 'undefined' ) chr = ",";
+		if ( typeof size == 'undefined' ) size = 3;
+		return astring.split( '' ).reverse().join( '' ).replace( new RegExp( "(.{" + size + "})(?!$)", "g" ), "$1" + chr ).split( '' ).reverse().join( '' );
 	}
 };
 

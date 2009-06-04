@@ -34,7 +34,7 @@ var FoxtrickLinksPlayerDetail = {
 				var nationality = FoxtrickHelper.findCountryId(thisdiv);
 				var playerid = FoxtrickHelper.findPlayerId(thisdiv);
 				var playername=thisdiv.getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML;;
-				var form = null, age = null, tsi = null, exp = null, wage= null, ls=null, wagebonus=null;
+				var form = null, age = null, tsi = null, exp = null, wage= null, ls=null, wagebonus=null, sta=null;
 				var stamina = 0, goalkeeping = 0, playmaking = 0, passing = 0, winger = 0, defending = 0, scoring = 0, setpieces = 0;
 				var age_days;
 				

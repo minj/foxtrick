@@ -17,7 +17,7 @@ Foxtrick.moduleCategories = {
     FORUM : 'forum',
     LINKS : 'links',
 	
-	// follwoing are only used for html preferences
+	// following are only used for html preferences
     CHANGES : 'changes', 
     HELP : 'help',
     ABOUT : 'about',

@@ -44,7 +44,7 @@ FoxtrickExtendedPlayerDetails = {
             if (joined_elm == null) return;            
             //dump('\n'+joined_elm.parentNode.innerHTML+'\n');
 
-            joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
+            var joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
 
             var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
             var ar = reg.exec(joinedtimeInner);
@@ -58,10 +58,10 @@ FoxtrickExtendedPlayerDetails = {
 
             var ht_week = Foxtrick.gregorianToHT(joinedtime);
 
-            JT_date = Foxtrick.getDatefromCellHTML( joinedtime );
+            var JT_date = Foxtrick.getDatefromCellHTML( joinedtime );
             if (!JT_date) return;
 
-            var joined_s = Math.floor( (HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
+            var joined_s = Math.floor( (Foxtrick.HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
             
             var JoinedText = 'NaN';
             try {
@@ -72,7 +72,7 @@ FoxtrickExtendedPlayerDetails = {
             }
     
             if (JoinedText.search("NaN") == -1) {
-                part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
+                var part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
                 part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
                 joined_elm.innerHTML = part1 + ' <span id="ft_HTDateFormat">'+ ht_week + '</span>, ' + JoinedText + ')</span>';
             }

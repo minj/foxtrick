@@ -30,7 +30,8 @@ Foxtrick.core_modules = [ FoxtrickPrefs,
 Foxtrick.news = [];
 
 // remove before release
-var vars=[]; for(var v in this){vars.push(v);} vars.sort();
+Foxtrick.globals=[];
+for(Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
@@ -41,8 +42,11 @@ var FoxtrickMain = {
 	
     init : function() { 
 		// remove before release
-		for ( var i=0;i<vars.length;++i ) dump('global: ' +vars[i]+'\n');
-        
+		if (!Foxtrick.numglobals) for ( var i=0;i<Foxtrick.numglobals;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
+		else for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i ) if (Foxtrick.globals[i]!='QueryInterface') dump('undeclared global variable: ' +Foxtrick.globals[i]+'\n');
+		
+        Foxtrick.numglobals=Foxtrick.globals.length;
+
 		var i;		
         // init core modules
         for ( i in Foxtrick.core_modules ) {
@@ -65,14 +69,14 @@ var FoxtrickMain = {
 				{
 					try {
 						module.init();
-						dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
+						//dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
 					} catch (e) {
 						dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
 						Components.utils.reportError(e);
 					}
 				}
 				else {
-					dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
+					//dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
 				}
 			}
 		}
@@ -197,6 +201,8 @@ var FoxtrickMain = {
 				function( fn ) {
 					try {
 						fn.run( doc );
+						Foxtrick.run_on_cur_page.push({'page':'','module':fn});
+								
 					} catch (e) {
 						dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
 						Components.utils.reportError(e);
@@ -224,7 +230,7 @@ var FoxtrickMain = {
 				}
 			}
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				//dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );								
+				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );								
 								
 			}
 			FoxtrickOnPagePrefs.run(doc, Foxtrick.run_on_cur_page);
@@ -417,13 +423,6 @@ Foxtrick.substr_count = function ( haystack, needle, offset, length ) {
     return cnt;
 }
 
-String.prototype.group = function( chr, size )
-{
-	if ( typeof chr == 'undefined' ) chr = ",";
-	if ( typeof size == 'undefined' ) size = 3;
-	return this.split( '' ).reverse().join( '' ).replace( new RegExp( "(.{" + size + "})(?!$)", "g" ), "$1" + chr ).split( '' ).reverse().join( '' );
-}
-
 Foxtrick.isModuleEnabled = function( module ) {
     try {
         var val = FoxtrickPrefs.getBool( "module." + module.MODULE_NAME + ".enabled" );
@@ -501,7 +500,7 @@ Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
 			// check permanant css
 			var isStandard = Foxtrick.isStandardLayout(doc);
 			var isRTL = Foxtrick.isRTLLayout(doc); 
-			for ( i in Foxtrick.modules ) {
+			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 				// if module has an css) function and is enabled
 				if ( module.MODULE_NAME ) {
@@ -574,7 +573,7 @@ Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
 }				
 
 Foxtrick.unload_module_css = function() { dump('unload permanents css\n');
-			for ( i in Foxtrick.modules ) {
+			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 				if ( module.MODULE_NAME ) {
 					if ( module.OLD_CSS && module.OLD_CSS!="") 
@@ -829,7 +828,7 @@ Foxtrick.keysortfunction = function(a,b) {
 Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 	try {
 			module.OPTIONS = new Array();
-			country_options = new Array();
+			var country_options = new Array();
 			
 			for (var key in Foxtrick.LinkCollection.stats) {
 				var stat = Foxtrick.LinkCollection.stats[key];
@@ -895,7 +894,7 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 	try{ 
 		module.OPTIONS = new Array();
-		country_options = new Array();
+		var country_options = new Array();
 		for (var linktype=0; linktype< linktypes.length; linktype++) { 
 			for (var key in Foxtrick.LinkCollection.stats) { 
 				var stat = Foxtrick.LinkCollection.stats[key];
@@ -1031,7 +1030,7 @@ Foxtrick.getElementsByClass = function(searchClass,node,tag) {
 	var els = node.getElementsByTagName(tag);
 	var elsLen = els.length;
 	var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
-	for (i = 0, j = 0; i < elsLen; i++) {
+	for (var i = 0, j = 0; i < elsLen; i++) {
 		if ( pattern.test(els[i].className) ) {
 			classElements[j] = els[i];
 			j++;
@@ -1128,7 +1127,7 @@ Foxtrick.gregorianToHT  = function( date,weekdayoffset ) {
     years[9]  = years[8] + 366; // leap year
     years[10] = years[9] + 365;
 
-    for (i = 0; i < ar.length; i++) {
+    for (var i = 0; i < ar.length; i++) {
         ar[i] = ar[i].replace( /^(0+)/g, '' );
     }
     

@@ -111,7 +111,7 @@ var FoxtrickSeasonStats = {
 			sum_matches[type*3+ishome]["goal1"]+=goals1;
 		}
 		
-		ownBoxBody = doc.createElement("div");
+		var ownBoxBody = doc.createElement("div");
 		var header = Foxtrickl10n.getString("foxtrick.seasonstats.boxheader" );
 		var ownBoxId = "foxtrick_seasonstats_box";
 		var ownBoxBodyId = "foxtrick_seasonstats_content";
@@ -165,7 +165,7 @@ var FoxtrickSeasonStats = {
 			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.goaldiff" )+'&nbsp;';
 			tr.appendChild(th);
 
-			for (k=0;k<3;++k) {
+			for (var k=0;k<3;++k) {
 			var tr=doc.createElement('tr');
 			tbody.appendChild(tr);
 			var td=doc.createElement('td');

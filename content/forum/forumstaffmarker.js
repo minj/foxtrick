@@ -248,7 +248,7 @@ var FoxtrickForumStaffMarker = {
     //Alias - Staff-Color
     _MarkAliases_thread : function () {
         try {
-            doc = this._DOC;
+            var doc = this._DOC;
  
 			var do_HT = Foxtrick.isModuleFeatureEnabled( this, "HT") ;
 			var do_GM = Foxtrick.isModuleFeatureEnabled( this, "GM") ;

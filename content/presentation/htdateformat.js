@@ -9,8 +9,6 @@ FoxtrickHTDateFormat = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.6.2",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Option to set first day of week added",
 	OPTIONS :  new Array("LocalSaison","FirstDayOfWeekOffset"), 
 	OPTION_TEXTS : true,
@@ -36,8 +34,8 @@ FoxtrickHTDateFormat = {
 
         var httime = doc.getElementById( "time" ).innerHTML;
 
-        HT_date = Foxtrick.getDatefromCellHTML( httime );
-        if (!HT_date) return;
+        Foxtrick.HT_date = Foxtrick.getDatefromCellHTML( httime );
+        if (!Foxtrick.HT_date) return;
 
         var mainBody = doc.getElementById( "mainBody" );
         if (!mainBody) return;

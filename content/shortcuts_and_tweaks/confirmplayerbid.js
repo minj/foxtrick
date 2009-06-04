@@ -20,9 +20,9 @@ var FoxtrickConfirmPlayerBid = {
             var submitButton = doc.getElementById("ctl00_CPMain_btnBid");
             if (submitButton){
                 var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
-                sConfirmString = Foxtrickl10n.getString( "foxtrick.bidconfirmation" );
-                sReplace = "document.getElementById('ctl00_CPMain_txtBid').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
-                sStr = "var str = '"+sConfirmString+"';";
+                var sConfirmString = Foxtrickl10n.getString( "foxtrick.bidconfirmation" );
+                var sReplace = "document.getElementById('ctl00_CPMain_txtBid').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
+                var sStr = "var str = '"+sConfirmString+"';";
                 sOnclick = sStr + " if (confirm(str.replace(/\%s/, " + sReplace + "))){" + sOnclick + "} else {return false;}";
                 submitButton.setAttribute("onClick", sOnclick);
             }
@@ -36,9 +36,9 @@ var FoxtrickConfirmPlayerBid = {
         if (submitButton){
         	var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
         	if (sOnclick.search(/confirm/) == -1){ // already added?
-	       		sConfirmString = Foxtrickl10n.getString( "foxtrick.bidconfirmation" );
-	       		sReplace = "document.getElementById('ctl00_CPMain_txtBid').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
-	       		sStr = "var str = '"+sConfirmString+"';";
+	       		var sConfirmString = Foxtrickl10n.getString( "foxtrick.bidconfirmation" );
+	       		var sReplace = "document.getElementById('ctl00_CPMain_txtBid').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
+	       		var sStr = "var str = '"+sConfirmString+"';";
 	       		sOnclick = sStr + " if (confirm(str.replace(/\%s/, " + sReplace + "))){" + sOnclick + "} else {return false;}";
 	       		submitButton.setAttribute("onClick", sOnclick);
 	       	}
@@ -67,9 +67,9 @@ var FoxtrickConfirmTL = {
             if (submitButton){
                 var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
                 if (sOnclick.search(/confirm/) == -1){ // already added?
-                    sConfirmString = Foxtrickl10n.getString( "foxtrick.tlconfirmation" );
-                    sReplace = "document.getElementById('ctl00_CPSidebar_ucOwnerActions_txtPrice').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
-                    sStr = "var str = \""+sConfirmString+"\";";
+                    var sConfirmString = Foxtrickl10n.getString( "foxtrick.tlconfirmation" );
+                    var sReplace = "document.getElementById('ctl00_CPSidebar_ucOwnerActions_txtPrice').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
+                    var sStr = "var str = \""+sConfirmString+"\";";
                     sOnclick = sStr + " if (confirm(str.replace(/\%s/, " + sReplace + "))){" + sOnclick + ";} else {return false;}";
                     submitButton.setAttribute("onClick", sOnclick);
                 }
@@ -85,9 +85,9 @@ var FoxtrickConfirmTL = {
             if (submitButton){
                 var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
                 if (sOnclick.search(/confirm/) == -1){ // already added?
-                    sConfirmString = Foxtrickl10n.getString( "foxtrick.tlconfirmation" );
-                    sReplace = "document.getElementById('ctl00_CPSidebar_ucOwnerActions_txtPrice').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
-                    sStr = "var str = \""+sConfirmString+"\";";
+                    var sConfirmString = Foxtrickl10n.getString( "foxtrick.tlconfirmation" );
+                    var sReplace = "document.getElementById('ctl00_CPSidebar_ucOwnerActions_txtPrice').value.split( '' ).reverse().join( '' ).replace( new RegExp( '(.{' + 3 + '})(?!$)', 'g' ), '$1' + ' ' ).split( '' ).reverse().join( '' )";
+                    var sStr = "var str = \""+sConfirmString+"\";";
                     sOnclick = sStr + " if (confirm(str.replace(/\%s/, " + sReplace + "))){" + sOnclick + ";} else {return false;}";
                     submitButton.setAttribute("onClick", sOnclick);
                 }
@@ -135,7 +135,7 @@ var FoxtrickNTConfirmAddRemove = {
             if (submitLink){
                 var sOnclick = submitLink.href.replace(/javascript\:/, "");
                 if (sOnclick.search(/confirm/) == -1){ // already added?
-                    sConfirmString = Foxtrickl10n.getString( "foxtrick.ntremoveconfirmation" );
+                    var sConfirmString = Foxtrickl10n.getString( "foxtrick.ntremoveconfirmation" );
                     sOnclick = "javascript:if(confirm(\"" + sConfirmString + "\")){" + sOnclick + ";}";
                     submitLink.href=sOnclick;
                 }

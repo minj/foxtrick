@@ -80,7 +80,7 @@ var FoxtrickAlert = {
 			var href="";
             var elemText = new Array();
             //getting text
-            for (i=0; i<tickerdiv.length;i++)
+            for (var i=0; i<tickerdiv.length;i++)
             {
 				var tickelem=tickerdiv[i].firstChild.firstChild;
                 if (tickelem.nodeType!=tickelem.TEXT_NODE)
@@ -107,7 +107,7 @@ var FoxtrickAlert = {
 					elemText[i]=tickelem.nodeValue;
 				}
             } 				
-            for (i=0; i<tickerdiv.length;i++)
+            for (var i=0; i<tickerdiv.length;i++)
             {
 			    Foxtrick.news[i]=elemText[i];
 			}

@@ -19,8 +19,8 @@ FoxtrickTransferListDeadline = {
 
         var httime = doc.getElementById( "time" ).innerHTML;
 
-        HT_date = Foxtrick.getDatefromCellHTML( httime );
-        if (!HT_date) return;
+        Foxtrick.HT_date = Foxtrick.getDatefromCellHTML( httime );
+        if (!Foxtrick.HT_date) return;
 
         switch ( page ) {
             case 'transferListSearchResult' :
@@ -42,8 +42,8 @@ FoxtrickTransferListDeadline = {
 
 	change : function( page, doc ) {
 		var httime = doc.getElementById( "time" ).innerHTML;
-		HT_date = Foxtrick.getDatefromCellHTML( httime );
-        if (!HT_date) return;
+		Foxtrick.HT_date = Foxtrick.getDatefromCellHTML( httime );
+        if (!Foxtrick.HT_date) return;
 
         switch ( page ) {
 
@@ -71,7 +71,7 @@ FoxtrickTransferListDeadline = {
                     // dump ('\n>>>>>' + selltime + '<<<<<\n');
                     var ST_date = Foxtrick.getDatefromCellHTML( selltime );
                     if (ST_date != null ) {
-                        var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
+                        var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
                         var DeadlineText = TimeDifferenceToText (deadline_s);
                         // dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
                         if (DeadlineText.search("NaN") == -1)
@@ -121,10 +121,10 @@ FoxtrickTransferListDeadline = {
             selltime = Foxtrick.substr(selltime, Foxtrick.strrpos( selltime, ";")+1, selltime.length);
             // dump('ST: ' + selltime + '\n');
 
-            ST_date = Foxtrick.getDatefromCellHTML( selltime );
+            var ST_date = Foxtrick.getDatefromCellHTML( selltime );
             if (!ST_date) return;
 
-            var deadline_s = Math.floor( (ST_date.getTime()-HT_date.getTime()) / 1000); //Sec
+            var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
 
             var DeadlineText = TimeDifferenceToText (deadline_s);
 
