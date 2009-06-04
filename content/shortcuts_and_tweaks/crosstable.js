@@ -59,7 +59,15 @@ var FoxtrickCrossTable = {
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1));
-
+                                    
+            var week =  new Array(  new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
+                                    new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
+                                    new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
+                                    new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
+                                    new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
+                                    new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
+                                    new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
+                                    new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0));
             //Teams
             var tblBodyObj = tbl_fix.tBodies[0];
             for (var i = 0; i < 4; i++) {
@@ -67,8 +75,8 @@ var FoxtrickCrossTable = {
                 dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
                 // dump('['+ dummy + ']\n');
 
-                cross[i*2][0] = dummy[0]; crossgame[i*2][0] = dummy[0];
-                cross[i*2 + 1][0] = dummy[1]; crossgame[i*2+1][0] = dummy[1];
+                cross[i*2][0] = dummy[0]; crossgame[i*2][0] = dummy[0]; week[i*2][0] = dummy[0];
+                cross[i*2 + 1][0] = dummy[1]; crossgame[i*2+1][0] = dummy[1]; week[i*2+1][0] = dummy[1];
                 // dump('' + cross[i*2] + '\n' + cross[i*2+1]+'\n');
             }
 
@@ -105,12 +113,19 @@ var FoxtrickCrossTable = {
                                 
                             }
                             else {
-                                result[0] = Foxtrick.trim(result[0]);
-                                result[1] = Foxtrick.trim(result[1]);
+                                result[0] = parseInt(Foxtrick.trim(result[0]));
+                                result[1] = parseInt(Foxtrick.trim(result[1]));
                                 tblBodyObj.rows[row].cells[2].innerHTML = result[0] + ' - ' + result[1];
                             }
                             if ((homegame) && (result[0] != -1)) {
                                 cross[home][away+1] = result[0] + '-' + result[1];
+                                var points_hm = 1; points_aw = 1;
+                                if (result[0] > result[1]) {points_hm = 3; points_aw = 0;}
+                                if (result[0] < result[1]) {points_hm = 0; points_aw = 3;}
+                                if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}
+                                week[home][j+1] = points_hm *1000 + old_hm + result[0] - result[1];
+                                week[away][j+1] = points_aw *1000 + old_aw + result[1] - result[0];
+                                
                             }
                             else {
                                 cross[home][away+1] = '-';
@@ -120,8 +135,11 @@ var FoxtrickCrossTable = {
                         }
                     }
                 }
+                // dump('>>>>>>' + week + '<<<<<<\n\n');                
 			}
-
+            week.sort(this.numComparisonDesc);
+            dump('\n\n>' + week + '<\n\n');                
+            
 			var dayhead=0;
 			for (var j = 0; j<tblBodyObj.rows.length; j++){ 				
 				if (dayhead==0) { 
@@ -203,5 +221,10 @@ var FoxtrickCrossTable = {
 		if(!doc.getElementById(id)) {
 			this.run( page, doc );
 		}
-	}
+	},
+    
+    numComparisonDesc : function(a, b)	{
+        return b[2]-a[2];
+    }
+    
 };
