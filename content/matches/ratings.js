@@ -4,7 +4,7 @@
  * @author taised, Jestar
  */
 ////////////////////////////////////////////////////////////////////////////////
-var Ratings = {
+Foxtrick.Ratings = {
 
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
@@ -183,7 +183,7 @@ var Ratings = {
 			label : function(){return Foxtrickl10n.getString("HatStatsTotalOnly");},
 			title : function(){return Foxtrickl10n.getString("HatStatsTotalOnly");},
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return Ratings.ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
+				return Foxtrick.Ratings.ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
 			}
 		};
 		

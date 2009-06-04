@@ -4,7 +4,7 @@
  * @author OBarros & spambot
  */
 ////////////////////////////////////////////////////////////////////////////////
-var FTTeamStats= {
+Foxtrick.TeamStats= {
     
     MODULE_NAME : "FTTeamStats",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
@@ -15,10 +15,8 @@ var FTTeamStats= {
 	top11star:0,
 
     init : function() {
-            Foxtrick.registerPageHandler('players',
-                                          FTTeamStats);
-            Foxtrick.registerPageHandler('YouthPlayers',
-                                          FTTeamStats);
+            Foxtrick.registerPageHandler('players',this);
+            Foxtrick.registerPageHandler('YouthPlayers',this);
     },
 
     run : function( page, doc ) {
@@ -571,15 +569,15 @@ function FTTeamStats_Filter(ev){
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
 				} 						
-				else if (ev.target.value=='PlayedLatest' && matchday!=FTTeamStats.latestMatch)  {
+				else if (ev.target.value=='PlayedLatest' && matchday!=Foxtrick.TeamStats.latestMatch)  {
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
 				}
-				else if (ev.target.value=='NotPlayedLatest' && matchday==FTTeamStats.latestMatch)  {
+				else if (ev.target.value=='NotPlayedLatest' && matchday==Foxtrick.TeamStats.latestMatch)  {
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
 				}
-				else if (ev.target.value=='TopPlayers' && num_star < FTTeamStats.top11star)  {
+				else if (ev.target.value=='TopPlayers' && num_star < Foxtrick.TeamStats.top11star)  {
 						allDivs[i].setAttribute('style','display:none !important;');
 						hide = true; //dump('hide');
 				}

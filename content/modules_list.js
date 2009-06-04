@@ -16,7 +16,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickForumTemplates,
                      FoxtrickForumPreview,
                      FoxtrickForumYouthIcons,
-					 BookmarkAdjust,
+					 Foxtrick.BookmarkAdjust,
                      FoxtrickHideManagerAvatar,
                      FoxtrickAddDefaultFaceCard,
                      FoxtrickMoveLinks,   // keep before FoxtrickHideManagerAvatarUserInfo
@@ -46,9 +46,9 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickHTDateFormat,
                      FoxtrickMatchReportFormat,
                      FoxtrickMatchPlayerColouring,                     
-                     AttVsDef, // AttVsDef should be placed before Ratings
-					 Ratings,
-                     FTTeamStats,  // before FoxtrickLinksPlayers
+                     Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
+					 Foxtrick.Ratings,
+                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
 					 FoxtrickAlert,
                      FoxtrickHideFaceTransferImages,
                      FoxtrickHideFaceInjuryImages,

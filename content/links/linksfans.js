@@ -38,7 +38,7 @@ var FoxtrickLinksFans = {
 			}
 		}
 		
-		var links = getLinks("fanlink", { "teamid": teamid, "teamname": teamname, "fanmood" : fanmood }, doc, this);  
+		var links = Foxtrick.LinkCollection.getLinks("fanlink", { "teamid": teamid, "teamname": teamname, "fanmood" : fanmood }, doc, this);  
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

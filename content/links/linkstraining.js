@@ -40,7 +40,7 @@ var FoxtrickLinksTraining = {
 				TrainingType= doc.getElementById("ctl00_CPMain_ddlTrainingType").value;
 						
 			
-				var links = getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType}, doc, this);  
+				var links = Foxtrick.LinkCollection.getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType}, doc, this);  
                   
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");

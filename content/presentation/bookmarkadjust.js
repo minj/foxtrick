@@ -4,15 +4,14 @@
  * @author taised
  */
 ////////////////////////////////////////////////////////////////////////////////
-var BookmarkAdjust = {
+Foxtrick.BookmarkAdjust = {
 
     MODULE_NAME : "BookmarkAdjust",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     DEFAULT_ENABLED : true,
     
     init : function() {
-        Foxtrick.registerPageHandler( 'bookmarks',
-                                      BookmarkAdjust );
+        Foxtrick.registerPageHandler( 'bookmarks',this );
     },
 
     run : function( page, doc ) {
@@ -27,23 +26,23 @@ var BookmarkAdjust = {
                      if (commentObj.className=='italic')
                      {
                          var imageObj=tableObj.rows[i].cells[2].childNodes[1];
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[aqua\]/i,       commentObj, "aqua");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[B\]/i,          commentObj, "B");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[black\]/i,      commentObj, "black");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[blue\]/i,       commentObj, "blue");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[brown\]/i,      commentObj, "brown");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[cyan\]/i,       commentObj, "cyan");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[darkpurple\]/i, commentObj, "darkpurple");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[green\]/i,      commentObj, "green");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[idea\]/i,       commentObj, "idea");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[lightblue\]/i,  commentObj, "lightblue");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[lightgreen\]/i, commentObj, "lightgreen");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[orange\]/i,     commentObj, "orange");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[pink\]/i,       commentObj, "pink");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[purple\]/i,     commentObj, "purple");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[red\]/i,        commentObj, "red");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[white\]/i,      commentObj, "white");
-                         BookmarkAdjust._bookmarkColor(imageObj, /\[yellow\]/i,     commentObj, "yellow");
+                         this._bookmarkColor(imageObj, /\[aqua\]/i,       commentObj, "aqua");
+                         this._bookmarkColor(imageObj, /\[B\]/i,          commentObj, "B");
+                         this._bookmarkColor(imageObj, /\[black\]/i,      commentObj, "black");
+                         this._bookmarkColor(imageObj, /\[blue\]/i,       commentObj, "blue");
+                         this._bookmarkColor(imageObj, /\[brown\]/i,      commentObj, "brown");
+                         this._bookmarkColor(imageObj, /\[cyan\]/i,       commentObj, "cyan");
+                         this._bookmarkColor(imageObj, /\[darkpurple\]/i, commentObj, "darkpurple");
+                         this._bookmarkColor(imageObj, /\[green\]/i,      commentObj, "green");
+                         this._bookmarkColor(imageObj, /\[idea\]/i,       commentObj, "idea");
+                         this._bookmarkColor(imageObj, /\[lightblue\]/i,  commentObj, "lightblue");
+                         this._bookmarkColor(imageObj, /\[lightgreen\]/i, commentObj, "lightgreen");
+                         this._bookmarkColor(imageObj, /\[orange\]/i,     commentObj, "orange");
+                         this._bookmarkColor(imageObj, /\[pink\]/i,       commentObj, "pink");
+                         this._bookmarkColor(imageObj, /\[purple\]/i,     commentObj, "purple");
+                         this._bookmarkColor(imageObj, /\[red\]/i,        commentObj, "red");
+                         this._bookmarkColor(imageObj, /\[white\]/i,      commentObj, "white");
+                         this._bookmarkColor(imageObj, /\[yellow\]/i,     commentObj, "yellow");
                     }
                 }
             }

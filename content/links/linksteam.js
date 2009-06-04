@@ -31,7 +31,7 @@ var FoxtrickLinksTeam = {
 				if (alldivs[j].className=="main mainRegular") {
 					var teaminfo = this.gatherLinks( alldivs[j], doc ); 
 		
-					var links = getLinks("teamlink", teaminfo, doc, this );				
+					var links = Foxtrick.LinkCollection.getLinks("teamlink", teaminfo, doc, this );				
 					if (links.length > 0) {
 						ownBoxBody = doc.createElement("div");
 						var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );

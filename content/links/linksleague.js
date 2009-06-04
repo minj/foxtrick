@@ -41,7 +41,7 @@ var FoxtrickLinksLeague = {
 					leaguename3="1";
 					}
         
-				var links = getLinks("leaguelink", { "countryid": countryid,
+				var links = Foxtrick.LinkCollection.getLinks("leaguelink", { "countryid": countryid,
 					"leagueid": leagueid, "levelnum" : levelnum,
 					"seriesnum": seriesnum,	"leaguename" : leaguename,
 					"leaguename2" : leaguename2, "leaguename3" : leaguename3 },

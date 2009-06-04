@@ -31,7 +31,7 @@ var FoxtrickLinksAchievements = {
 		var teamname = FoxtrickHelper.extractTeamName(mainBody);
 		var userid = FoxtrickHelper.findUserId(mainBody);		
 		
-		var links = getLinks("achievementslink", { "teamid": teamid, "teamname": teamname, "userid" : userid,"owncountryid":owncountryid }, doc, this);  
+		var links = Foxtrick.LinkCollection.getLinks("achievementslink", { "teamid": teamid, "teamname": teamname, "userid" : userid,"owncountryid":owncountryid }, doc, this);  
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

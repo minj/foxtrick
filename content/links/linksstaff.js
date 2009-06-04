@@ -27,7 +27,7 @@ var FoxtrickLinksStaff = {
 		var teamid = FoxtrickHelper.findTeamId(mainBody);
 		var teamname = FoxtrickHelper.extractTeamName(mainBody);
 		
-		var links = getLinks("stafflink", { "teamid": teamid, "teamname": teamname}, doc, this);  
+		var links = Foxtrick.LinkCollection.getLinks("stafflink", { "teamid": teamid, "teamname": teamname}, doc, this);  
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

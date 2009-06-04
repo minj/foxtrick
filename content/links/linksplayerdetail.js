@@ -74,7 +74,7 @@ var FoxtrickLinksPlayerDetail = {
 				var container = PlayerInfoTable.rows[4].cells[1];
 				if (container.textContent.search(/\d+/) > -1) {
 					injuredweeks = container.textContent.match(/\d+/)[0];
-					var ilinks = getLinks("playerhealinglink", { "playerid": playerid,
+					var ilinks = Foxtrick.LinkCollection.getLinks("playerhealinglink", { "playerid": playerid,
 							"form": form, "age" : age, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);  
 					for (var j=0; j< ilinks.length; j++) {
 						ilinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
@@ -131,16 +131,16 @@ var FoxtrickLinksPlayerDetail = {
 						"passing" : passing, "winger" : winger, "defending" : defending,
 						"scoring" : scoring, "setpieces" : setpieces,"wage":wage,"wagebonus":wagebonus
 						};
-				links[0] = getLinks("playerlink", params, doc,this); 
-				links[1] = getLinks("transfercomparelink", params, doc,this); 
+				links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this); 
+				links[1] = Foxtrick.LinkCollection.getLinks("transfercomparelink", params, doc,this); 
                 
 				} else {
 					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality };
-					links[0] = getLinks("playerlink", params, doc,this); 	
+					links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this); 	
 				}
 				if (goalkeeping > 3) {					
 					// keeper links
-					var klinks = getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
+					var klinks = Foxtrick.LinkCollection.getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
                                                          "form" : form, "goalkeeping" : goalkeeping, "age" : age }, doc,this);  
 					for (var j=0; j< klinks.length; j++) {
 						klinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
@@ -174,7 +174,7 @@ var FoxtrickLinksPlayerDetail = {
 				}
 
 		if (Foxtrick.isModuleEnabled(FoxtrickLinksTracker)) {		
-			var links2 = getLinks("trackerplayerlink", params, doc,this); 
+			var links2 = Foxtrick.LinkCollection.getLinks("trackerplayerlink", params, doc,this); 
 			if (links2.length > 0) {
 				for (var k = 0; k < links2.length; k++) { 
 					links2[k].link.className ="flag inner"; 

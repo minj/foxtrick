@@ -12,10 +12,16 @@
  * for others use the 'paramfunction' eg natstats
  */
   
-var countryflags = {};
-var hscountries = {};
-var hslevels = {};
+if (!Foxtrick) var Foxtrick={};
 
+Foxtrick.LinkCollection = {};
+Foxtrick.LinkCollection.stats = {};
+Foxtrick.LinkCollection.countryflags = {};
+Foxtrick.LinkCollection.hscountries = {};
+Foxtrick.LinkCollection.hslevels = {};
+
+with (Foxtrick.LinkCollection) {
+ 
 countryflags[1]={'flag':'-20px 0','name':'Sverige'};
 countryflags[100]={'flag':'-2000px 0','name':'El Salvador'};
 countryflags[101]={'flag':'-2020px 0','name':'Malta'};
@@ -297,9 +303,6 @@ hslevels["18"]= 	 7;
 hslevels["11"]= 	 8;
 hslevels["25"]= 	 9;
 
-
-
-var stats = {};
 
 //HT Newsfeeds
 
@@ -2757,12 +2760,11 @@ stats["u20_nt_tracker"] = {
 };  // own tracker: exclude all above
 
 
+};
 
 //------------------------------------------------------------------
 // -----------------------------------------------------------------
-
-
-function getLinks2(stats, stattype, filterparams, doc, overridesettings, module) { 
+Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc, overridesettings, module) { 
     var links = [];
     var counter = 0;
     
@@ -2814,21 +2816,23 @@ function getLinks2(stats, stattype, filterparams, doc, overridesettings, module)
         }
         
         if (allowed) {
-             var link = foxtrick_makelink(stat, statlink, filterparams, key, doc);
+             var link = Foxtrick.LinkCollection.makelink(stat, statlink, filterparams, key, doc);
              if (link != null) { 
-                links.push({"link" : getLinkElement(link, stat, doc, key, module.MODULE_NAME), "stat" : stat});
+                links.push({"link" : Foxtrick.LinkCollection.getLinkElement(link, stat, doc, key, module.MODULE_NAME), "stat" : stat});
              }
         }
 
     }
-  return getSortedLinks(links);
-}
+  return Foxtrick.LinkCollection.getSortedLinks(links);
+};
 
-function getLinks(stattype, filterparams, doc, module) { 
-  return getLinks2(foxtrickStatsHash[stattype], stattype, filterparams, doc, false, module);
-}
 
-function foxtrick_makelink(stat, statlink, filterparams, key, doc) { 
+Foxtrick.LinkCollection.getLinks  = function(stattype, filterparams, doc, module) { 
+  return Foxtrick.LinkCollection.getLinks2(Foxtrick.StatsHash[stattype], stattype, filterparams, doc, false, module);
+};
+
+
+Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, doc) { 
 
     var params = statlink["params"];
     var args = "";
@@ -2898,10 +2902,10 @@ function foxtrick_makelink(stat, statlink, filterparams, key, doc) {
     }
     
     return link;    
-}
+};
 
 
-function getLinkElement(link, stat, doc, key, module_name) {
+Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_name) {
 
     var statslink = doc.createElement("a");
     if (typeof(stat["post"]) == 'undefined') {
@@ -2927,14 +2931,14 @@ function getLinkElement(link, stat, doc, key, module_name) {
     
     statslink.href = link;
 
-    return statslink;    
-    
-}
+    return statslink;        
+};
 
-function getSortedLinks(links) {
+Foxtrick.LinkCollection.getSortedLinks = function(links) {
   function sortfunction(a,b) {
     return a.link.title.localeCompare(b.link.title);
   }
   links.sort(sortfunction);
   return links;
-}
+};
+

@@ -222,7 +222,7 @@ var FoxtrickMain = {
 				}
 			}
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );								
+				//dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );								
 								
 			}
 			FoxtrickOnPagePrefs.run(doc, Foxtrick.run_on_cur_page);
@@ -635,22 +635,6 @@ Foxtrick.load_css_permanent = function( css) {
             dump ('> load_css_permanent ' + e + '\n');
         }
  }
-
-
-// create stats Hash
-
-var foxtrickStatsHash = {};
-for (var key in stats) {
-  var stat = stats[key];
-  for (var prop in stat) {
-    if (prop.match(/link/)) {
-      if (typeof(foxtrickStatsHash[prop]) == 'undefined') {
-       foxtrickStatsHash[prop] = {};
-      }
-      foxtrickStatsHash[prop][key] = stat;
-    }
-  }
-}
 
 Foxtrick.hasElement = function( doc, id ) {
 	if( doc.getElementById( id ) ) {

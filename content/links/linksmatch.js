@@ -43,14 +43,14 @@ var FoxtrickLinksMatch = {
 		var add_links=false;
 		//addExternalLinksToPlayedMatch
 		if (isarchivedmatch) {
-			if (youthmatch) {links = getLinks("playedyouthmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
-			else {links = getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
+			if (youthmatch) {links = Foxtrick.LinkCollection.getLinks("playedyouthmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
+			else {links = Foxtrick.LinkCollection.getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
 			if (links.length>0) add_links = true;
 		}    
 		//addExternalLinksToCommingMatch
 		if (!isarchivedmatch && !youthmatch) { 
-	        links = getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid ,"teamid2":teamid2  }, doc,this);  
-			links2 = getLinks("matchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc,this);  
+	        links = Foxtrick.LinkCollection.getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid ,"teamid2":teamid2  }, doc,this);  
+			links2 = Foxtrick.LinkCollection.getLinks("matchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc,this);  
 			if (links.length+links2.length>0) add_links = true;	
  		}   
  		// add links box

@@ -4,7 +4,8 @@
  * @author taised, Jestar
  */
 ////////////////////////////////////////////////////////////////////////////////
-var AttVsDef = {
+
+Foxtrick.AttVsDef = {
 
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
@@ -83,12 +84,12 @@ var AttVsDef = {
 		p.className = "foxtrick-graphs-header";
 		p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.defense" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.attack" );
 		barsdiv.appendChild(p);
-		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
-		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
-		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], lText, rText, ratingsTextArray[2][0], ratingsTextArray[3][1]);
+		this._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
+		this._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
+		this._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], lText, rText, ratingsTextArray[2][0], ratingsTextArray[3][1]);
 		if ((ratingsArray.length > 6) && (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1)) {
 			tablediv.appendChild(doc.createElement('br'));
-			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
 		}
 		barsdiv.appendChild(tablediv);
 		barsdiv.appendChild(doc.createElement('br'));
@@ -99,12 +100,12 @@ var AttVsDef = {
 		p.className = "foxtrick-graphs-header";
 		p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.attack" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.defense" );
 		barsdiv.appendChild(p);
-		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
-		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
-		AttVsDef._createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lText, rText, ratingsTextArray[5][0], ratingsTextArray[0][1]);
+		this._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
+		this._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
+		this._createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lText, rText, ratingsTextArray[5][0], ratingsTextArray[0][1]);
 		if ((ratingsArray.length > 6) && (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1)) {
 			tablediv.appendChild(doc.createElement('br'));
-			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
+			this._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
 		}
 		barsdiv.appendChild(tablediv);
 		barsdiv.appendChild(doc.createElement('br'));
@@ -116,8 +117,8 @@ var AttVsDef = {
 			p.className = "foxtrick-graphs-header";
 			p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" );
 			barsdiv.appendChild(p);
-			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
-			AttVsDef._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
+			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+			this._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
 			barsdiv.appendChild(tablediv);
 			barsdiv.appendChild(doc.createElement('br'));
 		}
@@ -231,7 +232,7 @@ var AttVsDef = {
 		 var innercellC = doc.createElement("div");
 		 innercellC.className = "foxtrick-graphs-bar-values";
 		 innercellA.appendChild(innercellC);
-		 innercellC.innerHTML = text1 + " " + AttVsDef._displayableRatingLevel(val1+1);
+		 innercellC.innerHTML = text1 + " " + this._displayableRatingLevel(val1+1);
 		 innercellC.style.color = fgcolor1;
 		 innercellC.style.paddingLeft = "2px";
 
@@ -267,7 +268,7 @@ var AttVsDef = {
 		 innercellC = doc.createElement("div");
 		 innercellC.className = "foxtrick-graphs-bar-values";
 		 innercellA.appendChild(innercellC);
-		 innercellC.innerHTML = AttVsDef._displayableRatingLevel(val2+1) + " " + text2;
+		 innercellC.innerHTML = this._displayableRatingLevel(val2+1) + " " + text2;
 		 innercellC.style.textAlign = "right";
 		 innercellC.style.color = fgcolor2;
 		 innercellC.style.paddingRight = "2px";

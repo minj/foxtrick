@@ -4,8 +4,8 @@
  * @author kolmis
  */
 
-var Foxtrick = {
-};
+if (!Foxtrick) var Foxtrick={};
+
 
 // List of categories
 Foxtrick.moduleCategories = {

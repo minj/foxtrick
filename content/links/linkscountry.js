@@ -31,7 +31,7 @@ var FoxtrickLinksCountry = {
 					}
 			}
 			
-        var links = getLinks("countrylink", { "countryid": countryid }, doc, this);  
+        var links = Foxtrick.LinkCollection.getLinks("countrylink", { "countryid": countryid }, doc, this);  
         
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");

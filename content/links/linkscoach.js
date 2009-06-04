@@ -21,7 +21,7 @@ var FoxtrickLinksCoach = {
     run : function( page, doc ) {
 
 		//addExternalLinksToCoachPage
-		var links = getLinks("coachlink", {  }, doc, this);  
+		var links = Foxtrick.LinkCollection.getLinks("coachlink", {  }, doc, this);  
 		var ownBoxBody=null;
                   
 		if (links.length > 0) {

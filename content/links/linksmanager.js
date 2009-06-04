@@ -35,7 +35,7 @@ var FoxtrickLinksManager = {
 		var h1 = mainBody.getElementsByTagName('h1')[0];
 		var username = h1.innerHTML.replace(/\(.+/,'').replace(/<.+>/g,'').replace(/^\s+/,'').replace(/\s+$/,'');;
 	
-		var links = getLinks("managerlink", { "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
+		var links = Foxtrick.LinkCollection.getLinks("managerlink", { "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
 												"leagueid" : leagueid ,"owncountryid":owncountryid  }, doc, this);  
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");

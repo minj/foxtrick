@@ -4,9 +4,16 @@
  * @author kolmis
  */
 
-var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
-                       .getService(Components.interfaces.mozIJSSubScriptLoader);
-var scripts = [
+if (!Foxtrick) var Foxtrick={};
+
+Foxtrick.StatsHash = {};
+
+Foxtrick.Loader = function(){
+	var pub = {};
+	
+	pub.Load = function(){	
+	
+	var scripts = [
     'preferences.js',
     'const.js',
     'module.js',
@@ -117,18 +124,38 @@ var scripts = [
 
     'modules_list.js',
     'foxtrick.js',
-];
+	];
+		
+		// load subscripts
+		var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
+							.getService(Components.interfaces.mozIJSSubScriptLoader);
+		for each (var script in scripts) {
+			try {
+				loader.loadSubScript('chrome://foxtrick/content/' + script);
+			} catch (e) {
+				var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+						.getService(Components.interfaces.nsIPromptService);
+				promptService.alert(null, null,'Script loading failed -- ' + script + '\n  ' + e );
+			}
+		}
+		
+		// create stats Hash for Foxtrick.LinkCollection
+		for (var key in Foxtrick.LinkCollection.stats) {
+			var stat = Foxtrick.LinkCollection.stats[key];
+			for (var prop in stat) {
+				if (prop.match(/link/)) {
+					if (typeof(Foxtrick.StatsHash[prop]) == 'undefined') {
+						Foxtrick.StatsHash[prop] = {};
+					}
+					Foxtrick.StatsHash[prop][key] = stat;
+				}
+			}
+		}
 
-var all_loaded=true;
-for each (var script in scripts) {
-	try {
-        loader.loadSubScript('chrome://foxtrick/content/' + script);
-	} catch (e) {
-        dump('Script loading failed -- ' + script + '\n  ' + e + '\n');
-		all_loaded=false;
-	}
-};
-if (!all_loaded) Foxtrick.alert (' --------------- Foxtrick: failed to load one or more scripts -----------------------\n');
+	};
+	return pub;	
+}();
 
 
+Foxtrick.Loader.Load();
 FoxtrickMain.init();

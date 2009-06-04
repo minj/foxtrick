@@ -30,7 +30,7 @@ var FoxtrickLinksAlliances = {
 				var startPos = allianceLink.href.search("=")+1;
 				var allianceId = allianceLink.href.substr(startPos);
 				
- 				var links = getLinks("federationlink", { "federationid" : allianceId}, doc, this );  
+ 				var links = Foxtrick.LinkCollection.getLinks("federationlink", { "federationid" : allianceId}, doc, this );  
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(

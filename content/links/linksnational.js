@@ -34,7 +34,7 @@ var FoxtrickLinksNational = {
 					}
 			}
 			
-        var links = getLinks("nationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);  
+        var links = Foxtrick.LinkCollection.getLinks("nationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);  
         
 		var added=0;
 		if (links.length > 0) {
@@ -54,7 +54,7 @@ var FoxtrickLinksNational = {
 					
 		}	
 		if (Foxtrick.isModuleEnabled(FoxtrickLinksTracker)) { 			
-			var links2 = getLinks("trackernationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);  
+			var links2 = Foxtrick.LinkCollection.getLinks("trackernationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);  
    			if (links2.length > 0) {
 				for (var k = 0; k < links2.length; k++) {
 					links2[k].link.className ="flag inner"; 

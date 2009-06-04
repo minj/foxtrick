@@ -21,7 +21,7 @@ var FoxtrickLinksChallenges = {
     run : function( page, doc ) {
 
 		//addExternalLinksToChallengesDetail
-        var links = getLinks("challengeslink", {  }, doc, this);  
+        var links = Foxtrick.LinkCollection.getLinks("challengeslink", {  }, doc, this);  
 		var ownBoxBody=null;
 
 		if (links.length > 0) {

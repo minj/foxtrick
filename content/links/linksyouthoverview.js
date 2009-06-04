@@ -36,7 +36,7 @@ var FoxtrickLinksYouthOverview = {
 	
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
-		var links = getLinks("youthlink", { "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthlink", { "owncountryid": owncountryid }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
