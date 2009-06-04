@@ -53,8 +53,8 @@ var FoxtrickSeasonStats = {
 		else  selectbox.setAttribute("style","float:right");
 
 		
-		selectbox.addEventListener('change',FoxtrickSeasonSelectBox_Select,false);
-		FoxtrickSeasonSelectBox_Select.doc=doc;
+		selectbox.addEventListener('change',this.SelectBox_Select,false);
+		this.SelectBox_Select.doc=doc;
 		
 		s=this._season;
 		for (var ls=local_season;ls>0;--ls) {		
@@ -217,12 +217,12 @@ var FoxtrickSeasonStats = {
 	
 	change : function( page, doc ) {
 	},
-		
-};
-
-function FoxtrickSeasonSelectBox_Select(evt) {
+	
+	SelectBox_Select : function(evt) {
 	try {
-		var doc=FoxtrickSeasonSelectBox_Select.doc;
+		var doc=FoxtrickSeasonStats.SelectBox_Select.doc;
 		doc.location.href=doc.location.href.replace(/season=\d+/,'season='+evt["target"]["value"]);						
 	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
-}
+	},		
+};
+

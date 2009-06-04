@@ -68,8 +68,8 @@ var FoxtrickPlayerBirthday = {
 			}
 		}
 
-		ArrayPlayers.sort(sortMultiDimensional);     // sorting of arrays according to days
-		ArrayPlayersLate.sort(sortMultiDimensional);
+		ArrayPlayers.sort(this.sortMultiDimensional);     // sorting of arrays according to days
+		ArrayPlayersLate.sort(this.sortMultiDimensional);
 
 		var parentDiv = doc.createElement("div");
 		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
@@ -132,10 +132,12 @@ var FoxtrickPlayerBirthday = {
 	
 	change : function( page, doc ) {
 	},	
+	
+	sortMultiDimensional : function (a,b)
+	{
+		// this should sort the array of players according to days
+		return ((a[3] < b[3]) ? -1 : ((a[3] > b[3]) ? 1 : 0));
+	},
+
 };
 
-function sortMultiDimensional(a,b)
-{
-    // this should sort the array of players according to days
-    return ((a[3] < b[3]) ? -1 : ((a[3] > b[3]) ? 1 : 0));
-}

@@ -106,7 +106,7 @@ Foxtrick.TeamStats= {
 				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
 		}
-		stars.sort(starsortfunction);
+		stars.sort(this.starsortfunction);
 		this.top11star=stars[10]; 
 
 		
@@ -280,7 +280,7 @@ Foxtrick.TeamStats= {
 		var filterselect=doc.createElement('select');
 		filterselect.setAttribute('style','font-size:1.05em;');
 		//filterselect.setAttribute('class','sorting');
-		filterselect.addEventListener('change',FTTeamStats_Filter,false);
+		filterselect.addEventListener('change',Foxtrick.TeamStats.Filter,false);
 		var option=doc.createElement('option');
 		option.setAttribute('value','');
 		option.innerHTML='---';
@@ -349,7 +349,7 @@ Foxtrick.TeamStats= {
 		td.appendChild(filterselect);
 		mainBody.insertBefore(table,mainBody.firstChild);
 		//sortbybox.parentNode.insertBefore(filterselect,sortbybox);
-		FTTeamStats_Filter.doc=doc;
+		Foxtrick.TeamStats.Filter.doc=doc;
 		
         },
         
@@ -375,6 +375,8 @@ Foxtrick.TeamStats= {
         
         },
 
+		starsortfunction : function(a,b)  {return a[0]>b[0];},
+		
         COUNTRYLIST : new Array (
         "Al Iraq",
         "Al Kuwayt",
@@ -499,16 +501,12 @@ Foxtrick.TeamStats= {
         "Uruguay",
         "USA",
         "Venezuela",
-        "Vietnam")            
-};
+        "Vietnam"),            
 
-function starsortfunction(a,b) {return a[0]>b[0];};
-
-
-// by convinced
-function FTTeamStats_Filter(ev){
+	// by convinced
+	Filter : function (ev){
 	try {
-		var doc = FTTeamStats_Filter.doc;
+		var doc = Foxtrick.TeamStats.Filter.doc;
 		var body = doc.getElementById("mainBody");
 		var allDivs = body.getElementsByTagName('div');
 		
@@ -618,4 +616,10 @@ function FTTeamStats_Filter(ev){
 		h.innerHTML = h.innerHTML.replace(/ \d+/,' '+String(count));
 		
 	}catch(e) {dump('FTTeamStats_Filter: '+e+'\n');}
-}
+	},
+
+};
+
+
+
+

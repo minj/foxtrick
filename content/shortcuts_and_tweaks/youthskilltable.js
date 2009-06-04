@@ -34,8 +34,8 @@ var FoxtrickYouthSkillTable = {
 				tablediv.setAttribute('id','ft_youthskilltable');
 				var h2 = doc.createElement('h2');
 				h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-				FoxtrickYouthSkillTableHeaderClick.doc=doc;
-				h2.addEventListener( "click", FoxtrickYouthSkillTableHeaderClick, true );						
+				FoxtrickYouthSkillTable.HeaderClick.doc=doc;
+				h2.addEventListener( "click", this.HeaderClick, true );						
 				h2.setAttribute('class',this._collaped_class);
 				tablediv.appendChild(h2);
 				
@@ -176,23 +176,23 @@ var FoxtrickYouthSkillTable = {
 				header.parentNode.insertBefore(tablediv,header.nextSibling);
 	},
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
+	},
+
+	HeaderClick : function(evt) {
+	try{
+		var doc=FoxtrickYouthSkillTable.HeaderClick.doc;
+		var tablediv = doc.getElementById('ft_youthskilltable');
+		var table = tablediv.getElementsByTagName('table')[0]
+		if (table.style.display=='none')  {
+			table.style.display='inline';
+			tablediv.getElementsByTagName('h2')[0].setAttribute('class',FoxtrickYouthSkillTable._unfold_class);
+		}
+		else  {
+			table.style.display='none';						
+			tablediv.getElementsByTagName('h2')[0].setAttribute('class',FoxtrickYouthSkillTable._collaped_class);
+		}
+	} catch(e) {dump(e);}
 	},
 }
 
-function FoxtrickYouthSkillTableHeaderClick(evt) {
- try{
-	var doc=FoxtrickYouthSkillTableHeaderClick.doc;
-	var tablediv = doc.getElementById('ft_youthskilltable');
-	var table = tablediv.getElementsByTagName('table')[0]
-	if (table.style.display=='none')  {
-		table.style.display='inline';
-		tablediv.getElementsByTagName('h2')[0].setAttribute('class',FoxtrickYouthSkillTable._unfold_class);
-	}
-	else  {
-		table.style.display='none';						
-		tablediv.getElementsByTagName('h2')[0].setAttribute('class',FoxtrickYouthSkillTable._collaped_class);
-	}
-} catch(e) {dump(e);}
-}

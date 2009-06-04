@@ -35,13 +35,14 @@ var FoxtrickHeaderFix = {
 	var ctl00_CPMain_pnl = doc.getElementById("ctl00_CPMain_pnlPreMatch");
 	if (page=='arena')  ctl00_CPMain_pnl = doc.getElementById("ctl00_CPMain_pnlMain"); 
 	var ctl00_CPMain_pnlTeamInfo = doc.getElementById("ctl00_CPMain_pnlTeamInfo");
+	var ctl00_CPMain_pnlArenaFlash = doc.getElementById("ctl00_CPMain_pnlArenaFlash");
 	
 	// check right page and ia supporter
 	if (page=='match' && (!ctl00_CPMain_pnl || !ctl00_CPMain_pnlTeamInfo)) return;	
 	if (page=='arena' && !ctl00_CPMain_pnl) return; 
+	if (!ctl00_CPMain_pnlArenaFlash) return;
 	
 	// get some divs to move
-	var ctl00_CPMain_pnlArenaFlash = doc.getElementById("ctl00_CPMain_pnlArenaFlash");
 	var arenaInfo = ctl00_CPMain_pnlArenaFlash.nextSibling;
 	var separator=null;
 	var mainBox=null;

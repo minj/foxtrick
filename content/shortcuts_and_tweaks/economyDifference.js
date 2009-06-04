@@ -10,8 +10,6 @@ var FoxtrickEconomyDifference = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.6.2",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Clicking on header toggles options. Option to exclude temporary income added",
 	RADIO_OPTIONS : new Array("plus", "minus","plus_exclude_temp", "minus_exclude_temp"),
     

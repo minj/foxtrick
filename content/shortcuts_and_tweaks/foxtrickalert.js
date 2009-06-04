@@ -140,7 +140,7 @@ var FoxtrickAlert = {
 							dump('alertclickcallback:' +'link to: '+data+'\n');
 							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 									.getService(Components.interfaces.nsIWindowMediator);
-							openAndReuseOneTabPerURL(href);
+							FoxtrickAlert.openAndReuseOneTabPerURL(href);
 					}
 						}catch(e){dump('alertclickcallback: '+e+'\n');}
                     }
@@ -193,11 +193,10 @@ var FoxtrickAlert = {
 				Foxtrick.LOG('playsound: '+e);
 			}
 		}
-    }
-};
-
+    },
+	
 // find first occurence of host and open+focus there
-function openAndReuseOneTabPerURL(url) {
+ openAndReuseOneTabPerURL : function(url) {
   var host = url.match(/(http:\/\/[a-zA-Z0-9_.]+)/)[1];
   
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -242,4 +241,7 @@ function openAndReuseOneTabPerURL(url) {
       window.open(url);
     }
   }
-}
+},
+
+};
+

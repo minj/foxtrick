@@ -79,5 +79,4 @@ var FoxtrickSeniorTeamShortCuts = {
 	
 	change : function( page, doc ) {
 	},
-		
 };

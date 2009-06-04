@@ -1487,6 +1487,9 @@ var FoxtrickOnPagePrefs = {
 
     run : function( doc, modules ) {  
 	try{
+		var sidebar = doc.getElementById('sidebar');
+		if (!sidebar) return;
+		
 		//dump(doc.location.pathname+' '+doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)+' '+doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)+'\n');
 				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/linkscustom.css");

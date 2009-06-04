@@ -10,7 +10,6 @@ var FoxtrickTeamSelectBox= {
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
         DEFAULT_ENABLED : true,
 		NEW_AFTER_VERSION: "0.4.6.2",	
-		PREF_SCREENSHOT:"",
 		LASTEST_CHANGE:"TeamSelectBox eneabled for youth players. Dropdown image added",
 		OPTIONS : new Array("AlsoYouthPlayers"), 
 		listbox:"",
@@ -84,8 +83,8 @@ var FoxtrickTeamSelectBox= {
 	if (this.listbox!=null) {
 			var selectbox = doc.createElement("select"); 
 			selectbox.setAttribute("id","ft_ownselectboxID");
-			selectbox.addEventListener('change',FoxtrickTeamSelectBox_Select,false);
-			FoxtrickTeamSelectBox_Select.doc=doc;
+			selectbox.addEventListener('change',this.Select,false);
+			FoxtrickTeamSelectBox.Select.doc=doc;
 		var option = doc.createElement("option");
 		option.setAttribute("value","");
 		option.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.selectplayer" );
@@ -151,12 +150,13 @@ var FoxtrickTeamSelectBox= {
 		} 
 		catch (e) {dump("SelectBox->HeaderClick: "+e+'\n');}
 	},
+	
+	Select : function(evt) {
+	try {
+		var doc=FoxtrickTeamSelectBox.Select.doc;
+		doc.location.href=evt["target"]["value"];						
+	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
+	},
 
 };
 
-function FoxtrickTeamSelectBox_Select(evt) {
-	try {
-		var doc=FoxtrickTeamSelectBox_Select.doc;
-		doc.location.href=evt["target"]["value"];						
-	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
-}

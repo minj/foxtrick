@@ -30,7 +30,7 @@ var FoxtrickYouthSkillNotes = {
 				//var tabulka = doc.getElementsByTagName ("TABLE")[0].parentNode.nextSibling.nextSibling;
 				for(var i = 0; i < allDivs.length; i++) {
 					if(allDivs[i].className=="separator") {
-						foxtrick_youthskilltable( doc, page, playerid, allDivs[i] );
+						this.foxtrick_youthskilltable( doc, page, playerid, allDivs[i] );
 					}
 				}
                 break;
@@ -47,7 +47,7 @@ var FoxtrickYouthSkillNotes = {
 						var endPos = a.href.search("&");
 						var diff = endPos - startPos;
 						var playerid = a.href.substr(startPos,diff);
-						foxtrick_youthskilltable( doc, page, playerid, allDivs[i],faceCardOn );
+						this.foxtrick_youthskilltable( doc, page, playerid, allDivs[i],faceCardOn );
 					}
 				}
 				break;
@@ -98,20 +98,14 @@ var FoxtrickYouthSkillNotes = {
 //		dump("save YouthPlayer." + playerid + ".skillSP: "+ doc.getElementById("YskillSP").value + "\n");
 	
 //		alert("Changes have been saved!");
-	}
-};
+	},
 
-	function isYouthPlayerUrl(href) {
+	isYouthPlayerUrl:function (href) {
 	  return href.search(/YouthPlayer\.aspx/i) > -1;
-	}
+	},
+		
 	
-	function isYouthPlayersUrl(href) {
-	  return href.search(/YouthPlayers\.aspx/i) > -1;
-	}
-	
-	
-	
-	function getYouthPlayerSkill(playerid, skill) {
+	getYouthPlayerSkill : function(playerid, skill) {
 //		dump("getYouthPlayerSkill: " + "YouthPlayer." + playerid + ".skill" + skill + "\n");
 	    var ret;
 	    try{
@@ -122,9 +116,9 @@ var FoxtrickYouthSkillNotes = {
 		}
 //		dump(ret+"\n");
 		return ret;
-	}
+	},
 	
-	function foxtrick_youthskilltable( doc, page, playerid, reference,faceCardOn ) {
+	foxtrick_youthskilltable :function ( doc, page, playerid, reference,faceCardOn ) {
 		
 		const STR_S_H2 = Foxtrickl10n.getString( "Notes_about_skills");
 		const STR_S_EDIT = Foxtrickl10n.getString("Edit_notes");
@@ -294,7 +288,7 @@ var FoxtrickYouthSkillNotes = {
 	  var inputGK = doc.createElement ("input");
 	  inputGK.setAttribute("name", "inpGK");
 	  inputGK.setAttribute("id", "YskillGK"+playerid);
-	  inputGK.setAttribute("value", getYouthPlayerSkill(playerid, "GK"));
+	  inputGK.setAttribute("value", this.getYouthPlayerSkill(playerid, "GK"));
 	  inputGK.setAttribute("type", "text");
 	  inputGK.setAttribute("maxlength", "20");
 	  inputGK.setAttribute("size", "20");
@@ -304,7 +298,7 @@ var FoxtrickYouthSkillNotes = {
 	  var inputPM = doc.createElement ("input");
 	  inputPM.setAttribute("name", "inpPM");
 	  inputPM.setAttribute("id", "YskillPM"+playerid);
-	  inputPM.setAttribute("value", getYouthPlayerSkill(playerid, "PM"));
+	  inputPM.setAttribute("value", this.getYouthPlayerSkill(playerid, "PM"));
 	  inputPM.setAttribute("type", "text");
 	  inputPM.setAttribute("maxlength", "20");
 	  inputPM.setAttribute("size", "20");
@@ -313,7 +307,7 @@ var FoxtrickYouthSkillNotes = {
 	  var inputPS = doc.createElement ("input");
 	  inputPS.setAttribute("name", "inpPS");
 	  inputPS.setAttribute("id", "YskillPS"+playerid);
-	  inputPS.setAttribute("value", getYouthPlayerSkill(playerid, "PS"));
+	  inputPS.setAttribute("value", this.getYouthPlayerSkill(playerid, "PS"));
 	  inputPS.setAttribute("type", "text");
 	  inputPS.setAttribute("maxlength", "20");
 	  inputPS.setAttribute("size", "20");
@@ -322,7 +316,7 @@ var FoxtrickYouthSkillNotes = {
 	  var inputWG = doc.createElement ("input");
 	  inputWG.setAttribute("name", "inpWG");
 	  inputWG.setAttribute("id", "YskillWG"+playerid);
-	  inputWG.setAttribute("value", getYouthPlayerSkill(playerid, "WG"));
+	  inputWG.setAttribute("value", this.getYouthPlayerSkill(playerid, "WG"));
 	  inputWG.setAttribute("type", "text");
 	  inputWG.setAttribute("maxlength", "20");
 	  inputWG.setAttribute("size", "20");
@@ -331,7 +325,7 @@ var FoxtrickYouthSkillNotes = {
 	  var inputDF = doc.createElement ("input");
 	  inputDF.setAttribute("name", "inpDF");
 	  inputDF.setAttribute("id", "YskillDF"+playerid);
-	  inputDF.setAttribute("value", getYouthPlayerSkill(playerid, "DF"));
+	  inputDF.setAttribute("value", this.getYouthPlayerSkill(playerid, "DF"));
 	  inputDF.setAttribute("type", "text");
 	  inputDF.setAttribute("maxlength", "20");
 	  inputDF.setAttribute("size", "20");
@@ -340,7 +334,7 @@ var FoxtrickYouthSkillNotes = {
 	  var inputSC = doc.createElement ("input");
 	  inputSC.setAttribute("name", "inpSC");
 	  inputSC.setAttribute("id", "YskillSC"+playerid);
-	  inputSC.setAttribute("value", getYouthPlayerSkill(playerid, "SC"));
+	  inputSC.setAttribute("value", this.getYouthPlayerSkill(playerid, "SC"));
 	  inputSC.setAttribute("type", "text");
 	  inputSC.setAttribute("maxlength", "20");
 	  inputSC.setAttribute("size", "20");
@@ -349,7 +343,7 @@ var FoxtrickYouthSkillNotes = {
 	  var inputSP = doc.createElement ("input");
 	  inputSP.setAttribute("name", "inpSP");
 	  inputSP.setAttribute("id", "YskillSP"+playerid);
-	  inputSP.setAttribute("value", getYouthPlayerSkill(playerid, "SP"));
+	  inputSP.setAttribute("value", this.getYouthPlayerSkill(playerid, "SP"));
 	  inputSP.setAttribute("type", "text");
 	  inputSP.setAttribute("maxlength", "20");
 	  inputSP.setAttribute("size", "20");
@@ -365,37 +359,37 @@ var FoxtrickYouthSkillNotes = {
 	  var spanGK = doc.createElement ("span");
 	  spanGK.setAttribute("style", "color: green");
 	  spanGK.setAttribute("id", "spanYskillGK"+playerid);
-	  spanGK.innerHTML = getYouthPlayerSkill(playerid, "GK");
+	  spanGK.innerHTML = this.getYouthPlayerSkill(playerid, "GK");
 	  
 	  var spanPM = doc.createElement ("span");
 	  spanPM.setAttribute("style", "color: green");
 	  spanPM.setAttribute("id", "spanYskillPM"+playerid);
-	  spanPM.innerHTML = getYouthPlayerSkill(playerid, "PM");
+	  spanPM.innerHTML = this.getYouthPlayerSkill(playerid, "PM");
 	  
 	  var spanPS = doc.createElement ("span");
 	  spanPS.setAttribute("style", "color: green");
 	  spanPS.setAttribute("id", "spanYskillPS"+playerid);
-	  spanPS.innerHTML = getYouthPlayerSkill(playerid, "PS");
+	  spanPS.innerHTML = this.getYouthPlayerSkill(playerid, "PS");
 	  
 	  var spanWG = doc.createElement ("span");
 	  spanWG.setAttribute("style", "color: green");
 	  spanWG.setAttribute("id", "spanYskillWG"+playerid);
-	  spanWG.innerHTML = getYouthPlayerSkill(playerid, "WG");
+	  spanWG.innerHTML = this.getYouthPlayerSkill(playerid, "WG");
 	  
 	  var spanDF = doc.createElement ("span");
 	  spanDF.setAttribute("style", "color: green");
 	  spanDF.setAttribute("id", "spanYskillDF"+playerid);
-	  spanDF.innerHTML = getYouthPlayerSkill(playerid, "DF");
+	  spanDF.innerHTML = this.getYouthPlayerSkill(playerid, "DF");
 	  
 	  var spanSC = doc.createElement ("span");
 	  spanSC.setAttribute("style", "color: green");
 	  spanSC.setAttribute("id", "spanYskillSC"+playerid);
-	  spanSC.innerHTML = getYouthPlayerSkill(playerid, "SC");
+	  spanSC.innerHTML = this.getYouthPlayerSkill(playerid, "SC");
 	  
 	  var spanSP = doc.createElement ("span");
 	  spanSP.setAttribute("style", "color: green");
 	  spanSP.setAttribute("id", "spanYskillSP"+playerid);
-	  spanSP.innerHTML = getYouthPlayerSkill(playerid, "SP");
+	  spanSP.innerHTML = this.getYouthPlayerSkill(playerid, "SP");
 	  
 	  //radek cislo 1
 	  Btd1.innerHTML = STR_S_ST + ":";
@@ -534,4 +528,4 @@ var FoxtrickYouthSkillNotes = {
 		reference.parentNode.insertBefore(notesdiv, reference.nextSibling)
 		
 	 }
-	
+};
