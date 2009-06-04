@@ -55,6 +55,7 @@ var FoxtrickAlert = {
 		var message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
+				//dump (message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
 				if (num_message > FoxtrickAlert.last_num_message) {
 						
 						var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
@@ -117,13 +118,14 @@ var FoxtrickAlert = {
     foxtrick_showAlert: function( from_timer) { 
      try{ 
 	    var window = FoxtrickAlert.foxtrick_showAlert.window;
-		/*dump (' -- foxtrick_showAlert --\n');
+	/*	dump (' -- foxtrick_showAlert --\n');
 		try {dump('location: '+window.location.href+'\n');}
 		catch(e){dump('window propertiy not available\n');}
 		dump(' called from timer: '+from_timer+'\n');
 		dump (' one alert is showing, dont execute double: '+String(!from_timer && FoxtrickAlert.ALERT_RUNNING) +'\n');
-		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n\n');
-		*/
+		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
+		dump (' last_num_mail: '+FoxtrickAlert.last_num_message+'\n\n');
+	*/	
  		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) return;
 		FoxtrickAlert.ALERT_RUNNING = true;
 		if ( FoxtrickAlert.ALERTS.length==0) { FoxtrickAlert.ALERT_RUNNING = false; return;}	

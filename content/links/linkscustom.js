@@ -66,12 +66,12 @@ var FoxtrickLinksCustom = {
 						div.appendChild(hh);
 						div.setAttribute("style","cursor:pointer;");
 						div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
-						div.addEventListener( "click", FoxtrickLinksCustomHeaderClick, false );
+						div.addEventListener( "click", this.HeaderClick, false );
 						//div.addEventListener( "MouseOut", "javascript:this.style.backgroundColor='#FFFFFF';",false);
-						FoxtrickLinksCustomHeaderClick.module=this;
-						FoxtrickLinksCustomHeaderClick.doc=doc;
-						FoxtrickLinksCustomHeaderClick.ownBoxBody=ownBoxBody;
-						FoxtrickLinksCustomHeaderClick.basepref=basepref;
+						this.HeaderClick.module=this;
+						this.HeaderClick.doc=doc;
+						this.HeaderClick.ownBoxBody=ownBoxBody;
+						this.HeaderClick.basepref=basepref;
 						pn.insertBefore(div,pn.firstChild);
 						break;
 					}
@@ -228,9 +228,9 @@ var FoxtrickLinksCustom = {
 				td1.appendChild(div);
 				tdiv.appendChild(title);
 				td2.appendChild(tdiv);
-				if (key.length>3) td5.appendChild(FoxtrickLinksGetExportLink(doc,div,basepref+'.'+key)); // prevent export of oldstyle keys
-				td3.appendChild(FoxtrickLinksGetEditOldLink(doc,div,basepref+'.'+key));
-				td4.appendChild(FoxtrickLinksGetDelLink(doc,div,basepref+'.'+key)); 
+				if (key.length>3) td5.appendChild(this.GetExportLink(doc,div,basepref+'.'+key)); // prevent export of oldstyle keys
+				td3.appendChild(this.GetEditOldLink(doc,div,basepref+'.'+key));
+				td4.appendChild(this.GetDelLink(doc,div,basepref+'.'+key)); 
 				tr1.appendChild(td1);
 				tr1.appendChild(td2);
 				tr1.appendChild(td5);
@@ -263,10 +263,10 @@ var FoxtrickLinksCustom = {
 			var loadIcon = doc.createElement ("a");	
 			loadIcon.setAttribute("href", "javascript: void(0);");
 			loadIcon.className="inner";
-			loadIcon.addEventListener( "click", FoxtrickLinksLoadDialog, false );
+			loadIcon.addEventListener( "click", this.LoadDialog, false );
 			loadIcon.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
 			loadIcon.parentdoc = doc.defaultView;
-			FoxtrickLinksLoadDialog.doc =doc;
+			this.LoadDialog.doc =doc;
 			
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -324,8 +324,8 @@ var FoxtrickLinksCustom = {
 			selectbox.setAttribute("title",Foxtrickl10n.getString("foxtrick.linkscustom.addtag" ));
 			selectbox.setAttribute("id","ft_ownselecttagboxID");
 			selectbox.setAttribute("style","width:100%;");
-			selectbox.addEventListener('change',FoxtrickLinksCustomSelectBox_Select,false);
-			FoxtrickLinksCustomSelectBox_Select.doc=doc;
+			selectbox.addEventListener('change',this.SelectBox_Select,false);
+			this.SelectBox_Select.doc=doc;
 			var option = doc.createElement("option");
 			option.setAttribute("value","");
 			option.innerHTML=Foxtrickl10n.getString("foxtrick.linkscustom.tags" );
@@ -395,6 +395,7 @@ var FoxtrickLinksCustom = {
 		catch (e) {dump("LinksCustom->show_edit->"+e+'\n');}
 	},
 		
+		
 	delStdLink : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.delMyLink.doc;
@@ -411,6 +412,7 @@ var FoxtrickLinksCustom = {
 		catch (e) {dump("LinksCustom->edityLink->"+e+'\n');}
 	},
 
+	
 	delMyLink : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.delMyLink.doc;
@@ -427,6 +429,7 @@ var FoxtrickLinksCustom = {
 		catch (e) {dump("LinksCustom->edityLink->"+e+'\n');}
 	},
 
+	
 	editOldLink : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.editOldLink.doc;
@@ -441,6 +444,7 @@ var FoxtrickLinksCustom = {
 		catch (e) {dump("LinksCustom->editOldLink->"+e+'\n');}
 	},
 
+	
 	Export : function (evt) { 
 		try {
 			var doc = FoxtrickLinksCustom.Export.doc;
@@ -507,9 +511,9 @@ var FoxtrickLinksCustom = {
 			td1.appendChild(div);
 			tdiv.appendChild(title);
 			td2.appendChild(tdiv);
-			td5.appendChild(FoxtrickLinksGetExportLink(doc,div,baseprefnl));
-			td3.appendChild(FoxtrickLinksGetEditOldLink(doc,div,baseprefnl));
-			td4.appendChild(FoxtrickLinksGetDelLink(doc,div,baseprefnl));
+			td5.appendChild(FoxtrickLinksCustom.GetExportLink(doc,div,baseprefnl));
+			td3.appendChild(FoxtrickLinksCustom.GetEditOldLink(doc,div,baseprefnl));
+			td4.appendChild(FoxtrickLinksCustom.GetDelLink(doc,div,baseprefnl));
 				
 			tr1.appendChild(td1);
 			tr1.appendChild(td2);
@@ -522,10 +526,9 @@ var FoxtrickLinksCustom = {
 			table.insertBefore(tr1,table.lastChild.previousSibling);
 		}
 		catch(e) {dump("LinksCustom->saveMyLink->"+e+'\n');}
-		},
-};
+	},
 
-function FoxtrickLinksGetDelLink (doc,mylink,baseprefnl) { 
+	GetDelLink  : function(doc,mylink,baseprefnl) { 
 	try {	
 		var delLink = doc.createElement("div");
 		delLink.setAttribute("class","foxtrick" + "Remove");
@@ -536,12 +539,11 @@ function FoxtrickLinksGetDelLink (doc,mylink,baseprefnl) {
 		FoxtrickLinksCustom.delMyLink.doc=doc;
 		return delLink;
 	} 
-	catch(e) {dump("LinksCustom->FoxtrickLinksGetDelLink->"+e+'\n');}		
-}
+	catch(e) {dump("LinksCustom->this.GetDelLink->"+e+'\n');}		
+	},
 
 
-
-function FoxtrickLinksGetEditOldLink (doc,mylink,baseprefnl) { 
+	GetEditOldLink  : function(doc,mylink,baseprefnl) { 
 	try {	
 		var editOld = doc.createElement("div");
 		editOld.setAttribute("class","foxtrick" +	"Copy float_right");
@@ -552,10 +554,11 @@ function FoxtrickLinksGetEditOldLink (doc,mylink,baseprefnl) {
 		FoxtrickLinksCustom.editOldLink.doc=doc;
 		return editOld;
 	} 
-	catch(e) {dump("LinksCustom->FoxtrickLinksGetEditOldLink->"+e+'\n');}		
-}
+	catch(e) {dump("LinksCustom->this.GetEditOldLink->"+e+'\n');}		
+	},
 
-function FoxtrickLinksGetExportLink (doc,mylink,baseprefnl) { 
+	
+	GetExportLink  : function(doc,mylink,baseprefnl) { 
 	try {	
 		var ExportLink = doc.createElement("div");
 		ExportLink.setAttribute("class","foxtrick" +	"Export float_right");
@@ -567,12 +570,13 @@ function FoxtrickLinksGetExportLink (doc,mylink,baseprefnl) {
 		return ExportLink;
 	} 
 	catch(e) {dump("LinksCustom->FoxtrickLinksGetExpostLink->"+e+'\n');}		
-}
+	},
 
-function FoxtrickLinksLoadDialog (evt)
+	
+	LoadDialog  : function(evt)
 	{	
 		var path="file://"+Foxtrick.selectFile(evt["target"]["parentdoc"]);
-		var doc=FoxtrickLinksLoadDialog.doc;
+		var doc=FoxtrickLinksCustom.LoadDialog.doc;
 		var pathdel="\\";
 		if (path.charAt(7)=="/") {pathdel="/";}
 		var imgfile=path.substr(path.lastIndexOf(pathdel)+1);
@@ -585,7 +589,7 @@ function FoxtrickLinksLoadDialog (evt)
 			var url = ios.newURI(path, null, null);
 			if (!url || !url.schemeIs("file")) {throw "Expected a file URL.";}
 			var pngFile = url.QueryInterface(Components.interfaces.nsIFileURL).file;
-			var image=generateDataURI(pngFile); 
+			var image=this.generateDataURI(pngFile); 
 			if (image.length>2000) {Foxtrick.alert("Image too large.");return;}
 			var div=doc.getElementById('inputImgDivID');
 			div.imgref=image;
@@ -593,16 +597,16 @@ function FoxtrickLinksLoadDialog (evt)
 			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
 			 			
  		}
-		catch(e) {dump('FoxtrickLinksLoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
-}
+		catch(e) {dump('this.LoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
+	},
 
 	
-	function FoxtrickLinksCustomHeaderClick(evt) {
+	HeaderClick : function(evt) {
 		try { 
-			var module=FoxtrickLinksCustomHeaderClick.module; 
-			var doc=FoxtrickLinksCustomHeaderClick.doc;
-			var ownBoxBody=FoxtrickLinksCustomHeaderClick.ownBoxBody;
-			var basepref=FoxtrickLinksCustomHeaderClick.basepref;
+			var module=FoxtrickLinksCustom.HeaderClick.module; 
+			var doc=FoxtrickLinksCustom.HeaderClick.doc;
+			var ownBoxBody=FoxtrickLinksCustom.HeaderClick.ownBoxBody;
+			var basepref=FoxtrickLinksCustom.HeaderClick.basepref;
 			FoxtrickPrefs.setBool( "module." + module.MODULE_NAME + ".enabled", !Foxtrick.isModuleEnabled(module) );
 			
 			if (Foxtrick.isModuleEnabled(module)) { 
@@ -630,31 +634,34 @@ function FoxtrickLinksLoadDialog (evt)
 			}
 		}
 		catch(e) { dump("LinksCustom->HeaderClick->"+e+'\n'); }
-	}
+	},
 	
-	function FoxtrickLinksCustomSelectBox_Select(evt) {
+	
+	SelectBox_Select : function(evt) {
 	try {
-		var doc=FoxtrickLinksCustomSelectBox_Select.doc;
+		var doc=this.SelectBox_Select.doc;
 		var value =doc.getElementById ( "inputHrefID" ).value;
 		if (value.search(/\?/)==-1) value+="\?"; else  value+="&";
 		value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
 		doc.getElementById ( "inputHrefID" ).value=value;
-	} catch (e) {dump("FoxtrickLinksCustomSelectBox_Select: "+e+'\n');}
-}
+	} catch (e) {dump("this.SelectBox_Select: "+e+'\n');}
+	},
 
 
-function generateDataURI(file) {
-try { 
-  var contentType = Components.classes["@mozilla.org/mime;1"]
+	generateDataURI : function(file) {
+	try { 
+		var contentType = Components.classes["@mozilla.org/mime;1"]
                               .getService(Components.interfaces.nsIMIMEService)
                               .getTypeFromFile(file);
-  var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
+		var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
                               .createInstance(Components.interfaces.nsIFileInputStream);
-  inputStream.init(file, 0x01, 0600, 0);
-  var stream = Components.classes["@mozilla.org/binaryinputstream;1"]
+		inputStream.init(file, 0x01, 0600, 0);
+		var stream = Components.classes["@mozilla.org/binaryinputstream;1"]
                          .createInstance(Components.interfaces.nsIBinaryInputStream);
-  stream.setInputStream(inputStream);
-  var encoded = btoa(stream.readBytes(stream.available()));
-  return "data:" + contentType + ";base64," + encoded;
-} catch (e) {dump("FoxtrickLinks generateDataURI: "+e+'\n');}
-}
+		stream.setInputStream(inputStream);
+		var encoded = btoa(stream.readBytes(stream.available()));
+		return "data:" + contentType + ";base64," + encoded;
+	} catch (e) {dump("FoxtrickLinks generateDataURI: "+e+'\n');}
+	},
+
+};

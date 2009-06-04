@@ -2,8 +2,7 @@ var ticktimer;
 InitFoxtrickNews();
 
 function InitFoxtrickNews() {
-	last_num_message=0;
-    FoxtrickCheckNews();
+	FoxtrickCheckNews();
     if (!ticktimer) {
         ticktimer = window.setInterval('FoxtrickCheckNews()', 30000);
     }

@@ -26,7 +26,7 @@ var FoxtrickLeagueNewsFilter = {
 	selectdiv.appendChild(doc.createTextNode(' '));
 	var select=doc.createElement('select');
 	select.setAttribute("id","ft_ownselectboxID");
-	select.addEventListener('change',FoxtrickLeagueNewsFilter_Select,false);
+	select.addEventListener('change',this.SelectClick,false);
 	FoxtrickLeagueNewsFilter.ShowHide.doc=doc;
 		
 	var option=doc.createElement('option');
@@ -125,14 +125,15 @@ var FoxtrickLeagueNewsFilter = {
 	},
 	
 	change : function( page, doc ) {	
-	}
+	},
+	
+	SelectClick : function(evt) {
+		try {
+			FoxtrickLeagueNewsFilter.ShowHide();		
+		} catch (e) {dump("FoxtrickLeagueNewsFilter_Select: "+e+'\n');}
+	},
 };
 
-function FoxtrickLeagueNewsFilter_Select(evt) {
-	try {
-		FoxtrickLeagueNewsFilter.ShowHide();		
-	} catch (e) {dump("FoxtrickLeagueNewsFilter_Select: "+e+'\n');}
-};
 
 
 
@@ -176,7 +177,7 @@ var FoxtrickShortPAs = {
 		var a=doc.createElement('a');
 		a.innerHTML=Foxtrickl10n.getString("foxtrick.ShortPAs.more");
 		a.href='javascript:void(0);';
-		a.addEventListener('click',FoxtrickShortPAs_click,true);		
+		a.addEventListener('click',this.showfull,true);		
 		morediv.appendChild(a);
 		var b=item.getElementsByTagName('b')[0];
 		b.parentNode.insertBefore(morediv,b.nextSibling);
@@ -185,10 +186,11 @@ var FoxtrickShortPAs = {
 	},
 	
 	change : function( page, doc ) {	
+	},
+
+	showfull : function(ev) {
+		ev.target.parentNode.nextSibling.style.display='block';
+		ev.target.parentNode.style.display='none';	
 	}
 };
 
-function FoxtrickShortPAs_click(ev) {
-	ev.target.parentNode.nextSibling.style.display='block';
-	ev.target.parentNode.style.display='none';	
-}
