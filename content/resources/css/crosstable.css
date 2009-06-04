@@ -1,0 +1,14 @@
+.Ink {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid black;
+    width: 0px;
+    height: 0px;
+    overflow:hidden;
+}
+
+.ft_graph_div {
+position:relative;
+top:0px;
+left:0px;
+}

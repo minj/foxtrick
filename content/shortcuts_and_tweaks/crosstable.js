@@ -137,8 +137,6 @@ var FoxtrickCrossTable = {
                 }
                 // dump('>>>>>>' + week + '<<<<<<\n\n');                
 			}
-            week.sort(this.numComparisonDesc);
-            dump('\n\n>' + week + '<\n\n');                
             
 			var dayhead=0;
 			for (var j = 0; j<tblBodyObj.rows.length; j++){ 				
@@ -213,6 +211,19 @@ var FoxtrickCrossTable = {
                 }
             }
             div.insertBefore(crosstable, div.getElementsByTagName('h1')[0].nextSibling);
+
+            var css = "chrome://foxtrick/content/resources/css/crosstable.css";
+			Foxtrick.addStyleSheet( doc, css );            
+            var divmap = doc.createElement('div');
+            divmap.id = 'ft_graph';
+            divmap.className = 'ft_graph_div';
+            divmap.setAttribute('style', 'border : 1px dotted blue; height:300px; width:420px;');
+            div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
+            for (var draw=0; draw < 14*8; draw ++) {this.DrawLine(doc, draw,draw, 420-draw,300-draw, '#800000');}
+            
+            week.sort(this.numComparisonDesc);
+            dump('\n\n>' + week + '<\n\n');                           
+            
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
 
@@ -225,6 +236,32 @@ var FoxtrickCrossTable = {
     
     numComparisonDesc : function(a, b)	{
         return b[2]-a[2];
-    }
-    
+    },
+
+    PlotPixel : function (doc, x, y, c) {
+        var pixel = doc.createElement('div');
+        pixel.className = 'Ink';
+        pixel.style.borderColor = c;
+        pixel.style.left = x + 'px';
+        pixel.style.top = y + 'px';
+        pixel.innerHTML = x + '*' + y;
+        // pixel.innerHTML = '';
+        doc.getElementById("ft_graph").appendChild(pixel);
+    },
+
+    DrawLine : function (doc, x1, y1, x2, y2, c) {
+        var steps = 20;
+        var deltaX = (x2 - x1)/steps;
+        var deltaY = (y2 - y1)/steps;
+        var xz = x1;
+        var yz = y1;
+        this.PlotPixel(doc, Math.abs(xz), Math.abs(yz), c);
+        var step = 0;
+        while(step < steps) {
+            step+=1;
+            xz+= deltaX;
+            yz+= deltaY;
+            this.PlotPixel(doc, Math.round(xz), Math.round(yz), c);
+        }
+    }    
 };
