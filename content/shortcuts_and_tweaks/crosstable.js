@@ -9,9 +9,11 @@ var FoxtrickCrossTable = {
     MODULE_NAME : "CrossTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"adds cross table to fixtures",
-	//OPTIONS : new Array("DefaultShow"), 
+    OPTIONS :  new Array("cut_long_teamnames"),
+    OPTION_TEXTS : true,
+    OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1"),
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"some style options",
 		
 	init : function() {
         Foxtrick.registerPageHandler( 'fixtures', this );
@@ -24,6 +26,17 @@ var FoxtrickCrossTable = {
 		//var DefaultShow = Foxtrick.isModuleFeatureEnabled( this, "DefaultShow" );
 		
         try {
+            var width = 540;
+            var cutafter = 6;
+            var cutlong = false
+            if (!Foxtrick.isStandardLayout( doc ) ) { width = 440; cutafter = 5;}
+            if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[0]  ) ) {
+                var dummy = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + this.OPTIONS[0] + "_text");
+                dummy = parseInt(dummy);
+                if (dummy > 1) cutlong = dummy;
+                dump(dummy + '|' +cutlong+ '<<\n');
+            }
+            
             var div = doc.getElementById('mainBody');
             tbl_fix = div.getElementsByTagName('TABLE')[0];
 
@@ -125,7 +138,7 @@ var FoxtrickCrossTable = {
 
             var crosstable = doc.createElement('table');
             crosstable.id = 'ft_cross';
-            crosstable.setAttribute("style", "width:440px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+            crosstable.setAttribute("style", "width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             var tb=doc.createElement("tbody");
 
             crosstable.appendChild(tb);
@@ -142,7 +155,7 @@ var FoxtrickCrossTable = {
                     for (i = 0; i<8; i++){
                         var cell = doc.createElement("th");
                         cell.setAttribute("style", "text-align:center;");
-                        var cnt = doc.createTextNode(cross[i][0].substring(0,5).replace(/\s/i,""));
+                        var cnt = doc.createTextNode(cross[i][0].substring(0,cutafter).replace(/\s/i,""));
                         cell.appendChild(cnt);
                         row.appendChild(cell);
                     }
@@ -155,7 +168,11 @@ var FoxtrickCrossTable = {
                     else var cell = doc.createElement("td"); //inner result
                     if (cross[x][y] != -1) { //result
                             if (y ==0) //teamnames
-                                var cnt = doc.createTextNode(cross[x][y]);
+                                if (!cutlong) var cnt = doc.createTextNode(cross[x][y])
+                                else {
+                                    // if (cross[x][y].length > cutlong) var dot = '…'; else var dot = '';
+                                    var cnt = doc.createTextNode(cross[x][y].substring(0,cutlong));
+                                }
                             else {
                                 cell.setAttribute("style", "text-align:center");
                                 var a = doc.createElement("a");

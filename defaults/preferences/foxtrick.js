@@ -82,6 +82,7 @@ pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_color_goal_home
 pref( "extensions.foxtrick.prefs.module.MatchReportFormat.border_color_goal_away.enabled", false );
 pref( "extensions.foxtrick.prefs.module.MatchReportFormat.normaltext.enabled", false );
 pref( "extensions.foxtrick.prefs.module.MatchReportFormat.half_time.enabled", false );
+pref( "extensions.foxtrick.prefs.module.CrossTable.cut_long_teamnames.enabled", false );
 pref( "extensions.foxtrick.prefs.module.MatchPlayerColouring.Home.enabled", false );
 pref( "extensions.foxtrick.prefs.module.MatchPlayerColouring.Away.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.HT.enabled", false );
