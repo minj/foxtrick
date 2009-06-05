@@ -54,17 +54,17 @@ var FoxtrickMain = {
 
 		var i;		
         // init core modules
-        for ( i in Foxtrick.core_modules ) {
+        for ( var i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
         }
 						
 		// create handler arrays for each recognized page
-		for ( i in Foxtrick.ht_pages ) {
+		for ( var i in Foxtrick.ht_pages ) {
 			Foxtrick.run_on_page[i] = new Array();
 		}
 			
 		// init all modules
-		for ( i in Foxtrick.modules ) {
+		for (var  i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
 			// if module has an init() function and is enabled
 			if ( module.MODULE_NAME
@@ -235,7 +235,7 @@ var FoxtrickMain = {
 				}
 			}
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-//				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
+				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
 			}
 
 			FoxtrickOnPagePrefs.run(doc, Foxtrick.run_on_cur_page);
@@ -1077,7 +1077,7 @@ Foxtrick.ReturnFormatedValue = function( number, separator ) {
     if (number.length > 3) {
         var mod = number.length % 3;
         var output = (mod > 0 ? (number.substring(0,mod)) : '');
-        for (i=0 ; i < Math.floor(number.length / 3); i++) {
+        for (var i=0 ; i < Math.floor(number.length / 3); i++) {
             if ((mod == 0) && (i == 0))
                 output += number.substring(mod+ 3 * i, mod + 3 * i + 3);
             else

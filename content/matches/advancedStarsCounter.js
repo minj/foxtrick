@@ -91,7 +91,7 @@ var FoxtrickAdvancedStarsCounter = {
 			var src_array=new Array("UserControls/Img.axd?res=Matches&amp;img=star_big_blue.png","UserControls/Img.axd?res=Matches&amp;img=star_blue.png","UserControls/Img.axd?res=Matches&amp;img=star_half_blue.png")
 		}
 		// images output
-		for(i=0;i<img_array.length;i++){
+		for(var i=0;i<img_array.length;i++){
 			for(j=0;j<img_array[i];j++){
 				starsHtml+="<img src='"+src_array[i]+"'/>"
 			}

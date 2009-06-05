@@ -94,7 +94,7 @@ var FoxtrickAlert = {
                     message=tickelem.firstChild.nodeValue;
 					href=tickelem.parentNode.href; 
 					var isequal = false;
-					for (j=0;j<=3;j++)
+					for (var j=0;j<=3;j++)
 					{
 						if (elemText[i]==Foxtrick.news[j])
 							isequal=true;

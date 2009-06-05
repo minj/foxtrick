@@ -145,7 +145,7 @@ FoxtrickTransferListSearchFilters = {
             filtername = filtername.substring( 0, FoxtrickTransferListSearchFilters._MAX_FILTER_DISP_LENGTH );
             
             var formString = "<root>";
-            for (i in FoxtrickTransferListSearchFilters.backwardCompatibleCodes) {
+            for (var i in FoxtrickTransferListSearchFilters.backwardCompatibleCodes) {
                 var el = FoxtrickTransferListSearchFilters.findFormElement(i, doc);
                 if (el == null) {
                     var subst = FoxtrickTransferListSearchFilters.backwardCompatibleCodes[i];

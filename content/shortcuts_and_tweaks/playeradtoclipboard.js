@@ -222,7 +222,7 @@ var FoxtrickPlayerAdToClipboard = {
 			if (bidDiv){
 				ad += "\n";
 				var paragraphs = bidDiv.getElementsByTagName("p");
-				for (i=0; i<paragraphs.length; i++){
+				for (var i=0; i<paragraphs.length; i++){
 					var cellCopy = paragraphs[i].cloneNode(true);
 					var popupLinks = cellCopy.getElementsByTagName("a");
 					for(var j = 1; j < popupLinks.length; j++) {

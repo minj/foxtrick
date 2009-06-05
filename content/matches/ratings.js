@@ -72,7 +72,7 @@ Foxtrick.Ratings = {
 				cell.className='ch';
 				cell.innerHTML = this.ratingDefs[selectedRating]["label"]();
 				
-				for (i=0;i<2;i++) {
+				for (var i=0;i<2;i++) {
 					var cell = row.insertCell(i+1);
 					try {
 						if (typeof (this.ratingDefs[selectedRating]["total2"]) != 'undefined') {

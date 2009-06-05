@@ -152,7 +152,7 @@ Foxtrick.AttVsDef = {
 									ifkdefText+' - '+Foxtrickl10n.getString( "foxtrick.matches.attack" ),
 									ifkattText+' - '+Foxtrickl10n.getString( "foxtrick.matches.defense" ));
 		
-		for (i=0;i<percentArray.length;i++) {
+		for (var i=0;i<percentArray.length;i++) {
 			bodydiv.appendChild(doc.createTextNode("\n"+labelArray[i]+"\n"));
 			bodydiv.appendChild(this._createTextBox(doc, percentArray[i]));
 			bodydiv.appendChild(doc.createTextNode("\n"));

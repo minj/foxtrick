@@ -85,7 +85,7 @@ var FoxtrickCrossTable = {
             var row = 0;
             for (var j = 0; j<14; j++){ //day
                 // dump(j + ' [--------------------------------\n');
-                for (i = 0; i<4 ; i++) { //row
+                for (var i = 0; i<4 ; i++) { //row
                     row = j*5 + i+1;
 
                     var dummy = tblBodyObj.rows[row].cells[1].innerHTML;
@@ -172,7 +172,7 @@ var FoxtrickCrossTable = {
                     cell.appendChild(cnt);
                     row.appendChild(cell);
 
-                    for (i = 0; i<8; i++){
+                    for (var i = 0; i<8; i++){
                         var cell = doc.createElement("th");
                         cell.setAttribute("style", "text-align:center;");
                         var cnt = doc.createTextNode(cross[i][0].substring(0,cutafter).replace(/\s/i,""));

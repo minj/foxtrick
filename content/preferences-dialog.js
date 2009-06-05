@@ -8,9 +8,8 @@ var FoxtrickPreferencesDialog = {
 
     init : function() {
         // var doc = ev.originalTarget;
-        var i;
-
-        for ( i in FoxtrickPreferencesDialog.core_modules ) {
+        
+        for ( var i in FoxtrickPreferencesDialog.core_modules ) {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
@@ -848,7 +847,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 								break;
                 }
 
-				for ( i in Foxtrick.modules ) {
+				for ( var i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i];
                         var module_category;
                         module_category = module.MODULE_CATEGORY;

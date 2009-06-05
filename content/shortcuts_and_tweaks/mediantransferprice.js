@@ -33,7 +33,7 @@ var FoxtrickMedianTransferPrice = {
 		var median = 0;
 		var avg = 0;
 		var lengte = priceArray.length;
-		for (i in priceArray){
+		for (var i in priceArray){
 			avg = avg + priceArray[i];
 		}
 		avg = Math.round(avg / lengte)+"";

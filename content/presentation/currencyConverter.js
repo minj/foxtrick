@@ -57,7 +57,7 @@ FoxtrickCurrencyConverter = {
 					//if (table_elm[i].getElementsByTagName('bdo')[0].className == 'red') style += ' color:#aa0000 !important;';
 					inner_raw = table_elm[i].innerHTML.replace(/<bdo dir="ltr">/,'').replace(/<\/bdo>/,'') ;
 					}
-				res="";
+				var res="";
 				var only_one_number = false; 
 				var first = true;
 				while (pos!=-1) { pos+=oldSymbolLength;

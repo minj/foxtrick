@@ -110,7 +110,7 @@ FoxtrickMatchReportFormat = {
         
         var links = div.getElementsByTagName('a');
         var supporter = false;
-        for (i=0; i < links.length; i++) {
+        for (var i=0; i < links.length; i++) {
 //            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
             if (links[i].href.search('Book') > 0) {
                 supporter = true;
@@ -133,7 +133,7 @@ FoxtrickMatchReportFormat = {
 
         part[0] += '' + dummy[0] + '<br><br>' + dummy[1] + '<br>';
         part[1] = '';
-        for (i = 2; i< dummy.length; i++) {
+        for (var i = 2; i< dummy.length; i++) {
             part[1] += dummy[i] + '<br><br>';
         }
 
@@ -175,7 +175,7 @@ FoxtrickMatchReportFormat = {
         var padd = '';
         var next = 0;
         var player = false;
-        for (i=0; i<dummy.length;i++) {
+        for (var i=0; i<dummy.length;i++) {
             marg='margin-top:10px;'
             padd='padding:2px; border:' + borders_normal+ 'px solid ' + border_color + '; ';
             if (i%2 ==1) {bg = text_normal + '; ';} else {bg = text_normal + '; ';}
@@ -231,7 +231,7 @@ FoxtrickMatchReportFormat = {
         var standing = new Array(0,0);
         var reg = /\ (\d{1,2})\-(\d{1,2})(.*?)/i;
         var divs = div.getElementsByTagName('div');
-        for (i=0; i < divs.length; i++) {
+        for (var i=0; i < divs.length; i++) {
             // dump(i + ': ' + divs[i].textContent + '\n\n');
             var text = divs[i].textContent;
             var toreplace = /\ \-\ /g;
@@ -265,7 +265,7 @@ FoxtrickMatchReportFormat = {
         
         var sidebar = doc.getElementById('sidebar');
         var links = sidebar.getElementsByTagName('a');
-        for (i=0; i < links.length; i++) {
+        for (var i=0; i < links.length; i++) {
 //            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
             if (links[i].href.search('TeamID=' + HomeTeamId) > 0) {
                 links[i].setAttribute('style', 'color:' + txt_col_hm);

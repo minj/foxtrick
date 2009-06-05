@@ -138,7 +138,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 
 			//this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
                  var part = Foxtrick.trim(part);
-                 for ( i=0; i<10; i++ ) { 
+                 for ( var i=0; i<10; i++ ) { 
                   var part = part.replace('&nbsp;', ''); 
                  }
             

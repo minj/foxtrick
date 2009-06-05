@@ -91,7 +91,7 @@ var FoxtrickPrefs = {
     getList : function( list_name ) {
         var names = FoxtrickPrefs._getElemNames( list_name );
         var list = new Array();
-        for ( i in names )
+        for ( var i in names )
             list.push( FoxtrickPrefs.getString( names[i] ) );
 
         return list;
@@ -126,7 +126,7 @@ var FoxtrickPrefs = {
     _populateList : function( list_name, values )
     {
         this._pref_branch.deleteBranch( list_name );
-        for ( i in values )
+        for (var  i in values )
             FoxtrickPrefs.setString( list_name + "." + i, values[i] );
     },
     
