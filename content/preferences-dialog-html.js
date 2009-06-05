@@ -1482,7 +1482,6 @@ var FoxtrickPrefsDialogHTML = {
 var FoxtrickOnPagePrefs = {
 
     MODULE_NAME : "PrefsDialogHTML",
-//	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Shows a small expandable box at the bottom of the sidebar which allows changing FoxTrick modules which alter the current page (default on)",
 	
@@ -1493,16 +1492,14 @@ var FoxtrickOnPagePrefs = {
     },
 
     run : function( doc ) {  
-	try{
-		if (doc.location.href.search(/MyHattrick\/Preferences/i)!=-1 
-			|| doc.getElementById('ctl00_ucSubMenu_txtUserName')) return;
+		try{
+			if (doc.getElementById('ctl00_ucSubMenu_txtUserName')) return;
 		
-		var column;
-		if (doc.getElementById('sidebar')) column='right';
-		else column='left';
+			var column;
+			if (doc.getElementById('sidebar')) column='right';
+			else column='left';
 		
-		//dump(doc.location.pathname+' '+doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)+' '+doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)+'\n');
-				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
+			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/linkscustom.css");
 			
 			if (Foxtrick.isStandardLayout(doc) )  {
@@ -1513,7 +1510,6 @@ var FoxtrickOnPagePrefs = {
 				if (!Foxtrick.isRTLLayout(doc)) Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple.css");
 				else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple_rtl.css");
 			}	
-
 			
 				// add box
 				var ownBoxBody = doc.createElement("div");
@@ -1524,9 +1520,9 @@ var FoxtrickOnPagePrefs = {
 
 				var count=0;
 				for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-					if (!Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY /*
+					if (!Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY 
 						|| Foxtrick.run_on_cur_page[j].page=='all' || Foxtrick.run_on_cur_page[j].page=='all_late' 
-						|| !Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY=='links'*/ ) continue;				
+						/*|| !Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY=='links'*/ ) continue;				
 					var in_list=false;
 					for ( var k=0; k<j; ++k ) {
 						if (Foxtrick.run_on_cur_page[k].module==Foxtrick.run_on_cur_page[j].module) {in_list=true; break;}
@@ -1535,6 +1531,8 @@ var FoxtrickOnPagePrefs = {
 					++count;
 				}	
 				if (count==0) return;
+				doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
+				
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
 				var content=doc.getElementById('foxtrick_OnPagePrefs_content');
 				content.style.display='none';
@@ -1546,7 +1544,6 @@ var FoxtrickOnPagePrefs = {
 				var div = doc.createElement("div");
 				div.appendChild(header);
 				div.setAttribute("style","cursor:pointer;");
-				div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
 				div.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClick, false );
 				FoxtrickOnPagePrefs.HeaderClick.doc = doc;
 				pn.insertBefore(div,pn.firstChild);
@@ -1555,13 +1552,13 @@ var FoxtrickOnPagePrefs = {
 				div.setAttribute("id","foxtrick_OnPagePrefs_headdiv");
 				div.setAttribute("class","boxHead sidebarBoxCollapsed");
 			
-	} catch (e){dump('FoxtrickOnPagePrefs '+e+'\n');}
+		} catch (e){dump('FoxtrickOnPagePrefs '+e+'\n');}
 	},
 
 	change : function( doc ) { 
 	},
 	
-	HeaderClick : function (evt) {
+	HeaderClick : function (evt) { 
 	try{
 		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
 		var div = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
@@ -1583,15 +1580,31 @@ var FoxtrickOnPagePrefs = {
 				prefsave.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
 				prefsavediv.appendChild(prefsave);
 				
-				var alldiv = doc.createElement('div');
+				var alldivouter = doc.createElement('div');
+				alldivouter.setAttribute("class","onpageprefs_extraprefs");
 				var alldivheader = doc.createElement('h3');
-				alldivheader.appendChild(doc.createTextNode('all'));
-				alldiv.appendChild(alldivheader);
+				alldivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.modules_allpages")));
+				alldivheader.setAttribute("style","cursor:pointer;");
+				alldivheader.setAttribute("class","sidebarBoxCollapsed");
+				alldivheader.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClickModulesAll, false );
+				alldivouter.appendChild(alldivheader);
+				var alldivinner = doc.createElement('div');
+				alldivinner.setAttribute("style","display:none;");
+				alldivinner.setAttribute("id","onpageprefs_alldivinner");
+				alldivouter.appendChild(alldivinner);
 				var alldiv_count = 0;
-				var linkdiv = doc.createElement('div');
+				var linkdivouter = doc.createElement('div');
+				linkdivouter.setAttribute("class","onpageprefs_extraprefs");
 				var linkdivheader = doc.createElement('h3');
-				linkdivheader.appendChild(doc.createTextNode('links'));
-				linkdiv.appendChild(linkdivheader);
+				linkdivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.LinksTab")));
+				linkdivheader.setAttribute("style","cursor:pointer;");
+				linkdivheader.setAttribute("class","sidebarBoxCollapsed");
+				linkdivheader.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClickLinks, false );
+				linkdivouter.appendChild(linkdivheader);
+				var linkdivinner = doc.createElement('div');
+				linkdivinner.setAttribute("style","display:none;");
+				linkdivinner.setAttribute("id","onpageprefs_linkdivinner");
+				linkdivouter.appendChild(linkdivinner);
 				var linkdiv_count = 0;
 				
 				// modules
@@ -1614,20 +1627,20 @@ var FoxtrickOnPagePrefs = {
 						entry = FoxtrickPrefsDialogHTML._normalModule(doc, Foxtrick.run_on_cur_page[j].module,true);
 					}
 					if (Foxtrick.run_on_cur_page[j].page=='all' || Foxtrick.run_on_cur_page[j].page=='all_late') {
-						alldiv.appendChild( entry );					
+						alldivinner.appendChild( entry );					
 						++alldiv_count;
 					}
 					else if(Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY=='links')	{
-						linkdiv.appendChild( entry );								
+						linkdivinner.appendChild( entry );								
 						++linkdiv_count;
 					}
 					else ownBoxBody.appendChild( entry );
 				}
 				if (linkdiv_count>0) {
-					ownBoxBody.appendChild( linkdiv );
+					ownBoxBody.appendChild( linkdivouter );
 				}
 				if (alldiv_count>0) {
-					ownBoxBody.appendChild( alldiv );
+					ownBoxBody.appendChild( alldivouter );
 				}
 			}
 		}
@@ -1636,5 +1649,48 @@ var FoxtrickOnPagePrefs = {
 			ownBoxBody.style.display = 'none';
 		}
 	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
-	}
+	},
+	
+	
+	HeaderClickModulesAll : function (evt) {
+	try{
+		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
+		var div = doc.getElementById('onpageprefs_alldivinner');
+		var header = evt.target;
+		if ( header.className.search("sidebarBoxCollapsed") != -1 ) {
+			header.setAttribute("class","sidebarBoxUnfolded");
+			div.style.display = 'inline';
+		}
+		else {
+			header.setAttribute("class","sidebarBoxCollapsed");
+			div.style.display = 'none';
+		}
+	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
+	},
+
+	
+	HeaderClickLinks : function (evt) {
+	try{
+		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
+		var div = doc.getElementById('onpageprefs_linkdivinner');
+		var header = evt.target;
+		if ( header.className.search("sidebarBoxCollapsed") != -1 ) {
+			header.setAttribute("class","sidebarBoxUnfolded");
+			div.style.display = 'inline';
+		}
+		else {
+			header.setAttribute("class","sidebarBoxCollapsed");
+			div.style.display = 'none';
+		}
+	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
+	},
+
+	
+	SubmitCapture : function (evt) { 
+	try{
+		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
+		var content = doc.getElementById('foxtrick_OnPagePrefs_content');
+		content.parentNode.removeChild(content);		
+	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
+	},
 }
