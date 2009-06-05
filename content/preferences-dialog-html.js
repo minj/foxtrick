@@ -1581,12 +1581,14 @@ var FoxtrickOnPagePrefs = {
 				prefsavediv.appendChild(prefsave);
 				
 				var alldiv = doc.createElement('div');
-				var alldivheader = doc.createElement('div');
+				var alldivheader = doc.createElement('h3');
 				alldivheader.appendChild(doc.createTextNode('all'));
+				alldiv.appendChild(alldivheader);
 				var alldiv_count = 0;
 				var linkdiv = doc.createElement('div');
-				var linkdivheader = doc.createElement('div');
+				var linkdivheader = doc.createElement('h3');
 				linkdivheader.appendChild(doc.createTextNode('links'));
+				linkdiv.appendChild(linkdivheader);
 				var linkdiv_count = 0;
 				
 				// modules

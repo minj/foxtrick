@@ -25,6 +25,7 @@ pref( "extensions.foxtrick.prefs.module.FoxtrickAlert.NewMail.enabled", false);
 pref( "extensions.foxtrick.prefs.disableOnStage", false );
 pref( "extensions.foxtrick.prefs.disableTemporary", false );
 pref( "extensions.foxtrick.prefs.copyfeedback", true );
+pref( "extensions.foxtrick.prefs.onpageprefs", true );
 pref( "extensions.foxtrick.prefs.SavePrefs_Prefs", true );
 pref( "extensions.foxtrick.prefs.SavePrefs_Notes", true );
 pref( "extensions.foxtrick.prefs.matchstat.vnukstats", true);
