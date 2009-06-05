@@ -106,6 +106,7 @@ pref( "extensions.foxtrick.prefs.module.TickerColoring.MyHTMessages.enabled", fa
 pref( "extensions.foxtrick.prefs.module.TickerColoring.Hover.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled", false );
 pref( "extensions.foxtrick.prefs.module.NewMail.CustomColor.enabled", false );
+pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.enabled", true );
 
 	
     	

@@ -122,6 +122,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickElectionTable,
 					 FoxtrickSkillTranslation,
 					 FoxtrickOnPagePrefs,
+					 FoxtrickLineupShortcut,
 					];
 
 					

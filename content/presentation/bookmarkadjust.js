@@ -15,8 +15,23 @@ Foxtrick.BookmarkAdjust = {
     },
 
     run : function( page, doc ) {
-        
-        var tableObj = doc.getElementById('ctl00_CPMain_repB').childNodes[1];
+        this._adjust_bookmarks( doc );
+    },
+	
+	change : function( page, doc ) {
+		this._adjust_bookmarks( doc );
+	},
+
+    _bookmarkColor : function( imageObj, regexp, commentObj, color ) {
+        if (commentObj.firstChild.nodeValue.search(regexp) > -1) {
+           //imageObj.style.backgroundImage = "url(chrome://foxtrick/content/resources/notes/" + color + ".png)";
+           imageObj.style.background = "transparent url(chrome://foxtrick/content/resources/notes/" + color + ".png) no-repeat scroll 0 0";
+           commentObj.firstChild.nodeValue = commentObj.firstChild.nodeValue.replace(regexp, "");          
+        }
+    },
+	
+	_adjust_bookmarks : function ( doc ) {
+		var tableObj = doc.getElementById('ctl00_CPMain_repB').childNodes[1];
         for (var i=0; i<tableObj.rows.length; i++) {
             //If there aren't 4 cells on the row is a separator row
             if (tableObj.rows[i].cells.length==4) {
@@ -47,19 +62,6 @@ Foxtrick.BookmarkAdjust = {
                 }
             }
         }
-        
-    },
-	
-	change : function( page, doc ) {
-	
-	},
-
-    _bookmarkColor : function( imageObj, regexp, commentObj, color ) {
-        if (commentObj.firstChild.nodeValue.search(regexp) > -1) {
-           //imageObj.style.backgroundImage = "url(chrome://foxtrick/content/resources/notes/" + color + ".png)";
-           imageObj.style.background = "transparent url(chrome://foxtrick/content/resources/notes/" + color + ".png) no-repeat scroll 0 0";
-           commentObj.firstChild.nodeValue = commentObj.firstChild.nodeValue.replace(regexp, "");          
-        }
-    }
+	}
 };
 

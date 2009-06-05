@@ -74,6 +74,7 @@ Foxtrick.ht_pages = {
     'election'                  : '\/World\/Elections\/Default\.aspx',
     'ads'                       : '\/Community\/Ads\/',
 	'denominations'             : '\/Help\/Rules\/AppDenominations.aspx',
+	'statsBestgames'            : '\/World\/Stats\/StatsBestgames.aspx',
 	
 
     'all_late'                  : '\/',
