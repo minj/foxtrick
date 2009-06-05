@@ -230,7 +230,7 @@ var FoxtrickMain = {
 					Foxtrick.run_on_page[i].forEach(
 						function( fn ) {
 							try {
-								dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );								
+								//dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );								
 								fn.run( i, doc );
 							} catch (e) {
 								dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
@@ -246,10 +246,10 @@ var FoxtrickMain = {
 				}
 			}
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
+				//dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
 			}
 
-			FoxtrickOnPagePrefs.run(doc, Foxtrick.run_on_cur_page);
+			if (FoxtrickPrefs.getBool( "onpageprefs" )) FoxtrickOnPagePrefs.run(doc);
 			// context menue
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
 			

@@ -454,8 +454,8 @@ var FoxtrickPreferencesDialog = {
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel"));
 		checkbox.setAttribute('id',"disableTemporary");
 		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "disableTemporary" ) );
-
 		vbox.appendChild(checkbox);
+		
 		groupbox.appendChild(caption);
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
@@ -487,9 +487,13 @@ var FoxtrickPreferencesDialog = {
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"));
 		checkbox.setAttribute('id',"copyfeedback");
 		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "copyfeedback" ) );
-
 		vbox.appendChild(checkbox);
-		groupbox.appendChild(caption);
+		var checkbox= doc.createElement("checkbox");
+		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.onpageprefs"));
+		checkbox.setAttribute('id',"onpageprefs");
+		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "onpageprefs" ) );
+		vbox.appendChild(checkbox);		
+		groupbox.appendChild(caption);		
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
 
@@ -698,6 +702,7 @@ var FoxtrickPreferencesDialog = {
 
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
+		FoxtrickPrefs.setBool("onpageprefs", document.getElementById("onpageprefs").checked);
 
 		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);
