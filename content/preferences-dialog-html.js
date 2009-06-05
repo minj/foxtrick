@@ -1494,7 +1494,9 @@ var FoxtrickOnPagePrefs = {
 
     run : function( doc ) {  
 	try{
-		if (doc.location.href.search(/MyHattrick\/Preferences/i)!=-1) return;
+		if (doc.location.href.search(/MyHattrick\/Preferences/i)!=-1 
+			|| doc.getElementById('ctl00_ucSubMenu_txtUserName')) return;
+		
 		var column;
 		if (doc.getElementById('sidebar')) column='right';
 		else column='left';
