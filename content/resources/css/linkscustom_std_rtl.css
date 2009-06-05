@@ -24,3 +24,7 @@ padding:7px 10px;
 -moz-border-radius-topright: 10px;
 color: #fff !important; 
 }
+
+#sidebar #foxtrick_OnPagePrefs_box .checkbox_label div {width:115px; overflow:hidden;}
+.subMenu #foxtrick_OnPagePrefs_box .checkbox_label div {width:75px; overflow:hidden;}
+.subMenuConf #foxtrick_OnPagePrefs_box .checkbox_label div {width:195px; overflow:hidden;}

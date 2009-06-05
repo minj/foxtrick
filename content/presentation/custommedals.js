@@ -10,7 +10,7 @@ var FoxtrickCustomMedals = {
 
     MODULE_NAME : "CustomMedals",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('teamPageGeneral'), 
+	PAGES : new Array('teamPage','national'), 
 	DEFAULT_ENABLED : false,
 		
 	init : function() {

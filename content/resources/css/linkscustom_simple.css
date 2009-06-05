@@ -10,3 +10,7 @@ div.sidebarBoxUnfolded  h2 {
 background: url('chrome://foxtrick/content/resources/img/link-up.png') 161px 4px no-repeat;
 background-color:#849D84;
 }
+
+#sidebar #foxtrick_OnPagePrefs_box .checkbox_label div {width:115px; overflow:hidden;}
+.subMenu #foxtrick_OnPagePrefs_box .checkbox_label div {width:55px; overflow:hidden;}
+.subMenuConf #foxtrick_OnPagePrefs_box .checkbox_label div {width:115px; overflow:hidden;}

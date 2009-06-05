@@ -107,7 +107,7 @@ var FoxtrickForumRedirManagerToTeam = {
 	
     MODULE_NAME : "ForumRedirManagerToTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread","teamPageGeneral"), 
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 
 	init : function() {

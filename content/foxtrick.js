@@ -695,7 +695,7 @@ Foxtrick.hasElement = function( doc, id ) {
 * Note: if the reference header cannot be found, the box will be placed on top
 */
 Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
-	referenceHeader, altReferenceHeader ) {
+	referenceHeader, altReferenceHeader, column ) {
 	// If we already added this, return
 	// Should ideally be checked by the change() function already
 	var boxContentId = newBoxContent.id;
@@ -708,7 +708,16 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		return;
 	}
 	
-	var sidebar = doc.getElementById("sidebar");
+	var sidebar = null;
+	var box_class='';
+	if (!column || column=='right') {
+		sidebar = doc.getElementById("sidebar");
+		box_class='sidebarBox';
+	}
+	else {
+		sidebar = doc.getElementById("ctl00_pnlSubMenu");
+		box_class='subMenuBox';
+	}
 	
 	var firstDiv = sidebar.getElementsByTagName("div")[0];
 	if (!firstDiv) return;  // no sidebar. can't add something. someone consider creating sidebar later.
@@ -724,7 +733,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		firstBox = firstDiv;
 	}
 	
-	while(firstBox.className != "sidebarBox") {
+	while(firstBox.className != box_class) {
 		firstBox = firstBox.nextSibling;
 	}
 		
@@ -735,8 +744,8 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	var altReferenceObject = false;
 	var currentBox = firstBox;
 	do {
-		// Check if this child is a sidebarbox
-		if(currentBox.className=="sidebarBox") {
+		// Check if this child is of box_class
+		if(currentBox.className==box_class) {
 			var header = currentBox.getElementsByTagName("h2")[0];
 			if(header.innerHTML == newBoxHeader) {
 				otherBox = currentBox;
@@ -786,7 +795,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		} else {
 			// create the sidebarbox
 			var ownSidebarBox = doc.createElement("div");
-			ownSidebarBox.className = "sidebarBox";
+			ownSidebarBox.className = box_class;
 			ownSidebarBox.setAttribute("id", boxId );
 			// create the boxhead
 			var ownBoxHead = doc.createElement("div");
@@ -828,7 +837,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		} else {
 			// create the sidebarbox
 			var ownSidebarBox = doc.createElement("div");
-			ownSidebarBox.className = "sidebarBox";
+			ownSidebarBox.className = box_class;
 			ownSidebarBox.setAttribute("id", boxId );
 			// create the header
 			var ownHeader = doc.createElement("h2");

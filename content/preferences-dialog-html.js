@@ -431,7 +431,7 @@ var FoxtrickPrefsDialogHTML = {
 		var td= doc.createElement("td");
         tr.appendChild(td);
 		var checked = FoxtrickPrefs.getBool("module.FoxtrickReadHtPrefs.enabled");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtPrefs', Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguageAutoSet"),'', checked ) 
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtPrefs', Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"),'', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
 		
@@ -1180,8 +1180,8 @@ var FoxtrickPrefsDialogHTML = {
 		divlabel.setAttribute( "class", "checkbox_label" );
 		if (on_page) {
 			var divlabelinner = doc.createElement( "div" );	
-			if (!suboption) divlabelinner.setAttribute( "style", "width:115px; overflow:hidden;" );
-			else divlabelinner.setAttribute( "style", "width:105px; overflow:hidden;" );
+			//if (!suboption) divlabelinner.setAttribute( "style", "width:115px; overflow:hidden;" );
+			//else divlabelinner.setAttribute( "style", "width:105px; overflow:hidden;" );
 			divlabelinner.appendChild( doc.createTextNode(label) );
 			divlabelinner.setAttribute('title', label_long );
 			divlabel.appendChild( divlabelinner );
@@ -1488,8 +1488,9 @@ var FoxtrickOnPagePrefs = {
 
     run : function( doc, modules ) {  
 	try{
-		var sidebar = doc.getElementById('sidebar');
-		if (!sidebar) return;
+		var column;
+		if (doc.getElementById('sidebar')) column='right';
+		else column='left';
 		
 		//dump(doc.location.pathname+' '+doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)+' '+doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)+'\n');
 				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
@@ -1549,7 +1550,7 @@ var FoxtrickOnPagePrefs = {
 					++count;
 				}	
 				if (count==0) return;
-				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
+				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
 				var content=doc.getElementById('foxtrick_OnPagePrefs_content');
 				content.style.display='none';
 			
@@ -1558,15 +1559,17 @@ var FoxtrickOnPagePrefs = {
 				var pn = header.parentNode;
 				var header = pn.removeChild(header);
 				var div = doc.createElement("div");
-				div.setAttribute("id","foxtrick_OnPagePrefs_headdiv");
-				div.setAttribute("class","boxHead sidebarBoxCollapsed");
 				div.appendChild(header);
 				div.setAttribute("style","cursor:pointer;");
 				div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
 				div.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClick, false );
 				FoxtrickOnPagePrefs.HeaderClick.doc = doc;
 				pn.insertBefore(div,pn.firstChild);
-		
+				
+				var div=doc.getElementById('foxtrick_OnPagePrefs_box').firstChild;	
+				div.setAttribute("id","foxtrick_OnPagePrefs_headdiv");
+				div.setAttribute("class","boxHead sidebarBoxCollapsed");
+			
 	} catch (e){dump('FoxtrickOnPagePrefs '+e+'\n');}
 	},
 

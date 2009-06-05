@@ -64,6 +64,7 @@ div.ft_pref_modul > div > table > tr > td > div.checkbox_label {font-weight:bold
 .ft_prefs_check_td { width:14px;}
 .ft_prefs_screenshot_td { width:16px;}
 
+#foxtrick_OnPagePrefs_box .boxBody {padding: 8px 5px!important; } 
 /*#foxtrick_OnPagePrefs_content div.ft_pref_modul > div > table > tr > td > div.checkbox_label {width:20px; overflow:hidden; white-space:nowrap;}
 
 #foxtrick_OnPagePrefs_content div.ft_pref_modul  div.ft_pref_checkbox_group  div.checkbox_label {width:15px; overflow:hidden; white-space:nowrap;}

@@ -101,7 +101,7 @@ var FoxtrickPreferencesDialog = {
         var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute('id',"ReadHtPrefs");
 		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.FoxtrickReadHtPrefs.enabled"));
-		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguageAutoSet") );
+		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc") );
 		desc_box.setAttribute("flex","1");
 		vbox1b.appendChild(checkbox);
 		vbox1b.appendChild(desc_box);

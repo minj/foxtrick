@@ -7,15 +7,13 @@ FoxtrickLineupShortcut = {
 
     MODULE_NAME : "FoxtrickLineupShortcut",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    DEFAULT_ENABLED : true,
+    PAGES : new Array('playerdetail','statsBestgames','matchLineup'), 
+	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Add a direct shortcut to lineup in player detail page",
 	OPTIONS : new Array( "HighlightPlayer"),
 
     init : function() {
-        Foxtrick.registerPageHandler('playerdetail', this);
-		Foxtrick.registerPageHandler('statsBestgames', this);
-		Foxtrick.registerPageHandler('matchLineup', this);
     },
 
     run : function(page, doc) {
@@ -23,7 +21,6 @@ FoxtrickLineupShortcut = {
         switch ( page ) {
 
             case 'playerdetail' : 
-
                 this._Analyze_Player_Page ( doc );
                 break;
 			case 'statsBestgames':
