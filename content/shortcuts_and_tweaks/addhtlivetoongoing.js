@@ -8,15 +8,11 @@ var FoxtrickAddHtLiveToOngoing = {
 
 	MODULE_NAME : "AddHtLiveToOngoing",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('league','youthleague','match'), 
 	DEFAULT_ENABLED : false,
+	
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'league',
-			this );
-		Foxtrick.registerPageHandler( 'youthleague',
-			this );
-		Foxtrick.registerPageHandler( 'match',
-			this );
 	},
 	
 	run : function( page, doc ) {  

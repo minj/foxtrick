@@ -9,12 +9,11 @@ var FoxtrickLinksFans = {
 	
     MODULE_NAME : "LinksFans",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('fans'), 
 	DEFAULT_ENABLED : false,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'fans',
-                                          FoxtrickLinksFans );
 			Foxtrick.initOptionsLinks(this,"fanlink");
     },
 

@@ -9,11 +9,10 @@ var FoxtrickMatchIncome = {
 	
     MODULE_NAME : "MatchIncome",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'match',
-                                          FoxtrickMatchIncome);
 	},
 
     run : function( page, doc ) {

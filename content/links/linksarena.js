@@ -9,12 +9,11 @@ var FoxtrickLinksArena = {
 	
     MODULE_NAME : "LinksArena",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('arena'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'arena',
-                                          FoxtrickLinksArena );
 			Foxtrick.initOptionsLinks(this,"arenalink");
     },
 

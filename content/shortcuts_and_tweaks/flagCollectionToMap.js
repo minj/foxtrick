@@ -7,6 +7,7 @@ FoxtrickFlagCollectionToMap = {
 	
     MODULE_NAME : "FlagCollectionToMap",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('flagCollection'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Colored NonHt countries, own country in red if missing",
     DEFAULT_ENABLED : true,
@@ -116,7 +117,6 @@ FoxtrickFlagCollectionToMap = {
 
 
     init : function() {
-        Foxtrick.registerPageHandler('flagCollection', this);
         this.setupCountryCodes();
     },
 

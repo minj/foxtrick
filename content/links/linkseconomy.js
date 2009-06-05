@@ -9,12 +9,11 @@ var FoxtrickLinksEconomy = {
 	
     MODULE_NAME : "LinksEconomy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('economy'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'economy',
-                                          FoxtrickLinksEconomy );
 			Foxtrick.initOptionsLinks(this,"economylink");
     },
 

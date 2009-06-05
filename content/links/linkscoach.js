@@ -9,12 +9,11 @@ var FoxtrickLinksCoach = {
 	
     MODULE_NAME : "LinksCoach",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('coach'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'coach',
-                                          FoxtrickLinksCoach );
 			Foxtrick.initOptionsLinks(this,"coachlink");
     },
 

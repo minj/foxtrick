@@ -9,12 +9,11 @@ var FoxtrickLinksAlliances = {
 	
     MODULE_NAME : "LinksAlliances",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('federation'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'federation',
-                                          FoxtrickLinksAlliances );
 			Foxtrick.initOptionsLinks(this,"federationlink");
     },
 

@@ -8,6 +8,7 @@ var FoxtrickSkillTranslation = {
 	
     MODULE_NAME : "SkillTranslation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('denominations'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",	
 	LASTEST_CHANGE:"Adds English translations to skills on help/denominations page (default on)",
@@ -167,11 +168,8 @@ team_confidence	: new Array(
 	"disastrous",
 	"non-existent"
 ),			
-
-
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'denominations', this);
     },
 
     run : function( page, doc ) { dump('in SkillTranslation\n');

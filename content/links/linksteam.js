@@ -9,12 +9,11 @@ var FoxtrickLinksTeam = {
 	
     MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('teamPageGeneral'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'teamPageGeneral',
-                                          FoxtrickLinksTeam );
 			Foxtrick.initOptionsLinks(this,"teamlink" );
     },
 

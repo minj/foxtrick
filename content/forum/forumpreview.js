@@ -9,22 +9,15 @@ var FoxtrickForumPreview = {
     MODULE_NAME : "ForumPreview",
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Changed quotes",
 	
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
     _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditorMain_txtBody',
 
     init : function() {
-        Foxtrick.registerPageHandler( 'forumWritePost', this );
-        Foxtrick.registerPageHandler( 'messageWritePost', this );
-        Foxtrick.registerPageHandler( 'guestbook', this );
-        Foxtrick.registerPageHandler( 'announcements', this );
-        Foxtrick.registerPageHandler( 'ads', this );
-        
     },
 
     run : function( page, doc ) {

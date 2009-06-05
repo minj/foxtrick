@@ -8,13 +8,10 @@ var FoxtrickHideFaceTransferImages = {
 	
     MODULE_NAME : "HideFaceTransferImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'playerdetail', this);
-            Foxtrick.registerPageHandler( 'players', this);
-            Foxtrick.registerPageHandler( 'YouthPlayer', this);
-            Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -38,13 +35,10 @@ var FoxtrickHideFaceInjuryImages = {
 	
     MODULE_NAME : "HideFaceInjuryImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'playerdetail', this);
-            Foxtrick.registerPageHandler( 'players', this);
-            Foxtrick.registerPageHandler( 'YouthPlayer', this);
-            Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -67,13 +61,10 @@ var FoxtrickHideFaceSuspendedImages = {
 	
     MODULE_NAME : "HideFaceSuspendedImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-        Foxtrick.registerPageHandler( 'playerdetail', this);
-        Foxtrick.registerPageHandler( 'players', this);
-        Foxtrick.registerPageHandler( 'YouthPlayer', this);
-        Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -97,11 +88,10 @@ var FoxtrickColouredYouthFaces = {
 	
     MODULE_NAME : "ColouredYouthFaces",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : false,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'YouthPlayer', this);
-            Foxtrick.registerPageHandler( 'YouthPlayers', this);
     },
 
     run : function( page, doc ) {
@@ -123,12 +113,10 @@ var FoxtrickMovePlayerStatement = {
 	
     MODULE_NAME : "MovePlayerStatement",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('playerdetail','YouthPlayer'), 
     DEFAULT_ENABLED : false,
 	
     init : function() {
-            Foxtrick.registerPageHandler('playerdetail',this);
-			Foxtrick.registerPageHandler( 'YouthPlayer',this);
-
     },
 
     run : function( page, doc ) {

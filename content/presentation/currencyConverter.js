@@ -6,10 +6,10 @@ FoxtrickCurrencyConverter = {
 
     MODULE_NAME : "CurrencyConverter",
     MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
+	PAGES : new Array('all_late'), 
     DEFAULT_ENABLED : false,
 
     init : function() {
-        Foxtrick.registerPageHandler('all_late', this);
     },
 
     run : function(page, doc) {

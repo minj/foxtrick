@@ -8,12 +8,11 @@ var FoxtrickGoToPostBox = {
 	
     MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 	
 	DEFAULT_ENABLED : false,
 	CSS: "chrome://foxtrick/content/resources/css/gotopostbox.css",
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickGoToPostBox );
     },
 
     run : function( page, doc ) {

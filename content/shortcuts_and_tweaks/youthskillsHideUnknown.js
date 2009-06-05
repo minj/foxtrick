@@ -8,12 +8,12 @@ var FoxtrickYouthSkillHideUnknown = {
     
     MODULE_NAME : "YouthSkillHideUnknown",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Hide unknown youthskills",
 
     init : function() {
-        Foxtrick.registerPageHandler( 'YouthPlayers', this );
     },
 
     run : function( page, doc ) {

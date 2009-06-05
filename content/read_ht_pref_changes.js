@@ -9,6 +9,7 @@ var FoxtrickReadHtPrefs = {
 	
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
+	PAGES : new Array('prefSettings'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.6.2",
 	LASTEST_CHANGE:"Locale now independent from Firefox locale. Option to auto-change language if hattricks language gets changed (default on)",
@@ -16,8 +17,6 @@ var FoxtrickReadHtPrefs = {
 	codes:{},
 	
     init : function() {
-            Foxtrick.registerPageHandler('prefSettings',this);
-
 			this.codes['2']='en';
 			this.codes['3']='de';
 			this.codes['43']='bg';
@@ -109,15 +108,15 @@ var FoxtrickMyHT = {
 	
     MODULE_NAME : "FoxtrickMyHT",
 	//MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
+	PAGES : new Array('myhattrick'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"FoxTrick MyHT message shorted. Changes moved to html preferences. Shown only once again",
 	
-	NewModules:null,
+	NewModules: null,
 	
     init : function() {
-            Foxtrick.registerPageHandler('myhattrick',this);
-   },
+    },
 
     run : function(page, doc ) {  
     try{			

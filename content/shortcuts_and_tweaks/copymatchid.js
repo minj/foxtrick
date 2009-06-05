@@ -8,26 +8,13 @@ var FoxtrickCopyMatchID = {
 
 	MODULE_NAME : "CopyMatchID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+ 	PAGES : new Array('matches','matchesarchiv','matcheshistory',
+					'matchesLatest','arena','matchLineup','match'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8",
 	LASTEST_CHANGE:"Fix for match preview page",
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'matches',
-			FoxtrickCopyMatchID );
-		Foxtrick.registerPageHandler( 'matchesarchiv',
-			FoxtrickCopyMatchID );
-		Foxtrick.registerPageHandler( 'matcheshistory',
-			FoxtrickCopyMatchID );
-		Foxtrick.registerPageHandler( 'matchesLatest',
-			FoxtrickCopyMatchID );
-		Foxtrick.registerPageHandler( 'arena',
-			FoxtrickCopyMatchID );
-			
-		Foxtrick.registerPageHandler( 'matchLineup',
-			FoxtrickCopyMatchID );
-		Foxtrick.registerPageHandler( 'match',
-			FoxtrickCopyMatchID );
 	},
 	
 	run : function( page, doc ) { 

@@ -7,14 +7,12 @@ var FoxtrickHelper = {
 
 	
 	MODULE_NAME : "Helper",
+	PAGES : new Array('myhattrick'), 
 	DEFAULT_ENABLED : true,
 	OWNTEAMINFO:"",
 	
 	init : function() {
-		Foxtrick.registerPageHandler( 'myhattrick',
-		FoxtrickHelper );
 	},
-
 	
 	run : function( page, doc ) {
 		this.getOwnTeamInfo(doc);	

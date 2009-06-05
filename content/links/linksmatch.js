@@ -9,12 +9,11 @@ var FoxtrickLinksMatch = {
 	
     MODULE_NAME : "LinksMatch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'match',
-                                          FoxtrickLinksMatch);
 			var linktypes = new Array("playedmatchlink","nextmatchlink","matchlink");
 			Foxtrick.initOptionsLinksArray(this,linktypes);
     },

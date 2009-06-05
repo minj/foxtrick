@@ -7,6 +7,7 @@ FoxtrickFixcssProblems = {
        
     MODULE_NAME : "FixcssProblems",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Option to change guestbook layout",	
@@ -48,9 +49,7 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css"
                                 ),
                                
-        init : function() {
-        Foxtrick.registerPageHandler( 'all' , this );          
-               
+    init : function() {
     },
 
                                                                        

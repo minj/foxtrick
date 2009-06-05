@@ -8,14 +8,11 @@ var FoxtrickAddLeaveConfButton = {
 
     MODULE_NAME : "AddLeaveConfButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array('forum','forumSettings'), 
 	DEFAULT_ENABLED : true,
 	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'forum',
-                                          FoxtrickAddLeaveConfButton );
-			Foxtrick.registerPageHandler( 'forumSettings',
-                                          FoxtrickAddLeaveConfButton );
     },
     
     run : function( page, doc ) {

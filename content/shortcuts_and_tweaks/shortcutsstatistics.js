@@ -8,12 +8,12 @@ var FoxtrickShortcutsStatistics = {
 
     MODULE_NAME : "shortcutsstatistics",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
 	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers", "Prefs"),
 	CSS:"",
 	
     init : function() {
-        Foxtrick.registerPageHandler( 'all', this);
 		Foxtrick.unload_css_permanent ( this.CSS );
 		
 		var num_shown=0;

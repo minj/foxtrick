@@ -8,11 +8,10 @@ var FoxtrickPersonalityImages = {
 	
     MODULE_NAME : "PersonalityImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'playerdetail',
-                                          FoxtrickPersonalityImages);
     },
 
     run : function( page, doc ) {

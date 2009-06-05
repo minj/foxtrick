@@ -9,18 +9,13 @@ var FoxtrickAddManagerButtons = {
 
     MODULE_NAME : "AddManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('managerPage','teamPage','youthoverview'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8",
 	LASTEST_CHANGE:"Fixed sendmessages on youthoverview page",
 	
 
     init : function() {
-        Foxtrick.registerPageHandler( 'managerPage',
-                                        FoxtrickAddManagerButtons );
-		Foxtrick.registerPageHandler( 'teamPage', 
-										FoxtrickAddManagerButtons );
-		Foxtrick.registerPageHandler( 'youthoverview', 
-										FoxtrickAddManagerButtons );
     },
     
     run : function( page, doc ) { 

@@ -8,14 +8,12 @@ var FoxtrickCopyRatingsToClipboard = {
 
     MODULE_NAME : "CopyRatingsToClipboard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"new table format, added matchID and result",    
 
 	init : function() {
-        Foxtrick.registerPageHandler( 'match', this );
     },
     
     run : function( page, doc ) {

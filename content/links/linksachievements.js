@@ -9,12 +9,11 @@ var FoxtrickLinksAchievements = {
 	
     MODULE_NAME : "LinksAchievements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('achievements'), 
 	DEFAULT_ENABLED : false,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'achievements',
-                                          FoxtrickLinksAchievements );
 			Foxtrick.initOptionsLinks(this,"achievementslink");
     },
 

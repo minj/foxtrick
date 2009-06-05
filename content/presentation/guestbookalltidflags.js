@@ -11,14 +11,13 @@ var FoxtrickGuestbookAlltidFlags = {
 
 	MODULE_NAME : "GuestbookAlltidFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('guestbook'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Option to hide answer-to links",
 	OPTIONS : new Array("AddAlltidFlags","HideAnswerToLinks"),
 	
 	init : function() {
-		Foxtrick.registerPageHandler( 'guestbook',
-			FoxtrickGuestbookAlltidFlags );
 	},
 
 	run : function( page, doc ) {

@@ -9,14 +9,12 @@ var FoxtrickForumSearch = {
     MODULE_NAME : "ForumSearch",
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array('forum'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Collects some search information",
 	
     init : function() {
-        Foxtrick.registerPageHandler( 'forum', this );
     },
 
     run : function( page, doc ) {

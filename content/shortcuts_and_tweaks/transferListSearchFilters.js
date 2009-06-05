@@ -7,6 +7,7 @@ FoxtrickTransferListSearchFilters = {
 	
     MODULE_NAME : "TransferListSearchFilters",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('transferListSearchForm'), 
     DEFAULT_ENABLED : true,
     _MAX_FILTER_DISP_LENGTH : 23,
 
@@ -46,7 +47,6 @@ FoxtrickTransferListSearchFilters = {
     },
 
     init : function() {
-        Foxtrick.registerPageHandler('transferListSearchForm', this);
     },
 
     run : function(page, doc) {

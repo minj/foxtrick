@@ -9,12 +9,11 @@ var FoxtrickLinksTraining = {
 	
     MODULE_NAME : "LinksTraining",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('training'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'training',
-                                          FoxtrickLinksTraining );
 			Foxtrick.initOptionsLinks(this,"traininglink");
     },
 

@@ -9,12 +9,11 @@ var FoxtrickLinksManager = {
 	
     MODULE_NAME : "LinksManager",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('managerPage'), 
 	DEFAULT_ENABLED : false,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'managerPage',
-                                          FoxtrickLinksManager );
 			Foxtrick.initOptionsLinks(this,"managerlink");
     },
 

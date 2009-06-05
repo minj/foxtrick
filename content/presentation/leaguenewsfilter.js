@@ -8,13 +8,13 @@ var FoxtrickLeagueNewsFilter = {
 	
     MODULE_NAME : "LeagueNewsFilter",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.7.5",
 	LASTEST_CHANGE:"Fixed problems with ShortPAs and repeated useage",
 	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),
 	
     init : function() {
-	Foxtrick.registerPageHandler( 'league', this);
     },
 
     run : function( page, doc ) { 
@@ -147,12 +147,12 @@ var FoxtrickShortPAs = {
 	
     MODULE_NAME : "ShortPAs",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Fox for PAs with horizontal lines",
 	
     init : function() {
-	Foxtrick.registerPageHandler( 'league', this);
     },
 		
 	run : function( page, doc ) {	

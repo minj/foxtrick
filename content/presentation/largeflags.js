@@ -8,11 +8,10 @@ var FoxtrickLargeFlags = {
 	
     MODULE_NAME : "LargeFlags",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
 	
     init : function() {
-        Foxtrick.registerPageHandler( 'playerdetail',
-                                      FoxtrickLargeFlags);
     },
 
     run : function( page, doc ) {

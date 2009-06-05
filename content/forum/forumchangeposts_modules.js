@@ -18,6 +18,7 @@ var FoxtrickCopyPostID = {
 
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.7.5",
 	LASTEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
 	DEFAULT_ENABLED : false,
@@ -25,8 +26,6 @@ var FoxtrickCopyPostID = {
 	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'forumViewThread',
-			this );
 	},
 	
 	run : function( page, doc ) {
@@ -46,14 +45,13 @@ var FoxtrickCopyPosting = {
 
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.7",	
 	LASTEST_CHANGE:"Added option to copy forum posting",
 	DEFAULT_ENABLED : false,
 	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'forumViewThread',
-			this );
 	},
 	
 	run : function( page, doc ) {
@@ -74,6 +72,7 @@ var FoxtrickForumAlterHeaderLine = {
 	
     MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName",
 						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar"),
@@ -86,8 +85,6 @@ var FoxtrickForumAlterHeaderLine = {
 							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_RemoveSupporterStar.css"),
 							
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickForumAlterHeaderLine );										  			
     },
 	
     run : function( page, doc ) {
@@ -110,13 +107,10 @@ var FoxtrickForumRedirManagerToTeam = {
 	
     MODULE_NAME : "ForumRedirManagerToTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread","teamPageGeneral"), 
 	DEFAULT_ENABLED : false,
 
 	init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickForumRedirManagerToTeam);
-            Foxtrick.registerPageHandler( 'teamPageGeneral',
-                                          FoxtrickForumRedirManagerToTeam);
     },
 
     run : function( page, doc ) { 		
@@ -138,11 +132,10 @@ var FoxtrickMoveLinks = {
 	
     MODULE_NAME : "MoveLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickMoveLinks );
     },
 
     run : function( page, doc ) { 
@@ -164,12 +157,11 @@ var FoxtrickMoveLinks = {
 var FoxtrickHideManagerAvatarUserInfo = {
        
     MODULE_NAME : "HideManagerAvatarUserInfo",
-        MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-        DEFAULT_ENABLED : false,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
+    DEFAULT_ENABLED : false,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickHideManagerAvatarUserInfo );
     },
 
     run : function( page, doc ) { 
@@ -191,11 +183,10 @@ var FoxtrickHideManagerAvatar = {
 	
     MODULE_NAME : "HideManagerAvatar",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickHideManagerAvatar );
     },
 
     run : function( page, doc ) { 
@@ -218,11 +209,10 @@ var FoxtrickAddDefaultFaceCard = {
 	
     MODULE_NAME : "AddDefaultFaceCard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : true,
 
     init : function() {
-            Foxtrick.registerPageHandler( 'forumViewThread',
-                                          FoxtrickAddDefaultFaceCard );
     },
 
     run : function( page, doc ) {
@@ -245,13 +235,12 @@ var FoxtrickAlltidFlags = {
 
 	MODULE_NAME : "AlltidFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 	//RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
 	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'forumViewThread',
-			FoxtrickAlltidFlags );
 	},
 
 	run : function( page, doc ) {  
@@ -274,11 +263,10 @@ var FoxtrickForumSearch = {
 
 	MODULE_NAME : "ForumSearch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'forumViewThread',
-			FoxtrickAlltidFlags );
 	},
 
 	run : function( page, doc ) {  

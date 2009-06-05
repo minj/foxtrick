@@ -17,6 +17,9 @@ Foxtrick.run_every_page = [];
  */
 Foxtrick.run_on_page = [];
 
+/*Modules that may! be called on specific hattrick page loads independent one being enanbled or not.*/
+Foxtrick.may_run_on_page = [];
+
 /* temp array  which stored pages that run on currently dispalyed page */
 Foxtrick.run_on_cur_page = [];
 
@@ -52,8 +55,7 @@ var FoxtrickMain = {
 		}
         
 
-		var i;		
-        // init core modules
+		// init core modules
         for ( var i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
         }
@@ -61,6 +63,7 @@ var FoxtrickMain = {
 		// create handler arrays for each recognized page
 		for ( var i in Foxtrick.ht_pages ) {
 			Foxtrick.run_on_page[i] = new Array();
+			Foxtrick.may_run_on_page[i] = new Array();
 		}
 			
 		// init all modules
@@ -84,8 +87,12 @@ var FoxtrickMain = {
 					//dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
 				}
 			}
+			
+			if ( module.MODULE_NAME && module.PAGES) {
+				Foxtrick.registerModulePages(module);
+            }
 		}
-		if(Foxtrick && Foxtrick.statusbarDeactivate) Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));						
+		if (Foxtrick && Foxtrick.statusbarDeactivate) Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));						
 		
 		// reload skins
 		FoxtrickSkinPlugin.load( null);
@@ -206,8 +213,7 @@ var FoxtrickMain = {
 				function( fn ) {
 					try {
 						fn.run( doc );
-						Foxtrick.run_on_cur_page.push({'page':'','module':fn});
-								
+						//Foxtrick.run_on_cur_page.push({'page':'','module':fn});								
 					} catch (e) {
 						dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
 						Components.utils.reportError(e);
@@ -224,18 +230,23 @@ var FoxtrickMain = {
 					Foxtrick.run_on_page[i].forEach(
 						function( fn ) {
 							try {
-								//dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );								
-								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
+								dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );								
 								fn.run( i, doc );
 							} catch (e) {
 								dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
 								Components.utils.reportError(e);
 							}
 						} );
+					Foxtrick.may_run_on_page[i].forEach(
+						function( fn ) {
+								//dump ( "Foxtrick module " + fn.MODULE_NAME + " may run() at page " + i + "\n  " );								
+								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
+								
+						} );							
 				}
 			}
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
+				dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
 			}
 
 			FoxtrickOnPagePrefs.run(doc, Foxtrick.run_on_cur_page);
@@ -310,6 +321,22 @@ Foxtrick.getHref = function( doc ) {
     return doc.location.href;
 }
 
+
+Foxtrick.registerModulePages = function( module) {
+try {
+    // if is enabled in preferences and has a run() function
+    if ( module.run ) {
+		for (var i=0;i<module.PAGES.length;++i) {
+			Foxtrick.may_run_on_page[module.PAGES[i]].push( module );
+			//dump(module.PAGES[i]+'\n');
+			if (Foxtrick.isModuleEnabled( module ) )
+				Foxtrick.run_on_page[module.PAGES[i]].push( module );
+		}
+    }
+} catch(e){dump('registerModulePages: '+e+'\n');}
+}
+
+
 /**
  * Register with this method to have your module's run()
  * function called on specific pages (names can be found
@@ -333,7 +360,7 @@ Foxtrick.registerPageHandler = function( page, who ) {
  * Your run() function will be called with only one argument,
  * the current document.
  */
-Foxtrick.registerAllPagesHandler = function( who ) {
+Foxtrick.registerAllPagesHandler = function( who ) { 
     if ( who.run )
     {
         Foxtrick.run_every_page.push( who );

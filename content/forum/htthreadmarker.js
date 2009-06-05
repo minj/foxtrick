@@ -8,10 +8,10 @@
 
     MODULE_NAME : "HTThreadMarker",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array('forum'), 
     DEFAULT_ENABLED : true,
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'forum', FoxtrickHTThreadMarker );
 	},
 
 	run : function( page, doc ) {

@@ -6,6 +6,7 @@
 FoxtrickMatchReportFormat = {
 	MODULE_NAME : "MatchReportFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
@@ -32,7 +33,6 @@ FoxtrickMatchReportFormat = {
 	//OPTIONS : new Array("DefaultShow"),
 
 	init : function() {
-        Foxtrick.registerPageHandler( "match", this );
     },
 
     run : function( page, doc ) {

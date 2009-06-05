@@ -9,6 +9,7 @@ var FoxtrickForumTemplates = {
     MODULE_NAME : "ForumTemplates",
     MODULE_AUTHOR : "Mod-PaV",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array('forumWritePost','messageWritePost','htpress'), 
     DEFAULT_ENABLED : true,
 	OPTIONS : new Array("DefaultShow","CustomWidth"),
 	OPTION_TEXTS : true,
@@ -16,8 +17,6 @@ var FoxtrickForumTemplates = {
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
 	NEW_AFTER_VERSION: "0.4.8",	
-	SCREENSHOT:"",
-	PREF_SCREENSHOT:"",
 	LASTEST_CHANGE:"Added HT Press Templates for Staff",
     
     _MAX_TEMPLATE_DISP_LENGTH : 60,
@@ -28,9 +27,6 @@ var FoxtrickForumTemplates = {
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
     
     init : function() {
-        Foxtrick.registerPageHandler( 'forumWritePost',     FoxtrickForumTemplates );
-		Foxtrick.registerPageHandler( 'messageWritePost',   FoxtrickForumTemplates );
-		Foxtrick.registerPageHandler( 'htpress',            FoxtrickForumTemplates );
     },
 
     run : function( page, doc ) {

@@ -8,6 +8,7 @@ var FoxtrickHeaderFix = {
 	
     MODULE_NAME : "HeaderFix",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('match','arena'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Disabled on LiveFlash page",
@@ -23,9 +24,6 @@ var FoxtrickHeaderFix = {
 		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	
 		//dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
-    
-        Foxtrick.registerPageHandler( 'match',this);
-        Foxtrick.registerPageHandler( 'arena',this);
     },
 
     run : function( page, doc ) { 

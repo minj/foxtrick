@@ -8,14 +8,12 @@ var FoxtrickTables = {
 
     MODULE_NAME : "GoaldifferenceToTables",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('promotion','oldseries','marathon'), 
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.8.1",	
     LASTEST_CHANGE:"adds goal difference to tables",    
 
     init : function() {
-        Foxtrick.registerPageHandler( 'promotion', this );
-        Foxtrick.registerPageHandler( 'oldseries', this );
-        Foxtrick.registerPageHandler( 'marathon', this );
     },
     
     run : function( page, doc ) {

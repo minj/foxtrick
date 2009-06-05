@@ -8,11 +8,11 @@ var FoxtrickContextMenueCopyId = {
 
     MODULE_NAME : "ContextMenueCopyId",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    DEFAULT_ENABLED : true,
+    PAGES : new Array('all'), 
+	DEFAULT_ENABLED : true,
 	ID:'',
      
     init : function() {
-        Foxtrick.registerPageHandler( 'all', this );
     },
 
     run : function( page, doc ) {

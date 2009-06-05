@@ -8,12 +8,12 @@ var FoxtrickMovePlayerSelectbox= {
     
 		MODULE_NAME : "MovePlayerSelectbox",
         MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+		PAGES : new Array('playerdetail'), 
         DEFAULT_ENABLED : false,
 		NEW_AFTER_VERSION: "0.4.7",	
 		LASTEST_CHANGE:"option to move player select box up on playersdetail page (default off)",
 
     init : function() {
-            Foxtrick.registerPageHandler( 'playerdetail',this);
     },
 
     run : function( page, doc ) {
@@ -47,12 +47,12 @@ var FoxtrickMoveManagerOnline= {
     
 		MODULE_NAME : "MoveManagerOnline",
         MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+		PAGES : new Array('region'), 
         DEFAULT_ENABLED : false,
 		NEW_AFTER_VERSION: "0.4.7",	
 		LASTEST_CHANGE: "option to move move online managers up on region page (default off)",
 
     init : function() {
-            Foxtrick.registerPageHandler( 'region',this);
     },
 
     run : function( page, doc ) {

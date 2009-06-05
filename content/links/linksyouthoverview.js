@@ -9,12 +9,11 @@ var FoxtrickLinksYouthOverview = {
 	
     MODULE_NAME : "LinksYouthOverview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('youthoverview'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 	
 
     init : function() {
-            Foxtrick.registerPageHandler( 'youthoverview',
-                                          FoxtrickLinksYouthOverview );
 			Foxtrick.initOptionsLinks(this,"youthlink");	
 	    },
 

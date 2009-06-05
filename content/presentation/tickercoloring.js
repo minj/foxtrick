@@ -8,6 +8,7 @@ var FoxtrickTickerColoring = {
 	
     MODULE_NAME : "TickerColoring",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('all'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.7",
 	LASTEST_CHANGE:"Option to use custom color added",	
@@ -27,9 +28,6 @@ var FoxtrickTickerColoring = {
     OLD_CSS:"",
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'all',
-                                          FoxtrickTickerColoring);
-										  
 		var zaw = ''
 		/* Ticker colors by htbaumanns*/
 		+'@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'

@@ -8,6 +8,7 @@ var FoxtrickCrossTable = {
 
     MODULE_NAME : "CrossTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('fixtures'), 
 	DEFAULT_ENABLED : true,
     OPTIONS :  new Array("cut_long_teamnames"),
     OPTION_TEXTS : true,
@@ -17,7 +18,6 @@ var FoxtrickCrossTable = {
 		
     _week : 14,
 	init : function() {
-        Foxtrick.registerPageHandler( 'fixtures', this );
     },
 
     run : function( page, doc ) {

@@ -8,6 +8,7 @@ var FoxtrickTeamPopupLinks = {
     
     MODULE_NAME : "TeamPopupLinks",
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+		PAGES : new Array('all_late'), 
         DEFAULT_ENABLED : true,
 		NEW_AFTER_VERSION: "0.4.8.2",	
 		LASTEST_CHANGE:"Added teamhistory, next match and addnextmatch(to htlive) (default off)",
@@ -62,8 +63,7 @@ var FoxtrickTeamPopupLinks = {
 
 		
     init : function() {
-        Foxtrick.registerPageHandler('all_late', FoxtrickTeamPopupLinks );
-                this.initOptions();
+        this.initOptions();
     },
 
 	
@@ -651,6 +651,7 @@ var FoxtrickTeamPopupLinksMore = {
     
 		MODULE_NAME : "TeamPopupLinksMore",
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+		PAGES : new Array('all_late'), 
         DEFAULT_ENABLED : true,
         OPTIONS :  new Array( "Manager",
 							"Team",
@@ -694,7 +695,6 @@ var FoxtrickTeamPopupLinksMore = {
 		utext:"",
 		
     init : function() {
-        Foxtrick.registerPageHandler('all_late', FoxtrickTeamPopupLinksMore );
     },
 
     run : function( page, doc ) {  

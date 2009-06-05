@@ -8,12 +8,12 @@ Foxtrick.Ratings = {
 
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, // will be filled in initRatings
 	ratingDefs : {}, // will be filled in initOptions
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'match', this );
 		Foxtrick.Matches.init();
 		this.initHtRatings();
 		this.initOptions();

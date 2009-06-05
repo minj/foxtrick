@@ -9,12 +9,11 @@ var FoxtrickLinksNational = {
 	
     MODULE_NAME : "LinksNational",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('national'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'national',
-                                          FoxtrickLinksNational );
 			Foxtrick.initOptionsLinks(this,"nationalteamlink");
     },
 

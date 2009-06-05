@@ -8,6 +8,7 @@ var FoxtrickYouthSkillTable = {
     
     MODULE_NAME : "YouthSkillTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Show youth skills as table",
@@ -17,7 +18,6 @@ var FoxtrickYouthSkillTable = {
 	_unfold_class:'',
 	
     init : function() {
-        Foxtrick.registerPageHandler( 'YouthPlayers', this );
     },
 
     run : function( page, doc ) {

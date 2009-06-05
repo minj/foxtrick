@@ -8,6 +8,7 @@ var FoxtrickTeamSelectBox= {
     
     MODULE_NAME : "TeamSelectBox",
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+		PAGES : new Array('players','YouthPlayers'), 
         DEFAULT_ENABLED : true,
 		NEW_AFTER_VERSION: "0.4.6.2",	
 		LASTEST_CHANGE:"TeamSelectBox eneabled for youth players. Dropdown image added",
@@ -15,8 +16,6 @@ var FoxtrickTeamSelectBox= {
 		listbox:"",
 
     init : function() {
-            Foxtrick.registerPageHandler( 'players',this);
-            Foxtrick.registerPageHandler( 'YouthPlayers',this);
     },
 
     run : function( page, doc ) {

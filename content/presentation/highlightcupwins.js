@@ -8,12 +8,12 @@ var FoxtrickHighlightCupwins = {
 	
     MODULE_NAME : "HighlightCupwins",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('cupmatches'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Highlight winning teams on CupMatches page",
 		
     init : function() {
-		Foxtrick.registerPageHandler('cupmatches',this);
     },
 
     run : function( page, doc ) {	

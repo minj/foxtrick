@@ -10,11 +10,10 @@ var FoxtrickStarsCounter = {
 
 	MODULE_NAME : "StarsCounter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('matchLineup'), 
 	DEFAULT_ENABLED : true,
 	
 	init : function() {
-			Foxtrick.registerPageHandler( 'matchLineup',
-                                          FoxtrickStarsCounter );
     },
 
     run : function( page, doc ) {

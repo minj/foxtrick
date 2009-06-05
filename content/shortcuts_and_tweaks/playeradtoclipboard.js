@@ -9,6 +9,7 @@ var FoxtrickPlayerAdToClipboard = {
 
     MODULE_NAME : "CopyPlayerAdToClipboard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
 	
 	_PLAYMAKING : 3,
@@ -17,8 +18,6 @@ var FoxtrickPlayerAdToClipboard = {
 	_DEFENDING : 2,
 	
 	init : function() {
-        Foxtrick.registerPageHandler( 'playerdetail',
-                                        FoxtrickPlayerAdToClipboard );
     },
     
     run : function( page, doc ) {

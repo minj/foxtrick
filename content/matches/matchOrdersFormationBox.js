@@ -7,10 +7,10 @@ FoxtrickFormationBoxInMatchOrders = {
 	
     MODULE_NAME : "FormationBoxInMatchOrders",
     MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('matchOrders'), 
     DEFAULT_ENABLED : true,
 
     init : function() {
-        Foxtrick.registerPageHandler('matchOrders', this);
     },
 
     run : function(page, doc) {

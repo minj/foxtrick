@@ -9,12 +9,11 @@ var FoxtrickLinksChallenges = {
 	
     MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('challenges'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
 	init : function() {
-            Foxtrick.registerPageHandler( 'challenges',
-                                          FoxtrickLinksChallenges );
 			Foxtrick.initOptionsLinks(this,"challengeslink");
     },
 

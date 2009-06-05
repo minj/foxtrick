@@ -9,13 +9,10 @@ var FoxtrickPlayerBirthday = {
 
     MODULE_NAME : "PlayerBirthday",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('players','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
 
     init : function() {
-        Foxtrick.registerPageHandler( 'players',
-                                        FoxtrickPlayerBirthday );
-        Foxtrick.registerPageHandler( 'YouthPlayers',
-                                        FoxtrickPlayerBirthday );
    },
     
     run : function( page, doc ) { 

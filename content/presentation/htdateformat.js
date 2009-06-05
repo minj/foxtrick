@@ -7,6 +7,9 @@ FoxtrickHTDateFormat = {
 
     MODULE_NAME : "HTDateFormat",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+ 	PAGES : new Array('transfersTeam','TransfersPlayer','TransferCompare',
+					'matches','matchesarchiv','teamPageGeneral','achievements',
+					'teamevents','history','arena','league'), 
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.6.2",	
 	LASTEST_CHANGE:"Option to set first day of week added",
@@ -16,18 +19,6 @@ FoxtrickHTDateFormat = {
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
     init : function() {
-        Foxtrick.registerPageHandler('transfersTeam', this);
-        Foxtrick.registerPageHandler('TransfersPlayer', this);
-        Foxtrick.registerPageHandler('TransferCompare', this);
-        Foxtrick.registerPageHandler('matches', this);
-        // Foxtrick.registerPageHandler('match', this);
-        Foxtrick.registerPageHandler('matchesarchiv', this);
-        Foxtrick.registerPageHandler('teamPageGeneral', this);
-        Foxtrick.registerPageHandler('achievements', this);
-        Foxtrick.registerPageHandler('teamevents', this);
-        Foxtrick.registerPageHandler('history', this);
-        Foxtrick.registerPageHandler('arena', this);
-        Foxtrick.registerPageHandler('league', this);
     },
 
     run : function(page, doc) {

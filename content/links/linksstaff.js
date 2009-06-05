@@ -9,12 +9,11 @@ var FoxtrickLinksStaff = {
 	
     MODULE_NAME : "LinksStaff",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('staff'), 
 	DEFAULT_ENABLED : false,
 	OPTIONS : {}, 
 
     init : function() {
-            Foxtrick.registerPageHandler( 'staff',
-                                          FoxtrickLinksStaff );
 			Foxtrick.initOptionsLinks(this,"stafflink");
     },
 

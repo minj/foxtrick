@@ -8,6 +8,7 @@ var FoxtrickForumStaffMarker = {
 
     MODULE_NAME : "ForumStaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array('forumViewThread','forumWritePost'), 
 	DEFAULT_ENABLED : true,
 	//NEW_AFTER_VERSION: "0.4.8.1",
 	//LASTEST_CHANGE:"added flags dumdidum",
@@ -181,11 +182,7 @@ var FoxtrickForumStaffMarker = {
 		foxtrickersArray_joined :'',
 
     init : function() {
-        Foxtrick.registerPageHandler( 'forumViewThread',
-                                      FoxtrickForumStaffMarker );
-        Foxtrick.registerPageHandler( 'forumWritePost',
-                                      FoxtrickForumStaffMarker );
-									  
+
 		this.stl_HT = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text"); 
           if (!this.stl_HT) this.stl_HT = this.OPTION_TEXTS_DEFAULT_VALUES[0];
         this.stl_GM = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text"); 

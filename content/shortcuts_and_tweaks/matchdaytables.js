@@ -8,10 +8,10 @@ var FoxtrickMatchDayTables = {
 
 	MODULE_NAME : "MatchDayTables",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
 
 	init : function() {
-		Foxtrick.registerPageHandler( 'league', this );
 	},
 	
 	run : function( page, doc ) { 

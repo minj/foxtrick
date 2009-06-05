@@ -9,13 +9,12 @@ var FoxtrickSeniorTeamShortCuts = {
 	
     MODULE_NAME : "SeniorTeamShortCuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('teamPageGeneral'), 
 	DEFAULT_ENABLED : true,
 	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"), 
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'teamPageGeneral',
-                                          FoxtrickSeniorTeamShortCuts );
-   },
+    },
 
     run : function( page, doc ) {
 			try {

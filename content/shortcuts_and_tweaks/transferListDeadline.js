@@ -7,12 +7,10 @@ FoxtrickTransferListDeadline = {
 
     MODULE_NAME : "TransferListDeadline",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('transferListSearchResult','playerdetail','transfer'), 
     DEFAULT_ENABLED : true,
 
     init : function() {
-        Foxtrick.registerPageHandler('transferListSearchResult', this);
-        Foxtrick.registerPageHandler('playerdetail', this);
-        Foxtrick.registerPageHandler('transfer', this);
     },
 
     run : function(page, doc) {

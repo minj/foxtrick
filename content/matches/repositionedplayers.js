@@ -10,6 +10,7 @@ var FoxtrickRepositionedPlayers = {
 
 	MODULE_NAME : "RepositionedPlayers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('matchLineup'), 
 	DEFAULT_ENABLED : true,
     
     COLOR : "#ffa500",
@@ -43,8 +44,6 @@ var FoxtrickRepositionedPlayers = {
                           ),                          
 
 	init : function() {
-			Foxtrick.registerPageHandler( 'matchLineup',
-                                          FoxtrickRepositionedPlayers );
     },
 
     run : function( page, doc ) {

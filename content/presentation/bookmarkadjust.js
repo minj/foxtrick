@@ -8,10 +8,10 @@ Foxtrick.BookmarkAdjust = {
 
     MODULE_NAME : "BookmarkAdjust",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('bookmarks'), 
     DEFAULT_ENABLED : true,
     
     init : function() {
-        Foxtrick.registerPageHandler( 'bookmarks',this );
     },
 
     run : function( page, doc ) {

@@ -8,11 +8,10 @@ var FoxtrickConfirmPlayerBid = {
     
     MODULE_NAME : "ConfirmPlayerBid",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
 
     init : function() {
-        Foxtrick.registerPageHandler( 'playerdetail',
-                                      FoxtrickConfirmPlayerBid );
     },
 
     run : function( page, doc ) {
@@ -54,11 +53,10 @@ var FoxtrickConfirmTL = {
 	
 	MODULE_NAME : "ConfirmTL",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
 
     init : function() {
-        Foxtrick.registerPageHandler( 'playerdetail',
-                                      FoxtrickConfirmTL );
     },
 	
 	run : function( page, doc ) {
@@ -106,11 +104,10 @@ var FoxtrickNTConfirmAddRemove = {
 	
 	MODULE_NAME : "NTConfirmAddRemove",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : false,
 
     init : function() {
-        Foxtrick.registerPageHandler( 'playerdetail',
-                                      FoxtrickNTConfirmAddRemove );
     },
 	
 	run : function( page, doc ) {

@@ -6,6 +6,7 @@
 FoxtrickMatchPlayerColouring = {
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team
@@ -17,8 +18,6 @@ FoxtrickMatchPlayerColouring = {
     UNKNOWN_COLOUR : "#F0F0F0",
 	
 	init : function() {
-        Foxtrick.registerPageHandler( "match",
-                                      FoxtrickMatchPlayerColouring );
     },
     
     run : function( page, doc ) { dump('FoxtrickMatchPlayerColouring\n');

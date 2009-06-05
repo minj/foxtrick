@@ -8,13 +8,13 @@ var FoxtrickForumChangePosts = {
 
 	MODULE_NAME : "ForumChangePosts",
 	//MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : true,
 	bDetailedHeader:false,
+	
 
 	
 	init : function() {
-		Foxtrick.registerPageHandler( 'forumViewThread',
-			FoxtrickForumChangePosts );		
 	},
 	
 	run : function( page, doc ) { 

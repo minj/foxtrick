@@ -9,6 +9,7 @@ var FoxtrickSeasonStats = {
 	
     MODULE_NAME : "SeasonStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('matchesarchiv','matches'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8",
 	LASTEST_CHANGE:"Added season select box",
@@ -17,10 +18,7 @@ var FoxtrickSeasonStats = {
 	_season:-1,
 	
     init : function() {
-            Foxtrick.registerPageHandler( 'matchesarchiv',this );
-			Foxtrick.registerPageHandler( 'matches', this );
-										  
-   },
+    },
 
     run : function( page, doc ) {
 	try  {
