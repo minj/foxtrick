@@ -39,7 +39,9 @@ var FoxtrickAlert = {
 	        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
             doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
             if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
-					doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
+					//doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
+					FoxtrickAlert.showMailAlert(doc.getElementById('menu'));
+					
 			}
 		} catch (e) {
             dump('FoxtrickAlert.js run: '+e);
@@ -52,7 +54,9 @@ var FoxtrickAlert = {
 	
     showMailAlert : function(evt) {
    	try { 		
-		var message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
+		var message;
+		if (evt.getAttribute('id')=='menu') message = evt.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
+		else message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
 				//dump (message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
