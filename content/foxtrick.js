@@ -718,32 +718,17 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		sidebar = doc.getElementById("ctl00_pnlSubMenu");
 		box_class='subMenuBox';
 	}
+	if (!sidebar) return;  // no sidebar. can't add something. someone consider creating sidebar later.
 	
-	var firstDiv = sidebar.getElementsByTagName("div")[0];
-	if (!firstDiv) return;  // no sidebar. can't add something. someone consider creating sidebar later.
+	var divs = sidebar.getElementsByTagName("div");
 	
-	var firstBox;
-	if(firstDiv.id && firstDiv.id.search(/foxtrick_.+\_box/)==-1) {
-		// The sideboxes might be wrapped in another div with an id
-		// See for an example the playersdetail page
-		// own already added boxes might have an id though
-		sidebar = sidebar.getElementsByTagName("div")[0];
-		firstBox = sidebar.getElementsByTagName("div")[0];
-	} else {
-		firstBox = firstDiv;
-	}
-	
-	while(firstBox.className != box_class) {
-		firstBox = firstBox.nextSibling;
-	}
-		
 	// Check if any of the other sidebarboxes have the same header
 	// and find the (alternative/normal) reference-object in the process
 	var otherBox = false;
 	var referenceObject = false;
 	var altReferenceObject = false;
-	var currentBox = firstBox;
-	do {
+	var currentBox,i=0;
+	while (currentBox=divs[i++]) {
 		// Check if this child is of box_class
 		if(currentBox.className==box_class) {
 			var header = currentBox.getElementsByTagName("h2")[0];
@@ -758,7 +743,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 			}
 		}
 		currentBox = currentBox.nextSibling;
-	} while(currentBox.nextSibling);
+	} 
 	
 	if(!referenceObject && referenceHeader != "first" 
 		&& referenceHeader != "last") {
