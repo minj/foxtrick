@@ -33,7 +33,11 @@ FoxtrickLineupShortcut = {
     },
 
 	change : function( page, doc ) {
-
+		switch ( page ) {
+			case 'statsBestgames':
+				this._Analyze_Stat_Page ( doc );
+				break;
+		}
 	},
 
     _Analyze_Player_Page  : function ( doc ) {
@@ -52,8 +56,15 @@ FoxtrickLineupShortcut = {
 			if (matchtable.length>0) {
 				//There are matches
 				matchtable=matchtable.item(0);
+				//Now getting playerid from top of the page:
+				var element=doc.getElementById('mainWrapper');
+				var playerid=FoxtrickHelper.findPlayerId(element);
+				
 				for (i=0;i<matchtable.rows.length;i++) {
-					this._Add_Lineup_Link(doc, matchtable.rows[i]);
+					var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
+					var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href);
+					var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
+					this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
 				}
 			}
 			
@@ -63,28 +74,33 @@ FoxtrickLineupShortcut = {
     },
 	
 	_Analyze_Stat_Page : function ( doc ) {
-        
         try {
-			//TO BE DONE
+			var teamid=doc.getElementById('ctl00_CPMain_ddlPreviousClubs').value;
+			//Now getting playerid from top of the page:
+			var element=doc.getElementById('mainWrapper');
+			var playerid=FoxtrickHelper.findPlayerId(element);
 			var lineuplabel = Foxtrickl10n.getString( "foxtrick.shortcut.matchlineup" );
+			var matchtable=doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('table').item(0);
+			//adding lineup to header row
+			var newhead=doc.createElement('th');
+			newhead.innerHTML=lineuplabel;
+			matchtable.rows[0].appendChild(newhead);
+			//We start from second row because first is header
+			for (i=1;i<matchtable.rows.length;i++) {
+				var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
+				var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
+				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
+			}
 		} catch (e) {
             dump('FoxtrickLineupShortcut'+e);
         }
     },
 	
-	_Add_Lineup_Link : function (doc, myrow ) {
+	_Add_Lineup_Link : function (doc, myrow, teamid, playerid, matchid ) {
 		//the link is: /Club/Matches/MatchLineup.aspx?MatchID=<matchid>&TeamID=<teamid>
 		try {
 			var newcellpos=myrow.cells.length;
-			var link=myrow.cells[1].getElementsByTagName('a').item(0);
 			var newcell=myrow.insertCell(newcellpos);
-			
-			var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href);
-			var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
-			//Now getting playerid from top of the page:
-			var element=doc.getElementById('mainWrapper');
-			var playerid=FoxtrickHelper.findPlayerId(element);
-			
 			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayer='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
 		} catch (e) {
             dump('FoxtrickLineupShortcut'+e);
