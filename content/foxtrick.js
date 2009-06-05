@@ -31,7 +31,7 @@ Foxtrick.news = [];
 
 // remove before release
 Foxtrick.globals=[];
-for(Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
+for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
@@ -42,10 +42,15 @@ var FoxtrickMain = {
 	
     init : function() { 
 		// remove before release
-		if (!Foxtrick.numglobals) for ( var i=0;i<Foxtrick.numglobals;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
-		else for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i ) if (Foxtrick.globals[i]!='QueryInterface') dump('undeclared global variable: ' +Foxtrick.globals[i]+'\n');
-		
-        Foxtrick.numglobals=Foxtrick.globals.length;
+		if (!Foxtrick.numglobals) {
+			for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
+			Foxtrick.numglobals=Foxtrick.globals.length;
+		}
+		else {
+			for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i ) 
+				if (Foxtrick.globals[i]!='QueryInterface') dump('undeclared local global variable: ' +Foxtrick.globals[i]+'\n');
+		}
+        
 
 		var i;		
         // init core modules
@@ -230,9 +235,9 @@ var FoxtrickMain = {
 				}
 			}
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );								
-								
+//				dump ( "Foxtrick module " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " run() at page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
 			}
+
 			FoxtrickOnPagePrefs.run(doc, Foxtrick.run_on_cur_page);
 			// context menue
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
