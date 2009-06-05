@@ -8,7 +8,7 @@ FoxtrickLineupShortcut = {
     MODULE_NAME : "FoxtrickLineupShortcut",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.3",
+	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Add a direct shortcut to lineup in player detail page",
 	OPTIONS : new Array( "HighlightPlayer"),
 
