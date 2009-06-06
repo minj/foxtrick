@@ -15,7 +15,7 @@ var FoxtrickCrossTable = {
     OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1"),
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some style options",
-		
+
     _week : 14,
 	init : function() {
     },
@@ -25,7 +25,7 @@ var FoxtrickCrossTable = {
 		if (tbl_cross) return;
 
 		//var DefaultShow = Foxtrick.isModuleFeatureEnabled( this, "DefaultShow" );
-		
+
         try {
             var width = 540;
             var cutafter = 6;
@@ -35,9 +35,9 @@ var FoxtrickCrossTable = {
                 var dummy = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + this.OPTIONS[0] + "_text");
                 dummy = parseInt(dummy);
                 if (dummy > 1) cutlong = dummy;
-                dump(dummy + '|' +cutlong+ '<<\n');
+                // dump(dummy + '|' +cutlong+ '<<\n');
             }
-            
+
             var div = doc.getElementById('mainBody');
             var tbl_fix = div.getElementsByTagName('TABLE')[0];
 
@@ -60,7 +60,7 @@ var FoxtrickCrossTable = {
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1));
-                                    
+
             var week =  new Array(  new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
                                     new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
                                     new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
@@ -82,7 +82,7 @@ var FoxtrickCrossTable = {
             }
 
             //results
-            var row = 0;
+            var row = 0; points_aw = 0; points_hm = 0;
             for (var j = 0; j<14; j++){ //day
                 // dump(j + ' [--------------------------------\n');
                 for (var i = 0; i<4 ; i++) { //row
@@ -91,7 +91,7 @@ var FoxtrickCrossTable = {
                     var dummy = tblBodyObj.rows[row].cells[1].innerHTML;
 
                     dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
-                    
+
                     var crossID = tblBodyObj.rows[row].cells[1].innerHTML.split('matchID=')[1].split('&amp;TeamId=')[0];
                     // dump('row [' + row + ']  "'+ dummy[0] + '" "' + dummy[1] + '"\n');
                     var home = -1;
@@ -105,13 +105,13 @@ var FoxtrickCrossTable = {
                         if ((home != -1) && (away != -1)) {
 
                             var result = tblBodyObj.rows[row].cells[2].innerHTML.split('-');
-                            
+
                             crossgame[home][away+1] = crossID;
 
                             if (!result[1]) {
                                 result[0] = -1;
                                 result[1] = -1;
-                                
+
                             }
                             else {
                                 result[0] = parseInt(Foxtrick.trim(result[0]));
@@ -126,25 +126,25 @@ var FoxtrickCrossTable = {
                                 if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}
                                 week[home][j+1] = points_hm *1000 + old_hm + result[0] - result[1];
                                 week[away][j+1] = points_aw *1000 + old_aw + result[1] - result[0];
-                                
+
                             }
                             else {
                                 cross[home][away+1] = '-';
                                 week[home][j+1] = week[home][j];
                                 week[away][j+1] = week[away][j];
-                                
+
                             }
                             //dump ('[' + home + ' - '+ away+'] ' + result[0]+':'+result[1] + '|' + crossgame[home][away+1] + '\n');
                             break;
                         }
                     }
                 }
-                // dump('>>>>>>' + week + '<<<<<<\n\n');                
+                // dump('>>>>>>' + week + '<<<<<<\n\n');
 			}
-            
+
 			var dayhead=0;
-			for (var j = 0; j<tblBodyObj.rows.length; j++){ 				
-				if (dayhead==0) { 
+			for (var j = 0; j<tblBodyObj.rows.length; j++){
+				if (dayhead==0) {
 					tblBodyObj.rows[j].cells[1].innerHTML = '<br/>'+tblBodyObj.rows[j].cells[0].innerHTML;
 					tblBodyObj.rows[j].cells[1].setAttribute('class','ch');
 					tblBodyObj.rows[j].setAttribute('style','margin-top:10px;');
@@ -152,9 +152,9 @@ var FoxtrickCrossTable = {
 				++dayhead;
 				if  (dayhead==5) dayhead=0;
 				tblBodyObj.rows[j].deleteCell(3);
-				tblBodyObj.rows[j].deleteCell(0);				
+				tblBodyObj.rows[j].deleteCell(0);
 			}
-             
+
 
             var crosstable = doc.createElement('table');
             crosstable.id = 'ft_cross';
@@ -216,30 +216,42 @@ var FoxtrickCrossTable = {
             }
             div.insertBefore(crosstable, div.getElementsByTagName('h1')[0].nextSibling);
 
-            var css = "chrome://foxtrick/content/resources/css/crosstable.css";
-			Foxtrick.addStyleSheet( doc, css );           
             var divmap = doc.createElement('div');
             divmap.id = 'ft_graph';
             divmap.className = 'ft_graph_div';
-            divmap.setAttribute('style', 'border : 1px dotted blue; width:420px; height:128px;');
+            divmap.setAttribute('style', 'border : 1px dotted #EEEEEE; width:440px; height:200px;margin:10px 0px 10px -10px;');
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
-            for (var draw=14; draw > 0; draw--) {
+            for (var draw=0; draw <= 14; draw++) {
                 this._week = draw;
-                week.sort(this.numComparisonDesc);
-                if (draw == 14) {
-                    for (var teams = 0; teams <8; teams ++){
-                        var name = doc.createElement('div');
-                        name.id = 'ft_graph_t_' + teams;
-                        name.className = 'ft_graph_team';
-                        name.innerHTML = week[teams][0].substring(0,6).replace(/\s/i,"");
-                        divmap.appendChild(name);
-                    }
+                //week.sort(this.numComparisonDesc);
+                this.qsort(week, 0, 7);
+
+                for(var act = 0; act<8; act++) {
+                    if (draw>0) week[act][draw] = act+1;
                 }
-                this.DrawLine(doc, draw+64,draw+8, 420-draw-8,128-draw-8, '#800000');
+                dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');                
             }
-            
-            
-            dump('\n\n>' + week + '<\n\n');                       
+            var position = ''; teams = '';
+            for (var ii = 0; ii<8; ii++) {
+                for(var jj = 1; jj<14; jj++) {
+                    position += (9-week[ii][jj]) + ',';
+                }
+                if (ii < 7) {position += (9-week[ii][14]) + '|';}
+                else {position += (9-week[ii][14]);}
+            }
+            for (var ii = 0; ii<8; ii++) {
+                if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{2}/g,'+') + '|';}
+                else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{2}/g,'+');}
+            }            
+
+            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75&chg=7.692,12.5,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,FFFFFF,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl="+ teams;
+            // Foxtrick.alert('URL: [' + url + ']\n')
+            dump('\n' + url + '\n');
+            var image = doc.createElement('img');
+            image.src = url;
+            image.title = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
+            image.alt = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
+            divmap.appendChild(image);
             
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
@@ -250,35 +262,33 @@ var FoxtrickCrossTable = {
 			this.run( page, doc );
 		}
 	},
-    
+
     numComparisonDesc : function(a, b)	{
+        // dump(b[this._week] +'[this._week]' + a[this._week]);
         return b[this._week]-a[this._week];
     },
-
-    PlotPixel : function (doc, x, y, c) {
-        var pixel = doc.createElement('div');
-        pixel.className = 'Ink';
-        pixel.style.borderColor = c;
-        pixel.style.left = x + 'px';
-        pixel.style.top = y + 'px';
-        //pixel.innerHTML = x + '*' + y;
-         pixel.innerHTML = '';
-        doc.getElementById("ft_graph").appendChild(pixel);
-    },
-
-    DrawLine : function (doc, x1, y1, x2, y2, c) {
-        var steps = 20;
-        var deltaX = (x2 - x1)/steps;
-        var deltaY = (y2 - y1)/steps;
-        var xz = x1;
-        var yz = y1;
-        this.PlotPixel(doc, Math.abs(xz), Math.abs(yz), c);
-        var step = 0;
-        while(step < steps) {
-            step+=1;
-            xz+= deltaX;
-            yz+= deltaY;
-            this.PlotPixel(doc, Math.round(xz), Math.round(yz), c);
-        }
-    }    
+    
+    qsort : function (feld,anfang,ende) {
+    	try{
+            var i=0;
+            var pivot,mitte,tmp;
+            if(ende < anfang) return feld;
+            pivot = anfang;
+            mitte = anfang;
+            for (var i = anfang+1; i <= ende; i++) {
+                if(feld[i][this._week] > feld[pivot][this._week]) {
+                    mitte++;
+                    tmp = feld[i];
+                    feld[i] = feld[mitte];
+                    feld[mitte] = tmp;
+                }
+            }
+            tmp = feld[mitte]
+            feld[mitte] = feld[pivot];
+            feld[pivot] = tmp;
+            feld = this.qsort(feld,anfang,mitte-1);
+            feld = this.qsort(feld,mitte+1,ende);
+            return feld;
+        } catch(eee) {dump('sort: '+eee + '\n');}
+	}    
 };
