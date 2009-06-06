@@ -71,7 +71,7 @@ var FoxtrickPrefsDialogHTML = {
 				
 		var header = mainWrapper.getElementsByTagName('h2')[0];
 		
-		header.innerHTML='<a href="/MyHattrick/">Mein Hattrick</a>'; //todo change title
+		header.innerHTML='<a href="/MyHattrick/">'+header.getElementsByTagName('a')[0].innerHTML+'</a>'; //todo change title
 		 
 		header.appendChild(doc.createTextNode(' » '));
 		var sub_pref_header_foxtrick_sub = doc.createElement('a');
@@ -431,7 +431,7 @@ var FoxtrickPrefsDialogHTML = {
 				
 		var td= doc.createElement("td");
         tr.appendChild(td);
-		var checked = FoxtrickPrefs.getBool("module.FoxtrickReadHtPrefs.enabled");
+		var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtPrefs', Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"),'', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
