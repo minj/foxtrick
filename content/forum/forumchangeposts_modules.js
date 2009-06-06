@@ -242,8 +242,6 @@ var FoxtrickAlltidFlags = {
 	},
 
 	run : function( page, doc ) {  
-			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/conference.css");
 	},
 	
 	change : function( page, doc ) { 

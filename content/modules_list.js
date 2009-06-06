@@ -108,6 +108,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickAddHtLiveToOngoing,
 					 FoxtrickReadHtPrefs,
 					 FoxtrickMyHT,
+					 FoxtrickPrefsDialogHTML,   
 					 FoxtrickLeagueNewsFilter,
 					 FoxtrickShortPAs,
 					 FoxtrickCopyPosting,
@@ -122,8 +123,6 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickSkillTranslation,
 					 FoxtrickOnPagePrefs,
 					 FoxtrickLineupShortcut,
-
-					 FoxtrickPrefsDialogHTML,   // keep last!!
 					];
 
 					

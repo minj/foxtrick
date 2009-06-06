@@ -27,7 +27,6 @@ var FoxtrickPrefsDialogHTML = {
 
     run : function( doc ) { 
 	try{
-		//dump(doc.location.pathname+' '+doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)+' '+doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)+'\n');
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
 		FoxtrickPrefsDialogHTML._doc=doc;
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
@@ -52,9 +51,16 @@ var FoxtrickPrefsDialogHTML = {
 		foxtrick_pref_link.appendChild(doc.createTextNode('FoxTrick'));	
 		var li = doc.createElement('li');
 		li.appendChild(foxtrick_pref_link);
+		if (FoxtrickMain.IsNewVersion) {
+			var strong = doc.createElement('strong');
+			strong.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('new')));	
+			strong.setAttribute('style','color:#FFCC00 !important;' );	
+			li.appendChild(strong);	
+			foxtrick_pref_link.setAttribute('href','/MyHattrick/?configure_foxtrick=true&category=changes');		
+			} 
 		var ul = doc.getElementById('ctl00_pnlSubMenu').getElementsByTagName('ul');
 		if (ul && ul[0]) ul[0].appendChild(li);	
-		}catch(e){dump(e);}
+		} catch(e) {dump('add_pref_links: '+e);}
 	},
 	
 	
@@ -170,6 +176,7 @@ var FoxtrickPrefsDialogHTML = {
 		var foxtrick_prefs_head = doc.getElementById('foxtrick_prefs_head').childNodes;
 		var foxtrick_preftabs = doc.getElementById('foxtrick_preftabs').childNodes;
 		var tab = ev.target.getAttribute('tab');
+		if (tab=='changes') FoxtrickMain.IsNewVersion=false;
 		
 		for (var i=0;i<foxtrick_preftabs.length;++i) {			
 			if (tab==foxtrick_preftabs[i].getAttribute('id')) 
@@ -346,7 +353,8 @@ var FoxtrickPrefsDialogHTML = {
 		var active_tab='main';
 		try {
 		if (doc.location.href.search(/category=/i)!=-1) { 
-			active_tab=doc.location.href.match(/category=(\w+)/i)[1];			
+			active_tab=doc.location.href.match(/category=(\w+)/i)[1];
+			if (active_tab=='changes') FoxtrickMain.IsNewVersion=false;
 		}
 		} catch (e){}
 		if (category==active_tab) {

@@ -42,6 +42,7 @@ var FoxtrickMain = {
 	isStandard:true,
 	isRTL:false,
 	vars:null,
+	IsNewVersion:false,
 	
     init : function() { 
 		// remove before release
@@ -53,13 +54,20 @@ var FoxtrickMain = {
 			for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i ) 
 				if (Foxtrick.globals[i]!='QueryInterface') dump('undeclared local global variable: ' +Foxtrick.globals[i]+'\n');
 		}
-        
-
+				
 		// init core modules
         for ( var i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
         }
-						
+		
+		// check if this is a new version
+		var curVersion = FoxtrickPrefs.getString("curVersion"); 
+		var oldVersion = FoxtrickPrefs.getString("oldVersion");
+		if (oldVersion<curVersion ) {
+			FoxtrickMain.IsNewVersion=true;
+			FoxtrickPrefs.setString("oldVersion",curVersion);							
+		}
+		
 		// create handler arrays for each recognized page
 		for ( var i in Foxtrick.ht_pages ) {
 			Foxtrick.run_on_page[i] = new Array();

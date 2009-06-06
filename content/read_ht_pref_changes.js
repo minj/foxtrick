@@ -106,7 +106,6 @@ var FoxtrickReadHtPrefs = {
 var FoxtrickMyHT = {
 	
     MODULE_NAME : "FoxtrickMyHT",
-	//MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('myhattrick'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
@@ -118,21 +117,14 @@ var FoxtrickMyHT = {
     },
 
     run : function(page, doc ) {  
-    try{			
-			var curVersion = FoxtrickPrefs.getString("curVersion"); 
-			var oldVersion = FoxtrickPrefs.getString("oldVersion");
-			dump (curVersion+' > ' +oldVersion+' '+(curVersion > oldVersion)+'\n');
-			
-			// show foxtrickMyHT
-			if (oldVersion<curVersion) {
-				this.ShowAlert(doc, oldVersion);
-				FoxtrickPrefs.setString("oldVersion",curVersion);							
+		try{						
+			if ( FoxtrickMain.IsNewVersion ) { // show foxtrickMyHT
+				this.ShowAlert(doc);
 			}
-						
 		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
 	},
 
-	ShowAlert :function(doc, oldVersion) {
+	ShowAlert :function(doc) {
 		try {  
 				var mainBody = doc.getElementById('mainBody');	
 								
@@ -186,13 +178,13 @@ var FoxtrickMyHT = {
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
 				alertdiv.appendChild(p);
 */
-				var a=doc.createElement('a');
+/*				var a=doc.createElement('a');
 				a.href="javascript:void();";
 				a.innerHTML=Foxtrickl10n.getString("Close");
 				a.addEventListener( "click", FoxtrickMyHT.Close, false );
 				FoxtrickMyHT.Close.doc=doc;
 				alertdiv.appendChild(a);				
-				
+*/				
 				
 		} catch(e){dump('MyHtShowAlert '+e+'\n');}
 	},
@@ -209,7 +201,6 @@ var FoxtrickMyHT = {
 
 		FoxtrickPrefsDialogHTML.ShowOnce();
 	},
-
 	
 	ShowOnce : function() {
 			// show_once messages
@@ -230,10 +221,8 @@ var FoxtrickMyHT = {
 				FoxtrickPrefs.setBool("v0481.show_once", true); 
 				
 			}
-	},
+	},	
 	
-	
-	change : function(page, doc ) {
-	},
-		
+	change : function(page, doc) {
+	},		
 };
