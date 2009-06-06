@@ -1040,10 +1040,10 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 					var checked = ev.currentTarget.checked;
 					var optiondiv = document.getElementById(ev.currentTarget.id+'_text');
 					if (checked)  {
-						optiondiv.setAttribute( "disabled", true);
+						//optiondiv.setAttribute( "disabled", true);
 						optiondiv.setAttribute( "hidden", true);
 					} else {
-						optiondiv.setAttribute( "disabled", false);
+						//optiondiv.setAttribute( "disabled", false);
 						optiondiv.setAttribute( "hidden", false);
 					}
 				}, false );
@@ -1061,10 +1061,10 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 				}
 				textbox.setAttribute("value", val);
 				if (!Foxtrick.isModuleFeatureEnabled( module, key) ) {
-					textbox.setAttribute( "disabled", true);
+					//textbox.setAttribute( "disabled", true);
 					textbox.setAttribute( "hidden", true);
 				} else {
-					textbox.setAttribute( "disabled", false);
+					//textbox.setAttribute( "disabled", false);
 					textbox.setAttribute( "hidden", false);
 				}
 				htextbox.appendChild(textbox);

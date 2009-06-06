@@ -107,6 +107,10 @@ pref( "extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enable
 pref( "extensions.foxtrick.prefs.module.NewMail.CustomColor.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true );
 pref( "extensions.foxtrick.prefs.module.OnPagePrefs.enabled", true );
-
-	
-    	
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.HT.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.GM.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.MOD.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.CHPP.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.LA.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.editor.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.foxtrick-dev.enabled", true );
