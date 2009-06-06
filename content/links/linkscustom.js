@@ -35,14 +35,6 @@ var FoxtrickLinksCustom = {
 			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
 							"resources/css/linkscustom.css");
 			
-			if (Foxtrick.isStandardLayout(doc) )  {
-				if (!Foxtrick.isRTLLayout(doc))  Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std.css");
-				else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std_rtl.css");
-			}
-			else  {
-				if (!Foxtrick.isRTLLayout(doc)) Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple.css");
-				else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple_rtl.css");
-			}	
 			var basepref="module."+this.MODULE_NAME+'.'+pagemodule;
 
 			if (ownBoxBody==null) {

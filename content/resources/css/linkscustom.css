@@ -16,14 +16,14 @@ div.foxtrickHelp {
 	cursor: pointer;
 	width: 16px;
 	height: 16px;
-	background: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png') 50% no-repeat;
+	background: url('chrome://foxtrick/content/resources/img/Aiga_help_green.png') 50% no-repeat;
 }
 
 div.foxtrickHelp:hover {
 	cursor: pointer;
 	width: 16px;
 	height: 16px;
-	background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') 50% no-repeat;
+	background: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png') 50% no-repeat;
 }
 
 
@@ -54,3 +54,10 @@ div.foxtrickRemove:hover {
 	height: 16px;
 	background: url('chrome://foxtrick/content/resources/linkicons/crossRed_bigger.png') 50% no-repeat;
 }
+
+
+/* sidebarbox h2 dropdown image */ 
+div.sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 99% 60%;}
+div.sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 99% 60%;}
+div.sidebarBoxCollapsed .boxLeft>div , div.sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
+div.sidebarBoxCollapsed .boxLeft, div.sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}

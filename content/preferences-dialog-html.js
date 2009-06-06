@@ -396,7 +396,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.src="chrome://foxtrick/content/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -811,7 +811,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.src="chrome://foxtrick/content/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -875,7 +875,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.src="chrome://foxtrick/content/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -967,7 +967,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.src="chrome://foxtrick/content/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -1014,7 +1014,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.src="chrome://foxtrick/content/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -1204,7 +1204,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome://foxtrick/content/resources/img/Aiga_information_green.png";
+			img.src="chrome://foxtrick/content/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -1365,6 +1365,7 @@ var FoxtrickPrefsDialogHTML = {
 						var tr=doc.createElement('tr');
 						table.appendChild(tr);
 						
+						// module 
 						var td1=doc.createElement('td'); 
 						if (this.NewModules[i][1]) {
 							var a=doc.createElement('a');
@@ -1376,6 +1377,7 @@ var FoxtrickPrefsDialogHTML = {
 						}
 						else td1.appendChild(doc.createTextNode(this.NewModules[i][0]));
 						
+						// modul options
 						if (this.NewModules[i][6].OPTIONS) {						
 							for (var k=0; k < this.NewModules[i][6].OPTIONS.length; ++k) {
 								var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]+'.'+this.NewModules[i][6].OPTIONS[k]);						
@@ -1408,6 +1410,7 @@ var FoxtrickPrefsDialogHTML = {
 						}
 						tr.appendChild(td1);
 
+						// categories
 						var td2=doc.createElement('td');
 						var prefscreenshot="";
 						var prefscreenshot = Foxtrickl10n.getScreenshot(this.NewModules[i][3]);	
@@ -1422,12 +1425,20 @@ var FoxtrickPrefsDialogHTML = {
 						else td2.appendChild(doc.createTextNode(this.NewModules[i][2]));
 						tr.appendChild(td2);
 
+						// new after
 						var td3=doc.createElement('td');	
 						td3.appendChild(doc.createTextNode(this.NewModules[i][4]));
-						if (this.NewModules[i][5]) {
-						td3.setAttribute('title',this.NewModules[i][5]);
 						tr.appendChild(td3);
-						}						
+						
+						// change log
+						var td4=doc.createElement('td');	
+						if (this.NewModules[i][5]) {
+							var imgdiv=doc.createElement('div');	
+							imgdiv.setAttribute('class','foxtrickInfo');
+							imgdiv.setAttribute('title',"Last change: "+this.NewModules[i][5]);
+							td4.appendChild(imgdiv);
+						}
+						tr.appendChild(td4);						
 				}
 								
 				alertdiv.appendChild(doc.createElement('br'));	
@@ -1502,18 +1513,6 @@ var FoxtrickOnPagePrefs = {
 			if (doc.getElementById('sidebar')) column='right';
 			else column='left';
 		
-			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/linkscustom.css");
-			
-			if (Foxtrick.isStandardLayout(doc) )  {
-				if (!Foxtrick.isRTLLayout(doc))  Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std.css");
-				else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_std_rtl.css");
-			}
-			else  {
-				if (!Foxtrick.isRTLLayout(doc)) Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple.css");
-				else Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/linkscustom_simple_rtl.css");
-			}	
-			
 				// add box
 				var ownBoxBody = doc.createElement("div");
 				var header = Foxtrickl10n.getString("foxtrick.onpagepreferences" );
