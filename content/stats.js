@@ -2613,7 +2613,7 @@ stats["turkeytracker"] = {
 
 
 stats["southafricatracker"] = { 
-  "url" : "http://www.gooey.co.za/zahtdb/",
+  "url" : "http://ht-southafrica.co.za/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "South Africa U-20/NT DB",
   
