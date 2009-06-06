@@ -248,9 +248,8 @@ var FoxtrickMain = {
 						} );
 					Foxtrick.may_run_on_page[i].forEach(
 						function( fn ) {
-								//dump ( "Foxtrick module " + fn.MODULE_NAME + " may run() at page " + i + "\n  " );								
-								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
-								
+								if (fn.ONPAGEPREF_PAGE) Foxtrick.run_on_cur_page.push({'page':fn.ONPAGEPREF_PAGE,'module':fn});
+								else Foxtrick.run_on_cur_page.push({'page':i,'module':fn});								
 						} );							
 				}
 			}

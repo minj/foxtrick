@@ -10,6 +10,7 @@ FoxtrickHTDateFormat = {
  	PAGES : new Array('transfersTeam','TransfersPlayer','TransferCompare',
 					'matches','matchesarchiv','teamPageGeneral','achievements',
 					'teamevents','history','arena','league'), 
+	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.6.2",	
 	LASTEST_CHANGE:"Option to set first day of week added",
