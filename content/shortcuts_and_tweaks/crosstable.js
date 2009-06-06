@@ -231,7 +231,7 @@ var FoxtrickCrossTable = {
                 }
                 dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');                
             }
-            var position = ''; teams = '';
+            var position = '', teams = '';
             for (var ii = 0; ii<8; ii++) {
                 for(var jj = 1; jj<14; jj++) {
                     position += (9-week[ii][jj]) + ',';
