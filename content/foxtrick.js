@@ -96,6 +96,7 @@ var FoxtrickMain = {
 		
 		// reload skins
 		FoxtrickSkinPlugin.load( null);
+		Foxtrick.reload_css_permanent( 'chrome://foxtrick/content/resources/css/foxtrick.css' ) ;
 		FoxtrickMain.new_start = true;		
 	},
    

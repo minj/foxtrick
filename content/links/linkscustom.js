@@ -32,8 +32,6 @@ var FoxtrickLinksCustom = {
 	add : function( page, doc,ownBoxBody,pagemodule,info ) {
 		try {	
 			this._info=info;
-			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/linkscustom.css");
 			
 			var basepref="module."+this.MODULE_NAME+'.'+pagemodule;
 
@@ -77,7 +75,7 @@ var FoxtrickLinksCustom = {
 				var module_name = all_links[i].getAttribute('module');
 				if (key && module_name) {
 					var delLink = doc.createElement("div");
-					delLink.setAttribute("class","foxtrick" + "Remove");
+					delLink.setAttribute("class","ft_actionicon foxtrickRemove");
 					delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
 					delLink.setAttribute( "style","display:none;margin-left:-28px;margin-right:6px;");
 					delLink.addEventListener( "click", FoxtrickLinksCustom.delStdLink, false );
@@ -100,7 +98,7 @@ var FoxtrickLinksCustom = {
 			var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 			var ownBoxId = "foxtrick_" + header + "_box";
 			var div=doc.getElementById(ownBoxId).firstChild;	
-			div.setAttribute("class","boxHead sidebarBoxCollapsed");
+			div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
 			
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) { 
@@ -155,7 +153,7 @@ var FoxtrickLinksCustom = {
 			var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 			var ownBoxId = "foxtrick_" + header + "_box";
 			var div=doc.getElementById(ownBoxId).firstChild;	
-			div.setAttribute("class","boxHead sidebarBoxUnfolded");
+			div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
 			
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) { 
@@ -365,7 +363,7 @@ var FoxtrickLinksCustom = {
 			tdn5.appendChild(divn5);
 			
 			var helpdiv = doc.createElement("div");
-			helpdiv.setAttribute("class","foxtrick" +	"Help float_right");
+			helpdiv.setAttribute("class","ft_actionicon foxtrickHelp float_right");
 			helpdiv.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.help"));
 		
 			var helplink = doc.createElement ("a");	
@@ -523,7 +521,7 @@ var FoxtrickLinksCustom = {
 	GetDelLink  : function(doc,mylink,baseprefnl) { 
 	try {	
 		var delLink = doc.createElement("div");
-		delLink.setAttribute("class","foxtrick" + "Remove");
+		delLink.setAttribute("class","ft_actionicon foxtrickRemove");
 		delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
 		delLink.addEventListener( "click", FoxtrickLinksCustom.delMyLink, false );
 		delLink.baseprefnl = baseprefnl;
@@ -538,7 +536,7 @@ var FoxtrickLinksCustom = {
 	GetEditOldLink  : function(doc,mylink,baseprefnl) { 
 	try {	
 		var editOld = doc.createElement("div");
-		editOld.setAttribute("class","foxtrick" +	"Copy float_right");
+		editOld.setAttribute("class","ft_actionicon foxtrickCopy float_right");
 		editOld.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.copy"));
 		editOld.addEventListener( "click", FoxtrickLinksCustom.editOldLink, false );
 		editOld.baseprefnl = baseprefnl;
@@ -553,7 +551,7 @@ var FoxtrickLinksCustom = {
 	GetExportLink  : function(doc,mylink,baseprefnl) { 
 	try {	
 		var ExportLink = doc.createElement("div");
-		ExportLink.setAttribute("class","foxtrick" +	"Export float_right");
+		ExportLink.setAttribute("class","ft_actionicon foxtrickExport float_right");
 		ExportLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.export"));
 		ExportLink.addEventListener( "click", FoxtrickLinksCustom.Export, false );
 		ExportLink.baseprefnl = baseprefnl;

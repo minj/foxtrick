@@ -1,8 +1,3 @@
-div.foxtrickInfo {width: 16px; height: 16px; background: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png') 50% no-repeat;}
-div.foxtrickInfo:hover {width: 16px; height: 16px; background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') 50% no-repeat;}
-
-
-/* html prefs */
 div#foxtrick_prefs_head div.ft_pref_head {
 display:inline-block;
 margin-top:3px;
@@ -22,40 +17,73 @@ text-decoration:underline;
 cursor: pointer;	
 }
 
-#foxtrick_prefs_body {border: 1px solid rgb(47, 49, 255); margin-top: 20px; margin-bottom: 20px; background-color: rgb(239, 239, 255);} 				
-#foxtrick_prefs_save { margin-top:10px; margin-bottom:10px; }
-#foxtrick_prefsave { display:inline;  margin-left:10px;}
-#foxtrick_preftabs div#FoxtrickPrefsDialogHTMLCommon {margin-left:10px; padding-right:5px;}
+#foxtrick_prefs_body {border: 1px solid rgb(47, 49, 255); margin-top: 20px; margin-bottom: 20px; background-color: rgb(239, 239, 255);} 		
+		
+#foxtrick_prefs_save {
+margin-top:10px;
+margin-bottom:10px; 
+}
 
-.ft_pref_head_active { background-color:#7F80FF !important; 	opacity:1 !important; text-decoration:underline; }
-.ft_pref_highlight {	background-color:#7F80FF !important;}
-.ft_pref_highlight:hover {background-color:#7F80FF !important; }
+.ft_pref_head_active { 
+	background-color:#7F80FF !important;
+	opacity:1 !important;
+	text-decoration:underline;
+}
+
+.ft_pref_highlight {
+	background-color:#7F80FF !important;
+}
+
+.ft_pref_highlight:hover {
+	background-color:#7F80FF !important; 
+}
+
+#foxtrick_prefsave { display:inline;  margin-left:10px;}
+
+#foxtrick_prefcancel {display:inline;  margin-left:10px;}
 
 .ft_pref_modul { border: 1px solid rgb(47, 49, 255); margin: 5px 5px 5px 5px;  padding: 5px 5px 5px 5px;  }
 .ft_pref_modul:hover {background-color:#F8F8FF; border: 1px solid rgb(0,0,0); }
 
 .ft_pref_checkbox_group { margin-left:10px;}
+
 .ft_pref_radio_group { margin-left:10px;}
+
 .ft_pref_input_option_text {width:98%;}
+
 .checkbox_label {display:inline;}
+
 .ft_pref_list_caption {font-weight:bold; text-align:center; font-size:1.2em; margin-top:10px; }
-.ft_pref_group_caption {font-weight:bold;}
+
+div.ft_pref_group_caption {font-weight:bold;}
+
+#foxtrick_preftabs div#FoxtrickPrefsDialogHTMLCommon {margin-left:10px; padding-right:5px;}
+
+div.ft_icon foxtrickInfo {
+	width: 16px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png') 50% no-repeat;
+}
+
+div.ft_icon foxtrickInfo:hover {
+	width: 16px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') 50% no-repeat;
+}
 
 
-
-/* onpage prefs */
-
-.onpageprefs_extraprefs h3 {cursor:pointer; margin-left:5px; margin-right:5px; border-bottom: 2px solid #FFCC00 !important;}
+.onpageprefs_extraprefs h3 {cursor:pointer; margin-left:10px; margin-right:5px; border-bottom: 2px solid #FFCC00 !important;}
 
 /* sidebarbox h2 dropdown image */ 
-div.sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 99% 60%;}
-div.sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 99% 60%;}
-div.sidebarBoxCollapsed .boxLeft>div , div.sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
-div.sidebarBoxCollapsed .boxLeft, div.sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
+div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 99% 60%;}
+div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 99% 60%;}
+div.ft_sidebarBoxCollapsed .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
+div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
+
 
 /* sidebarbox h3 dropdown image */
-h3.sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
-h3.sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
+h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
+h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
 
 div.ft_pref_modul > div > table > tr > td > div.checkbox_label {font-weight:bold;}
 
@@ -64,7 +92,7 @@ div.ft_pref_modul > div > table > tr > td > div.checkbox_label {font-weight:bold
 
 #foxtrick_OnPagePrefs_box .boxBody {padding: 8px 5px!important; } 
 
-/* setting label widths */
+
 /* simple */
 #sidebar #foxtrick_OnPagePrefs_box .ft_pref_modul>div.ft_prefs_check_div  .checkbox_label div {width:115px; overflow:hidden;}
 #sidebar #foxtrick_OnPagePrefs_box .ft_pref_modul>div.ft_pref_checkbox_group  .checkbox_label div {width:105px; overflow:hidden;}

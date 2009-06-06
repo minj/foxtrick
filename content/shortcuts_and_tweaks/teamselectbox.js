@@ -65,8 +65,8 @@ var FoxtrickTeamSelectBox= {
 			else div=pn.parentNode;
 			div.setAttribute("style","cursor:pointer;");
             div.setAttribute("id", "ownselectboxHeaderID");
-            if (FoxtrickPrefs.getBool("ShowPlayerAsList")) div.setAttribute("class","boxHead sidebarBoxUnfolded");
-            else div.setAttribute("class","boxHead sidebarBoxCollapsed");
+            if (FoxtrickPrefs.getBool("ShowPlayerAsList")) div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
+            else div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
 			div.addEventListener( "click", this.HeaderClick, false );
             FoxtrickTeamSelectBox.HeaderClick.doc=doc;
                                        
@@ -142,10 +142,10 @@ var FoxtrickTeamSelectBox= {
             
 			if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {
 				FoxtrickTeamSelectBox.toList(doc);
-				div.setAttribute("class","boxHead sidebarBoxUnfolded");
+				div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
 			}
 			else {FoxtrickTeamSelectBox.toSelectBox(doc);
-				div.setAttribute("class","boxHead sidebarBoxCollapsed");}	
+				div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");}	
 		} 
 		catch (e) {dump("SelectBox->HeaderClick: "+e+'\n');}
 	},

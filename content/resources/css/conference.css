@@ -14,7 +14,7 @@ div.foxtrickLeaveConf:hover {
 	background: url('chrome://foxtrick/content/resources/linkicons/crossRed_bigger.png') 50% no-repeat;
 }
 
-div.foxtrickCopy {
+div.ft_icon foxtrickCopy {
 	cursor: pointer;
 	width: 16px;
 	height: 16px;
