@@ -10,7 +10,6 @@ var FoxtrickAddLeaveConfButton = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum','forumSettings'), 
 	DEFAULT_ENABLED : true,
-	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 	
     init : function() {
     },
@@ -130,7 +129,7 @@ var FoxtrickAddLeaveConfButton = {
             var leaveConf = doc.createElement("div");
             leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
             //  dump('=>counter: ' + foldersCounter +'\n');
-            leaveConf.setAttribute("class","foxtrick" +	"LeaveConf float_right");
+            leaveConf.setAttribute("class","ft_actionicon foxtrickRemove float_right");
             leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
             leaveConf.setAttribute("onClick","if (confirm( \"" +	Foxtrickl10n.getString(
                 'leave_conf_button_alert')	+ "\" )) {window.open(\"/MyHattrick/"

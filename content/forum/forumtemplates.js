@@ -30,10 +30,6 @@ var FoxtrickForumTemplates = {
     },
 
     run : function( page, doc ) {
-			Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/conference.css");
-
-        // var doc = Foxtrick.current_doc;
 		switch( page )
         {
             case 'forumWritePost':
@@ -262,7 +258,7 @@ var FoxtrickForumTemplates = {
 		tr.appendChild( td1 );
         tr.appendChild( td2 );
         var remover = doc.createElement( "div" );
-        remover.setAttribute( "class", "foxtrick" +	"LeaveConf" );
+        remover.setAttribute( "class", "ft_actionicon foxtrickRemove" );
         remover.msg = fulltext;
         remover.addEventListener( "click", FoxtrickForumTemplates._removeTemplate, false );
         td1.appendChild( remover );

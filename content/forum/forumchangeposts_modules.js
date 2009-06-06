@@ -23,14 +23,11 @@ var FoxtrickCopyPostID = {
 	LASTEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
 	DEFAULT_ENABLED : false,
 	OPTIONS : new Array("AddCopyIcon"), 
-//	CSS:"chrome://foxtrick/content/resources/css/conference.css",
 
 	init : function() {
 	},
 	
 	run : function( page, doc ) {
-				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/conference.css");
 	},
 	
 	change : function( page, doc ) { return;
@@ -51,14 +48,11 @@ var FoxtrickCopyPosting = {
 	NEW_AFTER_VERSION: "0.4.7",	
 	LASTEST_CHANGE:"Added option to copy forum posting",
 	DEFAULT_ENABLED : false,
-	//CSS:"chrome://foxtrick/content/resources/css/conference.css",
 
 	init : function() {
 	},
 	
 	run : function( page, doc ) {
-				Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
-							"resources/css/conference.css");
 	},
 	
 	change : function( page, doc ) { return;

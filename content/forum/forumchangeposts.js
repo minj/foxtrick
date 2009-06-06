@@ -7,12 +7,10 @@
 var FoxtrickForumChangePosts = {
 
 	MODULE_NAME : "ForumChangePosts",
-	//MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : true,
 	bDetailedHeader:false,
-	
-
+	CSS:"chrome://foxtrick/content/resources/css/changepost.css",
 	
 	init : function() {
 	},
