@@ -243,8 +243,43 @@ var FoxtrickCrossTable = {
                 if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
                 else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+');}
             }            
-
-            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75&chg=7.692,300,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,FFFFFF,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl="+ teams;
+            var league = Foxtrick.trim(doc.getElementsByTagName('h1')[0].textContent.split(' -')[1]);
+            dump (league+'\n');
+            if (league.search(/\./) > -1) {
+                league = league.split('.')[0];
+                league = FoxtrickHelper.romantodecimal(league);
+            } else {
+                league = 1;
+            }
+            dump (league+'\n');            
+            var colors = "";
+            switch (league) {
+                    case 11 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    break;
+                    case 10 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    break;
+                    case 9 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    break;
+                    case 8 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    break;
+                    case 7 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    break;
+                    case 6 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    break;
+                    case 5 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    break;
+                    case 4 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    break;
+                    case 3 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    break;
+                    case 2 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    break;
+                    case 1 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    break;
+                    default : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    break;
+            }
+            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=7.692,300,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,FFFFFF,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
             // Foxtrick.alert('URL: [' + url + ']\n')
             dump('\n' + url + '\n');
             var image = doc.createElement('img');
