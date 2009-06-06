@@ -124,8 +124,8 @@ var FoxtrickCrossTable = {
                                 if (result[0] > result[1]) {points_hm = 3; points_aw = 0;}
                                 if (result[0] < result[1]) {points_hm = 0; points_aw = 3;}
                                 if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}
-                                week[home][j+1] = points_hm *1000 + old_hm + result[0] - result[1];
-                                week[away][j+1] = points_aw *1000 + old_aw + result[1] - result[0];
+                                week[home][j+1] = points_hm *1000000 + old_hm + (result[0] - result[1]) + result[0]; 
+                                week[away][j+1] = points_aw *1000000 + old_aw + (result[1] - result[0]) + result[1];
 
                             }
                             else {
@@ -240,11 +240,11 @@ var FoxtrickCrossTable = {
                 else {position += (9-week[ii][14]);}
             }
             for (var ii = 0; ii<8; ii++) {
-                if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{2}/g,'+') + '|';}
-                else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{2}/g,'+');}
+                if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
+                else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+');}
             }            
 
-            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75&chg=7.692,12.5,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,FFFFFF,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl="+ teams;
+            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75&chg=7.692,300,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,FFFFFF,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl="+ teams;
             // Foxtrick.alert('URL: [' + url + ']\n')
             dump('\n' + url + '\n');
             var image = doc.createElement('img');
