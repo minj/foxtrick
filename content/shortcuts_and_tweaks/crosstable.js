@@ -258,11 +258,11 @@ var FoxtrickCrossTable = {
                     break;
                     case 10 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
                     break;
-                    case 9 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    case 9 : colors = "&chm=r,ffe8cf,0,0.74.5,0.75.5|r,ffe8cf,0,0.24,0.25";
                     break;
                     case 8 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
                     break;
-                    case 7 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    case 7 : colors = "&chm=r,ffe8cf,0,0.74.5,0.75.5|r,ffe8cf,0,0.24,0.25";
                     break;
                     case 6 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
                     break;
