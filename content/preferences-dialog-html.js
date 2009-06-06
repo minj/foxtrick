@@ -294,8 +294,8 @@ var FoxtrickPrefsDialogHTML = {
 		
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", doc.getElementById("copyfeedback").checked);
-		FoxtrickPrefs.setBool("onpageprefs", doc.getElementById("onpageprefs").checked);
-
+		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
+        
 		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", doc.getElementById("saveprefsid").checked);
         FoxtrickPrefs.setBool("SavePrefs_Notes", doc.getElementById("savenotesid").checked);
@@ -780,8 +780,8 @@ var FoxtrickPrefsDialogHTML = {
  		var checked = FoxtrickPrefs.getBool("copyfeedback");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'copyfeedback', Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"),'', checked ) 
 		div.appendChild(checkdiv);
- 		var checked = FoxtrickPrefs.getBool("onpageprefs");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'onpageprefs', Foxtrickl10n.getString("foxtrick.prefs.onpageprefs"),'', checked ) 
+ 		var checked = FoxtrickPrefs.getBool("module.OnPagePrefs.enabled");
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'OnPagePrefs', Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"),'', checked ) 
 		div.appendChild(checkdiv);
 		
 	},
@@ -1473,26 +1473,29 @@ var FoxtrickPrefsDialogHTML = {
 	
 }	
 
+
+////////////////////////////////////////////////////////////////////////////////
 /**
- * HTML-Preference dialog functions.
+ * HTML-OnPage -Preference dialog functions.
  * @author convinced
  */
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickOnPagePrefs = {
 
-    MODULE_NAME : "PrefsDialogHTML",
+    MODULE_NAME : "OnPagePrefs",
+    MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
+	PAGES : new Array('all_late'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Shows a small expandable box at the bottom of the sidebar which allows changing FoxTrick modules which alter the current page (default on)",
 	
 	_doc:null,
-	
-	
+		
     init : function() {
     },
 
-    run : function( doc ) {  
-		try{
+	run : function(page, doc ) {  
+    		try{
 			if (doc.getElementById('ctl00_ucSubMenu_txtUserName')) return;
 		
 			var column;

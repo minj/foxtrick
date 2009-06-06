@@ -7,7 +7,6 @@
 var FoxtrickPreferencesDialog = {
 
     init : function() {
-        // var doc = ev.originalTarget;
         
         for ( var i in FoxtrickPreferencesDialog.core_modules ) {
             FoxtrickPreferencesDialog.core_modules[i].init()
@@ -100,7 +99,7 @@ var FoxtrickPreferencesDialog = {
         vbox1b.setAttribute('flex',"1");
         var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute('id',"ReadHtPrefs");
-		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.FoxtrickReadHtPrefs.enabled"));
+		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"));
 		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc") );
 		desc_box.setAttribute("flex","1");
 		vbox1b.appendChild(checkbox);
@@ -489,9 +488,9 @@ var FoxtrickPreferencesDialog = {
 		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "copyfeedback" ) );
 		vbox.appendChild(checkbox);
 		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.onpageprefs"));
-		checkbox.setAttribute('id',"onpageprefs");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "onpageprefs" ) );
+		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"));
+		checkbox.setAttribute('id',"OnPagePrefs");
+		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "module.OnPagePrefs.enabled" ) );
 		vbox.appendChild(checkbox);		
 		groupbox.appendChild(caption);		
 		groupbox.appendChild(vbox);
@@ -647,7 +646,7 @@ var FoxtrickPreferencesDialog = {
 		
         //Lang
         FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
-		FoxtrickPrefs.setBool("module.FoxtrickReadHtPrefs.enabled", document.getElementById("ReadHtPrefs").checked);
+		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", document.getElementById("ReadHtPrefs").checked);
         
 		//Currency
         FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
@@ -702,7 +701,7 @@ var FoxtrickPreferencesDialog = {
 
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
-		FoxtrickPrefs.setBool("onpageprefs", document.getElementById("onpageprefs").checked);
+		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", document.getElementById("OnPagePrefs").checked);
 
 		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);

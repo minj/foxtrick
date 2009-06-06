@@ -8,7 +8,6 @@ var FoxtrickSkinPlugin = {
     
     MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
-	DEFAULT_ENABLED : false,   
 	NEW_AFTER_VERSION: "0.4.7.5",
 	LASTEST_CHANGE:"Fixed skin unloading bug fix",
 	

@@ -2,7 +2,6 @@ pref( "extensions.foxtrick.prefs.curVersion", "0.4.8.2");   // update with each 
 pref( "extensions.foxtrick.prefs.oldVersion", "0.3.73");   // don't change!! (unless you know what you do). shows changes form that version onwards after new installation
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
 pref( "extensions.foxtrick.prefs.htLanguage", "en");
-pref( "extensions.foxtrick.prefs.module.FoxtrickReadHtPrefs.enabled",true );
 pref( "extensions.foxtrick.prefs.htCurrency", "EUR");
 pref( "extensions.foxtrick.prefs.currencyRateTo", "1.0");
 pref( "extensions.foxtrick.prefs.currencyCode", "EUR");
@@ -10,7 +9,6 @@ pref( "extensions.foxtrick.prefs.currencyRate", "1.0");
 pref( "extensions.foxtrick.prefs.currencySymbol", "€");
 pref( "extensions.foxtrick.prefs.oldCurrencySymbol", "€");
 pref( "extensions.foxtrick.prefs.htCurrencyTo", "EUR");
-pref( "extensions.foxtrick.prefs.module.CurrencyConverter.enabled", false);
 pref( "extensions.foxtrick.prefs.htDateformat", "ddmmyyyy");
 pref( "extensions.foxtrick.prefs.htCountry", "Sweden");
 pref( "extensions.foxtrick.prefs.htSeasonOffset", 0);
@@ -107,7 +105,8 @@ pref( "extensions.foxtrick.prefs.module.TickerColoring.MyHTMessages.enabled", fa
 pref( "extensions.foxtrick.prefs.module.TickerColoring.Hover.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled", false );
 pref( "extensions.foxtrick.prefs.module.NewMail.CustomColor.enabled", false );
-pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true );
+pref( "extensions.foxtrick.prefs.module.OnPagePrefs.enabled", true );
 
 	
     	

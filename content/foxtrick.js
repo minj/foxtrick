@@ -249,7 +249,7 @@ var FoxtrickMain = {
 				//dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
 			}
 
-			if (FoxtrickPrefs.getBool( "onpageprefs" )) FoxtrickOnPagePrefs.run(doc);
+//			if (FoxtrickPrefs.getBool( "onpageprefs" )) FoxtrickOnPagePrefs.run(doc);
 			// context menue
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
 			

@@ -150,7 +150,7 @@ var FoxtrickShortPAs = {
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Fox for PAs with horizontal lines",
+	LASTEST_CHANGE:"Fix for PAs with horizontal lines",
 	
     init : function() {
     },

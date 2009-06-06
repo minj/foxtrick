@@ -10,9 +10,8 @@ var FoxtrickReadHtPrefs = {
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('prefSettings'), 
-	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.6.2",
-	LASTEST_CHANGE:"Locale now independent from Firefox locale. Option to auto-change language if hattricks language gets changed (default on)",
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"Name of the internal preference changed. If it was off previously it default on again till saved otherwise",
 	
 	codes:{},
 	
