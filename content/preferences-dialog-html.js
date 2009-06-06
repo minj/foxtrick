@@ -402,8 +402,7 @@ var FoxtrickPrefsDialogHTML = {
 			helpdiv.appendChild(a);
 			td.appendChild( helpdiv );
 		}
-        
-		
+        		
 		// language & currency & dateformat & country
         var groupbox = doc.createElement("div");
         groupbox.setAttribute('class',"ft_pref_modul");
