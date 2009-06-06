@@ -202,7 +202,7 @@ Foxtrick.AttVsDef = {
 
 		 var cellwidth = 50;
 
-		 row = doc.createElement("div");
+		 var row = doc.createElement("div");
 		 row.className = "foxtrick-graphs-row";
 		 div.appendChild(row);
 

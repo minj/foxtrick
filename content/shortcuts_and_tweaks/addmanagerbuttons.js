@@ -94,7 +94,7 @@ var FoxtrickAddManagerButtons = {
 			
 		}
 		var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
-		username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');				
+		var username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');				
 		
 		//Do not add send message button for owner manager page. - Stephan57
 		if ( ownerID==teamID ) return;

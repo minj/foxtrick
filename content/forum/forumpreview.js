@@ -187,7 +187,7 @@ var FoxtrickForumPreview = {
 
     _preview : function ( ev ) {
 
-        search = new Array(
+        var search = new Array(
 
             /\[kitid=(\d+)\]/,
             /\[userid=(\d+)\]/,
@@ -225,7 +225,7 @@ var FoxtrickForumPreview = {
           /\<tbody\>\<br \/\>/
         );
 
-        replace = new Array(
+        var replace = new Array(
             "<a href=\"\/Community\/KitSearch\/\?KitID\=$1\" target=\"\_blank\">($1)</a>",
             "<a href=\"\/Club\/Manager\/\?userId\=$1\" target=\"\_blank\">($1)</a>",
             "<a href=\"\/Club\/Players\/Player\.aspx\?playerId\=$1\" target=\"\_blank\">($1)</a>",

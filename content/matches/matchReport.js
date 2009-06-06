@@ -143,7 +143,7 @@ FoxtrickMatchReportFormat = {
         // dump(part[1]);
         part[1] = this.nl2br(part[1]);
 
-        search = new Array(
+        var search = new Array(
 //            /\=(\d+)/g,
             /\-(\d{1,3})/g,
             /\s(\d{1,3})/g,
@@ -151,7 +151,7 @@ FoxtrickMatchReportFormat = {
             /\<br \/\>br\<br \/\>br/g
             // /\<br\>(.{5,})\<br\>/i
             );
-        replace = new Array(
+        var replace = new Array(
 //            "=$1&formatted",
             "-<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>",
             "<span class='ft_mR_format' style='font-weight:bold;color:black'> $1</span>",
@@ -283,6 +283,7 @@ FoxtrickMatchReportFormat = {
     },
     nl2br : function(text) {
         text = escape(text);
+		var re_nlchar='';
         if(text.indexOf('%0D%0A') > -1){
             re_nlchar = /%0D%0A/g ;
         }else if(text.indexOf('%0A') > -1){

@@ -39,7 +39,7 @@ var FoxtrickCrossTable = {
             }
             
             var div = doc.getElementById('mainBody');
-            tbl_fix = div.getElementsByTagName('TABLE')[0];
+            var tbl_fix = div.getElementsByTagName('TABLE')[0];
 
             tbl_fix.id = 'ft_fixture';
 
@@ -104,7 +104,7 @@ var FoxtrickCrossTable = {
                         if (dummy[1] == cross[k][0]) {away = k}
                         if ((home != -1) && (away != -1)) {
 
-                            result = tblBodyObj.rows[row].cells[2].innerHTML.split('-');
+                            var result = tblBodyObj.rows[row].cells[2].innerHTML.split('-');
                             
                             crossgame[home][away+1] = crossID;
 
@@ -120,7 +120,7 @@ var FoxtrickCrossTable = {
                             }
                             if ((homegame) && (result[0] != -1)) {
                                 cross[home][away+1] = result[0] + '-' + result[1];
-                                var points_hm = 1; points_aw = 1;
+                                var points_hm = 1, points_aw = 1;
                                 if (result[0] > result[1]) {points_hm = 3; points_aw = 0;}
                                 if (result[0] < result[1]) {points_hm = 0; points_aw = 3;}
                                 if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}

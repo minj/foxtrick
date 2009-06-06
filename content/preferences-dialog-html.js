@@ -1175,7 +1175,7 @@ var FoxtrickPrefsDialogHTML = {
 		check.setAttribute( "name", name );
 		check.setAttribute( "id", name );
 		if (checked) check.setAttribute( "checked", "checked" );
-		if (on_page) check.setAttribute('title', label_long );
+		if (on_page) check.setAttribute('title', label );
 		td.appendChild( check );
 		
 		var td = doc.createElement( "td" );	
@@ -1187,7 +1187,7 @@ var FoxtrickPrefsDialogHTML = {
 			//if (!suboption) divlabelinner.setAttribute( "style", "width:115px; overflow:hidden;" );
 			//else divlabelinner.setAttribute( "style", "width:105px; overflow:hidden;" );
 			divlabelinner.appendChild( doc.createTextNode(label) );
-			divlabelinner.setAttribute('title', label_long );
+			divlabelinner.setAttribute('title', label );
 			divlabel.appendChild( divlabelinner );
 		}
 		else {
