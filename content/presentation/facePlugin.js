@@ -10,22 +10,15 @@ var FoxtrickHideFaceTransferImages = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
+	CSS:"chrome://foxtrick/content/resources/css/HideFaceTransferImages.css",
 	
     init : function() {
     },
 
     run : function( page, doc ) {
-		
-		var elems = doc.getElementsByTagName("img");
-		for(var i=0; i < elems.length; i++) {
-			if( elems[i].src.match(/\/Img\/Avatar\/misc\/t/i) ) {
-				elems[i].parentNode.removeChild(elems[i]);
-			}
-		} 
 	},
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	}
 };
 
@@ -37,25 +30,19 @@ var FoxtrickHideFaceInjuryImages = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
+	CSS:"chrome://foxtrick/content/resources/css/HideFaceInjuryImages.css",
 	
     init : function() {
     },
 
     run : function( page, doc ) {
-		
-		var elems = doc.getElementsByTagName("img");
-		for(var i=0; i < elems.length; i++) {
-			if( elems[i].src.match(/\/Img\/Avatar\/misc\/f/i) 
-				|| elems[i].src.match(/\/Img\/Avatar\/misc\/injured/i)) {
-				elems[i].parentNode.removeChild(elems[i]);
-			}
-		}
 	},
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	}
 };
+
+//------------------------------------------------------------------------------
 
 var FoxtrickHideFaceSuspendedImages = {
 	
@@ -63,22 +50,15 @@ var FoxtrickHideFaceSuspendedImages = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
+	CSS:"chrome://foxtrick/content/resources/css/HideFaceSuspendedImages.css",
 	
     init : function() {
     },
 
     run : function( page, doc ) {
-		
-		var elems = doc.getElementsByTagName("img");
-		for(var i=0; i < elems.length; i++) {
-			if( elems[i].src.match(/\/Img\/Avatar\/misc\/red/i) ) {
-				elems[i].parentNode.removeChild(elems[i]);
-			}
-		} 
 	},
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	}
 };
 
@@ -90,6 +70,7 @@ var FoxtrickColouredYouthFaces = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : false,
+	CSS:"chrome://foxtrick/content/resources/css/HideFaceInjuryImages.css",
 	
     init : function() {
     },

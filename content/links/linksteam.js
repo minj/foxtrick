@@ -43,9 +43,9 @@ var FoxtrickLinksTeam = {
 							ownBoxBody.appendChild(doc.createTextNode(" "));
 							ownBoxBody.appendChild(links[k].link);
 						}
-						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 
-	
+						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 	
 					}
+					break;
 				}
 			}
 			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);	

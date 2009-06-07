@@ -36,14 +36,15 @@ Foxtrick.TeamStats= {
         var specs = {};
 		
 		var body = doc.getElementById("mainBody");
-		var allDivs = Foxtrick.getElementsByClass("playerInfo", body);
+		var allDivs = body.getElementsByTagName('div');
 		this.latestMatch=-1;
 		var stars=new Array();
 		var num_too_old=0;
 		var num_not_too_old=0;
-		
+		var transferListed=0,reds=0,yellow=0,yellow_2=0,injuryInjured=0,injuryInjuredweeks=0,injuryBruised=0;
 	
 		for( var i = 0; i < allDivs.length; i++ ) {
+				if (allDivs[i].className!="playerInfo") continue;
 				
 				var allDivs2 = allDivs[i].getElementsByTagName( "p" )[0];
 				
@@ -95,6 +96,18 @@ Foxtrick.TeamStats= {
 				while (img=imgs[k++]) {
 					if (img.className=="starWhole") num_star+=1;
 					else if (img.className=="starHalf") num_star+=0.5;
+					else if (img.className=="transferListed") ++transferListed;
+					else if (img.className=="cardsOne") { 
+					    if (img.src.indexOf('red_card', 0) != -1 ) ++reds;   
+						else ++yellow;
+					}
+					else if (img.className=="cardsTwo") ++yellow_2;					
+					else if (img.className=="injuryInjured") {
+						++injuryInjured;
+						injuryInjuredweeks += parseInt(img.nextSibling.innerHTML);
+					}
+					else if (img.className=="injuryBruised") ++injuryBruised;
+					
 				}
 				stars.push(num_star);
 				
@@ -116,8 +129,7 @@ Foxtrick.TeamStats= {
 		
         var specsTable = "";
 		
-		
-		
+				
 		
 		//If NT displays Total TSI
         if (!Youth_players && !coach) specsTable += "<tr><td class=\"ch\">" + _totalTSI + "</td><td>" + Foxtrick.ReturnFormatedValue(total_NT,'&nbsp;') + "</td></tr>";
@@ -127,73 +139,23 @@ Foxtrick.TeamStats= {
           specsTable += "<tr><td class=\"ch\">" + spec.replace(/\[|\]/g,"") + "</td><td>" + specs[spec] + "</td></tr>";
         }
       
-        var transferListed = Foxtrick.getElementsByClass( "transferListed", doc );
         var img_lis = '<img style="width: 10px; height: 18px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dollar.gif" src="/Img/Icons/dollar.gif" class="transferListed" title="">';
-        if (transferListed.length > 0) {
-          specsTable += "<tr><td class=\"ch\">" + img_lis + "</td><td>" + transferListed.length + "</td></tr>";
-        }
+        if (transferListed > 0) specsTable += "<tr><td class=\"ch\">" + img_lis + "</td><td>" + transferListed + "</td></tr>";
 
-        var yellow = Foxtrick.getElementsByClass( "cardsOne", doc );
         var img_yel = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" src="/Img/Icons/yellow_card.gif" class="cardsOne" title="">';
-        if (yellow.length > 0) {
-            var yels = 0;
-            try {
-                for (var j = 0; j < yellow.length; j++) {
-                    var head = yellow[j].parentNode;
-                    
-                    if (head.innerHTML.indexOf('yellow_card', 0) != -1 ) yels += 1;              
-                }
-            } 
-            catch(e) {
-                dump('FTTeamStats'+e);
-            }
-            if (yels > 0) specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yels + "</td></tr>";
-        }
-
-        var yellow_2 = Foxtrick.getElementsByClass( "cardsTwo", doc );
-        var img_yel = '<img style="width: 17px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dual_yellow_card.gif" src="/Img/Icons/dual_yellow_card.gif" class="cardsTwo" title="">';
-        if (yellow_2.length > 0) {
-          specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow_2.length + "</td></tr>";
-        }
-
-        var red = Foxtrick.getElementsByClass( "cardsOne", doc );
-        var img_red = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" src="/Img/Icons/red_card.gif" class="cardsOne" title="">';
-        if (red.length > 0) {
-            var reds = 0;
-            try {
-                for (var j = 0; j < red.length; j++) {
-                    var head = red[j].parentNode;
-                    
-                    if (head.innerHTML.indexOf('red_card', 0) != -1 ) reds += 1;              
-                }
-            } 
-            catch(e) {
-                dump('FTTeamStats'+e);
-            }
-            if (reds > 0) specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + reds + "</td></tr>";
-        }
-
-        var injuries = Foxtrick.getElementsByClass( "injuryBruised", doc );
+        if (yellow > 0)  specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow + "</td></tr>";        
+        
+		var img_yel = '<img style="width: 17px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/dual_yellow_card.gif" src="/Img/Icons/dual_yellow_card.gif" class="cardsTwo" title="">';
+        if (yellow_2 > 0) specsTable += "<tr><td class=\"ch\">" + img_yel + "</td><td>" + yellow_2 + "</td></tr>"; 
+        
+		var img_red = '<img style="width: 8px; height: 12px;" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" src="/Img/Icons/red_card.gif" class="cardsOne" title="">';
+        if (reds > 0) specsTable += "<tr><td class=\"ch\">" + img_red + "</td><td>" + reds + "</td></tr>";
+ 
         var img_bru = '<img style="width: 19px; height: 8px;" ilo-full-src="http://www.hattrick.org/Img/Icons/bruised.gif" src="/Img/Icons/bruised.gif" class="injuryBruised" title="">';
-        if (injuries.length > 0) {
-          specsTable += "<tr><td class=\"ch\">" + img_bru + "</td><td>" + injuries.length + "</td></tr>";
-        }
-
-        var injuries = Foxtrick.getElementsByClass( "injuryInjured", doc );
-        if (injuries) {
-            var weeks = 0;
-            try {
-                for (var j = 0; j < injuries.length; j++) {
-                    var head = injuries[j].parentNode;
-                    weeks += parseInt(Foxtrick.substr(head.innerHTML, Foxtrick.strrpos( head.innerHTML, "<span>")+6, 1));              
-                }
-            } 
-            catch(e) {
-                dump('FTTeamStats'+e);
-            }
-        }
+        if (injuryBruised > 0) specsTable += "<tr><td class=\"ch\">" + img_bru + "</td><td>" + injuryBruised + "</td></tr>";
+        
         var img_inj = '<img style="width: 11px; height: 11px;" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" src="/Img/Icons/injured.gif" class="injuryInjured" title="" alt="">';
-        if (weeks > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuries.length +  " (<b>" + weeks + "</b>)" + "</td></tr>";
+        if (injuryInjured > 0) specsTable += "<tr><td class=\"ch\">" + img_inj + "</td><td>" + injuryInjured +  " (<b>" + injuryInjuredweeks + "</b>)" + "</td></tr>";
                 
         if ( !NT_players ) {
 		// Early test of country counter. Works, but has no finished design
@@ -249,12 +211,26 @@ Foxtrick.TeamStats= {
           if (num_too_old>0) specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayerToOld.label") + "</td><td>" + num_too_old + "</td></tr>";                    
 		}
         
-		var boxrightt=doc.getElementById('sidebar');
+
+
+		var	table = doc.createElement("table");
+		table.setAttribute( "class", 'smallText' );
+        table.innerHTML=specsTable;
+		
+		var	ownBoxBody = doc.createElement("div");
+		var header = Foxtrickl10n.getString("foxtrick.FTTeamStats.label");
+		var ownBoxId = "foxtrick_FTTeamStats_box";
+		var ownBoxBodyId = "foxtrick_FTTeamStats_content";
+		ownBoxBody.setAttribute( "id", ownBoxBodyId );
+        ownBoxBody.appendChild(table);
+		Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
+
+		/*var boxrightt=doc.getElementById('sidebar');
         var contentDiv = boxrightt.innerHTML;
 
         var txt ='';
         if (specsTable != "") txt = '<table class="smallText">' + specsTable + "</table>";
-
+		
 		var NovaVar; 
 		
 		NovaVar = '<div class="sidebarBox">';
@@ -271,6 +247,8 @@ Foxtrick.TeamStats= {
 		NovaVar += '</div>';
 
 		if (txt !="") boxrightt.innerHTML = contentDiv + NovaVar;
+		*/
+		
 		
 		// add filters
 		var sortbybox= doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy"); 		
@@ -309,11 +287,6 @@ Foxtrick.TeamStats= {
 		option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.NotPlayedLatest.label");;
 		filterselect.appendChild(option);
 		
-		/*var option=doc.createElement('option');
-		option.setAttribute('value','TopPlayers');
-		option.innerHTML=Foxtrickl10n.getString("foxtrick.FTTeamStats.TopPlayers.label");;
-		filterselect.appendChild(option);*/
-
 		for (var spec in specs) {
 			var purspec=spec.replace(/\[|\]/g,'');
 			var option = doc.createElement('option');

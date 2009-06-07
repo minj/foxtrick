@@ -63,43 +63,6 @@ var FoxtrickTeamPopupLinks = {
 
 		
     init : function() {
-        this.initOptions();
-    },
-
-	
-        initOptions : function() {
-                
-		},
-        
-    run : function( page, doc ) {  
-		try { 				 
-		
-				if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled"))
-                        return;
-                var sUrl = Foxtrick.getHref( doc );
-				
-				this.userlink = false;
-                var redir_from_forum = false;
-				if (sUrl.search(/Forum/i) != -1) redir_from_forum = true; 
-                if (sUrl.search(/ShowOldConnections=true/i) != -1) {
-                        var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
-                        if (a){
-                                var func = a.href;
-                                if (func){
-                                        doc.location.href = func;
-                                }
-                        }
-                }
-			   	
-				var teamdiv = doc.getElementById('teamLinks');
-				var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				this.ownteamid=0;
-				if (ownleagueid != null) {
-					this.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-				}
-				FoxtrickTeamPopupLinks.popupshow.doc=doc;
-				this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
-						               
                 //determine width of the floating box - Stephan
                 this.maxwidth = Math.max(Foxtrickl10n.getString( 'Team' ).length, 
 											Foxtrickl10n.getString( 'TeamAtAlltid' ).length, 
@@ -142,10 +105,37 @@ var FoxtrickTeamPopupLinks = {
 				
 				this.utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
 				if (!this.utext) this.utext = this.OPTION_TEXTS_DEFAULT_VALUES[16];
+    },
+
+    run : function( page, doc ) {  
+		try { 				 		
+				if (!FoxtrickPrefs.getBool("module.TeamPopupLinks.enabled")) return;
+                var sUrl = Foxtrick.getHref( doc );
 				
+				this.userlink = false;
+                var redir_from_forum = false;
+				if (sUrl.search(/Forum/i) != -1) redir_from_forum = true; 
+                if (sUrl.search(/ShowOldConnections=true/i) != -1) {
+                        var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
+                        if (a){
+                                var func = a.href;
+                                if (func){
+                                        doc.location.href = func;
+                                }
+                        }
+                }
+			   	
+				var teamdiv = doc.getElementById('teamLinks');
+				var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
+				this.ownteamid=0;
+				if (ownleagueid != null) {
+					this.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
+				}
+				FoxtrickTeamPopupLinks.popupshow.doc=doc;
+				this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
+						               				
 				this.Target = '_self';
-				if (Foxtrick.isModuleFeatureEnabled( this, "OpenNewTab")) this.Target = '_blank';
-                
+				if (Foxtrick.isModuleFeatureEnabled( this, "OpenNewTab")) this.Target = '_blank';                
 				
 				var head = doc.getElementsByTagName("head")[0];
                 var style = doc.createElement("style");
@@ -695,9 +685,6 @@ var FoxtrickTeamPopupLinksMore = {
 		utext:"",
 		
     init : function() {
-    },
-
-    run : function( page, doc ) {  
                 this.bManager = Foxtrick.isModuleFeatureEnabled( this, "Manager");
                 this.bTeam = Foxtrick.isModuleFeatureEnabled( this, "Team");
                 this.bTeamAtAlltid = Foxtrick.isModuleFeatureEnabled( this, "TeamAtAlltid");
@@ -717,6 +704,9 @@ var FoxtrickTeamPopupLinksMore = {
 				this.bCustomLink = Foxtrick.isModuleFeatureEnabled( this, "CustomLink");
 				this.utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
 				if (!this.utext) this.utext = this.OPTION_TEXTS_DEFAULT_VALUES[13];				
+    },
+
+    run : function( page, doc ) {  
 	},
 	
 	change : function( page, doc ) {        

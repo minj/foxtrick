@@ -19,7 +19,6 @@ var FoxtrickLeagueNewsFilter = {
 
     run : function( page, doc ) { 
 	var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
-	
 	var selectdiv=doc.createElement('div');
 	selectdiv.setAttribute('style','display:block');
 	selectdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.Filter")));
@@ -27,7 +26,6 @@ var FoxtrickLeagueNewsFilter = {
 	var select=doc.createElement('select');
 	select.setAttribute("id","ft_ownselectboxID");
 	select.addEventListener('change',this.SelectClick,false);
-	FoxtrickLeagueNewsFilter.ShowHide.doc=doc;
 		
 	var option=doc.createElement('option');
 	option.setAttribute('value','0');
@@ -49,12 +47,12 @@ var FoxtrickLeagueNewsFilter = {
 	option.setAttribute('value','4');
 	option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.PAs");
 	select.appendChild(option);
-	newsfeed.insertBefore(selectdiv,newsfeed.firstChild);
 	select.value=FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value"); 
-	selectdiv.appendChild(select);
-
-	var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
-
+	selectdiv.appendChild(select); 
+	
+	newsfeed.parentNode.insertBefore(selectdiv,newsfeed.parentNode.firstChild);
+	FoxtrickLeagueNewsFilter.ShowHide.doc=doc;
+	
 	var item=null;
 	var items = newsfeed.getElementsByTagName('div');
 	for (var i=0;i<items.length;++i) {
@@ -81,8 +79,8 @@ var FoxtrickLeagueNewsFilter = {
 			}
 		}
 	}
-	
-	this.ShowHide();
+
+	if (select.value!=0) this.ShowHide();
 	},
 	
 	ShowHide:function() {

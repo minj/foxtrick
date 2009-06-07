@@ -126,7 +126,7 @@ var FoxtrickYouthSkillTable = {
 						
 						for(var j = 0; j < img.length; j++) {
 							if (img[j].className=='cardsOne') {
-							    if (img[j].parentNode.innerHTML.indexOf('red_card', 0) != -1 ) cardsred = 1;   
+							    if (img[j].src.indexOf('red_card', 0) != -1 ) cardsred = 1;   
 								else cardsyellow=1;
 							}
 							if (img[j].className=='cardsTwo') {

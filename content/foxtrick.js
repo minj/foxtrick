@@ -134,16 +134,15 @@ var FoxtrickMain = {
 		var toolsMenu = document.getElementById( "foxtrick-config-menu" );
 		toolsMenu.setAttribute( "label", Foxtrickl10n.getString( 
 			"foxtrick.menu.configurefoxtrick") );
-		
+
 		var appcontent = document.getElementById( "appcontent" );
         if ( appcontent) {
-			// listen to page loads
+			// listen to page loads   
 			//FoxtrickMain.onPageLoad.appcontent = appcontent;
-			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad,
-                                         true );
+			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad, true );
 		}								 
     },
-	
+
 	onPageChange : function( ev ) {
 		var doc = ev.originalTarget.ownerDocument;
 		if ( doc.nodeName != "#document" )
@@ -165,19 +164,18 @@ var FoxtrickMain = {
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
             return;
-
         
         // hattrick URL check and run if on HT
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
-            var begin = new Date();
-
+			var begin = new Date();
+			
             FoxtrickMain.run( doc );
 
             var end = new Date();
             var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                      + end.getMilliseconds() - begin.getMilliseconds();
-            dump( "Foxtrick run time: " + time + " ms\n" );
+            dump("run time: " + time + " ms | " + doc.location.pathname.substring(0,50)+'\n' );
 			// listen to page content changes
 			var content = doc.getElementById("content");
 			if( content ) {
@@ -259,7 +257,6 @@ var FoxtrickMain = {
 //			if (FoxtrickPrefs.getBool( "onpageprefs" )) FoxtrickOnPagePrefs.run(doc);
 			// context menue
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
-			
 		}
 		else { 
 			// potenial disable cleanup
