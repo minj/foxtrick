@@ -11,7 +11,7 @@ presentation=
 shortcuts_and_tweaks=
 
 # Main options
-CurrencyConverter=http://gliglif.foundationhorizont.org/hattrick/CurrencyConverter.html
+activeCurrencyConverter=http://gliglif.foundationhorizont.org/hattrick/CurrencyConverter.html
 FoxtrickMyHT=http://gliglif.foundationhorizont.org/hattrick/FoxtrickMyHT.html
 OnPagePrefs=http://gliglif.foundationhorizont.org/hattrick/OnPagePrefs.html
 ReadHtPrefs=http://gliglif.foundationhorizont.org/hattrick/ReadHtPrefs.html
