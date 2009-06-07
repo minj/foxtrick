@@ -1523,7 +1523,8 @@ var FoxtrickOnPagePrefs = {
 						if (Foxtrick.run_on_cur_page[k].module==Foxtrick.run_on_cur_page[j].module) {in_list=true; break;}
 					}
 					if (in_list) continue;
-					++count;
+					++count;  
+					//dump (Foxtrick.run_on_cur_page[j].page+' '+Foxtrick.run_on_cur_page[j].module.MODULE_NAME+'\n');
 				}	
 				if (count==0) return;
 				doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );

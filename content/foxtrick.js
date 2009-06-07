@@ -248,8 +248,7 @@ var FoxtrickMain = {
 						} );
 					Foxtrick.may_run_on_page[i].forEach(
 						function( fn ) {
-								if (fn.ONPAGEPREF_PAGE) Foxtrick.run_on_cur_page.push({'page':fn.ONPAGEPREF_PAGE,'module':fn});
-								else Foxtrick.run_on_cur_page.push({'page':i,'module':fn});								
+								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});								
 						} );							
 				}
 			}
@@ -335,7 +334,8 @@ try {
     // if is enabled in preferences and has a run() function
     if ( module.run ) {
 		for (var i=0;i<module.PAGES.length;++i) {
-			Foxtrick.may_run_on_page[module.PAGES[i]].push( module );
+			if (module.ONPAGEPREF_PAGE) Foxtrick.may_run_on_page[module.ONPAGEPREF_PAGE].push( module );
+			else Foxtrick.may_run_on_page[module.PAGES[i]].push( module );
 			//dump(module.PAGES[i]+'\n');
 			if (Foxtrick.isModuleEnabled( module ) )
 				Foxtrick.run_on_page[module.PAGES[i]].push( module );

@@ -6,7 +6,7 @@ div.ft_actionicon {cursor: pointer; width: 16px; height: 16px; background: 50% n
 div.ft_icon {width: 16px; height: 16px; background: 50% no-repeat;}
 
 div.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy_small.png')}
-div.foxtrickCopy:hover {background-image: : url('chrome://foxtrick/content/resources/img/copy_yellow_small.png');}
+div.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png');}
 div.foxtrickHelp {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_green.png');}
 div.foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png');}
 div.foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png');}
