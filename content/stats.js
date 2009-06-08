@@ -1935,6 +1935,22 @@ stats["ht_scouting_alurdun"] =  {
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
+stats["ht_scouting_bangladesh"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "scouting/bangladesh/scouting.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "scouting/bangladesh/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[132, 132]], 
+  "countryidranges" : [[132, 132]], 
+  "title" : "Bangladesh NT Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
+}
 
 // ------------------------- nattrick tracker --------------------------------
 
@@ -2717,23 +2733,6 @@ stats["nippontracker"] = {
                  },
 	"countryidranges" : [[22,22]] ,
 	"nationalityranges" : [[22,22]], 
-};
-
-stats["bangladeshtracker"] = { 
-  "url" : "http://spreadsheets.google.com/viewform?key=piAXNIMkFNVWAPSqdLYu7TQ&hl=da",
-  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
-  "title" : "Bangladesh U-20 DB",
-  
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
-                   "params"     : []
-                 },
-	"countryidranges" : [[132,132]] ,
-	"nationalityranges" : [[132,132]], 
 };
 
 
