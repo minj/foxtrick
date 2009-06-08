@@ -35,17 +35,18 @@ var FoxtrickLargeFlags = {
 					img.style.height = "70px";
 					// Move the link; either to the faceCard div or if that doesn't exist, to the bottom of the current div
 					var faceCardDiv = doc.getElementById('ctl00_CPMain_ucPlayerFace_pnlAvatar');
-					if( faceCardDiv ) {
+					if( faceCardDiv ) {  
 						var parentNode = faceCardDiv.parentNode;
 						var nextSibling = faceCardDiv.nextSibling;
 						var ownDiv = doc.createElement("div");
-						ownDiv.setAttribute("style","float:left;");
 						ownDiv.style.width = "110px";
-						ownDiv.style.height = "250px";
-						ownDiv.style.padding = "10px 0px 0px 0px";
+						ownDiv.style.margin = "5px 5px 0px 0px";
 						ownDiv.appendChild( link );
-						ownDiv.appendChild( faceCardDiv );
-						parentNode.insertBefore( ownDiv, nextSibling );
+						var wrapperDiv = doc.createElement("div");
+						wrapperDiv.appendChild( ownDiv );
+						wrapperDiv.setAttribute("style","float:left;");
+						wrapperDiv.appendChild( faceCardDiv );
+						parentNode.insertBefore( wrapperDiv, nextSibling );
 					} else {
 						var br1 = doc.createElement("br");
 						var br2 = doc.createElement("br");

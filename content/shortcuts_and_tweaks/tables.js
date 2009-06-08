@@ -25,7 +25,7 @@ var FoxtrickTables = {
             var div = doc.getElementById('ctl00_CPMain_pnlViewPromotion');
             if (!div) {div = doc.getElementById('mainBody'); goalcell = 3;}
             // Foxtrick.alert(div.innerHTML);
-            tbl_promo = div.getElementsByTagName('TABLE')[0];
+            var tbl_promo = div.getElementsByTagName('TABLE')[0];
             tbl_promo.id = 'ft_goaldiff';
             
             var newTH = doc.createElement('th');

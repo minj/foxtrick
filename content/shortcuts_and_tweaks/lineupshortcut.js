@@ -60,7 +60,7 @@ FoxtrickLineupShortcut = {
 				var element=doc.getElementById('mainWrapper');
 				var playerid=FoxtrickHelper.findPlayerId(element);
 				
-				for (i=0;i<matchtable.rows.length;i++) {
+				for (var i=0;i<matchtable.rows.length;i++) {
 					var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
 					var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href);
 					var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
@@ -86,7 +86,7 @@ FoxtrickLineupShortcut = {
 			newhead.innerHTML=lineuplabel;
 			matchtable.rows[0].appendChild(newhead);
 			//We start from second row because first is header
-			for (i=1;i<matchtable.rows.length;i++) {
+			for (var i=1;i<matchtable.rows.length;i++) {
 				var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
 				var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
 				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);

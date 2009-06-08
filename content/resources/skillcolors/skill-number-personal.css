@@ -44,4 +44,4 @@ a[href*="=19#skill"]:after, a[href*="ll=19#FanMood"]:after, a[href*="ll=19#FanMa
 a[href*="=20#skill"]:after, a[href*="ll=20#FanMood"]:after, a[href*="ll=20#FanMatch"]:after, a[href*="ll=20#FanSeason"]:after, a[href*="ll=20#SkillShort"]:after, a[href*="ll=20#teamskills"]:after, a[href*="=20#sponsors"]:after
 {content:" (20)" !important;font-size:xx-small !important;}
 
-div#mainBody.boxBody>div.playerInfo {width:390px !important;}
+/*div#mainBody.boxBody>div.playerInfo {width:390px !important;}*/

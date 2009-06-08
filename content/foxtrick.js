@@ -670,7 +670,7 @@ Foxtrick.load_css_permanent = function( css) {
 			}
 		} 
         catch(e) {
-            dump ('> load_css_permanent ' + e + '\n');
+            dump ('> ERROR load_css_permanent: ' + css + '\n');
         }
  }
 
