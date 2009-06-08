@@ -17,7 +17,7 @@ var FoxtrickGoToPostBox = {
 
     run : function( page, doc ) {
             
-            Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");
+            Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/GoToPostBox.js");
             
             //set up tab on left forums menu
             var tab = ''
