@@ -8,16 +8,18 @@ var FoxtrickCrossTable = {
 
     MODULE_NAME : "CrossTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('fixtures'), 
+	PAGES : new Array('fixtures'),
 	DEFAULT_ENABLED : true,
     OPTIONS :  new Array("cut_long_teamnames"),
     OPTION_TEXTS : true,
     OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1"),
+    htCountriesXml : null,    
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some style options",
 
     _week : 14,
-	init : function() {
+    init : function() {
+        this.initHtCountries();
     },
 
     run : function( page, doc ) {
@@ -229,7 +231,7 @@ var FoxtrickCrossTable = {
                 for(var act = 0; act<8; act++) {
                     if (draw>0) week[act][draw] = act+1;
                 }
-                dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');                
+                // dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');                
             }
             var position = '', teams = '';
             for (var ii = 0; ii<8; ii++) {
@@ -251,35 +253,57 @@ var FoxtrickCrossTable = {
             } else {
                 league = 1;
             }
-            dump (league+'\n');            
+            dump (league+'\n');
+            
+            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].textContent.split('»')[1]);
+            dump('['+country+']\n');
+            var leagues = 0;
+            try {
+                var path = "hattrickcountries/country[@htname='" + country + "']";
+                var obj = this.htCountriesXml.evaluate(path,this.htCountriesXml,null,this.htCountriesXml.DOCUMENT_NODE,null).singleNodeValue;
+                if (obj)
+                    leagues = parseFloat(obj.attributes.getNamedItem("leagues").textContent);
+                else
+                    return -1;
+            } catch (exml) {
+                dump('crosstable.js countries: '+exml + "\n");
+            }
+            dump ('leagues: ' + leagues + '\n');
+            
             var colors = "";
             switch (league) {
-                    case 11 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    case 11 :colors = "&chm=" + "r,dfeeff,0,0.87,0.88"                                 + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 10 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    case 10 :colors = "&chm=" + "r,dfeeff,0,0.87,0.88"                                 + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 9 : colors = "&chm=r,ffe8cf,0,0.74.5,0.75.5|r,ffe8cf,0,0.24,0.25";
+                    case 9 : colors = "&chm=" + "r,dfeeff,0,0.745,0.755"                               + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 8 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    case 8 : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"                                 + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 7 : colors = "&chm=r,ffe8cf,0,0.74.5,0.75.5|r,ffe8cf,0,0.24,0.25";
+                    case 7 : colors = "&chm=" + "r,dfeeff,0,0.745,0.755"                               + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 6 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    case 6 : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"                                 + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 5 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    case 5 : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"     + "|r,dfeeff,0,0.495,0.505" + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 4 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    case 4 : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"     + "|r,dfeeff,0,0.495,0.505" + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 3 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    case 3 : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"     + "|r,dfeeff,0,0.495,0.505" + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 2 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    case 2 : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"     + "|r,dfeeff,0,0.495,0.505" + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    case 1 : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.495,0.505|r,ffe8cf,0,0.245,0.255";
+                    case 1 : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"     + "|r,dfeeff,0,0.495,0.505" + "|r,dfeeff,0,0.24,0.25";
                     break;
-                    default : colors = "&chm=r,ffe8cf,0,0.87,0.88|r,ffe8cf,0,0.24,0.25";
+                    default : colors = "&chm=" + "r,dfeeff,0,0.87,0.88"                                + "|r,dfeeff,0,0.24,0.25";
                     break;
             }
-            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=7.692,300,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,FFFFFF,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
+
+            if (league == leagues) {
+                dump('last League\n');
+                colors = colors.substring(0, colors.lastIndexOf('|'));
+            }
+            
+            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=7.692,300,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
             // Foxtrick.alert('URL: [' + url + ']\n')
             dump('\n' + url + '\n');
             var image = doc.createElement('img');
@@ -325,5 +349,27 @@ var FoxtrickCrossTable = {
             feld = this.qsort(feld,mitte+1,ende);
             return feld;
         } catch(eee) {dump('sort: '+eee + '\n');}
-	}    
+	},
+
+	initHtCountries: function ()
+	{
+		try {
+			this.htCountriesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcountries.xml");
+		} catch (e) {
+			dump('crosstable.js initHTCountries: '+e+"\n");
+		}
+	},
+
+	_loadXmlIntoDOM: function(url) {
+		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+		req.open("GET", url, false);
+		req.send(null);
+		var doc = req.responseXML;
+		if (doc.documentElement.nodeName == "parsererror") {
+			dump("error parsing " + url+"\n");
+			return null;
+		}
+		return doc;
+	}
+    
 };
