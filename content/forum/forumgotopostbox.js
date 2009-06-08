@@ -16,7 +16,9 @@ var FoxtrickGoToPostBox = {
     },
 
     run : function( page, doc ) {
-			
+            
+            Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");
+            
             //set up tab on left forums menu
             var tab = ''
             try {
@@ -56,8 +58,8 @@ var FoxtrickGoToPostBox = {
 				inputBoxTop.setAttribute('size', '4');
                 inputBoxTop.setAttribute('value', '(xxx.)yyy');
                 inputBoxTop.setAttribute('class', 'quickViewBox viewInactive');
-                inputBoxTop.setAttribute('onfocus', 'Foxtrick.setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
-                inputBoxTop.setAttribute('onblur', 'Foxtrick.setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
+                inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
+                inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
                 
 				var goButton = doc.createElement('input');
 				goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
@@ -94,14 +96,13 @@ var FoxtrickGoToPostBox = {
 	},
 	
 	_submit : function(e){
-		 var doc = e.target.ownerDocument;
-		 var key = e.keyCode;
-		 if(key == 13){
-		 	var goButtonID = e.target.getAttribute("id").replace(/postboxnum/, "okbutton");
-		 	var goButton = doc.getElementById(goButtonID);
-		 	if (goButton)
-		  	goButton.click(); 
-		  return false; 
-		 };
-		}
+		var doc = e.target.ownerDocument;
+		var key = e.keyCode;
+		if(key == 13){
+            var goButtonID = e.target.getAttribute("id").replace(/postboxnum/, "okbutton");
+            var goButton = doc.getElementById(goButtonID);
+            if (goButton) goButton.click(); 
+            return false; 
+        };
+	}
 };
