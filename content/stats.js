@@ -1952,6 +1952,24 @@ stats["ht_scouting_bangladesh"] =  {
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
+stats["ht_scouting_singapore"] =  { 
+  "url" : "http://www.ht-deutschland.de/",
+ 
+  "trackerplayerlink" : { "path"       : "scouting/singapore/scouting.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+				}, 
+  "trackernationalteamlink" : { "path"       : "scouting/singapore/index.php?language=2",
+                   "filters"    : ["countryid"], 
+                   "params"     : []
+				}, 
+  "nationalityranges" : [[47, 47]], 
+  "countryidranges" : [[47, 47]], 
+  "title" : "Singapore NT Scouting DB",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
+}
+
+
 // ------------------------- nattrick tracker --------------------------------
 
 stats["canadatracker"] = { 
@@ -2750,10 +2768,10 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,51],[53,53],[59,59],
+	"countryidranges" :   [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,46],[48,51],[53,53],[59,59],
 						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105,],[107,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,51],[53,53],[59,59],
+	"nationalityranges" : [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,46],[48,51],[53,53],[59,59],
 						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
