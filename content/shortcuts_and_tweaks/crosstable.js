@@ -158,9 +158,26 @@ var FoxtrickCrossTable = {
 			}
 
 
-            var crosstable = doc.createElement('table');
-            crosstable.id = 'ft_cross';
-            crosstable.setAttribute("style", "width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+            var heading = doc.createElement("h2");
+			heading.setAttribute("class","tblBox");
+			
+			heading.setAttribute("id", "ft_head_cross");
+			heading.innerHTML =  'Season cross table';
+            
+            var divmap = doc.createElement("div");
+            divmap.appendChild(heading);
+            divmap.setAttribute("style","cursor:pointer;width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+            divmap.setAttribute("id", "ft_div_cross");
+            divmap.addEventListener( "click", this.HeaderClick_Cross, false );
+            this.HeaderClick_Cross.doc=doc;
+            div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
+            
+            var crosstable=doc.createElement('table');
+            crosstable.setAttribute("id", "ft_cross");
+
+            crosstable.setAttribute("style", "width:"+width+"px;padding:1px;font-size:10px;");
+            divmap.appendChild(crosstable);
+            
             var tb=doc.createElement("tbody");
 
             crosstable.appendChild(tb);
@@ -216,13 +233,22 @@ var FoxtrickCrossTable = {
                     row.appendChild(cell);
                 }
             }
-            div.insertBefore(crosstable, div.getElementsByTagName('h1')[0].nextSibling);
-
-            var divmap = doc.createElement('div');
-            divmap.id = 'ft_graph';
-            divmap.className = 'ft_graph_div';
-            divmap.setAttribute('style', 'border : 1px dotted #EEEEEE; width:440px; height:200px;margin:10px 0px 10px -10px;');
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
+
+            var heading = doc.createElement("h2");
+			heading.setAttribute("class","tblBox");
+			
+			heading.setAttribute("id","ft_head_graph");
+			heading.innerHTML =  'Season graph';
+            
+            var divmap = doc.createElement("div");
+            divmap.appendChild(heading);
+            divmap.setAttribute("style","cursor:pointer;width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+            divmap.setAttribute("id", "ft_div_graph");
+            divmap.addEventListener( "click", this.HeaderClick_Graph, false );
+            this.HeaderClick_Graph.doc=doc;
+            div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
+            
             for (var draw=0; draw <= 14; draw++) {
                 this._week = draw;
                 //week.sort(this.numComparisonDesc);
@@ -255,7 +281,10 @@ var FoxtrickCrossTable = {
             }
             dump (league+'\n');
             
+            if (!Foxtrick.isStandardLayout( doc ) )
             var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].textContent.split('»')[1]);
+            else 
+            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].textContent.split('»')[1]);
             dump('['+country+']\n');
             var leagues = 0;
             try {
@@ -310,6 +339,7 @@ var FoxtrickCrossTable = {
             image.src = url;
             image.title = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
             image.alt = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
+            image.id = 'ft_graph'
             divmap.appendChild(image);
             
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
@@ -370,6 +400,24 @@ var FoxtrickCrossTable = {
 			return null;
 		}
 		return doc;
-	}
+	},
+    
+	HeaderClick_Graph : function(evt) {
+		try { 
+			var doc=FoxtrickCrossTable.HeaderClick_Graph.doc;
+            if (doc.getElementById('ft_graph').style.display == 'none') {doc.getElementById('ft_graph').style.display = 'block';}
+            else doc.getElementById('ft_graph').style.display = 'none';
+		} 
+		catch (e) {dump("CrossTable -> HeaderClick_Graph: "+e+'\n');}
+	},    
+
+	HeaderClick_Cross : function(evt) {
+		try { 
+			var doc=FoxtrickCrossTable.HeaderClick_Cross.doc;
+            if (doc.getElementById('ft_cross').style.display == 'none') {doc.getElementById('ft_cross').style.display = 'block';}
+            else doc.getElementById('ft_cross').style.display = 'none';
+		} 
+		catch (e) {dump("CrossTable -> HeaderClick_Cross: "+e+'\n');}
+	},    
     
 };
