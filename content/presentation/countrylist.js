@@ -13,7 +13,8 @@ var FoxtrickCountyList = {
     htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"possibility to display country names by their original name",
-
+	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
+	
     init : function() {
         this.initHtCountries();
     },
@@ -67,7 +68,7 @@ var FoxtrickCountyList = {
     _changelist: function (page, doc, id, start) {
         var selectbox = doc.getElementById(id);
         if (selectbox == null) return;
-        dump('GO ' + '\n');
+        //dump('GO ' + '\n');
         var options = selectbox.options;
         var countries = options.length;
         var selected  = selectbox.selectedIndex;
@@ -79,14 +80,14 @@ var FoxtrickCountyList = {
                     var country = options[i].value;
                     var htname = options[i].text;
                     
-                    var path = 'hattrickcountries/country[@name="' + htname + '"]';
-                    dump("value: " + country + ' || ' + htname + ' - ');
+					var path = 'hattrickcountries/country[@name="' + htname + '"]';
+                    //dump("value: " + country + ' || ' + htname + ' - ');
                     var obj = this.htCountriesXml.evaluate(path,this.htCountriesXml,null,this.htCountriesXml.DOCUMENT_NODE,null).singleNodeValue;
                     
                     if (obj)
 //                        htname = '#' + obj.attributes.getNamedItem("htname").textContent;
                         htname = obj.attributes.getNamedItem("htname").textContent;
-                    dump(country + ' || ' + htname + '\n');                        
+                    //dump(country + ' || ' + htname + '\n');                        
 //                    else
 //                        return -1;
                     
@@ -120,6 +121,7 @@ var FoxtrickCountyList = {
             if (opt_array[i][0] == id_sel) selectbox.selectedIndex = i;
             options[i].value = opt_array[i][0];
             options[i].text = opt_array[i][1];
-        }        
+        }   
+		selectbox.style.display='inline';
     }
 };
