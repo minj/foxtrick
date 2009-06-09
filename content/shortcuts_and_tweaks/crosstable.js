@@ -10,10 +10,10 @@ var FoxtrickCrossTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('fixtures'),
 	DEFAULT_ENABLED : true,
-    OPTIONS :  new Array("cut_long_teamnames"),
+    OPTIONS :  new Array("cut_long_teamnames", "allway_show_cross", "allway_show_graph"),
     OPTION_TEXTS : true,
     OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1"),
-    htCountriesXml : null,    
+    htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some style options",
 
@@ -41,6 +41,10 @@ var FoxtrickCrossTable = {
             }
 
             var div = doc.getElementById('mainBody');
+
+
+    		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/crosstable.css");
+
             var tbl_fix = div.getElementsByTagName('TABLE')[0];
 
             tbl_fix.id = 'ft_fixture';
@@ -73,7 +77,7 @@ var FoxtrickCrossTable = {
                                     new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0));
             //Teams
             var tblBodyObj = tbl_fix.tBodies[0];
-            
+
             for (var i = 0; i < 4; i++) {
                 var dummy = tblBodyObj.rows[i+1].cells[1].innerHTML;
                 dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
@@ -128,7 +132,7 @@ var FoxtrickCrossTable = {
                                 if (result[0] > result[1]) {points_hm = 3; points_aw = 0;}
                                 if (result[0] < result[1]) {points_hm = 0; points_aw = 3;}
                                 if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}
-                                week[home][j+1] = points_hm *1000000 + old_hm + (result[0] - result[1]) + result[0]; 
+                                week[home][j+1] = points_hm *1000000 + old_hm + (result[0] - result[1]) + result[0];
                                 week[away][j+1] = points_aw *1000000 + old_aw + (result[1] - result[0]) + result[1];
                                 weekcount = j+1;
                                 dump(weekcount + ' - ');
@@ -161,26 +165,34 @@ var FoxtrickCrossTable = {
 			}
 
 
+            var head_class = "ft_ct_head_std";
+            if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
+
             var heading = doc.createElement("h2");
-			heading.setAttribute("class","tblBox");
-			
 			heading.setAttribute("id", "ft_head_cross");
 			heading.innerHTML =  'Season cross table';
-            
+
             var divmap = doc.createElement("div");
+            if (!Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[1]) ) { 
+                var show = "none";
+                heading.setAttribute("class", head_class + '_arrow' + ' tblBox');                
+                
+            } else {
+                var show = "block";
+                heading.setAttribute("class", head_class + ' tblBox');                                
+            }
             divmap.appendChild(heading);
-            divmap.setAttribute("style","cursor:pointer;width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+            divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_cross");
-            divmap.addEventListener( "click", this.HeaderClick_Cross, false );
+            heading.addEventListener( "click", this.HeaderClick_Cross, false );
             this.HeaderClick_Cross.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
-            
+
             var crosstable=doc.createElement('table');
             crosstable.setAttribute("id", "ft_cross");
-
-            crosstable.setAttribute("style", "width:"+width+"px;padding:1px;font-size:10px;");
+            crosstable.setAttribute("style", "width:"+width+"px;padding:1px;font-size:10px;display:"+show+";");
             divmap.appendChild(crosstable);
-            
+
             var tb=doc.createElement("tbody");
 
             crosstable.appendChild(tb);
@@ -239,19 +251,26 @@ var FoxtrickCrossTable = {
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             var heading = doc.createElement("h2");
-			heading.setAttribute("class","tblBox");
-			
 			heading.setAttribute("id","ft_head_graph");
 			heading.innerHTML =  'Season graph';
-            
+
+            if (!Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[2]) ) { 
+                var show = "none";
+                heading.setAttribute("class", head_class + '_arrow' + ' tblBox');                
+                
+            } else {
+                var show = "block";
+                heading.setAttribute("class", head_class + ' tblBox');                                
+            }
+
             var divmap = doc.createElement("div");
             divmap.appendChild(heading);
-            divmap.setAttribute("style","cursor:pointer;width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+            divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_graph");
-            divmap.addEventListener( "click", this.HeaderClick_Graph, false );
+            heading.addEventListener( "click", this.HeaderClick_Graph, false );
             this.HeaderClick_Graph.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
-            
+
             for (var draw=0; draw <= 15; draw++) {
                 this._week = draw;
                 //week.sort(this.numComparisonDesc);
@@ -260,7 +279,7 @@ var FoxtrickCrossTable = {
                 for(var act = 0; act<8; act++) {
                     if (draw>0) week[act][draw] = act+1;
                 }
-                // dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');                
+                // dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');
             }
             var position = '', teams = '';
             for (var ii = 0; ii<8; ii++) {
@@ -273,7 +292,7 @@ var FoxtrickCrossTable = {
             for (var ii = 0; ii<8; ii++) {
                 if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
                 else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+');}
-            }            
+            }
             var league = Foxtrick.trim(doc.getElementsByTagName('h1')[0].textContent.split(' -')[1]);
             dump (league+'\n');
             if (league.search(/\./) > -1) {
@@ -283,10 +302,10 @@ var FoxtrickCrossTable = {
                 league = 1;
             }
             dump (league+'\n');
-            
+
             if (!Foxtrick.isStandardLayout( doc ) )
             var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].textContent.split('»')[1]);
-            else 
+            else
             var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].textContent.split('»')[1]);
             dump('['+country+']\n');
             var leagues = 0;
@@ -301,7 +320,7 @@ var FoxtrickCrossTable = {
                 dump('crosstable.js countries: '+exml + "\n");
             }
             dump ('leagues: ' + leagues + '\n');
-            
+
             var colors = "";
             switch (league) {
                     case 11 :colors = "&chm=" + "r,dfeeff,0,0.87,0.88"                                 + "|r,dfeeff,0,0.24,0.25";
@@ -334,7 +353,7 @@ var FoxtrickCrossTable = {
                 dump('last League\n');
                 colors = colors.substring(0, colors.lastIndexOf('|'));
             }
-            
+
             var weeks = '0:';
             for (var jj = 1; jj <= weekcount; jj++) {
                 weeks += '|' + jj;
@@ -344,7 +363,7 @@ var FoxtrickCrossTable = {
                 x_offset = Math.floor((1/(weekcount-1))*10000)/100;
                 dump(x_offset + '\n');
             }
-            
+
             var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|" + weeks +"&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=" + x_offset +",300,1,10,0,0&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
             // Foxtrick.alert('URL: [' + url + ']\n')
             dump('\n' + url + '\n');
@@ -353,8 +372,9 @@ var FoxtrickCrossTable = {
             image.title = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
             image.alt = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
             image.id = 'ft_graph'
+            image.setAttribute('style', 'display:'+show+';' );
             divmap.appendChild(image);
-            
+
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
 	},
 
@@ -369,7 +389,7 @@ var FoxtrickCrossTable = {
         // dump(b[this._week] +'[this._week]' + a[this._week]);
         return b[this._week]-a[this._week];
     },
-    
+
     qsort : function (feld,anfang,ende) {
     	try{
             var i=0;
@@ -414,23 +434,42 @@ var FoxtrickCrossTable = {
 		}
 		return doc;
 	},
-    
+
 	HeaderClick_Graph : function(evt) {
-		try { 
+        try {
+
+            var header = evt.target;
 			var doc=FoxtrickCrossTable.HeaderClick_Graph.doc;
-            if (doc.getElementById('ft_graph').style.display == 'none') {doc.getElementById('ft_graph').style.display = 'block';}
-            else doc.getElementById('ft_graph').style.display = 'none';
-		} 
+            var head_class = "ft_ct_head_std";
+            if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
+            if (doc.getElementById('ft_graph').style.display == 'none') {
+                doc.getElementById('ft_graph').style.display = 'block';
+                header.setAttribute("class", head_class  + ' tblBox');
+            }
+            else {
+                doc.getElementById('ft_graph').style.display = 'none';
+                header.setAttribute("class", head_class + '_arrow'  + ' tblBox');
+            }
+		}
 		catch (e) {dump("CrossTable -> HeaderClick_Graph: "+e+'\n');}
-	},    
+	},
 
 	HeaderClick_Cross : function(evt) {
-		try { 
+        try {
+            var header = evt.target;
 			var doc=FoxtrickCrossTable.HeaderClick_Cross.doc;
-            if (doc.getElementById('ft_cross').style.display == 'none') {doc.getElementById('ft_cross').style.display = 'block';}
-            else doc.getElementById('ft_cross').style.display = 'none';
-		} 
+            var head_class = "ft_ct_head_std";
+            if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
+            if (doc.getElementById('ft_cross').style.display == 'none') {
+                doc.getElementById('ft_cross').style.display = 'block';
+                header.setAttribute("class", head_class + ' tblBox');
+            }
+            else {
+                doc.getElementById('ft_cross').style.display = 'none';
+                header.setAttribute("class", head_class + '_arrow'  + ' tblBox');
+            }
+		}
 		catch (e) {dump("CrossTable -> HeaderClick_Cross: "+e+'\n');}
-	},    
-    
+	},
+
 };
