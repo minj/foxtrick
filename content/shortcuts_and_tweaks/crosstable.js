@@ -73,6 +73,7 @@ var FoxtrickCrossTable = {
                                     new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0));
             //Teams
             var tblBodyObj = tbl_fix.tBodies[0];
+            
             for (var i = 0; i < 4; i++) {
                 var dummy = tblBodyObj.rows[i+1].cells[1].innerHTML;
                 dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
@@ -85,6 +86,7 @@ var FoxtrickCrossTable = {
 
             //results
             var row = 0; points_aw = 0; points_hm = 0;
+            var weekcount = 1;
             for (var j = 0; j<14; j++){ //day
                 // dump(j + ' [--------------------------------\n');
                 for (var i = 0; i<4 ; i++) { //row
@@ -128,7 +130,8 @@ var FoxtrickCrossTable = {
                                 if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}
                                 week[home][j+1] = points_hm *1000000 + old_hm + (result[0] - result[1]) + result[0]; 
                                 week[away][j+1] = points_aw *1000000 + old_aw + (result[1] - result[0]) + result[1];
-
+                                weekcount = j+1;
+                                dump(weekcount + ' - ');
                             }
                             else {
                                 cross[home][away+1] = '-';
@@ -249,7 +252,7 @@ var FoxtrickCrossTable = {
             this.HeaderClick_Graph.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
             
-            for (var draw=0; draw <= 14; draw++) {
+            for (var draw=0; draw <= 15; draw++) {
                 this._week = draw;
                 //week.sort(this.numComparisonDesc);
                 this.qsort(week, 0, 7);
@@ -261,11 +264,11 @@ var FoxtrickCrossTable = {
             }
             var position = '', teams = '';
             for (var ii = 0; ii<8; ii++) {
-                for(var jj = 1; jj<14; jj++) {
+                for(var jj = 1; jj < weekcount; jj++) {
                     position += (9-week[ii][jj]) + ',';
                 }
-                if (ii < 7) {position += (9-week[ii][14]) + '|';}
-                else {position += (9-week[ii][14]);}
+                if (ii < 7) {position += (9-week[ii][weekcount+1]) + '|';}
+                else {position += (9-week[ii][weekcount+1]);}
             }
             for (var ii = 0; ii<8; ii++) {
                 if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
@@ -332,7 +335,17 @@ var FoxtrickCrossTable = {
                 colors = colors.substring(0, colors.lastIndexOf('|'));
             }
             
-            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|0:|1|2|3|4|5|6|7|8|9|10|11|12|13|14&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=7.692,300,1,10,0,6.25&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
+            var weeks = '0:';
+            for (var jj = 1; jj <= weekcount; jj++) {
+                weeks += '|' + jj;
+            }
+            var x_offset = '6.25';
+            if (weekcount != 0) {
+                x_offset = Math.floor((1/(weekcount-1))*10000)/100;
+                dump(x_offset + '\n');
+            }
+            
+            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|" + weeks +"&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=" + x_offset +",300,1,10,0,0&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
             // Foxtrick.alert('URL: [' + url + ']\n')
             dump('\n' + url + '\n');
             var image = doc.createElement('img');
