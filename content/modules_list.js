@@ -124,6 +124,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickOnPagePrefs,
 					 FoxtrickLineupShortcut,
 					 FoxtrickSingleline2,
+                     FoxtrickCountyList
 					];
 
 					
