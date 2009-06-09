@@ -17,6 +17,8 @@ var FoxtrickForumChangePosts = {
 	
 	run : function( page, doc ) { 
 	try{
+		if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;
+		
 	
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID); 
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon"); 

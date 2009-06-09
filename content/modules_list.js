@@ -123,6 +123,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickSkillTranslation,
 					 FoxtrickOnPagePrefs,
 					 FoxtrickLineupShortcut,
+					 FoxtrickSingleline2,
 					];
 
 					

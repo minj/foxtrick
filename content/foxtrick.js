@@ -140,6 +140,7 @@ var FoxtrickMain = {
 			// listen to page loads   
 			//FoxtrickMain.onPageLoad.appcontent = appcontent;
 			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad, true );
+			appcontent.addEventListener( "unload", this.onPageUnLoad, true );
 		}								 
     },
 
@@ -169,13 +170,16 @@ var FoxtrickMain = {
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
 			var begin = new Date();
+			var time = ( begin.getSeconds() - this._unloadtime.getSeconds() ) * 1000
+                     + begin.getMilliseconds() - this._unloadtime.getMilliseconds();
+            dump("load+ccs time: " + time + " ms | " + doc.location.pathname+'\n' );
 			
             FoxtrickMain.run( doc );
 
             var end = new Date();
             var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                      + end.getMilliseconds() - begin.getMilliseconds();
-            dump("run time: " + time + " ms | " + doc.location.pathname.substring(0,50)+'\n' );
+            dump("run time: " + time + " ms | " + doc.location.pathname+'\n' );
 			// listen to page content changes
 			var content = doc.getElementById("content");
 			if( content ) {
@@ -184,6 +188,14 @@ var FoxtrickMain = {
 	    }
     },
 
+	_unloadtime:0,
+    onPageUnLoad : function( ev ) { 
+		var doc = ev.originalTarget;
+		if ( doc.nodeName != "#document" )
+            return;
+		this._unloadtime = new Date();
+			
+	},
 	
     // main entry run on every ht page load
     run : function( doc ) {
