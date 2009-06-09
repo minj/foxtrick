@@ -13,7 +13,7 @@ FoxtrickMatchReportFormat = {
 											 "#9F0202",  //Text Home team name   1
                                              "#16029F",  //Text Away team name   2
                                              "#E3E9FF",  //BG My Team            3
-                                             "#FFF4F4",  //BG Home               4
+                                             "#FFE8E8",  //BG Home               4
                                              "#E0EFE0",  //BG Away               5
                                              "0",        //borders_normal        6
                                              "0",        //borders_goal          7

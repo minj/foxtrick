@@ -32,6 +32,7 @@ var FoxtrickForumSearch = {
                     var thread_act = FoxtrickPrefs.getString("forum_post_list." + postid);
                     if (thread_act == null) {
                         FoxtrickPrefs.setString("forum_post_list." + postid, title);
+                        this._SaveForSearch( postid + '[||]' + title);
                         // dump ( i + ' - ' + postid + ' | "' + title+ '" ADDED \n');
                     } else {
                         // dump ( i + ' - ' + postid + ' | "' + title+ '" DUPLICATE \n');
@@ -64,6 +65,8 @@ var FoxtrickForumSearch = {
                 new_div.appendChild(button);
                 
                 box.appendChild(new_div);
+            } else {
+                doc.getElementById('ft_searchField').setAttribute('value', threadlist.length + ' Threads');
             }
         }
         catch(e) {
@@ -109,7 +112,7 @@ var FoxtrickForumSearch = {
             		results.push (threadlist[i]);
                     try {
                         count ++;
-                        if (count > 100) {
+                        if (count == 100) {
                             if (Foxtrick.confirmDialog( 'Too much results! Stop here?' )) cancel = true;
                         }
                         var table = doc.getElementById("ft_searchLinks");
@@ -161,5 +164,29 @@ var FoxtrickForumSearch = {
             }
         }
         return false;
-	}
+	},
+    
+	_SaveForSearch : function (str) {
+        try {
+			var locpath="C:\\tmp\\sdf";//Foxtrick.selectFileSave(doc.defaultView); 
+			dump(locpath+'\n');
+			if (locpath==null) {return;}
+			var File = Components.classes["@mozilla.org/file/local;1"].
+                     createInstance(Components.interfaces.nsILocalFile);
+			File.initWithPath(locpath);
+
+			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
+                         createInstance(Components.interfaces.nsIFileOutputStream);
+			foStream.init(File, 0x02 | 0x08 | 0x20 | 0x10, 0666, 0);
+			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
+                   .createInstance(Components.interfaces.nsIConverterOutputStream);
+			os.init(foStream, "UTF-8", 0, 0x0000);
+			os.writeString(str+'\c\n');						
+			os.close();
+			foStream.close();
+		}
+		catch (e) {
+			Foxtrick.alert(e);
+        }    
+    }
 };
