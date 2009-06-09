@@ -12,8 +12,9 @@ var FoxtrickCrossTable = {
 	DEFAULT_ENABLED : true,
     OPTIONS :  new Array("cut_long_teamnames", "allway_show_cross", "allway_show_graph"),
     OPTION_TEXTS : true,
-    OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1"),
-    htCountriesXml : null,
+    OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1","",""),
+    OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
+	htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some style options",
 
