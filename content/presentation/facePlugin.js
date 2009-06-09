@@ -70,7 +70,6 @@ var FoxtrickColouredYouthFaces = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : false,
-	CSS:"chrome://foxtrick/content/resources/css/HideFaceInjuryImages.css",
 	
     init : function() {
     },
