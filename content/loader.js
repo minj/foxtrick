@@ -86,7 +86,7 @@ Foxtrick.Loader = function(){
     'shortcuts_and_tweaks/crosstable.js',
     'shortcuts_and_tweaks/electiontable.js',
 	'shortcuts_and_tweaks/lineupshortcut.js',
-    'shortcuts_and_tweaks/countrylist.js',
+    'presentation/countrylist.js',
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',
     'presentation/guestbookalltidflags.js',

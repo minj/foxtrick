@@ -7,7 +7,7 @@
 var FoxtrickCountyList = {
 
 	MODULE_NAME : "CountryList",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
     PAGES : new Array('country'),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,

@@ -1969,6 +1969,22 @@ stats["ht_scouting_singapore"] =  {
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 }
 
+stats["omantracker"] = { 
+  "url" : "http://www.ht-deutschland.de/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Oman U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "scouting/oman/scouting.php?language=2",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "scouting/oman/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[134,134]] , 
+	"nationalityranges" : [[134,134]], 
+};
 
 // ------------------------- nattrick tracker --------------------------------
 
@@ -2235,23 +2251,6 @@ stats["moldovatracker"] = {
                  },
 	"countryidranges" : [[103,103]] , 
 	"nationalityranges" : [[103,103]], 
-};
-
-stats["omantracker"] = { 
-  "url" : "http://oman.ht.quickly.co.il/",
-  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
-  "title" : "Oman U20/NT Tracker",
-  
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
-                   "params"     : []
-                 },
-	"countryidranges" : [[134,134]] , 
-	"nationalityranges" : [[134,134]], 
 };
 
 
