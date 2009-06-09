@@ -79,11 +79,12 @@ var FoxtrickCountyList = {
                     var country = options[i].value;
                     var htname = options[i].text;
                     
-                    var path = "hattrickcountries/country[@name='" + htname + "']";
+                    var path = 'hattrickcountries/country[@name="' + htname + '"]';
                     dump("value: " + country + ' || ' + htname + ' - ');
                     var obj = this.htCountriesXml.evaluate(path,this.htCountriesXml,null,this.htCountriesXml.DOCUMENT_NODE,null).singleNodeValue;
                     
                     if (obj)
+//                        htname = '#' + obj.attributes.getNamedItem("htname").textContent;
                         htname = obj.attributes.getNamedItem("htname").textContent;
                     dump(country + ' || ' + htname + '\n');                        
 //                    else

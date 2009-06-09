@@ -7,7 +7,7 @@
   <country name="Argentina" continent="S. America" region="South America" offset="0" id="7" hscountry="Argentina" htname="Argentina" leagues="9" />
   <country name="Armenia" continent="Asia" region="Asia, Africa, Oceania" offset="26" id="122" hscountry="Armenia" htname="Hayastan" leagues="3" />
   <country name="Austria" continent="Europe" region="Central Europe" offset="13" id="39" hscountry="Austria" htname="Österreich" leagues="7" />
-  <country name="Azerbaijan" continent="Asia" region="Asia, Africa, Oceania" offset="28" id="129" hscountry="Azerbaijan" htname="Az?rbaycan" leagues="4" />
+  <country name="Azerbaijan" continent="Asia" region="Asia, Africa, Oceania" offset="28" id="129" hscountry="Azerbaijan" htname="Azərbaycan" leagues="4" />
   <country name="Bahrain" continent="Asia" region="Asia, Africa, Oceania" offset="27" id="123" hscountry="Bahrain" htname="Bahrain" leagues="3" />
   <country name="Bangladesh" continent="Asia" region="Asia, Africa, Oceania" offset="29" id="132" hscountry="Bangladesh" htname="Bangladesh" leagues="3" />
   <country name="Barbados" continent="N. America" region="North America" offset="27" id="124" hscountry="Barbados" htname="Barbados" leagues="3" />
@@ -26,7 +26,7 @@
   <country name="Chinese Taipei" continent="Asia" region="Asia, Africa, Oceania" offset="16" id="60" hscountry="taiwan" htname="Chinese Taipei" leagues="5" />
   <country name="Colombia" continent="S. America" region="South America" offset="12" id="19" hscountry="Colombia" htname="Colombia" leagues="7" />
   <country name="Costa Rica" continent="N. America" region="North America" offset="21" id="81" hscountry="CostaRica" htname="Costa Rica" leagues="4" />
-  <country name="Côte d Ivoire" continent="Africa" region="Asia, Africa, Oceania" offset="27" id="126" hscountry="CotedIvoire" htname="Côte d’Ivoire" leagues="3" />
+  <country name="Côte d’Ivoire" continent="Africa" region="Asia, Africa, Oceania" offset="27" id="126" hscountry="CotedIvoire" htname="Côte d’Ivoire" leagues="3" />
   <country name="Croatia" continent="Europe" region="Eastern Europe" offset="15" id="58" hscountry="Croatia" htname="Hrvatska" leagues="6" />
   <country name="Cyprus" continent="Europe" region="Eastern Europe" offset="21" id="89" hscountry="Cyprus" htname="Cyprus" leagues="5" />
   <country name="Czech Republic" continent="Europe" region="Central Europe" offset="15" id="52" hscountry="Czech" htname="Ceská republika" leagues="7" />
@@ -88,7 +88,7 @@
   <country name="Pakistan" continent="Asia" region="Asia, Africa, Oceania" offset="18" id="71" hscountry="Pakistan" htname="Pakistan" leagues="3" />
   <country name="Panama" continent="N. America" region="North America" offset="22" id="96" hscountry="Panama" htname="Panamá" leagues="5" />
   <country name="Paraguay" continent="S. America" region="South America" offset="20" id="72" hscountry="Paraguay" htname="Paraguay" leagues="5" />
-  <country name="Peoples Republic of China" continent="Asia" region="Asia, Africa, Oceania" offset="12" id="34" hscountry="China" htname="China" leagues="7" />
+  <country name="People's Republic of China" continent="Asia" region="Asia, Africa, Oceania" offset="12" id="34" hscountry="China" htname="China" leagues="7" />
   <country name="Peru" continent="S. America" region="South America" offset="12" id="23" hscountry="Peru" htname="Perú" leagues="7" />
   <country name="Philippines" continent="Asia" region="Asia, Africa, Oceania" offset="15" id="55" hscountry="Philippines" htname="Philippines" leagues="4" />
   <country name="Poland" continent="Europe" region="Central Europe" offset="12" id="24" hscountry="Poland" htname="Polska" leagues="10" />
@@ -112,7 +112,7 @@
   <country name="Syria" continent="Asia" region="Asia, Africa, Oceania" offset="33" id="140" hscountry="Syria" htname="Suriyah" leagues="3" />
   <country name="Tanzania" continent="Africa" region="Asia, Africa, Oceania" offset="34" id="142" hscountry="Tanzania" htname="Tanzania" leagues="3" />
   <country name="Thailand" continent="Asia" region="Asia, Africa, Oceania" offset="12" id="31" hscountry="Thailand" htname="Prathet Thai" leagues="5" />
-  <country name="Trinidad n Tobago" continent="N. America" region="North America" offset="25" id="110" hscountry="Trinidad" htname="Trinidad &amp; Tobago" leagues="3" />
+  <country name="Trinidad &amp; Tobago" continent="N. America" region="North America" offset="25" id="110" hscountry="Trinidad" htname="Trinidad &amp; Tobago" leagues="3" />
   <country name="Tunisia" continent="Africa" region="Asia, Africa, Oceania" offset="21" id="80" hscountry="tunisiyah" htname="Tounes" leagues="4" />
   <country name="Turkey" continent="Europe" region="Eastern Europe" offset="12" id="32" hscountry="Turkey" htname="Türkiye" leagues="9" />
   <country name="Uganda" continent="Africa" region="Asia, Africa, Oceania" offset="35" id="143" hscountry="Uganda" htname="Uganda" leagues="3" />
