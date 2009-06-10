@@ -1,4 +1,6 @@
 /**
+ *
+ * 
  * stats.js
  * Foxtrick links collection
  * @author other,convinced
