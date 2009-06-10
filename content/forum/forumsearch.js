@@ -168,6 +168,7 @@ var FoxtrickForumSearch = {
     
 	_SaveForSearch : function (str) {
         try {
+            return;
 			var locpath="C:\\tmp\\sdf";//Foxtrick.selectFileSave(doc.defaultView); 
 			dump(locpath+'\n');
 			if (locpath==null) {return;}
