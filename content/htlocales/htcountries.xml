@@ -29,7 +29,7 @@
   <country name="Côte d’Ivoire" continent="Africa" region="Asia, Africa, Oceania" offset="27" id="126" hscountry="CotedIvoire" htname="Côte d’Ivoire" leagues="3" />
   <country name="Croatia" continent="Europe" region="Eastern Europe" offset="15" id="58" hscountry="Croatia" htname="Hrvatska" leagues="6" />
   <country name="Cyprus" continent="Europe" region="Eastern Europe" offset="21" id="89" hscountry="Cyprus" htname="Cyprus" leagues="5" />
-  <country name="Czech Republic" continent="Europe" region="Central Europe" offset="15" id="52" hscountry="Czech" htname="Česká republika" leagues="7" />
+  <country name="Czech Republic" continent="Europe" region="Central Europe" offset="15" id="52" hscountry="Czech" htname="Ceská republika" leagues="7" />
   <country name="Denmark" continent="Europe" region="Northern Europe" offset="0" id="11" hscountry="Danmark" htname="Danmark" leagues="9" />
   <country name="Dominican Republic" continent="N. America" region="North America" offset="21" id="88" hscountry="Dominican" htname="Republica Dominicana" leagues="3" />
   <country name="Ecuador" continent="S. America" region="South America" offset="20" id="73" hscountry="Ecuador" htname="Ecuador" leagues="4" />
