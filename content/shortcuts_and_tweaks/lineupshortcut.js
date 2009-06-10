@@ -177,7 +177,7 @@ FoxtrickLineupShortcut = {
 		try {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID=28577191&YouthTeamID=7985&isYouth=True&HighlightPlayer='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayer='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
 		} catch (e) {
             dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
