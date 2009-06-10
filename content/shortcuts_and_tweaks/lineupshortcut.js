@@ -48,32 +48,37 @@ FoxtrickLineupShortcut = {
         
         try {
 			var mainbody = doc.getElementById( "mainBody" );
-			var divs=mainbody.getElementsByTagName('div');
-			var lastdiv=divs.item(divs.length-1);
-			if (lastdiv.id=='trainingDetails') {
-				//Own player, we must take previous div
-				lastdiv=divs.item(divs.length-2);
-			}
-            
-			//we get the table with rows of played match
-			var matchtable=lastdiv.getElementsByTagName('table');
-			if (matchtable.length>0) {
-				//There are matches
-				matchtable=matchtable.item(0);
-				//Now getting playerid from top of the page:
-				var element=doc.getElementById('mainWrapper');
-				var playerid=FoxtrickHelper.findPlayerId(element);
+			var divs=Foxtrick.getElementsByClass( "mainBox", mainbody );
+			if (divs.length>1) {
+				//Otherwise there aren't matches
+				//var divs=mainbody.getElementsByTagName('div');
+				var lastdiv=divs[divs.length-1];
+				if (lastdiv.id=='trainingDetails') {
+					//Own player, we must take previous div
+					lastdiv=divs[divs.length-2];
+				}
 				
-				for (var i=0;i<matchtable.rows.length;i++) {
-					var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
-					var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href);
-					var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
-					this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
+				//we get the table with rows of played match
+				var matchtable=lastdiv.getElementsByTagName('table');
+				if (matchtable.length>0) {
+					//There are matches
+					matchtable=matchtable.item(0);
+					//Now getting playerid from top of the page:
+					var element=doc.getElementById('mainWrapper');
+					var playerid=FoxtrickHelper.findPlayerId(element);
+					
+					for (var i=0;i<matchtable.rows.length;i++) {
+						var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
+						var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href);
+						var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
+						this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
+					}
 				}
 			}
 			
         } catch (e) {
             dump('FoxtrickLineupShortcut'+e);
+			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
         }
     },
 	
