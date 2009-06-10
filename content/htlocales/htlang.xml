@@ -1094,13 +1094,13 @@
     <!-- David Torrecilla (dorretxo) -->
     <language name="eu_ES" desc="Euskara">
         <ratingSubLevels>
-            <sublevel text="(oso baxua)" value="0.0"/>
-            <sublevel text="(baxua)" value="0.25"/>
-            <sublevel text="(altua)" value="0.50"/>
-            <sublevel text="(oso altua)" value="0.75"/>
+            <sublevel text="(Oso baxua)" value="0.0"/>
+            <sublevel text="(Baxua)" value="0.25"/>
+            <sublevel text="(Altua)" value="0.50"/>
+            <sublevel text="(Oso altua)" value="0.75"/>
         </ratingSubLevels>
         <tactics>
-            <tactic type="normal" value="Normala"/>
+            <tactic type="normal" value="Normal"/>
             <tactic type="pressing" value="Presionatu"/>
             <tactic type="ca" value="Kontraerasoa"/>
             <tactic type="aow" value="Hegaletatik eraso"/>
