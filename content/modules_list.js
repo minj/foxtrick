@@ -124,7 +124,9 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickOnPagePrefs,
 					 FoxtrickLineupShortcut,
 					 FoxtrickSingleline2,
-                     FoxtrickCountyList
+                     FoxtrickCountyList,
+					 FoxtrickSmallerPages, //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
+
 					];
 
 					

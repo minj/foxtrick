@@ -126,6 +126,17 @@ var FoxtrickHelper = {
 		}
 		return false;
 	},
+	
+	//---------------------------------------------------------------------------    
+	findYouthTeamId : function(element) {
+		var links = element.getElementsByTagName('a');
+		for (var i=0; i < links.length; i++) {
+			if ( links[i].href.match(/YouthTeamID=/i) ) {
+				return links[i].href.replace(/.+YouthTeamID=/i, "").match(/^\d+/)[0];
+			}
+		}
+		return null;
+	},
 
 	//---------------------------------------------------------------------------    
 	findUserId : function(element) {
@@ -157,6 +168,17 @@ var FoxtrickHelper = {
 		for (var i=0; i < links.length; i++) {
 			if ( links[i].href.match(/playerID=/i) ) {
 				return links[i].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+			}
+		}
+		return null;
+	},
+	
+	//---------------------------------------------------------------------------    
+	findYouthPlayerId : function(element) {
+		var links = element.getElementsByTagName('a');
+		for (var i=0; i < links.length; i++) {
+			if ( links[i].href.match(/YouthPlayerID=/i) ) {
+				return links[i].href.replace(/.+YouthPlayerID=/i, "").match(/^\d+/)[0];
 			}
 		}
 		return null;
