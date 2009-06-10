@@ -122,12 +122,14 @@ FoxtrickLineupShortcut = {
 				var newimg="url(chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
 				//Getting playerid from url
 				var passedid = doc.baseURI.replace(/.+HighlightPlayer=/i, "").match(/^\d+/);
-				var playerdivs = Foxtrick.getElementsByClass( "name", doc );
-				for (var i = 0; i < playerdivs.length; i++) {
-					var playerid=FoxtrickHelper.findPlayerId(playerdivs[i]);
-					if (playerid==passedid) {
-						//Found it!
-						playerdivs[i].parentNode.style.backgroundImage=newimg;
+				if (passedid) {
+					var playerdivs = Foxtrick.getElementsByClass( "name", doc );
+					for (var i = 0; i < playerdivs.length; i++) {
+						var playerid=FoxtrickHelper.findPlayerId(playerdivs[i]);
+						if (playerid==passedid) {
+							//Found it!
+							playerdivs[i].parentNode.style.backgroundImage=newimg;
+						}
 					}
 				}
 			} catch (e) {
