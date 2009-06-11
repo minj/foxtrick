@@ -110,32 +110,11 @@ FoxtrickLineupShortcut = {
 		try {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayer='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
+			//HighlightPlayerID is the HT function
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
 		} catch (e) {
             dump('FoxtrickLineupShortcut'+e);
         }
-	},
-	
-	_Highlight_Player : function ( doc ) {
-		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightPlayer")) {
-			try {
-				var newimg="url(chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
-				//Getting playerid from url
-				var passedid = doc.baseURI.replace(/.+HighlightPlayer=/i, "").match(/^\d+/);
-				if (passedid) {
-					var playerdivs = Foxtrick.getElementsByClass( "name", doc );
-					for (var i = 0; i < playerdivs.length; i++) {
-						var playerid=FoxtrickHelper.findPlayerId(playerdivs[i]);
-						if (playerid==passedid) {
-							//Found it!
-							playerdivs[i].parentNode.style.backgroundImage=newimg;
-						}
-					}
-				}
-			} catch (e) {
-				dump('FoxtrickLineupShortcut'+e);
-			}
-		}
 	},
 	
 	//***************** YOUTH TEAM ********************
@@ -184,11 +163,35 @@ FoxtrickLineupShortcut = {
 		try {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayer='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
+			//HighlightPlayerID is the HT function
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
 		} catch (e) {
             dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
         }
+	},
+	
+	//************************ HIGHLIGHT PLAYER ***********************************
+	_Highlight_Player : function ( doc ) {
+		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightPlayer")) {
+			try {
+				var newimg="url(chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
+				//Getting playerid from url
+				var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, "").match(/^\d+/);
+				if (passedid) {
+					var playerdivs = Foxtrick.getElementsByClass( "name", doc );
+					for (var i = 0; i < playerdivs.length; i++) {
+						var playerid=FoxtrickHelper.findPlayerId(playerdivs[i]);
+						if (playerid==passedid) {
+							//Found it!
+							playerdivs[i].parentNode.style.backgroundImage=newimg;
+						}
+					}
+				}
+			} catch (e) {
+				dump('FoxtrickLineupShortcut'+e);
+			}
+		}
 	}
 
 };

@@ -114,3 +114,4 @@ pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.CHPP.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.LA.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.editor.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.foxtrick-dev.enabled", true );
+pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.enabled", false );
