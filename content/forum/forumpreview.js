@@ -284,12 +284,12 @@ var FoxtrickForumPreview = {
             var text = Foxtrick.stripHTML( msg_window.value );
 
             text = text.replace(/\n/g, "<br />");
-            var count = Foxtrick.substr_count(text, '[');
-            for (var j = 0; j <= 0; j++) {
+            //var count = Foxtrick.substr_count(text, '[');
+            //for (var j = 0; j <= 0; j++) {
                 for ( var i = 0; i < search.length; i++) {
                     text = text.replace(search[i],replace[i]);
                 }
-            }
+            //}
 
             prev_div.innerHTML = text;
         }
