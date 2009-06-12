@@ -47,8 +47,11 @@ FoxtrickLineupShortcut = {
     _Analyze_Player_Page  : function ( doc ) {
         try {
 			var mainbody = doc.getElementById( "mainBody" );
-			var divs=Foxtrick.getElementsByClass( "mainBox", mainbody );
-			if (divs.length>1) {
+			var issupporter = Foxtrick.getElementsByClass( "bookmark", mainbody );
+			
+			if (issupporter.length>0) {
+				//user is supporter, we check if there are stats
+				var divs=Foxtrick.getElementsByClass( "mainBox", mainbody );
 				//Otherwise there aren't matches
 				//var divs=mainbody.getElementsByTagName('div');
 				var lastdiv=divs[divs.length-1];
@@ -66,6 +69,10 @@ FoxtrickLineupShortcut = {
 					var element=doc.getElementById('mainWrapper');
 					var playerid=FoxtrickHelper.findPlayerId(element);
 					var teamname=FoxtrickHelper.extractTeamName(element);
+					//Fix for longteamname
+					if (teamname.length>20) {
+						teamname=teamname.substr(0, 20)+"..";
+					}
 					
 					for (var i=0;i<matchtable.rows.length;i++) {
 						var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
@@ -76,6 +83,7 @@ FoxtrickLineupShortcut = {
 						var matchTeams=link.text;
 						matchTeams=matchTeams.split(" - ");
 						for (var j=0;j<matchTeams.length;j++) {
+							//Foxtrick.LOG(matchTeams[j]+' - '+teamname);
 							if (matchTeams[j]==teamname) {
 								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
 							}
