@@ -1504,8 +1504,10 @@ var FoxtrickOnPagePrefs = {
 		
 			var column;
 			if (doc.getElementById('sidebar')) column='right';
-			else column='left';
-		
+			else {
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickHeaderFix, "FixLeft") && doc.location.href.search(/forum/i)==-1) return;
+				column='left';
+			}
 				// add box
 				var ownBoxBody = doc.createElement("div");
 				var header = Foxtrickl10n.getString("foxtrick.onpagepreferences" );
