@@ -222,6 +222,12 @@ var FoxtrickForumPreview = {
           /\<\/th\>\<br \/\>/gi,
           /\<\/tr\>\<br \/\>/gi,
           /\<tr(.*?)\>\<br \/\>/gi,
+          /\<tbody\>\<br \/\>/gi,
+          
+          /\<\/td\>\<br \/\>/gi,
+          /\<\/th\>\<br \/\>/gi,
+          /\<\/tr\>\<br \/\>/gi,
+          /\<tr(.*?)\>\<br \/\>/gi,
           /\<tbody\>\<br \/\>/gi
         );
 
@@ -259,7 +265,13 @@ var FoxtrickForumPreview = {
           "</th>",
           "</tr>",
           "<tr$1>",
-          "<tbody>"
+
+          "<tbody>",          
+          "</td>",
+          "</th>",
+          "</tr>",
+          "<tr$1>",
+          "<tbody>" 
         );
 
         var doc = ev.target.ownerDocument;
