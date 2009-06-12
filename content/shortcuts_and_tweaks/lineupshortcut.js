@@ -45,7 +45,6 @@ FoxtrickLineupShortcut = {
 
 	//***********************MAIN TEAM
     _Analyze_Player_Page  : function ( doc ) {
-        
         try {
 			var mainbody = doc.getElementById( "mainBody" );
 			var divs=Foxtrick.getElementsByClass( "mainBox", mainbody );
@@ -66,12 +65,21 @@ FoxtrickLineupShortcut = {
 					//Now getting playerid from top of the page:
 					var element=doc.getElementById('mainWrapper');
 					var playerid=FoxtrickHelper.findPlayerId(element);
+					var teamname=FoxtrickHelper.extractTeamName(element);
 					
 					for (var i=0;i<matchtable.rows.length;i++) {
 						var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
 						var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href);
 						var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
-						this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
+						
+						//Checking if the team is present
+						var matchTeams=link.text;
+						matchTeams=matchTeams.split(" - ");
+						for (var j=0;j<matchTeams.length;j++) {
+							if (matchTeams[j]==teamname) {
+								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
+							}
+						}
 					}
 				}
 			}
