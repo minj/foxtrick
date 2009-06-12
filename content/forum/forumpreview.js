@@ -189,40 +189,40 @@ var FoxtrickForumPreview = {
 
         var search = new Array(
 
-            /\[kitid=(\d+)\]/,
-            /\[userid=(\d+)\]/,
-            /\[playerid=(\d+)\]/,
-            /\[youthplayerid=(\d+)\]/,
-            /\[teamid=(\d+)\]/,
-            /\[youthteamid=(\d+)\]/,
-            /\[matchid=(\d+)\]/,
-            /\[youthmatchid=(\d+)\]/,
-            /\[federationid=(\d+)\]/,
-            /\[message\=(\d+)\.(\d+)\]/,
-            /\[post\=(\d+)\.(\d+)\]/,
-            /\[leagueid=(\d+)\]/,
-            /\[youthleagueid=(\d+)\]/,
-          /\[link=(.*?)\]/,
+            /\[kitid=(\d+)\]/gi,
+            /\[userid=(\d+)\]/gi,
+            /\[playerid=(\d+)\]/gi,
+            /\[youthplayerid=(\d+)\]/gi,
+            /\[teamid=(\d+)\]/gi,
+            /\[youthteamid=(\d+)\]/gi,
+            /\[matchid=(\d+)\]/gi,
+            /\[youthmatchid=(\d+)\]/gi,
+            /\[federationid=(\d+)\]/gi,
+            /\[message\=(\d+)\.(\d+)\]/gi,
+            /\[post\=(\d+)\.(\d+)\]/gi,
+            /\[leagueid=(\d+)\]/gi,
+            /\[youthleagueid=(\d+)\]/gi,
+          /\[link=(.*?)\]/gi,
 
-          /\[q\](.*?)\[\/q\]/,
-          /\[quote\=(.*?)\](.*?)\[\/quote\]/,
-          /\[q\=(.*?)\](.*?)\[\/q\]/,
-          /\[b\](.*?)\[\/b\]/,
-          /\[u\](.*?)\[\/u\]/,
-          /\[i\](.*?)\[\/i\]/,
-          /\[br\]/,
-          /\[hr\]/,
+          /\[q\](.*?)\[\/q\]/gi,
+          /\[quote\=(.*?)\](.*?)\[\/quote\]/gi,
+          /\[q\=(.*?)\](.*?)\[\/q\]/gi,
+          /\[b\](.*?)\[\/b\]/gi,
+          /\[u\](.*?)\[\/u\]/gi,
+          /\[i\](.*?)\[\/i\]/gi,
+          /\[br\]/gi,
+          /\[hr\]/gi,
           
-          /\[table\](.*?)\[\/table\]/,
-          /\[th(.*?)\](.*?)\[\/th\]/,
-          /\[tr(.*?)\](.*?)\[\/tr\]/,
-          /\[td(.*?)\](.*?)\[\/td\]/,
+          /\[table\](.*?)\[\/table\]/gi,
+          /\[th(.*?)\](.*?)\[\/th\]/gi,
+          /\[tr(.*?)\](.*?)\[\/tr\]/gi,
+          /\[td(.*?)\](.*?)\[\/td\]/gi,
           
-          /\<\/td\>\<br \/\>/,
-          /\<\/th\>\<br \/\>/,
-          /\<\/tr\>\<br \/\>/,
-          /\<tr(.*?)\>\<br \/\>/,
-          /\<tbody\>\<br \/\>/
+          /\<\/td\>\<br \/\>/gi,
+          /\<\/th\>\<br \/\>/gi,
+          /\<\/tr\>\<br \/\>/gi,
+          /\<tr(.*?)\>\<br \/\>/gi,
+          /\<tbody\>\<br \/\>/gi
         );
 
         var replace = new Array(
@@ -285,7 +285,7 @@ var FoxtrickForumPreview = {
 
             text = text.replace(/\n/g, "<br />");
             var count = Foxtrick.substr_count(text, '[');
-            for (var j = 0; j < count; j++) {
+            for (var j = 0; j <= 0; j++) {
                 for ( var i = 0; i < search.length; i++) {
                     text = text.replace(search[i],replace[i]);
                 }
