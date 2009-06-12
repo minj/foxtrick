@@ -67,6 +67,7 @@ var FoxtrickHeaderFix = {
 	if (arenaInfo) {
 		arenaInfo = ctl00_CPMain_pnl.removeChild(arenaInfo);	
 		ctl00_CPMain_pnl.appendChild(arenaInfo);
+		var margin;
 		if (page=='arena') margin='margin-right:18px';
 		else margin='';
 		if (Foxtrick.isStandardLayout(doc)) arenaInfo.setAttribute('style','float:right !important;');

@@ -1272,15 +1272,38 @@ stats["htlinks_ti_schrauber"] =  {
         "url" : "http://www.ht-links.de/Hattrick/TISchrauber.html",
 
         "traininglink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
-                         "params"     : { "tsi" : "TSI"}
-                       },
-         "countryidranges" : [[3, 3]], 
+                         "filters"    : ["owncountryid"], 
+                         "params"     : {},                      
+						 },
+        "owncountryidranges" : [[3, 3]], 
         "title" : "HT-Links.de  - TISchrauber",
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };
 
-stats["htlinks_general"] =  { 
+
+stats["htlinks_price_money"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/PraemiephpE.html",
+
+        "teamlink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : {  "fans" : "Fan",'leaguepos':'Platz','levelnum':'Liga'}
+                       },
+        "title" : "HT-Links.de  - price_money",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
+};
+
+stats["htlinks_arena"] =  { 
+        "url" : "http://www.ht-links.de/Hattrick/ArenaCalculator2E.html?",
+
+        "arenalink" : { "path"       : "",
+                         "filters"    : [], 
+                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
+                      },
+        "title" : "HT-Links.de  - ArenaCalculator2",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
+};
+
+stats["htlinks_Errungenschaften"] =  { 
         "url" : "http://www.ht-links.de/",
 
         "achievementslink" : { "path"       : "Hattrick/Errungenschaften.html",
@@ -1288,7 +1311,7 @@ stats["htlinks_general"] =  {
                          "params"     : []
                        },
          "owncountryidranges" : [[3, 3]], 
-        "title" : "HT-Links.de - Info",
+        "title" : "HT-Links.de - Errungenschaften",
         "img" : "chrome://foxtrick/content/resources/linkicons/htlinks.png"
 };
 
@@ -1438,7 +1461,7 @@ stats["arenaoptimizer"] =  {
         "url" : "http://www.arenaoptimizer.es/",
         "arenalink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : []
+                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
         "title" : "Arena Optimizer",
         "img" : "chrome://foxtrick/content/resources/linkicons/arenaoptimizer.gif"
@@ -1448,7 +1471,7 @@ stats["htarena"] =  {
         "url" : "http://www.htarena.org/",
         "arenalink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : []
+                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
         "title" : "HTArena - the calculator",
         "img" : "chrome://foxtrick/content/resources/linkicons/htarena.png"
@@ -2718,6 +2741,24 @@ stats["ukrainatracker"] = {
 	"nationalityranges" : [[68,68]],	
 };
 
+stats["spaintracker"] = { 
+  "url" : "http://www.htspain.com.es/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "España NT/U-20 DB",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "index.php?pag=ht_login",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[36,36]] ,
+	"nationalityranges" : [[36,36]],	
+};
+
+
 
 //  ------------- spreadsheets trackers ----------------
 stats["mongoltracker"] = { 
@@ -2769,10 +2810,10 @@ stats["u20_nt_tracker"] = {
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },    
-	"countryidranges" :   [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,46],[48,51],[53,53],[59,59],
+	"countryidranges" :   [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,35],[38,43],[46,46],[48,51],[53,53],[59,59],
 						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105,],[107,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,36],[38,43],[46,46],[48,51],[53,53],[59,59],
+	"nationalityranges" : [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,35],[38,43],[46,46],[48,51],[53,53],[59,59],
 						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
@@ -2809,7 +2850,7 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
                 var filterranges = stat[filtertype + "ranges"];
                 var temp = false;
      			
-                for (var j=0; j<filterranges.length; j++) {
+				for (var j=0; j<filterranges.length; j++) {
                   if ( (filterparams[filtertype] >= filterranges[j][0]) && (filterparams[filtertype] <= filterranges[j][1])) {
                     temp = true;
                     break;

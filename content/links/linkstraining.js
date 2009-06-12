@@ -18,15 +18,15 @@ var FoxtrickLinksTraining = {
     },
 
     run : function( page, doc ) {
-
-	if (doc.location.href.search(/ChangeCoach/i)>-1 || doc.location.href.search(/YouthTraining/i)>-1) {return;}
+	try{
+		if (doc.location.href.search(/ChangeCoach/i)>-1 || doc.location.href.search(/YouthTraining/i)>-1) {return;}
 		//addExternalLinksToCoachPage
 		
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
-				var Coach,TI,STA,TrainingType; 
+				var Coach,TI,STA,TrainingType, owncountryid;		
 				var alllinks = alldivs[j].getElementsByTagName('a');
 				for (var i = 0; i < alllinks.length; i++) {
 					if (alllinks[i].href.match(/skillshort/i)) { 
@@ -36,10 +36,11 @@ var FoxtrickLinksTraining = {
 				}
 				STA = doc.getElementById("ctl00_CPMain_txtTrainingLevelStamina").value;
 				TI = doc.getElementById("ctl00_CPMain_txtTrainingLevel").value;
-				TrainingType= doc.getElementById("ctl00_CPMain_ddlTrainingType").value;
-						
+				TrainingType = doc.getElementById("ctl00_CPMain_ddlTrainingType").value;
+				owncountryid = FoxtrickHelper.findCountryId(doc.getElementById('teamLinks'));
+				
 			
-				var links = Foxtrick.LinkCollection.getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType}, doc, this);  
+				var links = Foxtrick.LinkCollection.getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType,'owncountryid':owncountryid}, doc, this);  
                   
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");
@@ -60,6 +61,7 @@ var FoxtrickLinksTraining = {
 							this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );					
             }
 		}
+	}catch(e){dump('LinksTraining :'+e+'\n');}
     },
 	
 	change : function( page, doc ) {
