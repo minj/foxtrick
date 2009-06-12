@@ -110,12 +110,12 @@ var FoxtrickCountyList = {
                 oldopt[0] = options[i].value;
                 oldopt[1] = options[i].text;
                 opt_array.push(oldopt);
-            }
+			}
         } catch (epush) {dump('countrylist: EPUSH '+epush+'\n');}
 
         function sortByOptionText(a, b) {
-            var x = a[1];
-            var y = b[1];
+            var x = a[1]; x=(x.search(/.+sland/)==0)?'Island':((x.search(/.+esk.+republika/)!=-1)?'Ceska republika':x);
+            var y = b[1]; y=(y.search(/.+sland/)==0)?'Island':((y.search(/.+esk.+republika/)!=-1)?'Ceska republika':y);
             if (a[0] <= 0 || b[0] <= 0) return -1;
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
         }
