@@ -61,7 +61,7 @@ Foxtrick.ht_pages = {
     'players'                   : '\/Club\/Players\/.TeamID=|\/Club\/Players\/default\.aspx.TeamID=|\/Club\/NationalTeam\/NTPlayers\.aspx|\/Club\/Players\/Oldies\.aspx|\/Club\/Players\/Coaches\.aspx',
     'YouthPlayers'              : 'YouthPlayers\.aspx',
     'YouthPlayer'               : 'YouthPlayer\.aspx',
-    'training'                  : '\/Club\/Training\/',
+    'training'                  : '\/Club\/Training\/$',
     'YouthTraining'             : '\/Club\/Training\/YouthTraining\.aspx',
     'managerPage'               : '\/Club\/Manager\/',
     'finances'                  : '\/Club\/Finances/',

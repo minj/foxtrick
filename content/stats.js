@@ -1079,7 +1079,7 @@ stats["hatstats"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hatstats.png"        
 };    
 
-
+/* down
 stats["advancedinjurycalc"] =  { 
         "url" : "http://www.student.ru.nl/rvanaarle/injury.php",
 
@@ -1090,7 +1090,7 @@ stats["advancedinjurycalc"] =  {
         
         "title" : "Advanced Injury Calculator",
         "img" : "chrome://foxtrick/content/resources/linkicons/redcross_small.png"
-};
+};*/
 
 
 stats["healingkawasaki"] =  { 
@@ -1430,13 +1430,22 @@ stats["hattrick-youthclub"] =  {
                          "filters"    : [], 
                          "params"     : []
                        },
-        "title" : "hattrick youthclub",
+        "youthtraininglink" : { "path"       : "",
+                         "filters"    : [], 
+                         "params"     : []
+                       },
+        "title" : "Hattrick Youthclub",
         "img" : "chrome://foxtrick/content/resources/linkicons/hyouthclub.png"
 };
 
+// youth db links 
 stats["srbijayadb"] =  { 
         "url" : "http://srbijayadb.freehostia.com/newslist.php",
         "youthlink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : []
+                       },
+        "youthtraininglink" : { "path"       : "",
                          "filters"    : ["owncountryid"], 
                          "params"     : []
                        },
@@ -1444,11 +1453,13 @@ stats["srbijayadb"] =  {
         "title" : "Srbija YA DB",
         "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 };
-
-
 stats["englandyadb"] =  { 
         "url" : "http://www.realfootball.co.uk/hattrick/ya/",
         "youthlink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : []
+                       },
+        "youthtraininglink" : { "path"       : "",
                          "filters"    : ["owncountryid"], 
                          "params"     : []
                        },
@@ -1456,6 +1467,29 @@ stats["englandyadb"] =  {
         "title" : "England YA DB",
         "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png"
 };
+stats["junnukoira"] =  { 
+        "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
+
+        "youthplayerdetaillink" : { "path"       : "superlupaukset.html",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : [], 
+                       },
+		"owncountryidranges" : [[12, 12]], 
+        "title" : "Junnukoira - U-20 -superlupausten arvioija",   
+        "img" : "chrome://foxtrick/content/resources/linkicons/puhuvakoira.png"
+};
+stats["vihjekoira"] =  { 
+        "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
+
+        "youthlink" : { "path"       : "kulmienkoira/vihjekoira.php",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : [], 
+                       },
+		"owncountryidranges" : [[12, 12]], 
+        "title" : "Vihjekoira - kykyjenetsijän paras ystävä",   
+        "img" : "chrome://foxtrick/content/resources/linkicons/puhuvakoira.png"
+};
+
 
 stats["arenaoptimizer"] =  { 
         "url" : "http://www.arenaoptimizer.es/",
@@ -1602,9 +1636,7 @@ stats["tppc"] =  {
         "title" : "Team Position Probability Calculator",
         "img" : "chrome://foxtrick/content/resources/linkicons/tppc.png"
 };    
-   
-  	 
-   
+      
    
 // ----------------------------------------------------------------------
 // -------------- tracker & national teams ------------------------------
