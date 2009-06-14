@@ -29,8 +29,8 @@ var FoxtrickTickerColoring = {
 	
     init : function() {
 		var zaw = ''
-		/* Ticker colors by htbaumanns*/
-		+'@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
+		
+		+'/*TICKERCOLOR_by_htbaumanns*/ @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
 		+'{'
 		/* LoginWelcome */
 		+'#ticker a[href="/MyHattrick/"] {'+this.get_color(this.OPTIONS[0])+'}'

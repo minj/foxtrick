@@ -15,6 +15,7 @@ pref( "extensions.foxtrick.prefs.htSeasonOffset", 0);
 pref( "extensions.foxtrick.prefs.module.HTDateFormat.LocalSaison.enabled", false);
 pref( "extensions.foxtrick.prefs.module.ExtendedPlayerDetails.value", 0);
 pref( "extensions.foxtrick.prefs.statusbarshow", true);
+pref( "extensions.foxtrick.prefs.statusbarshowreload", false);
 pref( "extensions.foxtrick.prefs.alertSlider", true);
 pref( "extensions.foxtrick.prefs.alertSliderGrowl", false);
 pref( "extensions.foxtrick.prefs.alertSound", false);

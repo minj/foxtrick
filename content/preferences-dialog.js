@@ -470,8 +470,13 @@ var FoxtrickPreferencesDialog = {
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.statusbarpref"));
 		checkbox.setAttribute('id',"statusbarpref");
 		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshow" ) );
-
 		vbox.appendChild(checkbox);
+		var checkbox= doc.createElement("checkbox");
+		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.statusbarshowreload"));
+		checkbox.setAttribute('id',"statusbarshowreload");
+		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshowreload" ) );
+		vbox.appendChild(checkbox);
+		
 		groupbox.appendChild(caption);
 		groupbox.appendChild(vbox);
 		modules_list.appendChild(groupbox);
@@ -680,6 +685,7 @@ var FoxtrickPreferencesDialog = {
 
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
+		FoxtrickPrefs.setBool("statusbarshowreload", document.getElementById("statusbarshowreload").checked);
 
         //Alert
         FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);

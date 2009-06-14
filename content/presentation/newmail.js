@@ -30,7 +30,7 @@ var FoxtrickNewMail = {
 	
 	if (!Foxtrick.isModuleFeatureEnabled( this, "HighlightNewMailIcon")) HighlightNewMailIconCss="";
 	
-	var zaw = '@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {'+
+	var zaw = '/*NEWMAILCOLOR*/ @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {'+
 		'div.subMenuBox>div.boxBody>ul>li>span,'+
 		'div#folders.sidebarBox>div.boxBody>p>span,'+
 		'div#folders.sidebarBox>p>span,'+

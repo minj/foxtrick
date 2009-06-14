@@ -264,6 +264,8 @@ var FoxtrickSingleline2 = {
 	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 	CSS:"chrome://foxtrick/content/resources/css/Singleline2.css",
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"Alternative 'HT-Detailed header to single line' module. Slightly faster then then other versions. Disables some conflicting forum post changing modules.",
 
 	init : function() {
 	},

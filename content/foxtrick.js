@@ -118,6 +118,7 @@ var FoxtrickMain = {
 			"foxtrick_statusbar_reload" );
 		statusbarReload.setAttribute( "label", Foxtrickl10n.getString( 
 			"foxtrick.menu.reloadfoxtrick") );
+		if( !FoxtrickPrefs.getBool( "statusbarshowreload" )) statusbarReload.setAttribute( "hidden", true);
 		var statusbarDeactivate = document.getElementById(
 			"foxtrick_statusbar_deactivate" );
 		statusbarDeactivate.setAttribute( "label", Foxtrickl10n.getString(
@@ -661,7 +662,7 @@ Foxtrick.unload_css_permanent = function( css ) {
 			// try unload
 			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
 					sss.unregisterSheet(uri, sss.USER_SHEET);
-					dump('unload '+css+'\n');
+					dump('unload '+css.substr(0,71)+'\n');
 			}
         } catch(e) {
             dump ('> load_css_permanent ' + e + '\n');
@@ -678,7 +679,7 @@ Foxtrick.load_css_permanent = function( css) {
 			// load		
 			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
 						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);	
-						dump('load '+css+'\n');
+						dump('load '+css.substr(0,73)+'\n');
 			}
 		} 
         catch(e) {
