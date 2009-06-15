@@ -33,6 +33,7 @@ FoxtrickCurrencyConverter = {
     },
 
 	change : function( page, doc ) {
+		this.run(page, doc);
 	},
 
 	
@@ -45,7 +46,7 @@ FoxtrickCurrencyConverter = {
 			else if (table_elm[i].getElementsByTagName('p').length!=0) continue;  // don't do nested. only most inner gets converted
 			
             var pos = table_elm[i].innerHTML.search(oldCurrencySymbol);
-			if (pos > 0 && table_elm[i].id != "foxtrick-currency-converter"){ 
+			if (pos > 0 && (table_elm[i].id != "foxtrick-currency-converter" || table_elm[i].innerHTML.search(currencySymbol)==-1) ){ 
 				var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
 				var inner_raw = table_elm[i].innerHTML;
 				var bdo_br='';
