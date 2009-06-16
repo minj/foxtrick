@@ -20,7 +20,8 @@ Foxtrick.ht_pages = {
     'forum'                     : '\/Forum\/',
     'forumViewThread'           : '\/Forum\/Read',
     'forumWritePost'            : '\/Forum\/Write',
-    'messageWritePost'          : '\/MyHattrick\/Inbox/',
+	'mailnewsletter'            : '\/MyHattrick\/Inbox\/Default\.aspx\?actionType=news',
+    'messageWritePost'          : '\/MyHattrick\/Inbox\/Default\.aspx\?actionType=newMail',
     'forumSettings'             : '\/MyHattrick\/Preferences\/ForumSettings.aspx',
     'prefSettings'              : '\/MyHattrick\/Preferences\/ProfileSettings.aspx',
     'bookmarks'                 : '\/MyHattrick\/Bookmarks',
@@ -76,8 +77,6 @@ Foxtrick.ht_pages = {
     'ads'                       : '\/Community\/Ads\/',
 	'denominations'             : '\/Help\/Rules\/AppDenominations.aspx',
 	'statsBestgames'            : '\/World\/Stats\/StatsBestgames.aspx',
-	
-
     'all_late'                  : '\/',
     
 };
