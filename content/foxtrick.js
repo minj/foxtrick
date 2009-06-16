@@ -173,14 +173,14 @@ var FoxtrickMain = {
 			var begin = new Date();
 			var time = ( begin.getSeconds() - this._unloadtime.getSeconds() ) * 1000
                      + begin.getMilliseconds() - this._unloadtime.getMilliseconds();
-            dump("load+ccs time: " + time + " ms | " + doc.location.pathname+'\n' );
+            dump("load+ccs time: " + time + " ms | " + doc.location.pathname+doc.location.search+'\n' );
 			
             FoxtrickMain.run( doc );
 
             var end = new Date();
             var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                      + end.getMilliseconds() - begin.getMilliseconds();
-            dump("run time: " + time + " ms | " + doc.location.pathname+'\n' );
+            dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search+'\n' );
 			// listen to page content changes
 			var content = doc.getElementById("content");
 			if( content ) {
