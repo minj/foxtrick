@@ -835,7 +835,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 		// Simple layout
 		if(otherBox) {
 			var otherBoxHeader = otherBox.getElementsByTagName("h2")[0];
-			Foxtrick.alert(otherBoxHeader);
+			//Foxtrick.alert(otherBoxHeader);
 			otherBox.insertBefore(newBoxContent,otherBoxHeader.nextSibling);
 		} else {
 			// create the sidebarbox
