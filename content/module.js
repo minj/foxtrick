@@ -66,6 +66,7 @@ Foxtrick.ht_pages = {
     'managerPage'               : '\/Club\/Manager\/',
     'finances'                  : '\/Club\/Finances/',
     'federation'                : '\/Community\/Federations\/Federation\.aspx',
+    'newsletter'                : '\/Community\/Federations\/SendMessage\.aspx',
     'national'                  : '\/Club\/NationalTeam\/NationalTeam\.aspx',
     'guestbook'                 : '\/Club\/Manager\/Guestbook\.aspx',
     'announcements'             : '\/Club\/Announcements/\New\.aspx',
