@@ -9,7 +9,7 @@ var FoxtrickForumPreview = {
     MODULE_NAME : "ForumPreview",
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter','mailnewsletter'),
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter'),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"added to newsletters",
@@ -21,7 +21,7 @@ var FoxtrickForumPreview = {
     },
 
     run : function( page, doc ) {
-        dump(page);
+        dump('prev: ' + page + '\n');
         
         try {
             var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum / PA
