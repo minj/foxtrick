@@ -115,7 +115,8 @@ var FoxtrickCopyRatingsToClipboard = {
         ad += '\n[/table]\n';        
 		try {
 
-			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"));
+			if (FoxtrickPrefs.getBool( "copyfeedback" )) 
+				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"));
 			Foxtrick.copyStringToClipboard(ad);
 			
 		} catch (e) {

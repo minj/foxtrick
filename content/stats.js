@@ -2043,6 +2043,24 @@ stats["omantracker"] = {
 	"nationalityranges" : [[134,134]], 
 };
 
+
+stats["nirelandtracker"] = { 
+  "url" : "http://www.ht-deutschland.de/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Northern Ireland U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "scouting/northernireland/scouting.php?language=2",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "scouting/northernireland/index.php?language=2",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[93,93]] , 
+	"nationalityranges" : [[93,93]], 
+};
+
 // ------------------------- nattrick tracker --------------------------------
 
 stats["canadatracker"] = { 

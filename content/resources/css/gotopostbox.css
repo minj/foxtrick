@@ -4,5 +4,6 @@
 #ctl00_CPMain_ucThread_ucPagerTop_btnViewMessage,
 #ctl00_CPMain_ucThread_ucPagerBottom_txtMessageNumber,
 #ctl00_CPMain_ucThread_ucPagerBottom_btnViewMessage {display:none;}
-			
+	
+.threadPagingCenter {margin: 0 15px !important;}	
 }
