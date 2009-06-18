@@ -1492,9 +1492,9 @@ stats["vihjekoira"] =  {
 stats["treenikoira"] =  { 
         "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
 
-        "youthlink" : { "path"       : "treenikoira.html",
+        "traininglink" : { "path"       : "treenikoira.html",
                          "filters"    : ["owncountryid"], 
-                         "params"     : [], 
+                         "params"     :  {"Coach":"coach","TI":"ti","STA":"sta","TrainingType":"trainingtype"}, 
                        },
 		"owncountryidranges" : [[12, 12]], 
         "title" : "Treenikoira - treenilaskuri" ,   
