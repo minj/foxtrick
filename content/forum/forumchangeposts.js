@@ -17,7 +17,7 @@ var FoxtrickForumChangePosts = {
 
 	run : function( page, doc ) {
 	try{
-		if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;
+		//if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;
 
 
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID);

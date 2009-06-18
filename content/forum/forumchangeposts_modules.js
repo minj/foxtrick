@@ -305,7 +305,27 @@ var FoxtrickSingleline2 = {
 
 				// +++++++++++ gather info and nodes +++++++++++++++++++++++++
 				var header_left = header.childNodes[0];
-									
+				header_left.setAttribute('style','z-index:2 !important');
+						
+				var header_right_div=header.childNodes[1]; 
+				header_right_div.setAttribute('style','z-index:1 !important');
+				
+				/* add someting to test removal later		*/	
+				var forumprefs = doc.createElement('a');
+				forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
+				forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
+				forumprefs.setAttribute('class','bookmarkMessage');
+				if (header_right_div) header_right_div.appendChild(forumprefs);
+				
+				var bookmark = forumprefs;//header_right_inner.getElementsByTagName('a')[0];
+				if (bookmark) { 
+						bookmark = bookmark.parentNode.removeChild(bookmark);
+						bookmark.setAttribute('style','float:right;');
+						header.insertBefore(bookmark,header_right_div);
+						header.setAttribute('style','margin-bottom:5px');
+						//header_right.removeChild(header_right_div);
+					 }
+				
 				// get post_links from header
 				var header_left_links = header_left.getElementsByTagName('a');
 				var post_link1 = null;
@@ -371,7 +391,7 @@ var FoxtrickSingleline2 = {
 						if (header_right==null) header_right = header_part;
 					}
 				}
-				var header_right_inner =  Foxtrick.stripHTML(header_right.innerHTML);				
+				var header_right_inner =  Foxtrick.stripHTML(header_right.innerHTML);							
 				
 				// get post_links, poster_links, poster_id from header
 				var header_left_links = header_left.getElementsByTagName('a');

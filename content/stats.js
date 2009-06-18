@@ -1489,7 +1489,17 @@ stats["vihjekoira"] =  {
         "title" : "Vihjekoira - kykyjenetsijän paras ystävä",   
         "img" : "chrome://foxtrick/content/resources/linkicons/puhuvakoira.png"
 };
+stats["treenikoira"] =  { 
+        "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
 
+        "youthlink" : { "path"       : "treenikoira.html",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : [], 
+                       },
+		"owncountryidranges" : [[12, 12]], 
+        "title" : "Treenikoira - treenilaskuri" ,   
+        "img" : "chrome://foxtrick/content/resources/linkicons/puhuvakoira.png"
+};
 
 stats["arenaoptimizer"] =  { 
         "url" : "http://www.arenaoptimizer.es/",
