@@ -67,6 +67,7 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.enabled", fa
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.YouthMatches.enabled", false );
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace.enabled", false );
+pref( "extensions.foxtrick.prefs.module.FixcssProblems.liveHighlightRed.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", true );
 pref( "extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false );

@@ -9,8 +9,8 @@ FoxtrickFixcssProblems = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Option to change guestbook layout",	
+	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE:"Option highlight in red new events on HTlive, Forum_ThreadlistSpace fixed",	
 	   
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
@@ -21,7 +21,8 @@ FoxtrickFixcssProblems = {
                                     "ForumScrollBarFix",
                                     "Forum_ThreadlistSpace",
 									"League_Table",
-									"Guestbook"
+									"Guestbook",
+									"liveHighlightRed"
                                 ),
                                
 		OPTIONS_CSS: new Array (
@@ -34,7 +35,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
                                 "",
 								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
-                                "chrome://foxtrick/content/resources/css/fixes/Guestbook.css"
+                                "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
+                                "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -46,7 +48,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
                                 "",
 								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
-                                "chrome://foxtrick/content/resources/css/fixes/Guestbook.css"
+                                "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
+                                "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css"
                                 ),
                                
     init : function() {
