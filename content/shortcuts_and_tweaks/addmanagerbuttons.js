@@ -90,6 +90,7 @@ var FoxtrickAddManagerButtons = {
 			
 			if(allDivs[i].className=="subMenuBox") {
 				teamID = FoxtrickHelper.findTeamId(allDivs[i]);
+				break;
 			}
 			
 		}
@@ -106,7 +107,7 @@ var FoxtrickAddManagerButtons = {
 		messageLink.className = "inner";
 		
 		messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
-		if  (doc.location.href.search(/\/Club\/Youth/)) messageLink.href='/Club/?TeamID='+teamID+'&SendMessage=true';
+		if  (doc.location.href.search(/\/Club\/Youth/)!=-1) messageLink.href='/Club/?TeamID='+teamID+'&SendMessage=true';
 		//messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
 		messageLink.title = Foxtrickl10n.getString( 
 			"foxtrick.tweaks.sendmessage" );
