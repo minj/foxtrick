@@ -158,7 +158,7 @@ var FoxtrickTeamPopupLinks = {
 				var aLinks = doc.getElementById('mainBody').getElementsByTagName('a'); 
 				var i = 0, aLink;
                 while ( aLink = aLinks[i++] ) {
-					if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons				
+					if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText') continue; // don't add to buttons, and htlive tabs				
 					if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
 					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
 						this._addSpan(doc, aLink );
