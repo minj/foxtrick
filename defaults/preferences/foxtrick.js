@@ -63,6 +63,8 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.NextMatch.enabled", false
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.AddNextMatch.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.enabled", false );
+pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.YouthMatches.enabled", false );
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );

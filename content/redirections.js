@@ -15,10 +15,10 @@ var FoxtrickRedirections = {
    },
 
     run : function( doc ) {  
-
-	if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return; 
+	try { 
+		if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return; 
 	
-	var serv = 'http://'+doc.location.hostname;
+		var serv = 'http://'+doc.location.hostname;
 		
 		// redirect from manager 
 		var alldivs = doc.getElementsByTagName('div');
@@ -87,8 +87,14 @@ var FoxtrickRedirections = {
 		var username = doc.location.href.replace(/.+mailto=/i,'');
 		if (username.search(/&/)!=-1) username=username.replace(/&.+/,'');
 		teamid_input.value = username;
+	} 
+	//redirect to youthmatches
+	if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) { 
+		var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+		var TeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));		
+		var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; dump(tar+'\n');
+		doc.location.replace(tar);						
 	}
-	
 	// redirect to coach		
 	if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) { 		
 		if (doc.location.href.search(/\/Club\/Players\//i)!=-1 ) {  
@@ -126,8 +132,8 @@ var FoxtrickRedirections = {
 			catch (e) {dump("ateamshortcuts->"+e);}
 		}
 	  }
-	
-		if (doc.location.href.search(/\/Club\/Matches\/\?TeamID=/i)!=-1 && 
+	// redir to next match
+	if (doc.location.href.search(/\/Club\/Matches\/\?TeamID=/i)!=-1 && 
 				(doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 ||
 				doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )) { 
 			try{ 
@@ -150,6 +156,8 @@ var FoxtrickRedirections = {
 			}
 			} catch(e){ dump('redir_to_(add)nextlineup: '+e+'\n');}
 		}
+		
+	} catch(e) {dump('FoxtrickRedirections: +'+e+'\n');}
 	},
 	
 	change : function( doc ) {
