@@ -59,6 +59,7 @@ CountryList=http://foxtrick.foundationhorizont.org/CountryList.html
 CustomMedals=http://foxtrick.foundationhorizont.org/CustomMedals.html
 FixcssProblems.Guestbook=http://foxtrick.foundationhorizont.org/FixcssProblems_Guestbook.html
 FixcssProblems.League_Table=http://foxtrick.foundationhorizont.org/FixcssProblems_League_Table.html
+FixcssProblems.liveHighlightRed=http://foxtrick.foundationhorizont.org/FixcssProblems_liveHighlightRed.html
 FoxtrickSmallerPages.ReduceBid=http://foxtrick.foundationhorizont.org/FoxtrickSmallerPages_ReduceBid.html
 GuestbookAlltidFlags.AddAlltidFlags=http://foxtrick.foundationhorizont.org/GuestbookAlltidFlags.html
 GuestbookAlltidFlags.HideAnswerToLinks=http://foxtrick.foundationhorizont.org/GuestbookAlltidFlags_HideAnswerToLinks.html
