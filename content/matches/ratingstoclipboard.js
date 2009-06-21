@@ -63,12 +63,13 @@ var FoxtrickCopyRatingsToClipboard = {
         
 		var doc = ev.target.ownerDocument;
         
-        var headder = doc.getElementsByTagName('h1')[0].innerHTML;
+        var headder = doc.getElementsByTagName('h1')[0].innerHTML;  
         headder=Foxtrick.trim(headder);
         var start = Foxtrick.strrpos(headder, '<span>(') +7;
         var end = Foxtrick.strrpos(headder, ')</span>');
         
-        var gameid = headder.substr(start, end-start);
+        var matchlink=doc.getElementById('mainWrapper').getElementsByTagName('a')[0];
+		var gameid = FoxtrickHelper.getMatchIdFromUrl(matchlink.href);// headder.substr(start, end-start);
         
         start = Foxtrick.strrpos(headder, ' - ');
         var gameresult_h = Foxtrick.trim(headder.substr(start-2, 2));
@@ -78,7 +79,8 @@ var FoxtrickCopyRatingsToClipboard = {
         var ad = '\n[table]\n';
         var table = doc.getElementsByTagName('table')[0];
         var youth = '';
-        if (Foxtrick.strrpos(table.rows[0].cells[1].innerHTML, 'isYouth=True')) youth = 'youth';
+        //if (Foxtrick.strrpos(table.rows[0].cells[1].innerHTML, 'isYouth=True')) youth = 'youth';
+        if (matchlink.href.search('isYouth=True')!=-1) youth = 'youth';
         // Foxtrick.alert(table.rows[0].cells[1].innerHTML);
 
         for (var row = 0; row < table.rows.length; row ++) {
@@ -93,7 +95,7 @@ var FoxtrickCopyRatingsToClipboard = {
                     if (row == 0) ad += '[/th]\n[th]'; else ad += '[/th]\n[td]';
                     if (table.rows[row].cells[1]) {
                         if (row == 0) {
-                            ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' ' + gameresult_h + '';
+                            ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' - ' + gameresult_h + '';
                         } else {
                             ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
@@ -101,7 +103,7 @@ var FoxtrickCopyRatingsToClipboard = {
                     if (row == 0) ad += '[/th]\n[th]'; else ad += '[/td]\n[td]';
                     if (table.rows[row].cells[2]) {
                         if (row == 0) {
-                            ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' ' + gameresult_a + '';
+                            ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' - ' + gameresult_a + '';
                         } else {
                             ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
