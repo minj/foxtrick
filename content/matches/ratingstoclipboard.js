@@ -95,7 +95,8 @@ var FoxtrickCopyRatingsToClipboard = {
                     if (row == 0) ad += '[/th]\n[th]'; else ad += '[/th]\n[td]';
                     if (table.rows[row].cells[1]) {
                         if (row == 0) {
-                            ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' - ' + gameresult_h + '';
+							var teamlink = table.rows[row].cells[1].getElementsByTagName('a')[0];
+                            ad += teamlink.innerHTML + ' - ' + gameresult_h + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
                         } else {
                             ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
@@ -103,7 +104,8 @@ var FoxtrickCopyRatingsToClipboard = {
                     if (row == 0) ad += '[/th]\n[th]'; else ad += '[/td]\n[td]';
                     if (table.rows[row].cells[2]) {
                         if (row == 0) {
-                            ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a) + ' - ' + gameresult_a + '';
+                        	var teamlink = table.rows[row].cells[2].getElementsByTagName('a')[0];
+                            ad += teamlink.innerHTML + ' - ' + gameresult_a + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
                         } else {
                             ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
