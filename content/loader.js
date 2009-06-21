@@ -98,6 +98,7 @@ Foxtrick.Loader = function(){
 	'presentation/highlightcupwins.js',
     'presentation/skilltranslation.js',
 	'presentation/smallerpages.js',
+	'presentation/backgroundfixed.js',
     'links/linkscustom.js',
     'links/linksleague.js',
     'links/linksteam.js',
