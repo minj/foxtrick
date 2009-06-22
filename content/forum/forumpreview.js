@@ -22,6 +22,8 @@ var FoxtrickForumPreview = {
 
     run : function( page, doc ) {
         dump('prev: ' + page + '\n');
+        var check_div = doc.getElementById( "forum_preview" );
+        if (check_div != null) return;
         
         try {
             var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum / PA
@@ -121,19 +123,21 @@ var FoxtrickForumPreview = {
 		if (button_ok && Foxtrickl10n.isStringAvailableLocal("sendmessage")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
 		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
 
-		var new_button = doc.createElement( "input" );
-        new_button.setAttribute( "value", Foxtrickl10n.getString( 'preview' ));
-        new_button.setAttribute( "title",  Foxtrickl10n.getString( 'show_preview_from_post' ) );
-        new_button.setAttribute( "id",  "idFTPreview" );
-        new_button.setAttribute( "type",  "button" );
-        //new_button.setAttribute( "tabindex",  index-1 );
-     	new_button.setAttribute( "tabindex",  index);
-        //if (msg_type != -1)
-        new_button.setAttribute( "style", "margin-left:10px;");
-     	//new_button.setAttribute( "style",  "float:right;");
-     	new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
-        //button_ok.parentNode.insertBefore(new_button,button_ok);
-		target.parentNode.insertBefore(new_button,target.nextSibling);
+        if (doc.getElementById('idFTPreview') == null) {
+            var new_button = doc.createElement( "input" );
+            new_button.setAttribute( "value", Foxtrickl10n.getString( 'preview' ));
+            new_button.setAttribute( "title",  Foxtrickl10n.getString( 'show_preview_from_post' ) );
+            new_button.setAttribute( "id",  "idFTPreview" );
+            new_button.setAttribute( "type",  "button" );
+            //new_button.setAttribute( "tabindex",  index-1 );
+            new_button.setAttribute( "tabindex",  index);
+            //if (msg_type != -1)
+            new_button.setAttribute( "style", "margin-left:10px;");
+            //new_button.setAttribute( "style",  "float:right;");
+            new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
+            //button_ok.parentNode.insertBefore(new_button,button_ok);
+            target.parentNode.insertBefore(new_button,target.nextSibling);
+        }
 
 		msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
 
@@ -167,7 +171,8 @@ var FoxtrickForumPreview = {
     },
 
 	change : function( page, doc ) {
-
+        var check_div = doc.getElementById( "forum_preview" );
+        if (check_div == null) this.run (page, doc);
 	},
 
 	_toggleListener : function( ev ) {
