@@ -23,7 +23,7 @@ FoxtrickHTDateFormat = {
     },
 
     run : function(page, doc) {
-
+        dump('HTDateformat RUN\n');
         var httime = doc.getElementById( "time" ).innerHTML;
 
         Foxtrick.HT_date = Foxtrick.getDatefromCellHTML( httime );
@@ -91,6 +91,11 @@ FoxtrickHTDateFormat = {
     },
 
 	change : function( page, doc ) {
-
+        if (doc.getElementById('mainBody').innerHTML.search('ft_HTDateFormat') > -1 ) return;
+        else {
+            dump('HTDateformat CHG RUN\n');
+            this.run(page,doc);
+        }
+        
 	},       
 };
