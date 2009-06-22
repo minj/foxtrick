@@ -33,8 +33,10 @@ var FoxtrickForumPreview = {
                 msg_window = doc.getElementById( 'ctl00_CPMain_txtInsert' ); //ads
             if (msg_window == null)
                 msg_window = doc.getElementById( 'ctl00_CPMain_txtMessage' ); //newsletter
-            if (msg_window == null)
+            if (msg_window == null) {
                 msg_window = doc.getElementById( 'ctl00_CPMain_tbNewsBody' ); //mailnewsletter
+                page = 'mailnewsletter';
+            }
             if (msg_window == null)
                 return;
         }
@@ -236,6 +238,7 @@ var FoxtrickForumPreview = {
         /\[q\](.*?)\[\/q\]/gi,
         /\[quote\=(.*?)\](.*?)\[\/quote\]/gi,
         /\[q\=(.*?)\](.*?)\[\/q\]/gi,
+        /\[q\=(.*?)\](.*?)\[\/q\]/gi,
         /\[b\](.*?)\[\/b\]/gi,
         /\[u\](.*?)\[\/u\]/gi,
         /\[i\](.*?)\[\/i\]/gi,
@@ -281,6 +284,7 @@ var FoxtrickForumPreview = {
         "<blockquote class='quote'>$1</blockquote>",
         "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
         "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
+        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",        
         "<b>$1</b>",
         "<u>$1</u>",
         "<i>$1</i>",
