@@ -28,7 +28,7 @@
         if (div != null) return;
         
         if (doc.getElementById('ctl00_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
-        dump('YOUTH => ' + page +'\n');
+        // dump('YOUTH => ' + page +'\n');
         if ( (page == 'ads' ) && (!doc.getElementById('ctl00_CPMain_txtInsert'))) return;
         
         if (page == 'ads' || page == 'newsletter' || page == 'mailnewsletter') {
@@ -36,7 +36,7 @@
             if (page == 'newsletter' ) var textbox = 'ctl00_CPMain_txtMessage';
             if (page == 'mailnewsletter' ) var textbox = 'ctl00_CPMain_tbNewsBody';
             
-            anchor = doc.getElementById(textbox);
+            var anchor = doc.getElementById(textbox);
 
             if (page == 'ads') {
                 var count = "ctl00_CPMain_txtCharCount";
@@ -237,6 +237,7 @@
 	change : function( page, doc ) {
         var div = doc.getElementById( "ft_youth_icons");
         if (div != null) return;
+        else this.run(page, doc);
 	},
         
     _youthplayer : function (  ) {
