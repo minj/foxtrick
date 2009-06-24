@@ -91,7 +91,6 @@ var FoxtrickMatchTables = {
                 if (tblBodyObj.rows[i].cells[1]) {
                     var cell = tblBodyObj.rows[i].cells[0];
                     var content = Foxtrick.trim(cell.innerHTML);
-                    
                     var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)/i;
                     if (content.search(':') > -1) reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d{2})(.*?)(\d{2})(.*?)/i;
                     var ar = reg.exec(content);
@@ -100,13 +99,16 @@ var FoxtrickMatchTables = {
 
                     switch ( DATEFORMAT ) {
                         case 'ddmmyyyy': 
-                            cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4) + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>';
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4) + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
                             break;
                         case 'mmddyyyy':
-                            cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4) + '&nbsp;(' + content.split('(')[1];
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4) + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
                             break;
                         case 'yyyymmdd':
-                            cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4) + '&nbsp;(' + content.split('(')[1];
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4) + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            else cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4);
                             break;
                     }
                     cell.setAttribute('style', "font-size:6px; text-align:center;padding:2px 0px 2px 0px;vertical-align:middle;");
@@ -115,7 +117,7 @@ var FoxtrickMatchTables = {
                     for(var j = 1; j < 7; j++) {
                         var cell = tblBodyObj.rows[i].cells[j];
                         if (cell) {
-                            cell.setAttribute('style', "padding:1px; margin:0px;font-size:8px;vertical-align:middle;");
+                            cell.setAttribute('style', "padding:1px; margin:0px;font-size:8px;vertical-align:middle;text-align:center");
                             cell.innerHTML = cell.innerHTML.replace(/\&nbsp\;/gi, '').replace(' - ', ':');
                         }
                     }
