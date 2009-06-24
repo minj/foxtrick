@@ -50,7 +50,7 @@ var FoxtrickForumPreview = {
 		var head = doc.getElementsByTagName("head")[0];
         var cssstyle = doc.createElement("style");
         cssstyle.setAttribute("type", "text/css");
-		cssstyle.appendChild(doc.createTextNode("#ctl00_CPMain_btnOK, #ctl00_CPMain_btnSendNew {font-weight:bold;}"));
+		cssstyle.appendChild(doc.createTextNode("#ctl00_CPMain_btnOK, #ctl00_CPMain_btnSendNew, #ctl00_CPMain_btnCancel {font-weight:bold;} #idFTPreview {margin-left:10px;}"));
         //cssstyle.appendChild(doc.createTextNode("#idFTPreview {display:inline-block;float:right;}"));
         head.appendChild(cssstyle);
 
@@ -96,7 +96,7 @@ var FoxtrickForumPreview = {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
                     index=3; /*index=5;*/
-                    var msg_type = 3;
+                    var msg_type = 4;
                 }
         }
         if (!target) {
@@ -105,7 +105,7 @@ var FoxtrickForumPreview = {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
                     index=3; /*index=5;*/
-                    var msg_type = 3;
+                    var msg_type = 5;
                 }
         }
         if (!target) {
@@ -114,7 +114,7 @@ var FoxtrickForumPreview = {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
                     index=3; /*index=5;*/
-                    var msg_type = 3;
+                    var msg_type = 6;
                 }
         }
         dump('==> ForumPreview Message Type ' + msg_type + '\n');
@@ -132,7 +132,6 @@ var FoxtrickForumPreview = {
             //new_button.setAttribute( "tabindex",  index-1 );
             new_button.setAttribute( "tabindex",  index);
             //if (msg_type != -1)
-            new_button.setAttribute( "style", "margin-left:10px;");
             //new_button.setAttribute( "style",  "float:right;");
             new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
             //button_ok.parentNode.insertBefore(new_button,button_ok);

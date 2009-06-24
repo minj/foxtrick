@@ -43,6 +43,7 @@
                 var chars = 2000;
                 anchor.setAttribute('rows','20');
                 anchor.setAttribute('cols','60');
+                
             }
             if (page == 'newsletter') {
                 var count = "ctl00_CPMain_txtCharsLeft";
