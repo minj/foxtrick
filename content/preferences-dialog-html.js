@@ -1516,7 +1516,7 @@ var FoxtrickOnPagePrefs = {
 				var ownBoxBody = doc.createElement("div");
 				var header = Foxtrickl10n.getString("foxtrick.onpagepreferences" );
 				var ownBoxId = "foxtrick_OnPagePrefs_box";
-				var ownBoxBodyId = "foxtrick_OnPagePrefs_content";
+				var ownBoxBodyId = "foxtrick_OnPagePrefs_inner";
 				ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
 				var count=0;
@@ -1534,10 +1534,11 @@ var FoxtrickOnPagePrefs = {
 				}	
 				if (count==0) return;
 				doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
+				doc.addEventListener( "click", FoxtrickOnPagePrefs.SubmitCapture, true );
 				
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
-				var content=doc.getElementById('foxtrick_OnPagePrefs_content');
-				content.style.display='none';
+				//var content=doc.getElementById('foxtrick_OnPagePrefs_content');
+				//content.style.display='none';
 			
 				// clickable header
 				var header = doc.getElementById('foxtrick_OnPagePrefs_box').getElementsByTagName("h2")[0];
@@ -1563,11 +1564,16 @@ var FoxtrickOnPagePrefs = {
 	HeaderClick : function (evt) { 
 	try{
 		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
-		var div = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
-		var ownBoxBody = doc.getElementById('foxtrick_OnPagePrefs_content');
-		if ( div.className.search("ft_sidebarBoxCollapsed") != -1 ) {
-			div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
-			ownBoxBody.style.display = 'inline';
+		var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
+		
+		if ( headdiv.className.search("ft_sidebarBoxCollapsed") != -1 ) {
+			headdiv.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
+			var ownBox = doc.getElementById('foxtrick_OnPagePrefs_inner');
+			var ownBoxBody = doc.createElement("div");
+			var ownBoxBodyId = "foxtrick_OnPagePrefs_content";
+			ownBoxBody.setAttribute( "id", ownBoxBodyId );
+			ownBox.appendChild(ownBoxBody);
+			
 			if (!doc.getElementById('foxtrick_prefs_save')) {			  
 				// save		
 				var prefsavediv=doc.createElement('div');	
@@ -1647,8 +1653,11 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		else {
-			div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
-			ownBoxBody.style.display = 'none';
+			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
+			var content = doc.getElementById('foxtrick_OnPagePrefs_content');
+			if (content) {
+				content.parentNode.removeChild(content);		
+			}
 		}
 	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
 	},
@@ -1690,9 +1699,16 @@ var FoxtrickOnPagePrefs = {
 	
 	SubmitCapture : function (evt) { 
 	try{
+		var hasonclick=evt.originalTarget.getAttribute('onclick')!=null;
+		if (!hasonclick) return;
 		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
 		var content = doc.getElementById('foxtrick_OnPagePrefs_content');
-		content.parentNode.removeChild(content);		
+		if (content) {
+			content.parentNode.removeChild(content);
+			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
+			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");			
+			dump ('onclick/submit remove onpagepref\n');
+		}
 	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
 	},
 }

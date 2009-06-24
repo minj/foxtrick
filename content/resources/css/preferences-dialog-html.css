@@ -89,6 +89,7 @@ div.ft_pref_modul > div > table > tr > td > div.checkbox_label {font-weight:bold
 
 .ft_prefs_check_td { width:14px;}
 .ft_prefs_screenshot_td { width:16px;}
+#foxtrick_OnPagePrefs_box  td {padding-right:4px !important; padding-left:0px !important;}
 
 #foxtrick_OnPagePrefs_box .boxBody {padding: 8px 5px!important; } 
 
