@@ -148,7 +148,7 @@ var FoxtrickForumChangePosts = {
                                         supporter_link1 = header_left_links[k];
                                 }
                             }
-                        } else {
+                        } else if (!poster_link2) {
                             if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link2 = header_left_link;
                             else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
                                 poster_link2 = header_left_link;
@@ -543,7 +543,7 @@ var FoxtrickForumChangePosts = {
 									supporter_link1 = header_left_links[k];
 							}
 						}
-					} else {
+					} else if (!poster_link2) {
 						if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link2 = header_left_link;
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
 							poster_link2 = header_left_link;
