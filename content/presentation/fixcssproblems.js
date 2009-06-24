@@ -19,7 +19,7 @@ FoxtrickFixcssProblems = {
                                     "MatchOrder_Lineheight",
                                     "RTL_Fixes",
                                     "ForumScrollBarFix",
-                                    "Forum_ThreadlistSpace",
+//                                    "Forum_ThreadlistSpace",
 									"League_Table",
 									"Guestbook",
 									"liveHighlightRed"
@@ -33,7 +33,7 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
                                 "",
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-                                "",
+//                                "",
 								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css"
@@ -46,7 +46,7 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/MatchOrder_Lineheight.css",
                                 "chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
-                                "",
+//                                "",
 								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css"
@@ -58,7 +58,8 @@ FoxtrickFixcssProblems = {
                                                                        
     run : function(page, doc) {
        
-            if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace" )) {
+     /* obsolete      
+		if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace" )) {
 				if (!Foxtrick.isStandardLayout( doc ) ) {
                         var css = "chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace_simple.css";
 						Foxtrick.addStyleSheet( doc, css );
@@ -67,7 +68,7 @@ FoxtrickFixcssProblems = {
 				        var css = "chrome://foxtrick/content/resources/css/fixes/Forum_ThreadlistSpace.css";
 						Foxtrick.addStyleSheet( doc, css );
 				}				
-			}
+			}*/
              
 	return;
    
