@@ -76,6 +76,9 @@ var FoxtrickReadHtPrefs = {
 		if (doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {
 		
 			var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
+			var oldval = FoxtrickPrefs.getString("htLanguage");
+			if (this.codes[langval]==oldval) return;
+			
 			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
 			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
 			var mainBody = doc.getElementById('mainBody');	
