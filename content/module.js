@@ -63,6 +63,7 @@ Foxtrick.ht_pages = {
     'YouthPlayers'              : 'YouthPlayers\.aspx',
     'YouthPlayer'               : 'YouthPlayer\.aspx',
     'training'                  : '\/Club\/Training\/$',
+    'trainingStats'             : '\/Club\/Training\/Statistics.aspx',
     'YouthTraining'             : '\/Club\/Training\/YouthTraining\.aspx',
     'managerPage'               : '\/Club\/Manager\/',
     'finances'                  : '\/Club\/Finances/',
@@ -77,6 +78,14 @@ Foxtrick.ht_pages = {
     'ads'                       : '\/Community\/Ads\/',
 	'denominations'             : '\/Help\/Rules\/AppDenominations.aspx',
 	'statsBestgames'            : '\/World\/Stats\/StatsBestgames.aspx',
+	'statsTransfersBuyers'      : '\/World\/Stats\/StatsTransfersBuyers.aspx',
+	'statsTeams'                : '\/World\/Stats\/StatsTeams.aspx',
+	'statsPlayers'              : '\/World\/Stats\/StatsPlayers.aspx',
+	'statsRegions'              : '\/World\/Stats\/StatsRegions.aspx',
+	'statsNationalTeams'        : '\/World\/Stats\/StatsNationalTeams.aspx',
+	'statsConfs'                : '\/World\/Stats\/StatsConfs.aspx',
+	'statsBookmarks'            : '\/World\/Stats\/StatsBookmarks.aspx',
+    'press'                     : '\/Community\/Press\/',
     'all_late'                  : '\/',
     
 };

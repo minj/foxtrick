@@ -8,7 +8,11 @@ var FoxtrickCountyList = {
 
 	MODULE_NAME : "CountryList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-    PAGES : new Array('country', 'transferListSearchForm', 'ads'),
+    PAGES : new Array ( 'country', 'transferListSearchForm', 'ads', 'press', 
+                        'statsTransfersBuyers', 'statsTeams', 'statsPlayers', 
+                        'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
+                        'trainingStats'
+                        ),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.8.2",
@@ -36,6 +40,42 @@ var FoxtrickCountyList = {
 
             case 'ads' :
                 this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+            break;
+
+            case 'press' :
+                this._changelist(page, doc, 'ctl00_CPSidebar_ucLeagues2_ddlLeagues', 1);
+            break;
+
+            case 'statsTransfersBuyers' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+            break;
+
+            case 'statsTeams' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+            break;
+ 
+            case 'statsPlayers' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+            break;
+ 
+            case 'statsRegions' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+            break;
+ 
+            case 'statsNationalTeams' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+            break;
+ 
+            case 'statsConfs' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+            break;
+ 
+            case 'statsBookmarks' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+            break;
+ 
+            case 'trainingStats' :
+                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
             break;
         }
 	},
