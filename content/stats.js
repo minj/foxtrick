@@ -2555,22 +2555,6 @@ stats["nederlandtracker"] = {
 	"nationalityranges" : [[14,14]], 
 };
 
-stats["polskatracker"] = { 
-  "url" : "http://www.nbd.cba.pl",
-  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
-  "title" : "Polska U20/NT Tracker",
-  
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
-                   "params"     : []
-                 },
-	"countryidranges" : [[24,24]] , 
-	"nationalityranges" : [[24,24]], 
-};
 
 stats["qatartracker"] = { 
   "url" : "http://www.tracker.comyr.com/",
@@ -2818,7 +2802,22 @@ stats["spaintracker"] = {
 	"nationalityranges" : [[36,36]],	
 };
 
-
+stats["polskatracker"] = { 
+  "url" : "http://www.ntdb.pl/",
+  "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
+  "title" : "Polska NT/U-20 DB",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "index.php?page=Logging",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[24,24]] ,
+	"nationalityranges" : [[24,24]],	
+};
 
 //  ------------- spreadsheets trackers ----------------
 stats["mongoltracker"] = { 
