@@ -166,7 +166,8 @@ var FoxtrickForumStaffMarker = {
             "slader",
 			"smates",
 			"stephan57",
-			"taised"
+			"taised",
+            "white_eagle"
     ),
 
     SELECT_ELEMENTS : new Array ( "ctl00_CPMain_ucThread_ucPagerTop_filterUser",
