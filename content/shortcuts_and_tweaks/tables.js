@@ -59,7 +59,6 @@ var FoxtrickTables = {
         }
     }
 };
-<<<<<<< .mine
 
 var FoxtrickMatchTables = {
 
@@ -67,7 +66,7 @@ var FoxtrickMatchTables = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('matchesarchiv', 'matches'), 
     DEFAULT_ENABLED : false,
-    NEW_AFTER_VERSION: "0.4.8.3",	
+    NEW_AFTER_VERSION: "0.4.8.2",	
     LASTEST_CHANGE:"removes white space on match tables",    
 
     init : function() {
@@ -132,4 +131,4 @@ var FoxtrickMatchTables = {
             this.run( page, doc );
         }
     }
-};=======>>>>>>> .theirs
+};
