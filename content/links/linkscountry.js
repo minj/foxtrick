@@ -36,8 +36,8 @@ var FoxtrickLinksCountry = {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_" + header + "_box";
-			var ownBoxBodyId = "foxtrick_" + header + "_content";
+			var ownBoxId = "foxtrick_links_box";
+			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
                                
 			for (var k = 0; k < links.length; k++) {
@@ -53,7 +53,7 @@ var FoxtrickLinksCountry = {
 	
 	change : function( page, doc ) {
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_" + header + "_content";
+		var ownBoxId = "foxtrick_links_content";
 		if( !doc.getElementById ( ownBoxId ) ) {
 			this.run( page, doc );
 		}

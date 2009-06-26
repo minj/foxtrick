@@ -34,8 +34,8 @@ var FoxtrickLinksTeam = {
 					if (links.length > 0) {
 						ownBoxBody = doc.createElement("div");
 						var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-						var ownBoxId = "foxtrick_" + header + "_box";
-						var ownBoxBodyId = "foxtrick_" + header + "_content";
+						var ownBoxId = "foxtrick_links_box";
+						var ownBoxBodyId = "foxtrick_links_content";
 						ownBoxBody.setAttribute( "id", ownBoxBodyId );
                		                 
 						for (var k = 0; k < links.length; k++) {
@@ -55,7 +55,7 @@ var FoxtrickLinksTeam = {
 	
 	change : function( page, doc ) { // dump('change : LinksTeam\n');
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_" + header + "_content";
+		var ownBoxId = "foxtrick_links_content";
 		var owncoachlinkId = "foxtrick_content_coach";
 		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
 		if( !doc.getElementById ( ownBoxId )

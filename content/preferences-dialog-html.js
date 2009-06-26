@@ -1563,7 +1563,7 @@ var FoxtrickOnPagePrefs = {
 	
 	HeaderClick : function (evt) { 
 	try{
-		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
+		var doc = evt.view.document;
 		var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
 		
 		if ( headdiv.className.search("ft_sidebarBoxCollapsed") != -1 ) {

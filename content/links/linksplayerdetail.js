@@ -156,8 +156,8 @@ var FoxtrickLinksPlayerDetail = {
 					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-					var ownBoxId = "foxtrick_" + header + "_box";
-					var ownBoxBodyId = "foxtrick_" + header + "_content";
+					var ownBoxId = "foxtrick_links_box";
+					var ownBoxBodyId = "foxtrick_links_content";
 					ownBoxBody.setAttribute( "id", ownBoxBodyId );
                             
 					for (var l = 0; l < links.length; l++) {
@@ -203,7 +203,7 @@ var FoxtrickLinksPlayerDetail = {
 	
 	change : function( page, doc ) {
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		if( !doc.getElementById ( "foxtrick_" + header + "_content" ) 
+		if( !doc.getElementById ( "foxtrick_links_content" ) 
 			&& !doc.getElementById ( "foxtrick_keeperlink_0" ) 
 			&& !doc.getElementById ( "foxtrick_injurylink_0" ) ) {
 			this.run( page, doc );
