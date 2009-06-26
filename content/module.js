@@ -13,7 +13,7 @@
  * You can add new values here, just remember to escape slashes with
  * backslashes (as you can see below).
  */
-Foxtrick.ht_pages = { 
+Foxtrick.ht_pages = {
     'all'                       : '',
     'playerdetail'              : '\/Club\/Players\/Player\.aspx',
     'myhattrick'                : '\/MyHattrick\/$',
@@ -71,7 +71,7 @@ Foxtrick.ht_pages = {
     'newsletter'                : '\/Community\/Federations\/SendMessage\.aspx',
     'national'                  : '\/Club\/NationalTeam\/NationalTeam\.aspx',
     'guestbook'                 : '\/Club\/Manager\/Guestbook\.aspx',
-    'announcements'             : '\/Club\/Announcements/\New\.aspx',
+    'announcements'             : '\/Club\/Announcements/\New\.aspx|\/Club\/Announcements/\Edit\.aspx',
     'htpress'                   : '\/Community\/Press\/Default\.aspx',
     'cupmatches'                : '\/World\/Cup\/CupMatches\.aspx',
     'election'                  : '\/World\/Elections\/Default\.aspx',
@@ -87,6 +87,6 @@ Foxtrick.ht_pages = {
 	'statsBookmarks'            : '\/World\/Stats\/StatsBookmarks.aspx',
     'press'                     : '\/Community\/Press\/',
     'all_late'                  : '\/',
-    
+
 };
 ////////////////////////////////////////////////////////////////////////////////
