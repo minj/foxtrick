@@ -193,8 +193,8 @@ var FoxtrickMyHT = {
 	},
 	
 	Close :function(ev){
-		var doc=FoxtrickMyHT.Close.doc;
- 	 
+		var doc = ev.target.ownerDocument;
+		
 		var mainBody = doc.getElementById('mainBody');				
 		var oldAlert=doc.getElementById('idFoxtrickPrefsDialogHTML');
 		if (oldAlert) mainBody.removeChild(oldAlert);

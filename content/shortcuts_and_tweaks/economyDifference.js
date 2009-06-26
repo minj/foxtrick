@@ -244,7 +244,7 @@ var FoxtrickEconomyDifference = {
 
 	HeaderClick : function(evt) {
 		try { 
-			var doc=FoxtrickEconomyDifference.HeaderClick.doc;
+			var doc=evt.view.document;
 			FoxtrickPrefs.setInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value", FoxtrickPrefs.getInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value")+1);
 			if (FoxtrickPrefs.getInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value")==FoxtrickEconomyDifference.RADIO_OPTIONS.length) 
 				FoxtrickPrefs.setInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value",0);

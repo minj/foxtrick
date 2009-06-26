@@ -51,7 +51,6 @@ var FoxtrickLeagueNewsFilter = {
 	selectdiv.appendChild(select); 
 	
 	newsfeed.parentNode.insertBefore(selectdiv,newsfeed.parentNode.firstChild);
-	FoxtrickLeagueNewsFilter.ShowHide.doc=doc;
 	
 	var item=null;
 	var items = newsfeed.getElementsByTagName('div');
@@ -80,12 +79,11 @@ var FoxtrickLeagueNewsFilter = {
 		}
 	}
 
-	if (select.value!=0) this.ShowHide();
+	if (select.value!=0) this.ShowHide(doc);
 	},
 	
-	ShowHide:function() {
+	ShowHide:function(doc) {
 	try {
-	var doc=FoxtrickLeagueNewsFilter.ShowHide.doc;
 	var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
 	var selected=doc.getElementById('ft_ownselectboxID').value;
 
@@ -125,9 +123,10 @@ var FoxtrickLeagueNewsFilter = {
 	change : function( page, doc ) {	
 	},
 	
-	SelectClick : function(evt) {
+	SelectClick : function(ev) {
 		try {
-			FoxtrickLeagueNewsFilter.ShowHide();		
+			var doc = ev.target.ownerDocument;
+			FoxtrickLeagueNewsFilter.ShowHide(doc);		
 		} catch (e) {dump("FoxtrickLeagueNewsFilter_Select: "+e+'\n');}
 	},
 };

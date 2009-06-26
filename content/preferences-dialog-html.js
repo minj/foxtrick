@@ -172,7 +172,7 @@ var FoxtrickPrefsDialogHTML = {
 
 
 	show_tab : function( ev ) {
-		var doc = FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		var foxtrick_prefs_head = doc.getElementById('foxtrick_prefs_head').childNodes;
 		var foxtrick_preftabs = doc.getElementById('foxtrick_preftabs').childNodes;
 		var tab = ev.target.getAttribute('tab');
@@ -190,14 +190,14 @@ var FoxtrickPrefsDialogHTML = {
 	
 	
 	tabhead_mouseover : function( ev ) {
-		var doc = FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		doc.defaultView.status = '/MyHattrick/?configure_foxtrick=true&category='+ev.target.getAttribute('tab');		
 	},
 
 	
 	save : function( ev ) { dump('pref save\n');
 	try { 
-		var doc = FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
@@ -317,18 +317,18 @@ var FoxtrickPrefsDialogHTML = {
 	},
 
 	cancel : function( ev ) {
-		var doc = FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		doc.location.href="/MyHattrick/?configure_foxtrick=true&status=canceled";		
 	},
 	
 	selectfile : function( ev ) { 
-		var doc = FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		var file = Foxtrick.selectFile(doc.defaultView); 
 		if (file != null) {doc.getElementById(ev.target.getAttribute('inputid')).value='file://' + (file)};
 	},
 	
 	playsound : function( ev ) { 
-		var doc = FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		Foxtrick.playSound(doc.getElementById('alertsoundurlpref').value);
 	},
 		
@@ -1448,19 +1448,19 @@ var FoxtrickPrefsDialogHTML = {
 	sortfunction4: function(a,b) {return a[4].localeCompare(b[4]);},
 
 	Sort0 :function(ev){
-		var doc=FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction0);
 		FoxtrickPrefsDialogHTML.ShowAlertCommonInner(doc);
 	},
 	
 	Sort2 :function(ev){
-		var doc=FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction2);
 		FoxtrickPrefsDialogHTML.ShowAlertCommonInner(doc);
 	},
 
 	Sort4 :function(ev){ 
-		var doc=FoxtrickPrefsDialogHTML._doc;
+		var doc = ev.target.ownerDocument;
 		FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction4);
 		FoxtrickPrefsDialogHTML.ShowAlertCommonInner(doc);
 	},
@@ -1468,7 +1468,7 @@ var FoxtrickPrefsDialogHTML = {
 		
 	VersionBox_Select :function(ev){
 		try{  
-			var doc = FoxtrickPrefsDialogHTML._doc;
+			var doc = ev.target.ownerDocument;
 		
 			var selectbox = doc.getElementById("ft_ownselectboxID");
 			var oldVersion = selectbox.getElementsByTagName("option")[selectbox.selectedIndex].value; 
@@ -1497,8 +1497,6 @@ var FoxtrickOnPagePrefs = {
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Shows a small expandable box at the bottom of the sidebar which allows changing FoxTrick modules which alter the current page (default on)",
 	
-	_doc:null,
-		
     init : function() {
     },
 
@@ -1561,9 +1559,9 @@ var FoxtrickOnPagePrefs = {
 	change : function( doc ) { 
 	},
 	
-	HeaderClick : function (evt) { 
+	HeaderClick : function (ev) { 
 	try{
-		var doc = evt.view.document;
+		var doc = ev.view.document;
 		var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
 		
 		if ( headdiv.className.search("ft_sidebarBoxCollapsed") != -1 ) {
@@ -1584,7 +1582,6 @@ var FoxtrickOnPagePrefs = {
 				prefsave.setAttribute('id','foxtrick_prefsave'); 
 				prefsave.setAttribute('type','button'); 
 				prefsave.setAttribute('value',Foxtrickl10n.getString("foxtrick.prefs.buttonSave")); 
-				FoxtrickPrefsDialogHTML._doc=doc;
 				prefsave.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
 				prefsavediv.appendChild(prefsave);
 				
@@ -1663,11 +1660,11 @@ var FoxtrickOnPagePrefs = {
 	},
 	
 	
-	HeaderClickModulesAll : function (evt) {
+	HeaderClickModulesAll : function (ev) {
 	try{
-		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
+		var doc = ev.target.ownerDocument;
 		var div = doc.getElementById('onpageprefs_alldivinner');
-		var header = evt.target;
+		var header = ev.target;
 		if ( header.className.search("ft_sidebarBoxCollapsed") != -1 ) {
 			header.setAttribute("class","ft_sidebarBoxUnfolded");
 			div.style.display = 'inline';
@@ -1680,11 +1677,11 @@ var FoxtrickOnPagePrefs = {
 	},
 
 	
-	HeaderClickLinks : function (evt) {
+	HeaderClickLinks : function (ev) {
 	try{
-		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
+		var doc = ev.target.ownerDocument;
 		var div = doc.getElementById('onpageprefs_linkdivinner');
-		var header = evt.target;
+		var header = ev.target;
 		if ( header.className.search("ft_sidebarBoxCollapsed") != -1 ) {
 			header.setAttribute("class","ft_sidebarBoxUnfolded");
 			div.style.display = 'inline';
@@ -1697,11 +1694,11 @@ var FoxtrickOnPagePrefs = {
 	},
 
 	
-	SubmitCapture : function (evt) { 
+	SubmitCapture : function (ev) { 
 	try{
-		var hasonclick=evt.originalTarget.getAttribute('onclick')!=null;
+		var hasonclick=ev.originalTarget.getAttribute('onclick')!=null;
 		if (!hasonclick) return;
-		var doc = FoxtrickOnPagePrefs.HeaderClick.doc;
+		var doc = ev.target.ownerDocument;
 		var content = doc.getElementById('foxtrick_OnPagePrefs_content');
 		if (content) {
 			content.parentNode.removeChild(content);

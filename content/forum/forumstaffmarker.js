@@ -25,9 +25,7 @@ var FoxtrickForumStaffMarker = {
 											),
     OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own", "flag"),
     // OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own"),
-
-    _DOC : {},
-
+    
 	htreg : /^HT-/i,
 	gmreg : /^GM-/i,
 	modreg : /^MOD-/i,
@@ -36,7 +34,6 @@ var FoxtrickForumStaffMarker = {
 
 	ulist:{},  // users and colors
 
-    // var doc = Foxtrick.current_doc;
     editorsArray : new Array (
             "7areega",
             "Abu_Ahmed",
@@ -210,8 +207,7 @@ var FoxtrickForumStaffMarker = {
     },
 
     run : function( page, doc ) {
-        this._DOC = doc;
-
+        
 			// getting userids and colors
 			var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
             if (!utext)
@@ -232,13 +228,13 @@ var FoxtrickForumStaffMarker = {
         {
             case 'forumViewThread':
                 // dump('forumViewThread\n');
-                FoxtrickForumStaffMarker._MarkAliases_thread();
-                FoxtrickForumStaffMarker._MarkAliases_select();
+                FoxtrickForumStaffMarker._MarkAliases_thread(doc);
+                FoxtrickForumStaffMarker._MarkAliases_select(doc);
             break;
 
             case 'forumWritePost':
                 // dump('forumWritePost\n');
-                FoxtrickForumStaffMarker._MarkAliases_select();
+                FoxtrickForumStaffMarker._MarkAliases_select(doc);
             break;
         }
     },
@@ -248,10 +244,8 @@ var FoxtrickForumStaffMarker = {
 	},
 
     //Alias - Staff-Color
-    _MarkAliases_thread : function () {
+    _MarkAliases_thread : function (doc) {
         try {
-            var doc = this._DOC;
-
 			var do_HT = Foxtrick.isModuleFeatureEnabled( this, "HT") ;
 			var do_GM = Foxtrick.isModuleFeatureEnabled( this, "GM") ;
 			var do_MOD = Foxtrick.isModuleFeatureEnabled( this, "MOD") ;
@@ -299,9 +293,8 @@ var FoxtrickForumStaffMarker = {
     },
 
     //SelectBox - Staff-Color
-    _MarkAliases_select : function () {
+    _MarkAliases_select : function (doc) {
         try {
-            var doc = this._DOC;
 			var do_HT = Foxtrick.isModuleFeatureEnabled( this, "HT") ;
 			var do_GM = Foxtrick.isModuleFeatureEnabled( this, "GM") ;
 			var do_MOD = Foxtrick.isModuleFeatureEnabled( this, "MOD") ;

@@ -56,7 +56,7 @@ var FoxtrickYouthSkillNotes = {
 	},
 	
 	saveSkills : function (ev) {
-		var doc = FoxtrickYouthSkillNotes.saveSkills.doc;
+		var doc = ev.target.ownerDocument;
 		var playerid = ev.target.getAttribute("name");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillGK", 
 			doc.getElementById("YskillGK"+playerid).value);

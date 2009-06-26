@@ -219,10 +219,10 @@ var FoxtrickSeasonStats = {
 	change : function( page, doc ) {
 	},
 	
-	SelectBox_Select : function(evt) {
+	SelectBox_Select : function(ev) {
 	try {
-		var doc=FoxtrickSeasonStats.SelectBox_Select.doc;
-		doc.location.href=doc.location.href.replace(/season=\d+/,'season='+evt["target"]["value"]);						
+		var doc = ev.target.ownerDocument;
+		doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]);						
 	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
 	},		
 };

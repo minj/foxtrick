@@ -170,9 +170,9 @@ var FoxtrickYouthSkillTable = {
 	change : function( page, doc ) {	
 	},
 
-	HeaderClick : function(evt) {
+	HeaderClick : function(ev) {
 	try{
-		var doc=FoxtrickYouthSkillTable.HeaderClick.doc;
+		var doc = ev.target.ownerDocument;
 		var tablediv = doc.getElementById('ft_youthskilltable');
 		var table = tablediv.getElementsByTagName('table')[0]
 		if (table.style.display=='none')  {

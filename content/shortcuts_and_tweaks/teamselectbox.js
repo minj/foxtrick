@@ -134,9 +134,9 @@ var FoxtrickTeamSelectBox= {
 		}	*/
 	},
 
-	HeaderClick : function(evt) {
+	HeaderClick : function(ev) {
 		try { 
-			var doc=FoxtrickTeamSelectBox.HeaderClick.doc;
+			var doc = ev.target.ownerDocument;
 			FoxtrickPrefs.setBool("ShowPlayerAsList",!FoxtrickPrefs.getBool("ShowPlayerAsList"));
 			var div=doc.getElementById("ownselectboxHeaderID");
             
@@ -152,7 +152,7 @@ var FoxtrickTeamSelectBox= {
 	
 	Select : function(evt) {
 	try {
-		var doc=FoxtrickTeamSelectBox.Select.doc;
+		var doc = evt.view.document;
 		doc.location.href=evt["target"]["value"];						
 	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
 	},

@@ -341,7 +341,6 @@ var FoxtrickLinksCustom = {
 			
 			
 			// save link
-			FoxtrickLinksCustom.saveMyLink.doc=doc;
 			var saveLink = doc.createElement ("a");	
 			saveLink.setAttribute("href", "javascript: void(0);");
 			saveLink.setAttribute("name", "savelinkname");
@@ -382,9 +381,6 @@ var FoxtrickLinksCustom = {
 	delStdLink : function (evt) { 
 		try {
 			var doc = evt.view.document;
-			//var doc = FoxtrickLinksCustom.delMyLink.doc;
-			//var Check = doc.defaultView.confirm(Foxtrickl10n.getString("foxtrick.linkscustom.confirmremove"));
-			//if (Check == false) return;
 
 			var key = evt["target"].previousSibling.getAttribute("key");
 			var module_name = evt["target"].previousSibling.getAttribute("module");
@@ -400,7 +396,6 @@ var FoxtrickLinksCustom = {
 	delMyLink : function (evt) { 
 		try {
 			var doc = evt.view.document;
-			//var doc = FoxtrickLinksCustom.delMyLink.doc;
 			var Check = doc.defaultView.confirm(Foxtrickl10n.getString("foxtrick.linkscustom.confirmremove"));
 			if (Check == false) return;
 
@@ -417,9 +412,7 @@ var FoxtrickLinksCustom = {
 	
 	editOldLink : function (evt) { 
 		try {
-			var doc = evt.view.document;
-			//var doc = FoxtrickLinksCustom.editOldLink.doc;
-			
+			var doc = evt.view.document;			
 			var baseprefnl = evt["target"]["baseprefnl"];
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
@@ -434,7 +427,6 @@ var FoxtrickLinksCustom = {
 	Export : function (evt) { 
 		try {
 			var doc = evt.view.document;
-			//var doc = FoxtrickLinksCustom.Export.doc;
 			var baseprefnl = evt["target"]["baseprefnl"];		
 			
 			var locpath=Foxtrick.selectFileSave(doc.defaultView);
@@ -468,7 +460,6 @@ var FoxtrickLinksCustom = {
 	saveMyLink : function (evt) { 
 		try {
 			var doc = evt.view.document;
-			//var doc = FoxtrickLinksCustom.saveMyLink.doc;
 			var uniquekey=(Math.random()+"").replace(/0\./,"");
 			var ownBoxBody = doc.getElementById('foxtrick_links_content');
 			var basepref = ownBoxBody.getAttribute("basepref"); 	
@@ -526,7 +517,6 @@ var FoxtrickLinksCustom = {
 		delLink.addEventListener( "click", FoxtrickLinksCustom.delMyLink, false );
 		delLink.baseprefnl = baseprefnl;
 		delLink.mylink = mylink; 
-		FoxtrickLinksCustom.delMyLink.doc=doc;
 		return delLink;
 	} 
 	catch(e) {dump("LinksCustom->this.GetDelLink->"+e+'\n');}		
@@ -541,7 +531,6 @@ var FoxtrickLinksCustom = {
 		editOld.addEventListener( "click", FoxtrickLinksCustom.editOldLink, false );
 		editOld.baseprefnl = baseprefnl;
 		editOld.mylink = mylink; 
-		FoxtrickLinksCustom.editOldLink.doc=doc;
 		return editOld;
 	} 
 	catch(e) {dump("LinksCustom->this.GetEditOldLink->"+e+'\n');}		
@@ -556,7 +545,6 @@ var FoxtrickLinksCustom = {
 		ExportLink.addEventListener( "click", FoxtrickLinksCustom.Export, false );
 		ExportLink.baseprefnl = baseprefnl;
 		ExportLink.mylink = mylink; 
-		FoxtrickLinksCustom.Export.doc=doc;
 		return ExportLink;
 	} 
 	catch(e) {dump("LinksCustom->FoxtrickLinksGetExpostLink->"+e+'\n');}		
@@ -567,7 +555,6 @@ var FoxtrickLinksCustom = {
 	{	
 		var path="file://"+Foxtrick.selectFile(evt["target"]["parentdoc"]);
 		var doc = evt.view.document;
-		//var doc=FoxtrickLinksCustom.LoadDialog.doc;
 		var pathdel="\\";
 		if (path.charAt(7)=="/") {pathdel="/";}
 		var imgfile=path.substr(path.lastIndexOf(pathdel)+1);
