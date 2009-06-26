@@ -10,5 +10,6 @@
 /*#mainBody table tr td.date span {margin-left: -35px !important; background:white;} */
 /* small font */
 /*#mainBody table tr .date, #mainBody table tr td.nowrap {font-size: 0.8em !important;}*/
-#mainBody table tr td  {font-size: 0.8em !important; /*white-space:nowrap*/
+#mainBody table tr td  {font-size: 0.8em !important; /*white-space:nowrap*/}
+
 }

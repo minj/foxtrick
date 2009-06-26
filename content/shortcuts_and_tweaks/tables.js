@@ -64,7 +64,7 @@ var FoxtrickMatchTables = {
 
     MODULE_NAME : "MatchTables",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('matchesarchiv', 'matches'), 
+	PAGES : new Array('matchesarchiv', 'matches','league','youthleague'), 
     DEFAULT_ENABLED : false,
     NEW_AFTER_VERSION: "0.4.8.2",	
     LASTEST_CHANGE:"removes white space on match tables",    
@@ -75,10 +75,20 @@ var FoxtrickMatchTables = {
     
     run : function( page, doc ) {
         if (Foxtrick.isStandardLayout(doc)) return;
-        if (!Foxtrick.isModuleFeatureEnabled( this, "RemoveTime" ) ) {
-			Foxtrick.addStyleSheet(doc,"chrome://foxtrick/content/resources/css/FoxtrickMatchTables_simple.css");
+        
+		// adjust league table
+		if (page=='league' || page== 'youthleague') {
+			Foxtrick.addStyleSheet(doc,"chrome://foxtrick/content/resources/css/FoxtrickMatchTables_league.css");
 			return;
 		}
+
+		// adjust matchtable, keep hour
+		if (!Foxtrick.isModuleFeatureEnabled( this, "RemoveTime" ) ) {
+			if (page=='matchesarchiv' || page== 'matches') Foxtrick.addStyleSheet(doc,"chrome://foxtrick/content/resources/css/FoxtrickMatchTables_matches.css");
+			return;
+		}		
+		
+		// adjust matchtable, remove hour
 		var id = "ft_matchtable";
         if (doc.getElementById(id)) return;
         
