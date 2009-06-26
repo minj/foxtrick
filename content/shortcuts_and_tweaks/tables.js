@@ -63,7 +63,7 @@ var FoxtrickTables = {
 var FoxtrickMatchTables = {
 
     MODULE_NAME : "MatchTables",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('matchesarchiv', 'matches'), 
     DEFAULT_ENABLED : false,
     NEW_AFTER_VERSION: "0.4.8.2",	
@@ -73,6 +73,7 @@ var FoxtrickMatchTables = {
     },
     
     run : function( page, doc ) {
+        if (Foxtrick.isStandardLayout(doc)) return;
         var id = "ft_matchtable";
         if (doc.getElementById(id)) return;
         
@@ -86,6 +87,7 @@ var FoxtrickMatchTables = {
             tbl.setAttribute('style', 'margin-left:-6px; margin-right:-6px; padding:0px;width:440px;');
             
             var tblBodyObj = tbl.tBodies[0];
+            var section = 0;
             for (var i=0; i<tblBodyObj.rows.length; i++) {
                 if (tblBodyObj.rows[i].cells[1]) {
                     var cell = tblBodyObj.rows[i].cells[0];
@@ -112,15 +114,22 @@ var FoxtrickMatchTables = {
                     }
                     cell.setAttribute('style', "font-size:9px; text-align:center;padding:2px 0px 2px 0px;vertical-align:middle;");
                     cell.setAttribute('class', "date");
-                    
+                    if (section == 2) {
+                        tblBodyObj.rows[i].deleteCell(3);
+                        tblBodyObj.rows[i].cells[2].setAttribute('colspan', 2);
+                    }
                     for(var j = 1; j < 7; j++) {
                         var cell = tblBodyObj.rows[i].cells[j];
                         if (cell) {
+                             
                             cell.setAttribute('style', "padding:1px; margin:0px;font-size:10px;vertical-align:middle;text-align:center");
-                            cell.innerHTML = cell.innerHTML.replace(/\&nbsp\;/gi, '').replace(' - ', ':');
+                            if (j != 2) 
+                                cell.innerHTML = cell.innerHTML.replace(/\&nbsp\;/gi, '').replace(' - ', ':'); 
+                            else
+                                cell.innerHTML = cell.innerHTML.replace(' - ', ':')
                         }
                     }
-                }
+                } else section ++;
             }        
         } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
     },
