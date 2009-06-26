@@ -22,7 +22,9 @@ FoxtrickFixcssProblems = {
 //                                    "Forum_ThreadlistSpace",
 									"League_Table",
 									"Guestbook",
-									"liveHighlightRed"
+									"liveHighlightRed",
+									"HideFlagsInForumHeader",
+									"HideLeagueInForumHeader"
                                 ),
                                
 		OPTIONS_CSS: new Array (
@@ -36,7 +38,9 @@ FoxtrickFixcssProblems = {
 //                                "",
 								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
-                                "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css"
+                                "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
+                                "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -49,7 +53,9 @@ FoxtrickFixcssProblems = {
 //                                "",
 								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
-                                "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css"
+                                "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
+                                "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
                                 ),
                                
     init : function() {
