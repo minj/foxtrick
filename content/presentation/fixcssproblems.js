@@ -10,7 +10,7 @@ FoxtrickFixcssProblems = {
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Option highlight in red new events on HTlive, Forum_ThreadlistSpace fixed",	
+	LASTEST_CHANGE:"Option highlight in red new events on HTlive, Forum_ThreadlistSpace obsolte, HideFlags/Leaguelevel in forum and flickerfix for HeaderFix with Firefox 3.5 added",	
 	   
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
@@ -24,7 +24,8 @@ FoxtrickFixcssProblems = {
 									"Guestbook",
 									"liveHighlightRed",
 									"HideFlagsInForumHeader",
-									"HideLeagueInForumHeader"
+									"HideLeagueInForumHeader",
+									"RemoveHeaderFixFlicker"
                                 ),
                                
 		OPTIONS_CSS: new Array (
@@ -40,7 +41,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
+                                "chrome://foxtrick/content/resources/css/fixes/RemoveHeaderFixFlicker.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -55,7 +57,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
+                                "chrome://foxtrick/content/resources/css/fixes/RemoveHeaderFixFlicker.css"
                                 ),
                                
     init : function() {

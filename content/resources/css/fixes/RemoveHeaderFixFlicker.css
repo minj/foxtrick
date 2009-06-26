@@ -1,0 +1,6 @@
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+div.mainConf div.cfWrapper  div.message {overflow:hidden !important;}
+div.mainConf div.cfWrapper  .quote {overflow:hidden !important;}
+
+}
