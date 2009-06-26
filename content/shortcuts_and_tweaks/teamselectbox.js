@@ -152,7 +152,7 @@ var FoxtrickTeamSelectBox= {
 	
 	Select : function(evt) {
 	try {
-		var doc = evt.view.document;
+		var doc = evt.target.ownerDocument;
 		doc.location.href=evt["target"]["value"];						
 	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
 	},
