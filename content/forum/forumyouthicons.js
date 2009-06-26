@@ -26,7 +26,8 @@
     try {
         Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");
 
-        var show_main = false; var show_youth = false; var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
+        var show_main = false; var show_youth = false; 
+        var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
         if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||
             (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "kit_id")) ||
             (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "article_id")) ||
@@ -91,7 +92,10 @@
                 anchor.style.height = '300px';
         }
 
-        
+        if (page == 'announcements' && enlarge) {
+                var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
+                anchor.style.height = '300px';
+        }        
         var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
         toolbar = toolbar[0];
         if  (( toolbar == null ) && (!page == 'ads' )) return;

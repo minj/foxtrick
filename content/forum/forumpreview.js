@@ -117,6 +117,15 @@ var FoxtrickForumPreview = {
                     var msg_type = 6;
                 }
         }
+        if (!target) {
+                target=doc.getElementById("ctl00_CPMain_btnEdit");  // AnnouncementEdit
+                if (target) {
+                    msg_window.setAttribute( "tabindex",  1);
+                    target.setAttribute( "tabindex",  2);
+                    index=3; /*index=5;*/
+                    var msg_type = 6;
+                }
+        }
         dump('==> ForumPreview Message Type ' + msg_type + '\n');
 
 		//button_ok.setAttribute( "tabindex",  index);
