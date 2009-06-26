@@ -68,13 +68,18 @@ var FoxtrickMatchTables = {
     DEFAULT_ENABLED : false,
     NEW_AFTER_VERSION: "0.4.8.2",	
     LASTEST_CHANGE:"removes white space on match tables",    
-
+	OPTIONS :  new Array("RemoveTime"), 
+	
     init : function() {
     },
     
     run : function( page, doc ) {
         if (Foxtrick.isStandardLayout(doc)) return;
-        var id = "ft_matchtable";
+        if (!Foxtrick.isModuleFeatureEnabled( this, "RemoveTime" ) ) {
+			Foxtrick.addStyleSheet(doc,"chrome://foxtrick/content/resources/css/FoxtrickMatchTables_simple.css");
+			return;
+		}
+		var id = "ft_matchtable";
         if (doc.getElementById(id)) return;
         
         try {
@@ -88,27 +93,27 @@ var FoxtrickMatchTables = {
             
             var tblBodyObj = tbl.tBodies[0];
             var section = 0;
-            for (var i=0; i<tblBodyObj.rows.length; i++) {
+			for (var i=0; i<tblBodyObj.rows.length; i++) {
                 if (tblBodyObj.rows[i].cells[1]) {
                     var cell = tblBodyObj.rows[i].cells[0];
                     var content = Foxtrick.trim(cell.innerHTML);
                     var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)/i;
                     if (content.search(':') > -1) reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d{2})(.*?)(\d{2})(.*?)/i;
                     var ar = reg.exec(content);
-                    var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+					var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
                     if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
 
                     switch ( DATEFORMAT ) {
                         case 'ddmmyyyy': 
-                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4) + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
                             else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
                             break;
                         case 'mmddyyyy':
-                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4) + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
                             else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
                             break;
                         case 'yyyymmdd':
-                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4) + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
                             else cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4);
                             break;
                     }
