@@ -97,6 +97,7 @@ pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.editor.enabled", false 
 pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.foxtrick-dev.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.own.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.flag.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStaffMarker.chpps.enabled", false);
 pref( "extensions.foxtrick.prefs.module.ForumTemplates.CustomWidth.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TickerColoring.LoginWelcome.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TickerColoring.LoginSupporters.enabled", false );
