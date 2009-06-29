@@ -11,7 +11,7 @@ var FoxtrickBackgroundFixed = {
 	PAGES : new Array('all'), 
 	DEFAULT_ENABLED : false,
 	CSS:"chrome://foxtrick/content/resources/css/backgroundfixed.css",
-	NEW_AFTER_VERSION: "0.4.8.3",
+	NEW_AFTER_VERSION: "0.4.8.2",
 	
     init : function() {
     },
