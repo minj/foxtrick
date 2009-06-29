@@ -1220,7 +1220,7 @@ Foxtrick.htDatePrintFormat = function(year, season, week, day, date) {
         if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison"))
             offset = FoxtrickPrefs.getInt("htSeasonOffset");
     } catch(e) {
-        dump('offset: ' + e + '\n');
+        // dump('offset: ' + e + '\n');
         offset = 0;
     }
      //dump ('offset:' +Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison")+' '+ offset + '\n');
@@ -1362,7 +1362,7 @@ TimeDifferenceToText = function( time_sec, short ) {
         var PJD_W = Math.floor(PJD_D / 7);
         var PJD_S = Math.floor(PJD_D / (16*7));
         var print_S = ''; var print_W = ''; var print_D = '';
-        dump ( display_option + ': ' + PJD_D + '/' + PJD_W + '/' + PJD_S + '\n');
+        // dump ( display_option + ': ' + PJD_D + '/' + PJD_W + '/' + PJD_S + '\n');
         try {
             switch ( display_option ) {  //( "SWD", "SW", "SD", "WD", "D" )
                 case 0: //SWD
@@ -1392,7 +1392,7 @@ TimeDifferenceToText = function( time_sec, short ) {
             } // switch
         } // try
         catch(e_print) {
-            dump('TimeDifferenceToText'+e_print);
+            // dump('TimeDifferenceToText'+e_print);
         }
         if (print_S == 0 ) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons");}
         if (print_W != 0 && print_S != '') print_S += '&nbsp;';
@@ -1400,7 +1400,7 @@ TimeDifferenceToText = function( time_sec, short ) {
         if (print_D != 0 ) print_W += '&nbsp;';
         if (print_D == 0 ) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");} 
         
-        dump( '  SWD OPT[' + display_option + ']: ' + print_S + '/' + print_W + '/' + print_D + '\n');                
+        // dump( '  SWD OPT[' + display_option + ']: ' + print_S + '/' + print_W + '/' + print_D + '\n');                
         return print_S + print_W + print_D;
         
         if ( Days == 0 ) {
@@ -1600,10 +1600,10 @@ Foxtrick.linebreak = function (txt, where) {
         var d = txt.split(' ');
         // dump ('TEXT= [' + d + ']\n');
         for (var j = 0; j < d.length; j++ ) {
-             dump('  LB [' + j + '] => "'+ d[j] + '"\n');
+            //dump('  LB [' + j + '] => "'+ d[j] + '"\n');
             if (d[j].length > where && d[j].search(/href\=|title\=/i) == -1) {
                 d[j] = Foxtrick.cut_word(d[j], where);
-                 dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
+                //dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
             }
         }
         return d.join(" ");

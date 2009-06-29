@@ -5,7 +5,7 @@
   <RDF:Description RDF:about="rdf:#$TfQfX1"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:maxVersion="3.5.*"
-                   em:minVersion="3.0" />
+                   em:minVersion="2.0" />
   <RDF:Description RDF:about="rdf:#$1gQfX1"
                    em:id="{3db10fab-e461-4c80-8b97-957ad5f8ea47}"
                    em:minVersion="8.0"
@@ -21,7 +21,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
-                   em:version="0.4.8.2"
+                   em:version="0.4.8.3"
                    em:description="A set of presentation enhancements for hattrick.org"
                    em:creator="Karel Kolman"
                    em:homepageURL="http://ht-foxtrick.com/"
@@ -40,11 +40,12 @@
     <em:developer>bummerland</em:developer>
 	<em:developer>taised</em:developer>
 	<em:developer>smates</em:developer>
-	<em:developer>convinced</em:developer>
+	<em:developer>egophobia</em:developer>
 	<em:developer>baumanns</em:developer>
 	
     <!-- translator list -->
-	<em:contributor>Bosnian: LA-Masterix,ljushaff</em:contributor>
+	<em:contributor>Albanian: MOD-odris</em:contributor>
+    <em:contributor>Bosnian: LA-Masterix,ljushaff</em:contributor>
     <em:contributor>Bulgarian: poceh_b</em:contributor>
 	<em:contributor>Catalan: carlesmu</em:contributor>
 	<em:contributor>Cesky: gucan</em:contributor>
@@ -56,13 +57,14 @@
 	<em:contributor>Espanol: franory</em:contributor>
 	<em:contributor>Espanol, Centroamericano: baler0</em:contributor>
 	<em:contributor>Espanol, Argentina: nickmpad</em:contributor>    
-	<em:contributor>Francais: stephan57</em:contributor>
+	<em:contributor>Francais: stephan57, Mod-Karlthegreat</em:contributor>
 	<em:contributor>Frysk: LA-Foppe</em:contributor>
     <em:contributor>Galego: Piper_101</em:contributor>
 	<em:contributor>Hungarian: LA-csajszi</em:contributor>
 	<em:contributor>Italiano: caracca</em:contributor>
 	<em:contributor>Lithuanian: Mod-summercloud</em:contributor>
     <em:contributor>Luxembourgish: Mod-Karlthegreat</em:contributor>
+    <em:contributor>Macedonian: white_eagle</em:contributor>
     <em:contributor>Norwegian, bokmal: Skoglund</em:contributor>
 	<em:contributor>Polski: Homzik</em:contributor>
 	<em:contributor>Portugues: _recluso_, ei04004, McTripas</em:contributor>
