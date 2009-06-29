@@ -39,7 +39,7 @@ var FoxtrickForumChangePosts = {
 		var do_truncate_leaguename = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLeagueName");
 		var do_short_postid = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId");
 		var do_replace_supporter_star = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ReplaceSupporterStar");
-		var do_linebreak = Foxtrick.isModuleFeatureEnabled( FoxtrickFixcssProblems, "RemoveHeaderFixFlicker");
+		var do_linebreak = Foxtrick.isModuleFeatureEnabled( FoxtrickHeaderFix, "RemoveFlicker");
 
         
 		this.bDetailedHeader = false;

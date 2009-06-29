@@ -13,12 +13,13 @@ var FoxtrickHeaderFix = {
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LASTEST_CHANGE:"Disabled on LiveFlash page",
-	OPTIONS : new Array("FixLeft"),
+	OPTIONS : new Array("FixLeft","RemoveFlicker"),
 	CSS_SIMPLE:"chrome://foxtrick/content/resources/css/headerfix.css",
 	CSS:"chrome://foxtrick/content/resources/css/headerfix_std.css",
 	CSS_SIMPLE_RTL:"chrome://foxtrick/content/resources/css/headerfix_rtl.css",
-	CSS_RTL:"chrome://foxtrick/content/resources/css/headerfix_std_rtl.css",
-	
+	CSS_RTL:"chrome://foxtrick/content/resources/css/headerfix_std_rtl.css",	                                
+    OPTIONS_CSS: new Array ("","chrome://foxtrick/content/resources/css/fixes/RemoveHeaderFixFlicker.css"),
+
     init : function() {
 		if (Foxtrick.isModuleFeatureEnabled( this, "FixLeft"))
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", true );				

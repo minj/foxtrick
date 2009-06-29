@@ -122,14 +122,14 @@ var FoxtrickAlert = {
     foxtrick_showAlert: function( from_timer) { 
      try{ 
 	    var window = FoxtrickAlert.foxtrick_showAlert.window;
-		dump ('\n -- foxtrick_showAlert --\n');
+	/*	dump ('\n -- foxtrick_showAlert --\n');
 		try {dump('location: '+window.location.href+'\n');}
 		catch(e){dump('window propertiy not available\n');}
 		dump(' called from timer: '+from_timer+'\n');
 		dump (' one alert is showing, dont execute double: '+String(!from_timer && FoxtrickAlert.ALERT_RUNNING) +'\n');
 		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
 		dump (' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
-		
+	*/	
  		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {dump('alert runing->return \n');return;}
 		FoxtrickAlert.ALERT_RUNNING = true;
 		if ( FoxtrickAlert.ALERTS.length==0) { dump('no more alerts->return\n'); FoxtrickAlert.ALERT_RUNNING = false; return;}	

@@ -24,9 +24,8 @@ FoxtrickFixcssProblems = {
 									"Guestbook",
 									"liveHighlightRed",
 									"HideFlagsInForumHeader",
-									"HideLeagueInForumHeader",
-									"RemoveHeaderFixFlicker"
-                                ),
+									"HideLeagueInForumHeader"
+								),
                                
 		OPTIONS_CSS: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -41,8 +40,7 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/RemoveHeaderFixFlicker.css"
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -57,8 +55,7 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/RemoveHeaderFixFlicker.css"
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
                                 ),
                                
     init : function() {
