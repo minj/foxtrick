@@ -171,7 +171,7 @@ var FoxtrickCrossTable = {
 
             var heading = doc.createElement("h2");
 			heading.setAttribute("id", "ft_head_cross");
-			heading.innerHTML =  'Season cross table';
+			heading.innerHTML = Foxtrickl10n.getString('foxtrick.CrossTable.TableHeader.desc');
 
             var divmap = doc.createElement("div");
             if (!Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[1]) ) { 
@@ -253,7 +253,7 @@ var FoxtrickCrossTable = {
 
             var heading = doc.createElement("h2");
 			heading.setAttribute("id","ft_head_graph");
-			heading.innerHTML =  'Season graph';
+			heading.innerHTML = Foxtrickl10n.getString('foxtrick.CrossTable.GraphHeader.desc');
 
             if (!Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[2]) ) { 
                 var show = "none";
