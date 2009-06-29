@@ -1592,3 +1592,40 @@ Foxtrick.get_url_param = function (url, name){
 	else
 		return results[1];
 }
+
+Foxtrick.linebreak = function (txt, where) {
+    try {
+        if (txt == null) return '';
+        txt = txt.replace('<br>', '<br> ');
+        var d = txt.split(' ');
+        // dump ('TEXT= [' + d + ']\n');
+        for (var j = 0; j < d.length; j++ ) {
+            dump('  LB [' + j + '] => "'+ d[j] + '"\n');
+            if (d[j].search(/href\=|title\=/i) == -1) {
+                d[j] = Foxtrick.cut_word(d[j], where);
+                dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
+            }
+        }
+        return d.join(" ");
+    } catch(e) {  dump('LINEBREAK: ' + e + '\n');}
+}
+
+Foxtrick.cut_word = function (txt, where) {
+    try {
+        if (txt == null) return '';
+        var c, a=0, g=0, d = new Array();
+        for (c = 0; c < txt.length; c++) {
+            
+            d[c + g] = txt[c];
+            if (txt[c] != " ") a++;
+            else if (txt[c] == " ") a = 0;
+            if (a == where) {
+                g++;
+                d[c+g] = " ";
+                a = 0;
+            }
+            
+        }
+        return d.join("");
+    } catch(e) {  dump('CUT WORD: ' + e + '\n');}
+}
