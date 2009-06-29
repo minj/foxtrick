@@ -1,6 +1,6 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-div.mainConf div.cfWrapper  div.message {overflow:hidden !important;}
+div.mainConf div.cfWrapper  div.message {overflow:hidden !important}
+div.mainConf div.cfWrapper  div.message table td, div.mainConf div.cfWrapper  div.message table th {padding: 3px 1px 3px 1px !important}
 div.mainConf div.cfWrapper  .quote {overflow:hidden !important;}
-
 }
