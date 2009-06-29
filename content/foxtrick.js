@@ -1596,14 +1596,14 @@ Foxtrick.get_url_param = function (url, name){
 Foxtrick.linebreak = function (txt, where) {
     try {
         if (txt == null) return '';
-        txt = txt.replace('<br>', '<br> ');
+        txt = txt.replace(/\<br\>/gi, ' <br> ');
         var d = txt.split(' ');
         // dump ('TEXT= [' + d + ']\n');
         for (var j = 0; j < d.length; j++ ) {
-            // dump('  LB [' + j + '] => "'+ d[j] + '"\n');
+             dump('  LB [' + j + '] => "'+ d[j] + '"\n');
             if (d[j].length > where && d[j].search(/href\=|title\=/i) == -1) {
                 d[j] = Foxtrick.cut_word(d[j], where);
-                // dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
+                 dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
             }
         }
         return d.join(" ");
