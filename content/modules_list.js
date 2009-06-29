@@ -45,7 +45,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickExtendedPlayerDetails,
                      FoxtrickExtendedPlayerDetailsWage,
 					 FoxtrickHTDateFormat,
-                     FoxtrickMatchReportFormat,
+                     FoxtrickMatchReportFormat,  // ** new **
                      FoxtrickMatchPlayerColouring,                     
                      Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
 					 Foxtrick.Ratings,
@@ -65,8 +65,8 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickLinksChallenges,
                      FoxtrickLinksEconomy,
                      FoxtrickLinksYouthOverview,
-					 FoxtrickLinksYouthTraining,
-					 FoxtrickLinksYouthPlayerDetail,
+					 FoxtrickLinksYouthTraining,  // new but include
+					 FoxtrickLinksYouthPlayerDetail, // new but include
                      FoxtrickLinksArena,
                      FoxtrickLinksCoach,
                      FoxtrickLinksPlayerDetail,
@@ -116,7 +116,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickShortPAs,
 					 FoxtrickCopyPosting,
 					 FoxtrickMoveManagerOnline,
-					 FoxtrickForumSearch,
+					 FoxtrickForumSearch,  // new not finished
                      FoxtrickTables,
                      FoxtrickMatchTables,
                      FoxtrickCrossTable,
@@ -124,12 +124,13 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickYouthSkillTable,
 					 FoxtrickHighlightCupwins,
                      FoxtrickElectionTable,
-					 FoxtrickSkillTranslation,
-					 FoxtrickOnPagePrefs,
-					 FoxtrickLineupShortcut,
+					 FoxtrickSkillTranslation, // new 
+					 FoxtrickOnPagePrefs,  // new
+					 FoxtrickLineupShortcut, // new
 					 //FoxtrickSingleline2,
-                     FoxtrickCountyList,
-					 FoxtrickSmallerPages, //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
+                     FoxtrickCountyList, // new
+					 FoxtrickMatchOrderColoring, // new
+					 FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
 
 					];
 
