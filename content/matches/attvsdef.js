@@ -43,6 +43,9 @@ Foxtrick.AttVsDef = {
 			}
 			var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
 			Foxtrick.addBoxToSidebar( doc, header, bodydiv, boxId, suppstats, "last");
+			
+			if (Foxtrick.isStandardLayout(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
+			
 		} catch (e) {
 			dump('attvsdef.js run: '+e+"\n");
 		}
@@ -153,19 +156,17 @@ Foxtrick.AttVsDef = {
 									ifkattText+' - '+Foxtrickl10n.getString( "foxtrick.matches.defense" ));
 		
 		for (var i=0;i<percentArray.length;i++) {
-			bodydiv.appendChild(doc.createTextNode("\n"+labelArray[i]+"\n"));
+			bodydiv.appendChild(doc.createTextNode(labelArray[i]));
+			bodydiv.appendChild(doc.createElement("br"));
 			bodydiv.appendChild(this._createTextBox(doc, percentArray[i]));
-			bodydiv.appendChild(doc.createTextNode("\n"));
 			var bardiv=doc.createElement('div');
 			bardiv.className="possesionbar";
 			bardiv.innerHTML='<img alt="" src="/Img/Matches/filler.gif" width="'+percentArray[i]+'" height="10"><img src="/Img/Matches/possesiontracker.gif" alt="">';
 			bodydiv.appendChild(bardiv);
-			bodydiv.appendChild(doc.createTextNode("\n"));
 			bodydiv.appendChild(this._createTextBox(doc, 100-percentArray[i]));
-			bodydiv.appendChild(doc.createTextNode("\n"));
-
+			
 			bodydiv.appendChild(strangediv.cloneNode(true));
-		}
+		}		
 	},
 
 	_createTextBox: function(doc, percentage) {
