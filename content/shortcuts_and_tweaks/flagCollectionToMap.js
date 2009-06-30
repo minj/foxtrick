@@ -187,7 +187,8 @@ FoxtrickFlagCollectionToMap = {
         this.own_countryCodes = this.countryCodes['c_'+this.own_countryid];                
         if (typeof this.own_countryCodes != 'undefined') {        
                 countryCodes = this.own_countryCodes + countryCodes;
-				colouringOrder = '0,' + colouringOrder;
+				var i = this.own_countryCodes.length/2;
+				while (i--) {colouringOrder = '0,' + colouringOrder;}
 		}
 		
 		// serbia & montrnegro haack
