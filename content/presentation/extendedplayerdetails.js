@@ -131,10 +131,12 @@ FoxtrickExtendedPlayerDetailsWage = {
             
 			table_inner = table_elm_bonus.innerHTML;
 
-            var part = Foxtrick.substr(table_inner, 0, table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+1);
+			var cl = FoxtrickPrefs.getString("oldCurrencySymbol").length;
+			
+            var part = Foxtrick.substr(table_inner, 0, table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+ cl);
 
             var part_1_save = part;
-            var part_2_save = table_inner.substring(table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+1);
+            var part_2_save = table_inner.substring(table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+ cl);
 
 			//this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
                  var part = Foxtrick.trim(part);
