@@ -39,7 +39,7 @@ var FoxtrickForumChangePosts = {
 		var do_truncate_leaguename = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLeagueName");
 		var do_short_postid = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId");
 		var do_replace_supporter_star = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ReplaceSupporterStar");
-		var do_linebreak = Foxtrick.isModuleFeatureEnabled( FoxtrickHeaderFix, "RemoveFlicker");
+		// var do_linebreak = Foxtrick.isModuleFeatureEnabled( FoxtrickHeaderFix, "RemoveFlicker");
 
         
 		this.bDetailedHeader = false;
@@ -85,12 +85,15 @@ var FoxtrickForumChangePosts = {
 		alt_supporter.setAttribute('title',"Hattrick Supporter");
 
         // loop through postings
+        /*
         if (do_linebreak) {
             var divs  = Foxtrick.getElementsByClass("message", doc );
             for (var i=0; i < divs.length; i++) {
-                divs[i].innerHTML = Foxtrick.linebreak(divs[i].innerHTML, 50);
+                //divs[i].innerHTML = Foxtrick.linebreak(divs[i].innerHTML, 50);
             }
         }
+        */
+        
         
 		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
