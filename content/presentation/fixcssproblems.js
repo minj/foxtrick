@@ -24,7 +24,8 @@ FoxtrickFixcssProblems = {
 									"Guestbook",
 									"liveHighlightRed",
 									"HideFlagsInForumHeader",
-									"HideLeagueInForumHeader"
+									"HideLeagueInForumHeader",
+                                    "Highlight_Staff_On_All_Pages"
 								),
                                
 		OPTIONS_CSS: new Array (
@@ -40,7 +41,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
+                                "chrome://foxtrick/content/resources/css/fixes/staffmarker.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -55,7 +57,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css"
+                                "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
+                                "chrome://foxtrick/content/resources/css/fixes/staffmarker.css"
                                 ),
                                
     init : function() {
