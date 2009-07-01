@@ -12,7 +12,7 @@
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","ads","newsletter"),
     DEFAULT_ENABLED : true,
-    OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
+    OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Added to PAs, ticket system, guestbook, newsletter",
@@ -31,7 +31,10 @@
         if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||
             (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "kit_id")) ||
             (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "article_id")) ||
-            (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "line_br")))
+            (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "line_br")) ||
+            (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "clock")) ||
+            (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "spoiler"))
+            )
             show_main = true;
         if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "youth_player")) ||
             (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "youth_team")) ||
@@ -198,11 +201,22 @@
                 var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._clock , false );
-                newimage.setAttribute( "class", "scReminders");
-                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer;");
+                newimage.setAttribute( "class", "ft_clock");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_clock.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.clock");
                 toolbar.insertBefore( newimage,target );
-            }            
+            }  
+
+            if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "spoiler")) {
+                var newimage = doc.createElement( "img" );
+                newimage.src = "/Img/Icons/transparent.gif";
+                newimage.addEventListener( "click", this._spoiler , false );
+                newimage.setAttribute( "class", "ft_spoiler");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_spoiler.png') !important;");
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.spoiler");
+                toolbar.insertBefore( newimage,target );
+            }  
+            
         }
 
         var toolbar_label = doc.createElement( "div" );
@@ -375,6 +389,15 @@
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody'), FoxtrickForumYouthIcons._DOC.getElementById('time').textContent, null, null, null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
     },
     
+    _spoiler : function (  ) {
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody'), "[spoiler]yyy[/spoiler]", null, "yyy", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtRemLen'), 3900)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody'), "[spoiler]yyy[/spoiler]", null, "yyy", null,FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtRemLen'), 1000)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtBody'), "[spoiler]yyy[/spoiler]", null, "yyy", null,FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtRemLen'), 2950)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert'), "[spoiler]yyy[/spoiler]", null, "yyy", null,FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft3'), 1800)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtMessage') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtMessage'), "[spoiler]yyy[/spoiler]", null, "yyy", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody'), "[spoiler]yyy[/spoiler]", null, "yyy", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
+    },
+    
     _fillMsgWindow : function( string ) {
         try {
             var msg_window = FoxtrickForumYouthIcons._DOC.getElementById( FoxtrickForumYouthIcons._NEW_MESSAGE_WINDOW );
@@ -414,6 +437,10 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
                     else {
                         ta.selectionStart = s.selectionStart + newText.length;
                         ta.selectionEnd = ta.selectionStart;
+                    }
+                    if (replaceText == 'yyy' && s.selectionLength === 0){
+                        ta.selectionStart = s.selectionStart + 9;
+                        ta.selectionEnd = ta.selectionStart + 3;
                     }
                 }
 
