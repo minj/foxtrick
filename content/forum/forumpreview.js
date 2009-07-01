@@ -258,6 +258,8 @@ var FoxtrickForumPreview = {
         /\[i\](.*?)\[\/i\]/gi,
         /\[br\]/gi,
         /\[hr\]/gi,
+        
+        /\[spoiler\](.*?)\[\/spoiler\]/gi,
 
         /\[table\](.*?)\[\/table\]/gi,
         /\[tr(.*?)\](.*?)\[\/tr\]/gi,
@@ -305,6 +307,8 @@ var FoxtrickForumPreview = {
         "<br>",
         "<hr>",
 
+        "<blockquote class='spoiler'>$1</blockquote>",
+        
         "<table class='htMlTable'><tbody>$1</tbody></table>",
         "<tr $1>$2</tr>",
         "<th $1 class=$2 $3>$4</th>",
