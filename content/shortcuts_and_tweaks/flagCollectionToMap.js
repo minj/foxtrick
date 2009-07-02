@@ -48,7 +48,7 @@ FoxtrickFlagCollectionToMap = {
 	"GD",	
 	"GG",
 	"GI",
-	"GL",
+	//"GL", part of dk
 	"GM",
 	"GN",
 	"GP",
@@ -93,7 +93,7 @@ FoxtrickFlagCollectionToMap = {
 	"SC",
 	"SD",
 	"SH",
-	"SJ",
+	//"SJ",  part of no
 	"SL",
 	"SM",
 	"SO",
@@ -283,7 +283,7 @@ FoxtrickFlagCollectionToMap = {
     
         this.countryCodes.c_89='CY' // Cyprus
     
-        this.countryCodes.c_11='DK' // Danmark
+        this.countryCodes.c_11='DKGL' // Danmark
         this.countryCodes.c_3='DE' // Deutschland
         this.countryCodes.c_73='EC' // Ecuador
         this.countryCodes.c_56='EE' // Eesti
@@ -345,7 +345,7 @@ FoxtrickFlagCollectionToMap = {
         this.countryCodes.c_75='NG' // Nigeria
     
         this.countryCodes.c_22='JP' // Nippon
-        this.countryCodes.c_9='NO' // Norge
+        this.countryCodes.c_9='NOSJ' // Norge
     
         // OCEANIA, SEVERAL (exclude Indonesia because it exists as a country)
         this.countryCodes.c_15='AUNZCXCCNFFJNCPGSBVUFMGUKIMHNRMPPWASCKPFNUPNWSTKTOTVWF' // Oceania
