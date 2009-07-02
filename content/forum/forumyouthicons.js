@@ -10,7 +10,7 @@
     MODULE_NAME : "ForumYouthIcons",
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","ads","newsletter"),
+	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","ads","newsletter","forumModWritePost"),
     DEFAULT_ENABLED : true,
     OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
@@ -91,6 +91,11 @@
         }
 
         if (page == 'forumWritePost' && enlarge) {
+                var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
+                anchor.style.height = '300px';
+        }
+		
+		if (page == 'forumModWritePost' && enlarge) {
                 var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
                 anchor.style.height = '300px';
         }

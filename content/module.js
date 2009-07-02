@@ -20,6 +20,7 @@ Foxtrick.ht_pages = {
     'forum'                     : '\/Forum\/',
     'forumViewThread'           : '\/Forum\/Read',
     'forumWritePost'            : '\/Forum\/Write',
+    'forumModWritePost'         : '\/Forum\/Functions',
 //	'mailnewsletter'            : '\/MyHattrick\/Inbox\/Default.aspx\?actionType=newsLetter',
     'messageWritePost'          : '\/MyHattrick\/Inbox/',
     'forumSettings'             : '\/MyHattrick\/Preferences\/ForumSettings\.aspx',

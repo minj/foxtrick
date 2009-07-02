@@ -9,7 +9,7 @@ var FoxtrickForumTemplates = {
     MODULE_NAME : "ForumTemplates",
     MODULE_AUTHOR : "Mod-PaV",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','htpress'), 
+	PAGES : new Array('forumWritePost','messageWritePost','htpress','forumModWritePost'), 
     DEFAULT_ENABLED : true,
 	OPTIONS : new Array("DefaultShow","CustomWidth"),
 	OPTION_TEXTS : true,
@@ -35,6 +35,11 @@ var FoxtrickForumTemplates = {
             case 'forumWritePost':
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "post_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "post_templates";
+				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucHattrickMLEditor_txtBody';
+			break;
+			case 'forumModWritePost':
+				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "post_mod_templates";
+				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "post_mod_templates";
 				FoxtrickForumTemplates._NEW_MESSAGE_WINDOW = 'ctl00_CPMain_ucHattrickMLEditor_txtBody';
 			break;
 			case 'messageWritePost':
