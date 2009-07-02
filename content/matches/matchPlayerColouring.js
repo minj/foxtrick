@@ -44,8 +44,8 @@ FoxtrickMatchPlayerColouring = {
             var stlTeamB = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Away_text");
             if (!stlTeamB) stlTeamB = this.OPTION_TEXTS_DEFAULT_VALUES[2];
         }
-		if (Foxtrick.isModuleFeatureEnabled( this, "My Team")) {
-            var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "My Team_text");
+		if (Foxtrick.isModuleFeatureEnabled( this, "MyTeam")) {
+            var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MyTeam_text");
             if (!stlMyTeam) stlMyTeam = this.OPTION_TEXTS_DEFAULT_VALUES[0];
 			//Replace myTeam colour
 			if (HomeTeamId == myTeamId) stlTeamA = stlMyTeam;
