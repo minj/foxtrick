@@ -236,8 +236,8 @@ var FoxtrickPrefsDialogHTML = {
 			}
 		}
 		
-		// check if on_page prefs. in that case stop here
-		if (!doc.getElementById("ReadHtPrefs")) {
+		// check if not whole prefs. in that case stop here
+		if (!doc.getElementById("htLanguage")) {
 		    FoxtrickMain.init();
 			doc.location.reload();
 		 	return;		
@@ -1532,7 +1532,7 @@ var FoxtrickOnPagePrefs = {
 				}	
 				if (count==0) return;
 				doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
-				doc.addEventListener( "click", FoxtrickOnPagePrefs.SubmitCapture, true );
+				doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
 				
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
 				//var content=doc.getElementById('foxtrick_OnPagePrefs_content');
@@ -1696,8 +1696,6 @@ var FoxtrickOnPagePrefs = {
 	
 	SubmitCapture : function (ev) { 
 	try{
-		var hasonclick=ev.originalTarget.getAttribute('onclick')!=null;
-		if (!hasonclick) return;
 		var doc = ev.target.ownerDocument;
 		var content = doc.getElementById('foxtrick_OnPagePrefs_content');
 		if (content) {
@@ -1706,6 +1704,21 @@ var FoxtrickOnPagePrefs = {
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");			
 			dump ('onclick/submit remove onpagepref\n');
 		}
-	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
+	} catch(e){dump('OnPagePrefClick: '+e+'\n');}
+	},
+	
+	ClickCapture : function (ev) { 
+	try{ var hasonclick=ev.originalTarget.getAttribute('onclick')!=null;
+		var haspostback=ev.originalTarget.href && ev.originalTarget.href.search('javascript')!=-1;
+		if (!hasonclick && !haspostback) return;
+		var doc = ev.target.ownerDocument;
+		var content = doc.getElementById('foxtrick_OnPagePrefs_content');
+		if (content) {
+			content.parentNode.removeChild(content);
+			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
+			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");			
+			dump ('onclick/submit remove onpagepref\n');
+		}
+	} catch(e){dump('OnPagePrefClick: '+e+'\n');}
 	},
 }
