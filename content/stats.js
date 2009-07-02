@@ -2539,7 +2539,7 @@ stats["englandtracker"] = {
 
 
 stats["nederlandtracker"] = { 
-  "url" : "http://www.dutchstats.nl/",
+  "url" : "http://www.dutchscouts.nl/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Nederland U20/NT Tracker",
   
