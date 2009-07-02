@@ -1,7 +1,7 @@
 /**
  * forumtemplates.js
  * Foxtrick forum template handling service
- * @author Mod-PaV
+ * @author Mod-PaV, convincedd
  */
 
 var FoxtrickForumTemplates = {
@@ -126,7 +126,7 @@ var FoxtrickForumTemplates = {
     },
 	
 	change : function( page, doc ) {
-	
+		if (!doc.getElementById(FoxtrickForumTemplates._TEMPLATES_DIV_ID)) this.run(page,doc);
 	},
 
     _addNewTemplate : function( ev ) {
