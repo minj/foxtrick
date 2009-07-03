@@ -13,6 +13,7 @@ shortcuts_and_tweaks=
 # Main options
 activeCurrencyConverter=http://foxtrick.foundationhorizont.org/CurrencyConverter.html
 FoxtrickMyHT=http://foxtrick.foundationhorizont.org/FoxtrickMyHT.html
+FoxtrickMyHtSetChanged=http://foxtrick.foundationhorizont.org/FoxtrickMyHtSetChanged.html
 OnPagePrefs=http://foxtrick.foundationhorizont.org/OnPagePrefs.html
 ReadHtPrefs=http://foxtrick.foundationhorizont.org/ReadHtPrefs.html
 SkinPlugin=http://foxtrick.foundationhorizont.org/SkinPlugin.html
@@ -79,6 +80,7 @@ LargeFlags=http://foxtrick.foundationhorizont.org/LargeFlags.html
 LeagueNewsFilter=http://foxtrick.foundationhorizont.org/LeagueNewsFilter.html
 MatchTables=http://foxtrick.foundationhorizont.org/MatchTables.html
 MatchTables.RemoveTime=http://foxtrick.foundationhorizont.org/MatchTables_RemoveTime.html
+MatchOrderColoring=http://foxtrick.foundationhorizont.org/MatchOrderColoring.html
 MoveManagerOnline=http://foxtrick.foundationhorizont.org/MoveManagerOnline.html
 MovePlayerSelectbox=http://foxtrick.foundationhorizont.org/MovePlayerSelectbox.html
 MovePlayerStatement=http://foxtrick.foundationhorizont.org/MovePlayerStatement.html
