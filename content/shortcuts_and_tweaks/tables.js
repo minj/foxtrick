@@ -68,6 +68,7 @@ var FoxtrickMatchTables = {
     DEFAULT_ENABLED : false,
     NEW_AFTER_VERSION: "0.4.8.2",	
     LASTEST_CHANGE:"removes white space on match tables",    
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS :  new Array("RemoveTime"), 
 	
     init : function() {

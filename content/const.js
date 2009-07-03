@@ -23,3 +23,10 @@ Foxtrick.moduleCategories = {
     ABOUT : 'about',
 	
 };
+
+
+// List of latestChangeCategories
+Foxtrick.latestChangeCategories = {
+    NEW : 'new',
+	FIX : 'fix'
+};

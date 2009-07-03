@@ -30,7 +30,8 @@ FoxtrickMatchReportFormat = {
 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"some format of match report for better reading",
-	//OPTIONS : new Array("DefaultShow"),
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+ 	//OPTIONS : new Array("DefaultShow"),
 
 	init : function() {
     },

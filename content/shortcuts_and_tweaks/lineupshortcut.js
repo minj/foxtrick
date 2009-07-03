@@ -11,7 +11,8 @@ FoxtrickLineupShortcut = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Add a direct shortcut to lineup in player detail page",
-	OPTIONS : new Array( "HighlightPlayer", "YouthPlayerLink"),
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+ 	OPTIONS : new Array( "HighlightPlayer", "YouthPlayerLink"),
 
     init : function() {
     },

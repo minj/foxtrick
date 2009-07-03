@@ -12,6 +12,7 @@ var FoxtrickForumStaffMarker = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.3",
 	LASTEST_CHANGE:"added flags to select boxes, added CHPP holder",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-color:red;", //HT
 											"background-color:orange; color:black;", //GM

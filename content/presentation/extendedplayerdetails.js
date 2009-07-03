@@ -93,6 +93,7 @@ FoxtrickExtendedPlayerDetailsWage = {
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
 
     init : function() {

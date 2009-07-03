@@ -102,8 +102,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickTickerColoring,
 					 FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
 					 FoxtrickCopyMatchID,
-                     // FoxtrickMatchDayTables //just added, no functions so far
-					 FoxtrickHeaderFix,
+                     FoxtrickHeaderFix,
                      FoxtrickHeaderFixLeft,
                      FoxtrickNewMail,
 					 FoxtrickNTConfirmAddRemove,

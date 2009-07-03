@@ -10,6 +10,7 @@ FoxtrickFlagCollectionToMap = {
 	PAGES : new Array('flagCollection'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Colored NonHt countries, own country in red if missing",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     DEFAULT_ENABLED : true,
 
 	own_countryid:0,

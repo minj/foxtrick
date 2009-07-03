@@ -12,6 +12,7 @@ var FoxtrickMatchOrderColoring = {
 	DEFAULT_ENABLED : false,
 	CSS:"chrome://foxtrick/content/resources/css/MatchOrderColoring.css",
 	NEW_AFTER_VERSION: "0.4.8.3",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	LASTEST_CHANGE:"Colors positions on html match order page (default off)",
 	
     init : function() {

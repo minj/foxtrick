@@ -65,7 +65,7 @@ var FoxtrickMain = {
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		if (oldVersion<curVersion ) {
 			FoxtrickMain.IsNewVersion=true;
-			FoxtrickPrefs.setString("oldVersion",curVersion);							
+			//FoxtrickPrefs.setString("oldVersion",curVersion);							
 		}
 		
 		// create handler arrays for each recognized page

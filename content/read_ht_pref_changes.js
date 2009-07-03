@@ -132,7 +132,7 @@ var FoxtrickMyHT = {
 				var mainBody = doc.getElementById('mainBody');	
 								
 				var alertdiv=doc.createElement('div');
-				alertdiv.setAttribute('id','idFoxtrickMyHT');
+				alertdiv.setAttribute('id','idFoxtrickPrefsOuter');
 				alertdiv.setAttribute('class','alert');
 				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 				mainBody.insertBefore(alertdiv,mainBody.firstChild);
@@ -189,6 +189,17 @@ var FoxtrickMyHT = {
 				alertdiv.appendChild(a);				
 */				
 				
+				alertdiv.appendChild(doc.createElement('br'));				
+				var p=doc.createElement('p');				
+				p.setAttribute('id','idShowChanged');
+				var a=doc.createElement('a');
+				a.href="javascript:void();";
+				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtSetChanged");
+				a.addEventListener( "click", FoxtrickMyHT.ShowChanged, false );
+				FoxtrickMyHT.Close.doc=doc;
+				p.appendChild(a);				
+				alertdiv.appendChild(p);
+							
 		} catch(e){dump('MyHtShowAlert '+e+'\n');}
 	},
 	
@@ -225,6 +236,75 @@ var FoxtrickMyHT = {
 				
 			}
 	},	
+	
+	sortfunction0: function(a,b) {return a.MODULE_NAME.localeCompare(b.MODULE_NAME);},
+	sortfunction2: function(a,b) {return a.MODULE_CATEGORY.localeCompare(b.MODULE_CATEGORY);},
+	sortfunction4: function(a,b) {return a.NEW_AFTER_VERSION.localeCompare(b.NEW_AFTER_VERSION);},
+
+	
+	ShowChanged: function(ev) {
+		try{
+		
+		var doc = ev.target.ownerDocument;
+		
+		doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
+		doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
+				
+		var alertdivOuter = doc.getElementById('idFoxtrickPrefsOuter');
+		var alertdiv=doc.createElement('div');
+		alertdiv.setAttribute('id','idFoxtrickPrefs');
+		alertdivOuter.appendChild(alertdiv);
+		
+		var prefsavediv=doc.createElement('div');	
+		prefsavediv.setAttribute('id','foxtrick_prefs_save');
+		alertdiv.appendChild(prefsavediv);
+		
+		var prefsave=doc.createElement('input');	
+		prefsave.setAttribute('id','foxtrick_prefsave'); 
+		prefsave.setAttribute('type','button'); 
+		prefsave.setAttribute('value',Foxtrickl10n.getString("foxtrick.prefs.buttonSave")); 
+		prefsave.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
+		prefsavediv.appendChild(prefsave);
+				
+		FoxtrickMyHT.NewModules = new Array();
+						
+		var curVersion = FoxtrickPrefs.getString("curVersion"); 
+		var oldVersion = FoxtrickPrefs.getString("oldVersion");
+		for ( var i in Foxtrick.modules ) {
+			var module = Foxtrick.modules[i]; 
+			//dump (oldVersion+' > ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\n');
+			if ( (module.NEW_AFTER_VERSION && oldVersion <= module.NEW_AFTER_VERSION) 
+				|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
+				
+				if (!module.MODULE_CATEGORY) continue;
+				if (!module.LASTEST_CHANGE_CATEGORY || module.LASTEST_CHANGE_CATEGORY!=Foxtrick.latestChangeCategories.NEW) continue;
+													
+				FoxtrickMyHT.NewModules.push(module); 
+				dump(module.MODULE_NAME+'\n');
+			}
+		}
+				
+		FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction4);
+		FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction0);
+		FoxtrickMyHT.NewModules.sort(FoxtrickMyHT.sortfunction2);							
+						
+		// modules
+		for ( var j=0; j<FoxtrickMyHT.NewModules.length; ++j ) {
+					dump(FoxtrickMyHT.NewModules[j].MODULE_NAME+'\n');
+			var entry;				
+			if (FoxtrickMyHT.NewModules[j].RADIO_OPTIONS != null) {
+						entry = FoxtrickPrefsDialogHTML._radioModule(doc, FoxtrickMyHT.NewModules[j], true);
+			} else if (FoxtrickMyHT.NewModules[j].OPTIONS != null) {
+						entry = FoxtrickPrefsDialogHTML._checkboxModule(doc, FoxtrickMyHT.NewModules[j], true);
+			} else {
+						entry = FoxtrickPrefsDialogHTML._normalModule(doc, FoxtrickMyHT.NewModules[j], true);
+			}
+			
+			alertdiv.appendChild( entry );
+		}
+	
+		} catch(e) {dump('showchanged: '+e+'\n');}
+	},
 	
 	change : function(page, doc) {
 	},		

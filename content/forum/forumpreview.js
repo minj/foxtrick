@@ -12,6 +12,7 @@ var FoxtrickForumPreview = {
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	LASTEST_CHANGE:"added to newsletters",
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',

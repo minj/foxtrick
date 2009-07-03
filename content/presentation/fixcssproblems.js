@@ -11,7 +11,8 @@ FoxtrickFixcssProblems = {
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Option highlight in red new events on HTlive, Forum_ThreadlistSpace obsolte, HideFlags/Leaguelevel in forum and flickerfix for HeaderFix with Firefox 3.5 added",	
-	   
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",
                                     "Page_Minimum_Height",
@@ -27,8 +28,7 @@ FoxtrickFixcssProblems = {
 									"HideLeagueInForumHeader",
                                     "Highlight_Staff_On_All_Pages"
 								),
-                               
-		OPTIONS_CSS: new Array (
+	OPTIONS_CSS: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Club_Menu_Teamnames.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Page_Minimum_Height.css",

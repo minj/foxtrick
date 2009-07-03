@@ -11,6 +11,7 @@ var FoxtrickSkillTranslation = {
 	PAGES : new Array('denominations'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",	
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	LASTEST_CHANGE:"Adds English translations to skills on help/denominations page (default on)",
 
 player_abilities	: new Array(		

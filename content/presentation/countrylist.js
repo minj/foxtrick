@@ -17,6 +17,7 @@ var FoxtrickCountyList = {
     htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"possibility to display country names by their original name",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
     init : function() {

@@ -74,7 +74,6 @@ Foxtrick.Loader = function(){
     'shortcuts_and_tweaks/seniorteamshortcuts.js',
     'shortcuts_and_tweaks/shortcutsstatistics.js',
     'shortcuts_and_tweaks/copymatchid.js',
-    'shortcuts_and_tweaks/matchdaytables.js',
     'shortcuts_and_tweaks/contextmenue.js',
 	'shortcuts_and_tweaks/copyTrainingReport.js',
     'shortcuts_and_tweaks/playerbirthday.js',

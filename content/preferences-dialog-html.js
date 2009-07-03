@@ -1496,6 +1496,7 @@ var FoxtrickOnPagePrefs = {
 	PAGES : new Array('all_late'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LASTEST_CHANGE:"Shows a small expandable box at the bottom of the sidebar which allows changing FoxTrick modules which alter the current page (default on)",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     init : function() {
     },
@@ -1535,7 +1536,7 @@ var FoxtrickOnPagePrefs = {
 				doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
 				
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
-				//var content=doc.getElementById('foxtrick_OnPagePrefs_content');
+				//var content=doc.getElementById('idFoxtrickPrefs');
 				//content.style.display='none';
 			
 				// clickable header
@@ -1568,7 +1569,7 @@ var FoxtrickOnPagePrefs = {
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
 			var ownBox = doc.getElementById('foxtrick_OnPagePrefs_inner');
 			var ownBoxBody = doc.createElement("div");
-			var ownBoxBodyId = "foxtrick_OnPagePrefs_content";
+			var ownBoxBodyId = "idFoxtrickPrefs";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 			ownBox.appendChild(ownBoxBody);
 			
@@ -1651,7 +1652,7 @@ var FoxtrickOnPagePrefs = {
 		}
 		else {
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
-			var content = doc.getElementById('foxtrick_OnPagePrefs_content');
+			var content = doc.getElementById('idFoxtrickPrefs');
 			if (content) {
 				content.parentNode.removeChild(content);		
 			}
@@ -1697,7 +1698,7 @@ var FoxtrickOnPagePrefs = {
 	SubmitCapture : function (ev) { 
 	try{
 		var doc = ev.target.ownerDocument;
-		var content = doc.getElementById('foxtrick_OnPagePrefs_content');
+		var content = doc.getElementById('idFoxtrickPrefs');
 		if (content) {
 			content.parentNode.removeChild(content);
 			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
@@ -1710,9 +1711,10 @@ var FoxtrickOnPagePrefs = {
 	ClickCapture : function (ev) { 
 	try{ var hasonclick=ev.originalTarget.getAttribute('onclick')!=null;
 		var haspostback=ev.originalTarget.href && ev.originalTarget.href.search('javascript')!=-1;
-		if (!hasonclick && !haspostback) return;
+		dump('ClickCapture - hasonclick: ' +hasonclick+' haspostback: '+haspostback+'- return: '+!(hasonclick || haspostback)+'\n');
+		if ( !(hasonclick || haspostback)) return;
 		var doc = ev.target.ownerDocument;
-		var content = doc.getElementById('foxtrick_OnPagePrefs_content');
+		var content = doc.getElementById('idFoxtrickPrefs');
 		if (content) {
 			content.parentNode.removeChild(content);
 			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
