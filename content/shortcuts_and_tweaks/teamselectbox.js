@@ -54,6 +54,7 @@ var FoxtrickTeamSelectBox= {
             
 			// add headerclick
 			var header = this.listbox.getElementsByTagName("h2")[0];
+			header.setAttribute("style","margin-right:8px;");
 			var pn=header.parentNode;
 			var div=null;
 			if (pn.className!='boxLeft') {
