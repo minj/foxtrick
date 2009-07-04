@@ -97,6 +97,7 @@ var FoxtrickAdvancedStarsCounter = {
 		}
 		// yellow/brown graph if not youth match
 		if(!isYouth){
+			starsHtml+='<br>';
 			starsHtml+='<div class="float_left shy smallText"><img src="UserControls/Img.axd?res=Matches&amp;img=star_yellow.png"/>' + star_ratio[0]+'%</div><div class="possesionbar">'
 			starsHtml+='<img alt="" src="/Img/Matches/filler.gif" height="10"  width="'+star_ratio[0]+'" /><img src="/Img/Matches/possesiontracker.gif" alt="" /></div>'
 			starsHtml+='<div class="float_left shy smallText">'+star_ratio[1]+'%<img src="UserControls/Img.axd?res=Matches&amp;img=star_brown.png"/></div><div style="clear: both"></div>'
