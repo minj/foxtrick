@@ -92,7 +92,7 @@ var FoxtrickLinksTeam = {
 		  var child,i=0,infocount=0;		
 		  while (child=children[i++]) { 
 			if (infocount==2 && child.nodeName=='P'){ 
-			  fans=children[i+1].innerHTML.replace(/&nbsp;/g,'').match(/(\d+)/)[1];
+			  fans=children[i+1].innerHTML.replace(/&nbsp;/g,'').replace(/<a.+\/a>/ig,'').match(/(\d+)/)[1];
 			  /*var l=children[i+1].innerHTML.lastIndexOf('(');
 			  if (children[i+1].innerHTML.search(/\(/)!=-1) fans=children[i+1].innerHTML.replace(/&nbsp;/g,'').substr(l).match(/(\d+)/)[1];
 			  else fans=children[i+1].innerHTML.replace('&nbsp;','').match(/(\d+)/)[1];*/
