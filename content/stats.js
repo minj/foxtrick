@@ -2322,7 +2322,7 @@ stats["indonesiatracker"] = {
 };
 
 stats["moldovatracker"] = { 
-  "url" : "http://moldova.ht.quickly.co.il/",
+  "url" : "http://db.hattrick.md/",
   "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",
   "title" : "Moldova U20/NT Tracker",
   
