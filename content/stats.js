@@ -20,6 +20,7 @@ Foxtrick.LinkCollection = {};
 Foxtrick.LinkCollection.stats = {};
 Foxtrick.LinkCollection.countryflags = {};
 Foxtrick.LinkCollection.hscountries = {};
+Foxtrick.LinkCollection.htworld = {};
 Foxtrick.LinkCollection.hslevels = {};
 
 with (Foxtrick.LinkCollection) {
@@ -276,6 +277,131 @@ hscountries["61"]="Wales";
 hscountries["133"]="Yemen";
 
 
+htworld[118]='www.ht-world.org/algerie';
+htworld[128]='www.ht-world.org/aliraq';
+htworld[127]='www.ht-world.org/alkuwayt';
+htworld[77]='www.ht-world.org/almaghrib';
+htworld[106]='www.ht-world.org/alurdun';
+htworld[133]='www.ht-world.org/alyaman';
+htworld[105]='www.ht-world.org/andorra';
+htworld[130]='www.ht-world.org/angola';
+htworld[7]='www.ht-world.org/argentina';
+htworld[129]='www.ht-world.org/azerbaycan';
+htworld[123]='www.ht-world.org/bahrain';
+htworld[132]='www.ht-world.org/bangladesh';
+htworld[124]='www.ht-world.org/barbados';
+htworld[91]='www.ht-world.org/belarus';
+htworld[44]='www.ht-world.org/belgie';
+htworld[139]='www.ht-world.org/benin';
+htworld[74]='www.ht-world.org/bolivia';
+htworld[69]='www.ht-world.org/bosnaihercegovina';
+htworld[16]='www.ht-world.org/brasil';
+htworld[136]='www.ht-world.org/brunei';
+htworld[62]='www.ht-world.org/bulgaria';
+htworld[125]='www.ht-world.org/caboverde';
+htworld[17]='www.ht-world.org/canada';
+htworld[52]='www.ht-world.org/ceskarepublika';
+htworld[18]='www.ht-world.org/chile';
+htworld[34]='www.ht-world.org/china';
+htworld[19]='www.ht-world.org/colombia';
+htworld[81]='www.ht-world.org/costarica';
+htworld[126]='www.ht-world.org/cotedivoire';
+htworld[131]='www.ht-world.org/crnagora';
+htworld[61]='www.ht-world.org/cymru';
+htworld[89]='www.ht-world.org/cyprus';
+htworld[11]='www.ht-world.org/danmark';
+htworld[141]='www.ht-world.org/dawlatqatar';
+htworld[144]='www.ht-world.org/dhivehiraajje';
+htworld[73]='www.ht-world.org/ecuador';
+htworld[56]='www.ht-world.org/eesti';
+htworld[100]='www.ht-world.org/elsalvador';
+htworld[2]='www.ht-world.org/england';
+htworld[36]='www.ht-world.org/espana';
+htworld[76]='www.ht-world.org/foroyar';
+htworld[5]='www.ht-world.org/france';
+htworld[137]='www.ht-world.org/ghana';
+htworld[107]='www.ht-world.org/guatemala';
+htworld[30]='www.ht-world.org/hanguk';
+htworld[122]='www.ht-world.org/hayastan';
+htworld[50]='www.ht-world.org/hellas';
+htworld[99]='www.ht-world.org/honduras';
+htworld[59]='www.ht-world.org/hongkong';
+htworld[58]='www.ht-world.org/hrvatska';
+htworld[20]='www.ht-world.org/india';
+htworld[54]='www.ht-world.org/indonesia';
+htworld[85]='www.ht-world.org/iran';
+htworld[21]='www.ht-world.org/ireland';
+htworld[38]='www.ht-world.org/island';
+htworld[63]='www.ht-world.org/israel';
+htworld[4]='www.ht-world.org/italia';
+htworld[94]='www.ht-world.org/jamaica';
+htworld[138]='www.ht-world.org/kampuchea';
+htworld[112]='www.ht-world.org/kazakhstan';
+htworld[95]='www.ht-world.org/kenya';
+htworld[102]='www.ht-world.org/kyrgyzstan';
+htworld[53]='www.ht-world.org/latvija';
+htworld[84]='www.ht-world.org/letzebuerg';
+htworld[117]='www.ht-world.org/liechtenstein';
+htworld[66]='www.ht-world.org/lietuva';
+htworld[120]='www.ht-world.org/lubnan';
+htworld[51]='www.ht-world.org/magyarorszag';
+htworld[97]='www.ht-world.org/makedonija';
+htworld[45]='www.ht-world.org/malaysia';
+htworld[101]='www.ht-world.org/malta';
+htworld[6]='www.ht-world.org/mexico';
+htworld[33]='www.ht-world.org/misr';
+htworld[135]='www.ht-world.org/mocambique';
+htworld[103]='www.ht-world.org/moldova';
+htworld[119]='www.ht-world.org/mongoluls';
+htworld[14]='www.ht-world.org/nederland';
+htworld[111]='www.ht-world.org/nicaragua';
+htworld[75]='www.ht-world.org/nigeria';
+htworld[22]='www.ht-world.org/nippon';
+htworld[9]='www.ht-world.org/norge';
+htworld[93]='www.ht-world.org/northernireland';
+htworld[15]='www.ht-world.org/oceania';
+htworld[134]='www.ht-world.org/oesterreich';
+htworld[39]='www.ht-world.org/oman';
+htworld[71]='www.ht-world.org/pakistan';
+htworld[96]='www.ht-world.org/panama';
+htworld[72]='www.ht-world.org/paraguay';
+htworld[23]='www.ht-world.org/peru';
+htworld[55]='www.ht-world.org/philippines';
+htworld[24]='www.ht-world.org/polska';
+htworld[25]='www.ht-world.org/portugal';
+htworld[31]='www.ht-world.org/prathetthai';
+htworld[88]='www.ht-world.org/republicadominicana';
+htworld[37]='www.ht-world.org/romania';
+htworld[35]='www.ht-world.org/rossiya';
+htworld[104]='www.ht-world.org/sakartvelo';
+htworld[79]='www.ht-world.org/saudiarabia';
+htworld[46]='www.ht-world.org/schweiz';
+htworld[26]='www.ht-world.org/scotland';
+htworld[121]='www.ht-world.org/senegal';
+htworld[98]='www.ht-world.org/shqiperia';
+htworld[47]='www.ht-world.org/singapore';
+htworld[64]='www.ht-world.org/slovenija';
+htworld[67]='www.ht-world.org/slovensko';
+htworld[27]='www.ht-world.org/southafrica';
+htworld[57]='www.ht-world.org/srbija';
+htworld[12]='www.ht-world.org/suomi';
+htworld[113]='www.ht-world.org/suriname';
+htworld[140]='www.ht-world.org/suriyah';
+htworld[1]='www.ht-world.org/sverige';
+htworld[60]='www.ht-world.org/taiwan';
+htworld[142]='www.ht-world.org/tanzania';
+htworld[80]='www.ht-world.org/tounes';
+htworld[110]='www.ht-world.org/trinidadandtobago';
+htworld[32]='www.ht-world.org/turkiye';
+htworld[143]='www.ht-world.org/uganda';
+htworld[68]='www.ht-world.org/ukraina';
+htworld[83]='www.ht-world.org/unitedarabemirates';
+htworld[28]='www.ht-world.org/uruguay';
+htworld[8]='www.ht-world.org/usa';
+htworld[29]='www.ht-world.org/venezuela';
+htworld[70]='www.ht-world.org/vietnam';
+htworld[3]='www.ht-deutschland.de/scouting';
+
 // dunno check realy whats for. it's certainly out of date
 hslevels["99"]= 	 2;
 hslevels["102"]= 	 2;
@@ -304,6 +430,7 @@ hslevels["16"]= 	 7;
 hslevels["18"]= 	 7;
 hslevels["11"]= 	 8;
 hslevels["25"]= 	 9;
+
 
 
 //HT Newsfeeds
@@ -1654,6 +1781,7 @@ stats["tppc"] =  {
 
 // ht-deutschland tracker
 
+/* replaced by ht-world
 
 stats["ht_scouting"] =  { 
   "url" : "http://www.ht-deutschland.de/",
@@ -2070,6 +2198,7 @@ stats["nirelandtracker"] = {
 	"countryidranges" : [[93,93]] , 
 	"nationalityranges" : [[93,93]], 
 };
+*/
 
 // ------------------------- nattrick tracker --------------------------------
 
@@ -2877,6 +3006,29 @@ stats["u20_nt_tracker"] = {
 						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
 
+stats["htworld"] =  { 
+    "title" : "HT-World NT/U20 tracker",
+    "img" : "chrome://foxtrick/content/resources/linkicons/tracker.png",        
+    "url" : "",
+    "urlfunction": function (filterparams) {
+                             var countryid = filterparams["countryid"];
+                             var nationality = filterparams["nationality"];
+                             if (typeof(htworld[countryid]) == 'undefined') {
+								if (typeof(htworld[nationality]) == 'undefined') return null;
+								return "http://" + htworld[nationality];
+								}
+                             return "http://" + htworld[countryid];
+                        },
+  "trackernationalteamlink" : { "path"       : "/index.php?language=2",
+                         "filters"    : [], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "/scouting.php?language=2",
+                   "filters"    : [], 
+                   "params"     : []
+                 },    
+
+};   
 
 };
 
