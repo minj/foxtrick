@@ -407,7 +407,7 @@ var FoxtrickPreferencesDialog = {
 		modules_list.appendChild(groupbox);
 		
 		
-		var caption_ov= doc.createElement("caption");
+		/*var caption_ov= doc.createElement("caption");
         caption_ov.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionFoxtrickMyHT"));
         caption_ov.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
 		var menulist_ov= doc.createElement("menulist");
@@ -434,7 +434,7 @@ var FoxtrickPreferencesDialog = {
         htVersionsXml.load("chrome://foxtrick/content/htlocales/htversions.xml", "text/xml");
         var itemToSelect3=this.fillListFromXml("htOldVersionPopup", "htVersion-", htVersionsXml, "version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
         document.getElementById("htOldVersion").selectedIndex=itemToSelect3;
-
+*/
 		
 		// disable options
 		var groupbox= doc.createElement("groupbox");
@@ -703,8 +703,8 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
         
 		// other
-		FoxtrickPrefs.setString("oldVersion", document.getElementById("htOldVersion").value);
-
+		//FoxtrickPrefs.setString("oldVersion", document.getElementById("htOldVersion").value);
+		
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
 		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", document.getElementById("OnPagePrefs").checked);
