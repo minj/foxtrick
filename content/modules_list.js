@@ -28,8 +28,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
                      FoxtrickGoToPostBox,
 					 FoxtrickContextMenueCopyId,
 					 FoxtrickCopyTrainingReport,
-                     FoxtrickCopyScoutReport,
-					 FoxtrickCopyPostID,
+                     FoxtrickCopyPostID,
 					 FoxtrickForumStaffMarker,
                      FoxtrickHTThreadMarker,
                      FoxtrickMedianTransferPrice,
@@ -128,7 +127,7 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickOnPagePrefs,  // new
 					 FoxtrickLineupShortcut, // new
 					 //FoxtrickSingleline2,
-					 FoxtrickHeadMenuLinks,   //new
+
 					 FoxtrickYouthPromotes,   //new
                      FoxtrickCountyList, // new
 					 FoxtrickMatchOrderColoring, // new

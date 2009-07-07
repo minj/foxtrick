@@ -125,7 +125,7 @@ Foxtrick.Loader = function(){
 	// following modules all run on 'all_late' pages. order of execution is determined be following order
     'presentation/currencyConverter.js',
     'shortcuts_and_tweaks/teampopuplinks.js', // keep behind others
-    'links/menuLinks.js',
+
     'modules_list.js',
     'foxtrick.js',
 	];
