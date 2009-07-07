@@ -66,8 +66,14 @@ var FoxtrickTeamSelectBox= {
 			else div=pn.parentNode;
 			div.setAttribute("style","cursor:pointer;");
             div.setAttribute("id", "ownselectboxHeaderID");
-            if (FoxtrickPrefs.getBool("ShowPlayerAsList")) div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
-            else div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
+            if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {
+				div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
+				if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxUnfolded_rtl");
+			}
+            else {
+				div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
+				if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
+			}
 			div.addEventListener( "click", this.HeaderClick, false );
             FoxtrickTeamSelectBox.HeaderClick.doc=doc;
                                        
@@ -144,9 +150,12 @@ var FoxtrickTeamSelectBox= {
 			if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {
 				FoxtrickTeamSelectBox.toList(doc);
 				div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
+				if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead  ft_sidebarBoxUnfolded_rtl");			
 			}
 			else {FoxtrickTeamSelectBox.toSelectBox(doc);
-				div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");}	
+					div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
+					if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");			
+				}	
 		} 
 		catch (e) {dump("SelectBox->HeaderClick: "+e+'\n');}
 	},

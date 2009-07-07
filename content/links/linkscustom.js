@@ -94,6 +94,7 @@ var FoxtrickLinksCustom = {
 			var ownBoxId = "foxtrick_links_box";
 			var div=doc.getElementById(ownBoxId).firstChild;	
 			div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
+			if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 			
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) { 
@@ -148,6 +149,7 @@ var FoxtrickLinksCustom = {
 			var ownBoxId = "foxtrick_links_box";
 			var div=doc.getElementById(ownBoxId).firstChild;	
 			div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
+			if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead  ft_sidebarBoxUnfolded_rtl");
 			
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) { 

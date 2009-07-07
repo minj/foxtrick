@@ -110,8 +110,14 @@ var FoxtrickCrossTable = {
 
                     //Team 1-2
                     for (var k = 0; k<8; k++){ //vs
-                        if (dummy[0] == cross[k][0]) {home = k; homegame = true;}
-                        if (dummy[1] == cross[k][0]) {away = k}
+                        if (!Foxtrick.isRTLLayout(doc)) {
+							if (dummy[0] == cross[k][0]) {home = k; homegame = true;}
+							if (dummy[1] == cross[k][0]) {away = k}
+						}
+						else {
+							if (dummy[0] == cross[k][0]) {away = k}
+							if (dummy[1] == cross[k][0]) {home = k; homegame = true;}
+						}
                         if ((home != -1) && (away != -1)) {
 
                             var result = tblBodyObj.rows[row].cells[2].innerHTML.split('-');
@@ -292,8 +298,8 @@ var FoxtrickCrossTable = {
                 else {position += (9-week[ii][weekcount+1]);}
             }
             for (var ii = 0; ii<8; ii++) {
-                if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
-                else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+');}
+					if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
+					else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+');}				
             }
             var league = Foxtrick.trim(doc.getElementsByTagName('h1')[0].textContent.split(' -')[1]);
             dump (league+'\n');

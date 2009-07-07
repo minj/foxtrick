@@ -67,6 +67,14 @@ FoxtrickFixcssProblems = {
                                                                        
     run : function(page, doc) {
        
+	   if ( Foxtrick.isRTLLayout(doc) && Foxtrick.isModuleFeatureEnabled( this, "RTL_Fixes" )) {
+				if (!Foxtrick.isStandardLayout( doc ) ) {
+                        var css = "chrome://foxtrick/content/resources/css/fixes/RTL_Fixes_simple.css";
+						Foxtrick.addStyleSheet( doc, css );
+				}							
+			}
+			
+			
      /* obsolete      
 		if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace" )) {
 				if (!Foxtrick.isStandardLayout( doc ) ) {

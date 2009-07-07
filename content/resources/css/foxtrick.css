@@ -21,6 +21,11 @@ div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !im
 div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 99% 60%;}
 div.ft_sidebarBoxCollapsed .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
 div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
+div.ft_sidebarBoxCollapsed_rtl  h2 { border: none !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 3% 60%;}
+div.ft_sidebarBoxUnfolded_rtl h2 { border: none !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 3% 60%;}
+div.ft_sidebarBoxCollapsed_rtl .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-left:8px !important;} 
+div.ft_sidebarBoxCollapsed_rtl .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
+
 
 /* sidebarbox h3 dropdown image */
 h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}

@@ -1553,6 +1553,7 @@ var FoxtrickOnPagePrefs = {
 				var div=doc.getElementById('foxtrick_OnPagePrefs_box').firstChild;	
 				div.setAttribute("id","foxtrick_OnPagePrefs_headdiv");
 				div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
+				if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 			
 		} catch (e){dump('FoxtrickOnPagePrefs '+e+'\n');}
 	},
@@ -1567,6 +1568,7 @@ var FoxtrickOnPagePrefs = {
 		
 		if ( headdiv.className.search("ft_sidebarBoxCollapsed") != -1 ) {
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
+			if (Foxtrick.isRTLLayout(doc)) headdiv.setAttribute("class","boxHead ft_sidebarBoxUnfolded_rtl");
 			var ownBox = doc.getElementById('foxtrick_OnPagePrefs_inner');
 			var ownBoxBody = doc.createElement("div");
 			var ownBoxBodyId = "idFoxtrickPrefs";
@@ -1592,6 +1594,7 @@ var FoxtrickOnPagePrefs = {
 				alldivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.modules_allpages")));
 				alldivheader.setAttribute("style","cursor:pointer;");
 				alldivheader.setAttribute("class","ft_sidebarBoxCollapsed");
+				if (Foxtrick.isRTLLayout(doc)) alldivheader.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
 				alldivheader.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClickModulesAll, false );
 				alldivouter.appendChild(alldivheader);
 				var alldivinner = doc.createElement('div');
@@ -1605,6 +1608,7 @@ var FoxtrickOnPagePrefs = {
 				linkdivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.LinksTab")));
 				linkdivheader.setAttribute("style","cursor:pointer;");
 				linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed");
+				if (Foxtrick.isRTLLayout(doc)) linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
 				linkdivheader.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClickLinks, false );
 				linkdivouter.appendChild(linkdivheader);
 				var linkdivinner = doc.createElement('div');
@@ -1652,6 +1656,7 @@ var FoxtrickOnPagePrefs = {
 		}
 		else {
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
+			if (Foxtrick.isRTLLayout(doc)) headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 			var content = doc.getElementById('idFoxtrickPrefs');
 			if (content) {
 				content.parentNode.removeChild(content);		
@@ -1668,10 +1673,12 @@ var FoxtrickOnPagePrefs = {
 		var header = ev.target;
 		if ( header.className.search("ft_sidebarBoxCollapsed") != -1 ) {
 			header.setAttribute("class","ft_sidebarBoxUnfolded");
+			if (Foxtrick.isRTLLayout(doc)) header.setAttribute("class","ft_sidebarBoxUnfolded_rtl");	
 			div.style.display = 'inline';
 		}
 		else {
 			header.setAttribute("class","ft_sidebarBoxCollapsed");
+			if (Foxtrick.isRTLLayout(doc)) header.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
 			div.style.display = 'none';
 		}
 	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
@@ -1685,10 +1692,12 @@ var FoxtrickOnPagePrefs = {
 		var header = ev.target;
 		if ( header.className.search("ft_sidebarBoxCollapsed") != -1 ) {
 			header.setAttribute("class","ft_sidebarBoxUnfolded");
+			if (Foxtrick.isRTLLayout(doc)) header.setAttribute("class","ft_sidebarBoxUnfolded_rtl");	
 			div.style.display = 'inline';
 		}
 		else {
 			header.setAttribute("class","ft_sidebarBoxCollapsed");
+			if (Foxtrick.isRTLLayout(doc)) header.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
 			div.style.display = 'none';
 		}
 	}catch(e){dump('OnPagePrefClick: '+e+'\n');}
@@ -1703,6 +1712,7 @@ var FoxtrickOnPagePrefs = {
 			content.parentNode.removeChild(content);
 			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");			
+			if (Foxtrick.isRTLLayout(doc)) headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 			dump ('onclick/submit remove onpagepref\n');
 		}
 	} catch(e){dump('OnPagePrefClick: '+e+'\n');}
@@ -1719,6 +1729,7 @@ var FoxtrickOnPagePrefs = {
 			content.parentNode.removeChild(content);
 			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");			
+			if (Foxtrick.isRTLLayout(doc)) headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 			dump ('onclick/submit remove onpagepref\n');
 		}
 	} catch(e){dump('OnPagePrefClick: '+e+'\n');}
