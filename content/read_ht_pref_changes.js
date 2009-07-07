@@ -176,30 +176,32 @@ var FoxtrickMyHT = {
 				alertdiv.appendChild(p);
 
 
-/*				alertdiv.appendChild(doc.createElement('br'));				
+				/*alertdiv.appendChild(doc.createElement('br'));				
 				var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
 				alertdiv.appendChild(p);
-*/
-/*				var a=doc.createElement('a');
-				a.href="javascript:void();";
-				a.innerHTML=Foxtrickl10n.getString("Close");
-				a.addEventListener( "click", FoxtrickMyHT.Close, false );
-				FoxtrickMyHT.Close.doc=doc;
-				alertdiv.appendChild(a);				
-*/				
+				*/
 				
 				alertdiv.appendChild(doc.createElement('br'));				
 				var p=doc.createElement('p');				
-				p.setAttribute('id','idShowChanged');
 				var a=doc.createElement('a');
 				a.href="javascript:void();";
 				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtSetChanged");
 				a.addEventListener( "click", FoxtrickMyHT.ShowChanged, false );
 				FoxtrickMyHT.Close.doc=doc;
 				p.appendChild(a);				
+				
+				var a=doc.createElement('a');
+				a.href="javascript:void();";
+				a.innerHTML=Foxtrickl10n.getString("Close");
+				a.addEventListener( "click", FoxtrickMyHT.Close, false );
+				a.setAttribute('style','float:right');
+				FoxtrickMyHT.Close.doc=doc;
+				p.appendChild(a);				
+				
 				alertdiv.appendChild(p);
-							
+
+				
 		} catch(e){dump('MyHtShowAlert '+e+'\n');}
 	},
 	
@@ -210,10 +212,11 @@ var FoxtrickMyHT = {
 		var oldAlert=doc.getElementById('idFoxtrickPrefsDialogHTML');
 		if (oldAlert) mainBody.removeChild(oldAlert);
 		
-		var curVersion=FoxtrickPrefs.getString("curVersion"); 				
-		FoxtrickPrefs.setString("oldVersion",curVersion);	
-
-		FoxtrickPrefsDialogHTML.ShowOnce();
+		/*var curVersion=FoxtrickPrefs.getString("curVersion"); 				
+		FoxtrickPrefs.setString("oldVersion",curVersion);	*/
+		FoxtrickMain.IsNewVersion=false;
+		
+		FoxtrickMyHT.ShowOnce();
 	},
 	
 	ShowOnce : function() {
@@ -246,6 +249,9 @@ var FoxtrickMyHT = {
 		try{
 		
 		var doc = ev.target.ownerDocument;
+		
+		FoxtrickMyHT.ShowOnce();
+		FoxtrickMain.IsNewVersion=false;
 		
 		doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
 		doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
