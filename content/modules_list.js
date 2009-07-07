@@ -128,10 +128,12 @@ Foxtrick.modules = [ FoxtrickForumChangePosts,
 					 FoxtrickOnPagePrefs,  // new
 					 FoxtrickLineupShortcut, // new
 					 //FoxtrickSingleline2,
+					 FoxtrickHeadMenuLinks,   //new
+					 FoxtrickYouthPromotes,   //new
                      FoxtrickCountyList, // new
 					 FoxtrickMatchOrderColoring, // new
 					 FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
-
+           
 					];
 
 					

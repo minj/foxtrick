@@ -85,6 +85,7 @@ Foxtrick.Loader = function(){
     'shortcuts_and_tweaks/crosstable.js',
     'shortcuts_and_tweaks/electiontable.js',
 	'shortcuts_and_tweaks/lineupshortcut.js',
+		'shortcuts_and_tweaks/youthPromotes.js', //new
     'presentation/countrylist.js',
     'presentation/custommedals.js',
     'presentation/fixcssproblems.js',
@@ -119,11 +120,12 @@ Foxtrick.Loader = function(){
     'links/linksfans.js',
     'links/linksstaff.js',
     'links/linkstracker.js',
+
     
 	// following modules all run on 'all_late' pages. order of execution is determined be following order
     'presentation/currencyConverter.js',
     'shortcuts_and_tweaks/teampopuplinks.js', // keep behind others
-
+    'links/menuLinks.js',
     'modules_list.js',
     'foxtrick.js',
 	];
