@@ -21,11 +21,12 @@ var FoxtrickForumStaffMarker = {
 											"background-color:green; color:white;", //CHPP
 											"background-color:green;", //editor
 											"background-color:#c3d9ff; color:black;", //foxtrick-dev
-											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'", //own
-                                            "background-color:white; color:black;", //flag
-											"background-color:#fed; color:black;" //chpps
-											),
-    OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own", "flag", "chpp-holder"),
+											"background-color:#fed; color:black;", //chpps
+											"background-color:#def; color:black;", //hty_staff
+											"background-color:white; color:black;", //flag
+											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
+                                            ),
+    OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own"),
     // OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own"),
     
 	htreg : /^HT-/i,
@@ -36,7 +37,12 @@ var FoxtrickForumStaffMarker = {
 
 	ulist:{},  // users and colors
 
-    chppholder : new Array (
+    hty_staff : new Array (
+            'Mackshot',
+            'Homer-Simpson'
+	),
+	
+	chppholder : new Array (
             '0scar',
             'a_alvarez',
             'Absolut',
@@ -102,7 +108,7 @@ var FoxtrickForumStaffMarker = {
             'Loke_',
             'Maauwke',
             'Mackalito',
-            'Mackshot',
+            'Mackshot',  
             'magnusts',
             'makam',
             'MarcicoX',
@@ -298,10 +304,12 @@ var FoxtrickForumStaffMarker = {
 		stl_GM : '',
 		stl_MOD : '',
 		stl_CHPP : '',
+		stl_hty_staff : '',
 		stl_LA : '',
 		stl_editor : '',
 		editorsArray_joined : '',
         chpps_joined : '',
+		hty_staff_joined : '',
 		stl_foxtrick_dev : '',
         stl_flag : '',
 		foxtrickersArray_joined :'',
@@ -321,15 +329,18 @@ var FoxtrickForumStaffMarker = {
         this.stl_editor = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "editor_text");
           if (!this.stl_editor) this.stl_editor = this.OPTION_TEXTS_DEFAULT_VALUES[5];
 		this.editorsArray_joined = this.editorsArray.join();
-        this.stl_chpps = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "chpps_text");
-          if (!this.stl_chpps) this.stl_chpps = this.OPTION_TEXTS_DEFAULT_VALUES[9];
-		this.chpps_joined = this.chppholder.join();
-		this.stl_foxtrick_dev = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
+        this.stl_foxtrick_dev = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
           if (!this.stl_foxtrick_dev) this.stl_foxtrick_dev = this.OPTION_TEXTS_DEFAULT_VALUES[6];
+		this.foxtrickersArray_joined = this.foxtrickersArray.join();
+		this.stl_chpps = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "chpps_text");
+          if (!this.stl_chpps) this.stl_chpps = this.OPTION_TEXTS_DEFAULT_VALUES[7];
+		this.chpps_joined = this.chppholder.join();
+		this.stl_hty_staff = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "hty_staff_text");
+          if (!this.stl_hty_staff) this.stl_hty_staff = this.OPTION_TEXTS_DEFAULT_VALUES[8];
+		this.hty_staff_joined = this.hty_staff.join();
 		this.stl_flag = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "flag_text");
-          if (!this.stl_flag) this.stl_flag = this.OPTION_TEXTS_DEFAULT_VALUES[8];
-        this.foxtrickersArray_joined = this.foxtrickersArray.join();
-
+          if (!this.stl_flag) this.stl_flag = this.OPTION_TEXTS_DEFAULT_VALUES[9];
+        
     },
 
     run : function( page, doc ) {
@@ -380,6 +391,7 @@ var FoxtrickForumStaffMarker = {
 			var do_editor = Foxtrick.isModuleFeatureEnabled( this, "editor") ;
 			var do_foxtrick_dev = Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") ;
 			var do_chpps = Foxtrick.isModuleFeatureEnabled( this, "chpp-holder") ;
+			var do_hty_staff = Foxtrick.isModuleFeatureEnabled( this, "hty_staff") ;
 			var do_own = Foxtrick.isModuleFeatureEnabled( this, "own");
 
 			var userDivs = Foxtrick.getElementsByClass("float_left", doc.getElementById('mainWrapper'));
@@ -393,6 +405,10 @@ var FoxtrickForumStaffMarker = {
                     var uname = Foxtrick.trim(a.textContent);
 					var uid = a.href.replace(/.+userId=/i, "").match(/^\d+/);
 
+					// earlier overwrites later. 
+					if (do_own && this.ulist[uid]!=null) {
+                        a.setAttribute("style", this.ulist[uid]);
+                    }
                     if (do_HT && this.htreg.test(uname)) {
                         a.setAttribute("style", this.stl_HT);
                     } else if (do_GM && this.gmreg.test(uname)) {
@@ -405,13 +421,12 @@ var FoxtrickForumStaffMarker = {
                         a.setAttribute("style", this.stl_LA);
                     } else if (do_editor && this.editorsArray_joined.search(uname) > -1) {
                         a.setAttribute("style", this.stl_editor);
+                    } else if (do_hty_staff && this.hty_staff_joined.search(uname) > -1) {
+                        a.setAttribute("style", this.stl_hty_staff);
                     } else if (do_chpps && this.chpps_joined.search(uname) > -1) {
                         a.setAttribute("style", this.stl_chpps);
                     } else if (do_foxtrick_dev && this.foxtrickersArray_joined.search(uname) > -1) {
                          a.setAttribute("style", this.stl_foxtrick_dev);
-                    }
-					if (do_own && this.ulist[uid]!=null) {
-                        a.setAttribute("style", this.ulist[uid]);
                     }
                 }
             }
@@ -432,6 +447,7 @@ var FoxtrickForumStaffMarker = {
 			var do_editor = Foxtrick.isModuleFeatureEnabled( this, "editor") ;
 			var do_foxtrick_dev = Foxtrick.isModuleFeatureEnabled( this, "foxtrick-dev") ;
             var do_chpps = Foxtrick.isModuleFeatureEnabled( this, "chpp-holder") ;
+			var do_hty_staff = Foxtrick.isModuleFeatureEnabled( this, "hty_staff") ;
 			var do_own = Foxtrick.isModuleFeatureEnabled( this, "own");
             var do_flag = Foxtrick.isModuleFeatureEnabled( this, "flag");
 
@@ -451,6 +467,9 @@ var FoxtrickForumStaffMarker = {
                         if  (uname == '') break;
 						var uid=option.value;
 
+						if (do_own && this.ulist[uid]!=null) {
+							new_style = this.ulist[uid];
+						}
 						if (do_HT && this.htreg.test(uname)) {
 							new_style += this.stl_HT;
 						} else if (do_GM && this.gmreg.test(uname)) {
@@ -465,13 +484,12 @@ var FoxtrickForumStaffMarker = {
 							new_style += this.stl_editor;
 						} else if (do_foxtrick_dev && this.foxtrickersArray_joined.search(uname) > -1) {
 							new_style += this.stl_foxtrick_dev;
+						} else if (do_hty_staff && this.hty_staff_joined.search(uname) > -1) {
+							new_style += this.stl_hty_staff;
 						} else if (do_chpps && this.chpps_joined.search(uname) > -1) {
 							new_style += this.stl_chpps;
 						}
-						if (do_own && this.ulist[uid]!=null) {
-							new_style = this.ulist[uid];
-						}
-
+						
                         if (do_flag) {
                             new_style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif");  background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
                         }
