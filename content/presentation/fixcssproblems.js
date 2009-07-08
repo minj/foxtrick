@@ -10,7 +10,7 @@ FoxtrickFixcssProblems = {
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Option highlight in red new events on HTlive, Forum_ThreadlistSpace obsolte, HideFlags/Leaguelevel in forum and flickerfix for HeaderFix with Firefox 3.5 added",	
+	LASTEST_CHANGE:"Created function HideUnwatchedMatchesPanel, Option highlight in red new events on HTlive, Forum_ThreadlistSpace obsolte, HideFlags/Leaguelevel in forum and flickerfix for HeaderFix with Firefox 3.5 added",	
 	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
@@ -26,7 +26,9 @@ FoxtrickFixcssProblems = {
 									"liveHighlightRed",
 									"HideFlagsInForumHeader",
 									"HideLeagueInForumHeader",
-                                    "Highlight_Staff_On_All_Pages"
+                  "Highlight_Staff_On_All_Pages",
+                  "HideUnseenMatchesPanel"
+                  
 								),
 	OPTIONS_CSS: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -53,12 +55,13 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/RTL_Fixes.css",
                                 "chrome://foxtrick/content/resources/css/fixes/ForumScrollBarFix.css",
 //                                "",
-								"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
+							                 	"chrome://foxtrick/content/resources/css/fixes/League_Table.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Guestbook.css",
                                 "chrome://foxtrick/content/resources/css/fixes/liveHighlightRed.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideFlagsInForumHeader.css",
                                 "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
-                                "chrome://foxtrick/content/resources/css/fixes/staffmarker.css"
+                                "chrome://foxtrick/content/resources/css/fixes/staffmarker.css",
+                                "chrome://foxtrick/content/resources/css/fixes/hideUnseenMatchesPanel.css"
                                 ),
                                
     init : function() {
