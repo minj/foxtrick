@@ -22,7 +22,7 @@ var FoxtrickForumStaffMarker = {
 											"background-color:green;", //editor
 											"background-color:#c3d9ff; color:black;", //foxtrick-dev
 											"background-color:#fed; color:black;", //chpps
-											"background-color:#def; color:black;", //hty_staff
+											"background-color:#def; color:green;", //hty_staff
 											"background-color:white; color:black;", //flag
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
                                             ),
@@ -36,11 +36,6 @@ var FoxtrickForumStaffMarker = {
 	lareg : /^LA-/i,
 
 	ulist:{},  // users and colors
-
-    hty_staff : new Array (
-            'Mackshot',
-            'Homer-Simpson'
-	),
 	
 	chppholder : new Array (
             '0scar',
