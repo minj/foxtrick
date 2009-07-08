@@ -108,9 +108,10 @@ var byline = Foxtrick.trim(allDivs[i].innerHTML);
             var ar = reg.exec(Foxtrick.substr(byline,30,30));
 
             var nextbirthday = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+            
       //Foxtrick.alert(nextbirthday); 
       nextbirthday = Foxtrick.substr(nextbirthday, Foxtrick.strrpos( nextbirthday, ";"), nextbirthday.length);  
-
+//Foxtrick.alert(nextbirthday);
       joinedDate = Foxtrick.substr(joinedDate, Foxtrick.strrpos( joinedDate, ";"), joinedDate.length);         
       //Foxtrick.alert('birthday:\n'+nextbirthday);
       var JT_date = Foxtrick.getDatefromCellHTML(nextbirthday);
