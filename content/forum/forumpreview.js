@@ -317,7 +317,7 @@ var FoxtrickForumPreview = {
         "<br>",
         "<hr>",
 
-        "<blockquote class='spoiler hidden'>$1</blockquote>",
+        "<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>",
         
         "<table class='htMlTable'><tbody>$1</tbody></table>",
         "<tr $1>$2</tr>",
