@@ -373,7 +373,15 @@ var FoxtrickForumPreview = {
             var text = Foxtrick.stripHTML( msg_window.value );
 
             text = text.replace(/\n/g, "<br />");
-            var count = Foxtrick.substr_count(text, '[q') + Foxtrick.substr_count(text, '[spoil') + Foxtrick.substr_count(text, '[table');
+
+            var count_q = Foxtrick.substr_count(text, '[q');
+            var count_s = Foxtrick.substr_count(text, '[spoil');
+            var count_t = Foxtrick.substr_count(text, '[table');
+            
+            var count =  count_q;
+            if (count < count_s) count = count_s;
+            if (count < count_t) count = count_t;
+            
             
             for ( var i = 0; i < search_single.length; i++) {
                 text = text.replace(search_single[i],replace_single[i]);
