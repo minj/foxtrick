@@ -302,12 +302,12 @@ var FoxtrickForumStaffMarker = {
 		stl_hty_staff : '',
 		stl_LA : '',
 		stl_editor : '',
-		editorsArray_joined : '',
+		//editorsArray_joined : '',
         chpps_joined : '',
-		hty_staff_joined : '',
+		//hty_staff_joined : '',
 		stl_foxtrick_dev : '',
         stl_flag : '',
-		foxtrickersArray_joined :'',
+		//foxtrickersArray_joined :'',
 
     init : function() {
 
@@ -323,16 +323,16 @@ var FoxtrickForumStaffMarker = {
           if (!this.stl_LA) this.stl_LA = this.OPTION_TEXTS_DEFAULT_VALUES[4];
         this.stl_editor = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "editor_text");
           if (!this.stl_editor) this.stl_editor = this.OPTION_TEXTS_DEFAULT_VALUES[5];
-		this.editorsArray_joined = this.editorsArray.join();
+		//this.editorsArray_joined = this.editorsArray.join();
         this.stl_foxtrick_dev = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
           if (!this.stl_foxtrick_dev) this.stl_foxtrick_dev = this.OPTION_TEXTS_DEFAULT_VALUES[6];
-		this.foxtrickersArray_joined = this.foxtrickersArray.join();
+		//this.foxtrickersArray_joined = this.foxtrickersArray.join();
 		this.stl_chpps = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "chpps_text");
           if (!this.stl_chpps) this.stl_chpps = this.OPTION_TEXTS_DEFAULT_VALUES[7];
-		this.chpps_joined = this.chppholder.join();
+		//this.chpps_joined = this.chppholder.join();
 		this.stl_hty_staff = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "hty_staff_text");
           if (!this.stl_hty_staff) this.stl_hty_staff = this.OPTION_TEXTS_DEFAULT_VALUES[8];
-		this.hty_staff_joined = this.hty_staff.join();
+		//this.hty_staff_joined = this.hty_staff.join();
 		this.stl_flag = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "flag_text");
           if (!this.stl_flag) this.stl_flag = this.OPTION_TEXTS_DEFAULT_VALUES[9];
         
@@ -414,13 +414,13 @@ var FoxtrickForumStaffMarker = {
                         a.setAttribute("style", this.stl_CHPP);
                     } else if (do_LA && this.lareg.test(uname)) {
                         a.setAttribute("style", this.stl_LA);
-                    } else if (do_editor && this.editorsArray_joined.search(uname) > -1) {
+                    } else if (do_editor && Foxtrick.in_array(this.editorsArray,uname)) {
                         a.setAttribute("style", this.stl_editor);
-                    } else if (do_hty_staff && this.hty_staff_joined.search(uname) > -1) {
+                    } else if (do_hty_staff && Foxtrick.in_array(this.hty_staff,uname)) {
                         a.setAttribute("style", this.stl_hty_staff);
-                    } else if (do_chpps && this.chpps_joined.search(uname) > -1) {
+                    } else if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
                         a.setAttribute("style", this.stl_chpps);
-                    } else if (do_foxtrick_dev && this.foxtrickersArray_joined.search(uname) > -1) {
+                    } else if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
                          a.setAttribute("style", this.stl_foxtrick_dev);
                     }
                 }
@@ -475,16 +475,16 @@ var FoxtrickForumStaffMarker = {
 							new_style += this.stl_CHPP;
 						} else if (do_LA && this.lareg.test(uname)) {
 							new_style += this.stl_LA;
-						} else if (do_editor && this.editorsArray_joined.search(uname) > -1) {
-							new_style += this.stl_editor;
-						} else if (do_foxtrick_dev && this.foxtrickersArray_joined.search(uname) > -1) {
-							new_style += this.stl_foxtrick_dev;
-						} else if (do_hty_staff && this.hty_staff_joined.search(uname) > -1) {
-							new_style += this.stl_hty_staff;
-						} else if (do_chpps && this.chpps_joined.search(uname) > -1) {
-							new_style += this.stl_chpps;
-						}
-						
+                        } else if (do_editor && Foxtrick.in_array(this.editorsArray,uname)) {
+                            new_style +=  this.stl_editor;
+                        } else if (do_hty_staff && Foxtrick.in_array(this.hty_staff,uname)) {
+                            new_style += this.stl_hty_staff;
+                        } else if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
+                            new_style += this.stl_chpps;
+                        } else if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
+                            new_style +=  this.stl_foxtrick_dev;
+                        }
+					
                         if (do_flag) {
                             new_style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif");  background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
                         }

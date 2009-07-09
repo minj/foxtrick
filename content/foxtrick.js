@@ -1630,3 +1630,9 @@ Foxtrick.cut_word = function (txt, where) {
         return d.join("");
     } catch(e) {  dump('CUT WORD: ' + e + '\n');}
 }
+
+Foxtrick.in_array = function(arr, needle) {
+    for (var i=0; i < arr.length; i++)
+        if (arr[i] === needle) return true;
+    return false;
+}
