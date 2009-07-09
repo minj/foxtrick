@@ -242,7 +242,7 @@ var FoxtrickForumPreview = {
 
     _preview : function ( ev ) {
 
-        var search = new Array(
+        var search_single = new Array(
 
         /\[kitid=(\d+)\]/gi,
         /\[userid=(\d+)\]/gi,
@@ -259,16 +259,19 @@ var FoxtrickForumPreview = {
         /\[youthleagueid=(\d+)\]/gi,
         /\[link=(.*?)\]/gi,
 
-        /\[q\](.*?)\[\/q\]/gi,
-        /\[quote\=(.*?)\](.*?)\[\/quote\]/gi,
-        /\[q\=(.*?)\](.*?)\[\/q\]/gi,
-        /\[q\=(.*?)\](.*?)\[\/q\]/gi,
         /\[b\](.*?)\[\/b\]/gi,
         /\[u\](.*?)\[\/u\]/gi,
         /\[i\](.*?)\[\/i\]/gi,
         /\[br\]/gi,
-        /\[hr\]/gi,
-        
+        /\[hr\]/gi
+        );
+
+        var search_nested = new Array(
+        /\[q\](.*?)\[\/q\]/gi,
+        /\[quote\=(.*?)\](.*?)\[\/quote\]/gi,
+        /\[q\=(.*?)\](.*?)\[\/q\]/gi,
+        /\[q\=(.*?)\](.*?)\[\/q\]/gi,
+
         /\[spoiler\](.*?)\[\/spoiler\]/gi,
 
         /\[table\](.*?)\[\/table\]/gi,
@@ -289,9 +292,10 @@ var FoxtrickForumPreview = {
         /\<\/tr\>\<br \/\>/gi,
         /\<tr(.*?)\>\<br \/\>/gi,
         /\<tbody\>\<br \/\>/gi
+
         );
 
-        var replace = new Array(
+        var replace_single = new Array(
         "<a href=\"\/Community\/KitSearch\/\?KitID\=$1\" target=\"\_blank\">($1)</a>",
         "<a href=\"\/Club\/Manager\/\?userId\=$1\" target=\"\_blank\">($1)</a>",
         "<a href=\"\/Club\/Players\/Player\.aspx\?playerId\=$1\" target=\"\_blank\">($1)</a>",
@@ -307,15 +311,18 @@ var FoxtrickForumPreview = {
         "<a href=\"\/World\/Series\/YouthSeries\.aspx\?YouthLeagueId\=$1\" target=\"\_blank\">($1)</a>",
         "<a href=\"$1\" target=\"\_blank\">($1)</a>",
 
-        "<blockquote class='quote'>$1</blockquote>",
-        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
-        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
-        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",        
         "<b>$1</b>",
         "<u>$1</u>",
         "<i>$1</i>",
         "<br>",
-        "<hr>",
+        "<hr>"
+        );
+        
+        var replace_nested = new Array(
+        "<blockquote class='quote'>$1</blockquote>",
+        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
+        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
+        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",        
 
         "<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>",
         
@@ -366,12 +373,17 @@ var FoxtrickForumPreview = {
             var text = Foxtrick.stripHTML( msg_window.value );
 
             text = text.replace(/\n/g, "<br />");
-            //var count = Foxtrick.substr_count(text, '[');
-            //for (var j = 0; j <= 0; j++) {
-                for ( var i = 0; i < search.length; i++) {
-                    text = text.replace(search[i],replace[i]);
+            var count = Foxtrick.substr_count(text, '[q') + Foxtrick.substr_count(text, '[spoil') + Foxtrick.substr_count(text, '[table');
+            
+            for ( var i = 0; i < search_single.length; i++) {
+                text = text.replace(search_single[i],replace_single[i]);
+            }
+
+            for (var j = 0; j <= count; j++) {
+                for ( var i = 0; i < search_nested.length; i++) {
+                    text = text.replace(search_nested[i],replace_nested[i]);
                 }
-            //}
+            }
 
             prev_div.innerHTML = text;
         }
