@@ -22,7 +22,7 @@ var FoxtrickForumStaffMarker = {
 											"background-color:green;", //editor
 											"background-color:#c3d9ff; color:black;", //foxtrick-dev
 											"background-color:#fed; color:black;", //chpps
-											"background-color:#def; color:green;", //hty_staff
+											"background-color:#38A32B; color:yellow; background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding-left: 18px; padding-right: 2px;", //hty_staff
 											"background-color:white; color:black;", //flag
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
                                             ),
