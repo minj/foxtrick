@@ -25,6 +25,7 @@ ConfirmTL=http://foxtrick.foundationhorizont.org/ConfirmTL.html
 ContextMenueCopyId=http://foxtrick.foundationhorizont.org/ContextMenueCopyId.html
 CopyMatchID=http://foxtrick.foundationhorizont.org/CopyMatchID.html
 CopyPlayerAdToClipboard=http://foxtrick.foundationhorizont.org/CopyPlayerAdToClipboard.html
+CopyScoutReport=http://foxtrick.foundationhorizont.org/CopyScoutReport.html 
 CopyTrainingReport=http://foxtrick.foundationhorizont.org/CopyTrainingReport.html
 CrossTable=http://foxtrick.foundationhorizont.org/CrossTable.html
 CrossTable.allway_show_cross=http://foxtrick.foundationhorizont.org/CrossTable_allway_show_cross.html
