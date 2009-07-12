@@ -44,7 +44,8 @@ _getPullDate : function(org_time,age,days,joined) {
     if (nn < 0 && age == 15){var nn = Math.floor(1904-((age*112)+days)-(print_D+112));}
 
   var daysToProm = 1904-((age*112)+days)+nn;
- if (daysToProm < 0 && age > 16){daysToProm_text = "<br /> "+Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t")+" ";}
+  daysToProm_text='';
+ if (daysToProm < 0 && age > 16){ daysToProm_text = "<br /> "+Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t")+" ";}
  else {daysToProm_text = "<br /> "+Foxtrickl10n.getString('foxtrick.youthpromotedays.prom_d')+" "+daysToProm+" "+Foxtrickl10n.getString("foxtrick.youthpromotedays.days");}
  
 

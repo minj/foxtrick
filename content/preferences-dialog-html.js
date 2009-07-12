@@ -1532,8 +1532,6 @@ var FoxtrickOnPagePrefs = {
 					//dump (Foxtrick.run_on_cur_page[j].page+' '+Foxtrick.run_on_cur_page[j].module.MODULE_NAME+'\n');
 				}	
 				if (count==0) return;
-				doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
-				doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
 				
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
 				//var content=doc.getElementById('idFoxtrickPrefs');
@@ -1576,6 +1574,8 @@ var FoxtrickOnPagePrefs = {
 			ownBox.appendChild(ownBoxBody);
 			
 			if (!doc.getElementById('foxtrick_prefs_save')) {			  
+				doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
+				doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
 				// save		
 				var prefsavediv=doc.createElement('div');	
 				prefsavediv.setAttribute('id','foxtrick_prefs_save');

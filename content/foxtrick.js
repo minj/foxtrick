@@ -1463,6 +1463,12 @@ Foxtrick.copyStringToClipboard = function ( string ) {
 	gClipboardHelper.copyString(string);
 }
 
+Foxtrick.isFF35 = function ( doc ) {
+	// Check if browser is ff 3.5
+	var ua=doc.defaultView.navigator.userAgent; 
+	return ua.search("Firefox/3.5") != -1;  
+}
+
 Foxtrick.isStandardLayout = function ( doc ) {
 	// Check if this is the simple or standard layout
 	var link = doc.getElementsByTagName("link")[0];
