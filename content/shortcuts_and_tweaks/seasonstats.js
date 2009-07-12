@@ -68,16 +68,30 @@ var FoxtrickSeasonStats = {
 	    
 		
 		// ------------------------------ season stats --------------------------------------
-		
-		//var TeamName=FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15).replace(/\W/g,''); 
-		
+				
 		var sum_matches=new Array(12);
 		for (var i = 0; i < sum_matches.length; ++i)
 			sum_matches[i] = {'type':"",'num':0,'won':0,'lost':0,'draw':0,'goal0':0,'goal1':0};
 
 		var matchestable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-		for (var i=0;i<matchestable.rows.length;++i) { 
-			//dump(TeamName+' '+matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title+' '+matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.search(TeamName)+'\n');
+		
+		// get team name. start with current name, but try to get name of that season from first home game
+		var TeamName = FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15).replace(/\W/g,''); 
+		for (var i=0; i<matchestable.rows.length; ++i) { 
+			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won'; 
+			var islost = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='lost'; 
+			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].innerHTML.match(/\d+/g); 
+			var goals0=parseInt(goals[0]);
+			var goals1=parseInt(goals[1]);
+			if (goals0>goals1&&islost || goals0<goals1&&iswon ) { // away. own goals second
+			}
+			else {
+				TeamName = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/-.+/g,'');
+				break;
+			}			
+		}
+		
+		for (var i=0; i<matchestable.rows.length; ++i) { 
 			var type=0;
 			if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchLeague') type=0;
 			else if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0].className=='matchFriendly') type=1;
@@ -95,6 +109,10 @@ var FoxtrickSeasonStats = {
 				goals0=parseInt(goals[1]);
 				goals1=parseInt(goals[0]);
 				ishome=2;
+			}
+			// get home/away for draws
+			if (isdraw) {
+				ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/\W/g,'').search(TeamName)==0?1:2;
 			}
 			sum_matches[type*3]["type"] = matchestable.rows[i].cells[1].getElementsByTagName('img')[0].title ;			
 			sum_matches[type*3]["num"]++;
