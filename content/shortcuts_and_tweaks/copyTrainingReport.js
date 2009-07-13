@@ -132,12 +132,17 @@ var FoxtrickCopyScoutReport = {
 		var doc = ev.target.ownerDocument;
 		var mainBody = doc.getElementById('mainBody');
 		var subDivs = mainBody.childNodes;//getElementsByTagName("div");
-		var nummainBox=0;
+		var lastmainbox=-1;
 		for(var i = 0; i < subDivs.length; i++) {
-			if(subDivs[i].className == "mainBox") { 
-				nummainBox++;
-				if (nummainBox!=3) continue;
-				var plain = subDivs[i].innerHTML.split('<br><br>')[1];
+			if (subDivs[i].className == "mainBox") { 
+				lastmainbox=i;
+			}
+		}
+		
+		if (lastmainbox!=-1) {
+				var graphs = subDivs[lastmainbox].innerHTML.split('<br><br>');
+				var plain = graphs[1];	dump(	graphs.length+'\n'+graphs[2]+'\n');		
+				if ( graphs[4] ) plain+=graphs[2];	// has a specialty
 				plain=plain.replace(/\&nbsp;/ig,' ');
 				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
@@ -147,8 +152,7 @@ var FoxtrickCopyScoutReport = {
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
 				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));
-			}
+					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));			
 		}
 	}
 };
