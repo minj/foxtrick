@@ -20,61 +20,51 @@ var FoxtrickYouthPromotes = {
 _getPullDate : function(org_time,age,days,joined) {
     
 
-
+var birthday = (days*86400)+((age*112)*86400);
     if ( Math.floor(org_time) < 0 )return 'NaN';
-    var joinedBefore = Math.floor(joined / 86400);
+    var joinedBefore = Math.floor(joined / 86400); //joined before x days ago
     
-    var print_D = Math.floor(org_time / 86400);
-    //Foxtrick.alert(print_D);
-/*
- var asec = 1904-((age*112)+days);// kolik zbyva dni do jeho 17y 0d
- 
- 
- var bef = joinedBefore+print_D;
- 
- 
- if (age < 17 && joinedBefore > 111){var pull = 112-days;}
- else if (age < 17 && joinedBefore < 112){var pull = (112-days)+(112-joinedBefore)-2;} 
- else if (age > 16 && joinedBefore > 111){var pull = 0;} 
- else {var pull = (112-joinedBefore);}*/
+   
+    //var print_D = Math.floor(org_time / 86400); //days to 16y 111d
+
+    var plr_y = age;
+    var plr_d = days;
+    var days_in_team = joinedBefore;
+    
+    
+    for (var i=0; i < 559; i++){
+    days_in_team++;
+    plr_d++;
+    
+    if (plr_d == 112)
+    {
+     plr_d=0;plr_y++;
+    }
+    
+    if (days_in_team > 111 && plr_y > 16)
+    {
+     break;
+    }
+    
+    }
+    var daysToProm = (((plr_y*112)+plr_d)-((age*112)+days))-1;
+    
+   daysToProm_text='';
   
-  var nn = (112-joinedBefore)-(1904-((age*112)+days));
-
-  if (nn < 0 && age < 17){var nn = Math.floor((joinedBefore-112)-(1904-((age*112)+days)));}
-    if (nn < 0 && age == 15){var nn = Math.floor(1904-((age*112)+days)-(print_D+112));}
-
-  var daysToProm = 1904-((age*112)+days)+nn;
-  daysToProm_text='';
- if (daysToProm < 0 && age > 16){ daysToProm_text = "<br /> "+Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t")+" ";}
- else {daysToProm_text = "<br /> "+Foxtrickl10n.getString('foxtrick.youthpromotedays.prom_d')+" "+daysToProm+" "+Foxtrickl10n.getString("foxtrick.youthpromotedays.days");}
- 
-
+ if (daysToProm <= 0) { 
+ daysToProm_text = "<br /> "+Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t")+" ";
+ }
+ else {
+ daysToProm_text = "<br /> "+Foxtrickl10n.getString('foxtrick.youthpromotedays.prom_d')+" "+daysToProm+" "+Foxtrickl10n.getString("foxtrick.youthpromotedays.days");
+ }
 
 return daysToProm_text;
- 
-//var pull2 = ((age*112)+days+pull)/112;
-//pull2 = Math.floor(pull2*100)/100;
-
-    //var pup_y = age+Math.floor((pull+days)/112);
-    //var pup_d = Math.round(pull+days);
-    
-    //if (pup_y > 111){var pup_y = age+1;pup_d=pup_d-112;}
-    
-    
-   // Foxtrick.alert('Mozno preradit:\n'+pup_y+'y and '+pup_d+'d');
-
-    //return pull;
 
 },	
 
     run : function( page, doc ) {
 
-
-     
-
 				var allDivs = doc.getElementsByTagName("div");
-				
-
 				
 				var div = doc.getElementsByClassName('playerInfo')[0];
 				var table =	div.getElementsByTagName('table')[0];
@@ -84,20 +74,7 @@ return daysToProm_text;
             var ar = reg.exec(Foxtrick.substr(dateCell.innerHTML,20,14));
 
             var joinedDate = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
-/*var row = doc.createElement('tr');
 
-var td1 = doc.createElement('td');
-td1.innerHTML = 'Promote:';
-
-var td2 = doc.createElement('td');
-td2.innerHTML = 'test2';
-
-row.appendChild(td1);
-row.appendChild(td2);
-
-table.appendChild(row);*/
-//table.insertBefore(row, table.previousNode);
-        //  Foxtrick.alert(joinedDate);
 				for(var i = 0; i < allDivs.length; i++) {
 				
 				if(allDivs[i].className=="byline") {
@@ -110,20 +87,18 @@ var byline = Foxtrick.trim(allDivs[i].innerHTML);
 
             var nextbirthday = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
             
-      //Foxtrick.alert(nextbirthday); 
+    
       nextbirthday = Foxtrick.substr(nextbirthday, Foxtrick.strrpos( nextbirthday, ";"), nextbirthday.length);  
-//Foxtrick.alert(nextbirthday);
+
       joinedDate = Foxtrick.substr(joinedDate, Foxtrick.strrpos( joinedDate, ";"), joinedDate.length);         
-      //Foxtrick.alert('birthday:\n'+nextbirthday);
+      
       var JT_date = Foxtrick.getDatefromCellHTML(nextbirthday);
       var jtdate = Foxtrick.getDatefromCellHTML(joinedDate);
-      //Foxtrick.alert('JT_date\n'+JT_date);
+
       
 var birth_s = Math.floor( (JT_date.getTime() - Foxtrick.HT_date.getTime()) / 1000); //Sec
    var joined_s1 = Math.floor( (Foxtrick.HT_date.getTime() - jtdate.getTime()) / 1000); //Sec
-           
-           // Foxtrick.alert('birth_s\n'+birth_s);
-           //Foxtrick.alert(joined_s1); 
+
             var JoinedText = 'NaN';
             try {
             
@@ -131,28 +106,19 @@ var birth_s = Math.floor( (JT_date.getTime() - Foxtrick.HT_date.getTime()) / 100
         var ar2 = reg.exec(byline);
           var AgeYears = parseInt(ar2[1]);
           var AgeDays = parseInt(ar2[3]);
-        //Foxtrick.alert(AgeYears+'\n'+AgeDays);
+
             
                 JoinedText = this._getPullDate (birth_s,AgeYears,AgeDays,joined_s1);
                 allDivs[i].innerHTML += JoinedText;
-               /// Foxtrick.alert(JoinedText);
+ 
             } 
             catch(ee) {
                 dump('  JoinedText >' + ee + '\n');
             }
-		
-		
-		
 
 					}
 				}
-    
-    //var divID = doc.getElementById('ctl00_CPMain_ucYouthPlayerFace_pnlAvatar');
-    
-    //Foxtrick.alert(divID..innerHTML);
-   
-    
-             
+           
 	},
 	
 	change : function( page, doc ) {
