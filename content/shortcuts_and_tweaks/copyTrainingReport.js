@@ -102,14 +102,14 @@ var FoxtrickCopyScoutReport = {
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.title = Foxtrickl10n.getString( 
-				"foxtrick.tweaks.copytrainingreport" );
+				"foxtrick.tweaks.copyscoutreport" );
 			messageLink.setAttribute("style","cursor: pointer;");
 			messageLink.addEventListener("click", this.copyReport, false)
 		
 			var img = doc.createElement("img");
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
-			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
 			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
 			messageLink.appendChild(img);
 				
