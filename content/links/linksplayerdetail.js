@@ -173,7 +173,7 @@ var FoxtrickLinksPlayerDetail = {
 				}
 
 		if (Foxtrick.isModuleEnabled(FoxtrickLinksTracker)) {		
-			var links2 = Foxtrick.LinkCollection.getLinks("trackerplayerlink", params, doc,this); 
+			var links2 = Foxtrick.LinkCollection.getLinks("trackerplayerlink", params, doc,FoxtrickLinksTracker); 
 			if (links2.length > 0) {
 				for (var k = 0; k < links2.length; k++) { 
 					links2[k].link.className ="flag inner"; 

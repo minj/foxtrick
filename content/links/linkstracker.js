@@ -9,9 +9,10 @@ var FoxtrickLinksTracker = {
 	
     MODULE_NAME : "LinksTracker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE: "Replaced ALL tracker icons by national flags",
+	NEW_AFTER_VERSION: "0.4.8.3",
+	LASTEST_CHANGE: "Fixed saving of preference saving. All tracker settings are back to default on unfortunatelly",
 	DEFAULT_ENABLED : true,
+	//PAGES : new Array('trackerplayerlink'), 
 	OPTIONS : {}, 
 
     init : function() {
@@ -19,6 +20,9 @@ var FoxtrickLinksTracker = {
  	 },
 
     run : function( page, doc ) {
+	},
+	
+	change : function( page, doc ) {
 	},
 	
 };
