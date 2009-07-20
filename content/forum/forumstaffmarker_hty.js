@@ -53,5 +53,6 @@ FoxtrickForumStaffMarker.hty_staff = new Array (
 'CAT-fike',
 'pvmishu',
 'sey2744',
+'Mystic_Lolo',
 'snowsaint'
 );
