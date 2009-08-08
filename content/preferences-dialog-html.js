@@ -149,6 +149,21 @@ var FoxtrickPrefsDialogHTML = {
 		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.HELP) ;		
 		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.ABOUT) ;		
 
+		
+		// bottom save+cancel		
+		var prefsavediv2=doc.createElement('div');	
+		prefsavediv2.setAttribute('id','foxtrick_prefs_save');
+		prefdiv.appendChild(prefsavediv2);
+		
+		var prefsave2=doc.createElement('input');	
+		prefsave2.setAttribute('id','foxtrick_prefsave_bottom'); 
+		prefsave2.setAttribute('type','button'); 
+		//prefsave.setAttribute('disabled','true'); 		
+		prefsave2.setAttribute('value',Foxtrickl10n.getString("foxtrick.prefs.buttonSave")); 
+		prefsave2.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
+		prefsavediv2.appendChild(prefsave2);
+
+		
 		prefdiv.setAttribute('style','display:inline'); 
 		
 		// highlight elements: url ... &highlight=id1+id2+id3
