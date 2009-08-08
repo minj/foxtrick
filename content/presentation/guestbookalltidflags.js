@@ -33,9 +33,12 @@ var FoxtrickGuestbookAlltidFlags = {
 		var outerdiv = doc.getElementById('mainWrapper');
 		var count =0; 
 		var linksArray = outerdiv.getElementsByTagName('a');
+		var div = null;
 				for (var j=0; j<linksArray.length-1; j++) {
 					var link = linksArray[j]; //dump(link.href+'\n');
+					div=null;
 					if (AddAlltidFlags && link.href.search(/userId=/i) > -1 && linksArray[j+1].href.search(/Supporter/i)!=-1 ) { 
+						div = link.parentNode.parentNode;
 						// Add the Alltid flags
 						var mySpan = doc.createElement('span');
 						var spanId = "foxtrick_alltidspan_"+count;
@@ -57,7 +60,8 @@ var FoxtrickGuestbookAlltidFlags = {
 					  }
 					if (HideAnswerToLinks && link.href.search(/Guestbook.aspx/i)!=-1) {
 						link.style.display='none';
-						link.parentNode.setAttribute('style',"margin-bottom:2px; margin-top:-10px; float: right; background-color:white;");
+						link.parentNode.setAttribute('style',"margin-bottom:2px; margin-top:-15px; float: right; background-color:white;");
+						if (div) div.style.padding='5px 5px 10px';
 					}				
 				}
 		} catch (e) {dump('FoxtrickGuestbookAlltidFlags->'+e+'\n');}
