@@ -8,6 +8,7 @@ FoxtrickForumStaffMarker.hty_staff = new Array (
 '-Jogi-',
 'Dat_Ei',
 'smekke1504',
+'Wedge84',
 'gregounet',
 'Frutuoso',
 'Bounce',
