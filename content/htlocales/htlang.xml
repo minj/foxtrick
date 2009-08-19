@@ -1042,7 +1042,7 @@
         </ratingSubLevels>
         <!-- tactics appearing in match detail page -->
         <tactics>
-            <tactic type="normal" value="Нормальна" />
+            <tactic type="normal" value="Нормально" />
             <tactic type="pressing" value="Пресинг" />
             <tactic type="ca" value="Контратаки" />
             <tactic type="aow" value="Атака по флангах" />
