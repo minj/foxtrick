@@ -18,6 +18,7 @@ FoxtrickForumStaffMarker.hty_staff = new Array (
 'Max_Schreck',
 'kobie',
 'seemas',
+'Wuber',
 'DjGiacomelli',
 'szpartak',
 'Toni1199',
