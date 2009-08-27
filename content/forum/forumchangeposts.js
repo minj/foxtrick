@@ -477,8 +477,16 @@ var FoxtrickForumChangePosts = {
                         user_info = null;
                         // all gone? make space for message
                         if ( user_avatar == null ) {
-                            message.setAttribute('style','width:96%'),
-                            wrapper.removeChild(user);
+                            message.setAttribute('style','width:96%');
+                            
+                            try {
+                                wrapper.removeChild(user)
+                            } catch(error_user){dump('ERROR userinforemove: ' + error_user + '\n')}
+                            
+                            
+                            
+                            
+
                             user = null;
                         }
                     }  //dump ('end hide user info \n');
