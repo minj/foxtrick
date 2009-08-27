@@ -97,11 +97,12 @@ var FoxtrickForumChangePosts = {
         
 		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
-		var alldivs = doc.getElementById('mainBody').childNodes;
-		var i = 0, wrapper;
+		var alldivs = doc.getElementById('threadContent').childNodes;
+        var i = 0, wrapper;
 		while ( wrapper = alldivs[++i] ) {
-		  if ( wrapper.className=="cfWrapper" || wrapper.className=="cfDim" ) {
-		    var allwrapperdivs = wrapper.childNodes;
+          if ( wrapper.className=="cfWrapper" || wrapper.className=="cfDim" ) {
+
+          var allwrapperdivs = wrapper.childNodes;
 		    var ii = 0, header;
 		    while ( header = allwrapperdivs[++ii] ) {
                 if (header.className=="cfDim") header = header.firstChild;
@@ -383,7 +384,9 @@ var FoxtrickForumChangePosts = {
                             // dump('\nSTAR1\n');
                         }
                         if (supporter_link2) {
-                            header_left.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
+                            try {
+                                header_left.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
+                            } catch(star) {dump('ERROR: ' + star + '\n');}
                             // dump('\nSTAR2\n');
                         }
                     }
