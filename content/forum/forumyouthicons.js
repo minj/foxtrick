@@ -26,7 +26,7 @@
     run : function( page, doc ) {
     try {
         Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");
-
+        dump('PAGE: ' + page + '\n');
         var show_main = false; var show_youth = false; 
         var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
         if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||
@@ -126,7 +126,7 @@
         if (page == 'guestbook')
             try {
                 var textbox = doc.getElementById( "ctl00_CPMain_ucHattrickMLEditor_txtBody" );
-                textbox.setAttribute( "style", "height:100px;");
+                textbox.setAttribute('style' , 'height:100px; width:100%');
             }
             catch (e)
             {
