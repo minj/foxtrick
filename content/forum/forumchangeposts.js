@@ -410,6 +410,12 @@ var FoxtrickForumChangePosts = {
                             if (line2 != null) line2.setAttribute('style', 'display:inline');
                             var lineright = Foxtrick.getElementsByClass('float_right', header)[0];
                             if (lineright != null) lineright.setAttribute('style', 'background-colorcolor:#999999');
+                            if (lineright.innerHTML.search(/(\d{2}\.\d{2}\.\d{4})/) != -1) {
+                                dump ('\n\n'+lineright.innerHTML + '\n');
+                                lineright.innerHTML = lineright.innerHTML.replace(/\ (\d{1,2})\.(\d{1,2})\.(\d{1,4})\ /gi, "<span title='$1.$2.$3'>$1.$2</span> ");
+                                //lineright.innerHTML = lineright.innerHTML.replace(/\d{1,4}/gi, "");
+                            }
+                            
                         } catch(eline2) {
                             dump('ERROR eline2: ' + eline2 + '\n');
                         }

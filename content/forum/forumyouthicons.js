@@ -234,7 +234,9 @@
         var nextElement = toolbar.nextSibling;
         while (nextElement) {
             try {
-                nextElement.setAttribute("style","clear:both;");
+                if (nextElement.id.search('ctl00_') == -1) {
+                    nextElement.setAttribute("style","clear:both;");
+                }    
                 nextElement = nextElement.nextSibling;
             } catch(e) { nextElement = nextElement.nextSibling; }
         }
