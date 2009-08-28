@@ -384,9 +384,11 @@ var FoxtrickForumChangePosts = {
                             // dump('\nSTAR1\n');
                         }
                         if (supporter_link2) {
+                            var done = true; //Workaround for 2nd supstar
                             try {
                                 header_left.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
-                            } catch(star) {dump('ERROR: ' + star + '\n');}
+                            } catch(star) {done=false; dump('star2 ERROR: ' + star + '\n');}
+                            if (!done) poster_link2.textContent += '*';
                             // dump('\nSTAR2\n');
                         }
                     }
@@ -402,6 +404,16 @@ var FoxtrickForumChangePosts = {
 
                     if (do_single_header && !do_single_header_allways) {
                       if (header.className == "cfHeader doubleLine") {	//dump('d'+String(header.offsetTop-header_right.offsetTop)+'\n');
+                        // dump(header.innerHTML);
+                        try {
+                            var line2 = header.getElementsByTagName('p')[0];
+                            if (line2 != null) line2.setAttribute('style', 'display:inline');
+                            var lineright = Foxtrick.getElementsByClass('float_right', header)[0];
+                            if (lineright != null) lineright.setAttribute('style', 'background-colorcolor:#999999');
+                        } catch(eline2) {
+                            dump('ERROR eline2: ' + eline2 + '\n');
+                        }
+                        
                         if (header.offsetTop-header_right.offsetTop < -3 ) {
                           if (do_truncate_nicks) {
                             var userName1 = poster_link1.innerHTML;
@@ -482,11 +494,6 @@ var FoxtrickForumChangePosts = {
                             try {
                                 wrapper.removeChild(user)
                             } catch(error_user){dump('ERROR userinforemove: ' + error_user + '\n')}
-                            
-                            
-                            
-                            
-
                             user = null;
                         }
                     }  //dump ('end hide user info \n');
