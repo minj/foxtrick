@@ -69,7 +69,7 @@ var FoxtrickColouredYouthFaces = {
     MODULE_NAME : "ColouredYouthFaces",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('YouthPlayer','YouthPlayers'), 
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	
     init : function() {
     },

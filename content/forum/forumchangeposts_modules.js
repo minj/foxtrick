@@ -21,7 +21,7 @@ var FoxtrickCopyPostID = {
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.7.5",
 	LASTEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("AddCopyIcon"), 
 	
 	init : function() {

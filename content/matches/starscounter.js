@@ -11,7 +11,7 @@ var FoxtrickStarsCounter = {
 	MODULE_NAME : "StarsCounter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('matchLineup'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	
 	init : function() {
     },
