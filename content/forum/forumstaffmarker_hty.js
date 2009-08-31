@@ -21,7 +21,6 @@ FoxtrickForumStaffMarker.hty_staff = new Array (
 'Wuber',
 'DjGiacomelli',
 'szpartak',
-'Toni1199',
 'ippeas',
 'Golatec',
 'Stalkers',
@@ -57,5 +56,7 @@ FoxtrickForumStaffMarker.hty_staff = new Array (
 'sey2744',
 'chembalo',
 'Mystic_Lolo',
-'snowsaint'
+'snowsaint',
+'ryuti',
+'glist'
 );
