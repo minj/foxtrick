@@ -28,7 +28,8 @@ FoxtrickFixcssProblems = {
 									"HideLeagueInForumHeader",
                                     "Highlight_Staff_On_All_Pages",
                                     "HideUnseenMatchesPanel",
-                                    "Forum_Spoiler_reveal"
+                                    "Forum_Spoiler_reveal",
+									"MatchReportRatingsFontFix"
                   
 								),
 	OPTIONS_CSS: new Array (
@@ -47,7 +48,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
                                 "chrome://foxtrick/content/resources/css/fixes/staffmarker.css",
                                 "chrome://foxtrick/content/resources/css/fixes/hideUnseenMatchesPanel.css",
-                                "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css"
+                                "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
+								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -65,7 +67,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/HideLeagueInForumHeader.css",
                                 "chrome://foxtrick/content/resources/css/fixes/staffmarker.css",
                                 "chrome://foxtrick/content/resources/css/fixes/hideUnseenMatchesPanel.css",
-                                "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css"
+                                "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
+								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css"
                                 ),
                                
     init : function() {
