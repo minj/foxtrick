@@ -16,7 +16,8 @@ var FoxtrickHideSignatures = {
     init : function() {
     },
 
-    run : function( page, doc ) { 
+    run : function( page, doc ) {
+        return;
 		var p = 0;
 		var elems = doc.getElementsByTagName("div");
 		for(var i=0; i < elems.length; i++) {

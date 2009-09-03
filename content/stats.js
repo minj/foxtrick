@@ -2985,6 +2985,7 @@ stats["nippontracker"] = {
 
 
 // global tracker
+/* links to sokker.org
 stats["u20_nt_tracker"] = { 
   "url" : "http://www.ant-db.net/index.php",
   "img" : "chrome://foxtrick/content/resources/linkicons/nt_tracker.png",
@@ -3005,6 +3006,7 @@ stats["u20_nt_tracker"] = {
 						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]], 
 };  // own tracker: exclude all above
+*/
 
 stats["htworld"] =  { 
     "title" : "HT-World NT/U20 tracker",
