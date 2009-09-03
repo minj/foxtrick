@@ -10,7 +10,7 @@ FoxtrickFixcssProblems = {
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Created function HideUnwatchedMatchesPanel, Option highlight in red new events on HTlive, Forum_ThreadlistSpace obsolte, HideFlags/Leaguelevel in forum and flickerfix for HeaderFix with Firefox 3.5 added, Spoiler reveal added",	
+	LASTEST_CHANGE:"Created function HideUnwatchedMatchesPanel, Option highlight in red new events on HTlive, Forum_ThreadlistSpace obsolte, HideFlags/Leaguelevel in forum and flickerfix for HeaderFix with Firefox 3.5 added, Spoiler reveal added, Match report ratings font fix added",	
 	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
