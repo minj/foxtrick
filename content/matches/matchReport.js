@@ -7,7 +7,7 @@ FoxtrickMatchReportFormat = {
 	MODULE_NAME : "MatchReportFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
 											 "#9F0202",  //Text Home team name   1
