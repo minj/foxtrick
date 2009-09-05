@@ -20,7 +20,7 @@ var FoxtrickForumStaffMarker = {
 											"background-color:white; color:green;", //LA
 											"background-color:green; color:white;", //CHPP
 											"background-color:green;", //editor
-											"background-color:#c3d9ff; color:black;", //foxtrick-dev
+											"background-color:white; color:#004DBF; background-image: url('chrome://foxtrick/content/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding-left: 18px; padding-right: 2px;", //foxtrick-dev
 											"background-color:#fed; color:black;", //chpps
 											"background-color:#38A32B; color:yellow; background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding-left: 18px; padding-right: 2px;", //hty_staff
 											"background-color:white; color:black;", //flag
@@ -268,7 +268,6 @@ var FoxtrickForumStaffMarker = {
 			"Homzik",
             "JAM3SoN",
 			"Jestar",
-			"kolmis",
 			"Foppe-",
 			"LA-Masterix",
 			"LA-csajszi",
@@ -282,7 +281,7 @@ var FoxtrickForumStaffMarker = {
 			"MOD-odris",
 			"Mod-spambot",
             "Mod-summercloud",
-            "Nanouk_HT33",
+            "GM-Nanouk",
 			"OBarros",
             "Piper_101",
 			"Pyntsa",
