@@ -4,7 +4,6 @@ FoxtrickForumStaffMarker.hty_staff = new Array (
 'Junyi',
 'Muh-Rinjo',
 'JBlond',
-'weazle',
 '-Jogi-',
 'Dat_Ei',
 'smekke1504',
