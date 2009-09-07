@@ -1221,7 +1221,7 @@ stats["advancedinjurycalc"] =  {
 
 
 stats["healingkawasaki"] =  { 
-        "url" : "http://club.hattrick.org/KawasakiTigers/default.asp?site=http://av.hattricknippon.org",
+        "url" : "http://av.hattricknippon.org",
 
         "playerhealinglink" : { "path"       : "",
                          "filters"    : [], 
@@ -1233,7 +1233,7 @@ stats["healingkawasaki"] =  {
 };
 
 stats["healingkawasaki2"] =  { 
-        "url" : "http://club.hattrick.org/KawasakiTigers/default.asp?site=http://av2.hattricknippon.org",
+        "url" : "http://av2.hattricknippon.org",
 
         "playerhealinglink" : { "path"       : "",
                          "filters"    : [], 
