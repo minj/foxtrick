@@ -67,7 +67,7 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.enabled", fa
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.YouthMatches.enabled", false );
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_FoxLink_Headers.enabled", false );
-pref( "extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", true );
+pref( "extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Header_Smallsize.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.MatchOrder_Lineheight.enabled", false );
@@ -82,7 +82,7 @@ pref( "extensions.foxtrick.prefs.module.FixcssProblems.HideLeagueInForumHeader.e
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Highlight_Staff_On_All_Pages.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.HideUnseenMatchesPanel.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Spoiler_reveal.enabled", false );
-pref( "extensions.foxtrick.prefs.module.FixcssProblems.MatchReportRatingsFontFix.enabled", true );
+pref( "extensions.foxtrick.prefs.module.FixcssProblems.MatchReportRatingsFontFix.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false );
 pref( "extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false );
