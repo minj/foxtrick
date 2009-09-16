@@ -72,7 +72,7 @@ pref( "extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabl
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Header_Smallsize.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.MatchOrder_Lineheight.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.RTL_Fixes.enabled", false );
-pref( "extensions.foxtrick.prefs.module.FixcssProblems.ForumScrollBarFix.enabled", true );
+pref( "extensions.foxtrick.prefs.module.FixcssProblems.ForumScrollBarFix.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.League_Table.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Guestbook.enabled", false );
