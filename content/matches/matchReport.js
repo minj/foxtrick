@@ -119,8 +119,8 @@ FoxtrickMatchReportFormat = {
             }
         }
 
-        var div_inner = Foxtrick.getElementsByClass('', div)[2];
-        if (!supporter) div_inner = Foxtrick.getElementsByClass('', div)[1];
+        var div_inner = Foxtrick.getElementsByClass('', div)[3];
+        if (!supporter) div_inner = Foxtrick.getElementsByClass('', div)[2];
         // dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
