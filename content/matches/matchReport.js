@@ -8,6 +8,8 @@ FoxtrickMatchReportFormat = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.4.8.9",
+	LASTEST_CHANGE:"BugFix after HT Update 16.09.2009",	
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
 											 "#9F0202",  //Text Home team name   1
