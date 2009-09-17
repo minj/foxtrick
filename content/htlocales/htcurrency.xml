@@ -27,7 +27,7 @@
 	<currency code="BOB" shortname="Bs" name="Bs (Bolivian boliviano)" eurorate="0.1" />
 	<currency code="BAM" shortname="Marka" name="Marka (Bosnia and Herzegovina mark)" eurorate="0.5" />
 	<currency code="BGN" shortname="лв" name="лв (Bulgarian lev)" eurorate="0.5" />
-	<currency code="BYR" shortname="Br" name="Br (Belarusian ruble)" eurorate="0.5" />
+	<currency code="BYR" shortname="BYR" name="BYR (Belarusian ruble)" eurorate="0.5" />
 	<currency code="CVE" shortname="Escudos" name="Escudos (Cape Verdean escudo)" eurorate="0.01" />
 	<currency code="CLP" shortname="Pesos" name="Pesos (Chilean peso)" eurorate="5" />
 	<currency code="CNY" shortname="CN$" name="CN$ (Chinese yuan)" eurorate="0.1" />
