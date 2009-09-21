@@ -125,12 +125,13 @@ var FoxtrickAddLeaveConfButton = {
             var a = folderHeader.getElementsByTagName("a");
 			
 			if( a != null ) {
-				link = (vValue==0) ? a[1] : a[0];
+				link = a[a.length-1];
 			}
+			//dump('=> link: ' + link + '\n');
 			if (link == null || link.lastChild == null || link.lastChild.data == null || link.innerHTML == null) return;
             
             var confName = Foxtrick.trim( link.lastChild.data );
-            // dump('=> confName: ' + confName +'\n');
+            //dump('=> confName: ' + confName +'\n');
             
             var leaveConf = doc.createElement("div");
             leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
