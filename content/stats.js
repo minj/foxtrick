@@ -864,27 +864,28 @@ stats["htstats_all"] =  {
 };
 
 
-// Vnukstats
+// VnukStats
 
 stats["vnukstats"] =  { 
         "url" : "http://vnukstats.hattrick-sk.com/",
 
-        "leaguelink" : { "path"       : "?pg=table",
+        "leaguelink" : { "path"       : "league/details/",
                          "filters"    : ["countryid"], 
-                         "params"     : { "leagueid" : "leagueID" }
+                         "params"     : { "leagueid" : "" }
                        },
 
-       /* "playerlink" : { "path"       : "?page=showplayer",
-                         "filters"    : ["teamid"], 
-                         "params"     : { "playerid" : "plid" }
-                       },*/
-        "teamlink" : { "path"       : "?pg=teamDetails",
+        "teamlink" : { "path"       : "team/details/",
                          "filters"    : ["countryid"], 
-                         "params"     : { "teamid" : "teamID" }
+                         "params"     : { "teamid" : "" }
                        },
+        "countrylink" : { "path"       : "top-series/default/",
+                         "filters"    : [], 
+                         "params"     : { "countryid" : "" }
+                       },             
+
 
         "countryidranges" : [[52, 52],[67, 67]],  // CZ+SK
-        "title" : "Vnukstats",
+        "title" : "VnukStats",
         "img" : "chrome://foxtrick/content/resources/linkicons/vnukstats.png"
 };    
 
