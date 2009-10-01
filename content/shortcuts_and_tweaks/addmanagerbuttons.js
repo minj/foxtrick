@@ -96,7 +96,7 @@ var FoxtrickAddManagerButtons = {
 		}
 		var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
 		var username = Foxtrick.trim(h1inner.replace(/\<.+\>|\(.+\)| /gi,''));				
-		var official = (username.indexOf('Mod-') == 0 || username.indexOf('GM-') == 0 || username.indexOf('LA-') == 0 || username.indexOf('HT-') == 0)
+		var official = (username.toLowerCase().indexOf('mod-') == 0 || username.toLowerCase().indexOf('gm-') == 0 || username.toLowerCase().indexOf('la-') == 0 || username.toLowerCase().indexOf('ht-') == 0 || username.toLowerCase().indexOf('chpp-') == 0)
         // dump('\nOFFI: ' + official+'\n');
 		//Do not add send message button for owner manager page. - Stephan57
 		if ( ownerID==teamID ) return;
