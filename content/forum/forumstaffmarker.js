@@ -444,6 +444,12 @@ var FoxtrickForumStaffMarker = {
                     if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1) continue;
                     if (a.getAttribute("href").search(/redir_to_league=true/i) != -1) continue;
                     var uname = Foxtrick.trim(a.textContent);
+                    //Workarround for supporter star
+                    if (uname.lastIndexOf('*') == uname.length-1) {
+                        // dump (uname + '\n');
+                        // dump (uname.substring(0,uname.length-1) + '\n');
+                        uname = uname.substring(0,uname.length-1);
+                    }
 					var uid = a.href.replace(/.+userId=/i, "").match(/^\d+/);
 
 					// earlier overwrites later. 
