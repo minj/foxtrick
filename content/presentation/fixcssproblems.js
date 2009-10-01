@@ -30,7 +30,8 @@ FoxtrickFixcssProblems = {
                                     "HideUnseenMatchesPanel",
                                     "Forum_Spoiler_reveal",
 									"MatchReportRatingsFontFix",
-                                    "HideAchievementsIcons"
+                                    "HideAchievementsIcons",
+									"BotHighlight"
                   
 								),
 	OPTIONS_CSS: new Array (
@@ -51,7 +52,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/hideUnseenMatchesPanel.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
-								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css"
+								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
+								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -71,7 +73,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/hideUnseenMatchesPanel.css",
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
-								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css"
+								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
+								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css"
                                 ),
                                
     init : function() {
