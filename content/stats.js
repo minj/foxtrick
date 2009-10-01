@@ -876,6 +876,20 @@ stats["htstats_all"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htstats.png"        
 };
 
+stats["htms_stats"] =  {  
+        "url" : "http://www.fantamondi.it/HTMS/index.php?page=predictor",
+        "playedmatchlink" : { "path"       : "",
+                         "filters"    : [], 
+                         "paramfunction" : function(params) {
+							var lang=FoxtrickPrefs.getString("htLanguage"); 
+                            if (lang!='it') lang='en';
+                            return "&lang=" + lang;
+							}
+						 }, 
+        "title" : "htms predictor",
+        "img" : "chrome://foxtrick/content/resources/linkicons/htms.png"        
+};
+
 
 // VnukStats
 

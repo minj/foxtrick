@@ -50,6 +50,7 @@ Foxtrick.modules = [
                     FoxtrickMatchReportFormat,  // ** new **
                     FoxtrickMatchPlayerColouring,                     
                     Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
+					Foxtrick.htmsStatistics, // htmsStatistics should be placed before Ratings
                     Foxtrick.Ratings,
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
@@ -132,6 +133,7 @@ Foxtrick.modules = [
                     FoxtrickYouthPromotes,   //new
                     FoxtrickCountyList, // new
                     FoxtrickMatchOrderColoring, // new
+					
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
 					];
 
