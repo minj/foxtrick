@@ -11,8 +11,8 @@ var FoxtrickAddManagerButtons = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('managerPage','teamPage','youthoverview'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8",
-	LASTEST_CHANGE:"Fixed sendmessages on youthoverview page",
+	NEW_AFTER_VERSION: "0.4.9",
+	LASTEST_CHANGE:"Added infotext to staff pages",
 	
 
     init : function() {
@@ -95,8 +95,9 @@ var FoxtrickAddManagerButtons = {
 			
 		}
 		var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
-		var username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');				
-		
+		var username = Foxtrick.trim(h1inner.replace(/\<.+\>|\(.+\)| /gi,''));				
+		var official = (username.indexOf('Mod-') == 0 || username.indexOf('GM-') == 0 || username.indexOf('LA-') == 0 || username.indexOf('HT-') == 0)
+        // dump('\nOFFI: ' + official+'\n');
 		//Do not add send message button for owner manager page. - Stephan57
 		if ( ownerID==teamID ) return;
 		
@@ -138,7 +139,14 @@ var FoxtrickAddManagerButtons = {
 			
 			parentDiv.appendChild(guestbookLink);
 		}
-		
+        if (official) {
+            var infobox  = doc.createElement("div");
+            infobox.style.color = "red";
+            infobox.style.padding = "2px";
+            infobox.innerHTML = "Please note that all staff issues and questions must be sent via the contact form in the <a class='inner' href='/Help/Contact.aspx'>staff pages</a>. The internal mail system is <b>not</b> to be used for staff related issues.";
+            parentDiv.appendChild(infobox);
+        }
+
 		// Append the box to the sidebar
 		var newBoxId = "foxtrick_actions_box";
 		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
