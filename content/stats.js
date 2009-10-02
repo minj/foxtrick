@@ -878,7 +878,7 @@ stats["htstats_all"] =  {
 
 stats["htms_stats"] =  {  
         "url" : "http://www.fantamondi.it/HTMS/index.php?page=predictor",
-        "playedmatchlink" : { "path"       : "",
+        "nextmatchlink" : { "path"       : "",
                          "filters"    : [], 
                          "paramfunction" : function(params) {
 							var lang=FoxtrickPrefs.getString("htLanguage"); 
