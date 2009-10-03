@@ -675,18 +675,17 @@ stats["xray_coach"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/xray_coach.png"
 };
 
-// hattrick challenge tool
-
-stats["hattrick_friendlier"] =  { 
+// hattrick challenge
+stats["hattrickchallenge_friendly"] =  { 
         "url" : "http://www.hattrickchallenge.com/Tools/FriendlyAds.php",
 
         "challengeslink" : { "path"       : "?teamid=",
                          "filters"    : [], 
-                         "params"     : { "ownteamid" : ""}
+                         "params"     : { "teamid" : ""}
                        },
         
-        "title" : "hattrick challenge tool",
-        "img" : "chrome://foxtrick/content/resources/linkicons/favicon_ht_challenge.png"
+        "title" : "HattrickChallenge Friendly ads",
+        "img" : "chrome://foxtrick/content/resources/linkicons/hattrickchallenge_main.png"
 };
 
 // hattriX-Ray HTPE

@@ -19,8 +19,14 @@ var FoxtrickLinksChallenges = {
 
     run : function( page, doc ) {
 
+			var alldivs = doc.getElementsByTagName('div');
+			for (var j = 0; j < alldivs.length; j++) {
+				if (alldivs[j].className=="main mainRegular") {
+					var teaminfo = this.gatherLinks( alldivs[j], doc ); 
+        }
+      }
 		//addExternalLinksToChallengesDetail
-        var links = Foxtrick.LinkCollection.getLinks("challengeslink", {  }, doc, this);  
+        var links = Foxtrick.LinkCollection.getLinks("challengeslink", teaminfo, doc, this);  
 		var ownBoxBody=null;
 
 		if (links.length > 0) {
@@ -49,4 +55,11 @@ var FoxtrickLinksChallenges = {
 			this.run( page, doc );
 		}
 	},
+	
+		gatherLinks : function( thisdiv, doc ) {
+	try{
+  		var teamid = FoxtrickHelper.findTeamId(thisdiv);
+		return { "teamid": teamid};
+	} catch(e){ dump ('LinksTeam->gatherLinks: '+e+'\n');}
+  }
 };
