@@ -32,7 +32,7 @@ var FoxtrickLinksManager = {
 		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
 
 		var h1 = mainBody.getElementsByTagName('h1')[0];
-		var username = h1.innerHTML.replace(/\(.+/,'').replace(/<.+>/g,'').replace(/^\s+/,'').replace(/\s+$/,'');;
+		var username = h1.innerHTML.replace(/<.+>/g,'').replace(/^\s+/,'').replace(/\s+$/,'').replace(/\(.+/,'').replace(/\s+$/g, '');
 	
 		var links = Foxtrick.LinkCollection.getLinks("managerlink", { "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
 												"leagueid" : leagueid ,"owncountryid":owncountryid  }, doc, this);  
