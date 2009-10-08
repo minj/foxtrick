@@ -688,6 +688,29 @@ stats["hattrickchallenge_friendly"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrickchallenge_main.png"
 };
 
+// hattrick challenge
+stats["hattrickchallenge"] =  { 
+        "url" : "http://www.hattrickchallenge.com/",
+
+        "teamlink" : { "path"       : "Tools/MyTeam.php?",
+                         "filters"    : [], 
+                         "params"     : { "teamid" : "teamid"}
+                       },
+        "countrylink" : { "path"       : "Challenge/index.php",
+                       "filters"    : [], 
+                       "params"     : { "countryid" : "countryid" }
+                     },
+
+        "leaguelink" : { "path"       : "Tools/SeriePredict.php",
+                         "filters"    : [], 
+                         "params"     : { }
+                       },
+     
+        "title" : "HattrickChallenge",
+        "img" : "chrome://foxtrick/content/resources/linkicons/hattrickchallenge_main.png"
+};
+
+
 // hattriX-Ray HTPE
 stats["HTPE"] =  { 
         "url" : "http://www.databased.at/hattrick/htpe/",
