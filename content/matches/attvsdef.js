@@ -23,8 +23,7 @@ Foxtrick.AttVsDef = {
 			if (ratingstable == null) return;
 			if (Foxtrick.Matches._isWalkOver(ratingstable)) return;
 			
-			var header = Foxtrickl10n.getString( 
-				"foxtrick.matches.attackdefensebars" );
+			var header = Foxtrickl10n.getString("foxtrick.matches.attackdefensebars" );
 			var boxId = "foxtrick_attvsdefbars_box";
 
 			var bodydiv=doc.createElement('div');
@@ -47,7 +46,7 @@ Foxtrick.AttVsDef = {
 			if (Foxtrick.isStandardLayout(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
 			
 		} catch (e) {
-			dump('attvsdef.js run: '+e+"\n");
+			Foxtrick.LOG('attvsdef.js run: '+e+"\n");
 		}
 
 	},
@@ -132,10 +131,17 @@ Foxtrick.AttVsDef = {
 	_newStyleBars: function (doc, ratingstable, bodydiv) {
 		var sidebar = doc.getElementById("sidebar");
 		var percentArray=this._getPercentArray(doc, ratingstable);
-		var strangediv=sidebar.childNodes[7].childNodes[1].childNodes[7];
+		var balldivnumber=7;
+		if (FoxtrickHelper.findIsYouthMatch(doc.location.href)) {
+			balldivnumber=5; //youth haven't the kit div
+		}
+		
+		var strangediv=sidebar.childNodes[balldivnumber].childNodes[1].childNodes[7];
+		//Foxtrick.LOG(sidebar.childNodes[balldivnumber].childNodes[1].innerHTML);
+		
 		if (strangediv) {}
 		else {
-			strangediv=sidebar.childNodes[7].childNodes[8];
+			strangediv=sidebar.childNodes[balldivnumber].childNodes[8];
 		}
 		var rdefText = Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
 		var lattText = Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
