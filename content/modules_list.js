@@ -50,8 +50,8 @@ Foxtrick.modules = [
                     FoxtrickMatchReportFormat,  // ** new **
                     FoxtrickMatchPlayerColouring,                     
                     Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
-					Foxtrick.htmsStatistics, // htmsStatistics should be placed before Ratings
                     Foxtrick.Ratings,
+					Foxtrick.htmsStatistics, // htmsStatistics should be placed after Ratings
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
                     FoxtrickHideFaceTransferImages,

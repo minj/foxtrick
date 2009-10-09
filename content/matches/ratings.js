@@ -20,7 +20,7 @@ Foxtrick.Ratings = {
 	},
 
 	run : function( page, doc ) { 
-		try {  
+		try {
 			var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
 			if (isprematch) return;
 			
@@ -113,7 +113,7 @@ Foxtrick.Ratings = {
 				}
 			}
 		} catch (e) {
-			dump('ratings.js run: '+e+"\n");
+			Foxtrick.LOG('ratings.js run: '+e+"\n");
 		}
 
 	},
