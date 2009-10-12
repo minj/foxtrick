@@ -677,7 +677,7 @@ stats["xray_coach"] =  {
 
 // hattrick challenge
 stats["hattrickchallenge_friendly"] =  { 
-        "url" : "http://www.hattrickchallenge.com/Tools/FriendlyAds.php",
+        "url" : "http://www.hattrickchallenge.com/Tools/Friendly.php",
 
         "challengeslink" : { "path"       : "?teamid=",
                          "filters"    : [], 
