@@ -127,10 +127,13 @@ var FoxtrickCountyList = {
 	},
     
     _placeCountry: function (page, doc) {
-        var league = Foxtrick.getElementsByClass("flag inner", doc)[0];
-        if (!league) return;
-        var byline = Foxtrick.getElementsByClass("byline", doc)[0];
-        byline.innerHTML += '(<a href="'+league.href+'">' + league.firstChild.title + '</a>)';
+        var cntr = doc.getElementById( 'ft_cntr_fix' );
+		if( cntr == null ) {
+            var league = Foxtrick.getElementsByClass("flag inner", doc)[0];
+            if (!league) return;
+            var byline = Foxtrick.getElementsByClass("byline", doc)[0];
+            byline.innerHTML = '<a id="ft_cntr_fix" href="'+league.href+'">' + league.firstChild.title + '</a>,' + byline.innerHTML;
+        }
     },
     
     _changelist: function (page, doc, id, start) {
