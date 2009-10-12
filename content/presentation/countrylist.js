@@ -11,11 +11,11 @@ var FoxtrickCountyList = {
     PAGES : new Array ( 'country', 'transferListSearchForm', 'ads', 'press', 
                         'statsTransfersBuyers', 'statsTeams', 'statsPlayers', 
                         'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
-                        'trainingStats', 'teamPage', 'teamPageBrowser'
+                        'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage'
                         ),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
-    OPTIONS :  new Array("SelectBoxes","TeamPage", "HideFlagOntop"),
+    OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.4.9",
 	LASTEST_CHANGE:"Added the country link as textlink to the team page",
 	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -90,6 +90,14 @@ var FoxtrickCountyList = {
                 break;
 
                 case 'teamPageBrowser' :
+                    this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                break;
+            }
+        }
+
+        if (Foxtrick.isModuleFeatureEnabled( this, "ManagerPage")) {
+            switch (page) {
+                case 'managerPage' :
                     this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
                 break;
             }
