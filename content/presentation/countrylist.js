@@ -15,6 +15,7 @@ var FoxtrickCountyList = {
                         ),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
+    OPTIONS :  new Array("SelectBoxes","TeamPage"),
 	NEW_AFTER_VERSION: "0.4.9",
 	LASTEST_CHANGE:"Added the country link as textlink to the team page",
 	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -29,64 +30,71 @@ var FoxtrickCountyList = {
 		if( list != null ) return;
 
         var id = 'ctl00_CPMain_ddlZone';
-        switch (page) {
-            case 'transferListSearchForm' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlZone', 10);
-                this._changelist(page, doc, 'ctl00_CPMain_ddlBornIn', 1);
-            break;
+        if (Foxtrick.isModuleFeatureEnabled( this, "SelectBoxes")) {
+            switch (page) {
+                case 'transferListSearchForm' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlZone', 10);
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlBornIn', 1);
+                break;
 
-            case 'country' :
-                this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
-            break;
+                case 'country' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+                break;
 
-            case 'ads' :
-                this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
-            break;
+                case 'ads' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+                break;
 
-            case 'press' :
-                this._changelist(page, doc, 'ctl00_CPSidebar_ucLeagues2_ddlLeagues', 1);
-            break;
+                case 'press' :
+                    this._changelist(page, doc, 'ctl00_CPSidebar_ucLeagues2_ddlLeagues', 1);
+                break;
 
-            case 'statsTransfersBuyers' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
-            break;
+                case 'statsTransfersBuyers' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                break;
 
-            case 'statsTeams' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
-            break;
- 
-            case 'statsPlayers' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
-            break;
- 
-            case 'statsRegions' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
-            break;
- 
-            case 'statsNationalTeams' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
-            break;
- 
-            case 'statsConfs' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
-            break;
- 
-            case 'statsBookmarks' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
-            break;
- 
-            case 'trainingStats' :
-                this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
-            break;
-
-            case 'teamPage' :
-                this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
-            break;
-
-            case 'teamPageBrowser' :
-                this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
-            break;
+                case 'statsTeams' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                break;
+     
+                case 'statsPlayers' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                break;
+     
+                case 'statsRegions' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                break;
+     
+                case 'statsNationalTeams' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                break;
+     
+                case 'statsConfs' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                break;
+     
+                case 'statsBookmarks' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                break;
+     
+                case 'trainingStats' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                break;
+            }
         }
+        
+        if (Foxtrick.isModuleFeatureEnabled( this, "TeamPage")) {
+            switch (page) {
+                case 'teamPage' :
+                    this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                break;
+
+                case 'teamPageBrowser' :
+                    this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                break;
+            }
+        }
+        
 	},
 
 	change : function( page, doc ) {
