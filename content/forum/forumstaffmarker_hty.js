@@ -13,7 +13,6 @@ FoxtrickForumStaffMarker.hty_staff = new Array (
 'Bounce',
 'Pablo_Barollo',
 'kizych_FBS',
-'rajto',
 'Max_Schreck',
 'kobie',
 'seemas',
