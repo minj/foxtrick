@@ -59,6 +59,7 @@ YouthSkillTable=http://foxtrick.foundationhorizont.org/YouthSkillTable.html
 BackgroundFixed=http://foxtrick.foundationhorizont.org/BackgroundFixed.html
 ColouredYouthFaces=http://foxtrick.foundationhorizont.org/ColouredYouthFaces.html
 CountryList.HideFlagOntop=http://foxtrick.foundationhorizont.org/CountryList_HideFlagOntop.html
+CountryList.ManagerPage=http://foxtrick.foundationhorizont.org/CountryList_ManagerPage.html
 CountryList.SelectBoxes=http://foxtrick.foundationhorizont.org/CountryList_SelectBoxes.html
 CountryList.TeamPage=http://foxtrick.foundationhorizont.org/CountryList_TeamPage.html
 CustomMedals=http://foxtrick.foundationhorizont.org/CustomMedals.html
