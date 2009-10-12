@@ -56,6 +56,7 @@ Foxtrick.ht_pages = {
     'transferListSearchForm'    : '\/World\/Transfers\/',
     'transferListSearchResult'  : '\/World\/Transfers\/TransfersSearchResult.aspx',
     'teamPage'                  : '\/Club\/$|\/Club\/.TeamID=',
+    'teamPageBrowser'           : '\/Club\/default.aspx',
     'teamPageGeneral'           : '\/Club\/|\/World\/Series\/',
     'oldseries'                 : '\/World\/Series\/OldSeries\.aspx',
     'marathon'                  : '\/World\/Series\/Marathon\.aspx',

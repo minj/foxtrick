@@ -1,6 +1,6 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-.achievementBadge{
+.achievementBadge, .achievementShelfBadge{
     display:none;
 }
 

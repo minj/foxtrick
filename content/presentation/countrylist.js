@@ -11,12 +11,12 @@ var FoxtrickCountyList = {
     PAGES : new Array ( 'country', 'transferListSearchForm', 'ads', 'press', 
                         'statsTransfersBuyers', 'statsTeams', 'statsPlayers', 
                         'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
-                        'trainingStats'
+                        'trainingStats', 'teamPage', 'teamPageBrowser'
                         ),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"possibility to display country names by their original name",
+	NEW_AFTER_VERSION: "0.4.9",
+	LASTEST_CHANGE:"Added the country link as textlink to the team page",
 	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
@@ -78,6 +78,14 @@ var FoxtrickCountyList = {
             case 'trainingStats' :
                 this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
             break;
+
+            case 'teamPage' :
+                this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+            break;
+
+            case 'teamPageBrowser' :
+                this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+            break;
         }
 	},
 
@@ -109,7 +117,14 @@ var FoxtrickCountyList = {
 		}
 		return doc;
 	},
-
+    
+    _placeCountry: function (page, doc) {
+        var league = Foxtrick.getElementsByClass("flag inner", doc)[0];
+        if (!league) return;
+        var byline = Foxtrick.getElementsByClass("byline", doc)[0];
+        byline.innerHTML += '(<a href="'+league.href+'">' + league.firstChild.title + '</a>)';
+    },
+    
     _changelist: function (page, doc, id, start) {
         var selectbox = doc.getElementById(id);
         if (selectbox == null) return;
