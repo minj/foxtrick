@@ -15,7 +15,7 @@ var FoxtrickCountyList = {
                         ),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
-    OPTIONS :  new Array("SelectBoxes","TeamPage"),
+    OPTIONS :  new Array("SelectBoxes","TeamPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.4.9",
 	LASTEST_CHANGE:"Added the country link as textlink to the team page",
 	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -131,6 +131,9 @@ var FoxtrickCountyList = {
 		if( cntr == null ) {
             var league = Foxtrick.getElementsByClass("flag inner", doc)[0];
             if (!league) return;
+            if (Foxtrick.isModuleFeatureEnabled( this, "HideFlagOntop")) {
+                league.setAttribute('style', 'display:none');
+            }
             var byline = Foxtrick.getElementsByClass("byline", doc)[0];
             byline.innerHTML = '<a id="ft_cntr_fix" href="'+league.href+'">' + league.firstChild.title + '</a>,' + byline.innerHTML;
         }
