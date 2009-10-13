@@ -475,6 +475,9 @@ var FoxtrickForumStaffMarker = {
                     } else if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
                          a.setAttribute("style", this.stl_foxtrick_dev);
                     }
+                    if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
+                        if (do_MOD && this.modreg.test(uname)) a.setAttribute("style", this.stl_MOD + this.stl_foxtrick_dev)
+                    }
                 }
             }
         }

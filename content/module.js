@@ -88,6 +88,7 @@ Foxtrick.ht_pages = {
 	'statsNationalTeams'        : '\/World\/Stats\/StatsNationalTeams.aspx',
 	'statsConfs'                : '\/World\/Stats\/StatsConfs.aspx',
 	'statsBookmarks'            : '\/World\/Stats\/StatsBookmarks.aspx',
+	'statsArena'                : '\/World\/Stats\/StatsArena.aspx',
     'press'                     : '\/Community\/Press\/',
     'all_late'                  : '\/',
 

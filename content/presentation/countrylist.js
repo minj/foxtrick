@@ -11,7 +11,7 @@ var FoxtrickCountyList = {
     PAGES : new Array ( 'country', 'transferListSearchForm', 'ads', 'press', 
                         'statsTransfersBuyers', 'statsTeams', 'statsPlayers', 
                         'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
-                        'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage'
+                        'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena'
                         ),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
@@ -28,8 +28,6 @@ var FoxtrickCountyList = {
 	run : function( page, doc ) {
 		var list = doc.getElementById( 'ft_countrylist' );
 		if( list != null ) return;
-
-        var id = 'ctl00_CPMain_ddlZone';
         if (Foxtrick.isModuleFeatureEnabled( this, "SelectBoxes")) {
             switch (page) {
                 case 'transferListSearchForm' :
@@ -80,6 +78,12 @@ var FoxtrickCountyList = {
                 case 'trainingStats' :
                     this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
                 break;
+
+                case 'statsArena' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+                break;
+                
+                
             }
         }
         
