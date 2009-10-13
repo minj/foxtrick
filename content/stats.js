@@ -991,7 +991,7 @@ stats["ekonomer"] =  {
 
         "economylink" : { "path"       : "",
                          "filters"    : ["owncountryid"], 
-                         "params"     : {"Cash" : "resultat","kassa" : "kassa", "newCash" : "newCash"} 
+                         "params"     : {"newCash" : "resultat","" : "kassa=0"} 
                        },
 		"owncountryidranges" : [[1, 1]], 
         "title" : "Ekonomkalkylatorn",   
