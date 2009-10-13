@@ -22,7 +22,7 @@ var FoxtrickLinksEconomy = {
 		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
 		
 		//addExternalLinksToEconomyDetail
-		var Cash=0;
+		var Cash=0, newCash=1;
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
@@ -32,6 +32,9 @@ var FoxtrickLinksEconomy = {
 				tmp.innerHTML=FoxtrickPrefs.getString("oldCurrencySymbol");
         		var last1=content.indexOf(tmp.innerHTML);
 				Cash=Foxtrick.trimnum(content.substring(0,last1));
+        		var last2=content.lastIndexOf(tmp.innerHTML);
+				newCash=Foxtrick.trimnum(content.substring(last1,last2));
+                dump(Cash + ' - ' + newCash + '\n');
         		break;
 			}
 		}
@@ -40,7 +43,7 @@ var FoxtrickLinksEconomy = {
 			Cash*=FoxtrickPrefs.getString("currencyRate");
 			CurrCode="EUR";
 		}*/
-		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);  
+		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);  
 		var ownBoxBody=null
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
