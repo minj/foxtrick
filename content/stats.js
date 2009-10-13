@@ -1202,7 +1202,7 @@ stats["maptrick_botmap"] =  {
 
 // HT-Dog
 stats["ht-dog"] =  { 
-        "url" : "http://mikehell.kicks-ass.net/ht-dog/index.jsp",
+        "url" : "http://mikehell.kicks-ass.net/ht-dog/",
 
         "teamlink" : { "path"       : "",
                          "filters"    : [], 
