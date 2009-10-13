@@ -475,9 +475,6 @@ var FoxtrickForumStaffMarker = {
                     } else if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
                          a.setAttribute("style", this.stl_foxtrick_dev);
                     }
-                    if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
-                        if (do_MOD && this.modreg.test(uname)) a.setAttribute("style", this.stl_MOD + this.stl_foxtrick_dev)
-                    }
                 }
             }
         }
@@ -543,7 +540,6 @@ var FoxtrickForumStaffMarker = {
                         if (do_flag) {
                             new_style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif");  background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
                         }
-
                         option.setAttribute("style", new_style);
                     }
                 }
