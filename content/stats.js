@@ -1338,12 +1338,12 @@ stats["htbox_training"] =  {
 stats["Training_Team_Evaluation"] =  { 
         "url" : "http://www.adrianomm.site88.net/",
 
-        "playerlink" : { "path"       : "index.php",
+        "playerlink" : { "path"       : "playertraining.php?PlayerId=",
                          "filters"    : [], 
-                        "params"     : []
+                        "params"     :  {"playerid" : "" }
                         },
         
-		"traininglink" : { "path"       : "index.php",
+		"traininglink" : { "path"       : "playertraining.php",
                          "filters"    : [], 
                          "params"     : []
 						},
