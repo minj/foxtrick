@@ -1335,6 +1335,22 @@ stats["htbox_training"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htbox_train.png"
 };
 
+stats["Training_Team_Evaluation"] =  { 
+        "url" : "http://www.adrianomm.site88.net/",
+
+        "playerlink" : { "path"       : "index.php",
+                         "filters"    : [], 
+                        "params"     : []
+                        },
+        
+		"traininglink" : { "path"       : "index.php",
+                         "filters"    : [], 
+                         "params"     : []
+						},
+        "title" : "Training Team Evaluation",
+        "img" : "chrome://foxtrick/content/resources/linkicons/training_evaluation.png"
+};
+
 
 stats["ht-u20"] =  { 
         "url" : "http://age.ht-u20.com/",
