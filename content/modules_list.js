@@ -31,7 +31,7 @@ Foxtrick.modules = [
                     FoxtrickCopyTrainingReport,
                     FoxtrickCopyScoutReport,
                     FoxtrickCopyPostID,
-                    FoxtrickForumStaffMarker,
+                    FoxtrickStaffMarker,
                     FoxtrickHTThreadMarker,
                     FoxtrickMedianTransferPrice,
                     FoxtrickYouthSkillNotes,
