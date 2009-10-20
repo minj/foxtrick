@@ -1360,9 +1360,10 @@ stats["Wage_Reduction_Calculator"] =  {
                          "filters"    : ["age"], 
                         "params"     :  {"age" : "age",
 										 "wage" : "wage",
-										 "wagebonus" : "wagebonus"
+										 "wagebonus" : "wagebonus" 
 										}
-                        },
+                       },
+					   
 		"ageranges" : [[28, 99]],
         "title" : "Wage Reduction Calculator",
         "img" : "chrome://foxtrick/content/resources/linkicons/wagereduction.png"
@@ -1419,16 +1420,25 @@ stats["coachexperience"] =  {
 };
 
 
-stats["camelmaster_economists"] =  { 
-        "url" : "http://www.dulovic.com/fun/hattrick/economists.php",
+stats["nrgjack_accountant_tool"] =  { 
+        "url" : "http://nrgjack.altervista.org/",
 
-        "economylink" : { "path"       : "",
+        "economylink" : { "path"       : "accountant.php",
                          "filters"    : [], 
-                         "params"     : []
+                          //"params"     : {"Cash" : "money","Currency":"Currency"}
+						 "paramfunction" : function(params) {
+							var Cash=params["Cash"];
+							var CurrCode=params["Currency"];
+                            if (CurrCode!="EUR"){
+								Cash=Math.round(Cash*FoxtrickPrefs.getString("currencyRate"));
+								CurrCode="EUR";
+							}
+                            return "?money=" + Cash;                                                        
+						 } 
                        },
         
-        "title" : "Camelmasters Economist Tool",
-        "img" : "chrome://foxtrick/content/resources/linkicons/camelmasters.png"
+        "title" : "NrgJack Accountant Tool",
+        "img" : "chrome://foxtrick/content/resources/linkicons/nrgjackeconomists.png"
 };    
 
 stats["htlinks_economists"] =  { 
