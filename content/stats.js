@@ -1335,6 +1335,7 @@ stats["htbox_training"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/htbox_train.png"
 };
 
+//Training Team Evaluation
 stats["Training_Team_Evaluation"] =  { 
         "url" : "http://www.adrianomm.site88.net/",
 
@@ -1351,6 +1352,21 @@ stats["Training_Team_Evaluation"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/training_evaluation.png"
 };
 
+//NrgJack Wage Reduction Calculator
+stats["Wage_Reduction_Calculator"] =  { 
+        "url" : "http://www.nrgjack.altervista.org/",
+
+        "playerlink" : { "path"       : "wagereduction.php",
+                         "filters"    : ["age"], 
+                        "params"     :  {"age" : "age",
+										 "wage" : "wage",
+										 "wagebonus" : "wagebonus"
+										}
+                        },
+		"ageranges" : [[28, 99]],
+        "title" : "Wage Reduction Calculator",
+        "img" : "chrome://foxtrick/content/resources/linkicons/wagereduction.png"
+};
 
 stats["ht-u20"] =  { 
         "url" : "http://age.ht-u20.com/",
