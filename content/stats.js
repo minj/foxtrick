@@ -1358,10 +1358,22 @@ stats["Wage_Reduction_Calculator"] =  {
 
         "playerlink" : { "path"       : "wagereduction.php",
                          "filters"    : ["age"], 
-                        "params"     :  {"age" : "age",
+                        /*"params"     :  {"age" : "age",
 										 "wage" : "wage",
 										 "wagebonus" : "wagebonus" 
-										}
+										}*/
+						 "paramfunction" : function(params) {
+							var wage=params["wage"];
+							var wagebonus=params["wagebonus"];
+							var age=params["age"];
+							var CurrCode=params["Currency"];
+                            if (CurrCode!="EUR"){
+								wage=Math.round(wage*FoxtrickPrefs.getString("currencyRate"));
+								wagebonus=Math.round(wagebonus*FoxtrickPrefs.getString("currencyRate"));
+								age=Math.round(age);
+							}
+                            return "?wage=" + wage + "&wagebonus=" + wagebonus + "&age=" + age;                                                        
+						 }
                        },
 					   
 		"ageranges" : [[28, 99]],
