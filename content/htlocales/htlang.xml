@@ -1252,4 +1252,57 @@
         </tactics>
     </language>	
 
+	<language name="zh_CN" desc="简体中文">
+    <!-- rating sublevels appearing in match detail page -->
+        <ratingSubLevels>
+            <sublevel text="(非常低)" value="0.0" />
+            <sublevel text="(低)" value="0.25"  />
+            <sublevel text="(高)" value="0.50"  />
+            <sublevel text="(非常高)" value="0.75"  />
+        </ratingSubLevels>
+        <!-- tactics appearing in match detail page -->
+        <tactics>
+            <tactic type="normal" value="正常" />
+            <tactic type="pressing" value="全场压迫" />
+            <tactic type="ca" value="防守反击" />
+            <tactic type="aow" value="边路进攻" />
+            <tactic type="aim" value="中路进攻" />
+            <tactic type="creatively" value="无限创意" />
+            <tactic type="longshots" value="远射" />
+        </tactics>
+        <!-- repositioning word connections appearing in match lineup page -->
+        <repositioning>
+            <reposition type="midfielder" value="额外 中前卫" />
+            <reposition type="centraldefender" value="额外 中后卫" />
+            <reposition type="forward" value="额外 前锋" />
+            <reposition type="normal" value="常规" />
+            <reposition type="offensive" value="攻击性" />
+            <reposition type="defensive" value="防守性" />
+            <reposition type="towardsmiddle" value="靠中路" />
+            <reposition type="towardswing" value="靠边路" />
+        </repositioning>
+        <levels>
+            <level text="超凡入圣" value="20" />
+            <level text="至高无上" value="19" />
+            <level text="出神入化" value="18" />
+            <level text="神出鬼没" value="17" />
+            <level text="超凡脱俗" value="16" />
+            <level text="威力无边" value="15" />
+            <level text="神秘莫测" value="14" />
+            <level text="独步天下" value="13" />
+            <level text="神妙" value="12" />
+            <level text="辉煌" value="11" />
+            <level text="杰出" value="10" />
+            <level text="强大" value="9" />
+            <level text="优秀" value="8" />
+            <level text="稳定" value="7" />
+            <level text="及格" value="6" />
+            <level text="中下" value="5" />
+            <level text="弱" value="4" />
+            <level text="差" value="3" />
+            <level text="糟糕" value="2" />
+            <level text="极其糟糕" value="1" />            
+        </levels>
+    </language>
+
 </hattricklanguages>
