@@ -56,6 +56,7 @@ var FoxtrickReadHtPrefs = {
 			this.codes['111']='lb_LU';
 			this.codes['85']='sq';
 			this.codes['83']='mk';
+			this.codes['15']='zh_CN'
 			
 			// follwoing don't have an own locale file yet
 	/*
@@ -64,7 +65,6 @@ var FoxtrickReadHtPrefs = {
 	<option value="86">Kyrgyz</option>
 	<option value="75">?????</option> Farsi
 	<option value="84">??????????</option>  Belarusian
-	<option value="15">??(??)</option> Chinese Simplified
 	<option value="17">???</option> korean
 	<option value="12">???</option> japan
 	 */  
