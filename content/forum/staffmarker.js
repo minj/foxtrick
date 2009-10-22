@@ -312,7 +312,7 @@ var FoxtrickStaffMarker = {
             "JAM3SoN",
 			"Jestar",
 			"Foppe-",
-			"LA-Masterix",
+			"luminaryan",
 			"LA-csajszi",
 			"larsw84",
 			"LasseSvendsen",
