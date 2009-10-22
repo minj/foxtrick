@@ -1272,9 +1272,9 @@
         </tactics>
         <!-- repositioning word connections appearing in match lineup page -->
         <repositioning>
-            <reposition type="midfielder" value="额外 中前卫" />
-            <reposition type="centraldefender" value="额外 中后卫" />
-            <reposition type="forward" value="额外 前锋" />
+            <reposition type="midfielder" value="额外中前卫" />
+            <reposition type="centraldefender" value="额外中后卫" />
+            <reposition type="forward" value="额外前锋" />
             <reposition type="normal" value="常规" />
             <reposition type="offensive" value="攻击性" />
             <reposition type="defensive" value="防守性" />
