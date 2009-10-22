@@ -677,35 +677,41 @@ stats["xray_coach"] =  {
 
 // hattrick challenge
 stats["hattrickchallenge_friendly"] =  { 
-        "url" : "http://www.hattrickchallenge.com/Tools/Friendly.php",
+        "url" : "http://www.hattrickchallenge.com/Tools/Entry.php",
 
-        "challengeslink" : { "path"       : "?teamid=",
+        "challengeslink" : { "path"       : "?tool=friendly",
                          "filters"    : [], 
-                         "params"     : { "teamid" : ""}
+                         "params"     : { "teamid" : "teamid"}
                        },
         
+        "youthlink" : { "path"       : "?tool=youthfriendly",
+                         "filters"    : [], 
+                         "params"     : {"ownteamid":"ownteamid"}
+                       },
+     
         "title" : "HattrickChallenge Friendly ads",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrickchallenge_main.png"
 };
 
 // hattrick challenge
 stats["hattrickchallenge"] =  { 
-        "url" : "http://www.hattrickchallenge.com/",
+        "url" : "http://www.hattrickchallenge.com/Tools/Entry.php",
 
-        "teamlink" : { "path"       : "Tools/MyTeam.php?",
+        "teamlink" : { "path"       : "?tool=myteam",
                          "filters"    : [], 
                          "params"     : { "teamid" : "teamid"}
                        },
-        "countrylink" : { "path"       : "Challenge/index.php",
+                       
+        "countrylink" : { "path"       : "?tool=challenge",
                        "filters"    : [], 
                        "params"     : { "countryid" : "countryid" }
                      },
 
-        "leaguelink" : { "path"       : "Tools/SeriePredict.php",
+        "leaguelink" : { "path"       : "?tool=forecast",
                          "filters"    : [], 
-                         "params"     : { }
+                         "params"     : {"leagueid" : "leagueid" }
                        },
-     
+
         "title" : "HattrickChallenge",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrickchallenge_main.png"
 };
