@@ -194,7 +194,7 @@
         </tactics>
     </language>
 
-    <language name="es_AR" desc="Español, Argentina">
+    <language name="es_SU" desc="Español, Sudamericano">
         <ratingSubLevels>
             <sublevel text="(muy bajo)" value="0.0" />
             <sublevel text="(bajo)" value="0.25" />
@@ -205,11 +205,11 @@
             <reposition type="midfielder" value="extra medio central" />
             <reposition type="centraldefender" value="extra defensor central" />
             <reposition type="forward" value="extra delantero" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="ofensivo" />
-            <reposition type="defensive" value="defensivo" />
-            <reposition type="towardsmiddle" value="hacia medio" />
-            <reposition type="towardswing" value="hacia el lateral" />
+            <reposition type="normal" value="Normal" />
+            <reposition type="offensive" value="Ofensivo" />
+            <reposition type="defensive" value="Defensivo" />
+            <reposition type="towardsmiddle" value="Hacia medio" />
+            <reposition type="towardswing" value="Hacia el lateral" />
         </repositioning>
         <tactics>
             <tactic type="normal" value="Normal" />

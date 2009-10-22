@@ -21,7 +21,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
-                   em:version="0.4.8.9"
+                   em:version="0.4.9"
                    em:description="A set of presentation enhancements for hattrick.org"
                    em:creator="Karel Kolman"
                    em:homepageURL="http://ht-foxtrick.com/"
@@ -33,13 +33,13 @@
     <em:targetApplication RDF:resource="rdf:#$1gQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$6gQfX1"/>
     <!-- developer list -->
-	<em:developer>larsw84</em:developer>
-	<em:developer>Mod-spambot</em:developer>
+	      <em:developer>larsw84</em:developer>
+	      <em:developer>Mod-spambot</em:developer>
     <em:developer>bummerland</em:developer>
-	<em:developer>taised</em:developer>
-	<em:developer>smates</em:developer>
-	<em:developer>Egophobia</em:developer>
-	<em:developer>baumanns</em:developer>
+	      <em:developer>taised</em:developer>
+	      <em:developer>smates</em:developer>
+	      <em:developer>Egophobia</em:developer>
+	      <em:developer>baumanns</em:developer>
 	
     <!-- translator list -->
 	<em:contributor>Albanian: MOD-odris</em:contributor>

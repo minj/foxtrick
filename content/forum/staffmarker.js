@@ -327,7 +327,6 @@ var FoxtrickStaffMarker = {
             "GM-Nanouk",
 			"OBarros",
             "Piper_101",
-			"Pyntsa",
             "Skoglund",
             "slader",
 			"smates",
