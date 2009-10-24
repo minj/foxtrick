@@ -596,7 +596,7 @@ Foxtrick.TeamStats= {
 					}
 				}
 				else { 	if (last_face) {
-							if (isnotFF35)  last_face.style.display=''; 
+							/*if (isnotFF35)*/  last_face.style.display=''; 
 						}
 				}
 				//dump(' '+filter+' '+adiv.getElementsByTagName('a')[0].innerHTML+'\n');
