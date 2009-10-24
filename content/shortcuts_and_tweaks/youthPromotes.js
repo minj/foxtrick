@@ -32,21 +32,21 @@ var birthday = (days*86400)+((age*112)*86400);
     
     
     for (var i=0; i < 559; i++){
-    days_in_team++;
-    plr_d++;
+		if (days_in_team > 111 && plr_y > 16)
+		{
+		break;
+		}    
+ 
+		days_in_team++;
+		plr_d++;
     
-    if (plr_d == 112)
-    {
-     plr_d=0;plr_y++;
-    }
-    
-    if (days_in_team > 111 && plr_y > 16)
-    {
-     break;
-    }
-    
-    }
-    var daysToProm = (((plr_y*112)+plr_d)-((age*112)+days))-1;
+		if (plr_d == 112)
+		{
+		plr_d=0;plr_y++;
+		}    
+   }
+	
+    var daysToProm = (((plr_y*112)+plr_d)-((age*112)+days));//-1; seems not need with new days_in_team 
     
    var daysToProm_text='';
   
