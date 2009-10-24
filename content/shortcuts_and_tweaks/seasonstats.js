@@ -90,6 +90,7 @@ var FoxtrickSeasonStats = {
 				break;
 			}			
 		}
+		dump('TeamName: '+TeamName+'\n');
 		
 		for (var i=0; i<matchestable.rows.length; ++i) { 
 			var type=0;
@@ -111,8 +112,8 @@ var FoxtrickSeasonStats = {
 				ishome=2;
 			}
 			// get home/away for draws
-			if (isdraw) {
-				ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/\W/g,'').search(TeamName)==0?1:2;
+			if (isdraw) {  
+				ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title/*.replace(/\W/g,'')*/.search(TeamName)==0?1:2;
 			}
 			sum_matches[type*3]["type"] = matchestable.rows[i].cells[1].getElementsByTagName('img')[0].title ;			
 			sum_matches[type*3]["num"]++;

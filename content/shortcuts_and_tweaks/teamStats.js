@@ -608,7 +608,8 @@ Foxtrick.TeamStats= {
 					else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';						
 				}
 				else if (isnotFF35) adiv.setAttribute('style','');				
-			}			
+			}	
+			var lastborder_i;			
 			if (adiv.className=='borderSeparator' || adiv.className=='separator') {
 				lastborderSeparator=adiv;			
 				lastborder_i = j;
