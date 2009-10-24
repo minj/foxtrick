@@ -20,7 +20,7 @@ var FoxtrickStaffMarker = {
 											"background-color:white; color:green;", //LA
 											"background-color:green; color:white;", //CHPP
 											"background-color:green;", //editor
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 2px 1px 2px 18px;", //foxtrick-dev
+											"background-image: url('chrome://foxtrick/content/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //foxtrick-dev
 											"background-image: url('chrome://foxtrick/content/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 40px;", //chpps
 											"background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 0px 3px 18px;", //hty_staff
 											"background-color:white; color:black;", //flag
