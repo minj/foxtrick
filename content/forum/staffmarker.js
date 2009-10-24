@@ -474,12 +474,12 @@ var FoxtrickStaffMarker = {
 					if (do_hty_staff && Foxtrick.in_array(this.hty_staff,uname)) {
                         a.setAttribute("style", cur_style+this.stl_hty_staff);
                     } 
-					if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
-                        a.setAttribute("style", cur_style+this.stl_chpps );
-                    } 
 					if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
 						 a.setAttribute("style", cur_style+this.stl_foxtrick_dev);						
                     }
+					if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
+                        a.setAttribute("style", cur_style+this.stl_chpps );
+                    } 
 					
                 }
             }
