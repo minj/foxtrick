@@ -469,14 +469,16 @@ var FoxtrickStaffMarker = {
                         a.setAttribute("style", this.stl_editor);
                     } 
 					// adding background images. lowest priority first
+					var cur_style= a.getAttribute("style");
+					if (!cur_style) cur_style='';
 					if (do_hty_staff && Foxtrick.in_array(this.hty_staff,uname)) {
-                        a.setAttribute("style",  a.getAttribute("style")+this.stl_hty_staff);
+                        a.setAttribute("style", cur_style+this.stl_hty_staff);
                     } 
 					if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
-                        a.setAttribute("style", a.getAttribute("style")+this.stl_chpps );
+                        a.setAttribute("style", cur_style+this.stl_chpps );
                     } 
 					if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
-						 a.setAttribute("style", a.getAttribute("style")+this.stl_foxtrick_dev);						
+						 a.setAttribute("style", cur_style+this.stl_foxtrick_dev);						
                     }
 					
                 }
