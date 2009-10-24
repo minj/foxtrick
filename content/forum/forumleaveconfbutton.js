@@ -123,7 +123,7 @@ var FoxtrickAddLeaveConfButton = {
 		try {
             // if (doc == null) return;
             var a = folderHeader.getElementsByTagName("a");
-			
+			var link;
 			if( a != null ) {
 				link = a[a.length-1];
 			}
