@@ -44,8 +44,11 @@ var FoxtrickPlayerBirthday = {
 			var PlayerAge = PlayerInfo.match(reg);
 			
 			var regText=/(\d+\D+\d+\s\S+)/; // regular expression for getting the whole PlayerAge string
+			var regTextRus=/(\D+\d+\D+\d+)/; // regular expression for getting the whole PlayerAge string, for rusian
 			
-			var TextAgeTmp=String(PlayerInfo.match(regText)[1]).replace(/,/,'');
+			var TextAgeTmp=''
+			try {TextAgeTmp=String(PlayerInfo.match(regText)[1]).replace(/,/,'');}  // try to get full age string
+			catch(e){TextAgeTmp=String(PlayerInfo.match(regTextRus)[1]).replace(/,/,'');} // if not get russian version ie strings before the number
 
 			if (PlayerAge[2]>105 || PlayerAge[2] == 0) {     // player who will have birthday in 7 days or who have birthday today
 				ArrayPlayers[a] = new Array(5); //dump(PlayerName[i]+' '+PlayerAge[2]+'\n');
