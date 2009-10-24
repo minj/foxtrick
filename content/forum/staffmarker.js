@@ -20,9 +20,9 @@ var FoxtrickStaffMarker = {
 											"background-color:white; color:green;", //LA
 											"background-color:green; color:white;", //CHPP
 											"background-color:green;", //editor
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding-left: 18px;", //foxtrick-dev
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding-left: 40px;", //chpps
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding-left: 18px;", //hty_staff
+											"background-image: url('chrome://foxtrick/content/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 0px 3px 18px;", //foxtrick-dev
+											"background-image: url('chrome://foxtrick/content/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 0px 3px 40px;", //chpps
+											"background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 0px 3px 18px;", //hty_staff
 											"background-color:white; color:black;", //flag
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
                                             ),
@@ -467,13 +467,18 @@ var FoxtrickStaffMarker = {
                         a.setAttribute("style", this.stl_LA);
                     } else if (do_editor && Foxtrick.in_array(this.editorsArray,uname)) {
                         a.setAttribute("style", this.stl_editor);
-                    } else if (do_hty_staff && Foxtrick.in_array(this.hty_staff,uname)) {
-                        a.setAttribute("style", this.stl_hty_staff);
-                    } else if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
-                        a.setAttribute("style", this.stl_chpps);
-                    } else if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
-                         a.setAttribute("style", this.stl_foxtrick_dev);
+                    } 
+					// adding background images. lowest priority first
+					if (do_hty_staff && Foxtrick.in_array(this.hty_staff,uname)) {
+                        a.setAttribute("style",  a.getAttribute("style")+this.stl_hty_staff);
+                    } 
+					if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
+                        a.setAttribute("style", a.getAttribute("style")+this.stl_chpps );
+                    } 
+					if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
+						 a.setAttribute("style", a.getAttribute("style")+this.stl_foxtrick_dev);						
                     }
+					
                 }
             }
         }
