@@ -3,6 +3,7 @@
 #ft_youthskilltable{ 
 	margin-top:35px;
 	margin-bottom:35px;
+	margin-left:-10px;
 }
 
 #ft_youthskilltable h2 { 
@@ -37,6 +38,7 @@
 div#ft_youthskilltable td {
 	border-bottom: 1px solid #DCE0DC; 
 	border-collapse:separate;
+	padding:2px 4px 2px 0 !important;
 } 
 
 }

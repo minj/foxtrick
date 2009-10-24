@@ -10,8 +10,8 @@ var FoxtrickYouthSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Show youth skills as table",
+	NEW_AFTER_VERSION: "0.4.9",
+	LASTEST_CHANGE:"Added specialty and marker for played in last match",
     CSS: "chrome://foxtrick/content/resources/css/youthskilltable.css",
 	
 	
@@ -36,7 +36,7 @@ var FoxtrickYouthSkillTable = {
 				table.appendChild(tr);
 				tablediv.appendChild(table);
 				
-				var sn=['Player','YearsDays','GK','DF','PM','WI','PS','SC','SP'];
+				var sn=['Player','YearsDays','GK','DF','PM','WI','PS','SC','SP','Spec','PL'];
 				for(var j = 0; j < 9; j++) {
 							var th = doc.createElement('th');
 							if (j>0) th.setAttribute('class','ft_youthskilltable_td_normal');
@@ -63,6 +63,31 @@ var FoxtrickYouthSkillTable = {
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.innerHTML = '<img alt="+" class="injuryInjured" src="/Img/Icons/injured.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" style="width: 11px; height: 11px;"/>';					
 				tr.appendChild(th);
+
+				// specialty header
+				var th = doc.createElement('th');
+				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.innerHTML = Foxtrickl10n.getString(sn[9]);
+				tr.appendChild(th);
+
+				// played last match header
+				var th = doc.createElement('th');
+				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.innerHTML = Foxtrickl10n.getString(sn[10]);
+				tr.appendChild(th);
+
+				// get last match
+				var latestMatch=-1;
+				for(var i = 0; i < allDivs.length; i++) {			
+					if(allDivs[i].className=="playerInfo") {
+						var as=allDivs[i].getElementsByTagName('a');
+						var j=0,a=null;
+						while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
+						var matchday=0;
+						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
+						if (matchday>latestMatch) latestMatch = matchday;
+					}
+				}
 
 				var count =0;
 				for(var i = 0; i < allDivs.length; i++) {
@@ -160,6 +185,32 @@ var FoxtrickYouthSkillTable = {
 						if (injured>0) td.appendChild(doc.createTextNode(injured));
 						tr.appendChild(td);
 						
+						// specialty
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						var specc = allDivs[i].getElementsByTagName( "p" )[0];
+						var specMatch = specc.textContent.match(/\[\D+\]/g);
+						if (specMatch != null) {
+							td.appendChild(doc.createTextNode(specMatch[0].substr(1,2)));
+						}
+						tr.appendChild(td);
+						
+						// get played last match
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						
+						var as=allDivs[i].getElementsByTagName('a');
+						var kk=0,a=null;
+						while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
+						var matchday=0;
+						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
+						if (matchday==latestMatch) {
+							td.appendChild(doc.createTextNode('#'));						
+						}
+						tr.appendChild(td);
+						dump(matchday+' '+latestMatch+'\n');
 					}
 				}
 				
