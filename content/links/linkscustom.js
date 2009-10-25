@@ -310,6 +310,7 @@ var FoxtrickLinksCustom = {
 			selectbox.setAttribute("title",Foxtrickl10n.getString("foxtrick.linkscustom.addtag" ));
 			selectbox.setAttribute("id","ft_ownselecttagboxID");
 			selectbox.setAttribute("style","width:100%;");
+			FoxtrickLinksCustom.SelectBox_Select.doc=doc;
 			selectbox.addEventListener('change',FoxtrickLinksCustom.SelectBox_Select,false);
 			var option = doc.createElement("option");
 			option.setAttribute("value","");
@@ -621,7 +622,7 @@ var FoxtrickLinksCustom = {
 	
 	SelectBox_Select : function(evt) {
 	try {
-		var doc = evt.view.document;
+		var doc = FoxtrickLinksCustom.SelectBox_Select.doc;// evt.view.document;
 		var value =doc.getElementById ( "inputHrefID" ).value;
 		if (value.search(/\?/)==-1) value+="\?"; else  value+="&";
 		value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
