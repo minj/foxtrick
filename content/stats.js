@@ -687,12 +687,12 @@ stats["hattrickchallenge_friendly"] =  {
 
 		"youthchallengeslink" : { "path"       : "?tool=youthfriendly",
                          "filters"    : [], 
-                          "params"     : {"youthteamid":"youthteamid","teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
+                          "params"     : {"youthteamid":"youthteamid","teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
                        },
         
         "youthlink" : { "path"       : "?tool=youthfriendly",
                          "filters"    : [], 
-                         "params"     : {"youthteamid":"youthteamid","teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
+                         "params"     : {"youthteamid":"youthteamid","teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
                        },
 		"allowlink" : function(filterparams, stattype) {           
             if (filterparams["teamid"] != filterparams["ownteamid"]) {
