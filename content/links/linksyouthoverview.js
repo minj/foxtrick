@@ -30,12 +30,12 @@ var FoxtrickLinksYouthOverview = {
 					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
 					owncountryid = FoxtrickHelper.findCountryId(teamdiv);					
 				}		
-		
+		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 	
 	
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthlink", { "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

@@ -686,7 +686,7 @@ stats["hattrickchallenge_friendly"] =  {
         
         "youthlink" : { "path"       : "?tool=youthfriendly",
                          "filters"    : [], 
-                         "params"     : {"ownteamid":"ownteamid"}
+                         "params"     : {"youthteamid":"teamid"}
                        },
      
         "title" : "HattrickChallenge Friendly ads",
