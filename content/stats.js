@@ -11,6 +11,7 @@
  * "params"     : { "infocode" : "" }   -> info[infocode]  // eg alltid
  * "params"     : { "" : "#text" }   -> #text   			//eg maptrick , first letter non alphanumeric
  * "params"     : { "infocode" : "," }   -> ,info[infocode]   //eg alltid, first letter non alphanumeric
+ * "params"     : { "infocode" : "ftfilter_somename" }   -> parameter only used for allowlink function and will not be shown in link   //eg hattrickchallenge_friendly, first letters = ftfilter
  * for others use the 'paramfunction' eg natstats
  */
   
@@ -681,14 +682,25 @@ stats["hattrickchallenge_friendly"] =  {
 
         "challengeslink" : { "path"       : "?tool=friendly",
                          "filters"    : [], 
-                         "params"     : { "teamid" : "teamid"}
+                          "params"     : {"teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
+                       },
+
+		"youthchallengeslink" : { "path"       : "?tool=youthfriendly",
+                         "filters"    : [], 
+                          "params"     : {"youthteamid":"youthteamid","teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
         
         "youthlink" : { "path"       : "?tool=youthfriendly",
                          "filters"    : [], 
-                         "params"     : {"youthteamid":"teamid"}
+                         "params"     : {"youthteamid":"youthteamid","teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
-     
+		"allowlink" : function(filterparams, stattype) {           
+            if (filterparams["teamid"] != filterparams["ownteamid"]) {
+                return false;
+            } else {
+                return true;
+            }
+        },
         "title" : "HattrickChallenge Friendly ads",
         "img" : "chrome://foxtrick/content/resources/linkicons/hattrickchallenge_main.png"
 };
@@ -1665,12 +1677,19 @@ stats["hattrick-youthclub"] =  {
         "url" : "http://www.hattrick-youthclub.org/",
         "youthlink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : []
+                         "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
         "youthtraininglink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : []
+                         "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
+		"allowlink" : function(filterparams, stattype) {           
+            if (filterparams["teamid"] != filterparams["ownteamid"]) {
+                return false;
+            } else {
+                return true;
+            }
+        },
         "title" : "Hattrick Youthclub",
         "img" : "chrome://foxtrick/content/resources/linkicons/hyouthclub.png"
 };
@@ -3221,7 +3240,8 @@ Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, 
 
     if (typeof (statlink["paramfunction"]) == 'undefined') {
         for (var paramkey in params) {
-            var temp;
+		if (params[paramkey].search('ftfilter')==0) continue;
+			var temp;
             
             if ((args == "") && statlink["path"].search(/\?/) == -1 && stat["url"].search(/\?/) == -1) {
                 temp = "?";

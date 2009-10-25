@@ -9,24 +9,25 @@ var FoxtrickLinksChallenges = {
 	
     MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('challenges'), 
+	PAGES : new Array('challenges','youthchallenges'), 
 	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 
 
 	init : function() {
-			Foxtrick.initOptionsLinks(this,"challengeslink");
+			var linktypes = new Array("challengeslink","youthchallengeslink");
+			Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
     run : function( page, doc ) {
 
-			var alldivs = doc.getElementsByTagName('div');
-			for (var j = 0; j < alldivs.length; j++) {
-				if (alldivs[j].className=="main mainRegular") {
-					var teaminfo = this.gatherLinks( alldivs[j], doc ); 
-        }
-      }
+		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
+		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+					
 		//addExternalLinksToChallengesDetail
-        var links = Foxtrick.LinkCollection.getLinks("challengeslink", teaminfo, doc, this);  
+        var links;
+		if (page=='challenges') links = Foxtrick.LinkCollection.getLinks("challengeslink", {'teamid':teamid, 'ownteamid':ownteamid}, doc, this);  
+		else links = Foxtrick.LinkCollection.getLinks("youthchallengeslink", {'teamid':teamid, 'youthteamid':youthteamid,'ownteamid':ownteamid}, doc, this);  
 		var ownBoxBody=null;
 
 		if (links.length > 0) {
@@ -55,11 +56,4 @@ var FoxtrickLinksChallenges = {
 			this.run( page, doc );
 		}
 	},
-	
-		gatherLinks : function( thisdiv, doc ) {
-	try{
-  		var teamid = FoxtrickHelper.findTeamId(thisdiv);
-		return { "teamid": teamid};
-	} catch(e){ dump ('LinksTeam->gatherLinks: '+e+'\n');}
-  }
 };
