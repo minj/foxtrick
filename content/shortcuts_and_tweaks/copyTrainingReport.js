@@ -88,7 +88,7 @@ var FoxtrickCopyScoutReport = {
 	PAGES : new Array('youthplayerdetail'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.3",
-	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copies scout report in plain text to match htyouthclub requirement",
+	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy scout report in plain text to match htyouthclub requirement",
 	
 	init : function() {
 	},
@@ -98,7 +98,8 @@ var FoxtrickCopyScoutReport = {
 			
 			var parentDiv = doc.createElement("div");
 			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv";
-		
+			parentDiv.setAttribute("style","display: inline;");
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.title = Foxtrickl10n.getString( 
@@ -107,7 +108,7 @@ var FoxtrickCopyScoutReport = {
 			messageLink.addEventListener("click", this.copyReport, false)
 		
 			var img = doc.createElement("img");
-			img.style.padding = "0px 5px 0px 0px;";
+			img.style.padding = "0px 5px 5px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
 			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
@@ -152,7 +153,68 @@ var FoxtrickCopyScoutReport = {
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
 				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));			
+					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"));			
 		}
+	}
+};
+
+
+var FoxtrickCopyPlayerSource = {
+
+	MODULE_NAME : "CopyPlayerSource",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('youthplayerdetail'), 
+	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.4.8.9",
+	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
+	
+	init : function() {
+	},
+	
+	run : function( page, doc ) {
+		try {
+			
+			var parentDiv = doc.createElement("div");
+			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv2";
+			parentDiv.setAttribute("style","display: inline; margin-right:8px;");
+		
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.title = Foxtrickl10n.getString( 
+				"foxtrick.tweaks.copyplayerscource" );
+			messageLink.setAttribute("style","cursor: pointer;");
+			messageLink.addEventListener("click", this.copySource, false)
+		
+			var img = doc.createElement("img");
+			img.style.padding = "0px 5px 0px 0px;";
+			img.className = "actionIcon";
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
+			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+			messageLink.appendChild(img);
+				
+			parentDiv.appendChild(messageLink);
+		
+			var newBoxId = "foxtrick_actions_box2";
+			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
+			
+		
+		} catch(e) { dump('FoxtrickCopyPlayerSource: '+e+'\n'); }
+	},
+	
+	change : function( page, doc ) {
+		var id = "foxtrick_addyouthclubbox_parentDiv2";
+		if(!doc.getElementById(id)) {
+			this.run( page, doc );
+		}
+	},
+
+	copySource : function( ev ) {
+		var doc = ev.target.ownerDocument;
+		var html = '<html> '+doc.documentElement.innerHTML+' </html>';
+		Foxtrick.copyStringToClipboard(html);
+				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
+					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"));			
+			
 	}
 };
