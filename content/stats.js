@@ -1455,15 +1455,15 @@ stats["nrgjack_accountant_tool"] =  {
 
         "economylink" : { "path"       : "accountant.php",
                          "filters"    : [], 
-                          //"params"     : {"Cash" : "money","Currency":"Currency"}
+                          //"params"     : {"newCash" : "money","Currency":"Currency"}
 						 "paramfunction" : function(params) {
-							var Cash=params["Cash"];
+							var newCash=params["newCash"];
 							var CurrCode=params["Currency"];
                             if (CurrCode!="EUR"){
-								Cash=Math.round(Cash*FoxtrickPrefs.getString("currencyRate"));
+								newCash=Math.round(newCash*FoxtrickPrefs.getString("currencyRate"));
 								CurrCode="EUR";
 							}
-                            return "?money=" + Cash;                                                        
+                            return "?money=" + newCash;                                                        
 						 } 
                        },
         

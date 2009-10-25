@@ -61,7 +61,7 @@ var FoxtrickLinksEconomy = {
 						
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":CurrCode} );					
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":CurrCode,"newCash":newCash} );					
     },
 	
 	change : function( page, doc ) {
