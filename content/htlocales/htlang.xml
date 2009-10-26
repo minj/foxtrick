@@ -1250,6 +1250,34 @@
             <tactic type="creatively" value="Играј креативно" />
             <tactic type="longshots" value="Удари од далечина" />
         </tactics>
-    </language>	
+    </language>
+    
+    <language name="fur" desc="Friulian">
+        <ratingSubLevels>
+            <sublevel text="(Une vore bas)" value="0.0" />
+            <sublevel text="(Bas)" value="0.25"  />
+            <sublevel text="(Alt)" value="0.50"  />
+            <sublevel text="(Une vore alt)" value="0.75"  />
+        </ratingSubLevels>
+        <repositioning>
+            <reposition type="midfielder" value="Centricjampist" />
+            <reposition type="centraldefender" value="Difensôr Centrâl" />
+            <reposition type="forward" value="Tacant" />
+            <reposition type="normal" value="Normâl" />
+            <reposition type="offensive" value="Ofensîf" />
+            <reposition type="defensive" value="Difensîf" />
+            <reposition type="towardsmiddle" value="Viers il mieç" />
+            <reposition type="towardswing" value="Viers la fasse" />
+        </repositioning>
+        <tactics>
+            <tactic type="normal" value="Normâl" />
+            <tactic type="pressing" value="Pressing" />
+            <tactic type="ca" value="Cuintripît" />
+            <tactic type="aow" value="Atac su lis fasis" />
+            <tactic type="aim" value="Atac tal mieç" />
+            <tactic type="creatively" value="Zuiâ cun creativitât" />
+            <tactic type="longshots" value="Tîrs di lontan" />
+        </tactics>
+    </language>
 
 </hattricklanguages>
