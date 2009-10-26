@@ -151,7 +151,7 @@ var FoxtrickCopyScoutReport = {
 				plain=plain.replace(/\<br\>/ig,'\n');
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
-				Foxtrick.copyStringToClipboard(plain);
+				Foxtrick.copyStringToClipboard(subDivs[lastmainbox].parentNode.innerHTML);//plain);
 				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
 					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"));			
 		}
@@ -167,12 +167,14 @@ var FoxtrickCopyPlayerSource = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
+	page_html:'',
 	
 	init : function() {
 	},
 	
 	run : function( page, doc ) {
 		try {
+			this.page_html = '<html> '+doc.documentElement.innerHTML+' </html>';
 			
 			var parentDiv = doc.createElement("div");
 			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv2";
@@ -212,9 +214,13 @@ var FoxtrickCopyPlayerSource = {
 	copySource : function( ev ) {
 		var doc = ev.target.ownerDocument;
 		var html = '<html> '+doc.documentElement.innerHTML+' </html>';
-		Foxtrick.copyStringToClipboard(html);
+		Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
 				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
 					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"));			
-			
-	}
+	},
+	
+	fixbr : function(text) {
+        return text.replace(/\<br\>/g,'<br />' );
+    },
+
 };
