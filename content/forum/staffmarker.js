@@ -22,7 +22,7 @@ var FoxtrickStaffMarker = {
 											"background-color:green;", //editor
 											"background-image: url('chrome://foxtrick/content/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //foxtrick-dev
 											"background-image: url('chrome://foxtrick/content/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 40px;", //chpps
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 0px 3px 18px;", //hty_staff
+											"background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //hty_staff
 											"background-color:white; color:black;", //flag
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
                                             ),
@@ -253,18 +253,19 @@ var FoxtrickStaffMarker = {
 			"bummerland",
 			"caracca",
             "carlesmu",
-			"damyr",
 			"eekels",
 			"Egophobia",
             "ei04004",
+            "Foppe-",
 			"franory",
+			"GM-damyr",
+			"GM-Nanouk",
             "Grif_07",
 			"GTTWINS",
 			"gucan",
 			"Homzik",
             "JAM3SoN",
 			"Jestar",
-			"Foppe-",
 			"luminaryan",
 			"LA-csajszi",
 			"larsw84",
@@ -277,7 +278,6 @@ var FoxtrickStaffMarker = {
 			"MOD-odris",
 			"Mod-spambot",
             "Mod-summercloud",
-            "GM-Nanouk",
 			"OBarros",
             "Piper_101",
             "Skoglund",
