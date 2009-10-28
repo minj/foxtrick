@@ -14,10 +14,10 @@ Foxtrick.Matches = {
 	
 	_getRatingsTable: function(doc) {
 		var ratingstable = null;
-		var sidebar = doc.getElementById('sidebar');
-		if (sidebar.childNodes.length > 7) { //match is ended
+		var tables = doc.getElementById('mainBody').getElementsByTagName('table')
+		if (tables) { //match is ended
 			//finding the right table
-			ratingstable = doc.getElementById('mainBody').getElementsByTagName('table').item(0);
+			ratingstable = tables.item(0);
 		}
 		return ratingstable;
 	},
