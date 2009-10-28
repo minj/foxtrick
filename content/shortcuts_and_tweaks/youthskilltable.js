@@ -41,7 +41,7 @@ var FoxtrickYouthSkillTable = {
 				for(var j = 0; j < 9; j++) {
 							var th = doc.createElement('th');
 							if (j>0) th.setAttribute('class','ft_youthskilltable_td_normal');
-							th.setAttribute('index',j);
+							th.setAttribute('s_index',j);
 							th.addEventListener( "click", this.sortClick, true );						
 							th.innerHTML = Foxtrickl10n.getString(sn[j]);
 							tr.appendChild(th);
@@ -49,7 +49,7 @@ var FoxtrickYouthSkillTable = {
 				
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
-				th.setAttribute('index',9);
+				th.setAttribute('s_index',9);
 				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = '<img alt="Y" class="cardsOne" src="/Img/Icons/yellow_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" style="width: 8px; height: 12px;"/>';					
 				tr.appendChild(th);
@@ -57,20 +57,20 @@ var FoxtrickYouthSkillTable = {
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.addEventListener( "click", this.sortClick, true );						
-				th.setAttribute('index',10);
+				th.setAttribute('s_index',10);
 				th.innerHTML = '<img alt="R" class="cardsOne" src="/Img/Icons/red_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" style="width: 8px; height: 12px;"/>';					
 				tr.appendChild(th);
 				
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
-				th.setAttribute('index',11);
+				th.setAttribute('s_index',11);
 				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = '<img alt="(+)" class="injuryBruised" src="/Img/Icons/bruised.gif" style="width: 11px; height: 11px;"/>';					
 				tr.appendChild(th);
 				
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
-				th.setAttribute('index',12);
+				th.setAttribute('s_index',12);
 				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = '<img alt="+" class="injuryInjured" src="/Img/Icons/injured.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" style="width: 11px; height: 11px;"/>';					
 				tr.appendChild(th);
@@ -78,7 +78,7 @@ var FoxtrickYouthSkillTable = {
 				// specialty header
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
-				th.setAttribute('index',13);
+				th.setAttribute('s_index',13);
 				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = Foxtrickl10n.getString(sn[9]);
 				tr.appendChild(th);
@@ -86,7 +86,7 @@ var FoxtrickYouthSkillTable = {
 				// played last match header
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
-				th.setAttribute('index',14);
+				th.setAttribute('s_index',14);
 				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = Foxtrickl10n.getString(sn[10]);
 				tr.appendChild(th);
@@ -236,25 +236,26 @@ var FoxtrickYouthSkillTable = {
 	change : function( page, doc ) {	
 	},
 
-	sortfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].innerHTML);},
-	sortdownfunction: function(a,b) {return !(a.cells[FoxtrickYouthSkillTable.index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].innerHTML));},
-	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].getElementsByTagName('a')[0].innerHTML);},
+	sortfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].innerHTML);},
+	sortdownfunction: function(a,b) {return (b.cells[FoxtrickYouthSkillTable.s_index].innerHTML.localeCompare(a.cells[FoxtrickYouthSkillTable.s_index].innerHTML));},
+	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML);},
 
 	sortClick : function(ev) {
 	try{
-		var doc = ev.target.ownerDocument;
+		var doc = ev.originalTarget.ownerDocument;
 		var tablediv = doc.getElementById('ft_youthskilltable');
 		var table = tablediv.getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);
-		FoxtrickYouthSkillTable.index = ev.target.getAttribute('index');
+		FoxtrickYouthSkillTable.s_index = ev.target.getAttribute('s_index');
+		if (!FoxtrickYouthSkillTable.s_index)  FoxtrickYouthSkillTable.s_index = ev.target.parentNode.getAttribute('s_index');
 		
 		var rows= new Array();
 		for (var i=1;i<table.rows.length;++i) {
 			rows.push(table_old.rows[i]);
 		}
 		//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
-		if (FoxtrickYouthSkillTable.index==0) rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
-		else if (FoxtrickYouthSkillTable.index==1) rows.sort(FoxtrickYouthSkillTable.sortfunction);		
+		if (FoxtrickYouthSkillTable.s_index==0) rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
+		else if (FoxtrickYouthSkillTable.s_index==1) rows.sort(FoxtrickYouthSkillTable.sortfunction);		
 		else rows.sort(FoxtrickYouthSkillTable.sortdownfunction);
 		
 		for (var i=1;i<table.rows.length;++i) {
