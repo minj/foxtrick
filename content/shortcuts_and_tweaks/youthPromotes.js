@@ -10,8 +10,8 @@ var FoxtrickYouthPromotes = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayer'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.3",
-	LASTEST_CHANGE: "Create a stable version of this function.",
+	NEW_AFTER_VERSION: "0.4.8.9",
+	LASTEST_CHANGE: "Fixing promotes for players in team less the 112 days",
 
     init : function() {
     },

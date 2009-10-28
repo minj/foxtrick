@@ -12,8 +12,8 @@ var FoxtrickSeasonStats = {
 	PAGES : new Array('matchesarchiv','matches'), 
 	ONPAGEPREF_PAGE : 'matchesarchiv', 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.5",
-	LASTEST_CHANGE:"FF 3.5 speed up for filters",
+	NEW_AFTER_VERSION: "0.4.8.9",
+	LASTEST_CHANGE:"Fixed wrong home draws assignment",
 	CSS:"chrome://foxtrick/content/resources/css/seasonstats.css",
 	
 	_season:-1,
