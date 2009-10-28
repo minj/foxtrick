@@ -86,7 +86,7 @@ var FoxtrickCopyScoutReport = {
 	MODULE_NAME : "CopyScoutReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.3",
 	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy scout report in plain text to match htyouthclub requirement",
 	
@@ -164,7 +164,7 @@ var FoxtrickCopyPlayerSource = {
 	MODULE_NAME : "CopyPlayerSource",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail'), 
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
 	page_html:'',
