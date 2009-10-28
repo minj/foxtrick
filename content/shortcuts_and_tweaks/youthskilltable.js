@@ -12,6 +12,7 @@ var FoxtrickYouthSkillTable = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LASTEST_CHANGE:"Added specialty and marker for played in last match. Added basic sort function",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     CSS: "chrome://foxtrick/content/resources/css/youthskilltable.css",
 	
 	
@@ -236,6 +237,7 @@ var FoxtrickYouthSkillTable = {
 	},
 
 	sortfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].innerHTML);},
+	sortdownfunction: function(a,b) {return !(a.cells[FoxtrickYouthSkillTable.index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].innerHTML));},
 	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].getElementsByTagName('a')[0].innerHTML);},
 
 	sortClick : function(ev) {
@@ -251,8 +253,9 @@ var FoxtrickYouthSkillTable = {
 			rows.push(table_old.rows[i]);
 		}
 		//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
-		if (FoxtrickYouthSkillTable.index!=0) rows.sort(FoxtrickYouthSkillTable.sortfunction);
-		else rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
+		if (FoxtrickYouthSkillTable.index==0) rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
+		else if (FoxtrickYouthSkillTable.index==1) rows.sort(FoxtrickYouthSkillTable.sortfunction);		
+		else rows.sort(FoxtrickYouthSkillTable.sortdownfunction);
 		
 		for (var i=1;i<table.rows.length;++i) {
 			table.rows[i].innerHTML = rows[i-1].innerHTML;

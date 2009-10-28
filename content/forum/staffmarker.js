@@ -10,8 +10,8 @@ var FoxtrickStaffMarker = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread','forumWritePost'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.3",
-	LASTEST_CHANGE:"added flags to select boxes, added CHPP holder",
+	NEW_AFTER_VERSION: "0.4.8.9",
+	LASTEST_CHANGE:"Icons to FoxtrickCrew and CHPP holders. To change it back, copy one of the style above and adjust the colors.",
 	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-color:red;", //HT

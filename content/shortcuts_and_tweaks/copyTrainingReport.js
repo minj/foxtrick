@@ -167,6 +167,7 @@ var FoxtrickCopyPlayerSource = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	page_html:'',
 	
 	init : function() {

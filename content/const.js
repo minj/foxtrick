@@ -27,6 +27,6 @@ Foxtrick.moduleCategories = {
 
 // List of latestChangeCategories
 Foxtrick.latestChangeCategories = {
-    NEW : 'new',
-	FIX : 'fix'
+    NEW : 'new',  // will appear in 'set new modules' list.
+	FIX : 'fix'   // only appears in the 'show new modules' list (same if value not set at all)
 };

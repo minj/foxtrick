@@ -12,6 +12,7 @@ Foxtrick.Ratings = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LASTEST_CHANGE: "Fixed ratings for youth matches",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : {}, // will be filled in initRatings
 	ratingDefs : {}, // will be filled in initOptions
 

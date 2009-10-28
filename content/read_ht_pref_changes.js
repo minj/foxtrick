@@ -275,10 +275,13 @@ var FoxtrickMyHT = {
 		FoxtrickMyHT.NewModules = new Array();
 						
 		var curVersion = FoxtrickPrefs.getString("curVersion"); 
-		var oldVersion = FoxtrickPrefs.getString("oldVersion");
+		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");				
+		var versions = Foxtrick.XML_evaluate(xmlresponse,  "hattrickversions/version", "name", "code");
+		var oldVersion = versions[versions.length-2][1];
+		
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i]; 
-			//dump (oldVersion+' > ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\n');
+//			dump (oldVersion+' <= ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\t'+module.MODULE_NAME+'\n');
 			if ( (module.NEW_AFTER_VERSION && oldVersion <= module.NEW_AFTER_VERSION) 
 				|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
 				
@@ -306,6 +309,8 @@ var FoxtrickMyHT = {
 						entry = FoxtrickPrefsDialogHTML._normalModule(doc, FoxtrickMyHT.NewModules[j], true);
 			}
 			
+			alertdiv.appendChild(doc.createElement('br'));
+			alertdiv.appendChild(doc.createTextNode(FoxtrickMyHT.NewModules[j].LASTEST_CHANGE));
 			alertdiv.appendChild( entry );
 		}
 	

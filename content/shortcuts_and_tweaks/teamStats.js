@@ -12,6 +12,7 @@ Foxtrick.TeamStats= {
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LASTEST_CHANGE:"Fixed pictures missing after multiple filter usage",
+	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	latestMatch:0,
 	top11star:0,
 
