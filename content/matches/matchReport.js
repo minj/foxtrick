@@ -242,7 +242,8 @@ FoxtrickMatchReportFormat = {
             // dump(i + ': ' + text + '\n');
             var score = reg.exec(text);
             
-            if (score && i > 6) {
+            if (divs[i].innerHTML.search(team1) > -1) start_g = 6; else start_g = 7;
+            if (score && i > start_g) {
                 dump( i + '[' + score + '] [' + standing + ']\n');
                 if (score[1] > standing[0]) {
                     standing[0]++;
