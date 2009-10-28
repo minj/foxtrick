@@ -10,6 +10,10 @@
 	cursor: pointer;
 }	
 
+#ft_youthskilltable th { 
+	cursor: pointer;
+}	
+
 .ft_table_even {
 	background-color:#eeeeee;
 	text-align:center !important;

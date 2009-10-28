@@ -11,7 +11,7 @@ var FoxtrickYouthSkillTable = {
 	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE:"Added specialty and marker for played in last match",
+	LASTEST_CHANGE:"Added specialty and marker for played in last match. Added basic sort function",
     CSS: "chrome://foxtrick/content/resources/css/youthskilltable.css",
 	
 	
@@ -40,39 +40,53 @@ var FoxtrickYouthSkillTable = {
 				for(var j = 0; j < 9; j++) {
 							var th = doc.createElement('th');
 							if (j>0) th.setAttribute('class','ft_youthskilltable_td_normal');
+							th.setAttribute('index',j);
+							th.addEventListener( "click", this.sortClick, true );						
 							th.innerHTML = Foxtrickl10n.getString(sn[j]);
 							tr.appendChild(th);
 				}
 				
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.setAttribute('index',9);
+				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = '<img alt="Y" class="cardsOne" src="/Img/Icons/yellow_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" style="width: 8px; height: 12px;"/>';					
 				tr.appendChild(th);
 				
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.addEventListener( "click", this.sortClick, true );						
+				th.setAttribute('index',10);
 				th.innerHTML = '<img alt="R" class="cardsOne" src="/Img/Icons/red_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" style="width: 8px; height: 12px;"/>';					
 				tr.appendChild(th);
 				
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.setAttribute('index',11);
+				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = '<img alt="(+)" class="injuryBruised" src="/Img/Icons/bruised.gif" style="width: 11px; height: 11px;"/>';					
 				tr.appendChild(th);
 				
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.setAttribute('index',12);
+				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = '<img alt="+" class="injuryInjured" src="/Img/Icons/injured.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" style="width: 11px; height: 11px;"/>';					
 				tr.appendChild(th);
 
 				// specialty header
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.setAttribute('index',13);
+				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = Foxtrickl10n.getString(sn[9]);
 				tr.appendChild(th);
 
 				// played last match header
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.setAttribute('index',14);
+				th.addEventListener( "click", this.sortClick, true );						
 				th.innerHTML = Foxtrickl10n.getString(sn[10]);
 				tr.appendChild(th);
 
@@ -219,6 +233,31 @@ var FoxtrickYouthSkillTable = {
 	},
 	
 	change : function( page, doc ) {	
+	},
+
+	sortfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].innerHTML);},
+	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.index].getElementsByTagName('a')[0].innerHTML);},
+
+	sortClick : function(ev) {
+	try{
+		var doc = ev.target.ownerDocument;
+		var tablediv = doc.getElementById('ft_youthskilltable');
+		var table = tablediv.getElementsByTagName('table')[0];
+		var table_old = table.cloneNode(true);
+		FoxtrickYouthSkillTable.index = ev.target.getAttribute('index');
+		
+		var rows= new Array();
+		for (var i=1;i<table.rows.length;++i) {
+			rows.push(table_old.rows[i]);
+		}
+		//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
+		if (FoxtrickYouthSkillTable.index!=0) rows.sort(FoxtrickYouthSkillTable.sortfunction);
+		else rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
+		
+		for (var i=1;i<table.rows.length;++i) {
+			table.rows[i].innerHTML = rows[i-1].innerHTML;
+		}
+			} catch(e) {dump(e);}
 	},
 
 	HeaderClick : function(ev) {
