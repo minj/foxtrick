@@ -10,7 +10,7 @@ var FoxtrickYouthSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.9",
+	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Added specialty and marker for played in last match. Added basic sort function",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     CSS: "chrome://foxtrick/content/resources/css/youthskilltable.css",
