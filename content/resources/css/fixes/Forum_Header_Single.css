@@ -8,7 +8,7 @@ div[class="cfHeader doubleLine"] b:after {content:" " !important;}
 .cfHeader a[class="bookmarkMessage"] img
 {margin: 0 0px -2px 0 !important;}
 
- div[class="cfHeader doubleLine"] 
+div[class="cfHeader doubleLine"] 
 {height:14px!important;}
 
 div[class="cfHeader doubleLine"] br 
@@ -21,5 +21,9 @@ div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
 
 div[class="cfHeader ftdoubleLine"] br 
 {display:none !important; padding: 5px;}
+
+/* broken dsign workaround*/
+div.cfHeader>div[class="float_right right"] 
+{background: #999999; padding: 0px 2px 1px; margin-right:-5px;}
 
 }
