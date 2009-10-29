@@ -380,16 +380,10 @@ var FoxtrickForumChangePosts = {
                     }
                     if (do_replace_supporter_star) {
                         if (supporter_link1) {
-                            header_left.insertBefore(alt_supporter.cloneNode(true),poster_link1.nextSibling);
-                            // dump('\nSTAR1\n');
+                            poster_link1.parentNode.insertBefore(alt_supporter.cloneNode(true),poster_link1.nextSibling);
                         }
                         if (supporter_link2) {
-                            var done = true; //Workaround for 2nd supstar
-                            try {
-                                header_left.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
-                            } catch(star) {done=false; dump('star2 ERROR: ' + star + '\n');}
-                            if (!done) poster_link2.textContent += '*';
-                            // dump('\nSTAR2\n');
+                            poster_link2.parentNode.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
                         }
                     }
 
