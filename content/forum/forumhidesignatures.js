@@ -11,7 +11,7 @@ var FoxtrickHideSignatures = {
 	PAGES : new Array('forumViewThread'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.10",
-	LASTEST_CHANGE:"Hide Signature module is finally fixed.",
+	LATEST_CHANGE:"Hide Signature module is finally fixed.",
 	
     init : function() {
     },

@@ -11,7 +11,7 @@ var FoxtrickYouthSkillNotes = {
 	PAGES : new Array('YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8",
-	LASTEST_CHANGE:"default off for new installations.",
+	LATEST_CHANGE:"default off for new installations.",
 
     init : function() {
     },

@@ -11,7 +11,7 @@ var FoxtrickYouthSkillHideUnknown = {
 	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Hide unknown youthskills",
+	LATEST_CHANGE:"Hide unknown youthskills",
 
     init : function() {
     },

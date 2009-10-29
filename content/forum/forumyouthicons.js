@@ -15,8 +15,8 @@
     OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Added to PAs, ticket system, guestbook, newsletter",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Added to PAs, ticket system, guestbook, newsletter",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
 

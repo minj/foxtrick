@@ -10,7 +10,7 @@ FoxtrickExtendedPlayerDetails = {
 	PAGES : new Array('playerdetail'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
+	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
     RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
     init : function() {
@@ -92,8 +92,8 @@ FoxtrickExtendedPlayerDetailsWage = {
 	PAGES : new Array('playerdetail'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
 
     init : function() {

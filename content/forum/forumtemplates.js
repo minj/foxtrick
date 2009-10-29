@@ -17,7 +17,7 @@ var FoxtrickForumTemplates = {
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
 	NEW_AFTER_VERSION: "0.4.8",	
-	LASTEST_CHANGE:"Added HT Press Templates for Staff",
+	LATEST_CHANGE:"Added HT Press Templates for Staff",
     
     _MAX_TEMPLATE_DISP_LENGTH : 60,
 	_DISPLAY_WIDTH:125,

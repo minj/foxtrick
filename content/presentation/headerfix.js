@@ -12,7 +12,7 @@ var FoxtrickHeaderFix = {
 	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Disabled on LiveFlash page",
+	LATEST_CHANGE:"Disabled on LiveFlash page",
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
 	CSS_SIMPLE:"chrome://foxtrick/content/resources/css/headerfix.css",
 	CSS:"chrome://foxtrick/content/resources/css/headerfix_std.css",

@@ -12,7 +12,7 @@ var FoxtrickBackgroundFixed = {
 	DEFAULT_ENABLED : false,
 	CSS:"chrome://foxtrick/content/resources/css/backgroundfixed.css",
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     init : function() {
     },

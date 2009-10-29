@@ -12,7 +12,7 @@ var FoxtrickCopyMatchID = {
 					'matchesLatest','arena','matchLineup','match'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8",
-	LASTEST_CHANGE:"Fix for match preview page",
+	LATEST_CHANGE:"Fix for match preview page",
 
 	init : function() {
 	},

@@ -12,7 +12,7 @@ var FoxtrickForumSearch = {
 	PAGES : new Array('forum'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",	
-	LASTEST_CHANGE:"Collects some search information",
+	LATEST_CHANGE:"Collects some search information",
 	
     init : function() {
     },

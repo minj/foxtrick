@@ -17,8 +17,8 @@ var FoxtrickCountyList = {
     htCountriesXml : null,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE:"Added the country link as textlink to the team page",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Added the country link as textlink to the team page",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
     init : function() {

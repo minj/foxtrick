@@ -1286,7 +1286,7 @@ var FoxtrickPrefsDialogHTML = {
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.73";
 						var screenshot=Foxtrickl10n.getScreenshot(module.MODULE_NAME);						
-						FoxtrickPrefsDialogHTML.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.MODULE_CATEGORY,new_after,module.LASTEST_CHANGE,module]); 
+						FoxtrickPrefsDialogHTML.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.MODULE_CATEGORY,new_after,module.LATEST_CHANGE,module]); 
 												
 					}
 				}
@@ -1510,8 +1510,8 @@ var FoxtrickOnPagePrefs = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('all_late'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Shows a small expandable box at the bottom of the sidebar which allows changing FoxTrick modules which alter the current page (default on)",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Shows a small expandable box at the bottom of the sidebar which allows changing FoxTrick modules which alter the current page (default on)",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     init : function() {
     },

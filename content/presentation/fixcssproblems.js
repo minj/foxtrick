@@ -10,8 +10,8 @@ FoxtrickFixcssProblems = {
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE:"Highlight bots added",	
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Highlight bots added",	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
                                     "Club_Menu_Teamnames",

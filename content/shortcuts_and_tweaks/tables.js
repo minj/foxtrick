@@ -11,7 +11,7 @@ var FoxtrickTables = {
 	PAGES : new Array('promotion','oldseries','marathon'), 
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.8.1",	
-    LASTEST_CHANGE:"adds goal difference to tables",    
+    LATEST_CHANGE:"adds goal difference to tables",    
 
     init : function() {
     },
@@ -67,8 +67,8 @@ var FoxtrickMatchTables = {
 	PAGES : new Array('matchesarchiv', 'matches','league','youthleague'), 
     DEFAULT_ENABLED : false,
     NEW_AFTER_VERSION: "0.4.8.2",	
-    LASTEST_CHANGE:"removes white space on match tables",    
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+    LATEST_CHANGE:"removes white space on match tables",    
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS :  new Array("RemoveTime"), 
 	
     init : function() {

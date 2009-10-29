@@ -11,7 +11,7 @@ var FoxtrickTickerColoring = {
 	PAGES : new Array('all'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.7",
-	LASTEST_CHANGE:"Option to use custom color added",	
+	LATEST_CHANGE:"Option to use custom color added",	
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages","Hover"),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:#000; background-color:#DFEFC2;",  // LoginWelcome

@@ -11,7 +11,7 @@ var FoxtrickLeagueNewsFilter = {
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"Fixed problems with ShortPAs and repeated useage",
+	LATEST_CHANGE:"Fixed problems with ShortPAs and repeated useage",
 	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),
 	
     init : function() {
@@ -147,7 +147,7 @@ var FoxtrickShortPAs = {
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Fix for PAs with horizontal lines",
+	LATEST_CHANGE:"Fix for PAs with horizontal lines",
 	
     init : function() {
     },

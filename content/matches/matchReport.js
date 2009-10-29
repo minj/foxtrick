@@ -9,7 +9,7 @@ FoxtrickMatchReportFormat = {
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE:"BugFix after HT Update 16.09.2009",	
+	LATEST_CHANGE:"BugFix after HT Update 16.09.2009",	
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
 											 "#9F0202",  //Text Home team name   1
@@ -31,8 +31,8 @@ FoxtrickMatchReportFormat = {
     UNKNOWN_COLOUR : "#F0F0F0",
 
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"some format of match report for better reading",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"some format of match report for better reading",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
  	//OPTIONS : new Array("DefaultShow"),
 
 	init : function() {

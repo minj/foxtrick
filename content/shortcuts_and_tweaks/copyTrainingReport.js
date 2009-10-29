@@ -11,7 +11,7 @@ var FoxtrickCopyTrainingReport = {
 	PAGES : new Array('YouthTraining'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.6.2",
-	LASTEST_CHANGE:"Copies plain text to match htyouthclub requirement",
+	LATEST_CHANGE:"Copies plain text to match htyouthclub requirement",
 	
 	init : function() {
 	},
@@ -88,7 +88,7 @@ var FoxtrickCopyScoutReport = {
 	PAGES : new Array('youthplayerdetail'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.3",
-	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy scout report in plain text to match htyouthclub requirement",
+	LATEST_CHANGE:"Adds button on youthplayerdetail page to copy scout report in plain text to match htyouthclub requirement",
 	
 	init : function() {
 	},
@@ -166,8 +166,8 @@ var FoxtrickCopyPlayerSource = {
 	PAGES : new Array('youthplayerdetail'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	page_html:'',
 	
 	init : function() {

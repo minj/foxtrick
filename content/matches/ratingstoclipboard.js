@@ -11,7 +11,7 @@ var FoxtrickCopyRatingsToClipboard = {
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8",	
-	LASTEST_CHANGE:"new table format, added matchID and result",    
+	LATEST_CHANGE:"new table format, added matchID and result",    
 
 	init : function() {
     },

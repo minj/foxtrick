@@ -11,8 +11,8 @@ var FoxtrickYouthPromotes = {
 	PAGES : new Array('YouthPlayer'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LASTEST_CHANGE: "Fixing promotes for players in team less the 112 days",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	LATEST_CHANGE: "Fixing promotes for players in team less the 112 days",
 
     init : function() {
     },

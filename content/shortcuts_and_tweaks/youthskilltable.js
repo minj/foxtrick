@@ -11,8 +11,8 @@ var FoxtrickYouthSkillTable = {
 	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE:"Added specialty and marker for played in last match. Added basic sort function",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	LATEST_CHANGE:"Added specialty and marker for played in last match. Added basic sort function",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     CSS: "chrome://foxtrick/content/resources/css/youthskilltable.css",
 	
 	

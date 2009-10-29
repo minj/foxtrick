@@ -11,7 +11,7 @@ var FoxtrickElectionTable = {
 	PAGES : new Array('election'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"adds percentage to election tables",
+	LATEST_CHANGE:"adds percentage to election tables",
 
 	init : function() {
     },

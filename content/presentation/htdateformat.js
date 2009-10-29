@@ -13,7 +13,7 @@ FoxtrickHTDateFormat = {
 	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.6.2",	
-	LASTEST_CHANGE:"Option to set first day of week added",
+	LATEST_CHANGE:"Option to set first day of week added",
 	OPTIONS :  new Array("LocalSaison","FirstDayOfWeekOffset"), 
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","0"),

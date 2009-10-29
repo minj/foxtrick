@@ -14,7 +14,7 @@ var FoxtrickGuestbookAlltidFlags = {
 	PAGES : new Array('guestbook'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"Option to hide answer-to links",
+	LATEST_CHANGE:"Option to hide answer-to links",
 	OPTIONS : new Array("AddAlltidFlags","HideAnswerToLinks"),
 	
 	init : function() {

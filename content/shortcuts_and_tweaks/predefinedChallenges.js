@@ -10,8 +10,9 @@ var FoxTrickPredefinedChallenges = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('teamPage'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9",
-	LASTEST_CHANGE: "automatic save of challenge settings",
+	NEW_AFTER_VERSION: "0.4.8.9",
+	LATEST_CHANGE: "Automatic saving of challenge settings",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	init : function() {
     },

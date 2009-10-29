@@ -13,8 +13,8 @@ var FoxtrickSeasonStats = {
 	ONPAGEPREF_PAGE : 'matchesarchiv', 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LASTEST_CHANGE:"Fixed wrong home draws assignment",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	LATEST_CHANGE:"Fixed wrong home draws assignment",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome://foxtrick/content/resources/css/seasonstats.css",
 	
 	_season:-1,

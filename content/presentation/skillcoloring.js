@@ -24,7 +24,7 @@ var FoxtrickSkillColoring = {
                                 "chrome://foxtrick/content/resources/skillcolors/no-skill-links.css"
                            ),
 	NEW_AFTER_VERSION: "0.4.8.2",	
-	LASTEST_CHANGE:"Optional translated skills",
+	LATEST_CHANGE:"Optional translated skills",
     	
     init : function() {	
 		if  ( Foxtrick.isModuleFeatureEnabled( this, "skill_number" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) 

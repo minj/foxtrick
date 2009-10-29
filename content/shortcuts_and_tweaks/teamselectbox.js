@@ -11,7 +11,7 @@ var FoxtrickTeamSelectBox= {
 		PAGES : new Array('players','YouthPlayers'), 
         DEFAULT_ENABLED : true,
 		NEW_AFTER_VERSION: "0.4.6.2",	
-		LASTEST_CHANGE:"TeamSelectBox eneabled for youth players. Dropdown image added",
+		LATEST_CHANGE:"TeamSelectBox eneabled for youth players. Dropdown image added",
 		OPTIONS : new Array("AlsoYouthPlayers"), 
 		listbox:"",
 

@@ -11,7 +11,7 @@ var FoxtrickReadHtPrefs = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('prefSettings'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Name of the internal preference changed. If it was off previously it default on again till saved otherwise",
+	LATEST_CHANGE:"Name of the internal preference changed. If it was off previously it default on again till saved otherwise",
 	
 	codes:{},
 	
@@ -112,7 +112,7 @@ var FoxtrickMyHT = {
 	PAGES : new Array('myhattrick'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
-	LASTEST_CHANGE:"FoxTrick MyHT message shorted. Changes moved to html preferences. Shown only once again",
+	LATEST_CHANGE:"FoxTrick MyHT message shorted. Changes moved to html preferences. Shown only once again",
 	
 	NewModules: null,
 	
@@ -286,7 +286,7 @@ var FoxtrickMyHT = {
 				|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
 				
 				if (!module.MODULE_CATEGORY) continue;
-				if (!module.LASTEST_CHANGE_CATEGORY || module.LASTEST_CHANGE_CATEGORY!=Foxtrick.latestChangeCategories.NEW) continue;
+				if (!module.LATEST_CHANGE_CATEGORY || module.LATEST_CHANGE_CATEGORY!=Foxtrick.latestChangeCategories.NEW) continue;
 													
 				FoxtrickMyHT.NewModules.push(module); 
 				dump(module.MODULE_NAME+'\n');
@@ -310,7 +310,7 @@ var FoxtrickMyHT = {
 			}
 			
 			alertdiv.appendChild(doc.createElement('br'));
-			alertdiv.appendChild(doc.createTextNode(FoxtrickMyHT.NewModules[j].LASTEST_CHANGE));
+			alertdiv.appendChild(doc.createTextNode(FoxtrickMyHT.NewModules[j].LATEST_CHANGE));
 			alertdiv.appendChild( entry );
 		}
 	

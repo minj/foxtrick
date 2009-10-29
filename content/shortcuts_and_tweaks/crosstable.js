@@ -16,8 +16,8 @@ var FoxtrickCrossTable = {
     OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
 	htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"some style options",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"some style options",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
     _week : 14,
     init : function() {

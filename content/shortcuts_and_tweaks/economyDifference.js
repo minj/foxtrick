@@ -11,7 +11,7 @@ var FoxtrickEconomyDifference = {
 	PAGES : new Array('finances'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.6.2",	
-	LASTEST_CHANGE:"Clicking on header toggles options. Option to exclude temporary income added",
+	LATEST_CHANGE:"Clicking on header toggles options. Option to exclude temporary income added",
 	RADIO_OPTIONS : new Array("plus", "minus","plus_exclude_temp", "minus_exclude_temp"),
     
     init : function() {

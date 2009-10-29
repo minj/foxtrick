@@ -12,7 +12,7 @@ var FoxtrickAddManagerButtons = {
 	PAGES : new Array('managerPage','teamPage','youthoverview'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9",
-	LASTEST_CHANGE:"Added infotext to staff pages",
+	LATEST_CHANGE:"Added infotext to staff pages",
 	
 
     init : function() {

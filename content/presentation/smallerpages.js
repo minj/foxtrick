@@ -11,8 +11,8 @@ FoxtrickSmallerPages = {
 	PAGES : new Array('playerdetail'), 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Reduces the dimension of some pages to adapt to small screens",
-	LASTEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Reduces the dimension of some pages to adapt to small screens",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array( "ReduceBid"),
     
     init : function() {

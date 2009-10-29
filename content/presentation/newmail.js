@@ -10,7 +10,7 @@ var FoxtrickNewMail = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.6.2",
-	LASTEST_CHANGE:"Option to use custom color added",
+	LATEST_CHANGE:"Option to use custom color added",
 	CSS:  "",
     OLD_CSS:"",
 	

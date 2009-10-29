@@ -11,7 +11,7 @@ var FoxtrickMovePlayerSelectbox= {
 		PAGES : new Array('playerdetail'), 
         DEFAULT_ENABLED : false,
 		NEW_AFTER_VERSION: "0.4.7",	
-		LASTEST_CHANGE:"option to move player select box up on playersdetail page (default off)",
+		LATEST_CHANGE:"option to move player select box up on playersdetail page (default off)",
 
     init : function() {
     },
@@ -50,7 +50,7 @@ var FoxtrickMoveManagerOnline= {
 		PAGES : new Array('region'), 
         DEFAULT_ENABLED : false,
 		NEW_AFTER_VERSION: "0.4.7",	
-		LASTEST_CHANGE: "option to move move online managers up on region page (default off)",
+		LATEST_CHANGE: "option to move move online managers up on region page (default off)",
 
     init : function() {
     },
