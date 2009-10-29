@@ -51,6 +51,10 @@ var FoxtrickCrossTable = {
 
             tbl_fix.id = 'ft_fixture';
 
+			var names_tmp = new Array(8);
+			var names_early = new Array(8);
+			var names_late = new Array(8);
+			
             var cross = new Array(  new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
                                     new Array( '', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
@@ -77,7 +81,7 @@ var FoxtrickCrossTable = {
                                     new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
                                     new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
                                     new Array( '', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0));
-            //Teams
+            //get early Teams
             var tblBodyObj = tbl_fix.tBodies[0];
 
             for (var i = 0; i < 4; i++) {
@@ -85,10 +89,53 @@ var FoxtrickCrossTable = {
                 dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
                 // dump('['+ dummy + ']\n');
 
-                cross[i*2][0] = dummy[0]; crossgame[i*2][0] = dummy[0]; week[i*2][0] = dummy[0];
-                cross[i*2 + 1][0] = dummy[1]; crossgame[i*2+1][0] = dummy[1]; week[i*2+1][0] = dummy[1];
-                // dump('' + cross[i*2] + '\n' + cross[i*2+1]+'\n');
+                names_tmp[i*2] = dummy[0]; 
+                names_tmp[i*2 + 1] = dummy[1]; 
+                //dump('' + names_tmp[i*2] + '\n' + names_tmp[i*2+1]+'\n');
             }
+			// get late teams
+			var last_fixture=13*5;
+			for (var i = 0; i < 4; i++) {
+                var dummy = tblBodyObj.rows[i+1+last_fixture].cells[1].innerHTML;
+                dummy = dummy.split('">')[1].split('</a>')[0].split('&nbsp;-&nbsp;');
+                //dump('['+ dummy + ']\n');
+
+                names_late[i*2] = dummy[0]; cross[i*2][0] = dummy[0]; crossgame[i*2][0] = dummy[0]; week[i*2][0] = dummy[0];
+                names_late[i*2 + 1] = dummy[1]; cross[i*2 + 1][0] = dummy[1]; crossgame[i*2+1][0] = dummy[1]; week[i*2+1][0] = dummy[1];
+                // dump('' + names_tmp[i*2] + '\n' + names_tmp[i*2+1]+'\n');
+            }
+			// compare and adjust
+			for (var i = 0; i < 4; i++) {
+				for (var j = 0; j < 4; j++) {
+					if (j==4) { break;}
+					if (names_late[i*2] == names_tmp[j*2+1]) {
+						names_early[i*2] = names_tmp[j*2+1];
+						names_early[i*2+1] = names_tmp[j*2];
+						names_tmp[j*2]='';
+						continue;
+					}
+					else if (names_late[i*2+1] == names_tmp[j*2]) {
+						names_early[i*2] = names_tmp[j*2+1];
+						names_early[i*2+1] = names_tmp[j*2];
+						names_tmp[j*2]='';
+						continue;
+					}
+				}
+            }
+			// if more than team has changed
+			for (var i = 0; i < 4; i++) {
+				if (names_late[i*2]==""){
+					for (var j = 0; j < 4; j++) {
+						if (names_tmp[j*2]=='') {
+							names_late[i*2] = names_tmp[j*2+1];
+							names_late[i*2+1] = names_tmp[j*2];
+							names_tmp[j*2]='';							
+						}
+					}
+				}
+			}
+			
+			dump(names_early+'\n'+names_late+'\n');
 
             //results
             var row = 0; points_aw = 0; points_hm = 0;
@@ -111,12 +158,16 @@ var FoxtrickCrossTable = {
                     //Team 1-2
                     for (var k = 0; k<8; k++){ //vs
                         if (!Foxtrick.isRTLLayout(doc)) {
-							if (dummy[0] == cross[k][0]) {home = k; homegame = true;}
-							if (dummy[1] == cross[k][0]) {away = k}
-						}
+							if (dummy[0] == names_early[k]) {home = k; homegame = true;}
+							else if (dummy[1] == names_early[k]) {away = k}
+							else if (dummy[0] == names_late[k]) {home = k; homegame = true;}
+							else if (dummy[1] == names_late[k]) {away = k}
+						}						
 						else {
-							if (dummy[0] == cross[k][0]) {away = k}
-							if (dummy[1] == cross[k][0]) {home = k; homegame = true;}
+							if (dummy[0] == names_early[k]) {away = k}
+							else if (dummy[1] == names_early[k]) {home = k; homegame = true;}
+							else if (dummy[0] == names_late[k]) {away = k}
+							else if (dummy[1] == names_late[k]) {home = k; homegame = true;}
 						}
                         if ((home != -1) && (away != -1)) {
 
