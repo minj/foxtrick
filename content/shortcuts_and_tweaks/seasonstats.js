@@ -77,7 +77,8 @@ var FoxtrickSeasonStats = {
 		var matchestable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		
 		// get team name. start with current name, but try to get name of that season from first home game
-		var TeamName = FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15).replace(/\W/g,''); 
+		var TeamName = FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15);//.replace(/\W/g,'');
+		var TeamNameOld=null;
 		for (var i=0; i<matchestable.rows.length; ++i) { 
 			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won'; 
 			var islost = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='lost'; 
@@ -87,11 +88,11 @@ var FoxtrickSeasonStats = {
 			if (goals0>goals1&&islost || goals0<goals1&&iswon ) { // away. own goals second
 			}
 			else {
-				TeamName = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/-.+/g,'');
+				TeamNameOld = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/-.+/g,'');
 				break;
 			}			
 		}
-		dump('TeamName: '+TeamName+'\n');
+		dump('TeamName: '+TeamName+'  TeamNameOld: '+TeamNameOld+'\n');
 		
 		for (var i=0; i<matchestable.rows.length; ++i) { 
 			var type=0;
@@ -113,8 +114,12 @@ var FoxtrickSeasonStats = {
 				ishome=2;
 			}
 			// get home/away for draws
-			if (isdraw) {  
-				ishome = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title/*.replace(/\W/g,'')*/.search(TeamName)==0?1:2;
+			if (isdraw) { 
+				var thisfixture = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title/*.replace(/\W/g,'')*/;
+				if (thisfixture.search(TeamName))  // check if teamname is in fixture
+						ishome = thisfixture.search(TeamName)==0?1:2;  // first pos = home
+				else if (TeamNameOld && thisfixture.search(TeamNameOld))  // same for old teamname
+						ishome = thisfixture.search(TeamNameOld)==0?1:2;
 			}
 			sum_matches[type*3]["type"] = matchestable.rows[i].cells[1].getElementsByTagName('img')[0].title ;			
 			sum_matches[type*3]["num"]++;
