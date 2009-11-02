@@ -6,7 +6,7 @@
 FoxtrickMatchPlayerColouring = {
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match'), 
+	PAGES : new Array('match','teamPageAny'), 
 	DEFAULT_ENABLED : true,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team
@@ -15,18 +15,25 @@ FoxtrickMatchPlayerColouring = {
 											),
 	OPTIONS : new Array("MyTeam", "Home", "Away"),
 						
+	OwnYouthTeamId : null,
     UNKNOWN_COLOUR : "#F0F0F0",
 	
 	init : function() {
     },
     
-    run : function( page, doc ) { dump('FoxtrickMatchPlayerColouring\n');
+    run : function( page, doc ) { 
+	
+		// get first youthteam id, assume its your own
+		if (page=='teamPageAny' && this.OwnYouthTeamId==null) {
+			this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+			return;
+		}
         
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
 		
 		//Retrieve teams id
-		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
@@ -50,6 +57,8 @@ FoxtrickMatchPlayerColouring = {
 			//Replace myTeam colour
 			if (HomeTeamId == myTeamId) stlTeamA = stlMyTeam;
 			else if (AwayTeamId == myTeamId) stlTeamB = stlMyTeam;
+			else if (HomeTeamId == this.OwnYouthTeamId) stlTeamA = stlMyTeam;
+			else if (AwayTeamId == this.OwnYouthTeamId) stlTeamB = stlMyTeam;
 		}
 	
 				
