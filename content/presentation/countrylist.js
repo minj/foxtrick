@@ -11,7 +11,8 @@ var FoxtrickCountyList = {
     PAGES : new Array ( 'country', 'transferListSearchForm', 'ads', 'press', 
                         'statsTransfersBuyers', 'statsTeams', 'statsPlayers', 
                         'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
-                        'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena'
+                        'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena',
+                        'help_contact'
                         ),
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
@@ -81,6 +82,10 @@ var FoxtrickCountyList = {
 
                 case 'statsArena' :
                     this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+                break;
+
+                case 'help_contact' :
+                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 3);
                 break;
                 
                 

@@ -82,6 +82,7 @@ Foxtrick.ht_pages = {
     'election'                  : '\/World\/Elections\/Default\.aspx',
     'ads'                       : '\/Community\/Ads\/',
 	'denominations'             : '\/Help\/Rules\/AppDenominations.aspx',
+	'help_contact'                      : '\/Help\/Contact.aspx',
 	'statsBestgames'            : '\/World\/Stats\/StatsBestgames.aspx',
 	'statsTransfersBuyers'      : '\/World\/Stats\/StatsTransfersBuyers.aspx',
 	'statsTeams'                : '\/World\/Stats\/StatsTeams.aspx',
