@@ -31,7 +31,6 @@ FoxtrickStaffMarker.hty_staff = new Array (
 'Thelonius',
 '-Vikt-',
 'orestes_v',
-'Hippoman',
 'Madoness',
 'victoruanl',
 'KeepCoolerCoach',
