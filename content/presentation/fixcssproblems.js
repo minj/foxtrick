@@ -10,7 +10,7 @@ FoxtrickFixcssProblems = {
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Highlight bots added",	
+	LATEST_CHANGE:"Highlight bots added, Hide team logos added",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
@@ -31,7 +31,8 @@ FoxtrickFixcssProblems = {
                                     "Forum_Spoiler_reveal",
 									"MatchReportRatingsFontFix",
                                     "HideAchievementsIcons",
-									"BotHighlight"
+									"BotHighlight",
+									"NoLogo"
                   
 								),
 	OPTIONS_CSS: new Array (
@@ -53,7 +54,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css"
+								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css",
+								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -74,7 +76,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css"
+								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css",
+								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
                                 ),
                                
     init : function() {

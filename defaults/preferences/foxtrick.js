@@ -84,6 +84,7 @@ pref( "extensions.foxtrick.prefs.module.FixcssProblems.HideUnseenMatchesPanel.en
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Spoiler_reveal.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.MatchReportRatingsFontFix.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.HideAchievementsIcons.enabled", false );
+pref( "extensions.foxtrick.prefs.module.FixcssProblems.NoLogo.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false );
 pref( "extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false );
