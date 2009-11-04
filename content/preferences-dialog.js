@@ -236,7 +236,7 @@ var FoxtrickPreferencesDialog = {
 
 		var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"));
-		checkbox.setAttribute('id',"skinActivedCurrencyConverter");
+		checkbox.setAttribute('id',"CurrencyConverter");
 		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.CurrencyConverter.enabled"));
 		hbox.appendChild(checkbox);
 
@@ -678,7 +678,7 @@ var FoxtrickPreferencesDialog = {
         FoxtrickPrefs.setString("currencyRate", this.getConverterCurrValue(document.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
 		FoxtrickPrefs.setString("currencyCode", this.getConverterCurrValue(document.getElementById("htCurrency").value,"code",htCurrencyXml_c));
         
-        FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("skinActivedCurrencyConverter").checked); 
+        FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked); 
 
 		//Dateformat
         FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);

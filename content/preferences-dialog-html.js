@@ -251,6 +251,11 @@ var FoxtrickPrefsDialogHTML = {
 			}
 		}
 		
+
+		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
+        FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("CurrencyConverter").checked); 
+
+		
 		// check if not whole prefs. in that case stop here
 		if (!doc.getElementById("htLanguage")) {
 		    FoxtrickMain.init();
@@ -286,8 +291,6 @@ var FoxtrickPrefsDialogHTML = {
         FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
 		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"code",htCurrencyXml_c));
         
-        FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("activeCurrencyConverter").checked); 
-
 		//Dateformat
         FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
 
@@ -317,7 +320,6 @@ var FoxtrickPrefsDialogHTML = {
 		
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", doc.getElementById("copyfeedback").checked);
-		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
         
 		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", doc.getElementById("saveprefsid").checked);
@@ -527,7 +529,7 @@ var FoxtrickPrefsDialogHTML = {
 		var br= doc.createElement("br");
         td.appendChild(br);
 		var checked = FoxtrickPrefs.getBool("module.CurrencyConverter.enabled");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'activeCurrencyConverter', Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"),'', checked ) 
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'CurrencyConverter', Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"),'', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
 
