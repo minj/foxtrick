@@ -209,12 +209,14 @@ FoxtrickMatchReportFormat = {
                 if (stage>1) { //full report
                     if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;
-                        dummy[i] = dummy[i].replace(team1, '<span style="font-weight:bold; color:'+ txt_col_hm +'">' + team1 + '</span>');
+                        dummy[i] = dummy[i].replace(team1 + ' ', '<span style="font-weight:bold; color:'+ txt_col_hm +'">' + team1 + ' </span>');
+                        dummy[i] = dummy[i].replace(' ' + team1, '<span style="font-weight:bold; color:'+ txt_col_hm +'"> ' + team1 + '</span>');
                         if (fulltext <= 2) bg= text_dark + '; ';
                     }
                     if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;
-                        dummy[i] = dummy[i].replace(team2, '<span style="font-weight:bold; color:'+ txt_col_aw +'">' + team2 + '</span>');
+                        dummy[i] = dummy[i].replace(team2 + ' ', '<span style="font-weight:bold; color:'+ txt_col_aw +'">' + team2 + ' </span>');
+                        dummy[i] = dummy[i].replace(' ' + team2, '<span style="font-weight:bold; color:'+ txt_col_aw +'"> ' + team2 + '</span>');
                         if (fulltext <= 2) {
                             bg= text_dark + '; ';
                             next = i+2;
