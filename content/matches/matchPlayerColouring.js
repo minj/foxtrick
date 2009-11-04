@@ -6,8 +6,12 @@
 FoxtrickMatchPlayerColouring = {
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match','teamPageAny'), 
-	DEFAULT_ENABLED : true,
+	PAGES : new Array('match','teamPageAny','myhattrick'), 
+	ONPAGEPREF_PAGE : 'match', 
+    DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.8.9",
+	LATEST_CHANGE:"Highlight own team in youth matches (only works if any own team page was the first visited)",	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team
 											"background:#FFCDCD; color:black; border:1px solid #CF8181;", //Home #FFAFAF 
@@ -24,11 +28,15 @@ FoxtrickMatchPlayerColouring = {
     run : function( page, doc ) { 
 	
 		// get first youthteam id, assume its your own
-		if (page=='teamPageAny' && this.OwnYouthTeamId==null) {
-			this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+		if (page=='teamPageAny')  {
+			if  (this.OwnYouthTeamId==null) this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
 			return;
 		}
-        
+        if (page=='myhattrick') {
+			this.OwnYouthTeamId = null;
+			return;
+		}
+		
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
 		
