@@ -97,10 +97,11 @@ var FoxtrickForumChangePosts = {
         
         
 		// loop through cfWrapper --------------------------------------------
-		var tag = doc.getElementById('ctl00_ucLeftMenuForum_ucNewPosts').getElementsByTagName('strong');
-        if (tag[0] != null) {
-            var TName = tag[0].innerHTML;
-            var TName_lng = tag[0].parentNode.title;
+		var tag = doc.getElementById('myForums');
+        if (tag != null) {
+            tag = tag.getElementsByTagName('strong')[0];
+            var TName = tag.innerHTML;
+            var TName_lng = tag.parentNode.title;
             TName_lng = TName_lng.replace(TName, "");
             TName_lng = TName_lng.split(" ")[2];
         } else var TName_lng = false;
