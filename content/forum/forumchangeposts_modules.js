@@ -73,7 +73,7 @@ var FoxtrickForumAlterHeaderLine = {
 	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Added default workaround for broken design. Checkdesign not working properly, you well turn it of for now",
+	LATEST_CHANGE:"Added default workaround for broken design. Added HighlightThreadOpener module for highlighing thread opener's posts",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName",
 						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar","HighlightThreadOpener"),
