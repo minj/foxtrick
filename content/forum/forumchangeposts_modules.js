@@ -76,7 +76,7 @@ var FoxtrickForumAlterHeaderLine = {
 	LATEST_CHANGE:"Added default workaround for broken design. Checkdesign not working properly, you well turn it of for now",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName",
-						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar"),
+						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar","HighlightThreadOpener"),
 	OPTIONS_CSS: new Array ("chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css",
 							"",
 							"",
