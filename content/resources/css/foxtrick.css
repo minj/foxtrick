@@ -34,3 +34,6 @@ h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrom
 /*boxBody h2 dropdown image*/
 h2.ft_boxBodyCollapsed {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
 h2.ft_boxBodyUnfolded {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
+
+/*Forum HighlighthreadOpener PostID*/
+.ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000!important;}

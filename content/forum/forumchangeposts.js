@@ -398,10 +398,12 @@ var FoxtrickForumChangePosts = {
 
                     if (do_HighlightThreadOpener && TName_lng) {
                         try{
-                            if (poster_link1.innerHTML == TName_lng) 
-                                poster_link1.previousSibling.previousSibling.setAttribute('style', 'background-color:#000!important')
-                            else if (poster_link2.innerHTML == TName_lng) 
-                                poster_link2.previousSibling.previousSibling.setAttribute('style', 'background-color:#000!important')
+                            if (poster_link1.innerHTML == TName_lng) {
+                                poster_link1.previousSibling.previousSibling.setAttribute('class','ft_slH_PID_left');
+                            }
+                            else if (poster_link2.innerHTML == TName_lng) {
+                                poster_link2.previousSibling.previousSibling.setAttribute('class','ft_slH_PID_right');
+                            }
                         } catch(e_HTO) {
                             //dump('do_HighlightThreadOpener :' + e_HTO + '\n');
                         }
