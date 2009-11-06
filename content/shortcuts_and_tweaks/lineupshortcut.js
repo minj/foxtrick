@@ -9,7 +9,7 @@ FoxtrickLineupShortcut = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.2",
+	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Added shortcut to NT/U20 matches",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
  	OPTIONS : new Array( "HighlightPlayer", "YouthPlayerLink"),
@@ -65,7 +65,7 @@ FoxtrickLineupShortcut = {
 				ntId=obj.getElementsByTagName('NTid').item(0).firstChild.nodeValue;
 				u20Name=obj.getElementsByTagName('U20Name').item(0).firstChild.nodeValue;
 				u20Id=obj.getElementsByTagName('U20id').item(0).firstChild.nodeValue;
-				Foxtrick.LOG('ok: '+ntName+':'+ntId+' - '+u20Name+':'+u20Id);
+				//Foxtrick.LOG('ok: '+ntName+':'+ntId+' - '+u20Name+':'+u20Id);
 			}
 			else
 				Foxtrick.LOG('Error in lineupshortcut: serieId '+serieId+' not found!');
