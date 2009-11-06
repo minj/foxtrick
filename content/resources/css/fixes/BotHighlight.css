@@ -1,6 +1,5 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
-td .myht1 .shy {
-color: #666666 !important;
+#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] .shy {
 background-image: url('chrome://foxtrick/content/resources/img/bot.png'); background-repeat: no-repeat; padding: 0px 0px 0px 18px; !important;
 }
 }
