@@ -2,7 +2,14 @@
 
 
 /* broken dsign workaround*/
+div.mainConf div.cfInnerWrapper 
+{padding-top:18px;}
+
+div.mainConf div.cfMessage, div.mainConf div.cfUser 
+{padding-top:0px !important;}
+
 div.cfHeader>div[class="float_right right"] 
-{background: #999999 !important;}
+{background: #849D84;}
+
 
 }

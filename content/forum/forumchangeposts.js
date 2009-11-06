@@ -96,7 +96,6 @@ var FoxtrickForumChangePosts = {
         */
         
         
-		// loop through cfWrapper --------------------------------------------
 		var tag = doc.getElementById('myForums');
         if (tag != null) {
             tag = tag.getElementsByTagName('strong')[0];
@@ -105,7 +104,9 @@ var FoxtrickForumChangePosts = {
             TName_lng = TName_lng.replace(TName, "");
             TName_lng = TName_lng.split(" ")[2];
         } else var TName_lng = false;
-        var num_wrapper = 0;  // message counter
+        
+		// loop through cfWrapper --------------------------------------------
+		var num_wrapper = 0;  // message counter
 		var alldivs = doc.getElementById('threadContent').childNodes;
         var i = 0, wrapper;
 		while ( wrapper = alldivs[++i] ) {
@@ -419,7 +420,8 @@ var FoxtrickForumChangePosts = {
                     }
 
                     if (do_single_header && !do_single_header_allways) {
-                      if (header.className == "cfHeader doubleLine") {	//dump('d'+String(header.offsetTop-header_right.offsetTop)+'\n');
+                      if (header.className == "cfHeader doubleLine") {	
+						//dump('d'+String(header.offsetTop-header_right.offsetTop)+'\n');
                         // dump(header.innerHTML);
                         try {
                             var line2 = header.getElementsByTagName('p')[0];
@@ -436,7 +438,7 @@ var FoxtrickForumChangePosts = {
                             dump('ERROR eline2: ' + eline2 + '\n');
                         }
                         
-                        if (header.offsetTop-header_right.offsetTop < -3 ) {
+					//   if (header.offsetTop-header_right.offsetTop < -3 ) {
                           if (do_truncate_nicks) {
                             var userName1 = poster_link1.innerHTML;
                             if (userName1.length > trunclength) {
@@ -467,11 +469,11 @@ var FoxtrickForumChangePosts = {
                                 //header.setAttribute('style','height: 30px !important;'); doesn't work
                             }
                           }
-                          else {
+                          /*else {
                             header.setAttribute('class','cfHeader ftdoubleLine');
                             //header.setAttribute('style','height: 30px !important;'); doesn't work
                           }
-                        }
+                        }*/
                     }
 
                     }  // end single header line
