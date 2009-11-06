@@ -72,9 +72,9 @@ var FoxtrickForumAlterHeaderLine = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Added default workaround for broken design. Added HighlightThreadOpener module for highlighing thread opener's posts",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Fixed wrong date color",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName",
 						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar","HighlightThreadOpener"),
 	OPTIONS_CSS: new Array ("chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css",
@@ -84,7 +84,8 @@ var FoxtrickForumAlterHeaderLine = {
 							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css",
 							"",
 							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_RemoveSupporterStar.css"),
-							
+	CSS_SIMPLE:"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single_SimpleFix.css",
+	
     init : function() {
     },
 	

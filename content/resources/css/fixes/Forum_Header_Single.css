@@ -24,6 +24,6 @@ div[class="cfHeader ftdoubleLine"] br
 
 /* broken dsign workaround*/
 div.cfHeader>div[class="float_right right"] 
-{background: #999999; padding: 0px 2px 1px; margin-right:-5px;}
+{padding: 0px 2px 1px; margin-right:-5px;}
 
 }

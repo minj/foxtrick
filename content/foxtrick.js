@@ -669,7 +669,7 @@ Foxtrick.unload_css_permanent = function( css ) {
         }
 }
             
-Foxtrick.load_css_permanent = function( css) {  	
+Foxtrick.load_css_permanent = function( css) {  dump('load '+css.substr(0,73)+'\n');	
 		try { 
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
