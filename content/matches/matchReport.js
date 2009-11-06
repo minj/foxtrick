@@ -164,6 +164,8 @@ FoxtrickMatchReportFormat = {
             );
         part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
         part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
+        
+        part[1] = part[1].replace(/(\d{1,2})\ a\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
         }
