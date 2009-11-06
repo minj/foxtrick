@@ -10,11 +10,14 @@ FoxtrickLineupShortcut = {
     PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Add a direct shortcut to lineup in player detail page",
+	LATEST_CHANGE:"Added shortcut to NT/U20 matches",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
  	OPTIONS : new Array( "HighlightPlayer", "YouthPlayerLink"),
 
+	htNTidsXml : null,
+	
     init : function() {
+		this.initHtNtlist();
     },
 
     run : function(page, doc) {
@@ -46,8 +49,27 @@ FoxtrickLineupShortcut = {
 
 	//***********************MAIN TEAM
     _Analyze_Player_Page  : function ( doc ) {
-        try {
+		try {
 			var mainbody = doc.getElementById( "mainBody" );
+			//first getting the serieID to get ntName and u20Name
+			var flagElem= Foxtrick.getElementsByClass( "flag inner", mainbody );
+			var ntName='';
+			var ntId=0;
+			var u20Name='';
+			var u20Id=0;
+			var serieId=FoxtrickHelper.findCountryId(flagElem[0].parentNode);
+			var path = "leagues/league[@id='" + serieId + "']";
+			var obj = this.htNTidsXml.evaluate(path,this.htNTidsXml,null,this.htNTidsXml.DOCUMENT_NODE,null).singleNodeValue;
+			if (obj) {
+				ntName=obj.getElementsByTagName('NTName').item(0).firstChild.nodeValue;
+				ntId=obj.getElementsByTagName('NTid').item(0).firstChild.nodeValue;
+				u20Name=obj.getElementsByTagName('U20Name').item(0).firstChild.nodeValue;
+				u20Id=obj.getElementsByTagName('U20id').item(0).firstChild.nodeValue;
+				Foxtrick.LOG('ok: '+ntName+':'+ntId+' - '+u20Name+':'+u20Id);
+			}
+			else
+				Foxtrick.LOG('Error in lineupshortcut: serieId '+serieId+' not found!');
+
 			var issupporter = Foxtrick.getElementsByClass( "bookmark", mainbody );
 			
 			if (issupporter.length>0) {
@@ -86,7 +108,17 @@ FoxtrickLineupShortcut = {
 						for (var j=0;j<matchTeams.length;j++) {
 							//Foxtrick.LOG(matchTeams[j]+' - '+teamname);
 							if (matchTeams[j]==teamname) {
-								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
+								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
+							}
+							else {
+								if (matchTeams[j]==ntName) {
+									this._Add_Lineup_Link(doc, matchtable.rows[i], ntId, playerid, matchid, 'NT');
+								}
+								else {
+									if (matchTeams[j]==u20Name) {
+										this._Add_Lineup_Link(doc, matchtable.rows[i], u20Id, playerid, matchid, 'U20');
+									}
+								}
 							}
 						}
 					}
@@ -115,20 +147,26 @@ FoxtrickLineupShortcut = {
 			for (var i=1;i<matchtable.rows.length;i++) {
 				var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
 				var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
-				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
+				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
 			}
 		} catch (e) {
             dump('FoxtrickLineupShortcut'+e);
         }
     },
 	
-	_Add_Lineup_Link : function (doc, myrow, teamid, playerid, matchid ) {
+	//@param icon= normal|NT|U20
+	_Add_Lineup_Link : function (doc, myrow, teamid, playerid, matchid, icon ) {
 		//the link is: /Club/Matches/MatchLineup.aspx?MatchID=<matchid>&TeamID=<teamid>
+		var iconImg='formation.gif.gif';
+		if (icon=='NT')
+			iconImg='formation.nt.png';
+		if (icon=='U20')
+			iconImg='formation.u20.png';
 		try {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
 			//HighlightPlayerID is the HT function
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/'+iconImg+'"></a>';
 		} catch (e) {
             dump('FoxtrickLineupShortcut'+e);
         }
@@ -208,6 +246,17 @@ FoxtrickLineupShortcut = {
 			} catch (e) {
 				dump('FoxtrickLineupShortcut'+e);
 			}
+		}
+	},
+	
+	//*************************** init ntidlist **********************************
+	
+	initHtNtlist: function ()
+	{
+		try {
+			this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
+		} catch (e) {
+			dump('lineupshortcut.js initNTidsXml: '+e+"\n");
 		}
 	}
 
