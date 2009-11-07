@@ -5,13 +5,14 @@
 <overlay id="foxtrick"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<script type="application/x-javascript" src="chrome://foxtrick/content/window.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/loader.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
 <script type="text/javascript">
     // attach on load listener
     window.addEventListener( "load",
-                             function() {
+                             function() { 
                                  FoxtrickMain.registerOnPageLoad(document);
                              },
                              false );
@@ -52,7 +53,7 @@
 	</statusbarpanel>
     <menupopup id="foxtrick-status-bar-menu">
         <menuitem id="foxtrick_statusbar_config_menu" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
-        <menuitem id="foxtrick_statusbar_reload" oncommand="FoxtrickService.load();" />
+        <menuitem id="foxtrick_statusbar_reload" oncommand="Foxtrick.Loader.Load();FoxtrickMain.init();" />
         <menuitem id="foxtrick_statusbar_deactivate" oncommand="FoxtrickPreferencesDialog.deactivate();" type="checkbox" autocheck="true"/>
    </menupopup>
 </statusbar>

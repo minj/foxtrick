@@ -32,10 +32,10 @@ Foxtrick.core_modules = [ FoxtrickPrefs,
  */
 Foxtrick.news = [];
 
-// remove before release
+/*// remove before release
 Foxtrick.globals=[];
 for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
-
+*/
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 	new_start:true,
@@ -45,16 +45,16 @@ var FoxtrickMain = {
 	IsNewVersion:false,
 	
     init : function() { 
-		// remove before release
+/*		// remove before release		
 		if (!Foxtrick.numglobals) {
-			for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
-			Foxtrick.numglobals=Foxtrick.globals.length;
+				for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
+				Foxtrick.numglobals=Foxtrick.globals.length;
 		}
 		else {
 			for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i ) 
 				if (Foxtrick.globals[i]!='QueryInterface') dump('undeclared local global variable: ' +Foxtrick.globals[i]+'\n');
 		}
-				
+*/				
 		// init core modules
         for ( var i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
