@@ -4,6 +4,7 @@
  * @author taised
  */
 ////////////////////////////////////////////////////////////////////////////////
+
 var FoxtrickAlert = {
 
     MODULE_NAME : "FoxtrickAlert",
@@ -36,8 +37,12 @@ var FoxtrickAlert = {
 			FoxtrickAlert.ALERT_RUNNING = false;
 			FoxtrickAlert.foxtrick_showAlert(false);
         
-	        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
-            doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
+	        //Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
+             var ticker = doc.getElementById('ticker');
+			 if (ticker) {
+				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.showAlert, false, true ) ;          
+//				doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
+			}
             if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
 					//doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
 					FoxtrickAlert.showMailAlert(doc.getElementById('menu'));
@@ -48,9 +53,35 @@ var FoxtrickAlert = {
         }
     },
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	},
+	
+	FoxtrickCheckNews: function(e) {
+	var doc = FoxtrickAlert.foxtrick_showAlert.window.document;
+	
+	var newsList = doc.getElementById('ticker').getElementsByTagName('div');
+    var showAlert=false;
+    var alertMessage=null;
+    
+    for (var i=0;i<newsList.length;i++)
+    {
+        if (newsList[i].innerHTML.indexOf('strong')>0)
+        {
+            showAlert=true;
+            alertMessage='';
+            var objEvent = doc.createEvent("Events");
+            objEvent.initEvent("FoxtrickTickerEvent", true, false);
+            doc.getElementById('ticker').dispatchEvent(objEvent);
+        }
+    }
+    var message = doc.getElementById('menu').getElementsByTagName('a')[0].getElementsByTagName('span')[0];
+	if (message) { 
+		var objEvent = doc.createEvent("Events");
+        objEvent.initEvent("FoxtrickMailEvent", true, false);
+        doc.getElementById('menu').dispatchEvent(objEvent);
+	}
+	},
+
 	
     showMailAlert : function(evt) {
    	try { 		
