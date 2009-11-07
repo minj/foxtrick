@@ -50,6 +50,7 @@ FoxtrickMatchReportFormat = {
         //Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		if (!table) return;  // match not finished
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
 

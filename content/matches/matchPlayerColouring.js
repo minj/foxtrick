@@ -42,9 +42,10 @@ FoxtrickMatchPlayerColouring = {
 		
 		//Retrieve teams id
 		var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
-		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
-		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
+		var table = doc.getElementById('mainBody').getElementsByTagName('table');
+		if (!table[0]) return;  // match not finished
+		var HomeTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[1]);
+		var AwayTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[2]);
 		
 		//dump ('ownteam: '+myTeamId+'\n');
 		//dump ('HomeTeamId: '+HomeTeamId+'\n');
