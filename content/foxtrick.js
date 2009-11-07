@@ -162,6 +162,17 @@ var FoxtrickMain = {
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
     },
 	
+	onTickerChange : function( ev ) {
+		var doc = ev.originalTarget.ownerDocument;
+		if ( doc.nodeName != "#document" )
+            return;
+		var ticker = doc.getElementById("ticker");
+		ticker.removeEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
+		dump('onTickerChange\n');
+
+		ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );		
+	},
+	
     onPageLoad : function( ev ) {
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
@@ -185,6 +196,10 @@ var FoxtrickMain = {
 			var content = doc.getElementById("content");
 			if( content ) {
 				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+			}
+			var ticker = doc.getElementById("ticker");
+			if( ticker ) {
+				ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
 			}
 	    }
     },
