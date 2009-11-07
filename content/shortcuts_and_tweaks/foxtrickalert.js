@@ -26,17 +26,19 @@ var FoxtrickAlert = {
         Foxtrick.news[2] = null;
     },
 
-    run : function( doc ) { 
+    run : function( doc ) {  
     	try {  if (this.alertWin) this.closeAlert();
 			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
+			FoxtrickAlert.foxtrick_showAlert.document = doc;
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
 			var mainWindow = wm.getMostRecentWindow("navigator:browser");
 			FoxtrickAlert.foxtrick_showAlert.tab = mainWindow.getBrowser().selectedTab;
 			
 			FoxtrickAlert.ALERT_RUNNING = false;
+			FoxtrickAlert.showAlert(false);
 			FoxtrickAlert.foxtrick_showAlert(false);
-        
+			
 	        //Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
              var ticker = doc.getElementById('ticker');
 			 if (ticker) {
@@ -108,18 +110,25 @@ var FoxtrickAlert = {
 	},
 	
     showAlert : function(evt)
-    {   try {
-        var tickerdiv=evt.originalTarget;
-        tickerdiv=tickerdiv.getElementsByTagName('div');
+    {   try {   
+		if (evt) {
+			var tickerdiv=evt.originalTarget;
+			tickerdiv=tickerdiv.getElementsByTagName('div');
+		}
+		else {
+			var doc = FoxtrickAlert.foxtrick_showAlert.document;
+			var tickerdiv=doc.getElementById('ticker').getElementsByTagName('div');
+		}
             var message="";
 			var href="";
             var elemText = new Array();
             //getting text
+			
             for (var i=0; i<tickerdiv.length;i++)
-            {
+            {   
 				var tickelem=tickerdiv[i].firstChild.firstChild;
                 if (tickelem.nodeType!=tickelem.TEXT_NODE)
-                {
+                {  
                     //there is the strong tag
 					elemText[i]=tickelem.firstChild.nodeValue;
                     message=tickelem.firstChild.nodeValue;
@@ -153,14 +162,14 @@ var FoxtrickAlert = {
     foxtrick_showAlert: function( from_timer) { 
      try{ 
 	    var window = FoxtrickAlert.foxtrick_showAlert.window;
-	/*	dump ('\n -- foxtrick_showAlert --\n');
+		/*dump ('\n -- foxtrick_showAlert --\n');
 		try {dump('location: '+window.location.href+'\n');}
 		catch(e){dump('window propertiy not available\n');}
 		dump(' called from timer: '+from_timer+'\n');
 		dump (' one alert is showing, dont execute double: '+String(!from_timer && FoxtrickAlert.ALERT_RUNNING) +'\n');
 		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
 		dump (' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
-	*/	
+		*/
  		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {dump('alert runing->return \n');return;}
 		FoxtrickAlert.ALERT_RUNNING = true;
 		if ( FoxtrickAlert.ALERTS.length==0) { dump('no more alerts->return\n'); FoxtrickAlert.ALERT_RUNNING = false; return;}	
