@@ -201,7 +201,7 @@ var FoxtrickMain = {
 			}
 			var ticker = doc.getElementById("ticker");
 			if( ticker ) {
-				ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
+				//ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
 			}
 	    }
     },
