@@ -45,6 +45,8 @@ var FoxtrickMain = {
 	IsNewVersion:false,
 	
     init : function() { 
+		dump('FoxtrickMain init\n');
+		
 /*		// remove before release		
 		if (!Foxtrick.numglobals) {
 				for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');

@@ -21,7 +21,7 @@
       <key id="escape-key"      keycode="VK_ESCAPE" oncommand="close();"/>
     </keyset>
 
-<script type="application/x-javascript" src="chrome://foxtrick/content/window.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/loader.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
 <box flex="1" class="box">

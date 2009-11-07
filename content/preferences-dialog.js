@@ -7,8 +7,8 @@
 var FoxtrickPreferencesDialog = {
 
     init : function() {
-        
-        for ( var i in FoxtrickPreferencesDialog.core_modules ) {
+
+	for ( var i in FoxtrickPreferencesDialog.core_modules ) {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
@@ -40,7 +40,6 @@ var FoxtrickPreferencesDialog = {
 	},
 
 	initMainPref : function( doc ) {
-		
 		var modules_list = doc.getElementById( "main_list" );
 		modules_list.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
 
@@ -593,7 +592,7 @@ var FoxtrickPreferencesDialog = {
 	},
 
     onDialogAccept : function() {
-	try {
+	try { 
 		var modules_list;
 
         for each ( cat in Foxtrick.moduleCategories ) {
@@ -1054,7 +1053,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 					}
 				}, false );
 				
-				if (module.OPTION_TEXTS_DISABLED_LIST) dump(module.OPTION_TEXTS_DISABLED_LIST[i]+'\n');
+				//if (module.OPTION_TEXTS_DISABLED_LIST) dump(module.OPTION_TEXTS_DISABLED_LIST[i]+'\n');
 				var htextbox = document.createElement("hbox");
 				htextbox.setAttribute("id", "hbox_" + key + "_text");
 				var textbox = document.createElement("textbox");
@@ -1109,13 +1108,12 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 	}
 };
 
-FoxtrickPreferencesDialog.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
-
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
         window.open("chrome://foxtrick/content/preferences-dialog.xul",
                       "",
                       "centerscreen, chrome, modal, resizable=yes");
+		FoxtrickMain.init();
 	}
 }
 	
@@ -1154,7 +1152,7 @@ FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
             }
         }
         catch (e) {
-            dump(e);
+            dump('pref_show error: '+e);
         }
     }
 }
@@ -1228,7 +1226,7 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ev ) {
 			else document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
-			dump(e);
+			dump('confirmCleanupBranch error:'+e+'\n');
         }
     }
     return true;
@@ -1339,5 +1337,4 @@ FoxtrickPreferencesDialog.LoadPrefs = function (ev) {
         }
     return true;
 }
-
 
