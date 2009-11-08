@@ -17,8 +17,8 @@ var FoxtrickCountyList = {
 	DEFAULT_ENABLED : true,
     htCountriesXml : null,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Added the country link as textlink to the team page",
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"bring back select boxes on disabled SelectBoxes option",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
@@ -90,6 +90,65 @@ var FoxtrickCountyList = {
                 
                 
             }
+        } else {
+            switch (page) {
+                case 'transferListSearchForm' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlZone');
+                    this._activate(page, doc, 'ctl00_CPMain_ddlBornIn');
+                break;
+
+                case 'country' :
+                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                break;
+
+                case 'ads' :
+                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                break;
+
+                case 'press' :
+                    this._activate(page, doc, 'ctl00_CPSidebar_ucLeagues2_ddlLeagues');
+                break;
+
+                case 'statsTransfersBuyers' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues');
+                break;
+
+                case 'statsTeams' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                break;
+     
+                case 'statsPlayers' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                break;
+     
+                case 'statsRegions' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                break;
+     
+                case 'statsNationalTeams' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                break;
+     
+                case 'statsConfs' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                break;
+     
+                case 'statsBookmarks' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                break;
+     
+                case 'trainingStats' :
+                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues');
+                break;
+
+                case 'statsArena' :
+                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                break;
+
+                case 'help_contact' :
+                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                break;
+            }        
         }
         
         if (Foxtrick.isModuleFeatureEnabled( this, "TeamPage")) {
@@ -214,5 +273,12 @@ var FoxtrickCountyList = {
             options[i].text = opt_array[i][1];
         }
 		selectbox.style.display='inline';
+    },
+    
+    _activate: function (page, doc, id) {
+        var selectbox = doc.getElementById(id);
+        if (selectbox == null) return;
+		selectbox.style.display='inline';
+        dump('country select activated.\n');
     }
 };
