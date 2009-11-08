@@ -9,7 +9,7 @@ FoxtrickHighlightBotTeams = {
 	PAGES : new Array('league'), 
 	ONPAGEPREF_PAGE : 'presentation', 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
+	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Highlight Bot teams on series pages",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("ChooseColorHighlight"),
