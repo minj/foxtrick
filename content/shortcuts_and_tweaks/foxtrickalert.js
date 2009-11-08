@@ -30,7 +30,7 @@ var FoxtrickAlert = {
 
     run : function( doc ) {  
     	try {  
-			if (this.alertWin) this.closeAlert();
+			if (this.alertWin) this.closeAlert(true);
 			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
 			FoxtrickAlert.foxtrick_showAlert.document = doc;
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -41,11 +41,8 @@ var FoxtrickAlert = {
 			FoxtrickAlert.ALERT_RUNNING = false;
 			
 			// check new, mail and forum after pageload and show alerts if needed
-			FoxtrickAlert.checkNews(false);
-            if (doc.getElementById('hattrickNoSupporter')) {
-				FoxtrickAlert.showMailAlert(doc);					
-			}
-			FoxtrickAlert.foxtrick_showAlert(false);
+			if (doc.getElementById('hattrick')) FoxtrickAlert.checkNews(false);
+            if (doc.getElementById('hattrickNoSupporter')) FoxtrickAlert.showMailAlert(doc);								
 
             // add watch to ticker
 			var ticker = doc.getElementById('ticker');
@@ -97,12 +94,11 @@ var FoxtrickAlert = {
 			FoxtrickAlert.last_num_forum = numforum;						
 		}		
 		FoxtrickAlert.foxtrick_showAlert(false);
-		
 	} catch (e) {dump ('showMailAlert: '+e+'\n');}
 	},
 	
-    checkNews : function(evt)
-    {   try {   
+    checkNews : function(evt) {
+       try {   
 		if (evt) {
 			var tickerdiv=evt.originalTarget;
 			tickerdiv=tickerdiv.getElementsByTagName('div');
@@ -162,9 +158,9 @@ var FoxtrickAlert = {
 		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
 		dump (' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
 		*/
- 		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {dump('alert runing->return \n');return;}
+ 		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {/*dump('alert runing->return \n');*/return;}
 		FoxtrickAlert.ALERT_RUNNING = true;
-		if ( FoxtrickAlert.ALERTS.length==0) { dump('no more alerts->return\n'); FoxtrickAlert.ALERT_RUNNING = false; return;}	
+		if ( FoxtrickAlert.ALERTS.length==0) { /*dump('no more alerts->return\n');*/ FoxtrickAlert.ALERT_RUNNING = false; return;}	
 		
 		var num_alerts = FoxtrickAlert.ALERTS.length;
 		var alert = FoxtrickAlert.ALERTS.pop(); 
@@ -193,7 +189,7 @@ var FoxtrickAlert = {
 		try { 
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 FoxtrickAlert.alertWin.showAlertNotification(img, title, text, clickable, href, listener);
-				dump('ticker: using alerts-service\n');			
+				//dump('ticker: using alerts-service\n');			
 		} catch (e) { 
                 // fix for when alerts-service is not available (e.g. SUSE)
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
@@ -215,10 +211,10 @@ var FoxtrickAlert = {
 		}
     },
 	
-	closeAlert: function() { 
+	closeAlert: function(page_changed) { 
 		try{
-			FoxtrickAlert.alertWin.close();  
-			dump('force close ticker\n'); 
+			//FoxtrickAlert.alertWin.close();  
+			//dump('force close ticker. page_changed:'+page_changed+'\n'); 
 		} catch(e) {
 			//dump ('error force closing  alertWin :'+e+'\n');
 		}

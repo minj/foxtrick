@@ -182,9 +182,6 @@ var FoxtrickMain = {
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
 			var begin = new Date();
-			var time = ( begin.getSeconds() - this._unloadtime.getSeconds() ) * 1000
-                     + begin.getMilliseconds() - this._unloadtime.getMilliseconds();
-            dump("load+ccs time: " + time + " ms | " + doc.location.pathname+doc.location.search+'\n' );
 			
             FoxtrickMain.run( doc );
 
@@ -204,13 +201,10 @@ var FoxtrickMain = {
 	    }
     },
 
-	_unloadtime:0,
     onPageUnLoad : function( ev ) { 
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
             return;
-		this._unloadtime = new Date();
-			
 	},
 	
     // main entry run on every ht page load
