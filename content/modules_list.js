@@ -53,6 +53,7 @@ Foxtrick.modules = [
                     Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
                     Foxtrick.Ratings,
 					Foxtrick.htmsStatistics, // htmsStatistics should be placed after Ratings
+                    FoxtrickYouthSkillTable,
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
                     FoxtrickHideFaceTransferImages,
@@ -124,16 +125,15 @@ Foxtrick.modules = [
                     FoxtrickMatchTables,
                     FoxtrickCrossTable,
                     FoxtrickYouthSkillHideUnknown,
-                    FoxtrickYouthSkillTable,
                     FoxtrickHighlightCupwins,
                     FoxtrickElectionTable,
-                    FoxtrickSkillTranslation, // new 
-                    FoxtrickOnPagePrefs,  // new
-                    FoxtrickLineupShortcut, // new
+                    FoxtrickSkillTranslation,  
+                    FoxtrickOnPagePrefs,  
+                    FoxtrickLineupShortcut, 
                     //FoxtrickSingleline2,
-                    FoxtrickYouthPromotes,   //new
-                    FoxtrickCountyList, // new
-                    FoxtrickMatchOrderColoring, // new
+                    FoxtrickYouthPromotes,   
+                    FoxtrickCountyList, 
+                    FoxtrickMatchOrderColoring, 
 					FoxTrickPredefinedChallenges,
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
 					];

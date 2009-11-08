@@ -216,7 +216,7 @@ var FoxtrickMyHT = {
 		FoxtrickPrefs.setString("oldVersion",curVersion);	*/
 		FoxtrickMain.IsNewVersion=false;
 		
-		FoxtrickMyHT.ShowOnce();
+		//FoxtrickMyHT.ShowOnce();
 	},
 	
 	ShowOnce : function() {

@@ -131,3 +131,4 @@ pref( "extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true );
 pref( "extensions.foxtrick.prefs.module.OnPagePrefs.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.enabled", false );
 pref( "extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false );
+pref( "extensions.foxtrick.prefs.module.YouthSkillTable.CopySkillTable.enabled", true );

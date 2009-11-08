@@ -45,8 +45,6 @@ var FoxtrickMain = {
 	IsNewVersion:false,
 	
     init : function() { 
-		dump('FoxtrickMain init\n');
-		
 /*		// remove before release		
 		if (!Foxtrick.numglobals) {
 				for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
@@ -731,6 +729,8 @@ Foxtrick.hasElement = function( doc, id ) {
 */
 Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	referenceHeader, altReferenceHeader, column ) {
+try {	
+	
 	// If we already added this, return
 	// Should ideally be checked by the change() function already
 	var boxContentId = newBoxContent.id;
@@ -872,6 +872,7 @@ Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 			}
 		}
 	}
+} catch(e){dump("addBoxToSideBar: error: '+e+'\n");}
 }
 
 Foxtrick.getSortedLinks = function(links) {

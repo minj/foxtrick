@@ -87,7 +87,8 @@ var FoxtrickLinksTeam = {
 		try {
 		  var teamInfo=doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode; 
 		  var ps=teamInfo.getElementsByTagName('p');
-		  leaguepos=ps[0].innerHTML.replace(/<.+>/,'').match(/(\d)/)[1];
+		  try {leaguepos=ps[0].innerHTML.replace(/<.+>/,'').match(/(\d)/)[1];}
+		  catch(e){}; // running game, leaguepos not known
 		  var children=teamInfo.childNodes;
 		  var child,i=0,infocount=0;		
 		  while (child=children[i++]) { 
