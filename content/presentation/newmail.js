@@ -8,16 +8,18 @@ var FoxtrickNewMail = {
 	
     MODULE_NAME : "NewMail",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array ( 'all' ),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.6.2",
-	LATEST_CHANGE:"Option to use custom color added",
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Option to highlight new forum message",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS:  "",
     OLD_CSS:"",
 	
-	OPTIONS : new Array("CustomColor","HighlightNewMailIcon"),
+	OPTIONS : new Array("CustomColor","HighlightNewMailIcon","HighlightNewForum"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("red",""),        
-	OPTION_TEXTS_DISABLED_LIST : new Array(false,true),
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("red","",""),        
+	OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
 	NewMailColor:"red",
 	
     init : function() {
@@ -34,7 +36,7 @@ var FoxtrickNewMail = {
 		'div.subMenuBox>div.boxBody>ul>li>span,'+
 		'div#folders.sidebarBox>div.boxBody>p>span,'+
 		'div#folders.sidebarBox>p>span,'+
-		'div#header>div#menu>a>span,'+
+		'div#header>div#menu a>span,'+
 		'div#ctl00_pnlSubMenu.subMenu>div.subMenuBox>ul>li>span'+
 		'{'+
 		'color:'+FoxtrickNewMail.NewMailColor +'!important;'+
@@ -47,7 +49,16 @@ var FoxtrickNewMail = {
 	this.CSS=Foxtrick.GetDataURIText(zaw);
     },
 
-    run : function( page, doc ) {				
+    run : function( page, doc ) {
+	
+		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightNewForum")) {
+			var  menu=doc.getElementById('menu');
+			if (menu) {
+				var forum = menu.getElementsByTagName('a')[3];
+				var parts = forum.innerHTML.split('(');
+				if (parts.length>1) forum.innerHTML = parts[0]+'<span>('+parts[1]+'</span>';
+			}
+		}	
  	},
 	
 	change : function( page, doc ) {	
