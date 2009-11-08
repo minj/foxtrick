@@ -126,7 +126,7 @@ var FoxtrickPlayerBirthday = {
 		if (ArrayPlayersLate.length>0) parentDiv.appendChild(newDivLate);
 		
 		// Append the box to the sidebar
-		var newBoxId = "foxtrick_actions_box";
+		var newBoxId = "foxtrick_birthday_box";
 		if (ArrayPlayers.length+ArrayPlayersLate.length>0) Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 			"foxtrick.tweaks.Birthdays" ), parentDiv, newBoxId, "last", "");
 	}catch(e) {dump('PlayerBirthday: '+e+'\n');}
