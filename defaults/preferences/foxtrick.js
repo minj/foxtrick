@@ -21,6 +21,7 @@ pref( "extensions.foxtrick.prefs.alertSliderGrowl", false);
 pref( "extensions.foxtrick.prefs.alertSound", false);
 pref( "extensions.foxtrick.prefs.alertSoundUrl", "chrome://foxtrick/content/resources/sounds/DingLing.wav");
 pref( "extensions.foxtrick.prefs.module.FoxtrickAlert.NewMail.enabled", false);
+pref( "extensions.foxtrick.prefs.module.FoxtrickAlert.NewForum.enabled", false);
 pref( "extensions.foxtrick.prefs.disableOnStage", false );
 pref( "extensions.foxtrick.prefs.disableTemporary", false );
 pref( "extensions.foxtrick.prefs.copyfeedback", true );

@@ -10,14 +10,16 @@ var FoxtrickAlert = {
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8",
-	LATEST_CHANGE:"Clicking on alerts link to corresponding ticker event",
-    OPTIONS : new Array("NewMail"), 
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Adding option new forum message alert",
+    LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : new Array("NewMail","NewForum"), 
 	
 	alertWin:null,
 	ALERTS: new Array(),
 	ALERT_RUNNING:false,
 	last_num_message:0,
+	last_num_forum:0,
 	
     init : function() {
         Foxtrick.registerAllPagesHandler( FoxtrickAlert );
@@ -27,7 +29,8 @@ var FoxtrickAlert = {
     },
 
     run : function( doc ) {  
-    	try {  if (this.alertWin) this.closeAlert();
+    	try {  
+			if (this.alertWin) this.closeAlert();
 			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
 			FoxtrickAlert.foxtrick_showAlert.document = doc;
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -36,61 +39,34 @@ var FoxtrickAlert = {
 			FoxtrickAlert.foxtrick_showAlert.tab = mainWindow.getBrowser().selectedTab;
 			
 			FoxtrickAlert.ALERT_RUNNING = false;
-			FoxtrickAlert.showAlert(false);
-			FoxtrickAlert.foxtrick_showAlert(false);
 			
-	        //Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/newsticker.js");
-             var ticker = doc.getElementById('ticker');
-			 if (ticker) {
-				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.showAlert, false, true ) ;          
-//				doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
+			// check new, mail and forum after pageload and show alerts if needed
+			FoxtrickAlert.checkNews(false);
+            if (doc.getElementById('hattrickNoSupporter')) {
+				FoxtrickAlert.showMailAlert(doc);					
 			}
-            if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) && doc.getElementById('hattrickNoSupporter')) {
-					//doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
-					FoxtrickAlert.showMailAlert(doc.getElementById('menu'));
-					
+			FoxtrickAlert.foxtrick_showAlert(false);
+
+            // add watch to ticker
+			var ticker = doc.getElementById('ticker');
+			if (ticker) {
+				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNews, false, true ) ;          
 			}
-		} catch (e) {
+
+			} catch (e) {
             dump('FoxtrickAlert.js run: '+e);
         }
     },
 	
 	change : function( page, doc ) {	
 	},
-	
-	FoxtrickCheckNews: function(e) {
-	var doc = FoxtrickAlert.foxtrick_showAlert.window.document;
-	
-	var newsList = doc.getElementById('ticker').getElementsByTagName('div');
-    var showAlert=false;
-    var alertMessage=null;
-    
-    for (var i=0;i<newsList.length;i++)
-    {
-        if (newsList[i].innerHTML.indexOf('strong')>0)
-        {
-            showAlert=true;
-            alertMessage='';
-            var objEvent = doc.createEvent("Events");
-            objEvent.initEvent("FoxtrickTickerEvent", true, false);
-            doc.getElementById('ticker').dispatchEvent(objEvent);
-        }
-    }
-    var message = doc.getElementById('menu').getElementsByTagName('a')[0].getElementsByTagName('span')[0];
-	if (message) { 
-		var objEvent = doc.createEvent("Events");
-        objEvent.initEvent("FoxtrickMailEvent", true, false);
-        doc.getElementById('menu').dispatchEvent(objEvent);
-	}
-	},
-
-	
-    showMailAlert : function(evt) {
+		
+    showMailAlert : function(doc) {
    	try { 		
 		var message;
-		if (evt.getAttribute('id')=='menu') message = evt.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
-		else message = evt.originalTarget.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
-		if (message) { 
+		var  menu = doc.getElementById('menu');
+		message = menu.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
+		if (message && Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
 				//dump (message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
 				if (num_message > FoxtrickAlert.last_num_message) {
@@ -105,11 +81,27 @@ var FoxtrickAlert = {
 					}	
 				FoxtrickAlert.last_num_message = num_message;
 			}
+			
+		var forum = menu.getElementsByTagName('a')[3];
+		var numforum = forum.innerHTML.match(/\d+/);
+		if (numforum && Foxtrick.isModuleFeatureEnabled( this, "NewForum" )) {
+			if (numforum > FoxtrickAlert.last_num_forum) {
+				var message = String(parseInt(numforum-FoxtrickAlert.last_num_forum))+' '+Foxtrickl10n.getString( "foxtrick.newforumtoyou");
+				if (FoxtrickPrefs.getBool("alertSlider")) {
+					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+FoxtrickAlert.foxtrick_showAlert.window.document.location.hostname + "/Forum/Default.aspx?actionType=refresh"});dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
+				}
+				if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
+					FoxtrickAlert.foxtrick_showAlertGrowl(message);
+				}																					
+			}
+			FoxtrickAlert.last_num_forum = numforum;						
+		}		
 		FoxtrickAlert.foxtrick_showAlert(false);
+		
 	} catch (e) {dump ('showMailAlert: '+e+'\n');}
 	},
 	
-    showAlert : function(evt)
+    checkNews : function(evt)
     {   try {   
 		if (evt) {
 			var tickerdiv=evt.originalTarget;
@@ -156,7 +148,7 @@ var FoxtrickAlert = {
 			    Foxtrick.news[i]=elemText[i];
 			}
 			FoxtrickAlert.foxtrick_showAlert(false);
-        } catch(e) { dump('error showalert '+e); }
+        } catch(e) { dump('error checkNews '+e); }
     },
 
     foxtrick_showAlert: function( from_timer) { 
@@ -170,59 +162,50 @@ var FoxtrickAlert = {
 		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
 		dump (' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
 		*/
- 		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {/*dump('alert runing->return \n');*/return;}
+ 		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {dump('alert runing->return \n');return;}
 		FoxtrickAlert.ALERT_RUNNING = true;
-		if ( FoxtrickAlert.ALERTS.length==0) { /*dump('no more alerts->return\n');*/ FoxtrickAlert.ALERT_RUNNING = false; return;}	
+		if ( FoxtrickAlert.ALERTS.length==0) { dump('no more alerts->return\n'); FoxtrickAlert.ALERT_RUNNING = false; return;}	
 		
 		var num_alerts = FoxtrickAlert.ALERTS.length;
 		var alert = FoxtrickAlert.ALERTS.pop(); 
         var text = alert.message;  
         var href = alert.href;
-		
-		var more_alerts_meassage='';
-		while (FoxtrickAlert.ALERTS.length!=0) {
-			alert = FoxtrickAlert.ALERTS.pop();
-		}
-		if (num_alerts>1) {
-			text = 'More than two new ticker events';
-			href='';
-		}
-		
+				
         var img = "http://hattrick.org/favicon.ico";
         var title = "Hattrick.org";
 		var clickable = true;
         var listener = { observe:
-                    function(subject, topic, data) {
-                        try{
+                function(subject, topic, data) {
+                    try{ 
 						if (topic=="alertclickcallback") {
 							dump('alertclickcallback:' +'link to: '+data+'\n');
 							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 									.getService(Components.interfaces.nsIWindowMediator);
 							FoxtrickAlert.openAndReuseOneTabPerURL(href);
-					}
-						}catch(e){dump('alertclickcallback: '+e+'\n');}
-                    }
-        };
+						}						
+						if (topic=="alertfinished") {
+							FoxtrickAlert.foxtrick_showAlert(true);
+						}
+					} catch(e){dump('alertcallback: '+e+'\n');}
+                }
+		};
     		
-            try { 
+		try { 
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 FoxtrickAlert.alertWin.showAlertNotification(img, title, text, clickable, href, listener);
-				//var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,10000,true);
 				dump('ticker: using alerts-service\n');			
-            } catch (e) { 
+		} catch (e) { 
                 // fix for when alerts-service is not available (e.g. SUSE)
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
                     .getService(Components.interfaces.nsIWindowWatcher)
                     .openWindow(null, "chrome://global/content/alerts/alert.xul",
                                 "_blank", "chrome,titlebar=no,popup=yes", null);
                 FoxtrickAlert.alertWin.arguments = [img, "www.hattrick.org", text, clickable, href,0,listener];
-                //var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,10000,true);	// show next alert		
-				//var timeout2 = window.setTimeout( FoxtrickAlert.closeAlert, 9000 ); 			// fallback to close after 10 secs 	
 				dump('ticker: using fallback alert.xul\n');			            
             }
-        } catch (e) { 
+    } catch (e) { 
             dump('foxtrick_showAlert'+e);
-        }
+    }
 		if (FoxtrickPrefs.getBool("alertSound")) {
 			try {
 				Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
