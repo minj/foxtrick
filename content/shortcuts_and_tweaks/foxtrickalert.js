@@ -78,7 +78,8 @@ var FoxtrickAlert = {
 					}	
 				FoxtrickAlert.last_num_message = num_message;
 			}
-			
+		else FoxtrickAlert.last_num_message=0;
+		
 		var forum = menu.getElementsByTagName('a')[3];
 		var numforum = forum.innerHTML.match(/\d+/);
 		if (numforum && Foxtrick.isModuleFeatureEnabled( this, "NewForum" )) {
@@ -92,7 +93,8 @@ var FoxtrickAlert = {
 				}																					
 			}
 			FoxtrickAlert.last_num_forum = numforum;						
-		}		
+		}
+		else FoxtrickAlert.last_num_forum=0;
 		FoxtrickAlert.foxtrick_showAlert(false);
 	} catch (e) {dump ('showMailAlert: '+e+'\n');}
 	},
