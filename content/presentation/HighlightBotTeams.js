@@ -3,8 +3,8 @@
  *  * @author ljushaff
  */
 
-FoxtrickHiglightBotTeams = {
-	MODULE_NAME : "HiglightBotTeams",
+FoxtrickHighlightBotTeams = {
+	MODULE_NAME : "HighlightBotTeams",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'), 
 	ONPAGEPREF_PAGE : 'presentation', 
@@ -12,7 +12,7 @@ FoxtrickHiglightBotTeams = {
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LATEST_CHANGE:"Highlight Bot teams on series pages",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : new Array("HiglightBotTeams")
+	OPTIONS : new Array("ChooseColorHighlight"),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-image: url('chrome://foxtrick/content/resources/img/bot.png'); background-repeat: no-repeat; padding: 0px 0px 0px 18px; !important;" //BotHiglight
 											),        
@@ -24,8 +24,8 @@ FoxtrickHiglightBotTeams = {
 		
 		+'@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
 		+'{'
-		/* HiglightBotTeams */
-		+'#series .shy[href="/World/Series/Default.aspx?LeagueLevelUnitID="] {'+this.get_color(this.OPTIONS[0])+'}'
+		/* HighlightBotTeams */
+		+'#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] .shy {'+this.get_color(this.OPTIONS[0])+'}'
 		+'}'
 		;
 		this.OLD_CSS = this.CSS;

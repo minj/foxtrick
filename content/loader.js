@@ -54,6 +54,7 @@ Foxtrick.Loader = function(){
 	'matches/ratingstoclipboard.js',
 	'matches/htmsStatistics.js',
     'presentation/bookmarkadjust.js',
+	'presentation/HighlightBotTeams.js',
     'shortcuts_and_tweaks/flagCollectionToMap.js',
     'shortcuts_and_tweaks/mediantransferprice.js',
     'shortcuts_and_tweaks/transferListSearchFilters.js',

@@ -30,7 +30,6 @@ FoxtrickFixcssProblems = {
                                     "Forum_Spoiler_reveal",
 									"MatchReportRatingsFontFix",
                                     "HideAchievementsIcons",
-									"BotHighlight",
 									"NoLogo"
                   
 								),
@@ -52,7 +51,6 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css",
 								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
@@ -73,7 +71,6 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/BotHighlight.css",
 								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
                                 ),
                                

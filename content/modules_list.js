@@ -105,7 +105,7 @@ Foxtrick.modules = [
                     FoxtrickGuestbookAlltidFlags,
                     FoxtrickCurrencyConverter,
                     FoxtrickTickerColoring,
-                    FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
+					FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
                     FoxtrickCopyMatchID,
                     FoxtrickHeaderFix,
                     FoxtrickHeaderFixLeft,
@@ -136,6 +136,7 @@ Foxtrick.modules = [
                     FoxtrickMatchOrderColoring, 
 					FoxTrickPredefinedChallenges,
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
+					FoxtrickHighlightBotTeams, //new
 					];
 
 					
