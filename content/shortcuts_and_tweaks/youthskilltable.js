@@ -44,7 +44,7 @@ var FoxtrickYouthSkillTable = {
 		var doc = ev.target.ownerDocument;
 		Foxtrick.copyStringToClipboard(FoxtrickYouthSkillTable.copy_string );
 		if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"));			
+					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.yskilltablecopied"));			
 	},
 
 	sortfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].innerHTML);},
