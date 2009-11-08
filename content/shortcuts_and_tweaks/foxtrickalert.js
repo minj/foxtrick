@@ -82,8 +82,8 @@ var FoxtrickAlert = {
 		
 		var forum = menu.getElementsByTagName('a')[3];
 		var numforum = forum.innerHTML.match(/\d+/);
-		if (numforum && Foxtrick.isModuleFeatureEnabled( this, "NewForum" )) {
-			if (numforum > FoxtrickAlert.last_num_forum) {
+		if (numforum && Foxtrick.isModuleFeatureEnabled( this, "NewForum" )) { 
+			if (numforum > FoxtrickAlert.last_num_forum && doc.location.pathname.search(/\/Forum\/Default.aspx/)==-1) {
 				var message = String(parseInt(numforum-FoxtrickAlert.last_num_forum))+' '+Foxtrickl10n.getString( "foxtrick.newforumtoyou");
 				if (FoxtrickPrefs.getBool("alertSlider")) {
 					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+FoxtrickAlert.foxtrick_showAlert.window.document.location.hostname + "/Forum/Default.aspx?actionType=refresh"});dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
