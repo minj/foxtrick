@@ -45,7 +45,7 @@ var FoxtrickAlert = {
 				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.showAlert, false, true ) ;          
 //				doc.getElementById('ticker').addEventListener("FoxtrickTickerEvent", FoxtrickAlert.showAlert, false, true ) ;
 			}
-            if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
+            if (Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) && doc.getElementById('hattrickNoSupporter')) {
 					//doc.getElementById('menu').addEventListener("FoxtrickMailEvent", FoxtrickAlert.showMailAlert, false, true ) ;       
 					FoxtrickAlert.showMailAlert(doc.getElementById('menu'));
 					
@@ -170,12 +170,24 @@ var FoxtrickAlert = {
 		dump (' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
 		dump (' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
 		*/
- 		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {dump('alert runing->return \n');return;}
+ 		if (!from_timer && FoxtrickAlert.ALERT_RUNNING) {/*dump('alert runing->return \n');*/return;}
 		FoxtrickAlert.ALERT_RUNNING = true;
-		if ( FoxtrickAlert.ALERTS.length==0) { dump('no more alerts->return\n'); FoxtrickAlert.ALERT_RUNNING = false; return;}	
+		if ( FoxtrickAlert.ALERTS.length==0) { /*dump('no more alerts->return\n');*/ FoxtrickAlert.ALERT_RUNNING = false; return;}	
+		
+		var num_alerts = FoxtrickAlert.ALERTS.length;
 		var alert = FoxtrickAlert.ALERTS.pop(); 
         var text = alert.message;  
-        var href = alert.href;		
+        var href = alert.href;
+		
+		var more_alerts_meassage='';
+		while (FoxtrickAlert.ALERTS.length!=0) {
+			alert = FoxtrickAlert.ALERTS.pop();
+		}
+		if (num_alerts>1) {
+			text = 'More than two new ticker events';
+			href='';
+		}
+		
         var img = "http://hattrick.org/favicon.ico";
         var title = "Hattrick.org";
 		var clickable = true;
@@ -195,7 +207,7 @@ var FoxtrickAlert = {
             try { 
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 FoxtrickAlert.alertWin.showAlertNotification(img, title, text, clickable, href, listener);
-				var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,10000,true);
+				//var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,10000,true);
 				dump('ticker: using alerts-service\n');			
             } catch (e) { 
                 // fix for when alerts-service is not available (e.g. SUSE)
@@ -204,8 +216,8 @@ var FoxtrickAlert = {
                     .openWindow(null, "chrome://global/content/alerts/alert.xul",
                                 "_blank", "chrome,titlebar=no,popup=yes", null);
                 FoxtrickAlert.alertWin.arguments = [img, "www.hattrick.org", text, clickable, href,0,listener];
-                var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,10000,true);	// show next alert		
-				var timeout2 = window.setTimeout( FoxtrickAlert.closeAlert, 9000 ); 			// fallback to close after 10 secs 	
+                //var timeout = window.setTimeout(FoxtrickAlert.foxtrick_showAlert,10000,true);	// show next alert		
+				//var timeout2 = window.setTimeout( FoxtrickAlert.closeAlert, 9000 ); 			// fallback to close after 10 secs 	
 				dump('ticker: using fallback alert.xul\n');			            
             }
         } catch (e) { 
