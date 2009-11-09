@@ -38,65 +38,7 @@ FoxtrickMatchReportFormat = {
 	init : function() {
     },
 
-    dumpObj: function(obj, name, indent, depth) {
-    try{
-   var MAX_DUMP_DEPTH = 10;
-   if (depth > MAX_DUMP_DEPTH) {
-       return indent + name + ": <Maximum Depth Reached>\n";
-   }
-   if (typeof obj == "object") {
-       var child = null;
-       var output = indent + name;
-       var total = 0;
-       if (obj instanceof Array)
-       {
-           total = obj.length;
-           output += " (Array)\n";
-       }
-       else
-       {
-           for (var item in obj)
-           {
-               total++;
-           }
-           output += " (Object)\n";
-       }
-       output += indent + "Total item: " + total + "\n";
-       indent += " > ";
-       if (obj instanceof Array)
-       {
-           for (var i = 0; i < obj.length; i++)
-           {
-               child = obj[i];
-               output += dumpObj(child, i, indent, depth + 1);
-           }
-       }
-       else
-       {
-           for (var item in obj)
-           {
-               try {
-                   child = obj[item];
-               }    
-               catch (e) {
-                   child = "<Unable to Evaluate>";
-               }
-               if (typeof child == "object") {
-                   output += dumpObj(child, item, indent, depth + 1);
-               }
-               else {
-                   output += indent + item + ":: " + child + "\n";
-               }
-           }
-       }
-       return output;
-   }
-   else {
-       return obj + " is not an object.";
-   }
-   } catch(e) {dump(e+'\n')};
-},
-
+  
     run : function( page, doc ) {
 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
@@ -106,6 +48,8 @@ FoxtrickMatchReportFormat = {
         var div_check = Foxtrick.getElementsByClass('ft_mR_format', div);
         if  (div_check.length > 0) return;
 
+        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/MatchReport.js");
+        
         //Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
@@ -274,7 +218,7 @@ FoxtrickMatchReportFormat = {
                 if (stage>1) { //full report
                     if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
                         fulltext++;
-                        dummy[i] = dummy[i].replace(team1 + ' ', '<span style="font-weight:bold; color:'+ txt_col_hm +'">' + team1 + ' </span>');
+                        dummy[i] = dummy[i].replace(team1 + ' ', '<span "style="font-weight:bold; color:'+ txt_col_hm +'">' + team1 + ' </span>');
                         dummy[i] = dummy[i].replace(' ' + team1, '<span style="font-weight:bold; color:'+ txt_col_hm +'"> ' + team1 + '</span>');
                         if (fulltext <= 2) bg= text_dark + '; ';
                     }
@@ -323,7 +267,7 @@ FoxtrickMatchReportFormat = {
 					divs[i].style.background = bg_col_hm;
 
                     var scorerep = standing[0] + '&nbsp;-&nbsp;' + standing[1];
-                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<a href="#'+divs[i].id+'" style="text-decoration:none; color:black; padding:0px!important; background-color:'+ bg_col_hm + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</a>');
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; background-color:'+ bg_col_hm + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</span>');
 
                 }
                 if (score[2] > standing[1]) {
@@ -333,7 +277,7 @@ FoxtrickMatchReportFormat = {
 					divs[i].style.background = bg_col_aw;
                     
                     var scorerep = standing[0] + '&nbsp;-&nbsp;' + standing[1];
-                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<a href="#'+divs[i].id+'" style="text-decoration:none; color:black; padding:0px!important; background-color:'+ bg_col_aw + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</a>');
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; background-color:'+ bg_col_aw + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</span>');
                 }
             }
 
