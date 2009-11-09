@@ -14,7 +14,7 @@ function gotoEvent(elementID) {
     } else {
         var element = getElementsByClass('ft_mR_format');
         for (var i = 0; i < element.length; i++){
-            if (element[i].textContent.search(elementID) > -1) {
+            if (element[i].textContent.search(' '+elementID) > -1) {
                 scroll(0, 0);
                 window.scrollBy(0, element[i].parentNode.offsetTop);
                 break;
