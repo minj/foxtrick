@@ -143,7 +143,7 @@ var FoxtrickAddManagerButtons = {
             var infobox  = doc.createElement("div");
             infobox.style.color = "red";
             infobox.style.padding = "2px";
-            infobox.innerHTML = "Please note that all staff issues and questions must be sent via the contact form in the <a class='inner' href='/Help/Contact.aspx'>staff pages</a>. The internal mail system is <b>not</b> to be used for staff related issues.";
+            infobox.innerHTML = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessageofficial");
             parentDiv.appendChild(infobox);
         }
 
