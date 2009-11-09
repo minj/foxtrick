@@ -248,6 +248,48 @@ FoxtrickMatchReportFormat = {
         var divs = div.getElementsByTagName('div');
         
         var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
+        var myTable = new Array();
+        
+        var tblbody = scoreboard.tBodies[0];
+            for (var ti=0; ti<tblbody.rows.length; ti++) {
+                if (tblbody.rows[ti].cells[2]) {
+                    var tbldummy = new Array(
+                        Foxtrick.trim(tblbody.rows[ti].cells[0].innerHTML),
+                        Foxtrick.trim(tblbody.rows[ti].cells[1].innerHTML),
+                        Foxtrick.trim(tblbody.rows[ti].cells[2].innerHTML)
+                    );
+                    myTable.push(tbldummy);
+                }
+            }
+        
+        myTable = myTable.sort(this._mySort);
+
+        try{
+            while(tblbody.rows.length>0) {
+                tblbody.deleteRow(0);
+            }
+                for (var ti = (myTable.length-1); ti >= 0; ti--) {
+                    if (true) {
+                    
+                      var TR = tblbody.insertRow(0);
+                      
+                      var TD1 = doc.createElement("td");
+                      TD1.innerHTML= myTable[ti][0];
+                      TD1.className = 'center';
+                      
+                      var TD2 = doc.createElement("td");
+                      TD2.innerHTML= myTable[ti][1];
+                      var TD3 = doc.createElement("td");
+                      TD3.innerHTML= myTable[ti][2];
+
+                      TR.appendChild(TD1);
+                      TR.appendChild(TD2);
+                      TR.appendChild(TD3);                  
+
+                      //tblbody.rows[ti].cells[0].className = 'center';
+                    }
+                }
+        } catch(tableerror) {dump(tableerror);}
         //dump(scoreboard.innerHTML);
         for (var i=0; i < divs.length; i++) {
             // dump(i + ': ' + divs[i].textContent + '\n\n');
@@ -256,7 +298,7 @@ FoxtrickMatchReportFormat = {
             var toreplace = /\ \-\ /g;
             text = text.replace(/(\d{1,2})\ -\ (\d{1,2})/g,"$1-$2");
             //text = text.replace(toreplace, '-');
-            dump(i + ': ' + text + '\n');
+            //dump(i + ': ' + text + '\n');
             var score = reg.exec(text);
             
             if (divs[i].innerHTML.search(team1) > -1) start_g = 6; else start_g = 7;
@@ -268,7 +310,7 @@ FoxtrickMatchReportFormat = {
                     // dump (borders_goal+ 'px solid ' + border_color_hm  + ';\n');
 					divs[i].style.background = bg_col_hm;
 
-                    var scorerep = standing[0] + '&nbsp;-&nbsp;' + standing[1];
+                    var scorerep = standing[0] + '-' + standing[1];
                     scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; background-color:'+ bg_col_hm + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</span>');
 
                 }
@@ -278,7 +320,7 @@ FoxtrickMatchReportFormat = {
                     // dump (borders_goal+ 'px solid ' + border_color_aw  + ';\n');
 					divs[i].style.background = bg_col_aw;
                     
-                    var scorerep = standing[0] + '&nbsp;-&nbsp;' + standing[1];
+                    var scorerep = standing[0] + '-' + standing[1];
                     scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; background-color:'+ bg_col_aw + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</span>');
                 }
             }
@@ -329,5 +371,15 @@ FoxtrickMatchReportFormat = {
         if (!dummy) dummy = this.OPTION_TEXTS_DEFAULT_VALUES[value];        
         // dump('Pref_[' + value + '] - [' + dummy + '] "' + this.OPTIONS[value] + '" returned\n');
         return dummy;
+    },
+    
+    _mySort : function(a, b) {
+        var tmp1 = parseInt( a[2] );
+        var tmp2 = parseInt( b[2] );
+        return tmp1 > tmp2 ? 1 :
+            tmp1 < tmp2 ? -1 :
+            a[2] > b[2] ? 1 :
+            a[2] < b[2] ? -1 :
+            0;
     }
 };
