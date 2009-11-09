@@ -254,8 +254,9 @@ FoxtrickMatchReportFormat = {
             
             var text = divs[i].textContent;
             var toreplace = /\ \-\ /g;
-            text = text.replace(toreplace, '-');
-            // dump(i + ': ' + text + '\n');
+            text = text.replace(/(\d{1,2})\ -\ (\d{1,2})/g,"$1-$2");
+            //text = text.replace(toreplace, '-');
+            dump(i + ': ' + text + '\n');
             var score = reg.exec(text);
             
             if (divs[i].innerHTML.search(team1) > -1) start_g = 6; else start_g = 7;
