@@ -8,8 +8,8 @@ FoxtrickMatchReportFormat = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"BugFix after HT Update 16.09.2009",	
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Links to minute",	
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
 											 "#9F0202",  //Text Home team name   1
@@ -38,6 +38,65 @@ FoxtrickMatchReportFormat = {
 	init : function() {
     },
 
+    dumpObj: function(obj, name, indent, depth) {
+    try{
+   var MAX_DUMP_DEPTH = 10;
+   if (depth > MAX_DUMP_DEPTH) {
+       return indent + name + ": <Maximum Depth Reached>\n";
+   }
+   if (typeof obj == "object") {
+       var child = null;
+       var output = indent + name;
+       var total = 0;
+       if (obj instanceof Array)
+       {
+           total = obj.length;
+           output += " (Array)\n";
+       }
+       else
+       {
+           for (var item in obj)
+           {
+               total++;
+           }
+           output += " (Object)\n";
+       }
+       output += indent + "Total item: " + total + "\n";
+       indent += " > ";
+       if (obj instanceof Array)
+       {
+           for (var i = 0; i < obj.length; i++)
+           {
+               child = obj[i];
+               output += dumpObj(child, i, indent, depth + 1);
+           }
+       }
+       else
+       {
+           for (var item in obj)
+           {
+               try {
+                   child = obj[item];
+               }    
+               catch (e) {
+                   child = "<Unable to Evaluate>";
+               }
+               if (typeof child == "object") {
+                   output += dumpObj(child, item, indent, depth + 1);
+               }
+               else {
+                   output += indent + item + ":: " + child + "\n";
+               }
+           }
+       }
+       return output;
+   }
+   else {
+       return obj + " is not an object.";
+   }
+   } catch(e) {dump(e+'\n')};
+},
+
     run : function( page, doc ) {
 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
@@ -59,6 +118,7 @@ FoxtrickMatchReportFormat = {
 		// dump ('AwayTeamId: '+AwayTeamId+'\n');
 
         var headder = doc.getElementsByTagName('h1')[0].innerHTML;
+        
         headder=Foxtrick.trim(headder);
         var start = Foxtrick.strrpos(headder, '<span>(') +7;
         var end = Foxtrick.strrpos(headder, ')</span>');
@@ -124,6 +184,7 @@ FoxtrickMatchReportFormat = {
 
         var div_inner = Foxtrick.getElementsByClass('', div)[3];
         if (!supporter) div_inner = Foxtrick.getElementsByClass('', div)[2];
+        
         // dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
@@ -172,6 +233,7 @@ FoxtrickMatchReportFormat = {
         }
 
         dummy = (part[0] + part[1]).split('\n');
+//        dump(this.dumpObj(dummy, 'HEAD', '>>', 0));
 
         part[1]= '';
         var stage = 0;
@@ -228,7 +290,7 @@ FoxtrickMatchReportFormat = {
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
 
-                    part[1] += '<div id="ft_mR_div_' + i + '" style="'+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
+                    part[1] += '<div name="ft_mR_div_'+i+'" id="ft_mR_div_' + i + '" style="'+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
                 }
                 else part[1] += dummy[i] + '\n\n';
             }
@@ -239,8 +301,12 @@ FoxtrickMatchReportFormat = {
         var standing = new Array(0,0);
         var reg = /\ (\d{1,2})\-(\d{1,2})(.*?)/i;
         var divs = div.getElementsByTagName('div');
+        
+        var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
+        //dump(scoreboard.innerHTML);
         for (var i=0; i < divs.length; i++) {
             // dump(i + ': ' + divs[i].textContent + '\n\n');
+            
             var text = divs[i].textContent;
             var toreplace = /\ \-\ /g;
             text = text.replace(toreplace, '-');
@@ -255,14 +321,19 @@ FoxtrickMatchReportFormat = {
                     divs[i].style.border = borders_goal+ 'px solid ' + border_color_hm;
                     // dump (borders_goal+ 'px solid ' + border_color_hm  + ';\n');
 					divs[i].style.background = bg_col_hm;
-                    // dump('A \n');
+
+                    var scorerep = standing[0] + '&nbsp;-&nbsp;' + standing[1];
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<a href="#'+divs[i].id+'" style="text-decoration:none; color:black; padding:0px!important; background-color:'+ bg_col_hm + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</a>');
+
                 }
                 if (score[2] > standing[1]) {
                     standing[1]++;
                     divs[i].style.border = borders_goal+ 'px solid ' + border_color_aw;
                     // dump (borders_goal+ 'px solid ' + border_color_aw  + ';\n');
 					divs[i].style.background = bg_col_aw;
-                    // dump('B \n');
+                    
+                    var scorerep = standing[0] + '&nbsp;-&nbsp;' + standing[1];
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<a href="#'+divs[i].id+'" style="text-decoration:none; color:black; padding:0px!important; background-color:'+ bg_col_aw + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</a>');
                 }
             }
 
@@ -312,5 +383,5 @@ FoxtrickMatchReportFormat = {
         if (!dummy) dummy = this.OPTION_TEXTS_DEFAULT_VALUES[value];        
         // dump('Pref_[' + value + '] - [' + dummy + '] "' + this.OPTIONS[value] + '" returned\n');
         return dummy;
-    },
+    }
 };
