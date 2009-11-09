@@ -235,7 +235,7 @@ FoxtrickMatchReportFormat = {
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
 
-                    part[1] += '<div name="ft_mR_div_'+i+'" id="ft_mR_div_' + i + '" style="'+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
+                    part[1] += '<div id="ft_mR_div_' + i + '" style="'+ marg+' background:' + bg + padd +'">' + dummy[i] + '</div>\n\n';
                 }
                 else part[1] += dummy[i] + '\n\n';
             }
@@ -274,7 +274,14 @@ FoxtrickMatchReportFormat = {
                       var TR = tblbody.insertRow(0);
                       
                       var TD1 = doc.createElement("td");
-                      TD1.innerHTML= myTable[ti][0];
+                      if(myTable[ti][0].search('gif') > -1) {
+                        var dummy_txt = doc.createElement("div")
+                        //dummy_txt = myTable[ti][1].split('playerId=')[1].split("title=\"")[1].split("\">")[0];
+                        //dump('\n' + dummy_txt + '\n');
+                        //TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(\''+ (dummy_txt) +'\',' + parseInt(myTable[ti][2]) + ')>' + myTable[ti][0] + '</span>';
+                        TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(' + parseInt(myTable[ti][2]) + ')>' + myTable[ti][0] + '</span>';
+                      } else {
+                        TD1.innerHTML= myTable[ti][0];}
                       TD1.className = 'center';
                       
                       var TD2 = doc.createElement("td");
@@ -284,8 +291,17 @@ FoxtrickMatchReportFormat = {
 
                       TR.appendChild(TD1);
                       TR.appendChild(TD2);
-                      TR.appendChild(TD3);                  
-
+                      TR.appendChild(TD3);
+                      
+                      var TR = tblbody.insertRow(0);
+                      
+                      var TD1 = doc.createElement("td");
+                      TD1.innerHTML= '';
+                      TD1.setAttribute('style', 'padding:1px;');
+                      
+                      TR.appendChild(TD1);
+                      
+                      
                       //tblbody.rows[ti].cells[0].className = 'center';
                     }
                 }
