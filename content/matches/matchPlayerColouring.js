@@ -26,7 +26,7 @@ FoxtrickMatchPlayerColouring = {
     },
     
     run : function( page, doc ) { 
-	
+	try {
 		// get first youthteam id, assume its your own
 		if (page=='teamPageAny')  {
 			if  (this.OwnYouthTeamId==null) this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
@@ -178,7 +178,9 @@ FoxtrickMatchPlayerColouring = {
                 links[i].href+='&colored';
                 links[i].style.border = "1px solid #ccc";
 				links[i].style.padding = "0px 2px";
-  				var playerFullName = links[i].textContent;
+  				var iseventsbox=(links[i].parentNode.tagName=="TD");
+							
+				var playerFullName = links[i].textContent;
 				if  (playerFullName.charAt(0)==" ") playerFullName = playerFullName.substr(1);
 				var b = playerFullName.search(" ");
 				var l = playerFullName.length;
@@ -198,9 +200,18 @@ FoxtrickMatchPlayerColouring = {
 				}
                 if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
 					links[i].setAttribute("style", stlTeamA + 'padding:0px 2px;'); 
-                } 
+					if (iseventsbox) {
+						links[i].parentNode.previousSibling.setAttribute("style", 'text-align:left;'); 
+						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
+						//		dump(links[i].parentNode.parentNode.firstChild.innerHTML+'\n');
+					}
+ 				} 
 				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
 					links[i].setAttribute("style", stlTeamB + 'padding:0px 2px;'); 
+					if (iseventsbox) {
+						links[i].parentNode.previousSibling.setAttribute("style", 'text-align:right;'); 					
+						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
+					}
                  }    
                 else {
                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
@@ -215,7 +226,7 @@ FoxtrickMatchPlayerColouring = {
 						links[i].style.padding = "0px 2px";
 						if (FirstTeam) {
 							links[i].setAttribute("style", stlTeamA + ' border:1px solid #ccc;padding:0px 2px;'); 
- 							FirstTeam = false;
+							FirstTeam = false;
 						}
 						else {
 							links[i].setAttribute("style", stlTeamB + ' border:1px solid #ccc;padding:0px 2px;'); 
@@ -224,6 +235,7 @@ FoxtrickMatchPlayerColouring = {
 				}
 			 }
          }
+	} catch(e) {dump('PlayerColoring error: '+e+'\n');}
     },
 
     change : function(url) {
