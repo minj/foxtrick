@@ -1235,19 +1235,22 @@ var FoxtrickPrefsDialogHTML = {
 		if (option_text) {
 			check.addEventListener( "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
-					var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(ev.currentTarget.id+'_text');
+					var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(ev.currentTarget.id+'_table');
 					if (checked) optiondiv.style.display='block';
 					else optiondiv.style.display='none'; 			
 				}, false );
 
 			
 			var table = doc.createElement( "table" );	
+			table.setAttribute( "id", name+'_table' );
+			if (checked) table.setAttribute( "style", "display:block;" );
+			else table.setAttribute( "style", "display:none;" );
 			div.appendChild( table );
 			var tr = doc.createElement( "tr" );	
 			table.appendChild( tr );
 
-			var td = doc.createElement( "td" );	
-			//td.setAttribute('class','ft_prefs_check_td');
+			var td = doc.createElement( "td" );				
+			td.setAttribute('style','width:100%');
 			tr.appendChild( td );		
 			var input_option_text = doc.createElement( "input" );	
 			input_option_text.setAttribute( "type", "text" );
@@ -1255,8 +1258,6 @@ var FoxtrickPrefsDialogHTML = {
 			input_option_text.setAttribute( "id", name+'_text' );
 			input_option_text.setAttribute( "value", option_text);
 			input_option_text.setAttribute( "class", "ft_pref_input_option_text");
-			if (checked) input_option_text.setAttribute( "style", "display:block;" );
-			else input_option_text.setAttribute( "style", "display:none;" );
 			td.appendChild( input_option_text);
 
 			if (!on_page) {
