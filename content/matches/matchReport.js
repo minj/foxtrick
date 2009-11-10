@@ -248,7 +248,9 @@ FoxtrickMatchReportFormat = {
         var divs = div.getElementsByTagName('div');
         
         var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
-        scoreboard.parentNode.setAttribute('style', 'padding:2px;width:184px;z-Index:1000;background-color:white;position:fixed;top:100px; left:1040px;');
+        
+        
+        scoreboard.parentNode.setAttribute('style', '-moz-border-radius: 5px; -webkit-border-radius: 5px; border: 1px solid #000; padding: 10px; padding:2px;width:184px;z-Index:1000;background-color:white;position:absolute;top:'+scoreboard.parentNode.offsetTop+'px; left:'+scoreboard.parentNode.offsetLeft+'px;');
         scoreboard.parentNode.id = 'scoreboard';
         //scoreboard.parentNode.onmousedown = "startDrag(this)";
         var myTable = new Array();
