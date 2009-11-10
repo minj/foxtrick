@@ -250,6 +250,7 @@ FoxtrickMatchReportFormat = {
         var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
         scoreboard.parentNode.setAttribute('style', 'padding:2px;width:184px;z-Index:1000;background-color:white;position:fixed;top:100px; left:1040px;');
         scoreboard.parentNode.id = 'scoreboard';
+        //scoreboard.parentNode.onmousedown = "startDrag(this)";
         var myTable = new Array();
         
         var tblbody = scoreboard.tBodies[0];
