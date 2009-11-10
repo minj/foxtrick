@@ -364,7 +364,7 @@ Foxtrick.TeamStats= {
         "Bangladesh",
         "Barbados",
         "Belarus",
-        "België",
+        "Belgium",
         "Benin",
         "Bolivia",
         "Bosna i Hercegovina",
