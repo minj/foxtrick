@@ -250,7 +250,7 @@ FoxtrickMatchReportFormat = {
         var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
         
         
-        scoreboard.parentNode.setAttribute('style', '-moz-border-radius: 5px; -webkit-border-radius: 5px; border: 1px solid #000; padding: 10px; padding:2px;width:184px;z-Index:1000;background-color:white;position:absolute;top:'+scoreboard.parentNode.offsetTop+'px; left:'+scoreboard.parentNode.offsetLeft+'px;');
+        //scoreboard.parentNode.setAttribute('style', '-moz-border-radius: 5px; -webkit-border-radius: 5px; border: 1px solid #000; padding: 10px; padding:2px;width:184px;z-Index:1000;background-color:white;position:absolute;top:'+scoreboard.parentNode.offsetTop+'px; left:'+scoreboard.parentNode.offsetLeft+'px;');
         scoreboard.parentNode.id = 'scoreboard';
         //scoreboard.parentNode.onmousedown = "startDrag(this)";
         var myTable = new Array();
@@ -273,18 +273,31 @@ FoxtrickMatchReportFormat = {
             while(tblbody.rows.length>0) {
                 tblbody.deleteRow(0);
             }
+                var last_min = 200;
                 for (var ti = (myTable.length-1); ti >= 0; ti--) {
                     if (true) {
                     
+                      var minute = parseInt(myTable[ti][2]);
+                      var line = ((last_min > 45 && minute <= 45) || (last_min > 90 && minute <= 90) || (last_min > 105 && minute <= 105));
+                      if (line) {
+                        if (tblbody.rows.length > 0){
+                            var TR = tblbody.insertRow(0);                        
+                            var TD1 = doc.createElement("td");
+                            TD1.setAttribute('colspan', 3);
+                            TD1.className = 'center';
+                            TD1.innerHTML= '<div style="height: 3px; background-image:url(Img.axd?res=Matches&amp;img=separator.gif); background-repeat: repeat-x;"></div>';
+                            TR.appendChild(TD1);
+                        }
+                        last_min = minute;
+                      }
                       var TR = tblbody.insertRow(0);
-                      
                       var TD1 = doc.createElement("td");
                       if(myTable[ti][0].search('gif') > -1) {
                         var dummy_txt = doc.createElement("div")
                         //dummy_txt = myTable[ti][1].split('playerId=')[1].split("title=\"")[1].split("\">")[0];
                         //dump('\n' + dummy_txt + '\n');
                         //TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(\''+ (dummy_txt) +'\',' + parseInt(myTable[ti][2]) + ')>' + myTable[ti][0] + '</span>';
-                        TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(' + parseInt(myTable[ti][2]) + ')>' + myTable[ti][0] + '</span>';
+                        TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(' + minute + ')>' + myTable[ti][0] + '</span>';
                       } else {
                         TD1.innerHTML= myTable[ti][0];}
                       TD1.className = 'center';
@@ -332,7 +345,7 @@ FoxtrickMatchReportFormat = {
 					divs[i].style.background = bg_col_hm;
 
                     var scorerep = standing[0] + '-' + standing[1];
-                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; background-color:'+ bg_col_hm + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</span>');
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer"><b>'+standing[0]+'</b>&nbsp;-&nbsp;'+standing[1]+'</span>');
 
                 }
                 if (score[2] > standing[1]) {
@@ -342,7 +355,7 @@ FoxtrickMatchReportFormat = {
 					divs[i].style.background = bg_col_aw;
                     
                     var scorerep = standing[0] + '-' + standing[1];
-                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; background-color:'+ bg_col_aw + '">'+standing[0]+'&nbsp;-&nbsp;'+standing[1]+'</span>');
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer">'+standing[0]+'&nbsp;-&nbsp;<b>'+standing[1]+'</b></span>');
                 }
             }
 
