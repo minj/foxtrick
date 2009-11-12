@@ -143,7 +143,7 @@ var FoxtrickCrossTable = {
             var weekcount = 1;
             for (var j = 0; j<14; j++){ //day
                 // dump(j + ' [--------------------------------\n');
-                Foxtrick.dump_div(doc,'Matchday ' + j + '<br>\n');
+                Foxtrick.dump_div(doc,'<br><b>Matchday ' + (j+1) + '</b>\n');
                 for (var i = 0; i<4 ; i++) { //row
                     row = j*5 + i+1;
 
@@ -172,13 +172,13 @@ var FoxtrickCrossTable = {
 							else if (dummy[1] == names_late[k]) {home = k; homegame = true;}
 						}
                         if (home != -1 && away != -1) {
-                                Foxtrick.dump_div(doc,'dummy: ' +dummy + ' k: ' + k + ' home: <b>' + home + ' away: '+ away + '</b><br>\n');
+                                Foxtrick.dump_div(doc,'dummy: ' +dummy + ' k: ' + k + ' home: <b>' + home + ' away: '+ away + '</b>\n');
                             }
                         else {
-                                Foxtrick.dump_div(doc,'dummy: ' +dummy + ' k: ' + k + ' home: ' + home + ' away: '+ away + '\n');
+                                // Foxtrick.dump_div(doc,'dummy: ' +dummy + ' k: ' + k + ' home: ' + home + ' away: '+ away + '\n');
                             }
-                        if (k == 7 && home == -1 && away == -1)
-                            Foxtrick.dump_div(doc,'<br><b> NOT FOUND! </b><br>\n');
+                        if (k == 7 && (home == -1 || away == -1))
+                            Foxtrick.dump_div(doc,'<b style="color:red;"> NOT FOUND! </b> '+dummy + ' home: <b>' + home + ' away: '+ away + '</b>\n');
                         if ((home != -1) && (away != -1)) {
 
                             var result = tblBodyObj.rows[row].cells[2].innerHTML.split('-');
