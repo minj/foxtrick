@@ -41,7 +41,8 @@ pref( "extensions.foxtrick.prefs.cssSkin.value", "chrome://foxtrick/content/reso
 pref( "extensions.foxtrick.prefs.module.SkillColoring.no_skill_links.enabled", false );
 pref( "extensions.foxtrick.prefs.module.SkillColoring.skill_number_translated.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLongNick.enabled", true );
-pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.HideOldTime.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SingleHeaderLine.enabled", true );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SmallHeaderFont.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumAlterHeaderLine.ShortPostId.enabled", true );

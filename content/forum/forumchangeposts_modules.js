@@ -73,19 +73,21 @@ var FoxtrickForumAlterHeaderLine = {
 	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"CheckDesign as worse looking but working and faster css. Fixed wrong date color",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName",
+	LATEST_CHANGE:"CheckDesign as worse looking but working and faster css. Fixed wrong date color. New: HideOldTime ",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName","HideOldTime",
 						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar","HighlightThreadOpener"),
 	OPTIONS_CSS: new Array ("chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single.css",
 							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_CheckDesign.css",
 							"",
 							"",
+							"",
 							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Smallsize_Single.css",
 							"",
 							"chrome://foxtrick/content/resources/css/fixes/Forum_Header_RemoveSupporterStar.css"),
+
 	CSS_SIMPLE:"chrome://foxtrick/content/resources/css/fixes/Forum_Header_Single_SimpleFix.css",
-	
+
     init : function() {
     },
 	

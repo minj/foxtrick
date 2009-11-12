@@ -37,7 +37,8 @@ var FoxtrickForumChangePosts = {
 		var do_single_header_allways = do_alter_header && do_single_header && !Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "CheckDesign");
 		var do_truncate_nicks = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick");
 		var do_truncate_leaguename = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "TruncateLeagueName");
-		var do_short_postid = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId");
+		var do_hide_old_time = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "HideOldTime");
+ 		var do_short_postid = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId");
 		var do_replace_supporter_star = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "ReplaceSupporterStar");
 		var do_HighlightThreadOpener = do_alter_header && Foxtrick.isModuleFeatureEnabled( FoxtrickForumAlterHeaderLine, "HighlightThreadOpener");
 		// var do_linebreak = Foxtrick.isModuleFeatureEnabled( FoxtrickHeaderFix, "RemoveFlicker");
@@ -54,6 +55,7 @@ var FoxtrickForumChangePosts = {
 		//var link_to_alltid = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 1);
 		//var redir_to_team = (FoxtrickPrefs.getInt("module.FoxtrickAlltidFlags.value") == 0);
 
+		
 		// part of copypostid
 		var img = doc.createElement('img');
 		img.setAttribute('src',"chrome://foxtrick/content/resources/img/copy_yellow_small.png");
@@ -77,8 +79,7 @@ var FoxtrickForumChangePosts = {
 		// part of alter header
 		var trunclength = 10;
 		if (isStandardLayout) trunclength = 14;
-
-
+		
 		var doubleHeaderStyle = 'height:30px !important; ';
 		var alt_supporter=doc.createElement('a');
 		alt_supporter.href="/Help/Supporter/";
@@ -361,7 +362,7 @@ var FoxtrickForumChangePosts = {
                                 }
                             }
                     }
-
+					
                     if (do_truncate_leaguename) {
                             if (league_link1) {
                                 league_link1.innerHTML = league_link1.innerHTML.replace(/\..+/,'');
@@ -372,8 +373,13 @@ var FoxtrickForumChangePosts = {
                                 if (league_link2.innerHTML.length>3)  league_link2.innerHTML='I';
                             }
                     }
-
-                    if (do_short_postid && this.bDetailedHeader) {  
+					
+                    if (do_hide_old_time) { 
+						if (header_right.innerHTML.search(/ \d{1,4}\.\d{1,2}\.\d{1,4} \d+:\d+/gi)!=-1) 
+							header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}\.\d{1,2}\.\d{1,4})( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+					}
+										
+					if (do_short_postid && this.bDetailedHeader) {  
                         var PostID_message = post_link1.title.replace(/\d+\./,'');
                         if (!do_add_copy_icon) {
                             var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
@@ -423,20 +429,6 @@ var FoxtrickForumChangePosts = {
                       if (header.className == "cfHeader doubleLine") {	
 						//dump('d'+String(header.offsetTop-header_right.offsetTop)+'\n');
                         // dump(header.innerHTML);
-                        try {
-                            var line2 = header.getElementsByTagName('p')[0];
-                            if (line2 != null) line2.setAttribute('style', 'display:inline');
-                            var lineright = Foxtrick.getElementsByClass('float_right', header)[0];
-                            if (lineright != null) lineright.setAttribute('style', 'background-colorcolor:#999999');
-                            if (lineright.innerHTML.search(/(\d{2}\.\d{2}\.\d{4})/) != -1) {
-                                // dump ('\n\n'+lineright.innerHTML + '\n');
-                                lineright.innerHTML = lineright.innerHTML.replace(/\ (\d{1,2})\.(\d{1,2})\.(\d{1,4})\ /gi, "<span title='$1.$2.$3'>$1.$2</span> ");
-                                //lineright.innerHTML = lineright.innerHTML.replace(/\d{1,4}/gi, "");
-                            }
-                            
-                        } catch(eline2) {
-                            dump('ERROR eline2: ' + eline2 + '\n');
-                        }
                         
 					//   if (header.offsetTop-header_right.offsetTop < -3 ) {
                           if (do_truncate_nicks) {
