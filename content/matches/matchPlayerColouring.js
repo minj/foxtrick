@@ -1,6 +1,6 @@
 /**
  * Colors the player name in the match report.
- *  * @author tychobrailleur & Stephan57
+ *  * @author tychobrailleur & Stephan57 &convincedd
  */
 
 FoxtrickMatchPlayerColouring = {
@@ -9,8 +9,8 @@ FoxtrickMatchPlayerColouring = {
 	PAGES : new Array('match','teamPageAny','myhattrick'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Highlight own team in youth matches (only works if any own team page was the first visited)",	
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Right/left align images in event box",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team

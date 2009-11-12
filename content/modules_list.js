@@ -48,7 +48,7 @@ Foxtrick.modules = [
                     FoxtrickExtendedPlayerDetails,
                     FoxtrickExtendedPlayerDetailsWage,
                     FoxtrickHTDateFormat,
-                    FoxtrickMatchReportFormat,  // ** new **
+                    FoxtrickMatchReportFormat,  
                     FoxtrickMatchPlayerColouring,                     
                     Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
                     Foxtrick.Ratings,
@@ -56,6 +56,7 @@ Foxtrick.modules = [
                     FoxtrickYouthSkillTable,
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
+                    FoxtrickAlertCustomSounds,
                     FoxtrickHideFaceTransferImages,
                     FoxtrickHideFaceInjuryImages,
                     FoxtrickHideFaceSuspendedImages,
@@ -136,7 +137,7 @@ Foxtrick.modules = [
                     FoxtrickMatchOrderColoring, 
 					FoxTrickPredefinedChallenges,
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
-					FoxtrickHighlightBotTeams, //new
+					FoxtrickHighlightBotTeams, 
 					];
 
 					

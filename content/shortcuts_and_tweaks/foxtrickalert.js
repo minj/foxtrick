@@ -174,7 +174,7 @@ var FoxtrickAlert = {
 		var clickable = true;
         var listener = { observe:
                 function(subject, topic, data) {
-                    try{ 
+                    try{ dump('callback: '+topic+'\n');
 						if (topic=="alertclickcallback") {
 							dump('alertclickcallback:' +'link to: '+data+'\n');
 							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -206,10 +206,22 @@ var FoxtrickAlert = {
     }
 		if (FoxtrickPrefs.getBool("alertSound")) {
 			try {
-				Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));
-			} catch (e) {
-				Foxtrick.LOG('playsound: '+e);
-			}
+				var play_custom = false;
+				if (Foxtrick.isModuleEnabled(FoxtrickAlertCustomSounds)) {
+					for (var i=0; i<FoxtrickAlertCustomSounds.OPTIONS.length; ++i) {
+						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomSounds, FoxtrickAlertCustomSounds.OPTIONS[i])) {
+							var url = FoxtrickAlertCustomSounds.urls[i];
+							if (href.search(url) != -1) {
+								var sound = FoxtrickPrefs.getString("module." + FoxtrickAlertCustomSounds.MODULE_NAME + "." + FoxtrickAlertCustomSounds.OPTIONS[i]+"_text"); 
+								Foxtrick.playSound(sound);
+								play_custom=true;
+								break;
+							}
+						}
+					}
+				}
+				if (!play_custom) Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));				
+			} catch (e) { dump('playsound: '+e);}
 		}
     },
 	
