@@ -59,6 +59,7 @@ Foxtrick.Loader = function(){
     'shortcuts_and_tweaks/transferListDeadline.js',
     'shortcuts_and_tweaks/youthskillnotes.js',
     'shortcuts_and_tweaks/foxtrickalert.js',
+    'shortcuts_and_tweaks/alertcustom.js',
     'shortcuts_and_tweaks/alertcustomsounds.js',
     'shortcuts_and_tweaks/addmanagerbuttons.js',
     'shortcuts_and_tweaks/confirmplayerbid.js',

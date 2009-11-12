@@ -56,7 +56,8 @@ Foxtrick.modules = [
                     FoxtrickYouthSkillTable,
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
-                    FoxtrickAlertCustomSounds,
+                    FoxtrickAlertCustomOff,
+					FoxtrickAlertCustomSounds,
                     FoxtrickHideFaceTransferImages,
                     FoxtrickHideFaceInjuryImages,
                     FoxtrickHideFaceSuspendedImages,

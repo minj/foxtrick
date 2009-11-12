@@ -127,6 +127,14 @@ pref( "extensions.foxtrick.prefs.module.TickerColoring.Guestbook.enabled", true 
 pref( "extensions.foxtrick.prefs.module.TickerColoring.MailToMe.enabled", true );
 pref( "extensions.foxtrick.prefs.module.TickerColoring.MyHTMessages.enabled", true );
 pref( "extensions.foxtrick.prefs.module.TickerColoring.Hover.enabled", true );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.LoginWelcome.enabled", false );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.LoginSupporters.enabled", false );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.ForumReplyToMe.enabled", false );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.TransferMarket.enabled", false );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.Challenges.enabled", false );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.Guestbook.enabled", false );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.MailToMe.enabled", false );
+pref( "extensions.foxtrick.prefs.module.AlertCustomOff.MyHTMessages.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled", false );
 pref( "extensions.foxtrick.prefs.module.NewMail.CustomColor.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true );

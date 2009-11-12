@@ -168,7 +168,17 @@ var FoxtrickAlert = {
 		var alert = FoxtrickAlert.ALERTS.pop(); 
         var text = alert.message;  
         var href = alert.href;
-				
+		
+		// custom turned off?
+		if (Foxtrick.isModuleEnabled(FoxtrickAlertCustomOff)) {
+			for (var i=0; i<FoxtrickAlertCustomSounds.OPTIONS.length; ++i) {
+				var url = FoxtrickAlertCustomSounds.urls[i];
+				if (href.search(url) != -1 && Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomOff, FoxtrickAlertCustomSounds.OPTIONS[i]))
+					FoxtrickAlert.foxtrick_showAlert(true); // show next
+					return;
+			}
+		}
+						
         var img = "http://hattrick.org/favicon.ico";
         var title = "Hattrick.org";
 		var clickable = true;
