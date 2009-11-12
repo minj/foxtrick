@@ -15,8 +15,8 @@ var FoxtrickCrossTable = {
     OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1","",""),
     OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
 	htCountriesXml : null,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Should work with changed names now",
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"fix (away goals counted twice)",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _week : 14,
@@ -191,8 +191,8 @@ var FoxtrickCrossTable = {
                                 if (result[0] > result[1]) {points_hm = 3; points_aw = 0;}
                                 if (result[0] < result[1]) {points_hm = 0; points_aw = 3;}
                                 if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}
-                                week[home][j+1] = points_hm *1000000 + old_hm + (result[0] - result[1]) + result[0];
-                                week[away][j+1] = points_aw *1000000 + old_aw + (result[1] - result[0]) + result[1];
+                                week[home][j+1] = points_hm *1000000 + old_hm + (result[0] - result[1]);
+                                week[away][j+1] = points_aw *1000000 + old_aw + (result[1] - result[0]);
                                 weekcount = j+1;
                                 dump(weekcount + ' - ');
                             }
