@@ -329,7 +329,9 @@ var FoxtrickCrossTable = {
             heading.addEventListener( "click", this.HeaderClick_Graph, false );
             this.HeaderClick_Graph.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
-
+            
+            dump('\n\n>'+week+'<\n');
+            dump('\n\n>'+Foxtrick.var_dump(week, 0) + '<\n');
             for (var draw=0; draw <= 15; draw++) {
                 this._week = draw;
                 //week.sort(this.numComparisonDesc);
@@ -340,6 +342,7 @@ var FoxtrickCrossTable = {
                 }
                 // dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');
             }
+            dump('\n\n>'+Foxtrick.var_dump(week, 0));
             var position = '', teams = '';
             for (var ii = 0; ii<8; ii++) {
                 for(var jj = 1; jj < weekcount; jj++) {
@@ -529,6 +532,6 @@ var FoxtrickCrossTable = {
             }
 		}
 		catch (e) {dump("CrossTable -> HeaderClick_Cross: "+e+'\n');}
-	},
+	}
 
 };
