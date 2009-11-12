@@ -50,6 +50,7 @@ var FoxtrickYouthSkillTable = {
 	sortfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].innerHTML);},
 	sortdownfunction: function(a,b) {return (b.cells[FoxtrickYouthSkillTable.s_index].innerHTML.localeCompare(a.cells[FoxtrickYouthSkillTable.s_index].innerHTML));},
 	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML);},
+	sortagefunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age').localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age'));},
 
 	sortClick : function(ev) {
 	try{
@@ -66,7 +67,7 @@ var FoxtrickYouthSkillTable = {
 		}
 		//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
 		if (FoxtrickYouthSkillTable.s_index==0) rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
-		else if (FoxtrickYouthSkillTable.s_index==1) rows.sort(FoxtrickYouthSkillTable.sortfunction);		
+		else if (FoxtrickYouthSkillTable.s_index==1) rows.sort(FoxtrickYouthSkillTable.sortagefunction);
 		else rows.sort(FoxtrickYouthSkillTable.sortdownfunction);
 		
 		for (var i=1;i<table.rows.length;++i) {
@@ -214,6 +215,7 @@ var FoxtrickYouthSkillTable = {
 						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_normal'); even=true;}
 						FoxtrickYouthSkillTable.copy_string += age[0]+'.'+age[1];
 						td.innerHTML=age[0]+'.'+age[1]; 
+						td.setAttribute('age',age[0]+'.'+(age[1].length==1?('00'+age[1]):(age[1].length==2?('0'+age[1]):age[1]))); 
 						FoxtrickYouthSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
 							
