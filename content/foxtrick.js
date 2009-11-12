@@ -1679,3 +1679,16 @@ Foxtrick.var_dump = function(arr,level) {
 	}
 	return dumped_text;
 }
+Foxtrick.dump_div = function(doc, cnt) {
+    try{
+        var div = doc.getElementById('ft_dump');
+        if (div == null) {
+            var div = doc.createElement('div');
+            div.setAttribute('style', 'border:1px solid#ABCDEF');
+            div.innerHTML = '<h1 style="margin: 6px 0 15px 6px">FoxTrick dump</h1>';
+            div.id = 'ft_dump';
+            doc.getElementById('page').appendChild(div);
+        }
+        div.innerHTML += cnt + '<br>';
+    } catch(e) {dump(e);}
+}

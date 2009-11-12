@@ -136,12 +136,14 @@ var FoxtrickCrossTable = {
 			}
 			
 			dump(names_early+'\n'+names_late+'\n');
-
+            Foxtrick.dump_div(doc, 'names_early: \n' + Foxtrick.var_dump(names_early) + '<br>\n');
+            Foxtrick.dump_div(doc, 'names_late: \n' + Foxtrick.var_dump(names_late) + '<br>\n');
             //results
             var row = 0; points_aw = 0; points_hm = 0;
             var weekcount = 1;
             for (var j = 0; j<14; j++){ //day
                 // dump(j + ' [--------------------------------\n');
+                Foxtrick.dump_div(doc,'Matchday ' + j + '<br>\n');
                 for (var i = 0; i<4 ; i++) { //row
                     row = j*5 + i+1;
 
@@ -169,6 +171,14 @@ var FoxtrickCrossTable = {
 							else if (dummy[0] == names_late[k]) {away = k}
 							else if (dummy[1] == names_late[k]) {home = k; homegame = true;}
 						}
+                        if (home != -1 && away != -1) {
+                                Foxtrick.dump_div(doc,'dummy: ' +dummy + ' k: ' + k + ' home: <b>' + home + ' away: '+ away + '</b><br>\n');
+                            }
+                        else {
+                                Foxtrick.dump_div(doc,'dummy: ' +dummy + ' k: ' + k + ' home: ' + home + ' away: '+ away + '\n');
+                            }
+                        if (k == 7 && home == -1 && away == -1)
+                            Foxtrick.dump_div(doc,'<br><b> NOT FOUND! </b><br>\n');
                         if ((home != -1) && (away != -1)) {
 
                             var result = tblBodyObj.rows[row].cells[2].innerHTML.split('-');
@@ -187,14 +197,14 @@ var FoxtrickCrossTable = {
                             }
                             if ((homegame) && (result[0] != -1)) {
                                 cross[home][away+1] = result[0] + '-' + result[1];
-                                var points_hm = 1, points_aw = 1;
-                                if (result[0] > result[1]) {points_hm = 3; points_aw = 0;}
-                                if (result[0] < result[1]) {points_hm = 0; points_aw = 3;}
+                                var points_hm = 1000000, points_aw = 1000000;
+                                if (result[0] > result[1]) {points_hm = 3000000; points_aw = 0;}
+                                if (result[0] < result[1]) {points_hm = 0; points_aw = 3000000;}
                                 if (j == 0) {var old_hm = 0; var old_aw = 0;} else {old_hm = week[home][j]; old_aw = week[away][j];}
-                                week[home][j+1] = points_hm *1000000 + old_hm + (result[0] - result[1]);
-                                week[away][j+1] = points_aw *1000000 + old_aw + (result[1] - result[0]);
+                                week[home][j+1] = points_hm + old_hm + ((result[0] - result[1]) * 1000);
+                                week[away][j+1] = points_aw + old_aw + ((result[1] - result[0]) * 1000) + result[1];
                                 weekcount = j+1;
-                                dump(weekcount + ' - ');
+                                //dump(weekcount + ' - ');
                             }
                             else {
                                 cross[home][away+1] = '-';
@@ -330,8 +340,8 @@ var FoxtrickCrossTable = {
             this.HeaderClick_Graph.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
             
-            dump('\n\n>'+week+'<\n');
-            dump('\n\n>'+Foxtrick.var_dump(week, 0) + '<\n');
+            //dump('\n\n>'+week+'<\n');
+            //dump('\n\n>'+Foxtrick.var_dump(week, 0) + '<\n');
             for (var draw=0; draw <= 15; draw++) {
                 this._week = draw;
                 //week.sort(this.numComparisonDesc);
@@ -342,7 +352,7 @@ var FoxtrickCrossTable = {
                 }
                 // dump('\n>' +' - ' + this._week + ' - '+ week + '<\n\n');
             }
-            dump('\n\n>'+Foxtrick.var_dump(week, 0));
+            //dump('\n\n>'+Foxtrick.var_dump(week, 0));
             var position = '', teams = '';
             for (var ii = 0; ii<8; ii++) {
                 for(var jj = 1; jj < weekcount; jj++) {
