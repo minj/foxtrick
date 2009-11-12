@@ -91,7 +91,7 @@ var FoxtrickCrossTable = {
 
                 names_tmp[i*2] = dummy[0]; 
                 names_tmp[i*2 + 1] = dummy[1]; 
-                //dump('' + names_tmp[i*2] + '\n' + names_tmp[i*2+1]+'\n');
+                //dump(i+' ' + names_tmp[i*2] + ' - ' + names_tmp[i*2+1]+'\n');
             }
 			// get late teams
 			var last_fixture=13*5;
@@ -102,21 +102,23 @@ var FoxtrickCrossTable = {
 
                 names_late[i*2] = dummy[0]; cross[i*2][0] = dummy[0]; crossgame[i*2][0] = dummy[0]; week[i*2][0] = dummy[0];
                 names_late[i*2 + 1] = dummy[1]; cross[i*2 + 1][0] = dummy[1]; crossgame[i*2+1][0] = dummy[1]; week[i*2+1][0] = dummy[1];
-                // dump('' + names_tmp[i*2] + '\n' + names_tmp[i*2+1]+'\n');
+                //dump(i+' ' + names_late[i*2] + ' - ' + names_late[i*2+1]+'\n');
             }
-			// compare and adjust
+			// compare and align
 			for (var i = 0; i < 4; i++) {
 				for (var j = 0; j < 4; j++) {
 					if (j==4) { break;}
 					if (names_late[i*2] == names_tmp[j*2+1]) {
 						names_early[i*2] = names_tmp[j*2+1];
 						names_early[i*2+1] = names_tmp[j*2];
+						//dump(i+'  '+names_late[i*2]+' : '+names_tmp[j*2+1]+' - '+names_late[i*2+1] +' : '+ names_tmp[j*2]+'\n');
 						names_tmp[j*2]='';
 						continue;
 					}
 					else if (names_late[i*2+1] == names_tmp[j*2]) {
 						names_early[i*2] = names_tmp[j*2+1];
 						names_early[i*2+1] = names_tmp[j*2];
+						//dump(i+'  '+names_late[i*2]+' : '+names_tmp[j*2+1]+' - '+names_late[i*2+1] +' : '+ names_tmp[j*2]+'\n');
 						names_tmp[j*2]='';
 						continue;
 					}
@@ -124,11 +126,11 @@ var FoxtrickCrossTable = {
             }
 			// if more than team has changed
 			for (var i = 0; i < 4; i++) {
-				if (names_late[i*2]==""){
+				if (!names_early[i*2]){ 
 					for (var j = 0; j < 4; j++) {
-						if (names_tmp[j*2]=='') {
-							names_late[i*2] = names_tmp[j*2+1];
-							names_late[i*2+1] = names_tmp[j*2];
+						if (names_tmp[j*2]!='') { 
+							names_early[i*2] = names_tmp[j*2+1];
+							names_early[i*2+1] = names_tmp[j*2];
 							names_tmp[j*2]='';							
 						}
 					}
