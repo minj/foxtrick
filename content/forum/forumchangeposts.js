@@ -99,6 +99,8 @@ var FoxtrickForumChangePosts = {
         
 		try {
             var tag = doc.getElementById('myForums');
+            if (tag == null) tag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum');
+            //Foxtrick.dump(Foxtrick.var_dump(tag));
             if (tag != null) {
                 tag = tag.getElementsByTagName('strong')[0];
                 var TName = tag.innerHTML;
