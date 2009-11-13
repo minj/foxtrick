@@ -97,14 +97,16 @@ var FoxtrickForumChangePosts = {
         */
         
         
-		var tag = doc.getElementById('myForums');
-        if (tag != null) {
-            tag = tag.getElementsByTagName('strong')[0];
-            var TName = tag.innerHTML;
-            var TName_lng = tag.parentNode.title;
-            TName_lng = TName_lng.replace(TName, "");
-            TName_lng = TName_lng.split(" ")[2];
-        } else var TName_lng = false;
+		try {
+            var tag = doc.getElementById('myForums');
+            if (tag != null) {
+                tag = tag.getElementsByTagName('strong')[0];
+                var TName = tag.innerHTML;
+                var TName_lng = tag.parentNode.title;
+                TName_lng = TName_lng.replace(TName, "");
+                TName_lng = TName_lng.split(" ")[2];
+            } else var TName_lng = false;
+        } catch(e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
         
 		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
@@ -522,7 +524,7 @@ var FoxtrickForumChangePosts = {
 			}
 		  }
 		}
-	} catch (e) { Foxtrick.dump('forum '+e+'\n');}
+	} catch (e) { Foxtrick.dump('ForumChangePost '+e+'\n');}
 	},
 
 	change : function( page, doc ) {
