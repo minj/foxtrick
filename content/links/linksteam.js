@@ -50,24 +50,24 @@ var FoxtrickLinksTeam = {
 			}
 			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);	
 		}
-		catch (e) {dump("teamlinks->add_leftright->"+e);}
+		catch (e) {Foxtrick.dump("teamlinks->add_leftright->"+e);}
 	},
 	
-	change : function( page, doc ) { // dump('change : LinksTeam\n');
+	change : function( page, doc ) { // Foxtrick.dump('change : LinksTeam\n');
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 		var ownBoxId = "foxtrick_links_content";
 		var owncoachlinkId = "foxtrick_content_coach";
 		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
 		if( !doc.getElementById ( ownBoxId )
 		   && this.isTeamPage(doc)) {
-		 	dump('run again : LinksTeamRight\n');	
+		 	Foxtrick.dump('run again : LinksTeamRight\n');	
 			this.AddLinksRight(page,doc);
 		}
 	},
 	
 	isTeamPage : function(doc) {
         var site=doc.location.href; 
-        var remain=site.substr(site.search(/Club\//i)+5);  //dump(remain+' '+remain.search(/TeamID=/i)+'\n');
+        var remain=site.substr(site.search(/Club\//i)+5);  //Foxtrick.dump(remain+' '+remain.search(/TeamID=/i)+'\n');
     return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
 	},
 	
@@ -101,11 +101,11 @@ var FoxtrickLinksTeam = {
 			}
 			if (child.className && child.className=='info') infocount++;			
 		  }
-		}catch(e){dump('leaguepos/fans: '+e+'\n');}
+		}catch(e){Foxtrick.dump('leaguepos/fans: '+e+'\n');}
 		return { "teamid": teamid, "teamname": teamname, "countryid" : countryid,
 				"levelnum" : levelnum ,"leagueid": leagueid,"userid":userid,
 				"fans":fans,'leaguepos':leaguepos};
-	} catch(e){ dump ('LinksTeam->gatherLinks: '+e+'\n');}
+	} catch(e){ Foxtrick.dump ('LinksTeam->gatherLinks: '+e+'\n');}
 	},
 };
 	

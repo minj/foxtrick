@@ -118,13 +118,13 @@ var FoxtrickMovePlayerStatement = {
             var elemsa = doc.getElementsByTagName("div");
             for ( var b=0; b < elemsa.length; b++) { 
                 if( elemsa[b].className=='faceCard' && contentSpeak != "") {
-                    elemsa[b].appendChild(newImg); dump('add\n');
+                    elemsa[b].appendChild(newImg); Foxtrick.dump('add\n');
                 }
             }
 
         }
         catch (e) {
-            dump('  PlrStatement >' + e + '\n');
+            Foxtrick.dump('  PlrStatement >' + e + '\n');
         }
         
 	},

@@ -28,7 +28,7 @@ Foxtrick.Ratings = {
 			if (isprematch) return;
 			
 			var ratingstable = Foxtrick.Matches._getRatingsTable(doc);
-			if (ratingstable == null) return; dump('got table\n')
+			if (ratingstable == null) return; Foxtrick.dump('got table\n')
 			if (Foxtrick.Matches._isWalkOver(ratingstable)) return;
 			if (!Foxtrick.Matches._isCorrectLanguage(ratingstable)) { // incorrect language
 				var row = ratingstable.insertRow(8);
@@ -45,7 +45,7 @@ Foxtrick.Ratings = {
 			var rattack=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[5].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[5].cells[2]));
 			var cattack=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[6].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[6].cells[2]));
 			var lattack=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[7].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[7].cells[2]));
-			dump('got rating:'+lattack+'\n');
+			Foxtrick.dump('got rating:'+lattack+'\n');
 			var tactics;
 			var tacticsLevel;
 			if (ratingstable.rows.length > 12) {
@@ -56,7 +56,7 @@ Foxtrick.Ratings = {
 				tactics=new Array(Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[10].cells[1]), Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[10].cells[2]));
 				tacticsLevel=new Array(Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[1]), Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[2]));
 			}
-            dump('Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
+            Foxtrick.dump('Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
 			
 			var defenceLevel = new Array();
 			defenceLevel[0]=ldefence[0] + cdefence[0] + rdefence[0];
@@ -96,7 +96,7 @@ Foxtrick.Ratings = {
 											+ "</b>";
 						}
 					} catch (e) {
-						dump('ratings.js error in rating print ('+selectedRating+'): '+e+"\n");
+						Foxtrick.dump('ratings.js error in rating print ('+selectedRating+'): '+e+"\n");
 					}
 
 					this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "defence",

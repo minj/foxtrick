@@ -41,7 +41,7 @@ var FoxtrickPersonalityImages = {
 					}                        
 				}				
 			
-		} catch (e) {dump('PersonalityImages->'+e+'\n');}
+		} catch (e) {Foxtrick.dump('PersonalityImages->'+e+'\n');}
 	},	
 	
 	change : function( page, doc ) {	

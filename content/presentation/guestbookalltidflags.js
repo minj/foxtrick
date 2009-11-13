@@ -21,7 +21,7 @@ var FoxtrickGuestbookAlltidFlags = {
 	},
 
 	run : function( page, doc ) {
-	try{	//dump('in\n');
+	try{	//Foxtrick.dump('in\n');
 		var AddAlltidFlags = Foxtrick.isModuleFeatureEnabled( this, "AddAlltidFlags");
 		var HideAnswerToLinks = Foxtrick.isModuleFeatureEnabled( this, "HideAnswerToLinks");
 ;		
@@ -35,7 +35,7 @@ var FoxtrickGuestbookAlltidFlags = {
 		var linksArray = outerdiv.getElementsByTagName('a');
 		var div = null;
 				for (var j=0; j<linksArray.length-1; j++) {
-					var link = linksArray[j]; //dump(link.href+'\n');
+					var link = linksArray[j]; //Foxtrick.dump(link.href+'\n');
 					div=null;
 					if (AddAlltidFlags && link.href.search(/userId=/i) > -1 && linksArray[j+1].href.search(/Supporter/i)!=-1 ) { 
 						div = link.parentNode.parentNode;
@@ -64,7 +64,7 @@ var FoxtrickGuestbookAlltidFlags = {
 						if (div) div.style.padding='5px 5px 10px';
 					}				
 				}
-		} catch (e) {dump('FoxtrickGuestbookAlltidFlags->'+e+'\n');}
+		} catch (e) {Foxtrick.dump('FoxtrickGuestbookAlltidFlags->'+e+'\n');}
 	},
 	
 	change : function( page, doc ) {

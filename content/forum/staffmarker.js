@@ -357,13 +357,13 @@ var FoxtrickStaffMarker = {
         switch( page )
         {
             case 'forumViewThread':
-                // dump('forumViewThread\n');
+                // Foxtrick.dump('forumViewThread\n');
                 FoxtrickStaffMarker._MarkAliases_thread(doc);
                 FoxtrickStaffMarker._MarkAliases_select(doc);
             break;
 
             case 'forumWritePost':
-                // dump('forumWritePost\n');
+                // Foxtrick.dump('forumWritePost\n');
                 FoxtrickStaffMarker._MarkAliases_select(doc);
             break;
         }
@@ -398,8 +398,8 @@ var FoxtrickStaffMarker = {
                     var uname = Foxtrick.trim(a.title);
                     //Workarround for supporter star
                     if (uname.lastIndexOf('*') == uname.length-1) {
-                        // dump (uname + '\n');
-                        // dump (uname.substring(0,uname.length-1) + '\n');
+                        // Foxtrick.dump (uname + '\n');
+                        // Foxtrick.dump (uname.substring(0,uname.length-1) + '\n');
                         uname = uname.substring(0,uname.length-1);
                     }
 					var uid = a.href.replace(/.+userId=/i, "").match(/^\d+/);
@@ -438,7 +438,7 @@ var FoxtrickStaffMarker = {
             }
         }
         catch(e) {
-            dump('_MarkAliases_thread: '+e+'\n');
+            Foxtrick.dump('_MarkAliases_thread: '+e+'\n');
         }
     },
 
@@ -458,15 +458,15 @@ var FoxtrickStaffMarker = {
             var do_flag = Foxtrick.isModuleFeatureEnabled( this, "flag");
 
             var new_style = '';
-            // dump('forumSELECT => select\n');
+            // Foxtrick.dump('forumSELECT => select\n');
             for (var boxes = 0; boxes < this.SELECT_ELEMENTS.length; boxes++) {
                 var el_Select = doc.getElementById( this.SELECT_ELEMENTS[boxes] );
                 if (el_Select != null){
-                    // dump('forumSELECT => select box:'+ boxes + '.\n');
+                    // Foxtrick.dump('forumSELECT => select box:'+ boxes + '.\n');
 					var i = 1, option;
                     while ( option = el_Select.options[i++] ) {
                         new_style = '';
-                        //dump('forumSELECT => select i:'+ i + '.\n');
+                        //Foxtrick.dump('forumSELECT => select i:'+ i + '.\n');
 						var uname = Foxtrick.trim( option.text );
                         uname = uname.substring(0, uname.indexOf(' '));
                         if (uname == '') uname = Foxtrick.trim( option.text );
@@ -505,7 +505,7 @@ var FoxtrickStaffMarker = {
             }
         }
         catch(e) {
-            dump('FoxtrickStaffMarker'+e);
+            Foxtrick.dump('FoxtrickStaffMarker'+e);
         }
     },
 };

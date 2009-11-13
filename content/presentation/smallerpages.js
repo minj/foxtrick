@@ -70,7 +70,7 @@ FoxtrickSmallerPages = {
 			}
 			catch (e) {
 				Foxtrick.LOG(e);
-				dump("FoxtrickSmallerPages"+e);
+				Foxtrick.dump("FoxtrickSmallerPages"+e);
 			}
 		}
         
@@ -99,7 +99,7 @@ FoxtrickSmallerPages = {
 			}
 			catch (e) {
 				Foxtrick.LOG(e);
-				dump("FoxtrickSmallerPages"+e);
+				Foxtrick.dump("FoxtrickSmallerPages"+e);
 			}
 		}
         

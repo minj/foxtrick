@@ -42,7 +42,7 @@ var FoxtrickCopyTrainingReport = {
 			var newBoxId = "foxtrick_actions_box";
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
-		} catch(e) { dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
+		} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
 	},
 	
 	change : function( page, doc ) {
@@ -119,7 +119,7 @@ var FoxtrickCopyScoutReport = {
 			var newBoxId = "foxtrick_actions_box";
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
-		} catch(e) { dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
+		} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
 	},
 	
 	change : function( page, doc ) {
@@ -142,7 +142,7 @@ var FoxtrickCopyScoutReport = {
 		
 		if (lastmainbox!=-1) {
 				var graphs = subDivs[lastmainbox].innerHTML.split('<br><br>');
-				var plain = graphs[1];	dump(	graphs.length+'\n'+graphs[2]+'\n');		
+				var plain = graphs[1];	Foxtrick.dump(	graphs.length+'\n'+graphs[2]+'\n');		
 				if ( graphs[4] ) plain+=graphs[2];	// has a specialty
 				plain=plain.replace(/\&nbsp;/ig,' ');
 				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
@@ -202,7 +202,7 @@ var FoxtrickCopyPlayerSource = {
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
 			
 		
-		} catch(e) { dump('FoxtrickCopyPlayerSource: '+e+'\n'); }
+		} catch(e) { Foxtrick.dump('FoxtrickCopyPlayerSource: '+e+'\n'); }
 	},
 	
 	change : function( page, doc ) {

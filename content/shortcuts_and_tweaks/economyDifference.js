@@ -252,7 +252,7 @@ var FoxtrickEconomyDifference = {
 			//doc.location.reload();
 			FoxtrickEconomyDifference.run("",doc);
 		} 
-		catch (e) {dump("SelectBox->HeaderClick: "+e+'\n');}
+		catch (e) {Foxtrick.dump("SelectBox->HeaderClick: "+e+'\n');}
 	},
 	
 };

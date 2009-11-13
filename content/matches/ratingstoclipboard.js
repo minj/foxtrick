@@ -46,7 +46,7 @@ var FoxtrickCopyRatingsToClipboard = {
             var newBoxId = "foxtrick_actions_box";
             Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
                 "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
-        } catch(e) { dump(e) }
+        } catch(e) { Foxtrick.dump(e) }
 	},
 	
 	change : function( page, doc ) {

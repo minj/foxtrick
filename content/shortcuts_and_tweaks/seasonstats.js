@@ -92,7 +92,7 @@ var FoxtrickSeasonStats = {
 				break;
 			}			
 		}
-		dump('TeamName: '+TeamName+'  TeamNameOld: '+TeamNameOld+'\n');
+		Foxtrick.dump('TeamName: '+TeamName+'  TeamNameOld: '+TeamNameOld+'\n');
 		
 		for (var i=0; i<matchestable.rows.length; ++i) { 
 			var type=0;
@@ -238,7 +238,7 @@ var FoxtrickSeasonStats = {
 		Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
 			    
 	}
-	catch (e) {dump("FoxtrickSeasonStats->"+e);}		
+	catch (e) {Foxtrick.dump("FoxtrickSeasonStats->"+e);}		
 	},
 	
 	change : function( page, doc ) {
@@ -248,7 +248,7 @@ var FoxtrickSeasonStats = {
 	try {
 		var doc = ev.target.ownerDocument;
 		doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]);						
-	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
+	} catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
 	},		
 };
 

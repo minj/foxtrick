@@ -144,7 +144,7 @@ var FoxtrickShortcutsStatistics = {
 				
 			}
             catch(e) {
-                dump( ' => shortcutsstatistics: ' + e + '\n');
+                Foxtrick.dump( ' => shortcutsstatistics: ' + e + '\n');
             }
         }
     }

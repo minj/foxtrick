@@ -464,7 +464,7 @@ var FoxtrickSingleline2 = {
 			Foxtrick.copyStringToClipboard(headstr+message); 
 			if (FoxtrickPrefs.getBool( "copyfeedback" )) 
 				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postingcopied"));
-		} catch(e){ dump('_copy_posting_to_clipboard :'+e+'\n');}
+		} catch(e){ Foxtrick.dump('_copy_posting_to_clipboard :'+e+'\n');}
     },	
 };
 

@@ -47,9 +47,9 @@ FoxtrickMatchPlayerColouring = {
 		var HomeTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[2]);
 		
-		//dump ('ownteam: '+myTeamId+'\n');
-		//dump ('HomeTeamId: '+HomeTeamId+'\n');
-		//dump ('AwayTeamId: '+AwayTeamId+'\n');
+		//Foxtrick.dump ('ownteam: '+myTeamId+'\n');
+		//Foxtrick.dump ('HomeTeamId: '+HomeTeamId+'\n');
+		//Foxtrick.dump ('AwayTeamId: '+AwayTeamId+'\n');
 		
 		//Retrieve colour parameters
 		if (Foxtrick.isModuleFeatureEnabled( this, "Home")) {
@@ -107,8 +107,8 @@ FoxtrickMatchPlayerColouring = {
 			}
 		}
 
-		//dump('A: ' + contentA+'\n------\n');
-		//dump('B: '+ contentB+'\n--------\n');
+		//Foxtrick.dump('A: ' + contentA+'\n------\n');
+		//Foxtrick.dump('B: '+ contentB+'\n--------\n');
 		
 		var teamA = "";
         var teamB = "";
@@ -121,7 +121,7 @@ FoxtrickMatchPlayerColouring = {
 		else teamA[0]=teamA[0].substring(teamA[0].lastIndexOf(' ')+1);
 		for (var k=0;k<teamA.length;k++) { 
 			if (teamA[k]=='') {++num_unknown_namesA;teamA[k]='##################'; }// replace empty string with something which will not be found in text again
-			//dump(k+1+': "'+teamA[k]+'"\n');
+			//Foxtrick.dump(k+1+': "'+teamA[k]+'"\n');
 		}
 		var num_unknown_namesB=0;
         if (contentB) {
@@ -131,7 +131,7 @@ FoxtrickMatchPlayerColouring = {
 		else teamB[0]=teamB[0].substring(teamB[0].lastIndexOf(' ')+1);
  		for (var k=0;k<teamB.length;k++) { 
 			if (teamB[k]=='') {++num_unknown_namesB;teamB[k]='##################'; } // replace empty string with something which will not be found in text again
-			//dump(k+1+': "'+teamB[k]+'"\n');
+			//Foxtrick.dump(k+1+': "'+teamB[k]+'"\n');
 		}		
 		//Retrieve substitutions
 		 var spans = content_div.getElementsByTagName("td");
@@ -146,24 +146,24 @@ FoxtrickMatchPlayerColouring = {
                             //Player Out
                             var PlayerOut = span_a[0].textContent;
                             var PlayerOut = PlayerOut.substr(PlayerOut.search(" ")+1);
-                            //dump('sub out:'+j+' '+span_a[0].textContent+' = '+PlayerOut+'\n');
+                            //Foxtrick.dump('sub out:'+j+' '+span_a[0].textContent+' = '+PlayerOut+'\n');
 							//Player In
 							var PlayerIn = span_a[1].textContent;
                             var PlayerIn = PlayerIn.substr(PlayerIn.search(" ")+1);
-                            //dump('sub in:'+j+' '+' '+span_a[1].textContent+' = '+PlayerIn+'\n');
+                            //Foxtrick.dump('sub in:'+j+' '+' '+span_a[1].textContent+' = '+PlayerIn+'\n');
                             //Add Player In to the players list
-							//dump (j+' '+teamA.length+' '+teamB.length+'\n');
-							for (var k=0;k<teamA.length;k++) { //dump(k+' '+teamA[k]+' '+PlayerOut+'\n');
+							//Foxtrick.dump (j+' '+teamA.length+' '+teamB.length+'\n');
+							for (var k=0;k<teamA.length;k++) { //Foxtrick.dump(k+' '+teamA[k]+' '+PlayerOut+'\n');
 							if (PlayerOut.search(teamA[k])!=-1) 
 								{teamA.push(PlayerIn);break;}
 							}
-							for (var k=0;k<teamB.length;k++)  { //dump(k+' '+teamB[k]+' '+PlayerOut+'\n');
+							for (var k=0;k<teamB.length;k++)  { //Foxtrick.dump(k+' '+teamB[k]+' '+PlayerOut+'\n');
 							if (PlayerOut.search(teamB[k])!=-1) {teamB.push(PlayerIn);break;}
 							}
 							
                         }
                         catch(e) {
-                            dump('FoxtrickMatchPlayerColouring => Substitution=> ' + e);
+                            Foxtrick.dump('FoxtrickMatchPlayerColouring => Substitution=> ' + e);
                         }
 					}
 				}
@@ -174,7 +174,7 @@ FoxtrickMatchPlayerColouring = {
         
 		 for (var i=0; i<links.length; i++) {
             if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
-                //dump('['+links[i].href +']\n');
+                //Foxtrick.dump('['+links[i].href +']\n');
                 links[i].href+='&colored';
                 links[i].style.border = "1px solid #ccc";
 				links[i].style.padding = "0px 2px";
@@ -191,11 +191,11 @@ FoxtrickMatchPlayerColouring = {
 				}
 				//playerName=links[i].textContent; 
 				var foundA =false;
-				for (var k=0;k<teamA.length;k++) { //dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\t');
+				for (var k=0;k<teamA.length;k++) { //Foxtrick.dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\t');
 					if (playerName.indexOf(teamA[k])>-1) foundA=true; 
 				}
 				var foundB =false;
-				for (var k=0;k<teamB.length;k++) { //dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\t');
+				for (var k=0;k<teamB.length;k++) { //Foxtrick.dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\t');
 					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
 				}
                 if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
@@ -203,7 +203,7 @@ FoxtrickMatchPlayerColouring = {
 					if (iseventsbox) {
 						links[i].parentNode.previousSibling.setAttribute("style", 'text-align:left;'); 
 						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
-						//		dump(links[i].parentNode.parentNode.firstChild.innerHTML+'\n');
+						//		Foxtrick.dump(links[i].parentNode.parentNode.firstChild.innerHTML+'\n');
 					}
  				} 
 				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
@@ -216,7 +216,7 @@ FoxtrickMatchPlayerColouring = {
                 else {
                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
                  }
-				 //dump('\np: "'+ playerName+'" A: '+foundA+' B: '+foundB+'\n');
+				 //Foxtrick.dump('\np: "'+ playerName+'" A: '+foundA+' B: '+foundB+'\n');
              } 
 			 //Colors the name of the teams  on the right box like the players
 			 else { 
@@ -235,7 +235,7 @@ FoxtrickMatchPlayerColouring = {
 				}
 			 }
          }
-	} catch(e) {dump('PlayerColoring error: '+e+'\n');}
+	} catch(e) {Foxtrick.dump('PlayerColoring error: '+e+'\n');}
     },
 
     change : function(url) {

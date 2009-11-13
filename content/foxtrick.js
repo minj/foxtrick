@@ -27,7 +27,7 @@ Foxtrick.run_on_cur_page = [];
  * Don't add here unless you have a good reason to. */
 Foxtrick.core_modules = [ FoxtrickPrefs,
                           Foxtrickl10n ];
-						
+
 /** Global news ticker variable
  */
 Foxtrick.news = [];
@@ -43,37 +43,37 @@ var FoxtrickMain = {
 	isRTL:false,
 	vars:null,
 	IsNewVersion:false,
-	
-    init : function() { 
-/*		// remove before release		
+
+    init : function() {
+/*		// remove before release
 		if (!Foxtrick.numglobals) {
 				for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
 				Foxtrick.numglobals=Foxtrick.globals.length;
 		}
 		else {
-			for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i ) 
+			for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i )
 				if (Foxtrick.globals[i]!='QueryInterface') dump('undeclared local global variable: ' +Foxtrick.globals[i]+'\n');
 		}
-*/				
+*/
 		// init core modules
         for ( var i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
         }
-		
+
 		// check if this is a new version
-		var curVersion = FoxtrickPrefs.getString("curVersion"); 
+		var curVersion = FoxtrickPrefs.getString("curVersion");
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		if (oldVersion<curVersion ) {
 			FoxtrickMain.IsNewVersion=true;
-			FoxtrickPrefs.setString("oldVersion",curVersion);							
+			FoxtrickPrefs.setString("oldVersion",curVersion);
 		}
-		
+
 		// create handler arrays for each recognized page
 		for ( var i in Foxtrick.ht_pages ) {
 			Foxtrick.run_on_page[i] = new Array();
 			Foxtrick.may_run_on_page[i] = new Array();
 		}
-			
+
 		// init all modules
 		for (var  i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
@@ -85,38 +85,38 @@ var FoxtrickMain = {
 				{
 					try {
 						module.init();
-						//dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
+						//Foxtrick.dump( "Foxtrick enabled module: " + module.MODULE_NAME + "\n");
 					} catch (e) {
-						dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
+						Foxtrick.dump( "Foxtrick module " + module.MODULE_NAME + " init() exception: " + "\n  " + e + "\n");
 						Components.utils.reportError(e);
 					}
 				}
 				else {
-					//dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
+					//Foxtrick.dump( "Foxtrick disabled module: " + module.MODULE_NAME + "\n" );
 				}
 			}
-			
+
 			if ( module.MODULE_NAME && module.PAGES) {
 				Foxtrick.registerModulePages(module);
             }
 		}
-		if (Foxtrick && Foxtrick.statusbarDeactivate) Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));						
-		
+		if (Foxtrick && Foxtrick.statusbarDeactivate) Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+
 		// reload skins
 		FoxtrickSkinPlugin.load( null);
 		Foxtrick.reload_css_permanent( 'chrome://foxtrick/content/resources/css/foxtrick.css' ) ;
-		FoxtrickMain.new_start = true;		
+		FoxtrickMain.new_start = true;
 	},
-   
+
     registerOnPageLoad : function(document) {
 		// init menu titles
 		var statusbarMenu = document.getElementById(
 			"foxtrick_statusbar_config_menu" );
-		statusbarMenu.setAttribute( "label", Foxtrickl10n.getString( 
+		statusbarMenu.setAttribute( "label", Foxtrickl10n.getString(
 			"foxtrick.menu.configurefoxtrick") );
 		var statusbarReload = document.getElementById(
 			"foxtrick_statusbar_reload" );
-		statusbarReload.setAttribute( "label", Foxtrickl10n.getString( 
+		statusbarReload.setAttribute( "label", Foxtrickl10n.getString(
 			"foxtrick.menu.reloadfoxtrick") );
 		if( !FoxtrickPrefs.getBool( "statusbarshowreload" )) statusbarReload.setAttribute( "hidden", true);
 		var statusbarDeactivate = document.getElementById(
@@ -125,24 +125,24 @@ var FoxtrickMain = {
 			"foxtrick.prefs.disableTemporaryLabel") );
 		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 		Foxtrick.statusbarDeactivate=statusbarDeactivate;
-		
+
 		var popupMenu = document.getElementById( "foxtrick_popup_menu");
 		popupMenu.setAttribute( "label", "Foxtrick-"+Foxtrickl10n.getString( "foxtrick.CopyPostID") );
-		popupMenu.setAttribute( "hidden", true); 
+		popupMenu.setAttribute( "hidden", true);
 		Foxtrick.popupMenu = popupMenu;
-		
-		
+
+
 		var toolsMenu = document.getElementById( "foxtrick-config-menu" );
-		toolsMenu.setAttribute( "label", Foxtrickl10n.getString( 
+		toolsMenu.setAttribute( "label", Foxtrickl10n.getString(
 			"foxtrick.menu.configurefoxtrick") );
 
 		var appcontent = document.getElementById( "appcontent" );
         if ( appcontent) {
-			// listen to page loads   
+			// listen to page loads
 			//FoxtrickMain.onPageLoad.appcontent = appcontent;
 			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad, true );
 			appcontent.addEventListener( "unload", this.onPageUnLoad, true );
-		}								 
+		}
     },
 
 	onPageChange : function( ev ) {
@@ -157,38 +157,38 @@ var FoxtrickMain = {
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
-        // dump( "Foxtrick run time: " + time + " ms\n" );
+        // Foxtrick.dump( "Foxtrick run time: " + time + " ms\n" );
 		// re-add event listener
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
     },
-	
+
 	onTickerChange : function( ev ) {
 		var doc = ev.originalTarget.ownerDocument;
 		if ( doc.nodeName != "#document" )
             return;
 		var ticker = doc.getElementById("ticker");
 		ticker.removeEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
-		dump('onTickerChange\n');
+		Foxtrick.dump('onTickerChange\n');
 
-		ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );		
+		ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
 	},
-	
+
     onPageLoad : function( ev ) {
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
             return;
-        
+
         // hattrick URL check and run if on HT
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
 			var begin = new Date();
-			
+
             FoxtrickMain.run( doc );
 
             var end = new Date();
             var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                      + end.getMilliseconds() - begin.getMilliseconds();
-            dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search+'\n' );
+            Foxtrick.dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search+'\n' );
 			// listen to page content changes
 			var content = doc.getElementById("content");
 			if( content ) {
@@ -201,15 +201,15 @@ var FoxtrickMain = {
 	    }
     },
 
-    onPageUnLoad : function( ev ) { 
+    onPageUnLoad : function( ev ) {
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
             return;
 	},
-	
+
     // main entry run on every ht page load
     run : function( doc ) {
-	try {  	
+	try {
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
@@ -217,20 +217,20 @@ var FoxtrickMain = {
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
 		    // check newstart or design change and reload modul css if needed
-			if (FoxtrickMain.new_start) { 
+			if (FoxtrickMain.new_start) {
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
-				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc); 
+				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
 				Foxtrick.reload_module_css(doc);
-				FoxtrickMain.new_start = false;				
+				FoxtrickMain.new_start = false;
 			}
 			else {
 				var curr_isStandard = Foxtrick.isStandardLayout(doc);
-				var curr_isRTL = Foxtrick.isRTLLayout(doc); 
+				var curr_isRTL = Foxtrick.isRTLLayout(doc);
 				if (curr_isStandard != FoxtrickMain.isStandard || curr_isRTL != FoxtrickMain.isRTL)
-				{				
+				{
 					FoxtrickMain.isStandard = curr_isStandard;
-					FoxtrickMain.isRTL = curr_isRTL; 
-					Foxtrick.reload_module_css(doc);  
+					FoxtrickMain.isRTL = curr_isRTL;
+					Foxtrick.reload_module_css(doc);
 				}
 			}
 
@@ -242,16 +242,16 @@ var FoxtrickMain = {
 				function( fn ) {
 					try {
 						fn.run( doc );
-						//Foxtrick.run_on_cur_page.push({'page':'','module':fn});								
+						//Foxtrick.run_on_cur_page.push({'page':'','module':fn});
 					} catch (e) {
-						dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
+						Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
 						Components.utils.reportError(e);
 					}
 				} );
 
 			// call all modules that registered as page listeners
 			// if their page is loaded
-        
+
 			// find current page index/name and run all handlers for this page
 			for ( var i in Foxtrick.ht_pages ) {
 				if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {
@@ -259,64 +259,65 @@ var FoxtrickMain = {
 					Foxtrick.run_on_page[i].forEach(
 						function( fn ) {
 							try {
-								//dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );								
+								//Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );
 								fn.run( i, doc );
 							} catch (e) {
-								dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
+								Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
 								Components.utils.reportError(e);
 							}
 						} );
 					Foxtrick.may_run_on_page[i].forEach(
 						function( fn ) {
-								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});								
-						} );							
+								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
+						} );
 				}
 			}
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				//dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );																
+				//Foxtrick.dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );
 			}
 
 //			if (FoxtrickPrefs.getBool( "onpageprefs" )) FoxtrickOnPagePrefs.run(doc);
 			// context menue
-			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);   
+			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);
+            Foxtrick.dump_flush(doc);
 		}
-		else { 
+		else {
 			// potenial disable cleanup
 			var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 			if( FoxtrickMain.new_start && ((( FoxtrickPrefs.getBool("disableOnStage") &&
 				Foxtrick.getHref( doc).search( stage_regexp ) != -1))
-				|| ( FoxtrickPrefs.getBool("disableTemporary"))) ) { 			
-				
+				|| ( FoxtrickPrefs.getBool("disableTemporary"))) ) {
+
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
-				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc); 
-				FoxtrickMain.new_start = false;				
+				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
+				FoxtrickMain.new_start = false;
 				Foxtrick.unload_module_css();
 			}
 		}
-	} catch(e) { dump('Foxtrick.run: '+e+'\n'); }
+	} catch(e) { Foxtrick.dump('Foxtrick.run: '+e+'\n'); }
     },
-	
+
 	// function run on every ht page change
 	change : function( doc ) {
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
-			
+
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
 					try {
 						fn.change( doc );
 					} catch (e) {
-						dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception: \n  " + e + "\n" );
+						Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception: \n  " + e + "\n" );
 						Components.utils.reportError(e);
 					}
 				} );
 
 			// call all modules that registered as page listeners
 			// if their page is loaded
-        
+
 			// find current page index/name and run all handlers for this page
 			for ( var i in Foxtrick.ht_pages ) {
 				if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {
@@ -326,14 +327,15 @@ var FoxtrickMain = {
 							try {
 								fn.change( i, doc );
 							} catch (e) {
-								dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n  " + e + "\n" );
+								Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n  " + e + "\n" );
 								Components.utils.reportError(e);
 							}
 						} );
 				}
 			}
+            Foxtrick.dump_flush(doc);
         }
-		else dump('Foxtrick modules deactivated\n');
+		else Foxtrick.dump('Foxtrick modules deactivated\n');
 	}
 
 };
@@ -355,12 +357,12 @@ try {
 		for (var i=0;i<module.PAGES.length;++i) {
 			if (module.ONPAGEPREF_PAGE) Foxtrick.may_run_on_page[module.ONPAGEPREF_PAGE].push( module );
 			else Foxtrick.may_run_on_page[module.PAGES[i]].push( module );
-			//dump(module.PAGES[i]+'\n');
+			//Foxtrick.dump(module.PAGES[i]+'\n');
 			if (Foxtrick.isModuleEnabled( module ) )
 				Foxtrick.run_on_page[module.PAGES[i]].push( module );
 		}
     }
-} catch(e){dump('registerModulePages: '+e+'\n');}
+} catch(e){Foxtrick.dump('registerModulePages: '+e+'\n');}
 }
 
 
@@ -387,7 +389,7 @@ Foxtrick.registerPageHandler = function( page, who ) {
  * Your run() function will be called with only one argument,
  * the current document.
  */
-Foxtrick.registerAllPagesHandler = function( who ) { 
+Foxtrick.registerAllPagesHandler = function( who ) {
     if ( who.run )
     {
         Foxtrick.run_every_page.push( who );
@@ -409,7 +411,7 @@ Foxtrick.insertAtCursor = function( textarea, text ) {
 Foxtrick.addStyleSheet = function( doc, css ) {
 	var path = "head[1]";
 	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-	
+
 	var link = doc.createElement("link");
 	link.setAttribute("rel", "stylesheet");
 	link.setAttribute("type", "text/css");
@@ -422,7 +424,7 @@ Foxtrick.addStyleSheet = function( doc, css ) {
 Foxtrick.addJavaScript = function( doc, js ) {
 	var path = "head[1]";
 	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-	
+
   var script = doc.createElement("script");
   script.setAttribute("language", "JavaScript");
   script.setAttribute("src", js);
@@ -433,7 +435,7 @@ Foxtrick.addJavaScript = function( doc, js ) {
 Foxtrick.addJavaScriptSnippet = function( doc, code ) {
   var path = "head[1]";
 	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-    
+
   var script = doc.createElement("script");
   script.setAttribute("language", "JavaScript");
   script.innerHTML=code;
@@ -485,7 +487,7 @@ Foxtrick.substr_count = function ( haystack, needle, offset, length ) {
 Foxtrick.isModuleEnabled = function( module ) {
     try {
         var val = FoxtrickPrefs.getBool( "module." + module.MODULE_NAME + ".enabled" );
-        return (val != null) ? val : module.DEFAULT_ENABLED; 
+        return (val != null) ? val : module.DEFAULT_ENABLED;
     } catch( e ) {
         return false;
     }
@@ -503,7 +505,7 @@ Foxtrick.isModuleFeatureEnabled = function( module , feature ) {
 Foxtrick.getModuleValue = function( module ) {
     try {
         var val = FoxtrickPrefs.getInt( "module." + module.MODULE_NAME + ".value" );
-        return (val != null) ? val : 0; 
+        return (val != null) ? val : 0;
     } catch( e ) {
         return false;
     }
@@ -522,11 +524,11 @@ Foxtrick.selectFileSave = function (parentWindow) {
     	var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
     	fp.init(parentWindow, "", fp.modeSave);
     	var ret=fp.show();
-		if ( ret == fp.returnOK || ret==fp.returnReplace ) { 
+		if ( ret == fp.returnOK || ret==fp.returnReplace ) {
     		return fp.file.path;
     	}
     } catch (e) {
-        dump('selectFileSave'+e);
+        Foxtrick.dump('selectFileSave'+e);
     }
 	return null;
 }
@@ -539,7 +541,7 @@ Foxtrick.selectFile = function (parentWindow) {
     		return fp.file.path;
     	}
     } catch (e) {
-        dump('selectFile'+e);
+        Foxtrick.dump('selectFile'+e);
     }
 	return null;
 }
@@ -550,149 +552,149 @@ Foxtrick.playSound = function(url) {
     var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
     soundService.play(ioService.newURI(url, null, null));
   } catch (e) {
-    dump('playSound'+e);
+    Foxtrick.dump('playSound'+e);
   }
 }
 
 
-Foxtrick.reload_module_css = function(doc) {  	dump('reload permanents css\n');
+Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents css\n');
 			// check permanant css
 			var isStandard = Foxtrick.isStandardLayout(doc);
-			var isRTL = Foxtrick.isRTLLayout(doc); 
+			var isRTL = Foxtrick.isRTLLayout(doc);
 			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 				// if module has an css) function and is enabled
 				if ( module.MODULE_NAME ) {
-					if ( module.OLD_CSS && module.OLD_CSS!="") { 
-						Foxtrick.unload_css_permanent ( module.OLD_CSS ); 
+					if ( module.OLD_CSS && module.OLD_CSS!="") {
+						Foxtrick.unload_css_permanent ( module.OLD_CSS );
 					}
 					if ( module.CSS_SIMPLE && module.CSS_SIMPLE!="") {
-						if ( Foxtrick.isModuleEnabled( module ) && !isStandard)  { 
+						if ( Foxtrick.isModuleEnabled( module ) && !isStandard)  {
 							if (!isRTL || !module.CSS_SIMPLE_RTL) {
-								Foxtrick.load_css_permanent ( module.CSS_SIMPLE ); 
+								Foxtrick.load_css_permanent ( module.CSS_SIMPLE );
 								if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL );
-							}	 
-							else {
-								Foxtrick.load_css_permanent ( module.CSS_SIMPLE_RTL ) ; 
-								Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );
-								}													
-						}
-						else { 
-							Foxtrick.unload_css_permanent ( module.CSS_SIMPLE ) ;
-							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
-						}							
-					}
-					if ( module.CSS && module.CSS!="") { 
-						if ( Foxtrick.isModuleEnabled( module ) && ( !module.CSS_SIMPLE || isStandard ) ) {
-							if (!isRTL || !module.CSS_RTL){ 
-								Foxtrick.load_css_permanent ( module.CSS) ; 
-								if (module.CSS_RTL) Foxtrick.unload_css_permanent ( module.CSS_RTL); 
 							}
 							else {
-								Foxtrick.load_css_permanent ( module.CSS_RTL); 
-								Foxtrick.unload_css_permanent ( module.CSS); 
-							}							
+								Foxtrick.load_css_permanent ( module.CSS_SIMPLE_RTL ) ;
+								Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );
+								}
 						}
-						else {  
-							Foxtrick.unload_css_permanent ( module.CSS) ;  
-							if (module.CSS_RTL&& module.CSS!="") Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
-						}             
+						else {
+							Foxtrick.unload_css_permanent ( module.CSS_SIMPLE ) ;
+							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
+						}
 					}
-					if (module.OPTIONS_CSS) { 
+					if ( module.CSS && module.CSS!="") {
+						if ( Foxtrick.isModuleEnabled( module ) && ( !module.CSS_SIMPLE || isStandard ) ) {
+							if (!isRTL || !module.CSS_RTL){
+								Foxtrick.load_css_permanent ( module.CSS) ;
+								if (module.CSS_RTL) Foxtrick.unload_css_permanent ( module.CSS_RTL);
+							}
+							else {
+								Foxtrick.load_css_permanent ( module.CSS_RTL);
+								Foxtrick.unload_css_permanent ( module.CSS);
+							}
+						}
+						else {
+							Foxtrick.unload_css_permanent ( module.CSS) ;
+							if (module.CSS_RTL&& module.CSS!="") Foxtrick.unload_css_permanent ( module.CSS_RTL) ;
+						}
+					}
+					if (module.OPTIONS_CSS) {
 						for (var k=0; k<module.OPTIONS_CSS.length;++k ) {
 							if ( Foxtrick.isModuleEnabled( module ) && Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
 							{	if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
-							 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "") 
-											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ; 	
-									Foxtrick.load_css_permanent ( module.OPTIONS_CSS[k] ) ;  
+							 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
+											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ;
+									Foxtrick.load_css_permanent ( module.OPTIONS_CSS[k] ) ;
 								}
 								else {
-									if (module.OPTIONS_CSS[k] != "") 
-											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k] ) ; 	
+									if (module.OPTIONS_CSS[k] != "")
+											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k] ) ;
 									if (isRTL) {
-										if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "") 
-											Foxtrick.load_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ; 
+										if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
+											Foxtrick.load_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ;
 									}
 									else {
-										if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "") 
-											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ; 
+										if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
+											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ;
 									}
 								}
 							}
 							else {
-								if (module.OPTIONS_CSS[k] != "") 
-										Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k]) ; 	
-								if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")  
-										Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ; 	
+								if (module.OPTIONS_CSS[k] != "")
+										Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k]) ;
+								if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
+										Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ;
 							}
 						}
 					}
 				}
 			}
-}				
+}
 
-Foxtrick.unload_module_css = function() { dump('unload permanents css\n');
+Foxtrick.unload_module_css = function() { Foxtrick.dump('unload permanents css\n');
 			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 				if ( module.MODULE_NAME ) {
-					if ( module.OLD_CSS && module.OLD_CSS!="") 
-						Foxtrick.unload_css_permanent ( module.OLD_CSS ); 
-					if ( module.CSS_SIMPLE ) 
+					if ( module.OLD_CSS && module.OLD_CSS!="")
+						Foxtrick.unload_css_permanent ( module.OLD_CSS );
+					if ( module.CSS_SIMPLE )
 						Foxtrick.unload_css_permanent ( module.CSS_SIMPLE );
-					if (module.CSS_SIMPLE_RTL) 
+					if (module.CSS_SIMPLE_RTL)
 						Foxtrick.unload_css_permanent ( module.CSS_SIMPLE_RTL ) ;
-					if ( module.CSS )  
-						 Foxtrick.unload_css_permanent ( module.CSS); 
-					if (module.CSS_RTL) 
+					if ( module.CSS )
+						 Foxtrick.unload_css_permanent ( module.CSS);
+					if (module.CSS_RTL)
 						Foxtrick.unload_css_permanent ( module.CSS_RTL);
-					if (module.OPTIONS_CSS) 
-						for (var k=0; k<module.OPTIONS_CSS.length; ++k ) 
-							if (module.OPTIONS_CSS[k] != "") Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k] ) ; 							
-					if (module.OPTIONS_CSS_RTL) 
-						for (var k=0; k<module.OPTIONS_CSS_RTL.length; ++k ) 
-							if (module.OPTIONS_CSS_RTL[k] != "") Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ; 							
+					if (module.OPTIONS_CSS)
+						for (var k=0; k<module.OPTIONS_CSS.length; ++k )
+							if (module.OPTIONS_CSS[k] != "") Foxtrick.unload_css_permanent ( module.OPTIONS_CSS[k] ) ;
+					if (module.OPTIONS_CSS_RTL)
+						for (var k=0; k<module.OPTIONS_CSS_RTL.length; ++k )
+							if (module.OPTIONS_CSS_RTL[k] != "") Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k] ) ;
 				}
 			}
-}				
-
-
-Foxtrick.reload_css_permanent = function( css ) {  	
-	Foxtrick.unload_css_permanent ( css ) ; 	
-	Foxtrick.load_css_permanent ( css ) ;  	
 }
 
-Foxtrick.unload_css_permanent = function( css ) {  	
-        try { 
+
+Foxtrick.reload_css_permanent = function( css ) {
+	Foxtrick.unload_css_permanent ( css ) ;
+	Foxtrick.load_css_permanent ( css ) ;
+}
+
+Foxtrick.unload_css_permanent = function( css ) {
+        try {
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 				var uri = ios.newURI(css, null, null);
-            } catch(e) {return;} 
+            } catch(e) {return;}
 			// try unload
 			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
 					sss.unregisterSheet(uri, sss.USER_SHEET);
-					dump('unload '+css.substr(0,71)+'\n');
+					Foxtrick.dump('unload '+css.substr(0,71)+'\n');
 			}
         } catch(e) {
-            dump ('> load_css_permanent ' + e + '\n');
+            Foxtrick.dump ('> load_css_permanent ' + e + '\n');
         }
 }
-            
-Foxtrick.load_css_permanent = function( css) {  dump('load '+css.substr(0,73)+'\n');	
-		try { 
+
+Foxtrick.load_css_permanent = function( css) {  Foxtrick.dump('load '+css.substr(0,73)+'\n');
+		try {
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 				var uri = ios.newURI(css, null, null);
-            } catch(e) {return;} 
-			// load		
+            } catch(e) {return;}
+			// load
 			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);	
-						dump('load '+css.substr(0,73)+'\n');
+						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+						Foxtrick.dump('load '+css.substr(0,73)+'\n');
 			}
-		} 
+		}
         catch(e) {
-            dump ('> ERROR load_css_permanent: ' + css + '\n');
+            Foxtrick.dump ('> ERROR load_css_permanent: ' + css + '\n');
         }
  }
 
@@ -723,20 +725,20 @@ Foxtrick.hasElement = function( doc, id ) {
 */
 Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	referenceHeader, altReferenceHeader, column ) {
-try {	
-	
+try {
+
 	// If we already added this, return
 	// Should ideally be checked by the change() function already
 	var boxContentId = newBoxContent.id;
 	if(!boxContentId) {
-		dump("addBoxToSideBar: error: box content should have an id.\n");
+		Foxtrick.dump("addBoxToSideBar: error: box content should have an id.\n");
 		return;
 	}
 	if( Foxtrick.hasElement( doc, boxId ) ||
 		Foxtrick.hasElement( doc, boxContentId )) {
 		return;
 	}
-	
+
 	var sidebar = null;
 	var box_class='';
 	if (!column || column=='right') {
@@ -748,9 +750,9 @@ try {
 		box_class='subMenuBox';
 	}
 	if (!sidebar) return;  // no sidebar. can't add something. someone consider creating sidebar later.
-	
+
 	var divs = sidebar.getElementsByTagName("div");
-	
+
 	// Check if any of the other sidebarboxes have the same header
 	// and find the (alternative/normal) reference-object in the process
 	var otherBox = false;
@@ -772,16 +774,16 @@ try {
 			}
 		}
 		currentBox = currentBox.nextSibling;
-	} 
-	
-	if(!referenceObject && referenceHeader != "first" 
+	}
+
+	if(!referenceObject && referenceHeader != "first"
 		&& referenceHeader != "last") {
 		// the reference header could not be found; try the alternative
 		if(!altReferenceObject && altReferenceHeader != "first"
 			&& altReferenceHeader != "last") {
 			// alternative header couldn't be found either
 			// place the box on top
-			dump( "addBoxToSidebar: Could not find referenceHeader " + 
+			Foxtrick.dump( "addBoxToSidebar: Could not find referenceHeader " +
 			referenceHeader + "\n" + "nor alternative referenceHeader " +
 			altReferenceHeader + "\n");
 			referenceHeader = "first";
@@ -793,8 +795,8 @@ try {
 	if(referenceHeader == "first") {
 		referenceObject = sidebar.firstChild;
 	}
-	
-	if(Foxtrick.isStandardLayout(doc)) {	
+
+	if(Foxtrick.isStandardLayout(doc)) {
 		// Standard layout
 		if(otherBox) {
 			newBoxContent.style.display = "inline";
@@ -816,7 +818,7 @@ try {
 			ownBoxHead.className = "boxHead";
 			ownSidebarBox.appendChild(ownBoxHead);
 			var ownBoxLeftHeader = doc.createElement("div");
-			ownBoxLeftHeader.className = "boxLeft";  
+			ownBoxLeftHeader.className = "boxLeft";
 			ownBoxHead.appendChild(ownBoxLeftHeader);
 			// create the header
 			var ownHeader = doc.createElement("h2");
@@ -834,7 +836,7 @@ try {
 			ownSidebarBox.appendChild(ownBoxFooter);
 			var ownBoxLeftFooter = doc.createElement("div");
 			ownBoxLeftFooter.className = "boxLeft";
-			ownBoxLeftFooter.innerHTML = "&nbsp;";			
+			ownBoxLeftFooter.innerHTML = "&nbsp;";
 			ownBoxFooter.appendChild(ownBoxLeftFooter);
 			if(referenceHeader == "last") {
 				sidebar.appendChild(ownSidebarBox);
@@ -866,7 +868,7 @@ try {
 			}
 		}
 	}
-} catch(e){dump("addBoxToSideBar: error: '+e+'\n");}
+} catch(e){Foxtrick.dump("addBoxToSideBar: error: '+e+'\n");}
 }
 
 Foxtrick.getSortedLinks = function(links) {
@@ -885,25 +887,25 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 	try {
 			module.OPTIONS = new Array();
 			var country_options = new Array();
-			
+
 			for (var key in Foxtrick.LinkCollection.stats) {
 				var stat = Foxtrick.LinkCollection.stats[key];
-				if (stat[linktype]!=null) { 
+				if (stat[linktype]!=null) {
 					var title = stat["title"];
-					
-					var filters = stat[linktype]["filters"]; 
+
+					var filters = stat[linktype]["filters"];
 					var countries='';
-					
+
 					for (var i=0; i<filters.length; i++) {
-						var filtertype = filters[i]; 
-						if (filtertype == "countryid" 
-							&& stat["countryidranges"] 
+						var filtertype = filters[i];
+						if (filtertype == "countryid"
+							&& stat["countryidranges"]
 							&& stat["countryidranges"].length!=0) {
-								
+
 								var k=0,range;
 								while (range = stat["countryidranges"][k++]) {
-									var r0=String(range[0]); 
-									if (k==1) { 
+									var r0=String(range[0]);
+									if (k==1) {
 											if (r0.length==2) r0='0'+r0;
 											else  if (r0.length==1) r0='00'+r0;
 									}
@@ -914,15 +916,15 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 						}
 					}
 					for (var i=0; i<filters.length; i++) {
-						var filtertype = filters[i]; 
-						if (filtertype == "owncountryid" 
-							&& stat["owncountryidranges"] 
+						var filtertype = filters[i];
+						if (filtertype == "owncountryid"
+							&& stat["owncountryidranges"]
 							&& stat["owncountryidranges"].length!=0) {
-								
+
 								var k=0,range;
 								while (range = stat["owncountryidranges"][k++]) {
-									var r0=String(range[0]); 
-									if (k==1) { 
+									var r0=String(range[0]);
+									if (k==1) {
 											if (r0.length==2) r0='0'+r0;
 											else  if (r0.length==1) r0='00'+r0;
 									}
@@ -931,41 +933,41 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 									if (stat["owncountryidranges"][k]) 	countries+=',';
 								}
 						}
-					}					
-					if (countries!='') country_options.push({"key":key,"title":countries+' : '+title}); 					
-					else  module.OPTIONS.push({"key":key,"title":title}); 
+					}
+					if (countries!='') country_options.push({"key":key,"title":countries+' : '+title});
+					else  module.OPTIONS.push({"key":key,"title":title});
 				}
-			}	
-			module.OPTIONS.sort(Foxtrick.keysortfunction); 
-			country_options.sort(Foxtrick.keysortfunction); 
+			}
+			module.OPTIONS.sort(Foxtrick.keysortfunction);
+			country_options.sort(Foxtrick.keysortfunction);
 			var i=0,country_option;
 			while (country_option = country_options[i++]) {module.OPTIONS.push({"key":country_option.key,"title":country_option.title.replace(/^\[0+/,'[')});}
-			for (var key in extra_options) {  
+			for (var key in extra_options) {
 						module.OPTIONS.push({"key":key,"title":extra_options[key]});
 			}
-					
-	} catch(e) {dump('initOptionsLinks '+e+'\n');}
+
+	} catch(e) {Foxtrick.dump('initOptionsLinks '+e+'\n');}
 }
 
 Foxtrick.initOptionsLinksArray = function(module,linktypes) {
-	try{ 
+	try{
 		module.OPTIONS = new Array();
 		var country_options = new Array();
-		for (var linktype=0; linktype< linktypes.length; linktype++) { 
-			for (var key in Foxtrick.LinkCollection.stats) { 
+		for (var linktype=0; linktype< linktypes.length; linktype++) {
+			for (var key in Foxtrick.LinkCollection.stats) {
 				var stat = Foxtrick.LinkCollection.stats[key];
 				if (stat[linktypes[linktype]]!=null) {
 					var title = stat["title"];
 					var filters = stat[linktypes[linktype]]["filters"];
 					var countries='';
 					for (var i=0; i<filters.length; i++) {
-						var filtertype = filters[i]; 
+						var filtertype = filters[i];
 						if (filtertype == "nationality")
-							if (stat["nationalityranges"] && stat["nationalityranges"].length!=0) { 
+							if (stat["nationalityranges"] && stat["nationalityranges"].length!=0) {
 								var k=0,range;
 								while (range = stat["nationalityranges"][k++]) {
-									var r0=String(range[0]); 
-									if (countries=='') { 
+									var r0=String(range[0]);
+									if (countries=='') {
 											if (r0.length==2) r0='0'+r0;
 											else  if (r0.length==1) r0='00'+r0;
 									}
@@ -975,13 +977,13 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 								}
 							}
 						}
-						if (filtertype == "countryid" 
-							&& stat["countryidranges"] 
+						if (filtertype == "countryid"
+							&& stat["countryidranges"]
 							&& stat["countryidranges"].length!=0) {
 								var k=0,range;
 								while (range = stat["countryidranges"][k++]) {
-									var r0=String(range[0]); 
-									if (countries=='') { 
+									var r0=String(range[0]);
+									if (countries=='') {
 											if (r0.length==2) r0='0'+r0;
 											else  if (r0.length==1) r0='00'+r0;
 									}
@@ -997,16 +999,16 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 						}
 					}
 					if (!has_entry)
-					if (countries!='') country_options.push({"key":key,"title":countries+' : '+title}); 					
-					else  module.OPTIONS.push({"key":key,"title":title}); 
+					if (countries!='') country_options.push({"key":key,"title":countries+' : '+title});
+					else  module.OPTIONS.push({"key":key,"title":title});
 				}
-			}			
+			}
 		}
 		module.OPTIONS.sort(Foxtrick.keysortfunction);
-		country_options.sort(Foxtrick.keysortfunction); 
+		country_options.sort(Foxtrick.keysortfunction);
 		var i=0,country_option;
 		while (country_option = country_options[i++]) {module.OPTIONS.push({"key":country_option.key,"title":country_option.title.replace(/^\[0+/,'[')});}
-	} catch(e) {dump('Foxtrick.initOptionsLinksArray : '+e+'\n');}
+	} catch(e) {Foxtrick.dump('Foxtrick.initOptionsLinksArray : '+e+'\n');}
 }
 
 Foxtrick.setStatusIconStyle = function(ev) {
@@ -1098,11 +1100,11 @@ Foxtrick.getElementsByClass = function(searchClass,node,tag) {
 
 Foxtrick.substr = function( f_string, f_start, f_length ) {
     f_string += '';
- 
+
     if(f_start < 0) {
         f_start += f_string.length;
     }
- 
+
     if(f_length == undefined) {
         f_length = f_string.length;
     } else if(f_length < 0){
@@ -1110,11 +1112,11 @@ Foxtrick.substr = function( f_string, f_start, f_length ) {
     } else {
         f_length += f_start;
     }
- 
+
     if(f_length < f_start) {
         f_length = f_start;
     }
- 
+
     return f_string.substring(f_start, f_length);
 }
 
@@ -1136,7 +1138,7 @@ Foxtrick.ReturnFormatedValue = function( number, separator ) {
         }
         return (output);
     }
-    else 
+    else
         return number;
 }
 
@@ -1186,14 +1188,14 @@ Foxtrick.gregorianToHT  = function( date,weekdayoffset ) {
     for (var i = 0; i < ar.length; i++) {
         ar[i] = ar[i].replace( /^(0+)/g, '' );
     }
-    
+
     var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
     if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
 
     var day = parseInt(ar[1]);
     var month = parseInt(ar[3]);
     var year = parseInt(ar[5]);
-    
+
     switch ( DATEFORMAT ) {
         case 'ddmmyyyy':
             var day = parseInt(ar[1]);
@@ -1212,33 +1214,33 @@ Foxtrick.gregorianToHT  = function( date,weekdayoffset ) {
             break;
     }
     var dayCount = years[year-2000] + months[month] + (day) -parseInt(weekdayoffset);
-    //dump ( ' > DATEFORMAT: ' + DATEFORMAT + ' [ ' + date + '] ' + day + '/' + month + '/' + year + ':dayoff='+weekdayoffset+'\n');
+    //Foxtrick.dump ( ' > DATEFORMAT: ' + DATEFORMAT + ' [ ' + date + '] ' + day + '/' + month + '/' + year + ':dayoff='+weekdayoffset+'\n');
     // leap day
     if (year % 4 == 0 && month > 2)
         ++dayCount;
 
     var htDate = Foxtrick.htDatePrintFormat(
-                    year, 
-                    ( Math.floor(dayCount/(16*7)) + 1 ), 
-                    ( Math.floor((dayCount%(16*7))/7) +1 ), 
+                    year,
+                    ( Math.floor(dayCount/(16*7)) + 1 ),
+                    ( Math.floor((dayCount%(16*7))/7) +1 ),
                     dayCount%7 + 1,
                     date );
     return htDate;
 }
-    
+
 Foxtrick.htDatePrintFormat = function(year, season, week, day, date) {
     var offset = 0;
     try {
         if (Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison"))
             offset = FoxtrickPrefs.getInt("htSeasonOffset");
     } catch(e) {
-        // dump('offset: ' + e + '\n');
+        // Foxtrick.dump('offset: ' + e + '\n');
         offset = 0;
     }
-     //dump ('offset:' +Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison")+' '+ offset + '\n');
-    if ( year <= 2000 ) 
-        // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>"; 
-        // return "<font color='#808080'>(old)</font>"; 
+     //Foxtrick.dump ('offset:' +Foxtrick.isModuleFeatureEnabled( FoxtrickHTDateFormat, "LocalSaison")+' '+ offset + '\n');
+    if ( year <= 2000 )
+        // return "<font color='red'>(Y: " + year + " S: " + season + " W: " + week + " D: " + day + ")</font>";
+        // return "<font color='#808080'>(old)</font>";
         return '';
     else {
         return "<span id='ft_HTDateFormat'>(" + week + "/" + (Math.floor(season) - offset) + ")</span>";
@@ -1249,12 +1251,12 @@ Foxtrick.getDatefromCellHTML = function( date ) {
     /*
     Returns Date for given input
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
-    separator or leading zero is irrelevant        
+    separator or leading zero is irrelevant
     */
     if (date == '') return false;
         date +=' ';
-        
-        // dump ('  CELL :[' + date + ']\n');
+
+        // Foxtrick.dump ('  CELL :[' + date + ']\n');
 
         var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
         var ar = reg.exec(date);
@@ -1278,11 +1280,11 @@ Foxtrick.getDatefromCellHTML = function( date ) {
                 var SY = ar[1];
                 break;
         }
-        
+
         var SH = ar[7];
         var SMn = ar[9];
         var SS = '00';
-        // dump('  TIME:' + date + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
+        // Foxtrick.dump('  TIME:' + date + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
         var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
     return CellDate;
 }
@@ -1291,12 +1293,12 @@ Foxtrick.getUniqueDayfromCellHTML = function( date ) {
     /*
     Returns Date for given input
     date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
-    separator or leading zero is irrelevant        
+    separator or leading zero is irrelevant
     */
     if (date == '') return false;
         date +=' ';
-        
-        // dump ('  CELL :[' + date + ']\n');
+
+        // Foxtrick.dump ('  CELL :[' + date + ']\n');
 
         var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})/i;
 		var ar = reg.exec(date);
@@ -1304,7 +1306,7 @@ Foxtrick.getUniqueDayfromCellHTML = function( date ) {
         if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
 
         switch ( DATEFORMAT ) {
-            case 'ddmmyyyy': 
+            case 'ddmmyyyy':
                 var SD = ar[1];
                 var SM = ar[3];
                 var SY = ar[5];
@@ -1320,17 +1322,17 @@ Foxtrick.getUniqueDayfromCellHTML = function( date ) {
                 var SY = ar[1];
                 break;
         }
-        //dump(date+' '+ar+' SY:'+SY+'\n');
+        //Foxtrick.dump(date+' '+ar+' SY:'+SY+'\n');
         var CellDays = SY*31*12+SM*31+SD;
     return CellDays;
 }
 
 TimeDifferenceToText = function( time_sec, short ) {
-    
+
     var org_time = time_sec;
     // Returns the time differnce as DDD days, HHh MMm
     // if short, only DDD day(s) will be returned
-    
+
     var Text = "";
     var Days = 0; var Minutes = 0; var Hours = 0;
 
@@ -1349,7 +1351,7 @@ TimeDifferenceToText = function( time_sec, short ) {
         } catch(e) {
             d2 = d5;
         }
-        
+
         Text += Days + '&nbsp;';
         if ( Days == 1 ) // 1 single day
             Text += d1
@@ -1366,7 +1368,7 @@ TimeDifferenceToText = function( time_sec, short ) {
             }
         }
     }
-    // only days returned 
+    // only days returned
     if ( short ) {
         var display_option = FoxtrickPrefs.getInt("module." + FoxtrickExtendedPlayerDetails.MODULE_NAME + ".value");
         if (display_option == null) var display_option = 0;
@@ -1374,7 +1376,7 @@ TimeDifferenceToText = function( time_sec, short ) {
         var PJD_W = Math.floor(PJD_D / 7);
         var PJD_S = Math.floor(PJD_D / (16*7));
         var print_S = ''; var print_W = ''; var print_D = '';
-        // dump ( display_option + ': ' + PJD_D + '/' + PJD_W + '/' + PJD_S + '\n');
+        // Foxtrick.dump ( display_option + ': ' + PJD_D + '/' + PJD_W + '/' + PJD_S + '\n');
         try {
             switch ( display_option ) {  //( "SWD", "SW", "SD", "WD", "D" )
                 case 0: //SWD
@@ -1382,39 +1384,39 @@ TimeDifferenceToText = function( time_sec, short ) {
                     print_W = PJD_W - (print_S * 16);
                     print_D = PJD_D - (print_S * 16 * 7) - (print_W * 7);
                 break;
-                
+
                 case 1: //SW
                     print_S = PJD_S;
                     print_W = PJD_W - (print_S * 16);
                     break;
-                
+
                 case 2: //SD
                     print_S = PJD_S;
                     print_D = PJD_D - (print_S * 16 * 7);
-                break;            
-                
+                break;
+
                 case 3: //WD
                     print_W = PJD_W;
                     print_D = PJD_D - (print_W * 7);
                 break;
-                
+
                 case 4: //D
                     print_D = PJD_D;
-                break;            
+                break;
             } // switch
         } // try
         catch(e_print) {
-            // dump('TimeDifferenceToText'+e_print);
+            // Foxtrick.dump('TimeDifferenceToText'+e_print);
         }
         if (print_S == 0 ) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons");}
         if (print_W != 0 && print_S != '') print_S += '&nbsp;';
-        if (print_W == 0 ) {print_W = '';} else {print_W = '<b>' + print_W + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks");} 
+        if (print_W == 0 ) {print_W = '';} else {print_W = '<b>' + print_W + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks");}
         if (print_D != 0 ) print_W += '&nbsp;';
-        if (print_D == 0 ) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");} 
-        
-        // dump( '  SWD OPT[' + display_option + ']: ' + print_S + '/' + print_W + '/' + print_D + '\n');                
+        if (print_D == 0 ) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");}
+
+        // Foxtrick.dump( '  SWD OPT[' + display_option + ']: ' + print_S + '/' + print_W + '/' + print_D + '\n');
         return print_S + print_W + print_D;
-        
+
         if ( Days == 0 ) {
             Text += '0&nbsp;' + Foxtrickl10n.getString("foxtrick.datetimestrings.days");
         }
@@ -1450,9 +1452,9 @@ Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset)
     for (var i = 0; tds[i] != null; ++i) {
         // if (tds[i].id == 'ft_HTDateFormat') return;
         var dt_inner = Foxtrick.trim(tds[i].innerHTML);
-        
-        
-        if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) { 
+
+
+        if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) {
             if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
                 var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
                 var ar = reg.exec(dt_inner);
@@ -1462,7 +1464,7 @@ Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset)
 
                     if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
                         tds[i].innerHTML = dt_inner + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
-						//dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + Foxtrick.gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+						//Foxtrick.dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + Foxtrick.gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
                     }
                 }
             }
@@ -1477,8 +1479,8 @@ Foxtrick.copyStringToClipboard = function ( string ) {
 
 Foxtrick.isFF35 = function ( doc ) {
 	// Check if browser is ff 3.5
-	var ua=doc.defaultView.navigator.userAgent; 
-	return ua.search("Firefox/3.5") != -1;  
+	var ua=doc.defaultView.navigator.userAgent;
+	return ua.search("Firefox/3.5") != -1;
 }
 
 Foxtrick.isStandardLayout = function ( doc ) {
@@ -1502,8 +1504,8 @@ Foxtrick.isRTLLayout = function ( doc ) {
 Foxtrick.hasMainBodyScroll = function ( doc ) {
 	// Check if scrolling is on for MainBody
 	var mainBodyChildren = doc.getElementById('mainBody').childNodes;
-	var i = 0, child; 
-	while (child = mainBodyChildren[i++]) 
+	var i = 0, child;
+	while (child = mainBodyChildren[i++])
 		if (child.nodeName == 'SCRIPT' && child.innerHTML && child.innerHTML.search(/adjustHeight\(\'mainBody\'/) != -1) return  true;
 	return false;
 	}
@@ -1527,16 +1529,16 @@ Foxtrick.setInactiveTextBox = function (field, cssClass, text) {
     return true;
 }
 
-	
+
 Foxtrick.GetElementPosition = function (This,ref){
 	var el = This;var pT = 0; var pL = 0;
 	while(el && el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
 	return {'top':pT,'left':pL};
 }
-	
+
 Foxtrick.GetDataURIText = function (filetext) {
 	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
-}	
+}
 
 
 Foxtrick.LoadXML = function (xmlfile) {
@@ -1545,12 +1547,12 @@ Foxtrick.LoadXML = function (xmlfile) {
 	req.send(null);
 	var response = req.responseXML;
 	if (response.documentElement.nodeName == "parsererror") {
-		dump("error parsing " + xmlfile + "\n");
+		Foxtrick.dump("error parsing " + xmlfile + "\n");
 		return null;
-	}	
+	}
 	return response;
 }
-				
+
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
 	var result = new Array();
 	if (xmlresponse) {
@@ -1561,40 +1563,40 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 			var value = null;
 			var value2=null;
 			var value3=null;
-			
+
 			if (valuestr) value = node.getAttribute(valuestr);
 			if (value2str) value2 = node.getAttribute(value2str);
 			if (value3str) value3 = node.getAttribute(value3str);
-			
-			if (valuestr) result.push([label,value,value2,value3]);  
+
+			if (valuestr) result.push([label,value,value2,value3]);
 			else result.push(label);
 		}
 	}
 	return result;
-}        			
+}
 
 Foxtrick.getSelectBoxFromXML = function (doc,xmlfile, basenodestr, labelstr, valuestr, selected_value_str) {
 
-	var selectbox = doc.createElement("select"); 
-				
-	var xmlresponse = Foxtrick.LoadXML(xmlfile);				
+	var selectbox = doc.createElement("select");
+
+	var xmlresponse = Foxtrick.LoadXML(xmlfile);
 	var versions = Foxtrick.XML_evaluate(xmlresponse, basenodestr, labelstr, valuestr);
-				
+
 	var indexToSelect=0;
 	for (var i = 0; i < versions.length; i++) {
 		var label = versions[i][0];
-		var value = versions[i][1]; 
-					
+		var value = versions[i][1];
+
 		var option = doc.createElement("option");
 		option.setAttribute("value",value);
 		option.innerHTML=label;
-		selectbox.appendChild(option);	
-			
-		if (selected_value_str==value) 
-			indexToSelect=i; 
+		selectbox.appendChild(option);
+
+		if (selected_value_str==value)
+			indexToSelect=i;
 	}
 	selectbox.selectedIndex=indexToSelect;
-	
+
 	return selectbox;
 }
 
@@ -1616,16 +1618,16 @@ Foxtrick.linebreak = function (txt, where) {
         if (txt == null) return '';
         txt = txt.replace(/\<br\>/gi, ' <br> ');
         var d = txt.split(' ');
-        // dump ('TEXT= [' + d + ']\n');
+        // Foxtrick.dump ('TEXT= [' + d + ']\n');
         for (var j = 0; j < d.length; j++ ) {
-            //dump('  LB [' + j + '] => "'+ d[j] + '"\n');
+            //Foxtrick.dump('  LB [' + j + '] => "'+ d[j] + '"\n');
             if (d[j].length > where && d[j].search(/href\=|title\=/i) == -1) {
                 d[j] = Foxtrick.cut_word(d[j], where);
-                //dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
+                //Foxtrick.dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
             }
         }
         return d.join(" ");
-    } catch(e) {  dump('LINEBREAK: ' + e + '\n');}
+    } catch(e) {  Foxtrick.dump('LINEBREAK: ' + e + '\n');}
 }
 
 Foxtrick.cut_word = function (txt, where) {
@@ -1634,7 +1636,7 @@ Foxtrick.cut_word = function (txt, where) {
         txt = txt.replace(/\<\//g, ' </')
         var c, a=0, g=0, d = new Array();
         for (c = 0; c < txt.length; c++) {
-            
+
             d[c + g] = txt[c];
             if (txt[c] != " ") a++;
             else if (txt[c] == " ") a = 0;
@@ -1643,10 +1645,10 @@ Foxtrick.cut_word = function (txt, where) {
                 d[c+g] = " ";
                 a = 0;
             }
-            
+
         }
         return d.join("");
-    } catch(e) {  dump('CUT WORD: ' + e + '\n');}
+    } catch(e) {  Foxtrick.dump('CUT WORD: ' + e + '\n');}
 }
 
 Foxtrick.in_array = function(arr, needle) {
@@ -1658,15 +1660,15 @@ Foxtrick.in_array = function(arr, needle) {
 Foxtrick.var_dump = function(arr,level) {
 	var dumped_text = "";
 	if(!level) level = 0;
-	
+
 	//The padding given at the beginning of the line.
 	var level_padding = "";
 	for(var j=0;j<level+1;j++) level_padding += "    ";
-	
-	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
+
+	if(typeof(arr) == 'object') { //Array/Hashes/Objects
 		for(var item in arr) {
 			var value = arr[item];
-			
+
 			if(typeof(value) == 'object') { //If it is an array,
 				dumped_text += level_padding + "'" + item + "' ...\n";
 				dumped_text += Foxtrick.var_dump(value,level+1);
@@ -1679,16 +1681,23 @@ Foxtrick.var_dump = function(arr,level) {
 	}
 	return dumped_text;
 }
-Foxtrick.dump_div = function(doc, cnt) {
-    try{
-        var div = doc.getElementById('ft_dump');
-        if (div == null) {
-            var div = doc.createElement('div');
-            div.setAttribute('style', 'border:1px solid#ABCDEF');
-            div.innerHTML = '<h1 style="margin: 6px 0 15px 6px">FoxTrick dump</h1>';
-            div.id = 'ft_dump';
-            doc.getElementById('page').appendChild(div);
-        }
-        div.innerHTML += cnt + '<br>';
-    } catch(e) {dump(e);}
+
+Foxtrick.dump_HTML = '';
+Foxtrick.dump_flush = function(doc) {
+    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '')
+        try{
+            var div = doc.getElementById('ft_dump');
+            if (div == null) {
+                var div = doc.createElement('div');
+                div.setAttribute('style', 'border:1px solid#ABCDEF');
+                div.innerHTML = '<h1 style="margin: 6px 0 15px 6px">FoxTrick dump</h1>' + Foxtrick.dump_HTML;
+                div.id = 'ft_dump';
+                doc.getElementById('page').appendChild(div);
+            }
+            Foxtrick.dump_HTML = '';
+        } catch(e) {dump(e);}
+}
+Foxtrick.dump = function(cnt) {
+    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '<br>';
+    dump(cnt.replace(/\<\w*\>|\<\/\w*\>/gi,''));
 }

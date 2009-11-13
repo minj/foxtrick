@@ -32,7 +32,7 @@ var FoxtrickTeamSelectBox= {
 			}
 			
 			FoxtrickPrefs.setBool("ShowPlayerAsList",false);
-			//dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
+			//Foxtrick.dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
 			this.listbox=null;
 			var listbox2=null;
 			var maxlinks=0;
@@ -81,10 +81,10 @@ var FoxtrickTeamSelectBox= {
 				{FoxtrickPrefs.setBool("ShowPlayerAsList",true);}
             else {this.toSelectBox(doc);}
 		} 
-		catch (e) {dump("SelectBox->run: "+e+'\n');}
+		catch (e) {Foxtrick.dump("SelectBox->run: "+e+'\n');}
 	},
 	
-    toSelectBox : function( doc ) { // dump("do:toSelectBox\n");
+    toSelectBox : function( doc ) { // Foxtrick.dump("do:toSelectBox\n");
 	try {	
 	if (FoxtrickTeamSelectBox.listbox!=null) {
 			var selectbox = doc.createElement("select"); 
@@ -109,10 +109,10 @@ var FoxtrickTeamSelectBox= {
         pn.appendChild(selectbox);        
 	}
 	}
-	 catch (e) {dump("SelectBox->toSelectBox: "+e+'\n');}	
+	 catch (e) {Foxtrick.dump("SelectBox->toSelectBox: "+e+'\n');}	
 	},
     
-	toList : function( doc ) { //dump("do:tolist\n");
+	toList : function( doc ) { //Foxtrick.dump("do:tolist\n");
 		try {	
 			if (this.listbox!=null) {
 					    var option = this.listbox.getElementsByTagName("option")[0];
@@ -131,7 +131,7 @@ var FoxtrickTeamSelectBox= {
                         pn.parentNode.removeChild(selectbox);
 			}
 		} 
-		catch (e) {dump("SelectBox->toList: "+e+'\n');}	
+		catch (e) {Foxtrick.dump("SelectBox->toList: "+e+'\n');}	
 	},
 	
     change : function( page, doc ) {
@@ -157,14 +157,14 @@ var FoxtrickTeamSelectBox= {
 					if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");			
 				}	
 		} 
-		catch (e) {dump("SelectBox->HeaderClick: "+e+'\n');}
+		catch (e) {Foxtrick.dump("SelectBox->HeaderClick: "+e+'\n');}
 	},
 	
 	Select : function(evt) {
 	try {
 		var doc = evt.target.ownerDocument;
 		doc.location.href=evt["target"]["value"];						
-	} catch (e) {dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
+	} catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
 	},
 
 };

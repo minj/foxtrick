@@ -116,27 +116,27 @@ FoxtrickFixcssProblems = {
             "all",
                         "all"
         );
-        dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
+        Foxtrick.dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
         for (var i = 0; i < this.OPTIONS.length; i++) {
            
             if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[i]  ) ) {
                 var css = "chrome://foxtrick/content/resources/css/fixes/" + this.OPTIONS[i] + ".css";
                 var css_simple = "chrome://foxtrick/content/resources/css/fixes/" + this.OPTIONS[i] + "_simple.css";
                 if ( ( (LAYOUTSWITCH[i] == 'standard' ) || (LAYOUTSWITCH[i] == 'all') ) && (Foxtrick.isStandardLayout( doc ) == true) ) {
-                    dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
+                    Foxtrick.dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet( doc, css );
                 }
                 else if ( ((LAYOUTSWITCH[i] == 'simple' ) || (LAYOUTSWITCH[i] == 'all')) && (Foxtrick.isStandardLayout( doc ) == false) ) {
-                    // dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
+                    // Foxtrick.dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet ( doc, css );
                 }
                                 else if ( LAYOUTSWITCH[i] == 'alternate' ) {
-                    // dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
+                    // Foxtrick.dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     if (Foxtrick.isStandardLayout( doc ) == false)  Foxtrick.addStyleSheet ( doc, css_simple );
                     else  Foxtrick.addStyleSheet ( doc, css );
                 }                              
                 else {
-                    // dump ('  FIXES: ' + i + ' - ' + this.OPTIONS[i] + ' disabled.\n');
+                    // Foxtrick.dump ('  FIXES: ' + i + ' - ' + this.OPTIONS[i] + ' disabled.\n');
                 }
             }
         }    

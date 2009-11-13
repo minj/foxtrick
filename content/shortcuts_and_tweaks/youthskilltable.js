@@ -33,7 +33,7 @@ var FoxtrickYouthSkillTable = {
 				tablediv.appendChild(h2);
 				var header=doc.getElementsByTagName('h1')[0];
 				header.parentNode.insertBefore(tablediv,header.nextSibling);			
-		} catch(e) {dump('FoxtrickYouthSkillTable.run error: '+e+'\n');}
+		} catch(e) {Foxtrick.dump('FoxtrickYouthSkillTable.run error: '+e+'\n');}
 	},
 	
 	change : function( page, doc ) {	
@@ -73,7 +73,7 @@ var FoxtrickYouthSkillTable = {
 		for (var i=1;i<table.rows.length;++i) {
 			table.rows[i].innerHTML = rows[i-1].innerHTML;
 		}
-			} catch(e) {dump(e);}
+			} catch(e) {Foxtrick.dump(e);}
 	},
 
 	HeaderClick : function(ev) {
@@ -346,7 +346,7 @@ var FoxtrickYouthSkillTable = {
 						}
 						FoxtrickYouthSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
-						//dump(matchday+' '+latestMatch+'\n');
+						//Foxtrick.dump(matchday+' '+latestMatch+'\n');
 						FoxtrickYouthSkillTable.copy_string += '[/tr]';						
 					}
 				}
@@ -384,7 +384,7 @@ var FoxtrickYouthSkillTable = {
 			table.style.display='none';						
 			tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_boxBodyCollapsed');
 		}
-	} catch(e) {dump('SkillTableHeaderClick: '+e+'\n');}
+	} catch(e) {Foxtrick.dump('SkillTableHeaderClick: '+e+'\n');}
 	},
 }
 

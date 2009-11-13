@@ -178,7 +178,7 @@ var FoxtrickTeamPopupLinks = {
 					}
 				}
 				
-		} catch(e) {dump('TeamPopups: '+e+'\n');}
+		} catch(e) {Foxtrick.dump('TeamPopups: '+e+'\n');}
 	},
 	
 
@@ -201,7 +201,7 @@ var FoxtrickTeamPopupLinks = {
 		var org_link = event.target;
 		var show_more = false;
 		if (org_link.getAttribute('more')){//)href.search('javascript')!=-1) {
-			//dump (org_link.org_link+'\n');
+			//Foxtrick.dump(org_link.org_link+'\n');
 			org_link.removeEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);										
 			if ( org_link.getAttribute('more')=='true') show_more=true;
 			org_link = org_link.parentNode.parentNode.parentNode.parentNode.previousSibling;
@@ -653,7 +653,7 @@ var FoxtrickTeamPopupLinks = {
 									org_link.parentNode.appendChild(div);
 									org_link.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);								
 		
-	} catch(e){dump('popupshow '+e+'\n');}
+	} catch(e){Foxtrick.dump('popupshow '+e+'\n');}
         
 	},
 };

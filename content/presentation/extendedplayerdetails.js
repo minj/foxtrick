@@ -42,7 +42,7 @@ FoxtrickExtendedPlayerDetails = {
             
             var joined_elm = Foxtrick.getElementsByClass( "shy", div )[0];
             if (joined_elm == null) return;            
-            //dump('\n'+joined_elm.parentNode.innerHTML+'\n');
+            //Foxtrick.dump('\n'+joined_elm.parentNode.innerHTML+'\n');
 
             var joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
 
@@ -53,8 +53,8 @@ FoxtrickExtendedPlayerDetails = {
 
             joinedtime = Foxtrick.substr(joinedtime, Foxtrick.strrpos( joinedtime, ";"), joinedtime.length);
 
-            // dump('  Joindate: ' + joinedtime + '\n');
-            // dump('  HT Week: ' + this._Foxtrick.gregorianToHT(joinedtime) + '\n');
+            // Foxtrick.dump('  Joindate: ' + joinedtime + '\n');
+            // Foxtrick.dump('  HT Week: ' + this._Foxtrick.gregorianToHT(joinedtime) + '\n');
 
             var ht_week = Foxtrick.gregorianToHT(joinedtime);
 
@@ -68,7 +68,7 @@ FoxtrickExtendedPlayerDetails = {
                 JoinedText = TimeDifferenceToText (joined_s , true);
             } 
             catch(ee) {
-                dump('  JoinedText >' + ee + '\n');
+                Foxtrick.dump('  JoinedText >' + ee + '\n');
             }
     
             if (JoinedText.search("NaN") == -1) {
@@ -76,9 +76,9 @@ FoxtrickExtendedPlayerDetails = {
                 part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
                 joined_elm.innerHTML = part1 + ' <span id="ft_HTDateFormat">'+ ht_week + '</span>, ' + JoinedText + ')</span>';
             }
-            else dump('  Could not create jointime (NaN)\n');
+            else Foxtrick.dump('  Could not create jointime (NaN)\n');
         } catch (e) {
-            dump('FoxtrickExtendedPlayerDetails'+e);
+            Foxtrick.dump('FoxtrickExtendedPlayerDetails'+e);
         }
     },
 
@@ -122,7 +122,7 @@ FoxtrickExtendedPlayerDetailsWage = {
             var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
             try {
                 var table_elm_bonus = div.getElementsByTagName( "table" )[0].rows[2].cells[1];
-            } catch(e) {dump('    >' + e + '\n');}
+            } catch(e) {Foxtrick.dump('    >' + e + '\n');}
 			
             var has_bonus=false;
 			var table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
@@ -168,7 +168,7 @@ FoxtrickExtendedPlayerDetailsWage = {
              }   
 				
         } catch (e) {
-            dump('  PlayerBonus: ' + e + '\n');
+            Foxtrick.dump('  PlayerBonus: ' + e + '\n');
         }
     }
 

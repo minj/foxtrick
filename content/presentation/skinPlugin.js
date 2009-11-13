@@ -21,9 +21,9 @@ var FoxtrickSkinPlugin = {
                     if (sss.sheetRegistered(uri, sss.USER_SHEET)) sss.unregisterSheet(uri, sss.USER_SHEET);
                 } 
                 catch (ee) {
-                    dump ( ' TOP sss.unregisterSheet old: ' + ee + '\n');
+                    Foxtrick.dump ( ' TOP sss.unregisterSheet old: ' + ee + '\n');
                 }            
-            } catch(e) {dump('no or wrong skin url old:'+FoxtrickPrefs.getString("cssSkinOld") +'\n');} 
+            } catch(e) {Foxtrick.dump('no or wrong skin url old:'+FoxtrickPrefs.getString("cssSkinOld") +'\n');} 
 			
     },
 
@@ -36,7 +36,7 @@ var FoxtrickSkinPlugin = {
                     if( sidebar ) {
                         var images = sidebar.getElementsByTagName('img');
                         for(var i = 0; i < images.length; i++) {
-                            dump(' => MEDAL ' + images[i].src + '\n');
+                            Foxtrick.dump(' => MEDAL ' + images[i].src + '\n');
                             var img = images[i];
                             var imgSrc = img.src;
                             var customMedals = "oldhtmedals";
@@ -64,7 +64,7 @@ var FoxtrickSkinPlugin = {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 				var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
-            } catch(e) {dump('no or wrong skin url:'+FoxtrickPrefs.getString("cssSkin")+'\n');return;} 
+            } catch(e) {Foxtrick.dump('no or wrong skin url:'+FoxtrickPrefs.getString("cssSkin")+'\n');return;} 
             // unloading (if inactive or on login page)
 			var loginpage = new RegExp(FoxtrickPrefs.getString("HTURL")+'\/$'); 
 			if (!FoxtrickPrefs.getBool("module.SkinPlugin.enabled") || (!prefs_changed && doc.location.href.search(loginpage)!=-1)) {				
@@ -72,7 +72,7 @@ var FoxtrickSkinPlugin = {
                     if (sss.sheetRegistered(uri, sss.USER_SHEET)) sss.unregisterSheet(uri, sss.USER_SHEET);
                 } 
                 catch (ee) {
-                    dump ( ' TOP sss.unregisterSheet: ' + ee + '\n');
+                    Foxtrick.dump ( ' TOP sss.unregisterSheet: ' + ee + '\n');
                 }
             }
             
@@ -87,7 +87,7 @@ var FoxtrickSkinPlugin = {
             /*END*/        
 		} //try
         catch(e) {
-            dump ('> SkinPlugin ' + e + '\n');
+            Foxtrick.dump ('> SkinPlugin ' + e + '\n');
         }
     },
 

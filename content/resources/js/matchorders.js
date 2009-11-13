@@ -112,7 +112,7 @@ FoxtrickMatchOrders = {
             }
 
         } catch (e) {
-            dump("Foxtrick FoxtrickMatchOrders module updateFormationBox() exception\n  " + e + '\n');
+            Foxtrick.dump("Foxtrick FoxtrickMatchOrders module updateFormationBox() exception\n  " + e + '\n');
         }
     }
 

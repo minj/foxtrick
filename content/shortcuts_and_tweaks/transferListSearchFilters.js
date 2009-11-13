@@ -211,7 +211,7 @@ FoxtrickTransferListSearchFilters = {
                 td_remove.appendChild( remover );
             }
         } catch (e) {
-            dump('FoxtrickTransferListSearchFilters'+e);
+            Foxtrick.dump('FoxtrickTransferListSearchFilters'+e);
         }
     },
     

@@ -24,7 +24,7 @@ var FoxtrickYouthSkillHideUnknown = {
 					if(allDivs[i].className=="playerInfo") {
 						var trs = allDivs[i].getElementsByTagName("tr");
 						for(var j = 0; j < trs.length; j++) {
-							var tds = trs[j].getElementsByTagName("td");// dump(tds[1].getElementsByTagName('span')[0].innerHTML+'\n');
+							var tds = trs[j].getElementsByTagName("td");// Foxtrick.dump(tds[1].getElementsByTagName('span')[0].innerHTML+'\n');
 							if (tds[1] && tds[1].getElementsByTagName('span')[0] && tds[1].getElementsByTagName('span')[0].className=='shy')
 								trs[j].setAttribute('style','display:none;');
 						}

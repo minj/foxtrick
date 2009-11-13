@@ -31,6 +31,6 @@ var FoxtrickContextMenueCopyId = {
 			Foxtrick.popupMenu.setAttribute( "hidden", false); 
 			Foxtrick.popupMenu.setAttribute( "label", Foxtrickl10n.getString( "foxtrick.CopyContext")+"-"+idtype+': ' +id );
 		}
-	} catch(e){dump(e)};
+	} catch(e){Foxtrick.dump(e)};
 	},	
 };	

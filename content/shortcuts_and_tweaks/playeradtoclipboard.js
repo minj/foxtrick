@@ -77,7 +77,7 @@ var FoxtrickPlayerAdToClipboard = {
 			for(var i = 0; i < allDivs.length; i++) {
 				if(allDivs[i].className == "byline") {
 					var inner = allDivs[i].innerHTML;
-					isEnglish = (inner.search(/ years /)!=-1); dump(inner+ ' '+isEnglish+'\n');
+					isEnglish = (inner.search(/ years /)!=-1); Foxtrick.dump(inner+ ' '+isEnglish+'\n');
 					var startPos = inner.search("<a ");
 					if (startPos!=-1) {
 						var endPos = inner.search("</a>")+4;

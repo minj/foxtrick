@@ -62,37 +62,37 @@ var FoxtrickYouthSkillNotes = {
 			doc.getElementById("YskillGK"+playerid).value);
 		doc.getElementById("spanYskillGK"+playerid).innerHTML = 
 			doc.getElementById("YskillGK"+playerid).value;
-//		dump("save YouthPlayer." + playerid + ".skillGK: "+ doc.getElementById("YskillGK").value + "\n");
+//		Foxtrick.dump("save YouthPlayer." + playerid + ".skillGK: "+ doc.getElementById("YskillGK").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillPM", 
 			doc.getElementById("YskillPM"+playerid).value);
 		doc.getElementById("spanYskillPM"+playerid).innerHTML = 
 			doc.getElementById("YskillPM"+playerid).value;
-//		dump("save YouthPlayer." + playerid + ".skillPM: "+ doc.getElementById("YskillPM").value + "\n");
+//		Foxtrick.dump("save YouthPlayer." + playerid + ".skillPM: "+ doc.getElementById("YskillPM").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillPS", 
 			doc.getElementById("YskillPS"+playerid).value);
 		doc.getElementById("spanYskillPS"+playerid).innerHTML = 
 			doc.getElementById("YskillPS"+playerid).value;
-//		dump("save YouthPlayer." + playerid + ".skillPS: "+ doc.getElementById("YskillPS").value + "\n");
+//		Foxtrick.dump("save YouthPlayer." + playerid + ".skillPS: "+ doc.getElementById("YskillPS").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillWG",
 			doc.getElementById("YskillWG"+playerid).value);
 		doc.getElementById("spanYskillWG"+playerid).innerHTML = 
 			doc.getElementById("YskillWG"+playerid).value;
-//		dump("save YouthPlayer." + playerid + ".skillWG: "+ doc.getElementById("YskillWG").value + "\n");
+//		Foxtrick.dump("save YouthPlayer." + playerid + ".skillWG: "+ doc.getElementById("YskillWG").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillDF", 
 			doc.getElementById("YskillDF"+playerid).value);
 		doc.getElementById("spanYskillDF"+playerid).innerHTML = 
 			doc.getElementById("YskillDF"+playerid).value;
-//		dump("save YouthPlayer." + playerid + ".skillDF: "+ doc.getElementById("YskillDF").value + "\n");
+//		Foxtrick.dump("save YouthPlayer." + playerid + ".skillDF: "+ doc.getElementById("YskillDF").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillSC", 
 			doc.getElementById("YskillSC"+playerid).value);
 		doc.getElementById("spanYskillSC"+playerid).innerHTML = 
 			doc.getElementById("YskillSC"+playerid).value;
-//		dump("save YouthPlayer." + playerid + ".skillSC: "+ doc.getElementById("YskillSC").value + "\n");
+//		Foxtrick.dump("save YouthPlayer." + playerid + ".skillSC: "+ doc.getElementById("YskillSC").value + "\n");
 		FoxtrickPrefs.setString("YouthPlayer." + playerid + ".skillSP", 
 			doc.getElementById("YskillSP"+playerid).value);
 		doc.getElementById("spanYskillSP"+playerid).innerHTML = 
 			doc.getElementById("YskillSP"+playerid).value;
-//		dump("save YouthPlayer." + playerid + ".skillSP: "+ doc.getElementById("YskillSP").value + "\n");
+//		Foxtrick.dump("save YouthPlayer." + playerid + ".skillSP: "+ doc.getElementById("YskillSP").value + "\n");
 	
 //		alert("Changes have been saved!");
 	},
@@ -103,7 +103,7 @@ var FoxtrickYouthSkillNotes = {
 		
 	
 	getYouthPlayerSkill : function(playerid, skill) {
-//		dump("getYouthPlayerSkill: " + "YouthPlayer." + playerid + ".skill" + skill + "\n");
+//		Foxtrick.dump("getYouthPlayerSkill: " + "YouthPlayer." + playerid + ".skill" + skill + "\n");
 	    var ret;
 	    try{
 	    	ret = FoxtrickPrefs.getString("YouthPlayer." + playerid + ".skill" + skill);
@@ -111,7 +111,7 @@ var FoxtrickYouthSkillNotes = {
 		catch(ex){
 			ret = "unknown";
 		}
-//		dump(ret+"\n");
+//		Foxtrick.dump(ret+"\n");
 		return ret;
 	},
 	

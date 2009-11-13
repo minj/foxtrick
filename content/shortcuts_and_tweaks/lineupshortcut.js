@@ -126,7 +126,7 @@ FoxtrickLineupShortcut = {
 			}
 			
         } catch (e) {
-            dump('FoxtrickLineupShortcut'+e);
+            Foxtrick.dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
         }
     },
@@ -150,7 +150,7 @@ FoxtrickLineupShortcut = {
 				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
 			}
 		} catch (e) {
-            dump('FoxtrickLineupShortcut'+e);
+            Foxtrick.dump('FoxtrickLineupShortcut'+e);
         }
     },
 	
@@ -168,7 +168,7 @@ FoxtrickLineupShortcut = {
 			//HighlightPlayerID is the HT function
 			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/'+iconImg+'"></a>';
 		} catch (e) {
-            dump('FoxtrickLineupShortcut'+e);
+            Foxtrick.dump('FoxtrickLineupShortcut'+e);
         }
 	},
 	
@@ -206,7 +206,7 @@ FoxtrickLineupShortcut = {
 				}
 				
 			} catch (e) {
-				dump('FoxtrickLineupShortcut'+e);
+				Foxtrick.dump('FoxtrickLineupShortcut'+e);
 				Foxtrick.LOG('FoxtrickLineupShortcut'+e);
 			}
 		}
@@ -221,7 +221,7 @@ FoxtrickLineupShortcut = {
 			//HighlightPlayerID is the HT function
 			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
 		} catch (e) {
-            dump('FoxtrickLineupShortcut'+e);
+            Foxtrick.dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
         }
 	},
@@ -244,7 +244,7 @@ FoxtrickLineupShortcut = {
 					}
 				}
 			} catch (e) {
-				dump('FoxtrickLineupShortcut'+e);
+				Foxtrick.dump('FoxtrickLineupShortcut'+e);
 			}
 		}
 	},
@@ -256,7 +256,7 @@ FoxtrickLineupShortcut = {
 		try {
 			this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
 		} catch (e) {
-			dump('lineupshortcut.js initNTidsXml: '+e+"\n");
+			Foxtrick.dump('lineupshortcut.js initNTidsXml: '+e+"\n");
 		}
 	}
 

@@ -61,7 +61,7 @@ var FoxtrickLinksTraining = {
 							this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );					
             }
 		}
-	}catch(e){dump('LinksTraining :'+e+'\n');}
+	}catch(e){Foxtrick.dump('LinksTraining :'+e+'\n');}
     },
 	
 	change : function( page, doc ) {

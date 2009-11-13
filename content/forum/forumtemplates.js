@@ -196,7 +196,7 @@ var FoxtrickForumTemplates = {
 			msg_window.parentNode.insertBefore( inputTitleDiv, msg_window);
 		}
 		inputTitle.setAttribute("value",text.substr(0,20));		
-	} catch(e) {dump('_addNewTitle: '+e+'\n');}
+	} catch(e) {Foxtrick.dump('_addNewTitle: '+e+'\n');}
 	},
 
 	 _CancelTitle : function( ev ) {
@@ -233,7 +233,7 @@ var FoxtrickForumTemplates = {
         }
     },
 
-    _fillMsgWindow : function( ev ) { dump("_fillMsgWindow\n");
+    _fillMsgWindow : function( ev ) { Foxtrick.dump("_fillMsgWindow\n");
         var doc = ev.target.ownerDocument;
         var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
         Foxtrick.insertAtCursor( msg_window, ev.target.msg );

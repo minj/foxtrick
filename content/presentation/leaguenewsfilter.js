@@ -117,7 +117,7 @@ var FoxtrickLeagueNewsFilter = {
 		else last_feed.style.display='block';
 	}
 	
-	}catch(e){dump('FoxtrickLeagueNewsFilter: '+e+'\n');} 
+	}catch(e){Foxtrick.dump('FoxtrickLeagueNewsFilter: '+e+'\n');} 
 	},
 	
 	change : function( page, doc ) {	
@@ -127,7 +127,7 @@ var FoxtrickLeagueNewsFilter = {
 		try {
 			var doc = ev.target.ownerDocument;
 			FoxtrickLeagueNewsFilter.ShowHide(doc);		
-		} catch (e) {dump("FoxtrickLeagueNewsFilter_Select: "+e+'\n');}
+		} catch (e) {Foxtrick.dump("FoxtrickLeagueNewsFilter_Select: "+e+'\n');}
 	},
 };
 
@@ -159,8 +159,8 @@ var FoxtrickShortPAs = {
 	for (var i=0;i<items.length;++i) {
 		var item=items[i];
 		if (item.className!='feedItem user') continue;
-		var body=item.innerHTML.replace(/.+<\/b>/,'');  //dump(body+'\n');
-		item.innerHTML=item.innerHTML.match(/.+<\/b>/); //dump(item.innerHTML+'\n');
+		var body=item.innerHTML.replace(/.+<\/b>/,'');  //Foxtrick.dump(body+'\n');
+		item.innerHTML=item.innerHTML.match(/.+<\/b>/); //Foxtrick.dump(item.innerHTML+'\n');
 		var newdiv=doc.createElement('div');		
 		newdiv.innerHTML=body;
 		newdiv.style.display='none';

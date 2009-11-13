@@ -53,7 +53,7 @@ var FoxtrickPlayerBirthday = {
 			catch(e){TextAgeTmp=String(PlayerInfo.match(regTextRus)[1]).replace(/,/,'');} // if not get russian version ie strings before the number
 
 			if (PlayerAge[2]>105 || PlayerAge[2] == 0) {     // player who will have birthday in 7 days or who have birthday today
-				ArrayPlayers[a] = new Array(5); //dump(PlayerName[i]+' '+PlayerAge[2]+'\n');
+				ArrayPlayers[a] = new Array(5); //Foxtrick.dump(PlayerName[i]+' '+PlayerAge[2]+'\n');
 				ArrayPlayers[a][1] = PlayerName[i];            // player's name
 				ArrayPlayers[a][2] = PlayerAge[1];             // player's PlayerAge (years)
 				ArrayPlayers[a][3] = PlayerAge[2];             // player's PlayerAge (days)
@@ -129,7 +129,7 @@ var FoxtrickPlayerBirthday = {
 		var newBoxId = "foxtrick_birthday_box";
 		if (ArrayPlayers.length+ArrayPlayersLate.length>0) Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 			"foxtrick.tweaks.Birthdays" ), parentDiv, newBoxId, "last", "");
-	}catch(e) {dump('PlayerBirthday: '+e+'\n');}
+	}catch(e) {Foxtrick.dump('PlayerBirthday: '+e+'\n');}
 	},
 	
 	change : function( page, doc ) {

@@ -54,7 +54,7 @@ Foxtrick.TeamStats= {
 					try { 
 						var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
                         if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
-                        //dump (' => tsitot_in => [' + tsitot_in + ']\n');
+                        //Foxtrick.dump (' => tsitot_in => [' + tsitot_in + ']\n');
 						if (tsitot_in.search(/^\s*TSI/) != -1) tsitot_in = tsitot_in.replace(/,.+/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
 						var lastindex = tsitot_in.lastIndexOf(' ');
 						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
@@ -63,7 +63,7 @@ Foxtrick.TeamStats= {
 						total_NT = parseInt(total_NT) + tsitot_in;
 					}				
 					catch(e) {
-						dump('FTTeamStats'+e);
+						Foxtrick.dump('FTTeamStats'+e);
 					}
 				}
 				else {
@@ -79,9 +79,9 @@ Foxtrick.TeamStats= {
 				if(specc) {
 					// specialities
                     var specMatch = specc.textContent.match(/\[\D+\]/g);
-                    // dump(' ==>' + specMatch+'\n');
+                    // Foxtrick.dump(' ==>' + specMatch+'\n');
                     if (specMatch != null) {
-                        // dump(' == ==>' + specMatch+'\n');
+                        // Foxtrick.dump(' == ==>' + specMatch+'\n');
                         var spec = Foxtrick.substr(specMatch[0], 0, specMatch[0].length);
                         if (typeof(specs[spec]) == 'undefined') {
                             specs[spec] = 1;
@@ -166,14 +166,14 @@ Foxtrick.TeamStats= {
                 
                 if( allDivs2[i].innerHTML.indexOf('TeamID=', 0) != -1 ) {
                     var ctrc = allDivs2[i].innerHTML;
-                    // dump('    ['+ctrc + ']\n');
+                    // Foxtrick.dump('    ['+ctrc + ']\n');
                     if(ctrc) {
                         // specialities
                         var ctrMatch = this._checkCountry( ctrc );
                         
-                        // dump(' ==>' + ctrMatch+'\n');
+                        // Foxtrick.dump(' ==>' + ctrMatch+'\n');
                         if (ctrMatch != null) {
-                            // dump(' == ==>' + ctrMatch + '\n');
+                            // Foxtrick.dump(' == ==>' + ctrMatch + '\n');
                             if (typeof(countries[ctrMatch]) == 'undefined') {
                                 countries[ctrMatch] = 1;
                                 found = true;
@@ -183,7 +183,7 @@ Foxtrick.TeamStats= {
                         }
                     }
                 } else {
-                    // dump('    ['+allDivs2[i].innerHTML + ']\n');                
+                    // Foxtrick.dump('    ['+allDivs2[i].innerHTML + ']\n');                
                 }
             }
             
@@ -200,7 +200,7 @@ Foxtrick.TeamStats= {
                     countriesTable += "<tr><td class=\"\">" + landarray[i].land.replace(/\(|\)/g,"") + "</td><td>" + landarray[i].value + "</td></tr>";
                 }
                 specsTable += countriesTable;            
-                // dump(countries);
+                // Foxtrick.dump(countries);
             }
             
         }
@@ -328,7 +328,7 @@ Foxtrick.TeamStats= {
         _checkCountry : function ( ctrc ) {
             if (ctrc == null ) return;
             ctrc = Foxtrick._to_utf8(Foxtrick.substr(ctrc, Foxtrick.strrpos( ctrc, "</a>")+4, ctrc.lebgth));
-            // dump('=> stripped => ' + ctrc + '\n');
+            // Foxtrick.dump('=> stripped => ' + ctrc + '\n');
             var found = -1;
             for (var i = 0; i < this.COUNTRYLIST.length; i++) {
                 if (Foxtrick.strrpos( ctrc, this.COUNTRYLIST[i]) > 0 ) {
@@ -339,7 +339,7 @@ Foxtrick.TeamStats= {
             if ( found != -1) {
                 return Foxtrick._from_utf8(this.COUNTRYLIST[found]);
             }
-            // dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
+            // Foxtrick.dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
             return false;
         },
         
@@ -513,7 +513,7 @@ Foxtrick.TeamStats= {
 							else zaw += 'div.playerList>div:nth-of-type('+ (last_j-1) +') {display:none;}';						
 						}
 						else {
-							if (isnotFF35) last_category.style.display=''; //dump(hide+' '+last_category.innerHTML+'\n');
+							if (isnotFF35) last_category.style.display=''; //Foxtrick.dump(hide+' '+last_category.innerHTML+'\n');
 						}
 					}	
 					last_category = adiv; 
@@ -545,49 +545,49 @@ Foxtrick.TeamStats= {
 				if (filter=='Cards' && adiv.innerHTML.search('card.gif')==-1)  {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('<-hide _nocard ');
+						hide = true; //Foxtrick.dump('<-hide _nocard ');
 				}
 				else if (filter=='Injured' 
 							&& (adiv.innerHTML.search('bruised.gif')==-1 && adiv.innerHTML.search('injured.gif')==-1))  {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('hide');
+						hide = true; //Foxtrick.dump('hide');
 				}
 				else if (filter=='TransferListed' && adiv.innerHTML.search('dollar.gif')==-1)  {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('hide');
+						hide = true; //Foxtrick.dump('hide');
 				} 
 				else if (filter=='Pictures')  {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('hide');
+						hide = true; //Foxtrick.dump('hide');
 				} 						
 				else if (filter=='PlayedLatest' && matchday!=Foxtrick.TeamStats.latestMatch)  {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('hide');
+						hide = true; //Foxtrick.dump('hide');
 				}
 				else if (filter=='NotPlayedLatest' && matchday==Foxtrick.TeamStats.latestMatch) {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('hide');
+						hide = true; //Foxtrick.dump('hide');
 				}
 				/*else if (filter=='TopPlayers' && num_star < Foxtrick.TeamStats.top11star)  {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('hide');
+						hide = true; //Foxtrick.dump('hide');
 				}*/
 				else if (filter!='Cards' && filter!='Injured' && filter!='TransferListed' 
 							&& filter!='Pictures' && filter!='PlayedLatest'  && filter!='NotPlayedLatest' 
 							&& filter!='TopPlayers' && adiv.innerHTML.search(filter)==-1)  {
 						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
-						hide = true; //dump('hide');
+						hide = true; //Foxtrick.dump('hide');
 				}				
 				else {
 					 	if (isnotFF35)  adiv.setAttribute('style','');
-						hide = false; //dump('show');
+						hide = false; //Foxtrick.dump('show');
 						hide_category = false;										
 				} 
 				if (hide && filter!='Pictures') { 
@@ -600,10 +600,10 @@ Foxtrick.TeamStats= {
 							/*if (isnotFF35)*/  last_face.style.display=''; 
 						}
 				}
-				//dump(' '+filter+' '+adiv.getElementsByTagName('a')[0].innerHTML+'\n');
+				//Foxtrick.dump(' '+filter+' '+adiv.getElementsByTagName('a')[0].innerHTML+'\n');
 				if (!hide || filter=='Pictures') ++count;
 			}
-			else if (adiv.className=='borderSeparator' || adiv.className=='separator' || adiv.className=='youthnotes') { //dump('border hide:'+hide+'\n');
+			else if (adiv.className=='borderSeparator' || adiv.className=='separator' || adiv.className=='youthnotes') { //Foxtrick.dump('border hide:'+hide+'\n');
 				if (hide==true) {
 					if (isnotFF35) adiv.setAttribute('style','display:none !important;');
 					else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';						
@@ -647,7 +647,7 @@ Foxtrick.TeamStats= {
 		var h = body.getElementsByTagName('h1')[0];
 		h.innerHTML = h.innerHTML.replace(/ \d+/,' '+String(count));
 		
-	}catch(e) {dump('FTTeamStats_Filter: '+e+'\n');}
+	}catch(e) {Foxtrick.dump('FTTeamStats_Filter: '+e+'\n');}
 	},	
 };
 

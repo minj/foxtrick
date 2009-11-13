@@ -71,7 +71,7 @@ var FoxtrickLinksNational = {
 		
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID } );	   
 		
-		}catch(e){dump("linksnational->"+e+'\n');}
+		}catch(e){Foxtrick.dump("linksnational->"+e+'\n');}
     },
 	
 	change : function( page, doc ) {

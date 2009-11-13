@@ -70,7 +70,7 @@ var FoxtrickCopyMatchID = {
 				
 			}
 		}
-	} catch(e) {dump('FoxtrickCopyMatchID: '+e+'\n');}
+	} catch(e) {Foxtrick.dump('FoxtrickCopyMatchID: '+e+'\n');}
 	},
 	
 	change : function( page, doc ) {

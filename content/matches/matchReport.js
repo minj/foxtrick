@@ -57,9 +57,9 @@ FoxtrickMatchReportFormat = {
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
 
-		// dump ('ownteam: '+myTeamId+'\n');
-		// dump ('HomeTeamId: '+HomeTeamId+'\n');
-		// dump ('AwayTeamId: '+AwayTeamId+'\n');
+		// Foxtrick.dump ('ownteam: '+myTeamId+'\n');
+		// Foxtrick.dump ('HomeTeamId: '+HomeTeamId+'\n');
+		// Foxtrick.dump ('AwayTeamId: '+AwayTeamId+'\n');
 
         var headder = doc.getElementsByTagName('h1')[0].innerHTML;
         
@@ -114,12 +114,12 @@ FoxtrickMatchReportFormat = {
 			+'#aspnetForm[action*="Match.aspx?matchID="] div.mainBox td {padding-left:2px;}';
 		style.appendChild(doc.createTextNode(zaw));
 		//head.appendChild(style);
-        //dump(zaw+'\n');
+        //Foxtrick.dump(zaw+'\n');
         
         var links = div.getElementsByTagName('a');
         var supporter = false;
         for (var i=0; i < links.length; i++) {
-//            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
+//            Foxtrick.dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
             if (links[i].href.search('Book') > 0) {
                 supporter = true;
                 break;
@@ -129,7 +129,7 @@ FoxtrickMatchReportFormat = {
         var div_inner = Foxtrick.getElementsByClass('', div)[3];
         if (!supporter) div_inner = Foxtrick.getElementsByClass('', div)[2];
         
-        // dump(' >'+ div_inner.innerHTML + ' < \n');
+        // Foxtrick.dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
 
@@ -148,8 +148,8 @@ FoxtrickMatchReportFormat = {
 
 
         part[2] = div_inner.innerHTML.substr(end, div_inner.innerHTML.length-end );
-        // dump('start[' + start + '|' + end + ']');
-        // dump(part[1]);
+        // Foxtrick.dump('start[' + start + '|' + end + ']');
+        // Foxtrick.dump(part[1]);
         part[1] = this.nl2br(part[1]);
 
         var search = new Array(
@@ -178,7 +178,6 @@ FoxtrickMatchReportFormat = {
         }
 
         dummy = (part[0] + part[1]).split('\n');
-//        dump(this.dumpObj(dummy, 'HEAD', '>>', 0));
 
         part[1]= '';
         var stage = 0;
@@ -201,17 +200,17 @@ FoxtrickMatchReportFormat = {
             }
             dummy[i] = dummy[i].replace(/\<br\>/g, '');
             if (dummy[i] != '') {
-                //dump(i + ' [' + dummy[i] + ']\n');
+                //Foxtrick.dump(i + ' [' + dummy[i] + ']\n');
                 if (dummy[i].split(' - ').length == 2 && stage == 0) { //headder
-                    // dump('TEAMS FOUND\n');
+                    // Foxtrick.dump('TEAMS FOUND\n');
                     var names = dummy[i].split(' - ');
                     var team1 = names[0].split('  ')[0];
                     var team2 = names[1].split('  ')[1];
                     stage = 1;
-                    //dump('TEAMS [' + team1 + '|' + team2 + ']\n');
+                    //Foxtrick.dump('TEAMS [' + team1 + '|' + team2 + ']\n');
                 }
                 if (stage==1 && dummy[i].indexOf('<span>(')!=-1) {
-                    // dump('MATCHID\n');
+                    // Foxtrick.dump('MATCHID\n');
                     dummy[i] = dummy[i].replace(/\<span\>\(/,'<span> (');
                 }
                 if (dummy[i].indexOf('/Arena/') != -1) stage +=1;
@@ -230,7 +229,7 @@ FoxtrickMatchReportFormat = {
                         if (fulltext <= 2) {
                             bg= text_dark + '; ';
                             next = i+2;
-                            //dump('>>>' + next + '\n');
+                            //Foxtrick.dump('>>>' + next + '\n');
                         }
                     }
                     if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
@@ -239,7 +238,7 @@ FoxtrickMatchReportFormat = {
                 }
                 else part[1] += dummy[i] + '\n\n';
             }
-            // else dump(i + ' DROPED ' + dummy[i] + ']\n');
+            // else Foxtrick.dump(i + ' DROPED ' + dummy[i] + ']\n');
         }
         div_inner.innerHTML = part[1] + part[2];
 
@@ -295,7 +294,7 @@ FoxtrickMatchReportFormat = {
                       if(myTable[ti][0].search('gif') > -1) {
                         var dummy_txt = doc.createElement("div")
                         //dummy_txt = myTable[ti][1].split('playerId=')[1].split("title=\"")[1].split("\">")[0];
-                        //dump('\n' + dummy_txt + '\n');
+                        //Foxtrick.dump('\n' + dummy_txt + '\n');
                         //TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(\''+ (dummy_txt) +'\',' + parseInt(myTable[ti][2]) + ')>' + myTable[ti][0] + '</span>';
                         TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(' + minute + ')>' + myTable[ti][0] + '</span>';
                       } else {
@@ -323,25 +322,25 @@ FoxtrickMatchReportFormat = {
                       //tblbody.rows[ti].cells[0].className = 'center';
                     }
                 }
-        } catch(tableerror) {dump(tableerror);}
-        //dump(scoreboard.innerHTML);
+        } catch(tableerror) {Foxtrick.dump(tableerror);}
+        //Foxtrick.dump(scoreboard.innerHTML);
         for (var i=0; i < divs.length; i++) {
-            // dump(i + ': ' + divs[i].textContent + '\n\n');
+            // Foxtrick.dump(i + ': ' + divs[i].textContent + '\n\n');
             
             var text = divs[i].textContent;
             var toreplace = /\ \-\ /g;
             text = text.replace(/(\d{1,2})\ -\ (\d{1,2})/g,"$1-$2");
             //text = text.replace(toreplace, '-');
-            //dump(i + ': ' + text + '\n');
+            //Foxtrick.dump(i + ': ' + text + '\n');
             var score = reg.exec(text);
             
             if (divs[i].innerHTML.search(team1) > -1) start_g = 6; else start_g = 7;
             if (score && i > start_g) {
-                dump( i + '[' + score + '] [' + standing + ']\n');
+                Foxtrick.dump( i + '[' + score + '] [' + standing + ']\n');
                 if (score[1] > standing[0]) {
                     standing[0]++;
                     divs[i].style.border = borders_goal+ 'px solid ' + border_color_hm;
-                    // dump (borders_goal+ 'px solid ' + border_color_hm  + ';\n');
+                    // Foxtrick.dump (borders_goal+ 'px solid ' + border_color_hm  + ';\n');
 					divs[i].style.background = bg_col_hm;
 
                     var scorerep = standing[0] + '-' + standing[1];
@@ -351,7 +350,7 @@ FoxtrickMatchReportFormat = {
                 if (score[2] > standing[1]) {
                     standing[1]++;
                     divs[i].style.border = borders_goal+ 'px solid ' + border_color_aw;
-                    // dump (borders_goal+ 'px solid ' + border_color_aw  + ';\n');
+                    // Foxtrick.dump (borders_goal+ 'px solid ' + border_color_aw  + ';\n');
 					divs[i].style.background = bg_col_aw;
                     
                     var scorerep = standing[0] + '-' + standing[1];
@@ -368,7 +367,7 @@ FoxtrickMatchReportFormat = {
         var sidebar = doc.getElementById('sidebar');
         var links = sidebar.getElementsByTagName('a');
         for (var i=0; i < links.length; i++) {
-//            dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
+//            Foxtrick.dump('i:' + i + ':' + links[i].href + ': '+ supporter + '\n' );
             if (links[i].href.search('TeamID=' + HomeTeamId) > 0) {
                 links[i].setAttribute('style', 'color:' + txt_col_hm);
             }
@@ -403,7 +402,7 @@ FoxtrickMatchReportFormat = {
             dummy = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + this.OPTIONS[value] + '_text');
         }
         if (!dummy) dummy = this.OPTION_TEXTS_DEFAULT_VALUES[value];        
-        // dump('Pref_[' + value + '] - [' + dummy + '] "' + this.OPTIONS[value] + '" returned\n');
+        // Foxtrick.dump('Pref_[' + value + '] - [' + dummy + '] "' + this.OPTIONS[value] + '" returned\n');
         return dummy;
     },
     

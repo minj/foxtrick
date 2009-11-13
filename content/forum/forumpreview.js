@@ -22,7 +22,7 @@ var FoxtrickForumPreview = {
     },
 
     run : function( page, doc ) {
-        //dump('prev: ' + page + '\n');
+        //Foxtrick.dump('prev: ' + page + '\n');
         var check_div = doc.getElementById( "forum_preview" );
         if (check_div != null) return;
         
@@ -44,7 +44,7 @@ var FoxtrickForumPreview = {
                 return;
         }
         catch(e) {
-            dump('n' + 'FoxtrickForumPreview' + e + '\n');
+            Foxtrick.dump('n' + 'FoxtrickForumPreview' + e + '\n');
         }
 
         // display preview and button above the message window
@@ -136,7 +136,7 @@ var FoxtrickForumPreview = {
                     var msg_type = 7;
                 }
         }
-        dump('==> ForumPreview Message Type ' + msg_type + '\n');
+        Foxtrick.dump('==> ForumPreview Message Type ' + msg_type + '\n');
 
 		//button_ok.setAttribute( "tabindex",  index);
 		if (button_ok && Foxtrickl10n.isStringAvailableLocal("sendmessage")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
@@ -176,7 +176,7 @@ var FoxtrickForumPreview = {
         preview_message.id = "message_preview";
         preview_message.setAttribute( "class", "message" );
         preview_div.appendChild( preview_message );
-        dump('Preview Message Window ID SET\n');
+        Foxtrick.dump('Preview Message Window ID SET\n');
 
 
 		var divs=doc.getElementById('mainBody').getElementsByTagName('div');
@@ -222,7 +222,7 @@ var FoxtrickForumPreview = {
                 return;
         }
         catch(e) {
-            dump('FoxtrickForumPreview'+e);
+            Foxtrick.dump('FoxtrickForumPreview'+e);
         }
 
         var prev_div = doc.getElementById( "forum_preview" );
@@ -236,7 +236,7 @@ var FoxtrickForumPreview = {
                 FoxtrickForumPreview._preview( ev );
             }
         } catch(e) {
-            dump (' FoxtrickForumPreview._toggleListener ' + e) ;
+            Foxtrick.dump (' FoxtrickForumPreview._toggleListener ' + e) ;
         }
 	},
 
@@ -365,7 +365,7 @@ var FoxtrickForumPreview = {
                 return;
         }
         catch(e) {
-            dump('FoxtrickForumPreview'+e);
+            Foxtrick.dump('FoxtrickForumPreview'+e);
         }
 
         try {
@@ -396,7 +396,7 @@ var FoxtrickForumPreview = {
             prev_div.innerHTML = text;
         }
         catch(e) {
-            dump('FoxtrickForumPreview'+e);
+            Foxtrick.dump('FoxtrickForumPreview'+e);
         }
 
     }

@@ -325,7 +325,9 @@ var FoxtrickPrefsDialogHTML = {
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", doc.getElementById("saveprefsid").checked);
         FoxtrickPrefs.setBool("SavePrefs_Notes", doc.getElementById("savenotesid").checked);
     
-		
+
+        FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
+        
 		// reinitialize
         FoxtrickMain.init();
 		doc.location.href="/MyHattrick/?configure_foxtrick=true&status=saved";
@@ -812,6 +814,9 @@ var FoxtrickPrefsDialogHTML = {
  		var checked = FoxtrickPrefs.getBool("module.OnPagePrefs.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'OnPagePrefs', Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"),'', checked ) 
 		div.appendChild(checkdiv);
+ 		var checked = FoxtrickPrefs.getBool("DisplayHTMLDebugOutput");
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'DisplayHTMLDebugOutput', Foxtrickl10n.getString("foxtrick.prefs.DisplayHTMLDebugOutput"),'', checked ) 
+		div.appendChild(checkdiv);        
 		
 	},
 	

@@ -36,10 +36,10 @@ var FoxtrickSkillColoring = {
     run : function( page, doc ) {
 	
 	/*  // may need to be included above css files directly somehow
-        // dump(this.MODULE_NAME + '\n');
+        // Foxtrick.dump(this.MODULE_NAME + '\n');
 		var url = Foxtrick.getHref( doc );
         var isMessage = (url.match(/Forum/i) || url.match(/Inbox/i));
-        // dump( '\n >> ' + url + '\n');
+        // Foxtrick.dump( '\n >> ' + url + '\n');
         if (isMessage) return;
 		*/
 	},

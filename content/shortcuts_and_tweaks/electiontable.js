@@ -50,7 +50,7 @@ var FoxtrickElectionTable = {
             cnt.setAttribute('style', 'padding-top: 10px;');
             div.appendChild(cnt);
             
-        } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}        
+        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ':' + e + '\n');}        
         
 	},
 

@@ -86,7 +86,7 @@ var FoxtrickLinksCustom = {
 				FoxtrickLinksCustom.showLinks(doc,ownBoxBody,basepref);
 			}
 		}
-		catch(e){dump("CustomLinks->"+e);}
+		catch(e){Foxtrick.dump("CustomLinks->"+e);}
 	},
 	
 	showLinks : function(doc,ownBoxBody,basepref){
@@ -117,7 +117,7 @@ var FoxtrickLinksCustom = {
 				var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
 				var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
 				var title=FoxtrickPrefs.getString(basepref+'.'+key+'.title');
-				if (href==null||imgref==null||title==null) {dump('customLink '+key+' incomplete\n');continue; }				
+				if (href==null||imgref==null||title==null) {Foxtrick.dump('customLink '+key+' incomplete\n');continue; }				
 				// replace tags
 				var mykeytag=href.match(/\[\w+\]/ig);
 				if (mykeytag && mykeytag.length>0) {
@@ -137,10 +137,10 @@ var FoxtrickLinksCustom = {
 					div.setAttribute('id','LinksCustomLinkID'+key);
 					ownBoxBody.appendChild(doc.createTextNode(" "));
 					ownBoxBody.appendChild(div); 
-				} catch(e){dump('showLinks_adddiv: '+e);continue;}
+				} catch(e){Foxtrick.dump('showLinks_adddiv: '+e);continue;}
 			}
 		}
-		catch(e){dump("CustomLinks->showLinks->"+e+'\n');}
+		catch(e){Foxtrick.dump("CustomLinks->showLinks->"+e+'\n');}
 	},
 	
 	showEdit : function( doc , ownBoxBody, basepref) {
@@ -332,7 +332,7 @@ var FoxtrickLinksCustom = {
 				option.setAttribute("style","width:100%;");
 				selectbox.appendChild(option);					
 				}
-			} catch(e){dump('tags: ownteaminfo not available\n');}
+			} catch(e){Foxtrick.dump('tags: ownteaminfo not available\n');}
 			var trn2 = doc.createElement ("tr");
 			var tdn2 = doc.createElement ("td");
 			var divn2 = doc.createElement ("div"); 
@@ -377,7 +377,7 @@ var FoxtrickLinksCustom = {
 			ownBoxBody.appendChild(divED);
 						
 		}
-		catch (e) {dump("LinksCustom->show_edit->"+e+'\n');}
+		catch (e) {Foxtrick.dump("LinksCustom->show_edit->"+e+'\n');}
 	},
 		
 		
@@ -392,7 +392,7 @@ var FoxtrickLinksCustom = {
 			par.removeChild(evt["target"]);
 			FoxtrickPrefs.setBool( "module." + module_name+'.'+key + ".enabled",false);			
 		}
-		catch (e) {dump("LinksCustom->edityLink->"+e+'\n');}
+		catch (e) {Foxtrick.dump("LinksCustom->edityLink->"+e+'\n');}
 	},
 
 	
@@ -409,7 +409,7 @@ var FoxtrickLinksCustom = {
 			FoxtrickPrefs.delListPref(baseprefnl+'.img'); 
 			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
 		}
-		catch (e) {dump("LinksCustom->edityLink->"+e+'\n');}
+		catch (e) {Foxtrick.dump("LinksCustom->edityLink->"+e+'\n');}
 	},
 
 	
@@ -423,7 +423,7 @@ var FoxtrickLinksCustom = {
 			doc.getElementById("inputImgDivID").imgref=FoxtrickPrefs.getString(baseprefnl+'.img');	
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
-		catch (e) {dump("LinksCustom->editOldLink->"+e+'\n');}
+		catch (e) {Foxtrick.dump("LinksCustom->editOldLink->"+e+'\n');}
 	},
 
 	
@@ -457,7 +457,7 @@ var FoxtrickLinksCustom = {
 			os.close();
 			foStream.close(); 						
 		}
-		catch (e) {dump("LinksCustom->exportLink->"+e+'\n');}
+		catch (e) {Foxtrick.dump("LinksCustom->exportLink->"+e+'\n');}
 	},
 
 	saveMyLink : function (evt) { 
@@ -509,7 +509,7 @@ var FoxtrickLinksCustom = {
 			table.width="100px";
 			table.insertBefore(tr1,table.lastChild.previousSibling);
 		}
-		catch(e) {dump("LinksCustom->saveMyLink->"+e+'\n');}
+		catch(e) {Foxtrick.dump("LinksCustom->saveMyLink->"+e+'\n');}
 	},
 
 	GetDelLink  : function(doc,mylink,baseprefnl) { 
@@ -522,7 +522,7 @@ var FoxtrickLinksCustom = {
 		delLink.mylink = mylink; 
 		return delLink;
 	} 
-	catch(e) {dump("LinksCustom->FoxtrickLinksCustom.GetDelLink->"+e+'\n');}		
+	catch(e) {Foxtrick.dump("LinksCustom->FoxtrickLinksCustom.GetDelLink->"+e+'\n');}		
 	},
 
 
@@ -536,7 +536,7 @@ var FoxtrickLinksCustom = {
 		editOld.mylink = mylink; 
 		return editOld;
 	} 
-	catch(e) {dump("LinksCustom->FoxtrickLinksCustom.GetEditOldLink->"+e+'\n');}		
+	catch(e) {Foxtrick.dump("LinksCustom->FoxtrickLinksCustom.GetEditOldLink->"+e+'\n');}		
 	},
 
 	
@@ -550,7 +550,7 @@ var FoxtrickLinksCustom = {
 		ExportLink.mylink = mylink; 
 		return ExportLink;
 	} 
-	catch(e) {dump("LinksCustom->FoxtrickLinksGetExpostLink->"+e+'\n');}		
+	catch(e) {Foxtrick.dump("LinksCustom->FoxtrickLinksGetExpostLink->"+e+'\n');}		
 	},
 
 	
@@ -578,7 +578,7 @@ var FoxtrickLinksCustom = {
 			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
 			 			
  		}
-		catch(e) {dump('FoxtrickLinksCustom.LoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
+		catch(e) {Foxtrick.dump('FoxtrickLinksCustom.LoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
 	},
 
 	
@@ -616,7 +616,7 @@ var FoxtrickLinksCustom = {
 				FoxtrickLinksCustom.showLinks(doc,ownBoxBody,basepref);
 			}
 		}
-		catch(e) { dump("LinksCustom->HeaderClick->"+e+'\n'); }
+		catch(e) { Foxtrick.dump("LinksCustom->HeaderClick->"+e+'\n'); }
 	},
 	
 	
@@ -627,7 +627,7 @@ var FoxtrickLinksCustom = {
 		if (value.search(/\?/)==-1) value+="\?"; else  value+="&";
 		value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
 		doc.getElementById ( "inputHrefID" ).value=value;
-	} catch (e) {dump("FoxtrickLinksCustom.SelectBox_Select: "+e+'\n');}
+	} catch (e) {Foxtrick.dump("FoxtrickLinksCustom.SelectBox_Select: "+e+'\n');}
 	},
 
 
@@ -644,7 +644,7 @@ var FoxtrickLinksCustom = {
 		stream.setInputStream(inputStream);
 		var encoded = btoa(stream.readBytes(stream.available()));
 		return "data:" + contentType + ";base64," + encoded;
-	} catch (e) {dump("FoxtrickLinks generateDataURI: "+e+'\n');}
+	} catch (e) {Foxtrick.dump("FoxtrickLinks generateDataURI: "+e+'\n');}
 	},
 
 };

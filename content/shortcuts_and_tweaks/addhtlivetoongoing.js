@@ -56,7 +56,7 @@ var FoxtrickAddHtLiveToOngoing = {
 				img.parentNode.appendChild(a);
 			}
 		}
-		} catch(e) {dump('FoxtrickAddHtLiveToOngoing: '+e+'\n');}
+		} catch(e) {Foxtrick.dump('FoxtrickAddHtLiveToOngoing: '+e+'\n');}
 	},
 	
 	change : function( page, doc ) {

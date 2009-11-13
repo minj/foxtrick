@@ -173,7 +173,7 @@ team_confidence	: new Array(
     init : function() {
     },
 
-    run : function( page, doc ) { dump('in SkillTranslation\n');
+    run : function( page, doc ) { Foxtrick.dump('in SkillTranslation\n');
 	try {
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		
@@ -193,7 +193,7 @@ team_confidence	: new Array(
 			this.translate_category(doc,table,11,this.team_spirit,false);
 			this.translate_category(doc,table,12,this.team_confidence,false);
 
-	} catch(e) {dump('SkillTranslation: '+e+'\n');}
+	} catch(e) {Foxtrick.dump('SkillTranslation: '+e+'\n');}
 	},
 	
 	translate_category: function(doc,table,index,denominations,two_lines) {
@@ -203,7 +203,7 @@ team_confidence	: new Array(
 		var org_skills=table.rows[index].cells[1].innerHTML.split('<br>');
 		table.rows[index].cells[1].innerHTML='';
 		for (var i=1;i<denominations.length;++i) {
-			//dump(org_skills+'\n'+org_skills[i-1]+'\n');
+			//Foxtrick.dump(org_skills+'\n'+org_skills[i-1]+'\n');
 			table.rows[index].cells[1].innerHTML += org_skills[i-1] + br + ' <span style="white-space:nowrap;" class="shy">('+denominations[i]+')</span><br>';
 		}
 	},

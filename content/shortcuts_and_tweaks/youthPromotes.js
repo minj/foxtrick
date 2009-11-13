@@ -89,7 +89,7 @@ return daysToProm_text;
             
 			//var playerInfo=playerInfo
 			var dateCellnums=dateCell.innerHTML.match(/(\d+)/gi);
-			//dump(dateCellnums[dateCellnums.length-1]+'\n');
+			//Foxtrick.dump(dateCellnums[dateCellnums.length-1]+'\n');
 			var daysinclub=dateCellnums[dateCellnums.length-1];
 			
       nextbirthday = Foxtrick.substr(nextbirthday, Foxtrick.strrpos( nextbirthday, ";"), nextbirthday.length);  
@@ -119,7 +119,7 @@ return daysToProm_text;
  
             } 
             catch(ee) {
-                dump('  JoinedText >' + ee + '\n');
+                Foxtrick.dump('  JoinedText >' + ee + '\n');
             }
 
 					}

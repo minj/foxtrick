@@ -26,7 +26,7 @@
     run : function( page, doc ) {
     try {
         Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");
-        dump('PAGE: ' + page + '\n');
+        Foxtrick.dump('PAGE: ' + page + '\n');
         var show_main = false; var show_youth = false; 
         var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
         if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||
@@ -47,7 +47,7 @@
         if (div != null) return;
         
         if (doc.getElementById('ctl00_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
-        // dump('YOUTH => ' + page +'\n');
+        // Foxtrick.dump('YOUTH => ' + page +'\n');
         if ( (page == 'ads' ) && (!doc.getElementById('ctl00_CPMain_txtInsert'))) return;
 
         if (page == 'ads' || page == 'newsletter' || page == 'mailnewsletter') {
@@ -118,7 +118,7 @@
             }
             catch (e)
             {
-                dump('YouthIcons: mainBox not found ' + e + '\n');
+                Foxtrick.dump('YouthIcons: mainBox not found ' + e + '\n');
             }
 
         toolbar.setAttribute("style","float:left; margin-right:3px;");
@@ -130,7 +130,7 @@
             }
             catch (e)
             {
-                dump('YouthIcons: textbox not found ' + e + '\n');
+                Foxtrick.dump('YouthIcons: textbox not found ' + e + '\n');
             }
 
         // Set styles of all buttons
@@ -154,7 +154,7 @@
 
         //simple test if new icons are set up by HTs
         var toolbar_test = Foxtrick.getElementsByClass( "f_hr", doc );
-        //dump('Document child class "f_hr": ['+toolbar_test+']\n');
+        //Foxtrick.dump('Document child class "f_hr": ['+toolbar_test+']\n');
         if (toolbar_test.length != null) {
             var target=toolbar.lastChild;
             var tooldivs = doc.getElementsByTagName('img');
@@ -298,7 +298,7 @@
             var head = toolbar.parentNode;
             head.insertBefore( youthbar, toolbar.nextSibling );
         }
-	} catch(e){dump('FoxtrickForumYouthIcons error: '+e+'\n');}
+	} catch(e){Foxtrick.dump('FoxtrickForumYouthIcons error: '+e+'\n');}
     },
 
 	change : function( page, doc ) {
@@ -412,7 +412,7 @@
             msg_window.value += string;
             msg_window.focus();
         } catch(e) {
-            dump('FoxtrickForumYouthIcons'+e);
+            Foxtrick.dump('FoxtrickForumYouthIcons'+e);
         }
     },
 

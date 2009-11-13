@@ -59,7 +59,7 @@ var FoxtrickLargeFlags = {
 				}
 			}
 		}
-	}catch(e){dump('FoxtrickLargeFlags: '+e+'\n');}
+	}catch(e){Foxtrick.dump('FoxtrickLargeFlags: '+e+'\n');}
 	},
 	
 	change : function( page, doc ) {

@@ -51,7 +51,7 @@ var FoxtrickHideSignatures = {
                                 divsInFooter[j].appendChild(showSig[p]);
                             }
                         }
-                    } catch(e) {dump('HideSignatures ERROR ' + e + '\n');}
+                    } catch(e) {Foxtrick.dump('HideSignatures ERROR ' + e + '\n');}
                 } 
             }
 		}

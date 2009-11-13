@@ -186,7 +186,7 @@ var FoxtrickCountyList = {
 		try {
 			this.htCountriesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcountries.xml");
 		} catch (e) {
-			dump('countrylist.js initHTCountries: '+e+"\n");
+			Foxtrick.dump('countrylist.js initHTCountries: '+e+"\n");
 		}
 	},
 
@@ -196,7 +196,7 @@ var FoxtrickCountyList = {
 		req.send(null);
 		var doc = req.responseXML;
 		if (doc.documentElement.nodeName == "parsererror") {
-			dump("error parsing " + url+"\n");
+			Foxtrick.dump("error parsing " + url+"\n");
 			return null;
 		}
 		return doc;
@@ -218,7 +218,7 @@ var FoxtrickCountyList = {
     _changelist: function (page, doc, id, start) {
         var selectbox = doc.getElementById(id);
         if (selectbox == null) return;
-        //dump('GO ' + '\n');
+        //Foxtrick.dump('GO ' + '\n');
         var options = selectbox.options;
         var countries = options.length;
         var selected  = selectbox.selectedIndex;
@@ -231,22 +231,22 @@ var FoxtrickCountyList = {
                     var htname = options[i].text;
 
 					var path = 'hattrickcountries/country[@name="' + htname + '"]';
-                    //dump("value: " + country + ' || ' + htname + ' - ');
+                    //Foxtrick.dump("value: " + country + ' || ' + htname + ' - ');
                     var obj = this.htCountriesXml.evaluate(path,this.htCountriesXml,null,this.htCountriesXml.DOCUMENT_NODE,null).singleNodeValue;
 
                     if (obj)
 //                        htname = '#' + obj.attributes.getNamedItem("htname").textContent;
                         htname = obj.attributes.getNamedItem("htname").textContent;
-                    //dump(country + ' || ' + htname + '\n');
+                    //Foxtrick.dump(country + ' || ' + htname + '\n');
 //                    else
 //                        return -1;
 
                 } catch (exml) {
-                    dump('crosstable.js countries: '+exml + "\n");
+                    Foxtrick.dump('crosstable.js countries: '+exml + "\n");
                 }
                 options[i].text = htname;
             }
-        } catch(e) {dump('countrylist: '+e+'\n');}
+        } catch(e) {Foxtrick.dump('countrylist: '+e+'\n');}
 
 
         var opt_array = new Array();
@@ -257,7 +257,7 @@ var FoxtrickCountyList = {
                 oldopt[1] = options[i].text;
                 opt_array.push(oldopt);
 			}
-        } catch (epush) {dump('countrylist: EPUSH '+epush+'\n');}
+        } catch (epush) {Foxtrick.dump('countrylist: EPUSH '+epush+'\n');}
 
         function sortByOptionText(a, b) {
             var x = a[1]; x=(x.search(/.+sland/)==0)?'Island':((x.search(/.+esk.+republika/)!=-1)?'Ceska republika':x);
@@ -279,6 +279,6 @@ var FoxtrickCountyList = {
         var selectbox = doc.getElementById(id);
         if (selectbox == null) return;
 		selectbox.style.display='inline';
-        dump('country select activated.\n');
+        Foxtrick.dump('country select activated.\n');
     }
 };

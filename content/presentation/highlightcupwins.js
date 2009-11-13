@@ -40,7 +40,7 @@ var FoxtrickHighlightCupwins = {
 				matchlink.innerHTML = hometeam+' - <strong>'+awayteam+'</strong>';
 			}			
 		}
-	}catch(e){dump(e)}	
+	}catch(e){Foxtrick.dump(e)}	
  	},
 	
 	change : function( page, doc ) {	

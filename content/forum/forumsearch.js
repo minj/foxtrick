@@ -19,7 +19,7 @@ var FoxtrickForumSearch = {
 
     run : function( page, doc ) {
         try {
-            dump('--- ForumSearch --- \n');
+            Foxtrick.dump('--- ForumSearch --- \n');
             var box = Foxtrick.getElementsByClass('subMenuBox', doc)[0];
             var links = box.getElementsByTagName('a');
             
@@ -33,9 +33,9 @@ var FoxtrickForumSearch = {
                     if (thread_act == null) {
                         FoxtrickPrefs.setString("forum_post_list." + postid, title);
                         this._SaveForSearch( postid + '[||]' + title);
-                        // dump ( i + ' - ' + postid + ' | "' + title+ '" ADDED \n');
+                        // Foxtrick.dump ( i + ' - ' + postid + ' | "' + title+ '" ADDED \n');
                     } else {
-                        // dump ( i + ' - ' + postid + ' | "' + title+ '" DUPLICATE \n');
+                        // Foxtrick.dump ( i + ' - ' + postid + ' | "' + title+ '" DUPLICATE \n');
                     }
                 }
             }
@@ -70,14 +70,14 @@ var FoxtrickForumSearch = {
             }
         }
         catch(e) {
-            dump('n' + 'FoxtrickForumSearch' + e + '\n');
+            Foxtrick.dump('n' + 'FoxtrickForumSearch' + e + '\n');
         }
     },
 
 	change : function( page, doc ) {
         var value = doc.getElementById('ft_searchField').value;
         if (value.search('Threads') != -1) {
-            dump('Search running '  + '\n');
+            Foxtrick.dump('Search running '  + '\n');
             this.run(page, doc);
         }
 	},
@@ -98,7 +98,7 @@ var FoxtrickForumSearch = {
         div.appendChild(table);
             
         var searchfor = doc.getElementById('ft_searchField').value.toLowerCase();
-		dump('searchfor: ' + searchfor + '\n');
+		Foxtrick.dump('searchfor: ' + searchfor + '\n');
         var threadlist = FoxtrickPrefs.getList("forum_post_list");
         var IDlist = FoxtrickPrefs._getElemNames("forum_post_list");
         var count = 0;
@@ -135,15 +135,15 @@ var FoxtrickForumSearch = {
                             td_fname.appendChild(link);
                         }                    
                     } catch(ee) {
-                        dump('SearchError: ' + ee + '\n');
+                        Foxtrick.dump('SearchError: ' + ee + '\n');
                     }
                                         
                     
-                    // dump(threadlist[i] + '\n');
+                    // Foxtrick.dump(threadlist[i] + '\n');
             	}
             }
-            // dump('>>> ' + threadlist + ' <<< \n');
-            dump( '[' + results.length + ']\n');
+            // Foxtrick.dump('>>> ' + threadlist + ' <<< \n');
+            Foxtrick.dump( '[' + results.length + ']\n');
             if (results.length == 0 ) {
                 var table = doc.getElementById("ft_searchLinks");
                 if (table) {
@@ -170,7 +170,7 @@ var FoxtrickForumSearch = {
         try {
             return;
 			var locpath="C:\\tmp\\sdf";//Foxtrick.selectFileSave(doc.defaultView); 
-			dump(locpath+'\n');
+			Foxtrick.dump(locpath+'\n');
 			if (locpath==null) {return;}
 			var File = Components.classes["@mozilla.org/file/local;1"].
                      createInstance(Components.interfaces.nsILocalFile);

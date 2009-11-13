@@ -52,15 +52,15 @@ var FoxtrickRepositionedPlayers = {
 				var playerbox = Foxtrick.getElementsByClass( "box_lineup", doc );
 
 				var useCode=Foxtrickl10n.isStringAvailableLocal( 'foxtrick.matches.Keeper' );
-				dump ('FoxtrickRepositionedPlayers->locale available: ' + useCode + '\n');
+				Foxtrick.dump ('FoxtrickRepositionedPlayers->locale available: ' + useCode + '\n');
     
                 for (var i = 0; i < playerdivs.length; i++) {
                     var player_id = playerdivs[i].parentNode.id;
                     var player_pos = Foxtrick.trim(playerdivs[i].innerHTML);
 					var player_ypos = playerbox[i]["style"]["top"].replace('px','');
 					var player_xpos = playerbox[i]["style"]["left"].replace('px','');
-					//dump('#' + i + ': ' + player_xpos + ' - ' + player_ypos + '\n');
-                    //dump('#' + i + ': ' + player_pos + ' - ' + player_id + '\n');
+					//Foxtrick.dump('#' + i + ': ' + player_xpos + ' - ' + player_ypos + '\n');
+                    //Foxtrick.dump('#' + i + ': ' + player_pos + ' - ' + player_id + '\n');
                     switch ( player_id ) {
                         case this.PLAYERIDS[0]:
                             if (useCode && player_pos != Foxtrickl10n.getString('foxtrick.matches.Keeper'))

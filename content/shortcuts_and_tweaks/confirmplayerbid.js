@@ -26,7 +26,7 @@ var FoxtrickConfirmPlayerBid = {
                 submitButton.setAttribute("onClick", sOnclick);
             }
         } catch( e) {
-            dump('ConfirmPlayerBid ' + e + '\n'); 
+            Foxtrick.dump('ConfirmPlayerBid ' + e + '\n'); 
         }
 	},
 	
@@ -73,7 +73,7 @@ var FoxtrickConfirmTL = {
                 }
             }
         } catch(e) { 
-            dump('ConfirmTL RUN ' + e + '\n'); 
+            Foxtrick.dump('ConfirmTL RUN ' + e + '\n'); 
         }		
 	},
 	
@@ -91,7 +91,7 @@ var FoxtrickConfirmTL = {
                 }
             }
         } catch(e) { 
-            dump('ConfirmTL CNG' + e + '\n'); 
+            Foxtrick.dump('ConfirmTL CNG' + e + '\n'); 
         }
 	}
 };
@@ -122,7 +122,7 @@ var FoxtrickNTConfirmAddRemove = {
                 }
             }
         } catch(e) { 
-            dump('FoxtrickNTConfirmRemove RUN ' + e + '\n'); 
+            Foxtrick.dump('FoxtrickNTConfirmRemove RUN ' + e + '\n'); 
         }		
 	},
 	
@@ -138,7 +138,7 @@ var FoxtrickNTConfirmAddRemove = {
                 }
             }
         } catch(e) { 
-            dump('FoxtrickNTConfirmRemove CHG ' + e + '\n'); 
+            Foxtrick.dump('FoxtrickNTConfirmRemove CHG ' + e + '\n'); 
         }
 	}
 };

@@ -27,7 +27,7 @@
 		var divs = myForums.getElementsByTagName( "div" );
 		var cname;
 
-        // dump( "found " + links.length + "\n" );
+        // Foxtrick.dump( "found " + links.length + "\n" );
 		var i = 0, div;
 		while ( div = divs[++i] ) {
 			cname = div.getAttribute( "class" ); 
@@ -39,7 +39,7 @@
 				var title = div.childNodes[0].getAttribute( "title" ).replace(inner,'');
 				//var title = div.childNodes[0].getAttribute( "title" );
 				var poster = title;//.substring(title.lastIndexOf(' '));
-				//dump (title+' '+poster+'\n');
+				//Foxtrick.dump (title+' '+poster+'\n');
 				
 				
 				if ( poster.match(/ HT-\S+/))		//old:  (/.* HT-[^\s]*$/i ) )
@@ -47,11 +47,11 @@
 					var curr_class = div.getAttribute( "class" );
 					if (!curr_class) curr_class='';
 					div.setAttribute( "class", curr_class + " HT_thread" );
-//					dump( "matched: " + title + " : "+curr_class+ "\n" );				
+//					Foxtrick.dump( "matched: " + title + " : "+curr_class+ "\n" );				
 				}
 			}	
 		}
-	} catch(e) {dump('HTThreadMarker: '+e+'\n');}
+	} catch(e) {Foxtrick.dump('HTThreadMarker: '+e+'\n');}
 	},
 
     change : function( page, doc ) {
@@ -65,7 +65,7 @@
 			var links = myForums.getElementsByTagName( "table" )[0];
 			var cname;
 
-                // dump( "found " + links.length + "\n" );
+                // Foxtrick.dump( "found " + links.length + "\n" );
 			for ( var i = 0; i < links.rows.length; ++i )
 			{
 				var title = links.rows[i].cells[1].childNodes[1].getElementsByTagName( "a" )[0].title;
@@ -73,7 +73,7 @@
 				{
 					var curr_class = links.rows[i].cells[1].childNodes[1].getAttribute( "class" );
 					links.rows[i].cells[1].childNodes[1].setAttribute( "class", curr_class + " HT_thread" );
-					//dump( "matched: " + title + " : "+curr_class+ "\n" );
+					//Foxtrick.dump( "matched: " + title + " : "+curr_class+ "\n" );
 				}
 			}
 		}

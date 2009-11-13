@@ -103,6 +103,6 @@ FoxtrickCurrencyConverter = {
 			}
 		}
     }
-    catch(e) {dump('    >' + e + '\n');} 
+    catch(e) {Foxtrick.dump('    >' + e + '\n');} 
     }  
 };

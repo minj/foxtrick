@@ -73,7 +73,7 @@ var FoxtrickSeniorTeamShortCuts = {
 						
 				
 			}
-			catch (e) {dump("SeniorTeamShortCuts->"+e);}
+			catch (e) {Foxtrick.dump("SeniorTeamShortCuts->"+e);}
 		
 	},
 	

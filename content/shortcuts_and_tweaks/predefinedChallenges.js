@@ -29,7 +29,7 @@ var FoxTrickPredefinedChallenges = {
             sel_1.addEventListener('change',this.saveChallenge,false);
             sel_2.addEventListener('change',this.saveChallenge,false);
         } catch(e) {
-            dump(this.MODULE_NAME + ': ' + e + '\n');
+            Foxtrick.dump(this.MODULE_NAME + ': ' + e + '\n');
         }        
         
 	},

@@ -49,7 +49,7 @@ var FoxtrickTables = {
                     if (result < 0) newCell.innerHTML = '<span style="color:red">' + result + '</span>';
                 }
             }        
-        } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
+        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ':' + e + '\n');}
     },
     
     change : function( page, doc ) {
@@ -147,7 +147,7 @@ var FoxtrickMatchTables = {
                     }
                 } else section ++;
             }        
-        } catch(e) {dump(this.MODULE_NAME + ':' + e + '\n');}
+        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ':' + e + '\n');}
     },
     
     change : function( page, doc ) {

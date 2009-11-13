@@ -41,7 +41,7 @@ var FoxtrickAddLeaveConfButton = {
                     break;
                 }
                 catch(e) {
-                    dump( ' => AddLeaveConfButton forum' + e + '\n');
+                    Foxtrick.dump( ' => AddLeaveConfButton forum' + e + '\n');
                 }
                 
                 
@@ -51,7 +51,7 @@ var FoxtrickAddLeaveConfButton = {
 				var confPos = sUrl.search(/LeaveConf=/i);
 				if (confPos > -1){
 					var confName =sUrl.substr(confPos+10).replace(/\%20/g," ");
-					//dump('confName: ' + confName + '\n');
+					//Foxtrick.dump('confName: ' + confName + '\n');
 					var ul = doc.getElementById("ctl00_CPMain_rlFolders__rbl");
 					var liElems = ul.getElementsByTagName("li");
 					for(var i=0; i < liElems.length; i++) {
@@ -102,7 +102,7 @@ var FoxtrickAddLeaveConfButton = {
                     }
                 } 
                 catch(e) {
-                    dump(' => AddLeaveConfButton CHG: ' + e + '\n');
+                    Foxtrick.dump(' => AddLeaveConfButton CHG: ' + e + '\n');
                 }
 				break;
 			case 'forumSettings':
@@ -117,7 +117,7 @@ var FoxtrickAddLeaveConfButton = {
 		if(vPos > -1) {
 			vValue = sUrl.substr(vPos+2,1);
 		}
-        // dump (' => vValue: ' + vValue + '\n');
+        // Foxtrick.dump (' => vValue: ' + vValue + '\n');
 		return vValue;
 	},
 	
@@ -129,15 +129,15 @@ var FoxtrickAddLeaveConfButton = {
 			if( a != null ) {
 				link = a[a.length-1];
 			}
-			//dump('=> link: ' + link + '\n');
+			//Foxtrick.dump('=> link: ' + link + '\n');
 			if (link == null || link.lastChild == null || link.lastChild.data == null || link.innerHTML == null) return;
             
             var confName = Foxtrick.trim( link.lastChild.data );
-            //dump('=> confName: ' + confName +'\n');
+            //Foxtrick.dump('=> confName: ' + confName +'\n');
             
             var leaveConf = doc.createElement("div");
             leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
-            // dump('=>counter: ' + foldersCounter +'\n');
+            // Foxtrick.dump('=>counter: ' + foldersCounter +'\n');
             leaveConf.setAttribute("class","ft_actionicon foxtrickRemove float_right");
             leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
             leaveConf.setAttribute("onClick","if (confirm( \"" +	Foxtrickl10n.getString(
@@ -145,11 +145,11 @@ var FoxtrickAddLeaveConfButton = {
                 + "Preferences/ForumSettings.aspx?LeaveConf=" + confName
                 + "\",\"_self\");} else return false;");
             var markAsReadButton = folderHeader.childNodes[0];
-			// dump('=>markAsReadButton: ' + markAsReadButton+'\n');
+			// Foxtrick.dump('=>markAsReadButton: ' + markAsReadButton+'\n');
             folderHeader.insertBefore( leaveConf, markAsReadButton);
         } 
         catch(e) {
-            dump( ' => AddLeaveConfButton addButton ' + e + '\n');
+            Foxtrick.dump( ' => AddLeaveConfButton addButton ' + e + '\n');
         }
 	}
 };

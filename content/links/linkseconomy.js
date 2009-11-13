@@ -34,7 +34,7 @@ var FoxtrickLinksEconomy = {
 				Cash=Foxtrick.trimnum(content.substring(0,last1));
         		var last2=content.lastIndexOf(tmp.innerHTML);
 				newCash=Foxtrick.trimnum(content.substring(last1,last2));
-                dump(Cash + ' - ' + newCash + '\n');
+                Foxtrick.dump(Cash + ' - ' + newCash + '\n');
         		break;
 			}
 		}
