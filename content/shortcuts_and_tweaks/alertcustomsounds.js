@@ -24,14 +24,14 @@ var FoxtrickAlertCustomSounds = {
 											"chrome://foxtrick/content/resources/sounds/DingLing.wav",  // MailToMe
 											"chrome://foxtrick/content/resources/sounds/DingLing.wav"  // MyHTMessages
 											),        
-	urls: new Array("/MyHattrick/$",
-					"/Club/Manager/?teamId=",
-					"/Forum/",
-					"/Players/",
-					"/Challenges/",
-					"/Club/Manager/Guestbook.aspx?teamid=",
-					"/Inbox/",
-					"/Myhattrick/?actionType"
+	urls: new Array(/\/MyHattrick\/$/gi,
+					/\/Club\/Manager\/\?teamId=/gi,
+					/\/Forum\//gi,
+					/\/Players\//gi,
+					/\/Challenges\//gi,
+					/\/Club\/Manager\/Guestbook.aspx\?teamid=/gi,
+					/\/Inbox\//gi,
+					/\/Myhattrick\/\?actionType/gi
 					),
 											
     init : function() {

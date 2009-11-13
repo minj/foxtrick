@@ -14,14 +14,14 @@ var FoxtrickAlertCustomOff = {
 	LATEST_CHANGE:"Option to custom turn off selected alert sliders",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
-	urls: new Array("/MyHattrick/$",
-					"/Club/Manager/?teamId=",
-					"/Forum/",
-					"/Players/",
-					"/Challenges/",
-					"/Club/Manager/Guestbook.aspx?teamid=",
-					"/Inbox/",
-					"/Myhattrick/?actionType"
+	urls: new Array(/\/MyHattrick\/$/gi,
+					/\/Club\/Manager\/\?teamId=/gi,
+					/\/Forum\//gi,
+					/\/Players\//gi,
+					/\/Challenges\//gi,
+					/\/Club\/Manager\/Guestbook.aspx\?teamid=/gi,
+					/\/Inbox\//gi,
+					/\/Myhattrick\/\?actionType/gi
 					),
 											
     init : function() {
