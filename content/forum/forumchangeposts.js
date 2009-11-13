@@ -417,12 +417,14 @@ var FoxtrickForumChangePosts = {
                     }
 
                     if (do_single_header && this.bDetailedHeader && header_right_inner) {
-                        var bookmark = header_right_inner.getElementsByTagName('a')[0];
-                        if (bookmark) {
-                            bookmark = bookmark.parentNode.removeChild(bookmark);
-                            header_right.insertBefore(bookmark,header_right_inner);
-                            header_right.removeChild(header_right_inner);
-                         }
+                        try{
+                            var bookmark = header_right_inner.getElementsByTagName('a')[0];
+                            if (bookmark) {
+                                bookmark = bookmark.parentNode.removeChild(bookmark);
+                                header_right.insertBefore(bookmark,header_right_inner);
+                                header_right.removeChild(header_right_inner);
+                             }
+                        }catch(e_bookmark) {Foxtrick.dump('Error SLH_Forum_Bookmark: ' + e_bookmark + '\n');}
                     }
 
                     if (do_single_header && !do_single_header_allways) {
