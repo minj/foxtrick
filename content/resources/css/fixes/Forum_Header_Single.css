@@ -29,4 +29,12 @@ div[class="cfHeader doubleLine"] p {display:inline;}
 div.cfHeader>div[class="float_right right"] 
 {padding: 0px 2px 1px; margin-right:-5px;}
 
+/* broken design workaround*/
+div.mainConf div.cfInnerWrapper 
+{margin-top:18px;}
+
+div.cfHeader>div[class="float_right right"] 
+{background: #849D84;}
+
+
 }

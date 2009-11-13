@@ -1,10 +1,6 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 
-/* broken dsign workaround*/
-div.mainConf div.cfInnerWrapper 
-{padding-top:18px;}
-
 div.mainConf div.cfMessage, div.mainConf div.cfUser 
 {padding-top:0px !important;}
 
@@ -16,9 +12,5 @@ div.mainConf div.cfUser  div.faceCard
 
 div.mainConf div.cfUser div.cfUserInfo 
 { padding-top:5px;}
-
-div.cfHeader>div[class="float_right right"] 
-{background: #849D84;}
-
 
 }
