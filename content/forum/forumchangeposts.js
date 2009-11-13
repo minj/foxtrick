@@ -18,7 +18,7 @@ var FoxtrickForumChangePosts = {
 	run : function( page, doc ) {
 	try{
 		//if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;
-
+		Foxtrick.dump('run FoxtrickForumChangePosts\n')
 
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID);
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon");
@@ -126,7 +126,7 @@ var FoxtrickForumChangePosts = {
 
                     var header_left = null;
                     var header_right = null;
-                    var header_right_inner = null;
+                    //var header_right_inner = null;
 
                     var k = 0, header_part;
                     while ( header_part = header.childNodes[k++]) {
@@ -134,7 +134,7 @@ var FoxtrickForumChangePosts = {
                         if (header_part.className.search(/float_right/)!=-1 )
                             if (header_right==null)header_right = header_part;
                     }
-                    header_right_inner=header_right.getElementsByTagName('div')[0];
+                    //header_right_inner=header_right.getElementsByTagName('div')[0];
 
                     /* add someting to test removal later
                     var forumprefs = doc.createElement('a');
@@ -374,9 +374,10 @@ var FoxtrickForumChangePosts = {
                             }
                     }
 					
-                    if (do_hide_old_time) { 
-						if (header_right.innerHTML.search(/ \d{1,4}\.\d{1,2}\.\d{1,4} \d+:\d+/gi)!=-1) 
-							header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}\.\d{1,2}\.\d{1,4})( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+                    if (do_hide_old_time) {  
+						//Foxtrick.dump(header_right.innerHTML+'\n'+header_right.innerHTML.search(/ \d{1,4}\.\d{1,2}\.\d{1,4}\.? \d+:\d+/gi)+'\n');
+						if (header_right.innerHTML.search(/ \d{1,4}\.\d{1,2}\.\d{1,4}\.? \d+:\d+/gi)!=-1) 
+							header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}\.\d{1,2}\.\d{1,4}\.?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
 					}
 										
 					if (do_short_postid && this.bDetailedHeader) {  
@@ -416,16 +417,17 @@ var FoxtrickForumChangePosts = {
                         }
                     }
 
-                    if (do_single_header && this.bDetailedHeader && header_right_inner) {
+                    /*not needed anymore?
+					if (do_single_header && this.bDetailedHeader && header_right) {
                         try{
-                            var bookmark = header_right_inner.getElementsByTagName('a')[0];
+                            var bookmark = header_right.getElementsByTagName('a')[0];
                             if (bookmark) {
                                 bookmark = bookmark.parentNode.removeChild(bookmark);
-                                header_right.insertBefore(bookmark,header_right_inner);
+                                header_right.insertBefore(bookmark,header_right);
                                 header_right.removeChild(header_right_inner);
                              }
                         }catch(e_bookmark) {Foxtrick.dump('Error SLH_Forum_Bookmark: ' + e_bookmark + '\n');}
-                    }
+                    }*/
 
                     if (do_single_header && !do_single_header_allways) {
                       if (header.className == "cfHeader doubleLine") {	
