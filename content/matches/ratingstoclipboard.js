@@ -53,7 +53,7 @@ var FoxtrickCopyRatingsToClipboard = {
 			// team home	
             var messageLink = doc.createElement("a");
             messageLink.className = "inner";
-            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
             messageLink.setAttribute("style","cursor: pointer;");
             messageLink.setAttribute("team1","true");
             messageLink.setAttribute("team2","false");
@@ -62,8 +62,8 @@ var FoxtrickCopyRatingsToClipboard = {
             var img = doc.createElement("img");
             img.setAttribute("style","padding:0px 5px 0px 0px;");
             img.className = "actionIcon";
-            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
-            img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
+            img.src = "chrome://foxtrick/content/resources/img/copyratingshome.png";
             messageLink.appendChild(img);
                     
             parentDiv.appendChild(messageLink);
@@ -75,7 +75,7 @@ var FoxtrickCopyRatingsToClipboard = {
 			// team away
 			var messageLink = doc.createElement("a");
             messageLink.className = "inner";
-            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.away" );
             messageLink.setAttribute("style","cursor: pointer;");
             messageLink.setAttribute("team1","false");
             messageLink.setAttribute("team2","true");
@@ -85,7 +85,7 @@ var FoxtrickCopyRatingsToClipboard = {
             img.setAttribute("style","padding:0px 5px 0px 0px;");
             img.className = "actionIcon";
             img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
-            img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+            img.src = "chrome://foxtrick/content/resources/img/copyratingsaway.png";
             messageLink.appendChild(img);
                     
             parentDiv.appendChild(messageLink);
