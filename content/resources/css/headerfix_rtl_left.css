@@ -2,7 +2,7 @@
 /* HeaderFix by Catalyst2950 */
 
 /* fix left submenu */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #content .subMenu {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #content .subMenu {
 position: fixed;
 /* getting borders right if menu overflows content */
 background: white;
