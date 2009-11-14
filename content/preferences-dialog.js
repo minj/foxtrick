@@ -717,7 +717,8 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);
         FoxtrickPrefs.setBool("SavePrefs_Notes", document.getElementById("savenotesid").checked);
 
-
+        FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
+ 
 		// reinitialize
         FoxtrickMain.init();
 
