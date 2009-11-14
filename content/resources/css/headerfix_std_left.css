@@ -2,18 +2,18 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 /* fix left submenu */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #content .subMenu {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #content .subMenu {
 position: fixed !important;
 }
 
 /* compensate for fixed left submenu */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #content #mainWrapper {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #content #mainWrapper {
 margin-left: 175px ;
 /* min-height: 620px !important; /* temporary height hack before sticky footer */
 }
 
 /* compensate for fixed left submenu Forum */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #content #mainWrapper>div[class="main mainConf"] {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #content #mainWrapper>div[class="main mainConf"] {
 float:left!important; 
 margin-left: -175px;
 width:655px !important;

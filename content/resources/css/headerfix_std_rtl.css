@@ -2,7 +2,7 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 /* Fix the header on screen */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #header {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #header {
 position: fixed !important;
 top: 0px; 
 width: 949px;
@@ -10,7 +10,7 @@ z-index: 9999;
 }
 
 /* compensate for fixed header, move menu from the edge */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"])  #menu {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"])  #menu {
 width: 953px !important;
 margin-right:0px !important;
 padding:0px 0px 0px 4px !important;
@@ -19,17 +19,17 @@ padding:0px 0px 0px 4px !important;
 }
 
 /* Logout botton +radius */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"])  #menu .logout {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"])  #menu .logout {
 margin-left:11px !important; 
 }
 
 /* add whitespace below header */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"])  #menu {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"])  #menu {
 margin-bottom: 6px !important;
 }
 
 /* compensate for fixed header */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"])  #content {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"])  #content {
 padding-top: 100px !important;
 }
 
