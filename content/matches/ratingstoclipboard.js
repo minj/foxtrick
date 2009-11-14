@@ -28,14 +28,61 @@ var FoxtrickCopyRatingsToClipboard = {
             var parentDiv = doc.createElement("div");
             parentDiv.id = "foxtrick_addactionsbox_parentDiv";
             
+            // both
+			var messageLink = doc.createElement("a");
+            messageLink.className = "inner";
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            messageLink.setAttribute("style","cursor: pointer;");
+            messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","true");
+            messageLink.addEventListener("click", this.createRatings, false)
+            
+            var img = doc.createElement("img");
+            img.setAttribute("style","padding:0px 5px 0px 0px;");
+            img.className = "actionIcon";
+            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+            messageLink.appendChild(img);
+                    
+            parentDiv.appendChild(messageLink);
+            
+            var newBoxId = "foxtrick_actions_box";
+            Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+                "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+				
+			// team home	
             var messageLink = doc.createElement("a");
             messageLink.className = "inner";
             messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
             messageLink.setAttribute("style","cursor: pointer;");
+            messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","false");
             messageLink.addEventListener("click", this.createRatings, false)
             
             var img = doc.createElement("img");
-            img.style.padding = "0px 5px 0px 0px;";
+            img.setAttribute("style","padding:0px 5px 0px 0px;");
+            img.className = "actionIcon";
+            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+            messageLink.appendChild(img);
+                    
+            parentDiv.appendChild(messageLink);
+            
+            var newBoxId = "foxtrick_actions_box";
+            Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+                "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+            
+			// team away
+			var messageLink = doc.createElement("a");
+            messageLink.className = "inner";
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            messageLink.setAttribute("style","cursor: pointer;");
+            messageLink.setAttribute("team1","false");
+            messageLink.setAttribute("team2","true");
+            messageLink.addEventListener("click", this.createRatings, false)
+            
+            var img = doc.createElement("img");
+            img.setAttribute("style","padding:0px 5px 0px 0px;");
             img.className = "actionIcon";
             img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
             img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
@@ -57,6 +104,10 @@ var FoxtrickCopyRatingsToClipboard = {
 	},
 	
 	createRatings : function( ev ) {
+	try {
+		var team1=ev.target.parentNode.getAttribute('team1')=='true';
+		var team2=ev.target.parentNode.getAttribute('team2')=='true';
+		
         var _d = Foxtrickl10n.getString("foxtrick.matchdetail.defence" );
         var _m = Foxtrickl10n.getString("foxtrick.matchdetail.midfield" );
         var _a = Foxtrickl10n.getString("foxtrick.matchdetail.attack" );
@@ -77,7 +128,12 @@ var FoxtrickCopyRatingsToClipboard = {
         
         
         var ad = '\n[table]\n';
-        var table = doc.getElementsByTagName('table')[0];
+        var table = doc.getElementsByTagName('table')[0].cloneNode(true);
+		for (var row=0; row<table.rows.length; ++row) {
+				if(!team1 && table.rows[row].cells.length>=2) table.rows[row].cells[1].innerHTML='';
+				if(!team2 && table.rows[row].cells.length>=3) table.rows[row].cells[2].innerHTML='';
+		}
+		
         var youth = '';
         //if (Foxtrick.strrpos(table.rows[0].cells[1].innerHTML, 'isYouth=True')) youth = 'youth';
         if (matchlink.href.search('isYouth=True')!=-1) youth = 'youth';
@@ -96,7 +152,8 @@ var FoxtrickCopyRatingsToClipboard = {
                     if (table.rows[row].cells[1]) {
                         if (row == 0) {
 							var teamlink = table.rows[row].cells[1].getElementsByTagName('a')[0];
-                            ad += teamlink.innerHTML + ' - ' + gameresult_h + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
+							if (teamlink)
+								ad += teamlink.innerHTML + ((team2==true)?(' - ' + gameresult_h):'') + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
                         } else {
                             ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
@@ -105,7 +162,8 @@ var FoxtrickCopyRatingsToClipboard = {
                     if (table.rows[row].cells[2]) {
                         if (row == 0) {
                         	var teamlink = table.rows[row].cells[2].getElementsByTagName('a')[0];
-                            ad += teamlink.innerHTML + ' - ' + gameresult_a + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
+                            if (teamlink)
+								ad += teamlink.innerHTML + ((team1==true)?(' - ' + gameresult_h):'') + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
                         } else {
                             ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
@@ -117,6 +175,7 @@ var FoxtrickCopyRatingsToClipboard = {
             }
         }
         ad += '\n[/table]\n';        
+	} catch(e) {Foxtrick.dump('ratingscopied error: '+e+'\n');}
 		try {
 
 			if (FoxtrickPrefs.getBool( "copyfeedback" )) 
