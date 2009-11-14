@@ -238,7 +238,7 @@ FoxtrickMatchPlayerColouring = {
 	} catch(e) {Foxtrick.dump('PlayerColoring error: '+e+'\n');}
     },
 
-    change : function(url) {
+    change : function(page, doc ) {
         
     },        
     

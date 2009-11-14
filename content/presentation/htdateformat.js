@@ -59,7 +59,8 @@ FoxtrickHTDateFormat = {
                 break;
                 
             case 'teamPageGeneral' :
-                Foxtrick.modifyDates ( mainBody, false, 'span', '&nbsp;', '',weekdayoffset );
+				if (doc.location.href.search(/Club\/Matches\/Live.aspx/i)!=-1) return;
+				Foxtrick.modifyDates ( mainBody, false, 'span', '&nbsp;', '',weekdayoffset );
                 Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
@@ -91,14 +92,15 @@ FoxtrickHTDateFormat = {
         }
     },
 
-	change : function( page, doc ) {
-        if (doc.getElementById('mainBody').innerHTML.search('ft_HTDateFormat') > -1 ) return;
+	change : function(page, doc) {
+    try{
+		if (doc.getElementById('mainBody').innerHTML.search('ft_HTDateFormat') > -1 ) return;
         else {
             // Foxtrick.dump('HTDateformat CHG RUN\n');
             this.run(page,doc);
         }
-        
-	},       
+      } catch(e){Foxtrick.dump('HTDateformat CHG: '+e+'\n');}  
+	}     
 };
 
 
