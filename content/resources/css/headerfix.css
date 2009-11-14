@@ -2,7 +2,7 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 /* Fix the header on screen */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #header {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #header {
 position: fixed !important;
 top: 0px; 
 margin-left: -11px;
@@ -18,23 +18,23 @@ border-width:  0 1px 0 1px;
 
 
 /* compensate for fixed header, move menu from the edge */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #menu {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #menu {
 width: 765px !important;
 margin-left:10px !important;
 }
 
 /* add whitespace below header */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #menu {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #menu {
 margin-bottom: 6px !important;
 }
 
 /* compensate for fixed header */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #content {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) #content {
 padding-top: 100px !important;
 }
 
 /* compensate for fixed left submenu */
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) #content #mainWrapper {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Live.aspx"]) #content #mainWrapper {
 margin-left: 135px;
 min-height: 400px !important; /* temporary height hack before sticky footer */
 }
@@ -43,7 +43,7 @@ min-height: 400px !important; /* temporary height hack before sticky footer */
 min-height:0px !important ; 
 }
 
-#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]) div#shortcuts {
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]) div#shortcuts {
 padding-right: 10px;
 }
 
