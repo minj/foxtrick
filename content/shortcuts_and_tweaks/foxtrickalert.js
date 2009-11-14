@@ -107,7 +107,7 @@ var FoxtrickAlert = {
 		}
 		else {
 			var doc = FoxtrickAlert.foxtrick_showAlert.document;
-			var tickerdiv=doc.getElementById('ticker').getElementsByTagName('strong');
+			var tickerdiv=doc.getElementById('ticker').getElementsByTagName('div');
 		}
             var message="";
 			var href="";
@@ -116,14 +116,14 @@ var FoxtrickAlert = {
 			
             for (var i=0; i<tickerdiv.length;i++)
             {   
-				var tickelem=tickerdiv[i].getElementsByTagName('a')[0];
+				var tickelem=tickerdiv[i].firstChild.firstChild;
                 if (tickelem.nodeType!=tickelem.TEXT_NODE)
                 {  
                     //there is the strong tag
-					elemText[i]=tickelem.innerHTML;
-                    message=tickelem.innerHTML;
-					href=tickelem.href; 
-					//Foxtrick.dump(message+'\t'+href+'\n');
+					elemText[i]=tickelem.firstChild.nodeValue;
+                    message=tickelem.firstChild.nodeValue;
+					href=tickerdiv[i].getElementsByTagName('a')[0].href; 
+					Foxtrick.dump(message+'\t'+href+'\n');
 					var isequal = false;
 					for (var j=0;j<=3;j++)
 					{
@@ -139,7 +139,7 @@ var FoxtrickAlert = {
 						}						
 					}
                 } else {
-					//elemText[i]=tickelem.nodeValue;
+					elemText[i]=tickelem.nodeValue;
 				}
             } 				
             for (var i=0; i<tickerdiv.length;i++)
@@ -222,12 +222,10 @@ var FoxtrickAlert = {
 					for (var i=0; i<FoxtrickAlertCustomSounds.OPTIONS.length; ++i) {
 						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomSounds, FoxtrickAlertCustomSounds.OPTIONS[i])) {
 							var url = FoxtrickAlertCustomSounds.urls[i];
-							//Foxtrick.dump(href.search(url)+'\n');
 							if (href.search(url) != -1) {
 								var sound = FoxtrickPrefs.getString("module." + FoxtrickAlertCustomSounds.MODULE_NAME + "." + FoxtrickAlertCustomSounds.OPTIONS[i]+"_text"); 
 								Foxtrick.playSound(sound);
 								play_custom=true;
-								//Foxtrick.dump(sound+'\n');
 								break;
 							}
 						}
