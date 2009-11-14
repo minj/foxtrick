@@ -154,6 +154,7 @@ var FoxtrickMain = {
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 		var begin = new Date();
 		FoxtrickMain.change( doc );
+		//Foxtrick.dump('onPageChange\n');
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
@@ -161,17 +162,6 @@ var FoxtrickMain = {
 		// re-add event listener
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
     },
-
-	onTickerChange : function( ev ) {
-		var doc = ev.originalTarget.ownerDocument;
-		if ( doc.nodeName != "#document" )
-            return;
-		var ticker = doc.getElementById("ticker");
-		ticker.removeEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
-		Foxtrick.dump('onTickerChange\n');
-
-		ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
-	},
 
     onPageLoad : function( ev ) {
 		var doc = ev.originalTarget;
@@ -196,7 +186,7 @@ var FoxtrickMain = {
 			}
 			var ticker = doc.getElementById("ticker");
 			if( ticker ) {
-				//ticker.addEventListener("DOMSubtreeModified", FoxtrickMain.onTickerChange, true );
+				//ticker.addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNews, true );
 			}
 	    }
     },

@@ -47,7 +47,7 @@ var FoxtrickAlert = {
             // add watch to ticker
 			var ticker = doc.getElementById('ticker');
 			if (ticker) {
-				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNews, false, true ) ;          
+				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNews, true ) ;          
 			}
 
 			} catch (e) {
@@ -101,6 +101,7 @@ var FoxtrickAlert = {
 	
     checkNews : function(evt) {
        try {   
+	    Foxtrick.dump('checkNews\n');
 		if (evt) {
 			var tickerdiv=evt.originalTarget;
 			tickerdiv=tickerdiv.getElementsByTagName('div');
