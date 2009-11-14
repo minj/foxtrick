@@ -201,7 +201,7 @@ FoxtrickMatchPlayerColouring = {
                 if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
 					links[i].setAttribute("style", stlTeamA + 'padding:0px 2px;'); 
 					if (iseventsbox) {
-						links[i].parentNode.previousSibling.setAttribute("style", 'text-align:left;'); 
+						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:left;'); 
 						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
 						//		Foxtrick.dump(links[i].parentNode.parentNode.firstChild.innerHTML+'\n');
 					}
@@ -209,7 +209,7 @@ FoxtrickMatchPlayerColouring = {
 				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
 					links[i].setAttribute("style", stlTeamB + 'padding:0px 2px;'); 
 					if (iseventsbox) {
-						links[i].parentNode.previousSibling.setAttribute("style", 'text-align:right;'); 					
+						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:right;'); 					
 						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
 					}
                  }    
