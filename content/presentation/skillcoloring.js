@@ -30,7 +30,7 @@ var FoxtrickSkillColoring = {
 		if  ( Foxtrick.isModuleFeatureEnabled( this, "skill_number" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) 
 					this.OPTIONS_CSS[2] = "chrome://foxtrick/content/resources/skillcolors/skill-number-personal.css";
 		if  ( Foxtrick.isModuleFeatureEnabled( this, "skill_number_translated" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) 
-                    this.OPTIONS_CSS[3] = "chrome://foxtrick/content/resources/skillcolors/skill-number-translated.css";			            
+                    this.OPTIONS_CSS[3] = "chrome://foxtrick/content/resources/skillcolors/skill-number-translated-personal.css";			            
     },
 
     run : function( page, doc ) {
