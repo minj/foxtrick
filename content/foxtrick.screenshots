@@ -20,6 +20,7 @@ SkinPlugin=http://foxtrick.foundationhorizont.org/SkinPlugin.html
 
 # Shortcuts and Add-ons
 AddManagerButtons=http://foxtrick.foundationhorizont.org/AddManagerButtons.html
+AlertCustomSounds=http://foxtrick.foundationhorizont.org/AlertSounds.html
 ConfirmPlayerBid=http://foxtrick.foundationhorizont.org/ConfirmPlayerBid.html
 ConfirmTL=http://foxtrick.foundationhorizont.org/ConfirmTL.html
 ContextMenueCopyId=http://foxtrick.foundationhorizont.org/ContextMenueCopyId.html
