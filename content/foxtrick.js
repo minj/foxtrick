@@ -1660,10 +1660,10 @@ Foxtrick.var_dump = function(arr,level) {
 			var value = arr[item];
 
 			if(typeof(value) == 'object') { //If it is an array,
-				dumped_text += level_padding + "'" + item + "' ...\n";
+				dumped_text += level_padding + "'" + item + "' ...<br>\n";
 				dumped_text += Foxtrick.var_dump(value,level+1);
 			} else {
-				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"<br>\n";
 			}
 		}
 	} else { //Stings/Chars/Numbers etc.
@@ -1680,7 +1680,7 @@ Foxtrick.dump_flush = function(doc) {
             if (div == null) {
                 var div = doc.createElement('div');
                 div.setAttribute('style', 'border:1px solid#ABCDEF');
-                div.innerHTML = '<h1 style="margin: 6px 0 15px 6px">FoxTrick dump</h1>' + Foxtrick.dump_HTML;
+                div.innerHTML = '<h1 style="margin: 6px 0 15px 6px">FoxTrick dump</h1><pre style="font-size:12px; white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -o-pre-wrap;">' + Foxtrick.dump_HTML + '</pre>';
                 div.id = 'ft_dump';
                 doc.getElementById('page').appendChild(div);
             }
@@ -1688,6 +1688,6 @@ Foxtrick.dump_flush = function(doc) {
         } catch(e) {dump(e);}
 }
 Foxtrick.dump = function(cnt) {
-    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '<br>';
+    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
     dump(cnt.replace(/\<\w*\>|\<\/\w*\>/gi,''));
 }

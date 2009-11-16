@@ -128,11 +128,11 @@ FoxtrickMatchReportFormat = {
 
         var div_inner = Foxtrick.getElementsByClass('', div)[3];
         if (!supporter) div_inner = Foxtrick.getElementsByClass('', div)[2];
-        
         // Foxtrick.dump(' >'+ div_inner.innerHTML + ' < \n');
         var start = div_inner.innerHTML.indexOf('<br><br>');
         var end = div_inner.innerHTML.indexOf('<div class="separator">');
 
+        
         var part = new Array('','','');
         part[0] = div_inner.innerHTML.substr(0, start);
 
@@ -168,11 +168,15 @@ FoxtrickMatchReportFormat = {
             "<br>\n"
             // "<div>$1</div>"
             );
+        
+        part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\./g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>.");
         part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
         part[0] = part[0].replace(/(.{1,2})\-(.{1,2})\-(.{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
-        
+        //Foxtrick.dump(Foxtrick.var_dump(part[1]));
+        part[1] = part[1].replace(/(\d{1,2})\!\ Gäste\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
         part[1] = part[1].replace(/(\d{1,2})\ a\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
         part[1] = part[1].replace(/(\d{1,2})\ [\u043F][\u0440][\u0435][\u043C][\u0430]\ (\d{1,2})/g,"$1 - $2"); //SERBIAN LA's work...
+        //Foxtrick.dump(Foxtrick.var_dump(part[1]));
         for (var i = 0; i<search.length; i++) {
             part[1] = part[1].replace(search[i],replace[i]);
         }
@@ -324,6 +328,7 @@ FoxtrickMatchReportFormat = {
                 }
         } catch(tableerror) {Foxtrick.dump(tableerror);}
         //Foxtrick.dump(scoreboard.innerHTML);
+        Foxtrick.dump('<b>BEGIN GOALs</b>\n');
         for (var i=0; i < divs.length; i++) {
             // Foxtrick.dump(i + ': ' + divs[i].textContent + '\n\n');
             
@@ -331,12 +336,12 @@ FoxtrickMatchReportFormat = {
             var toreplace = /\ \-\ /g;
             text = text.replace(/(\d{1,2})\ -\ (\d{1,2})/g,"$1-$2");
             //text = text.replace(toreplace, '-');
-            //Foxtrick.dump(i + ': ' + text + '\n');
+            //Foxtrick.dump( i + ': ' + text + '\n');
             var score = reg.exec(text);
             
             if (divs[i].innerHTML.search(team1) > -1) start_g = 6; else start_g = 7;
             if (score && i > start_g) {
-                Foxtrick.dump( i + '[' + score + '] [' + standing + ']\n');
+                Foxtrick.dump('- detected @' + divs[i].id + ' [' + score + '] old: [' + standing + ']\n');
                 if (score[1] > standing[0]) {
                     standing[0]++;
                     divs[i].style.border = borders_goal+ 'px solid ' + border_color_hm;
@@ -345,9 +350,9 @@ FoxtrickMatchReportFormat = {
 
                     var scorerep = standing[0] + '-' + standing[1];
                     scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer"><b>'+standing[0]+'</b>&nbsp;-&nbsp;'+standing[1]+'</span>');
-
+                    Foxtrick.dump('  GOAL for TEAM 1\n');
                 }
-                if (score[2] > standing[1]) {
+                else if (score[2] > standing[1]) {
                     standing[1]++;
                     divs[i].style.border = borders_goal+ 'px solid ' + border_color_aw;
                     // Foxtrick.dump (borders_goal+ 'px solid ' + border_color_aw  + ';\n');
@@ -355,10 +360,13 @@ FoxtrickMatchReportFormat = {
                     
                     var scorerep = standing[0] + '-' + standing[1];
                     scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer">'+standing[0]+'&nbsp;-&nbsp;<b>'+standing[1]+'</b></span>');
+                    Foxtrick.dump('  GOAL for TEAM 2\n');
                 }
+                else Foxtrick.dump('  NO GOAL\n');
             }
 
         }
+        Foxtrick.dump('<b>END OF GOALs</b>\n');
         var headder = doc.getElementsByTagName('h1')[0];
         headder.setAttribute( 'style', 'color:black');
         headder.innerHTML = headder.innerHTML.replace(team1, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_hm +'">' + team1 + '</span>');
