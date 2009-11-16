@@ -144,3 +144,4 @@ pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.e
 pref( "extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false );
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.CopySkillTable.enabled", true );
 pref( "extensions.foxtrick.prefs.module.HighlightBotTeams.ChooseColorHighlight.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", false);

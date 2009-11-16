@@ -12,7 +12,7 @@
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","ads","newsletter","forumModWritePost"),
     DEFAULT_ENABLED : true,
-    OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
+    OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Added to PAs, ticket system, guestbook, newsletter",
@@ -221,7 +221,18 @@
                 newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_spoiler.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.spoiler");
                 toolbar.insertBefore( newimage,target );
-            }  
+            }
+
+            if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "pre")) {
+                var newimage = doc.createElement( "img" );
+                newimage.src = "/Img/Icons/transparent.gif";
+                newimage.addEventListener( "click", this._pre , false );
+                newimage.setAttribute( "class", "ft_pre");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_pre.png') !important;");
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.pre");
+                toolbar.insertBefore( newimage,target );
+            }
+            
             
         }
 
@@ -404,6 +415,15 @@
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert'), "[spoiler]yyy[/spoiler]", null, "yyy", null,FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft3'), 1800)
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtMessage') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtMessage'), "[spoiler]yyy[/spoiler]", null, "yyy", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
         if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody'), "[spoiler]yyy[/spoiler]", null, "yyy", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
+    },    
+
+    _pre : function (  ) {
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody'), "[pre]zzz[/pre]", null, "zzz", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtRemLen'), 3900)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtBody'), "[pre]zzz[/pre]", null, "zzz", null,FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucEditorMain_txtRemLen'), 1000)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtBody'), "[pre]zzz[/pre]", null, "zzz", null,FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_ucActionEditor_txtRemLen'), 2950)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtInsert'), "[pre]zzz[/pre]", null, "zzz", null,FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft3'), 1800)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtMessage') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtMessage'), "[pre]zzz[/pre]", null, "zzz", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
+        if ( FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody') != null ) FoxtrickForumYouthIcons.clickHandler(FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_tbNewsBody'), "[pre]zzz[/pre]", null, "zzz", null, FoxtrickForumYouthIcons._DOC.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
     },
     
     _fillMsgWindow : function( string ) {
@@ -450,6 +470,10 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
                         ta.selectionStart = s.selectionStart + 9;
                         ta.selectionEnd = ta.selectionStart + 3;
                     }
+                    if (replaceText == 'zzz' && s.selectionLength === 0){
+                        ta.selectionStart = s.selectionStart + 5;
+                        ta.selectionEnd = ta.selectionStart + 3;
+                    }                    
                 }
 
             }

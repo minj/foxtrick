@@ -98,34 +98,33 @@ var FoxtrickForumChangePosts = {
         */
         
         
-		try {
+		if (do_HighlightThreadOpener) try {
             var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
-                // Foxtrick.dump(1 + Foxtrick.var_dump(Ftag));
-            if (!Ftag) {
-                Ftag = doc.getElementById('myForums');
-                //Foxtrick.dump(2 + Foxtrick.var_dump(Ftag));
-            }
+            if (!Ftag) {Ftag = doc.getElementById('myForums');}
             if (Ftag) {
-                // Foxtrick.dump(3 + Foxtrick.var_dump(Ftag.innerHTML));
                 Ftag = Ftag.getElementsByTagName('strong')[0];
-                // Foxtrick.dump(4 + Foxtrick.var_dump(Ftag.innerHTML));
                 var TName = Ftag.innerHTML;
                 var TName_lng = Ftag.parentNode.title;
-                // Foxtrick.dump('TName ' + Foxtrick.var_dump(TName));
-                // Foxtrick.dump('TName_lng ' + Foxtrick.var_dump(TName_lng));
                 TName_lng = TName_lng.replace(TName, "");
                 TName_lng = TName_lng.split(" ")[2];
-                // Foxtrick.dump('TName_lng END ' + Foxtrick.var_dump(TName_lng));
             } else var TName_lng = false;
         } catch(e_tag) {Foxtrick.dump(5 + 'HTO ' + e_tag + '\n'); var TName_lng = false;}
         
-        if (do_format_text)        try{
+        if (do_format_text) try {
+            var org = new Array(/\[pre\](.*?)\[\/pre\]/gi);
+            var rep = new Array("<pre>$1</pre>");
             var messages = Foxtrick.getElementsByClass("message", doc );
             for (var i = 0; i < messages.length; i++){
-                messages[i].innerHTML = messages[i].innerHTML.replace(/\[pre\]/gi,'<pre>');
-                messages[i].innerHTML = messages[i].innerHTML.replace(/\[\/pre\]/gi,'</pre>');
+                var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
+                Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');
+                for (var j = 0; j <= count_pre; j++) {
+                    for ( var k = 0; k < org.length; k++) {
+                        messages[i].innerHTML = messages[i].innerHTML.replace(org[k],rep[k]);
+                    }
+                }
             }
         } catch(e_format) {Foxtrick.dump('FORMAT TEXT ' + e_format + '\n');}
+        
 		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
 		var alldivs = doc.getElementById('threadContent').childNodes;

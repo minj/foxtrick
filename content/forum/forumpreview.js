@@ -273,6 +273,8 @@ var FoxtrickForumPreview = {
         /\[q\=(.*?)\](.*?)\[\/q\]/gi,
 
         /\[spoiler\](.*?)\[\/spoiler\]/gi,
+        
+        /\[pre\](.*?)\[\/pre\]/gi,
 
         /\[table\](.*?)\[\/table\]/gi,
         /\[tr(.*?)\](.*?)\[\/tr\]/gi,
@@ -325,6 +327,8 @@ var FoxtrickForumPreview = {
         "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",        
 
         "<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>",
+        
+        "<pre>$1</pre>",
         
         "<table class='htMlTable'><tbody>$1</tbody></table>",
         "<tr $1>$2</tr>",
