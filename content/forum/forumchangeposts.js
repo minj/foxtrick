@@ -562,7 +562,8 @@ var FoxtrickForumChangePosts = {
     },
 
 	_copy_posting_to_clipboard : function(ev) {
-		try{  Foxtrick.dump('in ->_copy_posting_to_clipboard\n');
+		try{  //Foxtrick.dump('in ->_copy_posting_to_clipboard\n');
+				var doc = ev.target.ownerDocument;
 				var header=ev.target.parentNode.parentNode.parentNode;
 
 				var header_left = null;
@@ -641,7 +642,19 @@ var FoxtrickForumChangePosts = {
 			var headstr = post_id1+': '+poster_link1.title+' » ';
 			if (poster_link2 && post_link2)  headstr+=post_id2+': '+poster_link2.title+'\n';
 			else headstr+='all\n';
-			headstr = header_right_inner.replace(/^ /,'')+"  \n"+headstr+'';
+			
+			// get date+time
+			var time = header_right_inner.replace(/^ /,'');
+			if (time.search(/\d+:\d+/)==0) {
+				var cur_time = doc.getElementById('time').innerHTML;
+				var hi = cur_time.search(/\d+:\d+/);
+				var date = cur_time.substring(0,hi);
+				time = date + time;
+			}
+			else if (time.search(/\d+:\d+/)==-1) {
+				time = time +header_right.getElementsByTagName('span')[0].title;				
+			}
+			headstr = time + "  \n" + headstr + '';
 
 			var message_raw = header.nextSibling.firstChild.innerHTML;
 			

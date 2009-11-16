@@ -21,6 +21,7 @@ var FoxtrickFormatPostingText = {
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.9",
 	LASTEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : false,
 	//OPTIONS : new Array("AddCopyIcon"), 
 	
