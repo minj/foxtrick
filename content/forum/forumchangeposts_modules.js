@@ -14,6 +14,26 @@
 * @author convinced
 */
 
+var FoxtrickFormatPostingText = {
+
+	MODULE_NAME : "FormatPostingText",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array("forumViewThread"), 
+	NEW_AFTER_VERSION: "0.4.9",
+	LASTEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
+	DEFAULT_ENABLED : false,
+	//OPTIONS : new Array("AddCopyIcon"), 
+	
+	init : function() {
+	},
+	
+	run : function( page, doc ) {
+	},
+	
+	change : function( page, doc ) { return;
+	},	
+};
+
 var FoxtrickCopyPostID = {
 
 	MODULE_NAME : "CopyPostID",

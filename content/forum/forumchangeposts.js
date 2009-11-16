@@ -26,6 +26,7 @@ var FoxtrickForumChangePosts = {
 		var do_hide_user_info = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatarUserInfo);
 		var do_hide_avatar = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar);
 		var do_default_facecard = !do_hide_avatar && Foxtrick.isModuleEnabled(FoxtrickAddDefaultFaceCard);
+        var do_format_text = Foxtrick.isModuleEnabled(FoxtrickFormatPostingText);
 		var do_move_links = Foxtrick.isModuleEnabled(FoxtrickMoveLinks);
 		var do_alter_header = Foxtrick.isModuleEnabled(FoxtrickForumAlterHeaderLine);
 		var do_alltid_flags = Foxtrick.isModuleEnabled( FoxtrickAlltidFlags );
@@ -118,6 +119,13 @@ var FoxtrickForumChangePosts = {
             } else var TName_lng = false;
         } catch(e_tag) {Foxtrick.dump(5 + 'HTO ' + e_tag + '\n'); var TName_lng = false;}
         
+        if (do_format_text)        try{
+            var messages = Foxtrick.getElementsByClass("message", doc );
+            for (var i = 0; i < messages.length; i++){
+                messages[i].innerHTML = messages[i].innerHTML.replace(/\[pre\]/gi,'<pre>');
+                messages[i].innerHTML = messages[i].innerHTML.replace(/\[\/pre\]/gi,'</pre>');
+            }
+        } catch(e_format) {Foxtrick.dump('FORMAT TEXT ' + e_format + '\n');}
 		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
 		var alldivs = doc.getElementById('threadContent').childNodes;
