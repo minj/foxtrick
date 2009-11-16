@@ -7,7 +7,7 @@
  * Each should implement an init() method, which will be called only once.
  * Register your page handlers in it.
  */
-Foxtrick.modules = [ 
+Foxtrick.modules = [
                     FoxtrickForumChangePosts,
                     FoxtrickShowForumPrefButton,
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
@@ -31,7 +31,7 @@ Foxtrick.modules = [
                     FoxtrickCopyTrainingReport,
                     FoxtrickCopyScoutReport,
                     FoxtrickCopyPlayerSource,
-					FoxtrickFormatPostingText,
+                    FoxtrickFormatPostingText,
                     FoxtrickCopyPostID,
                     FoxtrickStaffMarker,
                     FoxtrickHTThreadMarker,
@@ -47,18 +47,19 @@ Foxtrick.modules = [
                     FoxtrickTransferListSearchFilters,
                     FoxtrickTransferListDeadline,
                     FoxtrickExtendedPlayerDetails,
+                    FoxtrickLastLogin,
                     FoxtrickExtendedPlayerDetailsWage,
                     FoxtrickHTDateFormat,
-                    FoxtrickMatchReportFormat,  
-                    FoxtrickMatchPlayerColouring,                     
+                    FoxtrickMatchReportFormat,
+                    FoxtrickMatchPlayerColouring,
                     Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
                     Foxtrick.Ratings,
-					Foxtrick.htmsStatistics, // htmsStatistics should be placed after Ratings
+                    Foxtrick.htmsStatistics, // htmsStatistics should be placed after Ratings
                     FoxtrickYouthSkillTable,
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
                     FoxtrickAlertCustomOff,
-					FoxtrickAlertCustomSounds,
+                    FoxtrickAlertCustomSounds,
                     FoxtrickHideFaceTransferImages,
                     FoxtrickHideFaceInjuryImages,
                     FoxtrickHideFaceSuspendedImages,
@@ -110,7 +111,7 @@ Foxtrick.modules = [
                     FoxtrickGuestbookAlltidFlags,
                     FoxtrickCurrencyConverter,
                     FoxtrickTickerColoring,
-					FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
+                    FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
                     FoxtrickCopyMatchID,
                     FoxtrickHeaderFix,
                     FoxtrickHeaderFixLeft,
@@ -119,7 +120,7 @@ Foxtrick.modules = [
                     //FoxtrickAddHtLiveToOngoing,
                     FoxtrickReadHtPrefs,
                     FoxtrickMyHT,
-                    FoxtrickPrefsDialogHTML,   
+                    FoxtrickPrefsDialogHTML,
                     FoxtrickLeagueNewsFilter,
                     FoxtrickShortPAs,
                     FoxtrickCopyPosting,
@@ -131,16 +132,14 @@ Foxtrick.modules = [
                     FoxtrickYouthSkillHideUnknown,
                     FoxtrickHighlightCupwins,
                     FoxtrickElectionTable,
-                    FoxtrickSkillTranslation,  
-                    FoxtrickOnPagePrefs,  
-                    FoxtrickLineupShortcut, 
+                    FoxtrickSkillTranslation,
+                    FoxtrickOnPagePrefs,
+                    FoxtrickLineupShortcut,
                     //FoxtrickSingleline2,
-                    FoxtrickYouthPromotes,   
-                    FoxtrickCountyList, 
-                    FoxtrickMatchOrderColoring, 
-					FoxTrickPredefinedChallenges,
+                    FoxtrickYouthPromotes,
+                    FoxtrickCountyList,
+                    FoxtrickMatchOrderColoring,
+                    FoxTrickPredefinedChallenges,
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
-					FoxtrickHighlightBotTeams, 
-					];
-
-					
+                    FoxtrickHighlightBotTeams,
+                    ];
