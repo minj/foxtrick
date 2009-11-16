@@ -66,7 +66,7 @@ var FoxtrickCopyPosting = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.9",	
-	LASTEST_CHANGE:"Some fixing for spoilers and quotes.",
+	LASTEST_CHANGE:"Some fixing for spoilers, quotes & tables.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : false,
 	

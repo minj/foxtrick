@@ -18,7 +18,7 @@ var FoxtrickForumChangePosts = {
 	run : function( page, doc ) {
 	try{
 		//if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;
-		// Foxtrick.dump('run FoxtrickForumChangePosts\n')
+		Foxtrick.dump('run FoxtrickForumChangePosts\n')
 
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID);
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon");
@@ -424,14 +424,14 @@ var FoxtrickForumChangePosts = {
 
                     if (do_HighlightThreadOpener && TName_lng) {
                         try{
-                            if (poster_link1.title == TName_lng) {
+                            if (poster_link1.innerHTML == TName_lng) {
                                 poster_link1.previousSibling.previousSibling.setAttribute('class','ft_slH_PID_left');
                             }
-                            if (poster_link2.title == TName_lng) {
+                            else if (poster_link2.innerHTML == TName_lng) {
                                 poster_link2.previousSibling.previousSibling.setAttribute('class','ft_slH_PID_right');
                             }
                         } catch(e_HTO) {
-//                            Foxtrick.dump('do_HighlightThreadOpener :' + e_HTO + '\n');
+                            //Foxtrick.dump('do_HighlightThreadOpener :' + e_HTO + '\n');
                         }
                     }
 
@@ -480,6 +480,7 @@ var FoxtrickForumChangePosts = {
                             }
                             if (header.offsetTop-header_right.offsetTop < -3 )  {
                                 header.setAttribute('class','cfHeader ftdoubleLine');
+								Foxtrick.dump('do_truncate_nicks: adjust height back\n')
                                 //header.setAttribute('style','height: 30px !important;'); doesn't work
                             }
                           }
@@ -497,6 +498,7 @@ var FoxtrickForumChangePosts = {
                     { 	if (header.offsetTop-header_right.offsetTop < -3 )  {
                             //header.setAttribute('style','height: 30px !important;');
                             header.setAttribute('class','cfHeader ftdoubleLine'); //doesn't work well
+							Foxtrick.dump('do_alltid_flags: adjust height back\n')                            
                         }
                         post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
                         if (post_link2) post_link2.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
@@ -640,37 +642,36 @@ var FoxtrickForumChangePosts = {
 			var headstr = post_id1+': '+poster_link1.title+' » ';
 			if (poster_link2 && post_link2)  headstr+=post_id2+': '+poster_link2.title+'\n';
 			else headstr+='all\n';
-			headstr = header_right_inner.replace(/^ /,'')+"  \n"+headstr+'\n';
+			headstr = header_right_inner.replace(/^ /,'')+"  \n"+headstr+'';
 
 			var message_raw = header.nextSibling.firstChild.innerHTML;
 			
-			/*var inquoute=message_raw,i=0;
-			do { i++;
-				var nq='\n'+i+'#';
-				for (var j=0;j<i;++j) nq+='&gt;';
-				message_raw=inquoute;
-				inquoute=message_raw.replace(/\<blockquote class="quote"\>/,nq);
-				var do_end = (inquoute==message_raw);
-				Foxtrick.dump(i+'new: '+inquoute+'\nold: '+message_raw+'\n'+do_end+'\n');
-				//if (i==4) break;
-				var spoil=inquoute;
-				inquoute=spoil.replace(/\<blockquote class="spoiler"\>/,'\n<blockquote class="spoiler"' );
-				if (inquoute!=spoil) inquoute=inquoute.replace(/\<\/blockquote\>/,'\n');
-								
-				i++;							
-				var outquoute=inquoute;
-				do { i--;
-					inquoute=outquoute;
-					outquoute=inquoute.replace(/\<\/blockquote\>/,'\n&gt;');
-				} while (outquoute!=inquoute);	
-				if (do_end) break;
-			} while (1);*/
 			
-			message_raw=message_raw.replace(/\<blockquote/g,'\n<blockquote');
-			message_raw=message_raw.replace(/\<\/blockquote\>/g,'\n');
+			var spoilers = message_raw.split(/\<blockquote id="spoil/); 
+			message_raw = spoilers[0];
+			for (var i=1;i< spoilers.length;++i) {
+				message_raw += '#&gt; <blockquote id="spoil'+spoilers[i].replace(/\<\/blockquote\>/i,' &lt;#\n');
+			}
+			
+			var quotes = message_raw.split(/\<blockquote class="quote"/); 
+			message_raw = quotes[0];
+			var j=1;
+			for (var i=1;i< quotes.length;++i) {
+				message_raw += '\n'+j+'&gt; <blockquote class="quote"';
+				++j;
+				while(quotes[i].search(/\<\/blockquote\>/i)!=-1) {
+					--j;
+					quotes[i] = quotes[i].replace(/\<\/blockquote\>/i,' &lt;'+j+'\n');
+				}
+				message_raw += quotes[i];
+			}
 				
 			message_raw=message_raw.replace(/\<hr\>/,'------------------------------------------\n');
-			message_raw=message_raw.replace(/\<br\>/g,'\n');
+			message_raw=message_raw.replace(/\<br\>|\<\/tr\>|\<\/div\>/g,'\n');
+			message_raw=message_raw.replace(/\n\n/g,'\n');
+			message_raw=message_raw.replace(/\<\/td\>|\<\/th\>/g,'\t');
+			message_raw=message_raw.replace(/&nbsp;/g,' ');
+			
 			var message = (Foxtrick.stripHTML(message_raw)).replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<');
 
 			Foxtrick.copyStringToClipboard(headstr+message);
@@ -685,6 +686,7 @@ var FoxtrickForumChangePosts = {
 			// just to be on the save side do both
 			header.setAttribute('class','cfHeader ftdoubleLine');
 			header.setAttribute('style','height: 30px !important;');
+			Foxtrick.dump('_postid_adjust_height: adjust height back\n')                            
 		}
 		ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );
 	},
