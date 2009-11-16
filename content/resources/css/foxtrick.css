@@ -11,8 +11,8 @@ div.foxtrickHelp {background-image: url('chrome://foxtrick/content/resources/img
 div.foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png');}
 div.foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png');}
 div.foxtrickExport:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png');}
-div.foxtrickRemove {background-image: url('chrome://foxtrick/content/resources/linkicons/cross_bigger.png');}
-div.foxtrickRemove:hover {background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_bigger.png');}
+div.foxtrickRemove {background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png');}
+div.foxtrickRemove:hover {background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png');}
 div.foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png');}
 div.foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png');}
 
