@@ -45,8 +45,9 @@ var FoxtrickCopyPosting = {
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	NEW_AFTER_VERSION: "0.4.7",	
-	LASTEST_CHANGE:"Added option to copy forum posting",
+	NEW_AFTER_VERSION: "0.4.9",	
+	LASTEST_CHANGE:"Some fixing for spoilers and quotes.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : false,
 	
 	init : function() {
@@ -384,7 +385,7 @@ var FoxtrickSingleline2 = {
 	change : function( page, doc ) { 
 	},	
 					
-		_copy_posting_to_clipboard : function(ev) {  
+	_copy_posting_to_clipboard : function(ev) {  
 		try{
 				var header=ev.target.parentNode.parentNode.parentNode.childNodes[1];
 				var header_left = null;

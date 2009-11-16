@@ -10,8 +10,9 @@ var FoxtrickCopyRatingsToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8",	
-	LATEST_CHANGE:"new table format, added matchID and result",    
+	NEW_AFTER_VERSION: "0.4.9",	
+	LATEST_CHANGE:"Added icons for teamswise copy",    
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	init : function() {
     },
