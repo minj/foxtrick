@@ -32,16 +32,16 @@ FoxtrickTransferListSearchFilters = {
         "_18" : "ctl00$CPMain$ddlBornIn",
         "_29" : "ctl00_CPMain_txtTSIMin_text",
         "_20" : "ctl00$CPMain$txtTSIMin",
-        "_21" : "ctl00_CPMain_txtTSIMin_ClientState",
+        //"_21" : "ctl00_CPMain_txtTSIMin_ClientState",
         "_22" : "ctl00_CPMain_txtTSIMax_text",
         "_23" : "ctl00$CPMain$txtTSIMax",
-        "_24" : "ctl00_CPMain_txtTSIMax_ClientState",
+        //"_24" : "ctl00_CPMain_txtTSIMax_ClientState",
         "_25" : "ctl00_CPMain_txtBidMin_text",
         "_26" : "ctl00$CPMain$txtBidMin",
-        "_27" : "ctl00_CPMain_txtBidMin_ClientState",
+        //"_27" : "ctl00_CPMain_txtBidMin_ClientState",
         "_28" : "ctl00_CPMain_txtBidMax_text",
         "_29" : "ctl00$CPMain$txtBidMax",
-        "_30" : "ctl00_CPMain_txtBidMax_ClientState",
+        //"_30" : "ctl00_CPMain_txtBidMax_ClientState",
         "_31" : "ctl00$CPMain$ddlGlobalSkillMax",
         "_32" : "ctl00$CPMain$chkUseGlobalMax"
     },
@@ -158,13 +158,15 @@ FoxtrickTransferListSearchFilters = {
                     formString = formString + "<name>" + i + "</name>";
                     formString = formString + "<value>" + el.value + "</value>";
                     formString = formString + "</elem>";           
+					dump(i+'\t'+el.value+'\n');               					
                 }
                 
                 if (el != null && el.type != "radio" && el.type == "checkbox" ) {
                     formString = formString + "<elem>";
                     formString = formString + "<name>" + i + "</name>";
                     formString = formString + "<value>" + el.checked + "</value>";
-                    formString = formString + "</elem>";           
+                    formString = formString + "</elem>";   
+					dump(i+'\t'+el.checked+'\n');               					
                 }                
             }
             formString = formString + "</root>";
