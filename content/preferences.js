@@ -18,44 +18,72 @@ var FoxtrickPrefs = {
     },
 
     getString : function( pref_name ) {
-        try { 
-            return this._pref_branch.getComplexValue( pref_name,
+        var str;
+		try { 
+            str = this._pref_branch.getComplexValue( encodeURI(pref_name),
                                  Components.interfaces.nsISupportsString ).data;
         } catch( e ) {
-            return null;
-        }
+ 				str = null;
+		}
+		if (str==null) {
+			try { 
+				str = this._pref_branch.getComplexValue( pref_name,
+                                Components.interfaces.nsISupportsString ).data;
+ 			} catch( e ) {
+				str = null;
+			}
+		}
+ 		return str;
     },
 
     setString : function( pref_name, value ) {
         var str = Components.classes[ "@mozilla.org/supports-string;1" ].
                      createInstance( Components.interfaces.nsISupportsString );
         str.data = value;
-        this._pref_branch.setComplexValue( pref_name,
+        this._pref_branch.setComplexValue( encodeURI(pref_name),
                                 Components.interfaces.nsISupportsString, str );
     },
 
     setInt : function( pref_name, value ) {
-        this._pref_branch.setIntPref( pref_name, value );
+        this._pref_branch.setIntPref( encodeURI(pref_name), value );
     },
 
     getInt : function( pref_name ) {
-        try {
-            return this._pref_branch.getIntPref( pref_name );
+        var value;
+		try {
+            value = this._pref_branch.getIntPref( encodeURI(pref_name) );
         } catch( e ) {
-            return null;
+			value = null;
         }
+        if (value==null) {
+			try {
+				value = this._pref_branch.getIntPref( pref_name );
+			} catch( e ) {
+				value = null;
+			}
+		}
+		return value;
     },
 
     setBool : function( pref_name, value ) {
-        this._pref_branch.setBoolPref( pref_name, value );
+        this._pref_branch.setBoolPref( encodeURI(pref_name), value );
     },
 
     getBool : function( pref_name ) {
-        try {
-            return this._pref_branch.getBoolPref( pref_name );
+		var value;
+		try {
+            value = this._pref_branch.getBoolPref( encodeURI(pref_name) );
         } catch( e ) {
-            return null;
-        }
+			value = null;
+        }	        
+		if (value == null) {
+			try {
+				value = this._pref_branch.getBoolPref( pref_name );
+			} catch( e ) {
+				value = null;
+			}	        
+		}
+		return value;
     },
 
     /** Add a new preference "pref_name" of under "list_name".
@@ -90,19 +118,19 @@ var FoxtrickPrefs = {
 
     getList : function( list_name ) {
         var names = FoxtrickPrefs._getElemNames( list_name );
-        var list = new Array();
-        for ( var i in names )
-            list.push( FoxtrickPrefs.getString( names[i] ) );
-
+		var list = new Array();
+        for ( var i in names ) 
+			list.push( FoxtrickPrefs.getString( names[i] ) );
+		
         return list;
     },
 
     _getElemNames : function( list_name ) {
         try {
-			if( list_name != "" )
-				return this._pref_branch.getChildList( list_name + ".", {} );
+			if( list_name != "" ) 
+				return this._pref_branch.getChildList( encodeURI(list_name + "."), {} );
 			else
-				return this._pref_branch.getChildList( "", {} );
+				return decodeURI(this._pref_branch.getChildList( "", {} ));
         } catch( e ) {
             return null;
         }
@@ -125,12 +153,12 @@ var FoxtrickPrefs = {
     /** Populate list_name with given array deleting if exists */
     _populateList : function( list_name, values )
     {
-        this._pref_branch.deleteBranch( list_name );
+        this._pref_branch.deleteBranch( encodeURI(list_name) );
         for (var  i in values )
             FoxtrickPrefs.setString( list_name + "." + i, values[i] );
     },
     
     deleteValue : function( value_name ){
-    	this._pref_branch.deleteBranch( value_name );
+    	this._pref_branch.deleteBranch( encodeURI(value_name) );
     },
 };
