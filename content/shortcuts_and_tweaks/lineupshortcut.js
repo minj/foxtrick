@@ -114,10 +114,9 @@ FoxtrickLineupShortcut = {
 						}
 						
 						for (var j=0;j<matchTeams.length;j++) {
-							Foxtrick.LOG(matchTeams[j]+'-'+teamname);
+							//Foxtrick.LOG(matchTeams[j]+'-'+teamname);
 							if (matchTeams[j]==teamname) {
 								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
-								Foxtrick.LOG('added');
 							}
 							else {
 								if (matchTeams[j]==ntName) {
