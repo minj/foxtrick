@@ -105,10 +105,19 @@ FoxtrickLineupShortcut = {
 						//Checking if the team is present
 						var matchTeams=link.text;
 						matchTeams=matchTeams.split(" - ");
+						//Sometimes there is a white space at the end
+						while (matchTeams[0].substring(matchTeams[0].length-1, matchTeams[0].length) == ' '){
+							matchTeams[0] = matchTeams[0].substring(0,matchTeams[0].length-1);
+						}
+						while (matchTeams[1].substring(matchTeams[1].length-1, matchTeams[1].length) == ' '){
+							matchTeams[1] = matchTeams[1].substring(0,matchTeams[1].length-1);
+						}
+						
 						for (var j=0;j<matchTeams.length;j++) {
-							//Foxtrick.LOG(matchTeams[j]+' - '+teamname);
+							Foxtrick.LOG(matchTeams[j]+'-'+teamname);
 							if (matchTeams[j]==teamname) {
 								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
+								Foxtrick.LOG('added');
 							}
 							else {
 								if (matchTeams[j]==ntName) {
