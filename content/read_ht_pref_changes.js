@@ -209,7 +209,7 @@ var FoxtrickMyHT = {
 		var doc = ev.target.ownerDocument;
 		
 		var mainBody = doc.getElementById('mainBody');				
-		var oldAlert=doc.getElementById('idFoxtrickPrefsDialogHTML');
+		var oldAlert=doc.getElementById('idFoxtrickPrefsOuter');
 		if (oldAlert) mainBody.removeChild(oldAlert);
 		
 		/*var curVersion=FoxtrickPrefs.getString("curVersion"); 				
