@@ -178,7 +178,6 @@ var FoxtrickYouthSkillTable = {
 				th.innerHTML = '<img alt="*" class="starWhole" src="/Img/Matches/star_blue.png" ilo-full-src="http://www.hattrick.org/Img/Matches/star_blue.png"/>';					
 				tr.appendChild(th);
 				FoxtrickYouthSkillTable.copy_string += '[/th]';
-				FoxtrickYouthSkillTable.copy_string += '[/tr]';
 				
 				// played last match position header 
 				FoxtrickYouthSkillTable.copy_string += '[th]';
