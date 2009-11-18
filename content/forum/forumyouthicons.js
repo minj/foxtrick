@@ -16,7 +16,7 @@
 
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Added Insert 'pre' format tag",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
 

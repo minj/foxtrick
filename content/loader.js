@@ -84,6 +84,7 @@ Foxtrick.Loader = function(){
 	'shortcuts_and_tweaks/youthPromotes.js', 
     'shortcuts_and_tweaks/predefinedChallenges.js',
     'shortcuts_and_tweaks/lastlogin.js',
+	'shortcuts_and_tweaks/transferCompareSort.js',
     'presentation/extendedplayerdetails.js',
     'presentation/facePlugin.js',
     'presentation/personalityImages.js',

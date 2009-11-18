@@ -103,6 +103,7 @@ var FoxtrickYouthSkillTable = {
 							if (j>0) th.setAttribute('class','ft_youthskilltable_td_normal');
 							th.setAttribute('s_index',j);
 							th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+							th.title=Foxtrickl10n.getString("SortBy");
 							FoxtrickYouthSkillTable.copy_string +=  Foxtrickl10n.getString(sn[j]);
 							th.innerHTML = Foxtrickl10n.getString(sn[j]);
 							tr.appendChild(th);
@@ -115,6 +116,7 @@ var FoxtrickYouthSkillTable = {
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.setAttribute('s_index',9);
 				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[9]);
 				th.innerHTML = '<img alt="'+Foxtrickl10n.getString(sn[9])+'" class="cardsOne" src="/Img/Icons/yellow_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/yellow_card.gif" style="width: 8px; height: 12px;"/>';					
 				tr.appendChild(th);
@@ -124,6 +126,7 @@ var FoxtrickYouthSkillTable = {
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+				th.title=Foxtrickl10n.getString("SortBy");
 				th.setAttribute('s_index',10);
 				FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[10]);
 				th.innerHTML = '<img alt="'+Foxtrickl10n.getString(sn[10])+'" class="cardsOne" src="/Img/Icons/red_card.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/red_card.gif" style="width: 8px; height: 12px;"/>';					
@@ -135,6 +138,7 @@ var FoxtrickYouthSkillTable = {
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.setAttribute('s_index',11);
 				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickYouthSkillTable.copy_string += '(+)';
 				th.innerHTML = '<img alt="(+)" class="injuryBruised" src="/Img/Icons/bruised.gif" style="width: 11px; height: 11px;"/>';					
 				tr.appendChild(th);
@@ -145,6 +149,7 @@ var FoxtrickYouthSkillTable = {
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.setAttribute('s_index',12);
 				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickYouthSkillTable.copy_string += '+';
 				th.innerHTML = '<img alt="+" class="injuryInjured" src="/Img/Icons/injured.gif" ilo-full-src="http://www.hattrick.org/Img/Icons/injured.gif" style="width: 11px; height: 11px;"/>';					
 				tr.appendChild(th);
@@ -156,6 +161,7 @@ var FoxtrickYouthSkillTable = {
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.setAttribute('s_index',13);
 				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[13]);
 				th.innerHTML = Foxtrickl10n.getString(sn[13]);
 				tr.appendChild(th);
@@ -167,6 +173,7 @@ var FoxtrickYouthSkillTable = {
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.setAttribute('s_index',14);
 				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[14]);
 				th.innerHTML = Foxtrickl10n.getString(sn[14]);
 				tr.appendChild(th);
