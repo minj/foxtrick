@@ -14,8 +14,8 @@
     DEFAULT_ENABLED : true,
     OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Added to PAs, ticket system, guestbook, newsletter",
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Added Insert 'pre' format tag",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
