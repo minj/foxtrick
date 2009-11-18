@@ -6,7 +6,8 @@
 }
 .cfWrapper .bookmarkMessage {
 top:0px!important;
-margin-left:2px!important;
+margin-left:3px!important;
+float:right!important;
 }
 .bookmarkMessage img{
 width:12px!important;
