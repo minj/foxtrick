@@ -30,8 +30,7 @@ FoxtrickFixcssProblems = {
                                     "Forum_Spoiler_reveal",
 									"MatchReportRatingsFontFix",
                                     "HideAchievementsIcons",
-									"NoLogo",
-									"BookmarkHeaderSmall"
+									"NoLogo"
                   
 								),
 	OPTIONS_CSS: new Array (
@@ -52,8 +51,7 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css",
-								"chrome://foxtrick/content/resources/css/fixes/BookmarkHeaderSmall.css"
+								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -73,8 +71,7 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css",
-								"chrome://foxtrick/content/resources/css/fixes/BookmarkHeaderSmall.css"
+								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
                                 ),
                                
     init : function() {
