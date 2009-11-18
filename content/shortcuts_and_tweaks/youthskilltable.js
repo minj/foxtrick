@@ -96,7 +96,7 @@ var FoxtrickYouthSkillTable = {
 				var tr = doc.createElement('tr');
 				table.appendChild(tr);
 				
-				var sn=['Player','YearsDays','GK','DF','PM','WI','PS','SC','SP','YC','RC','Br','In','Spec','PL'];
+				var sn=['Player','YearsDays','GK','DF','PM','WI','PS','SC','SP','YC','RC','Br','In','Spec','ST','PO'];
 				for(var j = 0; j < 9; j++) {
 							FoxtrickYouthSkillTable.copy_string += '[th]';
 							var th = doc.createElement('th');
@@ -167,21 +167,34 @@ var FoxtrickYouthSkillTable = {
 				tr.appendChild(th);
 				FoxtrickYouthSkillTable.copy_string += '[/th]';
 				
-				// played last match header
+				// played last match stars header
 				FoxtrickYouthSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
 				th.setAttribute('s_index',14);
 				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
 				th.title=Foxtrickl10n.getString("SortBy");
-				FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[14]);
-				th.innerHTML = Foxtrickl10n.getString(sn[14]);
+				FoxtrickYouthSkillTable.copy_string += '*';
+				th.innerHTML = '<img alt="*" class="starWhole" src="/Img/Matches/star_blue.png" ilo-full-src="http://www.hattrick.org/Img/Matches/star_blue.png"/>';					
 				tr.appendChild(th);
 				FoxtrickYouthSkillTable.copy_string += '[/th]';
 				FoxtrickYouthSkillTable.copy_string += '[/tr]';
 				
+				// played last match position header 
+				FoxtrickYouthSkillTable.copy_string += '[th]';
+				var th = doc.createElement('th');
+				th.setAttribute('class','ft_youthskilltable_td_small');
+				th.setAttribute('s_index',15);
+				th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
+				th.title=Foxtrickl10n.getString("SortBy");
+				FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[15]);
+				th.innerHTML = Foxtrickl10n.getString(sn[15]);
+				tr.appendChild(th);
+				FoxtrickYouthSkillTable.copy_string += '[/th]';
+				FoxtrickYouthSkillTable.copy_string += '[/tr]';
+
 				var allDivs = doc.getElementsByTagName("div");				
-				// get last match
+				// get last match  
 				var latestMatch=-1;
 				for(var i = 0; i < allDivs.length; i++) {			
 					if(allDivs[i].className=="playerInfo") {
@@ -360,6 +373,23 @@ var FoxtrickYouthSkillTable = {
 						}
 						FoxtrickYouthSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
+						
+						// get played last match
+						FoxtrickYouthSkillTable.copy_string += '[td]';
+						var td = doc.createElement('td');
+						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
+						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
+						if (matchday==latestMatch) {
+							var pos=a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
+							var sp_pos= pos.search(/ |\&nbsp;/);
+							if (sp_pos==-1) pos=pos.substr(0,2)
+							else pos=pos.substr(0,1)+pos.substr(sp_pos+1,1);
+							td.appendChild(doc.createTextNode(pos));
+							FoxtrickYouthSkillTable.copy_string += pos;												
+						}
+						FoxtrickYouthSkillTable.copy_string += '[/td]';
+						tr.appendChild(td);
+						
 						//Foxtrick.dump(matchday+' '+latestMatch+'\n');
 						FoxtrickYouthSkillTable.copy_string += '[/tr]';						
 					}
