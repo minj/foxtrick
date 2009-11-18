@@ -137,6 +137,7 @@ ForumAlterHeaderLine.SingleHeaderLine=http://foxtrick.foundationhorizont.org/For
 ForumAlterHeaderLine.TruncateLongNick.=http://foxtrick.foundationhorizont.org/ForumAlterHeaderLine_TruncateLongNick.html
 ForumNextAndPrevious=http://foxtrick.foundationhorizont.org/ForumNextAndPrevious.html
 ForumPreview=http://foxtrick.foundationhorizont.org/ForumPreview.html
+FormatPostingText=http://foxtrick.foundationhorizont.org/FormatPostingText.html
 StaffMarker=http://foxtrick.foundationhorizont.org/ForumStaffMarker.html
 ForumTemplates.DefaultShow=http://foxtrick.foundationhorizont.org/ForumTemplates_DefaultShow.html
 ForumTemplates=http://foxtrick.foundationhorizont.org/ForumTemplates.html
