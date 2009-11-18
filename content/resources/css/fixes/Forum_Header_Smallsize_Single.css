@@ -11,5 +11,10 @@
 	padding-right:0px;
 	line-height: 12px !important;
 }
+
+.cfHeader  .float_left {
+	margin-left:-4px;
+}
+
  
 }
