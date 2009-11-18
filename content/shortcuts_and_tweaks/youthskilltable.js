@@ -348,8 +348,15 @@ var FoxtrickYouthSkillTable = {
 						var matchday=0;
 						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 						if (matchday==latestMatch) {
-							td.appendChild(doc.createTextNode('#'));
-							FoxtrickYouthSkillTable.copy_string += '#';						
+							var imgs=a.parentNode.parentNode.getElementsByTagName('img');
+							var starcount=0;
+							for (var sc=0;sc<imgs.length;++sc) {
+								if (imgs[sc].className=='starBig') starcount+=5;
+								else if (imgs[sc].className=='starWhole') starcount+=1;
+								else if (imgs[sc].className=='starHalf') starcount+=0.5;
+							}
+							td.appendChild(doc.createTextNode(starcount));
+							FoxtrickYouthSkillTable.copy_string += starcount;						
 						}
 						FoxtrickYouthSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
