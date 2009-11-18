@@ -4,5 +4,12 @@
 	background:transparent url('chrome://foxtrick/content/resources/linkicons/bookmark_post.png') no-repeat scroll 
 	0 0!important
 }
-
+.cfWrapper .bookmarkMessage {
+top:0px!importnat;
+margin-left:2px!important;
+}
+.bookmarkMessage img{
+width:12px!important;
+height:13px!important;
+}
 }
