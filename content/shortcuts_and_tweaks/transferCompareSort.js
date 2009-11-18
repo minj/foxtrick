@@ -19,22 +19,13 @@ var FoxtrickTransferCompareSort = {
 
     run : function( page, doc ) {
 		try  {
-				var table = doc. getElementById('mainBody').getElementsByTagName('table')[0];
-					table.rows[4].cells[2].setAttribute( "s_index", 2 );						
-					table.rows[4].cells[2].addEventListener( "click", this.sortClick, true );						
-					table.rows[4].cells[2].setAttribute( "style", "cursor:pointer;");						
-					table.rows[4].cells[2].title=Foxtrickl10n.getString("SortBy");
-
-					table.rows[4].cells[3].setAttribute( "s_index", 3 );						
-					table.rows[4].cells[3].addEventListener( "click", this.sortClick, true );						
-					table.rows[4].cells[3].setAttribute( "style", "cursor:pointer;");						
-					table.rows[4].cells[3].title=Foxtrickl10n.getString("SortBy");
-
-					table.rows[4].cells[5].setAttribute( "s_index", 5 );						
-					table.rows[4].cells[5].addEventListener( "click", this.sortClick, true );						
-					table.rows[4].cells[5].setAttribute( "style", "cursor:pointer;");						
-					table.rows[4].cells[5].title=Foxtrickl10n.getString("SortBy");
-
+			var table = doc. getElementById('mainBody').getElementsByTagName('table')[0];				
+			for (var i=0;i<table.rows.length;++i) {
+				table.rows[4].cells[i].setAttribute( "s_index", i );						
+				table.rows[4].cells[i].addEventListener( "click", this.sortClick, true );						
+				table.rows[4].cells[i].setAttribute( "style", "cursor:pointer;");						
+				table.rows[4].cells[i].title=Foxtrickl10n.getString("SortBy");
+			}
 		} catch(e) {Foxtrick.dump('FoxtrickTransferCompareSort.run error: '+e+'\n');}
 	},
 	
@@ -43,8 +34,33 @@ var FoxtrickTransferCompareSort = {
 
 	sortfunction: function(a,b) {return a.cells[FoxtrickTransferCompareSort.s_index].innerHTML.localeCompare(b.cells[FoxtrickTransferCompareSort.s_index].innerHTML);},
 	sortnumberfunction: function(a,b) { return parseInt(a.cells[FoxtrickTransferCompareSort.s_index].innerHTML.replace(/ |&nbsp;/g,'')) < parseInt(b.cells[FoxtrickTransferCompareSort.s_index].innerHTML.replace(/ |&nbsp;/g,''));},
+	sortdatefunction: function(a,b) { 
+		var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+		if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+        switch ( DATEFORMAT ) {
+            case 'ddmmyyyy':
+                var SD = 1;
+                var SM = 2
+                var SY = 3;
+                break;
+            case 'mmddyyyy':
+                var SD = 2;
+                var SM = 1;
+                var SY = 3;
+                break;
+            case 'yyyymmdd':
+                var SD = 3;
+                var SM = 2;
+                var SY = 1;
+                break;
+		}
+		var date1 = a.cells[FoxtrickTransferCompareSort.s_index].innerHTML.match(/(\d+)\.(\d+)\.(\d+)/);
+		var date2 = b.cells[FoxtrickTransferCompareSort.s_index].innerHTML.match(/(\d+)\.(\d+)\.(\d+)/);
+		return (date1[SY]!=date2[SY]) ? (date1[SY]<date2[SY]) : ((date1[SM]!=date2[SM]) ? (date1[SM]<date2[SM]) : (date1[SD]<date2[SD]));
+	},
 	sortdownfunction: function(a,b) {return (b.cells[FoxtrickTransferCompareSort.s_index].innerHTML.localeCompare(a.cells[FoxtrickTransferCompareSort.s_index].innerHTML));},
 	sortlinksfunction: function(a,b) {return a.cells[FoxtrickTransferCompareSort.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickTransferCompareSort.s_index].getElementsByTagName('a')[0].innerHTML);},
+	sortlinksnumberfunction: function(a,b) {return parseInt(a.cells[FoxtrickTransferCompareSort.s_index].getElementsByTagName('a')[0].innerHTML) < parseInt(b.cells[FoxtrickTransferCompareSort.s_index].getElementsByTagName('a')[0].innerHTML);},
 	sortskillsfunction: function(a,b) {return a.cells[FoxtrickTransferCompareSort.s_index].getElementsByTagName('a')[0].href.match(/ll=(\d+)/)[1] < b.cells[FoxtrickTransferCompareSort.s_index].getElementsByTagName('a')[0].href.match(/ll=(\d+)/)[1];},
 	
 	sortClick : function(ev) {
@@ -60,7 +76,10 @@ var FoxtrickTransferCompareSort = {
 			rows.push(table_old.rows[i]);
 		}
 		
-		if (FoxtrickTransferCompareSort.s_index==5) rows.sort(FoxtrickTransferCompareSort.sortskillsfunction);
+		
+		if (FoxtrickTransferCompareSort.s_index==0) rows.sort(FoxtrickTransferCompareSort.sortlinksnumberfunction);
+		else if (FoxtrickTransferCompareSort.s_index==1) rows.sort(FoxtrickTransferCompareSort.sortdatefunction);
+		else if (FoxtrickTransferCompareSort.s_index==5) rows.sort(FoxtrickTransferCompareSort.sortskillsfunction);
 		else rows.sort(FoxtrickTransferCompareSort.sortnumberfunction);
 		
 		var j=0;
