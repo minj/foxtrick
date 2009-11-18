@@ -9,8 +9,8 @@ FoxtrickFixcssProblems = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Highlight bots added, Hide team logos added",	
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Small bookmark icon added",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
     OPTIONS :  new Array(           "Forum_FoxLink_Headers",
@@ -30,7 +30,8 @@ FoxtrickFixcssProblems = {
                                     "Forum_Spoiler_reveal",
 									"MatchReportRatingsFontFix",
                                     "HideAchievementsIcons",
-									"NoLogo"
+									"NoLogo",
+									"BookmarkHeaderSmall"
                   
 								),
 	OPTIONS_CSS: new Array (
@@ -51,7 +52,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
+								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css",
+								"chrome://foxtrick/content/resources/css/fixes/BookmarkHeaderSmall.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -71,7 +73,8 @@ FoxtrickFixcssProblems = {
                                 "chrome://foxtrick/content/resources/css/fixes/Forum_Spoiler_reveal.css",
 								"chrome://foxtrick/content/resources/css/fixes/MatchReportRatingsFontFix.css",
 								"chrome://foxtrick/content/resources/css/fixes/achievement_hideicons.css",
-								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css"
+								"chrome://foxtrick/content/resources/css/fixes/NoLogo.css",
+								"chrome://foxtrick/content/resources/css/fixes/BookmarkHeaderSmall.css"
                                 ),
                                
     init : function() {
