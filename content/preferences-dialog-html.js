@@ -1168,7 +1168,7 @@ var FoxtrickPrefsDialogHTML = {
 																
 			var checked = Foxtrick.isModuleFeatureEnabled( module, key)
 			var group = module.MODULE_NAME + '.' + key;
-			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, DefaultOptionText, on_page, true ));
+			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, DefaultOptionText, on_page ));
 		}
 		if (module_checked) optiondiv.setAttribute( "style", "display:block;" );
 		else optiondiv.setAttribute( "style", "display:none;" );
@@ -1187,7 +1187,7 @@ var FoxtrickPrefsDialogHTML = {
 		return entry;
 	},
 		
-	_getCheckBox : function (doc, name, label, label_long, checked , option_text, DefaultOptionText, on_page, suboption) { 
+	_getCheckBox : function (doc, name, label, label_long, checked , option_text, DefaultOptionText, on_page) { 
 		var div = doc.createElement( "div" );	
 		div.setAttribute('class','ft_prefs_check_div');
 		var table = doc.createElement( "table" );	

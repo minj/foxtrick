@@ -302,11 +302,11 @@ var FoxtrickMyHT = {
 					dump(FoxtrickMyHT.NewModules[j].MODULE_NAME+'\n');
 			var entry;				
 			if (FoxtrickMyHT.NewModules[j].RADIO_OPTIONS != null) {
-						entry = FoxtrickPrefsDialogHTML._radioModule(doc, FoxtrickMyHT.NewModules[j], true);
+						entry = FoxtrickPrefsDialogHTML._radioModule(doc, FoxtrickMyHT.NewModules[j], false);
 			} else if (FoxtrickMyHT.NewModules[j].OPTIONS != null) {
-						entry = FoxtrickPrefsDialogHTML._checkboxModule(doc, FoxtrickMyHT.NewModules[j], true);
+						entry = FoxtrickPrefsDialogHTML._checkboxModule(doc, FoxtrickMyHT.NewModules[j], false);
 			} else {
-						entry = FoxtrickPrefsDialogHTML._normalModule(doc, FoxtrickMyHT.NewModules[j], true);
+						entry = FoxtrickPrefsDialogHTML._normalModule(doc, FoxtrickMyHT.NewModules[j], false);
 			}
 			
 			alertdiv.appendChild(doc.createElement('br'));
