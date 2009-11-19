@@ -459,8 +459,14 @@ var FoxtrickStaffMarker = {
 
             var new_style = '';
             // Foxtrick.dump('forumSELECT => select\n');
-            for (var boxes = 0; boxes < this.SELECT_ELEMENTS.length; boxes++) {
-                var el_Select = doc.getElementById( this.SELECT_ELEMENTS[boxes] );
+                        var selectBoxTop = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
+			var selectBoxBottom = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_filterUser');
+			
+			var selects = doc.getElementById('mainWrapper').getElementsByTagName('select');
+			for (var i=0;i<selects.length;++i) {
+					el_Select = selects[i];
+/*			for (var boxes = 0; boxes < this.SELECT_ELEMENTS.length; boxes++) {
+                var el_Select = doc.getElementById( this.SELECT_ELEMENTS[boxes] );*/
                 if (el_Select != null){
                     // Foxtrick.dump('forumSELECT => select box:'+ boxes + '.\n');
 					var i = 1, option;
