@@ -10,6 +10,9 @@
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'), 
     DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Fix for latest forum change",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	init : function() {
 	},
@@ -18,12 +21,12 @@
 	
 	try {
 	
-		this.ColorLatest (doc, "ctl00_CPMain_updLatestThreads", "folderitem");
+		this.ColorLatest (doc, "threadContent", "folderitem");
 		
 		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
                                 "resources/css/ht_thread.css");
                     
-		var myForums = doc.getElementById( "myForums" );
+		var myForums = doc.getElementById("content").getElementsByTagName('div')[0];
 		var divs = myForums.getElementsByTagName( "div" );
 		var cname;
 
@@ -62,18 +65,24 @@
 	
 		var myForums = doc.getElementById( id );
 		if (myForums) {
-			var links = myForums.getElementsByTagName( "table" )[0];
-			var cname;
+			var links = myForums.getElementsByTagName( "table" );
 
-                // Foxtrick.dump( "found " + links.length + "\n" );
-			for ( var i = 0; i < links.rows.length; ++i )
-			{
-				var title = links.rows[i].cells[1].childNodes[1].getElementsByTagName( "a" )[0].title;
-				if ( title.match( /.* HT-[^\s]*$/i ) )
-				{
-					var curr_class = links.rows[i].cells[1].childNodes[1].getAttribute( "class" );
-					links.rows[i].cells[1].childNodes[1].setAttribute( "class", curr_class + " HT_thread" );
-					//Foxtrick.dump( "matched: " + title + " : "+curr_class+ "\n" );
+			for (var j=0;j<links.length;j++) {
+				var cname;
+
+				if (links[j].rows.length==0 
+					|| links[j].rows[0].cells.length==0 
+					|| links[j].rows[0].cells[0].className.search('date')==-1) continue;
+				
+				for ( var i = 0; i < links[j].rows.length; ++i )
+				{	//if (links[j].rows[i].cells.length<=4) continue;
+					var title = links[j].rows[i].cells[1].childNodes[1].getElementsByTagName( "a" )[0].title;					
+					if ( title.match( /.* HT-[^\s]*$/i ) )
+					{
+						var curr_class = links[j].rows[i].cells[1].childNodes[1].getAttribute( "class" );
+						links[j].rows[i].cells[1].childNodes[1].setAttribute( "class", curr_class + " HT_thread" );
+//						Foxtrick.dump( "matched: " + title + " : "+curr_class+ "\n" );
+					}
 				}
 			}
 		}

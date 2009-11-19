@@ -11,9 +11,9 @@ var FoxtrickForumPreview = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.2",
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LATEST_CHANGE:"added to newsletters",
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
     _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditorMain_txtBody',

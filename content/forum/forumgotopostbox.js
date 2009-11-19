@@ -11,6 +11,9 @@ var FoxtrickGoToPostBox = {
 	PAGES : new Array("forumViewThread"), 	
 	DEFAULT_ENABLED : false,
 	CSS: "chrome://foxtrick/content/resources/css/gotopostbox.css",
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Fix for latest forum change",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
     init : function() {
     },
