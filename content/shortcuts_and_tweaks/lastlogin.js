@@ -17,12 +17,14 @@ FoxtrickLastLogin = {
     },
 
     run : function(page, doc) {
+		Foxtrick.dump('lastlogin run\n');
     },
 
 	change : function( page, doc ) {
+		Foxtrick.dump('lastlogin change: check ft_lastlogin\n');
         var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
-		Foxtrick.dump('change\n');
+		Foxtrick.dump('lastlogin change: ft_lastlogin not found. call show\n');
 		this._Show(doc);
 	},
 
