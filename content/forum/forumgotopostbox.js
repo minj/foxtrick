@@ -32,19 +32,49 @@ var FoxtrickGoToPostBox = {
                 }
             } catch(e) {}
             
-			var HTGotoInput = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_txtMessageNumber');
-			var HTGotoButton = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_btnViewMessage');
-			var HTGotoInput2 = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_txtMessageNumber');
-			var HTGotoButton2 = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_btnViewMessage');
+			
+			
+			var HTGotoInput = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_txtMessageNumber');
+			var HTGotoButton = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_btnViewMessage');
+			var HTGotoInput2 = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_txtMessageNumber');
+			var HTGotoButton2 = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_btnViewMessage');
+			
+			var inputs = doc.getElementById('mainWrapper').getElementsByTagName('input');
+			for (var i=0;i<inputs.length;++i) {
+				if (inputs[i].type=='submit')
+				{
+					if (!HTGotoButton) {
+						HTGotoButton = inputs[i];
+						HTGotoInput = inputs[i-1];
+					}
+					else {
+						HTGotoButton2 = inputs[i];
+						HTGotoInput2 = inputs[i-1];
+						break;
+					}
+				}
+			}
 			
 			//if (HTGotoInput) HTGotoInput.parentNode.removeChild(HTGotoInput);
 			//if (HTGotoButton) HTGotoButton.parentNode.removeChild(HTGotoButton);
 			//if (HTGotoInput2) HTGotoInput2.parentNode.removeChild(HTGotoInput2);
 			//if (HTGotoButton2) HTGotoButton2.parentNode.removeChild(HTGotoButton2);
+						
+            var selectBoxTop = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
+			var selectBoxBottom = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_filterUser');
+			
+			var selects = doc.getElementById('mainWrapper').getElementsByTagName('select');
+			for (var i=0;i<selects.length;++i) {
+				if (!selectBoxTop) {
+					selectBoxTop = selects[i];
+				}
+				else {
+					selectBoxBottom = selects[i];
+					break;
+				}
+			}
 			
 			
-            var selectBoxTop = doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
-			var selectBoxBottom = doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_filterUser');
 			var aSelectBoxes = new Array();
 			if (selectBoxTop)
 				aSelectBoxes.push(selectBoxTop);

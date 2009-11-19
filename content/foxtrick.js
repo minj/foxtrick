@@ -716,7 +716,6 @@ Foxtrick.hasElement = function( doc, id ) {
 Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	referenceHeader, altReferenceHeader, column ) {
 try {
-	Foxtrick.dump('addBoxToSidebar\n');
 	// If we already added this, return
 	// Should ideally be checked by the change() function already
 	var boxContentId = newBoxContent.id;
