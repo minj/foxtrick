@@ -1300,7 +1300,7 @@ var FoxtrickPrefsDialogHTML = {
 	
 		
 	getNewModules : function(curVersion,oldVersion) {
-				
+		try{		
 				FoxtrickPrefsDialogHTML.NewModules = new Array();
 						
 				for ( var i in Foxtrick.modules ) {
@@ -1321,8 +1321,11 @@ var FoxtrickPrefsDialogHTML = {
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.73";
+						var change_category = module.LATEST_CHANGE_CATEGORY;
+						if (!change_category) change_category = Foxtrick.latestChangeCategories.FIX;
+
 						var screenshot=Foxtrickl10n.getScreenshot(module.MODULE_NAME);						
-						FoxtrickPrefsDialogHTML.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.MODULE_CATEGORY,new_after,module.LATEST_CHANGE,module]); 
+						FoxtrickPrefsDialogHTML.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.MODULE_CATEGORY,new_after,module.LATEST_CHANGE,module,Foxtrickl10n.getString(change_category)]); 
 												
 					}
 				}
@@ -1330,6 +1333,8 @@ var FoxtrickPrefsDialogHTML = {
 				FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction4);
 				FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction0);
 				FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction2);
+				FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction7);
+		} catch(e){Foxtrick.dump('getNewModules '+e+'\n');}
 	},
 	
 				
@@ -1409,6 +1414,18 @@ var FoxtrickPrefsDialogHTML = {
 				td3.appendChild(h3);
 				tr.appendChild(td3);
 
+				var td4=doc.createElement('td');
+				var h4=doc.createElement('h4');
+				var a4=doc.createElement('a');
+				a4.appendChild(doc.createTextNode(Foxtrickl10n.getString("ChangeCategory")));				
+				a4.addEventListener( "click", FoxtrickPrefsDialogHTML.Sort7, false );
+				a4.href='javascript:void();'
+				a4.title=Foxtrickl10n.getString("SortBy");
+				h4.appendChild(a4);				
+				td4.appendChild(h4);
+				tr.appendChild(td4);
+
+
 				for (var i=0;i<this.NewModules.length;++i) {
 						var tr=doc.createElement('tr');
 						table.appendChild(tr);
@@ -1477,6 +1494,11 @@ var FoxtrickPrefsDialogHTML = {
 						var td3=doc.createElement('td');	
 						td3.appendChild(doc.createTextNode(this.NewModules[i][4]));
 						tr.appendChild(td3);
+
+						// new after
+						var td3=doc.createElement('td');	
+						td3.appendChild(doc.createTextNode(this.NewModules[i][7]));
+						tr.appendChild(td3);
 						
 						// change log
 						var td4=doc.createElement('td');	
@@ -1497,6 +1519,7 @@ var FoxtrickPrefsDialogHTML = {
 	sortfunction0: function(a,b) {return a[0].localeCompare(b[0]);},
 	sortfunction2: function(a,b) {return a[2].localeCompare(b[2]);},
 	sortfunction4: function(a,b) {return a[4].localeCompare(b[4]);},
+	sortfunction7: function(a,b) {return (a[7]==Foxtrickl10n.getString(Foxtrick.latestChangeCategories.FIX))},
 
 	Sort0 :function(ev){
 		var doc = ev.target.ownerDocument;
@@ -1516,6 +1539,11 @@ var FoxtrickPrefsDialogHTML = {
 		FoxtrickPrefsDialogHTML.ShowAlertCommonInner(doc);
 	},
 	
+	Sort7 :function(ev){ 
+		var doc = ev.target.ownerDocument;
+		FoxtrickPrefsDialogHTML.NewModules.sort(FoxtrickPrefsDialogHTML.sortfunction7);
+		FoxtrickPrefsDialogHTML.ShowAlertCommonInner(doc);
+	},
 		
 	VersionBox_Select :function(ev){
 		try{  
@@ -1545,9 +1573,9 @@ var FoxtrickOnPagePrefs = {
     MODULE_NAME : "OnPagePrefs",
     MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('all_late'), 
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Shows a small expandable box at the bottom of the sidebar which allows changing FoxTrick modules which alter the current page (default on)",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.4.9",
+	LATEST_CHANGE:"Fix for latest forum change",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
     init : function() {
     },
