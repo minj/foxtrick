@@ -67,8 +67,11 @@ var FoxtrickForumTemplates = {
                 if (doc.getElementById(sControlsID))
                 	return;
                 // display templates above the message window
-                var msg_window = doc.getElementById(
-                            FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+                //var msg_window = doc.getElementById(FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+							
+				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+
+						
 				if (!msg_window) return; // ie mailbox overview
                 var templates_div = doc.createElement( "div" );
                 templates_div.setAttribute( "class", "folderItem" );
@@ -131,7 +134,8 @@ var FoxtrickForumTemplates = {
 
     _addNewTemplate : function( ev ) {
 		var doc = ev.target.ownerDocument;
-        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+//        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+		var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
         var text = Foxtrick.stripHTML( msg_window.value );
 		var inputTitle = doc.getElementById( "ForumTemplatesInputTitleId" );
         
@@ -153,7 +157,8 @@ var FoxtrickForumTemplates = {
 	 _addNewTitle : function( ev ) { 
 	 try {
 		var doc = ev.target.ownerDocument;
-        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+//        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+		var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
         var text = Foxtrick.stripHTML( msg_window.value );
 		if (text==""){ Foxtrick.alert( Foxtrickl10n.getString( 'template_exists' ) ); return;}
 		var inputTitleDiv = doc.getElementById("ForumTemplatesinputTitleDivId");
@@ -235,7 +240,8 @@ var FoxtrickForumTemplates = {
 
     _fillMsgWindow : function( ev ) { Foxtrick.dump("_fillMsgWindow\n");
         var doc = ev.target.ownerDocument;
-        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+//        var msg_window = doc.getElementById( FoxtrickForumTemplates._NEW_MESSAGE_WINDOW );
+		var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
         Foxtrick.insertAtCursor( msg_window, ev.target.msg );
     },
 
