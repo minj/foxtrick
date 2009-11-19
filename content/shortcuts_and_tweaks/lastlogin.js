@@ -12,7 +12,6 @@ FoxtrickLastLogin = {
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE: "Modifies last login time with HT Dateformat",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-    CSS: "chrome://foxtrick/content/resources/css/lastlogin.css",
 	
     init : function() {
     },
@@ -37,6 +36,14 @@ FoxtrickLastLogin = {
             if (!Foxtrick.HT_date) return;
             var div = doc.getElementById( "pnlLogin" );
 			if (!div) return;
+			
+			var simple_style='';
+			if (!Foxtrick.isStandardLayout(doc)) {
+				simple_style='<br>';
+				div.setAttribute('style',"padding: 7px 5px !important;"); 
+			}
+			else {div.setAttribute('style',"padding: 7px 5px !important; width: 400px;");}
+			
             var login_elm = div.innerHTML.split('<br>');
             var newInner= '<div id="ft_lastlogin">';
             for (var i=0; i<login_elm.length;i++){
@@ -47,7 +54,7 @@ FoxtrickLastLogin = {
                     var _s = Math.floor( (HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
                     var DiffText = TimeDifferenceToText (_s);
                     if (DiffText.search("NaN") == -1)
-                        last +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DiffText + ')</span>';
+                        last +=  simple_style+'<span class="date smallText" id="ft_deadline" style="'+'margin-left:10px; color:#800000">(' + DiffText + ')</span>';
                     else Foxtrick.dump('  Could not create timediff (NaN)\n');
                 }
                 newInner += login_elm[i] + last + '<br>\n';
