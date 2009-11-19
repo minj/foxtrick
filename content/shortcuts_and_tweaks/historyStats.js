@@ -33,8 +33,10 @@ FoxtrickHistoryStats= {
     
     _fetch : function(doc) {
         try {
-            var pager = doc.getElementById('ctl00_CPMain_ucOtherEvents_ucPagerBottom_divWrapper');
-            var page = parseInt(pager.getElementsByTagName('strong')[0].textContent);
+            try {
+                var pager = doc.getElementById('ctl00_CPMain_ucOtherEvents_ucPagerBottom_divWrapper');
+                var page = parseInt(pager.getElementsByTagName('strong')[0].textContent);
+            } catch(e) {var page = 1;}
             if (!Foxtrick.in_array(this.Pages,page)) {
 
                 this.Pages.push(page);
