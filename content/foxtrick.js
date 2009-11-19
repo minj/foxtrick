@@ -716,7 +716,7 @@ Foxtrick.hasElement = function( doc, id ) {
 Foxtrick.addBoxToSidebar = function( doc, newBoxHeader, newBoxContent, boxId,
 	referenceHeader, altReferenceHeader, column ) {
 try {
-
+	Foxtrick.dump('addBoxToSidebar\n');
 	// If we already added this, return
 	// Should ideally be checked by the change() function already
 	var boxContentId = newBoxContent.id;
@@ -724,6 +724,7 @@ try {
 		Foxtrick.dump("addBoxToSideBar: error: box content should have an id.\n");
 		return;
 	}
+		
 	if( Foxtrick.hasElement( doc, boxId ) ||
 		Foxtrick.hasElement( doc, boxContentId )) {
 		return;
@@ -736,11 +737,11 @@ try {
 		box_class='sidebarBox';
 	}
 	else {
-		sidebar = doc.getElementById("ctl00_pnlSubMenu");
+		sidebar = doc.getElementById("content").getElementsByTagName('div')[0];
 		box_class='subMenuBox';
 	}
 	if (!sidebar) return;  // no sidebar. can't add something. someone consider creating sidebar later.
-
+	
 	var divs = sidebar.getElementsByTagName("div");
 
 	// Check if any of the other sidebarboxes have the same header
@@ -840,7 +841,7 @@ try {
 			var otherBoxHeader = otherBox.getElementsByTagName("h2")[0];
 			//Foxtrick.alert(otherBoxHeader);
 			otherBox.insertBefore(newBoxContent,otherBoxHeader.nextSibling);
-		} else {
+		} else {  
 			// create the sidebarbox
 			var ownSidebarBox = doc.createElement("div");
 			ownSidebarBox.className = box_class;
@@ -858,7 +859,7 @@ try {
 			}
 		}
 	}
-} catch(e){Foxtrick.dump("addBoxToSideBar: error: '+e+'\n");}
+} catch(e){Foxtrick.dump('addBoxToSideBar: error: '+e+'\n');}
 }
 
 Foxtrick.getSortedLinks = function(links) {
