@@ -75,7 +75,7 @@
 					|| links[j].rows[0].cells[0].className.search('date')==-1) continue;
 				
 				for ( var i = 0; i < links[j].rows.length; ++i )
-				{	//if (links[j].rows[i].cells.length<=4) continue;
+				{	if (links[j].rows[i].cells.length<=1) continue;
 					var title = links[j].rows[i].cells[1].childNodes[1].getElementsByTagName( "a" )[0].title;					
 					if ( title.match( /.* HT-[^\s]*$/i ) )
 					{
