@@ -112,6 +112,7 @@ Foxtrick.modules = [
                     FoxtrickCurrencyConverter,
                     FoxtrickTickerColoring,
                     FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
+                    FoxtrickHistoryStats,   // keep before FoxtrickCopyMatchID
                     FoxtrickCopyMatchID,
                     FoxtrickHeaderFix,
                     FoxtrickHeaderFixLeft,

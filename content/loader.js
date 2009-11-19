@@ -66,6 +66,7 @@ Foxtrick.Loader = function(){
     'shortcuts_and_tweaks/economyDifference.js',
     'shortcuts_and_tweaks/playeradtoclipboard.js',
     'shortcuts_and_tweaks/teamStats.js',
+    'shortcuts_and_tweaks/historyStats.js',
     'shortcuts_and_tweaks/teamselectbox.js',
     'shortcuts_and_tweaks/seniorteamshortcuts.js',
     'shortcuts_and_tweaks/shortcutsstatistics.js',
