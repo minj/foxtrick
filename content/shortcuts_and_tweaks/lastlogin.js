@@ -17,19 +17,34 @@ FoxtrickLastLogin = {
     },
 
     run : function(page, doc) {
-		Foxtrick.dump('lastlogin run\n');
+		var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
+		var playerinfo; 
+		for (var i=0;i<divs.length;++i) {
+			if (divs[i].className=='playerInfo') {
+				playerinfo=divs[i];
+				break;
+			}
+		}
+		var playerinfodivs = playerinfo.getElementsByTagName('div');
+		var logindiv = playerinfodivs[playerinfodivs.length-1];
+		logindiv.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          			
     },
 
-	change : function( page, doc ) {
-		Foxtrick.dump('lastlogin change: check ft_lastlogin\n');
-        var div = doc.getElementById( "ft_lastlogin" );
+	change : function( page, doc ) { 
+        /*var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
-		Foxtrick.dump('lastlogin change: ft_lastlogin not found. call show\n');
-		this._Show(doc);
+		FoxtrickLastLogin._Show(doc);*/
 	},
 
-    _Show : function(doc){
+	loginchange : function( ev ) {
+		var doc = ev.target.ownerDocument;
         var div = doc.getElementById( "ft_lastlogin" );
+        if (div != null) return;
+		FoxtrickLastLogin._Show(doc);
+	},
+
+    _Show : function(doc){ 
+		var div = doc.getElementById( "ft_lastlogin" );
         if (div == null) 
         try {
 			var httime = doc.getElementById( "time" ).innerHTML;
@@ -38,7 +53,7 @@ FoxtrickLastLogin = {
             if (!Foxtrick.HT_date) return;
             var div = doc.getElementById( "pnlLogin" );
 			if (!div) return;
-			Foxtrick.dump('show\n');
+			div.parentNode.removeEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
 			
 			var simple_style='';
 			if (!Foxtrick.isStandardLayout(doc)) {
@@ -55,7 +70,7 @@ FoxtrickLastLogin = {
                 if (login_elm[i].search(/\*\*\*\.\*\*\*/) != -1) {
                     var ST_date = Foxtrick.getDatefromCellHTML( login_elm[i] );
 					
-					Foxtrick.dump(login_elm[i]+'\n'+ST_date+'\n');
+				//	Foxtrick.dump(login_elm[i]+'\n'+ST_date+'\n');
                     var _s = Math.floor( (HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
                     var DiffText = TimeDifferenceToText (_s);
                     if (DiffText.search("NaN") == -1)

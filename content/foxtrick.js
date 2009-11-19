@@ -154,7 +154,7 @@ var FoxtrickMain = {
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 		var begin = new Date();
 		FoxtrickMain.change( doc );
-		Foxtrick.dump('onPageChange\n');
+		//Foxtrick.dump('onPageChange\n');
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
