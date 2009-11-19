@@ -17,7 +17,8 @@ FoxtrickLastLogin = {
     },
 
     run : function(page, doc) {
-		var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
+	try {
+		/*var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
 		var playerinfo; 
 		for (var i=0;i<divs.length;++i) {
 			if (divs[i].className=='playerInfo') {
@@ -27,7 +28,10 @@ FoxtrickLastLogin = {
 		}
 		var playerinfodivs = playerinfo.getElementsByTagName('div');
 		var logindiv = playerinfodivs[playerinfodivs.length-1];
+		*/
+		var logindiv = doc.getElementById( "ctl00_CPMain_pnlLogins");
 		logindiv.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          			
+	} catch(e) {Foxtrick.dump('lastlogin run '+e+'\n');}
     },
 
 	change : function( page, doc ) { 
@@ -37,6 +41,7 @@ FoxtrickLastLogin = {
 	},
 
 	loginchange : function( ev ) {
+		Foxtrick.dump('loginchange\n');
 		var doc = ev.target.ownerDocument;
         var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
@@ -44,6 +49,7 @@ FoxtrickLastLogin = {
 	},
 
     _Show : function(doc){ 
+		Foxtrick.dump('_show\n');
 		var div = doc.getElementById( "ft_lastlogin" );
         if (div == null) 
         try {
