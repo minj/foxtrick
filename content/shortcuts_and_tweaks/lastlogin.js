@@ -22,7 +22,7 @@ FoxtrickLastLogin = {
 	change : function( page, doc ) {
         var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
-
+		Foxtrick.dump('change\n');
 		this._Show(doc);
 	},
 
@@ -30,12 +30,13 @@ FoxtrickLastLogin = {
         var div = doc.getElementById( "ft_lastlogin" );
         if (div == null) 
         try {
-            var httime = doc.getElementById( "time" ).innerHTML;
+			var httime = doc.getElementById( "time" ).innerHTML;
             var HT_date = Foxtrick.getDatefromCellHTML( httime );
             
             if (!Foxtrick.HT_date) return;
             var div = doc.getElementById( "pnlLogin" );
 			if (!div) return;
+			Foxtrick.dump('show\n');
 			
 			var simple_style='';
 			if (!Foxtrick.isStandardLayout(doc)) {
@@ -51,6 +52,8 @@ FoxtrickLastLogin = {
                 var last = '';
                 if (login_elm[i].search(/\*\*\*\.\*\*\*/) != -1) {
                     var ST_date = Foxtrick.getDatefromCellHTML( login_elm[i] );
+					
+					Foxtrick.dump(login_elm[i]+'\n'+ST_date+'\n');
                     var _s = Math.floor( (HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
                     var DiffText = TimeDifferenceToText (_s);
                     if (DiffText.search("NaN") == -1)
