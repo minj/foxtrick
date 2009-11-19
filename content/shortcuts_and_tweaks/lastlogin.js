@@ -12,7 +12,8 @@ FoxtrickLastLogin = {
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE: "Modifies last login time with HT Dateformat",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-    
+    CSS: "chrome://foxtrick/content/resources/css/lastlogin.css",
+	
     init : function() {
     },
 
