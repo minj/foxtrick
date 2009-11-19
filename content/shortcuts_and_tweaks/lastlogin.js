@@ -87,6 +87,8 @@ FoxtrickLastLogin = {
             }
             newInner += '</div>';
 			div.innerHTML = newInner;
+			div.parentNode.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
+			
         } catch (e) {
             Foxtrick.dump('FoxtrickLastLogin '+e+'\n');
         }
