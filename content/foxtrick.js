@@ -1674,7 +1674,7 @@ Foxtrick.var_dump = function(arr,level) {
 
 Foxtrick.dump_HTML = '';
 Foxtrick.dump_flush = function(doc) {
-    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '' && false)
+    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '')
         try{
             var div = doc.getElementById('ft_dump');
             if (div == null) {
