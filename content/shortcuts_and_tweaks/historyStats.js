@@ -15,6 +15,7 @@ FoxtrickHistoryStats= {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.New,
     Buffer : new Array(),
     Pages : new Array(),
+    Offset : 0,
     
     init : function() {
     },
@@ -44,6 +45,7 @@ FoxtrickHistoryStats= {
                 Foxtrick.dump('-----------------------------------------------------------------------------------------------<br>\n');
                 var table = Foxtrick.getElementsByClass('otherEventText', doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').cloneNode(true));
                 for (var i = 0; i < table.length; i++) {
+                    if (table[i].innerHTML.search(/class\=\"shy\"/) > -1) continue;
                     dummy = Foxtrick.trim(table[i].innerHTML);
                     
                     //Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(dummy) + '\n');
@@ -73,6 +75,7 @@ FoxtrickHistoryStats= {
                                 }
                             }
                             if (a[j].href.search(/viewcup/) > -1) {
+                                var check_season = a[j].textContent;
                                 while (table[i].getElementsByTagName('a')[0]) {
                                     table[i].removeChild(table[i].getElementsByTagName('a')[0]);
                                 }
@@ -95,6 +98,11 @@ FoxtrickHistoryStats= {
                             } else {
                             }
                         } else if (cup != -1) {
+                            if (check_season) {
+                                this.Offset = parseInt(check_season) - season;
+                                Foxtrick.dump('OFFSET: ' + this.Offset + '\n');
+                            }
+
                             buff = season + '|' + cup;
                             if (!Foxtrick.in_array(this.Buffer,buff)) {
                                 this.Buffer.push(buff);
@@ -106,7 +114,7 @@ FoxtrickHistoryStats= {
                 Foxtrick.dump('Buffer:' + Foxtrick.var_dump(this.Buffer) + '\n');            
                 Foxtrick.dump('-----------------------------------------------------------------------------------------------<br>\n');          
             }
-        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ' paste ' + e + '\n');}
+        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ' fetch ' + e + '\n');}
     },
     
     _paste : function(doc){
@@ -117,6 +125,7 @@ FoxtrickHistoryStats= {
             var last = -1;
             for (var i = 0; i< this.Buffer.length; i++){
                 var dummy = this.Buffer[i].split('|');
+                dummy[0] = parseInt(dummy[0]) + parseInt(this.Offset);
                 var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td>%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
                 // Foxtrick.dump(Foxtrick.var_dump(dummy));
                 
