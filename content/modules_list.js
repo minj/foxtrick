@@ -47,7 +47,7 @@ Foxtrick.modules = [
                     FoxtrickTransferListSearchFilters,
                     FoxtrickTransferListDeadline,
                     FoxtrickExtendedPlayerDetails,
-                    FoxtrickLastLogin,
+//                    FoxtrickLastLogin,
                     FoxtrickExtendedPlayerDetailsWage,
                     FoxtrickHTDateFormat,
                     FoxtrickMatchReportFormat,
@@ -112,7 +112,7 @@ Foxtrick.modules = [
                     FoxtrickCurrencyConverter,
                     FoxtrickTickerColoring,
                     FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
-                    FoxtrickHistoryStats,   // keep before FoxtrickCopyMatchID
+//                    FoxtrickHistoryStats,   // keep before FoxtrickCopyMatchID
                     FoxtrickCopyMatchID,
                     FoxtrickHeaderFix,
                     FoxtrickHeaderFixLeft,
@@ -143,5 +143,5 @@ Foxtrick.modules = [
                     FoxTrickPredefinedChallenges,
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
                     FoxtrickHighlightBotTeams,
-					FoxtrickTransferCompareSort,
+//					FoxtrickTransferCompareSort,
                     ];
