@@ -12,7 +12,7 @@ FoxtrickHistoryStats= {
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Displays an overview of cup ranking and league ranking on team history",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.New,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     Buffer : new Array(),
     Pages : new Array(),
     Offset : 0,
@@ -39,10 +39,31 @@ FoxtrickHistoryStats= {
                 var page = parseInt(pager.getElementsByTagName('strong')[0].textContent);
             } catch(e) {var page = 1;}
             if (!Foxtrick.in_array(this.Pages,page)) {
-
                 this.Pages.push(page);
                 Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(this.Pages) + '\n');
-                Foxtrick.dump('-----------------------------------------------------------------------------------------------<br>\n');
+                Foxtrick.dump('------------------------------------------------<br>\n');
+                
+                try {
+                    var done = false;
+                    var a = doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').getElementsByTagName('a');
+                    for (var i = 0; i < a.length;i++){
+                        if (a[i].href.search(/viewcup/) > -1) {
+                            var check_season = a[i].textContent;
+                            
+                            if(a[i].parentNode.previousSibling.previousSibling) season = a[i].parentNode.previousSibling.previousSibling.textContent;
+                            var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+                            var ar = reg.exec(season);
+                            var stime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+                            stime = Foxtrick.substr(stime, Foxtrick.strrpos( stime, ";"), stime.length);
+                            season = Foxtrick.gregorianToHT(stime).split('/')[1].split(')')[0];
+                            //Foxtrick.dump('HT Season: ' + season + '\n');
+                            this.Offset = parseInt(season)-parseInt(check_season);
+                            Foxtrick.dump(' > precheck: '+check_season+'||'+season+'||'+this.Offset+'||<br>\n');
+                            done = true;
+                        }
+                        if (done) break;
+                    }
+                } catch(e_offset) {Foxtrick.dump('Error Offset calc: ' + e_offset +'<br>\n');}
                 var table = Foxtrick.getElementsByClass('otherEventText', doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').cloneNode(true));
                 for (var i = 0; i < table.length; i++) {
                     if (table[i].innerHTML.search(/class\=\"shy\"/) > -1) continue;
@@ -75,7 +96,6 @@ FoxtrickHistoryStats= {
                                 }
                             }
                             if (a[j].href.search(/viewcup/) > -1) {
-                                var check_season = a[j].textContent;
                                 while (table[i].getElementsByTagName('a')[0]) {
                                     table[i].removeChild(table[i].getElementsByTagName('a')[0]);
                                 }
@@ -90,7 +110,7 @@ FoxtrickHistoryStats= {
                                     table[i].removeChild(table[i].getElementsByTagName('a')[0]);
                                 }
                             }catch(e_rem){}
-                            table[i].innerHTML = Foxtrick.trim(table[i].innerHTML.replace(season,''));
+                            table[i].innerHTML = Foxtrick.trim(table[i].innerHTML.replace(season-this.Offset,''));
                             var pos = table[i].innerHTML.match(/\d{1}/);
                             buff = season + '|' + league + '|' + pos + '|' + leagueN;
                             if (!Foxtrick.in_array(this.Buffer,buff)) {
@@ -98,11 +118,6 @@ FoxtrickHistoryStats= {
                             } else {
                             }
                         } else if (cup != -1) {
-                            if (check_season) {
-                                this.Offset = parseInt(check_season) - season;
-                                Foxtrick.dump('OFFSET: ' + this.Offset + '\n');
-                            }
-
                             buff = season + '|' + cup;
                             if (!Foxtrick.in_array(this.Buffer,buff)) {
                                 this.Buffer.push(buff);
@@ -125,7 +140,7 @@ FoxtrickHistoryStats= {
             var last = -1;
             for (var i = 0; i< this.Buffer.length; i++){
                 var dummy = this.Buffer[i].split('|');
-                dummy[0] = parseInt(dummy[0]) + parseInt(this.Offset);
+                dummy[0] = parseInt(dummy[0]) - this.Offset;
                 var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td>%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
                 // Foxtrick.dump(Foxtrick.var_dump(dummy));
                 
