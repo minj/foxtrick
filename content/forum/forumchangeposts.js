@@ -277,8 +277,8 @@ var FoxtrickForumChangePosts = {
 
                     if (do_hide_old_time) {  
 						//Foxtrick.dump(header_right.innerHTML+'\n'+header_right.innerHTML.search(/ \d{1,4}\.\d{1,2}\.\d{1,4}\.? \d+:\d+/gi)+'\n');
-						if (header_right.innerHTML.search(/ \d{1,4}\.\d{1,2}\.\d{1,4}\.? \d+:\d+/gi)!=-1) 
-							header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}\.\d{1,2}\.\d{1,4}\.?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+						if (header_right.innerHTML.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1) 
+							header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
 					}
 
                     // copy posting ---------------------------------------------
