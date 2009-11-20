@@ -18,7 +18,7 @@ FoxtrickLastLogin = {
 
     run : function(page, doc) {
 	try {
-		/*var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
+		var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
 		var playerinfo; 
 		for (var i=0;i<divs.length;++i) {
 			if (divs[i].className=='playerInfo') {
@@ -28,20 +28,21 @@ FoxtrickLastLogin = {
 		}
 		var playerinfodivs = playerinfo.getElementsByTagName('div');
 		var logindiv = playerinfodivs[playerinfodivs.length-1];
-		*/
-		var logindiv = doc.getElementById( "ctl00_CPMain_pnlLogins");
-		logindiv.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          			
+		logindiv=playerinfo.removeChild(logindiv);
+		playerinfo.parentNode.insertBefore(logindiv,playerinfo.nextSibling );
+		
+		//var logindiv = doc.getElementById( "ctl00_CPMain_pnlLogins");
+		//logindiv.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;  */        			
 	} catch(e) {Foxtrick.dump('lastlogin run '+e+'\n');}
     },
 
 	change : function( page, doc ) { 
-        /*var div = doc.getElementById( "ft_lastlogin" );
+        var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
-		FoxtrickLastLogin._Show(doc);*/
+		FoxtrickLastLogin._Show(doc);
 	},
 
 	loginchange : function( ev ) {
-		Foxtrick.dump('loginchange\n');
 		var doc = ev.target.ownerDocument;
         var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
@@ -49,7 +50,6 @@ FoxtrickLastLogin = {
 	},
 
     _Show : function(doc){ 
-		Foxtrick.dump('_show\n');
 		var div = doc.getElementById( "ft_lastlogin" );
         if (div == null) 
         try {
@@ -61,12 +61,19 @@ FoxtrickLastLogin = {
 			if (!div) return;
 			div.parentNode.removeEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
 			
+			var avatarstyle='margin-left:-10px'
+			/*var hasavatar=false;
+			var divs=doc.getElementById('mainBody').getElementsByTagName('div');
+			for (var i=0;i< divs.length;++i) 
+				if (divs[i].className=='faceCard') {hasavatar=true;break;}
+			if (hasavatar) avatarstyle='margin-top:60px; margin-left:-125px';
+			*/
 			var simple_style='';
 			if (!Foxtrick.isStandardLayout(doc)) {
-				simple_style='<br>';
-				div.setAttribute('style',"padding: 7px 5px !important;"); 
+				simple_style='';
+				div.setAttribute('style',"padding: 7px 3px !important;"+avatarstyle); 
 			}
-			else {div.setAttribute('style',"padding: 7px 5px !important; width: 400px;");}
+			else {div.setAttribute('style',"padding: 7px 3px !important;"+avatarstyle);}
 			
             var login_elm = div.innerHTML.split('<br>');
             var newInner= '<div id="ft_lastlogin">';
@@ -80,7 +87,7 @@ FoxtrickLastLogin = {
                     var _s = Math.floor( (HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
                     var DiffText = TimeDifferenceToText (_s);
                     if (DiffText.search("NaN") == -1)
-                        last +=  simple_style+'<span class="date smallText" id="ft_deadline" style="'+'margin-left:10px; color:#800000">(' + DiffText + ')</span>';
+                        last +=  simple_style+'<span class="date smallText" id="ft_deadline" style="padding-right:0px;important!; margin-left:10px; color:#800000">(' + DiffText + ')</span>';
                     else Foxtrick.dump('  Could not create timediff (NaN)\n');
                 }
                 newInner += login_elm[i] + last + '<br>\n';
