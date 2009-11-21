@@ -164,7 +164,7 @@ var FoxtrickCopyRatingsToClipboard = {
                         if (row == 0) {
                         	var teamlink = table.rows[row].cells[2].getElementsByTagName('a')[0];
                             if (teamlink)
-								ad += teamlink.innerHTML + ((team1==true)?(' - ' + gameresult_h):'') + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
+								ad += teamlink.innerHTML + ((team1==true)?(' - ' + gameresult_a):'') + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
                         } else {
                             ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
