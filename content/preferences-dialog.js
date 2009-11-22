@@ -1218,7 +1218,8 @@ FoxtrickPreferencesDialog.isPrefSetting = function ( setting) {
 }
 
 FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ev ) {
-    if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
+	if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
+	else doc=document;
 	if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
 			var array = FoxtrickPrefs._getElemNames("");
@@ -1229,7 +1230,7 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ev ) {
 			}
 			FoxtrickMain.init();
             if (!ev) close();
-			else document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
 			dump('confirmCleanupBranch error:'+e+'\n');
@@ -1240,7 +1241,8 @@ FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ev ) {
 
 
 FoxtrickPreferencesDialog.disableAll = function (ev ) {
-    if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
+	if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
+	else doc=document;
 	if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
         try {
 			var array = FoxtrickPrefs._getElemNames("");
@@ -1251,7 +1253,7 @@ FoxtrickPreferencesDialog.disableAll = function (ev ) {
 			}
 			FoxtrickMain.init();
             if (!ev) close();
-			else document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
 			dump(e);
@@ -1262,7 +1264,9 @@ FoxtrickPreferencesDialog.disableAll = function (ev ) {
 
 FoxtrickPreferencesDialog.SavePrefs = function (ev) {
         try {
-			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
+			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
+			else doc=document;
+			
 			var locpath=Foxtrick.selectFileSave(window);
 			if (locpath==null) {return;}
 			var File = Components.classes["@mozilla.org/file/local;1"].
@@ -1278,8 +1282,8 @@ FoxtrickPreferencesDialog.SavePrefs = function (ev) {
 
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
-				if ((FoxtrickPreferencesDialog.isPrefSetting(array[i]) && document.getElementById("saveprefsid").checked)
-					|| (!FoxtrickPreferencesDialog.isPrefSetting(array[i]) && document.getElementById("savenotesid").checked)) {
+				if ((FoxtrickPreferencesDialog.isPrefSetting(array[i]) && doc.getElementById("saveprefsid").checked)
+					|| (!FoxtrickPreferencesDialog.isPrefSetting(array[i]) && doc.getElementById("savenotesid").checked)) {
 
 					var value=FoxtrickPrefs.getString(array[i]);
 					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
@@ -1303,7 +1307,8 @@ FoxtrickPreferencesDialog.SavePrefs = function (ev) {
 FoxtrickPreferencesDialog.LoadPrefs = function (ev) {
         try {
 			// nsifile
-			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView;document=FoxtrickPrefsDialogHTML._doc;}
+			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
+			else doc=document;
 			var locpath=Foxtrick.selectFile(window);
 			if (locpath==null) return;
 			var File = Components.classes["@mozilla.org/file/local;1"].
@@ -1324,9 +1329,9 @@ FoxtrickPreferencesDialog.LoadPrefs = function (ev) {
 				var line = converter.ConvertToUnicode(lineData.value);
 				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
 				var value=line.match(/\",(.+)\)\;/)[1];
-				var strval = value.match(/\"(.+)\"/);
+				var strval = value.match(/\"(.+)\"/); 
 				if (value == "\"\"") FoxtrickPrefs.setString(key,"");
-				else if (strval != null) FoxtrickPrefs.setString(key,strval[1]);
+				else if (strval != null) FoxtrickPrefs.setString(key,strval[1].replace(/\\n/g,'\n'));
 				else if (value == "true") FoxtrickPrefs.setBool(key,true);
 				else if (value == "false") FoxtrickPrefs.setBool(key,false);
 				else FoxtrickPrefs.setInt(key,value);
@@ -1335,7 +1340,7 @@ FoxtrickPreferencesDialog.LoadPrefs = function (ev) {
 			fis.close();
 			FoxtrickMain.init();
 			if (!ev) close();
-			else document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
 
 		}
 		catch (e) {

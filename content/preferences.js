@@ -127,10 +127,13 @@ var FoxtrickPrefs = {
 
     _getElemNames : function( list_name ) {
         try {
+			var array = null;
 			if( list_name != "" ) 
-				return this._pref_branch.getChildList( encodeURI(list_name + "."), {} );
+				array = this._pref_branch.getChildList( encodeURI(list_name + "."), {} );
 			else
-				return decodeURI(this._pref_branch.getChildList( "", {} ));
+				array = this._pref_branch.getChildList( "", {} );
+			for (var i=0;i<array.length;++i) {array[i] = decodeURI(array[i]);}
+			return array;
         } catch( e ) {
             return null;
         }
@@ -155,7 +158,7 @@ var FoxtrickPrefs = {
     {
         this._pref_branch.deleteBranch( encodeURI(list_name) );
         for (var  i in values )
-            FoxtrickPrefs.setString( list_name + "." + i, values[i] );
+            FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
     },
     
     deleteValue : function( value_name ){
