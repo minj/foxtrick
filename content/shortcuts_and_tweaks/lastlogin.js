@@ -17,6 +17,7 @@ FoxtrickLastLogin = {
     },
 
     run : function(page, doc) {
+    if (doc.getElementById('ctl00_CPMain_upGB') != null) return;
 	try {
 		var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
 		var playerinfo; 
@@ -37,6 +38,7 @@ FoxtrickLastLogin = {
     },
 
 	change : function( page, doc ) { 
+    if (doc.getElementById('ctl00_CPMain_upGB') != null) return;
         var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
 		FoxtrickLastLogin._Show(doc);

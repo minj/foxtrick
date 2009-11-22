@@ -23,7 +23,7 @@ var FoxtrickForumPreview = {
 
     run : function( page, doc ) {
 	try{
-        //Foxtrick.dump('prev: ' + page + '\n');
+        Foxtrick.dump('prev: ' + page + '\n');
         var check_div = doc.getElementById( "forum_preview" );
         if (check_div != null) return;
 
@@ -55,7 +55,7 @@ var FoxtrickForumPreview = {
                 return;
         }
         catch(e) {
-            Foxtrick.dump('n' + 'FoxtrickForumPreview' + e + '\n');
+            Foxtrick.dump('\n' + 'FoxtrickForumPreview' + e + '\n');
         }
 
         // display preview and button above the message window
@@ -74,8 +74,11 @@ var FoxtrickForumPreview = {
 		//var target = doc.getElementById("ctl00_CPMain_btnCancel");  // Forum
         var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
         var target = targets[targets.length-1];
+        
 		if (page=='forumWritePost') button_ok = targets[targets.length-2];
-
+        if (page=='guestbook') target = null;
+        
+        
 		var msg_type = 0;
 		//var index =11;
 
