@@ -9,7 +9,7 @@ var FoxtrickAlertCustomSounds = {
     MODULE_NAME : "AlertCustomSounds",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Option to use custom alert sounds by event",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

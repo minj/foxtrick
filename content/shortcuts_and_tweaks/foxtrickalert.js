@@ -225,6 +225,7 @@ var FoxtrickAlert = {
 							var url = FoxtrickAlertCustomSounds.urls[i];
 							if (href.search(url) != -1) {
 								var sound = FoxtrickPrefs.getString("module." + FoxtrickAlertCustomSounds.MODULE_NAME + "." + FoxtrickAlertCustomSounds.OPTIONS[i]+"_text"); 
+								if (!sound) sound = FoxtrickAlertCustomSounds.OPTION_TEXTS_DEFAULT_VALUES[i];
 								Foxtrick.playSound(sound);
 								play_custom=true;
 								break;
