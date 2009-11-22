@@ -20,7 +20,7 @@ var FoxtrickFormatPostingText = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.9",
-	LASTEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
+	LATEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : false,
 	//OPTIONS : new Array("AddCopyIcon"), 
@@ -41,7 +41,7 @@ var FoxtrickCopyPostID = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.7.5",
-	LASTEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
+	LATEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
 	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("AddCopyIcon"), 
 	
@@ -67,7 +67,7 @@ var FoxtrickCopyPosting = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.4.9",	
-	LASTEST_CHANGE:"Some fixing for spoilers, quotes & tables.",
+	LATEST_CHANGE:"Some fixing for spoilers, quotes & tables.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : false,
 	
@@ -294,7 +294,7 @@ var FoxtrickSingleline2 = {
 	DEFAULT_ENABLED : false,
 	CSS:"chrome://foxtrick/content/resources/css/Singleline2.css",
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LASTEST_CHANGE:"Alternative 'HT-Detailed header to single line' module. Slightly faster then then other versions. Disables some conflicting forum post changing modules.",
+	LATEST_CHANGE:"Alternative 'HT-Detailed header to single line' module. Slightly faster then then other versions. Disables some conflicting forum post changing modules.",
 
 	init : function() {
 	},

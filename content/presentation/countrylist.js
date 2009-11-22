@@ -18,8 +18,8 @@ var FoxtrickCountyList = {
     htCountriesXml : null,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"bring back select boxes on disabled SelectBoxes option",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Bring back select boxes on disabled SelectBoxes option",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.Fix,
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
     init : function() {
