@@ -141,8 +141,7 @@
             try {
                 if ( nextElement.id == 'ctl00_CPMain_ucHattrickMLEditor_pnlTags' ||
                      nextElement.id == 'ctl00_CPMain_ucActionEditor_pnlTags' ||
-                     nextElement.id == 'ctl00_CPMain_ucEditorMain_pnlTags' ||
-                     nextElement.id == 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_pnlTags' ||
+                     nextElement.id.search('ctl00_ctl00_CPContent_CPMain_uc') != -1 ||
                      nextElement.href != null
                    ) {
                         nextElement.setAttribute("style","display:none")
