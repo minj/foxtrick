@@ -19,6 +19,23 @@
             <tactic type="creatively" value="Play creatively" />
             <tactic type="longshots" value="Long shots" />
         </tactics>
+        <!-- positions appearing on players page -->
+        <positions>
+            <position type="Keeper" value="Keeper" short="Ke" />
+            <position type="Central defender" value="Central defender" short="Cd" />
+            <position type="Wing back" value="Wing back" short="Wb" />
+            <position type="Inner midfielder" value="Inner midfielder" short="Im" />
+            <position type="Winger" value="Winger" short="Wi" />
+            <position type="Forward" value="Forward" short="Fo" />
+        </positions>
+        <specialties>
+            <specialty type="Unpredictable" value="Unpredictable" short="Un" />
+            <specialty type="Powerful" value="Powerful" short="Po" />
+            <specialty type="Quick" value="Quick" short="Qu" />
+            <specialty type="Technical" value="Technical" short="Te" />
+            <specialty type="Head" value="Head" short="He" />
+            <specialty type="Regainer" value="Regainer" short="Re" />
+        </specialties>		
         <!-- repositioning word connections appearing in match lineup page -->
         <repositioning>
             <reposition type="midfielder" value="extra inner midfield" />

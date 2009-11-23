@@ -10,15 +10,17 @@ var FoxtrickYouthSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayers'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Added copy skilltable button (default on)",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.4.9.1",
+	LATEST_CHANGE:"Better abreviations of specialties and positions for some languages",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.Fix,
     OPTIONS : new Array("CopySkillTable"), 
 	CSS: "chrome://foxtrick/content/resources/css/youthskilltable.css",
 	
 	copy_string:"",
+	htLanguagesXml : null,
 	
     init : function() {
+ 		this.initHtLang();
     },
 
     run : function( page, doc ) {
@@ -340,11 +342,22 @@ var FoxtrickYouthSkillTable = {
 						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
 						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
 						var specc = allDivs[i].getElementsByTagName( "p" )[0];
-						var specMatch = specc.textContent.match(/\[\D+\]/g);
-						if (specMatch != null) {
-							td.appendChild(doc.createTextNode(specMatch[0].substr(1,2)));
-							FoxtrickYouthSkillTable.copy_string += specMatch[0].substr(1,2);
+						var reg=/\[(\D+)\]/g;
+						var specMatch = reg.exec(specc.textContent);
+						if (specMatch) {					
+							var shortspecc = FoxtrickYouthSkillTable._getShortSpecialty(specMatch[1]);
+							if (shortspecc) {
+								specMatch = shortspecc;
+							}	
+							else {
+								specMatch = specMatch[1].substr(0,2);
+								Foxtrick.dump('fallback '+specMatch+'\n')
+							}
 						}
+						else specMatch='';
+						td.appendChild(doc.createTextNode(specMatch));
+						FoxtrickYouthSkillTable.copy_string += specMatch;
+						
 						FoxtrickYouthSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
 						
@@ -378,11 +391,18 @@ var FoxtrickYouthSkillTable = {
 						var td = doc.createElement('td');
 						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
 						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
-						if (matchday==latestMatch) {
-							var pos=a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
-							var sp_pos= pos.search(/ |\&nbsp;/);
-							if (sp_pos==-1) pos=pos.substr(0,2)
-							else pos=pos.substr(0,1)+pos.substr(sp_pos+1,1);
+						if (matchday == latestMatch) {
+							var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
+							var shortpos = FoxtrickYouthSkillTable._getShortPos(pos);
+							if (shortpos) {
+								pos = shortpos;
+							}
+							else {
+								var sp_pos = pos.search(/ |\&nbsp;/);
+								if (sp_pos == -1) pos=pos.substr(0,2)
+								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
+								Foxtrick.dump('fallback '+pos+'\n')							
+							}
 							td.appendChild(doc.createTextNode(pos));
 							FoxtrickYouthSkillTable.copy_string += pos;												
 						}
@@ -428,6 +448,77 @@ var FoxtrickYouthSkillTable = {
 			tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_boxBodyCollapsed');
 		}
 	} catch(e) {Foxtrick.dump('SkillTableHeaderClick: '+e+'\n');}
+	},
+	
+	_getShortPos: function(pos)
+	{
+		var short_pos='';
+		try {
+		  var lang = FoxtrickPrefs.getString("htLanguage");
+		} catch (e) {
+		  return null;
+		}
+
+		try {
+			var type = pos.replace(/&nbsp;/,' ');
+			var path = "hattricklanguages/language[@name='" + lang + "']/positions/position[@value='" + type + "']";
+			var obj = FoxtrickYouthSkillTable.htLanguagesXml.evaluate(path,FoxtrickYouthSkillTable.htLanguagesXml,null,FoxtrickYouthSkillTable.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
+			if (obj)
+				short_pos = obj.attributes.getNamedItem("short").textContent;
+			else
+				return null;
+		} catch (e) {
+			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
+			return null;
+		}
+
+		return short_pos;
+	},
+
+	_getShortSpecialty: function(pos)
+	{
+		var short_pos='';
+		try {
+		  var lang = FoxtrickPrefs.getString("htLanguage");
+		} catch (e) {
+		  return null;
+		}
+
+		try {
+			var type = pos.replace(/&nbsp;/,' ');
+			var path = "hattricklanguages/language[@name='" + lang + "']/specialties/specialty[@value='" + type + "']";
+			var obj = FoxtrickYouthSkillTable.htLanguagesXml.evaluate(path,FoxtrickYouthSkillTable.htLanguagesXml,null,FoxtrickYouthSkillTable.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
+			if (obj)
+				short_pos = obj.attributes.getNamedItem("short").textContent;
+			else
+				return null;
+		} catch (e) {
+			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
+			return null;
+		}
+
+		return short_pos;
+	},
+
+	initHtLang: function ()
+	{
+		try {
+			this.htLanguagesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
+		} catch (e) {
+			Foxtrick.dump('youthskill.js initHtLang: '+e+"\n");
+		}
+	},
+
+	_loadXmlIntoDOM: function(url) {
+		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+		req.open("GET", url, false);
+		req.send(null);
+		var doc = req.responseXML;
+		if (doc.documentElement.nodeName == "parsererror") {
+			Foxtrick.dump("error parsing " + url+"\n");
+			return null;
+		}
+		return doc;
 	},
 }
 
