@@ -10,8 +10,8 @@ var FoxtrickCopyRatingsToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9",	
-	LATEST_CHANGE:"Added icons for teamswise copy",    
+	NEW_AFTER_VERSION: "0.4.9.1",	
+	LATEST_CHANGE:"Fixing away match copy",    
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	init : function() {

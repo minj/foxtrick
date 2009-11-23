@@ -10,9 +10,9 @@ var FoxtrickAlertCustomSounds = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Option to use custom alert sounds by event",	
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.4.9.1",
+	LATEST_CHANGE:"Setting default sounds",	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("chrome://foxtrick/content/resources/sounds/DingLing.wav",  // LoginWelcome

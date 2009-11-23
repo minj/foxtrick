@@ -8,6 +8,9 @@ var FoxtrickPrefsDialogHTML = {
 
     MODULE_NAME : "PrefsDialogHTML",
     DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.9.1",
+	LATEST_CHANGE:"Fixed ex/importing preferences",	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome://foxtrick/content/resources/css/preferences-dialog-html.css",
 	_doc:null,
 
@@ -1305,19 +1308,21 @@ var FoxtrickPrefsDialogHTML = {
 						
 				for ( var i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i]; 
-					//dump (oldVersion+' > ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\n');
+					//Foxtrick.dump (module.MODULE_NAME+' '+oldVersion+' > ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\n');
 					if ( (module.NEW_AFTER_VERSION && oldVersion <= module.NEW_AFTER_VERSION) 
 						|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
 						
-						if (!module.MODULE_CATEGORY) continue;
+						//if (!module.MODULE_CATEGORY) continue;
+						var category = Foxtrick.moduleCategories.MAIN;
+						if (module.MODULE_CATEGORY) category = module.MODULE_CATEGORY;
 						
 						var Tab="";
-						if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.ShortcutsTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.PRESENTATION) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.ForumTab");
-						else if (module.MODULE_CATEGORY==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
+						if (category==Foxtrick.moduleCategories.MAIN) Tab=Foxtrickl10n.getString("foxtrick.prefs.MainTab");
+						else if (category==Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.ShortcutsTab");
+						else if (category==Foxtrick.moduleCategories.PRESENTATION) Tab=Foxtrickl10n.getString("foxtrick.prefs.PresentationTab");
+						else if (category==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
+						else if (category==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.ForumTab");
+						else if (category==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.73";
@@ -1325,8 +1330,10 @@ var FoxtrickPrefsDialogHTML = {
 						if (!change_category) change_category = Foxtrick.latestChangeCategories.FIX;
 
 						var screenshot=Foxtrickl10n.getScreenshot(module.MODULE_NAME);						
-						FoxtrickPrefsDialogHTML.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.MODULE_CATEGORY,new_after,module.LATEST_CHANGE,module,Foxtrickl10n.getString(change_category)]); 
-												
+						FoxtrickPrefsDialogHTML.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.category,new_after,module.LATEST_CHANGE,module,Foxtrickl10n.getString(change_category)]); 
+						
+						// for release notes goto changes and select new version number
+						Foxtrick.dump(change_category+':\t'+module.MODULE_NAME+'\t'+module.LATEST_CHANGE+'\n');						
 					}
 				}
 				

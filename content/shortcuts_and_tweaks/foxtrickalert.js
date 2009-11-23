@@ -173,14 +173,17 @@ var FoxtrickAlert = {
 		
 		// custom turned off?
 		if (Foxtrick.isModuleEnabled(FoxtrickAlertCustomOff)) {
-			for (var i=0; i<FoxtrickAlertCustomSounds.OPTIONS.length; ++i) {
-				var url = FoxtrickAlertCustomSounds.urls[i];
-				if (href.search(url) != -1 && Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomOff, FoxtrickAlertCustomSounds.OPTIONS[i]))
+			for (var i=0; i<FoxtrickAlertCustomOff.OPTIONS.length; ++i) {
+				var url = FoxtrickAlertCustomOff.urls[i];
+				//Foxtrick.dump('try '+url+' '+href.search(url)+' '+ FoxtrickAlertCustomOff.OPTIONS[i] +' '+Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomOff, FoxtrickAlertCustomOff.OPTIONS[i])+'\n');
+				if (href.search(url) != -1 && Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomOff, FoxtrickAlertCustomOff.OPTIONS[i])) {
+					Foxtrick.dump('dont show '+url+' '+ FoxtrickAlertCustomOff.OPTIONS[i] +'\n');
 					FoxtrickAlert.foxtrick_showAlert(true); // show next
 					return;
+				}
 			}
 		}
-						
+									
         var img = "http://hattrick.org/favicon.ico";
         var title = "Hattrick.org";
 		var clickable = true;
