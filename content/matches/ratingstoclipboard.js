@@ -176,8 +176,18 @@ var FoxtrickCopyRatingsToClipboard = {
 				} catch (e) {}
             }
         }
-		ad.replace(/[td]###[\/td]/gi,'');
-        ad += '\n[/table]\n';        
+		ad = ad.replace(/\[td\]###\[\/td\]/gi,'');
+        ad += '\n[/table]\n';
+        
+        if(!(team1 && team2)) {
+            var ad_s = ad.split('[/tr]');
+            for (var i = 0; i < ad_s.length; i++){
+                if (i == 10) ad_s[i] = '[tr]';
+                ad_s[i] = ad_s[i].replace(/\[th\]\[\/th\]/gi,'');
+                ad_s[i] = ad_s[i].replace(/\[td\]\[\/td\]/gi,'');
+            }
+            ad = ad_s.join('[/tr]').replace(/\[tr\]\[\/tr\]/,'');
+        }    
 	} catch(e) {Foxtrick.dump('ratingscopied error: '+e+'\n');}
 		try {
 
