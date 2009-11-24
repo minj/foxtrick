@@ -354,8 +354,7 @@ var FoxtrickYouthSkillTable = {
 						if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_small'); even=false;}
 						else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_small'); even=true;}
 						var specc = allDivs[i].getElementsByTagName( "p" )[0];
-						var reg=/\[(\D+)\]/g;
-						var specMatch = reg.exec(specc.textContent);
+						specMatch = specc.textContent.match(/\[(\D+)\]/);
 						if (specMatch) {					
 							var shortspecc = FoxtrickYouthSkillTable._getShortSpecialty(specMatch[1]);
 							if (shortspecc) {
