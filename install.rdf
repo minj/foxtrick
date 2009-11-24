@@ -21,13 +21,18 @@
   <!-- Flock -->
   <RDF:Description RDF:about="rdf:#$6gQfX1"
                    em:id="{a463f10c-3994-11da-9945-000d60ca027b}"
-                   em:minVersion="0.4"
-                   em:maxVersion="1.0" />
+                   em:minVersion="1.2.6"
+                   em:maxVersion="2.5.5" />
   <!-- Mozilla -->
   <RDF:Description RDF:about="rdf:#$YfQfX1"
                    em:id="{86c18b42-e466-45a9-ae7a-9b95ba6f5640}"
                    em:minVersion="1.7"
                    em:maxVersion="1.8" />
+  <!-- Fennec -->
+  <RDF:Description RDF:about="rdf:#$QfQfX1"
+                   em:id="{a23983c0-fd0e-11dc-95ff-0800200c9a66}"
+                   em:minVersion="1.0a1"
+                   em:maxVersion="1.0.*" />
 				   
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
@@ -42,6 +47,7 @@
     <em:targetApplication RDF:resource="rdf:#$TfQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$AgQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$YfQfX1"/>
+    <em:targetApplication RDF:resource="rdf:#$QfQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$1gQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$6gQfX1"/>
     <!-- developer list -->
