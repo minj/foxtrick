@@ -68,7 +68,7 @@
             <level text="poor" value="3" />
             <level text="wretched" value="2" />
             <level text="disastrous" value="1" />
-			<level text="non-existent" value="0" />
+            <level text="non-existent" value="0" />                
         </levels>
     </language>
 
@@ -78,17 +78,7 @@
             <sublevel text="(Nisko)" value="0.25"  />
             <sublevel text="(Visoko)" value="0.50"  />
             <sublevel text="(Veoma visoko)" value="0.75"  />
-        </ratingSubLevels>	
-        <repositioning>
-            <reposition type="midfielder" value="dodatni vezni" />
-            <reposition type="centraldefender" value="dodatni centralni odbrambeni" />
-            <reposition type="forward" value="dodatni napadač" />
-            <reposition type="normal" value="normalno" />
-            <reposition type="offensive" value="istureni" />
-            <reposition type="defensive" value="povučeni" />
-            <reposition type="towardsmiddle" value="prema sredini" />
-            <reposition type="towardswing" value="prema krilu" />
-        </repositioning>
+        </ratingSubLevels>
         <tactics>
             <tactic type="normal" value="Normalno" />
             <tactic type="pressing" value="Presing" />
@@ -98,6 +88,56 @@
             <tactic type="creatively" value="Igraj kreativno" />
             <tactic type="longshots" value="Dalekometni šutevi" />
         </tactics>
+        <!-- positions appearing on players page -->
+        <positions>
+            <position type="Keeper" value="Golman" short="Go" />
+            <position type="Central defender" value="Centralni odbrambeni" short="Co" />
+            <position type="Wing back" value="Bek" short="Be" />
+            <position type="Inner midfielder" value="Vezni" short="Ve" />
+            <position type="Winger" value="Krilo" short="Kr" />
+            <position type="Forward" value="Napadač" short="Na" />
+        </positions>
+        <specialties>
+            <specialty type="Unpredictable" value="Nepredvidiv" short="Np" />
+            <specialty type="Powerful" value="Snažan" short="Sn" />
+            <specialty type="Quick" value="Brz" short="Br" />
+            <specialty type="Technical" value="Tehničar" short="Te" />
+            <specialty type="Head" value="Glavonja" short="Gl" />
+            <specialty type="Regainer" value="Nesalomljiv" short="Ns" />
+        </specialties>	
+        <repositioning>
+            <reposition type="midfielder" value="Kao vezni" />
+            <reposition type="centraldefender" value="Kao odbrambeni" />
+            <reposition type="forward" value="Kao napadač" />
+            <reposition type="normal" value="Normalno" />
+            <reposition type="offensive" value="Ofanzivno" />
+            <reposition type="defensive" value="Defanzivno" />
+            <reposition type="towardsmiddle" value="Prema sredini" />
+            <reposition type="towardswing" value="Prema krilu" />
+        </repositioning>        
+		<levels>
+            <level text="nenadmašiv" value="20" />
+            <level text="utopijski" value="19" />
+            <level text="magičan" value="18" />
+            <level text="legendaran" value="17" />
+            <level text="vanzemaljski" value="16" />
+            <level text="titanski" value="15" />
+            <level text="natprirodan" value="14" />
+            <level text="svjetska klasa" value="13" />
+            <level text="veličanstven" value="12" />
+            <level text="sjajan" value="11" />
+            <level text="izuzetan" value="10" />
+            <level text="impresivan" value="9" />
+            <level text="odličan" value="8" />
+            <level text="solidan" value="7" />
+            <level text="prolazan" value="6" />
+            <level text="nedovoljan" value="5" />
+            <level text="slab" value="4" />
+            <level text="jadan" value="3" />
+            <level text="očajan" value="2" />
+            <level text="katastrofalan" value="1" />
+            <level text="nepostojeći" value="0" />                
+        </levels>		
     </language>	
 
     <language name="cz" desc="Čeština">
@@ -331,34 +371,6 @@
             <sublevel text="(hoog)" value="0.50"  />
             <sublevel text="(zeer hoog)" value="0.75"  />
         </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="normaal" />
-            <tactic type="pressing" value="pressievoetbal" />
-            <tactic type="ca" value="counter" />
-            <tactic type="aow" value="vleugelaanval" />
-            <tactic type="aim" value="centrumaanval" />
-            <tactic type="creatively" value="creatief spel" />
-            <tactic type="longshots" value="afstandsschoten" />
-        </tactics>		
-        <!-- positions appearing on players page -->
-        <positions>
-            <position type="Keeper" value="Keeper" short="K" />
-            <position type="Central defender" value="Centrale verdediger" short="CD" />
-            <position type="Wing back" value="Vleugelverdediger" short="WB" />
-            <position type="Inner midfielder" value="Centrale middenvelder" short="IM" />
-            <position type="Winger" value="Vleugelspeler" short="W" />
-            <position type="Forward" value="Aanvaller" short="F" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="Onvoorspelbaar" short="On" />
-            <specialty type="Powerful" value="Krachtig" short="Kr" />
-            <specialty type="Quick" value="Snel" short="Sn" />
-            <specialty type="Technical" value="Technisch" short="Te" />
-            <specialty type="Head" value="Koppen" short="Ko" />
-            <specialty type="Regainer" value="Snel herstel" short="He" />
-        </specialties>		
-        <!-- repositioning word connections appearing in match lineup page -->
         <repositioning>
             <reposition type="midfielder" value="extra centrale middenvelder" />
             <reposition type="centraldefender" value="extra centrale verdediger" />
@@ -369,29 +381,15 @@
             <reposition type="towardsmiddle" value="naar het midden" />
             <reposition type="towardswing" value="naar de vleugel" />
         </repositioning>
-        <levels>
-            <level text="goddelijk" value="20" />
-            <level text="utopisch" value="19" />
-            <level text="magisch" value="18" />
-            <level text="mythisch" value="17" />
-            <level text="buitenaards" value="16" />
-            <level text="reusachtig" value="15" />
-            <level text="bovennatuurlijk" value="14" />
-            <level text="wereldklasse" value="13" />
-            <level text="wonderbaarlijk" value="12" />
-            <level text="briljant" value="11" />
-            <level text="uitmuntend" value="10" />
-            <level text="formidabel" value="9" />
-            <level text="uitstekend" value="8" />
-            <level text="goed" value="7" />
-            <level text="redelijk" value="6" />
-            <level text="matig" value="5" />
-            <level text="zwak" value="4" />
-            <level text="slecht" value="3" />
-            <level text="waardeloos" value="2" />
-            <level text="rampzalig" value="1" />
-			<level text="niet-bestaand" value="0" />
-        </levels>
+        <tactics>
+            <tactic type="normal" value="normaal" />
+            <tactic type="pressing" value="pressievoetbal" />
+            <tactic type="ca" value="counter" />
+            <tactic type="aow" value="vleugelaanval" />
+            <tactic type="aim" value="centrumaanval" />
+            <tactic type="creatively" value="creatief spel" />
+            <tactic type="longshots" value="afstandsschoten" />
+        </tactics>		
     </language>
 
     <language name="fy" desc="Frysk">
@@ -992,12 +990,41 @@
     </language>
 
     <language name="sr" desc="Српски">
+	<!-- rating sublevels appearing in match detail page -->
         <ratingSubLevels>
             <sublevel text="(Веома низак)" value="0.0" />
             <sublevel text="(Низак)" value="0.25" />
             <sublevel text="(Висок)" value="0.50" />
             <sublevel text="(Веома висок)" value="0.75" />
         </ratingSubLevels>
+        <!-- tactics appearing in match detail page -->
+        <tactics>
+            <tactic type="normal" value="Нормално" />
+            <tactic type="pressing" value="Пресинг" />
+            <tactic type="ca" value="Контранапади" />
+            <tactic type="aow" value="Напад преко крила" />
+            <tactic type="aim" value="Напад по средини" />
+            <tactic type="creatively" value="Креативна игра" />
+            <tactic type="longshots" value="Шутеви из даљине" />
+        </tactics>
+        <!-- positions appearing on players page -->
+        <positions>
+            <position type="Keeper" value="Голман" short="Го" />
+            <position type="Central defender" value="Штопер" short="Шт" />
+            <position type="Wing back" value="Бек" short="Бе" />
+            <position type="Inner midfielder" value="Везни играч" short="Ве" />
+            <position type="Winger" value="Крило" short="Кр" />
+            <position type="Forward" value="Нападач" short="На" />
+        </positions>
+        <specialties>
+            <specialty type="Unpredictable" value="Непредвидив" short="Не" />
+            <specialty type="Powerful" value="Снажан" short="Сн" />
+            <specialty type="Quick" value="Брз" short="Бр" />
+            <specialty type="Technical" value="Техничар" short="Те" />
+            <specialty type="Head" value="Игра главом" short="Иг" />
+            <specialty type="Regainer" value="Регенерисање" short="Ре" />
+        </specialties>		
+        <!-- repositioning word connections appearing in match lineup page -->
         <repositioning>
             <reposition type="midfielder" value="Екстра везни играч" />
             <reposition type="centraldefender" value="Екстра штопер" />
@@ -1008,15 +1035,30 @@
             <reposition type="towardsmiddle" value="Према средини" />
             <reposition type="towardswing" value="Према крилу" />
         </repositioning>
-        <tactics>
-            <tactic type="normal" value="Нормално" />
-            <tactic type="pressing" value="Пресинг" />
-            <tactic type="ca" value="Контранапади" />
-            <tactic type="aow" value="Напад преко крила" />
-            <tactic type="aim" value="Напад по средини" />
-            <tactic type="creatively" value="Креативна игра" />
-            <tactic type="longshots" value="Шутеви из даљине" />
-        </tactics>
+		<levels>
+            <level text="божански" value="20" />
+            <level text="савршен" value="19" />
+            <level text="магичан" value="18" />
+            <level text="епски" value="17" />
+            <level text="легендаран" value="16" />
+            <level text="величанствен" value="15" />
+            <level text="натприродан" value="14" />
+            <level text="светска класа" value="13" />
+            <level text="фантастичан" value="12" />
+            <level text="бриљантан" value="11" />
+            <level text="изузетан" value="10" />
+            <level text="силан" value="9" />
+            <level text="одличан" value="8" />
+            <level text="добар" value="7" />
+            <level text="просечан" value="6" />
+            <level text="недовољан" value="5" />
+            <level text="слаб" value="4" />
+            <level text="јадан" value="3" />
+            <level text="очајан" value="2" />
+            <level text="катастрофалан" value="1" />
+            <level text="непостојећи" value="0" />               
+        </levels>
+
     </language>
 
     <language name="gr" desc="Ελληνικά">
