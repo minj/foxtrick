@@ -97,6 +97,7 @@ Foxtrick.modules = [
                     FoxtrickEconomyDifference,
                     FoxtrickHideSignatures,
                     FoxtrickForumNextAndPrevious,
+                    FoxtrickForumLastPost,
                     FoxtrickPersonalityImages,
                     FoxtrickSkillColoring,
                     FoxtrickSkinPlugin,
