@@ -20,9 +20,6 @@ var FoxtrickForumStripHattrickLinks = {
 
 	run : function( page, doc ) {
 	try{
-		Foxtrick.dump('run FoxtrickForumStripHattrickLinks\n');
-		
-		
 		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
         var target = targets[targets.length-1];
         var button_ok = null;
