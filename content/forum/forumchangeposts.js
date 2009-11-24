@@ -116,7 +116,7 @@ var FoxtrickForumChangePosts = {
             var messages = Foxtrick.getElementsByClass("message", doc );
             for (var i = 0; i < messages.length; i++){
                 var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
-                Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');
+                // Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');
                 for (var j = 0; j <= count_pre; j++) {
                     for ( var k = 0; k < org.length; k++) {
                         messages[i].innerHTML = messages[i].innerHTML.replace(org[k],rep[k]);
