@@ -54,6 +54,7 @@ FoxtrickStaffMarker.hty_staff = new Array (
 'chembalo',
 'Mystic_Lolo',
 'wegas',
+'acmadaica',
 'ryuti',
 'glist',
 'snowsaint'
