@@ -26,6 +26,7 @@ Foxtrick.Loader = function(){
     'preferences-dialog-html.js',
 
     // individual modules
+	'forum/forumstriphattricklinks.js',
     'forum/forumchangeposts_modules.js',
     'forum/forumchangeposts.js',
     'forum/forumtemplates.js',

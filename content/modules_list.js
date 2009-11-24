@@ -8,7 +8,8 @@
  * Register your page handlers in it.
  */
 Foxtrick.modules = [
-                    FoxtrickForumChangePosts,
+                    FoxtrickForumStripHattrickLinks,
+					FoxtrickForumChangePosts,
                     FoxtrickShowForumPrefButton,
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
                     FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
