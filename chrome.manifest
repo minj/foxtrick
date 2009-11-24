@@ -1,5 +1,6 @@
 content foxtrick content/
 content	foxtrick content/ contentaccessible=yes
 overlay chrome://browser/content/browser.xul chrome://foxtrick/content/foxtrick.xul
+overlay chrome://navigator/content/navigator.xul chrome://foxtrick/content/foxtrick.xul
 
 skin	foxtrick	classic/1.0	skin/
