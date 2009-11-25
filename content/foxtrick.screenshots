@@ -57,7 +57,8 @@ TransferListDeadline=http://foxtrick.foundationhorizont.org/index.php/shortcuts-
 TransferListSearchFilters=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/92-transferlistsearchfilters
 TwoWeekBalance=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/89-twoweekbalance
 YouthPromotes=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/94-youthpromotes
-YouthSkillHideUnknown=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/93-youthskillhideunknown
+YouthSkillHideUnknown.HideUnknown=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/200-youthskillhideunknownhideunknown
+YouthSkillHideUnknown.HideMaximalKeyWord=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/199-youthskillhideunknownhidemaximalkeyword
 YouthSkillNotes=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/95-youthskillnotes
 YouthSkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/96-youthskilltable
 
@@ -160,6 +161,8 @@ HideSignatures=http://foxtrick.foundationhorizont.org/index.php/forum/182-hidesi
 HTThreadMarker=http://foxtrick.foundationhorizont.org/index.php/forum/183-htthreadmarker
 MoveLinks=http://foxtrick.foundationhorizont.org/index.php/forum/184-movelinks
 ShowForumPrefButton=http://foxtrick.foundationhorizont.org/index.php/forum/185-showforumprefbutton
+ForumLastPost=http://foxtrick.foundationhorizont.org/index.php/forum/196-forumlastpost
+ForumLastPost.lastpage=http://foxtrick.foundationhorizont.org/index.php/forum/197-forumlastpost
 
 #links
 LinksCustom=http://foxtrick.foundationhorizont.org/index.php/links/52-linkscustom
