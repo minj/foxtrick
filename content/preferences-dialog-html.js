@@ -217,6 +217,15 @@ var FoxtrickPrefsDialogHTML = {
 	try { 
 		var doc = ev.target.ownerDocument;
 
+		if (!doc.getElementById("htLanguage")) {
+			var array = FoxtrickPrefs._getElemNames("");
+			for(var i = 0; i < array.length; i++) {
+				if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
+					//Foxtrick.dump(array[i]+'\n');
+					FoxtrickPrefs.deleteValue( array[i] );
+			}
+		}
+		
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
 			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN || !doc.getElementById(module.MODULE_NAME)) continue;
