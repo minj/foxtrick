@@ -57,6 +57,7 @@ Foxtrick.modules = [
                     Foxtrick.Ratings,
                     Foxtrick.htmsStatistics, // htmsStatistics should be placed after Ratings
                     FoxtrickYouthSkillTable,
+                    FoxtrickAdultSkillTable,
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
                     FoxtrickAlertCustomOff,
