@@ -600,13 +600,17 @@ var FoxtrickPreferencesDialog = {
 	try {
 		var modules_list;
 
-		/*var array = FoxtrickPrefs._getElemNames("");
-		for(var i = 0; i < array.length; i++) {
-			if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
-					//Foxtrick.dump(array[i]+'\n');
+		// clean up
+			var array = FoxtrickPrefs._getElemNames("");
+			for(var i = 0; i < array.length; i++) {
+				if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
 					FoxtrickPrefs.deleteValue( array[i] );
-        }*/
-
+			}
+			// set version
+			var curVersion = FoxtrickPrefs.getString("curVersion");
+			var oldVersion = FoxtrickPrefs.getString("oldVersion");
+			FoxtrickPrefs.setString("oldVersion",curVersion);
+		
         for each ( cat in Foxtrick.moduleCategories ) {
                 switch(cat) {
                         case Foxtrick.moduleCategories.MAIN:

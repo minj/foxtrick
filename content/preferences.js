@@ -66,7 +66,7 @@ var FoxtrickPrefs = {
     },
 
     setBool : function( pref_name, value ) {
-        this._pref_branch.setBoolPref( encodeURI(pref_name), value );
+        this._pref_branch.setBoolPref( encodeURI(pref_name), value );		
     },
 
     getBool : function( pref_name ) {
@@ -162,6 +162,9 @@ var FoxtrickPrefs = {
     },
     
     deleteValue : function( value_name ){
-    	this._pref_branch.deleteBranch( encodeURI(value_name) );
+    	//this._pref_branch.deleteBranch( encodeURI(value_name) );   // juste delete
+    	if (this._pref_branch.prefHasUserValue(encodeURI(value_name))) this._pref_branch.clearUserPref( encodeURI(value_name) );   // reset to default
     },
+	
+	
 };

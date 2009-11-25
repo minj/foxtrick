@@ -217,17 +217,23 @@ var FoxtrickPrefsDialogHTML = {
 	try { 
 		var doc = ev.target.ownerDocument;
 
-		/*if (doc.getElementById("htLanguage")) {
+		// clean up
+		if (doc.getElementById("htLanguage")) {  // check if full pref page (not newversionquickset or onpageprefs)
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
 				if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
 					//Foxtrick.dump(array[i]+'\n');
 					FoxtrickPrefs.deleteValue( array[i] );
 			}
-		}*/
-		
+			// set version
+			var curVersion = FoxtrickPrefs.getString("curVersion");
+			var oldVersion = FoxtrickPrefs.getString("oldVersion");
+			FoxtrickPrefs.setString("oldVersion",curVersion);
+		}
+			
 		for ( var i in Foxtrick.modules ) {
-			var module = Foxtrick.modules[i];
+			var module = Foxtrick.modules[i];//dump(module.MODULE_NAME+Foxtrick.isModuleEnabled( module )+'\n');
+			
 			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN || !doc.getElementById(module.MODULE_NAME)) continue;
 			
 			var checked =  doc.getElementById(module.MODULE_NAME).checked;	
@@ -343,7 +349,7 @@ var FoxtrickPrefsDialogHTML = {
 		// reinitialize
         FoxtrickMain.init();
 		doc.location.href="/MyHattrick/?configure_foxtrick=true&status=saved";
-		
+		dump('end save\n');
 	} catch (e) { dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');}
 	},
 
@@ -1342,7 +1348,7 @@ var FoxtrickPrefsDialogHTML = {
 						FoxtrickPrefsDialogHTML.NewModules.push([module.MODULE_NAME,screenshot,Tab,module.category,new_after,module.LATEST_CHANGE,module,Foxtrickl10n.getString(change_category)]); 
 						
 						// for release notes goto changes and select new version number
-						Foxtrick.dump(change_category+':\t'+module.MODULE_NAME+'\t'+module.LATEST_CHANGE+'\n');						
+						//Foxtrick.dump(change_category+':\t'+module.MODULE_NAME+'\t'+module.LATEST_CHANGE+'\n');						
 					}
 				}
 				
