@@ -25,6 +25,11 @@ var FoxtrickYouthSkillTable = {
 
     run : function( page, doc ) {
 		try  {
+				var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+				var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
+				var is_ownteam = (ownteamid==teamid);
+				//if (!is_ownteam) return;
+				
 				var tablediv = doc.createElement('div');
 				tablediv.setAttribute('id','ft_youthskilltable');
 				var h2 = doc.createElement('h2');
@@ -63,6 +68,8 @@ var FoxtrickYouthSkillTable = {
 		FoxtrickYouthSkillTable.s_index = ev.target.getAttribute('s_index');
 		if (!FoxtrickYouthSkillTable.s_index)  FoxtrickYouthSkillTable.s_index = ev.target.parentNode.getAttribute('s_index');
 		
+		//Foxtrick.dump('sortby: '+FoxtrickYouthSkillTable.s_index+'\n');
+		
 		var rows= new Array();
 		for (var i=1;i<table.rows.length;++i) {
 			rows.push(table_old.rows[i]);
@@ -75,7 +82,7 @@ var FoxtrickYouthSkillTable = {
 		for (var i=1;i<table.rows.length;++i) {
 			table.rows[i].innerHTML = rows[i-1].innerHTML;
 		}
-			} catch(e) {Foxtrick.dump(e);}
+	} catch(e) {Foxtrick.dump('sortClick '+e+'\n');}
 	},
 
 	HeaderClick : function(ev) {
@@ -91,6 +98,10 @@ var FoxtrickYouthSkillTable = {
 					return;
 				}
 							
+				var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+				var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
+				var is_ownteam = (ownteamid==teamid);
+				
 				FoxtrickYouthSkillTable.copy_string = '[table]';
 				table = doc.createElement('table');
 				table.setAttribute('style','display:inline');
@@ -102,6 +113,7 @@ var FoxtrickYouthSkillTable = {
 				for(var j = 0; j < 9; j++) {
 							FoxtrickYouthSkillTable.copy_string += '[th]';
 							var th = doc.createElement('th');
+							if (!is_ownteam && j>=2) th.setAttribute('style','display:none');
 							if (j>0) th.setAttribute('class','ft_youthskilltable_td_normal');
 							th.setAttribute('s_index',j);
 							th.addEventListener( "click", FoxtrickYouthSkillTable.sortClick, true );						
@@ -109,10 +121,10 @@ var FoxtrickYouthSkillTable = {
 							FoxtrickYouthSkillTable.copy_string +=  Foxtrickl10n.getString(sn[j]);
 							th.innerHTML = Foxtrickl10n.getString(sn[j]);
 							tr.appendChild(th);
-							FoxtrickYouthSkillTable.copy_string += '[/th]';
-				
+							FoxtrickYouthSkillTable.copy_string += '[/th]';										
 				}
 				
+				// yellow cards header
 				FoxtrickYouthSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
@@ -124,6 +136,7 @@ var FoxtrickYouthSkillTable = {
 				tr.appendChild(th);
 				FoxtrickYouthSkillTable.copy_string += '[/th]';
 				
+				// red cards header
 				FoxtrickYouthSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
@@ -135,6 +148,7 @@ var FoxtrickYouthSkillTable = {
 				tr.appendChild(th);
 				FoxtrickYouthSkillTable.copy_string += '[/th]';
 				
+				// bruised header
 				FoxtrickYouthSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
@@ -146,6 +160,7 @@ var FoxtrickYouthSkillTable = {
 				tr.appendChild(th);
 				FoxtrickYouthSkillTable.copy_string += '[/th]';
 				
+				// injured header
 				FoxtrickYouthSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_youthskilltable_td_small');
@@ -223,6 +238,9 @@ var FoxtrickYouthSkillTable = {
 					
 					if(allDivs[i].className=="playerInfo") {
 						count++;
+
+						var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");						
+
 						FoxtrickYouthSkillTable.copy_string += '[tr]';
 						var tr = doc.createElement('tr');
 						if (count==4) {tr.setAttribute('class','ft_skilltable_blockend'); count=0;}
@@ -249,18 +267,16 @@ var FoxtrickYouthSkillTable = {
 						td.setAttribute('age',age[0]+'.'+(age[1].length==1?('00'+age[1]):(age[1].length==2?('0'+age[1]):age[1]))); 
 						FoxtrickYouthSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
-							
+													
 						// skills
-						var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");
-						
-						if (trs.length<7) return;  // not your own team. quit
-						
-						for(var j = 0; j < trs.length; j++) {
+						for(var j = 0; j < 7; j++) {
 							FoxtrickYouthSkillTable.copy_string += '[td]';
 							var td = doc.createElement('td');
 							if (even) {td.setAttribute('class','ft_table_even ft_youthskilltable_td_normal'); even=false;}
 							else {td.setAttribute('class','ft_table_odd ft_youthskilltable_td_normal'); even=true;}
-							
+							tr.appendChild(td);							
+							if (!is_ownteam) {td.setAttribute('style','display:none'); continue;}
+
 							var tds = trs[j].getElementsByTagName("td");
 							var imgs = tds[1].getElementsByTagName('img');
 							if (imgs.length!=0) {
@@ -280,7 +296,6 @@ var FoxtrickYouthSkillTable = {
 								}
 							}
 							FoxtrickYouthSkillTable.copy_string += '[/td]';
-							tr.appendChild(td);							
 						}
 						
 						// card+injuries

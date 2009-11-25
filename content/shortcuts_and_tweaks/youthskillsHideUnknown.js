@@ -19,6 +19,10 @@ var FoxtrickYouthSkillHideUnknown = {
     },
 
     run : function( page, doc ) {
+				var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+				var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
+				var is_ownteam = (ownteamid==teamid);
+
 				var faceCardOn=false;
 				var allDivs = doc.getElementsByTagName("div");
 				for(var i = 0; i < allDivs.length; i++) {
@@ -31,7 +35,7 @@ var FoxtrickYouthSkillHideUnknown = {
 								if (tds[1] && tds[1].getElementsByTagName('span')[0] && tds[1].getElementsByTagName('span')[0].className=='shy')
 									trs[j].setAttribute('style','display:none;');
 							}
-							if (Foxtrick.isModuleFeatureEnabled( this, "HideMaximalKeyWord" )) {
+							if (Foxtrick.isModuleFeatureEnabled( this, "HideMaximalKeyWord" ) && is_ownteam) {
 							  if (tds[2]) {
 								var childs = tds[2].childNodes;
 								for (var k=0;k<childs.length;++k) {
