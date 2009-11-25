@@ -34,8 +34,7 @@ Foxtrick.Loader = function(){
     'forum/forumyouthicons.js',
     'forum/forumleaveconfbutton.js',
     'forum/staffmarker.js',
-    'forum/staffmarker_hty.js',  // staffmarker.js
-	'forum/forumhidesignatures.js',
+    'forum/forumhidesignatures.js',
     'forum/forumnextandprevious.js',
     'forum/forumlastpost.js',
     'forum/forumshowprefbutton.js',

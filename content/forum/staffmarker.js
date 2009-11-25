@@ -8,7 +8,8 @@ var FoxtrickStaffMarker = {
 
     MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumViewThread','forumWritePost'),
+	PAGES : new Array('forumViewThread','forumWritePost','myhattrick'),
+    ONPAGEPREF_PAGE : 'forum', 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Fix for latest forum change",
@@ -34,6 +35,8 @@ var FoxtrickStaffMarker = {
 	modreg : /^MOD-/i,
 	chppreg : /^CHPP-/i,
 	lareg : /^LA-/i,
+
+	hty_staff: null,				
 
 	ulist:{},  // users and colors
 	
@@ -337,8 +340,30 @@ var FoxtrickStaffMarker = {
     },
 
     run : function( page, doc ) {
-        
-			// getting userids and colors
+    try {    
+		if (page=='myhattrick') {
+			if (this.hty_staff==null){
+				var req = new XMLHttpRequest();
+				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
+				req.send(null);
+				if (req.status == 200) {
+					//Foxtrick.dump(req.responseText+'\n');
+					var frag = doc.createElement('dummy');
+					frag.innerHTML = req.responseText;
+					var htyusers = frag.getElementsByTagName('user');
+					this.hty_staff = new Array();
+					for (var i=0;i<htyusers.length;++i) {
+						this.hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
+						//Foxtrick.dump(this.hty_staff[i]+' ')
+					}
+					Foxtrick.dump('hty_staff loaded\n')
+				}
+				else {Foxtrick.dump('no connection to hty\n'); }				
+			}
+			return;
+		}
+
+		// getting userids and colors
 			var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
             if (!utext)
 				utext = this.OPTION_TEXTS_DEFAULT_VALUES[7];
@@ -367,6 +392,7 @@ var FoxtrickStaffMarker = {
                 FoxtrickStaffMarker._MarkAliases_select(doc);
             break;
         }
+	} catch(e){Foxtrick.dump('staffmarker: '+e+'\n');}
     },
 
 	change : function( page, doc ) {
