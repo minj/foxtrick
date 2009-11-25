@@ -600,12 +600,12 @@ var FoxtrickPreferencesDialog = {
 	try {
 		var modules_list;
 
-		var array = FoxtrickPrefs._getElemNames("");
+		/*var array = FoxtrickPrefs._getElemNames("");
 		for(var i = 0; i < array.length; i++) {
 			if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
 					//Foxtrick.dump(array[i]+'\n');
 					FoxtrickPrefs.deleteValue( array[i] );
-        }
+        }*/
 
         for each ( cat in Foxtrick.moduleCategories ) {
                 switch(cat) {
