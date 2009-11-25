@@ -68,7 +68,7 @@
             <level text="poor" value="3" />
             <level text="wretched" value="2" />
             <level text="disastrous" value="1" />
-            <level text="non-existent" value="0" />                
+            <level text="non-existent" value="0" />  
         </levels>
     </language>
 
@@ -371,6 +371,34 @@
             <sublevel text="(hoog)" value="0.50"  />
             <sublevel text="(zeer hoog)" value="0.75"  />
         </ratingSubLevels>
+        <!-- tactics appearing in match detail page -->
+        <tactics>
+            <tactic type="normal" value="normaal" />
+            <tactic type="pressing" value="pressievoetbal" />
+            <tactic type="ca" value="counter" />
+            <tactic type="aow" value="vleugelaanval" />
+            <tactic type="aim" value="centrumaanval" />
+            <tactic type="creatively" value="creatief spel" />
+            <tactic type="longshots" value="afstandsschoten" />
+        </tactics>              
+        <!-- positions appearing on players page -->
+        <positions>
+            <position type="Keeper" value="Keeper" short="K" />
+            <position type="Central defender" value="Centrale verdediger" short="CD" />
+            <position type="Wing back" value="Vleugelverdediger" short="WB" />
+            <position type="Inner midfielder" value="Centrale middenvelder" short="IM" />
+            <position type="Winger" value="Vleugelspeler" short="W" />
+            <position type="Forward" value="Aanvaller" short="F" />
+        </positions>
+        <specialties>
+            <specialty type="Unpredictable" value="Onvoorspelbaar" short="On" />
+            <specialty type="Powerful" value="Krachtig" short="Kr" />
+            <specialty type="Quick" value="Snel" short="Sn" />
+            <specialty type="Technical" value="Technisch" short="Te" />
+            <specialty type="Head" value="Koppen" short="Ko" />
+            <specialty type="Regainer" value="Snel herstel" short="He" />
+        </specialties>          
+        <!-- repositioning word connections appearing in match lineup page -->
         <repositioning>
             <reposition type="midfielder" value="extra centrale middenvelder" />
             <reposition type="centraldefender" value="extra centrale verdediger" />
@@ -381,15 +409,29 @@
             <reposition type="towardsmiddle" value="naar het midden" />
             <reposition type="towardswing" value="naar de vleugel" />
         </repositioning>
-        <tactics>
-            <tactic type="normal" value="normaal" />
-            <tactic type="pressing" value="pressievoetbal" />
-            <tactic type="ca" value="counter" />
-            <tactic type="aow" value="vleugelaanval" />
-            <tactic type="aim" value="centrumaanval" />
-            <tactic type="creatively" value="creatief spel" />
-            <tactic type="longshots" value="afstandsschoten" />
-        </tactics>		
+        <levels>
+            <level text="goddelijk" value="20" />
+            <level text="utopisch" value="19" />
+            <level text="magisch" value="18" />
+            <level text="mythisch" value="17" />
+            <level text="buitenaards" value="16" />
+            <level text="reusachtig" value="15" />
+            <level text="bovennatuurlijk" value="14" />
+            <level text="wereldklasse" value="13" />
+            <level text="wonderbaarlijk" value="12" />
+            <level text="briljant" value="11" />
+            <level text="uitmuntend" value="10" />
+            <level text="formidabel" value="9" />
+            <level text="uitstekend" value="8" />
+            <level text="goed" value="7" />
+            <level text="redelijk" value="6" />
+            <level text="matig" value="5" />
+            <level text="zwak" value="4" />
+            <level text="slecht" value="3" />
+            <level text="waardeloos" value="2" />
+            <level text="rampzalig" value="1" />
+            <level text="niet-bestaand" value="0" />
+        </levels>
     </language>
 
     <language name="fy" desc="Frysk">
