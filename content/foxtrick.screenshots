@@ -61,6 +61,7 @@ YouthSkillHideUnknown.HideUnknown=http://foxtrick.foundationhorizont.org/index.p
 YouthSkillHideUnknown.HideMaximalKeyWord=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/199-youthskillhideunknownhidemaximalkeyword
 YouthSkillNotes=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/95-youthskillnotes
 YouthSkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/96-youthskilltable
+AdultSkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/202-adultskilltable
 
 #Presentation and Tweaks
 BackgroundFixed=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/49-backgroundfixed
@@ -163,6 +164,7 @@ MoveLinks=http://foxtrick.foundationhorizont.org/index.php/forum/184-movelinks
 ShowForumPrefButton=http://foxtrick.foundationhorizont.org/index.php/forum/185-showforumprefbutton
 ForumLastPost=http://foxtrick.foundationhorizont.org/index.php/forum/196-forumlastpost
 ForumLastPost.lastpage=http://foxtrick.foundationhorizont.org/index.php/forum/197-forumlastpost
+ForumStripHattrickLinks=http://foxtrick.foundationhorizont.org/index.php/forum/201-forumstriphattricklinks
 
 #links
 LinksCustom=http://foxtrick.foundationhorizont.org/index.php/links/52-linkscustom
