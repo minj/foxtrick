@@ -11,7 +11,7 @@ var FoxtrickCopyRatingsToClipboard = {
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9.1",	
-	LATEST_CHANGE:"Fixing away match copy",    
+	LATEST_CHANGE:"Fixing away match copy, youth team links",    
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	init : function() {
@@ -154,7 +154,7 @@ var FoxtrickCopyRatingsToClipboard = {
                         if (row == 0) {
 							var teamlink = table.rows[row].cells[1].getElementsByTagName('a')[0];
 							if (teamlink)
-								ad += teamlink.innerHTML + ((team2==true)?(' - ' + gameresult_h):'') + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
+								ad += teamlink.innerHTML + ((team2==true)?(' - ' + gameresult_h):'') + '[br]['+youth+'teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
                         } else {
                             ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
@@ -164,7 +164,7 @@ var FoxtrickCopyRatingsToClipboard = {
                         if (row == 0) {
                         	var teamlink = table.rows[row].cells[2].getElementsByTagName('a')[0];
                             if (teamlink)
-								ad += teamlink.innerHTML + ((team1==true)?(' - ' + gameresult_a):'') + '[br][teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
+								ad += teamlink.innerHTML + ((team1==true)?(' - ' + gameresult_a):'') + '[br]['+youth+'teamid='+FoxtrickHelper.getTeamIdFromUrl(teamlink.href)+']';
                         } else {
                             ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a);
                         }
