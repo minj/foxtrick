@@ -251,7 +251,7 @@ var FoxtrickMyHT = {
 		
 		var doc = ev.target.ownerDocument;
 		
-		FoxtrickMyHT.ShowOnce();
+		//FoxtrickMyHT.ShowOnce();
 		FoxtrickMain.IsNewVersion=false;
 		
 		doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
