@@ -87,8 +87,9 @@ var FoxtrickCopyScoutReport = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.3",
-	LATEST_CHANGE:"Adds button on youthplayerdetail page to copy scout report in plain text to match htyouthclub requirement",
+	NEW_AFTER_VERSION: "0.4.9.1",
+	LATEST_CHANGE:"Copies just the report again",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
 	init : function() {
 	},
@@ -130,6 +131,7 @@ var FoxtrickCopyScoutReport = {
 	},
 
 	copyReport : function( ev ) {
+	try{
 		var doc = ev.target.ownerDocument;
 		var mainBody = doc.getElementById('mainBody');
 		var subDivs = mainBody.childNodes;//getElementsByTagName("div");
@@ -142,19 +144,20 @@ var FoxtrickCopyScoutReport = {
 		
 		if (lastmainbox!=-1) {
 				var graphs = subDivs[lastmainbox].innerHTML.split('<br><br>');
-				var plain = graphs[1];	Foxtrick.dump(	graphs.length+'\n'+graphs[2]+'\n');		
+				var plain = graphs[0]+'<br>'+graphs[1];		
 				if ( graphs[4] ) plain+=graphs[2];	// has a specialty
 				plain=plain.replace(/\&nbsp;/ig,' ');
 				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
 				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
-				plain=plain.replace(/\<br\>/ig,'\n');
+				plain=plain.replace(/\<br\>|\<\/h2\> /ig,'\n');
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
-				Foxtrick.copyStringToClipboard(subDivs[lastmainbox].parentNode.innerHTML);//plain);
+				Foxtrick.copyStringToClipboard(plain);
 				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
 					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"));			
 		}
+	} catch(e) {Foxtrick.dump('copyreport '+e+'\n');}
 	}
 };
 
