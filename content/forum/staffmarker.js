@@ -8,9 +8,8 @@ var FoxtrickStaffMarker = {
 
     MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumViewThread','forumWritePost','myhattrick'),
-    ONPAGEPREF_PAGE : 'forum', 
-	DEFAULT_ENABLED : true,
+	PAGES : new Array('forumViewThread','forumWritePost'),
+    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
@@ -341,7 +340,6 @@ var FoxtrickStaffMarker = {
 
     run : function( page, doc ) {
     try {    
-		if (page=='myhattrick') {
 			if (this.hty_staff==null){
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
@@ -360,8 +358,6 @@ var FoxtrickStaffMarker = {
 				}
 				else {Foxtrick.dump('no connection to hty\n'); }				
 			}
-			return;
-		}
 
 		// getting userids and colors
 			var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
