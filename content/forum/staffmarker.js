@@ -340,6 +340,9 @@ var FoxtrickStaffMarker = {
 
     run : function( page, doc ) {
     try {    
+			// not on open new thread
+			if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
+			
 			if (this.hty_staff==null){
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
