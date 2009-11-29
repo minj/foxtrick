@@ -38,18 +38,24 @@ FoxtrickMatchPlayerColouring = {
 		}
 		
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
-		if (!isarchivedmatch) return;
+		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+		if (isprematch ) return;
 		
 		//Retrieve teams id
 		var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table');
-		if (!table[0]) return;  // match not finished
-		var HomeTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[1]);
-		var AwayTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[2]);
-		
-		//Foxtrick.dump ('ownteam: '+myTeamId+'\n');
-		//Foxtrick.dump ('HomeTeamId: '+HomeTeamId+'\n');
-		//Foxtrick.dump ('AwayTeamId: '+AwayTeamId+'\n');
+		if (!table[0]) {
+			// match not finished
+			var HomeTeamId=FoxtrickHelper.getTeamIdFromUrl(doc.getElementById('sidebar').getElementsByTagName('a')[0].href);
+			var AwayTeamId=FoxtrickHelper.getTeamIdFromUrl(doc.getElementById('sidebar').getElementsByTagName('a')[1].href);
+		}
+		else {
+			var HomeTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[1]);
+			var AwayTeamId=FoxtrickHelper.findTeamId(table[0].rows[0].cells[2]);
+		}
+		Foxtrick.dump ('ownteam: '+myTeamId+'\n');
+		Foxtrick.dump ('HomeTeamId: '+HomeTeamId+'\n');
+		Foxtrick.dump ('AwayTeamId: '+AwayTeamId+'\n');
 		
 		//Retrieve colour parameters
 		if (Foxtrick.isModuleFeatureEnabled( this, "Home")) {
@@ -77,12 +83,14 @@ FoxtrickMatchPlayerColouring = {
 		var content = content_div.getElementsByTagName("h1")[0].parentNode.innerHTML;		
 		if (content.indexOf('ft_mR_format')==-1) { 		       
 			// get part between fisrt '.' after formation and end of paragraph	
-			var contentA = content.substring(0,content.search('.<br><br>'));		
+			var contentA = content.substring(content.search(/Default\.aspx\?ArenaID=/i));
+			contentA = contentA.substring(0,contentA.search(/\.\<br\>\<br\>/));
 			contentA=contentA.substring(contentA.search(/\d-\d-\d/));
 			contentA=contentA.substring(contentA.indexOf('.'));
 				
 			// get part between fisrt '.' after formation and end of paragraph
-			var contentB = content.substring(content.search('.<br>')+9); 
+			var contentB = content.substring(content.search(/Default\.aspx\?ArenaID=/i));
+			contentB = contentB.substring(contentB.search('.<br>')+9); 
 			contentB=contentB.substring(0,contentB.search('.<br>')); 
 			contentB=contentB.substring(contentB.search(/\d-\d-\d/));
 			contentB=contentB.substring(contentB.indexOf('.')); 
@@ -107,7 +115,7 @@ FoxtrickMatchPlayerColouring = {
 			}
 		}
 
-		//Foxtrick.dump('A: ' + contentA+'\n------\n');
+		Foxtrick.dump('A: ' + contentA+'\n------\n');
 		//Foxtrick.dump('B: '+ contentB+'\n--------\n');
 		
 		var teamA = "";
