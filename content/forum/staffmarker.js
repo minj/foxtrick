@@ -275,6 +275,7 @@ var FoxtrickStaffMarker = {
             "McTripas",
             "merencuzque",
             "Mod-Karlthegreat",
+			"Mod-Marin",
 			"MOD-odris",
 			"Mod-spambot",
             "Mod-summercloud",
