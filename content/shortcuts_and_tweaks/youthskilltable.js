@@ -461,8 +461,7 @@ var FoxtrickYouthSkillTable = {
 			
 					var top=6;
 					var right = 6;
-					if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-					if (doc.getElementById('hattrick')) {right+=25;}
+					if (Foxtrick.isStandardLayout ( doc ) ) {top=10;}
 					
 					var messageLink = doc.createElement("a");
 					messageLink.className = "inner";
