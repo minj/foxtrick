@@ -18,16 +18,36 @@ var FoxtrickCopyTrainingReport = {
 	
 	run : function( page, doc ) {
 		try {
-			if (doc.getElementById('ctl00_CPMain_butReadAll')!=null) return;
+		if (doc.getElementById('ctl00_CPMain_butReadAll')!=null) return;
 		
-			var parentDiv = doc.createElement("div");
-			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv";
-		
+
+		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+			if (doc.getElementById('copytrainingreport')) return;
+			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+			if (boxHead.className!='boxHead') return;
+			var top=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
+
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
-			messageLink.title = Foxtrickl10n.getString( 
-				"foxtrick.tweaks.copytrainingreport" );
+			messageLink.setAttribute("style","cursor: pointer; right:6px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.id = "copytrainingreport" ;
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copytrainingreport" );
+			messageLink.addEventListener("click", this.copyReport, false)
+
+			var img = doc.createElement("img");
+			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
+			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		}
+		else {
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
 			messageLink.setAttribute("style","cursor: pointer;");
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copytrainingreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
 		
 			var img = doc.createElement("img");
@@ -36,12 +56,14 @@ var FoxtrickCopyTrainingReport = {
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
 			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
 			messageLink.appendChild(img);
-				
-			parentDiv.appendChild(messageLink);
-		
+			
+			var parentDiv = doc.createElement("div");
+			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv";						
+			parentDiv.appendChild(messageLink);		
 			var newBoxId = "foxtrick_actions_box";
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
+		}
 		} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
 	},
 	
@@ -97,6 +119,30 @@ var FoxtrickCopyScoutReport = {
 	run : function( page, doc ) {
 		try {
 			
+		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+			if (doc.getElementById('copyscoutreport')) return;
+			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+			if (boxHead.className!='boxHead') return;
+			
+			var top=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
+
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.setAttribute("style","cursor: pointer; right:6px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.id='copyscoutreport';
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
+			messageLink.addEventListener("click", this.copyReport, false)
+
+			var img = doc.createElement("img");
+			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
+			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		}
+		else {
 			var parentDiv = doc.createElement("div");
 			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv";
 			parentDiv.setAttribute("style","display: inline;");
@@ -120,6 +166,8 @@ var FoxtrickCopyScoutReport = {
 			var newBoxId = "foxtrick_actions_box";
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
+		}
+		
 		} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
 	},
 	
@@ -180,6 +228,32 @@ var FoxtrickCopyPlayerSource = {
 		try {
 			this.page_html = '<html> '+doc.documentElement.innerHTML+' </html>';
 			
+		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+			if (doc.getElementById('copyplayerscource')) return;
+			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+			if (boxHead.className!='boxHead') return;
+
+			var top=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
+			var right=6;
+			if (Foxtrick.isModuleEnabled( FoxtrickCopyScoutReport ) ) right=33;
+
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.id='copyplayerscource';
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerscource" );
+			messageLink.addEventListener("click", this.copySource, false)
+
+			var img = doc.createElement("img");
+			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/youthplayersource_22.png) no-repeat scroll 0 0;");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
+			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		}
+		else {
 			var parentDiv = doc.createElement("div");
 			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv2";
 			parentDiv.setAttribute("style","display: inline; margin-right:8px;");
@@ -203,7 +277,7 @@ var FoxtrickCopyPlayerSource = {
 			var newBoxId = "foxtrick_actions_box2";
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
-			
+		}
 		
 		} catch(e) { Foxtrick.dump('FoxtrickCopyPlayerSource: '+e+'\n'); }
 	},

@@ -338,6 +338,7 @@ var FoxtrickPrefsDialogHTML = {
 		
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", doc.getElementById("copyfeedback").checked);
+        FoxtrickPrefs.setBool("smallcopyicons", doc.getElementById("smallcopyicons").checked);
         
 		
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", doc.getElementById("saveprefsid").checked);
@@ -828,6 +829,9 @@ var FoxtrickPrefsDialogHTML = {
 
  		var checked = FoxtrickPrefs.getBool("copyfeedback");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'copyfeedback', Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"),'', checked ) 
+		div.appendChild(checkdiv);
+ 		var checked = FoxtrickPrefs.getBool("smallcopyicons");
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'smallcopyicons', Foxtrickl10n.getString("foxtrick.prefs.smallcopyicons"),'', checked ) 
 		div.appendChild(checkdiv);
  		var checked = FoxtrickPrefs.getBool("module.OnPagePrefs.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'OnPagePrefs', Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"),'', checked ) 

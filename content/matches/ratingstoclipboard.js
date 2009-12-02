@@ -26,6 +26,69 @@ var FoxtrickCopyRatingsToClipboard = {
         if (table == null ) return;
         
         try {
+		
+		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+			if (doc.getElementById('copyratings')) return;
+			
+			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+			if (boxHead.className!='boxHead') return;
+
+            // both
+			var top=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
+			var right=6;
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings" );
+			messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","true");
+            messageLink.setAttribute("id","copyratings");
+            messageLink.addEventListener("click", this.createRatings, false)
+			var img = doc.createElement("img");
+			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+
+			var top=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
+			var right=33;
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home" );
+			messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","false");
+            messageLink.addEventListener("click", this.createRatings, false)
+			var img = doc.createElement("img");
+			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyratingshome_22.png) no-repeat scroll 0 0;");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
+			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		
+
+			var top=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
+			var right=60;
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away" );
+			messageLink.setAttribute("team1","false");
+            messageLink.setAttribute("team2","true");
+            messageLink.addEventListener("click", this.createRatings, false)
+			var img = doc.createElement("img");
+			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyratingsaway_22.png) no-repeat scroll 0 0;");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.away" );
+			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		}
+		else {
+		
             var parentDiv = doc.createElement("div");
             parentDiv.id = "foxtrick_addactionsbox_parentDiv";
             
@@ -94,7 +157,8 @@ var FoxtrickCopyRatingsToClipboard = {
             var newBoxId = "foxtrick_actions_box";
             Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
                 "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
-        } catch(e) { Foxtrick.dump(e) }
+		}
+		} catch(e) { Foxtrick.dump(e) }
 	},
 	
 	change : function( page, doc ) {

@@ -21,28 +21,55 @@ var FoxtrickPlayerAdToClipboard = {
     },
     
     run : function( page, doc ) {
-		var parentDiv = doc.createElement("div");
-		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
+
+		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+			if (doc.getElementById('copyplayerad')) return;
+			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+			if (boxHead.className!='boxHead') return;
+			
+			var top=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
+
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.setAttribute("style","cursor: pointer; right:6px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad" );
+			messageLink.id = "copyplayerad" ;
+			messageLink.addEventListener("click", this.createPlayerAd, false)
+
+			var img = doc.createElement("img");
+			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
+			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		}
+		else {
+
+			var parentDiv = doc.createElement("div");
+			parentDiv.id = "foxtrick_addactionsbox_parentDiv";
 		
-		var messageLink = doc.createElement("a");
-		messageLink.className = "inner";
-		messageLink.title = Foxtrickl10n.getString( 
-			"foxtrick.tweaks.copyplayerad" );
-		messageLink.setAttribute("style","cursor: pointer;");
-		messageLink.addEventListener("click", this.createPlayerAd, false)
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.title = Foxtrickl10n.getString( 
+				"foxtrick.tweaks.copyplayerad" );
+			messageLink.setAttribute("style","cursor: pointer;");
+			messageLink.addEventListener("click", this.createPlayerAd, false)
 		
-		var img = doc.createElement("img");
-		img.style.padding = "0px 5px 0px 0px;";
-		img.className = "actionIcon";
-		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
-		img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
-		messageLink.appendChild(img);
+			var img = doc.createElement("img");
+			img.style.padding = "0px 5px 0px 0px;";
+			img.className = "actionIcon";
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
+			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+			messageLink.appendChild(img);
 				
-		parentDiv.appendChild(messageLink);
+			parentDiv.appendChild(messageLink);
 		
-		var newBoxId = "foxtrick_actions_box";
-		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
-			"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+			var newBoxId = "foxtrick_actions_box";
+			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+				"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+		}
 	},
 	
 	change : function( page, doc ) {

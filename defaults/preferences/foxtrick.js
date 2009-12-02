@@ -25,6 +25,7 @@ pref( "extensions.foxtrick.prefs.module.FoxtrickAlert.NewForum.enabled", false);
 pref( "extensions.foxtrick.prefs.disableOnStage", false );
 pref( "extensions.foxtrick.prefs.disableTemporary", false );
 pref( "extensions.foxtrick.prefs.copyfeedback", true );
+pref( "extensions.foxtrick.prefs.smallcopyicons", false );
 pref( "extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false );
 pref( "extensions.foxtrick.prefs.onpageprefs", true );
 pref( "extensions.foxtrick.prefs.SavePrefs_Prefs", true );
@@ -145,3 +146,6 @@ pref( "extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", fals
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.CopySkillTable.enabled", true );
 pref( "extensions.foxtrick.prefs.module.HighlightBotTeams.ChooseColorHighlight.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", false);
+pref( "extensions.foxtrick.prefs.module.htmsStatistics.Home.enabled", false);
+pref( "extensions.foxtrick.prefs.module.htmsStatistics.Draw.enabled", false);
+pref( "extensions.foxtrick.prefs.module.htmsStatistics.Away.enabled", false);
