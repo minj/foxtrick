@@ -26,11 +26,13 @@ var FoxtrickCopyTrainingReport = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 			var top=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
-
+			var right = 6;
+			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
+			if (doc.getElementById('hattrick')) {right+=25;}
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:6px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
 			messageLink.id = "copytrainingreport" ;
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copytrainingreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
@@ -124,12 +126,14 @@ var FoxtrickCopyScoutReport = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 			
-			var top=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
-
+			var top=6; 
+			var right = 6;
+			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
+			if (doc.getElementById('hattrick')) {right+=25;}
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:6px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
 			messageLink.id='copyscoutreport';
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
@@ -234,10 +238,11 @@ var FoxtrickCopyPlayerSource = {
 			if (boxHead.className!='boxHead') return;
 
 			var top=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
 			var right=6;
-			if (Foxtrick.isModuleEnabled( FoxtrickCopyScoutReport ) ) right=33;
-
+			if (Foxtrick.isModuleEnabled( FoxtrickCopyScoutReport ) ) right+=27;
+			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
+			if (doc.getElementById('hattrick')) {right+=25;}
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");

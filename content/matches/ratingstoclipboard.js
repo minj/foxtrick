@@ -35,8 +35,10 @@ var FoxtrickCopyRatingsToClipboard = {
 
             // both
 			var top=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
 			var right=6;
+			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
+			if (doc.getElementById('hattrick')) {right+=25;}
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
@@ -53,8 +55,10 @@ var FoxtrickCopyRatingsToClipboard = {
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
 
 			var top=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
 			var right=33;
+			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
+			if (doc.getElementById('hattrick')) {right+=25;}
+
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
@@ -71,8 +75,10 @@ var FoxtrickCopyRatingsToClipboard = {
 		
 
 			var top=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
 			var right=60;
+			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
+			if (doc.getElementById('hattrick')) {right+=25;}
+
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");

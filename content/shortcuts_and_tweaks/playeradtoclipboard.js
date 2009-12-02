@@ -28,11 +28,13 @@ var FoxtrickPlayerAdToClipboard = {
 			if (boxHead.className!='boxHead') return;
 			
 			var top=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) top=10;
-
+			var right = 6;
+			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
+			if (doc.getElementById('hattrick')) {right+=45;}
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:6px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad" );
 			messageLink.id = "copyplayerad" ;
 			messageLink.addEventListener("click", this.createPlayerAd, false)
