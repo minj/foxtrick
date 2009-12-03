@@ -8,16 +8,16 @@ a.copyicon {
 }
 
 #hattrickNoSupporter   a.ci_first { right:14px;}
-#hattrick   a.ci_first {right:14px;}
+#hattrick   a.ci_first {right:50px;}
 
 #hattrickNoSupporter   a.ci_second { right:54px;}
-#hattrick   a.ci_second {right:54px;}
+#hattrick   a.ci_second {right:90px;}
 
 #hattrickNoSupporter   a.ci_third {right:94px;}
-#hattrick   a.ci_third{right:94px;}
+#hattrick   a.ci_third{right:130px;}
 
 #hattrickNoSupporter   a.ci_forth{right:134px;}
-#hattrick   a.ci_forth{right:134px;}
+#hattrick   a.ci_forth{right:170px;}
 
 .copyicon img {
 	padding: 0px 5px 0px 0px; 
