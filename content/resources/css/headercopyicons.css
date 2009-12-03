@@ -42,12 +42,5 @@ a.copyicon {
 }
 
 
-/*match page fix*/
-#aspnetForm[action*="Match.aspx?matchID="] #mainBody {
-	padding-top:10px !important;
-}
-/Club/Matches/Match.aspx?matchID=
-
-
 }
 

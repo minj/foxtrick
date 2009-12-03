@@ -29,6 +29,8 @@ var FoxtrickPlayerAdToClipboard = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 						
+			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.className = "inner copyicon copyplayerad ci_second";	

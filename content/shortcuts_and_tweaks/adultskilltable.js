@@ -522,20 +522,16 @@ var FoxtrickAdultSkillTable = {
 					if (doc.getElementById('copyskilltable')) return;
 					var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 					if (boxHead.className!='boxHead') return;
+								
+					if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:20px;');
 			
-					var top=6;
-					var right = 6;
-					if (Foxtrick.isStandardLayout ( doc ) ) {top=10;}
-					
 					var messageLink = doc.createElement("a");
-					messageLink.className = "inner";
-					messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+					messageLink.className = "inner copyicon copyplayerad ci_first";	
 					messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyskilltable" );
 					messageLink.id = "copyskilltable" ;
 					messageLink.addEventListener("click", FoxtrickAdultSkillTable.copyTable, false)
 	
 					var img = doc.createElement("img");
-					img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
 					img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
 			

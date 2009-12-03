@@ -35,10 +35,11 @@ var FoxtrickCopyRatingsToClipboard = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 
-            // both
+            if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
+			// both			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_second";	
+			messageLink.className = "inner copyicon copyplayerad ci_forth";	
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings" );
 			messageLink.setAttribute("team1","true");
             messageLink.setAttribute("team2","true");
@@ -65,7 +66,7 @@ var FoxtrickCopyRatingsToClipboard = {
 		
 
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyratingsaway ci_forth";	
+			messageLink.className = "inner copyicon copyratingsaway ci_second";	
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away" );
 			messageLink.setAttribute("team1","false");
             messageLink.setAttribute("team2","true");

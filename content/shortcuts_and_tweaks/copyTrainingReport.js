@@ -28,6 +28,8 @@ var FoxtrickCopyTrainingReport = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 			
+			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
+			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner copyicon copyplayerad ci_first";	
 			messageLink.id = "copytrainingreport" ;
@@ -122,6 +124,7 @@ var FoxtrickCopyScoutReport = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 			
+			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner copyicon copyplayerad ci_first";				
@@ -227,6 +230,8 @@ var FoxtrickCopyPlayerSource = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 
+			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
+			
 			var messageLink = doc.createElement("a");
 			if (Foxtrick.isModuleEnabled(FoxtrickCopyTrainingReport)) messageLink.className = "inner copyicon copyplayerscource ci_second";
 			else messageLink.className = "inner copyicon copyplayerscource ci_first";			
