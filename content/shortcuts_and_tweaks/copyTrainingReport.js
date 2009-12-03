@@ -12,6 +12,8 @@ var FoxtrickCopyTrainingReport = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.6.2",
 	LATEST_CHANGE:"Copies plain text to match htyouthclub requirement",
+	CSS: "chrome://foxtrick/content/resources/css/headercopyicons.css",
+	CSS_SIMPLE: "chrome://foxtrick/content/resources/css/headercopyicons_simple.css",
 	
 	init : function() {
 	},
@@ -25,20 +27,14 @@ var FoxtrickCopyTrainingReport = {
 			if (doc.getElementById('copytrainingreport')) return;
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
-			var top=6;
-			var right = 6;
-			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-			if (doc.getElementById('hattrick')) {right+=25;}
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.className = "inner copyicon copyplayerad ci_first";	
 			messageLink.id = "copytrainingreport" ;
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copytrainingreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
 
 			var img = doc.createElement("img");
-			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
 			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
 			
@@ -126,20 +122,14 @@ var FoxtrickCopyScoutReport = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 			
-			var top=6; 
-			var right = 6;
-			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-			if (doc.getElementById('hattrick')) {right+=25;}
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.className = "inner copyicon copyplayerad ci_first";				
 			messageLink.id='copyscoutreport';
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
 
 			var img = doc.createElement("img");
-			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
 			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
 			
@@ -237,21 +227,14 @@ var FoxtrickCopyPlayerSource = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 
-			var top=6;
-			var right=6;
-			if (Foxtrick.isModuleEnabled( FoxtrickCopyScoutReport ) ) right+=27;
-			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-			if (doc.getElementById('hattrick')) {right+=25;}
-			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			if (Foxtrick.isModuleEnabled(FoxtrickCopyTrainingReport)) messageLink.className = "inner copyicon copyplayerscource ci_second";
+			else messageLink.className = "inner copyicon copyplayerscource ci_first";			
 			messageLink.id='copyplayerscource';
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerscource" );
 			messageLink.addEventListener("click", this.copySource, false)
 
 			var img = doc.createElement("img");
-			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/youthplayersource_22.png) no-repeat scroll 0 0;");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
 			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
 			

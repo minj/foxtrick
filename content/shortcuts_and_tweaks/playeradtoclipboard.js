@@ -11,6 +11,8 @@ var FoxtrickPlayerAdToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
+	CSS: "chrome://foxtrick/content/resources/css/headercopyicons.css",
+	CSS_SIMPLE: "chrome://foxtrick/content/resources/css/headercopyicons_simple.css",
 	
 	_PLAYMAKING : 3,
 	_PASSING : 5,
@@ -26,21 +28,15 @@ var FoxtrickPlayerAdToClipboard = {
 			if (doc.getElementById('copyplayerad')) return;
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
-			
-			var top=6;
-			var right = 6;
-			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-			if (doc.getElementById('hattrick')) {right+=45;}
-			
+						
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.className = "inner copyicon copyplayerad ci_second";	
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad" );
 			messageLink.id = "copyplayerad" ;
 			messageLink.addEventListener("click", this.createPlayerAd, false)
 
 			var img = doc.createElement("img");
-			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
 			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
 			

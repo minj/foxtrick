@@ -13,6 +13,8 @@ var FoxtrickCopyRatingsToClipboard = {
 	NEW_AFTER_VERSION: "0.4.9.1",	
 	LATEST_CHANGE:"Fixing away match copy, youth team links",    
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	CSS: "chrome://foxtrick/content/resources/css/headercopyicons.css",
+	CSS_SIMPLE: "chrome://foxtrick/content/resources/css/headercopyicons_simple.css",
 
 	init : function() {
     },
@@ -34,60 +36,41 @@ var FoxtrickCopyRatingsToClipboard = {
 			if (boxHead.className!='boxHead') return;
 
             // both
-			var top=6;
-			var right=6;
-			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-			if (doc.getElementById('hattrick')) {right+=25;}
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.className = "inner copyicon copyplayerad ci_second";	
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings" );
 			messageLink.setAttribute("team1","true");
             messageLink.setAttribute("team2","true");
             messageLink.setAttribute("id","copyratings");
             messageLink.addEventListener("click", this.createRatings, false)
 			var img = doc.createElement("img");
-			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
 			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
 
-			var top=6;
-			var right=33;
-			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-			if (doc.getElementById('hattrick')) {right+=25;}
 
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.className = "inner copyicon copyratingshome ci_third";	
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home" );
 			messageLink.setAttribute("team1","true");
             messageLink.setAttribute("team2","false");
             messageLink.addEventListener("click", this.createRatings, false)
 			var img = doc.createElement("img");
-			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyratingshome_22.png) no-repeat scroll 0 0;");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
 			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
 		
 
-			var top=6;
-			var right=60;
-			if (Foxtrick.isStandardLayout ( doc ) ) {top=10;if (doc.getElementById('hattrick')) {right+=25;}}
-			if (doc.getElementById('hattrick')) {right+=25;}
-
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.setAttribute("style","cursor: pointer; right:"+right+"px; position:absolute; top: "+top+"px; z-index:99");
+			messageLink.className = "inner copyicon copyratingsaway ci_forth";	
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away" );
 			messageLink.setAttribute("team1","false");
             messageLink.setAttribute("team2","true");
             messageLink.addEventListener("click", this.createRatings, false)
 			var img = doc.createElement("img");
-			img.setAttribute('style',"padding: 0px 5px 0px 0px; height:22px; width:22px; background: transparent url(chrome://foxtrick/content/resources/img/copyratingsaway_22.png) no-repeat scroll 0 0;");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.away" );
 			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";			
 			messageLink.appendChild(img);
