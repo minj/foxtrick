@@ -121,7 +121,7 @@ Foxtrick.modules = [
                     FoxtrickHeaderFixLeft,
                     FoxtrickNewMail,
                     FoxtrickPlayerBirthday,
-                    //FoxtrickAddHtLiveToOngoing,
+                    //FoxtrickAddHtLiveToOngoing, // obsolete
                     FoxtrickReadHtPrefs,
                     FoxtrickMyHT,
                     FoxtrickPrefsDialogHTML,
@@ -147,4 +147,6 @@ Foxtrick.modules = [
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
                     FoxtrickHighlightBotTeams,
 					FoxtrickTransferCompareSort,
+					//FoxtrickTransferSearchResultsSort, //not finished
+					FoxtrickLeagueAndMatchChat,  // not finished
                     ];

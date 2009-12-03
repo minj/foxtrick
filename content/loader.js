@@ -88,6 +88,8 @@ Foxtrick.Loader = function(){
     'shortcuts_and_tweaks/predefinedChallenges.js',
     'shortcuts_and_tweaks/lastlogin.js',
     'shortcuts_and_tweaks/transferCompareSort.js',
+	//'shortcuts_and_tweaks/transfersearchresultssort.js',
+	'shortcuts_and_tweaks/LeagueAndMatchChat.js',
     'presentation/extendedplayerdetails.js',
     'presentation/facePlugin.js',
     'presentation/personalityImages.js',
