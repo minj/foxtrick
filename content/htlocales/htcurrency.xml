@@ -15,8 +15,8 @@
 	<currency code="CHF" shortname="CHF" name="CHF (Swiss franc)" eurorate="0.5" />
 	<currency code="NIS" shortname="₪" name="₪ (Israeli new sheqel)" eurorate="0.2" />
 	<currency code="CAD" shortname="C$" name="C$ (Canadian dollar)" eurorate="0.5" />
-	<currency code="RON" shortname="Lei" name="Lei (Romanian lei)" eurorate="0.05" />
-	<currency code="MDL" shortname="lei" name="Lei (Moldavian lei)" eurorate="0.05" />
+	<currency code="RON" shortname="Lei" name="Lei (Romanian Lei)" eurorate="0.05" />
+	<currency code="MDL" shortname="lei" name="Lei (Moldavian Lei)" eurorate="0.05" />
 	<currency code="JPY" shortname="JP¥" name="¥ (Japanese yen)" eurorate="0.01" />
 	<currency code="BRL" shortname="reais" name="R$ (Reais)" eurorate="0.5"/> 
 	<currency code="DZD" shortname="Dinar" name="Dinar (Algerian dinar)" eurorate="0.01" />
@@ -26,7 +26,7 @@
 	<currency code="BHD" shortname="Dinar" name="Dinar (Bahraini dinar)" eurorate="2" />
 	<currency code="BBD" shortname="Bds$" name="Bds$ (Barbados dollar)" eurorate="0.5" />
 	<currency code="BOB" shortname="Bs" name="Bs (Bolivian boliviano)" eurorate="0.1" />
-	<currency code="BAM" shortname="Marka" name="Marka (Bosnia and Herzegovina mark)" eurorate="0.5" />
+	<currency code="BAM" shortname="KM" name="KM (Bosnia and Herzegovina Convertible Mark)" eurorate="0.5" />
 	<currency code="BGN" shortname="лв" name="лв (Bulgarian lev)" eurorate="0.5" />
 	<currency code="BYR" shortname="BYR" name="BYR (Belarusian ruble)" eurorate="0.5" />
 	<currency code="CVE" shortname="Escudos" name="Escudos (Cape Verdean escudo)" eurorate="0.01" />
