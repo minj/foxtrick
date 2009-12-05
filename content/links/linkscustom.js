@@ -293,7 +293,7 @@ var FoxtrickLinksCustom = {
 			inputHref.setAttribute("value", "http://example.org");
 			inputHref.setAttribute('onfocus', 'if(FoxtrickLinksCustom.value==\'http://example.org\')FoxtrickLinksCustom.value=\'http://\'');
 			inputHref.setAttribute("type", "text");
-			inputHref.setAttribute("maxlength", "200");
+			inputHref.setAttribute("maxlength", "5000");
 			inputHref.setAttribute("style","width:100%;");
 			inputHref.className ="inner";
 			var trn3 = doc.createElement ("tr");

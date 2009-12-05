@@ -879,6 +879,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 								break;
                 }
 
+				var modules_entries = new Array();
 				for ( var i in Foxtrick.modules ) {
 					var module = Foxtrick.modules[i];
                         var module_category;
@@ -897,15 +898,22 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 							} else {
 								entry = FoxtrickPreferencesDialog._normalModule(module);
 							}
-							modules_list.appendChild( entry );
-                        }
+							modules_entries.push(entry);
+						}
 				}
+
+				modules_entries.sort(FoxtrickPreferencesDialog.entry_sortfunction);
+				
+				for ( var i=0;i<modules_entries.length;++i)	modules_list.appendChild( modules_entries[i] );
+
 				var spacer = doc.createElement('spacer');
 				spacer.setAttribute('flex',0);
 				spacer.setAttribute('height',100);
 
 				modules_list.appendChild( spacer );
     },
+
+	entry_sortfunction: function(a,b) {return a.prefname>b.prefname;},
 
 	_getWrapableBox : function( desc_text ) {
 		var desc_box = document.createElement( "hbox" );

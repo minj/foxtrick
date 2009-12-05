@@ -1077,6 +1077,7 @@ var FoxtrickPrefsDialogHTML = {
 			td.appendChild( helpdiv );
 		}
 		
+		var modules_entries = new Array();
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
             var module_category = module.MODULE_CATEGORY;
@@ -1093,12 +1094,16 @@ var FoxtrickPrefsDialogHTML = {
 				} else {
 					entry = FoxtrickPrefsDialogHTML._normalModule(doc, module);
 				}
-				preftab.appendChild( entry );
+				modules_entries.push(entry);
             }
 		}
+		
+		modules_entries.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+		for ( var i=0;i<modules_entries.length;++i)	preftab.appendChild( modules_entries[i] );
     },
 
-	
+	entry_sortfunction: function(a,b) {return a.prefname>b.prefname;},
+
 	_radioModule : function(doc, module, on_page ) {
 		var entry = doc.createElement( "div" );
 		entry.setAttribute( "class", "ft_pref_modul" );
