@@ -10,6 +10,9 @@ var FoxtrickLeagueAndMatchChat = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('league','youthleague','match'), 
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.9.1",
+	LATEST_CHANGE:"Added LeagueAndMatchChat",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
 
 	init : function() {
