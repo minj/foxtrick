@@ -8,7 +8,7 @@ var FoxtrickLeagueAndMatchChat = {
 
 	MODULE_NAME : "LeagueAndMatchChat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('league','youthleague','match','cupoverview','cupmatches'), 
+	PAGES : new Array('league','youthleague','match','cupoverview','cupmatches','federation'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.4.9.1",
 	LATEST_CHANGE : "Added LeagueAndMatchChat",
@@ -35,6 +35,7 @@ var FoxtrickLeagueAndMatchChat = {
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
 			a.appendChild(img);*/
+			// add after forum <p> 
 			var sidebox_p = doc.getElementById('sidebar').getElementsByTagName('p')[0].parentNode;			
 			sidebox_p.appendChild(a);
 		}
@@ -52,6 +53,7 @@ var FoxtrickLeagueAndMatchChat = {
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
 			a.appendChild(img);*/
+			// add after forum <p> 
 			var sidebox_p = doc.getElementById('sidebar').getElementsByTagName('p')[0].parentNode;			
 			sidebox_p.appendChild(a);
 		}
@@ -69,8 +71,9 @@ var FoxtrickLeagueAndMatchChat = {
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
 			a.appendChild(img);*/
-			var h1 = doc.getElementById('mainBody').getElementsByTagName('h1')[0].nextSibling.nextSibling;
-			h1.appendChild(a);
+			// add to date
+			var date = doc.getElementById('mainBody').getElementsByTagName('h1')[0].nextSibling.nextSibling;
+			date.appendChild(a);
 		}
 		else if (page=='cupoverview' || page=='cupmatches') { 
 			var id = doc.location.href.replace(/.+CupID=/i, "").match(/^\d+/)[0];
@@ -88,6 +91,7 @@ var FoxtrickLeagueAndMatchChat = {
 			a.appendChild(img);*/
 			var p = doc.createElement('p');
 			p.appendChild(a);
+			// add after header
 			var h1 = doc.getElementById('mainBody').getElementsByTagName('h1')[0];
 			h1.parentNode.insertBefore(p,h1.nextSibling);
 		}
@@ -105,6 +109,7 @@ var FoxtrickLeagueAndMatchChat = {
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
 			a.appendChild(img);*/
+			// add to first sidebox
 			var sidebox1_a = doc.getElementById('sidebar').getElementsByTagName('div')[0].getElementsByTagName('a');
 			var lasta = sidebox1_a[sidebox1_a.length-1];			
 			lasta.parentNode.insertBefore(a,lasta.nextSibling);		
