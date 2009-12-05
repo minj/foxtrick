@@ -30,7 +30,7 @@ var FoxtrickLeagueAndMatchChat = {
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
-			a.innerHTML = "External League chat";
+			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.LeagueChat');
 /*			var img = doc.createElement('img');
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
@@ -47,7 +47,7 @@ var FoxtrickLeagueAndMatchChat = {
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
-			a.innerHTML = "External League chat";
+			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.LeagueChat');
 			/*var img = doc.createElement('img');
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
@@ -64,7 +64,7 @@ var FoxtrickLeagueAndMatchChat = {
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
-			a.innerHTML = "External Match chat";
+			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.MatchChat');
 			/*var img = doc.createElement('img');
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
@@ -81,7 +81,7 @@ var FoxtrickLeagueAndMatchChat = {
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
-			a.innerHTML = "External National cup chat";
+			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.CupChat');
 			/*var img = doc.createElement('img');
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
@@ -100,7 +100,7 @@ var FoxtrickLeagueAndMatchChat = {
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+wellcome+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
-			a.innerHTML = "External Federation chat";
+			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.FederationChat');
 			/*var img = doc.createElement('img');
 			img.border = "0";
 			img.src = "chrome://foxtrick/content/resources/img/yaplet-chathere-b.png";
