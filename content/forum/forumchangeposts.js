@@ -18,8 +18,7 @@ var FoxtrickForumChangePosts = {
 	run : function( page, doc ) {
 	try{
 		//if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;
-		Foxtrick.dump('run FoxtrickForumChangePosts\n')
-
+		
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID);
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon");
 		var do_copy_posting = Foxtrick.isModuleEnabled(FoxtrickCopyPosting);
@@ -108,7 +107,7 @@ var FoxtrickForumChangePosts = {
                 TName_lng = TName_lng.replace(TName, "");
                 TName_lng = TName_lng.split(" ")[2];
             } else var TName_lng = false;
-        } catch(e_tag) {Foxtrick.dump(5 + 'HTO ' + e_tag + '\n'); var TName_lng = false;}
+        } catch(e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
         
         if (do_format_text) try {
             var org = new Array(/\[pre\](.*?)\[\/pre\]/gi);
@@ -178,7 +177,7 @@ var FoxtrickForumChangePosts = {
 
 
                     var k = 0, header_left_link;
-                    if (header_left_links[0].href.search(/showMInd/)==-1 ) this.bDetailedHeader = true;
+                    if (header_left_links[0].href.search(/showMInd/)==-1 ) {this.bDetailedHeader = true; do_alltid_flags=false;}
                     while ( header_left_link = header_left_links[k++]) {
                         if (!poster_link1) {
                             if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link1 = header_left_link;
@@ -339,7 +338,7 @@ var FoxtrickForumChangePosts = {
                                     else placenode = poster_link2.nextSibling;
                                     header_left.insertBefore(flaglink, placenode);
                                 }
-                            } catch(eee) {Foxtrick.dump(eee)}
+                            } catch(eee) {Foxtrick.dump(eee+'\n')}
                         }	//Foxtrick.dump('Add Alltid flags \n');
 
 

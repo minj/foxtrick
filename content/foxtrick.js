@@ -1688,6 +1688,6 @@ Foxtrick.dump_flush = function(doc) {
         } catch(e) {dump(e);}
 }
 Foxtrick.dump = function(cnt) {
-    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
-    dump(cnt.replace(/\<\w*\>|\<\/\w*\>/gi,''));
+	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
+    dump(String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
 }
