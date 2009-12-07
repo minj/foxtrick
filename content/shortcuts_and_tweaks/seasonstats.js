@@ -12,7 +12,7 @@ var FoxtrickSeasonStats = {
 	PAGES : new Array('matchesarchiv','matches'), 
 	ONPAGEPREF_PAGE : 'matchesarchiv', 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
+	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed wrong home draws assignment",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome://foxtrick/content/resources/css/seasonstats.css",
@@ -82,15 +82,19 @@ var FoxtrickSeasonStats = {
 		for (var i=0; i<matchestable.rows.length; ++i) { 
 			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won'; 
 			var islost = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='lost'; 
-			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].innerHTML.match(/\d+/g); 
+			var draw = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='draw'; 
+			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].innerHTML.match(/\d+/g);
 			var goals0=parseInt(goals[0]);
 			var goals1=parseInt(goals[1]);
-			if (goals0>goals1&&islost || goals0<goals1&&iswon ) { // away. own goals second
+			if (!draw) {
+				if ((goals0 > goals1) && islost || 
+					(goals0 < goals1) && iswon ) { // away. own goals second
+				}
+				else {
+					TeamNameOld = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/-.+/g,'');
+					break;
+				}
 			}
-			else {
-				TeamNameOld = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/-.+/g,'');
-				break;
-			}			
 		}
 		Foxtrick.dump('TeamName: '+TeamName+'  TeamNameOld: '+TeamNameOld+'\n');
 		
