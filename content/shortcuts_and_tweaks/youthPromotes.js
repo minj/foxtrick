@@ -10,9 +10,9 @@ var FoxtrickYouthPromotes = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayer'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
+	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LATEST_CHANGE: "Fixing promotes for players in team less the 112 days",
+	LATEST_CHANGE: "Fix for some languages",
 
     init : function() {
     },
@@ -64,67 +64,57 @@ return daysToProm_text;
 
     run : function( page, doc ) {
 
-				var allDivs = doc.getElementsByTagName("div");
+			var allDivs = doc.getElementsByTagName("div");
 				
-				var div = doc.getElementsByClassName('playerInfo')[0];
-				var table =	div.getElementsByTagName('table')[0];
-					var dateCell = table.getElementsByTagName('td')[5];
+			var div = doc.getElementsByClassName('playerInfo')[0];
+			var table =	div.getElementsByTagName('table')[0];
+			var dateCell = table.getElementsByTagName('td')[5];
 					
             var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-            var ar = reg.exec(Foxtrick.substr(dateCell.innerHTML,20,14));
-
+			var reghour = /\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?\d+.*?\d+.*?/i;
+    
+            var ar = reg.exec(dateCell.innerHTML);
             var joinedDate = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
 
-				for(var i = 0; i < allDivs.length; i++) {
-				
-				if(allDivs[i].className=="byline") {
-						
+			for(var i = 0; i < allDivs.length; i++) {				
+				if(allDivs[i].className=="byline") {						
+					var byline = Foxtrick.trim(allDivs[i].innerHTML);
 
-			var byline = Foxtrick.trim(allDivs[i].innerHTML);
-
-            var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-            var ar = reg.exec(Foxtrick.substr(byline,30,30));
-
-            var nextbirthday = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
+					var ar = reg.exec(Foxtrick.substr(byline,30,30));
+					var nextbirthday = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
             
-			//var playerInfo=playerInfo
-			var dateCellnums=dateCell.innerHTML.match(/(\d+)/gi);
-			//Foxtrick.dump(dateCellnums[dateCellnums.length-1]+'\n');
-			var daysinclub=dateCellnums[dateCellnums.length-1];
+					var dateCellnums=dateCell.innerHTML.replace(reghour,'').match(/\d+/i);
+					var daysinclub=dateCellnums;
 			
-      nextbirthday = Foxtrick.substr(nextbirthday, Foxtrick.strrpos( nextbirthday, ";"), nextbirthday.length);  
-
-      joinedDate = Foxtrick.substr(joinedDate, Foxtrick.strrpos( joinedDate, ";"), joinedDate.length);         
+					nextbirthday = Foxtrick.substr(nextbirthday, Foxtrick.strrpos( nextbirthday, ";"), nextbirthday.length);  
+					joinedDate = Foxtrick.substr(joinedDate, Foxtrick.strrpos( joinedDate, ";"), joinedDate.length);         
       
-      var JT_date = Foxtrick.getDatefromCellHTML(nextbirthday);
-      var jtdate = Foxtrick.getDatefromCellHTML(joinedDate);
-
+					var JT_date = Foxtrick.getDatefromCellHTML(nextbirthday);
+					var jtdate = Foxtrick.getDatefromCellHTML(joinedDate);
       
-		var birth_s = Math.floor( (JT_date.getTime() - Foxtrick.HT_date.getTime()) / 1000); //Sec
-		var joined_s1 = Math.floor( (Foxtrick.HT_date.getTime() - jtdate.getTime()) / 1000); //Sec
+					var birth_s = Math.floor( (JT_date.getTime() - Foxtrick.HT_date.getTime()) / 1000); //Sec
+					var joined_s1 = Math.floor( (Foxtrick.HT_date.getTime() - jtdate.getTime()) / 1000); //Sec				
 
-        var JoinedText = 'NaN';
-        try {
+					var JoinedText = 'NaN';
+					try {
             
-        var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-        var ar2 = reg.exec(byline);
-          var AgeYears = parseInt(ar2[1]);
-          var AgeDays = parseInt(ar2[3]);
+						var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+						var ar2 = reg.exec(byline);
+						var AgeYears = parseInt(ar2[1]);
+						var AgeDays = parseInt(ar2[3]);
 
             
-                //JoinedText = this._getPullDate (birth_s,AgeYears,AgeDays,joined_s1);
-				JoinedText = this._getPullDate (birth_s,AgeYears,AgeDays,daysinclub);
+						//JoinedText = this._getPullDate (birth_s,AgeYears,AgeDays,joined_s1);
+						JoinedText = this._getPullDate (birth_s,AgeYears,AgeDays,daysinclub);
 				
-                allDivs[i].innerHTML += JoinedText;
- 
-            } 
-            catch(ee) {
-                Foxtrick.dump('  JoinedText >' + ee + '\n');
-            }
-
+						allDivs[i].innerHTML += JoinedText; 
+					}			 
+					catch(ee) {
+						Foxtrick.dump('  JoinedText >' + ee + '\n');
 					}
+
 				}
-           
+			}           
 	},
 	
 	change : function( page, doc ) {
