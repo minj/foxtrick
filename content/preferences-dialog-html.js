@@ -319,6 +319,7 @@ var FoxtrickPrefsDialogHTML = {
         //Alert
         FoxtrickPrefs.setBool("alertSlider", doc.getElementById("alertsliderpref").checked);
         FoxtrickPrefs.setBool("alertSliderGrowl", doc.getElementById("alertslidermacpref").checked);
+        FoxtrickPrefs.setBool("alertSliderDBus", doc.getElementById("alertsliderdbus").checked);
         FoxtrickPrefs.setBool("alertSound", doc.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", doc.getElementById("alertsoundurlpref").value);
 
@@ -607,6 +608,10 @@ var FoxtrickPrefsDialogHTML = {
 
 		var checked = FoxtrickPrefs.getBool("alertSliderGrowl");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertslidermacpref', Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"),'', checked ) 
+		div.appendChild(checkdiv);
+
+		var checked = FoxtrickPrefs.getBool("alertSliderDBus");
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertsliderdbus', Foxtrickl10n.getString("foxtrick.prefs.alertsliderdbus"),'', checked ) 
 		div.appendChild(checkdiv);
 
 		var input_option_text = doc.createElement( "input" );	

@@ -7,6 +7,9 @@
  * Each should implement an init() method, which will be called only once.
  * Register your page handlers in it.
  */
+ 
+if (!Foxtrick) var Foxtrick={};
+ 
 Foxtrick.modules = [
                     FoxtrickForumStripHattrickLinks,
 					FoxtrickForumChangePosts,
@@ -148,5 +151,5 @@ Foxtrick.modules = [
                     FoxtrickHighlightBotTeams,
 					FoxtrickTransferCompareSort,
 					//FoxtrickTransferSearchResultsSort, //not finished
-					FoxtrickLeagueAndMatchChat,  // not finished
+					FoxtrickLeagueAndMatchChat,  
                     ];

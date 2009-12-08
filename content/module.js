@@ -13,6 +13,9 @@
  * You can add new values here, just remember to escape slashes with
  * backslashes (as you can see below).
  */
+ 
+if (!Foxtrick) var Foxtrick={};
+ 
 Foxtrick.ht_pages = {
     'all'                       : '',
     'playerdetail'              : '\/Club\/Players\/Player\.aspx',

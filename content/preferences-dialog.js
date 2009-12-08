@@ -288,6 +288,11 @@ var FoxtrickPreferencesDialog = {
 		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "alertSliderGrowl" ) );
 		vbox.appendChild(checkbox);
 		var checkbox= doc.createElement("checkbox");
+		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.alertsliderdbus"));
+		checkbox.setAttribute('id',"alertsliderdbus");
+		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "alertSliderDBus" ) );
+		vbox.appendChild(checkbox);
+		var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"));
 		checkbox.setAttribute('id',"alertsoundpref");
 		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "alertSound" ) );
@@ -710,6 +715,7 @@ var FoxtrickPreferencesDialog = {
         //Alert
         FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
         FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
+        FoxtrickPrefs.setBool("alertSliderDBus", document.getElementById("alertsliderdbus").checked);
         FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
 
