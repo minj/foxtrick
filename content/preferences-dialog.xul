@@ -38,52 +38,44 @@
 
     <tabpanels id="tabpanels" class="tabpanels" flex="1" style="width: 1240px;">
             <!-- Main -->
-            <tabpanel class="panel" orient="vertical" flex="1" >
-              <vbox id="main_list" style="display:run-in" >
-
+            <tabpanel class="panel">
+              <vbox id="main_list" flex="1">
               </vbox>
             </tabpanel>
 
             <!-- Shortcuts -->
-            <tabpanel class="panel" orient="vertical" flex="1">
-              <vbox>
-                <vbox id="shortcuts_list" flex="1" orient="vertical" style="display:run-in"/>
+            <tabpanel class="panel">
+	          <vbox id="shortcuts_list" flex="1">
               </vbox>
-
-             </tabpanel>
+            </tabpanel>
 
 		    <!-- Presentation -->
-            <tabpanel class="panel" orient="vertical" flex="1">
-              <vbox>
-                <vbox id="presentation_list" flex="1" orient="vertical" style="display:run-in"/>
+            <tabpanel class="panel">
+              <vbox id="presentation_list" flex="1">
               </vbox>
-
              </tabpanel>
+
 		   <!-- Matches -->
-		    <tabpanel class="panel" orient="vertical" flex="1">
-			  <vbox>
-                <vbox id="matchfunctions_list" orient="vertical" style="display:run-in"/>
+		    <tabpanel class="panel">
+              <vbox id="matchfunctions_list" flex="1">
               </vbox>
             </tabpanel>
 
 		    <!-- Forum -->
-            <tabpanel class="panel" orient="vertical" flex="1">
-              <vbox>
-                <vbox id="forum_list" flex="1" orient="vertical" style="display:run-in"/>
+            <tabpanel class="panel">
+              <vbox id="forum_list" flex="1">
               </vbox>
             </tabpanel>
 
 		    <!-- Links -->
-            <tabpanel class="panel" orient="vertical" flex="1" >
-              <vbox>
-                <vbox id="links_list" orient="vertical" style="display:run-in"/>
+            <tabpanel class="panel">
+              <vbox id="links_list" flex="1">
               </vbox>
             </tabpanel>
 
 	        <!-- about -->
-            <tabpanel class="panel" orient="vertical" flex="1">
-    		  <vbox>
-                <vbox id="about_list" orient="vertical" style="display:run-in"/>
+            <tabpanel class="panel">
+              <vbox id="about_list" flex="1">
 			  </vbox>
 			</tabpanel>
 	</tabpanels>

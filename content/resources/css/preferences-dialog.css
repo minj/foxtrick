@@ -122,3 +122,7 @@ tab:hover {
 .help_Label {
     font-weight: bold;
 }
+
+.panel > vbox {
+	overflow: auto;
+}
