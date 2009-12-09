@@ -150,3 +150,4 @@ pref( "extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", false);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Home.enabled", false);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Draw.enabled", false);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Away.enabled", false);
+pref( "extensions.foxtrick.prefs.module.YouthSkillNotes.OnlyOwnTeam.enabled", true);

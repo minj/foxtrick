@@ -10,13 +10,23 @@ var FoxtrickYouthSkillNotes = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8",
-	LATEST_CHANGE:"default off for new installations.",
+	NEW_AFTER_VERSION: "0.4.9.1",
+	LATEST_CHANGE:"Option to show it only for own team.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+    OPTIONS : new Array("OnlyOwnTeam"), 
 
     init : function() {
     },
 
     run : function( page, doc ) {
+		
+		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
+		var is_ownteam = (ownteamid==teamid);
+
+		if (!is_ownteam && Foxtrick.isModuleFeatureEnabled( FoxtrickYouthSkillNotes, "OnlyOwnTeam" )) return;
+				
+		
 		switch( page )
         {
             case 'YouthPlayer':
