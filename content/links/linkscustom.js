@@ -119,6 +119,7 @@ var FoxtrickLinksCustom = {
 				var title=FoxtrickPrefs.getString(basepref+'.'+key+'.title');
 				if (href==null||imgref==null||title==null) {Foxtrick.dump('customLink '+key+' incomplete\n');continue; }				
 				// replace tags
+				
 				var mykeytag=href.match(/\[\w+\]/ig);
 				if (mykeytag && mykeytag.length>0) {
 					for (var i=0;i<mykeytag.length;i++)
@@ -127,12 +128,14 @@ var FoxtrickLinksCustom = {
 						if (FoxtrickLinksCustom._info[mykey]) href=href.replace (mykeytag[i],FoxtrickLinksCustom._info[mykey] );
 						else  href=href.replace( mykeytag[i], FoxtrickHelper.OWNTEAMINFO[mykey] );
 					}
-				} 
+				} 				
 				try { // add icons
 					var div = doc.createElement ("div");  
 					div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+key+'.img')+"') 50% no-repeat;");
 					div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+key+'.title') );
-					div.setAttribute("onClick","window.open(\""+href+"\",\"_blank\");");
+					div.setAttribute( "href", href );
+					if (href.search(/call:/)==0) div.addEventListener( "click", FoxtrickLinksCustom.CallExe, false );						
+					else div.setAttribute("onClick","window.open(\""+href+"\",\"_blank\");");
 					div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
 					div.setAttribute('id','LinksCustomLinkID'+key);
 					ownBoxBody.appendChild(doc.createTextNode(" "));
@@ -141,6 +144,37 @@ var FoxtrickLinksCustom = {
 			}
 		}
 		catch(e){Foxtrick.dump("CustomLinks->showLinks->"+e+'\n');}
+	},
+	
+	CallExe : function(ev) {
+		var exec = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+		try {
+        var locpath = ev.target.parentNode.getAttribute('href').replace(/call:\s+?/i,'');
+		dump(locpath+'\n');
+		try {
+			var file = Components.classes["@mozilla.org/file/local;1"].
+								createInstance(Components.interfaces.nsILocalFile);
+			file.initWithPath(locpath);
+		} catch (e) {
+            Foxtrick.dump("error finding: "+locpath+'\n');
+        }
+
+        exec.initWithPath(file.path);
+
+        if (exec.exists()) {
+            var process = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);
+
+    	    var args = [];
+
+			process.init(exec);
+            var exitvalue = process.run(false, null, 0);
+        } else {
+            Foxtrick.dump("Error running "+locpath);
+        }
+    } catch (e) {
+        Foxtrick.dump("CallExe Failed"+e);
+        //return;
+    }
 	},
 	
 	showEdit : function( doc , ownBoxBody, basepref) {
