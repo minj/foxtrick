@@ -473,7 +473,7 @@ Foxtrick.TeamStats= {
         "Uruguay",
         "USA",
         "Venezuela",
-        "Vietnam"),            
+        "Việt Nam"),            
 
 	// by convinced
 	Filter : function (ev){
