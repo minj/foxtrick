@@ -1,0 +1,49 @@
+/* CSS Document  by baumanns */
+
+/* ONLY SKILL COLOR */
+
+table a[href$="=0#skill"]
+{background-color:#ffffff !important; color:#000 !important;}
+table a[href$="=1#skill"]
+{background-color:#EFFFEF !important; color:#000 !important;}
+table a[href$="=2#skill"]
+{background-color:#E0EFE0 !important; color:#000 !important;}
+table a[href$="=3#skill"]
+{background-color:#D2EFD1 !important; color:#000 !important;}
+table a[href$="=4#skill"]
+{background-color:#C4DFC3 !important; color:#000 !important;}
+table a[href$="=5#skill"]
+{background-color:#B6DFB5 !important; color:#000 !important;}
+table a[href$="=6#skill"]
+{background-color:#A9CFA8 !important; color:#000 !important;}
+table a[href$="=7#skill"]
+{background-color:#90BF8F !important; color:#000 !important;}
+table a[href$="=8#skill"]
+{background-color:#7AAF78 !important; color:#000 !important;}
+table a[href$="=9#skill"]
+{background-color:#659F63 !important; color:#000 !important;}
+table a[href$="=10#skill"]
+{background-color:#528F50 !important; color:#fff !important;}
+table a[href$="=11#skill"]
+{background-color:#417F3F !important; color:#fff !important;}
+table a[href$="=12#skill"]
+{background-color:#326F30 !important; color:#fff !important;}
+table a[href$="=13#skill"]
+{background-color:#255F23 !important; color:#fff !important;}
+table a[href$="=14#skill"]
+{background-color:#1A4F18 !important; color:#fff !important;}
+table a[href$="=15#skill"]
+{background-color:#113F10 !important; color:#fff !important;}
+table a[href$="=16#skill"]
+{background-color:#0A2F09 !important; color:#fff !important;}
+table a[href$="=17#skill"]
+{background-color:#051F04 !important; color:#fff !important;}
+table a[href$="=18#skill"]
+{background-color:#031702 !important; color:#fff !important;}
+table a[href$="=19#skill"]
+{background-color:#020F01 !important; color:#fff !important;}
+table a[href$="=20#skill"]
+{background-color:#000000 !important; color:#fff !important;}
+
+table a[href$="#skill"]:hover
+{background-color:transparent !important; color:#267F30 !important;}
