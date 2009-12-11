@@ -1,0 +1,24 @@
+/* CSS Document by baumanns*/
+
+/* Option Skillnumbers */
+select[id*="Skill"] option[value="0"]:after {content:" (0)" !important; color: grey !important;}
+select[id*="Skill"] option[value="1"]:after {content:" (1)" !important; color: grey !important;}
+select[id*="Skill"] option[value="2"]:after {content:" (2)" !important; color: grey !important;}
+select[id*="Skill"] option[value="3"]:after {content:" (3)" !important; color: grey !important;}
+select[id*="Skill"] option[value="4"]:after {content:" (4)" !important; color: grey !important;}
+select[id*="Skill"] option[value="5"]:after {content:" (5)" !important; color: grey !important;}
+select[id*="Skill"] option[value="6"]:after {content:" (6)" !important; color: grey !important;}
+select[id*="Skill"] option[value="7"]:after {content:" (7)" !important; color: grey !important;}
+select[id*="Skill"] option[value="8"]:after {content:" (8)" !important; color: grey !important;}
+select[id*="Skill"] option[value="9"]:after {content:" (9)" !important; color: grey !important;}
+select[id*="Skill"] option[value="10"]:after {content:" (10)" !important; color: grey !important;}
+select[id*="Skill"] option[value="11"]:after {content:" (11)" !important; color: grey !important;}
+select[id*="Skill"] option[value="12"]:after {content:" (12)" !important; color: grey !important;}
+select[id*="Skill"] option[value="13"]:after {content:" (13)" !important; color: grey !important;}
+select[id*="Skill"] option[value="14"]:after {content:" (14)" !important; color: grey !important;}
+select[id*="Skill"] option[value="15"]:after {content:" (15)" !important; color: grey !important;}
+select[id*="Skill"] option[value="16"]:after {content:" (16)" !important; color: grey !important;}
+select[id*="Skill"] option[value="17"]:after {content:" (17)" !important; color: grey !important;}
+select[id*="Skill"] option[value="18"]:after {content:" (18)" !important; color: grey !important;}
+select[id*="Skill"] option[value="19"]:after {content:" (19)" !important; color: grey !important;}
+select[id*="Skill"] option[value="20"]:after {content:" (20)" !important; color: grey !important;}

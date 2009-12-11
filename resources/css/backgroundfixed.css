@@ -1,0 +1,6 @@
+/* backgroundFixed @author smates */
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+body{
+background-attachment: fixed !important;
+}
+}

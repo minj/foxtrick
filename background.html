@@ -1,0 +1,32 @@
+<html>
+  <script>
+  
+  	try{
+	listUrl = chrome.extension.getURL("default.pref");
+	var prefxhr = new XMLHttpRequest();
+	prefxhr.open("GET", listUrl, false);
+	prefxhr.send();
+
+	listUrl = chrome.extension.getURL("foxtrick.properties");
+	var propertiesxhr = new XMLHttpRequest();
+	propertiesxhr.open("GET", listUrl, false);
+	propertiesxhr.send();
+
+	} catch(e) {alert('back init:' +e)}
+
+	
+  
+
+chrome.extension.onConnect.addListener(function(port) { 
+	port.onMessage.addListener(function(msg) {
+	    if (msg.reqtype == "properties") {
+           port.postMessage({properties: propertiesxhr.responseText});
+        }
+	    else if (msg.reqtype == "pref") {
+           port.postMessage({pref: prefxhr.responseText});
+        }
+	});
+});
+
+  </script>
+</html>
