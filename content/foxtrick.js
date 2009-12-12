@@ -28,10 +28,6 @@ Foxtrick.run_on_cur_page = [];
 Foxtrick.core_modules = [ FoxtrickPrefs,
                           Foxtrickl10n ];
 
-/** Global news ticker variable
- */
-Foxtrick.news = [];
-
 /*// remove before release
 Foxtrick.globals=[];
 for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();

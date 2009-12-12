@@ -623,8 +623,10 @@ var FoxtrickPreferencesDialog = {
 		
         for each ( cat in Foxtrick.moduleCategories ) {
                 switch(cat) {
-                        case Foxtrick.moduleCategories.MAIN:
-                                continue;
+						case Foxtrick.moduleCategories.MAIN:
+								// if main, set again bellow if needed!
+								FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
+								continue;
 								break;
                         case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
                                 modules_list = document.getElementById( 'shortcuts_list' );

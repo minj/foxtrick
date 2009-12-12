@@ -79,8 +79,8 @@ Foxtrick.modules = [
                     FoxtrickLinksChallenges,
                     FoxtrickLinksEconomy,
                     FoxtrickLinksYouthOverview,
-                    FoxtrickLinksYouthTraining,  // new but include
-                    FoxtrickLinksYouthPlayerDetail, // new but include
+                    FoxtrickLinksYouthTraining,  
+                    FoxtrickLinksYouthPlayerDetail, 
                     FoxtrickLinksArena,
                     FoxtrickLinksCoach,
                     FoxtrickLinksPlayerDetail,

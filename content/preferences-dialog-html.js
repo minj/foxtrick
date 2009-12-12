@@ -234,11 +234,16 @@ var FoxtrickPrefsDialogHTML = {
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];//dump(module.MODULE_NAME+Foxtrick.isModuleEnabled( module )+'\n');
 			
-			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN || !doc.getElementById(module.MODULE_NAME)) continue;
-			
+			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
+				// if main, set again bellow if needed!
+				//Foxtrick.dump('save '+module.MODULE_NAME+' : '+module.DEFAULT_ENABLED+'\n');					
+				FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
+				continue;
+			}
 			var checked =  doc.getElementById(module.MODULE_NAME).checked;	
 			FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, checked);
-        
+			//Foxtrick.dump('save '+module.MODULE_NAME+' : '+checked+'\n');					
+				
             if (module.RADIO_OPTIONS != null) {
 				var radiogroup = doc.getElementById(module.MODULE_NAME + '_radio' ).getElementsByTagName('input');
 				for (var j = 0; j < radiogroup.length; j++) {
