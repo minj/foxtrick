@@ -240,9 +240,12 @@ var FoxtrickPrefsDialogHTML = {
 				FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
 				continue;
 			}
-			var checked =  doc.getElementById(module.MODULE_NAME).checked;	
-			FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, checked);
-			//Foxtrick.dump('save '+module.MODULE_NAME+' : '+checked+'\n');					
+			if (doc.getElementById(module.MODULE_NAME)) {
+				var checked =  doc.getElementById(module.MODULE_NAME).checked;	
+				FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, checked);
+				//Foxtrick.dump('save '+module.MODULE_NAME+' : '+checked+'\n');					
+			}
+			else continue;
 				
             if (module.RADIO_OPTIONS != null) {
 				var radiogroup = doc.getElementById(module.MODULE_NAME + '_radio' ).getElementsByTagName('input');
