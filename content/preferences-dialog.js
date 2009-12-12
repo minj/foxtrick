@@ -1241,7 +1241,7 @@ FoxtrickPreferencesDialog.getModuleElementDescription = function( module_name, o
 
 
 FoxtrickPreferencesDialog.isPrefSetting = function ( setting) {
-	return  setting.search( "YouthPlayer" ) == -1
+	return  setting.search( /^YouthPlayer\./ ) == -1
 			&& setting.search( "transferfilter" ) == -1
 			&& setting.search( "post_templates" ) == -1
 			&& setting.search( "mail_templates" ) == -1
@@ -1311,8 +1311,8 @@ FoxtrickPreferencesDialog.SavePrefs = function (ev) {
                    .createInstance(Components.interfaces.nsIConverterOutputStream);
 			os.init(foStream, "UTF-8", 0, 0x0000);
 
-			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
+			var array = FoxtrickPrefs._getElemNames(""); array.sort();
+			for(var i = 0; i < array.length; i++) { //Foxtrick.dump(array[i]);
 				if ((FoxtrickPreferencesDialog.isPrefSetting(array[i]) && doc.getElementById("saveprefsid").checked)
 					|| (!FoxtrickPreferencesDialog.isPrefSetting(array[i]) && doc.getElementById("savenotesid").checked)) {
 
@@ -1322,7 +1322,9 @@ FoxtrickPreferencesDialog.SavePrefs = function (ev) {
 						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
 						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
 						}
+					//Foxtrick.dump(' : save\n');
 					}
+				//else Foxtrick.dump(' : dont save\n');
 				}
 			os.close();
 			foStream.close();
