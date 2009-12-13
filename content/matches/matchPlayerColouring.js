@@ -156,13 +156,20 @@ FoxtrickMatchPlayerColouring = {
 							
 							var span_a = span_img[j].parentNode.childNodes;
 							//dump(span_img[j]parentNode.innerHTML+'\n');
-							for (var k=2;k<span_a.length;++k) {
+							for (var k=1;k<span_a.length;++k) {
+								/*dump(k+' '+span_a[k].nodeType+' :');
+								if (span_a[k].nodeType==3) dump(span_a[k].nodeValue+' '+span_a[k].nodeValue.length);
+								else dump(span_a[k].innerHTML+' '+span_a[k].nodeName+' '+span_a[k].innerHTML.lenght);
+								dump('\n');
+								*/
 								if ( !PlayerOut) {
 									if (span_a[k].nodeType==3 && span_a[k].nodeValue.length>2) {
+										//dump('in:'+span_a[k].nodeValue+'\n'); 
 										PlayerOut = span_a[k].nodeValue;
 										k+=2;
 									}
 									else if(span_a[k].nodeName=='A') {
+									//dump('in:'+ span_a[k].innerHTML+'\n'); //
 									PlayerOut = span_a[k].innerHTML;
 									k+=2;
 									}
@@ -178,7 +185,6 @@ FoxtrickMatchPlayerColouring = {
 									}									
 								}														
 							} 
-							dump('in:'+PlayerIn+' out:'+PlayerOut+'\n');
 							//Player Out
                             //PlayerOut = span_a[0].textContent;
                             PlayerOut = PlayerOut.substr(PlayerOut.search(" ")+1);
@@ -187,7 +193,9 @@ FoxtrickMatchPlayerColouring = {
 							//PlayerIn = span_a[1].textContent;
                             PlayerIn = PlayerIn.substr(PlayerIn.search(" ")+1);
                             //Foxtrick.dump('sub in:'+j+' '+' '+span_a[1].textContent+' = '+PlayerIn+'\n');
-                            //Add Player In to the players list
+                            dump('in:'+PlayerIn+' out:'+PlayerOut+'\n');
+							
+							//Add Player In to the players list
 							//Foxtrick.dump (j+' '+teamA.length+' '+teamB.length+'\n');
 							for (var k=0;k<teamA.length;k++) { //Foxtrick.dump(k+' '+teamA[k]+' '+PlayerOut+'\n');
 							if (PlayerOut.search(teamA[k])!=-1) 
