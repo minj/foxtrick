@@ -73,7 +73,7 @@ var FoxtrickReadHtPrefs = {
    },
 
     run : function(page, doc ) {  
-
+	try{
 		if (doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {
 		
 			var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
@@ -82,15 +82,20 @@ var FoxtrickReadHtPrefs = {
 			
 			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
 			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+			
+			var htlangXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
+			var path = "hattricklanguages/language[@name='" + this.codes[langval] + "']";
+			var langname = Foxtrick.xml_single_evaluate(htlangXml, path, "desc");
+					
 			var mainBody = doc.getElementById('mainBody');	
 			var alertdiv=doc.createElement('div');
 			alertdiv.setAttribute('class','alert');
 			alertdiv.setAttribute('id','idFoxtrickLocaleChanged');
 			alertdiv.setAttribute('style', 'margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
-			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
+			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+langname));
 			mainBody.insertBefore(alertdiv,mainBody.firstChild);
-			
-	    }
+		}
+	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 	
 	change : function(page, doc ) {
