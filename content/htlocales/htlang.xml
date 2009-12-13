@@ -1396,7 +1396,7 @@
         </tactics>
     </language>
     
-    <language name="fur" desc="Friulian">
+    <language name="fur" desc="Furlan">
         <ratingSubLevels>
             <sublevel text="(Une vore bas)" value="0.0" />
             <sublevel text="(Bas)" value="0.25"  />
