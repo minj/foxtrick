@@ -1424,7 +1424,7 @@
         </tactics>
     </language>
 	
-    <language name="vi" desc="Vietnamese">
+    <language name="vi" desc="Tiếng Việt">
     <!-- rating sublevels appearing in match detail page -->
         <ratingSubLevels>
             <sublevel text="(very low)" value="0.0" />
