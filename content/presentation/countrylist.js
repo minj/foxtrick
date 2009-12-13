@@ -184,22 +184,10 @@ var FoxtrickCountyList = {
     initHtCountries: function ()
 	{
 		try {
-			this.htCountriesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcountries.xml");
+			this.htCountriesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcountries.xml");
 		} catch (e) {
 			Foxtrick.dump('countrylist.js initHTCountries: '+e+"\n");
 		}
-	},
-
-	_loadXmlIntoDOM: function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
 	},
     
     _placeCountry: function (page, doc) {
@@ -231,18 +219,11 @@ var FoxtrickCountyList = {
                     var htname = options[i].text;
 
 					var path = 'hattrickcountries/country[@name="' + htname + '"]';
-                    //Foxtrick.dump("value: " + country + ' || ' + htname + ' - ');
-                    var obj = this.htCountriesXml.evaluate(path,this.htCountriesXml,null,this.htCountriesXml.DOCUMENT_NODE,null).singleNodeValue;
-
-                    if (obj)
-//                        htname = '#' + obj.attributes.getNamedItem("htname").textContent;
-                        htname = obj.attributes.getNamedItem("htname").textContent;
-                    //Foxtrick.dump(country + ' || ' + htname + '\n');
-//                    else
-//                        return -1;
+					htname = Foxtrick.xml_single_evaluate(this.htCountriesXml, path, "htname");
+					if (!htname) return -1;
 
                 } catch (exml) {
-                    Foxtrick.dump('crosstable.js countries: '+exml + "\n");
+                    Foxtrick.dump('countrylist.js countries: '+exml + "\n");
                 }
                 options[i].text = htname;
             }

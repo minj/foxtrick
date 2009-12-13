@@ -285,8 +285,6 @@ var FoxtrickLinksCustom = {
 			loadIcon.className="inner";
 			loadIcon.addEventListener( "click", FoxtrickLinksCustom.LoadDialog, false );
 			loadIcon.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
-			loadIcon.parentdoc = doc.defaultView;
-			FoxtrickLinksCustom.LoadDialog.doc =doc;
 			
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -344,7 +342,6 @@ var FoxtrickLinksCustom = {
 			selectbox.setAttribute("title",Foxtrickl10n.getString("foxtrick.linkscustom.addtag" ));
 			selectbox.setAttribute("id","ft_ownselecttagboxID");
 			selectbox.setAttribute("style","width:100%;");
-			FoxtrickLinksCustom.SelectBox_Select.doc=doc;
 			selectbox.addEventListener('change',FoxtrickLinksCustom.SelectBox_Select,false);
 			var option = doc.createElement("option");
 			option.setAttribute("value","");
@@ -589,9 +586,9 @@ var FoxtrickLinksCustom = {
 
 	
 	LoadDialog  : function(evt)
-	{	
-		var path="file://"+Foxtrick.selectFile(evt["target"]["parentdoc"]);
-		var doc = evt.view.document;
+	{	var doc = evt.view.document;
+		var window = evt.view;
+		var path="file://"+Foxtrick.selectFile(window);
 		var pathdel="\\";
 		if (path.charAt(7)=="/") {pathdel="/";}
 		var imgfile=path.substr(path.lastIndexOf(pathdel)+1);
@@ -656,8 +653,8 @@ var FoxtrickLinksCustom = {
 	
 	SelectBox_Select : function(evt) {
 	try {
-		var doc = FoxtrickLinksCustom.SelectBox_Select.doc;// evt.view.document;
-		var value =doc.getElementById ( "inputHrefID" ).value;
+		var doc = evt.target.ownerDocument;
+		var value = doc.getElementById ( "inputHrefID" ).value;
 		if (value.search(/\?/)==-1) value+="\?"; else  value+="&";
 		value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
 		doc.getElementById ( "inputHrefID" ).value=value;

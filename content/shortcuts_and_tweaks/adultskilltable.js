@@ -582,11 +582,8 @@ var FoxtrickAdultSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/positions/position[@value='" + type + "']";
-			var obj = FoxtrickAdultSkillTable.htLanguagesXml.evaluate(path,FoxtrickAdultSkillTable.htLanguagesXml,null,FoxtrickAdultSkillTable.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				short_pos = obj.attributes.getNamedItem("short").textContent;
-			else
-				return null;
+			short_pos = Foxtrick.xml_single_evaluate(FoxtrickAdultSkillTable.htLanguagesXml, path, "short");
+			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
 			return null;
@@ -607,11 +604,8 @@ var FoxtrickAdultSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/specialties/specialty[@value='" + type + "']";
-			var obj = FoxtrickAdultSkillTable.htLanguagesXml.evaluate(path,FoxtrickAdultSkillTable.htLanguagesXml,null,FoxtrickAdultSkillTable.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				short_pos = obj.attributes.getNamedItem("short").textContent;
-			else
-				return null;
+			short_pos = Foxtrick.xml_single_evaluate(FoxtrickAdultSkillTable.htLanguagesXml, path, "short");
+			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
 			return null;
@@ -623,22 +617,10 @@ var FoxtrickAdultSkillTable = {
 	initHtLang: function ()
 	{
 		try {
-			this.htLanguagesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
+			this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
 		} catch (e) {
 			Foxtrick.dump('youthskill.js initHtLang: '+e+"\n");
 		}
-	},
-
-	_loadXmlIntoDOM: function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
 	},
 }
 

@@ -57,10 +57,11 @@ var FoxtrickReadHtPrefs = {
 			this.codes['85']='sq';
 			this.codes['83']='mk';
 			this.codes['15']='zh_CN'
+			this.codes['113']='fur'
+			this.codes['55']='vi'
 			
 			// follwoing don't have an own locale file yet
 	/*
-	<option value="113">Furlan</option>
 	<option value="90">Georgian</option>
 	<option value="86">Kyrgyz</option>
 	<option value="75">?????</option> Farsi

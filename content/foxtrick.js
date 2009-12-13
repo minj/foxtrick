@@ -1539,6 +1539,19 @@ Foxtrick.LoadXML = function (xmlfile) {
 	return response;
 }
 
+
+Foxtrick.loadXmlIntoDOM = function(url) {
+		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+		req.open("GET", url, false);
+		req.send(null);
+		var doc = req.responseXML;
+		if (doc.documentElement.nodeName == "parsererror") {
+			Foxtrick.dump("error parsing " + url+"\n");
+			return null;
+		}
+		return doc;
+	}
+
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
 	var result = new Array();
 	if (xmlresponse) {
@@ -1559,6 +1572,36 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 		}
 	}
 	return result;
+}
+
+
+Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
+
+		//var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
+		/*try {
+			splitpath = path.split(/\/|\[/g);
+			var result = xmldoc;
+			for (var j=0;j<splitpath.length;++j) {
+				if (j!=splitpath.lenght-1 && splitpath[j+1].search('@')==-1) continue;
+				result = xmldoc.getElementsByTagName(splitpath[j]);
+				var s_attr = splitpath[j+1].match(/@(.+)=/)[1];
+				var s_val = splitpath[j+1].match(/=(.+)\]/)[1].replace(/'|"/g,'');
+				//dump(splitpath[j+1]+' a:'+s_attr+' v:'+s_val+'\n');
+				for (var i=0;i<result.length;++i) { if(result[i].getAttribute(s_attr)==s_val)  {
+					result = result[i]; break;}}
+				j++;
+			}
+			if (attribute) result = result.getAttribute(attribute);
+			//dump (attribute+' '+result+'\n');
+			return result;
+		} catch (e) {return null;}*/
+			
+		var obj = xmldoc.evaluate(path,xmldoc,null,xmldoc.DOCUMENT_NODE,null).singleNodeValue;
+		if (obj)
+			if (attribute) return obj.attributes.getNamedItem(attribute).textContent;
+			else return obj;
+		else
+			return null;
 }
 
 Foxtrick.getSelectBoxFromXML = function (doc,xmlfile, basenodestr, labelstr, valuestr, selected_value_str) {

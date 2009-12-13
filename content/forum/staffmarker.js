@@ -343,6 +343,7 @@ var FoxtrickStaffMarker = {
 			if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
 			
 			if (this.hty_staff==null){
+				this.hty_staff = new Array();
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
 				req.send(null);
@@ -351,7 +352,6 @@ var FoxtrickStaffMarker = {
 					var frag = doc.createElement('dummy');
 					frag.innerHTML = req.responseText;
 					var htyusers = frag.getElementsByTagName('user');
-					this.hty_staff = new Array();
 					for (var i=0;i<htyusers.length;++i) {
 						this.hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
 						//Foxtrick.dump(this.hty_staff[i]+' ')

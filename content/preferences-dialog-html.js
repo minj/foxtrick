@@ -12,7 +12,6 @@ var FoxtrickPrefsDialogHTML = {
 	LATEST_CHANGE:"Fixed ex/importing preferences",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome://foxtrick/content/resources/css/preferences-dialog-html.css",
-	_doc:null,
 
 	TabNames: {	'main':'MainTab',
 				'shortcuts_and_tweaks':'ShortcutsTab',
@@ -31,7 +30,6 @@ var FoxtrickPrefsDialogHTML = {
     run : function( doc ) { 
 	try{
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
-		FoxtrickPrefsDialogHTML._doc=doc;
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
 			FoxtrickPrefsDialogHTML.add_pref_links(doc);			
 		}	
@@ -42,7 +40,6 @@ var FoxtrickPrefsDialogHTML = {
 	},
 
 	change : function( doc ) { 
-		FoxtrickPrefsDialogHTML._doc=doc;	   
 	},
 	
 	add_pref_links : function( doc) {
@@ -293,9 +290,8 @@ var FoxtrickPrefsDialogHTML = {
 		FoxtrickPrefs.setBool( "PrefsSavedOnce" ,true);
 		
         //Lang
-        FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);
-		FoxtrickPrefs.setBool("module.FoxtrickReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
-        
+        FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
+		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
 		//Currency
         FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
         
@@ -1128,8 +1124,8 @@ var FoxtrickPrefsDialogHTML = {
 		
 		checkdiv.firstChild.addEventListener( "click", function( ev ) { 
 				var check=ev.currentTarget.getElementsByTagName('input')[0];
-				var checked = check.checked; 
-				var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(check.id+'_radio');		
+				var checked = check.checked;  
+				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_radio');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
 			}, false );
@@ -1173,7 +1169,7 @@ var FoxtrickPrefsDialogHTML = {
 		checkdiv.firstChild.addEventListener( "click", function( ev ) {
 				var check=ev.currentTarget.getElementsByTagName('input')[0];
 				var checked = check.checked; 
-				var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(check.id+'_options');		
+				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_options');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
 			}, false );
@@ -1280,7 +1276,7 @@ var FoxtrickPrefsDialogHTML = {
 		if (option_text) {
 			check.addEventListener( "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
-					var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(ev.currentTarget.id+'_table');
+					var optiondiv = ev.target.ownerDocument.getElementById(ev.currentTarget.id+'_table');
 					if (checked) optiondiv.style.display='block';
 					else optiondiv.style.display='none'; 			
 				}, false );
@@ -1316,7 +1312,7 @@ var FoxtrickPrefsDialogHTML = {
 				option_text_reset_button.setAttribute( "default_text",  DefaultOptionText);
 				option_text_reset_button.addEventListener( "click", function( ev ) {					
 					try{  var default_text = ev.currentTarget.getAttribute('default_text');
-						var input_option_text = FoxtrickPrefsDialogHTML._doc.getElementById(ev.currentTarget.getAttribute('sender_id')+'_text');
+						var input_option_text = ev.target.ownerDocument.getElementById(ev.currentTarget.getAttribute('sender_id')+'_text');
 						input_option_text.setAttribute( "value",  default_text);						
 					} catch(e){dump('resetclick error: '+e+'\n');}
 				}, false );

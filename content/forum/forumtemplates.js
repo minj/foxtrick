@@ -247,7 +247,6 @@ var FoxtrickForumTemplates = {
     },
 
     _appendTemplate : function( doc, text, where ) {
-        // var doc = Foxtrick.current_doc;
         if ( arguments.length < 3 ) {
             var where = doc.getElementById( FoxtrickForumTemplates._TEMPLATES_DIV_ID );
 		}

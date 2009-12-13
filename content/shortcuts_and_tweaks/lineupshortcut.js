@@ -59,7 +59,8 @@ FoxtrickLineupShortcut = {
 			var u20Id=0;
 			var serieId=FoxtrickHelper.findCountryId(flagElem[0].parentNode);
 			var path = "leagues/league[@id='" + serieId + "']";
-			var obj = this.htNTidsXml.evaluate(path,this.htNTidsXml,null,this.htNTidsXml.DOCUMENT_NODE,null).singleNodeValue;
+			//var obj = this.htNTidsXml.evaluate(path,this.htNTidsXml,null,this.htNTidsXml.DOCUMENT_NODE,null).singleNodeValue;
+			var obj = Foxtrick.xml_single_evaluate(this.htNTidsXml, path);
 			if (obj) {
 				ntName=obj.getElementsByTagName('NTName').item(0).firstChild.nodeValue;
 				ntId=obj.getElementsByTagName('NTid').item(0).firstChild.nodeValue;

@@ -321,8 +321,6 @@ Foxtrick.TeamStats= {
 		td.appendChild(filterselect);
 		mainBody.insertBefore(table,mainBody.firstChild);
 		//sortbybox.parentNode.insertBefore(filterselect,sortbybox);
-		Foxtrick.TeamStats.Filter.doc=doc;
-		
         },
         
         _checkCountry : function ( ctrc ) {
@@ -479,7 +477,7 @@ Foxtrick.TeamStats= {
 	// by convinced
 	Filter : function (ev){
 	try {
-		var doc = Foxtrick.TeamStats.Filter.doc;
+		var doc = ev.target.ownerDocument;
 		var filter = ev.target.value;
 		var isnotFF35 = !Foxtrick.isFF35(doc);
 		

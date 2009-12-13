@@ -61,7 +61,9 @@ Foxtrick.Matches = {
 		if (baseValue == -1) {
 			return 0; // non-existant
 		}
+		
 		var subLevelValue=0;
+				
 		try {
 		  var lang = FoxtrickPrefs.getString("htLanguage");
 		} catch (e) {
@@ -69,18 +71,15 @@ Foxtrick.Matches = {
 		}
 
 		try {
-			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));
+			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));			
 			var path = "hattricklanguages/language[@name='" + lang + "']/ratingSubLevels/sublevel[@text='" + subLevel + "']";
-			var obj = this.htLanguagesXml.evaluate(path,this.htLanguagesXml,null,this.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				subLevelValue = parseFloat(obj.attributes.getNamedItem("value").textContent);
-			else
-				return -1;
+			subLevelValue = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "value");
+			if (!subLevelValue)	return -1;
 		} catch (e) {
 			Foxtrick.dump('matches.js _getStatFromCell: '+e + "\n");
 		}
 
-		return baseValue+subLevelValue;
+		return baseValue+parseFloat(subLevelValue);
 	},
 
 	_getTacticsLevelFromCell: function(cell) {
@@ -99,12 +98,10 @@ Foxtrick.Matches = {
 		}
 
 		try {
-
 			var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
-			var obj = this.htLanguagesXml.evaluate(path,this.htLanguagesXml,null,this.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-
-			return obj.attributes.getNamedItem("type").textContent;
-
+			subLevelValue = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "type");
+			if (subLevelValue) return subLevelValue
+			else return -1;
 		} catch (e) {
 			Foxtrick.dump('matches.js _getTacticsFromCell: '+e + "\n");
 		}
@@ -115,22 +112,10 @@ Foxtrick.Matches = {
 	initHtLang: function ()
 	{
 		try {
-			this.htLanguagesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
+			this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
 		} catch (e) {
 			Foxtrick.dump('matches.js initHtLang: '+e+"\n");
 		}
 	},
-
-	_loadXmlIntoDOM: function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
-	}
 
 };
