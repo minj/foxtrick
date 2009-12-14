@@ -152,14 +152,10 @@ var FoxtrickLinksCustom = {
         var locpath = ev.target.parentNode.getAttribute('href').replace(/call:\s+?/i,'');
 		dump(locpath+'\n');
 		try {
-			var file = Components.classes["@mozilla.org/file/local;1"].
-								createInstance(Components.interfaces.nsILocalFile);
-			file.initWithPath(locpath);
+			exec.initWithPath(file.path);
 		} catch (e) {
             Foxtrick.dump("error finding: "+locpath+'\n');
         }
-
-        exec.initWithPath(file.path);
 
         if (exec.exists()) {
             var process = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);

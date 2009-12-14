@@ -41,6 +41,11 @@ FoxtrickMatchPlayerColouring = {
 		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
 		if (isprematch ) return;
 		
+		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
+		// exmaple xml use
+		//Foxtrick.dump(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
+		//Foxtrick.alert(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
+		
 		//Retrieve teams id
 		var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var table = doc.getElementById('mainBody').getElementsByTagName('table');
