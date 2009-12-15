@@ -297,13 +297,18 @@ Foxtrick.LOG = function (msg) {
 // ...
 		
 Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents css\n');
-			// check permanant css
-			var isStandard = Foxtrick.isStandardLayout(doc);
-			var isRTL = Foxtrick.isRTLLayout(doc);
-			for ( var i in Foxtrick.modules ) {
-				var module = Foxtrick.modules[i];
+		// check permanant css
+	var isStandard = Foxtrick.isStandardLayout(doc);
+	var isRTL = Foxtrick.isRTLLayout(doc);
+	for ( var i in Foxtrick.ht_pages ) {
+		if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) { 
+			// on a specific page, run all handlers
+			for ( var j in Foxtrick.run_on_page[i] ) { 
+				var module = Foxtrick.run_on_page[i][j];  
 				// if module has an css) function and is enabled
-				if ( module.MODULE_NAME ) {
+				if ( module.MODULE_NAME ) {  
+					if ( !Foxtrick.isModuleEnabled( module ) ) continue;
+					
 					if ( module.OLD_CSS && module.OLD_CSS!="") {
 						Foxtrick.unload_css_permanent ( module.OLD_CSS );
 					}
@@ -370,6 +375,8 @@ Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents 
 					}
 				}
 			}
+		}
+	}
 }
 		
 Foxtrick.unload_module_css = function() {

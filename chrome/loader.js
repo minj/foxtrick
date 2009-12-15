@@ -32,12 +32,27 @@ Foxtrick.Loader = function(){
 
 
 function runBlocks() {
+
 	Foxtrick.Loader.Load();
-	FoxtrickPrefs.init();
-	Foxtrickl10n.init();
+	var begin = new Date();
 	FoxtrickMain.init();
+	var end = new Date();
+	var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+                 + end.getMilliseconds() - begin.getMilliseconds();
+	Foxtrick.dump( "init time: " + time + " ms\n" );		
+	var begin = new Date();
 	Foxtrick.reload_module_css(document);
+	var end = new Date();
+	var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+                 + end.getMilliseconds() - begin.getMilliseconds();
+	Foxtrick.dump( "module css time: " + time + " ms\n" );		
+	var begin = new Date();
 	FoxtrickMain.run(document);
+
+	var end = new Date();
+	var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+                 + end.getMilliseconds() - begin.getMilliseconds();
+	Foxtrick.dump( "Foxtrick run time: " + time + " ms\n" );		
 }
 
 
