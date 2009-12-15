@@ -14,7 +14,7 @@ var Foxtrickl10n = {
 		var string_regexp = new RegExp( '\n'+str+'=(.+)\n', "i" );
 		if (Foxtrickl10n.properties.search(string_regexp)!=-1) value=  Foxtrickl10n.properties.match(string_regexp)[1];
 		//else if (myres_default.search(string_regexp)!=-1) value = this._strings_bundle_default.match(string_regexp)[1];		
-		else return "** Localization error **";
+		else return str;
 		return value;
 	}catch(e){alert('getString '+e);}
     },
@@ -26,7 +26,7 @@ var Foxtrickl10n = {
 
     isStringAvailable : function( str )
     {
-        return false;
+        return true;
     },
 	
 	isStringAvailableLocal : function( str )

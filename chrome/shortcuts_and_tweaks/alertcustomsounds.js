@@ -15,14 +15,14 @@ var FoxtrickAlertCustomSounds = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("chrome://foxtrick/content/resources/sounds/DingLing.wav",  // LoginWelcome
-											"chrome://foxtrick/content/resources/sounds/DingLing.wav",  // LoginSupporters
-											"chrome://foxtrick/content/resources/sounds/DingLing.wav",  // ForumReplyToMe
-											"chrome://foxtrick/content/resources/sounds/DingLing.wav",  // TransferMarket
-											"chrome://foxtrick/content/resources/sounds/DingLing.wav",  // Challenges
-											"chrome://foxtrick/content/resources/sounds/DingLing.wav",  // Guestbook
-											"chrome://foxtrick/content/resources/sounds/DingLing.wav",  // MailToMe
-											"chrome://foxtrick/content/resources/sounds/DingLing.wav"  // MyHTMessages
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // LoginWelcome
+											"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // LoginSupporters
+											"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // ForumReplyToMe
+											"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // TransferMarket
+											"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // Challenges
+											"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // Guestbook
+											"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // MailToMe
+											"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav"  // MyHTMessages
 											),        
 	urls: new Array(/\/MyHattrick\/$/gi,
 					/\/Club\/Manager\/\?teamId=/gi,

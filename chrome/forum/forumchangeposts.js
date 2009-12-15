@@ -10,7 +10,7 @@ var FoxtrickForumChangePosts = {
 	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : true,
 	bDetailedHeader:false,
-	CSS:"chrome://foxtrick/content/resources/css/changepost.css",
+	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/changepost.css",
 
 	init : function() {
 	},
@@ -23,7 +23,7 @@ var FoxtrickForumChangePosts = {
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon");
 		var do_copy_posting = Foxtrick.isModuleEnabled(FoxtrickCopyPosting);
 		var do_hide_user_info = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatarUserInfo);
-		var do_hide_avatar = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar);
+		var do_hide_avatar = false;//Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar);
 		var do_default_facecard = !do_hide_avatar && Foxtrick.isModuleEnabled(FoxtrickAddDefaultFaceCard);
         var do_format_text = Foxtrick.isModuleEnabled(FoxtrickFormatPostingText);
 		var do_move_links = Foxtrick.isModuleEnabled(FoxtrickMoveLinks);
@@ -58,7 +58,7 @@ var FoxtrickForumChangePosts = {
 		
 		// part of copypostid
 		var img = doc.createElement('img');
-		img.setAttribute('src',"chrome://foxtrick/content/resources/img/copy_yellow_small.png");
+		img.setAttribute('src',"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copy_yellow_small.png");
 		img.setAttribute('style',"vertical-align: middle; margin-right:3px;");
 
 		var copy_link1 = doc.createElement('a');
@@ -68,7 +68,7 @@ var FoxtrickForumChangePosts = {
 
 		// part of copy_posting_link
 		var img2 = doc.createElement('img');
-		img2.setAttribute('src',"chrome://foxtrick/content/resources/img/copy_yellow_small.png");
+		img2.setAttribute('src',"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copy_yellow_small.png");
 		img2.setAttribute('style',"vertical-align: middle; margin-left:3px;");
 
 		var copy_posting_link = doc.createElement('a');
@@ -157,7 +157,7 @@ var FoxtrickForumChangePosts = {
                     /* add someting to test removal later
                     var forumprefs = doc.createElement('a');
                     forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
-                    forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
+                    forumprefs.innerHTML='<img src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif">';
                     forumprefs.setAttribute('class','bookmarkMessage');
                     if (header_right_inner) header_right_inner.appendChild(forumprefs);
                     */

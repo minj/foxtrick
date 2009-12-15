@@ -136,7 +136,7 @@ var FoxtrickLinksCustom = {
 					div.setAttribute( "href", href );
 					if (href.search(/call:/)==0) div.addEventListener( "click", FoxtrickLinksCustom.CallExe, false );						
 					else div.setAttribute("onClick","window.open(\""+href+"\",\"_blank\");");
-					div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+					div.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
 					div.setAttribute('id','LinksCustomLinkID'+key);
 					ownBoxBody.appendChild(doc.createTextNode(" "));
 					ownBoxBody.appendChild(div); 
@@ -152,14 +152,10 @@ var FoxtrickLinksCustom = {
         var locpath = ev.target.parentNode.getAttribute('href').replace(/call:\s+?/i,'');
 		dump(locpath+'\n');
 		try {
-			var file = Components.classes["@mozilla.org/file/local;1"].
-								createInstance(Components.interfaces.nsILocalFile);
-			file.initWithPath(locpath);
+			exec.initWithPath(file.path);
 		} catch (e) {
             Foxtrick.dump("error finding: "+locpath+'\n');
         }
-
-        exec.initWithPath(file.path);
 
         if (exec.exists()) {
             var process = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);
@@ -227,7 +223,7 @@ var FoxtrickLinksCustom = {
 				div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+key+'.img')+"') 50% no-repeat;");
 				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+key+'.href') );
 				div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+key+'.href')+"\",\"_blank\");");
-				div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+				div.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
 				var tr1 = doc.createElement ("tr");
 				var td1 = doc.createElement ("td");
 				var td2 = doc.createElement ("td");
@@ -262,7 +258,7 @@ var FoxtrickLinksCustom = {
 			trn.height=20;
 			var tdn = doc.createElement ("td");
 			var divn = doc.createElement ("div"); 
-			divn.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			divn.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
 			tdn.appendChild(divn);				
 			trn.appendChild(tdn);				
 			table.appendChild(trn);				
@@ -275,9 +271,9 @@ var FoxtrickLinksCustom = {
 			var div = doc.createElement ("div"); 
 			div.setAttribute("id", "inputImgDivID");
 			div.setAttribute( "title", 'Tinntle') ;
-			div.innerHTML="<img id='inputImgIDName' src='chrome://foxtrick/content/resources/linkicons/aiga.png'>";
-			div.imgref='chrome://foxtrick/content/resources/linkicons/aiga.png';
-			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/empty16.png') 50% no-repeat;");
+			div.innerHTML="<img id='inputImgIDName' src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/aiga.png'>";
+			div.imgref='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/aiga.png';
+			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/empty16.png') 50% no-repeat;");
 				
 			// load image button
 			var loadIcon = doc.createElement ("a");	
@@ -285,8 +281,6 @@ var FoxtrickLinksCustom = {
 			loadIcon.className="inner";
 			loadIcon.addEventListener( "click", FoxtrickLinksCustom.LoadDialog, false );
 			loadIcon.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
-			loadIcon.parentdoc = doc.defaultView;
-			FoxtrickLinksCustom.LoadDialog.doc =doc;
 			
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -344,7 +338,6 @@ var FoxtrickLinksCustom = {
 			selectbox.setAttribute("title",Foxtrickl10n.getString("foxtrick.linkscustom.addtag" ));
 			selectbox.setAttribute("id","ft_ownselecttagboxID");
 			selectbox.setAttribute("style","width:100%;");
-			FoxtrickLinksCustom.SelectBox_Select.doc=doc;
 			selectbox.addEventListener('change',FoxtrickLinksCustom.SelectBox_Select,false);
 			var option = doc.createElement("option");
 			option.setAttribute("value","");
@@ -397,7 +390,7 @@ var FoxtrickLinksCustom = {
 		
 			var helplink = doc.createElement ("a");	
 			helplink.setAttribute("href", "javascript: alert('"+Foxtrickl10n.getString('foxtrick.linkscustom.helptext')+' \n'+Foxtrickl10n.getString('foxtrick.linkscustom.helptext2')+"');");
-			helplink.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			helplink.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
 			helpdiv.appendChild(helplink);
 			
 			var tdn5b = doc.createElement ("td");
@@ -453,7 +446,7 @@ var FoxtrickLinksCustom = {
 			var baseprefnl = evt["target"]["baseprefnl"];
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
-			doc.getElementById("inputImgDivID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome://foxtrick/content/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
+			doc.getElementById("inputImgDivID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
 			doc.getElementById("inputImgDivID").imgref=FoxtrickPrefs.getString(baseprefnl+'.img');	
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
@@ -510,7 +503,7 @@ var FoxtrickLinksCustom = {
 			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
 			div.setAttribute( "title", FoxtrickPrefs.getString(baseprefnl+'.href') );
 			div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(baseprefnl+'.href')+"\",\"_blank\");");
-			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			div.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
 			
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -589,9 +582,9 @@ var FoxtrickLinksCustom = {
 
 	
 	LoadDialog  : function(evt)
-	{	
-		var path="file://"+Foxtrick.selectFile(evt["target"]["parentdoc"]);
-		var doc = evt.view.document;
+	{	var doc = evt.view.document;
+		var window = evt.view;
+		var path="file://"+Foxtrick.selectFile(window);
 		var pathdel="\\";
 		if (path.charAt(7)=="/") {pathdel="/";}
 		var imgfile=path.substr(path.lastIndexOf(pathdel)+1);
@@ -609,7 +602,7 @@ var FoxtrickLinksCustom = {
 			var div=doc.getElementById('inputImgDivID');
 			div.imgref=image;
 			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+div.imgref+"') 50% no-repeat;");
-			div.innerHTML="<img src='chrome://foxtrick/content/resources/linkicons/transparent16.png'>";
+			div.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
 			 			
  		}
 		catch(e) {Foxtrick.dump('FoxtrickLinksCustom.LoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
@@ -656,8 +649,8 @@ var FoxtrickLinksCustom = {
 	
 	SelectBox_Select : function(evt) {
 	try {
-		var doc = FoxtrickLinksCustom.SelectBox_Select.doc;// evt.view.document;
-		var value =doc.getElementById ( "inputHrefID" ).value;
+		var doc = evt.target.ownerDocument;
+		var value = doc.getElementById ( "inputHrefID" ).value;
 		if (value.search(/\?/)==-1) value+="\?"; else  value+="&";
 		value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
 		doc.getElementById ( "inputHrefID" ).value=value;

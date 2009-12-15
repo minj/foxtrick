@@ -1,5 +1,7 @@
 {
    "background_page": "background.html",
+   "options_page": "options.html",
+
    "browser_action": {
       "default_icon": "resources\\linkicons\\foxtrick_2.png",
       "popup": "popup.html"
@@ -9,6 +11,7 @@
 	 "stats.js",
     "redirections.js",
 	"read_ht_pref_changes.js",
+	//"preferences-dialog.js",
     "preferences-dialog-html.js",
 
 	"forum\\forumstriphattricklinks.js",
@@ -121,7 +124,7 @@
     "presentation\\currencyConverter.js",
     "shortcuts_and_tweaks\\teampopuplinks.js", 
 
-	  "modules_list.js", "foxtrick_chrome.js" ],
+	  "modules_list.js", "foxtrick_chrome.js","loader.js" ],
       "matches": [ "http://*.hattrick.org/*" ],
       "run_at": "document_start"
    } ],

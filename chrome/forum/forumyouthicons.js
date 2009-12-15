@@ -25,7 +25,7 @@
 
     run : function( page, doc ) {
     try {
-        Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/HattrickML.js");
+        Foxtrick.addJavaScript(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/js/HattrickML.js");
         Foxtrick.dump('PAGE: ' + page + '\n');
         var show_main = false; var show_youth = false; 
         var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
@@ -171,7 +171,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._br , false );
                 newimage.setAttribute( "class", "ft_br");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_br.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/format_br.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
                 toolbar.insertBefore( newimage,target );
             }
@@ -181,7 +181,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._userid , false );
                 newimage.setAttribute( "class", "ft_uid");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_user.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/format_user.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.user");
                 toolbar.insertBefore( newimage,target );
             }
@@ -191,7 +191,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._kitid , false );
                 newimage.setAttribute( "class", "ft_kit");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_kit.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/format_kit.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.kit");
                 toolbar.insertBefore( newimage,target );
             }
@@ -201,7 +201,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._articleid , false );
                 newimage.setAttribute( "class", "ft_aid");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_article.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/format_article.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.article");
                 toolbar.insertBefore( newimage,target );
             }
@@ -211,7 +211,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._clock , false );
                 newimage.setAttribute( "class", "ft_clock");
-                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_clock.png') !important;");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/format_clock.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.clock");
                 toolbar.insertBefore( newimage,target );
             }  
@@ -221,7 +221,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._spoiler , false );
                 newimage.setAttribute( "class", "ft_spoiler");
-                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_spoiler.png') !important;");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/format_spoiler.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.spoiler");
                 toolbar.insertBefore( newimage,target );
             }
@@ -231,7 +231,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._pre , false );
                 newimage.setAttribute( "class", "ft_pre");
-                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome://foxtrick/content/resources/linkicons/format_pre.png') !important;");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/format_pre.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.pre");
                 toolbar.insertBefore( newimage,target );
             }

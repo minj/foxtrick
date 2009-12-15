@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
 
 .cfHeader a[class="flag inner"] img 
 { margin: 0 0px 2px 0 !important; }
@@ -45,4 +45,3 @@ div.mainConf div.cfUser  div.faceCard
 div.mainConf div.cfUser div.cfUserInfo 
 { padding-top:5px;}
 
-}

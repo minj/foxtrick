@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
 
 #ctl00_CPMain_plyRightBack_ddlBehaviour option {background-color:#8f8; }
 #ctl00_CPMain_plyDef1_ddlBehaviour  option{background-color:#88f; }
@@ -28,4 +28,3 @@
 #startlineup div.orderdropbox   option[value="6"][selected] {background-color:#ff8 !important; } 
 #startlineup div.orderdropbox   option[value="7"][selected] {background-color:#88f !important; } 
 */
-}

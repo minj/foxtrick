@@ -15,6 +15,7 @@ var FoxtrickAlert = {
     LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("NewMail","NewForum"), 
 	
+	news : [],
 	alertWin:null,
 	ALERTS: new Array(),
 	last_num_message:0,
@@ -22,9 +23,9 @@ var FoxtrickAlert = {
 	
     init : function() {
         Foxtrick.registerAllPagesHandler( FoxtrickAlert );
-        Foxtrick.news[0] = null;
-        Foxtrick.news[1] = null;
-        Foxtrick.news[2] = null;
+        FoxtrickAlert.news[0] = null;
+        FoxtrickAlert.news[1] = null;
+        FoxtrickAlert.news[2] = null;
     },
 
     run : function( doc ) {  
@@ -115,7 +116,7 @@ var FoxtrickAlert = {
 					var isequal = false;
 					for (var j=0;j<=3;j++)
 					{
-						if (elemText[i]==Foxtrick.news[j])
+						if (elemText[i]==FoxtrickAlert.news[j])
 							isequal=true;
 					}	
                     if (!isequal) {
@@ -127,7 +128,7 @@ var FoxtrickAlert = {
             } 				
             for (var i=0; i<tickerdiv.length;i++)
             {
-			    Foxtrick.news[i]=elemText[i];
+			    FoxtrickAlert.news[i]=elemText[i];
 			}
 			FoxtrickAlert.foxtrick_showAlert(false);
         } catch(e) { Foxtrick.dump('error checkNews '+e); }

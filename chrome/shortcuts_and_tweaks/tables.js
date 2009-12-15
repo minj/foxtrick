@@ -79,13 +79,13 @@ var FoxtrickMatchTables = {
         
 		// adjust league table
 		if (page=='league' || page== 'youthleague') {
-			Foxtrick.addStyleSheet(doc,"chrome://foxtrick/content/resources/css/FoxtrickMatchTables_league.css");
+			Foxtrick.addStyleSheet(doc,"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/FoxtrickMatchTables_league.css");
 			return;
 		}
 
 		// adjust matchtable, keep hour
 		if (!Foxtrick.isModuleFeatureEnabled( this, "RemoveTime" ) ) {
-			if (page=='matchesarchiv' || page== 'matches') Foxtrick.addStyleSheet(doc,"chrome://foxtrick/content/resources/css/FoxtrickMatchTables_matches.css");
+			if (page=='matchesarchiv' || page== 'matches') Foxtrick.addStyleSheet(doc,"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/FoxtrickMatchTables_matches.css");
 			return;
 		}		
 		
@@ -118,14 +118,17 @@ var FoxtrickMatchTables = {
                         case 'ddmmyyyy': 
                             if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
                             else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
+                            if (ar.length>7) cell.title = ar[7] + ar[8] + ar[9] + ar[10];
                             break;
                         case 'mmddyyyy':
                             if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
                             else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
+                            if (ar.length>7) cell.title = ar[7] + ar[8] + ar[9] + ar[10];
                             break;
                         case 'yyyymmdd':
                             if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
                             else cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4);
+                            if (ar.length>7) cell.title = ar[7] + ar[8] + ar[9] + ar[10];
                             break;
                     }
                     cell.setAttribute('style', "font-size:9px; text-align:center;padding:2px 0px 2px 0px;vertical-align:middle;");

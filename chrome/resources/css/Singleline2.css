@@ -1,6 +1,4 @@
 @namespace url(http://www.w3.org/1999/xhtml);
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
-@namespace url(http://www.w3.org/1999/xhtml);
 
 
 #aspnetForm[action^=Read] div[class='main mainConf'] div.cfHeader {min-height:14px; height:0px !important; float:none  !important;}

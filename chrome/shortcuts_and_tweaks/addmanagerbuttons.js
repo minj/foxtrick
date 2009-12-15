@@ -134,7 +134,7 @@ var FoxtrickAddManagerButtons = {
 			img.style.padding = "0px 5px 0px 0px";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
-			img.src = "chrome://foxtrick/content/resources/img/writeinguestbook.png";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/writeinguestbook.png";
 			guestbookLink.appendChild(img);
 			
 			parentDiv.appendChild(guestbookLink);
@@ -176,7 +176,7 @@ var FoxtrickAddManagerButtons = {
  * will be a good start. So please don't delete! But don't use it either :)
  * /larsw84 19-12-2008
 				
-				Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/"
+				Foxtrick.addJavaScript(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/js/"
 					+"common.js");
 				//var aspnetForm = doc.getElementById("aspnetForm");
 				var allDivs = doc.getElementsByTagName("div");

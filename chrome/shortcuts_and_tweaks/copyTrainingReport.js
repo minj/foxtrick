@@ -12,8 +12,8 @@ var FoxtrickCopyTrainingReport = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.6.2",
 	LATEST_CHANGE:"Copies plain text to match htyouthclub requirement",
-	CSS: "chrome://foxtrick/content/resources/css/headercopyicons.css",
-	CSS_SIMPLE: "chrome://foxtrick/content/resources/css/headercopyicons_simple.css",
+	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons.css",
+	CSS_SIMPLE: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons_simple.css",
 	
 	init : function() {
 	},
@@ -38,7 +38,7 @@ var FoxtrickCopyTrainingReport = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
-			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";
 			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -54,7 +54,7 @@ var FoxtrickCopyTrainingReport = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
-			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png";
 			messageLink.appendChild(img);
 			
 			var parentDiv = doc.createElement("div");
@@ -134,7 +134,7 @@ var FoxtrickCopyScoutReport = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";
 			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -155,7 +155,7 @@ var FoxtrickCopyScoutReport = {
 			img.style.padding = "0px 5px 5px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);
@@ -241,7 +241,7 @@ var FoxtrickCopyPlayerSource = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
-			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";
 			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -262,7 +262,7 @@ var FoxtrickCopyPlayerSource = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
-			img.src = "chrome://foxtrick/content/resources/img/youthplayersource.png";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/youthplayersource.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);

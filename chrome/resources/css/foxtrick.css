@@ -5,35 +5,35 @@
 div.ft_actionicon {cursor: pointer; width: 16px; height: 16px; background: 50% no-repeat;}
 div.ft_icon {width: 16px; height: 16px; background: 50% no-repeat;}
 
-div.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy_small.png')}
-div.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png');}
-div.foxtrickHelp {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_green.png');}
-div.foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png');}
-div.foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png');}
-div.foxtrickExport:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png');}
-div.foxtrickRemove {background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png');}
-div.foxtrickRemove:hover {background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png');}
-div.foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png');}
-div.foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png');}
+div.foxtrickCopy {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copy_small.png')}
+div.foxtrickCopy:hover {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copy_yellow_small.png');}
+div.foxtrickHelp {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_help_green.png');}
+div.foxtrickHelp:hover {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_help_yellow.png');}
+div.foxtrickExport {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_downarrow_green.png');}
+div.foxtrickExport:hover {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_downarrow_yellow.png');}
+div.foxtrickRemove {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/cross_small.png');}
+div.foxtrickRemove:hover {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/crossRed_small.png');}
+div.foxtrickInfo {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_information_green.png');}
+div.foxtrickInfo:hover {background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_information_yellow.png');}
 
 /* sidebarbox h2 dropdown image */ 
-div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 99% 60%;}
-div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 99% 60%;}
+div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/link-down.png') no-repeat 99% 60%;}
+div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/link-up.png') no-repeat 99% 60%;}
 div.ft_sidebarBoxCollapsed .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
 div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
-div.ft_sidebarBoxCollapsed_rtl  h2 { border: none !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 3% 60%;}
-div.ft_sidebarBoxUnfolded_rtl h2 { border: none !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 3% 60%;}
+div.ft_sidebarBoxCollapsed_rtl  h2 { border: none !important; background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/link-down.png') no-repeat 3% 60%;}
+div.ft_sidebarBoxUnfolded_rtl h2 { border: none !important; background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/link-up.png') no-repeat 3% 60%;}
 div.ft_sidebarBoxCollapsed_rtl .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-left:8px !important;} 
 div.ft_sidebarBoxCollapsed_rtl .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
 
 
 /* sidebarbox h3 dropdown image */
-h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
-h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
+h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/down.gif") no-repeat right;}
+h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/up.gif") no-repeat right;}
 
 /*boxBody h2 dropdown image*/
-h2.ft_boxBodyCollapsed {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
-h2.ft_boxBodyUnfolded {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
+h2.ft_boxBodyCollapsed {background: url("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/down.gif") no-repeat right;}
+h2.ft_boxBodyUnfolded {background: url("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/up.gif") no-repeat right;}
 
 /*Forum HighlighthreadOpener PostID*/
 .ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000!important;}

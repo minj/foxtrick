@@ -1396,7 +1396,7 @@
         </tactics>
     </language>
     
-    <language name="fur" desc="Friulian">
+    <language name="fur" desc="Furlan">
         <ratingSubLevels>
             <sublevel text="(Une vore bas)" value="0.0" />
             <sublevel text="(Bas)" value="0.25"  />
@@ -1422,6 +1422,77 @@
             <tactic type="creatively" value="Zuiâ cun creativitât" />
             <tactic type="longshots" value="Tîrs di lontan" />
         </tactics>
+    </language>
+	
+    <language name="vi" desc="Tiếng Việt">
+    <!-- rating sublevels appearing in match detail page -->
+        <ratingSubLevels>
+            <sublevel text="(very low)" value="0.0" />
+            <sublevel text="(low)" value="0.25"  />
+            <sublevel text="(high)" value="0.50"  />
+            <sublevel text="(very high)" value="0.75"  />
+        </ratingSubLevels>
+        <!-- tactics appearing in match detail page -->
+        <tactics>
+            <tactic type="normal" value="Normal" />
+            <tactic type="pressing" value="Pressing" />
+            <tactic type="ca" value="Counter-attacks" />
+            <tactic type="aow" value="Attack on wings" />
+            <tactic type="aim" value="Attack in the Middle" />
+            <tactic type="creatively" value="Play creatively" />
+            <tactic type="longshots" value="Long shots" />
+        </tactics>
+        <!-- positions appearing on players page -->
+        <positions>
+            <position type="Keeper" value="Keeper" short="Ke" />
+            <position type="Central defender" value="Central defender" short="Cd" />
+            <position type="Wing back" value="Wing back" short="Wb" />
+            <position type="Inner midfielder" value="Inner midfielder" short="Im" />
+            <position type="Winger" value="Winger" short="Wi" />
+            <position type="Forward" value="Forward" short="Fo" />
+        </positions>
+        <specialties>
+            <specialty type="Unpredictable" value="Unpredictable" short="Un" />
+            <specialty type="Powerful" value="Powerful" short="Po" />
+            <specialty type="Quick" value="Quick" short="Qu" />
+            <specialty type="Technical" value="Technical" short="Te" />
+            <specialty type="Head" value="Head" short="He" />
+            <specialty type="Regainer" value="Regainer" short="Re" />
+        </specialties>		
+        <!-- repositioning word connections appearing in match lineup page -->
+        <repositioning>
+            <reposition type="midfielder" value="extra inner midfield" />
+            <reposition type="centraldefender" value="extra central defender" />
+            <reposition type="forward" value="extra forward" />
+            <reposition type="normal" value="normal" />
+            <reposition type="offensive" value="offensive" />
+            <reposition type="defensive" value="defensive" />
+            <reposition type="towardsmiddle" value="towards middle" />
+            <reposition type="towardswing" value="towards wing" />
+        </repositioning>
+        <levels>
+            <level text="divine" value="20" />
+            <level text="utopian" value="19" />
+            <level text="magical" value="18" />
+            <level text="mythical" value="17" />
+            <level text="extra-terrestrial" value="16" />
+            <level text="titanic" value="15" />
+            <level text="supernatural" value="14" />
+            <level text="world class" value="13" />
+            <level text="magnificent" value="12" />
+            <level text="brilliant" value="11" />
+            <level text="outstanding" value="10" />
+            <level text="formidable" value="9" />
+            <level text="excellent" value="8" />
+            <level text="solid" value="7" />
+            <level text="passable" value="6" />
+            <level text="inadequate" value="5" />
+            <level text="weak" value="4" />
+            <level text="poor" value="3" />
+            <level text="wretched" value="2" />
+            <level text="disastrous" value="1" />
+            <level text="non-existent" value="0" />  
+        </levels>
     </language>
 
 </hattricklanguages>

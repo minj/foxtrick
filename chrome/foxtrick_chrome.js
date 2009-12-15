@@ -22,12 +22,6 @@ Foxtrick.may_run_on_page = [];
 Foxtrick.run_on_cur_page = [];
 
 
-
-
-//Foxtrick.isModuleFeatureEnabled = function(module,option){return false;};
-//Foxtrick.isModuleEnabled = function( module ) { return true;}
-Foxtrick.dump = function(cnt) {dump(String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));}
-
 Foxtrick.registerModulePages = function( module) {	
 	try {
 		// if is enabled in preferences and has a run() function
@@ -183,10 +177,13 @@ try{
     head = doc.getElementsByTagName('head')[0];
     if (!head) { return; }
 
+	//if (css.search(/chrome:\/\/foxtrick\/content\//)!=-1) css.replace(/chrome:\/\/foxtrick\/content\//)
+	
 	var link = doc.createElement("link");
 	link.setAttribute("rel", "stylesheet");
 	link.setAttribute("type", "text/css");
 	link.setAttribute("media", "all");
+	//link.setAttribute("href", css.replace(/chrome:\/\/foxtrick\/content\//,''));
 	link.setAttribute("href", css);
 	head.appendChild(link);
 } catch(e){alert('addStyleSheet  '+e);}
@@ -388,9 +385,10 @@ Foxtrick.unload_css_permanent = function( css ) {
 	return;
 }
 
-Foxtrick.load_css_permanent = function( css) {  Foxtrick.dump('load '+css.substr(0,73)+'\n');  
-	var csslink = chrome.extension.getURL(css);	
-	Foxtrick.addStyleSheet( document, csslink );
+Foxtrick.load_css_permanent = function( css) {  //Foxtrick.dump('load '+css+'\n');  
+//	var csslink = chrome.extension.getURL(css);	
+//	Foxtrick.addStyleSheet( document, csslink );
+	Foxtrick.addStyleSheet( document, css );
 }
 
 
@@ -1094,22 +1092,215 @@ Foxtrick.GetDataURIText = function (filetext) {
 	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
 }
 
+Foxtrick.LoadXML = function (xmlfile) {  return; //xxx
+	var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+	req.open("GET", xmlfile, false);
+	req.send(null);
+	var response = req.responseXML;
+	if (response.documentElement.nodeName == "parsererror") {
+		Foxtrick.dump("error parsing " + xmlfile + "\n");
+		return null;
+	}
+	return response;
+}
 
+Foxtrick.loadXmlIntoDOM = function(url) {  return; // xxx
+		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+		req.open("GET", url, false);
+		req.send(null);
+		var doc = req.responseXML;
+		if (doc.documentElement.nodeName == "parsererror") {
+			Foxtrick.dump("error parsing " + url+"\n");
+			return null;
+		}
+		return doc;
+	}
+
+Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
+	var result = new Array();
+	if (xmlresponse) {
+		var nodes = xmlresponse.evaluate(basenodestr, xmlresponse, null, 7 , null);
+		for (var i = 0; i < nodes.snapshotLength; i++) {
+			var node = nodes.snapshotItem(i);
+			var label = node.getAttribute(labelstr);
+			var value = null;
+			var value2=null;
+			var value3=null;
+
+			if (valuestr) value = node.getAttribute(valuestr);
+			if (value2str) value2 = node.getAttribute(value2str);
+			if (value3str) value3 = node.getAttribute(value3str);
+
+			if (valuestr) result.push([label,value,value2,value3]);
+			else result.push(label);
+		}
+	}
+	return result;
+}
+
+
+Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
+		//var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
+		var xml=document.createElement('xml');
+		xml.innerHTML=xmldoc;
+		try {
+			splitpath = path.split(/\/|\[/g);
+			var result = xml;
+			for (var j=0;j<splitpath.length;++j) {
+				if (j!=splitpath.lenght-1 && splitpath[j+1].search('@')==-1) continue;
+				result = result.getElementsByTagName(splitpath[j]);
+				var s_attr = splitpath[j+1].match(/@(.+)=/)[1];
+				var s_val = splitpath[j+1].match(/=(.+)\]/)[1].replace(/'|"/g,'');
+				//dump(splitpath[j+1]+' a:'+s_attr+' v:'+s_val+'\n');
+				for (var i=0;i<result.length;++i) { if(result[i].getAttribute(s_attr)==s_val)  {
+					result = result[i]; break;}}
+				j++;
+			}
+			if (attribute) result = result.getAttribute(attribute);
+			//Foxtrick.dump (attribute+' '+result+'\n');
+			return result;
+		} catch (e) {Foxtrick.dump ('error '+path+' '+attribute+' '+e+'\n'); return null;}
+			
+		/*var obj = xmldoc.evaluate(path,xmldoc,null,xmldoc.DOCUMENT_NODE,null).singleNodeValue;
+		if (obj)
+			if (attribute) return obj.attributes.getNamedItem(attribute).textContent;
+			else return obj;
+		else
+			return null;*/
+}
+
+
+Foxtrick.getSelectBoxFromXML = function (doc,xmlfile, basenodestr, labelstr, valuestr, selected_value_str) {
+
+	var selectbox = doc.createElement("select");
+
+	var xmlresponse = Foxtrick.LoadXML(xmlfile);
+	var versions = Foxtrick.XML_evaluate(xmlresponse, basenodestr, labelstr, valuestr);
+
+	var indexToSelect=0;
+	for (var i = 0; i < versions.length; i++) {
+		var label = versions[i][0];
+		var value = versions[i][1];
+
+		var option = doc.createElement("option");
+		option.setAttribute("value",value);
+		option.innerHTML=label;
+		selectbox.appendChild(option);
+
+		if (selected_value_str==value)
+			indexToSelect=i;
+	}
+	selectbox.selectedIndex=indexToSelect;
+
+	return selectbox;
+}
+
+Foxtrick.get_url_param = function (url, name){
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( url );
+
+	if ( results == null )
+		return null;
+	else
+		return results[1];
+}
+
+Foxtrick.linebreak = function (txt, where) {
+    try {
+        if (txt == null) return '';
+        txt = txt.replace(/\<br\>/gi, ' <br> ');
+        var d = txt.split(' ');
+        // Foxtrick.dump ('TEXT= [' + d + ']\n');
+        for (var j = 0; j < d.length; j++ ) {
+            //Foxtrick.dump('  LB [' + j + '] => "'+ d[j] + '"\n');
+            if (d[j].length > where && d[j].search(/href\=|title\=/i) == -1) {
+                d[j] = Foxtrick.cut_word(d[j], where);
+                //Foxtrick.dump('  LB [' + j + '] <= "'+ d[j] + '"\n');
+            }
+        }
+        return d.join(" ");
+    } catch(e) {  Foxtrick.dump('LINEBREAK: ' + e + '\n');}
+}
+
+Foxtrick.cut_word = function (txt, where) {
+    try {
+        if (txt == null) return '';
+        txt = txt.replace(/\<\//g, ' </')
+        var c, a=0, g=0, d = new Array();
+        for (c = 0; c < txt.length; c++) {
+
+            d[c + g] = txt[c];
+            if (txt[c] != " ") a++;
+            else if (txt[c] == " ") a = 0;
+            if (a == where) {
+                g++;
+                d[c+g] = " ";
+                a = 0;
+            }
+
+        }
+        return d.join("");
+    } catch(e) {  Foxtrick.dump('CUT WORD: ' + e + '\n');}
+}
+
+Foxtrick.in_array = function(arr, needle) {
+    for (var i=0; i < arr.length; i++)
+        if (arr[i] === needle) return true;
+    return false;
+}
+
+Foxtrick.var_dump = function(arr,level) {
+	var dumped_text = "";
+	if(!level) level = 0;
+
+	//The padding given at the beginning of the line.
+	var level_padding = "";
+	for(var j=0;j<level+1;j++) level_padding += "    ";
+
+	if(typeof(arr) == 'object') { //Array/Hashes/Objects
+		for(var item in arr) {
+			var value = arr[item];
+
+			if(typeof(value) == 'object') { //If it is an array,
+				dumped_text += level_padding + "'" + item + "' ...<br>\n";
+				dumped_text += Foxtrick.var_dump(value,level+1);
+			} else {
+				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"<br>\n";
+			}
+		}
+	} else { //Stings/Chars/Numbers etc.
+		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+	}
+	return dumped_text;
+}
+
+Foxtrick.dump_HTML = '';
+Foxtrick.dump_flush = function(doc) {
+    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '')
+        try{
+            var div = doc.getElementById('ft_dump');
+            if (div == null) {
+                var div = doc.createElement('div');
+                div.setAttribute('style', 'border:1px solid#ABCDEF');
+                div.innerHTML = '<h1 style="margin: 6px 0 15px 6px">FoxTrick dump</h1><pre style="font-size:12px; white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -o-pre-wrap;">' + Foxtrick.dump_HTML + '</pre>';
+                div.id = 'ft_dump';
+                doc.getElementById('page').appendChild(div);
+            }
+            Foxtrick.dump_HTML = '';
+        } catch(e) {dump(e);}
+}
+
+Foxtrick.dump = function(cnt) {
+	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
+    dump(String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
+}
 
 dump = function (text){console.log(text);}
 
 //---------------------------------------------------------------		
-
-function runBlocks() {
-	FoxtrickPrefs.init();
-	Foxtrickl10n.init();
-	FoxtrickMain.init();
-	Foxtrick.reload_module_css(document);
-	FoxtrickMain.run(document);
-}
-
-window.addEventListener("DOMContentLoaded", runBlocks, false);
-
 
 } catch(e) { alert('ftroot: '+e);}
 

@@ -254,10 +254,10 @@ var FoxtrickStaffMarker = {
 			"bummerland",
 			"caracca",
             "carlesmu",
+			"convincedd",
             "csajszi",
 			"eekels",
-			"Egophobia",
-            "ei04004",
+			"ei04004",
             "Foppe-",
 			"franory",
 			"GM-damyr",
@@ -279,6 +279,7 @@ var FoxtrickStaffMarker = {
 			"MOD-odris",
 			"Mod-spambot",
             "Mod-summercloud",
+			"Murtagsh",
 			"OBarros",
             "Piper_101",
             "Skoglund",
@@ -326,7 +327,7 @@ var FoxtrickStaffMarker = {
         this.stl_foxtrick_dev = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "foxtrick-dev_text");
           if (!this.stl_foxtrick_dev) this.stl_foxtrick_dev = this.OPTION_TEXTS_DEFAULT_VALUES[6];
 		//this.foxtrickersArray_joined = this.foxtrickersArray.join();
-		this.stl_chpps = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "chpps_text");
+		this.stl_chpps = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "chpp-holder_text");
           if (!this.stl_chpps) this.stl_chpps = this.OPTION_TEXTS_DEFAULT_VALUES[7];
 		//this.chpps_joined = this.chppholder.join();
 		this.stl_hty_staff = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "hty_staff_text");
@@ -342,7 +343,9 @@ var FoxtrickStaffMarker = {
 			// not on open new thread
 			if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
 			
+			try {
 			if (this.hty_staff==null){
+				this.hty_staff = new Array();
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
 				req.send(null);
@@ -351,7 +354,6 @@ var FoxtrickStaffMarker = {
 					var frag = doc.createElement('dummy');
 					frag.innerHTML = req.responseText;
 					var htyusers = frag.getElementsByTagName('user');
-					this.hty_staff = new Array();
 					for (var i=0;i<htyusers.length;++i) {
 						this.hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
 						//Foxtrick.dump(this.hty_staff[i]+' ')
@@ -360,7 +362,8 @@ var FoxtrickStaffMarker = {
 				}
 				else {Foxtrick.dump('no connection to hty\n'); }				
 			}
-
+			}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
+			
 		// getting userids and colors
 			var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
             if (!utext)

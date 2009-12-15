@@ -6,10 +6,38 @@
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.Matches = {
 
-	htLanguagesXml : null,
+    MODULE_NAME : "Matches",
+	DEFAULT_ENABLED : true,
+	PAGES : new Array('match'), 
 
+	htLanguagesXml : null,
+	matchxmls: new Array(),
+	
 	init : function() {
 		this.initHtLang();
+	},
+	
+	run : function(page,doc) {
+	/*try{
+		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
+		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
+		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+		if (isprematch) return;
+		
+		if (isarchivedmatch && typeof(this.matchxmls[matchid]) == 'undefined') {
+			var req = new XMLHttpRequest();
+			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Matches/chppxml.axd?file=matchdetails&matchID='+matchid+'&matchEvents=true', false); 
+			req.send(null);
+			if (req.status == 200) {
+				this.matchxmls[matchid] = req.responseXML;
+				dump('matches.js: get new xml\n');
+			}
+			else Foxtrick.dump('matches.js: xml request failed\n');
+		}
+	} catch(e){Foxtrick.dump('matches.js run: '+e+'\n');}*/
+	},
+
+	change : function(page,doc) {
 	},
 	
 	_getRatingsTable: function(doc) {
@@ -61,26 +89,25 @@ Foxtrick.Matches = {
 		if (baseValue == -1) {
 			return 0; // non-existant
 		}
+		
 		var subLevelValue=0;
+				
 		try {
 		  var lang = FoxtrickPrefs.getString("htLanguage");
 		} catch (e) {
 		  lang = "en";
 		}
 
-		try {
-			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));
+		try { 
+			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));			
 			var path = "hattricklanguages/language[@name='" + lang + "']/ratingSubLevels/sublevel[@text='" + subLevel + "']";
-			var obj = this.htLanguagesXml.evaluate(path,this.htLanguagesXml,null,this.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				subLevelValue = parseFloat(obj.attributes.getNamedItem("value").textContent);
-			else
-				return -1;
+			subLevelValue = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "value");
+			if (!subLevelValue)	return -1;
 		} catch (e) {
 			Foxtrick.dump('matches.js _getStatFromCell: '+e + "\n");
 		}
 
-		return baseValue+subLevelValue;
+		return baseValue+parseFloat(subLevelValue);
 	},
 
 	_getTacticsLevelFromCell: function(cell) {
@@ -98,13 +125,11 @@ Foxtrick.Matches = {
 			lang = "en";
 		}
 
-		try {
-
+		try {  
 			var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
-			var obj = this.htLanguagesXml.evaluate(path,this.htLanguagesXml,null,this.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-
-			return obj.attributes.getNamedItem("type").textContent;
-
+			subLevelValue = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "type");
+			if (subLevelValue) return subLevelValue
+			else return -1;
 		} catch (e) {
 			Foxtrick.dump('matches.js _getTacticsFromCell: '+e + "\n");
 		}
@@ -115,22 +140,10 @@ Foxtrick.Matches = {
 	initHtLang: function ()
 	{
 		try {
-			this.htLanguagesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
+			//this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htlang.xml");
 		} catch (e) {
 			Foxtrick.dump('matches.js initHtLang: '+e+"\n");
 		}
 	},
-
-	_loadXmlIntoDOM: function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
-	}
 
 };

@@ -14,12 +14,11 @@ var FoxtrickTransferSearchResultsSort = {
 	LATEST_CHANGE:"Added TransferSearchResultsSort",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     //OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	//CSS: "chrome://foxtrick/content/resources/css/adultskilltable.css",
+	//CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/adultskilltable.css",
 	
 	htLanguagesXml : null,
 	
     init : function() {
- 		this.initHtLang();
     },
 
     run : function( page, doc ) {
@@ -131,77 +130,6 @@ var FoxtrickTransferSearchResultsSort = {
 			tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_boxBodyCollapsed');
 		}
 	} catch(e) {Foxtrick.dump('SkillTableHeaderClick: '+e+'\n');}
-	},
-	
-	_getShortPos: function(pos)
-	{
-		var short_pos='';
-		try {
-		  var lang = FoxtrickPrefs.getString("htLanguage");
-		} catch (e) {
-		  return null;
-		}
-
-		try {
-			var type = pos.replace(/&nbsp;/,' ');
-			var path = "hattricklanguages/language[@name='" + lang + "']/positions/position[@value='" + type + "']";
-			var obj = FoxtrickTransferSearchResultsSort.htLanguagesXml.evaluate(path,FoxtrickTransferSearchResultsSort.htLanguagesXml,null,FoxtrickTransferSearchResultsSort.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				short_pos = obj.attributes.getNamedItem("short").textContent;
-			else
-				return null;
-		} catch (e) {
-			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
-			return null;
-		}
-
-		return short_pos;
-	},
-
-	_getShortSpecialty: function(pos)
-	{
-		var short_pos='';
-		try {
-		  var lang = FoxtrickPrefs.getString("htLanguage");
-		} catch (e) {
-		  return null;
-		}
-
-		try {
-			var type = pos.replace(/&nbsp;/,' ');
-			var path = "hattricklanguages/language[@name='" + lang + "']/specialties/specialty[@value='" + type + "']";
-			var obj = FoxtrickTransferSearchResultsSort.htLanguagesXml.evaluate(path,FoxtrickTransferSearchResultsSort.htLanguagesXml,null,FoxtrickTransferSearchResultsSort.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				short_pos = obj.attributes.getNamedItem("short").textContent;
-			else
-				return null;
-		} catch (e) {
-			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
-			return null;
-		}
-
-		return short_pos;
-	},
-
-	initHtLang: function ()
-	{
-		try {
-			this.htLanguagesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
-		} catch (e) {
-			Foxtrick.dump('youthskill.js initHtLang: '+e+"\n");
-		}
-	},
-
-	_loadXmlIntoDOM: function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
 	},
 }
 

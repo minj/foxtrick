@@ -9,7 +9,7 @@ var FoxtrickForumNextAndPrevious = {
     MODULE_NAME : "ForumNextAndPrevious",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
-	CSS: "chrome://foxtrick/content/resources/css/nextandprevious.css",
+	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/nextandprevious.css",
 	
     init : function() {
     },

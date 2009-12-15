@@ -11,8 +11,8 @@ var FoxtrickPlayerAdToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
-	CSS: "chrome://foxtrick/content/resources/css/headercopyicons.css",
-	CSS_SIMPLE: "chrome://foxtrick/content/resources/css/headercopyicons_simple.css",
+	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons.css",
+	CSS_SIMPLE: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons_simple.css",
 	
 	_PLAYMAKING : 3,
 	_PASSING : 5,
@@ -40,7 +40,7 @@ var FoxtrickPlayerAdToClipboard = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
-			img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";
 			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -61,7 +61,7 @@ var FoxtrickPlayerAdToClipboard = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
-			img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);
