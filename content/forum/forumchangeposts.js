@@ -23,8 +23,7 @@ var FoxtrickForumChangePosts = {
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon");
 		var do_copy_posting = Foxtrick.isModuleEnabled(FoxtrickCopyPosting);
 		var do_hide_user_info = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatarUserInfo);
-		var do_hide_avatar = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatar);
-		var do_default_facecard = !do_hide_avatar && Foxtrick.isModuleEnabled(FoxtrickAddDefaultFaceCard);
+		var do_default_facecard = Foxtrick.isModuleEnabled(FoxtrickAddDefaultFaceCard);
         var do_format_text = Foxtrick.isModuleEnabled(FoxtrickFormatPostingText);
 		var do_move_links = Foxtrick.isModuleEnabled(FoxtrickMoveLinks);
 		var do_alter_header = Foxtrick.isModuleEnabled(FoxtrickForumAlterHeaderLine);
@@ -501,14 +500,6 @@ var FoxtrickForumChangePosts = {
                         post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
                         if (post_link2) post_link2.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
                     }
-
-
-
-                    // hide  avatar ----------------------------------
-                    if ( do_hide_avatar && user_avatar ) {
-                        user.removeChild( user_avatar );
-                        user_avatar = null;
-                    } // Foxtrick.dump ('end avatar \n');
 
 
                     // add default facecard ----------------------------

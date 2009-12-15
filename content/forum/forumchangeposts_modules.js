@@ -199,31 +199,6 @@ var FoxtrickHideManagerAvatarUserInfo = {
 };
 
 
-//**********************************************************
-/**
- * forumhideavatar.js
- * Foxtrick Hide Manager Avatar module
- * @author larsw84
- */
-
-var FoxtrickHideManagerAvatar = {
-	
-    MODULE_NAME : "HideManagerAvatar",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
-	DEFAULT_ENABLED : false,
-
-    init : function() {
-    },
-
-    run : function( page, doc ) { 
-	},
-	
-	change : function( page, doc ) {
-	
-	}
-};
-
 
 //**********************************************************
 /**

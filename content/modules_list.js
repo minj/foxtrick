@@ -23,7 +23,6 @@ Foxtrick.modules = [
                     FoxtrickForumPreview,
                     FoxtrickForumYouthIcons,
                     Foxtrick.BookmarkAdjust,
-                    //FoxtrickHideManagerAvatar,
                     FoxtrickAddDefaultFaceCard,
                     FoxtrickMoveLinks,   // keep before FoxtrickHideManagerAvatarUserInfo
                     FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
