@@ -194,8 +194,6 @@ var FoxtrickAdultSkillTable = {
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
 				
 				// specialty header
-				if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) 
-				{
 				FoxtrickAdultSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_adultskilltable_td_small');
@@ -204,13 +202,11 @@ var FoxtrickAdultSkillTable = {
 				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[16]);
 				th.innerHTML = Foxtrickl10n.getString(sn[16]);
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) th.style.display='none';
 				tr.appendChild(th);
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
-				}
 				
 				// played last match stars header
-				if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) 
-				{
 				FoxtrickAdultSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_adultskilltable_td_small');
@@ -219,13 +215,11 @@ var FoxtrickAdultSkillTable = {
 				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickAdultSkillTable.copy_string += '*';
 				th.innerHTML = '<img alt="*" class="starWhole" src="/Img/Matches/star_blue.png" ilo-full-src="http://www.hattrick.org/Img/Matches/star_blue.png"/>';					
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) th.style.display='none';
 				tr.appendChild(th);
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
-				}
 				
 				// played last match position header 
-				if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) 
-				{
 				FoxtrickAdultSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_adultskilltable_td_small');
@@ -234,9 +228,9 @@ var FoxtrickAdultSkillTable = {
 				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[18]);
 				th.innerHTML = Foxtrickl10n.getString(sn[18]);
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) th.style.display='none';
 				tr.appendChild(th);
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
-				}
 									
 				FoxtrickAdultSkillTable.copy_string += '[/tr]';
 
@@ -425,8 +419,6 @@ var FoxtrickAdultSkillTable = {
 						tr.appendChild(td);
 						
 						// specialty
-						if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) 
-						{
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
 						if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
@@ -447,8 +439,9 @@ var FoxtrickAdultSkillTable = {
 						FoxtrickAdultSkillTable.copy_string += specMatch;
 						
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
+						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) td.style.display='none';
 						tr.appendChild(td);
-						}
+						
 						
 						
 						// get played last match
@@ -459,8 +452,6 @@ var FoxtrickAdultSkillTable = {
 						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 						
 						// stars
-						if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) 
-						{
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
 						if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
@@ -477,12 +468,11 @@ var FoxtrickAdultSkillTable = {
 							FoxtrickAdultSkillTable.copy_string += starcount;						
 						}
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
+						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) td.style.display='none';
 						tr.appendChild(td);
-						}
+						
 						
 						// last position
-						if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) 
-						{
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
 						if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
@@ -503,8 +493,9 @@ var FoxtrickAdultSkillTable = {
 							FoxtrickAdultSkillTable.copy_string += pos;												
 						}
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
+						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) td.style.display='none';
 						tr.appendChild(td);
-						}
+						
 												
 						
 						//Foxtrick.dump(matchday+' '+latestMatch+'\n');

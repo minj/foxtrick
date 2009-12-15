@@ -343,6 +343,7 @@ var FoxtrickStaffMarker = {
 			// not on open new thread
 			if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
 			
+			try {
 			if (this.hty_staff==null){
 				this.hty_staff = new Array();
 				var req = new XMLHttpRequest();
@@ -361,7 +362,8 @@ var FoxtrickStaffMarker = {
 				}
 				else {Foxtrick.dump('no connection to hty\n'); }				
 			}
-
+			}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
+			
 		// getting userids and colors
 			var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
             if (!utext)
