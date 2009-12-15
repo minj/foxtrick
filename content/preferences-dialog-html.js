@@ -214,8 +214,9 @@ var FoxtrickPrefsDialogHTML = {
 	try { 
 		var doc = ev.target.ownerDocument;
 
+		var full_prefs = (doc.getElementById("htLanguage")!=null); // check if full pref page (not newversionquickset or onpageprefs)
 		// clean up
-		if (doc.getElementById("htLanguage")) {  // check if full pref page (not newversionquickset or onpageprefs)
+		if (full_prefs) {  
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
 				if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
@@ -229,12 +230,12 @@ var FoxtrickPrefsDialogHTML = {
 		}
 			
 		for ( var i in Foxtrick.modules ) {
-			var module = Foxtrick.modules[i];//dump(module.MODULE_NAME+Foxtrick.isModuleEnabled( module )+'\n');
+			var module = Foxtrick.modules[i];
 			
 			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
-				// if main, set again bellow if needed!
+				// if main, set default and again right bellow if needed!
 				//Foxtrick.dump('save '+module.MODULE_NAME+' : '+module.DEFAULT_ENABLED+'\n');					
-				FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
+				if (full_prefs) FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
 				continue;
 			}
 			if (doc.getElementById(module.MODULE_NAME)) {
@@ -280,7 +281,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		
 		// check if not whole prefs. in that case stop here
-		if (!doc.getElementById("htLanguage")) {
+		if (!full_prefs) {
 		    FoxtrickMain.init();
 			doc.location.reload();
 		 	return;		

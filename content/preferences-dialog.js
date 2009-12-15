@@ -621,11 +621,18 @@ var FoxtrickPreferencesDialog = {
 			var oldVersion = FoxtrickPrefs.getString("oldVersion");
 			FoxtrickPrefs.setString("oldVersion",curVersion);
 		
-        for each ( cat in Foxtrick.moduleCategories ) {
+			// reset main to default. set right bellow if needed
+			for ( var i in Foxtrick.modules ) {
+				var module = Foxtrick.modules[i];			
+				if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
+					FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
+					continue;
+				}
+			}
+			
+			for each ( cat in Foxtrick.moduleCategories ) {
                 switch(cat) {
 						case Foxtrick.moduleCategories.MAIN:
-								// if main, set again bellow if needed!
-								FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
 								continue;
 								break;
                         case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
