@@ -4,6 +4,7 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
+
 var FoxtrickPreferencesDialog = {
 
     init : function() {
@@ -12,15 +13,15 @@ var FoxtrickPreferencesDialog = {
             FoxtrickPreferencesDialog.core_modules[i].init()
         }
 
-		this.initCaptionsAndLabels( document );
-        this.initMainPref( document );
-        this.initAboutPref( document );
+		FoxtrickPreferencesDialog.initCaptionsAndLabels( document );
+        FoxtrickPreferencesDialog.initMainPref( document );
+        FoxtrickPreferencesDialog.initAboutPref( document );
 
 		for each ( cat in Foxtrick.moduleCategories ) {
-            this._fillModulesList( document, cat );
+            FoxtrickPreferencesDialog._fillModulesList( document, cat );
         }
 
-        this.pref_show ('main_list');
+        FoxtrickPreferencesDialog.pref_show ('main_list');
     },
 
 
@@ -51,7 +52,7 @@ var FoxtrickPreferencesDialog = {
 			caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningLabel"));
 			caption.setAttribute("style","background-color:#FCF6DF; color:black;");
 			var vbox= doc.createElement("vbox");
-			var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText"));
+			var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText"));
 			vbox.appendChild(desc_box);
 			groupbox.appendChild(caption);
 			groupbox.appendChild(vbox);
@@ -99,7 +100,7 @@ var FoxtrickPreferencesDialog = {
         var checkbox= doc.createElement("checkbox");
 		checkbox.setAttribute('id',"ReadHtPrefs");
 		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"));
-		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc") );
+		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc") );
 		desc_box.setAttribute("flex","1");
 		vbox1b.appendChild(checkbox);
 		vbox1b.appendChild(desc_box);
@@ -161,26 +162,26 @@ var FoxtrickPreferencesDialog = {
         var htLanguagesXml = doc.implementation.createDocument("", "", null);
         htLanguagesXml.async = false;
         htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
-        var itemToSelect=this.fillListFromXml("htLanguagePopup", "htLanguage-", htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
+        var itemToSelect=FoxtrickPreferencesDialog.fillListFromXml("htLanguagePopup", "htLanguage-", htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
         document.getElementById("htLanguage").selectedIndex=itemToSelect;
 
         var htCurrencyXml = document.implementation.createDocument("", "", null);
         htCurrencyXml.async = false;
         htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
-        var itemToSelect2=this.fillListFromXml("htCurrencyPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
+        var itemToSelect2=FoxtrickPreferencesDialog.fillListFromXml("htCurrencyPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
         document.getElementById("htCurrency").selectedIndex=itemToSelect2;
 
         var htDateFormatXml = document.implementation.createDocument("", "", null);
         htDateFormatXml.async = false;
         htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
-        var itemToSelect3=this.fillListFromXml("htDateformatPopup", "htDateformat-", htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
+        var itemToSelect3=FoxtrickPreferencesDialog.fillListFromXml("htDateformatPopup", "htDateformat-", htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
         document.getElementById("htDateformat").selectedIndex=itemToSelect3;
 
 
         var htCountryXml = document.implementation.createDocument("", "", null);
         htCountryXml.async = false;
         htCountryXml.load("chrome://foxtrick/content/htlocales/htcountries.xml", "text/xml");
-        var itemToSelect4=this.fillListFromXml("htCountryPopup", "htCountry-", htCountryXml, "country", "name", "name", FoxtrickPrefs.getString("htCountry"));
+        var itemToSelect4=FoxtrickPreferencesDialog.fillListFromXml("htCountryPopup", "htCountry-", htCountryXml, "country", "name", "name", FoxtrickPrefs.getString("htCountry"));
         document.getElementById("htCountry").selectedIndex=itemToSelect4;
 
 
@@ -230,7 +231,7 @@ var FoxtrickPreferencesDialog = {
         var htCurrencyXml = document.implementation.createDocument("", "", null);
         htCurrencyXml.async = false;
         htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
-        var itemToSelect2=this.fillListFromXml("htCurrencyToPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
+        var itemToSelect2=FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
         document.getElementById("htCurrencyTo").selectedIndex=itemToSelect2;
 
 		var checkbox= doc.createElement("checkbox");
@@ -340,7 +341,7 @@ var FoxtrickPreferencesDialog = {
 		var button= doc.createElement("button");
 		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonSavePrefs"));
 		button.setAttribute('id',"buttonSavePrefs");
-		button.setAttribute('oncommand',"FoxtrickPreferencesDialog.SavePrefs();");
+		button.setAttribute('oncommand',"FoxtrickPrefs.SavePrefs();");
 		vbox.appendChild(button);
 		var spacer = document.createElement( "spacer" );
         spacer.setAttribute('flex','1');
@@ -349,7 +350,7 @@ var FoxtrickPreferencesDialog = {
 		var vbox= doc.createElement("vbox");
 		vbox.setAttribute('flex','1');
         hbox.appendChild(vbox);
-		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs") );
+		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs") );
 		desc_box.setAttribute("flex","1");
 		vbox.appendChild(desc_box);
 
@@ -369,9 +370,9 @@ var FoxtrickPreferencesDialog = {
 		var button= doc.createElement("button");
 		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
 		button.setAttribute('id',"buttonLoadPrefs");
-		button.setAttribute('oncommand',"FoxtrickPreferencesDialog.LoadPrefs();");
+		button.setAttribute('oncommand',"FoxtrickPrefs.LoadPrefs();");
 		hbox2.appendChild(button);
-		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelLoadPrefs") );
+		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelLoadPrefs") );
 		desc_box.setAttribute("flex","1");
 		hbox2.appendChild(desc_box);
 
@@ -390,9 +391,9 @@ var FoxtrickPreferencesDialog = {
 		var button= doc.createElement("button");
 		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonCleanupBranch"));
 		button.setAttribute('id',"buttonCleanupBranch");
-		button.setAttribute('oncommand',"FoxtrickPreferencesDialog.confirmCleanupBranch();");
+		button.setAttribute('oncommand',"FoxtrickPrefs.confirmCleanupBranch();");
 		hbox.appendChild(button);
-		var desc_box = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch") );
+		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch") );
 		desc_box.setAttribute("flex","1");
 		hbox.appendChild(desc_box);
 
@@ -403,9 +404,9 @@ var FoxtrickPreferencesDialog = {
 		var button3= doc.createElement("button");
 		button3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonDisableAll"));
 		button3.setAttribute('id',"buttonDiableAll");
-		button3.setAttribute('oncommand',"FoxtrickPreferencesDialog.disableAll();");
+		button3.setAttribute('oncommand',"FoxtrickPrefs.disableAll();");
 		hbox3.appendChild(button3);
-		var desc_box3 = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll") );
+		var desc_box3 = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll") );
 		desc_box3.setAttribute("flex","1");
 		hbox3.appendChild(desc_box3);
 		modules_list.appendChild(groupbox);
@@ -420,7 +421,7 @@ var FoxtrickPreferencesDialog = {
         menupopup_ov.setAttribute('id',"htOldVersionPopup");
 		menulist_ov.appendChild(menupopup_ov);
         var hbox_ov= doc.createElement("hbox");
-		var desc_box_ov = this._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelFoxtrickMyHT") );
+		var desc_box_ov = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelFoxtrickMyHT") );
 		desc_box_ov.setAttribute("flex","1");
 		hbox_ov.appendChild(menulist_ov);
         hbox_ov.appendChild(desc_box_ov);
@@ -436,7 +437,7 @@ var FoxtrickPreferencesDialog = {
 		var htVersionsXml = document.implementation.createDocument("", "", null);
         htVersionsXml.async = false;
         htVersionsXml.load("chrome://foxtrick/content/htlocales/htversions.xml", "text/xml");
-        var itemToSelect3=this.fillListFromXml("htOldVersionPopup", "htVersion-", htVersionsXml, "version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
+        var itemToSelect3=FoxtrickPreferencesDialog.fillListFromXml("htOldVersionPopup", "htVersion-", htVersionsXml, "version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
         document.getElementById("htOldVersion").selectedIndex=itemToSelect3;
 */
 
@@ -613,7 +614,7 @@ var FoxtrickPreferencesDialog = {
 		// clean up
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
-				if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
+				if (FoxtrickPrefs.isPrefSetting(array[i]))
 					FoxtrickPrefs.deleteValue( array[i] );
 			}
 			// set version
@@ -625,7 +626,7 @@ var FoxtrickPreferencesDialog = {
 			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];			
 				if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
-					FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
+					FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
 					continue;
 				}
 			}
@@ -656,13 +657,13 @@ var FoxtrickPreferencesDialog = {
 
 				for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
 					if (modules_list.childNodes[i].nodeName =='spacer') continue;
-					FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname,
+					FoxtrickPrefs.setModuleEnableState( modules_list.childNodes[i].prefname,
                                                    modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
 					if (modules_list.childNodes[i].radio) {
 						var radiogroup = modules_list.childNodes[i].childNodes[3].childNodes[0].childNodes;
 						for (var j = 0; j < radiogroup.length; j++) {
 							if (radiogroup[j].selected) {
-								FoxtrickPreferencesDialog.setModuleValue( modules_list.childNodes[i].prefname, j );
+								FoxtrickPrefs.setModuleValue( modules_list.childNodes[i].prefname, j );
 								break;
 							}
 						}
@@ -670,9 +671,9 @@ var FoxtrickPreferencesDialog = {
 						var checkboxes = modules_list.childNodes[i].childNodes[3].childNodes;
 						for (var j = 0; j < checkboxes.length; j++) {
 							if (checkboxes[j].id.search(/_text$/) == -1)
-								FoxtrickPreferencesDialog.setModuleEnableState( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].checked );
+								FoxtrickPrefs.setModuleEnableState( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].checked );
 							else
-								FoxtrickPreferencesDialog.setModuleOptionsText( modules_list.childNodes[i].prefname + "." + checkboxes[j].firstChild.id, checkboxes[j].firstChild.value );
+								FoxtrickPrefs.setModuleOptionsText( modules_list.childNodes[i].prefname + "." + checkboxes[j].firstChild.id, checkboxes[j].firstChild.value );
 						}
 					}
 						// modules_list.childNodes[i].checked );
@@ -696,7 +697,7 @@ var FoxtrickPreferencesDialog = {
         var htCountryXml_c = document.implementation.createDocument("", "", null);
         htCountryXml_c.async = false;
         htCountryXml_c.load("chrome://foxtrick/content/htlocales/htcountries.xml", "text/xml");
-        FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(this.getOffsetValue(document.getElementById("htCountry").value,htCountryXml_c)));
+        FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(document.getElementById("htCountry").value,htCountryXml_c)));
 
         //Currency Converter
 
@@ -705,12 +706,12 @@ var FoxtrickPreferencesDialog = {
         htCurrencyXml_c.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
 
         FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
-        FoxtrickPrefs.setString("currencySymbol", this.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"new",htCurrencyXml_c));
-        FoxtrickPrefs.setString("currencyRateTo", this.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"rate",htCurrencyXml_c));
+        FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"new",htCurrencyXml_c));
+        FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"rate",htCurrencyXml_c));
 
-        FoxtrickPrefs.setString("oldCurrencySymbol", this.getConverterCurrValue(document.getElementById("htCurrency").value,"old",htCurrencyXml_c));
-        FoxtrickPrefs.setString("currencyRate", this.getConverterCurrValue(document.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
-		FoxtrickPrefs.setString("currencyCode", this.getConverterCurrValue(document.getElementById("htCurrency").value,"code",htCurrencyXml_c));
+        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value,"old",htCurrencyXml_c));
+        FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
+		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value,"code",htCurrencyXml_c));
 
         FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked);
 
@@ -939,8 +940,8 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 		desc.setAttribute( "flex", "1");
 		desc.setAttribute( "multiline", "true");
 		desc.setAttribute( "readonly","true");
-		desc.setAttribute( "onoverflow", "this.heigh=20; this.height = this.inputField.scrollHeight;");
-		desc.setAttribute( "DOMAttrModified","if(event.attrName == 'value') this.value = event.newValue; return true;");
+		desc.setAttribute( "onoverflow", "FoxtrickPreferencesDialog.heigh=20; FoxtrickPreferencesDialog.height = FoxtrickPreferencesDialog.inputField.scrollHeight;");
+		desc.setAttribute( "DOMAttrModified","if(event.attrName == 'value') FoxtrickPreferencesDialog.value = event.newValue; return true;");
 		desc.setAttribute( "value",desc_text);
 		desc_box.appendChild( desc );
 		return desc_box;
@@ -980,7 +981,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
 
-		var desc_box = this._getWrapableBox ( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) );
 		entry.appendChild (desc_box);
 
 		var spacer = document.createElement( "spacer" );
@@ -1006,7 +1007,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 				selected = false;
 			}
 			radio.setAttribute( "selected", selected);
-			radio.setAttribute( "label", FoxtrickPreferencesDialog.getModuleDescription(
+			radio.setAttribute( "label", FoxtrickPrefs.getModuleDescription(
 				module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] ));
 			if (!Foxtrick.isModuleEnabled( module )) {
 				radio.setAttribute( "disabled", true);
@@ -1054,7 +1055,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
 
-		var desc_box = this._getWrapableBox ( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) );
 		entry.appendChild (desc_box);
 
         var spacer = document.createElement( "spacer" );
@@ -1069,7 +1070,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 			if (module.OPTIONS[i]["key"]==null){
                 key=module.OPTIONS[i];
                 //title=module.OPTIONS[i];
-                title = FoxtrickPreferencesDialog.getModuleElementDescription( module.MODULE_NAME, module.OPTIONS[i] );
+                title = FoxtrickPrefs.getModuleElementDescription( module.MODULE_NAME, module.OPTIONS[i] );
             }
 			else {key=module.OPTIONS[i]["key"];title=module.OPTIONS[i]["title"];}
 			checkbox.setAttribute( "checked", Foxtrick.isModuleFeatureEnabled( module, key) );
@@ -1147,7 +1148,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 		hbox.appendChild( name );
 		entry.appendChild( hbox );
 
-		var desc_box = this._getWrapableBox ( FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) );
+		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) );
 		entry.appendChild (desc_box);
 
 		return entry;
@@ -1213,181 +1214,4 @@ FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where 
 
 
 
-// ---------------------- common function --------------------------------------
-
-FoxtrickPreferencesDialog.setModuleEnableState = function( module_name, value ) {
-	  FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
-}
-
-FoxtrickPreferencesDialog.setModuleOptionsText = function( module_name, value ) {
-	  FoxtrickPrefs.setString( "module." + module_name, value );
-}
-
-FoxtrickPreferencesDialog.setModuleValue = function( module_name, value ) {
-    FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
-}
-
-FoxtrickPreferencesDialog.getModuleDescription = function( module_name ) {
-    var name = "foxtrick." + module_name + ".desc";
-    if ( Foxtrickl10n.isStringAvailable( name ) )
-        return Foxtrickl10n.getString( name );
-    else {
-        //dump( "Foxtrick string MODULE " + module_name + " missing!\n");
-        return "No description";
-    }
-}
-
-FoxtrickPreferencesDialog.getModuleElementDescription = function( module_name, option ) {
-    var name = "foxtrick." + module_name + "." + option + ".desc";
-    if ( Foxtrickl10n.isStringAvailable( name ) )
-        return Foxtrickl10n.getString( name );
-    else {
-        //dump( "Foxtrick string ELEMENT " + name + " missing!\n");
-        //return "No description";
-        return option;
-    }
-}
-
-
-FoxtrickPreferencesDialog.isPrefSetting = function ( setting) {
-	return  setting.search( /^YouthPlayer\./ ) == -1
-			&& setting.search( "transferfilter" ) == -1
-			&& setting.search( "post_templates" ) == -1
-			&& setting.search( "mail_templates" ) == -1
-			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
-}
-
-FoxtrickPreferencesDialog.confirmCleanupBranch = function ( ev ) {
-	if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
-	else doc=document;
-	if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
-        try {
-			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
-				if (FoxtrickPreferencesDialog.isPrefSetting(array[i])) {
-					FoxtrickPrefs.deleteValue(array[i]);
-				}
-			}
-			FoxtrickMain.init();
-            if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-        }
-        catch (e) {
-			dump('confirmCleanupBranch error:'+e+'\n');
-        }
-    }
-    return true;
-}
-
-
-FoxtrickPreferencesDialog.disableAll = function (ev ) {
-	if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
-	else doc=document;
-	if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
-        try {
-			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
-				if( array[i].search( /enabled$/ ) != -1) {
-						FoxtrickPrefs.setBool( array[i], false );
-				}
-			}
-			FoxtrickMain.init();
-            if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-        }
-        catch (e) {
-			dump(e);
-        }
-    }
-	return true;
-}
-
-FoxtrickPreferencesDialog.SavePrefs = function (ev) {
-        try {
-			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
-			else doc=document;
-			
-			var locpath=Foxtrick.selectFileSave(window);
-			if (locpath==null) {return;}
-			var File = Components.classes["@mozilla.org/file/local;1"].
-                     createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(locpath);
-
-			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-                         createInstance(Components.interfaces.nsIFileOutputStream);
-			foStream.init(File, 0x02 | 0x08 | 0x20, 0666, 0);
-			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-                   .createInstance(Components.interfaces.nsIConverterOutputStream);
-			os.init(foStream, "UTF-8", 0, 0x0000);
-
-			var array = FoxtrickPrefs._getElemNames(""); array.sort();
-			for(var i = 0; i < array.length; i++) { //Foxtrick.dump(array[i]);
-				if ((FoxtrickPreferencesDialog.isPrefSetting(array[i]) && doc.getElementById("saveprefsid").checked)
-					|| (!FoxtrickPreferencesDialog.isPrefSetting(array[i]) && doc.getElementById("savenotesid").checked)) {
-
-					var value=FoxtrickPrefs.getString(array[i]);
-					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
-					else { value=FoxtrickPrefs.getInt(array[i]);
-						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
-						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
-						}
-					//Foxtrick.dump(' : save\n');
-					}
-				//else Foxtrick.dump(' : dont save\n');
-				}
-			os.close();
-			foStream.close();
-
-			if(!ev) close();
-		}
-		catch (e) {
-			Foxtrick.alert(e);
-        }
-    return true;
-}
-
-FoxtrickPreferencesDialog.LoadPrefs = function (ev) {
-        try {
-			// nsifile
-			if (ev) {window = FoxtrickPrefsDialogHTML._doc.defaultView; doc=FoxtrickPrefsDialogHTML._doc;}
-			else doc=document;
-			var locpath=Foxtrick.selectFile(window);
-			if (locpath==null) return;
-			var File = Components.classes["@mozilla.org/file/local;1"].
-                     createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(locpath);
-			// converter
-			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"]
-                          .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
-			converter.charset = "UTF-8";
-			var fis = Components.classes["@mozilla.org/network/file-input-stream;1"]
-                    .createInstance(Components.interfaces.nsIFileInputStream);
-			fis.init(File, -1, -1, 0);
-			var lis = fis.QueryInterface(Components.interfaces.nsILineInputStream);
-			var lineData = {};
-			var cont;
-			do {
-				cont = lis.readLine(lineData);
-				var line = converter.ConvertToUnicode(lineData.value);
-				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
-				var value=line.match(/\",(.+)\)\;/)[1];
-				var strval = value.match(/\"(.+)\"/); 
-				if (value == "\"\"") FoxtrickPrefs.setString(key,"");
-				else if (strval != null) FoxtrickPrefs.setString(key,strval[1].replace(/\\n/g,'\n'));
-				else if (value == "true") FoxtrickPrefs.setBool(key,true);
-				else if (value == "false") FoxtrickPrefs.setBool(key,false);
-				else FoxtrickPrefs.setInt(key,value);
-			} while (cont);
-
-			fis.close();
-			FoxtrickMain.init();
-			if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-
-		}
-		catch (e) {
-			Foxtrick.alert(e);
-        }
-    return true;
-}
 
