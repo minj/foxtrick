@@ -13,6 +13,8 @@ Foxtrick.TeamStats= {
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LATEST_CHANGE:"Fixed pictures missing after multiple filter usage",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	
+	playersxmls:null,
 	latestMatch:0,
 	top11star:0,
 
@@ -43,6 +45,21 @@ Foxtrick.TeamStats= {
 		var num_not_too_old=0;
 		var transferListed=0,reds=0,yellow=0,yellow_2=0,injuryInjured=0,injuryInjuredweeks=0,injuryBruised=0;
 	
+		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
+		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+
+		// get xml
+		this.playersxmls = null;
+		try {	var req = new XMLHttpRequest();
+			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?file=players&teamId='+teamid, false); 
+			req.send(null);
+			if (req.status == 200) {
+				this.playersxmls = req.responseXML;
+				dump('TeamStats.js: get new xml\n');
+			}
+			else Foxtrick.dump('TeamStats.js: xml request failed\n');
+		} catch(e) {Foxtrick.dump('TeamStats.js: xml request failed'+e+'\n');}
+		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				if (allDivs[i].className!="playerInfo") continue;
 				
@@ -117,6 +134,20 @@ Foxtrick.TeamStats= {
 				var matchday=0;
 				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
+				
+				
+				var playerid = as[0].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				var playerlist = this.playersxmls.getElementsByTagName('Player');
+				Foxtrick.dump(playerlist.length+'\n');
+				for (var j=0; j<playerlist.length; ++j) { 
+					var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
+					Foxtrick.dump(thisPlayerID+' '+playerid+'\n');
+					if (thisPlayerID==playerid) {
+						var ls = playerlist[j].getElementsByTagName('Leadership')[0].textContent;	
+						allDivs2.appendChild(doc.createTextNode(' Leadership: '+ls));
+						break;
+					}
+				}
 		}
 		stars.sort(this.starsortfunction);
 		this.top11star=stars[10]; 
