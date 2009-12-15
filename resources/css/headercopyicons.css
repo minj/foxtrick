@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
 
 a.copyicon {
 	cursor: pointer; 
@@ -26,19 +26,19 @@ a.copyicon {
 }
 
 .copyplayerad img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad.png) no-repeat scroll 0 0;
+	background: transparent url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png) no-repeat scroll 0 0;
 }
 
 .copyplayerscource img {
-	background: transparent url(chrome://foxtrick/content/resources/img/youthplayersource.png) no-repeat scroll 0 0;
+	background: transparent url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/youthplayersource.png) no-repeat scroll 0 0;
 }
 
 .copyratingshome img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyratingshome.png) no-repeat scroll 0 0;
+	background: transparent url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyratingshome.png) no-repeat scroll 0 0;
 }
 
 .copyratingsaway img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyratingsaway.png) no-repeat scroll 0 0;
+	background: transparent url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyratingsaway.png) no-repeat scroll 0 0;
 }
 
 

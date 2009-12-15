@@ -59,7 +59,8 @@ FoxtrickLineupShortcut = {
 			var u20Id=0;
 			var serieId=FoxtrickHelper.findCountryId(flagElem[0].parentNode);
 			var path = "leagues/league[@id='" + serieId + "']";
-			var obj = this.htNTidsXml.evaluate(path,this.htNTidsXml,null,this.htNTidsXml.DOCUMENT_NODE,null).singleNodeValue;
+			//var obj = this.htNTidsXml.evaluate(path,this.htNTidsXml,null,this.htNTidsXml.DOCUMENT_NODE,null).singleNodeValue;
+			var obj = Foxtrick.xml_single_evaluate(this.htNTidsXml, path);
 			if (obj) {
 				ntName=obj.getElementsByTagName('NTName').item(0).firstChild.nodeValue;
 				ntId=obj.getElementsByTagName('NTid').item(0).firstChild.nodeValue;
@@ -174,7 +175,7 @@ FoxtrickLineupShortcut = {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
 			//HighlightPlayerID is the HT function
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/'+iconImg+'"></a>';
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Matches/'+iconImg+'"></a>';
 		} catch (e) {
             Foxtrick.dump('FoxtrickLineupShortcut'+e);
         }
@@ -227,7 +228,7 @@ FoxtrickLineupShortcut = {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
 			//HighlightPlayerID is the HT function
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayerID='+playerid+'"><img src="chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayerID='+playerid+'"><img src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
 		} catch (e) {
             Foxtrick.dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
@@ -238,7 +239,7 @@ FoxtrickLineupShortcut = {
 	_Highlight_Player : function ( doc ) {
 		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightPlayer")) {
 			try {
-				var newimg="url(chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
+				var newimg="url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
 				//Getting playerid from url
 				var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, "").match(/^\d+/);
 				if (passedid) {
@@ -262,7 +263,7 @@ FoxtrickLineupShortcut = {
 	initHtNtlist: function ()
 	{
 		try {
-			this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
+			this.htNTidsXml = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htNTidList.xml");
 		} catch (e) {
 			Foxtrick.dump('lineupshortcut.js initNTidsXml: '+e+"\n");
 		}

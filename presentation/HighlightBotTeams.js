@@ -13,7 +13,7 @@ FoxtrickHighlightBotTeams = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("ChooseColorHighlight"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-image: url('chrome://foxtrick/content/resources/img/bot.png'); background-repeat: no-repeat; padding: 0px 0px 0px 18px;" //BotHiglight
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/bot.png'); background-repeat: no-repeat; padding: 0px 0px 0px 18px;" //BotHiglight
 											),        
 	CSS:"",
     OLD_CSS:"",

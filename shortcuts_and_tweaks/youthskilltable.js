@@ -14,7 +14,7 @@ var FoxtrickYouthSkillTable = {
 	LATEST_CHANGE:"Better abreviations of specialties and positions for some languages. Some options",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	CSS: "resources/css/youthskilltable.css",
+	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/youthskilltable.css",
 	
 	copy_string:"",
 	htLanguagesXml : null,
@@ -24,7 +24,7 @@ var FoxtrickYouthSkillTable = {
     },
 
     run : function( page, doc ) {
-		try  {  
+		try  {
 				var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 				var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
 				var is_ownteam = (ownteamid==teamid);
@@ -61,7 +61,7 @@ var FoxtrickYouthSkillTable = {
 
 	sortClick : function(ev) {
 	try{
-		var doc = ev.target.ownerDocument;
+		var doc = ev.originalTarget.ownerDocument;
 		var tablediv = doc.getElementById('ft_youthskilltable');
 		var table = tablediv.getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);
@@ -86,7 +86,7 @@ var FoxtrickYouthSkillTable = {
 	},
 
 	HeaderClick : function(ev) {
-	try{ 
+	try{
 		var doc = ev.target.ownerDocument;
 		var tablediv = doc.getElementById('ft_youthskilltable');
 		var table = tablediv.getElementsByTagName('table')[0]
@@ -451,7 +451,7 @@ var FoxtrickYouthSkillTable = {
 				
 			tablediv.appendChild(table);
 				
-			return ; /// xxx	
+				
 			// copy button
 			if (Foxtrick.isModuleFeatureEnabled( FoxtrickYouthSkillTable, "CopySkillTable" )) {	 	
 				if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
@@ -469,7 +469,7 @@ var FoxtrickYouthSkillTable = {
 	
 					var img = doc.createElement("img");
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+					img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";
 			
 					messageLink.appendChild(img);
 					boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -488,7 +488,7 @@ var FoxtrickYouthSkillTable = {
 					img.style.padding = "0px 5px 0px 0px;";
 					img.className = "actionIcon";
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+					img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png";
 					messageLink.appendChild(img);
 				
 					parentDiv.appendChild(messageLink);
@@ -507,7 +507,7 @@ var FoxtrickYouthSkillTable = {
 	},
 	
 	_getShortPos: function(pos)
-	{   return null; //xxx 
+	{
 		var short_pos='';
 		try {
 		  var lang = FoxtrickPrefs.getString("htLanguage");
@@ -518,11 +518,8 @@ var FoxtrickYouthSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/positions/position[@value='" + type + "']";
-			var obj = FoxtrickYouthSkillTable.htLanguagesXml.evaluate(path,FoxtrickYouthSkillTable.htLanguagesXml,null,FoxtrickYouthSkillTable.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				short_pos = obj.attributes.getNamedItem("short").textContent;
-			else
-				return null;
+			short_pos = Foxtrick.xml_single_evaluate(FoxtrickYouthSkillTable.htLanguagesXml, path, "short");
+			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
 			return null;
@@ -532,7 +529,7 @@ var FoxtrickYouthSkillTable = {
 	},
 
 	_getShortSpecialty: function(pos)
-	{    return null; //xxx
+	{
 		var short_pos='';
 		try {
 		  var lang = FoxtrickPrefs.getString("htLanguage");
@@ -543,11 +540,8 @@ var FoxtrickYouthSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/specialties/specialty[@value='" + type + "']";
-			var obj = FoxtrickYouthSkillTable.htLanguagesXml.evaluate(path,FoxtrickYouthSkillTable.htLanguagesXml,null,FoxtrickYouthSkillTable.htLanguagesXml.DOCUMENT_NODE,null).singleNodeValue;
-			if (obj)
-				short_pos = obj.attributes.getNamedItem("short").textContent;
-			else
-				return null;
+			short_pos = Foxtrick.xml_single_evaluate(FoxtrickYouthSkillTable.htLanguagesXml, path, "short");
+			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
 			return null;
@@ -557,24 +551,12 @@ var FoxtrickYouthSkillTable = {
 	},
 
 	initHtLang: function ()
-	{   return; //xxx
+	{
 		try {
-			this.htLanguagesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
+			this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htlang.xml");
 		} catch (e) {
 			Foxtrick.dump('youthskill.js initHtLang: '+e+"\n");
 		}
-	},
-
-	_loadXmlIntoDOM: function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
 	},
 }
 

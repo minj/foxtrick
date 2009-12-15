@@ -10,7 +10,7 @@ var FoxtrickMatchOrderColoring = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('matchOrders'), 
 	DEFAULT_ENABLED : false,
-	CSS:"chrome://foxtrick/content/resources/css/MatchOrderColoring.css",
+	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/MatchOrderColoring.css",
 	NEW_AFTER_VERSION: "0.4.8.3",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	LATEST_CHANGE:"Colors positions on html match order page (default off)",

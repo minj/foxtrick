@@ -11,8 +11,7 @@ var FoxtrickPrefsDialogHTML = {
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed ex/importing preferences",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome://foxtrick/content/resources/css/preferences-dialog-html.css",
-	_doc:null,
+	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css",
 
 	TabNames: {	'main':'MainTab',
 				'shortcuts_and_tweaks':'ShortcutsTab',
@@ -31,7 +30,6 @@ var FoxtrickPrefsDialogHTML = {
     run : function( doc ) { 
 	try{
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
-		FoxtrickPrefsDialogHTML._doc=doc;
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
 			FoxtrickPrefsDialogHTML.add_pref_links(doc);			
 		}	
@@ -42,7 +40,6 @@ var FoxtrickPrefsDialogHTML = {
 	},
 
 	change : function( doc ) { 
-		FoxtrickPrefsDialogHTML._doc=doc;	   
 	},
 	
 	add_pref_links : function( doc) {
@@ -217,11 +214,12 @@ var FoxtrickPrefsDialogHTML = {
 	try { 
 		var doc = ev.target.ownerDocument;
 
+		var full_prefs = (doc.getElementById("htLanguage")!=null); // check if full pref page (not newversionquickset or onpageprefs)
 		// clean up
-		if (doc.getElementById("htLanguage")) {  // check if full pref page (not newversionquickset or onpageprefs)
+		if (full_prefs) {  
 			var array = FoxtrickPrefs._getElemNames("");
 			for(var i = 0; i < array.length; i++) {
-				if (FoxtrickPreferencesDialog.isPrefSetting(array[i]))
+				if (FoxtrickPrefs.isPrefSetting(array[i]))
 					//Foxtrick.dump(array[i]+'\n');
 					FoxtrickPrefs.deleteValue( array[i] );
 			}
@@ -232,18 +230,26 @@ var FoxtrickPrefsDialogHTML = {
 		}
 			
 		for ( var i in Foxtrick.modules ) {
-			var module = Foxtrick.modules[i];//dump(module.MODULE_NAME+Foxtrick.isModuleEnabled( module )+'\n');
+			var module = Foxtrick.modules[i];
 			
-			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN || !doc.getElementById(module.MODULE_NAME)) continue;
-			
-			var checked =  doc.getElementById(module.MODULE_NAME).checked;	
-			FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME, checked);
-        
+			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
+				// if main, set default and again right bellow if needed!
+				//Foxtrick.dump('save '+module.MODULE_NAME+' : '+module.DEFAULT_ENABLED+'\n');					
+				if (full_prefs) FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
+				continue;
+			}
+			if (doc.getElementById(module.MODULE_NAME)) {
+				var checked =  doc.getElementById(module.MODULE_NAME).checked;	
+				FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, checked);
+				//Foxtrick.dump('save '+module.MODULE_NAME+' : '+checked+'\n');					
+			}
+			else continue;
+				
             if (module.RADIO_OPTIONS != null) {
 				var radiogroup = doc.getElementById(module.MODULE_NAME + '_radio' ).getElementsByTagName('input');
 				for (var j = 0; j < radiogroup.length; j++) {
 					if (radiogroup[j].checked) {
-						FoxtrickPreferencesDialog.setModuleValue( module.MODULE_NAME, j );
+						FoxtrickPrefs.setModuleValue( module.MODULE_NAME, j );
 						break;
 					}
 				}
@@ -256,13 +262,13 @@ var FoxtrickPrefsDialogHTML = {
 					else { 
 						key = module.OPTIONS[i]["key"];
 					}
-					FoxtrickPreferencesDialog.setModuleEnableState(module.MODULE_NAME+'.'+key, doc.getElementById(module.MODULE_NAME+'.'+key).checked);
+					FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME+'.'+key, doc.getElementById(module.MODULE_NAME+'.'+key).checked);
 			
 					if  (module.OPTION_TEXTS != null && module.OPTION_TEXTS
 					&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])
 					&& doc.getElementById(module.MODULE_NAME+'.'+key+'_text')) {
 				   
-						FoxtrickPreferencesDialog.setModuleOptionsText( module.MODULE_NAME + "." + key+ "_text", 
+						FoxtrickPrefs.setModuleOptionsText( module.MODULE_NAME + "." + key+ "_text", 
 													doc.getElementById(module.MODULE_NAME+'.'+key+'_text').value );        
 					}
 				}
@@ -275,7 +281,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		
 		// check if not whole prefs. in that case stop here
-		if (!doc.getElementById("htLanguage")) {
+		if (!full_prefs) {
 		    FoxtrickMain.init();
 			doc.location.reload();
 		 	return;		
@@ -285,9 +291,8 @@ var FoxtrickPrefsDialogHTML = {
 		FoxtrickPrefs.setBool( "PrefsSavedOnce" ,true);
 		
         //Lang
-        FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);
-		FoxtrickPrefs.setBool("module.FoxtrickReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
-        
+        FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
+		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
 		//Currency
         FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
         
@@ -664,7 +669,7 @@ var FoxtrickPrefsDialogHTML = {
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonSavePrefs"));
 		button.setAttribute( "type", "button" );		
 		button.setAttribute('id',"buttonSavePrefs");
-		button.addEventListener('click',FoxtrickPreferencesDialog.SavePrefs,false);
+		button.addEventListener('click',FoxtrickPrefs.SavePrefs,false);
 		td.appendChild(button);
 
 		var td= doc.createElement("td");
@@ -691,7 +696,7 @@ var FoxtrickPrefsDialogHTML = {
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
 		button.setAttribute( "type", "button" );		
 		button.setAttribute('id',"buttonLoadPrefs");
-		button.addEventListener('click',FoxtrickPreferencesDialog.LoadPrefs,false);
+		button.addEventListener('click',FoxtrickPrefs.LoadPrefs,false);
 		td.appendChild(button);
 
 		var td= doc.createElement("td");
@@ -723,7 +728,7 @@ var FoxtrickPrefsDialogHTML = {
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonCleanupBranch"));
 		button.setAttribute( "type", "button" );		
 		button.setAttribute('id',"buttonCleanupBranch");
-		button.addEventListener('click',FoxtrickPreferencesDialog.confirmCleanupBranch,false);
+		button.addEventListener('click',FoxtrickPrefs.confirmCleanupBranch,false);
 		td.appendChild(button);
 
 		var td= doc.createElement("td");
@@ -742,7 +747,7 @@ var FoxtrickPrefsDialogHTML = {
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonDisableAll"));
 		button.setAttribute( "type", "button" );		
 		button.setAttribute('id',"buttonDisableAll");
-		button.addEventListener('click',FoxtrickPreferencesDialog.disableAll,false);
+		button.addEventListener('click',FoxtrickPrefs.disableAll,false);
 		td.appendChild(button);
 
 		var td= doc.createElement("td");
@@ -1114,14 +1119,14 @@ var FoxtrickPrefsDialogHTML = {
 		entry.setAttribute( "class", "ft_pref_modul" );
 		entry.prefname = module.MODULE_NAME;
 		var module_checked = Foxtrick.isModuleEnabled( module );
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page )
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page )
 		entry.appendChild( checkdiv );			
-		entry.appendChild (doc.createTextNode(FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) ));
+		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
 		
 		checkdiv.firstChild.addEventListener( "click", function( ev ) { 
 				var check=ev.currentTarget.getElementsByTagName('input')[0];
-				var checked = check.checked; 
-				var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(check.id+'_radio');		
+				var checked = check.checked;  
+				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_radio');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
 			}, false );
@@ -1140,7 +1145,7 @@ var FoxtrickPrefsDialogHTML = {
 			}
 			
 			var group = module.MODULE_NAME + '_radio';
-			var desc = FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] );
+			var desc = FoxtrickPrefs.getModuleDescription( module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] );
 			
 			optiondiv.appendChild( FoxtrickPrefsDialogHTML._getRadio (doc, group, desc, module.RADIO_OPTIONS[i], selected, on_page ) );					
 		}
@@ -1158,14 +1163,14 @@ var FoxtrickPrefsDialogHTML = {
 		entry.setAttribute( "class", "ft_pref_modul" );
 		entry.prefname = module.MODULE_NAME;
 		var module_checked = Foxtrick.isModuleEnabled( module );
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page ) 
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page ) 
 		entry.appendChild( checkdiv);			
-		entry.appendChild (doc.createTextNode(FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) ));
+		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
 
 		checkdiv.firstChild.addEventListener( "click", function( ev ) {
 				var check=ev.currentTarget.getElementsByTagName('input')[0];
 				var checked = check.checked; 
-				var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(check.id+'_options');		
+				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_options');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
 			}, false );
@@ -1177,7 +1182,7 @@ var FoxtrickPrefsDialogHTML = {
 			var key,title,title_long;
 			if (module.OPTIONS[i]["key"]==null){
                 key = module.OPTIONS[i];
-                title = FoxtrickPreferencesDialog.getModuleElementDescription( module.MODULE_NAME, module.OPTIONS[i] );
+                title = FoxtrickPrefs.getModuleElementDescription( module.MODULE_NAME, module.OPTIONS[i] );
 				title_long = title;
             }
 			else { 
@@ -1213,9 +1218,9 @@ var FoxtrickPrefsDialogHTML = {
 		var entry = doc.createElement( "div" );
 		entry.setAttribute( "class", "ft_pref_modul" );
 		entry.prefname = module.MODULE_NAME;
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ), Foxtrick.isModuleEnabled( module ),null, null,on_page) ;
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), Foxtrick.isModuleEnabled( module ),null, null,on_page) ;
 		entry.appendChild(checkdiv);		
-		entry.appendChild (doc.createTextNode(FoxtrickPreferencesDialog.getModuleDescription( module.MODULE_NAME ) ));
+		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
 		return entry;
 	},
 		
@@ -1272,7 +1277,7 @@ var FoxtrickPrefsDialogHTML = {
 		if (option_text) {
 			check.addEventListener( "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
-					var optiondiv = FoxtrickPrefsDialogHTML._doc.getElementById(ev.currentTarget.id+'_table');
+					var optiondiv = ev.target.ownerDocument.getElementById(ev.currentTarget.id+'_table');
 					if (checked) optiondiv.style.display='block';
 					else optiondiv.style.display='none'; 			
 				}, false );
@@ -1308,7 +1313,7 @@ var FoxtrickPrefsDialogHTML = {
 				option_text_reset_button.setAttribute( "default_text",  DefaultOptionText);
 				option_text_reset_button.addEventListener( "click", function( ev ) {					
 					try{  var default_text = ev.currentTarget.getAttribute('default_text');
-						var input_option_text = FoxtrickPrefsDialogHTML._doc.getElementById(ev.currentTarget.getAttribute('sender_id')+'_text');
+						var input_option_text = ev.target.ownerDocument.getElementById(ev.currentTarget.getAttribute('sender_id')+'_text');
 						input_option_text.setAttribute( "value",  default_text);						
 					} catch(e){dump('resetclick error: '+e+'\n');}
 				}, false );

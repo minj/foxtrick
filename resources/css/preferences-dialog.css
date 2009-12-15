@@ -111,7 +111,7 @@ tab:hover {
   
 }
 .btnhelp{
-  background-image: url(chrome://foxtrick/content/resources/linkicons/pref_info.png);
+  background-image: url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/pref_info.png);
   background-repeat: no-repeat;
   margin: none;
   padding: none;

@@ -193,6 +193,7 @@ team_confidence	: new Array(
 			this.translate_category(doc,table,11,this.team_spirit,false);
 			this.translate_category(doc,table,12,this.team_confidence,false);
 
+		doc.location.hash=doc.location.hash;
 	} catch(e) {Foxtrick.dump('SkillTranslation: '+e+'\n');}
 	},
 	

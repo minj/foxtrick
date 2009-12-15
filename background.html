@@ -12,19 +12,37 @@
 	propertiesxhr.open("GET", listUrl, false);
 	propertiesxhr.send();
 
+	listUrl = chrome.extension.getURL("htlocales/htlang.xml");
+	var htlangxhr = new XMLHttpRequest();
+	htlangxhr.open("GET", listUrl, false);
+	htlangxhr.send();
+	
+	listUrl = chrome.extension.getURL("htlocales/htcountries.xml");
+	var htcountriesxhr = new XMLHttpRequest();
+	htcountriesxhr.open("GET", listUrl, false);
+	htcountriesxhr.send();
+
 	} catch(e) {alert('back init:' +e)}
 
 	
   
 
 chrome.extension.onConnect.addListener(function(port) { 
-	port.onMessage.addListener(function(msg) {
-	    if (msg.reqtype == "properties") {
+	port.onMessage.addListener(function(msg) {  //alert(msg.reqtype);
+	  try {   
+		if (msg.reqtype == "properties") {
            port.postMessage({properties: propertiesxhr.responseText});
         }
 	    else if (msg.reqtype == "pref") {
            port.postMessage({pref: prefxhr.responseText});
+        } 
+		else if (msg.reqtype == "htlang") {  
+			port.postMessage({htlang: htlangxhr.responseText});
         }
+		else if (msg.reqtype == "htcountries") {  
+			port.postMessage({htcountries: htcountriesxhr.responseText});
+        }
+	  } catch(e) {alert('error msg.reqtype : '+msg.reqtype+' '+e);} 
 	});
 });
 

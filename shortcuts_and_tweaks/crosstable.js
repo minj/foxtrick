@@ -45,7 +45,7 @@ var FoxtrickCrossTable = {
             var div = doc.getElementById('mainBody');
 
 
-    		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/crosstable.css");
+    		Foxtrick.addStyleSheet(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/crosstable.css");
 
             var tbl_fix = div.getElementsByTagName('TABLE')[0];
 
@@ -383,11 +383,8 @@ var FoxtrickCrossTable = {
             var leagues = 0;
             try {
                 var path = "hattrickcountries/country[@htname='" + country + "']";
-                var obj = this.htCountriesXml.evaluate(path,this.htCountriesXml,null,this.htCountriesXml.DOCUMENT_NODE,null).singleNodeValue;
-                if (obj)
-                    leagues = parseFloat(obj.attributes.getNamedItem("leagues").textContent);
-                else
-                    return -1;
+                leagues = Foxtrick.xml_single_evaluate(this.htCountriesXml, path, "leagues");
+				if (!leagues) return -1;
             } catch (exml) {
                 Foxtrick.dump('crosstable.js countries: '+exml + "\n");
             }
@@ -488,22 +485,10 @@ var FoxtrickCrossTable = {
 	initHtCountries: function ()
 	{
 		try {
-			this.htCountriesXml = this._loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcountries.xml");
+			//this.htCountriesXml = Foxtrick.loadXmlIntoDOM("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcountries.xml");
 		} catch (e) {
 			Foxtrick.dump('crosstable.js initHTCountries: '+e+"\n");
 		}
-	},
-
-	_loadXmlIntoDOM: function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
 	},
 
 	HeaderClick_Graph : function(evt) {

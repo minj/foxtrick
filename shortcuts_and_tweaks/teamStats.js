@@ -57,10 +57,10 @@ Foxtrick.TeamStats= {
                         //Foxtrick.dump (' => tsitot_in => [' + tsitot_in + ']\n');
 						if (tsitot_in.search(/^\s*TSI/) != -1) tsitot_in = tsitot_in.replace(/,.+/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
 						var lastindex = tsitot_in.lastIndexOf(' ');
-						if (tsitot_in.lastIndexOf('=') > lastindex) lastindex = tsitot_in.lastIndexOf('=');
+						if (tsitot_in.lastIndexOf('=') !=-1 ) lastindex = tsitot_in.lastIndexOf('=');
 						tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;',''); 
 						tsitot_in = parseInt(tsitot_in);  
-						total_NT = parseInt(total_NT) + tsitot_in;
+						total_NT = total_NT + tsitot_in;
 					}				
 					catch(e) {
 						Foxtrick.dump('FTTeamStats'+e);
@@ -321,17 +321,16 @@ Foxtrick.TeamStats= {
 		td.appendChild(filterselect);
 		mainBody.insertBefore(table,mainBody.firstChild);
 		//sortbybox.parentNode.insertBefore(filterselect,sortbybox);
-		Foxtrick.TeamStats.Filter.doc=doc;
-		
         },
         
         _checkCountry : function ( ctrc ) {
             if (ctrc == null ) return;
-            ctrc = Foxtrick._to_utf8(Foxtrick.substr(ctrc, Foxtrick.strrpos( ctrc, "</a>")+4, ctrc.lebgth));
-            // Foxtrick.dump('=> stripped => ' + ctrc + '\n');
+            //ctrc = Foxtrick._to_utf8(Foxtrick.substr(ctrc, Foxtrick.strrpos( ctrc, "</a>")+4, ctrc.lebgth));
+            ctrc = Foxtrick._to_utf8(ctrc.replace(/<.+>/),'');
+            //Foxtrick.dump('=> stripped => ' + ctrc + '\n');
             var found = -1;
             for (var i = 0; i < this.COUNTRYLIST.length; i++) {
-                if (Foxtrick.strrpos( ctrc, this.COUNTRYLIST[i]) > 0 ) {
+                if (ctrc.search(this.COUNTRYLIST[i]) != -1 ) {
                     found = i;
                     break;
                 }
@@ -478,7 +477,7 @@ Foxtrick.TeamStats= {
 	// by convinced
 	Filter : function (ev){
 	try {
-		var doc = Foxtrick.TeamStats.Filter.doc;
+		var doc = ev.target.ownerDocument;
 		var filter = ev.target.value;
 		var isnotFF35 = !Foxtrick.isFF35(doc);
 		

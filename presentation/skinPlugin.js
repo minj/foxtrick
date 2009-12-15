@@ -1,7 +1,7 @@
 /**
  * skinPlugin.js
  * Script which including skins
- * chrome://foxtrick/content/resources/css/mainr.css
+ * chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/mainr.css
  * @author smates/convinced
  */
 var FoxtrickSkinPlugin = {
@@ -41,7 +41,7 @@ var FoxtrickSkinPlugin = {
                             var imgSrc = img.src;
                             var customMedals = "oldhtmedals";
                             var oldString = "Trophy";
-                            var newString = "chrome://foxtrick/content/resources/img/"
+                            var newString = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/"
                                 + "custommedals/" + customMedals + "/";
                             if(imgSrc.search(oldString) != -1) {
                                 var startPos = imgSrc.lastIndexOf("=") + 1;
