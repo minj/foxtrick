@@ -22,6 +22,7 @@ Foxtrick.XMLData = {
 	htNTidsXml: null,
 	htversionsXML: null,
 	htdateformat: null,
+	boutXML:null,
 	
 	matchxmls: new Array(),
 	
@@ -32,6 +33,7 @@ Foxtrick.XMLData = {
 		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
 		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");
 		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htdateformat.xml");
+		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
 				
 		// worlddetails
 		var xml = new JKL.ParseXML( "chrome://foxtrick/content/htlocales/worlddetails.xml" );

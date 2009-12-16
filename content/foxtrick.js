@@ -1555,9 +1555,17 @@ Foxtrick.loadXmlIntoDOM = function(url) {
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
 	var result = new Array();
 	if (xmlresponse) {
-		var nodes = xmlresponse.evaluate(basenodestr, xmlresponse, null, 7 , null);
-		for (var i = 0; i < nodes.snapshotLength; i++) {
-			var node = nodes.snapshotItem(i);
+		//var nodes = xmlresponse.evaluate(basenodestr, xmlresponse, null, 7 , null);
+		var splitpath = basenodestr.split(/\/|\[/g);
+		var base = xmlresponse;
+			for (var j=0;j<splitpath.length-1;++j) {
+				base = base.getElementsByTagName(splitpath[j])[0];
+			}
+		var nodes = base.getElementsByTagName(splitpath[j]);
+		for (var i = 0; i < nodes.length; i++) {
+		//for (var i = 0; i < nodes.snapshotLength; i++) {
+			//var node = nodes.snapshotItem(i);
+			var node = nodes[i];
 			var label = node.getAttribute(labelstr);
 			var value = null;
 			var value2=null;

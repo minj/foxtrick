@@ -880,7 +880,6 @@ var FoxtrickPrefsDialogHTML = {
 			td.appendChild( a );
 		}
  		
-		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
 		
 		// links
 		var groupbox2= doc.createElement("div");
@@ -888,9 +887,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString('foxtrick.prefs.'+Foxtrick.XML_evaluate(xmlresponse, "about/links", "value")[0])));
+		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString('foxtrick.prefs.'+Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/links", "value")[0])));
 		groupbox2.appendChild(caption1);
-		var links = Foxtrick.XML_evaluate(xmlresponse, "about/links/link", "title", "value");		
+		var links = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/links/link", "title", "value");		
 		for (var i=0;i<links.length;++i) {
 			groupbox2.appendChild(doc.createTextNode(Foxtrickl10n.getString('foxtrick.prefs.'+links[i][0])+': '));
 			var a = doc.createElement('a');
@@ -944,17 +943,15 @@ var FoxtrickPrefsDialogHTML = {
 			td.appendChild( a );
 		}
  		
-		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
-
 		// head_developer
 		var groupbox2= doc.createElement("div");
 		groupbox2.setAttribute('class',"ft_pref_modul");
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(xmlresponse, "about/head_developer", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/head_developer", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/head_developer/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/head_developer/label", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -966,9 +963,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(xmlresponse, "about/project_owners", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/project_owners", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/project_owners/label", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -980,9 +977,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(xmlresponse, "about/developers", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/developers", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/developers/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/developers/label", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -994,9 +991,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(xmlresponse, "about/translations", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/translations", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/translations/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/translations/label", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -1036,8 +1033,7 @@ var FoxtrickPrefsDialogHTML = {
 			td.appendChild( a );
 		}
 		
-		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");				
-		var versions = Foxtrick.XML_evaluate(xmlresponse,  "hattrickversions/version", "name", "code");
+		var versions = Foxtrick.XML_evaluate(Foxtrick.XMLData.htversionsXML,  "hattrickversions/version", "name", "code");
 		var oldVersion = versions[versions.length-2][1];
 		
 		var curVersion = FoxtrickPrefs.getString("curVersion"); 
