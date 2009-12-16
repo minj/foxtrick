@@ -138,13 +138,25 @@ Foxtrick.TeamStats= {
 				
 				var playerid = as[0].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 				var playerlist = this.playersxmls.getElementsByTagName('Player');
-				Foxtrick.dump(playerlist.length+'\n');
 				for (var j=0; j<playerlist.length; ++j) { 
 					var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
-					Foxtrick.dump(thisPlayerID+' '+playerid+'\n');
 					if (thisPlayerID==playerid) {
-						var ls = playerlist[j].getElementsByTagName('Leadership')[0].textContent;	
-						allDivs2.appendChild(doc.createTextNode(' Leadership: '+ls));
+						var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;	
+						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
+						var LeagueID = Foxtrick.LinkCollection.countryid_to_leagueid[CountryID];	
+						allDivs2.appendChild(doc.createTextNode(' Leadership: '+Leadership));
+						
+						var a=doc.createElement('a');
+						a.href='';
+						a.className ="flag inner"; 
+						
+						var img=doc.createElement('img');
+						var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+Foxtrick.LinkCollection.countryflags[LeagueID].flag+"pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+						img.setAttribute('style',style); 
+						img.src="/Img/Icons/transparent.gif";
+						
+						a.appendChild(img);
+						as[0].parentNode.insertBefore(a, as[0]);
 						break;
 					}
 				}
