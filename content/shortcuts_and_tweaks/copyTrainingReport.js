@@ -127,7 +127,7 @@ var FoxtrickCopyScoutReport = {
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_first";				
+			messageLink.className = "inner copyicon copyplayerad ci_second";				
 			messageLink.id='copyscoutreport';
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
@@ -233,8 +233,8 @@ var FoxtrickCopyPlayerSource = {
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
 			var messageLink = doc.createElement("a");
-			if (Foxtrick.isModuleEnabled(FoxtrickCopyTrainingReport)) messageLink.className = "inner copyicon copyplayerscource ci_second";
-			else messageLink.className = "inner copyicon copyplayerscource ci_first";			
+			if (Foxtrick.isModuleEnabled(FoxtrickCopyScoutReport)) messageLink.className = "inner copyicon copyplayerscource ci_third";
+			else messageLink.className = "inner copyicon copyplayerscource ci_second";			
 			messageLink.id='copyplayerscource';
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerscource" );
 			messageLink.addEventListener("click", this.copySource, false)
