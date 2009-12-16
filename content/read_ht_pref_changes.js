@@ -281,8 +281,7 @@ var FoxtrickMyHT = {
 		FoxtrickMyHT.NewModules = new Array();
 						
 		var curVersion = FoxtrickPrefs.getString("curVersion"); 
-		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");				
-		var versions = Foxtrick.XML_evaluate(xmlresponse,  "hattrickversions/version", "name", "code");
+		var versions = Foxtrick.XML_evaluate(Foxtrick.XMLData.htversionsXML ,  "hattrickversions/version", "name", "code");
 		var oldVersion = versions[versions.length-2][1];
 		
 		for ( var i in Foxtrick.modules ) {

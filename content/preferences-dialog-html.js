@@ -299,20 +299,17 @@ var FoxtrickPrefsDialogHTML = {
 		//Country
         FoxtrickPrefs.setString("htCountry", doc.getElementById("htCountry").value);
 
-        var htCountryXml_c = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htcountries.xml");
-        FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(doc.getElementById("htCountry").value,htCountryXml_c)));        
+        FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(doc.getElementById("htCountry").value)));        
             
         //Currency Converter
-
-        var htCurrencyXml_c = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htcurrency.xml");
-
+       
         FoxtrickPrefs.setString("htCurrencyTo", doc.getElementById("htCurrencyTo").value);
-        FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"new",htCurrencyXml_c));
-        FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"rate",htCurrencyXml_c));
+        FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"new",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"rate",Foxtrick.XMLData.htCurrencyXml));
     
-        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"old",htCurrencyXml_c));
-        FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
-		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"code",htCurrencyXml_c));
+        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"old",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"code",Foxtrick.XMLData.htCurrencyXml));
         
 		//Dateformat
         FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
@@ -497,7 +494,7 @@ var FoxtrickPrefsDialogHTML = {
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency")));
 		groupbox2.appendChild(caption1);
-		var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htcurrency.xml", "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
+		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
 		selectbox.setAttribute("style","display:block;");
 		selectbox.setAttribute("id","htCurrency");
 		groupbox2.appendChild(selectbox);
@@ -509,7 +506,7 @@ var FoxtrickPrefsDialogHTML = {
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat")));
 		groupbox2.appendChild(caption1);
-		var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htdateformat.xml", "hattrickdateformats/dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
+		var selectbox = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htdateformat, "hattrickdateformats/dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
 		selectbox.setAttribute("style","display:block;");
 		selectbox.setAttribute("id","htDateformat");
 		groupbox2.appendChild(selectbox);
@@ -521,7 +518,7 @@ var FoxtrickPrefsDialogHTML = {
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry")));
 		groupbox2.appendChild(caption1);
-		var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htcountries.xml", "hattrickcountries/country", "name", "name", FoxtrickPrefs.getString("htCountry"));
+		var selectbox = Foxtrick.getSelectBoxFromXML3(doc,Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));
 		selectbox.setAttribute("style","display:block;");
 		selectbox.setAttribute("id","htCountry");
 		groupbox2.appendChild(selectbox);
@@ -545,7 +542,7 @@ var FoxtrickPrefsDialogHTML = {
 		td.setAttribute('style',"width:260px");
         tr.appendChild(td);
 		td.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolTo")));
-		var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htcurrency.xml", "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
+		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
 		selectbox.setAttribute("id","htCurrencyTo");
 		selectbox.setAttribute("style","display:inline-block;");
 		td.appendChild(selectbox);
@@ -765,7 +762,7 @@ var FoxtrickPrefsDialogHTML = {
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionFoxtrickMyHT")));
 		groupbox2.appendChild(caption1);
-		var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htversions.xml", "hattrickversions/version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
+		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXML, "hattrickversions/version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
 		selectbox.setAttribute("style","display:inline;");
 		selectbox.setAttribute("id","htOldVersion");
 		groupbox2.appendChild(selectbox);
@@ -1598,7 +1595,24 @@ var FoxtrickPrefsDialogHTML = {
 			
 		} catch(e) {dump('FoxtrickPrefsDialogHTML.VersionBox_Select'+e+'\n');}
 	},
-	
+
+	getOffsetValue: function (itemToSearch) {
+    try {
+        var returnedOffset = 0;
+            for (var i in Foxtrick.XMLData.League) { 
+				if (itemToSearch == Foxtrick.XMLData.League[i].EnglishName) {
+				 	returnedOffset = Foxtrick.XMLData.League[1].Season - Foxtrick.XMLData.League[i].Season;  // sweden season - selected
+					break;
+				}				
+			}
+			return returnedOffset;
+    }
+    catch (e) {
+        dump('  Offset search for '+ itemToSearch + ' ' + e + '\n');
+        return 0;
+    }
+	},
+
 }	
 
 

@@ -14,10 +14,8 @@ FoxtrickLineupShortcut = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
  	OPTIONS : new Array( "HighlightPlayer", "YouthPlayerLink"),
 
-	htNTidsXml : null,
-	
-    init : function() {
-		this.initHtNtlist();
+    
+	init : function() {	
     },
 
     run : function(page, doc) {
@@ -59,8 +57,7 @@ FoxtrickLineupShortcut = {
 			var u20Id=0;
 			var serieId=FoxtrickHelper.findCountryId(flagElem[0].parentNode);
 			var path = "leagues/league[@id='" + serieId + "']";
-			//var obj = this.htNTidsXml.evaluate(path,this.htNTidsXml,null,this.htNTidsXml.DOCUMENT_NODE,null).singleNodeValue;
-			var obj = Foxtrick.xml_single_evaluate(this.htNTidsXml, path);
+			var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htNTidsXml, path);
 			if (obj) {
 				ntName=obj.getElementsByTagName('NTName').item(0).firstChild.nodeValue;
 				ntId=obj.getElementsByTagName('NTid').item(0).firstChild.nodeValue;
@@ -257,16 +254,4 @@ FoxtrickLineupShortcut = {
 			}
 		}
 	},
-	
-	//*************************** init ntidlist **********************************
-	
-	initHtNtlist: function ()
-	{
-		try {
-			this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
-		} catch (e) {
-			Foxtrick.dump('lineupshortcut.js initNTidsXml: '+e+"\n");
-		}
-	}
-
 };

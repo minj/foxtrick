@@ -18,13 +18,21 @@ Foxtrick.XMLData = {
 	League : {},
 	countryid_to_leagueid : {},
 	htLanguagesXml : null,
+	htCurrencyXml : null,
+	htNTidsXml: null,
+	htversionsXML: null,
+	htdateformat: null,
 	
 	matchxmls: new Array(),
 	
 	init : function() {
 	try{
 		this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
-		
+		this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htcurrency.xml");
+		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
+		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");
+		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htdateformat.xml");
+				
 		// worlddetails
 		var xml = new JKL.ParseXML( "chrome://foxtrick/content/htlocales/worlddetails.xml" );
 		var data = xml.parse();
