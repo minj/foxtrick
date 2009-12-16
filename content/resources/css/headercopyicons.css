@@ -7,22 +7,26 @@ a.copyicon {
 	 z-index:99;	
 }
 
-#hattrickNoSupporter   a.ci_first { right:14px;}
-#hattrick   a.ci_first {right:50px;}
+#hattrickNoSupporter   a.ci_first { right:7px;}
+#hattrick   a.ci_first {right:7px;}
 
-#hattrickNoSupporter   a.ci_second { right:54px;}
-#hattrick   a.ci_second {right:90px;}
+#hattrickNoSupporter   a.ci_second { right:51px;}
+#hattrick   a.ci_second {right:51px;}
 
-#hattrickNoSupporter   a.ci_third {right:94px;}
-#hattrick   a.ci_third{right:130px;}
+#hattrickNoSupporter   a.ci_third {right:95px;}
+#hattrick   a.ci_third{right:95px;}
 
-#hattrickNoSupporter   a.ci_forth{right:134px;}
-#hattrick   a.ci_forth{right:170px;}
+#hattrickNoSupporter   a.ci_forth{right:139px;}
+#hattrick   a.ci_forth{right:139px;}
+
+#hattrickNoSupporter   a.ci_fifth{right:183px;}
+#hattrick   a.ci_fifth{right:183px;}
+
 
 .copyicon img {
-	padding: 0px 5px 0px 0px; 
+	padding: 0px 0px 0px 0px; 
 	height:36px; 
-	width:34px; 
+	width:36px; 
 }
 
 .copyplayerad img {
