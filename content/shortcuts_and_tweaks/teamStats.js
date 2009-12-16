@@ -48,6 +48,7 @@ Foxtrick.TeamStats= {
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
 		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 
+		/* XML test
 		// get xml
 		this.playersxmls = null;
 		try {	var req = new XMLHttpRequest();
@@ -59,6 +60,7 @@ Foxtrick.TeamStats= {
 			}
 			else Foxtrick.dump('TeamStats.js: xml request failed\n');
 		} catch(e) {Foxtrick.dump('TeamStats.js: xml request failed'+e+'\n');}
+		*/
 		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				if (allDivs[i].className!="playerInfo") continue;
@@ -136,6 +138,7 @@ Foxtrick.TeamStats= {
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
 				
 				
+				/*  XML test
 				var playerid = as[0].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 				var playerlist = this.playersxmls.getElementsByTagName('Player');
 				for (var j=0; j<playerlist.length; ++j) { 
@@ -159,7 +162,7 @@ Foxtrick.TeamStats= {
 						as[0].parentNode.insertBefore(a, as[0]);
 						break;
 					}
-				}
+				}*/
 		}
 		stars.sort(this.starsortfunction);
 		this.top11star=stars[10]; 
