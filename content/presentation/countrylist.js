@@ -18,7 +18,7 @@ var FoxtrickCountyList = {
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Bring back select boxes on disabled SelectBoxes option",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.Fix,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
     init : function() {
@@ -204,10 +204,11 @@ var FoxtrickCountyList = {
             for (var i = start; i < countries; i++) {
                 if (i == selected) id_sel = options[i].value;
                 try {
-                    var country = options[i].value;
-                    var htname = options[i].text;
-
-					htname = Foxtrick.XMLData.League[country].LeagueName;
+                    if (start>=10) var league = options[i].value;
+					else var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value];
+					var htname = options[i].text;
+					//Foxtrick.dump(start+' '+league+' '+htname+'\n');
+                    htname = Foxtrick.XMLData.League[league].LeagueName;
 					if (!htname) return -1;
 
                 } catch (exml) {

@@ -59,7 +59,7 @@ Foxtrick.ht_pages = {
 	'matchesLive'				: '\/Club\/Matches\/Live.aspx',
     'matchOrders'               : '\/MatchOrders\.aspx',
     'flagCollection'            : '\/Club\/Flags\/',
-    'transferListSearchForm'    : '\/World\/Transfers\/',
+    'transferListSearchForm'    : '\/World\/Transfers\/$|\/World\/Transfers\/default.aspx',
     'transferListSearchResult'  : '\/World\/Transfers\/TransfersSearchResult.aspx',
     'teamPage'                  : '\/Club\/$|\/Club\/.TeamID=',
     'teamPageAny'               : '\/Club\/',

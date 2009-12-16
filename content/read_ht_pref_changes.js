@@ -194,7 +194,6 @@ var FoxtrickMyHT = {
 				a.href="javascript:void();";
 				a.innerHTML='<strong>'+Foxtrickl10n.getString("FoxtrickMyHtSetChanged")+'</strong>';
 				a.addEventListener( "click", FoxtrickMyHT.ShowChanged, false );
-				FoxtrickMyHT.Close.doc=doc;
 				p.appendChild(a);				
 				
 				var a=doc.createElement('a');
@@ -202,7 +201,6 @@ var FoxtrickMyHT = {
 				a.innerHTML=Foxtrickl10n.getString("Close");
 				a.addEventListener( "click", FoxtrickMyHT.Close, false );
 				a.setAttribute('style','float:right');
-				FoxtrickMyHT.Close.doc=doc;
 				p.appendChild(a);				
 				
 				alertdiv.appendChild(p);

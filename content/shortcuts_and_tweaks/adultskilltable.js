@@ -32,7 +32,6 @@ var FoxtrickAdultSkillTable = {
 				tablediv.setAttribute('id','ft_adultskilltable');
 				var h2 = doc.createElement('h2');
 				h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-				FoxtrickAdultSkillTable.HeaderClick.doc=doc;
 				h2.addEventListener( "click", this.HeaderClick, true );						
 				h2.setAttribute('class','ft_boxBodyCollapsed');
 				tablediv.appendChild(h2);

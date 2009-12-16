@@ -250,7 +250,6 @@ var FoxtrickCrossTable = {
             divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_cross");
             heading.addEventListener( "click", this.HeaderClick_Cross, false );
-            this.HeaderClick_Cross.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             var crosstable=doc.createElement('table');
@@ -333,7 +332,6 @@ var FoxtrickCrossTable = {
             divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_graph");
             heading.addEventListener( "click", this.HeaderClick_Graph, false );
-            this.HeaderClick_Graph.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             //Foxtrick.dump('\n\n>'+week+'<\n');
@@ -485,8 +483,8 @@ var FoxtrickCrossTable = {
         try {
 
             var header = evt.target;
-			var doc=FoxtrickCrossTable.HeaderClick_Graph.doc;
-            var head_class = "ft_ct_head_std";
+			var doc = evt.target.ownerDocument;
+			var head_class = "ft_ct_head_std";
             if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
             if (doc.getElementById('ft_graph').style.display == 'none') {
                 doc.getElementById('ft_graph').style.display = 'block';
@@ -503,8 +501,8 @@ var FoxtrickCrossTable = {
 	HeaderClick_Cross : function(evt) {
         try {
             var header = evt.target;
-			var doc=FoxtrickCrossTable.HeaderClick_Cross.doc;
-            var head_class = "ft_ct_head_std";
+			var doc = evt.target.ownerDocument;
+			var head_class = "ft_ct_head_std";
             if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
             if (doc.getElementById('ft_cross').style.display == 'none') {
                 doc.getElementById('ft_cross').style.display = 'block';

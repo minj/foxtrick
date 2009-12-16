@@ -79,8 +79,7 @@ var FoxtrickEconomyDifference = {
             div.setAttribute("style","cursor:pointer;");
             div.setAttribute("id", "div"+headingId);
             div.addEventListener( "click", this.HeaderClick, false );
-            FoxtrickEconomyDifference.HeaderClick.doc=doc;
-			mainbox.appendChild(div);
+            mainbox.appendChild(div);
 		}
 		else { // update header
 			var heading=doc.getElementById('foxtrick_eD_heading');
@@ -244,7 +243,7 @@ var FoxtrickEconomyDifference = {
 
 	HeaderClick : function(evt) {
 		try { 
-			var doc=evt.view.document;
+			var doc = evt.target.ownerDocument;
 			FoxtrickPrefs.setInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value", FoxtrickPrefs.getInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value")+1);
 			if (FoxtrickPrefs.getInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value")==FoxtrickEconomyDifference.RADIO_OPTIONS.length) 
 				FoxtrickPrefs.setInt("module." + FoxtrickEconomyDifference.MODULE_NAME + ".value",0);

@@ -32,7 +32,6 @@ var FoxtrickYouthSkillTable = {
 				tablediv.setAttribute('id','ft_youthskilltable');
 				var h2 = doc.createElement('h2');
 				h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-				FoxtrickYouthSkillTable.HeaderClick.doc=doc;
 				h2.addEventListener( "click", this.HeaderClick, true );						
 				h2.setAttribute('class','ft_boxBodyCollapsed');
 				tablediv.appendChild(h2);
@@ -57,9 +56,9 @@ var FoxtrickYouthSkillTable = {
 	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML);},
 	sortagefunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age').localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age'));},
 
-	sortClick : function(ev) {
+	sortClick : function(evt) {
 	try{
-		var doc = ev.originalTarget.ownerDocument;
+		var doc = evt.target.ownerDocument;
 		var tablediv = doc.getElementById('ft_youthskilltable');
 		var table = tablediv.getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);
