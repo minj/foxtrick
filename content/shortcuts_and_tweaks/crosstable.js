@@ -14,15 +14,11 @@ var FoxtrickCrossTable = {
     OPTION_TEXTS : true,
     OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1","",""),
     OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
-	htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"fix (away goals counted twice)",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _week : 14,
-    init : function() {
-        this.initHtCountries();
-    },
 
     run : function( page, doc ) {
         var tbl_cross = (doc.getElementById("ft_cross")!=null);
@@ -382,8 +378,11 @@ var FoxtrickCrossTable = {
             Foxtrick.dump('['+country+']\n');
             var leagues = 0;
             try {
-                var path = "hattrickcountries/country[@htname='" + country + "']";
-                leagues = Foxtrick.xml_single_evaluate(this.htCountriesXml, path, "leagues");
+                for (var i in Foxtrick.XMLData.League) 
+					if (country == Foxtrick.XMLData.League[i].LeagueName) {
+					 	leagues = Foxtrick.XMLData.League[i].NumberOfLevels;
+						break;
+					}				
 				if (!leagues) return -1;
             } catch (exml) {
                 Foxtrick.dump('crosstable.js countries: '+exml + "\n");
@@ -480,15 +479,6 @@ var FoxtrickCrossTable = {
             feld = this.qsort(feld,mitte+1,ende);
             return feld;
         } catch(eee) {Foxtrick.dump('sort: '+eee + '\n');}
-	},
-
-	initHtCountries: function ()
-	{
-		try {
-			this.htCountriesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcountries.xml");
-		} catch (e) {
-			Foxtrick.dump('crosstable.js initHTCountries: '+e+"\n");
-		}
 	},
 
 	HeaderClick_Graph : function(evt) {

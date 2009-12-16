@@ -17,10 +17,8 @@ var FoxtrickAdultSkillTable = {
 	CSS: "chrome://foxtrick/content/resources/css/adultskilltable.css",
 	
 	copy_string:"",
-	htLanguagesXml : null,
-	
+
     init : function() {
- 		this.initHtLang();
     },
 
     run : function( page, doc ) {
@@ -573,7 +571,7 @@ var FoxtrickAdultSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/positions/position[@value='" + type + "']";
-			short_pos = Foxtrick.xml_single_evaluate(FoxtrickAdultSkillTable.htLanguagesXml, path, "short");
+			short_pos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
 			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
@@ -595,7 +593,7 @@ var FoxtrickAdultSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/specialties/specialty[@value='" + type + "']";
-			short_pos = Foxtrick.xml_single_evaluate(FoxtrickAdultSkillTable.htLanguagesXml, path, "short");
+			short_pos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
 			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
@@ -603,15 +601,6 @@ var FoxtrickAdultSkillTable = {
 		}
 
 		return short_pos;
-	},
-
-	initHtLang: function ()
-	{
-		try {
-			this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
-		} catch (e) {
-			Foxtrick.dump('youthskill.js initHtLang: '+e+"\n");
-		}
 	},
 }
 

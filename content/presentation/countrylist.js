@@ -15,7 +15,6 @@ var FoxtrickCountyList = {
                         'help_contact'
                         ),
 	DEFAULT_ENABLED : true,
-    htCountriesXml : null,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Bring back select boxes on disabled SelectBoxes option",
@@ -23,7 +22,6 @@ var FoxtrickCountyList = {
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
     init : function() {
-        this.initHtCountries();
     },
 
 	run : function( page, doc ) {
@@ -180,15 +178,6 @@ var FoxtrickCountyList = {
 			this.run( page, doc );
 		}
 	},
-
-    initHtCountries: function ()
-	{
-		try {
-			this.htCountriesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htcountries.xml");
-		} catch (e) {
-			Foxtrick.dump('countrylist.js initHTCountries: '+e+"\n");
-		}
-	},
     
     _placeCountry: function (page, doc) {
         var cntr = doc.getElementById( 'ft_cntr_fix' );
@@ -218,8 +207,7 @@ var FoxtrickCountyList = {
                     var country = options[i].value;
                     var htname = options[i].text;
 
-					var path = 'hattrickcountries/country[@name="' + htname + '"]';
-					htname = Foxtrick.xml_single_evaluate(this.htCountriesXml, path, "htname");
+					htname = Foxtrick.XMLData.League[country].LeagueName;
 					if (!htname) return -1;
 
                 } catch (exml) {

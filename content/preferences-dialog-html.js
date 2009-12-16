@@ -477,7 +477,7 @@ var FoxtrickPrefsDialogHTML = {
 		
 		var td= doc.createElement("td");
         tr.appendChild(td);
-		var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htlang.xml", "hattricklanguages/language", "desc", "name",  FoxtrickPrefs.getString("htLanguage"));
+		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htLanguagesXml, "hattricklanguages/language", "desc", "name",  FoxtrickPrefs.getString("htLanguage"));
 		selectbox.setAttribute("id","htLanguage");
 		selectbox.setAttribute("style","display:inline-block;");
 		td.appendChild(selectbox);

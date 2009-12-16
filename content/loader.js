@@ -14,12 +14,14 @@ Foxtrick.Loader = function(){
 	pub.Load = function(){	
 	
 	var scripts = [
-    'preferences.js',
+	'jkl-parsexml.js',    
+	'preferences.js',
     'const.js',
     'module.js',
-    'stats.js',
     'l10n.js',
     'helper.js',
+	'xml_load.js',
+    'stats.js',
     'redirections.js',
 	'read_ht_pref_changes.js',
     'preferences-dialog.js',

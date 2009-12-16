@@ -11,7 +11,9 @@
 if (!Foxtrick) var Foxtrick={};
  
 Foxtrick.modules = [
-                    Foxtrick.Matches,
+                    Foxtrick.XMLData,
+					
+					Foxtrick.Matches,
 					FoxtrickForumStripHattrickLinks,
 					FoxtrickForumChangePosts,
                     FoxtrickShowForumPrefButton,

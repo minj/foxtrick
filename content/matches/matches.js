@@ -10,11 +10,9 @@ Foxtrick.Matches = {
 	DEFAULT_ENABLED : true,
 	PAGES : new Array('match'), 
 
-	htLanguagesXml : null,
 	matchxmls: new Array(),
 	
 	init : function() {
-		this.initHtLang();
 	},
 	
 	run : function(page,doc) {
@@ -101,7 +99,7 @@ Foxtrick.Matches = {
 		try {
 			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));			
 			var path = "hattricklanguages/language[@name='" + lang + "']/ratingSubLevels/sublevel[@text='" + subLevel + "']";
-			subLevelValue = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "value");
+			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "value");
 			if (!subLevelValue)	return -1;
 		} catch (e) {
 			Foxtrick.dump('matches.js _getStatFromCell: '+e + "\n");
@@ -127,7 +125,7 @@ Foxtrick.Matches = {
 
 		try {
 			var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
-			subLevelValue = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "type");
+			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "type");
 			if (subLevelValue) return subLevelValue
 			else return -1;
 		} catch (e) {
@@ -136,14 +134,4 @@ Foxtrick.Matches = {
 		return null;
 
 	},
-
-	initHtLang: function ()
-	{
-		try {
-			this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
-		} catch (e) {
-			Foxtrick.dump('matches.js initHtLang: '+e+"\n");
-		}
-	},
-
 };

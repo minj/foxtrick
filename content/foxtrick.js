@@ -1629,6 +1629,30 @@ Foxtrick.getSelectBoxFromXML = function (doc,xmlfile, basenodestr, labelstr, val
 	return selectbox;
 }
 
+Foxtrick.getSelectBoxFromXML2 = function (doc,xmlfile, basenodestr, labelstr, valuestr, selected_value_str) {
+
+	var selectbox = doc.createElement("select");
+
+	var versions = Foxtrick.XML_evaluate(xmlfile, basenodestr, labelstr, valuestr);
+
+	var indexToSelect=0;
+	for (var i = 0; i < versions.length; i++) {
+		var label = versions[i][0];
+		var value = versions[i][1];
+
+		var option = doc.createElement("option");
+		option.setAttribute("value",value);
+		option.innerHTML=label;
+		selectbox.appendChild(option);
+
+		if (selected_value_str==value)
+			indexToSelect=i;
+	}
+	selectbox.selectedIndex=indexToSelect;
+
+	return selectbox;
+}
+
 Foxtrick.get_url_param = function (url, name){
 	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
 
