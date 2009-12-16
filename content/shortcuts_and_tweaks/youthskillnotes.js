@@ -275,7 +275,6 @@ var FoxtrickYouthSkillNotes = {
 	  var br3 = doc.createElement ("br");
 	  saveLink.setAttribute("href", "javascript: void(0); showHide('" + divEDId
 		+"');showHide('foxtrick-detailsTable-noEdit-"+playerid+"');");
-	  FoxtrickYouthSkillNotes.saveSkills.doc = doc;
 	  saveLink.setAttribute("name", playerid);
 	  saveLink.addEventListener( "click", FoxtrickYouthSkillNotes.saveSkills, false );
 	  saveLink.setAttribute("style", "float: right");

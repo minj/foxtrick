@@ -1675,7 +1675,6 @@ var FoxtrickOnPagePrefs = {
 				div.appendChild(header);
 				div.setAttribute("style","cursor:pointer;");
 				div.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClick, false );
-				FoxtrickOnPagePrefs.HeaderClick.doc = doc;
 				pn.insertBefore(div,pn.firstChild);
 				
 				var div=doc.getElementById('foxtrick_OnPagePrefs_box').firstChild;	
@@ -1691,7 +1690,7 @@ var FoxtrickOnPagePrefs = {
 	
 	HeaderClick : function (ev) { 
 	try{
-		var doc = ev.view.document;
+		var doc = ev.target.ownerDocument;
 		var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
 		
 		if ( headdiv.className.search("ft_sidebarBoxCollapsed") != -1 ) {

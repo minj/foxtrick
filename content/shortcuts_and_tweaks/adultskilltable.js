@@ -59,7 +59,7 @@ var FoxtrickAdultSkillTable = {
 
 	sortClick : function(ev) {
 	try{
-		var doc = ev.originalTarget.ownerDocument;
+		var doc = ev.target.ownerDocument;
 		var tablediv = doc.getElementById('ft_adultskilltable');
 		var table = tablediv.getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);
