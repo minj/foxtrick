@@ -121,17 +121,14 @@ FoxtrickFlagCollectionToMap = {
         this.setupCountryCodes();
     },
 
-    run : function(page, document) {
+    run : function(page, doc) {
         
-        var path = "//div[@class='mainBox']";
-        var result = document.evaluate(path, document.documentElement, null,
-                                       Components.interfaces.nsIDOMXPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-        
-		this.own_countryid = FoxtrickHelper.findCountryId(document.getElementById('teamLinks'));
+        this.own_countryid = FoxtrickHelper.findCountryId(doc.getElementById('teamLinks'));
 		
         var mapId = 0;
-        for (var i=0; i< result.snapshotLength; i++) {
-            var divElement = result.snapshotItem(i);
+		var mainbox = Foxtrick.getElementsByClass('mainBox', doc);
+        for (var i=0; i< mainbox.length; i++) {
+            var divElement = mainbox[i];
         
             var countryIds = new Array();
             
@@ -144,11 +141,11 @@ FoxtrickFlagCollectionToMap = {
                     }
                 } else if (currentNode.nodeName == 'P') {
                     // not a flag, flush the buffer 
-                    this.createAndInsertMap(document, countryIds, mapId++, divElement, currentNode);
+                    this.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
                     countryIds = new Array();
                 }
             }
-            this.createAndInsertMap(document, countryIds, mapId++, divElement, null);
+            this.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
         }
 
     },
@@ -533,15 +530,15 @@ FoxtrickFlagCollectionToMap = {
             var offset=0;
             // uk hack
             if(ukIds != 4) {  //only if not added before
-                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_world_gb_cy.png"> ';}
-                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_world_gb_en.png"> ';}
-                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_world_gb_nie.png"> ';}
-                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_world_gb_sc.png"> ';}
+                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_cy.png"> ';}
+                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_en.png"> ';}
+                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_nie.png"> ';}
+                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_sc.png"> ';}
 			}
             // yu hack
 			if(yuIds != 2) {
-                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_world_rs.png"> ';}
-                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_world_me.png">';}
+                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_rs.png"> ';}
+                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_me.png">';}
             }
         }
         return cImgString;
@@ -575,15 +572,15 @@ FoxtrickFlagCollectionToMap = {
             var offset=0;
             // uk hack
             if(ukIds != 4) {  //only if not added before
-                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_europe_gb_cy.png"> ';}
-                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_europe_gb_en.png"> ';}
-                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_europe_gb_nie.png"> ';}
-                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_europe_gb_sc.png"> ';}
+                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_cy.png"> ';}
+                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_en.png"> ';}
+                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_nie.png"> ';}
+                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_sc.png"> ';}
 			}
             // yu hack
 			if(yuIds != 2) {
-                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_europe_rs.png"> ';}
-                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/maps/chart_europe_me.png">';}
+                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_rs.png"> ';}
+                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_me.png">';}
             }
         }
         return cImgString;

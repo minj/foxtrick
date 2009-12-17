@@ -57,10 +57,11 @@ var FoxtrickReadHtPrefs = {
 			this.codes['85']='sq';
 			this.codes['83']='mk';
 			this.codes['15']='zh_CN'
+			this.codes['113']='fur'
+			this.codes['55']='vi'
 			
 			// follwoing don't have an own locale file yet
 	/*
-	<option value="113">Furlan</option>
 	<option value="90">Georgian</option>
 	<option value="86">Kyrgyz</option>
 	<option value="75">?????</option> Farsi
@@ -72,7 +73,7 @@ var FoxtrickReadHtPrefs = {
    },
 
     run : function(page, doc ) {  
-
+	try{
 		if (doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {
 		
 			var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
@@ -81,15 +82,19 @@ var FoxtrickReadHtPrefs = {
 			
 			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
 			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+			
+			var path = "hattricklanguages/language[@name='" + this.codes[langval] + "']";
+			var langname = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "desc");
+					
 			var mainBody = doc.getElementById('mainBody');	
 			var alertdiv=doc.createElement('div');
 			alertdiv.setAttribute('class','alert');
 			alertdiv.setAttribute('id','idFoxtrickLocaleChanged');
 			alertdiv.setAttribute('style', 'margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
-			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+this.codes[langval]));
+			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+langname));
 			mainBody.insertBefore(alertdiv,mainBody.firstChild);
-			
-	    }
+		}
+	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 	
 	change : function(page, doc ) {
@@ -189,7 +194,6 @@ var FoxtrickMyHT = {
 				a.href="javascript:void();";
 				a.innerHTML='<strong>'+Foxtrickl10n.getString("FoxtrickMyHtSetChanged")+'</strong>';
 				a.addEventListener( "click", FoxtrickMyHT.ShowChanged, false );
-				FoxtrickMyHT.Close.doc=doc;
 				p.appendChild(a);				
 				
 				var a=doc.createElement('a');
@@ -197,7 +201,6 @@ var FoxtrickMyHT = {
 				a.innerHTML=Foxtrickl10n.getString("Close");
 				a.addEventListener( "click", FoxtrickMyHT.Close, false );
 				a.setAttribute('style','float:right');
-				FoxtrickMyHT.Close.doc=doc;
 				p.appendChild(a);				
 				
 				alertdiv.appendChild(p);
@@ -276,8 +279,7 @@ var FoxtrickMyHT = {
 		FoxtrickMyHT.NewModules = new Array();
 						
 		var curVersion = FoxtrickPrefs.getString("curVersion"); 
-		var xmlresponse = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htversions.xml");				
-		var versions = Foxtrick.XML_evaluate(xmlresponse,  "hattrickversions/version", "name", "code");
+		var versions = Foxtrick.XML_evaluate(Foxtrick.XMLData.htversionsXML ,  "hattrickversions/version", "name", "code");
 		var oldVersion = versions[versions.length-2][1];
 		
 		for ( var i in Foxtrick.modules ) {

@@ -20,9 +20,9 @@ var FoxtrickStaffMarker = {
 											"background-color:white; color:green;", //LA
 											"background-color:green; color:white;", //CHPP
 											"background-color:#7BB300;", //editor
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //foxtrick-dev
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 24px;", //chpps
-											"background-image: url('chrome://foxtrick/content/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //hty_staff
+											"background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //foxtrick-dev
+											"background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 24px;", //chpps
+											"background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //hty_staff
 											"background-color:white; color:black;", //flag
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
                                             ),
@@ -342,29 +342,8 @@ var FoxtrickStaffMarker = {
     try {    
 			// not on open new thread
 			if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
-			
-			try {
-			if (this.hty_staff==null){
-				this.hty_staff = new Array();
-				var req = new XMLHttpRequest();
-				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
-				req.send(null);
-				if (req.status == 200) {
-					//Foxtrick.dump(req.responseText+'\n');
-					var frag = doc.createElement('dummy');
-					frag.innerHTML = req.responseText;
-					var htyusers = frag.getElementsByTagName('user');
-					for (var i=0;i<htyusers.length;++i) {
-						this.hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
-						//Foxtrick.dump(this.hty_staff[i]+' ')
-					}
-					Foxtrick.dump('hty_staff loaded\n')
-				}
-				else {Foxtrick.dump('no connection to hty\n'); }				
-			}
-			}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
-			
-		// getting userids and colors
+						
+			// getting userids and colors
 			var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
             if (!utext)
 				utext = this.OPTION_TEXTS_DEFAULT_VALUES[7];

@@ -161,26 +161,26 @@ var FoxtrickPreferencesDialog = {
 
         var htLanguagesXml = doc.implementation.createDocument("", "", null);
         htLanguagesXml.async = false;
-        htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
+        htLanguagesXml.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htlang.xml", "text/xml");
         var itemToSelect=FoxtrickPreferencesDialog.fillListFromXml("htLanguagePopup", "htLanguage-", htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
         document.getElementById("htLanguage").selectedIndex=itemToSelect;
 
         var htCurrencyXml = document.implementation.createDocument("", "", null);
         htCurrencyXml.async = false;
-        htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+        htCurrencyXml.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcurrency.xml", "text/xml");
         var itemToSelect2=FoxtrickPreferencesDialog.fillListFromXml("htCurrencyPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
         document.getElementById("htCurrency").selectedIndex=itemToSelect2;
 
         var htDateFormatXml = document.implementation.createDocument("", "", null);
         htDateFormatXml.async = false;
-        htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
+        htDateFormatXml.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htdateformat.xml", "text/xml");
         var itemToSelect3=FoxtrickPreferencesDialog.fillListFromXml("htDateformatPopup", "htDateformat-", htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
         document.getElementById("htDateformat").selectedIndex=itemToSelect3;
 
 
         var htCountryXml = document.implementation.createDocument("", "", null);
         htCountryXml.async = false;
-        htCountryXml.load("chrome://foxtrick/content/htlocales/htcountries.xml", "text/xml");
+        htCountryXml.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcountries.xml", "text/xml");
         var itemToSelect4=FoxtrickPreferencesDialog.fillListFromXml("htCountryPopup", "htCountry-", htCountryXml, "country", "name", "name", FoxtrickPrefs.getString("htCountry"));
         document.getElementById("htCountry").selectedIndex=itemToSelect4;
 
@@ -230,7 +230,7 @@ var FoxtrickPreferencesDialog = {
 
         var htCurrencyXml = document.implementation.createDocument("", "", null);
         htCurrencyXml.async = false;
-        htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+        htCurrencyXml.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcurrency.xml", "text/xml");
         var itemToSelect2=FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
         document.getElementById("htCurrencyTo").selectedIndex=itemToSelect2;
 
@@ -436,7 +436,7 @@ var FoxtrickPreferencesDialog = {
 
 		var htVersionsXml = document.implementation.createDocument("", "", null);
         htVersionsXml.async = false;
-        htVersionsXml.load("chrome://foxtrick/content/htlocales/htversions.xml", "text/xml");
+        htVersionsXml.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htversions.xml", "text/xml");
         var itemToSelect3=FoxtrickPreferencesDialog.fillListFromXml("htOldVersionPopup", "htVersion-", htVersionsXml, "version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
         document.getElementById("htOldVersion").selectedIndex=itemToSelect3;
 */
@@ -528,7 +528,7 @@ var FoxtrickPreferencesDialog = {
 		var modules_list = doc.getElementById( "about_list" );
 		modules_list.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
 
-		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
+		var xmlresponse = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/foxtrick_about.xml");
 
 		var vbox= doc.createElement("vbox");
 		var label= doc.createElement("label");
@@ -696,14 +696,14 @@ var FoxtrickPreferencesDialog = {
 
         var htCountryXml_c = document.implementation.createDocument("", "", null);
         htCountryXml_c.async = false;
-        htCountryXml_c.load("chrome://foxtrick/content/htlocales/htcountries.xml", "text/xml");
+        htCountryXml_c.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcountries.xml", "text/xml");
         FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(document.getElementById("htCountry").value,htCountryXml_c)));
 
         //Currency Converter
 
         var htCurrencyXml_c = document.implementation.createDocument("", "", null);
         htCurrencyXml_c.async = false;
-        htCurrencyXml_c.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+        htCurrencyXml_c.load("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcurrency.xml", "text/xml");
 
         FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
         FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"new",htCurrencyXml_c));
@@ -1157,7 +1157,7 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
-        window.open("chrome://foxtrick/content/preferences-dialog.xul",
+        window.open("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/preferences-dialog.xul",
                       "",
                       "centerscreen, chrome, modal, resizable=yes");
 		FoxtrickMain.init();
@@ -1205,7 +1205,7 @@ FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
 }
 
 FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where ) {
-    openDialog("chrome://foxtrick/content/preferences-help.xul",
+    openDialog("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/preferences-help.xul",
                "FoxTrick Help",
                "titlebar=no, modal, left=" + (where.boxObject.screenX + 20) + ", top=" + (where.boxObject.screenY - 10),
                HelpTitle,

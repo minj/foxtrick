@@ -74,16 +74,6 @@ var FoxtrickPrefs = {
 };
 
 
-// Open a port to the extension
-var port2 = chrome.extension.connect({name: "ftpref-query"});
-
-port2.onMessage.addListener(function(msg) {   
-    FoxtrickPrefs.pref = msg.pref;
-});
-
-port2.postMessage({reqtype: "pref"});
-
-
 // ---------------------- common function --------------------------------------
 
 FoxtrickPrefs.setModuleEnableState = function( module_name, value ) {

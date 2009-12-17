@@ -1,4 +1,5 @@
 <html>
+  <script type="text/javascript" src="jkl-parsexml.js"></script>
   <script>
   
   	try{
@@ -17,10 +18,42 @@
 	htlangxhr.open("GET", listUrl, false);
 	htlangxhr.send();
 	
-	listUrl = chrome.extension.getURL("htlocales/htcountries.xml");
-	var htcountriesxhr = new XMLHttpRequest();
-	htcountriesxhr.open("GET", listUrl, false);
-	htcountriesxhr.send();
+	listUrl = chrome.extension.getURL("htlocales/htcurrency.xml");
+	var htcurrencyxhr = new XMLHttpRequest();
+	htcurrencyxhr.open("GET", listUrl, false);
+	htcurrencyxhr.send();
+
+	listUrl = chrome.extension.getURL("htlocales/htNTidList.xml");
+	var htNTidListxhr = new XMLHttpRequest();
+	htNTidListxhr.open("GET", listUrl, false);
+	htNTidListxhr.send();
+
+	listUrl = chrome.extension.getURL("htlocales/htversions.xml");
+	var htversionsxhr = new XMLHttpRequest();
+	htversionsxhr.open("GET", listUrl, false);
+	htversionsxhr.send();
+	
+	listUrl = chrome.extension.getURL("htlocales/htdateformat.xml");
+	var htdateformatxhr = new XMLHttpRequest();
+	htdateformatxhr.open("GET", listUrl, false);
+	htdateformatxhr.send();
+
+	listUrl = chrome.extension.getURL("htlocales/foxtrick_about.xml");
+	var aboutxhr = new XMLHttpRequest();
+	aboutxhr.open("GET", listUrl, false);
+	aboutxhr.send();
+
+	// worlddetails
+	var xml = new JKL.ParseXML( "htlocales/worlddetails.xml" );
+	var data = xml.parse();
+	var League = {};
+	var countryid_to_leagueid = {};
+	
+	// reindex: by leagueid and countryid
+	for (var i=0; i<data.HattrickData.LeagueList.League.length; i++) {
+		League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
+		countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
+	}
 
 	} catch(e) {alert('back init:' +e)}
 
@@ -39,8 +72,26 @@ chrome.extension.onConnect.addListener(function(port) {
 		else if (msg.reqtype == "htlang") {  
 			port.postMessage({htlang: htlangxhr.responseText});
         }
-		else if (msg.reqtype == "htcountries") {  
-			port.postMessage({htcountries: htcountriesxhr.responseText});
+		else if (msg.reqtype == "htcurrency") {  
+			port.postMessage({htcurrency: htcurrencyxhr.responseText});
+        }
+		else if (msg.reqtype == "htNTidList") {  
+			port.postMessage({htNTidList: htNTidListxhr.responseText});
+        }
+		else if (msg.reqtype == "htversions") {  
+			port.postMessage({htversions: htversionsxhr.responseText});
+        }
+		else if (msg.reqtype == "htdateformat") {  
+			port.postMessage({htdateformat: htdateformatxhr.responseText});
+        }
+		else if (msg.reqtype == "about") {  
+			port.postMessage({about: aboutxhr.responseText});
+        }
+		else if (msg.reqtype == "League") {  
+			port.postMessage({League: League});
+        }
+		else if (msg.reqtype == "countryid_to_leagueid") {  
+			port.postMessage({countryid_to_leagueid: countryid_to_leagueid});
         }
 	  } catch(e) {alert('error msg.reqtype : '+msg.reqtype+' '+e);} 
 	});

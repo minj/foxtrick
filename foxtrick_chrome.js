@@ -301,13 +301,14 @@ Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents 
 	var isStandard = Foxtrick.isStandardLayout(doc);
 	var isRTL = Foxtrick.isRTLLayout(doc);
 	for ( var i in Foxtrick.ht_pages ) {
-		if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) { 
+		if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {  
 			// on a specific page, run all handlers
 			for ( var j in Foxtrick.run_on_page[i] ) { 
 				var module = Foxtrick.run_on_page[i][j];  
 				// if module has an css) function and is enabled
 				if ( module.MODULE_NAME ) {  
 					if ( !Foxtrick.isModuleEnabled( module ) ) continue;
+					Foxtrick.dump(module.MODULE_NAME);
 					
 					if ( module.OLD_CSS && module.OLD_CSS!="") {
 						Foxtrick.unload_css_permanent ( module.OLD_CSS );
@@ -347,7 +348,8 @@ Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents 
 					if (module.OPTIONS_CSS) {
 						for (var k=0; k<module.OPTIONS_CSS.length;++k ) {
 							if ( Foxtrick.isModuleEnabled( module ) && Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
-							{	if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
+							{	Foxtrick.dump(module.OPTIONS_CSS[k]+'\n');
+								if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
 							 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
 											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ;
 									Foxtrick.load_css_permanent ( module.OPTIONS_CSS[k] ) ;
@@ -1029,10 +1031,28 @@ Foxtrick.getUniqueDayfromCellHTML = function( date ) {
 }
 
 
-Foxtrick.copyStringToClipboard = function ( string ) {
-     return null; //xxx
-	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
-	gClipboardHelper.copyString(string);
+    Clipboard = {};
+    Clipboard.utilities = {};
+
+    Clipboard.utilities.createTextArea = function(value) {
+        var txt = document.createElement('textarea');
+        txt.style.position = "absolute";
+        txt.style.left = "-100%";
+
+        if (value != null)
+            txt.value = value;
+
+        document.body.appendChild(txt);
+        return txt;
+    };
+
+Foxtrick.copyStringToClipboard = function ( data ) {
+        if (data == null) return;
+
+        var txt = Clipboard.utilities.createTextArea(data);
+        txt.select();
+        document.execCommand('Copy');
+        document.body.removeChild(txt);
 }
 
 Foxtrick.isFF35 = function ( doc ) {
@@ -1125,10 +1145,15 @@ Foxtrick.loadXmlIntoDOM = function(url) {  return; // xxx
 
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
 	var result = new Array();
-	if (xmlresponse) {
-		var nodes = xmlresponse.evaluate(basenodestr, xmlresponse, null, 7 , null);
-		for (var i = 0; i < nodes.snapshotLength; i++) {
-			var node = nodes.snapshotItem(i);
+	if (xmlresponse) { 
+		var splitpath = basenodestr.split(/\/|\[/g); 
+		var base = xmlresponse;
+		for (var j=0;j<splitpath.length-1;++j) { 
+				base = base.getElementsByTagName(splitpath[j])[0];
+		}
+		var nodes = base.getElementsByTagName(splitpath[j]);
+		for (var i = 0; i < nodes.length; i++) {
+			var node = nodes[i];
 			var label = node.getAttribute(labelstr);
 			var value = null;
 			var value2=null;
@@ -1146,7 +1171,8 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 }
 
 
-Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
+Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) { 
+			
 		//var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
 		var xml=document.createElement('xml');
 		xml.innerHTML=xmldoc;
@@ -1201,6 +1227,56 @@ Foxtrick.getSelectBoxFromXML = function (doc,xmlfile, basenodestr, labelstr, val
 
 	return selectbox;
 }
+
+Foxtrick.getSelectBoxFromXML2 = function (doc,xmlfile, basenodestr, labelstr, valuestr, selected_value_str) {
+
+	var selectbox = doc.createElement("select");
+	
+	var xml = doc.createElement('xml');
+	xml.innerHTML = xmlfile;
+	var versions = Foxtrick.XML_evaluate(xml, basenodestr, labelstr, valuestr);
+
+	var indexToSelect=0;
+	for (var i = 0; i < versions.length; i++) {
+		var label = versions[i][0];
+		var value = versions[i][1];
+
+		var option = doc.createElement("option");
+		option.setAttribute("value",value);
+		option.innerHTML=label;
+		selectbox.appendChild(option);
+
+		if (selected_value_str==value)
+			indexToSelect=i;
+	}
+	selectbox.selectedIndex=indexToSelect;
+
+	return selectbox;
+}
+
+Foxtrick.getSelectBoxFromXML3 = function (doc,xmlarray, valuestr, selected_value_str) {
+
+	var selectbox = doc.createElement("select");
+
+	var indexToSelect=0,j=0;
+	for (var i in xmlarray) {
+		var label = xmlarray[i][valuestr];
+		var value = xmlarray[i][valuestr];
+
+		var option = doc.createElement("option");
+		option.setAttribute("value",value);
+		option.innerHTML=label;
+		selectbox.appendChild(option);
+
+		if (selected_value_str==value)
+			indexToSelect=j;
+		j++;
+	}
+	selectbox.selectedIndex=indexToSelect;
+
+	return selectbox;
+}
+
 
 Foxtrick.get_url_param = function (url, name){
 	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");

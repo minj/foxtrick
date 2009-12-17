@@ -136,7 +136,6 @@ var FoxtrickTeamPopupLinks = {
 				if (ownleagueid != null) {
 					this.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
 				}
-				FoxtrickTeamPopupLinks.popupshow.doc=doc;
 				this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
 						               				
 				this.Target = '_self';
@@ -196,9 +195,9 @@ var FoxtrickTeamPopupLinks = {
 	},
   
 
-	popupshow : function( event) { 
+	popupshow : function( evt ) { 
 	try { 
-		var org_link = event.target;
+		var org_link = evt.target;
 		var show_more = false;
 		if (org_link.getAttribute('more')){//)href.search('javascript')!=-1) {
 			//Foxtrick.dump(org_link.org_link+'\n');
@@ -206,9 +205,9 @@ var FoxtrickTeamPopupLinks = {
 			if ( org_link.getAttribute('more')=='true') show_more=true;
 			org_link = org_link.parentNode.parentNode.parentNode.parentNode.previousSibling;
 		}
-		var doc = event.view.document; //FoxtrickTeamPopupLinks.popupshow.doc;
+		var doc = evt.target.ownerDocument; 
 		if (org_link.style==null) org_link.setAttribute('style','display:inline');
-  		event.target.parentNode.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
+  		evt.target.parentNode.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
         var value = FoxtrickHelper.getTeamIdFromUrl(org_link.href);
 		var userlink = org_link.href.search(/Club\/Manager\/\?UserID=/i)!=-1 
 															&& org_link.parentNode.id.search(/foxtrick_alltidspan/i)==-1

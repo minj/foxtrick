@@ -156,6 +156,9 @@ var FoxtrickConfirmStaffChange = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('staff'), 
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.4.9.1",
+	LATEST_CHANGE:"Shows a confirmation box for hiring or fireing staff.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
     init : function() {
     },

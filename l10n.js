@@ -38,13 +38,3 @@ var Foxtrickl10n = {
         return '';
     },
 };
-
-// Open a port to the extension
-var port = chrome.extension.connect({name: "ftproperties-query"});
-
-port.onMessage.addListener(function(msg) {
-    Foxtrickl10n.properties = msg.properties;
-});
-
-port.postMessage({reqtype: "properties"});
-

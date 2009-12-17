@@ -54,7 +54,6 @@ var FoxtrickSeasonStats = {
 
 		
 		selectbox.addEventListener('change',this.SelectBox_Select,false);
-		this.SelectBox_Select.doc=doc;
 		
 		var s=this._season;
 		for (var ls=local_season;ls>0;--ls) {		

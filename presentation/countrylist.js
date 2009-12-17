@@ -15,15 +15,13 @@ var FoxtrickCountyList = {
                         'help_contact'
                         ),
 	DEFAULT_ENABLED : true,
-    htCountriesXml : null,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Bring back select boxes on disabled SelectBoxes option",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.Fix,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/CountyList.css",
 
     init : function() {
-        this.initHtCountries();
     },
 
 	run : function( page, doc ) {
@@ -180,15 +178,6 @@ var FoxtrickCountyList = {
 			this.run( page, doc );
 		}
 	},
-
-    initHtCountries: function ()
-	{
-		try {
-			this.htCountriesXml = Foxtrick.loadXmlIntoDOM("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcountries.xml");
-		} catch (e) {
-			Foxtrick.dump('countrylist.js initHTCountries: '+e+"\n");
-		}
-	},
     
     _placeCountry: function (page, doc) {
         var cntr = doc.getElementById( 'ft_cntr_fix' );
@@ -215,11 +204,11 @@ var FoxtrickCountyList = {
             for (var i = start; i < countries; i++) {
                 if (i == selected) id_sel = options[i].value;
                 try {
-                    var country = options[i].value;
-                    var htname = options[i].text;
-
-					var path = 'hattrickcountries/country[@name="' + htname + '"]';
-					htname = Foxtrick.xml_single_evaluate(this.htCountriesXml, path, "htname");
+                    if (start>=10) var league = options[i].value;
+					else var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value];
+					var htname = options[i].text;
+					//Foxtrick.dump(start+' '+league+' '+htname+'\n');
+                    htname = Foxtrick.XMLData.League[league].LeagueName;
 					if (!htname) return -1;
 
                 } catch (exml) {

@@ -7,11 +7,14 @@
  * Each should implement an init() method, which will be called only once.
  * Register your page handlers in it.
  */
-try{
+ 
 if (!Foxtrick) var Foxtrick={};
  
 Foxtrick.modules = [
-                    FoxtrickForumStripHattrickLinks,
+                    Foxtrick.XMLData,
+					
+					Foxtrick.Matches,
+					FoxtrickForumStripHattrickLinks,
 					FoxtrickForumChangePosts,
                     FoxtrickShowForumPrefButton,
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
@@ -78,8 +81,8 @@ Foxtrick.modules = [
                     FoxtrickLinksChallenges,
                     FoxtrickLinksEconomy,
                     FoxtrickLinksYouthOverview,
-                    FoxtrickLinksYouthTraining,  // new but include
-                    FoxtrickLinksYouthPlayerDetail, // new but include
+                    FoxtrickLinksYouthTraining,  
+                    FoxtrickLinksYouthPlayerDetail, 
                     FoxtrickLinksArena,
                     FoxtrickLinksCoach,
                     FoxtrickLinksPlayerDetail,
@@ -105,6 +108,7 @@ Foxtrick.modules = [
                     FoxtrickSkillColoring,
                     FoxtrickSkinPlugin,
                     FoxtrickMatchIncome,
+                    FoxtrickHelper,
                     FoxtrickLargeFlags,
                     FoxtrickTeamSelectBox,
                     FoxtrickSeniorTeamShortCuts,
@@ -138,6 +142,7 @@ Foxtrick.modules = [
                     FoxtrickHighlightCupwins,
                     FoxtrickElectionTable,
                     FoxtrickSkillTranslation,
+                    FoxtrickOnPagePrefs,
                     FoxtrickLineupShortcut,
                     //FoxtrickSingleline2,
                     FoxtrickYouthPromotes,
@@ -150,5 +155,3 @@ Foxtrick.modules = [
 					//FoxtrickTransferSearchResultsSort, //not finished
 					FoxtrickLeagueAndMatchChat,  
                     ];
-					
-} catch(e) {alert('module_list'+e);}

@@ -16,7 +16,6 @@ var FoxtrickTransferSearchResultsSort = {
     //OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
 	//CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/adultskilltable.css",
 	
-	htLanguagesXml : null,
 	
     init : function() {
     },
@@ -32,7 +31,6 @@ var FoxtrickTransferSearchResultsSort = {
 				tablediv.setAttribute('id','ft_adultskilltable');
 				var h2 = doc.createElement('h2');
 				h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-				FoxtrickTransferSearchResultsSort.HeaderClick.doc=doc;
 				h2.addEventListener( "click", this.HeaderClick, true );						
 				h2.setAttribute('class','ft_boxBodyCollapsed');
 				tablediv.appendChild(h2);
@@ -51,10 +49,10 @@ var FoxtrickTransferSearchResultsSort = {
 	sortlinksfunction: function(a,b) {return a.cells[FoxtrickTransferSearchResultsSort.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickTransferSearchResultsSort.s_index].getElementsByTagName('a')[0].innerHTML);},
 	sortagefunction: function(a,b) {return a.cells[FoxtrickTransferSearchResultsSort.s_index].getAttribute('age').localeCompare(b.cells[FoxtrickTransferSearchResultsSort.s_index].getAttribute('age'));},
 
-	sortClick : function(ev) {
+	sortClick : function(evt) {
 	try{
 		Foxtrick.dump('search sort\n');
-		var doc = ev.originalTarget.ownerDocument;
+		var doc = evt.target.ownerDocument;
 		var tablediv = doc.getElementById('ft_adultskilltable');
 		var table = tablediv.getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);
