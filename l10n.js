@@ -5,16 +5,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 var Foxtrickl10n = {
 	properties:null,
+	properties_default:null,
 	
     init : function() {	
     },
 	
     getString : function( str ) { 
 	try{
-		var string_regexp = new RegExp( '\n'+str+'=(.+)\n', "i" );
-		if (Foxtrickl10n.properties.search(string_regexp)!=-1) value=  Foxtrickl10n.properties.match(string_regexp)[1];
-		//else if (myres_default.search(string_regexp)!=-1) value = this._strings_bundle_default.match(string_regexp)[1];		
-		else return str;
+		var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
+		if (Foxtrickl10n.properties.search(string_regexp)!=-1) value =  Foxtrickl10n.properties.match(string_regexp)[1];
+		else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1) value =  Foxtrickl10n.properties_default.match(string_regexp)[1];
+		else value = str;
 		return value;
 	}catch(e){alert('getString '+e);}
     },

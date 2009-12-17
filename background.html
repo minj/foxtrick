@@ -2,16 +2,35 @@
   <script type="text/javascript" src="jkl-parsexml.js"></script>
   <script>
   
-  	try{
-	listUrl = chrome.extension.getURL("default.pref");
-	var prefxhr = new XMLHttpRequest();
-	prefxhr.open("GET", listUrl, false);
-	prefxhr.send();
-
+try{
+/*	try{
+		listUrl = chrome.extension.getURL("user.pref");
+		var prefxhr = new XMLHttpRequest();
+		prefxhr.open("GET", listUrl, false);
+		prefxhr.send();
+	}
+	catch() { console.log('ft: get default prefs')
+	*/	listUrl = chrome.extension.getURL("default.pref");
+		var prefxhr = new XMLHttpRequest();
+		prefxhr.open("GET", listUrl, false);
+		prefxhr.send();
+	/*}*/
+	
+		
+	try{
+		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
+		var lang =  prefxhr.responseText.match(string_regexp)[1];
+		listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
+		var propertiesxhr = new XMLHttpRequest();
+		propertiesxhr.open("GET", listUrl, false);
+		propertiesxhr.send();	
+	}
+	catch(e) { }	
+	
 	listUrl = chrome.extension.getURL("foxtrick.properties");
-	var propertiesxhr = new XMLHttpRequest();
-	propertiesxhr.open("GET", listUrl, false);
-	propertiesxhr.send();
+	var properties_defaultxhr = new XMLHttpRequest();
+	properties_defaultxhr.open("GET", listUrl, false);
+	properties_defaultxhr.send();
 
 	listUrl = chrome.extension.getURL("htlocales/htlang.xml");
 	var htlangxhr = new XMLHttpRequest();
@@ -63,12 +82,16 @@
 chrome.extension.onConnect.addListener(function(port) { 
 	port.onMessage.addListener(function(msg) {  //alert(msg.reqtype);
 	  try {   
-		if (msg.reqtype == "properties") {
-           port.postMessage({properties: propertiesxhr.responseText});
-        }
-	    else if (msg.reqtype == "pref") {
+	    if (msg.reqtype == "pref") {
            port.postMessage({pref: prefxhr.responseText});
         } 
+		else if (msg.reqtype == "properties") {
+           if (propertiesxhr.responseText) port.postMessage({properties: propertiesxhr.responseText});
+		   else port.postMessage({properties: ''});
+        }
+		else if (msg.reqtype == "properties_default") {
+           port.postMessage({properties_default: properties_defaultxhr.responseText});
+        }
 		else if (msg.reqtype == "htlang") {  
 			port.postMessage({htlang: htlangxhr.responseText});
         }

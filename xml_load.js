@@ -28,31 +28,6 @@ Foxtrick.XMLData = {
 	
 	init : function() {
 	try{
-	/*	this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htlang.xml");
-		this.htCurrencyXml = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcurrency.xml");
-		this.htNTidsXml = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htNTidList.xml");
-		this.htversionsXML = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htversions.xml");
-		this.htdateformat = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htdateformat.xml");
-		this.aboutXML = Foxtrick.LoadXML("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/foxtrick_about.xml");	
-				
-		// worlddetails
-		var xml = new JKL.ParseXML( "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/worlddetails.xml" );
-		var data = xml.parse();
-		
-		// reindex: by leagueid and countryid
-		for (var i=0; i<data.HattrickData.LeagueList.League.length; i++) {
-			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
-			this.countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
-		}
-	
-		for (var i in this.League){
-			//	dump(this.League[i].LeagueID+' ' +i+'\t');
-		}
-
-		for (var i in this.countryid_to_leagueid){
-				//dump(this.countryid_to_leagueid[i]+' ' +i+'\n');
-		}
-		*/
 	} catch(e){Foxtrick.dump('Foxtrick.XMLData.init: '+e+'\n');}
 	},
 	
@@ -105,6 +80,13 @@ Foxtrick.XMLData = {
 }
 
 // Open a port to the extension
+// prefs
+var port2 = chrome.extension.connect({name: "ftpref-query"});
+port2.onMessage.addListener(function(msg) {   
+    FoxtrickPrefs.pref = msg.pref;
+});
+port2.postMessage({reqtype: "pref"});
+
 // properties
 var port = chrome.extension.connect({name: "ftproperties-query"});
 port.onMessage.addListener(function(msg) {
@@ -112,12 +94,12 @@ port.onMessage.addListener(function(msg) {
 });
 port.postMessage({reqtype: "properties"});
 
-// prefs
-var port2 = chrome.extension.connect({name: "ftpref-query"});
-port2.onMessage.addListener(function(msg) {   
-    FoxtrickPrefs.pref = msg.pref;
+// properties
+var port0 = chrome.extension.connect({name: "ftproperties-query"});
+port0.onMessage.addListener(function(msg) {
+    Foxtrickl10n.properties_default = msg.properties_default;
 });
-port2.postMessage({reqtype: "pref"});
+port0.postMessage({reqtype: "properties_default"});
 
 // get htlang
 var port3 = chrome.extension.connect({name: "ftpref-query"});
