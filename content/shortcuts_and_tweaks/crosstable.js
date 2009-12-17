@@ -370,9 +370,9 @@ var FoxtrickCrossTable = {
             Foxtrick.dump(league+'\n');
 
             if (!Foxtrick.isStandardLayout( doc ) )
-            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].textContent.split('»')[1]);
+            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].getElementsByTagName('a')[1].innerHTML);
             else
-            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].textContent.split('»')[1]);
+            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].getElementsByTagName('a')[1].innerHTML);
             Foxtrick.dump('['+country+']\n');
             var leagues = 0;
             try {

@@ -121,17 +121,14 @@ FoxtrickFlagCollectionToMap = {
         this.setupCountryCodes();
     },
 
-    run : function(page, document) {
+    run : function(page, doc) {
         
-        var path = "//div[@class='mainBox']";
-        var result = document.evaluate(path, document.documentElement, null,
-                                       Components.interfaces.nsIDOMXPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-        
-		this.own_countryid = FoxtrickHelper.findCountryId(document.getElementById('teamLinks'));
+        this.own_countryid = FoxtrickHelper.findCountryId(doc.getElementById('teamLinks'));
 		
         var mapId = 0;
-        for (var i=0; i< result.snapshotLength; i++) {
-            var divElement = result.snapshotItem(i);
+		var mainbox = Foxtrick.getElementsByClass('mainBox', doc);
+        for (var i=0; i< mainbox.length; i++) {
+            var divElement = mainbox[i];
         
             var countryIds = new Array();
             
@@ -144,11 +141,11 @@ FoxtrickFlagCollectionToMap = {
                     }
                 } else if (currentNode.nodeName == 'P') {
                     // not a flag, flush the buffer 
-                    this.createAndInsertMap(document, countryIds, mapId++, divElement, currentNode);
+                    this.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
                     countryIds = new Array();
                 }
             }
-            this.createAndInsertMap(document, countryIds, mapId++, divElement, null);
+            this.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
         }
 
     },

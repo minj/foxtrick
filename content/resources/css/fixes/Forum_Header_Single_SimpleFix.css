@@ -3,6 +3,6 @@
 
 /* broken dsign workaround*/
 div.cfHeader>div[class="float_right right"] 
-{background: #999999 !important;}
+{background: inherit;/* #999999 !important;*/}
 
 }
