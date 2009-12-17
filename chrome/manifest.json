@@ -8,6 +8,7 @@
    },
    "content_scripts": [ {
       "js": [ "const.js", "module.js", "helper.js", "l10n.js", "preferences.js", 
+	"xml_load.js",
 	 "stats.js",
     "redirections.js",
 	"read_ht_pref_changes.js",
@@ -132,5 +133,5 @@
    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCo3LJa8LNXdkX8yF6LdJQ3Gthm2NjtKvaVjS0L//ChO2008XuV6HeKtDw9fJkmsp0KdV8HpqJ8irmREpxx/DZLANh/fQ2PMDid7LShcEwgzrq3qlchKoI4pGUd/yBiQTrAzgXiiW6jB8DBbaTPpEBwCOsfgfyE85qaa3WkC11bvwIDAQAB",
    "name": "Foxtrick",
    "permissions": [ "tabs" ],
-   "version": "1.0"
+   "version": "0.4.9.1"
 }

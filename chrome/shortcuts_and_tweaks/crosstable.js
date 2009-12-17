@@ -14,15 +14,11 @@ var FoxtrickCrossTable = {
     OPTION_TEXTS : true,
     OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1","",""),
     OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
-	htCountriesXml : null,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"fix (away goals counted twice)",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _week : 14,
-    init : function() {
-        this.initHtCountries();
-    },
 
     run : function( page, doc ) {
         var tbl_cross = (doc.getElementById("ft_cross")!=null);
@@ -254,7 +250,6 @@ var FoxtrickCrossTable = {
             divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_cross");
             heading.addEventListener( "click", this.HeaderClick_Cross, false );
-            this.HeaderClick_Cross.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             var crosstable=doc.createElement('table');
@@ -337,7 +332,6 @@ var FoxtrickCrossTable = {
             divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_graph");
             heading.addEventListener( "click", this.HeaderClick_Graph, false );
-            this.HeaderClick_Graph.doc=doc;
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             //Foxtrick.dump('\n\n>'+week+'<\n');
@@ -376,14 +370,17 @@ var FoxtrickCrossTable = {
             Foxtrick.dump(league+'\n');
 
             if (!Foxtrick.isStandardLayout( doc ) )
-            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].textContent.split('»')[1]);
+            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].getElementsByTagName('a')[1].innerHTML);
             else
-            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].textContent.split('»')[1]);
+            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].getElementsByTagName('a')[1].innerHTML);
             Foxtrick.dump('['+country+']\n');
             var leagues = 0;
             try {
-                var path = "hattrickcountries/country[@htname='" + country + "']";
-                leagues = Foxtrick.xml_single_evaluate(this.htCountriesXml, path, "leagues");
+                for (var i in Foxtrick.XMLData.League) 
+					if (country == Foxtrick.XMLData.League[i].LeagueName) {
+					 	leagues = Foxtrick.XMLData.League[i].NumberOfLevels;
+						break;
+					}				
 				if (!leagues) return -1;
             } catch (exml) {
                 Foxtrick.dump('crosstable.js countries: '+exml + "\n");
@@ -482,21 +479,12 @@ var FoxtrickCrossTable = {
         } catch(eee) {Foxtrick.dump('sort: '+eee + '\n');}
 	},
 
-	initHtCountries: function ()
-	{
-		try {
-			//this.htCountriesXml = Foxtrick.loadXmlIntoDOM("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htcountries.xml");
-		} catch (e) {
-			Foxtrick.dump('crosstable.js initHTCountries: '+e+"\n");
-		}
-	},
-
 	HeaderClick_Graph : function(evt) {
         try {
 
             var header = evt.target;
-			var doc=FoxtrickCrossTable.HeaderClick_Graph.doc;
-            var head_class = "ft_ct_head_std";
+			var doc = evt.target.ownerDocument;
+			var head_class = "ft_ct_head_std";
             if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
             if (doc.getElementById('ft_graph').style.display == 'none') {
                 doc.getElementById('ft_graph').style.display = 'block';
@@ -513,8 +501,8 @@ var FoxtrickCrossTable = {
 	HeaderClick_Cross : function(evt) {
         try {
             var header = evt.target;
-			var doc=FoxtrickCrossTable.HeaderClick_Cross.doc;
-            var head_class = "ft_ct_head_std";
+			var doc = evt.target.ownerDocument;
+			var head_class = "ft_ct_head_std";
             if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
             if (doc.getElementById('ft_cross').style.display == 'none') {
                 doc.getElementById('ft_cross').style.display = 'block';

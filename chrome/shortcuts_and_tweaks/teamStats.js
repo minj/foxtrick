@@ -13,6 +13,8 @@ Foxtrick.TeamStats= {
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LATEST_CHANGE:"Fixed pictures missing after multiple filter usage",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	
+	playersxmls:null,
 	latestMatch:0,
 	top11star:0,
 
@@ -43,6 +45,9 @@ Foxtrick.TeamStats= {
 		var num_not_too_old=0;
 		var transferListed=0,reds=0,yellow=0,yellow_2=0,injuryInjured=0,injuryInjuredweeks=0,injuryBruised=0;
 	
+		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
+		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				if (allDivs[i].className!="playerInfo") continue;
 				
@@ -117,6 +122,37 @@ Foxtrick.TeamStats= {
 				var matchday=0;
 				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
+				
+				
+				if (page=='players' && Foxtrick.XMLData.playersxml) {
+				 var playerid = as[0].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				 var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');
+				 for (var j=0; j<playerlist.length; ++j) { 
+					var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
+					if (thisPlayerID==playerid) {
+						var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;	
+						var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
+						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
+						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];	
+						
+						allDivs2.appendChild(doc.createTextNode(' Leadership: '+Leadership+'.'));
+						allDivs2.appendChild(doc.createTextNode(' Experience: '+Experience+'.'));
+						
+						var a=doc.createElement('a');
+						a.href='';
+						a.className ="flag inner"; 
+						
+						var img=doc.createElement('img');
+						var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+						img.setAttribute('style',style); 
+						img.src="/Img/Icons/transparent.gif";
+						
+						a.appendChild(img);
+						as[0].parentNode.insertBefore(a, as[0]);
+						break;
+					}
+				 }
+				}
 		}
 		stars.sort(this.starsortfunction);
 		this.top11star=stars[10]; 

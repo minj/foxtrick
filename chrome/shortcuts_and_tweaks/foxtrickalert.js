@@ -32,21 +32,19 @@ var FoxtrickAlert = {
     	try {  				
 
 			if (this.alertWin) this.closeAlert(true);
-			FoxtrickAlert.foxtrick_showAlert.window = doc.defaultView; 
-			FoxtrickAlert.foxtrick_showAlert.document = doc;
-            var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+			/*var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
 			var mainWindow = wm.getMostRecentWindow("navigator:browser");
 			FoxtrickAlert.foxtrick_showAlert.tab = mainWindow.getBrowser().selectedTab;
-			
+			*/
 			// check new, mail and forum after pageload and show alerts if needed
-			if (doc.getElementById('hattrick')) FoxtrickAlert.checkNews(false);
+			if (doc.getElementById('hattrick')) FoxtrickAlert.checkNews(doc);
             if (doc.getElementById('hattrickNoSupporter')) FoxtrickAlert.showMailAlert(doc);								
 
             // add watch to ticker
 			var ticker = doc.getElementById('ticker');
 			if (ticker) {
-				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNews, true ) ;          
+				doc.getElementById('ticker').addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNewsEvent, true ) ;          
 			}
 
 			} catch (e) {
@@ -67,7 +65,7 @@ var FoxtrickAlert = {
 				//Foxtrick.dump(message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
 				if (num_message > FoxtrickAlert.last_num_message) {						
 					var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
-					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+FoxtrickAlert.foxtrick_showAlert.window.document.location.hostname + "/MyHattrick/Inbox/Default.aspx"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
+					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/MyHattrick/Inbox/Default.aspx"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
 				}	
 				FoxtrickAlert.last_num_message = num_message;
 			}
@@ -78,7 +76,7 @@ var FoxtrickAlert = {
 		if (numforum && Foxtrick.isModuleFeatureEnabled( this, "NewForum" )) { 
 			if (numforum > FoxtrickAlert.last_num_forum && doc.location.pathname.search(/\/Forum\/Default.aspx/)==-1) {
 				var message = String(parseInt(numforum-FoxtrickAlert.last_num_forum))+' '+Foxtrickl10n.getString( "foxtrick.newforumtoyou");
-				FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+FoxtrickAlert.foxtrick_showAlert.window.document.location.hostname + "/Forum/Default.aspx?actionType=refresh"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
+				FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/Forum/Default.aspx?actionType=refresh"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
 			}
 			FoxtrickAlert.last_num_forum = numforum;						
 		}
@@ -87,17 +85,16 @@ var FoxtrickAlert = {
 	} catch (e) {Foxtrick.dump('showMailAlert: '+e+'\n');}
 	},
 	
-    checkNews : function(evt) {
+    checkNewsEvent : function(evt) {
+		var doc = evt.target.ownerDocument;
+		FoxtrickAlert.checkNewsEvent(doc);
+    },
+
+	checkNews : function(doc) {
        try {   
-	    Foxtrick.dump('checkNews\n');
-		if (evt) {
-			var tickerdiv=evt.originalTarget;
-			tickerdiv=tickerdiv.getElementsByTagName('div');
-		}
-		else {
-			var doc = FoxtrickAlert.foxtrick_showAlert.document;
-			var tickerdiv=doc.getElementById('ticker').getElementsByTagName('div');
-		}
+			Foxtrick.dump('checkNews\n');
+			
+			var tickerdiv = doc.getElementById('ticker').getElementsByTagName('div');
             var message="";
 			var href="";
             var elemText = new Array();
@@ -136,10 +133,7 @@ var FoxtrickAlert = {
 
     foxtrick_showAlert: function( ) { 
      try{ 
-	    var window = FoxtrickAlert.foxtrick_showAlert.window;
-		/*Foxtrick.dump('\n -- foxtrick_showAlert --\n');
-		try {Foxtrick.dump('location: '+window.location.href+'\n');}
-		catch(e){Foxtrick.dump('window propertiy not available\n');}
+	    /*Foxtrick.dump('\n -- foxtrick_showAlert --\n');
 		Foxtrick.dump(' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
 		Foxtrick.dump(' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
 		*/
@@ -342,7 +336,7 @@ openAndReuseOneTabPerURL : function(url) {
     }
     else {
       // No browser windows are open, so open a new one.
-      window.open(url);
+      //window.open(url);
     }
   }
 },

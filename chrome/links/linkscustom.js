@@ -410,8 +410,8 @@ var FoxtrickLinksCustom = {
 		
 	delStdLink : function (evt) { 
 		try {
-			var doc = evt.view.document;
-
+			var doc = evt.target.ownerDocument;
+        
 			var key = evt["target"].previousSibling.getAttribute("key");
 			var module_name = evt["target"].previousSibling.getAttribute("module");
 			var par=evt["target"].parentNode;
@@ -425,7 +425,7 @@ var FoxtrickLinksCustom = {
 	
 	delMyLink : function (evt) { 
 		try {
-			var doc = evt.view.document;
+			var doc = evt.target.ownerDocument;
 			var Check = doc.defaultView.confirm(Foxtrickl10n.getString("foxtrick.linkscustom.confirmremove"));
 			if (Check == false) return;
 
@@ -442,7 +442,7 @@ var FoxtrickLinksCustom = {
 	
 	editOldLink : function (evt) { 
 		try {
-			var doc = evt.view.document;			
+			var doc = evt.target.ownerDocument;
 			var baseprefnl = evt["target"]["baseprefnl"];
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
@@ -456,7 +456,7 @@ var FoxtrickLinksCustom = {
 	
 	Export : function (evt) { 
 		try {
-			var doc = evt.view.document;
+			var doc = evt.target.ownerDocument;
 			var baseprefnl = evt["target"]["baseprefnl"];		
 			
 			var locpath=Foxtrick.selectFileSave(doc.defaultView);
@@ -489,7 +489,7 @@ var FoxtrickLinksCustom = {
 
 	saveMyLink : function (evt) { 
 		try {
-			var doc = evt.view.document;
+			var doc = evt.target.ownerDocument;
 			var uniquekey=(Math.random()+"").replace(/0\./,"");
 			var ownBoxBody = doc.getElementById('foxtrick_links_content');
 			var basepref = ownBoxBody.getAttribute("basepref"); 	
@@ -582,7 +582,7 @@ var FoxtrickLinksCustom = {
 
 	
 	LoadDialog  : function(evt)
-	{	var doc = evt.view.document;
+	{	var doc = evt.target.ownerDocument;
 		var window = evt.view;
 		var path="file://"+Foxtrick.selectFile(window);
 		var pathdel="\\";
@@ -611,7 +611,7 @@ var FoxtrickLinksCustom = {
 	
 	HeaderClick : function(evt) {
 		try { 
-			var doc = evt.view.document;
+			var doc = evt.target.ownerDocument;
 			var ownBoxBody=doc.getElementById('foxtrick_links_content');
 			var basepref=ownBoxBody.getAttribute("basepref"); 	
 			var enabled = FoxtrickPrefs.getBool( "module.LinksCustom.enabled" );

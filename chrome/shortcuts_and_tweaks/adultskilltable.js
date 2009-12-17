@@ -17,10 +17,8 @@ var FoxtrickAdultSkillTable = {
 	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/adultskilltable.css",
 	
 	copy_string:"",
-	htLanguagesXml : null,
-	
+
     init : function() {
- 		this.initHtLang();
     },
 
     run : function( page, doc ) {
@@ -34,7 +32,6 @@ var FoxtrickAdultSkillTable = {
 				tablediv.setAttribute('id','ft_adultskilltable');
 				var h2 = doc.createElement('h2');
 				h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-				FoxtrickAdultSkillTable.HeaderClick.doc=doc;
 				h2.addEventListener( "click", this.HeaderClick, true );						
 				h2.setAttribute('class','ft_boxBodyCollapsed');
 				tablediv.appendChild(h2);
@@ -62,7 +59,7 @@ var FoxtrickAdultSkillTable = {
 
 	sortClick : function(ev) {
 	try{
-		var doc = ev.originalTarget.ownerDocument;
+		var doc = ev.target.ownerDocument;
 		var tablediv = doc.getElementById('ft_adultskilltable');
 		var table = tablediv.getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);
@@ -194,8 +191,6 @@ var FoxtrickAdultSkillTable = {
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
 				
 				// specialty header
-				if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) 
-				{
 				FoxtrickAdultSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_adultskilltable_td_small');
@@ -204,13 +199,11 @@ var FoxtrickAdultSkillTable = {
 				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[16]);
 				th.innerHTML = Foxtrickl10n.getString(sn[16]);
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) th.style.display='none';
 				tr.appendChild(th);
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
-				}
 				
 				// played last match stars header
-				if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) 
-				{
 				FoxtrickAdultSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_adultskilltable_td_small');
@@ -219,13 +212,11 @@ var FoxtrickAdultSkillTable = {
 				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickAdultSkillTable.copy_string += '*';
 				th.innerHTML = '<img alt="*" class="starWhole" src="/Img/Matches/star_blue.png" ilo-full-src="http://www.hattrick.org/Img/Matches/star_blue.png"/>';					
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) th.style.display='none';
 				tr.appendChild(th);
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
-				}
 				
 				// played last match position header 
-				if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) 
-				{
 				FoxtrickAdultSkillTable.copy_string += '[th]';
 				var th = doc.createElement('th');
 				th.setAttribute('class','ft_adultskilltable_td_small');
@@ -234,9 +225,9 @@ var FoxtrickAdultSkillTable = {
 				th.title=Foxtrickl10n.getString("SortBy");
 				FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[18]);
 				th.innerHTML = Foxtrickl10n.getString(sn[18]);
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) th.style.display='none';
 				tr.appendChild(th);
 				FoxtrickAdultSkillTable.copy_string += '[/th]';
-				}
 									
 				FoxtrickAdultSkillTable.copy_string += '[/tr]';
 
@@ -425,8 +416,6 @@ var FoxtrickAdultSkillTable = {
 						tr.appendChild(td);
 						
 						// specialty
-						if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) 
-						{
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
 						if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
@@ -447,8 +436,9 @@ var FoxtrickAdultSkillTable = {
 						FoxtrickAdultSkillTable.copy_string += specMatch;
 						
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
+						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideSpecialty" )) td.style.display='none';
 						tr.appendChild(td);
-						}
+						
 						
 						
 						// get played last match
@@ -459,8 +449,6 @@ var FoxtrickAdultSkillTable = {
 						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 						
 						// stars
-						if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) 
-						{
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
 						if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
@@ -477,12 +465,11 @@ var FoxtrickAdultSkillTable = {
 							FoxtrickAdultSkillTable.copy_string += starcount;						
 						}
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
+						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastStars" )) td.style.display='none';
 						tr.appendChild(td);
-						}
+						
 						
 						// last position
-						if (!Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) 
-						{
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
 						if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
@@ -503,8 +490,9 @@ var FoxtrickAdultSkillTable = {
 							FoxtrickAdultSkillTable.copy_string += pos;												
 						}
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
+						if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "HideLastPosition" )) td.style.display='none';
 						tr.appendChild(td);
-						}
+						
 												
 						
 						//Foxtrick.dump(matchday+' '+latestMatch+'\n');
@@ -582,7 +570,7 @@ var FoxtrickAdultSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/positions/position[@value='" + type + "']";
-			short_pos = Foxtrick.xml_single_evaluate(FoxtrickAdultSkillTable.htLanguagesXml, path, "short");
+			short_pos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
 			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
@@ -604,7 +592,7 @@ var FoxtrickAdultSkillTable = {
 		try {
 			var type = pos.replace(/&nbsp;/,' ');
 			var path = "hattricklanguages/language[@name='" + lang + "']/specialties/specialty[@value='" + type + "']";
-			short_pos = Foxtrick.xml_single_evaluate(FoxtrickAdultSkillTable.htLanguagesXml, path, "short");
+			short_pos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
 			return short_pos
 		} catch (e) {
 			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
@@ -612,15 +600,6 @@ var FoxtrickAdultSkillTable = {
 		}
 
 		return short_pos;
-	},
-
-	initHtLang: function ()
-	{
-		try {
-			this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htlang.xml");
-		} catch (e) {
-			Foxtrick.dump('youthskill.js initHtLang: '+e+"\n");
-		}
 	},
 }
 

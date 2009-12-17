@@ -1,5 +1,4 @@
 
-
 .cfHeader a[class="flag inner"] img 
 { margin: 0 0px 2px 0 !important; }
 
@@ -27,14 +26,20 @@ div[class="cfHeader doubleLine"] p {display:inline;}
 
 /* broken dsign workaround*/
 div.cfHeader>div[class="float_right right"] 
-{padding: 0px 2px 1px; margin-right:-5px;}
+{padding: 0px 2px 1px;}
+
+.cfHeader
+{
+    padding-right:0px !important;
+}
+
 
 /* broken design workaround*/
 div.mainConf div.cfInnerWrapper, div.mainConf div.cfInnerWrapperGreen , div.mainConf div.cfInnerWrapperRed 
 {margin-top:18px;}
 
 div.cfHeader>div[class="float_right right"] 
-{background: #849D84;}
+{background: inherit;/* #849D84;*/}
 
 div.mainConf div.cfMessage, div.mainConf div.cfUser, div.mainConf div.cfMessageNoAvatar 
 {padding-top:0px !important;}

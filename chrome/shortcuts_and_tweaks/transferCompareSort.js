@@ -65,7 +65,7 @@ var FoxtrickTransferCompareSort = {
 	
 	sortClick : function(ev) {
 	try{
-		var doc = ev.originalTarget.ownerDocument;
+		var doc = ev.target.ownerDocument;
 		var table = doc. getElementById('mainBody').getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);
 		FoxtrickTransferCompareSort.s_index = ev.target.getAttribute('s_index');

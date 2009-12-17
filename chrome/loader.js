@@ -56,18 +56,4 @@ function runBlocks() {
 }
 
 
-
-// get htlang
-var port3 = chrome.extension.connect({name: "ftpref-query"});
-port3.onMessage.addListener(function(msg) {   
-    Foxtrick.Matches.htLanguagesXml = msg.htlang;});
-port3.postMessage({reqtype: "htlang"});
-
-// get ht contries
-var port4 = chrome.extension.connect({name: "ftpref-query"});
-port4.onMessage.addListener(function(msg) {   
-    FoxtrickCrossTable.htCountriesXml = msg.htcountries; });
-port4.postMessage({reqtype: "htcountries"});
-		
 window.addEventListener("DOMContentLoaded", runBlocks, false);
-
