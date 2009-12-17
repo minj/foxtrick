@@ -56,9 +56,9 @@ var FoxtrickYouthSkillTable = {
 	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML);},
 	sortagefunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age').localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age'));},
 
-	sortClick : function(evt) {
+	sortClick : function(ev) {
 	try{
-		var doc = evt.target.ownerDocument;
+		var doc = ev.target.ownerDocument;
 		var tablediv = doc.getElementById('ft_youthskilltable');
 		var table = tablediv.getElementsByTagName('table')[0];
 		var table_old = table.cloneNode(true);

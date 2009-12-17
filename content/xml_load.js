@@ -22,8 +22,10 @@ Foxtrick.XMLData = {
 	htNTidsXml: null,
 	htversionsXML: null,
 	htdateformat: null,
-	boutXML:null,
+	aboutXML:null,
 	
+	
+	playersxml:null,	
 	matchxmls: new Array(),
 	
 	init : function() {
@@ -79,7 +81,23 @@ Foxtrick.XMLData = {
 			}
 		}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
 
-	
+		// XML get players xml
+		/*
+		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 || doc.location.href.search(/\/Club\/Players\/$/i)!=-1) {
+			// get players.xml
+			var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
+			this.playersxml = null;
+			try {	var req = new XMLHttpRequest();
+				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?file=players&teamId='+teamid, false); 
+				req.send(null);
+				if (req.status == 200) {
+					this.playersxml = req.responseXML;
+					Foxtrick.dump('TeamStats.js: get new xml\n');
+				}
+				else Foxtrick.dump('TeamStats.js: xml request failed\n');
+			} catch(e) {Foxtrick.dump('TeamStats.js: xml request failed'+e+'\n');}
+		}*/
+
 	/*try{
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);

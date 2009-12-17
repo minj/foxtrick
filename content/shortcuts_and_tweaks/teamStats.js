@@ -47,20 +47,6 @@ Foxtrick.TeamStats= {
 	
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
 		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
-
-		/* XML test
-		// get xml
-		this.playersxmls = null;
-		try {	var req = new XMLHttpRequest();
-			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?file=players&teamId='+teamid, false); 
-			req.send(null);
-			if (req.status == 200) {
-				this.playersxmls = req.responseXML;
-				dump('TeamStats.js: get new xml\n');
-			}
-			else Foxtrick.dump('TeamStats.js: xml request failed\n');
-		} catch(e) {Foxtrick.dump('TeamStats.js: xml request failed'+e+'\n');}
-		*/
 		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				if (allDivs[i].className!="playerInfo") continue;
@@ -138,16 +124,19 @@ Foxtrick.TeamStats= {
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
 				
 				
-				/*  XML test
-				var playerid = as[0].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-				var playerlist = this.playersxmls.getElementsByTagName('Player');
-				for (var j=0; j<playerlist.length; ++j) { 
+				if (page=='players' && Foxtrick.XMLData.playersxml) {
+				 var playerid = as[0].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				 var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');
+				 for (var j=0; j<playerlist.length; ++j) { 
 					var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
 					if (thisPlayerID==playerid) {
 						var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;	
+						var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
 						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
-						var LeagueID = Foxtrick.worlddetails.countryid_to_leagueid[CountryID];	
-						allDivs2.appendChild(doc.createTextNode(' Leadership: '+Leadership));
+						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];	
+						
+						allDivs2.appendChild(doc.createTextNode(' Leadership: '+Leadership+'.'));
+						allDivs2.appendChild(doc.createTextNode(' Experience: '+Experience+'.'));
 						
 						var a=doc.createElement('a');
 						a.href='';
@@ -162,7 +151,8 @@ Foxtrick.TeamStats= {
 						as[0].parentNode.insertBefore(a, as[0]);
 						break;
 					}
-				}*/
+				 }
+				}
 		}
 		stars.sort(this.starsortfunction);
 		this.top11star=stars[10]; 
