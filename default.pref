@@ -34,7 +34,7 @@ user_pref("extensions.foxtrick.prefs.matchstat.loddarstats",true);
 user_pref("extensions.foxtrick.prefs.matchstat.peasostats",true);
 user_pref("extensions.foxtrick.prefs.matchstat.vnukstats",true);
 user_pref("extensions.foxtrick.prefs.module.AddDefaultFaceCard.enabled",false);
-user_pref("extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled",true);
+user_pref("extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled",false);
 user_pref("extensions.foxtrick.prefs.module.AddManagerButtons.enabled",true);
 user_pref("extensions.foxtrick.prefs.module.AdultSkillTable.CopySkillTable.enabled",true);
 user_pref("extensions.foxtrick.prefs.module.AdultSkillTable.HideLastPosition.enabled",false);
