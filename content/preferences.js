@@ -70,6 +70,7 @@ var FoxtrickPrefs = {
     },
 
     getBool : function( pref_name ) {
+		// no dump in this function !!!!!!!!
 		var value;
 		try {
             value = this._pref_branch.getBoolPref( encodeURI(pref_name) );

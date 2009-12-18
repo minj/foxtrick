@@ -386,12 +386,12 @@ var FoxtrickForumChangePosts = {
 					
                     if (do_truncate_leaguename) {
                             if (league_link1) {
-                                league_link1.innerHTML = league_link1.innerHTML.replace(/\..+/,'');
-                                if (league_link1.innerHTML.length>3)  league_link1.innerHTML='I';
+                                league_link1.innerHTML = league_link1.innerHTML.replace(/\..+/,''); 
+                                if (league_link1.innerHTML.length>3 && league_link1.innerHTML!='VIII')  league_link1.innerHTML='I';
                             }
                             if (league_link2) {
                                 league_link2.innerHTML = league_link2.innerHTML.replace(/\..+/,'');
-                                if (league_link2.innerHTML.length>3)  league_link2.innerHTML='I';
+                                if (league_link2.innerHTML.length>3 && league_link2.innerHTML!='VIII')  league_link2.innerHTML='I';
                             }
                     }
 															
