@@ -293,6 +293,8 @@ var FoxtrickPrefsDialogHTML = {
 		
         //Lang
         FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
+		FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:doc.getElementById("htLanguage").value});
+
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
 		//Currency
         FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
@@ -472,9 +474,9 @@ var FoxtrickPrefsDialogHTML = {
         groupbox2.appendChild(table);
         var tr= doc.createElement("tr");
         table.appendChild(tr);
-		
 		var td= doc.createElement("td");
-        tr.appendChild(td);
+        tr.appendChild(td); 
+		
 		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htLanguagesXml, "hattricklanguages/language", "desc", "name",  FoxtrickPrefs.getString("htLanguage"));
 		selectbox.setAttribute("id","htLanguage");
 		selectbox.setAttribute("style","display:inline-block;");

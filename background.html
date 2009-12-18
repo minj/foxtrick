@@ -22,7 +22,7 @@ try{
 		if ( typeof(lang) == 'undefined' ) {
 			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
 			lang =  prefxhr.responseText.match(string_regexp)[1];
-		}
+		} 
 		listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
 		var propertiesxhr = new XMLHttpRequest();
 		propertiesxhr.open("GET", listUrl, false);
@@ -123,5 +123,13 @@ chrome.extension.onConnect.addListener(function(port) {
 	});
 });
 
+chrome.extension.onConnect.addListener(function(port) {
+  if (port.name == "setpref") {
+	port.onMessage.addListener(function(msg) {
+		localStorage[msg.pref] = msg.value;	
+		//port.postMessage({response: "OK"});	
+	});
+  }
+});
   </script>
 </html>

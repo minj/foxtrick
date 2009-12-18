@@ -1,11 +1,5 @@
 {
    "background_page": "background.html",
-   "options_page": "options.html",
-
-   "browser_action": {
-      "default_icon": "resources\\linkicons\\foxtrick_2.png",
-      "popup": "popup.html"
-   },
    "content_scripts": [ {
       "js": [ "const.js", "module.js", "helper.js", "l10n.js", "preferences.js", 
 	"xml_load.js",
@@ -133,5 +127,5 @@
    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCo3LJa8LNXdkX8yF6LdJQ3Gthm2NjtKvaVjS0L//ChO2008XuV6HeKtDw9fJkmsp0KdV8HpqJ8irmREpxx/DZLANh/fQ2PMDid7LShcEwgzrq3qlchKoI4pGUd/yBiQTrAzgXiiW6jB8DBbaTPpEBwCOsfgfyE85qaa3WkC11bvwIDAQAB",
    "name": "Foxtrick",
    "permissions": [ "tabs" ],
-   "version": "0.4.9.1"
+   "version": "0.4.9.22"
 }

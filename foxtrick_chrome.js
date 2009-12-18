@@ -1151,10 +1151,7 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 		for (var j=0;j<splitpath.length-1;++j) { 
 	        try {
 				base = base.getElementsByTagName(splitpath[j]);
-				Foxtrick.dump('l: '+base.length+'\n')
 				base=base[0];
-				Foxtrick.dump('p:'+splitpath[j]+' '+basenodestr+'\n')
-				Foxtrick.dump(base.innerHTML+'\n')
 			} catch (e) { 
 				var tmp = document.createElement('tmp');
 				tmp.innerHTML = base;
