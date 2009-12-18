@@ -871,7 +871,7 @@ var FoxtrickPrefsDialogHTML = {
 		var td = doc.createElement( "td" );	
 		td.setAttribute('class','ft_prefs_screenshot_td');
 		tr.appendChild( td );
-		var screenshot = Foxtrickl10n.getScreenshot('help');		
+		var screenshot = Foxtrickl10n.getScreenshot('help'); 	
 		if (screenshot) {
 			var a = doc.createElement('a');
 			a.href = screenshot;

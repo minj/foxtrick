@@ -35,6 +35,11 @@ try{
 	properties_defaultxhr.open("GET", listUrl, false);
 	properties_defaultxhr.send();
 
+	listUrl = chrome.extension.getURL("foxtrick.screenshots");
+	var screenshotsxhr = new XMLHttpRequest();
+	screenshotsxhr.open("GET", listUrl, false);
+	screenshotsxhr.send();
+
 	listUrl = chrome.extension.getURL("htlocales/htlang.xml");
 	var htlangxhr = new XMLHttpRequest();
 	htlangxhr.open("GET", listUrl, false);
@@ -94,6 +99,9 @@ chrome.extension.onConnect.addListener(function(port) {
         }
 		else if (msg.reqtype == "properties_default") {
            port.postMessage({properties_default: properties_defaultxhr.responseText});
+        }
+		else if (msg.reqtype == "screenshots") {
+           port.postMessage({screenshots: screenshotsxhr.responseText});
         }
 		else if (msg.reqtype == "htlang") {  
 			port.postMessage({htlang: htlangxhr.responseText});
