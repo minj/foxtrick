@@ -124,6 +124,8 @@
       "run_at": "document_start"
    } ],
    "description": "FoxTrick for Chrome",
+   "icons": { "48": "foxtrick48.png",
+          "128": "foxtrick128.png" },
    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCo3LJa8LNXdkX8yF6LdJQ3Gthm2NjtKvaVjS0L//ChO2008XuV6HeKtDw9fJkmsp0KdV8HpqJ8irmREpxx/DZLANh/fQ2PMDid7LShcEwgzrq3qlchKoI4pGUd/yBiQTrAzgXiiW6jB8DBbaTPpEBwCOsfgfyE85qaa3WkC11bvwIDAQAB",
    "name": "Foxtrick",
    "permissions": [ "tabs" ],
