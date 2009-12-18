@@ -18,7 +18,6 @@ var FoxtrickPrefs = {
 
     getString : function( pref_name ) {  
 		var val = localStorage['extensions.foxtrick.prefs.'+ pref_name];			
-		//Foxtrick.dump(pref_name + ' ' + val+'\n');
 		if ( typeof(val) != 'undefined' ) return val;
 	
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);', "i" );
@@ -263,4 +262,7 @@ FoxtrickPrefs.LoadPrefs = function (ev) {
     return true;
 }
 
-
+FoxtrickPrefs.portsetlang = chrome.extension.connect({name: "setpref"});
+FoxtrickPrefs.portsetlang.onMessage.addListener(function(msg) {
+  if (msg.response == "OK") {}
+});
