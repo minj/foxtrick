@@ -125,6 +125,8 @@ var FoxtrickMain = {
 			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
 				//Foxtrick.dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );
 			}
+			
+			Foxtrick.reload_css_permanent( 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
 		},
 	}
 		

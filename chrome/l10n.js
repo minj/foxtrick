@@ -6,8 +6,9 @@
 var Foxtrickl10n = {
 	properties:null,
 	properties_default:null,
-	
-    init : function() {	
+	screenshots: null,	
+    
+	init : function() {	
     },
 	
     getString : function( str ) { 
@@ -36,6 +37,10 @@ var Foxtrickl10n = {
     },
 	
 	getScreenshot : function( str ) {
-        return '';
+	try{  
+		var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" ); 
+		if (Foxtrickl10n.screenshots.search(string_regexp)!=-1) return Foxtrickl10n.screenshots.match(string_regexp)[1];
+		return '';
+	}catch(e){alert('getscreenshots '+e);}
     },
 };

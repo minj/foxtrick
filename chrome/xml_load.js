@@ -101,6 +101,13 @@ port0.onMessage.addListener(function(msg) {
 });
 port0.postMessage({reqtype: "properties_default"});
 
+// screenshots
+var port = chrome.extension.connect({name: "ftproperties-query"});
+port.onMessage.addListener(function(msg) {
+    Foxtrickl10n.screenshots = msg.screenshots; 
+});
+port.postMessage({reqtype: "screenshots"});
+
 // get htlang
 var port3 = chrome.extension.connect({name: "ftpref-query"});
 port3.onMessage.addListener(function(msg) {   
