@@ -308,7 +308,7 @@ Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents 
 				// if module has an css) function and is enabled
 				if ( module.MODULE_NAME ) {  
 					if ( !Foxtrick.isModuleEnabled( module ) ) continue;
-					Foxtrick.dump(module.MODULE_NAME);
+					//Foxtrick.dump(module.MODULE_NAME);
 					
 					if ( module.OLD_CSS && module.OLD_CSS!="") {
 						Foxtrick.unload_css_permanent ( module.OLD_CSS );
@@ -348,7 +348,7 @@ Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents 
 					if (module.OPTIONS_CSS) {
 						for (var k=0; k<module.OPTIONS_CSS.length;++k ) {
 							if ( Foxtrick.isModuleEnabled( module ) && Foxtrick.isModuleFeatureEnabled( module, module.OPTIONS[k]))
-							{	Foxtrick.dump(module.OPTIONS_CSS[k]+'\n');
+							{	//Foxtrick.dump(module.OPTIONS_CSS[k]+'\n');
 								if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
 							 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
 											Foxtrick.unload_css_permanent ( module.OPTIONS_CSS_RTL[k]) ;
@@ -1149,8 +1149,21 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 		var splitpath = basenodestr.split(/\/|\[/g); 
 		var base = xmlresponse;
 		for (var j=0;j<splitpath.length-1;++j) { 
-				base = base.getElementsByTagName(splitpath[j])[0];
+	        try {
+				base = base.getElementsByTagName(splitpath[j]);
+				Foxtrick.dump('l: '+base.length+'\n')
+				base=base[0];
+				Foxtrick.dump('p:'+splitpath[j]+' '+basenodestr+'\n')
+				Foxtrick.dump(base.innerHTML+'\n')
+			} catch (e) { 
+				var tmp = document.createElement('tmp');
+				tmp.innerHTML = base;
+				base = tmp.getElementsByTagName(splitpath[j])[0];
+			}
+			//Foxtrick.dump(base.innerHTML+'\n')
 		}
+		//Foxtrick.dump('p:'+splitpath[j]+' '+basenodestr+'\n')
+			
 		var nodes = base.getElementsByTagName(splitpath[j]);
 		for (var i = 0; i < nodes.length; i++) {
 			var node = nodes[i];

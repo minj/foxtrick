@@ -18,14 +18,17 @@ try{
 	
 		
 	try{
-		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
-		var lang =  prefxhr.responseText.match(string_regexp)[1];
+		var lang = localStorage['extensions.foxtrick.prefs.htLanguage'];	
+		if ( typeof(lang) == 'undefined' ) {
+			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
+			lang =  prefxhr.responseText.match(string_regexp)[1];
+		}
 		listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
 		var propertiesxhr = new XMLHttpRequest();
 		propertiesxhr.open("GET", listUrl, false);
 		propertiesxhr.send();	
 	}
-	catch(e) { }	
+	catch(e) {alert(e); }	
 	
 	listUrl = chrome.extension.getURL("foxtrick.properties");
 	var properties_defaultxhr = new XMLHttpRequest();
