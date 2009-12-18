@@ -12,20 +12,29 @@ var FoxtrickPrefs = {
     init : function() {		
     },
 
+    setString : function( pref_name, value ) {
+		localStorage['extensions.foxtrick.prefs.'+ pref_name] = value;			
+    },
+
     getString : function( pref_name ) {  
+		var val = localStorage['extensions.foxtrick.prefs.'+ pref_name];			
+		//Foxtrick.dump(pref_name + ' ' + val+'\n');
+		if ( typeof(val) != 'undefined' ) return val;
+	
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);', "i" );
 		if (FoxtrickPrefs.pref.search(string_regexp)!=-1) return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
 		Foxtrick.dump("** preference error ** "+pref_name+'\n');
 		return null;
     },
 
-    setString : function( pref_name, value ) {
-    },
-
     setInt : function( pref_name, value ) {
+		localStorage['extensions.foxtrick.prefs.'+ pref_name] = value;			
     },
 
     getInt : function( pref_name ) { 
+		var val = localStorage['extensions.foxtrick.prefs.'+ pref_name];			
+		if ( typeof(val) != 'undefined' ) return parseInt(val);
+
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",(\\d+)\\);', "i" );
 		if (FoxtrickPrefs.pref.search(string_regexp)!=-1) return  parseInt(FoxtrickPrefs.pref.match(string_regexp)[1]);
 		Foxtrick.dump("** preference error ** "+pref_name+'\n');
@@ -33,18 +42,19 @@ var FoxtrickPrefs = {
     },
 
     setBool : function( pref_name, value ) {
+		localStorage['extensions.foxtrick.prefs.'+ pref_name] = value;			
     },
 
     getBool : function( pref_name ) {  
-	try{ 
+		// no dump in this function !!!!!!!!
+		var val = localStorage['extensions.foxtrick.prefs.'+ pref_name];			
+		if ( typeof(val) != 'undefined' ) return (val=='true');
+
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",(.+)\\);', "i" );		
 		if (FoxtrickPrefs.pref.search(string_regexp)!=-1) {
-			//Foxtrick.dump(pref_name+' : '+FoxtrickPrefs.pref.match(string_regexp)[1]+'\n');
 			return  FoxtrickPrefs.pref.match(string_regexp)[1]=='true';
 		}
-		Foxtrick.dump("** preference error ** "+pref_name+'\n');
 		return null;
-	} catch(e){Foxtrick.dump('getBool error'+ pref_name+'  ' +e);}
     },
 	
 
@@ -59,6 +69,7 @@ var FoxtrickPrefs = {
     },
 
     _getElemNames : function( list_name ) {
+		return new Array();
     },
 
     /** Remove a list element. */

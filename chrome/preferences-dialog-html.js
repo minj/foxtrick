@@ -12,7 +12,7 @@ var FoxtrickPrefsDialogHTML = {
 	LATEST_CHANGE:"Fixed ex/importing preferences",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css",
-	PAGES: new Array('all'),
+	PAGES: new Array('myhattrickAll'),
 	
 	TabNames: {	'main':'MainTab',
 				'shortcuts_and_tweaks':'ShortcutsTab',
@@ -305,12 +305,12 @@ var FoxtrickPrefsDialogHTML = {
         //Currency Converter
        
         FoxtrickPrefs.setString("htCurrencyTo", doc.getElementById("htCurrencyTo").value);
-        FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"new",Foxtrick.XMLData.htCurrencyXml));
-        FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"rate",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("currencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"new",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("currencyRateTo", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"rate",Foxtrick.XMLData.htCurrencyXml));
     
-        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"old",Foxtrick.XMLData.htCurrencyXml));
-        FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",Foxtrick.XMLData.htCurrencyXml));
-		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(doc.getElementById("htCurrency").value,"code",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"old",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("currencyRate", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencyCode", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"code",Foxtrick.XMLData.htCurrencyXml));
         
 		//Dateformat
         FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
@@ -950,9 +950,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/head_developer", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/head_developers", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/head_developer/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/head_developers/head_developer", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -964,9 +964,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/project_owners", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/project_owners", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/project_owners/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/project_owners/project_owner", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -978,9 +978,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/developers", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/developers", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/developers/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/developers/developer", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -992,9 +992,9 @@ var FoxtrickPrefsDialogHTML = {
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/translations", "value")[0]));
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/translations", "value")[0]));
 		groupbox2.appendChild(caption1);
-		var labels = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.aboutXML, "about/translations/label", "value");		
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/translations/translation", "value");		
 		for (var i=0;i<labels.length;++i) {			
 			groupbox2.appendChild(doc.createTextNode(labels[i]));
 			groupbox2.appendChild(doc.createElement('br'));
@@ -1106,12 +1106,13 @@ var FoxtrickPrefsDialogHTML = {
 		for ( var i=0;i<modules_entries.length;++i)	preftab.appendChild( modules_entries[i] );
     },
 
-	entry_sortfunction: function(a,b) {return a.prefname>b.prefname;},
+	entry_sortfunction: function(a,b) {return a.getAttribute('prefname').localeCompare(b.getAttribute('prefname'));},
 
 	_radioModule : function(doc, module, on_page ) {
 		var entry = doc.createElement( "div" );
 		entry.setAttribute( "class", "ft_pref_modul" );
-		entry.prefname = module.MODULE_NAME;
+		entry.setAttribute( "prefname", module.MODULE_NAME );
+		
 		var module_checked = Foxtrick.isModuleEnabled( module );
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page )
 		entry.appendChild( checkdiv );			
@@ -1155,7 +1156,8 @@ var FoxtrickPrefsDialogHTML = {
 	_checkboxModule : function (doc, module, on_page) {
 		var entry = doc.createElement( "div" );
 		entry.setAttribute( "class", "ft_pref_modul" );
-		entry.prefname = module.MODULE_NAME;
+		entry.setAttribute( "prefname", module.MODULE_NAME );
+		
 		var module_checked = Foxtrick.isModuleEnabled( module );
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page ) 
 		entry.appendChild( checkdiv);			
@@ -1211,7 +1213,8 @@ var FoxtrickPrefsDialogHTML = {
 	_normalModule : function (doc, module, on_page) {
 		var entry = doc.createElement( "div" );
 		entry.setAttribute( "class", "ft_pref_modul" );
-		entry.prefname = module.MODULE_NAME;
+		entry.setAttribute( "prefname", module.MODULE_NAME );
+		
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), Foxtrick.isModuleEnabled( module ),null, null,on_page) ;
 		entry.appendChild(checkdiv);		
 		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
@@ -1382,7 +1385,7 @@ var FoxtrickPrefsDialogHTML = {
 				
 				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
 				
-				var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
+				var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXML, "hattrickversions/version", "name", "code", oldVersion);
 				selectbox.setAttribute("id","ft_ownselectboxID");
 				selectbox.addEventListener('change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
 				alertdiv.appendChild(selectbox);
@@ -1609,6 +1612,55 @@ var FoxtrickPrefsDialogHTML = {
         return 0;
     }
 	},
+
+	
+	getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
+    try {
+         var returnedItemToSearch = "none";
+
+
+        try {
+			var values = xmlDoc.getElementsByTagName("currency");
+		} catch (e) { 
+			var tmp = document.createElement('tmp');
+			tmp.innerHTML = xmlDoc;
+			var values = tmp.getElementsByTagName("currency");
+		}
+		
+        var langs = [];
+
+        for (var i=0; i<values.length; i++) {
+            var eurorate = values[i].attributes.getNamedItem("eurorate").textContent;
+            var code = values[i].attributes.getNamedItem("code").textContent;
+            var sname = values[i].attributes.getNamedItem("shortname").textContent;
+            langs.push([eurorate,code,sname]);
+        }
+
+        function sortfunction(a,b) {
+            return a[0].localeCompare(b[0]);
+        }
+
+        langs.sort(sortfunction);
+
+        for (var i=0; i<langs.length; i++) {
+
+            var eurorate = langs[i][0];
+            var code = langs[i][1];
+            var sname = langs[i][2];
+
+
+
+            if (options == "old" && itemToSearch==code){returnedItemToSearch = sname;}
+            if (options == "new" && itemToSearch==code){returnedItemToSearch = sname;}
+            if (options == "rate" && itemToSearch==code){returnedItemToSearch = eurorate;}
+            if (options == "code" && itemToSearch==code){returnedItemToSearch = code;}
+        }
+
+      return returnedItemToSearch;
+         } catch (e) {
+                dump('  CurrencyConverter-CurrValue(): ' + e + '\n');
+           }
+},
 
 }	
 
