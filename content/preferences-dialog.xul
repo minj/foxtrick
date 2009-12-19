@@ -15,67 +15,60 @@
 	persist="width height screenX screenY">
 
 <keyset>
-	<key id="save-key"  modifiers="accel" key="S" oncommand="acceptDialog();" />
+	<key id="save-key" modifiers="accel" key="S" oncommand="acceptDialog();" />
 	<key id="close-key" modifiers="accel" key="C" oncommand="cancelDialog();" />
 </keyset>
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/loader.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
 
-  <tabbox id="tabbox" flex="1" class="tabbox" align="start">
-    <tabs id="tabs">
-      <tab id="MainTab" />
-      <tab id="ShortcutsTab" />
-      <tab id="PresentationTab" />
-      <tab id="MatchesTab" />
-      <tab id="ForumTab" />
-      <tab id="LinksTab" />
-      <tab id="AboutTab" />
-    </tabs>
+<tabbox id="tabbox" flex="1" class="tabbox" align="start">
+	<tabs id="tabs">
+		<tab id="MainTab" />
+		<tab id="ShortcutsTab" />
+		<tab id="PresentationTab" />
+		<tab id="MatchesTab" />
+		<tab id="ForumTab" />
+		<tab id="LinksTab" />
+		<tab id="AboutTab" />
+	</tabs>
 
-    <tabpanels id="tabpanels" class="tabpanels" flex="1">
-            <!-- Main -->
-            <tabpanel class="panel">
-              <vbox id="main_list" flex="1">
-              </vbox>
-            </tabpanel>
+	<tabpanels id="tabpanels" class="tabpanels" flex="1">
+		<tabpanel class="panel">
+			<vbox id="main_list" flex="1">
+			</vbox>
+		</tabpanel>
 
-            <!-- Shortcuts -->
-            <tabpanel class="panel">
-	          <vbox id="shortcuts_list" flex="1">
-              </vbox>
-            </tabpanel>
+		<tabpanel class="panel">
+			<vbox id="shortcuts_list" flex="1">
+			</vbox>
+		</tabpanel>
 
-		    <!-- Presentation -->
-            <tabpanel class="panel">
-              <vbox id="presentation_list" flex="1">
-              </vbox>
-             </tabpanel>
+		<tabpanel class="panel">
+			<vbox id="presentation_list" flex="1">
+			</vbox>
+		</tabpanel>
 
-		   <!-- Matches -->
-		    <tabpanel class="panel">
-              <vbox id="matchfunctions_list" flex="1">
-              </vbox>
-            </tabpanel>
+		<tabpanel class="panel">
+			<vbox id="matchfunctions_list" flex="1">
+			</vbox>
+		</tabpanel>
 
-		    <!-- Forum -->
-            <tabpanel class="panel">
-              <vbox id="forum_list" flex="1">
-              </vbox>
-            </tabpanel>
+		<tabpanel class="panel">
+			<vbox id="forum_list" flex="1">
+			</vbox>
+		</tabpanel>
 
-		    <!-- Links -->
-            <tabpanel class="panel">
-              <vbox id="links_list" flex="1">
-              </vbox>
-            </tabpanel>
+		<tabpanel class="panel">
+			<vbox id="links_list" flex="1">
+			</vbox>
+		</tabpanel>
 
-	        <!-- about -->
-            <tabpanel class="panel">
-              <vbox id="about_list" flex="1">
-			  </vbox>
-			</tabpanel>
+		<tabpanel class="panel">
+			<vbox id="about_list" flex="1">
+			</vbox>
+		</tabpanel>
 	</tabpanels>
-  </tabbox>
+</tabbox>
 
 </dialog>
