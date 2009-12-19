@@ -939,12 +939,6 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 				modules_entries.sort(FoxtrickPreferencesDialog.entry_sortfunction);
 				
 				for ( var i=0;i<modules_entries.length;++i)	modules_list.appendChild( modules_entries[i] );
-
-				var spacer = doc.createElement('spacer');
-				spacer.setAttribute('flex',0);
-				spacer.setAttribute('height',100);
-
-				modules_list.appendChild( spacer );
     },
 
 	entry_sortfunction: function(a,b) {return a.prefname>b.prefname;},
