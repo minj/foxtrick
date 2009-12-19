@@ -1684,6 +1684,7 @@ var FoxtrickOnPagePrefs = {
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css",
 	
     init : function() {
     },
