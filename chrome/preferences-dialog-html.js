@@ -293,7 +293,7 @@ var FoxtrickPrefsDialogHTML = {
 		
         //Lang
         FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
-		FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:doc.getElementById("htLanguage").value});
+		FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:doc.getElementById("htLanguage").value, from:'mainpref'});
 
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
 		//Currency
@@ -352,6 +352,8 @@ var FoxtrickPrefsDialogHTML = {
     
 
         FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
+
+        FoxtrickPrefs.setBool("PrefsDialogHTML", true);
         
 		// reinitialize
         FoxtrickMain.init();
@@ -377,7 +379,7 @@ var FoxtrickPrefsDialogHTML = {
 	},
 		
     add_tab : function( doc, category ) {
-	try{
+	try{	
 		var preftabheaddiv = doc.getElementById('foxtrick_prefs_head');
 		var preftabdiv = doc.getElementById('foxtrick_preftabs');
 		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames[category]);

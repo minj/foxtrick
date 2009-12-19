@@ -3,18 +3,11 @@
   <script>
   
 try{
-/*	try{
-		listUrl = chrome.extension.getURL("user.pref");
+		listUrl = chrome.extension.getURL("default.pref");
 		var prefxhr = new XMLHttpRequest();
 		prefxhr.open("GET", listUrl, false);
 		prefxhr.send();
-	}
-	catch() { console.log('ft: get default prefs')
-	*/	listUrl = chrome.extension.getURL("default.pref");
-		var prefxhr = new XMLHttpRequest();
-		prefxhr.open("GET", listUrl, false);
-		prefxhr.send();
-	/*}*/
+		var preftext = prefxhr.responseText;
 	
 		
 	try{
@@ -83,16 +76,20 @@ try{
 	}
 
 	} catch(e) {alert('back init:' +e)}
-
-	
-  
-
+ 
 chrome.extension.onConnect.addListener(function(port) { 
-	port.onMessage.addListener(function(msg) {  //alert(msg.reqtype);
+	port.onMessage.addListener(function(msg) {  
 	  try {   
-	    if (msg.reqtype == "pref") {
-           port.postMessage({pref: prefxhr.responseText});
+		if (msg.reqtype == "pref") { //alert(preftext);
+			port.postMessage({pref: preftext});
         } 
+	    else if (msg.reqtype == "pref_default") { //alert(preftext);
+			port.postMessage({pref_default: prefxhr.responseText});
+        } 
+	    else if (msg.reqtype == "set_pref") {
+			preftext = msg.prefs + preftext;  //alert(preftext.substr(0,120);
+			port.postMessage({pref_changed: 'true'});
+		} 
 		else if (msg.reqtype == "properties") {
            if (propertiesxhr.responseText) port.postMessage({properties: propertiesxhr.responseText});
 		   else port.postMessage({properties: ''});
@@ -135,7 +132,14 @@ chrome.extension.onConnect.addListener(function(port) {
   if (port.name == "setpref") {
 	port.onMessage.addListener(function(msg) {
 		localStorage[msg.pref] = msg.value;	
-		//port.postMessage({response: "OK"});	
+		if (msg.pref=="extensions.foxtrick.prefs.htLanguage") {
+			listUrl = chrome.extension.getURL('locale/'+msg.value+"/foxtrick.properties");
+			//var propertiesxhr = new XMLHttpRequest();
+			propertiesxhr.open("GET", listUrl, false);
+			propertiesxhr.send();	 
+			port.postMessage({properties: propertiesxhr.responseText, from: msg.from});	
+			//alert(propertiesxhr.responseText.substring(0,20));
+		}		
 	});
   }
 });
