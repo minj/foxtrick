@@ -12,8 +12,7 @@ var FoxtrickPrefsDialogHTML = {
 	LATEST_CHANGE:"Fixed ex/importing preferences",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css",
-	PAGES: new Array('myhattrickAll'),
-	
+
 	TabNames: {	'main':'MainTab',
 				'shortcuts_and_tweaks':'ShortcutsTab',
 				'presentation':'PresentationTab',
@@ -293,7 +292,8 @@ var FoxtrickPrefsDialogHTML = {
 		
         //Lang
         FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
-		FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:doc.getElementById("htLanguage").value, from:'mainpref'});
+		if (Foxtrick.BuildFor=='Chrome')
+			FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:doc.getElementById("htLanguage").value, from:'mainpref'});
 
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
 		//Currency
@@ -352,8 +352,6 @@ var FoxtrickPrefsDialogHTML = {
     
 
         FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
-
-        FoxtrickPrefs.setBool("PrefsDialogHTML", true);
         
 		// reinitialize
         FoxtrickMain.init();
@@ -476,6 +474,7 @@ var FoxtrickPrefsDialogHTML = {
         groupbox2.appendChild(table);
         var tr= doc.createElement("tr");
         table.appendChild(tr);
+		
 		var td= doc.createElement("td");
         tr.appendChild(td); 
 		
@@ -1389,7 +1388,9 @@ var FoxtrickPrefsDialogHTML = {
 				
 				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
 				
-				var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXML, "hattrickversions/version", "name", "code", oldVersion);
+				if (Foxtrick.BuildFor=='Chrome')
+						var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXml, "hattrickversions/version", "desc", "name", "code", oldVersion);
+				else var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
 				selectbox.setAttribute("id","ft_ownselectboxID");
 				selectbox.addEventListener('change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
 				alertdiv.appendChild(selectbox);
