@@ -20,8 +20,6 @@ var FoxtrickPreferencesDialog = {
 		for each ( cat in Foxtrick.moduleCategories ) {
             FoxtrickPreferencesDialog._fillModulesList( document, cat );
         }
-
-        FoxtrickPreferencesDialog.pref_show ('main_list');
     },
 
 
@@ -1199,29 +1197,6 @@ FoxtrickPreferencesDialog.copy_id = function( button ) {
 		Foxtrick.popupMenu.setAttribute( "hidden", true);
 
 	}
-}
-
-
-FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
-    VBOXES = ["main_list", "shortcuts_list","presentation_list", "matchfunctions_list", "forum_list", "links_list", "about_list"];
-    var box;
-    for (var i = 0; i < VBOXES.length; i++) {
-        try {
-            box = document.getElementById( VBOXES[i] );
-            if ( VBOXES[i] == vbox) {
-                box.style.overflow = "hidden";
-				box.setAttribute("style", "color:ButtonText !important; background-color:ButtonFace !important;");
-            }
-            else {
-                box.style.height = "300px";
-                box.style.overflow = "hidden";
-				box.setAttribute("style", "color:ButtonText !important; background-color:ButtonFace !important;");
-            }
-        }
-        catch (e) {
-            dump('pref_show error: '+e);
-        }
-    }
 }
 
 FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where ) {

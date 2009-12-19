@@ -27,13 +27,13 @@
 <box flex="1" class="box">
   <tabbox id="tabbox" flex="1" class="tabbox" align="start">
     <tabs id="tabs">
-      <tab id="MainTab"      onclick="FoxtrickPreferencesDialog.pref_show('main_list');"           ></tab>
-      <tab id="ShortcutsTab" onclick="FoxtrickPreferencesDialog.pref_show('shortcuts_list');"      ></tab>
-      <tab id="PresentationTab" onclick="FoxtrickPreferencesDialog.pref_show('presentation_list');"      ></tab>
-      <tab id="MatchesTab"   onclick="FoxtrickPreferencesDialog.pref_show('matchfunctions_list');" ></tab>
-      <tab id="ForumTab"     onclick="FoxtrickPreferencesDialog.pref_show('forum_list');"          ></tab>
-      <tab id="LinksTab"     onclick="FoxtrickPreferencesDialog.pref_show('links_list');"          ></tab>
-      <tab id="AboutTab"     onclick="FoxtrickPreferencesDialog.pref_show('about_list');"          ></tab>
+      <tab id="MainTab" />
+      <tab id="ShortcutsTab" />
+      <tab id="PresentationTab" />
+      <tab id="MatchesTab" />
+      <tab id="ForumTab" />
+      <tab id="LinksTab" />
+      <tab id="AboutTab" />
     </tabs>
 
     <tabpanels id="tabpanels" class="tabpanels" flex="1" style="width: 1240px;">
