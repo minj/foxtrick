@@ -1131,7 +1131,6 @@ Foxtrick.GetElementPosition = function (This,ref){
 }
 
 Foxtrick.GetDataURIText = function (filetext) {
-	return null; //xxx
 	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
 }
 
