@@ -34,7 +34,6 @@ var FoxtrickPreferencesDialog = {
 		var cancel = document.documentElement.getButton("cancel");
 		cancel.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonCancel"))
 
-
 		// Captions and labels
 		var allLabels = [ "MainTab", "ShortcutsTab", "PresentationTab", "MatchesTab",
 						  "ForumTab", "LinksTab", "AboutTab" ];
