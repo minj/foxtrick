@@ -14,11 +14,10 @@
 	resizable="yes"
 	persist="width height screenX screenY">
 
-    <keyset>
-      <key id="save-key"  modifiers="accel" key="S" oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();"/>
-      <key id="close-key" modifiers="accel" key="C" oncommand="close();"/>
-      <key id="escape-key"      keycode="VK_ESCAPE" oncommand="close();"/>
-    </keyset>
+<keyset>
+	<key id="save-key"  modifiers="accel" key="S" oncommand="acceptDialog();" />
+	<key id="close-key" modifiers="accel" key="C" oncommand="cancelDialog();" />
+</keyset>
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/loader.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />
