@@ -1,6 +1,6 @@
 {
    "background_page": "background.html",
-   "content_scripts": [ {
+     "content_scripts": [ {
       "js": [ "const.js", "module.js", "helper.js", "l10n.js", "preferences.js", 
 	"xml_load.js",
 	 "stats.js",

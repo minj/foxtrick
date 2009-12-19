@@ -51,15 +51,16 @@ Foxtrick.getHref = function( doc ) {
 	
 var FoxtrickMain = {
     init : function() {  
+//alert('in init');
 	
 		// create handler arrays for each recognized page
 		for ( var i in Foxtrick.ht_pages ) {
 			Foxtrick.run_on_page[i] = new Array();
 			Foxtrick.may_run_on_page[i] = new Array();
 		}
-
 		// init all modules
-		for (var  i in Foxtrick.modules ) {  
+		for (var  i in Foxtrick.modules ) {  //alert('in init inner');
+
 			var module = Foxtrick.modules[i];
 			// if module has an init() function and is enabled
 			if ( module.MODULE_NAME
@@ -86,7 +87,7 @@ var FoxtrickMain = {
 		}
 	},
 		
-    run : function( doc ) { 
+    run : function( doc ) {  
 				// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
@@ -226,7 +227,7 @@ Foxtrick.addJavaScriptSnippet = function( doc, code ) {
   head.appendChild(script);
 }
 
-Foxtrick.confirmDialog = function(msg) {
+Foxtrick.confirmDialog = function(msg) { alert('confirmDialog not implemented');
 	return null; //xxx
 }
 
@@ -267,7 +268,8 @@ Foxtrick.substr_count = function ( haystack, needle, offset, length ) {
 Foxtrick.isModuleEnabled = function( module ) { 
     try {
         var val = FoxtrickPrefs.getBool( "module." + module.MODULE_NAME + ".enabled" );
-        return (val != null) ? val : module.DEFAULT_ENABLED;
+        //console.log('get: '+module.MODULE_NAME+' '+ val+'\n');
+		return (val != null) ? val : module.DEFAULT_ENABLED;
     } catch( e ) {
         return false;
     }
@@ -296,7 +298,19 @@ Foxtrick.LOG = function (msg) {
 }
 		
 
-// ...
+Foxtrick.selectFile = function (parentWindow) {
+	return null;
+}
+
+Foxtrick.playSound = function(url) {
+// not working yet to chrome bug: http://code.google.com/p/chromium/issues/detail?id=22152
+  try { 
+	var music = new Audio(url);
+	music.play();
+  } catch (e) {
+    Foxtrick.dump('playSound'+e);
+  }
+}
 		
 Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents css\n');
 		// check permanant css

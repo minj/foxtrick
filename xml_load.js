@@ -83,14 +83,21 @@ Foxtrick.XMLData = {
 // prefs
 var port2 = chrome.extension.connect({name: "ftpref-query"});
 port2.onMessage.addListener(function(msg) {   
-    FoxtrickPrefs.pref = msg.pref;
+    FoxtrickPrefs.pref = msg.pref; 
 });
 port2.postMessage({reqtype: "pref"});
+
+var port2d = chrome.extension.connect({name: "ftpref-query"});
+port2d.onMessage.addListener(function(msg) {   
+    FoxtrickPrefs.pref_default = msg.pref_default; 
+});
+port2d.postMessage({reqtype: "pref_default"});
 
 // properties
 var port = chrome.extension.connect({name: "ftproperties-query"});
 port.onMessage.addListener(function(msg) {
     Foxtrickl10n.properties = msg.properties;
+	//Foxtrick.dump('query: '+Foxtrickl10n.properties.substring(0,20));
 });
 port.postMessage({reqtype: "properties"});
 

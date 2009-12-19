@@ -81,11 +81,18 @@ var FoxtrickReadHtPrefs = {
 			if (this.codes[langval]==oldval) return;
 			
 			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
-			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+			FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:this.codes[langval], from:'readpref'});
 			
-			var path = "hattricklanguages/language[@name='" + this.codes[langval] + "']";
+			if (!document) ShowChanged(doc);  // is ff extension, else using the listener	
+		}
+	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
+	},
+
+    ShowChanged: function(doc) {	
+	try {
+			var path = "hattricklanguages/language[@name='" + FoxtrickPrefs.getString("htLanguage") + "']";
 			var langname = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "desc");
-					
+			
 			var mainBody = doc.getElementById('mainBody');	
 			var alertdiv=doc.createElement('div');
 			alertdiv.setAttribute('class','alert');
@@ -93,7 +100,6 @@ var FoxtrickReadHtPrefs = {
 			alertdiv.setAttribute('style', 'margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+langname));
 			mainBody.insertBefore(alertdiv,mainBody.firstChild);
-		}
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 	
