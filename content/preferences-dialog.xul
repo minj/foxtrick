@@ -2,19 +2,18 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://foxtrick/content/resources/css/preferences-dialog.css" type="text/css"?>
 
-<!DOCTYPE window>
+<!DOCTYPE dialog>
 
-
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="foxtrick-config"
 	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
 	onload="FoxtrickPreferencesDialog.init();"
-    resizable="yes"
-    width="600px"
-    height="600px"
-    persist="width height screenX screenY"
-    class="dialog"
->
+	buttons="accept,cancel"
+	width="600px"
+	height="600px"
+	resizable="yes"
+	persist="width height screenX screenY">
+
     <keyset>
       <key id="save-key"  modifiers="accel" key="S" oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();"/>
       <key id="close-key" modifiers="accel" key="C" oncommand="close();"/>
@@ -80,14 +79,4 @@
 	</tabpanels>
   </tabbox>
 
-<vbox flex="0">
-  <hbox flex="1">
-    <button id="buttonSave"   oncommand="FoxtrickPreferencesDialog.onDialogAccept(); close();" />
-    <button id="buttonCancel" oncommand="close();" />
-    <vbox pack="end" flex="1"  align="end">
-      <resizer dir="bottomright" class="slider" />
-    </vbox>
-  </hbox>
-</vbox>
-
-</window>
+</dialog>

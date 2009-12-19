@@ -26,11 +26,10 @@ var FoxtrickPreferencesDialog = {
 	initCaptionsAndLabels : function( document ) {
 
 		// Window title
-		window.title = Foxtrickl10n.getString( "foxtrick.prefs.preferences" );
+		document.documentElement.setAttribute("title", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
 		// Captions and labels
 		var allLabels = [ "MainTab", "ShortcutsTab", "PresentationTab", "MatchesTab",
-						  "ForumTab", "LinksTab", "AboutTab",
-						  "buttonSave", "buttonCancel" ];
+						  "ForumTab", "LinksTab", "AboutTab" ];
 		for(var i = 0; i < allLabels.length; i++) {
 			var thisElement = document.getElementById(allLabels[i]);
 			thisElement.setAttribute( "label", Foxtrickl10n.getString(
@@ -1161,9 +1160,9 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 
 FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
 	if(!button) {
-        window.open("chrome://foxtrick/content/preferences-dialog.xul",
-                      "",
-                      "centerscreen, chrome, modal, resizable=yes");
+		
+        window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
+                          "foxtrick-config", "centerscreen,chrome,modal");
 		FoxtrickMain.init();
 	}
 }
