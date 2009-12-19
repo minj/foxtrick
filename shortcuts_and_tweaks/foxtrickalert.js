@@ -32,11 +32,15 @@ var FoxtrickAlert = {
     	try {  				
 
 			if (this.alertWin) this.closeAlert(true);
-			/*var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+			
+			if (Foxtrick.BuildFor=='Gecko') {
+				// get a tab with hattrick
+				var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
-			var mainWindow = wm.getMostRecentWindow("navigator:browser");
-			FoxtrickAlert.foxtrick_showAlert.tab = mainWindow.getBrowser().selectedTab;
-			*/
+				var mainWindow = wm.getMostRecentWindow("navigator:browser");
+				FoxtrickAlert.foxtrick_showAlert.tab = mainWindow.getBrowser().selectedTab;
+			}
+			
 			// check new, mail and forum after pageload and show alerts if needed
 			if (doc.getElementById('hattrick')) FoxtrickAlert.checkNews(doc);
             if (doc.getElementById('hattrickNoSupporter')) FoxtrickAlert.showMailAlert(doc);								

@@ -80,10 +80,18 @@ var FoxtrickReadHtPrefs = {
 			var oldval = FoxtrickPrefs.getString("htLanguage");
 			if (this.codes[langval]==oldval) return;
 			
-			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
-			FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:this.codes[langval], from:'readpref'});
+			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);		
 			
-			if (!document) ShowChanged(doc);  // is ff extension, else using the listener	
+			if (Foxtrick.BuildFor=='Chrome') {
+				// change language
+				FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:this.codes[langval], from:'readpref'});			
+				// ShowChanged(doc); shown in the listener!	
+			}
+			else {  
+				// change language
+				Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+				ShowChanged(doc);  	
+			}
 		}
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},

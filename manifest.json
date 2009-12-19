@@ -1,9 +1,14 @@
 {
    "background_page": "background.html",
      "content_scripts": [ {
-      "js": [ "const.js", "module.js", "helper.js", "l10n.js", "preferences.js", 
-	"xml_load.js",
-	 "stats.js",
+      "js": [ 
+	"const.js", 
+	"module.js", 
+	"helper.js", 
+	"l10n_chrome.js", 
+	"preferences_chrome.js", 
+	"xml_load_chrome.js",
+	"stats.js",
     "redirections.js",
 	"read_ht_pref_changes.js",
 	//"preferences-dialog.js",
@@ -119,8 +124,12 @@
     "presentation\\currencyConverter.js",
     "shortcuts_and_tweaks\\teampopuplinks.js", 
 
-	  "modules_list.js", "foxtrick_chrome.js","loader.js" ],
-      "matches": [ "http://*.hattrick.org/*" ],
+	  "modules_list.js",
+	  "foxtrick_chrome.js",
+	  "loader_chrome.js" 
+	],
+	
+      "matches": [ "http://*.hattrick.org/*","http://*.hattrick.ws/*","http://*.hattrick.interia.pl/*" ],
       "run_at": "document_start"
    } ],
    "description": "FoxTrick for Chrome",

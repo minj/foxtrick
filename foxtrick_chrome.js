@@ -1,8 +1,15 @@
 
+/**
+ * Foxtrick - an extension for hattrick.org
+ * Contact us: by HT-mail to Mod-Spamot on hattrick.org
+ */
+////////////////////////////////////////////////////////////////////////////////
+
 try {
 if (!Foxtrick) var Foxtrick={};
 
- ////////////////////////////////////////////////////////////////////////////////
+Foxtrick.BuildFor='Chrome';
+
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
  * DON'T EDIT THIS, use registerAllPagesHandler() instead.
@@ -1046,6 +1053,37 @@ Foxtrick.getUniqueDayfromCellHTML = function( date ) {
     return CellDays;
 }
 
+
+
+Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset) {
+    /*
+    Returns HT-Week & Season
+    short == true => Date is without time.
+    */
+
+    var tds = doc.getElementsByTagName( elm );
+    for (var i = 0; tds[i] != null; ++i) {
+        // if (tds[i].id == 'ft_HTDateFormat') return;
+        var dt_inner = Foxtrick.trim(tds[i].innerHTML);
+
+
+        if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) {
+            if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
+                var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
+                var ar = reg.exec(dt_inner);
+
+                if (ar != null) {
+                    var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
+
+                    if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
+                        tds[i].innerHTML = dt_inner + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
+						//Foxtrick.dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + Foxtrick.gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+                    }
+                }
+            }
+        }
+    }
+}
 
     Clipboard = {};
     Clipboard.utilities = {};
