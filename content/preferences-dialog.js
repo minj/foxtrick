@@ -950,19 +950,11 @@ getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
 	entry_sortfunction: function(a,b) {return a.prefname>b.prefname;},
 
 	_getWrapableBox : function( desc_text ) {
-		var desc_box = document.createElement( "hbox" );
-		var desc = document.createElement("textbox");
-		desc.setAttribute( "class", "plain");//#ece9d7
-		desc.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		desc.setAttribute( "height", "20 ");
-		desc.setAttribute( "flex", "1");
-		desc.setAttribute( "multiline", "true");
-		desc.setAttribute( "readonly","true");
-		desc.setAttribute( "onoverflow", "FoxtrickPreferencesDialog.heigh=20; FoxtrickPreferencesDialog.height = FoxtrickPreferencesDialog.inputField.scrollHeight;");
-		desc.setAttribute( "DOMAttrModified","if(event.attrName == 'value') FoxtrickPreferencesDialog.value = event.newValue; return true;");
-		desc.setAttribute( "value",desc_text);
-		desc_box.appendChild( desc );
-		return desc_box;
+		var desc = document.createElement("description");
+		var text = document.createTextNode(desc_text);
+		desc.setAttribute("style", "white-space: pre-wrap; overflow: auto;");
+		desc.appendChild(text);
+		return desc;
 	},
 
 	_radioModule : function( module ) {
