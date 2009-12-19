@@ -27,6 +27,14 @@ var FoxtrickPreferencesDialog = {
 
 		// Window title
 		document.documentElement.setAttribute("title", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
+
+		// Button labels
+		var save = document.documentElement.getButton("accept");
+		save.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonSave"));
+		var cancel = document.documentElement.getButton("cancel");
+		cancel.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonCancel"))
+
+
 		// Captions and labels
 		var allLabels = [ "MainTab", "ShortcutsTab", "PresentationTab", "MatchesTab",
 						  "ForumTab", "LinksTab", "AboutTab" ];
