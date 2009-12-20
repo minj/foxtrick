@@ -10,7 +10,7 @@ user_pref("extensions.foxtrick.prefs.alertSound",true);
 user_pref("extensions.foxtrick.prefs.alertSoundUrl","http://foxtrick.googlecode.com/svn/branches/chrome/resources/sounds/DingLing.mp3");
 user_pref("extensions.foxtrick.prefs.copyfeedback",true);
 user_pref("extensions.foxtrick.prefs.cssSkin","");
-user_pref("extensions.foxtrick.prefs.cssSkin.value","chrome://foxtrick/content/resources/css/mainr.css");
+user_pref("extensions.foxtrick.prefs.cssSkin.value","");
 user_pref("extensions.foxtrick.prefs.cssSkinOld","");
 user_pref("extensions.foxtrick.prefs.curVersion","0.4.9.1");
 user_pref("extensions.foxtrick.prefs.currencyCode","EUR");
@@ -621,7 +621,7 @@ user_pref("extensions.foxtrick.prefs.module.shortcutsstatistics.Supporterstats.e
 user_pref("extensions.foxtrick.prefs.module.shortcutsstatistics.Transfers.enabled",true);
 user_pref("extensions.foxtrick.prefs.module.shortcutsstatistics.enabled",true);
 user_pref("extensions.foxtrick.prefs.oldCurrencySymbol","€");
-user_pref("extensions.foxtrick.prefs.oldVersion","0.4.9.1");
+user_pref("extensions.foxtrick.prefs.oldVersion","0.4.9.0");
 user_pref("extensions.foxtrick.prefs.onpageprefs",true);
 user_pref("extensions.foxtrick.prefs.smallcopyicons",true);
 user_pref("extensions.foxtrick.prefs.statusbarshow",true);

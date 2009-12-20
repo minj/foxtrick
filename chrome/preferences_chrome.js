@@ -107,6 +107,7 @@ var FoxtrickPrefs = {
     },
     
     deleteValue : function( value_name ){
+		delete localStorage[value_name];
     },	
 };
 
@@ -170,18 +171,17 @@ FoxtrickPrefs.confirmCleanupBranch = function ( ev ) {
 }
 
 
-FoxtrickPrefs.disableAll = function (ev ) { return null //xxx
-	if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
+FoxtrickPrefs.disableAll = function (ev ) { 
+	//if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  
+	{
         try {
-			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
-				if( array[i].search( /enabled$/ ) != -1) {
-						FoxtrickPrefs.setBool( array[i], false );
+			for (var i in localStorage) {
+				if(i.search( /enabled$/ ) != -1) { Foxtrick.dump(i.replace(/extensions.foxtrick.prefs./,''))
+						FoxtrickPrefs.setBool( i.replace(/extensions.foxtrick.prefs./,''), false );
 				}
 			}
-			FoxtrickMain.init();
-            if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+			FoxtrickPrefs.setBool('module.PrefsDialogHTML.enabled',true );
+			document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
 			dump(e);
