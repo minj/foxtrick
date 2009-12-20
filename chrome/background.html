@@ -16,6 +16,14 @@ try{
 	prefxhr.send();
 	var preftext = prefxhr.responseText;
 		
+	/*for (var i in localStorage) { //alert(i)
+		//if (i.search('extensions.foxtrick.prefs')!=-1) 
+		{
+			preftext = 'user_pref("'+i+'",'+localStorage[i]+');\n' + preftext;
+		}
+	}
+	alert(preftext);				*/
+			
 	try{
 		var lang = localStorage['extensions.foxtrick.prefs.htLanguage'];	
 		if ( typeof(lang) == 'undefined' ) {
@@ -168,7 +176,7 @@ chrome.extension.onConnect.addListener(function(port) {
 			propertiesxhr.open("GET", listUrl, false);
 			propertiesxhr.send();	 
 			port.postMessage({properties: propertiesxhr.responseText, from: msg.from});	
-		}		
+		}
 	});
   }
 });
@@ -349,7 +357,7 @@ function animateFlip() {
     setTimeout("animateFlip()", animationSpeed);
   } else {
 	rotation = 0;
-    drawIconAtRotation(); 
+	drawIconAtRotation(); 
     chrome.browserAction.setBadgeText({ 
       text: unreadCount=='0/0'?'':unreadCount
     });
@@ -364,7 +372,7 @@ function showLoggedOut() {  //alert('showLoggedOut');
   chrome.browserAction.setBadgeText({text:"?"});
 }
 
-function drawIconAtRotation() {
+function drawIconAtRotation() { return;
   canvasContext.save();
   canvasContext.clearRect(0, 0, canvas.width, canvas.height);
   canvasContext.translate(
