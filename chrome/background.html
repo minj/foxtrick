@@ -6,6 +6,8 @@ try{
 	
 	var newstart = true;
 	var mail_count = 0;
+	var forum_count = 0;
+	var unreadticker_count = 0;
 	
 	// get resources	
 	listUrl = chrome.extension.getURL("default.pref");
@@ -137,9 +139,20 @@ chrome.extension.onConnect.addListener(function(port) {
 		else if (msg.reqtype == "set_mail_count") {  
 			mail_count = msg.mail_count;
 			getInboxCount(function(count) {
-					updateUnreadCount(count);
+					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
 			});
-			//alert('set_mail_count '+ mail_count);
+		}
+		else if (msg.reqtype == "set_forum_count") {  
+			forum_count = msg.forum_count;
+			getInboxCount(function(count) {
+					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
+			});
+		}
+		else if (msg.reqtype == "set_unreadticker_count") {  
+			unreadticker_count = msg.unreadticker_count;
+			getInboxCount(function(count) {
+					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
+			});
 		}
 	  } catch(e) {alert('error msg.reqtype : '+msg.reqtype+' '+e);} 
 	});
@@ -173,7 +186,7 @@ var pollIntervalMax = 1000 * 60 * 60;  // 1 hour
 var requestFailureCount = 0;  // used for exponential backoff
 var requestTimeout = 1000 * 2;  // 5 seconds
 var rotation = 0;
-var unreadCount = -1;
+var unreadCount = '0/0';
 var loadingAnimation = new LoadingAnimation();
 
 function getGmailUrl() {
@@ -277,9 +290,9 @@ function scheduleRequest() {
 // ajax stuff
 function startRequest() {
   getInboxCount(
-    function(count) {
+    function(count) { //mail_count+forum_count+unreadticker_count
       loadingAnimation.stop();
-      updateUnreadCount(count);
+      updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
       scheduleRequest();
     },
     function() {
@@ -316,14 +329,8 @@ function getInboxCount(onSuccess, onError) {
   handleError();
 }
 
-function gmailNSResolver(prefix) {
-  if(prefix == 'gmail') {
-    return 'http://purl.org/atom/ns#';
-  }
-}
-
 function updateUnreadCount(count) {
-  if (unreadCount != count) {
+  if (unreadCount != count) { //alert(unreadCount +' '+ count+' '+(unreadCount != count));
     unreadCount = count;
     animateFlip();
   }
@@ -344,14 +351,14 @@ function animateFlip() {
 	rotation = 0;
     drawIconAtRotation(); 
     chrome.browserAction.setBadgeText({ 
-      text: unreadCount != "0" ? String(unreadCount) : ''
+      text: unreadCount=='0/0'?'':unreadCount
     });
     chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
   }
 }
 
 function showLoggedOut() {  //alert('showLoggedOut'); 
-  unreadCount = -1;
+  unreadCount = '0/0';
   chrome.browserAction.setIcon({path:"gmail_not_logged_in.png"});
   chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
   chrome.browserAction.setBadgeText({text:"?"});
@@ -377,15 +384,11 @@ function goToInbox() {
   chrome.tabs.getAllInWindow(undefined, function(tabs) {
     for (var i = 0, tab; tab = tabs[i]; i++) {
       if (tab.url && isGmailUrl(tab.url)) {
-		if (tab.url.search(/MyHattrick\/Inbox\/Default.aspx/i)==-1) {
-			tab.url = tab.url.match(/(.*hattrick.org)/)[0]+'/MyHattrick/Inbox/Default.aspx';
-			chrome.tabs.update(tab.id, {url:tab.url, selected: true});
-		}
-		else chrome.tabs.update(tab.id, {selected: true});
+		chrome.tabs.update(tab.id, {selected: true});
         return;
       }
     }
-    chrome.tabs.create({url: getGmailUrl()+'/MyHattrick/Inbox/Default.aspx'});
+    chrome.tabs.create({url: getGmailUrl()});
   });
 }
 
