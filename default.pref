@@ -621,7 +621,7 @@ user_pref("extensions.foxtrick.prefs.module.shortcutsstatistics.Supporterstats.e
 user_pref("extensions.foxtrick.prefs.module.shortcutsstatistics.Transfers.enabled",true);
 user_pref("extensions.foxtrick.prefs.module.shortcutsstatistics.enabled",true);
 user_pref("extensions.foxtrick.prefs.oldCurrencySymbol","€");
-user_pref("extensions.foxtrick.prefs.oldVersion","0.4.9.0");
+user_pref("extensions.foxtrick.prefs.oldVersion","0.4.9.1");
 user_pref("extensions.foxtrick.prefs.onpageprefs",true);
 user_pref("extensions.foxtrick.prefs.smallcopyicons",true);
 user_pref("extensions.foxtrick.prefs.statusbarshow",true);

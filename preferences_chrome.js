@@ -5,82 +5,67 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
+var portsetpref = chrome.extension.connect({name: "ftpref-query"});
+portsetpref.onMessage.addListener(function(msg) {   
+	if (msg.pref_changed == 'true') {
+		FoxtrickPrefs.pref = msg.prefs;
+	    Foxtrickl10n.properties = msg.properties;
+		FoxtrickPrefs.pref_save_dump = '';
+		//document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+		document.location.href = document.location.pathname;
+	}
+});
+
+
 var FoxtrickPrefs = {
 
-    pref:null,
-    pref_default:null,
+    pref:'',
+    pref_default:'',
+	pref_save_dump:'',
 	
     init : function() {		
     },
 
     setString : function( pref_name, value ) {
-		localStorage['extensions.foxtrick.prefs.'+ pref_name] = '"'+value+'"';			
+		FoxtrickPrefs.pref_save_dump += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'","'+value+'");\n';			
     },
 
     getString : function( pref_name ) {  
-		var val = localStorage['extensions.foxtrick.prefs.'+ pref_name];			
-		if ( typeof(val) != 'undefined' ) {//console.log('s localpref '+pref_name+' '+val); 
-										if (val.search(/\".+\"/)==-1) return null;  // not a string, will be bool
-										return val.match(/\"(.+)\"/)[1];}
-
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);', "i" );
-		if (FoxtrickPrefs.pref.search(string_regexp)!=-1) {
-			//console.log('s from pref '+pref_name+' '+FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/')); 	
-			return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
+		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) {
+			try {return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
+			} catch(e) {return '';}
 		}
-
-		if (FoxtrickPrefs.pref_default.search(string_regexp)!=-1) {
-			//console.log('s from pref_default '+pref_name+' '+FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/')); 	
-			return  FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
+		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) {
+			try { return  FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
+			} catch(e) {return '';}
 		}
-
 		Foxtrick.dump("** preference error ** "+pref_name+'\n');
-		return null;
+		return ' ';
     },
 
     setInt : function( pref_name, value ) {
-		localStorage['extensions.foxtrick.prefs.'+ pref_name] = value;			
+		FoxtrickPrefs.pref_save_dump += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';			
     },
 
     getInt : function( pref_name ) { 
-		var val = localStorage['extensions.foxtrick.prefs.'+ pref_name];			
-		if ( typeof(val) != 'undefined' ) {  //console.log(val+' '+val.search(/\d+/))
-			if (val.search(/\d+/)==-1) return null; // will be bool
-			return parseInt(val.match(/(\d+)/)[1]); 			
-		}
-
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",\(\\d+\)\\);', "i" );
-		if (FoxtrickPrefs.pref.search(string_regexp)!=-1) return  parseInt(FoxtrickPrefs.pref.match(string_regexp)[1]);
-
-		if (FoxtrickPrefs.pref_default.search(string_regexp)!=-1) return  parseInt(FoxtrickPrefs.pref_default.match(string_regexp)[1]);
-
+		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) return  parseInt(FoxtrickPrefs.pref.match(string_regexp)[1]);
+		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) return  parseInt(FoxtrickPrefs.pref_default.match(string_regexp)[1]);
 		Foxtrick.dump("** preference error ** "+pref_name+'\n');
-		return null;
+		return 0;
     },
 
     setBool : function( pref_name, value ) {
-		localStorage['extensions.foxtrick.prefs.'+ pref_name] = value;			
+		FoxtrickPrefs.pref_save_dump += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';			
     },
 
     getBool : function( pref_name ) {  
-		// no dump in this function !!!!!!!!
-		var val = localStorage['extensions.foxtrick.prefs.'+ pref_name];
-		if ( typeof(val) != 'undefined' ) {
-			//console.log('b local:' +pref_name+' '+val);		
-			return (val=='true');
-		}
-
+		// no dump in this function !!!!!!!! (stupid htmldump)
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",(.+)\\);', "i" );		
-		if (FoxtrickPrefs.pref.search(string_regexp)!=-1) { 
-			//console.log('b from pref '+pref_name+' '+FoxtrickPrefs.pref.match(string_regexp)[1]+' '+(FoxtrickPrefs.pref.match(string_regexp)[1]=='true'));		
-			return  (FoxtrickPrefs.pref.match(string_regexp)[1]=='true');
-		}
-
-		if (FoxtrickPrefs.pref_default.search(string_regexp)!=-1) { 
-			//console.log('b from pref_default '+pref_name+' '+FoxtrickPrefs.pref_default.match(string_regexp)[1]+' '+(FoxtrickPrefs.pref_default.match(string_regexp)[1]=='true'));		
-			return  (FoxtrickPrefs.pref_default.match(string_regexp)[1]=='true');
-		}
-		return null;
+		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) return  (FoxtrickPrefs.pref.match(string_regexp)[1]=='true');
+		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) return  (FoxtrickPrefs.pref_default.match(string_regexp)[1]=='true');
+		return false;
     },
 	
 
@@ -107,7 +92,7 @@ var FoxtrickPrefs = {
     },
     
     deleteValue : function( value_name ){
-		delete localStorage[value_name];
+		// redo!  delete localStorage[value_name];
     },	
 };
 
@@ -160,7 +145,7 @@ FoxtrickPrefs.confirmCleanupBranch = function ( ev ) {
 
 	//if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
-			for (var i in localStorage) delete localStorage[i];
+			// redo!  for (var i in localStorage) delete localStorage[i];
 			document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
@@ -175,11 +160,11 @@ FoxtrickPrefs.disableAll = function (ev ) {
 	//if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  
 	{
         try {
-			for (var i in localStorage) {
+			/* redo! for (var i in localStorage) {
 				if(i.search( /enabled$/ ) != -1) { Foxtrick.dump(i.replace(/extensions.foxtrick.prefs./,''))
 						FoxtrickPrefs.setBool( i.replace(/extensions.foxtrick.prefs./,''), false );
 				}
-			}
+			} */
 			FoxtrickPrefs.setBool('module.PrefsDialogHTML.enabled',true );
 			document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
@@ -196,7 +181,7 @@ FoxtrickPrefs.SavePrefs = function (ev) {
 			else doc=document;
 			
 			var array = new Array();
-			for(var i in localStorage) {  
+			/* redo! for(var i in localStorage) {  
 				var pref = i.replace('extensions.foxtrick.prefs.','');
 				if ((FoxtrickPrefs.isPrefSetting(pref) && doc.getElementById("saveprefsid").checked)
 					|| (!FoxtrickPrefs.isPrefSetting(pref) && doc.getElementById("savenotesid").checked)) {
@@ -217,7 +202,12 @@ FoxtrickPrefs.SavePrefs = function (ev) {
 			
 			newwin = window.open("","");
 			newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+writeString+'</body></html>');
-			if(!ev) close();
+			if(!ev) close();  */
+			
+			
+			newwin = window.open("","");
+			newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+FoxtrickPrefs.pref.replace(/\n/gi,'<br>')+'</body></html>');
+			
 		}
 		catch (e) {
 			Foxtrick.alert(e);
@@ -225,21 +215,12 @@ FoxtrickPrefs.SavePrefs = function (ev) {
     return true;
 }
 
-
-var portsetpref = chrome.extension.connect({name: "ftpref-query"});
-portsetpref.onMessage.addListener(function(msg) {   
-	if (msg.pref_changed == 'true') {
-		for (var i in localStorage) delete localStorage[i];    
-		document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-	}
-});
-
-
 FoxtrickPrefs.LoadPrefsImport = function (ev) { 
 
 	var textarea = document.getElementById('getpreftext');
-	portsetpref.postMessage({reqtype: "set_pref", prefs:textarea.value});
-	
+	FoxtrickPrefs.pref_save_dump += textarea.value;
+	portsetpref.postMessage({reqtype: "dump_prefs"});
+		
 	var tr = document.getElementById('buttonLoadPrefs').parentNode.parentNode;
 	tr.style.display='table-row';
 	tr.parentNode.removeChild(tr.nextSibling);
