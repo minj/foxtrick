@@ -29,6 +29,8 @@ var FoxtrickPrefsDialogHTML = {
 
     run : function( doc ) { 
 	try{
+		if (Foxtrick.BuildFor=='Chrome') Foxtrick.reload_css_permanent( this.CSS ) ;		
+		
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
 			FoxtrickPrefsDialogHTML.add_pref_links(doc);			
@@ -565,6 +567,7 @@ var FoxtrickPrefsDialogHTML = {
 		// skin plugin
 		var groupbox= doc.createElement("div");
 		groupbox.setAttribute('class',"ft_pref_modul");
+		if (Foxtrick.BuildFor=='Chrome') groupbox.setAttribute('style',"display:none !important");
 		preftab.appendChild(groupbox);
 		
 		var caption1= doc.createElement("div");
@@ -872,7 +875,7 @@ var FoxtrickPrefsDialogHTML = {
 		var td = doc.createElement( "td" );	
 		td.setAttribute('class','ft_prefs_screenshot_td');
 		tr.appendChild( td );
-		var screenshot = Foxtrickl10n.getScreenshot('help'); 	
+		var screenshot = Foxtrickl10n.getScreenshot('help');		
 		if (screenshot) {
 			var a = doc.createElement('a');
 			a.href = screenshot;
@@ -1389,8 +1392,8 @@ var FoxtrickPrefsDialogHTML = {
 				alertdiv.innerHTML += Foxtrickl10n.getString("NewOrChangedModules")+' ';
 				
 				if (Foxtrick.BuildFor=='Chrome')
-						var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXml, "hattrickversions/version", "desc", "name", "code", oldVersion);
-				else var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome://foxtrick/content/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
+						var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXML, "hattrickversions/version", "name", "code", oldVersion);
+				else var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
 				selectbox.setAttribute("id","ft_ownselectboxID");
 				selectbox.addEventListener('change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
 				alertdiv.appendChild(selectbox);
@@ -1685,7 +1688,6 @@ var FoxtrickOnPagePrefs = {
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css",
 	
     init : function() {
     },

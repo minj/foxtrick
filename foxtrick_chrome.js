@@ -57,14 +57,26 @@ Foxtrick.getHref = function( doc ) {
 
 	
 var FoxtrickMain = {
+	IsNewVersion:false,
+
     init : function() {  
 //alert('in init');
 	
+		// check if this is a new version
+		var curVersion = FoxtrickPrefs.getString("curVersion");
+		var oldVersion = FoxtrickPrefs.getString("oldVersion");
+		if (oldVersion<curVersion ) {
+			FoxtrickMain.IsNewVersion=true;
+			FoxtrickPrefs.setString("oldVersion",curVersion);
+		}
+		
 		// create handler arrays for each recognized page
 		for ( var i in Foxtrick.ht_pages ) {
 			Foxtrick.run_on_page[i] = new Array();
 			Foxtrick.may_run_on_page[i] = new Array();
 		}
+
+
 		// init all modules
 		for (var  i in Foxtrick.modules ) {  //alert('in init inner');
 
@@ -134,6 +146,7 @@ var FoxtrickMain = {
 				//Foxtrick.dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );
 			}
 			
+			//FoxtrickSkinPlugin.load( document );
 			Foxtrick.reload_css_permanent( 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
 		},
 	}
@@ -1204,15 +1217,13 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 		for (var j=0;j<splitpath.length-1;++j) { 
 	        try {
 				base = base.getElementsByTagName(splitpath[j]);
-				base=base[0];
+				base=base[0]; 
 			} catch (e) { 
 				var tmp = document.createElement('tmp');
 				tmp.innerHTML = base;
 				base = tmp.getElementsByTagName(splitpath[j])[0];
 			}
-			//Foxtrick.dump(base.innerHTML+'\n')
 		}
-		//Foxtrick.dump('p:'+splitpath[j]+' '+basenodestr+'\n')
 			
 		var nodes = base.getElementsByTagName(splitpath[j]);
 		for (var i = 0; i < nodes.length; i++) {
@@ -1295,7 +1306,7 @@ Foxtrick.getSelectBoxFromXML2 = function (doc,xmlfile, basenodestr, labelstr, va
 
 	var selectbox = doc.createElement("select");
 	
-	var xml = doc.createElement('xml');
+	var xml = doc.createElement('tmp');
 	xml.innerHTML = xmlfile;
 	var versions = Foxtrick.XML_evaluate(xml, basenodestr, labelstr, valuestr);
 
