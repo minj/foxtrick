@@ -277,8 +277,12 @@ var FoxtrickPrefsDialogHTML = {
 			}
 		}
 		
-
-		if ( doc.getElementById("OnPagePrefs")) FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
+		if (Foxtrick.BuildFor=='Chrome') {  // fix for double saving mainprefs with module
+			FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.CurrencyConverter.enabled",.+\);/g,'');
+			FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled",.+\);/g,'');
+ 		}
+		
+		if (doc.getElementById("OnPagePrefs")) FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
         if (doc.getElementById("CurrencyConverter")) FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("CurrencyConverter").checked); 
 
 		
@@ -294,10 +298,8 @@ var FoxtrickPrefsDialogHTML = {
 		
         //Lang
         FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
-		if (Foxtrick.BuildFor=='Chrome')
-			FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:doc.getElementById("htLanguage").value, from:'mainpref'});
-
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
+ 
 		//Currency
         FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
         
@@ -355,9 +357,11 @@ var FoxtrickPrefsDialogHTML = {
 
         FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
         
+		portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump});
+
 		// reinitialize
-        FoxtrickMain.init();
-		doc.location.href="/MyHattrick/?configure_foxtrick=true&status=saved";
+        //FoxtrickMain.init();
+		//doc.location.href="/MyHattrick/?configure_foxtrick=true&status=saved";
 		dump('end save\n');
 	} catch (e) { dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');}
 	},
@@ -487,7 +491,7 @@ var FoxtrickPrefsDialogHTML = {
 				
 		var td= doc.createElement("td");
         tr.appendChild(td);
-		var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
+		var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"); 
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtPrefs', Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"),'', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
@@ -577,13 +581,14 @@ var FoxtrickPrefsDialogHTML = {
 		var div= doc.createElement("div");
 		groupbox.appendChild(div);
         
+		
 		var input_option_text = doc.createElement( "input" );	
 		input_option_text.setAttribute( "type", "text" );
 		input_option_text.setAttribute( "id", 'cssskinpref' );
 		input_option_text.setAttribute( "value",FoxtrickPrefs.getString( "cssSkin" ));
 		input_option_text.setAttribute( "class", "ft_pref_input_option_text");
 		div.appendChild( input_option_text);		
-
+		
 		var button= doc.createElement("input");
 		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.skinButtonSelectFile"));
 		button.setAttribute( "type", "button" );		
@@ -592,7 +597,7 @@ var FoxtrickPrefsDialogHTML = {
 		button.addEventListener('click',FoxtrickPrefsDialogHTML.selectfile,false);
 		div.appendChild(button);
 
-		var checked = FoxtrickPrefs.getBool("module.SkinPlugin.enabled");
+		var checked = FoxtrickPrefs.getBool("module.SkinPlugin.enabled"); 
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'SkinPlugin', Foxtrickl10n.getString("foxtrick.prefs.activeSkin"), '', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;margin-left:10px; vertical-align:middle;");
 		div.appendChild(checkdiv);
@@ -853,7 +858,7 @@ var FoxtrickPrefsDialogHTML = {
  		var checked = FoxtrickPrefs.getBool("DisplayHTMLDebugOutput");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'DisplayHTMLDebugOutput', Foxtrickl10n.getString("foxtrick.prefs.DisplayHTMLDebugOutput"),'', checked ) 
 		div.appendChild(checkdiv);        
-		} catch(e){Foxtrick.dump(e);}
+		} catch(e){Foxtrick.dump('show mainpref tab '+e);}
 	},
 	
 	fill_help_list : function( doc ) {

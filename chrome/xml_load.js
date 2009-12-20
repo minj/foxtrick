@@ -13,7 +13,6 @@ Foxtrick.XMLData = {
 
     MODULE_NAME : "XMLData",
 	DEFAULT_ENABLED : true,
-	PAGES : new Array('all'), 
 
 	League : {},
 	countryid_to_leagueid : {},
@@ -27,8 +26,7 @@ Foxtrick.XMLData = {
 	matchxmls: new Array(),
 	
 	init : function() {
-	try{
-	} catch(e){Foxtrick.dump('Foxtrick.XMLData.init: '+e+'\n');}
+        Foxtrick.registerAllPagesHandler( this );
 	},
 	
 	run : function(page,doc) {
@@ -81,11 +79,11 @@ Foxtrick.XMLData = {
 
 // Open a port to the extension
 // prefs
-var port2 = chrome.extension.connect({name: "ftpref-query"});
-port2.onMessage.addListener(function(msg) {   
+var portgetpref = chrome.extension.connect({name: "ftpref-query"});
+portgetpref.onMessage.addListener(function(msg) {   
     FoxtrickPrefs.pref = msg.pref; 
 });
-port2.postMessage({reqtype: "pref"});
+portgetpref.postMessage({reqtype: "pref"});
 
 var port2d = chrome.extension.connect({name: "ftpref-query"});
 port2d.onMessage.addListener(function(msg) {   
