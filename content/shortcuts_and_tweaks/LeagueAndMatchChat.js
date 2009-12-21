@@ -20,7 +20,8 @@ var FoxtrickLeagueAndMatchChat = {
 	run : function( page, doc ) {  
 	try { 
 		var icon="http://hattrick.org/App_Themes/Simple/logo_green.png";
-		
+		var icon2 = "http://hattrick.org/favicon.ico";
+
 		if (page=='league') {
 			var id=doc.location.href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/league"+id;
@@ -29,7 +30,7 @@ var FoxtrickLeagueAndMatchChat = {
 			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
-					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
+					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.LeagueChat');
 			// add after forum <p> 
@@ -44,7 +45,7 @@ var FoxtrickLeagueAndMatchChat = {
 			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
-					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
+					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.LeagueChat');
 			// add after forum <p> 
@@ -59,7 +60,7 @@ var FoxtrickLeagueAndMatchChat = {
 			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
-					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
+					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.MatchChat');
 			// add to date
@@ -74,7 +75,7 @@ var FoxtrickLeagueAndMatchChat = {
 			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
-					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
+					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.CupChat');
 			var p = doc.createElement('p');
@@ -91,7 +92,7 @@ var FoxtrickLeagueAndMatchChat = {
 			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
-					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"')";
+					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
 			else  	a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.FederationChat');
 			// add to first sidebox
