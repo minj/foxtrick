@@ -2,7 +2,7 @@
    "background_page": "background.html",
    "browser_action": {
       "default_title": "FoxTrick",
-	  "default_icon": "resources/img/foxtrick18.png", 
+	  "default_icon": "resources/img/foxtrick18.png" 
        },
     "content_scripts": [ {
 		"js": [ 
