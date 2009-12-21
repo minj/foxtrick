@@ -123,7 +123,7 @@ chrome.extension.onConnect.addListener(function(port) {
 				propertiesxhr.send();	 
 			} catch(e) {alert('language doesnt exist: '+lang+' '+e);}
 			
-			port.postMessage({pref_changed: 'true', prefs:preftext, properties: propertiesxhr.responseText});
+			port.postMessage({pref_changed: 'true', prefs:preftext, properties: propertiesxhr.responseText,reload:msg.reload});
 		} 
 		else if (msg.reqtype == "properties") {
            if (propertiesxhr.responseText) port.postMessage({properties: propertiesxhr.responseText});

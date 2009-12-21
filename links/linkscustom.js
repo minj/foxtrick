@@ -417,7 +417,7 @@ var FoxtrickLinksCustom = {
 			var par=evt["target"].parentNode;
 			par.removeChild(evt["target"].previousSibling);
 			par.removeChild(evt["target"]);
-			FoxtrickPrefs.setBool( "module." + module_name+'.'+key + ".enabled",false);			
+			FoxtrickPrefs.setBool( "module." + module_name+'.'+key + ".enabled",false, true);			
 		}
 		catch (e) {Foxtrick.dump("LinksCustom->edityLink->"+e+'\n');}
 	},
@@ -617,7 +617,7 @@ var FoxtrickLinksCustom = {
 			var enabled = FoxtrickPrefs.getBool( "module.LinksCustom.enabled" );
         	
 			// remove old
-			FoxtrickPrefs.setBool( "module.LinksCustom.enabled", !enabled );
+			FoxtrickPrefs.setBool( "module.LinksCustom.enabled", !enabled, true );
 			var editbox=doc.getElementById("divEDId");
 			if (editbox) editbox.parentNode.removeChild(editbox);
 			var keys={};

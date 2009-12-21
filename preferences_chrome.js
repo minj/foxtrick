@@ -11,8 +11,8 @@ portsetpref.onMessage.addListener(function(msg) {
 		FoxtrickPrefs.pref = msg.prefs;
 	    Foxtrickl10n.properties = msg.properties;
 		FoxtrickPrefs.pref_save_dump = '';
-		//document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-		document.location.href = document.location.pathname;
+		//	document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';		
+		if (msg.reload) document.location.reload();
 	}
 });
 
@@ -26,8 +26,10 @@ var FoxtrickPrefs = {
     init : function() {		
     },
 
-    setString : function( pref_name, value ) {
-		FoxtrickPrefs.pref_save_dump += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'","'+value+'");\n';			
+    setString : function( pref_name, value, do_dump_now ) {
+		FoxtrickPrefs.pref_save_dump += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'","'+value+'");\n';	
+		if ( do_dump_now && do_dump_now==true ) 
+			portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump,reload:false});
     },
 
     getString : function( pref_name ) {  
@@ -44,8 +46,10 @@ var FoxtrickPrefs = {
 		return ' ';
     },
 
-    setInt : function( pref_name, value ) {
+    setInt : function( pref_name, value, do_dump_now ) {
 		FoxtrickPrefs.pref_save_dump += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';			
+		if ( do_dump_now && do_dump_now==true ) 
+			portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump,reload:false});
     },
 
     getInt : function( pref_name ) { 
@@ -56,8 +60,10 @@ var FoxtrickPrefs = {
 		return 0;
     },
 
-    setBool : function( pref_name, value ) {
+    setBool : function( pref_name, value, do_dump_now ) {
 		FoxtrickPrefs.pref_save_dump += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';			
+		if ( do_dump_now && do_dump_now==true ) 
+			portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump,reload:false});
     },
 
     getBool : function( pref_name ) {  
