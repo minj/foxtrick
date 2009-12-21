@@ -65,6 +65,7 @@ var FoxtrickLeagueAndMatchChat = {
 			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.MatchChat');
 			// add to date
 			var date = doc.getElementById('mainBody').getElementsByTagName('h1')[0].nextSibling.nextSibling;
+			date.appendChild(doc.createTextNode(' '));
 			date.appendChild(a);
 		}
 		else if (page=='cupoverview' || page=='cupmatches') { 
