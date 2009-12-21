@@ -1,7 +1,7 @@
 /**
  * preferences.js
  * Foxtrick preferences service
- * @author Mod-PaV
+ * @author convincedd
  */
 ////////////////////////////////////////////////////////////////////////////////
 

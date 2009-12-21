@@ -1,6 +1,4 @@
 /**
- *
- * 
  * xml_load.js
  * xml loading
  * @author convinced

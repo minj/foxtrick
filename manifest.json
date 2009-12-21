@@ -1,8 +1,9 @@
 {
    "background_page": "background.html",
    "browser_action": {
-      "default_title": ""
-   },
+      "default_title": "FoxTrick",
+	  "default_icon": "resources/img/foxtrick18.png", 
+       },
     "content_scripts": [ {
 		"js": [ 
 		"const.js", 
@@ -141,5 +142,5 @@
    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCo3LJa8LNXdkX8yF6LdJQ3Gthm2NjtKvaVjS0L//ChO2008XuV6HeKtDw9fJkmsp0KdV8HpqJ8irmREpxx/DZLANh/fQ2PMDid7LShcEwgzrq3qlchKoI4pGUd/yBiQTrAzgXiiW6jB8DBbaTPpEBwCOsfgfyE85qaa3WkC11bvwIDAQAB",
    "name": "Foxtrick",
    "permissions": [ "tabs" ],
-   "version": "0.4.9.22"
+   "version": "0.1.0.1"
 }
