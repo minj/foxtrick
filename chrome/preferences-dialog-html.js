@@ -288,8 +288,10 @@ var FoxtrickPrefsDialogHTML = {
 		
 		// check if not whole prefs. in that case stop here
 		if (!full_prefs) {
-		    FoxtrickMain.init();
-			doc.location.reload();
+		    if (Foxtrick.BuildFor=='Chrome') portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump,reload:true});
+			else { FoxtrickMain.init();
+				doc.location.reload();
+			}
 		 	return;		
 		}
 		
@@ -357,11 +359,11 @@ var FoxtrickPrefsDialogHTML = {
 
         FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
         
-		portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump});
-
-		// reinitialize
-        //FoxtrickMain.init();
-		//doc.location.href="/MyHattrick/?configure_foxtrick=true&status=saved";
+		if (Foxtrick.BuildFor=='Chrome') portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump,reload:true});
+		else { 
+			FoxtrickMain.init();
+			doc.location.reload();
+		}
 		dump('end save\n');
 	} catch (e) { dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');}
 	},

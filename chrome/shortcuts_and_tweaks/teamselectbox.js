@@ -31,7 +31,7 @@ var FoxtrickTeamSelectBox= {
 				else Foxtrick.addStyleSheet(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/linkscustom_simple_rtl.css");
 			}
 			
-			FoxtrickPrefs.setBool("ShowPlayerAsList",false);
+			FoxtrickPrefs.setBool("ShowPlayerAsList",false, true);
 			//Foxtrick.dump(Foxtrickl10n.getString("foxtrick.tweaks.overview" )+'\n');
 			this.listbox=null;
 			var listbox2=null;
@@ -77,7 +77,7 @@ var FoxtrickTeamSelectBox= {
 			div.addEventListener( "click", this.HeaderClick, false );
                                        
             if (doc.location.href.search(/YouthPlayers/i)!=-1 && !Foxtrick.isModuleFeatureEnabled( this, "AlsoYouthPlayers" ) ) 
-				{FoxtrickPrefs.setBool("ShowPlayerAsList",true);}
+				{FoxtrickPrefs.setBool("ShowPlayerAsList",true, true);}
             else {this.toSelectBox(doc);}
 		} 
 		catch (e) {Foxtrick.dump("SelectBox->run: "+e+'\n');}
@@ -143,7 +143,7 @@ var FoxtrickTeamSelectBox= {
 	HeaderClick : function(ev) {
 		try { 
 			var doc = ev.target.ownerDocument;
-			FoxtrickPrefs.setBool("ShowPlayerAsList",!FoxtrickPrefs.getBool("ShowPlayerAsList"));
+			FoxtrickPrefs.setBool("ShowPlayerAsList",!FoxtrickPrefs.getBool("ShowPlayerAsList"), true);
 			var div=doc.getElementById("ownselectboxHeaderID");
             
 			if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {
