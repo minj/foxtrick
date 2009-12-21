@@ -3,12 +3,6 @@
   <script>
  	 
 try{
-	
-	var newstart = true;
-	var mail_count = 0;
-	var forum_count = 0;
-	var unreadticker_count = 0;
-	
 	// get resources	
 
 	if ( typeof(localStorage['pref']) == 'undefined' ) {			
@@ -106,15 +100,21 @@ chrome.extension.onConnect.addListener(function(port) {
         } 
 	    else if (msg.reqtype == "dump_prefs") {
 			// save new properties			
-			localStorage['pref'] = msg.prefs;
 			var lines = msg.prefs.split(/\n+/g);
 			for (var i = 0; i< lines.length;++i) {
 				var thispref = lines[i].match(/\("(extensions.foxtrick.prefs.+)",(.+)\);/); 
-				if (thispref && preftext.search(thispref[1])!=-1) { //alert(thispref[1]);
+				if (thispref && preftext.search(thispref[1])!=-1) 
+				{   // replace exitsting
 					var string_regexp = new RegExp('"'+thispref[1]+'",.+\\);');
 					preftext = preftext.replace(string_regexp,'"'+ thispref[1]+'",'+thispref[2]+');')
 				}
+				else {  // add new ones
+					preftext += lines[i]+'\n';
+				}
 			}
+			// save in extension settings
+			localStorage['pref'] = preftext;
+			
 			try {  // set new lang
 				var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
 				lang =  preftext.match(string_regexp)[1];
@@ -201,235 +201,12 @@ chrome.extension.onConnect.addListener(function(port) {
   }
 });
 
-
-
-// ################## notification ##################
-var animationFrames = 36;
-var animationSpeed = 10; // ms
-var canvas;
-var canvasContext;
-var loggedInImage;
-var pollIntervalMin = 1000 * 60;  // 1 minute
-var pollIntervalMax = 1000 * 60 * 60;  // 1 hour
-var requestFailureCount = 0;  // used for exponential backoff
-var requestTimeout = 1000 * 2;  // 5 seconds
-var rotation = 0;
-var unreadCount = '0/0';
-var loadingAnimation = new LoadingAnimation();
-
-function getGmailUrl() {
-  var url = "hattrick.org";
-  if (localStorage.customDomain)
-    url += localStorage.customDomain + "/";
-  else
-    url += ""
-  return url;
-}
-
-function getFeedUrl() {
-  return getGmailUrl() + "feed/atom";
-}
-
-function isGmailUrl(url) {
-  // This is the Gmail we're looking for if:
-  // - starts with the correct gmail url
-  // - doesn't contain any other path chars
-  var gmail = getGmailUrl();
-  if (url.indexOf(gmail) == -1)
-    return false;
-
-  return true; //url.length == gmail.length || url[gmail.length] == '?' || url[gmail.length] == '#';
-}
-
-// A "loading" animation displayed while we wait for the first response from
-// Gmail. This animates the badge text with a dot that cycles from left to
-// right.
-function LoadingAnimation() {
-  this.timerId_ = 0;
-  this.maxCount_ = 8;  // Total number of states in animation
-  this.current_ = 0;  // Current state
-  this.maxDot_ = 4;  // Max number of dots in animation
-}
-
-LoadingAnimation.prototype.paintFrame = function() { return;
-  var text = "";
-  for (var i = 0; i < this.maxDot_; i++) {
-    text += (i == this.current_) ? "." : " ";
-  }
-  if (this.current_ >= this.maxDot_)
-    text += "";
-
-  chrome.browserAction.setBadgeText({text:text});
-  this.current_++;
-  if (this.current_ == this.maxCount_)
-    this.current_ = 0;
-}
-
-LoadingAnimation.prototype.start = function() {
-  if (this.timerId_)
-    return;
-
-  var self = this;
-  this.timerId_ = window.setInterval(function() {
-    self.paintFrame();
-  }, 100);
-}
-
-LoadingAnimation.prototype.stop = function() {
-  if (!this.timerId_)
-    return;
-
-  window.clearInterval(this.timerId_);
-  this.timerId_ = 0;
-}
-
-
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
-  if (changeInfo.url && isGmailUrl(changeInfo.url)) {
-    getInboxCount(function(count) {
-      updateUnreadCount(count);
-    });
-  }
-});
-
-
-function init() {
-  canvas = document.getElementById('canvas');
-  loggedInImage = document.getElementById('logged_in');
-  canvasContext = canvas.getContext('2d');
-
-  chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
-  chrome.browserAction.setIcon({path: "gmail_logged_in.png"});
-  loadingAnimation.start();
-
-  startRequest();
-}
-
-function scheduleRequest() {
-  var randomness = Math.random() * 2;
-  var exponent = Math.pow(2, requestFailureCount);
-  var delay = Math.min(randomness * pollIntervalMin * exponent,
-                       pollIntervalMax);
-  delay = Math.round(delay);
-
-  window.setTimeout(startRequest, delay);
-}
-
-// ajax stuff
-function startRequest() {
-  getInboxCount(
-    function(count) { //mail_count+forum_count+unreadticker_count
-      loadingAnimation.stop();
-      updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
-      scheduleRequest();
-    },
-    function() {
-      loadingAnimation.stop();
-      showLoggedOut();
-      scheduleRequest();
-    }
-  );
-}
-
-function getInboxCount(onSuccess, onError) { 
-//alert('getInboxCount '+ mail_count);
-  function handleSuccess(count) { //alert('getInboxCount '+ count);
-    requestFailureCount = 0;
-    if (onSuccess)
-      onSuccess(count);
-  }
-
-  function handleError() {
-    ++requestFailureCount;
-    if (onError)
-      onError();
-  }
-
-  chrome.tabs.getAllInWindow(undefined, function(tabs) {
-    for (var i = 0, tab; tab = tabs[i]; i++) {
-      if (tab.url && isGmailUrl(tab.url)) { 
-			if (tab.url.search(/.+.hattrick.org\/$/)==-1) handleSuccess(mail_count);
-			return;
-      }
-    }
-  });
-  //alert('handleError');
-  handleError();
-}
-
-function updateUnreadCount(count) {
-  if (unreadCount != count) { //alert(unreadCount +' '+ count+' '+(unreadCount != count));
-    unreadCount = count;
-    animateFlip();
-  }
-}
-
-
-function ease(x) {
-  return (1-Math.sin(Math.PI/2+x*Math.PI))/2;
-}
-
-function animateFlip() {
-  rotation += 1/animationFrames;
-  drawIconAtRotation();
-
-  if (rotation <= 1) {
-    setTimeout("animateFlip()", animationSpeed);
-  } else {
-	rotation = 0;
-	drawIconAtRotation(); 
-    chrome.browserAction.setBadgeText({ 
-      text: unreadCount=='0/0'?'':unreadCount
-    });
-    chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
-  }
-}
-
-function showLoggedOut() {  //alert('showLoggedOut'); 
-  unreadCount = '0/0';
-  chrome.browserAction.setIcon({path:"gmail_not_logged_in.png"});
-  chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
-  chrome.browserAction.setBadgeText({text:"?"});
-}
-
-function drawIconAtRotation() { return;
-  canvasContext.save();
-  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-  canvasContext.translate(
-      Math.ceil(canvas.width/2),
-      Math.ceil(canvas.height/2));
-  canvasContext.rotate(2*Math.PI*ease(rotation));
-  canvasContext.drawImage(loggedInImage,
-      -Math.ceil(canvas.width/2),
-      -Math.ceil(canvas.height/2));
-  canvasContext.restore();
-
-  chrome.browserAction.setIcon({imageData:canvasContext.getImageData(0, 0,
-      canvas.width,canvas.height)});
-}
-
-function goToInbox() {
-  chrome.tabs.getAllInWindow(undefined, function(tabs) {
-    for (var i = 0, tab; tab = tabs[i]; i++) {
-      if (tab.url && isGmailUrl(tab.url)) {
-		chrome.tabs.update(tab.id, {selected: true});
-        return;
-      }
-    }
-    chrome.tabs.create({url: getGmailUrl()});
-  });
-}
-
-// Called when the user clicks on the browser action.
-chrome.browserAction.onClicked.addListener(function(tab) {
-  goToInbox();
-});
-
 </script>
+  <script type="text/javascript" src=" background_ticker.js"></script>
 </head>
-<body onload="init()">
-<img id="logged_in" src="gmail_logged_in.png">
-<canvas id="canvas" width="19" height="19">
+<body onload="background_ticker_init()">
+<img id="logged_in" src="resources/img/foxtrick18grey.png">
+<canvas id="canvas" width="18" height="18">
 </body>
 </html>
 
