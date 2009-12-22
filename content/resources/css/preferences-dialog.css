@@ -55,18 +55,6 @@ vbox, box, hbox {
 vbox:hover, box:hover, hbox:hover {
    
 }
-tab {
-  margin:  0px 2px 0px 0px;
-  padding: 2px 5px 2px 5px;
-  border:  1px solid #aaaaaa;
-  font-weight: bold;
-  font-color:  #000000;
- 
-}
-tab:hover {
-  font-weight: bold;
-  font-color: #222222;
-}
 .checkbox_in_group, .radio_in_group {
   /* childs of a module (checkbox / radio) */
   padding: 0px;
@@ -125,4 +113,20 @@ tab:hover {
 
 .panel > vbox {
 	overflow: auto;
+}
+
+description {
+	white-space: pre-wrap;
+	overflow: auto;
+}
+
+.important {
+	background: #ffffff;
+	border: 1px solid;
+	padding: 10px 5px 10px 5px;
+	margin: 5px;
+}
+
+.important > caption {
+	margin-top: 0 !important;
 }

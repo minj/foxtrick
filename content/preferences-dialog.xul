@@ -36,6 +36,155 @@
 	<tabpanels id="tabpanels" class="tabpanels" flex="1">
 		<tabpanel class="panel">
 			<vbox id="main_list" flex="1">
+				<vbox id="defaultWarning" class="important">
+					<caption id="defaultWarningLabel" />
+					<description id="defaultWarningText" />
+				</vbox>
+				<groupbox>
+					<caption id="language" />
+					<hbox>
+						<menulist id="htLanguage">
+							<menupopup id="htLanguagePopup" />
+						</menulist>
+					</hbox>
+					<checkbox id="ReadHtPrefs" />
+				</groupbox>
+				<groupbox>
+					<caption id="currency" />
+					<hbox>
+						<menulist id="htCurrency">
+							<menupopup id="htCurrencyPopup" />
+						</menulist>
+					</hbox>
+				</groupbox>
+				<groupbox>
+					<caption id="dateformat" />
+					<hbox>
+						<menulist id="htDateformat">
+							<menupopup id="htDateformatPopup" />
+						</menulist>
+					</hbox>
+				</groupbox>
+				<groupbox>
+					<caption id="country" />
+					<hbox>
+						<menulist id="htCountry">
+							<menupopup id="htCountryPopup" />
+						</menulist>
+					</hbox>
+				</groupbox>
+				<groupbox>
+					<caption id="currencyTo" />
+					<checkbox id="CurrencyConverter" />
+					<hbox>
+						<menulist id="htCurrencyTo">
+							<menupopup id="htCurrencyToPopup" />
+						</menulist>
+					</hbox>
+				</groupbox>
+				<groupbox>
+					<caption id="skin" />
+					<checkbox id="skinActivedSkin" />
+					<hbox>
+						<textbox id="cssskinpref" flex="1" />
+						<button id="skinButtonSelectFile"
+							oncommand="var file = Foxtrick.selectFile(window); 
+								if (file != null) {document.getElementById('cssskinpref').value='file://' + (file)}" />
+					</hbox>
+				</groupbox>
+				<groupbox>
+					<caption id="alertSlider" />
+					<checkbox id="alertsliderpref" />
+					<checkbox id="alertslidermacpref" />
+					<checkbox id="alertsliderdbus" />
+					<checkbox id="alertsoundpref" />
+					<grid>
+						<columns>
+							<column flex="1" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<textbox id="alertsoundurlpref" />
+								<button id="buttonSelectFile"
+									oncommand="var file = Foxtrick.selectFile(window); 
+									if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}" />
+							</row>
+							<row>
+								<hbox />
+								<button id="buttonTest"
+									oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);" />
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox>
+					<caption id="loadSavePrefs" />
+					<grid>
+						<columns>
+							<column flex="1" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<vbox>
+									<description id="labelSavePrefs" />
+									<checkbox id="saveprefsid" class="indent" />
+									<checkbox id="savenotesid" class="indent" />
+								</vbox>
+								<vbox>
+									<button id="buttonSavePrefs" oncommand="FoxtrickPrefs.SavePrefs();" />
+								</vbox>
+							</row>
+							<row>
+								<description id="labelLoadPrefs" />
+								<vbox>
+									<button id="buttonLoadPrefs" oncommand="FoxtrickPrefs.LoadPrefs();" />
+								</vbox>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox>
+					<caption id="cleanupBranch" />
+					<grid>
+						<columns>
+							<column flex="1" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<description id="labelCleanupBranch" />
+								<vbox>
+									<button id="buttonCleanupBranch" oncommand="FoxtrickPrefs.confirmCleanupBranch();" />
+								</vbox>
+							</row>
+							<row>
+								<description id="labelDisableAll" />
+								<vbox>
+									<button id="buttonDisableAll" oncommand="FoxtrickPrefs.disableAll();" />
+								</vbox>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox>
+					<caption id="disableSettings" />
+					<checkbox id="stagepref" />
+					<checkbox id="disableTemporary" />
+				</groupbox>
+				<groupbox>
+					<caption id="showOnStatusBar"/>
+					<checkbox id="statusbarpref" />
+					<checkbox id="statusbarshowreload" />
+				</groupbox>
+				<groupbox>
+					<caption id="additionalOptions" />
+					<checkbox id="copyfeedback" />
+					<checkbox id="smallcopyicons" />
+					<checkbox id="OnPagePrefs"/>
+					<checkbox id="DisplayHTMLDebugOutput" />
+				</groupbox>
 			</vbox>
 		</tabpanel>
 
