@@ -2,9 +2,8 @@
   <script type="text/javascript" src="jkl-parsexml.js"></script>
   <script>
  	 
-try{
+try{ alert('load background')
 	// get resources	
-
 	if ( typeof(localStorage['pref']) == 'undefined' ) {			
 		// default prefs
 		listUrl = chrome.extension.getURL("default.pref");
@@ -19,16 +18,13 @@ try{
 	var prefdefaultxhr = new XMLHttpRequest();
 	prefdefaultxhr.open("GET", listUrl, false);
 	prefdefaultxhr.send();
-	
 		
+	var session_lang ='en';
 	try {
 		var propertiesxhr = new XMLHttpRequest();
-		//var lang = localStorage['extensions.foxtrick.prefs.htLanguage'];	
-		if ( typeof(lang) == 'undefined' ) {
-			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
-			lang =  preftext.match(string_regexp)[1];
-		} 
-		listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
+		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
+		session_lang =  preftext.match(string_regexp)[1];
+		listUrl = chrome.extension.getURL('locale/'+session_lang+"/foxtrick.properties");
 		propertiesxhr.open("GET", listUrl, false);
 		propertiesxhr.send();	
 	}
@@ -98,32 +94,42 @@ chrome.extension.onConnect.addListener(function(port) {
 	    else if (msg.reqtype == "pref_default") { //alert(preftext);
 			port.postMessage({pref_default: prefdefaultxhr.responseText});
         } 
-	    else if (msg.reqtype == "dump_prefs") {
-			// save new properties			
-			var lines = msg.prefs.split(/\n+/g);
-			for (var i = 0; i< lines.length;++i) {
-				var thispref = lines[i].match(/\("(extensions.foxtrick.prefs.+)",(.+)\);/); 
-				if (thispref && preftext.search(thispref[1])!=-1) 
-				{   // replace exitsting
-					var string_regexp = new RegExp('"'+thispref[1]+'",.+\\);');
-					preftext = preftext.replace(string_regexp,'"'+ thispref[1]+'",'+thispref[2]+');')
-				}
-				else {  // add new ones
-					preftext += lines[i]+'\n';
-				}
-			}
+	    else if (msg.reqtype == "save_prefs") {
+			// save new session properties			
+			preftext = msg.prefs;
 			// save in extension settings
 			localStorage['pref'] = preftext;
 			
 			try {  // set new lang
 				var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
-				lang =  preftext.match(string_regexp)[1];
-				listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
-				propertiesxhr.open("GET", listUrl, false);
-				propertiesxhr.send();	 
-			} catch(e) {alert('language doesnt exist: '+lang+' '+e);}
-			
-			port.postMessage({pref_changed: 'true', prefs:preftext, properties: propertiesxhr.responseText,reload:msg.reload});
+				var lang =  preftext.match(string_regexp)[1];
+				if (lang != session_lang || msg.reload==true) {
+					listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
+					propertiesxhr.open("GET", listUrl, false);
+					propertiesxhr.send();	 
+					port.postMessage({lang_changed: 'true', properties: propertiesxhr.responseText, reload:msg.reload});
+				}
+			} catch(e) {alert('language doesnt exist: '+lang+' '+e);}			
+		} 
+	    else if (msg.reqtype == "delete_pref") {
+			// delete a preference			
+			try {
+			var string_regexp = new RegExp( 'user_pref\\("'+msg.pref+'".+\\n','g');
+			console.log(string_regexp+' '+preftext.search(string_regexp));
+			preftext = preftext.replace(string_regexp,'');
+			localStorage['pref'] = preftext;
+			} catch(e) {alert('delete_pref '+e);}
+			//port.postMessage({pref_changed: 'true', prefs:preftext, properties: propertiesxhr.responseText, reload:false});
+		} 
+	    else if (msg.reqtype == "delete_pref_list") {
+			// delete a preference			
+			try {
+			var string_regexp = new RegExp( 'user_pref\\("'+msg.pref+'".+\\n','g');
+			alert(string_regexp+' '+preftext.search(string_regexp));
+			preftext = preftext.replace(string_regexp,'');
+			localStorage['pref'] = preftext;
+			} catch(e) {alert('delete_pref '+e);}
+			port.postMessage({pref_changed: 'true', prefs:preftext, properties: propertiesxhr.responseText, reload:false});
 		} 
 		else if (msg.reqtype == "properties") {
            if (propertiesxhr.responseText) port.postMessage({properties: propertiesxhr.responseText});

@@ -215,7 +215,8 @@ var FoxtrickPrefsDialogHTML = {
 	save : function( ev ) { dump('pref save\n');
 	try { 
 		var doc = ev.target.ownerDocument;
-
+		if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = false;
+		
 		var full_prefs = (doc.getElementById("htLanguage")!=null); // check if full pref page (not newversionquickset or onpageprefs)
 		// clean up
 		if (full_prefs) {  
@@ -278,8 +279,8 @@ var FoxtrickPrefsDialogHTML = {
 		}
 		
 		if (Foxtrick.BuildFor=='Chrome') {  // fix for double saving mainprefs with module
-			FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.CurrencyConverter.enabled",.+\);/g,'');
-			FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled",.+\);/g,'');
+			//FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.CurrencyConverter.enabled",.+\);/g,'');
+			//FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled",.+\);/g,'');
  		}
 		
 		if (doc.getElementById("OnPagePrefs")) FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
@@ -288,7 +289,10 @@ var FoxtrickPrefsDialogHTML = {
 		
 		// check if not whole prefs. in that case stop here
 		if (!full_prefs) {
-		    if (Foxtrick.BuildFor=='Chrome') portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump,reload:true});
+		    if (Foxtrick.BuildFor=='Chrome') {
+				FoxtrickPrefs.do_dump = true;
+				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
+			}
 			else { FoxtrickMain.init();
 				doc.location.reload();
 			}
@@ -359,13 +363,19 @@ var FoxtrickPrefsDialogHTML = {
 
         FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
         
-		if (Foxtrick.BuildFor=='Chrome') portsetpref.postMessage({reqtype: "dump_prefs", prefs: FoxtrickPrefs.pref_save_dump,reload:true});
+		if (Foxtrick.BuildFor=='Chrome') {
+			FoxtrickPrefs.do_dump = true;
+			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
+		}
 		else { 
 			FoxtrickMain.init();
 			doc.location.reload();
 		}
 		dump('end save\n');
-	} catch (e) { dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');}
+	} catch (e) { 
+		if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = true;
+		dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');
+	}
 	},
 
 	cancel : function( ev ) {
