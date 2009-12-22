@@ -246,14 +246,14 @@ var FoxtrickMyHT = {
 				// turn off youthskillnotes		
 				if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
 				&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes')))  {
-					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false); 
+					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false, true); 
 					prefs_changed=true;
 				}
 
 				// reinitialize
 				if (prefs_changed) FoxtrickMain.init();
 
-				FoxtrickPrefs.setBool("v0481.show_once", true); 
+				FoxtrickPrefs.setBool("v0481.show_once", true, true); 
 				
 			}
 	},	
