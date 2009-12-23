@@ -8,7 +8,8 @@ var FoxtrickForumNextAndPrevious = {
 	
     MODULE_NAME : "ForumNextAndPrevious",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	DEFAULT_ENABLED : true,
+	PAGES : new Array('forumViewThread'), 
+    DEFAULT_ENABLED : true,
 	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/nextandprevious.css",
 	
     init : function() {
