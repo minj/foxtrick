@@ -2,7 +2,7 @@
   <script type="text/javascript" src="jkl-parsexml.js"></script>
   <script>
  	 
-try{ alert('load background')
+try{ // alert('load background')
 	// get resources	
 	if ( typeof(localStorage['pref']) == 'undefined' ) {			
 		// default prefs
@@ -98,7 +98,7 @@ chrome.extension.onConnect.addListener(function(port) {
 			// save new session properties			
 			preftext = msg.prefs;
 			// save in extension settings
-			localStorage['pref'] = preftext;
+			localStorage['pref'] = preftext; 
 			
 			try {  // set new lang
 				var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );

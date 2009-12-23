@@ -247,8 +247,8 @@ Foxtrick.addJavaScriptSnippet = function( doc, code ) {
   head.appendChild(script);
 }
 
-Foxtrick.confirmDialog = function(msg) { alert('confirmDialog not implemented');
-	return null; //xxx
+Foxtrick.confirmDialog = function(msg) { 
+	return window.confirm(msg);
 }
 
 Foxtrick.alert = function( msg ) {
@@ -430,10 +430,15 @@ Foxtrick.unload_css_permanent = function( css ) {
 	return;
 }
 
-Foxtrick.load_css_permanent = function( css) {  //Foxtrick.dump('load '+css+'\n');  
+Foxtrick.load_css_permanent = function( css) {   
+	var begin = new Date();
 //	var csslink = chrome.extension.getURL(css);	
 //	Foxtrick.addStyleSheet( document, csslink );
 	Foxtrick.addStyleSheet( document, css );
+	var end = new Date();
+	var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+                 + end.getMilliseconds() - begin.getMilliseconds();
+	Foxtrick.dump('load '+css+" time: " + time + " ms\n" );		
 }
 
 

@@ -44,7 +44,7 @@ var FoxtrickPrefs = {
 			} catch(e) {return '';}
 		}
 		Foxtrick.dump("** preference error ** "+pref_name+'\n');
-		return ' ';
+		return '';
     },
 
     setInt : function( pref_name, value ) {
@@ -87,53 +87,81 @@ var FoxtrickPrefs = {
      * Returns true if added (false if empty or already on the list).
      */
     addPrefToList : function( list_name, pref_value ) {
+        if ( pref_value == "" )
+            return false;
+
+        var existing = FoxtrickPrefs.getList( list_name );
+
+        // already exists?
+        var exists = existing.some(
+            function( el ) {
+                if ( el == pref_value ) {
+                    return true;
+                }
+            }
+        );
+
+        if ( !exists ) {
+            existing.push( pref_value );
+            FoxtrickPrefs._populateList( list_name, existing );
+
+            return true;
+        }
+
+        return false
     },
 
-    getList : function( list_name ) {
-        var names = FoxtrickPrefs._getElemNames( list_name );
+    getList : function( list_name ) { 
+    try {
+		var names = FoxtrickPrefs._getElemNames( list_name );
 		var list = new Array();
-        for ( var i in names ) 
+        for ( var i in names ) {
 			list.push( FoxtrickPrefs.getString( names[i] ) );
-		
-        return list;
+		}
+		return list;
+	} catch(e){console.log('getList '+e+'\n');}
     },
 
     _getElemNames : function( list_name ) { 
-		var string_regexp = new RegExp('"(extensions.foxtrick.prefs.'+list_name+'.+)",','g');
+	try{
+		var string_regexp = new RegExp('"extensions.foxtrick.prefs.('+list_name+'.+),"','g');
 		var array = FoxtrickPrefs.pref.match(string_regexp);
-		//console.log(array);
-		if (array) return array;
-		else return new Array();
+		if (array) {
+			for (var i=0;i<array.length;++i) array[i]=array[i].replace(/"|,|extensions.foxtrick.prefs./g,'');
+			return array;
+		} 
+		else return new Array();	
+	} catch(e){console.log('_getElemNames '+list_name+' '+e+'\n');}
     },
 
     /** Remove a list element. */
     delListPref : function( list_name, pref_value ) {
         var existing = FoxtrickPrefs.getList( list_name );
-
         existing = existing.filter(
             function( el ) {
                 if ( el != pref_value )
                     return el;
             }
         );
-
         FoxtrickPrefs._populateList( list_name, existing );
-//   		portsetpref.postMessage({reqtype: "delete_pref_list", list_name: list_name,pref_value:pref_value });
     },
 
     /** Populate list_name with given array deleting if exists */
     _populateList : function( list_name, values ) {
-		var string_regexp = new RegExp( 'user_pref\\("'+msg.pref+'".+\\n','g');
-		preftext = preftext.replace(string_regexp,'');
-
-        for (var  i in values )
-            FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
-
-		//portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
+		FoxtrickPrefs.do_dump = false;
+		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+list_name+'.+\\);\\n','g');
+		FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'');
+        for (var  i in values ) {
+            FoxtrickPrefs.setString( list_name + "." + i, values[i] );
+		}
+		FoxtrickPrefs.do_dump = true;		
+		portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
 	},
     
     deleteValue : function( value_name ){
-			portsetpref.postMessage({reqtype: "delete_pref", pref: value_name});
+		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+value_name+'".+\\n','g');
+		FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'');
+		portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
     },	
 };
 
@@ -184,7 +212,7 @@ FoxtrickPrefs.isPrefSetting = function ( setting) {
 
 FoxtrickPrefs.confirmCleanupBranch = function ( ev ) {  
 
-	//if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
+	if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
 			// redo!  for (var i in localStorage) delete localStorage[i];
 			document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
@@ -192,13 +220,13 @@ FoxtrickPrefs.confirmCleanupBranch = function ( ev ) {
         catch (e) {
 			Foxtrick.dump('confirmCleanupBranch error:'+e+'\n');
         }
-    //}
+    }
     return true;
 }
 
 
 FoxtrickPrefs.disableAll = function (ev ) { 
-	//if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  
+	if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  
 	{
         try {
 			/* redo! for (var i in localStorage) {

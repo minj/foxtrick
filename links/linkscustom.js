@@ -431,9 +431,9 @@ var FoxtrickLinksCustom = {
 
 			var mylink = evt["target"]["mylink"];
 			var baseprefnl = evt["target"]["baseprefnl"];
-			FoxtrickPrefs.delListPref(baseprefnl+'.href'); 
-			FoxtrickPrefs.delListPref(baseprefnl+'.title'); 
-			FoxtrickPrefs.delListPref(baseprefnl+'.img'); 
+			FoxtrickPrefs.deleteValue(baseprefnl+'.href'); 
+			FoxtrickPrefs.deleteValue(baseprefnl+'.title'); 
+			FoxtrickPrefs.deleteValue(baseprefnl+'.img'); 
 			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
 		}
 		catch (e) {Foxtrick.dump("LinksCustom->edityLink->"+e+'\n');}
