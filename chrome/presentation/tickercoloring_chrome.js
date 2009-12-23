@@ -55,8 +55,9 @@ var FoxtrickTickerColoring = {
 		+''
 		;
 		this.OLD_CSS = this.CSS;
-		this.CSS = Foxtrick.GetDataURIText(zaw);
-										  
+//		this.CSS = Foxtrick.GetDataURIText(zaw);
+		Foxtrick.load_css_permanent(zaw);
+								  
     },
 
     run : function( page, doc ) {    		

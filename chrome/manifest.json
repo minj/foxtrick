@@ -1,10 +1,9 @@
 {
    "name": "Foxtrick",
-   "description": "FoxTrick for Chrome",
+   "description": "FoxTrick for Chrome. A set of presentation enhancements for hattrick.org",
    "version": "0.4.10.0",
    "icons": { "48": "foxtrick48.png",
           "128": "foxtrick128.png" },
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCo3LJa8LNXdkX8yF6LdJQ3Gthm2NjtKvaVjS0L//ChO2008XuV6HeKtDw9fJkmsp0KdV8HpqJ8irmREpxx/DZLANh/fQ2PMDid7LShcEwgzrq3qlchKoI4pGUd/yBiQTrAzgXiiW6jB8DBbaTPpEBwCOsfgfyE85qaa3WkC11bvwIDAQAB",
    "permissions": [ "tabs" ],
 
    "background_page": "background.html",
@@ -23,7 +22,6 @@
 		"stats.js",
 		"redirections.js",
 		"read_ht_pref_changes.js",
-		//"preferences-dialog.js",
 		"preferences-dialog-html.js",
 
 		"forum\\forumstriphattricklinks.js",

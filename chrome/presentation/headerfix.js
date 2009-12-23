@@ -26,7 +26,7 @@ var FoxtrickHeaderFix = {
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", true, true );				
 		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false, true );
 	
-		Foxtrick.dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
+		//Foxtrick.dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
     },
 
     run : function( page, doc ) { 

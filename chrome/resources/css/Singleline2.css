@@ -13,5 +13,3 @@ div[class="cfHeader doubleLine"] b:after {content:" " !important;}
 .cfHeader, .cfHeader img, .cfHeader a,  .cfHeader .float_right  {
 	padding-left:0px;  padding-right:0px;font-size:10px;padding-right:0px;line-height: 12px !important;}
 
-
-}

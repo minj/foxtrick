@@ -107,7 +107,13 @@ var FoxtrickMain = {
 	},
 		
     run : function( doc ) {  
-				// call the modules that want to be run() on every hattrick page
+//			Foxtrick.addStyleSheet( document, 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
+//			Foxtrick.addStyleSheet( document, 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css' ) ;		
+//			Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css')
+//			Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css')
+//			Foxtrick.cssfiles += 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css'+'\n';  
+			
+			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
 					try {
@@ -147,7 +153,8 @@ var FoxtrickMain = {
 			}
 			
 			//FoxtrickSkinPlugin.load( document );
-			Foxtrick.reload_css_permanent( 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
+
+			//Foxtrick.reload_css_permanent( 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
 		},
 	}
 		
@@ -213,12 +220,10 @@ try{
 }
 
 Foxtrick.addStyleSheetSnippet = function( doc, css ) {
-    var head, style;
-    head = doc.getElementsByTagName('head')[0];
-    if (!head) { return; }
-    style = doc.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = css;
+	var head = doc.getElementsByTagName("head")[0];
+    var style = doc.createElement("style");
+    style.setAttribute("type", "text/css");
+	style.appendChild(doc.createTextNode(css));
     head.appendChild(style);
 }
 
@@ -331,8 +336,12 @@ Foxtrick.playSound = function(url) {
     Foxtrick.dump('playSound'+e);
   }
 }
-		
-Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents css\n');
+	
+Foxtrick.cssfiles='';
+	
+Foxtrick.reload_module_css = function(doc) {  	//Foxtrick.dump('reload permanents css\n');
+	Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css')
+	Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css')
 		// check permanant css
 	var isStandard = Foxtrick.isStandardLayout(doc);
 	var isRTL = Foxtrick.isRTLLayout(doc);
@@ -415,6 +424,9 @@ Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents 
 			}
 		}
 	}
+
+   portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});
+	
 }
 		
 Foxtrick.unload_module_css = function() {
@@ -431,9 +443,9 @@ Foxtrick.unload_css_permanent = function( css ) {
 }
 
 Foxtrick.load_css_permanent = function( css) {   
+	Foxtrick.cssfiles += css+'\n';  return;
+
 	var begin = new Date();
-//	var csslink = chrome.extension.getURL(css);	
-//	Foxtrick.addStyleSheet( document, csslink );
 	Foxtrick.addStyleSheet( document, css );
 	var end = new Date();
 	var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
