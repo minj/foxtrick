@@ -74,7 +74,7 @@ var FoxtrickAlert = {
 		message = menu.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message && Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
-				Foxtrick.dump(message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
+				//Foxtrick.dump(message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
 				if (num_message > FoxtrickAlert.last_num_message) {						
 					var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
 					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/MyHattrick/Inbox/Default.aspx"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
@@ -161,9 +161,9 @@ var FoxtrickAlert = {
 
     foxtrick_showAlert: function( ) { 
      try{ 
-	    Foxtrick.dump('\n -- foxtrick_showAlert --\n');
-		Foxtrick.dump(' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
-		Foxtrick.dump(' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
+//	    Foxtrick.dump('\n -- foxtrick_showAlert --\n');
+//		Foxtrick.dump(' messages to show: '+FoxtrickAlert.ALERTS.length+'\n');
+//		Foxtrick.dump(' last_num_mail: '+FoxtrickAlert.last_num_message+'\n');
 		
  		if ( FoxtrickAlert.ALERTS.length==0) { /*Foxtrick.dump('no more alerts->return\n');*/ return;}	
 		

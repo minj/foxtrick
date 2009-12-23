@@ -28,16 +28,16 @@ var FoxtrickPrefsDialogHTML = {
     },
 
     run : function( doc ) { 
-	try{
-		if (Foxtrick.BuildFor=='Chrome') Foxtrick.reload_css_permanent( this.CSS ) ;		
-		
+	try{				
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
 			FoxtrickPrefsDialogHTML.add_pref_links(doc);			
 		}	
 		if (doc.location.href.search(/configure_foxtrick=true/i)!=-1) { 
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.addStyleSheet( document, this.CSS ) ;		
 			FoxtrickPrefsDialogHTML.show_pref(doc);			
 		}
+		else if (Foxtrick.BuildFor=='Chrome') Foxtrick.reload_css_permanent( this.CSS ) ;
 	}catch (e){dump('HTMLPrefs '+e+'\n');}
 	},
 

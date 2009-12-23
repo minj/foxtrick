@@ -106,7 +106,7 @@ Foxtrick.modules = [
                     FoxtrickForumLastPost,
                     FoxtrickPersonalityImages,
                     FoxtrickSkillColoring,
-                    FoxtrickSkinPlugin,
+                    //FoxtrickSkinPlugin,
                     FoxtrickMatchIncome,
                     FoxtrickHelper,
                     FoxtrickLargeFlags,

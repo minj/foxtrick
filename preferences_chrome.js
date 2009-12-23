@@ -12,6 +12,15 @@ portsetpref.onMessage.addListener(function(msg) {
 		//	document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';		
 		if (msg.reload) document.location.reload();
 	}
+	else if (msg.css_text_set == 'true') {
+		var begin = new Date();
+		Foxtrick.addStyleSheetSnippet(document, msg.css_text);
+		var end = new Date();
+		var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+                 + end.getMilliseconds() - begin.getMilliseconds();
+		Foxtrick.dump("load css_text time: " + time + " ms\n" );
+		//FoxtrickMain.run(document);		
+	}
 });
 
 

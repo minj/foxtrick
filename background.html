@@ -139,6 +139,23 @@ chrome.extension.onConnect.addListener(function(port) {
 		else if (msg.reqtype == "properties_default") {
            port.postMessage({properties_default: properties_defaultxhr.responseText});
         }
+		else if (msg.reqtype == "get_css_text") {
+		try  {
+			var css_text_from_response='';
+			var cssUrl = msg.css_filelist.split('\n');
+			for (var i=0; i<cssUrl.length; ++i) {
+				if (cssUrl[i].search(/^http|^chrome-extension/)!=-1) {
+					css_xhr = new XMLHttpRequest();
+					css_xhr.open("GET", cssUrl[i], false);
+					css_xhr.send();
+					css_text_from_response += css_xhr.responseText;
+				}
+				else {  css_text_from_response += cssUrl[i]; //alert(cssUrl[i]);
+				}
+			}
+           port.postMessage({css_text_set: 'true', css_text: css_text_from_response});
+		} catch(e) {alert('css xhr '+e);alert(cssUrl[i])}
+        }
 		else if (msg.reqtype == "screenshots") {
            port.postMessage({screenshots: screenshotsxhr.responseText});
         }
