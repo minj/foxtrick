@@ -22,13 +22,11 @@ var FoxtrickLargeFlags = {
 				var link = allDivs[i].getElementsByTagName("a")[0];
 				if(link) { 
 					var img = link.childNodes[0];
-					var oldStyle = img.style.background;
+					var oldStyle = img.style.background; 
 					var newStyle = "transparent url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/"
 						+ "resources/img/largeflags.png) no-repeat scroll ";
-					var firstPos = oldStyle.search("scroll ")+7;
-					var lastPos = oldStyle.search("px");
-					var pos = oldStyle.substr(firstPos, (lastPos-firstPos));
-					var newPos = parseInt(pos) / 20 * 105;
+					var pos =  oldStyle.match(/(\d+)px/)[1];  
+					var newPos = - parseInt(pos) / 20 * 105;
 					newStyle = newStyle + newPos + "px 0pt";
 					img.style.background = newStyle;
 					img.style.width = "105px";
