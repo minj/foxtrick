@@ -129,7 +129,7 @@ FoxtrickTransferListSearchFilters = {
         
         var wind = ev.target.window;
         try {
-            var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
+            /*var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
             
             var returnobj = {};
             var b = {};
@@ -141,7 +141,11 @@ FoxtrickTransferListSearchFilters = {
                         
             var filtername = returnobj.value;
             if (filtername == '') return;
-            
+            */
+			//var filtername = doc.defaultView.prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
+			var filtername = window.prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
+
+			
             filtername = filtername.substring( 0, FoxtrickTransferListSearchFilters._MAX_FILTER_DISP_LENGTH );
             
             var formString = "<root>";
