@@ -665,12 +665,28 @@ var FoxtrickPreferencesDialog = {
 		return desc;
 	},
 
+	_updateModule : function(module) {
+		try {
+			var enabled = document.getElementById(module.id + "_check").checked;
+			var container = document.getElementById(module.id + "_container");
+			if (enabled)
+				container.setAttribute("hidden", false);
+			else
+				container.setAttribute("hidden", true);
+		}
+		catch (e) {
+			Foxtrick.alert(e + " on line " + e.lineNumber + " of file " + e.fileName);
+		}
+	},
+
 	_radioModule : function(module) {
 		var entry = document.createElement("groupbox");
 		var caption = document.createElement("caption");
 		var check = document.createElement("checkbox");
 		var desc = FoxtrickPreferencesDialog._getWrapableBox(FoxtrickPrefs.getModuleDescription(module.MODULE_NAME));
 		var radiogroup = document.createElement("radiogroup");
+
+		var enabled = Foxtrick.isModuleEnabled(module);
 
 		entry.appendChild(caption);
 		entry.appendChild(desc);
@@ -685,21 +701,13 @@ var FoxtrickPreferencesDialog = {
 
 		entry.className = "radio_module";
 
-		check.setAttribute("checked", Foxtrick.isModuleEnabled(module));
+		if (!enabled)
+			radiogroup.setAttribute("hidden", true);
+
+		check.setAttribute("checked", enabled);
 		check.setAttribute("label", module.MODULE_NAME);
 		check.addEventListener("command", function(ev) {
-			var radiogroup = document.getElementById(ev.target.parentNode.parentNode.id + "_container");
-			for (var i = 0; i < radiogroup.childElementCount; ++i) {
-				var obj = radiogroup.childNodes[i];
-				if (ev.target.checked) {
-					obj.setAttribute("disabled", false);
-					obj.setAttribute("hidden", false);
-				}
-				else {
-					obj.setAttribute("disabled", true);
-					obj.setAttribute("hidden", true);
-				}
-			}
+			FoxtrickPreferencesDialog._updateModule(ev.target.parentNode.parentNode);
 		}, false);
 
 		var selectedValue = Foxtrick.getModuleValue(module);
@@ -708,16 +716,8 @@ var FoxtrickPreferencesDialog = {
 			radiogroup.appendChild(radio);
 			if (selectedValue == i)
 				radio.setAttribute("selected", true);
-			else
-				radio.setAttribute("selected", false);
 			radio.setAttribute("label", FoxtrickPrefs.getModuleDescription(
 				module.MODULE_NAME + "." + module.RADIO_OPTIONS[i]));
-			if (!Foxtrick.isModuleEnabled(module)) {
-				radio.setAttribute("disabled", true);
-				radio.setAttribute("hidden", true);
-			} else {
-				radio.setAttribute("hidden", false);
-			}
 		}
 
 		return entry;
@@ -729,6 +729,8 @@ var FoxtrickPreferencesDialog = {
 		var check = document.createElement("checkbox");
 		var desc = FoxtrickPreferencesDialog._getWrapableBox(FoxtrickPrefs.getModuleDescription(module.MODULE_NAME));
 		var container = document.createElement("vbox");
+
+		var enabled = Foxtrick.isModuleEnabled(module);
 
 		entry.appendChild(caption);
 		entry.appendChild(desc);
@@ -743,21 +745,13 @@ var FoxtrickPreferencesDialog = {
 
 		entry.className = "checkbox_module";
 
-		check.setAttribute("checked", Foxtrick.isModuleEnabled(module));
+		if (!enabled)
+			container.setAttribute("hidden", true);
+
+		check.setAttribute("checked", enabled);
 		check.setAttribute("label", module.MODULE_NAME);
 		check.addEventListener("command", function(ev) {
-			var container = document.getElementById(ev.target.parentNode.parentNode.id + "_container");
-			for (var i = 0; i < container.childElementCount; ++i) {
-				var obj = container.childNodes[i];
-				if (ev.target.checked) {
-					obj.setAttribute("disabled", false);
-					obj.setAttribute("hidden", false);
-				}
-				else {
-					obj.setAttribute("disabled", true);
-					obj.setAttribute("hidden", true);
-				}
-			}
+			FoxtrickPreferencesDialog._updateModule(ev.target.parentNode.parentNode);
 		}, false);
 
 		for (var i = 0; i < module.OPTIONS.length; ++i) {
@@ -774,13 +768,6 @@ var FoxtrickPreferencesDialog = {
 			checkbox.setAttribute("checked", Foxtrick.isModuleFeatureEnabled(module, key));
 			checkbox.setAttribute("label", title);
 			checkbox.id = module.MODULE_NAME + "." + key;
-			if (!Foxtrick.isModuleEnabled(module)) {
-				checkbox.setAttribute("disabled", true);
-				checkbox.setAttribute("hidden", true);
-			} else {
-				checkbox.setAttribute("disabled", false);
-				checkbox.setAttribute("hidden", false);
-			}
 			if (bOptionTexts
 				&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
 				var textbox = document.createElement("textbox");
@@ -801,12 +788,8 @@ var FoxtrickPreferencesDialog = {
 					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
 				textbox.setAttribute("value", val);
-				if (!Foxtrick.isModuleFeatureEnabled(module, key)) {
+				if (!Foxtrick.isModuleFeatureEnabled(module, key))
 					textbox.setAttribute("hidden", true);
-				}
-				else {
-					textbox.setAttribute("hidden", false);
-				}
 			}
 		}
 
