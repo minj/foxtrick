@@ -438,7 +438,7 @@ Foxtrick.load_css_permanent = function( css) {
 	var end = new Date();
 	var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
-	Foxtrick.dump('load '+css+" time: " + time + " ms\n" );		
+	//Foxtrick.dump('load '+css+" time: " + time + " ms\n" );		
 }
 
 

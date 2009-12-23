@@ -2,9 +2,9 @@
   <script type="text/javascript" src="jkl-parsexml.js"></script>
   <script>
  	 
-try{ // alert('load background')
+try{  //alert('load background')
 	// get resources	
-	if ( typeof(localStorage['pref']) == 'undefined' ) {			
+	if ( typeof(localStorage['pref']) == 'undefined'  || localStorage['pref']=='') {			
 		// default prefs
 		listUrl = chrome.extension.getURL("default.pref");
 		var prefxhr = new XMLHttpRequest();
@@ -102,7 +102,8 @@ chrome.extension.onConnect.addListener(function(port) {
 			
 			try {  // set new lang
 				var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
-				var lang =  preftext.match(string_regexp)[1];
+				try{ var lang =  preftext.match(string_regexp)[1];
+				}catch(e) { var lang =  prefdefaultxhr.responseText.match(string_regexp)[1];}
 				if (lang != session_lang || msg.reload==true) {
 					listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
 					propertiesxhr.open("GET", listUrl, false);
