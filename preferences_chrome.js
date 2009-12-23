@@ -34,6 +34,7 @@ var FoxtrickPrefs = {
     },
 
     getString : function( pref_name ) {  
+	try {
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);', "i" );
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) {
 			try {return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
@@ -43,8 +44,9 @@ var FoxtrickPrefs = {
 			try { return  FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
 			} catch(e) {return '';}
 		}
-		Foxtrick.dump("** preference error ** "+pref_name+'\n');
-		return '';
+	} catch(e) {};
+	Foxtrick.dump("** preference error ** "+pref_name+'\n');
+	return '';
     },
 
     setInt : function( pref_name, value ) {
@@ -57,11 +59,13 @@ var FoxtrickPrefs = {
     },
 
     getInt : function( pref_name ) { 
+	try {
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",\(\\d+\)\\);', "i" );
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) return  parseInt(FoxtrickPrefs.pref.match(string_regexp)[1]);
 		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) return  parseInt(FoxtrickPrefs.pref_default.match(string_regexp)[1]);
-		Foxtrick.dump("** preference error ** "+pref_name+'\n');
-		return 0;
+	} catch(e) {};
+	Foxtrick.dump("** preference error ** "+pref_name+'\n');
+	return NaN;
     },
 
     setBool : function( pref_name, value ) {
@@ -73,13 +77,15 @@ var FoxtrickPrefs = {
 			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
     },
 
-    getBool : function( pref_name ) {   
+    getBool : function( pref_name ) {  // console.log(FoxtrickPrefs.pref+'\n'+pref_name+'\n');
 		// no dump in this function !!!!!!!! (stupid htmldump)
-		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",(.+)\\);', "i" );		
+	try {
+	var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",(.+)\\);', "i" );		
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) return  (FoxtrickPrefs.pref.match(string_regexp)[1]=='true');
 		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) return  (FoxtrickPrefs.pref_default.match(string_regexp)[1]=='true');
-		return false;
-    },
+	} catch(e) {}
+	return null;
+	},
 	
 
     /** Add a new preference "pref_name" of under "list_name".
@@ -214,8 +220,16 @@ FoxtrickPrefs.confirmCleanupBranch = function ( ev ) {
 
 	if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
         try {
-			// redo!  for (var i in localStorage) delete localStorage[i];
-			document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs\\..+\\);\\n','g');
+			var settingfraq  = FoxtrickPrefs.pref.match(string_regexp);				
+			FoxtrickPrefs.pref = FoxtrickPrefs.pref_default;
+			for (var i=0;i<settingfraq.length;++i) {
+				if (!FoxtrickPrefs.isPrefSetting(settingfraq[i].replace('user_pref("extensions.foxtrick.prefs.',''))) { 
+					FoxtrickPrefs.pref += settingfraq[i];
+					console.log(settingfraq[i]+'\n');
+				}
+			}
+			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
         }
         catch (e) {
 			Foxtrick.dump('confirmCleanupBranch error:'+e+'\n');
@@ -229,13 +243,10 @@ FoxtrickPrefs.disableAll = function (ev ) {
 	if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  
 	{
         try {
-			/* redo! for (var i in localStorage) {
-				if(i.search( /enabled$/ ) != -1) { Foxtrick.dump(i.replace(/extensions.foxtrick.prefs./,''))
-						FoxtrickPrefs.setBool( i.replace(/extensions.foxtrick.prefs./,''), false );
-				}
-			} */
+			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.module\\.(.+)\\.enabled",true\\);\\n','g');
+			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'user_pref("extensions.foxtrick.prefs.module.$1.enabled",false);\n')				
 			FoxtrickPrefs.setBool('module.PrefsDialogHTML.enabled',true );
-			document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});        
         }
         catch (e) {
 			dump(e);
@@ -248,35 +259,8 @@ FoxtrickPrefs.SavePrefs = function (ev) {
         try {
 			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
 			else doc=document;
-			
-			var array = new Array();
-			/* redo! for(var i in localStorage) {  
-				var pref = i.replace('extensions.foxtrick.prefs.','');
-				if ((FoxtrickPrefs.isPrefSetting(pref) && doc.getElementById("saveprefsid").checked)
-					|| (!FoxtrickPrefs.isPrefSetting(pref) && doc.getElementById("savenotesid").checked)) {
-					//console.log(i,localStorage[i]);
-					var value=FoxtrickPrefs.getString(pref);
-					if (value!=null) array.push('user_pref("extensions.foxtrick.prefs.'+pref+'","'+value.replace(/\n/g,"\\n")+'");\n');
-					else { value=FoxtrickPrefs.getInt(pref);
-						if (value==null) value=FoxtrickPrefs.getBool(pref);
-						array.push('user_pref("extensions.foxtrick.prefs.'+pref+'",'+value+');\n');
-						}
-					//Foxtrick.dump(' : save\n');
-					}
-				//else Foxtrick.dump(' : dont save\n');
-				}
-			array.sort();
-			var writeString='';
-			for(var i = 0; i < array.length; i++) { writeString += array[i]+'<br>';}			
-			
-			newwin = window.open("","");
-			newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+writeString+'</body></html>');
-			if(!ev) close();  */
-			
-			
-			newwin = window.open("","");
-			newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+FoxtrickPrefs.pref.replace(/\n/gi,'<br>')+'</body></html>');
-			
+			var newwin = window.open("","");
+			newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+FoxtrickPrefs.pref.replace(/\n/gi,'<br>')+'</body></html>');			
 		}
 		catch (e) {
 			Foxtrick.alert(e);
@@ -287,8 +271,8 @@ FoxtrickPrefs.SavePrefs = function (ev) {
 FoxtrickPrefs.LoadPrefsImport = function (ev) { 
 
 	var textarea = document.getElementById('getpreftext');
-	FoxtrickPrefs.pref_save_dump += textarea.value;
-	portsetpref.postMessage({reqtype: "dump_prefs"});
+	FoxtrickPrefs.pref = textarea.value;
+	portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
 		
 	var tr = document.getElementById('buttonLoadPrefs').parentNode.parentNode;
 	tr.style.display='table-row';
