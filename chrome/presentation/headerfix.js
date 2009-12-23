@@ -8,8 +8,8 @@ var FoxtrickHeaderFix = {
 	
     MODULE_NAME : "HeaderFix",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('match','arena'), 
-	ONPAGEPREF_PAGE : 'all', 
+	PAGES : new Array('all','match','arena'), 
+    ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Fix for flickering in forum with standard layout and teampopups off",
@@ -26,10 +26,11 @@ var FoxtrickHeaderFix = {
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", true, true );				
 		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false, true );
 	
-		//Foxtrick.dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
+		Foxtrick.dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
     },
 
     run : function( page, doc ) { 
+	if (page=='all') return;
 	
 	if (doc.location.href.search(/isYouth/i)!=-1) return;
 	
@@ -93,6 +94,8 @@ var FoxtrickHeaderFix = {
 var FoxtrickHeaderFixLeft = {
 	
     MODULE_NAME : "HeaderFixLeft",
+    PAGES : new Array('all'), 
+    ONPAGEPREF_PAGE : '', 
     DEFAULT_ENABLED : false,	
 	CSS_SIMPLE:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_left.css",
 	CSS_SIMPLE_RTL:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_rtl_left.css",
