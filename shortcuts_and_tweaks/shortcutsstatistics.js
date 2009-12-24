@@ -10,7 +10,7 @@ var FoxtrickShortcutsStatistics = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
-	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers", "Prefs"),
+	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs"),
 	CSS:"",
 	
     init : function() {
@@ -20,6 +20,7 @@ var FoxtrickShortcutsStatistics = {
 		if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) ++num_shown;
         if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) ++num_shown;
         if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) ++num_shown;
+        if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) ++num_shown;
         if (num_shown==0) {
 			this.CSS="";
 		}
@@ -113,6 +114,31 @@ var FoxtrickShortcutsStatistics = {
                     img1.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent.gif";
                     img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/options.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsprefs.label");
+
+                    link.appendChild(img1);
+                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					else { 
+						if (targetNode.lastChild.nodeName=='BR') { 
+							targetNode.insertBefore(link,targetNode.lastChild);
+						}
+						else {
+							targetNode.appendChild(link);
+						}
+					}
+					++num_added;
+                }
+
+                if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {                
+                    var link = doc.createElement('a');                
+                    link.id = 'ft_shortcutsstatistics';
+                    link.href = "../../MyHattrick/?configure_foxtrick=true&category=main/";
+                    //link.setAttribute("style", "padding:3px 0px 0px 4px;");
+                    
+                    var img1 = doc.createElement('img');
+                    img1.setAttribute( "class", "ftSCPrefs");
+                    img1.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent.gif";
+                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick22.png') !important;");
+                    img1.title = Foxtrickl10n.getString("foxtrick.shortcutsfoxtrickprefs.label");
 
                     link.appendChild(img1);
                     if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
