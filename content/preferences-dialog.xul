@@ -215,6 +215,26 @@
 
 		<tabpanel class="panel">
 			<vbox id="about_list" flex="1">
+				<groupbox id="extlinks">
+					<caption id="extlinks_caption" />
+					<vbox id="extlinks_list" />
+				</groupbox>
+				<groupbox id="headdeveloper">
+					<caption id="headdeveloper_caption" />
+					<vbox id="headdeveloper_list" />
+				</groupbox>
+				<groupbox id="projectowners">
+					<caption id="projectowners_caption" />
+					<vbox id="projectowners_list" />
+				</groupbox>
+				<groupbox id="developers">
+					<caption id="developers_caption" />
+					<vbox id="developers_list" />
+				</groupbox>
+				<groupbox id="translations">
+					<caption id="translations_caption" />
+					<vbox id="translations_list" />
+				</groupbox>
 			</vbox>
 		</tabpanel>
 	</tabpanels>

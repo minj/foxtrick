@@ -225,86 +225,68 @@ var FoxtrickPreferencesDialog = {
 	},
 
 	initAboutPref : function(doc) {
-		var modules_list = doc.getElementById("about_list");
-		modules_list.setAttribute("style", "background-color:ButtonFace !important; color: ButtonText !important;");
-
 		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
 
-		var vbox= doc.createElement("vbox");
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrickl10n.getString('foxtrick.prefs.'+Foxtrick.XML_evaluate(xmlresponse, "about/links", "value")[0]));
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
+		// links
+		var links_caption = doc.getElementById("extlinks_caption");
+		var links_list = doc.getElementById("extlinks_list");
 		var links = Foxtrick.XML_evaluate(xmlresponse, "about/links/link", "title", "value");
-		for (var i=0;i<links.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",Foxtrickl10n.getString('foxtrick.prefs.'+links[i][0])+': '+links[i][1]);
-			label.setAttribute("style","text-decoration: underline; cursor: pointer; color: blue;");
-			label.setAttribute("tooltiptext",links[i][1]);
-			label.setAttribute("onclick","window.opener.open('"+links[i][1]+"');");
-			label.setAttribute("flex","0");
-			vbox.appendChild(label);
+		links_caption.setAttribute("label",
+			Foxtrickl10n.getString('foxtrick.prefs.' + Foxtrick.XML_evaluate(xmlresponse, "about/links", "value")[0]));
+		for (var i = 0; i < links.length; ++i) {
+			var item = doc.createElement("label");
+			var link = doc.createElement("label");
+			links_list.appendChild(item);
+			item.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs." + links[i][0]) + ":"));
+			item.appendChild(link);
+			link.setAttribute("value", links[i][1]);
+			link.setAttribute("href", links[i][1]);
+			link.className = "text-link";
 		}
-		modules_list.appendChild(vbox);
-
-		var vbox= doc.createElement("vbox");
-		vbox.setAttribute("style","display:run-in");
 
 		// head_developer
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/head_developer", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/head_developer/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var headdeveloper_caption = doc.getElementById("headdeveloper_caption");
+		var headdeveloper_list = doc.getElementById("headdeveloper_list");
+		var headdeveloper = Foxtrick.XML_evaluate(xmlresponse, "about/head_developer/label", "value");
+		headdeveloper_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/head_developer", "value")[0]);
+		for (var i = 0; i < headdeveloper.length; ++i) {
+			var label = doc.createElement("label");
+			headdeveloper_list.appendChild(label);
+			label.setAttribute("value", headdeveloper[i]);
 		}
-		modules_list.appendChild(vbox);
 
 		// project_owners
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/project_owners", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var projectowners_caption = doc.getElementById("projectowners_caption");
+		var projectowners_list = doc.getElementById("projectowners_list");
+		var projectowners = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/label", "value");
+		projectowners_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/project_owners", "value")[0]);
+		for (var i = 0; i < projectowners.length; ++i) {
+			var label = doc.createElement("label");
+			projectowners_list.appendChild(label);
+			label.setAttribute("value", projectowners[i]);
 		}
-		modules_list.appendChild(vbox);
-		var spacer = doc.createElement('spacer');
-		spacer.setAttribute('flex',1);
-		spacer.setAttribute('height','10px');
-		modules_list.appendChild(spacer);
 
 		// developers
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/developers", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/developers/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var developers_caption = doc.getElementById("developers_caption");
+		var developers_list = doc.getElementById("developers_list");
+		var developers = Foxtrick.XML_evaluate(xmlresponse, "about/developers/label", "value");
+		developers_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/developers", "value")[0]);
+		for (var i = 0; i < developers.length; ++i) {
+			var label = doc.createElement("label");
+			developers_list.appendChild(label);
+			label.setAttribute("value", developers[i]);
 		}
-		modules_list.appendChild(vbox);
 
 		// translations
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/translations", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/translations/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var translations_caption = doc.getElementById("translations_caption");
+		var translations_list = doc.getElementById("translations_list");
+		var translations = Foxtrick.XML_evaluate(xmlresponse, "about/translations/label", "value");
+		translations_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/translations", "value")[0]);
+		for (var i = 0; i < translations.length; ++i) {
+			var label = doc.createElement("label");
+			translations_list.appendChild(label);
+			label.setAttribute("value", translations[i]);
 		}
-		modules_list.appendChild(vbox);
 	},
 
 	onDialogAccept : function() {
