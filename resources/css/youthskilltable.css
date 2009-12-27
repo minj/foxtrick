@@ -1,4 +1,4 @@
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 #ft_youthskilltable{ 
 	margin-top:35px;
@@ -44,4 +44,6 @@ div#ft_youthskilltable td {
 	border-collapse:separate;
 	padding:2px 4px 2px 0 !important;
 } 
+
+}
 

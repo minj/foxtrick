@@ -20,7 +20,7 @@ var FoxtrickTeamSelectBox= {
 
     run : function( page, doc ) {
 		try {
-			if (doc.location.href.search(/TeamID=/i)==-1) {return;}
+			//if (doc.location.href.search(/TeamID=/i)==-1) {return;}
 			
 			if (Foxtrick.isStandardLayout(doc) )  {
 				if (!Foxtrick.isRTLLayout(doc))  Foxtrick.addStyleSheet(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/linkscustom_std.css");

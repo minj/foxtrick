@@ -340,8 +340,8 @@ Foxtrick.playSound = function(url) {
 Foxtrick.cssfiles='';
 	
 Foxtrick.reload_module_css = function(doc) {  	//Foxtrick.dump('reload permanents css\n');
-	Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css')
-	Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css')
+	Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/foxtrick.css"));
+	Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/preferences-dialog-html.css"));
 		// check permanant css
 	var isStandard = Foxtrick.isStandardLayout(doc);
 	var isRTL = Foxtrick.isRTLLayout(doc);
@@ -425,8 +425,7 @@ Foxtrick.reload_module_css = function(doc) {  	//Foxtrick.dump('reload permanent
 		}
 	}
 
-   portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});
-	
+   portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});	
 }
 		
 Foxtrick.unload_module_css = function() {

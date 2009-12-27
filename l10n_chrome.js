@@ -12,7 +12,7 @@ var Foxtrickl10n = {
     },
 	
     getString : function( str ) { 
-	try{ //Foxtrick.dump('10ln: '+Foxtrickl10n.properties.substring(0,20));
+	try{ //Foxtrick.dump('10ln: '+str+' '+Foxtrickl10n.properties.substring(0,20));
 		var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
 		if (Foxtrickl10n.properties.search(string_regexp)!=-1) value =  Foxtrickl10n.properties.match(string_regexp)[1];
 		else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1) value =  Foxtrickl10n.properties_default.match(string_regexp)[1];

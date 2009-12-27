@@ -291,6 +291,8 @@ var FoxtrickPrefsDialogHTML = {
 		if (!full_prefs) {
 		    if (Foxtrick.BuildFor=='Chrome') {
 				FoxtrickPrefs.do_dump = true;
+				//Foxtrick.reload_module_css(document);
+				portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});	
 				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
 			}
 			else { FoxtrickMain.init();
@@ -365,6 +367,8 @@ var FoxtrickPrefsDialogHTML = {
         
 		if (Foxtrick.BuildFor=='Chrome') {
 			FoxtrickPrefs.do_dump = true;
+			//Foxtrick.reload_module_css(document);
+			portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});	
 			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
 		}
 		else { 

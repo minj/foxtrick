@@ -199,7 +199,7 @@ var FoxtrickCountyList = {
         var options = selectbox.options;
         var countries = options.length;
         var selected  = selectbox.selectedIndex;
-        var id_sel = 0;
+        var id_sel = 0; 
         try {
             for (var i = start; i < countries; i++) {
                 if (i == selected) id_sel = options[i].value;

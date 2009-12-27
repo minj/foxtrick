@@ -1,4 +1,4 @@
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 .ft_seasonstats_td {
     padding: 0 0 0 0  !important;
@@ -11,3 +11,4 @@
 	border-bottom: 2px solid #849D84 !important;	
 }
 
+}

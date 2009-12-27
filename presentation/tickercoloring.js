@@ -30,8 +30,8 @@ var FoxtrickTickerColoring = {
     init : function() {
 		var zaw = ''
 		
-		+'/*TICKERCOLOR_by_htbaumanns*/ @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
-		+'{'
+		+'/*TICKERCOLOR_by_htbaumanns*/'
+		+(Foxtrick.BuildFor=='Chrome')?(''):('@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws){')
 		/* LoginWelcome */
 		+'#ticker a[href="/MyHattrick/"] {'+this.get_color(this.OPTIONS[0])+'}'
 		/* LoginSupporters */
@@ -52,11 +52,12 @@ var FoxtrickTickerColoring = {
 		+'#ticker a {margin:2px;}'
 		/* Hover */
 		+'#ticker a:hover {'+this.get_color(this.OPTIONS[8])+'}'
-		+'}'
+		+(Foxtrick.BuildFor=='Chrome')?'':'}'
 		;
 		this.OLD_CSS = this.CSS;
-		this.CSS = Foxtrick.GetDataURIText(zaw);
-										  
+		if (Foxtrick.BuildFor=='Chrome') this.CSS = zaw;
+		else this.CSS = Foxtrick.GetDataURIText(zaw);
+    								  
     },
 
     run : function( page, doc ) {    		
