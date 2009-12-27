@@ -2,7 +2,7 @@
 
 @namespace url(http://www.w3.org/1999/xhtml);
 
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 body
 {
@@ -845,7 +845,7 @@ img.percentImage
 	height: 12px !important;
 	width: 107px !important;
 	float: left !important;
-	background-image: url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/possesionbar.gif.gif) !important;
+	background-image: url(chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/possesionbar.gif.gif) !important;
 	background-repeat: no-repeat !important;
 	margin: 2px 3px 5px !important;
 }
@@ -996,7 +996,7 @@ text-decoration: none !important;
 #ticker div
 {
 	/*background-image: url(http://u20.hattrick-cz.com/CHPP/images/star_WhiteBG2.gif) !important;*/
-	background-image: url("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/star10x8.gif.gif") !important;
+	background-image: url("chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/star10x8.gif.gif") !important;
 	background-repeat: no-repeat !important;
 	padding-left: 11px !important;
 	padding-bottom: 3px !important;
@@ -1155,12 +1155,12 @@ textarea.medium
 	cursor: pointer !important;
 	width: 10px !important;
 	height: 10px !important;
-	background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/low_prio.gif.gif') no-repeat!important;
+	background: url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/low_prio.gif.gif') no-repeat!important;
 }
 
 .folderItem div.ignore:hover
 {
-	background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/low_prio.gif.gif') !important;
+	background: url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/low_prio.gif.gif') !important;
 }
 
 .folderItem div.unignore
@@ -1278,7 +1278,7 @@ textarea.medium
 {
 	width: 11px !important;
 	height: 12px !important;
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/bookmark.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/bookmark.gif.gif') no-repeat !important;
 }
 /* End of addition */
 
@@ -1530,39 +1530,39 @@ table.folderList td.mark
 
 img.scLive
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/live.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/live.gif.gif') no-repeat !important;
 }
 img.scTransfer
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/dollar.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/dollar.gif.gif') no-repeat !important;
 }
 img.scMail
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/mapp.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/mapp.gif.gif') no-repeat !important;
 }
 img.scNewMail
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/mappopen.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/mappopen.gif.gif') no-repeat !important;
 }
 img.scNotes
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/notes.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/notes.gif.gif') no-repeat !important;
 }
 img.scSearch
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/search.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/search.gif.gif') no-repeat !important;
 }
 img.scMySupporters
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Matches/star_replaced.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Matches/star_replaced.gif.gif') no-repeat !important;
 }
 img.scReminders
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/reminder.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/reminder.gif.gif') no-repeat !important;
 }
 img.scBookmarks
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/bookmarks.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/bookmarks.gif.gif') no-repeat !important;
 }
 
 
@@ -1596,7 +1596,7 @@ img.scBookmarks
 {
 	width: 6px !important;
 	height: 12px !important;
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/bookmarksmall.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/bookmarksmall.gif.gif') no-repeat !important;
 }
 
 .bookmark img, .alltidIcon img
@@ -1617,7 +1617,7 @@ img.scBookmarks
 
 .bookmarkSmall img
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/bookmarksmall.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/bookmarksmall.gif.gif') no-repeat !important;
 
 width: 6px !important;
 height: 12px !important;
@@ -1645,12 +1645,12 @@ width: 18px !important;
 height: 18px !important;
 }
 /*http://u20.hattrick-cz.com/CHPP/images/live.gif*/
-input.bmNotes{background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/notes.gif.gif') no-repeat !important;}
+input.bmNotes{background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/notes.gif.gif') no-repeat !important;}
 input.bmNotesEmpty{background: transparent url('http://www.hattrick.org/App_Themes/Simple/images/Icons/bm_notes_empty.png') no-repeat !important;}
 input.bmRemove{background: transparent url('http://www.hattrick.org/App_Themes/Simple/images/Icons/bm_trash.png') no-repeat !important;}
 img.bmPhoneDisabled{background: transparent url('http://www.hattrick.org/App_Themes/Simple/images/Icons/bm_phone_disabled.png') no-repeat !important;}
 img.bmPhone{background: transparent url('http://www.hattrick.org/App_Themes/Simple/images/Icons/bm_phone.png') no-repeat !important;}
-img.matchHTLive{background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Icons/live.gif.gif') no-repeat !important;}
+img.matchHTLive{background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Icons/live.gif.gif') no-repeat !important;}
 img.matchFriendly{background: transparent url('http://www.hattrick.org/App_Themes/Simple/images/Matches/friendly.png') no-repeat !important;}
 img.matchLeague{background: transparent url('http://www.hattrick.org/App_Themes/Simple/images/Matches/league.png') no-repeat !important;}
 img.matchCup{background: transparent url('http://www.hattrick.org/App_Themes/Simple/images/Matches/cup.png') no-repeat !important;}
@@ -1700,43 +1700,43 @@ img.f_www:hover{
 }
 
 img.f_quote1{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_quote.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_quote.gif.gif') no-repeat !important;
 }
 img.f_quote2{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_quote2.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_quote2.gif.gif') no-repeat !important;
 }
 img.f_bold{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_bold.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_bold.gif.gif') no-repeat !important;
 }
 img.f_italic{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_italic.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_italic.gif.gif') no-repeat !important;
 }
 img.f_ul{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_underline.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_underline.gif.gif') no-repeat !important;
 }
 img.f_hr{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_hr.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_hr.gif.gif') no-repeat !important;
 }
 img.f_player{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_player.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_player.gif.gif') no-repeat !important;
 }
 img.f_team{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_team.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_team.gif.gif') no-repeat !important;
 }
 img.f_match{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_match.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_match.gif.gif') no-repeat !important;
 }
 img.f_fed{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_fed.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_fed.gif.gif') no-repeat !important;
 }
 img.f_message{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_messagelink.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_messagelink.gif.gif') no-repeat !important;
 }
 img.f_series{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_serie.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_serie.gif.gif') no-repeat !important;
 }
 img.f_www{
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/new_extermal.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/new_extermal.gif.gif') no-repeat !important;
 }
 
 span.unclosedtag
@@ -1818,22 +1818,22 @@ img.confRight
 
 img.next, input.next, input.nextSeries
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/next.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/next.gif.gif') no-repeat !important;
 }
 
 img.last
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/last.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/last.gif.gif') no-repeat !important;
 }
 
 img.prev, input.prev, input.prevSeries
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/previous.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/previous.gif.gif') no-repeat !important;
 }
 
 img.first
 {
-	background: transparent url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Conf/first.gif.gif') no-repeat !important;
+	background: transparent url('chrome://foxtrick/content/resources/img/foxtrick_skin/HT-Images/Conf/first.gif.gif') no-repeat !important;
 }
 
 img.disabled.next

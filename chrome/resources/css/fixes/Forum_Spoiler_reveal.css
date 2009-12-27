@@ -1,4 +1,4 @@
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 .spoiler {
     display: none!important;
@@ -8,3 +8,4 @@
     display: block!important;
 }
 
+}

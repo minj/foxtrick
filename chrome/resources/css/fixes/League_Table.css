@@ -1,4 +1,4 @@
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 
 #ctl00_CPMain_repLeagueTable_ctl00_td1,
@@ -36,3 +36,4 @@
     border-right: 2px solid #DCE0DC;	
 }
 
+}

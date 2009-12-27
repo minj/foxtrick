@@ -2,8 +2,24 @@
   <script type="text/javascript" src="jkl-parsexml.js"></script>
   <script>
  	 
-try{  //alert('load background')
+try{  
+
+//alert('load background')
+
+
+var resources_changed = true;
+
+
+function isHTUrl(url) {
+  if (url.search(/hattrick.org|hattrick.ws|hattrick.interia.ws/) == -1) return false;
+  return true; 
+}
+
+
 	// get resources	
+	
+	// get prefrences
+	// if prefs not set in extension settings, get default values
 	if ( typeof(localStorage['pref']) == 'undefined'  || localStorage['pref']=='') {			
 		// default prefs
 		listUrl = chrome.extension.getURL("default.pref");
@@ -12,13 +28,19 @@ try{  //alert('load background')
 		prefxhr.send();
 		var preftext = prefxhr.responseText;
 	}
-	else var preftext =  localStorage['pref'];  // saved prefs
+	else var preftext =  localStorage['pref'];  // save prefs in extension settings
 
 	listUrl = chrome.extension.getURL("default.pref");
 	var prefdefaultxhr = new XMLHttpRequest();
 	prefdefaultxhr.open("GET", listUrl, false);
 	prefdefaultxhr.send();
 		
+	// get strings	
+	listUrl = chrome.extension.getURL("foxtrick.properties");
+	var properties_defaultxhr = new XMLHttpRequest();
+	properties_defaultxhr.open("GET", listUrl, false);
+	properties_defaultxhr.send();
+
 	var session_lang ='en';
 	try {
 		var propertiesxhr = new XMLHttpRequest();
@@ -27,14 +49,13 @@ try{  //alert('load background')
 		listUrl = chrome.extension.getURL('locale/'+session_lang+"/foxtrick.properties");
 		propertiesxhr.open("GET", listUrl, false);
 		propertiesxhr.send();	
+		var properties = propertiesxhr.responseText;
 	}
-	catch(e) {alert(e); }	
+	catch(e) {
+			var properties = properties_defaultxhr.responseText;
+	}	
 	
-	listUrl = chrome.extension.getURL("foxtrick.properties");
-	var properties_defaultxhr = new XMLHttpRequest();
-	properties_defaultxhr.open("GET", listUrl, false);
-	properties_defaultxhr.send();
-
+	// get other non changeable ersources
 	listUrl = chrome.extension.getURL("foxtrick.screenshots");
 	var screenshotsxhr = new XMLHttpRequest();
 	screenshotsxhr.open("GET", listUrl, false);
@@ -72,7 +93,7 @@ try{  //alert('load background')
 
 	// worlddetails
 	var xml = new JKL.ParseXML( "htlocales/worlddetails.xml" );
-	var data = xml.parse();
+	var data = xml.parse();// alert(data.HattrickData.LeagueList.League.length);
 	var League = {};
 	var countryid_to_leagueid = {};
 	
@@ -84,16 +105,62 @@ try{  //alert('load background')
 
 } catch(e) {alert('resource init:' +e)}
  
+//alert(countryid_to_leagueid[1]);
+
 // send resource to content scripts 
 chrome.extension.onConnect.addListener(function(port) { 
 	port.onMessage.addListener(function(msg) {  
-	  try {   
-		if (msg.reqtype == "pref") { //alert(preftext);
-			port.postMessage({pref: preftext});
-        } 
-	    else if (msg.reqtype == "pref_default") { //alert(preftext);
-			port.postMessage({pref_default: prefdefaultxhr.responseText});
-        } 
+	  try {  //alert(msg.reqtype);
+		if (msg.reqtype == "get_settings") { 
+			port.postMessage({
+				changed:true,
+				pref: preftext,
+				pref_default: prefdefaultxhr.responseText,
+				properties: properties,
+				properties_default: properties_defaultxhr.responseText,
+				screenshots: screenshotsxhr.responseText,
+				htlang: htlangxhr.responseText,
+				htcurrency: htcurrencyxhr.responseText,
+				htNTidList: htNTidListxhr.responseText,
+				htversions: htversionsxhr.responseText,
+				htdateformat: htdateformatxhr.responseText,
+				about: aboutxhr.responseText,
+				League: League,
+				countryid_to_leagueid: countryid_to_leagueid });
+        }
+		else if (msg.reqtype == "get_css_text") {
+		  try  {
+			var css_text_from_response='';
+			var cssUrl = msg.css_filelist.split('\n');
+			for (var i=0; i<cssUrl.length; ++i) { 
+				var css_text='';
+				if (cssUrl[i].search(/^http|^chrome-extension/)!=-1) { //is a resource file. get cssfile content 
+					css_xhr = new XMLHttpRequest();
+					css_xhr.open("GET", cssUrl[i], false);
+					css_xhr.send();
+					css_text = css_xhr.responseText;
+				}
+				else {  css_text = cssUrl[i]; // not a file but line is css text
+				}
+				if (css_text) {  // remove moz-document statement
+					if ( css_text.search('@-moz-document')!=-1) {
+						css_text = css_text.replace(/@-moz-document.+\{/,'');
+						var closing_bracket = css_text.lastIndexOf('}');
+						css_text = css_text.substr(0,closing_bracket)+css_text.substr(closing_bracket+1);
+					}					
+				}
+				css_text_from_response += css_text;
+			}
+			// replace ff chrome reference by google chrome refs
+			var exturl = chrome.extension.getURL('');
+			css_text_from_response = css_text_from_response.replace(/chrome:\/\/foxtrick\/content\//g, exturl);
+			
+			//var newwin = window.open("","");
+			//newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>'+css_text_from_response.replace(/\n/gi,'<br>')+'</body></html>');			
+		
+            port.postMessage({css_text_set: 'true', css_text: css_text_from_response});
+		  } catch(e) {alert('css xhr '+e);alert(cssUrl[i])}
+        }
 	    else if (msg.reqtype == "save_prefs") {
 			// save new session properties			
 			preftext = msg.prefs;
@@ -107,7 +174,9 @@ chrome.extension.onConnect.addListener(function(port) {
 				if (lang != session_lang || msg.reload==true) {
 					listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
 					propertiesxhr.open("GET", listUrl, false);
-					propertiesxhr.send();	 
+					propertiesxhr.send();
+					properties = propertiesxhr.responseText;					
+					localStorage['properties']=properties;
 					port.postMessage({lang_changed: 'true', properties: propertiesxhr.responseText, reload:msg.reload});
 				}
 			} catch(e) {alert('language doesnt exist: '+lang+' '+e);}			
@@ -120,7 +189,7 @@ chrome.extension.onConnect.addListener(function(port) {
 			preftext = preftext.replace(string_regexp,'');
 			localStorage['pref'] = preftext;
 			} catch(e) {alert('delete_pref '+e);}
-			//port.postMessage({pref_changed: 'true', prefs:preftext, properties: propertiesxhr.responseText, reload:false});
+			//port.postMessage({pref_changed: 'true', prefs:preftext, properties: properties, reload:false});
 		} 
 	    else if (msg.reqtype == "delete_pref_list") {
 			// delete a preference			
@@ -130,59 +199,8 @@ chrome.extension.onConnect.addListener(function(port) {
 			preftext = preftext.replace(string_regexp,'');
 			localStorage['pref'] = preftext;
 			} catch(e) {alert('delete_pref '+e);}
-			port.postMessage({pref_changed: 'true', prefs:preftext, properties: propertiesxhr.responseText, reload:false});
+			port.postMessage({pref_changed: 'true', prefs:preftext, properties: properties, reload:false});
 		} 
-		else if (msg.reqtype == "properties") {
-           if (propertiesxhr.responseText) port.postMessage({properties: propertiesxhr.responseText});
-		   else port.postMessage({properties: ''});
-        }
-		else if (msg.reqtype == "properties_default") {
-           port.postMessage({properties_default: properties_defaultxhr.responseText});
-        }
-		else if (msg.reqtype == "get_css_text") {
-		try  {
-			var css_text_from_response='';
-			var cssUrl = msg.css_filelist.split('\n');
-			for (var i=0; i<cssUrl.length; ++i) {
-				if (cssUrl[i].search(/^http|^chrome-extension/)!=-1) {
-					css_xhr = new XMLHttpRequest();
-					css_xhr.open("GET", cssUrl[i], false);
-					css_xhr.send();
-					css_text_from_response += css_xhr.responseText;
-				}
-				else {  css_text_from_response += cssUrl[i]; //alert(cssUrl[i]);
-				}
-			}
-           port.postMessage({css_text_set: 'true', css_text: css_text_from_response});
-		} catch(e) {alert('css xhr '+e);alert(cssUrl[i])}
-        }
-		else if (msg.reqtype == "screenshots") {
-           port.postMessage({screenshots: screenshotsxhr.responseText});
-        }
-		else if (msg.reqtype == "htlang") {  
-			port.postMessage({htlang: htlangxhr.responseText});
-        }
-		else if (msg.reqtype == "htcurrency") {  
-			port.postMessage({htcurrency: htcurrencyxhr.responseText});
-        }
-		else if (msg.reqtype == "htNTidList") {  
-			port.postMessage({htNTidList: htNTidListxhr.responseText});
-        }
-		else if (msg.reqtype == "htversions") {  
-			port.postMessage({htversions: htversionsxhr.responseText});
-        }
-		else if (msg.reqtype == "htdateformat") {  
-			port.postMessage({htdateformat: htdateformatxhr.responseText});
-        }
-		else if (msg.reqtype == "about") {  
-			port.postMessage({about: aboutxhr.responseText});
-        }
-		else if (msg.reqtype == "League") {  
-			port.postMessage({League: League});
-        }
-		else if (msg.reqtype == "countryid_to_leagueid") {  
-			port.postMessage({countryid_to_leagueid: countryid_to_leagueid});
-        }
 		else if (msg.reqtype == "get_old_alerts") {  
 			if (newstart) port.postMessage({response:'resetalert'});
 			else port.postMessage({response:'noresetalert'});
@@ -218,7 +236,8 @@ chrome.extension.onConnect.addListener(function(port) {
 		if (msg.pref=="extensions.foxtrick.prefs.htLanguage") {
 			listUrl = chrome.extension.getURL('locale/'+msg.value+"/foxtrick.properties");
 			propertiesxhr.open("GET", listUrl, false);
-			propertiesxhr.send();	 
+			propertiesxhr.send();
+			properties = propertiesxhr.responseText;
 			port.postMessage({properties: propertiesxhr.responseText, from: msg.from});	
 		}
 	});
@@ -233,4 +252,3 @@ chrome.extension.onConnect.addListener(function(port) {
 <canvas id="canvas" width="18" height="18">
 </body>
 </html>
-

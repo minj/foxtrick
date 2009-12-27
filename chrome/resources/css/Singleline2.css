@@ -1,4 +1,6 @@
 @namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+@namespace url(http://www.w3.org/1999/xhtml);
 
 
 #aspnetForm[action^=Read] div[class='main mainConf'] div.cfHeader {min-height:14px; height:0px !important; float:none  !important;}
@@ -13,3 +15,5 @@ div[class="cfHeader doubleLine"] b:after {content:" " !important;}
 .cfHeader, .cfHeader img, .cfHeader a,  .cfHeader .float_right  {
 	padding-left:0px;  padding-right:0px;font-size:10px;padding-right:0px;line-height: 12px !important;}
 
+
+}

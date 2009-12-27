@@ -1,8 +1,8 @@
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 div.foxtrick-flipsides {
   position: absolute;
-  background-image: url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/matchorders/50w.png);
+  background-image: url(chrome://foxtrick/content/resources/img/matchorders/50w.png);
   text-align:center;
   padding: 3px 0px;
   top: 225px;
@@ -12,7 +12,7 @@ div.foxtrick-flipsides {
 
 div.foxtrick-formationbox {
   position: absolute;
-  background-image: url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/matchorders/50w.png);
+  background-image: url(chrome://foxtrick/content/resources/img/matchorders/50w.png);
   text-align:center;
   padding: 3px 0px;
   top: 20px;
@@ -32,3 +32,4 @@ span.foxtrick-noformationexperience {
  color: yellow;
 }
 
+}

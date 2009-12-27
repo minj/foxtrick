@@ -1,5 +1,5 @@
 
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 #mainBody table {margin-left:-8px;width:440px !important;}
 #mainBody table tr>td+td+td+td+td+td+td {display:none;}
@@ -12,3 +12,4 @@
 /*#mainBody table tr .date, #mainBody table tr td.nowrap {font-size: 0.8em !important;}*/
 #mainBody table tr td  {font-size: 0.8em !important; /*white-space:nowrap*/}
 
+}

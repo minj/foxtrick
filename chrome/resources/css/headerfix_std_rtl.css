@@ -1,5 +1,5 @@
 /* HeaderFix by Catalyst2950 */
-
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 /* Fix the header on screen */
 #aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #header {
@@ -63,3 +63,4 @@ margin-top:125px !important;
 
 /* --------------- */
 
+}
