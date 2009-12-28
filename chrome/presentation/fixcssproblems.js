@@ -85,61 +85,7 @@ FoxtrickFixcssProblems = {
                         var css = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/RTL_Fixes_simple.css";
 						Foxtrick.addStyleSheet( doc, css );
 				}							
-			}
-			
-			
-     /* obsolete      
-		if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace" )) {
-				if (!Foxtrick.isStandardLayout( doc ) ) {
-                        var css = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/Forum_ThreadlistSpace_simple.css";
-						Foxtrick.addStyleSheet( doc, css );
-				}
-				else {
-				        var css = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/Forum_ThreadlistSpace.css";
-						Foxtrick.addStyleSheet( doc, css );
-				}				
-			}*/
-             
-	return;
-   
-
-                // old version
-               
-        // standard | simpe | all | alternate
-        var LAYOUTSWITCH = new Array (
-           // "standard",
-           // "alternate",
-            "all",
-            "all",
-            "all",
-            "simple",
-            "all",
-                        "all"
-        );
-        Foxtrick.dump (' => LAYOUT: ' + Foxtrick.isStandardLayout( doc ) + '\n');
-        for (var i = 0; i < this.OPTIONS.length; i++) {
-           
-            if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[i]  ) ) {
-                var css = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/" + this.OPTIONS[i] + ".css";
-                var css_simple = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/" + this.OPTIONS[i] + "_simple.css";
-                if ( ( (LAYOUTSWITCH[i] == 'standard' ) || (LAYOUTSWITCH[i] == 'all') ) && (Foxtrick.isStandardLayout( doc ) == true) ) {
-                    Foxtrick.dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
-                    Foxtrick.addStyleSheet( doc, css );
-                }
-                else if ( ((LAYOUTSWITCH[i] == 'simple' ) || (LAYOUTSWITCH[i] == 'all')) && (Foxtrick.isStandardLayout( doc ) == false) ) {
-                    // Foxtrick.dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
-                    Foxtrick.addStyleSheet ( doc, css );
-                }
-                                else if ( LAYOUTSWITCH[i] == 'alternate' ) {
-                    // Foxtrick.dump ('  FIXES: (simple) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
-                    if (Foxtrick.isStandardLayout( doc ) == false)  Foxtrick.addStyleSheet ( doc, css_simple );
-                    else  Foxtrick.addStyleSheet ( doc, css );
-                }                              
-                else {
-                    // Foxtrick.dump ('  FIXES: ' + i + ' - ' + this.OPTIONS[i] + ' disabled.\n');
-                }
-            }
-        }    
+			}					
     },
        
         change : function( page, doc ) {

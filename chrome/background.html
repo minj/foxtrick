@@ -103,23 +103,24 @@ function isHTUrl(url) {
 		countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 	}
 
-	try {
 	var hty_staff = new Array();
 	var req = new XMLHttpRequest();
-	req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', true); 
-	req.send(null);
-	
-	req.onreadystatechange = function() { 
-		if (this.readyState == 4) {
+	var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
+	var stopTimer = function(){window.clearTimeout(abortTimerId); };
+	req.onreadystatechange = function(){
+		if (req.readyState == 4){ 
+			stopTimer(); 
 			var frag = document.createElement('dummy');
-			frag.innerHTML = this.responseText; 
+			frag.innerHTML = req.responseText; 
 			var htyusers = frag.getElementsByTagName('user');
 			for (var i=0;i<htyusers.length;++i) {
 				hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
-				}
 			}
 		}
-	} catch(e){alert('hty: '+e)}
+	}
+	var url = 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml';
+	req.open('GET', url , true); 
+	req.send(null);
 	
 } catch(e) {alert('resource init:' +e)}
 
