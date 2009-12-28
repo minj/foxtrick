@@ -7,12 +7,12 @@
 
 var portsetpref = chrome.extension.connect({name: "ftpref-query"});
 portsetpref.onMessage.addListener(function(msg) {   
-	if (msg.lang_changed == 'true') {
+	if (msg.set == 'lang_changed') {  console.log('lang_changed');
 		Foxtrickl10n.properties = msg.properties;
 		//	document.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';		
 		if (msg.reload) document.location.reload();
 	}
-	else if (msg.css_text_set == 'true') {
+	else if (msg.set=='css_text_set') {  console.log('css_text_set');
 		var begin = new Date();
 		Foxtrick.addStyleSheetSnippet(document, msg.css_text);
 		var end = new Date();
@@ -323,8 +323,10 @@ FoxtrickPrefs.LoadPrefs = function (ev) {
 
 FoxtrickPrefs.portsetlang = chrome.extension.connect({name: "setpref"});
 FoxtrickPrefs.portsetlang.onMessage.addListener(function(msg) { 
+	if (msg.set=='setlang') { console.log('setlang');
 		Foxtrickl10n.properties = msg.properties; 
 		if ( msg.from == 'readpref') { 
 			FoxtrickReadHtPrefs.ShowChanged(document);
 	    }
+	}
 });

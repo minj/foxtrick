@@ -38,8 +38,8 @@ Foxtrick.XMLData = {
 		
 // get settings
 var portgetsettings = chrome.extension.connect({name: "ftpref-query"});
-portgetsettings.onMessage.addListener(function(msg) { 
-	if (msg.is_settings) {
+portgetsettings.onMessage.addListener(function(msg) {  
+	if (msg.set=='settings') {console.log('msg.is_settings '+msg.set);
 		FoxtrickPrefs.pref = msg.pref; 
 		FoxtrickPrefs.pref_default = msg.pref_default; 
 		Foxtrickl10n.properties = msg.properties; 
@@ -55,13 +55,16 @@ portgetsettings.onMessage.addListener(function(msg) {
 		Foxtrick.XMLData.League = msg.League; 
 		Foxtrick.XMLData.countryid_to_leagueid = msg.countryid_to_leagueid;
 //		FoxtrickStaffMarker.hty_staff = msg.hty_staff;
-		console.log('got pref');
+		console.log('got pref '+msg.set);
 	}
-	else if (msg.is_hty_staff) {
+	else if (msg.set=='hty_staff') {// alert('msg.is_hty_staff : '+msg.set)
 		FoxtrickStaffMarker.hty_staff = msg.hty_staff;
-		console.log('got hty_staff');
+		console.log('got hty_staff ' +msg.set);
 	}
 });
 
-portgetsettings.postMessage({reqtype: "get_settings"})
-portgetsettings.postMessage({reqtype: "get_hty_staff"})
+if (typeof(xml_got_settings)=='undefined') {
+	portgetsettings.postMessage({reqtype: "get_settings"}); console.log('do get_settings '+xml_got_settings);
+	portgetsettings.postMessage({reqtype: "get_hty_staff"});
+	var xml_got_settings=true;
+}

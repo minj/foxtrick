@@ -144,15 +144,18 @@ function isHTUrl(url) {
 	} catch(e){Foxtrick.dump('matches.js run: '+e+'\n');}*/
 
  
-//alert(countryid_to_leagueid[1]);
+//alert('back');
 
 // send resource to content scripts 
 chrome.extension.onConnect.addListener(function(port) { 
-	port.onMessage.addListener(function(msg) {  
+	if (port.name == "ftpref-query") 
+	{ //alert('ftpref: '+port.name);
+	 port.onMessage.addListener(function(msg) {  
 	  try {  //alert(msg.reqtype);
-		if (msg.reqtype == "get_settings") { 
+		if (msg.reqtype == "get_settings") {   //alert("get_settings " + msg.reqtype);
+			//alert('send settings');
 			port.postMessage({
-				is_settings:true,
+				set:'settings', 
 				pref: preftext,
 				pref_default: prefdefaultxhr.responseText,
 				properties: properties,
@@ -166,11 +169,12 @@ chrome.extension.onConnect.addListener(function(port) {
 				about: aboutxhr.responseText,
 				League: League,
 				countryid_to_leagueid: countryid_to_leagueid,
-				});
+				});			
         }
-		else if (msg.reqtype == "get_hty_staff") { 
+		else if (msg.reqtype == "get_hty_staff") {// alert("get_hty_staff " + msg.reqtype);
+			//alert('send hty_staff');
 			port.postMessage({
-				is_hty_staff:true,
+				set:'hty_staff',
 				hty_staff: hty_staff, 
 			});
         }
@@ -204,7 +208,7 @@ chrome.extension.onConnect.addListener(function(port) {
 			//var newwin = window.open("","");
 			//newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>'+css_text_from_response.replace(/\n/gi,'<br>')+'</body></html>');			
 		
-            port.postMessage({css_text_set: 'true', css_text: css_text_from_response});
+            port.postMessage({set:'css_text_set', css_text: css_text_from_response});
 		  } catch(e) {alert('css xhr '+e);alert(cssUrl[i])}
         }
 	    else if (msg.reqtype == "save_prefs") {
@@ -223,7 +227,7 @@ chrome.extension.onConnect.addListener(function(port) {
 					propertiesxhr.send();
 					properties = propertiesxhr.responseText;					
 					localStorage['properties']=properties;
-					port.postMessage({lang_changed: 'true', properties: propertiesxhr.responseText, reload:msg.reload});
+					port.postMessage({set:'lang_changed', properties: propertiesxhr.responseText, reload:msg.reload});
 				}
 			} catch(e) {alert('language doesnt exist: '+lang+' '+e);}			
 		} 
@@ -270,9 +274,53 @@ chrome.extension.onConnect.addListener(function(port) {
 					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
 			});
 		}
+		 else port.postMessage({});				    
 	  } catch(e) {alert('error msg.reqtype : '+msg.reqtype+' '+e);} 
-	});
+	 });	
+	}
+	/*if (port.name == "htms") { //alert('htms: '+port.name);
+		port.onMessage.addListener(function(msg) {  
+		  if (msg.reqtype=="get_htms") { 	
+			var req = new XMLHttpRequest();
+			var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
+			var stopTimer = function(){window.clearTimeout(abortTimerId); };
+			req.onreadystatechange = function(){ 
+				if (req.readyState == 4){ 
+					stopTimer(); 
+					port.postMessage({set:'htms', responseText: req.responseText});	
+				}
+			}
+			req.open('GET', msg.url , true); 
+			req.send(null);
+		  }
+	    });
+	}*/
 });
+
+
+chrome.extension.onConnect.addListener(function(port2) {
+	if (port2.name == "htms") { //alert('htms: '+port.name);
+		port2.onMessage.addListener(function(msg) {  
+		  if (msg.reqtype=="get_htms") { 
+			//port2.postMessage({set:'htms', responseText: 'ff'});	
+						  
+			var req = new XMLHttpRequest();
+			var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
+			var stopTimer = function(){window.clearTimeout(abortTimerId); };
+			req.onreadystatechange = function(){ 
+				if (req.readyState == 4){ 
+					stopTimer(); 
+					port2.postMessage({set:'htms', responseText: req.responseText});	
+				}
+			}
+			req.open('GET', msg.url , true); 
+			req.send(null);
+		  }
+		  else port2.postMessage({});			
+	    });
+	}
+});
+
 
 // reload strings after lang change
 chrome.extension.onConnect.addListener(function(port) {
@@ -284,7 +332,7 @@ chrome.extension.onConnect.addListener(function(port) {
 			propertiesxhr.open("GET", listUrl, false);
 			propertiesxhr.send();
 			properties = propertiesxhr.responseText;
-			port.postMessage({properties: propertiesxhr.responseText, from: msg.from});	
+			port.postMessage({set:"setlang", properties: propertiesxhr.responseText, from: msg.from});	
 		}
 	});
   }

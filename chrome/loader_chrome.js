@@ -33,18 +33,20 @@ var setStyle = function(){
  try{ 
 	// Set style at loading page
 	document.getElementsByTagName('body')[0].style.display = 'none';
+	console.log('hide body');
  } catch(e){Foxtrick.dump('setStyle: '+e)}
 };
 
 
-function runScript() { console.log('run script');
+function runScript() { 
+  try{
+	console.log('run script');
 		var begin = new Date();
 	Foxtrick.Loader.Load();	
 	FoxtrickMain.init();
 	Foxtrick.reload_module_css(document);
 		var mid = new Date();
 	FoxtrickMain.run(document);
-	document.getElementsByTagName('body')[0].style.display='block';
 		var end = new Date();
 	
 	
@@ -54,9 +56,14 @@ function runScript() { console.log('run script');
 	var time = ( end.getSeconds() - mid.getSeconds() ) * 1000
                  + end.getMilliseconds() - mid.getMilliseconds();
 	log += "Foxtrick run time: " + time + " ms\n" ;		
-	Foxtrick.dump( log );			
+	console.log( log );			
+  } catch(e){console.log('runScript '+e)}
+  	document.getElementsByTagName('body')[0].style.display='block';
 }
 
 // action
-window.setTimeout(setStyle, 1);
-window.addEventListener("DOMContentLoaded", runScript, false);
+if (typeof(did_action)=='undefined'){
+	window.setTimeout(setStyle, 1);
+	window.addEventListener("DOMContentLoaded", runScript, false);
+	var did_action=true;
+}
