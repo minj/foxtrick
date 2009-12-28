@@ -18,7 +18,7 @@ var Foxtrickl10n = {
 		else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1) value =  Foxtrickl10n.properties_default.match(string_regexp)[1];
 		else value = "** Localization error 1 **";;
 		return value;
-	}catch(e){alert('getString '+e);}
+	}catch(e){console.log('getString '+e+' '+str);}
     },
 
     isStringAvailable : function( str )
