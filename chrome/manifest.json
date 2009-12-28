@@ -4,7 +4,7 @@
    "version": "0.4.10.0",
    "icons": { "48": "foxtrick48.png",
           "128": "foxtrick128.png" },
-   "permissions": [ "tabs" ],
+   "permissions": [ "tabs", "http://www.hattrick-youthclub.org/*", "http://www.fantamondi.it/*" ],
 
    "background_page": "background.html",
    "browser_action": {

@@ -103,7 +103,45 @@ function isHTUrl(url) {
 		countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 	}
 
+	try {
+	var hty_staff = new Array();
+	var req = new XMLHttpRequest();
+	req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', true); 
+	req.send(null);
+	
+	req.onreadystatechange = function() { 
+		if (this.readyState == 4) {
+			var frag = document.createElement('dummy');
+			frag.innerHTML = this.responseText; 
+			var htyusers = frag.getElementsByTagName('user');
+			for (var i=0;i<htyusers.length;++i) {
+				hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
+				}
+			}
+		}
+	} catch(e){alert('hty: '+e)}
+	
 } catch(e) {alert('resource init:' +e)}
+
+
+	/*try{
+		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
+		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
+		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+		if (isprematch) return;
+		
+		if (isarchivedmatch && typeof(this.matchxmls[matchid]) == 'undefined') {
+			var req = new XMLHttpRequest();
+			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Matches/chppxml.axd?file=matchdetails&matchID='+matchid+'&matchEvents=true', false); 
+			req.send(null);
+			if (req.status == 200) {
+				this.matchxmls[matchid] = req.responseXML;
+				dump('matches.js: get new xml\n');
+			}
+			else Foxtrick.dump('matches.js: xml request failed\n');
+		}
+	} catch(e){Foxtrick.dump('matches.js run: '+e+'\n');}*/
+
  
 //alert(countryid_to_leagueid[1]);
 
@@ -113,7 +151,7 @@ chrome.extension.onConnect.addListener(function(port) {
 	  try {  //alert(msg.reqtype);
 		if (msg.reqtype == "get_settings") { 
 			port.postMessage({
-				changed:true,
+				is_settings:true,
 				pref: preftext,
 				pref_default: prefdefaultxhr.responseText,
 				properties: properties,
@@ -126,7 +164,14 @@ chrome.extension.onConnect.addListener(function(port) {
 				htdateformat: htdateformatxhr.responseText,
 				about: aboutxhr.responseText,
 				League: League,
-				countryid_to_leagueid: countryid_to_leagueid });
+				countryid_to_leagueid: countryid_to_leagueid,
+				});
+        }
+		else if (msg.reqtype == "get_hty_staff") { 
+			port.postMessage({
+				is_hty_staff:true,
+				hty_staff: hty_staff, 
+			});
         }
 		else if (msg.reqtype == "get_css_text") {
 		  try  {
