@@ -11,8 +11,6 @@ var FoxtrickPlayerAdToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
-	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons.css",
-	CSS_SIMPLE: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons_simple.css",
 	
 	_PLAYMAKING : 3,
 	_PASSING : 5,

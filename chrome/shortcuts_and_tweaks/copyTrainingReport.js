@@ -12,8 +12,6 @@ var FoxtrickCopyTrainingReport = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.6.2",
 	LATEST_CHANGE:"Copies plain text to match htyouthclub requirement",
-	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons.css",
-	CSS_SIMPLE: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons_simple.css",
 	
 	init : function() {
 	},

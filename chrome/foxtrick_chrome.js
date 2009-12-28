@@ -334,11 +334,18 @@ Foxtrick.playSound = function(url) {
 Foxtrick.cssfiles='';
 	
 Foxtrick.reload_module_css = function(doc) {  	//Foxtrick.dump('reload permanents css\n');
-	Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/foxtrick.css"));
-	Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/preferences-dialog-html.css"));
-		// check permanant css
 	var isStandard = Foxtrick.isStandardLayout(doc);
 	var isRTL = Foxtrick.isRTLLayout(doc);
+	
+	
+	Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/foxtrick.css"));
+	Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/preferences-dialog-html.css"));
+	if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+		if (isStandard) Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/headercopyicons.css"));
+		else Foxtrick.load_css_permanent(chrome.extension.getURL("resources/css/headercopyicons_simple.css"));	
+	}
+	
+	// check permanant css
 	for ( var i in Foxtrick.ht_pages ) {
 		if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {  
 			// on a specific page, run all handlers
