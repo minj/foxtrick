@@ -13,8 +13,6 @@ var FoxtrickCopyRatingsToClipboard = {
 	NEW_AFTER_VERSION: "0.4.9.1",	
 	LATEST_CHANGE:"Fixing away match copy, youth team links",    
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons.css",
-	CSS_SIMPLE: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headercopyicons_simple.css",
 
 	init : function() {
     },
