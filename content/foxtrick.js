@@ -138,9 +138,10 @@ var FoxtrickMain = {
         if ( appcontent) {
 			// listen to page loads
 			//FoxtrickMain.onPageLoad.appcontent = appcontent;
+			//appcontent.addEventListener( "load", this.onPageLoad, true );
 			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad, true );
 			appcontent.addEventListener( "unload", this.onPageUnLoad, true );
-		}
+		}		
     },
 
 	onPageChange : function( ev ) {
@@ -186,6 +187,7 @@ var FoxtrickMain = {
 			if( ticker ) {
 				//ticker.addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNews, true );
 			}
+			doc.getElementsByTagName('body')[0].setAttribute( 'style','display:block !important');;
 	    }
     },
 
@@ -546,9 +548,19 @@ Foxtrick.playSound = function(url) {
 
 
 Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents css\n');
-			// check permanant css
 			var isStandard = Foxtrick.isStandardLayout(doc);
 			var isRTL = Foxtrick.isRTLLayout(doc);
+
+			if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+				if (isStandard) {
+					Foxtrick.load_css_permanent('chrome://foxtrick/content/resources/css/headercopyicons.css');
+					Foxtrick.unload_css_permanent("chrome://foxtrick/content/resources/css/headercopyicons_simple.css");
+				} else {
+					Foxtrick.unload_css_permanent('chrome://foxtrick/content/resources/css/headercopyicons.css') ;
+					Foxtrick.load_css_permanent("chrome://foxtrick/content/resources/css/headercopyicons_simple.css");				
+				}
+			}
+			// check permanant css
 			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 				// if module has an css) function and is enabled
