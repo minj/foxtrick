@@ -106,13 +106,7 @@ var FoxtrickMain = {
 		}
 	},
 		
-    run : function( doc ) {  
-//			Foxtrick.addStyleSheet( document, 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
-//			Foxtrick.addStyleSheet( document, 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css' ) ;		
-//			Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css')
-//			Foxtrick.load_css_permanent('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css')
-//			Foxtrick.cssfiles += 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css'+'\n';  
-			
+    run : function( doc ) {  			
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
