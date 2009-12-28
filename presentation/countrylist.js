@@ -194,7 +194,7 @@ var FoxtrickCountyList = {
     
     _changelist: function (page, doc, id, start) {
         var selectbox = doc.getElementById(id);
-        if (selectbox == null) return;
+        if (selectbox == null || selectbox.innerHTML.search('Deutschland')!=-1) return;
         //Foxtrick.dump('GO ' + '\n');
         var options = selectbox.options;
         var countries = options.length;
