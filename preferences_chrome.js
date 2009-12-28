@@ -55,7 +55,7 @@ var FoxtrickPrefs = {
 		}
 	} catch(e) {};
 	Foxtrick.dump("** preference error ** "+pref_name+'\n');
-	return '';
+	return null;
     },
 
     setInt : function( pref_name, value ) {
@@ -75,7 +75,7 @@ var FoxtrickPrefs = {
 		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) return  parseInt(FoxtrickPrefs.pref_default.match(string_regexp)[1]);
 	} catch(e) {};
 	Foxtrick.dump("** preference error ** "+pref_name+'\n');
-	return NaN;
+	return null;
     },
 
     setBool : function( pref_name, value ) {
