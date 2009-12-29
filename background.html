@@ -251,14 +251,21 @@ chrome.extension.onConnect.addListener(function(port) {
 			} catch(e) {alert('delete_pref '+e);}
 			port.postMessage({pref_changed: 'true', prefs:preftext, properties: properties, reload:false});
 		} 
-		else if (msg.reqtype == "get_old_alerts") {  
+	  } catch(e) {alert('error msg.reqtype : '+msg.reqtype+' '+e);} 
+	 });	
+	}
+	if (port.name == "alert") 
+	{ //alert('ftpref: '+port.name);
+	port.onMessage.addListener(function(msg) {  
+	  try { 	
+		if (msg.reqtype == "get_old_alerts") {  
 			if (newstart) port.postMessage({response:'resetalert'});
 			else port.postMessage({response:'noresetalert'});
 			newstart = false;
         }
 		else if (msg.reqtype == "set_mail_count") {  
 			mail_count = msg.mail_count;
-			getInboxCount(function(count) {
+			getInboxCount(function(count) { //alert(mail_count);
 					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
 			});
 		}
