@@ -890,6 +890,18 @@ stats["ekonomer"] =  {
         "img" : "chrome://foxtrick/content/resources/linkicons/httools_economy.png"
 };
 
+// ht-tools 
+stats["ConvertidordeTiempo"] =  { 
+        "url" : "http://www.hattrick.org.ve/herramientas/tiempo/",
+
+        "transfercomparelink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : {"deadline":"deadline"}
+                       },
+		"owncountryidranges" : [[29, 29]], 
+        "title" : "Convertidor de Tiempo de Hattrick-Venezuela",   
+        "img" : "chrome://foxtrick/content/resources/linkicons/iconotiempo.png"
+};
 
 
 stats["francestats"] =  { 
