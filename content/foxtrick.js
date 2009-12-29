@@ -1482,7 +1482,13 @@ Foxtrick.copyStringToClipboard = function ( string ) {
 Foxtrick.isFF35 = function ( doc ) {
 	// Check if browser is ff 3.5
 	var ua=doc.defaultView.navigator.userAgent;
-	return ua.search("Firefox/3.5") != -1;
+	return (ua.search("Firefox/3.5") != -1 || ua.search("Firefox/3.6") != -1);
+}
+
+Foxtrick.isFF36 = function ( doc ) {
+	// Check if browser is ff 3.6
+	var ua=doc.defaultView.navigator.userAgent;
+	return (ua.search("Firefox/3.6") != -1);
 }
 
 Foxtrick.isStandardLayout = function ( doc ) {
