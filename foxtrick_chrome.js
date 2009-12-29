@@ -149,9 +149,73 @@ var FoxtrickMain = {
 			//FoxtrickSkinPlugin.load( document );
 
 			//Foxtrick.reload_css_permanent( 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
-		},
-	}
+
+		var content = doc.getElementById("content");
+		if( content ) {
+			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+		}
+	},
 		
+	onPageChange : function( ev ) {
+		var doc = ev.target.ownerDocument;
+		if ( doc.nodeName != "#document" )
+            return;
+		var content = doc.getElementById("content");
+		// remove event listener while Foxtrick executes
+		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+		var begin = new Date();
+		FoxtrickMain.change( doc );
+		//Foxtrick.dump('onPageChange\n');
+		var end = new Date();
+        var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+                 + end.getMilliseconds() - begin.getMilliseconds();
+        // Foxtrick.dump( "Foxtrick run time: " + time + " ms\n" );
+		// re-add event listener
+		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+    },
+	
+	// function run on every ht page change
+	change : function( doc ) {
+		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
+		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
+			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
+			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
+
+			// call the modules that want to be run() on every hattrick page
+			Foxtrick.run_every_page.forEach(
+				function( fn ) {
+					try {
+						fn.change( doc );
+					} catch (e) {
+						Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception: \n  " + e + "\n" );
+						console.log(e);
+					}
+				} );
+
+			// call all modules that registered as page listeners
+			// if their page is loaded
+
+			// find current page index/name and run all handlers for this page
+			for ( var i in Foxtrick.ht_pages ) {
+				if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {
+					// on a specific page, run all handlers
+					Foxtrick.run_on_page[i].forEach(
+						function( fn ) {
+							try {
+								fn.change( i, doc );
+							} catch (e) {
+								Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n  " + e + "\n" );
+								console.log(e);
+							}
+						} );
+				}
+			}
+            Foxtrick.dump_flush(doc);
+        }
+		else Foxtrick.dump('Foxtrick modules deactivated\n');
+	}
+};
+
 		
 /**
  * Register with this method to have your module's run()
