@@ -50,7 +50,7 @@ Foxtrick.TeamStats= {
 		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				if (allDivs[i].className=='faceCard') facecards=true;;		
-						
+		
 				if (allDivs[i].className!="playerInfo") continue;
 				
 				var allDivs2 = allDivs[i].getElementsByTagName( "p" )[0];
@@ -159,7 +159,7 @@ Foxtrick.TeamStats= {
 		stars.sort(this.starsortfunction);
 		this.top11star=stars[10]; 
 
-		
+					
 		
 		var boxrightt=doc.getElementById('sidebar');
 		
@@ -517,18 +517,18 @@ Foxtrick.TeamStats= {
 		var filter = ev.target.value;
 		var hasNotNthChild = !Foxtrick.isFF35(doc) && !Foxtrick.isFF36(doc);
 		//var hasNotNthChild =true; // not working for pictures. too lazy to fix now. use old version
-
+		
 		var body = doc.getElementById("mainBody");
 		var allDivs = body.getElementsByTagName('div');
 		var numdiv=allDivs.length;
-
+		
 		var no_playerlist=true,i=0,adiv;
 		while (adiv = allDivs[i++]) {
 			if (adiv.className == 'playerList') { no_playerlist=false; allDivs = adiv.childNodes; numdiv=adiv.getElementsByTagName('div').length; break;}
 		} 
 		if (no_playerlist)  { 
 			allDivs = body.childNodes; 
-			isnotFF35 = true;  // lazy fix for ff3.5 version as zaw currently uses only playerlist. fixable
+			hasNotNthChild = true;  // lazy fix for ff3.5 version as zaw currently uses only playerlist. fixable
 		} 
 		
 		var lastborderSeparator = null, lastborder_j = -1;
@@ -548,7 +548,6 @@ Foxtrick.TeamStats= {
 						if (hide_category==true || filter=='Pictures')  {
 							if (hasNotNthChild) last_category.setAttribute('style','display:none !important;');
 							else zaw += 'div.playerList>div:nth-of-type('+ (last_j-1) +') {display:none;}\n';						
-					
 						}
 						else {
 							if (hasNotNthChild) last_category.style.display=''; //Foxtrick.dump(hide+' '+last_category.innerHTML+'\n');
@@ -653,7 +652,7 @@ Foxtrick.TeamStats= {
 				lastborderSeparator=adiv;			
 				lastborder_i = j;
 			}
-		}
+		}  
 		if (filter == 'Pictures') {
 			if (hasNotNthChild) lastborderSeparator.style.display='';
 		}

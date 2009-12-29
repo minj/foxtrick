@@ -19,8 +19,17 @@ var FoxtrickLinksPlayerDetail = {
 			Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
-    run : function( page, doc ) {
+    run : function( page, doc ) {                     //Deadline: 29.12.2009 18:12                 
 		//addExternalLinksToPlayerDetail
+		var teamdiv = doc.getElementById('teamLinks');
+		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
+		
+		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
+		if ( biddiv ) {
+			var reg = /\d{1,4}.+?\d{1,2}.+?\d{1,4}.+?\d{1,2}.+?\d{1,2}/i;		
+			var deadline = biddiv.innerHTML.match(reg);
+		}
+		else var deadline='';
 		
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
@@ -128,19 +137,19 @@ var FoxtrickLinksPlayerDetail = {
 						"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
-						"scoring" : scoring, "setpieces" : setpieces,"wage":wage,"wagebonus":wagebonus
+						"scoring" : scoring, "setpieces" : setpieces,"wage":wage,"wagebonus":wagebonus,"owncountryid":owncountryid,'deadline':deadline
 						};
 				links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this); 
 				links[1] = Foxtrick.LinkCollection.getLinks("transfercomparelink", params, doc,this); 
                 
 				} else {
-					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality };
+					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality,"owncountryid":owncountryid };
 					links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this); 	
 				}
 				if (goalkeeping > 3) {					
 					// keeper links
 					var klinks = Foxtrick.LinkCollection.getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
-                                                         "form" : form, "goalkeeping" : goalkeeping, "age" : age }, doc,this);  
+                                                         "form" : form, "goalkeeping" : goalkeeping, "age" : age,"owncountryid":owncountryid }, doc,this);  
 					for (var j=0; j< klinks.length; j++) {
 						klinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
 						if (newtable) klinks[j].link.setAttribute("style", "margin-left:5px !important;");
