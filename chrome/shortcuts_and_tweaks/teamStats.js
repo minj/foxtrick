@@ -49,6 +49,8 @@ Foxtrick.TeamStats= {
 		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		
 		for( var i = 0; i < allDivs.length; i++ ) {
+				if (allDivs[i].className=='faceCard') facecards=true;;		
+						
 				if (allDivs[i].className!="playerInfo") continue;
 				
 				var allDivs2 = allDivs[i].getElementsByTagName( "p" )[0];
@@ -158,8 +160,6 @@ Foxtrick.TeamStats= {
 		this.top11star=stars[10]; 
 
 		
-		if (body.getElementsByTagName("div")[0].className=='faceCard' || body.getElementsByTagName("div")[1].className=='faceCard') facecards=true;;		
-			
 		
 		var boxrightt=doc.getElementById('sidebar');
 		
@@ -515,14 +515,16 @@ Foxtrick.TeamStats= {
 	try {
 		var doc = ev.target.ownerDocument;
 		var filter = ev.target.value;
-		var isnotFF35 = !Foxtrick.isFF35(doc);
-		
+		var hasNotNthChild = !Foxtrick.isFF35(doc) && !Foxtrick.isFF36(doc);
+		//var hasNotNthChild =true; // not working for pictures. too lazy to fix now. use old version
+
 		var body = doc.getElementById("mainBody");
 		var allDivs = body.getElementsByTagName('div');
-		
+		var numdiv=allDivs.length;
+
 		var no_playerlist=true,i=0,adiv;
 		while (adiv = allDivs[i++]) {
-			if (adiv.className == 'playerList') { no_playerlist=false; allDivs = adiv.childNodes; break;}
+			if (adiv.className == 'playerList') { no_playerlist=false; allDivs = adiv.childNodes; numdiv=adiv.getElementsByTagName('div').length; break;}
 		} 
 		if (no_playerlist)  { 
 			allDivs = body.childNodes; 
@@ -544,11 +546,12 @@ Foxtrick.TeamStats= {
 			if (adiv.className=='category') {
 				    if (last_category) { 
 						if (hide_category==true || filter=='Pictures')  {
-							if (isnotFF35) last_category.setAttribute('style','display:none !important;');
-							else zaw += 'div.playerList>div:nth-of-type('+ (last_j-1) +') {display:none;}';						
+							if (hasNotNthChild) last_category.setAttribute('style','display:none !important;');
+							else zaw += 'div.playerList>div:nth-of-type('+ (last_j-1) +') {display:none;}\n';						
+					
 						}
 						else {
-							if (isnotFF35) last_category.style.display=''; //Foxtrick.dump(hide+' '+last_category.innerHTML+'\n');
+							if (hasNotNthChild) last_category.style.display=''; //Foxtrick.dump(hide+' '+last_category.innerHTML+'\n');
 						}
 					}	
 					last_category = adiv; 
@@ -578,50 +581,50 @@ Foxtrick.TeamStats= {
 				*/
 				
 				if (filter=='Cards' && adiv.innerHTML.search('card.gif')==-1)  {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('<-hide _nocard ');
 				}
 				else if (filter=='Injured' 
 							&& (adiv.innerHTML.search('bruised.gif')==-1 && adiv.innerHTML.search('injured.gif')==-1))  {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('hide');
 				}
 				else if (filter=='TransferListed' && adiv.innerHTML.search('dollar.gif')==-1)  {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('hide');
 				} 
 				else if (filter=='Pictures')  {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('hide');
 				} 						
 				else if (filter=='PlayedLatest' && matchday!=Foxtrick.TeamStats.latestMatch)  {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('hide');
 				}
 				else if (filter=='NotPlayedLatest' && matchday==Foxtrick.TeamStats.latestMatch) {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('hide');
 				}
 				/*else if (filter=='TopPlayers' && num_star < Foxtrick.TeamStats.top11star)  {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('hide');
 				}*/
 				else if (filter!='Cards' && filter!='Injured' && filter!='TransferListed' 
 							&& filter!='Pictures' && filter!='PlayedLatest'  && filter!='NotPlayedLatest' 
 							&& filter!='TopPlayers' && adiv.innerHTML.search(filter)==-1)  {
-						if (isnotFF35) adiv.setAttribute('style','display:none !important;');
+						if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
 						else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';
 						hide = true; //Foxtrick.dump('hide');
 				}				
 				else {
-					 	if (isnotFF35)  adiv.setAttribute('style','');
+					 	if (hasNotNthChild)  adiv.setAttribute('style','');
 						hide = false; //Foxtrick.dump('show');
 						hide_category = false;										
 				} 
@@ -632,7 +635,7 @@ Foxtrick.TeamStats= {
 					}
 				}
 				else { 	if (last_face) {
-							/*if (isnotFF35)*/  last_face.style.display=''; 
+							/*if (hasNotNthChild)*/  last_face.style.display=''; 
 						}
 				}
 				//Foxtrick.dump(' '+filter+' '+adiv.getElementsByTagName('a')[0].innerHTML+'\n');
@@ -640,10 +643,10 @@ Foxtrick.TeamStats= {
 			}
 			else if (adiv.className=='borderSeparator' || adiv.className=='separator' || adiv.className=='youthnotes') { //Foxtrick.dump('border hide:'+hide+'\n');
 				if (hide==true) {
-					if (isnotFF35) adiv.setAttribute('style','display:none !important;');
-					else zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}';						
+					if (hasNotNthChild) adiv.setAttribute('style','display:none !important;');
+					else if (j!=numdiv) zaw += 'div.playerList>div:nth-of-type('+ j +') {display:none;}\n';						
 				}
-				else if (isnotFF35) adiv.setAttribute('style','');				
+				else if (hasNotNthChild) adiv.setAttribute('style','');				
 			}	
 			var lastborder_i;			
 			if (adiv.className=='borderSeparator' || adiv.className=='separator') {
@@ -652,17 +655,17 @@ Foxtrick.TeamStats= {
 			}
 		}
 		if (filter == 'Pictures') {
-			if (isnotFF35) lastborderSeparator.style.display='';
+			if (hasNotNthChild) lastborderSeparator.style.display='';
 		}
 		if (last_category) { 
 			if (hide_category==true || filter=='Pictures')  {
-				if (isnotFF35) last_category.setAttribute('style','display:none !important;');
-				else zaw += 'div.playerList>div:nth-of-type('+ (lastborder_j-1) +') {display:none;}';	
+				if (hasNotNthChild) last_category.setAttribute('style','display:none !important;');
+				else zaw += 'div.playerList>div:nth-of-type('+ (lastborder_j-1) +') {display:none;}\n';	
 			}
-			else if (isnotFF35) last_category.setAttribute('style','');
+			else if (hasNotNthChild) last_category.setAttribute('style','');
 		}
 				
-		if (!isnotFF35) { 
+		if (!hasNotNthChild) { 
 			var head = doc.getElementsByTagName("head")[0];
 			
 			// remove old filter
