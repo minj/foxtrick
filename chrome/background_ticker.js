@@ -97,7 +97,7 @@ function background_ticker_init() {
   chrome.browserAction.setIcon({path: "resources/img/foxtrick18.png"});
   loadingAnimation.start();
 
-  startRequest();
+  startRequest(); 
 }
 
 function scheduleRequest() {
@@ -107,11 +107,11 @@ function scheduleRequest() {
                        pollIntervalMax);
   delay = Math.round(delay);
 
-  window.setTimeout(startRequest, delay);
+  window.setTimeout(startRequest, delay); 
 }
 
 // ajax stuff
-function startRequest() {
+function startRequest() { //alert('startRequest');
   getInboxCount(
     function(count) { //mail_count+forum_count+unreadticker_count
       loadingAnimation.stop();
@@ -151,7 +151,7 @@ function getInboxCount(onSuccess, onError) {
   
 }
 
-function updateUnreadCount(count) {
+function updateUnreadCount(count) { //alert(count);
   if (unreadCount != count) { 
 	unreadCount = count; 
     animateFlip();
