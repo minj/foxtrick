@@ -8,7 +8,7 @@ var FoxtrickForumStripHattrickLinks = {
 
 	MODULE_NAME : "ForumStripHattrickLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost","forumViewThread"),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE: "Changes links to stagepages to normal hattrick pages",
@@ -18,8 +18,25 @@ var FoxtrickForumStripHattrickLinks = {
 	init : function() {
 	},
 
+	onclick : function( ev ) {
+	try{  
+		var a = ev.target; 
+		if (a.nodeName=='A') {
+			var hostname = ev.target.ownerDocument.location.hostname;
+			if (a.href.search(hostname)==-1) {
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickForumStripHattrickLinks, "NoConfirmStripping" )) a.href = a.href.replace(/http:\/\/stage|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
+				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?')) a.href = a.href.replace(/http:\/\/stage|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
+			}
+			else a.target=+'_blank';
+		}
+	} catch(e) {Foxtrick.dump('FoxtrickForumStripHattrickLinksonclick '+e+'\n');}
+	},
+
 	run : function( page, doc ) {
 	try{
+		doc.getElementById('mainBody').addEventListener('click',this.onclick,true);
+		if (page=='forumViewThread') return;
+	
 		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
         var target = targets[targets.length-1];
         var button_ok = null;
