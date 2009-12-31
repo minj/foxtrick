@@ -13,7 +13,10 @@ var FoxtrickLeagueAndMatchChat = {
 	NEW_AFTER_VERSION : "0.4.9.1",
 	LATEST_CHANGE : "Added LeagueAndMatchChat",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : new Array('OpenAsFrame'),
+	OPTIONS : new Array('OpenAsFrame','ChatNick'),
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("","Guest"),        
+	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
 	init : function() {},
 	
@@ -22,12 +25,15 @@ var FoxtrickLeagueAndMatchChat = {
 		var icon="http://hattrick.org/App_Themes/Simple/logo_green.png";
 		var icon2 = "http://hattrick.org/favicon.ico";
 
+		var teamlinks = doc.getElementById('teamLinks').getElementsByTagName('a');
+		if (teamlinks.length) var nick = teamlinks[0].innerHTML;
+		else var nick='Guest';
+		if (Foxtrick.isModuleFeatureEnabled(this,'ChatNick') && FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text") && FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")!='')
+					nick = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text");
+		
 		if (page=='league') {
 			var id=doc.location.href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/league"+id;
-			var teamlinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-			if (teamlinks.length) var nick = teamlinks[0].innerHTML;
-			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
@@ -40,9 +46,6 @@ var FoxtrickLeagueAndMatchChat = {
 		else if (page=='youthleague') {
 			var id = doc.location.href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/youthleague"+id;
-			var teamlinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-			if (teamlinks.length) var nick = teamlinks[0].innerHTML;
-			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
@@ -55,9 +58,6 @@ var FoxtrickLeagueAndMatchChat = {
 		else if (page=='match') { 
 			var id = doc.location.href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/match" + id;
-			var teamlinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-			if (teamlinks.length) var nick = teamlinks[0].innerHTML;
-			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
@@ -71,9 +71,6 @@ var FoxtrickLeagueAndMatchChat = {
 		else if (page=='cupoverview' || page=='cupmatches') { 
 			var id = doc.location.href.replace(/.+CupID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/nationalcup" + id;
-			var teamlinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-			if (teamlinks.length) var nick = teamlinks[0].innerHTML;
-			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
@@ -88,9 +85,6 @@ var FoxtrickLeagueAndMatchChat = {
 		else if (page=='federation') { 
 			var id = doc.location.href.replace(/.+AllianceID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/federation" + id;
-			var teamlinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-			if (teamlinks.length) var nick = teamlinks[0].innerHTML;
-			else var nick='Guest';
 			var a = doc.createElement('a');
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenAsFrame')) 
 					a.href = "javascript:void(location.href='http://go.yaplet.com/?b=3&url='+location.href+'&title="+channel+"&yapletlogo="+icon2+ "&nick="+nick+"&channel="+channel+"')";
