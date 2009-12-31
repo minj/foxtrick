@@ -1829,6 +1829,9 @@ var FoxtrickOnPagePrefs = {
 				var linkdiv_count = 0;
 				
 				// modules
+				var modules_entries = new Array();
+				var modules_entries_all = new Array();
+				var modules_entries_links = new Array();
 				for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
 					if (!Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY) continue;
 					
@@ -1848,15 +1851,23 @@ var FoxtrickOnPagePrefs = {
 						entry = FoxtrickPrefsDialogHTML._normalModule(doc, Foxtrick.run_on_cur_page[j].module,true);
 					}
 					if (Foxtrick.run_on_cur_page[j].page=='all' || Foxtrick.run_on_cur_page[j].page=='all_late') {
-						alldivinner.appendChild( entry );					
+						modules_entries_all.push(entry);
 						++alldiv_count;
 					}
 					else if(Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY=='links')	{
-						linkdivinner.appendChild( entry );								
+						modules_entries_links.push(entry);
 						++linkdiv_count;
 					}
-					else ownBoxBody.appendChild( entry );
+					else modules_entries.push(entry);
+						ownBoxBody.appendChild( entry );
 				}
+				modules_entries.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+				for ( var i=0;i<modules_entries.length;++i)	ownBoxBody.appendChild( modules_entries[i] );
+				modules_entries_all.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+				for ( var i=0;i<modules_entries_all.length;++i)	alldivinner.appendChild( modules_entries_all[i] );
+				modules_entries_links.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+				for ( var i=0;i<modules_entries_links.length;++i)	linkdivinner.appendChild( modules_entries_links[i] );
+				
 				if (linkdiv_count>0) {
 					ownBoxBody.appendChild( linkdivouter );
 				}
