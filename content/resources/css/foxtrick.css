@@ -37,3 +37,5 @@ h2.ft_boxBodyUnfolded {background: url("chrome://foxtrick/content/resources/img/
 
 /*Forum HighlighthreadOpener PostID*/
 .ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000!important;}
+
+.sidebarBox h5 { font-size: 100%; margin: 0.5em 0; }
