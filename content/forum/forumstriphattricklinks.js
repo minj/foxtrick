@@ -23,7 +23,7 @@ var FoxtrickForumStripHattrickLinks = {
 		var a = ev.target; 
 		if (a.nodeName=='A') {
 			var hostname = ev.target.ownerDocument.location.hostname;
-			if (a.href.search(hostname)==-1) {
+			if ( a.href.search(/http:\/\/stage|www\d+\.hattrick\.org.*?/i)!=-1 && a.href.search(hostname)==-1) {
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickForumStripHattrickLinks, "NoConfirmStripping" )) a.href = a.href.replace(/http:\/\/stage|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
 				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?')) a.href = a.href.replace(/http:\/\/stage|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
 			}
