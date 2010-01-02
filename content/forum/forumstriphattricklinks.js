@@ -27,7 +27,7 @@ var FoxtrickForumStripHattrickLinks = {
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickForumStripHattrickLinks, "NoConfirmStripping" )) a.href = a.href.replace(/http:\/\/stage|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
 				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?')) a.href = a.href.replace(/http:\/\/stage|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
 			}
-			else a.target=+'_blank';
+			//else a.target=+'_blank';
 		}
 	} catch(e) {Foxtrick.dump('FoxtrickForumStripHattrickLinksonclick '+e+'\n');}
 	},
