@@ -281,8 +281,20 @@ FoxtrickPrefs.SavePrefs = function (ev) {
 
 FoxtrickPrefs.LoadPrefsImport = function (ev) { 
 
-	var textarea = document.getElementById('getpreftext');
-	FoxtrickPrefs.pref = textarea.value;
+	var prefs_string = document.getElementById('getpreftext').value+'\n';	
+
+	var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.(.+)",(.+)\\);\\n', "g" );
+	var prefs_to_add = prefs_string.match(string_regexp);	
+	for (var i=0;i<prefs_to_add.length;++i) {
+		var pref_name = prefs_to_add[i].replace(string_regexp,'$1');
+		var value = prefs_to_add[i].replace(string_regexp,'$2');
+		var replace_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.'+pref_name+'",.+\\);\\n');
+		if (FoxtrickPrefs.pref.search(replace_regexp) !=-1) {
+			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(replace_regexp,'user_pref("extensions.foxtrick.prefs.'+ pref_name+'",'+value+');\n')
+		}
+		else FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'","'+value+'");\n';	
+	}
+	
 	portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
 		
 	var tr = document.getElementById('buttonLoadPrefs').parentNode.parentNode;
@@ -307,7 +319,7 @@ FoxtrickPrefs.LoadPrefs = function (ev) {
 		textarea.rows='8';
 		textarea.cols='55';
 		
-		textarea.value="Open your preference file in a text editor, copy all here and click Import. Only complete preferences. Missing values will get set to default values.";
+		textarea.value="Open your preference file in a text editor, copy it here and click Import. Existing settings will be replaced, new ones added.";
 		var td=document.createElement('td');		
 		td.appendChild(textarea);
 		tr_edit.appendChild(td);
