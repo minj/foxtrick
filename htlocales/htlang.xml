@@ -498,6 +498,22 @@
             <sublevel text="(hög)" value="0.50"  />
             <sublevel text="(mkt hög)" value="0.75"  />
         </ratingSubLevels>
+        <positions>
+            <position type="Keeper" value="Målvakt" short="M" />
+            <position type="Central defender" value="Innerback" short="IB" />
+            <position type="Wing back" value="Ytterback" short="YB" />
+            <position type="Inner midfielder" value="Innermittfältare" short="Im" />
+            <position type="Winger" value="Yttermittfält" short="Y" />
+            <position type="Forward" value="Forward" short="F" />
+        </positions>
+        <specialties>
+            <specialty type="Unpredictable" value="Oförutsägbar" short="Of" />
+            <specialty type="Powerful" value="Kraftfull" short="Kr" />
+            <specialty type="Quick" value="Snabb" short="Sn" />
+            <specialty type="Technical" value="Teknisk" short="Te" />
+            <specialty type="Head" value="Nickskicklig" short="Ni" />
+            <specialty type="Regainer" value="Regainer" short="Re" />
+        </specialties>		
         <repositioning>
             <reposition type="midfielder" value="extra innermitt" />
             <reposition type="centraldefender" value="extra innerback" />
@@ -526,6 +542,22 @@
             <sublevel text="hoch" value="0.50"  />
             <sublevel text="max." value="0.75"  />
         </ratingSubLevels>
+        <positions>
+            <position type="Keeper" value="Torwart" short="T" />
+            <position type="Central defender" value="Innenverteidiger" short="Iv" />
+            <position type="Wing back" value="Außenverteidiger" short="Av" />
+            <position type="Inner midfielder" value="zentrales Mittelfeld" short="zM" />
+            <position type="Winger" value="Flügelspieler" short="Fl" />
+            <position type="Forward" value="Stürmer" short="St" />
+        </positions>
+        <specialties>
+            <specialty type="Unpredictable" value="unberechenbar" short="un" />
+            <specialty type="Powerful" value="durchsetzungsstark" short="du" />
+            <specialty type="Quick" value="schnell" short="sc" />
+            <specialty type="Technical" value="Ballzauberer" short="Bz" />
+            <specialty type="Head" value="Kopfballstärke" short="Ko" />
+            <specialty type="Regainer" value="Regainer" short="Re" />
+        </specialties>		
         <repositioning>
             <reposition type="midfielder" value="zusätzl. mittelfeld" />
             <reposition type="centraldefender" value="zusätzl. innenvert." />
