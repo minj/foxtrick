@@ -14,7 +14,7 @@ var FoxtrickAdultSkillTable = {
 	LATEST_CHANGE:"Added adultskilltable",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/adultskilltable.css",
+	CSS: "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/adultskilltable.css",
 	
 	copy_string:"",
 
@@ -521,7 +521,7 @@ var FoxtrickAdultSkillTable = {
 	
 					var img = doc.createElement("img");
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";
+					img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif";
 			
 					messageLink.appendChild(img);
 					boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -540,7 +540,7 @@ var FoxtrickAdultSkillTable = {
 					img.style.padding = "0px 5px 0px 0px;";
 					img.className = "actionIcon";
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png";
+					img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copyplayerad.png";
 					messageLink.appendChild(img);
 				
 					parentDiv.appendChild(messageLink);

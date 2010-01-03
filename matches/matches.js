@@ -9,7 +9,7 @@ Foxtrick.Matches = {
     MODULE_NAME : "Matches",
 	DEFAULT_ENABLED : true,
 	PAGES : new Array('match'), 
-	
+
 	matchxmls: new Array(),
 	
 	init : function() {
@@ -96,7 +96,7 @@ Foxtrick.Matches = {
 		  lang = "en";
 		}
 
-		try { 
+		try {
 			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));			
 			var path = "hattricklanguages/language[@name='" + lang + "']/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "value");

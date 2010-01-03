@@ -8,29 +8,28 @@ var FoxtrickHeaderFix = {
 	
     MODULE_NAME : "HeaderFix",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('all','match','arena'), 
-    ONPAGEPREF_PAGE : 'all', 
+	PAGES : new Array('match','arena'), 
+	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Fix for flickering in forum with standard layout and teampopups off",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
-	CSS_SIMPLE:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix.css",
-	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_std.css",
-	CSS_SIMPLE_RTL:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_rtl.css",
-	CSS_RTL:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_std_rtl.css",	                                
-    OPTIONS_CSS: new Array ("","chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/RemoveHeaderFixFlicker.css"),
+	CSS_SIMPLE:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix.css",
+	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std.css",
+	CSS_SIMPLE_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_rtl.css",
+	CSS_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std_rtl.css",	                                
+    OPTIONS_CSS: new Array ("","chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/RemoveHeaderFixFlicker.css"),
 
     init : function() {
 		if (Foxtrick.isModuleFeatureEnabled( this, "FixLeft"))
-			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", true, true );				
-		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false, true );
+			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", true );				
+		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	
 		//Foxtrick.dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
     },
 
     run : function( page, doc ) { 
-	if (page=='all') return;
 	
 	if (doc.location.href.search(/isYouth/i)!=-1) return;
 	
@@ -94,18 +93,16 @@ var FoxtrickHeaderFix = {
 var FoxtrickHeaderFixLeft = {
 	
     MODULE_NAME : "HeaderFixLeft",
-    PAGES : new Array('all'), 
-    ONPAGEPREF_PAGE : '', 
     DEFAULT_ENABLED : false,	
-	CSS_SIMPLE:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_left.css",
-	CSS_SIMPLE_RTL:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_rtl_left.css",
-	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_std_left.css",
-	CSS_RTL:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/headerfix_std_rtl_left.css",
+	CSS_SIMPLE:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_left.css",
+	CSS_SIMPLE_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_rtl_left.css",
+	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std_left.css",
+	CSS_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std_rtl_left.css",
 	
     init : function() {  
 	
 	if (!Foxtrick.isModuleEnabled(FoxtrickHeaderFix))
-		FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false ,true);  
+		FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );  
 	//Foxtrick.dump ("module.HeaderFixLeft.enabled="+FoxtrickPrefs.getBool( "module.HeaderFixLeft.enabled")+'\n')	
     },
 

@@ -1,7 +1,7 @@
 {
-   "name": "Foxtrick",
+   "name": "FoxTrick",
    "description": "FoxTrick for Chrome. A set of presentation enhancements for hattrick.org",
-   "version": "0.4.10.0",
+   "version": "0.5.0.5",
    "icons": { "48": "foxtrick48.png",
           "128": "foxtrick128.png" },
    "permissions": [ "tabs", "http://www.hattrick-youthclub.org/*", "http://www.fantamondi.it/*" ],

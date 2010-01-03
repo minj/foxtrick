@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> 
+<?xml version="1.0" encoding="utf-8"?>
 
 <about>
 
@@ -10,61 +10,61 @@
 <link title="hex_color_editor" value="http://www.2createawebsite.com/build/hex-colors.html"/>
 </links>
 
-<head_developers value="Head Developer">
-<head_developer value="Mod-spambot (2336766) CHPP licence holder" />
-</head_developers>
+<head_developer value="Head Developer">
+<label value="Mod-spambot (2336766) CHPP licence holder" />
+</head_developer>
 
 <project_owners value="Project owners">
-<project_owner value="larsw84 (1270528)" />
-<project_owner value="Mod-spambot (2336766)" />
-<project_owner value="convincedd (7776339) CHPP co-dev" />
+<label value="larsw84 (1270528)" />
+<label value="Mod-spambot (2336766)" />
+<label value="convincedd (7776339) CHPP co-dev" />
 </project_owners>
 
 <developers value="Developers">
-<developer value="taised (765274)" />
-<developer value="bummerland (8378622)" />
-<developer value="Jestar (513519)" />
-<developer value="smates (6228713)" />
-<developer value="OBarros (3737795)" />
-<developer value="stephan57 (7409095)" />
+<label value="taised (765274)" />
+<label value="bummerland (8378622)" />
+<label value="Jestar (513519)" />
+<label value="smates (6228713)" />
+<label value="OBarros (3737795)" />
+<label value="stephan57 (7409095)" />
 <label value="baumanns (637644)" />
 </developers>
 
 <translations value="Translations">
-<translation value="* Albanian - MOD-odris (2090503)" />
-<translation value="* Bosnian - Mod-Marin (5345125), ljushaff (4342858)" />
-<translation value="* Catalan - carlesmu (311845)" />
-<translation value="* Čeština - gucan (480304)" />
-<translation value="* Croatian - Mod-damyr (883271)" />
-<translation value="* Dansk - 05erth (1499168), LasseSvendsen (403068)" />
-<translation value="* Deutsch - Mod-spambot (333791)" />
-<translation value="* Ellinika - GTTWINS (900949)" />
-<translation value="* English - (developers)" />
-<translation value="* Español - franory (1369028)" />
-<translation value="* Español, Centroamericano - baler0 (26877)" />
-<translation value="* Español, Sudamericano - baler0 (26877), ElChiquitin (259106)" />
-<translation value="* Français - stephan57 (7409095)" />
-<translation value="* Frysk - Foppe- (440454)" />
-<translation value="* Galego - Piper_101 (124526)" />
-<translation value="* Hungarian - csajszi (158395)" />
-<translation value="* Italiano - caracca (240459)" />
-<translation value="* Lithuanian - Mod-summercloud (674495)" />
-<translation value="* Luxembourgish - Mod-Karlthegreat (463282)" />
-<translation value="* Macedonian - white_eagle (1748979)" />
-<translation value="* Nederlands - eekels (768188)" />
-<translation value="* Norwegian, bokmål - Skoglund (1075193)" />
-<translation value="* Polski - Homzik (79468)" />
-<translation value="* Português - _recluso_ (738571), ei04004 (734257), McTripas (735654)" />
-<translation value="* Português, Brasil - MarceloFBrandao (715122)" />
-<translation value="* Romanian - slader (36264)" />
-<translation value="* Russian - _KOHb_ (28914)" />
-<translation value="* Slovak - JAM3SoN (1124157)" />
-<translation value="* Srpski - ljushaff (4342858)" />
-<translation value="* Suomi - Pyntsa (554581), ElChiquitin (259106)" />
-<translation value="* Svenska - GM-Nanouk (41903)" />
-<translation value="* Tiếng Việt - Murtagsh (9372637)" />
-<translation value="* Ukrainian - Grif_07 (527635)" />
-<translation value="* 中文（简体） - luminaryan (919552)" />
+<label value="* Albanian - MOD-odris (2090503)" />
+<label value="* Bosnian - Mod-Marin (5345125), ljushaff (4342858)" />
+<label value="* Catalan - carlesmu (311845)" />
+<label value="* Čeština - gucan (480304)" />
+<label value="* Croatian - Mod-damyr (883271)" />
+<label value="* Dansk - 05erth (1499168), LasseSvendsen (403068)" />
+<label value="* Deutsch - Mod-spambot (333791)" />
+<label value="* Ellinika - GTTWINS (900949)" />
+<label value="* English - (developers)" />
+<label value="* Español - franory (1369028)" />
+<label value="* Español, Centroamericano - baler0 (26877)" />
+<label value="* Español, Sudamericano - baler0 (26877), ElChiquitin (259106)" />
+<label value="* Français - stephan57 (7409095)" />
+<label value="* Frysk - Foppe- (440454)" />
+<label value="* Galego - Piper_101 (124526)" />
+<label value="* Hungarian - csajszi (158395)" />
+<label value="* Italiano - caracca (240459)" />
+<label value="* Lithuanian - Mod-summercloud (674495)" />
+<label value="* Luxembourgish - Mod-Karlthegreat (463282)" />
+<label value="* Macedonian - white_eagle (1748979)" />
+<label value="* Nederlands - eekels (768188)" />
+<label value="* Norwegian, bokmål - Skoglund (1075193)" />
+<label value="* Polski - Homzik (79468)" />
+<label value="* Português - _recluso_ (738571), ei04004 (734257), McTripas (735654)" />
+<label value="* Português, Brasil - MarceloFBrandao (715122)" />
+<label value="* Romanian - slader (36264)" />
+<label value="* Russian - _KOHb_ (28914)" />
+<label value="* Slovak - JAM3SoN (1124157)" />
+<label value="* Srpski - ljushaff (4342858)" />
+<label value="* Suomi - Pyntsa (554581), ElChiquitin (259106)" />
+<label value="* Svenska - GM-Nanouk (41903)" />
+<label value="* Tiếng Việt - Murtagsh (9372637)" />
+<label value="* Ukrainian - Grif_07 (527635)" />
+<label value="* 中文（简体） - luminaryan (919552)" />
 </translations>
 
 </about>

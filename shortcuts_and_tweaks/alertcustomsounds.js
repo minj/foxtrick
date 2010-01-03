@@ -15,14 +15,14 @@ var FoxtrickAlertCustomSounds = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/sounds/DingLing.wav",  // LoginWelcome
-											"http://foxtrick.foundationhorizont.org/alertsounds/LoginSupporters.mp3",  // LoginSupporters
-											"http://foxtrick.foundationhorizont.org/alertsounds/ForumReplyToMe.mp3",  // ForumReplyToMe
-											"http://foxtrick.foundationhorizont.org/alertsounds/TransferMarket.mp3",  // TransferMarket
-											"http://foxtrick.foundationhorizont.org/alertsounds/Challenges.mp3",  // Challenges
-											"http://foxtrick.foundationhorizont.org/alertsounds/Guestbook.mp3",  // Guestbook
-											"http://foxtrick.foundationhorizont.org/alertsounds/MailToMe.mp3",  // MailToMe
-											"http://foxtrick.foundationhorizont.org/alertsounds/MyHTMessages.mp3"  // MyHTMessages
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // LoginWelcome
+											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // LoginSupporters
+											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // ForumReplyToMe
+											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // TransferMarket
+											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // Challenges
+											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // Guestbook
+											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // MailToMe
+											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav"  // MyHTMessages
 											),        
 	urls: new Array(/\/MyHattrick\/$/gi,
 					/\/Club\/Manager\/\?teamId=/gi,

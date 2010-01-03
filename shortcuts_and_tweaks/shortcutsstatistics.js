@@ -10,6 +10,9 @@ var FoxtrickShortcutsStatistics = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.4.9.1",	
+	LATEST_CHANGE:"Added link to FoxTrick HTML preferences",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs"),
 	CSS:"",
 	
@@ -20,15 +23,15 @@ var FoxtrickShortcutsStatistics = {
 		if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) ++num_shown;
         if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) ++num_shown;
         if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) ++num_shown;
-        if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) ++num_shown;
+		if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) ++num_shown;
         if (num_shown==0) {
 			this.CSS="";
 		}
         else if (num_shown==1) {
-			this.CSS="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/shortcuts_one.css";
+			this.CSS="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/shortcuts_one.css";
 		}
         else if (num_shown==2) {
-			this.CSS="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/shortcuts_two.css";
+			this.CSS="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/shortcuts_two.css";
 		}
         
     },
@@ -60,8 +63,8 @@ var FoxtrickShortcutsStatistics = {
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSuppStats");
-                    img1.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/chart_bar.png') !important;");
+                    img1.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent.gif";
+                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/chart_bar.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
 
                     link.appendChild(img1);
@@ -85,9 +88,8 @@ var FoxtrickShortcutsStatistics = {
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftMyTransfers");
-                    img1.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/dollar.png') !important;");
-                    //img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/dollar.png') !important;");
+                    img1.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent.gif";
+                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/dollar.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
 
                     link.appendChild(img1);
@@ -111,8 +113,8 @@ var FoxtrickShortcutsStatistics = {
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSCPrefs");
-                    img1.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/options.png') !important;");
+                    img1.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent.gif";
+                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/options.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsprefs.label");
 
                     link.appendChild(img1);
@@ -127,8 +129,8 @@ var FoxtrickShortcutsStatistics = {
 					}
 					++num_added;
                 }
-
-                if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {                
+				
+				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {                
                     var link = doc.createElement('a');                
                     link.id = 'ft_shortcutsstatistics';
                     link.href = "../../MyHattrick/?configure_foxtrick=true&category=main/";
@@ -136,8 +138,8 @@ var FoxtrickShortcutsStatistics = {
                     
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSCPrefs");
-                    img1.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick22.png') !important;");
+                    img1.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent.gif";
+                    img1.setAttribute("style","margin-left:2px; background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/foxtrick22.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.shortcutsfoxtrickprefs.label");
 
                     link.appendChild(img1);
@@ -152,7 +154,6 @@ var FoxtrickShortcutsStatistics = {
 					}
 					++num_added;
                 }
-				
 				var head = doc.getElementsByTagName("head")[0];
 				var style = doc.createElement("style");
 				style.setAttribute("type", "text/css"); // +(353-num_added*22)+'

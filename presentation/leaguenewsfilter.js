@@ -170,7 +170,7 @@ var FoxtrickShortPAs = {
 		if (Foxtrick.isStandardLayout(doc)) margin=27;
 		var dir='right';
 		if (Foxtrick.isRTLLayout(doc)) dir='left';		
-		morediv.setAttribute('style',"position:absolute; display:inline; background-color:inherit; padding-left:5px; "+dir+": "+margin+"px;");
+		morediv.setAttribute('style',"position:absolute; display:inline; background-color:inherit;  padding-left:5px; "+dir+": "+margin+"px;");
 		var a=doc.createElement('a');
 		a.innerHTML=Foxtrickl10n.getString("foxtrick.ShortPAs.more");
 		a.href='javascript:void(0);';

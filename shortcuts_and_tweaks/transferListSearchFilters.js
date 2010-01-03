@@ -53,7 +53,7 @@ FoxtrickTransferListSearchFilters = {
         
         if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
         
-        Foxtrick.addJavaScript(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/js/transferform.js");
+        Foxtrick.addJavaScript(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/js/transferform.js");
         
         var head = doc.getElementsByTagName("head")[0];
         var style = doc.createElement("style");
@@ -125,11 +125,11 @@ FoxtrickTransferListSearchFilters = {
     addNewFilter : function(ev) {
   	    
         var doc = ev.target.ownerDocument;
-        Foxtrick.addJavaScript(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/js/transferform.js");
+        Foxtrick.addJavaScript(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/js/transferform.js");
         
         var wind = ev.target.window;
         try {
-            /*var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
+            var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
             
             var returnobj = {};
             var b = {};
@@ -141,11 +141,7 @@ FoxtrickTransferListSearchFilters = {
                         
             var filtername = returnobj.value;
             if (filtername == '') return;
-            */
-			//var filtername = doc.defaultView.prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
-			var filtername = window.prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
-
-			
+            
             filtername = filtername.substring( 0, FoxtrickTransferListSearchFilters._MAX_FILTER_DISP_LENGTH );
             
             var formString = "<root>";

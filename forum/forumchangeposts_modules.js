@@ -99,17 +99,17 @@ var FoxtrickForumAlterHeaderLine = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName","HideOldTime",
 						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar","BookmarkHeaderSmall","HighlightThreadOpener"),
-	OPTIONS_CSS: new Array ("chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/Forum_Header_Single.css",
-							"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/Forum_Header_CheckDesign.css",
+	OPTIONS_CSS: new Array ("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_Header_Single.css",
+							"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_Header_CheckDesign.css",
 							"",
 							"",
 							"",
-							"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/Forum_Header_Smallsize_Single.css",
+							"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_Header_Smallsize_Single.css",
 							"",
-							"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/Forum_Header_RemoveSupporterStar.css",
-							"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/BookmarkHeaderSmall.css"),
+							"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_Header_RemoveSupporterStar.css",
+							"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/BookmarkHeaderSmall.css"),
 
-	CSS_SIMPLE:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/fixes/Forum_Header_Single_SimpleFix.css",
+	CSS_SIMPLE:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_Header_Single_SimpleFix.css",
 
     init : function() {
     },
@@ -240,7 +240,7 @@ var FoxtrickAlltidFlags = {
 	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
 	//RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
-	//CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/conference.css",
+	//CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/conference.css",
 
 	init : function() {
 	},
@@ -267,7 +267,7 @@ var FoxtrickSingleline2 = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	DEFAULT_ENABLED : false,
-	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/Singleline2.css",
+	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/Singleline2.css",
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Alternative 'HT-Detailed header to single line' module. Slightly faster then then other versions. Disables some conflicting forum post changing modules.",
 
@@ -282,7 +282,7 @@ var FoxtrickSingleline2 = {
 
 		// part of copypostid
 		var img = doc.createElement('img');
-		img.setAttribute('src',"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copy_yellow_small.png");
+		img.setAttribute('src',"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copy_yellow_small.png");
 		img.setAttribute('style',"vertical-align: middle; margin-right:3px;");
 										
 		var copy_link1 = doc.createElement('a');
@@ -317,7 +317,7 @@ var FoxtrickSingleline2 = {
 				/* add someting to test removal later		*/	
 				var forumprefs = doc.createElement('a');
 				forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
-				forumprefs.innerHTML='<img src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif">';
+				forumprefs.innerHTML='<img src="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif">';
 				forumprefs.setAttribute('class','bookmarkMessage');
 				if (header_right_div) header_right_div.appendChild(forumprefs);
 				

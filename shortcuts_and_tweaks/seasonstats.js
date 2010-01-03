@@ -15,7 +15,7 @@ var FoxtrickSeasonStats = {
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed wrong home draws assignment",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/seasonstats.css",
+	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/seasonstats.css",
 	
 	_season:-1,
 	
@@ -32,16 +32,13 @@ var FoxtrickSeasonStats = {
 			var as = doc.getElementById('sidebar').getElementsByTagName('a');
 			for (var i=0;i<as.length;++i) { 
 				if (as[i].href.search(/\/archive/i)!=-1) {
-					if (Foxtrick.BuildFor=='Chrome')  localStorage['_season'] = 40; 
-					else this._season = as[i].href.match(/season=(\d+)/i)[1];
+					this._season = as[i].href.match(/season=(\d+)/i)[1];
 					return;
 				}
 			}
 			return;
 		}
-		
-		if (Foxtrick.BuildFor=='Chrome')  this._season = localStorage['_season'];
-		
+			
 		// get range of local seasons
 		var selected_season = doc.location.href.match(/season=(\d+)/i)[1];
 		var season_diff = this._season - selected_season;	

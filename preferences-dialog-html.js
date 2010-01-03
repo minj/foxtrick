@@ -11,7 +11,7 @@ var FoxtrickPrefsDialogHTML = {
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed ex/importing preferences",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/preferences-dialog-html.css",
+	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/preferences-dialog-html.css",
 
 	TabNames: {	'main':'MainTab',
 				'shortcuts_and_tweaks':'ShortcutsTab',
@@ -473,7 +473,7 @@ var FoxtrickPrefsDialogHTML = {
 			var a = doc.createElement('a');
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
+			a.innerHTML="<img src='chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/transparent16.png'>";
 			helpdiv.appendChild(a);
 			td.appendChild( helpdiv );
 		}
@@ -902,7 +902,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_help_green.png";
+			img.src="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -965,7 +965,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_help_green.png";
+			img.src="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -1055,7 +1055,7 @@ var FoxtrickPrefsDialogHTML = {
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
 			var img=doc.createElement('img');
-			img.src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/Aiga_help_green.png";
+			img.src="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/Aiga_help_green.png";
 			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
 			a.appendChild(img);
 			td.appendChild( a );
@@ -1103,7 +1103,7 @@ var FoxtrickPrefsDialogHTML = {
 			var a = doc.createElement('a');
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
+			a.innerHTML="<img src='chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/transparent16.png'>";
 			helpdiv.appendChild(a);
 			td.appendChild( helpdiv );
 		}
@@ -1293,7 +1293,7 @@ var FoxtrickPrefsDialogHTML = {
 			var a = doc.createElement('a');
 			a.href = screenshot;
 			a.setAttribute('target','_blank');
-			a.innerHTML="<img src='chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/transparent16.png'>";
+			a.innerHTML="<img src='chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/transparent16.png'>";
 			scrdiv.appendChild(a);
 			td.appendChild( scrdiv );
 		}
@@ -1414,7 +1414,7 @@ var FoxtrickPrefsDialogHTML = {
 				
 				if (Foxtrick.BuildFor=='Chrome')
 						var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXML, "hattrickversions/version", "name", "code", oldVersion);
-				else var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
+				else var selectbox = Foxtrick.getSelectBoxFromXML(doc,"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
 				selectbox.setAttribute("id","ft_ownselectboxID");
 				selectbox.addEventListener('change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
 				alertdiv.appendChild(selectbox);

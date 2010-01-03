@@ -13,6 +13,8 @@ var FoxtrickCopyRatingsToClipboard = {
 	NEW_AFTER_VERSION: "0.4.9.1",	
 	LATEST_CHANGE:"Fixing away match copy, youth team links",    
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	CSS: "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headercopyicons.css",
+	CSS_SIMPLE: "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headercopyicons_simple.css",
 
 	init : function() {
     },
@@ -45,7 +47,7 @@ var FoxtrickCopyRatingsToClipboard = {
             messageLink.addEventListener("click", this.createRatings, false)
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
-			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";			
+			img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif";			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
 
@@ -58,7 +60,7 @@ var FoxtrickCopyRatingsToClipboard = {
             messageLink.addEventListener("click", this.createRatings, false)
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
-			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";			
+			img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif";			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
 		
@@ -71,7 +73,7 @@ var FoxtrickCopyRatingsToClipboard = {
             messageLink.addEventListener("click", this.createRatings, false)
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.away" );
-			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";			
+			img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif";			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
 		}
@@ -93,7 +95,7 @@ var FoxtrickCopyRatingsToClipboard = {
             img.setAttribute("style","padding:0px 5px 0px 0px;");
             img.className = "actionIcon";
             img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
-            img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png";
+            img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copyplayerad.png";
             messageLink.appendChild(img);
                     
             parentDiv.appendChild(messageLink);
@@ -115,7 +117,7 @@ var FoxtrickCopyRatingsToClipboard = {
             img.setAttribute("style","padding:0px 5px 0px 0px;");
             img.className = "actionIcon";
             img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
-            img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyratingshome.png";
+            img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copyratingshome.png";
             messageLink.appendChild(img);
                     
             parentDiv.appendChild(messageLink);
@@ -137,7 +139,7 @@ var FoxtrickCopyRatingsToClipboard = {
             img.setAttribute("style","padding:0px 5px 0px 0px;");
             img.className = "actionIcon";
             img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
-            img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyratingsaway.png";
+            img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copyratingsaway.png";
             messageLink.appendChild(img);
                     
             parentDiv.appendChild(messageLink);

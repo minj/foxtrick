@@ -28,12 +28,11 @@ var FoxtrickNewMail = {
 			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomColor_text"); 
 			if (color) 	FoxtrickNewMail.NewMailColor=color;
 	}
-	var HighlightNewMailIconCss="img.scNewMail {background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/new_mail.png') !important;}";
+	var HighlightNewMailIconCss="img.scNewMail {background: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/new_mail.png') !important;}";
 	
 	if (!Foxtrick.isModuleFeatureEnabled( this, "HighlightNewMailIcon")) HighlightNewMailIconCss="";
 	
-	var zaw = '/*NEWMAILCOLOR*/'+
-		 (Foxtrick.BuildFor=='Chrome')?'':('@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {')+
+	var zaw = '/*NEWMAILCOLOR*/ @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {'+
 		'div.subMenuBox>div.boxBody>ul>li>span,'+
 		'div#folders.sidebarBox>div.boxBody>p>span,'+
 		'div#folders.sidebarBox>p>span,'+
@@ -44,12 +43,10 @@ var FoxtrickNewMail = {
 		'font-weight:bold !important;'+
 		'}'+
 		HighlightNewMailIconCss +		
-		(Foxtrick.BuildFor=='Chrome')?'':'}';
+		'}';
 		
 	this.OLD_CSS = this.CSS;		
-	if (Foxtrick.BuildFor=='Chrome') this.CSS = zaw;
-	else this.CSS = Foxtrick.GetDataURIText(zaw);
-	alert(this.CSS);
+	this.CSS=Foxtrick.GetDataURIText(zaw);
     },
 
     run : function( page, doc ) {

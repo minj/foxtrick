@@ -23,9 +23,9 @@ var FoxtrickEconomyDifference = {
 		var head = doc.getElementsByTagName("head")[0];
         var style = doc.createElement("style");
         style.setAttribute("type", "text/css");
-		var zaw = "#divfoxtrick_eD_heading .tblBox {background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/down.gif') 413px 0 no-repeat;padding-right:20px;}";
+		var zaw = "#divfoxtrick_eD_heading .tblBox {background: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/down.gif') 413px 0 no-repeat;padding-right:20px;}";
 		if (Foxtrick.isStandardLayout(doc) )
-			zaw="#divfoxtrick_eD_heading .tblBox {background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/link-down.png') #999999 505px 4px no-repeat;padding-right:20px;}";			
+			zaw="#divfoxtrick_eD_heading .tblBox {background: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/link-down.png') #999999 505px 4px no-repeat;padding-right:20px;}";			
 		style.appendChild(doc.createTextNode(zaw));
         head.appendChild(style);
 				
