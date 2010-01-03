@@ -193,7 +193,7 @@ var FoxtrickCountyList = {
     },
     
     _changelist: function (page, doc, id, start) {
-        var selectbox = doc.getElementById(id);
+		var selectbox = doc.getElementById(id);
         if (selectbox == null) return;
         //Foxtrick.dump('GO ' + '\n');
         var options = selectbox.options;
@@ -204,17 +204,17 @@ var FoxtrickCountyList = {
             for (var i = start; i < countries; i++) {
                 if (i == selected) id_sel = options[i].value;
                 try {
-                    if (start>=10) var league = options[i].value;
-					else var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value];
+                    if (id.search(/leagues/i)!=-1 || id.search(/zone/i)!=-1) {var league = options[i].value;  }
+					else {var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value]; }
 					var htname = options[i].text;
-					//Foxtrick.dump(start+' '+league+' '+htname+'\n');
+					//Foxtrick.dump((start>=10)+' '+options[i].value+' '+league+' '+htname+'\n');
                     htname = Foxtrick.XMLData.League[league].LeagueName;
 					if (!htname) return -1;
-
+					options[i].text = htname;
+ 
                 } catch (exml) {
                     Foxtrick.dump('countrylist.js countries: '+exml + "\n");
                 }
-                options[i].text = htname;
             }
         } catch(e) {Foxtrick.dump('countrylist: '+e+'\n');}
 

@@ -17,11 +17,30 @@ var FoxtrickLeagueAndMatchChat = {
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","Guest"),        
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
-
+	server:null,
+	
 	init : function() {},
+	
+	onclick : function(ev) { 
+	try{
+		var link = ev.target.parentNode;
+		if (link.id=='yapCloseLink') { 
+			if (ev.target.ownerDocument.location.href.match(/nobalance=(\d+)/)[1]=='1') ev.target.parentNode.href='javascript:window.top.location="'+FoxtrickLeagueAndMatchChat.server+'"';
+		}
+		else if (link.id=='yapPopLink') { 
+			if (ev.target.ownerDocument.location.href.match(/nobalance=(\d+)/)[1]=='1') ev.target.parentNode.href='javascript:page="'+FoxtrickLeagueAndMatchChat.server+'";'+ev.target.parentNode.href.replace(/javascript:/g,'');
+		}
+		
+	} catch(e){Foxtrick.dump(e+'\n')}
+	},
+	
 	
 	run : function( page, doc ) {  
 	try { 
+		this.server = doc.location.href; Foxtrick.dump('server: '+this.server+'\n');		
+		window.removeEventListener('click',FoxtrickLeagueAndMatchChat.onclick,false);
+		window.addEventListener('click',FoxtrickLeagueAndMatchChat.onclick,false);
+		
 		var icon="http://hattrick.org/App_Themes/Simple/logo_green.png";
 		var icon2 = "http://hattrick.org/favicon.ico";
 
