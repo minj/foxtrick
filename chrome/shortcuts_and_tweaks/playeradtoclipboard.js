@@ -38,7 +38,7 @@ var FoxtrickPlayerAdToClipboard = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
-			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/transparent_002.gif";
+			img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif";
 			
 			messageLink.appendChild(img);
 			doc.getElementById('mainBody').insertBefore(messageLink,doc.getElementById('mainBody').firstChild);
@@ -59,7 +59,7 @@ var FoxtrickPlayerAdToClipboard = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
-			img.src = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/copyplayerad.png";
+			img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copyplayerad.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);

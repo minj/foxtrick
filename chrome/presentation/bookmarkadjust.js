@@ -24,8 +24,8 @@ Foxtrick.BookmarkAdjust = {
 
     _bookmarkColor : function( imageObj, regexp, commentObj, color ) {
         if (commentObj.firstChild.nodeValue.search(regexp) > -1) {
-           //imageObj.style.backgroundImage = "url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/notes/" + color + ".png)";
-           imageObj.style.background = "transparent url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/notes/" + color + ".png) no-repeat scroll 0 0";
+           //imageObj.style.backgroundImage = "url(chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/notes/" + color + ".png)";
+           imageObj.style.background = "transparent url(chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/notes/" + color + ".png) no-repeat scroll 0 0";
            commentObj.firstChild.nodeValue = commentObj.firstChild.nodeValue.replace(regexp, "");          
         }
     },

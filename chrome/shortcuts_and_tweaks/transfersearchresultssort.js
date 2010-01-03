@@ -14,7 +14,7 @@ var FoxtrickTransferSearchResultsSort = {
 	LATEST_CHANGE:"Added TransferSearchResultsSort",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     //OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	//CSS: "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/adultskilltable.css",
+	//CSS: "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/adultskilltable.css",
 	
 	
     init : function() {

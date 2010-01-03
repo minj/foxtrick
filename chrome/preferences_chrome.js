@@ -46,11 +46,11 @@ var FoxtrickPrefs = {
 	try {
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);', "i" );
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) {
-			try {return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
+			try {return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://bpfbbngccefbbndginomofgpagkjckik/');
 			} catch(e) {return '';}
 		}
 		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) {
-			try { return  FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/');
+			try { return  FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://bpfbbngccefbbndginomofgpagkjckik/');
 			} catch(e) {return '';}
 		}
 	} catch(e) {};

@@ -23,7 +23,8 @@
 	
 		this.ColorLatest (doc, "threadContent", "folderitem");
 		
-		Foxtrick.addStyleSheet(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/ht_thread.css");
+		Foxtrick.addStyleSheet(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/"+
+                                "resources/css/ht_thread.css");
                     
 		var myForums = doc.getElementById("content").getElementsByTagName('div')[0];
 		var divs = myForums.getElementsByTagName( "div" );

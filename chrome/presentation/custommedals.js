@@ -35,7 +35,7 @@ var FoxtrickCustomMedals = {
 				
 				var customMedals = "oldhtmedals";
 				var oldString = "trophy";
-				var newString = "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/"
+				var newString = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/"
 					+ "custommedals/" + customMedals + "/";
 				if(imgClass.search(oldString) != -1) {
 					newString = 'background-image: url(' + newString + imgClass + 

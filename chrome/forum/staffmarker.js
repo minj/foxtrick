@@ -20,9 +20,9 @@ var FoxtrickStaffMarker = {
 											"background-color:white; color:green;", //LA
 											"background-color:green; color:white;", //CHPP
 											"background-color:#7BB300;", //editor
-											"background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //foxtrick-dev
-											"background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 24px;", //chpps
-											"background-image: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //hty_staff
+											"background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //foxtrick-dev
+											"background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 24px;", //chpps
+											"background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //hty_staff
 											"background-color:white; color:black;", //flag
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
                                             ),
@@ -258,6 +258,7 @@ var FoxtrickStaffMarker = {
             "csajszi",
 			"eekels",
 			"ei04004",
+			"ElChiquitin",
             "Foppe-",
 			"franory",
 			"GM-damyr",
@@ -273,7 +274,6 @@ var FoxtrickStaffMarker = {
 			"ljushaff",
 			"MarceloFBrandao",
             "McTripas",
-            "merencuzque",
             "Mod-Karlthegreat",
 			"Mod-Marin",
 			"MOD-odris",

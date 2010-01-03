@@ -48,7 +48,7 @@ FoxtrickMatchReportFormat = {
         var div_check = Foxtrick.getElementsByClass('ft_mR_format', div);
         if  (div_check.length > 0) return;
 
-        Foxtrick.addJavaScript(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/js/MatchReport.js");
+        Foxtrick.addJavaScript(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/js/MatchReport.js");
         
         //Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));

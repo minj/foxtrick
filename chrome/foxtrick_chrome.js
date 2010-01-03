@@ -148,7 +148,7 @@ var FoxtrickMain = {
 			
 			//FoxtrickSkinPlugin.load( document );
 
-			//Foxtrick.reload_css_permanent( 'chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/foxtrick.css' ) ;		
+			//Foxtrick.reload_css_permanent( 'chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/foxtrick.css' ) ;		
 
 		var content = doc.getElementById("content");
 		if( content ) {
@@ -410,11 +410,16 @@ Foxtrick.reload_module_css = function(doc) {  	//Foxtrick.dump('reload permanent
 	}
 	
 	// check permanant css
-	for ( var i in Foxtrick.ht_pages ) {
-		if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {  
+	//for ( var i in Foxtrick.ht_pages ) 
+		{
+		//if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) 
+			{  
 			// on a specific page, run all handlers
-			for ( var j in Foxtrick.run_on_page[i] ) { 
-				var module = Foxtrick.run_on_page[i][j];  
+			//for ( var j in Foxtrick.run_on_page[i] ) { 
+				//var module = Foxtrick.run_on_page[i][j];  
+			for ( var i in Foxtrick.modules ) {
+				var module = Foxtrick.modules[i];
+				
 				// if module has an css) function and is enabled
 				if ( module.MODULE_NAME ) {  
 					if ( !Foxtrick.isModuleEnabled( module ) ) continue;
@@ -507,6 +512,7 @@ Foxtrick.unload_css_permanent = function( css ) {
 }
 
 Foxtrick.load_css_permanent = function( css) {   
+	//console.log(css);
 	Foxtrick.cssfiles += css+'\n';  return;
 
 	var begin = new Date();

@@ -16,10 +16,10 @@ var FoxtrickCountyList = {
                         ),
 	DEFAULT_ENABLED : true,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Bring back select boxes on disabled SelectBoxes option",
+	NEW_AFTER_VERSION: "0.5.0.1",
+	LATEST_CHANGE:"Some fixing",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/css/CountyList.css",
+	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
     init : function() {
     },
@@ -193,28 +193,28 @@ var FoxtrickCountyList = {
     },
     
     _changelist: function (page, doc, id, start) {
-        var selectbox = doc.getElementById(id);
-        if (selectbox == null || selectbox.innerHTML.search('Deutschland')!=-1) return;
+		var selectbox = doc.getElementById(id);
+        if (selectbox == null) return;
         //Foxtrick.dump('GO ' + '\n');
         var options = selectbox.options;
         var countries = options.length;
         var selected  = selectbox.selectedIndex;
-        var id_sel = 0; 
+        var id_sel = 0;
         try {
             for (var i = start; i < countries; i++) {
                 if (i == selected) id_sel = options[i].value;
                 try {
-                    if (start>=10) var league = options[i].value;
-					else var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value];
+                    if (id.search(/leagues/i)!=-1 || id.search(/zone/i)!=-1) {var league = options[i].value;  }
+					else {var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value]; }
 					var htname = options[i].text;
-					//Foxtrick.dump(start+' '+league+' '+htname+'\n');
+					//Foxtrick.dump((start>=10)+' '+options[i].value+' '+league+' '+htname+'\n');
                     htname = Foxtrick.XMLData.League[league].LeagueName;
 					if (!htname) return -1;
-
+					options[i].text = htname;
+ 
                 } catch (exml) {
                     Foxtrick.dump('countrylist.js countries: '+exml + "\n");
                 }
-                options[i].text = htname;
             }
         } catch(e) {Foxtrick.dump('countrylist: '+e+'\n');}
 

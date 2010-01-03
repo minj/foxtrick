@@ -172,7 +172,7 @@ FoxtrickLineupShortcut = {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
 			//HighlightPlayerID is the HT function
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Matches/'+iconImg+'"></a>';
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/foxtrick_skin/HT-Images/Matches/'+iconImg+'"></a>';
 		} catch (e) {
             Foxtrick.dump('FoxtrickLineupShortcut'+e);
         }
@@ -225,7 +225,7 @@ FoxtrickLineupShortcut = {
 			var newcellpos=myrow.cells.length;
 			var newcell=myrow.insertCell(newcellpos);
 			//HighlightPlayerID is the HT function
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayerID='+playerid+'"><img src="chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
+			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayerID='+playerid+'"><img src="chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
 		} catch (e) {
             Foxtrick.dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
@@ -236,7 +236,7 @@ FoxtrickLineupShortcut = {
 	_Highlight_Player : function ( doc ) {
 		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightPlayer")) {
 			try {
-				var newimg="url(chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
+				var newimg="url(chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
 				//Getting playerid from url
 				var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, "").match(/^\d+/);
 				if (passedid) {

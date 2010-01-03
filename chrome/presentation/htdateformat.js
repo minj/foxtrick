@@ -7,7 +7,7 @@ FoxtrickHTDateFormat = {
 
     MODULE_NAME : "HTDateFormat",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
- 	PAGES : new Array('transfersTeam','TransfersPlayer','TransferCompare',
+ 	PAGES : new Array('transfersTeam','TransfersPlayer','TransferCompare','match',
 					'matches','matchesarchiv','teamPageGeneral','achievements',
 					'teamevents','history','arena','league'), 
 	ONPAGEPREF_PAGE : 'all', 
@@ -23,7 +23,7 @@ FoxtrickHTDateFormat = {
     },
 
     run : function(page, doc) {
-        // Foxtrick.dump('HTDateformat RUN\n');
+        //Foxtrick.dump('HTDateformat RUN '+page+'\n');
         var httime = doc.getElementById( "time" ).innerHTML;
 
         Foxtrick.HT_date = Foxtrick.getDatefromCellHTML( httime );
@@ -44,11 +44,11 @@ FoxtrickHTDateFormat = {
             case 'TransfersPlayer' :
                 Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
-/*
-            case 'match' :
-                this._Foxtrick.modifyDates ( mainBody, false, 'div', '&nbsp;' , '',weekdayoffset );
+
+            case 'match' : 
+                Foxtrick.modifyDates ( mainBody, false, 'div', '&nbsp;' , '&nbsp;',weekdayoffset, true );
                 break;
-*/                
+                
             case 'matches' :
 				Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;' , '',weekdayoffset );
                 //Foxtrick.modifyDates ( mainBody, false, 'td', '<br>' , '',weekdayoffset ); //see FoxtrickMatchTables

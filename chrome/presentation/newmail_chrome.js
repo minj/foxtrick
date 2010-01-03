@@ -28,7 +28,7 @@ var FoxtrickNewMail = {
 			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomColor_text"); 
 			if (color) 	FoxtrickNewMail.NewMailColor=color;
 	}
-	var HighlightNewMailIconCss="img.scNewMail {background: url('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/linkicons/new_mail.png') !important;}";
+	var HighlightNewMailIconCss="img.scNewMail {background: url('"+chrome.extension.getURL('')+"/resources/linkicons/new_mail.png') !important;}";
 	
 	if (!Foxtrick.isModuleFeatureEnabled( this, "HighlightNewMailIcon")) HighlightNewMailIconCss="";
 	
