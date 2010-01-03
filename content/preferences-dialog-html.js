@@ -1469,19 +1469,23 @@ var FoxtrickPrefsDialogHTML = {
 				tr.appendChild(td4);
 
 
+				var notes_dump='[table]';
 				for (var i=0;i<this.NewModules.length;++i) {
 						var tr=doc.createElement('tr');
 						table.appendChild(tr);
+						notes_dump+='[tr]';
 						
 						// module 
 						var td1=doc.createElement('td'); 
+						notes_dump+='[td]';
 						if (this.NewModules[i][1]) {
 							var a=doc.createElement('a');
 							a.href=this.NewModules[i][1];
 							a.title=Foxtrickl10n.getString("Screenshot");
 							a.target="_blank";
-							a.innerHTML=this.NewModules[i][0]
+							a.innerHTML=this.NewModules[i][0];
 							td1.appendChild(a);
+							notes_dump+=this.NewModules[i][0];
 						}
 						else td1.appendChild(doc.createTextNode(this.NewModules[i][0]));
 						
@@ -1498,6 +1502,7 @@ var FoxtrickPrefsDialogHTML = {
 									a.target="_blank";
 									a.innerHTML=this.NewModules[i][6].OPTIONS[k];
 									td1.appendChild(a);
+									notes_dump+='[br]'+this.NewModules[i][6].OPTIONS[k];
 								}	
 							}
 						}
@@ -1513,10 +1518,12 @@ var FoxtrickPrefsDialogHTML = {
 									a.target="_blank";
 									a.innerHTML=this.NewModules[i][6].RADIO_OPTIONS[k];
 									td1.appendChild(a);
+									notes_dump+='[br]'+this.NewModules[i][6].RADIO_OPTIONS[k];
 								}	
 							}
 						}
 						tr.appendChild(td1);
+						notes_dump+='[/td]';
 
 						// categories
 						var td2=doc.createElement('td');
@@ -1529,6 +1536,7 @@ var FoxtrickPrefsDialogHTML = {
 							a.target="_blank";
 							a.innerHTML=this.NewModules[i][2];
 							td2.appendChild(a);
+							notes_dump+='[/td]';
 						}
 						else td2.appendChild(doc.createTextNode(this.NewModules[i][2]));
 						tr.appendChild(td2);
@@ -1540,20 +1548,29 @@ var FoxtrickPrefsDialogHTML = {
 
 						// new after
 						var td3=doc.createElement('td');	
+						notes_dump+='[td]';
 						td3.appendChild(doc.createTextNode(this.NewModules[i][7]));
+						notes_dump+=this.NewModules[i][7];
 						tr.appendChild(td3);
+						notes_dump+='[/td]';
 						
 						// change log
 						var td4=doc.createElement('td');	
+						notes_dump+='[td]';
 						if (this.NewModules[i][5]) {
 							var imgdiv=doc.createElement('div');	
 							imgdiv.setAttribute('class','ft_icon foxtrickInfo');
 							imgdiv.setAttribute('title',"Last change: "+this.NewModules[i][5]);
 							td4.appendChild(imgdiv);
+							notes_dump+=this.NewModules[i][5];
 						}
 						tr.appendChild(td4);						
+						notes_dump+='[/td][/tr]';
 				}
-								
+				notes_dump+='[/table]';
+				
+				Foxtrick.dump(notes_dump);			
+				
 				alertdiv.appendChild(doc.createElement('br'));	
 		} catch(e) {dump('ShowAlertCommonInner '+e+'\n');}	
 	},

@@ -16,8 +16,8 @@ var FoxtrickCountyList = {
                         ),
 	DEFAULT_ENABLED : true,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Bring back select boxes on disabled SelectBoxes option",
+	NEW_AFTER_VERSION: "0.5.0.1",
+	LATEST_CHANGE:"Some fixing",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
 
