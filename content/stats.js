@@ -1620,17 +1620,6 @@ stats["junnukoira"] =  {
         "title" : "Junnukoira - U-20 -superlupausten arvioija",   
         "img" : "chrome://foxtrick/content/resources/linkicons/puhuvakoira.png"
 };
-stats["vihjekoira"] =  { 
-        "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
-
-        "youthlink" : { "path"       : "kulmienkoira/vihjekoira.php",
-                         "filters"    : ["owncountryid"], 
-                         "params"     : [], 
-                       },
-		"owncountryidranges" : [[12, 12]], 
-        "title" : "Vihjekoira - kykyjenetsijän paras ystävä",   
-        "img" : "chrome://foxtrick/content/resources/linkicons/puhuvakoira.png"
-};
 stats["treenikoira"] =  { 
         "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
 
