@@ -21,7 +21,7 @@ var FoxtrickPreferencesDialog = {
 		}
 	},
 
-	initCaptionsAndLabels : function(document) {
+	initCaptionsAndLabels : function(document) { 
 		// Window title
 		document.documentElement.setAttribute("title", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
 
@@ -339,7 +339,7 @@ var FoxtrickPreferencesDialog = {
 					break;
 			}
 
-			for (var i = 0; i < modules_list.childElementCount; ++i) {
+			for (var i = 0; i < modules_list.childNodes.length; ++i) {
 				var group = modules_list.childNodes[i];
 				var pref = group.id;
 				var enabled = document.getElementById(pref + "_check").checked;
@@ -350,7 +350,7 @@ var FoxtrickPreferencesDialog = {
 				if (container) {
 					// radio
 					if (container.nodeName == "radiogroup") {
-						for (var j = 0; j < container.childElementCount; ++j) {
+						for (var j = 0; j < container.childNodes.length; ++j) {
 							if (container.childNodes[j].selected) {
 								FoxtrickPrefs.setModuleValue(pref, j);
 								break;
@@ -359,7 +359,7 @@ var FoxtrickPreferencesDialog = {
 					}
 					// checkbox
 					else if (container.nodeName == "vbox") {
-						for (var j = 0; j < container.childElementCount; ++j) {
+						for (var j = 0; j < container.childNodes.length; ++j) {
 							var object = container.childNodes[j];
 							if (object.nodeName == "checkbox")
 								FoxtrickPrefs.setModuleEnableState(object.id, object.checked);
