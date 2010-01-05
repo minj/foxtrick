@@ -116,6 +116,7 @@ var FoxtrickStaffMarker = {
                 'Mod-spambot',
                 'Multiplex',
                 'Nils-N',
+				'nickasimir',
                 'nmendes',
                 'obsy_',
                 'Odiobill',
