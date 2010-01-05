@@ -174,7 +174,7 @@ var FoxtrickCopyRatingsToClipboard = {
         var start = Foxtrick.strrpos(headder, '<span>(') +7;
         var end = Foxtrick.strrpos(headder, ')</span>');
         
-        var matchlink=doc.getElementById('mainWrapper').getElementsByTagName('a')[0];
+        var matchlink=doc.getElementById('mainWrapper').getElementsByTagName('h2')[0].getElementsByTagName('a')[0];
 		var gameid = FoxtrickHelper.getMatchIdFromUrl(matchlink.href);// headder.substr(start, end-start);
         
         start = Foxtrick.strrpos(headder, ' - ');
