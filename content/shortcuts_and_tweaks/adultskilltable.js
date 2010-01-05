@@ -257,6 +257,10 @@ var FoxtrickAdultSkillTable = {
 						if (sktable && sktable.parentNode.className.search('myht2')!=-1) sktable=null;
 						if (sktable) var trs = sktable.getElementsByTagName("tr");	
 						
+						var is_nt_player = (allDivs[i].getElementsByTagName("a")[0].href.search(/NationalTeam/i)!=-1);
+						var link_off=0;
+						if (is_nt_player) link_off=1;
+						
 						FoxtrickAdultSkillTable.copy_string += '[tr]';
 						var tr = doc.createElement('tr');
 						if (count==4) {tr.setAttribute('class','ft_skilltable_blockend'); count=0;}
@@ -265,8 +269,8 @@ var FoxtrickAdultSkillTable = {
 						// name (linked)
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
-						FoxtrickAdultSkillTable.copy_string += allDivs[i].getElementsByTagName("a")[0].innerHTML;  // unlinked
-						td.appendChild(allDivs[i].getElementsByTagName("a")[0].cloneNode(true));
+						FoxtrickAdultSkillTable.copy_string += allDivs[i].getElementsByTagName("a")[0+link_off].innerHTML;  // unlinked
+						td.appendChild(allDivs[i].getElementsByTagName("a")[0+link_off].cloneNode(true));
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
 												
@@ -305,7 +309,7 @@ var FoxtrickAdultSkillTable = {
 							var td = doc.createElement('td');
 							if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
 							else {td.setAttribute('class','ft_table_odd ft_adultskilltable_td_small'); even=true;}						
-							var val = allDivs[i].getElementsByTagName("a")[1].href.match(/ll=(\d+)/)[1];  
+							var val = allDivs[i].getElementsByTagName("a")[1+link_off].href.match(/ll=(\d+)/)[1];  
 							td.appendChild(doc.createTextNode(val));
 							FoxtrickAdultSkillTable.copy_string += val						
 							FoxtrickAdultSkillTable.copy_string += '[/td]';
@@ -315,7 +319,7 @@ var FoxtrickAdultSkillTable = {
 							var td = doc.createElement('td');
 							if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
 							else {td.setAttribute('class','ft_table_odd ft_adultskilltable_td_small'); even=true;}
-							var val = allDivs[i].getElementsByTagName("a")[2].href.match(/ll=(\d+)/)[1];  
+							var val = allDivs[i].getElementsByTagName("a")[2+link_off].href.match(/ll=(\d+)/)[1];  
 							td.appendChild(doc.createTextNode(val));
 							FoxtrickAdultSkillTable.copy_string += val						
 							FoxtrickAdultSkillTable.copy_string += '[/td]';
