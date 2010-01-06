@@ -94,6 +94,7 @@ var FoxtrickStaffMarker = {
                 'HT-Thomas',
                 'HT-weird_ed',
                 'hybris0',
+				'jgarp',
                 'joeridb',
                 'JoseEstebes',
                 'Joselo1971',
