@@ -7,6 +7,8 @@
 
 if (!Foxtrick) var Foxtrick={};
 
+Foxtrick.BuildFor='Chrome';
+
 
 // List of categories
 Foxtrick.moduleCategories = {

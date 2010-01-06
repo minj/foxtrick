@@ -8,8 +8,6 @@
 try {
 if (!Foxtrick) var Foxtrick={};
 
-Foxtrick.BuildFor='Chrome';
-
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
  * DON'T EDIT THIS, use registerAllPagesHandler() instead.
