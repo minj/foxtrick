@@ -10,7 +10,7 @@ var FoxtrickForumChangePosts = {
 	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : true,
 	bDetailedHeader:false,
-	CSS:"chrome://foxtrick/content/resources/css/changepost.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/changepost.css",
 
 	init : function() {
 	},
@@ -57,7 +57,7 @@ var FoxtrickForumChangePosts = {
 		
 		// part of copypostid
 		var img = doc.createElement('img');
-		img.setAttribute('src',"chrome://foxtrick/content/resources/img/copy_yellow_small.png");
+		img.setAttribute('src',Foxtrick.ResourcePath+"resources/img/copy_yellow_small.png");
 		img.setAttribute('style',"vertical-align: middle; margin-right:3px;");
 
 		var copy_link1 = doc.createElement('a');
@@ -67,7 +67,7 @@ var FoxtrickForumChangePosts = {
 
 		// part of copy_posting_link
 		var img2 = doc.createElement('img');
-		img2.setAttribute('src',"chrome://foxtrick/content/resources/img/copy_yellow_small.png");
+		img2.setAttribute('src',Foxtrick.ResourcePath+"resources/img/copy_yellow_small.png");
 		img2.setAttribute('style',"vertical-align: middle; margin-left:3px;");
 
 		var copy_posting_link = doc.createElement('a');
@@ -156,7 +156,7 @@ var FoxtrickForumChangePosts = {
                     /* add someting to test removal later
                     var forumprefs = doc.createElement('a');
                     forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
-                    forumprefs.innerHTML='<img src="chrome://foxtrick/content/resources/img/transparent_002.gif">';
+                    forumprefs.innerHTML='<img src='+Foxtrick.ResourcePath+"resources/img/transparent_002.gif">';
                     forumprefs.setAttribute('class','bookmarkMessage');
                     if (header_right_inner) header_right_inner.appendChild(forumprefs);
                     */

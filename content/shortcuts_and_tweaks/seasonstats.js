@@ -15,7 +15,7 @@ var FoxtrickSeasonStats = {
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed wrong home draws assignment",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome://foxtrick/content/resources/css/seasonstats.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/seasonstats.css",
 	
 	_season:-1,
 	

@@ -4,8 +4,6 @@
  * Contact us: by HT-mail to Mod-Spambot on hattrick.org
  */
 
-Foxtrick.BuildFor='Gecko';
-
 ////////////////////////////////////////////////////////////////////////////////
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
@@ -102,7 +100,7 @@ var FoxtrickMain = {
 
 		// reload skins
 		FoxtrickSkinPlugin.load( null);
-		Foxtrick.reload_css_permanent( 'chrome://foxtrick/content/resources/css/foxtrick.css' ) ;
+		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
 		FoxtrickMain.new_start = true;
 	},
 
@@ -553,11 +551,11 @@ Foxtrick.reload_module_css = function(doc) {  	Foxtrick.dump('reload permanents 
 
 			if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
 				if (isStandard) {
-					Foxtrick.load_css_permanent('chrome://foxtrick/content/resources/css/headercopyicons.css');
-					Foxtrick.unload_css_permanent("chrome://foxtrick/content/resources/css/headercopyicons_simple.css");
+					Foxtrick.load_css_permanent(Foxtrick.ResourcePath+'resources/css/headercopyicons.css');
+					Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css");
 				} else {
-					Foxtrick.unload_css_permanent('chrome://foxtrick/content/resources/css/headercopyicons.css') ;
-					Foxtrick.load_css_permanent("chrome://foxtrick/content/resources/css/headercopyicons_simple.css");				
+					Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/headercopyicons.css') ;
+					Foxtrick.load_css_permanent(Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css");				
 				}
 			}
 			// check permanant css

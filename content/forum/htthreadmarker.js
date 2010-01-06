@@ -23,7 +23,7 @@
 	
 		this.ColorLatest (doc, "threadContent", "folderitem");
 		
-		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/"+
+		Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+""+
                                 "resources/css/ht_thread.css");
                     
 		var myForums = doc.getElementById("content").getElementsByTagName('div')[0];

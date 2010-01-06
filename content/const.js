@@ -6,6 +6,9 @@
 
 if (!Foxtrick) var Foxtrick={};
 
+Foxtrick.BuildFor = 'Gecko';
+Foxtrick.ResourcePath = 'chrome://foxtrick/content/';
+
 
 // List of categories
 Foxtrick.moduleCategories = {

@@ -10,7 +10,7 @@ var FoxtrickGoToPostBox = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 	
 	DEFAULT_ENABLED : false,
-	CSS: "chrome://foxtrick/content/resources/css/gotopostbox.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
@@ -20,7 +20,7 @@ var FoxtrickGoToPostBox = {
 
     run : function( page, doc ) {
             
-            Foxtrick.addJavaScript(doc, "chrome://foxtrick/content/resources/js/GoToPostBox.js");
+            Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");
             
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:70px');
 			

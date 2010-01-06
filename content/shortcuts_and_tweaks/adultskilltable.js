@@ -14,7 +14,7 @@ var FoxtrickAdultSkillTable = {
 	LATEST_CHANGE:"Added adultskilltable",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	CSS: "chrome://foxtrick/content/resources/css/adultskilltable.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/adultskilltable.css",
 	
 	copy_string:"",
 
@@ -525,7 +525,7 @@ var FoxtrickAdultSkillTable = {
 	
 					var img = doc.createElement("img");
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome://foxtrick/content/resources/img/transparent_002.gif";
+					img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
 			
 					messageLink.appendChild(img);
 					boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -544,7 +544,7 @@ var FoxtrickAdultSkillTable = {
 					img.style.padding = "0px 5px 0px 0px;";
 					img.className = "actionIcon";
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome://foxtrick/content/resources/img/copyplayerad.png";
+					img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
 					messageLink.appendChild(img);
 				
 					parentDiv.appendChild(messageLink);

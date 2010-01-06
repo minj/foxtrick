@@ -41,7 +41,7 @@ var FoxtrickCrossTable = {
             var div = doc.getElementById('mainBody');
 
 
-    		Foxtrick.addStyleSheet(doc, "chrome://foxtrick/content/resources/css/crosstable.css");
+    		Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/crosstable.css");
 
             var tbl_fix = div.getElementsByTagName('TABLE')[0];
 

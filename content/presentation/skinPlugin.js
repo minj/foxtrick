@@ -41,7 +41,7 @@ var FoxtrickSkinPlugin = {
                             var imgSrc = img.src;
                             var customMedals = "oldhtmedals";
                             var oldString = "Trophy";
-                            var newString = "chrome://foxtrick/content/resources/img/"
+                            var newString = Foxtrick.ResourcePath+"resources/img/"
                                 + "custommedals/" + customMedals + "/";
                             if(imgSrc.search(oldString) != -1) {
                                 var startPos = imgSrc.lastIndexOf("=") + 1;

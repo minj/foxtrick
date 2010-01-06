@@ -530,15 +530,15 @@ FoxtrickFlagCollectionToMap = {
             var offset=0;
             // uk hack
             if(ukIds != 4) {  //only if not added before
-                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_cy.png"> ';}
-                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_en.png"> ';}
-                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_nie.png"> ';}
-                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_gb_sc.png"> ';}
+                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_cy.png"> ';}
+                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_en.png"> ';}
+                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_nie.png"> ';}
+                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_sc.png"> ';}
 			}
             // yu hack
 			if(yuIds != 2) {
-                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_rs.png"> ';}
-                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_world_me.png">';}
+                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_rs.png"> ';}
+                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_me.png">';}
             }
         }
         return cImgString;
@@ -572,15 +572,15 @@ FoxtrickFlagCollectionToMap = {
             var offset=0;
             // uk hack
             if(ukIds != 4) {  //only if not added before
-                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_cy.png"> ';}
-                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_en.png"> ';}
-                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_nie.png"> ';}
-                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_gb_sc.png"> ';}
+                if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_cy.png"> ';}
+                if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_en.png"> ';}
+                if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_nie.png"> ';}
+                if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_sc.png"> ';}
 			}
             // yu hack
 			if(yuIds != 2) {
-                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_rs.png"> ';}
-                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="chrome://foxtrick/content/resources/img/maps/chart_europe_me.png">';}
+                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_rs.png"> ';}
+                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_me.png">';}
             }
         }
         return cImgString;
