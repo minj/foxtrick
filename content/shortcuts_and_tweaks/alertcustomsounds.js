@@ -37,13 +37,13 @@ var FoxtrickAlertCustomSounds = {
     init : function() {
 		if (Foxtrick.BuildFor=='Chrome') {
 			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.googlecode.com/svn/branches/chrome/resources/sounds/DingLing.mp3";  // LoginWelcome
-			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.foundationhorizont.org/alertsounds/LoginSupporters.mp3";  // LoginSupporters
-			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.foundationhorizont.org/alertsounds/ForumReplyToMe.mp3"; // ForumReplyToMe
-			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.foundationhorizont.org/alertsounds/TransferMarket.mp3"; // TransferMarket
-			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.foundationhorizont.org/alertsounds/Challenges.mp3"; // Challenges
-			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.foundationhorizont.org/alertsounds/Guestbook.mp3"; // Guestbook
-			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.foundationhorizont.org/alertsounds/MailToMe.mp3"; // MailToMe
-			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.foundationhorizont.org/alertsounds/MyHTMessages.mp3"; // MyHTMessages
+			this.OPTION_TEXTS_DEFAULT_VALUES[1] = "http://foxtrick.foundationhorizont.org/alertsounds/LoginSupporters.mp3";  // LoginSupporters
+			this.OPTION_TEXTS_DEFAULT_VALUES[2] = "http://foxtrick.foundationhorizont.org/alertsounds/ForumReplyToMe.mp3"; // ForumReplyToMe
+			this.OPTION_TEXTS_DEFAULT_VALUES[3] = "http://foxtrick.foundationhorizont.org/alertsounds/TransferMarket.mp3"; // TransferMarket
+			this.OPTION_TEXTS_DEFAULT_VALUES[4] = "http://foxtrick.foundationhorizont.org/alertsounds/Challenges.mp3"; // Challenges
+			this.OPTION_TEXTS_DEFAULT_VALUES[5] = "http://foxtrick.foundationhorizont.org/alertsounds/Guestbook.mp3"; // Guestbook
+			this.OPTION_TEXTS_DEFAULT_VALUES[6] = "http://foxtrick.foundationhorizont.org/alertsounds/MailToMe.mp3"; // MailToMe
+			this.OPTION_TEXTS_DEFAULT_VALUES[7] = "http://foxtrick.foundationhorizont.org/alertsounds/MyHTMessages.mp3"; // MyHTMessages
 		}       
     },
 
