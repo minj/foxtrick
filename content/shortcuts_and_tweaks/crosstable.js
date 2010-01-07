@@ -359,7 +359,8 @@ var FoxtrickCrossTable = {
 					if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
 					else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+');}
             }
-            var league = Foxtrick.trim(doc.getElementsByTagName('h1')[0].textContent.split(' -')[1]);
+            /* not working for sweden
+			var league = Foxtrick.trim(doc.getElementsByTagName('h1')[0].textContent.split(' -')[1]);
             Foxtrick.dump(league+'\n');
             if (league.search(/\./) > -1) {
                 league = league.split('.')[0];
@@ -367,25 +368,35 @@ var FoxtrickCrossTable = {
             } else {
                 league = 1;
             }
-            Foxtrick.dump(league+'\n');
+            Foxtrick.dump(league+'\n');*/
 
-            if (!Foxtrick.isStandardLayout( doc ) )
-            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].getElementsByTagName('a')[1].innerHTML);
-            else
-            var country = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].getElementsByTagName('a')[1].innerHTML);
-            Foxtrick.dump('['+country+']\n');
+            if (!Foxtrick.isStandardLayout( doc ) ) {
+				var CountryName = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].getElementsByTagName('a')[0].innerHTML);
+				var RomanLeague = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].getElementsByTagName('a')[1].innerHTML);
+			}
+            else {
+				var CountryName = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].getElementsByTagName('a')[0].innerHTML);
+				var RomanLeague = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].getElementsByTagName('a')[1].innerHTML);
+            }
+			
+			Foxtrick.dump('['+CountryName+'] ['+RomanLeague+']\n');
             var leagues = 0;
+			var country=0;
             try {
                 for (var i in Foxtrick.XMLData.League) 
-					if (country == Foxtrick.XMLData.League[i].LeagueName) {
+					if (CountryName == Foxtrick.XMLData.League[i].LeagueName) {
 					 	leagues = Foxtrick.XMLData.League[i].NumberOfLevels;
+						country = Foxtrick.XMLData.League[i].LeagueID;
 						break;
 					}				
-				if (!leagues) return -1;
-            } catch (exml) {
+				if (!leagues) {Foxtrick.dump('crosstable.js countries: league not found:' +country+ "\n");; return -1;}
+				var league = FoxtrickHelper.getLevelNum(RomanLeague,country);
+				Foxtrick.dump('country: ' + country + ' league: ' + league + ' leagues: ' + leagues + '\n');
+			} catch (exml) {
                 Foxtrick.dump('crosstable.js countries: '+exml + "\n");
             }
-            Foxtrick.dump('leagues: ' + leagues + '\n');
+			
+			
 
             var colors = "";
             switch (league) {
@@ -432,7 +443,7 @@ var FoxtrickCrossTable = {
 
             var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|" + weeks +"&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=" + x_offset +",300,1,10,0,0&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
             // Foxtrick.alert('URL: [' + url + ']\n')
-            Foxtrick.dump('\n' + url + '\n');
+            Foxtrick.dump('\nurl' + url + '\n');
             var image = doc.createElement('img');
             image.src = url;
             image.title = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
@@ -440,7 +451,7 @@ var FoxtrickCrossTable = {
             image.id = 'ft_graph'
             image.setAttribute('style', 'display:'+show+';' );
             divmap.appendChild(image);
-        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ':' + e + '\n');}
+        } catch(e) {Foxtrick.dump('CrossTable:' + e + '\n');}
 	},
 
 	change : function( page, doc ) {
