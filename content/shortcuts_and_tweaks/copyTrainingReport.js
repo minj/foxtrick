@@ -12,8 +12,6 @@ var FoxtrickCopyTrainingReport = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.6.2",
 	LATEST_CHANGE:"Copies plain text to match htyouthclub requirement",
-	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
-	CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
 	
 	init : function() {
 	},
@@ -216,8 +214,6 @@ var FoxtrickCopyPlayerSource = {
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LATEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
-	CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
 	page_html:'',
 	
 	init : function() {

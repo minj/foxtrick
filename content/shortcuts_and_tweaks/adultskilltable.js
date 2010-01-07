@@ -14,8 +14,6 @@ var FoxtrickAdultSkillTable = {
 	LATEST_CHANGE:"Added adultskilltable",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
-	CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
 	
 	copy_string:"",
 

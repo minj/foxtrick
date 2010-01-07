@@ -11,7 +11,6 @@ var FoxtrickPrefsDialogHTML = {
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed ex/importing preferences",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS: Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css",
 
 	TabNames: {	'main':'MainTab',
 				'shortcuts_and_tweaks':'ShortcutsTab',
@@ -25,6 +24,7 @@ var FoxtrickPrefsDialogHTML = {
 
     init : function() {
         Foxtrick.registerAllPagesHandler( this );
+		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css") ;		
     },
 
     run : function( doc ) { 

@@ -41,6 +41,7 @@ var FoxtrickMain = {
 	IsNewVersion:false,
 
     init : function() {
+		Foxtrick.dump('FoxtrickMain.init\n');
 /*		// remove before release
 		if (!Foxtrick.numglobals) {
 				for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
@@ -678,7 +679,7 @@ Foxtrick.unload_css_permanent = function( css ) {
         }
 }
 
-Foxtrick.load_css_permanent = function( css) {  Foxtrick.dump('load '+css.substr(0,73)+'\n');
+Foxtrick.load_css_permanent = function( css) {  
 		try {
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
