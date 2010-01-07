@@ -15,14 +15,14 @@ var FoxtrickAlertCustomSounds = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // LoginWelcome
-											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // LoginSupporters
-											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // ForumReplyToMe
-											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // TransferMarket
-											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // Challenges
-											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // Guestbook
-											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav",  // MailToMe
-											"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/sounds/DingLing.wav"  // MyHTMessages
+	OPTION_TEXTS_DEFAULT_VALUES : new Array(Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // LoginWelcome
+											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // LoginSupporters
+											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // ForumReplyToMe
+											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // TransferMarket
+											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // Challenges
+											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // Guestbook
+											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // MailToMe
+											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav"  // MyHTMessages
 											),        
 	urls: new Array(/\/MyHattrick\/$/gi,
 					/\/Club\/Manager\/\?teamId=/gi,

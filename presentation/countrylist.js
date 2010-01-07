@@ -19,7 +19,7 @@ var FoxtrickCountyList = {
 	NEW_AFTER_VERSION: "0.5.0.1",
 	LATEST_CHANGE:"Some fixing",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome://foxtrick/content/resources/css/CountyList.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/CountyList.css",
 
     init : function() {
     },

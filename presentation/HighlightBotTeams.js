@@ -13,7 +13,7 @@ FoxtrickHighlightBotTeams = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("ChooseColorHighlight"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-image: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/bot.png'); background-repeat: no-repeat; padding: 0px 0px 0px 18px;" //BotHiglight
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-image: url('"+Foxtrick.ResourcePath+"resources/img/bot.png'); background-repeat: no-repeat; padding: 0px 0px 0px 18px;" //BotHiglight
 											),        
 	CSS:"",
     OLD_CSS:"",
@@ -28,7 +28,8 @@ FoxtrickHighlightBotTeams = {
 		+'}'
 		;
 		this.OLD_CSS = this.CSS;
-		this.CSS = Foxtrick.GetDataURIText(zaw);
+		if (Foxtrick.BuildFor=='Chrome') Foxtrick.load_css_permanent(zaw);
+		else this.CSS=Foxtrick.GetDataURIText(zaw);
     },
 
     run : function( page, doc ) {    		

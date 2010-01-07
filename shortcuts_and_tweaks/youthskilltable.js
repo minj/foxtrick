@@ -14,7 +14,6 @@ var FoxtrickYouthSkillTable = {
 	LATEST_CHANGE:"Better abreviations of specialties and positions for some languages. Some options",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	CSS: "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/youthskilltable.css",
 	
 	copy_string:"",
 	
@@ -453,7 +452,7 @@ var FoxtrickYouthSkillTable = {
 	
 					var img = doc.createElement("img");
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif";
+					img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
 			
 					messageLink.appendChild(img);
 					boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -472,7 +471,7 @@ var FoxtrickYouthSkillTable = {
 					img.style.padding = "0px 5px 0px 0px;";
 					img.className = "actionIcon";
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copyplayerad.png";
+					img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
 					messageLink.appendChild(img);
 				
 					parentDiv.appendChild(messageLink);

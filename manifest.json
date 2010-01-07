@@ -1,7 +1,7 @@
 {
    "name": "FoxTrick",
    "description": "FoxTrick for Chrome. A set of presentation enhancements for hattrick.org",
-   "version": "0.5.0.8",
+   "version": "0.5.0.9",
    "icons": { "48": "foxtrick48.png",
           "128": "foxtrick128.png" },
    "permissions": [ "tabs", "http://www.hattrick-youthclub.org/*", "http://www.fantamondi.it/*" ],
@@ -13,7 +13,7 @@
        },
     "content_scripts": [ {
 		"js": [ 
-		"const.js", 
+		"const_chrome.js", 
 		"module.js", 
 		"helper.js", 
 		"l10n_chrome.js", 
@@ -95,12 +95,12 @@
 		"presentation/largeflags.js",
 		"presentation/htdateformat.js",
 		"presentation/bookmarkadjust.js",
-		"presentation/HighlightBotTeams_chrome.js",
+		"presentation/HighlightBotTeams.js",
 		"presentation/countrylist.js",
 		"presentation/custommedals.js",
 		"presentation/fixcssproblems.js",
 		"presentation/guestbookalltidflags.js",
-		"presentation/tickercoloring_chrome.js",
+		"presentation/tickercoloring.js",
 		"presentation/headerfix.js",
 		"presentation/newmail_chrome.js",
 		"presentation/leaguenewsfilter.js",

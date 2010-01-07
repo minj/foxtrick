@@ -372,7 +372,7 @@ openAndReuseOneTabPerURL : function(url) {
 };
 
 
-try {
+if (Foxtrick.BuildFor=='Chrome') {
 var portalert = chrome.extension.connect({name: "alert"});
 portalert.onMessage.addListener(function(msg) { 
 	if (msg.response=='resetalert') {  //Foxtrick.dump('resetalert');
@@ -389,5 +389,5 @@ portalert.onMessage.addListener(function(msg) {
     FoxtrickAlert.news[2]  = localStorage['news2'];
     FoxtrickAlert.checkAll(document);
 });
-} catch(e){}
+}
 

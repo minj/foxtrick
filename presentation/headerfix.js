@@ -15,11 +15,11 @@ var FoxtrickHeaderFix = {
 	LATEST_CHANGE:"Fix for flickering in forum with standard layout and teampopups off",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
-	CSS_SIMPLE:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix.css",
-	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std.css",
-	CSS_SIMPLE_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_rtl.css",
-	CSS_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std_rtl.css",	                                
-    OPTIONS_CSS: new Array ("","chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/RemoveHeaderFixFlicker.css"),
+	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std.css",
+	CSS_SIMPLE_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_rtl.css",
+	CSSRTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl.css",	                                
+    OPTIONS_CSS: new Array ("",Foxtrick.ResourcePath+"resources/css/fixes/RemoveHeaderFixFlicker.css"),
 
     init : function() {
 		if (Foxtrick.isModuleFeatureEnabled( this, "FixLeft"))
@@ -42,6 +42,8 @@ var FoxtrickHeaderFix = {
 	if (page=='match' && (!ctl00_CPMain_pnl || !ctl00_CPMain_pnlTeamInfo)) return;	
 	if (page=='arena' && !ctl00_CPMain_pnl) return; 
 	if (!ctl00_CPMain_pnlArenaFlash) return;
+	Foxtrick.dump( ctl00_CPMain_pnl.getElementsByTagName('h1').length+'\n');
+	if (page=='arena' && ctl00_CPMain_pnl.getElementsByTagName('h1').length > 1) return; // don't move if arena is under constriction 
 	
 	// get some divs to move
 	var arenaInfo = ctl00_CPMain_pnlArenaFlash.nextSibling;
@@ -94,10 +96,10 @@ var FoxtrickHeaderFixLeft = {
 	
     MODULE_NAME : "HeaderFixLeft",
     DEFAULT_ENABLED : false,	
-	CSS_SIMPLE:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_left.css",
-	CSS_SIMPLE_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_rtl_left.css",
-	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std_left.css",
-	CSS_RTL:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/headerfix_std_rtl_left.css",
+	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix_left.css",
+	CSS_SIMPLE_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_rtl_left.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std_left.css",
+	CSSRTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl_left.css",
 	
     init : function() {  
 	

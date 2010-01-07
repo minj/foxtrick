@@ -28,7 +28,7 @@ var FoxtrickNewMail = {
 			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomColor_text"); 
 			if (color) 	FoxtrickNewMail.NewMailColor=color;
 	}
-	var HighlightNewMailIconCss="img.scNewMail {background: url('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/new_mail.png') !important;}";
+	var HighlightNewMailIconCss="img.scNewMail {background: url('"+Foxtrick.ResourcePath+"resources/linkicons/new_mail.png') !important;}";
 	
 	if (!Foxtrick.isModuleFeatureEnabled( this, "HighlightNewMailIcon")) HighlightNewMailIconCss="";
 	
@@ -46,7 +46,8 @@ var FoxtrickNewMail = {
 		'}';
 		
 	this.OLD_CSS = this.CSS;		
-	this.CSS=Foxtrick.GetDataURIText(zaw);
+	if (Foxtrick.BuildFor=='Chrome') Foxtrick.load_css_permanent(zaw);
+	else this.CSS=Foxtrick.GetDataURIText(zaw);
     },
 
     run : function( page, doc ) {

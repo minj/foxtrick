@@ -11,7 +11,6 @@ var FoxtrickPrefsDialogHTML = {
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed ex/importing preferences",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/preferences-dialog-html.css",
 
 	TabNames: {	'main':'MainTab',
 				'shortcuts_and_tweaks':'ShortcutsTab',
@@ -25,6 +24,7 @@ var FoxtrickPrefsDialogHTML = {
 
     init : function() {
         Foxtrick.registerAllPagesHandler( this );
+		if (Foxtrick.BuildFor=='Gecko') Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css") ;
     },
 
     run : function( doc ) { 
@@ -34,10 +34,10 @@ var FoxtrickPrefsDialogHTML = {
 			FoxtrickPrefsDialogHTML.add_pref_links(doc);			
 		}	
 		if (doc.location.href.search(/configure_foxtrick=true/i)!=-1) { 
-			if (Foxtrick.BuildFor=='Chrome') Foxtrick.addStyleSheet( document, this.CSS ) ;		
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.addStyleSheet( document, Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css" ) ;		
 			FoxtrickPrefsDialogHTML.show_pref(doc);			
 		}
-		else if (Foxtrick.BuildFor=='Chrome') Foxtrick.reload_css_permanent( this.CSS ) ;
+		else if (Foxtrick.BuildFor=='Chrome') Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css") ;
 	}catch (e){dump('HTMLPrefs '+e+'\n');}
 	},
 

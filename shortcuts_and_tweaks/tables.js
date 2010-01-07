@@ -79,13 +79,13 @@ var FoxtrickMatchTables = {
         
 		// adjust league table
 		if (page=='league' || page== 'youthleague') {
-			Foxtrick.addStyleSheet(doc,"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/FoxtrickMatchTables_league.css");
+			Foxtrick.addStyleSheet(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_league.css");
 			return;
 		}
 
 		// adjust matchtable, keep hour
 		if (!Foxtrick.isModuleFeatureEnabled( this, "RemoveTime" ) ) {
-			if (page=='matchesarchiv' || page== 'matches') Foxtrick.addStyleSheet(doc,"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/FoxtrickMatchTables_matches.css");
+			if (page=='matchesarchiv' || page== 'matches') Foxtrick.addStyleSheet(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_matches.css");
 			return;
 		}		
 		
