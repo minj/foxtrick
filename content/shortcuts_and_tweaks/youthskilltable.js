@@ -14,7 +14,8 @@ var FoxtrickYouthSkillTable = {
 	LATEST_CHANGE:"Better abreviations of specialties and positions for some languages. Some options",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	CSS: Foxtrick.ResourcePath+"resources/css/youthskilltable.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
+	CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
 	
 	copy_string:"",
 	

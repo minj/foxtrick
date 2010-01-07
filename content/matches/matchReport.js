@@ -299,8 +299,8 @@ FoxtrickMatchReportFormat = {
                         var dummy_txt = doc.createElement("div")
                         //dummy_txt = myTable[ti][1].split('playerId=')[1].split("title=\"")[1].split("\">")[0];
                         //Foxtrick.dump('\n' + dummy_txt + '\n');
-                        //TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(\''+ (dummy_txt) +'\',' + parseInt(myTable[ti][2]) + ')>' + myTable[ti][0] + '</span>';
-                        TD1.innerHTML= '<span style="cursor:pointer" onclick=gotoEvent(' + minute + ')>' + myTable[ti][0] + '</span>';
+                        //TD1.innerHTML= '<span style="cursor:pointer; white-space:nowrap;" onclick=gotoEvent(\''+ (dummy_txt) +'\',' + parseInt(myTable[ti][2]) + ')>' + myTable[ti][0] + '</span>';
+                        TD1.innerHTML= '<span style="cursor:pointer; white-space:nowrap;" onclick=gotoEvent(' + minute + ')>' + myTable[ti][0] + '</span>';
                       } else {
                         TD1.innerHTML= myTable[ti][0];}
                       TD1.className = 'center';
@@ -349,7 +349,7 @@ FoxtrickMatchReportFormat = {
 					divs[i].style.background = bg_col_hm;
 
                     var scorerep = standing[0] + '-' + standing[1];
-                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer"><b>'+standing[0]+'</b>&nbsp;-&nbsp;'+standing[1]+'</span>');
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; white-space:nowrap;"><b>'+standing[0]+'</b>&nbsp;-&nbsp;'+standing[1]+'</span>');
                     Foxtrick.dump('  GOAL for TEAM 1\n');
                 }
                 else if (score[2] > standing[1]) {
@@ -359,7 +359,7 @@ FoxtrickMatchReportFormat = {
 					divs[i].style.background = bg_col_aw;
                     
                     var scorerep = standing[0] + '-' + standing[1];
-                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer">'+standing[0]+'&nbsp;-&nbsp;<b>'+standing[1]+'</b></span>');
+                    scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<span onclick="gotoElmentID(\''+divs[i].id+'\');" style="cursor:pointer; white-space:nowrap;">'+standing[0]+'&nbsp;-&nbsp;<b>'+standing[1]+'</b></span>');
                     Foxtrick.dump('  GOAL for TEAM 2\n');
                 }
                 else Foxtrick.dump('  NO GOAL\n');
