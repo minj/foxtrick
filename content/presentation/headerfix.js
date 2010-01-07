@@ -38,10 +38,12 @@ var FoxtrickHeaderFix = {
 	var ctl00_CPMain_pnlTeamInfo = doc.getElementById("ctl00_CPMain_pnlTeamInfo");
 	var ctl00_CPMain_pnlArenaFlash = doc.getElementById("ctl00_CPMain_pnlArenaFlash");
 	
-	// check right page and ia supporter
+	// check right page and is supporter
 	if (page=='match' && (!ctl00_CPMain_pnl || !ctl00_CPMain_pnlTeamInfo)) return;	
 	if (page=='arena' && !ctl00_CPMain_pnl) return; 
 	if (!ctl00_CPMain_pnlArenaFlash) return;
+	
+	if (page=='arena' && ctl00_CPMain_pnl.getElementsByTagName('h1').length > 1) return; // don't move if arena is under constriction 
 	
 	// get some divs to move
 	var arenaInfo = ctl00_CPMain_pnlArenaFlash.nextSibling;
