@@ -10,7 +10,7 @@ var FoxtrickHideFaceTransferImages = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
-	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/HideFaceTransferImages.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/HideFaceTransferImages.css",
 	
     init : function() {
     },
@@ -30,7 +30,7 @@ var FoxtrickHideFaceInjuryImages = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
-	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/HideFaceInjuryImages.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/HideFaceInjuryImages.css",
 	
     init : function() {
     },
@@ -50,7 +50,7 @@ var FoxtrickHideFaceSuspendedImages = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
 	DEFAULT_ENABLED : true,
-	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/HideFaceSuspendedImages.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/HideFaceSuspendedImages.css",
 	
     init : function() {
     },
@@ -112,7 +112,7 @@ var FoxtrickMovePlayerStatement = {
             }
 
             var newImg = doc.createElement("img");
-            newImg.setAttribute("src","chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/speak.png");
+            newImg.setAttribute("src",Foxtrick.ResourcePath+"resources/img/speak.png");
             newImg.setAttribute("title",contentSpeak+"");
             newImg.setAttribute("style","left: 65px; top: 134px;");
             var elemsa = doc.getElementsByTagName("div");

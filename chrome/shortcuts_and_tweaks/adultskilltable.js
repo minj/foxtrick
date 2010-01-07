@@ -14,7 +14,6 @@ var FoxtrickAdultSkillTable = {
 	LATEST_CHANGE:"Added adultskilltable",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
-	CSS: "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/adultskilltable.css",
 	
 	copy_string:"",
 
@@ -257,6 +256,10 @@ var FoxtrickAdultSkillTable = {
 						if (sktable && sktable.parentNode.className.search('myht2')!=-1) sktable=null;
 						if (sktable) var trs = sktable.getElementsByTagName("tr");	
 						
+						var is_nt_player = (allDivs[i].getElementsByTagName("a")[0].href.search(/NationalTeam/i)!=-1);
+						var link_off=0;
+						if (is_nt_player) link_off=1;
+						
 						FoxtrickAdultSkillTable.copy_string += '[tr]';
 						var tr = doc.createElement('tr');
 						if (count==4) {tr.setAttribute('class','ft_skilltable_blockend'); count=0;}
@@ -265,8 +268,8 @@ var FoxtrickAdultSkillTable = {
 						// name (linked)
 						FoxtrickAdultSkillTable.copy_string += '[td]';
 						var td = doc.createElement('td');
-						FoxtrickAdultSkillTable.copy_string += allDivs[i].getElementsByTagName("a")[0].innerHTML;  // unlinked
-						td.appendChild(allDivs[i].getElementsByTagName("a")[0].cloneNode(true));
+						FoxtrickAdultSkillTable.copy_string += allDivs[i].getElementsByTagName("a")[0+link_off].innerHTML;  // unlinked
+						td.appendChild(allDivs[i].getElementsByTagName("a")[0+link_off].cloneNode(true));
 						FoxtrickAdultSkillTable.copy_string += '[/td]';
 						tr.appendChild(td);
 												
@@ -305,7 +308,7 @@ var FoxtrickAdultSkillTable = {
 							var td = doc.createElement('td');
 							if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
 							else {td.setAttribute('class','ft_table_odd ft_adultskilltable_td_small'); even=true;}						
-							var val = allDivs[i].getElementsByTagName("a")[1].href.match(/ll=(\d+)/)[1];  
+							var val = allDivs[i].getElementsByTagName("a")[1+link_off].href.match(/ll=(\d+)/)[1];  
 							td.appendChild(doc.createTextNode(val));
 							FoxtrickAdultSkillTable.copy_string += val						
 							FoxtrickAdultSkillTable.copy_string += '[/td]';
@@ -315,7 +318,7 @@ var FoxtrickAdultSkillTable = {
 							var td = doc.createElement('td');
 							if (even) {td.setAttribute('class','ft_table_even ft_adultskilltable_td_small'); even=false;}
 							else {td.setAttribute('class','ft_table_odd ft_adultskilltable_td_small'); even=true;}
-							var val = allDivs[i].getElementsByTagName("a")[2].href.match(/ll=(\d+)/)[1];  
+							var val = allDivs[i].getElementsByTagName("a")[2+link_off].href.match(/ll=(\d+)/)[1];  
 							td.appendChild(doc.createTextNode(val));
 							FoxtrickAdultSkillTable.copy_string += val						
 							FoxtrickAdultSkillTable.copy_string += '[/td]';
@@ -521,7 +524,7 @@ var FoxtrickAdultSkillTable = {
 	
 					var img = doc.createElement("img");
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/transparent_002.gif";
+					img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
 			
 					messageLink.appendChild(img);
 					boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -540,7 +543,7 @@ var FoxtrickAdultSkillTable = {
 					img.style.padding = "0px 5px 0px 0px;";
 					img.className = "actionIcon";
 					img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
-					img.src = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/img/copyplayerad.png";
+					img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
 					messageLink.appendChild(img);
 				
 					parentDiv.appendChild(messageLink);

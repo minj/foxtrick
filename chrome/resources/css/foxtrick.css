@@ -17,29 +17,38 @@ div.foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img
 div.foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png');}
 
 /* sidebarbox h2 dropdown image */ 
-div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat; background-position: 99% 60%;}
-div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-up.png'); background-repeat:no-repeat;  background-position: 99% 60%;}
+div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 99% 60%;}
+div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 99% 60%;}
 div.ft_sidebarBoxCollapsed .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
 div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
-div.ft_sidebarBoxCollapsed_rtl  h2 { border: none !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat;  background-position: 3% 60%;}
-div.ft_sidebarBoxUnfolded_rtl h2 { border: none !important; background-image: url('chrome://foxtrick/content/resources/img/link-up.png'); background-repeat:no-repeat;  background-position: 3% 60%;}
+div.ft_sidebarBoxCollapsed_rtl  h2 { border: none !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 3% 60%;}
+div.ft_sidebarBoxUnfolded_rtl h2 { border: none !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 3% 60%;}
 div.ft_sidebarBoxCollapsed_rtl .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-left:8px !important;} 
 div.ft_sidebarBoxCollapsed_rtl .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
 
 
 /* sidebarbox h3 dropdown image */
-h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}
-h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right;}
+h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
+h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
 
 /*boxBody h2 dropdown image*/
-h2.ft_boxBodyCollapsed {background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}
-h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right;}
+h2.ft_boxBodyCollapsed {background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
+h2.ft_boxBodyUnfolded {background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
 
 /*Forum HighlighthreadOpener PostID*/
 .ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000!important;}
 
+.sidebarBox h5 { font-size: 100%; margin: 0.5em 0; }
 
-/* hide all till script finished */
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
-	body{display:none;}
-}
+/*skilltable*/
+#ft_adultskilltable, #ft_youthskilltable {margin-top:35px;	margin-bottom:35px;	margin-left:-10px;}
+#ft_adultskilltable h2, #ft_youthskilltable h2 { cursor: pointer;}	
+#ft_adultskilltable th, #ft_youthskilltable th { cursor: pointer; text-align:center !important;}	
+.ft_table_even {	background-color:#eeeeee; text-align:center !important;}
+.ft_table_odd {	text-align:center !important;}
+.ft_table_skill_maxed {	font-weight: bold;}
+.ft_skilltable_blockend  td {	border-bottom: 1px solid #dddddd; }
+.ft_adultskilltable_td_small, .ft_youthskilltable_td_small  { padding:0 2px 0 0 !important;}
+.ft_adultskilltable_td_normal, .ft_youthskilltable_td_normal  {	padding:0 2px 0 0 !important;}
+div#ft_adultskilltable td, div#ft_youthskilltable td {border-bottom: 1px solid #DCE0DC; border-collapse:separate; padding:2px 4px 2px 0 !important;} 
+

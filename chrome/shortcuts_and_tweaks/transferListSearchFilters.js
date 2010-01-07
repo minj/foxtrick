@@ -53,7 +53,7 @@ FoxtrickTransferListSearchFilters = {
         
         if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
         
-        Foxtrick.addJavaScript(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/js/transferform.js");
+        Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/transferform.js");
         
         var head = doc.getElementsByTagName("head")[0];
         var style = doc.createElement("style");
@@ -125,7 +125,7 @@ FoxtrickTransferListSearchFilters = {
     addNewFilter : function(ev) {
   	    
         var doc = ev.target.ownerDocument;
-        Foxtrick.addJavaScript(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/js/transferform.js");
+        Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/transferform.js");
         
         var wind = ev.target.window;
         try {

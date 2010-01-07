@@ -1,3 +1,5 @@
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
 div.foxtrick-flipsides {
   position: absolute;
   background-image: url(chrome://foxtrick/content/resources/img/matchorders/50w.png);
@@ -28,4 +30,6 @@ span.foxtrick-badformation {
 
 span.foxtrick-noformationexperience {
  color: yellow;
+}
+
 }

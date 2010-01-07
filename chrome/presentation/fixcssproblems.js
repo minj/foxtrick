@@ -34,44 +34,44 @@ FoxtrickFixcssProblems = {
                   
 								),
 	OPTIONS_CSS: new Array (
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_FoxLink_Headers.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Club_Menu_Teamnames.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Page_Minimum_Height.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/MatchOrder_Lineheight.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Club_Menu_Teamnames.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Page_Minimum_Height.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/MatchOrder_Lineheight.css",
                                 "",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/ForumScrollBarFix.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 //                              "",
-								"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/League_Table.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Guestbook.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/liveHighlightRed.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/HideLeagueInForumHeader.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/staffmarker.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/hideUnseenMatchesPanel.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_Spoiler_reveal.css",
-								"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/MatchReportRatingsFontFix.css",
-								"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/achievement_hideicons.css",
-								"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/NoLogo.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/League_Table.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Guestbook.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/liveHighlightRed.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/HideFlagsInForumHeader.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/HideLeagueInForumHeader.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/staffmarker.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/hideUnseenMatchesPanel.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Forum_Spoiler_reveal.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
                                 ),
         OPTIONS_CSS_RTL: new Array (
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_FoxLink_Headers.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Club_Menu_Teamnames.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Page_Minimum_Height.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/MatchOrder_Lineheight.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/RTL_Fixes.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/ForumScrollBarFix.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Club_Menu_Teamnames.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Page_Minimum_Height.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/MatchOrder_Lineheight.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 //                              "",
-							    "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/League_Table.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Guestbook.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/liveHighlightRed.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/HideFlagsInForumHeader.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/HideLeagueInForumHeader.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/staffmarker.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/hideUnseenMatchesPanel.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_Spoiler_reveal.css",
-								"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/MatchReportRatingsFontFix.css",
-								"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/achievement_hideicons.css",
-								"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/NoLogo.css"
+							    Foxtrick.ResourcePath+"resources/css/fixes/League_Table.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Guestbook.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/liveHighlightRed.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/HideFlagsInForumHeader.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/HideLeagueInForumHeader.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/staffmarker.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/hideUnseenMatchesPanel.css",
+                                Foxtrick.ResourcePath+"resources/css/fixes/Forum_Spoiler_reveal.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
                                 ),
                                
     init : function() {
@@ -82,7 +82,7 @@ FoxtrickFixcssProblems = {
        
 	   if ( Foxtrick.isRTLLayout(doc) && Foxtrick.isModuleFeatureEnabled( this, "RTL_Fixes" )) {
 				if (!Foxtrick.isStandardLayout( doc ) ) {
-                        var css = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/RTL_Fixes_simple.css";
+                        var css = Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes_simple.css";
 						Foxtrick.addStyleSheet( doc, css );
 				}							
 			}
@@ -91,11 +91,11 @@ FoxtrickFixcssProblems = {
      /* obsolete      
 		if (Foxtrick.isModuleFeatureEnabled( this, "Forum_ThreadlistSpace" )) {
 				if (!Foxtrick.isStandardLayout( doc ) ) {
-                        var css = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_ThreadlistSpace_simple.css";
+                        var css = Foxtrick.ResourcePath+"resources/css/fixes/Forum_ThreadlistSpace_simple.css";
 						Foxtrick.addStyleSheet( doc, css );
 				}
 				else {
-				        var css = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/Forum_ThreadlistSpace.css";
+				        var css = Foxtrick.ResourcePath+"resources/css/fixes/Forum_ThreadlistSpace.css";
 						Foxtrick.addStyleSheet( doc, css );
 				}				
 			}*/
@@ -120,8 +120,8 @@ FoxtrickFixcssProblems = {
         for (var i = 0; i < this.OPTIONS.length; i++) {
            
             if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[i]  ) ) {
-                var css = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/" + this.OPTIONS[i] + ".css";
-                var css_simple = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/fixes/" + this.OPTIONS[i] + "_simple.css";
+                var css = Foxtrick.ResourcePath+"resources/css/fixes/" + this.OPTIONS[i] + ".css";
+                var css_simple = Foxtrick.ResourcePath+"resources/css/fixes/" + this.OPTIONS[i] + "_simple.css";
                 if ( ( (LAYOUTSWITCH[i] == 'standard' ) || (LAYOUTSWITCH[i] == 'all') ) && (Foxtrick.isStandardLayout( doc ) == true) ) {
                     Foxtrick.dump ('  FIXES: (standard) ' + i + ' - ' + this.OPTIONS[i] + ' enabled.\n');
                     Foxtrick.addStyleSheet( doc, css );

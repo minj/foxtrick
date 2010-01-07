@@ -28,14 +28,14 @@ var FoxtrickPersonalityImages = {
 						|| link.href.search(/lt\=gentleness/i) > -1 ) { 
                             var level = link.href.match(/ll\=(\d)/)[1];
                             var img = '<img id = "ft_pimage" style="vertical-align: middle important!; ' + style + 
-                                      '" src=" chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/personality/' + 
+                                      '" src="'+Foxtrick.ResourcePath+'resources/personality/' + 
                             displaystyles[level] +'" border="0" height="12" /></a>';
                             link.innerHTML += img;
 					}
 					if ( link.href.search(/lt\=aggressiveness/i) > -1 ) { 
                             var level = link.href.match(/ll\=(\d)/)[1];
                             var img = '<img style="vertical-align: middle important!; ' + style + 
-                                      '" src=" chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/personality/' + 
+                                      '" src="'+Foxtrick.ResourcePath+'resources/personality/' + 
                             displaystyles[4-(level)] +'" border="0" height="12" /></a>';
                             link.innerHTML += img;
 					}                        

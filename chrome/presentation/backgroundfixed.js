@@ -10,7 +10,7 @@ var FoxtrickBackgroundFixed = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'), 
 	DEFAULT_ENABLED : false,
-	CSS:"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/backgroundfixed.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/backgroundfixed.css",
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	

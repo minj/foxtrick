@@ -70,7 +70,7 @@ Foxtrick.AttVsDef = {
 			}
 		}
 		
-		Foxtrick.addStyleSheet(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/matchgraphs.css");
+		Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/matchgraphs.css");
 		
 		var rText = Foxtrickl10n.getString( "foxtrick.matchdetail.rightshort" );
 		var cText = Foxtrickl10n.getString( "foxtrick.matchdetail.centershort" );

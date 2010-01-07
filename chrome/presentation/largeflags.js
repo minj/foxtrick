@@ -23,7 +23,7 @@ var FoxtrickLargeFlags = {
 				if(link) { 
 					var img = link.childNodes[0];
 					var oldStyle = img.style.background;
-					var newStyle = "transparent url(chrome-extension://bpfbbngccefbbndginomofgpagkjckik/"
+					var newStyle = "transparent url("+Foxtrick.ResourcePath
 						+ "resources/img/largeflags.png) no-repeat scroll ";
 					var firstPos = oldStyle.search("scroll ")+7;
 					var lastPos = oldStyle.search("px");

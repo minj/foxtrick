@@ -16,12 +16,12 @@ var FoxtrickSkillColoring = {
 						  "skill_number_translated",
 						  "skill_select",
 						  "no_skill_links"),
-	OPTIONS_CSS: new Array (	"chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/skill-color.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/only-skill-color.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/skill-number.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/skill-number-translated.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/skill-number-selectoption.css",
-                                "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/no-skill-links.css"
+	OPTIONS_CSS: new Array (	Foxtrick.ResourcePath+"resources/skillcolors/skill-color.css",
+                                Foxtrick.ResourcePath+"resources/skillcolors/only-skill-color.css",
+                                Foxtrick.ResourcePath+"resources/skillcolors/skill-number.css",
+                                Foxtrick.ResourcePath+"resources/skillcolors/skill-number-translated.css",
+                                Foxtrick.ResourcePath+"resources/skillcolors/skill-number-selectoption.css",
+                                Foxtrick.ResourcePath+"resources/skillcolors/no-skill-links.css"
                            ),
 	NEW_AFTER_VERSION: "0.4.9",	
 	LATEST_CHANGE:"Numbers to team sprit and confidence. Small translated skills fix",
@@ -29,9 +29,9 @@ var FoxtrickSkillColoring = {
     	
     init : function() {	
 		if  ( Foxtrick.isModuleFeatureEnabled( this, "skill_number" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) 
-					this.OPTIONS_CSS[2] = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/skill-number-personal.css";
+					this.OPTIONS_CSS[2] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-personal.css";
 		if  ( Foxtrick.isModuleFeatureEnabled( this, "skill_number_translated" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) 
-                    this.OPTIONS_CSS[3] = "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/skillcolors/skill-number-translated-personal.css";			            
+                    this.OPTIONS_CSS[3] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-translated-personal.css";			            
     },
 
     run : function( page, doc ) {

@@ -18,9 +18,9 @@ FoxtrickFlipSidesInMatchOrders = {
     
 		var startLineupElement = doc.getElementById('startlineup');
 		if(startLineupElement) {
-			Foxtrick.addStyleSheet(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/"
+			Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/"
 				+ "css/matchorders.css");
-			Foxtrick.addJavaScript(doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/"
+			Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/"
 				+ "js/matchorders.js");
     
 			var div = doc.createElement("div");

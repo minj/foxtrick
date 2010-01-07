@@ -43,7 +43,7 @@ var FoxtrickYouthSkillNotes = {
                 break;
 			case 'YouthPlayers':
 			
-				if (!Foxtrick.isStandardLayout(doc)) Foxtrick.addStyleSheet( doc, "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/youthskill_simple.css" );
+				if (!Foxtrick.isStandardLayout(doc)) Foxtrick.addStyleSheet( doc, Foxtrick.ResourcePath+"resources/css/youthskill_simple.css" );
 				var faceCardOn=false;
 				var allDivs = doc.getElementsByTagName("div");
 				for(var i = 0; i < allDivs.length; i++) {
