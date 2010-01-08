@@ -1,5 +1,5 @@
 /**
-* LeagueAndMatchChat.js 
+* LeagueAndMatchChat.js
 * Foxtrick Copies post id to clipboard
 * @author convinced
 */
@@ -22,8 +22,8 @@ var FoxtrickLeagueAndMatchChat = {
 	init : function() {},
 	
 	onclick : function(ev) { 
-	try{
-		var link = ev.target.parentNode;
+	try{ 
+		var link = ev.target.parentNode; 
 		if (link.id=='yapCloseLink') { 
 			if (ev.target.ownerDocument.location.href.match(/nobalance=(\d+)/)[1]=='1') ev.target.parentNode.href='javascript:window.top.location="'+FoxtrickLeagueAndMatchChat.server+'"';
 		}
@@ -37,9 +37,16 @@ var FoxtrickLeagueAndMatchChat = {
 	
 	run : function( page, doc ) {  
 	try { 
-		this.server = doc.location.href; Foxtrick.dump('server: '+this.server+'\n');		
-		window.removeEventListener('click',FoxtrickLeagueAndMatchChat.onclick,false);
-		window.addEventListener('click',FoxtrickLeagueAndMatchChat.onclick,false);
+
+		// fixing yaplet close link
+		this.server = doc.location.href; 		
+		if (Foxtrick.BuildFor=='Chrome') {
+			portchatoldserver.postMessage({reqtype: "set_last_server", lastserver: FoxtrickLeagueAndMatchChat.server});
+		}
+		else {
+			window.removeEventListener('click',FoxtrickLeagueAndMatchChat.onclick,false);
+			window.addEventListener('click',FoxtrickLeagueAndMatchChat.onclick,false);
+		}
 		
 		var icon="http://hattrick.org/App_Themes/Simple/logo_green.png";
 		var icon2 = "http://hattrick.org/favicon.ico";
@@ -123,3 +130,21 @@ var FoxtrickLeagueAndMatchChat = {
 	change : function( page, doc ) {
 	},	
 };
+
+
+if (Foxtrick.BuildFor=='Chrome') {
+var portchatoldserver = chrome.extension.connect({name: "chatoldserver"});
+
+portchatoldserver.onMessage.addListener(function(msg) { 
+	if (msg.response=='lastserver') {   
+		FoxtrickLeagueAndMatchChat.server = msg.lastserver;
+		window.addEventListener('click',FoxtrickLeagueAndMatchChat.onclick,false);
+	} 
+});
+
+if (document.location.href.search(/.+\.yaplet.com/)!=-1) {
+	portchatoldserver.postMessage({reqtype: "get_last_server"});
+}
+
+}
+
