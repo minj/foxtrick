@@ -106,8 +106,9 @@ var FoxtrickAlert = {
 	},
 	
     checkNewsEvent : function(evt) {
+		Foxtrick.dump('checkNewsEvent\n');
 		var doc = evt.target.ownerDocument;
-		FoxtrickAlert.checkNewsEvent(doc);
+		FoxtrickAlert.checkNews(doc);
     },
 
 	checkNews : function(doc) {

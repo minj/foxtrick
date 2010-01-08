@@ -16,8 +16,8 @@ var FoxtrickCountyList = {
                         ),
 	DEFAULT_ENABLED : true,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
-	NEW_AFTER_VERSION: "0.5.0.1",
-	LATEST_CHANGE:"Some fixing",
+	NEW_AFTER_VERSION: "0.5.0.0",
+	LATEST_CHANGE:"Fixed module not working",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS: Foxtrick.ResourcePath+"resources/css/CountyList.css",
 
