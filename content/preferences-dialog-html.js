@@ -24,18 +24,20 @@ var FoxtrickPrefsDialogHTML = {
 
     init : function() {
         Foxtrick.registerAllPagesHandler( this );
-		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css") ;		
+		if (Foxtrick.BuildFor=='Gecko') Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css") ;
     },
 
     run : function( doc ) { 
-	try{
+	try{				
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick\/|\/Community|Default.aspx\?authCode/)==-1) return;
 		if (doc.location.pathname.search(/^\/$|\/MyHattrick|\/Community/)!=-1) { 
 			FoxtrickPrefsDialogHTML.add_pref_links(doc);			
 		}	
 		if (doc.location.href.search(/configure_foxtrick=true/i)!=-1) { 
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.addStyleSheet( document, Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css" ) ;		
 			FoxtrickPrefsDialogHTML.show_pref(doc);			
 		}
+		else if (Foxtrick.BuildFor=='Chrome') Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+"resources/css/preferences-dialog-html.css") ;
 	}catch (e){dump('HTMLPrefs '+e+'\n');}
 	},
 
@@ -213,7 +215,8 @@ var FoxtrickPrefsDialogHTML = {
 	save : function( ev ) { dump('pref save\n');
 	try { 
 		var doc = ev.target.ownerDocument;
-
+		if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = false;
+		
 		var full_prefs = (doc.getElementById("htLanguage")!=null); // check if full pref page (not newversionquickset or onpageprefs)
 		// clean up
 		if (full_prefs) {  
@@ -275,15 +278,26 @@ var FoxtrickPrefsDialogHTML = {
 			}
 		}
 		
-
-		if ( doc.getElementById("OnPagePrefs")) FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
+		if (Foxtrick.BuildFor=='Chrome') {  // fix for double saving mainprefs with module
+			//FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.CurrencyConverter.enabled",.+\);/g,'');
+			//FoxtrickPrefs.pref_save_dump = FoxtrickPrefs.pref_save_dump.replace(/\nuser_pref\("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled",.+\);/g,'');
+ 		}
+		
+		if (doc.getElementById("OnPagePrefs")) FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
         if (doc.getElementById("CurrencyConverter")) FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("CurrencyConverter").checked); 
 
 		
 		// check if not whole prefs. in that case stop here
 		if (!full_prefs) {
-		    FoxtrickMain.init();
-			doc.location.reload();
+		    if (Foxtrick.BuildFor=='Chrome') {
+				FoxtrickPrefs.do_dump = true;
+				//Foxtrick.reload_module_css(document);
+				portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});	
+				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
+			}
+			else { FoxtrickMain.init();
+				doc.location.reload();
+			}
 		 	return;		
 		}
 		
@@ -292,10 +306,8 @@ var FoxtrickPrefsDialogHTML = {
 		
         //Lang
         FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
-		if (Foxtrick.BuildFor=='Chrome')
-			FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:doc.getElementById("htLanguage").value, from:'mainpref'});
-
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
+ 
 		//Currency
         FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
         
@@ -353,11 +365,21 @@ var FoxtrickPrefsDialogHTML = {
 
         FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
         
-		// reinitialize
-        FoxtrickMain.init();
-		doc.location.href="/MyHattrick/?configure_foxtrick=true&status=saved";
+		if (Foxtrick.BuildFor=='Chrome') {
+			FoxtrickPrefs.do_dump = true;
+			//Foxtrick.reload_module_css(document);
+			portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});	
+			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
+		}
+		else { 
+			FoxtrickMain.init();
+			doc.location.reload();
+		}
 		dump('end save\n');
-	} catch (e) { dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');}
+	} catch (e) { 
+		if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = true;
+		dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');
+	}
 	},
 
 	cancel : function( ev ) {
@@ -485,7 +507,7 @@ var FoxtrickPrefsDialogHTML = {
 				
 		var td= doc.createElement("td");
         tr.appendChild(td);
-		var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
+		var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"); 
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtPrefs', Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"),'', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
@@ -565,6 +587,7 @@ var FoxtrickPrefsDialogHTML = {
 		// skin plugin
 		var groupbox= doc.createElement("div");
 		groupbox.setAttribute('class',"ft_pref_modul");
+		if (Foxtrick.BuildFor=='Chrome') groupbox.setAttribute('style',"display:none !important");
 		preftab.appendChild(groupbox);
 		
 		var caption1= doc.createElement("div");
@@ -1856,9 +1879,9 @@ var FoxtrickOnPagePrefs = {
 				}
 				modules_entries.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
 				for ( var i=0;i<modules_entries.length;++i)	ownBoxBody.appendChild( modules_entries[i] );
-				modules_entries_all.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+				//modules_entries_all.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
 				for ( var i=0;i<modules_entries_all.length;++i)	alldivinner.appendChild( modules_entries_all[i] );
-				modules_entries_links.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+				//modules_entries_links.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
 				for ( var i=0;i<modules_entries_links.length;++i)	linkdivinner.appendChild( modules_entries_links[i] );
 		
 				if (linkdiv_count>0) {
