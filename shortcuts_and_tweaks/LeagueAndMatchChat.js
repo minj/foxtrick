@@ -1,5 +1,5 @@
 /**
-* LeagueAndMatchChat.js
+* LeagueAndMatchChat.js 
 * Foxtrick Copies post id to clipboard
 * @author convinced
 */

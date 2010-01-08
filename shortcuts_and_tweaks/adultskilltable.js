@@ -10,8 +10,8 @@ var FoxtrickAdultSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"Added adultskilltable",
+	NEW_AFTER_VERSION: "0.5.0.1",
+	LATEST_CHANGE:"Added adultskilltable. NT players fixed",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"), 
 	

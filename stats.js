@@ -316,7 +316,7 @@ stats["xray_newsfeed"] =  {
                       "filters"    : []
         },
        "title" : "HT Newsfeeds",
-       "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htrss2.gif"
+       "img" : Foxtrick.ResourcePath+"resources/linkicons/htrss2.gif"
   
 }
 
@@ -329,7 +329,7 @@ stats["xray_crossover"] =  {
                        },
         
         "title" : "hattriX-Ray Crossover",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_crossover.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_crossover.png"
 };    
 
 
@@ -342,7 +342,7 @@ stats["xray_backdraft"] =  {
                        },
         
         "title" : "hattriX-Ray Backdraft",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_backdraft.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_backdraft.png"
 };    
 
 // hattriX-Ray ClubRay
@@ -355,7 +355,7 @@ stats["xray_clubray"] =  {
                        },
         
         "title" : "hattriX-Ray clubray",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_clubray.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_clubray.png"
 };    
 
 
@@ -370,7 +370,7 @@ stats["xray_friendlier"] =  {
                        },
         
         "title" : "hattriX-Ray Friendlier",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_friendlier.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_friendlier.png"
 };    
 
 
@@ -385,7 +385,7 @@ stats["xray_roundstogo"] =  {
                        },
         
         "title" : "hattriX-Ray rounds to go",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_rounds2go.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_rounds2go.png"
 };    
 
 // hattriX-Ray roundrate
@@ -398,7 +398,7 @@ stats["xray_roundrate"] =  {
                        },
         
         "title" : "hattriX-Ray roundRate",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_roundrate.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_roundrate.png"
 };    
 
 
@@ -412,7 +412,7 @@ stats["xray_leaguemates"] =  {
                        },
         
         "title" : "hattriX-Ray leaguemates",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_leaguemates.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_leaguemates.png"
 };    
 
 
@@ -427,7 +427,7 @@ stats["xray_sunray"] =  {
         
         "title" : "hattriX-Ray sunray",
         //"post" : "true",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_sunray.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_sunray.png"
 };
 
 
@@ -441,7 +441,7 @@ stats["xray_live"] =  {
                        },
         
         "title" : "hattriX-Ray live!",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_live.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_live.png"
 };
 
 
@@ -455,7 +455,7 @@ stats["xray_livereview"] =  {
                        },
         
         "title" : "hattriX-Ray live! (played matches)",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_live_review.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_live_review.png"
 };
 
 // hattriX-Ray head to head
@@ -468,7 +468,7 @@ stats["xray_h2h"] =  {
                        },
         
         "title" : "hattriX-Ray head to head (played matches)",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_h2h.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_h2h.png"
 };
 
 
@@ -482,7 +482,7 @@ stats["xray_healing"] =  {
                        },
         
         "title" : "hattriX-Ray healing",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_healing_s.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_healing_s.png"
 };
 
 // hattriX-Ray healing TSI
@@ -495,7 +495,7 @@ stats["xray_healingtsi"] =  {
                        },
         
         "title" : "hattriX-Ray healing TSI",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_healingtsi_s.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_healingtsi_s.png"
 };
 
 // hattriX-Ray youngster
@@ -508,7 +508,7 @@ stats["xray_youngster"] =  {
                        },
         
         "title" : "hattriX-Ray youngster",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_youngster.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_youngster.png"
 };
 
 
@@ -522,7 +522,7 @@ stats["xray_econray"] =  {
                        },
         
         "title" : "hattriX-Ray econray",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_econray.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_econray.png"
 };
 
 stats["xray_keeper"] =  { 
@@ -534,7 +534,7 @@ stats["xray_keeper"] =  {
                        },
         
         "title" : "hattriX-Ray keepers-up",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_keepersup_s.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_keepersup_s.png"
 };
 
 
@@ -547,7 +547,7 @@ stats["xray_coach"] =  {
                        },
         
         "title" : "hattriX-Ray Coach",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_coach.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_coach.png"
 };
 
 // hattrick challenge
@@ -576,7 +576,7 @@ stats["hattrickchallenge_friendly"] =  {
             }
         },
         "title" : "HattrickChallenge Friendly ads",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattrickchallenge_main.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrickchallenge_main.png"
 };
 
 // hattrick challenge
@@ -599,7 +599,7 @@ stats["hattrickchallenge"] =  {
                        },
 
         "title" : "HattrickChallenge",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattrickchallenge_main.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrickchallenge_main.png"
 };
 
 
@@ -618,7 +618,7 @@ stats["HTPE"] =  {
                        },
         
         "title" : "hattriX-Ray HTPE",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htpe.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htpe.png"
 };    
 
 // Hattrick Hall of Fame
@@ -629,7 +629,7 @@ stats["halloffame_match"] =  {
                          "params"     : { "matchid" : "matchid" }
                        },
         "title" : "Hattrick Hall of Fame (match)",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hhof.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hhof.png"
 };    
 
 stats["halloffame_team"] =  { 
@@ -639,7 +639,7 @@ stats["halloffame_team"] =  {
                          "params"     : { "teamid" : "teamid" }
                        },
         "title" : "Hattrick Hall of Fame (team)",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hhof.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hhof.png"
 };    
 
 stats["halloffame_player"] =  { 
@@ -649,7 +649,7 @@ stats["halloffame_player"] =  {
                          "params"     : { "playerid" : "pid" }
                        },
         "title" : "Hattrick Hall of Fame (player)",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hhof.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hhof.png"
 };    
 
 // hattriX-Ray arenasizer
@@ -661,7 +661,7 @@ stats["xray_arenasizer"] =  {
                        },
         
         "title" : "hattriX-Ray arenasizer",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/xray_arenasizer.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_arenasizer.png"
 };
 
 
@@ -707,7 +707,7 @@ stats["alltid"] =  {
         
         
         "title" : "Alltid Hattrick Statistics International",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/ahstats.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ahstats.png"
 };    
 
 
@@ -734,7 +734,7 @@ stats["ht_deutschland"] =  {
 				}, 
   "countryidranges" : [[3, 3]], 
   "title" : "HT-Deutschland",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/ht-deutschland.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/ht-deutschland.png"
 };    
 
 
@@ -759,7 +759,7 @@ stats["htstats"] =  {
         "countryidranges" : [[36, 36]], 
         
         "title" : "Peaso Hattrick Stats",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htstats.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htstats.png"
 };    
 
 stats["htstats_all"] =  {  
@@ -787,7 +787,7 @@ stats["htstats_all"] =  {
 							}
 						 }, 
         "title" : "htstats (played match)",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htstats.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htstats.png"        
 };
 
 stats["htms_stats"] =  {  
@@ -801,7 +801,7 @@ stats["htms_stats"] =  {
 							}
 						 }, 
         "title" : "htms predictor",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htms.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htms.png"        
 };
 
 
@@ -827,7 +827,7 @@ stats["vnukstats"] =  {
 
         "countryidranges" : [[52, 52],[67, 67]],  // CZ+SK
         "title" : "VnukStats",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/vnukstats.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/vnukstats.png"
 };    
 
 
@@ -848,7 +848,7 @@ stats["todohattrick"] =  {
 
         "countryidranges" : [[36, 36]], 
         "title" : "TodoHattrick",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/todohattrick.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/todohattrick.png"
 };    
 
 
@@ -874,7 +874,7 @@ stats["lagazzetta"] =  {
         
         "countryidranges" : [[4, 4]], 
         "title" : "La Gazzetta di Hattrick",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/lagazzetta.jpg"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/lagazzetta.jpg"
 };    
 
 // ht-tools 
@@ -887,7 +887,7 @@ stats["ekonomer"] =  {
                        },
 		"owncountryidranges" : [[1, 1]], 
         "title" : "Ekonomkalkylatorn",   
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/httools_economy.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/httools_economy.png"
 };
 
 // ht-tools 
@@ -900,7 +900,7 @@ stats["ConvertidordeTiempo"] =  {
                        },
 		"owncountryidranges" : [[29, 29]], 
         "title" : "Convertidor de Tiempo de Hattrick-Venezuela",   
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/iconotiempo.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/iconotiempo.png"
 };
 
 
@@ -923,7 +923,7 @@ stats["francestats"] =  {
 
 	    "countryidranges" : [[5, 5]],
         "title" : "FranceStats",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/francestats.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/francestats.png"        
 };  
 
 
@@ -943,13 +943,13 @@ stats["estadisticas.hattrick.cl"] =  {
         
         "countryidranges" : [[18, 18]], 
         "title" : "Estadisticas Chile",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattrick_cl.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrick_cl.png"        
 };
 
 
 stats["hattrick.cl"] = { 
   "url" : "http://www.hattrick.cl/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattrick_cl.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrick_cl.png",
   "title" : "hattrick.cl",
   
         "countrylink" : { "path"       : "",
@@ -981,7 +981,7 @@ stats["hattristics"] =  {
         "countryidranges" : [[46, 46]], 
 		"levelnumranges" : [[1, 5]],
         "title" : "Hattristics",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattrist.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrist.png"
 };    
 
 
@@ -1005,7 +1005,7 @@ stats["akickku"] =  {
                        },
         "countryidranges" : [[8, 8]],
         "title" : "Akickku",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/akickku.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/akickku.png"
 };    
 
 // HC Stats - Hellas, Cyprus
@@ -1039,7 +1039,7 @@ stats["hcstatshellas"] =  {
                        },        
         "countryidranges" : [[50, 50], [89, 89]], 
         "title" : "HC Stats",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hcstats_hellas.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hcstats_hellas.png"        
 };    
 
 /* // down
@@ -1053,7 +1053,7 @@ stats["httoolsfriendlymanager"] =  {
                        },
         
         "title" : "HTTools Friendly Manager",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/httools_friendly.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/httools_friendly.png"
 };  */  
 
  // Maptrick
@@ -1067,7 +1067,7 @@ stats["maptrick_coolness"] =  {
 						},
          
         "title" : "Maptrick Coolness",
-         "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/maptrick_cool.png"
+         "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_cool.png"
 };
 
 stats["maptrick_hoc"] =  { 
@@ -1088,7 +1088,7 @@ stats["maptrick_hoc"] =  {
 						},
         
         "title" : "Maptrick Hall of Cool",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/maptrick_hoc.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_hoc.png"
 };
 
 stats["maptrick_botmap"] =  { 
@@ -1100,7 +1100,7 @@ stats["maptrick_botmap"] =  {
 						},
         
         "title" : "Maptrick Botmap",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/maptrick_bot.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_bot.png"
 };
  
 
@@ -1114,7 +1114,7 @@ stats["ht-dog"] =  {
                        },
 
         "title" : "HT-Dog",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/ht-dog.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ht-dog.png"
 };    
 
 // Hatstats
@@ -1157,7 +1157,7 @@ stats["hatstats"] =  {
         },
 
         "title" : "HatStats",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hatstats.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hatstats.png"        
 };    
 
 /* down
@@ -1170,7 +1170,7 @@ stats["advancedinjurycalc"] =  {
                         },
         
         "title" : "Advanced Injury Calculator",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/redcross_small.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/redcross_small.png"
 };*/
 
 
@@ -1183,7 +1183,7 @@ stats["healingkawasaki"] =  {
                        },
         
         "title" : "Kawasaki Tigers Injury Healing Time Prediction Tool",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/redcross_small.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/redcross_small.png"
 };
 
 stats["healingkawasaki2"] =  { 
@@ -1195,7 +1195,7 @@ stats["healingkawasaki2"] =  {
                        },
         
         "title" : "Kawasaki Tigers Injury Healing Time Prediction Tool 2",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/redcross_small.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/redcross_small.png"
 };
 
 stats["htbox_heal"] =  { 
@@ -1210,7 +1210,7 @@ stats["htbox_heal"] =  {
                         },
         
         "title" : "HTBox Healing",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htbox_heal.gif"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htbox_heal.gif"
 };
 
 
@@ -1236,7 +1236,7 @@ stats["htbox_training"] =  {
                          "params"     : {"Coach":"coach","TI":"ti","STA":"ko","TrainingType":"type"}
 						},
         "title" : "HTBox Training",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htbox_train.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htbox_train.png"
 };
 
 //Training Team Evaluation
@@ -1253,7 +1253,7 @@ stats["Training_Team_Evaluation"] =  {
                          "params"     : []
 						},
         "title" : "Training Team Evaluation",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/training_evaluation.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/training_evaluation.png"
 };
 
 //NrgJack Wage Reduction Calculator
@@ -1282,7 +1282,7 @@ stats["Wage_Reduction_Calculator"] =  {
 					   
 		"ageranges" : [[28, 99]],
         "title" : "Wage Reduction Calculator",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/wagereduction.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/wagereduction.png"
 };
 
 stats["ht-u20"] =  { 
@@ -1296,7 +1296,7 @@ stats["ht-u20"] =  {
                         },
         "ageranges" : [[15, 20]],         
         "title" : "HT-U20 Check age vs U-20 matches",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/u20.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/u20.png"
 };
 
 stats["hottrickkeeper"] =  { 
@@ -1308,7 +1308,7 @@ stats["hottrickkeeper"] =  {
                        },
         
         "title" : "Hottrick Keeper Tool",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hottrick_small.png" 
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hottrick_small.png" 
 };
 
 stats["htnipponkeeper"] =  { 
@@ -1320,7 +1320,7 @@ stats["htnipponkeeper"] =  {
                        },
         
         "title" : "Keeper Level Prediction Tool",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattricknippon_small.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattricknippon_small.png"
 };
 
 stats["coachexperience"] =  { 
@@ -1354,7 +1354,7 @@ stats["nrgjack_accountant_tool"] =  {
                        },
         
         "title" : "NrgJack Accountant Tool",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/nrgjackeconomists.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/nrgjackeconomists.png"
 };    
 
 stats["htlinks_economists"] =  { 
@@ -1375,7 +1375,7 @@ stats["htlinks_economists"] =  {
                        },
         
         "title" : "HT-Links.de Economist Checker",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htlinks_lupe.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks_lupe.png"
 };    
 
 stats["htlinks_trainingspeedchecker"] =  { 
@@ -1387,7 +1387,7 @@ stats["htlinks_trainingspeedchecker"] =  {
                        },
         
         "title" : "HT-Links.de TrainingSpeedChecker",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htlinks_lupe.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks_lupe.png"
 };    
 
 stats["htlinks_Goalkeeper_Checker"] =  { 
@@ -1399,7 +1399,7 @@ stats["htlinks_Goalkeeper_Checker"] =  {
                        },
         
         "title" : "HT-Links.de  - Goalkeeper-Checker",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htlinks_small.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks_small.png"
 };
 
 
@@ -1412,7 +1412,7 @@ stats["htlinks_ti_schrauber"] =  {
 						 },
         "owncountryidranges" : [[3, 3]], 
         "title" : "HT-Links.de  - TISchrauber",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htlinks.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
 
@@ -1424,7 +1424,7 @@ stats["htlinks_price_money"] =  {
                          "params"     : {  "fans" : "Fan",'leaguepos':'Platz','levelnum':'Liga'}
                        },
         "title" : "HT-Links.de  - price_money",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htlinks.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
 stats["htlinks_arena"] =  { 
@@ -1435,7 +1435,7 @@ stats["htlinks_arena"] =  {
                           "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                       },
         "title" : "HT-Links.de  - ArenaCalculator2",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htlinks.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
 stats["htlinks_Errungenschaften"] =  { 
@@ -1447,7 +1447,7 @@ stats["htlinks_Errungenschaften"] =  {
                        },
          "owncountryidranges" : [[3, 3]], 
         "title" : "HT-Links.de - Errungenschaften",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htlinks.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
 
@@ -1461,7 +1461,7 @@ stats["Hattrick_training_speed_tool"] =  {
                        },
         
         "title" : "Hattrick training speed tool",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/trainingspeed.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/trainingspeed.png"
 };    
 
 
@@ -1481,7 +1481,7 @@ stats["skillraise"] =  {
         "ageranges" : [[17, 19]], 
 
         "title" : "SkillRaise Tool",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/skillraise.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/skillraise.png"
 };  */  
 
 
@@ -1504,13 +1504,13 @@ stats["Hattrickstats_fr"] =  {
                 
         "countryidranges" : [[5, 5]], 
         "title" : "HATTRICKSTATS.WeB.SiTe",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattrickstats_fr.gif"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrickstats_fr.gif"
 };    
 
 stats["natstats"] =  { 
   "url" : "http://doof92.co.uk/",
   "title" : "NatStats",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/natstats.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/natstats.png",
   
   "nationalteamlink" : { "path"     : "",
                          "filters"  : [],
@@ -1542,7 +1542,7 @@ stats["hattricktoday"] =  {
                        },
         
         "title" : "Hattrick Today",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hattricktoday.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattricktoday.png"
 };
 
  
@@ -1555,7 +1555,7 @@ stats["magicyp"] =  {
                        },
         
         "title" : "Magic Youthpull",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/magicyp.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/magicyp.png"
 };
 
 
@@ -1577,7 +1577,7 @@ stats["hattrick-youthclub"] =  {
             }
         },
         "title" : "Hattrick Youthclub",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/hyouthclub.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hyouthclub.png"
 };
 
 // youth db links 
@@ -1593,7 +1593,7 @@ stats["srbijayadb"] =  {
                        },
 		"owncountryidranges" : [[57, 57]], 
         "title" : "Srbija YA DB",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 };
 stats["englandyadb"] =  { 
         "url" : "http://www.realfootball.co.uk/hattrick/ya/",
@@ -1607,7 +1607,7 @@ stats["englandyadb"] =  {
                        },
 		"owncountryidranges" : [[2, 2]], 
         "title" : "England YA DB",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 };
 stats["junnukoira"] =  { 
         "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
@@ -1618,18 +1618,7 @@ stats["junnukoira"] =  {
                        },
 		"owncountryidranges" : [[12, 12]], 
         "title" : "Junnukoira - U-20 -superlupausten arvioija",   
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/puhuvakoira.png"
-};
-stats["vihjekoira"] =  { 
-        "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
-
-        "youthlink" : { "path"       : "kulmienkoira/vihjekoira.php",
-                         "filters"    : ["owncountryid"], 
-                         "params"     : [], 
-                       },
-		"owncountryidranges" : [[12, 12]], 
-        "title" : "Vihjekoira - kykyjenetsijän paras ystävä",   
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/puhuvakoira.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/puhuvakoira.png"
 };
 stats["treenikoira"] =  { 
         "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
@@ -1640,7 +1629,7 @@ stats["treenikoira"] =  {
                        },
 		"owncountryidranges" : [[12, 12]], 
         "title" : "Treenikoira - treenilaskuri" ,   
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/puhuvakoira.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/puhuvakoira.png"
 };
 
 stats["arenaoptimizer"] =  { 
@@ -1650,7 +1639,7 @@ stats["arenaoptimizer"] =  {
                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
         "title" : "Arena Optimizer",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/arenaoptimizer.gif"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/arenaoptimizer.gif"
 };
 
 stats["htarena"] =  { 
@@ -1660,7 +1649,7 @@ stats["htarena"] =  {
                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
         "title" : "HTArena - the calculator",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htarena.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htarena.png"
 };
 
 stats["nrg_eco"] =  { 
@@ -1670,7 +1659,7 @@ stats["nrg_eco"] =  {
                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
                        },
         "title" : "NRG ECO",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/eco.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/eco.png"
 };
 
 stats["nrg_fc"] =  { 
@@ -1680,7 +1669,7 @@ stats["nrg_fc"] =  {
                          "params"     : {  }
                        },
         "title" : "NRG FC",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/nrg_fc.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_fc.png"
 };
 					   
 stats["nrg_pop"] =  { 
@@ -1693,7 +1682,7 @@ stats["nrg_pop"] =  {
                                           "scoring" : "sc" }
                           },
         "title" : "NRG Pop",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/nrg_pop.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_pop.png"
 };
 
 stats["nrg_deffor"] =  { 
@@ -1719,7 +1708,7 @@ stats["nrg_deffor"] =  {
             }
         },
         "title" : "NRG The Perfect Defensive Forward",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/nrg_deffor.gif"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_deffor.gif"
 };
 
 
@@ -1743,7 +1732,7 @@ stats["argenstat"] =  {
         
         "countryidranges" : [[7, 7]], 
         "title" : "ArgenStat",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/argenstat.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/argenstat.png"
 };
 
 
@@ -1757,7 +1746,7 @@ stats["gham"] =  {
                        },
         
         "title" : "Gham live",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/gham.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/gham.png"
 };
    
    
@@ -1772,7 +1761,7 @@ stats["ht_bet"] =  {
                        },
         
         "title" : "HT-bet",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/ht_bet.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ht_bet.png"
 };    
    
 
@@ -1786,7 +1775,7 @@ stats["tppc"] =  {
                        },
         
         "title" : "Team Position Probability Calculator",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tppc.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/tppc.png"
 };    
       
    
@@ -1813,7 +1802,7 @@ stats["ht_scouting"] =  {
   "countryidranges" : [[3, 3]], 
   "title" : "HT-Deutschland Scouting DB",
   "img":"flag"
-  //"img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/ht-d-scout.gif"
+  //"img" : Foxtrick.ResourcePath+"resources/linkicons/ht-d-scout.gif"
 };
 
 
@@ -1831,7 +1820,7 @@ stats["ht_scouting_nigeria"] =  {
   "nationalityranges" : [[75, 75]], 
   "countryidranges" : [[75, 75]], 
   "title" : "Nigeria Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_alyaman"] =  { 
@@ -1848,7 +1837,7 @@ stats["ht_scouting_alyaman"] =  {
   "nationalityranges" : [[133, 133]], 
   "countryidranges" : [[133, 133]], 
   "title" : "Al Yaman Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_bahrain"] =  { 
@@ -1865,7 +1854,7 @@ stats["ht_scouting_bahrain"] =  {
   "nationalityranges" : [[123, 123]], 
   "countryidranges" : [[123, 123]], 
   "title" : "Bahrain Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 
@@ -1883,7 +1872,7 @@ stats["ht_scouting_taiwan"] =  {
   "nationalityranges" : [[60, 60]], 
   "countryidranges" : [[60, 60]], 
   "title" : "Taiwan Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_TrinidadTobago"] =  { 
@@ -1900,7 +1889,7 @@ stats["ht_scouting_TrinidadTobago"] =  {
   "nationalityranges" : [[110, 110]], 
   "countryidranges" : [[110, 110]], 
   "title" : "Trinidad & Tobago Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_malaysia"] =  { 
@@ -1917,7 +1906,7 @@ stats["ht_scouting_malaysia"] =  {
   "nationalityranges" : [[45, 45]], 
   "countryidranges" : [[45, 45]], 
   "title" : "Malaysia Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_kyrgyzstan"] =  { 
@@ -1934,7 +1923,7 @@ stats["ht_scouting_kyrgyzstan"] =  {
   "nationalityranges" : [[102, 102]], 
   "countryidranges" : [[102, 102]], 
   "title" : "Kyrgyzstan Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 
@@ -1952,7 +1941,7 @@ stats["ht_scouting_saudiarabia"] =  {
   "nationalityranges" : [[79, 79]], 
   "countryidranges" : [[79, 79]], 
   "title" : "Saudi Arabia Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_brunei"] =  { 
@@ -1969,7 +1958,7 @@ stats["ht_scouting_brunei"] =  {
   "nationalityranges" : [[136, 136]], 
   "countryidranges" : [[136, 136]], 
   "title" : "Brunei Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_malta"] =  { 
@@ -1986,7 +1975,7 @@ stats["ht_scouting_malta"] =  {
   "nationalityranges" : [[101, 101]], 
   "countryidranges" : [[101, 101]], 
   "title" : "Malta Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 
@@ -2004,7 +1993,7 @@ stats["ht_scouting_letzebuerg"] =  {
   "nationalityranges" : [[84, 84]], 
   "countryidranges" : [[84, 84]], 
   "title" : "Letzebuerg Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_almaghrib"] =  { 
@@ -2021,7 +2010,7 @@ stats["ht_scouting_almaghrib"] =  {
   "nationalityranges" : [[77, 77]], 
   "countryidranges" : [[77, 77]], 
   "title" : "Al Maghrib Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 
@@ -2039,7 +2028,7 @@ stats["ht_scouting_alkuwayt"] =  {
   "nationalityranges" : [[127, 127]], 
   "countryidranges" : [[127, 127]], 
   "title" : "Al Kuwayt Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_andorra"] =  { 
@@ -2056,7 +2045,7 @@ stats["ht_scouting_andorra"] =  {
   "nationalityranges" : [[105, 105]], 
   "countryidranges" : [[105, 105]], 
   "title" : "Andorra Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_armenia"] =  { 
@@ -2073,7 +2062,7 @@ stats["ht_scouting_armenia"] =  {
   "nationalityranges" : [[122, 122]], 
   "countryidranges" : [[122, 122]], 
   "title" : "Hayastan NT Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_eesti"] =  { 
@@ -2090,7 +2079,7 @@ stats["ht_scouting_eesti"] =  {
   "nationalityranges" : [[56, 56]], 
   "countryidranges" : [[56, 56]], 
   "title" : "Eesti NT Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 
@@ -2108,7 +2097,7 @@ stats["ht_scouting_liechtenstein"] =  {
   "nationalityranges" : [[117, 117]], 
   "countryidranges" : [[117, 117]], 
   "title" : "Liechtenstein NT Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_kampuchea"] =  { 
@@ -2125,7 +2114,7 @@ stats["ht_scouting_kampuchea"] =  {
   "nationalityranges" : [[138, 138]], 
   "countryidranges" : [[138, 138]], 
   "title" : "Kampuchea NT Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_alurdun"] =  { 
@@ -2142,7 +2131,7 @@ stats["ht_scouting_alurdun"] =  {
   "nationalityranges" : [[106, 106]], 
   "countryidranges" : [[106, 106]], 
   "title" : "Al Urdun NT Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_bangladesh"] =  { 
@@ -2159,7 +2148,7 @@ stats["ht_scouting_bangladesh"] =  {
   "nationalityranges" : [[132, 132]], 
   "countryidranges" : [[132, 132]], 
   "title" : "Bangladesh NT Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["ht_scouting_singapore"] =  { 
@@ -2176,12 +2165,12 @@ stats["ht_scouting_singapore"] =  {
   "nationalityranges" : [[47, 47]], 
   "countryidranges" : [[47, 47]], 
   "title" : "Singapore NT Scouting DB",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 }
 
 stats["omantracker"] = { 
   "url" : "http://www.ht-deutschland.de/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Oman U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "scouting/oman/scouting.php?language=2",
@@ -2199,7 +2188,7 @@ stats["omantracker"] = {
 
 stats["nirelandtracker"] = { 
   "url" : "http://www.ht-deutschland.de/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Northern Ireland U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "scouting/northernireland/scouting.php?language=2",
@@ -2219,7 +2208,7 @@ stats["nirelandtracker"] = {
 
 stats["canadatracker"] = { 
   "url" : "http://nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Canada U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2236,7 +2225,7 @@ stats["canadatracker"] = {
 
 stats["suomitracker"] = { 
   "url" : "http://suomi.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Suomi U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2254,7 +2243,7 @@ stats["suomitracker"] = {
 
 stats["oceaniatracker"] = { 
   "url" : "http://oceania.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Oceania U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2272,7 +2261,7 @@ stats["oceaniatracker"] = {
 
 stats["kenyatracker"] = { 
   "url" : "http://kenya.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Kenya U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2289,7 +2278,7 @@ stats["kenyatracker"] = {
 
 stats["indiatracker"] = { 
   "url" : "http://india.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "India U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2306,7 +2295,7 @@ stats["indiatracker"] = {
 
 stats["panamatracker"] = { 
   "url" : "http://panama.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Panama U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2324,7 +2313,7 @@ stats["panamatracker"] = {
 
 stats["usatracker"] = { 
   "url" : "http://usa.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "USA U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2342,7 +2331,7 @@ stats["usatracker"] = {
 
 stats["irantracker"] = { 
   "url" : "http://iran.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Iran U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2359,7 +2348,7 @@ stats["irantracker"] = {
 
 stats["lebanontracker"] = { 
   "url" : "http://lebanon.nattrick.ca/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Lebanon U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "list.php",
@@ -2380,7 +2369,7 @@ stats["lebanontracker"] = {
 
 stats["israeltracker"] = { 
   "url" : "http://ht.quickly.co.il",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Israel U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2397,7 +2386,7 @@ stats["israeltracker"] = {
 
 stats["suriyahtracker"] = { 
   "url" : "http://suriyah.ht.quickly.co.il/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Suriyah U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2415,7 +2404,7 @@ stats["suriyahtracker"] = {
 
 stats["philippinestracker"] = { 
   "url" : "http://philippines.ht.quickly.co.il/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Philippines U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2432,7 +2421,7 @@ stats["philippinestracker"] = {
 
 stats["barbadostracker"] = { 
   "url" : "http://barbados.ht.quickly.co.il/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Barbados U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2450,7 +2439,7 @@ stats["barbadostracker"] = {
 
 stats["indonesiatracker"] = { 
   "url" : "http://indonesia.ht.quickly.co.il/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Indonesia U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2467,7 +2456,7 @@ stats["indonesiatracker"] = {
 
 stats["moldovatracker"] = { 
   "url" : "http://db.hattrick.md/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Moldova U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2499,7 +2488,7 @@ stats["ht-fff"] =  {
         "nationalityranges" : [[5, 5]],
         "countryidranges" : [[5, 5]],
         "title" : "ht-fff.org | french scouting group.",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/htfff.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htfff.png"
 }; 
 
 
@@ -2517,7 +2506,7 @@ stats["scouting_mexico"] =  {
   "nationalityranges" : [[6, 6]], 
   "countryidranges" : [[6, 6]], 
   "title" : "Hattrick México",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/Mexico_scouting.png"
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/Mexico_scouting.png"
 };
 
 stats["brasileira_tracker"] =  { 
@@ -2534,13 +2523,13 @@ stats["brasileira_tracker"] =  {
 		"countryidranges" : [[16, 16]],   
         "nationalityranges" : [[16, 16]],
         "title" : "Estatísticas da Seleção Brasileira",
-        "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/brasileira.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/brasileira.png"
 };
 
 
 stats["czechrepublic_nt"] = { 
   "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/czech_nt_tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/czech_nt_tracker.png",
   "title" : "Ceská republika U20-NT Tracker",
   
   "trackerplayerlink" : { "path"       : "",
@@ -2559,7 +2548,7 @@ stats["czechrepublic_nt"] = {
 
 stats["crotracker"] = { 
   "url" : "http://cro-tracker.com/index.php",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/cro-tracker.gif",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/cro-tracker.gif",
   "title" : "Hrvatska NT U20 Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2577,7 +2566,7 @@ stats["crotracker"] = {
 
 stats["ghanatracker"] = { 
   "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/ghana_tracker.gif",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/ghana_tracker.gif",
   "title" : "Ghana U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2595,7 +2584,7 @@ stats["ghanatracker"] = {
 
 stats["armenia_u20tracker"] = { 
   "url" : "http://www.hayastan-u20.de.tl/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Hayastan U20 Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2613,7 +2602,7 @@ stats["armenia_u20tracker"] = {
 
 stats["belgiumtracker"] = { 
   "url" : "http://belgium.beltrick.org/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "National Team Belgium Database",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2630,7 +2619,7 @@ stats["belgiumtracker"] = {
 
 stats["colombiatracker"] = { 
   "url" : "http://seleccion.htcolombia.org/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Colombia U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2648,7 +2637,7 @@ stats["colombiatracker"] = {
 
 stats["cyprustracker"] = { 
   "url" : "http://db.ht-cy.org",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Cyprus U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2666,7 +2655,7 @@ stats["cyprustracker"] = {
 
 stats["englandtracker"] = { 
   "url" : "http://www.realfootball.co.uk/hattrick/tracker",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "England U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2684,7 +2673,7 @@ stats["englandtracker"] = {
 
 stats["nederlandtracker"] = { 
   "url" : "http://www.dutchscouts.nl/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Nederland U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2702,7 +2691,7 @@ stats["nederlandtracker"] = {
 
 stats["qatartracker"] = { 
   "url" : "http://www.tracker.comyr.com/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/qatartracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/qatartracker.png",
   "title" : "Dawlat Qatar U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2719,7 +2708,7 @@ stats["qatartracker"] = {
 
 stats["romaniatracker"] = { 
   "url" : "http://rtc.fubar.ro",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Romania U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2736,7 +2725,7 @@ stats["romaniatracker"] = {
 
 stats["surinametracker"] = { 
   "url" : "http://tracker.hattricksuriname.com/players.php",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Suriname U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2753,7 +2742,7 @@ stats["surinametracker"] = {
 
 stats["ugandatracker"] = { 
   "url" : "http://uganda.site50.net",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Uganda U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2771,7 +2760,7 @@ stats["ugandatracker"] = {
 
 stats["mozambiquetracker"] = { 
   "url" : "http://mozambique.comuf.com",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Mozambique U20/NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2788,7 +2777,7 @@ stats["mozambiquetracker"] = {
 
 stats["srbijatracker"] = { 
   "url" : "http://srbija-nt.awardspace.com/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Serbian U-20/NT DB",
   
   "trackernationalteamlink" : { "path"       : "homelist.php",
@@ -2807,7 +2796,7 @@ stats["srbijatracker"] = {
 
 stats["scotlandtracker"] = { 
   "url" : "http://www.htscotland.co.uk",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Scotland U-20/NT DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2825,7 +2814,7 @@ stats["scotlandtracker"] = {
   	 
 stats["tanzaniatracker"] = { 
   "url" : "http://hattricktanzania.ic.cz",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Tanzania U-20/NT DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2842,7 +2831,7 @@ stats["tanzaniatracker"] = {
 
 stats["turkeytracker"] = { 
   "url" : "http://www.ht-turkiye.com",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Türkiye & Azebaycan Player Database",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2860,7 +2849,7 @@ stats["turkeytracker"] = {
 
 stats["southafricatracker"] = { 
   "url" : "http://ht-southafrica.co.za/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "South Africa U-20/NT DB",
   
   "trackernationalteamlink" : { "path"       : "latestNews.aspx",
@@ -2877,7 +2866,7 @@ stats["southafricatracker"] = {
 
 stats["norwayU20tracker"] = { 
   "url" : "http://tracker.sletholt.net/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Norway U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2896,7 +2885,7 @@ stats["norwayU20tracker"] = {
 
 stats["danmarktracker"] = { 
   "url" : "http://www.hobbyisten.biz/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Danmark NT/U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2914,7 +2903,7 @@ stats["danmarktracker"] = {
 
 stats["ukrainatracker"] = { 
   "url" : "http://nt.ht-bet.org/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Ukraina NT/U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2931,7 +2920,7 @@ stats["ukrainatracker"] = {
 
 stats["spaintracker"] = { 
   "url" : "http://www.htspain.com.es/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "España NT/U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2948,7 +2937,7 @@ stats["spaintracker"] = {
 
 stats["polskatracker"] = { 
   "url" : "http://www.ntdb.pl/",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Polska NT/U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2966,7 +2955,7 @@ stats["polskatracker"] = {
 //  ------------- spreadsheets trackers ----------------
 stats["mongoltracker"] = { 
   "url" : "http://spreadsheets.google.com/viewform?formkey=cGhyMThkSzVUdURSdmlWWHdmRldqUXc6MA..",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Mongol Uls U-20/NT DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -2983,7 +2972,7 @@ stats["mongoltracker"] = {
 
 stats["nippontracker"] = { 
   "url" : "http://spreadsheets.google.com/viewform?key=pPPtfeGUpefgXsyLLwuDrAw",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Nippon U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
@@ -3003,7 +2992,7 @@ stats["nippontracker"] = {
 /* links to sokker.org
 stats["u20_nt_tracker"] = { 
   "url" : "http://www.ant-db.net/index.php",
-  "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/nt_tracker.png",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/nt_tracker.png",
   "title" : "Global U20 & NT Tracker",
   
   "trackernationalteamlink" : { "path"       : "?action=select_country",
@@ -3025,7 +3014,7 @@ stats["u20_nt_tracker"] = {
 
 stats["htworld"] =  { 
     "title" : "HT-World NT/U20 tracker",
-    "img" : "chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/linkicons/tracker.png",        
+    "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",        
     "url" : "",
     "urlfunction": function (filterparams) {
                              var countryid = filterparams["countryid"];
@@ -3214,10 +3203,6 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
         img.title = stat.title;
         img.style.border="0";
 		img.src = stat.img;
-		if (Foxtrick.BuildFor=='Chrome') {
-			var exturl = chrome.extension.getURL('');
-			img.src = stat.img.replace(/chrome:\/\/foxtrick\/content\//g, exturl);
-		}
         statslink.appendChild(img);
     }
     
