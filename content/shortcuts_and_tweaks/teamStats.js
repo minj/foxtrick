@@ -47,6 +47,7 @@ Foxtrick.TeamStats= {
 	
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
 		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		var lang = FoxtrickPrefs.getString("htLanguage");
 		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				if (allDivs[i].className=='faceCard') facecards=true;;		
@@ -127,7 +128,11 @@ Foxtrick.TeamStats= {
 				
 				
 				if (page=='players' && Foxtrick.XMLData.playersxml) {
-				 var playerid = as[0].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				 var is_nt_player = (as[0].href.search(/NationalTeam/i)!=-1);
+				 var link_off=0;
+				 if (is_nt_player) link_off=1;
+						
+				 var playerid = as[link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 				 var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');
 				 for (var j=0; j<playerlist.length; ++j) { 
 					var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
@@ -137,20 +142,36 @@ Foxtrick.TeamStats= {
 						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
 						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];	
 						
-						allDivs2.appendChild(doc.createTextNode(' Leadership: '+Leadership+'.'));
-						allDivs2.appendChild(doc.createTextNode(' Experience: '+Experience+'.'));
+						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + Leadership + "']";
+						var LeadershipString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
+						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + Experience + "']";
+						var ExperienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
+			
+						var LeadershipLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
+						var ExperienceLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Experience+'#skillshort">'+ExperienceString+'</a>';
 						
-						var a=doc.createElement('a');
-						a.href='';
-						a.className ="flag inner"; 
+						var pos=allDivs2.innerHTML.lastIndexOf('.');
+						allDivs2.innerHTML = allDivs2.innerHTML.substr(0,pos+1) +
+									' ' + Foxtrickl10n.getString('foxtrick.experience_and_leadership').replace('%1',LeadershipLink).replace('%2',ExperienceLink)+
+									' ' + allDivs2.innerHTML.substr(pos+1);
+						//allDivs2.appendChild(doc.createTextNode(' Leadership: '+Leadership+'.'));
+						//allDivs2.appendChild(doc.createTextNode(' Experience: '+Experience+'.'));
 						
-						var img=doc.createElement('img');
-						var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
-						img.setAttribute('style',style); 
-						img.src="/Img/Icons/transparent.gif";
+						if (!is_nt_player) {
+							var a=doc.createElement('a');
+							a.href='';
+							a.className ="flag inner"; 						
+							var img=doc.createElement('img');
+							var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+							img.setAttribute('style',style); 
+							img.src="/Img/Icons/transparent.gif";						
+							a.appendChild(img);
+							as[link_off].parentNode.insertBefore(a, as[link_off]);
+						}
+						else {
+							as[link_off].setAttribute('style','background-color:#FFCC00');
+						}
 						
-						a.appendChild(img);
-						as[0].parentNode.insertBefore(a, as[0]);
 						break;
 					}
 				 }

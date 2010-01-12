@@ -890,7 +890,20 @@ stats["ekonomer"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/httools_economy.png"
 };
 
-// ht-tools 
+// 
+stats["ComunidadHattrickVenezuela"] =  { 
+        "url" : "http://www.hattrick.org.ve",
+
+        "countrylink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : []
+                       },
+		"owncountryidranges" : [[29, 29]], 
+        "title" : "Comunidad Hattrick Venezuela",   
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/chtvicon.png"
+};
+
+// 
 stats["ConvertidordeTiempo"] =  { 
         "url" : "http://www.hattrick.org.ve/herramientas/tiempo/",
 
