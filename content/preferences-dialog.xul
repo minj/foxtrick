@@ -11,7 +11,6 @@
 	buttons="accept,cancel"
 	width="600px"
 	height="600px"
-	resizable="yes"
 	persist="width height screenX screenY">
 
 <keyset>
