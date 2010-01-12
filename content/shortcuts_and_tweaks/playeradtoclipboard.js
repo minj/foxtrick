@@ -11,8 +11,8 @@ var FoxtrickPlayerAdToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.1",
-	LATEST_CHANGE:"Small copy icons fixed",
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Disabled on unknown players",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
 	_PLAYMAKING : 3,
@@ -25,6 +25,19 @@ var FoxtrickPlayerAdToClipboard = {
     
     run : function( page, doc ) {
 
+		try{
+			var main = doc.getElementById("mainWrapper");					
+			var links = main.getElementsByTagName("a");
+			var empty = true;
+			for (var i = 0; i < links.length; i++) {
+				if (links[i].href.match(/Club\/\?TeamID/i)) {
+					empty = false;
+					break;
+				}
+			}
+			if (empty) {return;}
+		} catch(e) {return;}
+		
 		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
 			if (doc.getElementById('copyplayerad')) return;
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
