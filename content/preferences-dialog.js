@@ -247,8 +247,8 @@ var FoxtrickPreferencesDialog = {
 		// head_developer
 		var headdeveloper_caption = doc.getElementById("headdeveloper_caption");
 		var headdeveloper_list = doc.getElementById("headdeveloper_list");
-		var headdeveloper = Foxtrick.XML_evaluate(xmlresponse, "about/head_developer/label", "value");
-		headdeveloper_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/head_developer", "value")[0]);
+		var headdeveloper = Foxtrick.XML_evaluate(xmlresponse, "about/head_developers/head_developer", "value");
+		headdeveloper_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/head_developers", "value")[0]);
 		for (var i = 0; i < headdeveloper.length; ++i) {
 			var label = doc.createElement("label");
 			headdeveloper_list.appendChild(label);
@@ -258,7 +258,7 @@ var FoxtrickPreferencesDialog = {
 		// project_owners
 		var projectowners_caption = doc.getElementById("projectowners_caption");
 		var projectowners_list = doc.getElementById("projectowners_list");
-		var projectowners = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/label", "value");
+		var projectowners = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/project_owner", "value");
 		projectowners_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/project_owners", "value")[0]);
 		for (var i = 0; i < projectowners.length; ++i) {
 			var label = doc.createElement("label");
@@ -269,7 +269,7 @@ var FoxtrickPreferencesDialog = {
 		// developers
 		var developers_caption = doc.getElementById("developers_caption");
 		var developers_list = doc.getElementById("developers_list");
-		var developers = Foxtrick.XML_evaluate(xmlresponse, "about/developers/label", "value");
+		var developers = Foxtrick.XML_evaluate(xmlresponse, "about/developers/developer", "value");
 		developers_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/developers", "value")[0]);
 		for (var i = 0; i < developers.length; ++i) {
 			var label = doc.createElement("label");
@@ -280,7 +280,7 @@ var FoxtrickPreferencesDialog = {
 		// translations
 		var translations_caption = doc.getElementById("translations_caption");
 		var translations_list = doc.getElementById("translations_list");
-		var translations = Foxtrick.XML_evaluate(xmlresponse, "about/translations/label", "value");
+		var translations = Foxtrick.XML_evaluate(xmlresponse, "about/translations/translation", "value");
 		translations_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/translations", "value")[0]);
 		for (var i = 0; i < translations.length; ++i) {
 			var label = doc.createElement("label");
