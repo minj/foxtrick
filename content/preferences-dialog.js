@@ -805,7 +805,7 @@ var FoxtrickPreferencesDialog = {
 FoxtrickPreferencesDialog.configureFoxtrick = function(button) {
 	if (!button) {
 		window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
-			"foxtrick-config", "resizable=yes,centerscreen=yes,chrome=yes,modal=yes");
+			"foxtrick-config", "resizable=yes,centerscreen=yes,chrome=yes,modal=yes,dialog=no");
 		FoxtrickMain.init();
 	}
 }
