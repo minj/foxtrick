@@ -66,7 +66,7 @@ FoxtrickHistoryStats= {
                 } catch(e_offset) {Foxtrick.dump('Error Offset calc: ' + e_offset +'<br>\n');}
                 var table = Foxtrick.getElementsByClass('otherEventText', doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').cloneNode(true));
                 for (var i = 0; i < table.length; i++) {
-                    if (table[i].innerHTML.search(/class\=\"shy\"/) > -1) continue;
+					if (table[i].innerHTML.search(/\<span class\=\"shy\"/) == 0 ) continue;
                     dummy = Foxtrick.trim(table[i].innerHTML);
                     
                     //Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(dummy) + '\n');

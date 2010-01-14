@@ -35,7 +35,7 @@ var FoxtrickCustomMedals = {
 				
 				var customMedals = "oldhtmedals";
 				var oldString = "trophy";
-				var newString = Foxtrick.ResourcePath+"/resources/img/"
+				var newString = Foxtrick.ResourcePath+"resources/img/"
 					+ "custommedals/" + customMedals + "/";
 				if(imgClass.search(oldString) != -1) {
 					newString = 'background-image: url(' + newString + imgClass + 

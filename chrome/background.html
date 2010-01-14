@@ -194,7 +194,7 @@ chrome.extension.onConnect.addListener(function(port) {
 				}
 				if (css_text) {  // remove moz-document statement
 					if ( css_text.search('@-moz-document')!=-1) {
-						css_text = css_text.replace(/@-moz-document.+\{/,'');
+						css_text = css_text.replace(/@-moz-document[^\{]+\{/,''); 
 						var closing_bracket = css_text.lastIndexOf('}');
 						css_text = css_text.substr(0,closing_bracket)+css_text.substr(closing_bracket+1);
 					}					
