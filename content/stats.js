@@ -75,7 +75,7 @@ hscountries["107"]="Guatemala";
 hscountries["99"]="Honduras";
 hscountries["59"]="HongKong";
 hscountries["51"]="Hungary";
-hscountries["38"]="Ísland";
+hscountries["38"]="Ãsland";
 hscountries["20"]="India";
 hscountries["54"]="Indonesia";
 hscountries["85"]="Iran";
@@ -2518,7 +2518,7 @@ stats["scouting_mexico"] =  {
 				}, 
   "nationalityranges" : [[6, 6]], 
   "countryidranges" : [[6, 6]], 
-  "title" : "Hattrick México",
+  "title" : "Hattrick MÃ©xico",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/Mexico_scouting.png"
 };
 
@@ -2535,15 +2535,15 @@ stats["brasileira_tracker"] =  {
 				}, 
 		"countryidranges" : [[16, 16]],   
         "nationalityranges" : [[16, 16]],
-        "title" : "Estatísticas da Seleção Brasileira",
+        "title" : "EstatÃ­sticas da SeleÃ§Äƒo Brasileira",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/brasileira.png"
 };
 
 
 stats["czechrepublic_nt"] = { 
-  "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
+  "url" : "http://tracker.kiekko.cz/players/submit/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/czech_nt_tracker.png",
-  "title" : "Ceská republika U20-NT Tracker",
+  "title" : "ÄŒeskÃ¡ republika U20-NT Tracker",
   
   "trackerplayerlink" : { "path"       : "",
                    "filters"    : ["nationality"], 
@@ -2845,7 +2845,7 @@ stats["tanzaniatracker"] = {
 stats["turkeytracker"] = { 
   "url" : "http://www.ht-turkiye.com",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Türkiye & Azebaycan Player Database",
+  "title" : "TÃ¼rkiye & Azebaycan Player Database",
   
   "trackernationalteamlink" : { "path"       : "",
                          "filters"    : ["countryid"], 
@@ -2934,7 +2934,7 @@ stats["ukrainatracker"] = {
 stats["spaintracker"] = { 
   "url" : "http://www.htspain.com.es/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "España NT/U-20 DB",
+  "title" : "EspaÅ„a NT/U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
                          "filters"    : ["countryid"], 
