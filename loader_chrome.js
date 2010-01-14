@@ -63,7 +63,7 @@ function runScript() {
 
 // action
 if (typeof(did_action)=='undefined'){
-	window.setTimeout(setStyle, 1);
+	//window.setTimeout(setStyle, 1);
 	window.addEventListener("DOMContentLoaded", runScript, false);
 	var did_action=true;
 }

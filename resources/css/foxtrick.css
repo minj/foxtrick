@@ -55,8 +55,8 @@ div#ft_adultskilltable td, div#ft_youthskilltable td {border-bottom: 1px solid #
 
 
 /* must be at the end of the document!!! */
-/* hide all till script finished */
+/* hide all till script finished 
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 	body{display:none;}
-}
+}*/
 

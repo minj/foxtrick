@@ -75,7 +75,7 @@ hscountries["107"]="Guatemala";
 hscountries["99"]="Honduras";
 hscountries["59"]="HongKong";
 hscountries["51"]="Hungary";
-hscountries["38"]="Õsland";
+hscountries["38"]="√çsland";
 hscountries["20"]="India";
 hscountries["54"]="Indonesia";
 hscountries["85"]="Iran";
@@ -890,7 +890,20 @@ stats["ekonomer"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/httools_economy.png"
 };
 
-// ht-tools 
+// 
+stats["ComunidadHattrickVenezuela"] =  { 
+        "url" : "http://www.hattrick.org.ve",
+
+        "countrylink" : { "path"       : "",
+                         "filters"    : ["owncountryid"], 
+                         "params"     : []
+                       },
+		"owncountryidranges" : [[29, 29]], 
+        "title" : "Comunidad Hattrick Venezuela",   
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/chtvicon.png"
+};
+
+// 
 stats["ConvertidordeTiempo"] =  { 
         "url" : "http://www.hattrick.org.ve/herramientas/tiempo/",
 
@@ -2505,7 +2518,7 @@ stats["scouting_mexico"] =  {
 				}, 
   "nationalityranges" : [[6, 6]], 
   "countryidranges" : [[6, 6]], 
-  "title" : "Hattrick MÈxico",
+  "title" : "Hattrick M√©xico",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/Mexico_scouting.png"
 };
 
@@ -2522,15 +2535,15 @@ stats["brasileira_tracker"] =  {
 				}, 
 		"countryidranges" : [[16, 16]],   
         "nationalityranges" : [[16, 16]],
-        "title" : "EstatÌsticas da SeleÁ„o Brasileira",
+        "title" : "Estat√≠sticas da Sele√ßƒÉo Brasileira",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/brasileira.png"
 };
 
 
 stats["czechrepublic_nt"] = { 
-  "url" : "http://u20.hattrick-cz.com/?pg=submitPlayer",
+  "url" : "http://tracker.kiekko.cz/players/submit/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/czech_nt_tracker.png",
-  "title" : "Cesk· republika U20-NT Tracker",
+  "title" : "ƒåesk√° republika U20-NT Tracker",
   
   "trackerplayerlink" : { "path"       : "",
                    "filters"    : ["nationality"], 
@@ -2832,7 +2845,7 @@ stats["tanzaniatracker"] = {
 stats["turkeytracker"] = { 
   "url" : "http://www.ht-turkiye.com",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "T¸rkiye & Azebaycan Player Database",
+  "title" : "T√ºrkiye & Azebaycan Player Database",
   
   "trackernationalteamlink" : { "path"       : "",
                          "filters"    : ["countryid"], 
@@ -2921,7 +2934,7 @@ stats["ukrainatracker"] = {
 stats["spaintracker"] = { 
   "url" : "http://www.htspain.com.es/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "EspaÒa NT/U-20 DB",
+  "title" : "Espa≈Ña NT/U-20 DB",
   
   "trackernationalteamlink" : { "path"       : "",
                          "filters"    : ["countryid"], 

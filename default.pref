@@ -12,7 +12,7 @@ user_pref("extensions.foxtrick.prefs.copyfeedback",true);
 user_pref("extensions.foxtrick.prefs.cssSkin","");
 user_pref("extensions.foxtrick.prefs.cssSkin.value","");
 user_pref("extensions.foxtrick.prefs.cssSkinOld","");
-user_pref("extensions.foxtrick.prefs.curVersion","0.5.0.6");
+user_pref("extensions.foxtrick.prefs.curVersion","0.5.0.0");
 user_pref("extensions.foxtrick.prefs.currencyCode","EUR");
 user_pref("extensions.foxtrick.prefs.currencyRate","1.0");
 user_pref("extensions.foxtrick.prefs.currencyRateTo","0.25");

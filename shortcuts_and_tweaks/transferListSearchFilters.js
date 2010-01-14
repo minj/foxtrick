@@ -129,7 +129,7 @@ FoxtrickTransferListSearchFilters = {
         
         var wind = ev.target.window;
         try {
-            var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
+            /*var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
             
             var returnobj = {};
             var b = {};
@@ -138,8 +138,8 @@ FoxtrickTransferListSearchFilters = {
                 Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"), returnobj, null, b);
             
             if (returnobj == null) return;
-                        
-            var filtername = returnobj.value;
+            */
+            var filtername = prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));//returnobj.value;
             if (filtername == '') return;
             
             filtername = filtername.substring( 0, FoxtrickTransferListSearchFilters._MAX_FILTER_DISP_LENGTH );

@@ -256,9 +256,9 @@ var FoxtrickAdultSkillTable = {
 						if (sktable && sktable.parentNode.className.search('myht2')!=-1) sktable=null;
 						if (sktable) var trs = sktable.getElementsByTagName("tr");	
 						
-						var is_nt_player = (allDivs[i].getElementsByTagName("a")[0].href.search(/NationalTeam/i)!=-1);
+						var has_flag = (allDivs[i].getElementsByTagName("a")[0].innerHTML.search(/flags.gif/i)!=-1);
 						var link_off=0;
-						if (is_nt_player) link_off=1;
+						if (has_flag) link_off=1;
 						
 						FoxtrickAdultSkillTable.copy_string += '[tr]';
 						var tr = doc.createElement('tr');

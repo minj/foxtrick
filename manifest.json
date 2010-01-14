@@ -102,7 +102,7 @@
 		"presentation/guestbookalltidflags.js",
 		"presentation/tickercoloring.js",
 		"presentation/headerfix.js",
-		"presentation/newmail_chrome.js",
+		"presentation/newmail.js",
 		"presentation/leaguenewsfilter.js",
 		"presentation/moveplayerselectbox.js",
 		"presentation/highlightcupwins.js",
