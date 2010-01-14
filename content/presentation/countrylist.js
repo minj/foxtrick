@@ -221,7 +221,7 @@ var FoxtrickCountyList = {
 
         var opt_array = new Array();
         try{
-            for( var i = 0; i < options.length; i++){
+            for( var i = start; i < options.length; i++){
                 var oldopt = new Array('-1', '-1');
                 oldopt[0] = options[i].value;
                 oldopt[1] = options[i].text;
@@ -229,18 +229,18 @@ var FoxtrickCountyList = {
 			}
         } catch (epush) {Foxtrick.dump('countrylist: EPUSH '+epush+'\n');}
 
-        function sortByOptionText(a, b) {
+        function sortByOptionText(a, b) {  
             var x = a[1]; x=(x.search(/.+sland/)==0)?'Island':((x.search(/.+esk.+republika/)!=-1)?'Ceska republika':x);
             var y = b[1]; y=(y.search(/.+sland/)==0)?'Island':((y.search(/.+esk.+republika/)!=-1)?'Ceska republika':y);
-            if (a[0] <= 0 || b[0] <= 0) return -1;
+//            if (parseInt(a[0]) <= 0 || parseInt(b[0]) <= 0) return -1;  // not working well in chrome. should be compare values also
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
         }
 
         opt_array.sort(sortByOptionText);
-        for(var i=0; i < opt_array.length; i++){
+        for(var i=start; i < opt_array.length; i++){
             if (opt_array[i][0] == id_sel) selectbox.selectedIndex = i;
-            options[i].value = opt_array[i][0];
-            options[i].text = opt_array[i][1];
+            options[i].value = opt_array[i-start][0];
+            options[i].text = opt_array[i-start][1];
         }
 		selectbox.style.display='inline';
     },
