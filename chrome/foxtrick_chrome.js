@@ -146,8 +146,6 @@ var FoxtrickMain = {
 			
 			//FoxtrickSkinPlugin.load( document );
 
-			//Foxtrick.reload_css_permanent( 'chrome-extension://bpfbbngccefbbndginomofgpagkjckik/resources/css/foxtrick.css' ) ;		
-
 		var content = doc.getElementById("content");
 		if( content ) {
 			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
@@ -272,6 +270,7 @@ try{
 	//link.setAttribute("href", css.replace(/chrome:\/\/foxtrick\/content\//,''));
 	link.setAttribute("href", css);
 	head.appendChild(link);
+	Foxtrick.dump('add css link '+css);
 } catch(e){alert('addStyleSheet  '+e);}
 }
 

@@ -1,7 +1,7 @@
 /**
  * read_ht_prefs_changes.js
  * Foxtrick read some ht prefs if they change
- * @author convinced
+ * @author convinced 
  */
 ////////////////////////////////////////////////////////////////////////////////
 
