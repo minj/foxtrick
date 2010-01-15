@@ -669,8 +669,6 @@ var FoxtrickPrefsDialogHTML = {
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertsoundpref', Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"),'', checked ) 
 		div.appendChild(checkdiv);
 
-
-
 		// LoadSavePrefs
 		var groupbox= doc.createElement("div");
 		groupbox.setAttribute('class',"ft_pref_modul");

@@ -46,11 +46,11 @@ var FoxtrickPrefs = {
 	try {
 		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);', "i" );
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) {
-			try {return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://bpfbbngccefbbndginomofgpagkjckik/');
+			try {return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,chrome.extension.getURL(''));
 			} catch(e) {return '';}
 		}
 		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) {
-			try { return  FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,'chrome-extension://bpfbbngccefbbndginomofgpagkjckik/');
+			try { return  FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,chrome.extension.getURL(''));
 			} catch(e) {return '';}
 		}
 	} catch(e) {};
@@ -268,13 +268,10 @@ FoxtrickPrefs.disableAll = function (ev ) {
 
 FoxtrickPrefs.SavePrefs = function (ev) {
         try {
-			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-			else doc=document;
-			var newwin = window.open("","");
-			newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+FoxtrickPrefs.pref.replace(/\n/gi,'<br>')+'</body></html>');			
+			portsetpref.postMessage({reqtype: "export_prefs", prefs: FoxtrickPrefs.pref});
 		}
 		catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('FoxtrickPrefs.ExportPrefs '+e);
         }
     return true;
 }

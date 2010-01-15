@@ -211,6 +211,11 @@ chrome.extension.onConnect.addListener(function(port) {
             port.postMessage({set:'css_text_set', css_text: css_text_from_response});
 		  } catch(e) {alert('css xhr '+e);alert(cssUrl[i])}
         }
+	    else if (msg.reqtype == "export_prefs") {
+			var newwin = window.open("about:blank","FoxTrick Preferences","menubar=yes,location=no,resizable=yes,width=400,height=400");
+			newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+msg.prefs.replace(/\n/gi,'<br>')+'</body></html>');			
+			newwin.focus();		
+		}
 	    else if (msg.reqtype == "save_prefs") {
 			// save new session properties			
 			preftext = msg.prefs;
