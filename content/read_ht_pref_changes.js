@@ -1,7 +1,7 @@
 /**
  * read_ht_prefs_changes.js
  * Foxtrick read some ht prefs if they change
- * @author convinced
+ * @author convinced 
  */
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -80,12 +80,27 @@ var FoxtrickReadHtPrefs = {
 			var oldval = FoxtrickPrefs.getString("htLanguage");
 			if (this.codes[langval]==oldval) return;
 			
-			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);
-			Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);		
 			
-			var path = "hattricklanguages/language[@name='" + this.codes[langval] + "']";
+			if (Foxtrick.BuildFor=='Chrome') {
+				// change language
+				FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:this.codes[langval], from:'readpref'});			
+				// ShowChanged(doc); shown in the listener!	
+			}
+			else {  
+				// change language
+				Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+				ShowChanged(doc);  	
+			}
+		}
+	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
+	},
+
+    ShowChanged: function(doc) {	
+	try {
+			var path = "hattricklanguages/language[@name='" + FoxtrickPrefs.getString("htLanguage") + "']";
 			var langname = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "desc");
-					
+			
 			var mainBody = doc.getElementById('mainBody');	
 			var alertdiv=doc.createElement('div');
 			alertdiv.setAttribute('class','alert');
@@ -93,7 +108,6 @@ var FoxtrickReadHtPrefs = {
 			alertdiv.setAttribute('style', 'margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+langname));
 			mainBody.insertBefore(alertdiv,mainBody.firstChild);
-		}
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 	
@@ -232,14 +246,14 @@ var FoxtrickMyHT = {
 				// turn off youthskillnotes		
 				if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
 				&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes')))  {
-					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false); 
+					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false, true); 
 					prefs_changed=true;
 				}
 
 				// reinitialize
 				if (prefs_changed) FoxtrickMain.init();
 
-				FoxtrickPrefs.setBool("v0481.show_once", true); 
+				FoxtrickPrefs.setBool("v0481.show_once", true, true); 
 				
 			}
 	},	
