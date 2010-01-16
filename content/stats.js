@@ -2736,6 +2736,25 @@ stats["romaniatracker"] = {
 	"nationalityranges" : [[37,37]], 
 };
 
+
+stats["hellastracker"] = { 
+  "url" : "http://www.hdb.gr",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Hellas U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[50,50]] ,
+	"nationalityranges" : [[50,50]], 
+};
+
+
 stats["surinametracker"] = { 
   "url" : "http://tracker.hattricksuriname.com/players.php",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
