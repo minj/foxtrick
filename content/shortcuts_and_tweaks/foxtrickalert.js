@@ -233,7 +233,7 @@ var FoxtrickAlert = {
 							Foxtrick.dump('alertclickcallback:' +'link to: '+data+'\n');
 							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 									.getService(Components.interfaces.nsIWindowMediator);
-							FoxtrickAlert.openAndReuseOneTabPerURL(href);
+							Foxtrick.openAndReuseOneTabPerURL(href,true);
 						}						
 						if (topic=="alertfinished") {
 							FoxtrickAlert.foxtrick_showAlert(true);
@@ -318,58 +318,7 @@ Foxtrick.dump('foxtrick_show_dbus: '+text+'\n');
         //return;
     }
 	
-  },
-
-
-  
-// find first occurence of host and open+focus there
-openAndReuseOneTabPerURL : function(url) {
-  var host = url.match(/(http:\/\/[a-zA-Z0-9_.]+)/)[1];
-  
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-                     .getService(Components.interfaces.nsIWindowMediator);
-  var browserEnumerator = wm.getEnumerator("navigator:browser");
-
-  // Check each browser instance for our URL
-  var found = false;
-  while (!found && browserEnumerator.hasMoreElements()) {
-    var browserWin = browserEnumerator.getNext();
-    var tabbrowser = browserWin.getBrowser();
-
-    // Check each tab of this browser instance
-    var numTabs = tabbrowser.browsers.length;
-    for(var index=0; index<numTabs; index++) {
-      var currentBrowser = tabbrowser.getBrowserAtIndex(index); 
-      if (currentBrowser.currentURI.spec.search(host)!=-1) 
-		{
-
-        // The URL is already opened. Select this tab.
-        tabbrowser.selectedTab = tabbrowser.mTabs[index];
-
-        // Focus *this* browser-window
-		browserWin.loadURI(url )
-        browserWin.focus();
-
-        found = true;
-        break;
-      }
-    }
-  }
-
-  // Our URL isn't open. Open it now.
-  if (!found) {
-    var recentWindow = wm.getMostRecentWindow("navigator:browser");
-    if (recentWindow) {
-      // Use an existing browser window
-      recentWindow.delayedOpenTab(url, null, null, null, null);
-    }
-    else {
-      // No browser windows are open, so open a new one.
-      //window.open(url);
-    }
-  }
-},
-  
+  }  
 };
 
 
