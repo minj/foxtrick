@@ -90,7 +90,7 @@ var FoxtrickReadHtPrefs = {
 			else {  
 				// change language
 				Foxtrickl10n.get_strings_bundle(this.codes[langval]);
-				ShowChanged(doc);  	
+				FoxtrickReadHtPrefs.ShowChanged(doc);  	
 			}
 		}
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
