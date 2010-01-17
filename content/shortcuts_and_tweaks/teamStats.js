@@ -22,7 +22,7 @@ Foxtrick.TeamStats= {
     },
 
     run : function( page, doc ) {	
-	
+	try {
 		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
 		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 			
@@ -131,8 +131,8 @@ Foxtrick.TeamStats= {
 				 var is_nt_player = (as[0].href.search(/NationalTeam/i)!=-1);
 				 var link_off=0;
 				 if (is_nt_player) link_off=1;
-						
 				 var playerid = as[link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				 
 				 var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');
 				 for (var j=0; j<playerlist.length; ++j) { 
 					var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
@@ -154,8 +154,6 @@ Foxtrick.TeamStats= {
 						allDivs2.innerHTML = allDivs2.innerHTML.substr(0,pos+1) +
 									' ' + Foxtrickl10n.getString('foxtrick.experience_and_leadership').replace('%1',LeadershipLink).replace('%2',ExperienceLink)+
 									' ' + allDivs2.innerHTML.substr(pos+1);
-						//allDivs2.appendChild(doc.createTextNode(' Leadership: '+Leadership+'.'));
-						//allDivs2.appendChild(doc.createTextNode(' Experience: '+Experience+'.'));
 						
 						if (!is_nt_player) {
 							var a=doc.createElement('a');
@@ -378,7 +376,9 @@ Foxtrick.TeamStats= {
 		td.appendChild(filterselect);
 		mainBody.insertBefore(table,mainBody.firstChild);
 		//sortbybox.parentNode.insertBefore(filterselect,sortbybox);
-        },
+    
+	} catch(e){Foxtrick.dump('teamstats '+e+'\n');}
+	},
         
         _checkCountry : function ( ctrc ) {
             if (ctrc == null ) return;

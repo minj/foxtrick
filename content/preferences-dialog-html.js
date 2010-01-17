@@ -1219,12 +1219,13 @@ var FoxtrickPrefsDialogHTML = {
 				
 				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
 				if (module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]){
-					if (!val) val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
+					if (val==null) val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 					DefaultOptionText = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
 				OptionText = val;
+				Foxtrick.dump(module.MODULE_NAME+'.'+key+' o:'+OptionText+' d:'+DefaultOptionText+'\n');	
 			}
-																
+															
 			var checked = Foxtrick.isModuleFeatureEnabled( module, key)
 			var group = module.MODULE_NAME + '.' + key;
 			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, DefaultOptionText, on_page ));
@@ -1279,7 +1280,7 @@ var FoxtrickPrefsDialogHTML = {
 		cleaner.style.clear = "both";
 		div.appendChild(cleaner);
 
-		if (option_text) {
+		if (option_text!=null) {
 			check.addEventListener( "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
 					var optiondiv = ev.target.ownerDocument.getElementById(ev.currentTarget.id+'_table');

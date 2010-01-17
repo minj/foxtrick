@@ -766,7 +766,7 @@ var FoxtrickPreferencesDialog = {
 				}, false);
 
 				var val = FoxtrickPrefs.getString("module." + textbox.id);
-				if (!val && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]) {
+				if (val==null && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]) {
 					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
 				textbox.setAttribute("value", val);
