@@ -2,19 +2,19 @@
 
 
 /* icons and hover icons */
-div.ft_actionicon {cursor: pointer; width: 16px; height: 16px; background: 50% no-repeat;}
-div.ft_icon {width: 16px; height: 16px; background: 50% no-repeat;}
+.ft_actionicon {cursor: pointer; width: 16px; height: 16px; background: 50% no-repeat;}
+.ft_icon {width: 16px; height: 16px; background: 50% no-repeat;}
 
-div.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy_small.png')}
-div.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png');}
-div.foxtrickHelp {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_green.png');}
-div.foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png');}
-div.foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png');}
-div.foxtrickExport:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png');}
-div.foxtrickRemove {background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png');}
-div.foxtrickRemove:hover {background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png');}
-div.foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png');}
-div.foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png');}
+.foxtrickCopy {background: url('chrome://foxtrick/content/resources/img/copy_small.png') no-repeat;}
+.foxtrickCopy:hover {background: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png') no-repeat;}
+.foxtrickHelp {background: url('chrome://foxtrick/content/resources/img/Aiga_help_green.png') no-repeat;}
+.foxtrickHelp:hover {background: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png') no-repeat;}
+.foxtrickExport {background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png') no-repeat;}
+.foxtrickExport:hover {background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png') no-repeat;}
+.foxtrickRemove {background: url('chrome://foxtrick/content/resources/linkicons/cross_small.png') no-repeat;}
+.foxtrickRemove:hover {background: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png') no-repeat;}
+.foxtrickInfo {background: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png') no-repeat;}
+.foxtrickInfo:hover {background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') no-repeat;}
 
 /* sidebarbox h2 dropdown image */ 
 div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat; background-position: 99% 60%;}
