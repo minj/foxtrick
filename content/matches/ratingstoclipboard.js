@@ -181,7 +181,7 @@ var FoxtrickCopyRatingsToClipboard = {
         
         
         var ad = '\n[table]\n';
-        var table = doc.getElementsByTagName('table')[0].cloneNode(true);
+        var table = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode.getElementsByTagName('table')[0].cloneNode(true);
 		for (var row=0; row<table.rows.length; ++row) {
 				if(!team1 && table.rows[row].cells.length>=2) table.rows[row].cells[1].innerHTML='###';
 				if(!team2 && table.rows[row].cells.length>=3) table.rows[row].cells[2].innerHTML='###';
