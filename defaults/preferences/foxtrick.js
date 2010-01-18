@@ -145,7 +145,7 @@ pref( "extensions.foxtrick.prefs.module.OnPagePrefs.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.enabled", false );
 pref( "extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false );
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.CopySkillTable.enabled", true );
-pref( "extensions.foxtrick.prefs.module.HighlightBotTeams.ChooseColorHighlight.enabled", false );
+pref( "extensions.foxtrick.prefs.module.HighlightBotTeams.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", false);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Home.enabled", false);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Draw.enabled", false);

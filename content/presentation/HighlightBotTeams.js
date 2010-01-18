@@ -7,7 +7,7 @@ FoxtrickHighlightBotTeams = {
 	MODULE_NAME : "HighlightBotTeams",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Highlight Bot teams on series pages",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
