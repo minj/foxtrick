@@ -1719,6 +1719,7 @@ var FoxtrickOnPagePrefs = {
 	run : function(page, doc ) {  
     		try{
 			if (doc.getElementById('ctl00_ucSubMenu_txtUserName')) return;
+			if (doc.getElementById('ctl00_ctl00_pnlAdminMode')) return;
 		
 			var column;
 			if (doc.getElementById('sidebar')) column='right';
