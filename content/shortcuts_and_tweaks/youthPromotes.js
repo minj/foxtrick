@@ -28,19 +28,23 @@ var FoxtrickYouthPromotes = {
 
 	run : function( page, doc ) {
 		try {
-			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
-			var playerTable = playerInfo.getElementsByTagName('table')[0];
+			// for the likes of `16-01-2010 01.02 (3 days ago)':
 			var joinedRe1 = /\d+[\./\-]\d+[\./\-]\d+\s+\d+[:\.]\d+.+?(\d+)/;
 			//               ^y ^sep   ^M ^sep   ^d    ^h ^sep ^m    ^join
+			// for the likes of `3 dage siden (16-01-2010 01.02)':
 			var joinedRe2 = /(\d+).+?\d+[\./\-]\d+[\./\-]\d+\s+\d+[:\.]\d+/;
 			//               ^join   ^y ^sep   ^M ^sep   ^d    ^h ^sep ^m
+			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
+			var playerTable = playerInfo.getElementsByTagName('table')[0];
 			var joinedCell = playerTable.getElementsByTagName('td')[5];
+			// if not joinedRe1, then joinedRe2
 			var joinedMatch = joinedRe1.exec(joinedCell.innerHTML);
 			if (joinedMatch === null) {
 				joinedMatch = joinedRe2.exec(joinedCell.innerHTML);
 			}
 			var joinedDays = joinedMatch[1];
 
+			// birthdays are easy, only one possibility
 			var birthdayRe = /(\d+).*?(\d+).*?\d+.*?\d+.*?\d+.*?/;
 			var birthdayCell;
 			var allDivs = doc.getElementsByTagName("div");
@@ -54,14 +58,13 @@ var FoxtrickYouthPromotes = {
 			var days = birthdayMatch[2];
 
 			var daysToPromote = FoxtrickYouthPromotes._getDaysToPromote(joinedDays, years, days);
-
 			if (!isNaN(daysToPromote)) {
 				var message = "";
-				if (daysToPromote > 0) {
+				if (daysToPromote > 0) { // you have to wait to promote
 					message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_d") + " " +
 						daysToPromote + " " + Foxtrickl10n.getString("foxtrick.youthpromotedays.days");
 				}
-				else {
+				else { // can be promoted already
 					message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t");
 				}
 				var promotionCell = doc.createElement("p");
