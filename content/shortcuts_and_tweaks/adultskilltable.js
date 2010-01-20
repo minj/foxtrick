@@ -11,8 +11,8 @@ var FoxtrickAdultSkillTable = {
 	PAGES : new Array('players'),
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.2",
-	LATEST_CHANGE:"Used abbr for better accessibilty",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Used abbr for better accessibilty and fixed copy empty cells",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"),
 
 	copy_string:"",

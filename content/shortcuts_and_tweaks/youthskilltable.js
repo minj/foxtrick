@@ -11,8 +11,8 @@ var FoxtrickYouthSkillTable = {
 	PAGES : new Array('YouthPlayers'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
-	LATEST_CHANGE:"Used abbr for better accessibilty",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE:"Used abbr for better accessibilty and fixed copy empty cells",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"),
 
 	copy_string:"",
@@ -142,7 +142,7 @@ var FoxtrickYouthSkillTable = {
 					th.setAttribute("s_index", s_index++);
 					th.addEventListener("click", FoxtrickYouthSkillTable.sortClick, true);
 					if (sn[j].abbr) {
-						FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name + ".abbr");
+						FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name + ".abbr");
 						if (sn[j].img) {
 							var img = doc.createElement("img");
 							img.setAttribute("src", sn[j].img);
@@ -158,7 +158,7 @@ var FoxtrickYouthSkillTable = {
 						}
 					}
 					else {
-						FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name);
+						FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name);
 						if (sn[j].img) {
 							var img = doc.createElement("img");
 							img.setAttribute("src", sn[j].img);
