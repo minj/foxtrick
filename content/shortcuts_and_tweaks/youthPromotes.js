@@ -28,12 +28,20 @@ var FoxtrickYouthPromotes = {
 
 	run : function( page, doc ) {
 		try {
+			// we presume the dates are in this format:
+			// d/M/y/ h:m
+			// y: year, M: month, d: day, h: hour, m: minute
+			// it could be in formats like y/M/d or others, but it works all the same
+			// the `/' separator could be one of: `/', `.', or `-'.
+			// the `:' separator could be one of: `:', or `.'.
+			// the separator following y could be omitted.
+			//
 			// for the likes of `16-01-2010 01.02 (3 days ago)':
-			var joinedRe1 = /\d+[\./\-]\d+[\./\-]\d+\s+\d+[:\.]\d+.+?(\d+)/;
-			//               ^y ^sep   ^M ^sep   ^d    ^h ^sep ^m    ^join
+			var joinedRe1 = /\d+[\./\-]\d+[\./\-]\d+[\./\-]?\s+\d+[:\.]\d+.+?(\d+)/;
+			//               ^d ^sep   ^M ^sep   ^y ^sep       ^h ^sep ^m    ^join
 			// for the likes of `3 dage siden (16-01-2010 01.02)':
-			var joinedRe2 = /(\d+).+?\d+[\./\-]\d+[\./\-]\d+\s+\d+[:\.]\d+/;
-			//               ^join   ^y ^sep   ^M ^sep   ^d    ^h ^sep ^m
+			var joinedRe2 = /(\d+).+?\d+[\./\-]\d+[\./\-]\d+[\./\-]?\s+\d+[:\.]\d+/;
+			//               ^join   ^d ^sep   ^M ^sep   ^y ^sep       ^h ^sep ^m
 			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
 			var playerTable = playerInfo.getElementsByTagName('table')[0];
 			var joinedCell = playerTable.getElementsByTagName('td')[5];
