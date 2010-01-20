@@ -12,12 +12,15 @@ var FoxtrickHighlightCupwins = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LATEST_CHANGE:"Highlight winning teams on CupMatches page",
-		
+	OPTIONS : new Array("highlight_outsider"),
+	
     init : function() {
     },
 
     run : function( page, doc ) {	
 	try{
+	var highlight_outsider = Foxtrick.isModuleFeatureEnabled( this, "highlight_outsider");
+
 	var mainBody=doc.getElementById('mainBody');
 	var table= mainBody.getElementsByTagName('table')[0]; 
 	for (var i=1;i<table.rows.length;++i) {
@@ -33,7 +36,7 @@ var FoxtrickHighlightCupwins = {
 			var lastsep=matchlink.innerHTML.lastIndexOf(' - ' )+3;
 			var awayteam = matchlink.innerHTML.substring(lastsep);
 			if (homewon) {
-				table.rows[i].cells[3].innerHTML = '<strong>'+table.rows[i].cells[3].innerHTML+'</strong>';
+				if (highlight_outsider) {table.rows[i].cells[3].innerHTML = '<strong>'+table.rows[i].cells[3].innerHTML+'</strong>';}
 				matchlink.innerHTML = '<strong>'+hometeam+'</strong> - '+awayteam;
 			}
 			else {
