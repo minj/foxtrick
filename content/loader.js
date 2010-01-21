@@ -92,6 +92,7 @@ Foxtrick.Loader = function(){
     'shortcuts_and_tweaks/transferCompareSort.js',
 	//'shortcuts_and_tweaks/transfersearchresultssort.js',
 	'shortcuts_and_tweaks/LeagueAndMatchChat.js',
+	'shortcuts_and_tweaks/rapidid.js',
     'presentation/extendedplayerdetails.js',
     'presentation/facePlugin.js',
     'presentation/personalityImages.js',

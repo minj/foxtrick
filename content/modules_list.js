@@ -153,5 +153,6 @@ Foxtrick.modules = [
                     FoxtrickHighlightBotTeams,
 					FoxtrickTransferCompareSort,
 					//FoxtrickTransferSearchResultsSort, //not finished
-					FoxtrickLeagueAndMatchChat,  
+					FoxtrickLeagueAndMatchChat,
+					FoxtrickRapidId
                     ];
