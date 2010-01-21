@@ -65,9 +65,11 @@ var FoxtrickAdultSkillTable = {
 			var table = tablediv.getElementsByTagName('table')[0];
 			var table_old = table.cloneNode(true);
 			FoxtrickAdultSkillTable.s_index = ev.target.getAttribute('s_index');
-			if (!FoxtrickAdultSkillTable.s_index)
+			FoxtrickAdultSkillTable.sort = ev.target.getAttribute('sort');
+			if (!FoxtrickAdultSkillTable.s_index) {
 				FoxtrickAdultSkillTable.s_index = ev.target.parentNode.getAttribute('s_index');
-
+				FoxtrickAdultSkillTable.sort = ev.target.parentNode.getAttribute('sort');
+			}
 			//Foxtrick.dump('sortby: '+FoxtrickAdultSkillTable.s_index+'\n');
 
 			var rows= new Array();
@@ -75,13 +77,13 @@ var FoxtrickAdultSkillTable = {
 				rows.push(table_old.rows[i]);
 			}
 			//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
-			if (FoxtrickAdultSkillTable.s_index==0)
+			if (FoxtrickAdultSkillTable.sort == "link")
 				rows.sort(FoxtrickAdultSkillTable.sortlinksfunction);
-			else if (FoxtrickAdultSkillTable.s_index==1)
+			else if (FoxtrickAdultSkillTable.sort == "age")
 				rows.sort(FoxtrickAdultSkillTable.sortagefunction);
-			else if (FoxtrickAdultSkillTable.s_index<=11)
+			else if (FoxtrickAdultSkillTable.sort == "int")
 				rows.sort(FoxtrickAdultSkillTable.sortdownfunction);
-			else
+			else if (FoxtrickAdultSkillTable.sort == "text")
 				rows.sort(FoxtrickAdultSkillTable.sortdowntextfunction);
 
 			for (var i=1;i<table.rows.length;++i) {
@@ -136,48 +138,48 @@ var FoxtrickAdultSkillTable = {
 				var sn;
 				if (hasbars) {
 					sn = [
-						{ name: "Player", abbr: false },
-						{ name: "Age", abbr: false },
-						{ name: "TSI", abbr: true },
-						{ name: "Form", abbr: true },
-						{ name: "Stamina", abbr: true },
-						{ name: "Keeper", abbr: true },
-						{ name: "Defending", abbr: true },
-						{ name: "Playmaking", abbr: true },
-						{ name: "Winger", abbr: true },
-						{ name: "Passing", abbr: true },
-						{ name: "Scoring", abbr: true },
-						{ name: "Set_pieces", abbr: true },
-						{ name: "Yellow_card", abbr: true, img: "/Img/Icons/yellow_card.gif" },
-						{ name: "Red_card", abbr: true, img: "/Img/Icons/red_card.gif" },
-						{ name: "Bruised", abbr: true, img: "/Img/Icons/bruised.gif" },
-						{ name: "Injured", abbr: true, img: "/Img/Icons/injured.gif" },
-						{ name: "Speciality", abbr: true, pref: "HideSpecialty" },
-						{ name: "Last_stars", abbr: true, pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
-						{ name: "Last_position", abbr: true, pref: "HideLastPosition" }
+						{ name: "Player", abbr: false, sort: "link" },
+						{ name: "Age", abbr: false, sort: "age" },
+						{ name: "TSI", abbr: true, sort: "int" },
+						{ name: "Form", abbr: true, sort: "int" },
+						{ name: "Stamina", abbr: true, sort: "int" },
+						{ name: "Keeper", abbr: true, sort: "int" },
+						{ name: "Defending", abbr: true, sort: "int" },
+						{ name: "Playmaking", abbr: true, sort: "int" },
+						{ name: "Winger", abbr: true, sort: "int" },
+						{ name: "Passing", abbr: true, sort: "int" },
+						{ name: "Scoring", abbr: true, sort: "int" },
+						{ name: "Set_pieces", abbr: true, sort: "int" },
+						{ name: "Yellow_card", abbr: true, sort: "text", img: "/Img/Icons/yellow_card.gif" },
+						{ name: "Red_card", abbr: true, sort: "text", img: "/Img/Icons/red_card.gif" },
+						{ name: "Bruised", abbr: true, sort: "text", img: "/Img/Icons/bruised.gif" },
+						{ name: "Injured", abbr: true, sort: "text", img: "/Img/Icons/injured.gif" },
+						{ name: "Speciality", abbr: true, sort: "text", pref: "HideSpecialty" },
+						{ name: "Last_stars", abbr: true, sort: "text", pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
+						{ name: "Last_position", abbr: true, sort: "text", pref: "HideLastPosition" }
 					];
 				}
 				else {
 					sn = [
-						{ name: "Player", abbr: false },
-						{ name: "Age", abbr: false },
-						{ name: "TSI", abbr: true },
-						{ name: "Form", abbr: true },
-						{ name: "Stamina", abbr: true },
-						{ name: "Keeper", abbr: true },
-						{ name: "Playmaking", abbr: true },
-						{ name: "Passing", abbr: true },
-						{ name: "Winger", abbr: true },
-						{ name: "Defending", abbr: true },
-						{ name: "Scoring", abbr: true },
-						{ name: "Set_pieces", abbr: true },
-						{ name: "Yellow_card", abbr: true, img: "/Img/Icons/yellow_card.gif" },
-						{ name: "Red_card", abbr: true, img: "/Img/Icons/red_card.gif" },
-						{ name: "Bruised", abbr: true, img: "/Img/Icons/bruised.gif" },
-						{ name: "Injured", abbr: true, img: "/Img/Icons/injured.gif" },
-						{ name: "Speciality", abbr: true, pref: "HideSpecialty" },
-						{ name: "Last_stars", abbr: true, pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
-						{ name: "Last_position", abbr: true, pref: "HideLastPosition" }
+						{ name: "Player", abbr: false, sort: "link" },
+						{ name: "Age", abbr: false, sort: "age" },
+						{ name: "TSI", abbr: true, sort: "int" },
+						{ name: "Form", abbr: true, sort: "int" },
+						{ name: "Stamina", abbr: true, sort: "int" },
+						{ name: "Keeper", abbr: true, sort: "int" },
+						{ name: "Playmaking", abbr: true, sort: "int" },
+						{ name: "Passing", abbr: true, sort: "int" },
+						{ name: "Winger", abbr: true, sort: "int" },
+						{ name: "Defending", abbr: true, sort: "int" },
+						{ name: "Scoring", abbr: true, sort: "int" },
+						{ name: "Set_pieces", abbr: true, sort: "int" },
+						{ name: "Yellow_card", abbr: true, sort: "text", img: "/Img/Icons/yellow_card.gif" },
+						{ name: "Red_card", abbr: true, sort: "text", img: "/Img/Icons/red_card.gif" },
+						{ name: "Bruised", abbr: true, sort: "text", img: "/Img/Icons/bruised.gif" },
+						{ name: "Injured", abbr: true, sort: "text", img: "/Img/Icons/injured.gif" },
+						{ name: "Speciality", abbr: true, sort: "text", pref: "HideSpecialty" },
+						{ name: "Last_stars", abbr: true, sort: "text", pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
+						{ name: "Last_position", abbr: true, sort: "text", pref: "HideLastPosition" }
 					];
 				}
 				var s_index = 0;
@@ -191,6 +193,9 @@ var FoxtrickAdultSkillTable = {
 					FoxtrickAdultSkillTable.copy_string += '[th]';
 					var th = doc.createElement('th');
 					th.setAttribute("s_index", s_index++);
+					if (sn[j].sort) {
+						th.setAttribute("sort", sn[j].sort);
+					}
 					th.addEventListener("click", FoxtrickAdultSkillTable.sortClick, true);
 					if (sn[j].abbr) {
 						FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name + ".abbr");

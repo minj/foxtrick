@@ -63,8 +63,10 @@ var FoxtrickYouthSkillTable = {
 			var table = tablediv.getElementsByTagName('table')[0];
 			var table_old = table.cloneNode(true);
 			FoxtrickYouthSkillTable.s_index = ev.target.getAttribute('s_index');
+			FoxtrickYouthSkillTable.sort = ev.target.getAttribute('sort');
 			if (!FoxtrickYouthSkillTable.s_index) {
 				FoxtrickYouthSkillTable.s_index = ev.target.parentNode.getAttribute('s_index');
+				FoxtrickYouthSkillTable.sort = ev.target.parentNode.getAttribute('sort');
 			}
 			//Foxtrick.dump('sortby: '+FoxtrickYouthSkillTable.s_index+'\n');
 
@@ -73,11 +75,11 @@ var FoxtrickYouthSkillTable = {
 				rows.push(table_old.rows[i]);
 			}
 			//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
-			if (FoxtrickYouthSkillTable.s_index==0)
+			if (FoxtrickYouthSkillTable.sort == "link")
 				rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
-			else if (FoxtrickYouthSkillTable.s_index==1)
+			else if (FoxtrickYouthSkillTable.sort == "age")
 				rows.sort(FoxtrickYouthSkillTable.sortagefunction);
-			else
+			else if (FoxtrickYouthSkillTable.sort == "text")
 				rows.sort(FoxtrickYouthSkillTable.sortdownfunction);
 
 			for (var i=1;i<table.rows.length;++i) {
@@ -117,22 +119,22 @@ var FoxtrickYouthSkillTable = {
 				// abbr: whether to use an abbreviation
 				// pref: preference name of disabling this column
 				var sn = [
-					{ name: "Player", abbr: false },
-					{ name: "Age", abbr: false },
-					{ name: "Keeper", abbr: true },
-					{ name: "Defending", abbr: true },
-					{ name: "Playmaking", abbr: true },
-					{ name: "Winger", abbr: true },
-					{ name: "Passing", abbr: true },
-					{ name: "Scoring", abbr: true },
-					{ name: "Set_pieces", abbr: true },
-					{ name: "Yellow_card", abbr: true, img: "/Img/Icons/yellow_card.gif" },
-					{ name: "Red_card", abbr: true, img: "/Img/Icons/red_card.gif" },
-					{ name: "Bruised", abbr: true, img: "/Img/Icons/bruised.gif" },
-					{ name: "Injured", abbr: true, img: "/Img/Icons/injured.gif" },
-					{ name: "Speciality", abbr: true, pref: "HideSpecialty" },
-					{ name: "Last_stars", abbr: true, pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
-					{ name: "Last_position", abbr: true, pref: "HideLastPosition" }
+					{ name: "Player", abbr: false, sort: "link" },
+					{ name: "Age", abbr: false, sort: "age" },
+					{ name: "Keeper", abbr: true, sort: "text" },
+					{ name: "Defending", abbr: true, sort: "text" },
+					{ name: "Playmaking", abbr: true, sort: "text" },
+					{ name: "Winger", abbr: true, sort: "text" },
+					{ name: "Passing", abbr: true, sort: "text" },
+					{ name: "Scoring", abbr: true, sort: "text" },
+					{ name: "Set_pieces", abbr: true, sort: "text" },
+					{ name: "Yellow_card", abbr: true, sort: "text", img: "/Img/Icons/yellow_card.gif" },
+					{ name: "Red_card", abbr: true, sort: "text", img: "/Img/Icons/red_card.gif" },
+					{ name: "Bruised", abbr: true, sort: "text", img: "/Img/Icons/bruised.gif" },
+					{ name: "Injured", abbr: true, sort: "text", img: "/Img/Icons/injured.gif" },
+					{ name: "Speciality", abbr: true, sort: "text", pref: "HideSpecialty" },
+					{ name: "Last_stars", abbr: true, sort: "text", pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
+					{ name: "Last_position", abbr: true, sort: "text", pref: "HideLastPosition" }
 				];
 
 				var s_index = 0;
@@ -145,6 +147,9 @@ var FoxtrickYouthSkillTable = {
 					FoxtrickYouthSkillTable.copy_string += '[th]';
 					var th = doc.createElement('th');
 					th.setAttribute("s_index", s_index++);
+					if (sn[j].sort) {
+						th.setAttribute("sort", sn[j].sort);
+					}
 					th.addEventListener("click", FoxtrickYouthSkillTable.sortClick, true);
 					if (sn[j].abbr) {
 						FoxtrickYouthSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name + ".abbr");
