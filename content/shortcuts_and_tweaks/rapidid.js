@@ -65,9 +65,8 @@ var FoxtrickRapidId = {
 		try {
 			var shortcuts = doc.getElementById("shortcuts");
 			shortcuts.style.width = "auto";
-			var icons = shortcuts.getElementsByClassName("scContainer")[0];
 			var container = doc.createElement("form");
-			shortcuts.insertBefore(container, icons);
+			shortcuts.insertBefore(container, container.childNodes[0]);
 			container.className = "ft_rapidid_container";
 			container.setAttribute("action", "");
 			container.addEventListener("submit", FoxtrickRapidId.view, true);
