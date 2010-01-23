@@ -195,7 +195,7 @@ var FoxtrickCountyList = {
     _changelist: function (page, doc, id, start) {
 		var selectbox = doc.getElementById(id);
         if (selectbox == null) return;
-        //Foxtrick.dump('GO ' + '\n');
+        Foxtrick.dump('id: ' + id +'   start: '+ start+'\n');
         var options = selectbox.options;
         var countries = options.length;
         var selected  = selectbox.selectedIndex;
@@ -225,6 +225,7 @@ var FoxtrickCountyList = {
                 var oldopt = new Array('-1', '-1');
                 oldopt[0] = options[i].value;
                 oldopt[1] = options[i].text;
+		//		Foxtrick.dump(i+'  '+oldopt[0]+' '+oldopt[1]+'\n');
                 opt_array.push(oldopt);
 			}
         } catch (epush) {Foxtrick.dump('countrylist: EPUSH '+epush+'\n');}
@@ -237,10 +238,13 @@ var FoxtrickCountyList = {
         }
 
         opt_array.sort(sortByOptionText);
-        for(var i=start; i < opt_array.length; i++){
-            if (opt_array[i][0] == id_sel) selectbox.selectedIndex = i;
-            options[i].value = opt_array[i-start][0];
-            options[i].text = opt_array[i-start][1];
+		for(var i=0; i < options.length; i++){
+            if (i>=start) {
+				if (opt_array[i-start][0] == id_sel) selectbox.selectedIndex = i;
+				options[i].value = opt_array[i-start][0];
+				options[i].text = opt_array[i-start][1];
+		//		Foxtrick.dump(i+'  '+options[i].value+' '+options[i].text+'\n');                
+			}
         }
 		selectbox.style.display='inline';
     },

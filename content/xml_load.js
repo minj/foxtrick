@@ -36,28 +36,63 @@ Foxtrick.XMLData = {
 		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");
 		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htdateformat.xml");
 		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
-				
-		// worlddetails
-		var xml = new JKL.ParseXML( "chrome://foxtrick/content/htlocales/worlddetails.xml" );
-		var data = xml.parse();
 		
-		// reindex: by leagueid and countryid
-		for (var i=0; i<data.HattrickData.LeagueList.League.length; i++) {
+		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/worlddetails.xml");	
+			
+		var data ={};
+		var name = 'HattrickData';
+		Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement,data,name);
+		
+		for (var i in data.HattrickData.LeagueList.League) {
 			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
 			this.countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 		}
-	
+			
 		for (var i in this.League){
-			//	dump(this.League[i].LeagueID+' ' +i+'\t');
+				dump(this.League[i].LeagueID+' ' +i+''+Foxtrick.XMLData.League[i].LeagueName+'\n');
 		}
 
 		for (var i in this.countryid_to_leagueid){
-				//dump(this.countryid_to_leagueid[i]+' ' +i+'\n');
+				dump(this.countryid_to_leagueid[i]+' ' +i+'\n');
 		}
 		
 	} catch(e){Foxtrick.dump('Foxtrick.XMLData.init: '+e+'\n');}
 	},
 	
+	
+	getchilds : function(el,parent,tag) {
+		var childs = el.childNodes;
+		var only_text=true;
+		var text=null;
+		var isarray=false;
+		if (parent[tag]) {
+			// if a tag is not unique, make an array and add nodes to that
+			isarray=true; 
+			if (!parent[tag][0]) {
+				var old_val = parent[tag];
+				parent[tag] = new Array();
+				parent[tag].push(old_val);
+			}
+			parent[tag].push({});
+		}
+		else {parent[tag] = {};} // assume unique tag and make a assosiative node
+		
+		for (var i=0;i<childs.length;++i) {
+			if (childs[i].nodeType==childs[i].ELEMENT_NODE ) {
+				only_text=false;
+				if (isarray) Foxtrick.XMLData.getchilds(childs[i], parent[tag][parent[tag].length-1], childs[i].nodeName);
+				else Foxtrick.XMLData.getchilds(childs[i], parent[tag], childs[i].nodeName);				
+			}
+			else if (childs[i].nodeType==childs[i].TEXT_NODE ) {
+				text = childs[i].textContent;
+			}
+		}
+		if (only_text) { 
+			if (isarray) parent[tag][parent[tag].length-1] = text;
+			else parent[tag] = text;
+		}
+	},
+
 	run : function(page,doc) {
 	
 		try {
@@ -82,7 +117,7 @@ Foxtrick.XMLData = {
 		}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
 
 		// XML get players xml
-		/*
+		
 		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 || doc.location.href.search(/\/Club\/Players\/$/i)!=-1) {
 			// get players.xml
 			var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
@@ -96,7 +131,7 @@ Foxtrick.XMLData = {
 				}
 				else Foxtrick.dump('TeamStats.js: xml request failed\n');
 			} catch(e) {Foxtrick.dump('TeamStats.js: xml request failed'+e+'\n');}
-		}*/
+		}
 
 	/*try{
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 

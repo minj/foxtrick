@@ -14,7 +14,6 @@ Foxtrick.Loader = function(){
 	pub.Load = function(){	
 	
 	var scripts = [
-	'jkl-parsexml.js',    
 	'preferences.js',
     'const.js',
     'module.js',
