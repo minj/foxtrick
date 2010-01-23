@@ -54,9 +54,10 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 
 /*RapidId*/
 .ft_rapidid_container { float: left; margin-top: -7px; padding-right: 5px; }
+#ft_rapidid_input { width: 9em; }
+
 /* must be at the end of the document!!! */
 /* hide all till script finished 
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 	body{display:none;}
 }*/
-

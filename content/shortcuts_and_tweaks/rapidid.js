@@ -65,7 +65,7 @@ var FoxtrickRapidId = {
 		try {
 			var online = doc.getElementById("online");
 			online.style.width = "auto";
-			var container = doc.createElement("online");
+			var container = doc.createElement("form");
 			online.insertBefore(container, online.childNodes[0]);
 			container.className = "ft_rapidid_container";
 			container.setAttribute("action", "");
