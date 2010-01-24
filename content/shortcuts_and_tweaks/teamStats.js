@@ -10,10 +10,11 @@ Foxtrick.TeamStats= {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players','YouthPlayers'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Fixed pictures missing after multiple filter usage",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	
+	OPTIONS :  new Array("AddFlags","AddLeadershipAndExperience"),
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Options to add more information to players added",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+		
 	playersxmls:null,
 	latestMatch:0,
 	top11star:0,
@@ -126,7 +127,6 @@ Foxtrick.TeamStats= {
 				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
 				
-				
 				if (page=='players' && Foxtrick.XMLData.playersxml) {
 				 var is_nt_player = (as[0].href.search(/NationalTeam/i)!=-1);
 				 var link_off=0;
@@ -147,15 +147,17 @@ Foxtrick.TeamStats= {
 						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + Experience + "']";
 						var ExperienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
 			
-						var LeadershipLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
-						var ExperienceLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Experience+'#skillshort">'+ExperienceString+'</a>';
+						if (Foxtrick.isModuleFeatureEnabled( this, "AddLeadershipAndExperience")) {
+							var LeadershipLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
+							var ExperienceLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Experience+'#skillshort">'+ExperienceString+'</a>';
 						
-						var pos=allDivs2.innerHTML.lastIndexOf('.');
-						allDivs2.innerHTML = allDivs2.innerHTML.substr(0,pos+1) +
+							var pos=allDivs2.innerHTML.lastIndexOf('.');
+							allDivs2.innerHTML = allDivs2.innerHTML.substr(0,pos+1) +
 									' ' + Foxtrickl10n.getString('foxtrick.experience_and_leadership').replace('%1',LeadershipLink).replace('%2',ExperienceLink)+
 									' ' + allDivs2.innerHTML.substr(pos+1);
-						
-						if (!is_nt_player) {
+						}
+						if (Foxtrick.isModuleFeatureEnabled( this, "AddFlags")) {
+						  if (!is_nt_player) {
 							var a=doc.createElement('a');
 							a.href='';
 							a.className ="flag inner"; 						
@@ -165,11 +167,11 @@ Foxtrick.TeamStats= {
 							img.src="/Img/Icons/transparent.gif";						
 							a.appendChild(img);
 							as[link_off].parentNode.insertBefore(a, as[link_off]);
-						}
-						else {
+						  }
+						  else {
 							as[link_off].setAttribute('style','background-color:#FFCC00');
+						  }
 						}
-						
 						break;
 					}
 				 }
