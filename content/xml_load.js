@@ -49,11 +49,11 @@ Foxtrick.XMLData = {
 		}
 			
 		for (var i in this.League){
-				dump(this.League[i].LeagueID+' ' +i+''+Foxtrick.XMLData.League[i].LeagueName+'\n');
+				//dump(this.League[i].LeagueID+' ' +i+''+Foxtrick.XMLData.League[i].LeagueName+'\n');
 		}
 
 		for (var i in this.countryid_to_leagueid){
-				dump(this.countryid_to_leagueid[i]+' ' +i+'\n');
+				//dump(this.countryid_to_leagueid[i]+' ' +i+'\n');
 		}
 		
 	} catch(e){Foxtrick.dump('Foxtrick.XMLData.init: '+e+'\n');}
