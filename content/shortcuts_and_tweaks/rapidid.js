@@ -82,6 +82,9 @@ var FoxtrickRapidId = {
 			var container = doc.createElement("div");
 			header.insertBefore(container, menu);
 			container.id = "ft_rapidid_container";
+			if (!Foxtrick.isStandardLayout(doc)) {
+				container.className = "simple";
+			}
 			var indicator = doc.createElement("a");
 			var form = doc.createElement("form");
 			container.appendChild(indicator);
