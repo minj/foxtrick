@@ -142,22 +142,26 @@ Foxtrick.TeamStats= {
 						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
 						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];	
 						var TrainerData  = playerlist[j].getElementsByTagName('TrainerData')[0];	
-						if (TrainerData) var TrainerType  = playerlist[j].getElementsByTagName('TrainerData')[0].getElementsByTagName('TrainerType')[0].textContent;	
-						
-						
+						if (TrainerData) {
+							var TrainerType  = TrainerData.getElementsByTagName('TrainerType')[0].textContent;	
+							var TrainerSkill  = TrainerData.getElementsByTagName('TrainerSkill')[0].textContent;	
+							var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + TrainerSkill + "']";
+							var TrainerSkillStr = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");						 
+						}
 						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + Leadership + "']";
 						var LeadershipString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
 						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + Experience + "']";
-						var ExperienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-						
+						var ExperienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");						
 						 
 						if (Foxtrick.isModuleFeatureEnabled(this, "AddCoachType") && TrainerData) { 
 							var TrainerTypeStr;
 							if (TrainerType==0) TrainerTypeStr = Foxtrickl10n.getString('foxtrick.defensiveTrainer');
 							else if (TrainerType==1) TrainerTypeStr = Foxtrickl10n.getString('foxtrick.offensiveTrainer');
 							else TrainerTypeStr = Foxtrickl10n.getString('foxtrick.balancedTrainer');
+							var TrainerSkillLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+TrainerSkill+'#skill">'+TrainerSkillStr+'</a>';
+							TrainerTypeStr = TrainerTypeStr.replace('%s',TrainerSkillLink);
 							var topline = allDivs[i].getElementsByTagName('b')[0];
-							topline.appendChild(doc.createTextNode(' '+TrainerTypeStr));
+							topline.innerHTML += '<br>'+TrainerTypeStr;
 						}
 						if (Foxtrick.isModuleFeatureEnabled( this, "AddLeadershipAndExperience")) {
 							var LeadershipLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
