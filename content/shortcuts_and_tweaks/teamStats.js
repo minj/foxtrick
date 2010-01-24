@@ -167,7 +167,9 @@ Foxtrick.TeamStats= {
 							var LeadershipLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
 							var ExperienceLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Experience+'#skillshort">'+ExperienceString+'</a>';
 						
-							var pos=allDivs2.innerHTML.lastIndexOf('.');
+							var pos=allDivs2.innerHTML.search(/\[/);
+							if (pos==-1) pos=allDivs2.innerHTML.length;  // no specialty. show after
+							else pos-=2; // has specialty. show before
 							allDivs2.innerHTML = allDivs2.innerHTML.substr(0,pos+1) +
 									' ' + Foxtrickl10n.getString('foxtrick.experience_and_leadership').replace('%1',LeadershipLink).replace('%2',ExperienceLink)+
 									' ' + allDivs2.innerHTML.substr(pos+1);
