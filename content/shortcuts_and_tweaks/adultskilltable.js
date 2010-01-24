@@ -11,9 +11,9 @@ var FoxtrickAdultSkillTable = {
 	PAGES : new Array('players'),
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.2",
-	LATEST_CHANGE:"Used abbr for better accessibilty and fixed copy empty cells",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-    OPTIONS : new Array("HideSpecialty","HideLastStars","HideLastPosition","CopySkillTable"),
+	LATEST_CHANGE:"Used abbr for better accessibilty and fixed copy empty cells. More options and some moved to table itself",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+    OPTIONS : new Array("CopySkillTable","AlsoOtherTeams"),
 
 	copy_string:"",
 
@@ -25,7 +25,7 @@ var FoxtrickAdultSkillTable = {
 			var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 			var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
 			var is_ownteam = (ownteamid==teamid);
-			//if (!is_ownteam) return;
+			if (!is_ownteam && !Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, 'AlsoOtherTeams')) return;
 
 			var tablediv = doc.createElement('div');
 			tablediv.setAttribute('id','ft_adultskilltable');
@@ -73,7 +73,7 @@ var FoxtrickAdultSkillTable = {
 			//Foxtrick.dump('sortby: '+FoxtrickAdultSkillTable.s_index+'\n');
 
 			var rows= new Array();
-			for (var i=1;i<table.rows.length;++i) {
+			for (var i=2;i<table.rows.length;++i) {
 				rows.push(table_old.rows[i]);
 			}
 			//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
@@ -86,11 +86,56 @@ var FoxtrickAdultSkillTable = {
 			else if (FoxtrickAdultSkillTable.sort == "text")
 				rows.sort(FoxtrickAdultSkillTable.sortdowntextfunction);
 
-			for (var i=1;i<table.rows.length;++i) {
-				table.rows[i].innerHTML = rows[i-1].innerHTML;
+			for (var i=2;i<table.rows.length;++i) {
+				table.rows[i].innerHTML = rows[i-2].innerHTML;
 			}
 		}
 		catch(e) {Foxtrick.dump('sortClick '+e+'\n');}
+	},
+
+	customize : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			doc.getElementById('sidebar').setAttribute('style','display:none');
+			doc.getElementById('customizelinkid').setAttribute('style','display:none;');
+			doc.getElementById('customizesavelinkid').setAttribute('style','display:inline;cursor:pointer;');
+			doc.getElementById('customizecancellinkid').setAttribute('style','display:inline; cursor:pointer; margin-left:10px;');
+			doc.getElementById('customizerow').setAttribute('style','display:table-row');
+
+			var tablediv = doc.getElementById('ft_adultskilltable');
+			var ths = tablediv.getElementsByTagName('tr')[0].getElementsByTagName('th'); 
+			for (var i=0;i<ths.length;++i) ths[i].setAttribute('style','display:table-cell');		// disabled in preferences
+			tablediv.getElementsByTagName('tbody')[0].setAttribute('style','display:none'); 
+						
+		}catch(e) {Foxtrick.dump('customize '+e+'\n');}
+	},
+
+	customizesave : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+
+			var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+			var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
+			var is_ownteam = (ownteamid==teamid);
+			Foxtrick.dump('is_ownteam: '+is_ownteam+'\n');
+
+			var kind='own';
+			if (!is_ownteam) kind='other';
+
+			var tablediv = doc.getElementById('ft_adultskilltable');
+			var input = tablediv.getElementsByTagName('input'); 
+			for (var i=0;i<input.length;++i) {
+				FoxtrickPrefs.setBool( "module." + FoxtrickAdultSkillTable.MODULE_NAME + "." + kind+'.'+input[i].name + ".enabled", input[i].checked );
+			}
+			doc.location.reload();			
+		}catch(e) {Foxtrick.dump('customize '+e+'\n');}
+	},
+
+	customizecancel : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			doc.location.reload();			
+		}catch(e) {Foxtrick.dump('customize '+e+'\n');}
 	},
 
 	HeaderClick : function(ev) {
@@ -101,19 +146,48 @@ var FoxtrickAdultSkillTable = {
 			var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
 			var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
 			var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
-
+					
 			var table = tablediv.getElementsByTagName('table')[0]
 			if (!table || table.style.display=='none')  {
 				tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_boxBodyUnfolded');
 				if (table) {
 					table.style.display = "table";
+					doc.getElementById('customizediv').setAttribute('style','display:inline');
 					return;
 				}
+
+				var customizediv = doc.createElement('div');
+				customizediv.id='customizediv';
+				var customizesavelink = doc.createElement('a');
+				customizesavelink.id='customizesavelinkid';
+				customizesavelink.innerHTML=Foxtrickl10n.getString('foxtrick.prefs.buttonSave');
+				customizesavelink.addEventListener('click',FoxtrickAdultSkillTable.customizesave,true);
+				customizesavelink.setAttribute('style','display:none; cursor:pointer;');
+				customizediv.appendChild(customizesavelink);
+			
+				var customizecancellink = doc.createElement('a');
+				customizecancellink.id='customizecancellinkid';
+				customizecancellink.innerHTML=Foxtrickl10n.getString('foxtrick.prefs.buttonCancel');
+				customizecancellink.addEventListener('click',FoxtrickAdultSkillTable.customizecancel,true);
+				customizecancellink.setAttribute('style','display:none; cursor:pointer;');
+				customizediv.appendChild(customizecancellink);
+
+				var customizelink = doc.createElement('a');
+				customizelink.id='customizelinkid';
+				customizelink.innerHTML=Foxtrickl10n.getString('foxtrick.prefs.buttonCustomize');
+				customizelink.addEventListener('click',FoxtrickAdultSkillTable.customize,true);
+				customizelink.setAttribute('style','cursor:pointer;');
+				customizediv.appendChild(customizelink);
+				tablediv.appendChild(customizediv);
 
 				var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 				var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
 				var is_ownteam = (ownteamid==teamid);
 				Foxtrick.dump('is_ownteam: '+is_ownteam+'\n');
+
+				var kind='own';
+				if (!is_ownteam) kind='other';
+				
 				var hasbars=true;
 				var allDivs = doc.getElementsByTagName("div");
 				if (is_ownteam && !Oldies && !coach) {
@@ -133,6 +207,10 @@ var FoxtrickAdultSkillTable = {
 				FoxtrickAdultSkillTable.copy_string += '[tr]';
 				var tr = doc.createElement('tr');
 				thead.appendChild(tr);
+				var tr2 = doc.createElement('tr');
+				tr2.id='customizerow';
+				tr2.setAttribute('style','display:none');
+				thead.appendChild(tr2);
 				table.appendChild(thead);
 
 				var sn;
@@ -184,19 +262,28 @@ var FoxtrickAdultSkillTable = {
 				}
 				var s_index = 0;
 				for (var j = 0; j < sn.length; j++) {
-					// disabled in preferences
-					if (sn[j].pref != null
-						&& Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, sn[j].pref))
-						continue;
 					if ((!is_ownteam || Oldies || NT_players || coach) && j>=5 && j<=11)
 						continue;
 					FoxtrickAdultSkillTable.copy_string += '[th]';
-					var th = doc.createElement('th');
+					
+					var th = doc.createElement('th');					
+					var th2 = doc.createElement('th');					
+					var check = doc.createElement( "input" );	
+					check.setAttribute( "type", "checkbox" );
+					check.setAttribute( "name", sn[j].name );
+					check.setAttribute( "id", sn[j].name );
+					if (!Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name)) {
+						th.setAttribute('style','display:none');		// disabled in preferences
+						}
+					else check.setAttribute( "checked", "checked" );							
 					th.setAttribute("s_index", s_index++);
 					if (sn[j].sort) {
 						th.setAttribute("sort", sn[j].sort);
 					}
 					th.addEventListener("click", FoxtrickAdultSkillTable.sortClick, true);
+					th2.appendChild( check );
+					
+					
 					if (sn[j].abbr) {
 						FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name + ".abbr");
 						if (sn[j].img) {
@@ -226,10 +313,12 @@ var FoxtrickAdultSkillTable = {
 						}
 					}
 					tr.appendChild(th);
+					tr2.appendChild(th2);
 					FoxtrickAdultSkillTable.copy_string += '[/th]';
 				}
 				FoxtrickAdultSkillTable.copy_string += '[/tr]';
-
+						
+				
 				var tbody = doc.createElement("tbody");
 				table.appendChild(tbody);
 
@@ -252,7 +341,7 @@ var FoxtrickAdultSkillTable = {
 				for(var i = 0; i < allDivs.length; i++) {
 					if(allDivs[i].className=="playerInfo") {
 						count++;
-
+						var k=0;
 						var sktable = allDivs[i].getElementsByTagName("table")[0];
 						if (sktable && sktable.parentNode.className.search('myht2')!=-1) sktable=null;
 						if (sktable) var trs = sktable.getElementsByTagName("tr");
@@ -266,57 +355,67 @@ var FoxtrickAdultSkillTable = {
 						tbody.appendChild(tr);
 
 						// name (linked)
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						FoxtrickAdultSkillTable.copy_string += allDivs[i].getElementsByTagName("a")[0+link_off].innerHTML;  // unlinked
-						td.appendChild(allDivs[i].getElementsByTagName("a")[0+link_off].cloneNode(true));
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 FoxtrickAdultSkillTable.copy_string += allDivs[i].getElementsByTagName("a")[0+link_off].innerHTML;  // unlinked
+						 td.appendChild(allDivs[i].getElementsByTagName("a")[0+link_off].cloneNode(true));
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
+						}
 
 						// age
-						var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						FoxtrickAdultSkillTable.copy_string += age[0]+'.'+age[1];
-						td.innerHTML=age[0]+'.'+age[1];
-						td.setAttribute('age',age[0]+'.'+(age[1].length==1?('00'+age[1]):(age[1].length==2?('0'+age[1]):age[1])));
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
-
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 FoxtrickAdultSkillTable.copy_string += age[0]+'.'+age[1];
+						 td.innerHTML=age[0]+'.'+age[1];
+						 td.setAttribute('age',age[0]+'.'+(age[1].length==1?('00'+age[1]):(age[1].length==2?('0'+age[1]):age[1])));
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
+						}
+						
 						var specc = allDivs[i].getElementsByTagName( "p" )[0];
 
 						// tsi etc
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						var tsitot_in = allDivs[i].getElementsByTagName('p')[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
-						if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
-						//Foxtrick.dump (' => tsitot_in => [' + tsitot_in + ']\n');
-						if (tsitot_in.search(/^\s*TSI/) != -1)
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 var tsitot_in = allDivs[i].getElementsByTagName('p')[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
+						 if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
+						 //Foxtrick.dump (' => tsitot_in => [' + tsitot_in + ']\n');
+						 if (tsitot_in.search(/^\s*TSI/) != -1)
 							tsitot_in = tsitot_in.replace(/,.+/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
-						var lastindex = tsitot_in.lastIndexOf(' ');
-						if (tsitot_in.lastIndexOf('=') > lastindex)
+						 var lastindex = tsitot_in.lastIndexOf(' ');
+						 if (tsitot_in.lastIndexOf('=') > lastindex)
 							lastindex = tsitot_in.lastIndexOf('=');
-						tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;','');
-						tsitot_in = parseInt(tsitot_in);
-						td.appendChild(doc.createTextNode(tsitot_in));
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
+						 tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;','');
+						 tsitot_in = parseInt(tsitot_in);
+						 td.appendChild(doc.createTextNode(tsitot_in));
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
+						}
 
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						var val = allDivs[i].getElementsByTagName("a")[1+link_off].href.match(/ll=(\d+)/)[1];
-						td.appendChild(doc.createTextNode(val));
-						FoxtrickAdultSkillTable.copy_string += val
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
-
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						var val = allDivs[i].getElementsByTagName("a")[2+link_off].href.match(/ll=(\d+)/)[1];
-						td.appendChild(doc.createTextNode(val));
-						FoxtrickAdultSkillTable.copy_string += val
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 var val = allDivs[i].getElementsByTagName("a")[1+link_off].href.match(/ll=(\d+)/)[1];
+						 td.appendChild(doc.createTextNode(val));
+						 FoxtrickAdultSkillTable.copy_string += val
+					 	 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
+						}
+						
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 var val = allDivs[i].getElementsByTagName("a")[2+link_off].href.match(/ll=(\d+)/)[1];
+						 td.appendChild(doc.createTextNode(val));
+						 FoxtrickAdultSkillTable.copy_string += val
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
+						}
 
 
 						// skills
@@ -324,6 +423,7 @@ var FoxtrickAdultSkillTable = {
 							var start=0,end=7,inc=1;
 							if (!hasbars) {start=2,end=16;inc=2;}
 							for(var j = start; j < end; j+=inc) {
+							if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
 								FoxtrickAdultSkillTable.copy_string += '[td]';
 								var td = doc.createElement('td');
 								tr.appendChild(td);
@@ -345,7 +445,10 @@ var FoxtrickAdultSkillTable = {
 								}
 								FoxtrickAdultSkillTable.copy_string += '[/td]';
 							}
+							}
 						}
+						else {k+=7;}
+						
 						// card+injuries
 						var cardsyellow=0;
 						var cardsred=0;
@@ -365,44 +468,51 @@ var FoxtrickAdultSkillTable = {
 							if (img[j].className=='injuryInjured') injured = img[j].nextSibling.innerHTML;
 						}
 
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						if (cardsyellow>0) {
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 if (cardsyellow>0) {
 							td.appendChild(doc.createTextNode(cardsyellow));
 							FoxtrickAdultSkillTable.copy_string += cardsyellow;
+						 }
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
 						}
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
 
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						if (cardsred>0) {
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 if (cardsred>0) {
 							td.appendChild(doc.createTextNode(cardsred));
 							FoxtrickAdultSkillTable.copy_string += cardsred;
+						 }
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
 						}
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
-
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						if (bruised>0) {
+						
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 if (bruised>0) {
 							td.appendChild(doc.createTextNode(bruised));
 							FoxtrickAdultSkillTable.copy_string += bruised;
+						 }
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
 						}
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
-
-						FoxtrickAdultSkillTable.copy_string += '[td]';
-						var td = doc.createElement('td');
-						if (injured>0) {
+						
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						 FoxtrickAdultSkillTable.copy_string += '[td]';
+						 var td = doc.createElement('td');
+						 if (injured>0) {
 							td.appendChild(doc.createTextNode(injured));
 							FoxtrickAdultSkillTable.copy_string += injured;
+						 }
+						 FoxtrickAdultSkillTable.copy_string += '[/td]';
+						 tr.appendChild(td);
 						}
-						FoxtrickAdultSkillTable.copy_string += '[/td]';
-						tr.appendChild(td);
-
 						// specialty
-						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, "HideSpecialty")) {
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
 							FoxtrickAdultSkillTable.copy_string += '[td]';
 							var td = doc.createElement('td');
 							specMatch = specc.textContent.match(/\[(\D+)\]/);
@@ -431,7 +541,7 @@ var FoxtrickAdultSkillTable = {
 						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
 
 						// stars
-						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, "HideLastStars")) {
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
 							FoxtrickAdultSkillTable.copy_string += '[td]';
 							var td = doc.createElement('td');
 							if (matchday==latestMatch) {
@@ -450,7 +560,7 @@ var FoxtrickAdultSkillTable = {
 						}
 
 						// last position
-						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, "HideLastPosition")) {
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
 							FoxtrickAdultSkillTable.copy_string += '[td]';
 							var td = doc.createElement('td');
 							if (matchday == latestMatch) {
@@ -529,6 +639,7 @@ var FoxtrickAdultSkillTable = {
 			}
 			else {
 				table.style.display='none';
+				doc.getElementById('customizediv').setAttribute('style','display:none');
 				tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_boxBodyCollapsed');
 			}
 		}
