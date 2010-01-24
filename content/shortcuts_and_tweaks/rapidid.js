@@ -55,6 +55,20 @@ var FoxtrickRapidId = {
 		}
 	},
 
+	displayForm: function(event) {
+		try {
+			event.preventDefault();
+			var doc = event.target.ownerDocument;
+			var form = doc.getElementById("ft_rapidid_form");
+			form.className = "display";
+			var indicator = doc.getElementById("ft_rapidid_indicator");
+			indicator.className = "hidden";
+		}
+		catch (e) {
+			Foxtrick.dump(e);
+		}
+	},
+
 	init: function() {
 		for (var i in this.options) {
 			this.options[i].label = Foxtrickl10n.getString(this.options[i].text);
@@ -63,19 +77,33 @@ var FoxtrickRapidId = {
 
 	run: function(page, doc) {
 		try {
-			var online = doc.getElementById("online");
-			online.style.width = "auto";
-			var container = doc.createElement("form");
-			online.insertBefore(container, online.childNodes[0]);
-			container.className = "ft_rapidid_container";
-			container.setAttribute("action", "");
-			container.addEventListener("submit", FoxtrickRapidId.view, true);
+			var header = doc.getElementById("header");
+			var menu = doc.getElementById("menu");
+			var container = doc.createElement("div");
+			header.insertBefore(container, menu);
+			container.id = "ft_rapidid_container";
+			var indicator = doc.createElement("a");
+			var form = doc.createElement("form");
+			container.appendChild(indicator);
+			container.appendChild(form);
+
+			// indicator
+			indicator.id = "ft_rapidid_indicator";
+			var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
+			indicator.appendChild(doc.createTextNode(viewById));
+			indicator.setAttribute("href", "");
+			indicator.addEventListener("click", FoxtrickRapidId.displayForm, true);
+
+			// form
+			form.id = "ft_rapidid_form";
+			form.setAttribute("action", "");
+			form.addEventListener("submit", FoxtrickRapidId.view, true);
 			var select = doc.createElement("select");
 			var input = doc.createElement("input");
 			var button = doc.createElement("input");
-			container.appendChild(select);
-			container.appendChild(input);
-			container.appendChild(button);
+			form.appendChild(select);
+			form.appendChild(input);
+			form.appendChild(button);
 
 			// the select element
 			select.id = "ft_rapidid_select";
