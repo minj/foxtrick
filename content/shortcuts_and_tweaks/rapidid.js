@@ -106,6 +106,7 @@ var FoxtrickRapidId = {
 
 			// the input element
 			input.id = "ft_rapidid_input";
+			input.setAttribute("size", "9");
 
 			// the <input type="button" /> element
 			button.setAttribute("type", "submit");
@@ -125,9 +126,9 @@ var FoxtrickRapidId = {
 	run: function(page, doc) {
 		try {
 			var header = doc.getElementById("header");
-			var menu = doc.getElementById("menu");
+			var ticker = doc.getElementById("ticker");
 			var container = doc.createElement("div");
-			header.insertBefore(container, menu);
+			header.insertBefore(container, ticker);
 			container.id = "ft_rapidid_container";
 			if (!Foxtrick.isStandardLayout(doc)) {
 				container.className = "simple";
