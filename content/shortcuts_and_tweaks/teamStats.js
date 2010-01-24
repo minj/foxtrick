@@ -10,7 +10,7 @@ Foxtrick.TeamStats= {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players','YouthPlayers'), 
     DEFAULT_ENABLED : true,
-	OPTIONS :  new Array("AddFlags","AddLeadershipAndExperience"),
+	OPTIONS :  new Array("AddFlags","AddLeadershipAndExperience","AddCoachType"),
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Options to add more information to players added",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -141,12 +141,24 @@ Foxtrick.TeamStats= {
 						var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
 						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
 						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];	
+						var TrainerData  = playerlist[j].getElementsByTagName('TrainerData')[0];	
+						if (TrainerData) var TrainerType  = playerlist[j].getElementsByTagName('TrainerData')[0].getElementsByTagName('TrainerType')[0].textContent;	
+						
 						
 						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + Leadership + "']";
 						var LeadershipString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
 						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + Experience + "']";
 						var ExperienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-			
+						
+						 
+						if (Foxtrick.isModuleFeatureEnabled(this, "AddCoachType") && TrainerData) { 
+							var TrainerTypeStr;
+							if (TrainerType==0) TrainerTypeStr = Foxtrickl10n.getString('foxtrick.defensiveTrainer');
+							else if (TrainerType==1) TrainerTypeStr = Foxtrickl10n.getString('foxtrick.offensiveTrainer');
+							else TrainerTypeStr = Foxtrickl10n.getString('foxtrick.balancedTrainer');
+							var topline = allDivs[i].getElementsByTagName('b')[0];
+							topline.appendChild(doc.createTextNode(' '+TrainerTypeStr));
+						}
 						if (Foxtrick.isModuleFeatureEnabled( this, "AddLeadershipAndExperience")) {
 							var LeadershipLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
 							var ExperienceLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Experience+'#skillshort">'+ExperienceString+'</a>';
