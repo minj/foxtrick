@@ -59,13 +59,60 @@ var FoxtrickRapidId = {
 		try {
 			event.preventDefault();
 			var doc = event.target.ownerDocument;
-			var form = doc.getElementById("ft_rapidid_form");
-			form.className = "display";
+			var container = doc.getElementById("ft_rapidid_container");
 			var indicator = doc.getElementById("ft_rapidid_indicator");
-			indicator.className = "hidden";
+			container.removeChild(indicator);
+			var form = doc.createElement("form");
+			container.appendChild(form);
+
+			// form
+			form.id = "ft_rapidid_form";
+			form.setAttribute("action", "");
+			form.addEventListener("submit", FoxtrickRapidId.view, true);
+			var select = doc.createElement("select");
+			var input = doc.createElement("input");
+			var button = doc.createElement("input");
+			form.appendChild(select);
+			form.appendChild(input);
+			form.appendChild(button);
+
+			// the select element
+			select.id = "ft_rapidid_select";
+			var currentGroup = null;
+			var saved = FoxtrickRapidId.getSelected();
+			for (var i in FoxtrickRapidId.options) {
+				// if no url, then it's an optgroup
+				if (!FoxtrickRapidId.options[i].url) {
+					var optgroup = doc.createElement("optgroup");
+					select.appendChild(optgroup);
+					optgroup.setAttribute("label", FoxtrickRapidId.options[i].label);
+					currentGroup = optgroup;
+				}
+				else {
+					var option = doc.createElement("option");
+					option.setAttribute("value", FoxtrickRapidId.options[i].value);
+					option.appendChild(doc.createTextNode(FoxtrickRapidId.options[i].label));
+					if (saved === FoxtrickRapidId.options[i].value) {
+						option.setAttribute("selected", "selected");
+					}
+					if (currentGroup === null) {
+						select.appendChild(option);
+					}
+					else {
+						currentGroup.appendChild(option);
+					}
+				}
+			}
+
+			// the input element
+			input.id = "ft_rapidid_input";
+
+			// the <input type="button" /> element
+			button.setAttribute("type", "submit");
+			button.setAttribute("value", Foxtrickl10n.getString("View"));
 		}
 		catch (e) {
-			Foxtrick.dump(e);
+			Foxtrick.dump("RapidId: " + e + "\n");
 		}
 	},
 
@@ -86,9 +133,7 @@ var FoxtrickRapidId = {
 				container.className = "simple";
 			}
 			var indicator = doc.createElement("a");
-			var form = doc.createElement("form");
 			container.appendChild(indicator);
-			container.appendChild(form);
 
 			// indicator
 			indicator.id = "ft_rapidid_indicator";
@@ -96,52 +141,6 @@ var FoxtrickRapidId = {
 			indicator.appendChild(doc.createTextNode(viewById));
 			indicator.setAttribute("href", "");
 			indicator.addEventListener("click", FoxtrickRapidId.displayForm, true);
-
-			// form
-			form.id = "ft_rapidid_form";
-			form.setAttribute("action", "");
-			form.addEventListener("submit", FoxtrickRapidId.view, true);
-			var select = doc.createElement("select");
-			var input = doc.createElement("input");
-			var button = doc.createElement("input");
-			form.appendChild(select);
-			form.appendChild(input);
-			form.appendChild(button);
-
-			// the select element
-			select.id = "ft_rapidid_select";
-			var currentGroup = null;
-			var saved = this.getSelected();
-			for (var i in this.options) {
-				// if no url, then it's an optgroup
-				if (!this.options[i].url) {
-					var optgroup = doc.createElement("optgroup");
-					select.appendChild(optgroup);
-					optgroup.setAttribute("label", this.options[i].label);
-					currentGroup = optgroup;
-				}
-				else {
-					var option = doc.createElement("option");
-					option.setAttribute("value", this.options[i].value);
-					option.appendChild(doc.createTextNode(this.options[i].label));
-					if (saved === this.options[i].value) {
-						option.setAttribute("selected", "selected");
-					}
-					if (currentGroup === null) {
-						select.appendChild(option);
-					}
-					else {
-						currentGroup.appendChild(option);
-					}
-				}
-			}
-
-			// the input element
-			input.id = "ft_rapidid_input";
-
-			// the <input type="button" /> element
-			button.setAttribute("type", "submit");
-			button.setAttribute("value", Foxtrickl10n.getString("View"));
 		}
 		catch (e) {
 			Foxtrick.dump("RapidId: " + e + "\n");

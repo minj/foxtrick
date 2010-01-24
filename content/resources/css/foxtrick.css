@@ -55,9 +55,6 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 /*RapidId*/
 #ft_rapidid_container { float: right; margin-top: 9px; margin-left: 7px; }
 #ft_rapidid_container.simple { margin-top: 20px; margin-left: 5px; }
-#ft_rapidid_form { display: none; }
-#ft_rapidid_form.display { display: block; }
-#ft_rapidid_indicator.hidden { display: none; }
 #ft_rapidid_input { width: 9em; }
 
 /* must be at the end of the document!!! */
