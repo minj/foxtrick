@@ -264,18 +264,19 @@ var FoxtrickAdultSkillTable = {
 				for (var j = 0; j < sn.length; j++) {
 					if ((!is_ownteam || Oldies || NT_players || coach) && j>=5 && j<=11)
 						continue;
-					FoxtrickAdultSkillTable.copy_string += '[th]';
-					
+
 					var th = doc.createElement('th');					
 					var th2 = doc.createElement('th');					
 					var check = doc.createElement( "input" );	
 					check.setAttribute( "type", "checkbox" );
 					check.setAttribute( "name", sn[j].name );
 					check.setAttribute( "id", sn[j].name );
-					if (!Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name)) {
-						th.setAttribute('style','display:none');		// disabled in preferences
-						}
-					else check.setAttribute( "checked", "checked" );							
+					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name)) {
+						check.setAttribute( "checked", "checked" );
+					}
+					else {
+						th.style.display = "none"; // disabled in preferences
+					}
 					th.setAttribute("s_index", s_index++);
 					if (sn[j].sort) {
 						th.setAttribute("sort", sn[j].sort);
@@ -285,7 +286,6 @@ var FoxtrickAdultSkillTable = {
 					
 					
 					if (sn[j].abbr) {
-						FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name + ".abbr");
 						if (sn[j].img) {
 							var img = doc.createElement("img");
 							img.setAttribute("src", sn[j].img);
@@ -301,7 +301,6 @@ var FoxtrickAdultSkillTable = {
 						}
 					}
 					else {
-						FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name);
 						if (sn[j].img) {
 							var img = doc.createElement("img");
 							img.setAttribute("src", sn[j].img);
@@ -314,7 +313,18 @@ var FoxtrickAdultSkillTable = {
 					}
 					tr.appendChild(th);
 					tr2.appendChild(th2);
-					FoxtrickAdultSkillTable.copy_string += '[/th]';
+
+					// copy string
+					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name)) {
+						FoxtrickAdultSkillTable.copy_string += '[th]';
+						if (sn[j].abbr) {
+							FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name + ".abbr");
+						}
+						else {
+							FoxtrickAdultSkillTable.copy_string += Foxtrickl10n.getString(sn[j].name);
+						}
+						FoxtrickAdultSkillTable.copy_string += '[/th]';
+					}
 				}
 				FoxtrickAdultSkillTable.copy_string += '[/tr]';
 						
