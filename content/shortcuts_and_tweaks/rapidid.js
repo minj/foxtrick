@@ -143,11 +143,16 @@ var FoxtrickRapidId = {
 			indicator.id = "ft_rapidid_indicator";
 			var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
 			indicator.appendChild(doc.createTextNode(viewById));
-			indicator.setAttribute("href", doc.location + "?viewid=true");
+			var search = doc.location.search;
+			if (doc.location.search.search(/^\?/) != -1) {
+				indicator.setAttribute("href", doc.URL + "&viewid=true");
+			}
+			else {
+				indicator.setAttribute("href", doc.URL + "?viewid=true");
+			}
 			indicator.addEventListener("click", FoxtrickRapidId.onclick, true);
 
-			var url = new String(doc.location);
-			if (url.search(/\?viewid=true$/) != -1) {
+			if (doc.location.search.search(/[&\?]viewid=true\b/) != -1) {
 				this.displayForm(doc);
 			}
 		}
