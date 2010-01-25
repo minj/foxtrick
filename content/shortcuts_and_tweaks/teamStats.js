@@ -163,7 +163,7 @@ Foxtrick.TeamStats= {
 							var topline = allDivs[i].getElementsByTagName('b')[0];
 							topline.innerHTML += '<br>'+TrainerTypeStr;
 						}
-						if (Foxtrick.isModuleFeatureEnabled( this, "AddLeadershipAndExperience")) {
+						if (!Oldies && !coach && Foxtrick.isModuleFeatureEnabled( this, "AddLeadershipAndExperience")) {
 							var LeadershipLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
 							var ExperienceLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Experience+'#skillshort">'+ExperienceString+'</a>';
 						
