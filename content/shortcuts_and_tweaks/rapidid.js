@@ -55,10 +55,8 @@ var FoxtrickRapidId = {
 		}
 	},
 
-	displayForm: function(event) {
+	displayForm: function(doc) {
 		try {
-			event.preventDefault();
-			var doc = event.target.ownerDocument;
 			var container = doc.getElementById("ft_rapidid_container");
 			var indicator = doc.getElementById("ft_rapidid_indicator");
 			container.removeChild(indicator);
@@ -68,7 +66,7 @@ var FoxtrickRapidId = {
 			// form
 			form.id = "ft_rapidid_form";
 			form.setAttribute("action", "");
-			form.addEventListener("submit", FoxtrickRapidId.view, true);
+			form.addEventListener("submit", this.view, true);
 			var select = doc.createElement("select");
 			var input = doc.createElement("input");
 			var button = doc.createElement("input");
@@ -79,20 +77,20 @@ var FoxtrickRapidId = {
 			// the select element
 			select.id = "ft_rapidid_select";
 			var currentGroup = null;
-			var saved = FoxtrickRapidId.getSelected();
-			for (var i in FoxtrickRapidId.options) {
+			var saved = this.getSelected();
+			for (var i in this.options) {
 				// if no url, then it's an optgroup
-				if (!FoxtrickRapidId.options[i].url) {
+				if (!this.options[i].url) {
 					var optgroup = doc.createElement("optgroup");
 					select.appendChild(optgroup);
-					optgroup.setAttribute("label", FoxtrickRapidId.options[i].label);
+					optgroup.setAttribute("label", this.options[i].label);
 					currentGroup = optgroup;
 				}
 				else {
 					var option = doc.createElement("option");
-					option.setAttribute("value", FoxtrickRapidId.options[i].value);
-					option.appendChild(doc.createTextNode(FoxtrickRapidId.options[i].label));
-					if (saved === FoxtrickRapidId.options[i].value) {
+					option.setAttribute("value", this.options[i].value);
+					option.appendChild(doc.createTextNode(this.options[i].label));
+					if (saved === this.options[i].value) {
 						option.setAttribute("selected", "selected");
 					}
 					if (currentGroup === null) {
@@ -113,8 +111,13 @@ var FoxtrickRapidId = {
 			button.setAttribute("value", Foxtrickl10n.getString("View"));
 		}
 		catch (e) {
-			Foxtrick.dump("RapidId: " + e + "\n");
+			Foxtrick.dump("RapidId(" + e.lineNumber + "): " + e + "\n");
 		}
+	},
+
+	onclick: function(event) {
+		event.preventDefault();
+		FoxtrickRapidId.displayForm(event.target.ownerDocument);
 	},
 
 	init: function() {
@@ -140,11 +143,16 @@ var FoxtrickRapidId = {
 			indicator.id = "ft_rapidid_indicator";
 			var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
 			indicator.appendChild(doc.createTextNode(viewById));
-			indicator.setAttribute("href", "");
-			indicator.addEventListener("click", FoxtrickRapidId.displayForm, true);
+			indicator.setAttribute("href", doc.location + "?viewid=true");
+			indicator.addEventListener("click", FoxtrickRapidId.onclick, true);
+
+			var url = new String(doc.location);
+			if (url.search(/\?viewid=true$/) != -1) {
+				this.displayForm(doc);
+			}
 		}
 		catch (e) {
-			Foxtrick.dump("RapidId: " + e + "\n");
+			Foxtrick.dump("RapidId(" + e.lineNumber + "): " + e + "\n");
 		}
 	},
 

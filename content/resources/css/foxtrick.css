@@ -55,7 +55,7 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 /*RapidId*/
 #ft_rapidid_container { float: right; margin-top: 9px; margin-left: 7px; }
 #ft_rapidid_container.simple { margin-top: 20px; margin-left: 5px; }
-#ft_rapidid_container.simple #ft_rapidid_form { font-size: 0.9em; }
+#ft_rapidid_container.simple #ft_rapidid_form { font-size: 1.1em; }
 #ft_rapidid_container.simple * { font-size: 100%; }
 
 /* must be at the end of the document!!! */
