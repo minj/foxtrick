@@ -47,8 +47,9 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 .ft_skilltable th { cursor: pointer; text-align: center !important; }
 .ft_skilltable td { border-bottom: 1px solid #DCE0DC; border-collapse: separate; }
 .ft_skilltable td:nth-child(even) { background-color: #eeeeee; }
-.ft_skilltable tbody td { text-align: center !important; }
+/*.ft_skilltable tbody td { text-align: center !important; }
 .ft_skilltable tbody td:first-child { text-align: left !important; }
+.ft_skilltable tbody td+td:first-child { text-align: left !important; }*/
 .ft_skilltable_maxed { font-weight: bold; }
 .ft_skilltable_blockend td { border-bottom: 1px solid #dddddd; }
 

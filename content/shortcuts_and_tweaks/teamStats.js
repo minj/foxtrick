@@ -127,7 +127,7 @@ Foxtrick.TeamStats= {
 				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
 				if (matchday>this.latestMatch) this.latestMatch = matchday;
 				
-				if (page=='players' && Foxtrick.XMLData.playersxml) {
+				if (page=='players' && Foxtrick.XMLData.playersxml && !NT_players) {  // not for ntteam
 				 var is_nt_player = (as[0].href.search(/NationalTeam/i)!=-1);
 				 var link_off=0;
 				 if (is_nt_player) link_off=1;

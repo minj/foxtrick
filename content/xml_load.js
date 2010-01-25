@@ -119,32 +119,34 @@ Foxtrick.XMLData = {
 		// XML get players xml
 		
 		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
-			|| doc.location.href.search(/\/Club\/Players\//i)!=-1 )
-			//|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1) 
-			{
-			// get players.xml
+			|| doc.location.href.search(/\/Club\/Players\//i)!=-1 
+			|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1) {
+
+			var file = 'file=players'; //default normal team
+			var team = '';  // =default own team
+			var selection = '';  //default current players
+			
+			// determine xml file
+			var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 			var Oldies = doc.location.href.search(/\/Club\/Players\/Oldies.aspx/i)!=-1;
 			var Coaches = doc.location.href.search(/\/Club\/Players\/Coaches.aspx/i)!=-1;
-			
-			var selection = '';  //default current players
+			var NTplayers = doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1;			
+			if (teamid) team = '&teamId='+teamid;
 			if (Oldies) selection='&actionType=viewOldies';
 			if (Coaches) selection='&actionType=viewOldCoaches';
-									
-			//var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
-			var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
-			
-			var team='';
-			if (teamid) team = '&teamId='+teamid;
+			if (NTplayers) file = 'file=nationalplayers&ShowAll=true&actiontype=supporterstats';
+												
+			// get players.xml
 			this.playersxml = null;
 			try {	var req = new XMLHttpRequest();
-				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?file=players'+team+selection, false); 
+				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection, false); 
 				req.send(null);
 				if (req.status == 200) {
 					this.playersxml = req.responseXML;
-					Foxtrick.dump('get players.xml'+team+selection+'\n');
+					Foxtrick.dump('get '+file+team+selection+'\n');//+req.responseText+'\n');
 				}
-				else Foxtrick.dump(' players.xml'+team+selection+' request failed\n');
-			} catch(e) {Foxtrick.dump(' players.xml'+team+selection+' request failed'+e+'\n');}
+				else Foxtrick.dump(' get '+file+team+selection+' request failed\n');
+			} catch(e) {Foxtrick.dump('get'+file+team+selection+' request failed'+e+'\n');}
 		}
 
 	/*try{
