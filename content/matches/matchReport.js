@@ -6,10 +6,11 @@
 FoxtrickMatchReportFormat = {
 	MODULE_NAME : "MatchReportFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match'), 
-	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"Fix for formation detection on team names with hyphen",	
+	PAGES : new Array('match','teamPageAny','myhattrick'), 
+	ONPAGEPREF_PAGE : 'match', 
+    DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"OwnYouthteam detection included",	
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
 											 "#9F0202",  //Text Home team name   1
@@ -34,15 +35,32 @@ FoxtrickMatchReportFormat = {
 	LATEST_CHANGE:"some format of match report for better reading",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
  	//OPTIONS : new Array("DefaultShow"),
-
+	OwnYouthTeamId: null,
+	
 	init : function() {
     },
 
   
     run : function( page, doc ) {
+		// get first youthteam id, assume its your own
+		if (page=='teamPageAny')  {
+			if  (this.OwnYouthTeamId==null) this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+			return;
+		}
+        if (page=='myhattrick') {
+			this.OwnYouthTeamId = null;
+			return;
+		}
 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
+
+		var isyouth=false;
+		var as = doc.getElementById("mainBody").getElementsByTagName('a');
+		for (var i=0;i<as.lebgth;i++) {
+			if (as[i].href.search(/YouthArenaID/i)!=-1) {isyouth=true;break;}
+			else if (as[i].href.search(/ArenaID/i)!=-1) {isyouth=false;break;}
+		}
 
         var div = doc.getElementById('mainBody');
         var div_check = Foxtrick.getElementsByClass('ft_mR_format', div);
@@ -52,6 +70,7 @@ FoxtrickMatchReportFormat = {
         
         //Retrieve teams id
 		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		if (isyouth) myTeamId = this.OwnYouthTeamId;
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		if (!table) return;  // match not finished
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);

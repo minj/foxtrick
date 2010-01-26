@@ -9,8 +9,8 @@ FoxtrickMatchPlayerColouring = {
 	PAGES : new Array('match','teamPageAny','myhattrick'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Right/left align images in event box",	
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Fix for yyyy-mm-dd dateformat",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team
@@ -41,6 +41,13 @@ FoxtrickMatchPlayerColouring = {
 		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
 		if (isprematch ) return;
 		
+		var isyouth=false;
+		var as = doc.getElementById("mainBody").getElementsByTagName('a');
+		for (var i=0;i<as.lebgth;i++) {
+			if (as[i].href.search(/YouthArenaID/i)!=-1) {isyouth=true;break;}
+			else if (as[i].href.search(/ArenaID/i)!=-1) {isyouth=false;break;}
+		}
+
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
 		// exmaple xml use
 		//Foxtrick.dump(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
@@ -48,6 +55,7 @@ FoxtrickMatchPlayerColouring = {
 		
 		//Retrieve teams id
 		var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		if (isyouth) myTeamId = this.OwnYouthTeamId;
 		var table = doc.getElementById('mainBody').getElementsByTagName('table');
 		if (!table[0]) {
 			// match not finished
@@ -77,8 +85,6 @@ FoxtrickMatchPlayerColouring = {
 			//Replace myTeam colour
 			if (HomeTeamId == myTeamId) stlTeamA = stlMyTeam;
 			else if (AwayTeamId == myTeamId) stlTeamB = stlMyTeam;
-			else if (HomeTeamId == this.OwnYouthTeamId) stlTeamA = stlMyTeam;
-			else if (AwayTeamId == this.OwnYouthTeamId) stlTeamB = stlMyTeam;
 		}
 	
 				
