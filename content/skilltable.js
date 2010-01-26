@@ -73,6 +73,67 @@ var FoxtrickSkillTable = {
 		}
 	},
 
+	addCopyButton : function(doc) {
+		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+			if (doc.getElementById('copyskilltable')) return;
+			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+			if (boxHead.className!='boxHead') return;
+
+			if (Foxtrick.isStandardLayout(doc)) {
+				doc.getElementById('mainBody').setAttribute('style','padding-top:20px;');
+			}
+
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner copyicon copyplayerad ci_first";
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyskilltable" );
+			messageLink.id = "copyskilltable" ;
+			messageLink.addEventListener("click", FoxtrickSkillTable.copyTable, false)
+
+			var img = doc.createElement("img");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
+			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
+
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		}
+		else {
+			var parentDiv = doc.createElement("div");
+			parentDiv.id = "foxtrick_copy_parentDiv";
+
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner";
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyskilltable" );
+			messageLink.setAttribute("style","cursor: pointer;");
+			messageLink.addEventListener("click", FoxtrickSkillTable.copyTable, false)
+
+			var img = doc.createElement("img");
+			img.style.padding = "0px 5px 0px 0px;";
+			img.className = "actionIcon";
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
+			img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
+			messageLink.appendChild(img);
+
+			parentDiv.appendChild(messageLink);
+
+			var newBoxId = "foxtrick_actions_box";
+			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
+				"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+		}
+	},
+
+	copyTable : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			var table = doc.getElementsByClassName("ft_skilltable")[0];
+			Foxtrick.copyStringToClipboard(FoxtrickSkillTable.toHtMl(table));
+			if (FoxtrickPrefs.getBool( "copyfeedback" ))
+				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.yskilltablecopied"));
+		}
+		catch (e) {
+			Foxtrick.dump("SkillTable: " + e + "\n");
+		}
+	},
+
 	toHtMl : function(table) {
 		try {
 			var ret = "[table]";
