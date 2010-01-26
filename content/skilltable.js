@@ -19,7 +19,6 @@ var FoxtrickSkillTable = {
 
 	toHtMl : function(table) {
 		try {
-			Foxtrick.dump(table.tagName);
 			var ret = "[table]";
 			for (var rowIndex = 0; rowIndex < table.rows.length; ++rowIndex) {
 				var row = table.rows[rowIndex];

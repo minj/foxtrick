@@ -246,15 +246,15 @@ var FoxtrickAdultSkillTable = {
 						{ name: "Passing", abbr: true, sort: "int" },
 						{ name: "Scoring", abbr: true, sort: "int" },
 						{ name: "Set_pieces", abbr: true, sort: "int" },
-						{ name: "Yellow_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
-						{ name: "Red_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/red_card.gif" },
-						{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
-						{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif" },
+						{ name: "Yellow_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/yellow_card.gif", width: "8px", height: "12px" },
+						{ name: "Red_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/red_card.gif", width: "8px", height: "12px" },
+						{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif", width: "19px", height: "8px" },
+						{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif", width: "11px", height: "11px" },
 						{ name: "Speciality", abbr: true, sort: "text" ,NT:true ,OldiesCoach:true},
-						{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
+						{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png", width: "13px", height: "22px" },
 						{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
 						{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false},
-						{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
+						{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif", width: "10px", height: "18px" },
 						{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},						
 						{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
 						{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true}						
@@ -281,15 +281,15 @@ var FoxtrickAdultSkillTable = {
 						{ name: "Defending", abbr: true, sort: "int" },
 						{ name: "Scoring", abbr: true, sort: "int" },
 						{ name: "Set_pieces", abbr: true, sort: "int" },
-						{ name: "Yellow_card", abbr: true, sort: "text",NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
-						{ name: "Red_card", abbr: true, sort: "text",NT:true, OldiesCoach:true , img: "/Img/Icons/red_card.gif" },
-						{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
-						{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif" },
+						{ name: "Yellow_card", abbr: true, sort: "text",NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif", width: "8px", height: "12px" },
+						{ name: "Red_card", abbr: true, sort: "text",NT:true, OldiesCoach:true , img: "/Img/Icons/red_card.gif", width: "8px", height: "12px" },
+						{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif", width: "19px", height: "8px" },
+						{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif", width: "11px", height: "11px" },
 						{ name: "Speciality", abbr: true, sort: "text",NT:true ,OldiesCoach:true },
-						{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
+						{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png", width: "13px", height: "22px" },
 						{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false }, 
 						{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false },
-						{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
+						{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif", width: "10px", height: "18px" },
 						{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false}, 						
 						{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
 						{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true }						
@@ -323,29 +323,28 @@ var FoxtrickAdultSkillTable = {
 					
 					
 					if (sn[j].abbr) {
+						var abbr = doc.createElement("abbr");
+						abbr.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
+						abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name + ".abbr")));
+						th.appendChild(abbr);
 						if (sn[j].img) {
-							var img = doc.createElement("img");
-							img.setAttribute("src", sn[j].img);
-							img.setAttribute("alt", Foxtrickl10n.getString(sn[j].name + ".abbr"));
-							img.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
-							th.appendChild(img);
-						}
-						else {
-							var abbr = doc.createElement("abbr");
-							abbr.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
-							abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name + ".abbr")));
-							th.appendChild(abbr);
+							abbr.style.display = "none";
+							th.style.backgroundImage = "url('" + sn[j].img + "')";
+							th.style.backgroundRepeat = "no-repeat";
+							th.style.minWidth = sn[j].width;
+							th.style.minHeight = sn[j].height;
 						}
 					}
 					else {
+						var span = doc.createElement("span");
+						span.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name)));
+						th.appendChild(span);
 						if (sn[j].img) {
-							var img = doc.createElement("img");
-							img.setAttribute("src", sn[j].img);
-							img.setAttribute("alt", Foxtrickl10n.getString(sn[j].name));
-							img.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
-						}
-						else {
-							th.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name)));
+							span.style.display = "none";
+							th.style.backgroundImage = "url('" + sn[j].img + "')";
+							th.style.backgroundRepeat = "no-repeat";
+							th.style.minWidth = sn[j].width;
+							th.style.minHeight = sn[j].height;
 						}
 					}
 					tr.appendChild(th);
