@@ -154,5 +154,6 @@ Foxtrick.modules = [
 					FoxtrickTransferCompareSort,
 					//FoxtrickTransferSearchResultsSort, //not finished
 					FoxtrickLeagueAndMatchChat,
-					FoxtrickRapidId
+					FoxtrickRapidId,
+					FoxtrickSkillTable
                     ];
