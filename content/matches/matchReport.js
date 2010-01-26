@@ -169,10 +169,10 @@ FoxtrickMatchReportFormat = {
             // "<div>$1</div>"
             );
         
-        part[0] = part[0].replace(/(\d{1,2})\-(\d{1,2})\-(\d{1,2})\./g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>.");
-        part[0] = part[0].replace(/(\d{1,2})\-(\d{1,2})\-(\d{1,2})\ /g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
-        part[0] = part[0].replace(/(\d{1,2})\-(\d{1,2})\-(\d{1,2})\-/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
-		part[0] = part[0].replace(/(\d{1,2})\-(\d{1,2})\-(\d{1,2})\,/g,"<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>,");		
+        part[0] = part[0].replace(/ (\d{1,2})\-(\d{1,2})\-(\d{1,2})\./g," <span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>.");
+        part[0] = part[0].replace(/ (\d{1,2})\-(\d{1,2})\-(\d{1,2})\ /g," <span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span> ");
+        part[0] = part[0].replace(/ (\d{1,2})\-(\d{1,2})\-(\d{1,2})\-/g," <span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
+		part[0] = part[0].replace(/ (\d{1,2})\-(\d{1,2})\-(\d{1,2})\,/g," <span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>,");		
         //Foxtrick.dump(Foxtrick.var_dump(part[1]));
         part[1] = part[1].replace(/(\d{1,2})\!\ Gäste\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
         part[1] = part[1].replace(/(\d{1,2})\ a\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
