@@ -13,7 +13,7 @@ var FoxtrickAdultSkillTable = {
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Used abbr for better accessibilty and fixed copy empty cells. More options and some moved to table itself",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-    OPTIONS : new Array("CopySkillTable","AlsoOtherTeams","HideSideBarOnTableOpen"),
+    OPTIONS : new Array("CopySkillTable","AlsoOtherTeams"),
 
 	copy_string:"",
 
@@ -105,7 +105,6 @@ var FoxtrickAdultSkillTable = {
 	customize : function(ev) {
 		try {
 			var doc = ev.target.ownerDocument;
-			doc.getElementById('sidebar').setAttribute('style','display:none');
 			doc.getElementById('customizelinkid').setAttribute('style','display:none;');
 			doc.getElementById('customizesavelinkid').setAttribute('style','display:inline;cursor:pointer;');
 			doc.getElementById('customizecancellinkid').setAttribute('style','display:inline; cursor:pointer; margin-left:10px;');
@@ -115,7 +114,7 @@ var FoxtrickAdultSkillTable = {
 			var ths = tablediv.getElementsByTagName('tr')[0].getElementsByTagName('th'); 
 			for (var i=0;i<ths.length;++i) ths[i].setAttribute('style','display:table-cell');		// disabled in preferences
 			tablediv.getElementsByTagName('tbody')[0].setAttribute('style','display:none'); 
-						
+
 		}catch(e) {Foxtrick.dump('customize '+e+'\n');}
 	},
 
@@ -164,10 +163,6 @@ var FoxtrickAdultSkillTable = {
 			var table = tablediv.getElementsByTagName('table')[0]
 			if (!table || table.style.display=='none')  {
 				tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_boxBodyUnfolded');
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, 'HideSideBarOnTableOpen')) {
-						doc.getElementById('sidebar').setAttribute('style','display:none');			
-						doc.getElementById('mainWrapper').getElementsByTagName('div')[0].setAttribute('style','width:auto;');						
-				}
 				if (table) {
 					table.style.display = "table";
 					doc.getElementById('customizediv').setAttribute('style','display:inline');
@@ -893,10 +888,6 @@ var FoxtrickAdultSkillTable = {
 				table.style.display='none';
 				doc.getElementById('customizediv').setAttribute('style','display:none');
 				tablediv.getElementsByTagName('h2')[0].setAttribute('class','ft_boxBodyCollapsed');
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, 'HideSideBarOnTableOpen')) {
-						doc.getElementById('sidebar').setAttribute('style','display:inline');
-						doc.getElementById('mainWrapper').getElementsByTagName('div')[0].setAttribute('style','');	
-				}		
 			}
 		}
 		catch(e) {Foxtrick.dump(k+'SkillTableHeaderClick: '+e+'\n');}

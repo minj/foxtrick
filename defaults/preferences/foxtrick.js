@@ -153,7 +153,6 @@ pref( "extensions.foxtrick.prefs.module.htmsStatistics.Away.enabled", false);
 pref( "extensions.foxtrick.prefs.module.YouthSkillNotes.OnlyOwnTeam.enabled", true);
 pref( "extensions.foxtrick.prefs.module.RapidId.enabled", true );
 pref( "extensions.foxtrick.prefs.module.AdultSkillTable.AlsoOtherTeams.enabled", true );
-pref( "extensions.foxtrick.prefs.module.AdultSkillTable.HideSideBarOnTableOpen.enabled", false );
 pref( "extensions.foxtrick.prefs.module.AdultSkillTable.own.Player.enabled", true );
 pref( "extensions.foxtrick.prefs.module.AdultSkillTable.own.Age.enabled", true );
 pref( "extensions.foxtrick.prefs.module.AdultSkillTable.own.TSI.enabled", true );
