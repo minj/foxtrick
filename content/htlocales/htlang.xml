@@ -1,1715 +1,1753 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hattricklanguages>
 
-    <language name="en" desc="English">
-    <!-- rating sublevels appearing in match detail page -->
-        <ratingSubLevels>
-            <sublevel text="(very low)" value="0.0" />
-            <sublevel text="(low)" value="0.25"  />
-            <sublevel text="(high)" value="0.50"  />
-            <sublevel text="(very high)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Counter-attacks" />
-            <tactic type="aow" value="Attack on wings" />
-            <tactic type="aim" value="Attack in the Middle" />
-            <tactic type="creatively" value="Play creatively" />
-            <tactic type="longshots" value="Long shots" />
-        </tactics>
-        <!-- positions appearing on players page -->
-        <positions>
-            <position type="Keeper" value="Keeper" short="Ke" />
-            <position type="Central defender" value="Central defender" short="Cd" />
-            <position type="Wing back" value="Wing back" short="Wb" />
-            <position type="Inner midfielder" value="Inner midfielder" short="Im" />
-            <position type="Winger" value="Winger" short="Wi" />
-            <position type="Forward" value="Forward" short="Fo" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="Unpredictable" short="Un" />
-            <specialty type="Powerful" value="Powerful" short="Po" />
-            <specialty type="Quick" value="Quick" short="Qu" />
-            <specialty type="Technical" value="Technical" short="Te" />
-            <specialty type="Head" value="Head" short="He" />
-            <specialty type="Regainer" value="Regainer" short="Re" />
-        </specialties>		
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="extra inner midfield" />
-            <reposition type="centraldefender" value="extra central defender" />
-            <reposition type="forward" value="extra forward" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="offensive" />
-            <reposition type="defensive" value="defensive" />
-            <reposition type="towardsmiddle" value="towards middle" />
-            <reposition type="towardswing" value="towards wing" />
-        </repositioning>
-        <levels>
-            <level text="divine" value="20" />
-            <level text="utopian" value="19" />
-            <level text="magical" value="18" />
-            <level text="mythical" value="17" />
-            <level text="extra-terrestrial" value="16" />
-            <level text="titanic" value="15" />
-            <level text="supernatural" value="14" />
-            <level text="world class" value="13" />
-            <level text="magnificent" value="12" />
-            <level text="brilliant" value="11" />
-            <level text="outstanding" value="10" />
-            <level text="formidable" value="9" />
-            <level text="excellent" value="8" />
-            <level text="solid" value="7" />
-            <level text="passable" value="6" />
-            <level text="inadequate" value="5" />
-            <level text="weak" value="4" />
-            <level text="poor" value="3" />
-            <level text="wretched" value="2" />
-            <level text="disastrous" value="1" />
-            <level text="non-existent" value="0" />  
-        </levels>
-    </language>
-
-    <language name="bs" desc="Bosnian">
-        <ratingSubLevels>
-            <sublevel text="(Veoma nisko)" value="0.0" />
-            <sublevel text="(Nisko)" value="0.25"  />
-            <sublevel text="(Visoko)" value="0.50"  />
-            <sublevel text="(Veoma visoko)" value="0.75"  />
-        </ratingSubLevels>
-        <tactics>
-            <tactic type="normal" value="Normalno" />
-            <tactic type="pressing" value="Presing" />
-            <tactic type="ca" value="Kontranapadi" />
-            <tactic type="aow" value="Napad preko krila" />
-            <tactic type="aim" value="Napad kroz sredinu" />
-            <tactic type="creatively" value="Igraj kreativno" />
-            <tactic type="longshots" value="Dalekometni šutevi" />
-        </tactics>
-        <!-- positions appearing on players page -->
-        <positions>
-            <position type="Keeper" value="Golman" short="Go" />
-            <position type="Central defender" value="Centralni odbrambeni" short="Co" />
-            <position type="Wing back" value="Bek" short="Be" />
-            <position type="Inner midfielder" value="Vezni" short="Ve" />
-            <position type="Winger" value="Krilo" short="Kr" />
-            <position type="Forward" value="Napadač" short="Na" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="Nepredvidiv" short="Np" />
-            <specialty type="Powerful" value="Snažan" short="Sn" />
-            <specialty type="Quick" value="Brz" short="Br" />
-            <specialty type="Technical" value="Tehničar" short="Te" />
-            <specialty type="Head" value="Glavonja" short="Gl" />
-            <specialty type="Regainer" value="Nesalomljiv" short="Ns" />
-        </specialties>	
-        <repositioning>
-            <reposition type="midfielder" value="Kao vezni" />
-            <reposition type="centraldefender" value="Kao odbrambeni" />
-            <reposition type="forward" value="Kao napadač" />
-            <reposition type="normal" value="Normalno" />
-            <reposition type="offensive" value="Ofanzivno" />
-            <reposition type="defensive" value="Defanzivno" />
-            <reposition type="towardsmiddle" value="Prema sredini" />
-            <reposition type="towardswing" value="Prema krilu" />
-        </repositioning>        
-		<levels>
-            <level text="nenadmašiv" value="20" />
-            <level text="utopijski" value="19" />
-            <level text="magičan" value="18" />
-            <level text="legendaran" value="17" />
-            <level text="vanzemaljski" value="16" />
-            <level text="titanski" value="15" />
-            <level text="natprirodan" value="14" />
-            <level text="svjetska klasa" value="13" />
-            <level text="veličanstven" value="12" />
-            <level text="sjajan" value="11" />
-            <level text="izuzetan" value="10" />
-            <level text="impresivan" value="9" />
-            <level text="odličan" value="8" />
-            <level text="solidan" value="7" />
-            <level text="prolazan" value="6" />
-            <level text="nedovoljan" value="5" />
-            <level text="slab" value="4" />
-            <level text="jadan" value="3" />
-            <level text="očajan" value="2" />
-            <level text="katastrofalan" value="1" />
-            <level text="nepostojeći" value="0" />                
-        </levels>		
-    </language>	
-
-    <language name="cz" desc="Čeština">
-        <ratingSubLevels>
-            <sublevel text="(mnohem horší)" value="0.0" />
-            <sublevel text="(horší)" value="0.25"  />
-            <sublevel text="(lepší)" value="0.50"  />
-            <sublevel text="(mnohem lepší)" value="0.75"  />
-        </ratingSubLevels>	
-        <repositioning>
-            <reposition type="midfielder" value="střední záložník" />
-            <reposition type="centraldefender" value="střední obránce" />
-            <reposition type="forward" value="útočník" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="ofenzivní" />
-            <reposition type="defensive" value="defenzivní" />
-            <reposition type="towardsmiddle" value="hrající na střed" />
-            <reposition type="towardswing" value="hrající na křídlo" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normální" />
-            <tactic type="pressing" value="Nátlaková hra" />
-            <tactic type="ca" value="Protiútoky" />
-            <tactic type="aow" value="Útok po křídlech" />
-            <tactic type="aim" value="Útok středem" />
-            <tactic type="creatively" value="Nápaditá hra" />
-            <tactic type="longshots" value="Střelba z dálky" />
-        </tactics>
-    </language>	
-
-    <language name="it" desc="Italiano">
-        <ratingSubLevels>
-            <sublevel text="(molto basso)" value="0.0" />
-            <sublevel text="(basso)" value="0.25"  />
-            <sublevel text="(alto)" value="0.50"  />
-            <sublevel text="(molto alto)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="centrocampista aggiunto" />
-            <reposition type="centraldefender" value="difensore aggiunto" />
-            <reposition type="forward" value="attaccante aggiunto" />
-            <reposition type="normal" value="normale" />
-            <reposition type="offensive" value="offensivo" />
-            <reposition type="defensive" value="difensivo" />
-            <reposition type="towardsmiddle" value="verso il centro" />
-            <reposition type="towardswing" value="verso l'ala" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normale" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Contropiede" />
-            <tactic type="aow" value="Attacco sulle fasce" />
-            <tactic type="aim" value="Attacco al centro" />
-            <tactic type="creatively" value="Libertà d'inventiva" />
-            <tactic type="longshots" value="Tiri da fuori" />
-        </tactics>		
-    </language>
-
-    <language name="fr" desc="Français">
-        <ratingSubLevels>
-            <sublevel text="(très bas)" value="0.0" />
-            <sublevel text="(bas)" value="0.25"  />
-            <sublevel text="(haut)" value="0.50"  />
-            <sublevel text="(très haut)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="milieu" />
-            <reposition type="centraldefender" value="défenseur" />
-            <reposition type="forward" value="attaquant" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="offensif" />
-            <reposition type="defensive" value="défensif" />
-            <reposition type="towardsmiddle" value="vers le centre" />
-            <reposition type="towardswing" value="sur l'aile" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Contre-attaques" />
-            <tactic type="aow" value="Attaquer sur les ailes" />
-            <tactic type="aim" value="Attaquer au centre" />
-            <tactic type="creatively" value="Jeu créatif" />
-            <tactic type="longshots" value="Tirs lointains" />
-        </tactics> 
-    </language>
-
-    <language name="es" desc="Español">
-        <ratingSubLevels>
-            <sublevel text="(muy bajo)" value="0.0" />
-            <sublevel text="(bajo)" value="0.25"  />
-            <sublevel text="(alto)" value="0.50"  />
-            <sublevel text="(muy alto)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="extra medio central" />
-            <reposition type="centraldefender" value="extra defensor central" />
-            <reposition type="forward" value="extra delantero" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="ofensivo" />
-            <reposition type="defensive" value="defensivo" />
-            <reposition type="towardsmiddle" value="hacia medio" />
-            <reposition type="towardswing" value="hacia el lateral" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Presionar" />
-            <tactic type="ca" value="Contraataques" />
-            <tactic type="aow" value="Atacar por las bandas" />
-            <tactic type="aim" value="Atacar por el centro" />
-            <tactic type="creatively" value="Jugar creativamente" />
-            <tactic type="longshots" value="Tiros lejanos" />
-        </tactics>
-    </language>
-
-    <language name="es_SU" desc="Español, Sudamericano">
-        <ratingSubLevels>
-            <sublevel text="(muy bajo)" value="0.0" />
-            <sublevel text="(bajo)" value="0.25" />
-            <sublevel text="(alto)" value="0.50" />
-            <sublevel text="(muy alto)" value="0.75" />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="extra medio central" />
-            <reposition type="centraldefender" value="extra defensor central" />
-            <reposition type="forward" value="extra delantero" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Ofensivo" />
-            <reposition type="defensive" value="Defensivo" />
-            <reposition type="towardsmiddle" value="Hacia medio" />
-            <reposition type="towardswing" value="Hacia el lateral" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Presionar" />
-            <tactic type="ca" value="Contraatacar" />
-            <tactic type="aow" value="Atacar por las bandas" />
-            <tactic type="aim" value="Atacar por el centro" />
-            <tactic type="creatively" value="Jugar creativamente" />
-            <tactic type="longshots" value="Tiros lejanos" />
-        </tactics>
-    </language>
-
-    <language name="es_ca" desc="Español, Centroamericano">
-        <ratingSubLevels>
-            <sublevel text="(Muy bajo)" value="0.0" />
-            <sublevel text="(Bajo)" value="0.25" />
-            <sublevel text="(Alto)" value="0.50" />
-            <sublevel text="(Muy alto)" value="0.75" />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Extra Medio Central" />
-            <reposition type="centraldefender" value="Extra Defensor Central" />
-            <reposition type="forward" value="Extra Delantero" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Ofensivo" />
-            <reposition type="defensive" value="Defensivo" />
-            <reposition type="towardsmiddle" value="Hacia Medio" />
-            <reposition type="towardswing" value="Hacia Lateral" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Presionar" />
-            <tactic type="ca" value="Contraataques" />
-            <tactic type="aow" value="Atacar por las bandas" />
-            <tactic type="aim" value="Atacar por el centro" />
-            <tactic type="creatively" value="Jugar creativamente" />
-            <tactic type="longshots" value="Tiros largos" />
-        </tactics>
-    </language>     
-
-    <language name="tr" desc="Türkçe">
-        <ratingSubLevels>
-            <sublevel text="(çok düşük)" value="0.0" />
-            <sublevel text="(düşük)" value="0.25"  />
-            <sublevel text="(yüksek)" value="0.50"  />
-            <sublevel text="(çok yüksek)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Ekstra İç Ortasaha" />
-            <reposition type="centraldefender" value="Ekstra Stoper" />
-            <reposition type="forward" value="Ekstra Forvet" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Ofansif" />
-            <reposition type="defensive" value="Defansif" />
-            <reposition type="towardsmiddle" value="Ortaya Doğru" />
-            <reposition type="towardswing" value="Kanada Doğru" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pres" />
-            <tactic type="ca" value="Kontra-atak" />
-            <tactic type="aow" value="Kanattan Atak" />
-            <tactic type="aim" value="Ortadan Atak" />
-            <tactic type="creatively" value="Yaratıcı oyna" />
-            <tactic type="longshots" value="Uzaktan şutlar" />
-        </tactics>            
-    </language>
-
-    <language name="hu" desc="Magyar">
-        <ratingSubLevels>	
-            <sublevel text="(Éppen)" value="0.0" />
-            <sublevel text="(Átlag alatt)" value="0.25"  />
-            <sublevel text="(Átlagos)" value="0.50"  />
-            <sublevel text="(Átlag felett)" value="0.75"  />
-        </ratingSubLevels>    		
-        <repositioning>
-            <reposition type="midfielder" value="extra középpályás" />
-            <reposition type="centraldefender" value="extra középhátvéd" />
-            <reposition type="forward" value="extra csatár" />
-            <reposition type="normal" value="alap" />
-            <reposition type="offensive" value="támadó" />
-            <reposition type="defensive" value="védekező" />
-            <reposition type="towardsmiddle" value="közép felé" />
-            <reposition type="towardswing" value="szélre" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Alap" />
-            <tactic type="pressing" value="Játéktördelés" />
-            <tactic type="ca" value="Ellentámadás" />
-            <tactic type="aow" value="Széleken támadás" />
-            <tactic type="aim" value="Középen támadás" />
-            <tactic type="creatively" value="Kreatív játék" />
-            <tactic type="longshots" value="Távoli lövések" />
-        </tactics>            
-    </language>
-
-    <language name="nl" desc="Nederlands">
-        <ratingSubLevels>
-            <sublevel text="(heel laag)" value="0.0" />
-            <sublevel text="(laag)" value="0.25"  />
-            <sublevel text="(hoog)" value="0.50"  />
-            <sublevel text="(zeer hoog)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="normaal" />
-            <tactic type="pressing" value="pressievoetbal" />
-            <tactic type="ca" value="counter" />
-            <tactic type="aow" value="vleugelaanval" />
-            <tactic type="aim" value="centrumaanval" />
-            <tactic type="creatively" value="creatief spel" />
-            <tactic type="longshots" value="afstandsschoten" />
-        </tactics>              
-        <!-- positions appearing on players page -->
-        <positions>
-            <position type="Keeper" value="Keeper" short="K" />
-            <position type="Central defender" value="Centrale verdediger" short="CD" />
-            <position type="Wing back" value="Vleugelverdediger" short="WB" />
-            <position type="Inner midfielder" value="Centrale middenvelder" short="IM" />
-            <position type="Winger" value="Vleugelspeler" short="W" />
-            <position type="Forward" value="Aanvaller" short="F" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="Onvoorspelbaar" short="On" />
-            <specialty type="Powerful" value="Krachtig" short="Kr" />
-            <specialty type="Quick" value="Snel" short="Sn" />
-            <specialty type="Technical" value="Technisch" short="Te" />
-            <specialty type="Head" value="Koppen" short="Ko" />
-            <specialty type="Regainer" value="Snel herstel" short="He" />
-        </specialties>          
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="extra centrale middenvelder" />
-            <reposition type="centraldefender" value="extra centrale verdediger" />
-            <reposition type="forward" value="extra aanvaller" />
-            <reposition type="normal" value="normaal" />
-            <reposition type="offensive" value="aanvallend" />
-            <reposition type="defensive" value="verdedigend" />
-            <reposition type="towardsmiddle" value="naar het midden" />
-            <reposition type="towardswing" value="naar de vleugel" />
-        </repositioning>
-        <levels>
-            <level text="goddelijk" value="20" />
-            <level text="utopisch" value="19" />
-            <level text="magisch" value="18" />
-            <level text="mythisch" value="17" />
-            <level text="buitenaards" value="16" />
-            <level text="reusachtig" value="15" />
-            <level text="bovennatuurlijk" value="14" />
-            <level text="wereldklasse" value="13" />
-            <level text="wonderbaarlijk" value="12" />
-            <level text="briljant" value="11" />
-            <level text="uitmuntend" value="10" />
-            <level text="formidabel" value="9" />
-            <level text="uitstekend" value="8" />
-            <level text="goed" value="7" />
-            <level text="redelijk" value="6" />
-            <level text="matig" value="5" />
-            <level text="zwak" value="4" />
-            <level text="slecht" value="3" />
-            <level text="waardeloos" value="2" />
-            <level text="rampzalig" value="1" />
-            <level text="niet-bestaand" value="0" />
-        </levels>
-    </language>
-
-    <language name="fy" desc="Frysk">
-        <ratingSubLevels>
-            <sublevel text="(Tige leech)" value="0.0" />
-            <sublevel text="(Leech)" value="0.25"  />
-            <sublevel text="(Heech)" value="0.50"  />
-            <sublevel text="(Tige heech)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="ekstra sintrale middenfjilder" />
-            <reposition type="centraldefender" value="ekstra sintrale ferdigener" />
-            <reposition type="forward" value="ekstra oanfaller" />
-            <reposition type="normal" value="normaal" />
-            <reposition type="offensive" value="oanfallend" />
-            <reposition type="defensive" value="ferdigenjend" />
-            <reposition type="towardsmiddle" value="nei it midden" />
-            <reposition type="towardswing" value="nei de wjuk" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="normaal" />
-            <tactic type="pressing" value="druk sette" />
-            <tactic type="ca" value="tsjinoanfallen" />
-            <tactic type="aow" value="oanfal oer de wjukken" />
-            <tactic type="aim" value="oanfal troch it midden" />
-            <tactic type="creatively" value="Kreatyf spylje" />
-            <tactic type="longshots" value="Ofstânsskoaten" />
-        </tactics>		
-    </language>
-
-    <language name="nl_BE" desc="Vlaams">
-        <ratingSubLevels>
-            <sublevel text="(heel laag)" value="0.0" />
-            <sublevel text="(laag)" value="0.25"  />
-            <sublevel text="(hoog)" value="0.50"  />
-            <sublevel text="(heel hoog)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="extra middenvelder" />
-            <reposition type="centraldefender" value="extra centrale verdediger" />
-            <reposition type="forward" value="extra aanvaller" />
-            <reposition type="normal" value="normaal" />
-            <reposition type="offensive" value="aanvallen" />
-            <reposition type="defensive" value="verdedigen" />
-            <reposition type="towardsmiddle" value="naar het midden" />
-            <reposition type="towardswing" value="naar de flank" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="normaal" />
-            <tactic type="pressing" value="pressievoetbal" />
-            <tactic type="ca" value="counteraanval" />
-            <tactic type="aow" value="flankaanval" />
-            <tactic type="aim" value="centrumaanval" />
-            <tactic type="creatively" value="speel creatief" />
-            <tactic type="longshots" value="afstandsschoten" />
-        </tactics>
-        
-    </language>
-
-    <language name="se" desc="Svenska">
-        <ratingSubLevels>
-            <sublevel text="(mkt låg)" value="0.0" />
-            <sublevel text="(låg)" value="0.25"  />
-            <sublevel text="(hög)" value="0.50"  />
-            <sublevel text="(mkt hög)" value="0.75"  />
-        </ratingSubLevels>
-        <positions>
-            <position type="Keeper" value="Målvakt" short="M" />
-            <position type="Central defender" value="Innerback" short="IB" />
-            <position type="Wing back" value="Ytterback" short="YB" />
-            <position type="Inner midfielder" value="Innermittfältare" short="Im" />
-            <position type="Winger" value="Yttermittfält" short="Y" />
-            <position type="Forward" value="Forward" short="F" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="Oförutsägbar" short="Of" />
-            <specialty type="Powerful" value="Kraftfull" short="Kr" />
-            <specialty type="Quick" value="Snabb" short="Sn" />
-            <specialty type="Technical" value="Teknisk" short="Te" />
-            <specialty type="Head" value="Nickskicklig" short="Ni" />
-            <specialty type="Regainer" value="Regainer" short="Re" />
-        </specialties>		
-        <repositioning>
-            <reposition type="midfielder" value="extra innermitt" />
-            <reposition type="centraldefender" value="extra innerback" />
-            <reposition type="forward" value="extra forward" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="offensiv" />
-            <reposition type="defensive" value="defensiv" />
-            <reposition type="towardsmiddle" value="in i mitten" />
-            <reposition type="towardswing" value="ut på kanten" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Press" />
-            <tactic type="ca" value="Kontringsspel" />
-            <tactic type="aow" value="Anfall på kanterna" />
-            <tactic type="aim" value="Anfall i mitten" />
-            <tactic type="creatively" value="Spela kreativt" />
-            <tactic type="longshots" value="Långskott" />
-        </tactics>		
-    </language>
-
-    <language name="de" desc="Deutsch">
-        <ratingSubLevels>
-            <sublevel text="min." value="0.0" />
-            <sublevel text="tief" value="0.25"  />
-            <sublevel text="hoch" value="0.50"  />
-            <sublevel text="max." value="0.75"  />
-        </ratingSubLevels>
-		<levels>
-            <level text="divine" value="20" />
-            <level text="utopian" value="19" />
-            <level text="magical" value="18" />
-            <level text="mythical" value="17" />
-            <level text="extra-terrestrial" value="16" />
-            <level text="titanic" value="15" />
-            <level text="supernatural" value="14" />
-            <level text="world class" value="13" />
-            <level text="magnificent" value="12" />
-            <level text="brilliant" value="11" />
-            <level text="outstanding" value="10" />
-            <level text="formidable" value="9" />
-            <level text="excellent" value="8" />
-            <level text="solid" value="7" />
-            <level text="passable" value="6" />
-            <level text="inadequate" value="5" />
-            <level text="weak" value="4" />
-            <level text="poor" value="3" />
-            <level text="wretched" value="2" />
-            <level text="disastrous" value="1" />
-            <level text="non-existent" value="0" />  
-        </levels>
-        <positions>
-            <position type="Keeper" value="Torwart" short="T" />
-            <position type="Central defender" value="Innenverteidiger" short="Iv" />
-            <position type="Wing back" value="Außenverteidiger" short="Av" />
-            <position type="Inner midfielder" value="zentrales Mittelfeld" short="zM" />
-            <position type="Winger" value="Flügelspieler" short="Fl" />
-            <position type="Forward" value="Stürmer" short="St" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="unberechenbar" short="un" />
-            <specialty type="Powerful" value="durchsetzungsstark" short="du" />
-            <specialty type="Quick" value="schnell" short="sc" />
-            <specialty type="Technical" value="Ballzauberer" short="Bz" />
-            <specialty type="Head" value="Kopfballstärke" short="Ko" />
-            <specialty type="Regainer" value="Regainer" short="Re" />
-        </specialties>		
-        <repositioning>
-            <reposition type="midfielder" value="zusätzl. mittelfeld" />
-            <reposition type="centraldefender" value="zusätzl. innenvert." />
-            <reposition type="forward" value="zusätzl. stürmer" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="offensiv" />
-            <reposition type="defensive" value="defensiv" />
-            <reposition type="towardsmiddle" value="zur mitte hin" />
-            <reposition type="towardswing" value="nach außen" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="normal" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="auf Konter spielen" />
-            <tactic type="aow" value="Angriff über die Flügel" />
-            <tactic type="aim" value="Angriff durch die Mitte" />
-            <tactic type="creatively" value="kreativ spielen" />
-            <tactic type="longshots" value="Weitschüsse" />
-        </tactics>		
-    </language>
-
-    <language name="lt" desc="Lietuvių">
-        <ratingSubLevels>
-            <sublevel text="(min.)" value="0.0" />
-            <sublevel text="(žemas)" value="0.25"  />
-            <sublevel text="(aukštas)" value="0.50"  />
-            <sublevel text="(maks.)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="papildomas saugas" />
-            <reposition type="centraldefender" value="papildomas gynėjas" />
-            <reposition type="forward" value="papildomas puolėjas" />
-            <reposition type="normal" value="normalus" />
-            <reposition type="offensive" value="puolantis" />
-            <reposition type="defensive" value="besiginantis" />
-            <reposition type="towardsmiddle" value="link vidurio" />
-            <reposition type="towardswing" value="link krašto" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normalus" />
-            <tactic type="pressing" value="Spaudimas" />
-            <tactic type="ca" value="Kontratakos" />
-            <tactic type="aow" value="Atakos kraštais" />
-            <tactic type="aim" value="Atakos centru" />
-            <tactic type="creatively" value="Žaisti išradingai" />
-            <tactic type="longshots" value="Tolimi smūgiai" />
-        </tactics>		
-    </language>
-
-    <!-- Marco Antonio Rocha (ma.rocha@gmail.com) -->
-    <language name="pt_BR" desc="Português Brasil">
-
-      <!-- Subníveis que aparecem na página de detalhes do jogo -->
-        <ratingSubLevels>
-            <sublevel text="(mt. baixo)" value="0.0"/>
-            <sublevel text="(baixo)" value="0.25"/>
-            <sublevel text="(alto)" value="0.50"/>
-            <sublevel text="(mt. alto)" value="0.75"/>
-        </ratingSubLevels>
-
-      <!-- Táticas que aparecem na página de detalhes do jogo -->
-        <tactics>
-            <tactic type="normal" value="Normal"/>
-            <tactic type="pressing" value="Pressão"/>
-            <tactic type="ca" value="Contra-ataque"/>
-            <tactic type="aow" value="Ataque pelas laterais"/>
-            <tactic type="aim" value="Ataque pelo meio"/>
-            <tactic type="creatively" value="Jogar com criatividade"/>
-            <tactic type="longshots" value="Chutes de longa distância" />
-        </tactics>
-
-      <!-- Reposionamentos que aparecem na página de escalação -->
-        <repositioning>
-            <reposition type="midfielder" value="Meio-campo extra"/>
-            <reposition type="centraldefender" value="Zagueiro extra"/>
-            <reposition type="forward" value="Atacante extra"/>
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Ofensivo" />
-            <reposition type="defensive" value="Defensivo" />
-            <reposition type="towardsmiddle" value="Para o meio" />
-            <reposition type="towardswing" value="Para a lateral" />
-        </repositioning>
-
-      <!-- Habilidades -->
-        <levels>
-            <level text="lendária" value="20" />
-            <level text="utópica" value="19" />
-            <level text="mágica" value="18" />
-            <level text="mítica" value="17" />
-            <level text="colossal" value="16" />
-            <level text="titânica" value="15" />
-            <level text="sobrenatural" value="14" />
-            <level text="genial" value="13" />
-            <level text="magnífica" value="12" />
-            <level text="brilhante" value="11" />
-            <level text="fenomenal" value="10" />
-            <level text="formidável" value="9" />
-            <level text="excelente" value="8" />
-            <level text="boa" value="7" />
-            <level text="razoável" value="6" />
-            <level text="inadequada" value="5" />
-            <level text="fraca" value="4" />
-            <level text="ruim" value="3" />
-            <level text="péssima" value="2" />
-            <level text="terrível" value="1" />
-        </levels>
-
-    </language> 
-
-    <language name="hr" desc="Hrvatski">
-        <ratingSubLevels>
-            <sublevel text="(vrlo nizak)" value="0.0" />
-            <sublevel text="(nizak)" value="0.25"  />
-            <sublevel text="(visok)" value="0.50"  />
-            <sublevel text="(vrlo visok)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="dodatni vezni" />
-            <reposition type="centraldefender" value="dodatni branič" />
-            <reposition type="forward" value="dodatni napadač" />
-            <reposition type="normal" value="normalno" />
-            <reposition type="offensive" value="isturen" />
-            <reposition type="defensive" value="povučen" />
-            <reposition type="towardsmiddle" value="prema sredini" />
-            <reposition type="towardswing" value="prema krilu" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Standardna" />
-            <tactic type="pressing" value="Presing" />
-            <tactic type="ca" value="Protunapadi" />
-            <tactic type="aow" value="Napadi po krilima" />
-            <tactic type="aim" value="Napadi kroz sredinu" />
-            <tactic type="creatively" value="Igraj kreativno" />
-            <tactic type="longshots" value="Udarci iz daljine" />
-        </tactics>		
-    </language>
-
-    <!-- Mikko Mentula -->
-    <language name="fi" desc="Suomi">
-        <ratingSubLevels>
-            <sublevel text="(erittäin matala)" value="0.0" />
-            <sublevel text="(matala)" value="0.25"  />
-            <sublevel text="(korkea)" value="0.50"  />
-            <sublevel text="(erittäin korkea)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="lisäkeskikenttäpelaaja" />
-            <reposition type="centraldefender" value="keskuspuolustaja" />
-            <reposition type="forward" value="lisähyökkääjä" />
-            <reposition type="normal" value="normaali" />
-            <reposition type="offensive" value="hyökkäävä" />
-            <reposition type="defensive" value="puolustava" />
-            <reposition type="towardsmiddle" value="tukee keskustaa" />
-            <reposition type="towardswing" value="tukee laitaa" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normaali" />
-            <tactic type="pressing" value="Painostus" />
-            <tactic type="ca" value="Vastahyökkäykset" />
-            <tactic type="aow" value="Hyökkäys laidoilta" />
-            <tactic type="aim" value="Hyökkäys keskeltä" />
-            <tactic type="creatively" value="Luova peli" />
-            <tactic type="longshots" value="Kaukolaukaukset" />
-        </tactics>
-        
-    </language>
-
-    <language name="pl" desc="Polski">
-        <ratingSubLevels>
-            <sublevel text="(min.)" value="0.0" />
-            <sublevel text="(niski)" value="0.25"  />
-            <sublevel text="(wysoki)" value="0.50"  />
-            <sublevel text="(maks.)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Ekstra środ. pomocnik" />
-            <reposition type="centraldefender" value="Ekstra środ. obrońca" />
-            <reposition type="forward" value="Ekstra napastnik" />
-            <reposition type="normal" value="Normalny" />
-            <reposition type="offensive" value="Ofensywny" />
-            <reposition type="defensive" value="Defensywny" />
-            <reposition type="towardsmiddle" value="Do środka" />
-            <reposition type="towardswing" value="Na skrzydło" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="normalny" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Gra z kontry" />
-            <tactic type="aow" value="Atak skrzydłami" />
-            <tactic type="aim" value="Atak środkiem" />
-            <tactic type="creatively" value="Gra kreatywna" />
-            <tactic type="longshots" value="Strzały z dystansu" />
-        </tactics>
-        
-    </language>
-
-    <language name="dk" desc="Dansk">
-        <ratingSubLevels>
-            <sublevel text="(meget lav)" value="0.0" />
-            <sublevel text="(lav)" value="0.25"  />
-            <sublevel text="(høj)" value="0.50"  />
-            <sublevel text="(meget høj)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Ekstra midtbane" />
-            <reposition type="centraldefender" value="Ekstra forsvar" />
-            <reposition type="forward" value="Ekstra angreb" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="Offensiv" />
-            <reposition type="defensive" value="Defensiv" />
-            <reposition type="towardsmiddle" value="Ind mod midten" />
-            <reposition type="towardswing" value="Ud mod fløjen" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Presspil" />
-            <tactic type="ca" value="Kontraangreb" />
-            <tactic type="aow" value="Angrib fra fløjene" />
-            <tactic type="aim" value="Angrib fra midten" />
-            <tactic type="creatively" value="Spil kreativt" />
-            <tactic type="longshots" value="Langskud" />
-        </tactics>
-    </language>
-
-    <language name="ru" desc="Русский">
-        <ratingSubLevels>
-            <sublevel text="(низкий)" value="0.0" />
-            <sublevel text="(средний)" value="0.25"  />
-            <sublevel text="(высокий)" value="0.50"  />
-            <sublevel text="(очень высокий)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Экстра Полузащитник" />
-            <reposition type="centraldefender" value="Экстра Защитник" />
-            <reposition type="forward" value="Экстра Нападающий" />
-            <reposition type="normal" value="Нормально" />
-            <reposition type="offensive" value="Атакующий" />
-            <reposition type="defensive" value="Оборонительный" />
-            <reposition type="towardsmiddle" value="Смещенный к центру" />
-            <reposition type="towardswing" value="Смещенный к флангу" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Нормально" />
-            <tactic type="pressing" value="Прессинг" />
-            <tactic type="ca" value="Контратаки" />
-            <tactic type="aow" value="Атака по флангам" />
-            <tactic type="aim" value="Атака в центре" />
-            <tactic type="creatively" value="Играть творчески" />
-            <tactic type="longshots" value="Дальние удары" />
-        </tactics>
-    </language>
-
-    <language name="pt" desc="Português">
-        <ratingSubLevels>
-            <sublevel text="(mt baixo)" value="0.0" />
-            <sublevel text="(baixo)" value="0.25"  />
-            <sublevel text="(alto)" value="0.50"  />
-            <sublevel text="(mt alto)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="médio centro extra" />
-            <reposition type="centraldefender" value="defesa central extra" />
-            <reposition type="forward" value="avançado extra" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="ofensivo" />
-            <reposition type="defensive" value="defensivo" />
-            <reposition type="towardsmiddle" value="descair para o meio" />
-            <reposition type="towardswing" value="descair para a ala" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Contra-ataque" />
-            <tactic type="aow" value="Ataque pelas alas" />
-            <tactic type="aim" value="Ataque pelo meio" />
-            <tactic type="creatively" value="Espontaneidade" />
-            <tactic type="longshots" value="Remates de longe" />
-        </tactics>		
-        
-    </language>
-
-    <language name="ca" desc="Català">
-        <ratingSubLevels>
-            <sublevel text="molt baix" value="0.0" />
-            <sublevel text="baix" value="0.25"  />
-            <sublevel text="alt" value="0.50"  />
-            <sublevel text="molt alt" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Extra mig centre" />
-            <reposition type="centraldefender" value="Extra defensa central" />
-            <reposition type="forward" value="Extra davanter" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Ofensiu" />
-            <reposition type="defensive" value="Defensiu" />
-            <reposition type="towardsmiddle" value="Cap al mig" />
-            <reposition type="towardswing" value="Cap a la banda" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressió" />
-            <tactic type="ca" value="Contraatacs" />
-            <tactic type="aow" value="Atac per les bandes" />
-            <tactic type="aim" value="Atac pel centre" />
-            <tactic type="creatively" value="Joc d'especialitats" />
-            <tactic type="longshots" value="Xuts llunyans" />
-        </tactics>		
-    </language>
-
-    <language name="gl_ES" desc="Galego">
-        <ratingSubLevels>
-            <sublevel text="(Moi baixo)" value="0.0" />
-            <sublevel text="(Baixo)" value="0.25" />
-            <sublevel text="(Alto)" value="0.50" />
-            <sublevel text="(Moi alto)" value="0.75" />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Extra Mediocentro" />
-            <reposition type="centraldefender" value="Extra Defensa Central" />
-            <reposition type="forward" value="Extra Dianteiro" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Ofensivo" />
-            <reposition type="defensive" value="Defensivo" />
-            <reposition type="towardsmiddle" value="Cara ao Medio" />
-            <reposition type="towardswing" value="Cara á Banda" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Presión" />
-            <tactic type="ca" value="Contraataques" />
-            <tactic type="aow" value="Atacar polas bandas" />
-            <tactic type="aim" value="Atacar polo centro" />
-            <tactic type="creatively" value="Xogar creativamente" />
-            <tactic type="longshots" value="Tiros de lonxe" />
-        </tactics>
-    </language> 	
-
-    <language name="ro" desc="Română">
-        <ratingSubLevels>
-            <sublevel text="(foarte scăzut)" value="0.0" />
-            <sublevel text="(scăzut)" value="0.25" />
-            <sublevel text="(ridicat)" value="0.50" />
-            <sublevel text="(foarte ridicat)" value="0.75" />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Mijlocaş adiţional" />
-            <reposition type="centraldefender" value="Fundaş central adiţional" />
-            <reposition type="forward" value="Atacant adiţional" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Ofensiv" />
-            <reposition type="defensive" value="Defensiv" />
-            <reposition type="towardsmiddle" value="Spre centru" />
-            <reposition type="towardswing" value="Spre flanc" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Contraatac" />
-            <tactic type="aow" value="Atac pe Flancuri" />
-            <tactic type="aim" value="Atac pe Centru" />
-            <tactic type="creatively" value="Joacă creativ" />
-            <tactic type="longshots" value="Şuturi de la distanţă" />
-        </tactics>        
-    </language>
-
-    <language name="bg" desc="Български">
-        <ratingSubLevels>
-            <sublevel text="(мн. ниско)" value="0.0" />
-            <sublevel text="(ниско)" value="0.25"  />
-            <sublevel text="(високо)" value="0.50"  />
-            <sublevel text="(мн. високо)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Доп. полузащитник" />
-            <reposition type="centraldefender" value="Доп. защитник" />
-            <reposition type="forward" value="Доп. нападател" />
-            <reposition type="normal" value="Нормално" />
-            <reposition type="offensive" value="Атакуващо" />
-            <reposition type="defensive" value="Защитно" />
-            <reposition type="towardsmiddle" value="Към средата" />
-            <reposition type="towardswing" value="Към крилата" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Нормална" />
-            <tactic type="pressing" value="Преса" />
-            <tactic type="ca" value="Контра атаки" />
-            <tactic type="aow" value="Атака по крилата" />
-            <tactic type="aim" value="Атака в средата" />
-            <tactic type="creatively" value="Играй креативно" />
-            <tactic type="longshots" value="Далечни удари" />
-        </tactics>		
-    </language>
-
-    <language name="he_IL" desc="עברית">
-        <ratingSubLevels>
-            <sublevel text="(נמוך מאוד)" value="0.0" />
-            <sublevel text="(נמוך)" value="0.25"  />
-            <sublevel text="(גבוה)" value="0.50"  />
-            <sublevel text="(גבוה מאוד)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="קשר נוסף" />
-            <reposition type="centraldefender" value="בלם נוסף" />
-            <reposition type="forward" value="חלוץ נוסף" />
-            <reposition type="normal" value="רגיל" />
-            <reposition type="offensive" value="התקפי" />
-            <reposition type="defensive" value="הגנתי" />
-            <reposition type="towardsmiddle" value="לכיוון האמצע" />
-            <reposition type="towardswing" value="לכיוון האגף" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="רגילה" />
-            <tactic type="pressing" value="לחץ" />
-            <tactic type="ca" value="התקפות מתפרצות" />
-            <tactic type="aow" value="התקפות מהאגפים" />
-            <tactic type="aim" value="התקפות מהמרכז" />
-            <tactic type="creatively" value="משחק יצירתי" />
-            <tactic type="longshots" value="בעיטות מרחוק" />
-        </tactics>
-    </language>
-
-    <language name="sk" desc="Slovenčina">
-        <ratingSubLevels>
-            <sublevel text="(veľmi nízky)" value="0.0" />
-            <sublevel text="(nízky)" value="0.25"  />
-            <sublevel text="(vysoký)" value="0.50"  />
-            <sublevel text="(veľmi vysoký)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="záložník naviac" />
-            <reposition type="centraldefender" value="obranca naviac" />
-            <reposition type="forward" value="útočník naviac" />
-            <reposition type="normal" value="normálna taktika" />
-            <reposition type="offensive" value="ofenzívny" />
-            <reposition type="defensive" value="defenzívny" />
-            <reposition type="towardsmiddle" value="viac do stredu" />
-            <reposition type="towardswing" value="viac na kraj" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normálna taktika" />
-            <tactic type="pressing" value="Presing" />
-            <tactic type="ca" value="Protiútoky" />
-            <tactic type="aow" value="Útok po krídlach" />
-            <tactic type="aim" value="Útok stredom" />
-            <tactic type="creatively" value="Kreatívna hra" />
-            <tactic type="longshots" value="Strely z diaľky" />
-        </tactics>
-    </language>	
-
-    <language name="zh_CN" desc="中文（简体）">
-        <ratingSubLevels>
-            <sublevel text="(非常低)" value="0.0" />
-            <sublevel text="(低)" value="0.25"  />
-            <sublevel text="(高)" value="0.50"  />
-            <sublevel text="(非常高)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="额外中前卫" />
-            <reposition type="centraldefender" value="额外中后卫" />
-            <reposition type="forward" value="额外前锋" />
-            <reposition type="normal" value="常规" />
-            <reposition type="offensive" value="进攻型" />
-            <reposition type="defensive" value="防守型" />
-            <reposition type="towardsmiddle" value="靠中路" />
-            <reposition type="towardswing" value="靠边路" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="常规" />
-            <tactic type="pressing" value="全场压迫" />
-            <tactic type="ca" value="防守反击" />
-            <tactic type="aow" value="边路进攻" />
-            <tactic type="aim" value="中路进攻" />
-            <tactic type="creatively" value="无限创意" />
-            <tactic type="longshots" value="远射" />
-        </tactics>
-    </language>
-
-    <language name="no" desc="Norsk">
-        <ratingSubLevels>
-            <sublevel text="(veldig lav)" value="0.0" />
-            <sublevel text="(lav)" value="0.25"  />
-            <sublevel text="(høy)" value="0.50"  />
-            <sublevel text="(veldig høy)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Ekstra midtbanespiller" />
-            <reposition type="centraldefender" value="Ekstra midtstopper" />
-            <reposition type="forward" value="Ekstra spiss" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Offensiv" />
-            <reposition type="defensive" value="Defensiv" />
-            <reposition type="towardsmiddle" value="Mot midten" />
-            <reposition type="towardswing" value="Mot kanten" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Press" />
-            <tactic type="ca" value="Kontringsfotball" />
-            <tactic type="aow" value="Angrep på kantene" />
-            <tactic type="aim" value="Angrep i midten" />
-            <tactic type="creatively" value="Spill kreativt" />
-            <tactic type="longshots" value="Long shots" />
-        </tactics>
-    </language>
-
-    <language name="sr" desc="Српски">
+	<language name="en" desc="English">
 	<!-- rating sublevels appearing in match detail page -->
-        <ratingSubLevels>
-            <sublevel text="(Веома низак)" value="0.0" />
-            <sublevel text="(Низак)" value="0.25" />
-            <sublevel text="(Висок)" value="0.50" />
-            <sublevel text="(Веома висок)" value="0.75" />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="Нормално" />
-            <tactic type="pressing" value="Пресинг" />
-            <tactic type="ca" value="Контранапади" />
-            <tactic type="aow" value="Напад преко крила" />
-            <tactic type="aim" value="Напад по средини" />
-            <tactic type="creatively" value="Креативна игра" />
-            <tactic type="longshots" value="Шутеви из даљине" />
-        </tactics>
-        <!-- positions appearing on players page -->
-        <positions>
-            <position type="Keeper" value="Голман" short="Го" />
-            <position type="Central defender" value="Штопер" short="Шт" />
-            <position type="Wing back" value="Бек" short="Бе" />
-            <position type="Inner midfielder" value="Везни играч" short="Ве" />
-            <position type="Winger" value="Крило" short="Кр" />
-            <position type="Forward" value="Нападач" short="На" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="Непредвидив" short="Не" />
-            <specialty type="Powerful" value="Снажан" short="Сн" />
-            <specialty type="Quick" value="Брз" short="Бр" />
-            <specialty type="Technical" value="Техничар" short="Те" />
-            <specialty type="Head" value="Игра главом" short="Иг" />
-            <specialty type="Regainer" value="Регенерисање" short="Ре" />
-        </specialties>		
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="Екстра везни играч" />
-            <reposition type="centraldefender" value="Екстра штопер" />
-            <reposition type="forward" value="Екстра нападач" />
-            <reposition type="normal" value="Нормално" />
-            <reposition type="offensive" value="Офанзиван" />
-            <reposition type="defensive" value="Дефанзиван" />
-            <reposition type="towardsmiddle" value="Према средини" />
-            <reposition type="towardswing" value="Према крилу" />
-        </repositioning>
+		<ratingSubLevels>
+			<sublevel text="(very low)" value="0.0" />
+			<sublevel text="(low)" value="0.25"  />
+			<sublevel text="(high)" value="0.50"  />
+			<sublevel text="(very high)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Counter-attacks" />
+			<tactic type="aow" value="Attack on wings" />
+			<tactic type="aim" value="Attack in the Middle" />
+			<tactic type="creatively" value="Play creatively" />
+			<tactic type="longshots" value="Long shots" />
+		</tactics>
+		<!-- positions appearing on players page -->
+		<positions>
+			<position type="Keeper" value="Keeper" short="Ke" />
+			<position type="Central defender" value="Central defender" short="Cd" />
+			<position type="Wing back" value="Wing back" short="Wb" />
+			<position type="Inner midfielder" value="Inner midfielder" short="Im" />
+			<position type="Winger" value="Winger" short="Wi" />
+			<position type="Forward" value="Forward" short="Fo" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="Unpredictable" short="Un" />
+			<specialty type="Powerful" value="Powerful" short="Po" />
+			<specialty type="Quick" value="Quick" short="Qu" />
+			<specialty type="Technical" value="Technical" short="Te" />
+			<specialty type="Head" value="Head" short="He" />
+			<specialty type="Regainer" value="Regainer" short="Re" />
+		</specialties>		
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="extra inner midfield" />
+			<reposition type="centraldefender" value="extra central defender" />
+			<reposition type="forward" value="extra forward" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="offensive" />
+			<reposition type="defensive" value="defensive" />
+			<reposition type="towardsmiddle" value="towards middle" />
+			<reposition type="towardswing" value="towards wing" />
+		</repositioning>
 		<levels>
-            <level text="божански" value="20" />
-            <level text="савршен" value="19" />
-            <level text="магичан" value="18" />
-            <level text="епски" value="17" />
-            <level text="легендаран" value="16" />
-            <level text="величанствен" value="15" />
-            <level text="натприродан" value="14" />
-            <level text="светска класа" value="13" />
-            <level text="фантастичан" value="12" />
-            <level text="бриљантан" value="11" />
-            <level text="изузетан" value="10" />
-            <level text="силан" value="9" />
-            <level text="одличан" value="8" />
-            <level text="добар" value="7" />
-            <level text="просечан" value="6" />
-            <level text="недовољан" value="5" />
-            <level text="слаб" value="4" />
-            <level text="јадан" value="3" />
-            <level text="очајан" value="2" />
-            <level text="катастрофалан" value="1" />
-            <level text="непостојећи" value="0" />               
-        </levels>
+			<level text="divine" value="20" />
+			<level text="utopian" value="19" />
+			<level text="magical" value="18" />
+			<level text="mythical" value="17" />
+			<level text="extra-terrestrial" value="16" />
+			<level text="titanic" value="15" />
+			<level text="supernatural" value="14" />
+			<level text="world class" value="13" />
+			<level text="magnificent" value="12" />
+			<level text="brilliant" value="11" />
+			<level text="outstanding" value="10" />
+			<level text="formidable" value="9" />
+			<level text="excellent" value="8" />
+			<level text="solid" value="7" />
+			<level text="passable" value="6" />
+			<level text="inadequate" value="5" />
+			<level text="weak" value="4" />
+			<level text="poor" value="3" />
+			<level text="wretched" value="2" />
+			<level text="disastrous" value="1" />
+			<level text="non-existent" value="0" />  
+		</levels>
+	</language>
 
-    </language>
+	<language name="bs" desc="Bosnian">
+		<ratingSubLevels>
+			<sublevel text="(Veoma nisko)" value="0.0" />
+			<sublevel text="(Nisko)" value="0.25"  />
+			<sublevel text="(Visoko)" value="0.50"  />
+			<sublevel text="(Veoma visoko)" value="0.75"  />
+		</ratingSubLevels>
+		<tactics>
+			<tactic type="normal" value="Normalno" />
+			<tactic type="pressing" value="Presing" />
+			<tactic type="ca" value="Kontranapadi" />
+			<tactic type="aow" value="Napad preko krila" />
+			<tactic type="aim" value="Napad kroz sredinu" />
+			<tactic type="creatively" value="Igraj kreativno" />
+			<tactic type="longshots" value="Dalekometni šutevi" />
+		</tactics>
+		<!-- positions appearing on players page -->
+		<positions>
+			<position type="Keeper" value="Golman" short="Go" />
+			<position type="Central defender" value="Centralni odbrambeni" short="Co" />
+			<position type="Wing back" value="Bek" short="Be" />
+			<position type="Inner midfielder" value="Vezni" short="Ve" />
+			<position type="Winger" value="Krilo" short="Kr" />
+			<position type="Forward" value="Napadač" short="Na" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="Nepredvidiv" short="Np" />
+			<specialty type="Powerful" value="Snažan" short="Sn" />
+			<specialty type="Quick" value="Brz" short="Br" />
+			<specialty type="Technical" value="Tehničar" short="Te" />
+			<specialty type="Head" value="Glavonja" short="Gl" />
+			<specialty type="Regainer" value="Nesalomljiv" short="Ns" />
+		</specialties>	
+		<repositioning>
+			<reposition type="midfielder" value="Kao vezni" />
+			<reposition type="centraldefender" value="Kao odbrambeni" />
+			<reposition type="forward" value="Kao napadač" />
+			<reposition type="normal" value="Normalno" />
+			<reposition type="offensive" value="Ofanzivno" />
+			<reposition type="defensive" value="Defanzivno" />
+			<reposition type="towardsmiddle" value="Prema sredini" />
+			<reposition type="towardswing" value="Prema krilu" />
+		</repositioning>		
+		<levels>
+			<level text="nenadmašiv" value="20" />
+			<level text="utopijski" value="19" />
+			<level text="magičan" value="18" />
+			<level text="legendaran" value="17" />
+			<level text="vanzemaljski" value="16" />
+			<level text="titanski" value="15" />
+			<level text="natprirodan" value="14" />
+			<level text="svjetska klasa" value="13" />
+			<level text="veličanstven" value="12" />
+			<level text="sjajan" value="11" />
+			<level text="izuzetan" value="10" />
+			<level text="impresivan" value="9" />
+			<level text="odličan" value="8" />
+			<level text="solidan" value="7" />
+			<level text="prolazan" value="6" />
+			<level text="nedovoljan" value="5" />
+			<level text="slab" value="4" />
+			<level text="jadan" value="3" />
+			<level text="očajan" value="2" />
+			<level text="katastrofalan" value="1" />
+			<level text="nepostojeći" value="0" />				
+		</levels>		
+	</language>	
 
-    <language name="gr" desc="Ελληνικά">
-        <ratingSubLevels>
-            <sublevel text="(πολύ χαμηλό)" value="0.0" />
-            <sublevel text="(χαμηλό)" value="0.25" />
-            <sublevel text="(υψηλό)" value="0.50" />
-            <sublevel text="(πολύ υψηλό)" value="0.75" />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Εξτρα Κεντρικός Μέσος" />
-            <reposition type="centraldefender" value="Εξτρα Κεντρικός Αμυντικός" />
-            <reposition type="forward" value="Εξτρα Επιθετικός" />
-            <reposition type="normal" value="Φυσιολογικά" />
-            <reposition type="offensive" value="Επιθετικά" />
-            <reposition type="defensive" value="Αμυντικά" />
-            <reposition type="towardsmiddle" value="Προς το Κέντρο" />
-            <reposition type="towardswing" value="Προς τα Πλάγια" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Φυσιολογικά" />
-            <tactic type="pressing" value="Πρεσάρισμα" />
-            <tactic type="ca" value="Αντεπιθέσεις" />
-            <tactic type="aow" value="Επίθεση από το κέντρο" />
-            <tactic type="aim" value="Επίθεση από τα πλάγια" />
-            <tactic type="creatively" value="Δημιουργικό Παιχνίδι" />
-            <tactic type="longshots" value="Μακρινά σουτ" />
-        </tactics>
-    </language>
+	<language name="cz" desc="Čeština">
+		<ratingSubLevels>
+			<sublevel text="(mnohem horší)" value="0.0" />
+			<sublevel text="(horší)" value="0.25"  />
+			<sublevel text="(lepší)" value="0.50"  />
+			<sublevel text="(mnohem lepší)" value="0.75"  />
+		</ratingSubLevels>	
+		<repositioning>
+			<reposition type="midfielder" value="střední záložník" />
+			<reposition type="centraldefender" value="střední obránce" />
+			<reposition type="forward" value="útočník" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="ofenzivní" />
+			<reposition type="defensive" value="defenzivní" />
+			<reposition type="towardsmiddle" value="hrající na střed" />
+			<reposition type="towardswing" value="hrající na křídlo" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normální" />
+			<tactic type="pressing" value="Nátlaková hra" />
+			<tactic type="ca" value="Protiútoky" />
+			<tactic type="aow" value="Útok po křídlech" />
+			<tactic type="aim" value="Útok středem" />
+			<tactic type="creatively" value="Nápaditá hra" />
+			<tactic type="longshots" value="Střelba z dálky" />
+		</tactics>
+	</language>	
 
-    <language name="ee" desc="Eesti">
-        <ratingSubLevels>
-            <sublevel text="(väga madal)" value="0.0" />
-            <sublevel text="(madal)" value="0.25" />
-            <sublevel text="(kõrge)" value="0.50" />
-            <sublevel text="(väga kõrge)" value="0.75" />
-        </ratingSubLevels>
-        <tactics>
-            <tactic type="normal" value="Tavaline" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Vasturünnakud" />
-            <tactic type="aow" value="Ründa äärtelt" />
-            <tactic type="aim" value="Ründa keskelt" />
-            <tactic type="creatively" value="Mängi loovalt" />
-            <tactic type="longshots" value="Kauglöögid" />
-        </tactics>
-    </language>
+	<language name="it" desc="Italiano">
+		<ratingSubLevels>
+			<sublevel text="(molto basso)" value="0.0" />
+			<sublevel text="(basso)" value="0.25"  />
+			<sublevel text="(alto)" value="0.50"  />
+			<sublevel text="(molto alto)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="centrocampista aggiunto" />
+			<reposition type="centraldefender" value="difensore aggiunto" />
+			<reposition type="forward" value="attaccante aggiunto" />
+			<reposition type="normal" value="normale" />
+			<reposition type="offensive" value="offensivo" />
+			<reposition type="defensive" value="difensivo" />
+			<reposition type="towardsmiddle" value="verso il centro" />
+			<reposition type="towardswing" value="verso l'ala" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normale" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Contropiede" />
+			<tactic type="aow" value="Attacco sulle fasce" />
+			<tactic type="aim" value="Attacco al centro" />
+			<tactic type="creatively" value="Libertà d'inventiva" />
+			<tactic type="longshots" value="Tiri da fuori" />
+		</tactics>		
+	</language>
 
-    <language name="sl" desc="Slovenščina">
-        <ratingSubLevels>
-            <sublevel text="(Zelo nizko)" value="0.0" />
-            <sublevel text="(Nizko)" value="0.25"  />
-            <sublevel text="(Visoko)" value="0.50"  />
-            <sublevel text="(Zelo visoko)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="dodatni vezist" />
-            <reposition type="centraldefender" value="dodatni srednji branilec" />
-            <reposition type="forward" value="dodatni napadalec" />
-            <reposition type="normal" value="običajno" />
-            <reposition type="offensive" value="napadalno" />
-            <reposition type="defensive" value="obrambno" />
-            <reposition type="towardsmiddle" value="proti sredini" />
-            <reposition type="towardswing" value="proti krilu" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Običajno" />
-            <tactic type="pressing" value="Tesno pokrivanje nasprotnika" />
-            <tactic type="ca" value="Protinapadi" />
-            <tactic type="aow" value="Napad po krilih" />
-            <tactic type="aim" value="Napad po sredini" />
-            <tactic type="creatively" value="Igraj kreativno" />
-            <tactic type="longshots" value="Streli od daleč" />
-        </tactics>
-    </language>
+	<language name="fr" desc="Français">
+		<ratingSubLevels>
+			<sublevel text="(très bas)" value="0.0" />
+			<sublevel text="(bas)" value="0.25"  />
+			<sublevel text="(haut)" value="0.50"  />
+			<sublevel text="(très haut)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="milieu" />
+			<reposition type="centraldefender" value="défenseur" />
+			<reposition type="forward" value="attaquant" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="offensif" />
+			<reposition type="defensive" value="défensif" />
+			<reposition type="towardsmiddle" value="vers le centre" />
+			<reposition type="towardswing" value="sur l'aile" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Contre-attaques" />
+			<tactic type="aow" value="Attaquer sur les ailes" />
+			<tactic type="aim" value="Attaquer au centre" />
+			<tactic type="creatively" value="Jeu créatif" />
+			<tactic type="longshots" value="Tirs lointains" />
+		</tactics> 
+	</language>
 
-    <language name="ua" desc="Українська">
-        <ratingSubLevels>
-            <sublevel text="(Дуже низький)" value="0.0" />
-            <sublevel text="(Низький)" value="0.25"  />
-            <sublevel text="(Високий)" value="0.50"  />
-            <sublevel text="(Дуже високий)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="Нормально" />
-            <tactic type="pressing" value="Пресинг" />
-            <tactic type="ca" value="Контратаки" />
-            <tactic type="aow" value="Атака по флангах" />
-            <tactic type="aim" value="Атака по центру" />
-            <tactic type="creatively" value="Грати творчо" />
-            <tactic type="longshots" value="Дальні удари" />
-        </tactics>
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="Дод. півзахисник" />
-            <reposition type="centraldefender" value="Дод. центр. захисник" />
-            <reposition type="forward" value="Дод. нападник" />
-            <reposition type="normal" value="Нормально" />
-            <reposition type="offensive" value="В нападі" />
-            <reposition type="defensive" value="В захисті" />
-            <reposition type="towardsmiddle" value="В центр" />
-            <reposition type="towardswing" value="На край" />
-        </repositioning>
-    </language>
+	<language name="es" desc="Español">
+		<ratingSubLevels>
+			<sublevel text="(muy bajo)" value="0.0" />
+			<sublevel text="(bajo)" value="0.25"  />
+			<sublevel text="(alto)" value="0.50"  />
+			<sublevel text="(muy alto)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="extra medio central" />
+			<reposition type="centraldefender" value="extra defensor central" />
+			<reposition type="forward" value="extra delantero" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="ofensivo" />
+			<reposition type="defensive" value="defensivo" />
+			<reposition type="towardsmiddle" value="hacia medio" />
+			<reposition type="towardswing" value="hacia el lateral" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Presionar" />
+			<tactic type="ca" value="Contraataques" />
+			<tactic type="aow" value="Atacar por las bandas" />
+			<tactic type="aim" value="Atacar por el centro" />
+			<tactic type="creatively" value="Jugar creativamente" />
+			<tactic type="longshots" value="Tiros lejanos" />
+		</tactics>
+	</language>
 
-    <language name="lv" desc="Latviešu">
-        <ratingSubLevels>
-            <sublevel text="(ļ.zems)" value="0.0" />
-            <sublevel text="(zems)" value="0.25"  />
-            <sublevel text="(augsts)" value="0.50"  />
-            <sublevel text="(ļ.augsts)" value="0.75"  />
-        </ratingSubLevels>	
-        <repositioning>
-            <reposition type="midfielder" value="Kā pussargs" />
-            <reposition type="centraldefender" value="Kā centra aizsargs" />
-            <reposition type="forward" value="Kā uzbrucējs" />
-            <reposition type="normal" value="Normāli" />
-            <reposition type="offensive" value="Vairāk uzbrukumā" />
-            <reposition type="defensive" value="Vairāk aizsardzībā" />
-            <reposition type="towardsmiddle" value="Vairāk uz centru" />
-            <reposition type="towardswing" value="Vairāk uz flangu" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normāli" />
-            <tactic type="pressing" value="Presings" />
-            <tactic type="ca" value="Pretuzbrukumi" />
-            <tactic type="aow" value="Uzbrukumi pa malām" />
-            <tactic type="aim" value="Uzbrukumi pa centru" />
-            <tactic type="creatively" value="Radoša spēle" />
-            <tactic type="longshots" value="Tālsitieni" />
-        </tactics>
-    </language>
+	<language name="es_SU" desc="Español, Sudamericano">
+		<ratingSubLevels>
+			<sublevel text="(muy bajo)" value="0.0" />
+			<sublevel text="(bajo)" value="0.25" />
+			<sublevel text="(alto)" value="0.50" />
+			<sublevel text="(muy alto)" value="0.75" />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="extra medio central" />
+			<reposition type="centraldefender" value="extra defensor central" />
+			<reposition type="forward" value="extra delantero" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Ofensivo" />
+			<reposition type="defensive" value="Defensivo" />
+			<reposition type="towardsmiddle" value="Hacia medio" />
+			<reposition type="towardswing" value="Hacia el lateral" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Presionar" />
+			<tactic type="ca" value="Contraatacar" />
+			<tactic type="aow" value="Atacar por las bandas" />
+			<tactic type="aim" value="Atacar por el centro" />
+			<tactic type="creatively" value="Jugar creativamente" />
+			<tactic type="longshots" value="Tiros lejanos" />
+		</tactics>
+	</language>
 
-    <!-- David Torrecilla (dorretxo) -->
-    <language name="eu_ES" desc="Euskara">
-        <ratingSubLevels>
-            <sublevel text="(Oso baxua)" value="0.0"/>
-            <sublevel text="(Baxua)" value="0.25"/>
-            <sublevel text="(Altua)" value="0.50"/>
-            <sublevel text="(Oso altua)" value="0.75"/>
-        </ratingSubLevels>
-        <tactics>
-            <tactic type="normal" value="Normal"/>
-            <tactic type="pressing" value="Presionatu"/>
-            <tactic type="ca" value="Kontraerasoa"/>
-            <tactic type="aow" value="Hegaletatik eraso"/>
-            <tactic type="aim" value="Erditik eraso"/>
-            <tactic type="creatively" value="Sormenez jokatu"/>
-            <tactic type="longshots" value="Urruneko jaurtiketak" />
-        </tactics>
-        <repositioning>
-            <reposition type="midfielder" value="Estra erdilaria"/>
-            <reposition type="centraldefender" value="Estra atzelaria"/>
-            <reposition type="forward" value="Estra aurrelaria"/>
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Erasokor" />
-            <reposition type="defensive" value="Defentsibo" />
-            <reposition type="towardsmiddle" value="Erdirantz" />
-            <reposition type="towardswing" value="Hegalerantz" />
-        </repositioning>
-        <levels>
-            <level text="jainkotiarra" value="20" />
-            <level text="utopikoa" value="19" />
-            <level text="magikoa" value="18" />
-            <level text="mitikoa" value="17" />
-            <level text="estralurtarra" value="16" />
-            <level text="titanikoa" value="15" />
-            <level text="naturaz gaindikoa" value="14" />
-            <level text="mundiala" value="13" />
-            <level text="aparta" value="12" />
-            <level text="liluragarria" value="11" />
-            <level text="nabarmena" value="10" />
-            <level text="zoragarria" value="9" />
-            <level text="bikaina" value="8" />
-            <level text="ona" value="7" />
-            <level text="egokia" value="6" />
-            <level text="eskasa" value="5" />
-            <level text="ahula" value="4" />
-            <level text="pobrea" value="3" />
-            <level text="penagarria" value="2" />
-            <level text="negargarria" value="1" />
-        </levels>
-    </language> 	
+	<language name="es_ca" desc="Español, Centroamericano">
+		<ratingSubLevels>
+			<sublevel text="(Muy bajo)" value="0.0" />
+			<sublevel text="(Bajo)" value="0.25" />
+			<sublevel text="(Alto)" value="0.50" />
+			<sublevel text="(Muy alto)" value="0.75" />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Extra Medio Central" />
+			<reposition type="centraldefender" value="Extra Defensor Central" />
+			<reposition type="forward" value="Extra Delantero" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Ofensivo" />
+			<reposition type="defensive" value="Defensivo" />
+			<reposition type="towardsmiddle" value="Hacia Medio" />
+			<reposition type="towardswing" value="Hacia Lateral" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Presionar" />
+			<tactic type="ca" value="Contraataques" />
+			<tactic type="aow" value="Atacar por las bandas" />
+			<tactic type="aim" value="Atacar por el centro" />
+			<tactic type="creatively" value="Jugar creativamente" />
+			<tactic type="longshots" value="Tiros largos" />
+		</tactics>
+	</language>	 
 
-	    <language name="lb_LU" desc="Lëtzebuergesch">
-    <!-- rating sublevels appearing in match detail page -->
-        <ratingSubLevels>
-            <sublevel text="(Ganz niddereg)" value="0.0" />
-            <sublevel text="(Niddereg)" value="0.25"  />
-            <sublevel text="(Héich)" value="0.50"  />
-            <sublevel text="(Ganz héich)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressen" />
-            <tactic type="ca" value="Konteren" />
-            <tactic type="aow" value="Attack iwwer d'Säiten" />
-            <tactic type="aim" value="Attack iwwer d'Mëtt" />
-            <tactic type="creatively" value="Kreativ spillen" />
-            <tactic type="longshots" value="Wäitschëss" />
-        </tactics>
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="Zous. zentr. Mëttelf." />
-            <reposition type="centraldefender" value="Zous. zentr. Vert." />
-            <reposition type="forward" value="Zous. Stiermer" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="Offensiv" />
-            <reposition type="defensive" value="Defensiv" />
-            <reposition type="towardsmiddle" value="an d'Mëtt" />
-            <reposition type="towardswing" value="no baussen" />
-        </repositioning>
-        <levels>
-            <level text="gëttlech" value="20" />
-            <level text="utopesch" value="19" />
-            <level text="magesch" value="18" />
-            <level text="phänomenal" value="17" />
-            <level text="ausserierdesch" value="16" />
-            <level text="onheemlech" value="15" />
-            <level text="iwwernatierlech" value="14" />
-            <level text="sensationell" value="13" />
-            <level text="fantastesch" value="12" />
-            <level text="brilliant" value="11" />
-            <level text="impressionant" value="10" />
-            <level text="formidabel" value="9" />
-            <level text="excellent" value="8" />
-            <level text="staark" value="7" />
-            <level text="passabel" value="6" />
-            <level text="mëttelméisseg" value="5" />
-            <level text="schwaach" value="4" />
-            <level text="aarmséileg" value="3" />
-            <level text="erbäermlech" value="2" />
-            <level text="katastrophal" value="1" />
+	<language name="tr" desc="Türkçe">
+		<ratingSubLevels>
+			<sublevel text="(çok düşük)" value="0.0" />
+			<sublevel text="(düşük)" value="0.25"  />
+			<sublevel text="(yüksek)" value="0.50"  />
+			<sublevel text="(çok yüksek)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Ekstra İç Ortasaha" />
+			<reposition type="centraldefender" value="Ekstra Stoper" />
+			<reposition type="forward" value="Ekstra Forvet" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Ofansif" />
+			<reposition type="defensive" value="Defansif" />
+			<reposition type="towardsmiddle" value="Ortaya Doğru" />
+			<reposition type="towardswing" value="Kanada Doğru" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pres" />
+			<tactic type="ca" value="Kontra-atak" />
+			<tactic type="aow" value="Kanattan Atak" />
+			<tactic type="aim" value="Ortadan Atak" />
+			<tactic type="creatively" value="Yaratıcı oyna" />
+			<tactic type="longshots" value="Uzaktan şutlar" />
+		</tactics>			
+	</language>
+
+	<language name="hu" desc="Magyar">
+		<ratingSubLevels>	
+			<sublevel text="(Éppen)" value="0.0" />
+			<sublevel text="(Átlag alatt)" value="0.25"  />
+			<sublevel text="(Átlagos)" value="0.50"  />
+			<sublevel text="(Átlag felett)" value="0.75"  />
+		</ratingSubLevels>			
+		<repositioning>
+			<reposition type="midfielder" value="extra középpályás" />
+			<reposition type="centraldefender" value="extra középhátvéd" />
+			<reposition type="forward" value="extra csatár" />
+			<reposition type="normal" value="alap" />
+			<reposition type="offensive" value="támadó" />
+			<reposition type="defensive" value="védekező" />
+			<reposition type="towardsmiddle" value="közép felé" />
+			<reposition type="towardswing" value="szélre" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Alap" />
+			<tactic type="pressing" value="Játéktördelés" />
+			<tactic type="ca" value="Ellentámadás" />
+			<tactic type="aow" value="Széleken támadás" />
+			<tactic type="aim" value="Középen támadás" />
+			<tactic type="creatively" value="Kreatív játék" />
+			<tactic type="longshots" value="Távoli lövések" />
+		</tactics>			
+	</language>
+
+	<language name="nl" desc="Nederlands">
+		<ratingSubLevels>
+			<sublevel text="(heel laag)" value="0.0" />
+			<sublevel text="(laag)" value="0.25"  />
+			<sublevel text="(hoog)" value="0.50"  />
+			<sublevel text="(zeer hoog)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="normaal" />
+			<tactic type="pressing" value="pressievoetbal" />
+			<tactic type="ca" value="counter" />
+			<tactic type="aow" value="vleugelaanval" />
+			<tactic type="aim" value="centrumaanval" />
+			<tactic type="creatively" value="creatief spel" />
+			<tactic type="longshots" value="afstandsschoten" />
+		</tactics>			  
+		<!-- positions appearing on players page -->
+		<positions>
+			<position type="Keeper" value="Keeper" short="K" />
+			<position type="Central defender" value="Centrale verdediger" short="CD" />
+			<position type="Wing back" value="Vleugelverdediger" short="WB" />
+			<position type="Inner midfielder" value="Centrale middenvelder" short="IM" />
+			<position type="Winger" value="Vleugelspeler" short="W" />
+			<position type="Forward" value="Aanvaller" short="F" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="Onvoorspelbaar" short="On" />
+			<specialty type="Powerful" value="Krachtig" short="Kr" />
+			<specialty type="Quick" value="Snel" short="Sn" />
+			<specialty type="Technical" value="Technisch" short="Te" />
+			<specialty type="Head" value="Koppen" short="Ko" />
+			<specialty type="Regainer" value="Snel herstel" short="He" />
+		</specialties>		  
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="extra centrale middenvelder" />
+			<reposition type="centraldefender" value="extra centrale verdediger" />
+			<reposition type="forward" value="extra aanvaller" />
+			<reposition type="normal" value="normaal" />
+			<reposition type="offensive" value="aanvallend" />
+			<reposition type="defensive" value="verdedigend" />
+			<reposition type="towardsmiddle" value="naar het midden" />
+			<reposition type="towardswing" value="naar de vleugel" />
+		</repositioning>
+		<levels>
+			<level text="goddelijk" value="20" />
+			<level text="utopisch" value="19" />
+			<level text="magisch" value="18" />
+			<level text="mythisch" value="17" />
+			<level text="buitenaards" value="16" />
+			<level text="reusachtig" value="15" />
+			<level text="bovennatuurlijk" value="14" />
+			<level text="wereldklasse" value="13" />
+			<level text="wonderbaarlijk" value="12" />
+			<level text="briljant" value="11" />
+			<level text="uitmuntend" value="10" />
+			<level text="formidabel" value="9" />
+			<level text="uitstekend" value="8" />
+			<level text="goed" value="7" />
+			<level text="redelijk" value="6" />
+			<level text="matig" value="5" />
+			<level text="zwak" value="4" />
+			<level text="slecht" value="3" />
+			<level text="waardeloos" value="2" />
+			<level text="rampzalig" value="1" />
+			<level text="niet-bestaand" value="0" />
+		</levels>
+	</language>
+
+	<language name="fy" desc="Frysk">
+		<ratingSubLevels>
+			<sublevel text="(Tige leech)" value="0.0" />
+			<sublevel text="(Leech)" value="0.25"  />
+			<sublevel text="(Heech)" value="0.50"  />
+			<sublevel text="(Tige heech)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="ekstra sintrale middenfjilder" />
+			<reposition type="centraldefender" value="ekstra sintrale ferdigener" />
+			<reposition type="forward" value="ekstra oanfaller" />
+			<reposition type="normal" value="normaal" />
+			<reposition type="offensive" value="oanfallend" />
+			<reposition type="defensive" value="ferdigenjend" />
+			<reposition type="towardsmiddle" value="nei it midden" />
+			<reposition type="towardswing" value="nei de wjuk" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="normaal" />
+			<tactic type="pressing" value="druk sette" />
+			<tactic type="ca" value="tsjinoanfallen" />
+			<tactic type="aow" value="oanfal oer de wjukken" />
+			<tactic type="aim" value="oanfal troch it midden" />
+			<tactic type="creatively" value="Kreatyf spylje" />
+			<tactic type="longshots" value="Ofstânsskoaten" />
+		</tactics>		
+	</language>
+
+	<language name="nl_BE" desc="Vlaams">
+		<ratingSubLevels>
+			<sublevel text="(heel laag)" value="0.0" />
+			<sublevel text="(laag)" value="0.25"  />
+			<sublevel text="(hoog)" value="0.50"  />
+			<sublevel text="(heel hoog)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="extra middenvelder" />
+			<reposition type="centraldefender" value="extra centrale verdediger" />
+			<reposition type="forward" value="extra aanvaller" />
+			<reposition type="normal" value="normaal" />
+			<reposition type="offensive" value="aanvallen" />
+			<reposition type="defensive" value="verdedigen" />
+			<reposition type="towardsmiddle" value="naar het midden" />
+			<reposition type="towardswing" value="naar de flank" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="normaal" />
+			<tactic type="pressing" value="pressievoetbal" />
+			<tactic type="ca" value="counteraanval" />
+			<tactic type="aow" value="flankaanval" />
+			<tactic type="aim" value="centrumaanval" />
+			<tactic type="creatively" value="speel creatief" />
+			<tactic type="longshots" value="afstandsschoten" />
+		</tactics>
+		
+	</language>
+
+	<language name="se" desc="Svenska">
+		<ratingSubLevels>
+			<sublevel text="(mkt låg)" value="0.0" />
+			<sublevel text="(låg)" value="0.25"  />
+			<sublevel text="(hög)" value="0.50"  />
+			<sublevel text="(mkt hög)" value="0.75"  />
+		</ratingSubLevels>
+		<positions>
+			<position type="Keeper" value="Målvakt" short="M" />
+			<position type="Central defender" value="Innerback" short="IB" />
+			<position type="Wing back" value="Ytterback" short="YB" />
+			<position type="Inner midfielder" value="Innermittfältare" short="Im" />
+			<position type="Winger" value="Yttermittfält" short="Y" />
+			<position type="Forward" value="Forward" short="F" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="Oförutsägbar" short="Of" />
+			<specialty type="Powerful" value="Kraftfull" short="Kr" />
+			<specialty type="Quick" value="Snabb" short="Sn" />
+			<specialty type="Technical" value="Teknisk" short="Te" />
+			<specialty type="Head" value="Nickskicklig" short="Ni" />
+			<specialty type="Regainer" value="Regainer" short="Re" />
+		</specialties>		
+		<repositioning>
+			<reposition type="midfielder" value="extra innermitt" />
+			<reposition type="centraldefender" value="extra innerback" />
+			<reposition type="forward" value="extra forward" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="offensiv" />
+			<reposition type="defensive" value="defensiv" />
+			<reposition type="towardsmiddle" value="in i mitten" />
+			<reposition type="towardswing" value="ut på kanten" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Press" />
+			<tactic type="ca" value="Kontringsspel" />
+			<tactic type="aow" value="Anfall på kanterna" />
+			<tactic type="aim" value="Anfall i mitten" />
+			<tactic type="creatively" value="Spela kreativt" />
+			<tactic type="longshots" value="Långskott" />
+		</tactics>		
+	</language>
+
+	<language name="de" desc="Deutsch">
+		<ratingSubLevels>
+			<sublevel text="min." value="0.0" />
+			<sublevel text="tief" value="0.25"  />
+			<sublevel text="hoch" value="0.50"  />
+			<sublevel text="max." value="0.75"  />
+		</ratingSubLevels>
+		<levels>
+			<level text="divine" value="20" />
+			<level text="utopian" value="19" />
+			<level text="magical" value="18" />
+			<level text="mythical" value="17" />
+			<level text="extra-terrestrial" value="16" />
+			<level text="titanic" value="15" />
+			<level text="supernatural" value="14" />
+			<level text="world class" value="13" />
+			<level text="magnificent" value="12" />
+			<level text="brilliant" value="11" />
+			<level text="outstanding" value="10" />
+			<level text="formidable" value="9" />
+			<level text="excellent" value="8" />
+			<level text="solid" value="7" />
+			<level text="passable" value="6" />
+			<level text="inadequate" value="5" />
+			<level text="weak" value="4" />
+			<level text="poor" value="3" />
+			<level text="wretched" value="2" />
+			<level text="disastrous" value="1" />
+			<level text="non-existent" value="0" />  
+		</levels>
+		<positions>
+			<position type="Keeper" value="Torwart" short="T" />
+			<position type="Central defender" value="Innenverteidiger" short="Iv" />
+			<position type="Wing back" value="Außenverteidiger" short="Av" />
+			<position type="Inner midfielder" value="zentrales Mittelfeld" short="zM" />
+			<position type="Winger" value="Flügelspieler" short="Fl" />
+			<position type="Forward" value="Stürmer" short="St" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="unberechenbar" short="un" />
+			<specialty type="Powerful" value="durchsetzungsstark" short="du" />
+			<specialty type="Quick" value="schnell" short="sc" />
+			<specialty type="Technical" value="Ballzauberer" short="Bz" />
+			<specialty type="Head" value="Kopfballstärke" short="Ko" />
+			<specialty type="Regainer" value="Regainer" short="Re" />
+		</specialties>		
+		<repositioning>
+			<reposition type="midfielder" value="zusätzl. mittelfeld" />
+			<reposition type="centraldefender" value="zusätzl. innenvert." />
+			<reposition type="forward" value="zusätzl. stürmer" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="offensiv" />
+			<reposition type="defensive" value="defensiv" />
+			<reposition type="towardsmiddle" value="zur mitte hin" />
+			<reposition type="towardswing" value="nach außen" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="auf Konter spielen" />
+			<tactic type="aow" value="Angriff über die Flügel" />
+			<tactic type="aim" value="Angriff durch die Mitte" />
+			<tactic type="creatively" value="kreativ spielen" />
+			<tactic type="longshots" value="Weitschüsse" />
+		</tactics>		
+	</language>
+
+	<language name="lt" desc="Lietuvių">
+		<ratingSubLevels>
+			<sublevel text="(min.)" value="0.0" />
+			<sublevel text="(žemas)" value="0.25"  />
+			<sublevel text="(aukštas)" value="0.50"  />
+			<sublevel text="(maks.)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="papildomas saugas" />
+			<reposition type="centraldefender" value="papildomas gynėjas" />
+			<reposition type="forward" value="papildomas puolėjas" />
+			<reposition type="normal" value="normalus" />
+			<reposition type="offensive" value="puolantis" />
+			<reposition type="defensive" value="besiginantis" />
+			<reposition type="towardsmiddle" value="link vidurio" />
+			<reposition type="towardswing" value="link krašto" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normalus" />
+			<tactic type="pressing" value="Spaudimas" />
+			<tactic type="ca" value="Kontratakos" />
+			<tactic type="aow" value="Atakos kraštais" />
+			<tactic type="aim" value="Atakos centru" />
+			<tactic type="creatively" value="Žaisti išradingai" />
+			<tactic type="longshots" value="Tolimi smūgiai" />
+		</tactics>		
+	</language>
+
+	<!-- Marco Antonio Rocha (ma.rocha@gmail.com) -->
+	<language name="pt_BR" desc="Português Brasil">
+
+	  <!-- Subníveis que aparecem na página de detalhes do jogo -->
+		<ratingSubLevels>
+			<sublevel text="(mt. baixo)" value="0.0"/>
+			<sublevel text="(baixo)" value="0.25"/>
+			<sublevel text="(alto)" value="0.50"/>
+			<sublevel text="(mt. alto)" value="0.75"/>
+		</ratingSubLevels>
+
+	  <!-- Táticas que aparecem na página de detalhes do jogo -->
+		<tactics>
+			<tactic type="normal" value="Normal"/>
+			<tactic type="pressing" value="Pressão"/>
+			<tactic type="ca" value="Contra-ataque"/>
+			<tactic type="aow" value="Ataque pelas laterais"/>
+			<tactic type="aim" value="Ataque pelo meio"/>
+			<tactic type="creatively" value="Jogar com criatividade"/>
+			<tactic type="longshots" value="Chutes de longa distância" />
+		</tactics>
+
+	  <!-- Reposionamentos que aparecem na página de escalação -->
+		<repositioning>
+			<reposition type="midfielder" value="Meio-campo extra"/>
+			<reposition type="centraldefender" value="Zagueiro extra"/>
+			<reposition type="forward" value="Atacante extra"/>
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Ofensivo" />
+			<reposition type="defensive" value="Defensivo" />
+			<reposition type="towardsmiddle" value="Para o meio" />
+			<reposition type="towardswing" value="Para a lateral" />
+		</repositioning>
+
+	  <!-- Habilidades -->
+		<levels>
+			<level text="lendária" value="20" />
+			<level text="utópica" value="19" />
+			<level text="mágica" value="18" />
+			<level text="mítica" value="17" />
+			<level text="colossal" value="16" />
+			<level text="titânica" value="15" />
+			<level text="sobrenatural" value="14" />
+			<level text="genial" value="13" />
+			<level text="magnífica" value="12" />
+			<level text="brilhante" value="11" />
+			<level text="fenomenal" value="10" />
+			<level text="formidável" value="9" />
+			<level text="excelente" value="8" />
+			<level text="boa" value="7" />
+			<level text="razoável" value="6" />
+			<level text="inadequada" value="5" />
+			<level text="fraca" value="4" />
+			<level text="ruim" value="3" />
+			<level text="péssima" value="2" />
+			<level text="terrível" value="1" />
+		</levels>
+
+	</language> 
+
+	<language name="hr" desc="Hrvatski">
+		<ratingSubLevels>
+			<sublevel text="(vrlo nizak)" value="0.0" />
+			<sublevel text="(nizak)" value="0.25"  />
+			<sublevel text="(visok)" value="0.50"  />
+			<sublevel text="(vrlo visok)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="dodatni vezni" />
+			<reposition type="centraldefender" value="dodatni branič" />
+			<reposition type="forward" value="dodatni napadač" />
+			<reposition type="normal" value="normalno" />
+			<reposition type="offensive" value="isturen" />
+			<reposition type="defensive" value="povučen" />
+			<reposition type="towardsmiddle" value="prema sredini" />
+			<reposition type="towardswing" value="prema krilu" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Standardna" />
+			<tactic type="pressing" value="Presing" />
+			<tactic type="ca" value="Protunapadi" />
+			<tactic type="aow" value="Napadi po krilima" />
+			<tactic type="aim" value="Napadi kroz sredinu" />
+			<tactic type="creatively" value="Igraj kreativno" />
+			<tactic type="longshots" value="Udarci iz daljine" />
+		</tactics>		
+	</language>
+
+	<!-- Mikko Mentula -->
+	<language name="fi" desc="Suomi">
+		<ratingSubLevels>
+			<sublevel text="(erittäin matala)" value="0.0" />
+			<sublevel text="(matala)" value="0.25"  />
+			<sublevel text="(korkea)" value="0.50"  />
+			<sublevel text="(erittäin korkea)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="lisäkeskikenttäpelaaja" />
+			<reposition type="centraldefender" value="keskuspuolustaja" />
+			<reposition type="forward" value="lisähyökkääjä" />
+			<reposition type="normal" value="normaali" />
+			<reposition type="offensive" value="hyökkäävä" />
+			<reposition type="defensive" value="puolustava" />
+			<reposition type="towardsmiddle" value="tukee keskustaa" />
+			<reposition type="towardswing" value="tukee laitaa" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normaali" />
+			<tactic type="pressing" value="Painostus" />
+			<tactic type="ca" value="Vastahyökkäykset" />
+			<tactic type="aow" value="Hyökkäys laidoilta" />
+			<tactic type="aim" value="Hyökkäys keskeltä" />
+			<tactic type="creatively" value="Luova peli" />
+			<tactic type="longshots" value="Kaukolaukaukset" />
+		</tactics>
+		
+	</language>
+
+	<language name="pl" desc="Polski">
+		<ratingSubLevels>
+			<sublevel text="(min.)" value="0.0" />
+			<sublevel text="(niski)" value="0.25"  />
+			<sublevel text="(wysoki)" value="0.50"  />
+			<sublevel text="(maks.)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Ekstra środ. pomocnik" />
+			<reposition type="centraldefender" value="Ekstra środ. obrońca" />
+			<reposition type="forward" value="Ekstra napastnik" />
+			<reposition type="normal" value="Normalny" />
+			<reposition type="offensive" value="Ofensywny" />
+			<reposition type="defensive" value="Defensywny" />
+			<reposition type="towardsmiddle" value="Do środka" />
+			<reposition type="towardswing" value="Na skrzydło" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="normalny" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Gra z kontry" />
+			<tactic type="aow" value="Atak skrzydłami" />
+			<tactic type="aim" value="Atak środkiem" />
+			<tactic type="creatively" value="Gra kreatywna" />
+			<tactic type="longshots" value="Strzały z dystansu" />
+		</tactics>
+		
+	</language>
+
+	<language name="dk" desc="Dansk">
+		<ratingSubLevels>
+			<sublevel text="(meget lav)" value="0.0" />
+			<sublevel text="(lav)" value="0.25"  />
+			<sublevel text="(høj)" value="0.50"  />
+			<sublevel text="(meget høj)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Ekstra midtbane" />
+			<reposition type="centraldefender" value="Ekstra forsvar" />
+			<reposition type="forward" value="Ekstra angreb" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="Offensiv" />
+			<reposition type="defensive" value="Defensiv" />
+			<reposition type="towardsmiddle" value="Ind mod midten" />
+			<reposition type="towardswing" value="Ud mod fløjen" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Presspil" />
+			<tactic type="ca" value="Kontraangreb" />
+			<tactic type="aow" value="Angrib fra fløjene" />
+			<tactic type="aim" value="Angrib fra midten" />
+			<tactic type="creatively" value="Spil kreativt" />
+			<tactic type="longshots" value="Langskud" />
+		</tactics>
+	</language>
+
+	<language name="ru" desc="Русский">
+		<ratingSubLevels>
+			<sublevel text="(низкий)" value="0.0" />
+			<sublevel text="(средний)" value="0.25"  />
+			<sublevel text="(высокий)" value="0.50"  />
+			<sublevel text="(очень высокий)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Экстра Полузащитник" />
+			<reposition type="centraldefender" value="Экстра Защитник" />
+			<reposition type="forward" value="Экстра Нападающий" />
+			<reposition type="normal" value="Нормально" />
+			<reposition type="offensive" value="Атакующий" />
+			<reposition type="defensive" value="Оборонительный" />
+			<reposition type="towardsmiddle" value="Смещенный к центру" />
+			<reposition type="towardswing" value="Смещенный к флангу" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Нормально" />
+			<tactic type="pressing" value="Прессинг" />
+			<tactic type="ca" value="Контратаки" />
+			<tactic type="aow" value="Атака по флангам" />
+			<tactic type="aim" value="Атака в центре" />
+			<tactic type="creatively" value="Играть творчески" />
+			<tactic type="longshots" value="Дальние удары" />
+		</tactics>
+	</language>
+
+	<language name="pt" desc="Português">
+		<ratingSubLevels>
+			<sublevel text="(mt baixo)" value="0.0" />
+			<sublevel text="(baixo)" value="0.25"  />
+			<sublevel text="(alto)" value="0.50"  />
+			<sublevel text="(mt alto)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="médio centro extra" />
+			<reposition type="centraldefender" value="defesa central extra" />
+			<reposition type="forward" value="avançado extra" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="ofensivo" />
+			<reposition type="defensive" value="defensivo" />
+			<reposition type="towardsmiddle" value="descair para o meio" />
+			<reposition type="towardswing" value="descair para a ala" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Contra-ataque" />
+			<tactic type="aow" value="Ataque pelas alas" />
+			<tactic type="aim" value="Ataque pelo meio" />
+			<tactic type="creatively" value="Espontaneidade" />
+			<tactic type="longshots" value="Remates de longe" />
+		</tactics>		
+		
+	</language>
+
+	<language name="ca" desc="Català">
+		<ratingSubLevels>
+			<sublevel text="molt baix" value="0.0" />
+			<sublevel text="baix" value="0.25"  />
+			<sublevel text="alt" value="0.50"  />
+			<sublevel text="molt alt" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Extra mig centre" />
+			<reposition type="centraldefender" value="Extra defensa central" />
+			<reposition type="forward" value="Extra davanter" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Ofensiu" />
+			<reposition type="defensive" value="Defensiu" />
+			<reposition type="towardsmiddle" value="Cap al mig" />
+			<reposition type="towardswing" value="Cap a la banda" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressió" />
+			<tactic type="ca" value="Contraatacs" />
+			<tactic type="aow" value="Atac per les bandes" />
+			<tactic type="aim" value="Atac pel centre" />
+			<tactic type="creatively" value="Joc d'especialitats" />
+			<tactic type="longshots" value="Xuts llunyans" />
+		</tactics>		
+	</language>
+
+	<language name="gl_ES" desc="Galego">
+		<ratingSubLevels>
+			<sublevel text="(Moi baixo)" value="0.0" />
+			<sublevel text="(Baixo)" value="0.25" />
+			<sublevel text="(Alto)" value="0.50" />
+			<sublevel text="(Moi alto)" value="0.75" />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Extra Mediocentro" />
+			<reposition type="centraldefender" value="Extra Defensa Central" />
+			<reposition type="forward" value="Extra Dianteiro" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Ofensivo" />
+			<reposition type="defensive" value="Defensivo" />
+			<reposition type="towardsmiddle" value="Cara ao Medio" />
+			<reposition type="towardswing" value="Cara á Banda" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Presión" />
+			<tactic type="ca" value="Contraataques" />
+			<tactic type="aow" value="Atacar polas bandas" />
+			<tactic type="aim" value="Atacar polo centro" />
+			<tactic type="creatively" value="Xogar creativamente" />
+			<tactic type="longshots" value="Tiros de lonxe" />
+		</tactics>
+	</language> 	
+
+	<language name="ro" desc="Română">
+		<ratingSubLevels>
+			<sublevel text="(foarte scăzut)" value="0.0" />
+			<sublevel text="(scăzut)" value="0.25" />
+			<sublevel text="(ridicat)" value="0.50" />
+			<sublevel text="(foarte ridicat)" value="0.75" />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Mijlocaş adiţional" />
+			<reposition type="centraldefender" value="Fundaş central adiţional" />
+			<reposition type="forward" value="Atacant adiţional" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Ofensiv" />
+			<reposition type="defensive" value="Defensiv" />
+			<reposition type="towardsmiddle" value="Spre centru" />
+			<reposition type="towardswing" value="Spre flanc" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Contraatac" />
+			<tactic type="aow" value="Atac pe Flancuri" />
+			<tactic type="aim" value="Atac pe Centru" />
+			<tactic type="creatively" value="Joacă creativ" />
+			<tactic type="longshots" value="Şuturi de la distanţă" />
+		</tactics>		
+	</language>
+
+	<language name="bg" desc="Български">
+		<ratingSubLevels>
+			<sublevel text="(мн. ниско)" value="0.0" />
+			<sublevel text="(ниско)" value="0.25"  />
+			<sublevel text="(високо)" value="0.50"  />
+			<sublevel text="(мн. високо)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Доп. полузащитник" />
+			<reposition type="centraldefender" value="Доп. защитник" />
+			<reposition type="forward" value="Доп. нападател" />
+			<reposition type="normal" value="Нормално" />
+			<reposition type="offensive" value="Атакуващо" />
+			<reposition type="defensive" value="Защитно" />
+			<reposition type="towardsmiddle" value="Към средата" />
+			<reposition type="towardswing" value="Към крилата" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Нормална" />
+			<tactic type="pressing" value="Преса" />
+			<tactic type="ca" value="Контра атаки" />
+			<tactic type="aow" value="Атака по крилата" />
+			<tactic type="aim" value="Атака в средата" />
+			<tactic type="creatively" value="Играй креативно" />
+			<tactic type="longshots" value="Далечни удари" />
+		</tactics>		
+	</language>
+
+	<language name="he_IL" desc="עברית">
+		<ratingSubLevels>
+			<sublevel text="(נמוך מאוד)" value="0.0" />
+			<sublevel text="(נמוך)" value="0.25"  />
+			<sublevel text="(גבוה)" value="0.50"  />
+			<sublevel text="(גבוה מאוד)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="קשר נוסף" />
+			<reposition type="centraldefender" value="בלם נוסף" />
+			<reposition type="forward" value="חלוץ נוסף" />
+			<reposition type="normal" value="רגיל" />
+			<reposition type="offensive" value="התקפי" />
+			<reposition type="defensive" value="הגנתי" />
+			<reposition type="towardsmiddle" value="לכיוון האמצע" />
+			<reposition type="towardswing" value="לכיוון האגף" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="רגילה" />
+			<tactic type="pressing" value="לחץ" />
+			<tactic type="ca" value="התקפות מתפרצות" />
+			<tactic type="aow" value="התקפות מהאגפים" />
+			<tactic type="aim" value="התקפות מהמרכז" />
+			<tactic type="creatively" value="משחק יצירתי" />
+			<tactic type="longshots" value="בעיטות מרחוק" />
+		</tactics>
+	</language>
+
+	<language name="sk" desc="Slovenčina">
+		<ratingSubLevels>
+			<sublevel text="(veľmi nízky)" value="0.0" />
+			<sublevel text="(nízky)" value="0.25"  />
+			<sublevel text="(vysoký)" value="0.50"  />
+			<sublevel text="(veľmi vysoký)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="záložník naviac" />
+			<reposition type="centraldefender" value="obranca naviac" />
+			<reposition type="forward" value="útočník naviac" />
+			<reposition type="normal" value="normálna taktika" />
+			<reposition type="offensive" value="ofenzívny" />
+			<reposition type="defensive" value="defenzívny" />
+			<reposition type="towardsmiddle" value="viac do stredu" />
+			<reposition type="towardswing" value="viac na kraj" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normálna taktika" />
+			<tactic type="pressing" value="Presing" />
+			<tactic type="ca" value="Protiútoky" />
+			<tactic type="aow" value="Útok po krídlach" />
+			<tactic type="aim" value="Útok stredom" />
+			<tactic type="creatively" value="Kreatívna hra" />
+			<tactic type="longshots" value="Strely z diaľky" />
+		</tactics>
+	</language>	
+
+	<language name="zh_CN" desc="中文（简体）">
+		<ratingSubLevels>
+			<sublevel text="(非常低)" value="0.0" />
+			<sublevel text="(低)" value="0.25"  />
+			<sublevel text="(高)" value="0.50"  />
+			<sublevel text="(非常高)" value="0.75"  />
+		</ratingSubLevels>
+		<tactics>
+			<tactic type="normal" value="常规" />
+			<tactic type="pressing" value="全场压迫" />
+			<tactic type="ca" value="防守反击" />
+			<tactic type="aow" value="边路进攻" />
+			<tactic type="aim" value="中路进攻" />
+			<tactic type="creatively" value="无限创意" />
+			<tactic type="longshots" value="远射" />
+		</tactics>
+		<positions>
+			<position type="Keeper" value="守门员" short="门将" />
+			<position type="Central defender" value="中后卫" short="中卫" />
+			<position type="Wing back" value="边后卫" short="边卫" />
+			<position type="Inner midfielder" value="中前卫" short="中场" />
+			<position type="Winger" value="边锋" short="边锋" />
+			<position type="Forward" value="前锋" short="前锋" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="不可预测" short="不" />
+			<specialty type="Powerful" value="力量" short="力" />
+			<specialty type="Quick" value="速度" short="快" />
+			<specialty type="Technical" value="技术" short="技" />
+			<specialty type="Head" value="头球专家" short="头" />
+			<specialty type="Regainer" value="不药而愈" short="愈" />
+		</specialties>
+		<repositioning>
+			<reposition type="midfielder" value="额外中前卫" />
+			<reposition type="centraldefender" value="额外中后卫" />
+			<reposition type="forward" value="额外前锋" />
+			<reposition type="normal" value="常规" />
+			<reposition type="offensive" value="进攻型" />
+			<reposition type="defensive" value="防守型" />
+			<reposition type="towardsmiddle" value="靠中路" />
+			<reposition type="towardswing" value="靠边路" />
+		</repositioning>
+		<levels>
+			<level text="超凡入圣" value="20" />
+			<level text="至高无上" value="19" />
+			<level text="出神入化" value="18" />
+			<level text="神出鬼没" value="17" />
+			<level text="超凡脱俗" value="16" />
+			<level text="威力无边" value="15" />
+			<level text="神秘莫测" value="14" />
+			<level text="独步天下" value="13" />
+			<level text="神妙" value="12" />
+			<level text="辉煌" value="11" />
+			<level text="杰出" value="10" />
+			<level text="强大" value="9" />
+			<level text="优秀" value="8" />
+			<level text="稳定" value="7" />
+			<level text="及格" value="6" />
+			<level text="中下" value="5" />
+			<level text="弱" value="4" />
+			<level text="差" value="3" />
+			<level text="糟糕" value="2" />
+			<level text="极其糟糕" value="1" />
+			<level text="无" value="0" />  
+		</levels>
+	</language>
+	<language name="no" desc="Norsk">
+		<ratingSubLevels>
+			<sublevel text="(veldig lav)" value="0.0" />
+			<sublevel text="(lav)" value="0.25"  />
+			<sublevel text="(høy)" value="0.50"  />
+			<sublevel text="(veldig høy)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Ekstra midtbanespiller" />
+			<reposition type="centraldefender" value="Ekstra midtstopper" />
+			<reposition type="forward" value="Ekstra spiss" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Offensiv" />
+			<reposition type="defensive" value="Defensiv" />
+			<reposition type="towardsmiddle" value="Mot midten" />
+			<reposition type="towardswing" value="Mot kanten" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Press" />
+			<tactic type="ca" value="Kontringsfotball" />
+			<tactic type="aow" value="Angrep på kantene" />
+			<tactic type="aim" value="Angrep i midten" />
+			<tactic type="creatively" value="Spill kreativt" />
+			<tactic type="longshots" value="Long shots" />
+		</tactics>
+	</language>
+
+	<language name="sr" desc="Српски">
+	<!-- rating sublevels appearing in match detail page -->
+		<ratingSubLevels>
+			<sublevel text="(Веома низак)" value="0.0" />
+			<sublevel text="(Низак)" value="0.25" />
+			<sublevel text="(Висок)" value="0.50" />
+			<sublevel text="(Веома висок)" value="0.75" />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="Нормално" />
+			<tactic type="pressing" value="Пресинг" />
+			<tactic type="ca" value="Контранапади" />
+			<tactic type="aow" value="Напад преко крила" />
+			<tactic type="aim" value="Напад по средини" />
+			<tactic type="creatively" value="Креативна игра" />
+			<tactic type="longshots" value="Шутеви из даљине" />
+		</tactics>
+		<!-- positions appearing on players page -->
+		<positions>
+			<position type="Keeper" value="Голман" short="Го" />
+			<position type="Central defender" value="Штопер" short="Шт" />
+			<position type="Wing back" value="Бек" short="Бе" />
+			<position type="Inner midfielder" value="Везни играч" short="Ве" />
+			<position type="Winger" value="Крило" short="Кр" />
+			<position type="Forward" value="Нападач" short="На" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="Непредвидив" short="Не" />
+			<specialty type="Powerful" value="Снажан" short="Сн" />
+			<specialty type="Quick" value="Брз" short="Бр" />
+			<specialty type="Technical" value="Техничар" short="Те" />
+			<specialty type="Head" value="Игра главом" short="Иг" />
+			<specialty type="Regainer" value="Регенерисање" short="Ре" />
+		</specialties>		
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="Екстра везни играч" />
+			<reposition type="centraldefender" value="Екстра штопер" />
+			<reposition type="forward" value="Екстра нападач" />
+			<reposition type="normal" value="Нормално" />
+			<reposition type="offensive" value="Офанзиван" />
+			<reposition type="defensive" value="Дефанзиван" />
+			<reposition type="towardsmiddle" value="Према средини" />
+			<reposition type="towardswing" value="Према крилу" />
+		</repositioning>
+		<levels>
+			<level text="божански" value="20" />
+			<level text="савршен" value="19" />
+			<level text="магичан" value="18" />
+			<level text="епски" value="17" />
+			<level text="легендаран" value="16" />
+			<level text="величанствен" value="15" />
+			<level text="натприродан" value="14" />
+			<level text="светска класа" value="13" />
+			<level text="фантастичан" value="12" />
+			<level text="бриљантан" value="11" />
+			<level text="изузетан" value="10" />
+			<level text="силан" value="9" />
+			<level text="одличан" value="8" />
+			<level text="добар" value="7" />
+			<level text="просечан" value="6" />
+			<level text="недовољан" value="5" />
+			<level text="слаб" value="4" />
+			<level text="јадан" value="3" />
+			<level text="очајан" value="2" />
+			<level text="катастрофалан" value="1" />
+			<level text="непостојећи" value="0" />			   
+		</levels>
+
+	</language>
+
+	<language name="gr" desc="Ελληνικά">
+		<ratingSubLevels>
+			<sublevel text="(πολύ χαμηλό)" value="0.0" />
+			<sublevel text="(χαμηλό)" value="0.25" />
+			<sublevel text="(υψηλό)" value="0.50" />
+			<sublevel text="(πολύ υψηλό)" value="0.75" />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Εξτρα Κεντρικός Μέσος" />
+			<reposition type="centraldefender" value="Εξτρα Κεντρικός Αμυντικός" />
+			<reposition type="forward" value="Εξτρα Επιθετικός" />
+			<reposition type="normal" value="Φυσιολογικά" />
+			<reposition type="offensive" value="Επιθετικά" />
+			<reposition type="defensive" value="Αμυντικά" />
+			<reposition type="towardsmiddle" value="Προς το Κέντρο" />
+			<reposition type="towardswing" value="Προς τα Πλάγια" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Φυσιολογικά" />
+			<tactic type="pressing" value="Πρεσάρισμα" />
+			<tactic type="ca" value="Αντεπιθέσεις" />
+			<tactic type="aow" value="Επίθεση από το κέντρο" />
+			<tactic type="aim" value="Επίθεση από τα πλάγια" />
+			<tactic type="creatively" value="Δημιουργικό Παιχνίδι" />
+			<tactic type="longshots" value="Μακρινά σουτ" />
+		</tactics>
+	</language>
+
+	<language name="ee" desc="Eesti">
+		<ratingSubLevels>
+			<sublevel text="(väga madal)" value="0.0" />
+			<sublevel text="(madal)" value="0.25" />
+			<sublevel text="(kõrge)" value="0.50" />
+			<sublevel text="(väga kõrge)" value="0.75" />
+		</ratingSubLevels>
+		<tactics>
+			<tactic type="normal" value="Tavaline" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Vasturünnakud" />
+			<tactic type="aow" value="Ründa äärtelt" />
+			<tactic type="aim" value="Ründa keskelt" />
+			<tactic type="creatively" value="Mängi loovalt" />
+			<tactic type="longshots" value="Kauglöögid" />
+		</tactics>
+	</language>
+
+	<language name="sl" desc="Slovenščina">
+		<ratingSubLevels>
+			<sublevel text="(Zelo nizko)" value="0.0" />
+			<sublevel text="(Nizko)" value="0.25"  />
+			<sublevel text="(Visoko)" value="0.50"  />
+			<sublevel text="(Zelo visoko)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="dodatni vezist" />
+			<reposition type="centraldefender" value="dodatni srednji branilec" />
+			<reposition type="forward" value="dodatni napadalec" />
+			<reposition type="normal" value="običajno" />
+			<reposition type="offensive" value="napadalno" />
+			<reposition type="defensive" value="obrambno" />
+			<reposition type="towardsmiddle" value="proti sredini" />
+			<reposition type="towardswing" value="proti krilu" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Običajno" />
+			<tactic type="pressing" value="Tesno pokrivanje nasprotnika" />
+			<tactic type="ca" value="Protinapadi" />
+			<tactic type="aow" value="Napad po krilih" />
+			<tactic type="aim" value="Napad po sredini" />
+			<tactic type="creatively" value="Igraj kreativno" />
+			<tactic type="longshots" value="Streli od daleč" />
+		</tactics>
+	</language>
+
+	<language name="ua" desc="Українська">
+		<ratingSubLevels>
+			<sublevel text="(Дуже низький)" value="0.0" />
+			<sublevel text="(Низький)" value="0.25"  />
+			<sublevel text="(Високий)" value="0.50"  />
+			<sublevel text="(Дуже високий)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="Нормально" />
+			<tactic type="pressing" value="Пресинг" />
+			<tactic type="ca" value="Контратаки" />
+			<tactic type="aow" value="Атака по флангах" />
+			<tactic type="aim" value="Атака по центру" />
+			<tactic type="creatively" value="Грати творчо" />
+			<tactic type="longshots" value="Дальні удари" />
+		</tactics>
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="Дод. півзахисник" />
+			<reposition type="centraldefender" value="Дод. центр. захисник" />
+			<reposition type="forward" value="Дод. нападник" />
+			<reposition type="normal" value="Нормально" />
+			<reposition type="offensive" value="В нападі" />
+			<reposition type="defensive" value="В захисті" />
+			<reposition type="towardsmiddle" value="В центр" />
+			<reposition type="towardswing" value="На край" />
+		</repositioning>
+	</language>
+
+	<language name="lv" desc="Latviešu">
+		<ratingSubLevels>
+			<sublevel text="(ļ.zems)" value="0.0" />
+			<sublevel text="(zems)" value="0.25"  />
+			<sublevel text="(augsts)" value="0.50"  />
+			<sublevel text="(ļ.augsts)" value="0.75"  />
+		</ratingSubLevels>	
+		<repositioning>
+			<reposition type="midfielder" value="Kā pussargs" />
+			<reposition type="centraldefender" value="Kā centra aizsargs" />
+			<reposition type="forward" value="Kā uzbrucējs" />
+			<reposition type="normal" value="Normāli" />
+			<reposition type="offensive" value="Vairāk uzbrukumā" />
+			<reposition type="defensive" value="Vairāk aizsardzībā" />
+			<reposition type="towardsmiddle" value="Vairāk uz centru" />
+			<reposition type="towardswing" value="Vairāk uz flangu" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normāli" />
+			<tactic type="pressing" value="Presings" />
+			<tactic type="ca" value="Pretuzbrukumi" />
+			<tactic type="aow" value="Uzbrukumi pa malām" />
+			<tactic type="aim" value="Uzbrukumi pa centru" />
+			<tactic type="creatively" value="Radoša spēle" />
+			<tactic type="longshots" value="Tālsitieni" />
+		</tactics>
+	</language>
+
+	<!-- David Torrecilla (dorretxo) -->
+	<language name="eu_ES" desc="Euskara">
+		<ratingSubLevels>
+			<sublevel text="(Oso baxua)" value="0.0"/>
+			<sublevel text="(Baxua)" value="0.25"/>
+			<sublevel text="(Altua)" value="0.50"/>
+			<sublevel text="(Oso altua)" value="0.75"/>
+		</ratingSubLevels>
+		<tactics>
+			<tactic type="normal" value="Normal"/>
+			<tactic type="pressing" value="Presionatu"/>
+			<tactic type="ca" value="Kontraerasoa"/>
+			<tactic type="aow" value="Hegaletatik eraso"/>
+			<tactic type="aim" value="Erditik eraso"/>
+			<tactic type="creatively" value="Sormenez jokatu"/>
+			<tactic type="longshots" value="Urruneko jaurtiketak" />
+		</tactics>
+		<repositioning>
+			<reposition type="midfielder" value="Estra erdilaria"/>
+			<reposition type="centraldefender" value="Estra atzelaria"/>
+			<reposition type="forward" value="Estra aurrelaria"/>
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Erasokor" />
+			<reposition type="defensive" value="Defentsibo" />
+			<reposition type="towardsmiddle" value="Erdirantz" />
+			<reposition type="towardswing" value="Hegalerantz" />
+		</repositioning>
+		<levels>
+			<level text="jainkotiarra" value="20" />
+			<level text="utopikoa" value="19" />
+			<level text="magikoa" value="18" />
+			<level text="mitikoa" value="17" />
+			<level text="estralurtarra" value="16" />
+			<level text="titanikoa" value="15" />
+			<level text="naturaz gaindikoa" value="14" />
+			<level text="mundiala" value="13" />
+			<level text="aparta" value="12" />
+			<level text="liluragarria" value="11" />
+			<level text="nabarmena" value="10" />
+			<level text="zoragarria" value="9" />
+			<level text="bikaina" value="8" />
+			<level text="ona" value="7" />
+			<level text="egokia" value="6" />
+			<level text="eskasa" value="5" />
+			<level text="ahula" value="4" />
+			<level text="pobrea" value="3" />
+			<level text="penagarria" value="2" />
+			<level text="negargarria" value="1" />
+		</levels>
+	</language> 	
+
+		<language name="lb_LU" desc="Lëtzebuergesch">
+	<!-- rating sublevels appearing in match detail page -->
+		<ratingSubLevels>
+			<sublevel text="(Ganz niddereg)" value="0.0" />
+			<sublevel text="(Niddereg)" value="0.25"  />
+			<sublevel text="(Héich)" value="0.50"  />
+			<sublevel text="(Ganz héich)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressen" />
+			<tactic type="ca" value="Konteren" />
+			<tactic type="aow" value="Attack iwwer d'Säiten" />
+			<tactic type="aim" value="Attack iwwer d'Mëtt" />
+			<tactic type="creatively" value="Kreativ spillen" />
+			<tactic type="longshots" value="Wäitschëss" />
+		</tactics>
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="Zous. zentr. Mëttelf." />
+			<reposition type="centraldefender" value="Zous. zentr. Vert." />
+			<reposition type="forward" value="Zous. Stiermer" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="Offensiv" />
+			<reposition type="defensive" value="Defensiv" />
+			<reposition type="towardsmiddle" value="an d'Mëtt" />
+			<reposition type="towardswing" value="no baussen" />
+		</repositioning>
+		<levels>
+			<level text="gëttlech" value="20" />
+			<level text="utopesch" value="19" />
+			<level text="magesch" value="18" />
+			<level text="phänomenal" value="17" />
+			<level text="ausserierdesch" value="16" />
+			<level text="onheemlech" value="15" />
+			<level text="iwwernatierlech" value="14" />
+			<level text="sensationell" value="13" />
+			<level text="fantastesch" value="12" />
+			<level text="brilliant" value="11" />
+			<level text="impressionant" value="10" />
+			<level text="formidabel" value="9" />
+			<level text="excellent" value="8" />
+			<level text="staark" value="7" />
+			<level text="passabel" value="6" />
+			<level text="mëttelméisseg" value="5" />
+			<level text="schwaach" value="4" />
+			<level text="aarmséileg" value="3" />
+			<level text="erbäermlech" value="2" />
+			<level text="katastrophal" value="1" />
 			<level text="näischt do" value="0" />
-        </levels>
-    </language> 	
+		</levels>
+	</language> 	
 
-    <language name="sq" desc="Albanian">
-        <ratingSubLevels>
-            <sublevel text="(Sh. ulët)" value="0.0" />
-            <sublevel text="(Ulët)" value="0.25"  />
-            <sublevel text="(Lartë)" value="0.50"  />
-            <sublevel text="(Sh. lartë)" value="0.75"  />
-        </ratingSubLevels>	
-        <repositioning>
-            <reposition type="midfielder" value="Mesfushor Tjetër Qëndre" />
-            <reposition type="centraldefender" value="Mbrojtës Tjetër Qëndre" />
-            <reposition type="forward" value="Sulmues Tjetër" />
-            <reposition type="normal" value="Normal" />
-            <reposition type="offensive" value="I avancuar" />
-            <reposition type="defensive" value="I tërhequr" />
-            <reposition type="towardsmiddle" value="Drejt Qëndrës" />
-            <reposition type="towardswing" value="Drejt Krahut" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Presing" />
-            <tactic type="ca" value="Kundër sulmet" />
-            <tactic type="aow" value="Sulmo nga krahët" />
-            <tactic type="aim" value="Sulmo në qëndër" />
-            <tactic type="creatively" value="Lojë me fantazi" />
-            <tactic type="longshots" value="Goditje nga distanca" />
-        </tactics>
-    </language>	
+	<language name="sq" desc="Albanian">
+		<ratingSubLevels>
+			<sublevel text="(Sh. ulët)" value="0.0" />
+			<sublevel text="(Ulët)" value="0.25"  />
+			<sublevel text="(Lartë)" value="0.50"  />
+			<sublevel text="(Sh. lartë)" value="0.75"  />
+		</ratingSubLevels>	
+		<repositioning>
+			<reposition type="midfielder" value="Mesfushor Tjetër Qëndre" />
+			<reposition type="centraldefender" value="Mbrojtës Tjetër Qëndre" />
+			<reposition type="forward" value="Sulmues Tjetër" />
+			<reposition type="normal" value="Normal" />
+			<reposition type="offensive" value="I avancuar" />
+			<reposition type="defensive" value="I tërhequr" />
+			<reposition type="towardsmiddle" value="Drejt Qëndrës" />
+			<reposition type="towardswing" value="Drejt Krahut" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Presing" />
+			<tactic type="ca" value="Kundër sulmet" />
+			<tactic type="aow" value="Sulmo nga krahët" />
+			<tactic type="aim" value="Sulmo në qëndër" />
+			<tactic type="creatively" value="Lojë me fantazi" />
+			<tactic type="longshots" value="Goditje nga distanca" />
+		</tactics>
+	</language>	
 
-	    <language name="mk" desc="Macedonian">
-        <ratingSubLevels>
-            <sublevel text="(Многу ниско)" value="0.0" />
-            <sublevel text="(Ниско)" value="0.25"  />
-            <sublevel text="(Високо)" value="0.50"  />
-            <sublevel text="(Многу високо)" value="0.75"  />
-        </ratingSubLevels>	
-        <repositioning>
-            <reposition type="midfielder" value="Додатен Играч во Средина" />
-            <reposition type="centraldefender" value="Додатен Одбрамбен" />
-            <reposition type="forward" value="Додатен Напаѓач" />
-            <reposition type="normal" value="Нормално" />
-            <reposition type="offensive" value="Офанзивно" />
-            <reposition type="defensive" value="Дефанзивно" />
-            <reposition type="towardsmiddle" value="Према Средина" />
-            <reposition type="towardswing" value="Према Крило" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Нормално" />
-            <tactic type="pressing" value="Пресинг" />
-            <tactic type="ca" value="Контра напад" />
-            <tactic type="aow" value="Напад преку крила" />
-            <tactic type="aim" value="Напад по средина" />
-            <tactic type="creatively" value="Играј креативно" />
-            <tactic type="longshots" value="Удари од далечина" />
-        </tactics>
-    </language>
-    
-    <language name="fur" desc="Furlan">
-        <ratingSubLevels>
-            <sublevel text="(Une vore bas)" value="0.0" />
-            <sublevel text="(Bas)" value="0.25"  />
-            <sublevel text="(Alt)" value="0.50"  />
-            <sublevel text="(Une vore alt)" value="0.75"  />
-        </ratingSubLevels>
-        <repositioning>
-            <reposition type="midfielder" value="Centricjampist" />
-            <reposition type="centraldefender" value="Difensôr Centrâl" />
-            <reposition type="forward" value="Tacant" />
-            <reposition type="normal" value="Normâl" />
-            <reposition type="offensive" value="Ofensîf" />
-            <reposition type="defensive" value="Difensîf" />
-            <reposition type="towardsmiddle" value="Viers il mieç" />
-            <reposition type="towardswing" value="Viers la fasse" />
-        </repositioning>
-        <tactics>
-            <tactic type="normal" value="Normâl" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Cuintripît" />
-            <tactic type="aow" value="Atac su lis fasis" />
-            <tactic type="aim" value="Atac tal mieç" />
-            <tactic type="creatively" value="Zuiâ cun creativitât" />
-            <tactic type="longshots" value="Tîrs di lontan" />
-        </tactics>
-    </language>
-    
-    <language name="fa" desc="Persian">
-    <!-- rating sublevels appearing in match detail page -->
-        <ratingSubLevels>
-            <sublevel text="(خيلي کم)" value="0.0" />
-            <sublevel text="(کم)" value="0.25"  />
-            <sublevel text="(زياد)" value="0.50"  />
-            <sublevel text="(خيلي زياد)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="عادی" />
-            <tactic type="pressing" value="پرسینگ" />
-            <tactic type="ca" value="ضد حمله" />
-            <tactic type="aow" value="حمله از جناحین" />
-            <tactic type="aim" value="حمله از عمق" />
-            <tactic type="creatively" value="بازی خلاقانه" />
-            <tactic type="longshots" value="شوت از راه دور" />
-        </tactics>
-         <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="هافیک وسط اضافه" />
-            <reposition type="centraldefender" value="مدافع وسط اضافه" />
-            <reposition type="forward" value="مهاجم اضافه" />
-            <reposition type="normal" value="عادی" />
-            <reposition type="offensive" value="تهاجمی" />
-            <reposition type="defensive" value="تدافعی" />
-            <reposition type="towardsmiddle" value="به سمت وسط" />
-            <reposition type="towardswing" value="به سمت جناحین" />
-        </repositioning>
-        <levels>
-            <level text="کهکشاني" value="20" />
-            <level text="رماني" value="19" />
-            <level text="جادويي" value="18" />
-            <level text="فسانه‌اي" value="17" />
-            <level text="خارق‌العاده" value="16" />
-            <level text="استثنايي" value="15" />
-            <level text="وق‌العاده" value="14" />
-            <level text="بين‌المللي" value="13" />
-            <level text="باشکوه" value="12" />
-            <level text="درخشان" value="11" />
-            <level text="برجسته" value="10" />
-            <level text="توانمند" value="9" />
-            <level text="عالي" value="8" />
-            <level text="خوب" value="7" />
-            <level text="قابل قبول" value="6" />
-            <level text="ناکافي" value="5" />
-            <level text="ضعيف" value="4" />
-            <level text="ناچيز" value="3" />
-            <level text="اسفبار" value="2" />
-            <level text="افتضاح" value="1" />
-            <level text="بدون مهارت" value="0" />
-        </levels>
-    </language>
-    
-    <language name="ka" desc="Georgian">
-    <!-- rating sublevels appearing in match detail page -->
-        <ratingSubLevels>
-            <sublevel text="(very low)" value="0.0" />
-            <sublevel text="(low)" value="0.25"  />
-            <sublevel text="(high)" value="0.50"  />
-            <sublevel text="(very high)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Counter-attacks" />
-            <tactic type="aow" value="Attack on wings" />
-            <tactic type="aim" value="Attack in the Middle" />
-            <tactic type="creatively" value="Play creatively" />
-            <tactic type="longshots" value="Long shots" />
-        </tactics>
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="extra inner midfield" />
-            <reposition type="centraldefender" value="extra central defender" />
-            <reposition type="forward" value="extra forward" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="offensive" />
-            <reposition type="defensive" value="defensive" />
-            <reposition type="towardsmiddle" value="towards middle" />
-            <reposition type="towardswing" value="towards wing" />
-        </repositioning>
-        <levels>
-            <level text="divine" value="20" />
-            <level text="utopian" value="19" />
-            <level text="magical" value="18" />
-            <level text="mythical" value="17" />
-            <level text="extra-terrestrial" value="16" />
-            <level text="titanic" value="15" />
-            <level text="supernatural" value="14" />
-            <level text="world class" value="13" />
-            <level text="magnificent" value="12" />
-            <level text="brilliant" value="11" />
-            <level text="outstanding" value="10" />
-            <level text="formidable" value="9" />
-            <level text="excellent" value="8" />
-            <level text="solid" value="7" />
-            <level text="passable" value="6" />
-            <level text="inadequate" value="5" />
-            <level text="weak" value="4" />
-            <level text="poor" value="3" />
-            <level text="wretched" value="2" />
-            <level text="disastrous" value="1" />
-            <level text="non-existent" value="0" />  
-        </levels>
-    </language>
-    
-    <language name="mt" desc="Malti">
-    <!-- rating sublevels appearing in match detail page -->
-        <ratingSubLevels>
-            <sublevel text="(very low)" value="0.0" />
-            <sublevel text="(low)" value="0.25"  />
-            <sublevel text="(high)" value="0.50"  />
-            <sublevel text="(very high)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="Normal" />
-            <tactic type="pressing" value="Pressing" />
-            <tactic type="ca" value="Counter-attacks" />
-            <tactic type="aow" value="Attack on wings" />
-            <tactic type="aim" value="Attack in the Middle" />
-            <tactic type="creatively" value="Play creatively" />
-            <tactic type="longshots" value="Long shots" />
-        </tactics>
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="extra inner midfield" />
-            <reposition type="centraldefender" value="extra central defender" />
-            <reposition type="forward" value="extra forward" />
-            <reposition type="normal" value="normal" />
-            <reposition type="offensive" value="offensive" />
-            <reposition type="defensive" value="defensive" />
-            <reposition type="towardsmiddle" value="towards middle" />
-            <reposition type="towardswing" value="towards wing" />
-        </repositioning>
-        <levels>
-            <level text="divine" value="20" />
-            <level text="utopian" value="19" />
-            <level text="magical" value="18" />
-            <level text="mythical" value="17" />
-            <level text="extra-terrestrial" value="16" />
-            <level text="titanic" value="15" />
-            <level text="supernatural" value="14" />
-            <level text="world class" value="13" />
-            <level text="magnificent" value="12" />
-            <level text="brilliant" value="11" />
-            <level text="outstanding" value="10" />
-            <level text="formidable" value="9" />
-            <level text="excellent" value="8" />
-            <level text="solid" value="7" />
-            <level text="passable" value="6" />
-            <level text="inadequate" value="5" />
-            <level text="weak" value="4" />
-            <level text="poor" value="3" />
-            <level text="wretched" value="2" />
-            <level text="disastrous" value="1" />
-            <level text="non-existent" value="0" />  
-        </levels>
-    </language>
+		<language name="mk" desc="Macedonian">
+		<ratingSubLevels>
+			<sublevel text="(Многу ниско)" value="0.0" />
+			<sublevel text="(Ниско)" value="0.25"  />
+			<sublevel text="(Високо)" value="0.50"  />
+			<sublevel text="(Многу високо)" value="0.75"  />
+		</ratingSubLevels>	
+		<repositioning>
+			<reposition type="midfielder" value="Додатен Играч во Средина" />
+			<reposition type="centraldefender" value="Додатен Одбрамбен" />
+			<reposition type="forward" value="Додатен Напаѓач" />
+			<reposition type="normal" value="Нормално" />
+			<reposition type="offensive" value="Офанзивно" />
+			<reposition type="defensive" value="Дефанзивно" />
+			<reposition type="towardsmiddle" value="Према Средина" />
+			<reposition type="towardswing" value="Према Крило" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Нормално" />
+			<tactic type="pressing" value="Пресинг" />
+			<tactic type="ca" value="Контра напад" />
+			<tactic type="aow" value="Напад преку крила" />
+			<tactic type="aim" value="Напад по средина" />
+			<tactic type="creatively" value="Играј креативно" />
+			<tactic type="longshots" value="Удари од далечина" />
+		</tactics>
+	</language>
 	
-    <language name="vi" desc="Tiếng Việt">
-    <!-- rating sublevels appearing in match detail page -->
-        <ratingSubLevels>
-            <sublevel text="(rất thấp)" value="0.0" />
-            <sublevel text="(thấp)" value="0.25"  />
-            <sublevel text="(cao)" value="0.50"  />
-            <sublevel text="(rất cao)" value="0.75"  />
-        </ratingSubLevels>
-        <!-- tactics appearing in match detail page -->
-        <tactics>
-            <tactic type="normal" value="Bình thường" />
-            <tactic type="pressing" value="Kèm chặt" />
-            <tactic type="ca" value="Phòng thủ phản công" />
-            <tactic type="aow" value="Tấn công cánh" />
-            <tactic type="aim" value="Tấn công trung lộ" />
-            <tactic type="creatively" value="Chơi sáng tạo" />
-            <tactic type="longshots" value="Sút xa" />
-        </tactics>
-        <!-- positions appearing on players page -->
-        <positions>
-            <position type="Keeper" value="Keeper" short="Ke" />
-            <position type="Central defender" value="Central defender" short="Cd" />
-            <position type="Wing back" value="Wing back" short="Wb" />
-            <position type="Inner midfielder" value="Inner midfielder" short="Im" />
-            <position type="Winger" value="Winger" short="Wi" />
-            <position type="Forward" value="Forward" short="Fo" />
-        </positions>
-        <specialties>
-            <specialty type="Unpredictable" value="Unpredictable" short="Un" />
-            <specialty type="Powerful" value="Powerful" short="Po" />
-            <specialty type="Quick" value="Quick" short="Qu" />
-            <specialty type="Technical" value="Technical" short="Te" />
-            <specialty type="Head" value="Head" short="He" />
-            <specialty type="Regainer" value="Regainer" short="Re" />
-        </specialties>		
-        <!-- repositioning word connections appearing in match lineup page -->
-        <repositioning>
-            <reposition type="midfielder" value="đá tiền vệ trung tâm" />
-            <reposition type="centraldefender" value="đá trung vệ" />
-            <reposition type="forward" value="đá tiền đạo" />
-            <reposition type="normal" value="bình thường" />
-            <reposition type="offensive" value="tấn công" />
-            <reposition type="defensive" value="phòng thủ" />
-            <reposition type="towardsmiddle" value="bó trung lộ" />
-            <reposition type="towardswing" value="dạt biên" />
-        </repositioning>
-        <levels>
-            <level text="divine" value="20" />
-            <level text="utopian" value="19" />
-            <level text="magical" value="18" />
-            <level text="mythical" value="17" />
-            <level text="extra-terrestrial" value="16" />
-            <level text="titanic" value="15" />
-            <level text="supernatural" value="14" />
-            <level text="world class" value="13" />
-            <level text="magnificent" value="12" />
-            <level text="brilliant" value="11" />
-            <level text="outstanding" value="10" />
-            <level text="formidable" value="9" />
-            <level text="excellent" value="8" />
-            <level text="solid" value="7" />
-            <level text="passable" value="6" />
-            <level text="inadequate" value="5" />
-            <level text="weak" value="4" />
-            <level text="poor" value="3" />
-            <level text="wretched" value="2" />
-            <level text="disastrous" value="1" />
-            <level text="non-existent" value="0" />  
-        </levels>
-    </language>
+	<language name="fur" desc="Furlan">
+		<ratingSubLevels>
+			<sublevel text="(Une vore bas)" value="0.0" />
+			<sublevel text="(Bas)" value="0.25"  />
+			<sublevel text="(Alt)" value="0.50"  />
+			<sublevel text="(Une vore alt)" value="0.75"  />
+		</ratingSubLevels>
+		<repositioning>
+			<reposition type="midfielder" value="Centricjampist" />
+			<reposition type="centraldefender" value="Difensôr Centrâl" />
+			<reposition type="forward" value="Tacant" />
+			<reposition type="normal" value="Normâl" />
+			<reposition type="offensive" value="Ofensîf" />
+			<reposition type="defensive" value="Difensîf" />
+			<reposition type="towardsmiddle" value="Viers il mieç" />
+			<reposition type="towardswing" value="Viers la fasse" />
+		</repositioning>
+		<tactics>
+			<tactic type="normal" value="Normâl" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Cuintripît" />
+			<tactic type="aow" value="Atac su lis fasis" />
+			<tactic type="aim" value="Atac tal mieç" />
+			<tactic type="creatively" value="Zuiâ cun creativitât" />
+			<tactic type="longshots" value="Tîrs di lontan" />
+		</tactics>
+	</language>
+	
+	<language name="fa" desc="Persian">
+	<!-- rating sublevels appearing in match detail page -->
+		<ratingSubLevels>
+			<sublevel text="(خيلي کم)" value="0.0" />
+			<sublevel text="(کم)" value="0.25"  />
+			<sublevel text="(زياد)" value="0.50"  />
+			<sublevel text="(خيلي زياد)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="عادی" />
+			<tactic type="pressing" value="پرسینگ" />
+			<tactic type="ca" value="ضد حمله" />
+			<tactic type="aow" value="حمله از جناحین" />
+			<tactic type="aim" value="حمله از عمق" />
+			<tactic type="creatively" value="بازی خلاقانه" />
+			<tactic type="longshots" value="شوت از راه دور" />
+		</tactics>
+		 <!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="هافیک وسط اضافه" />
+			<reposition type="centraldefender" value="مدافع وسط اضافه" />
+			<reposition type="forward" value="مهاجم اضافه" />
+			<reposition type="normal" value="عادی" />
+			<reposition type="offensive" value="تهاجمی" />
+			<reposition type="defensive" value="تدافعی" />
+			<reposition type="towardsmiddle" value="به سمت وسط" />
+			<reposition type="towardswing" value="به سمت جناحین" />
+		</repositioning>
+		<levels>
+			<level text="کهکشاني" value="20" />
+			<level text="رماني" value="19" />
+			<level text="جادويي" value="18" />
+			<level text="فسانه‌اي" value="17" />
+			<level text="خارق‌العاده" value="16" />
+			<level text="استثنايي" value="15" />
+			<level text="وق‌العاده" value="14" />
+			<level text="بين‌المللي" value="13" />
+			<level text="باشکوه" value="12" />
+			<level text="درخشان" value="11" />
+			<level text="برجسته" value="10" />
+			<level text="توانمند" value="9" />
+			<level text="عالي" value="8" />
+			<level text="خوب" value="7" />
+			<level text="قابل قبول" value="6" />
+			<level text="ناکافي" value="5" />
+			<level text="ضعيف" value="4" />
+			<level text="ناچيز" value="3" />
+			<level text="اسفبار" value="2" />
+			<level text="افتضاح" value="1" />
+			<level text="بدون مهارت" value="0" />
+		</levels>
+	</language>
+	
+	<language name="ka" desc="Georgian">
+	<!-- rating sublevels appearing in match detail page -->
+		<ratingSubLevels>
+			<sublevel text="(very low)" value="0.0" />
+			<sublevel text="(low)" value="0.25"  />
+			<sublevel text="(high)" value="0.50"  />
+			<sublevel text="(very high)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Counter-attacks" />
+			<tactic type="aow" value="Attack on wings" />
+			<tactic type="aim" value="Attack in the Middle" />
+			<tactic type="creatively" value="Play creatively" />
+			<tactic type="longshots" value="Long shots" />
+		</tactics>
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="extra inner midfield" />
+			<reposition type="centraldefender" value="extra central defender" />
+			<reposition type="forward" value="extra forward" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="offensive" />
+			<reposition type="defensive" value="defensive" />
+			<reposition type="towardsmiddle" value="towards middle" />
+			<reposition type="towardswing" value="towards wing" />
+		</repositioning>
+		<levels>
+			<level text="divine" value="20" />
+			<level text="utopian" value="19" />
+			<level text="magical" value="18" />
+			<level text="mythical" value="17" />
+			<level text="extra-terrestrial" value="16" />
+			<level text="titanic" value="15" />
+			<level text="supernatural" value="14" />
+			<level text="world class" value="13" />
+			<level text="magnificent" value="12" />
+			<level text="brilliant" value="11" />
+			<level text="outstanding" value="10" />
+			<level text="formidable" value="9" />
+			<level text="excellent" value="8" />
+			<level text="solid" value="7" />
+			<level text="passable" value="6" />
+			<level text="inadequate" value="5" />
+			<level text="weak" value="4" />
+			<level text="poor" value="3" />
+			<level text="wretched" value="2" />
+			<level text="disastrous" value="1" />
+			<level text="non-existent" value="0" />  
+		</levels>
+	</language>
+	
+	<language name="mt" desc="Malti">
+	<!-- rating sublevels appearing in match detail page -->
+		<ratingSubLevels>
+			<sublevel text="(very low)" value="0.0" />
+			<sublevel text="(low)" value="0.25"  />
+			<sublevel text="(high)" value="0.50"  />
+			<sublevel text="(very high)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Counter-attacks" />
+			<tactic type="aow" value="Attack on wings" />
+			<tactic type="aim" value="Attack in the Middle" />
+			<tactic type="creatively" value="Play creatively" />
+			<tactic type="longshots" value="Long shots" />
+		</tactics>
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="extra inner midfield" />
+			<reposition type="centraldefender" value="extra central defender" />
+			<reposition type="forward" value="extra forward" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="offensive" />
+			<reposition type="defensive" value="defensive" />
+			<reposition type="towardsmiddle" value="towards middle" />
+			<reposition type="towardswing" value="towards wing" />
+		</repositioning>
+		<levels>
+			<level text="divine" value="20" />
+			<level text="utopian" value="19" />
+			<level text="magical" value="18" />
+			<level text="mythical" value="17" />
+			<level text="extra-terrestrial" value="16" />
+			<level text="titanic" value="15" />
+			<level text="supernatural" value="14" />
+			<level text="world class" value="13" />
+			<level text="magnificent" value="12" />
+			<level text="brilliant" value="11" />
+			<level text="outstanding" value="10" />
+			<level text="formidable" value="9" />
+			<level text="excellent" value="8" />
+			<level text="solid" value="7" />
+			<level text="passable" value="6" />
+			<level text="inadequate" value="5" />
+			<level text="weak" value="4" />
+			<level text="poor" value="3" />
+			<level text="wretched" value="2" />
+			<level text="disastrous" value="1" />
+			<level text="non-existent" value="0" />  
+		</levels>
+	</language>
+	
+	<language name="vi" desc="Tiếng Việt">
+	<!-- rating sublevels appearing in match detail page -->
+		<ratingSubLevels>
+			<sublevel text="(rất thấp)" value="0.0" />
+			<sublevel text="(thấp)" value="0.25"  />
+			<sublevel text="(cao)" value="0.50"  />
+			<sublevel text="(rất cao)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page -->
+		<tactics>
+			<tactic type="normal" value="Bình thường" />
+			<tactic type="pressing" value="Kèm chặt" />
+			<tactic type="ca" value="Phòng thủ phản công" />
+			<tactic type="aow" value="Tấn công cánh" />
+			<tactic type="aim" value="Tấn công trung lộ" />
+			<tactic type="creatively" value="Chơi sáng tạo" />
+			<tactic type="longshots" value="Sút xa" />
+		</tactics>
+		<!-- positions appearing on players page -->
+		<positions>
+			<position type="Keeper" value="Keeper" short="Ke" />
+			<position type="Central defender" value="Central defender" short="Cd" />
+			<position type="Wing back" value="Wing back" short="Wb" />
+			<position type="Inner midfielder" value="Inner midfielder" short="Im" />
+			<position type="Winger" value="Winger" short="Wi" />
+			<position type="Forward" value="Forward" short="Fo" />
+		</positions>
+		<specialties>
+			<specialty type="Unpredictable" value="Unpredictable" short="Un" />
+			<specialty type="Powerful" value="Powerful" short="Po" />
+			<specialty type="Quick" value="Quick" short="Qu" />
+			<specialty type="Technical" value="Technical" short="Te" />
+			<specialty type="Head" value="Head" short="He" />
+			<specialty type="Regainer" value="Regainer" short="Re" />
+		</specialties>		
+		<!-- repositioning word connections appearing in match lineup page -->
+		<repositioning>
+			<reposition type="midfielder" value="đá tiền vệ trung tâm" />
+			<reposition type="centraldefender" value="đá trung vệ" />
+			<reposition type="forward" value="đá tiền đạo" />
+			<reposition type="normal" value="bình thường" />
+			<reposition type="offensive" value="tấn công" />
+			<reposition type="defensive" value="phòng thủ" />
+			<reposition type="towardsmiddle" value="bó trung lộ" />
+			<reposition type="towardswing" value="dạt biên" />
+		</repositioning>
+		<levels>
+			<level text="divine" value="20" />
+			<level text="utopian" value="19" />
+			<level text="magical" value="18" />
+			<level text="mythical" value="17" />
+			<level text="extra-terrestrial" value="16" />
+			<level text="titanic" value="15" />
+			<level text="supernatural" value="14" />
+			<level text="world class" value="13" />
+			<level text="magnificent" value="12" />
+			<level text="brilliant" value="11" />
+			<level text="outstanding" value="10" />
+			<level text="formidable" value="9" />
+			<level text="excellent" value="8" />
+			<level text="solid" value="7" />
+			<level text="passable" value="6" />
+			<level text="inadequate" value="5" />
+			<level text="weak" value="4" />
+			<level text="poor" value="3" />
+			<level text="wretched" value="2" />
+			<level text="disastrous" value="1" />
+			<level text="non-existent" value="0" />  
+		</levels>
+	</language>
 
 </hattricklanguages>
