@@ -470,7 +470,8 @@ var FoxtrickAdultSkillTable = {
 						
 						var specc = allDivs[i].getElementsByTagName( "p" )[0];
 
-						// tsi 
+						// tsi
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var tsitot_in = allDivs[i].getElementsByTagName('p')[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
@@ -489,6 +490,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// Agreeability
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = Agreeability;
@@ -498,6 +500,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// Aggressiveness
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = Aggressiveness;
@@ -507,6 +510,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// Honesty
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = Honesty;
@@ -516,6 +520,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// Leadership
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[3+link_off].href.match(/ll=(\d+)/)[1];
@@ -526,6 +531,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 						
 						// Experience
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = Experience;
@@ -537,6 +543,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// form
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = allDivs[i].getElementsByTagName("a")[1+link_off].href.match(/ll=(\d+)/)[1];
@@ -546,6 +553,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 						
 						// stamina
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = allDivs[i].getElementsByTagName("a")[2+link_off].href.match(/ll=(\d+)/)[1];
@@ -603,6 +611,7 @@ var FoxtrickAdultSkillTable = {
 						}
 
 						// yellow cards
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 if (cardsyellow>0) {
 							td.appendChild(doc.createTextNode(cardsyellow));
@@ -612,6 +621,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// red cards
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 if (cardsred>0) {
 							td.appendChild(doc.createTextNode(cardsred));
@@ -621,6 +631,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 						
 						// bruised
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 if (bruised>0) {
 							td.appendChild(doc.createTextNode(bruised));
@@ -630,6 +641,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 						
 						// injured
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 if (injured>0) {
 							td.appendChild(doc.createTextNode(injured));
@@ -639,6 +651,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// specialty
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 							var td = doc.createElement('td');
 							specMatch = specc.textContent.match(/\[(\D+)\]/);
 							if (specMatch) {
@@ -665,6 +678,7 @@ var FoxtrickAdultSkillTable = {
 						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
 
 						// stars
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 							var td = doc.createElement('td');
 							if (matchday==latestMatch) {
 								var imgs=a.parentNode.parentNode.getElementsByTagName('img');
@@ -681,6 +695,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// last position
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 							var td = doc.createElement('td');
 							if (matchday == latestMatch) {
 								var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
@@ -701,6 +716,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// Salary
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = Salary;
@@ -710,6 +726,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// TransferListed
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 td.setAttribute('style','text-align:right !important;');
 						 var val = TransferListed;
@@ -728,6 +745,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// LeagueGoals
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 var val = LeagueGoals;
 						 td.appendChild(doc.createTextNode(val));
@@ -736,6 +754,7 @@ var FoxtrickAdultSkillTable = {
 						k++;
 
 						// CareerGoals
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
 						 var td = doc.createElement('td');
 						 var val = CareerGoals;
 						 td.appendChild(doc.createTextNode(val));
