@@ -109,15 +109,18 @@ var FoxtrickAdultSkillTable = {
 	customize : function(ev) {
 		try {
 			var doc = ev.target.ownerDocument;
-			doc.getElementById('customizelinkid').setAttribute('style','display:none;');
-			doc.getElementById('customizesavelinkid').setAttribute('style','display:inline;cursor:pointer;');
-			doc.getElementById('customizecancellinkid').setAttribute('style','display:inline; cursor:pointer; margin-left:10px;');
-			doc.getElementById('customizerow').setAttribute('style','display:table-row');
+			doc.getElementById('customizelinkid').style.display = "none";
+			doc.getElementById('customizesavelinkid').style.display = "inline";
+			doc.getElementById('customizesavelinkid').style.cursor = "pointer";
+			doc.getElementById('customizecancellinkid').style.display = "inline";
+			doc.getElementById('customizecancellinkid').style.cursor = "pointer";
+			doc.getElementById('customizecancellinkid').marginLeft = "10px";
+			doc.getElementById('customizerow').style.display = "table-row";
 
 			var tablediv = doc.getElementById('ft_adultskilltablediv');
 			var ths = tablediv.getElementsByTagName('tr')[0].getElementsByTagName('th'); 
-			for (var i=0;i<ths.length;++i) ths[i].setAttribute('style','display:table-cell');		// disabled in preferences
-			tablediv.getElementsByTagName('tbody')[0].setAttribute('style','display:none'); 
+			for (var i=0;i<ths.length;++i) ths[i].style.display = "table-cell";	// disabled in preferences
+			tablediv.getElementsByTagName('tbody')[0].style.display = "none"; 
 
 		}catch(e) {Foxtrick.dump('customize '+e+'\n');}
 	},
