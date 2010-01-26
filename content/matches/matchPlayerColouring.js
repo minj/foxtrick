@@ -43,7 +43,7 @@ FoxtrickMatchPlayerColouring = {
 		
 		var isyouth=false;
 		var as = doc.getElementById("mainBody").getElementsByTagName('a');
-		for (var i=0;i<as.lebgth;i++) {
+		for (var i=0;i<as.length;i++) {
 			if (as[i].href.search(/YouthArenaID/i)!=-1) {isyouth=true;break;}
 			else if (as[i].href.search(/ArenaID/i)!=-1) {isyouth=false;break;}
 		}

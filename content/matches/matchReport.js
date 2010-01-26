@@ -57,7 +57,7 @@ FoxtrickMatchReportFormat = {
 
 		var isyouth=false;
 		var as = doc.getElementById("mainBody").getElementsByTagName('a');
-		for (var i=0;i<as.lebgth;i++) {
+		for (var i=0;i<as.length;i++) {
 			if (as[i].href.search(/YouthArenaID/i)!=-1) {isyouth=true;break;}
 			else if (as[i].href.search(/ArenaID/i)!=-1) {isyouth=false;break;}
 		}
@@ -76,9 +76,9 @@ FoxtrickMatchReportFormat = {
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
 		var AwayTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
 
-		// Foxtrick.dump ('ownteam: '+myTeamId+'\n');
-		// Foxtrick.dump ('HomeTeamId: '+HomeTeamId+'\n');
-		// Foxtrick.dump ('AwayTeamId: '+AwayTeamId+'\n');
+		 Foxtrick.dump ('ownteam: '+myTeamId+' isyouth:'+isyouth+'\n');
+		 Foxtrick.dump ('HomeTeamId: '+HomeTeamId+'\n');
+		 Foxtrick.dump ('AwayTeamId: '+AwayTeamId+'\n');
 
         var headder = doc.getElementsByTagName('h1')[0].innerHTML;
         
@@ -271,7 +271,8 @@ FoxtrickMatchReportFormat = {
         var reg = /\ (\d{1,2})\-(\d{1,2})(.*?)/i;
         var divs = div.getElementsByTagName('div');
         
-        var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
+        if (!isyouth) var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
+        else var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[1];
         
         
         //scoreboard.parentNode.setAttribute('style', '-moz-border-radius: 5px; -webkit-border-radius: 5px; border: 1px solid #000; padding: 10px; padding:2px;width:184px;z-Index:1000;background-color:white;position:absolute;top:'+scoreboard.parentNode.offsetTop+'px; left:'+scoreboard.parentNode.offsetLeft+'px;');
