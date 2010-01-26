@@ -56,56 +56,6 @@ var FoxtrickAdultSkillTable = {
 		}
 	},
 
-	sortfunction: function(a,b) {return a.cells[FoxtrickAdultSkillTable.s_index].innerHTML.localeCompare(b.cells[FoxtrickAdultSkillTable.s_index].innerHTML);},
-	sortindexfunction: function(a,b) {return parseInt(b.cells[FoxtrickAdultSkillTable.s_index].getAttribute('index')) < parseInt(a.cells[FoxtrickAdultSkillTable.s_index].getAttribute('index'));},
-	sortdownfunction: function(a,b) {return parseInt(b.cells[FoxtrickAdultSkillTable.s_index].innerHTML.replace(/\&nbsp| /g,'')) > parseInt(a.cells[FoxtrickAdultSkillTable.s_index].innerHTML.replace(/\&nbsp| /g,''));},
-	sortdowntextfunction: function(a,b) {return (b.cells[FoxtrickAdultSkillTable.s_index].innerHTML.localeCompare(a.cells[FoxtrickAdultSkillTable.s_index].innerHTML));},
-	sortlinksfunction: function(a,b) {return a.cells[FoxtrickAdultSkillTable.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickAdultSkillTable.s_index].getElementsByTagName('a')[0].innerHTML);},
-	sortagefunction: function(a,b) {return a.cells[FoxtrickAdultSkillTable.s_index].getAttribute('age').localeCompare(b.cells[FoxtrickAdultSkillTable.s_index].getAttribute('age'));},
-
-	sortClick : function(ev,doc,index,sort) {
-		try{
-			if (ev) {
-				var doc = ev.target.ownerDocument;
-				FoxtrickAdultSkillTable.s_index = ev.target.getAttribute('s_index');
-				FoxtrickAdultSkillTable.sort = ev.target.getAttribute('sort');
-				if (!FoxtrickAdultSkillTable.s_index) {
-					FoxtrickAdultSkillTable.s_index = ev.target.parentNode.getAttribute('s_index');
-					FoxtrickAdultSkillTable.sort = ev.target.parentNode.getAttribute('sort');
-				}
-			}
-			else {
-				FoxtrickAdultSkillTable.s_index = index;
-				FoxtrickAdultSkillTable.sort = sort;
-			}
-			var tablediv = doc.getElementById('ft_adultskilltablediv');
-			var table = tablediv.getElementsByTagName('table')[0];
-			var table_old = table.cloneNode(true);
-			Foxtrick.dump('sortby: '+FoxtrickAdultSkillTable.s_index+' '+FoxtrickAdultSkillTable.sort+'\n');
-
-			var rows = new Array();
-			for (var i=2;i<table.rows.length;++i) {
-				rows.push(table_old.rows[i]);
-			}
-			//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
-			if (FoxtrickAdultSkillTable.sort == "link")
-				rows.sort(FoxtrickAdultSkillTable.sortlinksfunction);
-			else if (FoxtrickAdultSkillTable.sort == "age")
-				rows.sort(FoxtrickAdultSkillTable.sortagefunction);
-			else if (FoxtrickAdultSkillTable.sort == "int")
-				rows.sort(FoxtrickAdultSkillTable.sortdownfunction);
-			else if (FoxtrickAdultSkillTable.sort == "index")
-				rows.sort(FoxtrickAdultSkillTable.sortindexfunction);
-			else if (FoxtrickAdultSkillTable.sort == "text")
-				rows.sort(FoxtrickAdultSkillTable.sortdowntextfunction);
-
-			for (var i=2;i<table.rows.length;++i) {
-				table.rows[i].innerHTML = rows[i-2].innerHTML;
-			}
-		}
-		catch(e) {Foxtrick.dump('sortClick '+e+'\n');}
-	},
-
 	customize : function(ev) {
 		try {
 			var doc = ev.target.ownerDocument;
@@ -321,7 +271,7 @@ var FoxtrickAdultSkillTable = {
 					if (sn[j].sort) {
 						th.setAttribute("sort", sn[j].sort);
 					}
-					th.addEventListener("click", FoxtrickAdultSkillTable.sortClick, true);
+					th.addEventListener("click", FoxtrickSkillTable.sortClick, true);
 					th2.appendChild( check );
 					
 					
@@ -817,7 +767,7 @@ var FoxtrickAdultSkillTable = {
 					}
 				}
 				//sorting by playernumer. slow!
-				//FoxtrickAdultSkillTable.sortClick(null,doc,0,'int_rev');
+				//FoxtrickSkillTable.sortClick(null,doc,0,'int_rev');
 			}
 			else {
 				table.style.display='none';

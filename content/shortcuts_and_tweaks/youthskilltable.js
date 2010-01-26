@@ -50,44 +50,6 @@ var FoxtrickYouthSkillTable = {
 			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.yskilltablecopied"));
 	},
 
-	sortfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].innerHTML);},
-	sortdownfunction: function(a,b) {return (b.cells[FoxtrickYouthSkillTable.s_index].innerHTML.localeCompare(a.cells[FoxtrickYouthSkillTable.s_index].innerHTML));},
-	sortlinksfunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getElementsByTagName('a')[0].innerHTML);},
-	sortagefunction: function(a,b) {return a.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age').localeCompare(b.cells[FoxtrickYouthSkillTable.s_index].getAttribute('age'));},
-
-	sortClick : function(ev) {
-		try {
-			var doc = ev.target.ownerDocument;
-			var tablediv = doc.getElementById('ft_youthskilltablediv');
-			var table = tablediv.getElementsByTagName('table')[0];
-			var table_old = table.cloneNode(true);
-			FoxtrickYouthSkillTable.s_index = ev.target.getAttribute('s_index');
-			FoxtrickYouthSkillTable.sort = ev.target.getAttribute('sort');
-			if (!FoxtrickYouthSkillTable.s_index) {
-				FoxtrickYouthSkillTable.s_index = ev.target.parentNode.getAttribute('s_index');
-				FoxtrickYouthSkillTable.sort = ev.target.parentNode.getAttribute('sort');
-			}
-			//Foxtrick.dump('sortby: '+FoxtrickYouthSkillTable.s_index+'\n');
-
-			var rows= new Array();
-			for (var i=1;i<table.rows.length;++i) {
-				rows.push(table_old.rows[i]);
-			}
-			//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
-			if (FoxtrickYouthSkillTable.sort == "link")
-				rows.sort(FoxtrickYouthSkillTable.sortlinksfunction);
-			else if (FoxtrickYouthSkillTable.sort == "age")
-				rows.sort(FoxtrickYouthSkillTable.sortagefunction);
-			else if (FoxtrickYouthSkillTable.sort == "text")
-				rows.sort(FoxtrickYouthSkillTable.sortdownfunction);
-
-			for (var i=1;i<table.rows.length;++i) {
-				table.rows[i].innerHTML = rows[i-1].innerHTML;
-			}
-		}
-		catch(e) {Foxtrick.dump('sortClick '+e+'\n');}
-	},
-
 	HeaderClick : function(ev) {
 		try {
 			var doc = ev.target.ownerDocument;
@@ -147,7 +109,7 @@ var FoxtrickYouthSkillTable = {
 					if (sn[j].sort) {
 						th.setAttribute("sort", sn[j].sort);
 					}
-					th.addEventListener("click", FoxtrickYouthSkillTable.sortClick, true);
+					th.addEventListener("click", FoxtrickSkillTable.sortClick, true);
 					if (sn[j].abbr) {
 						if (sn[j].img) {
 							var img = doc.createElement("img");
