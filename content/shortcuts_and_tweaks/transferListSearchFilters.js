@@ -119,27 +119,15 @@ FoxtrickTransferListSearchFilters = {
       Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
     },
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	},
-    addNewFilter : function(ev) {
-  	    
-        var doc = ev.target.ownerDocument;
-        Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/transferform.js");
-        
-        var wind = ev.target.window;
+    
+	addNewFilter : function(ev) {  	            
         try {
-            /*var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
-            
-            var returnobj = {};
-            var b = {};
-            
-            promptService.prompt(wind, 'FoxTrick',
-                Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"), returnobj, null, b);
-            
-            if (returnobj == null) return;
-            */
-            var filtername = prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));//returnobj.value;
+			var doc = ev.target.ownerDocument;
+			Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/transferform.js");
+ 
+			var filtername = prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
             if (filtername == '') return;
             
             filtername = filtername.substring( 0, FoxtrickTransferListSearchFilters._MAX_FILTER_DISP_LENGTH );
