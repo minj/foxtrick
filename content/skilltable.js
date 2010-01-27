@@ -63,6 +63,9 @@ var FoxtrickSkillTable = {
 		catch (e) {
 			Foxtrick.dump("SkillTable: " + e + "\n");
 		}
+		finally {
+			ev.stopPropagation();
+		}
 	},
 
 	headerClick : function(ev) {
@@ -71,22 +74,28 @@ var FoxtrickSkillTable = {
 			var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
 			var customize = doc.getElementsByClassName("ft_skilltable_customize")[0];
 			var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
-			var table = doc.getElementsByClassName("ft_skilltable")[0];
+			var viewContainer = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
 			var h2 = tablediv.getElementsByTagName("h2")[0];
 			Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
 			Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
 			if (Foxtrick.hasClass(h2, "ft_boxBodyUnfolded")) {
 				Foxtrick.removeClass(customize, "hidden");
-				Foxtrick.removeClass(table, "hidden");
+				Foxtrick.removeClass(viewContainer, "hidden");
 			}
 			else if (Foxtrick.hasClass(h2, "ft_boxBodyCollapsed")) {
 				Foxtrick.addClass(customize, "hidden");
 				Foxtrick.removeClass(customize, "customizing");
 				Foxtrick.addClass(customizeTable, "hidden");
-				Foxtrick.addClass(table, "hidden");
+				Foxtrick.addClass(viewContainer, "hidden");
 			}
 		}
 		catch(e) {Foxtrick.dump(k+'SkillTableHeaderClick: '+e+'\n');}
+	},
+
+	view : function(ev) {
+		var doc = ev.target.ownerDocument;
+		var table = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
+		Foxtrick.toggleClass(table, "on_top");
 	},
 
 	customize : function(ev) {
@@ -97,8 +106,8 @@ var FoxtrickSkillTable = {
 		var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
 		Foxtrick.removeClass(customizeTable, "hidden");
 
-		var skillTable = doc.getElementsByClassName("ft_skilltable")[0];
-		Foxtrick.addClass(skillTable, "hidden");
+		var viewContainer = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
+		Foxtrick.addClass(viewContainer, "hidden");
 	},
 
 	save : function(ev) {
@@ -135,12 +144,26 @@ var FoxtrickSkillTable = {
 			var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
 			var customize = tablediv.getElementsByClassName("ft_skilltable_customize")[0];
 			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
-			var table = tablediv.getElementsByClassName("ft_skilltable")[0];
+			var viewContainer = tablediv.getElementsByClassName("ft_skilltable_viewcont")[0];
 			Foxtrick.removeClass(customize, "customizing");
 			Foxtrick.addClass(customizeTable, "hidden");
-			Foxtrick.removeClass(table, "hidden");
+			Foxtrick.removeClass(viewContainer, "hidden");
 		}
 		catch(e) {Foxtrick.dump('customize '+e+'\n');}
+	},
+
+	createView : function(doc) {
+		var ul = doc.createElement("ul");
+		ul.className = "ft_skilltable_view";
+		var viewItem = doc.createElement("li");
+		var view = doc.createElement("a");
+		viewItem.appendChild(view);
+		view.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
+		view.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Switch_view_title"));
+		view.addEventListener("click", FoxtrickSkillTable.view, false);
+		ul.appendChild(viewItem);
+
+		return ul;
 	},
 
 	createCustomize : function(doc) {

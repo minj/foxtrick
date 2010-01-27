@@ -36,7 +36,7 @@ var FoxtrickAdultSkillTable = {
 			tablediv.className = "ft_skilltablediv";
 			var h2 = doc.createElement('h2');
 			h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-			h2.addEventListener( "click", FoxtrickSkillTable.headerClick, true );
+			h2.addEventListener( "click", FoxtrickSkillTable.headerClick, false );
 			h2.setAttribute('class','ft_boxBodyCollapsed');
 			tablediv.appendChild(h2);
 			var header=doc.getElementsByTagName('h1')[0];
@@ -159,10 +159,18 @@ var FoxtrickAdultSkillTable = {
 			Foxtrick.addClass(customizeTable, "hidden");
 			tablediv.appendChild(customizeTable);
 
+			var viewContainer = doc.createElement("div");
+			viewContainer.className = "ft_skilltable_viewcont";
+			Foxtrick.addClass(viewContainer, "hidden");
+			tablediv.appendChild(viewContainer);
+
+			var view = FoxtrickSkillTable.createView(doc);
+			viewContainer.appendChild(view);
+
 			var table = doc.createElement('table');
 			table.id = "ft_adultskilltable";
 			table.className = "ft_skilltable";
-			Foxtrick.addClass(table, "hidden");
+			table.addEventListener("click", FoxtrickSkillTable.view, false);
 			thead = doc.createElement("thead");
 			var tr = doc.createElement('tr');
 			thead.appendChild(tr);
@@ -179,7 +187,7 @@ var FoxtrickAdultSkillTable = {
 					if (sn[j].sort) {
 						th.setAttribute("sort", sn[j].sort);
 					}
-					th.addEventListener("click", FoxtrickSkillTable.sortClick, true);
+					th.addEventListener("click", FoxtrickSkillTable.sortClick, false);
 
 					if (sn[j].abbr) {
 						var abbr = doc.createElement("abbr");
@@ -628,7 +636,7 @@ var FoxtrickAdultSkillTable = {
 				}
 			}
 
-			tablediv.appendChild(table);
+			viewContainer.appendChild(table);
 
 			// copy button
 			if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "CopySkillTable" )) {
