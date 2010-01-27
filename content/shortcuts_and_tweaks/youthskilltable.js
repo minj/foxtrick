@@ -184,7 +184,7 @@ var FoxtrickYouthSkillTable = {
 					// skills
 					if (is_ownteam) {
 						for(var j = 0; j < 7; j++) {
-							if (Foxtrick.isModuleFeatureEnabled(FoxtrickYouthSkillTable, kind+'.'+sn[k++].name)) {
+							if (Foxtrick.isModuleFeatureEnabled(FoxtrickYouthSkillTable, kind+'.'+sn[j+2].name)) {
 								var td = doc.createElement('td');
 								tr.appendChild(td);
 
@@ -225,6 +225,8 @@ var FoxtrickYouthSkillTable = {
 						if (img[j].className=='injuryBruised') bruised=1;
 						if (img[j].className=='injuryInjured') injured = img[j].nextSibling.innerHTML;
 					}
+
+					k = 9;
 
 					if (Foxtrick.isModuleFeatureEnabled(FoxtrickYouthSkillTable, kind+'.'+sn[k++].name)) {
 						var td = doc.createElement('td');
