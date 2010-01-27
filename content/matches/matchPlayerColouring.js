@@ -6,11 +6,11 @@
 FoxtrickMatchPlayerColouring = {
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match','teamPageAny','myhattrick'), 
+	PAGES : new Array('match','teamPageAny','myhattrick','playerdetail'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
-	LATEST_CHANGE:"Fix for yyyy-mm-dd dateformat",	
+	LATEST_CHANGE:"Fix for yyyy-mm-dd dateformat. Added: When using links on playerdetails page, it highlights this player only",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team
@@ -35,8 +35,21 @@ FoxtrickMatchPlayerColouring = {
         if (page=='myhattrick') {
 			this.OwnYouthTeamId = null;
 			return;
+		} 
+		if (page=='playerdetail') { // add matchreport highlight links to playerdetails
+			var playername = doc.getElementById("mainWrapper").getElementsByTagName('a')[1].innerHTML;
+			playerlastname = playername.substr(playername.lastIndexOf(' ')+1);
+			Foxtrick.dump('playerlastname: "'+playerlastname+'"\n');
+			var as = doc.getElementById("mainBody").getElementsByTagName('a');
+			for (var i=0;i<as.length;i++) {
+				Foxtrick.dump(as[i].href+' '+as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i)+'\n');
+				if (as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i)!=-1) {
+					as[i].href += '&highlight='+playerlastname;
+					Foxtrick.dump(as[i].href+'\n');
+				}
+			}
+			return;
 		}
-		
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
 		if (isprematch ) return;
@@ -225,6 +238,16 @@ FoxtrickMatchPlayerColouring = {
 			}
 		 }		 
  
+		// just highlight single player
+		if (doc.location.href.search(/highlight=.+/)!=-1) {
+			var playerhighlight = doc.location.href.match(/highlight=(.+)/)[1]; 
+			Foxtrick.dump(playerhighlight+'\n');
+			teamA.splice(0,teamA.length);
+			teamB.splice(0,teamB.length);
+			teamA.push(playerhighlight);
+			stlTeamA = this.OPTION_TEXTS_DEFAULT_VALUES[1];
+		}	
+			
 		var links = content_div.getElementsByTagName("a");
         
 		 for (var i=0; i<links.length; i++) {
@@ -294,7 +317,20 @@ FoxtrickMatchPlayerColouring = {
     },
 
     change : function(page, doc ) {
-        
+		if (page=='playerdetail') { // add matchreport highlight links to playerdetails
+			var playername = doc.getElementById("mainWrapper").getElementsByTagName('a')[1].innerHTML;
+			playerlastname = playername.substr(playername.lastIndexOf(' ')+1);
+			Foxtrick.dump('playerlastname: "'+playerlastname+'"\n');
+			var as = doc.getElementById("mainBody").getElementsByTagName('a');
+			for (var i=0;i<as.length;i++) {
+				//Foxtrick.dump(as[i].href+' '+as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i)+'\n');
+				if (as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i)!=-1 && as[i].href.search(/highlight/i)==-1) {
+					as[i].href += '&highlight='+playerlastname;
+					Foxtrick.dump(as[i].href+'\n');
+				}
+			}
+			return;
+		}
     },        
     
     _isLinkPlayer : function(url) {
