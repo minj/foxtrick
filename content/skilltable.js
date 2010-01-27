@@ -41,15 +41,7 @@ var FoxtrickSkillTable = {
 
 			var rows = new Array();
 
-			// a temporary solution concerning adultskilltable's customization
-			// will be unified
-			if (table.id === "ft_adultskilltable") {
-				var start = 2;
-			}
-			else {
-				var start = 1;
-			}
-			for (var i = start; i < table.rows.length; ++i) {
+			for (var i = 1; i < table.rows.length; ++i) {
 				rows.push(table_old.rows[i]);
 			}
 			//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
@@ -64,13 +56,177 @@ var FoxtrickSkillTable = {
 			else if (FoxtrickSkillTable.sort == "text")
 				rows.sort(FoxtrickSkillTable.sortdowntextfunction);
 
-			for (var i=start; i < table.rows.length; ++i) {
-				table.rows[i].innerHTML = rows[i-start].innerHTML;
+			for (var i = 1; i < table.rows.length; ++i) {
+				table.rows[i].innerHTML = rows[i-1].innerHTML;
 			}
 		}
 		catch (e) {
 			Foxtrick.dump("SkillTable: " + e + "\n");
 		}
+	},
+
+	headerClick : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
+			var customize = doc.getElementsByClassName("ft_skilltable_customize")[0];
+			var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
+			var table = doc.getElementsByClassName("ft_skilltable")[0];
+			var h2 = tablediv.getElementsByTagName("h2")[0];
+			Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
+			Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
+			if (Foxtrick.hasClass(h2, "ft_boxBodyUnfolded")) {
+				Foxtrick.removeClass(customize, "hidden");
+				Foxtrick.removeClass(table, "hidden");
+			}
+			else if (Foxtrick.hasClass(h2, "ft_boxBodyCollapsed")) {
+				Foxtrick.addClass(customize, "hidden");
+				Foxtrick.removeClass(customize, "customizing");
+				Foxtrick.addClass(customizeTable, "hidden");
+				Foxtrick.addClass(table, "hidden");
+			}
+		}
+		catch(e) {Foxtrick.dump(k+'SkillTableHeaderClick: '+e+'\n');}
+	},
+
+	customize : function(ev) {
+		var doc = ev.target.ownerDocument;
+		var customize = doc.getElementsByClassName("ft_skilltable_customize")[0];
+		Foxtrick.addClass(customize, "customizing");
+
+		var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
+		Foxtrick.removeClass(customizeTable, "hidden");
+
+		var skillTable = doc.getElementsByClassName("ft_skilltable")[0];
+		Foxtrick.addClass(skillTable, "hidden");
+	},
+
+	save : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+			var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
+			var is_ownteam = (ownteamid==teamid);
+			Foxtrick.dump('is_ownteam: '+is_ownteam+'\n');
+
+			var kind='own';
+			if (!is_ownteam) kind='other';
+
+			var tablediv = doc.getElementsByClassName('ft_skilltablediv')[0];
+			var module = "";
+			if (tablediv.id === "ft_adultskilltablediv") {
+				module = "AdultSkillTable";
+			}
+			else if (tablediv.id === "ft_youthskilltablediv") {
+				module = "YouthSkillTable";
+			}
+			var input = tablediv.getElementsByTagName('input');
+			for (var i=0; i<input.length; ++i) {
+				FoxtrickPrefs.setBool("module." + module + "." + kind+'.'+input[i].id + ".enabled", input[i].checked );
+				Foxtrick.dump(input[i].id + ": " + input[i].checked + "\n");
+			}
+			doc.location.reload();
+		}catch(e) {Foxtrick.dump('customize '+e+'\n');}
+	},
+
+	cancel : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
+			var customize = tablediv.getElementsByClassName("ft_skilltable_customize")[0];
+			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
+			var table = tablediv.getElementsByClassName("ft_skilltable")[0];
+			Foxtrick.removeClass(customize, "customizing");
+			Foxtrick.addClass(customizeTable, "hidden");
+			Foxtrick.removeClass(table, "hidden");
+		}
+		catch(e) {Foxtrick.dump('customize '+e+'\n');}
+	},
+
+	createCustomize : function(doc) {
+		var ul = doc.createElement("ul");
+		ul.className = "ft_skilltable_customize";
+
+		var customizeItem = doc.createElement("li");
+		customizeItem.className = "customize_item";
+		var customize = doc.createElement("a");
+		customizeItem.appendChild(customize);
+		customize.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCustomize")));
+		customize.addEventListener("click", FoxtrickSkillTable.customize, false);
+
+		var saveItem = doc.createElement("li");
+		var save = doc.createElement("a");
+		saveItem.appendChild(save);
+		save.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonSave")));
+		save.addEventListener("click", FoxtrickSkillTable.save, false);
+
+
+		var cancelItem = doc.createElement("li");
+		var cancel = doc.createElement("a");
+		cancelItem.appendChild(cancel);
+		cancel.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCancel")));
+		cancel.addEventListener("click", FoxtrickSkillTable.cancel, false);
+
+		ul.appendChild(customizeItem);
+		ul.appendChild(saveItem);
+		ul.appendChild(cancelItem);
+
+		return ul;
+	},
+
+	createCustomizeTable : function(id, properties, doc) {
+		var table = doc.createElement("table");
+		table.id = "ft_" + id + "skilltable_customizetable";
+		table.className = "ft_skilltable_customizetable";
+		var thead = doc.createElement("thead");
+		var tbody = doc.createElement("tbody");
+		var headRow = doc.createElement("tr");
+		var checkRow = doc.createElement("tr");
+		table.appendChild(thead);
+		table.appendChild(tbody);
+		thead.appendChild(headRow);
+		tbody.appendChild(checkRow);
+		for (var i = 0; i < properties.length; ++i) {
+			if (properties[i].available) {
+				var th = doc.createElement("th");
+				if (properties[i].abbr) {
+					var abbr = doc.createElement("abbr");
+					abbr.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
+					abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name + ".abbr")));
+					th.appendChild(abbr);
+					if (properties[i].img) {
+						abbr.style.display = "none";
+						th.style.backgroundImage = "url('" + properties[i].img + "')";
+						th.style.backgroundRepeat = "no-repeat";
+						th.style.minWidth = properties[i].width;
+						th.style.minHeight = properties[i].height;
+					}
+				}
+				else {
+					var span = doc.createElement("span");
+					span.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name)));
+					th.appendChild(span);
+					if (properties[i].img) {
+						span.style.display = "none";
+						th.style.backgroundImage = "url('" + properties[i].img + "')";
+						th.style.backgroundRepeat = "no-repeat";
+						th.style.minWidth = properties[i].width;
+						th.style.minHeight = properties[i].height;
+					}
+				}
+				var td = doc.createElement("td");
+				var check = doc.createElement("input");
+				check.id = properties[i].name;
+				check.setAttribute("type", "checkbox");
+				if (properties[i].enabled) {
+					check.setAttribute("checked", "checked");
+				}
+				td.appendChild(check);
+				headRow.appendChild(th);
+				checkRow.appendChild(td);
+			}
+		}
+		return table;
 	},
 
 	addCopyButton : function(doc) {
@@ -157,5 +313,51 @@ var FoxtrickSkillTable = {
 
 	_getCell : function(cell) {
 		return Foxtrick.trim(cell.textContent);
+	},
+
+	_getShortPos: function(pos) {
+		var short_pos='';
+		try {
+		  var lang = FoxtrickPrefs.getString("htLanguage");
+		}
+		catch (e) {
+		  return null;
+		}
+
+		try {
+			var type = pos.replace(/&nbsp;/,' ');
+			var path = "hattricklanguages/language[@name='" + lang + "']/positions/position[@value='" + type + "']";
+			short_pos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
+			return short_pos
+		}
+		catch (e) {
+			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
+			return null;
+		}
+
+		return short_pos;
+	},
+
+	_getShortSpecialty: function(pos) {
+		var short_pos='';
+		try {
+		  var lang = FoxtrickPrefs.getString("htLanguage");
+		}
+		catch (e) {
+		  return null;
+		}
+
+		try {
+			var type = pos.replace(/&nbsp;/,' ');
+			var path = "hattricklanguages/language[@name='" + lang + "']/specialties/specialty[@value='" + type + "']";
+			short_pos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
+			return short_pos
+		}
+		catch (e) {
+			Foxtrick.dump('youthskill.js _getShort: '+e + "\n");
+			return null;
+		}
+
+		return short_pos;
 	}
 };

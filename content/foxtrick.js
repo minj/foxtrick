@@ -506,7 +506,69 @@ Foxtrick.LOG = function (msg) {
         consoleService.logStringMessage(msg);
 }
 
+Foxtrick.unique = function(a) {
+   var r = new Array();
+   o:for (var i = 0, n = a.length; i < n; i++) {
+		for (var x = 0, y = r.length; x < y; x++) {
+			if(r[x]==a[i]) {
+				continue o;
+			}
+		}
+		r[r.length] = a[i];
+	}
+	return r;
+}
 
+Foxtrick.getClasses = function(obj) {
+	return Foxtrick.unique(String(obj.className).replace(/\s+/, " ").replace(/^\s+/, "").replace(/\s$/, "").split(" "));
+}
+
+Foxtrick.setClasses = function(obj, clses) {
+	var classes = Foxtrick.unique(clses);
+	obj.className = "";
+	for (var i in classes) {
+		obj.className += classes[i];
+		if (i !== classes.length - 1) {
+			obj.className += " ";
+		}
+	}
+}
+
+Foxtrick.hasClass = function(obj, cls) {
+	var classes = Foxtrick.getClasses(obj);
+	for (var i in classes) {
+		if (cls === classes[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+Foxtrick.addClass = function(obj, cls) {
+	var classes = Foxtrick.getClasses(obj);
+	classes.push(cls);
+	Foxtrick.setClasses(obj, classes);
+}
+
+Foxtrick.removeClass = function(obj, cls) {
+	var classes = Foxtrick.getClasses(obj);
+	var newClasses = [];
+	for (var i in classes) {
+		if (classes[i] !== cls) {
+			newClasses.push(classes[i]);
+		}
+	}
+	Foxtrick.setClasses(obj, newClasses);
+}
+
+Foxtrick.toggleClass = function(obj, cls) {
+	if (Foxtrick.hasClass(obj, cls)) {
+		Foxtrick.removeClass(obj, cls);
+	}
+	else {
+		Foxtrick.addClass(obj, cls);
+	}
+}
 
 Foxtrick.selectFileSave = function (parentWindow) {
     try {
