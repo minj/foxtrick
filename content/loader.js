@@ -136,6 +136,7 @@ Foxtrick.Loader = function(){
     'links/linksfans.js',
     'links/linksstaff.js',
     'links/linkstracker.js',
+    'links/linksclubtransfers.js',
 
     
 	// following modules all run on 'all_late' pages. order of execution is determined be following order

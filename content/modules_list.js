@@ -96,6 +96,7 @@ Foxtrick.modules = [
                     FoxtrickLinksFans,
                     FoxtrickLinksStaff,
                     FoxtrickLinksTracker,
+					FoxtrickLinksClubTransfers,
                     FoxtrickConfirmPlayerBid,
                     FoxtrickConfirmTL,
                     FoxtrickConfirmStaffChange,

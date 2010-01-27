@@ -860,13 +860,17 @@ try {
 	if(Foxtrick.isStandardLayout(doc)) {
 		// Standard layout
 		if(otherBox) {
+			otherBox.setAttribute("id", boxId );			
 			newBoxContent.style.display = "inline";
 			var subDivs = otherBox.getElementsByTagName("div");
 			for(var i = 0; i < subDivs.length; i++) {
-				if(subDivs[i].className=="boxBody") {
+				if (subDivs[i].className=="boxBody") {					
 					var firstDiv = subDivs[i].getElementsByTagName("div")[0];
-					firstDiv.setAttribute("style","display: inline;");
-					subDivs[i].insertBefore(newBoxContent,firstDiv);
+					if (firstDiv) {
+						firstDiv.setAttribute("style","display: inline;");
+					}
+					subDivs[i].insertBefore(newBoxContent,firstDiv);										
+					break;
 				}
 			}
 		} else {
@@ -910,6 +914,7 @@ try {
 		if(otherBox) {
 			var otherBoxHeader = otherBox.getElementsByTagName("h2")[0];
 			//Foxtrick.alert(otherBoxHeader);
+			otherBox.setAttribute("id", boxId );								
 			otherBox.insertBefore(newBoxContent,otherBoxHeader.nextSibling);
 		} else {  
 			// create the sidebarbox
