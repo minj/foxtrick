@@ -195,7 +195,7 @@ var FoxtrickCountyList = {
     _changelist: function (page, doc, id, start) {
 		var selectbox = doc.getElementById(id);
         if (selectbox == null) return;
-        //Foxtrick.dump('GO ' + '\n');
+        Foxtrick.dump('id: ' + id +'   start: '+ start+'\n');
         var options = selectbox.options;
         var countries = options.length;
         var selected  = selectbox.selectedIndex;
@@ -225,25 +225,26 @@ var FoxtrickCountyList = {
                 var oldopt = new Array('-1', '-1');
                 oldopt[0] = options[i].value;
                 oldopt[1] = options[i].text;
+		//		Foxtrick.dump(i+'  '+oldopt[0]+' '+oldopt[1]+'\n');
                 opt_array.push(oldopt);
-				//Foxtrick.dump(i+' '+oldopt[0]+' '+oldopt[1]);			
 			}
         } catch (epush) {Foxtrick.dump('countrylist: EPUSH '+epush+'\n');}
 
         function sortByOptionText(a, b) {  
             var x = a[1]; x=(x.search(/.+sland/)==0)?'Island':((x.search(/.+esk.+republika/)!=-1)?'Ceska republika':x);
             var y = b[1]; y=(y.search(/.+sland/)==0)?'Island':((y.search(/.+esk.+republika/)!=-1)?'Ceska republika':y);
-            if (parseInt(a[0]) <= 0 || parseInt(b[0]) <= 0) {val = -1;}
-            else val = ((x < y) ? -1 : ((x > y) ? 1 : 0));
-			//Foxtrick.dump(a[0]+' '+b[0]+' '+a[1]+ ' '+b[1]+' '+val);
-			return val;
+//            if (parseInt(a[0]) <= 0 || parseInt(b[0]) <= 0) return -1;  // not working well in chrome. should be compare values also
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
         }
 
         opt_array.sort(sortByOptionText);
-        for(var i=start; i < opt_array.length; i++){
-            if (opt_array[i][0] == id_sel) selectbox.selectedIndex = i;
-            options[i].value = opt_array[i-start][0];
-            options[i].text = opt_array[i-start][1];
+		for(var i=0; i < options.length; i++){
+            if (i>=start) {
+				if (opt_array[i-start][0] == id_sel) selectbox.selectedIndex = i;
+				options[i].value = opt_array[i-start][0];
+				options[i].text = opt_array[i-start][1];
+		//		Foxtrick.dump(i+'  '+options[i].value+' '+options[i].text+'\n');                
+			}
         }
 		selectbox.style.display='inline';
     },

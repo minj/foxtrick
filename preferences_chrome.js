@@ -33,7 +33,7 @@ var FoxtrickPrefs = {
     },
 
     setString : function( pref_name, value) {
-		var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\n');
+		var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\);\\n');
 		if (FoxtrickPrefs.pref.search(string_regexp) !=-1) 
 				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'","'+value+'");\n')				
 		else FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'","'+value+'");\n';	
@@ -44,7 +44,7 @@ var FoxtrickPrefs = {
 
     getString : function( pref_name ) {  
 	try {
-		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);', "i" );
+		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '","(.+)"\\);\\n', "i" );
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) {
 			try {return  FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,chrome.extension.getURL(''));
 			} catch(e) {return '';}
@@ -59,7 +59,7 @@ var FoxtrickPrefs = {
     },
 
     setInt : function( pref_name, value ) {
-		var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\n');
+		var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\);\\n');
 		if (FoxtrickPrefs.pref.search(string_regexp) !=-1) 
 				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'",'+value+');\n')				
 		else FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';	
@@ -70,7 +70,7 @@ var FoxtrickPrefs = {
 
     getInt : function( pref_name ) { 
 	try {
-		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",\(\\d+\)\\);', "i" );
+		var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",\(\\d+\)\\);\\n', "i" );
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) return  parseInt(FoxtrickPrefs.pref.match(string_regexp)[1]);
 		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) return  parseInt(FoxtrickPrefs.pref_default.match(string_regexp)[1]);
 	} catch(e) {};
@@ -79,7 +79,7 @@ var FoxtrickPrefs = {
     },
 
     setBool : function( pref_name, value ) {
-		var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\n');
+		var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\);\\n');
 		if (FoxtrickPrefs.pref.search(string_regexp) !=-1) 
 				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'",'+value+');\n')				
 		else FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';	
@@ -91,7 +91,7 @@ var FoxtrickPrefs = {
     getBool : function( pref_name ) {  // console.log(FoxtrickPrefs.pref+'\n'+pref_name+'\n');
 		// no dump in this function !!!!!!!! (stupid htmldump)
 	try {
-	var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",(.+)\\);', "i" );		
+	var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",(.+)\\);\\n', "i" );		
 		if (typeof(FoxtrickPrefs.pref.match(string_regexp)) != 'undefined' ) return  (FoxtrickPrefs.pref.match(string_regexp)[1]=='true');
 		if (typeof(FoxtrickPrefs.pref_default.match(string_regexp)) != 'undefined' ) return  (FoxtrickPrefs.pref_default.match(string_regexp)[1]=='true');
 	} catch(e) {}

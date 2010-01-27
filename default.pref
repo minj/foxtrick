@@ -544,8 +544,6 @@ user_pref("extensions.foxtrick.prefs.module.shortcutsstatistics.FoxTrickPrefs.en
 user_pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.ChatNick.enabled",true);
 user_pref("extensions.foxtrick.prefs.ShowPlayerAsList",false);
 user_pref("extensions.foxtrick.prefs.module.LinksCountry.ComunidadHattrickVenezuela.enabled",true);
-user_pref("extensions.foxtrick.prefs.transferfilter.mnmn","_011_02-1_03-1_047_05-1_06-1_07-1_08-1_09-1_10-1_11-1_12-1_13-1_14-1_15-1_16-1_170_18-1_290_200_220_230_250_260_280_31-1_32true");
-user_pref("extensions.foxtrick.prefs.transferfilterlist.0","mnmn");
 user_pref("extensions.foxtrick.prefs.oldVersion","");
 user_pref("extensions.foxtrick.prefs.module.ForumTemplates.CustomWidth_text","125");
 user_pref("extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink_text","mylink ");
