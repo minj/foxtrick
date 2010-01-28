@@ -68,34 +68,65 @@ var FoxtrickSkillTable = {
 		}
 	},
 
-	headerClick : function(ev) {
+	toggleDisplay : function(doc) {
 		try {
-			var doc = ev.target.ownerDocument;
 			var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
-			var customize = doc.getElementsByClassName("ft_skilltable_customize")[0];
-			var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
-			var viewContainer = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
 			var h2 = tablediv.getElementsByTagName("h2")[0];
 			Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
 			Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
-			if (Foxtrick.hasClass(h2, "ft_boxBodyUnfolded")) {
+			var show = Foxtrick.hasClass(h2, "ft_boxBodyUnfolded");
+
+			if (FoxtrickSkillTable.isAdult(tablediv)) {
+				if (!FoxtrickAdultSkillTable.tableCreated) {
+					// create adult skill table
+					FoxtrickAdultSkillTable.createTable(doc);
+					FoxtrickAdultSkillTable.tableCreated = true;
+				}
+				FoxtrickPrefs.setBool("module.AdultSkillTable.show", show);
+			}
+			else if (FoxtrickSkillTable.isYouth(tablediv)) {
+				if (!FoxtrickYouthSkillTable.tableCreated) {
+					// create youth skill table
+					FoxtrickYouthSkillTable.createTable(doc);
+					FoxtrickYouthSkillTable.tableCreated = true;
+				}
+				FoxtrickPrefs.setBool("module.YouthSkillTable.show", show);
+			}
+
+			var customize = tablediv.getElementsByClassName("ft_skilltable_customize")[0];
+			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
+			var viewContainer = tablediv.getElementsByClassName("ft_skilltable_viewcont")[0];
+			if (show) {
+				// show the objects
 				Foxtrick.removeClass(customize, "hidden");
 				Foxtrick.removeClass(viewContainer, "hidden");
 			}
-			else if (Foxtrick.hasClass(h2, "ft_boxBodyCollapsed")) {
+			else {
+				// hide the objects
 				Foxtrick.addClass(customize, "hidden");
 				Foxtrick.removeClass(customize, "customizing");
 				Foxtrick.addClass(customizeTable, "hidden");
 				Foxtrick.addClass(viewContainer, "hidden");
 			}
 		}
-		catch(e) {Foxtrick.dump(k+'SkillTableHeaderClick: '+e+'\n');}
+		catch(e) {Foxtrick.dump("SkillTable.toggleDisplay: "+e+"\n");}
+	},	
+
+	headerClick : function(ev) {
+		FoxtrickSkillTable.toggleDisplay(ev.target.ownerDocument);
 	},
 
 	view : function(ev) {
 		var doc = ev.target.ownerDocument;
-		var table = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
-		Foxtrick.toggleClass(table, "on_top");
+		var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
+		var viewContainer = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
+		Foxtrick.toggleClass(viewContainer, "on_top");
+		if (FoxtrickSkillTable.isAdult(tablediv)) {
+			FoxtrickPrefs.setBool("module.AdultSkillTable.top", Foxtrick.hasClass(viewContainer, "on_top"));
+		}
+		else if (FoxtrickSkillTable.isYouth(tablediv)) {
+			FoxtrickPrefs.setBool("module.YouthSkillTable.top", Foxtrick.hasClass(viewContainer, "on_top"));
+		}
 	},
 
 	customize : function(ev) {
@@ -332,6 +363,14 @@ var FoxtrickSkillTable = {
 		catch (e) {
 			Foxtrick.dump("SkillTable: " + e + "\n");
 		}
+	},
+
+	isAdult : function(tablediv) {
+		return (tablediv.id === "ft_adultskilltablediv");
+	},
+
+	isYouth : function(tablediv) {
+		return (tablediv.id === "ft_youthskilltablediv");
 	},
 
 	_getCell : function(cell) {

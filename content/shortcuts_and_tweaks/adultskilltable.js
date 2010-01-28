@@ -1,6 +1,6 @@
 /**
  * adultskilltable.js
- * hide unknown youthskills
+ * Showing skill table on senior player's page
  * @Authors:  convincedd
  */
 ////////////////////////////////////////////////////////////////////////////////
@@ -19,635 +19,651 @@ var FoxtrickAdultSkillTable = {
     },
 
     run : function( page, doc ) {
-		try  {
+		try {
+			this.tableCreated = false;
+
 			var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 			var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
 			var is_ownteam = (ownteamid==teamid);
 			if (!is_ownteam && !Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, 'AlsoOtherTeams')) return;
-			var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
-			var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
-			var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
-			var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
-			var OldiesCoach = (Oldies || coach);
-			Foxtrick.dump('is_ownteam:'+is_ownteam+' Oldies:'+Oldies+' coach:'+coach+' NT_players:'+NT_players+'\n');
 
 			var tablediv = doc.createElement('div');
 			tablediv.id = "ft_adultskilltablediv";
 			tablediv.className = "ft_skilltablediv";
 			var h2 = doc.createElement('h2');
+			h2.className = "ft_boxBodyCollapsed";
 			h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
 			h2.addEventListener( "click", FoxtrickSkillTable.headerClick, false );
-			h2.setAttribute('class','ft_boxBodyCollapsed');
 			tablediv.appendChild(h2);
 			var header=doc.getElementsByTagName('h1')[0];
 			header.parentNode.insertBefore(tablediv,header.nextSibling);
 
-			var customize = FoxtrickSkillTable.createCustomize(doc);
-			Foxtrick.addClass(customize, "hidden");
-			tablediv.appendChild(customize);
-
-			var kind;
-			if (is_ownteam) {
-				kind = "own";
+			if (FoxtrickPrefs.getBool("module.AdultSkillTable.show")) {
+				FoxtrickSkillTable.toggleDisplay(doc);
 			}
-			else {
-				kind = "other";
-			}
-
-			var hasbars=true;
-			var allDivs = doc.getElementsByTagName("div");
-			if (is_ownteam && !Oldies && !coach) {
-				for (var i = 0; i < allDivs.length; i++) {
-					if(allDivs[i].className=="playerInfo") {
-						var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");
-						if (trs.length==4) {hasbars=false; break;}
-					}
-				}
-				Foxtrick.dump('hasbars: '+hasbars+'\n');
-			}
-
-			var sn;
-			if (hasbars) {
-				sn = [
-					{ name: "PlayerNumber", abbr: true, sort: "index",NT:false ,OldiesCoach:false},
-					{ name: "Flag", abbr: false, sort: "link" ,NT:false ,OldiesCoach:false},
-					{ name: "Player", abbr: false, sort: "link",NT:true ,OldiesCoach:true },
-					{ name: "Age", abbr: false, sort: "age" ,NT:true ,OldiesCoach:true},
-					{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-					{ name: "Agreeability", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
-					{ name: "Aggressiveness", abbr: true, sort: "int" ,NT:false ,OldiesCoach:true},
-					{ name: "Honesty", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
-					{ name: "Leadership", abbr: true, sort: "int" ,NT:true ,OldiesCoach:true},
-					{ name: "Experience", abbr: true, sort: "int",NT:true ,OldiesCoach:true},
-					{ name: "Form", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-					{ name: "Stamina", abbr: true, sort: "int" ,NT:true ,OldiesCoach:true},
-					{ name: "Keeper", abbr: true, sort: "int" },
-					{ name: "Defending", abbr: true, sort: "int" },
-					{ name: "Playmaking", abbr: true, sort: "int" },
-					{ name: "Winger", abbr: true, sort: "int" },
-					{ name: "Passing", abbr: true, sort: "int" },
-					{ name: "Scoring", abbr: true, sort: "int" },
-					{ name: "Set_pieces", abbr: true, sort: "int" },
-					{ name: "Yellow_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/yellow_card.gif", width: "8px", height: "12px" },
-					{ name: "Red_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/red_card.gif", width: "8px", height: "12px" },
-					{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif", width: "19px", height: "8px" },
-					{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif", width: "11px", height: "11px" },
-					{ name: "Speciality", abbr: true, sort: "text" ,NT:true ,OldiesCoach:true},
-					{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png", width: "13px", height: "22px" },
-					{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
-					{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false},
-					{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif", width: "10px", height: "18px" },
-					{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
-					{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
-					{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true}
-				];
-			}
-			else {
-				sn = [
-					{ name: "PlayerNumber", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
-					{ name: "Flag", abbr: false, sort: "link",NT:false ,OldiesCoach:false },
-					{ name: "Player", abbr: false, sort: "link",NT:true,OldiesCoach:true  },
-					{ name: "Age", abbr: false, sort: "age",NT:true,OldiesCoach:true  },
-					{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-					{ name: "Agreeability", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-					{ name: "Aggressiveness", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-					{ name: "Honesty", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-					{ name: "Leadership", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-					{ name: "Experience", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-					{ name: "Form", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-					{ name: "Stamina", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-					{ name: "Keeper", abbr: true, sort: "int" },
-					{ name: "Playmaking", abbr: true, sort: "int" },
-					{ name: "Passing", abbr: true, sort: "int" },
-					{ name: "Winger", abbr: true, sort: "int" },
-					{ name: "Defending", abbr: true, sort: "int" },
-					{ name: "Scoring", abbr: true, sort: "int" },
-					{ name: "Set_pieces", abbr: true, sort: "int" },
-					{ name: "Yellow_card", abbr: true, sort: "text",NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif", width: "8px", height: "12px" },
-					{ name: "Red_card", abbr: true, sort: "text",NT:true, OldiesCoach:true , img: "/Img/Icons/red_card.gif", width: "8px", height: "12px" },
-					{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif", width: "19px", height: "8px" },
-					{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif", width: "11px", height: "11px" },
-					{ name: "Speciality", abbr: true, sort: "text",NT:true ,OldiesCoach:true },
-					{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png", width: "13px", height: "22px" },
-					{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
-					{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false },
-					{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif", width: "10px", height: "18px" },
-					{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
-					{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-					{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true }
-				];
-			}
-
-			for (var j = 0; j < sn.length; ++j) {
-				if ((!is_ownteam || Oldies || NT_players || coach) && j>=12 && j<=18) {
-					sn[j].available = false;
-				}
-				else if ((OldiesCoach && sn[j].OldiesCoach==false) || (NT_players && sn[j].NT==false)) {
-					sn[j].available = false;
-				}
-				else if (!NT_players && sn[j].name=='NrOfMatches') {
-					sn[j].available = false;
-				}
-				else {
-					sn[j].available = true;
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name) && (!OldiesCoach || sn[j].OldiesCoach==true) && (!NT_players || sn[j].NT==true)) {
-					sn[j].enabled = true;
-					}
-				}
-			}
-			var customizeTable = FoxtrickSkillTable.createCustomizeTable("adult", sn, doc);
-			Foxtrick.addClass(customizeTable, "hidden");
-			tablediv.appendChild(customizeTable);
-
-			var viewContainer = doc.createElement("div");
-			viewContainer.className = "ft_skilltable_viewcont";
-			Foxtrick.addClass(viewContainer, "hidden");
-			tablediv.appendChild(viewContainer);
-
-			var view = FoxtrickSkillTable.createView(doc);
-			viewContainer.appendChild(view);
-
-			var table = doc.createElement('table');
-			table.id = "ft_adultskilltable";
-			table.className = "ft_skilltable";
-			table.addEventListener("click", FoxtrickSkillTable.view, false);
-			thead = doc.createElement("thead");
-			var tr = doc.createElement('tr');
-			thead.appendChild(tr);
-			table.appendChild(thead);
-			var s_index = 0;
-			for (var j = 0; j < sn.length; j++) {
-				if ((!is_ownteam || Oldies || NT_players || coach) && j>=12 && j<=18)
-					continue;
-				if ((OldiesCoach && sn[j].OldiesCoach==false) || (NT_players && sn[j].NT==false)) continue;
-				if (!NT_players && sn[j].name=='NrOfMatches') continue;
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name) && (!OldiesCoach || sn[j].OldiesCoach==true) && (!NT_players || sn[j].NT==true)) {
-					var th = doc.createElement('th');
-					th.setAttribute("s_index", s_index++);
-					if (sn[j].sort) {
-						th.setAttribute("sort", sn[j].sort);
-					}
-					th.addEventListener("click", FoxtrickSkillTable.sortClick, false);
-
-					if (sn[j].abbr) {
-						var abbr = doc.createElement("abbr");
-						abbr.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
-						abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name + ".abbr")));
-						th.appendChild(abbr);
-						if (sn[j].img) {
-							abbr.style.display = "none";
-							th.style.backgroundImage = "url('" + sn[j].img + "')";
-							th.style.backgroundRepeat = "no-repeat";
-							th.style.minWidth = sn[j].width;
-							th.style.minHeight = sn[j].height;
-						}
-					}
-					else {
-						var span = doc.createElement("span");
-						span.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name)));
-						th.appendChild(span);
-						if (sn[j].img) {
-							span.style.display = "none";
-							th.style.backgroundImage = "url('" + sn[j].img + "')";
-							th.style.backgroundRepeat = "no-repeat";
-							th.style.minWidth = sn[j].width;
-							th.style.minHeight = sn[j].height;
-						}
-					}
-					tr.appendChild(th);
-				}
-			}
-
-			var tbody = doc.createElement("tbody");
-			table.appendChild(tbody);
-
-			// get last match
-			var latestMatch=-1;
-			if (!Oldies && !NT_players && !coach) {
-				for(var i = 0; i < allDivs.length; i++) {
-					if(allDivs[i].className=="playerInfo") {
-						var as=allDivs[i].getElementsByTagName('a');
-						var j=0,a=null;
-						while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
-						var matchday=0;
-						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
-						if (matchday>latestMatch) latestMatch = matchday;
-					}
-				}
-			}
-
-			var count =0;
-			for(var i = 0; i < allDivs.length; i++) {
-				if(allDivs[i].className=="playerInfo") {
-					count++;
-					var k=0;
-					var sktable = allDivs[i].getElementsByTagName("table")[0];
-					if (sktable && sktable.parentNode.className.search('myht2')!=-1) sktable=null;
-					if (sktable) var trs = sktable.getElementsByTagName("tr");
-
-					var hasflag = (allDivs[i].getElementsByTagName("a")[0].innerHTML.search(/flags.gif/i)!=-1);
-					var link_off=0;
-					if (hasflag) link_off=1;
-
-					if (Foxtrick.XMLData.playersxml) {
-						var playerid = allDivs[i].getElementsByTagName("a")[0+link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-
-						var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');
-						for (var j=0; j<playerlist.length; ++j) {
-							var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
-							if (thisPlayerID==playerid) {
-							  if (NT_players) {
-								var NrOfMatches = playerlist[j].getElementsByTagName('NrOfMatches')[0].textContent;
-							  }
-							  else {
-								var Agreeability  = playerlist[j].getElementsByTagName('Agreeability')[0].textContent;
-								var Aggressiveness  = playerlist[j].getElementsByTagName('Aggressiveness')[0].textContent;
-								var Honesty  = playerlist[j].getElementsByTagName('Honesty')[0].textContent;
-								var LeagueGoals  = playerlist[j].getElementsByTagName('LeagueGoals')[0].textContent;
-								if (LeagueGoals=='NOT AVAILABLE') LeagueGoals='';
-								var CareerGoals = playerlist[j].getElementsByTagName('CareerGoals')[0].textContent;
-								if (CareerGoals=='NOT AVAILABLE') CareerGoals='';
-								var TransferListed = playerlist[j].getElementsByTagName('TransferListed')[0].textContent;	//Returns 1 if the player is on the transfer list, otherwise 0.
-								var NationalTeamID = playerlist[j].getElementsByTagName('NationalTeamID')[0].textContent;	//If the player is enrolled on a national team, this is that national team's ID. Otherwise will return 0.
-								//var Caps = playerlist[j].getElementsByTagName('Caps')[0].textContent;	//The number of matches played for the national team.
-								var Salary = playerlist[j].getElementsByTagName('Salary')[0].textContent;
-								var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;
-								var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
-								var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;
-								var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];
-								var TrainerData  = playerlist[j].getElementsByTagName('TrainerData')[0];
-								var PlayerNumber  = playerlist[j].getElementsByTagName('PlayerNumber')[0].textContent;
-
-								break;
-							  }
-							}
-						}
-					}
-
-
-					var tr = doc.createElement('tr');
-					tbody.appendChild(tr);
-
-					// PlayerNumber
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = PlayerNumber;
-					 td.setAttribute('index',val);
-					 if (val==100) val='';
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// flag
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-						var td = doc.createElement('td');
-						var a=doc.createElement('a');
-						a.href='';
-						a.className ="flag inner";
-						var img=doc.createElement('img');
-						var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
-						img.setAttribute('style',style);
-						img.src="/Img/Icons/transparent.gif";
-						a.appendChild(img);
-						td.appendChild(a);
-						tr.appendChild(td);
-					}
-					k++;
-
-					// name (linked)
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.appendChild(allDivs[i].getElementsByTagName("a")[0+link_off].cloneNode(true));
-					 if (TrainerData)  td.setAttribute('style','font-weight:bold;');
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// age
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {						 var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
-					 var td = doc.createElement('td');
-					 td.innerHTML=age[0]+'.'+age[1];
-					 td.setAttribute('age',age[0]+'.'+(age[1].length==1?('00'+age[1]):(age[1].length==2?('0'+age[1]):age[1])));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					var specc = allDivs[i].getElementsByTagName( "p" )[0];
-
-					// tsi
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var tsitot_in = allDivs[i].getElementsByTagName('p')[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
-					 if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
-					 //Foxtrick.dump (' => tsitot_in => [' + tsitot_in + ']\n');
-					 if (tsitot_in.search(/^\s*TSI/) != -1)
-						tsitot_in = tsitot_in.replace(/,.+/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
-					 var lastindex = tsitot_in.lastIndexOf(' ');
-					 if (tsitot_in.lastIndexOf('=') > lastindex)
-						lastindex = tsitot_in.lastIndexOf('=');
-					 tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;','');
-					 tsitot_in = parseInt(tsitot_in);
-					 td.appendChild(doc.createTextNode(tsitot_in));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// Agreeability
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = Agreeability;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// Aggressiveness
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = Aggressiveness;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// Honesty
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = Honesty;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// Leadership
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[3+link_off].href.match(/ll=(\d+)/)[1];
-					 else var val = Leadership;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// Experience
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = Experience;
-					 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[4+link_off].href.match(/ll=(\d+)/)[1];
-					 else var val = Experience;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// form
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = allDivs[i].getElementsByTagName("a")[1+link_off].href.match(/ll=(\d+)/)[1];
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// stamina
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = allDivs[i].getElementsByTagName("a")[2+link_off].href.match(/ll=(\d+)/)[1];
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-
-					// skills
-					if (is_ownteam && !Oldies && !NT_players && !coach ) {
-						var start=0,end=7,inc=1;
-						if (!hasbars) {start=2,end=16;inc=2;}
-						for(var j = start; j < end; j+=inc) {
-						if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
-							var td = doc.createElement('td');
-							td.setAttribute('style','text-align:right !important;');
-							tr.appendChild(td);
-
-							if (sktable) {
-								if (hasbars) {
-									var tds = trs[j].getElementsByTagName("td");
-									var imgs = tds[1].getElementsByTagName('img');
-									var cur = imgs[0].title.match(/-?\d+/);
-									td.innerHTML = cur;
-								}
-								else {
-									var tds= allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("td");
-									var cur = tds[j+1].getElementsByTagName('a')[0].href.match(/ll=(\d+)/)[1];
-									td.innerHTML = cur;
-								}
-							}
-						}
-						}
-					}
-					else {k+=7;}
-
-					// card+injuries
-					var cardsyellow=0;
-					var cardsred=0;
-					var bruised=0;
-					var injured=0;
-					var img = allDivs[i].getElementsByTagName("img");
-
-					for(var j = 0; j < img.length; j++) {
-						if (img[j].className=='cardsOne') {
-							if (img[j].src.indexOf('red_card', 0) != -1 ) cardsred = 1;
-							else cardsyellow=1;
-						}
-						if (img[j].className=='cardsTwo') {
-							cardsyellow=2;
-						}
-						if (img[j].className=='injuryBruised') bruised=1;
-						if (img[j].className=='injuryInjured') injured = img[j].nextSibling.innerHTML;
-					}
-
-					// yellow cards
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 if (cardsyellow>0) {
-						td.appendChild(doc.createTextNode(cardsyellow));
-					 }
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// red cards
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 if (cardsred>0) {
-						td.appendChild(doc.createTextNode(cardsred));
-					 }
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// bruised
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 if (bruised>0) {
-						td.appendChild(doc.createTextNode(bruised));
-					 }
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// injured
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 if (injured>0) {
-						td.appendChild(doc.createTextNode(injured));
-					 }
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// specialty
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-						var td = doc.createElement('td');
-						specMatch = specc.textContent.match(/\[(\D+)\]/);
-						if (specMatch) {
-							var shortspecc = FoxtrickSkillTable._getShortSpecialty(specMatch[1]);
-							if (shortspecc) {
-								specMatch = shortspecc;
-							}
-							else {
-								specMatch = specMatch[1].substr(0,2);
-								Foxtrick.dump('fallback '+specMatch+'\n')
-							}
-						}
-						else specMatch='';
-						td.appendChild(doc.createTextNode(specMatch));
-						tr.appendChild(td);
-					}
-					k++;
-
-					// get played last match
-					var as=allDivs[i].getElementsByTagName('a');
-					var kk=0,a=null;
-					while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
-					var matchday=0;
-					if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
-
-					// stars
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-						var td = doc.createElement('td');
-						if (a) {
-							if (matchday==latestMatch) {
-								var imgs=a.parentNode.parentNode.getElementsByTagName('img');
-								var starcount=0;
-								for (var sc=0;sc<imgs.length;++sc) {
-									if (imgs[sc].className=='starBig') starcount+=5;
-									else if (imgs[sc].className=='starWhole') starcount+=1;
-									else if (imgs[sc].className=='starHalf') starcount+=0.5;
-								}
-								td.appendChild(doc.createTextNode(starcount));
-							}
-						}
-						tr.appendChild(td);
-					}
-					k++;
-
-					// last position
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-						var td = doc.createElement('td');
-						if (a) {
-							if (matchday == latestMatch) {
-								var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
-								var shortpos = FoxtrickSkillTable._getShortPos(pos);
-								if (shortpos) {
-									pos = shortpos;
-								}
-								else {
-									var sp_pos = pos.search(/ |\&nbsp;/);
-									if (sp_pos == -1) pos=pos.substr(0,2)
-									else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
-									Foxtrick.dump('fallback '+pos+'\n')
-								}
-								td.appendChild(doc.createTextNode(pos));
-							}
-						}
-						tr.appendChild(td);
-					}
-					k++;
-
-					// Salary
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = Salary;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// TransferListed
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 td.setAttribute('style','text-align:right !important;');
-					 var val = TransferListed;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// #matches ntplayers only
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && NT_players) {
-					 var td = doc.createElement('td');
-					 var val = NrOfMatches;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// LeagueGoals
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 var val = LeagueGoals;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					// CareerGoals
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
-					 var td = doc.createElement('td');
-					 var val = CareerGoals;
-					 td.appendChild(doc.createTextNode(val));
-					 tr.appendChild(td);
-					}
-					k++;
-
-					//Foxtrick.dump(matchday+' '+latestMatch+'\n');
-				}
-			}
-
-			viewContainer.appendChild(table);
-
-			// copy button
-			if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "CopySkillTable" )) {
-				FoxtrickSkillTable.addCopyButton(doc);
-			}
-			//sorting by playernumer. slow!
-			//FoxtrickSkillTable.sortClick(null,doc,0,'int_rev');
 		}
 		catch(e) {Foxtrick.dump('FoxtrickAdultSkillTable.run error: '+e.lineNumber+": "+e+'\n');}
 	},
 
 	change : function( page, doc ) {
+	},
+
+	createTable : function(doc) {
+		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
+		var is_ownteam = (ownteamid==teamid);
+		var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
+		var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
+		var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
+		var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
+		var OldiesCoach = (Oldies || coach);
+		Foxtrick.dump('is_ownteam:'+is_ownteam+' Oldies:'+Oldies+' coach:'+coach+' NT_players:'+NT_players+'\n');
+
+		var kind;
+		if (is_ownteam) {
+			kind = "own";
+		}
+		else {
+			kind = "other";
+		}
+
+		var tablediv = doc.getElementById("ft_adultskilltablediv");
+
+		var customize = FoxtrickSkillTable.createCustomize(doc);
+		Foxtrick.addClass(customize, "hidden");
+		tablediv.appendChild(customize);
+
+		var hasbars=true;
+		var allDivs = doc.getElementsByTagName("div");
+		if (is_ownteam && !Oldies && !coach) {
+			for (var i = 0; i < allDivs.length; i++) {
+				if(allDivs[i].className=="playerInfo") {
+					var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");
+					if (trs.length==4) {hasbars=false; break;}
+				}
+			}
+			Foxtrick.dump('hasbars: '+hasbars+'\n');
+		}
+
+		var sn;
+		if (hasbars) {
+			sn = [
+				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false ,OldiesCoach:false},
+				{ name: "Flag", abbr: false, sort: "link" ,NT:false ,OldiesCoach:false},
+				{ name: "Player", abbr: false, sort: "link",NT:true ,OldiesCoach:true },
+				{ name: "Age", abbr: false, sort: "age" ,NT:true ,OldiesCoach:true},
+				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Agreeability", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
+				{ name: "Aggressiveness", abbr: true, sort: "int" ,NT:false ,OldiesCoach:true},
+				{ name: "Honesty", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
+				{ name: "Leadership", abbr: true, sort: "int" ,NT:true ,OldiesCoach:true},
+				{ name: "Experience", abbr: true, sort: "int",NT:true ,OldiesCoach:true},
+				{ name: "Form", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Stamina", abbr: true, sort: "int" ,NT:true ,OldiesCoach:true},
+				{ name: "Keeper", abbr: true, sort: "int" },
+				{ name: "Defending", abbr: true, sort: "int" },
+				{ name: "Playmaking", abbr: true, sort: "int" },
+				{ name: "Winger", abbr: true, sort: "int" },
+				{ name: "Passing", abbr: true, sort: "int" },
+				{ name: "Scoring", abbr: true, sort: "int" },
+				{ name: "Set_pieces", abbr: true, sort: "int" },
+				{ name: "Yellow_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/yellow_card.gif", width: "8px", height: "12px" },
+				{ name: "Red_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/red_card.gif", width: "8px", height: "12px" },
+				{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif", width: "19px", height: "8px" },
+				{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif", width: "11px", height: "11px" },
+				{ name: "Speciality", abbr: true, sort: "text" ,NT:true ,OldiesCoach:true},
+				{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png", width: "13px", height: "22px" },
+				{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
+				{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false},
+				{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif", width: "10px", height: "18px" },
+				{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
+				{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
+				{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true}
+			];
+		}
+		else {
+			sn = [
+				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
+				{ name: "Flag", abbr: false, sort: "link",NT:false ,OldiesCoach:false },
+				{ name: "Player", abbr: false, sort: "link",NT:true,OldiesCoach:true  },
+				{ name: "Age", abbr: false, sort: "age",NT:true,OldiesCoach:true  },
+				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Agreeability", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "Aggressiveness", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "Honesty", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "Leadership", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Experience", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Form", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Stamina", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Keeper", abbr: true, sort: "int" },
+				{ name: "Playmaking", abbr: true, sort: "int" },
+				{ name: "Passing", abbr: true, sort: "int" },
+				{ name: "Winger", abbr: true, sort: "int" },
+				{ name: "Defending", abbr: true, sort: "int" },
+				{ name: "Scoring", abbr: true, sort: "int" },
+				{ name: "Set_pieces", abbr: true, sort: "int" },
+				{ name: "Yellow_card", abbr: true, sort: "text",NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif", width: "8px", height: "12px" },
+				{ name: "Red_card", abbr: true, sort: "text",NT:true, OldiesCoach:true , img: "/Img/Icons/red_card.gif", width: "8px", height: "12px" },
+				{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif", width: "19px", height: "8px" },
+				{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif", width: "11px", height: "11px" },
+				{ name: "Speciality", abbr: true, sort: "text",NT:true ,OldiesCoach:true },
+				{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png", width: "13px", height: "22px" },
+				{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
+				{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false },
+				{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif", width: "10px", height: "18px" },
+				{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
+				{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true }
+			];
+		}
+
+		for (var j = 0; j < sn.length; ++j) {
+			if ((!is_ownteam || Oldies || NT_players || coach) && j>=12 && j<=18) {
+				sn[j].available = false;
+			}
+			else if ((OldiesCoach && sn[j].OldiesCoach==false) || (NT_players && sn[j].NT==false)) {
+				sn[j].available = false;
+			}
+			else if (!NT_players && sn[j].name=='NrOfMatches') {
+				sn[j].available = false;
+			}
+			else {
+				sn[j].available = true;
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name) && (!OldiesCoach || sn[j].OldiesCoach==true) && (!NT_players || sn[j].NT==true)) {
+				sn[j].enabled = true;
+				}
+			}
+		}
+		var customizeTable = FoxtrickSkillTable.createCustomizeTable("adult", sn, doc);
+		Foxtrick.addClass(customizeTable, "hidden");
+		tablediv.appendChild(customizeTable);
+
+		var viewContainer = doc.createElement("div");
+		viewContainer.className = "ft_skilltable_viewcont";
+		Foxtrick.addClass(viewContainer, "hidden");
+		if (FoxtrickPrefs.getBool("module.AdultSkillTable.top")) {
+			Foxtrick.addClass(viewContainer, "on_top");
+		}
+		tablediv.appendChild(viewContainer);
+
+		var view = FoxtrickSkillTable.createView(doc);
+		viewContainer.appendChild(view);
+
+		var table = doc.createElement('table');
+		table.id = "ft_adultskilltable";
+		table.className = "ft_skilltable";
+		thead = doc.createElement("thead");
+		var tr = doc.createElement('tr');
+		thead.appendChild(tr);
+		table.appendChild(thead);
+		var s_index = 0;
+		for (var j = 0; j < sn.length; j++) {
+			if ((!is_ownteam || Oldies || NT_players || coach) && j>=12 && j<=18)
+				continue;
+			if ((OldiesCoach && sn[j].OldiesCoach==false) || (NT_players && sn[j].NT==false)) continue;
+			if (!NT_players && sn[j].name=='NrOfMatches') continue;
+			if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[j].name) && (!OldiesCoach || sn[j].OldiesCoach==true) && (!NT_players || sn[j].NT==true)) {
+				var th = doc.createElement('th');
+				th.setAttribute("s_index", s_index++);
+				if (sn[j].sort) {
+					th.setAttribute("sort", sn[j].sort);
+				}
+				th.addEventListener("click", FoxtrickSkillTable.sortClick, false);
+
+				if (sn[j].abbr) {
+					var abbr = doc.createElement("abbr");
+					abbr.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
+					abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name + ".abbr")));
+					th.appendChild(abbr);
+					if (sn[j].img) {
+						abbr.style.display = "none";
+						th.style.backgroundImage = "url('" + sn[j].img + "')";
+						th.style.backgroundRepeat = "no-repeat";
+						th.style.minWidth = sn[j].width;
+						th.style.minHeight = sn[j].height;
+					}
+				}
+				else {
+					var span = doc.createElement("span");
+					span.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name)));
+					th.appendChild(span);
+					if (sn[j].img) {
+						span.style.display = "none";
+						th.style.backgroundImage = "url('" + sn[j].img + "')";
+						th.style.backgroundRepeat = "no-repeat";
+						th.style.minWidth = sn[j].width;
+						th.style.minHeight = sn[j].height;
+					}
+				}
+				tr.appendChild(th);
+			}
+		}
+
+		var tbody = doc.createElement("tbody");
+		table.appendChild(tbody);
+
+		// get last match
+		var latestMatch=-1;
+		if (!Oldies && !NT_players && !coach) {
+			for(var i = 0; i < allDivs.length; i++) {
+				if(allDivs[i].className=="playerInfo") {
+					var as=allDivs[i].getElementsByTagName('a');
+					var j=0,a=null;
+					while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
+					var matchday=0;
+					if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+					if (matchday>latestMatch) latestMatch = matchday;
+				}
+			}
+		}
+
+		var count =0;
+		for(var i = 0; i < allDivs.length; i++) {
+			if(allDivs[i].className=="playerInfo") {
+				count++;
+				var k=0;
+				var sktable = allDivs[i].getElementsByTagName("table")[0];
+				if (sktable && sktable.parentNode.className.search('myht2')!=-1) sktable=null;
+				if (sktable) var trs = sktable.getElementsByTagName("tr");
+
+				var hasflag = (allDivs[i].getElementsByTagName("a")[0].innerHTML.search(/flags.gif/i)!=-1);
+				var link_off=0;
+				if (hasflag) link_off=1;
+
+				if (Foxtrick.XMLData.playersxml) {
+					var playerid = allDivs[i].getElementsByTagName("a")[0+link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+
+					var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');
+					for (var j=0; j<playerlist.length; ++j) {
+						var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
+						if (thisPlayerID==playerid) {
+						  if (NT_players) {
+							var NrOfMatches = playerlist[j].getElementsByTagName('NrOfMatches')[0].textContent;
+						  }
+						  else {
+							var Agreeability  = playerlist[j].getElementsByTagName('Agreeability')[0].textContent;
+							var Aggressiveness  = playerlist[j].getElementsByTagName('Aggressiveness')[0].textContent;
+							var Honesty  = playerlist[j].getElementsByTagName('Honesty')[0].textContent;
+							var LeagueGoals  = playerlist[j].getElementsByTagName('LeagueGoals')[0].textContent;
+							if (LeagueGoals=='NOT AVAILABLE') LeagueGoals='';
+							var CareerGoals = playerlist[j].getElementsByTagName('CareerGoals')[0].textContent;
+							if (CareerGoals=='NOT AVAILABLE') CareerGoals='';
+							var TransferListed = playerlist[j].getElementsByTagName('TransferListed')[0].textContent;	//Returns 1 if the player is on the transfer list, otherwise 0.
+							var NationalTeamID = playerlist[j].getElementsByTagName('NationalTeamID')[0].textContent;	//If the player is enrolled on a national team, this is that national team's ID. Otherwise will return 0.
+							//var Caps = playerlist[j].getElementsByTagName('Caps')[0].textContent;	//The number of matches played for the national team.
+							var Salary = playerlist[j].getElementsByTagName('Salary')[0].textContent;
+							var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;
+							var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
+							var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;
+							var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];
+							var TrainerData  = playerlist[j].getElementsByTagName('TrainerData')[0];
+							var PlayerNumber  = playerlist[j].getElementsByTagName('PlayerNumber')[0].textContent;
+
+							break;
+						  }
+						}
+					}
+				}
+
+
+				var tr = doc.createElement('tr');
+				tbody.appendChild(tr);
+
+				// PlayerNumber
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = PlayerNumber;
+				 td.setAttribute('index',val);
+				 if (val==100) val='';
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// flag
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+					var td = doc.createElement('td');
+					var a=doc.createElement('a');
+					a.href='';
+					a.className ="flag inner";
+					var img=doc.createElement('img');
+					var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+					img.setAttribute('style',style);
+					img.src="/Img/Icons/transparent.gif";
+					a.appendChild(img);
+					td.appendChild(a);
+					tr.appendChild(td);
+				}
+				k++;
+
+				// name (linked)
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.appendChild(allDivs[i].getElementsByTagName("a")[0+link_off].cloneNode(true));
+				 if (TrainerData)  td.setAttribute('style','font-weight:bold;');
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// age
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {						 var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
+				 var td = doc.createElement('td');
+				 td.innerHTML=age[0]+'.'+age[1];
+				 td.setAttribute('age',age[0]+'.'+(age[1].length==1?('00'+age[1]):(age[1].length==2?('0'+age[1]):age[1])));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				var specc = allDivs[i].getElementsByTagName( "p" )[0];
+
+				// tsi
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var tsitot_in = allDivs[i].getElementsByTagName('p')[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf('<br>'));
+				 if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf('<br>'));
+				 //Foxtrick.dump (' => tsitot_in => [' + tsitot_in + ']\n');
+				 if (tsitot_in.search(/^\s*TSI/) != -1)
+					tsitot_in = tsitot_in.replace(/,.+/,''); // In the language Vlaams, TSI and age are switched. This is a fix for that
+				 var lastindex = tsitot_in.lastIndexOf(' ');
+				 if (tsitot_in.lastIndexOf('=') > lastindex)
+					lastindex = tsitot_in.lastIndexOf('=');
+				 tsitot_in = tsitot_in.substr(lastindex+1).replace('&nbsp;','');
+				 tsitot_in = parseInt(tsitot_in);
+				 td.appendChild(doc.createTextNode(tsitot_in));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// Agreeability
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = Agreeability;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// Aggressiveness
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = Aggressiveness;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// Honesty
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = Honesty;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// Leadership
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[3+link_off].href.match(/ll=(\d+)/)[1];
+				 else var val = Leadership;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// Experience
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = Experience;
+				 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[4+link_off].href.match(/ll=(\d+)/)[1];
+				 else var val = Experience;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// form
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = allDivs[i].getElementsByTagName("a")[1+link_off].href.match(/ll=(\d+)/)[1];
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// stamina
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = allDivs[i].getElementsByTagName("a")[2+link_off].href.match(/ll=(\d+)/)[1];
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+
+				// skills
+				if (is_ownteam && !Oldies && !NT_players && !coach ) {
+					var start=0,end=7,inc=1;
+					if (!hasbars) {start=2,end=16;inc=2;}
+					for(var j = start; j < end; j+=inc) {
+					if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k++].name)) {
+						var td = doc.createElement('td');
+						td.setAttribute('style','text-align:right !important;');
+						tr.appendChild(td);
+
+						if (sktable) {
+							if (hasbars) {
+								var tds = trs[j].getElementsByTagName("td");
+								var imgs = tds[1].getElementsByTagName('img');
+								var cur = imgs[0].title.match(/-?\d+/);
+								td.innerHTML = cur;
+							}
+							else {
+								var tds= allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("td");
+								var cur = tds[j+1].getElementsByTagName('a')[0].href.match(/ll=(\d+)/)[1];
+								td.innerHTML = cur;
+							}
+						}
+					}
+					}
+				}
+				else {k+=7;}
+
+				// card+injuries
+				var cardsyellow=0;
+				var cardsred=0;
+				var bruised=0;
+				var injured=0;
+				var img = allDivs[i].getElementsByTagName("img");
+
+				for(var j = 0; j < img.length; j++) {
+					if (img[j].className=='cardsOne') {
+						if (img[j].src.indexOf('red_card', 0) != -1 ) cardsred = 1;
+						else cardsyellow=1;
+					}
+					if (img[j].className=='cardsTwo') {
+						cardsyellow=2;
+					}
+					if (img[j].className=='injuryBruised') bruised=1;
+					if (img[j].className=='injuryInjured') injured = img[j].nextSibling.innerHTML;
+				}
+
+				// yellow cards
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 if (cardsyellow>0) {
+					td.appendChild(doc.createTextNode(cardsyellow));
+				 }
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// red cards
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 if (cardsred>0) {
+					td.appendChild(doc.createTextNode(cardsred));
+				 }
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// bruised
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 if (bruised>0) {
+					td.appendChild(doc.createTextNode(bruised));
+				 }
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// injured
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 if (injured>0) {
+					td.appendChild(doc.createTextNode(injured));
+				 }
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// specialty
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+					var td = doc.createElement('td');
+					specMatch = specc.textContent.match(/\[(\D+)\]/);
+					if (specMatch) {
+						var shortspecc = FoxtrickSkillTable._getShortSpecialty(specMatch[1]);
+						if (shortspecc) {
+							specMatch = shortspecc;
+						}
+						else {
+							specMatch = specMatch[1].substr(0,2);
+							Foxtrick.dump('fallback '+specMatch+'\n')
+						}
+					}
+					else specMatch='';
+					td.appendChild(doc.createTextNode(specMatch));
+					tr.appendChild(td);
+				}
+				k++;
+
+				// get played last match
+				var as=allDivs[i].getElementsByTagName('a');
+				var kk=0,a=null;
+				while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
+				var matchday=0;
+				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+
+				// stars
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+					var td = doc.createElement('td');
+					if (a) {
+						if (matchday==latestMatch) {
+							var imgs=a.parentNode.parentNode.getElementsByTagName('img');
+							var starcount=0;
+							for (var sc=0;sc<imgs.length;++sc) {
+								if (imgs[sc].className=='starBig') starcount+=5;
+								else if (imgs[sc].className=='starWhole') starcount+=1;
+								else if (imgs[sc].className=='starHalf') starcount+=0.5;
+							}
+							td.appendChild(doc.createTextNode(starcount));
+						}
+					}
+					tr.appendChild(td);
+				}
+				k++;
+
+				// last position
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+					var td = doc.createElement('td');
+					if (a) {
+						if (matchday == latestMatch) {
+							var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
+							var shortpos = FoxtrickSkillTable._getShortPos(pos);
+							if (shortpos) {
+								pos = shortpos;
+							}
+							else {
+								var sp_pos = pos.search(/ |\&nbsp;/);
+								if (sp_pos == -1) pos=pos.substr(0,2)
+								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
+								Foxtrick.dump('fallback '+pos+'\n')
+							}
+							td.appendChild(doc.createTextNode(pos));
+						}
+					}
+					tr.appendChild(td);
+				}
+				k++;
+
+				// Salary
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = Salary;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// TransferListed
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = TransferListed;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// #matches ntplayers only
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && NT_players) {
+				 var td = doc.createElement('td');
+				 var val = NrOfMatches;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// LeagueGoals
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 var val = LeagueGoals;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				// CareerGoals
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 var val = CareerGoals;
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
+
+				//Foxtrick.dump(matchday+' '+latestMatch+'\n');
+			}
+		}
+
+		viewContainer.appendChild(table);
+
+		// copy button
+		if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "CopySkillTable" )) {
+			FoxtrickSkillTable.addCopyButton(doc);
+		}
+		//sorting by playernumer. slow!
+		//FoxtrickSkillTable.sortClick(null,doc,0,'int_rev');
 	}
 }
