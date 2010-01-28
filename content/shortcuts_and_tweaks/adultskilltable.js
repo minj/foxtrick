@@ -91,7 +91,7 @@ var FoxtrickAdultSkillTable = {
 			sn = [
 				{ name: "PlayerCategory", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
 				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false ,OldiesCoach:false},
-				{ name: "Flag", abbr: true, sort: "link" ,NT:false ,OldiesCoach:false},
+				{ name: "Flag", abbr: true, sort: "title" ,NT:false ,OldiesCoach:false},
 				{ name: "Player", abbr: false, sort: "link",NT:true ,OldiesCoach:true },
 				{ name: "Age", abbr: false, sort: "age" ,NT:true ,OldiesCoach:true},
 				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
@@ -127,7 +127,7 @@ var FoxtrickAdultSkillTable = {
 			sn = [
 				{ name: "PlayerCategory", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
 				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
-				{ name: "Flag", abbr: true, sort: "link",NT:false ,OldiesCoach:false },
+				{ name: "Flag", abbr: true, sort: "title",NT:false ,OldiesCoach:false },
 				{ name: "Player", abbr: false, sort: "link",NT:true,OldiesCoach:true  },
 				{ name: "Age", abbr: false, sort: "age",NT:true,OldiesCoach:true  },
 				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
@@ -354,12 +354,14 @@ var FoxtrickAdultSkillTable = {
 				// flag
 				if (sn[k].enabled) {
 					var td = doc.createElement('td');
+					td.title = Foxtrick.XMLData.League[LeagueID].LeagueName;
 					var a=doc.createElement('a');
 					a.href='';
 					a.className ="flag inner";
 					var img=doc.createElement('img');
 					var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
 					img.setAttribute('style',style);
+					img.alt = Foxtrick.XMLData.League[LeagueID].LeagueName;
 					img.src="/Img/Icons/transparent.gif";
 					a.appendChild(img);
 					td.appendChild(a);

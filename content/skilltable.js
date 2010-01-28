@@ -19,6 +19,7 @@ var FoxtrickSkillTable = {
 
 	sortfunction: function(a,b) {return a.cells[FoxtrickSkillTable.sortIndex].innerHTML.localeCompare(b.cells[FoxtrickSkillTable.sortIndex].innerHTML);},
 	sortindexfunction: function(a,b) {return parseInt(b.cells[FoxtrickSkillTable.sortIndex].getAttribute('index')) < parseInt(a.cells[FoxtrickSkillTable.sortIndex].getAttribute('index'));},
+	sorttitlefunction: function(a,b) {return a.cells[FoxtrickSkillTable.sortIndex].getAttribute('title').localeCompare(b.cells[FoxtrickSkillTable.sortIndex].getAttribute('title'));},
 	sortdownfunction: function(a,b) {return parseInt(b.cells[FoxtrickSkillTable.sortIndex].innerHTML.replace(/\&nbsp| /g,'')) > parseInt(a.cells[FoxtrickSkillTable.sortIndex].innerHTML.replace(/\&nbsp| /g,''));},
 	sortdowntextfunction: function(a,b) {return (b.cells[FoxtrickSkillTable.sortIndex].innerHTML.localeCompare(a.cells[FoxtrickSkillTable.sortIndex].innerHTML));},
 	sortlinksfunction: function(a,b) {return a.cells[FoxtrickSkillTable.sortIndex].getElementsByTagName('a')[0].innerHTML.localeCompare(b.cells[FoxtrickSkillTable.sortIndex].getElementsByTagName('a')[0].innerHTML);},
@@ -53,6 +54,8 @@ var FoxtrickSkillTable = {
 				rows.sort(FoxtrickSkillTable.sortdownfunction);
 			else if (FoxtrickSkillTable.sort == "index")
 				rows.sort(FoxtrickSkillTable.sortindexfunction);
+			else if (FoxtrickSkillTable.sort == "title")
+				rows.sort(FoxtrickSkillTable.sorttitlefunction);
 			else if (FoxtrickSkillTable.sort == "text")
 				rows.sort(FoxtrickSkillTable.sortdowntextfunction);
 			
