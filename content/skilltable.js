@@ -42,7 +42,7 @@ var FoxtrickSkillTable = {
 			var rows = new Array();
 
 			for (var i = 1; i < table.rows.length; ++i) {
-				rows.push(table_old.rows[i]);
+				rows.push(table_old.rows[i].cloneNode(true));
 			}
 			//table.rows[3].innerHTML = table_old.rows[1].innerHTML;
 			if (FoxtrickSkillTable.sort == "link")
@@ -55,9 +55,14 @@ var FoxtrickSkillTable = {
 				rows.sort(FoxtrickSkillTable.sortindexfunction);
 			else if (FoxtrickSkillTable.sort == "text")
 				rows.sort(FoxtrickSkillTable.sortdowntextfunction);
-
+			
 			for (var i = 1; i < table.rows.length; ++i) {
-				table.rows[i].innerHTML = rows[i-1].innerHTML;
+				table_old.rows[i].innerHTML = rows[i-1].innerHTML;
+			}
+			table.innerHTML = table_old.innerHTML;
+			
+			for (var i = 0; i < table.rows[0].cells.length; ++i) {
+				table.rows[0].cells[i].addEventListener("click", FoxtrickSkillTable.sortClick, false);
 			}
 		}
 		catch (e) {
