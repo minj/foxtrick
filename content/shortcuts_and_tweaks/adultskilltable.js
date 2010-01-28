@@ -88,6 +88,7 @@ var FoxtrickAdultSkillTable = {
 		var sn;
 		if (hasbars) {
 			sn = [
+				{ name: "PlayerCategory", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
 				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false ,OldiesCoach:false},
 				{ name: "Flag", abbr: true, sort: "link" ,NT:false ,OldiesCoach:false},
 				{ name: "Player", abbr: false, sort: "link",NT:true ,OldiesCoach:true },
@@ -123,6 +124,7 @@ var FoxtrickAdultSkillTable = {
 		}
 		else {
 			sn = [
+				{ name: "PlayerCategory", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
 				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
 				{ name: "Flag", abbr: true, sort: "link",NT:false ,OldiesCoach:false },
 				{ name: "Player", abbr: false, sort: "link",NT:true,OldiesCoach:true  },
@@ -198,7 +200,7 @@ var FoxtrickAdultSkillTable = {
 		table.appendChild(thead);
 		var s_index = 0;
 		for (var j = 0; j < sn.length; j++) {
-			if ((!is_ownteam || Oldies || NT_players || coach) && j>=12 && j<=18)
+			if ((!is_ownteam || Oldies || NT_players || coach) && j>=13 && j<=19)
 				continue;
 			if ((OldiesCoach && sn[j].OldiesCoach==false) || (NT_players && sn[j].NT==false)) continue;
 			if (!NT_players && sn[j].name=='NrOfMatches') continue;
@@ -281,6 +283,7 @@ var FoxtrickAdultSkillTable = {
 							var NrOfMatches = playerlist[j].getElementsByTagName('NrOfMatches')[0].textContent;
 						  }
 						  else {
+							var PlayerCategoryId = playerlist[j].getElementsByTagName('PlayerCategoryId')[0].textContent;
 							var Agreeability  = playerlist[j].getElementsByTagName('Agreeability')[0].textContent;
 							var Aggressiveness  = playerlist[j].getElementsByTagName('Aggressiveness')[0].textContent;
 							var Honesty  = playerlist[j].getElementsByTagName('Honesty')[0].textContent;
@@ -292,8 +295,7 @@ var FoxtrickAdultSkillTable = {
 							var NationalTeamID = playerlist[j].getElementsByTagName('NationalTeamID')[0].textContent;	//If the player is enrolled on a national team, this is that national team's ID. Otherwise will return 0.
 							//var Caps = playerlist[j].getElementsByTagName('Caps')[0].textContent;	//The number of matches played for the national team.
 							var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
-							var Salary = parseInt(playerlist[j].getElementsByTagName('Salary')[0].textContent)/10/currencyRate; // from kroner to euro to selected
-	;
+							var Salary = parseInt(playerlist[j].getElementsByTagName('Salary')[0].textContent)/10/currencyRate; // from kroner to euro to selecte							 							
 							var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;
 							var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
 							var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;
@@ -310,6 +312,18 @@ var FoxtrickAdultSkillTable = {
 
 				var tr = doc.createElement('tr');
 				tbody.appendChild(tr);
+
+				// PlayerCategory
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
+				 var td = doc.createElement('td');
+				 td.setAttribute('style','text-align:right !important;');
+				 var val = PlayerCategoryId;
+				 td.setAttribute('index',val);
+				 if (val==0) val='';
+				 td.appendChild(doc.createTextNode(val));
+				 tr.appendChild(td);
+				}
+				k++;
 
 				// PlayerNumber
 				if (Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, kind+'.'+sn[k].name) && (!OldiesCoach || sn[k].OldiesCoach==true) && (!NT_players || sn[k].NT==true)) {
