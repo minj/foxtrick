@@ -69,7 +69,7 @@ var FoxtrickSkillTable = {
 			Foxtrick.dump("SkillTable: " + e + "\n");
 		}
 		finally {
-			ev.stopPropagation();
+			if (ev) ev.stopPropagation();
 		}
 	},
 
