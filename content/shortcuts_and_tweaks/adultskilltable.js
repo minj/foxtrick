@@ -291,7 +291,9 @@ var FoxtrickAdultSkillTable = {
 							var TransferListed = playerlist[j].getElementsByTagName('TransferListed')[0].textContent;	//Returns 1 if the player is on the transfer list, otherwise 0.
 							var NationalTeamID = playerlist[j].getElementsByTagName('NationalTeamID')[0].textContent;	//If the player is enrolled on a national team, this is that national team's ID. Otherwise will return 0.
 							//var Caps = playerlist[j].getElementsByTagName('Caps')[0].textContent;	//The number of matches played for the national team.
-							var Salary = playerlist[j].getElementsByTagName('Salary')[0].textContent;
+							var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
+							var Salary = parseInt(playerlist[j].getElementsByTagName('Salary')[0].textContent)/10/currencyRate; // from kroner to euro to selected
+	;
 							var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;
 							var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
 							var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;
