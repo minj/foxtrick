@@ -182,6 +182,14 @@ var FoxtrickAdultSkillTable = {
 
 		var viewContainer = doc.createElement("div");
 		viewContainer.className = "ft_skilltable_viewcont";
+		if (!NT_players && !OldiesCoach) { // alsways ws nowrap
+			viewContainer.setAttribute('ws_toggle','false');
+			Foxtrick.addClass(viewContainer, "ws_wrap");
+		}
+		else { // ws nowrap only if on top
+			viewContainer.setAttribute('ws_toggle','true');
+			if (FoxtrickPrefs.getBool("module.AdultSkillTable.top")) Foxtrick.addClass(viewContainer, "ws_wrap");
+		}
 		Foxtrick.addClass(viewContainer, "hidden");
 		if (FoxtrickPrefs.getBool("module.AdultSkillTable.top")) {
 			Foxtrick.addClass(viewContainer, "on_top");
@@ -282,7 +290,10 @@ var FoxtrickAdultSkillTable = {
 							if (sn[0].available) {
 								var PlayerCategoryId = playerlist[j].getElementsByTagName('PlayerCategoryId')[0].textContent;
 								if (PlayerCategoryId!=0) var PlayerCategory = Foxtrickl10n.getString('categories.'+FoxtrickAdultSkillTable._categories[PlayerCategoryId]);
-								else var PlayerCategory='';
+								else {
+									var PlayerCategory='';
+									PlayerCategoryId = 100;  // increased index for sorting
+								}
 							}
 							var Agreeability  = playerlist[j].getElementsByTagName('Agreeability')[0].textContent;
 							var Aggressiveness  = playerlist[j].getElementsByTagName('Aggressiveness')[0].textContent;
@@ -291,7 +302,7 @@ var FoxtrickAdultSkillTable = {
 							if (LeagueGoals=='Not Available') LeagueGoals='';
 							var CareerGoals = playerlist[j].getElementsByTagName('CareerGoals')[0].textContent;
 							if (CareerGoals=='Not Available') CareerGoals='';
-							var TransferListed = playerlist[j].getElementsByTagName('TransferListed')[0].textContent;	//Returns 1 if the player is on the transfer list, otherwise 0.
+							var TransferListed = (playerlist[j].getElementsByTagName('TransferListed')[0].textContent=='0')?'':'x';	//Returns 1 if the player is on the transfer list, otherwise 0.
 							var NationalTeamID = playerlist[j].getElementsByTagName('NationalTeamID')[0].textContent;	//If the player is enrolled on a national team, this is that national team's ID. Otherwise will return 0.
 							//var Caps = playerlist[j].getElementsByTagName('Caps')[0].textContent;	//The number of matches played for the national team.
 							var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
@@ -691,7 +702,6 @@ var FoxtrickAdultSkillTable = {
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "CopySkillTable" )) {
 			FoxtrickSkillTable.addCopyButton(doc);
 		}
-		//sorting by playernumer. slow!
 		FoxtrickSkillTable.sortClick(null,doc,0,'index');
 	  } catch(e) {Foxtrick.dump('create table: '+e+'\n');}
 	}

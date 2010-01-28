@@ -126,6 +126,8 @@ var FoxtrickSkillTable = {
 		var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
 		var viewContainer = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
 		Foxtrick.toggleClass(viewContainer, "on_top");
+		if (viewContainer.getAttribute('ws_toggle')=='true') Foxtrick.toggleClass(viewContainer, "ws_wrap");
+		
 		if (FoxtrickSkillTable.isAdult(tablediv)) {
 			FoxtrickPrefs.setBool("module.AdultSkillTable.top", Foxtrick.hasClass(viewContainer, "on_top"));
 		}
