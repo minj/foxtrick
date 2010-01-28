@@ -9,7 +9,7 @@ var FoxtrickAdultSkillTable = {
     MODULE_NAME : "AdultSkillTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players'),
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.0.2",
 	LATEST_CHANGE : "Used abbr for better accessibilty and fixed copy empty cells. More options and some moved to table itself",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -285,9 +285,9 @@ var FoxtrickAdultSkillTable = {
 							var Aggressiveness  = playerlist[j].getElementsByTagName('Aggressiveness')[0].textContent;
 							var Honesty  = playerlist[j].getElementsByTagName('Honesty')[0].textContent;
 							var LeagueGoals  = playerlist[j].getElementsByTagName('LeagueGoals')[0].textContent;
-							if (LeagueGoals=='NOT AVAILABLE') LeagueGoals='';
+							if (LeagueGoals=='Not Available') LeagueGoals='';
 							var CareerGoals = playerlist[j].getElementsByTagName('CareerGoals')[0].textContent;
-							if (CareerGoals=='NOT AVAILABLE') CareerGoals='';
+							if (CareerGoals=='Not Available') CareerGoals='';
 							var TransferListed = playerlist[j].getElementsByTagName('TransferListed')[0].textContent;	//Returns 1 if the player is on the transfer list, otherwise 0.
 							var NationalTeamID = playerlist[j].getElementsByTagName('NationalTeamID')[0].textContent;	//If the player is enrolled on a national team, this is that national team's ID. Otherwise will return 0.
 							//var Caps = playerlist[j].getElementsByTagName('Caps')[0].textContent;	//The number of matches played for the national team.
