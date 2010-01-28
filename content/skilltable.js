@@ -184,48 +184,39 @@ var FoxtrickSkillTable = {
 	},
 
 	createView : function(doc) {
-		var ul = doc.createElement("ul");
-		ul.className = "ft_skilltable_view";
-		var viewItem = doc.createElement("li");
+		var div = doc.createElement("div");
+		div.className = "ft_skilltable_view";
 		var view = doc.createElement("a");
-		viewItem.appendChild(view);
+		div.appendChild(view);
 		view.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
 		view.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Switch_view_title"));
 		view.addEventListener("click", FoxtrickSkillTable.view, false);
-		ul.appendChild(viewItem);
 
-		return ul;
+		return div;
 	},
 
 	createCustomize : function(doc) {
-		var ul = doc.createElement("ul");
-		ul.className = "ft_skilltable_customize";
+		var div = doc.createElement("div");
+		div.className = "ft_skilltable_customize";
 
-		var customizeItem = doc.createElement("li");
-		customizeItem.className = "customize_item";
 		var customize = doc.createElement("a");
-		customizeItem.appendChild(customize);
+		customize.className = "customize_item";
 		customize.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCustomize")));
 		customize.addEventListener("click", FoxtrickSkillTable.customize, false);
 
-		var saveItem = doc.createElement("li");
 		var save = doc.createElement("a");
-		saveItem.appendChild(save);
 		save.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonSave")));
 		save.addEventListener("click", FoxtrickSkillTable.save, false);
 
-
-		var cancelItem = doc.createElement("li");
 		var cancel = doc.createElement("a");
-		cancelItem.appendChild(cancel);
 		cancel.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCancel")));
 		cancel.addEventListener("click", FoxtrickSkillTable.cancel, false);
 
-		ul.appendChild(customizeItem);
-		ul.appendChild(saveItem);
-		ul.appendChild(cancelItem);
+		div.appendChild(customize);
+		div.appendChild(save);
+		div.appendChild(cancel);
 
-		return ul;
+		return div;
 	},
 
 	createCustomizeTable : function(id, properties, doc) {
