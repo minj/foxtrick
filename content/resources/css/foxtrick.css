@@ -43,7 +43,7 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 /*skilltable*/
 .ft_skilltablediv { margin-top: 35px; margin-bottom: 35px; margin-left: -10px; overflow: auto; }
 .ft_skilltablediv h2 { cursor: pointer; margin: 10px 0 10px 0 !important; }
-.ft_skilltablediv table { width: 100%; overflow: auto; margin: 0 0 0.5em 0; }
+.ft_skilltablediv table { width: 100%; overflow: auto; margin: 0 0 0.5em 0; white-space:nowrap;}
 .ft_skilltablediv table td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltablediv table td:nth-child(odd) { background-color: white; }
 .ft_skilltablediv table th { text-align: center !important; }

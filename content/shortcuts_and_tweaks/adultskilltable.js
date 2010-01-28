@@ -89,7 +89,7 @@ var FoxtrickAdultSkillTable = {
 		if (hasbars) {
 			sn = [
 				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false ,OldiesCoach:false},
-				{ name: "Flag", abbr: false, sort: "link" ,NT:false ,OldiesCoach:false},
+				{ name: "Flag", abbr: true, sort: "link" ,NT:false ,OldiesCoach:false},
 				{ name: "Player", abbr: false, sort: "link",NT:true ,OldiesCoach:true },
 				{ name: "Age", abbr: false, sort: "age" ,NT:true ,OldiesCoach:true},
 				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
@@ -124,7 +124,7 @@ var FoxtrickAdultSkillTable = {
 		else {
 			sn = [
 				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
-				{ name: "Flag", abbr: false, sort: "link",NT:false ,OldiesCoach:false },
+				{ name: "Flag", abbr: true, sort: "link",NT:false ,OldiesCoach:false },
 				{ name: "Player", abbr: false, sort: "link",NT:true,OldiesCoach:true  },
 				{ name: "Age", abbr: false, sort: "age",NT:true,OldiesCoach:true  },
 				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
