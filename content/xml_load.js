@@ -119,7 +119,7 @@ Foxtrick.XMLData = {
 		// XML get players xml
 		
 		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
-			|| doc.location.href.search(/\/Club\/Players\//i)!=-1 
+			|| doc.location.href.search(/\/Club\/Players\/[$|\?TeamID=]/i)!=-1 
 			|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1) {
 
 			var file = 'file=players'; //default normal team

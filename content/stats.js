@@ -1307,6 +1307,12 @@ stats["ht-u20"] =  {
 										"age_days" : "days",
 										}
                         },
+        "youthplayerdetaillink" : { "path"       : "",
+                         "filters"    : [], 
+                        "params"     : { "age" : "years", 
+										"age_days" : "days",
+										}
+                        },
         "ageranges" : [[15, 20]],         
         "title" : "HT-U20 Check age vs U-20 matches",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/u20.png"

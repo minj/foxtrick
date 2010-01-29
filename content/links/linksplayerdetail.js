@@ -31,7 +31,7 @@ var FoxtrickLinksPlayerDetail = {
 		}
 		else var deadline='';
 		
-		var alldivs = doc.getElementsByTagName('div');
+		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
 		var ownBoxBody=null;
 		var added=0;
 		for (var j = 0; j < alldivs.length; j++) {
