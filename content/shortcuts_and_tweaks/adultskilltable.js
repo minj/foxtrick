@@ -418,7 +418,7 @@ var FoxtrickAdultSkillTable = {
 				if (sn[k].enabled) {
 				 var td = doc.createElement('td');
 				 td.setAttribute('style','text-align:right !important;');
-				 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[3+link_off].href.match(/ll=(\d+)/)[1];
+				 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[4+link_off].href.match(/ll=(\d+)/)[1];
 				 else var val = Leadership;
 				 td.appendChild(doc.createTextNode(val));
 				 tr.appendChild(td);
@@ -430,7 +430,7 @@ var FoxtrickAdultSkillTable = {
 				 var td = doc.createElement('td');
 				 td.setAttribute('style','text-align:right !important;');
 				 var val = Experience;
-				 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[4+link_off].href.match(/ll=(\d+)/)[1];
+				 if (NT_players) var val = allDivs[i].getElementsByTagName("a")[3+link_off].href.match(/ll=(\d+)/)[1];
 				 else var val = Experience;
 				 td.appendChild(doc.createTextNode(val));
 				 tr.appendChild(td);
