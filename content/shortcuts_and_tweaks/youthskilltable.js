@@ -27,16 +27,8 @@ var FoxtrickYouthSkillTable = {
 			var is_ownteam = (ownteamid==teamid);
 			if (!is_ownteam && !Foxtrick.isModuleFeatureEnabled(FoxtrickYouthSkillTable, "AlsoOtherTeams")) return;
 
-			var tablediv = doc.createElement('div');
+			var tablediv = FoxtrickSkillTable.addTableDiv(doc);
 			tablediv.id = "ft_youthskilltablediv";
-			tablediv.className = "ft_skilltablediv";
-			var h2 = doc.createElement('h2');
-			h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-			h2.addEventListener( "click", FoxtrickSkillTable.headerClick, false );
-			h2.setAttribute('class','ft_boxBodyCollapsed');
-			tablediv.appendChild(h2);
-			var header=doc.getElementsByTagName('h1')[0];
-			header.parentNode.insertBefore(tablediv,header.nextSibling);
 
 			if (FoxtrickPrefs.getBool("module.YouthSkillTable.show")) {
 				FoxtrickSkillTable.toggleDisplay(doc);
@@ -60,12 +52,6 @@ var FoxtrickYouthSkillTable = {
 		else {
 			kind = "other";
 		}
-
-		var tablediv = doc.getElementById("ft_youthskilltablediv");
-
-		var customize = FoxtrickSkillTable.createCustomize(doc);
-		Foxtrick.addClass(customize, "hidden");
-		tablediv.appendChild(customize);
 
 		// table headers
 		// name: its corresponding name in foxtrick.properties
@@ -101,20 +87,8 @@ var FoxtrickYouthSkillTable = {
 				}
 			}
 		}
-		var customizeTable = FoxtrickSkillTable.createCustomizeTable("youth", sn, doc);
+		var customizeTable = FoxtrickSkillTable.createCustomizeTable(sn, doc);
 		Foxtrick.addClass(customizeTable, "hidden");
-		tablediv.appendChild(customizeTable);
-
-		var viewContainer = doc.createElement("div");
-		viewContainer.className = "ft_skilltable_viewcont";
-		Foxtrick.addClass(viewContainer, "hidden");
-		if (FoxtrickPrefs.getBool("module.YouthSkillTable.top")) {
-			Foxtrick.addClass(viewContainer, "on_top");
-		}
-		tablediv.appendChild(viewContainer);
-
-		var view = FoxtrickSkillTable.createView(doc);
-		viewContainer.appendChild(view);
 
 		var table = doc.createElement('table');
 		table.id = "ft_youthskilltable";
@@ -352,7 +326,13 @@ var FoxtrickYouthSkillTable = {
 			}
 		}
 
-		viewContainer.appendChild(table);
+		var tablediv = doc.getElementById("ft_youthskilltablediv");
+		FoxtrickSkillTable.insertCustomizeTable(tablediv, customizeTable);
+		FoxtrickSkillTable.insertSkillTable(tablediv, table);
+		var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
+		if (FoxtrickPrefs.getBool("module.YouthSkillTable.top")) {
+			Foxtrick.addClass(container, "on_top");
+		}
 	
 		// copy button
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickYouthSkillTable, "CopySkillTable" )) {

@@ -101,20 +101,20 @@ var FoxtrickSkillTable = {
 				FoxtrickPrefs.setBool("module.YouthSkillTable.show", show);
 			}
 
-			var customize = tablediv.getElementsByClassName("ft_skilltable_customize")[0];
+			var links = tablediv.getElementsByClassName("ft_skilltable_links")[0];
 			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
-			var viewContainer = tablediv.getElementsByClassName("ft_skilltable_viewcont")[0];
+			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 			if (show) {
 				// show the objects
-				Foxtrick.removeClass(customize, "hidden");
-				Foxtrick.removeClass(viewContainer, "hidden");
+				Foxtrick.removeClass(links, "hidden");
+				Foxtrick.removeClass(container, "hidden");
 			}
 			else {
 				// hide the objects
-				Foxtrick.addClass(customize, "hidden");
-				Foxtrick.removeClass(customize, "customizing");
+				Foxtrick.removeClass(links, "customizing");
+				Foxtrick.addClass(links, "hidden");
 				Foxtrick.addClass(customizeTable, "hidden");
-				Foxtrick.addClass(viewContainer, "hidden");
+				Foxtrick.addClass(container, "hidden");
 			}
 		}
 		catch(e) {Foxtrick.dump("SkillTable.toggleDisplay: "+e+"\n");}
@@ -127,28 +127,29 @@ var FoxtrickSkillTable = {
 	view : function(ev) {
 		var doc = ev.target.ownerDocument;
 		var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
-		var viewContainer = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
-		Foxtrick.toggleClass(viewContainer, "on_top");
-		if (viewContainer.getAttribute('ws_toggle')=='true') Foxtrick.toggleClass(viewContainer, "ws_wrap");
+		var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
+		Foxtrick.toggleClass(container, "on_top");
+
+		if (container.getAttribute('ws_toggle')=='true') Foxtrick.toggleClass(container, "ws_wrap");
 		
 		if (FoxtrickSkillTable.isAdult(tablediv)) {
-			FoxtrickPrefs.setBool("module.AdultSkillTable.top", Foxtrick.hasClass(viewContainer, "on_top"));
+			FoxtrickPrefs.setBool("module.AdultSkillTable.top", Foxtrick.hasClass(container, "on_top"));
 		}
 		else if (FoxtrickSkillTable.isYouth(tablediv)) {
-			FoxtrickPrefs.setBool("module.YouthSkillTable.top", Foxtrick.hasClass(viewContainer, "on_top"));
+			FoxtrickPrefs.setBool("module.YouthSkillTable.top", Foxtrick.hasClass(container, "on_top"));
 		}
 	},
 
 	customize : function(ev) {
 		var doc = ev.target.ownerDocument;
-		var customize = doc.getElementsByClassName("ft_skilltable_customize")[0];
-		Foxtrick.addClass(customize, "customizing");
+		var links = doc.getElementsByClassName("ft_skilltable_links")[0];
+		Foxtrick.addClass(links, "customizing");
 
 		var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
 		Foxtrick.removeClass(customizeTable, "hidden");
 
-		var viewContainer = doc.getElementsByClassName("ft_skilltable_viewcont")[0];
-		Foxtrick.addClass(viewContainer, "hidden");
+		var container = doc.getElementsByClassName("ft_skilltable_container")[0];
+		Foxtrick.addClass(container, "hidden");
 	},
 
 	save : function(ev) {
@@ -183,55 +184,94 @@ var FoxtrickSkillTable = {
 		try {
 			var doc = ev.target.ownerDocument;
 			var tablediv = doc.getElementsByClassName("ft_skilltablediv")[0];
-			var customize = tablediv.getElementsByClassName("ft_skilltable_customize")[0];
+			var links = tablediv.getElementsByClassName("ft_skilltable_links")[0];
 			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
-			var viewContainer = tablediv.getElementsByClassName("ft_skilltable_viewcont")[0];
-			Foxtrick.removeClass(customize, "customizing");
+			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
+			Foxtrick.removeClass(links, "customizing");
 			Foxtrick.addClass(customizeTable, "hidden");
-			Foxtrick.removeClass(viewContainer, "hidden");
+			Foxtrick.removeClass(container, "hidden");
 		}
 		catch(e) {Foxtrick.dump('customize '+e+'\n');}
 	},
 
-	createView : function(doc) {
-		var div = doc.createElement("div");
-		div.className = "ft_skilltable_view";
-		var view = doc.createElement("a");
-		div.appendChild(view);
-		view.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
-		view.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Switch_view_title"));
-		view.addEventListener("click", FoxtrickSkillTable.view, false);
+	addTableDiv : function(doc) {
+		var tablediv = doc.createElement("div");
+		tablediv.className = "ft_skilltablediv";
 
-		return div;
-	},
+		// table div head
+		var h2 = doc.createElement("h2");
+		h2.className = "ft_boxBodyCollapsed";
+		h2.appendChild(doc.createTextNode(Foxtrickl10n.getString("Youthskills.Skilltable")));
+		h2.addEventListener("click", FoxtrickSkillTable.headerClick, false);
+		tablediv.appendChild(h2);
 
-	createCustomize : function(doc) {
-		var div = doc.createElement("div");
-		div.className = "ft_skilltable_customize";
-
+		// links
+		var links = doc.createElement("div");
+		links.className = "ft_skilltable_links";
+		Foxtrick.addClass(links, "hidden");
+		// links: customize
 		var customize = doc.createElement("a");
 		customize.className = "customize_item";
 		customize.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCustomize")));
 		customize.addEventListener("click", FoxtrickSkillTable.customize, false);
-
+		// links: save
 		var save = doc.createElement("a");
 		save.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonSave")));
 		save.addEventListener("click", FoxtrickSkillTable.save, false);
-
+		// links: cancel
 		var cancel = doc.createElement("a");
 		cancel.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCancel")));
 		cancel.addEventListener("click", FoxtrickSkillTable.cancel, false);
+		// links: all children
+		links.appendChild(customize);
+		links.appendChild(save);
+		links.appendChild(cancel);
 
-		div.appendChild(customize);
-		div.appendChild(save);
-		div.appendChild(cancel);
+		// customize table wrapper
+		var customizeWrapper = doc.createElement("div");
+		customizeWrapper.className = "ft_skilltable_customizewrapper";
 
-		return div;
+		// table container
+		var container = doc.createElement("div");
+		container.className = "ft_skilltable_container";
+		Foxtrick.addClass(container, "hidden");
+		// table container: switch view
+		var switchView = doc.createElement("div");
+		var switchViewLink = doc.createElement("a");
+		switchViewLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
+		switchViewLink.addEventListener("click", FoxtrickSkillTable.view, false);
+		switchView.appendChild(switchViewLink);
+		// table container: table wrapper
+		var wrapper = doc.createElement("div");
+		wrapper.className = "ft_skilltable_wrapper";
+		// table container: all children
+		container.appendChild(switchView);
+		container.appendChild(wrapper);
+
+		tablediv.appendChild(h2);
+		tablediv.appendChild(links);
+		tablediv.appendChild(customizeWrapper);
+		tablediv.appendChild(container);
+
+		// insert tablediv
+		var header = doc.getElementsByTagName("h1")[0];
+		header.parentNode.insertBefore(tablediv, header.nextSibling);
+
+		return tablediv;
 	},
 
-	createCustomizeTable : function(id, properties, doc) {
+	insertCustomizeTable : function(tablediv, customizeTable) {
+		var wrapper = tablediv.getElementsByClassName("ft_skilltable_customizewrapper")[0];
+		wrapper.appendChild(customizeTable);
+	},
+
+	insertSkillTable : function(tablediv, skillTable) {
+		var wrapper = tablediv.getElementsByClassName("ft_skilltable_wrapper")[0];
+		wrapper.appendChild(skillTable);
+	},
+
+	createCustomizeTable : function(properties, doc) {
 		var table = doc.createElement("table");
-		table.id = "ft_" + id + "skilltable_customizetable";
 		table.className = "ft_skilltable_customizetable";
 		var thead = doc.createElement("thead");
 		var tbody = doc.createElement("tbody");

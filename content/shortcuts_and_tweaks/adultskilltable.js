@@ -29,16 +29,8 @@ var FoxtrickAdultSkillTable = {
 			var is_ownteam = (ownteamid==teamid);
 			if (!is_ownteam && !Foxtrick.isModuleFeatureEnabled(FoxtrickAdultSkillTable, 'AlsoOtherTeams')) return;
 
-			var tablediv = doc.createElement('div');
+			var tablediv = FoxtrickSkillTable.addTableDiv(doc);
 			tablediv.id = "ft_adultskilltablediv";
-			tablediv.className = "ft_skilltablediv";
-			var h2 = doc.createElement('h2');
-			h2.className = "ft_boxBodyCollapsed";
-			h2.innerHTML = Foxtrickl10n.getString('Youthskills.Skilltable');
-			h2.addEventListener( "click", FoxtrickSkillTable.headerClick, false );
-			tablediv.appendChild(h2);
-			var header=doc.getElementsByTagName('h1')[0];
-			header.parentNode.insertBefore(tablediv,header.nextSibling);
 
 			if (FoxtrickPrefs.getBool("module.AdultSkillTable.show")) {
 				FoxtrickSkillTable.toggleDisplay(doc);
@@ -69,10 +61,6 @@ var FoxtrickAdultSkillTable = {
 		else {
 			kind = "other";
 		}
-
-
-		var customize = FoxtrickSkillTable.createCustomize(doc);
-		Foxtrick.addClass(customize, "hidden");
 
 		var hasbars=true;
 		var allDivs = doc.getElementsByTagName("div");
@@ -177,26 +165,8 @@ var FoxtrickAdultSkillTable = {
 				}	
 			}
 		}
-		var customizeTable = FoxtrickSkillTable.createCustomizeTable("adult", sn, doc);
+		var customizeTable = FoxtrickSkillTable.createCustomizeTable(sn, doc);
 		Foxtrick.addClass(customizeTable, "hidden");
-
-		var viewContainer = doc.createElement("div");
-		viewContainer.className = "ft_skilltable_viewcont";
-		if (!NT_players && !OldiesCoach) { // alsways ws nowrap
-			viewContainer.setAttribute('ws_toggle','false');
-			Foxtrick.addClass(viewContainer, "ws_wrap");
-		}
-		else { // ws nowrap only if on top
-			viewContainer.setAttribute('ws_toggle','true');
-			if (FoxtrickPrefs.getBool("module.AdultSkillTable.top")) Foxtrick.addClass(viewContainer, "ws_wrap");
-		}
-		Foxtrick.addClass(viewContainer, "hidden");
-		if (FoxtrickPrefs.getBool("module.AdultSkillTable.top")) {
-			Foxtrick.addClass(viewContainer, "on_top");
-		}
-
-		var view = FoxtrickSkillTable.createView(doc);
-		viewContainer.appendChild(view);
 
 		var table = doc.createElement('table');
 		table.id = "ft_adultskilltable";
@@ -692,19 +662,31 @@ var FoxtrickAdultSkillTable = {
 			}
 		}
 		Foxtrick.dump('end create\n');
-		
-		viewContainer.appendChild(table);
 
 		var tablediv = doc.getElementById("ft_adultskilltablediv");
-		tablediv.appendChild(customize);
-		tablediv.appendChild(customizeTable);
-		tablediv.appendChild(viewContainer);
+		FoxtrickSkillTable.insertCustomizeTable(tablediv, customizeTable);
+		FoxtrickSkillTable.insertSkillTable(tablediv, table);
+
+		var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
+		if (!NT_players && !OldiesCoach) { // always ws nowrap
+			container.setAttribute('ws_toggle','false');
+			Foxtrick.addClass(container, "ws_wrap");
+		}
+		else { // ws nowrap only if on top
+			container.setAttribute('ws_toggle','true');
+			if (FoxtrickPrefs.getBool("module.AdultSkillTable.top")) {
+				Foxtrick.addClass(container, "ws_wrap");
+			}
+		}
+		if (FoxtrickPrefs.getBool("module.AdultSkillTable.top")) {
+			Foxtrick.addClass(container, "on_top");
+		}
 
 		// copy button
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickAdultSkillTable, "CopySkillTable" )) {
 			FoxtrickSkillTable.addCopyButton(doc);
 		}
 		FoxtrickSkillTable.sortClick(null,doc,0,'index');
-	  } catch(e) {Foxtrick.dump('create table: '+e+'\n');}
+	  } catch(e) {Foxtrick.dump('create table: '+e+e.lineNumber+e.fileName+'\n');}
 	}
 }

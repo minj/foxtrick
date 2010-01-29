@@ -41,27 +41,25 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 .sidebarBox h5 { font-size: 100%; margin: 0.5em 0; }
 
 /*skilltable*/
-.ft_skilltablediv { margin-top: 35px; margin-bottom: 35px; margin-left: -10px; overflow: auto; }
+.ft_skilltablediv { margin-top: 35px; margin-bottom: 35px; margin-left: -10px; }
 .ft_skilltablediv h2 { cursor: pointer; margin: 10px 0 10px 0 !important; }
-.ft_skilltablediv table { width: 100%; overflow: auto; margin: 0 0 0.5em 0;}
+.ft_skilltablediv table { width: 100%; margin: 0 0 0.5em 0;}
 .ft_skilltablediv table td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltablediv table td:nth-child(odd) { background-color: white; }
 .ft_skilltablediv table th { text-align: center !important; }
 .ft_skilltablediv a { cursor: pointer; margin: 0 0.5em 0 0; }
-.ft_skilltable_customize { margin-bottom: 0.5em !important; }
-.ft_skilltable_customize a { display: none; }
-.ft_skilltable_customize .customize_item { display: inline; }
-.ft_skilltable_customize.customizing a { display: inline; }
-.ft_skilltable_customize.customizing .customize_item { display: none; }
-.ft_skilltable_viewcont { background-color: #fff; }
-.ft_skilltable_viewcont.on_top { position: absolute; z-index: 100; padding: 1em; border: 2px solid #888; }
-.ft_skilltable_viewcont.ws_wrap { white-space:nowrap; }
+.ft_skilltable_wrapper, .ft_skilltable_customizewrapper { width: 100%; overflow: auto; }
+.ft_skilltable_links { margin-bottom: 0.5em !important; }
+.ft_skilltable_links a { display: none; }
+.ft_skilltable_links .customize_item { display: inline; }
+.ft_skilltable_links.customizing a { display: inline; }
+.ft_skilltable_links.customizing .customize_item { display: none; }
+.ft_skilltable_container { background-color: #fff; }
+.ft_skilltable_container.on_top { position: absolute; z-index: 100; padding: 1em; border: 2px solid #888; }
+.ft_skilltable_container.ws_wrap { white-space:nowrap; }
 .ft_skilltable th, .ft_skilltable td { padding: 1px 2px !important; }
 .ft_skilltable th { cursor: pointer; }
 .ft_skilltable td { border-bottom: 1px solid #DCE0DC; border-collapse: separate; }
-/*.ft_skilltable tbody td { text-align: center !important; }
-.ft_skilltable tbody td:first-child { text-align: left !important; }
-.ft_skilltable tbody td+td:first-child { text-align: left !important; }*/
 .ft_skilltable_maxed { font-weight: bold; }
 .ft_skilltable_blockend td { border-bottom: 1px solid #dddddd; }
 
