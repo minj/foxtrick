@@ -586,27 +586,27 @@
 			<sublevel text="max." value="0.75"  />
 		</ratingSubLevels>
 		<levels>
-			<level text="divine" value="20" />
-			<level text="utopian" value="19" />
-			<level text="magical" value="18" />
-			<level text="mythical" value="17" />
-			<level text="extra-terrestrial" value="16" />
-			<level text="titanic" value="15" />
-			<level text="supernatural" value="14" />
-			<level text="world class" value="13" />
-			<level text="magnificent" value="12" />
-			<level text="brilliant" value="11" />
-			<level text="outstanding" value="10" />
-			<level text="formidable" value="9" />
-			<level text="excellent" value="8" />
-			<level text="solid" value="7" />
-			<level text="passable" value="6" />
-			<level text="inadequate" value="5" />
-			<level text="weak" value="4" />
-			<level text="poor" value="3" />
-			<level text="wretched" value="2" />
-			<level text="disastrous" value="1" />
-			<level text="non-existent" value="0" />  
+			<level text="göttlich" value="20" />
+			<level text="galaktisch" value="19" />
+			<level text="märchenhaft" value="18" />
+			<level text="mythisch" value="17" />
+			<level text="außerirdisch" value="16" />
+			<level text="gigantisch" value="15" />
+			<level text="übernatürlich" value="14" />
+			<level text="Weltklasse" value="13" />
+			<level text="fantastisch" value="12" />
+			<level text="brillant" value="11" />
+			<level text="großartig" value="10" />
+			<level text="hervorragend" value="9" />
+			<level text="sehr gut" value="8" />
+			<level text="gut" value="7" />
+			<level text="passabel" value="6" />
+			<level text="durchschnittlich" value="5" />
+			<level text="schwach" value="4" />
+			<level text="armselig" value="3" />
+			<level text="erbärmlich" value="2" />
+			<level text="katastrophal" value="1" />
+			<level text="nicht vorhanden" value="0" />  
 		</levels>
 		<positions>
 			<position type="Keeper" value="Torwart" short="T" />
@@ -622,7 +622,7 @@
 			<specialty type="Quick" value="schnell" short="sc" />
 			<specialty type="Technical" value="Ballzauberer" short="Bz" />
 			<specialty type="Head" value="Kopfballstärke" short="Ko" />
-			<specialty type="Regainer" value="Regainer" short="Re" />
+			<specialty type="Regainer" value="Geneser" short="Ge" />
 		</specialties>		
 		<repositioning>
 			<reposition type="midfielder" value="zusätzl. mittelfeld" />
