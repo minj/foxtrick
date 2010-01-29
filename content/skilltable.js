@@ -286,28 +286,29 @@ var FoxtrickSkillTable = {
 			if (properties[i].available) {
 				var th = doc.createElement("th");
 				if (properties[i].abbr) {
-					var abbr = doc.createElement("abbr");
-					abbr.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
-					abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name + ".abbr")));
-					th.appendChild(abbr);
 					if (properties[i].img) {
-						abbr.style.display = "none";
-						th.style.backgroundImage = "url('" + properties[i].img + "')";
-						th.style.backgroundRepeat = "no-repeat";
-						th.style.minWidth = properties[i].width;
-						th.style.minHeight = properties[i].height;
+						var img = doc.createElement("img");
+						img.setAttribute("src", properties[i].img);
+						img.setAttribute("alt", Foxtrickl10n.getString(properties[i].name + ".abbr"));
+						img.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
+						th.appendChild(img);
+					}
+					else {
+						var abbr = doc.createElement("abbr");
+						abbr.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
+						abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name + ".abbr")));
+						th.appendChild(abbr);
 					}
 				}
 				else {
-					var span = doc.createElement("span");
-					span.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name)));
-					th.appendChild(span);
 					if (properties[i].img) {
-						span.style.display = "none";
-						th.style.backgroundImage = "url('" + properties[i].img + "')";
-						th.style.backgroundRepeat = "no-repeat";
-						th.style.minWidth = properties[i].width;
-						th.style.minHeight = properties[i].height;
+						var img = doc.createElement("img");
+						img.setAttribute("src", properties[i].img);
+						img.setAttribute("alt", Foxtrickl10n.getString(properties[i].name));
+						img.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
+					}
+					else {
+						th.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name)));
 					}
 				}
 				var td = doc.createElement("td");
@@ -416,7 +417,13 @@ var FoxtrickSkillTable = {
 	},
 
 	_getCell : function(cell) {
-		return Foxtrick.trim(cell.textContent);
+		var imgs = cell.getElementsByTagName("img");
+		if (imgs.length > 0) {
+			return imgs[0].getAttribute("alt");
+		}
+		else {
+			return Foxtrick.trim(cell.textContent);
+		}
 	},
 
 	_getShortPos: function(pos) {
