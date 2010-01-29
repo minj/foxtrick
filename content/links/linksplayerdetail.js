@@ -19,15 +19,44 @@ var FoxtrickLinksPlayerDetail = {
 			Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
-    run : function( page, doc ) {                     //Deadline: 29.12.2009 18:12                 
+    run : function( page, doc ) {  
+	  try{
 		//addExternalLinksToPlayerDetail
 		var teamdiv = doc.getElementById('teamLinks');
 		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
 		
 		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
-		if ( biddiv ) {
-			var reg = /\d{1,4}.+?\d{1,2}.+?\d{1,4}.+?\d{1,2}.+?\d{1,2}/i;		
-			var deadline = biddiv.innerHTML.match(reg);
+		if ( biddiv ) { 
+			var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+			var ar = reg.exec(biddiv.getElementsByTagName('p')[0].innerHTML);
+			
+			var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+			if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+
+			var day = parseInt(ar[1]);
+			var month = parseInt(ar[3]);
+			var year = parseInt(ar[5]);
+			var hour = parseInt(ar[7]);
+			var minute = parseInt(ar[9]);
+
+			switch ( DATEFORMAT ) {
+				case 'ddmmyyyy':
+					var day = parseInt(ar[1]);
+					var month = parseInt(ar[3]);
+					var year = parseInt(ar[5]);
+					break;
+				case 'mmddyyyy':
+					var day = parseInt(ar[3]);
+					var month = parseInt(ar[1]);
+					var year = parseInt(ar[5]);
+					break;
+				case 'yyyymmdd':
+					var day = parseInt(ar[5]);
+					var month = parseInt(ar[3]);
+					var year = parseInt(ar[1]);
+					break;
+			}
+			deadline = year+'-'+month+'-'+day+' '+hour+':'+minute;
 		}
 		else var deadline='';
 		
@@ -198,16 +227,11 @@ var FoxtrickLinksPlayerDetail = {
 		}
 		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
-						"teamid": teamid, "playerid": playerid, "nationality": nationality,
-						"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp,"leadership":ls,
-						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
-						"passing" : passing, "winger" : winger, "defending" : defending,
-						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks,"wage":wage,"wagebonus":wagebonus
-						});	
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME, params);	
 				break;
 			}
 		}
+	  } catch(e){Foxtrick.dump('LinksPlayerdetails: '+e+'\n');}
     },
 	
 	change : function( page, doc ) {
