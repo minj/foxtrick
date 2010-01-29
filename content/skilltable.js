@@ -239,6 +239,7 @@ var FoxtrickSkillTable = {
 		var switchView = doc.createElement("div");
 		var switchViewLink = doc.createElement("a");
 		switchViewLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
+		switchViewLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Switch_view_title"));
 		switchViewLink.addEventListener("click", FoxtrickSkillTable.view, false);
 		switchView.appendChild(switchViewLink);
 		// table container: table wrapper
