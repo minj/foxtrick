@@ -10,14 +10,16 @@ var FoxtrickLeagueNewsFilter = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LATEST_CHANGE:"Fixed problems with ShortPAs and repeated useage",
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Highlight teams with lineups in next matches table",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),
 	
     init : function() {
     },
 
     run : function( page, doc ) { 
+	try{
 	var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
 	var selectdiv=doc.createElement('div');
 	selectdiv.setAttribute('style','display:block');
@@ -52,6 +54,7 @@ var FoxtrickLeagueNewsFilter = {
 	
 	newsfeed.parentNode.insertBefore(selectdiv,newsfeed.parentNode.firstChild);
 	
+	var has_lineup = new Array();
 	var item=null;
 	var items = newsfeed.getElementsByTagName('div');
 	for (var i=0;i<items.length;++i) {
@@ -75,11 +78,38 @@ var FoxtrickLeagueNewsFilter = {
 			}
 			else if (as[1].href.search('javascript')==-1 ) {	// 3 = lineup changes, 2 links, second link not ShortPA link,not above
 				item.setAttribute('ft_news','3');
+				var namelength = (as[0].innerHTML.length<11)?as[0].innerHTML.length:11;
+				has_lineup.push(as[0].innerHTML.substr(0,namelength));
 			}
 		}
 	}
 
 	if (select.value!=0) this.ShowHide(doc);
+
+	// highlight teams with lineup
+	var tables = doc.getElementById('mainBody').getElementsByTagName('table');
+	for (var k=0; k<tables.length; ++k) {
+		if (tables[k].className.search('right')!=-1)  {
+		  for (var i=1; i<5; ++i) {
+			var link = tables[k].rows[i].cells[0].getElementsByTagName('a')[0]; 
+			for (var j=0; j<has_lineup.length; ++j) {
+				var pos = link.innerHTML.search(has_lineup[j]);
+				//Foxtrick.dump(has_lineup[j]+' '+link.innerHTML+' '+pos+'\n');
+				if (pos==0) {
+					var reg = new RegExp(/(.+)\&nbsp;/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<b>$1</b>&nbsp;');
+				}
+				else if (pos>0) {
+					var reg = new RegExp(/\&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'&nbsp;<b>$1</b>');
+				}
+			}
+		  }
+		  break;
+		}
+	}
+	
+	} catch(e){Foxtrick.dump('leaguenewfilter: +'+e+'\n');}
 	},
 	
 	ShowHide:function(doc) {
