@@ -8,7 +8,7 @@ FoxtrickSmallerPages = {
 
     MODULE_NAME : "FoxtrickSmallerPages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail'), 
+	PAGES : new Array('playerdetail','youthoverview'), 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Added: reduced size if playeravater is off on playerdetails page",
@@ -32,6 +32,11 @@ FoxtrickSmallerPages = {
 					this._adjust_bid( doc );
 				}
 				break;
+			case 'youthoverview':
+				if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
+					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].setAttribute('style','width:auto');
+				}
+				break;				
 		}
     },
 	
@@ -43,6 +48,11 @@ FoxtrickSmallerPages = {
 					this._adjust_bid( doc );
 				}
 				break;
+			case 'youthoverview':
+				if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
+					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].setAttribute('style','width:auto');
+				}
+				break;				
 		}
 	},
     
