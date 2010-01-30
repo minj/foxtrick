@@ -121,13 +121,7 @@ var FoxtrickCopyScoutReport = {
 
 	var has_report = false;
 	if (page=='youthoverview') {		
-		var mainBody = doc.getElementById('mainBody');		
-		var subDivs = mainBody.getElementsByTagName('div');
-		for(var i = 0; i < subDivs.length; i++) {
-			if (subDivs[i].className == "managerInfo" ) { 
-				has_report=true; break;
-			}
-		}
+		has_report = doc.getElementById('ctl00_CPMain_butScoutPropYes')!=null;		
 	}
 
 	if (page=='youthplayerdetail' || has_report) {		
@@ -197,8 +191,12 @@ var FoxtrickCopyScoutReport = {
 			var subDivs = mainBody.getElementsByTagName("div");
 			var lastmainbox=-1;
 			for(var i = 0; i < subDivs.length; i++) {
-				if (subDivs[i].className == "mainBox" || subDivs[i].className == "managerInfo" ) { 
+				if (subDivs[i].className == "mainBox") { 
 					lastmainbox=i;
+				}
+				if ( subDivs[i].className == "managerInfo" ) {
+					lastmainbox=i; // not the last realy. just was lazy
+					break;
 				}
 			}
 		

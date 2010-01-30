@@ -330,7 +330,9 @@ var FoxtrickYouthSkillTable = {
 		FoxtrickSkillTable.insertCustomizeTable(tablediv, customizeTable);
 		FoxtrickSkillTable.insertSkillTable(tablediv, table);
 		var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
+		container.setAttribute('ws_toggle','true');
 		if (FoxtrickPrefs.getBool("module.YouthSkillTable.top")) {
+			Foxtrick.addClass(container, "ws_wrap");
 			Foxtrick.addClass(container, "on_top");
 		}
 	
