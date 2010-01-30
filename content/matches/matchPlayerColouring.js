@@ -320,13 +320,13 @@ FoxtrickMatchPlayerColouring = {
 		if (page=='playerdetail') { // add matchreport highlight links to playerdetails
 			var playername = doc.getElementById("mainWrapper").getElementsByTagName('a')[1].innerHTML;
 			playerlastname = playername.substr(playername.lastIndexOf(' ')+1);
-			Foxtrick.dump('playerlastname: "'+playerlastname+'"\n');
+			//Foxtrick.dump('playerlastname: "'+playerlastname+'"\n');
 			var as = doc.getElementById("mainBody").getElementsByTagName('a');
 			for (var i=0;i<as.length;i++) {
 				//Foxtrick.dump(as[i].href+' '+as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i)+'\n');
 				if (as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i)!=-1 && as[i].href.search(/highlight/i)==-1) {
 					as[i].href += '&highlight='+playerlastname;
-					Foxtrick.dump(as[i].href+'\n');
+					//Foxtrick.dump(as[i].href+'\n');
 				}
 			}
 			return;
