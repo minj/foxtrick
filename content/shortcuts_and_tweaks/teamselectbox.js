@@ -74,7 +74,7 @@ var FoxtrickTeamSelectBox= {
 				div.setAttribute("class","boxHead ft_sidebarBoxCollapsed");
 				if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 			}
-			div.addEventListener( "click", this.HeaderClick, false );
+			Foxtrick.addEventListenerChangeSave(div, "click", this.HeaderClick, false );
                                        
             if (doc.location.href.search(/YouthPlayers/i)!=-1 && !Foxtrick.isModuleFeatureEnabled( this, "AlsoYouthPlayers" ) ) 
 				{FoxtrickPrefs.setBool("ShowPlayerAsList",true);}
@@ -88,7 +88,7 @@ var FoxtrickTeamSelectBox= {
 	if (FoxtrickTeamSelectBox.listbox!=null) {
 		var selectbox = doc.createElement("select"); 
 		selectbox.setAttribute("id","ft_ownselectboxID");
-		selectbox.addEventListener('change',FoxtrickTeamSelectBox.Select,false);
+		Foxtrick.addEventListenerChangeSave(selectbox, 'change',FoxtrickTeamSelectBox.Select,false);
 		
 		var option = doc.createElement("option");
 		option.setAttribute("value","");

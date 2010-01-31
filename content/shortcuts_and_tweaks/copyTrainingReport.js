@@ -110,7 +110,7 @@ var FoxtrickCopyScoutReport = {
 	MODULE_NAME : "CopyScoutReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail','youthoverview'), 
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Enabled for scout calls. Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

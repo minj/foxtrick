@@ -123,7 +123,7 @@ var FoxtrickPrefsDialogHTML = {
 		prefcancel.setAttribute('id','foxtrick_prefcancel'); 
 		prefcancel.setAttribute('type','button'); 
 		prefcancel.setAttribute('value',Foxtrickl10n.getString("foxtrick.prefs.buttonCancel")); 
-		prefcancel.addEventListener('click',FoxtrickPrefsDialogHTML.cancel,false);
+		prefcancel.Foxtrick.addEventListenerChangeSave('click',FoxtrickPrefsDialogHTML.cancel,false);
 		prefsavediv.appendChild(prefcancel);*/
 
 		var prefdiv_body=doc.createElement('div');	
@@ -212,7 +212,7 @@ var FoxtrickPrefsDialogHTML = {
 	},
 
 	
-	save : function( ev ) { dump('pref save\n');
+	save : function( ev ) { //dump('pref save\n');
 	try { 
 		var doc = ev.target.ownerDocument;
 		if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = false;
@@ -375,7 +375,7 @@ var FoxtrickPrefsDialogHTML = {
 			FoxtrickMain.init();
 			doc.location.reload();
 		}
-		dump('end save\n');
+		//dump('end save\n');
 	} catch (e) { 
 		if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = true;
 		dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');
@@ -407,8 +407,8 @@ var FoxtrickPrefsDialogHTML = {
 		var preftabhead=doc.createElement('div');	
 		preftabhead.setAttribute('tab',category); 		
 		preftabhead.setAttribute('class','ft_pref_head'); 		
-		preftabhead.addEventListener('click',FoxtrickPrefsDialogHTML.show_tab,false);
-		preftabhead.addEventListener('mouseover',FoxtrickPrefsDialogHTML.tabhead_mouseover,false);
+		Foxtrick.addEventListenerChangeSave(preftabhead, 'click',FoxtrickPrefsDialogHTML.show_tab,false);
+		Foxtrick.addEventListenerChangeSave(preftabhead, 'mouseover',FoxtrickPrefsDialogHTML.tabhead_mouseover,false);
 		preftabhead.appendChild(doc.createTextNode(headstr));
 		preftabheaddiv.appendChild(preftabhead);
 
@@ -1144,7 +1144,7 @@ var FoxtrickPrefsDialogHTML = {
 		entry.appendChild( checkdiv );			
 		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
 		
-		checkdiv.firstChild.addEventListener( "click", function( ev ) { 
+		Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) { 
 				var check = ev.target;
 				var checked = check.checked;  
 				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_radio');		
@@ -1189,7 +1189,7 @@ var FoxtrickPrefsDialogHTML = {
 		entry.appendChild( checkdiv);			
 		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
 
-		checkdiv.firstChild.addEventListener( "click", function( ev ) {
+		Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) {
 				var check = ev.target;
 				var checked = check.checked; 
 				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_options');		
@@ -1223,7 +1223,7 @@ var FoxtrickPrefsDialogHTML = {
 					DefaultOptionText = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
 				OptionText = val;
-				Foxtrick.dump(module.MODULE_NAME+'.'+key+' o:'+OptionText+' d:'+DefaultOptionText+'\n');	
+				//Foxtrick.dump(module.MODULE_NAME+'.'+key+' o:'+OptionText+' d:'+DefaultOptionText+'\n');	
 			}
 															
 			var checked = Foxtrick.isModuleFeatureEnabled( module, key)
@@ -1281,7 +1281,7 @@ var FoxtrickPrefsDialogHTML = {
 		div.appendChild(cleaner);
 
 		if (option_text!=null) {
-			check.addEventListener( "click", function( ev ) {
+			Foxtrick.addEventListenerChangeSave(check, "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
 					var optiondiv = ev.target.ownerDocument.getElementById(ev.currentTarget.id+'_table');
 					if (checked) optiondiv.style.display='block';
@@ -1317,7 +1317,7 @@ var FoxtrickPrefsDialogHTML = {
 				option_text_reset_button.setAttribute('value', Foxtrickl10n.getString("foxtrick.prefs.buttonReset"));
 				option_text_reset_button.setAttribute( "sender_id", name);
 				option_text_reset_button.setAttribute( "default_text",  DefaultOptionText);
-				option_text_reset_button.addEventListener( "click", function( ev ) {					
+				Foxtrick.addEventListenerChangeSave(option_text_reset_button, "click", function( ev ) {					
 					try{  var default_text = ev.currentTarget.getAttribute('default_text');
 						var input_option_text = ev.target.ownerDocument.getElementById(ev.currentTarget.getAttribute('sender_id')+'_text');
 						input_option_text.setAttribute( "value",  default_text);						
@@ -1402,7 +1402,7 @@ var FoxtrickPrefsDialogHTML = {
 						var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXml, "hattrickversions/version", "desc", "name", "code", oldVersion);
 				else var selectbox = Foxtrick.getSelectBoxFromXML(doc,Foxtrick.ResourcePath+"htlocales/htversions.xml", "hattrickversions/version", "name", "code", oldVersion);
 				selectbox.setAttribute("id","ft_ownselectboxID");
-				selectbox.addEventListener('change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
+				Foxtrick.addEventListenerChangeSave(selectbox,'change',FoxtrickPrefsDialogHTML.VersionBox_Select,false);
 				alertdiv.appendChild(selectbox);
 
 				alertdiv.appendChild(doc.createElement('br'));
@@ -1438,7 +1438,7 @@ var FoxtrickPrefsDialogHTML = {
 				var h1=doc.createElement('h3');
 				var a1=doc.createElement('a');
 				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString("Module")));
-				a1.addEventListener( "click", FoxtrickPrefsDialogHTML.Sort0, false );
+				Foxtrick.addEventListenerChangeSave(a1, "click", FoxtrickPrefsDialogHTML.Sort0, false );
 				a1.href='javascript:void();'
 				a1.title=Foxtrickl10n.getString("SortBy");
 				h1.appendChild(a1);
@@ -1449,7 +1449,7 @@ var FoxtrickPrefsDialogHTML = {
 				var h2=doc.createElement('h3');
 				var a2=doc.createElement('a');
 				a2.appendChild(doc.createTextNode(Foxtrickl10n.getString("PreferenceTab")));				
-				a2.addEventListener( "click", FoxtrickPrefsDialogHTML.Sort2, false );
+				Foxtrick.addEventListenerChangeSave( a2, "click", FoxtrickPrefsDialogHTML.Sort2, false );
 				a2.href='javascript:void();'
 				a2.title=Foxtrickl10n.getString("SortBy");
 				h2.appendChild(a2);
@@ -1460,7 +1460,7 @@ var FoxtrickPrefsDialogHTML = {
 				var h3=doc.createElement('h3');
 				var a3=doc.createElement('a');
 				a3.appendChild(doc.createTextNode(Foxtrickl10n.getString("NewAfter")));				
-				a3.addEventListener( "click", FoxtrickPrefsDialogHTML.Sort4, false );
+				Foxtrick.addEventListenerChangeSave(a3, "click", FoxtrickPrefsDialogHTML.Sort4, false );
 				a3.href='javascript:void();'
 				a3.title=Foxtrickl10n.getString("SortBy");
 				h3.appendChild(a3);				
@@ -1471,7 +1471,7 @@ var FoxtrickPrefsDialogHTML = {
 				var h4=doc.createElement('h4');
 				var a4=doc.createElement('a');
 				a4.appendChild(doc.createTextNode(Foxtrickl10n.getString("ChangeCategory")));				
-				a4.addEventListener( "click", FoxtrickPrefsDialogHTML.Sort7, false );
+				Foxtrick.addEventListenerChangeSave(a4, "click", FoxtrickPrefsDialogHTML.Sort7, false );
 				a4.href='javascript:void();'
 				a4.title=Foxtrickl10n.getString("SortBy");
 				h4.appendChild(a4);				
@@ -1579,7 +1579,7 @@ var FoxtrickPrefsDialogHTML = {
 				}
 				notes_dump+='[/table]';
 				
-				Foxtrick.dump(notes_dump);			
+				//Foxtrick.dump(notes_dump);	// dump release notes		
 				
 				alertdiv.appendChild(doc.createElement('br'));	
 		} catch(e) {dump('ShowAlertCommonInner '+e+'\n');}	
@@ -1760,7 +1760,7 @@ var FoxtrickOnPagePrefs = {
 				var div = doc.createElement("div");
 				div.appendChild(header);
 				div.setAttribute("style","cursor:pointer;");
-				div.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClick, false );
+				Foxtrick.addEventListenerChangeSave(div, "click", FoxtrickOnPagePrefs.HeaderClick, false );
 				pn.insertBefore(div,pn.firstChild);
 				
 				var div=doc.getElementById('foxtrick_OnPagePrefs_box').firstChild;	
@@ -1810,7 +1810,7 @@ var FoxtrickOnPagePrefs = {
 				alldivheader.setAttribute("style","cursor:pointer;");
 				alldivheader.setAttribute("class","ft_sidebarBoxCollapsed");
 				if (Foxtrick.isRTLLayout(doc)) alldivheader.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
-				alldivheader.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClickModulesAll, false );
+				Foxtrick.addEventListenerChangeSave(alldivheader, "click", FoxtrickOnPagePrefs.HeaderClickModulesAll, false );
 				alldivouter.appendChild(alldivheader);
 				var alldivinner = doc.createElement('div');
 				alldivinner.setAttribute("style","display:none;");
@@ -1824,7 +1824,7 @@ var FoxtrickOnPagePrefs = {
 				linkdivheader.setAttribute("style","cursor:pointer;");
 				linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed");
 				if (Foxtrick.isRTLLayout(doc)) linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
-				linkdivheader.addEventListener( "click", FoxtrickOnPagePrefs.HeaderClickLinks, false );
+				Foxtrick.addEventListenerChangeSave(linkdivheader, "click", FoxtrickOnPagePrefs.HeaderClickLinks, false );
 				linkdivouter.appendChild(linkdivheader);
 				var linkdivinner = doc.createElement('div');
 				linkdivinner.setAttribute("style","display:none;");
@@ -1867,9 +1867,9 @@ var FoxtrickOnPagePrefs = {
 				}
 				modules_entries.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
 				for ( var i=0;i<modules_entries.length;++i)	ownBoxBody.appendChild( modules_entries[i] );
-				//modules_entries_all.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+				modules_entries_all.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
 				for ( var i=0;i<modules_entries_all.length;++i)	alldivinner.appendChild( modules_entries_all[i] );
-				//modules_entries_links.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+				modules_entries_links.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
 				for ( var i=0;i<modules_entries_links.length;++i)	linkdivinner.appendChild( modules_entries_links[i] );
 		
 				if (linkdiv_count>0) {
@@ -1947,7 +1947,7 @@ var FoxtrickOnPagePrefs = {
 	ClickCapture : function (ev) { 
 	try{ var hasonclick=ev.originalTarget.getAttribute('onclick')!=null;
 		var haspostback=ev.originalTarget.href && ev.originalTarget.href.search('javascript')!=-1;
-		dump('ClickCapture - hasonclick: ' +hasonclick+' haspostback: '+haspostback+'- return: '+!(hasonclick || haspostback)+'\n');
+		//dump('ClickCapture - hasonclick: ' +hasonclick+' haspostback: '+haspostback+'- return: '+!(hasonclick || haspostback)+'\n');
 		if ( !(hasonclick || haspostback)) return;
 		var doc = ev.target.ownerDocument;
 		var content = doc.getElementById('idFoxtrickPrefs');

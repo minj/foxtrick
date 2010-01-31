@@ -210,7 +210,10 @@ var FoxtrickForumPreview = {
 
 	change : function( page, doc ) {
         var check_div = doc.getElementById( "forum_preview" );
-        if (check_div == null) this.run (page, doc);
+        if (check_div == null) {
+			Foxtrick.dump(this.MODULE_NAME+' change\n')
+			this.run (page, doc);
+		}
 	},
 
 	_toggleListener : function( ev ) {

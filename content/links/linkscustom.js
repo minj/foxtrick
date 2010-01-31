@@ -56,7 +56,7 @@ var FoxtrickLinksCustom = {
 						div.appendChild(hh);
 						div.setAttribute("style","cursor:pointer;");
 						div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
-						div.addEventListener( "click", FoxtrickLinksCustom.HeaderClick, false );
+						Foxtrick.addEventListenerChangeSave( div, "click", FoxtrickLinksCustom.HeaderClick, false );
 						ownBoxBody.setAttribute('basepref',basepref);
 						pn.insertBefore(div,pn.firstChild);
 						break;
@@ -74,7 +74,7 @@ var FoxtrickLinksCustom = {
 					delLink.setAttribute("class","ft_actionicon foxtrickRemove");
 					delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
 					delLink.setAttribute( "style","display:none;margin-left:-28px;margin-right:6px;");
-					delLink.addEventListener( "click", FoxtrickLinksCustom.delStdLink, false );
+					Foxtrick.addEventListenerChangeSave( delLink, "click", FoxtrickLinksCustom.delStdLink, false );
 					ownBoxBody.insertBefore(delLink,all_links[i].nextSibling);
 				}
 			}
@@ -134,7 +134,7 @@ var FoxtrickLinksCustom = {
 					div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+key+'.img')+"') 50% no-repeat;");
 					div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+key+'.title') );
 					div.setAttribute( "href", href );
-					if (href.search(/call:/)==0) div.addEventListener( "click", FoxtrickLinksCustom.CallExe, false );						
+					if (href.search(/call:/)==0) Foxtrick.addEventListenerChangeSave(div, "click", FoxtrickLinksCustom.CallExe, false );						
 					else div.setAttribute("onClick","window.open(\""+href+"\",\"_blank\");");
 					div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
 					div.setAttribute('id','LinksCustomLinkID'+key);
@@ -279,7 +279,7 @@ var FoxtrickLinksCustom = {
 			var loadIcon = doc.createElement ("a");	
 			loadIcon.setAttribute("href", "javascript: void(0);");
 			loadIcon.className="inner";
-			loadIcon.addEventListener( "click", FoxtrickLinksCustom.LoadDialog, false );
+			Foxtrick.addEventListenerChangeSave( loadIcon, "click", FoxtrickLinksCustom.LoadDialog, false );
 			loadIcon.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
 			
 			var tr1 = doc.createElement ("tr");
@@ -338,7 +338,7 @@ var FoxtrickLinksCustom = {
 			selectbox.setAttribute("title",Foxtrickl10n.getString("foxtrick.linkscustom.addtag" ));
 			selectbox.setAttribute("id","ft_ownselecttagboxID");
 			selectbox.setAttribute("style","width:100%;");
-			selectbox.addEventListener('change',FoxtrickLinksCustom.SelectBox_Select,false);
+			Foxtrick.addEventListenerChangeSave(selectbox, 'change',FoxtrickLinksCustom.SelectBox_Select,false);
 			var option = doc.createElement("option");
 			option.setAttribute("value","");
 			option.innerHTML=Foxtrickl10n.getString("foxtrick.linkscustom.tags" );
@@ -375,7 +375,7 @@ var FoxtrickLinksCustom = {
 			saveLink.setAttribute("href", "javascript: void(0);");
 			saveLink.setAttribute("name", "savelinkname");
 			saveLink.setAttribute("basepref", basepref);
-			saveLink.addEventListener( "click", FoxtrickLinksCustom.saveMyLink, false );
+			Foxtrick.addEventListenerChangeSave(saveLink, "click", FoxtrickLinksCustom.saveMyLink, false );
 			saveLink.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.addlink" );
 			var trn5 = doc.createElement ("tr");
 			var tdn5 = doc.createElement ("td");
@@ -544,7 +544,7 @@ var FoxtrickLinksCustom = {
 		var delLink = doc.createElement("div");
 		delLink.setAttribute("class","ft_actionicon foxtrickRemove");
 		delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
-		delLink.addEventListener( "click", FoxtrickLinksCustom.delMyLink, false );
+		Foxtrick.addEventListenerChangeSave(delLink, "click", FoxtrickLinksCustom.delMyLink, false );
 		delLink.baseprefnl = baseprefnl;
 		delLink.mylink = mylink; 
 		return delLink;
@@ -558,7 +558,7 @@ var FoxtrickLinksCustom = {
 		var editOld = doc.createElement("div");
 		editOld.setAttribute("class","ft_actionicon foxtrickCopy float_right");
 		editOld.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.copy"));
-		editOld.addEventListener( "click", FoxtrickLinksCustom.editOldLink, false );
+		Foxtrick.addEventListenerChangeSave(editOld, "click", FoxtrickLinksCustom.editOldLink, false );
 		editOld.baseprefnl = baseprefnl;
 		editOld.mylink = mylink; 
 		return editOld;
@@ -572,7 +572,7 @@ var FoxtrickLinksCustom = {
 		var ExportLink = doc.createElement("div");
 		ExportLink.setAttribute("class","ft_actionicon foxtrickExport float_right");
 		ExportLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.export"));
-		ExportLink.addEventListener( "click", FoxtrickLinksCustom.Export, false );
+		Foxtrick.addEventListenerChangeSave(ExportLink, "click", FoxtrickLinksCustom.Export, false );
 		ExportLink.baseprefnl = baseprefnl;
 		ExportLink.mylink = mylink; 
 		return ExportLink;

@@ -183,7 +183,7 @@ var FoxtrickAdultSkillTable = {
 				if (sn[j].sort) {
 					th.setAttribute("sort", sn[j].sort);
 				}
-				th.addEventListener("click", FoxtrickSkillTable.sortClick, false);
+				Foxtrick.addEventListenerChangeSave(th, "click", FoxtrickSkillTable.sortClick, false);
 
 				if (sn[j].abbr) {
 					if (sn[j].img) {

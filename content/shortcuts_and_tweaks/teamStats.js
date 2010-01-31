@@ -332,7 +332,7 @@ Foxtrick.TeamStats= {
 		var filterselect=doc.createElement('select');
 		filterselect.setAttribute('style','font-size:1.05em;');
 		//filterselect.setAttribute('class','sorting');
-		filterselect.addEventListener('change',Foxtrick.TeamStats.Filter,false);
+		Foxtrick.addEventListenerChangeSave(filterselect, 'change',Foxtrick.TeamStats.Filter,false);
 		var option=doc.createElement('option');
 		option.setAttribute('value','');
 		option.innerHTML='---';

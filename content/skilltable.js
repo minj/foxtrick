@@ -65,7 +65,7 @@ var FoxtrickSkillTable = {
 			table.innerHTML = table_old.innerHTML;
 			
 			for (var i = 0; i < table.rows[0].cells.length; ++i) {
-				table.rows[0].cells[i].addEventListener("click", FoxtrickSkillTable.sortClick, false);
+				Foxtrick.addEventListenerChangeSave(table.rows[0].cells[i],"click", FoxtrickSkillTable.sortClick, false);
 			}
 		}
 		catch (e) {
@@ -202,7 +202,7 @@ var FoxtrickSkillTable = {
 		var h2 = doc.createElement("h2");
 		h2.className = "ft_boxBodyCollapsed";
 		h2.appendChild(doc.createTextNode(Foxtrickl10n.getString("Youthskills.Skilltable")));
-		h2.addEventListener("click", FoxtrickSkillTable.headerClick, false);
+		Foxtrick.addEventListenerChangeSave(h2, "click", FoxtrickSkillTable.headerClick, false);
 		tablediv.appendChild(h2);
 
 		// links
@@ -213,15 +213,15 @@ var FoxtrickSkillTable = {
 		var customize = doc.createElement("a");
 		customize.className = "customize_item";
 		customize.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCustomize")));
-		customize.addEventListener("click", FoxtrickSkillTable.customize, false);
+		Foxtrick.addEventListenerChangeSave(customize, "click", FoxtrickSkillTable.customize, false);
 		// links: save
 		var save = doc.createElement("a");
 		save.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonSave")));
-		save.addEventListener("click", FoxtrickSkillTable.save, false);
+		Foxtrick.addEventListenerChangeSave(save, "click", FoxtrickSkillTable.save, false);
 		// links: cancel
 		var cancel = doc.createElement("a");
 		cancel.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCancel")));
-		cancel.addEventListener("click", FoxtrickSkillTable.cancel, false);
+		Foxtrick.addEventListenerChangeSave(cancel, "click", FoxtrickSkillTable.cancel, false);
 		// links: all children
 		links.appendChild(customize);
 		links.appendChild(save);
@@ -240,7 +240,7 @@ var FoxtrickSkillTable = {
 		var switchViewLink = doc.createElement("a");
 		switchViewLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
 		switchViewLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Switch_view_title"));
-		switchViewLink.addEventListener("click", FoxtrickSkillTable.view, false);
+		Foxtrick.addEventListenerChangeSave(switchViewLink, "click", FoxtrickSkillTable.view, false);
 		switchView.appendChild(switchViewLink);
 		// table container: table wrapper
 		var wrapper = doc.createElement("div");
@@ -340,7 +340,7 @@ var FoxtrickSkillTable = {
 			messageLink.className = "inner copyicon copyplayerad ci_first";
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyskilltable" );
 			messageLink.id = "copyskilltable" ;
-			messageLink.addEventListener("click", FoxtrickSkillTable.copyTable, false)
+			Foxtrick.addEventListenerChangeSave(messageLink, "click", FoxtrickSkillTable.copyTable, false)
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyskilltable" );
@@ -357,7 +357,7 @@ var FoxtrickSkillTable = {
 			messageLink.className = "inner";
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyskilltable" );
 			messageLink.setAttribute("style","cursor: pointer;");
-			messageLink.addEventListener("click", FoxtrickSkillTable.copyTable, false)
+			Foxtrick.addEventListenerChangeSave(messageLink, "click", FoxtrickSkillTable.copyTable, false)
 
 			var img = doc.createElement("img");
 			img.style.padding = "0px 5px 0px 0px;";

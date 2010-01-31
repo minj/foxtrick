@@ -249,7 +249,7 @@ var FoxtrickCrossTable = {
             divmap.appendChild(heading);
             divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_cross");
-            heading.addEventListener( "click", this.HeaderClick_Cross, false );
+            Foxtrick.addEventListenerChangeSave( heading, "click", this.HeaderClick_Cross, false );
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             var crosstable=doc.createElement('table');
@@ -331,7 +331,7 @@ var FoxtrickCrossTable = {
             divmap.appendChild(heading);
             divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_graph");
-            heading.addEventListener( "click", this.HeaderClick_Graph, false );
+            Foxtrick.addEventListenerChangeSave(heading, "click", this.HeaderClick_Graph, false );
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             //Foxtrick.dump('\n\n>'+week+'<\n');

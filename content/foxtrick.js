@@ -136,36 +136,40 @@ var FoxtrickMain = {
 		var appcontent = document.getElementById( "appcontent" );
         if ( appcontent) {
 			// listen to page loads
-			//FoxtrickMain.onPageLoad.appcontent = appcontent;
-			//appcontent.addEventListener( "load", this.onPageLoad, true );
 			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad, true );
 			appcontent.addEventListener( "unload", this.onPageUnLoad, true );
 		}		
     },
 
-	onPageChange : function( ev ) {
+	onPageChange : function( ev ) { 
 		var doc = ev.originalTarget.ownerDocument;
 		if ( doc.nodeName != "#document" )
             return;
+			
+		// ignore changes list
+		if (ev.originalTarget.className && (ev.originalTarget.className=='boxBody' || ev.originalTarget.className=='myht1'))
+			return;
+			
 		var content = doc.getElementById("content");
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 		var begin = new Date();
-		FoxtrickMain.change( doc );
-		Foxtrick.dump('onPageChange\n');
+		Foxtrick.dump('onPageChange: '+ ev.originalTarget.className+' '+ev.currentTarget.className +' '+ev.target.className +'\n');
+		FoxtrickMain.change( doc , ev);
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
-        // Foxtrick.dump( "Foxtrick run time: " + time + " ms\n" );
+        // Foxtrick.dump( "Foxtrick change time: " + time + " ms\n" );
 		// re-add event listener
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
     },
-
-    onPageLoad : function( ev ) {
+	
+	onPageLoad : function( ev ) {
+		//Foxtrick.dump('onPageLoad\n');
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
             return;
-
+				
         // hattrick URL check and run if on HT
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
@@ -182,15 +186,12 @@ var FoxtrickMain = {
 			if( content ) {
 				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 			}
-			var ticker = doc.getElementById("ticker");
-			if( ticker ) {
-				//ticker.addEventListener("DOMSubtreeModified", FoxtrickAlert.checkNews, true );
-			}
-			doc.getElementsByTagName('body')[0].setAttribute( 'style','display:block !important');;
+			Foxtrick.dump('--------------\n')
 	    }
     },
 
     onPageUnLoad : function( ev ) {
+		//Foxtrick.dump('onPageUnLoad\n');
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
             return;
@@ -199,6 +200,8 @@ var FoxtrickMain = {
     // main entry run on every ht page load
     run : function( doc ) {
 	try {
+		//Foxtrick.dump('main run start\n');
+
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
@@ -287,7 +290,7 @@ var FoxtrickMain = {
     },
 
 	// function run on every ht page change
-	change : function( doc ) {
+	change : function( doc, ev) {
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
@@ -297,7 +300,7 @@ var FoxtrickMain = {
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
 					try {
-						fn.change( doc );
+						fn.change( doc, ev);
 					} catch (e) {
 						Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception: \n  " + e + "\n" );
 						Components.utils.reportError(e);
@@ -314,7 +317,7 @@ var FoxtrickMain = {
 					Foxtrick.run_on_page[i].forEach(
 						function( fn ) {
 							try {
-								fn.change( i, doc );
+								fn.change( i, doc, ev);
 							} catch (e) {
 								Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n  " + e + "\n" );
 								Components.utils.reportError(e);
@@ -383,6 +386,31 @@ Foxtrick.registerAllPagesHandler = function( who ) {
     {
         Foxtrick.run_every_page.push( who );
     }
+}
+
+
+Foxtrick.stopListenToChange = function (doc) {
+	var content = doc.getElementById("content");
+	content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+}
+	
+Foxtrick.startListenToChange = function (doc) {
+	var content = doc.getElementById("content"); 
+	content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+}
+
+Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
+	node.addEventListener(
+			type,
+			function(ev){
+				var doc = ev.target.ownerDocument;
+				var content = doc.getElementById("content");
+				content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+					fkt(ev);
+				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+			},
+			trickle
+	);
 }
 
 /** Remove any occurences of tags ( "<something>" ) from text */
@@ -1877,6 +1905,7 @@ Foxtrick.dump = function(cnt) {
 
 // find first occurence of host and open+focus there
 Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
+try{
   var host = url.match(/(http:\/\/[a-zA-Z0-9_.]+)/)[1];
   
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -1912,13 +1941,14 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
   // Our URL isn't open. Open it now.
   if (!found) {
     var recentWindow = wm.getMostRecentWindow("navigator:browser");
-    if (recentWindow) {
+    if (recentWindow) { //Foxtrick.dump('open recentWindow: '+url+'\n');
       // Use an existing browser window
       recentWindow.delayedOpenTab(url, null, null, null, null);
     }
-    else {
+    else { Foxtrick.dump('open new window: '+url+'\n');
       // No browser windows are open, so open a new one.
-      //window.open(url);
+      window.open(url);
     }
   }
+}catch(e){Foxtrick.dump('openAndReuseOneTabPerURL '+e+'\n');}
 }

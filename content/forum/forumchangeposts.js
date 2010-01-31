@@ -403,7 +403,7 @@ var FoxtrickForumChangePosts = {
                             post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
                         }
                         post_link1.innerHTML=String(PostID_message);
-                        post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+                        //### Foxtrick.addEventListenerChangeSave(post_link1, "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
                         if (post_link2) {
                             var PostID_message = post_link2.title.replace(/\d+\./,'');
                             post_link2.innerHTML=String(PostID_message);
@@ -497,8 +497,8 @@ var FoxtrickForumChangePosts = {
                             header.setAttribute('class','cfHeader ftdoubleLine'); //doesn't work well
 							Foxtrick.dump('do_alltid_flags: adjust height back\n')                            
                         }
-                        post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
-                        if (post_link2) post_link2.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+                        //###post_link1.Foxtrick.addEventListenerChangeSave(post_link1, "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+                        //###if (post_link2) Foxtrick.addEventListenerChangeSave( post_link2, "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
                     }
 
 
@@ -690,7 +690,7 @@ var FoxtrickForumChangePosts = {
 			header.setAttribute('style','height: 30px !important;');
 			Foxtrick.dump('_postid_adjust_height: adjust height back\n')                            
 		}
-		ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );
+		//ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );
 	},
 
 	_copy_postid_to_top : function(ev) {

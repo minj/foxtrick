@@ -27,7 +27,7 @@ var FoxtrickLeagueNewsFilter = {
 	selectdiv.appendChild(doc.createTextNode(' '));
 	var select=doc.createElement('select');
 	select.setAttribute("id","ft_ownselectboxID");
-	select.addEventListener('change',this.SelectClick,false);
+	Foxtrick.addEventListenerChangeSave(select, 'change',this.SelectClick,false);
 		
 	var option=doc.createElement('option');
 	option.setAttribute('value','0');
@@ -204,7 +204,7 @@ var FoxtrickShortPAs = {
 		var a=doc.createElement('a');
 		a.innerHTML=Foxtrickl10n.getString("foxtrick.ShortPAs.more");
 		a.href='javascript:void(0);';
-		a.addEventListener('click',this.showfull,true);		
+		Foxtrick.addEventListenerChangeSave(a, 'click',this.showfull,true);		
 		morediv.appendChild(a);
 		var b=item.getElementsByTagName('b')[0];
 		b.parentNode.insertBefore(morediv,b.nextSibling);

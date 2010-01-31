@@ -78,7 +78,7 @@ var FoxtrickEconomyDifference = {
             div.appendChild(heading);
             div.setAttribute("style","cursor:pointer;");
             div.setAttribute("id", "div"+headingId);
-            div.addEventListener( "click", this.HeaderClick, false );
+            Foxtrick.addEventListenerChangeSave( div, "click", this.HeaderClick, false );
             mainbox.appendChild(div);
 		}
 		else { // update header
