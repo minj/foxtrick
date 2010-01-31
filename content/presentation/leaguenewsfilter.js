@@ -90,6 +90,16 @@ var FoxtrickLeagueNewsFilter = {
 	var tables = doc.getElementById('mainBody').getElementsByTagName('table');
 	for (var k=0; k<tables.length; ++k) {
 		if (tables[k].className.search('right')!=-1)  {
+		  // get bots/ownerless
+		  var is_bot = new Array();
+		  var teams = tables[0].getElementsByTagName('a'); 
+		  for (var i=0; i<teams.length; ++i) {
+			if (teams[i].className && teams[i].className.search('shy')!=-1) {
+				var namelength = (teams[i].innerHTML.length<11)?teams[i].innerHTML.length:11;
+				is_bot.push(teams[i].innerHTML.substr(0,namelength));			
+			}
+		  }		
+		
 		  for (var i=1; i<5; ++i) {
 			var link = tables[k].rows[i].cells[0].getElementsByTagName('a')[0]; 
 			for (var j=0; j<has_lineup.length; ++j) {
@@ -102,6 +112,18 @@ var FoxtrickLeagueNewsFilter = {
 				else if (pos>0) {
 					var reg = new RegExp(/\&nbsp;(.+)/); 					
 					link.innerHTML = link.innerHTML.replace(reg,'&nbsp;<b>$1</b>');
+				}
+			}
+			for (var j=0; j<is_bot.length; ++j) {
+				var pos = link.innerHTML.search(is_bot[j]);
+				//Foxtrick.dump(is_bot[j]+' '+link.innerHTML+' '+pos+'\n');
+				if (pos==0) {
+					var reg = new RegExp(/(.+)\&nbsp;/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<i><b>$1</b></i>&nbsp;');
+				}
+				else if (pos>0) {
+					var reg = new RegExp(/\&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'&nbsp;<i><b>$1</b></i>');
 				}
 			}
 		  }
