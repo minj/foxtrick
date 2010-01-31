@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+
+<release_note>
+
+<release_note>New language Tiếng Việt -  Thanks Murtagsh (9372637)!</release_note>
+<release_note>Enhanced adultskilltable</release_note>
+<release_note>Rapid id search</release_note>
+
+</release_note>
