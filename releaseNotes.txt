@@ -2,8 +2,8 @@
 
 <release_note>
 
-<release_note>New language Tiếng Việt -  Thanks Murtagsh (9372637)!</release_note>
-<release_note>Enhanced adultskilltable</release_note>
-<release_note>Rapid id search</release_note>
+<lines>New language Tiếng Việt -  Thanks Murtagsh (9372637)!</lines>
+<lines>Enhanced adultskilltable</lines>
+<lines>Rapid id search</lines>
 
 </release_note>
