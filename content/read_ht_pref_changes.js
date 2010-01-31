@@ -168,11 +168,29 @@ var FoxtrickMyHT = {
 				var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtReleaseNotes")));				
 				p.appendChild(doc.createTextNode(" "));				
-				var a=doc.createElement('a');
+				/*var a=doc.createElement('a');
 				a.href=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
 				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
 				a.target="_blank";
-				p.appendChild(a);				
+				p.appendChild(a);*/				
+				
+				try {	
+					var file = 'http://foxtrick.googlecode.com/svn/trunk/releaseNotes.txt';
+					var req = new XMLHttpRequest();
+					req.open('GET', file, false); 
+					req.send(null);
+					if (req.status == 200) {
+						var dummy = doc.createElement('dummy');				
+						dummy.innerHTML = req.responseText;
+						var lines = dummy.getElementsByTagName('lines');
+						for (var i=0;i<lines.length;++i) {
+							p.appendChild(doc.createElement('br'));				
+							p.appendChild(doc.createTextNode(lines[i].innerHTML));				
+						}
+					}
+					else Foxtrick.dump(' get '+file+' request failed\n');
+				} catch(e) {Foxtrick.dump('get '+file+' request failed'+e+'\n');}
+
 				alertdiv.appendChild(p);
 				
 				/*var p=doc.createElement('p');				
@@ -207,13 +225,13 @@ var FoxtrickMyHT = {
 				var a=doc.createElement('a');
 				a.href="javascript:void();";
 				a.innerHTML='<strong>'+Foxtrickl10n.getString("FoxtrickMyHtSetChanged")+'</strong>';
-				a.addEventListener( "click", FoxtrickMyHT.ShowChanged, false );
+				Foxtrick.addEventListenerChangeSave(a, "click", FoxtrickMyHT.ShowChanged, false );
 				p.appendChild(a);				
 				
 				var a=doc.createElement('a');
 				a.href="javascript:void();";
 				a.innerHTML=Foxtrickl10n.getString("Close");
-				a.addEventListener( "click", FoxtrickMyHT.Close, false );
+				Foxtrick.addEventListenerChangeSave(a, "click", FoxtrickMyHT.Close, false );
 				a.setAttribute('style','float:right');
 				p.appendChild(a);				
 				

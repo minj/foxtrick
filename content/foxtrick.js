@@ -252,7 +252,12 @@ var FoxtrickMain = {
 						function( fn ) {
 							try {
 								//Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );
-								fn.run( i, doc );
+								var begin = new Date();
+									fn.run( i, doc );
+								var end = new Date();
+								var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
+											+ end.getMilliseconds() - begin.getMilliseconds();
+								if (time>50) Foxtrick.dump("module time: " + time + " ms | " + fn.MODULE_NAME+'\n' );
 							} catch (e) {
 								Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
 								Components.utils.reportError(e);

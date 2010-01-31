@@ -2,8 +2,9 @@
 
 <release_note>
 
-<lines>New language Tiếng Việt -  Thanks Murtagsh (9372637)!</lines>
-<lines>Enhanced adultskilltable</lines>
-<lines>Rapid id search</lines>
+<lines>* New language Tiếng Việt -  Thanks to Murtagsh (9372637)!</lines>
+<lines>* Enhanced adultskilltable and teamstats</lines>
+<lines>* Rapid id search</lines>
+<lines>* Transferfilter fix: old max bid values might be lost</lines>
 
 </release_note>
