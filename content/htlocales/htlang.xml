@@ -1725,71 +1725,71 @@
 	<language name="vi" desc="Tiếng Việt">
 	<!-- rating sublevels appearing in match detail page -->
 		<ratingSubLevels>
-			<sublevel text="(rất thấp)" value="0.0" />
-			<sublevel text="(thấp)" value="0.25"  />
-			<sublevel text="(cao)" value="0.50"  />
-			<sublevel text="(rất cao)" value="0.75"  />
+			<sublevel text="(Rất thấp)" value="0.0" />
+			<sublevel text="(Thấp)" value="0.25"  />
+			<sublevel text="(Cao)" value="0.50"  />
+			<sublevel text="(Rất cao)" value="0.75"  />
 		</ratingSubLevels>
 		<!-- tactics appearing in match detail page -->
 		<tactics>
-			<tactic type="normal" value="Bình thường" />
-			<tactic type="pressing" value="Kèm chặt" />
-			<tactic type="ca" value="Phòng thủ phản công" />
-			<tactic type="aow" value="Tấn công cánh" />
-			<tactic type="aim" value="Tấn công trung lộ" />
-			<tactic type="creatively" value="Chơi sáng tạo" />
-			<tactic type="longshots" value="Sút xa" />
+			<tactic type="normal" value="Bình thường" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Phòng thủ phản công" />
+			<tactic type="aow" value="Tấn công trung lộ" />
+			<tactic type="aim" value="Tấn công cánh" />
+			<tactic type="creatively" value="Chơi sáng tạo" />
+			<tactic type="longshots" value="Sút xa " />
 		</tactics>
 		<!-- positions appearing on players page -->
 		<positions>
-			<position type="Keeper" value="Keeper" short="Ke" />
-			<position type="Central defender" value="Central defender" short="Cd" />
-			<position type="Wing back" value="Wing back" short="Wb" />
-			<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-			<position type="Winger" value="Winger" short="Wi" />
-			<position type="Forward" value="Forward" short="Fo" />
+			<position type="Keeper" value="Thủ môn" short="Tm" />
+			<position type="Central defender" value="Hậu vệ trung tâm" short="Ht" />
+			<position type="Wing back" value="Hậu vệ biên" short="Hb" />
+			<position type="Inner midfielder" value="Tiền vệ trung tâm" short="Tt" />
+			<position type="Winger" value="Tiền vệ cánh" short="Tc" />
+			<position type="Forward" value="Tiền đạo" short="Td" />
 		</positions>
 		<specialties>
-			<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-			<specialty type="Powerful" value="Powerful" short="Po" />
-			<specialty type="Quick" value="Quick" short="Qu" />
-			<specialty type="Technical" value="Technical" short="Te" />
-			<specialty type="Head" value="Head" short="He" />
-			<specialty type="Regainer" value="Regainer" short="Re" />
+			<specialty type="Unpredictable" value="Ngẫu hứng" short="Nh" />
+			<specialty type="Powerful" value="Sức mạnh" short="Sm" />
+			<specialty type="Quick" value="Nhanh nhẹn" short="Nn" />
+			<specialty type="Technical" value="Kỹ thuật" short="Kt" />
+			<specialty type="Head" value="Đánh đầu" short="Dd" />
+			<specialty type="Regainer" value="Hồi phục nhanh" short="Hn" />
 		</specialties>		
 		<!-- repositioning word connections appearing in match lineup page -->
 		<repositioning>
-			<reposition type="midfielder" value="đá tiền vệ trung tâm" />
-			<reposition type="centraldefender" value="đá trung vệ" />
-			<reposition type="forward" value="đá tiền đạo" />
-			<reposition type="normal" value="bình thường" />
-			<reposition type="offensive" value="tấn công" />
-			<reposition type="defensive" value="phòng thủ" />
-			<reposition type="towardsmiddle" value="bó trung lộ" />
-			<reposition type="towardswing" value="dạt biên" />
+			<reposition type="midfielder" value="Đá tiền vệ trung tâm" />
+			<reposition type="centraldefender" value="Đá hậu vệ" />
+			<reposition type="forward" value="Đá tiền đạo" />
+			<reposition type="normal" value="Bình thường" />
+			<reposition type="offensive" value="Tấn công" />
+			<reposition type="defensive" value="Phòng thủ" />
+			<reposition type="towardsmiddle" value="Bó trung lộ" />
+			<reposition type="towardswing" value="Dạt biên" />
 		</repositioning>
 		<levels>
-			<level text="divine" value="20" />
-			<level text="utopian" value="19" />
-			<level text="magical" value="18" />
-			<level text="mythical" value="17" />
-			<level text="extra-terrestrial" value="16" />
-			<level text="titanic" value="15" />
-			<level text="supernatural" value="14" />
-			<level text="world class" value="13" />
-			<level text="magnificent" value="12" />
-			<level text="brilliant" value="11" />
-			<level text="outstanding" value="10" />
-			<level text="formidable" value="9" />
-			<level text="excellent" value="8" />
-			<level text="solid" value="7" />
-			<level text="passable" value="6" />
-			<level text="inadequate" value="5" />
-			<level text="weak" value="4" />
-			<level text="poor" value="3" />
-			<level text="wretched" value="2" />
-			<level text="disastrous" value="1" />
-			<level text="non-existent" value="0" />  
+			<level text="thần thánh" value="20" />
+			<level text="không tưởng" value="19" />
+			<level text="ma thuật" value="18" />
+			<level text="huyền thoại" value="17" />
+			<level text="ngoài hành tinh" value="16" />
+			<level text="mê hoặc" value="15" />
+			<level text="siêu phàm" value="14" />
+			<level text="đẳng cấp quốc tế" value="13" />
+			<level text="tuyệt vời" value="12" />
+			<level text="phi thường" value="11" />
+			<level text="kỳ diệu" value="10" />
+			<level text="vượt trộ" value="9" />
+			<level text="xuất sắc" value="8" />
+			<level text="giỏi" value="7" />
+			<level text="khá" value="6" />
+			<level text="trung bình" value="5" />
+			<level text="yếu" value="4" />
+			<level text="kém" value="3" />
+			<level text="tồi tệ" value="2" />
+			<level text="thảm hại" value="1" />
+			<level text="bất tài" value="0" />  
 		</levels>
 	</language>
 
