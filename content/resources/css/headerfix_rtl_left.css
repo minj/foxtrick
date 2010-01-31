@@ -13,4 +13,10 @@ border-style: solid !important;
 border-width:  0 1px 0 0 !important;
 }
 
+/* show main over left menu */
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #content.mainRegular {
+	z-index:10;
+	background-color:white;
+}
+
 }
