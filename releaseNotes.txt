@@ -2,6 +2,8 @@
 
 <release_note>
 
+<version>0.5.1.x</version>
+
 <lines>* New language Tiếng Việt -  Thanks to Murtagsh (9372637)!</lines>
 <lines>* Enhanced adultskilltable and teamstats</lines>
 <lines>* Rapid id search</lines>
