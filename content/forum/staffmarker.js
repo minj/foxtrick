@@ -268,7 +268,7 @@ var FoxtrickStaffMarker = {
 			"Homzik",
             "JAM3SoN",
 			"Jestar",
-			"luminaryan",
+			"ryanli",
 			"larsw84",
 			"LasseSvendsen",
 			"Leachey",

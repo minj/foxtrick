@@ -1,7 +1,7 @@
 /**
  * skilltable.js
  * Utilities for skill tables
- * @author convicedd, luminaryan
+ * @author convicedd, ryanli
  */
 
 var FoxtrickSkillTable = {

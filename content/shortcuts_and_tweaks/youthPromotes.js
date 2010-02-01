@@ -1,7 +1,7 @@
 /*
  * youthPromotes.js
  * Shows days to promote a youth player
- * @Author:  smates, luminaryan
+ * @Author:  smates, ryanli
  */
 
 var FoxtrickYouthPromotes = {

@@ -1,7 +1,7 @@
 /**
  * rapidid.js
  * rapid way to view something by id
- * @author luminaryan
+ * @author ryanli
  */
 
 var FoxtrickRapidId = {
