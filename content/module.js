@@ -24,6 +24,8 @@ Foxtrick.ht_pages = {
 	'myhattrickAll'             : '\/MyHattrick\/',
     'forum'                     : '\/Forum\/',
     'forumViewThread'           : '\/Forum\/Read',
+	'forumOverView'             : '\/Forum\/Overview', 
+	'forumDefault'              : '\/Forum\/Default',
     'forumWritePost'            : '\/Forum\/Write',
     'forumModWritePost'         : '\/Forum\/Functions',
 //	'mailnewsletter'            : '\/MyHattrick\/Inbox\/Default.aspx\?actionType=newsLetter',
