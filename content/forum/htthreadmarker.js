@@ -40,17 +40,20 @@
 				//if (htthreadnum==0) div.setAttribute( "id", "HT_thread"+htthreadnum );
 				//htthreadnum++;
 
-				var inner =div.childNodes[0].innerHTML;
+				var inner =div.childNodes[0];
 				var strong=div.getElementsByTagName('strong');
-				if (strong!=null && strong[0]!=null) {inner=strong[0].innerHTML;}
+				if (strong!=null && strong[0]!=null) {inner=strong[0];}
+				inner=inner.firstChild.data;
+				//Foxtrick.dump (inner+' '+div.childNodes[0].getAttribute( "title" )+'\n');
 				var title = div.childNodes[0].getAttribute( "title" ).replace(inner,'');
-				//var title = div.childNodes[0].getAttribute( "title" );
+								//var title = div.childNodes[0].getAttribute( "title" );
 				var poster = title;//.substring(title.lastIndexOf(' '));
 				//Foxtrick.dump (title+' '+poster+'\n');
 				
 				
 				if ( poster.match(/ HT-\S+/))		//old:  (/.* HT-[^\s]*$/i ) )
 				{
+					//Foxtrick.dump (inner.nodeType+' : '+ inner.nodeValue+' : '+inner.data+' : '+inner.innerHTML+' : '+div.childNodes[0].getAttribute( "title" )+'\n');
 					var curr_class = div.getAttribute( "class" );
 					if (!curr_class) curr_class='';
 					if (curr_class.search('HT_thread')==-1) {
