@@ -157,6 +157,29 @@
 			<reposition type="towardsmiddle" value="hrající na střed" />
 			<reposition type="towardswing" value="hrající na křídlo" />
 		</repositioning>
+		<levels>
+			<level text="Boží" value="20" />
+			<level text="legendární" value="19" />
+			<level text="okouzlující" value="18" />
+			<level text="dechberoucí" value="17" />
+			<level text="impozantní" value="16" />
+			<level text="kolosální" value="15" />
+			<level text="abnormální" value="14" />
+			<level text="prvotřídní" value="13" />
+			<level text="perfektní" value="12" />
+			<level text="brilantní" value="11" />
+			<level text="vynikající" value="10" />
+			<level text="nadstandardní" value="9" />
+			<level text="excelentní" value="8" />
+			<level text="solidní" value="7" />
+			<level text="ucházející" value="6" />
+			<level text="neadekvátní" value="5" />
+			<level text="nedostačující" value="4" />
+			<level text="tristní" value="3" />
+			<level text="katastrofální" value="2" />
+			<level text="odstrašující" value="1" />
+			<level text="neexistující" value="0" />				
+		</levels>	
 		<tactics>
 			<tactic type="normal" value="Normální" />
 			<tactic type="pressing" value="Nátlaková hra" />
