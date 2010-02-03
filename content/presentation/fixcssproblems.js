@@ -30,7 +30,8 @@ FoxtrickFixcssProblems = {
                                     "Forum_Spoiler_reveal",
 									"MatchReportRatingsFontFix",
                                     "HideAchievementsIcons",
-									"NoLogo"
+									"NoLogo",
+									"hideForumNotificationBox"
                   
 								),
 	OPTIONS_CSS: new Array (
@@ -51,8 +52,9 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_Spoiler_reveal.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
-                                ),
+								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css", 
+                                Foxtrick.ResourcePath+"resources/css/fixes/hideForumNotificationBox.css"
+								),
         OPTIONS_CSS_RTL: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/Club_Menu_Teamnames.css",
@@ -71,7 +73,8 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_Spoiler_reveal.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/hideForumNotificationBox.css"
                                 ),
                                
     init : function() {
