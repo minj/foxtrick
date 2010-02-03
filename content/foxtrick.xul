@@ -45,7 +45,6 @@
 	<statusbarpanel	id="foxtrick-status-bar-image" context="foxtrick-status-bar-menu">
 		<image
 			id="foxtrick-status-bar-img"
-			style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick.png);"
 			tooltiptext="Foxtrick"
 			onload="Foxtrick.setStatusIconStyle(event);"
 			onclick="FoxtrickPreferencesDialog.configureFoxtrick(event.button);"

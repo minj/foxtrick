@@ -122,6 +122,10 @@ var FoxtrickMain = {
 			"foxtrick.prefs.disableTemporaryLabel") );
 		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 		Foxtrick.statusbarDeactivate=statusbarDeactivate;
+		var statusbarDeactivateImg = document.getElementById( "foxtrick-status-bar-img");
+        if (FoxtrickPrefs.getBool("disableTemporary")) statusbarDeactivateImg.setAttribute("suspended", 'on');
+		Foxtrick.statusbarDeactivateImg = statusbarDeactivateImg;
+        //			style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick.png);"
 
 		var popupMenu = document.getElementById( "foxtrick_popup_menu");
 		popupMenu.setAttribute( "label", "Foxtrick-"+Foxtrickl10n.getString( "foxtrick.CopyPostID") );

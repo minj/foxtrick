@@ -812,10 +812,17 @@ FoxtrickPreferencesDialog.configureFoxtrick = function(button) {
 
 
 FoxtrickPreferencesDialog.deactivate = function(button) {
+try{
 	if (!button) {
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+		//alert(Foxtrick.statusbarDeactivateImg.suspended);
+		if (Foxtrick.statusbarDeactivateImg.getAttribute('suspended')) Foxtrick.statusbarDeactivateImg.removeAttribute("suspended");
+		else Foxtrick.statusbarDeactivateImg.setAttribute('suspended','on');
+		
+		//Foxtrick.statusbarDeactivateImg.style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick_deactivated.png);"
 		FoxtrickMain.init();
 	}
+} catch(e){alert(e);}
 }
 
 FoxtrickPreferencesDialog.copy_id = function(button) {
