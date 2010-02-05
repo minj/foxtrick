@@ -39,7 +39,7 @@ var FoxtrickStaffMarker = {
 
 	ulist:{},  // users and colors
 	
-	chppholder : new Array (
+	chppholder : new Array (/*
                 '0scar',
                 'a_alvarez',
                 'Absolut',
@@ -155,10 +155,10 @@ var FoxtrickStaffMarker = {
                 'Wladi',
                 'wysota',
                 'Xirius',
-                'yeltzin'
+                'yeltzin'*/
     ),
 
-    editorsArray : new Array (
+    editorsArray : new Array ( /*
             "7areega",
             "Abu_Ahmed",
             "acarl",
@@ -244,10 +244,10 @@ var FoxtrickStaffMarker = {
             "Yndy_",
             "Zokisu",
             "Zolfaghar",
-            "ZurrieqGiants"
+            "ZurrieqGiants"*/
     ),
 
-	foxtrickersArray : new Array (
+	foxtrickersArray : new Array ( /*
 			"_KOHb_",
 			"_recluso_",
 			"baler0",
@@ -288,7 +288,7 @@ var FoxtrickStaffMarker = {
 			"smates",
 			"stephan57",
 			"taised",
-            "white_eagle"
+            "white_eagle"*/
     ),
 
     SELECT_ELEMENTS : new Array ( "ctl00_CPMain_ucThread_ucPagerTop_filterUser",
@@ -425,7 +425,7 @@ var FoxtrickStaffMarker = {
                         a.setAttribute("style", this.stl_CHPP);
                     } else if (do_LA && this.lareg.test(uname)) {
                         a.setAttribute("style", this.stl_LA);
-                    } else if (do_editor && Foxtrick.in_array(this.editorsArray,uname)) {
+                    } else if (do_editor && this.editorsArray[uid]!=null) {
                         a.setAttribute("style", this.stl_editor);
                     } 
 					// adding background images. lowest priority first
@@ -433,11 +433,11 @@ var FoxtrickStaffMarker = {
 					if (!cur_style) cur_style='';
 					if (do_hty_staff && this.hty_staff != null && Foxtrick.in_array(this.hty_staff,uname)) {
                         a.setAttribute("style", cur_style+this.stl_hty_staff);
-                    } 
-					if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
+                    } 				
+					if (do_foxtrick_dev && this.foxtrickersArray[uid]!=null) {
 						 a.setAttribute("style", cur_style+this.stl_foxtrick_dev);						
                     }
-					if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
+					if (do_chpps && this.chppholder[uid]!=null) {
                         a.setAttribute("style", cur_style+this.stl_chpps );
                     } 
 					
@@ -499,13 +499,13 @@ var FoxtrickStaffMarker = {
 							new_style += this.stl_CHPP;
 						} else if (do_LA && this.lareg.test(uname)) {
 							new_style += this.stl_LA;
-                        } else if (do_editor && Foxtrick.in_array(this.editorsArray,uname)) {
+                        } else if (do_editor && this.editorsArray[uid]!=null) {
                             new_style +=  this.stl_editor;
                         } else if (do_hty_staff && this.hty_staff != null && Foxtrick.in_array(this.hty_staff,uname)) {
                             new_style += this.stl_hty_staff;
-                        } else if (do_chpps && Foxtrick.in_array(this.chppholder,uname)) {
+                        } else if (do_chpps && this.chppholder[uid]!=null) {
                             new_style += this.stl_chpps;
-                        } else if (do_foxtrick_dev && Foxtrick.in_array(this.foxtrickersArray,uname)) {
+                        } else if (do_foxtrick_dev && this.foxtrickersArray[uid]!=null) {
                             new_style +=  this.stl_foxtrick_dev;
                         }
 					

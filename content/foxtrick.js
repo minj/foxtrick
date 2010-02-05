@@ -1861,8 +1861,10 @@ Foxtrick.cut_word = function (txt, where) {
 }
 
 Foxtrick.in_array = function(arr, needle) {
-    for (var i=0; i < arr.length; i++)
+	for (var i=0; i < arr.length; i++) {
         if (arr[i] === needle) return true;
+		if (i>10000) return false;
+	}
     return false;
 }
 
