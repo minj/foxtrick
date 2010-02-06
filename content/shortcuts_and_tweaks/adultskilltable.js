@@ -105,7 +105,7 @@ var FoxtrickAdultSkillTable = {
 				{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
 				{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
 				{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false},
-				{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
+				{ name: "TransferListed", abbr: true, sort: "text",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
 				{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
 				{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
 				{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true}
@@ -141,7 +141,7 @@ var FoxtrickAdultSkillTable = {
 				{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
 				{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
 				{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false },
-				{ name: "TransferListed", abbr: true, sort: "int",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
+				{ name: "TransferListed", abbr: true, sort: "text",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
 				{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
 				{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
 				{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true }
