@@ -121,13 +121,15 @@ var FoxtrickRapidId = {
 	},
 
 	init: function() {
-		for (var i in this.options) {
-			this.options[i].label = Foxtrickl10n.getString(this.options[i].text);
-		}
 	},
 
 	run: function(page, doc) {
 		try {
+			// get labels of optgroup and option
+			for (var i in this.options) {
+				this.options[i].label = Foxtrickl10n.getString(this.options[i].text);
+			}
+
 			var header = doc.getElementById("header");
 			var ticker = doc.getElementById("ticker");
 			var container = doc.createElement("div");
