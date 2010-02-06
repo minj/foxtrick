@@ -270,9 +270,9 @@ var FoxtrickAdultSkillTable = {
 							var Aggressiveness  = playerlist[j].getElementsByTagName('Aggressiveness')[0].textContent;
 							var Honesty  = playerlist[j].getElementsByTagName('Honesty')[0].textContent;
 							var LeagueGoals  = playerlist[j].getElementsByTagName('LeagueGoals')[0].textContent;
-							if (LeagueGoals=='Not Available') LeagueGoals='';
+							if (LeagueGoals=='Not available') LeagueGoals='?';
 							var CareerGoals = playerlist[j].getElementsByTagName('CareerGoals')[0].textContent;
-							if (CareerGoals=='Not Available') CareerGoals='';
+							if (CareerGoals=='Not available') CareerGoals='?';
 							var TransferListed = (playerlist[j].getElementsByTagName('TransferListed')[0].textContent=='0')?'':'x';	//Returns 1 if the player is on the transfer list, otherwise 0.
 							var NationalTeamID = playerlist[j].getElementsByTagName('NationalTeamID')[0].textContent;	//If the player is enrolled on a national team, this is that national team's ID. Otherwise will return 0.
 							//var Caps = playerlist[j].getElementsByTagName('Caps')[0].textContent;	//The number of matches played for the national team.
