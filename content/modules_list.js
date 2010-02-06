@@ -13,6 +13,7 @@ if (!Foxtrick) var Foxtrick={};
 Foxtrick.modules = [
                     Foxtrick.XMLData,
 					
+					FoxtrickReadHtPrefsFromHeader,
 					Foxtrick.Matches,
 					FoxtrickForumStripHattrickLinks,
 					FoxtrickForumChangePosts,

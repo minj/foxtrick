@@ -12,7 +12,7 @@ var FoxtrickReadHtPrefs = {
 	PAGES : new Array('prefSettings'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Name of the internal preference changed. If it was off previously it default on again till saved otherwise",
-	
+
 	codes:{},
 	
     init : function() {
@@ -118,6 +118,58 @@ var FoxtrickReadHtPrefs = {
 
 
 
+
+/**
+ * FoxtrickReadHtPrefsFromHeader
+ * Read seeting from hattricks header
+ * @author convinced
+ */
+////////////////////////////////////////////////////////////////////////////////
+
+var FoxtrickReadHtPrefsFromHeader = {
+	
+    MODULE_NAME : "ReadHtPrefsFromHeader",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
+	PAGES : new Array('all'), 
+	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Read country from page header",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+    OPTIONS : new Array("Language", "Country", "DateFormat"),
+
+    init : function() {
+	},
+	
+	run : function(page, doc ) {  
+	try{
+		var header = doc.getElementById('header');
+		var teamLinks = doc.getElementById('teamLinks');
+		
+		var CountryLink = teamLinks.getElementsByTagName('a')[2];
+		var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
+		var CountryName = Foxtrick.XMLData.League[LeagueId].EnglishName;
+		var OldCountryName = FoxtrickPrefs.getString("htCountry");
+		
+		if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1) {
+			Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
+			var CurrencyName = Foxtrick.XMLData.League[LeagueId].Country.CurrencyName;
+			var CurrencyRate =  parseInt(Foxtrick.XMLData.League[LeagueId].Country.CurrencyRate)/10;
+			Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
+			
+			FoxtrickPrefs.setString("htCountry", CountryName);
+			FoxtrickPrefs.setString("currencySymbol", CurrencyName);
+			FoxtrickPrefs.setString("currencyRateTo",CurrencyRate);    
+		}
+	
+	} catch(e) {Foxtrick.dump('ReadHtPrefsFromHeader: '+e+'\n');}
+	},
+	
+	change : function(page, doc ) {
+	},
+
+};
+
+	
 /**
  * FoxtrickMyHT
  * MyHT message after new foxtrick version
