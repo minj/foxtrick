@@ -162,7 +162,10 @@ Foxtrick.XMLData = {
 		// XML get players xml
 		
 		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
-			|| doc.location.href.search(/\/Club\/Players\/[$|\?TeamID=]/i)!=-1 
+			|| doc.location.href.search(/\/Club\/Players\/$/)!=-1
+			|| doc.location.href.search(/\/Club\/Players\/Oldies.aspx/)!=-1
+			|| doc.location.href.search(/\/Club\/Players\/Coaches.aspx/)!=-1
+			|| doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
 			|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1) {
 
 			var file = 'file=players'; //default normal team
@@ -178,10 +181,12 @@ Foxtrick.XMLData = {
 			if (Oldies) selection='&actionType=viewOldies';
 			if (Coaches) selection='&actionType=viewOldCoaches';
 			if (NTplayers) file = 'file=nationalplayers&ShowAll=true&actiontype=supporterstats';
-												
+			Foxtrick.dump('xmlget http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection+'\n'); 
+			
 			// get players.xml
 			this.playersxml = null;
-			try {	var req = new XMLHttpRequest();
+			try {	
+				var req = new XMLHttpRequest();
 				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection, false); 
 				req.send(null);
 				if (req.status == 200) {

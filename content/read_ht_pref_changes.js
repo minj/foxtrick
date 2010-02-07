@@ -194,7 +194,8 @@ var FoxtrickMyHT = {
 
     run : function(page, doc ) {  
 		try{						
-			if ( FoxtrickMain.IsNewVersion ) { // show foxtrickMyHT
+			if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
+			{ // show foxtrickMyHT
 				this.ShowAlert(doc);
 			}
 		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
@@ -210,42 +211,64 @@ var FoxtrickMyHT = {
 				alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 				mainBody.insertBefore(alertdiv,mainBody.firstChild);
 		
+				var curVersion=FoxtrickPrefs.getString("curVersion"); 
+				alertdiv.innerHTML = "<h2 style='background-color:#EFEFFF; text-align:center !important; color:#2F31FF !important; font-size:1.1em; '>FoxTrick "+curVersion+"</h2>";
+
 				var commondiv=doc.createElement('div');
 				commondiv.setAttribute('id','FoxtrickMyHTCommon');
 				alertdiv.appendChild(commondiv);				
-				
-				var curVersion=FoxtrickPrefs.getString("curVersion"); 
-
-				alertdiv.innerHTML = "<h2 style='background-color:#EFEFFF; text-align:center !important; color:#2F31FF !important; font-size:1.1em; '>FoxTrick "+curVersion+"</h2>";
-				
-				// release note. as we don't make then now-> disabled
-				var p=doc.createElement('p');				
+												
+				// release note. 
+				var p=doc.createElement('p');
+				p.id='ft_releasenotesid';
+				/* linked ht-foxtrick version: as we don't make then now-> disabled
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtReleaseNotes")));				
 				p.appendChild(doc.createTextNode(" "));				
-				/*var a=doc.createElement('a');
+				var a=doc.createElement('a');
 				a.href=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
 				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
 				a.target="_blank";
 				p.appendChild(a);*/				
 				
 				try {	
-					var file = 'http://foxtrick.googlecode.com/svn/trunk/releaseNotes.txt';
+					var file = Foxtrick.ResourcePath+'releaseNotes.txt';
 					var req = new XMLHttpRequest();
 					req.open('GET', file, false); 
 					req.send(null);
-					if (req.status == 200) {
-						var dummy = doc.createElement('dummy');				
-						dummy.innerHTML = req.responseText;
-						var lines = dummy.getElementsByTagName('lines');
+					if (req.status == 0) {
+						var notesDOM = doc.createElement('dummy');				
+						notesDOM.innerHTML = req.responseText;
+						var version = notesDOM.getElementsByTagName('version')[0].innerHTML;
+						try {
+							var file = Foxtrick.ResourcePath+'locale/'+FoxtrickPrefs.getString("htLanguage")+'/releaseNotes.txt';
+							var req = new XMLHttpRequest();
+							req.open('GET', file, false); 
+							req.send(null);
+							if (req.status == 0) {
+								var notesDOMlocale = doc.createElement('dummy');				
+								notesDOMlocale.innerHTML = req.responseText;
+								var version_locale = notesDOMlocale.getElementsByTagName('version')[0].innerHTML;
+								if (version==version_locale) notesDOM = notesDOMlocale;						
+							}
+						} catch(e) {Foxtrick.dump('locale release notes: '+e+'\n');}
+						
+						var title = notesDOM.getElementsByTagName('title');
+						for (var i=0;i<title.length;++i) {
+							p.appendChild(doc.createElement('br'));				
+							var b = doc.createElement('b');
+							b.appendChild(doc.createTextNode(title[i].innerHTML));				
+							p.appendChild(b);											
+						}
+						var lines = notesDOM.getElementsByTagName('lines');
 						for (var i=0;i<lines.length;++i) {
 							p.appendChild(doc.createElement('br'));				
 							p.appendChild(doc.createTextNode(lines[i].innerHTML));				
 						}
 					}
-					else Foxtrick.dump(' get '+file+' request failed\n');
+					else Foxtrick.dump(' get '+file+' request failed. req.status='+req.status+'\n');
 				} catch(e) {Foxtrick.dump('get '+file+' request failed'+e+'\n');}
 
-				alertdiv.appendChild(p);
+				commondiv.appendChild(p);
 				
 				/*var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtScreenshotList")));				
@@ -265,7 +288,7 @@ var FoxtrickMyHT = {
 				a.innerHTML="/MyHattrick/?configure_foxtrick=true&category=changes";
 				a.target="_self";
 				p.appendChild(a);				
-				alertdiv.appendChild(p);
+				commondiv.appendChild(p);
 
 
 				/*alertdiv.appendChild(doc.createElement('br'));				
@@ -274,6 +297,7 @@ var FoxtrickMyHT = {
 				alertdiv.appendChild(p);
 				*/
 				
+				// changes quick set repeat
 				alertdiv.appendChild(doc.createElement('br'));				
 				var p=doc.createElement('p');				
 				var a=doc.createElement('a');
@@ -289,7 +313,7 @@ var FoxtrickMyHT = {
 				a.setAttribute('style','float:right');
 				p.appendChild(a);				
 				
-				alertdiv.appendChild(p);
+				commondiv.appendChild(p);
 
 				
 		} catch(e){dump('MyHtShowAlert '+e+'\n');}
@@ -342,15 +366,25 @@ var FoxtrickMyHT = {
 		
 		//FoxtrickMyHT.ShowOnce();
 		FoxtrickMain.IsNewVersion=false;
-		
+				
 		doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
 		doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
-				
+		
+		var FoxtrickMyHTCommon = doc.getElementById('FoxtrickMyHTCommon');
+		FoxtrickMyHTCommon.style.display='none';		
+		
 		var alertdivOuter = doc.getElementById('idFoxtrickPrefsOuter');
 		var alertdiv=doc.createElement('div');
 		alertdiv.setAttribute('id','idFoxtrickPrefs');
 		alertdivOuter.appendChild(alertdiv);
 		
+		var a=doc.createElement('a');
+		a.href="javascript:void();";
+		a.innerHTML=Foxtrickl10n.getString("Close");
+		Foxtrick.addEventListenerChangeSave(a, "click", FoxtrickMyHT.Close, false );
+		a.setAttribute('style','float:right');
+		alertdiv.appendChild(a);				
+
 		var prefsavediv=doc.createElement('div');	
 		prefsavediv.setAttribute('id','foxtrick_prefs_save');
 		alertdiv.appendChild(prefsavediv);
@@ -402,7 +436,25 @@ var FoxtrickMyHT = {
 			alertdiv.appendChild(doc.createTextNode(FoxtrickMyHT.NewModules[j].LATEST_CHANGE));
 			alertdiv.appendChild( entry );
 		}
-	
+
+		var a=doc.createElement('a');
+		a.href="javascript:void();";
+		a.innerHTML=Foxtrickl10n.getString("Close");
+		Foxtrick.addEventListenerChangeSave(a, "click", FoxtrickMyHT.Close, false );
+		a.setAttribute('style','float:right');
+		alertdiv.appendChild(a);				
+
+		var prefsavediv=doc.createElement('div');	
+		prefsavediv.setAttribute('id','foxtrick_prefs_save');
+		alertdiv.appendChild(prefsavediv);
+		
+		var prefsave=doc.createElement('input');	
+		prefsave.setAttribute('id','foxtrick_prefsave'); 
+		prefsave.setAttribute('type','button'); 
+		prefsave.setAttribute('value',Foxtrickl10n.getString("foxtrick.prefs.buttonSave")); 
+		prefsave.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
+		prefsavediv.appendChild(prefsave);
+		
 		} catch(e) {dump('showchanged: '+e+'\n');}
 	},
 	
