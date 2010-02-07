@@ -33,29 +33,32 @@ var FoxtrickLinksPlayerDetail = {
 			var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
 			if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
 
-			var day = parseInt(ar[1]);
-			var month = parseInt(ar[3]);
-			var year = parseInt(ar[5]);
-			var hour = parseInt(ar[7]);
-			var minute = parseInt(ar[9]);
+			var day = ar[1];
+			var month = ar[3];
+			var year = ar[5];
+			var hour = ar[7];
+			var minute = ar[9];
 
 			switch ( DATEFORMAT ) {
 				case 'ddmmyyyy':
-					var day = parseInt(ar[1]);
-					var month = parseInt(ar[3]);
-					var year = parseInt(ar[5]);
+					var day = ar[1];
+					var month = ar[3];
+					var year = ar[5];
 					break;
 				case 'mmddyyyy':
-					var day = parseInt(ar[3]);
-					var month = parseInt(ar[1]);
-					var year = parseInt(ar[5]);
+					var day = ar[3];
+					var month = ar[1];
+					var year = ar[5];
 					break;
 				case 'yyyymmdd':
-					var day = parseInt(ar[5]);
-					var month = parseInt(ar[3]);
-					var year = parseInt(ar[1]);
+					var day = ar[5];
+					var month = ar[3];
+					var year = ar[1];
 					break;
 			}
+			//if (parseInt(month) > 10) {} else {month = '0' + month;}
+			//if (parseInt(hour) > 10) {} else {hour = '0' + hour;}
+			
 			deadline = year+'-'+month+'-'+day+' '+hour+':'+minute;
 		}
 		else var deadline='';
