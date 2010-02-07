@@ -102,10 +102,13 @@ var FoxtrickMain = {
 		// reload skins
 		FoxtrickSkinPlugin.load( null);
 		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
+		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_statusbar.css' ) ;
+		Foxtrick.main_css_loaded = true;
 		FoxtrickMain.new_start = true;
 	},
 
     registerOnPageLoad : function(document) {
+	try{
 		// init menu titles
 		var statusbarMenu = document.getElementById(
 			"foxtrick_statusbar_config_menu" );
@@ -142,8 +145,35 @@ var FoxtrickMain = {
 			// listen to page loads
 			appcontent.addEventListener( "DOMContentLoaded", this.onPageLoad, true );
 			appcontent.addEventListener( "unload", this.onPageUnLoad, true );
+
+			// add listener to tab focus changes
+			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                     .getService(Components.interfaces.nsIWindowMediator);
+			var browserEnumerator = wm.getEnumerator("navigator:browser");
+			var browserWin = browserEnumerator.getNext();
+			var tabbrowser = browserWin.getBrowser();
+			tabbrowser.tabContainer.onselect = FoxtrickMain.ontabfocus;
 		}		
+	} catch(e){alert('Foxtrick registerOnPageLoad'+e)};
     },
+
+	ontabfocus : function( ev ) {  // on tab focus
+	try{		
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                     .getService(Components.interfaces.nsIWindowMediator);
+		var browserEnumerator = wm.getEnumerator("navigator:browser");
+		var browserWin = browserEnumerator.getNext();
+		var tabbrowser = browserWin.getBrowser(); 
+		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex); 
+		var doc = currentBrowser.contentDocument;
+
+		dump('onfocus: '+doc.location.href+'\n');
+		if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )        
+			FoxtrickMain.run(currentBrowser.contentDocument, true);   // recheck css
+
+		} catch(e){Foxtrick.dump('foxtrickmain onfocus '+e+'\n');}
+	},			
+
 
 	onPageChange : function( ev ) { 
 		var doc = ev.originalTarget.ownerDocument;
@@ -202,9 +232,9 @@ var FoxtrickMain = {
 	},
 
     // main entry run on every ht page load
-    run : function( doc ) {
+    run : function( doc, is_only_css_check ) {
 	try {
-		//Foxtrick.dump('main run start\n');
+		Foxtrick.dump('main run start. is_only_css_check: '+is_only_css_check+'\n');
 
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
@@ -212,6 +242,13 @@ var FoxtrickMain = {
 		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
 			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
+
+			if (!Foxtrick.main_css_loaded) {
+				Foxtrick.load_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
+				Foxtrick.main_css_loaded = true;
+				FoxtrickMain.new_start = true;
+			}
+			
 		    // check newstart or design change and reload modul css if needed
 			if (FoxtrickMain.new_start) {
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
@@ -237,7 +274,7 @@ var FoxtrickMain = {
 			Foxtrick.run_every_page.forEach(
 				function( fn ) {
 					try {
-						fn.run( doc );
+						if (!is_only_css_check) fn.run( doc );
 						//Foxtrick.run_on_cur_page.push({'page':'','module':fn});
 					} catch (e) {
 						Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
@@ -257,7 +294,7 @@ var FoxtrickMain = {
 							try {
 								//Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );
 								var begin = new Date();
-									fn.run( i, doc );
+									if (!is_only_css_check) fn.run( i, doc );
 								var end = new Date();
 								var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
 											+ end.getMilliseconds() - begin.getMilliseconds();
@@ -285,13 +322,16 @@ var FoxtrickMain = {
 		else {
 			// potenial disable cleanup
 			var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-			if( FoxtrickMain.new_start && ((( FoxtrickPrefs.getBool("disableOnStage") &&
+			if( /*FoxtrickMain.new_start && */((( FoxtrickPrefs.getBool("disableOnStage") &&
 				Foxtrick.getHref( doc).search( stage_regexp ) != -1))
 				|| ( FoxtrickPrefs.getBool("disableTemporary"))) ) {
 
+				Foxtrick.dump('disabled\n');
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
 				FoxtrickMain.new_start = false;
+				if (Foxtrick.main_css_loaded) Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
+				Foxtrick.main_css_loaded = false;
 				Foxtrick.unload_module_css();
 			}
 		}
@@ -1941,8 +1981,10 @@ try{
 
         // Focus *this* browser-window
 		browserWin.focus();
-		if (reload) browserWin.loadURI(url )
-        Foxtrick.dump('reload: '+url+'\n');
+		if (reload) {
+			browserWin.loadURI(url )
+			Foxtrick.dump('reload: '+url+'\n');
+		}
         found = true;
         break;
       }
