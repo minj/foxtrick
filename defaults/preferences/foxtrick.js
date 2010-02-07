@@ -1,6 +1,6 @@
 pref( "extensions.foxtrick.prefs.curVersion", "0.5.0.2");   // update with each release
 pref( "extensions.foxtrick.prefs.oldVersion", "0.3.73");   // don't change!! (unless you know what you do). shows changes form that version onwards after new installation
-pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
+pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.|wwwxx\.|new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
 pref( "extensions.foxtrick.prefs.htLanguage", "en");
 pref( "extensions.foxtrick.prefs.htCurrency", "EUR");
 pref( "extensions.foxtrick.prefs.currencyRateTo", "1.0");
@@ -143,6 +143,9 @@ pref( "extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enable
 pref( "extensions.foxtrick.prefs.module.NewMail.CustomColor.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true );
 pref( "extensions.foxtrick.prefs.module.OnPagePrefs.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ReadHtPrefsFromHeader.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ReadHtPrefsFromHeader.Language.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.enabled", false );
 pref( "extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false );
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.CopySkillTable.enabled", true );

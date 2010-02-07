@@ -135,30 +135,32 @@ var FoxtrickReadHtPrefsFromHeader = {
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Read country from page header",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-    OPTIONS : new Array("Language", "Country", "DateFormat"),
+    OPTIONS : new Array("Language", "CountryCurrencyDateFormat"),
 
     init : function() {
 	},
 	
-	run : function(page, doc ) {  
+	run : function(page, doc, newstart ) {  
 	try{
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks');
 		
-		var CountryLink = teamLinks.getElementsByTagName('a')[2];
-		var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
-		var CountryName = Foxtrick.XMLData.League[LeagueId].EnglishName;
-		var OldCountryName = FoxtrickPrefs.getString("htCountry");
+		if ( Foxtrick.isModuleFeatureEnabled(FoxtrickReadHtPrefsFromHeader, 'CountryCurrencyDateFormat') ) {
+			var CountryLink = teamLinks.getElementsByTagName('a')[2];
+			var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
+			var CountryName = Foxtrick.XMLData.League[LeagueId].EnglishName;
+			var OldCountryName = FoxtrickPrefs.getString("htCountry");
 		
-		if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1) {
-			Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
-			var CurrencyName = Foxtrick.XMLData.League[LeagueId].Country.CurrencyName;
-			var CurrencyRate =  parseInt(Foxtrick.XMLData.League[LeagueId].Country.CurrencyRate)/10;
-			Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
+			if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1 || newstart) {
+				Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
+				var CurrencyName = Foxtrick.XMLData.League[LeagueId].Country.CurrencyName;
+				var CurrencyRate =  parseInt(Foxtrick.XMLData.League[LeagueId].Country.CurrencyRate)/10;
+				Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
 			
-			FoxtrickPrefs.setString("htCountry", CountryName);
-			FoxtrickPrefs.setString("currencySymbol", CurrencyName);
-			FoxtrickPrefs.setString("currencyRateTo",CurrencyRate);    
+				FoxtrickPrefs.setString("htCountry", CountryName);
+				FoxtrickPrefs.setString("oldCurrencySymbol", CurrencyName);
+				FoxtrickPrefs.setString("currencyRate",CurrencyRate);    
+			}
 		}
 	
 	} catch(e) {Foxtrick.dump('ReadHtPrefsFromHeader: '+e+'\n');}

@@ -171,7 +171,7 @@ var FoxtrickMain = {
 		if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )        
 			FoxtrickMain.run(currentBrowser.contentDocument, true);   // recheck css
 
-		} catch(e){Foxtrick.dump('foxtrickmain onfocus '+e+'\n');}
+		} catch(e){dump('foxtrickmain onfocus '+e+'\n');}
 	},			
 
 
@@ -234,7 +234,7 @@ var FoxtrickMain = {
     // main entry run on every ht page load
     run : function( doc, is_only_css_check ) {
 	try {
-		Foxtrick.dump('main run start. is_only_css_check: '+is_only_css_check+'\n');
+		Foxtrick.dump('main run start. is_only_css_check: '+is_only_css_check!=null+'\n');
 
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
@@ -254,6 +254,7 @@ var FoxtrickMain = {
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
 				Foxtrick.reload_module_css(doc);
+				FoxtrickReadHtPrefsFromHeader.run('', doc, true);
 				FoxtrickMain.new_start = false;
 			}
 			else {
@@ -326,7 +327,8 @@ var FoxtrickMain = {
 				Foxtrick.getHref( doc).search( stage_regexp ) != -1))
 				|| ( FoxtrickPrefs.getBool("disableTemporary"))) ) {
 
-				Foxtrick.dump('disabled\n');
+				Foxtrick.dump(' disabled onstage:'+(FoxtrickPrefs.getBool("disableOnStage")&&
+				Foxtrick.getHref( doc).search( stage_regexp ) != -1) +' - temporary'+FoxtrickPrefs.getBool("disableTemporary")+'\n');
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
 				FoxtrickMain.new_start = false;
