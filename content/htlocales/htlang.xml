@@ -1104,10 +1104,10 @@
 			<tactic type="normal" value="רגילה" />
 			<tactic type="pressing" value="לחץ" />
 			<tactic type="ca" value="התקפות מתפרצות" />
-			<tactic type="aow" value="התקפות מהאגפים" />
-			<tactic type="aim" value="התקפות מהמרכז" />
+			<tactic type="aow" value="התקפה מהאגפים" />
+			<tactic type="aim" value="התקפה מהמרכז" /> 
 			<tactic type="creatively" value="משחק יצירתי" />
-			<tactic type="longshots" value="בעיטות מרחוק" />
+			<tactic type="longshots" value="התקפה מרחוק" />
 		</tactics>
 	</language>
 
