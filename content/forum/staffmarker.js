@@ -8,7 +8,7 @@ var FoxtrickStaffMarker = {
 
     MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumViewThread','forumWritePost','teamPageAny'),
+	PAGES : new Array('forumViewThread','forumWritePost','teamPage'),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. ",
@@ -379,8 +379,8 @@ var FoxtrickStaffMarker = {
 		if (Foxtrick.isModuleFeatureEnabled( this, "manager")) {
 			switch( page )
 			{
-				case 'teamPageAny':
-						// Foxtrick.dump('teamPageAny\n');
+				case 'teamPage':
+						 Foxtrick.dump('teamPage\n');
 						FoxtrickStaffMarker._MarkAliases_thread(doc);
 				break;
 			}
