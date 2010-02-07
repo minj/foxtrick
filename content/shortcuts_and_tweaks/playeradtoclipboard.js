@@ -278,7 +278,7 @@ var FoxtrickPlayerAdToClipboard = {
 				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copied"));
 			
 		} catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('createPlayerAd '+e);
 		}
 	},
 	

@@ -154,7 +154,7 @@ var FoxtrickMain = {
 			var tabbrowser = browserWin.getBrowser();
 			tabbrowser.tabContainer.onselect = FoxtrickMain.ontabfocus;
 		}		
-	} catch(e){alert('Foxtrick registerOnPageLoad'+e)};
+	} catch(e){dump('Foxtrick registerOnPageLoad'+e)};
     },
 
 	ontabfocus : function( ev ) {  // on tab focus

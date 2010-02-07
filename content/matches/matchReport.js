@@ -158,7 +158,7 @@ FoxtrickMatchReportFormat = {
 
         part[1] = div_inner.innerHTML.substr(start, end-start);
         var dummy = part[1].split('<br><br>');
-        // Foxtrick.alert(dummy[1]);
+        // Foxtrick.alert('ft: '+ dummy[1]);
 
         part[0] += '' + dummy[0] + '<br><br>' + dummy[1] + '<br>';
         part[1] = '';

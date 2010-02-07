@@ -718,7 +718,7 @@ var FoxtrickForumChangePosts = {
 			foStream.close();
 		}
 		catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('_SaveForSearch '+e);
         }
     return true;
 	},

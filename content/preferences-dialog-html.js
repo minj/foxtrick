@@ -521,14 +521,24 @@ var FoxtrickPrefsDialogHTML = {
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtCountryCurrencyDateFormat', Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc"),'', ReadCountryCurrencyDateFormatChecked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		groupbox.appendChild(checkdiv);
+		var currentCountryCurrencyDateFormatdiv = doc.createElement("div");
+		currentCountryCurrencyDateFormatdiv.id='CurrentHtCountryCurrencyDateFormat'
+		if (ReadCountryCurrencyDateFormatChecked) currentCountryCurrencyDateFormatdiv.style.display='block';
+		else currentCountryCurrencyDateFormatdiv.style.display='none';
+		currentCountryCurrencyDateFormatdiv.innerHTML = '( '+Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc")+' '+ 
+														FoxtrickPrefs.getString("htCountry")+' / '+
+														FoxtrickPrefs.getString("oldCurrencySymbol")+' )';
+		groupbox.appendChild(currentCountryCurrencyDateFormatdiv);
+		
 		Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) {
 				var check = ev.target;
 				var checked = check.checked; 
 				var optiondiv = ev.target.ownerDocument.getElementById('groupboxCountryCurrency');		
-				if (checked) optiondiv.style.display='none';
-				else optiondiv.style.display='block'; 			
+				var currentdiv = ev.target.ownerDocument.getElementById('CurrentHtCountryCurrencyDateFormat');		
+				if (checked) { optiondiv.style.display='none'; currentdiv.style.display='block'; }	
+				else {optiondiv.style.display='block'; currentdiv.style.display='none';}			
 			}, false );
-		
+
 				
         var groupboxCountryCurrency = doc.createElement("div");
 		groupbox.appendChild(groupboxCountryCurrency);

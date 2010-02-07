@@ -299,7 +299,7 @@ FoxtrickPrefs.SavePrefs = function (ev) {
 			if(!ev) close();
 		}
 		catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('FoxtrickPrefs.SavePrefs '+e);
         }
     return true;
 }
@@ -344,7 +344,7 @@ FoxtrickPrefs.LoadPrefs = function (ev) {
 
 		}
 		catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('FoxtrickPrefs.LoadPrefs '+e);
         }
     return true;
 }

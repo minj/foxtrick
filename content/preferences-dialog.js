@@ -822,7 +822,7 @@ try{
 		//Foxtrick.statusbarDeactivateImg.style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick_deactivated.png);"
 		FoxtrickMain.init();
 	}
-} catch(e){alert(e);}
+} catch(e){alert('FoxtrickPreferencesDialog.deactivate '+e);}
 }
 
 FoxtrickPreferencesDialog.copy_id = function(button) {
