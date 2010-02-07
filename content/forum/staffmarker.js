@@ -8,10 +8,10 @@ var FoxtrickStaffMarker = {
 
     MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumViewThread','forumWritePost'),
+	PAGES : new Array('forumViewThread','forumWritePost','teamPageAny'),
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Fix for latest forum change",
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. ",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-color:red;", //HT
@@ -371,6 +371,11 @@ var FoxtrickStaffMarker = {
             case 'forumWritePost':
                 // Foxtrick.dump('forumWritePost\n');
                 FoxtrickStaffMarker._MarkAliases_select(doc);
+            break;
+			
+            case 'teamPageAny':
+                // Foxtrick.dump(''teamPageAny\n');
+                FoxtrickStaffMarker._MarkAliases_thread(doc);
             break;
         }
 	} catch(e){Foxtrick.dump('staffmarker: '+e+'\n');}
