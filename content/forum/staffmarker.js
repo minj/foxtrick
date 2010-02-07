@@ -380,7 +380,7 @@ var FoxtrickStaffMarker = {
 			switch( page )
 			{
 				case 'teamPage':
-						 Foxtrick.dump('teamPage\n');
+						// Foxtrick.dump('teamPage\n');
 						FoxtrickStaffMarker._MarkAliases_thread(doc);
 				break;
 			}
