@@ -374,7 +374,7 @@ var FoxtrickStaffMarker = {
             break;
 			
             case 'teamPageAny':
-                // Foxtrick.dump(''teamPageAny\n');
+                // Foxtrick.dump('teamPageAny\n');
                 FoxtrickStaffMarker._MarkAliases_thread(doc);
             break;
         }
