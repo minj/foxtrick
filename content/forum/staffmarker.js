@@ -13,8 +13,10 @@ var FoxtrickStaffMarker = {
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. ",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	OPTIONS : new Array("manager", "HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-color:red;", //HT
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("",
+                                        	"background-color:red;", //HT
 											"background-color:orange; color:black;", //GM
                                             "background-color:yellow; color:black;", //MOD
 											"background-color:white; color:green;", //LA
@@ -26,7 +28,7 @@ var FoxtrickStaffMarker = {
 											"background-color:white; color:black;", //flag
 											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
                                             ),
-    OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own"),
+    OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
     // OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own"),
     
 	htreg : /^HT-/i,
@@ -359,7 +361,6 @@ var FoxtrickStaffMarker = {
 					} catch (e) {Foxtrick.alert('StaffMarker: Error in Style for: '+ user);}
 				}
 			}
-
         switch( page )
         {
             case 'forumViewThread':
@@ -373,11 +374,17 @@ var FoxtrickStaffMarker = {
                 FoxtrickStaffMarker._MarkAliases_select(doc);
             break;
 			
-            case 'teamPageAny':
-                // Foxtrick.dump('teamPageAny\n');
-                FoxtrickStaffMarker._MarkAliases_thread(doc);
-            break;
         }
+        
+		if (Foxtrick.isModuleFeatureEnabled( this, "manager")) {
+			switch( page )
+			{
+				case 'teamPageAny':
+						// Foxtrick.dump('teamPageAny\n');
+						FoxtrickStaffMarker._MarkAliases_thread(doc);
+				break;
+			}
+		}
 	} catch(e){Foxtrick.dump('staffmarker: '+e+'\n');}
     },
 
