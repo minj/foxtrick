@@ -7,11 +7,11 @@
 var FoxtrickStaffMarker = {
 
     MODULE_NAME : "StaffMarker",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('forumViewThread','forumWritePost','teamPage'),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
-	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. ",
+	LATEST_CHANGE:"Marks staffs on team pages as well. Moved to presentation category.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("manager", "HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own"),
 	OPTION_TEXTS : true,
