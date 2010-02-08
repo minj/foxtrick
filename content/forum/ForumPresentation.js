@@ -7,7 +7,7 @@ FoxtrickForumPresentation = {
        
     MODULE_NAME : "ForumPresentation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('all'), 
+	PAGES : new Array('forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Added module for additional Forum presentation options",	
