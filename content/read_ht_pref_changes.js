@@ -194,7 +194,7 @@ var FoxtrickMyHT = {
 
     run : function(page, doc ) {  
 		try{						
-			if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
+			//if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
 			{ // show foxtrickMyHT
 				this.ShowAlert(doc);
 			}
