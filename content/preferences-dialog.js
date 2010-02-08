@@ -54,9 +54,13 @@ var FoxtrickPreferencesDialog = {
 			defaultWarningText.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText")));
 		}
 
+		// basic preferences
+		var basic = doc.getElementById("basic");
+		basic.label = Foxtrickl10n.getString("foxtrick.prefs.basicPreferences");
+
 		// HT language
 		var language = doc.getElementById("language");
-		language.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage"));
+		language.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage");
 		var htLanguagesXml = doc.implementation.createDocument("", "", null);
 		htLanguagesXml.async = false;
 		htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
@@ -65,12 +69,12 @@ var FoxtrickPreferencesDialog = {
 				htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
 		// sync with HT prefs
 		var readHtPrefs = doc.getElementById("ReadHtPrefs");
-		readHtPrefs.setAttribute("checked", FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"));
-		readHtPrefs.setAttribute("label", Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"));
+		readHtPrefs.checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
+		readHtPrefs.label = Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc");
 
 		// currency
 		var currency = doc.getElementById("currency");
-		currency.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency"));
+		currency.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency");
 		var htCurrencyXml = document.implementation.createDocument("", "", null);
 		htCurrencyXml.async = false;
 		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
@@ -80,7 +84,7 @@ var FoxtrickPreferencesDialog = {
 
 		// date format
 		var dateformat = doc.getElementById("dateformat");
-		dateformat.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat"));
+		dateformat.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat");
 		var htDateFormatXml = document.implementation.createDocument("", "", null);
 		htDateFormatXml.async = false;
 		htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
@@ -90,7 +94,7 @@ var FoxtrickPreferencesDialog = {
 
 		// country
 		var country = doc.getElementById("country");
-		country.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry"));
+		country.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry");
 		document.getElementById("htCountry").selectedIndex =
 			FoxtrickPreferencesDialog.fillListFromXml3("htCountryPopup", "htCountry-",
 				Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));

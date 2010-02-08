@@ -40,37 +40,53 @@
 					<description id="defaultWarningText" />
 				</vbox>
 				<groupbox>
-					<caption id="language" />
-					<hbox>
-						<menulist id="htLanguage">
-							<menupopup id="htLanguagePopup" />
-						</menulist>
-					</hbox>
-					<checkbox id="ReadHtPrefs" />
-				</groupbox>
-				<groupbox>
-					<caption id="currency" />
-					<hbox>
-						<menulist id="htCurrency">
-							<menupopup id="htCurrencyPopup" />
-						</menulist>
-					</hbox>
-				</groupbox>
-				<groupbox>
-					<caption id="dateformat" />
-					<hbox>
-						<menulist id="htDateformat">
-							<menupopup id="htDateformatPopup" />
-						</menulist>
-					</hbox>
-				</groupbox>
-				<groupbox>
-					<caption id="country" />
-					<hbox>
-						<menulist id="htCountry">
-							<menupopup id="htCountryPopup" />
-						</menulist>
-					</hbox>
+					<caption id="basic" />
+					<grid>
+						<columns>
+							<column />
+							<column flex="1" />
+						</columns>
+						<rows>
+							<row>
+								<label id="language" control="htLanguage" />
+								<hbox>
+									<menulist id="htLanguage">
+										<menupopup id="htLanguagePopup" />
+									</menulist>
+								</hbox>
+							</row>
+							<row>
+								<hbox />
+								<hbox>
+									<checkbox id="ReadHtPrefs" />
+								</hbox>
+							</row>
+							<row>
+								<label id="country" control="htCountry" />
+								<hbox>
+									<menulist id="htCountry">
+										<menupopup id="htCountryPopup" />
+									</menulist>
+								</hbox>
+							</row>
+							<row>
+								<label id="currency" control="htCurrency" />
+								<hbox>
+									<menulist id="htCurrency">
+										<menupopup id="htCurrencyPopup" />
+									</menulist>
+								</hbox>
+							</row>
+							<row>
+								<label id="dateformat" control="htDateformat" />
+								<hbox>
+									<menulist id="htDateformat">
+										<menupopup id="htDateformatPopup" />
+									</menulist>
+								</hbox>
+							</row>
+						</rows>
+					</grid>
 				</groupbox>
 				<groupbox>
 					<caption id="currencyTo" />
