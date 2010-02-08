@@ -4,20 +4,20 @@
 
 
 <version>0.5.1</version>
-<title>Short release notes (english)</title>
+<title>Short release notes (English)</title>
 <lines>* New language Tiếng Việt -  Thanks to Murtagsh (9372637)!</lines>
-<lines>* Enhanced adultskilltable youthskilltable and teamstats</lines>
+<lines>* Enhanced adultskilltable, youthskilltable and teamstats</lines>
 <lines>* Rapid id search</lines>
 <lines>* Transferfilter fix: old max bid values might be lost</lines>
 <lines>* Status bar icon shows if FoxTrick is deactivated</lines>
 <lines>* Fix for Forum preferences button</lines>
-<lines>* New LeagueNewsFilter module option that highlights teams which have set/changed thier lineup within last week</lines>
+<lines>* New LeagueNewsFilter module option that highlights teams which have set/changed their lineup within last week</lines>
 <lines>* HTMS module fully localized and linked to the original website</lines>
 <lines>* New StaffMarker module option for team pages</lines>
-<lines>* Automatic country and currency detection in Main Options (currently only for HTML preferences dialog)</lines> 
+<lines>* Automatic country and currency detection in Main Options</lines> 
 <lines>* New FixcssProblems module option to hide notification box about unread messages within the Forum thread</lines>
 <lines>* Custom links for club transfer page enabled</lines> 
-<lines>* Option to open automatically hattrick-youthclub page after copying youthplayer source code, scout and training report</lines> 
+<lines>* Option to open automatically hattrick-youthclub page after copying youth player source code, scout оr training report</lines> 
 
 
 
