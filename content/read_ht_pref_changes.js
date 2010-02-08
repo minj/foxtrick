@@ -9,7 +9,7 @@ var FoxtrickReadHtPrefs = {
 	
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
-	PAGES : new Array('prefSettings'), 
+	PAGES : new Array('prefSettings','myhattrick'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Name of the internal preference changed. If it was off previously it default on again till saved otherwise",
 
@@ -72,27 +72,51 @@ var FoxtrickReadHtPrefs = {
 			
    },
 
+    menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
+
     run : function(page, doc ) {  
 	try{
-		if (doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {
+		var langval = null;
+		var oldval = FoxtrickPrefs.getString("htLanguage");
+
+		if (doc.location.href.search(/MyHattrick\/$/) !=-1) {
+			var menu = doc.getElementById('menu');
+			var as = menu.getElementsByTagName('a');
+			var languages = Foxtrick.XMLData.htLanguagesXml.getElementsByTagName('language');
+			for (var k=0; k<languages.length; ++k) {				
+				var num_found=0;
+				for (var i=0; i<6;++i) {
+					var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
+					if (atitle==null) break;
+					if (as[i].innerHTML.search(atitle.getAttribute('value'))!=-1) ++num_found;				
+				}
+				if (num_found==6) {
+					langval = languages[k].getAttribute('name');
+					break;
+				}
+			}
+		}
 		
-			var langval = doc.getElementById('ctl00_CPMain_ddlLanguages').value		
-			var oldval = FoxtrickPrefs.getString("htLanguage");
-			if (this.codes[langval]==oldval) return;
+		if (!langval && doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {		
+			var langid = doc.getElementById('ctl00_CPMain_ddlLanguages').value;
+			langval = this.codes[langid];
+		}
 			
-			FoxtrickPrefs.setString("htLanguage", this.codes[langval]);		
+		if (langval && langval != oldval) {
+			FoxtrickPrefs.setString("htLanguage", langval);		
 			
 			if (Foxtrick.BuildFor=='Chrome') {
 				// change language
-				FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:this.codes[langval], from:'readpref'});			
+				FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:langval, from:'readpref'});			
 				// ShowChanged(doc); shown in the listener!	
 			}
 			else {  
 				// change language
-				Foxtrickl10n.get_strings_bundle(this.codes[langval]);
+				Foxtrickl10n.get_strings_bundle(langval);
 				FoxtrickReadHtPrefs.ShowChanged(doc);  	
 			}
 		}
+				
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 
@@ -194,7 +218,7 @@ var FoxtrickMyHT = {
 
     run : function(page, doc ) {  
 		try{						
-			//if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
+			if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
 			{ // show foxtrickMyHT
 				this.ShowAlert(doc);
 			}

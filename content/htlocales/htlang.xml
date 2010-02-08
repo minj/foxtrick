@@ -2,7 +2,15 @@
 <hattricklanguages>
 
 	<language name="en" desc="English">
-	<!-- rating sublevels appearing in match detail page -->
+		<!-- the 6 strings from the ht's menue line. used for language autodetection -->
+		<MyHattrick value='My Hattrick' /> 
+		<MyClub value='My Club' /> 
+		<World value='World' /> 
+		<Forum value='Forum' /> 
+		<Shop value='Shop' /> 
+		<Help value='Help' /> 
+
+		<!-- rating sublevels appearing in match detail page -->
 		<ratingSubLevels>
 			<sublevel text="(very low)" value="0.0" />
 			<sublevel text="(low)" value="0.25"  />
