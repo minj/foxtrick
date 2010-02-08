@@ -72,6 +72,35 @@ var FoxtrickPreferencesDialog = {
 		readHtPrefs.checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
 		readHtPrefs.label = Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc");
 
+		// read HT country
+		var readHtCountry = doc.getElementById("ReadHtCountry");
+		readHtCountry.checked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled");
+		readHtCountry.label = Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc");
+		var readHtCountryDescription = doc.getElementById("ReadHtCountryDescription");
+		readHtCountryDescription.appendChild(document.createTextNode(
+			Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc") + " " +
+			FoxtrickPrefs.getString("htCountry") + " / " +
+			FoxtrickPrefs.getString("oldCurrencySymbol")));
+		document.getElementById("countryRow").hidden = readHtCountry.checked;
+		document.getElementById("currencyRow").hidden = readHtCountry.checked;
+		readHtCountryDescription.hidden = !readHtCountry.checked;
+
+		readHtCountry.addEventListener("click", function(ev) {
+				var doc = ev.target.ownerDocument;
+				var checked = ev.target.checked;
+				doc.getElementById("countryRow").hidden = checked;
+				doc.getElementById("currencyRow").hidden = checked;
+				doc.getElementById("ReadHtCountryDescription").hidden = !checked;
+			},
+			false);
+
+		// country
+		var country = doc.getElementById("country");
+		country.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry");
+		document.getElementById("htCountry").selectedIndex =
+			FoxtrickPreferencesDialog.fillListFromXml3("htCountryPopup", "htCountry-",
+				Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));
+
 		// currency
 		var currency = doc.getElementById("currency");
 		currency.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency");
@@ -91,13 +120,6 @@ var FoxtrickPreferencesDialog = {
 		document.getElementById("htDateformat").selectedIndex =
 			FoxtrickPreferencesDialog.fillListFromXml("htDateformatPopup", "htDateformat-",
 				htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
-
-		// country
-		var country = doc.getElementById("country");
-		country.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry");
-		document.getElementById("htCountry").selectedIndex =
-			FoxtrickPreferencesDialog.fillListFromXml3("htCountryPopup", "htCountry-",
-				Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));
 
 		// currency converter
 		var currencyTo = doc.getElementById("currencyTo");
@@ -381,11 +403,13 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", document.getElementById("ReadHtPrefs").checked);
 
-		//Currency
-		FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
-
-		//Country
-		FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
+		// country, currency
+		var readHtCountry = document.getElementById("ReadHtCountry").checked;
+		FoxtrickPrefs.setBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled", readHtCountry);
+		if (!readHtCountry) {
+			FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
+			FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
+		}
 
 		FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(document.getElementById("htCountry").value)));
 

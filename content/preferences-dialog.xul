@@ -59,7 +59,9 @@
 								<hbox />
 								<checkbox id="ReadHtPrefs" />
 							</row>
-							<row>
+							<checkbox id="ReadHtCountry" />
+							<description id="ReadHtCountryDescription" />
+							<row id="countryRow">
 								<label id="country" control="htCountry" />
 								<hbox>
 									<menulist id="htCountry">
@@ -67,7 +69,7 @@
 									</menulist>
 								</hbox>
 							</row>
-							<row>
+							<row id="currencyRow">
 								<label id="currency" control="htCurrency" />
 								<hbox>
 									<menulist id="htCurrency">
