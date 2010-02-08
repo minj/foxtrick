@@ -141,15 +141,6 @@ var FoxtrickReadHtPrefs = {
 };
 
 
-
-
-/**
- * FoxtrickReadHtPrefsFromHeader
- * Read seeting from hattricks header
- * @author convinced
- */
-////////////////////////////////////////////////////////////////////////////////
-
 var FoxtrickReadHtPrefsFromHeader = {
 	
     MODULE_NAME : "ReadHtPrefsFromHeader",
@@ -186,6 +177,27 @@ var FoxtrickReadHtPrefsFromHeader = {
 				FoxtrickPrefs.setString("currencyRate",CurrencyRate);    
 			}
 		}
+	
+	var scripts = doc.getElementsByTagName('script');
+	for (var i=0;i<scripts.length;++i) {
+		var timeDiffpos = scripts[i].innerHTML.search('timeDiff');
+		if (timeDiffpos != -1) {			
+			var timeDiffParams = scripts[i].innerHTML.substr(timeDiffpos+8);
+				
+			var dateformat='ddmmyyyy';
+			if (timeDiffParams.search('y') < timeDiffParams.search('d')) {
+				dateformat='yyyymmdd';
+			}
+			else if (timeDiffParams.search('m') < timeDiffParams.search('d')) {
+				dateformat='mmddyyyy';
+			}
+			FoxtrickPrefs.setString("htDateformat", dateformat);
+			Foxtrick.dump('dateformat:' +dateformat+'\n');
+			break;
+		}
+	}
+	
+
 	
 	} catch(e) {Foxtrick.dump('ReadHtPrefsFromHeader: '+e+'\n');}
 	},
