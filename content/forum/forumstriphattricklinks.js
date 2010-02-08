@@ -10,8 +10,8 @@ var FoxtrickForumStripHattrickLinks = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost","forumViewThread"),
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE: "Changes links to stagepages to normal hattrick pages",
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE: "Added whitespace for nested i/b/u in pre tags",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS: new Array('NoConfirmStripping'),
 	
@@ -46,9 +46,9 @@ var FoxtrickForumStripHattrickLinks = {
 		Foxtrick.dump(button_ok.getAttribute('id')+'\n');
 		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
 		if (Foxtrick.isModuleFeatureEnabled( this, "NoConfirmStripping" )) 
-				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; if (textarea && textarea.value.search(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/) > -1)  { textarea.value = textarea.value.replace(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/gi,'[link=$3]');} "+button_ok.getAttribute('onclick'));
+				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]'); if (textarea && textarea.value.search(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/) > -1)  { textarea.value = textarea.value.replace(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/gi,'[link=$3]');} "+button_ok.getAttribute('onclick'));
 		else
-				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; if (textarea && textarea.value.search(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/) > -1)  { if(confirm('"+Foxtrickl10n.getString('foxtrick.confirmstripserver')+"')) {textarea.value = textarea.value.replace(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/gi,'[link=$3]');} else;} "+button_ok.getAttribute('onclick'));
+				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]'); if (textarea && textarea.value.search(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/) > -1)  { if(confirm('"+Foxtrickl10n.getString('foxtrick.confirmstripserver')+"')) {textarea.value = textarea.value.replace(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/gi,'[link=$3]');} else;} "+button_ok.getAttribute('onclick'));
 		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
 		
 	} catch(e) {Foxtrick.dump('FoxtrickForumStripHattrickLinks '+e+'\n');}
