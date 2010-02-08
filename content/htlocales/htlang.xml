@@ -794,7 +794,15 @@
 
 	<!-- Mikko Mentula -->
 	<language name="fi" desc="Suomi">
-		<ratingSubLevels>
+		<!-- the 6 strings from the ht's menue line. used for language autodetection -->
+		<MyHattrick value='Hattrick' /> 
+		<MyClub value='Seura' /> 
+		<World value='Maailma' /> 
+		<Forum value='Foorumi' /> 
+		<Shop value='Kauppa' /> 
+		<Help value='Ohje' />
+    
+    <ratingSubLevels>
 			<sublevel text="(erittäin matala)" value="0.0" />
 			<sublevel text="(matala)" value="0.25"  />
 			<sublevel text="(korkea)" value="0.50"  />
@@ -819,6 +827,29 @@
 			<tactic type="creatively" value="Luova peli" />
 			<tactic type="longshots" value="Kaukolaukaukset" />
 		</tactics>
+		<levels>
+			<level text="jumalainen" value="20" />
+			<level text="utopinen" value="19" />
+			<level text="maaginen" value="18" />
+			<level text="myyttinen" value="17" />
+			<level text="uskomaton" value="16" />
+			<level text="titaaninen" value="15" />
+			<level text="yliluonnollinen" value="14" />
+			<level text="unohtumaton" value="13" />
+			<level text="armoitettu" value="12" />
+			<level text="häikäisevä" value="11" />
+			<level text="loistava" value="10" />
+			<level text="mahtava" value="9" />
+			<level text="erinomainen" value="8" />
+			<level text="hyvä" value="7" />
+			<level text="kelvollinen" value="6" />
+			<level text="välttävä" value="5" />
+			<level text="heikko" value="4" />
+			<level text="kehno" value="3" />
+			<level text="kurja" value="2" />
+			<level text="surkea" value="1" />
+			<level text="olematon" value="0" />  
+		</levels>
 		
 	</language>
 
