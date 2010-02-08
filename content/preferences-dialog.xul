@@ -57,9 +57,7 @@
 							</row>
 							<row>
 								<hbox />
-								<hbox>
-									<checkbox id="ReadHtPrefs" />
-								</hbox>
+								<checkbox id="ReadHtPrefs" />
 							</row>
 							<row>
 								<label id="country" control="htCountry" />
