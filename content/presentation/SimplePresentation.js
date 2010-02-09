@@ -19,8 +19,7 @@ FoxtrickSimplePresentation = {
 									"Highlight_Staff_On_All_Pages",
                                     "HideUnseenMatchesPanel",
                                     "HideAchievementsIcons",
-									"NoLogo"
-                  
+									"NoLogo"                  
 								),
 	OPTIONS_CSS: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/League_Table.css",
@@ -30,7 +29,6 @@ FoxtrickSimplePresentation = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/hideUnseenMatchesPanel.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
-
 								),
                                
     init : function() {
@@ -39,7 +37,7 @@ FoxtrickSimplePresentation = {
                                                                        
     run : function(page, doc) {
        
-	for (var i = 0; i < this.OPTIONS.length; i++) {
+	/*for (var i = 0; i < this.OPTIONS.length; i++) {
            
             if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[i]  ) ) {
                 var css = Foxtrick.ResourcePath+"resources/css/fixes/" + this.OPTIONS[i] + ".css";
@@ -61,7 +59,7 @@ FoxtrickSimplePresentation = {
                     // Foxtrick.dump ('  FIXES: ' + i + ' - ' + this.OPTIONS[i] + ' disabled.\n');
                 }
             }
-        }    
+        }    */
     },
        
         change : function( page, doc ) {
