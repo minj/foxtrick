@@ -2,22 +2,21 @@
 <hattricklanguages>
 
 	<language name="en" desc="English">
-		<!-- the 6 strings from the ht's menue line. used for language autodetection -->
+		<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 		<MyHattrick value='My Hattrick' /> 
 		<MyClub value='My Club' /> 
 		<World value='World' /> 
 		<Forum value='Forum' /> 
 		<Shop value='Shop' /> 
 		<Help value='Help' /> 
-
-		<!-- rating sublevels appearing in match detail page -->
+		<!-- rating sublevels appearing in match detail page. copy 'text' -->
 		<ratingSubLevels>
 			<sublevel text="(very low)" value="0.0" />
 			<sublevel text="(low)" value="0.25"  />
 			<sublevel text="(high)" value="0.50"  />
 			<sublevel text="(very high)" value="0.75"  />
 		</ratingSubLevels>
-		<!-- tactics appearing in match detail page -->
+		<!-- tactics appearing in match detail page. copy 'value' -->
 		<tactics>
 			<tactic type="normal" value="Normal" />
 			<tactic type="pressing" value="Pressing" />
@@ -27,7 +26,7 @@
 			<tactic type="creatively" value="Play creatively" />
 			<tactic type="longshots" value="Long shots" />
 		</tactics>
-		<!-- positions appearing on players page -->
+		<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 		<positions>
 			<position type="Keeper" value="Keeper" short="Ke" />
 			<position type="Central defender" value="Central defender" short="Cd" />
@@ -36,6 +35,7 @@
 			<position type="Winger" value="Winger" short="Wi" />
 			<position type="Forward" value="Forward" short="Fo" />
 		</positions>
+		<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 		<specialties>
 			<specialty type="Unpredictable" value="Unpredictable" short="Un" />
 			<specialty type="Powerful" value="Powerful" short="Po" />
@@ -44,7 +44,7 @@
 			<specialty type="Head" value="Head" short="He" />
 			<specialty type="Regainer" value="Regainer" short="Re" />
 		</specialties>		
-		<!-- repositioning word connections appearing in match lineup page -->
+		<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
 		<repositioning>
 			<reposition type="midfielder" value="extra inner midfield" />
 			<reposition type="centraldefender" value="extra central defender" />
@@ -55,6 +55,7 @@
 			<reposition type="towardsmiddle" value="towards middle" />
 			<reposition type="towardswing" value="towards wing" />
 		</repositioning>
+		<!-- levels word connections appearing denominations page. copy 'text' -->
 		<levels>
 			<level text="divine" value="20" />
 			<level text="utopian" value="19" />
