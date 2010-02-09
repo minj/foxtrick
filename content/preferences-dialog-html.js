@@ -308,16 +308,17 @@ var FoxtrickPrefsDialogHTML = {
         FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);		
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
  
-		//Currency, Country        
+		//Currency, Country, Dateformat
 		var checked = doc.getElementById("ReadHtCountryCurrencyDateFormat").checked;
         FoxtrickPrefs.setBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled", checked);
 		if (!checked) {
 			FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);        
 			FoxtrickPrefs.setString("htCountry", doc.getElementById("htCountry").value);
-		}
-		
+			FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
+		}		
         FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(doc.getElementById("htCountry").value)));        
-            
+         
+		 
         //Currency Converter
        
         FoxtrickPrefs.setString("htCurrencyTo", doc.getElementById("htCurrencyTo").value);
@@ -328,9 +329,6 @@ var FoxtrickPrefsDialogHTML = {
         FoxtrickPrefs.setString("currencyRate", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",Foxtrick.XMLData.htCurrencyXml));
 		FoxtrickPrefs.setString("currencyCode", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"code",Foxtrick.XMLData.htCurrencyXml));
         
-		//Dateformat
-        FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
-
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
         FoxtrickPrefs.setBool("statusbarshowreload", doc.getElementById("statusbarshowreload").checked);
@@ -527,7 +525,8 @@ var FoxtrickPrefsDialogHTML = {
 		else currentCountryCurrencyDateFormatdiv.style.display='none';
 		currentCountryCurrencyDateFormatdiv.innerHTML = '( '+Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc")+' '+ 
 														FoxtrickPrefs.getString("htCountry")+' / '+
-														FoxtrickPrefs.getString("oldCurrencySymbol")+' )';
+														FoxtrickPrefs.getString("oldCurrencySymbol")+' / ' +
+														FoxtrickPrefs.getString("htDateformat")+' )';
 		groupbox.appendChild(currentCountryCurrencyDateFormatdiv);
 		
 		Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) {
@@ -572,7 +571,7 @@ var FoxtrickPrefsDialogHTML = {
 
         var groupbox2= doc.createElement("div");
 		groupbox2.setAttribute('class',"ft_pref_modul");
-		groupbox.appendChild(groupbox2);
+		groupboxCountryCurrency.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
         caption1.setAttribute('class',"ft_pref_group_caption");
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat")));
