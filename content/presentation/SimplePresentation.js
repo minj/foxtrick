@@ -30,6 +30,7 @@ FoxtrickSimplePresentation = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/hideUnseenMatchesPanel.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
+
 								),
                                
     init : function() {

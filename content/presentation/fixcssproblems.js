@@ -18,7 +18,9 @@ FoxtrickFixcssProblems = {
                                     "Page_Minimum_Height",
                                     "MatchOrder_Lineheight",
                                     "RTL_Fixes",
-                                    "ForumScrollBarFix"
+                                    "ForumScrollBarFix",
+									"MatchReportRatingsFontFix"
+									
                   
 								),
 	OPTIONS_CSS: new Array (
@@ -27,7 +29,8 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/Page_Minimum_Height.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/MatchOrder_Lineheight.css",
                                 "",
-                                Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css"
+                                Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css"
 								
 								),
         OPTIONS_CSS_RTL: new Array (
@@ -36,7 +39,8 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/Page_Minimum_Height.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/MatchOrder_Lineheight.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes.css",
-                                Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css"
+                                Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css"
 								
                                 ),
                                
