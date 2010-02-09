@@ -4,7 +4,8 @@
 
 
 <version>0.5.1</version>
-<title>Release notes (Selected features and issues only)</title>
+<title>Release notes (selected features and issues only)</title>
+<lines></lines>
 <lines>* New language Tiếng Việt -  Thanks to Murtagsh (9372637)!</lines>
 <lines>* Enhanced adultskilltable, youthskilltable and teamstats</lines>
 <lines>* Rapid id search</lines>
@@ -14,8 +15,9 @@
 <lines>* New option to hide notification box about unread messages within the Forum thread (FixcssProblems module)</lines>
 <lines>* Option to open automatically hattrick-youthclub page after copying youth player source code, scout оr training report</lines> 
 <lines>* Automatic country and currency detection in Main Options (default on)</lines> 
-<lines></lines> 
-<lines>For a complete list use bellow changes link and/or 'set new features' link</lines> 
+<lines>* Some options have been relocated from FixcssProblems module to two new modules:"SimplePresentation" and "ForumPresentation"</lines> 
+<lines></lines>
+<lines>For a complete list use 'changes' link and/or 'set new features' link bellow</lines> 
 
 
 
