@@ -15,9 +15,13 @@
 <lines>* New option to hide notification box about unread messages within the Forum thread (FixcssProblems module)</lines>
 <lines>* Option to open automatically hattrick-youthclub page after copying youth player source code, scout оr training report</lines> 
 <lines>* Automatic country and currency detection in Main Options (default on)</lines> 
-<lines>* Some options have been relocated from FixcssProblems module to two new modules:"SimplePresentation" and "ForumPresentation"</lines> 
-<lines></lines>
-<lines>For a complete list use 'changes' link and/or 'set new features' link bellow</lines> 
+<lines></lines> 
+<lines>Attention!</lines> 
+<lines>* Transferfilter fix: old max bid values unfornatelly might be lost</lines>
+<lines>* Module FixCss split in three new modules. Settings for those are back to default.</lines>
+<lines></lines> 
+<lines>For a complete list use bellow changes link and/or 'set new features' link</lines> 
+
 
 
 
