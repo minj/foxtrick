@@ -231,7 +231,7 @@ FoxtrickPrefs.confirmCleanupBranch = function ( ev ) {
 			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
-			dump('confirmCleanupBranch error:'+e+'\n');
+			Foxtrick.dump('confirmCleanupBranch error:'+e+'\n');
         }
     }
     return true;
@@ -254,7 +254,7 @@ FoxtrickPrefs.disableAll = function (ev ) {
 			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
         }
         catch (e) {
-			dump(e);
+			Foxtrick.dump('disable all'+e+'\n');
         }
     }
 	return true;

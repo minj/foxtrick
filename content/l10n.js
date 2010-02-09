@@ -33,7 +33,7 @@ var Foxtrickl10n = {
              Components.classes["@mozilla.org/intl/stringbundle;1"] 
              .getService(Components.interfaces.nsIStringBundleService)  
              .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
-	  } catch (e) { dump('Foxtrickl10n->get_strings_bundle: Error reading language file: '+e+'\n');}
+	  } catch (e) { Foxtrick.dump('Foxtrickl10n->get_strings_bundle: Error reading language file: '+e+'\n');}
 	},
 
 	
@@ -47,7 +47,7 @@ var Foxtrickl10n = {
 					if ( this._strings_bundle_default ) return this._strings_bundle_default.GetStringFromName( str );
 				} catch( ee ) {
                     // DEBUG FOR RELEASE 0.4.3
-                    dump("** Localization error 1 ** '" + str + "'\n");
+                    Foxtrick.dump("** Localization error 1 ** '" + str + "'\n");
                     // DEBUG FOR RELEASE 0.4.3
                     return "** Localization error 1 **";
 				}
@@ -55,7 +55,7 @@ var Foxtrickl10n = {
         }
         else {
             // DEBUG FOR RELEASE 0.4.3
-            dump("** Localization error 2 ** '" + str + "'\n");
+            Foxtrick.dump("** Localization error 2 ** '" + str + "'\n");
             // DEBUG FOR RELEASE 0.4.3
             return "** Localization error 2 **";
         }

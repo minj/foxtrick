@@ -150,7 +150,7 @@ var FoxtrickLinksCustom = {
 		var exec = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 		try {
         var locpath = ev.target.parentNode.getAttribute('href').replace(/call:\s+?/i,'');
-		dump(locpath+'\n');
+		Foxtrick.dump('callexe: '+locpath+'\n');
 		try {
 			exec.initWithPath(file.path);
 		} catch (e) {

@@ -66,7 +66,7 @@ var FoxtrickRedirections = {
 					else if (doc.location.href.search(/redir_to_league=true/i)!=-1 ) 
 								tar=serv+'/World/Series/Default.aspx?LeagueLevelUnitID='+leagueid;	
 					else if (doc.location.href.search(/redir_to_custom=true\&/i)!=-1 ) { 
-							tar = doc.location.href.replace(/.+redir_to_custom=true\&/,''); dump(tar+'\n');
+							tar = doc.location.href.replace(/.+redir_to_custom=true\&/,''); //Foxtrick.dump(tar+'\n');
 							tar = tar.replace(/%5Bteamid%5D|\[teamid\]/i, teamid);
 							tar = tar.replace(/%5Buserid%5D|\[userid\]/i, userid);	
 							//if (tar.charAt(0)=='/') tar=serv+tar;
@@ -92,7 +92,7 @@ var FoxtrickRedirections = {
 	if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) { 
 		var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
 		var TeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));		
-		var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; dump(tar+'\n');
+		var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; //Foxtrick.dump(tar+'\n');
 		doc.location.replace(tar);						
 	}
 	// redirect to coach		

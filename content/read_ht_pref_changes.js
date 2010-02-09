@@ -92,6 +92,7 @@ var FoxtrickReadHtPrefs = {
 				}
 				if (num_found==6) {
 					langval = languages[k].getAttribute('name');
+					Foxtrick.dump('lang detected: '+languages[k].getAttribute('desc')+'\n');
 					break;
 				}
 			}
@@ -440,7 +441,7 @@ var FoxtrickMyHT = {
 		
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i]; 
-//			dump (oldVersion+' <= ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\t'+module.MODULE_NAME+'\n');
+//			Foxtrick.dump (oldVersion+' <= ' +module.NEW_AFTER_VERSION+' '+(oldVersion <= module.NEW_AFTER_VERSION)+'\t'+module.MODULE_NAME+'\n');
 			if ( (module.NEW_AFTER_VERSION && oldVersion <= module.NEW_AFTER_VERSION) 
 				|| (!module.NEW_AFTER_VERSION && oldVersion=="")) {
 				
@@ -448,7 +449,7 @@ var FoxtrickMyHT = {
 				if (!module.LATEST_CHANGE_CATEGORY || module.LATEST_CHANGE_CATEGORY!=Foxtrick.latestChangeCategories.NEW) continue;
 													
 				FoxtrickMyHT.NewModules.push(module); 
-				dump(module.MODULE_NAME+'\n');
+				//Foxtrick.dump(module.MODULE_NAME+'\n');
 			}
 		}
 				
@@ -458,7 +459,7 @@ var FoxtrickMyHT = {
 						
 		// modules
 		for ( var j=0; j<FoxtrickMyHT.NewModules.length; ++j ) {
-					dump(FoxtrickMyHT.NewModules[j].MODULE_NAME+'\n');
+					//dump(FoxtrickMyHT.NewModules[j].MODULE_NAME+'\n');
 			var entry;				
 			if (FoxtrickMyHT.NewModules[j].RADIO_OPTIONS != null) {
 						entry = FoxtrickPrefsDialogHTML._radioModule(doc, FoxtrickMyHT.NewModules[j], false);

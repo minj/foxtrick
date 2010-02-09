@@ -41,15 +41,15 @@ var FoxtrickMain = {
 	IsNewVersion:false,
 
     init : function() {
-		Foxtrick.dump('FoxtrickMain.init\n');
+		Foxtrick.dump('-------------- FoxtrickMain.init start\n');
 /*		// remove before release
 		if (!Foxtrick.numglobals) {
-				for ( var i=0;i<Foxtrick.globals.length;++i ) dump('global: ' +Foxtrick.globals[i]+'\n');
+				for ( var i=0;i<Foxtrick.globals.length;++i ) Foxtrick.dump('global: ' +Foxtrick.globals[i]+'\n');
 				Foxtrick.numglobals=Foxtrick.globals.length;
 		}
 		else {
 			for ( var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i )
-				if (Foxtrick.globals[i]!='QueryInterface') dump('undeclared local global variable: ' +Foxtrick.globals[i]+'\n');
+				if (Foxtrick.globals[i]!='QueryInterface') Foxtrick.dump('undeclared local global variable: ' +Foxtrick.globals[i]+'\n');
 		}
 */
 		// init core modules
@@ -104,6 +104,8 @@ var FoxtrickMain = {
 		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_statusbar.css' ) ;
 		Foxtrick.main_css_loaded = true;
 		FoxtrickMain.new_start = true;
+		
+		Foxtrick.dump('-------------- FoxtrickMain.init end\n');
 	},
 
     registerOnPageLoad : function(document) {
@@ -166,7 +168,7 @@ var FoxtrickMain = {
 		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex); 
 		var doc = currentBrowser.contentDocument;
 
-		dump('onfocus: '+doc.location.href+'\n');
+		Foxtrick.dump('onfocus: '+doc.location.href+'\n');
 		if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )        
 			FoxtrickMain.run(currentBrowser.contentDocument, true);   // recheck css
 
@@ -206,6 +208,8 @@ var FoxtrickMain = {
         // hattrick URL check and run if on HT
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
+			//Foxtrick.dump('---------------------- foxtrick onPageLoad start\n');
+
 			var begin = new Date();
 
             FoxtrickMain.run( doc );
@@ -219,7 +223,7 @@ var FoxtrickMain = {
 			if( content ) {
 				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 			}
-			Foxtrick.dump('--------------\n')
+			//Foxtrick.dump('---------------------- foxtrick onPageLoad end\n')
 	    }
     },
 
@@ -233,7 +237,7 @@ var FoxtrickMain = {
     // main entry run on every ht page load
     run : function( doc, is_only_css_check ) {
 	try {
-		Foxtrick.dump('main run start. is_only_css_check: '+is_only_css_check!=null+'\n');
+		//Foxtrick.dump('----- foxtrickmain run. is_only_css_check: '+(is_only_css_check!=null)+'\n');
 
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
@@ -657,7 +661,7 @@ Foxtrick.selectFileSave = function (parentWindow) {
     		return fp.file.path;
     	}
     } catch (e) {
-        Foxtrick.dump('selectFileSave'+e);
+        Foxtrick.dump('selectFileSave'+e+'\n');
     }
 	return null;
 }
@@ -670,7 +674,7 @@ Foxtrick.selectFile = function (parentWindow) {
     		return fp.file.path;
     	}
     } catch (e) {
-        Foxtrick.dump('selectFile'+e);
+        Foxtrick.dump('selectFile'+e+'\n');
     }
 	return null;
 }
@@ -681,7 +685,7 @@ Foxtrick.playSound = function(url) {
     var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
     soundService.play(ioService.newURI(url, null, null));
   } catch (e) {
-    Foxtrick.dump('playSound'+e);
+    Foxtrick.dump('playSound'+e+'\n');
   }
 }
 
@@ -1947,11 +1951,11 @@ Foxtrick.dump_flush = function(doc) {
                 doc.getElementById('page').appendChild(div);
             }
             Foxtrick.dump_HTML = '';
-        } catch(e) {dump(e);}
+        } catch(e) {dump('dump_flush '+e+'\n');}
 }
 Foxtrick.dump = function(cnt) {
 	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
-    dump(String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
+    dump('ft: '+String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
 }
 
 

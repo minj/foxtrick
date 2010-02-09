@@ -482,7 +482,7 @@ var FoxtrickPreferencesDialog = {
 			return returnedOffset;
 		}
 		catch (e) {
-			dump('Offset search for '+ itemToSearch + ' ' + e + '\n');
+			Foxtrick.dump('Offset search for '+ itemToSearch + ' ' + e + '\n');
 			return 0;
 		}
 	},
@@ -525,7 +525,7 @@ var FoxtrickPreferencesDialog = {
 			return returnedItemToSearch;
 		}
 		catch (e) {
-			dump('CurrencyConverter-CurrValue(): ' + e + '\n');
+			Foxtrick.dump('CurrencyConverter-CurrValue(): ' + e + '\n');
 		}
 	},
 

@@ -380,7 +380,7 @@ var FoxtrickPrefsDialogHTML = {
 		//dump('end save\n');
 	} catch (e) { 
 		if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = true;
-		dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');
+		Foxtrick.dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');
 	}
 	},
 
@@ -1673,7 +1673,7 @@ var FoxtrickPrefsDialogHTML = {
 			return returnedOffset;
     }
     catch (e) {
-        dump('  Offset search for '+ itemToSearch + ' ' + e + '\n');
+        Foxtrick.dump('  Offset search for '+ itemToSearch + ' ' + e + '\n');
         return 0;
     }
 	},
@@ -1723,7 +1723,7 @@ var FoxtrickPrefsDialogHTML = {
 
       return returnedItemToSearch;
          } catch (e) {
-                dump('  CurrencyConverter-CurrValue(): ' + e + '\n');
+                Foxtrick.dump('  CurrencyConverter-CurrValue(): ' + e + '\n');
            }
 },
 
@@ -1972,7 +1972,7 @@ var FoxtrickOnPagePrefs = {
 			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");			
 			if (Foxtrick.isRTLLayout(doc)) headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
-			dump ('onclick/submit remove onpagepref\n');
+			Foxtrick.dump ('onclick/submit remove onpagepref\n');
 		}
 	} catch(e){dump('OnPagePrefClick: '+e+'\n');}
 	},
@@ -1989,7 +1989,7 @@ var FoxtrickOnPagePrefs = {
 			var headdiv = doc.getElementById('foxtrick_OnPagePrefs_headdiv');
 			headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed");			
 			if (Foxtrick.isRTLLayout(doc)) headdiv.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
-			dump ('onclick/submit remove onpagepref\n');
+			Foxtrick.dump ('onclick/submit remove onpagepref\n');
 		}
 	} catch(e){dump('OnPagePrefClick: '+e+'\n');}
 	},

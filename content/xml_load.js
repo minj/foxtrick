@@ -209,7 +209,7 @@ Foxtrick.XMLData = {
 			req.send(null);
 			if (req.status == 200) {
 				this.matchxmls[matchid] = req.responseXML;
-				dump('matches.js: get new xml\n');
+				Foxtrick.dump('matches.js: get new xml\n');
 			}
 			else Foxtrick.dump('matches.js: xml request failed\n');
 		}
