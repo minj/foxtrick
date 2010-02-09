@@ -267,7 +267,7 @@ var FoxtrickMyHT = {
 				p.appendChild(a);*/				
 				
 				try {	
-					var file = Foxtrick.ResourcePath+'releaseNotes.txt';
+					var file = Foxtrick.ResourcePath+'releaseNotes.xml';
 					var req = new XMLHttpRequest();
 					req.open('GET', file, false); 
 					req.send(null);
@@ -276,7 +276,7 @@ var FoxtrickMyHT = {
 						notesDOM.innerHTML = req.responseText;
 						var version = notesDOM.getElementsByTagName('version')[0].innerHTML;
 						try {
-							var file = Foxtrick.ResourcePath+'locale/'+FoxtrickPrefs.getString("htLanguage")+'/releaseNotes.txt';
+							var file = Foxtrick.ResourcePath+'locale/'+FoxtrickPrefs.getString("htLanguage")+'/releaseNotes.xml';
 							var req = new XMLHttpRequest();
 							req.open('GET', file, false); 
 							req.send(null);
