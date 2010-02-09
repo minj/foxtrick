@@ -285,9 +285,10 @@ var FoxtrickMyHT = {
 								var notesDOMlocale = doc.createElement('dummy');				
 								notesDOMlocale.innerHTML = req.responseText;
 								var version_locale = notesDOMlocale.getElementsByTagName('version')[0].innerHTML;
-								if (version==version_locale) notesDOM = notesDOMlocale;						
+								if (version==version_locale) notesDOM = notesDOMlocale;	
+								else Foxtrick.dump('locale release notes out of date\n')
 							}
-						} catch(e) {Foxtrick.dump('locale release notes: '+e+'\n');}
+						} catch(e) {Foxtrick.dump('locale release notes not available\n');}
 						
 						var title = notesDOM.getElementsByTagName('title');
 						for (var i=0;i<title.length;++i) {
