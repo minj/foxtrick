@@ -1776,31 +1776,31 @@
 	<language name="mt" desc="Malti">
 	<!-- rating sublevels appearing in match detail page -->
 		<ratingSubLevels>
-			<sublevel text="(very low)" value="0.0" />
-			<sublevel text="(low)" value="0.25"  />
-			<sublevel text="(high)" value="0.50"  />
-			<sublevel text="(very high)" value="0.75"  />
+			<sublevel text="(Baxx ħafna)" value="0.0" />
+			<sublevel text="(Baxx)" value="0.25"  />
+			<sublevel text="(Għoli)" value="0.50"  />
+			<sublevel text="(Għoli ħafna)" value="0.75"  />
 		</ratingSubLevels>
 		<!-- tactics appearing in match detail page -->
 		<tactics>
-			<tactic type="normal" value="Normal" />
-			<tactic type="pressing" value="Pressing" />
-			<tactic type="ca" value="Counter-attacks" />
-			<tactic type="aow" value="Attack on wings" />
-			<tactic type="aim" value="Attack in the Middle" />
-			<tactic type="creatively" value="Play creatively" />
-			<tactic type="longshots" value="Long shots" />
+			<tactic type="normal" value="Normali" />
+			<tactic type="pressing" value="Ippressaw" />
+			<tactic type="ca" value="Ilagħbu bil-kontrattakk" />
+			<tactic type="aow" value="Attakkaw minn mal-linji" />
+			<tactic type="aim" value="Attakkaw minn ġon-nofs" />
+			<tactic type="creatively" value="Ilagħbu kreattiv" />
+			<tactic type="longshots" value="Ixxuttjaw mill-bogħod" />
 		</tactics>
 		<!-- repositioning word connections appearing in match lineup page -->
 		<repositioning>
-			<reposition type="midfielder" value="extra inner midfield" />
-			<reposition type="centraldefender" value="extra central defender" />
-			<reposition type="forward" value="extra forward" />
-			<reposition type="normal" value="normal" />
-			<reposition type="offensive" value="offensive" />
-			<reposition type="defensive" value="defensive" />
-			<reposition type="towardsmiddle" value="towards middle" />
-			<reposition type="towardswing" value="towards wing" />
+			<reposition type="midfielder" value="Midfielder ċentrali ieħor" />
+			<reposition type="centraldefender" value="Difensur ċentrali ieħor" />
+			<reposition type="forward" value="Attakkant ieħor" />
+			<reposition type="normal" value="Normali" />
+			<reposition type="offensive" value="Offensiv" />
+			<reposition type="defensive" value="Difensiv" />
+			<reposition type="towardsmiddle" value="Lejn in-Nofs" />
+			<reposition type="towardswing" value="Lejn il-Linja" />
 		</repositioning>
 		<levels>
 			<level text="divine" value="20" />
