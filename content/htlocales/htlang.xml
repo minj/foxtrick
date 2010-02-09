@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hattricklanguages>
 
+<!-- In here are additional language strings which are needed to eg detect sublevels.  					-->
+<!-- Generally, those need to be copied directly from ht pages to work 									-->
+<!-- On the top there is the english master section					 									-->
+<!-- Bellow you find the sections for other languages				 									-->
+<!-- Bellow you find the sections for other languages				 									-->
+<!-- Those should have the same entries as the english section with the appropriated strings translated	-->
+<!-- Copy 'value' means, copy the resp 'value' string from ht pages										-->
+<!-- Translate 'short' means, freely translate the 'short' string										-->
+<!-- Everything else stays an untranslated copy of the english section									-->
+	
+	
+	<!-- 'name' is the folder name in /locale/ . 'desc' is the displayed name -->
 	<language name="en" desc="English">
 		<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 		<MyHattrick value='My Hattrick' /> 
