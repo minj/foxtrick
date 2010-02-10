@@ -514,15 +514,20 @@ var FoxtrickStaffMarker = {
 							new_style += this.stl_LA;
                         } else if (do_editor && this.editorsArray[uid]!=null) {
                             new_style +=  this.stl_editor;
-                        } else if (do_hty_staff && this.hty_staff != null && Foxtrick.in_array(this.hty_staff,uname)) {
+                        } 
+						
+						// adding background images. lowest priority fisrt
+						if (do_hty_staff && this.hty_staff != null && Foxtrick.in_array(this.hty_staff,uname)) {
                             new_style += this.stl_hty_staff;
-                        } else if (do_chpps && this.chppholder[uid]!=null) {
-                            new_style += this.stl_chpps;
-                        } else if (do_foxtrick_dev && this.foxtrickersArray[uid]!=null) {
+                        } 					
+						if (do_foxtrick_dev && this.foxtrickersArray[uid]!=null) {
                             new_style +=  this.stl_foxtrick_dev;
-                        }
-					
-                        if (do_flag) {
+                        } 
+						if (do_chpps && this.chppholder[uid]!=null) {
+                            new_style += this.stl_chpps;
+                        } 
+
+						if (do_flag) {
                             new_style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif");  background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
                         }
                         option.setAttribute("style", new_style);
