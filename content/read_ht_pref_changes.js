@@ -161,7 +161,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
 		
-		if (teamLinks) return;
+		if (!teamLinks) return;
 		
 		if ( Foxtrick.isModuleFeatureEnabled(FoxtrickReadHtPrefsFromHeader, 'CountryCurrencyDateFormat') ) {
 			var CountryLink = teamLinks[2];
@@ -177,7 +177,8 @@ var FoxtrickReadHtPrefsFromHeader = {
 			
 				FoxtrickPrefs.setString("htCountry", CountryName);
 				FoxtrickPrefs.setString("oldCurrencySymbol", CurrencyName);
-				FoxtrickPrefs.setString("currencyRate",CurrencyRate);    
+				FoxtrickPrefs.setString("currencyRate",CurrencyRate);
+				FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(CountryName)));                				
 			}
 			
 			var scripts = doc.getElementsByTagName('script');
