@@ -42,8 +42,8 @@ var FoxtrickMain = {
 	vars:null,
 	IsNewVersion:false,
 
-    init : function() { 
-		Foxtrick.dump('-------------- FoxtrickMain.init start\n');
+    init : function() {  
+		Foxtrick.dump('-------------- FoxtrickMain.init start ------------------\n');
 /*		// remove before release
 		if (!Foxtrick.numglobals) {
 				for ( var i=0;i<Foxtrick.globals.length;++i ) Foxtrick.dump('global: ' +Foxtrick.globals[i]+'\n');
@@ -108,7 +108,7 @@ var FoxtrickMain = {
 		Foxtrick.main_css_loaded = true;
 		FoxtrickMain.new_start = true;
 		
-		Foxtrick.dump('-------------- FoxtrickMain.init end\n');
+		Foxtrick.dump('-------------- FoxtrickMain.init end --------------------\n');
 	},
 
     registerOnPageLoad : function(document) {
@@ -118,11 +118,6 @@ var FoxtrickMain = {
 			"foxtrick_statusbar_config_menu" );
 		statusbarMenu.setAttribute( "label", Foxtrickl10n.getString(
 			"foxtrick.menu.configurefoxtrick") );
-		var statusbarReload = document.getElementById(
-			"foxtrick_statusbar_reload" );
-		statusbarReload.setAttribute( "label", Foxtrickl10n.getString(
-			"foxtrick.menu.reloadfoxtrick") );
-		if( !FoxtrickPrefs.getBool( "statusbarshowreload" )) statusbarReload.setAttribute( "hidden", true);
 		var statusbarDeactivate = document.getElementById(
 			"foxtrick_statusbar_deactivate" );
 		statusbarDeactivate.setAttribute( "label", Foxtrickl10n.getString(
@@ -192,7 +187,7 @@ var FoxtrickMain = {
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 		var begin = new Date();
-		if (doc.location.href.search(/Live.aspx/)==-1) Foxtrick.dump('onPageChange: '+ ev.originalTarget.className+' '+ev.currentTarget.className +' '+ev.target.className +'\n');
+		//if (doc.location.href.search(/Live.aspx/)==-1) Foxtrick.dump('onPageChange: '+ ev.originalTarget.className+' '+ev.currentTarget.className +' '+ev.target.className +'\n');
 		FoxtrickMain.change( doc , ev);
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
@@ -819,7 +814,7 @@ Foxtrick.unload_css_permanent = function( css ) {
 			// try unload
 			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
 					sss.unregisterSheet(uri, sss.USER_SHEET);
-					Foxtrick.dump('unload '+css.substr(0,71)+'\n');
+					Foxtrick.dump('unload '+css.substr(0,65)+'\n');
 			}
         } catch(e) {
             Foxtrick.dump ('> load_css_permanent ' + e + '\n');
@@ -836,7 +831,7 @@ Foxtrick.load_css_permanent = function( css) {
 			// load
 			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
 						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
-						Foxtrick.dump('load '+css.substr(0,73)+'\n');
+						Foxtrick.dump('load '+css.substr(0,65)+'\n');
 			}
 		}
         catch(e) {

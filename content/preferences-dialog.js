@@ -224,10 +224,6 @@ var FoxtrickPreferencesDialog = {
 		var statusbarpref = doc.getElementById("statusbarpref");
 		statusbarpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.statusbarpref"));
 		statusbarpref.setAttribute("checked", FoxtrickPrefs.getBool("statusbarshow"));
-		// reload menu item
-		var statusbarshowreload = doc.getElementById("statusbarshowreload");
-		statusbarshowreload.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.statusbarshowreload"));
-		statusbarshowreload.setAttribute("checked", FoxtrickPrefs.getBool("statusbarshowreload"));
 
 		// additional options
 		var additionalOptions = doc.getElementById("additionalOptions");
@@ -430,7 +426,6 @@ var FoxtrickPreferencesDialog = {
 
 		//Statusbar
 		FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
-		FoxtrickPrefs.setBool("statusbarshowreload", document.getElementById("statusbarshowreload").checked);
 
 		//Alert
 		FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
@@ -769,7 +764,6 @@ var FoxtrickPreferencesDialog = {
 			var key, title;
 			if (module.OPTIONS[i]["key"] == null) {
 				key = module.OPTIONS[i];
-				//title = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.OPTIONS[i]);
 				title = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
 			} else {
 				key = module.OPTIONS[i]["key"];

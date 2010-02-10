@@ -331,7 +331,6 @@ var FoxtrickPrefsDialogHTML = {
         
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
-        FoxtrickPrefs.setBool("statusbarshowreload", doc.getElementById("statusbarshowreload").checked);
 
         //Alert
         FoxtrickPrefs.setBool("alertSlider", doc.getElementById("alertsliderpref").checked);
@@ -870,9 +869,6 @@ var FoxtrickPrefsDialogHTML = {
 
         var checked = FoxtrickPrefs.getBool("statusbarshow");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'statusbarpref', Foxtrickl10n.getString("foxtrick.prefs.statusbarpref"), '', checked ) 
-		div.appendChild(checkdiv);
-        var checked = FoxtrickPrefs.getBool("statusbarshowreload");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'statusbarshowreload', Foxtrickl10n.getString("foxtrick.prefs.statusbarshowreload"), '', checked ) 
 		div.appendChild(checkdiv);
 		
 		// AdditionalOptions
