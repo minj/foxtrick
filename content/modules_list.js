@@ -161,3 +161,4 @@ Foxtrick.modules = [
 					FoxtrickRapidId,
 					FoxtrickSkillTable
                     ];
+					

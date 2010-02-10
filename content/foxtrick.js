@@ -1,9 +1,10 @@
-
 /**
  * Foxtrick - an extension for hattrick.org
  * Contact us: by HT-mail to Mod-Spambot on hattrick.org
  */
 
+if (!Foxtrick) var Foxtrick={};
+ 
 ////////////////////////////////////////////////////////////////////////////////
 /** Modules that are to be called every time any hattrick page loads.
  * Should implement a run() method.
@@ -32,6 +33,7 @@ Foxtrick.core_modules = [ FoxtrickPrefs,
 Foxtrick.globals=[];
 for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
 */
+
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 	new_start:true,
@@ -40,7 +42,7 @@ var FoxtrickMain = {
 	vars:null,
 	IsNewVersion:false,
 
-    init : function() {
+    init : function() { 
 		Foxtrick.dump('-------------- FoxtrickMain.init start\n');
 /*		// remove before release
 		if (!Foxtrick.numglobals) {
