@@ -160,10 +160,6 @@ var FoxtrickPreferencesDialog = {
 		var alertslidermacpref = doc.getElementById("alertslidermacpref");
 		alertslidermacpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"));
 		alertslidermacpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSliderGrowl"));
-		// dbus
-		var alertsliderdbus = doc.getElementById("alertsliderdbus");
-		alertsliderdbus.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsliderdbus"));
-		alertsliderdbus.setAttribute("checked", FoxtrickPrefs.getBool("alertSliderDBus"));
 		// sound
 		var alertsoundpref = doc.getElementById("alertsoundpref");
 		alertsoundpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"));
@@ -439,7 +435,6 @@ var FoxtrickPreferencesDialog = {
 		//Alert
 		FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
 		FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
-		FoxtrickPrefs.setBool("alertSliderDBus", document.getElementById("alertsliderdbus").checked);
 		FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
 		FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
 

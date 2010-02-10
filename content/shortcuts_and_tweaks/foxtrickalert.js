@@ -10,8 +10,8 @@ var FoxtrickAlert = {
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"Alert options enabled for growl. Adding optional dbus (linux) alert.  Goto main preferences to change it.",
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Optional dbus (linux) alert removed again for AMO compliance",
     LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("NewMail","NewForum"), 
 	
@@ -192,10 +192,6 @@ var FoxtrickAlert = {
 		else if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 			FoxtrickAlert.foxtrick_showAlertGrowl(message);
 		}						
-		else if (FoxtrickPrefs.getBool("alertSliderDBus")) {
-			var linked_message="<a href='"+href+"'>"+message+"</a>";
-			FoxtrickAlert.foxtrick_show_dbus(linked_message);
-		}						
 
 		if (FoxtrickPrefs.getBool("alertSound")) {
 			try {
@@ -271,7 +267,6 @@ var FoxtrickAlert = {
 	
     foxtrick_showAlertGrowl: function(text) {
     	// mac only
-
     	try {
     		var grn = Components.classes["@growl.info/notifications;1"].getService(Components.interfaces.grINotifications);
     		var img = "http://hattrick.org/favicon.ico";
@@ -280,45 +275,7 @@ var FoxtrickAlert = {
     	} catch (e) {
     		Foxtrick.LOG(e);
     	}
-
     },
-
-
-// call dbus_notify.py  linux only
-foxtrick_show_dbus: function(text) {
-Foxtrick.dump('foxtrick_show_dbus: '+text+'\n');
-		var exec = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-
-	const MY_ID = '{9d1f059c-cada-4111-9696-41a62d64e3ba}';
-	const DIR_SERVICE = Components.classes["@mozilla.org/extensions/manager;1"].
-		getService(Components.interfaces.nsIExtensionManager);
-    try {
-        try {
-            var file = DIR_SERVICE.getInstallLocation(MY_ID).
-		    getItemFile(MY_ID, "/components/dbus_notify.py");
-        } catch (e) {
-            Foxtrick.dump("error finding dbus_notify.py: "+error);
-        }
-
-        exec.initWithPath(file.path);
-
-        if (exec.exists()) {
-            var process = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);
-
-    	    var title = "hattrick.org";
-            var args = [text,title];
-
-	    process.init(exec);
-            var exitvalue = process.run(false, args, args.length);
-        } else {
-            Foxtrick.dump("Error running dbus_notify.py");
-        }
-    } catch (e) {
-        Foxtrick.dump("FirefoxNotify Failed"+e);
-        //return;
-    }
-	
-  }  
 };
 
 

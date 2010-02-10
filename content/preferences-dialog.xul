@@ -242,7 +242,6 @@
 					<caption id="alertSlider" />
 					<checkbox id="alertsliderpref" />
 					<checkbox id="alertslidermacpref" />
-					<checkbox id="alertsliderdbus" />
 					<checkbox id="alertsoundpref" />
 					<grid>
 						<columns>
