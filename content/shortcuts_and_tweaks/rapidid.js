@@ -14,14 +14,15 @@ var FoxtrickRapidId = {
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.NEW,
 
 	options: [
-		{ value: "match", text: "Match", url: "Club/Matches/Match.aspx?matchID" },
-		{ value: "manager", text: "Manager", url: "Club/Manager/?userId" },
+		{ value: "manager", text: "Manager", url: "Club/Manager/?userId=%n" },
 		{ value: "senior", text: "Senior" },
-		{ value: "senior-team", text: "Team", url: "Club/?TeamID" },
-		{ value: "senior-player", text: "Player", url: "Club/Players/Player.aspx?playerId" },
+		{ value: "senior-team", text: "Team", url: "Club/?TeamID=%n" },
+		{ value: "senior-player", text: "Player", url: "Club/Players/Player.aspx?playerId=%n" },
+		{ value: "senior-match", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n" },
 		{ value: "youth", text: "Youth" },
-		{ value: "youth-team", text: "Team", url: "Club/Youth/Default.aspx?YouthTeamID" },
-		{ value: "youth-player", text: "Player", url: "Club/Players/YouthPlayer.aspx?YouthPlayerID" }
+		{ value: "youth-team", text: "Team", url: "Club/Youth/Default.aspx?YouthTeamID=%n" },
+		{ value: "youth-player", text: "Player", url: "Club/Players/YouthPlayer.aspx?YouthPlayerID=%n" },
+		{ value: "youth-match", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n&isYouth=true" }
 	],
 
 	setSelected: function(val) {
@@ -49,7 +50,8 @@ var FoxtrickRapidId = {
 			if (FoxtrickRapidId.options[i].value === type) {
 				FoxtrickRapidId.setSelected(type);
 				var host = doc.location.hostname;
-				var fullurl = "http://" + host + "/" + FoxtrickRapidId.options[i].url + "=" + id;
+				var url = FoxtrickRapidId.options[i].url.replace("%n", id);
+				var fullurl = "http://" + host + "/" + url;
 				doc.location.replace(fullurl);
 			}
 		}
