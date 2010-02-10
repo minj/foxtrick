@@ -35,7 +35,7 @@ var FoxtrickHighlightCupwins = {
 
 				// win, draw, lose from the aspect of home team
 				var win = (goalsHome > goalsAway);
-				var draw = (goalsHome === goalsAway); // 0 - 0 is match isn't played yet
+				var draw = (goalsHome === goalsAway); // 0 - 0 if match isn't played yet
 				var lose = (goalsHome < goalsAway);
 				var matchlink = table.rows[i].cells[2].getElementsByTagName('a')[0];
 				var firstsep=matchlink.innerHTML.indexOf(' - ' );
@@ -49,7 +49,7 @@ var FoxtrickHighlightCupwins = {
 				}
 				else if (lose) {
 					matchlink.innerHTML = hometeam+' - <strong>'+awayteam+'</strong>';
-				}			
+				}
 			}
 		}
 		catch(e){Foxtrick.dump(e);}
