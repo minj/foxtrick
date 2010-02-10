@@ -1530,6 +1530,17 @@
 			<tactic type="creatively" value="Mängi loovalt" />
 			<tactic type="longshots" value="Kauglöögid" />
 		</tactics>
+		<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+		<repositioning>
+			<reposition type="midfielder" value="Lisakeskpoolkaitsja" />
+			<reposition type="centraldefender" value="Lisakeskkaitsja" />
+			<reposition type="forward" value="Lisaründaja" />
+			<reposition type="normal" value="Tavaline" />
+			<reposition type="offensive" value="Ründav" />
+			<reposition type="defensive" value="Kaitsev" />
+			<reposition type="towardsmiddle" value="Keskele" />
+			<reposition type="towardswing" value="Ääre suunas" />
+		</repositioning>
 	</language>
 
 	<language name="sl" desc="Slovenščina">
@@ -2039,5 +2050,42 @@
 			<level text="bất tài" value="0" />  
 		</levels>
 	</language>
+	
+	<language name="be" desc="Belarusian">
+		<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
+		<MyHattrick value='Мy Hattrick' /> 
+		<MyClub value='My Club' /> 
+		<World value='World' /> 
+		<Forum value='Forum' /> 
+		<Shop value='Shop' /> 
+		<Help value='Help' /> 
+		<!-- rating sublevels appearing in match detail page. copy 'text' -->
+		<ratingSubLevels>
+			<sublevel text="(very low)" value="0.0" />
+			<sublevel text="(low)" value="0.25"  />
+			<sublevel text="(high)" value="0.50"  />
+			<sublevel text="(very high)" value="0.75"  />
+		</ratingSubLevels>
+		<!-- tactics appearing in match detail page. copy 'value' -->
+		<tactics>
+			<tactic type="normal" value="Normal" />
+			<tactic type="pressing" value="Pressing" />
+			<tactic type="ca" value="Counter-attacks" />
+			<tactic type="aow" value="Attack on wings" />
+			<tactic type="aim" value="Attack in the Middle" />
+			<tactic type="creatively" value="Play creatively" />
+			<tactic type="longshots" value="Long shots" />
+		</tactics>
+		<repositioning>
+			<reposition type="midfielder" value="extra inner midfield" />
+			<reposition type="centraldefender" value="extra central defender" />
+			<reposition type="forward" value="extra forward" />
+			<reposition type="normal" value="normal" />
+			<reposition type="offensive" value="offensive" />
+			<reposition type="defensive" value="defensive" />
+			<reposition type="towardsmiddle" value="towards middle" />
+			<reposition type="towardswing" value="towards wing" />
+		</repositioning>
+		</language>
 
 </hattricklanguages>
