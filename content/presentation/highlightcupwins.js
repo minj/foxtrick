@@ -5,25 +5,28 @@
  */
 
 var FoxtrickHighlightCupwins = {
-	
+
     MODULE_NAME : "HighlightCupwins",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('cupmatches'), 
+	PAGES : new Array('cupmatches'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
-	LATEST_CHANGE : "Fixed for draws and for new cup match display method.",
+	LATEST_CHANGE : "Fixed for draws and for new cup match display method. Highlighting for masters refined.",
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
-	OPTIONS : new Array("highlight_outsider"),
-	
+	OPTIONS : new Array("HighlightCupsets"),
+
     init : function() {
     },
 
-    run : function( page, doc ) {	
+    run : function( page, doc ) {
 		try {
-			var highlight_outsider = Foxtrick.isModuleFeatureEnabled( this, "highlight_outsider");
+			var highlightCupsets = Foxtrick.isModuleFeatureEnabled(this, "HighlightCupsets");
+			// matches of Hattrick Masters aren't arranged by cup ranks
+			var isMasters = (doc.location.search.search(/\bCupId=183\b/i) !== -1);
+			var highlightHomeWin = !isMasters && highlightCupsets;
 
 			var mainBody=doc.getElementById('mainBody');
-			var table= mainBody.getElementsByTagName('table')[0]; 
+			var table= mainBody.getElementsByTagName('table')[0];
 			for (var i=1;i<table.rows.length;++i) {
 				var goals = table.rows[i].cells[3].innerHTML.match(/\d+/g);
 				if (!goals) {
@@ -44,7 +47,9 @@ var FoxtrickHighlightCupwins = {
 				var lastsep=matchlink.innerHTML.lastIndexOf(' - ' )+3;
 				var awayteam = matchlink.innerHTML.substring(lastsep);
 				if (win) {
-					if (highlight_outsider) {table.rows[i].cells[3].innerHTML = '<strong>'+table.rows[i].cells[3].innerHTML+'</strong>';}
+					if (highlightCupsets) {
+						table.rows[i].cells[3].innerHTML = '<strong>'+table.rows[i].cells[3].innerHTML+'</strong>';
+					}
 					matchlink.innerHTML = '<strong>'+hometeam+'</strong> - '+awayteam;
 				}
 				else if (lose) {
@@ -54,7 +59,7 @@ var FoxtrickHighlightCupwins = {
 		}
 		catch(e){Foxtrick.dump(e);}
  	},
-	
-	change : function( page, doc ) {	
+
+	change : function( page, doc ) {
 	}
 };
