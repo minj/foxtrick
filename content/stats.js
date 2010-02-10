@@ -3078,6 +3078,31 @@ stats["htworld"] =  {
 
 //------------------------------------------------------------------
 // -----------------------------------------------------------------
+
+
+if (!Foxtrick) var Foxtrick={};
+
+Foxtrick.StatsHash = {};
+
+Foxtrick.MakeStatsHash = function(){		
+		// create stats Hash for Foxtrick.LinkCollection
+		for (var key in Foxtrick.LinkCollection.stats) {
+			var stat = Foxtrick.LinkCollection.stats[key];
+			for (var prop in stat) {
+				if (prop.match(/link/)) {
+					if (typeof(Foxtrick.StatsHash[prop]) == 'undefined') {
+						Foxtrick.StatsHash[prop] = {};
+					}
+					Foxtrick.StatsHash[prop][key] = stat;
+				}
+			}
+		}
+}
+
+
+
+
+
 Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc, overridesettings, module) { 
     var links = [];
     var counter = 0;

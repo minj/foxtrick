@@ -3,7 +3,7 @@
  * Contact us: by HT-mail to Mod-Spambot on hattrick.org
  */
 
-if (!Foxtrick) var Foxtrick={};
+if (!Foxtrick) var Foxtrick = {};
  
 ////////////////////////////////////////////////////////////////////////////////
 /** Modules that are to be called every time any hattrick page loads.
@@ -58,6 +58,7 @@ var FoxtrickMain = {
         for ( var i in Foxtrick.core_modules ) {
             Foxtrick.core_modules[i].init();
         }
+		Foxtrick.MakeStatsHash(); 
 
 		// check if this is a new version
 		var curVersion = FoxtrickPrefs.getString("curVersion");

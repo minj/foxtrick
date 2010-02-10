@@ -161,6 +161,8 @@ var FoxtrickReadHtPrefsFromHeader = {
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks');
 		
+		if (!teamLinks) return;
+		
 		if ( Foxtrick.isModuleFeatureEnabled(FoxtrickReadHtPrefsFromHeader, 'CountryCurrencyDateFormat') ) {
 			var CountryLink = teamLinks.getElementsByTagName('a')[2];
 			var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];

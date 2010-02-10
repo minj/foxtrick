@@ -6,8 +6,10 @@
 
 
 var FoxtrickPreferencesDialog = {
-
-	init : function() {
+	
+	core_modules : new Array (FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ),
+	
+	init : function() { 
 	try{
 		for (var i in FoxtrickPreferencesDialog.core_modules) {
 			FoxtrickPreferencesDialog.core_modules[i].init();
