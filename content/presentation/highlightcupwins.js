@@ -1,6 +1,6 @@
 /**
  * highlightcupwins.js
- * Script which makes the new mails more visible
+ * Highlight winners of cup matches and cupsets (optional)
  * @author convincedd
  */
 
