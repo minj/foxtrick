@@ -10,9 +10,9 @@ FoxtrickHistoryStats= {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('history'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Displays an overview of cup ranking and league ranking on team history",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Fix for single-digit seasons",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     Buffer : new Array(),
     Pages : new Array(),
     Offset : 0,
@@ -66,7 +66,9 @@ FoxtrickHistoryStats= {
                 } catch(e_offset) {Foxtrick.dump('Error Offset calc: ' + e_offset +'<br>\n');}
                 var table = Foxtrick.getElementsByClass('otherEventText', doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').cloneNode(true));
                 for (var i = 0; i < table.length; i++) {
-					if (table[i].innerHTML.search(/\<span class\=\"shy\"/) == 0 ) continue;
+					// Foxtrick.dump(table[i].innerHTML);
+					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1 ) continue;
+					// Foxtrick.dump(">>>>     OK <<<<<<");
                     dummy = Foxtrick.trim(table[i].innerHTML);
                     
                     //Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(dummy) + '\n');
@@ -140,7 +142,7 @@ FoxtrickHistoryStats= {
             var last = -1;
             for (var i = 0; i< this.Buffer.length; i++){
                 var dummy = this.Buffer[i].split('|');
-                dummy[0] = parseInt(dummy[0]) - this.Offset;
+                dummy[0] = parseInt(dummy[0]) - this.Offset + '|';
                 var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td>%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
                 // Foxtrick.dump(Foxtrick.var_dump(dummy));
                 
@@ -149,7 +151,7 @@ FoxtrickHistoryStats= {
                 }
                 
                 
-                HistoryTable = HistoryTable.replace("%s"+dummy[0],dummy[0]);                
+                HistoryTable = HistoryTable.replace("%s"+dummy[0],dummy[0]);
                 
                 if (dummy[3]){
                     HistoryTable = HistoryTable.replace("%p"+dummy[0],dummy[2]);
@@ -162,7 +164,7 @@ FoxtrickHistoryStats= {
             }
             var	table = doc.createElement("table");
             table.setAttribute( "class", 'smallText' );
-            HistoryTable=HistoryTable.replace(/((\%c)|(\%p)|(\%l))\d{1,2}/gi,'-');
+            HistoryTable=HistoryTable.replace(/((\%c)|(\%p)|(\%l))\d{1,2}\|/gi,'-').replace(/\|/g,'');;
             table.innerHTML = HistoryTable;
             
             try {
