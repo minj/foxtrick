@@ -769,8 +769,8 @@ var FoxtrickPreferencesDialog = {
 			var key, title;
 			if (module.OPTIONS[i]["key"] == null) {
 				key = module.OPTIONS[i];
-				title = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.OPTIONS[i]);
-				//FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
+				//title = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.OPTIONS[i]);
+				title = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
 			} else {
 				key = module.OPTIONS[i]["key"];
 				title = module.OPTIONS[i]["title"];
