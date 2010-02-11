@@ -21,7 +21,7 @@ Foxtrick.ht_pages = {
     'playerdetail'              : '\/Club\/Players\/Player\.aspx',
 	'youthplayerdetail'         : '\/Club\/Players\/YouthPlayer\.aspx',
 	'myhattrick'                : '\/MyHattrick\/$',
-	'myhattrickAll'             : '\/MyHattrick\/',
+	'myhattrickAll'             : '\/MyHattrick\/|\/$',
     'forum'                     : '\/Forum\/',
     'forumViewThread'           : '\/Forum\/Read',
 	'forumOverView'             : '\/Forum\/Overview', 

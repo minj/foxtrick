@@ -9,7 +9,7 @@ var FoxtrickReadHtPrefs = {
 	
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
-	PAGES : new Array('prefSettings','myhattrick'), 
+	PAGES : new Array('prefSettings','myhattrickAll'), 
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Name of the internal preference changed. If it was off previously it default on again till saved otherwise",
 
@@ -60,6 +60,7 @@ var FoxtrickReadHtPrefs = {
 			this.codes['113']='fur';
 			this.codes['55']='vi';
 			this.codes['75']='fa';
+			this.codes['84']='be';
 			
 			// follwoing don't have an own locale file yet
 	/*
@@ -79,7 +80,7 @@ var FoxtrickReadHtPrefs = {
 		var langval = null;
 		var oldval = FoxtrickPrefs.getString("htLanguage");
 
-		if (doc.location.href.search(/MyHattrick\/$/) !=-1) {
+		if (doc.location.pathname.search(/MyHattrick\/$|^\/$/) !=-1) {
 			var menu = doc.getElementById('menu');
 			var as = menu.getElementsByTagName('a');
 			var languages = Foxtrick.XMLData.htLanguagesXml.getElementsByTagName('language');
@@ -137,6 +138,7 @@ var FoxtrickReadHtPrefs = {
 	},
 	
 	change : function(page, doc ) {
+		this.run(page,doc);
 	},
 		
 };
@@ -146,7 +148,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 	
     MODULE_NAME : "ReadHtPrefsFromHeader",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
-	PAGES : new Array('all'), 
+	PAGES : new Array('myhattrickAll'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE:"Read country from page header",
@@ -161,7 +163,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
 		
-		if (!teamLinks) return;
+		if (!teamLinks[0]) return;
 		
 		if ( Foxtrick.isModuleFeatureEnabled(FoxtrickReadHtPrefsFromHeader, 'CountryCurrencyDateFormat') ) {
 			var CountryLink = teamLinks[2];

@@ -2060,7 +2060,7 @@
 	</language>
 	
 	<language name="be" desc="Беларуская">
-		<MyHattrick value=' Мой Hattrick' /> 
+		<MyHattrick value='Мой Hattrick' /> 
 		<MyClub value='Мой клюб' /> 
 		<World value='Сусьвет' /> 
 		<Forum value='Форум' /> 
