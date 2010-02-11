@@ -321,7 +321,6 @@
 				<groupbox>
 					<caption id="showOnStatusBar"/>
 					<checkbox id="statusbarpref" />
-					<checkbox id="statusbarshowreload" />
 				</groupbox>
 				<groupbox>
 					<caption id="additionalOptions" />
