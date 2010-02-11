@@ -2059,7 +2059,7 @@
 		</levels>
 	</language>
 	
-	<language name="by" desc="Беларуская">
+	<language name="be" desc="Беларуская">
 		<MyHattrick value=' Мой Hattrick' /> 
 		<MyClub value='Мой клюб' /> 
 		<World value='Сусьвет' /> 
