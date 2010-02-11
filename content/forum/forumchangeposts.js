@@ -109,8 +109,8 @@ var FoxtrickForumChangePosts = {
         } catch(e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
         
         if (do_format_text) try {
-            var org = new Array(/\[pre\](.*?)\[\/pre\]/gi);
-            var rep = new Array("<pre>$1</pre>");
+            var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+            var rep = new Array("<pre>$1</pre>", "");
             var messages = Foxtrick.getElementsByClass("message", doc );
             for (var i = 0; i < messages.length; i++){
                 var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
