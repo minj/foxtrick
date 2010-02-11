@@ -208,7 +208,7 @@
 									</menulist>
 								</hbox>
 							</row>
-							<row>
+							<row id="dateformatRow">
 								<label id="dateformat" control="htDateformat" />
 								<hbox>
 									<menulist id="htDateformat">

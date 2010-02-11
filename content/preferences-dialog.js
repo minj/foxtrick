@@ -84,9 +84,11 @@ var FoxtrickPreferencesDialog = {
 		readHtCountryDescription.appendChild(document.createTextNode(
 			Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc") + " " +
 			FoxtrickPrefs.getString("htCountry") + " / " +
-			FoxtrickPrefs.getString("oldCurrencySymbol")));
+			FoxtrickPrefs.getString("oldCurrencySymbol") + " / " +
+			FoxtrickPrefs.getString("htDateformat")));
 		document.getElementById("countryRow").hidden = readHtCountry.checked;
 		document.getElementById("currencyRow").hidden = readHtCountry.checked;
+		document.getElementById("dateformatRow").hidden = readHtCountry.checked;
 		readHtCountryDescription.hidden = !readHtCountry.checked;
 
 		readHtCountry.addEventListener("click", function(ev) {
@@ -94,6 +96,7 @@ var FoxtrickPreferencesDialog = {
 				var checked = ev.target.checked;
 				doc.getElementById("countryRow").hidden = checked;
 				doc.getElementById("currencyRow").hidden = checked;
+				doc.getElementById("dateformatRow").hidden = checked;
 				doc.getElementById("ReadHtCountryDescription").hidden = !checked;
 			},
 			false);
@@ -405,6 +408,7 @@ var FoxtrickPreferencesDialog = {
 		if (!readHtCountry) {
 			FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
 			FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
+			FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
 		}
 
 		FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(document.getElementById("htCountry").value)));
@@ -420,9 +424,6 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "code", Foxtrick.XMLData.htCurrencyXml));
 
 		FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked);
-
-		//Dateformat
-		FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
 
 		//Statusbar
 		FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
