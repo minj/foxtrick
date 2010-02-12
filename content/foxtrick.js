@@ -206,7 +206,7 @@ var FoxtrickMain = {
         // hattrick URL check and run if on HT
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
         {
-			//Foxtrick.dump('---------------------- foxtrick onPageLoad start\n');
+			Foxtrick.dump('---------------------- foxtrick onPageLoad start ----------------\n');
 
 			var begin = new Date();
 
@@ -221,7 +221,7 @@ var FoxtrickMain = {
 			if( content ) {
 				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 			}
-			//Foxtrick.dump('---------------------- foxtrick onPageLoad end\n')
+			Foxtrick.dump('---------------------- foxtrick onPageLoad end -------------------\n')
 	    }
     },
 

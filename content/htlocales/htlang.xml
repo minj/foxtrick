@@ -699,6 +699,12 @@
 	</language>
 
 	<language name="de" desc="Deutsch">
+		<MyHattrick value='Mein Hattrick' /> 
+		<MyClub value='Mein Verein' /> 
+		<World value='International' /> 
+		<Forum value='Forum' /> 
+		<Shop value='Shop' /> 
+		<Help value='Hilfe' /> 
 		<ratingSubLevels>
 			<sublevel text="min." value="0.0" />
 			<sublevel text="tief" value="0.25"  />
