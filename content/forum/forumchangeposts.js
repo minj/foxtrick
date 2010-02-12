@@ -109,7 +109,7 @@ var FoxtrickForumChangePosts = {
         } catch(e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
         
         if (do_format_text) try {
-            var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+            var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /Â·/gi);
             var rep = new Array("<pre>$1</pre>", "");
             var messages = Foxtrick.getElementsByClass("message", doc );
             for (var i = 0; i < messages.length; i++){
@@ -256,7 +256,7 @@ var FoxtrickForumChangePosts = {
 
                     // save for search ---------------------------------------------
                     /*if (do_forum_search) {
-                        var headstr = post_link1.title+': '+poster_link1.title+' » ';
+                        var headstr = post_link1.title+': '+poster_link1.title+' Â» ';
                         if (poster_link2)  headstr+=post_link2.title+': '+poster_link2.title+'\n';
                         else headstr+='all\n';
                         headstr = Foxtrick.stripHTML(header_right.innerHTML)+"  "+headstr;
@@ -629,7 +629,7 @@ var FoxtrickForumChangePosts = {
 					 }*/
 				}
 
-			var headstr = post_id1+': '+poster_link1.title+' » ';
+			var headstr = post_id1+': '+poster_link1.title+' Â» ';
 			if (poster_link2 && post_link2)  headstr+=post_id2+': '+poster_link2.title+'\n';
 			else headstr+='all\n';
 			
