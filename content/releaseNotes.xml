@@ -19,6 +19,7 @@
 <lines>Attention!</lines> 
 <lines>* Transferfilter fix: old max bid values unfornatelly might be lost</lines>
 <lines>* Module FixCss split in three new modules. Settings for those are back to default.</lines>
+<lines>* dbus alert option removed for AMO compliance.</lines>
 <lines></lines> 
 <lines>For a complete list use bellow changes link and/or 'set new features' link</lines> 
 
