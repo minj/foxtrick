@@ -10,7 +10,7 @@ FoxtrickHistoryStats= {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('history'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Fix for single-digit seasons",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     Buffer : new Array(),

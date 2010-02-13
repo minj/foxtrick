@@ -1,5 +1,5 @@
-pref( "extensions.foxtrick.prefs.curVersion", "0.5.0.3");   // update with each release
-pref( "extensions.foxtrick.prefs.oldVersion", "0.3.73");   // don't change!! (unless you know what you do). shows changes form that version onwards after new installation
+pref( "extensions.foxtrick.prefs.curVersion", "0.5.1.0b1");   // update with each release
+pref( "extensions.foxtrick.prefs.oldVersion", "0.4.9");   // don't change!! (unless you know what you do). shows changes form that version onwards after new installation
 pref( "extensions.foxtrick.prefs.HTURL", "^http:\/\/(stage\.|www\d*\.|www\.|wwwxx\.|new\.){0,1}hattrick\.(org|ws|interia\.pl)" );
 pref( "extensions.foxtrick.prefs.htLanguage", "en");
 pref( "extensions.foxtrick.prefs.htCurrency", "EUR");
@@ -15,7 +15,6 @@ pref( "extensions.foxtrick.prefs.htSeasonOffset", 0);
 pref( "extensions.foxtrick.prefs.module.HTDateFormat.LocalSaison.enabled", false);
 pref( "extensions.foxtrick.prefs.module.ExtendedPlayerDetails.value", 0);
 pref( "extensions.foxtrick.prefs.statusbarshow", true);
-pref( "extensions.foxtrick.prefs.statusbarshowreload", false);
 pref( "extensions.foxtrick.prefs.alertSlider", true);
 pref( "extensions.foxtrick.prefs.alertSliderGrowl", false);
 pref( "extensions.foxtrick.prefs.alertSound", false);

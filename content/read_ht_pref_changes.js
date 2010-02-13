@@ -10,7 +10,7 @@ var FoxtrickReadHtPrefs = {
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('prefSettings','myhattrickAll'), 
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Checks language on MyHattrick",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
@@ -156,7 +156,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('myhattrickAll'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Read country from page header",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("Language", "CountryCurrencyDateFormat"),

@@ -11,7 +11,7 @@ var FoxtrickPlayerAdToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Disabled on unknown players",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	

@@ -45,7 +45,7 @@ margin-bottom:10px;
 .ft_pref_modul { border: 1px solid rgb(47, 49, 255); margin: 5px 5px 5px 5px;  padding: 5px 5px 5px 5px;  }
 .ft_pref_modul:hover {background-color:#F8F8FF; border: 1px solid rgb(0,0,0); }
 
-.ft_pref_checkbox_group { margin-left:10px;}
+.ft_pref_checkbox_group { margin-left:10px; padding-left:20px;}
 
 .ft_pref_radio_group { margin-left:10px;}
 
@@ -85,8 +85,11 @@ div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border
 h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right inherit;}
 h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right inherit;}
 
-.ft_prefs_check_div > input { float: left; width: 14px; }
-.ft_prefs_check_div > label { float: left; }
+.ft_prefs_check_div  + .ft_pref_checkbox_group {margin-top:5px;} 
+.ft_prefs_check_div  + .ft_pref_radio_group {margin-top:5px;} 
+.ft_prefs_check_div {padding-left:20px;}
+.ft_prefs_check_div > input { float: left; width: 14px; margin-left:-16px;}
+.ft_prefs_check_div > label {  }
 .ft_prefs_check_div > a { float: right; }
 
 .ft_pref_modul > div > label { font-weight: bold; }

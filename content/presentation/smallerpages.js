@@ -10,7 +10,7 @@ FoxtrickSmallerPages = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','youthoverview'), 
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Added: reduced size if playeravater is off on playerdetails page",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array( "ReduceBid"),

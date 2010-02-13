@@ -11,7 +11,7 @@ var FoxtrickLinksClubTransfers = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.0.2",
+	NEW_AFTER_VERSION : "0.5.0.3",
 	LATEST_CHANGE : "Custom links for club transfer page enabled",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : {}, 

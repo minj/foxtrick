@@ -10,7 +10,7 @@ var FoxtrickLeagueNewsFilter = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Highlight teams with lineups in next matches table",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),

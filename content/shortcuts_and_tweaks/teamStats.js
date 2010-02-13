@@ -11,7 +11,7 @@ Foxtrick.TeamStats= {
 	PAGES : new Array('players','YouthPlayers'), 
     DEFAULT_ENABLED : true,
 	OPTIONS :  new Array("AddFlags","AddLeadershipAndExperience","AddCoachType"),
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Options to add more information to players added",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 		

@@ -9,7 +9,7 @@ var FoxtrickRapidId = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
 	DEFAULT_ENABLED: true,
-	NEW_AFTER_VERSION: "0.5.0.2",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE: "A convenient way to view team, player, etc. by id",
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.NEW,
 	CSS: Foxtrick.ResourcePath+"resources/css/rapidid.css",
