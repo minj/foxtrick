@@ -18,18 +18,20 @@
 .foxtrickInfo {background: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png') no-repeat;}
 .foxtrickInfo:hover {background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') no-repeat;}
 
-/* sidebarbox h2 dropdown image */
-.ft_sidebarBoxCollapsed, .ft_sidebarBoxUnfolded , .ft_sidebarBoxCollapsed_rtl, .ft_sidebarBoxUnfolded_rtl { cursor: pointer; }
-.ft_sidebarBoxCollapsed .boxLeft > div { background-image: url("chrome://foxtrick/content/resources/img/link-down.png"); background-repeat: no-repeat; background-position: 99% 60%; }
-.ft_sidebarBoxUnfolded .boxLeft > div { background-image: url("chrome://foxtrick/content/resources/img/link-up.png"); background-repeat: no-repeat; background-position: 99% 60%; }
-.ft_sidebarBoxCollapsed_rtl .boxLeft > div { background-image: url("chrome://foxtrick/content/resources/img/link-down.png"); background-repeat: no-repeat; background-position: 3% 60%; }
-.ft_sidebarBoxUnfolded_rtl .boxLeft > div { background-image: url("chrome://foxtrick/content/resources/img/link-up.png"); background-repeat: no-repeat; background-position: 3% 60%; }
-.ft_sidebarBoxCollapsed  h2, .ft_sidebarBoxUnfolded  h2 { padding-right: 30px !important; }
-.ft_sidebarBoxCollapsed_rtl  h2, .ft_sidebarBoxUnfolded_rtl h2 { padding-left: 30px !important; }
+/* sidebarbox h2 dropdown image */ 
+div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat; background-position: 99% 60%;}
+div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-up.png'); background-repeat:no-repeat;  background-position: 99% 60%;}
+div.ft_sidebarBoxCollapsed .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
+div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
+div.ft_sidebarBoxCollapsed_rtl  h2 { border: none !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat;  background-position: 3% 60%;}
+div.ft_sidebarBoxUnfolded_rtl h2 { border: none !important; background-image: url('chrome://foxtrick/content/resources/img/link-up.png'); background-repeat:no-repeat;  background-position: 3% 60%;}
+div.ft_sidebarBoxCollapsed_rtl .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-left:8px !important;} 
+div.ft_sidebarBoxCollapsed_rtl .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
+
 
 /* sidebarbox h3 dropdown image */
-h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right;}
-h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right;}
+h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}
+h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right;}
 
 /*boxBody h2 dropdown image*/
 h2.ft_boxBodyCollapsed {background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}

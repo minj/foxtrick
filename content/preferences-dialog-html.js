@@ -1782,6 +1782,7 @@ var FoxtrickOnPagePrefs = {
 				var header = pn.removeChild(header);
 				var div = doc.createElement("div");
 				div.appendChild(header);
+				div.setAttribute("style","cursor:pointer;");
 				Foxtrick.addEventListenerChangeSave(div, "click", FoxtrickOnPagePrefs.HeaderClick, false );
 				pn.insertBefore(div,pn.firstChild);
 				

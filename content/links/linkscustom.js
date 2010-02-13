@@ -54,6 +54,7 @@ var FoxtrickLinksCustom = {
 						var hh=pn.removeChild(header);
 						var div = doc.createElement("div");
 						div.appendChild(hh);
+						div.setAttribute("style","cursor:pointer;");
 						div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
 						Foxtrick.addEventListenerChangeSave( div, "click", FoxtrickLinksCustom.HeaderClick, false );
 						ownBoxBody.setAttribute('basepref',basepref);
