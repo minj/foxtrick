@@ -71,19 +71,7 @@ div.ft_icon foxtrickInfo:hover {
 	background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') 50% no-repeat;
 }
 
-
 .onpageprefs_extraprefs h3 {cursor:pointer; margin-left:10px; margin-right:5px; border-bottom: 2px solid #FFCC00 !important;}
-
-/* sidebarbox h2 dropdown image */ 
-div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-down.png') no-repeat 99% 60% inherit;}
-div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background: url('chrome://foxtrick/content/resources/img/link-up.png') no-repeat 99% 60% inherit;}
-div.ft_sidebarBoxCollapsed .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
-div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
-
-
-/* sidebarbox h3 dropdown image */
-h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/down.gif") no-repeat right inherit;}
-h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background: url("chrome://foxtrick/content/resources/img/up.gif") no-repeat right inherit;}
 
 .ft_prefs_check_div > input { float: left; width: 14px; }
 .ft_prefs_check_div > label { float: left; }
