@@ -170,8 +170,11 @@ Foxtrick.TeamStats= {
 							var pos=allDivs2.innerHTML.search(/\[/);
 							if (pos==-1) pos=allDivs2.innerHTML.length;  // no specialty. show after
 							else pos-=2; // has specialty. show before
+							var sentence_seperator = ' ';
+							var base_str = Foxtrickl10n.getString('foxtrick.experience_and_leadership')
+							if (base_str.charAt(0)=='.') sentence_seperator=''; // add dot to previous sentence 
 							allDivs2.innerHTML = allDivs2.innerHTML.substr(0,pos+1) +
-									' ' + Foxtrickl10n.getString('foxtrick.experience_and_leadership').replace('%1',LeadershipLink).replace('%2',ExperienceLink)+
+									sentence_seperator + base_str.replace('%1',LeadershipLink).replace('%2',ExperienceLink)+
 									' ' + allDivs2.innerHTML.substr(pos+1);
 						}
 						if (Foxtrick.isModuleFeatureEnabled( this, "AddFlags")) {
