@@ -1334,6 +1334,12 @@
 	</language>	
 
 	<language name="zh_CN" desc="中文（简体）">
+		<MyHattrick value="我的 Hattrick" />
+		<MyClub value="我的俱乐部" />
+		<World value="世界" />
+		<Forum value="论坛" />
+		<Shop value="HT 商店" />
+		<Help value="帮助" />
 		<ratingSubLevels>
 			<sublevel text="(非常低)" value="0.0" />
 			<sublevel text="(低)" value="0.25"  />
