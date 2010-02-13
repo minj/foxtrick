@@ -1,0 +1,50 @@
+@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+a.copyicon {
+	cursor: pointer; 
+	position:absolute;
+	 top:11px;
+	 z-index:99;	
+}
+
+#hattrickNoSupporter   a.ci_first { left:7px;}
+#hattrick   a.ci_first {left:7px;}
+
+#hattrickNoSupporter   a.ci_second { left:51px;}
+#hattrick   a.ci_second {left:51px;}
+
+#hattrickNoSupporter   a.ci_third {left:95px;}
+#hattrick   a.ci_third{left:95px;}
+
+#hattrickNoSupporter   a.ci_forth{left:139px;}
+#hattrick   a.ci_forth{left:139px;}
+
+#hattrickNoSupporter   a.ci_fifth{left:183px;}
+#hattrick   a.ci_fifth{left:183px;}
+
+
+.copyicon img {
+	padding: 0px 0px 0px 0px; 
+	height:36px; 
+	width:36px; 
+}
+
+.copyplayerad img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad.png) no-repeat scroll 0 0;
+}
+
+.copyplayerscource img {
+	background: transparent url(chrome://foxtrick/content/resources/img/youthplayersource.png) no-repeat scroll 0 0;
+}
+
+.copyratingshome img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyratingshome.png) no-repeat scroll 0 0;
+}
+
+.copyratingsaway img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyratingsaway.png) no-repeat scroll 0 0;
+}
+
+
+}
+

@@ -10,8 +10,9 @@ var FoxtrickReadHtPrefs = {
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('prefSettings','myhattrickAll'), 
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Name of the internal preference changed. If it was off previously it default on again till saved otherwise",
+	NEW_AFTER_VERSION: "0.5.0.2",
+	LATEST_CHANGE:"Checks language on MyHattrick",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	codes:{},
 	
@@ -80,10 +81,15 @@ var FoxtrickReadHtPrefs = {
 		var langval = null;
 		var oldval = FoxtrickPrefs.getString("htLanguage");
 
+		Foxtrick.dump('readlang: '+doc.location.pathname+' '+doc.location.pathname.search(/MyHattrick\/$|^\/$/)+'\n')
 		if (doc.location.pathname.search(/MyHattrick\/$|^\/$/) !=-1) {
 			var menu = doc.getElementById('menu');
 			var as = menu.getElementsByTagName('a');
 			var languages = Foxtrick.XMLData.htLanguagesXml.getElementsByTagName('language');
+			if (as.length < 6) {
+				Foxtrick.dump('no prelogin lang check\n');
+				return; // prelogin
+			}
 			for (var k=0; k<languages.length; ++k) {				
 				var num_found=0;
 				for (var i=0; i<6;++i) {

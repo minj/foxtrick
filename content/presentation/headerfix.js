@@ -18,7 +18,7 @@ var FoxtrickHeaderFix = {
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix.css",
 	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std.css",
 	CSS_SIMPLE_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_rtl.css",
-	CSSRTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl.css",	                                
+	CSS_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl.css",	                                
     OPTIONS_CSS: new Array ("",Foxtrick.ResourcePath+"resources/css/fixes/RemoveHeaderFixFlicker.css"),
 
     init : function() {

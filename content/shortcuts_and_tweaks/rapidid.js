@@ -12,7 +12,10 @@ var FoxtrickRapidId = {
 	NEW_AFTER_VERSION: "0.5.0.2",
 	LATEST_CHANGE: "A convenient way to view team, player, etc. by id",
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.NEW,
-
+	CSS: Foxtrick.ResourcePath+"resources/css/rapidid.css",
+    CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/rapidid_simple.css",
+                                
+	
 	options: [
 		{ value: "manager", text: "Manager", url: "Club/Manager/?userId=%n" },
 		{ value: "senior", text: "Senior" },
@@ -137,9 +140,7 @@ var FoxtrickRapidId = {
 			var container = doc.createElement("div");
 			header.insertBefore(container, ticker);
 			container.id = "ft_rapidid_container";
-			if (!Foxtrick.isStandardLayout(doc)) {
-				container.className = "simple";
-			}
+			container.className='float_right';
 			var indicator = doc.createElement("a");
 			container.appendChild(indicator);
 
