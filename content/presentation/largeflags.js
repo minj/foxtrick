@@ -8,14 +8,23 @@ var FoxtrickLargeFlags = {
 	
     MODULE_NAME : "LargeFlags",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail'), 
+	PAGES : new Array('playerdetail'),
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION : "0.5.0.3",
+	LATEST_CHANGE : "Keep small flags unchanged if faces aren't shown.",
+	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
 	
     init : function() {
     },
 
     run : function( page, doc ) {
 	try{
+		var faceCardCount = doc.getElementsByClassName("faceCard").length;
+		if (faceCardCount === 0) {
+			// if player faces aren't shown, remain with tiny flags
+			// since large flags breaks page layout
+			return;
+		}
 		var allDivs = doc.getElementsByTagName( "div" );
 		for( var i = 0; i < allDivs.length; i++ ) {
 			if( allDivs[i].className == "byline" ) {
