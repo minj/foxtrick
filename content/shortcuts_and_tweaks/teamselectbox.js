@@ -64,7 +64,6 @@ var FoxtrickTeamSelectBox= {
 				pn.insertBefore(div,pn.firstChild);
 			}
 			else div=pn.parentNode;
-			div.setAttribute("style","cursor:pointer;");
             div.setAttribute("id", "ownselectboxHeaderID");
             if (FoxtrickPrefs.getBool("ShowPlayerAsList")) {
 				div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
