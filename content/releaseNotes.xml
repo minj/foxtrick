@@ -17,6 +17,7 @@
 <lines>* Automatic country and currency detection in Main Options (default on)</lines> 
 <lines></lines> 
 <lines>Attention!</lines> 
+<lines>* GotoPostBox module hides Hattrick's new (and useless) 'Mark unread from ..'</lines>
 <lines>* Transferfilter fix: old max bid values unfornatelly might be lost</lines>
 <lines>* Module FixCss split in three new modules. Settings for those are back to default.</lines>
 <lines>* SkinModule moved to presention tab. Old skins need to get reloaded</lines>
