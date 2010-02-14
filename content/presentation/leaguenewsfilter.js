@@ -10,10 +10,11 @@ var FoxtrickLeagueNewsFilter = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.3",
-	LATEST_CHANGE:"Highlight teams with lineups in next matches table. Highlight wins. Gray bots",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),
+	NEW_AFTER_VERSION : "0.5.0.3",
+	LATEST_CHANGE : "Highlight teams with lineups in next matches table. Highlight wins. Gray bots",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes','PAs'),
+	OPTIONS : new Array('highlight_set_lineup','highlight_wins','gray_bots'),
 	
     init : function() {
     },
@@ -104,7 +105,7 @@ var FoxtrickLeagueNewsFilter = {
 
 			link.innerHTML = link.innerHTML.replace(/ /g,'#');
 			// lineup set
-			if (tables[k].className.search('right')!=-1)  {		
+			if (Foxtrick.isModuleFeatureEnabled( this, 'highlight_set_lineup') && tables[k].className.search('right')!=-1)  {		
 			  for (var j=0; j<has_lineup.length; ++j) {
 				var pos = link.innerHTML.search(has_lineup[j].replace(/ /g,'#'));
 				//Foxtrick.dump(has_lineup[j]+' '+link.innerHTML+' '+pos+'\n');
@@ -119,7 +120,8 @@ var FoxtrickLeagueNewsFilter = {
 			  }
 			}
 			// bots
-			for (var j=0; j<is_bot.length; ++j) {
+			if (Foxtrick.isModuleFeatureEnabled( this, 'gray_bots')){
+			  for (var j=0; j<is_bot.length; ++j) {
 				var pos = link.innerHTML.search(is_bot[j].replace(/ /g,'#'));
 				//Foxtrick.dump(is_bot[j]+' '+link.innerHTML+' '+pos+'\n');
 				if (pos==0) {
@@ -130,8 +132,9 @@ var FoxtrickLeagueNewsFilter = {
 					var reg = new RegExp(/\-&nbsp;(.+)/); 					
 					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<shy class="shy">$1</shy>');
 				}
+			  }
 			}
-			if (tables[k].className.search('left')!=-1)  {		
+			if (Foxtrick.isModuleFeatureEnabled( this, 'highlight_wins')  && tables[k].className.search('left')!=-1)  {		
 				var goals = tables[k].rows[i].cells[1].innerHTML.replace(/&nbsp;/g,'').split('-');
 				//Foxtrick.dump(parseInt(goals[0])+' '+parseInt(goals[1])+' '+(parseInt(goals[0])>parseInt(goals[1]))+'\n');
 				if (parseInt(goals[0]) > parseInt(goals[1])) {
