@@ -11,7 +11,7 @@ var FoxtrickStaffMarker = {
 	PAGES : new Array('forumViewThread','forumWritePost','teamPage'),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.3",
-	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. ",
+	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. SelectBox coloring fixed",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("manager", "HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own"),
 	OPTION_TEXTS : true,
@@ -479,16 +479,15 @@ var FoxtrickStaffMarker = {
 
             var new_style = '';
             // Foxtrick.dump('forumSELECT => select\n');
-                        var selectBoxTop = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
+            var selectBoxTop = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
 			var selectBoxBottom = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_filterUser');
 			
 			var selects = doc.getElementById('mainWrapper').getElementsByTagName('select');
-			for (var i=0;i<selects.length;++i) {
-					el_Select = selects[i];
-/*			for (var boxes = 0; boxes < this.SELECT_ELEMENTS.length; boxes++) {
-                var el_Select = doc.getElementById( this.SELECT_ELEMENTS[boxes] );*/
-                if (el_Select != null){
-                    // Foxtrick.dump('forumSELECT => select box:'+ boxes + '.\n');
+//			Foxtrick.dump('forumSELECT => select '+selects.length+'\n');
+            for (var k=0;k<selects.length;++k) {
+				el_Select = selects[k];
+				if (el_Select.id.search(/filter/i)!=-1) {
+                    //Foxtrick.dump('forumSELECT => select box:'+ el_Select.id + '.\n');
 					var i = 1, option;
                     while ( option = el_Select.options[i++] ) {
                         new_style = '';

@@ -521,10 +521,20 @@ var FoxtrickPrefsDialogHTML = {
 		currentCountryCurrencyDateFormatdiv.id='CurrentHtCountryCurrencyDateFormat'
 		if (ReadCountryCurrencyDateFormatChecked) currentCountryCurrencyDateFormatdiv.style.display='block';
 		else currentCountryCurrencyDateFormatdiv.style.display='none';
+		
+		
+		var eng_name = FoxtrickPrefs.getString("htCountry")
+		var org_name = eng_name;
+		for (i in Foxtrick.XMLData.League) {
+			if (Foxtrick.XMLData.League[i].EnglishName==eng_name) {
+				org_name = Foxtrick.XMLData.League[i].LeagueName;
+				break;
+			}
+		}
 		currentCountryCurrencyDateFormatdiv.innerHTML = '( '+Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc")+' '+ 
-														FoxtrickPrefs.getString("htCountry")+' / '+
-														FoxtrickPrefs.getString("oldCurrencySymbol")+' / ' +
-														FoxtrickPrefs.getString("htDateformat")+' )';
+														org_name + ' / '+
+														FoxtrickPrefs.getString("oldCurrencySymbol") + ' / ' +
+														FoxtrickPrefs.getString("htDateformat") + ' )';
 		groupbox.appendChild(currentCountryCurrencyDateFormatdiv);
 		
 		Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) {
