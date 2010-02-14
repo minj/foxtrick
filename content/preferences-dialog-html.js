@@ -339,11 +339,6 @@ var FoxtrickPrefsDialogHTML = {
         FoxtrickPrefs.setBool("alertSound", doc.getElementById("alertsoundpref").checked);
         FoxtrickPrefs.setString("alertSoundUrl", doc.getElementById("alertsoundurlpref").value);
 
-        //Skin settings
-        FoxtrickPrefs.setString("cssSkinOld",  FoxtrickPrefs.getString("cssSkin"));
-        FoxtrickPrefs.setString("cssSkin", doc.getElementById("cssskinpref").value);
-        FoxtrickPrefs.setBool("module.SkinPlugin.enabled", doc.getElementById("SkinPlugin").checked); 
-
         //disable
 		FoxtrickPrefs.setBool("disableOnStage", doc.getElementById("stagepref").checked);        
 		FoxtrickPrefs.setBool("disableTemporary", doc.getElementById("disableTemporary").checked);
@@ -623,41 +618,7 @@ var FoxtrickPrefsDialogHTML = {
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'CurrencyConverter', Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"),'', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
-
-		
-		// skin plugin
-		var groupbox= doc.createElement("div");
-		groupbox.setAttribute('class',"ft_pref_modul");
-		if (Foxtrick.BuildFor=='Chrome') groupbox.setAttribute('style',"display:none !important");
-		preftab.appendChild(groupbox);
-		
-		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionSkinSettings")));
-		groupbox.appendChild(caption1);
-		var div= doc.createElement("div");
-		groupbox.appendChild(div);
-        
-		var input_option_text = doc.createElement( "input" );	
-		input_option_text.setAttribute( "type", "text" );
-		input_option_text.setAttribute( "id", 'cssskinpref' );
-		input_option_text.setAttribute( "value",FoxtrickPrefs.getString( "cssSkin" ));
-		input_option_text.setAttribute( "class", "ft_pref_input_option_text");
-		div.appendChild( input_option_text);		
-
-		var button= doc.createElement("input");
-		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.skinButtonSelectFile"));
-		button.setAttribute( "type", "button" );		
-		button.setAttribute('inputid',"cssskinpref");
-		button.setAttribute('id',"skinButtonSelectFile");
-		button.addEventListener('click',FoxtrickPrefsDialogHTML.selectfile,false);
-		div.appendChild(button);
-
-		var checked = FoxtrickPrefs.getBool("module.SkinPlugin.enabled");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'SkinPlugin', Foxtrickl10n.getString("foxtrick.prefs.activeSkin"), '', checked ) 
-		checkdiv.setAttribute("style","display:inline-block;margin-left:10px; vertical-align:middle;");
-		div.appendChild(checkdiv);
-		
+		       
 		
 		// alert slider
 		var groupbox= doc.createElement("div");
@@ -1232,6 +1193,7 @@ var FoxtrickPrefsDialogHTML = {
 			
 			var OptionText = null;
 			var DefaultOptionText = null;
+			var has_load_button=false;
 			if ( module.OPTION_TEXTS != null && module.OPTION_TEXTS
 				&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
 				
@@ -1240,13 +1202,18 @@ var FoxtrickPrefsDialogHTML = {
 					if (val==null) val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 					DefaultOptionText = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
+				if (val==null) val='';
 				OptionText = val;
+				
+				if (module.OPTION_TEXTS_LOAD_BUTTONS && module.OPTION_TEXTS_LOAD_BUTTONS[i]){
+					has_load_button = module.OPTION_TEXTS_LOAD_BUTTONS[i];
+				}
 				//Foxtrick.dump(module.MODULE_NAME+'.'+key+' o:'+OptionText+' d:'+DefaultOptionText+'\n');	
 			}
 															
 			var checked = Foxtrick.isModuleFeatureEnabled( module, key)
 			var group = module.MODULE_NAME + '.' + key;
-			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, DefaultOptionText, on_page ));
+			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, DefaultOptionText, has_load_button, on_page ));
 		}
 		if (module_checked) optiondiv.setAttribute( "style", "display:block;" );
 		else optiondiv.setAttribute( "style", "display:none;" );
@@ -1259,13 +1226,13 @@ var FoxtrickPrefsDialogHTML = {
 		entry.setAttribute( "class", "ft_pref_modul" );
 		entry.setAttribute( "prefname", module.MODULE_NAME );
 		
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), Foxtrick.isModuleEnabled( module ),null, null,on_page) ;
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), Foxtrick.isModuleEnabled( module ),null, null, false, on_page) ;
 		entry.appendChild(checkdiv);		
 		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
 		return entry;
 	},
 		
-	_getCheckBox : function (doc, name, label, label_long, checked , option_text, DefaultOptionText, on_page) { 
+	_getCheckBox : function (doc, name, label, label_long, checked, option_text, DefaultOptionText, has_load_button, on_page) { 
 		var div = doc.createElement( "div" );	
 		div.className = "ft_prefs_check_div";
 
@@ -1326,8 +1293,9 @@ var FoxtrickPrefsDialogHTML = {
 			td.appendChild( input_option_text);
 
 			if (!on_page) {
+			  if (!has_load_button) {
+				// add reset button
 				var td = doc.createElement( "td" );	
-				//td.setAttribute('class','ft_prefs_check_td');
 				tr.appendChild( td );		
 				var option_text_reset_button = doc.createElement( "input" );	
 				option_text_reset_button.setAttribute('type', 'button');
@@ -1341,7 +1309,21 @@ var FoxtrickPrefsDialogHTML = {
 					} catch(e){dump('resetclick error: '+e+'\n');}
 				}, false );
 				td.appendChild(option_text_reset_button);                						
+			  }
+			  else {  // add load button
+				var td = doc.createElement( "td" );	
+				tr.appendChild( td );		
+				var button= doc.createElement("input");
+				button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
+				button.setAttribute( "type", "button" );		
+				button.setAttribute('inputid', name+'_text');
+				button.setAttribute('id',"name+'_selectfile");
+				button.addEventListener('click',FoxtrickPrefsDialogHTML.selectfile,false);
+				td.appendChild(button);			  
+			  }
 			}
+			
+
 		}
 		
 		return div;

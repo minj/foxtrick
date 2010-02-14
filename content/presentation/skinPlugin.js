@@ -7,16 +7,28 @@
 var FoxtrickSkinPlugin = {
     
     MODULE_NAME : "SkinPlugin",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LATEST_CHANGE:"Fixed skin unloading bug fix",
-	CSS:"",
-    OLD_CSS:"",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Moved to presentation tab. Old skins need to get reloaded",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : new Array('Skin1','Skin2'),
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("", ""),
+	OPTION_TEXTS_LOAD_BUTTONS : new Array(true,true),
+	OPTIONS_CSS: new Array ("",""),
 	
     init : function() {
-		this.OLD_CSS = this.CSS;
-		if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(FoxtrickPrefs.getString("cssSkin"));			
-		else this.CSS=FoxtrickPrefs.getString("cssSkin");
+		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin1')) {
+			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);			
+			else this.CSS = skinlink;
+		}
+		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin2')) {
+			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);			
+			else this.CSS = skinlink;
+		}		
     },
 
     run : function(doc ) {

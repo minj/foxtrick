@@ -221,5 +221,7 @@ pref( "extensions.foxtrick.prefs.module.YouthSkillTable.other.Last_position.enab
 pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_set_lineup.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_wins.enabled", true );
 pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true );
+pref( "extensions.foxtrick.prefs.module.SkinPlugin.Skin1.enabled", true );
+pref( "extensions.foxtrick.prefs.module.SkinPlugin.Skin2.enabled", false );
 
 
