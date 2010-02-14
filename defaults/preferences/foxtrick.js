@@ -218,3 +218,8 @@ pref( "extensions.foxtrick.prefs.module.YouthSkillTable.other.Injured.enabled", 
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.other.Speciality.enabled", true );
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.other.Last_stars.enabled", true );
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.other.Last_position.enabled", true );
+pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_set_lineup.enabled", true );
+pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_wins.enabled", true );
+pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true );
+
+
