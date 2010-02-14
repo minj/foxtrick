@@ -11,7 +11,7 @@ var FoxtrickLeagueNewsFilter = {
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.3",
-	LATEST_CHANGE:"Highlight teams with lineups in next matches table",
+	LATEST_CHANGE:"Highlight teams with lineups in next matches table. Highlight wins. Gray bots",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),
 	
@@ -88,47 +88,63 @@ var FoxtrickLeagueNewsFilter = {
 
 	// highlight teams with lineup
 	var tables = doc.getElementById('mainBody').getElementsByTagName('table');
-	for (var k=0; k<tables.length; ++k) {
-		if (tables[k].className.search('right')!=-1)  {
-		  // get bots/ownerless
-		  var is_bot = new Array();
-		  var teams = tables[0].getElementsByTagName('a'); 
-		  for (var i=0; i<teams.length; ++i) {
+	// get bots/ownerless
+	var is_bot = new Array();
+	var teams = tables[0].getElementsByTagName('a'); 
+	for (var i=0; i<teams.length; ++i) {
 			if (teams[i].className && teams[i].className.search('shy')!=-1) {
 				var namelength = (teams[i].innerHTML.length<11)?teams[i].innerHTML.length:11;
 				is_bot.push(teams[i].innerHTML.substr(0,namelength));			
 			}
-		  }		
-		
-		  for (var i=1; i<5; ++i) {
+	}		
+
+    for (var k=1; k<tables.length; ++k) {
+		for (var i=1; i<5; ++i) {
 			var link = tables[k].rows[i].cells[0].getElementsByTagName('a')[0]; 
-			for (var j=0; j<has_lineup.length; ++j) {
-				var pos = link.innerHTML.search(has_lineup[j]);
+
+			link.innerHTML = link.innerHTML.replace(/ /g,'#');
+			// lineup set
+			if (tables[k].className.search('right')!=-1)  {		
+			  for (var j=0; j<has_lineup.length; ++j) {
+				var pos = link.innerHTML.search(has_lineup[j].replace(/ /g,'#'));
 				//Foxtrick.dump(has_lineup[j]+' '+link.innerHTML+' '+pos+'\n');
 				if (pos==0) {
 					var reg = new RegExp(/(.+)\&nbsp;/); 
 					link.innerHTML = link.innerHTML.replace(reg,'<b>$1</b>&nbsp;');
 				}
 				else if (pos>0) {
-					var reg = new RegExp(/\&nbsp;(.+)/); 					
-					link.innerHTML = link.innerHTML.replace(reg,'&nbsp;<b>$1</b>');
+					var reg = new RegExp(/\-&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<b>$1</b>');
 				}
+			  }
 			}
+			// bots
 			for (var j=0; j<is_bot.length; ++j) {
-				var pos = link.innerHTML.search(is_bot[j]);
+				var pos = link.innerHTML.search(is_bot[j].replace(/ /g,'#'));
 				//Foxtrick.dump(is_bot[j]+' '+link.innerHTML+' '+pos+'\n');
 				if (pos==0) {
-					var reg = new RegExp(/(.+)\&nbsp;/); 
-					link.innerHTML = link.innerHTML.replace(reg,'<i><b>$1</b></i>&nbsp;');
+					var reg = new RegExp(/(.+)\&nbsp;-/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<shy class="shy">$1</shy>&nbsp;-');
 				}
 				else if (pos>0) {
-					var reg = new RegExp(/\&nbsp;(.+)/); 					
-					link.innerHTML = link.innerHTML.replace(reg,'&nbsp;<i><b>$1</b></i>');
+					var reg = new RegExp(/\-&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<shy class="shy">$1</shy>');
 				}
 			}
-		  }
-		  break;
-		}
+			if (tables[k].className.search('left')!=-1)  {		
+				var goals = tables[k].rows[i].cells[1].innerHTML.replace(/&nbsp;/g,'').split('-');
+				//Foxtrick.dump(parseInt(goals[0])+' '+parseInt(goals[1])+' '+(parseInt(goals[0])>parseInt(goals[1]))+'\n');
+				if (parseInt(goals[0]) > parseInt(goals[1])) {
+					var reg = new RegExp(/(.+)\&nbsp;-/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<b>$1</b>&nbsp;-');
+				} else if (parseInt(goals[0]) < parseInt(goals[1])) {
+					var reg = new RegExp(/\-&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<b>$1</b>');
+				}				
+			}
+			
+			link.innerHTML = link.innerHTML.replace(/#/g,'&nbsp;').replace(/&nbsp;-&nbsp;/g,' - ');
+		} 		  		
 	}
 	
 	} catch(e){Foxtrick.dump('leaguenewfilter: +'+e+'\n');}

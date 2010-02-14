@@ -274,6 +274,7 @@ var FoxtrickCrossTable = {
                         var cell = doc.createElement("th");
                         cell.setAttribute("style", "text-align:center;");
                         var cnt = doc.createTextNode(cross[i][0].substring(0,cutafter).replace(/\s/i,""));
+						cell.title=cross[i][0];
                         cell.appendChild(cnt);
                         row.appendChild(cell);
                     }
@@ -294,7 +295,7 @@ var FoxtrickCrossTable = {
                             else {
                                 cell.setAttribute("style", "text-align:center");
                                 var a = doc.createElement("a");
-                                a.title = cross[x][y];
+                                a.title = cross[x][0]+' - '+cross[y-1][0];
                                 a.innerHTML = cross[x][y];
                                 if (cross[x][y].split('-')[0] > cross[x][y].split('-')[1] && (y!=0))
                                     a.setAttribute("style", "font-weight:bold;text-align:center;color:green;text-decoration:none;");

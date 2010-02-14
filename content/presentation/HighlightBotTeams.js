@@ -24,7 +24,7 @@ FoxtrickHighlightBotTeams = {
 		+'@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
 		+'{'
 		/* HighlightBotTeams */
-		+'#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] .shy {'+this.get_color(this.OPTIONS[0])+'}'
+		+'#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] table[class="indent"] .shy {'+this.get_color(this.OPTIONS[0])+'}'
 		+'}'
 		;
 		this.OLD_CSS = this.CSS;
