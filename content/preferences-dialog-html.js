@@ -256,7 +256,8 @@ var FoxtrickPrefsDialogHTML = {
 						break;
 					}
 				}
-			} else if (module.OPTIONS != null) {
+			}  
+			if (module.OPTIONS != null) {
 				for (var i = 0; i < module.OPTIONS.length; i++) {
 					var key,title;
 					if (module.OPTIONS[i]["key"]==null){
@@ -1149,14 +1150,13 @@ var FoxtrickPrefsDialogHTML = {
                 module_category = "shortcutsandtweaks";
             }
             if (module_category == category) {
-				var entry;
-				if (module.RADIO_OPTIONS != null) {
-					entry = FoxtrickPrefsDialogHTML._radioModule(doc, module);
-				} else if (module.OPTIONS != null) {
-					entry = FoxtrickPrefsDialogHTML._checkboxModule(doc, module);
-				} else {
-					entry = FoxtrickPrefsDialogHTML._normalModule(doc, module);
+				var entry = FoxtrickPrefsDialogHTML._normalModule(doc, module);
+				if (module.OPTIONS != null) {
+					entry.appendChild(FoxtrickPrefsDialogHTML._checkboxModule(doc, module, entry));
 				}
+				if (module.RADIO_OPTIONS != null) {
+					entry.appendChild(FoxtrickPrefsDialogHTML._radioModule(doc, module, entry));
+				} 
 				modules_entries.push(entry);
             }
 		}
@@ -1167,23 +1167,17 @@ var FoxtrickPrefsDialogHTML = {
 
 	entry_sortfunction: function(a,b) {return a.getAttribute('prefname').localeCompare(b.getAttribute('prefname'));},
 
-	_radioModule : function(doc, module, on_page ) {
-		var entry = doc.createElement( "div" );
-		entry.setAttribute( "class", "ft_pref_modul" );
-		entry.setAttribute( "prefname", module.MODULE_NAME );
-		
+	
+	_radioModule : function(doc, module, entry, on_page ) {	
 		var module_checked = Foxtrick.isModuleEnabled( module );
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page )
-		entry.appendChild( checkdiv );			
-		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
-		
+		var checkdiv = entry.firstChild;
 		Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) { 
 				var check = ev.target;
 				var checked = check.checked;  
 				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_radio');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
-			}, false );
+		}, false );
 
 		var optiondiv = doc.createElement( "div" );
 		optiondiv.setAttribute( "class", "ft_pref_radio_group" );
@@ -1206,29 +1200,20 @@ var FoxtrickPrefsDialogHTML = {
 		if (module_checked) optiondiv.setAttribute( "style", "display:block;" );
 		else optiondiv.setAttribute( "style", "display:none;" );
 
-		entry.appendChild( optiondiv );
-
-		return entry;
+		return optiondiv;
 	},
 	
 
-	_checkboxModule : function (doc, module, on_page) {
-		var entry = doc.createElement( "div" );
-		entry.setAttribute( "class", "ft_pref_modul" );
-		entry.setAttribute( "prefname", module.MODULE_NAME );
-		
+	_checkboxModule : function (doc, module, entry, on_page) {
 		var module_checked = Foxtrick.isModuleEnabled( module );
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), module_checked, null, null, on_page ) 
-		entry.appendChild( checkdiv);			
-		entry.appendChild (doc.createTextNode(FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) ));
-
+		var checkdiv = entry.firstChild;
 		Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) {
 				var check = ev.target;
 				var checked = check.checked; 
 				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_options');		
 				if (checked) optiondiv.style.display='block';
 				else optiondiv.style.display='none'; 			
-			}, false );
+		}, false );
 
 		var optiondiv = doc.createElement( "div" );
 		optiondiv.setAttribute( "id", module.MODULE_NAME+"_options" );
@@ -1265,9 +1250,8 @@ var FoxtrickPrefsDialogHTML = {
 		}
 		if (module_checked) optiondiv.setAttribute( "style", "display:block;" );
 		else optiondiv.setAttribute( "style", "display:none;" );
-		entry.appendChild( optiondiv );
 
-		return entry;
+		return optiondiv;
 	},
 		
 	_normalModule : function (doc, module, on_page) {
@@ -1878,15 +1862,15 @@ var FoxtrickOnPagePrefs = {
 					}
 					if (in_list) continue;
 					
-					var entry;
-					
-					if (Foxtrick.run_on_cur_page[j].module.RADIO_OPTIONS != null) {
-						entry = FoxtrickPrefsDialogHTML._radioModule(doc, Foxtrick.run_on_cur_page[j].module,true);
-					} else if (Foxtrick.run_on_cur_page[j].module.OPTIONS != null) {
-						entry = FoxtrickPrefsDialogHTML._checkboxModule(doc, Foxtrick.run_on_cur_page[j].module,true);
-					} else {
-						entry = FoxtrickPrefsDialogHTML._normalModule(doc, Foxtrick.run_on_cur_page[j].module,true);
+					// add options
+					var entry = FoxtrickPrefsDialogHTML._normalModule(doc, Foxtrick.run_on_cur_page[j].module,true);					
+					if (Foxtrick.run_on_cur_page[j].module.OPTIONS != null) {
+						entry.appendChild(FoxtrickPrefsDialogHTML._checkboxModule(doc, Foxtrick.run_on_cur_page[j].module, entry, true));
 					}
+					if (Foxtrick.run_on_cur_page[j].module.RADIO_OPTIONS != null) {
+						entry.appendChild(FoxtrickPrefsDialogHTML._radioModule(doc, Foxtrick.run_on_cur_page[j].module, entry, true));
+					}
+					
 					if (Foxtrick.run_on_cur_page[j].page=='all' || Foxtrick.run_on_cur_page[j].page=='all_late') {
 						modules_entries_all.push(entry);
 						++alldiv_count;
