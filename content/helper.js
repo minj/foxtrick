@@ -295,7 +295,7 @@ var FoxtrickHelper = {
 	},
 
 	countryNameLocalToEnglish : function(localName) {
-		for (var i i Foxtrick.XMLData.League) {
+		for (var i in Foxtrick.XMLData.League) {
 			if (Foxtrick.XMLData.League[i].LeagueName === localName) {
 				return Foxtrick.XMLData.League[i].EnglishName;
 			}
