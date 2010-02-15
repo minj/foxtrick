@@ -292,6 +292,14 @@ var FoxtrickHelper = {
 			}
 		}
 		return null;
+	},
+
+	countryNameLocalToEnglish : function(localName) {
+		for (var i i Foxtrick.XMLData.League) {
+			if (Foxtrick.XMLData.League[i].LeagueName === localName) {
+				return Foxtrick.XMLData.League[i].EnglishName;
+			}
+		}
+		return null;
 	}
 };
-
