@@ -49,8 +49,9 @@ var FoxtrickMoveManagerOnline= {
         MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 		PAGES : new Array('region'), 
         DEFAULT_ENABLED : false,
-		NEW_AFTER_VERSION: "0.4.7",	
-		LATEST_CHANGE: "option to move move online managers up on region page (default off)",
+		NEW_AFTER_VERSION: "0.5.0.3",	
+		LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+		LATEST_CHANGE: "Simple speed check added. Don't move if there are more than about 80 managers online",
 
     init : function() {
     },
@@ -66,6 +67,7 @@ var FoxtrickMoveManagerOnline= {
 			if (divs[i].className=='mainBox') {
 				var table=divs[i].getElementsByTagName('table')[0];
 				if (table.className=='indent thin') continue;
+				if (divs[i].getElementsByTagName('a').length>100) return;
 				var div=mainBody.removeChild(divs[i]);
 				mainBody.insertBefore(div,target);
 				break;

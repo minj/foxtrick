@@ -187,7 +187,7 @@ var FoxtrickMain = {
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 		var begin = new Date();
-		//if (doc.location.href.search(/Live.aspx/)==-1) Foxtrick.dump('onPageChange: '+ ev.originalTarget.className+' '+ev.currentTarget.className +' '+ev.target.className +'\n');
+		if (doc.location.href.search(/Live.aspx/)==-1) Foxtrick.dump('onPageChange: '+ ev.originalTarget.className+' '+ev.currentTarget.className +' '+ev.target.className +'\n');
 		FoxtrickMain.change( doc , ev);
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
