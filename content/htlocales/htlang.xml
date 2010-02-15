@@ -285,7 +285,7 @@
 
 
 <!-- up to date -->
-<language name="bs" desc="Bosnian">
+<language name="bs" desc="Bosanski">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
 	<MyHattrick value='Moj Hattrick' />
