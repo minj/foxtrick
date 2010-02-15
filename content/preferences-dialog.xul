@@ -229,16 +229,6 @@
 					</hbox>
 				</groupbox>
 				<groupbox>
-					<caption id="skin" />
-					<checkbox id="skinActivedSkin" />
-					<hbox>
-						<textbox id="cssskinpref" flex="1" />
-						<button id="skinButtonSelectFile"
-							oncommand="var file = Foxtrick.selectFile(window); 
-								if (file != null) {document.getElementById('cssskinpref').value='file://' + (file)}" />
-					</hbox>
-				</groupbox>
-				<groupbox>
 					<caption id="alertSlider" />
 					<checkbox id="alertsliderpref" />
 					<checkbox id="alertslidermacpref" />

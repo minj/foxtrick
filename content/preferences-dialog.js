@@ -141,17 +141,6 @@ var FoxtrickPreferencesDialog = {
 			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-",
 				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
 
-		// skin
-		var skin = doc.getElementById("skin");
-		skin.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionSkinSettings"));
-		var cssskinpref = doc.getElementById("cssskinpref");
-		cssskinpref.appendChild(document.createTextNode(FoxtrickPrefs.getString("cssSkin")));
-		var skinButtonSelectFile = doc.getElementById("skinButtonSelectFile");
-		skinButtonSelectFile.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.skinButtonSelectFile"));
-		var skinActivedSkin = doc.getElementById("skinActivedSkin");
-		skinActivedSkin.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.activeSkin"));
-		skinActivedSkin.setAttribute("checked", FoxtrickPrefs.getBool("module.SkinPlugin.enabled"));
-
 		// alert settings
 		var alertSlider = doc.getElementById("alertSlider");
 		// general
