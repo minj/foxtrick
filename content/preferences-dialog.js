@@ -1,16 +1,16 @@
 /**
  * Preference dialog functions.
- * @author Mod-PaV
+ * @author Mod-PaV, ryanli
  */
 ////////////////////////////////////////////////////////////////////////////////
 
 
 var FoxtrickPreferencesDialog = {
-	
+
 	core_modules : new Array(FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData),
-	
+
 	init : function() {
-	try{
+	try {
 		for (var i in FoxtrickPreferencesDialog.core_modules) {
 			FoxtrickPreferencesDialog.core_modules[i].init();
 		}
@@ -25,7 +25,7 @@ var FoxtrickPreferencesDialog = {
 	} catch(e) {alert('FoxtrickPreferencesDialog init: '+e+'\n');}
 	},
 
-	initCaptionsAndLabels : function(document) { 
+	initCaptionsAndLabels : function(document) {
 		// Window title
 		document.documentElement.setAttribute("title", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
 
@@ -329,7 +329,7 @@ var FoxtrickPreferencesDialog = {
 		}
 
 		for each (cat in Foxtrick.moduleCategories) {
-			switch(cat) {
+			switch (cat) {
 				case Foxtrick.moduleCategories.MAIN:
 					continue;
 					break;
@@ -362,23 +362,26 @@ var FoxtrickPreferencesDialog = {
 
 				// not normal
 				if (container) {
-					// radio
-					if (container.nodeName == "radiogroup") {
-						for (var j = 0; j < container.childNodes.length; ++j) {
-							if (container.childNodes[j].selected) {
-								FoxtrickPrefs.setModuleValue(pref, j);
-								break;
-							}
-						}
-					}
 					// checkbox
-					else if (container.nodeName == "vbox") {
-						for (var j = 0; j < container.childNodes.length; ++j) {
-							var object = container.childNodes[j];
+					var checkboxes = document.getElementById(pref + "_checkboxes");
+					if (checkboxes) {
+						for (var j in checkboxes.childNodes) {
+							var object = checkboxes.childNodes[j];
 							if (object.nodeName == "checkbox")
 								FoxtrickPrefs.setModuleEnableState(object.id, object.checked);
 							else if (object.nodeName == "textbox")
 								FoxtrickPrefs.setModuleOptionsText(object.id, object.value);
+						}
+					}
+
+					// radio
+					var radiogroup = document.getElementById(pref + "_radiogroup");
+					if (radiogroup) {
+						for (var j in radiogroup.childNodes) {
+							if (radiogroup.childNodes[j].selected) {
+								FoxtrickPrefs.setModuleValue(pref, j);
+								break;
+							}
 						}
 					}
 				}
@@ -624,16 +627,7 @@ var FoxtrickPreferencesDialog = {
 			}
 			if (module_category == category) {
 				var entry;
-				if (module.RADIO_OPTIONS != null) {
-				entry = FoxtrickPreferencesDialog._radioModule(module);
-				}
-				else if (module.OPTIONS != null) {
-					var bOptionTexts = (module.OPTION_TEXTS != null && module.OPTION_TEXTS);
-					entry = FoxtrickPreferencesDialog._checkboxModule(module, bOptionTexts);
-				}
-				else {
-					entry = FoxtrickPreferencesDialog._normalModule(module);
-				}
+				entry = FoxtrickPreferencesDialog._createModule(module);
 				modules_entries.push(entry);
 			}
 		}
@@ -668,51 +662,7 @@ var FoxtrickPreferencesDialog = {
 		}
 	},
 
-	_radioModule : function(module) {
-		var entry = document.createElement("groupbox");
-		var caption = document.createElement("caption");
-		var check = document.createElement("checkbox");
-		var desc = FoxtrickPreferencesDialog._getWrapableBox(FoxtrickPrefs.getModuleDescription(module.MODULE_NAME));
-		var radiogroup = document.createElement("radiogroup");
-
-		var enabled = Foxtrick.isModuleEnabled(module);
-
-		entry.appendChild(caption);
-		entry.appendChild(desc);
-		entry.appendChild(radiogroup);
-		caption.appendChild(check);
-
-		entry.id = module.MODULE_NAME;
-		caption.id = module.MODULE_NAME + "_caption";
-		check.id = module.MODULE_NAME + "_check";
-		desc.id = module.MODULE_NAME + "_desc";
-		radiogroup.id = module.MODULE_NAME + "_container";
-
-		entry.className = "radio_module";
-
-		if (!enabled)
-			radiogroup.setAttribute("hidden", true);
-
-		check.setAttribute("checked", enabled);
-		check.setAttribute("label", module.MODULE_NAME);
-		check.addEventListener("command", function(ev) {
-			FoxtrickPreferencesDialog._updateModule(ev.target.parentNode.parentNode);
-		}, false);
-
-		var selectedValue = Foxtrick.getModuleValue(module);
-		for (var i = 0; i < module.RADIO_OPTIONS.length; ++i) {
-			var radio = document.createElement("radio");
-			radiogroup.appendChild(radio);
-			if (selectedValue == i)
-				radio.setAttribute("selected", true);
-			radio.setAttribute("label", FoxtrickPrefs.getModuleDescription(
-				module.MODULE_NAME + "." + module.RADIO_OPTIONS[i]));
-		}
-
-		return entry;
-	},
-
-	_checkboxModule : function (module, bOptionTexts) {
+	_createModule : function(module) {
 		var entry = document.createElement("groupbox");
 		var caption = document.createElement("caption");
 		var check = document.createElement("checkbox");
@@ -727,15 +677,14 @@ var FoxtrickPreferencesDialog = {
 		caption.appendChild(check);
 
 		entry.id = module.MODULE_NAME;
-		caption.id = module.MODULE_NAME + "_caption";
-		check.id = module.MODULE_NAME + "_check";
-		desc.id = module.MODULE_NAME + "_desc";
-		container.id = module.MODULE_NAME + "_container";
+		caption.id = entry.id + "_caption";
+		check.id = entry.id + "_check";
+		desc.id = entry.id + "_desc";
+		container.id = entry.id + "_container";
 
-		entry.className = "checkbox_module";
-
-		if (!enabled)
+		if (!enabled) {
 			container.setAttribute("hidden", true);
+		}
 
 		check.setAttribute("checked", enabled);
 		check.setAttribute("label", module.MODULE_NAME);
@@ -743,67 +692,72 @@ var FoxtrickPreferencesDialog = {
 			FoxtrickPreferencesDialog._updateModule(ev.target.parentNode.parentNode);
 		}, false);
 
-		for (var i = 0; i < module.OPTIONS.length; ++i) {
-			var checkbox = document.createElement("checkbox");
-			container.appendChild(checkbox);
-			var key, title;
-			if (module.OPTIONS[i]["key"] == null) {
-				key = module.OPTIONS[i];
-				title = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
-			} else {
-				key = module.OPTIONS[i]["key"];
-				title = module.OPTIONS[i]["title"];
-			}
-			checkbox.setAttribute("checked", Foxtrick.isModuleFeatureEnabled(module, key));
-			checkbox.setAttribute("label", title);
-			checkbox.id = module.MODULE_NAME + "." + key;
-			if (bOptionTexts
-				&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
-				var textbox = document.createElement("textbox");
-				container.appendChild(textbox);
-				textbox.id = checkbox.id + "_text";
+		// checkbox
+		if (module.OPTIONS) {
+			var checkboxes = document.createElement("vbox");
+			container.appendChild(checkboxes);
+			checkboxes.id = module.MODULE_NAME + "_checkboxes";
 
-				checkbox.addEventListener("command", function(ev) {
-					var optiondiv = document.getElementById(ev.target.id + '_text');
-					if (ev.target.checked) {
-						optiondiv.setAttribute("hidden", false);
-					} else {
-						optiondiv.setAttribute("hidden", true);
-					}
-				}, false);
+			for (var i in module.OPTIONS) {
+				var checkbox = document.createElement("checkbox");
+				checkboxes.appendChild(checkbox);
 
-				var val = FoxtrickPrefs.getString("module." + textbox.id);
-				if (val==null && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]) {
-					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
+				var key, title;
+				if (module.OPTIONS[i]["key"]) {
+					key = module.OPTIONS[i]["key"];
+					title = module.OPTIONS[i]["title"];
+				} else {
+					key = module.OPTIONS[i];
+					title = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
 				}
-				textbox.setAttribute("value", val);
-				if (!Foxtrick.isModuleFeatureEnabled(module, key))
-					textbox.setAttribute("hidden", true);
+				checkbox.id = module.MODULE_NAME + "." + key;
+				checkbox.setAttribute("checked", Foxtrick.isModuleFeatureEnabled(module, key));
+				checkbox.setAttribute("label", title);
+
+				if (module.OPTION_TEXTS &&
+					(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+					var textbox = document.createElement("textbox");
+					checkboxes.appendChild(textbox);
+					textbox.id = checkbox.id + "_text";
+
+					checkbox.addEventListener("command", function(ev) {
+						var optiondiv = document.getElementById(ev.target.id + '_text');
+						if (ev.target.checked) {
+							optiondiv.setAttribute("hidden", false);
+						} else {
+							optiondiv.setAttribute("hidden", true);
+						}
+					}, false);
+
+					var val = FoxtrickPrefs.getString("module." + textbox.id);
+					if (val === null && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]) {
+						val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
+					}
+					textbox.setAttribute("value", val);
+					if (!Foxtrick.isModuleFeatureEnabled(module, key)) {
+						textbox.setAttribute("hidden", true);
+					}
+				}
 			}
 		}
 
-		return entry;
-	},
+		// radio
+		if (module.RADIO_OPTIONS) {
+			var radiogroup = document.createElement("radiogroup");
+			container.appendChild(radiogroup);
+			radiogroup.id = module.MODULE_NAME + "_radiogroup";
 
-	_normalModule : function (module) {
-		var entry = document.createElement("groupbox");
-		var caption = document.createElement("caption");
-		var check = document.createElement("checkbox");
-		var desc = FoxtrickPreferencesDialog._getWrapableBox(FoxtrickPrefs.getModuleDescription(module.MODULE_NAME));
-
-		entry.appendChild(caption);
-		entry.appendChild(desc);
-		caption.appendChild(check);
-
-		entry.id = module.MODULE_NAME;
-		caption.id = module.MODULE_NAME + "_caption";
-		check.id = module.MODULE_NAME + "_check";
-		desc.id = module.MODULE_NAME + "_desc";
-
-		entry.className = "normal_module";
-
-		check.setAttribute("checked", Foxtrick.isModuleEnabled(module));
-		check.setAttribute("label", module.MODULE_NAME);
+			var selectedValue = Foxtrick.getModuleValue(module);
+			for (var i in module.RADIO_OPTIONS) {
+				var radio = document.createElement("radio");
+				radiogroup.appendChild(radio);
+				if (selectedValue == i) {
+					radio.setAttribute("selected", true);
+				}
+				radio.setAttribute("label",
+					FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.RADIO_OPTIONS[i]));
+			}
+		}
 
 		return entry;
 	}
@@ -825,7 +779,7 @@ try{
 		//alert(Foxtrick.statusbarDeactivateImg.suspended);
 		if (Foxtrick.statusbarDeactivateImg.getAttribute('suspended')) Foxtrick.statusbarDeactivateImg.removeAttribute("suspended");
 		else Foxtrick.statusbarDeactivateImg.setAttribute('suspended','on');
-		
+
 		//Foxtrick.statusbarDeactivateImg.style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick_deactivated.png);"
 		FoxtrickMain.init();
 	}
