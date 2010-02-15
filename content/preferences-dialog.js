@@ -7,9 +7,9 @@
 
 var FoxtrickPreferencesDialog = {
 	
-	core_modules : new Array (FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ),
+	core_modules : new Array(FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData),
 	
-	init : function() { 
+	init : function() {
 	try{
 		for (var i in FoxtrickPreferencesDialog.core_modules) {
 			FoxtrickPreferencesDialog.core_modules[i].init();
@@ -422,11 +422,6 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
 		FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
 		FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
-
-		//Skin settings
-		FoxtrickPrefs.setString("cssSkinOld", FoxtrickPrefs.getString("cssSkin"));
-		FoxtrickPrefs.setString("cssSkin", document.getElementById("cssskinpref").value);
-		FoxtrickPrefs.setBool("module.SkinPlugin.enabled", document.getElementById("skinActivedSkin").checked);
 
 		//disable
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
