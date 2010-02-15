@@ -8,7 +8,7 @@
 <lines></lines>
 <lines>* New language Tiếng Việt -  Thanks to Murtagsh (9372637)!</lines>
 <lines>* Enhanced adultskilltable, youthskilltable and teamstats</lines>
-<lines>* Rapid id search</lines>
+<lines>* New module RapidId, a convenient way to view by ID</lines>
 <lines>* Transferfilter fix: old max bid values unfornatelly might be lost</lines>
 <lines>* New option that highlights teams which have set/changed their lineup within last week (LeagueNewsFilter module)</lines>
 <lines>* New StaffMarker module option for team pages</lines>
