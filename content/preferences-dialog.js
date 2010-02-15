@@ -83,7 +83,7 @@ var FoxtrickPreferencesDialog = {
 		var readHtCountryDescription = doc.getElementById("ReadHtCountryDescription");
 		readHtCountryDescription.appendChild(document.createTextNode(
 			Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc") + " " +
-			FoxtrickPrefs.getString("htCountry") + " / " +
+			FoxtrickHelper.countryNameEnglishToLocal(FoxtrickPrefs.getString("htCountry")) + " / " +
 			FoxtrickPrefs.getString("oldCurrencySymbol") + " / " +
 			FoxtrickPrefs.getString("htDateformat")));
 		document.getElementById("countryRow").hidden = readHtCountry.checked;

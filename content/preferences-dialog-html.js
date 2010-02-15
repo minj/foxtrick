@@ -518,17 +518,8 @@ var FoxtrickPrefsDialogHTML = {
 		if (ReadCountryCurrencyDateFormatChecked) currentCountryCurrencyDateFormatdiv.style.display='block';
 		else currentCountryCurrencyDateFormatdiv.style.display='none';
 		
-		
-		var eng_name = FoxtrickPrefs.getString("htCountry")
-		var org_name = eng_name;
-		for (i in Foxtrick.XMLData.League) {
-			if (Foxtrick.XMLData.League[i].EnglishName==eng_name) {
-				org_name = Foxtrick.XMLData.League[i].LeagueName;
-				break;
-			}
-		}
 		currentCountryCurrencyDateFormatdiv.innerHTML = '( '+Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc")+' '+ 
-														org_name + ' / '+
+														FoxtrickHelper.countryNameEnglishToLocal(FoxtrickPrefs.getString("htCountry")) + ' / '+
 														FoxtrickPrefs.getString("oldCurrencySymbol") + ' / ' +
 														FoxtrickPrefs.getString("htDateformat") + ' )';
 		groupbox.appendChild(currentCountryCurrencyDateFormatdiv);

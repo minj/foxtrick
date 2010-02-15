@@ -283,6 +283,15 @@ var FoxtrickHelper = {
 				"ownlevelnum" : ownlevelnum};
 				//Foxtrick.dump('got ownteaminfo\n');
 		} 
+	},
+
+	countryNameEnglishToLocal : function(engName) {
+		for (var i in Foxtrick.XMLData.League) {
+			if (Foxtrick.XMLData.League[i].EnglishName === engName) {
+				return Foxtrick.XMLData.League[i].LeagueName;
+			}
+		}
+		return null;
 	}
 };
 
