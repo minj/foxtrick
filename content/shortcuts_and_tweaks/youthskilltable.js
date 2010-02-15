@@ -58,22 +58,22 @@ var FoxtrickYouthSkillTable = {
 		// abbr: whether to use an abbreviation
 		// pref: preference name of disabling this column
 		var sn = [
-			{ name: "Player", abbr: false, sort: "link" },
-			{ name: "Age", abbr: false, sort: "age" },
-			{ name: "Keeper", abbr: true, sort: "text" },
-			{ name: "Defending", abbr: true, sort: "text" },
-			{ name: "Playmaking", abbr: true, sort: "text" },
-			{ name: "Winger", abbr: true, sort: "text" },
-			{ name: "Passing", abbr: true, sort: "text" },
-			{ name: "Scoring", abbr: true, sort: "text" },
-			{ name: "Set_pieces", abbr: true, sort: "text" },
-			{ name: "Yellow_card", abbr: true, sort: "text", img: "/Img/Icons/yellow_card.gif" },
-			{ name: "Red_card", abbr: true, sort: "text", img: "/Img/Icons/red_card.gif" },
-			{ name: "Bruised", abbr: true, sort: "text", img: "/Img/Icons/bruised.gif" },
-			{ name: "Injured", abbr: true, sort: "text", img: "/Img/Icons/injured.gif" },
-			{ name: "Speciality", abbr: true, sort: "text", pref: "HideSpecialty" },
-			{ name: "Last_stars", abbr: true, sort: "text", pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
-			{ name: "Last_position", abbr: true, sort: "text", pref: "HideLastPosition" }
+			{ name: "Player", sort: "link" },
+			{ name: "Age", sort: "age" },
+			{ name: "Keeper", sort: "text" },
+			{ name: "Defending", sort: "text" },
+			{ name: "Playmaking", sort: "text" },
+			{ name: "Winger", sort: "text" },
+			{ name: "Passing", sort: "text" },
+			{ name: "Scoring", sort: "text" },
+			{ name: "Set_pieces", sort: "text" },
+			{ name: "Yellow_card", sort: "text", img: "/Img/Icons/yellow_card.gif" },
+			{ name: "Red_card", sort: "text", img: "/Img/Icons/red_card.gif" },
+			{ name: "Bruised", sort: "text", img: "/Img/Icons/bruised.gif" },
+			{ name: "Injured", sort: "text", img: "/Img/Icons/injured.gif" },
+			{ name: "Speciality", sort: "text", pref: "HideSpecialty" },
+			{ name: "Last_stars", sort: "text", pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
+			{ name: "Last_position", sort: "text", pref: "HideLastPosition" }
 		];
 
 		for (var j = 0; j < sn.length; ++j) {
@@ -109,18 +109,24 @@ var FoxtrickYouthSkillTable = {
 				}
 				Foxtrick.addEventListenerChangeSave(th, "click", FoxtrickSkillTable.sortClick, false);
 
-				if (sn[j].abbr) {
+				var fullName = Foxtrickl10n.getString(sn[j].name);
+				var abbrName = Foxtrickl10n.getString(sn[j].name + ".abbr");
+				var abbr = true;
+				if (!abbrName || fullName === abbrName) {
+					abbr = false;
+				}
+				if (abbr) {
 					if (sn[j].img) {
 						var img = doc.createElement("img");
 						img.setAttribute("src", sn[j].img);
-						img.setAttribute("alt", Foxtrickl10n.getString(sn[j].name + ".abbr"));
-						img.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
+						img.setAttribute("alt", abbrName);
+						img.setAttribute("title", fullName);
 						th.appendChild(img);
 					}
 					else {
 						var abbr = doc.createElement("abbr");
-						abbr.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
-						abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name + ".abbr")));
+						abbr.setAttribute("title", fullName);
+						abbr.appendChild(doc.createTextNode(abbrName));
 						th.appendChild(abbr);
 					}
 				}
@@ -128,11 +134,11 @@ var FoxtrickYouthSkillTable = {
 					if (sn[j].img) {
 						var img = doc.createElement("img");
 						img.setAttribute("src", sn[j].img);
-						img.setAttribute("alt", Foxtrickl10n.getString(sn[j].name));
-						img.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
+						img.setAttribute("alt", fullName);
+						img.setAttribute("title", fullName);
 					}
 					else {
-						th.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name)));
+						th.appendChild(doc.createTextNode(fullName));
 					}
 				}
 				tr.appendChild(th);

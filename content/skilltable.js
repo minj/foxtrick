@@ -285,18 +285,25 @@ var FoxtrickSkillTable = {
 		for (var i = 0; i < properties.length; ++i) {
 			if (properties[i].available) {
 				var th = doc.createElement("th");
-				if (properties[i].abbr) {
+
+				var fullName = Foxtrickl10n.getString(properties[i].name);
+				var abbrName = Foxtrickl10n.getString(properties[i].name + ".abbr");
+				var abbr = true;
+				if (!abbrName || fullName === abbrName) {
+					abbr = false;
+				}
+				if (abbr) {
 					if (properties[i].img) {
 						var img = doc.createElement("img");
 						img.setAttribute("src", properties[i].img);
-						img.setAttribute("alt", Foxtrickl10n.getString(properties[i].name + ".abbr"));
-						img.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
+						img.setAttribute("alt", abbrName);
+						img.setAttribute("title", fullName);
 						th.appendChild(img);
 					}
 					else {
 						var abbr = doc.createElement("abbr");
-						abbr.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
-						abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name + ".abbr")));
+						abbr.setAttribute("title", fullName);
+						abbr.appendChild(doc.createTextNode(abbrName));
 						th.appendChild(abbr);
 					}
 				}
@@ -304,11 +311,11 @@ var FoxtrickSkillTable = {
 					if (properties[i].img) {
 						var img = doc.createElement("img");
 						img.setAttribute("src", properties[i].img);
-						img.setAttribute("alt", Foxtrickl10n.getString(properties[i].name));
-						img.setAttribute("title", Foxtrickl10n.getString(properties[i].name));
+						img.setAttribute("alt", fullName);
+						img.setAttribute("title", fullName);
 					}
 					else {
-						th.appendChild(doc.createTextNode(Foxtrickl10n.getString(properties[i].name)));
+						th.appendChild(doc.createTextNode(fullName));
 					}
 				}
 				var td = doc.createElement("td");

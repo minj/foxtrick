@@ -77,74 +77,74 @@ var FoxtrickAdultSkillTable = {
 		var sn;
 		if (hasbars) {
 			sn = [
-				{ name: "PlayerCategory", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
-				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false ,OldiesCoach:false},
-				{ name: "Flag", abbr: true, sort: "title" ,NT:false ,OldiesCoach:false},
-				{ name: "Player", abbr: false, sort: "link",NT:true ,OldiesCoach:true },
-				{ name: "Age", abbr: false, sort: "age" ,NT:true ,OldiesCoach:true},
-				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-				{ name: "Agreeability", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
-				{ name: "Aggressiveness", abbr: true, sort: "int" ,NT:false ,OldiesCoach:true},
-				{ name: "Honesty", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
-				{ name: "Leadership", abbr: true, sort: "int" ,NT:true ,OldiesCoach:true},
-				{ name: "Experience", abbr: true, sort: "int",NT:true ,OldiesCoach:true},
-				{ name: "Form", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-				{ name: "Stamina", abbr: true, sort: "int" ,NT:true ,OldiesCoach:true},
-				{ name: "Keeper", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Defending", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Playmaking", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Winger", abbr: true, sort: "int" ,NT:false,OldiesCoach:false },
-				{ name: "Passing", abbr: true, sort: "int" ,NT:false,OldiesCoach:false },
-				{ name: "Scoring", abbr: true, sort: "int" ,NT:false,OldiesCoach:false },
-				{ name: "Set_pieces", abbr: true, sort: "int" ,NT:false,OldiesCoach:false },
-				{ name: "Yellow_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
-				{ name: "Red_card", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/red_card.gif" },
-				{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
-				{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif" },
-				{ name: "Speciality", abbr: true, sort: "text" ,NT:true ,OldiesCoach:true},
-				{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
-				{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
-				{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false},
-				{ name: "TransferListed", abbr: true, sort: "text",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
-				{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
-				{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true},
-				{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true}
+				{ name: "PlayerCategory", sort: "index",NT:false,OldiesCoach:false  },
+				{ name: "PlayerNumber", sort: "index",NT:false ,OldiesCoach:false},
+				{ name: "Flag", sort: "title" ,NT:false ,OldiesCoach:false},
+				{ name: "Player", sort: "link",NT:true ,OldiesCoach:true },
+				{ name: "Age", sort: "age" ,NT:true ,OldiesCoach:true},
+				{ name: "TSI", sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Agreeability", sort: "int",NT:false ,OldiesCoach:true},
+				{ name: "Aggressiveness", sort: "int" ,NT:false ,OldiesCoach:true},
+				{ name: "Honesty", sort: "int",NT:false ,OldiesCoach:true},
+				{ name: "Leadership", sort: "int" ,NT:true ,OldiesCoach:true},
+				{ name: "Experience", sort: "int",NT:true ,OldiesCoach:true},
+				{ name: "Form", sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Stamina", sort: "int" ,NT:true ,OldiesCoach:true},
+				{ name: "Keeper", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Defending", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Playmaking", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Winger", sort: "int" ,NT:false,OldiesCoach:false },
+				{ name: "Passing", sort: "int" ,NT:false,OldiesCoach:false },
+				{ name: "Scoring", sort: "int" ,NT:false,OldiesCoach:false },
+				{ name: "Set_pieces", sort: "int" ,NT:false,OldiesCoach:false },
+				{ name: "Yellow_card", sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
+				{ name: "Red_card", sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/red_card.gif" },
+				{ name: "Bruised", sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
+				{ name: "Injured", sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif" },
+				{ name: "Speciality", sort: "text" ,NT:true ,OldiesCoach:true},
+				{ name: "Last_stars", sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
+				{ name: "Last_position", sort: "text",NT:false ,OldiesCoach:false },
+				{ name: "Salary", sort: "int",NT:false ,OldiesCoach:false},
+				{ name: "TransferListed", sort: "text",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
+				{ name: "NrOfMatches", sort: "int",NT:true ,OldiesCoach:false},
+				{ name: "LeagueGoals", sort: "int",NT:false ,OldiesCoach:true},
+				{ name: "CareerGoals", sort: "int",NT:false ,OldiesCoach:true}
 			];
 		}
 		else {
 			sn = [
-				{ name: "PlayerCategory", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
-				{ name: "PlayerNumber", abbr: true, sort: "index",NT:false,OldiesCoach:false  },
-				{ name: "Flag", abbr: true, sort: "title",NT:false ,OldiesCoach:false },
-				{ name: "Player", abbr: false, sort: "link",NT:true,OldiesCoach:true  },
-				{ name: "Age", abbr: false, sort: "age",NT:true,OldiesCoach:true  },
-				{ name: "TSI", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-				{ name: "Agreeability", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-				{ name: "Aggressiveness", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-				{ name: "Honesty", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-				{ name: "Leadership", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-				{ name: "Experience", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-				{ name: "Form", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-				{ name: "Stamina", abbr: true, sort: "int",NT:true ,OldiesCoach:true },
-				{ name: "Keeper", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Playmaking", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Passing", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Winger", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Defending", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Scoring", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Set_pieces", abbr: true, sort: "int",NT:false,OldiesCoach:false  },
-				{ name: "Yellow_card", abbr: true, sort: "text",NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
-				{ name: "Red_card", abbr: true, sort: "text",NT:true, OldiesCoach:true , img: "/Img/Icons/red_card.gif" },
-				{ name: "Bruised", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
-				{ name: "Injured", abbr: true, sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif" },
-				{ name: "Speciality", abbr: true, sort: "text",NT:true ,OldiesCoach:true },
-				{ name: "Last_stars", abbr: true, sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
-				{ name: "Last_position", abbr: true, sort: "text",NT:false ,OldiesCoach:false },
-				{ name: "Salary", abbr: false, sort: "int",NT:false ,OldiesCoach:false },
-				{ name: "TransferListed", abbr: true, sort: "text",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
-				{ name: "NrOfMatches", abbr: true, sort: "int",NT:true ,OldiesCoach:false},
-				{ name: "LeagueGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true },
-				{ name: "CareerGoals", abbr: true, sort: "int",NT:false ,OldiesCoach:true }
+				{ name: "PlayerCategory", sort: "index",NT:false,OldiesCoach:false  },
+				{ name: "PlayerNumber", sort: "index",NT:false,OldiesCoach:false  },
+				{ name: "Flag", sort: "title",NT:false ,OldiesCoach:false },
+				{ name: "Player", sort: "link",NT:true,OldiesCoach:true  },
+				{ name: "Age", sort: "age",NT:true,OldiesCoach:true  },
+				{ name: "TSI", sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Agreeability", sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "Aggressiveness", sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "Honesty", sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "Leadership", sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Experience", sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Form", sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Stamina", sort: "int",NT:true ,OldiesCoach:true },
+				{ name: "Keeper", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Playmaking", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Passing", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Winger", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Defending", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Scoring", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Set_pieces", sort: "int",NT:false,OldiesCoach:false  },
+				{ name: "Yellow_card", sort: "text",NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
+				{ name: "Red_card", sort: "text",NT:true, OldiesCoach:true , img: "/Img/Icons/red_card.gif" },
+				{ name: "Bruised", sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
+				{ name: "Injured", sort: "text",NT:true ,OldiesCoach:true, img: "/Img/Icons/injured.gif" },
+				{ name: "Speciality", sort: "text",NT:true ,OldiesCoach:true },
+				{ name: "Last_stars", sort: "text",NT:false ,OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
+				{ name: "Last_position", sort: "text",NT:false ,OldiesCoach:false },
+				{ name: "Salary", sort: "int",NT:false ,OldiesCoach:false },
+				{ name: "TransferListed", sort: "text",NT:false ,OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
+				{ name: "NrOfMatches", sort: "int",NT:true ,OldiesCoach:false},
+				{ name: "LeagueGoals", sort: "int",NT:false ,OldiesCoach:true },
+				{ name: "CareerGoals", sort: "int",NT:false ,OldiesCoach:true }
 			];
 		}
 
@@ -185,18 +185,24 @@ var FoxtrickAdultSkillTable = {
 				}
 				Foxtrick.addEventListenerChangeSave(th, "click", FoxtrickSkillTable.sortClick, false);
 
-				if (sn[j].abbr) {
+				var fullName = Foxtrickl10n.getString(sn[j].name);
+				var abbrName = Foxtrickl10n.getString(sn[j].name + ".abbr");
+				var abbr = true;
+				if (!abbrName || fullName === abbrName) {
+					abbr = false;
+				}
+				if (abbr) {
 					if (sn[j].img) {
 						var img = doc.createElement("img");
 						img.setAttribute("src", sn[j].img);
-						img.setAttribute("alt", Foxtrickl10n.getString(sn[j].name + ".abbr"));
-						img.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
+						img.setAttribute("alt", abbrName);
+						img.setAttribute("title", fullName);
 						th.appendChild(img);
 					}
 					else {
 						var abbr = doc.createElement("abbr");
-						abbr.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
-						abbr.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name + ".abbr")));
+						abbr.setAttribute("title", fullName);
+						abbr.appendChild(doc.createTextNode(abbrName));
 						th.appendChild(abbr);
 					}
 				}
@@ -204,11 +210,11 @@ var FoxtrickAdultSkillTable = {
 					if (sn[j].img) {
 						var img = doc.createElement("img");
 						img.setAttribute("src", sn[j].img);
-						img.setAttribute("alt", Foxtrickl10n.getString(sn[j].name));
-						img.setAttribute("title", Foxtrickl10n.getString(sn[j].name));
+						img.setAttribute("alt", fullName);
+						img.setAttribute("title", fullName);
 					}
 					else {
-						th.appendChild(doc.createTextNode(Foxtrickl10n.getString(sn[j].name)));
+						th.appendChild(doc.createTextNode(fullName));
 					}
 				}
 				tr.appendChild(th);
