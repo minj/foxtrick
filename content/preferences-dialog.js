@@ -365,12 +365,13 @@ var FoxtrickPreferencesDialog = {
 					// checkbox
 					var checkboxes = document.getElementById(pref + "_checkboxes");
 					if (checkboxes) {
-						for (var j in checkboxes.childNodes) {
-							var object = checkboxes.childNodes[j];
-							if (object.nodeName == "checkbox")
-								FoxtrickPrefs.setModuleEnableState(object.id, object.checked);
-							else if (object.nodeName == "textbox")
-								FoxtrickPrefs.setModuleOptionsText(object.id, object.value);
+						var checkboxList = checkboxes.getElementsByTagName("checkbox");
+						for (var j in checkboxList) {
+							FoxtrickPrefs.setModuleEnableState(checkboxList[j].id, checkboxList[j].checked);
+						}
+						var textboxList = checkboxes.getElementsByTagName("textbox");
+						for (var j in textboxList) {
+							FoxtrickPrefs.setModuleOptionsText(textboxList[j].id, textboxList[j].value);
 						}
 					}
 
@@ -716,12 +717,20 @@ var FoxtrickPreferencesDialog = {
 
 				if (module.OPTION_TEXTS &&
 					(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+					var hbox = document.createElement("hbox");
 					var textbox = document.createElement("textbox");
-					checkboxes.appendChild(textbox);
+					checkboxes.appendChild(hbox);
+					hbox.appendChild(textbox);
+					hbox.id = checkbox.id + "_textRow";
 					textbox.id = checkbox.id + "_text";
+					textbox.setAttribute("flex", 1);
+
+					if (!Foxtrick.isModuleFeatureEnabled(module, key)) {
+						hbox.setAttribute("hidden", true);
+					}
 
 					checkbox.addEventListener("command", function(ev) {
-						var optiondiv = document.getElementById(ev.target.id + '_text');
+						var optiondiv = document.getElementById(ev.target.id + "_textRow");
 						if (ev.target.checked) {
 							optiondiv.setAttribute("hidden", false);
 						} else {
@@ -734,8 +743,20 @@ var FoxtrickPreferencesDialog = {
 						val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 					}
 					textbox.setAttribute("value", val);
-					if (!Foxtrick.isModuleFeatureEnabled(module, key)) {
-						textbox.setAttribute("hidden", true);
+
+					// load buttons
+					if (module.OPTION_TEXTS_LOAD_BUTTONS && module.OPTION_TEXTS_LOAD_BUTTONS[i]) {
+						var load = document.createElement("button");
+						hbox.appendChild(load);
+						load.id = textbox.id + "_load";
+						load.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
+						load.addEventListener("command", function(ev) {
+							var textbox = document.getElementById(ev.target.id.replace(/_load$/, ""));
+							var file = Foxtrick.selectFile(window); 
+							if (file) {
+								textbox.value = "file://" + file;
+							}
+						}, false);
 					}
 				}
 			}
