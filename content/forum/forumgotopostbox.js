@@ -90,6 +90,19 @@ var FoxtrickGoToPostBox = {
 				if (doc.getElementById(boxId))
 					continue;
 				var selectBox = aSelectBoxes[i];
+				
+				var tglButton = doc.createElement('input');
+				tglButton.setAttribute('id', 'foxtrick_forum_postbox_tglbutton_' + i);
+				tglButton.setAttribute('type', 'button');
+				tglButton.setAttribute('value', 'tgl_test');
+				tglButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
+				tglButton.setAttribute('onClick', 
+					'function show_tgl(elm) {var el_1 = document.getElementById(\"ctl00_ctl00_CPContent_CPMain_ucThread_ucPager\" + elm); if (el_1.style.display != \"inline\") {el_1.style.display = \"inline\";} else {el_1.style.display = \"none\";}} ' +
+					'show_tgl(\"Top_txtMessageNumber\"); show_tgl(\"Top_btnGo\"); show_tgl(\"Top_ddlAction\"); show_tgl(\"Bottom_txtMessageNumber\"); show_tgl(\"Bottom_btnGo\"); show_tgl(\"Bottom_ddlAction\"); '
+					
+				);
+				selectBox.parentNode.appendChild(tglButton);
+				
 				var inputBoxTop = doc.createElement('input');
 				inputBoxTop.setAttribute('type', 'text');
 				inputBoxTop.setAttribute('size', '4');
@@ -124,7 +137,7 @@ var FoxtrickGoToPostBox = {
                 selectBox.parentNode.appendChild(inputBoxLabel2);
                 
 				selectBox.parentNode.appendChild(goButton);
-				inputBoxTop.addEventListener("keyup" , FoxtrickGoToPostBox._submit, false); 
+				inputBoxTop.addEventListener("keyup" , FoxtrickGoToPostBox._submit, false);
 			}
 			
 		},
