@@ -94,7 +94,7 @@ var FoxtrickGoToPostBox = {
 				inputBoxTop.setAttribute('type', 'text');
 				inputBoxTop.setAttribute('size', '4');
                 inputBoxTop.setAttribute('value', '(xxx.)yyy');
-                inputBoxTop.setAttribute('class', 'quickViewBox viewInactive');
+                inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
                 inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
                 inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
                 
@@ -105,6 +105,7 @@ var FoxtrickGoToPostBox = {
 				var sTmp = selectBox.getAttribute('onChange');
 				var iTopicId = sTmp.match(/\d+/)[0];
 				goButton.setAttribute('value', 'OK');
+				goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
 				goButton.setAttribute('onClick', 
 					'var val=document.getElementById("' + boxId + '").value; ' + 
 					'if (val.indexOf(".") > 0) {var aTemp = val.split("."); val = aTemp[0] + "&n=" + aTemp[1];} ' + 

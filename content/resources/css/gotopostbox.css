@@ -1,6 +1,27 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-.threadPagingCenter>div  {display:none !important;}
+.threadPagingCenter>div  {
+	/* display:none !important; */
+}
 	
-.threadPagingCenter {margin: 0 15px !important;}	
+.threadPagingCenter {
+	margin: 0 15px !important;
+}	
+
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber,
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo,
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_txtMessageNumber,
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_btnGo {
+	display:none;
+}
+
+.ft_gotobox{
+	float:left;
+}
+
+.ft_gotobox_btn {
+	margin-right : 5px;
+	margin-left : 5px;
+}
+
 }
