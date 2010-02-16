@@ -8,11 +8,11 @@ FoxtrickSmallerPages = {
 
     MODULE_NAME : "FoxtrickSmallerPages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail'), 
+	PAGES : new Array('playerdetail','youthoverview'), 
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Reduces the dimension of some pages to adapt to small screens",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Added: reduced size if playeravater is off on playerdetails page",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array( "ReduceBid"),
     
     init : function() {
@@ -21,6 +21,10 @@ FoxtrickSmallerPages = {
     run : function( page, doc ) {
 		switch(page) {
 			case 'playerdetail':
+				if (!doc.getElementById('ctl00_CPMain_ucPlayerFace_pnlAvatar')) {
+					doc.getElementById('ctl00_CPMain_pnlplayerInfo').setAttribute('style','width:auto');
+				}			
+			
 				if (Foxtrick.isModuleFeatureEnabled( this, "ReduceBid")) {
 					//we move the bid div
 					this._move_bid( doc );
@@ -28,6 +32,11 @@ FoxtrickSmallerPages = {
 					this._adjust_bid( doc );
 				}
 				break;
+			case 'youthoverview':
+				if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
+					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].setAttribute('style','width:auto');
+				}
+				break;				
 		}
     },
 	
@@ -39,6 +48,11 @@ FoxtrickSmallerPages = {
 					this._adjust_bid( doc );
 				}
 				break;
+			case 'youthoverview':
+				if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
+					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].setAttribute('style','width:auto');
+				}
+				break;				
 		}
 	},
     

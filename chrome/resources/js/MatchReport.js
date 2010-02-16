@@ -42,7 +42,7 @@ function getElementsByClass(searchClass,node,tag) {
         return classElements;
     }
     catch(e) {
-        alert(e);
+        alert('getElementsByClass '+e);
     }
 }
 

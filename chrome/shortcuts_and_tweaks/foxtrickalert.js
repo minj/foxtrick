@@ -10,8 +10,8 @@ var FoxtrickAlert = {
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"Alert options enabled for growl. Adding optional dbus (linux) alert.  Goto main preferences to change it.",
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Optional dbus (linux) alert removed again for AMO compliance",
     LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("NewMail","NewForum"), 
 	
@@ -96,11 +96,11 @@ var FoxtrickAlert = {
 		FoxtrickAlert.foxtrick_showAlert(false);
 
 		if (Foxtrick.BuildFor=='Chrome') {
-			Foxtrick.dump('last_num_message '+FoxtrickAlert.last_num_message+' '+'last_num_forum '+FoxtrickAlert.last_num_forum+'\n');
 			localStorage['last_num_message'] = FoxtrickAlert.last_num_message;
 			localStorage['last_num_forum']  = FoxtrickAlert.last_num_forum;
-			portalert.postMessage({reqtype: "set_mail_count",mail_count: FoxtrickAlert.last_num_message});
-			portalert.postMessage({reqtype: "set_forum_count",forum_count: FoxtrickAlert.last_num_forum});
+			if (!numforum) numforum=0;
+			portalert.postMessage({reqtype: "set_mail_count",mail_count:num_message});
+			portalert.postMessage({reqtype: "set_forum_count",forum_count:numforum});
 		}
 	} catch (e) {Foxtrick.dump('showMailAlert: '+e+'\n');}
 	},
@@ -192,10 +192,6 @@ var FoxtrickAlert = {
 		else if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
 			FoxtrickAlert.foxtrick_showAlertGrowl(message);
 		}						
-		else if (FoxtrickPrefs.getBool("alertSliderDBus")) {
-			var linked_message="<a href='"+href+"'>"+message+"</a>";
-			FoxtrickAlert.foxtrick_show_dbus(linked_message);
-		}						
 
 		if (FoxtrickPrefs.getBool("alertSound")) {
 			try {
@@ -233,7 +229,7 @@ var FoxtrickAlert = {
 							Foxtrick.dump('alertclickcallback:' +'link to: '+data+'\n');
 							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 									.getService(Components.interfaces.nsIWindowMediator);
-							FoxtrickAlert.openAndReuseOneTabPerURL(href);
+							Foxtrick.openAndReuseOneTabPerURL(href,true);
 						}						
 						if (topic=="alertfinished") {
 							FoxtrickAlert.foxtrick_showAlert(true);
@@ -271,7 +267,6 @@ var FoxtrickAlert = {
 	
     foxtrick_showAlertGrowl: function(text) {
     	// mac only
-
     	try {
     		var grn = Components.classes["@growl.info/notifications;1"].getService(Components.interfaces.grINotifications);
     		var img = "http://hattrick.org/favicon.ico";
@@ -280,96 +275,7 @@ var FoxtrickAlert = {
     	} catch (e) {
     		Foxtrick.LOG(e);
     	}
-
     },
-
-
-// call dbus_notify.py  linux only
-foxtrick_show_dbus: function(text) {
-Foxtrick.dump('foxtrick_show_dbus: '+text+'\n');
-		var exec = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-
-	const MY_ID = '{9d1f059c-cada-4111-9696-41a62d64e3ba}';
-	const DIR_SERVICE = Components.classes["@mozilla.org/extensions/manager;1"].
-		getService(Components.interfaces.nsIExtensionManager);
-    try {
-        try {
-            var file = DIR_SERVICE.getInstallLocation(MY_ID).
-		    getItemFile(MY_ID, "/components/dbus_notify.py");
-        } catch (e) {
-            Foxtrick.dump("error finding dbus_notify.py: "+error);
-        }
-
-        exec.initWithPath(file.path);
-
-        if (exec.exists()) {
-            var process = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);
-
-    	    var title = "hattrick.org";
-            var args = [text,title];
-
-	    process.init(exec);
-            var exitvalue = process.run(false, args, args.length);
-        } else {
-            Foxtrick.dump("Error running dbus_notify.py");
-        }
-    } catch (e) {
-        Foxtrick.dump("FirefoxNotify Failed"+e);
-        //return;
-    }
-	
-  },
-
-
-  
-// find first occurence of host and open+focus there
-openAndReuseOneTabPerURL : function(url) {
-  var host = url.match(/(http:\/\/[a-zA-Z0-9_.]+)/)[1];
-  
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-                     .getService(Components.interfaces.nsIWindowMediator);
-  var browserEnumerator = wm.getEnumerator("navigator:browser");
-
-  // Check each browser instance for our URL
-  var found = false;
-  while (!found && browserEnumerator.hasMoreElements()) {
-    var browserWin = browserEnumerator.getNext();
-    var tabbrowser = browserWin.getBrowser();
-
-    // Check each tab of this browser instance
-    var numTabs = tabbrowser.browsers.length;
-    for(var index=0; index<numTabs; index++) {
-      var currentBrowser = tabbrowser.getBrowserAtIndex(index); 
-      if (currentBrowser.currentURI.spec.search(host)!=-1) 
-		{
-
-        // The URL is already opened. Select this tab.
-        tabbrowser.selectedTab = tabbrowser.mTabs[index];
-
-        // Focus *this* browser-window
-		browserWin.loadURI(url )
-        browserWin.focus();
-
-        found = true;
-        break;
-      }
-    }
-  }
-
-  // Our URL isn't open. Open it now.
-  if (!found) {
-    var recentWindow = wm.getMostRecentWindow("navigator:browser");
-    if (recentWindow) {
-      // Use an existing browser window
-      recentWindow.delayedOpenTab(url, null, null, null, null);
-    }
-    else {
-      // No browser windows are open, so open a new one.
-      //window.open(url);
-    }
-  }
-},
-  
 };
 
 

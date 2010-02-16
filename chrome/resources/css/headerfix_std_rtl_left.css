@@ -6,6 +6,12 @@
 position: fixed !important;
 }
 
+/* show main over left menu */
+#aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #content.mainRegular {
+	z-index:10;
+	background-color:white;
+}
+
 #aspnetForm:not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  content .subMenu .subMenuBox {
 margin-right: 0px !important;
 }

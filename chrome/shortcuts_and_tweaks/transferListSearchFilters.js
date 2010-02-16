@@ -30,7 +30,7 @@ FoxtrickTransferListSearchFilters = {
         "_16" : "ctl00$CPMain$ddlSpecialty",
         "_17" : "ctl00$CPMain$ddlZone",
         "_18" : "ctl00$CPMain$ddlBornIn",
-        "_29" : "ctl00_CPMain_txtTSIMin_text",
+        "_19" : "ctl00_CPMain_txtTSIMin_text",
         "_20" : "ctl00$CPMain$txtTSIMin",
 //        "_21" : "ctl00_CPMain_txtTSIMin_ClientState",
         "_22" : "ctl00_CPMain_txtTSIMax_text",

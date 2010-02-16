@@ -281,8 +281,25 @@ var FoxtrickHelper = {
 				"ownleaguename" : ownleaguename,        		
 				"ownseriesnum" : ownseriesnum,
 				"ownlevelnum" : ownlevelnum};
-				dump('got ownteaminfo\n');
+				//Foxtrick.dump('got ownteaminfo\n');
 		} 
+	},
+
+	countryNameEnglishToLocal : function(engName) {
+		for (var i in Foxtrick.XMLData.League) {
+			if (Foxtrick.XMLData.League[i].EnglishName === engName) {
+				return Foxtrick.XMLData.League[i].LeagueName;
+			}
+		}
+		return null;
+	},
+
+	countryNameLocalToEnglish : function(localName) {
+		for (var i in Foxtrick.XMLData.League) {
+			if (Foxtrick.XMLData.League[i].LeagueName === localName) {
+				return Foxtrick.XMLData.League[i].EnglishName;
+			}
+		}
+		return null;
 	}
 };
-

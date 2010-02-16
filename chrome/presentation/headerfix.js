@@ -11,14 +11,14 @@ var FoxtrickHeaderFix = {
 	PAGES : new Array('match','arena'), 
 	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Fix for flickering in forum with standard layout and teampopups off",
+	NEW_AFTER_VERSION: "0.5.03",
+	LATEST_CHANGE:"Some fixing for RTL languages",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix.css",
 	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std.css",
 	CSS_SIMPLE_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_rtl.css",
-	CSSRTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl.css",	                                
+	CSS_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl.css",	                                
     OPTIONS_CSS: new Array ("",Foxtrick.ResourcePath+"resources/css/fixes/RemoveHeaderFixFlicker.css"),
 
     init : function() {

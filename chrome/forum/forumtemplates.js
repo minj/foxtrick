@@ -130,7 +130,10 @@ var FoxtrickForumTemplates = {
     },
 	
 	change : function( page, doc ) {
-		if (!doc.getElementById(FoxtrickForumTemplates._TEMPLATES_DIV_ID)) this.run(page,doc);
+		if (!doc.getElementById(FoxtrickForumTemplates._TEMPLATES_DIV_ID)) {
+			Foxtrick.dump(this.MODULE_NAME+' change\n')
+			this.run(page,doc);
+		}
 	},
 
     _addNewTemplate : function( ev ) {

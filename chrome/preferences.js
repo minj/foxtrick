@@ -167,100 +167,96 @@ var FoxtrickPrefs = {
     	if (this._pref_branch.prefHasUserValue(encodeURI(value_name))) this._pref_branch.clearUserPref( encodeURI(value_name) );   // reset to default
     },
 	
+
+	// ---------------------- common function --------------------------------------
+	setModuleEnableState : function( module_name, value ) {
+		FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
+	},
+
+	setModuleOptionsText : function( module_name, value ) {
+		FoxtrickPrefs.setString( "module." + module_name, value );
+	},
+
+	setModuleValue : function( module_name, value ) {
+		FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
+	},
 	
-};
+	getModuleDescription : function( module_name ) {
+		var name = "foxtrick." + module_name + ".desc";
+		if ( Foxtrickl10n.isStringAvailable( name ) )
+			return Foxtrickl10n.getString( name );
+		else {
+			//dump( "Foxtrick string MODULE " + module_name + " missing!\n");
+			return "No description";
+		}
+	},
+	
+	getModuleElementDescription : function( module_name, option ) {
+		var name = "foxtrick." + module_name + "." + option + ".desc";
+		if ( Foxtrickl10n.isStringAvailable( name ) )
+			return Foxtrickl10n.getString( name );
+		else {
+			//dump( "Foxtrick string ELEMENT " + name + " missing!\n");
+			//return "No description";
+			return option;
+		}
+	},
 
 
-// ---------------------- common function --------------------------------------
-
-FoxtrickPrefs.setModuleEnableState = function( module_name, value ) {
-	  FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
-}
-
-FoxtrickPrefs.setModuleOptionsText = function( module_name, value ) {
-	  FoxtrickPrefs.setString( "module." + module_name, value );
-}
-
-FoxtrickPrefs.setModuleValue = function( module_name, value ) {
-    FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
-}
-
-FoxtrickPrefs.getModuleDescription = function( module_name ) {
-    var name = "foxtrick." + module_name + ".desc";
-    if ( Foxtrickl10n.isStringAvailable( name ) )
-        return Foxtrickl10n.getString( name );
-    else {
-        //dump( "Foxtrick string MODULE " + module_name + " missing!\n");
-        return "No description";
-    }
-}
-
-FoxtrickPrefs.getModuleElementDescription = function( module_name, option ) {
-    var name = "foxtrick." + module_name + "." + option + ".desc";
-    if ( Foxtrickl10n.isStringAvailable( name ) )
-        return Foxtrickl10n.getString( name );
-    else {
-        //dump( "Foxtrick string ELEMENT " + name + " missing!\n");
-        //return "No description";
-        return option;
-    }
-}
-
-
-FoxtrickPrefs.isPrefSetting = function ( setting) {
-	return  setting.search( /^YouthPlayer\./ ) == -1
+	isPrefSetting : function ( setting) {
+		return  setting.search( /^YouthPlayer\./ ) == -1
 			&& setting.search( "transferfilter" ) == -1
 			&& setting.search( "post_templates" ) == -1
 			&& setting.search( "mail_templates" ) == -1
 			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
-}
+	},
 
-FoxtrickPrefs.confirmCleanupBranch = function ( ev ) {
-	if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-	else doc=document;
-	if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
-        try {
-			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
-				if (FoxtrickPrefs.isPrefSetting(array[i])) {
-					FoxtrickPrefs.deleteValue(array[i]);
+	confirmCleanupBranch : function ( ev ) {
+		if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
+		else doc=document;
+		if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
+			try {
+				var array = FoxtrickPrefs._getElemNames("");
+				for(var i = 0; i < array.length; i++) {
+					if (FoxtrickPrefs.isPrefSetting(array[i])) {
+						FoxtrickPrefs.deleteValue(array[i]);
+					}
 				}
+				FoxtrickMain.init();
+				if (!ev) close();
+				else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
 			}
-			FoxtrickMain.init();
-            if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-        }
-        catch (e) {
-			dump('confirmCleanupBranch error:'+e+'\n');
-        }
-    }
-    return true;
-}
+			catch (e) {
+				Foxtrick.dump('confirmCleanupBranch error:'+e+'\n');
+			}
+		}
+		return true;
+	},
 
 
-FoxtrickPrefs.disableAll = function (ev ) {
-	if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-	else doc=document;
-	if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
-        try {
-			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
-				if( array[i].search( /enabled$/ ) != -1) {
+	disableAll : function (ev ) {
+		if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
+		else doc=document;
+		if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
+			try {
+				var array = FoxtrickPrefs._getElemNames("");
+				for(var i = 0; i < array.length; i++) {
+					if( array[i].search( /enabled$/ ) != -1) {
 						FoxtrickPrefs.setBool( array[i], false );
+					}
 				}
+				FoxtrickMain.init();
+				if (!ev) close();
+				else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
 			}
-			FoxtrickMain.init();
-            if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-        }
-        catch (e) {
-			dump(e);
-        }
-    }
-	return true;
-}
+			catch (e) {
+				Foxtrick.dump('disable all'+e+'\n');
+			}
+		}
+		return true;
+	},
 
-FoxtrickPrefs.SavePrefs = function (ev) {
+	SavePrefs : function (ev) {
         try {
 			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
 			else doc=document;
@@ -299,12 +295,12 @@ FoxtrickPrefs.SavePrefs = function (ev) {
 			if(!ev) close();
 		}
 		catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('FoxtrickPrefs.SavePrefs '+e);
         }
     return true;
-}
+	},
 
-FoxtrickPrefs.LoadPrefs = function (ev) {
+	LoadPrefs : function (ev) {
         try {
 			// nsifile
 			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
@@ -344,7 +340,14 @@ FoxtrickPrefs.LoadPrefs = function (ev) {
 
 		}
 		catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('FoxtrickPrefs.LoadPrefs '+e);
         }
     return true;
-}
+	},
+
+};
+
+
+
+
+

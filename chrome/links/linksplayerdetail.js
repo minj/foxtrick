@@ -19,19 +19,51 @@ var FoxtrickLinksPlayerDetail = {
 			Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
-    run : function( page, doc ) {                     //Deadline: 29.12.2009 18:12                 
+    run : function( page, doc ) {  
+	  try{
 		//addExternalLinksToPlayerDetail
 		var teamdiv = doc.getElementById('teamLinks');
 		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
 		
 		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
-		if ( biddiv ) {
-			var reg = /\d{1,4}.+?\d{1,2}.+?\d{1,4}.+?\d{1,2}.+?\d{1,2}/i;		
-			var deadline = biddiv.innerHTML.match(reg);
+		if ( biddiv ) { 
+			var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
+			var ar = reg.exec(biddiv.getElementsByTagName('p')[0].innerHTML);
+			
+			var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+			if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+
+			var day = ar[1];
+			var month = ar[3];
+			var year = ar[5];
+			var hour = ar[7];
+			var minute = ar[9];
+
+			switch ( DATEFORMAT ) {
+				case 'ddmmyyyy':
+					var day = ar[1];
+					var month = ar[3];
+					var year = ar[5];
+					break;
+				case 'mmddyyyy':
+					var day = ar[3];
+					var month = ar[1];
+					var year = ar[5];
+					break;
+				case 'yyyymmdd':
+					var day = ar[5];
+					var month = ar[3];
+					var year = ar[1];
+					break;
+			}
+			//if (parseInt(month) > 10) {} else {month = '0' + month;}
+			//if (parseInt(hour) > 10) {} else {hour = '0' + hour;}
+			
+			deadline = year+'-'+month+'-'+day+' '+hour+':'+minute;
 		}
 		else var deadline='';
 		
-		var alldivs = doc.getElementsByTagName('div');
+		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
 		var ownBoxBody=null;
 		var added=0;
 		for (var j = 0; j < alldivs.length; j++) {
@@ -198,16 +230,11 @@ var FoxtrickLinksPlayerDetail = {
 		}
 		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{
-						"teamid": teamid, "playerid": playerid, "nationality": nationality,
-						"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp,"leadership":ls,
-						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
-						"passing" : passing, "winger" : winger, "defending" : defending,
-						"scoring" : scoring, "setpieces" : setpieces ,"injuredweeks" : injuredweeks,"wage":wage,"wagebonus":wagebonus
-						});	
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME, params);	
 				break;
 			}
 		}
+	  } catch(e){Foxtrick.dump('LinksPlayerdetails: '+e+'\n');}
     },
 	
 	change : function( page, doc ) {

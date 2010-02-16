@@ -109,8 +109,8 @@ var FoxtrickForumChangePosts = {
         } catch(e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
         
         if (do_format_text) try {
-            var org = new Array(/\[pre\](.*?)\[\/pre\]/gi);
-            var rep = new Array("<pre>$1</pre>");
+            var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /Â·/gi);
+            var rep = new Array("<pre>$1</pre>", "");
             var messages = Foxtrick.getElementsByClass("message", doc );
             for (var i = 0; i < messages.length; i++){
                 var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
@@ -256,7 +256,7 @@ var FoxtrickForumChangePosts = {
 
                     // save for search ---------------------------------------------
                     /*if (do_forum_search) {
-                        var headstr = post_link1.title+': '+poster_link1.title+' » ';
+                        var headstr = post_link1.title+': '+poster_link1.title+' Â» ';
                         if (poster_link2)  headstr+=post_link2.title+': '+poster_link2.title+'\n';
                         else headstr+='all\n';
                         headstr = Foxtrick.stripHTML(header_right.innerHTML)+"  "+headstr;
@@ -403,7 +403,7 @@ var FoxtrickForumChangePosts = {
                             post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
                         }
                         post_link1.innerHTML=String(PostID_message);
-                        post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+                        //### Foxtrick.addEventListenerChangeSave(post_link1, "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
                         if (post_link2) {
                             var PostID_message = post_link2.title.replace(/\d+\./,'');
                             post_link2.innerHTML=String(PostID_message);
@@ -497,8 +497,8 @@ var FoxtrickForumChangePosts = {
                             header.setAttribute('class','cfHeader ftdoubleLine'); //doesn't work well
 							Foxtrick.dump('do_alltid_flags: adjust height back\n')                            
                         }
-                        post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
-                        if (post_link2) post_link2.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+                        //###post_link1.Foxtrick.addEventListenerChangeSave(post_link1, "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+                        //###if (post_link2) Foxtrick.addEventListenerChangeSave( post_link2, "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
                     }
 
 
@@ -629,7 +629,7 @@ var FoxtrickForumChangePosts = {
 					 }*/
 				}
 
-			var headstr = post_id1+': '+poster_link1.title+' » ';
+			var headstr = post_id1+': '+poster_link1.title+' Â» ';
 			if (poster_link2 && post_link2)  headstr+=post_id2+': '+poster_link2.title+'\n';
 			else headstr+='all\n';
 			
@@ -690,7 +690,7 @@ var FoxtrickForumChangePosts = {
 			header.setAttribute('style','height: 30px !important;');
 			Foxtrick.dump('_postid_adjust_height: adjust height back\n')                            
 		}
-		ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );
+		//ev.target.RemoveEventListener( "click", FoxtrickForumChangePosts._postid_adjust_height, false );
 	},
 
 	_copy_postid_to_top : function(ev) {
@@ -718,7 +718,7 @@ var FoxtrickForumChangePosts = {
 			foStream.close();
 		}
 		catch (e) {
-			Foxtrick.alert(e);
+			Foxtrick.alert('_SaveForSearch '+e);
         }
     return true;
 	},

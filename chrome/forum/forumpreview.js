@@ -210,7 +210,10 @@ var FoxtrickForumPreview = {
 
 	change : function( page, doc ) {
         var check_div = doc.getElementById( "forum_preview" );
-        if (check_div == null) this.run (page, doc);
+        if (check_div == null) {
+			Foxtrick.dump(this.MODULE_NAME+' change\n')
+			this.run (page, doc);
+		}
 	},
 
 	_toggleListener : function( ev ) {
@@ -400,6 +403,7 @@ var FoxtrickForumPreview = {
             var text = Foxtrick.stripHTML( msg_window.value );
 
             text = text.replace(/\n/g, "<br />");
+			text = text.replace(/\[pre\](.*?)\[(i|u|b)\](.*?)\[\/pre\]/gi,'[pre]$1[ $2 ]$3[/pre]');
 
             var count_q = Foxtrick.substr_count(text, '[q');
             var count_s = Foxtrick.substr_count(text, '[spoil');

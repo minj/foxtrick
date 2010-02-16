@@ -88,7 +88,7 @@ function isHTUrl(url) {
 			var properties = properties_defaultxhr.responseText;
 	}	
 	
-	// get other non changeable ersources
+	// get other non changeable resources
 	listUrl = chrome.extension.getURL("foxtrick.screenshots");
 	var screenshotsxhr = new XMLHttpRequest();
 	screenshotsxhr.open("GET", listUrl, false);
@@ -143,11 +143,59 @@ function isHTUrl(url) {
 			countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 	}
 
-	/*for (var i=0; i<data.HattrickData.LeagueList.League.length; i++) {
-		League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
-		countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
-	}*/
 
+		var foxtrickersArray = {};
+		var foxtrickstaff=aboutxhr.responseXML.getElementsByTagName('head_developer');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				foxtrickersArray[id]='x';
+			}
+		}
+		var foxtrickstaff=aboutxhr.responseXML.getElementsByTagName('project_owner');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				foxtrickersArray[id]='x';
+			}
+		}
+		var foxtrickstaff=aboutxhr.responseXML.getElementsByTagName('developer');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				foxtrickersArray[id]='x';
+			}
+		}
+		var foxtrickstaff=aboutxhr.responseXML.getElementsByTagName('translation');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			if(ids)
+			  for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				foxtrickersArray[id]='x';
+			}
+		}
+
+		var editorsArray = {};
+		var editor=aboutxhr.responseXML.getElementsByTagName('editor');
+		for (var i=0;i<editor.length;++i)   {
+			var id = editor[i].getAttribute('value');
+			var name= editor[i].getAttribute('name');
+			editorsArray[id]=name;
+		}
+
+		var chppholder = {};
+		var chpp=aboutxhr.responseXML.getElementsByTagName('chpp');
+		for (var i=0;i<chpp.length;++i)   {
+			var id = chpp[i].getAttribute('value');
+			var name= chpp[i].getAttribute('name');
+			chppholder[id]=name;
+		}
+		
+	
 	var hty_staff = new Array();
 	var req = new XMLHttpRequest();
 	var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
@@ -214,6 +262,9 @@ chrome.extension.onConnect.addListener(function(port) {
 				about: aboutxhr.responseText,
 				League: League,
 				countryid_to_leagueid: countryid_to_leagueid,
+				foxtrickersArray: foxtrickersArray,
+				editorsArray: editorsArray,
+				chppholder: chppholder,
 				});			
         }
 		else if (msg.reqtype == "get_hty_staff") {// alert("get_hty_staff " + msg.reqtype);
@@ -365,7 +416,7 @@ chrome.extension.onConnect.addListener(function(port) {
 	}*/
 });
 
-
+// htms		
 chrome.extension.onConnect.addListener(function(port2) {
 	if (port2.name == "htms") { //alert('htms: '+port.name);
 		port2.onMessage.addListener(function(msg) {  

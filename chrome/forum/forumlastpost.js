@@ -22,8 +22,9 @@ var FoxtrickForumLastPost = {
         this._change( page, doc );
 	},
 
-	change : function( page, doc ) {
+	change : function( page, doc ) {	
         this._change( page, doc );
+		Foxtrick.dump(this.MODULE_NAME+' change\n')
 	},
 
     _change : function( page, doc ){

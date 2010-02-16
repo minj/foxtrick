@@ -1,17 +1,48 @@
 /**
 * copytrainingreport.js
-* Foxtrick Copies youth training report to clipboard
+* Foxtrick Copies some reports to clipboard
 * @author larsw84, convincedd
 */
 
+
+// dummy for loading right css
+var FoxtrickHeadercopyicons = {	
+    MODULE_NAME : "Headercopyicons",
+    DEFAULT_ENABLED : true,
+	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
+	CSS_SIMPLE_RTL: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple_rtl.css",
+	CSS_RTL : Foxtrick.ResourcePath+"resources/css/headercopyicons_rtl.css",	                                
+
+	init : function() {
+	},
+	
+	run : function( page, doc ) {
+	},
+	
+	change : function( page, doc ) {
+	},
+}
+
+
+
+
+/**
+* copytrainingreport.js
+* Foxtrick Copies youth training report to clipboard
+* @author larsw84, convincedd
+*/
+	
 var FoxtrickCopyTrainingReport = {
 
 	MODULE_NAME : "CopyTrainingReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthTraining'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.6.2",
-	LATEST_CHANGE:"Copies plain text to match htyouthclub requirement",
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Open hty page after copying",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : new Array("OpenHTYpage"),
 	
 	init : function() {
 	},
@@ -97,6 +128,8 @@ var FoxtrickCopyTrainingReport = {
 					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));
 			}
 		}
+	if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) 
+		Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/',false); 
 	}
 };
 
@@ -105,17 +138,38 @@ var FoxtrickCopyScoutReport = {
 
 	MODULE_NAME : "CopyScoutReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('youthplayerdetail'), 
-	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"Copies just the report again",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	PAGES : new Array('youthplayerdetail','youthoverview'), 
+	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Enabled for scout calls. Open hty page after copying",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : new Array("OpenHTYpage"),
 	
 	init : function() {
 	},
 	
 	run : function( page, doc ) {
-		try {
+	try {
+
+	var has_report = false;
+	if (page=='youthoverview') {		
+		has_report = doc.getElementById('ctl00_CPMain_butScoutPropYes')!=null;		
+	}
+
+	if (page=='youthplayerdetail' || has_report) {
+		if (has_report) {
+			var alertdiv = doc.getElementById('ctl00_CPMain_butScoutPropYes').parentNode;
+			if (alertdiv.parentNode.getElementsByTagName('a')[0]==null) {
+				var a=doc.createElement('a');
+				a.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
+				a.setAttribute('style','float:right; margin-bottom:5px;');
+				a.href='javascript:void()';
+				a.addEventListener("click", this.copyReport, false)
+				alertdiv.parentNode.insertBefore(a,alertdiv);
+			}
+		}
+		var id = "foxtrick_addyouthclubbox_parentDiv";
+		if(doc.getElementById(id)) return;
 			
 		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
 			if (doc.getElementById('copyscoutreport')) return;
@@ -131,6 +185,7 @@ var FoxtrickCopyScoutReport = {
 			messageLink.addEventListener("click", this.copyReport, false)
 
 			var img = doc.createElement("img");
+			img.id = "foxtrick_addyouthclubbox_parentDiv";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
 			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
 			
@@ -162,43 +217,50 @@ var FoxtrickCopyScoutReport = {
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
 		}
-		
-		} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
+	}	
+	} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
 	},
 	
 	change : function( page, doc ) {
-		var id = "foxtrick_addyouthclubbox_parentDiv";
-		if(!doc.getElementById(id)) {
-			this.run( page, doc );
-		}
+		this.run( page, doc );		
+		//Foxtrick.dump('copyReport change rerun='+!doc.getElementById(id));
 	},
 
 	copyReport : function( ev ) {
 	try{
 		var doc = ev.target.ownerDocument;
 		var mainBody = doc.getElementById('mainBody');
-		var subDivs = mainBody.childNodes;//getElementsByTagName("div");
-		var lastmainbox=-1;
-		for(var i = 0; i < subDivs.length; i++) {
-			if (subDivs[i].className == "mainBox") { 
-				lastmainbox=i;
+		
+			var subDivs = mainBody.getElementsByTagName("div");
+			var lastmainbox=-1;
+			for(var i = 0; i < subDivs.length; i++) {
+				if (subDivs[i].className == "mainBox") { 
+					lastmainbox=i;
+				}
+				if ( subDivs[i].className == "managerInfo" ) {
+					lastmainbox=i; // not the last realy. just was lazy
+					var rejectreport=true;
+					break;
+				}
 			}
-		}
 		
 		if (lastmainbox!=-1) {
 				var graphs = subDivs[lastmainbox].innerHTML.split('<br><br>');
-				var plain = graphs[0]+'<br>'+graphs[1];		
-				if ( graphs[4] ) plain+=graphs[2];	// has a specialty
+				var plain = graphs[0]+'<br><br>'+graphs[1];		
+				if ( graphs[4] ) plain+='<br><br>'+graphs[2];	// has a specialty
 				plain=plain.replace(/\&nbsp;/ig,' ');
 				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
 				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
-				plain=plain.replace(/\<br\>|\<\/h2\> /ig,'\n');
+				plain=plain.replace(/\<br\>|\<\/h2\> |\<\/h3\>/ig,'\n');
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
 				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"));			
+					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"));
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyScoutReport, "OpenHTYpage")) 
+					if (!rejectreport) Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/',false); 
+					else Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/site/player_myrejects_add/',true); 				
 		}
 	} catch(e) {Foxtrick.dump('copyreport '+e+'\n');}
 	}
@@ -211,9 +273,10 @@ var FoxtrickCopyPlayerSource = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Adds button on youthplayerdetail page to copy the html source code to match htyouthclub requirement",
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : new Array("OpenHTYpage"),
 	page_html:'',
 	
 	init : function() {
@@ -284,8 +347,10 @@ var FoxtrickCopyPlayerSource = {
 		var doc = ev.target.ownerDocument;
 		var html = '<html> '+doc.documentElement.innerHTML+' </html>';
 		Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
-				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
+		if (FoxtrickPrefs.getBool( "copyfeedback" )) 
 					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"));			
+		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPlayerSource, "OpenHTYpage")) 
+			Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/site/player_cp_add',true); 
 	},
 	
 	fixbr : function(text) {

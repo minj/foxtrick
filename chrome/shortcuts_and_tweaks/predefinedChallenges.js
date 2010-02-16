@@ -49,6 +49,6 @@ var FoxTrickPredefinedChallenges = {
             FoxtrickPrefs.setInt("challenge.sel_1", sel_1.selectedIndex);
             FoxtrickPrefs.setInt("challenge.sel_2", sel_2.selectedIndex);
             return false;
-        } catch(ee) {Foxtrick.alert(ee);}
+        } catch(ee) {Foxtrick.alert('saveChallenge '+ee);}
     }
 };

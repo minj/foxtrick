@@ -35,7 +35,7 @@ padding-top: 100px !important;
 
 /* compensate for fixed left submenu */
 #aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]):not([action*="Live.aspx"]) #content #mainWrapper {
-margin-right: 135px;
+margin-right: 125px;
 min-height: 400px !important; /* temporary height hack before sticky footer */
 }
 /* Alltid fix */

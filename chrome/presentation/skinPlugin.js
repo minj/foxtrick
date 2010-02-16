@@ -7,28 +7,31 @@
 var FoxtrickSkinPlugin = {
     
     MODULE_NAME : "SkinPlugin",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LATEST_CHANGE:"Fixed skin unloading bug fix",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Moved to presentation tab. Old skins need to get reloaded",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : new Array('Skin1','Skin2'),
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("", ""),
+	OPTION_TEXTS_LOAD_BUTTONS : new Array(true,true),
+	OPTIONS_CSS: new Array ("",""),
 	
     init : function() {
-        Foxtrick.registerAllPagesHandler(this);
-		try { // unload old
-				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-				var uri = ios.newURI(FoxtrickPrefs.getString("cssSkinOld"), null, null);
-				try {
-                    if (sss.sheetRegistered(uri, sss.USER_SHEET)) sss.unregisterSheet(uri, sss.USER_SHEET);
-                } 
-                catch (ee) {
-                    Foxtrick.dump ( ' TOP sss.unregisterSheet old: ' + ee + '\n');
-                }            
-            } catch(e) {Foxtrick.dump('no or wrong skin url old:'+FoxtrickPrefs.getString("cssSkinOld") +'\n');} 
-			
+		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin1')) {
+			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);			
+			else this.CSS = skinlink;
+		}
+		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin2')) {
+			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);			
+			else this.CSS = skinlink;
+		}		
     },
 
     run : function(doc ) {
-		this.load(doc);
 
 		/*OLD MEDALS SCRIPT*/
         if (FoxtrickPrefs.getBool("module.CustomMedals.enabled")){                    
@@ -54,43 +57,6 @@ var FoxtrickSkinPlugin = {
         } //old medals
     },
 		
-    load : function( doc ) {  	
-		var prefs_changed = false;
-		if (doc==null) prefs_changed = true;
-		
-        try {
-			
-			try {			
-				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-				var uri = ios.newURI(FoxtrickPrefs.getString("cssSkin"), null, null);
-            } catch(e) {Foxtrick.dump('no or wrong skin url:'+FoxtrickPrefs.getString("cssSkin")+'\n');return;} 
-            // unloading (if inactive or on login page)
-			var loginpage = new RegExp(FoxtrickPrefs.getString("HTURL")+'\/$'); 
-			if (!FoxtrickPrefs.getBool("module.SkinPlugin.enabled") || (!prefs_changed && doc.location.href.search(loginpage)!=-1)) {				
-                try {
-                    if (sss.sheetRegistered(uri, sss.USER_SHEET)) sss.unregisterSheet(uri, sss.USER_SHEET);
-                } 
-                catch (ee) {
-                    Foxtrick.dump ( ' TOP sss.unregisterSheet: ' + ee + '\n');
-                }
-            }
-            
-			// load (on myht or after pref change)
-			if (FoxtrickPrefs.getBool("module.SkinPlugin.enabled")                
-				&& (prefs_changed || doc.location.href.search(/\/MyHattrick\/$|Default.aspx\?authCode/)!=-1) ) {
-					
-					if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-						sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
-					}
-			}
-            /*END*/        
-		} //try
-        catch(e) {
-            Foxtrick.dump ('> SkinPlugin ' + e + '\n');
-        }
-    },
-
     change : function( doc ) {	
 	}
 };

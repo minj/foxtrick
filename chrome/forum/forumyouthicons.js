@@ -315,7 +315,10 @@
 	change : function( page, doc ) {
         var div = doc.getElementById( "ft_youth_icons");
         if (div != null) return;
-        else this.run(page, doc);
+        else {
+			this.run(page, doc);
+			Foxtrick.dump(this.MODULE_NAME+' change\n')
+		}
 	},
 
 

@@ -244,6 +244,32 @@ Foxtrick.registerAllPagesHandler = function( who ) {
     }
 }
 	
+	
+Foxtrick.stopListenToChange = function (doc) {
+	var content = doc.getElementById("content");
+	content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+}
+	
+Foxtrick.startListenToChange = function (doc) {
+	var content = doc.getElementById("content"); 
+	content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+}
+
+Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
+	node.addEventListener(
+			type,
+			function(ev){
+				var doc = ev.target.ownerDocument;
+				var content = doc.getElementById("content");
+				content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+					fkt(ev);
+				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
+			},
+			trickle
+	);
+}
+	
+	
 /** Remove any occurences of tags ( "<something>" ) from text */
 Foxtrick.stripHTML = function( text ) {
     return text.replace( /(<([^>]+)>)/ig,"");
@@ -378,6 +404,84 @@ Foxtrick.LOG = function (msg) {
         dump(msg);
 }
 		
+Foxtrick.unique = function(a) {
+   var r = new Array();
+   o:for (var i = 0, n = a.length; i < n; i++) {
+		for (var x = 0, y = r.length; x < y; x++) {
+			if(r[x]==a[i]) {
+				continue o;
+			}
+		}
+		r[r.length] = a[i];
+	}
+	return r;
+}
+
+Foxtrick.getClasses = function(obj) {
+	return Foxtrick.unique(String(obj.className).replace(/\s+/, " ").replace(/^\s+/, "").replace(/\s$/, "").split(" "));
+}
+
+Foxtrick.setClasses = function(obj, clses) {
+	var classes = Foxtrick.unique(clses);
+	obj.className = "";
+	for (var i in classes) {
+		obj.className += classes[i];
+		if (i !== classes.length - 1) {
+			obj.className += " ";
+		}
+	}
+}
+
+Foxtrick.hasClass = function(obj, cls) {
+	var classes = Foxtrick.getClasses(obj);
+	for (var i in classes) {
+		if (cls === classes[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+Foxtrick.addClass = function(obj, cls) {
+	var classes = Foxtrick.getClasses(obj);
+	classes.push(cls);
+	Foxtrick.setClasses(obj, classes);
+}
+
+Foxtrick.removeClass = function(obj, cls) {
+	var classes = Foxtrick.getClasses(obj);
+	var newClasses = [];
+	for (var i in classes) {
+		if (classes[i] !== cls) {
+			newClasses.push(classes[i]);
+		}
+	}
+	Foxtrick.setClasses(obj, newClasses);
+}
+
+Foxtrick.toggleClass = function(obj, cls) {
+	if (Foxtrick.hasClass(obj, cls)) {
+		Foxtrick.removeClass(obj, cls);
+	}
+	else {
+		Foxtrick.addClass(obj, cls);
+	}
+}
+
+Foxtrick.selectFileSave = function (parentWindow) {
+    try {
+    	var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
+    	fp.init(parentWindow, "", fp.modeSave);
+    	var ret=fp.show();
+		if ( ret == fp.returnOK || ret==fp.returnReplace ) {
+    		return fp.file.path;
+    	}
+    } catch (e) {
+        Foxtrick.dump('selectFileSave'+e+'\n');
+    }
+	return null;
+}
+
 
 Foxtrick.selectFile = function (parentWindow) {
 	return null;
@@ -1420,6 +1524,14 @@ Foxtrick.loadXmlIntoDOM = function(url) {  return; // xxx
 	}
 
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
+try{
+/*	console.log('XML_evaluate basenodestr:'+basenodestr);
+	if (!xmlresponse.nodeName) {
+		var xmldom = document.createElement('xml');
+		xmldom.innerHTML = xmlresponse;
+		xmlresponse = xmldom;
+	}
+*/
 	var result = new Array();
 	if (xmlresponse) { 
 		var splitpath = basenodestr.split(/\/|\[/g); 
@@ -1429,10 +1541,10 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 				base = base.getElementsByTagName(splitpath[j]);
 				base=base[0]; 
 			} catch (e) { 
-				var tmp = document.createElement('tmp');
+	/*			var tmp = document.createElement('tmp');
 				tmp.innerHTML = base;
 				base = tmp.getElementsByTagName(splitpath[j])[0];
-			}
+		*/	}
 		}
 			
 		var nodes = base.getElementsByTagName(splitpath[j]);
@@ -1452,17 +1564,21 @@ Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, 
 		}
 	}
 	return result;
+} catch(e){console.log('Foxtrick.XML_evaluate '+e);}
 }
 
 
 Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) { 
-			
 		//var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
-		var xml=document.createElement('xml');
-		xml.innerHTML=xmldoc;
 		try {
+			/*if (!xmldoc.nodeName) {
+				var xmldom = document.createElement('xml');
+				xmldom.innerHTML = xmldoc;
+				xmldoc = xmldom;
+			}
+			*/
 			splitpath = path.split(/\/|\[/g);
-			var result = xml;
+			var result = xmldoc;
 			for (var j=0;j<splitpath.length;++j) {
 				if (j!=splitpath.lenght-1 && splitpath[j+1].search('@')==-1) continue;
 				result = result.getElementsByTagName(splitpath[j]);
@@ -1476,14 +1592,7 @@ Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
 			if (attribute) result = result.getAttribute(attribute);
 			//Foxtrick.dump (attribute+' '+result+'\n');
 			return result;
-		} catch (e) {Foxtrick.dump ('error '+path+' '+attribute+' '+e+'\n'); return null;}
-			
-		/*var obj = xmldoc.evaluate(path,xmldoc,null,xmldoc.DOCUMENT_NODE,null).singleNodeValue;
-		if (obj)
-			if (attribute) return obj.attributes.getNamedItem(attribute).textContent;
-			else return obj;
-		else
-			return null;*/
+		} catch (e) {Foxtrick.dump ('error '+path+' '+attribute+' '+e+'\n'); return null;}			
 }
 
 
@@ -1512,22 +1621,26 @@ Foxtrick.getSelectBoxFromXML = function (doc,xmlfile, basenodestr, labelstr, val
 	return selectbox;
 }
 
-Foxtrick.getSelectBoxFromXML2 = function (doc,xmlfile, basenodestr, labelstr, valuestr, selected_value_str) {
-
+Foxtrick.getSelectBoxFromXML2 = function (doc,xmldoc, basenodestr, labelstr, valuestr, selected_value_str) {
+try{
 	var selectbox = doc.createElement("select");
 	
-	var xml = doc.createElement('tmp');
-	xml.innerHTML = xmlfile;
-	var versions = Foxtrick.XML_evaluate(xml, basenodestr, labelstr, valuestr);
+	/*console.log('getSelectBoxFromXML2 basenodestr:'+basenodestr);
+	if (!xmldoc.nodeName) {
+		var xmldom = document.createElement('xml');
+		xmldom.innerHTML = xmldoc;
+		xmldoc = xmldom;
+	}*/
+	var elements = Foxtrick.XML_evaluate(xmldoc, basenodestr, labelstr, valuestr);
 
 	var indexToSelect=0;
-	for (var i = 0; i < versions.length; i++) {
-		var label = versions[i][0];
-		var value = versions[i][1];
+	for (var i = 0; i < elements.length; i++) {
+		var label = elements[i][0];
+		var value = elements[i][1];
 
 		var option = doc.createElement("option");
 		option.setAttribute("value",value);
-		option.innerHTML=label;
+		option.innerHTML = label;
 		selectbox.appendChild(option);
 
 		if (selected_value_str==value)
@@ -1536,6 +1649,7 @@ Foxtrick.getSelectBoxFromXML2 = function (doc,xmlfile, basenodestr, labelstr, va
 	selectbox.selectedIndex=indexToSelect;
 
 	return selectbox;
+} catch(e){console.log('getSelectBoxFromXML2' +e);}
 }
 
 Foxtrick.getSelectBoxFromXML3 = function (doc,xmlarray, valuestr, selected_value_str) {

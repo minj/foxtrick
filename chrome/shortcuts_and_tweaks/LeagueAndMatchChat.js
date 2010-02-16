@@ -27,7 +27,12 @@ var FoxtrickLeagueAndMatchChat = {
 		if (link.id=='yapCloseLink') { 
 			if (ev.target.ownerDocument.location.href.match(/nobalance=(\d+)/)[1]=='1') ev.target.parentNode.href='javascript:window.top.location="'+FoxtrickLeagueAndMatchChat.server+'"';
 		}
-		else if (link.id=='yapPopLink') { 
+		else if (link.id=='yapPopLink') { Foxtrick.dump('###'+ev.target.ownerDocument.location.href+'\n');
+			var channel = ev.target.ownerDocument.location.href.match(/channel=(.+)/)[1];
+			ev.target.ownerDocument.getElementsByTagName('head')[0].innerHTML=ev.target.ownerDocument.getElementsByTagName('head')[0].innerHTML.replace(/page,\s+'',/,'"'+channel+'","",');
+			Foxtrick.dump('channel:'+channel+'\n'+ev.target.ownerDocument.getElementsByTagName('head')[0].innerHTML+'\n');
+			Foxtrick.dump(ev.target.ownerDocument.getElementsByTagName('head')[0].innerHTML.search(/page,\s+'',/)+'\n');
+			
 			if (ev.target.ownerDocument.location.href.match(/nobalance=(\d+)/)[1]=='1') ev.target.parentNode.href='javascript:page="'+FoxtrickLeagueAndMatchChat.server+'";'+ev.target.parentNode.href.replace(/javascript:/g,'');
 		}
 		
