@@ -2,21 +2,21 @@
 .hidden { display: none; }
 
 /* icons and hover icons */
-.ft_actionicon {cursor: pointer; width: 16px; height: 16px; background: 50% no-repeat;}
-.ft_icon {width: 16px; height: 16px; background: 50% no-repeat;}
+.ft_actionicon {cursor: pointer; height: 16px; background: 50% }
+.ft_icon {width: 16px; height: 16px; background: 50% }
 
 .HT_thread { background: #FF7A7A;}
 
-.foxtrickCopy {background: url('chrome://foxtrick/content/resources/img/copy_small.png') no-repeat;}
-.foxtrickCopy:hover {background: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png') no-repeat;}
-.foxtrickHelp {background: url('chrome://foxtrick/content/resources/img/Aiga_help_green.png') no-repeat;}
-.foxtrickHelp:hover {background: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png') no-repeat;}
-.foxtrickExport {background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png') no-repeat;}
-.foxtrickExport:hover {background: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png') no-repeat;}
-.foxtrickRemove {background: url('chrome://foxtrick/content/resources/linkicons/cross_small.png') no-repeat;}
-.foxtrickRemove:hover {background: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png') no-repeat;}
-.foxtrickInfo {background: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png') no-repeat;}
-.foxtrickInfo:hover {background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') no-repeat;}
+.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy_small.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickHelp {background-image:url('chrome://foxtrick/content/resources/img/Aiga_help_green.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickExport:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickRemove {background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png'); background-repeat:no-repeat; width: 12px; margin-left:2px;}
+.foxtrickRemove:hover {background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png'); background-repeat:no-repeat;width: 12px; margin-left:2px; }
+.foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png'); background-repeat:no-repeat; width: 16px; }
 
 /* sidebarbox h2 dropdown image */ 
 div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat; background-position: 99% 60%;}
@@ -46,8 +46,8 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 .ft_skilltablediv { margin-top: 35px; margin-bottom: 35px; margin-left: -10px; }
 .ft_skilltablediv h2 { cursor: pointer; margin: 10px 0 10px 0 !important; }
 .ft_skilltablediv table { width: 100%; margin: 0 0 0.5em 0;}
-.ft_skilltablediv table td:nth-child(even) { background-color: #eeeeee; }
-.ft_skilltablediv table td:nth-child(odd) { background-color: white; }
+.ft_skilltablediv table td:nth-child(even); background-repeat:no-repeat; { background-color: #eeeeee; }
+.ft_skilltablediv table td:nth-child(odd); background-repeat:no-repeat; { background-color: white; }
 .ft_skilltablediv table th { text-align: center !important; }
 .ft_skilltablediv a { cursor: pointer; margin: 0 0.5em 0 0; }
 .ft_skilltable_wrapper, .ft_skilltable_customizewrapper { width: 100%; overflow: auto; }
@@ -67,6 +67,6 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 
 /* must be at the end of the document!!! */
 /* hide all till script finished 
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
+@-moz-document domain(hattrick.org); background-repeat:no-repeat;, domain(hattrick.interia.pl); background-repeat:no-repeat;, domain(hattrick.ws); background-repeat:no-repeat; {
 	body{display:none;}
 }*/
