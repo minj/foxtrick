@@ -312,11 +312,16 @@ var FoxtrickMain = {
 						} );
 				}
 			}
-			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				//Foxtrick.dump ( "may run " + Foxtrick.run_on_cur_page[j].module.MODULE_NAME + " : page " + Foxtrick.run_on_cur_page[j].page + "\n  " );
-			}
 
-//			if (FoxtrickPrefs.getBool( "onpageprefs" )) FoxtrickOnPagePrefs.run(doc);
+			// show version number
+			var bottom  = doc.getElementById('bottom');
+			var htserver = bottom.getElementsByTagName('span')[0];			
+			var ft_span = doc.createElement('span');
+			ft_span.appendChild(doc.createTextNode('/ FoxTrick v'+FoxtrickPrefs.getString("curVersion")));
+			ft_span.setAttribute('class','currentServer');
+			ft_span.setAttribute('style','margin-left:5px');
+			bottom.insertBefore(ft_span, htserver);
+			
 			// context menue
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);
             Foxtrick.dump_flush(doc);
