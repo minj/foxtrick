@@ -6,7 +6,6 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
-	var newstart = true;
 	var mail_count = 0;
 	var forum_count = 0;
 	var unreadticker_count = 0;
@@ -172,7 +171,7 @@ function animateFlip() {
   } else {
 	rotation = 0;
 	drawIconAtRotation(); 
-    chrome.browserAction.setBadgeText({ 
+    chrome.browserAction.setBadgeText({ //alert('unreadCount'+unreadCount);
       text: unreadCount=='0/0'?'':unreadCount
     });
     chrome.browserAction.setIcon({path: "resources/img/foxtrick18.png"});
@@ -211,7 +210,7 @@ function goToInbox() {
         return;
       }
     }
-    //chrome.tabs.create({url: getGmailUrl()});
+    chrome.tabs.create({url: 'http://www.hattrick.org'});
   });
 }
 

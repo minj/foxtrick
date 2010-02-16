@@ -1,13 +1,46 @@
 <html>
-  <script type="text/javascript" src="jkl-parsexml.js"></script>
   <script>
+
+  try{  
+
+  	//alert('load background')
+	var resources_changed = true;
+	var newstart = true;
+
+
+	function getchilds(el,parent,tag) {
+		var childs = el.childNodes;
+		var only_text=true;
+		var text=null;
+		var isarray=false;
+		if (parent[tag]) {
+			// if a tag is not unique, make an array and add nodes to that
+			isarray=true; 
+			if (!parent[tag][0]) {
+				var old_val = parent[tag];
+				parent[tag] = new Array();
+				parent[tag].push(old_val);
+			}
+			parent[tag].push({});
+		}
+		else {parent[tag] = {};} // assume unique tag and make a assosiative node
+		
+		for (var i=0;i<childs.length;++i) {
+			if (childs[i].nodeType==childs[i].ELEMENT_NODE ) {
+				only_text=false;
+				if (isarray) getchilds(childs[i], parent[tag][parent[tag].length-1], childs[i].nodeName);
+				else getchilds(childs[i], parent[tag], childs[i].nodeName);				
+			}
+			else if (childs[i].nodeType==childs[i].TEXT_NODE ) {
+				text = childs[i].textContent;
+			}
+		}
+		if (only_text) { 
+			if (isarray) parent[tag][parent[tag].length-1] = text;
+			else parent[tag] = text;
+		}
+	}
  	 
-try{  
-
-//alert('load background')
-
-
-var resources_changed = true;
 
 
 function isHTUrl(url) {
@@ -92,16 +125,28 @@ function isHTUrl(url) {
 	aboutxhr.send();
 
 	// worlddetails
-	var xml = new JKL.ParseXML( "htlocales/worlddetails.xml" );
-	var data = xml.parse();// alert(data.HattrickData.LeagueList.League.length);
+	listUrl = chrome.extension.getURL("htlocales/worlddetails.xml");
+	var worlddetailsxhr = new XMLHttpRequest();
+	worlddetailsxhr.open("GET", listUrl, false);
+	worlddetailsxhr.send();
+
 	var League = {};
 	var countryid_to_leagueid = {};
 	
+	var data ={};
+	var name = 'HattrickData';
+	getchilds(worlddetailsxhr.responseXML.documentElement, data, name);
+		
 	// reindex: by leagueid and countryid
-	for (var i=0; i<data.HattrickData.LeagueList.League.length; i++) {
+	for (var i in data.HattrickData.LeagueList.League) {
+			League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
+			countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
+	}
+
+	/*for (var i=0; i<data.HattrickData.LeagueList.League.length; i++) {
 		League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
 		countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
-	}
+	}*/
 
 	var hty_staff = new Array();
 	var req = new XMLHttpRequest();
@@ -366,6 +411,6 @@ chrome.extension.onConnect.addListener(function(port) {
 </head>
 <body onload="background_ticker_init()">
 <img id="logged_in" src="resources/img/foxtrick18grey.png">
-<canvas id="canvas" width="18" height="18">
+<canvas id="canvas" width="18" height="18" />
 </body>
 </html>
