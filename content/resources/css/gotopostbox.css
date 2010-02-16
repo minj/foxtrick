@@ -13,12 +13,15 @@
 #ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction,
 #ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_txtMessageNumber,
 #ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_btnGo,
-#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_ddlAction {
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_ddlAction, 
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnViewMessage {
 	display:none;
 }
-
-.ft_gotobox{
-	float:left;
+/*#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnViewMessage {
+	display:none !important;
+}*/
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_filterUser{
+	float:left !important;
 }
 
 .ft_gotobox_btn {

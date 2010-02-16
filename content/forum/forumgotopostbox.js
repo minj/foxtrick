@@ -101,7 +101,7 @@ var FoxtrickGoToPostBox = {
 					'show_tgl(\"Top_txtMessageNumber\"); show_tgl(\"Top_btnGo\"); show_tgl(\"Top_ddlAction\"); show_tgl(\"Bottom_txtMessageNumber\"); show_tgl(\"Bottom_btnGo\"); show_tgl(\"Bottom_ddlAction\"); '
 					
 				);
-				selectBox.parentNode.appendChild(tglButton);
+				selectBox.parentNode.appendChild(tglButton); 
 				
 				var inputBoxTop = doc.createElement('input');
 				inputBoxTop.setAttribute('type', 'text');
@@ -109,7 +109,7 @@ var FoxtrickGoToPostBox = {
                 inputBoxTop.setAttribute('value', '(xxx.)yyy');
                 inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
                 inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
-                inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
+                inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")'); 
                 
 				var goButton = doc.createElement('input');
 				goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
@@ -117,7 +117,7 @@ var FoxtrickGoToPostBox = {
 				goButton.setAttribute('type', 'button');
 				var sTmp = selectBox.getAttribute('onChange');
 				var iTopicId = sTmp.match(/\d+/)[0];
-				goButton.setAttribute('value', 'OK');
+				goButton.setAttribute('value', Foxtrickl10n.getString("foxtrick.GoToPostBox.label"));
 				goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
 				goButton.setAttribute('onClick', 
 					'var val=document.getElementById("' + boxId + '").value; ' + 
@@ -127,7 +127,7 @@ var FoxtrickGoToPostBox = {
 					);
 				
    				var inputBoxLabel = doc.createElement('span');
-                inputBoxLabel.innerHTML = '&nbsp;' + Foxtrickl10n.getString("foxtrick.GoToPostBox.label") + ':&nbsp;';
+                inputBoxLabel.innerHTML = '&nbsp;'/* + Foxtrickl10n.getString("foxtrick.GoToPostBox.label") + ':&nbsp;'*/;
                 selectBox.parentNode.appendChild(inputBoxLabel);
 
 				selectBox.parentNode.appendChild(inputBoxTop);
