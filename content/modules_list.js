@@ -107,6 +107,7 @@ Foxtrick.modules = [
                     FoxtrickNTConfirmAddRemove,
                     FoxtrickEconomyDifference,
                     FoxtrickHideSignatures,
+					FoxtrickMarkUnread,
                     FoxtrickForumNextAndPrevious,
                     FoxtrickForumLastPost,
                     FoxtrickPersonalityImages,
