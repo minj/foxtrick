@@ -64,7 +64,7 @@ portgetsettings.onMessage.addListener(function(msg) {
 });
 
 if (typeof(xml_got_settings)=='undefined') {
-	portgetsettings.postMessage({reqtype: "get_settings"}); console.log('do get_settings '+xml_got_settings);
+	portgetsettings.postMessage({reqtype: "get_settings"}); console.log('do get_settings');
 	portgetsettings.postMessage({reqtype: "get_hty_staff"});
 	var xml_got_settings=true;
 }

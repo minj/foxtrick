@@ -96,11 +96,11 @@ var FoxtrickAlert = {
 		FoxtrickAlert.foxtrick_showAlert(false);
 
 		if (Foxtrick.BuildFor=='Chrome') {
+			Foxtrick.dump('last_num_message '+FoxtrickAlert.last_num_message+' '+'last_num_forum '+FoxtrickAlert.last_num_forum+'\n');
 			localStorage['last_num_message'] = FoxtrickAlert.last_num_message;
 			localStorage['last_num_forum']  = FoxtrickAlert.last_num_forum;
-			if (!numforum) numforum=0;
-			portalert.postMessage({reqtype: "set_mail_count",mail_count:num_message});
-			portalert.postMessage({reqtype: "set_forum_count",forum_count:numforum});
+			portalert.postMessage({reqtype: "set_mail_count",mail_count: FoxtrickAlert.last_num_message});
+			portalert.postMessage({reqtype: "set_forum_count",forum_count: FoxtrickAlert.last_num_forum});
 		}
 	} catch (e) {Foxtrick.dump('showMailAlert: '+e+'\n');}
 	},
