@@ -14,16 +14,19 @@
 #ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_txtMessageNumber,
 #ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_btnGo,
 #ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_ddlAction, 
-#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnViewMessage {
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnViewMessage,
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_btnViewMessage {
 	display:none;
 }
-/*#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnViewMessage {
-	display:none !important;
-}*/
-#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_filterUser{
+
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_filterUser,
+#ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerBottom_filterUser{
 	float:left !important;
 }
 
+.quickViewBox {
+     width: 50px !important;
+}
 .ft_gotobox_btn {
 	margin-right : 5px;
 	margin-left : 5px;

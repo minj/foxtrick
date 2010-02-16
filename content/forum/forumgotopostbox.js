@@ -105,7 +105,7 @@ var FoxtrickGoToPostBox = {
 				
 				var inputBoxTop = doc.createElement('input');
 				inputBoxTop.setAttribute('type', 'text');
-				inputBoxTop.setAttribute('size', '4');
+				inputBoxTop.setAttribute('size', '2');
                 inputBoxTop.setAttribute('value', '(xxx.)yyy');
                 inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
                 inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
