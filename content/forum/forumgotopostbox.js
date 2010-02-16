@@ -91,10 +91,11 @@ var FoxtrickGoToPostBox = {
 					continue;
 				var selectBox = aSelectBoxes[i];
 				
+				/*
 				var tglButton = doc.createElement('input');
 				tglButton.setAttribute('id', 'foxtrick_forum_postbox_tglbutton_' + i);
 				tglButton.setAttribute('type', 'button');
-				tglButton.setAttribute('value', 'tgl_test');
+				tglButton.setAttribute('value', 'i');
 				tglButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
 				tglButton.setAttribute('onClick', 
 					'function show_tgl(elm) {var el_1 = document.getElementById(\"ctl00_ctl00_CPContent_CPMain_ucThread_ucPager\" + elm); if (el_1.style.display != \"inline\") {el_1.style.display = \"inline\";} else {el_1.style.display = \"none\";}} ' +
@@ -102,10 +103,11 @@ var FoxtrickGoToPostBox = {
 					
 				);
 				selectBox.parentNode.appendChild(tglButton); 
+				*/
 				
 				var inputBoxTop = doc.createElement('input');
 				inputBoxTop.setAttribute('type', 'text');
-				inputBoxTop.setAttribute('size', '2');
+				inputBoxTop.setAttribute('size', '4');
                 inputBoxTop.setAttribute('value', '(xxx.)yyy');
                 inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
                 inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');

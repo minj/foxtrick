@@ -62,10 +62,13 @@ var FoxtrickMarkUnread = {
 								var reg = /^(.*?)\&n\=(\d+)(.*?)/;
 								var ar = reg.exec(+' ' + ahref + ' ');
 								if (ar[2] != null) {
-									nr = '&n=' + ar[2];
+									//nr = '&n=' + ar[2];
+									nr = ''+ar[2]+'';
 								}
 								//alert(nr);
-								markunread[p].href = "/Forum/Read.aspx" + thread + nr+"&mr=0"+tab+"&um=1";
+								// markunread[p].href = "/Forum/Read.aspx" + thread + nr+"&mr=0"+tab+"&um=1";
+								markunread[p].href = "javascript:try{document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction').selectedIndex=\"1\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber').value=\""+nr+"\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo').click();}catch(e){}";
+								Foxtrick.dump ('\n' + markunread[p].href + '\n');
                             }						
                             if( divsInFooter[j].className == "float_right" ) {
                                 divsInFooter[j].appendChild(markunread[p]);
