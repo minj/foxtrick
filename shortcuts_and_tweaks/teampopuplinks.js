@@ -10,10 +10,10 @@ var FoxtrickTeamPopupLinks = {
         MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 		PAGES : new Array('all_late'), 
         DEFAULT_ENABLED : true,
-		NEW_AFTER_VERSION: "0.4.8.2",	
-		LATEST_CHANGE:"Added teamhistory, next match, addnextmatch(to htlive), youth matches (default off)",
-		LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-        OPTIONS :  new Array( "OpenNewTab",
+		NEW_AFTER_VERSION: "0.5.0.3",	
+		LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+		LATEST_CHANGE: "Simple speed check added. Don't add popuplinks if more than about 80 managers are on a page",
+		OPTIONS :  new Array( "OpenNewTab",
 							"TeamLinks",
 							"UserLinks",
 							"Manager",
@@ -157,12 +157,15 @@ var FoxtrickTeamPopupLinks = {
 				if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
 				var aLinks = doc.getElementById('mainBody').getElementsByTagName('a'); 
 				var i = 0, aLink;
-                while ( aLink = aLinks[i++] ) {
+                
+				if (aLinks.length<100) {
+				  while ( aLink = aLinks[i++] ) {
 					if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText') continue; // don't add to buttons, and htlive tabs				
 					if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
 					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
 						this._addSpan(doc, aLink );
-					}  
+					}
+				  }
 				}
 				var sidebar = doc.getElementById('sidebar');
 				if (sidebar) {

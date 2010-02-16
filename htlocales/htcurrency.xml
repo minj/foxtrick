@@ -79,7 +79,7 @@
 	<currency code="ALL" shortname="Lek" name="Lek (Albanian lek)" eurorate="5" />
 	<currency code="SGD" shortname="S$" name="S$ (Singapore dollar)" eurorate="0.5" />
 	<currency code="ZAR" shortname="Rand" name="Rand (South Africa)" eurorate="0.125" />
-	<currency code="CSD" shortname="dinar" name="Dinar (Serbian dinar)" eurorate="0.1" />
+	<currency code="RSD" shortname="dinar" name="Dinar (Serbian dinar)" eurorate="0.1" />
 	<currency code="SRD" shortname="SRD" name="SRD (Surinam dollar)" eurorate="0.5" />
 	<currency code="TND" shortname="Dinar" name="Dinar (Tunisian Dinar)" eurorate="0.8" />
 	<currency code="TTD" shortname="TT$" name="TT$ (Trinidad and Tobago dollar)" eurorate="0.1" />

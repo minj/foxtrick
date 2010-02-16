@@ -2147,4 +2147,13 @@ background: none !important;
 color: #000 !important;
 }
 
+/*---------pre format-----------*/
+
+pre{
+font-size:13px!important;
+line-height:13px;
+padding:0px;
+margin:0px;
+}
+
 }

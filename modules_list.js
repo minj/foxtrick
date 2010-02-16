@@ -13,6 +13,7 @@ if (!Foxtrick) var Foxtrick={};
 Foxtrick.modules = [
                     Foxtrick.XMLData,
 					
+					FoxtrickReadHtPrefsFromHeader,
 					Foxtrick.Matches,
 					FoxtrickForumStripHattrickLinks,
 					FoxtrickForumChangePosts,
@@ -20,7 +21,9 @@ Foxtrick.modules = [
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
                     FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
                     FoxtrickMovePlayerStatement,
-                    FoxtrickFixcssProblems,
+					FoxtrickFixcssProblems,
+					FoxtrickSimplePresentation,
+					FoxtrickForumPresentation,
                     FoxtrickForumTemplates,
                     FoxtrickForumPreview,
                     FoxtrickForumYouthIcons,
@@ -33,8 +36,9 @@ Foxtrick.modules = [
                     FoxtrickTeamPopupLinksMore,
                     FoxtrickHideManagerAvatarUserInfo,
                     FoxtrickGoToPostBox,
-                    //FoxtrickContextMenueCopyId,
-                    FoxtrickCopyTrainingReport,
+                    FoxtrickContextMenueCopyId,
+                    FoxtrickHeadercopyicons,
+					FoxtrickCopyTrainingReport,
                     FoxtrickCopyScoutReport,
                     FoxtrickCopyPlayerSource,
                     FoxtrickFormatPostingText,
@@ -96,6 +100,7 @@ Foxtrick.modules = [
                     FoxtrickLinksFans,
                     FoxtrickLinksStaff,
                     FoxtrickLinksTracker,
+					FoxtrickLinksClubTransfers,
                     FoxtrickConfirmPlayerBid,
                     FoxtrickConfirmTL,
                     FoxtrickConfirmStaffChange,
@@ -106,7 +111,7 @@ Foxtrick.modules = [
                     FoxtrickForumLastPost,
                     FoxtrickPersonalityImages,
                     FoxtrickSkillColoring,
-                    //FoxtrickSkinPlugin,
+                    FoxtrickSkinPlugin,
                     FoxtrickMatchIncome,
                     FoxtrickHelper,
                     FoxtrickLargeFlags,
@@ -153,5 +158,8 @@ Foxtrick.modules = [
                     FoxtrickHighlightBotTeams,
 					FoxtrickTransferCompareSort,
 					//FoxtrickTransferSearchResultsSort, //not finished
-					FoxtrickLeagueAndMatchChat,  
+					FoxtrickLeagueAndMatchChat,
+					FoxtrickRapidId,
+					FoxtrickSkillTable
                     ];
+					

@@ -61,7 +61,7 @@ FoxtrickLastLogin = {
             if (!Foxtrick.HT_date) return;
             var div = doc.getElementById( "pnlLogin" );
 			if (!div) return;
-			div.parentNode.removeEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
+			//div.parentNode.removeEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
 			
 			var avatarstyle='margin-left:-10px'
 			/*var hasavatar=false;
@@ -96,7 +96,7 @@ FoxtrickLastLogin = {
             }
             newInner += '</div>';
 			div.innerHTML = newInner;
-			div.parentNode.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
+			//div.parentNode.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
 			
         } catch (e) {
             Foxtrick.dump('FoxtrickLastLogin '+e+'\n');

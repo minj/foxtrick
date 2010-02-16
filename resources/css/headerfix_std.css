@@ -25,7 +25,7 @@ margin-right:11px !important;
 
 /* add whitespace below header */
 #aspnetForm:not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #menu {
-margin-bottom: 6px !important;
+margin-bottom: 2px !important;
 }
 
 /* compensate for fixed header */

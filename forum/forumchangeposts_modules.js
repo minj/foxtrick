@@ -360,7 +360,7 @@ var FoxtrickSingleline2 = {
 						post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
 					}
 					post_link1.innerHTML=String(PostID_message);
-					post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
+					//###post_link1.addEventListener( "DOMSubtreeModified", FoxtrickForumChangePosts._postid_adjust_height, false );
 					if (post_link2) {
 						var PostID_message = post_link2.title.replace(/\d+\./,'');
 						post_link2.innerHTML=String(PostID_message);

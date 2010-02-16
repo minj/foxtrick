@@ -70,8 +70,8 @@ var FoxtrickLinksYouthPlayerDetail = {
 	
     MODULE_NAME : "LinksYouthPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('YouthPlayers'), 
-	DEFAULT_ENABLED : false,
+	PAGES : new Array('youthplayerdetail'), 
+	DEFAULT_ENABLED : true,
 	OPTIONS : {}, 	
 
     init : function() {
@@ -92,11 +92,32 @@ var FoxtrickLinksYouthPlayerDetail = {
 					owncountryid = FoxtrickHelper.findCountryId(teamdiv);					
 				}		
 		
+		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="main mainRegular") {
+				var thisdiv = alldivs[j];
+				var nationality = FoxtrickHelper.findCountryId(thisdiv);
+				var playerid = FoxtrickHelper.findPlayerId(thisdiv);
+				var playername=thisdiv.getElementsByTagName("a")[1].innerHTML;;
+				var age = null;
+				var age_days;
+								
+				// age
+				var divs= thisdiv.getElementsByTagName('div');
+				for (var j=0; j < divs.length; j++) {
+					if ( divs[j].className=="byline" ) { 
+						age = divs[j].textContent.match(/\d+/)[0];
+						age_days = divs[j].textContent.match(/(\d+)/g)[1]; 
+						break;
+					}
+				} 
+				break;
+			}
+		}
 	
-	
-		//addExternalLinksToYouthOverview
+		//addExternalLinksToYouthdetail
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthplayerdetaillink", { "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthplayerdetaillink", { "age" : age, "age_days":age_days, "owncountryid": owncountryid }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

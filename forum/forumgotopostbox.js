@@ -11,7 +11,7 @@ var FoxtrickGoToPostBox = {
 	PAGES : new Array("forumViewThread"), 	
 	DEFAULT_ENABLED : false,
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
-	NEW_AFTER_VERSION: "0.4.9",
+	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
@@ -68,6 +68,7 @@ var FoxtrickGoToPostBox = {
 			
 			var selects = doc.getElementById('mainWrapper').getElementsByTagName('select');
 			for (var i=0;i<selects.length;++i) {
+			  if (selects[i].id.search(/filter/i)!=-1) {
 				if (!selectBoxTop) {
 					selectBoxTop = selects[i];
 				}
@@ -75,6 +76,7 @@ var FoxtrickGoToPostBox = {
 					selectBoxBottom = selects[i];
 					break;
 				}
+			  }
 			}
 			
 			

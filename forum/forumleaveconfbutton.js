@@ -43,9 +43,7 @@ var FoxtrickAddLeaveConfButton = {
                 catch(e) {
                     Foxtrick.dump( ' => AddLeaveConfButton forum' + e + '\n');
                 }
-                
-                
-
+                                
 			case 'forumSettings':
 				var sUrl = Foxtrick.getHref( doc );
 				var confPos = sUrl.search(/LeaveConf=/i);
@@ -80,30 +78,13 @@ var FoxtrickAddLeaveConfButton = {
 	},
 	
 	change : function( page, doc ) {
+	
+		if (doc.getElementById( 'ftLC-btn0' )) return;
+            
+		//Foxtrick.dump(this.MODULE_NAME+' change\n')
 		switch( page ) {
 			case 'forum':
-                try {
-                    var vValue = this.getVValue( doc );
-                    if(vValue != "2") {
-                        var elems = doc.getElementsByTagName("div");
-                        var foldersCounter = 0;
-                        for(var i=0; i < elems.length; i++) {
-                            if(elems[i].className=="folderHeader"
-							|| elems[i].className=="folderHeaderHighlight"){
-                                var divLeaveConfBtn = doc.getElementById(
-                                    "ftLC-btn" + foldersCounter);
-                                if(!divLeaveConfBtn) {
-                                    this.addButton( doc, divLeaveConfBtn, elems[i],
-                                        foldersCounter, vValue );
-                                }
-                                foldersCounter++;
-                            }
-                        }
-                    }
-                } 
-                catch(e) {
-                    Foxtrick.dump(' => AddLeaveConfButton CHG: ' + e + '\n');
-                }
+				this.run(page,doc);
 				break;
 			case 'forumSettings':
 				break;

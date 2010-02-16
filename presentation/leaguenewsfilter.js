@@ -10,14 +10,17 @@ var FoxtrickLeagueNewsFilter = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'), 
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LATEST_CHANGE:"Fixed problems with ShortPAs and repeated useage",
-	RADIO_OPTIONS:new Array('all','friendlies','transfers','lineup_changes','PAs'),
+	NEW_AFTER_VERSION : "0.5.0.3",
+	LATEST_CHANGE : "Highlight teams with lineups in next matches table. Highlight wins. Gray bots",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes','PAs'),
+	OPTIONS : new Array('highlight_set_lineup','highlight_wins','gray_bots'),
 	
     init : function() {
     },
 
     run : function( page, doc ) { 
+	try{
 	var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
 	var selectdiv=doc.createElement('div');
 	selectdiv.setAttribute('style','display:block');
@@ -25,7 +28,7 @@ var FoxtrickLeagueNewsFilter = {
 	selectdiv.appendChild(doc.createTextNode(' '));
 	var select=doc.createElement('select');
 	select.setAttribute("id","ft_ownselectboxID");
-	select.addEventListener('change',this.SelectClick,false);
+	Foxtrick.addEventListenerChangeSave(select, 'change',this.SelectClick,false);
 		
 	var option=doc.createElement('option');
 	option.setAttribute('value','0');
@@ -52,6 +55,7 @@ var FoxtrickLeagueNewsFilter = {
 	
 	newsfeed.parentNode.insertBefore(selectdiv,newsfeed.parentNode.firstChild);
 	
+	var has_lineup = new Array();
 	var item=null;
 	var items = newsfeed.getElementsByTagName('div');
 	for (var i=0;i<items.length;++i) {
@@ -75,11 +79,78 @@ var FoxtrickLeagueNewsFilter = {
 			}
 			else if (as[1].href.search('javascript')==-1 ) {	// 3 = lineup changes, 2 links, second link not ShortPA link,not above
 				item.setAttribute('ft_news','3');
+				var namelength = (as[0].innerHTML.length<11)?as[0].innerHTML.length:11;
+				has_lineup.push(as[0].innerHTML.substr(0,namelength));
 			}
 		}
 	}
 
 	if (select.value!=0) this.ShowHide(doc);
+
+	// highlight teams with lineup
+	var tables = doc.getElementById('mainBody').getElementsByTagName('table');
+	// get bots/ownerless
+	var is_bot = new Array();
+	var teams = tables[0].getElementsByTagName('a'); 
+	for (var i=0; i<teams.length; ++i) {
+			if (teams[i].className && teams[i].className.search('shy')!=-1) {
+				var namelength = (teams[i].innerHTML.length<11)?teams[i].innerHTML.length:11;
+				is_bot.push(teams[i].innerHTML.substr(0,namelength));			
+			}
+	}		
+
+    for (var k=1; k<tables.length; ++k) {
+		for (var i=1; i<5; ++i) {
+			var link = tables[k].rows[i].cells[0].getElementsByTagName('a')[0]; 
+
+			link.innerHTML = link.innerHTML.replace(/ /g,'#');
+			// lineup set
+			if (Foxtrick.isModuleFeatureEnabled( this, 'highlight_set_lineup') && tables[k].className.search('right')!=-1)  {		
+			  for (var j=0; j<has_lineup.length; ++j) {
+				var pos = link.innerHTML.search(has_lineup[j].replace(/ /g,'#'));
+				//Foxtrick.dump(has_lineup[j]+' '+link.innerHTML+' '+pos+'\n');
+				if (pos==0) {
+					var reg = new RegExp(/(.+)\&nbsp;/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<b>$1</b>&nbsp;');
+				}
+				else if (pos>0) {
+					var reg = new RegExp(/\-&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<b>$1</b>');
+				}
+			  }
+			}
+			// bots
+			if (Foxtrick.isModuleFeatureEnabled( this, 'gray_bots')){
+			  for (var j=0; j<is_bot.length; ++j) {
+				var pos = link.innerHTML.search(is_bot[j].replace(/ /g,'#'));
+				//Foxtrick.dump(is_bot[j]+' '+link.innerHTML+' '+pos+'\n');
+				if (pos==0) {
+					var reg = new RegExp(/(.+)\&nbsp;-/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<shy class="shy">$1</shy>&nbsp;-');
+				}
+				else if (pos>0) {
+					var reg = new RegExp(/\-&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<shy class="shy">$1</shy>');
+				}
+			  }
+			}
+			if (Foxtrick.isModuleFeatureEnabled( this, 'highlight_wins')  && tables[k].className.search('left')!=-1)  {		
+				var goals = tables[k].rows[i].cells[1].innerHTML.replace(/&nbsp;/g,'').split('-');
+				//Foxtrick.dump(parseInt(goals[0])+' '+parseInt(goals[1])+' '+(parseInt(goals[0])>parseInt(goals[1]))+'\n');
+				if (parseInt(goals[0]) > parseInt(goals[1])) {
+					var reg = new RegExp(/(.+)\&nbsp;-/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<b>$1</b>&nbsp;-');
+				} else if (parseInt(goals[0]) < parseInt(goals[1])) {
+					var reg = new RegExp(/\-&nbsp;(.+)/); 					
+					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<b>$1</b>');
+				}				
+			}
+			
+			link.innerHTML = link.innerHTML.replace(/#/g,'&nbsp;').replace(/&nbsp;-&nbsp;/g,' - ');
+		} 		  		
+	}
+	
+	} catch(e){Foxtrick.dump('leaguenewfilter: +'+e+'\n');}
 	},
 	
 	ShowHide:function(doc) {
@@ -174,7 +245,7 @@ var FoxtrickShortPAs = {
 		var a=doc.createElement('a');
 		a.innerHTML=Foxtrickl10n.getString("foxtrick.ShortPAs.more");
 		a.href='javascript:void(0);';
-		a.addEventListener('click',this.showfull,true);		
+		Foxtrick.addEventListenerChangeSave(a, 'click',this.showfull,true);		
 		morediv.appendChild(a);
 		var b=item.getElementsByTagName('b')[0];
 		b.parentNode.insertBefore(morediv,b.nextSibling);

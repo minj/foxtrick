@@ -13,15 +13,14 @@ Foxtrick.Ratings = {
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LATEST_CHANGE: "Fixed ratings for youth matches",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	OPTIONS : {}, // will be filled in initRatings
-	ratingDefs : {}, // will be filled in initOptions
+	OPTIONS : new Array ("hatstats", "hatstatstotal", "loddarstats", "peasostats", "vnukstats", "htitavals", "gardierstats"), 
+	ratingDefs :  {}, // will be filled in initOptions
 
 	init : function() {
 		Foxtrick.Matches.init();
 		this.initHtRatings();
-		this.initOptions();
 	},
-
+		
 	run : function( page, doc ) { 
 		try {
 			var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
@@ -64,7 +63,9 @@ Foxtrick.Ratings = {
 			var attackLevel = new Array();
 			attackLevel[0]= rattack[0] + cattack[0] + lattack[0];
 			attackLevel[1]= rattack[1] + cattack[1] + lattack[1];
-			for (var selectedRating in this.ratingDefs) {
+			for (var k=this.OPTIONS.length-1; k>=0; --k) {
+				var selectedRating = this.OPTIONS[k];
+				//Foxtrick.dump(selectedRating+'\n');
 				if (!Foxtrick.isModuleFeatureEnabled( this, selectedRating)) continue;
 
 				var row = ratingstable.insertRow(8);
@@ -121,8 +122,7 @@ Foxtrick.Ratings = {
 
 	},
 	
-	change : function( page, doc ) {
-	
+	change : function( page, doc ) {	
 	},
 
 	insertRatingsDet: function (cell, rating, ratingType, label, midfieldLevel, attackLevel, defenceLevel) {
@@ -130,37 +130,8 @@ Foxtrick.Ratings = {
 		cell.innerHTML+="<br />"+label+": <b>" + rating[ratingType](midfieldLevel, attackLevel, defenceLevel) + "</b>";
 	},
 	
-	initOptions: function() {
-		this.OPTIONS = new Array();
-		for (var selectedRating in this.ratingDefs) {
-			this.OPTIONS.push(selectedRating);
-		}
-	},
-
 	initHtRatings: function () {
 		this.ratingDefs=new Array();
-		this.ratingDefs["vnukstats"] = { base : 1.0,
-			label : function(){return "Vnukstats";},
-			title : function(){return "Vnukstats";},
-
-			special : function(rattack, cattack, lattack) {
-			return this.mystyle(rattack) + " " + this.mystyle(cattack)
-				+ " " + this.mystyle(lattack);
-			},
-
-			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return Math.round(100*(11.0 + 5*midfieldLevel + attackLevel + defenceLevel)/11)/100;
-			},
-
-			mystyle: function(level) {
-				var lev = this.base+level;
-				var temp = " " + lev;
-				if (temp.search(/\.25/) > -1) return temp.replace(/\.25/,"-");
-				else if (temp.search(/\.5/) > -1)  return temp.replace(/\.5/, "+");
-				else if (temp.search(/\.75/) > -1) return temp.replace(/\.75/, "*");
-				else return lev+"!";
-			}
-		};
 
 		this.ratingDefs["hatstats"] = {	base : 1.0, weight : 4.0,
 			label : function(){return Foxtrickl10n.getString('HatStatsDetailed');},
@@ -250,6 +221,31 @@ Foxtrick.Ratings = {
 			}
 
 		 };
+
+
+
+		this.ratingDefs["vnukstats"] = { base : 1.0,
+			label : function(){return "Vnukstats";},
+			title : function(){return "Vnukstats";},
+
+			special : function(rattack, cattack, lattack) {
+			return this.mystyle(rattack) + " " + this.mystyle(cattack)
+				+ " " + this.mystyle(lattack);
+			},
+
+			total: function(midfieldLevel, attackLevel, defenceLevel) {
+				return Math.round(100*(11.0 + 5*midfieldLevel + attackLevel + defenceLevel)/11)/100;
+			},
+
+			mystyle: function(level) {
+				var lev = this.base+level;
+				var temp = " " + lev;
+				if (temp.search(/\.25/) > -1) return temp.replace(/\.25/,"-");
+				else if (temp.search(/\.5/) > -1)  return temp.replace(/\.5/, "+");
+				else if (temp.search(/\.75/) > -1) return temp.replace(/\.75/, "*");
+				else return lev+"!";
+			}
+		};
 
 		this.ratingDefs["peasostats"] = {	base : 1.0, weight : 4.0,
 			label : function(){return "PStats";},

@@ -1,10 +1,10 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-.spoiler {
+.message .spoiler, .feedItem .spoiler{
     display: none!important;
 }
 
-.hidden {
+.message .hidden, .feedItem .hidden {
     display: block!important;
 }
 

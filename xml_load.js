@@ -1,4 +1,6 @@
 /**
+ *
+ * 
  * xml_load.js
  * xml loading
  * @author convinced
@@ -11,6 +13,7 @@ Foxtrick.XMLData = {
 
     MODULE_NAME : "XMLData",
 	DEFAULT_ENABLED : true,
+	PAGES : new Array('all'), 
 
 	League : {},
 	countryid_to_leagueid : {},
@@ -21,15 +24,121 @@ Foxtrick.XMLData = {
 	htdateformat: null,
 	aboutXML:null,
 	
+	
+	playersxml:null,	
 	matchxmls: new Array(),
 	
 	init : function() {
-        Foxtrick.registerAllPagesHandler( this );
+	try{
+		this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
+		this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htcurrency.xml");
+		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
+		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");
+		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htdateformat.xml");
+		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
+		
+		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/worlddetails.xml");	
+			
+		var data ={};
+		var name = 'HattrickData';
+		Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement,data,name);
+		
+		for (var i in data.HattrickData.LeagueList.League) {
+			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
+			this.countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
+		}
+					
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				FoxtrickStaffMarker.foxtrickersArray[id]='x';
+			}
+		}
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('project_owner');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				FoxtrickStaffMarker.foxtrickersArray[id]='x';
+			}
+		}
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('developer');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				FoxtrickStaffMarker.foxtrickersArray[id]='x';
+			}
+		}
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('translation');		
+		for (var i=0;i<foxtrickstaff.length;++i)   {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			if(ids)
+			  for (var k=0;k<ids.length;++k)   {
+				var id=ids[k].match(/\d+/);			
+				FoxtrickStaffMarker.foxtrickersArray[id]='x';
+			}
+		}
+		/*for (var i in FoxtrickStaffMarker.foxtrickersArray) {
+			Foxtrick.dump(i+' '+FoxtrickStaffMarker.foxtrickersArray[i]+'\n');
+		}*/
+
+		var editor=this.aboutXML.getElementsByTagName('editor');
+		for (var i=0;i<editor.length;++i)   {
+			var id = editor[i].getAttribute('value');
+			var name= editor[i].getAttribute('name');
+			FoxtrickStaffMarker.editorsArray[id]=name;
+		}
+
+		var chpp=this.aboutXML.getElementsByTagName('chpp');
+		for (var i=0;i<chpp.length;++i)   {
+			var id = chpp[i].getAttribute('value');
+			var name= chpp[i].getAttribute('name');
+			FoxtrickStaffMarker.chppholder[id]=name;
+		}
+		
+	} catch(e){Foxtrick.dump('Foxtrick.XMLData.init: '+e+'\n');}
 	},
 	
+	
+	getchilds : function(el,parent,tag) {
+		var childs = el.childNodes;
+		var only_text=true;
+		var text=null;
+		var isarray=false;
+		if (parent[tag]) {
+			// if a tag is not unique, make an array and add nodes to that
+			isarray=true; 
+			if (!parent[tag][0]) {
+				var old_val = parent[tag];
+				parent[tag] = new Array();
+				parent[tag].push(old_val);
+			}
+			parent[tag].push({});
+		}
+		else {parent[tag] = {};} // assume unique tag and make a assosiative node
+		
+		for (var i=0;i<childs.length;++i) {
+			if (childs[i].nodeType==childs[i].ELEMENT_NODE ) {
+				only_text=false;
+				if (isarray) Foxtrick.XMLData.getchilds(childs[i], parent[tag][parent[tag].length-1], childs[i].nodeName);
+				else Foxtrick.XMLData.getchilds(childs[i], parent[tag], childs[i].nodeName);				
+			}
+			else if (childs[i].nodeType==childs[i].TEXT_NODE ) {
+				text = childs[i].textContent;
+			}
+		}
+		if (only_text) { 
+			if (isarray) parent[tag][parent[tag].length-1] = text;
+			else parent[tag] = text;
+		}
+	},
+
 	run : function(page,doc) {
 	
-		/*try {
+		try {
 			if (FoxtrickStaffMarker.hty_staff==null){
 				FoxtrickStaffMarker.hty_staff = new Array();
 				var req = new XMLHttpRequest();
@@ -50,7 +159,44 @@ Foxtrick.XMLData = {
 			}
 		}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
 
-	
+		// XML get players xml
+		
+		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
+			|| doc.location.href.search(/\/Club\/Players\/$/)!=-1
+			|| doc.location.href.search(/\/Club\/Players\/Oldies.aspx/)!=-1
+			|| doc.location.href.search(/\/Club\/Players\/Coaches.aspx/)!=-1
+			|| doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
+			|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1) {
+
+			var file = 'file=players'; //default normal team
+			var team = '';  // =default own team
+			var selection = '';  //default current players
+			
+			// determine xml file
+			var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
+			var Oldies = doc.location.href.search(/\/Club\/Players\/Oldies.aspx/i)!=-1;
+			var Coaches = doc.location.href.search(/\/Club\/Players\/Coaches.aspx/i)!=-1;
+			var NTplayers = doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1;			
+			if (teamid) team = '&teamId='+teamid;
+			if (Oldies) selection='&actionType=viewOldies';
+			if (Coaches) selection='&actionType=viewOldCoaches';
+			if (NTplayers) file = 'file=nationalplayers&ShowAll=true&actiontype=supporterstats';
+			Foxtrick.dump('xmlget http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection+'\n'); 
+			
+			// get players.xml
+			this.playersxml = null;
+			try {	
+				var req = new XMLHttpRequest();
+				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection, false); 
+				req.send(null);
+				if (req.status == 200) {
+					this.playersxml = req.responseXML;
+					Foxtrick.dump('get '+file+team+selection+'\n');//+req.responseText+'\n');
+				}
+				else Foxtrick.dump(' get '+file+team+selection+' request failed\n');
+			} catch(e) {Foxtrick.dump('get'+file+team+selection+' request failed'+e+'\n');}
+		}
+
 	/*try{
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
@@ -63,7 +209,7 @@ Foxtrick.XMLData = {
 			req.send(null);
 			if (req.status == 200) {
 				this.matchxmls[matchid] = req.responseXML;
-				dump('matches.js: get new xml\n');
+				Foxtrick.dump('matches.js: get new xml\n');
 			}
 			else Foxtrick.dump('matches.js: xml request failed\n');
 		}
@@ -74,89 +220,3 @@ Foxtrick.XMLData = {
 	change : function(page,doc) {
 	},
 }
-
-// Open a port to the extension
-// prefs
-var portgetpref = chrome.extension.connect({name: "ftpref-query"});
-portgetpref.onMessage.addListener(function(msg) {   
-    FoxtrickPrefs.pref = msg.pref; 
-});
-portgetpref.postMessage({reqtype: "pref"});
-
-var port2d = chrome.extension.connect({name: "ftpref-query"});
-port2d.onMessage.addListener(function(msg) {   
-    FoxtrickPrefs.pref_default = msg.pref_default; 
-});
-port2d.postMessage({reqtype: "pref_default"});
-
-// properties
-var port = chrome.extension.connect({name: "ftproperties-query"});
-port.onMessage.addListener(function(msg) {
-    Foxtrickl10n.properties = msg.properties;
-	//Foxtrick.dump('query: '+Foxtrickl10n.properties.substring(0,20));
-});
-port.postMessage({reqtype: "properties"});
-
-// properties
-var port0 = chrome.extension.connect({name: "ftproperties-query"});
-port0.onMessage.addListener(function(msg) {
-    Foxtrickl10n.properties_default = msg.properties_default;
-});
-port0.postMessage({reqtype: "properties_default"});
-
-// screenshots
-var port = chrome.extension.connect({name: "ftproperties-query"});
-port.onMessage.addListener(function(msg) {
-    Foxtrickl10n.screenshots = msg.screenshots; 
-});
-port.postMessage({reqtype: "screenshots"});
-
-// get htlang
-var port3 = chrome.extension.connect({name: "ftpref-query"});
-port3.onMessage.addListener(function(msg) {   
-	Foxtrick.XMLData.htLanguagesXml = msg.htlang;
-	});
-port3.postMessage({reqtype: "htlang"});
-
-// get htcurrency
-var port4 = chrome.extension.connect({name: "ftpref-query"});
-port4.onMessage.addListener(function(msg) {   
-	Foxtrick.XMLData.htCurrencyXml = msg.htcurrency;});
-port4.postMessage({reqtype: "htcurrency"});
-
-// get htNTidList
-var port5 = chrome.extension.connect({name: "ftpref-query"});
-port5.onMessage.addListener(function(msg) {   
-	Foxtrick.XMLData.htNTidsXml = msg.htNTidList;});
-port5.postMessage({reqtype: "htNTidList"});
-
-// get htversions
-var port6 = chrome.extension.connect({name: "ftpref-query"});
-port6.onMessage.addListener(function(msg) {   
-	Foxtrick.XMLData.htversionsXML = msg.htversions;});
-port6.postMessage({reqtype: "htversions"});
-
-// get htdateformat
-var port7 = chrome.extension.connect({name: "ftpref-query"});
-port7.onMessage.addListener(function(msg) {   
-	Foxtrick.XMLData.htdateformat = msg.htdateformat;});
-port7.postMessage({reqtype: "htdateformat"});
-
-// get about
-var port8 = chrome.extension.connect({name: "ftpref-query"});
-port8.onMessage.addListener(function(msg) {   
-	Foxtrick.XMLData.aboutXML = msg.about;});
-port8.postMessage({reqtype: "about"});
-
-
-// get League
-var port9 = chrome.extension.connect({name: "ftpref-query"});
-port9.onMessage.addListener(function(msg) {   
-Foxtrick.XMLData.League = msg.League; });
-port9.postMessage({reqtype: "League"});
-		
-// get countryid_to_leagueid
-var port10 = chrome.extension.connect({name: "ftpref-query"});
-port10.onMessage.addListener(function(msg) {   
-    Foxtrick.XMLData.countryid_to_leagueid = msg.countryid_to_leagueid; });
-port10.postMessage({reqtype: "countryid_to_leagueid"});

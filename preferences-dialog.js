@@ -1,745 +1,435 @@
 /**
  * Preference dialog functions.
- * @author Mod-PaV
+ * @author Mod-PaV, ryanli
  */
 ////////////////////////////////////////////////////////////////////////////////
 
 
 var FoxtrickPreferencesDialog = {
 
-    init : function() {
+	core_modules : new Array(FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData),
 
-	for ( var i in FoxtrickPreferencesDialog.core_modules ) {
-            FoxtrickPreferencesDialog.core_modules[i].init()
-        }
+	init : function() {
+	try {
+		for (var i in FoxtrickPreferencesDialog.core_modules) {
+			FoxtrickPreferencesDialog.core_modules[i].init();
+		}
 
-		FoxtrickPreferencesDialog.initCaptionsAndLabels( document );
-        FoxtrickPreferencesDialog.initMainPref( document );
-        FoxtrickPreferencesDialog.initAboutPref( document );
+		FoxtrickPreferencesDialog.initCaptionsAndLabels(document);
+		FoxtrickPreferencesDialog.initMainPref(document);
+		FoxtrickPreferencesDialog.initAboutPref(document);
 
-		for each ( cat in Foxtrick.moduleCategories ) {
-            FoxtrickPreferencesDialog._fillModulesList( document, cat );
-        }
+		for each (cat in Foxtrick.moduleCategories) {
+			FoxtrickPreferencesDialog._fillModulesList(document, cat);
+		}
+	} catch(e) {alert('FoxtrickPreferencesDialog init: '+e+'\n');}
+	},
 
-        FoxtrickPreferencesDialog.pref_show ('main_list');
-    },
-
-
-	initCaptionsAndLabels : function( document ) {
-
+	initCaptionsAndLabels : function(document) {
 		// Window title
-		window.title = Foxtrickl10n.getString( "foxtrick.prefs.preferences" );
+		document.documentElement.setAttribute("title", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
+
+		// Button labels
+		var save = document.documentElement.getButton("accept");
+		save.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonSave"));
+		var cancel = document.documentElement.getButton("cancel");
+		cancel.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonCancel"));
+
 		// Captions and labels
 		var allLabels = [ "MainTab", "ShortcutsTab", "PresentationTab", "MatchesTab",
-						  "ForumTab", "LinksTab", "AboutTab",
-						  "buttonSave", "buttonCancel" ];
-		for(var i = 0; i < allLabels.length; i++) {
+			"ForumTab", "LinksTab", "AboutTab" ];
+		for(var i = 0; i < allLabels.length; ++i) {
 			var thisElement = document.getElementById(allLabels[i]);
-			thisElement.setAttribute( "label", Foxtrickl10n.getString(
-				"foxtrick.prefs." + allLabels[i]) );
+			thisElement.setAttribute("label", Foxtrickl10n.getString(
+				"foxtrick.prefs." + allLabels[i]));
 		}
 	},
 
-	initMainPref : function( doc ) {
-		var modules_list = doc.getElementById( "main_list" );
-		modules_list.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-
-        // prefs at deafult warning
-		if (!FoxtrickPrefs.getBool( "PrefsSavedOnce" )) {
-			var groupbox= doc.createElement("groupbox");
-			groupbox.setAttribute("style","background-color:#FCF6DF; color:black;");
-			var caption= doc.createElement("caption");
-			caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningLabel"));
-			caption.setAttribute("style","background-color:#FCF6DF; color:black;");
-			var vbox= doc.createElement("vbox");
-			var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText"));
-			vbox.appendChild(desc_box);
-			groupbox.appendChild(caption);
-			groupbox.appendChild(vbox);
-			modules_list.appendChild(groupbox);
+	initMainPref : function(doc) {
+		// deafult warning
+		if (FoxtrickPrefs.getBool("PrefsSavedOnce")) {
+			var defaultWarning = doc.getElementById("defaultWarning");
+			defaultWarning.parentNode.removeChild(defaultWarning);
+		}
+		else {
+			var defaultWarningLabel = doc.getElementById("defaultWarningLabel");
+			defaultWarningLabel.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningLabel"));
+			var defaultWarningText = doc.getElementById("defaultWarningText");
+			defaultWarningText.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText")));
 		}
 
+		// basic preferences
+		var basic = doc.getElementById("basic");
+		basic.label = Foxtrickl10n.getString("foxtrick.prefs.basicPreferences");
 
-		// language & currency & dateformat & county
-        var groupbox= doc.createElement("groupbox");
+		// HT language
+		var language = doc.getElementById("language");
+		language.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage");
+		var htLanguagesXml = doc.implementation.createDocument("", "", null);
+		htLanguagesXml.async = false;
+		htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
+		document.getElementById("htLanguage").selectedIndex =
+			FoxtrickPreferencesDialog.fillListFromXml("htLanguagePopup", "htLanguage-",
+				htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
+		// sync with HT prefs
+		var readHtPrefs = doc.getElementById("ReadHtPrefs");
+		readHtPrefs.checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
+		readHtPrefs.label = Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc");
 
-        var groupbox2= doc.createElement("groupbox");
-		var hbox1= doc.createElement("hbox");
-        hbox1.setAttribute('flex',"1");
+		// read HT country
+		var readHtCountry = doc.getElementById("ReadHtCountry");
+		readHtCountry.checked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled");
+		readHtCountry.label = Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc");
+		var readHtCountryDescription = doc.getElementById("ReadHtCountryDescription");
+		readHtCountryDescription.appendChild(document.createTextNode(
+			Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc") + " " +
+			FoxtrickHelper.countryNameEnglishToLocal(FoxtrickPrefs.getString("htCountry")) + " / " +
+			FoxtrickPrefs.getString("oldCurrencySymbol") + " / " +
+			FoxtrickPrefs.getString("htDateformat")));
+		document.getElementById("countryRow").hidden = readHtCountry.checked;
+		document.getElementById("currencyRow").hidden = readHtCountry.checked;
+		document.getElementById("dateformatRow").hidden = readHtCountry.checked;
+		readHtCountryDescription.hidden = !readHtCountry.checked;
 
-		var caption1= doc.createElement("caption");
-        caption1.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage"));
-        caption1.setAttribute( "style", "background-color:ButtonFace; color: ButtonText;");
+		readHtCountry.addEventListener("click", function(ev) {
+				var doc = ev.target.ownerDocument;
+				var checked = ev.target.checked;
+				doc.getElementById("countryRow").hidden = checked;
+				doc.getElementById("currencyRow").hidden = checked;
+				doc.getElementById("dateformatRow").hidden = checked;
+				doc.getElementById("ReadHtCountryDescription").hidden = !checked;
+			},
+			false);
 
-		var vbox1= doc.createElement("vbox");
-        vbox1.setAttribute('flex',"1");
-        var menulist1= doc.createElement("menulist");
-        menulist1.setAttribute('id',"htLanguage");
-        var menupopup1= doc.createElement("menupopup");
-        menupopup1.setAttribute('id',"htLanguagePopup");
-		menulist1.appendChild(menupopup1);
-        var spacer = document.createElement( "spacer" );
-        spacer.setAttribute('flex','1');
-        vbox1.appendChild( spacer );
-		vbox1.appendChild(menulist1);
-        var spacer = document.createElement( "spacer" );
-        spacer.setAttribute('flex','1');
-        vbox1.appendChild( spacer );
-		hbox1.appendChild( vbox1 );
+		// country
+		var country = doc.getElementById("country");
+		country.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry");
+		document.getElementById("htCountry").selectedIndex =
+			FoxtrickPreferencesDialog.fillListFromXml3("htCountryPopup", "htCountry-",
+				Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));
 
+		// currency
+		var currency = doc.getElementById("currency");
+		currency.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency");
+		var htCurrencyXml = document.implementation.createDocument("", "", null);
+		htCurrencyXml.async = false;
+		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+		document.getElementById("htCurrency").selectedIndex =
+			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyPopup", "htCurrency-",
+				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
 
-		groupbox2.appendChild(caption1);
+		// date format
+		var dateformat = doc.getElementById("dateformat");
+		dateformat.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat");
+		var htDateFormatXml = document.implementation.createDocument("", "", null);
+		htDateFormatXml.async = false;
+		htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
+		document.getElementById("htDateformat").selectedIndex =
+			FoxtrickPreferencesDialog.fillListFromXml("htDateformatPopup", "htDateformat-",
+				htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
 
+		// currency converter
+		var currencyTo = doc.getElementById("currencyTo");
+		currencyTo.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyConverter"));
+		var CurrencyConverter = doc.getElementById("CurrencyConverter");
+		CurrencyConverter.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"));
+		CurrencyConverter.setAttribute("checked", FoxtrickPrefs.getBool("module.CurrencyConverter.enabled"));
+		var htCurrencyXml = document.implementation.createDocument("", "", null);
+		htCurrencyXml.async = false;
+		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+		document.getElementById("htCurrencyTo").selectedIndex =
+			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-",
+				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
 
-		var spacer = document.createElement( "spacer" );
-        spacer.setAttribute('flex','1');
-        //hbox1.appendChild( spacer );
+		// alert settings
+		var alertSlider = doc.getElementById("alertSlider");
+		// general
+		alertSlider.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionAlertSettings"));
+		var alertsliderpref = doc.getElementById("alertsliderpref");
+		alertsliderpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsliderpref"));
+		alertsliderpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSlider"));
+		// mac
+		var alertslidermacpref = doc.getElementById("alertslidermacpref");
+		alertslidermacpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"));
+		alertslidermacpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSliderGrowl"));
+		// sound
+		var alertsoundpref = doc.getElementById("alertsoundpref");
+		alertsoundpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"));
+		alertsoundpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSound"));
+		var alertsoundurlpref = doc.getElementById("alertsoundurlpref");
+		alertsoundurlpref.setAttribute("value", FoxtrickPrefs.getString("alertSoundUrl"));
+		var buttonSelectFile = doc.getElementById("buttonSelectFile");
+		buttonSelectFile.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonSelectFile"));
+		var buttonTest = doc.getElementById("buttonTest");
+		buttonTest.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonTest"));
 
-		var vbox1b= doc.createElement("hbox");
-        vbox1b.setAttribute('flex',"1");
-        var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute('id',"ReadHtPrefs");
-		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"));
-		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc") );
-		desc_box.setAttribute("flex","1");
-		vbox1b.appendChild(checkbox);
-		vbox1b.appendChild(desc_box);
-		hbox1.appendChild(vbox1b);
+		// load/save prefs
+		var loadSavePrefs = doc.getElementById("loadSavePrefs");
+		loadSavePrefs.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionLoadSavePrefs"));
+		// save
+		var buttonSavePrefs = doc.getElementById("buttonSavePrefs");
+		buttonSavePrefs.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonSavePrefs"));
+		var labelSavePrefs = doc.getElementById("labelSavePrefs");
+		labelSavePrefs.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs")));
+		var saveprefsid = doc.getElementById("saveprefsid");
+		saveprefsid.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs_Prefs"));
+		saveprefsid.setAttribute("checked", FoxtrickPrefs.getBool("SavePrefs_Prefs"));
+		var savenotesid = doc.getElementById("savenotesid");
+		savenotesid.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs_Notes"));
+		savenotesid.setAttribute("checked", FoxtrickPrefs.getBool("SavePrefs_Notes"));
+		// load
+		var buttonLoadPrefs = doc.getElementById("buttonLoadPrefs");
+		buttonLoadPrefs.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
+		var labelLoadPrefs = doc.getElementById("labelLoadPrefs");
+		labelLoadPrefs.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.labelLoadPrefs")));
 
-		groupbox2.appendChild(hbox1);
+		// stored prefs
+		var cleanupBranch = doc.getElementById("cleanupBranch");
+		cleanupBranch.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionCleanupBranch"));
+		// restore defaults
+		var buttonCleanupBranch = doc.getElementById("buttonCleanupBranch");
+		buttonCleanupBranch.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonCleanupBranch"));
+		var labelCleanupBranch = doc.getElementById("labelCleanupBranch");
+		labelCleanupBranch.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch")));
+		// disable all modules
+		var buttonDisableAll = doc.getElementById("buttonDisableAll");
+		buttonDisableAll.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonDisableAll"));
+		var labelDisableAll = doc.getElementById("labelDisableAll");
+		labelDisableAll.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll")));
 
-        var vbox2= doc.createElement("vbox");
-        vbox2.setAttribute('flex',"1");
-        var caption2= doc.createElement("caption");
-        caption2.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency"));
-        caption2.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-        var menulist2= doc.createElement("menulist");
-        menulist2.setAttribute('id',"htCurrency");
-        var menupopup2= doc.createElement("menupopup");
-        menupopup2.setAttribute('id',"htCurrencyPopup");
-
-        var vbox3= doc.createElement("vbox");
-        vbox3.setAttribute('flex',"1");
-        var caption3= doc.createElement("caption");
-        caption3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat"));
-        caption3.setAttribute( "style", "background-color:ButtonFace; color: ButtonText;");
-        var menulist3= doc.createElement("menulist");
-        menulist3.setAttribute('id',"htDateformat");
-        var menupopup3= doc.createElement("menupopup");
-        menupopup3.setAttribute('id',"htDateformatPopup");
-
-        var vbox4= doc.createElement("vbox");
-        vbox4.setAttribute('flex',"1");
-        var caption4= doc.createElement("caption");
-        caption4.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry"));
-        caption4.setAttribute( "style", "background-color:ButtonFace; color: ButtonText;");
-		var menulist4= doc.createElement("menulist");
-        menulist4.setAttribute('id',"htCountry");
-        var menupopup4= doc.createElement("menupopup");
-        menupopup4.setAttribute('id',"htCountryPopup");
-
-        menulist2.appendChild(menupopup2);
-        vbox2.appendChild(caption2);
-        vbox2.appendChild(menulist2);
-        menulist3.appendChild(menupopup3);
-        vbox3.appendChild(caption3);
-        vbox3.appendChild(menulist3);
-        menulist4.appendChild(menupopup4);
-        vbox4.appendChild(caption4);
-        vbox4.appendChild(menulist4);
-        var hhbox2b= doc.createElement("hbox");
-        var hhhbox= doc.createElement("vbox");
-
-        hhbox2b.appendChild(vbox2);
-        hhbox2b.appendChild(vbox3);
-		hhbox2b.appendChild(vbox4);
-
-        hhhbox.appendChild(groupbox2);
-        hhhbox.appendChild(hhbox2b);
-        groupbox.appendChild(hhhbox);
-        modules_list.appendChild(groupbox);
-
-        var htLanguagesXml = doc.implementation.createDocument("", "", null);
-        htLanguagesXml.async = false;
-        htLanguagesXml.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htlang.xml", "text/xml");
-        var itemToSelect=FoxtrickPreferencesDialog.fillListFromXml("htLanguagePopup", "htLanguage-", htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
-        document.getElementById("htLanguage").selectedIndex=itemToSelect;
-
-        var htCurrencyXml = document.implementation.createDocument("", "", null);
-        htCurrencyXml.async = false;
-        htCurrencyXml.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htcurrency.xml", "text/xml");
-        var itemToSelect2=FoxtrickPreferencesDialog.fillListFromXml("htCurrencyPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
-        document.getElementById("htCurrency").selectedIndex=itemToSelect2;
-
-        var htDateFormatXml = document.implementation.createDocument("", "", null);
-        htDateFormatXml.async = false;
-        htDateFormatXml.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htdateformat.xml", "text/xml");
-        var itemToSelect3=FoxtrickPreferencesDialog.fillListFromXml("htDateformatPopup", "htDateformat-", htDateFormatXml, "dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
-        document.getElementById("htDateformat").selectedIndex=itemToSelect3;
-
-
-        var htCountryXml = document.implementation.createDocument("", "", null);
-        htCountryXml.async = false;
-        htCountryXml.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htcountries.xml", "text/xml");
-        var itemToSelect4=FoxtrickPreferencesDialog.fillListFromXml("htCountryPopup", "htCountry-", htCountryXml, "country", "name", "name", FoxtrickPrefs.getString("htCountry"));
-        document.getElementById("htCountry").selectedIndex=itemToSelect4;
-
-
-     // currency converter
-        var groupbox= doc.createElement("groupbox");
-        var hbox= doc.createElement("hbox");
-        var caption_head= doc.createElement("caption");
-        caption_head.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyConverter"));
-		caption_head.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-
-
-        /*var caption0= doc.createElement("caption");
-        caption0.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyRateInfo"));
-        caption0.setAttribute("style","text-decoration: underline; cursor: pointer; color: blue;");
-        caption0.setAttribute("onclick","window.opener.open('http://www.hattrick.org/Help/Rules/AppCurrencies.aspx');");
-        caption0.setAttribute("flex","0");
-        caption0.setAttribute("tooltiptext","hattrick.org/Help/Rules/AppCurrencies.aspx"); */
-
-    	var vbox4= doc.createElement("vbox");
-        vbox4.setAttribute('flex',"1");
-        var caption4= doc.createElement("caption");
-        caption4.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolTo"));
-        caption4.setAttribute( "style", "background-color:ButtonFace; color: ButtonText;");
-		var menulist= doc.createElement("menulist");
-        menulist.setAttribute('id',"htCurrencyTo");
-        var menupopup= doc.createElement("menupopup");
-        menupopup.setAttribute('id',"htCurrencyToPopup");
-
-
-
-        menulist.appendChild(menupopup);
-		caption4.setAttribute('flex','0');
-        vbox4.appendChild(caption4);
-		menulist.setAttribute('flex','0');
-        vbox4.appendChild(menulist);
-		vbox4.setAttribute('flex','0');
-
-        hbox.appendChild(vbox4);
-/*		var spacer = document.createElement( "spacer" );
-        spacer.setAttribute('flex','1');
-        hbox.appendChild( spacer );*/
-
-        groupbox.appendChild(caption_head);
-        groupbox.appendChild(hbox);
-        modules_list.appendChild(groupbox);
-
-        var htCurrencyXml = document.implementation.createDocument("", "", null);
-        htCurrencyXml.async = false;
-        htCurrencyXml.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htcurrency.xml", "text/xml");
-        var itemToSelect2=FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-", htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
-        document.getElementById("htCurrencyTo").selectedIndex=itemToSelect2;
-
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"));
-		checkbox.setAttribute('id',"CurrencyConverter");
-		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.CurrencyConverter.enabled"));
-		hbox.appendChild(checkbox);
-
-		// Skin settings
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionSkinSettings"));
-		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		var vbox= doc.createElement("vbox");
-
-		var textbox= doc.createElement("textbox");
-		textbox.setAttribute('id',"cssskinpref");
-		textbox.setAttribute( "value", FoxtrickPrefs.getString( "cssSkin" ) );
- 		vbox.appendChild(textbox);
-
-		var hbox= doc.createElement("hbox");
-		hbox.setAttribute('align',"center");
-		vbox.appendChild(hbox);
-
-		var button= doc.createElement("button");
-		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.skinButtonSelectFile"));
-		button.setAttribute('id',"skinButtonSelectFile");
-		button.setAttribute('oncommand',"var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('cssskinpref').value='file://' + (file)}");
-		hbox.appendChild(button);
-
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.activeSkin"));
-		checkbox.setAttribute('id',"skinActivedSkin");
-		checkbox.setAttribute("checked", FoxtrickPrefs.getBool("module.SkinPlugin.enabled"));
-		vbox.appendChild(checkbox);
-
-		groupbox.appendChild(caption);
-		groupbox.appendChild(vbox);
-		modules_list.appendChild(groupbox);
-
-		// alert
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionAlertSettings"));
-		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		var vbox= doc.createElement("vbox");
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.alertsliderpref"));
-		checkbox.setAttribute('id',"alertsliderpref");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "alertSlider" ) );
-		vbox.appendChild(checkbox);
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"));
-		checkbox.setAttribute('id',"alertslidermacpref");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "alertSliderGrowl" ) );
-		vbox.appendChild(checkbox);
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.alertsliderdbus"));
-		checkbox.setAttribute('id',"alertsliderdbus");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "alertSliderDBus" ) );
-		vbox.appendChild(checkbox);
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"));
-		checkbox.setAttribute('id',"alertsoundpref");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "alertSound" ) );
-		vbox.appendChild(checkbox);
-		var textbox= doc.createElement("textbox");
-		textbox.setAttribute('id',"alertsoundurlpref");
-        textbox.setAttribute( "value", FoxtrickPrefs.getString( "alertSoundUrl" ) );
- 		vbox.appendChild(textbox);
-
-
-		var hbox= doc.createElement("hbox");
-		hbox.setAttribute('align',"center");
-		vbox.appendChild(hbox);
-		var button= doc.createElement("button");
-		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonSelectFile"));
-		button.setAttribute('id',"buttonSelectFile");
-		button.setAttribute('oncommand',"var file = Foxtrick.selectFile(window); if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}");
-		hbox.appendChild(button);
-		var button= doc.createElement("button");
-		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonTest"));
-		button.setAttribute('id',"buttonTest");
-		button.setAttribute('oncommand',"Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);");
-		hbox.appendChild(button);
-
-  		vbox.appendChild(checkbox);
-		groupbox.appendChild(caption);
-		groupbox.appendChild(vbox);
-		modules_list.appendChild(groupbox);
-
-
-		// LoadSavePrefs
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionLoadSavePrefs"));
-		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		groupbox.appendChild(caption);
-
-		var hbox= doc.createElement("hbox");
-		groupbox.appendChild(hbox);
-		var hbox2= doc.createElement("hbox");
-		groupbox.appendChild(hbox2);
-
-		var vbox= doc.createElement("vbox");
-		hbox.appendChild(vbox);
-		var button= doc.createElement("button");
-		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonSavePrefs"));
-		button.setAttribute('id',"buttonSavePrefs");
-		button.setAttribute('oncommand',"FoxtrickPrefs.SavePrefs();");
-		vbox.appendChild(button);
-		var spacer = document.createElement( "spacer" );
-        spacer.setAttribute('flex','1');
-        vbox.appendChild( spacer );
-
-		var vbox= doc.createElement("vbox");
-		vbox.setAttribute('flex','1');
-        hbox.appendChild(vbox);
-		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs") );
-		desc_box.setAttribute("flex","1");
-		vbox.appendChild(desc_box);
-
-		var checkbox = doc.createElement( "checkbox" );
-		checkbox.setAttribute( "checked",  FoxtrickPrefs.getBool( "SavePrefs_Prefs" ) );
-		checkbox.setAttribute( "label", Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs_Prefs"));
-		checkbox.setAttribute( "id", 'saveprefsid');
-        checkbox.setAttribute( "class", "checkbox_in_group" );
-		vbox.appendChild(checkbox);
-		var checkbox2 = doc.createElement( "checkbox" );
-		checkbox2.setAttribute( "checked", FoxtrickPrefs.getBool( "SavePrefs_Notes" ) );
-		checkbox2.setAttribute( "label", Foxtrickl10n.getString("foxtrick.prefs.labelSavePrefs_Notes"));
-		checkbox2.setAttribute( "id", 'savenotesid');
-        checkbox2.setAttribute( "class", "checkbox_in_group" );
-		vbox.appendChild(checkbox2);
-
-		var button= doc.createElement("button");
-		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
-		button.setAttribute('id',"buttonLoadPrefs");
-		button.setAttribute('oncommand',"FoxtrickPrefs.LoadPrefs();");
-		hbox2.appendChild(button);
-		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelLoadPrefs") );
-		desc_box.setAttribute("flex","1");
-		hbox2.appendChild(desc_box);
-
-		modules_list.appendChild(groupbox);
-
-		// changin all prefs
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionCleanupBranch"));
-		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		groupbox.appendChild(caption);
-
-		// CleanupBranch
-		var hbox= doc.createElement("hbox");
-		groupbox.appendChild(hbox);
-		var button= doc.createElement("button");
-		button.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonCleanupBranch"));
-		button.setAttribute('id',"buttonCleanupBranch");
-		button.setAttribute('oncommand',"FoxtrickPrefs.confirmCleanupBranch();");
-		hbox.appendChild(button);
-		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelCleanupBranch") );
-		desc_box.setAttribute("flex","1");
-		hbox.appendChild(desc_box);
-
-
-		// disable all
-		var hbox3= doc.createElement("hbox");
-		groupbox.appendChild(hbox3);
-		var button3= doc.createElement("button");
-		button3.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.buttonDisableAll"));
-		button3.setAttribute('id',"buttonDiableAll");
-		button3.setAttribute('oncommand',"FoxtrickPrefs.disableAll();");
-		hbox3.appendChild(button3);
-		var desc_box3 = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelDisableAll") );
-		desc_box3.setAttribute("flex","1");
-		hbox3.appendChild(desc_box3);
-		modules_list.appendChild(groupbox);
-
-
-		/*var caption_ov= doc.createElement("caption");
-        caption_ov.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionFoxtrickMyHT"));
-        caption_ov.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		var menulist_ov= doc.createElement("menulist");
-        menulist_ov.setAttribute('id',"htOldVersion");
-        var menupopup_ov= doc.createElement("menupopup");
-        menupopup_ov.setAttribute('id',"htOldVersionPopup");
-		menulist_ov.appendChild(menupopup_ov);
-        var hbox_ov= doc.createElement("hbox");
-		var desc_box_ov = FoxtrickPreferencesDialog._getWrapableBox ( Foxtrickl10n.getString("foxtrick.prefs.labelFoxtrickMyHT") );
-		desc_box_ov.setAttribute("flex","1");
-		hbox_ov.appendChild(menulist_ov);
-        hbox_ov.appendChild(desc_box_ov);
-
-        var vbox_ov= doc.createElement("vbox");
-        vbox_ov.setAttribute('flex',"1");
-        vbox_ov.appendChild(hbox_ov);
-        var groupbox= doc.createElement("groupbox");
-        groupbox.appendChild(caption_ov);
-		groupbox.appendChild(vbox_ov);
-		modules_list.appendChild(groupbox);
-
-		var htVersionsXml = document.implementation.createDocument("", "", null);
-        htVersionsXml.async = false;
-        htVersionsXml.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htversions.xml", "text/xml");
-        var itemToSelect3=FoxtrickPreferencesDialog.fillListFromXml("htOldVersionPopup", "htVersion-", htVersionsXml, "version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
-        document.getElementById("htOldVersion").selectedIndex=itemToSelect3;
-*/
-
-		// disable options
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionDisableSettings"));
-		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		var vbox= doc.createElement("vbox");
+		// disable settings
+		var disableSettings = doc.getElementById("disableSettings");
+		disableSettings.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionDisableSettings"));
 		// stage
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.stagepref"));
-		checkbox.setAttribute('id',"stagepref");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "disableOnStage" ) );
-		vbox.appendChild(checkbox);
-		// temporary
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel"));
-		checkbox.setAttribute('id',"disableTemporary");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "disableTemporary" ) );
-		vbox.appendChild(checkbox);
+		var stagepref = doc.getElementById("stagepref");
+		stagepref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.stagepref"));
+		stagepref.setAttribute("checked", FoxtrickPrefs.getBool("disableOnStage"));
+		// temporarily
+		var disableTemporary = doc.getElementById("disableTemporary");
+		disableTemporary.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel"));
+		disableTemporary.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 
-		groupbox.appendChild(caption);
-		groupbox.appendChild(vbox);
-		modules_list.appendChild(groupbox);
-
-
-		// ShowOnStatusBar
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.captionShowOnStatusBar"));
-		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		var vbox= doc.createElement("vbox");
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.statusbarpref"));
-		checkbox.setAttribute('id',"statusbarpref");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshow" ) );
-		vbox.appendChild(checkbox);
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.statusbarshowreload"));
-		checkbox.setAttribute('id',"statusbarshowreload");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "statusbarshowreload" ) );
-		vbox.appendChild(checkbox);
-
-		groupbox.appendChild(caption);
-		groupbox.appendChild(vbox);
-		modules_list.appendChild(groupbox);
+		// show on statusbar
+		var showOnStatusBar = doc.getElementById("showOnStatusBar");
+		showOnStatusBar.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionShowOnStatusBar"));
+		// enable
+		var statusbarpref = doc.getElementById("statusbarpref");
+		statusbarpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.statusbarpref"));
+		statusbarpref.setAttribute("checked", FoxtrickPrefs.getBool("statusbarshow"));
 
 		// additional options
-		var groupbox= doc.createElement("groupbox");
-		var caption= doc.createElement("caption");
-		caption.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.AdditionalOptions"));
-		caption.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		var vbox= doc.createElement("vbox");
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"));
-		checkbox.setAttribute('id',"copyfeedback");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "copyfeedback" ) );
-		vbox.appendChild(checkbox);
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.smallcopyicons"));
-		checkbox.setAttribute('id',"smallcopyicons");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "smallcopyicons" ) );
-		vbox.appendChild(checkbox);
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"));
-		checkbox.setAttribute('id',"OnPagePrefs");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "module.OnPagePrefs.enabled" ) );
-		vbox.appendChild(checkbox);
-		var checkbox= doc.createElement("checkbox");
-		checkbox.setAttribute("label",Foxtrickl10n.getString("foxtrick.prefs.DisplayHTMLDebugOutput"));
-		checkbox.setAttribute('id',"DisplayHTMLDebugOutput");
-		checkbox.setAttribute( "checked", FoxtrickPrefs.getBool( "DisplayHTMLDebugOutput" ) );
-		vbox.appendChild(checkbox);
-		groupbox.appendChild(caption);
-		groupbox.appendChild(vbox);
-		modules_list.appendChild(groupbox);
-
-		// add space at the end
-		var spacer = doc.createElement('spacer');
-		spacer.setAttribute('flex',0);
-		spacer.setAttribute('height',20);
-		modules_list.appendChild( spacer );
+		var additionalOptions = doc.getElementById("additionalOptions");
+		additionalOptions.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.AdditionalOptions"));
+		// copy confirm
+		var copyfeedback = doc.getElementById("copyfeedback");
+		copyfeedback.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"));
+		copyfeedback.setAttribute("checked", FoxtrickPrefs.getBool("copyfeedback"));
+		// header icons
+		var smallcopyicons = doc.getElementById("smallcopyicons");
+		smallcopyicons.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.smallcopyicons"));
+		smallcopyicons.setAttribute("checked", FoxtrickPrefs.getBool("smallcopyicons"));
+		// OnPagePrefs
+		var OnPagePrefs = doc.getElementById("OnPagePrefs");
+		OnPagePrefs.setAttribute("label", Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"));
+		OnPagePrefs.setAttribute("checked", FoxtrickPrefs.getBool("module.OnPagePrefs.enabled"));
+		// debug output
+		var DisplayHTMLDebugOutput = doc.getElementById("DisplayHTMLDebugOutput");
+		DisplayHTMLDebugOutput.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.DisplayHTMLDebugOutput"));
+		DisplayHTMLDebugOutput.setAttribute("checked", FoxtrickPrefs.getBool("DisplayHTMLDebugOutput"));
 	},
 
-	initAboutPref : function( doc ) {
+	initAboutPref : function(doc) {
+		var xmlresponse = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
 
-		var modules_list = doc.getElementById( "about_list" );
-		modules_list.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-
-		var xmlresponse = Foxtrick.LoadXML("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/foxtrick_about.xml");
-
-		var vbox= doc.createElement("vbox");
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrickl10n.getString('foxtrick.prefs.'+Foxtrick.XML_evaluate(xmlresponse, "about/links", "value")[0]));
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
+		// links
+		var links_caption = doc.getElementById("extlinks_caption");
+		var links_list = doc.getElementById("extlinks_list");
 		var links = Foxtrick.XML_evaluate(xmlresponse, "about/links/link", "title", "value");
-		for (var i=0;i<links.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",Foxtrickl10n.getString('foxtrick.prefs.'+links[i][0])+': '+links[i][1]);
-			label.setAttribute("style","text-decoration: underline; cursor: pointer; color: blue;");
-			label.setAttribute("tooltiptext",links[i][1]);
-			label.setAttribute("onclick","window.opener.open('"+links[i][1]+"');");
-			label.setAttribute("flex","0");
-			vbox.appendChild(label);
+		links_caption.setAttribute("label",
+			Foxtrickl10n.getString('foxtrick.prefs.' + Foxtrick.XML_evaluate(xmlresponse, "about/links", "value")[0]));
+		for (var i = 0; i < links.length; ++i) {
+			var item = doc.createElement("label");
+			var link = doc.createElement("label");
+			links_list.appendChild(item);
+			item.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs." + links[i][0]) + ":"));
+			item.appendChild(link);
+			link.setAttribute("value", links[i][1]);
+			link.setAttribute("href", links[i][1]);
+			link.className = "text-link";
 		}
-		modules_list.appendChild(vbox);
-
-		var vbox= doc.createElement("vbox");
-		vbox.setAttribute("style","display:run-in");
 
 		// head_developer
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/head_developer", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/head_developer/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var headdeveloper_caption = doc.getElementById("headdeveloper_caption");
+		var headdeveloper_list = doc.getElementById("headdeveloper_list");
+		var headdeveloper = Foxtrick.XML_evaluate(xmlresponse, "about/head_developers/head_developer", "value");
+		headdeveloper_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/head_developers", "value")[0]);
+		for (var i = 0; i < headdeveloper.length; ++i) {
+			var label = doc.createElement("label");
+			headdeveloper_list.appendChild(label);
+			label.setAttribute("value", headdeveloper[i]);
 		}
-		modules_list.appendChild(vbox);
 
 		// project_owners
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/project_owners", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var projectowners_caption = doc.getElementById("projectowners_caption");
+		var projectowners_list = doc.getElementById("projectowners_list");
+		var projectowners = Foxtrick.XML_evaluate(xmlresponse, "about/project_owners/project_owner", "value");
+		projectowners_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/project_owners", "value")[0]);
+		for (var i = 0; i < projectowners.length; ++i) {
+			var label = doc.createElement("label");
+			projectowners_list.appendChild(label);
+			label.setAttribute("value", projectowners[i]);
 		}
-		modules_list.appendChild(vbox);
-		var spacer = doc.createElement('spacer');
-		spacer.setAttribute('flex',1);
-		spacer.setAttribute('height','10px');
-		modules_list.appendChild( spacer );
 
 		// developers
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/developers", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/developers/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var developers_caption = doc.getElementById("developers_caption");
+		var developers_list = doc.getElementById("developers_list");
+		var developers = Foxtrick.XML_evaluate(xmlresponse, "about/developers/developer", "value");
+		developers_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/developers", "value")[0]);
+		for (var i = 0; i < developers.length; ++i) {
+			var label = doc.createElement("label");
+			developers_list.appendChild(label);
+			label.setAttribute("value", developers[i]);
 		}
-		modules_list.appendChild(vbox);
 
 		// translations
-		var label= doc.createElement("label");
-		label.setAttribute("value",Foxtrick.XML_evaluate(xmlresponse, "about/translations", "value")[0]);
-		label.setAttribute("style","font-weight: bold;");
-		vbox.appendChild(label);
-		var labels = Foxtrick.XML_evaluate(xmlresponse, "about/translations/label", "value");
-		for (var i=0;i<labels.length;++i) {
-			var label= doc.createElement("label");
-			label.setAttribute("value",labels[i]);
-			vbox.appendChild(label);
+		var translations_caption = doc.getElementById("translations_caption");
+		var translations_list = doc.getElementById("translations_list");
+		var translations = Foxtrick.XML_evaluate(xmlresponse, "about/translations/translation", "value");
+		translations_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/translations", "value")[0]);
+		for (var i = 0; i < translations.length; ++i) {
+			var label = doc.createElement("label");
+			translations_list.appendChild(label);
+			label.setAttribute("value", translations[i]);
 		}
-		modules_list.appendChild(vbox);
 	},
 
-    onDialogAccept : function() {
+	onDialogAccept : function() {
 	try {
 		var modules_list;
 
 		// clean up
-			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
-				if (FoxtrickPrefs.isPrefSetting(array[i]))
-					FoxtrickPrefs.deleteValue( array[i] );
-			}
-			// set version
-			var curVersion = FoxtrickPrefs.getString("curVersion");
-			var oldVersion = FoxtrickPrefs.getString("oldVersion");
-			FoxtrickPrefs.setString("oldVersion",curVersion);
-		
-			// reset main to default. set right bellow if needed
-			for ( var i in Foxtrick.modules ) {
-				var module = Foxtrick.modules[i];			
-				if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
-					FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
-					continue;
-				}
-			}
-			
-			for each ( cat in Foxtrick.moduleCategories ) {
-                switch(cat) {
-						case Foxtrick.moduleCategories.MAIN:
-								continue;
-								break;
-                        case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
-                                modules_list = document.getElementById( 'shortcuts_list' );
-								break;
-                        case Foxtrick.moduleCategories.PRESENTATION:
-                                modules_list = document.getElementById( 'presentation_list' );
-								break;
-						case Foxtrick.moduleCategories.MATCHES:
-								modules_list = document.getElementById( 'matchfunctions_list' );
-								break;
-                        case Foxtrick.moduleCategories.FORUM:
-                                modules_list = document.getElementById( 'forum_list' );
-                                break;
-                        case Foxtrick.moduleCategories.LINKS:
-                                modules_list = document.getElementById( 'links_list' );
-                                break;
-						default : continue;
-								break;
-                }
+		var array = FoxtrickPrefs._getElemNames("");
+		for(var i = 0; i < array.length; ++i) {
+			if (FoxtrickPrefs.isPrefSetting(array[i]))
+				FoxtrickPrefs.deleteValue(array[i]);
+		}
 
-				for ( var i = 0; i < modules_list.childNodes.length; ++i ) {
-					if (modules_list.childNodes[i].nodeName =='spacer') continue;
-					FoxtrickPrefs.setModuleEnableState( modules_list.childNodes[i].prefname,
-                                                   modules_list.childNodes[i].childNodes[0].childNodes[0].checked );
-					if (modules_list.childNodes[i].radio) {
-						var radiogroup = modules_list.childNodes[i].childNodes[3].childNodes[0].childNodes;
-						for (var j = 0; j < radiogroup.length; j++) {
-							if (radiogroup[j].selected) {
-								FoxtrickPrefs.setModuleValue( modules_list.childNodes[i].prefname, j );
+		// set version
+		var curVersion = FoxtrickPrefs.getString("curVersion");
+		var oldVersion = FoxtrickPrefs.getString("oldVersion");
+		FoxtrickPrefs.setString("oldVersion", curVersion);
+
+		// reset main to default. set right bellow if needed
+		for (var i in Foxtrick.modules) {
+			var module = Foxtrick.modules[i];
+			if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY == Foxtrick.moduleCategories.MAIN) {
+				FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
+				continue;
+			}
+		}
+
+		for each (cat in Foxtrick.moduleCategories) {
+			switch (cat) {
+				case Foxtrick.moduleCategories.MAIN:
+					continue;
+					break;
+				case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
+					modules_list = document.getElementById('shortcuts_list');
+					break;
+				case Foxtrick.moduleCategories.PRESENTATION:
+					modules_list = document.getElementById('presentation_list');
+					break;
+				case Foxtrick.moduleCategories.MATCHES:
+					modules_list = document.getElementById('matchfunctions_list');
+					break;
+				case Foxtrick.moduleCategories.FORUM:
+					modules_list = document.getElementById('forum_list');
+					break;
+				case Foxtrick.moduleCategories.LINKS:
+					modules_list = document.getElementById('links_list');
+					break;
+				default:
+					continue;
+					break;
+			}
+
+			for (var i = 0; i < modules_list.childNodes.length; ++i) {
+				var group = modules_list.childNodes[i];
+				var pref = group.id;
+				var enabled = document.getElementById(pref + "_check").checked;
+				var container = document.getElementById(pref + "_container");
+				FoxtrickPrefs.setModuleEnableState(pref, enabled);
+
+				// not normal
+				if (container) {
+					// checkbox
+					var checkboxes = document.getElementById(pref + "_checkboxes");
+					if (checkboxes) {
+						var checkboxList = checkboxes.getElementsByTagName("checkbox");
+						for (var j in checkboxList) {
+							FoxtrickPrefs.setModuleEnableState(checkboxList[j].id, checkboxList[j].checked);
+						}
+						var textboxList = checkboxes.getElementsByTagName("textbox");
+						for (var j in textboxList) {
+							FoxtrickPrefs.setModuleOptionsText(textboxList[j].id, textboxList[j].value);
+						}
+					}
+
+					// radio
+					var radiogroup = document.getElementById(pref + "_radiogroup");
+					if (radiogroup) {
+						for (var j in radiogroup.childNodes) {
+							if (radiogroup.childNodes[j].selected) {
+								FoxtrickPrefs.setModuleValue(pref, j);
 								break;
 							}
 						}
-					} else if (modules_list.childNodes[i].checkbox) {
-						var checkboxes = modules_list.childNodes[i].childNodes[3].childNodes;
-						for (var j = 0; j < checkboxes.length; j++) {
-							if (checkboxes[j].id.search(/_text$/) == -1)
-								FoxtrickPrefs.setModuleEnableState( modules_list.childNodes[i].prefname + "." + checkboxes[j].id, checkboxes[j].checked );
-							else
-								FoxtrickPrefs.setModuleOptionsText( modules_list.childNodes[i].prefname + "." + checkboxes[j].firstChild.id, checkboxes[j].firstChild.value );
-						}
 					}
-						// modules_list.childNodes[i].checked );
-            // dump( modules_list.childNodes[i].prefname + " " + modules_list.childNodes[i].childNodes[0].childNodes[0].checked + "\n" );
-                }
-        }
-
+				}
+			}
+		}
 		// disable warning
-		FoxtrickPrefs.setBool( "PrefsSavedOnce" ,true);
+		FoxtrickPrefs.setBool("PrefsSavedOnce", true);
 
-        //Lang
-        FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
+		//Lang
+		FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
 		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", document.getElementById("ReadHtPrefs").checked);
 
-		//Currency
-        FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
+		// country, currency
+		var readHtCountry = document.getElementById("ReadHtCountry").checked;
+		FoxtrickPrefs.setBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled", readHtCountry);
+		if (!readHtCountry) {
+			FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
+			FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
+			FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
+		}
 
-		//Country
-        FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
+		FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(document.getElementById("htCountry").value)));
 
-        var htCountryXml_c = document.implementation.createDocument("", "", null);
-        htCountryXml_c.async = false;
-        htCountryXml_c.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htcountries.xml", "text/xml");
-        FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(document.getElementById("htCountry").value,htCountryXml_c)));
+		//Currency Converter
 
-        //Currency Converter
+		FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
+		FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value, "new", Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value, "rate", Foxtrick.XMLData.htCurrencyXml));
 
-        var htCurrencyXml_c = document.implementation.createDocument("", "", null);
-        htCurrencyXml_c.async = false;
-        htCurrencyXml_c.load("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/htlocales/htcurrency.xml", "text/xml");
+		FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "old", Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "rate", Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "code", Foxtrick.XMLData.htCurrencyXml));
 
-        FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
-        FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"new",htCurrencyXml_c));
-        FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value,"rate",htCurrencyXml_c));
+		FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked);
 
-        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value,"old",htCurrencyXml_c));
-        FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value,"rate",htCurrencyXml_c));
-		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value,"code",htCurrencyXml_c));
+		//Statusbar
+		FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
 
-        FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked);
+		//Alert
+		FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
+		FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
+		FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
+		FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
 
-		//Dateformat
-        FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
-
-        //Statusbar
-        FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
-		FoxtrickPrefs.setBool("statusbarshowreload", document.getElementById("statusbarshowreload").checked);
-
-        //Alert
-        FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
-        FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
-        FoxtrickPrefs.setBool("alertSliderDBus", document.getElementById("alertsliderdbus").checked);
-        FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
-        FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
-
-        //Skin settings
-        FoxtrickPrefs.setString("cssSkinOld",  FoxtrickPrefs.getString("cssSkin"));
-        FoxtrickPrefs.setString("cssSkin", document.getElementById("cssskinpref").value);
-        FoxtrickPrefs.setBool("module.SkinPlugin.enabled", document.getElementById("skinActivedSkin").checked);
-
-        //disable
+		//disable
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
 		FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
-
-		// other
-		//FoxtrickPrefs.setString("oldVersion", document.getElementById("htOldVersion").value);
 
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
@@ -748,470 +438,379 @@ var FoxtrickPreferencesDialog = {
 
 
 		FoxtrickPrefs.setBool("SavePrefs_Prefs", document.getElementById("saveprefsid").checked);
-        FoxtrickPrefs.setBool("SavePrefs_Notes", document.getElementById("savenotesid").checked);
+		FoxtrickPrefs.setBool("SavePrefs_Notes", document.getElementById("savenotesid").checked);
 
-        FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", document.getElementById("DisplayHTMLDebugOutput").checked);
- 
+		FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", document.getElementById("DisplayHTMLDebugOutput").checked);
+
 		// reinitialize
-        FoxtrickMain.init();
+		FoxtrickMain.init();
 
-        return true;
+		return true;
 
-		} catch(e) {Foxtrick.alert(e);}
-    },
-
-getOffsetValue: function (itemToSearch, xmlDoc) {
-    try {
-        var returnedOffset = 0;
-        var values = xmlDoc.getElementsByTagName("country");
-
-        for ( var i = 0; i < values.length; i++ ) {
-            try {
-                var test = values[i].attributes.getNamedItem("name").textContent;
-
-                if (test == itemToSearch) {
-                    // alert( '['+test+']['+itemToSearch+']' );
-                    returnedOffset  = ( values[i].attributes.getNamedItem("offset").textContent );
-                    // alert( returnedOffset );
-                }
-            } catch(ee) {
-                // alert(ee);
-            }
-        }
-        return returnedOffset;
-    }
-    catch (e) {
-        dump('  Offset search for '+ itemToSearch + ' ' + e + '\n');
-        return 0;
-    }
-},
-
-getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
-    try {
-         var returnedItemToSearch = "none";
-
-
-        var values = xmlDoc.getElementsByTagName("currency");
-
-        var langs = [];
-
-        for (var i=0; i<values.length; i++) {
-            var eurorate = values[i].attributes.getNamedItem("eurorate").textContent;
-            var code = values[i].attributes.getNamedItem("code").textContent;
-            var sname = values[i].attributes.getNamedItem("shortname").textContent;
-            langs.push([eurorate,code,sname]);
-        }
-
-        function sortfunction(a,b) {
-            return a[0].localeCompare(b[0]);
-        }
-
-        langs.sort(sortfunction);
-
-        for (var i=0; i<langs.length; i++) {
-
-            var eurorate = langs[i][0];
-            var code = langs[i][1];
-            var sname = langs[i][2];
-
-
-
-            if (options == "old" && itemToSearch==code){returnedItemToSearch = sname;}
-            if (options == "new" && itemToSearch==code){returnedItemToSearch = sname;}
-            if (options == "rate" && itemToSearch==code){returnedItemToSearch = eurorate;}
-            if (options == "code" && itemToSearch==code){returnedItemToSearch = code;}
-        }
-
-      return returnedItemToSearch;
-         } catch (e) {
-                dump('  CurrencyConverter-CurrValue(): ' + e + '\n');
-           }
-},
-
-
-
-    fillListFromXml: function(id, prefix, xmlDoc, elem, descAttr, valAttr, itemToSelect){
-
-        var indexToSelect=-1;
-        var values = xmlDoc.getElementsByTagName(elem);
-        var menupopup = document.getElementById(id);
-        var langs = [];
-
-        for (var i=0; i<values.length; i++) {
-            var label = values[i].attributes.getNamedItem(descAttr).textContent;
-            var value = values[i].attributes.getNamedItem(valAttr).textContent;
-            langs.push([label,value]);
-        }
-
-        function sortfunction(a,b) {
-            return a[0].localeCompare(b[0]);
-        }
-
-        langs.sort(sortfunction);
-
-        for (var i=0; i<langs.length; i++) {
-
-            var label = langs[i][0];
-            var value = langs[i][1];
-
-            var obj = document.createElement("menuitem");
-            obj.setAttribute("id", prefix+value);
-            obj.setAttribute("label", label);
-            obj.setAttribute("value", value);
-
-            menupopup.appendChild(obj);
-
-            if (itemToSelect==value)
-                indexToSelect=i;
-        }
-
-        return indexToSelect;
-
-    },
-
-    _fillModulesList : function( doc, category ) {
-                var modules_list;
-
-                switch(category) {
-						case Foxtrick.moduleCategories.MAIN:
-                                return;
-								break;
-						case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
-                                modules_list = document.getElementById( 'shortcuts_list' );
-								break;
-						case Foxtrick.moduleCategories.PRESENTATION:
-                                modules_list = document.getElementById( 'presentation_list' );
-								break;
-						case Foxtrick.moduleCategories.MATCHES:
-								modules_list = document.getElementById( 'matchfunctions_list' );
-								break;
-                        case Foxtrick.moduleCategories.FORUM:
-                                modules_list = document.getElementById( 'forum_list' );
-                                break;
-                        case Foxtrick.moduleCategories.LINKS:
-                                modules_list = document.getElementById( 'links_list' );
-                                break;
-						default: return;
-								break;
-                }
-
-				var modules_entries = new Array();
-				for ( var i in Foxtrick.modules ) {
-					var module = Foxtrick.modules[i];
-                        var module_category;
-                        module_category = module.MODULE_CATEGORY;
-                        if(!module_category) {
-                                // MODULE_CATEGORY isn't set; use default
-                                module_category = "shortcutsandtweaks";
-                        }
-                        if(module_category == category) {
-							var entry;
-							if (module.RADIO_OPTIONS != null) {
-								entry = FoxtrickPreferencesDialog._radioModule(module);
-							} else if (module.OPTIONS != null) {
-								var bOptionTexts = (module.OPTION_TEXTS != null && module.OPTION_TEXTS);
-								entry = FoxtrickPreferencesDialog._checkboxModule(module, bOptionTexts);
-							} else {
-								entry = FoxtrickPreferencesDialog._normalModule(module);
-							}
-							modules_entries.push(entry);
-						}
-				}
-
-				modules_entries.sort(FoxtrickPreferencesDialog.entry_sortfunction);
-				
-				for ( var i=0;i<modules_entries.length;++i)	modules_list.appendChild( modules_entries[i] );
-
-				var spacer = doc.createElement('spacer');
-				spacer.setAttribute('flex',0);
-				spacer.setAttribute('height',100);
-
-				modules_list.appendChild( spacer );
-    },
-
-	entry_sortfunction: function(a,b) {return a.prefname>b.prefname;},
-
-	_getWrapableBox : function( desc_text ) {
-		var desc_box = document.createElement( "hbox" );
-		var desc = document.createElement("textbox");
-		desc.setAttribute( "class", "plain");//#ece9d7
-		desc.setAttribute( "style", "background-color:ButtonFace !important; color: ButtonText !important;");
-		desc.setAttribute( "height", "20 ");
-		desc.setAttribute( "flex", "1");
-		desc.setAttribute( "multiline", "true");
-		desc.setAttribute( "readonly","true");
-		desc.setAttribute( "onoverflow", "FoxtrickPreferencesDialog.heigh=20; FoxtrickPreferencesDialog.height = FoxtrickPreferencesDialog.inputField.scrollHeight;");
-		desc.setAttribute( "DOMAttrModified","if(event.attrName == 'value') FoxtrickPreferencesDialog.value = event.newValue; return true;");
-		desc.setAttribute( "value",desc_text);
-		desc_box.appendChild( desc );
-		return desc_box;
-	},
-
-	_radioModule : function( module ) {
-		var entry = document.createElement( "vbox" );
-		entry.prefname = module.MODULE_NAME;
-		entry.radio = true;
-        entry.setAttribute( "class", "radio_group_box" );
-		var hbox = document.createElement( "hbox" );
-
-		var check = document.createElement( "checkbox" );
-		check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
-		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) );
-        check.setAttribute( "class", "radiobox_group" );
-		hbox.appendChild( check );
-		hbox.addEventListener( "click", function( ev ) {
-			ev.currentTarget.childNodes[0].checked = !(ev.currentTarget.childNodes[0].checked);
-			var radios = ev.currentTarget.nextSibling.nextSibling.nextSibling.childNodes[0].childNodes;
-			if (!ev.currentTarget.childNodes[0].checked) {
-				for (var i = 0; i < radios.length; i++) {
-					radios[i].setAttribute( "disabled", true);
-                    radios[i].setAttribute( "hidden", true);
-				}
-			} else {
-				for (var i = 0; i < radios.length; i++) {
-					radios[i].setAttribute( "disabled", false);
-                    radios[i].setAttribute( "hidden", false);
-				}
-			}
-		}, false );
-
-		var name = document.createElement( "label" );
-		name.setAttribute( "class", "name" );
-		name.setAttribute( "value", module.MODULE_NAME );
-		hbox.appendChild( name );
-		entry.appendChild( hbox );
-
-		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) );
-		entry.appendChild (desc_box);
-
-		var spacer = document.createElement( "spacer" );
-        spacer.height = "1";
-        entry.appendChild( spacer );
-
-		hbox = document.createElement( "hbox" );
-		entry.appendChild( hbox );
-		var radiogroup = document.createElement( "radiogroup" );
-		var selectedValue = Foxtrick.getModuleValue( module );
-		for (var i = 0; i < module.RADIO_OPTIONS.length; i++) {
-			var radio = document.createElement( "radio" );
-            radio.setAttribute( "class", "radio_in_group" );
-			radio.addEventListener( "click", function( ev ) {
-				if (!ev.target.disabled) {
-					ev.target.setAttribute( "selected", true);
-				}
-			}, true );
-			var selected;
-			if (selectedValue == i) {
-				selected = true;
-			} else {
-				selected = false;
-			}
-			radio.setAttribute( "selected", selected);
-			radio.setAttribute( "label", FoxtrickPrefs.getModuleDescription(
-				module.MODULE_NAME + "." + module.RADIO_OPTIONS[i] ));
-			if (!Foxtrick.isModuleEnabled( module )) {
-				radio.setAttribute( "disabled", true);
-                radio.setAttribute( "hidden", true);
-            } else {
-                radio.setAttribute( "hidden", false);
-            }
-			radiogroup.appendChild( radio );
 		}
-		hbox.appendChild( radiogroup );
-		return entry;
+		catch(e) {
+			Foxtrick.alert(e + " on line " + e.lineNumber + " of file " + e.fileName);
+		}
 	},
 
-	_checkboxModule : function (module, bOptionTexts) {
-		var entry = document.createElement( "vbox" );
-		entry.prefname = module.MODULE_NAME;
-		entry.checkbox = true;
-		entry.setAttribute( "class", "checkbox_group_box" );
-		var hbox = document.createElement( "hbox" );
-
-		var check = document.createElement( "checkbox" );
-		check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked;}, true );
-		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) );
-        check.setAttribute( "class", "checkbox_group" );
-		hbox.appendChild( check );
-		hbox.addEventListener( "click", function( ev ) {
-			ev.currentTarget.childNodes[0].checked = !(ev.currentTarget.childNodes[0].checked);
-			var checkboxes = ev.currentTarget.nextSibling.nextSibling.nextSibling.childNodes;
-			if (!ev.currentTarget.childNodes[0].checked) {
-				for (var i = 0; i < checkboxes.length; i++) {
-					checkboxes[i].setAttribute( "disabled", true);
-                    checkboxes[i].setAttribute( "hidden", true);
-				}
-			} else {
-				for (var i = 0; i < checkboxes.length; i++) {
-					checkboxes[i].setAttribute( "disabled", false);
-                    checkboxes[i].setAttribute( "hidden", false);
+	getOffsetValue: function (itemToSearch) {
+		try {
+			var returnedOffset = 0;
+			for (var i in Foxtrick.XMLData.League) {
+				if (itemToSearch == Foxtrick.XMLData.League[i].EnglishName) {
+					returnedOffset = Foxtrick.XMLData.League[1].Season - Foxtrick.XMLData.League[i].Season; // sweden season - selected
+					break;
 				}
 			}
-		}, false );
+			return returnedOffset;
+		}
+		catch (e) {
+			Foxtrick.dump('Offset search for '+ itemToSearch + ' ' + e + '\n');
+			return 0;
+		}
+	},
 
-		var name = document.createElement( "label" );
-		name.setAttribute( "class", "name" );
-		name.setAttribute( "value", module.MODULE_NAME );
-		hbox.appendChild( name );
-		entry.appendChild( hbox );
+	getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
+		try {
+			var returnedItemToSearch = "none";
 
-		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) );
-		entry.appendChild (desc_box);
+			var values = xmlDoc.getElementsByTagName("currency");
 
-        var spacer = document.createElement( "spacer" );
-        spacer.height = "1";
-        entry.appendChild( spacer );
+			var langs = [];
 
-		hbox = document.createElement( "vbox" );
-		entry.appendChild( hbox );
-		for (var i = 0; i < module.OPTIONS.length; i++) {
-			var checkbox = document.createElement( "checkbox" );
-			var key,title;
-			if (module.OPTIONS[i]["key"]==null){
-                key=module.OPTIONS[i];
-                //title=module.OPTIONS[i];
-                title = FoxtrickPrefs.getModuleElementDescription( module.MODULE_NAME, module.OPTIONS[i] );
-            }
-			else {key=module.OPTIONS[i]["key"];title=module.OPTIONS[i]["title"];}
-			checkbox.setAttribute( "checked", Foxtrick.isModuleFeatureEnabled( module, key) );
-			checkbox.setAttribute( "label", title);
-			checkbox.setAttribute( "id", key);
-            checkbox.setAttribute( "class", "checkbox_in_group" );
-			if (!Foxtrick.isModuleEnabled( module )) {
-				checkbox.setAttribute( "disabled", true);
-                checkbox.setAttribute( "hidden", true);
-            } else {
-                checkbox.setAttribute( "disabled", false);
-                checkbox.setAttribute( "hidden", false);
-            }
-			hbox.appendChild( checkbox );
-			if (bOptionTexts
-				&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+			for (var i=0; i<values.length; ++i) {
+				var eurorate = values[i].attributes.getNamedItem("eurorate").textContent;
+				var code = values[i].attributes.getNamedItem("code").textContent;
+				var sname = values[i].attributes.getNamedItem("shortname").textContent;
+				langs.push([eurorate,code,sname]);
+			}
 
-				checkbox.addEventListener( "click", function( ev ) {
-					var checked = ev.currentTarget.checked;
-					var optiondiv = document.getElementById(ev.currentTarget.id+'_text');
-					if (checked)  {
-						//optiondiv.setAttribute( "disabled", true);
-						optiondiv.setAttribute( "hidden", true);
-					} else {
-						//optiondiv.setAttribute( "disabled", false);
-						optiondiv.setAttribute( "hidden", false);
-					}
-				}, false );
+			function sortfunction(a, b) {
+				return a[0].localeCompare(b[0]);
+			}
 
-				//if (module.OPTION_TEXTS_DISABLED_LIST) dump(module.OPTION_TEXTS_DISABLED_LIST[i]+'\n');
-				var htextbox = document.createElement("hbox");
-				htextbox.setAttribute("id", "hbox_" + key + "_text");
-				var textbox = document.createElement("textbox");
-				textbox.setAttribute("id", key + "_text");
-				textbox.setAttribute("style", "margin-left:20px;");
-				textbox.setAttribute("width", "500px");
-				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
-				if (!val && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]){
-					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
-				}
-				textbox.setAttribute("value", val);
-				if (!Foxtrick.isModuleFeatureEnabled( module, key) ) {
-					//textbox.setAttribute( "disabled", true);
-					textbox.setAttribute( "hidden", true);
+			langs.sort(sortfunction);
+
+			for (var i = 0; i < langs.length; ++i) {
+				var eurorate = langs[i][0];
+				var code = langs[i][1];
+				var sname = langs[i][2];
+
+				if (options == "old" && itemToSearch == code)
+					returnedItemToSearch = sname;
+				if (options == "new" && itemToSearch == code)
+					returnedItemToSearch = sname;
+				if (options == "rate" && itemToSearch == code)
+					returnedItemToSearch = eurorate;
+				if (options == "code" && itemToSearch == code)
+					returnedItemToSearch = code;
+			}
+			return returnedItemToSearch;
+		}
+		catch (e) {
+			Foxtrick.dump('CurrencyConverter-CurrValue(): ' + e + '\n');
+		}
+	},
+
+	fillListFromXml: function(id, prefix, xmlDoc, elem, descAttr, valAttr, itemToSelect) {
+		var indexToSelect = -1;
+		var values = xmlDoc.getElementsByTagName(elem);
+		var menupopup = document.getElementById(id);
+		var langs = [];
+
+		for (var i = 0; i < values.length; ++i) {
+			var label = values[i].attributes.getNamedItem(descAttr).textContent;
+			var value = values[i].attributes.getNamedItem(valAttr).textContent;
+			langs.push([label, value]);
+		}
+
+		function sortfunction(a, b) {
+			return a[0].localeCompare(b[0]);
+		}
+
+		langs.sort(sortfunction);
+
+		for (var i = 0; i < langs.length; ++i) {
+
+			var label = langs[i][0];
+			var value = langs[i][1];
+
+			var obj = document.createElement("menuitem");
+			obj.setAttribute("id", prefix+value);
+			obj.setAttribute("label", label);
+			obj.setAttribute("value", value);
+
+			menupopup.appendChild(obj);
+
+			if (itemToSelect == value)
+				indexToSelect = i;
+		}
+
+		return indexToSelect;
+	},
+
+	fillListFromXml3 : function(id, prefix, xmlarray, valuestr, itemToSelect) {
+		try {
+			var menupopup = document.getElementById(id);
+
+			var langs = [];
+			var indexToSelect=0;
+
+			for (var i in xmlarray) {
+				var label = xmlarray[i][valuestr];
+				var value = xmlarray[i][valuestr];
+				langs.push([label, value]);
+			}
+
+			function sortfunction(a, b) {
+				return a[0].localeCompare(b[0]);
+			}
+
+			langs.sort(sortfunction);
+
+			for (var i = 0; i < langs.length; ++i) {
+
+				var label = langs[i][0];
+				var value = langs[i][1];
+
+				var obj = document.createElement("menuitem");
+				obj.setAttribute("id", prefix+value);
+				obj.setAttribute("label", label);
+				obj.setAttribute("value", value);
+
+				menupopup.appendChild(obj);
+
+				if (itemToSelect == value)
+					indexToSelect = i;
+			}
+
+			return indexToSelect;
+		}
+		catch(e) {
+			Foxtrick.dump(e);
+		}
+	},
+
+	_fillModulesList : function(doc, category) {
+		var modules_list;
+		switch(category) {
+			case Foxtrick.moduleCategories.MAIN:
+				return;
+				break;
+			case Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS:
+				modules_list = document.getElementById('shortcuts_list');
+				break;
+			case Foxtrick.moduleCategories.PRESENTATION:
+				modules_list = document.getElementById('presentation_list');
+				break;
+			case Foxtrick.moduleCategories.MATCHES:
+				modules_list = document.getElementById('matchfunctions_list');
+				break;
+			case Foxtrick.moduleCategories.FORUM:
+				modules_list = document.getElementById('forum_list');
+				break;
+			case Foxtrick.moduleCategories.LINKS:
+				modules_list = document.getElementById('links_list');
+				break;
+			default:
+				return;
+				break;
+		}
+
+		var modules_entries = new Array();
+		for (var i in Foxtrick.modules) {
+			var module = Foxtrick.modules[i];
+			var module_category;
+			module_category = module.MODULE_CATEGORY;
+			if (!module_category) {
+				// MODULE_CATEGORY isn't set; use default
+				module_category = "shortcutsandtweaks";
+			}
+			if (module_category == category) {
+				var entry;
+				entry = FoxtrickPreferencesDialog._createModule(module);
+				modules_entries.push(entry);
+			}
+		}
+
+		modules_entries.sort(FoxtrickPreferencesDialog.entry_sortfunction);
+		for (var i = 0;i < modules_entries.length; ++i)
+			modules_list.appendChild(modules_entries[i]);
+	},
+
+	entry_sortfunction: function(a,b) {
+		return a.id > b.id;
+	},
+
+	_getWrapableBox : function(desc_text) {
+		var desc = document.createElement("description");
+		var text = document.createTextNode(desc_text);
+		desc.appendChild(text);
+		return desc;
+	},
+
+	_updateModule : function(module) {
+		try {
+			var enabled = document.getElementById(module.id + "_check").checked;
+			var container = document.getElementById(module.id + "_container");
+			if (enabled)
+				container.setAttribute("hidden", false);
+			else
+				container.setAttribute("hidden", true);
+		}
+		catch (e) {
+			Foxtrick.alert(e + " on line " + e.lineNumber + " of file " + e.fileName);
+		}
+	},
+
+	_createModule : function(module) {
+		var entry = document.createElement("groupbox");
+		var caption = document.createElement("caption");
+		var check = document.createElement("checkbox");
+		var desc = FoxtrickPreferencesDialog._getWrapableBox(FoxtrickPrefs.getModuleDescription(module.MODULE_NAME));
+		var container = document.createElement("vbox");
+
+		var enabled = Foxtrick.isModuleEnabled(module);
+
+		entry.appendChild(caption);
+		entry.appendChild(desc);
+		entry.appendChild(container);
+		caption.appendChild(check);
+
+		entry.id = module.MODULE_NAME;
+		caption.id = entry.id + "_caption";
+		check.id = entry.id + "_check";
+		desc.id = entry.id + "_desc";
+		container.id = entry.id + "_container";
+
+		if (!enabled) {
+			container.setAttribute("hidden", true);
+		}
+
+		check.setAttribute("checked", enabled);
+		check.setAttribute("label", module.MODULE_NAME);
+		check.addEventListener("command", function(ev) {
+			FoxtrickPreferencesDialog._updateModule(ev.target.parentNode.parentNode);
+		}, false);
+
+		// checkbox
+		if (module.OPTIONS) {
+			var checkboxes = document.createElement("vbox");
+			container.appendChild(checkboxes);
+			checkboxes.id = module.MODULE_NAME + "_checkboxes";
+
+			for (var i in module.OPTIONS) {
+				var checkbox = document.createElement("checkbox");
+				checkboxes.appendChild(checkbox);
+
+				var key, title;
+				if (module.OPTIONS[i]["key"]) {
+					key = module.OPTIONS[i]["key"];
+					title = module.OPTIONS[i]["title"];
 				} else {
-					//textbox.setAttribute( "disabled", false);
-					textbox.setAttribute( "hidden", false);
+					key = module.OPTIONS[i];
+					title = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
 				}
-				htextbox.appendChild(textbox);
-				hbox.appendChild(htextbox);
+				checkbox.id = module.MODULE_NAME + "." + key;
+				checkbox.setAttribute("checked", Foxtrick.isModuleFeatureEnabled(module, key));
+				checkbox.setAttribute("label", title);
+
+				if (module.OPTION_TEXTS &&
+					(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+					var hbox = document.createElement("hbox");
+					var textbox = document.createElement("textbox");
+					checkboxes.appendChild(hbox);
+					hbox.appendChild(textbox);
+					hbox.id = checkbox.id + "_textRow";
+					textbox.id = checkbox.id + "_text";
+					textbox.setAttribute("flex", 1);
+
+					if (!Foxtrick.isModuleFeatureEnabled(module, key)) {
+						hbox.setAttribute("hidden", true);
+					}
+
+					checkbox.addEventListener("command", function(ev) {
+						var optiondiv = document.getElementById(ev.target.id + "_textRow");
+						if (ev.target.checked) {
+							optiondiv.setAttribute("hidden", false);
+						} else {
+							optiondiv.setAttribute("hidden", true);
+						}
+					}, false);
+
+					var val = FoxtrickPrefs.getString("module." + textbox.id);
+					if (val === null && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]) {
+						val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
+					}
+					textbox.setAttribute("value", val);
+
+					// load buttons
+					if (module.OPTION_TEXTS_LOAD_BUTTONS && module.OPTION_TEXTS_LOAD_BUTTONS[i]) {
+						var load = document.createElement("button");
+						hbox.appendChild(load);
+						load.id = textbox.id + "_load";
+						load.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
+						load.addEventListener("command", function(ev) {
+							var textbox = document.getElementById(ev.target.id.replace(/_load$/, ""));
+							var file = Foxtrick.selectFile(window); 
+							if (file) {
+								textbox.value = "file://" + file;
+							}
+						}, false);
+					}
+				}
 			}
 		}
 
-		return entry;
-	},
+		// radio
+		if (module.RADIO_OPTIONS) {
+			var radiogroup = document.createElement("radiogroup");
+			container.appendChild(radiogroup);
+			radiogroup.id = module.MODULE_NAME + "_radiogroup";
 
-	_normalModule : function (module) {
-		var entry = document.createElement( "vbox" );
-        entry.prefname = module.MODULE_NAME;
-		entry.setAttribute( "class", "normal_entry" );
-		var hbox = document.createElement( "hbox" );
-		hbox.addEventListener( "click", function( ev ) {
-			ev.currentTarget.childNodes[0].checked =
-				!(ev.currentTarget.childNodes[0].checked);
-		}, false );
-
-		var check = document.createElement( "checkbox" );
-		check.addEventListener( "click", function( ev ) { ev.target.checked = !ev.target.checked; }, true );
-		check.setAttribute( "checked", Foxtrick.isModuleEnabled( module ) );
-        check.setAttribute( "class", "checkbox_normal" );
-		hbox.appendChild( check );
-		var name = document.createElement( "label" );
-		name.setAttribute( "class", "name" );
-		name.setAttribute( "value", module.MODULE_NAME );
-		hbox.appendChild( name );
-		entry.appendChild( hbox );
-
-		var desc_box = FoxtrickPreferencesDialog._getWrapableBox ( FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ) );
-		entry.appendChild (desc_box);
+			var selectedValue = Foxtrick.getModuleValue(module);
+			for (var i in module.RADIO_OPTIONS) {
+				var radio = document.createElement("radio");
+				radiogroup.appendChild(radio);
+				if (selectedValue == i) {
+					radio.setAttribute("selected", true);
+				}
+				radio.setAttribute("label",
+					FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.RADIO_OPTIONS[i]));
+			}
+		}
 
 		return entry;
 	}
 };
 
-FoxtrickPreferencesDialog.configureFoxtrick = function( button ) {
-	if(!button) {
-        window.open("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/preferences-dialog.xul",
-                      "",
-                      "centerscreen, chrome, modal, resizable=yes");
+FoxtrickPreferencesDialog.configureFoxtrick = function(button) {
+	if (!button) {
+		window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
+			"foxtrick-config", "resizable=yes,centerscreen=yes,chrome=yes,modal=yes,dialog=no");
 		FoxtrickMain.init();
 	}
 }
 
 
-FoxtrickPreferencesDialog.deactivate = function( button ) {
-	if(!button) {
-		FoxtrickPrefs.setBool("disableTemporary",!FoxtrickPrefs.getBool("disableTemporary"));
+FoxtrickPreferencesDialog.deactivate = function(button) {
+try{
+	if (!button) {
+		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+		//alert(Foxtrick.statusbarDeactivateImg.suspended);
+		if (Foxtrick.statusbarDeactivateImg.getAttribute('suspended')) Foxtrick.statusbarDeactivateImg.removeAttribute("suspended");
+		else Foxtrick.statusbarDeactivateImg.setAttribute('suspended','on');
+
+		//Foxtrick.statusbarDeactivateImg.style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick_deactivated.png);"
 		FoxtrickMain.init();
 	}
+} catch(e){alert('FoxtrickPreferencesDialog.deactivate '+e);}
 }
 
-FoxtrickPreferencesDialog.copy_id = function( button ) {
-	if(!button) {
-    	var ID=Foxtrick.CopyID;
+FoxtrickPreferencesDialog.copy_id = function(button) {
+	if (!button) {
+		var ID = Foxtrick.CopyID;
 		Foxtrick.copyStringToClipboard(ID);
-		Foxtrick.popupMenu.setAttribute( "hidden", true);
-
+		Foxtrick.popupMenu.setAttribute("hidden", true);
 	}
 }
-
-
-FoxtrickPreferencesDialog.pref_show = function ( vbox ) {
-    VBOXES = ["main_list", "shortcuts_list","presentation_list", "matchfunctions_list", "forum_list", "links_list", "about_list"];
-    var box;
-    for (var i = 0; i < VBOXES.length; i++) {
-        try {
-            box = document.getElementById( VBOXES[i] );
-            if ( VBOXES[i] == vbox) {
-                box.style.overflow = "hidden";
-				box.setAttribute("style", "color:ButtonText !important; background-color:ButtonFace !important;");
-            }
-            else {
-                box.style.height = "300px";
-                box.style.overflow = "hidden";
-				box.setAttribute("style", "color:ButtonText !important; background-color:ButtonFace !important;");
-            }
-        }
-        catch (e) {
-            dump('pref_show error: '+e);
-        }
-    }
-}
-
-FoxtrickPreferencesDialog.prefhelp_show = function ( HelpTitle, HelpDesc, where ) {
-    openDialog("chrome-extension://bpfbbngccefbbndginomofgpagkjckik/preferences-help.xul",
-               "FoxTrick Help",
-               "titlebar=no, modal, left=" + (where.boxObject.screenX + 20) + ", top=" + (where.boxObject.screenY - 10),
-               HelpTitle,
-               HelpDesc);
-}
-
-
-
-

@@ -1307,6 +1307,12 @@ stats["ht-u20"] =  {
 										"age_days" : "days",
 										}
                         },
+        "youthplayerdetaillink" : { "path"       : "",
+                         "filters"    : [], 
+                        "params"     : { "age" : "years", 
+										"age_days" : "days",
+										}
+                        },
         "ageranges" : [[15, 20]],         
         "title" : "HT-U20 Check age vs U-20 matches",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/u20.png"
@@ -2736,6 +2742,25 @@ stats["romaniatracker"] = {
 	"nationalityranges" : [[37,37]], 
 };
 
+
+stats["hellastracker"] = { 
+  "url" : "http://www.hdb.gr",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Hellas U20/NT Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[50,50]] ,
+	"nationalityranges" : [[50,50]], 
+};
+
+
 stats["surinametracker"] = { 
   "url" : "http://tracker.hattricksuriname.com/players.php",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
@@ -3053,6 +3078,31 @@ stats["htworld"] =  {
 
 //------------------------------------------------------------------
 // -----------------------------------------------------------------
+
+
+if (!Foxtrick) var Foxtrick={};
+
+Foxtrick.StatsHash = {};
+
+Foxtrick.MakeStatsHash = function(){		
+		// create stats Hash for Foxtrick.LinkCollection
+		for (var key in Foxtrick.LinkCollection.stats) {
+			var stat = Foxtrick.LinkCollection.stats[key];
+			for (var prop in stat) {
+				if (prop.match(/link/)) {
+					if (typeof(Foxtrick.StatsHash[prop]) == 'undefined') {
+						Foxtrick.StatsHash[prop] = {};
+					}
+					Foxtrick.StatsHash[prop][key] = stat;
+				}
+			}
+		}
+}
+
+
+
+
+
 Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc, overridesettings, module) { 
     var links = [];
     var counter = 0;

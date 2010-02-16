@@ -7,7 +7,7 @@ FoxtrickHighlightBotTeams = {
 	MODULE_NAME : "HighlightBotTeams",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Highlight Bot teams on series pages",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -24,7 +24,7 @@ FoxtrickHighlightBotTeams = {
 		+'@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
 		+'{'
 		/* HighlightBotTeams */
-		+'#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] .shy {'+this.get_color(this.OPTIONS[0])+'}'
+		+'#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] table[class="indent"] .shy {'+this.get_color(this.OPTIONS[0])+'}'
 		+'}'
 		;
 		this.OLD_CSS = this.CSS;
