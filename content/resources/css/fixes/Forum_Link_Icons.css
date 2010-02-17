@@ -23,13 +23,21 @@
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="]{
   background-image: url("chrome://foxtrick/content/resources/linkicons/forum_ignore.png"); 
 }
+.cfFooter .foxtrick-signaturetoggle{
+  background-image: url("chrome://foxtrick/content/resources/linkicons/forum_sigtoggle.png"); 
+}
+.cfFooter .foxtrick-unreadlink {
+  background-image: url("chrome://foxtrick/content/resources/linkicons/forum_markunread.png"); 
+}
 
 .cfFooter a[href*="/Forum/Read.aspx?t="],
 .cfFooter a[href*="/Forum/Write.aspx?t="],
 .cfFooter a[href*="/Forum/Write.aspx?actionType=edit&t="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=delete&t="],
 .cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="],
-.cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="]
+.cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="],
+.cfFooter .foxtrick-signaturetoggle,
+.cfFooter .foxtrick-unreadlink
 {
   color: transparent; 
   font-size: 0pt; 
