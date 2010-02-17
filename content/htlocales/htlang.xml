@@ -1189,11 +1189,11 @@
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
 	<MyHattrick value='هت‌‌تریک من' />
-	<MyClub value='My Club' />
-	<World value='World' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<MyClub value='باشگاه من' />
+	<World value='بین‌‌المللی' />
+	<Forum value='انجمن‌‌ها' />
+	<Shop value='فروشگاه' />
+	<Help value='راهنمایی' />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -1819,11 +1819,11 @@
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value='האטריק שלי' />
-	<MyClub value='My Club' />
-	<World value='World' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<MyClub value='המועדון שלי' />
+	<World value='העולם' />
+	<Forum value='פורום' />
+	<Shop value='חנות' />
+	<Help value='עזרה' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -2448,12 +2448,12 @@
 <language name="lv" desc="Latviešu">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<MyHattrick value='Mans Hattrick' />
+	<MyClub value='Mans klubs' />
+	<World value='Pasaule' />
+	<Forum value='Diskusiju telpa' />
+	<Shop value='Veikals' />
+	<Help value='Palīdzība' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -2476,22 +2476,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Vārtsargs" short="Ke" />
+		<position type="Central defender" value="Centra aizsargs" short="Cd" />
+		<position type="Wing back" value="Malējais aizsargs" short="Wb" />
+		<position type="Inner midfielder" value="Centra pussargs" short="Im" />
+		<position type="Winger" value="Malējais pussargs" short="Wi" />
+		<position type="Forward" value="Uzbrucējs" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Neprognozējams" short="Un" />
+		<specialty type="Powerful" value="Atlētisks" short="Po" />
+		<specialty type="Quick" value="Ātrs" short="Qu" />
+		<specialty type="Technical" value="Tehnisks" short="Te" />
+		<specialty type="Head" value="Spēle ar galvu" short="He" />
+		<specialty type="Regainer" value="Atguvējs" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -2508,42 +2508,42 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="dievišķi" value="20" />
+		<level text="utopiski" value="19" />
+		<level text="maģiski" value="18" />
+		<level text="teiksmaini" value="17" />
+		<level text="kosmiski" value="16" />
+		<level text="titāniski" value="15" />
+		<level text="pārdabiski" value="14" />
+		<level text="pasaules klases" value="13" />
+		<level text="diženi" value="12" />
+		<level text="spīdoši" value="11" />
+		<level text="izcili" value="10" />
+		<level text="iespaidīgi" value="9" />
+		<level text="teicami" value="8" />
+		<level text="labi" value="7" />
+		<level text="apmierinoši" value="6" />
+		<level text="neatbilstoši" value="5" />
+		<level text="vāji" value="4" />
+		<level text="draņķīgi" value="3" />
+		<level text="nožēlojami" value="2" />
+		<level text="katastrofāli" value="1" />
+		<level text="neeksistē" value="0" />
 	</levels>
 </language>
 
 
 
 <!-- needs update -->
-<language name="mk" desc="Macedonian">
+<language name="mk" desc="Македонски">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<MyHattrick value='Moj Hattrick' />
+	<MyClub value='Мојот Клуб' />
+	<World value='Свет' />
+	<Forum value='Форум' />
+	<Shop value='Продавница' />
+	<Help value='Помош' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -2566,22 +2566,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Голман" short="Ke" />
+		<position type="Central defender" value="Централен Одбрамбен" short="Cd" />
+		<position type="Wing back" value="Бек" short="Wb" />
+		<position type="Inner midfielder" value="Играч за Врска" short="Im" />
+		<position type="Winger" value="Крило" short="Wi" />
+		<position type="Forward" value="Напаѓач" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Непредвидлив" short="Un" />
+		<specialty type="Powerful" value="Моќен" short="Po" />
+		<specialty type="Quick" value="Брз" short="Qu" />
+		<specialty type="Technical" value="Техничар" short="Te" />
+		<specialty type="Head" value="Игра со Глава" short="He" />
+		<specialty type="Regainer" value="Нескршлив" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -2598,27 +2598,27 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="божествен" value="20" />
+		<level text="утописки" value="19" />
+		<level text="магичен" value="18" />
+		<level text="митски" value="17" />
+		<level text="надчовечки" value="16" />
+		<level text="титански" value="15" />
+		<level text="натприроден" value="14" />
+		<level text="светска класа" value="13" />
+		<level text="величенствен" value="12" />
+		<level text="брилијантен" value="11" />
+		<level text="извонреден" value="10" />
+		<level text="импресивен" value="9" />
+		<level text="одличен" value="8" />
+		<level text="солиден" value="7" />
+		<level text="преоден" value="6" />
+		<level text="недоволен" value="5" />
+		<level text="слаб" value="4" />
+		<level text="лош" value="3" />
+		<level text="очаен" value="2" />
+		<level text="катастрофален" value="1" />
+		<level text="непостоечки" value="0" />
 	</levels>
 </language>
 
@@ -2628,12 +2628,12 @@
 <language name="mt" desc="Malti">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
+	<MyHattrick value='Hattrick Tiegħi' />
+	<MyClub value='Il-Klabb Tiegħi' />
+	<World value='Minn Madwar id-Dinja' />
 	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<Shop value='Il-Ħanut' />
+	<Help value='Għajnuna' />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
