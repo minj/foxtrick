@@ -16,13 +16,15 @@ FoxtrickForumPresentation = {
     OPTIONS :  new Array(           "HideFlagsInForumHeader",
 									"HideLeagueInForumHeader",
 									"Forum_Spoiler_reveal",
-									"hideForumNotificationBox"                  
+									"hideForumNotificationBox",
+									"Forum_NewPostsInBracket"
 								),
 	OPTIONS_CSS: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/HideFlagsInForumHeader.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/HideLeagueInForumHeader.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_Spoiler_reveal.css",
-                                Foxtrick.ResourcePath+"resources/css/fixes/hideForumNotificationBox.css"
+                                Foxtrick.ResourcePath+"resources/css/fixes/hideForumNotificationBox.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/Forum_NewPostsInBracket.css"
 								),                            
 								
     init : function() {

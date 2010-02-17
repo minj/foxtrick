@@ -73,6 +73,7 @@ pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_FoxLink_Headers.ena
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Header_Smallsize.enabled", false );
+pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Forum_NewPostsInBracket", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.MatchOrder_Lineheight.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.RTL_Fixes.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.ForumScrollBarFix.enabled", false );
