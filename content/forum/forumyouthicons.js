@@ -13,8 +13,8 @@
     DEFAULT_ENABLED : true,
     OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Added Insert 'pre' format tag. Fix for latest forum change",
+	NEW_AFTER_VERSION: "0.5.0.3",
+	LATEST_CHANGE:"Readded quotes on PA",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
@@ -165,6 +165,16 @@
             }
             target=target.nextSibling;
 
+			if (page == 'announcements'){
+            var newimage = doc.createElement( "img" );
+                newimage.src = "/Img/Icons/transparent.gif";
+                newimage.addEventListener( "click", this._q , false );
+                newimage.setAttribute( "class", "ft_q");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_q.png') !important;");
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.q");
+                toolbar.insertBefore( newimage,target );
+			}
+			
             if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "line_br")) {
             var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
@@ -450,6 +460,12 @@
         if ( doc.getElementById('ctl00_CPMain_txtMessage') != null ) FoxtrickForumYouthIcons.clickHandler(doc.getElementById('ctl00_CPMain_txtMessage'), "[pre]zzz[/pre]", null, "zzz", null, doc.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
         if ( doc.getElementById('ctl00_CPMain_tbNewsBody') != null ) FoxtrickForumYouthIcons.clickHandler(doc.getElementById('ctl00_CPMain_tbNewsBody'), "[pre]zzz[/pre]", null, "zzz", null, doc.getElementById('ctl00_CPMain_txtCharsLeft'), 1000)
     },
+
+    _q : function ( ev ) {
+        var doc = ev.target.ownerDocument;
+        var mbox = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+        if ( mbox != null )FoxtrickForumYouthIcons.clickHandler(mbox, "[q]qqq[/q]", null, "qqq", null, doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtRemLen'), 1000)
+    },
     
 
 clickHandler : function (ta, openingTag, closingTag, replaceText, counter, fieldCounter, maxLength) {
@@ -487,6 +503,10 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
                     }
                     if (replaceText == 'zzz' && s.selectionLength === 0){
                         ta.selectionStart = s.selectionStart + 5;
+                        ta.selectionEnd = ta.selectionStart + 3;
+                    }
+					if (replaceText == 'qqq' && s.selectionLength === 0){
+                        ta.selectionStart = s.selectionStart + 3;
                         ta.selectionEnd = ta.selectionStart + 3;
                     }                    
                 }
