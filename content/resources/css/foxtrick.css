@@ -13,8 +13,8 @@
 .foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png'); background-repeat:no-repeat; width: 16px; }
 .foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png'); background-repeat:no-repeat; width: 16px; }
 .foxtrickExport:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickRemove { background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png') no-repeat 50% 50%; width: 12px; margin-left:2px; }
-.foxtrickRemove:hover { background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png') no-repeat 50% 50%; width: 12px; margin-left:2px; }
+.foxtrickRemove { background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png'); no-repeat 50% 50%; width: 12px; height:12px; margin-left:2px; margin-top: 2px; }
+.foxtrickRemove:hover { background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png'); no-repeat 50% 50%; height:12px; width: 12px; margin-left:2px; margin-top: 2px; }
 .foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png'); background-repeat:no-repeat; width: 16px; }
 .foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png'); background-repeat:no-repeat; width: 16px; }
 
