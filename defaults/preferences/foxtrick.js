@@ -73,8 +73,6 @@ pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_FoxLink_Headers.ena
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Header_Smallsize.enabled", false );
-pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_NewPostsInBracket", false );
-pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_Link_Icons", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.MatchOrder_Lineheight.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.RTL_Fixes.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.ForumScrollBarFix.enabled", false );
@@ -91,6 +89,8 @@ pref( "extensions.foxtrick.prefs.module.ForumPresentation.HideFlagsInForumHeader
 pref( "extensions.foxtrick.prefs.module.ForumPresentation.HideLeagueInForumHeader.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumPresentation.Forum_Spoiler_reveal.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumPresentation.hideForumNotificationBox.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumPresentation.Forum_NewPostsInBracket", false );
+pref( "extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Icons", false );
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false );
 pref( "extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false );
