@@ -248,9 +248,7 @@ var FoxtrickMain = {
 
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or temporary disable
-		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-		if( (!( FoxtrickPrefs.getBool("disableOnStage") &&
-			Foxtrick.getHref( doc).search( stage_regexp ) > -1))
+		if( ( !( FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc) ))
 			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
 
 			if (!Foxtrick.main_css_loaded) {
@@ -406,6 +404,13 @@ Foxtrick.getHref = function( doc ) {
 }
 
 
+
+var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
+Foxtrick.isStage = function(doc) {
+	return (Foxtrick.getHref( doc).search( stage_regexp ) > -1);
+}
+		
+		
 Foxtrick.registerModulePages = function( module) {
 try {
     // if is enabled in preferences and has a run() function

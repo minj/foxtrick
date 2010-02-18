@@ -161,6 +161,7 @@ Foxtrick.modules = [
 					//FoxtrickTransferSearchResultsSort, //not finished
 					FoxtrickLeagueAndMatchChat,
 					FoxtrickRapidId,
-					FoxtrickSkillTable
+					FoxtrickSkillTable,
+					FoxtrickForumStage
                     ];
 					
