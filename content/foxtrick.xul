@@ -3,7 +3,7 @@
 <!DOCTYPE overlay>
 
 <overlay id="foxtrick"
-		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/const.js" />
