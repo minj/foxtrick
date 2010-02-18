@@ -91,6 +91,7 @@ pref( "extensions.foxtrick.prefs.module.ForumPresentation.Forum_Spoiler_reveal.e
 pref( "extensions.foxtrick.prefs.module.ForumPresentation.hideForumNotificationBox.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumPresentation.Forum_NewPostsInBracket.enabled", false );
 pref( "extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Icons.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Grey_Icons.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false );
 pref( "extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false );
 pref( "extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false );

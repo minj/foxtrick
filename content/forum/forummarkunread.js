@@ -47,6 +47,7 @@ var FoxtrickMarkUnread = {
                         markunread[p].setAttribute("id","foxtrick-ur-link"+p);
                         markunread[p].className="foxtrick-unreadlink";
                         markunread[p].innerHTML = Foxtrickl10n.getString('foxtrick.conferences.markunread');
+                        markunread[p].title = Foxtrickl10n.getString('foxtrick.conferences.markunread');
 						markunread[p].href = "#";
                         var cfInnerWrapper = elems[i].parentNode.parentNode;
                         var cfFooter = cfInnerWrapper.nextSibling;
