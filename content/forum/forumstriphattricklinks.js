@@ -23,9 +23,11 @@ var FoxtrickForumStripHattrickLinks = {
 		var a = ev.target; 
 		if (a.nodeName=='A') {
 			var hostname = ev.target.ownerDocument.location.hostname;
-			if ( a.href.search(/http:\/\/stage|wwwxx|www\d+\.hattrick\.org.*?/i)!=-1 && a.href.search(hostname)==-1) {
-				if (Foxtrick.isModuleFeatureEnabled( FoxtrickForumStripHattrickLinks, "NoConfirmStripping" )) a.href = a.href.replace(/http:\/\/stage|wwwxx|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
-				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?')) a.href = a.href.replace(/http:\/\/stage|wwwxx|www\d+\.hattrick\.org(.*?)/i,hostname+'$1');
+			if ( a.href.search(/.+hattrick\.(org|ws|interia\.pl).*?/i)!=-1 && a.href.search(hostname)==-1) {
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickForumStripHattrickLinks, "NoConfirmStripping" )) {
+					a.href = a.href.replace(/.+hattrick\.(org|ws|interia\.pl)(.*?)/i,'http://'+hostname+'$2');
+				}
+				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?')) a.href = a.href.replace(/.+hattrick\.(org|ws|interia\.pl)(.*?)/i,'http://'+hostname+'$2');
 			}
 			//else a.target=+'_blank';
 		}
@@ -46,9 +48,9 @@ var FoxtrickForumStripHattrickLinks = {
 		Foxtrick.dump(button_ok.getAttribute('id')+'\n');
 		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
 		if (Foxtrick.isModuleFeatureEnabled( this, "NoConfirmStripping" )) 
-				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/\\n/g, '[FTbr]').replace(/\\</gi,'<·').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n'); if (textarea && textarea.value.search(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/) > -1)  { textarea.value = textarea.value.replace(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/gi,'[link=$3]');} "+button_ok.getAttribute('onclick'));
+				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/\\n/g, '[FTbr]').replace(/\\</gi,'<·').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n'); if (textarea && textarea.value.search(/\\[link=.+hattrick\.(org|ws|interia\.pl)(.*?)\\]/) > -1)  { textarea.value = textarea.value.replace(/\\[link=.+hattrick\.(org|ws|interia\.pl)(.*?)\\]/gi,'[link=$2]');} "+button_ok.getAttribute('onclick'));
 		else
-				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/\\n/g, '[FTbr]').replace(/\\</gi,'<·').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n'); if (textarea && textarea.value.search(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/) > -1)  { if(confirm('"+Foxtrickl10n.getString('foxtrick.confirmstripserver')+"')) {textarea.value = textarea.value.replace(/\\[link=http:\\/\\/(stage|wwwxx|www(\\d+))\\.hattrick\\.org(.*?)\\]/gi,'[link=$3]');} else;} "+button_ok.getAttribute('onclick'));
+				button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/\\n/g, '[FTbr]').replace(/\\</gi,'<·').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n'); if (textarea && textarea.value.search(/\\[link=.+hattrick\.(org|ws|interia\.pl)(.*?)\\]/) > -1)  { if(confirm('"+Foxtrickl10n.getString('foxtrick.confirmstripserver')+"')) {textarea.value = textarea.value.replace(/\\[link=.+hattrick\.(org|ws|interia\.pl)(.*?)\\]/gi,'[link=$2]');} else;} "+button_ok.getAttribute('onclick'));
 		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
 		
 	} catch(e) {Foxtrick.dump('FoxtrickForumStripHattrickLinks '+e+'\n');}
