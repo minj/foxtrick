@@ -324,14 +324,9 @@ var FoxtrickMain = {
 
 			// show version number
 			if (!is_only_css_check) {
-				var bottom  = doc.getElementById('bottom');
-				var htserver = bottom.getElementsByTagName('span')[0];			
-				var ft_span = doc.createElement('span');
-				ft_span.appendChild(doc.createTextNode('/ FoxTrick v'+FoxtrickPrefs.getString("curVersion")));
-				ft_span.setAttribute('id','ft_verson_span');
-				ft_span.setAttribute('class','currentServer');
-				ft_span.setAttribute('style','margin-left:5px');
-				bottom.insertBefore(ft_span, htserver);
+				var bottom = doc.getElementById("bottom");
+				var server = bottom.getElementsByClassName("currentServer")[0];			
+				server.textContent += " / Foxtrick v" + FoxtrickPrefs.getString("curVersion");
 			}
 			
 			// context menue
