@@ -465,7 +465,7 @@
 
 
 <!-- needs update -->
-<language name="cz" desc="Čeština">
+<language name="cs" desc="Čeština">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value='Můj Hattrick' />
@@ -549,6 +549,96 @@
 		<level text="katastrofální" value="2" />
 		<level text="odstrašující" value="1" />
 		<level text="neexistující" value="0" />
+	</levels>
+</language>
+
+
+
+<!-- needs update -->
+<language name="da" desc="Dansk">
+	
+	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
+	<MyHattrick value='Mit Hattrick' />
+	<MyClub value='Min Klub' />
+	<World value='Verden' />
+	<Forum value='Forum' />
+	<Shop value='Butik' />
+	<Help value='Hjælp' />
+	
+	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<ratingSubLevels>
+		<sublevel text="(meget lav)" value="0.0" />
+		<sublevel text="(lav)" value="0.25" />
+		<sublevel text="(høj)" value="0.50" />
+		<sublevel text="(meget høj)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page. copy 'value' -->
+	<tactics>
+		<tactic type="normal" value="Normal" />
+		<tactic type="pressing" value="Presspil" />
+		<tactic type="ca" value="Kontraangreb" />
+		<tactic type="aow" value="Angrib fra fløjene" />
+		<tactic type="aim" value="Angrib fra midten" />
+		<tactic type="creatively" value="Spil kreativt" />
+		<tactic type="longshots" value="Langskud" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<positions>
+		<position type="Keeper" value="Målmand" short="Ke" />
+		<position type="Central defender" value="Central forsvar" short="Cd" />
+		<position type="Wing back" value="Back" short="Wb" />
+		<position type="Inner midfielder" value="Central midtbane" short="Im" />
+		<position type="Winger" value="Fløj" short="Wi" />
+		<position type="Forward" value="Angriber" short="Fo" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<specialties>
+		<specialty type="Unpredictable" value="Uberegnelig " short="Un" />
+		<specialty type="Powerful" value="Kraftfuld " short="Po" />
+		<specialty type="Quick" value="Hurtig" short="Qu" />
+		<specialty type="Technical" value="Tekniker" short="Te" />
+		<specialty type="Head" value="Hovedstød" short="He" />
+		<specialty type="Regainer" value="Regainer" short="Re" />
+	</specialties>
+	
+	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<repositioning>
+		<reposition type="midfielder" value="Ekstra midtbane" />
+		<reposition type="centraldefender" value="Ekstra forsvar" />
+		<reposition type="forward" value="Ekstra angreb" />
+		<reposition type="normal" value="normal" />
+		<reposition type="offensive" value="Offensiv" />
+		<reposition type="defensive" value="Defensiv" />
+		<reposition type="towardsmiddle" value="Ind mod midten" />
+		<reposition type="towardswing" value="Ud mod fløjen" />
+	</repositioning>
+	
+	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<levels>
+		<level text="guddommelig" value="20" />
+		<level text="utopisk" value="19" />
+		<level text="magisk" value="18" />
+		<level text="mytisk" value="17" />
+		<level text="overjordisk" value="16" />
+		<level text="titanisk" value="15" />
+		<level text="overnaturlig" value="14" />
+		<level text="verdensklasse" value="13" />
+		<level text="storslået" value="12" />
+		<level text="genial" value="11" />
+		<level text="fremragende" value="10" />
+		<level text="formidabel" value="9" />
+		<level text="udmærket" value="8" />
+		<level text="god" value="7" />
+		<level text="acceptabel" value="6" />
+		<level text="utilstrækkelig" value="5" />
+		<level text="svag" value="4" />
+		<level text="dårlig" value="3" />
+		<level text="elendig" value="2" />
+		<level text="katastrofal" value="1" />
+		<level text="håbløs" value="0" />
 	</levels>
 </language>
 
@@ -639,96 +729,6 @@
 		<level text="erbärmlich" value="2" />
 		<level text="katastrophal" value="1" />
 		<level text="nicht vorhanden" value="0" />
-	</levels>
-</language>
-
-
-
-<!-- needs update -->
-<language name="dk" desc="Dansk">
-	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mit Hattrick' />
-	<MyClub value='Min Klub' />
-	<World value='Verden' />
-	<Forum value='Forum' />
-	<Shop value='Butik' />
-	<Help value='Hjælp' />
-	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
-	<ratingSubLevels>
-		<sublevel text="(meget lav)" value="0.0" />
-		<sublevel text="(lav)" value="0.25" />
-		<sublevel text="(høj)" value="0.50" />
-		<sublevel text="(meget høj)" value="0.75" />
-	</ratingSubLevels>
-	
-	<!-- tactics appearing in match detail page. copy 'value' -->
-	<tactics>
-		<tactic type="normal" value="Normal" />
-		<tactic type="pressing" value="Presspil" />
-		<tactic type="ca" value="Kontraangreb" />
-		<tactic type="aow" value="Angrib fra fløjene" />
-		<tactic type="aim" value="Angrib fra midten" />
-		<tactic type="creatively" value="Spil kreativt" />
-		<tactic type="longshots" value="Langskud" />
-	</tactics>
-	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
-	<positions>
-		<position type="Keeper" value="Målmand" short="Ke" />
-		<position type="Central defender" value="Central forsvar" short="Cd" />
-		<position type="Wing back" value="Back" short="Wb" />
-		<position type="Inner midfielder" value="Central midtbane" short="Im" />
-		<position type="Winger" value="Fløj" short="Wi" />
-		<position type="Forward" value="Angriber" short="Fo" />
-	</positions>
-	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
-	<specialties>
-		<specialty type="Unpredictable" value="Uberegnelig " short="Un" />
-		<specialty type="Powerful" value="Kraftfuld " short="Po" />
-		<specialty type="Quick" value="Hurtig" short="Qu" />
-		<specialty type="Technical" value="Tekniker" short="Te" />
-		<specialty type="Head" value="Hovedstød" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
-	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
-	<repositioning>
-		<reposition type="midfielder" value="Ekstra midtbane" />
-		<reposition type="centraldefender" value="Ekstra forsvar" />
-		<reposition type="forward" value="Ekstra angreb" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="Offensiv" />
-		<reposition type="defensive" value="Defensiv" />
-		<reposition type="towardsmiddle" value="Ind mod midten" />
-		<reposition type="towardswing" value="Ud mod fløjen" />
-	</repositioning>
-	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
-	<levels>
-		<level text="guddommelig" value="20" />
-		<level text="utopisk" value="19" />
-		<level text="magisk" value="18" />
-		<level text="mytisk" value="17" />
-		<level text="overjordisk" value="16" />
-		<level text="titanisk" value="15" />
-		<level text="overnaturlig" value="14" />
-		<level text="verdensklasse" value="13" />
-		<level text="storslået" value="12" />
-		<level text="genial" value="11" />
-		<level text="fremragende" value="10" />
-		<level text="formidabel" value="9" />
-		<level text="udmærket" value="8" />
-		<level text="god" value="7" />
-		<level text="acceptabel" value="6" />
-		<level text="utilstrækkelig" value="5" />
-		<level text="svag" value="4" />
-		<level text="dårlig" value="3" />
-		<level text="elendig" value="2" />
-		<level text="katastrofal" value="1" />
-		<level text="håbløs" value="0" />
 	</levels>
 </language>
 
@@ -1095,7 +1095,7 @@
 	<!-- David Torrecilla (dorretxo) -->
 	
 <!-- needs update -->
-<language name="eu_ES" desc="Euskara">
+<language name="eu" desc="Euskara">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value='Nire Hattrick' />
@@ -1635,7 +1635,7 @@
 
 
 <!-- needs update -->
-<language name="gl_ES" desc="Galego">
+<language name="gl" desc="Galego">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value='O meu Hattrick' />
@@ -1815,7 +1815,7 @@
 
 
 <!-- needs update -->
-<language name="he_IL" desc="עברית">
+<language name="he" desc="עברית">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value='האטריק שלי' />
@@ -2265,7 +2265,7 @@
 
 
 <!-- needs update -->
-<language name="lb_LU" desc="Lëtzebuergesch">
+<language name="lb" desc="Lëtzebuergesch">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
 	<MyHattrick value='Mäin Hattrick' />
@@ -2805,7 +2805,7 @@
 
 
 <!-- needs update -->
-<language name="nl_BE" desc="Vlaams">
+<language name="vls" desc="Vlaams">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value='My Hattrick' />
@@ -3434,96 +3434,6 @@
 
 
 
-<!-- up to date -->
-<language name="se" desc="Svenska">
-	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mitt Hattrick' />
-	<MyClub value='Min Klubb' />
-	<World value='Världen' />
-	<Forum value='Forum' />
-	<Shop value='Shoppen' />
-	<Help value='Hjälp' />
-	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
-	<ratingSubLevels>
-		<sublevel text="(mkt låg)" value="0.0" />
-		<sublevel text="(låg)" value="0.25" />
-		<sublevel text="(hög)" value="0.50" />
-		<sublevel text="(mkt hög)" value="0.75" />
-	</ratingSubLevels>
-	
-	<!-- tactics appearing in match detail page. copy 'value' -->
-	<tactics>
-		<tactic type="normal" value="Normal" />
-		<tactic type="pressing" value="Press" />
-		<tactic type="ca" value="Kontringsspel" />
-		<tactic type="aow" value="Anfall på kanterna" />
-		<tactic type="aim" value="Anfall i mitten" />
-		<tactic type="creatively" value="Spela kreativt" />
-		<tactic type="longshots" value="Långskott" />
-	</tactics>
-	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
-	<positions>
-		<position type="Keeper" value="Målvakt" short="M" />
-		<position type="Central defender" value="Innerback" short="IB" />
-		<position type="Wing back" value="Ytterback" short="YB" />
-		<position type="Inner midfielder" value="Innermittfältare" short="Im" />
-		<position type="Winger" value="Yttermittfält" short="Y" />
-		<position type="Forward" value="Forward" short="F" />
-	</positions>
-	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
-	<specialties>
-		<specialty type="Unpredictable" value="Oförutsägbar" short="Of" />
-		<specialty type="Powerful" value="Kraftfull" short="Kr" />
-		<specialty type="Quick" value="Snabb" short="Sn" />
-		<specialty type="Technical" value="Teknisk" short="Te" />
-		<specialty type="Head" value="Nickskicklig" short="Ni" />
-		<specialty type="Regainer" value="Återhämtare" short="Åt" />
-	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
-	<repositioning>
-		<reposition type="midfielder" value="extra innermitt" />
-		<reposition type="centraldefender" value="extra innerback" />
-		<reposition type="forward" value="extra forward" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="offensiv" />
-		<reposition type="defensive" value="defensiv" />
-		<reposition type="towardsmiddle" value="in i mitten" />
-		<reposition type="towardswing" value="ut på kanten" />
-	</repositioning>
-	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
-	<levels>
-		<level text="gudomlig" value="20" />
-		<level text="utopisk" value="19" />
-		<level text="magisk" value="18" />
-		<level text="mytomspunnen" value="17" />
-		<level text="utomjordisk" value="16" />
-		<level text="titanisk" value="15" />
-		<level text="himmelsk" value="14" />
-		<level text="oförglömlig" value="13" />
-		<level text="övernaturlig" value="12" />
-		<level text="gudabenådad" value="11" />
-		<level text="legendarisk" value="10" />
-		<level text="unik" value="9" />
-		<level text="fenomenal" value="8" />
-		<level text="enastående" value="7" />
-		<level text="ypperlig" value="6" />
-		<level text="bra" value="5" />
-		<level text="hyfsad" value="4" />
-		<level text="dålig" value="3" />
-		<level text="usel" value="2" />
-		<level text="katastrofal" value="1" />
-		<level text="obefintlig" value="0" />
-	</levels>
-</language>
-
-
-
 <!-- needs update -->
 <language name="sk" desc="Slovenčina">
 	
@@ -3884,6 +3794,96 @@
 
 
 
+<!-- up to date -->
+<language name="sv" desc="Svenska">
+	
+	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
+	<MyHattrick value='Mitt Hattrick' />
+	<MyClub value='Min Klubb' />
+	<World value='Världen' />
+	<Forum value='Forum' />
+	<Shop value='Shoppen' />
+	<Help value='Hjälp' />
+	
+	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<ratingSubLevels>
+		<sublevel text="(mkt låg)" value="0.0" />
+		<sublevel text="(låg)" value="0.25" />
+		<sublevel text="(hög)" value="0.50" />
+		<sublevel text="(mkt hög)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page. copy 'value' -->
+	<tactics>
+		<tactic type="normal" value="Normal" />
+		<tactic type="pressing" value="Press" />
+		<tactic type="ca" value="Kontringsspel" />
+		<tactic type="aow" value="Anfall på kanterna" />
+		<tactic type="aim" value="Anfall i mitten" />
+		<tactic type="creatively" value="Spela kreativt" />
+		<tactic type="longshots" value="Långskott" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<positions>
+		<position type="Keeper" value="Målvakt" short="M" />
+		<position type="Central defender" value="Innerback" short="IB" />
+		<position type="Wing back" value="Ytterback" short="YB" />
+		<position type="Inner midfielder" value="Innermittfältare" short="Im" />
+		<position type="Winger" value="Yttermittfält" short="Y" />
+		<position type="Forward" value="Forward" short="F" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<specialties>
+		<specialty type="Unpredictable" value="Oförutsägbar" short="Of" />
+		<specialty type="Powerful" value="Kraftfull" short="Kr" />
+		<specialty type="Quick" value="Snabb" short="Sn" />
+		<specialty type="Technical" value="Teknisk" short="Te" />
+		<specialty type="Head" value="Nickskicklig" short="Ni" />
+		<specialty type="Regainer" value="Återhämtare" short="Åt" />
+	</specialties>
+	
+	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<repositioning>
+		<reposition type="midfielder" value="extra innermitt" />
+		<reposition type="centraldefender" value="extra innerback" />
+		<reposition type="forward" value="extra forward" />
+		<reposition type="normal" value="normal" />
+		<reposition type="offensive" value="offensiv" />
+		<reposition type="defensive" value="defensiv" />
+		<reposition type="towardsmiddle" value="in i mitten" />
+		<reposition type="towardswing" value="ut på kanten" />
+	</repositioning>
+	
+	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<levels>
+		<level text="gudomlig" value="20" />
+		<level text="utopisk" value="19" />
+		<level text="magisk" value="18" />
+		<level text="mytomspunnen" value="17" />
+		<level text="utomjordisk" value="16" />
+		<level text="titanisk" value="15" />
+		<level text="himmelsk" value="14" />
+		<level text="oförglömlig" value="13" />
+		<level text="övernaturlig" value="12" />
+		<level text="gudabenådad" value="11" />
+		<level text="legendarisk" value="10" />
+		<level text="unik" value="9" />
+		<level text="fenomenal" value="8" />
+		<level text="enastående" value="7" />
+		<level text="ypperlig" value="6" />
+		<level text="bra" value="5" />
+		<level text="hyfsad" value="4" />
+		<level text="dålig" value="3" />
+		<level text="usel" value="2" />
+		<level text="katastrofal" value="1" />
+		<level text="obefintlig" value="0" />
+	</levels>
+</language>
+
+
+
 <!-- needs update -->
 <language name="tr" desc="Türkçe">
 	
@@ -3975,7 +3975,7 @@
 
 
 <!-- up to date -->
-<language name="ua" desc="Українська">
+<language name="uk" desc="Українська">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value='Мій Hattrick' />
@@ -4155,7 +4155,7 @@
 
 
 <!-- up to date -->
-<language name="zh_CN" desc="中文（简体）">
+<language name="zh" desc="中文（简体）">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
 	<MyHattrick value="我的 Hattrick" />

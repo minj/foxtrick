@@ -1,4 +1,4 @@
-/**
+﻿/**
  * read_ht_prefs_changes.js
  * Foxtrick read some ht prefs if they change
  * @author convinced 
@@ -17,59 +17,60 @@ var FoxtrickReadHtPrefs = {
 	codes:{},
 	
     init : function() {
-			this.codes['2']='en';
-			this.codes['3']='de';
+			this.codes['84']='be';
 			this.codes['43']='bg';
-			this.codes['66']='ca';
-			this.codes['35']='cz';
-			this.codes['8']='dk';
-			this.codes['36']='ee';
-			this.codes['6']='es';
-			this.codes['51']='es_SU';
-			this.codes['103']='es_ca';
-			this.codes['110']='eu_ES';
-			this.codes['5']='fr';
-			this.codes['74']='gl_ES';
 			this.codes['58']='bs';
+			this.codes['66']='ca';
+			this.codes['35']='cs';
+			this.codes['8']='da';
+			this.codes['3']='de';
+			this.codes['36']='ee';
+			this.codes['2']='en';
+			this.codes['6']='es';
+			this.codes['103']='es_ca';
+			this.codes['51']='es_SU';
+			this.codes['110']='eu';
+			this.codes['75']='fa';
+			this.codes['9']='fi';
+			this.codes['5']='fr';
+			this.codes['113']='fur';
 			this.codes['109']='fy';
+			this.codes['74']='gl';
+			this.codes['34']='gr';
+			this.codes['40']='he';
 			this.codes['39']='hr';
-			this.codes['4']='it';
-			this.codes['37']='lv';
-			this.codes['56']='lt';
-			this.codes['10']='nl';
 			this.codes['33']='hu';
+			this.codes['4']='it';
+			this.codes['111']='lb';
+			this.codes['56']='lt';
+			this.codes['37']='lv';
+			this.codes['83']='mk';
+			this.codes['87']='mt';
+			this.codes['10']='nl';
 			this.codes['7']='no';
 			this.codes['13']='pl';
 			this.codes['11']='pt';
 			this.codes['50']='pt_BR';
 			this.codes['23']='ro';
-			this.codes['45']='sl';
-			this.codes['53']='sk';
-			this.codes['1']='se';
-			this.codes['9']='fi';
-			this.codes['19']='tr';
-			this.codes['65']='nl_BE';
-			this.codes['57']='ua';
-			this.codes['32']='sr';
 			this.codes['14']='ru';
-			this.codes['34']='gr';
-			this.codes['40']='he_IL';
-			this.codes['111']='lb_LU';
+			this.codes['53']='sk';
+			this.codes['45']='sl';
 			this.codes['85']='sq';
-			this.codes['83']='mk';
-			this.codes['15']='zh_CN';
-			this.codes['113']='fur';
+			this.codes['32']='sr';
+			this.codes['1']='sv';
+			this.codes['19']='tr';
+			this.codes['57']='uk';
 			this.codes['55']='vi';
-			this.codes['75']='fa';
-			this.codes['84']='be';
+			this.codes['65']='vls';
+			this.codes['15']='zh';
 			
 			// follwoing don't have an own locale file yet
 	/*
 	<option value="90">Georgian</option>
 	<option value="86">Kyrgyz</option>
-	<option value="84">??????????</option>  Belarusian
-	<option value="17">???</option> korean
-	<option value="12">???</option> japan
+	<option value="84">Беларуская</option>  Belarusian
+	<option value="17">한국어</option> korean
+	<option value="12">日本語</option> japan
 	 */  
 			
    },
