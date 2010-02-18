@@ -105,4 +105,8 @@ Foxtrick.ht_pages = {
     'all_late'                  : '\/',
 
 };
+
+Foxtrick.pagesExcluded = {
+	"offline" : "down.aspx"
+};
 ////////////////////////////////////////////////////////////////////////////////

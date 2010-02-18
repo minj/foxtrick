@@ -205,8 +205,16 @@ var FoxtrickMain = {
             return;
 				
         // hattrick URL check and run if on HT
-        if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )
-        {
+        if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 ) {
+			// check if it's in exclude list
+			for (var i in Foxtrick.pagesExcluded) {
+				var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
+				// page excluded, return
+				if (doc.location.href.search(excludeRe) > -1) {
+					return;
+				}
+			}
+
 			Foxtrick.dump('---------------------- foxtrick onPageLoad start ----------------\n');
 
 			var begin = new Date();
