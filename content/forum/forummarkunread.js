@@ -20,8 +20,10 @@ var FoxtrickMarkUnread = {
         //return;
 		var p = 0;
 		var elems = doc.getElementsByTagName("div");
+/*
         var tab = '';
 		var thread = '';
+
         try {
                 var forumtabs = Foxtrick.getElementsByClass( 'active', doc )[0];
                 var reg = /^(.*?)\&v\=(\d+)(.*?)/;
@@ -35,13 +37,12 @@ var FoxtrickMarkUnread = {
                     thread = '?t=' + ar[2];
                 }				
         } catch(e) {}
-		
+*/		
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].className == "message") {
 				p++;
 				if( !doc.getElementById( "foxtrick-ur-link"+p ) ) {
                     try {
-						Foxtrick.dump(p + '\n');
                         var markunread = [];
                         markunread[p] = doc.createElement("a");
                         markunread[p].setAttribute("id","foxtrick-ur-link"+p);
@@ -66,10 +67,8 @@ var FoxtrickMarkUnread = {
 									//nr = '&n=' + ar[2];
 									nr = ''+ar[2]+'';
 								}
-								//alert(nr);
-								// markunread[p].href = "/Forum/Read.aspx" + thread + nr+"&mr=0"+tab+"&um=1";
 								markunread[p].href = "javascript:try{document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction').selectedIndex=\"1\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber').value=\""+nr+"\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo').click();}catch(e){}";
-								Foxtrick.dump ('\n' + markunread[p].href + '\n');
+								// Foxtrick.dump ('\n' + markunread[p].href + '\n');
                             }						
                             if( divsInFooter[j].className == "float_right" ) {
                                 divsInFooter[j].appendChild(markunread[p]);
