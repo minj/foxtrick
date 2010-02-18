@@ -12,7 +12,7 @@ var FoxtrickTeamPopupLinks = {
         DEFAULT_ENABLED : true,
 		NEW_AFTER_VERSION: "0.5.0.3",	
 		LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-		LATEST_CHANGE: "Simple speed check added. Don't add popuplinks if more than about 80 managers are on a page",
+		LATEST_CHANGE: "Simple speed check added. Only adds about max 100 teampopup links per page (for performance reason)",
 		OPTIONS :  new Array( "OpenNewTab",
 							"TeamLinks",
 							"UserLinks",
@@ -156,17 +156,16 @@ var FoxtrickTeamPopupLinks = {
 				// all in mainWrapper (ie. not left boxes)
 				if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
 				var aLinks = doc.getElementById('mainBody').getElementsByTagName('a'); 
-				var i = 0, aLink;
-                
-				if (aLinks.length<100) {
-				  while ( aLink = aLinks[i++] ) {
+				var i = 0, aLink,li=0;                			
+				while ( aLink = aLinks[i++] ) {
 					if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText') continue; // don't add to buttons, and htlive tabs				
 					if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
 					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
 						this._addSpan(doc, aLink );
-					}
-				  }
-				}
+						if (li++>100) break;
+					}					
+				 }
+				
 				var sidebar = doc.getElementById('sidebar');
 				if (sidebar) {
 					aLinks = sidebar.getElementsByTagName('a'); 
