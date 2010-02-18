@@ -784,14 +784,13 @@ var FoxtrickPreferencesDialog = {
 	}
 };
 
-FoxtrickPreferencesDialog.configureFoxtrick = function(button) {
+FoxtrickPreferencesDialog.show = function(button) {
 	if (!button) {
 		window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
-			"foxtrick-config", "resizable=yes,centerscreen=yes,chrome=yes,modal=yes,dialog=no");
+			"foxtrick-preferences", "resizable=yes,centerscreen=yes,chrome=yes,modal=yes,dialog=no");
 		FoxtrickMain.init();
 	}
 }
-
 
 FoxtrickPreferencesDialog.deactivate = function(button) {
 try{

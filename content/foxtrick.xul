@@ -3,7 +3,7 @@
 <!DOCTYPE overlay>
 
 <overlay id="foxtrick"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/const.js" />
@@ -131,65 +131,55 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/links/linksstaff.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/links/linkstracker.js" />
 
-<!-- following modules all run on 'all_late' pages. order of execution is determined be following order --> 
+<!-- following modules all run on 'all_late' pages. order of execution is determined be following order -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/currencyConverter.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/teampopuplinks.js" /> 
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/teampopuplinks.js" />
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules_list.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick.js" />
 
 
 <!-- run init -->
-<script type="text/javascript"> 	
+<script type="text/javascript">
 	FoxtrickMain.init();
 </script>
 
-
 <!-- attach run to load listener -->
-<script type="text/javascript"> 
-    window.addEventListener( "load",
-                             function() { 
-                                 FoxtrickMain.registerOnPageLoad(document);
-                             },
-                             false );
+<script type="text/javascript">
+	window.addEventListener("load",
+		function() { FoxtrickMain.registerOnPageLoad(document); },
+		false);
 </script>
-
-
 
 <!-- Mozilla Tools menu -->
 <menupopup id="taskPopup">
-    <menuitem id="foxtrick-config-menu" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+	<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPreferencesDialog.show();"/>
 </menupopup>
-    
+
 <!-- Firefox Tools menu -->
 <menupopup id="menu_ToolsPopup">
-    <menu id="hattricktools_menu" label="Hattrick">
+	<menu id="hattricktools_menu" label="Hattrick">
 		<menupopup id="hattricktools_menupopup">
-			<menuitem id="foxtrick-config-menu" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
+			<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPreferencesDialog.show();"/>
 		</menupopup>
 	</menu>
 </menupopup>
 
 <!-- popup menu -->
 <popup id="contentAreaContextMenu">
-    <menuitem id="foxtrick_popup_menu" label="Foxtrick" oncommand="FoxtrickPreferencesDialog.copy_id();"/>
-</popup> 
-
-
+	<menuitem id="foxtrick-popup-menu" label="Foxtrick" oncommand="FoxtrickPreferencesDialog.copy_id();"/>
+</popup>
 
 <statusbar id="status-bar">
 	<statusbarpanel	id="foxtrick-status-bar-image" context="foxtrick-status-bar-menu">
-		<image
-			id="foxtrick-status-bar-img"
-			tooltiptext="Foxtrick"
+		<image id="foxtrick-status-bar-img"
 			onload="Foxtrick.setStatusIconStyle(event);"
-			onclick="FoxtrickPreferencesDialog.configureFoxtrick(event.button);"
+			onclick="FoxtrickPreferencesDialog.show(event.button);"
 		/>
 	</statusbarpanel>
-    <menupopup id="foxtrick-status-bar-menu">
-        <menuitem id="foxtrick_statusbar_config_menu" oncommand="FoxtrickPreferencesDialog.configureFoxtrick();"/>
-        <menuitem id="foxtrick_statusbar_deactivate" oncommand="FoxtrickPreferencesDialog.deactivate();" type="checkbox" autocheck="true"/>
+	<menupopup id="foxtrick-status-bar-menu">
+		<menuitem id="foxtrick-status-bar-preferences" oncommand="FoxtrickPreferencesDialog.show();"/>
+		<menuitem id="foxtrick-status-bar-deactivate" oncommand="FoxtrickPreferencesDialog.deactivate();" type="checkbox" autocheck="true"/>
    </menupopup>
 </statusbar>
 </overlay>
-

@@ -113,31 +113,32 @@ var FoxtrickMain = {
 
     registerOnPageLoad : function(document) {
 	try{
-		// init menu titles
-		var statusbarMenu = document.getElementById(
-			"foxtrick_statusbar_config_menu" );
-		statusbarMenu.setAttribute( "label", Foxtrickl10n.getString(
-			"foxtrick.menu.configurefoxtrick") );
-		var statusbarDeactivate = document.getElementById(
-			"foxtrick_statusbar_deactivate" );
+		// status bar image
+		var statusbarImg = document.getElementById("foxtrick-status-bar-img");
+		statusbarImg.setAttribute("tooltiptext", Foxtrickl10n.getString("foxtrick"));
+		if (FoxtrickPrefs.getBool("disableTemporary")) {
+			statusbarImg.setAttribute("suspended", "on");
+		}
+		Foxtrick.statusbarDeactivateImg = statusbarImg;
+
+		// status bar menu
+		var statusbarPreferences = document.getElementById("foxtrick-status-bar-preferences");
+		statusbarPreferences.setAttribute("label", Foxtrickl10n.getString("preferences"));
+		var statusbarDeactivate = document.getElementById("foxtrick-status-bar-deactivate");
 		statusbarDeactivate.setAttribute( "label", Foxtrickl10n.getString(
 			"foxtrick.prefs.disableTemporaryLabel") );
 		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 		Foxtrick.statusbarDeactivate=statusbarDeactivate;
-		var statusbarDeactivateImg = document.getElementById( "foxtrick-status-bar-img");
-        if (FoxtrickPrefs.getBool("disableTemporary")) statusbarDeactivateImg.setAttribute("suspended", 'on');
-		Foxtrick.statusbarDeactivateImg = statusbarDeactivateImg;
-        //			style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick.png);"
 
-		var popupMenu = document.getElementById( "foxtrick_popup_menu");
-		popupMenu.setAttribute( "label", "Foxtrick-"+Foxtrickl10n.getString( "foxtrick.CopyPostID") );
-		popupMenu.setAttribute( "hidden", true);
+		// popup menu
+		var popupMenu = document.getElementById("foxtrick-popup-menu");
+		popupMenu.setAttribute("label", "Foxtrick-"+Foxtrickl10n.getString("foxtrick.CopyPostID"));
+		popupMenu.setAttribute("hidden", true);
 		Foxtrick.popupMenu = popupMenu;
 
-
-		var toolsMenu = document.getElementById( "foxtrick-config-menu" );
-		toolsMenu.setAttribute( "label", Foxtrickl10n.getString(
-			"foxtrick.menu.configurefoxtrick") );
+		// tools menu
+		var toolsMenu = document.getElementById("foxtrick-menu-preferences");
+		toolsMenu.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
 
 		var appcontent = document.getElementById( "appcontent" );
         if ( appcontent) {

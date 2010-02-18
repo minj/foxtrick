@@ -5,7 +5,7 @@
 <!DOCTYPE dialog>
 
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	id="foxtrick-config"
+	id="foxtrick-preferences"
 	ondialogaccept="FoxtrickPreferencesDialog.onDialogAccept();"
 	onload="FoxtrickPreferencesDialog.init();"
 	buttons="accept,cancel"
