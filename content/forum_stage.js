@@ -27,16 +27,40 @@ var FoxtrickForumStage = {
 	try{		
 		var forum = doc.getElementById('mainWrapper').getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML; 
 		if (forum == 'Stage') {		
+			// add spam to message
 //			var button_ok = doc.getElementById('ctl00_ctl00_CPContent_CPMain_btnOK');			
 //			button_ok.addEventListener('click',this.onclick,true);
 
+
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0]; 
-			var div = doc.createElement('div');
-			div.className = 'alert';
-			div.innerHTML = "<b>Disable FoxTrick</b> and other extensions (Firefox menue: Tools->Addons) before you report any kind of bug. Repeated ignorance = Stage kick.<br>"
-			textarea.parentNode.insertBefore(div, textarea);
-	
-			var datenow = new Date();
+			var divalert = doc.createElement('div');
+			divalert.className = 'alert';
+			divalert.innerHTML = "<b>Disable FoxTrick</b> and other extensions (Firefox menue: Tools->Addons) before you report any kind of bug. Repeated ignorance = Stage kick.<br>"
+			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
+			
+			// checkbox 
+			var button_ok = doc.getElementById('ctl00_ctl00_CPContent_CPMain_btnOK');			
+			button_ok.setAttribute('disabled',true);
+						
+			var checkdiv = doc.createElement("div");
+			var check = doc.createElement("input");
+			check.setAttribute("type", "checkbox");
+			checkdiv.appendChild(check);
+			var desc = doc.createElement("label");
+			desc.appendChild(doc.createTextNode('I know'));
+			checkdiv.appendChild(desc);
+			divalert.appendChild(checkdiv);		
+			
+			check.addEventListener("click", function( ev ) {
+				var doc = ev.target.ownerDocument;
+				var checked = ev.target.checked;
+				var button_ok = doc.getElementById('ctl00_ctl00_CPContent_CPMain_btnOK');			
+				if (checked) button_ok.removeAttribute('disabled');			
+				else button_ok.setAttribute('disabled', true);			
+			}, false );
+			
+			// confirm box once per day
+			/*var datenow = new Date();
 			var dayofmonth = datenow.getDate();
 			Foxtrick.dump(dayofmonth+' '+ +'\n');
 			
@@ -52,6 +76,7 @@ var FoxtrickForumStage = {
 			}
 			FoxtrickPrefs.setInt('LastStageWarningDay', dayofmonth);
 			this.LastStageWarningDay = dayofmonth;
+			*/
 		}
 	} catch(e) {Foxtrick.dump('FoxtrickForumStage '+e+'\n');}
 	},
