@@ -27,7 +27,7 @@ var FoxtrickForumChangePosts = {
         var do_format_text = Foxtrick.isModuleEnabled(FoxtrickFormatPostingText);
 		var do_move_links = Foxtrick.isModuleEnabled(FoxtrickMoveLinks);
 		var do_alter_header = Foxtrick.isModuleEnabled(FoxtrickForumAlterHeaderLine);
-		var do_alltid_flags = Foxtrick.isModuleEnabled( FoxtrickAlltidFlags );
+		var do_alltid_flags = false; //Foxtrick.isModuleEnabled( FoxtrickAlltidFlags );
 		var do_redir_to_team = Foxtrick.isModuleEnabled( FoxtrickForumRedirManagerToTeam );
 		//var do_forum_search = Foxtrick.isModuleEnabled( FoxtrickForumSearch );
 

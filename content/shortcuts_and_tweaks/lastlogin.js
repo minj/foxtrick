@@ -8,7 +8,7 @@ FoxtrickLastLogin = {
     MODULE_NAME : "LastLogin",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('managerPage'), 
-    DEFAULT_ENABLED : false,
+    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE: "Modifies last login time with HT Dateformat",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

@@ -1,4 +1,4 @@
-pref( "extensions.foxtrick.prefs.curVersion", "0.5.1.0b2");   // update with each release
+pref( "extensions.foxtrick.prefs.curVersion", "0.5.1.0b3");   // update with each release
 pref( "extensions.foxtrick.prefs.oldVersion", "0.4.9");   // don't change!! (unless you know what you do). shows changes form that version onwards after new installation
 pref( "extensions.foxtrick.prefs.HTURL", "^http:.+hattrick\.(org|ws|interia\.pl)" );
 pref( "extensions.foxtrick.prefs.htLanguage", "en");
@@ -69,6 +69,10 @@ pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", 
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.enabled", false );
 pref( "extensions.foxtrick.prefs.module.TeamPopupLinksMore.YouthMatches.enabled", false );
 pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.AddLeft.enabled", true );
+pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.Supporterstats.enabled", false );
+pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.Transfers.enabled", false );
+pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.Prefs.enabled", false );
+pref( "extensions.foxtrick.prefs.module.shortcutsstatistics.FoxTrickPrefs.enabled", true );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Forum_FoxLink_Headers.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false );
 pref( "extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabled", false );
@@ -151,7 +155,7 @@ pref( "extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.e
 pref( "extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false );
 pref( "extensions.foxtrick.prefs.module.YouthSkillTable.CopySkillTable.enabled", true );
 pref( "extensions.foxtrick.prefs.module.HighlightBotTeams.enabled", false );
-pref( "extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", false);
+pref( "extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", true);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Home.enabled", false);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Draw.enabled", false);
 pref( "extensions.foxtrick.prefs.module.htmsStatistics.Away.enabled", false);
@@ -226,5 +230,9 @@ pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_wins.enabled"
 pref( "extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true );
 pref( "extensions.foxtrick.prefs.module.SkinPlugin.Skin1.enabled", true );
 pref( "extensions.foxtrick.prefs.module.SkinPlugin.Skin2.enabled", false );
+pref( "extensions.foxtrick.prefs.module.CopyTrainingReport.OpenHTYpage.enabled", false );
+pref( "extensions.foxtrick.prefs.disableOnStage.enabled", true );
+pref( "extensions.foxtrick.prefs.module.ForumTemplates.DefaultShow.enabled", false );
+pref( "extensions.foxtrick.prefs.module.ForumStripHattrickLinks.NoConfirmStripping.enabled", false );
 
 

@@ -38,7 +38,7 @@ var FoxtrickCopyTrainingReport = {
 	MODULE_NAME : "CopyTrainingReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthTraining'), 
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

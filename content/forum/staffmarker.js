@@ -13,10 +13,9 @@ var FoxtrickStaffMarker = {
 	NEW_AFTER_VERSION: "0.5.0.3",
 	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. SelectBox coloring fixed",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	OPTIONS : new Array("manager", "HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own"),
+	OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own", "manager"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("",
-                                        	"background-color:red;", //HT
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-color:red;", //HT
 											"background-color:orange; color:black;", //GM
                                             "background-color:yellow; color:black;", //MOD
 											"background-color:white; color:green;", //LA
@@ -26,9 +25,10 @@ var FoxtrickStaffMarker = {
 											"background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 24px;", //chpps
 											"background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //hty_staff
 											"background-color:white; color:black;", //flag
-											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
-                                            ),
-    OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
+											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'", //own
+                                            ""
+                                        	),
+    OPTION_TEXTS_DISABLED_LIST : new Array(false,false,false,false,false,false,false,false,false,false,false, true),
     // OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own"),
     
 	htreg : /^HT-/i,
@@ -314,7 +314,7 @@ var FoxtrickStaffMarker = {
 		//foxtrickersArray_joined :'',
 
     init : function() {
-
+	try {
 		this.stl_HT = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text");
           if (!this.stl_HT) this.stl_HT = this.OPTION_TEXTS_DEFAULT_VALUES[0];
         this.stl_GM = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text");
@@ -339,7 +339,7 @@ var FoxtrickStaffMarker = {
 		//this.hty_staff_joined = this.hty_staff.join();
 		this.stl_flag = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "flag_text");
           if (!this.stl_flag) this.stl_flag = this.OPTION_TEXTS_DEFAULT_VALUES[9];
-        
+      } catch(e){Foxtrick.dump('staffmarker '+e+'\n');}
     },
 
     run : function( page, doc ) {

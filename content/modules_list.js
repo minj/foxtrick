@@ -30,7 +30,7 @@ Foxtrick.modules = [
                     Foxtrick.BookmarkAdjust,
                     FoxtrickAddDefaultFaceCard,
                     FoxtrickMoveLinks,   // keep before FoxtrickHideManagerAvatarUserInfo
-                    FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
+                    //FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
                     FoxtrickForumAlterHeaderLine,
                     FoxtrickTeamPopupLinks,
                     FoxtrickTeamPopupLinksMore,

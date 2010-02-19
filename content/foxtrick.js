@@ -782,6 +782,14 @@ Foxtrick.reload_module_css = function(doc) {
 			if (isRTL) Foxtrick.load_css_permanent( Foxtrick.ResourcePath+'resources/css/rtl.css' ) ;
 			else Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/rtl.css' ) ;
 				
+			if (isStandard) {
+				Foxtrick.load_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_stage.css' ) ;
+				Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_stage_simple.css' ) ;
+			}
+			else {
+				Foxtrick.load_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_stage_simple.css' ) ;
+				Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_stage.css' ) ;
+			}
 			// check permanant css
 			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
