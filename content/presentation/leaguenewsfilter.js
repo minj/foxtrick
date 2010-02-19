@@ -81,6 +81,7 @@ var FoxtrickLeagueNewsFilter = {
 				item.setAttribute('ft_news','3');
 				var namelength = (as[0].innerHTML.length<11)?as[0].innerHTML.length:11;
 				has_lineup.push(as[0].innerHTML.substr(0,namelength));
+				//Foxtrick.dump('lineup: "'+as[0].innerHTML.substr(0,namelength)+'"\n');
 			}
 		}
 	}
@@ -100,23 +101,28 @@ var FoxtrickLeagueNewsFilter = {
 	}		
 
     for (var k=1; k<tables.length; ++k) {
+		//if (Foxtrick.isModuleFeatureEnabled( this, 'highlight_set_lineup') 
+			//	&& tables[k].className.search('right')!=-1) 		tables[k].setAttribute('style','width:51%');
+	
 		for (var i=1; i<5; ++i) {
 			var link = tables[k].rows[i].cells[0].getElementsByTagName('a')[0]; 
 
 			link.innerHTML = link.innerHTML.replace(/ /g,'#');
 			// lineup set
 			if (Foxtrick.isModuleFeatureEnabled( this, 'highlight_set_lineup') && tables[k].className.search('right')!=-1)  {		
+			  //tables[k].rows[i].cells[0].setAttribute('style','padding-left:0px;');
 			  for (var j=0; j<has_lineup.length; ++j) {
 				var pos = link.innerHTML.search(has_lineup[j].replace(/ /g,'#'));
 				//Foxtrick.dump(has_lineup[j]+' '+link.innerHTML+' '+pos+'\n');
 				if (pos==0) {
-					var reg = new RegExp(/(.+)\&nbsp;/); 
-					link.innerHTML = link.innerHTML.replace(reg,'<b>$1</b>&nbsp;');
+					var reg = new RegExp(/(.+)&nbsp;-/); 
+					link.innerHTML = link.innerHTML.replace(reg,'<b style="font-size:1em">$1</b>&nbsp;-');
 				}
 				else if (pos>0) {
-					var reg = new RegExp(/\-&nbsp;(.+)/); 					
-					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<b>$1</b>');
+					var reg = new RegExp(/-&nbsp;(.+)/); 			
+					link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<b style="font-size:1em">$1</b>');
 				}
+				//link.innerHTML = new_inner;
 			  }
 			}
 			// bots
