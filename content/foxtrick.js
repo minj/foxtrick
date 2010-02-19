@@ -706,7 +706,12 @@ Foxtrick.playSound = function(url) {
 
 
 Foxtrick.unload_module_css = function() { Foxtrick.dump('unload permanents css\n');
-			for ( var i in Foxtrick.modules ) {
+		
+		Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/rtl.css' ) ;
+		Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_stage_simple.css' ) ;
+		Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_stage.css' ) ;
+	
+		for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 				if ( module.MODULE_NAME ) {
 					if ( module.OLD_CSS && module.OLD_CSS!="")
