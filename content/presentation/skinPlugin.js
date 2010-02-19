@@ -17,6 +17,7 @@ var FoxtrickSkinPlugin = {
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("", ""),
 	OPTION_TEXTS_LOAD_BUTTONS : new Array(true,true),
 	OPTIONS_CSS: new Array ("",""),
+	CSS:'',
 	
     init : function() {
 		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin1')) {

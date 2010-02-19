@@ -117,11 +117,11 @@ var FoxtrickGoToPostBox = {
 				goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
 				inputBoxTop.setAttribute('id', boxId);
 				goButton.setAttribute('type', 'button');
-				var sTmp = selectBox.getAttribute('onChange');
+				var sTmp = selectBox.getAttribute('onchange');
 				var iTopicId = sTmp.match(/\d+/)[0];
 				goButton.setAttribute('value', Foxtrickl10n.getString("foxtrick.GoToPostBox.label"));
 				goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
-				goButton.setAttribute('onClick', 
+				goButton.setAttribute('onclick', 
 					'var val=document.getElementById("' + boxId + '").value; ' + 
 					'if (val.indexOf(".") > 0) {var aTemp = val.split("."); val = aTemp[0] + "&n=" + aTemp[1];} ' + 
 					'else {val = "' + iTopicId + tab + '&n=" + val} ' + 

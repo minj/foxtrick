@@ -9,8 +9,10 @@ var FoxtrickForumStage = {
 	MODULE_NAME : "ForumStage",
 	PAGES : new Array('forumWritePost'),
     DEFAULT_ENABLED : true,
+	LastStageWarningDay: null,
 	
 	init : function() {
+		if (!this.LastStageWarningDay) this.LastStageWarningDay = FoxtrickPrefs.getInt('LastStageWarningDay');
 	},
 
 	onclick : function( ev ) {
@@ -31,15 +33,15 @@ var FoxtrickForumStage = {
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0]; 
 			var div = doc.createElement('div');
 			div.className = 'alert';
-			div.innerHTML = "<b>Disable FoxTrick</b> and other extensions before you report any kind of bug. Repeated ignorance = Stage kick.<br>"
+			div.innerHTML = "<b>Disable FoxTrick</b> and other extensions (Firefox menue: Tools->Addons) before you report any kind of bug. Repeated ignorance = Stage kick.<br>"
 			textarea.parentNode.insertBefore(div, textarea);
 	
 			var datenow = new Date();
 			var dayofmonth = datenow.getDate();
-			Foxtrick.dump(dayofmonth+' '+ FoxtrickPrefs.getInt('LastStageWarningDay')+'\n');
+			Foxtrick.dump(dayofmonth+' '+ +'\n');
 			
-			if (dayofmonth != FoxtrickPrefs.getInt('LastStageWarningDay')) {
-				if (Foxtrick.confirmDialog('You are posting on a stage forum. If you think you discovered a bug: Have you disabled FoxTrick and tried to reproduce the bug without FoxTrick?')) {
+			if (dayofmonth != this.LastStageWarningDay) {
+				if (Foxtrick.confirmDialog(dayofmonth+' '+ FoxtrickPrefs.getInt('LastStageWarningDay')+'You are posting on a stage forum. If you think you discovered a bug: Have you disabled FoxTrick and tried to reproduce the bug without FoxTrick?')) {
 				}
 				else {
 					var t=doc.location.href.match(/t=\d+/);
@@ -49,6 +51,7 @@ var FoxtrickForumStage = {
 				}
 			}
 			FoxtrickPrefs.setInt('LastStageWarningDay', dayofmonth);
+			this.LastStageWarningDay = dayofmonth;
 		}
 	} catch(e) {Foxtrick.dump('FoxtrickForumStage '+e+'\n');}
 	},
