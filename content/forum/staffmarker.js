@@ -496,7 +496,7 @@ var FoxtrickStaffMarker = {
                         uname = uname.substring(0, uname.indexOf(' '));
                         if (uname == '') uname = Foxtrick.trim( option.text );
                         if  (uname == '') break;
-						var uid=option.value;
+						var uid = option.value.replace(/by_|to_/gi,'');
 
 						if (do_own && this.ulist[uid]!=null) {
 							new_style = this.ulist[uid];
@@ -522,6 +522,7 @@ var FoxtrickStaffMarker = {
 						if (do_foxtrick_dev && this.foxtrickersArray[uid]!=null) {
                             new_style +=  this.stl_foxtrick_dev;
                         } 
+
 						if (do_chpps && this.chppholder[uid]!=null) {
                             new_style += this.stl_chpps;
                         } 

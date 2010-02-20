@@ -69,7 +69,7 @@ var FoxtrickCopyPosting = {
 	NEW_AFTER_VERSION: "0.4.9",	
 	LATEST_CHANGE:"Some fixing for spoilers, quotes & tables.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	
 	init : function() {
 	},

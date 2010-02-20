@@ -23,7 +23,7 @@ var FoxtrickNewMail = {
 	NewMailColor:"red",
 	
     init : function() {
-	FoxtrickNewMail.NewMailColor="";
+	FoxtrickNewMail.NewMailColor = this.OPTION_TEXTS_DEFAULT_VALUES[0];
 	if (Foxtrick.isModuleFeatureEnabled( this, "CustomColor")) {
 			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomColor_text"); 
 			if (color) 	FoxtrickNewMail.NewMailColor=color;
