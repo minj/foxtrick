@@ -10,8 +10,8 @@ var FoxtrickTables = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('promotion','oldseries','marathon'), 
     DEFAULT_ENABLED : true,
-    NEW_AFTER_VERSION: "0.4.8.1",	
-    LATEST_CHANGE:"adds goal difference to tables",    
+    NEW_AFTER_VERSION : "0.5.0.5",	
+    LATEST_CHANGE : "Fixed goal differences when it's positive",
 
     init : function() {
     },
@@ -44,7 +44,7 @@ var FoxtrickTables = {
                         content[1] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell+1].innerHTML);
                     }
                     var result = Foxtrick.trim(content[0]) - Foxtrick.trim(content[1]);
-                    if (result > 0) newCell.innerHTML = '<span style="color:green>' + result + '</span>';
+                    if (result > 0) newCell.innerHTML = '<span style="color:green">' + result + '</span>';
                     if (result == 0) newCell.innerHTML = '<span style="color:black">' + result + '</span>';
                     if (result < 0) newCell.innerHTML = '<span style="color:red">' + result + '</span>';
                 }
