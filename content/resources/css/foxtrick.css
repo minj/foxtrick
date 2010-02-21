@@ -2,21 +2,21 @@
 .hidden { display: none; }
 
 /* icons and hover icons */
-.ft_actionicon {cursor: pointer; height: 16px; background: 50% }
-.ft_icon {width: 16px; height: 16px; background: 50% }
+.ft_actionicon {cursor: pointer; height: 16px; background: 50% no-repeat; }
+.ft_icon {width: 16px; height: 16px; background: 50% no-repeat; }
 
 .HT_thread { background: #FF7A7A;}
 
-.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy_small.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickHelp {background-image:url('chrome://foxtrick/content/resources/img/Aiga_help_green.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickExport:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickRemove { background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png'); no-repeat 50% 50%; width: 12px; height:12px; margin-left:2px; margin-top: 2px; }
-.foxtrickRemove:hover { background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png'); no-repeat 50% 50%; height:12px; width: 12px; margin-left:2px; margin-top: 2px; }
-.foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png'); background-repeat:no-repeat; width: 16px; }
-.foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png'); background-repeat:no-repeat; width: 16px; }
+.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy_small.png'); width: 16px; }
+.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png'); width: 16px; }
+.foxtrickHelp {background-image:url('chrome://foxtrick/content/resources/img/Aiga_help_green.png'); width: 16px; }
+.foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png'); width: 16px; }
+.foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png'); width: 16px; }
+.foxtrickExport:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png'); width: 16px; }
+.foxtrickRemove { background-image: url('chrome://foxtrick/content/resources/linkicons/cross_small.png'); width: 12px; height: 12px; margin-left: 2px; margin-top: 2px; }
+.foxtrickRemove:hover { background-image: url('chrome://foxtrick/content/resources/linkicons/crossRed_small.png'); height: 12px; width: 12px; margin-left: 2px; margin-top: 2px; }
+.foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png'); width: 16px; }
+.foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png'); width: 16px; }
 
 /* sidebarbox h2 dropdown image */ 
 div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat; background-position: 99% 60%;}
