@@ -9,9 +9,9 @@ var FoxtrickRapidId = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
 	DEFAULT_ENABLED: true,
-	NEW_AFTER_VERSION: "0.5.0.3",
-	LATEST_CHANGE: "A convenient way to view team, player, etc. by id",
-	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.5.0.5",
+	LATEST_CHANGE: "Browser auto-completion is now independent for each category.",
+	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
 	CSS: Foxtrick.ResourcePath+"resources/css/rapidid.css",
     CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/rapidid_simple.css",
                                 
@@ -42,7 +42,7 @@ var FoxtrickRapidId = {
 		var doc = event.target.ownerDocument;
 		var select = doc.getElementById("ft_rapidid_select");
 		var type = select.options[select.selectedIndex].getAttribute("value");
-		var input = doc.getElementById("ft_rapidid_input");
+		var input = doc.getElementsByClassName("ft_rapidid_input")[0];
 		var id = input.value;
 		id = Foxtrick.trim(id);
 		// only process int
@@ -58,6 +58,14 @@ var FoxtrickRapidId = {
 				doc.location.replace(fullurl);
 			}
 		}
+	},
+
+	selectionChange: function(event) {
+		// to change the id of input so that auto-complete works correctly
+		var doc = event.target.ownerDocument;
+		var select = doc.getElementById("ft_rapidid_select");
+		var input = doc.getElementsByClassName("ft_rapidid_input")[0];
+		input.id = "ft_rapidid_input_" + select.value;
 	},
 
 	displayForm: function(doc) {
@@ -106,9 +114,11 @@ var FoxtrickRapidId = {
 					}
 				}
 			}
+			select.addEventListener("change", this.selectionChange, false);
 
 			// the input element
-			input.id = "ft_rapidid_input";
+			input.id = "ft_rapidid_input_" + select.value;
+			input.className = "ft_rapidid_input";
 			input.setAttribute("size", "9");
 
 			// the <input type="button" /> element
