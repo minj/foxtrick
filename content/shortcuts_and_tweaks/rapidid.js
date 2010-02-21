@@ -13,9 +13,9 @@ var FoxtrickRapidId = {
 	LATEST_CHANGE: "Browser auto-completion is now independent for each category.",
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
 	CSS: Foxtrick.ResourcePath+"resources/css/rapidid.css",
-    CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/rapidid_simple.css",
-                                
-	
+	CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/rapidid_simple.css",
+
+
 	options: [
 		{ value: "manager", text: "Manager", url: "Club/Manager/?userId=%n" },
 		{ value: "senior", text: "Senior" },
