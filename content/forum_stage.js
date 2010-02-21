@@ -35,7 +35,7 @@ var FoxtrickForumStage = {
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0]; 
 			var divalert = doc.createElement('div');
 			divalert.className = 'alert';
-			divalert.innerHTML = "<b>Disable FoxTrick</b> and other extensions (Firefox menue: Tools->Addons) before you report any kind of bug. Repeated ignorance = Stage kick.<br>"
+			divalert.innerHTML = "Please <b>disable FoxTrick</b> and any other Hattrick extensions (Firefox menu: Tools -> Add-ons) before reporting a bug. Repeated ignorance = Stage kick.<br/>"
 			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
 			
 			// checkbox 
