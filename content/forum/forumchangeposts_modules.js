@@ -22,7 +22,7 @@ var FoxtrickFormatPostingText = {
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	//OPTIONS : new Array("AddCopyIcon"), 
 	
 	init : function() {
