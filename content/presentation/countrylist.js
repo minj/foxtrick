@@ -202,7 +202,8 @@ var FoxtrickCountyList = {
         var id_sel = 0;
         try {
             for (var i = start; i < countries; i++) {
-                if (i == selected) id_sel = options[i].value;
+                if (Foxtrick.BuildFor=='Chrome') { if (options[i].getAttribute('selected')) id_sel = options[i].value;}
+				else { if (i == selected) id_sel = options[i].value;}
                 try {
                     if (id.search(/leagues/i)!=-1 || id.search(/zone/i)!=-1) {var league = options[i].value;  }
 					else {var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value]; }
