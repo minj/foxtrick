@@ -285,14 +285,15 @@ FoxtrickPrefs.LoadPrefsImport = function (ev) {
 	for (var i=0;i<prefs_to_add.length;++i) {
 		var pref_name = prefs_to_add[i].replace(string_regexp,'$1');
 		var value = prefs_to_add[i].replace(string_regexp,'$2');
-		var replace_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.'+pref_name+'",.+\\);\\n');
+		var replace_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.'+pref_name+'",.+\\);\\s');
+		Foxtrick.dump(pref_name+' '+value+' '+FoxtrickPrefs.pref.search(replace_regexp)+'\n');
 		if (FoxtrickPrefs.pref.search(replace_regexp) !=-1) {
 			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(replace_regexp,'user_pref("extensions.foxtrick.prefs.'+ pref_name+'",'+value+');\n')
 		}
-		else FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'","'+value+'");\n';	
+		else FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';	
 	}
 	
-	portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
+	//portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
 		
 	var tr = document.getElementById('buttonLoadPrefs').parentNode.parentNode;
 	tr.style.display='table-row';
