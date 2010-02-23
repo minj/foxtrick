@@ -293,8 +293,8 @@ FoxtrickPrefs.LoadPrefsImport = function (ev) {
 		else FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'",'+value+');\n';	
 	}
 	
-	//portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
-		
+	portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
+	
 	var tr = document.getElementById('buttonLoadPrefs').parentNode.parentNode;
 	tr.style.display='table-row';
 	tr.parentNode.removeChild(tr.nextSibling);
