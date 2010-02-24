@@ -556,6 +556,9 @@ var FoxtrickForumChangePosts = {
 				var doc = ev.target.ownerDocument;
 				var header=ev.target.parentNode.parentNode.parentNode;
 
+				var dowiki = Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPosting, 'CopyWikiStyle');
+			
+			
 				var header_left = null;
 				var header_right = null;
 
@@ -629,26 +632,38 @@ var FoxtrickForumChangePosts = {
 					 }*/
 				}
 
+			// make header
 			var headstr = post_id1+': '+poster_link1.title+' » ';
 			if (poster_link2 && post_link2)  headstr+=post_id2+': '+poster_link2.title+'\n';
 			else headstr+='all\n';
 			
 			// get date+time
-			var time = header_right_inner.replace(/^ /,'');
-			if (time.search(/\d+:\d+/)==0) {
+			var date = header_right_inner.replace(/^ /,'');
+			var time ='';
+			if (date.search(/\d+:\d+/)==0) {
 				var cur_time = doc.getElementById('time').innerHTML;
 				var hi = cur_time.search(/\d+:\d+/);
-				var date = cur_time.substring(0,hi);
-				time = date + time;
+				time = date;
+				date = cur_time.substring(0,hi);
 			}
-			else if (time.search(/\d+:\d+/)==-1) {
-				time = time +header_right.getElementsByTagName('span')[0].title;				
+			else if (date.search(/\d+:\d+/)==-1) {
+				time = header_right.getElementsByTagName('span')[0].title;				
 			}
-			headstr = time + "  \n" + headstr + '';
+			headstr = date + time + "  \n" + headstr + '';
 
+			if (dowiki) {
+				var headstr='{{forum_message|\n';				 
+					headstr += '| from = [ [ '+poster_link1.title+' ] ]\n'; 
+					headstr += '| to = '+(poster_link2?poster_link2.title:'Everyone')+'\n'; 
+					headstr += '| msgid = '+post_id1+'\n'; 
+					headstr += '| prevmsgid = '+(post_id2?post_id2:'')+'\n'; 
+					headstr += '| datetime = '+date+' at '+time+'\n'; 
+					headstr += '| keywords = \n'; 
+					headstr += '| text =\n';							
+			}
+			
 			var message_raw = header.nextSibling.firstChild.innerHTML;
-			
-			
+						
 			var spoilers = message_raw.split(/\<blockquote id="spoil/); 
 			message_raw = spoilers[0];
 			for (var i=1;i< spoilers.length;++i) {
@@ -676,7 +691,8 @@ var FoxtrickForumChangePosts = {
 			
 			var message = (Foxtrick.stripHTML(message_raw)).replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<');
 
-			Foxtrick.copyStringToClipboard(headstr+message);
+			if (dowiki) {message+='}}';}
+			Foxtrick.copyStringToClipboard(headstr+message);			
 			if (FoxtrickPrefs.getBool( "copyfeedback" ))
 				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postingcopied"));
 		} catch(e){ Foxtrick.dump('_copy_posting_to_clipboard :'+e+'\n');}
