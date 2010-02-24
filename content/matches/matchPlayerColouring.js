@@ -50,6 +50,7 @@ FoxtrickMatchPlayerColouring = {
 			}
 			return;
 		}
+		
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
 		if (isprematch ) return;
@@ -246,6 +247,7 @@ FoxtrickMatchPlayerColouring = {
 			teamB.splice(0,teamB.length);
 			teamA.push(playerhighlight);
 			stlTeamA = this.OPTION_TEXTS_DEFAULT_VALUES[1];
+			this.UNKNOWN_COLOUR='';
 		}	
 			
 		var links = content_div.getElementsByTagName("a");

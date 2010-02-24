@@ -83,7 +83,7 @@ var FoxtrickLinksPlayerDetail = {
 				tsi = parseInt(PlayerInfoTable.rows[1].cells[1].textContent.replace(/[\s]*/gi, "")); 
 				wage = parseInt((Foxtrick.trimnum(PlayerInfoTable.rows[2].cells[1].textContent)+' ').match(/\d+/)[0]); 
 				wagebonus='0';
-				if (nationality!=FoxtrickHelper.OWNTEAMINFO['owncountryid']) {wagebonus=wage/6.0; wage/=1.2;}
+				if (teamid==FoxtrickHelper.OWNTEAMINFO['ownteamid'] && nationality!=FoxtrickHelper.OWNTEAMINFO['owncountryid']) {wagebonus=wage/6.0; wage/=1.2;}
 				
 				// age
 				var divs= thisdiv.getElementsByTagName('div');
@@ -175,7 +175,9 @@ var FoxtrickLinksPlayerDetail = {
 				links[1] = Foxtrick.LinkCollection.getLinks("transfercomparelink", params, doc,this); 
                 
 				} else {
-					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality,"owncountryid":owncountryid };
+					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality, 
+								"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp, "leadership":ls,
+								"stamina" : stamina, "wage":wage,"wagebonus":wagebonus, "owncountryid":owncountryid };
 					links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this); 	
 				}
 				if (goalkeeping > 3) {					

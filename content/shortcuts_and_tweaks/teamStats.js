@@ -57,6 +57,7 @@ Foxtrick.TeamStats= {
 				
 				var allDivs2 = allDivs[i].getElementsByTagName( "p" )[0];
 				
+						
 				//JB: If is National team page counts Total TSI
 				var specc = allDivs2;
 				if (!Youth_players) {
@@ -121,16 +122,26 @@ Foxtrick.TeamStats= {
 				stars.push(num_star);
 				
 				var as=allDivs[i].getElementsByTagName('a');
+				
+				var is_nt_player = (as[0].href.search(/NationalTeam/i)!=-1);
+				var link_off=0;
+				if (is_nt_player) link_off=1;
+
+				var playername = as[link_off].innerHTML;
+				playerlastname = playername.substr(playername.lastIndexOf(' ')+1);
+				//Foxtrick.dump('playerlastname: "'+playerlastname+'"\n');
+				 
 				var j=0,a=null;
 				while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
 				var matchday=0;
-				if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
-				if (matchday>this.latestMatch) this.latestMatch = matchday;
+				if (a) {
+					matchday = Foxtrick.getUniqueDayfromCellHTML(a.innerHTML); 
+					if (matchday > this.latestMatch) this.latestMatch = matchday;
+					a.href += '&highlight='+playerlastname;
+					//Foxtrick.dump(as[i].href+'\n');
+				}				
 				
 				if (page=='players' && Foxtrick.XMLData.playersxml && !NT_players) {  // not for ntteam
-				 var is_nt_player = (as[0].href.search(/NationalTeam/i)!=-1);
-				 var link_off=0;
-				 if (is_nt_player) link_off=1;
 				 var playerid = as[link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 				 
 				 var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');

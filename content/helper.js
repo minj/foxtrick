@@ -276,7 +276,8 @@ var FoxtrickHelper = {
 			var ownlevelnum = this.getLevelNum(ownleaguename, owncountryid);
 			
 			this.OWNTEAMINFO={"ownteamid": this.findTeamId(teamdiv),
-				"ownteamname" : this.extractTeamName(teamdiv),	
+				"ownteamname" : this.extractTeamName(teamdiv),
+				"ownteamid" : this.findTeamId(teamdiv),
 				"owncountryid" : owncountryid,
 				"ownleaguename" : ownleaguename,        		
 				"ownseriesnum" : ownseriesnum,
