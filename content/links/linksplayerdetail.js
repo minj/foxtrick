@@ -81,9 +81,16 @@ var FoxtrickLinksPlayerDetail = {
 				//tsi
 				var PlayerInfoTable = thisdiv.getElementsByTagName("table")[0];
 				tsi = parseInt(PlayerInfoTable.rows[1].cells[1].textContent.replace(/[\s]*/gi, "")); 
+				
+				// wage
+				var has_bonus=false;
+				var table_inner = Foxtrick.trim(PlayerInfoTable.rows[2].cells[1].textContent);
+				if (Foxtrick.strrpos( table_inner, "%") > 0 ) {
+					has_bonus=true;
+				}	
 				wage = parseInt((Foxtrick.trimnum(PlayerInfoTable.rows[2].cells[1].textContent)+' ').match(/\d+/)[0]); 
 				wagebonus='0';
-				if (teamid==FoxtrickHelper.OWNTEAMINFO['ownteamid'] && nationality!=FoxtrickHelper.OWNTEAMINFO['owncountryid']) {wagebonus=wage/6.0; wage/=1.2;}
+				if (has_bonus) {wagebonus=wage/6.0; wage/=1.2;}
 				
 				// age
 				var divs= thisdiv.getElementsByTagName('div');
