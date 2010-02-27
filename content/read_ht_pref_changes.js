@@ -87,6 +87,7 @@ var FoxtrickReadHtPrefs = {
 			var menu = doc.getElementById('menu');
 			var as = menu.getElementsByTagName('a');
 			var languages = Foxtrick.XMLData.htLanguagesXml.getElementsByTagName('language');
+			//alert(decodeURIComponent(as[5].innerHTML));
 			if (as.length < 6) {
 				Foxtrick.dump('no prelogin lang check\n');
 				return; // prelogin
@@ -96,13 +97,15 @@ var FoxtrickReadHtPrefs = {
 				for (var i=0; i<6;++i) {
 					var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
 					if (atitle==null) break;
-					if (as[i].innerHTML.search(atitle.getAttribute('value'))!=-1) ++num_found;				
+					if (as[i].innerHTML.replace(/&amp;/,'&').search(atitle.getAttribute('value'))!=-1) ++num_found;	
 				}
+				//Foxtrick.dump(decodeURIComponent(as[5].innerHTML)+' '+atitle.getAttribute('value')+' '+decodeURIComponent(as[5].innerHTML).search(atitle.getAttribute('value'))+' ');
 				if (num_found==6) {
 					langval = languages[k].getAttribute('name');
 					Foxtrick.dump('lang detected: '+languages[k].getAttribute('desc')+'\n');
 					break;
 				}
+				//Foxtrick.dump('\n');
 			}
 		}
 		

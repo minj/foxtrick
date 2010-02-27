@@ -10,6 +10,8 @@
 	<!-- Translate 'short' means, freely translate the 'short' string-->	
 	<!-- Everything else stays an untranslated copy of the english section-->	
 	<!-- 'name' is the folder name in /locale/ . 'desc' is the displayed name -->
+	
+	<!-- attention: replace '&' by '&amp;' -->
 
 
 <hattricklanguages>
@@ -194,7 +196,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="bg" desc="Български">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -464,7 +466,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="cs" desc="Čeština">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -554,7 +556,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="da" desc="Dansk">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -734,7 +736,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="ee" desc="Eesti">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -824,7 +826,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="es" desc="Español">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1004,7 +1006,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="es_SU" desc="Español, Sudamericano">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1094,7 +1096,7 @@
 	
 	<!-- David Torrecilla (dorretxo) -->
 	
-<!-- needs update -->
+<!-- up to date -->
 <language name="eu" desc="Euskara">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1274,7 +1276,7 @@
 	
 	<!-- Mikko Mentula -->
 	
-<!-- needs update -->
+<!-- up to date -->
 <language name="fi" desc="Suomi">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
@@ -1364,7 +1366,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="fr" desc="Français">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1454,7 +1456,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="fur" desc="Furlan">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1544,7 +1546,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="fy" desc="Frysk">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1634,7 +1636,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="gl" desc="Galego">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1724,7 +1726,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="gr" desc="Ελληνικά">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -1904,7 +1906,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="hr" desc="Hrvatski">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
@@ -1994,7 +1996,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="hu" desc="Magyar">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -2084,7 +2086,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="it" desc="Italiano">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -2264,7 +2266,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="lb" desc="Lëtzebuergesch">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
@@ -2354,7 +2356,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="lt" desc="Lietuvių">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -2444,7 +2446,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="lv" desc="Latviešu">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -2534,7 +2536,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="mk" desc="Македонски">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
@@ -2624,7 +2626,7 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="mt" desc="Malti">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
@@ -2656,22 +2658,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Gowler" short="Ke" />
+		<position type="Central defender" value="Difensur Ċentrali" short="Cd" />
+		<position type="Wing back" value="Difensur Laterali" short="Wb" />
+		<position type="Inner midfielder" value="Midfielder Ċentrali" short="Im" />
+		<position type="Winger" value="Plejer tal-Linja" short="Wi" />
+		<position type="Forward" value="Attakkant" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Imprevedibbli" short="Un" />
+		<specialty type="Powerful" value="B'saħħtu" short="Po" />
+		<specialty type="Quick" value="Veloċi" short="Qu" />
+		<specialty type="Technical" value="Tekniku" short="Te" />
+		<specialty type="Head" value="Ras" short="He" />
+		<specialty type="Regainer" value="Akkwistatur" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page -->
@@ -2688,27 +2690,27 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="divin" value="20" />
+		<level text="utopjan" value="19" />
+		<level text="maġiku" value="18" />
+		<level text="mitiku" value="17" />
+		<level text="indimunjat" value="16" />
+		<level text="titanniku" value="15" />
+		<level text="sopranaturali" value="14" />
+		<level text="splendidu" value="13" />
+		<level text="manjifiku" value="12" />
+		<level text="brillanti" value="11" />
+		<level text="straordinarju" value="10" />
+		<level text="formidabbli" value="9" />
+		<level text="eċċellenti" value="8" />
+		<level text="sod" value="7" />
+		<level text="passabbli" value="6" />
+		<level text="inadekwat" value="5" />
+		<level text="debboli" value="4" />
+		<level text="fqir" value="3" />
+		<level text="miżeru" value="2" />
+		<level text="diżastruż" value="1" />
+		<level text="ineżistenti" value="0" />
 	</levels>
 </language>
 
@@ -2804,16 +2806,16 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="vls" desc="Vlaams">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<MyHattrick value='Mijn Hattrick' />
+	<MyClub value='Mijn club' />
+	<World value='Wereld' />
+	<Forum value='Forums' />
+	<Shop value='Winkel' />
+	<Help value='Info &amp; contact' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -2836,22 +2838,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Doelman" short="Ke" />
+		<position type="Central defender" value="Centrale Verdediger" short="Cd" />
+		<position type="Wing back" value="Flankverdediger" short="Wb" />
+		<position type="Inner midfielder" value="Middenvelder" short="Im" />
+		<position type="Winger" value="Flankspeler" short="Wi" />
+		<position type="Forward" value="Aanvaller" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Onvoorspelbaar" short="Un" />
+		<specialty type="Powerful" value="Krachtig" short="Po" />
+		<specialty type="Quick" value="Snelheid" short="Qu" />
+		<specialty type="Technical" value="Technisch" short="Te" />
+		<specialty type="Head" value="Koppen" short="He" />
+		<specialty type="Regainer" value="Kwikzalver" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -2868,27 +2870,27 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="goddelijk" value="20" />
+		<level text="utopisch" value="19" />
+		<level text="magisch" value="18" />
+		<level text="mythisch" value="17" />
+		<level text="buitenaards" value="16" />
+		<level text="reusachtig" value="15" />
+		<level text="bovennatuurlijk" value="14" />
+		<level text="wereldklasse" value="13" />
+		<level text="wonderbaarlijk" value="12" />
+		<level text="briljant" value="11" />
+		<level text="uitmuntend" value="10" />
+		<level text="formidabel" value="9" />
+		<level text="uitstekend" value="8" />
+		<level text="goed" value="7" />
+		<level text="redelijk" value="6" />
+		<level text="matig" value="5" />
+		<level text="zwak" value="4" />
+		<level text="slecht" value="3" />
+		<level text="waardeloos" value="2" />
+		<level text="rampzalig" value="1" />
+		<level text="onbestaand" value="0" />
 	</levels>
 </language>
 
