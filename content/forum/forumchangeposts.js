@@ -649,7 +649,8 @@ var FoxtrickForumChangePosts = {
 			else if (date.search(/\d+:\d+/)==-1) {
 				time = header_right.getElementsByTagName('span')[0].title;				
 			}
-			headstr = date + time + "  \n" + headstr + '';
+			var fulldate = date + time;
+			headstr = fulldate + "  \n" + headstr + '';
 
 			if (dowiki) {
 				var headstr='{{forum_message|\n';				 
@@ -657,7 +658,7 @@ var FoxtrickForumChangePosts = {
 					headstr += '| to = '+(poster_link2?poster_link2.title:'Everyone')+'\n'; 
 					headstr += '| msgid = '+post_id1+'\n'; 
 					headstr += '| prevmsgid = '+(post_id2?post_id2:'')+'\n'; 
-					headstr += '| datetime = '+date+' at '+time+'\n'; 
+					headstr += '| datetime = '+fulldate.replace(/(.+ )(\d+:\d+)/,'$1'+'at '+'$2')+'\n'; 
 					headstr += '| keywords = \n'; 
 					headstr += '| text =\n';							
 			}
@@ -674,11 +675,23 @@ var FoxtrickForumChangePosts = {
 			message_raw = quotes[0];
 			var j=1;
 			for (var i=1;i< quotes.length;++i) {
-				message_raw += '\n'+j+'&gt; <blockquote class="quote"';
+				if (dowiki) { 
+					if (quotes[i].search('quoteto')!=-1) { 
+						message_raw += '\n---\n'+'<blockquote class="quote"';
+						quotes[i]=quotes[i].replace('</div>','</div>"');
+					}
+					else {
+						message_raw += '\n---\n"'+'<blockquote class="quote"';
+					}
+				}
+				else message_raw += '\n'+j+'&gt; <blockquote class="quote"';
 				++j;
 				while(quotes[i].search(/\<\/blockquote\>/i)!=-1) {
 					--j;
-					quotes[i] = quotes[i].replace(/\<\/blockquote\>/i,' &lt;'+j+'\n');
+					if (dowiki) { 
+						quotes[i] = quotes[i].replace(/\<\/blockquote\>/i,'"\n---\n');
+					}
+					else quotes[i] = quotes[i].replace(/\<\/blockquote\>/i,' &lt;'+j+'\n');
 				}
 				message_raw += quotes[i];
 			}
