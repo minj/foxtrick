@@ -9,9 +9,9 @@ var FoxtrickGoToPostBox = {
     MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 	
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
@@ -118,7 +118,7 @@ var FoxtrickGoToPostBox = {
 				inputBoxTop.setAttribute('id', boxId);
 				goButton.setAttribute('type', 'button');
 				var sTmp = selectBox.getAttribute('onchange');
-				var iTopicId = sTmp.match(/\d+/)[0];
+				var iTopicId = doc.location.href.match(/\d+/)[0];
 				goButton.setAttribute('value', Foxtrickl10n.getString("foxtrick.GoToPostBox.label"));
 				goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
 				goButton.setAttribute('onclick', 
