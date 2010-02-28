@@ -9,7 +9,7 @@ FoxtrickMatchPlayerColouring = {
 	PAGES : new Array('match','teamPageAny','myhattrick','playerdetail'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Fix for yyyy-mm-dd dateformat. Added: When using links on playerdetails page, it highlights this player only",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTION_TEXTS : true,

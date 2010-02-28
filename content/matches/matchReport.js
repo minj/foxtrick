@@ -9,7 +9,7 @@ FoxtrickMatchReportFormat = {
 	PAGES : new Array('match','teamPageAny','myhattrick'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"OwnYouthteam detection included",	
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0

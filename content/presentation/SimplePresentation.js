@@ -9,7 +9,7 @@ FoxtrickSimplePresentation = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Added module for presentation options",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	

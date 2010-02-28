@@ -161,12 +161,12 @@ Foxtrick.XMLData = {
 
 		// XML get players xml
 		
-		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
+		if ( ( doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
 			|| doc.location.href.search(/\/Club\/Players\/$/)!=-1
 			|| doc.location.href.search(/\/Club\/Players\/Oldies.aspx/)!=-1
 			|| doc.location.href.search(/\/Club\/Players\/Coaches.aspx/)!=-1
 			|| doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
-			|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1) {
+			|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1)) {
 
 			var file = 'file=players'; //default normal team
 			var team = '';  // =default own team
@@ -191,7 +191,7 @@ Foxtrick.XMLData = {
 				req.send(null);
 				if (req.status == 200) {
 					this.playersxml = req.responseXML;
-					Foxtrick.dump('get '+file+team+selection+'\n');//+req.responseText+'\n');
+					Foxtrick.dump('get '+file+team+selection+'\n');
 				}
 				else Foxtrick.dump(' get '+file+team+selection+' request failed\n');
 			} catch(e) {Foxtrick.dump('get'+file+team+selection+' request failed'+e+'\n');}

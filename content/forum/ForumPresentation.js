@@ -8,8 +8,8 @@ FoxtrickForumPresentation = {
     MODULE_NAME : "ForumPresentation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'), 
-    DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+    DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Added module for additional Forum presentation options",	
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	

@@ -10,7 +10,7 @@ var FoxtrickAdultSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.0.3",
+	NEW_AFTER_VERSION : "0.5.0.5",
 	LATEST_CHANGE : "Used abbr for better accessibilty and fixed copy empty cells. More options and some moved to table itself",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("CopySkillTable", "AlsoOtherTeams"),

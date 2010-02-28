@@ -509,7 +509,7 @@ var FoxtrickPrefsDialogHTML = {
 		td.appendChild(checkdiv);
 		
 				
-		var ReadCountryCurrencyDateFormatChecked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled"); 
+		var ReadCountryCurrencyDateFormatChecked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.enabled"); 
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtCountryCurrencyDateFormat', Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc"),'', ReadCountryCurrencyDateFormatChecked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		groupbox.appendChild(checkdiv);

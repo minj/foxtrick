@@ -9,7 +9,7 @@ var FoxtrickShowForumPrefButton = {
 	MODULE_NAME : "ShowForumPrefButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread','forumOverView','forumDefault'), 
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 
 	init : function() {
 	},

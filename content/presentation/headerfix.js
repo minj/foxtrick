@@ -11,7 +11,7 @@ var FoxtrickHeaderFix = {
 	PAGES : new Array('match','arena'), 
 	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Some fixing for RTL languages",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),

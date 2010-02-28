@@ -10,7 +10,7 @@ var FoxtrickHighlightCupwins = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('cupmatches'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE : "Fixed for draws and for new cup match display method. Highlighting for masters refined.",
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("HighlightCupsets"),

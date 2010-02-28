@@ -10,7 +10,7 @@ var FoxtrickLargeFlags = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.0.3",
+	NEW_AFTER_VERSION : "0.5.0.5",
 	LATEST_CHANGE : "Keep small flags unchanged if faces aren't shown.",
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
 	
