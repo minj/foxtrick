@@ -65,8 +65,7 @@ Foxtrick.modules = [
                     Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
                     Foxtrick.Ratings,
                     Foxtrick.htmsStatistics, // htmsStatistics should be placed after Ratings
-                    FoxtrickYouthSkillTable,
-                    FoxtrickAdultSkillTable,
+                    FoxtrickSkillTable,
                     Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
                     FoxtrickAlert,
                     FoxtrickAlertCustomOff,
@@ -161,7 +160,5 @@ Foxtrick.modules = [
 					//FoxtrickTransferSearchResultsSort, //not finished
 					FoxtrickLeagueAndMatchChat,
 					FoxtrickRapidId,
-					FoxtrickSkillTable,
 					FoxtrickForumStage
-                    ];
-					
+];

@@ -1986,6 +1986,10 @@ Foxtrick.dump = function(cnt) {
     dump('ft: '+String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
 }
 
+Foxtrick.dumpError = function(error) {
+	Foxtrick.dump(error.fileName + "(" + error.lineNumber + "): " + error + "\n");
+}
+
 
 // find first occurence of host and open+focus there
 Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
