@@ -1299,12 +1299,11 @@ var FoxtrickSkillTable = {
 	},
 
 	getColumnEnabled : function(name) {
-		var enabled = Foxtrick.isModuleFeatureEnabled(FoxtrickSkillTable, this.type + "." + this.kind + "." + name);
-		return enabled;
+		return FoxtrickPrefs.getBool("module.SkillTable." + this.type + "." + this.kind + "." + name);
 	},
 
 	setColumnEnabled : function(name, enabled) {
-		FoxtrickPrefs.setBool("module.SkillTable" + this.type + "." + this.kind + "." + name, enabled);
+		FoxtrickPrefs.setBool("module.SkillTable." + this.type + "." + this.kind + "." + name, enabled);
 	},
 
 	copyTable : function(ev) {
