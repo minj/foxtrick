@@ -41,10 +41,6 @@ var FoxtrickSkillTable = {
 			}
 
 			FoxtrickSkillTable.addTableDiv(doc);
-
-			if (FoxtrickPrefs.getBool("module.SkillTable.show")) {
-				FoxtrickSkillTable.toggleDisplay(doc);
-			}
 		}
 		catch(e) {
 			Foxtrick.dumpError(e);
@@ -1069,7 +1065,6 @@ var FoxtrickSkillTable = {
 				}
 				FoxtrickSkillTable.tableCreated = true;
 			}
-			FoxtrickPrefs.setBool("module.SkillTable.show", show);
 
 			var links = tablediv.getElementsByClassName("ft_skilltable_links")[0];
 			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
