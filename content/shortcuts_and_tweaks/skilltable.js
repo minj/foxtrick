@@ -675,8 +675,6 @@ var FoxtrickSkillTable = {
 				Foxtrick.addClass(container, "on_top");
 			}
 
-			// copy button
-			FoxtrickSkillTable.addCopyButton(doc);
 			FoxtrickSkillTable.sortClick(null,doc,0,"index");
 		}
 		catch (e) {
