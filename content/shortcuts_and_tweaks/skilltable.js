@@ -53,14 +53,13 @@ var FoxtrickSkillTable = {
 	createSeniorTable : function(doc) {
 		try {
 			var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
-			var Oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
-			var Youth_players = (doc.location.href.indexOf("YouthPlayers\.aspx") != -1);
+			var oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
 			var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
-			var OldiesCoach = (Oldies || coach);
+			var OldiesCoach = (oldies || coach);
 
 			var hasbars = true;
 			var allDivs = doc.getElementsByTagName("div");
-			if (this.isOwnTeam && !Oldies && !coach) {
+			if (this.isOwnTeam && !oldies && !coach) {
 				for (var i = 0; i < allDivs.length; i++) {
 					if(allDivs[i].className=="playerInfo") {
 						var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");
@@ -73,85 +72,88 @@ var FoxtrickSkillTable = {
 			var sn;
 			if (hasbars) {
 				sn = [
-					{ name: "PlayerCategory", sort: "index", NT:false,OldiesCoach:false },
-					{ name: "PlayerNumber", sort: "index", NT:false, OldiesCoach:false},
-					{ name: "Nationality", sort: "title", NT:false, OldiesCoach:false},
-					{ name: "Player", sort: "link", NT:true, OldiesCoach:true },
-					{ name: "Age", sort: "age", NT:true, OldiesCoach:true},
-					{ name: "TSI", sort: "int", NT:true, OldiesCoach:true },
-					{ name: "Agreeability", sort: "int", NT:false, OldiesCoach:true},
-					{ name: "Aggressiveness", sort: "int", NT:false, OldiesCoach:true},
-					{ name: "Honesty", sort: "int", NT:false, OldiesCoach:true},
-					{ name: "Leadership", sort: "int", NT:true, OldiesCoach:true},
-					{ name: "Experience", sort: "int", NT:true, OldiesCoach:true},
-					{ name: "Form", sort: "int", NT:true, OldiesCoach:true },
-					{ name: "Stamina", sort: "int", NT:true, OldiesCoach:true},
-					{ name: "Keeper", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Defending", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Playmaking", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Winger", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Passing", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Scoring", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Set_pieces", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Yellow_card", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
-					{ name: "Red_card", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/red_card.gif" },
-					{ name: "Bruised", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
-					{ name: "Injured", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/injured.gif" },
-					{ name: "Speciality", sort: "text", NT:true, OldiesCoach:true},
-					{ name: "Last_stars", sort: "text", NT:false, OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
-					{ name: "Last_position", sort: "text", NT:false, OldiesCoach:false },
-					{ name: "Salary", sort: "int", NT:false, OldiesCoach:false },
-					{ name: "TransferListed", sort: "text", NT:false, OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
-					{ name: "NrOfMatches", sort: "int", NT:true, OldiesCoach:false },
-					{ name: "LeagueGoals", sort: "int", NT:false, OldiesCoach:true },
-					{ name: "CareerGoals", sort: "int", NT:false, OldiesCoach:true }
+					{ name: "PlayerCategory", sort: "index", own: true },
+					{ name: "PlayerNumber", sort: "index", own: true, others: true },
+					{ name: "Nationality", sort: "title", own: true, others: true },
+					{ name: "Player", sort: "link", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Age", sort: "age", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "TSI", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Agreeability", sort: "int", own: true, others:true, OldiesCoach: true },
+					{ name: "Aggressiveness", sort: "int", own: true, others:true, OldiesCoach: true },
+					{ name: "Honesty", sort: "int", own: true, others:true, OldiesCoach: true },
+					{ name: "Leadership", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Experience", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Form", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Stamina", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Keeper", sort: "int", own: true },
+					{ name: "Defending", sort: "int", own: true },
+					{ name: "Playmaking", sort: "int", own: true },
+					{ name: "Winger", sort: "int", own: true },
+					{ name: "Passing", sort: "int", own: true },
+					{ name: "Scoring", sort: "int", own: true },
+					{ name: "Set_pieces", sort: "int", own: true },
+					{ name: "Yellow_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/yellow_card.gif" },
+					{ name: "Red_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/red_card.gif" },
+					{ name: "Bruised", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/bruised.gif" },
+					{ name: "Injured", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/injured.gif" },
+					{ name: "Speciality", sort: "text", own: true, others: true, NT: true, OldiesCoach: true },
+					{ name: "Last_stars", sort: "text", own: true, others: true, img: "/Img/Matches/star_blue.png" },
+					{ name: "Last_position", sort: "text", own: true, others: true },
+					{ name: "Salary", sort: "int", own: true, others: true },
+					{ name: "TransferListed", sort: "text", own: true, others: true, OldiesCoach: true, img: "/Img/Icons/dollar.gif" },
+					{ name: "NrOfMatches", sort: "int", NT: true },
+					{ name: "LeagueGoals", sort: "int", own: true, others: true, OldiesCoach: true },
+					{ name: "CareerGoals", sort: "int", own: true, others: true, OldiesCoach: true }
 				];
 			}
 			else {
 				sn = [
-					{ name: "PlayerCategory", sort: "index", NT:false,OldiesCoach:false },
-					{ name: "PlayerNumber", sort: "index", NT:false,OldiesCoach:false },
-					{ name: "Nationality", sort: "title", NT:false, OldiesCoach:false },
-					{ name: "Player", sort: "link", NT:true,OldiesCoach:true },
-					{ name: "Age", sort: "age", NT:true,OldiesCoach:true },
-					{ name: "TSI", sort: "int", NT:true, OldiesCoach:true },
-					{ name: "Agreeability", sort: "int", NT:false, OldiesCoach:true },
-					{ name: "Aggressiveness", sort: "int", NT:false, OldiesCoach:true },
-					{ name: "Honesty", sort: "int", NT:false, OldiesCoach:true },
-					{ name: "Leadership", sort: "int", NT:true, OldiesCoach:true },
-					{ name: "Experience", sort: "int", NT:true, OldiesCoach:true },
-					{ name: "Form", sort: "int", NT:true, OldiesCoach:true },
-					{ name: "Stamina", sort: "int", NT:true, OldiesCoach:true },
-					{ name: "Keeper", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Playmaking", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Passing", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Winger", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Defending", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Scoring", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Set_pieces", sort: "int", NT:false,OldiesCoach:false },
-					{ name: "Yellow_card", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/yellow_card.gif" },
-					{ name: "Red_card", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/red_card.gif" },
-					{ name: "Bruised", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/bruised.gif" },
-					{ name: "Injured", sort: "text", NT:true, OldiesCoach:true, img: "/Img/Icons/injured.gif" },
-					{ name: "Speciality", sort: "text", NT:true, OldiesCoach:true },
-					{ name: "Last_stars", sort: "text", NT:false, OldiesCoach:false, img: "/Img/Matches/star_blue.png" },
-					{ name: "Last_position", sort: "text", NT:false, OldiesCoach:false },
-					{ name: "Salary", sort: "int", NT:false, OldiesCoach:false },
-					{ name: "TransferListed", sort: "text", NT:false, OldiesCoach:true, img: "/Img/Icons/dollar.gif" },
-					{ name: "NrOfMatches", sort: "int", NT:true, OldiesCoach:false },
-					{ name: "LeagueGoals", sort: "int", NT:false, OldiesCoach:true },
-					{ name: "CareerGoals", sort: "int", NT:false, OldiesCoach:true }
+					{ name: "PlayerCategory", sort: "index", own: true },
+					{ name: "PlayerNumber", sort: "index", own: true, others: true },
+					{ name: "Nationality", sort: "title", own: true, others: true },
+					{ name: "Player", sort: "link", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Age", sort: "age", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "TSI", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Agreeability", sort: "int", own: true, others:true, OldiesCoach: true },
+					{ name: "Aggressiveness", sort: "int", own: true, others:true, OldiesCoach: true },
+					{ name: "Honesty", sort: "int", own: true, others:true, OldiesCoach: true },
+					{ name: "Leadership", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Experience", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Form", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Stamina", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Keeper", sort: "int", own: true },
+					{ name: "Playmaking", sort: "int", own: true },
+					{ name: "Passing", sort: "int", own: true },
+					{ name: "Winger", sort: "int", own: true },
+					{ name: "Defending", sort: "int", own: true },
+					{ name: "Scoring", sort: "int", own: true },
+					{ name: "Set_pieces", sort: "int", own: true },
+					{ name: "Yellow_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/yellow_card.gif" },
+					{ name: "Red_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/red_card.gif" },
+					{ name: "Bruised", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/bruised.gif" },
+					{ name: "Injured", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/injured.gif" },
+					{ name: "Speciality", sort: "text", own: true, others: true, NT: true, OldiesCoach: true },
+					{ name: "Last_stars", sort: "text", own: true, others: true, img: "/Img/Matches/star_blue.png" },
+					{ name: "Last_position", sort: "text", own: true, others: true },
+					{ name: "Salary", sort: "int", own: true, others: true },
+					{ name: "TransferListed", sort: "text", own: true, others: true, OldiesCoach: true, img: "/Img/Icons/dollar.gif" },
+					{ name: "NrOfMatches", sort: "int", NT: true },
+					{ name: "LeagueGoals", sort: "int", own: true, others: true, OldiesCoach: true },
+					{ name: "CareerGoals", sort: "int", own: true, others: true, OldiesCoach: true }
 				];
 			}
 
 			for (var j = 0; j < sn.length; ++j) {
-				if ((!this.isOwnTeam || (OldiesCoach && !sn[j].OldiesCoach)) && sn[j].name === "PlayerCategory") {
+				if (this.isOwnTeam && !OldiesCoach && !sn[j].own) {
 					sn[j].available = false;
 				}
-				else if ((OldiesCoach && !sn[j].OldiesCoach) || (NT_players && !sn[j].NT)) {
+				else if (!this.isOwnTeam && !OldiesCoach && !sn[j].others) {
 					sn[j].available = false;
 				}
-				else if (!NT_players && sn[j].name === "NrOfMatches") {
+				else if (NT_players && !sn[j].NT) {
+					sn[j].available = false;
+				}
+				else if (OldiesCoach && !sn[j].OldiesCoach) {
 					sn[j].available = false;
 				}
 				else {
@@ -220,7 +222,7 @@ var FoxtrickSkillTable = {
 
 			// get last match
 			var latestMatch=-1;
-			if (!Oldies && !NT_players && !coach) {
+			if (!oldies && !NT_players && !coach) {
 				for(var i = 0; i < allDivs.length; i++) {
 					if(allDivs[i].className=="playerInfo") {
 						var as=allDivs[i].getElementsByTagName("a");
@@ -376,7 +378,7 @@ var FoxtrickSkillTable = {
 						td.setAttribute("style","text-align:right !important;");
 						if (!TSI) {
 						var tsitot_in = allDivs[i].getElementsByTagName("p")[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf("<br>"));
-						if (Oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf("<br>"));
+						if (oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf("<br>"));
 						if (tsitot_in.search(/^\s*TSI/) != -1)
 							tsitot_in = tsitot_in.replace(/,.+/,""); // In the language Vlaams, TSI and age are switched. This is a fix for that
 						var lastindex = tsitot_in.lastIndexOf(" ");
