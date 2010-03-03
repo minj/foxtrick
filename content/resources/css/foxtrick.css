@@ -18,16 +18,10 @@
 .foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png'); width: 16px; }
 .foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png'); width: 16px; }
 
-/* sidebarbox h2 dropdown image */ 
-div.ft_sidebarBoxCollapsed  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat; background-position: 99% 60%;}
-div.ft_sidebarBoxUnfolded  h2 { border: none !important; padding-right:20px !important; background-image: url('chrome://foxtrick/content/resources/img/link-up.png'); background-repeat:no-repeat;  background-position: 99% 60%;}
-div.ft_sidebarBoxCollapsed .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-right:8px !important;} 
-div.ft_sidebarBoxCollapsed .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
-div.ft_sidebarBoxCollapsed_rtl  h2 { border: none !important; background-image: url('chrome://foxtrick/content/resources/img/link-down.png'); background-repeat:no-repeat;  background-position: 3% 60%;}
-div.ft_sidebarBoxUnfolded_rtl h2 { border: none !important; background-image: url('chrome://foxtrick/content/resources/img/link-up.png'); background-repeat:no-repeat;  background-position: 3% 60%;}
-div.ft_sidebarBoxCollapsed_rtl .boxLeft>div , div.ft_sidebarBoxUnfolded .boxLeft>div { margin-left:8px !important;} 
-div.ft_sidebarBoxCollapsed_rtl .boxLeft, div.ft_sidebarBoxUnfolded .boxLeft  {border-bottom: 1px solid #CCCCCC;}
-
+div.ft_sidebarBoxCollapsed h2 { background: url("chrome://foxtrick/content/resources/img/link-down.png") right no-repeat; }
+div.ft_sidebarBoxUnfolded h2 { background: url("chrome://foxtrick/content/resources/img/link-up.png") right no-repeat; }
+div.ft_sidebarBoxCollapsed_rtl h2 { background: url("chrome://foxtrick/content/resources/img/link-down.png") left no-repeat; }
+div.ft_sidebarBoxUnfolded_rtl h2 { background: url("chrome://foxtrick/content/resources/img/link-up.png") left no-repeat; }
 
 /* sidebarbox h3 dropdown image */
 h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}
