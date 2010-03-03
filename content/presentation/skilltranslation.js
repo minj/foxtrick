@@ -10,9 +10,9 @@ var FoxtrickSkillTranslation = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('denominations'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.2",	
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	LATEST_CHANGE:"Adds English translations to skills on help/denominations page (default on)",
+	NEW_AFTER_VERSION: "0.5.0.5",	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	LATEST_CHANGE : "No longer `translating' if interface is already English",
 
 player_abilities	: new Array(		
 	"Player abilities etc",
@@ -175,6 +175,10 @@ team_confidence	: new Array(
 
     run : function( page, doc ) { Foxtrick.dump('in SkillTranslation\n');
 	try {
+		// no need to translate if language is already English
+		if (FoxtrickPrefs.getString("htLanguage") === "en") {
+			return;
+		}
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		
 		// is english test
