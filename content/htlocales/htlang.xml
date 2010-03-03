@@ -4198,12 +4198,12 @@
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="不可预测" short="不" />
-		<specialty type="Powerful" value="力量" short="力" />
-		<specialty type="Quick" value="速度" short="快" />
-		<specialty type="Technical" value="技术" short="技" />
-		<specialty type="Head" value="头球专家" short="头" />
-		<specialty type="Regainer" value="不药而愈" short="愈" />
+		<specialty type="Unpredictable" value="不可预测" short="不可" />
+		<specialty type="Powerful" value="力量" short="力量" />
+		<specialty type="Quick" value="速度" short="速度" />
+		<specialty type="Technical" value="技术" short="技术" />
+		<specialty type="Head" value="头球专家" short="头球" />
+		<specialty type="Regainer" value="不药而愈" short="不药" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
