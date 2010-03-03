@@ -53,6 +53,7 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 .ft_skilltable_wrapper, .ft_skilltable_customizewrapper { width: 100%; overflow: auto; }
 .ft_skilltable_links { margin-bottom: 0.5em !important; }
 .ft_skilltable_links a { display: none; }
+.ft_skilltable_links .secondary { float: right; }
 .ft_skilltable_links .customize_item { display: inline; }
 .ft_skilltable_links.customizing a { display: inline; }
 .ft_skilltable_links.customizing .customize_item { display: none; }

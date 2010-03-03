@@ -1147,7 +1147,7 @@ var FoxtrickSkillTable = {
 		Foxtrick.addClass(links, "hidden");
 		// links: copy
 		var copy = doc.createElement("a");
-		copy.className = "customize_item";
+		copy.className = "customize_item secondary";
 		copy.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
 		copy.setAttribute("title", Foxtrickl10n.getString("foxtrick.tweaks.copyskilltable"));
 		Foxtrick.addEventListenerChangeSave(copy, "click", FoxtrickSkillTable.copyTable, false);
