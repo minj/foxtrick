@@ -671,16 +671,6 @@ var FoxtrickSkillTable = {
 			FoxtrickSkillTable.insertSkillTable(tablediv, table);
 
 			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
-			if (!NT_players && !OldiesCoach) { // always ws nowrap
-				container.setAttribute("ws_toggle","false");
-				Foxtrick.addClass(container, "ws_wrap");
-			}
-			else { // ws nowrap only if on top
-				container.setAttribute("ws_toggle","true");
-				if (FoxtrickPrefs.getBool("module.SkillTable.top")) {
-					Foxtrick.addClass(container, "ws_wrap");
-				}
-			}
 			if (FoxtrickPrefs.getBool("module.SkillTable.top")) {
 				Foxtrick.addClass(container, "on_top");
 			}
@@ -976,11 +966,6 @@ var FoxtrickSkillTable = {
 			FoxtrickSkillTable.insertCustomizeTable(tablediv, customizeTable);
 			FoxtrickSkillTable.insertSkillTable(tablediv, table);
 			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
-			container.setAttribute("ws_toggle","true");
-			if (FoxtrickPrefs.getBool("module.SkillTable.top")) {
-				Foxtrick.addClass(container, "ws_wrap");
-				Foxtrick.addClass(container, "on_top");
-			}
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -1096,8 +1081,6 @@ var FoxtrickSkillTable = {
 		var tablediv = doc.getElementById("ft_skilltablediv");
 		var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 		Foxtrick.toggleClass(container, "on_top");
-
-		if (container.getAttribute("ws_toggle")=="true") Foxtrick.toggleClass(container, "ws_wrap");
 
 		FoxtrickPrefs.setBool("module.SkillTable.top", Foxtrick.hasClass(container, "on_top"));
 	},
