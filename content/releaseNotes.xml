@@ -22,10 +22,12 @@
 <lines>Attention!</lines> 
 <lines>* GotoPostBox module hides Hattrick's new (and useless) 'Mark unread from ..'</lines>
 <lines>* Transferfilter fix: old max bid values unfornatelly might be lost</lines>
+<lines>* Player faces modules merged. Your settings of those have been lost </lines>
 <lines>* Module FixCss split in three new modules. Settings for those are back to default.</lines>
 <lines>* SkinModule moved to presention tab. Old skins need to get reloaded</lines>
 <lines>* dbus alert option removed for AMO compliance.</lines>
 <lines>* ForumAlltidFlags removed. Use HTs flags (Hts forum preferences) instead </lines>
+<lines>* ForumStripLinks removed. Obsolte after ht url doesn't incluse server anymore </lines>
 <lines>* Mandatory warning when posting on stage forums with FoxTrick enabled added </lines>
 
 <lines></lines> 

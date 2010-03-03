@@ -320,6 +320,7 @@ var FoxtrickPrefs = {
 			do {
 				cont = lis.readLine(lineData);
 				var line = converter.ConvertToUnicode(lineData.value);
+				//Foxtrick.dump(line+'\n');
 				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
 				var value=line.match(/\",(.+)\)\;/)[1];
 				var strval = value.match(/\"(.+)\"/); 

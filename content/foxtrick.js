@@ -324,7 +324,7 @@ var FoxtrickMain = {
 			if (!is_only_css_check) {
 				var bottom = doc.getElementById("bottom");
 				var server = bottom.getElementsByClassName("currentServer")[0];			
-				server.textContent += " / Foxtrick v" + FoxtrickPrefs.getString("curVersion");
+				server.textContent += " / FoxTrick v" + FoxtrickPrefs.getString("curVersion");
 			}
 			
 			// context menue

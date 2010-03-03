@@ -23,12 +23,27 @@ var FoxtrickFormatPostingText = {
 	LATEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : true,
-	//OPTIONS : new Array("AddCopyIcon"), 
 	
 	init : function() {
 	},
 	
 	run : function( page, doc ) {
+	try{
+		doc.getElementById('mainBody').addEventListener('click',this.onclick,true);
+		if (page=='forumViewThread') return;
+	
+		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
+        var target = targets[targets.length-1];
+        var button_ok = null;
+		if (page=='forumWritePost') button_ok = targets[targets.length-2];
+        if (page=='guestbook') target = null;
+
+		Foxtrick.dump(button_ok.getAttribute('id')+'\n');
+		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
+		button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/·/gi,'').replace(/\\n/g, '[FTbr]').replace(/\\</gi,'<·').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n');"+button_ok.getAttribute('onclick'));
+		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
+		
+	} catch(e) {Foxtrick.dump('FoxtrickFormatPostingText '+e+'\n');}
 	},
 	
 	change : function( page, doc ) { return;
