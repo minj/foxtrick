@@ -1029,7 +1029,7 @@ Foxtrick.addBoxToSidebar =
 				sidebarBox.className = boxClass;
 				// header
 				var header = doc.createElement("h2");
-				header.innerHTML = newBoxHeader;
+				header.innerHTML = title;
 				sidebarBox.appendChild(header);
 				// append content to body
 				sidebarBox.appendChild(content);
