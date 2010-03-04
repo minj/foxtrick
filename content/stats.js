@@ -1131,7 +1131,7 @@ stats["ht-dog"] =  {
 };    
 
 // Hatstats
-
+/*
 stats["hatstats"] =  { 
         "url" : "",
         "urlfunction": function (filterparams) {
@@ -1172,7 +1172,7 @@ stats["hatstats"] =  {
         "title" : "HatStats",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hatstats.png"        
 };    
-
+*/
 /* down
 stats["advancedinjurycalc"] =  { 
         "url" : "http://www.student.ru.nl/rvanaarle/injury.php",
