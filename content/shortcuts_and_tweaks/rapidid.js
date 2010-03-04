@@ -72,7 +72,7 @@ var FoxtrickRapidId = {
 
 	displayForm: function(doc) {
 		try {
-			var container = doc.getElementById("ft_rapidid_container");
+			var container = doc.getElementById("ft_rapidid");
 			var indicator = doc.getElementById("ft_rapidid_indicator");
 			container.removeChild(indicator);
 			var form = doc.createElement("form");
@@ -151,7 +151,7 @@ var FoxtrickRapidId = {
 			var ticker = doc.getElementById("ticker");
 			var container = doc.createElement("div");
 			header.insertBefore(container, ticker);
-			container.id = "ft_rapidid_container";
+			container.id = "ft_rapidid";
 			container.className='float_right';
 			var indicator = doc.createElement("a");
 			container.appendChild(indicator);
@@ -160,18 +160,7 @@ var FoxtrickRapidId = {
 			indicator.id = "ft_rapidid_indicator";
 			var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
 			indicator.appendChild(doc.createTextNode(viewById));
-			var search = doc.location.search;
-			if (doc.location.search.search(/^\?/) != -1) {
-				indicator.setAttribute("href", doc.URL + "&viewid=true");
-			}
-			else {
-				indicator.setAttribute("href", doc.URL + "?viewid=true");
-			}
 			indicator.addEventListener("click", FoxtrickRapidId.onclick, true);
-
-			if (doc.location.search.search(/[&\?]viewid=true\b/) != -1) {
-				this.displayForm(doc);
-			}
 		}
 		catch (e) {
 			Foxtrick.dump("RapidId(" + e.lineNumber + "): " + e + "\n");
