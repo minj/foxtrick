@@ -1044,12 +1044,6 @@ Foxtrick.addBoxToSidebar =
 	}
 }
 
-Foxtrick.addToggleBoxToSidebar = function(doc, newBoxHeader, newBoxContent, boxId,
-	referenceHeader, altReferenceHeader, column) {
-	Foxtrick.addBoxToSidebar(doc, newBoxHeader, newBoxContent, boxId,
-		referenceHeader, altRederenceHeader, column);
-}
-
 Foxtrick.getSortedLinks = function(links) {
   function sortfunction(a,b) {
     return a.link.title.localeCompare(b.link.title);
