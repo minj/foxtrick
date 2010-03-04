@@ -851,7 +851,7 @@ stats["todohattrick"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/todohattrick.png"
 };    
 
-
+/*
 // La Gazzetta di HT
 
 stats["lagazzetta"] =  { 
@@ -876,7 +876,7 @@ stats["lagazzetta"] =  {
         "title" : "La Gazzetta di Hattrick",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/lagazzetta.jpg"
 };    
-
+*/
 // ht-tools 
 stats["ekonomer"] =  { 
         "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.asp",
