@@ -25,18 +25,36 @@ var FoxtrickSkillTable = {
 		try {
 			this.tableCreated = false;
 
+			var ownTeamId = FoxtrickHelper.findTeamId(doc.getElementById("teamLinks"));
+			var teamId = FoxtrickHelper.findTeamId(doc.getElementById("content").getElementsByTagName("div")[0]);
+
 			if (Foxtrick.isPage(Foxtrick.ht_pages["players"], doc)) {
 				this.type = "senior";
+				if (doc.location.href.indexOf("NTPlayers") != -1) {
+					this.subtype = "nt";
+				}
+				else if ((doc.location.href.indexOf("Oldies.aspx") != -1)
+					|| (doc.location.href.indexOf("Coaches\.aspx") != -1)) {
+					this.subtype = "oldiesCoach";
+				}
+				else if (ownTeamId === teamId) {
+					this.subtype = "own";
+				}
+				else {
+					this.subtype = "others";
+				}
 			}
 			else if (Foxtrick.isPage(Foxtrick.ht_pages["YouthPlayers"], doc)) {
 				this.type = "youth";
+				if (ownTeamId === teamId) {
+					this.subtype = "own";
+				}
+				else {
+					this.subtype = "others";
+				}
 			}
 
-			this.ownTeamId = FoxtrickHelper.findTeamId(doc.getElementById("teamLinks"));
-			this.teamId = FoxtrickHelper.findTeamId(doc.getElementById("content").getElementsByTagName("div")[0]);
-			this.isOwnTeam = (this.ownTeamId === this.teamId);
-			this.kind = this.isOwnTeam ? "own" : "other";
-			if (!this.isOwnTeam && !Foxtrick.isModuleFeatureEnabled(FoxtrickSkillTable, "OtherTeams")) {
+			if (!this.subtype === "own" && !Foxtrick.isModuleFeatureEnabled(FoxtrickSkillTable, "OtherTeams")) {
 				return;
 			}
 
@@ -52,14 +70,9 @@ var FoxtrickSkillTable = {
 
 	createSeniorTable : function(doc) {
 		try {
-			var NT_players = (doc.location.href.indexOf("NTPlayers") != -1);
-			var oldies = (doc.location.href.indexOf("Oldies.aspx") != -1);
-			var coach = (doc.location.href.indexOf("Coaches\.aspx") != -1);
-			var OldiesCoach = (oldies || coach);
-
 			var hasbars = true;
 			var allDivs = doc.getElementsByTagName("div");
-			if (this.isOwnTeam && !oldies && !coach) {
+			if (this.subtype === "own") {
 				for (var i = 0; i < allDivs.length; i++) {
 					if(allDivs[i].className=="playerInfo") {
 						var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");
@@ -75,16 +88,16 @@ var FoxtrickSkillTable = {
 					{ name: "PlayerCategory", sort: "index", own: true },
 					{ name: "PlayerNumber", sort: "index", own: true, others: true },
 					{ name: "Nationality", sort: "title", own: true, others: true },
-					{ name: "Player", sort: "link", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Age", sort: "age", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "TSI", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Agreeability", sort: "int", own: true, others:true, OldiesCoach: true },
-					{ name: "Aggressiveness", sort: "int", own: true, others:true, OldiesCoach: true },
-					{ name: "Honesty", sort: "int", own: true, others:true, OldiesCoach: true },
-					{ name: "Leadership", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Experience", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Form", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Stamina", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Player", sort: "link", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Age", sort: "age", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "TSI", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Agreeability", sort: "int", own: true, others:true, oldiesCoach: true },
+					{ name: "Aggressiveness", sort: "int", own: true, others:true, oldiesCoach: true },
+					{ name: "Honesty", sort: "int", own: true, others:true, oldiesCoach: true },
+					{ name: "Leadership", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Experience", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Form", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Stamina", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
 					{ name: "Keeper", sort: "int", own: true },
 					{ name: "Defending", sort: "int", own: true },
 					{ name: "Playmaking", sort: "int", own: true },
@@ -92,18 +105,18 @@ var FoxtrickSkillTable = {
 					{ name: "Passing", sort: "int", own: true },
 					{ name: "Scoring", sort: "int", own: true },
 					{ name: "Set_pieces", sort: "int", own: true },
-					{ name: "Yellow_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/yellow_card.gif" },
-					{ name: "Red_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/red_card.gif" },
-					{ name: "Bruised", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/bruised.gif" },
-					{ name: "Injured", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/injured.gif" },
-					{ name: "Speciality", sort: "text", own: true, others: true, NT: true, OldiesCoach: true },
+					{ name: "Yellow_card", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/yellow_card.gif" },
+					{ name: "Red_card", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/red_card.gif" },
+					{ name: "Bruised", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/bruised.gif" },
+					{ name: "Injured", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/injured.gif" },
+					{ name: "Speciality", sort: "text", own: true, others: true, nt: true, oldiesCoach: true },
 					{ name: "Last_stars", sort: "text", own: true, others: true, img: "/Img/Matches/star_blue.png" },
 					{ name: "Last_position", sort: "text", own: true, others: true },
 					{ name: "Salary", sort: "int", own: true, others: true },
-					{ name: "TransferListed", sort: "text", own: true, others: true, OldiesCoach: true, img: "/Img/Icons/dollar.gif" },
-					{ name: "NrOfMatches", sort: "int", NT: true },
-					{ name: "LeagueGoals", sort: "int", own: true, others: true, OldiesCoach: true },
-					{ name: "CareerGoals", sort: "int", own: true, others: true, OldiesCoach: true }
+					{ name: "TransferListed", sort: "text", own: true, others: true, oldiesCoach: true, img: "/Img/Icons/dollar.gif" },
+					{ name: "NrOfMatches", sort: "int", nt: true },
+					{ name: "LeagueGoals", sort: "int", own: true, others: true, oldiesCoach: true },
+					{ name: "CareerGoals", sort: "int", own: true, others: true, oldiesCoach: true }
 				];
 			}
 			else {
@@ -111,16 +124,16 @@ var FoxtrickSkillTable = {
 					{ name: "PlayerCategory", sort: "index", own: true },
 					{ name: "PlayerNumber", sort: "index", own: true, others: true },
 					{ name: "Nationality", sort: "title", own: true, others: true },
-					{ name: "Player", sort: "link", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Age", sort: "age", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "TSI", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Agreeability", sort: "int", own: true, others:true, OldiesCoach: true },
-					{ name: "Aggressiveness", sort: "int", own: true, others:true, OldiesCoach: true },
-					{ name: "Honesty", sort: "int", own: true, others:true, OldiesCoach: true },
-					{ name: "Leadership", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Experience", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Form", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
-					{ name: "Stamina", sort: "int", own: true, others:true, NT: true, OldiesCoach: true },
+					{ name: "Player", sort: "link", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Age", sort: "age", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "TSI", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Agreeability", sort: "int", own: true, others:true, oldiesCoach: true },
+					{ name: "Aggressiveness", sort: "int", own: true, others:true, oldiesCoach: true },
+					{ name: "Honesty", sort: "int", own: true, others:true, oldiesCoach: true },
+					{ name: "Leadership", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Experience", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Form", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Stamina", sort: "int", own: true, others:true, nt: true, oldiesCoach: true },
 					{ name: "Keeper", sort: "int", own: true },
 					{ name: "Playmaking", sort: "int", own: true },
 					{ name: "Passing", sort: "int", own: true },
@@ -128,32 +141,32 @@ var FoxtrickSkillTable = {
 					{ name: "Defending", sort: "int", own: true },
 					{ name: "Scoring", sort: "int", own: true },
 					{ name: "Set_pieces", sort: "int", own: true },
-					{ name: "Yellow_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/yellow_card.gif" },
-					{ name: "Red_card", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/red_card.gif" },
-					{ name: "Bruised", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/bruised.gif" },
-					{ name: "Injured", sort: "text", own: true, others: true, NT: true, OldiesCoach: true, img: "/Img/Icons/injured.gif" },
-					{ name: "Speciality", sort: "text", own: true, others: true, NT: true, OldiesCoach: true },
+					{ name: "Yellow_card", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/yellow_card.gif" },
+					{ name: "Red_card", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/red_card.gif" },
+					{ name: "Bruised", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/bruised.gif" },
+					{ name: "Injured", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/injured.gif" },
+					{ name: "Speciality", sort: "text", own: true, others: true, nt: true, oldiesCoach: true },
 					{ name: "Last_stars", sort: "text", own: true, others: true, img: "/Img/Matches/star_blue.png" },
 					{ name: "Last_position", sort: "text", own: true, others: true },
 					{ name: "Salary", sort: "int", own: true, others: true },
-					{ name: "TransferListed", sort: "text", own: true, others: true, OldiesCoach: true, img: "/Img/Icons/dollar.gif" },
-					{ name: "NrOfMatches", sort: "int", NT: true },
-					{ name: "LeagueGoals", sort: "int", own: true, others: true, OldiesCoach: true },
-					{ name: "CareerGoals", sort: "int", own: true, others: true, OldiesCoach: true }
+					{ name: "TransferListed", sort: "text", own: true, others: true, oldiesCoach: true, img: "/Img/Icons/dollar.gif" },
+					{ name: "NrOfMatches", sort: "int", nt: true },
+					{ name: "LeagueGoals", sort: "int", own: true, others: true, oldiesCoach: true },
+					{ name: "CareerGoals", sort: "int", own: true, others: true, oldiesCoach: true }
 				];
 			}
 
 			for (var j = 0; j < sn.length; ++j) {
-				if (this.isOwnTeam && !OldiesCoach && !sn[j].own) {
+				if (this.subtype === "own" && !sn[j].own) {
 					sn[j].available = false;
 				}
-				else if (!this.isOwnTeam && !OldiesCoach && !sn[j].others) {
+				else if (this.subtype === "others" && !sn[j].others) {
 					sn[j].available = false;
 				}
-				else if (NT_players && !sn[j].NT) {
+				else if (this.subtype === "nt" && !sn[j].nt) {
 					sn[j].available = false;
 				}
-				else if (OldiesCoach && !sn[j].OldiesCoach) {
+				else if (this.subtype === "oldiesCoach" && !sn[j].oldiesCoach) {
 					sn[j].available = false;
 				}
 				else {
@@ -222,7 +235,7 @@ var FoxtrickSkillTable = {
 
 			// get last match
 			var latestMatch=-1;
-			if (!oldies && !NT_players && !coach) {
+			if (this.subtype === "own" || this.subtype === "others") {
 				for(var i = 0; i < allDivs.length; i++) {
 					if(allDivs[i].className=="playerInfo") {
 						var as=allDivs[i].getElementsByTagName("a");
@@ -256,7 +269,7 @@ var FoxtrickSkillTable = {
 							var data = new Array();
 							var thisPlayerID = playerlist[j].getElementsByTagName("PlayerID")[0].textContent;
 							if (thisPlayerID==playerid) {
-								if (NT_players) {
+								if (this.subtype === "nt") {
 								var NrOfMatches = playerlist[j].getElementsByTagName("NrOfMatches")[0].textContent;
 								}
 								else {
@@ -310,7 +323,7 @@ var FoxtrickSkillTable = {
 					tbody.appendChild(tr);
 
 					// PlayerCategory
-					if (this.isOwnTeam && sn[k].enabled) {
+					if (this.subtype === "own" && sn[k].enabled) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = PlayerCategory;
@@ -378,7 +391,9 @@ var FoxtrickSkillTable = {
 						td.setAttribute("style","text-align:right !important;");
 						if (!TSI) {
 						var tsitot_in = allDivs[i].getElementsByTagName("p")[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf("<br>"));
-						if (oldies || NT_players) tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf("<br>"));
+						if (this.subtype === "oldiesCoach" || this.subtype === "nt") {
+							tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf("<br>"));
+						}
 						if (tsitot_in.search(/^\s*TSI/) != -1)
 							tsitot_in = tsitot_in.replace(/,.+/,""); // In the language Vlaams, TSI and age are switched. This is a fix for that
 						var lastindex = tsitot_in.lastIndexOf(" ");
@@ -427,8 +442,10 @@ var FoxtrickSkillTable = {
 					if (sn[k].enabled) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
-						if (NT_players) var val = allDivs[i].getElementsByTagName("a")[4+link_off].href.match(/ll=(\d+)/)[1];
-						else var val = Leadership;
+						var val = Leadership;
+						if (this.subtype === "nt") {
+							val = allDivs[i].getElementsByTagName("a")[4+link_off].href.match(/ll=(\d+)/)[1];
+						}
 						td.appendChild(doc.createTextNode(val));
 						tr.appendChild(td);
 					}
@@ -439,8 +456,9 @@ var FoxtrickSkillTable = {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = Experience;
-						if (NT_players) var val = allDivs[i].getElementsByTagName("a")[3+link_off].href.match(/ll=(\d+)/)[1];
-						else var val = Experience;
+						if (this.subtype === "nt") {
+							val = allDivs[i].getElementsByTagName("a")[3+link_off].href.match(/ll=(\d+)/)[1];
+						}
 						td.appendChild(doc.createTextNode(val));
 						tr.appendChild(td);
 					}
@@ -471,7 +489,7 @@ var FoxtrickSkillTable = {
 					var start=0,end=7,inc=1;
 					if (!hasbars) {start=2,end=16;inc=2;}
 					for(var j = start; j < end; j+=inc) {
-						if (this.isOwnTeam && sn[k].enabled) {
+						if (this.subtype === "own" && sn[k].enabled) {
 							var td = doc.createElement("td");
 							td.setAttribute("style","text-align:right !important;");
 							tr.appendChild(td);
@@ -642,7 +660,7 @@ var FoxtrickSkillTable = {
 					// #matches ntplayers only
 					if (sn[k].enabled) {
 						var td = doc.createElement("td");
-						var val = NrOfMatches;
+						var val = NrOfMatches ? NrOfMatches : 0;
 						td.appendChild(doc.createTextNode(val));
 						tr.appendChild(td);
 					}
@@ -676,8 +694,6 @@ var FoxtrickSkillTable = {
 			if (FoxtrickPrefs.getBool("module.SkillTable.top")) {
 				Foxtrick.addClass(container, "on_top");
 			}
-
-			FoxtrickSkillTable.sortClick(null,doc,0,"index");
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -691,26 +707,29 @@ var FoxtrickSkillTable = {
 			// abbr: whether to use an abbreviation
 			// pref: preference name of disabling this column
 			var sn = [
-				{ name: "Player", sort: "link" },
-				{ name: "Age", sort: "age" },
-				{ name: "Keeper", sort: "text" },
-				{ name: "Defending", sort: "text" },
-				{ name: "Playmaking", sort: "text" },
-				{ name: "Winger", sort: "text" },
-				{ name: "Passing", sort: "text" },
-				{ name: "Scoring", sort: "text" },
-				{ name: "Set_pieces", sort: "text" },
-				{ name: "Yellow_card", sort: "text", img: "/Img/Icons/yellow_card.gif" },
-				{ name: "Red_card", sort: "text", img: "/Img/Icons/red_card.gif" },
-				{ name: "Bruised", sort: "text", img: "/Img/Icons/bruised.gif" },
-				{ name: "Injured", sort: "text", img: "/Img/Icons/injured.gif" },
-				{ name: "Speciality", sort: "text", pref: "HideSpecialty" },
-				{ name: "Last_stars", sort: "text", pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
-				{ name: "Last_position", sort: "text", pref: "HideLastPosition" }
+				{ name: "Player", sort: "link", own: true, others: true },
+				{ name: "Age", sort: "age", own: true, others: true },
+				{ name: "Keeper", sort: "text", own: true },
+				{ name: "Defending", sort: "text", own: true },
+				{ name: "Playmaking", sort: "text", own: true },
+				{ name: "Winger", sort: "text", own: true },
+				{ name: "Passing", sort: "text", own: true },
+				{ name: "Scoring", sort: "text", own: true },
+				{ name: "Set_pieces", sort: "text", own: true },
+				{ name: "Yellow_card", sort: "text", own: true, others: true, img: "/Img/Icons/yellow_card.gif" },
+				{ name: "Red_card", sort: "text", own: true, others: true, img: "/Img/Icons/red_card.gif" },
+				{ name: "Bruised", sort: "text", own: true, others: true, img: "/Img/Icons/bruised.gif" },
+				{ name: "Injured", sort: "text", own: true, others: true, img: "/Img/Icons/injured.gif" },
+				{ name: "Speciality", sort: "text", own: true, others: true, pref: "HideSpecialty" },
+				{ name: "Last_stars", sort: "text", own: true, others: true, pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
+				{ name: "Last_position", sort: "text", own: true, others: true, pref: "HideLastPosition" }
 			];
 
 			for (var j = 0; j < sn.length; ++j) {
-				if (!this.isOwnTeam && j>=2 && j<=8) {
+				if (this.subtype === "own" && !sn[j].own) {
+					sn[j].available = false;
+				}
+				else if (this.subtype === "others" && !sn[j].others) {
 					sn[j].available = false;
 				}
 				else {
@@ -730,7 +749,7 @@ var FoxtrickSkillTable = {
 			table.appendChild(thead);
 			var s_index = 0;
 			for (var j = 0; j < sn.length; ++j) {
-				if (!this.isOwnTeam && j>=2 && j<=8)
+				if (!this.subtype === "own" && j>=2 && j<=8)
 					continue;
 				if (sn[j].enabled) {
 					var th = doc.createElement("th");
@@ -822,7 +841,7 @@ var FoxtrickSkillTable = {
 						}
 
 					// skills
-					if (this.isOwnTeam) {
+					if (this.subtype === "own") {
 						for(var j = 0; j < 7; j++) {
 							if (sn[j+2].enabled) {
 								var td = doc.createElement("td");
@@ -1277,11 +1296,11 @@ var FoxtrickSkillTable = {
 	},
 
 	getColumnEnabled : function(name) {
-		return FoxtrickPrefs.getBool("module.SkillTable." + this.type + "." + this.kind + "." + name);
+		return FoxtrickPrefs.getBool("module.SkillTable." + this.type + "." + this.subtype + "." + name);
 	},
 
 	setColumnEnabled : function(name, enabled) {
-		FoxtrickPrefs.setBool("module.SkillTable." + this.type + "." + this.kind + "." + name, enabled);
+		FoxtrickPrefs.setBool("module.SkillTable." + this.type + "." + this.subtype + "." + name, enabled);
 	},
 
 	copyTable : function(ev) {
