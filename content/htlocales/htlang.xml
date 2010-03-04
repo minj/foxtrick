@@ -48,12 +48,12 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Keeper" short="GK" />
+		<position type="Central defender" value="Central defender" short="CD" />
+		<position type="Wing back" value="Wing back" short="WB" />
+		<position type="Inner midfielder" value="Inner midfielder" short="IM" />
+		<position type="Winger" value="Winger" short="WI" />
+		<position type="Forward" value="Forward" short="FW" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
