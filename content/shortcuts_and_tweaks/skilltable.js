@@ -931,30 +931,34 @@ var FoxtrickSkillTable = {
 					// stars
 					if (sn[k++].enabled) {
 						var td = doc.createElement("td");
-						var imgs=a.parentNode.parentNode.getElementsByTagName("img");
-						var starcount=0;
-						for (var sc=0;sc<imgs.length;++sc) {
-							if (imgs[sc].className=="starBig") starcount+=5;
-							else if (imgs[sc].className=="starWhole") starcount+=1;
-							else if (imgs[sc].className=="starHalf") starcount+=0.5;
+						if (a) {
+							var imgs=a.parentNode.parentNode.getElementsByTagName("img");
+							var starcount=0;
+							for (var sc=0;sc<imgs.length;++sc) {
+								if (imgs[sc].className=="starBig") starcount+=5;
+								else if (imgs[sc].className=="starWhole") starcount+=1;
+								else if (imgs[sc].className=="starHalf") starcount+=0.5;
+							}
+							td.appendChild(doc.createTextNode(starcount));
 						}
-						td.appendChild(doc.createTextNode(starcount));
 						tr.appendChild(td);
 					}
 					// last position
 					if (sn[k++].enabled) {
 						var td = doc.createElement("td");
-						var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
-						var shortpos = FoxtrickSkillTable._getShortPos(pos);
-						if (shortpos) {
-							pos = shortpos;
+						if (a) {
+							var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
+							var shortpos = FoxtrickSkillTable._getShortPos(pos);
+							if (shortpos) {
+								pos = shortpos;
+							}
+							else {
+								var sp_pos = pos.search(/ |\&nbsp;/);
+								if (sp_pos == -1) pos=pos.substr(0,2)
+								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
+							}
+							td.appendChild(doc.createTextNode(pos));
 						}
-						else {
-							var sp_pos = pos.search(/ |\&nbsp;/);
-							if (sp_pos == -1) pos=pos.substr(0,2)
-							else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
-						}
-						td.appendChild(doc.createTextNode(pos));
 						tr.appendChild(td);
 					}
 				}
