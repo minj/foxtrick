@@ -110,6 +110,7 @@ var FoxtrickSkillTable = {
 					{ name: "Bruised", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/bruised.gif" },
 					{ name: "Injured", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/injured.gif" },
 					{ name: "Speciality", sort: "text", own: true, others: true, nt: true, oldiesCoach: true },
+					{ name: "Last_match", sort: "date", own: true, others: true },
 					{ name: "Last_stars", sort: "text", own: true, others: true, img: "/Img/Matches/star_blue.png" },
 					{ name: "Last_position", sort: "text", own: true, others: true },
 					{ name: "Salary", sort: "int", own: true, others: true },
@@ -146,6 +147,7 @@ var FoxtrickSkillTable = {
 					{ name: "Bruised", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/bruised.gif" },
 					{ name: "Injured", sort: "text", own: true, others: true, nt: true, oldiesCoach: true, img: "/Img/Icons/injured.gif" },
 					{ name: "Speciality", sort: "text", own: true, others: true, nt: true, oldiesCoach: true },
+					{ name: "Last_match", sort: "date", own: true, others: true },
 					{ name: "Last_stars", sort: "text", own: true, others: true, img: "/Img/Matches/star_blue.png" },
 					{ name: "Last_position", sort: "text", own: true, others: true },
 					{ name: "Salary", sort: "int", own: true, others: true },
@@ -232,21 +234,6 @@ var FoxtrickSkillTable = {
 
 			var tbody = doc.createElement("tbody");
 			table.appendChild(tbody);
-
-			// get last match
-			var latestMatch=-1;
-			if (this.subtype === "own" || this.subtype === "others") {
-				for(var i = 0; i < allDivs.length; i++) {
-					if(allDivs[i].className=="playerInfo") {
-						var as=allDivs[i].getElementsByTagName("a");
-						var j=0,a=null;
-						while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
-						var matchday=0;
-						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
-						if (matchday>latestMatch) latestMatch = matchday;
-					}
-				}
-			}
 
 			var count =0;
 			for(var i = 0; i < allDivs.length; i++) {
@@ -589,27 +576,31 @@ var FoxtrickSkillTable = {
 					}
 					k++;
 
-					// get played last match
+					// last match
 					var as=allDivs[i].getElementsByTagName("a");
 					var kk=0,a=null;
 					while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
-					var matchday=0;
-					if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+					if (sn[k].enabled) {
+						var td = doc.createElement("td");
+						if (a) {
+							td.appendChild(a.cloneNode(true));
+						}
+						tr.appendChild(td);
+					}
+					k++;
 
 					// stars
 					if (sn[k].enabled) {
 						var td = doc.createElement("td");
 						if (a) {
-							if (matchday==latestMatch) {
-								var imgs=a.parentNode.parentNode.getElementsByTagName("img");
-								var starcount=0;
-								for (var sc=0;sc<imgs.length;++sc) {
-									if (imgs[sc].className=="starBig") starcount+=5;
-									else if (imgs[sc].className=="starWhole") starcount+=1;
-									else if (imgs[sc].className=="starHalf") starcount+=0.5;
-								}
-								td.appendChild(doc.createTextNode(starcount));
+							var imgs=a.parentNode.parentNode.getElementsByTagName("img");
+							var starcount=0;
+							for (var sc=0;sc<imgs.length;++sc) {
+								if (imgs[sc].className=="starBig") starcount+=5;
+								else if (imgs[sc].className=="starWhole") starcount+=1;
+								else if (imgs[sc].className=="starHalf") starcount+=0.5;
 							}
+							td.appendChild(doc.createTextNode(starcount));
 						}
 						tr.appendChild(td);
 					}
@@ -619,19 +610,17 @@ var FoxtrickSkillTable = {
 					if (sn[k].enabled) {
 						var td = doc.createElement("td");
 						if (a) {
-							if (matchday == latestMatch) {
-								var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
-								var shortpos = FoxtrickSkillTable._getShortPos(pos);
-								if (shortpos) {
-									pos = shortpos;
-								}
-								else {
-									var sp_pos = pos.search(/ |\&nbsp;/);
-									if (sp_pos == -1) pos=pos.substr(0,2)
-									else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
-								}
-								td.appendChild(doc.createTextNode(pos));
+							var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
+							var shortpos = FoxtrickSkillTable._getShortPos(pos);
+							if (shortpos) {
+								pos = shortpos;
 							}
+							else {
+								var sp_pos = pos.search(/ |\&nbsp;/);
+								if (sp_pos == -1) pos=pos.substr(0,2)
+								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
+							}
+							td.appendChild(doc.createTextNode(pos));
 						}
 						tr.appendChild(td);
 					}
@@ -721,6 +710,7 @@ var FoxtrickSkillTable = {
 				{ name: "Bruised", sort: "text", own: true, others: true, img: "/Img/Icons/bruised.gif" },
 				{ name: "Injured", sort: "text", own: true, others: true, img: "/Img/Icons/injured.gif" },
 				{ name: "Speciality", sort: "text", own: true, others: true, pref: "HideSpecialty" },
+				{ name: "Last_match", sort: "date", own: true, others: true },
 				{ name: "Last_stars", sort: "text", own: true, others: true, pref: "HideLastStars", img: "/Img/Matches/star_blue.png" },
 				{ name: "Last_position", sort: "text", own: true, others: true, pref: "HideLastPosition" }
 			];
@@ -799,18 +789,6 @@ var FoxtrickSkillTable = {
 			table.appendChild(tbody);
 
 			var allDivs = doc.getElementsByTagName("div");
-			// get last match
-			var latestMatch=-1;
-			for(var i = 0; i < allDivs.length; i++) {
-				if(allDivs[i].className=="playerInfo") {
-					var as=allDivs[i].getElementsByTagName("a");
-					var j=0,a=null;
-					while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
-					var matchday=0;
-					if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
-					if (matchday>latestMatch) latestMatch = matchday;
-				}
-			}
 
 			var count =0;
 			for(var i = 0; i < allDivs.length; i++) {
@@ -938,44 +916,45 @@ var FoxtrickSkillTable = {
 						tr.appendChild(td);
 					}
 
-					// get played last match
+					// last match
 					var as=allDivs[i].getElementsByTagName("a");
 					var kk=0,a=null;
 					while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
-					var matchday=0;
-					if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+					if (sn[k++].enabled) {
+						var td = doc.createElement("td");
+						if (a) {
+							td.appendChild(a.cloneNode(true));
+						}
+						tr.appendChild(td);
+					}
 
 					// stars
 					if (sn[k++].enabled) {
 						var td = doc.createElement("td");
-						if (matchday==latestMatch) {
-							var imgs=a.parentNode.parentNode.getElementsByTagName("img");
-							var starcount=0;
-							for (var sc=0;sc<imgs.length;++sc) {
-								if (imgs[sc].className=="starBig") starcount+=5;
-								else if (imgs[sc].className=="starWhole") starcount+=1;
-								else if (imgs[sc].className=="starHalf") starcount+=0.5;
-							}
-							td.appendChild(doc.createTextNode(starcount));
+						var imgs=a.parentNode.parentNode.getElementsByTagName("img");
+						var starcount=0;
+						for (var sc=0;sc<imgs.length;++sc) {
+							if (imgs[sc].className=="starBig") starcount+=5;
+							else if (imgs[sc].className=="starWhole") starcount+=1;
+							else if (imgs[sc].className=="starHalf") starcount+=0.5;
 						}
+						td.appendChild(doc.createTextNode(starcount));
 						tr.appendChild(td);
 					}
 					// last position
 					if (sn[k++].enabled) {
 						var td = doc.createElement("td");
-						if (matchday == latestMatch) {
-							var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
-							var shortpos = FoxtrickSkillTable._getShortPos(pos);
-							if (shortpos) {
-								pos = shortpos;
-							}
-							else {
-								var sp_pos = pos.search(/ |\&nbsp;/);
-								if (sp_pos == -1) pos=pos.substr(0,2)
-								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
-							}
-							td.appendChild(doc.createTextNode(pos));
+						var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
+						var shortpos = FoxtrickSkillTable._getShortPos(pos);
+						if (shortpos) {
+							pos = shortpos;
 						}
+						else {
+							var sp_pos = pos.search(/ |\&nbsp;/);
+							if (sp_pos == -1) pos=pos.substr(0,2)
+							else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
+						}
+						td.appendChild(doc.createTextNode(pos));
 						tr.appendChild(td);
 					}
 				}
@@ -1009,6 +988,9 @@ var FoxtrickSkillTable = {
 		},
 		"text" : function(a, b) {
 			return (b.cells[FoxtrickSkillTable.sortIndex].innerHTML.localeCompare(a.cells[FoxtrickSkillTable.sortIndex].innerHTML));
+		},
+		"date" : function(a, b) {
+			return Foxtrick.getUniqueDayfromCellHTML(a.cells[FoxtrickSkillTable.sortIndex].firstChild.innerHTML) < Foxtrick.getUniqueDayfromCellHTML(b.cells[FoxtrickSkillTable.sortIndex].firstChild.innerHTML);
 		}
 	},
 
