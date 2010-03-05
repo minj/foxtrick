@@ -584,6 +584,10 @@ var FoxtrickSkillTable = {
 						var td = doc.createElement("td");
 						if (a) {
 							td.appendChild(a.cloneNode(true));
+							td.setAttribute("date", Foxtrick.getUniqueDayfromCellHTML(a.innerHTML));
+						}
+						else {
+							td.setAttribute("date", 0);
 						}
 						tr.appendChild(td);
 					}
@@ -924,6 +928,10 @@ var FoxtrickSkillTable = {
 						var td = doc.createElement("td");
 						if (a) {
 							td.appendChild(a.cloneNode(true));
+							td.setAttribute("date", Foxtrick.getUniqueDayfromCellHTML(a.innerHTML));
+						}
+						else {
+							td.setAttribute("date", 0);
 						}
 						tr.appendChild(td);
 					}
@@ -994,7 +1002,7 @@ var FoxtrickSkillTable = {
 			return (b.cells[FoxtrickSkillTable.sortIndex].innerHTML.localeCompare(a.cells[FoxtrickSkillTable.sortIndex].innerHTML));
 		},
 		"date" : function(a, b) {
-			return Foxtrick.getUniqueDayfromCellHTML(a.cells[FoxtrickSkillTable.sortIndex].firstChild.innerHTML) < Foxtrick.getUniqueDayfromCellHTML(b.cells[FoxtrickSkillTable.sortIndex].firstChild.innerHTML);
+			return a.cells[FoxtrickSkillTable.sortIndex].getAttribute("date") < b.cells[FoxtrickSkillTable.sortIndex].getAttribute("date");
 		}
 	},
 
