@@ -140,6 +140,29 @@ var FoxtrickAlert = {
 					}	
                     if (!isequal) {
 						FoxtrickAlert.ALERTS.push({'message':message,'href':href});	Foxtrick.dump('->add ticker alert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');			
+						
+						if (Foxtrick.BuildFor=='Chrome') {
+							if (FoxtrickPrefs.getBool("alertSound")) {
+								try {
+									var play_custom = false;
+									if (Foxtrick.isModuleEnabled(FoxtrickAlertCustomSounds)) {
+										for (var i=0; i<FoxtrickAlertCustomSounds.OPTIONS.length; ++i) {
+											if (Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomSounds, FoxtrickAlertCustomSounds.OPTIONS[i])) {
+												var url = FoxtrickAlertCustomSounds.urls[i];
+												if (href.search(url) != -1) {
+													var sound = FoxtrickPrefs.getString("module." + FoxtrickAlertCustomSounds.MODULE_NAME + "." + FoxtrickAlertCustomSounds.OPTIONS[i]+"_text"); 
+													if (!sound) sound = FoxtrickAlertCustomSounds.OPTION_TEXTS_DEFAULT_VALUES[i];
+													Foxtrick.playSound(sound);
+													play_custom=true;
+													break;
+												}
+											}
+										}
+									}
+									if (!play_custom) Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));				
+								} catch (e) { Foxtrick.dump('playsound: '+e);}
+							}
+						}		
 					}
                 } else {
 					elemText[i]=tickelem.nodeValue;
