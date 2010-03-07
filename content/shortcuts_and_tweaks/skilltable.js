@@ -1044,10 +1044,12 @@ var FoxtrickSkillTable = {
 		finally {
 			if (ev) ev.stopPropagation();
 		}
+		Foxtrick.dump_flush(doc);
 	},
 
 	toggleDisplay : function(doc) {
 		try {
+			Foxtrick.dump('SkillTable: toggleDisplay\n');
 			var tablediv = doc.getElementById("ft_skilltablediv");
 			var h2 = tablediv.getElementsByTagName("h2")[0];
 			Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
@@ -1083,6 +1085,7 @@ var FoxtrickSkillTable = {
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
+		Foxtrick.dump_flush(doc);
 	},
 
 	headerClick : function(ev) {

@@ -1966,7 +1966,7 @@ Foxtrick.var_dump = function(arr,level) {
 
 Foxtrick.dump_HTML = '';
 Foxtrick.dump_flush = function(doc) {
-    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '')
+    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '') {
         try{
             var div = doc.getElementById('ft_dump');
             if (div == null) {
@@ -1976,9 +1976,13 @@ Foxtrick.dump_flush = function(doc) {
                 div.id = 'ft_dump';
                 doc.getElementById('page').appendChild(div);
             }
+			else { div.getElementsByTagName('pre')[0].innerHTML += Foxtrick.dump_HTML;
+			}
             Foxtrick.dump_HTML = '';
         } catch(e) {dump('dump_flush '+e+'\n');}
+	}
 }
+
 Foxtrick.dump = function(cnt) {
 	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
     dump('ft: '+String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
@@ -1992,7 +1996,7 @@ Foxtrick.dumpError = function(error) {
 // find first occurence of host and open+focus there
 Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 try{
-  var host = url.match(/(http:\/\/[a-zA-Z0-9_.]+)/)[1];
+  var host = url.match(/(http:\/\/[a-zA-Z0-9_.-]+)/)[1];
   
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                      .getService(Components.interfaces.nsIWindowMediator);
@@ -2007,10 +2011,10 @@ try{
     // Check each tab of this browser instance
     var numTabs = tabbrowser.browsers.length;
     for(var index=0; index<numTabs; index++) {
-      var currentBrowser = tabbrowser.getBrowserAtIndex(index); 
+      var currentBrowser = tabbrowser.getBrowserAtIndex(index);
+	  Foxtrick.dump('tab: '+currentBrowser.currentURI.spec+' is hty-url: '+host+' = '+(currentBrowser.currentURI.spec.search(host)!=-1)+'\n');
       if (currentBrowser.currentURI.spec.search(host)!=-1) 
 		{
-
         // The URL is already opened. Select this tab.
         tabbrowser.selectedTab = tabbrowser.mTabs[index];
 
@@ -2039,4 +2043,5 @@ try{
     }
   }
 }catch(e){Foxtrick.dump('openAndReuseOneTabPerURL '+e+'\n');}
+Foxtrick.dump_flush(doc);
 }

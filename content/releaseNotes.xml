@@ -7,6 +7,7 @@
 <title>Release notes (selected features and issues only)</title>
 <lines></lines>
 <lines>* New language Tiếng Việt -  Thanks to Murtagsh (9372637)!</lines>
+<lines>* New language Malti -  Thanks to LA-saviour26 (4149232)!</lines>
 <lines>* Enhanced adultskilltable, youthskilltable and teamstats</lines>
 <lines>* New module RapidId, a convenient way to view by ID</lines>
 <lines>* New option that highlights teams which have set/changed their line-up within last week (LeagueNewsFilter module)</lines>
@@ -22,6 +23,7 @@
 <lines>Attention!</lines> 
 <lines>* GotoPostBox module hides Hattrick's new (and useless) 'Mark unread from ..'</lines>
 <lines>* Transferfilter fix: old max bid values unfortunately might be lost</lines>
+<lines>* Adultskilltable and youthskilltable merged to new skilltable module. </lines>
 <lines>* Player faces modules merged. Your settings of those have been lost </lines>
 <lines>* Module FixCss split in three new modules. Settings for those are back to default.</lines>
 <lines>* SkinModule moved to presentation tab. Old skins need to get reloaded</lines>
