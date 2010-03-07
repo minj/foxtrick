@@ -3,32 +3,31 @@
 <release_note>
 
 
-<version>0.5.1</version>
+<version>0.5.1.1</version>
 <title>Release notes (selected features and issues only)</title>
 <lines></lines>
 <lines>* New language Tiếng Việt -  Thanks to Murtagsh (9372637)!</lines>
 <lines>* Enhanced adultskilltable, youthskilltable and teamstats</lines>
 <lines>* New module RapidId, a convenient way to view by ID</lines>
-<lines>* Transferfilter fix: old max bid values unfornatelly might be lost</lines>
-<lines>* New option that highlights teams which have set/changed their lineup within last week (LeagueNewsFilter module)</lines>
+<lines>* New option that highlights teams which have set/changed their line-up within last week (LeagueNewsFilter module)</lines>
 <lines>* New StaffMarker module option for team pages</lines>
 <lines>* New option to hide notification box about unread messages within the Forum thread (FixcssProblems module)</lines>
 <lines>* Option to open automatically hattrick-youthclub page after copying youth player source code, scout оr training report</lines> 
 <lines>* Automatic country and currency detection in Main Options (default on)</lines> 
 <lines>* Option to add 'Mark as unread from' under each posting (Forum -> MarkUnread module)</lines> 
 <lines>* Option to use icons in stead of text links in posting footer (ForumPresentation -> DisplayIcons)</lines> 
+<lines>* Mandatory warning when posting on stage forums beautified </lines>
 
 <lines></lines> 
 <lines>Attention!</lines> 
 <lines>* GotoPostBox module hides Hattrick's new (and useless) 'Mark unread from ..'</lines>
-<lines>* Transferfilter fix: old max bid values unfornatelly might be lost</lines>
+<lines>* Transferfilter fix: old max bid values unfortunately might be lost</lines>
 <lines>* Player faces modules merged. Your settings of those have been lost </lines>
 <lines>* Module FixCss split in three new modules. Settings for those are back to default.</lines>
-<lines>* SkinModule moved to presention tab. Old skins need to get reloaded</lines>
+<lines>* SkinModule moved to presentation tab. Old skins need to get reloaded</lines>
 <lines>* dbus alert option removed for AMO compliance.</lines>
-<lines>* ForumAlltidFlags removed. Use HTs flags (Hts forum preferences) instead </lines>
-<lines>* ForumStripLinks removed. Obsolte after ht url doesn't incluse server anymore </lines>
-<lines>* Mandatory warning when posting on stage forums with FoxTrick enabled added </lines>
+<lines>* ForumAlltidFlags removed. Use HT's flags (HT's forum preferences) instead </lines>
+<lines>* ForumStripLinks removed. Obsolete after HT-url doesn't include server anymore </lines>
 
 <lines></lines> 
 <lines>For a complete list use bellow changes link and/or 'set new features' link</lines> 

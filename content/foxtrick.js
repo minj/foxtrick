@@ -66,7 +66,6 @@ var FoxtrickMain = {
 		Foxtrick.dump(curVersion+' > '+ oldVersion+': '+(curVersion>oldVersion)+'\n');
 		if (oldVersion<curVersion ) {
 			FoxtrickMain.IsNewVersion=true;
-			FoxtrickPrefs.setString("oldVersion",curVersion);
 		}
 
 		

@@ -244,7 +244,10 @@ var FoxtrickMyHT = {
     run : function(page, doc ) {  
 		try{						
 			if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
-			{ // show foxtrickMyHT
+			{ 
+				var curVersion = FoxtrickPrefs.getString("curVersion");
+				FoxtrickPrefs.setString("oldVersion",curVersion);
+				// show foxtrickMyHT
 				this.ShowAlert(doc);
 			}
 		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
