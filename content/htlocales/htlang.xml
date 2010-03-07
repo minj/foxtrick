@@ -2896,16 +2896,16 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="no" desc="Norsk">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
+	<MyHattrick value='Mitt Hattrick' />
+	<MyClub value='Min klubb' />
+	<World value='Verden' />
 	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<Shop value='Butikk' />
+	<Help value='Hjelp' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -2928,22 +2928,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Målvakt" short="Ke" />
+		<position type="Central defender" value="Midtstopper" short="Cd" />
+		<position type="Wing back" value="Back" short="Wb" />
+		<position type="Inner midfielder" value="Midtbanespiller" short="Im" />
+		<position type="Winger" value="Ving" short="Wi" />
+		<position type="Forward" value="Spiss" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Uforutsigbar" short="Un" />
+		<specialty type="Powerful" value="Kraftfull" short="Po" />
+		<specialty type="Quick" value="Rask" short="Qu" />
+		<specialty type="Technical" value="Teknisk" short="Te" />
+		<specialty type="Head" value="Hodespesialist" short="He" />
+		<specialty type="Regainer" value="Friskus" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -2960,42 +2960,42 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="guddommelig" value="20" />
+		<level text="utopisk" value="19" />
+		<level text="magisk" value="18" />
+		<level text="mytisk" value="17" />
+		<level text="utenomjordisk" value="16" />
+		<level text="titanisk" value="15" />
+		<level text="eventyrlig" value="14" />
+		<level text="fantastisk" value="13" />
+		<level text="storslagen" value="12" />
+		<level text="briljant" value="11" />
+		<level text="fremragende" value="10" />
+		<level text="eminent" value="9" />
+		<level text="utmerket" value="8" />
+		<level text="god" value="7" />
+		<level text="akseptabel" value="6" />
+		<level text="middelmådig" value="5" />
+		<level text="svak" value="4" />
+		<level text="dårlig" value="3" />
+		<level text="elendig" value="2" />
+		<level text="katastrofal" value="1" />
+		<level text="fraværende" value="0" />
 	</levels>
 </language>
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="pl" desc="Polski">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
+	<MyHattrick value='Mój Hattrick' />
+	<MyClub value='Mój Klub' />
+	<World value='Świat' />
 	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<Shop value='Sklep' />
+	<Help value='Pomoc' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -3018,22 +3018,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="bramkarz" short="Ke" />
+		<position type="Central defender" value="środkowy obrońca" short="Cd" />
+		<position type="Wing back" value="boczny obrońca" short="Wb" />
+		<position type="Inner midfielder" value="środkowy pomocnik" short="Im" />
+		<position type="Winger" value="skrzydłowy" short="Wi" />
+		<position type="Forward" value="napastnik" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="nieprzewidywalny" short="Un" />
+		<specialty type="Powerful" value="atletyczny" short="Po" />
+		<specialty type="Quick" value="szybki" short="Qu" />
+		<specialty type="Technical" value="techniczny" short="Te" />
+		<specialty type="Head" value="gra głową" short="He" />
+		<specialty type="Regainer" value="witalny" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -3050,42 +3050,42 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="boski" value="20" />
+		<level text="utopijny" value="19" />
+		<level text="magiczny" value="18" />
+		<level text="mityczny" value="17" />
+		<level text="nieziemski" value="16" />
+		<level text="tytaniczny" value="15" />
+		<level text="nadprzyrodzony" value="14" />
+		<level text="światowej klasy" value="13" />
+		<level text="mistrzowski" value="12" />
+		<level text="błyskotliwy" value="11" />
+		<level text="olśniewający" value="10" />
+		<level text="fantastyczny" value="9" />
+		<level text="znakomity" value="8" />
+		<level text="solidny" value="7" />
+		<level text="zadowalający" value="6" />
+		<level text="przeciętny" value="5" />
+		<level text="słaby" value="4" />
+		<level text="kiepski" value="3" />
+		<level text="nędzny" value="2" />
+		<level text="fatalny" value="1" />
+		<level text="beznadziejny" value="0" />
 	</levels>
 </language>
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="pt" desc="Português">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<MyHattrick value='Menu Hattrick' />
+	<MyClub value='O Meu Clube' />
+	<World value='Mundo' />
+	<Forum value='Fórum' />
+	<Shop value='Loja' />
+	<Help value='Ajuda' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -3108,22 +3108,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Guarda-Redes" short="Ke" />
+		<position type="Central defender" value="Defesa Central" short="Cd" />
+		<position type="Wing back" value="Defesa Lateral" short="Wb" />
+		<position type="Inner midfielder" value="Médio Centro" short="Im" />
+		<position type="Winger" value="Ala" short="Wi" />
+		<position type="Forward" value="Avançado" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Imprevisível" short="Un" />
+		<specialty type="Powerful" value="Força" short="Po" />
+		<specialty type="Quick" value="Velocidade" short="Qu" />
+		<specialty type="Technical" value="Técnica" short="Te" />
+		<specialty type="Head" value="Jogo aéreo" short="He" />
+		<specialty type="Regainer" value="Reabilitação" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -3140,33 +3140,33 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="lendário" value="20" />
+		<level text="utópico" value="19" />
+		<level text="mágico" value="18" />
+		<level text="mítico" value="17" />
+		<level text="colossal" value="16" />
+		<level text="titânico" value="15" />
+		<level text="soberbo" value="14" />
+		<level text="genial" value="13" />
+		<level text="magnífico" value="12" />
+		<level text="brilhante" value="11" />
+		<level text="fenomenal" value="10" />
+		<level text="formidável" value="9" />
+		<level text="excelente" value="8" />
+		<level text="bom" value="7" />
+		<level text="razoável" value="6" />
+		<level text="inadequado" value="5" />
+		<level text="fraco" value="4" />
+		<level text="mau" value="3" />
+		<level text="terrível" value="2" />
+		<level text="desastroso" value="1" />
+		<level text="inexistente" value="0" />
 	</levels>
 </language>
 	
 	<!-- Marco Antonio Rocha (ma.rocha@gmail.com) -->
 	
-<!-- needs update -->
+<!-- up to date -->
 <language name="pt_BR" desc="Português Brasil">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
@@ -3198,22 +3198,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Goleiro" short="Ke" />
+		<position type="Central defender" value="Zagueiro" short="Cd" />
+		<position type="Wing back" value="Lateral" short="Wb" />
+		<position type="Inner midfielder" value="Meio-campo" short="Im" />
+		<position type="Winger" value="Ala" short="Wi" />
+		<position type="Forward" value="Atacante" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Imprevisibilidade" short="Un" />
+		<specialty type="Powerful" value="Força" short="Po" />
+		<specialty type="Quick" value="Velocidade" short="Qu" />
+		<specialty type="Technical" value="Técnica" short="Te" />
+		<specialty type="Head" value="Cabeceio" short="He" />
+		<specialty type="Regainer" value="Cura Rápida" short="Re" />
 	</specialties>
 	
 	<!-- Reposionamentos que aparecem na página de escalação -->
@@ -3256,16 +3256,16 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="ro" desc="Română">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
+	<MyHattrick value='Hattrickul meu' />
+	<MyClub value='Clubul meu' />
+	<World value='Internaţional' />
 	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<Shop value='Magazin' />
+	<Help value='Ajutor' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -3288,22 +3288,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Portar" short="Ke" />
+		<position type="Central defender" value="Fundaş Central" short="Cd" />
+		<position type="Wing back" value="Fundaş Lateral" short="Wb" />
+		<position type="Inner midfielder" value="Mijlocaş Central" short="Im" />
+		<position type="Winger" value="Extremă" short="Wi" />
+		<position type="Forward" value="Atacant" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Imprevizibil" short="Un" />
+		<specialty type="Powerful" value="Puternic" short="Po" />
+		<specialty type="Quick" value="Rapid" short="Qu" />
+		<specialty type="Technical" value="Tehnic" short="Te" />
+		<specialty type="Head" value="Cap" short="He" />
+		<specialty type="Regainer" value="Recuperare" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -3320,27 +3320,27 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
+		<level text="divin" value="20" />
+		<level text="utopic" value="19" />
+		<level text="magic" value="18" />
+		<level text="mitic" value="17" />
+		<level text="extraterestru" value="16" />
 		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="supranatural" value="14" />
+		<level text="legendar" value="13" />
+		<level text="magnific" value="12" />
+		<level text="sclipitor" value="11" />
+		<level text="impresionant" value="10" />
+		<level text="formidabil" value="9" />
+		<level text="excelent" value="8" />
+		<level text="bun" value="7" />
+		<level text="acceptabil" value="6" />
+		<level text="inadecvat" value="5" />
+		<level text="slab" value="4" />
+		<level text="jalnic" value="3" />
+		<level text="mizerabil" value="2" />
+		<level text="dezastruos" value="1" />
+		<level text="inexistent" value="0" />
 	</levels>
 </language>
 
