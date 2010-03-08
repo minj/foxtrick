@@ -11,9 +11,9 @@ var FoxtrickSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.0.5",
-	LATEST_CHANGE : "Merged youth and senior tables. Better layout and fixed copying. More customize options.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION : "0.5.1.1",
+	LATEST_CHANGE : "Fixed error when expanding table on old tabs.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OtherTeams"),
 
 	_categories: new Array("", "GK", "WB", "CD", "W", "IM", "FW", "S", "R", "E1", "E2"),
