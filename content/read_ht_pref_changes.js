@@ -183,7 +183,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 			if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1 || newstart) {
 				Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
 				var CurrencyName = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
-				var CurrencyRate =  parseInt(FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyRate)/10;
+				var CurrencyRate =  FoxtrickHelper.getCurrencyRateFromId(LeagueId);
 				Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
 			
 				FoxtrickPrefs.setString("htCountry", CountryName);

@@ -312,5 +312,11 @@ var FoxtrickHelper = {
 		if (data==null) Foxtrick.dump('getLeagueDataFromId error. id: '+id+'\n');
 		Foxtrick.dump_flush(document);
 		return data;
+	},
+	
+	getCurrencyRateFromId  :function(id) {
+		try { return FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyRate.replace(',','.')/10; }
+		catch(e){}	
+		Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');		
 	}
 };
