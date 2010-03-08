@@ -342,7 +342,7 @@ var FoxtrickSkillTable = {
 					// nationality
 					if (columns[k].enabled) {
 						var td = doc.createElement("td");
-						td.setAttribute("index", Foxtrick.XMLData.League[LeagueID].LeagueName);
+						td.setAttribute("index", FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName);
 						var a=doc.createElement("a");
 						a.href="/World/Leagues/League.aspx?LeagueID=" + LeagueID;
 						a.className ="flag inner";
