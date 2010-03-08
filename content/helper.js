@@ -302,5 +302,15 @@ var FoxtrickHelper = {
 			}
 		}
 		return null;
+	},
+	
+	getLeagueDataFromId :function(id) {
+		var data=null;
+		try { data = Foxtrick.XMLData.League[id];}
+		catch(e){}
+		
+		if (data==null) Foxtrick.dump('getLeagueDataFromId error. id: '+id+'\n');
+		Foxtrick.dump_flush(document);
+		return data;
 	}
 };

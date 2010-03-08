@@ -457,8 +457,8 @@ var FoxtrickPreferencesDialog = {
 		try {
 			var returnedOffset = 0;
 			for (var i in Foxtrick.XMLData.League) {
-				if (itemToSearch == Foxtrick.XMLData.League[i].EnglishName) {
-					returnedOffset = Foxtrick.XMLData.League[1].Season - Foxtrick.XMLData.League[i].Season; // sweden season - selected
+				if (itemToSearch == FoxtrickHelper.getLeagueDataFromId(i).EnglishName) {
+					returnedOffset = FoxtrickHelper.getLeagueDataFromId(1).Season - FoxtrickHelper.getLeagueDataFromId(i).Season; // sweden season - selected
 					break;
 				}
 			}

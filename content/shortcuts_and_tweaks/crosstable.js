@@ -385,9 +385,9 @@ var FoxtrickCrossTable = {
 			var country=0;
             try {
                 for (var i in Foxtrick.XMLData.League) 
-					if (CountryName == Foxtrick.XMLData.League[i].LeagueName) {
-					 	leagues = Foxtrick.XMLData.League[i].NumberOfLevels;
-						country = Foxtrick.XMLData.League[i].LeagueID;
+					if (CountryName == FoxtrickHelper.getLeagueDataFromId(i).LeagueName) {
+					 	leagues = FoxtrickHelper.getLeagueDataFromId(i).NumberOfLevels;
+						country = FoxtrickHelper.getLeagueDataFromId(i).LeagueID;
 						break;
 					}				
 				if (!leagues) {Foxtrick.dump('crosstable.js countries: league not found:' +country+ "\n");; return -1;}

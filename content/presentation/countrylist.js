@@ -209,7 +209,7 @@ var FoxtrickCountyList = {
 					else {var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value]; }
 					var htname = options[i].text;
 					//Foxtrick.dump((start>=10)+' '+options[i].value+' '+league+' '+htname+'\n');
-                    htname = Foxtrick.XMLData.League[league].LeagueName;
+                    htname = FoxtrickHelper.getLeagueDataFromId(league).LeagueName;
 					if (!htname) return -1;
 					options[i].text = htname;
  

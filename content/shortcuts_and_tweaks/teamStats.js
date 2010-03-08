@@ -190,7 +190,7 @@ Foxtrick.TeamStats= {
 						  if (!is_nt_player) {
 							var a=doc.createElement('a');
 							a.href="/World/Leagues/League.aspx?LeagueID=" + LeagueID;
-							a.title = Foxtrick.XMLData.League[LeagueID].LeagueName;
+							a.title = FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName;
 							a.className ="flag inner"; 						
 							var img=doc.createElement('img');
 							var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";

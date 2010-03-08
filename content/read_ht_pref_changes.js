@@ -177,13 +177,13 @@ var FoxtrickReadHtPrefsFromHeader = {
 		if ( Foxtrick.isModuleFeatureEnabled(FoxtrickReadHtPrefsFromHeader, 'CountryCurrencyDateFormat') ) {
 			var CountryLink = teamLinks[2];
 			var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
-			var CountryName = Foxtrick.XMLData.League[LeagueId].EnglishName;
+			var CountryName = FoxtrickHelper.getLeagueDataFromId(LeagueId).EnglishName;
 			var OldCountryName = FoxtrickPrefs.getString("htCountry");
 		
 			if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1 || newstart) {
 				Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
-				var CurrencyName = Foxtrick.XMLData.League[LeagueId].Country.CurrencyName;
-				var CurrencyRate =  parseInt(Foxtrick.XMLData.League[LeagueId].Country.CurrencyRate)/10;
+				var CurrencyName = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
+				var CurrencyRate =  parseInt(FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyRate)/10;
 				Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
 			
 				FoxtrickPrefs.setString("htCountry", CountryName);

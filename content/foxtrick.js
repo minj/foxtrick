@@ -200,6 +200,7 @@ var FoxtrickMain = {
     },
 	
 	onPageLoad : function( ev ) {
+	  try {
 		//Foxtrick.dump('onPageLoad\n');
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
@@ -233,6 +234,7 @@ var FoxtrickMain = {
 			}
 			Foxtrick.dump('---------------------- foxtrick onPageLoad end -------------------\n')
 	    }
+	  } catch(e) {Foxtrick.dump('onPageLoad: '+e+'\n');}
     },
 
     onPageUnLoad : function( ev ) {

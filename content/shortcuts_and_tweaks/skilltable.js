@@ -348,14 +348,14 @@ var FoxtrickSkillTable = {
 					// nationality
 					if (sn[k].enabled) {
 						var td = doc.createElement("td");
-						td.title = Foxtrick.XMLData.League[LeagueID].LeagueName;
+						td.title = FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName;
 						var a=doc.createElement("a");
 						a.href="/World/Leagues/League.aspx?LeagueID=" + LeagueID;
 						a.className ="flag inner";
 						var img=doc.createElement("img");
 						var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
 						img.setAttribute("style",style);
-						img.alt = img.title = Foxtrick.XMLData.League[LeagueID].LeagueName;
+						img.alt = img.title = FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName;
 						img.src="/Img/Icons/transparent.gif";
 						a.appendChild(img);
 						td.appendChild(a);
