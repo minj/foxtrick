@@ -2128,12 +2128,12 @@
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Imprevedibile" short="Un" />
-		<specialty type="Powerful" value="Potente" short="Po" />
-		<specialty type="Quick" value="Veloce" short="Qu" />
-		<specialty type="Technical" value="Tecnico" short="Te" />
-		<specialty type="Head" value="Colpo di testa" short="He" />
-		<specialty type="Regainer" value="Guarigione Veloce" short="Re" />
+		<specialty type="Unpredictable" value="Imprevedibile" short="Imp" />
+		<specialty type="Powerful" value="Potente" short="Pot" />
+		<specialty type="Quick" value="Veloce" short="Vel" />
+		<specialty type="Technical" value="Tecnico" short="Tec" />
+		<specialty type="Head" value="Colpo di testa" short="CdT" />
+		<specialty type="Regainer" value="Guarigione Veloce" short="GV" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -3831,7 +3831,7 @@
 		<position type="Keeper" value="Målvakt" short="M" />
 		<position type="Central defender" value="Innerback" short="IB" />
 		<position type="Wing back" value="Ytterback" short="YB" />
-		<position type="Inner midfielder" value="Innermittfältare" short="Im" />
+		<position type="Inner midfielder" value="Innermittfältare" short="IM" />
 		<position type="Winger" value="Yttermittfält" short="Y" />
 		<position type="Forward" value="Forward" short="F" />
 	</positions>
