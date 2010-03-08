@@ -1336,12 +1336,12 @@ var FoxtrickSkillTable = {
 
 	_getCell : function(cell) {
 		var imgs = cell.getElementsByTagName("img");
-		if (imgs.length > 0) {
-			return imgs[0].getAttribute("alt");
+		var content = imgs.length ? imgs[0].getAttribute("alt") : cell.textContent;
+		var maxed = Foxtrick.hasClass(cell, "ft_skilltable_maxed");
+		if (maxed) {
+			content = "[b]" + content + "[/b]";
 		}
-		else {
-			return Foxtrick.trim(cell.textContent);
-		}
+		return Foxtrick.trim(content);
 	},
 
 	_getShortPos: function(pos) {
