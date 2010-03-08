@@ -31,7 +31,7 @@ var FoxtrickCopyRatingsToClipboard = {
 			var homeHeader = table.getElementsByTagName("th")[1];
 			var awayHeader = table.getElementsByTagName("th")[2];
 
-			var copyBoth = doc.createElement("a");
+			var copyBoth = doc.createElement("span");
 			copyBoth.className = "ft_copy_rating";
 			copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
 			copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
@@ -40,7 +40,7 @@ var FoxtrickCopyRatingsToClipboard = {
 			copyBoth.addEventListener("click", this.createRatings, false);
 			tableHeader.appendChild(copyBoth);
 
-			var copyHome = doc.createElement("a");
+			var copyHome = doc.createElement("span");
 			copyHome.className = "ft_copy_rating";
 			copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 			copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
@@ -49,7 +49,7 @@ var FoxtrickCopyRatingsToClipboard = {
 			copyHome.addEventListener("click", this.createRatings, false);
 			homeHeader.appendChild(copyHome);
 
-			var copyAway = doc.createElement("a");
+			var copyAway = doc.createElement("span");
 			copyAway.className = "ft_copy_rating";
 			copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 			copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
