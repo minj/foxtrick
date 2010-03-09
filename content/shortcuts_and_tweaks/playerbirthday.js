@@ -55,7 +55,8 @@ var FoxtrickPlayerBirthday = {
 				player.age = String(playerInfo.match(regText)[1]).replace(/,/,''); // try to get full age string
 			}
 			catch(e) {
-				TextAgeTmp=String(playerInfo.match(regTextRus)[1]).replace(/,/,''); // if not get russian version ie strings before the number
+				player.age=String(playerInfo.match(regTextRus)[1]).replace(/,/,''); // if not get russian version ie strings before the number
+				//Foxtrick.dump('get russian age string '+player+'\n');				
 			}
 
 			if (player.days >= 0) {
