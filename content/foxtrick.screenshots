@@ -71,7 +71,7 @@ LeagueAndMatchChat=http://foxtrick.foundationhorizont.org/index.php/shortcuts-an
 
 #Presentation and Tweaks
 BackgroundFixed=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/49-backgroundfixed
-ColouredYouthFaces=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/97-colouredyouthfaces
+OriginalFace.ColouredYouth=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/97-colouredyouthfaces
 CountryList.HideFlagOntop=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/98-countrylisthideflagontop
 CountryList.ManagerPage=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/99-countrylistmanagerpage
 CountryList.SelectBoxes=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/100-countrylistselectboxes
@@ -92,9 +92,9 @@ GuestbookAlltidFlags.AddAlltidFlags=http://foxtrick.foundationhorizont.org/index
 GuestbookAlltidFlags.HideAnswerToLinks=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/112-guestbookalltidflagshideanswertolinks
 HeaderFix.FixLeft=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/114-headerfixfixleft
 HeaderFix=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/113-headerfix
-HideFaceInjuryImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/115-hidefaceinjuryimages
-HideFaceSuspendedImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/116-hidefacesuspendedimages
-HideFaceTransferImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/117-hidefacetransferimages
+OriginalFace.HideInjury=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/115-hidefaceinjuryimages
+OriginalFace.HideSuspended=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/116-hidefacesuspendedimages
+OriginalFace.HideTransfer=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/117-hidefacetransferimages
 HighlightBotTeams=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/118-highlightbotteams
 HighlightCupwins=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/119-highlightcupwins
 HTDateFormat.FirstDayOfWeekOffset=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/123-htdateformatfirstdayofweekoffset
