@@ -315,7 +315,8 @@ var FoxtrickHelper = {
 	},
 	
 	getCurrencyRateFromId  :function(id) {
-		try { return FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyRate.replace(',','.')/10; }
+		try {  dump(FoxtrickHelper.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.')+'\n')
+			return parseFloat(FoxtrickHelper.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.'))/10; }
 		catch(e){}	
 		Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');		
 	}
