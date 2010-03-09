@@ -30,6 +30,7 @@ var FoxtrickAddLeaveConfButton = {
                         for(var i=0; i < elems.length; i++) {
                             if(elems[i].className=="folderHeader" 
 							|| elems[i].className=="folderHeaderHighlight"){
+								if (elems[i].getElementsByTagName('div')[0].className.search('foxtrickRemove')!=-1) continue;
                                 var divLeaveConfBtn = doc.getElementById(
                                     "ftLC-btn" + foldersCounter);
                                 this.addButton ( doc, divLeaveConfBtn, elems[i],
@@ -78,9 +79,7 @@ var FoxtrickAddLeaveConfButton = {
 	},
 	
 	change : function( page, doc ) {
-	
-		if (doc.getElementById( 'ftLC-btn0' )) return;
-            
+			   
 		//Foxtrick.dump(this.MODULE_NAME+' change\n')
 		switch( page ) {
 			case 'forum':
