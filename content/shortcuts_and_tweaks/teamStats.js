@@ -175,8 +175,8 @@ Foxtrick.TeamStats= {
 							topline.innerHTML += '<br>'+TrainerTypeStr;
 						}
 						if (!Oldies && !coach && Foxtrick.isModuleFeatureEnabled( this, "AddLeadershipAndExperience")) {
-							var LeadershipLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Leadership+'#skill">'+LeadershipString+'</a>';
-							var ExperienceLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Experience+'#skillshort">'+ExperienceString+'</a>';
+							var LeadershipLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+Leadership+'#skillshort">'+LeadershipString+'</a>';
+							var ExperienceLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+Experience+'#skill">'+ExperienceString+'</a>';
 						
 							var pos=allDivs2.innerHTML.search(/\[/);
 							if (pos==-1) pos=allDivs2.innerHTML.length;  // no specialty. show after
