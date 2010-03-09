@@ -663,8 +663,14 @@ var FoxtrickForumChangePosts = {
 					headstr += '| text =\n';							
 			}
 			
-			var message_raw = header.nextSibling.firstChild.innerHTML;
-						
+			var divs = header.parentNode.getElementsByTagName('div');
+			for (var i=0;i<divs.length;++i) {
+				if (divs[i].className=='message') {
+					var message_raw = divs[i].innerHTML;
+					break;
+				}
+			}
+			
 			var spoilers = message_raw.split(/\<blockquote id="spoil/); 
 			message_raw = spoilers[0];
 			for (var i=1;i< spoilers.length;++i) {
