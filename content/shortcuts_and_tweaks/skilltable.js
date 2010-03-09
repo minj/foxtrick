@@ -108,17 +108,17 @@ var FoxtrickSkillTable = {
 // - img: image for the column head
 
 			var columns = [
-					{ name: "PlayerCategory", own: true },
-					{ name: "PlayerNumber", sortAsc: true, own: true, others: true },
-					{ name: "Nationality", sortString: true, sortAsc: true, own: true, others: true },
+					{ name: "PlayerCategory", own: true, xml:true },
+					{ name: "PlayerNumber", sortAsc: true, own: true, others: true , xml:true},
+					{ name: "Nationality", sortString: true, sortAsc: true, own: true, others: true, xml:true },
 					{ name: "Player", sortString: true, sortAsc: true, own: true, others:true, nt: true, oldiesCoach: true },
 					{ name: "Age", sortAsc: true, own: true, others:true, nt: true, oldiesCoach: true },
 					{ name: "TSI", own: true, others:true, nt: true, oldiesCoach: true },
-					{ name: "Agreeability", own: true, others:true, oldiesCoach: true },
-					{ name: "Aggressiveness", own: true, others:true, oldiesCoach: true },
-					{ name: "Honesty", own: true, others:true, oldiesCoach: true },
-					{ name: "Leadership", own: true, others:true, nt: true, oldiesCoach: true },
-					{ name: "Experience", own: true, others:true, nt: true, oldiesCoach: true },
+					{ name: "Agreeability", own: true, others:true, oldiesCoach: true, xml:true },
+					{ name: "Aggressiveness", own: true, others:true, oldiesCoach: true, xml:true },
+					{ name: "Honesty", own: true, others:true, oldiesCoach: true, xml:true },
+					{ name: "Leadership", own: true, others:true, nt: true, oldiesCoach: true, xml:true },
+					{ name: "Experience", own: true, others:true, nt: true, oldiesCoach: true, xml:true },
 					{ name: "Form", own: true, others:true, nt: true, oldiesCoach: true },
 					{ name: "Stamina", own: true, others:true, nt: true, oldiesCoach: true },
 					{ name: "Keeper", own: true },
@@ -136,11 +136,11 @@ var FoxtrickSkillTable = {
 					{ name: "Last_match", own: true, others: true },
 					{ name: "Last_stars", own: true, others: true, img: "/Img/Matches/star_blue.png" },
 					{ name: "Last_position", sortString: true, own: true, others: true },
-					{ name: "Salary", own: true, others: true },
-					{ name: "TransferListed", own: true, others: true, oldiesCoach: true, img: "/Img/Icons/dollar.gif" },
-					{ name: "NrOfMatches", nt: true },
-					{ name: "LeagueGoals", own: true, others: true, oldiesCoach: true },
-					{ name: "CareerGoals", own: true, others: true, oldiesCoach: true }
+					{ name: "Salary", own: true, others: true, xml:true },
+					{ name: "TransferListed", own: true, others: true, oldiesCoach: true, img: "/Img/Icons/dollar.gif" , xml:true },
+					{ name: "NrOfMatches", nt: true, xml:true },
+					{ name: "LeagueGoals", own: true, others: true, oldiesCoach: true, xml:true },
+					{ name: "CareerGoals", own: true, others: true, oldiesCoach: true, xml:true }
 				];
 			if (!hasbars) {
 				var newColumns = [];
@@ -165,7 +165,10 @@ var FoxtrickSkillTable = {
 			}
 
 			for (var j = 0; j < columns.length; ++j) {
-				if (fullType.subtype === "own" && !columns[j].own) {
+				if (Foxtrick.XMLData.playersxml == null && columns[j].xml) {
+					columns[j].available = false;
+				}
+				else if (fullType.subtype === "own" && !columns[j].own) {
 					columns[j].available = false;
 				}
 				else if (fullType.subtype === "others" && !columns[j].others) {
@@ -244,6 +247,23 @@ var FoxtrickSkillTable = {
 			var tbody = doc.createElement("tbody");
 			table.appendChild(tbody);
 
+			// get last match
+			if (fullType.subtype != "nt" && !fullType.subtype != "oldiesCoach") {
+				var latestMatch=-1, secondLatestMatch=-1;
+				for(var i = 0; i < allDivs.length; i++) {
+					if(allDivs[i].className=="playerInfo") {
+						var as=allDivs[i].getElementsByTagName('a');
+						var j=0,a=null;
+						while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
+						var matchday=0;
+						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+						if (matchday>latestMatch) {secondLatestMatch = latestMatch; latestMatch = matchday;}
+						else if (matchday>secondLatestMatch && matchday<latestMatch) secondLatestMatch = matchday;
+					}
+				}
+			}
+			Foxtrick.dump(latestMatch+ ' '+secondLatestMatch+'\n');
+			
 			var count =0;
 			for(var i = 0; i < allDivs.length; i++) {
 				if(allDivs[i].className=="playerInfo") {
@@ -256,7 +276,7 @@ var FoxtrickSkillTable = {
 					var hasflag = (allDivs[i].getElementsByTagName("a")[0].innerHTML.search(/flags.gif/i)!=-1);
 					var link_off=0;
 					if (hasflag) link_off=1;
-
+ 
 					if (Foxtrick.XMLData.playersxml) {
 						var playerid = allDivs[i].getElementsByTagName("a")[0+link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 
@@ -305,7 +325,7 @@ var FoxtrickSkillTable = {
 								var Leadership = playerlist[j].getElementsByTagName("Leadership")[0].textContent;
 								var Experience = playerlist[j].getElementsByTagName("Experience")[0].textContent;
 								var CountryID = playerlist[j].getElementsByTagName("CountryID")[0].textContent;
-								var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];
+								var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[parseInt(CountryID)];
 								var TrainerData = playerlist[j].getElementsByTagName("TrainerData")[0];
 								var PlayerNumber = playerlist[j].getElementsByTagName("PlayerNumber")[0].textContent;
 
@@ -319,7 +339,7 @@ var FoxtrickSkillTable = {
 					tbody.appendChild(tr);
 
 					// PlayerCategory
-					if (fullType.subtype === "own" && columns[k].enabled) {
+					if (fullType.subtype === "own" && columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = PlayerCategory;
@@ -329,7 +349,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// PlayerNumber
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = PlayerNumber;
@@ -340,7 +360,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// nationality
-					if (columns[k].enabled) {
+					  if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("index", FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName);
 						var a=doc.createElement("a");
@@ -353,7 +373,7 @@ var FoxtrickSkillTable = {
 						img.src = "/Img/Icons/transparent.gif";
 						a.appendChild(img);
 						td.appendChild(a);
-						tr.appendChild(td);
+						tr.appendChild(td);					
 					}
 					k++;
 
@@ -369,8 +389,8 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// age
-					if (columns[k].enabled) {
-						if (!age) var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
+					if (columns[k].enabled) { 
+						if (Foxtrick.XMLData.playersxml==null || !age) var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
 						var td = doc.createElement("td");
 						td.setAttribute("index", parseInt(age[0]) * 112 + parseInt(age[1]));
 						td.innerHTML=age[0]+"."+age[1];
@@ -385,18 +405,15 @@ var FoxtrickSkillTable = {
 					if (columns[k].enabled) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
-						if (!TSI) {
-						var tsitot_in = allDivs[i].getElementsByTagName("p")[0].innerHTML.substr(0,specc.innerHTML.lastIndexOf("<br>"));
-						if (fullType.subtype === "oldiesCoach" || fullType.subtype === "nt") {
-							tsitot_in = tsitot_in.substr(0,tsitot_in.lastIndexOf("<br>"));
-						}
-						if (tsitot_in.search(/^\s*TSI/) != -1)
-							tsitot_in = tsitot_in.replace(/,.+/,""); // In the language Vlaams, TSI and age are switched. This is a fix for that
-						var lastindex = tsitot_in.lastIndexOf(" ");
-						if (tsitot_in.lastIndexOf("=") > lastindex)
-							lastindex = tsitot_in.lastIndexOf("=");
-						tsitot_in = tsitot_in.substr(lastindex+1).replace("&nbsp;","");
-						tsitot_in = parseInt(tsitot_in);
+						if (Foxtrick.XMLData.playersxml==null || !TSI) {
+							var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.indexOf("<br>"));
+							if (tsitot_in.search(/^\s*TSI/) != -1)
+								tsitot_in = tsitot_in.replace(/,.+/,""); // In the language Vlaams, TSI and age are switched. This is a fix for that
+							var lastindex = tsitot_in.lastIndexOf(" ");
+							if (tsitot_in.lastIndexOf("=") > lastindex)
+								lastindex = tsitot_in.lastIndexOf("=");
+							tsitot_in = tsitot_in.substr(lastindex+1).replace("&nbsp;","");
+							tsitot_in = parseInt(tsitot_in);
 						}
 						else {tsitot_in = TSI;}
 						td.appendChild(doc.createTextNode(tsitot_in));
@@ -405,7 +422,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// Agreeability
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = Agreeability;
@@ -415,7 +432,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// Aggressiveness
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = Aggressiveness;
@@ -425,7 +442,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// Honesty
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = Honesty;
@@ -435,7 +452,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// Leadership
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = Leadership;
@@ -448,7 +465,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// Experience
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = Experience;
@@ -585,19 +602,24 @@ var FoxtrickSkillTable = {
 					}
 					k++;
 
+					
 					// last match
 					var as=allDivs[i].getElementsByTagName("a");
 					var kk=0,a=null;
 					while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
+					if (a) var matchday = Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+						
 					if (columns[k].enabled) {
 						var td = doc.createElement("td");
 						if (a) {
 							td.appendChild(a.cloneNode(true));
-							td.setAttribute("index", Foxtrick.getUniqueDayfromCellHTML(a.innerHTML));
+							td.setAttribute("index", matchday);
 						}
 						else {
 							td.setAttribute("index", 0);
 						}
+						if (matchday==latestMatch) td.setAttribute('style','font-weight:700');
+						else if (matchday==secondLatestMatch) td.setAttribute('style','font-style:italic;');
 						tr.appendChild(td);
 					}
 					k++;
@@ -613,6 +635,8 @@ var FoxtrickSkillTable = {
 								else if (imgs[sc].className=="starWhole") starcount+=1;
 								else if (imgs[sc].className=="starHalf") starcount+=0.5;
 							}
+							if (matchday==latestMatch) td.setAttribute('style','font-weight:700');
+							else if (matchday==secondLatestMatch) td.setAttribute('style','font-style:italic;');
 							td.appendChild(doc.createTextNode(starcount));
 						}
 						tr.appendChild(td);
@@ -633,6 +657,8 @@ var FoxtrickSkillTable = {
 								if (sp_pos == -1) pos=pos.substr(0,2)
 								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
 							}
+							if (matchday==latestMatch) td.setAttribute('style','font-weight:700');
+							else if (matchday==secondLatestMatch) td.setAttribute('style','font-style:italic;');
 							td.appendChild(doc.createTextNode(pos));
 						}
 						tr.appendChild(td);
@@ -640,7 +666,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// Salary
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = Salary;
@@ -650,7 +676,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// TransferListed
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
 						var val = TransferListed;
@@ -660,7 +686,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// #matches ntplayers only
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						var val = NrOfMatches ? NrOfMatches : 0;
 						td.appendChild(doc.createTextNode(val));
@@ -669,7 +695,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// LeagueGoals
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						var val = LeagueGoals;
 						td.appendChild(doc.createTextNode(val));
@@ -678,7 +704,7 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// CareerGoals
-					if (columns[k].enabled) {
+					if (columns[k].enabled ) {
 						var td = doc.createElement("td");
 						var val = CareerGoals;
 						td.appendChild(doc.createTextNode(val));
@@ -803,6 +829,19 @@ var FoxtrickSkillTable = {
 
 			var allDivs = doc.getElementsByTagName("div");
 
+			// get last match
+			var latestMatch=-1;
+			for(var i = 0; i < allDivs.length; i++) {
+					if(allDivs[i].className=="playerInfo") {
+						var as=allDivs[i].getElementsByTagName('a');
+						var j=0,a=null;
+						while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
+						var matchday=0;
+						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+						if (matchday>latestMatch) latestMatch = matchday;
+					}
+			}
+			
 			var count =0;
 			for(var i = 0; i < allDivs.length; i++) {
 				if(allDivs[i].className=="playerInfo") {
@@ -854,8 +893,8 @@ var FoxtrickSkillTable = {
 									cur = unknown ? 0 : cur;
 									max = max ? max : 0;
 									td.setAttribute("index", parseInt(cur) * 9 + parseInt(max) + maxed);
-									cur = cur ? cur : "?";
-									max = max ? max : "?";
+									cur = cur ? cur : "-";
+									max = max ? max : "-";
 									td.appendChild(doc.createTextNode(cur + "/" + max));
 								}
 								else {
@@ -937,18 +976,21 @@ var FoxtrickSkillTable = {
 					}
 
 					// last match
-					var as=allDivs[i].getElementsByTagName("a");
+					var as=allDivs[i].getElementsByTagName("a"); 
 					var kk=0,a=null;
 					while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
+					if (a) var matchday =  Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
+					
 					if (columns[k++].enabled) {
 						var td = doc.createElement("td");
 						if (a) {
 							td.appendChild(a.cloneNode(true));
-							td.setAttribute("index", Foxtrick.getUniqueDayfromCellHTML(a.innerHTML));
+							td.setAttribute("index", matchday);
 						}
 						else {
 							td.setAttribute("index", 0);
 						}
+						if (matchday==latestMatch) td.setAttribute('style','font-weight:700');											
 						tr.appendChild(td);
 					}
 
@@ -963,6 +1005,7 @@ var FoxtrickSkillTable = {
 								else if (imgs[sc].className=="starWhole") starcount+=1;
 								else if (imgs[sc].className=="starHalf") starcount+=0.5;
 							}
+							if (matchday==latestMatch) td.setAttribute('style','font-weight:700');											
 							td.appendChild(doc.createTextNode(starcount));
 						}
 						tr.appendChild(td);
@@ -981,6 +1024,7 @@ var FoxtrickSkillTable = {
 								if (sp_pos == -1) pos=pos.substr(0,2)
 								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
 							}
+							if (matchday==latestMatch) td.setAttribute('style','font-weight:700');											
 							td.appendChild(doc.createTextNode(pos));
 						}
 						tr.appendChild(td);

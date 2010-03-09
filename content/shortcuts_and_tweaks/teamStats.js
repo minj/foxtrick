@@ -151,7 +151,7 @@ Foxtrick.TeamStats= {
 						var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;	
 						var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
 						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
-						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[CountryID];	
+						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[parseInt(CountryID)];	
 						var TrainerData  = playerlist[j].getElementsByTagName('TrainerData')[0];	
 						if (TrainerData) {
 							var TrainerType  = TrainerData.getElementsByTagName('TrainerType')[0].textContent;	
