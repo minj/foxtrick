@@ -18,7 +18,8 @@ FoxtrickForumPresentation = {
 									"Forum_Spoiler_reveal",
 									"hideForumNotificationBox",
 									"Forum_NewPostsInBracket",
-									"Forum_Link_Grey_Icons"
+									"Forum_Link_Grey_Icons",
+									"moved_avatarinfo_fix"
 								),
 	OPTIONS_CSS: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/HideFlagsInForumHeader.css",
@@ -26,7 +27,8 @@ FoxtrickForumPresentation = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_Spoiler_reveal.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/hideForumNotificationBox.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/Forum_NewPostsInBracket.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/Forum_Link_Grey_Icons.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/Forum_Link_Grey_Icons.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/moved_avatarinfo_fix.css"
 								),                            
 								
     init : function() {

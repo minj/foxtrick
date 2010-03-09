@@ -1,4 +1,4 @@
-pref("extensions.foxtrick.prefs.curVersion", "0.5.1.1"); // update with each release
+pref("extensions.foxtrick.prefs.curVersion", "0.5.1.1b"); // update with each release
 pref("extensions.foxtrick.prefs.oldVersion", "0.4.9"); // don't change!! (unless you know what you do). shows changes form that version onwards after new installation
 pref("extensions.foxtrick.prefs.HTURL", "^http:.+hattrick\.(org|ws|interia\.pl)");
 pref("extensions.foxtrick.prefs.htLanguage", "en");
@@ -96,6 +96,7 @@ pref("extensions.foxtrick.prefs.module.ForumPresentation.hideForumNotificationBo
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_NewPostsInBracket.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Icons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Grey_Icons.enabled", false);
+pref("extensions.foxtrick.prefs.module.ForumPresentation.moved_avatarinfo_fix.enabled", false);
 pref("extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false);
