@@ -71,7 +71,8 @@ var FoxtrickMarkUnread = {
 								// Foxtrick.dump ('\n' + markunread[p].href + '\n');
                             }						
                             if( divsInFooter[j].className == "float_right" ) {
-                                divsInFooter[j].appendChild(markunread[p]);
+                                divsInFooter[j].innerHTML+='&nbsp;';
+								divsInFooter[j].appendChild(markunread[p]);
                             }
                         }
                     } catch(e) {Foxtrick.dump('MarkUnread ERROR ' + e + '\n');}
