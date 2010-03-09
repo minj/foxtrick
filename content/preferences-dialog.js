@@ -309,10 +309,11 @@ var FoxtrickPreferencesDialog = {
 
 		// clean up
 		var array = FoxtrickPrefs._getElemNames("");
-		for(var i = 0; i < array.length; ++i) {
-			if (FoxtrickPrefs.isPrefSetting(array[i]))
-				FoxtrickPrefs.deleteValue(array[i]);
-		}
+		if (array)
+			for(var i = 0; i < array.length; ++i) {
+				if (FoxtrickPrefs.isPrefSetting(array[i]))
+					FoxtrickPrefs.deleteValue(array[i]);
+			}
 
 		// set version
 		var curVersion = FoxtrickPrefs.getString("curVersion");
