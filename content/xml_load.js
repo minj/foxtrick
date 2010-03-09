@@ -161,7 +161,8 @@ Foxtrick.XMLData = {
 
 		// XML get players xml
 		
-		if ( ( doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
+		if ( FoxtrickPrefs.getBool("ExtraPlayerslistInfo") &&
+			( doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
 			|| doc.location.href.search(/\/Club\/Players\/$/)!=-1
 			|| doc.location.href.search(/\/Club\/Players\/Oldies.aspx/)!=-1
 			|| doc.location.href.search(/\/Club\/Players\/Coaches.aspx/)!=-1

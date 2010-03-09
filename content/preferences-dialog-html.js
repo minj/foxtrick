@@ -359,6 +359,7 @@ var FoxtrickPrefsDialogHTML = {
     
 
         FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
+        FoxtrickPrefs.setBool("ExtraPlayerslistInfo", doc.getElementById("ExtraPlayerslistInfo").checked);
         
 		if (Foxtrick.BuildFor=='Chrome') {
 			FoxtrickPrefs.do_dump = true;
@@ -854,7 +855,12 @@ var FoxtrickPrefsDialogHTML = {
  		var checked = FoxtrickPrefs.getBool("smallcopyicons");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'smallcopyicons', Foxtrickl10n.getString("foxtrick.prefs.smallcopyicons"),'', checked ) 
 		div.appendChild(checkdiv);
- 		var checked = FoxtrickPrefs.getBool("module.OnPagePrefs.enabled");
+ 		var checked = FoxtrickPrefs.getBool("ExtraPlayerslistInfo");
+		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ExtraPlayerslistInfo', Foxtrickl10n.getString("foxtrick.prefs.ExtraPlayerslistInfo"),'', checked ) 
+		div.appendChild(checkdiv);
+ 		
+		
+		var checked = FoxtrickPrefs.getBool("module.OnPagePrefs.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'OnPagePrefs', Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"),'', checked ) 
 		div.appendChild(checkdiv);
  		var checked = FoxtrickPrefs.getBool("DisplayHTMLDebugOutput");

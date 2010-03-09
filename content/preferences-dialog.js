@@ -228,6 +228,10 @@ var FoxtrickPreferencesDialog = {
 		var smallcopyicons = doc.getElementById("smallcopyicons");
 		smallcopyicons.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.smallcopyicons"));
 		smallcopyicons.setAttribute("checked", FoxtrickPrefs.getBool("smallcopyicons"));
+		//playerlist xml
+		var ExtraPlayerslistInfo = doc.getElementById("ExtraPlayerslistInfo");
+		ExtraPlayerslistInfo.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.ExtraPlayerslistInfo"));
+		ExtraPlayerslistInfo.setAttribute("checked", FoxtrickPrefs.getBool("ExtraPlayerslistInfo"));
 		// OnPagePrefs
 		var OnPagePrefs = doc.getElementById("OnPagePrefs");
 		OnPagePrefs.setAttribute("label", Foxtrickl10n.getString("foxtrick.OnPagePrefs.desc"));
@@ -435,6 +439,7 @@ var FoxtrickPreferencesDialog = {
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
 		FoxtrickPrefs.setBool("smallcopyicons", document.getElementById("smallcopyicons").checked);		
+		FoxtrickPrefs.setBool("ExtraPlayerslistInfo", document.getElementById("ExtraPlayerslistInfo").checked);		
 		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", document.getElementById("OnPagePrefs").checked);
 
 
