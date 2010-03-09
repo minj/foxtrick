@@ -18,8 +18,8 @@ var FoxtrickFormatPostingText = {
 
 	MODULE_NAME : "FormatPostingText",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
-	NEW_AFTER_VERSION: "0.4.9",
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
+    NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : true,
@@ -29,14 +29,9 @@ var FoxtrickFormatPostingText = {
 	
 	run : function( page, doc ) {
 	try{
-		doc.getElementById('mainBody').addEventListener('click',this.onclick,true);
-		if (page=='forumViewThread') return;
-	
 		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
-        var target = targets[targets.length-1];
-        var button_ok = null;
-		if (page=='forumWritePost') button_ok = targets[targets.length-2];
-        if (page=='guestbook') target = null;
+        for(var i=0;i<targets.length;++i) {Foxtrick.dump(targets[i].type+'\n'); if (targets[i].type=='submit') break;}
+		var button_ok = targets[i];
 
 		Foxtrick.dump(button_ok.getAttribute('id')+'\n');
 		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
