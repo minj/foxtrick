@@ -942,22 +942,16 @@ var FoxtrickSkillTable = {
 						tr.appendChild(td);
 					}
 
-					// specialty
+					// speciality
 					if (columns[k++].enabled) {
 						var td = doc.createElement("td");
 						var specc = allDivs[i].getElementsByTagName( "p" )[0];
 						specMatch = specc.textContent.match(/\[(\D+)\]/);
 						if (specMatch) {
-							var shortspecc = FoxtrickSkillTable._getShortSpecialty(specMatch[1]);
-							if (shortspecc) {
-								specMatch = shortspecc;
-							}
-							else {
-								specMatch = specMatch[1].substr(0,2);
-							}
+							var spec = specMatch[1];
+							var shortSpec = FoxtrickHelper.getShortSpeciality(spec);
+							td.appendChild(doc.createTextNode(shortSpec));
 						}
-						else specMatch="";
-						td.appendChild(doc.createTextNode(specMatch));
 						tr.appendChild(td);
 					}
 
@@ -1001,17 +995,9 @@ var FoxtrickSkillTable = {
 						var td = doc.createElement("td");
 						if (a) {
 							var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
-							var shortpos = FoxtrickSkillTable._getShortPos(pos);
-							if (shortpos) {
-								pos = shortpos;
-							}
-							else {
-								var sp_pos = pos.search(/ |\&nbsp;/);
-								if (sp_pos == -1) pos=pos.substr(0,2)
-								else pos = pos.substr(0,1)+pos.substr(sp_pos+1,1);
-							}
+							var shortPos = FoxtrickHelper.getShortPosition(pos);
 							if (matchday==latestMatch) td.setAttribute('style','font-weight:700');											
-							td.appendChild(doc.createTextNode(pos));
+							td.appendChild(doc.createTextNode(shortPos));
 						}
 						tr.appendChild(td);
 					}
