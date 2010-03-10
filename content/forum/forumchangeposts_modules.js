@@ -35,7 +35,7 @@ var FoxtrickFormatPostingText = {
 
 		Foxtrick.dump(button_ok.getAttribute('id')+'\n');
 		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
-		button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/·/gi,'').replace(/\\n/g, '[FTbr]').replace(/\\</gi,'<·').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n');"+button_ok.getAttribute('onclick'));
+		button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/Â·/gi,'').replace(/\\n/g, '[FTbr]').replace(/(\\<)(\\S)/gi,'<Â·$2').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n');"+button_ok.getAttribute('onclick'));
 		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
 		
 	} catch(e) {Foxtrick.dump('FoxtrickFormatPostingText '+e+'\n');}
