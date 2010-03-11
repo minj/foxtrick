@@ -820,7 +820,7 @@ stats["vnukstats"] =  {
                          "params"     : { "teamid" : "" }
                        },
         "countrylink" : { "path"       : "top-series/default/",
-                         "filters"    : [], 
+                         "filters"    : ["countryid"], 
                          "params"     : { "countryid" : "" }
                        },             
 
@@ -895,10 +895,10 @@ stats["ComunidadHattrickVenezuela"] =  {
         "url" : "http://www.hattrick.org.ve",
 
         "countrylink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["countryid"], 
                          "params"     : []
                        },
-		"owncountryidranges" : [[29, 29]], 
+		"countryidranges" : [[29, 29]], 
         "title" : "Comunidad Hattrick Venezuela",   
         "img" : Foxtrick.ResourcePath+"resources/linkicons/chtvicon.png"
 };
