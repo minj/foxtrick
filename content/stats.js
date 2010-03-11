@@ -2814,7 +2814,7 @@ stats["mozambiquetracker"] = {
 };
 
 stats["srbijatracker"] = { 
-  "url" : "http://srbija-nt.awardspace.com/",
+  "url" : "http://srbijadb.foundationhorizont.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Serbian U-20/NT DB",
   
