@@ -2813,6 +2813,25 @@ stats["mozambiquetracker"] = {
 	"nationalityranges" : [[135,135]], 
 };
 
+stats["makedonijatracker"] = { 
+  "url" : "http://makdb.foundationhorizont.org/",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Macedonian U-20/NT DB",
+  
+  "trackernationalteamlink" : { "path"       : "homelist.php",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
+                   "filters"    : ["nationality"], 
+                   "params"     : {"playerid":"playerID", "playername":"name", "age":"years", "age_days":"days",
+									"teamname":"team","teamid":"teamID","exp":"exp","stamina":"sta","playmaking":"ply",
+									"winger":"win","scoring":"sco","goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
+                 },
+	"countryidranges" : [[97,97]] ,
+	"nationalityranges" : [[97,97]], 
+};
+
 stats["srbijatracker"] = { 
   "url" : "http://srbijadb.foundationhorizont.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
