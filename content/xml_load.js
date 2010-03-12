@@ -139,7 +139,7 @@ Foxtrick.XMLData = {
 	run : function(page,doc) {
 	
 		try {
-			if (FoxtrickStaffMarker.hty_staff==null){
+			if (FoxtrickStaffMarker.hty_staff==null) {
 				FoxtrickStaffMarker.hty_staff = new Array();
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
@@ -185,17 +185,30 @@ Foxtrick.XMLData = {
 			Foxtrick.dump('xmlget http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection+'\n'); 
 			
 			// get players.xml
-			this.playersxml = null;
+			Foxtrick.XMLData.playersxml = null;
 			try {	
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection, false); 
 				req.send(null);
 				if (req.status == 200) {
-					this.playersxml = req.responseXML;
-					Foxtrick.dump('get '+file+team+selection+'\n');
+					var error = req.responseXML.getElementsByTagName("Error");					
+					if (error.length==0) {					
+						Foxtrick.dump('FileName:' + req.responseXML.getElementsByTagName("FileName")[0].textContent + '\n');						
+						Foxtrick.dump('Version:' + req.responseXML.getElementsByTagName("Version")[0].textContent + '\n');						
+						Foxtrick.dump('UserID:' + req.responseXML.getElementsByTagName("UserID")[0].textContent + '\n');						
+						Foxtrick.dump('IsYouth:' + req.responseXML.getElementsByTagName("IsYouth")[0].textContent + '\n');	
+						Foxtrick.dump('ActionType:' + req.responseXML.getElementsByTagName("ActionType")[0].textContent + '\n');	
+						Foxtrick.XMLData.playersxml = req.responseXML;
+					}
+					else {
+						Foxtrick.dump('error: ' + error[0].textContent+'\n');
+						Foxtrick.dump('server:' + req.responseXML.getElementsByTagName("Server")[0].textContent + '\n');						
+					}
 				}
 				else Foxtrick.dump(' get '+file+team+selection+' request failed\n');
-			} catch(e) {Foxtrick.dump('get'+file+team+selection+' request failed'+e+'\n');}
+			} catch(e) {
+				Foxtrick.dump('get'+file+team+selection+' request failed'+e+'\n');
+			}
 		}
 
 	/*try{

@@ -94,6 +94,7 @@ var FoxtrickSkillTable = {
 				}
 				Foxtrick.dump("hasbars: "+hasbars+"\n");
 			}
+			Foxtrick.dump('playersxml: '+Foxtrick.XMLData.playersxml+' '+(Foxtrick.XMLData.playersxml != null)+' XMLData.League:'+Foxtrick.XMLData.League+'\n');
 
 // columns
 // - name: name of column, used to retrieve from foxtrick.properties
@@ -262,7 +263,7 @@ var FoxtrickSkillTable = {
 					}
 				}
 			}
-			Foxtrick.dump(latestMatch+ ' '+secondLatestMatch+'\n');
+			//Foxtrick.dump(latestMatch+ ' '+secondLatestMatch+'\n');
 			
 			var count =0;
 			for(var i = 0; i < allDivs.length; i++) {
@@ -277,13 +278,14 @@ var FoxtrickSkillTable = {
 					var link_off=0;
 					if (hasflag) link_off=1;
  
-					if (Foxtrick.XMLData.playersxml) {
-						var playerid = allDivs[i].getElementsByTagName("a")[0+link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-
-						var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName("Player");
+					if (Foxtrick.XMLData.playersxml != null) {						
+						var playerid = allDivs[i].getElementsByTagName("a")[0+link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];						
+						var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName("Player");					
+						Foxtrick.dump('playerid: '+playerid+' playerlist.length: '+playerlist.length+'\n');
+						
 						for (var j=0; j<playerlist.length; ++j) {
-							var data = new Array();
 							var thisPlayerID = playerlist[j].getElementsByTagName("PlayerID")[0].textContent;
+							//Foxtrick.dump('playerid: '+playerid+' thisPlayerID: '+thisPlayerID+' thisPlayerID==playerid: '+(thisPlayerID==playerid)+'\n');
 							if (thisPlayerID==playerid) {
 								if (fullType.subtype === "nt") {
 								var NrOfMatches = playerlist[j].getElementsByTagName("NrOfMatches")[0].textContent;
@@ -326,6 +328,7 @@ var FoxtrickSkillTable = {
 								var Experience = playerlist[j].getElementsByTagName("Experience")[0].textContent;
 								var CountryID = playerlist[j].getElementsByTagName("CountryID")[0].textContent;
 								var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[parseInt(CountryID)];
+								Foxtrick.dump('CountryID: '+CountryID+' '+parseInt(CountryID)+'  LeagueID: '+LeagueID+'\n');
 								var TrainerData = playerlist[j].getElementsByTagName("TrainerData")[0];
 								var PlayerNumber = playerlist[j].getElementsByTagName("PlayerNumber")[0].textContent;
 
