@@ -219,7 +219,7 @@ var FoxtrickPrefsDialogHTML = {
 		
 		var full_prefs = (doc.getElementById("htLanguage")!=null); // check if full pref page (not newversionquickset or onpageprefs)
 		// clean up
-		if (full_prefs) {  
+		/*if (full_prefs) {  
 			var array = FoxtrickPrefs._getElemNames("");
 			if (array)	
 			  for(var i = 0; i < array.length; i++) {
@@ -231,7 +231,7 @@ var FoxtrickPrefsDialogHTML = {
 			var curVersion = FoxtrickPrefs.getString("curVersion");
 			var oldVersion = FoxtrickPrefs.getString("oldVersion");
 			FoxtrickPrefs.setString("oldVersion",curVersion);
-		}
+		}*/
 			
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];

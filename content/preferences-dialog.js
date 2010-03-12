@@ -312,18 +312,19 @@ var FoxtrickPreferencesDialog = {
 		var modules_list;
 
 		// clean up
-		var array = FoxtrickPrefs._getElemNames("");
+		/*var array = FoxtrickPrefs._getElemNames("");
 		if (array)
 			for(var i = 0; i < array.length; ++i) {
 				if (FoxtrickPrefs.isPrefSetting(array[i]))
 					FoxtrickPrefs.deleteValue(array[i]);
 			}
-
+		
 		// set version
 		var curVersion = FoxtrickPrefs.getString("curVersion");
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		FoxtrickPrefs.setString("oldVersion", curVersion);
-
+		*/
+		
 		// reset main to default. set right bellow if needed
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
