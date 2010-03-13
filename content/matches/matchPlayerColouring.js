@@ -154,7 +154,7 @@ FoxtrickMatchPlayerColouring = {
 		else teamA[0]=teamA[0].substring(teamA[0].lastIndexOf(' ')+1);
 		for (var k=0;k<teamA.length;k++) { 
 			if (teamA[k]=='') {++num_unknown_namesA;teamA[k]='##################'; }// replace empty string with something which will not be found in text again
-			Foxtrick.dump(k+1+': "'+teamA[k]+'"\n');
+			//Foxtrick.dump(k+1+': "'+teamA[k]+'"\n');
 		}
 		var num_unknown_namesB=0;
         if (contentB) {
@@ -164,12 +164,27 @@ FoxtrickMatchPlayerColouring = {
 		else teamB[0]=teamB[0].substring(teamB[0].lastIndexOf(' ')+1);
  		for (var k=0;k<teamB.length;k++) { 
 			if (teamB[k]=='') {++num_unknown_namesB;teamB[k]='##################'; } // replace empty string with something which will not be found in text again
-			Foxtrick.dump(k+1+': "'+teamB[k]+'"\n');
+			//Foxtrick.dump(k+1+': "'+teamB[k]+'"\n');
 		}		
 		//Retrieve substitutions
 		 var spans = doc.getElementById('sidebar').getElementsByTagName("td");
+		 var hgoals=0;
 		 for (var i=0; i<spans.length; i++) {
-			//var span_a = spans[i].getElementsByTagName("a");
+			if (spans[i].innerHTML.search(/\d+&nbsp;-&nbsp;\d+/)!=-1) {
+				var hg = parseInt(spans[i].innerHTML.match(/(\d+)&nbsp;-&nbsp;\d+/)[1]);
+				var as = spans[i+1].getElementsByTagName("a");
+				//dump(hg+' '+hgoals+' '+as.length+' '+as[0].innerHTML+'\n');
+				if (hg > hgoals) {
+					hg = hgoals;
+					if (as.length!=0) {teamA.push(as[0].innerHTML);dump(as[0].innerHTML+'\n');}
+					else teamA.push(spans[i+1].innerHTML);
+				}
+				else {
+					if (as.length!=0) teamB.push(as[0].innerHTML);
+					else teamB.push(spans[i+1].innerHTML);
+				}
+			}
+			
 			var span_img = spans[i].getElementsByTagName("img");
 			for (var j=0; j<span_img.length; j++) {
 				if (span_img[j].src.search(/sub_out/)!=-1) {
@@ -211,12 +226,10 @@ FoxtrickMatchPlayerColouring = {
 								}														
 							} 
 							//Player Out
-                            //PlayerOut = span_a[0].textContent;
-                            PlayerOut = PlayerOut.substr(PlayerOut.search(" ")+1);
+                            //PlayerOut = PlayerOut.substr(PlayerOut.search(" ")+1);
                             //Foxtrick.dump('sub out:'+j+' '+span_a[0].textContent+' = '+PlayerOut+'\n');
 							//Player In
-							//PlayerIn = span_a[1].textContent;
-                            PlayerIn = PlayerIn.substr(PlayerIn.search(" ")+1);
+							//PlayerIn = PlayerIn.substr(PlayerIn.search(" ")+1);
                             //Foxtrick.dump('sub in:'+j+' '+' '+span_a[1].textContent+' = '+PlayerIn+'\n');
                             Foxtrick.dump('in:'+PlayerIn+' out:'+PlayerOut+'\n');
 							
@@ -238,7 +251,11 @@ FoxtrickMatchPlayerColouring = {
 				}
 			}
 		 }		 
- 
+		
+		Foxtrick.dump('A: '+teamA+'\n');
+		Foxtrick.dump('B: '+teamB+'\n');
+		
+
 		// just highlight single player
 		if (doc.location.href.search(/highlight=.+/)!=-1) {
 			var playerhighlight = doc.location.href.match(/highlight=(.+)/)[1]; 
@@ -268,25 +285,25 @@ FoxtrickMatchPlayerColouring = {
 					var playerName = playerFullName.substr(b+1,l-b+1);
 				} else {
 					var playerName = playerFullName;
-				}
-				//playerName=links[i].textContent; 
-				var foundA =false;
+				}				
+				var foundA =false, foundFullA=false;
 				for (var k=0;k<teamA.length;k++) { //Foxtrick.dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\t');
-					if (playerName.indexOf(teamA[k])>-1) foundA=true; 
+					if (teamA[k].indexOf(playerFullName)>-1) {foundFullA=true;	break;}				
+					else if (playerName.indexOf(teamA[k])>-1) {foundA=true;}
 				}
-				var foundB =false;
-				for (var k=0;k<teamB.length;k++) { //Foxtrick.dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\t');
-					if (playerName.indexOf(teamB[k])>-1) foundB=true; 
+				var foundB =false, foundFullB=false;
+				for (var k=0;k<teamB.length;k++) { 
+					if (teamB[k].indexOf(playerFullName)>-1) {foundFullB=true; break;}
+					else if (playerName.indexOf(teamB[k])>-1) {foundB=true;}
 				}
-                if (foundA && !foundB || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
+                if ( (foundFullA && !foundFullB) || (foundA && !foundB) || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
 					links[i].setAttribute("style", stlTeamA + 'padding:0px 2px;'); 
 					if (iseventsbox) {
 						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:left;'); 
 						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
-						//		Foxtrick.dump(links[i].parentNode.parentNode.firstChild.innerHTML+'\n');
 					}
  				} 
-				else if (foundB && !foundA || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
+				else if ((foundFullB && !foundFullA) || (foundB && !foundA) || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
 					links[i].setAttribute("style", stlTeamB + 'padding:0px 2px;'); 
 					if (iseventsbox) {
 						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:right;'); 					

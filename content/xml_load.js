@@ -161,6 +161,7 @@ Foxtrick.XMLData = {
 
 		// XML get players xml
 		
+		Foxtrick.XMLData.playersxml = null;
 		if ( FoxtrickPrefs.getBool("ExtraPlayerslistInfo") &&
 			( doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
 			|| doc.location.href.search(/\/Club\/Players\/$/)!=-1
@@ -185,7 +186,6 @@ Foxtrick.XMLData = {
 			Foxtrick.dump('xmlget http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection+'\n'); 
 			
 			// get players.xml
-			Foxtrick.XMLData.playersxml = null;
 			try {	
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection, false); 

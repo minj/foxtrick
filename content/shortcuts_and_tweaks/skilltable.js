@@ -281,7 +281,7 @@ var FoxtrickSkillTable = {
 					if (Foxtrick.XMLData.playersxml != null) {						
 						var playerid = allDivs[i].getElementsByTagName("a")[0+link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];						
 						var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName("Player");					
-						Foxtrick.dump('playerid: '+playerid+' playerlist.length: '+playerlist.length+'\n');
+						//Foxtrick.dump('playerid: '+playerid+' playerlist.length: '+playerlist.length+'\n');
 						
 						for (var j=0; j<playerlist.length; ++j) {
 							var thisPlayerID = playerlist[j].getElementsByTagName("PlayerID")[0].textContent;
