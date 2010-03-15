@@ -588,12 +588,12 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Målmand" short="Ke" />
-		<position type="Central defender" value="Central forsvar" short="Cd" />
-		<position type="Wing back" value="Back" short="Wb" />
-		<position type="Inner midfielder" value="Central midtbane" short="Im" />
-		<position type="Winger" value="Fløj" short="Wi" />
-		<position type="Forward" value="Angriber" short="Fo" />
+		<position type="Keeper" value="Målmand" short="Må" />
+		<position type="Central defender" value="Central forsvar" short="Cf" />
+		<position type="Wing back" value="Back" short="Ba" />
+		<position type="Inner midfielder" value="Central midtbane" short="Cm" />
+		<position type="Winger" value="Fløj" short="Fl" />
+		<position type="Forward" value="Angriber" short="An" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
@@ -768,12 +768,12 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Väravavaht" short="Ke" />
-		<position type="Central defender" value="Keskkaitsja" short="Cd" />
-		<position type="Wing back" value="Äärekaitsja" short="Wb" />
-		<position type="Inner midfielder" value="Keskpoolkaitsja" short="Im" />
-		<position type="Winger" value="Äär" short="Wi" />
-		<position type="Forward" value="Ründaja" short="Fo" />
+		<position type="Keeper" value="Väravavaht" short="Vv" />
+		<position type="Central defender" value="Keskkaitsja" short="Kk" />
+		<position type="Wing back" value="Äärekaitsja" short="Äk" />
+		<position type="Inner midfielder" value="Keskpoolkaitsja" short="Kpk" />
+		<position type="Winger" value="Äär" short="Äär" />
+		<position type="Forward" value="Ründaja" short="Rü" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
@@ -868,11 +868,11 @@
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Imprevisible" short="Un" />
+		<specialty type="Unpredictable" value="Imprevisible" short="Im" />
 		<specialty type="Powerful" value="Potente" short="Po" />
-		<specialty type="Quick" value="Rápido" short="Qu" />
+		<specialty type="Quick" value="Rápido" short="Rà" />
 		<specialty type="Technical" value="Técnico" short="Te" />
-		<specialty type="Head" value="Cabeceador" short="He" />
+		<specialty type="Head" value="Cabeceador" short="Ca" />
 		<specialty type="Regainer" value="Recuperarse" short="Re" />
 	</specialties>
 	
@@ -958,11 +958,11 @@
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Impredecible" short="Un" />
+		<specialty type="Unpredictable" value="Impredecible" short="Im" />
 		<specialty type="Powerful" value="Potente" short="Po" />
 		<specialty type="Quick" value="rápido" short="Rá" />
 		<specialty type="Technical" value="Técnico" short="Te" />
-		<specialty type="Head" value="Cabeceador" short="He" />
+		<specialty type="Head" value="Cabeceador" short="Ca" />
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
@@ -1048,11 +1048,11 @@
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Impredecible" short="Un" />
+		<specialty type="Unpredictable" value="Impredecible" short="Im" />
 		<specialty type="Powerful" value="Potente" short="Po" />
-		<specialty type="Quick" value="Rápido" short="Qu" />
+		<specialty type="Quick" value="Rápido" short="Rà" />
 		<specialty type="Technical" value="Técnico" short="Te" />
-		<specialty type="Head" value="Cabeceador" short="He" />
+		<specialty type="Head" value="Cabeceador" short="Ca" />
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
@@ -1128,12 +1128,12 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Atezaina" short="Ke" />
-		<position type="Central defender" value="Erdiko Atzelaria" short="Cd" />
-		<position type="Wing back" value="Hego Atzelaria" short="Wb" />
-		<position type="Inner midfielder" value="Erdilaria" short="Im" />
-		<position type="Winger" value="Hegalekoa" short="Wi" />
-		<position type="Forward" value="Aurrelaria" short="Fo" />
+		<position type="Keeper" value="Atezaina" short="At" />
+		<position type="Central defender" value="Erdiko Atzelaria" short="EA" />
+		<position type="Wing back" value="Hego Atzelaria" short="HA" />
+		<position type="Inner midfielder" value="Erdilaria" short="Er" />
+		<position type="Winger" value="Hegalekoa" short="He" />
+		<position type="Forward" value="Aurrelaria" short="Au" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
@@ -1398,12 +1398,12 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Gardien" short="Ke" />
-		<position type="Central defender" value="Arrière central" short="Cd" />
-		<position type="Wing back" value="Arrière latéral" short="Wb" />
-		<position type="Inner midfielder" value="Milieu de terrain" short="Im" />
-		<position type="Winger" value="Ailier" short="Wi" />
-		<position type="Forward" value="Attaquant" short="Fo" />
+		<position type="Keeper" value="Gardien" short="Ga" />
+		<position type="Central defender" value="Arrière central" short="Ac" />
+		<position type="Wing back" value="Arrière latéral" short="Al" />
+		<position type="Inner midfielder" value="Milieu de terrain" short="Mdt" />
+		<position type="Winger" value="Ailier" short="Ai" />
+		<position type="Forward" value="Attaquant" short="At" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
@@ -1488,12 +1488,12 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Portîr" short="Ke" />
-		<position type="Central defender" value="Difensôr centrâl" short="Cd" />
-		<position type="Wing back" value="Tiercin" short="Wb" />
-		<position type="Inner midfielder" value="Centricjampist" short="Im" />
-		<position type="Winger" value="Ale" short="Wi" />
-		<position type="Forward" value="Tacant" short="Fo" />
+		<position type="Keeper" value="Portîr" short="Po" />
+		<position type="Central defender" value="Difensôr centrâl" short="Dc" />
+		<position type="Wing back" value="Tiercin" short="Ti" />
+		<position type="Inner midfielder" value="Centricjampist" short="Cj" />
+		<position type="Winger" value="Ale" short="Ale" />
+		<position type="Forward" value="Tacant" short="Ta" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
@@ -3886,16 +3886,16 @@
 
 
 
-<!-- needs update -->
+<!-- up to date -->
 <language name="tr" desc="Türkçe">
 	
 	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
+	<MyHattrick value='Hattrick'im' />
+	<MyClub value='Kulübüm' />
+	<World value='Dünya' />
 	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<Shop value='Market' />
+	<Help value='Yardım' />
 	
 	<!-- rating sublevels appearing in match detail page. copy 'text' -->
 	<ratingSubLevels>
@@ -3918,22 +3918,22 @@
 	
 	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="Kaleci" short="Kal" />
+		<position type="Central defender" value="Stoper" short="St" />
+		<position type="Wing back" value="Bek" short="Be" />
+		<position type="Inner midfielder" value="İç Ortasaha" short="Im" />
+		<position type="Winger" value="Kanat" short="Ka" />
+		<position type="Forward" value="Forvet" short="Fo" />
 	</positions>
 	
 	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Kestirilemez" short="Un" />
+		<specialty type="Powerful" value="Güçlü" short="Po" />
+		<specialty type="Quick" value="Hızlı" short="Qu" />
+		<specialty type="Technical" value="Teknik" short="Te" />
+		<specialty type="Head" value="Kafa" short="He" />
+		<specialty type="Regainer" value="Çabuk İyileşen" short="Re" />
 	</specialties>
 	
 	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
@@ -3950,27 +3950,27 @@
 	
 	<!-- levels word connections appearing denominations page. copy 'text' -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="mucizevi" value="20" />
+		<level text="ütopik" value="19" />
+		<level text="sihirli" value="18" />
+		<level text="efsanevi" value="17" />
+		<level text="dünya dışı" value="16" />
+		<level text="devasa" value="15" />
+		<level text="doğa üstü" value="14" />
+		<level text="dünya çapında" value="13" />
+		<level text="muhteşem" value="12" />
+		<level text="görkemli" value="11" />
+		<level text="mükemmel" value="10" />
+		<level text="üstün" value="9" />
+		<level text="çok iyi" value="8" />
+		<level text="kaliteli" value="7" />
+		<level text="yeterli" value="6" />
+		<level text="vasat" value="5" />
+		<level text="zayıf" value="4" />
+		<level text="kötü" value="3" />
+		<level text="berbat" value="2" />
+		<level text="felaket" value="1" />
+		<level text="kazma" value="0" />
 	</levels>
 </language>
 
