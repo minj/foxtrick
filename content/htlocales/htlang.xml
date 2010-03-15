@@ -6,12 +6,13 @@
 	<!-- Bellow you find the sections for other languages -->	
 	<!-- Bellow you find the sections for other languages -->	
 	<!-- Those should have the same entries as the english section with the appropriated strings translated-->	
-	<!-- Copy 'value' means, copy the resp 'value' string from ht pages-->	
-	<!-- Translate 'short' means, freely translate the 'short' string-->	
+	<!-- Copy "value" means, copy the resp "value" string from ht pages-->	
+	<!-- Translate "short" means, freely translate the "short" string-->	
 	<!-- Everything else stays an untranslated copy of the english section-->	
-	<!-- 'name' is the folder name in /locale/ . 'desc' is the displayed name -->
+	<!-- &#39;name&#39; is the folder name in /locale/ . "desc" is the displayed name -->
 	
-	<!-- attention: replace '&' by '&amp;' -->
+	<!-- attention: replace & by &amp; -->
+	<!-- attention: replace ' by &#39; -->
 
 
 <hattricklanguages>
@@ -19,15 +20,15 @@
 <!-- up to date -->
 <language name="en" desc="English">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='My Hattrick' />
-	<MyClub value='My Club' />
-	<World value='World' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Help' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="My Hattrick" />
+	<MyClub value="My Club" />
+	<World value="World" />
+	<Forum value="Forum" />
+	<Shop value="Shop" />
+	<Help value="Help" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(very low)" value="0.0" />
 		<sublevel text="(low)" value="0.25" />
@@ -35,7 +36,7 @@
 		<sublevel text="(very high)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Pressing" />
@@ -46,7 +47,7 @@
 		<tactic type="longshots" value="Long shots" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Keeper" short="GK" />
 		<position type="Central defender" value="Central defender" short="CD" />
@@ -56,7 +57,7 @@
 		<position type="Forward" value="Forward" short="FW" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
 		<specialty type="Powerful" value="Powerful" short="Po" />
@@ -66,7 +67,7 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="extra inner midfield" />
 		<reposition type="centraldefender" value="extra central defender" />
@@ -78,7 +79,7 @@
 		<reposition type="towardswing" value="towards wing" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divine" value="20" />
 		<level text="utopian" value="19" />
@@ -109,15 +110,15 @@
 <!-- up to date -->
 <language name="be" desc="Беларуская">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Мой Hattrick' />
-	<MyClub value='Мой клюб' />
-	<World value='Сусьвет' />
-	<Forum value='Форум' />
-	<Shop value='Крама' />
-	<Help value='Дапамога' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Мой Hattrick" />
+	<MyClub value="Мой клюб" />
+	<World value="Сусьвет" />
+	<Forum value="Форум" />
+	<Shop value="Крама" />
+	<Help value="Дапамога" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(надта нізкі)" value="0.0" />
 		<sublevel text="(нізкі)" value="0.25" />
@@ -125,7 +126,7 @@
 		<sublevel text="(вельмі высокі)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Нармальна" />
 		<tactic type="pressing" value="Прэсінг" />
@@ -146,7 +147,7 @@
 		<position type="Forward" value="Форвард" short="Фо" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непрадказальны" short="Не" />
 		<specialty type="Powerful" value="Моцны" short="Мо" />
@@ -156,7 +157,7 @@
 		<specialty type="Regainer" value="Адраджэнец" short="Ад" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Дадатковы паўабаронца" />
 		<reposition type="centraldefender" value="Дадатковы Абаронца" />
@@ -168,7 +169,7 @@
 		<reposition type="towardswing" value="Да краёў" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="боска" value="20" />
 		<level text="утапічна" value="19" />
@@ -199,15 +200,15 @@
 <!-- up to date -->
 <language name="bg" desc="Български">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Моят Hattrick' />
-	<MyClub value='Моят клуб' />
-	<World value='Светът' />
-	<Forum value='Форум' />
-	<Shop value='Магазин' />
-	<Help value='Помощ' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Моят Hattrick" />
+	<MyClub value="Моят клуб" />
+	<World value="Светът" />
+	<Forum value="Форум" />
+	<Shop value="Магазин" />
+	<Help value="Помощ" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(мн. ниско)" value="0.0" />
 		<sublevel text="(ниско)" value="0.25" />
@@ -215,7 +216,7 @@
 		<sublevel text="(мн. високо)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Нормална" />
 		<tactic type="pressing" value="Преса" />
@@ -226,7 +227,7 @@
 		<tactic type="longshots" value="Далечни удари" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Вратар" short="Ke" />
 		<position type="Central defender" value="Защитник" short="Cd" />
@@ -236,7 +237,7 @@
 		<position type="Forward" value="Нападател" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредвидим" short="Un" />
 		<specialty type="Powerful" value="Powerful" short="Po" />
@@ -246,7 +247,7 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Доп. полузащитник" />
 		<reposition type="centraldefender" value="Доп. защитник" />
@@ -258,7 +259,7 @@
 		<reposition type="towardswing" value="Към крилата" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божествено" value="20" />
 		<level text="легендарно" value="19" />
@@ -289,15 +290,15 @@
 <!-- up to date -->
 <language name="bs" desc="Bosanski">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Moj Hattrick' />
-	<MyClub value='Moj klub' />
-	<World value='Svijet' />
-	<Forum value='Forum' />
-	<Shop value='Prodavnica' />
-	<Help value='Pomoć' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Moj Hattrick" />
+	<MyClub value="Moj klub" />
+	<World value="Svijet" />
+	<Forum value="Forum" />
+	<Shop value="Prodavnica" />
+	<Help value="Pomoć" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Veoma nisko)" value="0.0" />
 		<sublevel text="(Nisko)" value="0.25" />
@@ -305,7 +306,7 @@
 		<sublevel text="(Veoma visoko)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normalno" />
 		<tactic type="pressing" value="Presing" />
@@ -326,7 +327,7 @@
 		<position type="Forward" value="Napadač" short="Na" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nepredvidiv" short="Np" />
 		<specialty type="Powerful" value="Snažan" short="Sn" />
@@ -348,7 +349,7 @@
 		<reposition type="towardswing" value="Prema krilu" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="nenadmašiv" value="20" />
 		<level text="utopijski" value="19" />
@@ -379,13 +380,13 @@
 <!-- up to date -->
 <language name="ca" desc="Català">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='El meu Hattrick' />
-	<MyClub value='El meu Club' />
-	<World value='Internacional' />
-	<Forum value='Fòrum' />
-	<Shop value='Botiga' />
-	<Help value='Ajuda' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="El meu Hattrick" />
+	<MyClub value="El meu Club" />
+	<World value="Internacional" />
+	<Forum value="Fòrum" />
+	<Shop value="Botiga" />
+	<Help value="Ajuda" />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -402,7 +403,7 @@
 		<tactic type="ca" value="Contraatacs" />
 		<tactic type="aow" value="Atac per les bandes" />
 		<tactic type="aim" value="Atac pel centre" />
-		<tactic type="creatively" value="Joc d'especialitats" />
+		<tactic type="creatively" value="Joc d&#39;especialitats" />
 		<tactic type="longshots" value="Xuts llunyans" />
 	</tactics>
 	
@@ -416,7 +417,7 @@
 		<position type="Forward" value="Davanter" short="DV" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisible" short="Im" />
 		<specialty type="Powerful" value="Potent" short="Po" />
@@ -438,7 +439,7 @@
 		<reposition type="towardswing" value="Cap a la banda" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="diví" value="20" />
 		<level text="utòpic" value="19" />
@@ -469,15 +470,15 @@
 <!-- up to date -->
 <language name="cs" desc="Čeština">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Můj Hattrick' />
-	<MyClub value='Můj klub' />
-	<World value='Svět' />
-	<Forum value='Konference' />
-	<Shop value='Obchod' />
-	<Help value='Pomoc' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Můj Hattrick" />
+	<MyClub value="Můj klub" />
+	<World value="Svět" />
+	<Forum value="Konference" />
+	<Shop value="Obchod" />
+	<Help value="Pomoc" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(mnohem horší)" value="0.0" />
 		<sublevel text="(horší)" value="0.25" />
@@ -485,7 +486,7 @@
 		<sublevel text="(mnohem lepší)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normální" />
 		<tactic type="pressing" value="Nátlaková hra" />
@@ -496,7 +497,7 @@
 		<tactic type="longshots" value="Střelba z dálky" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Brankář" short="Ke" />
 		<position type="Central defender" value="Střední obránce" short="Cd" />
@@ -506,7 +507,7 @@
 		<position type="Forward" value="Útočník" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nepředvídatelný" short="Un" />
 		<specialty type="Powerful" value="Silový " short="Po" />
@@ -516,7 +517,7 @@
 		<specialty type="Regainer" value="Nezmar" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="střední záložník" />
 		<reposition type="centraldefender" value="střední obránce" />
@@ -528,7 +529,7 @@
 		<reposition type="towardswing" value="hrající na křídlo" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="Boží" value="20" />
 		<level text="legendární" value="19" />
@@ -559,15 +560,15 @@
 <!-- up to date -->
 <language name="da" desc="Dansk">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mit Hattrick' />
-	<MyClub value='Min Klub' />
-	<World value='Verden' />
-	<Forum value='Forum' />
-	<Shop value='Butik' />
-	<Help value='Hjælp' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mit Hattrick" />
+	<MyClub value="Min Klub" />
+	<World value="Verden" />
+	<Forum value="Forum" />
+	<Shop value="Butik" />
+	<Help value="Hjælp" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(meget lav)" value="0.0" />
 		<sublevel text="(lav)" value="0.25" />
@@ -575,7 +576,7 @@
 		<sublevel text="(meget høj)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presspil" />
@@ -586,7 +587,7 @@
 		<tactic type="longshots" value="Langskud" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Målmand" short="Må" />
 		<position type="Central defender" value="Central forsvar" short="Cf" />
@@ -596,7 +597,7 @@
 		<position type="Forward" value="Angriber" short="An" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Uberegnelig " short="Un" />
 		<specialty type="Powerful" value="Kraftfuld " short="Po" />
@@ -606,7 +607,7 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Ekstra midtbane" />
 		<reposition type="centraldefender" value="Ekstra forsvar" />
@@ -618,7 +619,7 @@
 		<reposition type="towardswing" value="Ud mod fløjen" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="guddommelig" value="20" />
 		<level text="utopisk" value="19" />
@@ -649,15 +650,15 @@
 <!-- up to date -->
 <language name="de" desc="Deutsch">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mein Hattrick' />
-	<MyClub value='Mein Verein' />
-	<World value='International' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Hilfe' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mein Hattrick" />
+	<MyClub value="Mein Verein" />
+	<World value="International" />
+	<Forum value="Forum" />
+	<Shop value="Shop" />
+	<Help value="Hilfe" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="min." value="0.0" />
 		<sublevel text="tief" value="0.25" />
@@ -665,7 +666,7 @@
 		<sublevel text="max." value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="normal" />
 		<tactic type="pressing" value="Pressing" />
@@ -686,7 +687,7 @@
 		<position type="Forward" value="Stürmer" short="St" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="unberechenbar" short="un" />
 		<specialty type="Powerful" value="durchsetzungsstark" short="du" />
@@ -696,7 +697,7 @@
 		<specialty type="Regainer" value="Geneser" short="Ge" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="zusätzl. mittelfeld" />
 		<reposition type="centraldefender" value="zusätzl. innenvert." />
@@ -708,7 +709,7 @@
 		<reposition type="towardswing" value="nach außen" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="göttlich" value="20" />
 		<level text="galaktisch" value="19" />
@@ -739,15 +740,15 @@
 <!-- up to date -->
 <language name="ee" desc="Eesti">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Minu Hattrick' />
-	<MyClub value='Minu klubi' />
-	<World value='Maailm' />
-	<Forum value='Foorum' />
-	<Shop value='Pood' />
-	<Help value='Abi' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Minu Hattrick" />
+	<MyClub value="Minu klubi" />
+	<World value="Maailm" />
+	<Forum value="Foorum" />
+	<Shop value="Pood" />
+	<Help value="Abi" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(väga madal)" value="0.0" />
 		<sublevel text="(madal)" value="0.25" />
@@ -755,7 +756,7 @@
 		<sublevel text="(väga kõrge)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Tavaline" />
 		<tactic type="pressing" value="Pressing" />
@@ -766,7 +767,7 @@
 		<tactic type="longshots" value="Kauglöögid" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Väravavaht" short="Vv" />
 		<position type="Central defender" value="Keskkaitsja" short="Kk" />
@@ -776,7 +777,7 @@
 		<position type="Forward" value="Ründaja" short="Rü" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ettearvamatu" short="Un" />
 		<specialty type="Powerful" value="Jõuline " short="Po" />
@@ -786,7 +787,7 @@
 		<specialty type="Regainer" value="Elujõuline" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Lisakeskpoolkaitsja" />
 		<reposition type="centraldefender" value="Lisakeskkaitsja" />
@@ -798,7 +799,7 @@
 		<reposition type="towardswing" value="Ääre suunas" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jumalik" value="20" />
 		<level text="utoopiline" value="19" />
@@ -829,15 +830,15 @@
 <!-- up to date -->
 <language name="es" desc="Español">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mi Hattrick' />
-	<MyClub value='Mi Club' />
-	<World value='Internacional' />
-	<Forum value='Foros' />
-	<Shop value='Tienda' />
-	<Help value='Ayuda' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mi Hattrick" />
+	<MyClub value="Mi Club" />
+	<World value="Internacional" />
+	<Forum value="Foros" />
+	<Shop value="Tienda" />
+	<Help value="Ayuda" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(muy bajo)" value="0.0" />
 		<sublevel text="(bajo)" value="0.25" />
@@ -845,7 +846,7 @@
 		<sublevel text="(muy alto)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presionar" />
@@ -856,7 +857,7 @@
 		<tactic type="longshots" value="Tiros lejanos" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Portero" short="Po" />
 		<position type="Central defender" value="Defensor central" short="Dc" />
@@ -866,7 +867,7 @@
 		<position type="Forward" value="Delantero" short="De" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisible" short="Im" />
 		<specialty type="Powerful" value="Potente" short="Po" />
@@ -876,7 +877,7 @@
 		<specialty type="Regainer" value="Recuperarse" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="extra medio central" />
 		<reposition type="centraldefender" value="extra defensor central" />
@@ -888,7 +889,7 @@
 		<reposition type="towardswing" value="hacia el lateral" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />
 		<level text="utópico" value="19" />
@@ -919,15 +920,15 @@
 <!-- up to date -->
 <language name="es_ca" desc="Español, Centroamericano">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mi Hattrick' />
-	<MyClub value='Mi Club' />
-	<World value='Mundo' />
-	<Forum value='Foro' />
-	<Shop value='Tienda' />
-	<Help value='Ayuda' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mi Hattrick" />
+	<MyClub value="Mi Club" />
+	<World value="Mundo" />
+	<Forum value="Foro" />
+	<Shop value="Tienda" />
+	<Help value="Ayuda" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Muy bajo)" value="0.0" />
 		<sublevel text="(Bajo)" value="0.25" />
@@ -935,7 +936,7 @@
 		<sublevel text="(Muy alto)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presionar" />
@@ -956,7 +957,7 @@
 		<position type="Forward" value="Delantero" short="De" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Impredecible" short="Im" />
 		<specialty type="Powerful" value="Potente" short="Po" />
@@ -966,7 +967,7 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Extra Medio Central" />
 		<reposition type="centraldefender" value="Extra Defensor Central" />
@@ -978,7 +979,7 @@
 		<reposition type="towardswing" value="Hacia Lateral" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />
 		<level text="utópico" value="19" />
@@ -1009,15 +1010,15 @@
 <!-- up to date -->
 <language name="es_SU" desc="Español, Sudamericano">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mi Hattrick' />
-	<MyClub value='Mi Club' />
-	<World value='El Mundo' />
-	<Forum value='Conferencias' />
-	<Shop value='Tienda' />
-	<Help value='Ayuda' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mi Hattrick" />
+	<MyClub value="Mi Club" />
+	<World value="El Mundo" />
+	<Forum value="Conferencias" />
+	<Shop value="Tienda" />
+	<Help value="Ayuda" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(muy bajo)" value="0.0" />
 		<sublevel text="(bajo)" value="0.25" />
@@ -1025,7 +1026,7 @@
 		<sublevel text="(muy alto)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presionar" />
@@ -1036,7 +1037,7 @@
 		<tactic type="longshots" value="Tiros lejanos" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Arquero" short="Ar" />
 		<position type="Central defender" value="Defensor central" short="Dc" />
@@ -1046,7 +1047,7 @@
 		<position type="Forward" value="Delantero" short="De" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Impredecible" short="Im" />
 		<specialty type="Powerful" value="Potente" short="Po" />
@@ -1056,7 +1057,7 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="extra medio central" />
 		<reposition type="centraldefender" value="extra defensor central" />
@@ -1068,7 +1069,7 @@
 		<reposition type="towardswing" value="Hacia el lateral" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />
 		<level text="utópico" value="19" />
@@ -1099,15 +1100,15 @@
 <!-- up to date -->
 <language name="eu" desc="Euskara">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Nire Hattrick' />
-	<MyClub value='Nire Kluba' />
-	<World value='Nazioartea' />
-	<Forum value='Foroa' />
-	<Shop value='Denda' />
-	<Help value='Laguntza' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Nire Hattrick" />
+	<MyClub value="Nire Kluba" />
+	<World value="Nazioartea" />
+	<Forum value="Foroa" />
+	<Shop value="Denda" />
+	<Help value="Laguntza" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Oso baxua)" value="0.0"/>
 		<sublevel text="(Baxua)" value="0.25"/>
@@ -1115,7 +1116,7 @@
 		<sublevel text="(Oso altua)" value="0.75"/>
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal"/>
 		<tactic type="pressing" value="Presionatu"/>
@@ -1126,7 +1127,7 @@
 		<tactic type="longshots" value="Urruneko jaurtiketak" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Atezaina" short="At" />
 		<position type="Central defender" value="Erdiko Atzelaria" short="EA" />
@@ -1136,7 +1137,7 @@
 		<position type="Forward" value="Aurrelaria" short="Au" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ustekabekoa" short="Un" />
 		<specialty type="Powerful" value="Ahaltsua" short="Po" />
@@ -1146,7 +1147,7 @@
 		<specialty type="Regainer" value="Sendaerraza" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Estra erdilaria"/>
 		<reposition type="centraldefender" value="Estra atzelaria"/>
@@ -1158,7 +1159,7 @@
 		<reposition type="towardswing" value="Hegalerantz" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jainkotiarra" value="20" />
 		<level text="utopikoa" value="19" />
@@ -1189,13 +1190,13 @@
 <!-- needs update -->
 <language name="fa" desc="Persian">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='هت‌‌تریک من' />
-	<MyClub value='باشگاه من' />
-	<World value='بین‌‌المللی' />
-	<Forum value='انجمن‌‌ها' />
-	<Shop value='فروشگاه' />
-	<Help value='راهنمایی' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="هت‌‌تریک من" />
+	<MyClub value="باشگاه من" />
+	<World value="بین‌‌المللی" />
+	<Forum value="انجمن‌‌ها" />
+	<Shop value="فروشگاه" />
+	<Help value="راهنمایی" />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -1216,7 +1217,7 @@
 		<tactic type="longshots" value="شوت از راه دور" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Keeper" short="Ke" />
 		<position type="Central defender" value="Central defender" short="Cd" />
@@ -1226,7 +1227,7 @@
 		<position type="Forward" value="Forward" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
 		<specialty type="Powerful" value="Powerful" short="Po" />
@@ -1248,7 +1249,7 @@
 		<reposition type="towardswing" value="به سمت جناحین" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="کهکشاني" value="20" />
 		<level text="رماني" value="19" />
@@ -1279,15 +1280,15 @@
 <!-- up to date -->
 <language name="fi" desc="Suomi">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Hattrick' />
-	<MyClub value='Seura' />
-	<World value='Maailma' />
-	<Forum value='Foorumi' />
-	<Shop value='Kauppa' />
-	<Help value='Ohje' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Hattrick" />
+	<MyClub value="Seura" />
+	<World value="Maailma" />
+	<Forum value="Foorumi" />
+	<Shop value="Kauppa" />
+	<Help value="Ohje" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(erittäin matala)" value="0.0" />
 		<sublevel text="(matala)" value="0.25" />
@@ -1295,7 +1296,7 @@
 		<sublevel text="(erittäin korkea)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normaali" />
 		<tactic type="pressing" value="Painostus" />
@@ -1306,7 +1307,7 @@
 		<tactic type="longshots" value="Kaukolaukaukset" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Maalivahti" short="Mv" />
 		<position type="Central defender" value="Keskuspuolustaja" short="Kp" />
@@ -1316,7 +1317,7 @@
 		<position type="Forward" value="Hyökkääjä" short="Hy" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Arvaamaton" short="Ar" />
 		<specialty type="Powerful" value="Voimakas" short="Vo" />
@@ -1326,7 +1327,7 @@
 		<specialty type="Regainer" value="Toipuja" short="To" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="lisäkeskikenttäpelaaja" />
 		<reposition type="centraldefender" value="keskuspuolustaja" />
@@ -1338,7 +1339,7 @@
 		<reposition type="towardswing" value="tukee laitaa" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jumalainen" value="20" />
 		<level text="utopinen" value="19" />
@@ -1369,15 +1370,15 @@
 <!-- up to date -->
 <language name="fr" desc="Français">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mon Hattrick' />
-	<MyClub value='Mon club' />
-	<World value='Monde' />
-	<Forum value='Forums' />
-	<Shop value='Boutique' />
-	<Help value='Aide' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mon Hattrick" />
+	<MyClub value="Mon club" />
+	<World value="Monde" />
+	<Forum value="Forums" />
+	<Shop value="Boutique" />
+	<Help value="Aide" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(très bas)" value="0.0" />
 		<sublevel text="(bas)" value="0.25" />
@@ -1385,18 +1386,18 @@
 		<sublevel text="(très haut)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Pressing" />
 		<tactic type="ca" value="Contre-attaques" />
-		<tactic type="aow" value="Attaquer sur les ailes" />
-		<tactic type="aim" value="Attaquer au centre" />
+		<tactic type="aow" value="Attaque sur les ailes" />
+		<tactic type="aim" value="Attaque au centre" />
 		<tactic type="creatively" value="Jeu créatif" />
 		<tactic type="longshots" value="Tirs lointains" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Gardien" short="Ga" />
 		<position type="Central defender" value="Arrière central" short="Ac" />
@@ -1406,7 +1407,7 @@
 		<position type="Forward" value="Attaquant" short="At" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprévisible" short="Un" />
 		<specialty type="Powerful" value="Costaud" short="Po" />
@@ -1416,7 +1417,7 @@
 		<specialty type="Regainer" value="Guérison accéléréé" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="milieu" />
 		<reposition type="centraldefender" value="défenseur" />
@@ -1425,10 +1426,10 @@
 		<reposition type="offensive" value="offensif" />
 		<reposition type="defensive" value="défensif" />
 		<reposition type="towardsmiddle" value="vers le centre" />
-		<reposition type="towardswing" value="sur l'aile" />
+		<reposition type="towardswing" value="sur l&#39;aile" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divin" value="20" />
 		<level text="utopique" value="19" />
@@ -1459,15 +1460,15 @@
 <!-- up to date -->
 <language name="fur" desc="Furlan">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Il Gno Hattrick' />
-	<MyClub value='La mê Scuadre' />
-	<World value='Mont' />
-	<Forum value='Forum' />
-	<Shop value='Buteghe' />
-	<Help value='Jutori' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Il Gno Hattrick" />
+	<MyClub value="La mê Scuadre" />
+	<World value="Mont" />
+	<Forum value="Forum" />
+	<Shop value="Buteghe" />
+	<Help value="Jutori" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Une vore bas)" value="0.0" />
 		<sublevel text="(Bas)" value="0.25" />
@@ -1475,7 +1476,7 @@
 		<sublevel text="(Une vore alt)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normâl" />
 		<tactic type="pressing" value="Pressing" />
@@ -1486,7 +1487,7 @@
 		<tactic type="longshots" value="Tîrs di lontan" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Portîr" short="Po" />
 		<position type="Central defender" value="Difensôr centrâl" short="Dc" />
@@ -1496,7 +1497,7 @@
 		<position type="Forward" value="Tacant" short="Ta" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevedibil" short="Un" />
 		<specialty type="Powerful" value="Potent" short="Po" />
@@ -1506,7 +1507,7 @@
 		<specialty type="Regainer" value="Svelt a vuarî" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Centricjampist" />
 		<reposition type="centraldefender" value="Difensôr Centrâl" />
@@ -1518,7 +1519,7 @@
 		<reposition type="towardswing" value="Viers la fasse" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divin" value="20" />
 		<level text="utopic" value="19" />
@@ -1549,15 +1550,15 @@
 <!-- up to date -->
 <language name="fy" desc="Frysk">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Myn Hattrick' />
-	<MyClub value='Myn Klup' />
-	<World value='Wrâld' />
-	<Forum value='Foarums' />
-	<Shop value='Winkel' />
-	<Help value='Hulp' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Myn Hattrick" />
+	<MyClub value="Myn Klup" />
+	<World value="Wrâld" />
+	<Forum value="Foarums" />
+	<Shop value="Winkel" />
+	<Help value="Hulp" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Tige leech)" value="0.0" />
 		<sublevel text="(Leech)" value="0.25" />
@@ -1565,7 +1566,7 @@
 		<sublevel text="(Tige heech)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="normaal" />
 		<tactic type="pressing" value="druk sette" />
@@ -1576,7 +1577,7 @@
 		<tactic type="longshots" value="Ofstânsskoaten" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Doelferdigener" short="Ke" />
 		<position type="Central defender" value="Sintrale Ferdigener" short="Cd" />
@@ -1586,7 +1587,7 @@
 		<position type="Forward" value="Oanfaller" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ûnfoarspelber" short="Un" />
 		<specialty type="Powerful" value="Krêftich" short="Po" />
@@ -1596,7 +1597,7 @@
 		<specialty type="Regainer" value="Snelle hersteller" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="ekstra sintrale middenfjilder" />
 		<reposition type="centraldefender" value="ekstra sintrale ferdigener" />
@@ -1608,7 +1609,7 @@
 		<reposition type="towardswing" value="nei de wjuk" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="godlik" value="20" />
 		<level text="utopysk" value="19" />
@@ -1639,15 +1640,15 @@
 <!-- up to date -->
 <language name="gl" desc="Galego">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='O meu Hattrick' />
-	<MyClub value='O meu club' />
-	<World value='O mundo' />
-	<Forum value='Conferencias' />
-	<Shop value='Tenda' />
-	<Help value='Axuda' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="O meu Hattrick" />
+	<MyClub value="O meu club" />
+	<World value="O mundo" />
+	<Forum value="Conferencias" />
+	<Shop value="Tenda" />
+	<Help value="Axuda" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Moi baixo)" value="0.0" />
 		<sublevel text="(Baixo)" value="0.25" />
@@ -1655,7 +1656,7 @@
 		<sublevel text="(Moi alto)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presión" />
@@ -1666,7 +1667,7 @@
 		<tactic type="longshots" value="Tiros de lonxe" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Porteiro" short="Po" />
 		<position type="Central defender" value="Defensa Central" short="Dc" />
@@ -1676,7 +1677,7 @@
 		<position type="Forward" value="Dianteiro" short="Di" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisible" short="Un" />
 		<specialty type="Powerful" value="Potente" short="Po" />
@@ -1686,7 +1687,7 @@
 		<specialty type="Regainer" value="Baril" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Extra Mediocentro" />
 		<reposition type="centraldefender" value="Extra Defensa Central" />
@@ -1698,7 +1699,7 @@
 		<reposition type="towardswing" value="Cara á Banda" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />
 		<level text="utópico" value="19" />
@@ -1729,15 +1730,15 @@
 <!-- up to date -->
 <language name="gr" desc="Ελληνικά">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Το Hattrick μου' />
-	<MyClub value='Ο Σύλλογος μου' />
-	<World value='Κόσμος' />
-	<Forum value='Διασκέψεις' />
-	<Shop value='Κατάστημα' />
-	<Help value='Βοήθεια' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Το Hattrick μου" />
+	<MyClub value="Ο Σύλλογος μου" />
+	<World value="Κόσμος" />
+	<Forum value="Διασκέψεις" />
+	<Shop value="Κατάστημα" />
+	<Help value="Βοήθεια" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(πολύ χαμηλό)" value="0.0" />
 		<sublevel text="(χαμηλό)" value="0.25" />
@@ -1745,7 +1746,7 @@
 		<sublevel text="(πολύ υψηλό)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Φυσιολογικά" />
 		<tactic type="pressing" value="Πρεσάρισμα" />
@@ -1756,7 +1757,7 @@
 		<tactic type="longshots" value="Μακρινά σουτ" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Τερματοφύλακας" short="Ke" />
 		<position type="Central defender" value="Κεντρικός Αμυντικός" short="Cd" />
@@ -1766,7 +1767,7 @@
 		<position type="Forward" value="Επιθετικός" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Απρόβλεπτος" short="Un" />
 		<specialty type="Powerful" value="Δυνατός" short="Po" />
@@ -1776,7 +1777,7 @@
 		<specialty type="Regainer" value="Ταχυθεραπεύσιμος" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Εξτρα Κεντρικός Μέσος" />
 		<reposition type="centraldefender" value="Εξτρα Κεντρικός Αμυντικός" />
@@ -1788,7 +1789,7 @@
 		<reposition type="towardswing" value="Προς τα Πλάγια" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="θεϊκός" value="20" />
 		<level text="ουτοπικός" value="19" />
@@ -1819,15 +1820,15 @@
 <!-- needs update -->
 <language name="he" desc="עברית">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='האטריק שלי' />
-	<MyClub value='המועדון שלי' />
-	<World value='העולם' />
-	<Forum value='פורום' />
-	<Shop value='חנות' />
-	<Help value='עזרה' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="האטריק שלי" />
+	<MyClub value="המועדון שלי" />
+	<World value="העולם" />
+	<Forum value="פורום" />
+	<Shop value="חנות" />
+	<Help value="עזרה" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(נמוך מאוד)" value="0.0" />
 		<sublevel text="(נמוך)" value="0.25" />
@@ -1835,7 +1836,7 @@
 		<sublevel text="(גבוה מאוד)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="רגילה" />
 		<tactic type="pressing" value="לחץ" />
@@ -1846,7 +1847,7 @@
 		<tactic type="longshots" value="התקפה מרחוק" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Keeper" short="Ke" />
 		<position type="Central defender" value="Central defender" short="Cd" />
@@ -1856,7 +1857,7 @@
 		<position type="Forward" value="Forward" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
 		<specialty type="Powerful" value="Powerful" short="Po" />
@@ -1866,7 +1867,7 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="קשר נוסף" />
 		<reposition type="centraldefender" value="בלם נוסף" />
@@ -1878,7 +1879,7 @@
 		<reposition type="towardswing" value="לכיוון האגף" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divine" value="20" />
 		<level text="utopian" value="19" />
@@ -1909,15 +1910,15 @@
 <!-- up to date -->
 <language name="hr" desc="Hrvatski">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Moj Hattrick' />
-	<MyClub value='Moj klub' />
-	<World value='Svijet' />
-	<Forum value='Forum' />
-	<Shop value='Trgovina' />
-	<Help value='Pomoć' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Moj Hattrick" />
+	<MyClub value="Moj klub" />
+	<World value="Svijet" />
+	<Forum value="Forum" />
+	<Shop value="Trgovina" />
+	<Help value="Pomoć" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(vrlo nizak)" value="0.0" />
 		<sublevel text="(nizak)" value="0.25" />
@@ -1925,7 +1926,7 @@
 		<sublevel text="(vrlo visok)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Standardna" />
 		<tactic type="pressing" value="Presing" />
@@ -1936,7 +1937,7 @@
 		<tactic type="longshots" value="Udarci iz daljine" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Vratar" short="Ke" />
 		<position type="Central defender" value="Obrambeni" short="Cd" />
@@ -1946,7 +1947,7 @@
 		<position type="Forward" value="Napadač" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nepredvidiv" short="Un" />
 		<specialty type="Powerful" value="Snažan" short="Po" />
@@ -1956,7 +1957,7 @@
 		<specialty type="Regainer" value="Brži oporavak" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="dodatni vezni" />
 		<reposition type="centraldefender" value="dodatni branič" />
@@ -1968,7 +1969,7 @@
 		<reposition type="towardswing" value="prema krilu" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="božanski" value="20" />
 		<level text="utopijski" value="19" />
@@ -1999,15 +2000,15 @@
 <!-- up to date -->
 <language name="hu" desc="Magyar">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Hattrick' />
-	<MyClub value='Klub' />
-	<World value='Világ' />
-	<Forum value='Fórum' />
-	<Shop value='Bolt' />
-	<Help value='Súgó' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Hattrick" />
+	<MyClub value="Klub" />
+	<World value="Világ" />
+	<Forum value="Fórum" />
+	<Shop value="Bolt" />
+	<Help value="Súgó" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Éppen)" value="0.0" />
 		<sublevel text="(Átlag alatt)" value="0.25" />
@@ -2015,7 +2016,7 @@
 		<sublevel text="(Átlag felett)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Alap" />
 		<tactic type="pressing" value="Játéktördelés" />
@@ -2026,7 +2027,7 @@
 		<tactic type="longshots" value="Távoli lövések" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Kapus" short="Ke" />
 		<position type="Central defender" value="Középhátvéd" short="Cd" />
@@ -2036,7 +2037,7 @@
 		<position type="Forward" value="Csatár" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Kiszámíthatatlan" short="Un" />
 		<specialty type="Powerful" value="Erőteljes" short="Po" />
@@ -2046,7 +2047,7 @@
 		<specialty type="Regainer" value="Szívós" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="extra középpályás" />
 		<reposition type="centraldefender" value="extra középhátvéd" />
@@ -2058,7 +2059,7 @@
 		<reposition type="towardswing" value="szélre" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="isteni" value="20" />
 		<level text="csodás" value="19" />
@@ -2089,15 +2090,15 @@
 <!-- up to date -->
 <language name="it" desc="Italiano">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Il Mio Hattrick' />
-	<MyClub value='Il Mio Club' />
-	<World value='Mondo' />
-	<Forum value='Forum' />
-	<Shop value='Negozio' />
-	<Help value='Aiuto' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Il Mio Hattrick" />
+	<MyClub value="Il Mio Club" />
+	<World value="Mondo" />
+	<Forum value="Forum" />
+	<Shop value="Negozio" />
+	<Help value="Aiuto" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(molto basso)" value="0.0" />
 		<sublevel text="(basso)" value="0.25" />
@@ -2105,18 +2106,18 @@
 		<sublevel text="(molto alto)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normale" />
 		<tactic type="pressing" value="Pressing" />
 		<tactic type="ca" value="Contropiede" />
 		<tactic type="aow" value="Attacco sulle fasce" />
 		<tactic type="aim" value="Attacco al centro" />
-		<tactic type="creatively" value="Libertà d'inventiva" />
+		<tactic type="creatively" value="Libertà d&#39;inventiva" />
 		<tactic type="longshots" value="Tiri da fuori" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Portiere" short="Po" />
 		<position type="Central defender" value="Difensore centrale" short="Dc" />
@@ -2126,7 +2127,7 @@
 		<position type="Forward" value="Attaccante" short="At" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevedibile" short="Imp" />
 		<specialty type="Powerful" value="Potente" short="Pot" />
@@ -2136,7 +2137,7 @@
 		<specialty type="Regainer" value="Guarigione Veloce" short="GV" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="centrocampista aggiunto" />
 		<reposition type="centraldefender" value="difensore aggiunto" />
@@ -2145,10 +2146,10 @@
 		<reposition type="offensive" value="offensivo" />
 		<reposition type="defensive" value="difensivo" />
 		<reposition type="towardsmiddle" value="verso il centro" />
-		<reposition type="towardswing" value="verso l'ala" />
+		<reposition type="towardswing" value="verso l&#39;ala" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />
 		<level text="utopico" value="19" />
@@ -2179,13 +2180,13 @@
 <!-- needs update -->
 <language name="ka" desc="Georgian">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='ჩემი ჰეთთრიქი' />
-	<MyClub value='ჩემი კლუბი' />
-	<World value='მსოფლიო' />
-	<Forum value='ფორუმი' />
-	<Shop value='მაღაზია' />
-	<Help value='დახმარება' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="ჩემი ჰეთთრიქი" />
+	<MyClub value="ჩემი კლუბი" />
+	<World value="მსოფლიო" />
+	<Forum value="ფორუმი" />
+	<Shop value="მაღაზია" />
+	<Help value="დახმარება" />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -2206,7 +2207,7 @@
 		<tactic type="longshots" value="Long shots" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="მეკარე" short="Ke" />
 		<position type="Central defender" value="ცენტრალური მცველი" short="Cd" />
@@ -2216,7 +2217,7 @@
 		<position type="Forward" value="თავდამსხმელი" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
 		<specialty type="Powerful" value="Powerful" short="Po" />
@@ -2238,7 +2239,7 @@
 		<reposition type="towardswing" value="towards wing" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="ღვთაებრივი" value="20" />
 		<level text="ზღაპრული" value="19" />
@@ -2269,13 +2270,13 @@
 <!-- up to date -->
 <language name="lb" desc="Lëtzebuergesch">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Mäin Hattrick' />
-	<MyClub value='Mäi Veräin' />
-	<World value='HT-Welt' />
-	<Forum value='Forum' />
-	<Shop value='Shop' />
-	<Help value='Hëllef' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Mäin Hattrick" />
+	<MyClub value="Mäi Veräin" />
+	<World value="HT-Welt" />
+	<Forum value="Forum" />
+	<Shop value="Shop" />
+	<Help value="Hëllef" />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -2290,13 +2291,13 @@
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Pressen" />
 		<tactic type="ca" value="Konteren" />
-		<tactic type="aow" value="Attack iwwer d'Säiten" />
-		<tactic type="aim" value="Attack iwwer d'Mëtt" />
+		<tactic type="aow" value="Attack iwwer d&#39;Säiten" />
+		<tactic type="aim" value="Attack iwwer d&#39;Mëtt" />
 		<tactic type="creatively" value="Kreativ spillen" />
 		<tactic type="longshots" value="Wäitschëss" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Goalkeeper" short="Ke" />
 		<position type="Central defender" value="zentrale Verteideger" short="Cd" />
@@ -2306,7 +2307,7 @@
 		<position type="Forward" value="Stiermer" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="onberechenbar" short="Un" />
 		<specialty type="Powerful" value="duerchsetzungsstaark" short="Po" />
@@ -2324,11 +2325,11 @@
 		<reposition type="normal" value="Normal" />
 		<reposition type="offensive" value="Offensiv" />
 		<reposition type="defensive" value="Defensiv" />
-		<reposition type="towardsmiddle" value="an d'Mëtt" />
+		<reposition type="towardsmiddle" value="an d&#39;Mëtt" />
 		<reposition type="towardswing" value="no baussen" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="gëttlech" value="20" />
 		<level text="utopesch" value="19" />
@@ -2359,15 +2360,15 @@
 <!-- up to date -->
 <language name="lt" desc="Lietuvių">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mano Hattrick' />
-	<MyClub value='Mano komanda' />
-	<World value='Pasaulis' />
-	<Forum value='Forumai' />
-	<Shop value='Parduotuvė' />
-	<Help value='Pagalba' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mano Hattrick" />
+	<MyClub value="Mano komanda" />
+	<World value="Pasaulis" />
+	<Forum value="Forumai" />
+	<Shop value="Parduotuvė" />
+	<Help value="Pagalba" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(min.)" value="0.0" />
 		<sublevel text="(žemas)" value="0.25" />
@@ -2375,7 +2376,7 @@
 		<sublevel text="(maks.)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normalus" />
 		<tactic type="pressing" value="Spaudimas" />
@@ -2386,7 +2387,7 @@
 		<tactic type="longshots" value="Tolimi smūgiai" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Vartininkas" short="Ke" />
 		<position type="Central defender" value="Vidurio gynėjas" short="Cd" />
@@ -2396,7 +2397,7 @@
 		<position type="Forward" value="Puolėjas" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nenuspėjamas" short="Un" />
 		<specialty type="Powerful" value="Stiprus" short="Po" />
@@ -2406,7 +2407,7 @@
 		<specialty type="Regainer" value="Atsigaunantis" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="papildomas saugas" />
 		<reposition type="centraldefender" value="papildomas gynėjas" />
@@ -2418,7 +2419,7 @@
 		<reposition type="towardswing" value="link krašto" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="dieviškas" value="20" />
 		<level text="utopinis" value="19" />
@@ -2449,15 +2450,15 @@
 <!-- up to date -->
 <language name="lv" desc="Latviešu">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mans Hattrick' />
-	<MyClub value='Mans klubs' />
-	<World value='Pasaule' />
-	<Forum value='Diskusiju telpa' />
-	<Shop value='Veikals' />
-	<Help value='Palīdzība' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mans Hattrick" />
+	<MyClub value="Mans klubs" />
+	<World value="Pasaule" />
+	<Forum value="Diskusiju telpa" />
+	<Shop value="Veikals" />
+	<Help value="Palīdzība" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(ļ.zems)" value="0.0" />
 		<sublevel text="(zems)" value="0.25" />
@@ -2465,7 +2466,7 @@
 		<sublevel text="(ļ.augsts)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normāli" />
 		<tactic type="pressing" value="Presings" />
@@ -2476,7 +2477,7 @@
 		<tactic type="longshots" value="Tālsitieni" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Vārtsargs" short="Ke" />
 		<position type="Central defender" value="Centra aizsargs" short="Cd" />
@@ -2486,7 +2487,7 @@
 		<position type="Forward" value="Uzbrucējs" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Neprognozējams" short="Un" />
 		<specialty type="Powerful" value="Atlētisks" short="Po" />
@@ -2496,7 +2497,7 @@
 		<specialty type="Regainer" value="Atguvējs" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Kā pussargs" />
 		<reposition type="centraldefender" value="Kā centra aizsargs" />
@@ -2508,7 +2509,7 @@
 		<reposition type="towardswing" value="Vairāk uz flangu" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="dievišķi" value="20" />
 		<level text="utopiski" value="19" />
@@ -2539,15 +2540,15 @@
 <!-- up to date -->
 <language name="mk" desc="Македонски">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Moj Hattrick' />
-	<MyClub value='Мојот Клуб' />
-	<World value='Свет' />
-	<Forum value='Форум' />
-	<Shop value='Продавница' />
-	<Help value='Помош' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Moj Hattrick" />
+	<MyClub value="Мојот Клуб" />
+	<World value="Свет" />
+	<Forum value="Форум" />
+	<Shop value="Продавница" />
+	<Help value="Помош" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Многу ниско)" value="0.0" />
 		<sublevel text="(Ниско)" value="0.25" />
@@ -2555,7 +2556,7 @@
 		<sublevel text="(Многу високо)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Нормално" />
 		<tactic type="pressing" value="Пресинг" />
@@ -2566,7 +2567,7 @@
 		<tactic type="longshots" value="Удари од далечина" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Голман" short="Ke" />
 		<position type="Central defender" value="Централен Одбрамбен" short="Cd" />
@@ -2576,7 +2577,7 @@
 		<position type="Forward" value="Напаѓач" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредвидлив" short="Un" />
 		<specialty type="Powerful" value="Моќен" short="Po" />
@@ -2586,7 +2587,7 @@
 		<specialty type="Regainer" value="Нескршлив" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Додатен Играч во Средина" />
 		<reposition type="centraldefender" value="Додатен Одбрамбен" />
@@ -2598,7 +2599,7 @@
 		<reposition type="towardswing" value="Према Крило" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божествен" value="20" />
 		<level text="утописки" value="19" />
@@ -2629,13 +2630,13 @@
 <!-- up to date -->
 <language name="mt" desc="Malti">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Hattrick Tiegħi' />
-	<MyClub value='Il-Klabb Tiegħi' />
-	<World value='Minn Madwar id-Dinja' />
-	<Forum value='Forum' />
-	<Shop value='Il-Ħanut' />
-	<Help value='Għajnuna' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Hattrick Tiegħi" />
+	<MyClub value="Il-Klabb Tiegħi" />
+	<World value="Minn Madwar id-Dinja" />
+	<Forum value="Forum" />
+	<Shop value="Il-Ħanut" />
+	<Help value="Għajnuna" />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -2656,7 +2657,7 @@
 		<tactic type="longshots" value="Ixxuttjaw mill-bogħod" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Gowler" short="Ke" />
 		<position type="Central defender" value="Difensur Ċentrali" short="Cd" />
@@ -2666,10 +2667,10 @@
 		<position type="Forward" value="Attakkant" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevedibbli" short="Un" />
-		<specialty type="Powerful" value="B'saħħtu" short="Po" />
+		<specialty type="Powerful" value="B&#39;saħħtu" short="Po" />
 		<specialty type="Quick" value="Veloċi" short="Qu" />
 		<specialty type="Technical" value="Tekniku" short="Te" />
 		<specialty type="Head" value="Ras" short="He" />
@@ -2688,7 +2689,7 @@
 		<reposition type="towardswing" value="Lejn il-Linja" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divin" value="20" />
 		<level text="utopjan" value="19" />
@@ -2719,15 +2720,15 @@
 <!-- up to date -->
 <language name="nl" desc="Nederlands">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mijn Hattrick' />
-	<MyClub value='Mijn Club' />
-	<World value='Wereld' />
-	<Forum value='Forum' />
-	<Shop value='Winkel' />
-	<Help value='Help' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mijn Hattrick" />
+	<MyClub value="Mijn Club" />
+	<World value="Wereld" />
+	<Forum value="Forum" />
+	<Shop value="Winkel" />
+	<Help value="Help" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(heel laag)" value="0.0" />
 		<sublevel text="(laag)" value="0.25" />
@@ -2756,7 +2757,7 @@
 		<position type="Forward" value="Aanvaller" short="F" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Onvoorspelbaar" short="On" />
 		<specialty type="Powerful" value="Krachtig" short="Kr" />
@@ -2778,7 +2779,7 @@
 		<reposition type="towardswing" value="naar de vleugel" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="goddelijk" value="20" />
 		<level text="utopisch" value="19" />
@@ -2809,15 +2810,15 @@
 <!-- up to date -->
 <language name="vls" desc="Vlaams">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mijn Hattrick' />
-	<MyClub value='Mijn club' />
-	<World value='Wereld' />
-	<Forum value='Forums' />
-	<Shop value='Winkel' />
-	<Help value='Info &amp; contact' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mijn Hattrick" />
+	<MyClub value="Mijn club" />
+	<World value="Wereld" />
+	<Forum value="Forums" />
+	<Shop value="Winkel" />
+	<Help value="Info &amp; contact" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(heel laag)" value="0.0" />
 		<sublevel text="(laag)" value="0.25" />
@@ -2825,7 +2826,7 @@
 		<sublevel text="(heel hoog)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="normaal" />
 		<tactic type="pressing" value="pressievoetbal" />
@@ -2836,7 +2837,7 @@
 		<tactic type="longshots" value="afstandsschoten" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Doelman" short="Ke" />
 		<position type="Central defender" value="Centrale Verdediger" short="Cd" />
@@ -2846,7 +2847,7 @@
 		<position type="Forward" value="Aanvaller" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Onvoorspelbaar" short="Un" />
 		<specialty type="Powerful" value="Krachtig" short="Po" />
@@ -2856,7 +2857,7 @@
 		<specialty type="Regainer" value="Kwikzalver" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="extra middenvelder" />
 		<reposition type="centraldefender" value="extra centrale verdediger" />
@@ -2868,7 +2869,7 @@
 		<reposition type="towardswing" value="naar de flank" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="goddelijk" value="20" />
 		<level text="utopisch" value="19" />
@@ -2899,15 +2900,15 @@
 <!-- up to date -->
 <language name="no" desc="Norsk">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mitt Hattrick' />
-	<MyClub value='Min klubb' />
-	<World value='Verden' />
-	<Forum value='Forum' />
-	<Shop value='Butikk' />
-	<Help value='Hjelp' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mitt Hattrick" />
+	<MyClub value="Min klubb" />
+	<World value="Verden" />
+	<Forum value="Forum" />
+	<Shop value="Butikk" />
+	<Help value="Hjelp" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(veldig lav)" value="0.0" />
 		<sublevel text="(lav)" value="0.25" />
@@ -2915,7 +2916,7 @@
 		<sublevel text="(veldig høy)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Press" />
@@ -2926,7 +2927,7 @@
 		<tactic type="longshots" value="Long shots" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Målvakt" short="Ke" />
 		<position type="Central defender" value="Midtstopper" short="Cd" />
@@ -2936,7 +2937,7 @@
 		<position type="Forward" value="Spiss" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Uforutsigbar" short="Un" />
 		<specialty type="Powerful" value="Kraftfull" short="Po" />
@@ -2946,7 +2947,7 @@
 		<specialty type="Regainer" value="Friskus" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Ekstra midtbanespiller" />
 		<reposition type="centraldefender" value="Ekstra midtstopper" />
@@ -2958,7 +2959,7 @@
 		<reposition type="towardswing" value="Mot kanten" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="guddommelig" value="20" />
 		<level text="utopisk" value="19" />
@@ -2989,15 +2990,15 @@
 <!-- up to date -->
 <language name="pl" desc="Polski">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mój Hattrick' />
-	<MyClub value='Mój Klub' />
-	<World value='Świat' />
-	<Forum value='Forum' />
-	<Shop value='Sklep' />
-	<Help value='Pomoc' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mój Hattrick" />
+	<MyClub value="Mój Klub" />
+	<World value="Świat" />
+	<Forum value="Forum" />
+	<Shop value="Sklep" />
+	<Help value="Pomoc" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(min.)" value="0.0" />
 		<sublevel text="(niski)" value="0.25" />
@@ -3005,7 +3006,7 @@
 		<sublevel text="(maks.)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="normalny" />
 		<tactic type="pressing" value="Pressing" />
@@ -3016,7 +3017,7 @@
 		<tactic type="longshots" value="Strzały z dystansu" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="bramkarz" short="Ke" />
 		<position type="Central defender" value="środkowy obrońca" short="Cd" />
@@ -3026,7 +3027,7 @@
 		<position type="Forward" value="napastnik" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="nieprzewidywalny" short="Un" />
 		<specialty type="Powerful" value="atletyczny" short="Po" />
@@ -3036,7 +3037,7 @@
 		<specialty type="Regainer" value="witalny" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Ekstra środ. pomocnik" />
 		<reposition type="centraldefender" value="Ekstra środ. obrońca" />
@@ -3048,7 +3049,7 @@
 		<reposition type="towardswing" value="Na skrzydło" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="boski" value="20" />
 		<level text="utopijny" value="19" />
@@ -3079,15 +3080,15 @@
 <!-- up to date -->
 <language name="pt" desc="Português">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Menu Hattrick' />
-	<MyClub value='O Meu Clube' />
-	<World value='Mundo' />
-	<Forum value='Fórum' />
-	<Shop value='Loja' />
-	<Help value='Ajuda' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Menu Hattrick" />
+	<MyClub value="O Meu Clube" />
+	<World value="Mundo" />
+	<Forum value="Fórum" />
+	<Shop value="Loja" />
+	<Help value="Ajuda" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(mt baixo)" value="0.0" />
 		<sublevel text="(baixo)" value="0.25" />
@@ -3095,7 +3096,7 @@
 		<sublevel text="(mt alto)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Pressing" />
@@ -3106,7 +3107,7 @@
 		<tactic type="longshots" value="Remates de longe" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Guarda-Redes" short="Ke" />
 		<position type="Central defender" value="Defesa Central" short="Cd" />
@@ -3116,7 +3117,7 @@
 		<position type="Forward" value="Avançado" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisível" short="Un" />
 		<specialty type="Powerful" value="Força" short="Po" />
@@ -3126,7 +3127,7 @@
 		<specialty type="Regainer" value="Reabilitação" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="médio centro extra" />
 		<reposition type="centraldefender" value="defesa central extra" />
@@ -3138,7 +3139,7 @@
 		<reposition type="towardswing" value="descair para a ala" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="lendário" value="20" />
 		<level text="utópico" value="19" />
@@ -3169,13 +3170,13 @@
 <!-- up to date -->
 <language name="pt_BR" desc="Português Brasil">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Meu Hattrick' />
-	<MyClub value='Meu Clube' />
-	<World value='Mundo' />
-	<Forum value='Fórum' />
-	<Shop value='Loja' />
-	<Help value='Ajuda' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Meu Hattrick" />
+	<MyClub value="Meu Clube" />
+	<World value="Mundo" />
+	<Forum value="Fórum" />
+	<Shop value="Loja" />
+	<Help value="Ajuda" />
 	
 	<!-- Subníveis que aparecem na página de detalhes do jogo -->
 	<ratingSubLevels>
@@ -3196,7 +3197,7 @@
 		<tactic type="longshots" value="Chutes de longa distância" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Goleiro" short="Ke" />
 		<position type="Central defender" value="Zagueiro" short="Cd" />
@@ -3206,7 +3207,7 @@
 		<position type="Forward" value="Atacante" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisibilidade" short="Un" />
 		<specialty type="Powerful" value="Força" short="Po" />
@@ -3259,15 +3260,15 @@
 <!-- up to date -->
 <language name="ro" desc="Română">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Hattrickul meu' />
-	<MyClub value='Clubul meu' />
-	<World value='Internaţional' />
-	<Forum value='Forum' />
-	<Shop value='Magazin' />
-	<Help value='Ajutor' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Hattrickul meu" />
+	<MyClub value="Clubul meu" />
+	<World value="Internaţional" />
+	<Forum value="Forum" />
+	<Shop value="Magazin" />
+	<Help value="Ajutor" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(foarte scăzut)" value="0.0" />
 		<sublevel text="(scăzut)" value="0.25" />
@@ -3275,7 +3276,7 @@
 		<sublevel text="(foarte ridicat)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Pressing" />
@@ -3286,7 +3287,7 @@
 		<tactic type="longshots" value="Şuturi de la distanţă" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Portar" short="Ke" />
 		<position type="Central defender" value="Fundaş Central" short="Cd" />
@@ -3296,7 +3297,7 @@
 		<position type="Forward" value="Atacant" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevizibil" short="Un" />
 		<specialty type="Powerful" value="Puternic" short="Po" />
@@ -3306,7 +3307,7 @@
 		<specialty type="Regainer" value="Recuperare" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Mijlocaş adiţional" />
 		<reposition type="centraldefender" value="Fundaş central adiţional" />
@@ -3318,7 +3319,7 @@
 		<reposition type="towardswing" value="Spre flanc" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divin" value="20" />
 		<level text="utopic" value="19" />
@@ -3349,15 +3350,15 @@
 <!-- up to date -->
 <language name="ru" desc="Русский">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Мой Hattrick' />
-	<MyClub value='Мой Клуб' />
-	<World value='Мир' />
-	<Forum value='Форум' />
-	<Shop value='Магазин' />
-	<Help value='Помощь' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Мой Hattrick" />
+	<MyClub value="Мой Клуб" />
+	<World value="Мир" />
+	<Forum value="Форум" />
+	<Shop value="Магазин" />
+	<Help value="Помощь" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(низкий)" value="0.0" />
 		<sublevel text="(средний)" value="0.25" />
@@ -3365,7 +3366,7 @@
 		<sublevel text="(очень высокий)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Нормально" />
 		<tactic type="pressing" value="Прессинг" />
@@ -3386,7 +3387,7 @@
 		<position type="Forward" value="Нападающий" short="Н" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредсказуемый" short="Нп" />
 		<specialty type="Powerful" value="Мощный" short="Мщ" />
@@ -3396,7 +3397,7 @@
 		<specialty type="Regainer" value="Крепкое здоровье" short="Зд" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Экстра Полузащитник" />
 		<reposition type="centraldefender" value="Экстра Защитник" />
@@ -3408,7 +3409,7 @@
 		<reposition type="towardswing" value="Смещенный к флангу" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божественно" value="20" />
 		<level text="легендарно" value="19" />
@@ -3439,15 +3440,15 @@
 <!-- up to date -->
 <language name="sk" desc="Slovenčina">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Môj Hattrick' />
-	<MyClub value='Môj klub' />
-	<World value='Svet' />
-	<Forum value='Konferencie' />
-	<Shop value='Obchod' />
-	<Help value='Pomoc' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Môj Hattrick" />
+	<MyClub value="Môj klub" />
+	<World value="Svet" />
+	<Forum value="Konferencie" />
+	<Shop value="Obchod" />
+	<Help value="Pomoc" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(veľmi nízky)" value="0.0" />
 		<sublevel text="(nízky)" value="0.25" />
@@ -3455,7 +3456,7 @@
 		<sublevel text="(veľmi vysoký)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normálna taktika" />
 		<tactic type="pressing" value="Presing" />
@@ -3466,7 +3467,7 @@
 		<tactic type="longshots" value="Strely z diaľky" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Brankár" short="Ke" />
 		<position type="Central defender" value="Stredný obranca" short="Cd" />
@@ -3476,7 +3477,7 @@
 		<position type="Forward" value="Útočník" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nepredvídateľný" short="Ne" />
 		<specialty type="Powerful" value="Silový" short="Si" />
@@ -3486,7 +3487,7 @@
 		<specialty type="Regainer" value="Nezmar" short="Nez" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="záložník naviac" />
 		<reposition type="centraldefender" value="obranca naviac" />
@@ -3498,7 +3499,7 @@
 		<reposition type="towardswing" value="viac na kraj" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="božský" value="20" />
 		<level text="legendárny" value="19" />
@@ -3529,15 +3530,15 @@
 <!-- up to date -->
 <language name="sl" desc="Slovenščina">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Moj Hattrick' />
-	<MyClub value='Moj klub' />
-	<World value='Svet' />
-	<Forum value='Forum' />
-	<Shop value='Trgovina' />
-	<Help value='Pomoč' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Moj Hattrick" />
+	<MyClub value="Moj klub" />
+	<World value="Svet" />
+	<Forum value="Forum" />
+	<Shop value="Trgovina" />
+	<Help value="Pomoč" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Zelo nizko)" value="0.0" />
 		<sublevel text="(Nizko)" value="0.25" />
@@ -3545,7 +3546,7 @@
 		<sublevel text="(Zelo visoko)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Običajno" />
 		<tactic type="pressing" value="Tesno pokrivanje nasprotnika" />
@@ -3556,7 +3557,7 @@
 		<tactic type="longshots" value="Streli od daleč" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Vratar" short="Ke" />
 		<position type="Central defender" value="Srednji branilec" short="Cd" />
@@ -3566,7 +3567,7 @@
 		<position type="Forward" value="Napadalec" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nepredvidljiv" short="Un" />
 		<specialty type="Powerful" value="Močan" short="Po" />
@@ -3576,7 +3577,7 @@
 		<specialty type="Regainer" value="Hitreje okreva" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="dodatni vezist" />
 		<reposition type="centraldefender" value="dodatni srednji branilec" />
@@ -3588,7 +3589,7 @@
 		<reposition type="towardswing" value="proti krilu" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="božansko" value="20" />
 		<level text="utopično" value="19" />
@@ -3619,15 +3620,15 @@
 <!-- up to date -->
 <language name="sq" desc="Albanian">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Hattrick-u Im' />
-	<MyClub value='Klubi Im' />
-	<World value='Bota' />
-	<Forum value='Forumi' />
-	<Shop value='Dyqani' />
-	<Help value='Ndihmë' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Hattrick-u Im" />
+	<MyClub value="Klubi Im" />
+	<World value="Bota" />
+	<Forum value="Forumi" />
+	<Shop value="Dyqani" />
+	<Help value="Ndihmë" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Sh. ulët)" value="0.0" />
 		<sublevel text="(Ulët)" value="0.25" />
@@ -3635,7 +3636,7 @@
 		<sublevel text="(Sh. lartë)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presing" />
@@ -3646,7 +3647,7 @@
 		<tactic type="longshots" value="Goditje nga distanca" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Portier" short="Ke" />
 		<position type="Central defender" value="Qendër Mbrojtës" short="Cd" />
@@ -3656,7 +3657,7 @@
 		<position type="Forward" value="Sulmues" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="I paparashikueshëm" short="Un" />
 		<specialty type="Powerful" value="I fuqishëm" short="Po" />
@@ -3666,7 +3667,7 @@
 		<specialty type="Regainer" value="Ripërtëritës" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Mesfushor Tjetër Qëndre" />
 		<reposition type="centraldefender" value="Mbrojtës Tjetër Qëndre" />
@@ -3678,7 +3679,7 @@
 		<reposition type="towardswing" value="Drejt Krahut" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="hyjnor" value="20" />
 		<level text="utopik" value="19" />
@@ -3709,13 +3710,13 @@
 <!-- up to date -->
 <language name="sr" desc="Српски">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Mој Хеттрик' />
-	<MyClub value='Mој клуб' />
-	<World value='Свет' />
-	<Forum value='Форум' />
-	<Shop value='Продавница' />
-	<Help value='Помоћ' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Mој Хеттрик" />
+	<MyClub value="Mој клуб" />
+	<World value="Свет" />
+	<Forum value="Форум" />
+	<Shop value="Продавница" />
+	<Help value="Помоћ" />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -3746,7 +3747,7 @@
 		<position type="Forward" value="Нападач" short="На" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредвидив" short="Не" />
 		<specialty type="Powerful" value="Снажан" short="Сн" />
@@ -3768,7 +3769,7 @@
 		<reposition type="towardswing" value="Према крилу" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божански" value="20" />
 		<level text="савршен" value="19" />
@@ -3799,15 +3800,15 @@
 <!-- up to date -->
 <language name="sv" desc="Svenska">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Mitt Hattrick' />
-	<MyClub value='Min Klubb' />
-	<World value='Världen' />
-	<Forum value='Forum' />
-	<Shop value='Shoppen' />
-	<Help value='Hjälp' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Mitt Hattrick" />
+	<MyClub value="Min Klubb" />
+	<World value="Världen" />
+	<Forum value="Forum" />
+	<Shop value="Shoppen" />
+	<Help value="Hjälp" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(mkt låg)" value="0.0" />
 		<sublevel text="(låg)" value="0.25" />
@@ -3815,7 +3816,7 @@
 		<sublevel text="(mkt hög)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Press" />
@@ -3826,7 +3827,7 @@
 		<tactic type="longshots" value="Långskott" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Målvakt" short="M" />
 		<position type="Central defender" value="Innerback" short="IB" />
@@ -3836,7 +3837,7 @@
 		<position type="Forward" value="Forward" short="F" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Oförutsägbar" short="Of" />
 		<specialty type="Powerful" value="Kraftfull" short="Kr" />
@@ -3846,7 +3847,7 @@
 		<specialty type="Regainer" value="Återhämtare" short="Åt" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="extra innermitt" />
 		<reposition type="centraldefender" value="extra innerback" />
@@ -3858,7 +3859,7 @@
 		<reposition type="towardswing" value="ut på kanten" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="gudomlig" value="20" />
 		<level text="utopisk" value="19" />
@@ -3889,15 +3890,15 @@
 <!-- up to date -->
 <language name="tr" desc="Türkçe">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Hattrick'im' />
-	<MyClub value='Kulübüm' />
-	<World value='Dünya' />
-	<Forum value='Forum' />
-	<Shop value='Market' />
-	<Help value='Yardım' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Hattrick&#39;im" />
+	<MyClub value="Kulübüm" />
+	<World value="Dünya" />
+	<Forum value="Forum" />
+	<Shop value="Market" />
+	<Help value="Yardım" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(çok düşük)" value="0.0" />
 		<sublevel text="(düşük)" value="0.25" />
@@ -3905,7 +3906,7 @@
 		<sublevel text="(çok yüksek)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Pres" />
@@ -3916,7 +3917,7 @@
 		<tactic type="longshots" value="Uzaktan şutlar" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Kaleci" short="Kal" />
 		<position type="Central defender" value="Stoper" short="St" />
@@ -3926,7 +3927,7 @@
 		<position type="Forward" value="Forvet" short="Fo" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Kestirilemez" short="Un" />
 		<specialty type="Powerful" value="Güçlü" short="Po" />
@@ -3936,7 +3937,7 @@
 		<specialty type="Regainer" value="Çabuk İyileşen" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="Ekstra İç Ortasaha" />
 		<reposition type="centraldefender" value="Ekstra Stoper" />
@@ -3948,7 +3949,7 @@
 		<reposition type="towardswing" value="Kanada Doğru" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="mucizevi" value="20" />
 		<level text="ütopik" value="19" />
@@ -3979,15 +3980,15 @@
 <!-- up to date -->
 <language name="uk" desc="Українська">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
-	<MyHattrick value='Мій Hattrick' />
-	<MyClub value='Мій Клуб' />
-	<World value='Світ' />
-	<Forum value='Форум' />
-	<Shop value='Крамниця' />
-	<Help value='Допомога' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Мій Hattrick" />
+	<MyClub value="Мій Клуб" />
+	<World value="Світ" />
+	<Forum value="Форум" />
+	<Shop value="Крамниця" />
+	<Help value="Допомога" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Дуже низький)" value="0.0" />
 		<sublevel text="(Низький)" value="0.25" />
@@ -4006,7 +4007,7 @@
 		<tactic type="longshots" value="Дальні удари" />
 	</tactics>
 	
-	<!-- positions appearing on players page. copy 'value'. translate 'short' -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Воротар" short="Вр" />
 		<position type="Central defender" value="Центральний Захисник" short="ЦЗ" />
@@ -4016,7 +4017,7 @@
 		<position type="Forward" value="Нападник" short="Нп" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непередбачуваний" short="Не" />
 		<specialty type="Powerful" value="Могутній" short="Мо" />
@@ -4038,7 +4039,7 @@
 		<reposition type="towardswing" value="До краю" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божественний" value="20" />
 		<level text="утопічний" value="19" />
@@ -4069,13 +4070,13 @@
 <!-- up to date -->
 <language name="vi" desc="Tiếng Việt">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection -->
-	<MyHattrick value='Hattrick' />
-	<MyClub value='CLB của tôi' />
-	<World value='Thế giới' />
-	<Forum value='Diễn đàn' />
-	<Shop value='Cửa hàng' />
-	<Help value='Trợ giúp' />
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Hattrick" />
+	<MyClub value="CLB của tôi" />
+	<World value="Thế giới" />
+	<Forum value="Diễn đàn" />
+	<Shop value="Cửa hàng" />
+	<Help value="Trợ giúp" />
 	
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
@@ -4106,7 +4107,7 @@
 		<position type="Forward" value="Tiền đạo" short="Td" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ngẫu hứng" short="Nh" />
 		<specialty type="Powerful" value="Sức mạnh" short="Sm" />
@@ -4128,7 +4129,7 @@
 		<reposition type="towardswing" value="Dạt biên" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="thần thánh" value="20" />
 		<level text="không tưởng" value="19" />
@@ -4159,7 +4160,7 @@
 <!-- up to date -->
 <language name="zh" desc="中文（简体）">
 	
-	<!-- the 6 strings from the ht's menue line. used for language autodetection. copy 'value'-->
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="我的 Hattrick" />
 	<MyClub value="我的俱乐部" />
 	<World value="世界" />
@@ -4167,7 +4168,7 @@
 	<Shop value="HT 商店" />
 	<Help value="帮助" />
 	
-	<!-- rating sublevels appearing in match detail page. copy 'text' -->
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(非常低)" value="0.0" />
 		<sublevel text="(低)" value="0.25" />
@@ -4175,7 +4176,7 @@
 		<sublevel text="(非常高)" value="0.75" />
 	</ratingSubLevels>
 	
-	<!-- tactics appearing in match detail page. copy 'value' -->
+	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="常规" />
 		<tactic type="pressing" value="全场压迫" />
@@ -4196,7 +4197,7 @@
 		<position type="Forward" value="前锋" short="前锋" />
 	</positions>
 	
-	<!-- specialties appearing on players page. copy 'value'. translate 'short' -->
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="不可预测" short="不可" />
 		<specialty type="Powerful" value="力量" short="力量" />
@@ -4206,7 +4207,7 @@
 		<specialty type="Regainer" value="不药而愈" short="不药" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy 'value' -->
+	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
 	<repositioning>
 		<reposition type="midfielder" value="额外中前卫" />
 		<reposition type="centraldefender" value="额外中后卫" />
@@ -4218,7 +4219,7 @@
 		<reposition type="towardswing" value="靠边路" />
 	</repositioning>
 	
-	<!-- levels word connections appearing denominations page. copy 'text' -->
+	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="超凡入圣" value="20" />
 		<level text="至高无上" value="19" />
