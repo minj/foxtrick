@@ -60,7 +60,7 @@ var FoxtrickCopyTrainingReport = {
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_first";	
+			messageLink.className = "inner copyicon copytrainingreport ci_first";	
 			messageLink.id = "copytrainingreport" ;
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copytrainingreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
@@ -83,7 +83,7 @@ var FoxtrickCopyTrainingReport = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copyTrainingReport.png";
 			messageLink.appendChild(img);
 			
 			var parentDiv = doc.createElement("div");
@@ -179,7 +179,7 @@ var FoxtrickCopyScoutReport = {
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_second";				
+			messageLink.className = "inner copyicon copyscoutreport ci_second";				
 			messageLink.id='copyscoutreport';
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
@@ -208,7 +208,7 @@ var FoxtrickCopyScoutReport = {
 			img.style.padding = "0px 5px 5px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copyScoutReport.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);
@@ -323,7 +323,7 @@ var FoxtrickCopyPlayerSource = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
-			img.src = Foxtrick.ResourcePath+"resources/img/youthplayersource.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copyPlayerSource.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);

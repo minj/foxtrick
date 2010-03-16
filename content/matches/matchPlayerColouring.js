@@ -166,7 +166,7 @@ FoxtrickMatchPlayerColouring = {
 			if (teamB[k]=='') {++num_unknown_namesB;teamB[k]='##################'; } // replace empty string with something which will not be found in text again
 			//Foxtrick.dump(k+1+': "'+teamB[k]+'"\n');
 		}		
-		//Retrieve substitutions
+		//Retrieve substitutions+goals
 		 var spans = doc.getElementById('sidebar').getElementsByTagName("td");
 		 var hgoals=0;
 		 for (var i=0; i<spans.length; i++) {
@@ -176,7 +176,7 @@ FoxtrickMatchPlayerColouring = {
 				//dump(hg+' '+hgoals+' '+as.length+' '+as[0].innerHTML+'\n');
 				if (hg > hgoals) {
 					hg = hgoals;
-					if (as.length!=0) {teamA.push(as[0].innerHTML);dump(as[0].innerHTML+'\n');}
+					if (as.length!=0) teamA.push(as[0].innerHTML);
 					else teamA.push(spans[i+1].innerHTML);
 				}
 				else {

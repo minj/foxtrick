@@ -30,21 +30,20 @@ a.copyicon {
 }
 
 .copyplayerad img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad.png) no-repeat scroll 0 0;
+	background: transparent url(chrome://foxtrick/content/resources/img/copyPlayerAd.png) no-repeat scroll 0 0;
 }
 
 .copyplayerscource img {
-	background: transparent url(chrome://foxtrick/content/resources/img/youthplayersource.png) no-repeat scroll 0 0;
+	background: transparent url(chrome://foxtrick/content/resources/img/copyPlayerSource.png) no-repeat scroll 0 0;
 }
 
-.copyratingshome img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyratingshome.png) no-repeat scroll 0 0;
+.copytrainingreport img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyTrainingReport.png) no-repeat scroll 0 0;
 }
 
-.copyratingsaway img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyratingsaway.png) no-repeat scroll 0 0;
+.copyscoutreport img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyScoutReport.png) no-repeat scroll 0 0;
 }
-
 
 }
 

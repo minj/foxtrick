@@ -1784,13 +1784,16 @@ stats["ht_bet"] =  {
 };    
    
 
-// HT-bet
+// Team Position Probability Calculator
 stats["tppc"] =  { 
         "url" : "http://www.adrianomoutinho.com/hattrick/index.php",
 
         "leaguelink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : { "leagueid" : "leagueid" }
+                         "params"     : { "leagueid" : "leagueid" },
+						 "paramfunction" : function(params) {
+							return '?LeagueId'+params["leagueid"]+'&Language='+FoxtrickPrefs.getString("htLanguage");
+						}
                        },
         
         "title" : "Team Position Probability Calculator",
