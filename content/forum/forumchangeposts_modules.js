@@ -19,9 +19,9 @@ var FoxtrickFormatPostingText = {
 	MODULE_NAME : "FormatPostingText",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
-    NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Added Option for replacing Foxtrick-HT-ML Tags (format [pre])",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+    NEW_AFTER_VERSION: "0.5.1.2",
+	LATEST_CHANGE:"Fixes display error",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
 	
 	init : function() {
@@ -76,8 +76,8 @@ var FoxtrickCopyPosting = {
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	NEW_AFTER_VERSION: "0.4.9",	
-	LATEST_CHANGE:"Some fixing for spoilers, quotes & tables.",
+	NEW_AFTER_VERSION: "0.5.1.2",	
+	LATEST_CHANGE:"Fixed missing copying of message",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("CopyWikiStyle"), 

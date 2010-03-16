@@ -11,8 +11,8 @@ var FoxtrickSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.1.1",
-	LATEST_CHANGE : "Fixed error when expanding table on old tabs.",
+	NEW_AFTER_VERSION : "0.5.1.2",
+	LATEST_CHANGE : "Improved error catching. Fixes non shwoing table for some users.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OtherTeams"),
 

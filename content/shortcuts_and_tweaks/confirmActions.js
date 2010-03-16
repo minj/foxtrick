@@ -10,6 +10,9 @@ var FoxtrickConfirmActions = {
 	PAGES : ["playerdetail", "staff"],
 	DEFAULT_ENABLED : true,
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
+	NEW_AFTER_VERSION: "0.5.1.2",
+	LATEST_CHANGE:"Merged to single module",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	init : function() {
 	},

@@ -10,8 +10,9 @@ var FoxtrickAddLeaveConfButton = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum','forumSettings'),
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"ForumLeaveConfButton - fixed disappeared x button.",
+	NEW_AFTER_VERSION: "0.5.1.2",
+	LATEST_CHANGE:"Fixed disappeared or multiplied x button.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
     init : function() {
     },
