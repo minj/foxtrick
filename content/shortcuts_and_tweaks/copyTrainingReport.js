@@ -140,9 +140,9 @@ var FoxtrickCopyScoutReport = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail','youthoverview'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Enabled for scout calls. Open hty page after copying",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.5.1.2",
+	LATEST_CHANGE:"Fixed missing specialty",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OpenHTYpage"),
 	
 	init : function() {
@@ -245,14 +245,14 @@ var FoxtrickCopyScoutReport = {
 			}
 		
 		if (lastmainbox!=-1) {
-				var graphs = subDivs[lastmainbox].innerHTML.split('<br><br>');
-				var plain = graphs[0]+'<br><br>'+graphs[1];		
-				if ( graphs[4] ) plain+='<br><br>'+graphs[2];	// has a specialty
+				var plain = subDivs[lastmainbox].innerHTML;
 				plain=plain.replace(/\&nbsp;/ig,' ');
 				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
 				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
 				plain=plain.replace(/\<br\>|\<\/h2\> |\<\/h3\>/ig,'\n');
+				Foxtrick.dump(plain+'\n');
+				
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
