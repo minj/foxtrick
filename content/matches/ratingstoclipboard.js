@@ -10,60 +10,150 @@ var FoxtrickCopyRatingsToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.1.1",	
-	LATEST_CHANGE : "Copy links moved to rating table.",
+	NEW_AFTER_VERSION: "0.5.1.2",	
+	LATEST_CHANGE:"Was broken in some versions. Back to old working version",    
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	init : function() {
     },
     
-	run : function( page, doc ) {
-		try {
-			var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
-			if (isprematch) return;
+    run : function( page, doc ) {
+        var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+		if (isprematch) return;
 
-			var table = Foxtrick.Matches._getRatingsTable(doc);
-			if (!table) {
-				return;
-			}
+		var mainBody = doc.getElementById('mainBody');
+        var table = mainBody.getElementsByTagName('table')[0];
+        if (table == null ) return;
+        
+        try {
+		
+		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+			if (doc.getElementById('copyratings')) return;
+			
+			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+			if (boxHead.className!='boxHead') return;
 
-			var tableHeader = table.parentNode.getElementsByClassName("tblBox")[0];
-			var homeHeader = table.getElementsByTagName("th")[1];
-			var awayHeader = table.getElementsByTagName("th")[2];
+            if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
+			
+			// both			
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner copyicon copyratings ci_forth";	
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings" );
+			messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","true");
+            messageLink.setAttribute("id","copyratings");
+            messageLink.addEventListener("click", this.createRatings, false)
+			var img = doc.createElement("img");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
 
-			var copyBoth = doc.createElement("span");
-			copyBoth.className = "ft_copy_rating";
-			copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
-			copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
-			copyBoth.setAttribute("team1", "true");
-			copyBoth.setAttribute("team2", "true");
-			copyBoth.addEventListener("click", this.createRatings, false);
-			tableHeader.appendChild(copyBoth);
 
-			var copyHome = doc.createElement("span");
-			copyHome.className = "ft_copy_rating";
-			copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
-			copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
-			copyHome.setAttribute("team1", "true");
-			copyHome.setAttribute("team2", "false");
-			copyHome.addEventListener("click", this.createRatings, false);
-			homeHeader.appendChild(copyHome);
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner copyicon copyratingshome ci_third";	
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home" );
+			messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","false");
+            messageLink.addEventListener("click", this.createRatings, false)
+			var img = doc.createElement("img");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
+			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
+		
 
-			var copyAway = doc.createElement("span");
-			copyAway.className = "ft_copy_rating";
-			copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
-			copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
-			copyAway.setAttribute("team1", "true");
-			copyAway.setAttribute("team2", "false");
-			copyAway.addEventListener("click", this.createRatings, false);
-			awayHeader.appendChild(copyAway);
+			var messageLink = doc.createElement("a");
+			messageLink.className = "inner copyicon copyratingsaway ci_second";	
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away" );
+			messageLink.setAttribute("team1","false");
+            messageLink.setAttribute("team2","true");
+            messageLink.addEventListener("click", this.createRatings, false)
+			var img = doc.createElement("img");
+			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.away" );
+			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";			
+			messageLink.appendChild(img);
+			boxHead.insertBefore(messageLink,boxHead.firstChild);
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
+		else {
+		
+            var parentDiv = doc.createElement("div");
+            parentDiv.id = "foxtrick_addactionsbox_parentDiv";
+            
+            // both
+			var messageLink = doc.createElement("a");
+            messageLink.className = "inner";
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            messageLink.setAttribute("style","cursor: pointer;");
+            messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","true");
+            messageLink.addEventListener("click", this.createRatings, false)
+            
+            var img = doc.createElement("img");
+            img.setAttribute("style","padding:0px 5px 0px 0px;");
+            img.className = "actionIcon";
+            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
+            messageLink.appendChild(img);
+                    
+            parentDiv.appendChild(messageLink);
+            
+            var newBoxId = "foxtrick_actions_box";
+            Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+                "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+				
+			// team home	
+            var messageLink = doc.createElement("a");
+            messageLink.className = "inner";
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
+            messageLink.setAttribute("style","cursor: pointer;");
+            messageLink.setAttribute("team1","true");
+            messageLink.setAttribute("team2","false");
+            messageLink.addEventListener("click", this.createRatings, false)
+            
+            var img = doc.createElement("img");
+            img.setAttribute("style","padding:0px 5px 0px 0px;");
+            img.className = "actionIcon";
+            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.home" );
+            img.src = Foxtrick.ResourcePath+"resources/img/copyratingshome.png";
+            messageLink.appendChild(img);
+                    
+            parentDiv.appendChild(messageLink);
+            
+            var newBoxId = "foxtrick_actions_box";
+            Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+                "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+            
+			// team away
+			var messageLink = doc.createElement("a");
+            messageLink.className = "inner";
+            messageLink.title = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings.away" );
+            messageLink.setAttribute("style","cursor: pointer;");
+            messageLink.setAttribute("team1","false");
+            messageLink.setAttribute("team2","true");
+            messageLink.addEventListener("click", this.createRatings, false)
+            
+            var img = doc.createElement("img");
+            img.setAttribute("style","padding:0px 5px 0px 0px;");
+            img.className = "actionIcon";
+            img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyratings" );
+            img.src = Foxtrick.ResourcePath+"resources/img/copyratingsaway.png";
+            messageLink.appendChild(img);
+                    
+            parentDiv.appendChild(messageLink);
+            
+            var newBoxId = "foxtrick_actions_box";
+            Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+                "foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
 		}
+		} catch(e) { Foxtrick.dump(e) }
 	},
 	
 	change : function( page, doc ) {
+		var id = "foxtrick_addactionsbox_parentDiv";
+		if(!doc.getElementById(id)) {
+			this.run( page, doc );
+		}
 	},
 	
 	createRatings : function( ev ) {

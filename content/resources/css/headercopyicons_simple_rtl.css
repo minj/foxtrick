@@ -44,5 +44,17 @@ a.copyicon {
 	background: transparent url(chrome://foxtrick/content/resources/img/copyScoutReport_s.png) no-repeat scroll 0 0;
 }
 
+.copyratings img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyMatchRatings_s.png) no-repeat scroll 0 0;
+}
+
+.copyratingshome img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyHomeRatings_s.png) no-repeat scroll 0 0;
+}
+
+.copyratingsaway img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyAwayRatings_s.png) no-repeat scroll 0 0;
+}
+
 }
 
