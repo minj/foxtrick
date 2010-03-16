@@ -168,31 +168,48 @@ var FoxtrickPrefsDialogHTML = {
 		
 		prefdiv.setAttribute('style','display:inline'); 
 		
+		// highlight hashed
+		if (doc.location.hash) { 
+			var highlight=doc.location.hash.substr(1);
+			Foxtrick.dump('highlight: '+highlight+'\n'); 
+			var element=doc.getElementById(highlight); 
+			var parent=element.parentNode.parentNode;
+			parent.setAttribute('class', parent.getAttribute('class')+' ft_pref_highlight');
+			var tab = 'main';
+			if (parent.parentNode.parentNode.getAttribute('id')=='foxtrick_preftabs')
+				tab = parent.parentNode.getAttribute('id');
+			this.show_tab(null,doc,tab);
+			doc.location.hash=doc.location.hash;					
+		}
+
 		// highlight elements: url ... &highlight=id1+id2+id3
-		try {
-			if (doc.location.href.search(/highlight=/i)!=-1) { 
+		if (doc.location.href.search(/highlight=/i)!=-1) { 
 				var highlightlist=doc.location.href.match(/highlight=([\w\.\+]+)/);
 				var highlight=highlightlist[1].match(/([\w\.]+)/g);				
 				for (var i=0;i<highlight.length;++i) {
 					var element=doc.getElementById(highlight[i]); 
-					var parent=element.parentNode;
-					if (element.getAttribute('type') && element.getAttribute('type')=='checkbox') 
-						parent=element.parentNode.parentNode.parentNode.parentNode;  // parent div
-				 
+					var parent=element.parentNode.parentNode;
 					parent.setAttribute('class', parent.getAttribute('class')+' ft_pref_highlight');
 				}
-			}
-		} catch (e){}
+				var tab = 'main';
+				if (parent.parentNode.parentNode.getAttribute('id')=='foxtrick_preftabs')
+					tab = parent.parentNode.getAttribute('id');
+				this.show_tab(null,doc,tab);
+				doc.location.hash='#'+highlight[i-1];					
+		}		
 		
 	} catch(e){dump('show_prefs: '+e+'\n');}
 	},
 
 
-	show_tab : function( ev ) {
-		var doc = ev.target.ownerDocument;
+	show_tab : function( ev, doc, tab ) {
+		if (ev) {
+			var doc = ev.target.ownerDocument;
+			var tab = ev.target.getAttribute('tab');
+		}
+		
 		var foxtrick_prefs_head = doc.getElementById('foxtrick_prefs_head').childNodes;
 		var foxtrick_preftabs = doc.getElementById('foxtrick_preftabs').childNodes;
-		var tab = ev.target.getAttribute('tab');
 		if (tab=='changes') FoxtrickMain.IsNewVersion=false;
 		
 		for (var i=0;i<foxtrick_preftabs.length;++i) {			
