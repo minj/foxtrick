@@ -173,9 +173,9 @@ FoxtrickMatchPlayerColouring = {
 			if (spans[i].innerHTML.search(/\d+&nbsp;-&nbsp;\d+/)!=-1) {
 				var hg = parseInt(spans[i].innerHTML.match(/(\d+)&nbsp;-&nbsp;\d+/)[1]);
 				var as = spans[i+1].getElementsByTagName("a");
-				//dump(hg+' '+hgoals+' '+as.length+' '+as[0].innerHTML+'\n');
+				dump(hg+' '+hgoals+' '+as.length+' '+as[0].innerHTML+' '+spans[i+1].innerHTML+'\n');
 				if (hg > hgoals) {
-					hg = hgoals;
+					hgoals = hg;
 					if (as.length!=0) teamA.push(as[0].innerHTML);
 					else teamA.push(spans[i+1].innerHTML);
 				}
