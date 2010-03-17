@@ -7,20 +7,13 @@ a.copyicon {
 	 z-index:99;	
 }
 
-#hattrickNoSupporter   a.ci_first { right:3px;}
-#hattrick   a.ci_first {right:25px;}
+/* header icons postitions */
+a.ci_first { right:14px;}
+a.ci_second { right:51px;}
+a.ci_third {right:88px;}
+a.ci_forth{right:125px;}
+a.ci_fifth{right:162px;}
 
-#hattrickNoSupporter   a.ci_second { right:31px;}
-#hattrick   a.ci_second {right:31px;}
-
-#hattrickNoSupporter   a.ci_third {right:58px;}
-#hattrick   a.ci_third{right:58px;}
-
-#hattrickNoSupporter   a.ci_forth{right:85px;}
-#hattrick   a.ci_forth{right:85px;}
-
-#hattrickNoSupporter   a.ci_fifth{right:112px;}
-#hattrick   a.ci_fifth{right:112px;}
 
 .copyicon img {
 	padding: 0px 0px 0px 0px; 

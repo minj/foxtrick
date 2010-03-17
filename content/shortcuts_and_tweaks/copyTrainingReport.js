@@ -169,7 +169,7 @@ var FoxtrickCopyScoutReport = {
 			}
 		}
 		var id = "foxtrick_addyouthclubbox_parentDiv";
-		if(doc.getElementById(id)) return;
+		if (doc.getElementById(id)!=null) return;
 			
 		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
 			if (doc.getElementById('copyscoutreport')) return;

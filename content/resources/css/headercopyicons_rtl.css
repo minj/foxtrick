@@ -7,20 +7,12 @@ a.copyicon {
 	 z-index:99;	
 }
 
-#hattrickNoSupporter   a.ci_first { left:7px;}
-#hattrick   a.ci_first {left:7px;}
-
-#hattrickNoSupporter   a.ci_second { left:51px;}
-#hattrick   a.ci_second {left:51px;}
-
-#hattrickNoSupporter   a.ci_third {left:95px;}
-#hattrick   a.ci_third{left:95px;}
-
-#hattrickNoSupporter   a.ci_forth{left:139px;}
-#hattrick   a.ci_forth{left:139px;}
-
-#hattrickNoSupporter   a.ci_fifth{left:183px;}
-#hattrick   a.ci_fifth{left:183px;}
+/* header icons postitions */
+a.ci_first { left:14px;}
+a.ci_second { left:51px;}
+a.ci_third {left:88px;}
+a.ci_forth{left:125px;}
+a.ci_fifth{left:162px;}
 
 
 .copyicon img {
