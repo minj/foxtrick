@@ -187,7 +187,7 @@ var FoxtrickSkillTable = {
 				}
 			}
 			var customizeTable = FoxtrickSkillTable.createCustomizeTable(columns, doc);
-			Foxtrick.addClass(customizeTable, "hidden");
+			Foxtrick.addClass(customizeTable, "ft_hidden");
 
 			var table = doc.createElement("table");
 			table.id = "ft_skilltable";
@@ -759,7 +759,7 @@ var FoxtrickSkillTable = {
 				}
 			}
 			var customizeTable = FoxtrickSkillTable.createCustomizeTable(columns, doc);
-			Foxtrick.addClass(customizeTable, "hidden");
+			Foxtrick.addClass(customizeTable, "ft_hidden");
 
 			var table = doc.createElement("table");
 			table.id = "ft_skilltable";
@@ -1125,8 +1125,8 @@ var FoxtrickSkillTable = {
 			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 			if (show) {
 				// show the objects
-				Foxtrick.removeClass(links, "hidden");
-				Foxtrick.removeClass(container, "hidden");
+				Foxtrick.removeClass(links, "ft_hidden");
+				Foxtrick.removeClass(container, "ft_hidden");
 			}
 			else {
 				// hide the objects

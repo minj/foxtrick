@@ -422,7 +422,7 @@ Foxtrick.TeamStats= {
             //ctrc = Foxtrick._to_utf8(Foxtrick.substr(ctrc, Foxtrick.strrpos( ctrc, "</a>")+4, ctrc.lebgth));
             //ctrc = Foxtrick._to_utf8(ctrc.replace(/<.+>/),'');
             ctrc = ctrc.replace(/<.+>/);
-            Foxtrick.dump('=> stripped => ' + ctrc + '\n');
+            //Foxtrick.dump('=> stripped => ' + ctrc + '\n');
             var found = -1;
             for (var i = 0; i < this.COUNTRYLIST.length; i++) {
                 if (ctrc.search(this.COUNTRYLIST[i]) != -1 ) {

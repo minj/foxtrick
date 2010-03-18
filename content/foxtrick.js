@@ -2014,7 +2014,7 @@ try{
     var numTabs = tabbrowser.browsers.length;
     for(var index=0; index<numTabs; index++) {
       var currentBrowser = tabbrowser.getBrowserAtIndex(index);
-	  Foxtrick.dump('tab: '+currentBrowser.currentURI.spec+' is hty-url: '+host+' = '+(currentBrowser.currentURI.spec.search(host)!=-1)+'\n');
+	  Foxtrick.dump('tab: '+currentBrowser.currentURI.spec+' is searched url: '+host+' = '+(currentBrowser.currentURI.spec.search(host)!=-1)+'\n');
       if (currentBrowser.currentURI.spec.search(host)!=-1) 
 		{
         // The URL is already opened. Select this tab.
@@ -2045,5 +2045,5 @@ try{
     }
   }
 }catch(e){Foxtrick.dump('openAndReuseOneTabPerURL '+e+'\n');}
-Foxtrick.dump_flush(doc);
+Foxtrick.dump_flush(document);
 }
