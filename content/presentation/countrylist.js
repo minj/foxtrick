@@ -206,7 +206,7 @@ var FoxtrickCountyList = {
 				else { if (i == selected) id_sel = options[i].value;}
                 try {
                     if (id.search(/leagues/i)!=-1 || id.search(/zone/i)!=-1) {var league = options[i].value;  }
-					else {var league = Foxtrick.XMLData.countryid_to_leagueid[options[i].value]; }
+					else {var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value); }
 					var htname = options[i].text;
 					//Foxtrick.dump((start>=10)+' '+options[i].value+' '+league+' '+htname+'\n');
                     htname = FoxtrickHelper.getLeagueDataFromId(league).LeagueName;

@@ -16,7 +16,7 @@ Foxtrick.XMLData = {
 	PAGES : new Array('all'), 
 
 	League : {},
-	countryid_to_leagueid : {},
+	countryToLeague : {},
 	htLanguagesXml : null,
 	htCurrencyXml : null,
 	htNTidsXml: null,
@@ -27,7 +27,7 @@ Foxtrick.XMLData = {
 	
 	playersxml:null,	
 	matchxmls: new Array(),
-	
+
 	init : function() {
 	try{
 		this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
@@ -45,7 +45,7 @@ Foxtrick.XMLData = {
 		
 		for (var i in data.HattrickData.LeagueList.League) {
 			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
-			this.countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
+			this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 		}
 					
 		var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');		
@@ -233,4 +233,13 @@ Foxtrick.XMLData = {
 
 	change : function(page,doc) {
 	},
+
+	getLeagueIdByCountryId : function(id) {
+		if (this.countryToLeague[id] !== undefined) {
+			return this.countryToLeague[id];
+		}
+		else {
+			return null;
+		}
+	}
 }

@@ -151,7 +151,7 @@ Foxtrick.TeamStats= {
 						var Leadership = playerlist[j].getElementsByTagName('Leadership')[0].textContent;	
 						var Experience = playerlist[j].getElementsByTagName('Experience')[0].textContent;
 						var CountryID = playerlist[j].getElementsByTagName('CountryID')[0].textContent;	
-						var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[parseInt(CountryID)];	
+						var LeagueID = Foxtrick.XMLData.getLeagueIdByCountryId(parseInt(CountryID));
 						var TrainerData  = playerlist[j].getElementsByTagName('TrainerData')[0];	
 						if (TrainerData) {
 							var TrainerType  = TrainerData.getElementsByTagName('TrainerType')[0].textContent;	
@@ -187,21 +187,25 @@ Foxtrick.TeamStats= {
 									' ' + allDivs2.innerHTML.substr(pos+1);
 						}
 						if (Foxtrick.isModuleFeatureEnabled( this, "AddFlags")) {
-						  if (!is_nt_player) {
-							var a=doc.createElement('a');
-							a.href="/World/Leagues/League.aspx?LeagueID=" + LeagueID;
-							a.title = FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName;
-							a.className ="flag inner"; 						
-							var img=doc.createElement('img');
-							var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
-							img.setAttribute('style',style); 
-							img.src="/Img/Icons/transparent.gif";						
-							a.appendChild(img);
-							as[link_off].parentNode.insertBefore(a, as[link_off].parentNode.firstChild);
-						  }
-						  else {
-							as[link_off].setAttribute('style','background-color:#FFCC00');
-						  }
+							if (!is_nt_player) {
+								var a=doc.createElement('a');
+								var leagueName = "New Moon";
+								if (LeagueID) {
+									leagueName = FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName;
+								}
+								a.href="/World/Leagues/League.aspx?LeagueID=" + LeagueID;
+								a.title = leagueName;
+								a.className ="flag inner"; 						
+								var img=doc.createElement('img');
+								var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+								img.setAttribute('style',style); 
+								img.src="/Img/Icons/transparent.gif";						
+								a.appendChild(img);
+								as[link_off].parentNode.insertBefore(a, as[link_off].parentNode.firstChild);
+							}
+							else {
+								as[link_off].setAttribute('style','background-color:#FFCC00');
+							}
 						}
 						break;
 					}

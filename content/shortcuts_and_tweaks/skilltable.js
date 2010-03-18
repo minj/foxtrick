@@ -327,7 +327,7 @@ var FoxtrickSkillTable = {
 								var Leadership = playerlist[j].getElementsByTagName("Leadership")[0].textContent;
 								var Experience = playerlist[j].getElementsByTagName("Experience")[0].textContent;
 								var CountryID = playerlist[j].getElementsByTagName("CountryID")[0].textContent;
-								var LeagueID = Foxtrick.XMLData.countryid_to_leagueid[parseInt(CountryID)];
+								var LeagueID = Foxtrick.XMLData.getLeagueIdByCountryId(parseInt(CountryID));
 								Foxtrick.dump('CountryID: '+CountryID+' '+parseInt(CountryID)+'  LeagueID: '+LeagueID+'\n');
 								var TrainerData = playerlist[j].getElementsByTagName("TrainerData")[0];
 								var PlayerNumber = playerlist[j].getElementsByTagName("PlayerNumber")[0].textContent;
@@ -363,20 +363,24 @@ var FoxtrickSkillTable = {
 					k++;
 
 					// nationality
-					  if (columns[k].enabled ) {
+					if (columns[k].enabled) {
 						var td = doc.createElement("td");
-						td.setAttribute("index", FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName);
+						var leagueName = "New Moon";
+						if (LeagueID) {
+							leagueName = FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName;
+						}
+						td.setAttribute("index", leagueName);
 						var a=doc.createElement("a");
 						a.href="/World/Leagues/League.aspx?LeagueID=" + LeagueID;
 						a.className ="flag inner";
 						var img=doc.createElement("img");
 						var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*LeagueID+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
 						img.setAttribute("style",style);
-						img.alt = img.title = FoxtrickHelper.getLeagueDataFromId(LeagueID).LeagueName;
+						img.alt = img.title = leagueName;
 						img.src = "/Img/Icons/transparent.gif";
 						a.appendChild(img);
 						td.appendChild(a);
-						tr.appendChild(td);					
+						tr.appendChild(td);
 					}
 					k++;
 
