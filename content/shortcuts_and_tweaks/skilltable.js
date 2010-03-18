@@ -1131,9 +1131,9 @@ var FoxtrickSkillTable = {
 			else {
 				// hide the objects
 				Foxtrick.removeClass(links, "customizing");
-				Foxtrick.addClass(links, "hidden");
-				Foxtrick.addClass(customizeTable, "hidden");
-				Foxtrick.addClass(container, "hidden");
+				Foxtrick.addClass(links, "ft_hidden");
+				Foxtrick.addClass(customizeTable, "ft_hidden");
+				Foxtrick.addClass(container, "ft_hidden");
 			}
 		}
 		catch (e) {
@@ -1157,10 +1157,10 @@ var FoxtrickSkillTable = {
 		Foxtrick.addClass(links, "customizing");
 
 		var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
-		Foxtrick.removeClass(customizeTable, "hidden");
+		Foxtrick.removeClass(customizeTable, "ft_hidden");
 
 		var container = doc.getElementsByClassName("ft_skilltable_container")[0];
-		Foxtrick.addClass(container, "hidden");
+		Foxtrick.addClass(container, "ft_hidden");
 	},
 
 	save : function(ev) {
@@ -1188,8 +1188,8 @@ var FoxtrickSkillTable = {
 			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
 			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 			Foxtrick.removeClass(links, "customizing");
-			Foxtrick.addClass(customizeTable, "hidden");
-			Foxtrick.removeClass(container, "hidden");
+			Foxtrick.addClass(customizeTable, "ft_hidden");
+			Foxtrick.removeClass(container, "ft_hidden");
 		}
 		catch(e) {
 			Foxtrick.dumpError(e);
@@ -1211,7 +1211,7 @@ var FoxtrickSkillTable = {
 		// links
 		var links = doc.createElement("div");
 		links.className = "ft_skilltable_links";
-		Foxtrick.addClass(links, "hidden");
+		Foxtrick.addClass(links, "ft_hidden");
 		// links: copy
 		var copy = doc.createElement("a");
 		copy.className = "customize_item secondary";
@@ -1244,7 +1244,7 @@ var FoxtrickSkillTable = {
 		// table container
 		var container = doc.createElement("div");
 		container.className = "ft_skilltable_container";
-		Foxtrick.addClass(container, "hidden");
+		Foxtrick.addClass(container, "ft_hidden");
 		// table container: switch view
 		var switchView = doc.createElement("div");
 		var switchViewLink = doc.createElement("a");
