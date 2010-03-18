@@ -21,6 +21,7 @@ FoxtrickExtendedPlayerDetails = {
     },
 
 	change : function( page, doc ) {
+
 	},
 
     _Player_Joined  : function ( doc ) {
@@ -81,7 +82,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 
     MODULE_NAME : "ExtendedPlayerDetailsWage",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('all'),//playerdetail'), 
+	PAGES : new Array('playerdetail'), 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
@@ -92,21 +93,20 @@ FoxtrickExtendedPlayerDetailsWage = {
     },
 
     run : function(page, doc) {
-		this._Player_Bonus ( doc );
+        this._Player_Bonus ( doc );
     },
 
 	change : function( page, doc ) {
+
 	},
-    
-	_Player_Bonus  : function ( doc ) {
+    _Player_Bonus  : function ( doc ) {
         
 		var div = doc.getElementById( "ft_bonuswage" );
         if (div != null) return;
         
         try {
-            var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );  
-			
-			try {
+            var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
+            try {
                 var table_elm_bonus = div.getElementsByTagName( "table" )[0].rows[2].cells[1];
             } catch(e) {Foxtrick.dump('    >' + e + '\n');}
 			
@@ -117,16 +117,20 @@ FoxtrickExtendedPlayerDetailsWage = {
             }
             
 			table_inner = table_elm_bonus.innerHTML;
+
+			var cl = FoxtrickPrefs.getString("oldCurrencySymbol").length;
 			
-			var cs_str = FoxtrickPrefs.getString("oldCurrencySymbol").replace(/ /gi,'&nbsp;');  // 000 BYR to 000&nbsp;BYR
-			var cl = cs_str.length;
-			
-			
-            var part = Foxtrick.substr(table_inner, 0, table_inner.search(cs_str)+ cl);
+            var part = Foxtrick.substr(table_inner, 0, table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+ cl);
 
             var part_1_save = part;
-            var part_2_save = table_inner.substring(table_inner.search(cs_str)+ cl);
+            var part_2_save = table_inner.substring(table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+ cl);
 
+			//this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
+                 var part = Foxtrick.trim(part);
+                 for ( var i=0; i<10; i++ ) { 
+                  var part = part.replace('&nbsp;', ''); 
+                 }
+            
 			var wage = parseInt(part.replace('&nbsp;', '').replace(/ /g, '')); 
             part =  Math.floor( wage / 1.2);
             part = Foxtrick.ReturnFormatedValue (part, '&nbsp;');

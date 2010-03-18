@@ -158,7 +158,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 	
     MODULE_NAME : "ReadHtPrefsFromHeader",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
-	PAGES : new Array('myhattrickAll'), 
+	PAGES : new Array('all'),//'myhattrickAll'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Read country from page header",
@@ -184,6 +184,11 @@ var FoxtrickReadHtPrefsFromHeader = {
 				Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
 				var CurrencyName = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
 				var CurrencyRate =  FoxtrickHelper.getCurrencyRateFromId(LeagueId);
+				if (CurrencyName.search(/000\ /,'')!=-1) {
+					CurrencyName=CurrencyName.replace(/000\ /gi,'');
+					CurrencyRate=CurrencyRate/1000;					
+				}
+				
 				Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
 			
 				FoxtrickPrefs.setString("htCountry", CountryName);
