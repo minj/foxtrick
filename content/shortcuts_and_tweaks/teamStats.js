@@ -420,8 +420,9 @@ Foxtrick.TeamStats= {
         _checkCountry : function ( ctrc ) {
             if (ctrc == null ) return;
             //ctrc = Foxtrick._to_utf8(Foxtrick.substr(ctrc, Foxtrick.strrpos( ctrc, "</a>")+4, ctrc.lebgth));
-            ctrc = Foxtrick._to_utf8(ctrc.replace(/<.+>/),'');
-            //Foxtrick.dump('=> stripped => ' + ctrc + '\n');
+            //ctrc = Foxtrick._to_utf8(ctrc.replace(/<.+>/),'');
+            ctrc = ctrc.replace(/<.+>/);
+            Foxtrick.dump('=> stripped => ' + ctrc + '\n');
             var found = -1;
             for (var i = 0; i < this.COUNTRYLIST.length; i++) {
                 if (ctrc.search(this.COUNTRYLIST[i]) != -1 ) {
@@ -430,9 +431,10 @@ Foxtrick.TeamStats= {
                 }
             }
             if ( found != -1) {
-                return Foxtrick._from_utf8(this.COUNTRYLIST[found]);
-            }
-            // Foxtrick.dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
+           //     return Foxtrick._from_utf8(this.COUNTRYLIST[found]);
+                return this.COUNTRYLIST[found];
+           }
+            Foxtrick.dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
             return false;
         },
         
