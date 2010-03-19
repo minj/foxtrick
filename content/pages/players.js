@@ -5,7 +5,9 @@
 
 Foxtrick.Pages.Players = {
 	lastSuccessfulXML : "", // last successful XML retrieve location
+	lastSuccessfulTime : 0, // last successful XML retrieve time (in milliseconds)
 	cachedXML : null, // use this if lastSuccessfulPage matches
+	XMLExpiry : 60000, // reload XML after this period of time (in milliseconds)
 	getXML : function(doc) {
 		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i) == -1
 			&& doc.location.href.search(/\/Club\/Players\/$/) == -1
@@ -33,9 +35,11 @@ Foxtrick.Pages.Players = {
 
 			var location = "http://" + doc.location.hostname + "/Community/CHPP/Players/chppxml.axd?" + file + team + selection;
 
-			if (this.lastSuccessfulXML === location) {
+			var cacheAge = (new Date()).getTime() - this.lastSuccessfulTime;
+			if (this.lastSuccessfulXML === location && cacheAge < this.XMLExpiry) {
 				// use cached XML
-				Foxtrick.dump("Foxtrick.Pages.Players has cached " + location + ", reusing cache...\n");
+				Foxtrick.dump("Foxtrick.Pages.Players has cached " + location + ", reusing cache.\n");
+				Foxtrick.dump("Cache age: " + cacheAge + "ms; will be reloaded after " + (this.XMLExpiry - cacheAge) + "ms.\n");
 				return this.cachedXML;
 			}
 			else {
@@ -53,6 +57,7 @@ Foxtrick.Pages.Players = {
 							Foxtrick.dump("UserID: " + req.responseXML.getElementsByTagName("UserID")[0].textContent + "\n");
 							Foxtrick.dump("ActionType: " + req.responseXML.getElementsByTagName("ActionType")[0].textContent + "\n");
 							this.lastSuccessfulXML = location;
+							this.lastSuccessfulTime = (new Date()).getTime();
 							this.cachedXML = req.responseXML;
 							return this.cachedXML;
 						}
