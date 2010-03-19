@@ -11,8 +11,8 @@ Foxtrick.TeamStats= {
 	PAGES : new Array('players','YouthPlayers'), 
     DEFAULT_ENABLED : true,
 	OPTIONS :  new Array("AddFlags","AddLeadershipAndExperience","AddCoachType"),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Options to add more information to players added",
+	NEW_AFTER_VERSION : "0.5.1.2",
+	LATEST_CHANGE : "Caching last XML for faster load.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 		
 	playersxmls:null,
@@ -49,6 +49,8 @@ Foxtrick.TeamStats= {
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
 		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
 		var lang = FoxtrickPrefs.getString("htLanguage");
+
+		var playersXML = Foxtrick.Pages.Players.getXML(doc);
 		
 		for( var i = 0; i < allDivs.length; i++ ) {
 				if (allDivs[i].className=='faceCard') facecards=true;;		
@@ -140,11 +142,11 @@ Foxtrick.TeamStats= {
 					a.href += '&highlight='+playerlastname;
 					//Foxtrick.dump(as[i].href+'\n');
 				}				
-				
-				if (page=='players' && Foxtrick.XMLData.playersxml && !NT_players) {  // not for ntteam
+
+				if (page=='players' && playersXML && !NT_players) {  // not for ntteam
 				 var playerid = as[link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
 				 
-				 var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName('Player');
+				 var playerlist = playersXML.getElementsByTagName('Player');
 				 for (var j=0; j<playerlist.length; ++j) { 
 					var thisPlayerID = playerlist[j].getElementsByTagName('PlayerID')[0].textContent;
 					if (thisPlayerID==playerid) {
@@ -747,7 +749,3 @@ Foxtrick.TeamStats= {
 	}catch(e) {Foxtrick.dump('FTTeamStats_Filter: '+e+'\n');}
 	},	
 };
-
-
-
-

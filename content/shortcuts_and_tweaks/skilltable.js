@@ -12,7 +12,7 @@ var FoxtrickSkillTable = {
 	PAGES : new Array("players", "YouthPlayers"),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.1.2",
-	LATEST_CHANGE : "Improved error catching. Fixes non shwoing table for some users.",
+	LATEST_CHANGE : "Improves error catching, fixes non-showing table for some users, caching last XML for faster load and extra info also on old tabs.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OtherTeams"),
 
@@ -94,7 +94,9 @@ var FoxtrickSkillTable = {
 				}
 				Foxtrick.dump("hasbars: "+hasbars+"\n");
 			}
-			Foxtrick.dump('playersxml: '+Foxtrick.XMLData.playersxml+' '+(Foxtrick.XMLData.playersxml != null)+' XMLData.League:'+Foxtrick.XMLData.League+'\n');
+
+			var playersXML = Foxtrick.Pages.Players.getXML(doc);
+			Foxtrick.dump('playersXML: '+playersXML+' '+(playersXML != null)+' XMLData.League:'+Foxtrick.XMLData.League+'\n');
 
 // columns
 // - name: name of column, used to retrieve from foxtrick.properties
@@ -166,7 +168,7 @@ var FoxtrickSkillTable = {
 			}
 
 			for (var j = 0; j < columns.length; ++j) {
-				if (Foxtrick.XMLData.playersxml == null && columns[j].xml) {
+				if (playersXML == null && columns[j].xml) {
 					columns[j].available = false;
 				}
 				else if (fullType.subtype === "own" && !columns[j].own) {
@@ -278,9 +280,9 @@ var FoxtrickSkillTable = {
 					var link_off=0;
 					if (hasflag) link_off=1;
  
-					if (Foxtrick.XMLData.playersxml != null) {						
+					if (playersXML != null) {						
 						var playerid = allDivs[i].getElementsByTagName("a")[0+link_off].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];						
-						var playerlist = Foxtrick.XMLData.playersxml.getElementsByTagName("Player");					
+						var playerlist = playersXML.getElementsByTagName("Player");					
 						//Foxtrick.dump('playerid: '+playerid+' playerlist.length: '+playerlist.length+'\n');
 						
 						for (var j=0; j<playerlist.length; ++j) {
@@ -397,7 +399,7 @@ var FoxtrickSkillTable = {
 
 					// age
 					if (columns[k].enabled) { 
-						if (Foxtrick.XMLData.playersxml==null || !age) var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
+						if (playersXML == null || !age) var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
 						var td = doc.createElement("td");
 						td.setAttribute("index", parseInt(age[0]) * 112 + parseInt(age[1]));
 						td.innerHTML=age[0]+"."+age[1];
@@ -412,7 +414,7 @@ var FoxtrickSkillTable = {
 					if (columns[k].enabled) {
 						var td = doc.createElement("td");
 						td.setAttribute("style","text-align:right !important;");
-						if (Foxtrick.XMLData.playersxml==null || !TSI) {
+						if (playersXML == null || !TSI) {
 							var tsitot_in = specc.innerHTML.substr(0,specc.innerHTML.indexOf("<br>"));
 							if (tsitot_in.search(/^\s*TSI/) != -1)
 								tsitot_in = tsitot_in.replace(/,.+/,""); // In the language Vlaams, TSI and age are switched. This is a fix for that
@@ -1105,10 +1107,6 @@ var FoxtrickSkillTable = {
 
 			var doc = ev.target.ownerDocument;
 			var tablediv = doc.getElementById("ft_skilltablediv");
-			var h2 = tablediv.getElementsByTagName("h2")[0];
-			Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
-			Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
-			var show = Foxtrick.hasClass(h2, "ft_boxBodyUnfolded");
 
 			if (!FoxtrickSkillTable.isTableCreated(doc)) {
 				var type = FoxtrickSkillTable.getFullType(doc).type;
@@ -1119,6 +1117,11 @@ var FoxtrickSkillTable = {
 					FoxtrickSkillTable.createYouthTable(doc);
 				}
 			}
+
+			var h2 = tablediv.getElementsByTagName("h2")[0];
+			Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
+			Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
+			var show = Foxtrick.hasClass(h2, "ft_boxBodyUnfolded");
 
 			var links = tablediv.getElementsByClassName("ft_skilltable_links")[0];
 			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];

@@ -18,6 +18,9 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog-html.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum_stage.js" />
 
+<script type="application/x-javascript" src="chrome://foxtrick/content/pages/pages.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/pages/players.js" />
+
 <!-- individual modules -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumchangeposts_modules.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumchangeposts.js" />
