@@ -30,13 +30,13 @@ var FoxtrickFormatPostingText = {
 	run : function( page, doc ) {
 	try{
 		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
-        for(var i=0;i<targets.length;++i) {Foxtrick.dump(targets[i].type+'\n'); if (targets[i].type=='submit') break;}
+        for(var i=0;i<targets.length;++i) {/*Foxtrick.dump(targets[i].type+'\n');*/ if (targets[i].type=='submit') break;}
 		var button_ok = targets[i];
 
-		Foxtrick.dump(button_ok.getAttribute('id')+'\n');
-		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
+		//Foxtrick.dump(button_ok.getAttribute('id')+'\n');
+		//Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
 		button_ok.setAttribute('onclick', "var textarea = document.getElementById('mainBody').getElementsByTagName('textarea')[0]; textarea.value = textarea.value.replace(/·/gi,'').replace(/\\n/g, '[FTbr]').replace(/(\\<)(\\S)/gi,'<·$2').replace(/\\[pre\\](.*?)\\[(i|u|b)\\](.*?)\\[\\/pre\\]/gi,'[pre]$1[ $2 ]$3[/pre]').replace(/\\[FTbr\\]/g, '\\n');"+button_ok.getAttribute('onclick'));
-		Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
+		//Foxtrick.dump(button_ok.getAttribute('onclick')+'\n');
 		
 	} catch(e) {Foxtrick.dump('FoxtrickFormatPostingText '+e+'\n');}
 	},

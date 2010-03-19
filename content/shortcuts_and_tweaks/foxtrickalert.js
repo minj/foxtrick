@@ -219,7 +219,8 @@ var FoxtrickAlert = {
 	
 	 foxtrick_showAlert_std: function( message, href) { 
      try { 									
-        var img = "http://hattrick.org/favicon.ico";
+        //var img = "http://www.hattrick.org/favicon.ico";
+        var img = Foxtrick.ResourcePath+"resources/img/ht-favicon.ico";
         var title = "Hattrick.org";
 		var clickable = true;
         var listener = { observe:
@@ -227,8 +228,6 @@ var FoxtrickAlert = {
                     try{ Foxtrick.dump('callback: '+topic+'\n');
 						if (topic=="alertclickcallback") {
 							Foxtrick.dump('alertclickcallback:' +'link to: '+data+'\n');
-							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-									.getService(Components.interfaces.nsIWindowMediator);
 							Foxtrick.openAndReuseOneTabPerURL(href,true);
 						}						
 						if (topic=="alertfinished") {
@@ -241,7 +240,7 @@ var FoxtrickAlert = {
 		try { 
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 FoxtrickAlert.alertWin.showAlertNotification(img, title, message, clickable, href, listener);
-				//Foxtrick.dump('ticker: using alerts-service\n');			
+				Foxtrick.dump('ticker: using alerts-service\n');			
 		} catch (e) { 
                 // fix for when alerts-service is not available (e.g. SUSE)
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
@@ -250,7 +249,7 @@ var FoxtrickAlert = {
                                 "_blank", "chrome,titlebar=no,popup=yes", null);
                 FoxtrickAlert.alertWin.arguments = [img, "www.hattrick.org", message, clickable, href,0,listener];
 				Foxtrick.dump('ticker: using fallback alert.xul\n');			            
-            }
+        }
     } catch (e) { 
             Foxtrick.dump('foxtrick_showAlert_std'+e);
     }
