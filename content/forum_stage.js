@@ -9,10 +9,8 @@ var FoxtrickForumStage = {
 	MODULE_NAME : "ForumStage",
 	PAGES : new Array('forumWritePost'),
     DEFAULT_ENABLED : true,
-	LastStageWarningDay: null,
 	
 	init : function() {
-		if (!this.LastStageWarningDay) this.LastStageWarningDay = FoxtrickPrefs.getInt('LastStageWarningDay');
 	},
 
 	onclick : function( ev ) {
@@ -27,10 +25,6 @@ var FoxtrickForumStage = {
 	try{		
 		var forum = doc.getElementById('mainWrapper').getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML; 
 		if (forum == 'Stage') {		
-			// add spam to message
-//			var button_ok = doc.getElementById('ctl00_ctl00_CPContent_CPMain_btnOK');			
-//			button_ok.addEventListener('click',this.onclick,true);
-
 
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0]; 
 			var divalert = doc.createElement('div');
@@ -59,24 +53,6 @@ var FoxtrickForumStage = {
 				else button_ok.setAttribute('disabled', true);			
 			}, false );
 			
-			// confirm box once per day
-			/*var datenow = new Date();
-			var dayofmonth = datenow.getDate();
-			Foxtrick.dump(dayofmonth+' '+ +'\n');
-			
-			if (dayofmonth != this.LastStageWarningDay) {
-				if (Foxtrick.confirmDialog(dayofmonth+' '+ FoxtrickPrefs.getInt('LastStageWarningDay')+'You are posting on a stage forum. If you think you discovered a bug: Have you disabled FoxTrick and tried to reproduce the bug without FoxTrick?')) {
-				}
-				else {
-					var t=doc.location.href.match(/t=\d+/);
-					var v=doc.location.href.match(/v=\d+/);
-					var n=doc.location.href.match(/n=\d+/);
-					doc.location.href = doc.location.href.replace(/Write.+/i,'Read.aspx?'+t+'&'+n+'&'+v);
-				}
-			}
-			FoxtrickPrefs.setInt('LastStageWarningDay', dayofmonth);
-			this.LastStageWarningDay = dayofmonth;
-			*/
 		}
 	} catch(e) {Foxtrick.dump('FoxtrickForumStage '+e+'\n');}
 	},
