@@ -70,6 +70,15 @@ Foxtrick.XMLData = {
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('designer');		
+		for (var i=0;i<foxtrickstaff.length;++i) {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			if(ids)
+			  for (var k=0;k<ids.length;++k) {
+				var id=ids[k].match(/\d+/);
+				FoxtrickStaffMarker.foxtrickersArray[id]='x';
+			}
+		}
 		var foxtrickstaff=this.aboutXML.getElementsByTagName('translation');		
 		for (var i=0;i<foxtrickstaff.length;++i)   {
 			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);

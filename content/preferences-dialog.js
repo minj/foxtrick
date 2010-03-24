@@ -295,6 +295,17 @@ var FoxtrickPreferencesDialog = {
 			label.setAttribute("value", developers[i]);
 		}
 
+		// graphic designers
+		var translations_caption = doc.getElementById("graphic-designers_caption");
+		var translations_list = doc.getElementById("graphic-designers_list");
+		var translations = Foxtrick.XML_evaluate(xmlresponse, "about/graphics/designer", "value");
+		translations_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/graphics", "value")[0]);
+		for (var i = 0; i < translations.length; ++i) {
+			var label = doc.createElement("label");
+			translations_list.appendChild(label);
+			label.setAttribute("value", translations[i]);
+		}
+
 		// translations
 		var translations_caption = doc.getElementById("translations_caption");
 		var translations_list = doc.getElementById("translations_list");

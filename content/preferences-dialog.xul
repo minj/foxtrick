@@ -366,6 +366,10 @@
 					<caption id="developers_caption" />
 					<vbox id="developers_list" />
 				</groupbox>
+				<groupbox id="graphic-designers">
+					<caption id="graphic-designers_caption" />
+					<vbox id="graphic-designers_list" />
+				</groupbox>
 				<groupbox id="translations">
 					<caption id="translations_caption" />
 					<vbox id="translations_list" />

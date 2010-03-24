@@ -1000,6 +1000,20 @@ var FoxtrickPrefsDialogHTML = {
 			groupbox2.appendChild(doc.createElement('br'));
 		}
 
+		// graphic designers
+		var groupbox2= doc.createElement("div");
+		groupbox2.setAttribute('class',"ft_pref_modul");
+		preftab.appendChild(groupbox2);
+		var caption1= doc.createElement("div");
+        caption1.setAttribute('class',"ft_pref_group_caption");
+		caption1.appendChild(doc.createTextNode(Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/graphics", "value")[0]));
+		groupbox2.appendChild(caption1);
+		var labels = Foxtrick.XML_evaluate(Foxtrick.XMLData.aboutXML, "about/graphics/designer", "value");		
+		for (var i=0;i<labels.length;++i) {			
+			groupbox2.appendChild(doc.createTextNode(labels[i]));
+			groupbox2.appendChild(doc.createElement('br'));
+		}
+
 		// translations
 		var groupbox2= doc.createElement("div");
 		groupbox2.setAttribute('class',"ft_pref_modul");

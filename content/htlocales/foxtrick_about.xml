@@ -17,7 +17,7 @@
 </head_developers>
 
 <!-- userids in barkets are used for staffmarker! -->
-<project_owners value="Project owners">
+<project_owners value="Project Owners">
 <project_owner value="larsw84 (1270528)" />
 <project_owner value="Mod-spambot (2336766)" />
 <project_owner value="convincedd (7776339) CHPP co-dev" />
@@ -74,6 +74,9 @@
 <translation value="* 中文（简体） - ryanli (8342420)" />
 </translations>
 
+<graphics value="Graphic Designers">
+	<designer value="Aimo_Kanuuna (3410980)" />
+</graphics>
 
 <editors>
 <editor value="64154" name="SH-Patrick"/>
