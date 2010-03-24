@@ -27,10 +27,16 @@ FoxtrickMatchPlayerColouring = {
     
     run : function( page, doc ) { 
 	try {
-		// get first youthteam id, assume its your own
-		if (page=='teamPageAny')  {
-			if  (this.OwnYouthTeamId==null) this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-			return;
+		// get youthteam id from left menue, if teamid=leftmenue teamid
+		if (page=='teamPageAny' || page=='match')  {
+				var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+				if  (this.OwnYouthTeamId==null) {
+					var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+					if (myTeamId==leftMenuTeamId) 
+						this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+					Foxtrick.dump('OwnYouthTeamId: '+this.OwnYouthTeamId+'\n');
+				}		
+			if (page=='teamPageAny') return;
 		}
         if (page=='myhattrick') {
 			this.OwnYouthTeamId = null;
@@ -61,7 +67,7 @@ FoxtrickMatchPlayerColouring = {
 			if (as[i].href.search(/YouthArenaID/i)!=-1) {isyouth=true;break;}
 			else if (as[i].href.search(/ArenaID/i)!=-1) {isyouth=false;break;}
 		}
-
+		
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
 		// exmaple xml use
 		//Foxtrick.dump(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
@@ -97,8 +103,8 @@ FoxtrickMatchPlayerColouring = {
             var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MyTeam_text");
             if (!stlMyTeam) stlMyTeam = this.OPTION_TEXTS_DEFAULT_VALUES[0];
 			//Replace myTeam colour
-			if (HomeTeamId == myTeamId) stlTeamA = stlMyTeam;
-			else if (AwayTeamId == myTeamId) stlTeamB = stlMyTeam;
+			if (HomeTeamId == myTeamId) {stlTeamA = stlMyTeam; Foxtrick.dump ('ownteam = HomeTeam\n'); }
+			else if (AwayTeamId == myTeamId) {stlTeamB = stlMyTeam; Foxtrick.dump ('ownteam = AwayTeam\n'); }
 		}
 	
 				
