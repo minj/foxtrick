@@ -1,5 +1,5 @@
-/* settings in here apply to all pages, including non hattrick pages. * /
-/* so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
+/* settings here apply to all pages, including non hattrick pages.
+   so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
 
 
 /* general foxtrick css classes */
@@ -68,3 +68,6 @@ h2.tblBox span.ft_copy_rating {margin-right: 1em; }
 th span.ft_copy_rating { margin-left: 0.2em; }
 #foxtrick_transferfilter_box a { text-decoration: underline; cursor: pointer; }
 #foxtrick_transferfilter_new { margin-bottom: 1em; }
+
+/* personality images */
+.ft-personality-img { height: 8px; width: 8px; margin-left: 0.1em;}
