@@ -480,15 +480,7 @@ var FoxtrickPrefsDialogHTML = {
 		tr.appendChild( td );
 		var screenshot = Foxtrickl10n.getScreenshot('main');		
 		if (screenshot) {
-			var helpdiv = doc.createElement("div");
-			helpdiv.setAttribute("class","ft_actionicon foxtrickHelp float_right");
-			helpdiv.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
-			var a = doc.createElement('a');
-			a.href = screenshot;
-			a.setAttribute('target','_blank');
-			a.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
-			helpdiv.appendChild(a);
-			td.appendChild( helpdiv );
+			td.appendChild(this._screenshot(doc, screenshot));
 		}
         		
 		// language & currency & dateformat & country
@@ -907,14 +899,7 @@ var FoxtrickPrefsDialogHTML = {
 		tr.appendChild( td );
 		var screenshot = Foxtrickl10n.getScreenshot('help');		
 		if (screenshot) {
-			var a = doc.createElement('a');
-			a.href = screenshot;
-			a.setAttribute('target','_blank');
-			var img=doc.createElement('img');
-			img.src=Foxtrick.ResourcePath+"resources/img/Aiga_help_green.png";
-			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
-			a.appendChild(img);
-			td.appendChild( a );
+			td.appendChild(this._screenshot(doc, screenshot));
 		}
  		
 		
@@ -970,14 +955,7 @@ var FoxtrickPrefsDialogHTML = {
 		tr.appendChild( td );
 		var screenshot = Foxtrickl10n.getScreenshot('about');		
 		if (screenshot) {
-			var a = doc.createElement('a');
-			a.href = screenshot;
-			a.setAttribute('target','_blank');
-			var img=doc.createElement('img');
-			img.src=Foxtrick.ResourcePath+"resources/img/Aiga_help_green.png";
-			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
-			a.appendChild(img);
-			td.appendChild( a );
+			td.appendChild(this._screenshot(doc, screenshot));
 		}
  		
 		// head_developer
@@ -1060,14 +1038,7 @@ var FoxtrickPrefsDialogHTML = {
 		tr.appendChild( td );
 		var screenshot = Foxtrickl10n.getScreenshot('changes');		
 		if (screenshot) {
-			var a = doc.createElement('a');
-			a.href = screenshot;
-			a.setAttribute('target','_blank');
-			var img=doc.createElement('img');
-			img.src=Foxtrick.ResourcePath+"resources/img/Aiga_help_green.png";
-			img.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
-			a.appendChild(img);
-			td.appendChild( a );
+			td.appendChild(this._screenshot(doc, screenshot));
 		}
 		
 		var versions = Foxtrick.XML_evaluate(Foxtrick.XMLData.htversionsXML,  "hattrickversions/version", "name", "code");
@@ -1106,15 +1077,7 @@ var FoxtrickPrefsDialogHTML = {
 		tr.appendChild( td );
 		var screenshot = Foxtrickl10n.getScreenshot(category);		
 		if (screenshot) {
-			var helpdiv = doc.createElement("div");
-			helpdiv.setAttribute("class","ft_actionicon foxtrickHelp float_right");
-			helpdiv.setAttribute('title',Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
-			var a = doc.createElement('a');
-			a.href = screenshot;
-			a.setAttribute('target','_blank');
-			a.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
-			helpdiv.appendChild(a);
-			td.appendChild( helpdiv );
+			td.appendChild(this._screenshot(doc, screenshot));
 		}
 		
 		var modules_entries = new Array();
@@ -1143,7 +1106,19 @@ var FoxtrickPrefsDialogHTML = {
 
 	entry_sortfunction: function(a,b) {return a.getAttribute('prefname').localeCompare(b.getAttribute('prefname'));},
 
-	
+	_screenshot : function(doc, link) {
+		var a = doc.createElement("a");
+		a.className = "ft_actionicon";
+		a.href = link;
+		a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
+		a.setAttribute('target','_blank');
+		var img = doc.createElement("img");
+		img.src = Foxtrick.ResourcePath + "resources/img/screenshot.png";
+		img.alt = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
+		a.appendChild(img);
+		return a;
+	},
+
 	_radioModule : function(doc, module, entry, on_page ) {	
 		var module_checked = Foxtrick.isModuleEnabled( module );
 		var checkdiv = entry.firstChild;
@@ -1267,12 +1242,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		var screenshot = Foxtrickl10n.getScreenshot(name);
 		if (screenshot) {
-			var scr = doc.createElement( "a" );
-			scr.className = "ft_actionicon foxtrickHelp float_right";
-			scr.href = screenshot;
-			scr.setAttribute("title", Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots"));
-			scr.setAttribute("target", "_blank");
-			div.appendChild(scr);
+			div.appendChild(this._screenshot(doc, screenshot));
 		}
 
 		var cleaner = doc.createElement("div");
