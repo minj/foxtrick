@@ -54,15 +54,7 @@ FoxtrickTransferListSearchFilters = {
         if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
         
         Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/transferform.js");
-        
-        var head = doc.getElementsByTagName("head")[0];
-        var style = doc.createElement("style");
-        style.setAttribute("type", "text/css");
-        
-        var newStyle = 'div.ignore{cursor: pointer;width: 10px;height: 18px;background: url("../../Img/Icons/cross_small.png") no-repeat center center;} div.ignore:hover { background: url("../../Img/Icons/crossRed_small.png") no-repeat center center; }';
-        style.appendChild(doc.createTextNode(newStyle));
-        head.appendChild(style);
-        
+
         var ownBoxBody = doc.createElement("div");
 				var header = Foxtrickl10n.getString(
 		                "foxtrick.transferfilter.Foxtrick_Filters" );
@@ -109,8 +101,7 @@ FoxtrickTransferListSearchFilters = {
 					td_fname.appendChild(link);
 					
 					var remover = doc.createElement( "div" );
-					remover.setAttribute( "class", "ignore" );
-					remover.setAttribute( "height", "100%" );
+					remover.className = "foxtrickRemove";
 					remover.msg = namelist[i];
 					remover.addEventListener( "click", FoxtrickTransferListSearchFilters.deleteFilter, false );
 					td_remove.appendChild( remover );
@@ -195,10 +186,10 @@ FoxtrickTransferListSearchFilters = {
                 td_fname.appendChild(link);
                     
                 var remover = doc.createElement( "div" );
-                remover.setAttribute( "class", "ignore" );
+                remover.className = "foxtrickRemove";
                 remover.msg = filtername;
                 remover.addEventListener( "click", FoxtrickTransferListSearchFilters.deleteFilter, false );
-                
+
                 td_remove.appendChild( remover );
             }
         } catch (e) {
