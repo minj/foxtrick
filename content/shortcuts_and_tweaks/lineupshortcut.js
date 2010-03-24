@@ -9,8 +9,8 @@ FoxtrickLineupShortcut = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Added shortcut to NT/U20 matches",
+	NEW_AFTER_VERSION: "0.5.1.3",
+	LATEST_CHANGE:"Fix for Teams with problamatic names",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
  	OPTIONS : new Array( "HighlightPlayer", "YouthPlayerLink"),
 
@@ -90,9 +90,13 @@ FoxtrickLineupShortcut = {
 					var element=doc.getElementById('mainWrapper');
 					var playerid=FoxtrickHelper.findPlayerId(element);
 					var teamname=FoxtrickHelper.extractTeamName(element);
+					// splitting teams with '- | -' in their name breaks the system
+					teamname_rep = teamname.replace(/\-\ /gi,'+ ').replace(/\ \-/gi,' +');
+					
+
 					//Fix for longteamname
-					if (teamname.length>20) {
-						teamname=teamname.substr(0, 20)+"..";
+					if (teamname_rep.length>20) {
+						teamname_rep=teamname_rep.substr(0, 20)+"..";
 					}
 					
 					for (var i=0;i<matchtable.rows.length;i++) {
@@ -102,29 +106,34 @@ FoxtrickLineupShortcut = {
 						
 						//Checking if the team is present
 						var matchTeams=link.text;
+						matchTeams = matchTeams.replace(teamname, teamname_rep);
 						matchTeams=matchTeams.split(" - ");
-						//Sometimes there is a white space at the end
-						while (matchTeams[0].substring(matchTeams[0].length-1, matchTeams[0].length) == ' '){
-							matchTeams[0] = matchTeams[0].substring(0,matchTeams[0].length-1);
-						}
-						while (matchTeams[1].substring(matchTeams[1].length-1, matchTeams[1].length) == ' '){
-							matchTeams[1] = matchTeams[1].substring(0,matchTeams[1].length-1);
-						}
+					
+						if (matchTeams[0]) matchTeams[0] = Foxtrick.trim(matchTeams[0]);
+						if (matchTeams[1]) matchTeams[1] = Foxtrick.trim(matchTeams[1]);
 						
 						for (var j=0;j<matchTeams.length;j++) {
-							//Foxtrick.LOG(matchTeams[j]+'-'+teamname);
-							if (matchTeams[j]==teamname) {
-								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
-							}
-							else {
-								if (matchTeams[j]==ntName) {
+							Foxtrick.dump( j + ' [' + matchTeams[j] + ']-[' + teamname_rep + ']');
+							switch(matchTeams[j])
+							{
+								case teamname_rep:
+									Foxtrick.dump(' [TEAM]\n');
+									this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
+								break;
+								
+								case ntName:
+									Foxtrick.dump(' [NATIONAL TEAM]\n');
 									this._Add_Lineup_Link(doc, matchtable.rows[i], ntId, playerid, matchid, 'NT');
-								}
-								else {
-									if (matchTeams[j]==u20Name) {
-										this._Add_Lineup_Link(doc, matchtable.rows[i], u20Id, playerid, matchid, 'U20');
-									}
-								}
+								break;
+								
+								case u20Name:
+									Foxtrick.dump(' [U20 TEAM]\n');
+									this._Add_Lineup_Link(doc, matchtable.rows[i], u20Id, playerid, matchid, 'U20');
+								break;
+								
+								default: 
+									Foxtrick.dump('\n');
+								break;
 							}
 						}
 					}
