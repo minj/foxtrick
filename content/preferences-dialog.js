@@ -811,17 +811,23 @@ FoxtrickPreferencesDialog.show = function(button) {
 }
 
 FoxtrickPreferencesDialog.deactivate = function(button) {
-try{
-	if (!button) {
-		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
-		//alert(Foxtrick.statusbarDeactivateImg.suspended);
-		if (Foxtrick.statusbarDeactivateImg.getAttribute('suspended')) Foxtrick.statusbarDeactivateImg.removeAttribute("suspended");
-		else Foxtrick.statusbarDeactivateImg.setAttribute('suspended','on');
+	try {
+		if (!button) {
+			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
+			FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+			if (statusBarImg.hasAttribute("suspended")) {
+				statusBarImg.removeAttribute("suspended");
+			}
+			else {
+				statusBarImg.setAttribute("suspended", "on");
+			}
 
-		//Foxtrick.statusbarDeactivateImg.style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick_deactivated.png);"
-		FoxtrickMain.init();
+			FoxtrickMain.init();
+		}
 	}
-} catch(e){alert('FoxtrickPreferencesDialog.deactivate '+e);}
+	catch (e) {
+		alert("FoxtrickPreferencesDialog.deactivate: " + e);
+	}
 }
 
 FoxtrickPreferencesDialog.copy_id = function(button) {

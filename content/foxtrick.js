@@ -250,9 +250,27 @@ var FoxtrickMain = {
 		//Foxtrick.dump('----- foxtrickmain run. is_only_css_check: '+(is_only_css_check!=null)+'\n');
 
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
-		// or temporary disable
-		if( ( !( FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc) ))
-			&& ( !FoxtrickPrefs.getBool("disableTemporary")) ) {
+		// or disabled temporarily
+		if ((FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
+			|| FoxtrickPrefs.getBool("disableTemporary")) {
+			// potenial disable cleanup
+			Foxtrick.dump("On Stage: " + Foxtrick.isStage(doc) + ", disabled on stage: " + FoxtrickPrefs.getBool("disableOnStage") + ".\n");
+			Foxtrick.dump("Temporarily disabled: " + FoxtrickPrefs.getBool("disableTemporary") + "\n");
+			FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
+			FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
+			FoxtrickMain.new_start = false;
+			if (Foxtrick.main_css_loaded) Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
+			Foxtrick.main_css_loaded = false;
+			Foxtrick.unload_module_css();
+
+			// set status bar icon as disabled
+			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
+			statusBarImg.setAttribute("suspended", "on");
+		}
+		else {
+			// set status bar icon as enabled
+			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
+			statusBarImg.removeAttribute("suspended");
 
 			if (!Foxtrick.main_css_loaded) {
 				Foxtrick.load_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
@@ -333,23 +351,6 @@ var FoxtrickMain = {
 			// context menue
 			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);
             Foxtrick.dump_flush(doc);
-		}
-		else {
-			// potenial disable cleanup
-			var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-			if( /*FoxtrickMain.new_start && */((( FoxtrickPrefs.getBool("disableOnStage") &&
-				Foxtrick.getHref( doc).search( stage_regexp ) != -1))
-				|| ( FoxtrickPrefs.getBool("disableTemporary"))) ) {
-
-				Foxtrick.dump(' disabled onstage:'+(FoxtrickPrefs.getBool("disableOnStage")&&
-				Foxtrick.getHref( doc).search( stage_regexp ) != -1) +' - temporary'+FoxtrickPrefs.getBool("disableTemporary")+'\n');
-				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
-				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
-				FoxtrickMain.new_start = false;
-				if (Foxtrick.main_css_loaded) Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
-				Foxtrick.main_css_loaded = false;
-				Foxtrick.unload_module_css();
-			}
 		}
 	} catch(e) { Foxtrick.dump('Foxtrick.run: '+e+'\n'); }
     },
