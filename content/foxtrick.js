@@ -101,11 +101,13 @@ var FoxtrickMain = {
 				Foxtrick.registerModulePages(module);
             }
 		}
-		if (Foxtrick && Foxtrick.statusbarDeactivate) Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+
+		if (Foxtrick && Foxtrick.statusbarDeactivate) {
+			Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+		}
 
 		// reload skins
 		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
-		Foxtrick.reload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick_statusbar.css' ) ;
 		Foxtrick.main_css_loaded = true;
 		FoxtrickMain.new_start = true;
 		
@@ -114,13 +116,8 @@ var FoxtrickMain = {
 
     registerOnPageLoad : function(document) {
 	try{
-		// status bar image
-		var statusbarImg = document.getElementById("foxtrick-status-bar-img");
-		statusbarImg.setAttribute("tooltiptext", Foxtrickl10n.getString("foxtrick"));
-		if (FoxtrickPrefs.getBool("disableTemporary")) {
-			statusbarImg.setAttribute("suspended", "on");
-		}
-		Foxtrick.statusbarDeactivateImg = statusbarImg;
+		// update status bar
+		Foxtrick.updateStatus();
 
 		// status bar menu
 		var statusbarPreferences = document.getElementById("foxtrick-status-bar-preferences");
@@ -159,22 +156,25 @@ var FoxtrickMain = {
     },
 
 	ontabfocus : function( ev ) {  // on tab focus
-	try{		
-		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-                     .getService(Components.interfaces.nsIWindowMediator);
-		var browserEnumerator = wm.getEnumerator("navigator:browser");
-		var browserWin = browserEnumerator.getNext();
-		var tabbrowser = browserWin.getBrowser(); 
-		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex); 
-		var doc = currentBrowser.contentDocument;
+		try{
+			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+		                 .getService(Components.interfaces.nsIWindowMediator);
+			var browserEnumerator = wm.getEnumerator("navigator:browser");
+			var browserWin = browserEnumerator.getNext();
+			var tabbrowser = browserWin.getBrowser(); 
+			var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex); 
+			var doc = currentBrowser.contentDocument;
 
-		Foxtrick.dump('onfocus: '+doc.location.href+'\n');
-		if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 )        
-			FoxtrickMain.run(currentBrowser.contentDocument, true);   // recheck css
+			Foxtrick.updateStatus();
 
-		} catch(e){dump('foxtrickmain onfocus '+e+'\n');}
+			if (Foxtrick.isHt(doc)) {
+				FoxtrickMain.run(doc, true); // recheck css
+			}
+		}
+		catch (e) {
+			dump('foxtrickmain onfocus '+e+'\n');
+		}
 	},			
-
 
 	onPageChange : function( ev ) { 
 		var doc = ev.originalTarget.ownerDocument;
@@ -205,7 +205,9 @@ var FoxtrickMain = {
 		var doc = ev.originalTarget;
 		if ( doc.nodeName != "#document" )
             return;
-				
+
+		Foxtrick.updateStatus();
+
         // hattrick URL check and run if on HT
         if ( Foxtrick.getHref( doc ).search( FoxtrickPrefs.getString( "HTURL" ) ) > -1 ) {
 			// check if it's in exclude list
@@ -249,6 +251,8 @@ var FoxtrickMain = {
 	try {
 		//Foxtrick.dump('----- foxtrickmain run. is_only_css_check: '+(is_only_css_check!=null)+'\n');
 
+		Foxtrick.updateStatus();
+
 		// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 		// or disabled temporarily
 		if ((FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
@@ -262,16 +266,8 @@ var FoxtrickMain = {
 			if (Foxtrick.main_css_loaded) Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
 			Foxtrick.main_css_loaded = false;
 			Foxtrick.unload_module_css();
-
-			// set status bar icon as disabled
-			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
-			statusBarImg.setAttribute("suspended", "on");
 		}
 		else {
-			// set status bar icon as enabled
-			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
-			statusBarImg.removeAttribute("suspended");
-
 			if (!Foxtrick.main_css_loaded) {
 				Foxtrick.load_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
 				Foxtrick.main_css_loaded = true;
@@ -398,6 +394,36 @@ var FoxtrickMain = {
 
 };
 
+Foxtrick.updateStatus = function() {
+	var icon = document.getElementById("foxtrick-status-bar-img");
+	var doc = content.document; // get the document of current tab
+
+	var statusText;
+
+	if (FoxtrickPrefs.getBool("disableTemporary")) {
+		// FoxTrick is disabled temporarily
+		icon.setAttribute("status", "disabled");
+		statusText = Foxtrickl10n.getString("status.disabled");
+	}
+	else if (FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc)) {
+		// FoxTrick is disabled on stage
+		icon.setAttribute("status", "disabled");
+		statusText = Foxtrickl10n.getString("status.disabledOnStage");
+	}
+	else if (Foxtrick.isHt(doc)) {
+		// FoxTrick is enabled, and working
+		icon.setAttribute("status", "working");
+		statusText = Foxtrickl10n.getString("status.working");
+	}
+	else {
+		// FoxTrick is enabled, but not working
+		icon.setAttribute("status", "enabled");
+		statusText = Foxtrickl10n.getString("status.enabled");
+	}
+	var tooltipText = Foxtrickl10n.getString("foxtrick") + " (" + statusText + ")";
+	icon.setAttribute("tooltiptext", tooltipText);
+}
+
 Foxtrick.isPage = function( page, doc ) {
 	var htpage_regexp = new RegExp( page, "i" );
 	return doc.location.href.search( htpage_regexp ) > -1;
@@ -407,14 +433,16 @@ Foxtrick.getHref = function( doc ) {
     return doc.location.href;
 }
 
-
+Foxtrick.isHt = function(doc) {
+	return (Foxtrick.getHref(doc).search(FoxtrickPrefs.getString("HTURL")) > -1);
+}
 
 var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 Foxtrick.isStage = function(doc) {
-	return (Foxtrick.getHref( doc).search( stage_regexp ) > -1);
+	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
 }
-		
-		
+
+
 Foxtrick.registerModulePages = function( module) {
 try {
     // if is enabled in preferences and has a run() function

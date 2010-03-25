@@ -815,12 +815,8 @@ FoxtrickPreferencesDialog.deactivate = function(button) {
 		if (!button) {
 			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
 			FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
-			if (statusBarImg.hasAttribute("suspended")) {
-				statusBarImg.removeAttribute("suspended");
-			}
-			else {
-				statusBarImg.setAttribute("suspended", "on");
-			}
+
+			Foxtrick.updateStatus();
 
 			FoxtrickMain.init();
 		}
