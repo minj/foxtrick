@@ -180,7 +180,10 @@ var FoxtrickMain = {
 		var doc = ev.originalTarget.ownerDocument;
 		if ( doc.nodeName != "#document" )
             return;
-			
+		
+		// not on matchlineup
+		if (doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1) return;
+		
 		// ignore changes list
 		if (ev.originalTarget.className && (ev.originalTarget.className=='boxBody' || ev.originalTarget.className=='myht1'))
 			return;
@@ -389,7 +392,6 @@ var FoxtrickMain = {
 			}
             Foxtrick.dump_flush(doc);
         }
-		else Foxtrick.dump('Foxtrick modules deactivated\n');
 	}
 
 };
