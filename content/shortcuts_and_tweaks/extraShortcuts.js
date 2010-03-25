@@ -1,18 +1,18 @@
 /**
-* shortcutsstatistics.js
+* extraShortcuts.js
 * Adds an imagelink to the shortcut
 * @author baumanns, spambot
 */
 
-var FoxtrickShortcutsStatistics = {
+var FoxtrickExtraShortcuts = {
 
-    MODULE_NAME : "shortcutsstatistics",
+    MODULE_NAME : "ExtraShortcuts",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9.1",	
-	LATEST_CHANGE:"Added link to FoxTrick HTML preferences",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION : "0.5.1.2",	
+	LATEST_CHANGE : "Module name changed to ExtraShortcuts",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs"),
 	CSS:"",
 	
@@ -37,15 +37,9 @@ var FoxtrickShortcutsStatistics = {
     },
 
 	change : function( page, doc ) {
-        var elm = doc.getElementById( 'ft_shortcutsstatistics' );
-        if (elm != null) return;
 	},
 
     run : function( page, doc ) {
-        
-        var elm = doc.getElementById( 'ft_shortcutsstatistics' );
-        if (elm != null) return;
-
         var shortcuts = doc.getElementById ( 'shortcuts' );
 		if (!shortcuts) return;
 		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div');
@@ -57,7 +51,7 @@ var FoxtrickShortcutsStatistics = {
 				var num_added=0;
                 if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) {
                     var link = doc.createElement('a');                
-                    link.id = 'ft_shortcutsstatistics';
+                    link.className = 'ft_extra-shortcuts';
                     link.href = "../../World/Stats/";
                     //link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
@@ -65,7 +59,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.setAttribute( "class", "ftSuppStats");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
                     img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/chart_bar.png') !important;");
-                    img1.title = Foxtrickl10n.getString("foxtrick.shortcutsstatistics.label");
+                    img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.statistics");
 
                     link.appendChild(img1);
                     if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
@@ -82,7 +76,7 @@ var FoxtrickShortcutsStatistics = {
                 
                 if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {                
                     var link = doc.createElement('a');                
-                    link.id = 'ft_shortcutsstatistics';
+                    link.className = 'ft_extra-shortcuts';
                     link.href = "../../Club/Transfers/";
                     //link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
@@ -90,7 +84,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.setAttribute( "class", "ftMyTransfers");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
                     img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/dollar.png') !important;");
-                    img1.title = Foxtrickl10n.getString("foxtrick.shortcutstransfers.label");
+                    img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.transfers");
 
                     link.appendChild(img1);
                     if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
@@ -107,7 +101,7 @@ var FoxtrickShortcutsStatistics = {
 
                 if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) {                
                     var link = doc.createElement('a');                
-                    link.id = 'ft_shortcutsstatistics';
+                    link.className = 'ft_extra-shortcuts';
                     link.href = "../../MyHattrick/Preferences/";
                     //link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
@@ -115,7 +109,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.setAttribute( "class", "ftSCPrefs");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
                     img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/options.png') !important;");
-                    img1.title = Foxtrickl10n.getString("foxtrick.shortcutsprefs.label");
+                    img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.prefs");
 
                     link.appendChild(img1);
                     if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
@@ -132,7 +126,7 @@ var FoxtrickShortcutsStatistics = {
 				
 				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {                
                     var link = doc.createElement('a');                
-                    link.id = 'ft_shortcutsstatistics';
+                    link.className = 'ft_extra-shortcuts';
                     link.href = "../../MyHattrick/?configure_foxtrick=true&category=main/";
                     //link.setAttribute("style", "padding:3px 0px 0px 4px;");
                     
@@ -140,7 +134,7 @@ var FoxtrickShortcutsStatistics = {
                     img1.setAttribute( "class", "ftSCPrefs");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
                     img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/foxtrick22.png') !important;");
-                    img1.title = Foxtrickl10n.getString("foxtrick.shortcutsfoxtrickprefs.label");
+                    img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ftprefs");
 
                     link.appendChild(img1);
                     if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
@@ -172,7 +166,7 @@ var FoxtrickShortcutsStatistics = {
 				
 			}
             catch(e) {
-                Foxtrick.dump( ' => shortcutsstatistics: ' + e + '\n');
+                Foxtrick.dump( ' => ExtraShortcuts: ' + e + '\n');
             }
         }
     }
