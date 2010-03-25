@@ -110,7 +110,7 @@ Foxtrick.modules = [
                     FoxtrickLargeFlags,
                     FoxtrickTeamSelectBox,
                     FoxtrickSeniorTeamShortCuts,
-                    FoxtrickShortcutsStatistics,
+                    FoxtrickExtraShortcuts,
                     FoxtrickCustomMedals,
                     FoxtrickForumRedirManagerToTeam,
                     FoxtrickRedirections,
