@@ -83,6 +83,10 @@ div.ft_icon foxtrickInfo:hover {
 
 .ft_pref_modul > div > label { font-weight: bold; }
 
+/* override HT sidebar padding for a elements */
+.sidebarBox .ft_pref_modul a { padding: 0px !important; }
+
+
 #foxtrick_OnPagePrefs_box  td {padding-right:4px !important; padding-left:0px !important;}
 
 #foxtrick_OnPagePrefs_box .boxBody {padding: 8px 5px!important; } 
