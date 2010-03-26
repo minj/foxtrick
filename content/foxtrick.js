@@ -407,20 +407,17 @@ Foxtrick.updateStatus = function() {
 		icon.setAttribute("status", "disabled");
 		statusText = Foxtrickl10n.getString("status.disabled");
 	}
-	else if (FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc)) {
-		// FoxTrick is disabled on stage
-		icon.setAttribute("status", "disabled");
-		statusText = Foxtrickl10n.getString("status.disabledOnStage");
-	}
-	else if (Foxtrick.isHt(doc)) {
-		// FoxTrick is enabled, and working
-		icon.setAttribute("status", "working");
-		statusText = Foxtrickl10n.getString("status.working");
+	else if (Foxtrick.isHt(doc)
+		&& !(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))) {
+		// FoxTrick is enabled, and active on current page
+		icon.setAttribute("status", "active");
+		statusText = Foxtrickl10n.getString("status.active");
 	}
 	else {
-		// FoxTrick is enabled, but not working
+		// FoxTrick is enabled, but not active on current page
 		icon.setAttribute("status", "enabled");
-		statusText = Foxtrickl10n.getString("status.enabled");
+		var hostname = Foxtrick.getHostname(doc);
+		statusText = Foxtrickl10n.getString("status.enabled").replace("%host", hostname);
 	}
 	var tooltipText = Foxtrickl10n.getString("foxtrick") + " (" + statusText + ")";
 	icon.setAttribute("tooltiptext", tooltipText);
@@ -433,6 +430,10 @@ Foxtrick.isPage = function( page, doc ) {
 
 Foxtrick.getHref = function( doc ) {
     return doc.location.href;
+}
+
+Foxtrick.getHostname = function(doc) {
+	return Foxtrick.getHref(doc).replace(RegExp("^[a-zA-Z0-9]+:\/\/"), "").replace(RegExp("\/.*"), "");
 }
 
 Foxtrick.isHt = function(doc) {

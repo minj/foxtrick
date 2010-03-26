@@ -1,5 +1,5 @@
 #foxtrick-status-bar-img {
-	width: 16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/working.png);
+	width: 16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/active.png);
 }
 #foxtrick-status-bar-img[status="enabled"] {
 	list-style-image: url("chrome://foxtrick/skin/enabled.png");
