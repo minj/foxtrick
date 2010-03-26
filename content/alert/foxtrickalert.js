@@ -8,13 +8,13 @@
 var FoxtrickAlert = {
 
     MODULE_NAME : "FoxtrickAlert",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Optional dbus (linux) alert removed again for AMO compliance",
+	NEW_AFTER_VERSION : "0.5.1.2",
+	LATEST_CHANGE : "Moved to alert category.",
     LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("NewMail","NewForum"), 
-	
+
 	news : [],
 	alertWin:null,
 	ALERTS: new Array(),
