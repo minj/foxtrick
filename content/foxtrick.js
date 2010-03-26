@@ -417,7 +417,7 @@ Foxtrick.updateStatus = function() {
 		// FoxTrick is enabled, but not active on current page
 		icon.setAttribute("status", "enabled");
 		var hostname = Foxtrick.getHostname(doc);
-		statusText = Foxtrickl10n.getString("status.enabled").replace("%host", hostname);
+		statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 	}
 	var tooltipText = Foxtrickl10n.getString("foxtrick") + " (" + statusText + ")";
 	icon.setAttribute("tooltiptext", tooltipText);
