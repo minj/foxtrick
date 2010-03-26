@@ -246,6 +246,8 @@ var FoxtrickCopyScoutReport = {
 		
 		if (lastmainbox!=-1) {
 				var plain = subDivs[lastmainbox].innerHTML;
+				var plainsplit = plain.split("<a");
+				plain = plainsplit[0];
 				plain=plain.replace(/\&nbsp;/ig,' ');
 				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
