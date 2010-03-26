@@ -194,7 +194,7 @@ Foxtrick.XMLData = {
 			return this.countryToLeague[id];
 		}
 		else {
-			return null;
+			return 0;
 		}
 	}
 }

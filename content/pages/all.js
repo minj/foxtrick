@@ -7,7 +7,6 @@ Foxtrick.Pages.All = {
 	getOwnTeamId : function(doc) {
 		try {
 			var id = FoxtrickHelper.findTeamId(doc.getElementById("teamLinks"));
-			Foxtrick.dump("Own team id: " + id + "\n");
 			if (id) {
 				return id;
 			}
@@ -20,7 +19,6 @@ Foxtrick.Pages.All = {
 	getTeamId : function(doc) {
 		try {
 			var id = FoxtrickHelper.findTeamId(doc.getElementById("content").getElementsByTagName("div")[0]);
-			Foxtrick.dump("Team id: " + id + "\n");
 			if (id) {
 				return id;
 			}

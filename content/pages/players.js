@@ -64,10 +64,10 @@ Foxtrick.Pages.Players = {
 								player.agreeability = parseInt(currentXMLPlayer.getElementsByTagName("Agreeability")[0].textContent);
 							}
 							if (currentXMLPlayer.getElementsByTagName("Aggressiveness").length) {
-								player.agreeability = parseInt(currentXMLPlayer.getElementsByTagName("Aggressiveness")[0].textContent);
+								player.aggressiveness = parseInt(currentXMLPlayer.getElementsByTagName("Aggressiveness")[0].textContent);
 							}
 							if (currentXMLPlayer.getElementsByTagName("Honesty").length) {
-								player.agreeability = parseInt(currentXMLPlayer.getElementsByTagName("Honesty")[0].textContent);
+								player.honesty = parseInt(currentXMLPlayer.getElementsByTagName("Honesty")[0].textContent);
 							}
 							if (currentXMLPlayer.getElementsByTagName("LeagueGoals").length) {
 								var leagueGoals = currentXMLPlayer.getElementsByTagName("LeagueGoals")[0].textContent;
@@ -106,11 +106,12 @@ Foxtrick.Pages.Players = {
 							if (currentXMLPlayer.getElementsByTagName("TSI").length) {
 								player.tsi = parseInt(currentXMLPlayer.getElementsByTagName("TSI")[0].textContent);
 							}
-							if (currentXMLPlayer.getElementsByTagName("Age").length) {
-								player.years = parseInt(currentXMLPlayer.getElementsByTagName("Age")[0].textContent);
-							}
-							if (currentXMLPlayer.getElementsByTagName("Age").length) {
-								player.days = parseInt(currentXMLPlayer.getElementsByTagName("AgeDays")[0].textContent);
+							if (currentXMLPlayer.getElementsByTagName("Age").length
+								&& currentXMLPlayer.getElementsByTagName("AgeDays").length) {
+								var age = {};
+								age.years = parseInt(currentXMLPlayer.getElementsByTagName("Age")[0].textContent);
+								age.days = parseInt(currentXMLPlayer.getElementsByTagName("AgeDays")[0].textContent);
+								player.age = age;
 							}
 							if (currentXMLPlayer.getElementsByTagName("Leadership").length) {
 								player.leadership = parseInt(currentXMLPlayer.getElementsByTagName("Leadership")[0].textContent);
@@ -137,10 +138,9 @@ Foxtrick.Pages.Players = {
 				player.nameLink = allPlayers[i].getElementsByTagName("a")[offset].cloneNode(true);
 
 				var basicInformation = allPlayers[i].getElementsByTagName("p")[0];
-				if (!player.years || !player.days) {
-					var age = basicInformation.innerHTML.match(/(\d+)/g);
-					player.years = age[0];
-					player.days = age[1];
+				if (!player.age) {
+					var ageMatch = basicInformation.innerHTML.match(/(\d+)/g);
+					player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
 				}
 
 				if (!player.tsi) {
@@ -259,6 +259,15 @@ Foxtrick.Pages.Players = {
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
+	},
+
+	isPropertyInList : function(playerList, property) {
+		for (var i in playerList) {
+			if (playerList[i][property] !== undefined) {
+				return true;
+			}
+		}
+		return false;
 	},
 
 	getXML : function(doc) {

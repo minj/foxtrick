@@ -60,6 +60,9 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 .ft_skilltable th, .ft_skilltable td { padding: 1px 2px !important; }
 .ft_skilltable th { cursor: pointer; }
 .ft_skilltable td { border-bottom: 1px solid #dce0dc; }
+.ft_skilltable td.align-right { text-align: right !important; }
+.ft_skilltable td.latest-match { font-weight: bold; }
+.ft_skilltable td.second-latest-match { font-style: italic; }
 .ft_skilltable_maxed { font-weight: bold; }
 
 /* copy ratings */
