@@ -37,7 +37,7 @@ var FoxtrickPreferencesDialog = {
 
 		// Captions and labels
 		var allLabels = [ "MainTab", "ShortcutsTab", "PresentationTab", "MatchesTab",
-			"ForumTab", "LinksTab", "AboutTab" ];
+			"ForumTab", "LinksTab", "AboutTab", "AlertTab" ];
 		for(var i = 0; i < allLabels.length; ++i) {
 			var thisElement = document.getElementById(allLabels[i]);
 			thisElement.setAttribute("label", Foxtrickl10n.getString(
@@ -365,6 +365,9 @@ var FoxtrickPreferencesDialog = {
 				case Foxtrick.moduleCategories.LINKS:
 					modules_list = document.getElementById('links_list');
 					break;
+				case Foxtrick.moduleCategories.ALERT:
+					modules_list = document.getElementById('alert_list');
+					break;
 				default:
 					continue;
 					break;
@@ -629,6 +632,9 @@ var FoxtrickPreferencesDialog = {
 				break;
 			case Foxtrick.moduleCategories.LINKS:
 				modules_list = document.getElementById('links_list');
+				break;
+			case Foxtrick.moduleCategories.ALERT:
+				modules_list = document.getElementById('alert_list');
 				break;
 			default:
 				return;

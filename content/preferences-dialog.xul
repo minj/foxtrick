@@ -160,6 +160,7 @@
 		<tab id="MatchesTab" />
 		<tab id="ForumTab" />
 		<tab id="LinksTab" />
+		<tab id="AlertTab" />
 		<tab id="AboutTab" />
 	</tabs>
 
@@ -345,6 +346,11 @@
 
 		<tabpanel class="panel">
 			<vbox id="links_list" flex="1">
+			</vbox>
+		</tabpanel>
+
+		<tabpanel class="panel">
+			<vbox id="alert_list" flex="1">
 			</vbox>
 		</tabpanel>
 

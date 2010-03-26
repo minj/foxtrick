@@ -18,6 +18,7 @@ var FoxtrickPrefsDialogHTML = {
 				'matches':'MatchesTab',
 				'forum':'ForumTab',
 				'links':'LinksTab',
+				'alert':'AlertTab',
 				'changes':'ChangesTab',
 				'help':'HelpTab',
 				'about':'AboutTab'},
@@ -141,15 +142,16 @@ var FoxtrickPrefsDialogHTML = {
 		preftabdiv.setAttribute('id','foxtrick_preftabs'); 
 		prefdiv_body.appendChild(preftabdiv);
 
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.MAIN) ;
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS) ;
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.PRESENTATION ) ;
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.MATCHES) ;
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.FORUM ) ;
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.LINKS) ;		
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.CHANGES) ;		
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.HELP) ;		
-		FoxtrickPrefsDialogHTML.add_tab( doc, Foxtrick.moduleCategories.ABOUT) ;		
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.MAIN);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.PRESENTATION);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.MATCHES);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.FORUM);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.LINKS);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.ALERT);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.CHANGES);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.HELP);
+		FoxtrickPrefsDialogHTML.add_tab(doc, Foxtrick.moduleCategories.ABOUT);
 
 		
 		// bottom save+cancel		
@@ -1365,6 +1367,7 @@ var FoxtrickPrefsDialogHTML = {
 						else if (category==Foxtrick.moduleCategories.MATCHES) Tab=Foxtrickl10n.getString("foxtrick.prefs.MatchesTab");
 						else if (category==Foxtrick.moduleCategories.FORUM) Tab=Foxtrickl10n.getString("foxtrick.prefs.ForumTab");
 						else if (category==Foxtrick.moduleCategories.LINKS) Tab=Foxtrickl10n.getString("foxtrick.prefs.LinksTab");
+						else if (category==Foxtrick.moduleCategories.ALERT) Tab=Foxtrickl10n.getString("foxtrick.prefs.AlertTab");
 															
 						var new_after=module.NEW_AFTER_VERSION;
 						if (!new_after) new_after="0.3.73";
