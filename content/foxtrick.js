@@ -613,7 +613,7 @@ Foxtrick.stringToRegExp = function(string) {
 	var ret = "";
 	var special = [];
 	special["*"] = special["+"] = special["?"] = special["$"] = special["^"]
-		= special["{"] = special["}"] = true;
+		= special["{"] = special["}"] = special["("] = special[")"] = true;
 	for (var i = 0; i < string.length; ++i) {
 		if (special[string[i]] === true) {
 			ret += "\\"; // escape it here
