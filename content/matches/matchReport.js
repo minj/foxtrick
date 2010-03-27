@@ -107,6 +107,22 @@ FoxtrickMatchReportFormat = {
 		 var youthstr='';
 		 if (isyouth) youthstr='&isYouth=True';
         //Replace myTeam colour
+		if (isyouth == false)
+		if (HomeTeamId == myTeamId) {
+            bg_col_hm = bg_col_my;
+            border_color_hm = border_color_my;
+            txt_col_hm = txt_col_my;
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + youthstr + '">' + table.rows[0].cells[1].textContent +'</a>';
+            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_aw + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + youthstr + '">' + table.rows[0].cells[2].textContent +'</a>';
+        }
+		else if (AwayTeamId == myTeamId) {
+            bg_col_aw = bg_col_my;
+            border_color_aw = border_color_my;
+            txt_col_aw = txt_col_my;
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + youthstr + '">' + table.rows[0].cells[1].textContent +'</a>';
+            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + youthstr + '">' + table.rows[0].cells[2].textContent +'</a>';
+        }
+		if (isyouth == true)
 		if (HomeTeamId == myTeamId) {
             bg_col_hm = bg_col_my;
             border_color_hm = border_color_my;
@@ -118,10 +134,9 @@ FoxtrickMatchReportFormat = {
             bg_col_aw = bg_col_my;
             border_color_aw = border_color_my;
             txt_col_aw = txt_col_my;
-            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + youthstr + '">' + table.rows[0].cells[1].textContent +'</a>';
-            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + youthstr + '">' + table.rows[0].cells[2].textContent +'</a>';
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&YouthTeamID=' + HomeTeamId + youthstr + '">' + table.rows[0].cells[1].textContent +'</a>';
+            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&YouthTeamID=' + AwayTeamId + youthstr + '">' + table.rows[0].cells[2].textContent +'</a>';
         }
-
 		// color ratings
 		var head = doc.getElementsByTagName("head")[0];
         var style = doc.createElement("style");
