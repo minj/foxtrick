@@ -63,7 +63,7 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 .ft_skilltable td.align-right { text-align: right !important; }
 .ft_skilltable td.latest-match { font-weight: bold; }
 .ft_skilltable td.second-latest-match { font-style: italic; }
-.ft_skilltable_maxed { font-weight: bold; }
+.ft_skilltable td.maxed { font-weight: bold; }
 
 /* copy ratings */
 span.ft_copy_rating { cursor: pointer; font-weight: normal; text-decoration:underline; float: right; color:#3F7137}

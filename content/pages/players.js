@@ -143,7 +143,9 @@ Foxtrick.Pages.Players = {
 					player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
 				}
 
-				if (!player.tsi) {
+				if (this.isSeniorPlayersPage(doc) && !player.tsi) {
+					// youth players don't have TSI, and we can fetch directly
+					// from XML if it's there
 					var tsitot_in = basicInformation.innerHTML.substr(0, basicInformation.innerHTML.indexOf("<br>"));
 					if (tsitot_in.search(/^\s*TSI/) != -1) {
 						// In the language Vlaams, TSI and age are switched. This is a fix for that
@@ -167,33 +169,67 @@ Foxtrick.Pages.Players = {
 					player.experience = parseInt(allPlayers[i].getElementsByTagName("a")[3 + offset].href.match(/ll=(\d+)/)[1]);
 				}
 
-				player.form = parseInt(allPlayers[i].getElementsByTagName("a")[1 + offset].href.match(/ll=(\d+)/)[1]);
-				player.stamina = parseInt(allPlayers[i].getElementsByTagName("a")[2 + offset].href.match(/ll=(\d+)/)[1]);
+				if (this.isSeniorPlayersPage(doc)) {
+					// youth players don't have form or stamina
+					player.form = parseInt(allPlayers[i].getElementsByTagName("a")[1 + offset].href.match(/ll=(\d+)/)[1]);
+					player.stamina = parseInt(allPlayers[i].getElementsByTagName("a")[2 + offset].href.match(/ll=(\d+)/)[1]);
+				}
 
-				if (isOwn && !this.isOldiesPage(doc) && !this.isCoachesPage(doc)) {			
+				if (isOwn && !this.isOldiesPage(doc) && !this.isCoachesPage(doc)) {		
 					var skillTable = allPlayers[i].getElementsByTagName("table")[0];
-					var hasSkillBars = true;
-					var rowCount = skillTable.getElementsByTagName("tr").length;
-					if (rowCount == 4) {
-						hasSkillBars = false;
-					}
-					if (skillTable) {
-						if (hasSkillBars) {
-							var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
-							var rows = skillTable.getElementsByTagName("tr");
-							for (var j = 0; j < 7; ++j) {
-								var cells = rows[j].getElementsByTagName("td");
-								var imgs = cells[1].getElementsByTagName("img");
-								var level = imgs[0].title.match(/-?\d+/);
-								player[skillOrder[j]] = parseInt(level);
+					if (this.isSeniorPlayersPage(doc)) {	
+						var hasSkillBars = true;
+						var rowCount = skillTable.getElementsByTagName("tr").length;
+						if (rowCount == 4) {
+							hasSkillBars = false;
+						}
+						if (skillTable) {
+							if (hasSkillBars) {
+								var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
+								var rows = skillTable.getElementsByTagName("tr");
+								for (var j = 0; j < skillOrder.length; ++j) {
+									var cells = rows[j].getElementsByTagName("td");
+									var imgs = cells[1].getElementsByTagName("img");
+									var level = imgs[0].title.match(/-?\d+/);
+									player[skillOrder[j]] = parseInt(level);
+								}
+							}
+							else {
+								var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
+								var cells = skillTable.getElementsByTagName("td");
+								for (var j = 0; j < skillOrder.length; ++j) {
+									var level = cells[2 * j + 3].getElementsByTagName("a")[0].href.match(/ll=(\d+)/)[1];
+									player[skillOrder[j]] = parseInt(level);
+								}
 							}
 						}
-						else {
-							var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
-							var cells = skillTable.getElementsByTagName("td");
-							for (var j = 0; j < 7; ++j) {
-								var level = cells[2 * j + 3].getElementsByTagName("a")[0].href.match(/ll=(\d+)/)[1];
-								player[skillOrder[j]] = parseInt(level);
+					}
+					else if (this.isYouthPlayersPage(doc)) {
+						// will return like this: player.keeper = { current: 5, max: 7, maxed: false }
+						var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
+						var rows = skillTable.getElementsByTagName("tr");
+						for (var j = 0; j < skillOrder.length; ++j) {
+							player[skillOrder[j]] = {};
+							var skillBar = rows[j].getElementsByTagName("td")[1];
+							var imgs = skillBar.getElementsByTagName("img");
+							if (imgs.length > 0) {
+								var max = imgs[0].getAttribute("title").match(/\d/);
+								var current = imgs[1].title.match(/-?\d/);
+								var unknown = imgs[1].title.match(/-1/);
+								var maxed = !current;
+								player[skillOrder[j]].maxed = false;
+								if (maxed) {
+									current = max;
+									player[skillOrder[j]].maxed = true;
+								}
+								// if current and/or max is unknown, mark it as 0
+								player[skillOrder[j]].current = parseInt(unknown ? 0 : current);
+								player[skillOrder[j]].max = parseInt(max ? max : 0);
+							}
+							else {
+								// no image is present, meaning nothing about
+								// that skill has been revealed
+								player[skillOrder[j]] = { current : 0, max : 0, maxed : false };
 							}
 						}
 					}

@@ -77,7 +77,7 @@ var FoxtrickSkillTable = {
 	change : function(page, doc) {
 	},
 
-	createSeniorTable : function(doc) {
+	createTable : function(doc) {
 		try {
 			var fullType = this.getFullType(doc);
 			var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
@@ -142,6 +142,23 @@ var FoxtrickSkillTable = {
 			var age = function(cell, age) {
 				cell.appendChild(doc.createTextNode(age.years + "." + age.days));
 				cell.setAttribute("index", age.years * 112 + age.days);
+			};
+			var skill = function(cell, skill) {
+				if (typeof(skill) === "object") {
+					// in youth team, returned skill is an object
+					cell.setAttribute("index", skill.current * 9 + skill.max + skill.maxed);
+					if (skill.maxed) {
+						cell.className = "maxed";
+					}
+					if (skill.current !== 0 || skill.max !== 0) {
+						var current = skill.current ? skill.current : "-";
+						var max = skill.max ? skill.max : "-";
+						cell.appendChild(doc.createTextNode(current + "/" + max));
+					}
+				}
+				else {
+					cell.appendChild(doc.createTextNode(skill));
+				}
 			};
 			var noZero = function(cell, value) {
 				if (value === true) {
@@ -220,13 +237,13 @@ var FoxtrickSkillTable = {
 				{ name : "Experience", property : "experience" },
 				{ name : "Form", property : "form" },
 				{ name : "Stamina", property : "stamina" },
-				{ name : "Keeper", property : "keeper" },
-				{ name : "Defending", property : "defending" },
-				{ name : "Playmaking", property : "playmaking" },
-				{ name : "Winger", property : "winger" },
-				{ name : "Passing", property : "passing" },
-				{ name : "Scoring", property : "scoring" },
-				{ name : "Set_pieces", property : "setPieces" },
+				{ name : "Keeper", property : "keeper", method: skill },
+				{ name : "Defending", property : "defending", method: skill },
+				{ name : "Playmaking", property : "playmaking", method: skill },
+				{ name : "Winger", property : "winger", method: skill },
+				{ name : "Passing", property : "passing", method: skill },
+				{ name : "Scoring", property : "scoring", method: skill },
+				{ name : "Set_pieces", property : "setPieces", method: skill },
 				{ name : "Yellow_card", property : "yellowCard", method : noZero, img : "/Img/Icons/yellow_card.gif" },
 				{ name : "Red_card", property : "redCard", method : noZero, img : "/Img/Icons/red_card.gif" },
 				{ name : "Bruised", property : "bruised", method : noZero, img : "/Img/Icons/bruised.gif" },
@@ -351,306 +368,6 @@ var FoxtrickSkillTable = {
 		}
 	},
 
-	createYouthTable : function(doc) {
-		try {
-
-			var fullType = this.getFullType(doc);
-
-			var columns = [
-				{ name: "Player", sortString: true, sortAsc: true, own: true, others: true },
-				{ name: "Age", sortAsc: true, own: true, others: true },
-				{ name: "Keeper", own: true },
-				{ name: "Defending", own: true },
-				{ name: "Playmaking", own: true },
-				{ name: "Winger", own: true },
-				{ name: "Passing", own: true },
-				{ name: "Scoring", own: true },
-				{ name: "Set_pieces", own: true },
-				{ name: "Yellow_card", own: true, others: true, img: "/Img/Icons/yellow_card.gif" },
-				{ name: "Red_card", own: true, others: true, img: "/Img/Icons/red_card.gif" },
-				{ name: "Bruised", own: true, others: true, img: "/Img/Icons/bruised.gif" },
-				{ name: "Injured", own: true, others: true, img: "/Img/Icons/injured.gif" },
-				{ name: "Speciality", sortString: true, own: true, others: true },
-				{ name: "Last_match", own: true, others: true },
-				{ name: "Last_stars", own: true, others: true, img: "/Img/Matches/star_blue.png" },
-				{ name: "Last_position", sortString: true, own: true, others: true }
-			];
-
-			for (var j = 0; j < columns.length; ++j) {
-				if (fullType.subtype === "own" && !columns[j].own) {
-					columns[j].available = false;
-				}
-				else if (fullType.subtype === "others" && !columns[j].others) {
-					columns[j].available = false;
-				}
-				else {
-					columns[j].available = true;
-					columns[j].enabled = FoxtrickSkillTable.getColumnEnabled(fullType, columns[j].name);
-				}
-			}
-			var customizeTable = FoxtrickSkillTable.createCustomizeTable(columns, doc);
-			Foxtrick.addClass(customizeTable, "ft_hidden");
-
-			var table = doc.createElement("table");
-			table.id = "ft_skilltable";
-			table.className = "ft_skilltable";
-			thead = doc.createElement("thead");
-			var tr = doc.createElement("tr");
-			thead.appendChild(tr)
-			table.appendChild(thead);
-			var s_index = 0;
-			for (var j = 0; j < columns.length; ++j) {
-				if (columns[j].enabled) {
-					var th = doc.createElement("th");
-					th.setAttribute("s_index", s_index++);
-					if (columns[j].sortString) {
-						th.setAttribute("sort-string", true);
-					}
-					if (columns[j].sortAsc) {
-						th.setAttribute("sort-asc", true);
-					}
-					Foxtrick.addEventListenerChangeSave(th, "click", FoxtrickSkillTable.sortClick, false);
-
-					var fullName = Foxtrickl10n.getString(columns[j].name);
-					var abbrName = Foxtrickl10n.getString(columns[j].name + ".abbr");
-					var abbr = true;
-					if (!abbrName || fullName === abbrName) {
-						abbr = false;
-					}
-					if (abbr) {
-						if (columns[j].img) {
-							var img = doc.createElement("img");
-							img.setAttribute("src", columns[j].img);
-							img.setAttribute("alt", abbrName);
-							img.setAttribute("title", fullName);
-							th.appendChild(img);
-						}
-						else {
-							var abbr = doc.createElement("abbr");
-							abbr.setAttribute("title", fullName);
-							abbr.appendChild(doc.createTextNode(abbrName));
-							th.appendChild(abbr);
-						}
-					}
-					else {
-						if (columns[j].img) {
-							var img = doc.createElement("img");
-							img.setAttribute("src", columns[j].img);
-							img.setAttribute("alt", fullName);
-							img.setAttribute("title", fullName);
-						}
-						else {
-							th.appendChild(doc.createTextNode(fullName));
-						}
-					}
-					tr.appendChild(th);
-				}
-			}
-
-			var tbody = doc.createElement("tbody");
-			table.appendChild(tbody);
-
-			var allDivs = doc.getElementsByTagName("div");
-
-			// get last match
-			var latestMatch=-1;
-			for(var i = 0; i < allDivs.length; i++) {
-					if(allDivs[i].className=="playerInfo") {
-						var as=allDivs[i].getElementsByTagName('a');
-						var j=0,a=null;
-						while(a=as[j++]){if (a.href.search(/matchid/i)!=-1) break;}
-						var matchday=0;
-						if (a) matchday=Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
-						if (matchday>latestMatch) latestMatch = matchday;
-					}
-			}
-			
-			var count =0;
-			for(var i = 0; i < allDivs.length; i++) {
-				if(allDivs[i].className=="playerInfo") {
-					count++;
-
-					var trs = allDivs[i].getElementsByTagName("table")[0].getElementsByTagName("tr");
-
-					var tr = doc.createElement("tr");
-					tbody.appendChild(tr);
-
-					var k = 0;
-
-					// name (linked)
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						var nameLink = allDivs[i].getElementsByTagName("a")[0].cloneNode(true);
-						td.setAttribute("index", nameLink.textContent);
-						td.appendChild(nameLink);
-						tr.appendChild(td);
-					}
-
-					// age
-					if (columns[k++].enabled) {
-						var age = allDivs[i].getElementsByTagName("p")[0].innerHTML.match(/(\d+)/g);
-						var td = doc.createElement("td");
-						td.setAttribute("index", parseInt(age[0]) * 112 + parseInt(age[1]));
-						td.innerHTML=age[0]+"."+age[1];
-						tr.appendChild(td);
-					}
-
-					// skills
-					if (fullType.subtype === "own") {
-						for(var j = 0; j < 7; j++) {
-							if (columns[j+2].enabled) {
-								var td = doc.createElement("td");
-								tr.appendChild(td);
-
-								var tds = trs[j].getElementsByTagName("td");
-								var imgs = tds[1].getElementsByTagName("img");
-								if (imgs.length!=0) {
-									var max = imgs[0].getAttribute("title").match(/\d/);
-									var cur = imgs[1].title.match(/-?\d/);
-									var unknown = imgs[1].title.match(/-1/);
-									var maxed = !cur;
-									if (maxed) {
-										cur = max;
-										Foxtrick.addClass(td, "ft_skilltable_maxed");
-									}
-									cur = unknown ? 0 : cur;
-									max = max ? max : 0;
-									td.setAttribute("index", parseInt(cur) * 9 + parseInt(max) + maxed);
-									cur = cur ? cur : "-";
-									max = max ? max : "-";
-									td.appendChild(doc.createTextNode(cur + "/" + max));
-								}
-								else {
-									td.setAttribute("index", 0);
-								}
-							}
-						}
-					}
-					// card+injuries
-					var cardsyellow=0;
-					var cardsred=0;
-					var bruised=0;
-					var injured=0;
-					var img = allDivs[i].getElementsByTagName("img");
-
-					for(var j = 0; j < img.length; j++) {
-						if (img[j].className=="cardsOne") {
-							if (img[j].src.indexOf("red_card", 0) != -1 ) cardsred = 1;
-							else cardsyellow=1;
-						}
-						if (img[j].className=="cardsTwo") {
-							cardsyellow=2;
-						}
-						if (img[j].className=="injuryBruised") bruised=1;
-						if (img[j].className=="injuryInjured") injured = img[j].nextSibling.innerHTML;
-					}
-
-					k = 9;
-
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						if (cardsyellow>0) {
-							td.appendChild(doc.createTextNode(cardsyellow));
-						}
-						tr.appendChild(td);
-					}
-
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						if (cardsred>0) {
-							td.appendChild(doc.createTextNode(cardsred));
-						}
-						tr.appendChild(td);
-					}
-
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						if (bruised>0) {
-							td.appendChild(doc.createTextNode(bruised));
-						}
-						tr.appendChild(td);
-					}
-
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						if (injured>0) {
-							td.appendChild(doc.createTextNode(injured));
-						}
-						tr.appendChild(td);
-					}
-
-					// speciality
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						var specc = allDivs[i].getElementsByTagName( "p" )[0];
-						specMatch = specc.textContent.match(/\[(\D+)\]/);
-						if (specMatch) {
-							var spec = specMatch[1];
-							var shortSpec = FoxtrickHelper.getShortSpeciality(spec);
-							td.appendChild(doc.createTextNode(shortSpec));
-						}
-						tr.appendChild(td);
-					}
-
-					// last match
-					var as=allDivs[i].getElementsByTagName("a"); 
-					var kk=0,a=null;
-					while(a=as[kk++]){if (a.href.search(/matchid/i)!=-1) break;}
-					if (a) var matchday =  Foxtrick.getUniqueDayfromCellHTML(a.innerHTML);
-					
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						if (a) {
-							td.appendChild(a.cloneNode(true));
-							td.setAttribute("index", matchday);
-						}
-						else {
-							td.setAttribute("index", 0);
-						}
-						if (matchday==latestMatch) td.setAttribute('style','font-weight:700');											
-						tr.appendChild(td);
-					}
-
-					// stars
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						if (a) {
-							var imgs=a.parentNode.parentNode.getElementsByTagName("img");
-							var starcount=0;
-							for (var sc=0;sc<imgs.length;++sc) {
-								if (imgs[sc].className=="starBig") starcount+=5;
-								else if (imgs[sc].className=="starWhole") starcount+=1;
-								else if (imgs[sc].className=="starHalf") starcount+=0.5;
-							}
-							if (matchday==latestMatch) td.setAttribute('style','font-weight:700');											
-							td.appendChild(doc.createTextNode(starcount));
-						}
-						tr.appendChild(td);
-					}
-					// last position
-					if (columns[k++].enabled) {
-						var td = doc.createElement("td");
-						if (a) {
-							var pos = a.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
-							var shortPos = FoxtrickHelper.getShortPosition(pos);
-							if (matchday==latestMatch) td.setAttribute('style','font-weight:700');											
-							td.appendChild(doc.createTextNode(shortPos));
-						}
-						tr.appendChild(td);
-					}
-				}
-			}
-
-			var tablediv = doc.getElementById("ft_skilltablediv");
-			FoxtrickSkillTable.insertCustomizeTable(tablediv, customizeTable);
-			FoxtrickSkillTable.insertSkillTable(tablediv, table);
-			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
-	},
-
 	/* sortCompare
 		sortClick() will first check whether every cell in that column has the
 		attribute `index'. If so, they will be ordered with that attribute as
@@ -746,13 +463,7 @@ var FoxtrickSkillTable = {
 			var tablediv = doc.getElementById("ft_skilltablediv");
 
 			if (!FoxtrickSkillTable.isTableCreated(doc)) {
-				var type = FoxtrickSkillTable.getFullType(doc).type;
-				if (type === "senior") {
-					FoxtrickSkillTable.createSeniorTable(doc);
-				}
-				else if (type === "youth") {
-					FoxtrickSkillTable.createYouthTable(doc);
-				}
+				FoxtrickSkillTable.createTable(doc);
 			}
 
 			var h2 = tablediv.getElementsByTagName("h2")[0];
@@ -1032,7 +743,7 @@ var FoxtrickSkillTable = {
 	_getCell : function(cell) {
 		var imgs = cell.getElementsByTagName("img");
 		var content = imgs.length ? imgs[0].getAttribute("alt") : cell.textContent;
-		var maxed = Foxtrick.hasClass(cell, "ft_skilltable_maxed");
+		var maxed = Foxtrick.hasClass(cell, "maxed");
 		if (maxed) {
 			content = "[b]" + content + "[/b]";
 		}
