@@ -616,16 +616,22 @@ var FoxtrickSkillTable = {
 		tablediv.appendChild(container);
 
 		// insert tablediv
-		
-	/*  var firstPlayer = doc.getElementsByClassName("playerInfo")[0];
-		if (firstPlayer) {
-			// only insert if there is at least one player
-			var playerContainer = firstPlayer.parentNode;
-			playerContainer.insertBefore(tablediv, firstPlayer);
-		} 
-	*/
-		var header = doc.getElementsByTagName("h1")[0];
-		header.parentNode.insertBefore(tablediv, header.nextSibling);
+		var playerList = doc.getElementsByClassName("playerList")[0];
+		if (playerList) {
+			// If there is playerList, as there is in youth/senior teams,
+			// insert before it. In such cases, there would be category headers
+			// for supporters, inserting before the first player would clutter
+			// up with the headers. Additionally, inserting before the list
+			// would be organized in a better way.
+			playerList.parentNode.insertBefore(tablediv, playerList);
+		}
+		else {
+			// otherwise, insert before the first player if there is any
+			var firstPlayer = doc.getElementsByClassName("playerInfo")[0];
+			if (firstPlayer) {
+				firstPlayer.parentNode.insertBefore(tablediv, firstPlayer);
+			}
+		}
 
 		return tablediv;
 	},
