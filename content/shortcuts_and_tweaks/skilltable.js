@@ -905,8 +905,12 @@ var FoxtrickSkillTable = {
 		tablediv.appendChild(container);
 
 		// insert tablediv
-		var header = doc.getElementsByTagName("h1")[0];
-		header.parentNode.insertBefore(tablediv, header.nextSibling);
+		var firstPlayer = doc.getElementsByClassName("playerInfo")[0];
+		if (firstPlayer) {
+			// only insert if there is at least one player
+			var playerContainer = firstPlayer.parentNode;
+			playerContainer.insertBefore(tablediv, firstPlayer);
+		}
 
 		return tablediv;
 	},
