@@ -143,6 +143,7 @@ var FoxtrickLeagueNewsFilter = {
 							link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<strong>$1</strong>');
 						}				
 					}
+					link.innerHTML = link.innerHTML.replace(/ /g, "&nbsp;").replace(/&nbsp;-&nbsp;/g, " - ");
 				} 		  		
 			}
 		} 
