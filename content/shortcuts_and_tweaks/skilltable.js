@@ -627,9 +627,18 @@ var FoxtrickSkillTable = {
 		}
 		else {
 			// otherwise, insert before the first player if there is any
-			var firstPlayer = doc.getElementsByClassName("playerInfo")[0];
-			if (firstPlayer) {
-				firstPlayer.parentNode.insertBefore(tablediv, firstPlayer);
+			var firstFace = doc.getElementsByClassName("faceCard")[0];
+			if (firstFace) {
+				// without playerList, players would have faces shown before
+				// playerInfo, if user enabled faces
+				firstFace.parentNode.insertBefore(tablediv, firstFace);
+			}
+			else {
+				var firstPlayer = doc.getElementsByClassName("playerInfo")[0];
+				if (firstPlayer) {
+					// or... users haven't enabled faces
+					firstPlayer.parentNode.insertBefore(tablediv, firstPlayer);
+				}
 			}
 		}
 
