@@ -21,7 +21,6 @@ smallcopyicons=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue
 
 # Shortcuts and Add-ons
 AddManagerButtons=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/48-addmanagerbuttons
-AlertCustomSounds=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/60-alertcustomsounds
 ConfirmPlayerBid=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/188-confirmplayerbid
 ConfirmTL=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/61-confirmtl
 ConfirmStaffChange=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/208-confirmstaffchange
@@ -39,7 +38,6 @@ ExtendedPlayerDetailsWage.SeasonWage=http://foxtrick.foundationhorizont.org/inde
 ExtendedPlayerDetailsWage.WageWithoutBonus=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/74-extendedplayerdetails
 ExtendedPlayerDetails=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/72-extendedplayerdetails
 FlagCollectionToMap=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/75-extendedplayerdetails
-FoxtrickAlert=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/76-foxtrickalert
 FoxtrickLineupShortcut=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/77-foxtricklineupshortcut
 FoxtrickLineupShortcut.HighlightPlayer=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/78-foxtricklineupshortcut
 FoxtrickLineupShortcut.YouthPlayerLink=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/189-foxtricklineupshortcutyouthplayerlink
@@ -108,9 +106,6 @@ MatchOrderColoring=http://foxtrick.foundationhorizont.org/index.php/presentation
 MoveManagerOnline=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/129-movemanageronline
 MovePlayerSelectbox=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/192-moveplayerselectbox
 MovePlayerStatement=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/130-moveplayerstatement
-NewMail.CustomColor=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/132-newmailcustomcolor
-NewMail.HighlightNewMailIcon=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/131-newmailhighlightnewmailicon
-NewMail=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/193-newmail
 PersonalityImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/133-personalityimages
 ShortPAs=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/134-shortpas
 SkillColoring.no_skill_links=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/141-skillcoloringnoskilllinks
@@ -120,7 +115,6 @@ SkillColoring.skill_number=http://foxtrick.foundationhorizont.org/index.php/pres
 SkillColoring.skill_select=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/140-skillcoloringonlyskillcolorSkillColoring.skill_number_translated=http://foxtrick.foundationhorizont.org/SkillColoring_skill_number_translated.html
 SkillColoring=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/135-skillcoloring
 SkillTranslation=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/142-skilltranslation
-TickerColoring=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/143-tickercoloring
 
 # Matches
 AdvancedStarsCounter=http://foxtrick.foundationhorizont.org/index.php/matches/50-advancedstarscounter
@@ -177,3 +171,11 @@ ForumStripHattrickLinks=http://foxtrick.foundationhorizont.org/index.php/forum/2
 #links
 LinksCustom=http://foxtrick.foundationhorizont.org/index.php/links/52-linkscustom
 LinksTracker=http://foxtrick.foundationhorizont.org/index.php/links/187-linkstracker
+
+# Alert
+AlertCustomSounds=http://foxtrick.foundationhorizont.org/index.php/alert/217-alertcustomsounds
+FoxtrickAlert=http://foxtrick.foundationhorizont.org/index.php/alert/218-foxtrickalert
+NewMail.CustomColor=http://foxtrick.foundationhorizont.org/index.php/alert/222-newmailcustomcolor
+NewMail.HighlightNewMailIcon=http://foxtrick.foundationhorizont.org/index.php/alert/220-newmailhighlightnewmailicon
+NewMail=http://foxtrick.foundationhorizont.org/index.php/alert/219-newmail
+TickerColoring=http://foxtrick.foundationhorizont.org/index.php/alert/221-tickercoloring
