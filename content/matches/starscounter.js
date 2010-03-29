@@ -113,6 +113,10 @@ var FoxtrickStarsCounter = {
 				percentage.appendChild(this._getStar(doc, "red"));
 			}
 		}
+		else {
+			// walk-overs have no stars
+			container.appendChild(doc.createTextNode("0"));
+		}
 	},
 
 	change : function(page, doc) {
