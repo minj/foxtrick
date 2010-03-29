@@ -1,7 +1,7 @@
 /**
  * starscounter.js
- * Foxtrick count stars in match lineup page module
- * @author larsw84
+ * Count stars in match lineup page
+ * @author larsw84, ryanli
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -10,53 +10,119 @@ var FoxtrickStarsCounter = {
 
 	MODULE_NAME : "StarsCounter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('matchLineup'), 
+	PAGES : new Array("matchLineup"),
 	DEFAULT_ENABLED : false,
-	
-	init : function() {
-    },
 
-    run : function( page, doc ) {
-		var notSubstitutedParent = null;
-		var totalStars = 0;
-		
-		var images = doc.images;
-		for (var i=0; i<images.length; i++) {
+	init : function() {
+	},
+
+	run : function(page, doc) {
+		var yellow = 0;
+		var brown = 0;
+		var red = 0;
+		var blue = 0;
+
+		var imgToStars = {
+			"star_big_yellow.png" : { yellow : 5 },
+			"star_yellow.png" : { yellow : 1 },
+			"star_brown.png" : { brown : 1 },
+			"star_red.png" : { red : 1 },
+			"star_yellow_to_brown.png" : { yellow : 0.5, brown : 0.5 },
+			"star_yellow_to_red.png" : { yellow : 0.5, red : 0.5 },
+			"star_half_yellow.png" : { yellow : 0.5 },
+			"star_half_brown.png" : { brown : 0.5 },
+			"star_half_red.png" : { red : 0.5 },
+			"star_big_blue.png" : { blue : 5 },
+			"star_blue.png" : { blue : 1 },
+			"star_half_blue.png" : { blue : 0.5 }
+		};
+
+		// get information from the page
+		var images = doc.getElementsByTagName("img");
+		for (var i = 0; i < images.length; ++i) {
 			var img = images[i];
-			
-			if ( img.src.match(/star/i) || img.src.match(/_half\.gif$/i) ) {
-				if (notSubstitutedParent == null) {
-					notSubstitutedParent = img.parentNode.parentNode.parentNode.parentNode;
-				}
-				
-				// don't count substituted players
-				if (img.parentNode.parentNode.parentNode.getAttribute("class") != "substitute_holder"
-					&& (notSubstitutedParent == img.parentNode.parentNode.parentNode.parentNode)) {
-					if (img.className.match(/whole/i)) {
-						totalStars+=1;
-					} else if (img.className.match(/half/i)) {
-						totalStars+=0.5;
-					} else if (img.className.match(/big/i)) {
-						totalStars+=5;
+			// don't count substituted players
+			if (!Foxtrick.hasClass(img.parentNode.parentNode.parentNode, "substitute_holder")) {
+				for (var src in imgToStars) {
+					if (img.src.match(RegExp(src, "i"))) {
+						if (imgToStars[src].yellow) {
+							yellow += imgToStars[src].yellow;
+						}
+						if (imgToStars[src].brown) {
+							brown += imgToStars[src].brown;
+						}
+						if (imgToStars[src].red) {
+							red += imgToStars[src].red;
+						}
+						if (imgToStars[src].blue) {
+							blue += imgToStars[src].blue;
+						}
 					}
 				}
 			}
 		}
-		
-		var experienceRuleLink;
-		for(var j = 0; j < doc.links.length; j++) {
-			if(doc.links[j].className=="skill") {
-				experienceRuleLink = doc.links[j];
+
+		// add the information to the page
+		var mainBody = doc.getElementById("mainBody");
+		var container = doc.createElement("p");
+		mainBody.appendChild(container);
+		var title = doc.createElement("strong");
+		title.appendChild(doc.createTextNode(Foxtrickl10n.getString("total_stars") + ": "));
+		container.appendChild(title);
+		if (blue) {
+			// meaning it's a youth team
+			container.appendChild(doc.createTextNode(blue));
+		}
+		else if (yellow || brown || red) {
+			container.appendChild(doc.createTextNode(yellow + brown + red));
+			var detailed = doc.createElement("span");
+			container.appendChild(detailed);
+			detailed.appendChild(doc.createTextNode("("));
+			var count = doc.createElement("span");
+			var percentage = doc.createElement("span");
+			detailed.appendChild(count);
+			detailed.appendChild(doc.createTextNode(" / "));
+			detailed.appendChild(percentage);
+			detailed.appendChild(doc.createTextNode(")"));
+			var firstStar = true; // if it's not the first star, add " + "
+			if (yellow) {
+				count.appendChild(doc.createTextNode(yellow));
+				count.appendChild(this._getStar(doc, "yellow"));
+				percentage.appendChild(doc.createTextNode(Math.round(100 * yellow / (yellow + brown + red)) + "%"));
+				percentage.appendChild(this._getStar(doc, "yellow"));
+				firstStar = false;
+			}
+			if (brown) {
+				if (!firstStar) {
+					count.appendChild(doc.createTextNode(" + "));
+					percentage.appendChild(doc.createTextNode(" + "));
+					firstStar = false;
+				}
+				count.appendChild(doc.createTextNode(brown));
+				count.appendChild(this._getStar(doc, "brown"));
+				percentage.appendChild(doc.createTextNode(Math.round(100 * brown / (yellow + brown + red)) + "%"));
+				percentage.appendChild(this._getStar(doc, "brown"));
+			}
+			if (red) {
+				if (!firstStar) {
+					count.appendChild(doc.createTextNode(" + "));
+				}
+				count.appendChild(doc.createTextNode(red));
+				count.appendChild(this._getStar(doc, "red"));
+				percentage.appendChild(doc.createTextNode(Math.round(100 * red / (yellow + brown + red)) + "%"));
+				percentage.appendChild(this._getStar(doc, "red"));
 			}
 		}
-		var target = experienceRuleLink.parentNode;
-		var span = doc.createElement("span");
-		span.innerHTML = "<b>" + Foxtrickl10n.getString('total_stars') + "</b> " + totalStars;
-		target.appendChild(doc.createElement("br"));
-		target.appendChild(span, target);
 	},
-	
-	change : function( page, doc ) {
-	
+
+	change : function(page, doc) {
+	},
+
+	_getStar : function(doc, colour) {
+		var star = doc.createElement("img");
+		star.className = "starWhole";
+		star.alt = star.title = "*";
+		star.src = "/Img/Matches/star_" + colour + ".png";
+		return star;
 	}
 };

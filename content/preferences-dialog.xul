@@ -56,7 +56,6 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/matchOrdersFormationBox.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/starscounter.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/repositionedplayers.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/matches/advancedStarsCounter.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/matchincome.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/ratingstoclipboard.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/htmsStatistics.js" />

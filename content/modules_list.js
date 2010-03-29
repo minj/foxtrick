@@ -50,7 +50,6 @@ Foxtrick.modules = [
                     FoxtrickFlipSidesInMatchOrders,
                     FoxtrickStarsCounter,
                     FoxtrickRepositionedPlayers,
-                    FoxtrickAdvancedStarsCounter,
                     FoxtrickFormationBoxInMatchOrders,
                     FoxtrickFlagCollectionToMap,
                     FoxtrickTransferListSearchFilters,
