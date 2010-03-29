@@ -13,7 +13,7 @@ var FoxtrickAlert = {
 	NEW_AFTER_VERSION : "0.5.1.2",
 	LATEST_CHANGE : "Moved to alert category, and merged slider and sound preferences.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : ["AlertSilder", "AlertSliderGrowl", "AlertSound", "NewMail", "NewForum"],
+	OPTIONS : ["AlertSlider", "AlertSliderGrowl", "AlertSound", "NewMail", "NewForum"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : ["", "", Foxtrick.ResourcePath+"resources/sounds/DingLing.wav", "", ""],
 	OPTION_TEXTS_DISABLED_LIST : [true, true, false, true, true],
