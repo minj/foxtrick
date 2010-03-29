@@ -229,31 +229,6 @@
 					</hbox>
 				</groupbox>
 				<groupbox>
-					<caption id="alertSlider" />
-					<checkbox id="alertsliderpref" />
-					<checkbox id="alertslidermacpref" />
-					<checkbox id="alertsoundpref" />
-					<grid>
-						<columns>
-							<column flex="1" />
-							<column />
-						</columns>
-						<rows>
-							<row>
-								<textbox id="alertsoundurlpref" />
-								<button id="buttonSelectFile"
-									oncommand="var file = Foxtrick.selectFile(window); 
-									if (file != null) {document.getElementById('alertsoundurlpref').value='file://' + (file)}" />
-							</row>
-							<row>
-								<hbox />
-								<button id="buttonTest"
-									oncommand="Foxtrick.playSound(document.getElementById('alertsoundurlpref').value);" />
-							</row>
-						</rows>
-					</grid>
-				</groupbox>
-				<groupbox>
 					<caption id="loadSavePrefs" />
 					<grid>
 						<columns>

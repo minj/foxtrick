@@ -11,9 +11,13 @@ var FoxtrickAlert = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.1.2",
-	LATEST_CHANGE : "Moved to alert category.",
-    LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : new Array("NewMail","NewForum"), 
+	LATEST_CHANGE : "Moved to alert category, and merged slider and sound preferences.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	OPTIONS : ["AlertSilder", "AlertSliderGrowl", "AlertSound", "NewMail", "NewForum"],
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DEFAULT_VALUES : ["", "", Foxtrick.ResourcePath+"resources/sounds/DingLing.wav", "", ""],
+	OPTION_TEXTS_DISABLED_LIST : [true, true, false, true, true],
+	OPTION_TEXTS_LOAD_BUTTONS : [false, false, true, false, false],
 
 	news : [],
 	alertWin:null,
@@ -78,7 +82,7 @@ var FoxtrickAlert = {
 				if (num_message > FoxtrickAlert.last_num_message) {						
 					var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
 					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/MyHattrick/Inbox/Default.aspx"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
-				}	
+				}
 				FoxtrickAlert.last_num_message = num_message;
 			}
 		else FoxtrickAlert.last_num_message=0;
@@ -186,14 +190,14 @@ var FoxtrickAlert = {
 			}
 		}
 
-		if (FoxtrickPrefs.getBool("alertSlider")) {		
+		if (Foxtrick.isModuleFeatureEnabled(this, "AlertSlider")) {		
 			FoxtrickAlert.foxtrick_showAlert_std( message, href);
 		}
-		else if (FoxtrickPrefs.getBool("alertSliderGrowl")) {
+		else if (Foxtrick.isModuleFeatureEnabled(this, "AlertSliderGrowl")) {
 			FoxtrickAlert.foxtrick_showAlertGrowl(message);
 		}						
 
-		if (FoxtrickPrefs.getBool("alertSound")) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "AlertSound")) {
 			try {
 				var play_custom = false;
 				if (Foxtrick.isModuleEnabled(FoxtrickAlertCustomSounds)) {
@@ -210,7 +214,7 @@ var FoxtrickAlert = {
 						}
 					}
 				}
-				if (!play_custom) Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));				
+				if (!play_custom) Foxtrick.playSound(FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".AlertSound_text"));
 			} catch (e) { Foxtrick.dump('playsound: '+e);}
 		}
 		
@@ -296,4 +300,3 @@ portalert.onMessage.addListener(function(msg) {
     FoxtrickAlert.checkAll(document);
 });
 }
-

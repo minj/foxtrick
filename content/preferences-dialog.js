@@ -141,28 +141,6 @@ var FoxtrickPreferencesDialog = {
 			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-",
 				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
 
-		// alert settings
-		var alertSlider = doc.getElementById("alertSlider");
-		// general
-		alertSlider.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionAlertSettings"));
-		var alertsliderpref = doc.getElementById("alertsliderpref");
-		alertsliderpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsliderpref"));
-		alertsliderpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSlider"));
-		// mac
-		var alertslidermacpref = doc.getElementById("alertslidermacpref");
-		alertslidermacpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"));
-		alertslidermacpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSliderGrowl"));
-		// sound
-		var alertsoundpref = doc.getElementById("alertsoundpref");
-		alertsoundpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"));
-		alertsoundpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSound"));
-		var alertsoundurlpref = doc.getElementById("alertsoundurlpref");
-		alertsoundurlpref.setAttribute("value", FoxtrickPrefs.getString("alertSoundUrl"));
-		var buttonSelectFile = doc.getElementById("buttonSelectFile");
-		buttonSelectFile.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonSelectFile"));
-		var buttonTest = doc.getElementById("buttonTest");
-		buttonTest.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonTest"));
-
 		// load/save prefs
 		var loadSavePrefs = doc.getElementById("loadSavePrefs");
 		loadSavePrefs.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionLoadSavePrefs"));
@@ -440,12 +418,6 @@ var FoxtrickPreferencesDialog = {
 
 		//Statusbar
 		FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
-
-		//Alert
-		FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
-		FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
-		FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
-		FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
 
 		//disable
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);

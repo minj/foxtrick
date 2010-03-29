@@ -353,12 +353,6 @@ var FoxtrickPrefsDialogHTML = {
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
 
-        //Alert
-        FoxtrickPrefs.setBool("alertSlider", doc.getElementById("alertsliderpref").checked);
-        FoxtrickPrefs.setBool("alertSliderGrowl", doc.getElementById("alertslidermacpref").checked);
-        FoxtrickPrefs.setBool("alertSound", doc.getElementById("alertsoundpref").checked);
-        FoxtrickPrefs.setString("alertSoundUrl", doc.getElementById("alertsoundurlpref").value);
-
         //disable
 		FoxtrickPrefs.setBool("disableOnStage", doc.getElementById("stagepref").checked);        
 		FoxtrickPrefs.setBool("disableTemporary", doc.getElementById("disableTemporary").checked);
@@ -622,56 +616,6 @@ var FoxtrickPrefsDialogHTML = {
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'CurrencyConverter', Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"),'', checked ) 
 		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
-		       
-		
-		// alert slider
-		var groupbox= doc.createElement("div");
-		groupbox.setAttribute('class',"ft_pref_modul");
-		preftab.appendChild(groupbox);
-
-		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_group_caption");
-		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionAlertSettings")));
-		groupbox .appendChild(caption1);
-
-		var div= doc.createElement("div");
-		groupbox.appendChild(div);
-		
-        var checked = FoxtrickPrefs.getBool("alertSlider");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertsliderpref', Foxtrickl10n.getString("foxtrick.prefs.alertsliderpref"),'', checked ) 
-		div.appendChild(checkdiv);
-
-		var checked = FoxtrickPrefs.getBool("alertSliderGrowl");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertslidermacpref', Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"),'', checked ) 
-		div.appendChild(checkdiv);
-
-		var input_option_text = doc.createElement( "input" );	
-		input_option_text.setAttribute( "type", "text" );
-		input_option_text.setAttribute( "id", 'alertsoundurlpref' );
-		input_option_text.setAttribute( "value",FoxtrickPrefs.getString( "alertSoundUrl" ));
-		input_option_text.setAttribute( "class", "ft_pref_input_option_text");
-		div.appendChild( input_option_text);		
-
-		var button= doc.createElement("input");
-		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonSelectFile"));
-		button.setAttribute( "type", "button" );		
-		button.setAttribute('inputid',"alertsoundurlpref");
-		button.setAttribute('id',"buttonSelectFile");
-		button.addEventListener('click',FoxtrickPrefsDialogHTML.selectfile,false);
-		div.appendChild(button);
-
-		var button= doc.createElement("input");
-		button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonTest"));
-		button.setAttribute( "type", "button" );		
-		button.setAttribute('id',"buttonTest");
-		button.addEventListener('click',FoxtrickPrefsDialogHTML.playsound,false);
-		div.appendChild(button);
-
-		var checked = FoxtrickPrefs.getBool("alertSound");
-		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'alertsoundpref', Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"),'', checked ) 
-		div.appendChild(checkdiv);
-
-
 
 		// LoadSavePrefs
 		var groupbox= doc.createElement("div");
