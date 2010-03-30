@@ -12,7 +12,7 @@ shortcuts_and_tweaks=http://foxtrick.foundationhorizont.org/index.php/shortcuts-
 about=http://foxtrick.foundationhorizont.org/index.php/about
 
 # Main options
-activeCurrencyConverter=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/54-currency-converter
+CurrencyConverter=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/54-currency-converter
 FoxtrickMyHT=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/55-foxtrickmyht
 FoxtrickMyHtSetChanged=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/56-foxtrickmyhtsetchanged
 OnPagePrefs=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/57-onpageprefs
@@ -63,8 +63,7 @@ YouthPromotes=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add
 YouthSkillHideUnknown.HideUnknown=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/200-youthskillhideunknownhideunknown
 YouthSkillHideUnknown.HideMaximalKeyWord=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/199-youthskillhideunknownhidemaximalkeyword
 YouthSkillNotes=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/95-youthskillnotes
-YouthSkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/96-youthskilltable
-AdultSkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/202-adultskilltable
+SkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/202-adultskilltable
 LeagueAndMatchChat=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/207-leagueandmatchchat
 
 #Presentation and Tweaks
