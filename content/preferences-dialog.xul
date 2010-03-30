@@ -105,7 +105,6 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/custommedals.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/fixcssproblems.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/SimplePresentation.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/presentation/guestbookalltidflags.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/headerfix.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/leaguenewsfilter.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/moveplayerselectbox.js" />

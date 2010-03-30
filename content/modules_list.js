@@ -113,7 +113,6 @@ Foxtrick.modules = [
                     FoxtrickCustomMedals,
                     FoxtrickForumRedirManagerToTeam,
                     FoxtrickRedirections,
-                    FoxtrickGuestbookAlltidFlags,
                     FoxtrickCurrencyConverter,
                     FoxtrickTickerColoring,
                     FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
