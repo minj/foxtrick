@@ -101,7 +101,6 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/SimplePresentation.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/guestbookalltidflags.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/headerfix.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/presentation/newmail.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/leaguenewsfilter.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/moveplayerselectbox.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/highlightcupwins.js" />
@@ -134,6 +133,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/alertcustom.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/alertcustomsounds.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/tickercoloring.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/alert/newmail.js" />
 
 <!-- following modules all run on 'all_late' pages. order of execution is determined be following order -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/currencyConverter.js" />
