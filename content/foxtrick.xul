@@ -22,6 +22,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages/pages.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages/all.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages/players.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/pages/player.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages/youth-player.js" />
 
 <!-- individual modules -->

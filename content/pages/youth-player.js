@@ -4,31 +4,6 @@
  */
 
 Foxtrick.Pages.YouthPlayer = {
-	getAge : function(doc) {
-		try {
-			// returns age in the following format:
-			// age = { years: xx, days: yyy };
-			var birthdayRe = /(\d+).*?(\d+).*?\d+.*?\d+.*?\d+.*?/;
-			var birthdayCell;
-			var allDivs = doc.getElementsByTagName("div");
-			for (var i = 0; i < allDivs.length; i++) {
-				if (allDivs[i].className == "byline") {
-					birthdayCell = allDivs[i];
-				}
-			}
-			var birthdayMatch = birthdayRe.exec(birthdayCell.innerHTML);
-
-			var age = {
-				years : parseInt(birthdayMatch[1]),
-				days : parseInt(birthdayMatch[2])
-			};
-			return age;
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
-	},
-
 	getJoinedDays : function(doc) {
 		try {
 			// we presume the dates are in this format:
@@ -64,7 +39,7 @@ Foxtrick.Pages.YouthPlayer = {
 	getDaysToPromote : function(doc) {
 		try {
 			var joinedDays = this.getJoinedDays(doc);
-			var age = this.getAge(doc);
+			var age = Foxtrick.Pages.Player.getAge(doc);
 			if (isNaN(joinedDays) || isNaN(age.years) || isNaN(age.days)) {
 				return NaN;
 			}

@@ -96,21 +96,10 @@ var FoxtrickPlayerAdToClipboard = {
 	createPlayerAd : function( ev ) {
 		var doc = ev.target.ownerDocument;
 		try {
+			var ad = "";
 
-			var ad="";
-			var obj;
-			var main = doc.getElementById("mainWrapper");					
-			var links = main.getElementsByTagName("a");;
-			for (var i = 0; i < links.length; i++) {
-				if (links[i].href.match(/Club\/Players\/Player\.aspx/i)) {
-					obj = links[i];
-					break;
-				}
-			}
-			
-			ad += obj.innerHTML; //name
-			var id = obj.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-			ad += "\t[playerid=" + id + "]\n";
+			ad += Foxtrick.Pages.Player.getName(doc);
+			ad += " [playerid=" + Foxtrick.Pages.Player.getId(doc) + "]\n";
 		
 			var isEnglish=false;
 			//nationality, age and next birthday
