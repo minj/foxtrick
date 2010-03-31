@@ -11,8 +11,8 @@ var FoxtrickForumPreview = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Fix for latest forum change",
+	NEW_AFTER_VERSION: "0.5.1.2",
+	LATEST_CHANGE:"Added ArticleID-Tag to preview",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
@@ -282,6 +282,7 @@ var FoxtrickForumPreview = {
         /\[leagueid=(\d+)\]/gi,
         /\[youthleagueid=(\d+)\]/gi,
         /\[link=(.*?)\]/gi,
+		/\[articleid=(.*?)\]/gi,
 
         /\[b\](.*?)\[\/b\]/gi,
         /\[u\](.*?)\[\/u\]/gi,
@@ -336,6 +337,7 @@ var FoxtrickForumPreview = {
         "<a href=\"\/World\/Series\/Default\.aspx\?LeagueLevelUnitID\=$1\" target=\"\_blank\">($1)</a>",
         "<a href=\"\/World\/Series\/YouthSeries\.aspx\?YouthLeagueId\=$1\" target=\"\_blank\">($1)</a>",
         "<a href=\"$1\" target=\"\_blank\">($1)</a>",
+		"<a href=\"\/Community\/Press\?ArticleID\=$1\" target=\"\_blank\">($1)</a>",
 
         "<b>$1</b>",
         "<u>$1</u>",
