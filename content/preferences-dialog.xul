@@ -31,6 +31,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum_stage.js" />
 
 <!-- individual modules -->
+<script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumstriphattricklinks.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumchangeposts_modules.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumchangeposts.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumtemplates.js" />

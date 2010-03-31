@@ -15,6 +15,7 @@ Foxtrick.modules = [
 					
 					FoxtrickReadHtPrefsFromHeader,
 					Foxtrick.Matches,
+					FoxtrickForumStripHattrickLinks,
 					FoxtrickForumChangePosts,
                     FoxtrickShowForumPrefButton,
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
