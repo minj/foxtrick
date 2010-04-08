@@ -297,6 +297,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Yellow_card", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_set_lineup.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_wins.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksTracker.srbijassttracker.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin1.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin2.enabled", false);
 pref("extensions.foxtrick.prefs.module.CopyTrainingReport.OpenHTYpage.enabled", false);

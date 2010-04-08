@@ -1298,6 +1298,18 @@ stats["Wage_Reduction_Calculator"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/wagereduction.png"
 };
 
+//Ht4u - Primary Skill drop Calculator
+stats["Ht4u"] =  { 
+        "url" : "http://ht4u.altervista.org/english.html",
+
+        "playerlink" : { "path"       : "",
+                         "filters"    : ["age"],  
+                       },
+		"ageranges" : [[27, 99]],
+        "title" : "Primary Skill drop Calculator",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/Ht4u.png"
+};
+
 stats["ht-u20"] =  { 
         "url" : "http://age.ht-u20.com/",
 
@@ -2853,6 +2865,21 @@ stats["srbijatracker"] = {
 	"countryidranges" : [[57,57]] ,
 	"nationalityranges" : [[57,57]], 
 };
+
+stats["srbijassttracker"] =  { 
+    "title" : "SST Srbija WC tracker",
+    "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",        
+    "url" : "http://spydb.foundationhorizont.org/",
+
+    "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
+                   "filters"    : [], 
+                   "params"     : {"playerid":"playerID", "playername":"name", "nationality":"LeagueID",
+								   "age":"years", "age_days":"days","teamname":"team","teamid":"teamID",
+								   "exp":"exp","stamina":"sta","playmaking":"ply","winger":"win","scoring":"sco",
+								   "goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
+                 }, 				 
+
+};  
 
 stats["scotlandtracker"] = { 
   "url" : "http://www.htscotland.co.uk",
