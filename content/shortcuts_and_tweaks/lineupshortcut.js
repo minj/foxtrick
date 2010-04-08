@@ -12,7 +12,7 @@ FoxtrickLineupShortcut = {
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Fix for Teams with problamatic names",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
- 	OPTIONS : new Array( "HighlightPlayer", "YouthPlayerLink"),
+ 	OPTIONS : new Array("HighlightPlayer"),
 
     
 	init : function() {	
@@ -169,21 +169,26 @@ FoxtrickLineupShortcut = {
         }
     },
 	
-	//@param icon= normal|NT|U20
-	_Add_Lineup_Link : function(doc, row, teamid, playerid, matchid, icon) {
+	//@param type = "normal"|"NT"|"U20"|"youth"
+	_Add_Lineup_Link : function(doc, row, teamid, playerid, matchid, type) {
 		//the link is: /Club/Matches/MatchLineup.aspx?MatchID=<matchid>&TeamID=<teamid>
 		try {
 			var cell = row.insertCell(-1); // append as the last cell
 			cell.className = "ft-lineup-cell";
 			var link = doc.createElement("a");
-			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&TeamID=" + teamid + "&HighlightPlayerID=" + playerid;
+			if (type == "youth") {
+				link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&YouthTeamID=" + teamid + "&isYouth=true&HighlightPlayerID=" + playerid;
+			}
+			else {
+				link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&TeamID=" + teamid + "&HighlightPlayerID=" + playerid;
+			}
 			var img = doc.createElement("img");
 			img.src = Foxtrick.ResourcePath + "resources/img/foxtrick_skin/HT-Images/Matches/";
-			if (icon == "NT") {
+			if (type == "NT") {
 				img.src += "formation.nt.png";
 			}
-			else if (icon == "U20") {
-				img.src += "formation.nt.png";
+			else if (type == "U20") {
+				img.src += "formation.u20.png";
 			}
 			else {
 				img.src += "formation.gif.gif";
@@ -198,56 +203,40 @@ FoxtrickLineupShortcut = {
 	
 	//***************** YOUTH TEAM ********************
 	_Analyze_Youth_Player_Page : function ( doc ) {
-		if (Foxtrick.isModuleFeatureEnabled( this, "YouthPlayerLink")) {
-			try {
-				var mainbody = doc.getElementById( "mainBody" );
-				//First thing is to understand if it an own player or a player of another team
-				var boxes=Foxtrick.getElementsByClass("mainBox", mainbody);
-				if (boxes.length>1) {
-					//Own player, the right element is the second
-					var matchElement=boxes[1];
+		try {
+			var mainbody = doc.getElementById( "mainBody" );
+			//First thing is to understand if it an own player or a player of another team
+			var boxes=Foxtrick.getElementsByClass("mainBox", mainbody);
+			if (boxes.length>1) {
+				//Own player, the right element is the second
+				var matchElement=boxes[1];
+			}
+			else {
+				//Player of another team, right element is the first (there is only one)
+				var matchElement=boxes[0];
+			}
+			
+			//we get the table with rows of played match
+			var matchtable=matchElement.getElementsByTagName('table');
+			if (matchtable.length>0) {
+				//There are matches
+				matchtable=matchtable.item(0);
+				//Now getting playerid from top of the page:
+				var element=doc.getElementById('mainWrapper');
+				var playerid=FoxtrickHelper.findYouthPlayerId(element);
+				var teamid=FoxtrickHelper.findYouthTeamId(element);
+				for (i=0;i<matchtable.rows.length;i++) {
+					var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
+					//var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href); //For youth teamid taken from link is wrong!
+					var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
+					this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, "youth");
 				}
-				else {
-					//Player of another team, right element is the first (there is only one)
-					var matchElement=boxes[0];
-				}
-				
-				//we get the table with rows of played match
-				var matchtable=matchElement.getElementsByTagName('table');
-				if (matchtable.length>0) {
-					//There are matches
-					matchtable=matchtable.item(0);
-					//Now getting playerid from top of the page:
-					var element=doc.getElementById('mainWrapper');
-					var playerid=FoxtrickHelper.findYouthPlayerId(element);
-					var teamid=FoxtrickHelper.findYouthTeamId(element);
-					for (i=0;i<matchtable.rows.length;i++) {
-						var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
-						//var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href); //For youth teamid taken from link is wrong!
-						var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
-						this._Add_Youth_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid);
-					}
-				}
-				
-			} catch (e) {
-				Foxtrick.dump('FoxtrickLineupShortcut'+e);
-				Foxtrick.LOG('FoxtrickLineupShortcut'+e);
 			}
 		}
-	},
-	
-	_Add_Youth_Lineup_Link : function (doc, myrow, teamid, playerid, matchid ) {
-		//link is /Club/Matches/MatchLineup.aspx?MatchID=28577191&YouthTeamID=7985&isYouth=True
-		
-		try {
-			var newcellpos=myrow.cells.length;
-			var newcell=myrow.insertCell(newcellpos);
-			//HighlightPlayerID is the HT function
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&YouthTeamID='+teamid+'&isYouth=True&HighlightPlayerID='+playerid+'"><img src="'+Foxtrick.ResourcePath+'resources/img/foxtrick_skin/HT-Images/Matches/formation.gif.gif"></a>';
-		} catch (e) {
-            Foxtrick.dump('FoxtrickLineupShortcut'+e);
+		catch (e) {
+			Foxtrick.dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
-        }
+		}
 	},
 	
 	//************************ HIGHLIGHT PLAYER ***********************************
