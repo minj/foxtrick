@@ -41,7 +41,7 @@ pref("extensions.foxtrick.prefs.cssSkin.value", "chrome://foxtrick/content/resou
 pref("extensions.foxtrick.prefs.module.SkillColoring.no_skill_links.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_number_translated.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLongNick.enabled", false);
-pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", false);
+pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.HideOldTime.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SingleHeaderLine.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.SmallHeaderFont.enabled", false);
@@ -98,7 +98,6 @@ pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Grey_Icons.e
 pref("extensions.foxtrick.prefs.module.ForumPresentation.moved_avatarinfo_fix.enabled", false);
 pref("extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
-pref("extensions.foxtrick.prefs.module.GuestbookAlltidFlags.HideAnswerToLinks.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.Text_My_Team.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.Text_Home.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.Text_Away.enabled", false);
