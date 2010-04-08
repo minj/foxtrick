@@ -170,21 +170,30 @@ FoxtrickLineupShortcut = {
     },
 	
 	//@param icon= normal|NT|U20
-	_Add_Lineup_Link : function (doc, myrow, teamid, playerid, matchid, icon ) {
+	_Add_Lineup_Link : function(doc, row, teamid, playerid, matchid, icon) {
 		//the link is: /Club/Matches/MatchLineup.aspx?MatchID=<matchid>&TeamID=<teamid>
-		var iconImg='formation.gif.gif';
-		if (icon=='NT')
-			iconImg='formation.nt.png';
-		if (icon=='U20')
-			iconImg='formation.u20.png';
 		try {
-			var newcellpos=myrow.cells.length;
-			var newcell=myrow.insertCell(newcellpos);
-			//HighlightPlayerID is the HT function
-			newcell.innerHTML='<a href="/Club/Matches/MatchLineup.aspx?MatchID='+matchid+'&TeamID='+teamid+'&HighlightPlayerID='+playerid+'"><img src="'+Foxtrick.ResourcePath+'resources/img/foxtrick_skin/HT-Images/Matches/'+iconImg+'"></a>';
-		} catch (e) {
-            Foxtrick.dump('FoxtrickLineupShortcut'+e);
-        }
+			var cell = row.insertCell(-1); // append as the last cell
+			cell.className = "ft-lineup-cell";
+			var link = doc.createElement("a");
+			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&TeamID=" + teamid + "&HighlightPlayerID=" + playerid;
+			var img = doc.createElement("img");
+			img.src = Foxtrick.ResourcePath + "resources/img/foxtrick_skin/HT-Images/Matches/";
+			if (icon == "NT") {
+				img.src += "formation.nt.png";
+			}
+			else if (icon == "U20") {
+				img.src += "formation.nt.png";
+			}
+			else {
+				img.src += "formation.gif.gif";
+			}
+			cell.appendChild(link);
+			link.appendChild(img);
+		}
+		catch (e) {
+			Foxtrick.dump('FoxtrickLineupShortcut'+e);
+		}
 	},
 	
 	//***************** YOUTH TEAM ********************
