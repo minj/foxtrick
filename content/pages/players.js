@@ -138,25 +138,29 @@ Foxtrick.Pages.Players = {
 				player.nameLink = allPlayers[i].getElementsByTagName("a")[offset].cloneNode(true);
 
 				var basicInformation = allPlayers[i].getElementsByTagName("p")[0];
+				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
 				if (!player.age) {
-					var ageMatch = basicInformation.innerHTML.match(/(\d+)/g);
+					var basicHtmlCopy = basicHtml;
+					// First we dump TSI out of the string, and then
+					// the first match is years and the second is days
+					var tsiMatch = basicHtmlCopy.match(RegExp("TSI\\s*=\\s*[\\d\\s]*"));
+					basicHtmlCopy = basicHtmlCopy.replace(tsiMatch[0], "");
+					var ageMatch = basicHtmlCopy.match(/(\d+)/g);
 					player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
 				}
 
 				if (this.isSeniorPlayersPage(doc) && !player.tsi) {
 					// youth players don't have TSI, and we can fetch directly
 					// from XML if it's there
-					var tsitot_in = basicInformation.innerHTML.substr(0, basicInformation.innerHTML.indexOf("<br>"));
-					if (tsitot_in.search(/^\s*TSI/) != -1) {
-						// In the language Vlaams, TSI and age are switched. This is a fix for that
-						tsitot_in = tsitot_in.replace(/,.+/,"");
+					var tsiMatch = basicHtml.match(RegExp("TSI\\s*=\\s*[\\d\\s]*"));
+					var tsi;
+					if (tsiMatch) {
+						tsi = tsiMatch[0];
+						tsi = tsi.replace(RegExp("\\s", "g"), "");
+						tsi = tsi.replace("TSI=", "");
+						tsi = parseInt(tsi);
+						player.tsi = tsi;
 					}
-					var lastindex = tsitot_in.lastIndexOf(" ");
-					if (tsitot_in.lastIndexOf("=") > lastindex) {
-						lastindex = tsitot_in.lastIndexOf("=");
-					}
-					tsitot_in = tsitot_in.substr(lastindex+1).replace("&nbsp;","");
-					player.tsi = parseInt(tsitot_in);
 				}
 
 				specMatch = basicInformation.textContent.match(/\[(\D+)\]/);
