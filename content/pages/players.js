@@ -144,7 +144,9 @@ Foxtrick.Pages.Players = {
 					// First we dump TSI out of the string, and then
 					// the first match is years and the second is days
 					var tsiMatch = basicHtmlCopy.match(RegExp("TSI\\s*=\\s*[\\d\\s]*"));
-					basicHtmlCopy = basicHtmlCopy.replace(tsiMatch[0], "");
+					if (tsiMatch) {
+						basicHtmlCopy = basicHtmlCopy.replace(tsiMatch[0], "");
+					}
 					var ageMatch = basicHtmlCopy.match(/(\d+)/g);
 					player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
 				}
