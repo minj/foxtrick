@@ -34,7 +34,7 @@ Foxtrick.Pages.Player = {
 		var h2 = mainWrapper.getElementsByTagName("h2")[0];
 		var links = h2.getElementsByTagName("a");
 		for (var i = 0; i < links.length; ++i) {
-			if (links[i].href.match(/PlayerID=\d+/)) {
+			if (links[i].href.match(RegExp("PlayerID=\\d+", "i"))) {
 				return links[i].textContent;
 			}
 		}
@@ -42,6 +42,6 @@ Foxtrick.Pages.Player = {
 
 	getId : function(doc) {
 		var url = String(doc.location);
-		return url.match(/PlayerID=(\d+)/)[1];
+		return url.match(RegExp("PlayerID=(\\d+)", "i"))[1];
 	}
 };
