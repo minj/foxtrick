@@ -24,6 +24,7 @@ Foxtrick.TeamStats= {
 
     run : function( page, doc ) {	
 	try {
+		
 		var remain=doc.location.href.substr(doc.location.href.search(/Players\//i)+8);
 		if (remain!="" && remain.search(/TeamID=/i)==-1) return;
 			
@@ -35,7 +36,7 @@ Foxtrick.TeamStats= {
 		
 		var total_NT = 0;
         const _totalTSI = Foxtrickl10n.getString("foxtrick.FTTeamStats.totalTSI.label");
-		const TSI = Foxtrickl10n.getString("foxtrick.playerliststats.tsi"); 
+		const TSI = Foxtrickl10n.getString("TSI.abbr");
         var specs = {};
 		
 		var body = doc.getElementById("mainBody");
