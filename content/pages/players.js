@@ -123,7 +123,14 @@ Foxtrick.Pages.Players = {
 								player.countryId = parseInt(currentXMLPlayer.getElementsByTagName("CountryID")[0].textContent);
 							}
 							if (currentXMLPlayer.getElementsByTagName("TrainerData").length) {
-								player.trainerData = currentXMLPlayer.getElementsByTagName("TrainerData")[0];
+								trainerData = currentXMLPlayer.getElementsByTagName("TrainerData")[0];
+								player.trainerData = {};
+								if (trainerData.getElementsByTagName("TrainerType").length) {
+									player.trainerData.type = parseInt(trainerData.getElementsByTagName("TrainerType")[0].textContent);
+								}
+								if (trainerData.getElementsByTagName("TrainerSkill").length) {
+									player.trainerData.skill = parseInt(trainerData.getElementsByTagName("TrainerSkill")[0].textContent);
+								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("PlayerNumber").length) {
 								// number = 100 means this player hasn't been assigned one
@@ -301,6 +308,22 @@ Foxtrick.Pages.Players = {
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
+	},
+
+	getPlayerFromListById : function(list, id) {
+		for (var i = 0; i < list.length; ++i) {
+			if (list[i].id === id) {
+				return list[i];
+			}
+		}
+		return null;
+	},
+
+	getPlayerId : function(playerInfo) {
+		var hasFlag = (playerInfo.getElementsByTagName("a")[0].innerHTML.search(/flags.gif/i)!=-1);
+		var offset = hasFlag ? 1 : 0;
+		var id = playerInfo.getElementsByTagName("a")[offset].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+		return id;
 	},
 
 	isPropertyInList : function(playerList, property) {
