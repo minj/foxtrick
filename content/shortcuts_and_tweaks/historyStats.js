@@ -10,8 +10,8 @@ FoxtrickHistoryStats= {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('history'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Fix for single-digit seasons",
+    NEW_AFTER_VERSION: "0.5.1.4",
+	LATEST_CHANGE:"Some style fixes",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     Buffer : new Array(),
     Pages : new Array(),
@@ -102,7 +102,7 @@ FoxtrickHistoryStats= {
                                     table[i].removeChild(table[i].getElementsByTagName('a')[0]);
                                 }
                                 cup = table[i].innerHTML.match(/\d{1,2}/);
-                                if (!cup) cup = 'chp';
+                                if (!cup) cup = '<span class="bold" title="'+Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner")+'">' + Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner.short") + '</span>';
                             }
                         }
                         //league

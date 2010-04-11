@@ -82,3 +82,5 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 /* history stats */
 .historystats th {text-align:left!important;padding:2px!important;}
 .historystats td {text-align:left!important;padding:2px!important;}
+
+.bold{font-weight:700;}
