@@ -78,3 +78,7 @@ th span.ft_copy_rating { margin-left: 0.2em; }
 
 /* lineup shortcut */
 td.ft-lineup-cell { vertical-align: middle !important; }
+
+/* history stats */
+.historystats th {text-align:left!important;padding:2px!important;}
+.historystats td {text-align:left!important;padding:2px!important;}
