@@ -48,7 +48,7 @@ FoxtrickPlayerFilters = {
 					allPlayers[i].setAttribute("injured", "true");
 				}
 				if (player.speciality) {
-					allPlayers[i].setAttribute(player.speciality, "true");
+					allPlayers[i].setAttribute("player.speciality", "true");
 					if (!specialities[player.speciality]) {
 						specialities[player.speciality] = true;
 					}
