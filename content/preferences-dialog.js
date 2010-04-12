@@ -422,7 +422,6 @@ var FoxtrickPreferencesDialog = {
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
 		FoxtrickPrefs.setBool("smallcopyicons", document.getElementById("smallcopyicons").checked);		
-		FoxtrickPrefs.setBool("ExtraPlayerslistInfo", document.getElementById("ExtraPlayerslistInfo").checked);		
 		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", document.getElementById("OnPagePrefs").checked);
 
 
