@@ -1,7 +1,7 @@
 /**
  * teamStats.js
  * Foxtrick team overview
- * @author OBarros & spambot
+ * @author OBarros, spambot, convinced, ryanli
  */
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.TeamStats = {
@@ -536,7 +536,6 @@ Foxtrick.TeamStats = {
 		"Việt Nam"
 	),
 
-	// by convinced
 	Filter : function (ev) {
 		try {
 			var doc = ev.target.ownerDocument;
