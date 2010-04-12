@@ -74,7 +74,7 @@ FoxtrickPlayerFilters = {
 			// players
 			var option = doc.createElement("option");
 			option.value = "all";
-			option.innerHTML = Foxtrickl10n.getString("Filter");
+			option.innerHTML = "-- " + Foxtrickl10n.getString("Filter") + " --";
 			filterselect.appendChild(option);
 
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
