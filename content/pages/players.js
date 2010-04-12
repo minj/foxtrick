@@ -27,7 +27,7 @@ Foxtrick.Pages.Players = {
 	isCoachesPage : function(doc) {
 		return (doc.location.href.indexOf("Coaches\.aspx") != -1);
 	},
-	getPlayerList : function(doc) {
+	getPlayerList : function(doc, disableXML) {
 		try {
 			// preparation steps
 			var isOwn = this.isOwnPlayersPage(doc);
@@ -36,7 +36,7 @@ Foxtrick.Pages.Players = {
 			var playerList = [];
 
 			// XML data including extra information provided by Hattrick
-			var playersXML = this.getXML(doc);
+			var playersXML = disableXML ? null : this.getXML(doc);
 
 			var player;
 			for (var i = 0; i < allPlayers.length; ++i) {
