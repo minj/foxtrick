@@ -153,5 +153,6 @@ Foxtrick.modules = [
 					FoxtrickLeagueAndMatchChat,
 					FoxtrickRapidId,
 					FoxtrickForumStage,
-					FoxtrickExtraPlayerInfo
+					FoxtrickExtraPlayerInfo,
+					FoxtrickPlayerFilters
 ];
