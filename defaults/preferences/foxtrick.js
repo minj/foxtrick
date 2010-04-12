@@ -305,4 +305,3 @@ pref("extensions.foxtrick.prefs.module.ForumTemplates.DefaultShow.enabled", fals
 pref("extensions.foxtrick.prefs.module.ForumStripHattrickLinks.NoConfirmStripping.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPosting.CopyWikiStyle.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
-pref("extensions.foxtrick.prefs.ExtraPlayerslistInfo", true);

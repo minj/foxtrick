@@ -293,7 +293,6 @@
 					<caption id="additionalOptions" />
 					<checkbox id="copyfeedback" />
 					<checkbox id="smallcopyicons" />
-					<checkbox id="ExtraPlayerslistInfo" />
 					<checkbox id="OnPagePrefs"/>
 					<checkbox id="DisplayHTMLDebugOutput" />
 				</groupbox>

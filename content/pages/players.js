@@ -340,7 +340,8 @@ Foxtrick.Pages.Players = {
 			// not the page we are looking for
 			return null;
 		}
-		if (FoxtrickPrefs.getBool("ExtraPlayerslistInfo")) {
+		// we load the XML only if the ExtraPlayerInfo module is enabled
+		if (Foxtrick.isModuleEnabled(FoxtrickExtraPlayerInfo)) {
 			var file = "file=players"; // default normal team
 			var team = ""; // default own team
 			var selection = ""; // default current players
