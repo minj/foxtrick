@@ -657,16 +657,20 @@ Foxtrick.LOG = function (msg) {
 }
 
 Foxtrick.unique = function(a) {
-   var r = new Array();
-   o:for (var i = 0, n = a.length; i < n; i++) {
-		for (var x = 0, y = r.length; x < y; x++) {
-			if(r[x]==a[i]) {
-				continue o;
+	var ret = [];
+	for (var i = 0; i < a.length; ++i) {
+		var duplicate = false;
+		for (var j = 0; j < ret.length; ++j) {
+			if (ret[j] === a[i]) {
+				duplicate = true;
+				break;
 			}
 		}
-		r[r.length] = a[i];
+		if (duplicate === false) {
+			ret.push(a[i]);
+		}
 	}
-	return r;
+	return ret;
 }
 
 Foxtrick.getClasses = function(obj) {
@@ -695,9 +699,12 @@ Foxtrick.hasClass = function(obj, cls) {
 }
 
 Foxtrick.addClass = function(obj, cls) {
-	var classes = Foxtrick.getClasses(obj);
-	classes.push(cls);
-	Foxtrick.setClasses(obj, classes);
+	if (obj.className) {
+		obj.className += " " + cls;
+	}
+	else {
+		obj.className = cls;
+	}
 }
 
 Foxtrick.removeClass = function(obj, cls) {
