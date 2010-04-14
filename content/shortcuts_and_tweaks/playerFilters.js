@@ -121,6 +121,14 @@ FoxtrickPlayerFilters = {
 				}
 			}
 
+			var faceCards = doc.getElementsByClassName("faceCard");
+			if (faceCards.length > 0) {
+				var option = doc.createElement("option");
+				option.value = "face";
+				option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Pictures.label");
+				filterselect.appendChild(option);
+			}
+
 			var mainBody = doc.getElementById("mainBody");
 			sortbybox = mainBody.removeChild(sortbybox);
 			var container = doc.createElement("div");
@@ -155,73 +163,100 @@ FoxtrickPlayerFilters = {
 
 			// recording how many players are shown
 			var count = 0;
+			if (filter === "face") {
+				var faceCards = doc.getElementsByClassName("faceCard");
+				if (faceCards.length > 0) {
+					count = faceCards.length;
+					for (var i = 0; i < allDivs.length; ++i) {
+						var div = allDivs[i];
+						if (Foxtrick.hasClass(div, "faceCard")) {
+							Foxtrick.removeClass(div, "ft_hidden");
+						}
+						else if (Foxtrick.hasClass(div, "category")
+							|| Foxtrick.hasClass(div, "playerInfo")
+							|| Foxtrick.hasClass(div, "borderSeparator")
+							|| Foxtrick.hasClass(div, "separator")
+							|| Foxtrick.hasClass(div, "youthnotes")) {
+							// these are attached infomation divisions
+							Foxtrick.addClass(div, "ft_hidden");
+						}
+					}
 
-			var hide = false;
-			var hideCategory = true;
-			var lastCategory = null;
-			var lastborderSeparator = null;
-			var lastFace = null;
-
-			for (var i = 0; i < allDivs.length; ++i) {
-				var div = allDivs[i];
-				if (Foxtrick.hasClass(div, "category")) {
-					if (lastCategory) {
-						if (hideCategory == true) {
-							Foxtrick.addClass(lastCategory, "ft_hidden");
-						}
-						else {
-							Foxtrick.removeClass(lastCategory, "ft_hidden");
-						}
-					}
-					lastCategory = div;
-					hideCategory = true;
-				}
-				else if (Foxtrick.hasClass(div, "faceCard")) {
-					lastFace = div;
-				}
-				else if (Foxtrick.hasClass(div, "playerInfo")) {
-					if (div.getAttribute(filter) === "true") {
-						Foxtrick.removeClass(div, "ft_hidden");
-						hide = false;
-						hideCategory = false;
-					}
-					else {
-						Foxtrick.addClass(div, "ft_hidden");
-						hide = true;
-					}
-					if (lastFace) {
-						if (hide) {
-							Foxtrick.addClass(lastFace, "ft_hidden");
-						}
-						else {
-							Foxtrick.removeClass(lastFace, "ft_hidden");
-						}
-					}
-					if (!hide) {
-						++count;
-					}
-				}
-				else if (Foxtrick.hasClass(div, "borderSeparator")
-					|| Foxtrick.hasClass(div, "separator")
-					|| Foxtrick.hasClass(div, "youthnotes")) {
-					if (hide === true) {
-						Foxtrick.addClass(div, "ft_hidden");
-					}
-					else {
-						Foxtrick.removeClass(div, "ft_hidden");
-					}
-				}
-				if (Foxtrick.hasClass(div, "borderSeparator")
-					|| Foxtrick.hasClass(div, "separator")) {
-					lastborderSeparator = div;
+					// Face cards are floated to the left, so we need a
+					// cleaner to maintain the container's length.
+					var cleaner = doc.createElement("div");
+					cleaner.style.clear = "both";
+					faceCards[0].parentNode.appendChild(cleaner);
 				}
 			}
-			if (lastCategory) {
-				if (hideCategory === true) {
-					Foxtrick.addClass(lastCategory, "ft_hidden");
+			else {
+				var hide = false;
+				var hideCategory = true;
+				var lastCategory = null;
+				var lastborderSeparator = null;
+				var lastFace = null;
+
+				for (var i = 0; i < allDivs.length; ++i) {
+					var div = allDivs[i];
+					if (Foxtrick.hasClass(div, "category")) {
+						if (lastCategory) {
+							if (hideCategory == true) {
+								Foxtrick.addClass(lastCategory, "ft_hidden");
+							}
+							else {
+								Foxtrick.removeClass(lastCategory, "ft_hidden");
+							}
+						}
+						lastCategory = div;
+						hideCategory = true;
+					}
+					else if (Foxtrick.hasClass(div, "faceCard")) {
+						lastFace = div;
+					}
+					else if (Foxtrick.hasClass(div, "playerInfo")) {
+						if (div.getAttribute(filter) === "true") {
+							Foxtrick.removeClass(div, "ft_hidden");
+							hide = false;
+							hideCategory = false;
+						}
+						else {
+							Foxtrick.addClass(div, "ft_hidden");
+							hide = true;
+						}
+						if (lastFace) {
+							if (hide) {
+								Foxtrick.addClass(lastFace, "ft_hidden");
+							}
+							else {
+								Foxtrick.removeClass(lastFace, "ft_hidden");
+							}
+						}
+						if (!hide) {
+							++count;
+						}
+					}
+					else if (Foxtrick.hasClass(div, "borderSeparator")
+						|| Foxtrick.hasClass(div, "separator")
+						|| Foxtrick.hasClass(div, "youthnotes")) {
+						if (hide === true) {
+							Foxtrick.addClass(div, "ft_hidden");
+						}
+						else {
+							Foxtrick.removeClass(div, "ft_hidden");
+						}
+					}
+					if (Foxtrick.hasClass(div, "borderSeparator")
+						|| Foxtrick.hasClass(div, "separator")) {
+						lastborderSeparator = div;
+					}
 				}
-				else {
-					Foxtrick.removeClass(lastCategory, "ft_hidden");
+				if (lastCategory) {
+					if (hideCategory === true) {
+						Foxtrick.addClass(lastCategory, "ft_hidden");
+					}
+					else {
+						Foxtrick.removeClass(lastCategory, "ft_hidden");
+					}
 				}
 			}
 			// update player count
