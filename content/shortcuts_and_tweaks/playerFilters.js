@@ -152,13 +152,13 @@ FoxtrickPlayerFilters = {
 
 			var body = doc.getElementById("mainBody");
 
-			var allDivs;
+			var allElems;
 			if (doc.getElementsByClassName("playerList").length) {
 				var playerList = doc.getElementsByClassName("playerList")[0];
-				allDivs = playerList.getElementsByTagName("div");
+				allElems = playerList.childNodes;
 			}
 			else {
-				allDivs = body.getElementsByTagName("div");
+				allElems = body.childNodes;
 			}
 
 			// recording how many players are shown
@@ -167,18 +167,18 @@ FoxtrickPlayerFilters = {
 				var faceCards = doc.getElementsByClassName("faceCard");
 				if (faceCards.length > 0) {
 					count = faceCards.length;
-					for (var i = 0; i < allDivs.length; ++i) {
-						var div = allDivs[i];
-						if (Foxtrick.hasClass(div, "faceCard")) {
-							Foxtrick.removeClass(div, "hidden");
+					for (var i = 0; i < allElems.length; ++i) {
+						var elem = allElems[i];
+						if (Foxtrick.hasClass(elem, "faceCard")) {
+							Foxtrick.removeClass(elem, "hidden");
 						}
-						else if (Foxtrick.hasClass(div, "category")
-							|| Foxtrick.hasClass(div, "playerInfo")
-							|| Foxtrick.hasClass(div, "borderSeparator")
-							|| Foxtrick.hasClass(div, "separator")
-							|| Foxtrick.hasClass(div, "youthnotes")) {
+						else if (Foxtrick.hasClass(elem, "category")
+							|| Foxtrick.hasClass(elem, "playerInfo")
+							|| Foxtrick.hasClass(elem, "borderSeparator")
+							|| Foxtrick.hasClass(elem, "separator")
+							|| Foxtrick.hasClass(elem, "youthnotes")) {
 							// these are attached infomation divisions
-							Foxtrick.addClass(div, "hidden");
+							Foxtrick.addClass(elem, "hidden");
 						}
 					}
 
@@ -196,9 +196,9 @@ FoxtrickPlayerFilters = {
 				var lastborderSeparator = null;
 				var lastFace = null;
 
-				for (var i = 0; i < allDivs.length; ++i) {
-					var div = allDivs[i];
-					if (Foxtrick.hasClass(div, "category")) {
+				for (var i = 0; i < allElems.length; ++i) {
+					var elem = allElems[i];
+					if (Foxtrick.hasClass(elem, "category")) {
 						if (lastCategory) {
 							if (hideCategory == true) {
 								Foxtrick.addClass(lastCategory, "hidden");
@@ -207,20 +207,20 @@ FoxtrickPlayerFilters = {
 								Foxtrick.removeClass(lastCategory, "hidden");
 							}
 						}
-						lastCategory = div;
+						lastCategory = elem;
 						hideCategory = true;
 					}
-					else if (Foxtrick.hasClass(div, "faceCard")) {
-						lastFace = div;
+					else if (Foxtrick.hasClass(elem, "faceCard")) {
+						lastFace = elem;
 					}
-					else if (Foxtrick.hasClass(div, "playerInfo")) {
-						if (div.getAttribute(filter) === "true") {
-							Foxtrick.removeClass(div, "hidden");
+					else if (Foxtrick.hasClass(elem, "playerInfo")) {
+						if (elem.getAttribute(filter) === "true") {
+							Foxtrick.removeClass(elem, "hidden");
 							hide = false;
 							hideCategory = false;
 						}
 						else {
-							Foxtrick.addClass(div, "hidden");
+							Foxtrick.addClass(elem, "hidden");
 							hide = true;
 						}
 						if (lastFace) {
@@ -235,19 +235,19 @@ FoxtrickPlayerFilters = {
 							++count;
 						}
 					}
-					else if (Foxtrick.hasClass(div, "borderSeparator")
-						|| Foxtrick.hasClass(div, "separator")
-						|| Foxtrick.hasClass(div, "youthnotes")) {
+					else if (Foxtrick.hasClass(elem, "borderSeparator")
+						|| Foxtrick.hasClass(elem, "separator")
+						|| Foxtrick.hasClass(elem, "youthnotes")) {
 						if (hide === true) {
-							Foxtrick.addClass(div, "hidden");
+							Foxtrick.addClass(elem, "hidden");
 						}
 						else {
-							Foxtrick.removeClass(div, "hidden");
+							Foxtrick.removeClass(elem, "hidden");
 						}
 					}
-					if (Foxtrick.hasClass(div, "borderSeparator")
-						|| Foxtrick.hasClass(div, "separator")) {
-						lastborderSeparator = div;
+					if (Foxtrick.hasClass(elem, "borderSeparator")
+						|| Foxtrick.hasClass(elem, "separator")) {
+						lastborderSeparator = elem;
 					}
 				}
 				if (lastCategory) {
