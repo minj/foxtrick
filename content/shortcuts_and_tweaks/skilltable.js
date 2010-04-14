@@ -270,7 +270,7 @@ var FoxtrickSkillTable = {
 			}
 
 			var customizeTable = FoxtrickSkillTable.createCustomizeTable(columns, doc);
-			Foxtrick.addClass(customizeTable, "ft_hidden");
+			Foxtrick.addClass(customizeTable, "hidden");
 
 			var table = doc.createElement("table");
 			table.id = "ft_skilltable";
@@ -476,15 +476,15 @@ var FoxtrickSkillTable = {
 			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 			if (show) {
 				// show the objects
-				Foxtrick.removeClass(links, "ft_hidden");
-				Foxtrick.removeClass(container, "ft_hidden");
+				Foxtrick.removeClass(links, "hidden");
+				Foxtrick.removeClass(container, "hidden");
 			}
 			else {
 				// hide the objects
 				Foxtrick.removeClass(links, "customizing");
-				Foxtrick.addClass(links, "ft_hidden");
-				Foxtrick.addClass(customizeTable, "ft_hidden");
-				Foxtrick.addClass(container, "ft_hidden");
+				Foxtrick.addClass(links, "hidden");
+				Foxtrick.addClass(customizeTable, "hidden");
+				Foxtrick.addClass(container, "hidden");
 			}
 		}
 		catch (e) {
@@ -508,10 +508,10 @@ var FoxtrickSkillTable = {
 		Foxtrick.addClass(links, "customizing");
 
 		var customizeTable = doc.getElementsByClassName("ft_skilltable_customizetable")[0];
-		Foxtrick.removeClass(customizeTable, "ft_hidden");
+		Foxtrick.removeClass(customizeTable, "hidden");
 
 		var container = doc.getElementsByClassName("ft_skilltable_container")[0];
-		Foxtrick.addClass(container, "ft_hidden");
+		Foxtrick.addClass(container, "hidden");
 	},
 
 	save : function(ev) {
@@ -539,8 +539,8 @@ var FoxtrickSkillTable = {
 			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
 			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 			Foxtrick.removeClass(links, "customizing");
-			Foxtrick.addClass(customizeTable, "ft_hidden");
-			Foxtrick.removeClass(container, "ft_hidden");
+			Foxtrick.addClass(customizeTable, "hidden");
+			Foxtrick.removeClass(container, "hidden");
 		}
 		catch(e) {
 			Foxtrick.dumpError(e);
@@ -562,7 +562,7 @@ var FoxtrickSkillTable = {
 		// links
 		var links = doc.createElement("div");
 		links.className = "ft_skilltable_links";
-		Foxtrick.addClass(links, "ft_hidden");
+		Foxtrick.addClass(links, "hidden");
 		// links: copy
 		var copy = doc.createElement("a");
 		copy.className = "customize_item secondary";
@@ -595,7 +595,7 @@ var FoxtrickSkillTable = {
 		// table container
 		var container = doc.createElement("div");
 		container.className = "ft_skilltable_container";
-		Foxtrick.addClass(container, "ft_hidden");
+		Foxtrick.addClass(container, "hidden");
 		// table container: switch view
 		var switchView = doc.createElement("div");
 		var switchViewLink = doc.createElement("a");

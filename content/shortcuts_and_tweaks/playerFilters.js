@@ -170,7 +170,7 @@ FoxtrickPlayerFilters = {
 					for (var i = 0; i < allDivs.length; ++i) {
 						var div = allDivs[i];
 						if (Foxtrick.hasClass(div, "faceCard")) {
-							Foxtrick.removeClass(div, "ft_hidden");
+							Foxtrick.removeClass(div, "hidden");
 						}
 						else if (Foxtrick.hasClass(div, "category")
 							|| Foxtrick.hasClass(div, "playerInfo")
@@ -178,7 +178,7 @@ FoxtrickPlayerFilters = {
 							|| Foxtrick.hasClass(div, "separator")
 							|| Foxtrick.hasClass(div, "youthnotes")) {
 							// these are attached infomation divisions
-							Foxtrick.addClass(div, "ft_hidden");
+							Foxtrick.addClass(div, "hidden");
 						}
 					}
 
@@ -201,10 +201,10 @@ FoxtrickPlayerFilters = {
 					if (Foxtrick.hasClass(div, "category")) {
 						if (lastCategory) {
 							if (hideCategory == true) {
-								Foxtrick.addClass(lastCategory, "ft_hidden");
+								Foxtrick.addClass(lastCategory, "hidden");
 							}
 							else {
-								Foxtrick.removeClass(lastCategory, "ft_hidden");
+								Foxtrick.removeClass(lastCategory, "hidden");
 							}
 						}
 						lastCategory = div;
@@ -215,20 +215,20 @@ FoxtrickPlayerFilters = {
 					}
 					else if (Foxtrick.hasClass(div, "playerInfo")) {
 						if (div.getAttribute(filter) === "true") {
-							Foxtrick.removeClass(div, "ft_hidden");
+							Foxtrick.removeClass(div, "hidden");
 							hide = false;
 							hideCategory = false;
 						}
 						else {
-							Foxtrick.addClass(div, "ft_hidden");
+							Foxtrick.addClass(div, "hidden");
 							hide = true;
 						}
 						if (lastFace) {
 							if (hide) {
-								Foxtrick.addClass(lastFace, "ft_hidden");
+								Foxtrick.addClass(lastFace, "hidden");
 							}
 							else {
-								Foxtrick.removeClass(lastFace, "ft_hidden");
+								Foxtrick.removeClass(lastFace, "hidden");
 							}
 						}
 						if (!hide) {
@@ -239,10 +239,10 @@ FoxtrickPlayerFilters = {
 						|| Foxtrick.hasClass(div, "separator")
 						|| Foxtrick.hasClass(div, "youthnotes")) {
 						if (hide === true) {
-							Foxtrick.addClass(div, "ft_hidden");
+							Foxtrick.addClass(div, "hidden");
 						}
 						else {
-							Foxtrick.removeClass(div, "ft_hidden");
+							Foxtrick.removeClass(div, "hidden");
 						}
 					}
 					if (Foxtrick.hasClass(div, "borderSeparator")
@@ -252,10 +252,10 @@ FoxtrickPlayerFilters = {
 				}
 				if (lastCategory) {
 					if (hideCategory === true) {
-						Foxtrick.addClass(lastCategory, "ft_hidden");
+						Foxtrick.addClass(lastCategory, "hidden");
 					}
 					else {
-						Foxtrick.removeClass(lastCategory, "ft_hidden");
+						Foxtrick.removeClass(lastCategory, "hidden");
 					}
 				}
 			}
