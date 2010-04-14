@@ -699,12 +699,9 @@ Foxtrick.hasClass = function(obj, cls) {
 }
 
 Foxtrick.addClass = function(obj, cls) {
-	if (obj.className) {
-		obj.className += " " + cls;
-	}
-	else {
-		obj.className = cls;
-	}
+	var classes = Foxtrick.getClasses(obj);
+	classes.push(cls);
+	Foxtrick.setClasses(obj, classes);
 }
 
 Foxtrick.removeClass = function(obj, cls) {
@@ -2049,6 +2046,7 @@ Foxtrick.dump = function(cnt) {
 
 Foxtrick.dumpError = function(error) {
 	Foxtrick.dump(error.fileName + "(" + error.lineNumber + "): " + error + "\n");
+	Foxtrick.dump("Stack trace:\n" + error.stack + "\n\n");
 }
 
 
