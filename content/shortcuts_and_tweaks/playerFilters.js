@@ -184,9 +184,23 @@ FoxtrickPlayerFilters = {
 
 					// Face cards are floated to the left, so we need a
 					// cleaner to maintain the container's length.
+					var container = faceCards[0].parentNode;
 					var cleaner = doc.createElement("div");
-					cleaner.style.clear = "both";
-					faceCards[0].parentNode.appendChild(cleaner);
+					cleaner.className = "clear";
+					if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)
+						&& !Foxtrick.Pages.Players.isNtPlayersPage(doc)
+						&& !Foxtrick.Pages.Players.isOldiesPage(doc)
+						&& !Foxtrick.Pages.Players.isCoachesPage(doc)) {
+						// If it's normal senior players list, there is an
+						// a element in the bottom for navigating back to top,
+						// and the cleaner should be inserted before it.
+						var containerLinks = container.getElementsByTagName("a");
+						var backTopAnchor = containerLinks[containerLinks.length - 1];
+						container.insertBefore(cleaner, backTopAnchor);
+					}
+					else {
+						container.appendChild(cleaner);
+					}
 				}
 			}
 			else {
