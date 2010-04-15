@@ -67,18 +67,6 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="extra inner midfield" />
-		<reposition type="centraldefender" value="extra central defender" />
-		<reposition type="forward" value="extra forward" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="offensive" />
-		<reposition type="defensive" value="defensive" />
-		<reposition type="towardsmiddle" value="towards middle" />
-		<reposition type="towardswing" value="towards wing" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divine" value="20" />
@@ -156,18 +144,6 @@
 		<specialty type="Head" value="Гульня галавою" short="Гг" />
 		<specialty type="Regainer" value="Адраджэнец" short="Ад" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Дадатковы паўабаронца" />
-		<reposition type="centraldefender" value="Дадатковы Абаронца" />
-		<reposition type="forward" value="Дадатковы форвард" />
-		<reposition type="normal" value="Нармальны" />
-		<reposition type="offensive" value="Атакуючы" />
-		<reposition type="defensive" value="Абарончы" />
-		<reposition type="towardsmiddle" value="Да цэнтру" />
-		<reposition type="towardswing" value="Да краёў" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -247,18 +223,6 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Доп. полузащитник" />
-		<reposition type="centraldefender" value="Доп. защитник" />
-		<reposition type="forward" value="Доп. нападател" />
-		<reposition type="normal" value="Нормално" />
-		<reposition type="offensive" value="Атакуващо" />
-		<reposition type="defensive" value="Защитно" />
-		<reposition type="towardsmiddle" value="Към средата" />
-		<reposition type="towardswing" value="Към крилата" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божествено" value="20" />
@@ -336,18 +300,6 @@
 		<specialty type="Head" value="Glavonja" short="Gl" />
 		<specialty type="Regainer" value="Nesalomljiv" short="Ns" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="Kao vezni" />
-		<reposition type="centraldefender" value="Kao odbrambeni" />
-		<reposition type="forward" value="Kao napadač" />
-		<reposition type="normal" value="Normalno" />
-		<reposition type="offensive" value="Ofanzivno" />
-		<reposition type="defensive" value="Defanzivno" />
-		<reposition type="towardsmiddle" value="Prema sredini" />
-		<reposition type="towardswing" value="Prema krilu" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -427,18 +379,6 @@
 		<specialty type="Regainer" value="Cura ràpida" short="CR" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="Extra mig centre" />
-		<reposition type="centraldefender" value="Extra defensa central" />
-		<reposition type="forward" value="Extra davanter" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Ofensiu" />
-		<reposition type="defensive" value="Defensiu" />
-		<reposition type="towardsmiddle" value="Cap al mig" />
-		<reposition type="towardswing" value="Cap a la banda" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="diví" value="20" />
@@ -516,18 +456,6 @@
 		<specialty type="Head" value="Hlavičkář" short="He" />
 		<specialty type="Regainer" value="Nezmar" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="střední záložník" />
-		<reposition type="centraldefender" value="střední obránce" />
-		<reposition type="forward" value="útočník" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="ofenzivní" />
-		<reposition type="defensive" value="defenzivní" />
-		<reposition type="towardsmiddle" value="hrající na střed" />
-		<reposition type="towardswing" value="hrající na křídlo" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -607,18 +535,6 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Ekstra midtbane" />
-		<reposition type="centraldefender" value="Ekstra forsvar" />
-		<reposition type="forward" value="Ekstra angreb" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="Offensiv" />
-		<reposition type="defensive" value="Defensiv" />
-		<reposition type="towardsmiddle" value="Ind mod midten" />
-		<reposition type="towardswing" value="Ud mod fløjen" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="guddommelig" value="20" />
@@ -696,18 +612,6 @@
 		<specialty type="Head" value="Kopfballstärke" short="Ko" />
 		<specialty type="Regainer" value="Geneser" short="Ge" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="zusätzl. mittelfeld" />
-		<reposition type="centraldefender" value="zusätzl. innenvert." />
-		<reposition type="forward" value="zusätzl. stürmer" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="offensiv" />
-		<reposition type="defensive" value="defensiv" />
-		<reposition type="towardsmiddle" value="zur mitte hin" />
-		<reposition type="towardswing" value="nach außen" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -787,18 +691,6 @@
 		<specialty type="Regainer" value="Elujõuline" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Lisakeskpoolkaitsja" />
-		<reposition type="centraldefender" value="Lisakeskkaitsja" />
-		<reposition type="forward" value="Lisaründaja" />
-		<reposition type="normal" value="Tavaline" />
-		<reposition type="offensive" value="Ründav" />
-		<reposition type="defensive" value="Kaitsev" />
-		<reposition type="towardsmiddle" value="Keskele" />
-		<reposition type="towardswing" value="Ääre suunas" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jumalik" value="20" />
@@ -876,18 +768,6 @@
 		<specialty type="Head" value="Cabeceador" short="Ca" />
 		<specialty type="Regainer" value="Recuperarse" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="extra medio central" />
-		<reposition type="centraldefender" value="extra defensor central" />
-		<reposition type="forward" value="extra delantero" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="ofensivo" />
-		<reposition type="defensive" value="defensivo" />
-		<reposition type="towardsmiddle" value="hacia medio" />
-		<reposition type="towardswing" value="hacia el lateral" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -967,18 +847,6 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Extra Medio Central" />
-		<reposition type="centraldefender" value="Extra Defensor Central" />
-		<reposition type="forward" value="Extra Delantero" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Ofensivo" />
-		<reposition type="defensive" value="Defensivo" />
-		<reposition type="towardsmiddle" value="Hacia Medio" />
-		<reposition type="towardswing" value="Hacia Lateral" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />
@@ -1056,18 +924,6 @@
 		<specialty type="Head" value="Cabeceador" short="Ca" />
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="extra medio central" />
-		<reposition type="centraldefender" value="extra defensor central" />
-		<reposition type="forward" value="extra delantero" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Ofensivo" />
-		<reposition type="defensive" value="Defensivo" />
-		<reposition type="towardsmiddle" value="Hacia medio" />
-		<reposition type="towardswing" value="Hacia el lateral" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -1147,18 +1003,6 @@
 		<specialty type="Regainer" value="Sendaerraza" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Estra erdilaria"/>
-		<reposition type="centraldefender" value="Estra atzelaria"/>
-		<reposition type="forward" value="Estra aurrelaria"/>
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Erasokor" />
-		<reposition type="defensive" value="Defentsibo" />
-		<reposition type="towardsmiddle" value="Erdirantz" />
-		<reposition type="towardswing" value="Hegalerantz" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jainkotiarra" value="20" />
@@ -1236,18 +1080,6 @@
 		<specialty type="Head" value="Head" short="He" />
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="هافیک وسط اضافه" />
-		<reposition type="centraldefender" value="مدافع وسط اضافه" />
-		<reposition type="forward" value="مهاجم اضافه" />
-		<reposition type="normal" value="عادی" />
-		<reposition type="offensive" value="تهاجمی" />
-		<reposition type="defensive" value="تدافعی" />
-		<reposition type="towardsmiddle" value="به سمت وسط" />
-		<reposition type="towardswing" value="به سمت جناحین" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -1327,18 +1159,6 @@
 		<specialty type="Regainer" value="Toipuja" short="To" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="lisäkeskikenttäpelaaja" />
-		<reposition type="centraldefender" value="keskuspuolustaja" />
-		<reposition type="forward" value="lisähyökkääjä" />
-		<reposition type="normal" value="normaali" />
-		<reposition type="offensive" value="hyökkäävä" />
-		<reposition type="defensive" value="puolustava" />
-		<reposition type="towardsmiddle" value="tukee keskustaa" />
-		<reposition type="towardswing" value="tukee laitaa" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jumalainen" value="20" />
@@ -1416,18 +1236,6 @@
 		<specialty type="Head" value="Joueur de tête" short="He" />
 		<specialty type="Regainer" value="Guérison accéléréé" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="milieu" />
-		<reposition type="centraldefender" value="défenseur" />
-		<reposition type="forward" value="attaquant" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="offensif" />
-		<reposition type="defensive" value="défensif" />
-		<reposition type="towardsmiddle" value="vers le centre" />
-		<reposition type="towardswing" value="sur l&#39;aile" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -1507,18 +1315,6 @@
 		<specialty type="Regainer" value="Svelt a vuarî" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Centricjampist" />
-		<reposition type="centraldefender" value="Difensôr Centrâl" />
-		<reposition type="forward" value="Tacant" />
-		<reposition type="normal" value="Normâl" />
-		<reposition type="offensive" value="Ofensîf" />
-		<reposition type="defensive" value="Difensîf" />
-		<reposition type="towardsmiddle" value="Viers il mieç" />
-		<reposition type="towardswing" value="Viers la fasse" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divin" value="20" />
@@ -1596,18 +1392,6 @@
 		<specialty type="Head" value="Koppe" short="He" />
 		<specialty type="Regainer" value="Snelle hersteller" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="ekstra sintrale middenfjilder" />
-		<reposition type="centraldefender" value="ekstra sintrale ferdigener" />
-		<reposition type="forward" value="ekstra oanfaller" />
-		<reposition type="normal" value="normaal" />
-		<reposition type="offensive" value="oanfallend" />
-		<reposition type="defensive" value="ferdigenjend" />
-		<reposition type="towardsmiddle" value="nei it midden" />
-		<reposition type="towardswing" value="nei de wjuk" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -1687,18 +1471,6 @@
 		<specialty type="Regainer" value="Baril" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Extra Mediocentro" />
-		<reposition type="centraldefender" value="Extra Defensa Central" />
-		<reposition type="forward" value="Extra Dianteiro" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Ofensivo" />
-		<reposition type="defensive" value="Defensivo" />
-		<reposition type="towardsmiddle" value="Cara ao Medio" />
-		<reposition type="towardswing" value="Cara á Banda" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />
@@ -1776,18 +1548,6 @@
 		<specialty type="Head" value="Κεφαλιά" short="He" />
 		<specialty type="Regainer" value="Ταχυθεραπεύσιμος" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Εξτρα Κεντρικός Μέσος" />
-		<reposition type="centraldefender" value="Εξτρα Κεντρικός Αμυντικός" />
-		<reposition type="forward" value="Εξτρα Επιθετικός" />
-		<reposition type="normal" value="Φυσιολογικά" />
-		<reposition type="offensive" value="Επιθετικά" />
-		<reposition type="defensive" value="Αμυντικά" />
-		<reposition type="towardsmiddle" value="Προς το Κέντρο" />
-		<reposition type="towardswing" value="Προς τα Πλάγια" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -1867,18 +1627,6 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="קשר נוסף" />
-		<reposition type="centraldefender" value="בלם נוסף" />
-		<reposition type="forward" value="חלוץ נוסף" />
-		<reposition type="normal" value="רגיל" />
-		<reposition type="offensive" value="התקפי" />
-		<reposition type="defensive" value="הגנתי" />
-		<reposition type="towardsmiddle" value="לכיוון האמצע" />
-		<reposition type="towardswing" value="לכיוון האגף" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divine" value="20" />
@@ -1956,18 +1704,6 @@
 		<specialty type="Head" value="Igra glavom" short="He" />
 		<specialty type="Regainer" value="Brži oporavak" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="dodatni vezni" />
-		<reposition type="centraldefender" value="dodatni branič" />
-		<reposition type="forward" value="dodatni napadač" />
-		<reposition type="normal" value="normalno" />
-		<reposition type="offensive" value="isturen" />
-		<reposition type="defensive" value="povučen" />
-		<reposition type="towardsmiddle" value="prema sredini" />
-		<reposition type="towardswing" value="prema krilu" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -2047,18 +1783,6 @@
 		<specialty type="Regainer" value="Szívós" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="extra középpályás" />
-		<reposition type="centraldefender" value="extra középhátvéd" />
-		<reposition type="forward" value="extra csatár" />
-		<reposition type="normal" value="alap" />
-		<reposition type="offensive" value="támadó" />
-		<reposition type="defensive" value="védekező" />
-		<reposition type="towardsmiddle" value="közép felé" />
-		<reposition type="towardswing" value="szélre" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="isteni" value="20" />
@@ -2136,18 +1860,6 @@
 		<specialty type="Head" value="Colpo di testa" short="CdT" />
 		<specialty type="Regainer" value="Guarigione Veloce" short="GV" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="centrocampista aggiunto" />
-		<reposition type="centraldefender" value="difensore aggiunto" />
-		<reposition type="forward" value="attaccante aggiunto" />
-		<reposition type="normal" value="normale" />
-		<reposition type="offensive" value="offensivo" />
-		<reposition type="defensive" value="difensivo" />
-		<reposition type="towardsmiddle" value="verso il centro" />
-		<reposition type="towardswing" value="verso l&#39;ala" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -2227,18 +1939,6 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="extra inner midfield" />
-		<reposition type="centraldefender" value="extra central defender" />
-		<reposition type="forward" value="extra forward" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="offensive" />
-		<reposition type="defensive" value="defensive" />
-		<reposition type="towardsmiddle" value="towards middle" />
-		<reposition type="towardswing" value="towards wing" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="ღვთაებრივი" value="20" />
@@ -2316,18 +2016,6 @@
 		<specialty type="Head" value="kappballstaark" short="He" />
 		<specialty type="Regainer" value="Gesondheetswonner" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="Zous. zentr. Mëttelf." />
-		<reposition type="centraldefender" value="Zous. zentr. Vert." />
-		<reposition type="forward" value="Zous. Stiermer" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Offensiv" />
-		<reposition type="defensive" value="Defensiv" />
-		<reposition type="towardsmiddle" value="an d&#39;Mëtt" />
-		<reposition type="towardswing" value="no baussen" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -2407,18 +2095,6 @@
 		<specialty type="Regainer" value="Atsigaunantis" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="papildomas saugas" />
-		<reposition type="centraldefender" value="papildomas gynėjas" />
-		<reposition type="forward" value="papildomas puolėjas" />
-		<reposition type="normal" value="normalus" />
-		<reposition type="offensive" value="puolantis" />
-		<reposition type="defensive" value="besiginantis" />
-		<reposition type="towardsmiddle" value="link vidurio" />
-		<reposition type="towardswing" value="link krašto" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="dieviškas" value="20" />
@@ -2496,18 +2172,6 @@
 		<specialty type="Head" value="Spēle ar galvu" short="He" />
 		<specialty type="Regainer" value="Atguvējs" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Kā pussargs" />
-		<reposition type="centraldefender" value="Kā centra aizsargs" />
-		<reposition type="forward" value="Kā uzbrucējs" />
-		<reposition type="normal" value="Normāli" />
-		<reposition type="offensive" value="Vairāk uzbrukumā" />
-		<reposition type="defensive" value="Vairāk aizsardzībā" />
-		<reposition type="towardsmiddle" value="Vairāk uz centru" />
-		<reposition type="towardswing" value="Vairāk uz flangu" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -2587,18 +2251,6 @@
 		<specialty type="Regainer" value="Нескршлив" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Додатен Играч во Средина" />
-		<reposition type="centraldefender" value="Додатен Одбрамбен" />
-		<reposition type="forward" value="Додатен Напаѓач" />
-		<reposition type="normal" value="Нормално" />
-		<reposition type="offensive" value="Офанзивно" />
-		<reposition type="defensive" value="Дефанзивно" />
-		<reposition type="towardsmiddle" value="Према Средина" />
-		<reposition type="towardswing" value="Према Крило" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божествен" value="20" />
@@ -2676,18 +2328,6 @@
 		<specialty type="Head" value="Ras" short="He" />
 		<specialty type="Regainer" value="Akkwistatur" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="Midfielder ċentrali ieħor" />
-		<reposition type="centraldefender" value="Difensur ċentrali ieħor" />
-		<reposition type="forward" value="Attakkant ieħor" />
-		<reposition type="normal" value="Normali" />
-		<reposition type="offensive" value="Offensiv" />
-		<reposition type="defensive" value="Difensiv" />
-		<reposition type="towardsmiddle" value="Lejn in-Nofs" />
-		<reposition type="towardswing" value="Lejn il-Linja" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -2767,18 +2407,6 @@
 		<specialty type="Regainer" value="Snel herstel" short="He" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="extra centrale middenvelder" />
-		<reposition type="centraldefender" value="extra centrale verdediger" />
-		<reposition type="forward" value="extra aanvaller" />
-		<reposition type="normal" value="normaal" />
-		<reposition type="offensive" value="aanvallend" />
-		<reposition type="defensive" value="verdedigend" />
-		<reposition type="towardsmiddle" value="naar het midden" />
-		<reposition type="towardswing" value="naar de vleugel" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="goddelijk" value="20" />
@@ -2856,18 +2484,6 @@
 		<specialty type="Head" value="Koppen" short="He" />
 		<specialty type="Regainer" value="Kwikzalver" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="extra middenvelder" />
-		<reposition type="centraldefender" value="extra centrale verdediger" />
-		<reposition type="forward" value="extra aanvaller" />
-		<reposition type="normal" value="normaal" />
-		<reposition type="offensive" value="aanvallen" />
-		<reposition type="defensive" value="verdedigen" />
-		<reposition type="towardsmiddle" value="naar het midden" />
-		<reposition type="towardswing" value="naar de flank" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -2947,18 +2563,6 @@
 		<specialty type="Regainer" value="Friskus" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Ekstra midtbanespiller" />
-		<reposition type="centraldefender" value="Ekstra midtstopper" />
-		<reposition type="forward" value="Ekstra spiss" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Offensiv" />
-		<reposition type="defensive" value="Defensiv" />
-		<reposition type="towardsmiddle" value="Mot midten" />
-		<reposition type="towardswing" value="Mot kanten" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="guddommelig" value="20" />
@@ -3036,18 +2640,6 @@
 		<specialty type="Head" value="gra głową" short="He" />
 		<specialty type="Regainer" value="witalny" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Ekstra środ. pomocnik" />
-		<reposition type="centraldefender" value="Ekstra środ. obrońca" />
-		<reposition type="forward" value="Ekstra napastnik" />
-		<reposition type="normal" value="Normalny" />
-		<reposition type="offensive" value="Ofensywny" />
-		<reposition type="defensive" value="Defensywny" />
-		<reposition type="towardsmiddle" value="Do środka" />
-		<reposition type="towardswing" value="Na skrzydło" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -3127,18 +2719,6 @@
 		<specialty type="Regainer" value="Reabilitação" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="médio centro extra" />
-		<reposition type="centraldefender" value="defesa central extra" />
-		<reposition type="forward" value="avançado extra" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="ofensivo" />
-		<reposition type="defensive" value="defensivo" />
-		<reposition type="towardsmiddle" value="descair para o meio" />
-		<reposition type="towardswing" value="descair para a ala" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="lendário" value="20" />
@@ -3216,18 +2796,6 @@
 		<specialty type="Head" value="Cabeceio" short="He" />
 		<specialty type="Regainer" value="Cura Rápida" short="Re" />
 	</specialties>
-	
-	<!-- Reposionamentos que aparecem na página de escalação -->
-	<repositioning>
-		<reposition type="midfielder" value="Meio-campo extra"/>
-		<reposition type="centraldefender" value="Zagueiro extra"/>
-		<reposition type="forward" value="Atacante extra"/>
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Ofensivo" />
-		<reposition type="defensive" value="Defensivo" />
-		<reposition type="towardsmiddle" value="Para o meio" />
-		<reposition type="towardswing" value="Para a lateral" />
-	</repositioning>
 	
 	<!-- Habilidades -->
 	<levels>
@@ -3307,18 +2875,6 @@
 		<specialty type="Regainer" value="Recuperare" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Mijlocaş adiţional" />
-		<reposition type="centraldefender" value="Fundaş central adiţional" />
-		<reposition type="forward" value="Atacant adiţional" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Ofensiv" />
-		<reposition type="defensive" value="Defensiv" />
-		<reposition type="towardsmiddle" value="Spre centru" />
-		<reposition type="towardswing" value="Spre flanc" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divin" value="20" />
@@ -3396,18 +2952,6 @@
 		<specialty type="Head" value="Игра головой" short="Иг" />
 		<specialty type="Regainer" value="Крепкое здоровье" short="Зд" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Экстра Полузащитник" />
-		<reposition type="centraldefender" value="Экстра Защитник" />
-		<reposition type="forward" value="Экстра Нападающий" />
-		<reposition type="normal" value="Нормально" />
-		<reposition type="offensive" value="Атакующий" />
-		<reposition type="defensive" value="Оборонительный" />
-		<reposition type="towardsmiddle" value="Смещенный к центру" />
-		<reposition type="towardswing" value="Смещенный к флангу" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -3487,18 +3031,6 @@
 		<specialty type="Regainer" value="Nezmar" short="Nez" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="záložník naviac" />
-		<reposition type="centraldefender" value="obranca naviac" />
-		<reposition type="forward" value="útočník naviac" />
-		<reposition type="normal" value="normálna taktika" />
-		<reposition type="offensive" value="ofenzívny" />
-		<reposition type="defensive" value="defenzívny" />
-		<reposition type="towardsmiddle" value="viac do stredu" />
-		<reposition type="towardswing" value="viac na kraj" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="božský" value="20" />
@@ -3576,18 +3108,6 @@
 		<specialty type="Head" value="Igra z glavo" short="He" />
 		<specialty type="Regainer" value="Hitreje okreva" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="dodatni vezist" />
-		<reposition type="centraldefender" value="dodatni srednji branilec" />
-		<reposition type="forward" value="dodatni napadalec" />
-		<reposition type="normal" value="običajno" />
-		<reposition type="offensive" value="napadalno" />
-		<reposition type="defensive" value="obrambno" />
-		<reposition type="towardsmiddle" value="proti sredini" />
-		<reposition type="towardswing" value="proti krilu" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -3667,18 +3187,6 @@
 		<specialty type="Regainer" value="Ripërtëritës" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Mesfushor Tjetër Qëndre" />
-		<reposition type="centraldefender" value="Mbrojtës Tjetër Qëndre" />
-		<reposition type="forward" value="Sulmues Tjetër" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="I avancuar" />
-		<reposition type="defensive" value="I tërhequr" />
-		<reposition type="towardsmiddle" value="Drejt Qëndrës" />
-		<reposition type="towardswing" value="Drejt Krahut" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="hyjnor" value="20" />
@@ -3756,18 +3264,6 @@
 		<specialty type="Head" value="Игра главом" short="Иг" />
 		<specialty type="Regainer" value="Регенерисање" short="Ре" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="Екстра везни играч" />
-		<reposition type="centraldefender" value="Екстра штопер" />
-		<reposition type="forward" value="Екстра нападач" />
-		<reposition type="normal" value="Нормално" />
-		<reposition type="offensive" value="Офанзиван" />
-		<reposition type="defensive" value="Дефанзиван" />
-		<reposition type="towardsmiddle" value="Према средини" />
-		<reposition type="towardswing" value="Према крилу" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -3847,18 +3343,6 @@
 		<specialty type="Regainer" value="Återhämtare" short="Åt" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="extra innermitt" />
-		<reposition type="centraldefender" value="extra innerback" />
-		<reposition type="forward" value="extra forward" />
-		<reposition type="normal" value="normal" />
-		<reposition type="offensive" value="offensiv" />
-		<reposition type="defensive" value="defensiv" />
-		<reposition type="towardsmiddle" value="in i mitten" />
-		<reposition type="towardswing" value="ut på kanten" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="gudomlig" value="20" />
@@ -3936,18 +3420,6 @@
 		<specialty type="Head" value="Kafa" short="He" />
 		<specialty type="Regainer" value="Çabuk İyileşen" short="Re" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="Ekstra İç Ortasaha" />
-		<reposition type="centraldefender" value="Ekstra Stoper" />
-		<reposition type="forward" value="Ekstra Forvet" />
-		<reposition type="normal" value="Normal" />
-		<reposition type="offensive" value="Ofansif" />
-		<reposition type="defensive" value="Defansif" />
-		<reposition type="towardsmiddle" value="Ortaya Doğru" />
-		<reposition type="towardswing" value="Kanada Doğru" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
@@ -4027,18 +3499,6 @@
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="Дод. півзахисник" />
-		<reposition type="centraldefender" value="Дод. центр. захисник" />
-		<reposition type="forward" value="Дод. нападник" />
-		<reposition type="normal" value="Нормально" />
-		<reposition type="offensive" value="У нападі" />
-		<reposition type="defensive" value="У захисті" />
-		<reposition type="towardsmiddle" value="До центру" />
-		<reposition type="towardswing" value="До краю" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божественний" value="20" />
@@ -4117,18 +3577,6 @@
 		<specialty type="Regainer" value="Hồi phục nhanh" short="Hn" />
 	</specialties>
 	
-	<!-- repositioning word connections appearing in match lineup page -->
-	<repositioning>
-		<reposition type="midfielder" value="Đá tiền vệ trung tâm" />
-		<reposition type="centraldefender" value="Đá hậu vệ" />
-		<reposition type="forward" value="Đá tiền đạo" />
-		<reposition type="normal" value="Bình thường" />
-		<reposition type="offensive" value="Tấn công" />
-		<reposition type="defensive" value="Phòng thủ" />
-		<reposition type="towardsmiddle" value="Bó trung lộ" />
-		<reposition type="towardswing" value="Dạt biên" />
-	</repositioning>
-	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="thần thánh" value="20" />
@@ -4206,18 +3654,6 @@
 		<specialty type="Head" value="头球专家" short="头球" />
 		<specialty type="Regainer" value="不药而愈" short="不药" />
 	</specialties>
-	
-	<!-- repositioning word connections appearing in match lineup page. copy "value" -->
-	<repositioning>
-		<reposition type="midfielder" value="额外中前卫" />
-		<reposition type="centraldefender" value="额外中后卫" />
-		<reposition type="forward" value="额外前锋" />
-		<reposition type="normal" value="常规" />
-		<reposition type="offensive" value="进攻型" />
-		<reposition type="defensive" value="防守型" />
-		<reposition type="towardsmiddle" value="靠中路" />
-		<reposition type="towardswing" value="靠边路" />
-	</repositioning>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
