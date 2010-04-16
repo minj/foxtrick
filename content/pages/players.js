@@ -89,11 +89,6 @@ Foxtrick.Pages.Players = {
 									player.careerGoals = parseInt(careerGoals);
 								}
 							}
-							if (currentXMLPlayer.getElementsByTagName("TransferListed").length) {
-								var transferListed = currentXMLPlayer.getElementsByTagName("TransferListed")[0].textContent;
-								// this would be a Boolean
-								player.transferListed = !(transferListed === "0");
-							}
 							if (currentXMLPlayer.getElementsByTagName("NationalTeamID").length) {
 								// NationalTeamID of the player if he is a NT player, otherwise 0
 								player.nationalTeamId = parseInt(currentXMLPlayer.getElementsByTagName("NationalTeamID")[0].textContent);
@@ -253,6 +248,11 @@ Foxtrick.Pages.Players = {
 				player.yellowCard = 0;
 				player.bruised = false;
 				player.injured = 0;
+				// only senior players can be transfer-listed
+				if (this.isSeniorPlayersPage(doc)) {
+					player.transferListed = false;
+				}
+
 				var imgs = allPlayers[i].getElementsByTagName("img");
 				for (var j = 0; j < imgs.length; ++j) {
 					if (imgs[j].className == "cardsOne") {
@@ -263,14 +263,17 @@ Foxtrick.Pages.Players = {
 							player.yellowCard = 1;
 						}
 					}
-					if (imgs[j].className == "cardsTwo") {
+					else if (imgs[j].className == "cardsTwo") {
 						player.yellowCard = 2;
 					}
-					if (imgs[j].className == "injuryBruised") {
+					else if (imgs[j].className == "injuryBruised") {
 						player.bruised = true;
 					}
-					if (imgs[j].className == "injuryInjured") {
+					else if (imgs[j].className == "injuryInjured") {
 						player.injured = parseInt(imgs[j].nextSibling.innerHTML);
+					}
+					else if (imgs[j].className == "transferListed") {
+						player.transferListed = true;
 					}
 				}
 
