@@ -453,7 +453,7 @@ var FoxtrickSkillTable = {
 			var tablediv = doc.getElementById("ft_skilltablediv");
 
 			if (!FoxtrickSkillTable.isTableCreated(doc)) {
-				FoxtrickSkillTable.createTable(doc);
+				setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);
 			}
 
 			var h2 = tablediv.getElementsByTagName("h2")[0];
