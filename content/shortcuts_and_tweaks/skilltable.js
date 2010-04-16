@@ -384,17 +384,17 @@ var FoxtrickSkillTable = {
 			aContent = a.cells[FoxtrickSkillTable.sortIndex].textContent;
 			bContent = b.cells[FoxtrickSkillTable.sortIndex].textContent;
 		}
+		if (aContent === bContent) {
+			return 0;
+		}
+		// place empty cells at the bottom
+		if (aContent === "" || aContent === null || aContent === undefined) {
+			return 1;
+		}
+		if (bContent === "" || bContent === null || bContent === undefined) {
+			return -1;
+		}
 		if (FoxtrickSkillTable.sortString) {
-			if (aContent === bContent) {
-				return 0;
-			}
-			// place empty cells at the bottom
-			if (aContent === "") {
-				return 1;
-			}
-			if (bContent === "") {
-				return -1;
-			}
 			// always sort by ascending order
 			return aContent.localeCompare(bContent);
 		}
@@ -427,10 +427,10 @@ var FoxtrickSkillTable = {
 
 			var rows = new Array();
 
-			FoxtrickSkillTable.sortByIndex = true;
+			FoxtrickSkillTable.sortByIndex = false;
 			for (var i = 1; i < table.rows.length; ++i) {
-				if (!table_old.rows[i].cells[FoxtrickSkillTable.sortIndex].hasAttribute("index")) {
-					FoxtrickSkillTable.sortByIndex = false;
+				if (table_old.rows[i].cells[FoxtrickSkillTable.sortIndex].hasAttribute("index")) {
+					FoxtrickSkillTable.sortByIndex = true;
 				}
 				rows.push(table_old.rows[i].cloneNode(true));
 			}
