@@ -122,22 +122,12 @@ var FoxtrickSkillTable = {
 				cell.setAttribute("index", number);
 			};
 			var nationality = function(cell, countryId) {
-				var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
-				leagueName = "New Moon";
-				if (leagueId) {
-					leagueName = FoxtrickHelper.getLeagueDataFromId(leagueId).LeagueName;
+				var flag = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
+				if (flag) {
+					cell.appendChild(flag);
+					// League name is a -> img.title
+					cell.setAttribute("index", flag.firstChild.title);
 				}
-				var a = doc.createElement("a");
-				a.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
-				a.className = "flag inner";
-				var img = doc.createElement("img");
-				var style = "vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll " + (-20) * leagueId + "px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
-				img.setAttribute("style", style);
-				img.alt = img.title = leagueName;
-				img.src = "/Img/Icons/transparent.gif";
-				a.appendChild(img);
-				cell.appendChild(a);
-				cell.setAttribute("index", leagueName);
 			};
 			var age = function(cell, age) {
 				cell.appendChild(doc.createTextNode(age.years + "." + age.days));

@@ -83,21 +83,10 @@ FoxtrickExtraPlayerInfo = {
 					if (!isNtPlayer) {
 						// NT players have flags by default, so only need
 						// to add flags for non-NT players
-						var a = doc.createElement("a");
-						var leagueName = "New Moon";
-						var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(player.countryId);
-						if (leagueId) {
-							leagueName = FoxtrickHelper.getLeagueDataFromId(leagueId).LeagueName;
+						var flag = FoxtrickHelper.createFlagFromCountryId(doc, player.countryId);
+						if (flag) {
+							nameLink.parentNode.insertBefore(flag, nameLink.parentNode.firstChild);
 						}
-						a.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
-						a.title = leagueName;
-						a.className = "flag inner";
-						var img = doc.createElement("img");
-						var style = "vertical-align: top; margin-top: 1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*leagueId + "px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
-						img.setAttribute("style", style);
-						img.src = "/Img/Icons/transparent.gif";
-						a.appendChild(img);
-						nameLink.parentNode.insertBefore(a, nameLink.parentNode.firstChild);
 					}
 					else {
 						var style = "background-color: " + this.NT_COLOR + ";";
