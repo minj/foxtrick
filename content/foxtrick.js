@@ -308,8 +308,7 @@ var FoxtrickMain = {
 								fn.run(doc);
 							}
 							catch (e) {
-								Foxtrick.dump("Foxtrick module " + fn.MODULE_NAME + " run() exception: \n" + e + "\n");
-								Components.utils.reportError(e);
+								Foxtrick.dumpError(e);
 							}
 						}, 0);
 					}
@@ -335,8 +334,7 @@ var FoxtrickMain = {
 										}
 									}
 									catch (e) {
-										Foxtrick.dump("Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n");
-										Components.utils.reportError(e);
+										Foxtrick.dumpError(e);
 									}
 								}, 0);
 							}
@@ -2055,6 +2053,7 @@ Foxtrick.dump = function(cnt) {
 Foxtrick.dumpError = function(error) {
 	Foxtrick.dump(error.fileName + "(" + error.lineNumber + "): " + error + "\n");
 	Foxtrick.dump("Stack trace:\n" + error.stack + "\n\n");
+	Components.utils.reportError(error);
 }
 
 
