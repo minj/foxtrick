@@ -249,15 +249,8 @@ var FoxtrickMain = {
             return;
 	},
 
-	// Main entry run on every ht page load
-	// This function is only a wrapper for runImpl, inorder to run FoxTrick
-	// asynchronously.
-	run : function(doc, is_only_css_check) {
-		setTimeout(function() { FoxtrickMain.runImpl(doc, is_only_css_check); }, 0);
-	},
-
-	// This function is the real implementation
-    runImpl : function(doc, is_only_css_check) {
+    // main entry run on every ht page load
+    run : function( doc, is_only_css_check ) {
 	try {
 		//Foxtrick.dump('----- foxtrickmain run. is_only_css_check: '+(is_only_css_check!=null)+'\n');
 
@@ -306,49 +299,57 @@ var FoxtrickMain = {
 			// empty
 			Foxtrick.run_on_cur_page.splice(0,Foxtrick.run_on_cur_page.length);
 
-			// call the modules that want to be run() on every hattrick page
-			Foxtrick.run_every_page.forEach(
-				function( fn ) {
-					try {
-						if (!is_only_css_check) fn.run( doc );
-						//Foxtrick.run_on_cur_page.push({'page':'','module':fn});
-					} catch (e) {
-						Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception: \n  " + e + "\n" );
-						Components.utils.reportError(e);
-					}
-				} );
-
-			// call all modules that registered as page listeners
-			// if their page is loaded
-
-			// find current page index/name and run all handlers for this page
-			for ( var i in Foxtrick.ht_pages ) {
-				if ( Foxtrick.isPage( Foxtrick.ht_pages[i], doc ) ) {
-					// on a specific page, run all handlers
-					Foxtrick.run_on_page[i].forEach(
-						function( fn ) {
+			if (!is_only_css_check) {
+				// call the modules that want to be run() on every hattrick page
+				Foxtrick.run_every_page.forEach(
+					function(fn) {
+						setTimeout(function() {
 							try {
-								//Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() at page " + i + "\n  " );
-								var begin = new Date();
-									if (!is_only_css_check) fn.run( i, doc );
-								var end = new Date();
-								var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
-											+ end.getMilliseconds() - begin.getMilliseconds();
-								if (time>50) Foxtrick.dump("module time: " + time + " ms | " + fn.MODULE_NAME+'\n' );
-							} catch (e) {
-								Foxtrick.dump ( "Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n" );
+								fn.run(doc);
+							}
+							catch (e) {
+								Foxtrick.dump("Foxtrick module " + fn.MODULE_NAME + " run() exception: \n" + e + "\n");
 								Components.utils.reportError(e);
 							}
-						} );
-					Foxtrick.may_run_on_page[i].forEach(
-						function( fn ) {
-								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
-						} );
-				}
-			}
+						}, 0);
+					}
+				);
 
-			// show version number
-			if (!is_only_css_check) {
+				// call all modules that registered as page listeners
+				// if their page is loaded
+
+				// find current page index/name and run all handlers for this page
+				for (var i in Foxtrick.ht_pages) {
+					if (Foxtrick.isPage(Foxtrick.ht_pages[i], doc)) {
+						// on a specific page, run all handlers
+						Foxtrick.run_on_page[i].forEach(
+							function(fn) {
+								setTimeout(function() {
+									try {
+										var begin = new Date();
+										fn.run( i, doc );
+										var end = new Date();
+										var time = (end.getSeconds() - begin.getSeconds()) * 1000 + end.getMilliseconds() - begin.getMilliseconds();
+										if (time > 50) {
+											Foxtrick.dump("module time: " + time + " ms | " + fn.MODULE_NAME+'\n' );
+										}
+									}
+									catch (e) {
+										Foxtrick.dump("Foxtrick module " + fn.MODULE_NAME + " run() exception at page " + i + "\n  " + e + "\n");
+										Components.utils.reportError(e);
+									}
+								}, 0);
+							}
+						);
+						Foxtrick.may_run_on_page[i].forEach(
+							function(fn) {
+								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
+							}
+						);
+					}
+				}
+
+				// show version number
 				var bottom = doc.getElementById("bottom");
 				var server = bottom.getElementsByClassName("currentServer")[0];			
 				server.textContent += " / FoxTrick v" + FoxtrickPrefs.getString("curVersion");
