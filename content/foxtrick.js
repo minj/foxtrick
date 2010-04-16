@@ -303,14 +303,12 @@ var FoxtrickMain = {
 				// call the modules that want to be run() on every hattrick page
 				Foxtrick.run_every_page.forEach(
 					function(fn) {
-						setTimeout(function() {
-							try {
-								fn.run(doc);
-							}
-							catch (e) {
-								Foxtrick.dumpError(e);
-							}
-						}, 0);
+						try {
+							fn.run(doc);
+						}
+						catch (e) {
+							Foxtrick.dumpError(e);
+						}
 					}
 				);
 
@@ -323,20 +321,18 @@ var FoxtrickMain = {
 						// on a specific page, run all handlers
 						Foxtrick.run_on_page[i].forEach(
 							function(fn) {
-								setTimeout(function() {
-									try {
-										var begin = new Date();
-										fn.run( i, doc );
-										var end = new Date();
-										var time = (end.getSeconds() - begin.getSeconds()) * 1000 + end.getMilliseconds() - begin.getMilliseconds();
-										if (time > 50) {
-											Foxtrick.dump("module time: " + time + " ms | " + fn.MODULE_NAME+'\n' );
-										}
+								try {
+									var begin = new Date();
+									fn.run( i, doc );
+									var end = new Date();
+									var time = (end.getSeconds() - begin.getSeconds()) * 1000 + end.getMilliseconds() - begin.getMilliseconds();
+									if (time > 50) {
+										Foxtrick.dump("module time: " + time + " ms | " + fn.MODULE_NAME+'\n' );
 									}
-									catch (e) {
-										Foxtrick.dumpError(e);
-									}
-								}, 0);
+								}
+								catch (e) {
+									Foxtrick.dumpError(e);
+								}
 							}
 						);
 						Foxtrick.may_run_on_page[i].forEach(
