@@ -249,8 +249,15 @@ var FoxtrickMain = {
             return;
 	},
 
-    // main entry run on every ht page load
-    run : function( doc, is_only_css_check ) {
+	// Main entry run on every ht page load
+	// This function is only a wrapper for runImpl, inorder to run FoxTrick
+	// asynchronously.
+	run : function(doc, is_only_css_check) {
+		setTimeout(function() { FoxtrickMain.runImpl(doc, is_only_css_check); }, 0);
+	},
+
+	// This function is the real implementation
+    runImpl : function(doc, is_only_css_check) {
 	try {
 		//Foxtrick.dump('----- foxtrickmain run. is_only_css_check: '+(is_only_css_check!=null)+'\n');
 
