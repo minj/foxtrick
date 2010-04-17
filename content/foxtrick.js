@@ -299,49 +299,64 @@ var FoxtrickMain = {
 			// empty
 			Foxtrick.run_on_cur_page.splice(0,Foxtrick.run_on_cur_page.length);
 
+			// If it's not only a CSS check, we go on to run the modules.
 			if (!is_only_css_check) {
-				// call the modules that want to be run() on every hattrick page
-				Foxtrick.run_every_page.forEach(
-					function(fn) {
+				// We run the modules that want to be run at every page.
+				var i = 0;
+				function iterateEveryPage() {
+					if (i < Foxtrick.run_every_page.length) {
 						try {
-							fn.run(doc);
+							Foxtrick.run_every_page[i].run(doc);
+							++i;
+							// setTimeout() is used here to simulate a thread
+							// for running modules, the 10ms set is used by
+							// the browser for reloading the UI.
+							setTimeout(iterateEveryPage, 10);
 						}
 						catch (e) {
 							Foxtrick.dumpError(e);
 						}
 					}
-				);
+				}
+				iterateEveryPage();
 
-				// call all modules that registered as page listeners
-				// if their page is loaded
-
-				// find current page index/name and run all handlers for this page
-				for (var i in Foxtrick.ht_pages) {
-					if (Foxtrick.isPage(Foxtrick.ht_pages[i], doc)) {
-						// on a specific page, run all handlers
-						Foxtrick.run_on_page[i].forEach(
-							function(fn) {
-								try {
-									var begin = new Date();
-									fn.run( i, doc );
-									var end = new Date();
-									var time = (end.getSeconds() - begin.getSeconds()) * 1000 + end.getMilliseconds() - begin.getMilliseconds();
-									if (time > 50) {
-										Foxtrick.dump("module time: " + time + " ms | " + fn.MODULE_NAME+'\n' );
-									}
-								}
-								catch (e) {
-									Foxtrick.dumpError(e);
-								}
-							}
-						);
-						Foxtrick.may_run_on_page[i].forEach(
-							function(fn) {
-								Foxtrick.run_on_cur_page.push({'page':i,'module':fn});
-							}
-						);
+				// modules stores the modules that will be run on current page.
+				var modules = [];
+				for (var page in Foxtrick.ht_pages) {
+					if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
+						for (var j in Foxtrick.run_on_page[page]) {
+							modules.push({ "page" : page, "module" : Foxtrick.run_on_page[page][j] });
+						}
+						for (var j in Foxtrick.may_run_on_page[page]) {
+							Foxtrick.run_on_cur_page.push({ "page" : page, "module" : Foxtrick.may_run_on_page[page][j] });
+						}
 					}
 				}
+
+				var k = 0;
+				function iteratePage() {
+					if (k < modules.length) {
+						try {
+							var begin = (new Date()).getTime();
+							modules[k]["module"].run(modules[k]["page"], doc);
+							var end = (new Date()).getTime();
+							var diff = end - begin;
+							if (diff > 50) {
+								// Show time used by a module if it's over
+								// 50ms.
+								Foxtrick.dump("Module time: " + diff + "ms | " + modules[k]["module"].MODULE_NAME + "\n");
+							}
+							++k;
+							// This setTimeout is similar to the one called
+							// by iterateEveryPage() above.
+							setTimeout(iteratePage, 10);
+						}
+						catch (e) {
+							Foxtrick.dumpError(e);
+						}
+					}
+				}
+				iteratePage();
 
 				// show version number
 				var bottom = doc.getElementById("bottom");
