@@ -18,7 +18,7 @@ var FoxtrickOnPagePrefs = {
 	},
 
 	run : function(page, doc) {
-		try{
+		try {
 			if (doc.getElementById('ctl00_ucSubMenu_txtUserName')) return;
 			if (doc.getElementById('ctl00_ctl00_pnlAdminMode')) return;
 
@@ -35,20 +35,30 @@ var FoxtrickOnPagePrefs = {
 			var ownBoxBodyId = "foxtrick_OnPagePrefs_inner";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
-			var count=0;
-			for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-				if (!Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY
-					|| Foxtrick.run_on_cur_page[j].page=='all' || Foxtrick.run_on_cur_page[j].page=='all_late'
-					/*|| !Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY=='links'*/ ) continue;
-				var in_list=false;
-				for ( var k=0; k<j; ++k ) {
-					if (Foxtrick.run_on_cur_page[k].module==Foxtrick.run_on_cur_page[j].module) {in_list=true; break;}
+			// To see whether there are any modules that will run on this page.
+			var hasModule = false;
+			for (var page in Foxtrick.ht_pages) {
+				if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
+					if (page == "all" || page == "all_late") {
+						// If they run on all pages, ignore them.
+						continue;
+					}
+					for (var j in Foxtrick.may_run_on_page[page]) {
+						if (Foxtrick.may_run_on_page[page][j].MODULE_CATEGORY) {
+							// Found a module that runs on current page,
+							// no need to search any more.
+							hasModule = true;
+							break;
+						}
+					}
+					if (hasModule) {
+						break;
+					}
 				}
-				if (in_list) continue;
-				++count;
-				//dump (Foxtrick.run_on_cur_page[j].page+' '+Foxtrick.run_on_cur_page[j].module.MODULE_NAME+'\n');
 			}
-			if (count==0) return;
+			if (hasModule === false) {
+				return;
+			}
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
 			//var content=doc.getElementById('idFoxtrickPrefs');
@@ -135,51 +145,77 @@ var FoxtrickOnPagePrefs = {
 					linkdivouter.appendChild(linkdivinner);
 					var linkdiv_count = 0;
 
+					var modules = [];
+					for (var page in Foxtrick.ht_pages) {
+						if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
+							for (var j in Foxtrick.may_run_on_page[page]) {
+								modules.push({ page : page, module : Foxtrick.may_run_on_page[page][j] });
+							}
+						}
+					}
+
 					// modules
 					var modules_entries = new Array();
 					var modules_entries_all = new Array();
 					var modules_entries_links = new Array();
-					for ( var j=0; j<Foxtrick.run_on_cur_page.length; ++j ) {
-						if (!Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY) continue;
-
-						var in_list=false;
-						for ( var k=0; k<j; ++k ) {
-							if (Foxtrick.run_on_cur_page[k].module==Foxtrick.run_on_cur_page[j].module) {in_list=true; break;}
+					for (var j = 0; j < modules.length; ++j) {
+						var module = modules[j].module;
+						var page = modules[j].page;
+						if (!module.MODULE_CATEGORY) {
+							continue;
 						}
-						if (in_list) continue;
+
+						var in_list = false;
+						for (var k = 0; k < j; ++k) {
+							if (modules[k].module == module) {
+								in_list = true;
+								break;
+							}
+						}
+						if (in_list) {
+							continue;
+						}
 
 						// add options
-						var entry = FoxtrickPrefsDialogHTML._normalModule(doc, Foxtrick.run_on_cur_page[j].module,true);
-						if (Foxtrick.run_on_cur_page[j].module.OPTIONS != null) {
-							entry.appendChild(FoxtrickPrefsDialogHTML._checkboxModule(doc, Foxtrick.run_on_cur_page[j].module, entry, true));
+						var entry = FoxtrickPrefsDialogHTML._normalModule(doc, module, true);
+						if (module.OPTIONS != null) {
+							entry.appendChild(FoxtrickPrefsDialogHTML._checkboxModule(doc, module, entry, true));
 						}
-						if (Foxtrick.run_on_cur_page[j].module.RADIO_OPTIONS != null) {
-							entry.appendChild(FoxtrickPrefsDialogHTML._radioModule(doc, Foxtrick.run_on_cur_page[j].module, entry, true));
+						if (module.RADIO_OPTIONS != null) {
+							entry.appendChild(FoxtrickPrefsDialogHTML._radioModule(doc, module, entry, true));
 						}
 
-						if (Foxtrick.run_on_cur_page[j].page=='all' || Foxtrick.run_on_cur_page[j].page=='all_late') {
+						if (page == "all" || page == "all_late") {
 							modules_entries_all.push(entry);
 							++alldiv_count;
 						}
-						else if(Foxtrick.run_on_cur_page[j].module.MODULE_CATEGORY=='links')	{
+						else if (module.MODULE_CATEGORY == "links") {
 							modules_entries_links.push(entry);
 							++linkdiv_count;
 						}
-						else modules_entries.push(entry);
-							ownBoxBody.appendChild( entry );
+						else {
+							modules_entries.push(entry);
+						}
+						ownBoxBody.appendChild(entry);
 					}
 					modules_entries.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
-					for ( var i=0;i<modules_entries.length;++i)	ownBoxBody.appendChild( modules_entries[i] );
-					modules_entries_all.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
-					for ( var i=0;i<modules_entries_all.length;++i)	alldivinner.appendChild( modules_entries_all[i] );
-					modules_entries_links.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
-					for ( var i=0;i<modules_entries_links.length;++i)	linkdivinner.appendChild( modules_entries_links[i] );
-
-					if (linkdiv_count>0) {
-						ownBoxBody.appendChild( linkdivouter );
+					for(var i = 0; i < modules_entries.length; ++i) {
+						ownBoxBody.appendChild(modules_entries[i]);
 					}
-					if (alldiv_count>0) {
-						ownBoxBody.appendChild( alldivouter );
+					modules_entries_all.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+					for (var i = 0; i < modules_entries_all.length; ++i) {
+						alldivinner.appendChild(modules_entries_all[i]);
+					}
+					modules_entries_links.sort(FoxtrickPrefsDialogHTML.entry_sortfunction);
+					for (var i = 0; i < modules_entries_links.length; ++i) {
+						linkdivinner.appendChild(modules_entries_links[i]);
+					}
+
+					if (linkdiv_count > 0) {
+						ownBoxBody.appendChild(linkdivouter);
+					}
+					if (alldiv_count > 0) {
+						ownBoxBody.appendChild(alldivouter);
 					}
 				}
 			}

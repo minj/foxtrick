@@ -21,9 +21,6 @@ Foxtrick.run_on_page = [];
 /*Modules that may! be called on specific hattrick page loads independent one being enanbled or not.*/
 Foxtrick.may_run_on_page = [];
 
-/* temp array  which stored pages that run on currently dispalyed page */
-Foxtrick.run_on_cur_page = [];
-
 /** Core Foxtrick modules, always used.
  * Don't add here unless you have a good reason to. */
 Foxtrick.core_modules = [ FoxtrickPrefs,
@@ -296,9 +293,6 @@ var FoxtrickMain = {
 				}
 			}
 
-			// empty
-			Foxtrick.run_on_cur_page.splice(0,Foxtrick.run_on_cur_page.length);
-
 			// If it's not only a CSS check, we go on to run the modules.
 			if (!is_only_css_check) {
 				// We run the modules that want to be run at every page.
@@ -333,9 +327,6 @@ var FoxtrickMain = {
 							catch (e) {
 								Foxtrick.dumpError(e);
 							}
-						}
-						for (var i in Foxtrick.may_run_on_page[page]) {
-							Foxtrick.run_on_cur_page.push({ "page" : page, "module" : Foxtrick.may_run_on_page[page][i] });
 						}
 					}
 				}
