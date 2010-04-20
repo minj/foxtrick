@@ -1300,14 +1300,19 @@ stats["Wage_Reduction_Calculator"] =  {
 
 //Ht4u - Primary Skill drop Calculator
 stats["Ht4u"] =  { 
-        "url" : "http://ht4u.altervista.org/english.html",
+        "url" : "http://ht4u.altervista.org",
 
-        "playerlink" : { "path"       : "",
-                         "filters"    : ["age"],  
+        "playerlink" : { "path"       : "/index.php",
+                         "filters"    : ["age"],
+                         "params"     : { "lang":"lang", "age" : "age",
+                                          "playmaking" : "pm",
+                                          "passing" : "pass", "winger" : "wi", "defending" : "def",
+                                          "scoring" : "sco", "setpieces":"sp", "wage":"wage"
+										}                        						
                        },
 		"ageranges" : [[27, 99]],
         "title" : "Primary Skill drop Calculator",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/Ht4u.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ht4u.bmp"
 };
 
 stats["ht-u20"] =  { 

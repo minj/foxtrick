@@ -176,7 +176,7 @@ var FoxtrickLinksPlayerDetail = {
 						"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp,"leadership":ls,
 						"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
 						"passing" : passing, "winger" : winger, "defending" : defending,
-						"scoring" : scoring, "setpieces" : setpieces,"wage":wage,"wagebonus":wagebonus,"owncountryid":owncountryid,'deadline':deadline
+						"scoring" : scoring, "setpieces" : setpieces,"wage":wage,"wagebonus":wagebonus,"owncountryid":owncountryid,'deadline':deadline,'lang':FoxtrickPrefs.getString("htLanguage")
 						};
 				links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this); 
 				links[1] = Foxtrick.LinkCollection.getLinks("transfercomparelink", params, doc,this); 
@@ -184,7 +184,7 @@ var FoxtrickLinksPlayerDetail = {
 				} else {
 					params = { "teamid": teamid, "playerid": playerid, "nationality": nationality, 
 								"tsi" : tsi, "age" : age, "age_days":age_days, "form" : form, "exp" : exp, "leadership":ls,
-								"stamina" : stamina, "wage":wage,"wagebonus":wagebonus, "owncountryid":owncountryid };
+								"stamina" : stamina, "wage":wage,"wagebonus":wagebonus, "owncountryid":owncountryid,'lang':FoxtrickPrefs.getString("htLanguage") };
 					links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this); 	
 				}
 				if (goalkeeping > 3) {					
