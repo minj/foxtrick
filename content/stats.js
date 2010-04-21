@@ -2530,7 +2530,6 @@ stats["ht-fff"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htfff.png"
 }; 
 
-
 stats["scouting_mexico"] =  { 
   "url" : "http://www.hattrick.org.mx/SN/",
  
@@ -2565,6 +2564,22 @@ stats["brasileira_tracker"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/brasileira.png"
 };
 
+stats["benintracker"] = { 
+  "url" : "http://htbenin.athost.fr/index.php",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Benin NT/U20 Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[139,139]] ,
+	"nationalityranges" : [[139,139]], 
+};
 
 stats["czechrepublic_nt"] = { 
   "url" : "http://tracker.kiekko.cz/players/submit/",
