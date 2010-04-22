@@ -456,7 +456,7 @@ var FoxtrickCrossTable = {
 				+ "&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF"
 				+ "&chd=t:" + position
 				+ "&chdl=" + teams
-				+ "&chdlp=b";
+				+ "&chdlp=b|l";
 
             // Foxtrick.alert('URL: [' + url + ']\n')
             Foxtrick.dump('\nurl' + url + '\n');
