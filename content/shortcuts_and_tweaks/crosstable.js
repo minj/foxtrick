@@ -167,6 +167,7 @@ var FoxtrickCrossTable = {
 							else if (dummy[0] == names_late[k]) {away = k}
 							else if (dummy[1] == names_late[k]) {home = k; homegame = true;}
 						}
+
                         if (home != -1 && away != -1) {
                                 Foxtrick.dump('dummy: ' +dummy + ' k: ' + k + ' home: <b>' + home + ' away: '+ away + '</b>\n');
                             }
@@ -289,7 +290,7 @@ var FoxtrickCrossTable = {
                             if (y ==0) //teamnames
                                 if (!cutlong) var cnt = doc.createTextNode(cross[x][y])
                                 else {
-                                    // if (cross[x][y].length > cutlong) var dot = '…'; else var dot = '';
+                                    // if (cross[x][y].length > cutlong) var dot = 'Â…'; else var dot = '';
                                     var cnt = doc.createTextNode(cross[x][y].substring(0,cutlong));
                                 }
                             else {
