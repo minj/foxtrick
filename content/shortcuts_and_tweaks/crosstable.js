@@ -14,9 +14,9 @@ var FoxtrickCrossTable = {
     OPTION_TEXTS : true,
     OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1","",""),
     OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"fix (away goals counted twice)",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	NEW_AFTER_VERSION: "0.5.1.3",
+	LATEST_CHANGE : "Let table expand, and show full name in graph.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
     _week : 14,
 
@@ -317,6 +317,8 @@ var FoxtrickCrossTable = {
             }
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
+			/* Graph */
+
             var heading = doc.createElement("h2");
 			heading.id = "ft_head_graph";
 			heading.className = "tblBox";
@@ -351,8 +353,12 @@ var FoxtrickCrossTable = {
                 else {position += (9-week[ii][weekcount+1]);}
             }
             for (var ii = 0; ii<8; ii++) {
-					if (ii < 7) {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+') + '|';}
-					else {teams += escape(week[ii][0]).substring(0,12).replace(/\ /g,'+').replace(/\%.{1,2}/g,'+');}
+            	var team = escape(week[ii][0]);
+            	teams += team;
+            	if (ii < 7) {
+            		// not the last one
+            		teams += "|";
+            	}
             }
             /* not working for sweden
 			var league = Foxtrick.trim(doc.getElementsByTagName('h1')[0].textContent.split(' -')[1]);
@@ -436,7 +442,22 @@ var FoxtrickCrossTable = {
                 Foxtrick.dump(x_offset + '\n');
             }
 
-            var url = "http://chart.apis.google.com/chart?cht=lc&chs="+width+"x200&chds=0.5,8.5&chxt=x,y&chxl=1:|8|7|6|5|4|3|2|1|" + weeks +"&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75"  + colors + "&chg=" + x_offset +",300,1,10,0,0&chf=bg,s,FAFAFA&chma=10,10,10,10&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF&chd=t:"+ position + "&chdl=" + teams;
+            var url = "http://chart.apis.google.com/chart"
+            	+ "?cht=lc"
+				+ "&chs=" + width + "x200"
+				+ "&chds=0.5,8.5"
+				+ "&chxt=x,y"
+				+ "&chxl=1:|8|7|6|5|4|3|2|1|" + weeks
+				+ "&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75" + colors
+				+ "&chg=" + x_offset + ",300,1,10,0,0"
+				+ "&chf=bg,s,FAFAFA"
+				+ "&chma=10,10,10,10"
+				+ "&chco=FF0000,00FF00,0000FF,FF8800,FF0088,880000,000000,338800"
+				+ "&chf=c,lg,90,DDDDCC,0.5,DDDDCC,0|bg,s,EFEFEF"
+				+ "&chd=t:" + position
+				+ "&chdl=" + teams
+				+ "&chdlp=b";
+
             // Foxtrick.alert('URL: [' + url + ']\n')
             Foxtrick.dump('\nurl' + url + '\n');
             var image = doc.createElement('img');
