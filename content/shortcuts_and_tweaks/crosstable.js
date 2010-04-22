@@ -235,18 +235,11 @@ var FoxtrickCrossTable = {
             if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
 
             var heading = doc.createElement("h2");
-			heading.setAttribute("id", "ft_head_cross");
+			heading.id =  "ft_head_cross";
+			heading.className = "tblBox";
 			heading.innerHTML = Foxtrickl10n.getString('foxtrick.CrossTable.TableHeader.desc');
 
             var divmap = doc.createElement("div");
-            if (!Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[1]) ) {
-                var show = "none";
-                heading.setAttribute("class", head_class + '_arrow' + ' tblBox');
-
-            } else {
-                var show = "block";
-                heading.setAttribute("class", head_class + ' tblBox');
-            }
             divmap.appendChild(heading);
             divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
             divmap.setAttribute("id", "ft_div_cross");
@@ -255,8 +248,16 @@ var FoxtrickCrossTable = {
 
             var crosstable=doc.createElement('table');
             crosstable.setAttribute("id", "ft_cross");
-            crosstable.setAttribute("style", "width:"+width+"px;padding:1px;font-size:10px;display:"+show+";");
+            crosstable.setAttribute("style", "width:"+width+"px;padding:1px;font-size:10px;");
             divmap.appendChild(crosstable);
+
+			if (!Foxtrick.isModuleFeatureEnabled(this, this.OPTIONS[1])) {
+				Foxtrick.addClass(heading, head_class + "_arrow");
+				Foxtrick.addClass(crosstable, "hidden");
+			}
+			else {
+				Foxtrick.addClass(heading, head_class);
+			}
 
             var tb=doc.createElement("tbody");
 
@@ -317,17 +318,9 @@ var FoxtrickCrossTable = {
             div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
 
             var heading = doc.createElement("h2");
-			heading.setAttribute("id","ft_head_graph");
+			heading.id = "ft_head_graph";
+			heading.className = "tblBox";
 			heading.innerHTML = Foxtrickl10n.getString('foxtrick.CrossTable.GraphHeader.desc');
-
-            if (!Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[2]) ) {
-                var show = "none";
-                heading.setAttribute("class", head_class + '_arrow' + ' tblBox');
-
-            } else {
-                var show = "block";
-                heading.setAttribute("class", head_class + ' tblBox');
-            }
 
             var divmap = doc.createElement("div");
             divmap.appendChild(heading);
@@ -451,8 +444,15 @@ var FoxtrickCrossTable = {
             image.title = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
             image.alt = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
             image.id = 'ft_graph'
-            image.setAttribute('style', 'display:'+show+';' );
             divmap.appendChild(image);
+
+            if (!Foxtrick.isModuleFeatureEnabled(this, this.OPTIONS[2])) {
+            	Foxtrick.addClass(heading, head_class + "_arrow");
+            	Foxtrick.addClass(image, "hidden");
+            }
+            else {
+            	Foxtrick.addClass(heading, head_class);
+            }
         } catch(e) {Foxtrick.dump('CrossTable:' + e + '\n');}
 	},
 
@@ -499,14 +499,10 @@ var FoxtrickCrossTable = {
 			var doc = evt.target.ownerDocument;
 			var head_class = "ft_ct_head_std";
             if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
-            if (doc.getElementById('ft_graph').style.display == 'none') {
-                doc.getElementById('ft_graph').style.display = 'block';
-                header.setAttribute("class", head_class  + ' tblBox');
-            }
-            else {
-                doc.getElementById('ft_graph').style.display = 'none';
-                header.setAttribute("class", head_class + '_arrow'  + ' tblBox');
-            }
+
+			Foxtrick.toggleClass(doc.getElementById("ft_graph"), "hidden");
+			Foxtrick.toggleClass(header, head_class);
+			Foxtrick.toggleClass(header, head_class + "_arrow");
 		}
 		catch (e) {Foxtrick.dump("CrossTable -> HeaderClick_Graph: "+e+'\n');}
 	},
@@ -517,16 +513,11 @@ var FoxtrickCrossTable = {
 			var doc = evt.target.ownerDocument;
 			var head_class = "ft_ct_head_std";
             if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
-            if (doc.getElementById('ft_cross').style.display == 'none') {
-                doc.getElementById('ft_cross').style.display = 'block';
-                header.setAttribute("class", head_class + ' tblBox');
-            }
-            else {
-                doc.getElementById('ft_cross').style.display = 'none';
-                header.setAttribute("class", head_class + '_arrow'  + ' tblBox');
-            }
+
+			Foxtrick.toggleClass(doc.getElementById("ft_cross"), "hidden");
+			Foxtrick.toggleClass(header, head_class);
+			Foxtrick.toggleClass(header, head_class + "_arrow");
 		}
 		catch (e) {Foxtrick.dump("CrossTable -> HeaderClick_Cross: "+e+'\n');}
 	}
-
 };
