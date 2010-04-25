@@ -394,11 +394,11 @@ var FoxtrickCrossTable = {
 			// promotion
 			if (league > 6 && league % 2 == 1) {
 				// first team promoted
-				bars += "r,dfeeff,0.87,0.88";
+				bars += "r,dfeeff,0,0.745,0.755";
 			}
 			else {
 				// first two teams promoted
-				bars += "r,dfeeff,0,0.745,0.755";
+				bars += "r,dfeeff,0,0.87,0.88";
 			}
 
 			// relegation qualifier
