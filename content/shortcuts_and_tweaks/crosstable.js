@@ -10,10 +10,7 @@ var FoxtrickCrossTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('fixtures'),
 	DEFAULT_ENABLED : true,
-    OPTIONS :  new Array("cut_long_teamnames", "allway_show_cross", "allway_show_graph"),
-    OPTION_TEXTS : true,
-    OPTION_TEXTS_DEFAULT_VALUES : new Array ("-1","",""),
-    OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
+    OPTIONS :  new Array("allway_show_cross", "allway_show_graph"),
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE : "Let table expand, and show full name in graph.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -28,14 +25,8 @@ var FoxtrickCrossTable = {
 
         try {
             var width = 540;
-            var cutafter = 6;
-            var cutlong = false
-            if (!Foxtrick.isStandardLayout( doc ) ) { width = 440; cutafter = 5;}
-            if (Foxtrick.isModuleFeatureEnabled( this, this.OPTIONS[0]  ) ) {
-                var dummy = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + this.OPTIONS[0] + "_text");
-                dummy = parseInt(dummy);
-                if (dummy > 1) cutlong = dummy;
-                // Foxtrick.dump(dummy + '|' +cutlong+ '<<\n');
+            if (!Foxtrick.isStandardLayout(doc)) {
+            	width = 440;
             }
 
             var div = doc.getElementById('mainBody');
@@ -251,7 +242,7 @@ var FoxtrickCrossTable = {
             crosstable.setAttribute("style", "width:"+width+"px;padding:1px;font-size:10px;");
             divmap.appendChild(crosstable);
 
-			if (!Foxtrick.isModuleFeatureEnabled(this, this.OPTIONS[1])) {
+			if (!Foxtrick.isModuleFeatureEnabled(this, "allway_show_cross")) {
 				Foxtrick.addClass(heading, head_class + "_arrow");
 				Foxtrick.addClass(crosstable, "hidden");
 			}
@@ -275,7 +266,7 @@ var FoxtrickCrossTable = {
                     for (var i = 0; i<8; i++){
                         var cell = doc.createElement("th");
                         cell.setAttribute("style", "text-align:center;");
-                        var cnt = doc.createTextNode(cross[i][0].substring(0,cutafter).replace(/\s/i,""));
+                        var cnt = doc.createTextNode(this.getShortName(cross[i][0]));
 						cell.title=cross[i][0];
                         cell.appendChild(cnt);
                         row.appendChild(cell);
@@ -288,12 +279,10 @@ var FoxtrickCrossTable = {
                     if (y==0) var cell = doc.createElement("th"); //left head
                     else var cell = doc.createElement("td"); //inner result
                     if (cross[x][y] != -1) { //result
-                            if (y ==0) //teamnames
-                                if (!cutlong) var cnt = doc.createTextNode(cross[x][y])
-                                else {
-                                    // if (cross[x][y].length > cutlong) var dot = ''; else var dot = '';
-                                    var cnt = doc.createTextNode(cross[x][y].substring(0,cutlong));
-                                }
+                            if (y == 0) {
+                            	//teamnames
+								var cnt = doc.createTextNode(cross[x][y]);
+							}
                             else {
                                 cell.setAttribute("style", "text-align:center");
                                 var a = doc.createElement("a");
@@ -467,7 +456,7 @@ var FoxtrickCrossTable = {
             image.id = 'ft_graph'
             divmap.appendChild(image);
 
-            if (!Foxtrick.isModuleFeatureEnabled(this, this.OPTIONS[2])) {
+            if (!Foxtrick.isModuleFeatureEnabled(this, "allway_show_graph")) {
             	Foxtrick.addClass(heading, head_class + "_arrow");
             	Foxtrick.addClass(image, "hidden");
             }
@@ -481,6 +470,60 @@ var FoxtrickCrossTable = {
 		var id = "ft_cross";
 		if(!doc.getElementById(id)) {
 			this.run( page, doc );
+		}
+	},
+
+	getShortName : function(str) {
+		try {
+			const minLength = 3; // only suggested
+			const maxLength = 9;
+			if (str.length <= maxLength) {
+				return str;
+			}
+
+			// if abbreviation made by all word initials is good, return it
+			var initials = "";
+			var initialRe = new RegExp("\\b(\\w)\\w*\\b", "g");
+			var initialMatches = str.replace(initialRe, "$1").match(initialRe);
+			if (initialMatches) {
+				for (var i = 0; i < initialMatches.length; ++i) {
+					initials += initialMatches[i];
+				}
+				if (initials.length >= minLength && initials.length <= maxLength) {
+					return initials;
+				}
+			}
+
+			// otherwise, if abbreviation made by all capital letters is good,
+			// return it
+			var allCaps = "";
+			var capRe = new RegExp("[A-Z]", "g");
+			var capMatches = str.match(capRe);
+			if (capMatches) {
+				for (var i = 0; i < capMatches.length; ++i) {
+					allCaps += capMatches[i];
+				}
+				if (allCaps.length >= minLength && allCaps.length <= maxLength) {
+					return allCaps;
+				}
+			}
+
+			// otherwise, if first word is good, return it
+			var firstWord;
+			var firstWordRe = new RegExp("^\\w+\\b");
+			var firstWordMatches = str.match(firstWordRe);
+			if (firstWordMatches) {
+				firstWord = str.match(firstWordRe)[0];
+				if (firstWord.length >= minLength && firstWord.length <= maxLength) {
+					return firstWord;
+				}
+			}
+
+			// finally, just return the substring
+			return str.substr(0, maxLength);
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 	},
 
