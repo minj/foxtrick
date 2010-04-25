@@ -2901,6 +2901,25 @@ stats["srbijassttracker"] =  {
 
 };  
 
+stats["montenegrotracker"] = { 
+  "url" : "http://cgdb.foundationhorizont.org/",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Montenegro U-20/NT DB",
+  
+  "trackernationalteamlink" : { "path"       : "homelist.php",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
+                   "filters"    : ["nationality"], 
+                   "params"     : {"playerid":"playerID", "playername":"name", "age":"years", "age_days":"days",
+									"teamname":"team","teamid":"teamID","exp":"exp","stamina":"sta","playmaking":"ply",
+									"winger":"win","scoring":"sco","goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
+                 },
+	"countryidranges" : [[131,131]] ,
+	"nationalityranges" : [[131,131]], 
+};
+
 stats["scotlandtracker"] = { 
   "url" : "http://www.htscotland.co.uk",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
