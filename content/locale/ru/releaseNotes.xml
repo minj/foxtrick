@@ -1,15 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?> 
 
 <release_note>
+
+
   <version>0.5.1.2</version>
   <title>Информация о выпуске (основные изменения и новые возможности)</title>
   <lines></lines>
   <lines>* Общее исправление ошибок</lines>
   <lines>* Обновление перевода</lines>
   <lines>* Модуль ExtraPlayerslistInfo больше не включается автоматически</lines>
+ 
   <lines></lines> 
   <lines>Внимание!</lines> 
   <lines>* Для подтверждений действий теперь используется новый модуль ConfirmActions. Настройки подтверждений сброшены в значения по умолчанию</lines>
+  
   <lines></lines> 
   <lines>Для полного списка изменений перейдите по ссылке ниже или используйте ссылку 'установить новые значения'</lines> 
-</release_note>
+
+  
+  
+  
+  </release_note>
