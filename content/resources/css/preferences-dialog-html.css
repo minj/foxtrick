@@ -5,19 +5,15 @@ div#foxtrick_prefs_head div.ft_pref_head {
 	-moz-border-radius: 8px 8px 0px 0px;
 	border-bottom: none;
 	padding: 4px;
-	opacity: 0.75;
 }
 
 div#foxtrick_prefs_head div.ft_pref_head:hover {
-	opacity: 1;
 	text-decoration: underline;
 	cursor: pointer;
 }
 
 .ft_pref_head_active {
-	background-color: #77f !important;
-	opacity: 1 !important;
-	text-decoration: underline;
+	background-color: #eef !important;
 }
 
 #foxtrick_prefs_body {
