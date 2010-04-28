@@ -71,7 +71,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		if (doc.getElementById('foxtrick_config')) return;
 		
-		doc.getElementById('sidebar').style.display='none';
+		Foxtrick.addClass(doc.getElementById("sidebar"), "hidden");
 		var mainWrapper=doc.getElementById('mainWrapper');
 		if (Foxtrick.isStandardLayout(doc)) mainWrapper.getElementsByTagName('div')[0].style.width='765px';
 		else mainWrapper.getElementsByTagName('div')[0].style.width='620px';
@@ -103,7 +103,6 @@ var FoxtrickPrefsDialogHTML = {
 
 		var prefdiv=doc.createElement('div');	
 		prefdiv.setAttribute('id','foxtrick_prefs');
-		prefdiv.setAttribute('style','display:none'); 
 		mainBody.appendChild(prefdiv);
 		
 		
@@ -167,9 +166,6 @@ var FoxtrickPrefsDialogHTML = {
 		prefsave2.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
 		prefsavediv2.appendChild(prefsave2);
 
-		
-		prefdiv.setAttribute('style','display:inline'); 
-		
 		// highlight hashed
 		if (doc.location.hash) { 
 			var highlight=doc.location.hash.substr(1);
@@ -215,9 +211,12 @@ var FoxtrickPrefsDialogHTML = {
 		if (tab=='changes') FoxtrickMain.IsNewVersion=false;
 		
 		for (var i=0;i<foxtrick_preftabs.length;++i) {			
-			if (tab==foxtrick_preftabs[i].getAttribute('id')) 
-				foxtrick_preftabs[i].style.display='inline'; 
-			else foxtrick_preftabs[i].style.display='none';
+			if (tab==foxtrick_preftabs[i].getAttribute('id')) {
+				Foxtrick.removeClass(foxtrick_preftabs[i], "hidden");
+			}
+			else {
+				Foxtrick.addClass(foxtrick_preftabs[i], "hidden");
+			}
 			if (tab==foxtrick_prefs_head[i].getAttribute('tab')) 
 				foxtrick_prefs_head[i].setAttribute('class','ft_pref_head ft_pref_head_active'); 
 			else foxtrick_prefs_head[i].setAttribute('class','ft_pref_head'); 
@@ -421,10 +420,10 @@ var FoxtrickPrefsDialogHTML = {
 		preftabheaddiv.appendChild(preftabhead);
 
 		var preftab=doc.createElement('div');	
-		preftab.setAttribute('id',category); 
-		preftab.setAttribute('style','display:none;'); 		
+		preftab.setAttribute('id',category);
+		Foxtrick.addClass(preftab, "hidden");
 		preftabdiv.appendChild(preftab);
-		
+
 		var active_tab='main';
 		try {
 		if (doc.location.href.search(/category=/i)!=-1) { 
@@ -433,8 +432,8 @@ var FoxtrickPrefsDialogHTML = {
 		}
 		} catch (e){}
 		if (category==active_tab) {
-			preftabhead.setAttribute('class','ft_pref_head ft_pref_head_active'); 
-			preftab.setAttribute('style','display:inline;'); 
+			preftabhead.setAttribute('class','ft_pref_head ft_pref_head_active');
+			Foxtrick.removeClass(preftab, "hidden");
 		}
 		
 		if (category=='main') {
@@ -455,29 +454,12 @@ var FoxtrickPrefsDialogHTML = {
 		
 	
 	fill_main_list : function( doc ) {
-	try{	var preftab = doc.getElementById('main');
-		
-		var table = doc.createElement( "table" );	
-		preftab.appendChild( table );
-		var tr = doc.createElement( "tr" );	
-		table.appendChild( tr );
-		var td = doc.createElement( "td" );	
-		tr.appendChild( td );
+	try {
+		var preftab = doc.getElementById('main');
 
-		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['main']);
-		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_list_caption");
-		caption1.appendChild(doc.createTextNode(headstr));
-		td.appendChild(caption1);
+		var header = this._panelHeader(doc, "main");
+		preftab.appendChild(header);
 
-		var td = doc.createElement( "td" );	
-		td.setAttribute('class','ft_prefs_screenshot_td');
-		tr.appendChild( td );
-		var screenshot = Foxtrickl10n.getScreenshot('main');		
-		if (screenshot) {
-			td.appendChild(this._screenshot(doc, screenshot));
-		}
-        		
 		// language & currency & dateformat & country
         var groupboxouter = doc.createElement("div");
         groupboxouter.setAttribute('class',"ft_pref_modul");
@@ -504,25 +486,23 @@ var FoxtrickPrefsDialogHTML = {
 		
 		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htLanguagesXml, "hattricklanguages/language", "desc", "name",  FoxtrickPrefs.getString("htLanguage"));
 		selectbox.setAttribute("id","htLanguage");
-		selectbox.setAttribute("style","display:inline-block;");
 		td.appendChild(selectbox);
 				
 		var td= doc.createElement("td");
         tr.appendChild(td);
 		var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"); 
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtPrefs', Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"),'', checked ) 
-		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
 		
 				
 		var ReadCountryCurrencyDateFormatChecked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.enabled"); 
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtCountryCurrencyDateFormat', Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc"),'', ReadCountryCurrencyDateFormatChecked ) 
-		checkdiv.setAttribute("style","display:inline-block;");
 		groupbox.appendChild(checkdiv);
 		var currentCountryCurrencyDateFormatdiv = doc.createElement("div");
 		currentCountryCurrencyDateFormatdiv.id='CurrentHtCountryCurrencyDateFormat'
-		if (ReadCountryCurrencyDateFormatChecked) currentCountryCurrencyDateFormatdiv.style.display='block';
-		else currentCountryCurrencyDateFormatdiv.style.display='none';
+		if (!ReadCountryCurrencyDateFormatChecked) {
+			currentCountryCurrencyDateFormatdiv.className = "hidden";
+		}
 		
 		currentCountryCurrencyDateFormatdiv.innerHTML = '( '+Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc")+' '+ 
 														FoxtrickHelper.countryNameEnglishToLocal(FoxtrickPrefs.getString("htCountry")) + ' / '+
@@ -535,16 +515,23 @@ var FoxtrickPrefsDialogHTML = {
 				var checked = check.checked; 
 				var optiondiv = ev.target.ownerDocument.getElementById('groupboxCountryCurrency');		
 				var currentdiv = ev.target.ownerDocument.getElementById('CurrentHtCountryCurrencyDateFormat');		
-				if (checked) { optiondiv.style.display='none'; currentdiv.style.display='block'; }	
-				else {optiondiv.style.display='block'; currentdiv.style.display='none';}			
+				if (checked) {
+					Foxtrick.addClass(optiondiv, "hidden");
+					Foxtrick.removeClass(currentdiv, "hidden");
+				}	
+				else {
+					Foxtrick.removeClass(optiondiv, "hidden");
+					Foxtrick.addClass(currentdiv, "hidden");
+				}			
 			}, false );
 
 				
         var groupboxCountryCurrency = doc.createElement("div");
 		groupbox.appendChild(groupboxCountryCurrency);
 		groupboxCountryCurrency.id='groupboxCountryCurrency';
-		if (ReadCountryCurrencyDateFormatChecked) groupboxCountryCurrency.style.display='none';
-		else groupboxCountryCurrency.style.display='block';
+		if (ReadCountryCurrencyDateFormatChecked) {
+			groupboxCountryCurrency.className = "hidden";
+		}
 
 		var groupboxcurrency= doc.createElement("div");
 		groupboxcurrency.setAttribute('class',"ft_pref_modul");
@@ -554,7 +541,6 @@ var FoxtrickPrefsDialogHTML = {
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency")));
 		groupboxcurrency.appendChild(caption1);
 		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
-		selectbox.setAttribute("style","display:block;");
 		selectbox.setAttribute("id","htCurrency");
 		groupboxcurrency.appendChild(selectbox);
 		
@@ -566,7 +552,6 @@ var FoxtrickPrefsDialogHTML = {
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry")));
 		groupboxcountry.appendChild(caption1);
 		var selectbox = Foxtrick.getSelectBoxFromXML3(doc,Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));
-		selectbox.setAttribute("style","display:block;");
 		selectbox.setAttribute("id","htCountry");
 		groupboxcountry.appendChild(selectbox);
 
@@ -578,7 +563,6 @@ var FoxtrickPrefsDialogHTML = {
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat")));
 		groupbox2.appendChild(caption1);
 		var selectbox = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htdateformat, "hattrickdateformats/dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
-		selectbox.setAttribute("style","display:block;");
 		selectbox.setAttribute("id","htDateformat");
 		groupbox2.appendChild(selectbox);
 
@@ -603,7 +587,6 @@ var FoxtrickPrefsDialogHTML = {
 		td.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolTo")));
 		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
 		selectbox.setAttribute("id","htCurrencyTo");
-		selectbox.setAttribute("style","display:inline-block;");
 		td.appendChild(selectbox);
 				
 		var td= doc.createElement("td");
@@ -613,7 +596,6 @@ var FoxtrickPrefsDialogHTML = {
         td.appendChild(br);
 		var checked = FoxtrickPrefs.getBool("module.CurrencyConverter.enabled");
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'CurrencyConverter', Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"),'', checked ) 
-		checkdiv.setAttribute("style","display:inline-block;");
 		td.appendChild(checkdiv);
 
 		// LoadSavePrefs
@@ -735,7 +717,6 @@ var FoxtrickPrefsDialogHTML = {
 		caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionFoxtrickMyHT")));
 		groupbox2.appendChild(caption1);
 		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htversionsXML, "hattrickversions/version", "name", "code", FoxtrickPrefs.getString("oldVersion"));
-		selectbox.setAttribute("style","display:inline;");
 		selectbox.setAttribute("id","htOldVersion");
 		groupbox2.appendChild(selectbox);
 		var td= doc.createElement("td");
@@ -746,7 +727,6 @@ var FoxtrickPrefsDialogHTML = {
 		a.setAttribute('target','_blank');
 		a.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.labelFoxtrickMyHT")));
         caption1.appendChild(a);
-		caption1.setAttribute("style","display:inline;");
 		groupbox2.appendChild(caption1);
 		*/
 		
@@ -821,28 +801,9 @@ var FoxtrickPrefsDialogHTML = {
 	fill_help_list : function( doc ) {
 		var preftab = doc.getElementById('help');
 
-		var table = doc.createElement( "table" );	
-		preftab.appendChild( table );
-		var tr = doc.createElement( "tr" );	
-		table.appendChild( tr );
-		var td = doc.createElement( "td" );	
-		tr.appendChild( td );
+		var header = this._panelHeader(doc, "help");
+		preftab.appendChild(header);
 
-		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['help']);
-		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_list_caption");
-		caption1.appendChild(doc.createTextNode(headstr));
-		td.appendChild(caption1);
-
-		var td = doc.createElement( "td" );	
-		td.setAttribute('class','ft_prefs_screenshot_td');
-		tr.appendChild( td );
-		var screenshot = Foxtrickl10n.getScreenshot('help');		
-		if (screenshot) {
-			td.appendChild(this._screenshot(doc, screenshot));
-		}
- 		
-		
 		// links
 		var groupbox2= doc.createElement("div");
 		groupbox2.setAttribute('class',"ft_pref_modul");
@@ -871,33 +832,13 @@ var FoxtrickPrefsDialogHTML = {
 		groupbox2.appendChild(a);				
 		groupbox2.appendChild(doc.createElement('br'));
 	},
-	
-	
-	fill_about_list : function( doc ) {
 
+	fill_about_list : function( doc ) {
 		var preftab = doc.getElementById('about');
 
-		var table = doc.createElement( "table" );	
-		preftab.appendChild( table );
-		var tr = doc.createElement( "tr" );	
-		table.appendChild( tr );
-		var td = doc.createElement( "td" );	
-		tr.appendChild( td );
+		var header = this._panelHeader(doc, "about");
+		preftab.appendChild(header);
 
-		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['about']);
-		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_list_caption");
-		caption1.appendChild(doc.createTextNode(headstr));
-		td.appendChild(caption1);
-
-		var td = doc.createElement( "td" );	
-		td.setAttribute('class','ft_prefs_screenshot_td');
-		tr.appendChild( td );
-		var screenshot = Foxtrickl10n.getScreenshot('about');		
-		if (screenshot) {
-			td.appendChild(this._screenshot(doc, screenshot));
-		}
- 		
 		// head_developer
 		var groupbox2= doc.createElement("div");
 		groupbox2.setAttribute('class',"ft_pref_modul");
@@ -974,27 +915,9 @@ var FoxtrickPrefsDialogHTML = {
 	try{
 		var preftab = doc.getElementById('changes');
 
-		var table = doc.createElement( "table" );	
-		preftab.appendChild( table );
-		var tr = doc.createElement( "tr" );	
-		table.appendChild( tr );
-		var td = doc.createElement( "td" );	
-		tr.appendChild( td );
+		var header = this._panelHeader(doc, "changes");
+		preftab.appendChild(header);
 
-		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames['changes']);
-		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_list_caption");
-		caption1.appendChild(doc.createTextNode(headstr));
-		td.appendChild(caption1);
-
-		var td = doc.createElement( "td" );	
-		td.setAttribute('class','ft_prefs_screenshot_td');
-		tr.appendChild( td );
-		var screenshot = Foxtrickl10n.getScreenshot('changes');		
-		if (screenshot) {
-			td.appendChild(this._screenshot(doc, screenshot));
-		}
-		
 		var versions = Foxtrick.XML_evaluate(Foxtrick.XMLData.htversionsXML,  "hattrickversions/version", "name", "code");
 		var oldVersion = versions[versions.length-2][1];
 		
@@ -1012,28 +935,10 @@ var FoxtrickPrefsDialogHTML = {
 	
 	fill_list : function( doc, category) {
 		var preftab = doc.getElementById(category);
-		
-		var table = doc.createElement( "table" );	
-		preftab.appendChild( table );
-		var tr = doc.createElement( "tr" );	
-		table.appendChild( tr );
-		var td = doc.createElement( "td" );	
-		tr.appendChild( td );
 
-		var headstr = Foxtrickl10n.getString("foxtrick.prefs."+FoxtrickPrefsDialogHTML.TabNames[category]);
-		var caption1= doc.createElement("div");
-        caption1.setAttribute('class',"ft_pref_list_caption");
-		caption1.appendChild(doc.createTextNode(headstr));
-		td.appendChild(caption1);
+		var header = this._panelHeader(doc, category);
+		preftab.appendChild(header);
 
-		var td = doc.createElement( "td" );	
-		td.setAttribute('class','ft_prefs_screenshot_td');
-		tr.appendChild( td );
-		var screenshot = Foxtrickl10n.getScreenshot(category);		
-		if (screenshot) {
-			td.appendChild(this._screenshot(doc, screenshot));
-		}
-		
 		var modules_entries = new Array();
 		for ( var i in Foxtrick.modules ) {
 			var module = Foxtrick.modules[i];
@@ -1060,6 +965,19 @@ var FoxtrickPrefsDialogHTML = {
 
 	entry_sortfunction: function(a,b) {return a.getAttribute('prefname').localeCompare(b.getAttribute('prefname'));},
 
+	_panelHeader : function(doc, label) {
+		var caption = doc.createElement("h1");
+		caption.className = "ft_pref_list_caption";
+		caption.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs." + FoxtrickPrefsDialogHTML.TabNames[label])));
+
+		var screenshot = Foxtrickl10n.getScreenshot(label);
+		if (screenshot) {
+			caption.appendChild(this._screenshot(doc, screenshot));
+		}
+
+		return caption;
+	},
+
 	_screenshot : function(doc, link) {
 		var a = doc.createElement("a");
 		a.className = "ft_actionicon";
@@ -1080,8 +998,12 @@ var FoxtrickPrefsDialogHTML = {
 				var check = ev.target;
 				var checked = check.checked;  
 				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_radio');		
-				if (checked) optiondiv.style.display='block';
-				else optiondiv.style.display='none'; 			
+				if (checked) {
+					Foxtrick.removeClass(optiondiv, "hidden");
+				}
+				else {
+					Foxtrick.addClass(optiondiv, "hidden");
+				}
 		}, false );
 
 		var optiondiv = doc.createElement( "div" );
@@ -1102,8 +1024,12 @@ var FoxtrickPrefsDialogHTML = {
 			
 			optiondiv.appendChild( FoxtrickPrefsDialogHTML._getRadio (doc, group, i, desc, module.RADIO_OPTIONS[i], selected, on_page ) );					
 		}
-		if (module_checked) optiondiv.setAttribute( "style", "display:block;" );
-		else optiondiv.setAttribute( "style", "display:none;" );
+		if (module_checked) {
+			Foxtrick.removeClass(optiondiv, "hidden");
+		}
+		else {
+			Foxtrick.addClass(optiondiv, "hidden");
+		}
 
 		return optiondiv;
 	},
@@ -1116,8 +1042,12 @@ var FoxtrickPrefsDialogHTML = {
 				var check = ev.target;
 				var checked = check.checked; 
 				var optiondiv = ev.target.ownerDocument.getElementById(check.id+'_options');		
-				if (checked) optiondiv.style.display='block';
-				else optiondiv.style.display='none'; 			
+				if (checked) {
+					Foxtrick.removeClass(optiondiv, "hidden");
+				}
+				else {
+					Foxtrick.addClass(optiondiv, "hidden");
+				}
 		}, false );
 
 		var optiondiv = doc.createElement( "div" );
@@ -1159,8 +1089,12 @@ var FoxtrickPrefsDialogHTML = {
 			var group = module.MODULE_NAME + '.' + key;
 			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, DefaultOptionText, has_load_button, on_page ));
 		}
-		if (module_checked) optiondiv.setAttribute( "style", "display:block;" );
-		else optiondiv.setAttribute( "style", "display:none;" );
+		if (module_checked) {
+			Foxtrick.removeClass(optiondiv, "hidden");
+		}
+		else {
+			Foxtrick.addClass(optiondiv, "hidden");
+		}
 
 		return optiondiv;
 	},
@@ -1207,15 +1141,23 @@ var FoxtrickPrefsDialogHTML = {
 			Foxtrick.addEventListenerChangeSave(check, "click", function( ev ) {
 					var checked = ev.currentTarget.checked;
 					var optiondiv = ev.target.ownerDocument.getElementById(ev.currentTarget.id+'_table');
-					if (checked) optiondiv.style.display='block';
-					else optiondiv.style.display='none'; 			
+					if (checked) {
+						Foxtrick.removeClass(optiondiv, "hidden");
+					}
+					else {
+						Foxtrick.addClass(optiondiv, "hidden");
+					}
 				}, false );
 
 			
 			var table = doc.createElement( "table" );	
 			table.setAttribute( "id", name+'_table' );
-			if (checked) table.setAttribute( "style", "display:block;" );
-			else table.setAttribute( "style", "display:none;" );
+			if (checked) {
+				Foxtrick.removeClass(table, "hidden");
+			}
+			else {
+				Foxtrick.addClass(table, "hidden");
+			}
 			div.appendChild( table );
 			var tr = doc.createElement( "tr" );	
 			table.appendChild( tr );
