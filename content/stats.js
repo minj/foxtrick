@@ -1315,6 +1315,30 @@ stats["Ht4u"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/ht4u.bmp"
 };
 
+//Ht4u - Team Spirit Calculator
+stats["Ht4uTS"] =  { 
+        "url" : "http://ht4u.altervista.org/TSpredictor",
+
+        "traininglink" : { "path"       : "/team_spirit_predictor.php",
+                         "filters"    : [],
+                         "params"     : [],                        						
+                       },
+        "title" : "Team Spirit Calculator",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ht4u.bmp"
+};
+
+//Team Confidence Calculator
+stats["confidence"] =  { 
+        "url" : "http://fptsj.brinkster.net",
+
+        "traininglink" : { "path"       : "/confianca.aspx",
+                         "filters"    : [],
+                         "params"     : [],                        						
+                       },
+        "title" : "Team Confidence Calculator",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/confidence.png"
+};
+
 stats["ht-u20"] =  { 
         "url" : "http://age.ht-u20.com/",
 
