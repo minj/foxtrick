@@ -84,3 +84,12 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 /* TeamStats filter */
 .ft-select-container { float: right; width: auto; }
 .ft-select-container select { display: block; margin: 0 !important; clear: right; }
+
+/* FoxTrick note */
+.ft-note {
+	background-color: #efefff;
+	border: 1px solid #2f31ff;
+	clear: both;
+	margin: 10px 0;
+	padding: 7px 10px;
+}
