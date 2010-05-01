@@ -43,6 +43,8 @@ var FoxtrickConfirmActions = {
 											type : Foxtrick.Note.BUTTON_OK,
 											listener : function(ev) {
 												var doc = ev.target.ownerDocument;
+												var bidText = doc.getElementById("ctl00_CPMain_txtBid");
+												bidText.removeAttribute("disabled");
 												var bidButton = doc.getElementById("ctl00_CPMain_btnBid");
 												bidButton.click();
 											}
