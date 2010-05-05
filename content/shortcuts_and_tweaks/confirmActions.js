@@ -11,7 +11,7 @@ var FoxtrickConfirmActions = {
 	DEFAULT_ENABLED : true,
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
 	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Use FoxTrick note for confirmation (currently only for bidding and transfer-listing).",
+	LATEST_CHANGE : "Use FoxTrick note for confirmation (not available for NT change).",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	init : function() {
@@ -136,17 +136,81 @@ var FoxtrickConfirmActions = {
 			if (Foxtrick.isPage(Foxtrick.ht_pages["staff"], doc)) {
 				if (Foxtrick.isModuleFeatureEnabled(this, "StaffChange")) {
 					var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
-					if (submitButton){
-						var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
-						if (sOnclick.search(/confirm/) == -1){ // already added?
-							var sConfirmString = "var cstr=new Array('"+Foxtrickl10n.getString('foxtrick.staffconfirmationhire')+"','"+Foxtrickl10n.getString('foxtrick.staffconfirmationsack')+"');";
-							var numstr = "var num = document.getElementById('ctl00_CPMain_txtAmount').value;";
-							var kindindex = "var kindindex = document.getElementById('ctl00_CPMain_ddlStaffRole').selectedIndex;";
-							var kindstr = "var kind = document.getElementById('ctl00_CPMain_ddlStaffRole').options[document.getElementById('ctl00_CPMain_ddlStaffRole').selectedIndex].innerHTML;";
-							var actionstr = "var action = document.getElementById('ctl00_CPMain_ddlStaffAction').selectedIndex;";
-							sOnclick = sConfirmString + numstr + kindstr +kindindex + actionstr + "if(num=='' || kindindex==0) return "+sOnclick+";  if (confirm(cstr[action].replace(/\%num/, num).replace(/\%kind/, kind))){" + sOnclick + ";} else {document.getElementById('ctl00_CPMain_btnStaffAction').removeAttribute('disabled');  return false;}";
-							submitButton.setAttribute("onClick", sOnclick);
-						}
+					if (submitButton) {
+						submitButton.addEventListener("click", function(ev) {
+							var doc = ev.target.ownerDocument;
+							var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
+							var actionSelect = doc.getElementById("ctl00_CPMain_ddlStaffAction");
+							var amountText = doc.getElementById("ctl00_CPMain_txtAmount");
+							var roleSelect = doc.getElementById("ctl00_CPMain_ddlStaffRole");
+							var confirm = doc.getElementById("ft-staff-confirm");
+							var confirmAdded = true;
+							if (actionSelect && amountText && roleSelect && !confirm) {
+								var actionIndex = parseInt(actionSelect.selectedIndex);
+								var amount = amountText.value;
+								var roleIndex = parseInt(roleSelect.selectedIndex);
+								var roleStr = roleSelect.options[roleIndex].textContent;
+								if (!isNaN(amount) && roleIndex !== 0) {
+									var msgTemplate;
+									if (actionIndex === 0) {
+										msgTemplate = Foxtrickl10n.getString("foxtrick.staffconfirmationhire");
+									}
+									else if (actionIndex === 1) {
+										msgTemplate = Foxtrickl10n.getString("foxtrick.staffconfirmationsack");
+									}
+									var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
+									var confirm = Foxtrick.Note.create(doc, "ft-staff-confirm", msg,
+										[
+											{
+												type : Foxtrick.Note.BUTTON_OK,
+												listener : function(ev) {
+													var doc = ev.target.ownerDocument;
+													var confirm = doc.getElementById("ft-staff-confirm");
+													var actionSelect = doc.getElementById("ctl00_CPMain_ddlStaffAction");
+													actionSelect.removeAttribute("disabled");
+													var amountText = doc.getElementById("ctl00_CPMain_txtAmount");
+													amountText.removeAttribute("disabled");
+													var roleSelect = doc.getElementById("ctl00_CPMain_ddlStaffRole");
+													roleSelect.removeAttribute("disabled");
+													var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
+													submitButton.setAttribute("onclick", submitButton.getAttribute("alt-onclick"));
+													submitButton.click();
+												}
+											},
+											{
+												type : Foxtrick.Note.BUTTON_CANCEL,
+												listener : function(ev) {
+													var doc = ev.target.ownerDocument;
+													var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
+													Foxtrick.removeClass(submitButton, "hidden");
+													var actionSelect = doc.getElementById("ctl00_CPMain_ddlStaffAction");
+													actionSelect.removeAttribute("disabled");
+													var amountText = doc.getElementById("ctl00_CPMain_txtAmount");
+													amountText.removeAttribute("disabled");
+													var roleSelect = doc.getElementById("ctl00_CPMain_ddlStaffRole");
+													roleSelect.removeAttribute("disabled");
+													var confirm = doc.getElementById("ft-staff-confirm");
+													confirm.parentNode.removeChild(confirm);
+												}
+											}
+										]);
+									submitButton.parentNode.appendChild(confirm);
+									confirmAdded = true;
+									Foxtrick.addClass(submitButton, "hidden");
+									actionSelect.disabled = amountText.disabled = roleSelect.disabled = "disabled";
+									if (confirmAdded === false) {
+										submitButton.setAttribute("onclick", submitButton.getAttribute("alt-onclick"));
+										submitButton.click();
+									}
+									ev.preventDefault();
+								}
+							}
+						}, false);
+						// need to store the onclick attribute as alt-onclick
+						// to prevent it from being executed right away
+						// and use it when needed
+						submitButton.setAttribute("alt-onclick", submitButton.getAttribute("onclick"));
+						submitButton.removeAttribute("onclick");
 					}
 				}
 			}
