@@ -11,7 +11,7 @@ var FoxtrickConfirmActions = {
 	DEFAULT_ENABLED : true,
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
 	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Use FoxTrick note for confirmation (currently only for bidding).",
+	LATEST_CHANGE : "Use FoxTrick note for confirmation (currently only for bidding and transfer-listing).",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	init : function() {
@@ -71,16 +71,54 @@ var FoxtrickConfirmActions = {
 					}
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "TransferList")) {
-					var submitButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
-					if (submitButton) {
-						var sOnclick = submitButton.getAttribute("onClick").replace(/javascript\:/, "");
-						if (sOnclick.search(/confirm/) == -1){ // already added?
-							var sConfirmString = Foxtrickl10n.getString("foxtrick.tlconfirmation");
-							var sReplace = "document.getElementById('ctl00_CPSidebar_ucOwnerActions_txtPrice').value.split('').reverse().join('').replace(new RegExp('(.{' + 3 + '})(?!$)', 'g'), '$1' + ' ').split('').reverse().join('')";
-							var sStr = "var str = \""+sConfirmString+"\";";
-							sOnclick = sStr + " if (confirm(str.replace(/\%s/, " + sReplace + "))){" + sOnclick + ";} else {return false;}";
-							submitButton.setAttribute("onClick", sOnclick);
-						}
+					var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
+					Foxtrick.dump(sellButton);
+					if (sellButton) {
+						sellButton.addEventListener("click", function(ev) {
+							var doc = ev.target.ownerDocument;
+							var sellAlert = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_pnlSell");
+							var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
+							var sellText = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_txtPrice");
+							var confirm = doc.getElementById("ft-sell-confirm");
+							Foxtrick.dump("To add: " + Boolean(sellAlert && sellButton && sellText && !confirm));
+							if (sellAlert && sellButton && sellText && !confirm) {
+								var msgTemplate = Foxtrickl10n.getString("foxtrick.tlconfirmation");
+								var price = sellText.value
+									.split("").reverse().join("")
+									.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
+									.split("").reverse().join("");
+								var msg = msgTemplate.replace(/\%s/, price);
+								var confirm = Foxtrick.Note.create(doc, "ft-sell-confirm", msg,
+									[
+										{
+											type : Foxtrick.Note.BUTTON_OK,
+											listener : function(ev) {
+												var doc = ev.target.ownerDocument;
+												var sellText = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_txtPrice");
+												sellText.removeAttribute("disabled");
+												var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
+												sellButton.click();
+											}
+										},
+										{
+											type : Foxtrick.Note.BUTTON_CANCEL,
+											listener : function(ev) {
+												var doc = ev.target.ownerDocument;
+												var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
+												Foxtrick.removeClass(sellButton, "hidden");
+												var sellText = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_txtPrice");
+												sellText.removeAttribute("disabled");
+												var confirm = doc.getElementById("ft-sell-confirm");
+												confirm.parentNode.removeChild(confirm);
+											}
+										}
+									]);
+								sellButton.parentNode.appendChild(confirm);
+								Foxtrick.addClass(sellButton, "hidden");
+								sellText.disabled = "disabled";
+								ev.preventDefault();
+							}
+						}, false);
 					}
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "NtChange")) {
