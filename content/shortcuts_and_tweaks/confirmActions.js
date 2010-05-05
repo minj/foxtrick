@@ -14,6 +14,27 @@ var FoxtrickConfirmActions = {
 	LATEST_CHANGE : "Use FoxTrick note for confirmation (not available for NT change).",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
+	BID : {
+		ALERT_ID : "ctl00_CPMain_updBid",
+		BUTTON_ID : "ctl00_CPMain_btnBid",
+		TEXT_ID : "ctl00_CPMain_txtBid",
+		CONFIRM_ID : "ft-bid-confirm"
+	},
+
+	SELL : {
+		BUTTON_ID : "ctl00_CPSidebar_ucOwnerActions_btnSell",
+		TEXT_ID : "ctl00_CPSidebar_ucOwnerActions_txtPrice",
+		CONFIRM_ID : "ft-sell-confirm"
+	},
+
+	STAFF : {
+		SUBMIT_BUTTON_ID : "ctl00_CPMain_btnStaffAction",
+		ACTION_SELECT_ID : "ctl00_CPMain_ddlStaffAction",
+		AMOUNT_TEXT_ID : "ctl00_CPMain_txtAmount",
+		ROLE_SELECT_ID : "ctl00_CPMain_ddlStaffRole",
+		CONFIRM_ID : "ft-staff-confirm"
+	},
+
 	init : function() {
 	},
 
@@ -22,30 +43,30 @@ var FoxtrickConfirmActions = {
 			// Bid, TransferList, NtChange, StaffChange
 			if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc)) {
 				if (Foxtrick.isModuleFeatureEnabled(this, "Bid")) {
-					var bidButton = doc.getElementById("ctl00_CPMain_btnBid");
+					var bidButton = doc.getElementById(FoxtrickConfirmActions.BID.BUTTON_ID);
 					if (bidButton) {
 						bidButton.addEventListener("click", function(ev) {
 							var doc = ev.target.ownerDocument;
-							var bidAlert = doc.getElementById("ctl00_CPMain_updBid");
-							var bidButton = doc.getElementById("ctl00_CPMain_btnBid");
-							var bidText = doc.getElementById("ctl00_CPMain_txtBid");
-							var confirm = doc.getElementById("ft-bid-confirm");
-							if (bidAlert && bidButton && bidText && !confirm) {
+							var bidAlert = doc.getElementById(FoxtrickConfirmActions.BID.ALERT_ID);
+							var bidButton = doc.getElementById(FoxtrickConfirmActions.BID.BUTTON_ID);
+							var bidText = doc.getElementById(FoxtrickConfirmActions.BID.TEXT_ID);
+							var confirm = doc.getElementById(FoxtrickConfirmActions.BID.CONFIRM_ID);
+							if (bidAlert && bidText && !confirm) {
 								var msgTemplate = Foxtrickl10n.getString("foxtrick.bidconfirmation");
 								var price = bidText.value
 									.split("").reverse().join("")
 									.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
 									.split("").reverse().join("");
 								var msg = msgTemplate.replace(/\%s/, price);
-								var confirm = Foxtrick.Note.create(doc, "ft-bid-confirm", msg,
+								var confirm = Foxtrick.Note.create(doc, FoxtrickConfirmActions.BID.CONFIRM_ID, msg,
 									[
 										{
 											type : Foxtrick.Note.BUTTON_OK,
 											listener : function(ev) {
 												var doc = ev.target.ownerDocument;
-												var bidText = doc.getElementById("ctl00_CPMain_txtBid");
+												var bidText = doc.getElementById(FoxtrickConfirmActions.BID.TEXT_ID);
 												bidText.removeAttribute("disabled");
-												var bidButton = doc.getElementById("ctl00_CPMain_btnBid");
+												var bidButton = doc.getElementById(FoxtrickConfirmActions.BID.BUTTON_ID);
 												bidButton.click();
 											}
 										},
@@ -53,11 +74,11 @@ var FoxtrickConfirmActions = {
 											type : Foxtrick.Note.BUTTON_CANCEL,
 											listener : function(ev) {
 												var doc = ev.target.ownerDocument;
-												var bidButton = doc.getElementById("ctl00_CPMain_btnBid");
+												var bidButton = doc.getElementById(FoxtrickConfirmActions.BID.BUTTON_ID);
 												Foxtrick.removeClass(bidButton, "hidden");
-												var bidText = doc.getElementById("ctl00_CPMain_txtBid");
+												var bidText = doc.getElementById(FoxtrickConfirmActions.BID.TEXT_ID);
 												bidText.removeAttribute("disabled");
-												var confirm = doc.getElementById("ft-bid-confirm");
+												var confirm = doc.getElementById(FoxtrickConfirmActions.BID.CONFIRM_ID);
 												confirm.parentNode.removeChild(confirm);
 											}
 										}
@@ -71,32 +92,29 @@ var FoxtrickConfirmActions = {
 					}
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "TransferList")) {
-					var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
-					Foxtrick.dump(sellButton);
+					var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
 					if (sellButton) {
 						sellButton.addEventListener("click", function(ev) {
 							var doc = ev.target.ownerDocument;
-							var sellAlert = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_pnlSell");
-							var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
-							var sellText = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_txtPrice");
+							var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
+							var sellText = doc.getElementById(FoxtrickConfirmActions.SELL.TEXT_ID);
 							var confirm = doc.getElementById("ft-sell-confirm");
-							Foxtrick.dump("To add: " + Boolean(sellAlert && sellButton && sellText && !confirm));
-							if (sellAlert && sellButton && sellText && !confirm) {
+							if (sellText && !confirm) {
 								var msgTemplate = Foxtrickl10n.getString("foxtrick.tlconfirmation");
 								var price = sellText.value
 									.split("").reverse().join("")
 									.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
 									.split("").reverse().join("");
 								var msg = msgTemplate.replace(/\%s/, price);
-								var confirm = Foxtrick.Note.create(doc, "ft-sell-confirm", msg,
+								var confirm = Foxtrick.Note.create(doc, FoxtrickConfirmActions.SELL.CONFIRM_ID, msg,
 									[
 										{
 											type : Foxtrick.Note.BUTTON_OK,
 											listener : function(ev) {
 												var doc = ev.target.ownerDocument;
-												var sellText = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_txtPrice");
+												var sellText = doc.getElementById(FoxtrickConfirmActions.SELL.TEXT_ID);
 												sellText.removeAttribute("disabled");
-												var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
+												var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
 												sellButton.click();
 											}
 										},
@@ -104,11 +122,11 @@ var FoxtrickConfirmActions = {
 											type : Foxtrick.Note.BUTTON_CANCEL,
 											listener : function(ev) {
 												var doc = ev.target.ownerDocument;
-												var sellButton = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_btnSell");
+												var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
 												Foxtrick.removeClass(sellButton, "hidden");
-												var sellText = doc.getElementById("ctl00_CPSidebar_ucOwnerActions_txtPrice");
+												var sellText = doc.getElementById(FoxtrickConfirmActions.SELL.TEXT_ID);
 												sellText.removeAttribute("disabled");
-												var confirm = doc.getElementById("ft-sell-confirm");
+												var confirm = doc.getElementById(FoxtrickConfirmActions.SELL.CONFIRM_ID);
 												confirm.parentNode.removeChild(confirm);
 											}
 										}
@@ -123,7 +141,7 @@ var FoxtrickConfirmActions = {
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "NtChange")) {
 					var submitLink = doc.getElementById("ctl00_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction");
-					if (submitLink){
+					if (submitLink) {
 						var sOnclick = submitLink.href.replace(/javascript\:/, "");
 						if (sOnclick.search(/confirm/) == -1){ // already added?
 							var sConfirmString = Foxtrickl10n.getString("foxtrick.ntremoveconfirmation");
@@ -135,15 +153,15 @@ var FoxtrickConfirmActions = {
 			}
 			if (Foxtrick.isPage(Foxtrick.ht_pages["staff"], doc)) {
 				if (Foxtrick.isModuleFeatureEnabled(this, "StaffChange")) {
-					var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
+					var submitButton = doc.getElementById(FoxtrickConfirmActions.STAFF.SUBMIT_BUTTON_ID);
 					if (submitButton) {
 						submitButton.addEventListener("click", function(ev) {
 							var doc = ev.target.ownerDocument;
-							var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
-							var actionSelect = doc.getElementById("ctl00_CPMain_ddlStaffAction");
-							var amountText = doc.getElementById("ctl00_CPMain_txtAmount");
-							var roleSelect = doc.getElementById("ctl00_CPMain_ddlStaffRole");
-							var confirm = doc.getElementById("ft-staff-confirm");
+							var submitButton = doc.getElementById(FoxtrickConfirmActions.STAFF.SUBMIT_BUTTON_ID);
+							var actionSelect = doc.getElementById(FoxtrickConfirmActions.STAFF.ACTION_SELECT_ID);
+							var amountText = doc.getElementById(FoxtrickConfirmActions.STAFF.AMOUNT_TEXT_ID);
+							var roleSelect = doc.getElementById(FoxtrickConfirmActions.STAFF.ROLE_SELECT_ID);
+							var confirm = doc.getElementById(FoxtrickConfirmActions.STAFF.CONFIRM_ID);
 							var confirmAdded = true;
 							if (actionSelect && amountText && roleSelect && !confirm) {
 								var actionIndex = parseInt(actionSelect.selectedIndex);
@@ -159,20 +177,19 @@ var FoxtrickConfirmActions = {
 										msgTemplate = Foxtrickl10n.getString("foxtrick.staffconfirmationsack");
 									}
 									var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
-									var confirm = Foxtrick.Note.create(doc, "ft-staff-confirm", msg,
+									var confirm = Foxtrick.Note.create(doc, FoxtrickConfirmActions.STAFF.CONFIRM_ID, msg,
 										[
 											{
 												type : Foxtrick.Note.BUTTON_OK,
 												listener : function(ev) {
 													var doc = ev.target.ownerDocument;
-													var confirm = doc.getElementById("ft-staff-confirm");
-													var actionSelect = doc.getElementById("ctl00_CPMain_ddlStaffAction");
+													var actionSelect = doc.getElementById(FoxtrickConfirmActions.STAFF.ACTION_SELECT_ID);
 													actionSelect.removeAttribute("disabled");
-													var amountText = doc.getElementById("ctl00_CPMain_txtAmount");
+													var amountText = doc.getElementById(FoxtrickConfirmActions.STAFF.AMOUNT_TEXT_ID);
 													amountText.removeAttribute("disabled");
-													var roleSelect = doc.getElementById("ctl00_CPMain_ddlStaffRole");
+													var roleSelect = doc.getElementById(FoxtrickConfirmActions.STAFF.ROLE_SELECT_ID);
 													roleSelect.removeAttribute("disabled");
-													var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
+													var submitButton = doc.getElementById(FoxtrickConfirmActions.STAFF.SUBMIT_BUTTON_ID);
 													submitButton.setAttribute("onclick", submitButton.getAttribute("alt-onclick"));
 													submitButton.click();
 												}
@@ -181,15 +198,15 @@ var FoxtrickConfirmActions = {
 												type : Foxtrick.Note.BUTTON_CANCEL,
 												listener : function(ev) {
 													var doc = ev.target.ownerDocument;
-													var submitButton = doc.getElementById("ctl00_CPMain_btnStaffAction");
+													var submitButton = doc.getElementById(FoxtrickConfirmActions.STAFF.SUBMIT_BUTTON_ID);
 													Foxtrick.removeClass(submitButton, "hidden");
-													var actionSelect = doc.getElementById("ctl00_CPMain_ddlStaffAction");
+													var actionSelect = doc.getElementById(FoxtrickConfirmActions.STAFF.ACTION_SELECT_ID);
 													actionSelect.removeAttribute("disabled");
-													var amountText = doc.getElementById("ctl00_CPMain_txtAmount");
+													var amountText = doc.getElementById(FoxtrickConfirmActions.STAFF.AMOUNT_TEXT_ID);
 													amountText.removeAttribute("disabled");
-													var roleSelect = doc.getElementById("ctl00_CPMain_ddlStaffRole");
+													var roleSelect = doc.getElementById(FoxtrickConfirmActions.STAFF.ROLE_SELECT_ID);
 													roleSelect.removeAttribute("disabled");
-													var confirm = doc.getElementById("ft-staff-confirm");
+													var confirm = doc.getElementById(FoxtrickConfirmActions.STAFF.CONFIRM_ID);
 													confirm.parentNode.removeChild(confirm);
 												}
 											}
