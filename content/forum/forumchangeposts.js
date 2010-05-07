@@ -546,7 +546,7 @@ var FoxtrickForumChangePosts = {
 			try {PostID= ev.target.parentNode.nextSibling.href.match(/\d+\.\d+/g)[0];}
 			catch(e){PostID=ev.target.parentNode.nextSibling.title;}
 		}
-		Foxtrick.copyStringToClipboard(PostID);
+		Foxtrick.copyStringToClipboard("[post="+PostID+"]");
 		if (FoxtrickPrefs.getBool( "copyfeedback" ))
 			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.postidcopied"));
     },
