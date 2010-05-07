@@ -52,15 +52,14 @@ coach_skills	: new Array(
 ),			
 formation_experience	: new Array(		
 	"Formation experience / Youth squad",
+	"outstanding",
+	"formidable",
 	"excellent",
 	"solid",
 	"passable",
 	"inadequate",
 	"weak",
-	"poor",
-	"wretched",
-	"disastrous",
-	"non-existent"
+	"poor"
 ),			
 sponsors	: new Array(		
 	"Sponsors",
