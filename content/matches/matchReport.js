@@ -248,7 +248,7 @@ FoxtrickMatchReportFormat = {
                     var team1 = names[0].split('  ')[0];
                     var team2 = names[1].split('  ')[1];
                     stage = 1;
-                    //Foxtrick.dump('TEAMS [' + team1 + '|' + team2 + ']\n');
+                    Foxtrick.dump('TEAMS [' + team1 + '|' + team2 + ']\n');
                 }
                 if (stage==1 && dummy[i].indexOf('<span>(')!=-1) {
                     // Foxtrick.dump('MATCHID\n');
@@ -405,10 +405,10 @@ FoxtrickMatchReportFormat = {
 
         }
         Foxtrick.dump('<b>END OF GOALs</b>\n');
-        var headder = doc.getElementsByTagName('h1')[0];
+        var headder = doc.getElementsByTagName('h1')[0]; 
         headder.setAttribute( 'style', 'color:black');
-        headder.innerHTML = headder.innerHTML.replace(team1, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_hm +'">' + team1 + '</span>');
-        headder.innerHTML = headder.innerHTML.replace(team2, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_aw +'">' + team2 + '</span>');
+        headder.innerHTML = headder.innerHTML.replace(new RegExp('\\s'+team1+'\\s'), '<span style="padding-left:10px; font-weight:bold; font-size:1em; color:'+ txt_col_hm +'"> ' + team1 + ' </span>');
+        headder.innerHTML = headder.innerHTML.replace(new RegExp('\\s'+team2+'\\s'), '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_aw +'"> ' + team2 + ' </span>');
         
         var sidebar = doc.getElementById('sidebar');
         var links = sidebar.getElementsByTagName('a');
