@@ -79,7 +79,7 @@ Foxtrick.ht_pages = {
     'trainingStats'             : '\/Club\/Training\/Statistics.aspx',
     'YouthTraining'             : '\/Club\/Training\/YouthTraining\.aspx',
     'managerPage'               : '\/Club\/Manager\/',
-    'finances'                  : '\/Club\/Finances/',
+    'finances'                  : '\/Club\/Finances\/$|\/Club\/Finances\/Default\.aspx',
     'federation'                : '\/Community\/Federations\/Federation\.aspx',
     'newsletter'                : '\/Community\/Federations\/SendMessage\.aspx',
     'national'                  : '\/Club\/NationalTeam\/NationalTeam\.aspx',
