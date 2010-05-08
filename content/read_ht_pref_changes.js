@@ -63,14 +63,14 @@ var FoxtrickReadHtPrefs = {
 			this.codes['55']='vi';
 			this.codes['65']='vls';
 			this.codes['15']='zh';
+			this.codes['90']='ka';
+			this.codes['84']='be';
+			this.codes['17']='ko';
+			this.codes['12']='ja';
 			
-			// follwoing don't have an own locale file yet
+			// following don't have an own locale file yet
 	/*
-	<option value="90">Georgian</option>
 	<option value="86">Kyrgyz</option>
-	<option value="84">Беларуская</option>  Belarusian
-	<option value="17">한국어</option> korean
-	<option value="12">日本語</option> japan
 	 */  
 			
    },
