@@ -133,6 +133,60 @@ var FoxtrickSkillTable = {
 				cell.appendChild(doc.createTextNode(age.years + "." + age.days));
 				cell.setAttribute("index", age.years * 112 + age.days);
 			};
+			var status = function(cell, player) {
+				var index = 0;
+				if (player.yellowCard) {
+					if (player.yellowCard === 1) {
+						var img = doc.createElement("img");
+						img.src = "/Img/Icons/yellow_card.gif";
+						img.alt = Foxtrickl10n.getString("Yellow_card.abbr") + "×1";
+						img.title = Foxtrickl10n.getString("Yellow_card") + "×1";
+						cell.appendChild(img);
+					}
+					else if (player.yellowCard === 2) {
+						var img = doc.createElement("img");
+						img.src = "/Img/Icons/dual_yellow_card.gif";
+						img.alt = Foxtrickl10n.getString("Yellow_card.abbr") + "×2";
+						img.title = Foxtrickl10n.getString("Yellow_card") + "×2";
+						cell.appendChild(img);
+					}
+					index += 10 * player.yellowCard;
+				}
+				if (player.redCard) {
+					var img = doc.createElement("img");
+					img.src = "/Img/Icons/red_card.gif";
+					img.alt = Foxtrickl10n.getString("Red_card.abbr");
+					img.title = Foxtrickl10n.getString("Red_card");
+					cell.appendChild(img);
+					index += 30;
+				}
+				if (player.bruised) {
+					var img = doc.createElement("img");
+					img.src = "/Img/Icons/bruised.gif";
+					img.alt = Foxtrickl10n.getString("Bruised.abbr");
+					img.title = Foxtrickl10n.getString("Bruised");
+					cell.appendChild(img);
+					index += 50;
+				}
+				if (player.injured) {
+					var img = doc.createElement("img");
+					img.src = "/Img/Icons/injured.gif";
+					img.alt = Foxtrickl10n.getString("Injured.abbr");
+					img.title = Foxtrickl10n.getString("Injured");
+					cell.appendChild(img);
+					cell.appendChild(doc.createTextNode(player.injured));
+					index += player.injured * 100;
+				}
+				if (player.transferListed) {
+					var img = doc.createElement("img");
+					img.src = "/Img/Icons/dollar.gif";
+					img.alt = Foxtrickl10n.getString("TransferListed.abbr");
+					img.title = Foxtrickl10n.getString("TransferListed");
+					cell.appendChild(img);
+					index += 1;
+				}
+				cell.setAttribute("index", index);
+			};
 			var skill = function(cell, skill) {
 				if (typeof(skill) === "object") {
 					// in youth team, returned skill is an object
@@ -204,8 +258,10 @@ var FoxtrickSkillTable = {
 // property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
 // method: which function to use in order to attach data to cell, should be a
 //          function with two arguments, first is table cell(td), second is
-//          raw data from playerList. By default the data is treated as plain
-//          text and appended to the cell.
+//          raw data from playerList. If properties is given (multiple column),
+//          then the player is given as date; if property is given instead
+//          (single column), the specified property is given. By default the
+//          data is treated as plain text and appended to the cell.
 // sortAsc: whether to sort the column in ascending order, default is in
 //           descending order.
 // sortString: whether to sort the column with values as string, default is as
@@ -234,28 +290,33 @@ var FoxtrickSkillTable = {
 				{ name : "Passing", property : "passing", method: skill },
 				{ name : "Scoring", property : "scoring", method: skill },
 				{ name : "Set_pieces", property : "setPieces", method: skill },
-				{ name : "Yellow_card", property : "yellowCard", method : noZero, img : "/Img/Icons/yellow_card.gif" },
-				{ name : "Red_card", property : "redCard", method : noZero, img : "/Img/Icons/red_card.gif" },
-				{ name : "Bruised", property : "bruised", method : noZero, img : "/Img/Icons/bruised.gif" },
-				{ name : "Injured", property : "injured", method : noZero, img : "/Img/Icons/injured.gif" },
+				{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injured", "transferListed"], method : status },
 				{ name : "Speciality", property : "speciality", method : speciality, sortString : true },
 				{ name : "Last_match", property : "lastMatch", method : lastMatch },
 				{ name : "Last_stars", property : "lastRating", img : "/Img/Matches/star_blue.png" },
 				{ name : "Last_position", property : "lastPosition", method : position, sortString : true },
 				{ name : "Salary", property : "salary", alignRight : true },
-				{ name : "TransferListed", property : "transferListed", method : noZero, img : "/Img/Icons/dollar.gif" },
 				{ name : "NrOfMatches", property : "matchCount" },
 				{ name : "LeagueGoals", property : "leagueGoals" },
 				{ name : "CareerGoals", property : "careerGoals" }
 			];
 
 			for (var j = 0; j < columns.length; ++j) {
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, columns[j].property)) {
-					columns[j].available = true;
-					columns[j].enabled = FoxtrickSkillTable.getColumnEnabled(fullType, columns[j].name);
+				columns[j].available = false;
+				if (columns[j].properties) {
+					for (var pIndex in columns[j].properties) {
+						if (Foxtrick.Pages.Players.isPropertyInList(playerList, columns[j].properties[pIndex])) {
+							columns[j].available = true;
+							columns[j].enabled = FoxtrickSkillTable.getColumnEnabled(fullType, columns[j].name);
+							break;
+						}
+					}
 				}
-				else {
-					columns[j].available = false;
+				else if (columns[j].property) {
+					if (Foxtrick.Pages.Players.isPropertyInList(playerList, columns[j].property)) {
+						columns[j].available = true;
+						columns[j].enabled = FoxtrickSkillTable.getColumnEnabled(fullType, columns[j].name);
+					}
 				}
 			}
 
@@ -329,16 +390,29 @@ var FoxtrickSkillTable = {
 					if (columns[j].enabled) {
 						var cell = doc.createElement("td");
 						row.appendChild(cell);
-						if (playerList[i][columns[j].property] !== undefined) {
+						if (columns[j].properties) {
+							if (columns[j].method) {
+								columns[j].method(cell, playerList[i]);
+							}
+							else {
+								for (var pIndex = 0; pIndex < columns[j].properties.length; ++pIndex) {
+									cell.appendChild(doc.createTextNode(playerList[i][columns[j].properties[pIndex]]));
+									if (pIndex !== columns[j].properties.length) {
+										cell.appendChild(doc.createTextNode(", "));
+									}
+								}
+							}
+						}
+						else if (columns[j].property && playerList[i][columns[j].property] !== undefined) {
 							if (columns[j].method) {
 								columns[j].method(cell, playerList[i][columns[j].property]);
 							}
 							else {
 								cell.appendChild(doc.createTextNode(playerList[i][columns[j].property]));
 							}
-							if (columns[j].alignRight) {
-								Foxtrick.addClass(cell, "align-right");
-							}
+						}
+						if (columns[j].alignRight) {
+							Foxtrick.addClass(cell, "align-right");
 						}
 					}
 				}
