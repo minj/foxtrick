@@ -2,7 +2,7 @@
 /* HeaderFix by Catalyst2950 */
 
 /* fix left submenu */
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #content .subMenu {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #content .subMenu {
 position: fixed;
 /* getting borders right if menu overflows content */
 background: white;
@@ -14,7 +14,7 @@ border-width:  0 1px 0 0 !important;
 }
 
 /* show main over left menu */
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #content.mainRegular {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #content.mainRegular {
 	z-index:10;
 	background-color:white;
 }

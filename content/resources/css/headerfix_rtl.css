@@ -2,7 +2,7 @@
 /* HeaderFix by Catalyst2950 */
 
 /* Fix the header on screen */
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #header  {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #header  {
 position: fixed !important;
 top: 0px; 
 margin-right: -11px;
@@ -18,23 +18,23 @@ border-width:  0 1px 0 1px;
 
 
 /* compensate for fixed header, move menu from the edge */
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #menu {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #menu {
 width: 765px !important;
 margin-left:10px !important;
 }
 
 /* add whitespace below header */
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #menu {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #menu {
 margin-bottom: 6px !important;
 }
 
 /* compensate for fixed header */
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #content {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #content {
 padding-top: 100px !important;
 }
 
 /* compensate for fixed left submenu */
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]):not([action*="Live.aspx"]) #content #mainWrapper {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]):not([action*="Live.aspx"]) #content #mainWrapper {
 margin-right: 125px;
 min-height: 400px !important; /* temporary height hack before sticky footer */
 }
@@ -43,7 +43,7 @@ min-height: 400px !important; /* temporary height hack before sticky footer */
 min-height:0px !important ; 
 }
 
-#aspnetForm:not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) div#shortcuts {
+#aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) div#shortcuts {
 padding-right: 10px;
 }
 
