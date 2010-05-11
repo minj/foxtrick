@@ -9,7 +9,7 @@ FoxtrickHTDateFormat = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
  	PAGES : new Array('transfersTeam','TransfersPlayer','TransferCompare','match',
 					'matches','matchesarchiv','teamPageGeneral','achievements',
-					'teamevents','history','arena','league'), 
+					'teamevents','history','arena','league','HallOfFame'), 
 	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.6.2",	
@@ -88,6 +88,9 @@ FoxtrickHTDateFormat = {
                 Foxtrick.modifyDates ( mainBody, true, 'h3', '&nbsp;', '',weekdayoffset );
                 break;
                 
+            case 'HallOfFame' :
+                Foxtrick.modifyDates ( mainBody, false, 'p', '&nbsp;', '',weekdayoffset, true );
+                break;
                 
         }
     },

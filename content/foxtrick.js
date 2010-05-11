@@ -185,6 +185,7 @@ var FoxtrickMain = {
 		if (ev.originalTarget.className && (ev.originalTarget.className=='boxBody' || ev.originalTarget.className=='myht1'))
 			return;
 			
+		Foxtrick.dump('change\n');
 		var content = doc.getElementById("content");
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
@@ -1675,8 +1676,9 @@ Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset,
         if (!strip) var dt_inner = Foxtrick.trim(tds[i].innerHTML);
 		else var dt_inner = Foxtrick.trim(Foxtrick.stripHTML(tds[i].innerHTML));
 
-        if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) { //Foxtrick.dump('>'+tds[i].nodeName+' '+dt_inner.substr(0,50)+'\n');
-            if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) ) {
+        if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) { 
+			//Foxtrick.dump('>'+tds[i].nodeName+' '+dt_inner.substr(0,50)+'\n');
+            if ( (dt_inner.length <= 10 && short ) || (dt_inner.length <= 16 && !short ) || strip ) {
                 var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
                 var ar = reg.exec(dt_inner);
 
