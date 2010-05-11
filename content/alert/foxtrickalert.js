@@ -110,14 +110,14 @@ var FoxtrickAlert = {
 	},
 	
     checkNewsEvent : function(evt) {
-		Foxtrick.dump('checkNewsEvent\n');
+//		Foxtrick.dump('checkNewsEvent\n');
 		var doc = evt.target.ownerDocument;
 		FoxtrickAlert.checkNews(doc);
     },
 
 	checkNews : function(doc) {
        try {   
-			Foxtrick.dump('checkNews\n');
+//			Foxtrick.dump('checkNews\n');
 			
 			var tickerdiv = doc.getElementById('ticker').getElementsByTagName('div');
             var message="";
