@@ -101,6 +101,7 @@ Foxtrick.ht_pages = {
 	'statsConfs'                : '/World/Stats/StatsConfs.aspx',
 	'statsBookmarks'            : '/World/Stats/StatsBookmarks.aspx',
 	'statsArena'                : '/World/Stats/StatsArena.aspx',
+	'statsMatchesHeadToHead'    : '/World/Stats/StatsMatchesHeadToHead.aspx',
     'press'                     : '/Community/Press/',
 	'HallOfFame'				: '/Club/HallOfFame/',
     'all_late'                  : '/',

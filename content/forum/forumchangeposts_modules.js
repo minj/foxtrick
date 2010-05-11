@@ -94,7 +94,7 @@ var FoxtrickCopyPosting = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.5.1.2",	
-	LATEST_CHANGE:"Fixed missing copying of message",
+	LATEST_CHANGE:"Copy ht-ml for archive + copy posting tweak. Fixed missing copying of message",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("CopyWikiStyle"), 
