@@ -23,7 +23,7 @@ FoxtrickHTDateFormat = {
     },
 
     run : function(page, doc) {
-        Foxtrick.dump('HTDateformat RUN '+page+'\n');
+        //Foxtrick.dump('HTDateformat RUN '+page+'\n');
         var httime = doc.getElementById( "time" ).innerHTML;
 
         Foxtrick.HT_date = Foxtrick.getDatefromCellHTML( httime );
