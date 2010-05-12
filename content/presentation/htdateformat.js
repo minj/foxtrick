@@ -9,7 +9,7 @@ FoxtrickHTDateFormat = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
  	PAGES : new Array('transfersTeam','TransfersPlayer','TransferCompare','match',
 					'matches','matchesarchiv','teamPageGeneral','achievements',
-					'teamevents','history','arena','league','HallOfFame','statsMatchesHeadToHead'), 
+					'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'), 
 	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.4.6.2",	
