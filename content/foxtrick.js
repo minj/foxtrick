@@ -1672,11 +1672,10 @@ Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset,
     for (var i = 0; tds[i] != null; ++i) {
         // not nested
 		if ( tds[i].getElementsByTagName( elm ).length!=0) {
-			Foxtrick.modifyDates( doc, short, tds[i], before, after ,weekdayoffset, strip);
 			continue;
 		}
 		
-		// if (tds[i].id == 'ft_HTDateFormat') return;
+		if (tds[i].id == 'ft_HTDateFormat') return;
         if (!strip) var dt_inner = Foxtrick.trim(tds[i].innerHTML);
 		else var dt_inner = Foxtrick.trim(Foxtrick.stripHTML(tds[i].innerHTML));
 
