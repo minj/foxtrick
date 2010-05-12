@@ -185,13 +185,11 @@ var FoxtrickMain = {
 		if (ev.originalTarget.className && (ev.originalTarget.className=='boxBody' || ev.originalTarget.className=='myht1'))
 			return;
 			
-		Foxtrick.dump('change\n');
 		var content = doc.getElementById("content");
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true );
 		var begin = new Date();
-		//if (doc.location.href.search(/Live.aspx/)==-1) Foxtrick.dump('onPageChange: '+ ev.originalTarget.className+' '+ev.currentTarget.className +' '+ev.target.className +'\n');
-		FoxtrickMain.change( doc , ev);
+		FoxtrickMain.change(doc, ev);
 		var end = new Date();
         var time = ( end.getSeconds() - begin.getSeconds() ) * 1000
                  + end.getMilliseconds() - begin.getMilliseconds();
