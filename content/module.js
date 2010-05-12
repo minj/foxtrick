@@ -38,7 +38,6 @@ Foxtrick.ht_pages = {
 	'region'                    : '/World/Regions/Region\.aspx',
 	'challenges'                : '/Club/Challenges/$',
 	'youthchallenges'           : '/Club/Challenges/YouthChallenges',
-	'economy'                   : '/Club/Finances/$',
 	'achievements'              : '/Club/Achievements/',
 	'history'                   : '/Club/History/',
 	'teamevents'                : '/Club/TeamEvents/',
