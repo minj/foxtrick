@@ -46,7 +46,7 @@ var FoxtrickContextMenueCopyId = {
 				else if ( href.search(/\?AllianceID=\d+/gi) != -1 ) ml = '[federationid=';
 				else if ( href.search(/\?LeagueLevelUnitID=\d+/gi) != -1 ) ml = '[leagueid=';
 				else if ( href.search(/\?YouthLeagueId=\d+/gi) != -1 ) ml = '[youthleagueid=';
-				else if ( href.search(/\?userId=\d+"/gi) != -1 ) ml = '[userid=';
+				else if ( href.search(/\?userId=\d+/gi) != -1 ) ml = '[userid=';
 				else if ( href.search(/\?KitID=\d+/gi) != -1 ) ml = '[kitid=';
 				else if ( href.search(/\?ArticleID=\d+/gi) != -1 ) ml = '[articleid=';
 				
