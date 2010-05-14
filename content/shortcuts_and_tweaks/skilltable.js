@@ -103,7 +103,6 @@ var FoxtrickSkillTable = {
 			}
 
 			// functions used to attach data to table cell
-			var node = function(cell, node) { cell.appendChild(node); };
 			var category = function(cell, cat) {
 				categories = ["GK", "WB", "CD", "W", "IM", "FW", "S", "R", "E1", "E2"];
 				if (cat !== 0) {
@@ -127,6 +126,23 @@ var FoxtrickSkillTable = {
 					cell.appendChild(flag);
 					// League name is a -> img.title
 					cell.setAttribute("index", flag.firstChild.title);
+				}
+			};
+			var playerName = function(cell, player) {
+				cell.appendChild(player.nameLink.cloneNode(true));
+				if (player.nationalTeamId) {
+					cell.appendChild(doc.createTextNode(" ("));
+					cell.appendChild(doc.createTextNode("NT"));
+					if (player.trainerData) {
+						cell.appendChild(doc.createTextNode(", "));
+						cell.appendChild(doc.createTextNode(Foxtrickl10n.getString("Coach"));
+					}
+					cell.appendChild(doc.createTextNode(")"));
+				}
+				else if (player.trainerData) {
+					cell.appendChild(doc.createTextNode(" ("));
+					cell.appendChild(doc.createTextNode(Foxtrickl10n.getString("Coach"));
+					cell.appendChild(doc.createTextNode(")"));
 				}
 			};
 			var age = function(cell, age) {
@@ -273,7 +289,7 @@ var FoxtrickSkillTable = {
 				{ name : "PlayerNumber", property : "number", method : number, sortAsc : true },
 				{ name : "PlayerCategory", property : "category", method: category, sortAsc: true },
 				{ name : "Nationality", property : "countryId", method : nationality, sortString : true },
-				{ name : "Player", property : "nameLink", method : node, sortString : true },
+				{ name : "Player", properties : ["nameLink", "nationalTeamId", "trainerData"], method : playerName, sortString : true },
 				{ name : "Age", property : "age", method : age, sortAsc : true },
 				{ name : "TSI", property : "tsi", alignRight : true },
 				{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injured", "transferListed"], method : status },
