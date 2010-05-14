@@ -201,6 +201,7 @@ var FoxtrickSkillTable = {
 					cell.appendChild(img);
 					index += 1;
 				}
+				Foxtrick.addClass(cell, "status");
 				cell.setAttribute("index", index);
 			};
 			var skill = function(cell, skill) {
