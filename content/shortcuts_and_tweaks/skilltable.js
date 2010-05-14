@@ -11,8 +11,8 @@ var FoxtrickSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.1.2",
-	LATEST_CHANGE : "Improves error catching, fixes non-showing table for some users, caching last XML for faster load and extra info also on old tabs.",
+	NEW_AFTER_VERSION : "0.5.1.3",
+	LATEST_CHANGE : "Merged cards/injuries/transfer-list into status column, and added player ID copying.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OtherTeams"),
 
@@ -810,8 +810,12 @@ var FoxtrickSkillTable = {
 				ret += "[tr]";
 				for (var cellIndex = 0; cellIndex < row.cells.length; ++cellIndex) {
 					var cell = row.cells[cellIndex];
-					var tagName = cell.tagName.toLowerCase();
-					ret += "[" + tagName + "]" + this._getCell(cell) + "[/" + tagName +"]";
+					var cellName = cell.tagName.toLowerCase();
+					var cellContent = this._getNode(cell);
+					if (Foxtrick.hasClass(cell, "maxed")) {
+						cellContent = "[b]" + this._getNode(cell) + "[/b]";
+					}
+					ret += "[" + cellName + "]" + cellContent + "[/" + cellName +"]";
 				}
 				ret += "[/tr]";
 			}
@@ -823,13 +827,43 @@ var FoxtrickSkillTable = {
 		}
 	},
 
-	_getCell : function(cell) {
-		var imgs = cell.getElementsByTagName("img");
-		var content = imgs.length ? imgs[0].getAttribute("alt") : cell.textContent;
-		var maxed = Foxtrick.hasClass(cell, "maxed");
-		if (maxed) {
-			content = "[b]" + content + "[/b]";
+	/* get the text content in a node and return it.
+	 * for player links, append the [playerid] HT-ML tag
+	 * for images, return its alt attribute
+	 */
+	_getNode : function(node) {
+		var youthPlayerRe = new RegExp("YouthPlayerID=(\\d+)", "i");
+		var playerRe = new RegExp("PlayerID=(\\d+)", "i");
+		if (node.nodeName.toLowerCase() == "a" && node.href.search(youthPlayerRe) != -1) {
+			var ret = node.textContent;
+			ret += " [youthplayerid=";
+			ret += node.href.match(youthPlayerRe)[1];
+			ret += "]";
+			return ret;
 		}
-		return Foxtrick.trim(content);
+		else if (node.nodeName.toLowerCase() == "a" && node.href.search(playerRe) != -1) {
+			var ret = node.textContent;
+			ret += " [playerid=";
+			ret += node.href.match(playerRe)[1];
+			ret += "]";
+			return ret;
+		}
+		else if (node.hasChildNodes()) {
+			var children = node.childNodes;
+			var ret = "";
+			for (var i = 0; i < children.length; ++i) {
+				// recursively get the content of child nodes
+				ret += this._getNode(children[i]) + " ";
+			}
+			return Foxtrick.trim(ret);
+		}
+		else {
+			if (node.nodeName.toLowerCase() == "img") {
+				return node.getAttribute("alt");
+			}
+			else {
+				return node.textContent;
+			}
+		}
 	}
 }
