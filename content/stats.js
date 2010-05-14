@@ -1743,8 +1743,8 @@ stats["nrg_pop"] =  {
 						 "params"     : { "tsi" : "tsi", "form" : "fo",
                                           "stamina" : "st",  "playmaking" : "pm",
                                           "passing" : "pa", "winger" : "wi", "defending" : "df",
-                                          "scoring" : "sc" }
-                          },*/
+                                          "scoring" : "sc" }*/
+                          },
         "title" : "NRG Pop",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_pop.png"
 };
