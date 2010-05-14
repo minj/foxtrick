@@ -1304,11 +1304,13 @@ stats["Ht4u"] =  {
 
         "playerlink" : { "path"       : "/index.php",
                          "filters"    : ["age"],
-                         "params"     : { "lang":"lang", "age" : "age",
+                         "params"     : [], 
+						 /* no data sharing with non chpp pages
+						 "params"     : { "lang":"lang", "age" : "age",
                                           "playmaking" : "pm",
                                           "passing" : "pass", "winger" : "wi", "defending" : "def",
                                           "scoring" : "sco", "setpieces":"sp", "wage":"wage"
-										}                        						
+										} */                       						
                        },
 		"ageranges" : [[27, 99]],
         "title" : "Primary Skill drop Calculator",
@@ -1736,11 +1738,13 @@ stats["nrg_pop"] =  {
         "url" : "http://nrgjack.altervista.org/",
 		"playerlink" : { "path"       : "pop.php",
                          "filters"    : [], 
-                         "params"     : { "tsi" : "tsi", "form" : "fo",
+                         "params"     : [], 
+						 /* no data sharing with non chpp pages
+						 "params"     : { "tsi" : "tsi", "form" : "fo",
                                           "stamina" : "st",  "playmaking" : "pm",
                                           "passing" : "pa", "winger" : "wi", "defending" : "df",
                                           "scoring" : "sc" }
-                          },
+                          },*/
         "title" : "NRG Pop",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_pop.png"
 };
