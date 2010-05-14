@@ -130,19 +130,19 @@ var FoxtrickSkillTable = {
 			};
 			var playerName = function(cell, player) {
 				cell.appendChild(player.nameLink.cloneNode(true));
+				var extras = "";
 				if (player.nationalTeamId) {
-					cell.appendChild(doc.createTextNode(" ("));
-					cell.appendChild(doc.createTextNode("NT"));
+					extras = " (NT";
 					if (player.trainerData) {
-						cell.appendChild(doc.createTextNode(", "));
-						cell.appendChild(doc.createTextNode(Foxtrickl10n.getString("Coach"));
+						extras += ", " + Foxtrickl10n.getString("Coach");
 					}
-					cell.appendChild(doc.createTextNode(")"));
+					extras += ")";
 				}
 				else if (player.trainerData) {
-					cell.appendChild(doc.createTextNode(" ("));
-					cell.appendChild(doc.createTextNode(Foxtrickl10n.getString("Coach"));
-					cell.appendChild(doc.createTextNode(")"));
+					extras = " (" + Foxtrickl10n.getString("Coach") + ")";
+				}
+				if (extras !== "") {
+					cell.appendChild(doc.createTextNode(extras));
 				}
 			};
 			var age = function(cell, age) {
