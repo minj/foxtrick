@@ -23,6 +23,7 @@ var FoxtrickConfirmActions = {
 
 	SELL : {
 		BUTTON_ID : "ctl00_CPSidebar_ucOwnerActions_btnSell",
+		CANCEL_ID : "ctl00_CPSidebar_ucOwnerActions_btnSellCancel",
 		TEXT_ID : "ctl00_CPSidebar_ucOwnerActions_txtPrice",
 		CONFIRM_ID : "ft-sell-confirm"
 	},
@@ -97,6 +98,7 @@ var FoxtrickConfirmActions = {
 						sellButton.addEventListener("click", function(ev) {
 							var doc = ev.target.ownerDocument;
 							var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
+							var cancelButton = doc.getElementById(FoxtrickConfirmActions.SELL.CANCEL_ID);
 							var sellText = doc.getElementById(FoxtrickConfirmActions.SELL.TEXT_ID);
 							var confirm = doc.getElementById("ft-sell-confirm");
 							if (sellText && !confirm) {
@@ -124,6 +126,8 @@ var FoxtrickConfirmActions = {
 												var doc = ev.target.ownerDocument;
 												var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
 												Foxtrick.removeClass(sellButton, "hidden");
+												var cancelButton = doc.getElementById(FoxtrickConfirmActions.SELL.CANCEL_ID);
+												Foxtrick.removeClass(cancelButton, "hidden");
 												var sellText = doc.getElementById(FoxtrickConfirmActions.SELL.TEXT_ID);
 												sellText.removeAttribute("disabled");
 												var confirm = doc.getElementById(FoxtrickConfirmActions.SELL.CONFIRM_ID);
@@ -133,6 +137,7 @@ var FoxtrickConfirmActions = {
 									]);
 								sellButton.parentNode.appendChild(confirm);
 								Foxtrick.addClass(sellButton, "hidden");
+								Foxtrick.addClass(cancelButton, "hidden");
 								sellText.disabled = "disabled";
 								ev.preventDefault();
 							}
