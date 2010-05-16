@@ -102,7 +102,7 @@ var FoxtrickReadHtPrefs = {
 				//Foxtrick.dump(decodeURIComponent(as[5].innerHTML)+' '+atitle.getAttribute('value')+' '+decodeURIComponent(as[5].innerHTML).search(atitle.getAttribute('value'))+' ');
 				if (num_found==6) {
 					langval = languages[k].getAttribute('name');
-					Foxtrick.dump('lang detected: '+languages[k].getAttribute('desc')+'\n');
+					Foxtrick.dump('lang detected: '+langval+' oldval:'+oldval+'\n');
 					break;
 				}
 				//Foxtrick.dump('\n');

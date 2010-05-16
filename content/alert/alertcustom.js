@@ -12,7 +12,7 @@ var FoxtrickAlertCustomOff = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION : "0.5.1.2",
 	LATEST_CHANGE : "Moved to alert category.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
 	urls: new Array(/\/MyHattrick\/$/gi,
 					/\/Club\/Manager\/\?teamId=/gi,

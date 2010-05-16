@@ -10,6 +10,9 @@ var FoxtrickContextMenuCopyId = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     PAGES : new Array('all'), 
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION : "0.5.1.3",
+	LATEST_CHANGE : "Added HT-ML tags if appropriate",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	ID:'',
      
     init : function() {

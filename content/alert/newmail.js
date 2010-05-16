@@ -12,7 +12,7 @@ var FoxtrickNewMail = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.1",
 	LATEST_CHANGE:"Moved to alert tab in preferences",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS:  "",
     OLD_CSS:"",
 	

@@ -11,7 +11,7 @@ FoxtrickLineupShortcut = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Fix for Teams with problamatic names",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
  	OPTIONS : new Array("HighlightPlayer"),
 
     

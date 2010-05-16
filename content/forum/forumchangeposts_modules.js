@@ -67,8 +67,9 @@ var FoxtrickCopyPostID = {
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	NEW_AFTER_VERSION: "0.4.7.5",
-	LATEST_CHANGE:"Added confirmation alert. option to turn ALL copy confirmations off in preferences",
+	NEW_AFTER_VERSION: "0.5.1.3",
+	LATEST_CHANGE:"Added [post=..] to copied post id",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("AddCopyIcon"), 
 	
@@ -95,7 +96,7 @@ var FoxtrickCopyPosting = {
 	PAGES : new Array("forumViewThread"), 
 	NEW_AFTER_VERSION: "0.5.1.2",	
 	LATEST_CHANGE:"Copy ht-ml for archive + copy posting tweak. Fixed missing copying of message",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("CopyWikiStyle"), 
 	

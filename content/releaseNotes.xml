@@ -3,19 +3,22 @@
 <release_note>
 
 
-<version>0.5.1.2</version>
+<version>0.5.2.0</version>
 <title>Release notes (selected features and issues only)</title>
 <lines></lines>
-<lines>* General bugfix release</lines>
-<lines>* Some translations updated</lines>
-<lines>* ExtraPlayerslistInfo loading now optional (in main preferences)</lines>
+<lines>* SkillTable beautified</lines>
+<lines>* ConfirmActions beautified</lines>
+<lines>* ExtraPlayerInfo as new module</lines>
+<lines>* ContextMenuCopyId with added HT-ML tags </lines>
+<lines>* CopyPostID with added HT-ML tag</lines>
+<lines>* Added basic functionality for all missing HT languages </lines>
 
 <lines></lines> 
 <lines>Attention!</lines>
-<lines>*confirmActions joined to new module. Setting of old confirmations reset to default</lines>
+<lines>*Ticker and alerts have been moved to an own tab.</lines>
  	
 <lines></lines> 
-<lines>For a complete list use bellow changes link and/or 'set new features' link</lines> 
+<lines>It's recommended to use the 'set new features' link bellow.</lines> 
 
 
 

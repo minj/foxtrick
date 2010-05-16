@@ -12,7 +12,7 @@ var FoxtrickCopyRatingsToClipboard = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Copy links back to rating table.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	init : function() {
 	},

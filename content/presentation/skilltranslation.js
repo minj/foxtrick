@@ -11,7 +11,7 @@ var FoxtrickSkillTranslation = {
 	PAGES : new Array('denominations'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.3",	
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	LATEST_CHANGE : "Updated to the latest version as of 7th May 2010.",
 
 player_abilities	: new Array(		

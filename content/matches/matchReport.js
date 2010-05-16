@@ -11,6 +11,7 @@ FoxtrickMatchReportFormat = {
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"OwnYouthteam detection included",	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
 											 "#9F0202",  //Text Home team name   1
@@ -31,10 +32,6 @@ FoxtrickMatchReportFormat = {
 
     UNKNOWN_COLOUR : "#F0F0F0",
 
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"some format of match report for better reading",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
- 	//OPTIONS : new Array("DefaultShow"),
 	OwnYouthTeamId: null,
 	
 	init : function() {

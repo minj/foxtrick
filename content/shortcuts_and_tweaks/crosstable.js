@@ -13,7 +13,7 @@ var FoxtrickCrossTable = {
 	OPTIONS : new Array("allway_show_cross", "allway_show_graph"),
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Let table expand, and show full name in graph.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	_week : 14,
 
