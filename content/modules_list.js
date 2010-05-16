@@ -36,7 +36,7 @@ Foxtrick.modules = [
                     FoxtrickTeamPopupLinksMore,
                     FoxtrickHideManagerAvatarUserInfo,
                     FoxtrickGoToPostBox,
-                    FoxtrickContextMenueCopyId,
+                    FoxtrickContextMenuCopyId,
                     FoxtrickHeadercopyicons,
 					FoxtrickCopyTrainingReport,
                     FoxtrickCopyScoutReport,

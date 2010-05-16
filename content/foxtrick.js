@@ -337,7 +337,7 @@ var FoxtrickMain = {
 			}
 			
 			// context menue
-			doc.addEventListener('contextmenu',FoxtrickContextMenueCopyId.onContext,false);
+			doc.addEventListener('contextmenu',FoxtrickContextMenuCopyId.onContext,false);
             Foxtrick.dump_flush(doc);
 		}
 	} catch(e) { Foxtrick.dump('Foxtrick.run: '+e+'\n'); }
