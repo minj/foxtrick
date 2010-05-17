@@ -821,7 +821,7 @@ var FoxtrickSkillTable = {
 
 	toHtMl : function(table) {
 		try {
-			var ret = "[table]";
+			var ret = "[table]\n";
 			for (var rowIndex = 0; rowIndex < table.rows.length; ++rowIndex) {
 				var row = table.rows[rowIndex];
 				ret += "[tr]";
@@ -834,7 +834,7 @@ var FoxtrickSkillTable = {
 					}
 					ret += "[" + cellName + "]" + cellContent + "[/" + cellName +"]";
 				}
-				ret += "[/tr]";
+				ret += "[/tr]\n";
 			}
 			ret += "[/table]";
 			return ret;
