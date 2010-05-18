@@ -583,7 +583,10 @@ var FoxtrickForumChangePosts = {
 				var doc = ev.target.ownerDocument;
 				var doht_ml = ev.target.getAttribute('doht_ml')=='true';
 				
-				if (!doht_ml) var header=ev.target.parentNode.parentNode.parentNode;
+				if (!doht_ml) {
+					var header=ev.target.parentNode.parentNode.parentNode;
+					if (header.className.search('cfHeader')==-1) header=header.parentNode; // detailed header is one up
+				}
 				else var header=ev.target.parentNode.parentNode.parentNode.getElementsByTagName('div')[0];
 				
 				var dowiki = false;
