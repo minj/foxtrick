@@ -731,6 +731,7 @@ var FoxtrickForumChangePosts = {
 					message_raw = message_raw.replace(/<em>/g,'[i]').replace(/<\/em>/g,'[/i]');
 					message_raw = message_raw.replace(/<strong>/g,'[b]').replace(/<\/strong>/g,'[/b]');
 					message_raw = message_raw.replace(/<u>/g,'[u]').replace(/<\/u>/g,'[/u]');
+					message_raw = message_raw.replace(/<pre>/g,'[pre]').replace(/<\/pre>/g,'[/pre]');
 					message_raw = message_raw.replace(/<br><br><br>/g,'\n[br]\n');
 					message_raw = message_raw.replace(/<hr>/g,'[hr]');
 					message_raw = message_raw.replace(/<blockquote class="quote">/g,'[q]').replace(/<\/blockquote>/g,'[/q]');
