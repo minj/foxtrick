@@ -660,14 +660,16 @@ var FoxtrickForumChangePosts = {
 			// get date+time
 			var date = header_right_inner.replace(/^ /,'');
 			var time ='';
-			if (date.search(/\d+:\d+/)==0) {
+			if (date.search(/\d+:\d+/)==0) {  // time unaltered
 				var cur_time = doc.getElementById('time').innerHTML;
 				var hi = cur_time.search(/\d+:\d+/);
 				time = date;
 				date = cur_time.substring(0,hi);
 			}
-			else if (date.search(/\d+:\d+/)==-1) {
-				time = header_right.getElementsByTagName('span')[0].title;				
+			else if (date.search(/\d+:\d+/)==-1) { // date hidden by forumalterheaderline
+				var span = header_right.getElementsByTagName('span')[0];				
+				if (span) time = span.title;
+				else time = date;
 			}
 			var fulldate = date + time;
 			if (!doht_ml) headstr = fulldate + "  \n" + headstr + '';
