@@ -30,6 +30,10 @@
   background-image: url("chrome://foxtrick/content/resources/linkicons/forum_grey_markunread.png"); 
 }
 
+.cfFooter .foxtrick-copyfromarchive {
+  background-image: url("chrome://foxtrick/content/resources/linkicons/forum_grey_copyposting.png"); 
+}
+	
 .cfFooter a[href*="/Forum/Read.aspx?t="],
 .cfFooter a[href*="/Forum/Write.aspx?t="],
 .cfFooter a[href*="/Forum/Write.aspx?actionType=edit&t="],
@@ -37,7 +41,8 @@
 .cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="],
 .cfFooter .foxtrick-signaturetoggle,
-.cfFooter .foxtrick-unreadlink
+.cfFooter .foxtrick-unreadlink,
+.cfFooter .foxtrick-copyfromarchive
 {
   color: transparent; 
   font-size: 0pt; 

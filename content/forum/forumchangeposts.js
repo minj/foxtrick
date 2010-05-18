@@ -83,6 +83,7 @@ var FoxtrickForumChangePosts = {
 		copy_posting_link_archive.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPosting' ));
 		copy_posting_link_archive.setAttribute('doht_ml',true);		
 		copy_posting_link_archive.innerHTML = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' )+' ';
+		copy_posting_link_archive.setAttribute('class','foxtrick-copyfromarchive');		
 		
 		
 		// part of alter header
