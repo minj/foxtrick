@@ -75,13 +75,11 @@ var FoxtrickRapidId = {
 			var container = doc.getElementById("ft_rapidid");
 			var indicator = doc.getElementById("ft_rapidid_indicator");
 			container.removeChild(indicator);
-			var form = doc.createElement("form");
+			var form = doc.createElement("div");
 			container.appendChild(form);
 
 			// form
 			form.id = "ft_rapidid_form";
-			form.setAttribute("action", "");
-			form.addEventListener("submit", this.view, true);
 			var select = doc.createElement("select");
 			var input = doc.createElement("input");
 			var button = doc.createElement("input");
@@ -126,6 +124,7 @@ var FoxtrickRapidId = {
 			// the <input type="button" /> element
 			button.setAttribute("type", "submit");
 			button.setAttribute("value", Foxtrickl10n.getString("View"));
+			button.addEventListener("click", this.view, true);
 		}
 		catch (e) {
 			Foxtrick.dump("RapidId(" + e.lineNumber + "): " + e + "\n");
