@@ -48,7 +48,7 @@ var FoxtrickRapidId = {
 		var id = input.value;
 		id = Foxtrick.trim(id);
 		// only process int
-		if (isNaN(id)) {
+		if (isNaN(id) || id === "") {
 			return;
 		}
 		for (var i in FoxtrickRapidId.options) {
