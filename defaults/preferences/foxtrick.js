@@ -271,7 +271,7 @@ pref("extensions.foxtrick.prefs.module.CopyTrainingReport.OpenHTYpage.enabled", 
 pref("extensions.foxtrick.prefs.disableOnStage", true);
 pref("extensions.foxtrick.prefs.module.ForumTemplates.DefaultShow.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumStripHattrickLinks.NoConfirmStripping.enabled", true);
-pref("extensions.foxtrick.prefs.module.CopyPosting.CopyWikiStyle.enabled", false);
+pref("extensions.foxtrick.prefs.module.CopyPosting.value", 2);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenYapletPopup.enabled", false);
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenYapletFrame.enabled", false);

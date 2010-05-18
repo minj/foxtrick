@@ -1734,6 +1734,11 @@ Foxtrick.isRTLLayout = function ( doc ) {
 }
 
 
+Foxtrick.isSupporter = function ( doc ) {
+	if (doc.getElementById('hattrickNoSupporter')) return false;
+	return true;
+}
+
 Foxtrick.hasMainBodyScroll = function ( doc ) {
 	// Check if scrolling is on for MainBody
 	var mainBodyChildren = doc.getElementById('mainBody').childNodes;

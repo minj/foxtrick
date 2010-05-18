@@ -94,11 +94,11 @@ var FoxtrickCopyPosting = {
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	NEW_AFTER_VERSION: "0.5.1.2",	
-	LATEST_CHANGE:"Copy ht-ml for archive + copy posting tweak. Fixed missing copying of message",
+	NEW_AFTER_VERSION: "0.5.1.3",	
+	LATEST_CHANGE:"Copy ht-ml style",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : true,
-	OPTIONS : new Array("CopyWikiStyle"), 
+	RADIO_OPTIONS : new Array("CopyUnformated","CopyWikiStyle","CopyHT-MLQuoted"), 
 	
 	init : function() {
 	},

@@ -71,11 +71,19 @@ var FoxtrickForumChangePosts = {
 
 		// part of copy_posting_link
 		var img2 = doc.createElement('img');
-		img2.setAttribute('src',Foxtrick.ResourcePath+"resources/img/copy_yellow_small.png");
-		img2.setAttribute('style',"vertical-align: middle; margin-left:3px;");
+		if (Foxtrick.isSupporter(doc)) { 
+			img2.setAttribute('src',"/Img/Icons/transparent.gif");
+			img2.setAttribute('style',"background: url('"+Foxtrick.ResourcePath+"resources/img/copyNormal_s.png') no-repeat scroll 0 0 transparent; vertical-align: middle; margin-left:3px; height:22px; width:21px;");		
+		}
+		else {
+			img2.setAttribute('src',Foxtrick.ResourcePath+"resources/img/copy_yellow_small.png");		
+			img2.setAttribute('style',"vertical-align: middle; margin-left:3px;");		
+		}
 		var copy_posting_link = doc.createElement('a');
 		copy_posting_link.setAttribute('href','javascript:void(0);');
 		copy_posting_link.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPosting' ));
+		if (Foxtrick.isSupporter(doc))
+			copy_posting_link.setAttribute('style','top:3px; position:relative;');		
 		copy_posting_link.appendChild(img2);
 
 		var copy_posting_link_archive = doc.createElement('a');
@@ -154,7 +162,7 @@ var FoxtrickForumChangePosts = {
 
                     var header_left = null;
                     var header_right = null;
-                    //var header_right_inner = null;
+                    var header_right_inner = null;
 
                     var k = 0, header_part;
                     while ( header_part = header.childNodes[k++]) {
@@ -162,8 +170,9 @@ var FoxtrickForumChangePosts = {
                         if (header_part.className.search(/float_right/)!=-1 )
                             if (header_right==null)header_right = header_part;
                     }
-                    //header_right_inner=header_right.getElementsByTagName('div')[0];
-
+                    header_right_inner=header_right.getElementsByTagName('div')[0];
+					if (!header_right_inner) header_right_inner = header_right;
+					
                     /* add someting to test removal later
                     var forumprefs = doc.createElement('a');
                     forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
@@ -294,9 +303,9 @@ var FoxtrickForumChangePosts = {
                     if (do_copy_posting) {
                             var copy_link = copy_posting_link.cloneNode(true);
                             copy_link.firstChild.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );
-                            header_right.appendChild(copy_link);
+                            header_right_inner.appendChild(copy_link);
                     
-						if (isArchive) {
+						if (isArchive && FoxtrickPrefs.getInt("module.CopyPosting.value")!=2) {
 							var copy_link = copy_posting_link_archive.cloneNode(true);
                             copy_link.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );
                             var footer_left = footer.getElementsByTagName('div')[0];
@@ -577,7 +586,9 @@ var FoxtrickForumChangePosts = {
 				if (!doht_ml) var header=ev.target.parentNode.parentNode.parentNode;
 				else var header=ev.target.parentNode.parentNode.parentNode.getElementsByTagName('div')[0];
 				
-				var dowiki = Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPosting, 'CopyWikiStyle');
+				var dowiki = false;
+				if (FoxtrickPrefs.getInt("module.CopyPosting.value")==1) dowiki=true;
+				if (FoxtrickPrefs.getInt("module.CopyPosting.value")==2) doht_ml=true;
 				
 				var header_left = null;
 				var header_right = null;
@@ -656,7 +667,7 @@ var FoxtrickForumChangePosts = {
 			var headstr = post_id1+': '+poster_link1.title+' » ';
 			if (poster_link2 && post_link2)  headstr+=post_id2+': '+poster_link2.title+'\n';
 			else headstr+='all\n';
-			if (doht_ml) headstr='[q='+poster_link1.title+'][post='+post_id1+']';
+			if (doht_ml) headstr='[q='+poster_link1.title+'][post='+post_id1+']\n';
 			
 			// get date+time
 			var date = header_right_inner.replace(/^ /,'');
