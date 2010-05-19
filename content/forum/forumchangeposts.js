@@ -88,7 +88,7 @@ var FoxtrickForumChangePosts = {
 
 		var copy_posting_link_archive = doc.createElement('a');
 		copy_posting_link_archive.setAttribute('href','javascript:void(0);');
-		copy_posting_link_archive.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPosting' ));
+		copy_posting_link_archive.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPosting' )+' (HT-ML)');
 		copy_posting_link_archive.setAttribute('doht_ml',true);		
 		copy_posting_link_archive.innerHTML = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' )+' ';
 		copy_posting_link_archive.setAttribute('class','foxtrick-copyfromarchive');		
@@ -305,7 +305,7 @@ var FoxtrickForumChangePosts = {
                             copy_link.firstChild.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );
                             header_right_inner.appendChild(copy_link);
                     
-						if (isArchive && FoxtrickPrefs.getInt("module.CopyPosting.value")!=2) {
+						if (isArchive) {// && FoxtrickPrefs.getInt("module.CopyPosting.value")!=2) {
 							var copy_link = copy_posting_link_archive.cloneNode(true);
                             copy_link.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );
                             var footer_left = footer.getElementsByTagName('div')[0];
