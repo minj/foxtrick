@@ -1,5 +1,5 @@
 /**
- * module.js
+ * pages.js
  * @author FoxTrick developers
  *
  * This is a list of Hattrick pages that modules can run on.
