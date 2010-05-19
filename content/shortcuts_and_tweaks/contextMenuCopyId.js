@@ -26,17 +26,33 @@ var FoxtrickContextMenuCopyId = {
 
 	onContext: function(event) { 
 	try {		
-		if ( Foxtrick.isModuleEnabled(FoxtrickContextMenuCopyId) && event.target.href && 
-				( event.target.href.search(/ID=/i) != -1 ||  event.target.href.search(/\/Forum\/Read.aspx\?t=\d+&n=\d+/gi) != -1 ) )  {
-			
+		if ( !Foxtrick.isModuleEnabled(FoxtrickContextMenuCopyId) ) 
+		{  //hide old
+			Foxtrick.popupMenu.setAttribute( "hidden", true); 
+			return;			
+		}
+				
+		var href = event.target.href;
+		// if eg link has strong tag
+		if (!href) href = event.target.parentNode.href; 
+		if (!href) 
+		{  //hide old
+			Foxtrick.popupMenu.setAttribute( "hidden", true); 
+			return;			
+		}
+		
+		if ( href && href.search(/ID=/i) != -1 || href.search(/\/Forum\/Read.aspx\?t=\d+&n=\d+/gi) != -1 ) 
+		{
 			var copytext = '';
 			var context = ''; 
-			var href = event.target.href;
-				
+							
 			// some id
 			if (href.search(/ID=/i) != -1) {
-				var id = event.target.href.match(/id=(\d+)/i)[1]; 
-				var idtype= event.target.href.match(/\?(.+id)=\d+|\&(.+id)=\d+/i)[1];
+				var id = href.match(/id=(\d+)/i)[1]; 
+				var idtypeend = href.search(/\id/i)+2;
+				var idtype = href.substring(0,idtypeend);
+				var idtypestart = Math.max(idtype.lastIndexOf('?'),idtype.lastIndexOf('&'));
+				var idtype = idtype.substring(idtypestart+1);
 				idtype = idtype.charAt(0).toUpperCase()+idtype.substring(1);
 			
 				var ml='';
@@ -52,7 +68,6 @@ var FoxtrickContextMenuCopyId = {
 				else if ( href.search(/\?userId=\d+/gi) != -1 ) ml = '[userid=';
 				else if ( href.search(/\?KitID=\d+/gi) != -1 ) ml = '[kitid=';
 				else if ( href.search(/\?ArticleID=\d+/gi) != -1 ) ml = '[articleid=';
-				
 				
 				copytext = id;
 				context = "-"+idtype+': ' +id; 
@@ -77,7 +92,7 @@ var FoxtrickContextMenuCopyId = {
 			else Foxtrick.popupMenu.setAttribute( "hidden", true); 			
 		}
 		else {  //hide old
-			Foxtrick.popupMenu.setAttribute( "hidden", true); 			
+			Foxtrick.popupMenu.setAttribute( "hidden", true); 
 		}
 	} catch(e){Foxtrick.dump('contextCopy: '+e)};
 	},	
