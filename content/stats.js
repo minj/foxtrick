@@ -2718,7 +2718,7 @@ stats["colombiatracker"] = {
 
 
 stats["cyprustracker"] = { 
-  "url" : "http://db.ht-cy.org",
+  "url" : "http://www.hdb.gr",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Cyprus U20/NT Tracker",
   
