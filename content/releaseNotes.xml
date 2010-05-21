@@ -11,6 +11,7 @@
 <lines>* ExtraPlayerInfo as new module</lines>
 <lines>* ContextMenuCopyId with added HT-ML tags </lines>
 <lines>* CopyPostID with added HT-ML tag</lines>
+<lines>* CopyPosting with HT-ML tags as default</lines>
 <lines>* Added basic functionality for all missing HT languages </lines>
 
 <lines></lines> 
