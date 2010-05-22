@@ -29,6 +29,7 @@ var FoxtrickContextMenuCopyId = {
 		if ( !Foxtrick.isModuleEnabled(FoxtrickContextMenuCopyId) ) 
 		{  //hide old
 			Foxtrick.popupMenu.setAttribute( "hidden", true); 
+			Foxtrick.popupMenuHT_ML.setAttribute( "hidden", true); 
 			return;			
 		}
 				
@@ -38,6 +39,7 @@ var FoxtrickContextMenuCopyId = {
 		if (!href) 
 		{  //hide old
 			Foxtrick.popupMenu.setAttribute( "hidden", true); 
+			Foxtrick.popupMenuHT_ML.setAttribute( "hidden", true); 
 			return;			
 		}
 		
@@ -45,10 +47,12 @@ var FoxtrickContextMenuCopyId = {
 		{
 			var copytext = '';
 			var context = ''; 
-							
+			var contexttype = '';
+			var id = '';		
+			
 			// some id
 			if (href.search(/ID=/i) != -1) {
-				var id = href.match(/id=(\d+)/i)[1]; 
+				id = href.match(/id=(\d+)/i)[1]; 
 				var idtypeend = href.search(/\id/i)+2;
 				var idtype = href.substring(0,idtypeend);
 				var idtypestart = Math.max(idtype.lastIndexOf('?'),idtype.lastIndexOf('&'));
@@ -70,7 +74,7 @@ var FoxtrickContextMenuCopyId = {
 				else if ( href.search(/\?ArticleID=\d+/gi) != -1 ) ml = '[articleid=';
 				
 				copytext = id;
-				context = "-"+idtype+': ' +id; 
+				contexttype = "-"+idtype+': ' +id; 
 				if (ml!=='') {
 					copytext = ml + id + ']';
 					context = ': '+copytext;
@@ -78,21 +82,29 @@ var FoxtrickContextMenuCopyId = {
 			}
 			else { // forum post
 				if ( href.search(/\/Forum\/Read.aspx\?t=\d+&n=\d+/gi) != -1 ) {
-					var id = href.replace(/.+Forum\/Read.aspx\?t=(\d+)&n=(\d+).+/gi,'$1.$2');				
+					id = href.replace(/.+Forum\/Read.aspx\?t=(\d+)&n=(\d+).+/gi,'$1.$2');				
+					var contexttype = '-PostID: ' +id; 
 					copytext = '[post=' + id + ']';
 					context = ': '+copytext;
 				}
 			}
 			
-			if (copytext!=='') {
-				Foxtrick.CopyID = copytext;
+			if (id!=='') {
+				Foxtrick.CopyID = id;
+				Foxtrick.CopyIDHT_ML = copytext;
 				Foxtrick.popupMenu.setAttribute( "hidden", false); 
-				Foxtrick.popupMenu.setAttribute( "label", Foxtrickl10n.getString( "foxtrick.CopyContext")+context);
+				Foxtrick.popupMenu.setAttribute( "label", Foxtrickl10n.getString( "foxtrick.CopyContext")+contexttype);
+				Foxtrick.popupMenuHT_ML.setAttribute( "hidden", false); 
+				Foxtrick.popupMenuHT_ML.setAttribute( "label", Foxtrickl10n.getString( "foxtrick.CopyContext")+context);
 			}
-			else Foxtrick.popupMenu.setAttribute( "hidden", true); 			
+			else {
+				Foxtrick.popupMenu.setAttribute( "hidden", true); 			
+				Foxtrick.popupMenuHT_ML.setAttribute( "hidden", true); 			
+			}
 		}
 		else {  //hide old
 			Foxtrick.popupMenu.setAttribute( "hidden", true); 
+			Foxtrick.popupMenuHT_ML.setAttribute( "hidden", true); 
 		}
 	} catch(e){Foxtrick.dump('contextCopy: '+e)};
 	},	

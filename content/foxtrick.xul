@@ -172,7 +172,8 @@
 
 <!-- popup menu -->
 <popup id="contentAreaContextMenu">
-	<menuitem id="foxtrick-popup-menu" label="Foxtrick" oncommand="FoxtrickPreferencesDialog.copy_id();"/>
+	<menuitem id="foxtrick-popup-menu-ht-ml" insertafter="context-copy" label="Foxtrick" oncommand="FoxtrickPreferencesDialog.copy_id_ht_ml();"/>
+	<menuitem id="foxtrick-popup-menu" insertafter="context-copy" label="Foxtrick" oncommand="FoxtrickPreferencesDialog.copy_id();"/>
 </popup>
 
 <statusbar id="status-bar">

@@ -130,6 +130,10 @@ var FoxtrickMain = {
 		popupMenu.setAttribute("label", "Foxtrick-"+Foxtrickl10n.getString("foxtrick.CopyPostID"));
 		popupMenu.setAttribute("hidden", true);
 		Foxtrick.popupMenu = popupMenu;
+		var popupMenuHT_ML = document.getElementById("foxtrick-popup-menu-ht-ml");
+		popupMenuHT_ML.setAttribute("label", "Foxtrick-"+Foxtrickl10n.getString("foxtrick.CopyPostID"));
+		popupMenuHT_ML.setAttribute("hidden", true);
+		Foxtrick.popupMenuHT_ML = popupMenuHT_ML;
 
 		// tools menu
 		var toolsMenu = document.getElementById("foxtrick-menu-preferences");
