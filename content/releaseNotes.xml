@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?> 
+<?xml version="1.0" encoding="utf-8"?>
 
 <release_note>
 
@@ -6,7 +6,7 @@
 <title>Release notes (selected features and issues only)</title>
 <lines>* SkillTable beautified</lines>
 <lines>* ConfirmActions beautified</lines>
-<lines>* CrossTable and CrossGraph beautified</lines>
+<lines>* CrossTable beautified</lines>
 <lines>* ExtraPlayerInfo and PlayerFilters separated as new modules</lines>
 <lines>* Advanced features by StarsCounter and thereby removed AdvancedStarsCounter module</lines>
 <lines>* Deprecated modules removed: Repositioned Players, FilpSidesInMatchOrders, FormationBoxInMatchOrders and MatchOrderColoring</lines>
