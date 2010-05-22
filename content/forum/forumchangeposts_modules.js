@@ -98,7 +98,7 @@ var FoxtrickCopyPosting = {
 	LATEST_CHANGE:"Copy ht-ml style",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : true,
-	RADIO_OPTIONS : new Array("CopyUnformated","CopyWikiStyle","CopyHT-MLQuoted"), 
+	RADIO_OPTIONS : new Array("CopyUnformatted","CopyWikiStyle","CopyHT-MLQuoted"), 
 	
 	init : function() {
 	},
