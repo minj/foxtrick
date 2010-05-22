@@ -49,7 +49,7 @@ FoxtrickPlayerFilters = {
 					allPlayers[i].setAttribute("injured", "true");
 				}
 				if (player.speciality) {
-					if (!specialities[player.speciality]) {
+					if (specialities[player.speciality] === undefined) {
 						specialities[player.speciality] = specialityCount++;
 					}
 					allPlayers[i].setAttribute("speciality-" + specialities[player.speciality], "true");
