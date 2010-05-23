@@ -54,8 +54,9 @@ FoxtrickPlayerFilters = {
 					}
 					allPlayers[i].setAttribute("speciality-" + specialities[player.speciality], "true");
 				}
-				if (player.lastMatch) {
-					if (lastMatch === Foxtrick.getUniqueDayfromCellHTML(player.lastMatch.innerHTML)) {
+				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
+					if (player.lastMatch
+						&& (lastMatch === Foxtrick.getUniqueDayfromCellHTML(player.lastMatch.innerHTML))) {
 						allPlayers[i].setAttribute("played-latest", "true");
 					}
 					else {
