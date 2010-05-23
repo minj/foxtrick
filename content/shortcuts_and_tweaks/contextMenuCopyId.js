@@ -74,7 +74,7 @@ var FoxtrickContextMenuCopyId = {
 				else if ( href.search(/\?ArticleID=\d+/gi) != -1 ) ml = '[articleid=';
 				
 				copytext = id;
-				contexttype = "-"+idtype+': ' +id; 
+				contexttype = " "+idtype+': ' +id; 
 				if (ml!=='') {
 					copytext = ml + id + ']';
 					context = ': '+copytext;
@@ -83,7 +83,7 @@ var FoxtrickContextMenuCopyId = {
 			else { // forum post
 				if ( href.search(/\/Forum\/Read.aspx\?t=\d+&n=\d+/gi) != -1 ) {
 					id = href.replace(/.+Forum\/Read.aspx\?t=(\d+)&n=(\d+).+/gi,'$1.$2');				
-					var contexttype = '-PostID: ' +id; 
+					var contexttype = ' PostID: ' +id; 
 					copytext = '[post=' + id + ']';
 					context = ': '+copytext;
 				}

@@ -1669,22 +1669,29 @@ Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset,
     /*
     Returns HT-Week & Season
     short == true => Date is without time.
+	
+	don't use span as elm! use next outer nodetype instead
     */
+	
 	//Foxtrick.dump (' == > HTDF '+elm+'\n');
                     
     var tds = doc.getElementsByTagName( elm );
     for (var i = 0; tds[i] != null; ++i) {
-        // not nested
-		if ( tds[i].getElementsByTagName( elm ).length!=0) {
+		var node = tds[i];
+		if (node.getElementsByTagName( 'span' ).length!=0) 
+			node = node.getElementsByTagName( 'span' )[0];
+			
+		// not nested
+		if ( node.getElementsByTagName( elm ).length!=0) {
 			continue;
 		}
 		
-		if (tds[i].id == 'ft_HTDateFormat') return;
-        if (!strip) var dt_inner = Foxtrick.trim(tds[i].innerHTML);
-		else var dt_inner = Foxtrick.trim(Foxtrick.stripHTML(tds[i].innerHTML));
+		if (node.id == 'ft_HTDateFormat') return;
+        if (!strip) var dt_inner = Foxtrick.trim(node.innerHTML);
+		else var dt_inner = Foxtrick.trim(Foxtrick.stripHTML(node.innerHTML));
 
         if ( !Foxtrick.strrpos( dt_inner, "ft_HTDateFormat") ) { 
-			//Foxtrick.dump('>'+tds[i].nodeName+' '+dt_inner.substr(0,50)+'\n');
+			//Foxtrick.dump('>'+node.nodeName+' '+dt_inner.substr(0,50)+'\n');
             if ( (dt_inner.length <= 11 && short ) || (dt_inner.length <= 17 && !short ) || strip ) {
                 var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
                 var ar = reg.exec(dt_inner);
@@ -1693,9 +1700,9 @@ Foxtrick.modifyDates = function ( doc, short, elm, before, after ,weekdayoffset,
                     var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
 
                     if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
-                        if (!strip) tds[i].innerHTML = dt_inner + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
-						else tds[i].innerHTML = tds[i].innerHTML + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
-						//Foxtrick.dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + Foxtrick.gregorianToHT(td_date)+ '] => [' + tds[i].innerHTML + ']\n');
+                        if (!strip) node.innerHTML = dt_inner + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
+						else node.innerHTML = node.innerHTML + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
+						//Foxtrick.dump (' == > HTDF ['+ FoxtrickPrefs.getString("htDateformat")+ '] - [' + td_date + '] - [' + Foxtrick.gregorianToHT(td_date)+ '] => [' + node.innerHTML + ']\n');
                     }
                 }
             }

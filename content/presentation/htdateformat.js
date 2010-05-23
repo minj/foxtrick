@@ -7,7 +7,7 @@ FoxtrickHTDateFormat = {
 
     MODULE_NAME : "HTDateFormat",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
- 	PAGES : new Array('transfersTeam','TransfersPlayer','TransferCompare','match',
+ 	PAGES : new Array('transfersTeam','TransfersPlayer','transfer','TransferCompare','match',
 					'matches','matchesarchiv','teamPageGeneral','achievements',
 					'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'), 
 	ONPAGEPREF_PAGE : 'all', 
@@ -44,7 +44,11 @@ FoxtrickHTDateFormat = {
             case 'TransfersPlayer' :
                 Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
-
+				
+            case 'transfer' :
+                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                break;
+				
             case 'match' : 
                 Foxtrick.modifyDates ( mainBody, false, 'div', '&nbsp;' , '&nbsp;',weekdayoffset, true );
                 break;
@@ -55,12 +59,12 @@ FoxtrickHTDateFormat = {
                 break;
 
             case 'matchesarchiv' :
-                Foxtrick.modifyDates ( mainBody, false, 'span', '&nbsp;' , '',weekdayoffset );
+                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;' , '',weekdayoffset );
                 break;
                 
             case 'teamPageGeneral' :
 				if (doc.location.href.search(/Club\/Matches\/Live.aspx/i)!=-1) return;
-				Foxtrick.modifyDates ( mainBody, false, 'span', '&nbsp;', '',weekdayoffset );
+				//Foxtrick.modifyDates ( mainBody, false, 'span', '&nbsp;', '',weekdayoffset );
                 Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
