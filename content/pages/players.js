@@ -170,17 +170,41 @@ Foxtrick.Pages.Players = {
 				specMatch = basicInformation.textContent.match(/\[(\D+)\]/);
 				player.speciality = specMatch ? specMatch[1] : "";
 
-				// NT players don't have leadership and experience in XML
-				// but instead in HTML
-				if (this.isNtPlayersPage(doc)) {
-					player.leadership = parseInt(allPlayers[i].getElementsByTagName("a")[4 + offset].href.match(/ll=(\d+)/)[1]);
-					player.experience = parseInt(allPlayers[i].getElementsByTagName("a")[3 + offset].href.match(/ll=(\d+)/)[1]);
-				}
+				// this could include form, stamina, leadership and experience
+				// if its length ≥ 2, then it includes form and stamina
+				// if its length ≥ 4, then it includes leadership and experience
+				var basicSkillLinks = basicInformation.getElementsByClassName("skill");
 
-				if (this.isSeniorPlayersPage(doc)) {
-					// youth players don't have form or stamina
-					player.form = parseInt(allPlayers[i].getElementsByTagName("a")[1 + offset].href.match(/ll=(\d+)/)[1]);
-					player.stamina = parseInt(allPlayers[i].getElementsByTagName("a")[2 + offset].href.match(/ll=(\d+)/)[1]);
+				if (player.form === undefined || player.stamina === undefined
+					|| player.leadership === undefined || player.experience === undefined) {
+					var links = {};
+					if (basicSkillLinks.length >= 2) {
+						if (basicSkillLinks[1].href.search("skillshort") !== -1) {
+							links.form = basicSkillLinks[1];
+							links.stamina = basicSkillLinks[0];
+						}
+						else {
+							links.form = basicSkillLinks[0];
+							links.stamina = basicSkillLinks[1];
+						}
+					}
+					if (basicSkillLinks.length >= 4) {
+						if (basicSkillLinks[3].href.search("skillshort") !== -1) {
+							links.leadership = basicSkillLinks[3];
+							links.experience = basicSkillLinks[2];
+						}
+						else {
+							links.leadership = basicSkillLinks[2];
+							links.experience = basicSkillLinks[3];
+						}
+					}
+					var basicSkillNames = ["form", "stamina", "leadership", "experience"];
+					for (var j in basicSkillNames) {
+						if (player[basicSkillNames[j]] === undefined
+							&& links[basicSkillNames[j]] !== undefined) {
+							player[basicSkillNames[j]] = parseInt(links[basicSkillNames[j]].href.match(/ll=(\d+)/)[1]);
+						}
+					}
 				}
 
 				if (isOwn && !this.isOldiesPage(doc) && !this.isCoachesPage(doc)) {		
