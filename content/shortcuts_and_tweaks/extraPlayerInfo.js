@@ -10,7 +10,7 @@ FoxtrickExtraPlayerInfo = {
 	DEFAULT_ENABLED : true,
 	OPTIONS : ["CoachInfo", "LeadershipAndExperience", "Flag"],
 	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Splitted extra player information from TeamStats as a module.",
+	LATEST_CHANGE : "Splitted extra player information from TeamStats as a module, and updated to match latest HT version.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	// used for coloring NT players when AddFlags is enabled
@@ -50,30 +50,19 @@ FoxtrickExtraPlayerInfo = {
 					title.innerHTML += "<br/>" + trainerStr;
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "LeadershipAndExperience")
-					&& player.leadership !== undefined && player.experience !== undefined
-					&& !Foxtrick.Pages.Players.isNtPlayersPage(doc)
-					&& !Foxtrick.Pages.Players.isOldiesPage(doc)
-					&& !Foxtrick.Pages.Players.isCoachesPage(doc)) {
-					// These three kinds of players pages have experience and
-					// leadership shown by default, hence no need to process
-					// for them
-					var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + player.leadership + "']";
-					var leadershipString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-					var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + player.experience + "']";
-					var experienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-					var leadershipLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+player.leadership+'#skillshort">'+leadershipString+'</a>';
-					var experienceLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.experience+'#skill">'+experienceString+'</a>';
-					var pos = basics.innerHTML.search(/\[/);
-					if (pos == -1) {
-						pos = basics.innerHTML.length; // no speciality. show after
+					&& player.leadership !== undefined && player.experience !== undefined) {
+					if (basics.getElementsByClassName("skill").length == 2) {
+						// if length is 2, it means that experience and leadership aren't added yet.
+						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + player.leadership + "']";
+						var leadershipString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
+						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + player.experience + "']";
+						var experienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
+						var leadershipLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+player.leadership+'#skillshort">'+leadershipString+'</a>';
+						var experienceLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.experience+'#skill">'+experienceString+'</a>';
+						var baseStr = Foxtrickl10n.getString("foxtrick.experience_and_leadership");
+						basics.innerHTML += "<br />"
+							+ baseStr.replace("%1", leadershipLink).replace("%2", experienceLink);
 					}
-					else {
-						pos -= 2; // has speciality. show before
-					}
-					var baseStr = Foxtrickl10n.getString("foxtrick.experience_and_leadership");
-					basics.innerHTML = basics.innerHTML.substr(0, pos+1)
-					+ "<br />" + baseStr.replace("%1", leadershipLink).replace("%2", experienceLink)
-					+ " " + basics.innerHTML.substr(pos+1);
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "Flag")
 					&& player.countryId !== undefined) {
