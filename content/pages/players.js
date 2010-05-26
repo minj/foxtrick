@@ -96,7 +96,7 @@ Foxtrick.Pages.Players = {
 							if (currentXMLPlayer.getElementsByTagName("Salary").length) {
 								var currencyRate = FoxtrickPrefs.getString("currencyRate");
 								// from krone to € to user-defined
-								player.salary = parseInt(currentXMLPlayer.getElementsByTagName("Salary")[0].textContent) / (10 * currencyRate);
+								player.salary = Math.floor(parseInt(currentXMLPlayer.getElementsByTagName("Salary")[0].textContent) / (10 * currencyRate));
 							}
 							if (currentXMLPlayer.getElementsByTagName("TSI").length) {
 								player.tsi = parseInt(currentXMLPlayer.getElementsByTagName("TSI")[0].textContent);
