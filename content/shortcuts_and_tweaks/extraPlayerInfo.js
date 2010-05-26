@@ -8,7 +8,7 @@ FoxtrickExtraPlayerInfo = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["players"],
 	DEFAULT_ENABLED : true,
-	OPTIONS : ["CoachInfo", "LeadershipAndExperience", "Flag"],
+	OPTIONS : ["CoachInfo", "Flag"],
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Splitted extra player information from TeamStats as a module, and updated to match latest HT version.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -48,21 +48,6 @@ FoxtrickExtraPlayerInfo = {
 					var title = allPlayers[i].getElementsByTagName("b")[0];
 					var trainerStr = trainerTypeStr.replace("%s", trainerSkillLink);
 					title.innerHTML += "<br/>" + trainerStr;
-				}
-				if (Foxtrick.isModuleFeatureEnabled(this, "LeadershipAndExperience")
-					&& player.leadership !== undefined && player.experience !== undefined) {
-					if (basics.getElementsByClassName("skill").length == 2) {
-						// if length is 2, it means that experience and leadership aren't added yet.
-						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + player.leadership + "']";
-						var leadershipString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-						var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + player.experience + "']";
-						var experienceString = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-						var leadershipLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skillshort&ll='+player.leadership+'#skillshort">'+leadershipString+'</a>';
-						var experienceLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.experience+'#skill">'+experienceString+'</a>';
-						var baseStr = Foxtrickl10n.getString("foxtrick.experience_and_leadership");
-						basics.innerHTML += "<br />"
-							+ baseStr.replace("%1", leadershipLink).replace("%2", experienceLink);
-					}
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "Flag")
 					&& player.countryId !== undefined) {
