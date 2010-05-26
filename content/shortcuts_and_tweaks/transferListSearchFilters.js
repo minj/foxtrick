@@ -84,8 +84,10 @@ FoxtrickTransferListSearchFilters = {
 	change : function( page, doc ) {
 	},
 
-	addNewFilter : function(ev) {  
+	addNewFilter : function(ev) {
 		try {
+			var doc = ev.target.ownerDocument;
+
 			var filtername = prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
 			if (filtername == '') return;
 
@@ -137,7 +139,7 @@ FoxtrickTransferListSearchFilters = {
 			FoxtrickPrefs.addPrefToList("transferfilterlist", filtername);
 			var table = doc.getElementById("table_transfer_filters");
 			if (table) {
-				table._addFilter(doc, table, filtername);
+				FoxtrickTransferListSearchFilters._addFilter(doc, table, filtername);
 			}
 		} catch (e) {
 			Foxtrick.dump('FoxtrickTransferListSearchFilters'+e);
