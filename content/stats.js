@@ -1254,7 +1254,7 @@ stats["htbox_training"] =  {
 
 //Training Team Evaluation
 stats["Training_Team_Evaluation"] =  { 
-        "url" : "http://www.adrianomm.com/",
+        "url" : "http://www.adrianomoutinho.com/tte/",
 
         "playerlink" : { "path"       : "playertraining.php?PlayerId=",
                          "filters"    : [], 
