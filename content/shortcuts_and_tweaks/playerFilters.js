@@ -13,134 +13,153 @@ FoxtrickPlayerFilters = {
 	LATEST_CHANGE : "Splitted player filters from TeamStats as a module.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
+	FILTER_SELECT_ID : "foxtrick-filter-select",
+
 	init : function() {
 	},
 
 	run : function(page, doc) {
 		try {
-			playerList = Foxtrick.Pages.Players.getPlayerList(doc, true);
-			var lastMatch = 0;
-			for (var i = 0; i < playerList.length; ++i) {
-				if (playerList[i].lastMatch) {
-					var matchDate = Foxtrick.getUniqueDayfromCellHTML(playerList[i].lastMatch.innerHTML);
-					if (matchDate > lastMatch) {
-						lastMatch = matchDate;
-					}
-				}
-			}
-
-			var specialities = {};
-			var specialityCount = 0;
-
-			var allPlayers = doc.getElementsByClassName("playerInfo");
-			for (var i = 0; i < allPlayers.length; ++i) {
-				var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
-				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-				// All players have attribute "all" set to "true", so that the
-				// filter can be cleared using an "all" filter
-				allPlayers[i].setAttribute("all", "true");
-				if (player.redCard || player.yellowCard) {
-					allPlayers[i].setAttribute("cards", "true");
-				}
-				if (player.transferListed) {
-					allPlayers[i].setAttribute("transfer-listed", "true");
-				}
-				if (player.bruised || player.injured) {
-					allPlayers[i].setAttribute("injured", "true");
-				}
-				if (player.speciality) {
-					if (specialities[player.speciality] === undefined) {
-						specialities[player.speciality] = specialityCount++;
-					}
-					allPlayers[i].setAttribute("speciality-" + specialities[player.speciality], "true");
-				}
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
-					if (player.lastMatch
-						&& (lastMatch === Foxtrick.getUniqueDayfromCellHTML(player.lastMatch.innerHTML))) {
-						allPlayers[i].setAttribute("played-latest", "true");
-					}
-					else {
-						allPlayers[i].setAttribute("not-played-latest", "true");
-					}
-				}
-			}
-			var sortbybox = doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy");
+			var sortSelect = doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy");
 			if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
-				sortbybox = doc.getElementById("ctl00_CPMain_ddlSortBy");
+				sortSelect = doc.getElementById("ctl00_CPMain_ddlSortBy");
 			}
-			var filterselect = doc.createElement("select");
-			Foxtrick.addEventListenerChangeSave(filterselect, "change", this.changeListener, false);
+
+			var filterSelect = doc.createElement("select");
+			filterSelect.id = this.FILTER_SELECT_ID;
+			Foxtrick.addEventListenerChangeSave(filterSelect, "click", function(ev) { FoxtrickPlayerFilters.selectClick(ev); }, false);
+			Foxtrick.addEventListenerChangeSave(filterSelect, "change", this.changeListener, false);
 
 			// this is used to clear filters, and we use this to select all
 			// players
 			var option = doc.createElement("option");
 			option.value = "all";
 			option.innerHTML = "-- " + Foxtrickl10n.getString("Filter") + " --";
-			filterselect.appendChild(option);
-
-			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
-				|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
-				var option = doc.createElement('option');
-				option.value = "cards";
-				option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Cards.label");
-				filterselect.appendChild(option);
-			}
-
-			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "injured")
-				|| Foxtrick.Pages.Players.isPropertyInList(playerList, "bruised")) {
-				var option = doc.createElement("option");
-				option.value = "injured";
-				option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Injured.label");
-				filterselect.appendChild(option);
-			}
-
-			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "transferListed")) {
-				var option = doc.createElement("option");
-				option.value = "transfer-listed";
-				option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.TransferListed.label");
-				filterselect.appendChild(option);
-			}
-
-			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
-				var option = doc.createElement("option");
-				option.value = "played-latest";
-				option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayedLatest.label");
-				filterselect.appendChild(option);
-
-				var option = doc.createElement("option");
-				option.value = "not-played-latest";
-				option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.NotPlayedLatest.label");
-				filterselect.appendChild(option);
-			}
-
-			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "speciality")) {
-				for (var speciality in specialities) {
-					var option = doc.createElement("option");
-					option.value = "speciality-" + specialities[speciality];
-					option.innerHTML = speciality;
-					filterselect.appendChild(option);
-				}
-			}
-
-			var faceCards = doc.getElementsByClassName("faceCard");
-			if (faceCards.length > 0) {
-				var option = doc.createElement("option");
-				option.value = "face";
-				option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Pictures.label");
-				filterselect.appendChild(option);
-			}
+			filterSelect.appendChild(option);
 
 			var mainBody = doc.getElementById("mainBody");
-			sortbybox = mainBody.removeChild(sortbybox);
+			sortSelect.parentNode.removeChild(sortSelect);
 			var container = doc.createElement("div");
 			container.className = "ft-select-container";
-			container.appendChild(sortbybox);
-			container.appendChild(filterselect);
+			container.appendChild(sortSelect);
+			container.appendChild(filterSelect);
 			mainBody.insertBefore(container, mainBody.firstChild);
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
+	},
+
+	selectClick : function(ev) {
+		var doc = ev.target.ownerDocument;
+
+		var filterSelect = doc.getElementById(this.FILTER_SELECT_ID);
+
+		if (filterSelect.getAttribute("scanned") === "true") {
+			// we only scan the players for once and mark it as scanned
+			return;
+		}
+
+		var playerList = Foxtrick.Pages.Players.getPlayerList(doc, true);
+		var lastMatch = 0;
+		for (var i = 0; i < playerList.length; ++i) {
+			if (playerList[i].lastMatch) {
+				var matchDate = Foxtrick.getUniqueDayfromCellHTML(playerList[i].lastMatch.innerHTML);
+				if (matchDate > lastMatch) {
+					lastMatch = matchDate;
+				}
+			}
+		}
+
+		var specialities = {};
+		var specialityCount = 0;
+
+		var allPlayers = doc.getElementsByClassName("playerInfo");
+		for (var i = 0; i < allPlayers.length; ++i) {
+			var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
+			var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
+			// All players have attribute "all" set to "true", so that the
+			// filter can be cleared using an "all" filter
+			allPlayers[i].setAttribute("all", "true");
+			if (player.redCard || player.yellowCard) {
+				allPlayers[i].setAttribute("cards", "true");
+			}
+			if (player.transferListed) {
+				allPlayers[i].setAttribute("transfer-listed", "true");
+			}
+			if (player.bruised || player.injured) {
+				allPlayers[i].setAttribute("injured", "true");
+			}
+			if (player.speciality) {
+				if (specialities[player.speciality] === undefined) {
+					specialities[player.speciality] = specialityCount++;
+				}
+				allPlayers[i].setAttribute("speciality-" + specialities[player.speciality], "true");
+			}
+			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
+				if (player.lastMatch
+					&& (lastMatch === Foxtrick.getUniqueDayfromCellHTML(player.lastMatch.innerHTML))) {
+					allPlayers[i].setAttribute("played-latest", "true");
+				}
+				else {
+					allPlayers[i].setAttribute("not-played-latest", "true");
+				}
+			}
+		}
+
+		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
+			|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
+			var option = doc.createElement('option');
+			option.value = "cards";
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Cards.label");
+			filterSelect.appendChild(option);
+		}
+
+		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "injured")
+			|| Foxtrick.Pages.Players.isPropertyInList(playerList, "bruised")) {
+			var option = doc.createElement("option");
+			option.value = "injured";
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Injured.label");
+			filterSelect.appendChild(option);
+		}
+
+		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "transferListed")) {
+			var option = doc.createElement("option");
+			option.value = "transfer-listed";
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.TransferListed.label");
+			filterSelect.appendChild(option);
+		}
+
+		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
+			var option = doc.createElement("option");
+			option.value = "played-latest";
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayedLatest.label");
+			filterSelect.appendChild(option);
+
+			var option = doc.createElement("option");
+			option.value = "not-played-latest";
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.NotPlayedLatest.label");
+			filterSelect.appendChild(option);
+		}
+
+		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "speciality")) {
+			for (var speciality in specialities) {
+				var option = doc.createElement("option");
+				option.value = "speciality-" + specialities[speciality];
+				option.innerHTML = speciality;
+				filterSelect.appendChild(option);
+			}
+		}
+
+		var faceCards = doc.getElementsByClassName("faceCard");
+		if (faceCards.length > 0) {
+			var option = doc.createElement("option");
+			option.value = "face";
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Pictures.label");
+			filterSelect.appendChild(option);
+		}
+
+		filterSelect.setAttribute("scanned", "true");
 	},
 
 	change : function(page, doc) {
