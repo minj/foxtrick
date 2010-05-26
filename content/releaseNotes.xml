@@ -9,7 +9,7 @@
 <lines>* CrossTable beautified</lines>
 <lines>* ExtraPlayerInfo and PlayerFilters separated as new modules</lines>
 <lines>* Advanced features by StarsCounter and thereby removed AdvancedStarsCounter module</lines>
-<lines>* Deprecated modules removed: RepositionedPlayers, FilpSidesInMatchOrders, FormationBoxInMatchOrders, MatchOrderColoring and AddManagerButtons.</lines>
+<lines>* Deprecated modules removed: RepositionedPlayers, FilpSidesInMatchOrders, FormationBoxInMatchOrders, MatchOrderColoring.</lines>
 <lines>* ContextMenuCopyId, CopyPostId and CopyMatchID with added HT-ML tag</lines>
 <lines>* CopyPosting with HT-ML tags as default, and supporting archived threads</lines>
 <lines>* Added basic functionality for all missing HT languages</lines>
