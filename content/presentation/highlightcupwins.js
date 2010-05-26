@@ -57,7 +57,7 @@ var FoxtrickHighlightCupwins = {
 				var lastsep=matchlink.innerHTML.lastIndexOf(' - ' )+3;
 				var awayteam = matchlink.innerHTML.substring(lastsep);
 				if (win) {
-					if (highlightCupsets) {
+					if (highlightHomeWin) {
 						table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
 					}
 					matchlink.innerHTML = '<strong>'+hometeam+'</strong> - '+awayteam;
