@@ -20,6 +20,7 @@ Foxtrick.modules = [
 					FoxtrickForumChangePosts,
                     FoxtrickShowForumPrefButton,
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
+                    FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
                     FoxtrickMovePlayerStatement,
 					FoxtrickFixcssProblems,
 					FoxtrickSimplePresentation,
