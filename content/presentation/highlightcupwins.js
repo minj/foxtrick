@@ -10,9 +10,9 @@ var FoxtrickHighlightCupwins = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('cupmatches'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE : "Fixed for draws and for new cup match display method. Highlighting for masters refined.",
-	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
+	NEW_AFTER_VERSION: "0.5.1.3",
+	LATEST_CHANGE : "Added a column to show the № of matches",
+	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("HighlightCupsets"),
 
     init : function() {
@@ -27,8 +27,18 @@ var FoxtrickHighlightCupwins = {
 
 			var mainBody=doc.getElementById('mainBody');
 			var table= mainBody.getElementsByTagName('table')[0];
-			for (var i=1;i<table.rows.length;++i) {
-				var goals = table.rows[i].cells[3].innerHTML.match(/\d+/g);
+
+			// add a column to show the № of matches
+			var header = table.getElementsByTagName("tr")[0];
+			var numHeader = doc.createElement("th");
+			numHeader.appendChild(doc.createTextNode("#"));
+			header.insertBefore(numHeader, header.firstChild);
+
+			for (var i = 1; i < table.rows.length; ++i) {
+				var numCell = table.rows[i].insertCell(0);
+				numCell.appendChild(doc.createTextNode(String(i)));
+
+				var goals = table.rows[i].cells[4].innerHTML.match(/\d+/g);
 				if (!goals) {
 					// perhaps some results aren't shown
 					continue;
@@ -40,7 +50,7 @@ var FoxtrickHighlightCupwins = {
 				var win = (goalsHome > goalsAway);
 				var draw = (goalsHome === goalsAway); // 0 - 0 if match isn't played yet
 				var lose = (goalsHome < goalsAway);
-				var matchlink = table.rows[i].cells[2].getElementsByTagName('a')[0];
+				var matchlink = table.rows[i].cells[3].getElementsByTagName('a')[0];
 				var firstsep=matchlink.innerHTML.indexOf(' - ' );
 				var hometeam = matchlink.innerHTML.substring(0,firstsep);
 				// if there are names with ' - ' take the last part for away only
@@ -48,7 +58,7 @@ var FoxtrickHighlightCupwins = {
 				var awayteam = matchlink.innerHTML.substring(lastsep);
 				if (win) {
 					if (highlightCupsets) {
-						table.rows[i].cells[3].innerHTML = '<strong>'+table.rows[i].cells[3].innerHTML+'</strong>';
+						table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
 					}
 					matchlink.innerHTML = '<strong>'+hometeam+'</strong> - '+awayteam;
 				}
