@@ -148,6 +148,7 @@ Foxtrick.Pages.Players = {
 					for (var j = 0; j < paragraphs.length; ++j) {
 						if (paragraphs[j].textContent.search("TSI") !== -1) {
 							basicInformation = paragraphs[j];
+							break;
 						}
 					}
 				}
