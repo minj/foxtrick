@@ -41,9 +41,11 @@ Foxtrick.Pages.Players = {
 			var player;
 			for (var i = 0; i < allPlayers.length; ++i) {
 				player = {};
-				var hasFlag = (allPlayers[i].getElementsByTagName("a")[0].innerHTML.search(/flags.gif/i)!=-1);
+				var playerinfolinks = allPlayers[i].getElementsByTagName("a");
+				var hasFlag = (playerinfolinks[0].innerHTML.search(/flags.gif/i)!=-1);
 				var offset = hasFlag ? 1 : 0;
-				player.id = allPlayers[i].getElementsByTagName("a")[offset].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				player.id = playerinfolinks[offset].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				var isYouth = (playerinfolinks[offset].href.search(/YouthPlayer/i)!==-1);
 
 				if (playersXML !== null) {
 					var allXMLPlayers = playersXML.getElementsByTagName("Player");
@@ -137,9 +139,10 @@ Foxtrick.Pages.Players = {
 					}
 				}
 
-				player.nameLink = allPlayers[i].getElementsByTagName("a")[offset].cloneNode(true);
-
-				var basicInformation = allPlayers[i].getElementsByTagName("p")[1];
+				player.nameLink = playerinfolinks[offset].cloneNode(true);
+				
+				var basicInformationIndex = isYouth?0:1;
+				var basicInformation = allPlayers[i].getElementsByTagName("p")[basicInformationIndex];
 				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
 				if (!player.age) {
 					var basicHtmlCopy = basicHtml;
