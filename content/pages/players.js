@@ -31,6 +31,7 @@ Foxtrick.Pages.Players = {
 		try {
 			// preparation steps
 			var isOwn = this.isOwnPlayersPage(doc);
+			var isYouth = this.isYouthPlayersPage(doc);
 
 			var allPlayers = doc.getElementsByClassName("playerInfo");
 			var playerList = [];
@@ -41,11 +42,10 @@ Foxtrick.Pages.Players = {
 			var player;
 			for (var i = 0; i < allPlayers.length; ++i) {
 				player = {};
-				var playerinfolinks = allPlayers[i].getElementsByTagName("a");
-				var hasFlag = (playerinfolinks[0].innerHTML.search(/flags.gif/i)!=-1);
-				var offset = hasFlag ? 1 : 0;
-				player.id = playerinfolinks[offset].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-				var isYouth = (playerinfolinks[offset].href.search(/YouthPlayer/i)!==-1);
+				var hasFlag = (allPlayers[i].getElementsByClassName("flag").length > 0);
+				var nameLink = hasFlag ? allPlayers[i].getElementsByTagName("a")[1] : allPlayers[i].getElementsByTagName("a")[0];
+				player.id = nameLink.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+				player.nameLink = nameLink.cloneNode(true);
 
 				if (playersXML !== null) {
 					var allXMLPlayers = playersXML.getElementsByTagName("Player");
@@ -139,11 +139,19 @@ Foxtrick.Pages.Players = {
 					}
 				}
 
-				player.nameLink = playerinfolinks[offset].cloneNode(true);
-				
-				var basicInformation = allPlayers[i].getElementsByTagName("p")[0];
-				if (!isYouth && basicInformation.innerHTML.search('TSI')===-1)
-					basicInformation = allPlayers[i].getElementsByTagName("p")[1];
+				var basicInformation;
+				if (isYouth) {
+					basicInformation = allPlayers[i].getElementsByTagName("p")[0];
+				}
+				else {
+					var paragraphs = allPlayers[i].getElementsByTagName("p");
+					for (var j = 0; j < paragraphs.length; ++j) {
+						if (paragraphs[j].textContent.search("TSI") !== -1) {
+							basicInformation = paragraphs[j];
+						}
+					}
+				}
+
 				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
 				if (!player.age) {
 					var basicHtmlCopy = basicHtml;
@@ -211,9 +219,9 @@ Foxtrick.Pages.Players = {
 					}
 				}
 
-				if (isOwn && !this.isOldiesPage(doc) && !this.isCoachesPage(doc)) {		
+				if (isOwn && !this.isOldiesPage(doc) && !this.isCoachesPage(doc)) {
 					var skillTable = allPlayers[i].getElementsByTagName("table")[0];
-					if (this.isSeniorPlayersPage(doc)) {	
+					if (this.isSeniorPlayersPage(doc)) {
 						var hasSkillBars = true;
 						var rowCount = skillTable.getElementsByTagName("tr").length;
 						if (rowCount == 4) {
