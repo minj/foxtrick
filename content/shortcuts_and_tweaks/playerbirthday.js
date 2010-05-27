@@ -32,11 +32,16 @@ var FoxtrickPlayerBirthday = {
 			var playerTag = ClassPlayer[i].getElementsByTagName('a')[0];
 			if (playerTag.getElementsByTagName('img').length > 0) {
 				player.playerName = ClassPlayer[i].getElementsByTagName('a')[1];    
+				var isYouth = (ClassPlayer[i].getElementsByTagName('a')[1].href.search(/YouthPlayer/i)!==-1);
 			}
 			else {
 				player.playerName = ClassPlayer[i].getElementsByTagName('a')[0];
+				var isYouth = (ClassPlayer[i].getElementsByTagName('a')[0].href.search(/YouthPlayer/i)!==-1);
 			}
 			var playerInfo = ClassPlayer[i].getElementsByTagName('p')[0].innerHTML;
+			if (!isYouth && playerInfo.search('TSI')===-1)
+				playerInfo = ClassPlayer[i].getElementsByTagName('p')[1].innerHTML;
+			
 			if (playerInfo.search(/\<br\>/) != -1) { // player info (PlayerAge, form and stamina)
 				playerInfo = playerInfo.substring(0, playerInfo.search(/\<br\>/)); // we need the first occurence
 			}

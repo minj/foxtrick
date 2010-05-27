@@ -141,8 +141,9 @@ Foxtrick.Pages.Players = {
 
 				player.nameLink = playerinfolinks[offset].cloneNode(true);
 				
-				var basicInformationIndex = isYouth?0:1;
-				var basicInformation = allPlayers[i].getElementsByTagName("p")[basicInformationIndex];
+				var basicInformation = allPlayers[i].getElementsByTagName("p")[0];
+				if (!isYouth && basicInformation.innerHTML.search('TSI')===-1)
+					basicInformation = allPlayers[i].getElementsByTagName("p")[1];
 				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
 				if (!player.age) {
 					var basicHtmlCopy = basicHtml;
