@@ -139,7 +139,7 @@ Foxtrick.Pages.Players = {
 
 				player.nameLink = allPlayers[i].getElementsByTagName("a")[offset].cloneNode(true);
 
-				var basicInformation = allPlayers[i].getElementsByTagName("p")[0];
+				var basicInformation = allPlayers[i].getElementsByTagName("p")[1];
 				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
 				if (!player.age) {
 					var basicHtmlCopy = basicHtml;
