@@ -153,15 +153,28 @@ Foxtrick.Pages.Players = {
 				}
 
 				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
+
+				var ageText = basicHtml;
+				// First we dump TSI out of the string, and then
+				// the first match is years and the second is days
+				var tsiMatch = ageText.match(RegExp("TSI\\s*=\\s*[\\d\\s]*"));
+				if (tsiMatch) {
+					ageText = ageText.replace(tsiMatch[0], "");
+				}
+				var ageRe = new RegExp("\\d+\\D+\\d+\\s\\S+");
+				var ageReRussian = new RegExp("\\D+\\d+\\D+\\d+");
+				if (ageText.match(ageRe) !== null) {
+					ageText = ageText.match(ageRe)[0].replace(",", "");
+				}
+				else if (ageText.match(ageReRussian) !== null) {
+					// Russian have some problems using that RegExp
+					// try this instead:
+					ageText = ageText.match(ageReRussian)[0].replace(",", "");
+				}
+				player.ageText = ageText;
+
 				if (!player.age) {
-					var basicHtmlCopy = basicHtml;
-					// First we dump TSI out of the string, and then
-					// the first match is years and the second is days
-					var tsiMatch = basicHtmlCopy.match(RegExp("TSI\\s*=\\s*[\\d\\s]*"));
-					if (tsiMatch) {
-						basicHtmlCopy = basicHtmlCopy.replace(tsiMatch[0], "");
-					}
-					var ageMatch = basicHtmlCopy.match(/(\d+)/g);
+					var ageMatch = ageText.match(/(\d+)/g);
 					player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
 				}
 
