@@ -37,13 +37,16 @@ FoxtrickPlayerFilters = {
 			option.innerHTML = "-- " + Foxtrickl10n.getString("Filter") + " --";
 			filterSelect.appendChild(option);
 
-			var mainBody = doc.getElementById("mainBody");
+			var parentNode = sortSelect.parentNode
+			var insertBefore = sortSelect.nextSibling;
 			sortSelect.parentNode.removeChild(sortSelect);
+
 			var container = doc.createElement("div");
 			container.className = "ft-select-container";
 			container.appendChild(sortSelect);
 			container.appendChild(filterSelect);
-			mainBody.insertBefore(container, mainBody.firstChild);
+
+			parentNode.insertBefore(container, insertBefore);
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
