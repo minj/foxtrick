@@ -16,15 +16,15 @@ var FoxtrickAddManagerButtons = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	GUESTBOOK_LINK_ID : "guestbook_link_id",
-	MANAGER_ACTION_BOX_ID : "ctl00_CPSidebar_ucVisitorActions_UpdatePanel1",
+	CHALLENGE_LINK_ID : "ctl00_CPSidebar_ucVisitorActions_lnkChallenge",
 
 	init : function() {
 	},
 
 	run : function(page, doc) {
-		try {	
+		try {	Foxtrick.dump('gb: '+Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)+'\n');
 				if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
-						Foxtrick.hasElement(doc, this.MANAGER_ACTION_BOX_ID)) {
+						Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
 					this.addActionsBox(doc, page);
 				}
 		}
@@ -34,7 +34,8 @@ var FoxtrickAddManagerButtons = {
 	},
 
 	change : function(page, doc) {
-		this.run(page, doc);
+		// no onchange now. position isn't right and mostly gb-link will not be needed then
+		//this.run(page, doc);
 	},
 
 	addActionsBox : function(doc, page) {
@@ -82,29 +83,38 @@ var FoxtrickAddManagerButtons = {
 		
 //		Foxtrick.dump('isSupporter: '+isSupporter+' OFFI: ' + official+'\n');
 		
-		var parentDiv = doc.createElement("div");
-		parentDiv.id = this.GUESTBOOK_LINK_ID;
-
+		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID).parentNode;
+		
 		//Display GuestBook button only if teamid is HT-Supporter - Stephan57
 		if (isSupporter) {
 			var guestbookLink = doc.createElement("a");
 			guestbookLink.className = "inner";
 			guestbookLink.href = "\/Club\/Manager\/Guestbook.aspx?teamid=" + teamId;
-			guestbookLink.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
 			guestbookLink.title = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
+			guestbookLink.id = this.GUESTBOOK_LINK_ID;
 
+			if (doc.getElementById(this.CHALLENGE_LINK_ID).getElementsByTagName('img').length===0) {
+				guestbookLink.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
+			}
+			else {
+				var img = doc.createElement("img");
+				img.style.padding = "0px 5px 0px 0px";
+				img.className = "actionIcon";
+				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
+				img.src = Foxtrick.ResourcePath+"resources/img/writeinguestbook.png";
+				guestbookLink.appendChild(img);
+			}
 			parentDiv.appendChild(guestbookLink);
 		}
+		/* there is a ht warning already
 		if (official) {
 			var infobox = doc.createElement("div");
 			infobox.style.color = "red";
 			infobox.style.padding = "5px 0 0 0";
 			infobox.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.sendmessageofficial");
 			parentDiv.appendChild(infobox);
-		}
+		}*/
 
-		// Append the box to the sidebar
-		doc.getElementById(this.MANAGER_ACTION_BOX_ID).getElementsByTagName("div")[0].appendChild(parentDiv);
 	} catch(e) {Foxtrick.dumpError(e);}
 	}	
 };
