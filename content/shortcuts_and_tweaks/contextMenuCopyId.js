@@ -27,7 +27,7 @@ var FoxtrickContextMenuCopyId = {
 		{ type : "user", re : /\?userId=(\d+)/i, tag : "userid" },
 		{ type : "kit", re : /\?KitID=(\d+)/i, tag : "kitid" },
 		{ type : "article", re : /\?ArticleID=(\d+)/i, tag : "articleid" },
-		{ type : "arena", re : /\/Default\.aspx\?ArenaID=(\d+)/i, tag : "" },
+		//{ type : "arena", re : /\/Default\.aspx\?ArenaID=(\d+)/i, tag : "" },
 		{ type : "post", re : /\/Forum\/Read.aspx\?t=(\d+).*&n=(\d+)/i, tag : "post" }
 	], 
 
@@ -52,13 +52,13 @@ var FoxtrickContextMenuCopyId = {
 			var href = event.target.href;
 			// if eg link has strong tag
 			if (!href) href = event.target.parentNode.href;
-			if (!href)
+			if (!href || href.search(/javascript/)!==-1)
 			{  //hide old
 				Foxtrick.popupMenu.setAttribute("hidden", true);
 				Foxtrick.popupMenuHT_ML.setAttribute("hidden", true);
 				return;
 			}
-
+			
 			for (var index in FoxtrickContextMenuCopyId.ID) {
 				var current = FoxtrickContextMenuCopyId.ID[index];
 				if (href.search(current.re) !== -1) {
@@ -86,9 +86,18 @@ var FoxtrickContextMenuCopyId = {
 				}
 			}
 			Foxtrick.popupMenu.setAttribute("hidden", true);
-			Foxtrick.popupMenuHT_ML.setAttribute("hidden", true);
+			
+			// generic link copy
+			var rel_href = href.match(/http:\/\/[^\/]+(\/.+)/)[1];
+			var ml = "[link=" + rel_href + "]";
+			var mlText = Foxtrickl10n.getString("foxtrick.CopyContext") + ": " + ml;
+			Foxtrick.CopyIDHT_ML = ml;
+			Foxtrick.popupMenuHT_ML.setAttribute("hidden", false);
+			Foxtrick.popupMenuHT_ML.setAttribute("label", mlText);
 		}
 		catch (e) {
+			Foxtrick.popupMenu.setAttribute("hidden", true);
+			Foxtrick.popupMenuHT_ML.setAttribute("hidden", true);
 			Foxtrick.dumpError(e);
 		}
 	}
