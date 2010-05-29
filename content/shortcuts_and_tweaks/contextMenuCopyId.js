@@ -19,16 +19,17 @@ var FoxtrickContextMenuCopyId = {
 		{ type : "youthplayer", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
 		{ type : "team", re : /\?TeamID=(\d+)/i, tag : "teamid" },
 		{ type : "youthteam", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
-		{ type : "match", re : /\?matchID=(\d+)&/i, tag : "matchid" },
 		{ type : "youthmatch", re : /\?matchID=(\d+)&isYouth=True/i, tag : "youthmatchid" },
+		{ type : "match", re : /\?matchID=(\d+)&/i, tag : "matchid" },
 		{ type : "federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
 		{ type : "league", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
 		{ type : "youthleague", re : /\?YouthLeagueId=(\d+)/i, tag : "youthleagueid" },
 		{ type : "user", re : /\?userId=(\d+)/i, tag : "userid" },
 		{ type : "kit", re : /\?KitID=(\d+)/i, tag : "kitid" },
 		{ type : "article", re : /\?ArticleID=(\d+)/i, tag : "articleid" },
+		{ type : "arena", re : /\/Default\.aspx\?ArenaID=(\d+)/i, tag : "" },
 		{ type : "post", re : /\/Forum\/Read.aspx\?t=(\d+).*&n=(\d+)/i, tag : "post" }
-	],
+	], 
 
     init : function() {
     },
@@ -70,16 +71,17 @@ var FoxtrickContextMenuCopyId = {
 						}
 					}
 					var ml = "[" + current.tag + "=" + id + "]";
-					var idText = Foxtrickl10n.getString("foxtrick.CopyContext") + ": " + current.type + "id " + id;
+					var idText = Foxtrickl10n.getString("foxtrick.CopyContext") + " " + current.type + "Id: " + id;
 					var mlText = Foxtrickl10n.getString("foxtrick.CopyContext") + ": " + ml;
 
 					Foxtrick.CopyID = id;
 					Foxtrick.CopyIDHT_ML = ml;
 					Foxtrick.popupMenu.setAttribute("hidden", false);
 					Foxtrick.popupMenu.setAttribute("label", idText);
-					Foxtrick.popupMenuHT_ML.setAttribute("hidden", false);
-					Foxtrick.popupMenuHT_ML.setAttribute("label", mlText);
-
+					if (current.tag!=="") {
+						Foxtrick.popupMenuHT_ML.setAttribute("hidden", false);
+						Foxtrick.popupMenuHT_ML.setAttribute("label", mlText);
+					}
 					return;
 				}
 			}
