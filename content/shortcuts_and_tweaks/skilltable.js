@@ -80,7 +80,7 @@ var FoxtrickSkillTable = {
 	createTable : function(doc) {
 		try {
 			var fullType = this.getFullType(doc);
-			var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+			var playerList = Foxtrick.Pages.Players.getPlayerList(doc, !Foxtrick.isModuleEnabled( FoxtrickExtraPlayerInfo ));
 
 			var latestMatch = 0, secondLatestMatch = 0;
 			if (fullType.subtype != "nt" && !fullType.subtype != "oldiesCoach") {

@@ -344,6 +344,7 @@ var FoxtrickHelper = {
 
 	getShortSpeciality: function(spec) {
 		try {
+			if (spec==='') return '';
 			spec = spec.replace(/&nbsp;/," ");
 			var lang = FoxtrickPrefs.getString("htLanguage");
 			var path = "hattricklanguages/language[@name=\"" + lang + "\"]/specialties/specialty[@value=\"" + spec + "\"]";
