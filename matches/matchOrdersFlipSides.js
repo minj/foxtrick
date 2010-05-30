@@ -9,7 +9,7 @@ FoxtrickFlipSidesInMatchOrders = {
     MODULE_NAME : "FlipSidesInMatchOrders",
     MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('matchOrders'), 
-    DEFAULT_ENABLED : true,
+    DEFAULT_ENABLED : false,
 
     init : function() {
     },

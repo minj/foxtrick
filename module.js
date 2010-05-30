@@ -21,11 +21,9 @@ Foxtrick.ht_pages = {
     'playerdetail'              : '\/Club\/Players\/Player\.aspx',
 	'youthplayerdetail'         : '\/Club\/Players\/YouthPlayer\.aspx',
 	'myhattrick'                : '\/MyHattrick\/$',
-	'myhattrickAll'             : '\/MyHattrick\/|org\/$|pl\/$|ws\/$',
+	'myhattrickAll'             : '\/MyHattrick\/',
     'forum'                     : '\/Forum\/',
     'forumViewThread'           : '\/Forum\/Read',
-	'forumOverView'             : '\/Forum\/Overview', 
-	'forumDefault'              : '\/Forum\/Default',
     'forumWritePost'            : '\/Forum\/Write',
     'forumModWritePost'         : '\/Forum\/Functions',
 //	'mailnewsletter'            : '\/MyHattrick\/Inbox\/Default.aspx\?actionType=newsLetter',
@@ -36,7 +34,7 @@ Foxtrick.ht_pages = {
     'league'                    : '\/World\/Series\/Default\.aspx',
     'youthleague'               : '\/World\/Series\/YouthSeries\.aspx',
     'country'                   : '\/World\/Leagues\/League\.aspx',
-    'region'                    : '\/World\/Regions\/Region\.aspx', 
+    'region'                    : '\/World\/Regions\/Region\.aspx',
     'challenges'                : '\/Club\/Challenges\/$',
     'youthchallenges'           : '\/Club\/Challenges\/YouthChallenges',
     'economy'                   : '\/Club\/Finances\/',
@@ -105,4 +103,11 @@ Foxtrick.ht_pages = {
     'all_late'                  : '\/',
 
 };
+
+
+Foxtrick.pagesExcluded = {
+	"offline" : "down.aspx",
+	"MatchOrder": "\/Club\/Matches\/MatchOrder\/"
+};
+
 ////////////////////////////////////////////////////////////////////////////////

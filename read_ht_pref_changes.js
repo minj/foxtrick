@@ -1,4 +1,4 @@
-/**
+﻿/**
  * read_ht_prefs_changes.js
  * Foxtrick read some ht prefs if they change
  * @author convinced 
@@ -10,66 +10,67 @@ var FoxtrickReadHtPrefs = {
     MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('prefSettings','myhattrickAll'), 
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Checks language on MyHattrick",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	codes:{},
 	
     init : function() {
-			this.codes['2']='en';
-			this.codes['3']='de';
+			this.codes['84']='be';
 			this.codes['43']='bg';
-			this.codes['66']='ca';
-			this.codes['35']='cz';
-			this.codes['8']='dk';
-			this.codes['36']='ee';
-			this.codes['6']='es';
-			this.codes['51']='es_SU';
-			this.codes['103']='es_ca';
-			this.codes['110']='eu_ES';
-			this.codes['5']='fr';
-			this.codes['74']='gl_ES';
 			this.codes['58']='bs';
+			this.codes['66']='ca';
+			this.codes['35']='cs';
+			this.codes['8']='da';
+			this.codes['3']='de';
+			this.codes['36']='ee';
+			this.codes['2']='en';
+			this.codes['6']='es';
+			this.codes['103']='es_ca';
+			this.codes['51']='es_SU';
+			this.codes['110']='eu';
+			this.codes['75']='fa';
+			this.codes['9']='fi';
+			this.codes['5']='fr';
+			this.codes['113']='fur';
 			this.codes['109']='fy';
+			this.codes['74']='gl';
+			this.codes['34']='gr';
+			this.codes['40']='he';
 			this.codes['39']='hr';
-			this.codes['4']='it';
-			this.codes['37']='lv';
-			this.codes['56']='lt';
-			this.codes['10']='nl';
 			this.codes['33']='hu';
+			this.codes['4']='it';
+			this.codes['111']='lb';
+			this.codes['56']='lt';
+			this.codes['37']='lv';
+			this.codes['83']='mk';
+			this.codes['87']='mt';
+			this.codes['10']='nl';
 			this.codes['7']='no';
 			this.codes['13']='pl';
 			this.codes['11']='pt';
 			this.codes['50']='pt_BR';
 			this.codes['23']='ro';
-			this.codes['45']='sl';
-			this.codes['53']='sk';
-			this.codes['1']='se';
-			this.codes['9']='fi';
-			this.codes['19']='tr';
-			this.codes['65']='nl_BE';
-			this.codes['57']='ua';
-			this.codes['32']='sr';
 			this.codes['14']='ru';
-			this.codes['34']='gr';
-			this.codes['40']='he_IL';
-			this.codes['111']='lb_LU';
+			this.codes['53']='sk';
+			this.codes['45']='sl';
 			this.codes['85']='sq';
-			this.codes['83']='mk';
-			this.codes['15']='zh_CN';
-			this.codes['113']='fur';
+			this.codes['32']='sr';
+			this.codes['1']='sv';
+			this.codes['19']='tr';
+			this.codes['57']='uk';
 			this.codes['55']='vi';
-			this.codes['75']='fa';
+			this.codes['65']='vls';
+			this.codes['15']='zh';
+			this.codes['90']='ka';
 			this.codes['84']='be';
+			this.codes['17']='ko';
+			this.codes['12']='ja';
 			
-			// follwoing don't have an own locale file yet
+			// following don't have an own locale file yet
 	/*
-	<option value="90">Georgian</option>
 	<option value="86">Kyrgyz</option>
-	<option value="84">??????????</option>  Belarusian
-	<option value="17">???</option> korean
-	<option value="12">???</option> japan
 	 */  
 			
    },
@@ -86,6 +87,7 @@ var FoxtrickReadHtPrefs = {
 			var menu = doc.getElementById('menu');
 			var as = menu.getElementsByTagName('a');
 			var languages = Foxtrick.XMLData.htLanguagesXml.getElementsByTagName('language');
+			//alert(decodeURIComponent(as[5].innerHTML));
 			if (as.length < 6) {
 				Foxtrick.dump('no prelogin lang check\n');
 				return; // prelogin
@@ -95,13 +97,15 @@ var FoxtrickReadHtPrefs = {
 				for (var i=0; i<6;++i) {
 					var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
 					if (atitle==null) break;
-					if (as[i].innerHTML.search(atitle.getAttribute('value'))!=-1) ++num_found;				
+					if (as[i].innerHTML.replace(/&amp;/,'&').search(atitle.getAttribute('value'))!=-1) ++num_found;	
 				}
+				//Foxtrick.dump(decodeURIComponent(as[5].innerHTML)+' '+atitle.getAttribute('value')+' '+decodeURIComponent(as[5].innerHTML).search(atitle.getAttribute('value'))+' ');
 				if (num_found==6) {
 					langval = languages[k].getAttribute('name');
-					Foxtrick.dump('lang detected: '+languages[k].getAttribute('desc')+'\n');
+					Foxtrick.dump('lang detected: '+langval+' oldval:'+oldval+'\n');
 					break;
 				}
+				//Foxtrick.dump('\n');
 			}
 		}
 		
@@ -154,12 +158,11 @@ var FoxtrickReadHtPrefsFromHeader = {
 	
     MODULE_NAME : "ReadHtPrefsFromHeader",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
-	PAGES : new Array('myhattrickAll'), 
+	PAGES : new Array('all'),//'myhattrickAll'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Read country from page header",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-    OPTIONS : new Array("Language", "CountryCurrencyDateFormat"),
 
     init : function() {
 	},
@@ -174,13 +177,18 @@ var FoxtrickReadHtPrefsFromHeader = {
 		if ( Foxtrick.isModuleFeatureEnabled(FoxtrickReadHtPrefsFromHeader, 'CountryCurrencyDateFormat') ) {
 			var CountryLink = teamLinks[2];
 			var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
-			var CountryName = Foxtrick.XMLData.League[LeagueId].EnglishName;
+			var CountryName = FoxtrickHelper.getLeagueDataFromId(LeagueId).EnglishName;
 			var OldCountryName = FoxtrickPrefs.getString("htCountry");
 		
 			if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1 || newstart) {
 				Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
-				var CurrencyName = Foxtrick.XMLData.League[LeagueId].Country.CurrencyName;
-				var CurrencyRate =  parseInt(Foxtrick.XMLData.League[LeagueId].Country.CurrencyRate)/10;
+				var CurrencyName = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
+				var CurrencyRate =  FoxtrickHelper.getCurrencyRateFromId(LeagueId);
+				if (CurrencyName.search(/000\ /,'')!=-1) {
+					CurrencyName=CurrencyName.replace(/000\ /gi,'');
+					CurrencyRate=CurrencyRate/1000;					
+				}
+				
 				Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
 			
 				FoxtrickPrefs.setString("htCountry", CountryName);
@@ -241,7 +249,10 @@ var FoxtrickMyHT = {
     run : function(page, doc ) {  
 		try{						
 			if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
-			{ // show foxtrickMyHT
+			{ 
+				var curVersion = FoxtrickPrefs.getString("curVersion");
+				FoxtrickPrefs.setString("oldVersion",curVersion);
+				// show foxtrickMyHT
 				this.ShowAlert(doc);
 			}
 		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}

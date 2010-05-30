@@ -11,7 +11,7 @@ var FoxtrickPlayerAdToClipboard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Disabled on unknown players",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
@@ -75,7 +75,7 @@ var FoxtrickPlayerAdToClipboard = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerad" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copyPlayerAd.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);
@@ -96,21 +96,10 @@ var FoxtrickPlayerAdToClipboard = {
 	createPlayerAd : function( ev ) {
 		var doc = ev.target.ownerDocument;
 		try {
+			var ad = "";
 
-			var ad="";
-			var obj;
-			var main = doc.getElementById("mainWrapper");					
-			var links = main.getElementsByTagName("a");;
-			for (var i = 0; i < links.length; i++) {
-				if (links[i].href.match(/Club\/Players\/Player\.aspx/i)) {
-					obj = links[i];
-					break;
-				}
-			}
-			
-			ad += obj.innerHTML; //name
-			var id = obj.href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
-			ad += "\t[playerid=" + id + "]\n";
+			ad += Foxtrick.Pages.Player.getName(doc);
+			ad += " [playerid=" + Foxtrick.Pages.Player.getId(doc) + "]\n";
 		
 			var isEnglish=false;
 			//nationality, age and next birthday

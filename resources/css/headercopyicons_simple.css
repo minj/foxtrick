@@ -7,20 +7,13 @@ a.copyicon {
 	 z-index:99;	
 }
 
-#hattrickNoSupporter   a.ci_first { right:3px;}
-#hattrick   a.ci_first {right:25px;}
+/* header icons postitions */
+a.ci_first { right:14px;}
+a.ci_second { right:51px;}
+a.ci_third {right:88px;}
+a.ci_forth{right:125px;}
+a.ci_fifth{right:162px;}
 
-#hattrickNoSupporter   a.ci_second { right:31px;}
-#hattrick   a.ci_second {right:31px;}
-
-#hattrickNoSupporter   a.ci_third {right:58px;}
-#hattrick   a.ci_third{right:58px;}
-
-#hattrickNoSupporter   a.ci_forth{right:85px;}
-#hattrick   a.ci_forth{right:85px;}
-
-#hattrickNoSupporter   a.ci_fifth{right:112px;}
-#hattrick   a.ci_fifth{right:112px;}
 
 .copyicon img {
 	padding: 0px 0px 0px 0px; 
@@ -29,19 +22,31 @@ a.copyicon {
 }
 
 .copyplayerad img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyplayerad_22.png) no-repeat scroll 0 0;
+	background: transparent url(chrome://foxtrick/content/resources/img/copyPlayerAd_s.png) no-repeat scroll 0 0;
 }
 
 .copyplayerscource img {
-	background: transparent url(chrome://foxtrick/content/resources/img/youthplayersource_22.png) no-repeat scroll 0 0;
+	background: transparent url(chrome://foxtrick/content/resources/img/copyPlayerSource_s.png) no-repeat scroll 0 0;
+}
+
+.copytrainingreport img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyTrainingReport_s.png) no-repeat scroll 0 0;
+}
+
+.copyscoutreport img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyScoutReport_s.png) no-repeat scroll 0 0;
+}
+
+.copyratings img {
+	background: transparent url(chrome://foxtrick/content/resources/img/copyMatchRatings_s.png) no-repeat scroll 0 0;
 }
 
 .copyratingshome img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyratingshome_22.png) no-repeat scroll 0 0;
+	background: transparent url(chrome://foxtrick/content/resources/img/copyHomeRatings_s.png) no-repeat scroll 0 0;
 }
 
 .copyratingsaway img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copyratingsaway_22.png) no-repeat scroll 0 0;
+	background: transparent url(chrome://foxtrick/content/resources/img/copyAwayRatings_s.png) no-repeat scroll 0 0;
 }
 
 

@@ -210,7 +210,7 @@ function goToInbox() {
         return;
       }
     }
-    chrome.tabs.create({url: 'http://www.hattrick.org'});
+    //chrome.tabs.create({url: getGmailUrl()});
   });
 }
 

@@ -9,9 +9,9 @@ var FoxtrickGoToPostBox = {
     MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 	
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
@@ -90,22 +90,38 @@ var FoxtrickGoToPostBox = {
 				if (doc.getElementById(boxId))
 					continue;
 				var selectBox = aSelectBoxes[i];
+				
+				/*
+				var tglButton = doc.createElement('input');
+				tglButton.setAttribute('id', 'foxtrick_forum_postbox_tglbutton_' + i);
+				tglButton.setAttribute('type', 'button');
+				tglButton.setAttribute('value', 'i');
+				tglButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
+				tglButton.setAttribute('onClick', 
+					'function show_tgl(elm) {var el_1 = document.getElementById(\"ctl00_ctl00_CPContent_CPMain_ucThread_ucPager\" + elm); if (el_1.style.display != \"inline\") {el_1.style.display = \"inline\";} else {el_1.style.display = \"none\";}} ' +
+					'show_tgl(\"Top_txtMessageNumber\"); show_tgl(\"Top_btnGo\"); show_tgl(\"Top_ddlAction\"); show_tgl(\"Bottom_txtMessageNumber\"); show_tgl(\"Bottom_btnGo\"); show_tgl(\"Bottom_ddlAction\"); '
+					
+				);
+				selectBox.parentNode.appendChild(tglButton); 
+				*/
+				
 				var inputBoxTop = doc.createElement('input');
 				inputBoxTop.setAttribute('type', 'text');
 				inputBoxTop.setAttribute('size', '4');
                 inputBoxTop.setAttribute('value', '(xxx.)yyy');
-                inputBoxTop.setAttribute('class', 'quickViewBox viewInactive');
+                inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
                 inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
-                inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
+                inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")'); 
                 
 				var goButton = doc.createElement('input');
 				goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
 				inputBoxTop.setAttribute('id', boxId);
 				goButton.setAttribute('type', 'button');
-				var sTmp = selectBox.getAttribute('onChange');
-				var iTopicId = sTmp.match(/\d+/)[0];
-				goButton.setAttribute('value', 'OK');
-				goButton.setAttribute('onClick', 
+				var sTmp = selectBox.getAttribute('onchange');
+				var iTopicId = doc.location.search.match(/\d+/)[0];
+				goButton.setAttribute('value', Foxtrickl10n.getString("foxtrick.GoToPostBox.label"));
+				goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
+				goButton.setAttribute('onclick', 
 					'var val=document.getElementById("' + boxId + '").value; ' + 
 					'if (val.indexOf(".") > 0) {var aTemp = val.split("."); val = aTemp[0] + "&n=" + aTemp[1];} ' + 
 					'else {val = "' + iTopicId + tab + '&n=" + val} ' + 
@@ -113,7 +129,7 @@ var FoxtrickGoToPostBox = {
 					);
 				
    				var inputBoxLabel = doc.createElement('span');
-                inputBoxLabel.innerHTML = '&nbsp;' + Foxtrickl10n.getString("foxtrick.GoToPostBox.label") + ':&nbsp;';
+                inputBoxLabel.innerHTML = '&nbsp;'/* + Foxtrickl10n.getString("foxtrick.GoToPostBox.label") + ':&nbsp;'*/;
                 selectBox.parentNode.appendChild(inputBoxLabel);
 
 				selectBox.parentNode.appendChild(inputBoxTop);
@@ -123,7 +139,7 @@ var FoxtrickGoToPostBox = {
                 selectBox.parentNode.appendChild(inputBoxLabel2);
                 
 				selectBox.parentNode.appendChild(goButton);
-				inputBoxTop.addEventListener("keyup" , FoxtrickGoToPostBox._submit, false); 
+				inputBoxTop.addEventListener("keyup" , FoxtrickGoToPostBox._submit, false);
 			}
 			
 		},

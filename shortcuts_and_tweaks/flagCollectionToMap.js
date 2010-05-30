@@ -8,8 +8,8 @@ FoxtrickFlagCollectionToMap = {
     MODULE_NAME : "FlagCollectionToMap",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('flagCollection'), 
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Colored NonHt countries, own country in red if missing",
+	NEW_AFTER_VERSION: "0.5.1.3",
+	LATEST_CHANGE:"Lesotho fix",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     DEFAULT_ENABLED : true,
 
@@ -210,6 +210,8 @@ FoxtrickFlagCollectionToMap = {
         var urlWorld = this.getMapUrl('world', countryCodes, colouringOrder);
 		var fixWorld = this.getMapFixWorld(countryIds);
 		var fixEurope = this.getMapFixEurope(countryIds);
+		var fixNeareast = this.getMapFixNearEast(countryIds);		
+		var fixAfrica = this.getMapFixAfrica(countryIds);
     
         var mapDiv = document.createElement("div");
         mapDiv.id = 'foxtrick-map' + mapId;
@@ -231,7 +233,7 @@ FoxtrickFlagCollectionToMap = {
         this.insertBeforeOrAppend(parent, document.createElement('br'), insertBefore);
         this.insertBeforeOrAppend(parent, openMapA, insertBefore);
         
-        document.getElementById('foxtrick-map'+mapId).innerHTML = this.getMapHtml(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId, fixWorld, fixEurope);
+        document.getElementById('foxtrick-map'+mapId).innerHTML = this.getMapHtml(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId, fixWorld, fixEurope, fixNeareast, fixAfrica);
     },
     
     setupCountryCodes : function() {
@@ -420,7 +422,7 @@ FoxtrickFlagCollectionToMap = {
                 ukIds++;
                
                 if(ukIds == 4) {
-                    cCodesString += 'GB';
+                    //cCodesString += 'GB';
                 }
             }
            
@@ -429,7 +431,7 @@ FoxtrickFlagCollectionToMap = {
                 yuIds++;
                
                 if(yuIds == 2) {
-                    cCodesString += 'CS';
+                    //cCodesString += 'CS';
                 }
             }
 
@@ -442,7 +444,7 @@ FoxtrickFlagCollectionToMap = {
 		return cCodesString;
     },
     
-    getMapHtml: function(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId, fixWorld, fixEurope){
+    getMapHtml: function(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId, fixWorld, fixEurope, fixNeareast, fixAfrica){
         var href = '#';
 		//Get locale name of the continents - Stephan57
         const Africa = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Africa");
@@ -452,15 +454,17 @@ FoxtrickFlagCollectionToMap = {
 		const SAmerica = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.SAmerica");
 		const World = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.World");
 		
-        var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + Africa + '</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + Asia + '</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'inline-block\';return false;">' + Europe + '</a> |  ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + MEast + '</a>  | ';
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + SAmerica + '</a> |  '; 
-        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';return false;">' + World + '</a><br/>';
+        var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'inline-block\';return false;">' + Africa + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + Asia + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + Europe + '</a> |  ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + MEast + '</a>  | ';
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + SAmerica + '</a> |  '; 
+        mapHtml +=    '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + World + '</a><br/>';
         mapHtml +=    '<img alt="Map" id="foxtrick-img-map-'+anchorId+'" src="' + urlWorld + '"/>';
 		mapHtml += 	  '<div id="foxtrick-img-map-fix-world-'+anchorId+'">' + fixWorld + '</div>';
         mapHtml += 	  '<div id="foxtrick-img-map-fix-europe-'+anchorId+'" ' +'style="display:none">' + fixEurope + '</div>';
+        mapHtml += 	  '<div id="foxtrick-img-map-fix-neareast-'+anchorId+'" ' +'style="display:none">' + fixNeareast + '</div>';
+        mapHtml += 	  '<div id="foxtrick-img-map-fix-africa-'+anchorId+'" ' +'style="display:none">' + fixAfrica + '</div>';
         return mapHtml;
     },
     
@@ -525,18 +529,24 @@ FoxtrickFlagCollectionToMap = {
                 yuIds++;
 		}
 		
+		// general fix. specifially lesotho
+        var offset=0;
+        offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world.png"> ';
+		
 		for(var i = 0; i < countryIds.length; i++){
             var countryId = countryIds[i];
             var offset=0;
             // uk hack
-            if(ukIds != 4) {  //only if not added before
+            //if(ukIds != 4) 
+			{  //only if not added before
                 if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_cy.png"> ';}
                 if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_en.png"> ';}
                 if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_nie.png"> ';}
                 if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_sc.png"> ';}
 			}
             // yu hack
-			if(yuIds != 2) {
+			//if(yuIds != 2) 
+			{
                 if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_rs.png"> ';}
                 if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_me.png">';}
             }
@@ -571,18 +581,56 @@ FoxtrickFlagCollectionToMap = {
             var countryId = countryIds[i];
             var offset=0;
             // uk hack
-            if(ukIds != 4) {  //only if not added before
+            //if(ukIds != 4) 
+			{  //only if not added before
                 if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_cy.png"> ';}
                 if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_en.png"> ';}
                 if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_nie.png"> ';}
                 if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_sc.png"> ';}
 			}
             // yu hack
-			if(yuIds != 2) {
+			// if(yuIds != 2) 
+			{
                 if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_rs.png"> ';}
                 if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_me.png">';}
             }
         }
         return cImgString;
     },
+	
+	getMapFixNearEast : function(countryIds) {
+        
+		// serbia and montenegro is divided to 4 parts in hattrick but google charts only support both as a whole
+        // 57 serbia, 131  Crna Gora
+        
+        var yuIds = 0;
+       
+        var cImgString = '';
+        for(var i = 0; i < countryIds.length; i++){
+            var countryId = countryIds[i];           
+            if(countryId == 57 || countryId == 131)
+                yuIds++;
+		}
+		
+		for(var i = 0; i < countryIds.length; i++){
+            var countryId = countryIds[i];
+            var offset=0;
+            // yu hack
+			//if(yuIds != 2) 
+			{
+                if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_neareast_rs.png"> ';}
+                if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_neareast_me.png">';}
+            }
+        }
+        return cImgString;
+    },
+
+	getMapFixAfrica : function(countryIds) {
+        var cImgString = '';
+
+		// general fix. specifially lesotho
+        var offset=0;
+        offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_africa.png"> ';	
+        return cImgString;
+	},
 };

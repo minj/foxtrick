@@ -16,18 +16,16 @@ Foxtrick.XMLData = {
 	PAGES : new Array('all'), 
 
 	League : {},
-	countryid_to_leagueid : {},
+	countryToLeague : {},
 	htLanguagesXml : null,
 	htCurrencyXml : null,
 	htNTidsXml: null,
 	htversionsXML: null,
 	htdateformat: null,
 	aboutXML:null,
-	
-	
-	playersxml:null,	
+
 	matchxmls: new Array(),
-	
+
 	init : function() {
 	try{
 		this.htLanguagesXml = Foxtrick.loadXmlIntoDOM("chrome://foxtrick/content/htlocales/htlang.xml");
@@ -45,7 +43,7 @@ Foxtrick.XMLData = {
 		
 		for (var i in data.HattrickData.LeagueList.League) {
 			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
-			this.countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
+			this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 		}
 					
 		var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');		
@@ -69,6 +67,15 @@ Foxtrick.XMLData = {
 			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
 			for (var k=0;k<ids.length;++k)   {
 				var id=ids[k].match(/\d+/);			
+				FoxtrickStaffMarker.foxtrickersArray[id]='x';
+			}
+		}
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('designer');		
+		for (var i=0;i<foxtrickstaff.length;++i) {
+			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+			if(ids)
+			  for (var k=0;k<ids.length;++k) {
+				var id=ids[k].match(/\d+/);
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
@@ -139,7 +146,7 @@ Foxtrick.XMLData = {
 	run : function(page,doc) {
 	
 		try {
-			if (FoxtrickStaffMarker.hty_staff==null){
+			if (FoxtrickStaffMarker.hty_staff==null) {
 				FoxtrickStaffMarker.hty_staff = new Array();
 				var req = new XMLHttpRequest();
 				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
@@ -158,44 +165,6 @@ Foxtrick.XMLData = {
 				else {Foxtrick.dump('no connection to hty\n'); }				
 			}
 		}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
-
-		// XML get players xml
-		
-		if (doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
-			|| doc.location.href.search(/\/Club\/Players\/$/)!=-1
-			|| doc.location.href.search(/\/Club\/Players\/Oldies.aspx/)!=-1
-			|| doc.location.href.search(/\/Club\/Players\/Coaches.aspx/)!=-1
-			|| doc.location.href.search(/\/Club\/Players\/\?TeamID=/i)!=-1 
-			|| doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1) {
-
-			var file = 'file=players'; //default normal team
-			var team = '';  // =default own team
-			var selection = '';  //default current players
-			
-			// determine xml file
-			var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
-			var Oldies = doc.location.href.search(/\/Club\/Players\/Oldies.aspx/i)!=-1;
-			var Coaches = doc.location.href.search(/\/Club\/Players\/Coaches.aspx/i)!=-1;
-			var NTplayers = doc.location.href.search(/\/Club\/NationalTeam\/NTPlayers.aspx/i)!=-1;			
-			if (teamid) team = '&teamId='+teamid;
-			if (Oldies) selection='&actionType=viewOldies';
-			if (Coaches) selection='&actionType=viewOldCoaches';
-			if (NTplayers) file = 'file=nationalplayers&ShowAll=true&actiontype=supporterstats';
-			Foxtrick.dump('xmlget http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection+'\n'); 
-			
-			// get players.xml
-			this.playersxml = null;
-			try {	
-				var req = new XMLHttpRequest();
-				req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Players/chppxml.axd?'+file+team+selection, false); 
-				req.send(null);
-				if (req.status == 200) {
-					this.playersxml = req.responseXML;
-					Foxtrick.dump('get '+file+team+selection+'\n');//+req.responseText+'\n');
-				}
-				else Foxtrick.dump(' get '+file+team+selection+' request failed\n');
-			} catch(e) {Foxtrick.dump('get'+file+team+selection+' request failed'+e+'\n');}
-		}
 
 	/*try{
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
@@ -219,4 +188,13 @@ Foxtrick.XMLData = {
 
 	change : function(page,doc) {
 	},
+
+	getLeagueIdByCountryId : function(id) {
+		if (this.countryToLeague[id] !== undefined) {
+			return this.countryToLeague[id];
+		}
+		else {
+			return 0;
+		}
+	}
 }

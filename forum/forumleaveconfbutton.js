@@ -9,9 +9,10 @@ var FoxtrickAddLeaveConfButton = {
     MODULE_NAME : "AddLeaveConfButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum','forumSettings'),
-	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"ForumLeaveConfButton - fixed disappeared x button.",
+	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION: "0.5.1.2",
+	LATEST_CHANGE:"Fixed disappeared or multiplied x button.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
     init : function() {
     },
@@ -30,6 +31,7 @@ var FoxtrickAddLeaveConfButton = {
                         for(var i=0; i < elems.length; i++) {
                             if(elems[i].className=="folderHeader" 
 							|| elems[i].className=="folderHeaderHighlight"){
+								if (elems[i].getElementsByTagName('div')[0].className.search('foxtrickRemove')!=-1) continue;
                                 var divLeaveConfBtn = doc.getElementById(
                                     "ftLC-btn" + foldersCounter);
                                 this.addButton ( doc, divLeaveConfBtn, elems[i],
@@ -78,9 +80,7 @@ var FoxtrickAddLeaveConfButton = {
 	},
 	
 	change : function( page, doc ) {
-	
-		if (doc.getElementById( 'ftLC-btn0' )) return;
-            
+			   
 		//Foxtrick.dump(this.MODULE_NAME+' change\n')
 		switch( page ) {
 			case 'forum':

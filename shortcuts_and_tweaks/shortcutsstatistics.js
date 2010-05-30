@@ -9,7 +9,7 @@ var FoxtrickShortcutsStatistics = {
     MODULE_NAME : "shortcutsstatistics",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'), 
-    DEFAULT_ENABLED : false,
+    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9.1",	
 	LATEST_CHANGE:"Added link to FoxTrick HTML preferences",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

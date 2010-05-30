@@ -17,14 +17,7 @@ FoxtrickExtendedPlayerDetails = {
     },
 
     run : function(page, doc) {
-
-        switch ( page ) {
-
-            case 'playerdetail' : 
-
-                this._Player_Joined ( doc );
-                break;
-        }
+        this._Player_Joined ( doc );
     },
 
 	change : function( page, doc ) {
@@ -100,14 +93,7 @@ FoxtrickExtendedPlayerDetailsWage = {
     },
 
     run : function(page, doc) {
-
-        switch ( page ) {
-
-            case 'playerdetail' : 
-
-                this._Player_Bonus ( doc );
-                break;
-        }
+        this._Player_Bonus ( doc );
     },
 
 	change : function( page, doc ) {

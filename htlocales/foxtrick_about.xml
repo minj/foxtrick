@@ -17,7 +17,7 @@
 </head_developers>
 
 <!-- userids in barkets are used for staffmarker! -->
-<project_owners value="Project owners">
+<project_owners value="Project Owners">
 <project_owner value="larsw84 (1270528)" />
 <project_owner value="Mod-spambot (2336766)" />
 <project_owner value="convincedd (7776339) CHPP co-dev" />
@@ -38,41 +38,45 @@
 <!-- userids in barkets are used for staffmarker! -->
 <translations value="Translations">
 <translation value="* Albanian - MOD-odris (2090503)" />
-<translation value="* Bosnian - Mod-Marin (5345125), ljushaff (4342858)" />
+<translation value="* Bosnian - Mod-Marin (5345125)" />
 <translation value="* Catalan - carlesmu (753905)" />
 <translation value="* Čeština - gucan (1132186)" />
-<translation value="* Croatian - Mod-damyr (2809993)" />
+<translation value="* Croatian - GM-damyr (2809993)" />
 <translation value="* Dansk - LasseSvendsen (6779565)" />
 <translation value="* Deutsch - Mod-spambot (2336766)" />
 <translation value="* Ellinika - GTTWINS (5055092)" />
 <translation value="* English - (developers)" />
 <translation value="* Español - franory (6345528)" />
 <translation value="* Español, Centroamericano - baler0 (335181)" />
-<translation value="* Español, Sudamericano - baler0 (335181), Leachey (6927256)" />
+<translation value="* Español, Sudamericano - baler0 (335181), ElChiquitin (6927256)" />
 <translation value="* Français - stephan57 (7409095)" />
 <translation value="* Frysk - Foppe- (440454)" />
 <translation value="* Galego - Piper_101 (524111)" />
 <translation value="* Hungarian - csajszi (2172516)" />
-<translation value="* Italiano - caracca (2902659)" />
+<translation value="* Italiano - caracca (2902659), Sam-Vimes (9559302)" />
 <translation value="* Lithuanian - Mod-summercloud (2765378)" />
 <translation value="* Luxembourgish - Mod-Karlthegreat (2884072)" />
 <translation value="* Macedonian - white_eagle" />
+<translation value="* Malti - LA-saviour26 (4149232)" />
 <translation value="* Nederlands - eekels (5577946)" />
 <translation value="* Norwegian, bokmål - Skoglund (6350285)" />
-<translation value="* Polski - Homzik (6801903)" />
+<translation value="* Polski - Homzik (6801903), SilesiaVratislavia (10167326)" />
 <translation value="* Português - _recluso_ (3961483), GM-ei04004 (6307374), McTripas (7135171)" />
 <translation value="* Português, Brasil - MarceloFBrandao (8277378)" />
 <translation value="* Romanian - slader (552640)" />
 <translation value="* Russian - _KOHb_ (621456)" />
 <translation value="* Slovak - JAM3SoN (7873605)" />
 <translation value="* Srpski - ljushaff (4342858)" />
-<translation value="* Suomi - Pyntsa (2689296), Leachey (6927256)" />
-<translation value="* Svenska - murko (12166), GM-Nanouk (6680572)" />
+<translation value="* Suomi - Pyntsa (2689296), ElChiquitin (6927256)" />
+<translation value="* Svenska - GM-murko (12166), GM-Nanouk (6680572)" />
 <translation value="* Tiếng Việt - Murtagsh (9372637)" />
 <translation value="* Ukrainian - Grif_07" />
 <translation value="* 中文（简体） - ryanli (8342420)" />
 </translations>
 
+<graphics value="Graphic Designers">
+	<designer value="Aimo_Kanuuna (3410980)" />
+</graphics>
 
 <editors>
 <editor value="64154" name="SH-Patrick"/>
@@ -168,15 +172,6 @@
 <chpp value="143" name="Absolut"/>
 <chpp value="40280" name="Loke_"/>
 <chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
-<chpp value="52820" name="hayde"/>
 <chpp value="53246" name="groton"/>
 <chpp value="100856" name="Frederic-HT2D"/>
 <chpp value="107145" name="bertbert"/>
@@ -200,12 +195,6 @@
 <chpp value="487851" name="Joselo1971"/>
 <chpp value="499303" name="destor77"/>
 <chpp value="505687" name="CHPP-Finke"/>
-<chpp value="505687" name="CHPP-Finke"/>
-<chpp value="505687" name="CHPP-Finke"/>
-<chpp value="521166" name="MD-JakobTrier"/>
-<chpp value="521166" name="MD-JakobTrier"/>
-<chpp value="521166" name="MD-JakobTrier"/>
-<chpp value="521166" name="MD-JakobTrier"/>
 <chpp value="521166" name="MD-JakobTrier"/>
 <chpp value="546890" name="amiad21"/>
 <chpp value="569159" name="gegevert"/>
@@ -226,8 +215,6 @@
 <chpp value="1017102" name="GRASSU_"/>
 <chpp value="1028462" name="beebop"/>
 <chpp value="1034057" name="HT-weird_ed"/>
-<chpp value="1034057" name="HT-weird_ed"/>
-<chpp value="1034057" name="HT-weird_ed"/>
 <chpp value="1065875" name="mikehell"/>
 <chpp value="1088541" name="Hoedinie"/>
 <chpp value="1111924" name="Causea"/>
@@ -247,7 +234,6 @@
 <chpp value="1515063" name="Nils-N"/>
 <chpp value="1532705" name="Mackshot"/>
 <chpp value="1575597" name="Rheuma-Kai"/>
-<chpp value="1575597" name="Rheuma-Kai"/>
 <chpp value="1624795" name="hybris0"/>
 <chpp value="1627403" name="Siramthar"/>
 <chpp value="1822820" name="Anosmie"/>
@@ -258,12 +244,9 @@
 <chpp value="2124359" name="borzos"/>
 <chpp value="2199352" name="Perseo_FIC"/>
 <chpp value="2238308" name="CHPP-IndianaRed"/>
-<chpp value="2238308" name="CHPP-IndianaRed"/>
 <chpp value="2255366" name="Mistr_Moon"/>
 <chpp value="2279589" name="Odiobill"/>
 <chpp value="2279589" name="Odiobill"/>
-<chpp value="2287367" name="Mod-Jacome"/>
-<chpp value="2287367" name="Mod-Jacome"/>
 <chpp value="2287367" name="Mod-Jacome"/>
 <chpp value="2301951" name="PatrickBrans"/>
 <chpp value="2336766" name="Mod-spambot"/>
@@ -273,26 +256,13 @@
 <chpp value="2579834" name="GM-Mjoelnir"/>
 <chpp value="2728631" name="Mackalito"/>
 <chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
-<chpp value="2753208" name="SSK-DavisvilleSC"/>
 <chpp value="2767522" name="Hitman_47"/>
 <chpp value="2954769" name="Asseon"/>
 <chpp value="3009945" name="Poul_UA"/>
 <chpp value="3206114" name="Kusco"/>
-<chpp value="3206114" name="Kusco"/>
-<chpp value="3407369" name="Emporeor"/>
-<chpp value="3407369" name="Emporeor"/>
 <chpp value="3407369" name="Emporeor"/>
 <chpp value="3431302" name="GrafLem"/>
 <chpp value="3654508" name="taxitzis"/>
-<chpp value="3654508" name="taxitzis"/>
-<chpp value="3797495" name="adrianomm"/>
 <chpp value="3797495" name="adrianomm"/>
 <chpp value="4096489" name="fabdan14"/>
 <chpp value="4106881" name="tgudlek"/>
@@ -303,12 +273,6 @@
 <chpp value="4853091" name="aYcon"/>
 <chpp value="4875337" name="-tof-"/>
 <chpp value="4984086" name="RoniMenashe"/>
-<chpp value="4984086" name="RoniMenashe"/>
-<chpp value="4984086" name="RoniMenashe"/>
-<chpp value="4984086" name="RoniMenashe"/>
-<chpp value="4984086" name="RoniMenashe"/>
-<chpp value="6228713" name="smates"/>
-<chpp value="6228713" name="smates"/>
 <chpp value="6228713" name="smates"/>
 <chpp value="6886447" name="seralph"/>
 <chpp value="6931827" name="vitrail"/>
@@ -319,10 +283,10 @@
 <chpp value="8837428" name="Deslatos"/>
 <chpp value="9449300" name="HT-Chris"/>
 <chpp value="9544213" name="GM-LA-beawolf"/>
-<chpp value="9544213" name="GM-LA-beawolf"/>
 <chpp value="9730244" name="joeridb"/>
 <chpp value="9820024" name="Ophiuchus"/>
 <chpp value="10207412" name="bennh"/>
+<chpp value="4248137" name="PauMoRoX"/>
 </chpps>
 
 

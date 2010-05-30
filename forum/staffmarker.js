@@ -10,25 +10,25 @@ var FoxtrickStaffMarker = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread','forumWritePost','teamPage'),
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Marks staff (HT, GM, Mod, CHPP, LA, CHPP licence owners, Hattrick-Youthclub, FoxTrick) on team pages as well. SelectBox coloring fixed",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	OPTIONS : new Array("manager", "HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own"),
+	OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev", "chpp-holder", "hty_staff", "flag", "own", "manager"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("",
-                                        	"background-color:red;", //HT
+	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-color:red;", //HT
 											"background-color:orange; color:black;", //GM
                                             "background-color:yellow; color:black;", //MOD
 											"background-color:white; color:green;", //LA
 											"background-color:green; color:white;", //CHPP
-											"background-color:#7BB300;", //editor
+											"background-color:#7BB300; color:white;", //editor
 											"background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/foxtrick_2.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //foxtrick-dev
 											"background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/chpp.png'); background-repeat: no-repeat; padding: 1px 1px 1px 24px;", //chpps
 											"background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/hyouthclub_small.png'); background-repeat: no-repeat; padding: 1px 1px 1px 18px;", //hty_staff
 											"background-color:white; color:black;", //flag
-											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'" //own
-                                            ),
-    OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
+											"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'", //own
+                                            ""
+                                        	),
+    OPTION_TEXTS_DISABLED_LIST : new Array(false,false,false,false,false,false,false,false,false,false,false, true),
     // OPTIONS : new Array("HT", "GM", "MOD", "LA", "CHPP", "editor", "foxtrick-dev","own"),
     
 	htreg : /^HT-/i,
@@ -41,258 +41,9 @@ var FoxtrickStaffMarker = {
 
 	ulist:{},  // users and colors
 	
-	chppholder : new Array (/*
-                '0scar',
-                'a_alvarez',
-                'Absolut',
-                'abubilla',
-                'abyssahx',
-                'Adjanakis',
-                'adrianomm',
-                'alcek2004',
-                'amiad21',
-                'Anosmie',
-                'aYcon',
-                'beebop',
-                'Belette',
-                'bennh',
-                'bertbert',
-                'borzos',
-                'Brzi_',
-                'Canhao',
-                'carlesmu',
-                'CAT-POGF',
-                'Causea',
-                'CHPP-Alf',
-                'CHPP-Finke',
-                'CHPP-IndianaRed',
-                'dbdbdb',
-                'DerKanzler',
-                'Deslatos',
-                'destor77',
-                'doof92',
-                'DorkPower',
-                '-Edke',
-                'Emporeor',
-                'fabdan14',
-                'Frederic-HT2D',
-                'FreshT',
-                'gardier',
-                'gegevert',
-                'GM-Accusor',
-                'GM-LA-beawolf',
-                'GM-Mjoelnir',
-                'GOD-Jalonen',
-                'goran77',
-                'GRASSU_',
-                'griggle',
-                'groton',
-                'Guyroux',
-                'hayde',
-                'Hitman_47',
-                'hobbyisten',
-                'Hoedinie',
-                'HT-Chris',
-                'HT-Thomas',
-                'HT-weird_ed',
-                'hybris0',
-				'jgarp',
-                'joeridb',
-                'JoseEstebes',
-                'Joselo1971',
-                'kiusap',
-                'Kusco',
-                'Lobster',
-                'Loke_',
-                'Maauwke',
-                'Mackalito',
-                'Mackshot',
-                'magnusts',
-                'MarcicoX',
-                'Mati_',
-                'MD-JakobTrier',
-                'mikehell',
-                'Minkfish',
-                'Mistr_Moon',
-                '--MK--',
-                'Mod-Jacome',
-                'Mod-spambot',
-                'Multiplex',
-                'Nils-N',
-				'nickasimir',
-                'nmendes',
-				'obsy_',
-                'Odiobill',
-                'Ophiuchus',
-                'Ostekiks',
-                'PatrickBrans',
-                'Peaso',
-                'Perseo_FIC',
-                'peter20',
-                'Polock',
-                'Poul_UA',
-                'Pupske',
-                'qc6803',
-                'Re4VeR',
-                'reuvem',
-                'Rheuma-Kai',
-                'RinghioCoach',
-                'Rob1n',
-                'RodrigoChopp',
-                'RoniMenashe',
-                'Scratchy',
-                'Siramthar',
-                'smates',
-                'SSK-DavisvilleSC',
-                'suchywojtas',
-                'svonik',
-                'sylvain',
-                'taised',
-                'taxitzis',
-                'teles',
-                'tgudlek',
-                '-tof-',
-                'vitrail',
-                'vlaFN',
-                'Wladi',
-                'wysota',
-                'Xirius',
-                'yeltzin'*/
-    ),
-
-    editorsArray : new Array ( /*
-            "7areega",
-            "Abu_Ahmed",
-            "acarl",
-            "Adhamino",
-            "alea_iacta_est",
-            "Aleksandar-GIGANT",
-            "Arlequin",
-            "AroKing",
-            "bacardi444",
-            "bischhoffshausen",
-            "bot_fl",
-            "Buska",
-            "ChatJam",
-            "christ14",
-            "CoachDinamo",
-            "daZOOpolitis",
-            "dekios",
-            "Editor-Bekurute",
-            "Editor-Fileppi",
-            "Editor-JDelhaRD",
-            "Editor-LGC-Alejandro",
-            "ehsan_farabi",
-            "-erko-",
-            "flexor_01",
-            "Frattaglia",
-            "gibbo101",
-            "GM-Assim",
-            "GM-Gizmo",
-            "GM-Mjoelnir",
-            "GM-Sowjon",
-            "GM-Yami",
-            "GM-Yarka",
-            "Goats34",
-            "Guatemala",
-            "hallenberg",
-            "Heidarr",
-            "HP-astra",
-            "ibroal",
-            "Individul",
-            "Ishuaia",
-            "ivo_stoyanov",
-            "-Juge-",
-            "julianignacio",
-            "kikso",
-            "Krat64",
-            "krespim",
-            "LA-dancing_rob",
-            "LA-GQPOZ",
-            "Maauwke",
-            "MachimoI",
-            "MELAFEFON",
-            "mikesoft",
-            "Mnord",
-            "Mod-animator",
-            "Mod-Ed",
-            "Mod-Hurrican",
-            "Mod-Karlthegreat",
-            "Mod-monad",
-            "Mod-Shamil",
-            "Mod-Suso",
-            "pacsey",
-            "Pedro-Dusbaum",
-            "Peluza",
-            "Petrovitsj",
-            "prime_minister",
-            "PuCeK17",
-            "rcesantos",
-            "Reallo",
-            "Richard_B_Riddick",
-            "SH-Patrick",
-            "Sir-Kiko",
-            "SkyfireX",
-            "SLV-Stakvik",
-            "sneedy",
-            "Spiney",
-            "storm_lord",
-            "Suli_sul",
-            "Thomaswilliamhudson",
-            "tobinov",
-            "ulrikbachmann",
-            "unrockbar",
-            "Viriatus",
-            "Yndy_",
-            "Zokisu",
-            "Zolfaghar",
-            "ZurrieqGiants"*/
-    ),
-
-	foxtrickersArray : new Array ( /*
-			"_KOHb_",
-			"_recluso_",
-			"baler0",
-            "baumanns",
-			"bummerland",
-			"caracca",
-            "carlesmu",
-			"convincedd",
-            "csajszi",
-			"eekels",
-			"ei04004",
-            "Foppe-",
-			"franory",
-			"GM-damyr",
-			"GM-Nanouk",
-			"GTTWINS",
-			"gucan",
-			"Homzik",
-            "JAM3SoN",
-			"Jestar",
-			"larsw84",
-			"LasseSvendsen",
-			"Leachey",
-			"ljushaff",
-			"MarceloFBrandao",
-            "McTripas",
-            "Mod-Karlthegreat",
-			"Mod-Marin",
-			"MOD-odris",
-			"Mod-spambot",
-            "Mod-summercloud",
-            "murko",
-			"Murtagsh",
-			"OBarros",
-            "Piper_101",
-            "ryanli",
-            "Skoglund",
-            "slader",
-			"smates",
-			"stephan57",
-			"taised",
-            "white_eagle"*/
-    ),
+	chppholder : [],
+	editorsArray : [],
+	foxtrickersArray : [],
 
     SELECT_ELEMENTS : new Array ( "ctl00_CPMain_ucThread_ucPagerTop_filterUser",
                                   "ctl00_CPMain_ucThread_ucPagerBottom_filterUser",
@@ -314,7 +65,7 @@ var FoxtrickStaffMarker = {
 		//foxtrickersArray_joined :'',
 
     init : function() {
-
+	try {
 		this.stl_HT = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "HT_text");
           if (!this.stl_HT) this.stl_HT = this.OPTION_TEXTS_DEFAULT_VALUES[0];
         this.stl_GM = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "GM_text");
@@ -339,7 +90,7 @@ var FoxtrickStaffMarker = {
 		//this.hty_staff_joined = this.hty_staff.join();
 		this.stl_flag = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "flag_text");
           if (!this.stl_flag) this.stl_flag = this.OPTION_TEXTS_DEFAULT_VALUES[9];
-        
+      } catch(e){Foxtrick.dump('staffmarker '+e+'\n');}
     },
 
     run : function( page, doc ) {
@@ -496,7 +247,7 @@ var FoxtrickStaffMarker = {
                         uname = uname.substring(0, uname.indexOf(' '));
                         if (uname == '') uname = Foxtrick.trim( option.text );
                         if  (uname == '') break;
-						var uid=option.value;
+						var uid = option.value.replace(/by_|to_/gi,'');
 
 						if (do_own && this.ulist[uid]!=null) {
 							new_style = this.ulist[uid];
@@ -522,12 +273,13 @@ var FoxtrickStaffMarker = {
 						if (do_foxtrick_dev && this.foxtrickersArray[uid]!=null) {
                             new_style +=  this.stl_foxtrick_dev;
                         } 
+
 						if (do_chpps && this.chppholder[uid]!=null) {
                             new_style += this.stl_chpps;
                         } 
 
 						if (do_flag) {
-                            new_style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value + '.gif");  background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
+                            new_style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value.replace(/by_|to_/,'') + '.gif");  background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
                         }
                         option.setAttribute("style", new_style);
                     }

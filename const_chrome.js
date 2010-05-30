@@ -20,6 +20,7 @@ Foxtrick.moduleCategories = {
 	MATCHES : 'matches',
     FORUM : 'forum',
     LINKS : 'links',
+    ALERT : 'alert',
 	
 	// following are only used for html preferences
     CHANGES : 'changes', 
