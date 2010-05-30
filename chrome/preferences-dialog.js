@@ -37,7 +37,7 @@ var FoxtrickPreferencesDialog = {
 
 		// Captions and labels
 		var allLabels = [ "MainTab", "ShortcutsTab", "PresentationTab", "MatchesTab",
-			"ForumTab", "LinksTab", "AboutTab" ];
+			"ForumTab", "LinksTab", "AboutTab", "AlertTab" ];
 		for(var i = 0; i < allLabels.length; ++i) {
 			var thisElement = document.getElementById(allLabels[i]);
 			thisElement.setAttribute("label", Foxtrickl10n.getString(
@@ -140,28 +140,6 @@ var FoxtrickPreferencesDialog = {
 		document.getElementById("htCurrencyTo").selectedIndex =
 			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-",
 				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
-
-		// alert settings
-		var alertSlider = doc.getElementById("alertSlider");
-		// general
-		alertSlider.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.captionAlertSettings"));
-		var alertsliderpref = doc.getElementById("alertsliderpref");
-		alertsliderpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsliderpref"));
-		alertsliderpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSlider"));
-		// mac
-		var alertslidermacpref = doc.getElementById("alertslidermacpref");
-		alertslidermacpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertslidermacpref"));
-		alertslidermacpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSliderGrowl"));
-		// sound
-		var alertsoundpref = doc.getElementById("alertsoundpref");
-		alertsoundpref.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.alertsoundpref"));
-		alertsoundpref.setAttribute("checked", FoxtrickPrefs.getBool("alertSound"));
-		var alertsoundurlpref = doc.getElementById("alertsoundurlpref");
-		alertsoundurlpref.setAttribute("value", FoxtrickPrefs.getString("alertSoundUrl"));
-		var buttonSelectFile = doc.getElementById("buttonSelectFile");
-		buttonSelectFile.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonSelectFile"));
-		var buttonTest = doc.getElementById("buttonTest");
-		buttonTest.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonTest"));
 
 		// load/save prefs
 		var loadSavePrefs = doc.getElementById("loadSavePrefs");
@@ -291,6 +269,17 @@ var FoxtrickPreferencesDialog = {
 			label.setAttribute("value", developers[i]);
 		}
 
+		// graphic designers
+		var translations_caption = doc.getElementById("graphic-designers_caption");
+		var translations_list = doc.getElementById("graphic-designers_list");
+		var translations = Foxtrick.XML_evaluate(xmlresponse, "about/graphics/designer", "value");
+		translations_caption.setAttribute("label", Foxtrick.XML_evaluate(xmlresponse, "about/graphics", "value")[0]);
+		for (var i = 0; i < translations.length; ++i) {
+			var label = doc.createElement("label");
+			translations_list.appendChild(label);
+			label.setAttribute("value", translations[i]);
+		}
+
 		// translations
 		var translations_caption = doc.getElementById("translations_caption");
 		var translations_list = doc.getElementById("translations_list");
@@ -308,17 +297,19 @@ var FoxtrickPreferencesDialog = {
 		var modules_list;
 
 		// clean up
-		var array = FoxtrickPrefs._getElemNames("");
-		for(var i = 0; i < array.length; ++i) {
-			if (FoxtrickPrefs.isPrefSetting(array[i]))
-				FoxtrickPrefs.deleteValue(array[i]);
-		}
-
+		/*var array = FoxtrickPrefs._getElemNames("");
+		if (array)
+			for(var i = 0; i < array.length; ++i) {
+				if (FoxtrickPrefs.isPrefSetting(array[i]))
+					FoxtrickPrefs.deleteValue(array[i]);
+			}
+		
 		// set version
 		var curVersion = FoxtrickPrefs.getString("curVersion");
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		FoxtrickPrefs.setString("oldVersion", curVersion);
-
+		*/
+		
 		// reset main to default. set right bellow if needed
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
@@ -347,6 +338,9 @@ var FoxtrickPreferencesDialog = {
 					break;
 				case Foxtrick.moduleCategories.LINKS:
 					modules_list = document.getElementById('links_list');
+					break;
+				case Foxtrick.moduleCategories.ALERT:
+					modules_list = document.getElementById('alert_list');
 					break;
 				default:
 					continue;
@@ -421,19 +415,13 @@ var FoxtrickPreferencesDialog = {
 		//Statusbar
 		FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);
 
-		//Alert
-		FoxtrickPrefs.setBool("alertSlider", document.getElementById("alertsliderpref").checked);
-		FoxtrickPrefs.setBool("alertSliderGrowl", document.getElementById("alertslidermacpref").checked);
-		FoxtrickPrefs.setBool("alertSound", document.getElementById("alertsoundpref").checked);
-		FoxtrickPrefs.setString("alertSoundUrl", document.getElementById("alertsoundurlpref").value);
-
 		//disable
 		FoxtrickPrefs.setBool("disableOnStage", document.getElementById("stagepref").checked);
 		FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
 
 		// additional options
 		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
-		FoxtrickPrefs.setBool("smallcopyicons", document.getElementById("smallcopyicons").checked);
+		FoxtrickPrefs.setBool("smallcopyicons", document.getElementById("smallcopyicons").checked);		
 		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", document.getElementById("OnPagePrefs").checked);
 
 
@@ -457,8 +445,8 @@ var FoxtrickPreferencesDialog = {
 		try {
 			var returnedOffset = 0;
 			for (var i in Foxtrick.XMLData.League) {
-				if (itemToSearch == Foxtrick.XMLData.League[i].EnglishName) {
-					returnedOffset = Foxtrick.XMLData.League[1].Season - Foxtrick.XMLData.League[i].Season; // sweden season - selected
+				if (itemToSearch == FoxtrickHelper.getLeagueDataFromId(i).EnglishName) {
+					returnedOffset = FoxtrickHelper.getLeagueDataFromId(1).Season - FoxtrickHelper.getLeagueDataFromId(i).Season; // sweden season - selected
 					break;
 				}
 			}
@@ -611,6 +599,9 @@ var FoxtrickPreferencesDialog = {
 				break;
 			case Foxtrick.moduleCategories.LINKS:
 				modules_list = document.getElementById('links_list');
+				break;
+			case Foxtrick.moduleCategories.ALERT:
+				modules_list = document.getElementById('alert_list');
 				break;
 			default:
 				return;
@@ -784,27 +775,28 @@ var FoxtrickPreferencesDialog = {
 	}
 };
 
-FoxtrickPreferencesDialog.configureFoxtrick = function(button) {
+FoxtrickPreferencesDialog.show = function(button) {
 	if (!button) {
 		window.openDialog("chrome://foxtrick/content/preferences-dialog.xul",
-			"foxtrick-config", "resizable=yes,centerscreen=yes,chrome=yes,modal=yes,dialog=no");
+			"foxtrick-preferences", "resizable=yes,centerscreen=yes,chrome=yes,modal=yes,dialog=no");
 		FoxtrickMain.init();
 	}
 }
 
-
 FoxtrickPreferencesDialog.deactivate = function(button) {
-try{
-	if (!button) {
-		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
-		//alert(Foxtrick.statusbarDeactivateImg.suspended);
-		if (Foxtrick.statusbarDeactivateImg.getAttribute('suspended')) Foxtrick.statusbarDeactivateImg.removeAttribute("suspended");
-		else Foxtrick.statusbarDeactivateImg.setAttribute('suspended','on');
+	try {
+		if (!button) {
+			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
+			FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
 
-		//Foxtrick.statusbarDeactivateImg.style="width:16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick_deactivated.png);"
-		FoxtrickMain.init();
+			Foxtrick.updateStatus();
+
+			FoxtrickMain.init();
+		}
 	}
-} catch(e){alert('FoxtrickPreferencesDialog.deactivate '+e);}
+	catch (e) {
+		alert("FoxtrickPreferencesDialog.deactivate: " + e);
+	}
 }
 
 FoxtrickPreferencesDialog.copy_id = function(button) {
@@ -812,5 +804,13 @@ FoxtrickPreferencesDialog.copy_id = function(button) {
 		var ID = Foxtrick.CopyID;
 		Foxtrick.copyStringToClipboard(ID);
 		Foxtrick.popupMenu.setAttribute("hidden", true);
+	}
+}
+
+FoxtrickPreferencesDialog.copy_id_ht_ml = function(button) {
+	if (!button) {
+		var ID = Foxtrick.CopyIDHT_ML;
+		Foxtrick.copyStringToClipboard(ID);
+		Foxtrick.popupMenuHT_ML.setAttribute("hidden", true);
 	}
 }

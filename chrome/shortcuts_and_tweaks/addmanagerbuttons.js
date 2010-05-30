@@ -1,256 +1,120 @@
 /**
  * addmanagerbuttons.js
  * Adds Send Message and Write in Guestbook buttons to manager page
- * @author larsw84
+ * @author larsw84, Stephan57, ryanli
  */
 
  ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickAddManagerButtons = {
 
-    MODULE_NAME : "AddManagerButtons",
+	MODULE_NAME : "AddManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('managerPage','teamPage','youthoverview'), 
-	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Added infotext to staff pages",
-	
+	PAGES : new Array("managerPage", "teamPage"),
+	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION : "0.5.1.3",
+	LATEST_CHANGE : "Updated to latest HT version.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-    init : function() {
-    },
-    
-    run : function( page, doc ) { 
-		switch( page ) {
-			case 'managerPage':
-				if(!doc.getElementById('sidebar')) {
-					// Guestbook page
+	GUESTBOOK_LINK_ID : "guestbook_link_id",
+	CHALLENGE_LINK_ID : "ctl00_CPSidebar_ucVisitorActions_lnkChallenge",
+
+	init : function() {
+	},
+
+	run : function(page, doc) {
+		try {	Foxtrick.dump('gb: '+Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)+'\n');
+				if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
+						Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
+					this.addActionsBox(doc, page);
+				}
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
+	},
+
+	change : function(page, doc) {
+		// no onchange now. position isn't right and mostly gb-link will not be needed then
+		//this.run(page, doc);
+	},
+
+	addActionsBox : function(doc, page) {
+	try{
+		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		
+		
+		if (ownTeamId === null || teamId === null || ownTeamId === teamId) {
+			// we don't add the buttons for your own page
+			return;
+		}
+
+		var isSupporter = false ;
+		var username = '';
+		
+		if (page === "managerPage") {
+			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName("a");
+			for (var i=0;i<sidebarlinks.length;++i) {
+				if (sidebarlinks[i].href==='/Club/Supporters/' || sidebarlinks[i].href.search(/Club\/\?TeamID=/i)!=-1 ) {
+					isSupporter = true;
 					break;
 				}
-				this.addActionsBox( doc );
-				break;
-			case 'youthoverview':
-				this.addActionsBox( doc );
-				break;
-				
-			case 'teamPage':
-				this.showMessageForm( doc );
-				break;
+			}
+			var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
+			username = Foxtrick.trim(h1inner.replace(/\<.+\>|\(.+\)| /gi,''));
 		}
-	},
-	
-	change : function( page, doc ) {
-        try {
-            switch( page ) {
-                case 'managerPage': 
-                    var newBoxId = "foxtrick_actions_box";
-                    if( !Foxtrick.hasElement( doc, newBoxId ) ) {
-                        this.addActionsBox( doc );
-                    }
-                    break;
-                case 'youthoverview':
-                    var newBoxId = "foxtrick_actions_box";
-                    if( !Foxtrick.hasElement( doc, newBoxId ) ) {
-                        this.addActionsBox( doc );
-                    }
-                    break;
-                case 'teamPage': 
-                    var divMessage = doc.getElementById(
-                        'ctl00_CPSidebar_ucVisitorActions_pnlMessage');
-                    if( !divMessage ) {
-                        this.showMessageForm( doc );
-                    }
-                    break;
-            }
-        } 
-        catch (e) {
-            Foxtrick.dump('AddManagerButtons:  Redirection on Manager Page?\n');
-            Foxtrick.dump('  ' + e + '\n');
-        } 
-	},
-	
-	addActionsBox : function( doc ) {
-		var allDivs = doc.getElementsByTagName("div");
-		var teamID;
-		var ownerID;
-		var HTSupporter = true;
-				
-		// Get the teamID
-		for(var i = 0; i < allDivs.length; i++) { 
-			//Retrieve owner manager ID - Stephan57
-			if(allDivs[i].id=="teamLinks") {
-				var teamLinks_a = allDivs[i].getElementsByTagName("a")[0];
-				ownerID = teamLinks_a.href.substr(
-					teamLinks_a.href.search( /TeamID=/i )+7 );
+		else if (page === "teamPage") { 
+			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName("a");
+			for (var i=0;i<sidebarlinks.length;++i) { 
+				if (sidebarlinks[i].href.search(/Club\/HallOfFame/i)!=-1 ) {
+					isSupporter = true;
+					break;
+				}
 			}
-			//Determine if teamID is HT-Supporter - Stephan57 
-			// only works if script is executed before AddDefaultFaceCard
-			// does not work on youthoverview page
-			if(allDivs[i].id=="ctl00_CPMain_ucManagerFace_pnlAvatar") {
-				HTSupporter=true;
-			}
-			
-			if(allDivs[i].className=="subMenuBox") {
-				teamID = FoxtrickHelper.findTeamId(allDivs[i]);
-				break;
-			}
-			
+			var sidebarlinks = doc.getElementById('mainBody').getElementsByTagName("a");
+			for (var i=0;i<sidebarlinks.length;++i) {  
+				if (sidebarlinks[i].href.search(/Club\/Manager\/\?userId=/i)!=-1 ) {
+					username = sidebarlinks[i].innerHTML;
+					break;
+				}
+			}			
 		}
-		var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
-		var username = Foxtrick.trim(h1inner.replace(/\<.+\>|\(.+\)| /gi,''));				
 		var official = (username.toLowerCase().indexOf('mod-') == 0 || username.toLowerCase().indexOf('gm-') == 0 || username.toLowerCase().indexOf('la-') == 0 || username.toLowerCase().indexOf('ht-') == 0 || username.toLowerCase().indexOf('chpp-') == 0)
-        // Foxtrick.dump('\nOFFI: ' + official+'\n');
-		//Do not add send message button for owner manager page. - Stephan57
-		if ( ownerID==teamID ) return;
 		
-		var parentDiv = doc.createElement("div");
-		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
+//		Foxtrick.dump('isSupporter: '+isSupporter+' OFFI: ' + official+'\n');
 		
-		var messageLink = doc.createElement("a");
-		messageLink.className = "inner";
+		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID).parentNode;
 		
-		messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
-		if  (doc.location.href.search(/\/Club\/Youth/)!=-1) messageLink.href='/Club/?TeamID='+teamID+'&SendMessage=true';
-		//messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
-		messageLink.title = Foxtrickl10n.getString( 
-			"foxtrick.tweaks.sendmessage" );
-				
-		var img = doc.createElement("img");
-		img.style.padding = "0px 5px 0px 0px";
-		img.className = "actionIcon";
-		img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessage" );
-		img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
-		messageLink.appendChild(img);
-		
-		parentDiv.appendChild(messageLink);
-
 		//Display GuestBook button only if teamid is HT-Supporter - Stephan57
-		if (HTSupporter) {	
+		if (isSupporter) {
 			var guestbookLink = doc.createElement("a");
 			guestbookLink.className = "inner";
-			guestbookLink.href = "\/Club\/Manager\/Guestbook.aspx?teamid=" + teamID;
-			guestbookLink.title = Foxtrickl10n.getString(
-				"foxtrick.tweaks.writeinguestbook");
-			
-			var img = doc.createElement("img");
-			img.style.padding = "0px 5px 0px 0px";
-			img.className = "actionIcon";
-			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
-			img.src = Foxtrick.ResourcePath+"resources/img/writeinguestbook.png";
-			guestbookLink.appendChild(img);
-			
+			guestbookLink.href = "\/Club\/Manager\/Guestbook.aspx?teamid=" + teamId;
+			guestbookLink.title = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
+			guestbookLink.id = this.GUESTBOOK_LINK_ID;
+
+			if (doc.getElementById(this.CHALLENGE_LINK_ID).getElementsByTagName('img').length===0) {
+				guestbookLink.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
+			}
+			else {
+				var img = doc.createElement("img");
+				img.style.padding = "0px 5px 0px 0px";
+				img.className = "actionIcon";
+				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
+				img.src = Foxtrick.ResourcePath+"resources/img/writeinguestbook.png";
+				guestbookLink.appendChild(img);
+			}
 			parentDiv.appendChild(guestbookLink);
 		}
-        if (official) {
-            var infobox  = doc.createElement("div");
-            infobox.style.color = "red";
-            infobox.style.padding = "2px";
-            infobox.innerHTML = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessageofficial");
-            parentDiv.appendChild(infobox);
-        }
+		/* there is a ht warning already
+		if (official) {
+			var infobox = doc.createElement("div");
+			infobox.style.color = "red";
+			infobox.style.padding = "5px 0 0 0";
+			infobox.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.sendmessageofficial");
+			parentDiv.appendChild(infobox);
+		}*/
 
-		// Append the box to the sidebar
-		var newBoxId = "foxtrick_actions_box";
-		Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
-			"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
-	},
-	
-	showMessageForm : function( doc ) {
-		var sUrl = Foxtrick.getHref( doc );
-		var sendPos = sUrl.search(/&SendMessage=true/i);
-		if (sendPos > -1){
-			var a = doc.getElementById('ctl00_CPSidebar_ucVisitorActions_lnkMail');
-			if (a){
-				var func = a.href;
-				if (func){
-					doc.location.href = func;
-				}
-			}
-		}
-	}
+	} catch(e) {Foxtrick.dumpError(e);}
+	}	
 };
-
-/*
- * The following code was an attempt to create a Send Message form on the Manager page.
- * The code in the end was a failure: after clicking 'Send' in the form, Hattrick would
- * display an Application Error.
- * I'm going to shelve this attempt until further notice, but if I ever try again, this code
- * will be a good start. So please don't delete! But don't use it either :)
- * /larsw84 19-12-2008
-				
-				Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/"
-					+"common.js");
-				//var aspnetForm = doc.getElementById("aspnetForm");
-				var allDivs = doc.getElementsByTagName("div");
-				var teamID;
-				
-				// Get the teamID
-				for(var i = 0; i < allDivs.length; i++) {
-					if(allDivs[i].className=="main mainRegular") {
-						var divBoxHead = allDivs[i].
-							getElementsByTagName("div")[0];
-						var divBoxLeft = divBoxHead.
-									getElementsByTagName("div")[0];
-						var header = divBoxLeft.getElementsByTagName("h2")[0];
-						var a = header.getElementsByTagName("a")[0];
-						teamID = a.href.substr(a.href.search(/TeamID=/i)+7);
-					}
-				}
-				
-				// Make sure the right action is executed
-				//aspnetForm.setAttribute("action","../Default.aspx?TeamID="
-				//	+ teamID);
-				
-				// Create the message form
-				var ownDiv = doc.createElement("div");
-				ownDiv.setAttribute("id","ctl00_CPSidebar_ucVisitorActions"
-					+"_UpdatePanel1");
-				var ownSidebarBox = doc.createElement("div");
-				ownSidebarBox.className = "sidebarBox";
-				ownDiv.appendChild(ownSidebarBox);
-				var ownBoxHead = doc.createElement("div");
-				ownBoxHead.className = "boxHead";
-				ownSidebarBox.appendChild(ownBoxHead);
-				var ownBoxLeftHeader = doc.createElement("div");
-				ownBoxLeftHeader.className = "boxLeft";
-				ownBoxHead.appendChild(ownBoxLeftHeader);
-				var ownHeader = doc.createElement("h2");
-				ownHeader.innerHTML = "Send message";
-				ownBoxLeftHeader.appendChild(ownHeader);
-				var ownBoxBody = doc.createElement("div");
-				ownBoxBody.className = "boxBody";
-				ownSidebarBox.appendChild(ownBoxBody);
-				var messageDiv = doc.createElement("div");
-				messageDiv.setAttribute("id","ctl00_CPSidebar_"
-					+ "ucVisitorActions_pnlMessage");
-				messageDiv.innerHTML = "<b> Subject</b><br/><input id=\"ctl00_"
-					+ "CPSidebar_ucVisitorActions_txtSubject\" type=\"text\""
-					+ "tabindex=\"1\" maxlength=\"50\" name=\"ctl00$CPSidebar"
-					+ "$ucVisitorActions$txtSubject\"/><textarea id=\"ctl00_"
-					+ "CPSidebar_ucVisitorActions_txtMessage\" onkeyup=\""
-					+ "textCounter(ctl00_CPSidebar_ucVisitorActions_txtMessage"
-					+ ", ctl00_CPSidebar_ucVisitorActions_txtCharsLeft, 1000)"
-					+ "\"onkeydown=\"textCounter(ctl00_CPSidebar_ucVisitor"
-					+ "Actions_txtMessage, ctl00_CPSidebar_ucVisitorActions_"
-					+ "txtCharsLeft, 1000)\" tabindex=\"2\" cols=\"20\" rows="
-					+ "\"5\" name=\"ctl00$CPSidebar$ucVisitorActions$"
-					+ "txtMessage\"></textarea><br/><input id=\"ctl00_CPSideba"
-					+ "r_ucVisitorActions_txtCharsLeft\" type=\"text\" style="
-					+ "\"width: 40px;\" readonly=\"readonly\" value=\"1000\""
-					+ "name=\"ctl00$CPSidebar$ucVisitorActions$txtCharsLeft\""
-					+ "/><br/><input id=\"ctl00_CPSidebar_ucVisitorActions_"
-					+ "btnSend\" type=\"submit\" tabindex=\"3\" value=\"send\""
-					+ "name=\"ctl00$CPSidebar$ucVisitorActions$btnSend\"\/>"
-					+ "</div>";
-				ownBoxBody.appendChild(messageDiv);
-				var ownBoxFooter = doc.createElement("div");
-				ownBoxFooter.className = "boxFooter";
-				ownSidebarBox.appendChild(ownBoxFooter);
-				var ownBoxLeftFooter = doc.createElement("div");
-				ownBoxLeftFooter.className = "boxLeft";
-				ownBoxLeftFooter.innerHTML = "&nbsp;";			
-						
-				ownBoxFooter.appendChild(ownBoxLeftFooter);
-				// Append the message form to the sidebar
-				var sidebar = doc.getElementById("sidebar");
-				var firstChild = sidebar.firstChild;
-				sidebar.insertBefore(ownDiv,firstChild);
-				*/

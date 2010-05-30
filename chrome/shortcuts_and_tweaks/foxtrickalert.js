@@ -10,7 +10,7 @@ var FoxtrickAlert = {
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Optional dbus (linux) alert removed again for AMO compliance",
     LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("NewMail","NewForum"), 
@@ -140,29 +140,6 @@ var FoxtrickAlert = {
 					}	
                     if (!isequal) {
 						FoxtrickAlert.ALERTS.push({'message':message,'href':href});	Foxtrick.dump('->add ticker alert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');			
-						
-						if (Foxtrick.BuildFor=='Chrome') {
-							if (FoxtrickPrefs.getBool("alertSound")) {
-								try {
-									var play_custom = false;
-									if (Foxtrick.isModuleEnabled(FoxtrickAlertCustomSounds)) {
-										for (var i=0; i<FoxtrickAlertCustomSounds.OPTIONS.length; ++i) {
-											if (Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomSounds, FoxtrickAlertCustomSounds.OPTIONS[i])) {
-												var url = FoxtrickAlertCustomSounds.urls[i];
-												if (href.search(url) != -1) {
-													var sound = FoxtrickPrefs.getString("module." + FoxtrickAlertCustomSounds.MODULE_NAME + "." + FoxtrickAlertCustomSounds.OPTIONS[i]+"_text"); 
-													if (!sound) sound = FoxtrickAlertCustomSounds.OPTION_TEXTS_DEFAULT_VALUES[i];
-													Foxtrick.playSound(sound);
-													play_custom=true;
-													break;
-												}
-											}
-										}
-									}
-									if (!play_custom) Foxtrick.playSound(FoxtrickPrefs.getString("alertSoundUrl"));				
-								} catch (e) { Foxtrick.dump('playsound: '+e);}
-							}
-						}		
 					}
                 } else {
 					elemText[i]=tickelem.nodeValue;
@@ -242,7 +219,8 @@ var FoxtrickAlert = {
 	
 	 foxtrick_showAlert_std: function( message, href) { 
      try { 									
-        var img = "http://hattrick.org/favicon.ico";
+        //var img = "http://www.hattrick.org/favicon.ico";
+        var img = Foxtrick.ResourcePath+"resources/img/ht-favicon.ico";
         var title = "Hattrick.org";
 		var clickable = true;
         var listener = { observe:
@@ -250,8 +228,6 @@ var FoxtrickAlert = {
                     try{ Foxtrick.dump('callback: '+topic+'\n');
 						if (topic=="alertclickcallback") {
 							Foxtrick.dump('alertclickcallback:' +'link to: '+data+'\n');
-							var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-									.getService(Components.interfaces.nsIWindowMediator);
 							Foxtrick.openAndReuseOneTabPerURL(href,true);
 						}						
 						if (topic=="alertfinished") {
@@ -264,7 +240,7 @@ var FoxtrickAlert = {
 		try { 
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
                 FoxtrickAlert.alertWin.showAlertNotification(img, title, message, clickable, href, listener);
-				//Foxtrick.dump('ticker: using alerts-service\n');			
+				Foxtrick.dump('ticker: using alerts-service\n');			
 		} catch (e) { 
                 // fix for when alerts-service is not available (e.g. SUSE)
                 FoxtrickAlert.alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
@@ -273,7 +249,7 @@ var FoxtrickAlert = {
                                 "_blank", "chrome,titlebar=no,popup=yes", null);
                 FoxtrickAlert.alertWin.arguments = [img, "www.hattrick.org", message, clickable, href,0,listener];
 				Foxtrick.dump('ticker: using fallback alert.xul\n');			            
-            }
+        }
     } catch (e) { 
             Foxtrick.dump('foxtrick_showAlert_std'+e);
     }

@@ -13,7 +13,6 @@ if (!Foxtrick) var Foxtrick={};
 Foxtrick.modules = [
                     Foxtrick.XMLData,
 					
-					FoxtrickReadHtPrefsFromHeader,
 					Foxtrick.Matches,
 					FoxtrickForumStripHattrickLinks,
 					FoxtrickForumChangePosts,
@@ -21,9 +20,7 @@ Foxtrick.modules = [
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
                     FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
                     FoxtrickMovePlayerStatement,
-					FoxtrickFixcssProblems,
-					FoxtrickSimplePresentation,
-					FoxtrickForumPresentation,
+                    FoxtrickFixcssProblems,
                     FoxtrickForumTemplates,
                     FoxtrickForumPreview,
                     FoxtrickForumYouthIcons,
@@ -36,9 +33,8 @@ Foxtrick.modules = [
                     FoxtrickTeamPopupLinksMore,
                     FoxtrickHideManagerAvatarUserInfo,
                     FoxtrickGoToPostBox,
-                    FoxtrickContextMenueCopyId,
-                    FoxtrickHeadercopyicons,
-					FoxtrickCopyTrainingReport,
+                    //FoxtrickContextMenueCopyId,
+                    FoxtrickCopyTrainingReport,
                     FoxtrickCopyScoutReport,
                     FoxtrickCopyPlayerSource,
                     FoxtrickFormatPostingText,
@@ -48,11 +44,8 @@ Foxtrick.modules = [
                     FoxtrickMedianTransferPrice,
                     FoxtrickYouthSkillNotes,
                     FoxtrickAddLeaveConfButton,
-                    FoxtrickFlipSidesInMatchOrders,
                     FoxtrickStarsCounter,
-                    FoxtrickRepositionedPlayers,
                     FoxtrickAdvancedStarsCounter,
-                    FoxtrickFormationBoxInMatchOrders,
                     FoxtrickFlagCollectionToMap,
                     FoxtrickTransferListSearchFilters,
                     FoxtrickTransferListDeadline,
@@ -100,7 +93,6 @@ Foxtrick.modules = [
                     FoxtrickLinksFans,
                     FoxtrickLinksStaff,
                     FoxtrickLinksTracker,
-					FoxtrickLinksClubTransfers,
                     FoxtrickConfirmPlayerBid,
                     FoxtrickConfirmTL,
                     FoxtrickConfirmStaffChange,
@@ -111,7 +103,7 @@ Foxtrick.modules = [
                     FoxtrickForumLastPost,
                     FoxtrickPersonalityImages,
                     FoxtrickSkillColoring,
-                    FoxtrickSkinPlugin,
+                    //FoxtrickSkinPlugin,
                     FoxtrickMatchIncome,
                     FoxtrickHelper,
                     FoxtrickLargeFlags,
@@ -152,14 +144,10 @@ Foxtrick.modules = [
                     //FoxtrickSingleline2,
                     FoxtrickYouthPromotes,
                     FoxtrickCountyList,
-                    FoxtrickMatchOrderColoring,
                     FoxTrickPredefinedChallenges,
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
                     FoxtrickHighlightBotTeams,
 					FoxtrickTransferCompareSort,
 					//FoxtrickTransferSearchResultsSort, //not finished
-					FoxtrickLeagueAndMatchChat,
-					FoxtrickRapidId,
-					FoxtrickSkillTable
+					FoxtrickLeagueAndMatchChat,  
                     ];
-					

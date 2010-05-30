@@ -36,6 +36,7 @@ var FoxtrickHideSignatures = {
                         var showSig = [];
                         showSig[p] = doc.createElement("a");
                         showSig[p].setAttribute("id","foxtrick-st-link"+p);
+						showSig[p].title = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
                         showSig[p].className="foxtrick-signaturetoggle";
                         showSig[p].innerHTML = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
                         showSig[p].href = "javascript:showHide('" + sigId + "');";

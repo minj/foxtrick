@@ -38,8 +38,8 @@ var FoxtrickCopyTrainingReport = {
 	MODULE_NAME : "CopyTrainingReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthTraining'), 
-	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OpenHTYpage"),
@@ -60,7 +60,7 @@ var FoxtrickCopyTrainingReport = {
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_first";	
+			messageLink.className = "inner copyicon copytrainingreport ci_first";	
 			messageLink.id = "copytrainingreport" ;
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copytrainingreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
@@ -83,7 +83,7 @@ var FoxtrickCopyTrainingReport = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copyTrainingReport.png";
 			messageLink.appendChild(img);
 			
 			var parentDiv = doc.createElement("div");
@@ -140,9 +140,9 @@ var FoxtrickCopyScoutReport = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail','youthoverview'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
-	LATEST_CHANGE:"Enabled for scout calls. Open hty page after copying",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.5.1.2",
+	LATEST_CHANGE:"Fixed missing specialty",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OpenHTYpage"),
 	
 	init : function() {
@@ -169,7 +169,7 @@ var FoxtrickCopyScoutReport = {
 			}
 		}
 		var id = "foxtrick_addyouthclubbox_parentDiv";
-		if(doc.getElementById(id)) return;
+		if (doc.getElementById(id)!=null) return;
 			
 		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
 			if (doc.getElementById('copyscoutreport')) return;
@@ -179,7 +179,7 @@ var FoxtrickCopyScoutReport = {
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 			
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_second";				
+			messageLink.className = "inner copyicon copyscoutreport ci_second";				
 			messageLink.id='copyscoutreport';
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
 			messageLink.addEventListener("click", this.copyReport, false)
@@ -208,7 +208,7 @@ var FoxtrickCopyScoutReport = {
 			img.style.padding = "0px 5px 5px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyplayerad.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copyScoutReport.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);
@@ -245,14 +245,16 @@ var FoxtrickCopyScoutReport = {
 			}
 		
 		if (lastmainbox!=-1) {
-				var graphs = subDivs[lastmainbox].innerHTML.split('<br><br>');
-				var plain = graphs[0]+'<br><br>'+graphs[1];		
-				if ( graphs[4] ) plain+='<br><br>'+graphs[2];	// has a specialty
+				var plain = subDivs[lastmainbox].innerHTML;
+				var plainsplit = plain.split("<a");
+				plain = plainsplit[0];
 				plain=plain.replace(/\&nbsp;/ig,' ');
 				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
 				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
 				plain=plain.replace(/\<br\>|\<\/h2\> |\<\/h3\>/ig,'\n');
+				Foxtrick.dump(plain+'\n');
+				
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
@@ -273,7 +275,7 @@ var FoxtrickCopyPlayerSource = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OpenHTYpage"),
@@ -323,7 +325,7 @@ var FoxtrickCopyPlayerSource = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
-			img.src = Foxtrick.ResourcePath+"resources/img/youthplayersource.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copyPlayerSource.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);

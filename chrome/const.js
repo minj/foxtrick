@@ -4,10 +4,10 @@
  * @author kolmis
  */
 
-
 if (!Foxtrick) var Foxtrick={};
 
-Foxtrick.BuildFor='Chrome';
+Foxtrick.BuildFor = 'Gecko';
+Foxtrick.ResourcePath = 'chrome://foxtrick/content/';
 
 
 // List of categories
@@ -19,6 +19,7 @@ Foxtrick.moduleCategories = {
 	MATCHES : 'matches',
     FORUM : 'forum',
     LINKS : 'links',
+    ALERT : 'alert',
 	
 	// following are only used for html preferences
     CHANGES : 'changes', 

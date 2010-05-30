@@ -12,7 +12,7 @@ shortcuts_and_tweaks=http://foxtrick.foundationhorizont.org/index.php/shortcuts-
 about=http://foxtrick.foundationhorizont.org/index.php/about
 
 # Main options
-activeCurrencyConverter=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/54-currency-converter
+CurrencyConverter=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/54-currency-converter
 FoxtrickMyHT=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/55-foxtrickmyht
 FoxtrickMyHtSetChanged=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/56-foxtrickmyhtsetchanged
 OnPagePrefs=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/57-onpageprefs
@@ -21,11 +21,10 @@ smallcopyicons=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue
 
 # Shortcuts and Add-ons
 AddManagerButtons=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/48-addmanagerbuttons
-AlertCustomSounds=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/60-alertcustomsounds
 ConfirmPlayerBid=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/188-confirmplayerbid
 ConfirmTL=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/61-confirmtl
 ConfirmStaffChange=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/208-confirmstaffchange
-ContextMenueCopyId=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/62-contextmenuecopyid
+ContextMenuCopyId=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/62-contextmenuecopyid
 CopyMatchID=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/63-copymatchid
 CopyPlayerAdToClipboard=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/64-copyplayeradtoclipboard
 CopyPlayerSource=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/65-copyplayersource
@@ -39,10 +38,8 @@ ExtendedPlayerDetailsWage.SeasonWage=http://foxtrick.foundationhorizont.org/inde
 ExtendedPlayerDetailsWage.WageWithoutBonus=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/74-extendedplayerdetails
 ExtendedPlayerDetails=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/72-extendedplayerdetails
 FlagCollectionToMap=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/75-extendedplayerdetails
-FoxtrickAlert=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/76-foxtrickalert
 FoxtrickLineupShortcut=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/77-foxtricklineupshortcut
 FoxtrickLineupShortcut.HighlightPlayer=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/78-foxtricklineupshortcut
-FoxtrickLineupShortcut.YouthPlayerLink=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/189-foxtricklineupshortcutyouthplayerlink
 FTTeamStats=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/190-ftteamstats
 FTTeamStats.AddFlags=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/211-ftteamstatsaddflags
 FTTeamStats.AddLeadershipAndExperience=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/212-ftteamstatsaddleadershipandexperience
@@ -53,7 +50,7 @@ PlayerBirthday=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-ad
 RapidId=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/213-rapidid
 SeasonStats=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/83-seasonstats
 SeniorTeamShortCuts=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/84-seniorteamshortcuts
-shortcutsstatistics=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/86-shortcutsstatistics
+ExtraShortcuts=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/86-shortcutsstatistics
 TeamPopupLinks=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/85-shortcutsstatistics
 TeamPopupLinksMore=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/88-teampopuplinksmore
 TeamSelectBox=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/87-teamselectbox
@@ -65,13 +62,12 @@ YouthPromotes=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add
 YouthSkillHideUnknown.HideUnknown=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/200-youthskillhideunknownhideunknown
 YouthSkillHideUnknown.HideMaximalKeyWord=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/199-youthskillhideunknownhidemaximalkeyword
 YouthSkillNotes=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/95-youthskillnotes
-YouthSkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/96-youthskilltable
-AdultSkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/202-adultskilltable
+SkillTable=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/202-adultskilltable
 LeagueAndMatchChat=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/207-leagueandmatchchat
 
 #Presentation and Tweaks
 BackgroundFixed=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/49-backgroundfixed
-ColouredYouthFaces=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/97-colouredyouthfaces
+OriginalFace.ColouredYouth=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/97-colouredyouthfaces
 CountryList.HideFlagOntop=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/98-countrylisthideflagontop
 CountryList.ManagerPage=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/99-countrylistmanagerpage
 CountryList.SelectBoxes=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/100-countrylistselectboxes
@@ -88,13 +84,11 @@ SimplePresentation.NoLogo=http://foxtrick.foundationhorizont.org/index.php/prese
 SkinPlugin=http://foxtrick.foundationhorizont.org/index.php/mainoptionsmenue/59-skinplugin
 ForumPresentation.hideForumNotificationBox=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/214-fixcssproblemshideforumnotificationbox
 FoxtrickSmallerPages.ReduceBid=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/191-foxtricksmallerpagesreducebid
-GuestbookAlltidFlags.AddAlltidFlags=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/111-guestbookalltidflags
-GuestbookAlltidFlags.HideAnswerToLinks=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/112-guestbookalltidflagshideanswertolinks
 HeaderFix.FixLeft=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/114-headerfixfixleft
 HeaderFix=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/113-headerfix
-HideFaceInjuryImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/115-hidefaceinjuryimages
-HideFaceSuspendedImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/116-hidefacesuspendedimages
-HideFaceTransferImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/117-hidefacetransferimages
+OriginalFace.HideInjury=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/115-hidefaceinjuryimages
+OriginalFace.HideSuspended=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/116-hidefacesuspendedimages
+OriginalFace.HideTransfer=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/117-hidefacetransferimages
 HighlightBotTeams=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/118-highlightbotteams
 HighlightCupwins=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/119-highlightcupwins
 HTDateFormat.FirstDayOfWeekOffset=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/123-htdateformatfirstdayofweekoffset
@@ -108,9 +102,6 @@ MatchOrderColoring=http://foxtrick.foundationhorizont.org/index.php/presentation
 MoveManagerOnline=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/129-movemanageronline
 MovePlayerSelectbox=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/192-moveplayerselectbox
 MovePlayerStatement=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/130-moveplayerstatement
-NewMail.CustomColor=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/132-newmailcustomcolor
-NewMail.HighlightNewMailIcon=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/131-newmailhighlightnewmailicon
-NewMail=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/193-newmail
 PersonalityImages=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/133-personalityimages
 ShortPAs=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/134-shortpas
 SkillColoring.no_skill_links=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/141-skillcoloringnoskilllinks
@@ -120,7 +111,6 @@ SkillColoring.skill_number=http://foxtrick.foundationhorizont.org/index.php/pres
 SkillColoring.skill_select=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/140-skillcoloringonlyskillcolorSkillColoring.skill_number_translated=http://foxtrick.foundationhorizont.org/SkillColoring_skill_number_translated.html
 SkillColoring=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/135-skillcoloring
 SkillTranslation=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/142-skilltranslation
-TickerColoring=http://foxtrick.foundationhorizont.org/index.php/presentation-and-tweaks/143-tickercoloring
 
 # Matches
 AdvancedStarsCounter=http://foxtrick.foundationhorizont.org/index.php/matches/50-advancedstarscounter
@@ -134,7 +124,6 @@ MatchIncome=http://foxtrick.foundationhorizont.org/index.php/matches/150-matchin
 MatchPlayerColouring=http://foxtrick.foundationhorizont.org/index.php/matches/151-matchplayercolouring
 MatchReportFormat=http://foxtrick.foundationhorizont.org/index.php/matches/152-matchreportformat
 Ratings=http://foxtrick.foundationhorizont.org/index.php/matches/153-ratings
-RepositionedPlayers=http://foxtrick.foundationhorizont.org/index.php/matches/154-repositionedplayers
 StarsCounter=http://foxtrick.foundationhorizont.org/index.php/matches/155-starscounter
 
 # Forum
@@ -177,3 +166,11 @@ ForumStripHattrickLinks=http://foxtrick.foundationhorizont.org/index.php/forum/2
 #links
 LinksCustom=http://foxtrick.foundationhorizont.org/index.php/links/52-linkscustom
 LinksTracker=http://foxtrick.foundationhorizont.org/index.php/links/187-linkstracker
+
+# Alert
+AlertCustomSounds=http://foxtrick.foundationhorizont.org/index.php/alert/217-alertcustomsounds
+FoxtrickAlert=http://foxtrick.foundationhorizont.org/index.php/alert/218-foxtrickalert
+NewMail.CustomColor=http://foxtrick.foundationhorizont.org/index.php/alert/222-newmailcustomcolor
+NewMail.HighlightNewMailIcon=http://foxtrick.foundationhorizont.org/index.php/alert/220-newmailhighlightnewmailicon
+NewMail=http://foxtrick.foundationhorizont.org/index.php/alert/219-newmail
+TickerColoring=http://foxtrick.foundationhorizont.org/index.php/alert/221-tickercoloring

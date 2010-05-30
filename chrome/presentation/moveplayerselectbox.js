@@ -49,7 +49,7 @@ var FoxtrickMoveManagerOnline= {
         MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 		PAGES : new Array('region'), 
         DEFAULT_ENABLED : false,
-		NEW_AFTER_VERSION: "0.5.0.3",	
+		NEW_AFTER_VERSION: "0.5.0.5",	
 		LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 		LATEST_CHANGE: "Simple speed check added. Don't move if there are more than about 80 managers online",
 

@@ -25,7 +25,7 @@ var FoxtrickEconomyDifference = {
         style.setAttribute("type", "text/css");
 		var zaw = "#divfoxtrick_eD_heading .tblBox {background: url('"+Foxtrick.ResourcePath+"resources/img/down.gif') 413px 0 no-repeat;padding-right:20px;}";
 		if (Foxtrick.isStandardLayout(doc) )
-			zaw="#divfoxtrick_eD_heading .tblBox {background: url('"+Foxtrick.ResourcePath+"resources/img/link-down.png') #999999 505px 4px no-repeat;padding-right:20px;}";			
+			zaw="#divfoxtrick_eD_heading .tblBox {background: url('"+Foxtrick.ResourcePath+"resources/img/link-down.png') #999999 right no-repeat;padding-right:20px;}";
 		style.appendChild(doc.createTextNode(zaw));
         head.appendChild(style);
 				

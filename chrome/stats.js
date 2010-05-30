@@ -820,7 +820,7 @@ stats["vnukstats"] =  {
                          "params"     : { "teamid" : "" }
                        },
         "countrylink" : { "path"       : "top-series/default/",
-                         "filters"    : [], 
+                         "filters"    : ["countryid"], 
                          "params"     : { "countryid" : "" }
                        },             
 
@@ -851,7 +851,7 @@ stats["todohattrick"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/todohattrick.png"
 };    
 
-
+/*
 // La Gazzetta di HT
 
 stats["lagazzetta"] =  { 
@@ -876,7 +876,7 @@ stats["lagazzetta"] =  {
         "title" : "La Gazzetta di Hattrick",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/lagazzetta.jpg"
 };    
-
+*/
 // ht-tools 
 stats["ekonomer"] =  { 
         "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.asp",
@@ -895,10 +895,10 @@ stats["ComunidadHattrickVenezuela"] =  {
         "url" : "http://www.hattrick.org.ve",
 
         "countrylink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["countryid"], 
                          "params"     : []
                        },
-		"owncountryidranges" : [[29, 29]], 
+		"countryidranges" : [[29, 29]], 
         "title" : "Comunidad Hattrick Venezuela",   
         "img" : Foxtrick.ResourcePath+"resources/linkicons/chtvicon.png"
 };
@@ -1131,7 +1131,7 @@ stats["ht-dog"] =  {
 };    
 
 // Hatstats
-
+/*
 stats["hatstats"] =  { 
         "url" : "",
         "urlfunction": function (filterparams) {
@@ -1172,7 +1172,7 @@ stats["hatstats"] =  {
         "title" : "HatStats",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hatstats.png"        
 };    
-
+*/
 /* down
 stats["advancedinjurycalc"] =  { 
         "url" : "http://www.student.ru.nl/rvanaarle/injury.php",
@@ -1254,7 +1254,7 @@ stats["htbox_training"] =  {
 
 //Training Team Evaluation
 stats["Training_Team_Evaluation"] =  { 
-        "url" : "http://www.adrianomm.site88.net/",
+        "url" : "http://www.adrianomoutinho.com/tte/",
 
         "playerlink" : { "path"       : "playertraining.php?PlayerId=",
                          "filters"    : [], 
@@ -1296,6 +1296,49 @@ stats["Wage_Reduction_Calculator"] =  {
 		"ageranges" : [[28, 99]],
         "title" : "Wage Reduction Calculator",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/wagereduction.png"
+};
+
+//Ht4u - Primary Skill drop Calculator
+stats["Ht4u"] =  { 
+        "url" : "http://ht4u.altervista.org",
+
+        "playerlink" : { "path"       : "/index.php",
+                         "filters"    : ["age"],
+                         "params"     : [], 
+						 /* no data sharing with non chpp pages
+						 "params"     : { "lang":"lang", "age" : "age",
+                                          "playmaking" : "pm",
+                                          "passing" : "pass", "winger" : "wi", "defending" : "def",
+                                          "scoring" : "sco", "setpieces":"sp", "wage":"wage"
+										} */                       						
+                       },
+		"ageranges" : [[27, 99]],
+        "title" : "Primary Skill drop Calculator",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ht4u.bmp"
+};
+
+//Ht4u - Team Spirit Calculator
+stats["Ht4uTS"] =  { 
+        "url" : "http://ht4u.altervista.org/TSpredictor",
+
+        "traininglink" : { "path"       : "/team_spirit_predictor.php",
+                         "filters"    : [],
+                         "params"     : [],                        						
+                       },
+        "title" : "Team Spirit Calculator",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ht4u.bmp"
+};
+
+//Team Confidence Calculator
+stats["confidence"] =  { 
+        "url" : "http://fptsj.brinkster.net",
+
+        "traininglink" : { "path"       : "/confianca.aspx",
+                         "filters"    : [],
+                         "params"     : [],                        						
+                       },
+        "title" : "Team Confidence Calculator",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/confidence.png"
 };
 
 stats["ht-u20"] =  { 
@@ -1695,10 +1738,12 @@ stats["nrg_pop"] =  {
         "url" : "http://nrgjack.altervista.org/",
 		"playerlink" : { "path"       : "pop.php",
                          "filters"    : [], 
-                         "params"     : { "tsi" : "tsi", "form" : "fo",
+                         "params"     : [], 
+						 /* no data sharing with non chpp pages
+						 "params"     : { "tsi" : "tsi", "form" : "fo",
                                           "stamina" : "st",  "playmaking" : "pm",
                                           "passing" : "pa", "winger" : "wi", "defending" : "df",
-                                          "scoring" : "sc" }
+                                          "scoring" : "sc" }*/
                           },
         "title" : "NRG Pop",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_pop.png"
@@ -1784,13 +1829,16 @@ stats["ht_bet"] =  {
 };    
    
 
-// HT-bet
+// Team Position Probability Calculator
 stats["tppc"] =  { 
         "url" : "http://www.adrianomoutinho.com/hattrick/index.php",
 
         "leaguelink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : { "leagueid" : "leagueid" }
+                         "params"     : { "leagueid" : "leagueid" },
+						 "paramfunction" : function(params) {
+							return '?LeagueId'+params["leagueid"]+'&Language='+FoxtrickPrefs.getString("htLanguage");
+						}
                        },
         
         "title" : "Team Position Probability Calculator",
@@ -2510,7 +2558,6 @@ stats["ht-fff"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htfff.png"
 }; 
 
-
 stats["scouting_mexico"] =  { 
   "url" : "http://www.hattrick.org.mx/SN/",
  
@@ -2545,6 +2592,22 @@ stats["brasileira_tracker"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/brasileira.png"
 };
 
+stats["benintracker"] = { 
+  "url" : "http://htbenin.athost.fr/index.php",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Benin NT/U20 Tracker",
+  
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"], 
+                   "params"     : []
+                 },
+	"countryidranges" : [[139,139]] ,
+	"nationalityranges" : [[139,139]], 
+};
 
 stats["czechrepublic_nt"] = { 
   "url" : "http://tracker.kiekko.cz/players/submit/",
@@ -2655,7 +2718,7 @@ stats["colombiatracker"] = {
 
 
 stats["cyprustracker"] = { 
-  "url" : "http://db.ht-cy.org",
+  "url" : "http://www.hdb.gr",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Cyprus U20/NT Tracker",
   
@@ -2814,7 +2877,7 @@ stats["mozambiquetracker"] = {
 };
 
 stats["srbijatracker"] = { 
-  "url" : "http://srbija-nt.awardspace.com/",
+  "url" : "http://srbijadb.foundationhorizont.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Serbian U-20/NT DB",
   
@@ -2830,6 +2893,40 @@ stats["srbijatracker"] = {
                  },
 	"countryidranges" : [[57,57]] ,
 	"nationalityranges" : [[57,57]], 
+};
+
+stats["srbijassttracker"] =  { 
+    "title" : "SST Srbija WC tracker",
+    "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",        
+    "url" : "http://spydb.foundationhorizont.org/",
+
+    "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
+                   "filters"    : [], 
+                   "params"     : {"playerid":"playerID", "playername":"name", "nationality":"LeagueID",
+								   "age":"years", "age_days":"days","teamname":"team","teamid":"teamID",
+								   "exp":"exp","stamina":"sta","playmaking":"ply","winger":"win","scoring":"sco",
+								   "goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
+                 }, 				 
+
+};  
+
+stats["montenegrotracker"] = { 
+  "url" : "http://cgdb.foundationhorizont.org/",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Montenegro U-20/NT DB",
+  
+  "trackernationalteamlink" : { "path"       : "homelist.php",
+                         "filters"    : ["countryid"], 
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
+                   "filters"    : ["nationality"], 
+                   "params"     : {"playerid":"playerID", "playername":"name", "age":"years", "age_days":"days",
+									"teamname":"team","teamid":"teamID","exp":"exp","stamina":"sta","playmaking":"ply",
+									"winger":"win","scoring":"sco","goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
+                 },
+	"countryidranges" : [[131,131]] ,
+	"nationalityranges" : [[131,131]], 
 };
 
 stats["scotlandtracker"] = { 

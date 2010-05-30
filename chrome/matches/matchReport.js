@@ -9,8 +9,9 @@ FoxtrickMatchReportFormat = {
 	PAGES : new Array('match','teamPageAny','myhattrick'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.3",
+	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"OwnYouthteam detection included",	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array( "#5555FF", //Text My team name     0
 											 "#9F0202",  //Text Home team name   1
@@ -31,10 +32,6 @@ FoxtrickMatchReportFormat = {
 
     UNKNOWN_COLOUR : "#F0F0F0",
 
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"some format of match report for better reading",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
- 	//OPTIONS : new Array("DefaultShow"),
 	OwnYouthTeamId: null,
 	
 	init : function() {
@@ -107,6 +104,7 @@ FoxtrickMatchReportFormat = {
 		 var youthstr='';
 		 if (isyouth) youthstr='&isYouth=True';
         //Replace myTeam colour
+		if (isyouth == false)
 		if (HomeTeamId == myTeamId) {
             bg_col_hm = bg_col_my;
             border_color_hm = border_color_my;
@@ -121,7 +119,21 @@ FoxtrickMatchReportFormat = {
             table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + HomeTeamId + youthstr + '">' + table.rows[0].cells[1].textContent +'</a>';
             table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&TeamID=' + AwayTeamId + youthstr + '">' + table.rows[0].cells[2].textContent +'</a>';
         }
-
+		if (isyouth == true)
+		if (HomeTeamId == myTeamId) {
+            bg_col_hm = bg_col_my;
+            border_color_hm = border_color_my;
+            txt_col_hm = txt_col_my;
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&YouthTeamID=' + HomeTeamId + youthstr + '">' + table.rows[0].cells[1].textContent +'</a>';
+            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_aw + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&YouthTeamID=' + AwayTeamId + youthstr + '">' + table.rows[0].cells[2].textContent +'</a>';
+        }
+		else if (AwayTeamId == myTeamId) {
+            bg_col_aw = bg_col_my;
+            border_color_aw = border_color_my;
+            txt_col_aw = txt_col_my;
+            table.rows[0].cells[1].innerHTML = '<a style="color:' + txt_col_hm + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&YouthTeamID=' + HomeTeamId + youthstr + '">' + table.rows[0].cells[1].textContent +'</a>';
+            table.rows[0].cells[2].innerHTML = '<a style="color:' + txt_col_my + ';" href="/Club/Matches/MatchLineup.aspx?MatchID=' + gameid + '&YouthTeamID=' + AwayTeamId + youthstr + '">' + table.rows[0].cells[2].textContent +'</a>';
+        }
 		// color ratings
 		var head = doc.getElementsByTagName("head")[0];
         var style = doc.createElement("style");
@@ -194,7 +206,7 @@ FoxtrickMatchReportFormat = {
         part[0] = part[0].replace(/ (\d{1,2})\-(\d{1,2})\-(\d{1,2})\-/g," <span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>-");
 		part[0] = part[0].replace(/ (\d{1,2})\-(\d{1,2})\-(\d{1,2})\,/g," <span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>,");		
         //Foxtrick.dump(Foxtrick.var_dump(part[1]));
-        part[1] = part[1].replace(/(\d{1,2})\!\ Gäste\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
+        part[1] = part[1].replace(/(\d{1,2})\!\ GÃ¤ste\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
         part[1] = part[1].replace(/(\d{1,2})\ a\ (\d{1,2})/g,"$1 - $2"); //ITALIAN LA's work...
         part[1] = part[1].replace(/(\d{1,2}):(\d{1,2})/g,"$1 - $2"); //CESTINA LA's work...		
         part[1] = part[1].replace(/(\d{1,2})\ [\u043F][\u0440][\u0435][\u043C][\u0430]\ (\d{1,2})/g,"$1 - $2"); //SERBIAN LA's work...
@@ -233,7 +245,7 @@ FoxtrickMatchReportFormat = {
                     var team1 = names[0].split('  ')[0];
                     var team2 = names[1].split('  ')[1];
                     stage = 1;
-                    //Foxtrick.dump('TEAMS [' + team1 + '|' + team2 + ']\n');
+                    Foxtrick.dump('TEAMS [' + team1 + '|' + team2 + ']\n');
                 }
                 if (stage==1 && dummy[i].indexOf('<span>(')!=-1) {
                     // Foxtrick.dump('MATCHID\n');
@@ -390,10 +402,10 @@ FoxtrickMatchReportFormat = {
 
         }
         Foxtrick.dump('<b>END OF GOALs</b>\n');
-        var headder = doc.getElementsByTagName('h1')[0];
+        var headder = doc.getElementsByTagName('h1')[0]; 
         headder.setAttribute( 'style', 'color:black');
-        headder.innerHTML = headder.innerHTML.replace(team1, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_hm +'">' + team1 + '</span>');
-        headder.innerHTML = headder.innerHTML.replace(team2, '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_aw +'">' + team2 + '</span>');
+        headder.innerHTML = headder.innerHTML.replace(new RegExp('\\s'+team1+'\\s'), '<span style="padding-left:10px; font-weight:bold; font-size:1em; color:'+ txt_col_hm +'"> ' + team1 + ' </span>');
+        headder.innerHTML = headder.innerHTML.replace(new RegExp('\\s'+team2+'\\s'), '<span style="font-weight:bold; font-size:1em; color:'+ txt_col_aw +'"> ' + team2 + ' </span>');
         
         var sidebar = doc.getElementById('sidebar');
         var links = sidebar.getElementsByTagName('a');

@@ -10,8 +10,8 @@ FoxtrickHistoryStats= {
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('history'), 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.3",
-	LATEST_CHANGE:"Fix for single-digit seasons",
+    NEW_AFTER_VERSION: "0.5.1.3",
+	LATEST_CHANGE:"Some style fixes",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
     Buffer : new Array(),
     Pages : new Array(),
@@ -102,7 +102,7 @@ FoxtrickHistoryStats= {
                                     table[i].removeChild(table[i].getElementsByTagName('a')[0]);
                                 }
                                 cup = table[i].innerHTML.match(/\d{1,2}/);
-                                if (!cup) cup = 'chp';
+                                if (!cup) cup = '<span class="bold" title="'+Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner")+'">' + Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner.short") + '</span>';
                             }
                         }
                         //league
@@ -137,13 +137,17 @@ FoxtrickHistoryStats= {
     _paste : function(doc){
         if (this.Buffer.length==0) return;
         try {
-            var HistoryTable="<tr><th>"+Foxtrickl10n.getString("foxtrick.HistoryStats.season")+"</th><th>"+Foxtrickl10n.getString("foxtrick.HistoryStats.cup")+"</th><th>"+Foxtrickl10n.getString("foxtrick.HistoryStats.league")+"</th><th>"+Foxtrickl10n.getString("foxtrick.HistoryStats.pos")+"</th></tr>";
+            var HistoryTable="<tr>" + 
+				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.season")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.season.short")+"</th>" + 
+				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.cup")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.cup.short")+"</th>" +
+				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.league")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.league.short")+"</th>" +
+				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.pos")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.pos.short")+"</th></tr>";
             
             var last = -1;
             for (var i = 0; i< this.Buffer.length; i++){
                 var dummy = this.Buffer[i].split('|');
                 dummy[0] = parseInt(dummy[0]) - this.Offset + '|';
-                var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td>%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
+                var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td title="%l_t'+dummy[0]+'">%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
                 // Foxtrick.dump(Foxtrick.var_dump(dummy));
                 
                 if (last == -1 || last != dummy[0]) {
@@ -155,7 +159,15 @@ FoxtrickHistoryStats= {
                 
                 if (dummy[3]){
                     HistoryTable = HistoryTable.replace("%p"+dummy[0],dummy[2]);
-                    HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3]);
+                    if (dummy[3].length > 8) 
+					{
+						HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3].substr(0,5) + '…');
+					}
+					else
+					{
+						HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3]);
+					}
+                    HistoryTable = HistoryTable.replace("%l_t"+dummy[0],dummy[3]);					
                 } else{
                     HistoryTable = HistoryTable.replace("%c"+dummy[0],dummy[1]);
                 }
@@ -163,7 +175,7 @@ FoxtrickHistoryStats= {
                 last = dummy[0];
             }
             var	table = doc.createElement("table");
-            table.setAttribute( "class", 'smallText' );
+            table.setAttribute( "class", 'smallText historystats' );
             HistoryTable=HistoryTable.replace(/((\%c)|(\%p)|(\%l))\d{1,2}\|/gi,'-').replace(/\|/g,'');;
             table.innerHTML = HistoryTable;
             

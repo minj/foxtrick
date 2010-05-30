@@ -276,7 +276,8 @@ var FoxtrickHelper = {
 			var ownlevelnum = this.getLevelNum(ownleaguename, owncountryid);
 			
 			this.OWNTEAMINFO={"ownteamid": this.findTeamId(teamdiv),
-				"ownteamname" : this.extractTeamName(teamdiv),	
+				"ownteamname" : this.extractTeamName(teamdiv),
+				"ownteamid" : this.findTeamId(teamdiv),
 				"owncountryid" : owncountryid,
 				"ownleaguename" : ownleaguename,        		
 				"ownseriesnum" : ownseriesnum,
@@ -301,5 +302,77 @@ var FoxtrickHelper = {
 			}
 		}
 		return null;
+	},
+	
+	getLeagueDataFromId :function(id) {
+		var data=null;
+		try { data = Foxtrick.XMLData.League[id];}
+		catch(e){}
+		
+		if (data==null) Foxtrick.dump('getLeagueDataFromId error. id: '+id+'\n');
+		Foxtrick.dump_flush(document);
+		return data;
+	},
+	
+	getCurrencyRateFromId  :function(id) {
+		try {  dump(FoxtrickHelper.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.')+'\n')
+			return parseFloat(FoxtrickHelper.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.'))/10; }
+		catch(e){}	
+		Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');		
+	},
+
+	getShortPosition: function(pos) {
+		try {
+			pos = pos.replace(/&nbsp;/," ");
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "hattricklanguages/language[@name=\"" + lang + "\"]/positions/position[@value=\"" + pos + "\"]";
+			var shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
+			return shortPos;
+		}
+		catch (e) {
+			Foxtrick.dump("Error getting short position, fall back to automatic abbreviation:");
+			Foxtrick.dumpError(e);
+			var space = pos.search(/ /);
+			if (space == -1) {
+				return pos.substr(0, 2);
+			}
+			else {
+				return pos.substr(0, 1) + pos.substr(space + 1, 1);
+			}
+		}
+	},
+
+	getShortSpeciality: function(spec) {
+		try {
+			if (spec==='') return '';
+			spec = spec.replace(/&nbsp;/," ");
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "hattricklanguages/language[@name=\"" + lang + "\"]/specialties/specialty[@value=\"" + spec + "\"]";
+			var shortSpec = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
+			return shortSpec;
+		}
+		catch (e) {
+			Foxtrick.dump("Error getting short speciality, fall back to substr:");
+			Foxtrick.dumpError(e);
+			return spec.substr(0, 2);
+		}
+	},
+
+	createFlagFromCountryId : function(doc, countryId) {
+		var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
+		leagueName = "New Moon";
+		if (leagueId) {
+			leagueName = FoxtrickHelper.getLeagueDataFromId(leagueId).LeagueName;
+		}
+		var a = doc.createElement("a");
+		a.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
+		a.className = "flag inner";
+		var img = doc.createElement("img");
+		var style = "vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll " + (-20) * leagueId + "px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+		img.setAttribute("style", style);
+		img.alt = img.title = leagueName;
+		img.src = "/Img/Icons/transparent.gif";
+		a.appendChild(img);
+		return a;
 	}
 };

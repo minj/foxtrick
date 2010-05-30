@@ -9,7 +9,7 @@ var FoxtrickHideFaceTransferImages = {
     MODULE_NAME : "HideFaceTransferImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	CSS: Foxtrick.ResourcePath+"resources/css/HideFaceTransferImages.css",
 	
     init : function() {
@@ -29,7 +29,7 @@ var FoxtrickHideFaceInjuryImages = {
     MODULE_NAME : "HideFaceInjuryImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	CSS: Foxtrick.ResourcePath+"resources/css/HideFaceInjuryImages.css",
 	
     init : function() {
@@ -49,7 +49,7 @@ var FoxtrickHideFaceSuspendedImages = {
     MODULE_NAME : "HideFaceSuspendedImages",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','players','YouthPlayer','YouthPlayers'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	CSS: Foxtrick.ResourcePath+"resources/css/HideFaceSuspendedImages.css",
 	
     init : function() {
@@ -69,7 +69,7 @@ var FoxtrickColouredYouthFaces = {
     MODULE_NAME : "ColouredYouthFaces",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('YouthPlayer','YouthPlayers'), 
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	
     init : function() {
     },

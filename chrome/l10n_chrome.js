@@ -16,7 +16,7 @@ var Foxtrickl10n = {
 		var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
 		if (Foxtrickl10n.properties.search(string_regexp)!=-1) value =  Foxtrickl10n.properties.match(string_regexp)[1];
 		else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1) value =  Foxtrickl10n.properties_default.match(string_regexp)[1];
-		else value = "** Localization error 1 **";;
+		else {value = str;console.log('getString error' +str);}
 		return value;
 	}catch(e){console.log('getString '+e+' '+str);}
     },

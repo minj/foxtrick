@@ -4,8 +4,8 @@
 div.mainConf div.cfMessage, div.mainConf div.cfUser 
 {padding-top:0px !important;}
 
-div.mainConf div.cfMessageNoAvatar 
-{padding-top:0px !important;}
+/*div.mainConf div.cfMessageNoAvatar 
+{padding-top:0px !important;}*/
 
 div.mainConf div.cfUser  div.faceCard 
 { margin-bottom:-5px;}

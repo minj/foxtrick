@@ -41,7 +41,17 @@ var setStyle = function(){
 function runScript() { 
   try{
 	console.log('run script');
-		var begin = new Date();
+	
+// check if it's in exclude list
+			for (var i in Foxtrick.pagesExcluded) {
+				var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
+				// page excluded, return
+				if (document.location.href.search(excludeRe) > -1) {
+					return;
+				}
+			}
+
+	var begin = new Date();
 	Foxtrick.Loader.Load();	
 	FoxtrickMain.init();
 	Foxtrick.reload_module_css(document);
@@ -67,3 +77,4 @@ if (typeof(did_action)=='undefined'){
 	window.addEventListener("DOMContentLoaded", runScript, false);
 	var did_action=true;
 }
+
