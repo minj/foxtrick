@@ -394,7 +394,7 @@ Foxtrick.Pages.Players = {
 			// not the page we are looking for
 			return null;
 		}
-		if (doc.getUserData(USER_DATA_KEY) !== null) {
+		if (doc.getUserData !== undefined && doc.getUserData(USER_DATA_KEY) !== null) {
 			Foxtrick.dump("XML data already saved as user data, returning user data now.\n");
 			return doc.getUserData(USER_DATA_KEY);
 		}
@@ -434,8 +434,10 @@ Foxtrick.Pages.Players = {
 						Foxtrick.dump("Version: " + req.responseXML.getElementsByTagName("Version")[0].textContent + "\n");
 						Foxtrick.dump("UserID: " + req.responseXML.getElementsByTagName("UserID")[0].textContent + "\n");
 						Foxtrick.dump("ActionType: " + req.responseXML.getElementsByTagName("ActionType")[0].textContent + "\n");
-						Foxtrick.dump("\nSaving response XML as user data.\n");
-						doc.setUserData(USER_DATA_KEY, req.responseXML, null);
+						if (doc.setUserData !== undefined) {
+							Foxtrick.dump("\nSaving response XML as user data.\n");
+							doc.setUserData(USER_DATA_KEY, req.responseXML, null);
+						}
 						return req.responseXML;
 					}
 					else {
