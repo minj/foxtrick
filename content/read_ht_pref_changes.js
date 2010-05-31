@@ -147,10 +147,8 @@ var FoxtrickReadHtPrefs = {
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 	
-	change : function(page, doc ) {
-		this.run(page,doc);
-	},
-		
+	change : function(page, doc) {
+	}
 };
 
 
