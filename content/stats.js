@@ -710,7 +710,16 @@ stats["alltid"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/ahstats.png"
 };    
 
-
+//HTLoto  
+stats["htloto "] =  { 
+       "url" : "http://www.htloto.org/",  
+       "teamlink" : { "path" : "",
+                      "filters"    : []
+        },
+       "title" : "HTLoto",
+       "img" : Foxtrick.ResourcePath+"resources/linkicons/htloto.png"
+  
+};
 
 // HT-Deutschland
 stats["ht_deutschland"] =  { 
