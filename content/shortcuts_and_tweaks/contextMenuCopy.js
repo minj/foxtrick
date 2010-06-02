@@ -234,7 +234,7 @@ var FoxtrickContextMenuCopy = {
 			var currentObj = event.target;
 			while (currentObj) {
 				if (currentObj.href !== undefined) {
-				href = currentObj.href;
+					href = currentObj.href;
 					break;
 				}
 				currentObj = currentObj.parentNode;
