@@ -183,7 +183,11 @@ var FoxtrickContextMenuCopy = {
 			}
 			ret = "[" + nodeName + colspan + rowspan + "]" + ret + "[/" + nodeName + "]";
 		}
-		else if (nodeName === "div" || nodeName === "p" || nodeName.search(/^h[1-6]$/i) !== -1) {
+		else if (nodeName === "blockquote") {
+			ret = "[q]" + ret + "[/q]";
+		}
+
+		if (computedStyle && computedStyle.getPropertyValue("display") === "block") {
 			ret += "\n";
 		}
 
