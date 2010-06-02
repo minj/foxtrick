@@ -54,11 +54,20 @@ var FoxtrickAddManagerButtons = {
 		var username = '';
 
 		if (page === "managerPage") {
-			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName("a");
+			var sidebar = doc.getElementById("sidebar");
+			var sidebarlinks = sidebar.getElementsByTagName("a");
 			for (var i=0;i<sidebarlinks.length;++i) {
-				if (sidebarlinks[i].href==='/Club/Supporters/' || sidebarlinks[i].href.search(/Club\/\?TeamID=/i)!=-1 ) {
+				if (sidebarlinks[i].href==='/Club/Supporters/'
+					|| sidebarlinks[i].href.search(/Club\/\?TeamID=/i) !== -1
+					|| sidebarlinks[i].href.search(/Community\/Federations\/Federation.aspx\?AllianceID=/i) !== 1) {
 					isSupporter = true;
 					break;
+				}
+			}
+			if (!isSupporter) {
+				var sidebarBoxCount = sidebar.getElementsByClassName("sidebarBox").length;
+				if (sidebarBoxCount > 3) {
+					isSupporter = true;
 				}
 			}
 			var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
