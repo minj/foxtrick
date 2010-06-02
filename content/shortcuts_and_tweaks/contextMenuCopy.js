@@ -24,19 +24,19 @@ var FoxtrickContextMenuCopy = {
 	TABLE : null,
 
 	ID : [
-		{ type : "player", re : /\?playerId=(\d+)/i, tag : "playerid" },
-		{ type : "youthplayer", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
-		{ type : "team", re : /\?TeamID=(\d+)/i, tag : "teamid" },
-		{ type : "youthteam", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
-		{ type : "youthmatch", re : /\?matchID=(\d+)&isYouth=True/i, tag : "youthmatchid" },
-		{ type : "match", re : /\?matchID=(\d+)&/i, tag : "matchid" },
-		{ type : "federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
-		{ type : "league", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
-		{ type : "youthleague", re : /\?YouthLeagueId=(\d+)/i, tag : "youthleagueid" },
-		{ type : "user", re : /\?userId=(\d+)/i, tag : "userid" },
-		{ type : "kit", re : /\?KitID=(\d+)/i, tag : "kitid" },
-		{ type : "article", re : /\?ArticleID=(\d+)/i, tag : "articleid" },
-		{ type : "post", re : /\/Forum\/Read.aspx\?t=(\d+).*&n=(\d+)/i, tag : "post" }
+		{ type : "Player", re : /\?playerId=(\d+)/i, tag : "playerid" },
+		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
+		{ type : "Team", re : /\?TeamID=(\d+)/i, tag : "teamid" },
+		{ type : "Youth Team", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
+		{ type : "Youth Match", re : /\?matchID=(\d+)&isYouth=True/i, tag : "youthmatchid" },
+		{ type : "Match", re : /\?matchID=(\d+)&/i, tag : "matchid" },
+		{ type : "Federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
+		{ type : "Series", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
+		{ type : "Youth Series", re : /\?YouthLeagueId=(\d+)/i, tag : "youthleagueid" },
+		{ type : "User", re : /\?userId=(\d+)/i, tag : "userid" },
+		{ type : "Kit", re : /\?KitID=(\d+)/i, tag : "kitid" },
+		{ type : "Article", re : /\?ArticleID=(\d+)/i, tag : "articleid" },
+		{ type : "Post", re : /\/Forum\/Read.aspx\?t=(\d+).*&n=(\d+)/i, tag : "post" }
 	],
 
 	init : function() {
