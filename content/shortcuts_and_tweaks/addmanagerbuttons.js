@@ -22,11 +22,21 @@ var FoxtrickAddManagerButtons = {
 	},
 
 	run : function(page, doc) {
-		try {	Foxtrick.dump('gb: '+Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)+'\n');
-				if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
-						Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
-					this.addActionsBox(doc, page);
-				}
+		try {
+			var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
+			var teamId = Foxtrick.Pages.All.getTeamId(doc);
+
+			if (ownTeamId === null || teamId === null || ownTeamId === teamId
+				|| !Foxtrick.isSupporter(doc)) {
+				// we don't add the buttons for your own page
+				// and no need to add guestbook icon for non-supporters
+				return;
+			}
+
+			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
+					Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
+				this.addActionsBox(doc, page);
+			}
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -39,17 +49,10 @@ var FoxtrickAddManagerButtons = {
 	},
 
 	addActionsBox : function(doc, page) {
-	try{
-		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
+	try {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
-		
-		
-		if (ownTeamId === null || teamId === null || ownTeamId === teamId) {
-			// we don't add the buttons for your own page
-			return;
-		}
 
-		var isSupporter = false ;
+		var isSupporter = false;
 		var username = '';
 		
 		if (page === "managerPage") {
@@ -79,12 +82,9 @@ var FoxtrickAddManagerButtons = {
 				}
 			}			
 		}
-		var official = (username.toLowerCase().indexOf('mod-') == 0 || username.toLowerCase().indexOf('gm-') == 0 || username.toLowerCase().indexOf('la-') == 0 || username.toLowerCase().indexOf('ht-') == 0 || username.toLowerCase().indexOf('chpp-') == 0)
-		
-//		Foxtrick.dump('isSupporter: '+isSupporter+' OFFI: ' + official+'\n');
-		
+
 		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID).parentNode;
-		
+
 		//Display GuestBook button only if teamid is HT-Supporter - Stephan57
 		if (isSupporter) {
 			var guestbookLink = doc.createElement("a");
@@ -106,14 +106,6 @@ var FoxtrickAddManagerButtons = {
 			}
 			parentDiv.appendChild(guestbookLink);
 		}
-		/* there is a ht warning already
-		if (official) {
-			var infobox = doc.createElement("div");
-			infobox.style.color = "red";
-			infobox.style.padding = "5px 0 0 0";
-			infobox.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.sendmessageofficial");
-			parentDiv.appendChild(infobox);
-		}*/
 
 	} catch(e) {Foxtrick.dumpError(e);}
 	}	
