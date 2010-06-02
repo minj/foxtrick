@@ -9,7 +9,7 @@ var FoxtrickContextMenuCopy = {
 	MODULE_NAME : "ContextMenuCopy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all"],
-	OPTIONS : ["Id", "Link", "HtMl"],
+	OPTIONS : ["Id", "Link", "HtMl", "Table"],
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Option for copying selected content in HT-ML.",
