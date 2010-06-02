@@ -128,6 +128,7 @@ var FoxtrickMain = {
 		FoxtrickContextMenuCopy.MENU_ID = document.getElementById("foxtrick-popup-copy-id");
 		FoxtrickContextMenuCopy.MENU_LINK = document.getElementById("foxtrick-popup-copy-link");
 		FoxtrickContextMenuCopy.MENU_HT_ML = document.getElementById("foxtrick-popup-copy-ht-ml");
+		FoxtrickContextMenuCopy.MENU_TABLE = document.getElementById("foxtrick-popup-copy-table");
 
 		// tools menu
 		var toolsMenu = document.getElementById("foxtrick-menu-preferences");

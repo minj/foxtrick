@@ -18,8 +18,10 @@ var FoxtrickContextMenuCopy = {
 	MENU_ID : null,
 	MENU_LINK : null,
 	MENU_HT_ML : null,
+	MENU_TABLE : null,
 
 	SELECTION : null,
+	TABLE : null,
 
 	ID : [
 		{ type : "player", re : /\?playerId=(\d+)/i, tag : "playerid" },
@@ -44,6 +46,7 @@ var FoxtrickContextMenuCopy = {
 		doc.addEventListener("contextmenu", this.onContext, false);
 		this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));
 		this.MENU_HT_ML.setAttribute("label", Foxtrickl10n.getString("copy.ht-ml"));
+		this.MENU_TABLE.setAttribute("label", Foxtrickl10n.getString("copy.table"));
 	},
 
 	change : function(page, doc) {
@@ -232,6 +235,15 @@ var FoxtrickContextMenuCopy = {
 		Foxtrick.copyStringToClipboard(markup);
 	},
 
+	copyTable : function() {
+		if (!FoxtrickContextMenuCopy.TABLE) {
+			return;
+		}
+		var markup = FoxtrickContextMenuCopy.getMarkupFromNode(FoxtrickContextMenuCopy.TABLE);
+		markup = FoxtrickContextMenuCopy.trim(markup);
+		Foxtrick.copyStringToClipboard(markup);
+	},
+
 	onContext : function(event) {
 		try {
 			var href = null;
@@ -289,12 +301,35 @@ var FoxtrickContextMenuCopy = {
 			else {
 				FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
 			}
+
+			if (Foxtrick.isModuleFeatureEnabled(FoxtrickContextMenuCopy, "Table")) {
+				var table = null;
+				var currentObj = event.target;
+				while (currentObj) {
+					if (currentObj.nodeName.toLowerCase() === "table") {
+						table = currentObj;
+						break;
+					}
+					currentObj = currentObj.parentNode;
+				}
+				if (table !== null) {
+					FoxtrickContextMenuCopy.TABLE = table;
+					FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", false);
+				}
+				else {
+					FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
+				}
+			}
+			else {
+				FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
+			}
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
 			FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
 			FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
 			FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
+			FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
 		}
 	}
 };

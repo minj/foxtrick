@@ -175,6 +175,7 @@
 	<menuitem id="foxtrick-popup-copy-id" insertbefore="context-paste" hidden="true" label="Copy ID" oncommand="FoxtrickContextMenuCopy.copyId();" />
 	<menuitem id="foxtrick-popup-copy-link" insertbefore="context-paste" hidden="true" label="Copy Link Location in HT-ML" oncommand="FoxtrickContextMenuCopy.copyLink();" />
 	<menuitem id="foxtrick-popup-copy-ht-ml" insertbefore="context-paste" hidden="true" label="Copy in HT-ML" oncommand="FoxtrickContextMenuCopy.copyHtMl();" />
+	<menuitem id="foxtrick-popup-copy-table" insertbefore="context-paste" hidden="true" label="Copy table in HT-ML" oncommand="FoxtrickContextMenuCopy.copyTable();" />
 </popup>
 
 <statusbar id="status-bar">
