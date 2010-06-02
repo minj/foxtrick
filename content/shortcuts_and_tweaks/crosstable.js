@@ -361,14 +361,8 @@ var FoxtrickCrossTable = {
 			}
 			Foxtrick.dump(league+'\n');*/
 
-			if (!Foxtrick.isStandardLayout( doc ) ) {
-				var CountryName = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].getElementsByTagName('a')[0].innerHTML);
-				var RomanLeague = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[0].getElementsByTagName('a')[1].innerHTML);
-			}
-			else {
-				var CountryName = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].getElementsByTagName('a')[0].innerHTML);
-				var RomanLeague = Foxtrick.trim(Foxtrick.getElementsByClass('boxHead', doc)[1].getElementsByTagName('a')[1].innerHTML);
-			}
+			var CountryName = Foxtrick.trim(doc.getElementById('mainWrapper').getElementsByTagName('a')[0].innerHTML);
+			var RomanLeague = Foxtrick.trim(doc.getElementById('mainWrapper').getElementsByTagName('a')[1].innerHTML);
 
 			Foxtrick.dump('['+CountryName+'] ['+RomanLeague+']\n');
 			var leagues = 0;
