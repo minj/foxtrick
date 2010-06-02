@@ -26,15 +26,13 @@ var FoxtrickAddManagerButtons = {
 			var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
 			var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
-			if (ownTeamId === null || teamId === null || ownTeamId === teamId
-				|| !Foxtrick.isSupporter(doc)) {
+			if (ownTeamId === null || teamId === null || ownTeamId === teamId) {
 				// we don't add the buttons for your own page
-				// and no need to add guestbook icon for non-supporters
 				return;
 			}
 
 			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
-					Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
+				Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
 				this.addActionsBox(doc, page);
 			}
 		}
@@ -54,7 +52,7 @@ var FoxtrickAddManagerButtons = {
 
 		var isSupporter = false;
 		var username = '';
-		
+
 		if (page === "managerPage") {
 			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName("a");
 			for (var i=0;i<sidebarlinks.length;++i) {
