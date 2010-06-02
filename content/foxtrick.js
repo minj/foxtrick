@@ -125,15 +125,9 @@ var FoxtrickMain = {
 		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 		Foxtrick.statusbarDeactivate=statusbarDeactivate;
 
-		// popup menu
-		var popupMenu = document.getElementById("foxtrick-popup-menu");
-		popupMenu.setAttribute("label", "Foxtrick-"+Foxtrickl10n.getString("foxtrick.CopyPostID"));
-		popupMenu.setAttribute("hidden", true);
-		Foxtrick.popupMenu = popupMenu;
-		var popupMenuHT_ML = document.getElementById("foxtrick-popup-menu-ht-ml");
-		popupMenuHT_ML.setAttribute("label", "Foxtrick-"+Foxtrickl10n.getString("foxtrick.CopyPostID"));
-		popupMenuHT_ML.setAttribute("hidden", true);
-		Foxtrick.popupMenuHT_ML = popupMenuHT_ML;
+		FoxtrickContextMenuCopy.MENU_ID = document.getElementById("foxtrick-popup-copy-id");
+		FoxtrickContextMenuCopy.MENU_LINK = document.getElementById("foxtrick-popup-copy-link");
+		FoxtrickContextMenuCopy.MENU_HT_ML = document.getElementById("foxtrick-popup-copy-ht-ml");
 
 		// tools menu
 		var toolsMenu = document.getElementById("foxtrick-menu-preferences");
@@ -339,9 +333,7 @@ var FoxtrickMain = {
 				var server = bottom.getElementsByClassName("currentServer")[0];			
 				server.textContent += " / FoxTrick v" + FoxtrickPrefs.getString("curVersion");
 			}
-			
-			// context menue
-			doc.addEventListener('contextmenu',FoxtrickContextMenuCopyId.onContext,false);
+
             Foxtrick.dump_flush(doc);
 		}
 	} catch(e) { Foxtrick.dump('Foxtrick.run: '+e+'\n'); }

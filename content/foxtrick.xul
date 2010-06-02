@@ -69,7 +69,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/seniorteamshortcuts.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/extraShortcuts.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/copymatchid.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/contextMenuCopyId.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/contextMenuCopy.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/copyTrainingReport.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/playerbirthday.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/addhtlivetoongoing.js" />
@@ -172,8 +172,9 @@
 
 <!-- popup menu -->
 <popup id="contentAreaContextMenu">
-	<menuitem id="foxtrick-popup-menu-ht-ml" insertafter="context-copy" label="Foxtrick" oncommand="FoxtrickPreferencesDialog.copy_id_ht_ml();"/>
-	<menuitem id="foxtrick-popup-menu" insertafter="context-copy" label="Foxtrick" oncommand="FoxtrickPreferencesDialog.copy_id();"/>
+	<menuitem id="foxtrick-popup-copy-id" hidden="true" label="Copy ID" oncommand="FoxtrickContextMenuCopy.copyId();" />
+	<menuitem id="foxtrick-popup-copy-link" hidden="true" label="Copy Link Location in HT-ML" oncommand="FoxtrickContextMenuCopy.copyLink();" />
+	<menuitem id="foxtrick-popup-copy-ht-ml" hidden="true" label="Copy in HT-ML" oncommand="FoxtrickContextMenuCopy.copyHtMl();" />
 </popup>
 
 <statusbar id="status-bar">

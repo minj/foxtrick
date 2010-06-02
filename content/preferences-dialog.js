@@ -798,19 +798,3 @@ FoxtrickPreferencesDialog.deactivate = function(button) {
 		alert("FoxtrickPreferencesDialog.deactivate: " + e);
 	}
 }
-
-FoxtrickPreferencesDialog.copy_id = function(button) {
-	if (!button) {
-		var ID = Foxtrick.CopyID;
-		Foxtrick.copyStringToClipboard(ID);
-		Foxtrick.popupMenu.setAttribute("hidden", true);
-	}
-}
-
-FoxtrickPreferencesDialog.copy_id_ht_ml = function(button) {
-	if (!button) {
-		var ID = Foxtrick.CopyIDHT_ML;
-		Foxtrick.copyStringToClipboard(ID);
-		Foxtrick.popupMenuHT_ML.setAttribute("hidden", true);
-	}
-}
