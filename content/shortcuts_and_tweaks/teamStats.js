@@ -10,8 +10,8 @@ Foxtrick.TeamStats = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Splitted extra player information and filters as modules.",
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Added rows for leadership and personalities.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	init : function() {
