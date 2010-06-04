@@ -3320,8 +3320,8 @@
 <language name="sr" desc="Српски">
 	
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Mој Хеттрик" />
-	<MyClub value="Mој клуб" />
+	<MyHattrick value="Мој Хеттрик" />
+	<MyClub value="Мој клуб" />
 	<World value="Свет" />
 	<Forum value="Форум" />
 	<Shop value="Продавница" />
