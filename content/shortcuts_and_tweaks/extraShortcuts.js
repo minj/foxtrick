@@ -13,7 +13,7 @@ var FoxtrickExtraShortcuts = {
 	NEW_AFTER_VERSION : "0.5.1.2",	
 	LATEST_CHANGE : "Module name changed to ExtraShortcuts",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "Ht_radio_winamp","Ht_radio_windows_mediaplayer"),
+	OPTIONS : new Array("AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioWmp"),
 	CSS:"",
 	
     init : function() {
@@ -24,8 +24,8 @@ var FoxtrickExtraShortcuts = {
         if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) ++num_shown;
         if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) ++num_shown;
 		if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) ++num_shown;
-        if (Foxtrick.isModuleFeatureEnabled( this, "Ht_radio_winamp") 
-			|| Foxtrick.isModuleFeatureEnabled( this, "Ht_radio_windows_mediaplayer") ) ++num_shown;
+        if (Foxtrick.isModuleFeatureEnabled( this, "HtRadioWinamp") 
+			|| Foxtrick.isModuleFeatureEnabled( this, "HtRadioWmp") ) ++num_shown;
         if (num_shown==0) {
 			this.CSS="";
 		}
@@ -152,8 +152,8 @@ var FoxtrickExtraShortcuts = {
                 }
 
 
-				if (Foxtrick.isModuleFeatureEnabled( this, "Ht_radio_winamp")                
-					|| Foxtrick.isModuleFeatureEnabled( this, "Ht_radio_windows_mediaplayer")) {                
+				if (Foxtrick.isModuleFeatureEnabled( this, "HtRadioWinamp")                
+					|| Foxtrick.isModuleFeatureEnabled( this, "HtRadioWmp")) {                
                     
 					var link = doc.createElement('a');                
                     link.className = 'ft_extra-shortcuts';
@@ -200,7 +200,7 @@ var FoxtrickExtraShortcuts = {
 										//doc.getElementById('ft_extra-shortcuts_ht_radio_icon').
 										img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/radio-icon.png') !important;");                    
 										img1.title = "Hattrick Radio now playing: "+radio_xml.getElementsByTagName('song')[0].textContent;
-										if (Foxtrick.isModuleFeatureEnabled( this, "Ht_radio_winamp")) 
+										if (Foxtrick.isModuleFeatureEnabled( this, "HtRadioWinamp")) 
 											link.href = radio_xml.getElementsByTagName('winamp')[0].textContent;
 										else link.href = radio_xml.getElementsByTagName('windows')[0].textContent;
 										Foxtrick.dump('Hattrick Radio online\n');
