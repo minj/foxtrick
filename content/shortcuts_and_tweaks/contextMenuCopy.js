@@ -189,6 +189,15 @@ var FoxtrickContextMenuCopy = {
 		else if (nodeName === "blockquote") {
 			ret = "[q]" + ret + "[/q]";
 		}
+		else if (nodeName === "strong" || nodeName === "b") {
+			ret = "[b]" + ret + "[/b]";
+		}
+		else if (nodeName === "emph" || nodeName === "i") {
+			ret = "[i]" + ret + "[/b]";
+		}
+		else if (nodeName === "u") {
+			ret = "[u]" + ret + "[/u]";
+		}
 
 		if (computedStyle && computedStyle.getPropertyValue("display") === "block") {
 			ret += "\n";
