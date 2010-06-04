@@ -92,20 +92,20 @@ var FoxtrickReadHtPrefs = {
 				Foxtrick.dump('no prelogin lang check\n');
 				return; // prelogin
 			}
-			for (var k=0; k<languages.length; ++k) {				
-				var num_found=0;
+			for (var k=0; k<languages.length; ++k) {
+				var found = true;
 				for (var i=0; i<6;++i) {
 					var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
-					if (atitle==null) break;
-					if (as[i].innerHTML.replace(/&amp;/,'&').search(atitle.getAttribute('value'))!=-1) ++num_found;	
+					if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
+						found = false;
+						break;
+					}
 				}
-				//Foxtrick.dump(decodeURIComponent(as[5].innerHTML)+' '+atitle.getAttribute('value')+' '+decodeURIComponent(as[5].innerHTML).search(atitle.getAttribute('value'))+' ');
-				if (num_found==6) {
+				if (found) {
 					langval = languages[k].getAttribute('name');
 					Foxtrick.dump('lang detected: '+langval+' oldval:'+oldval+'\n');
 					break;
 				}
-				//Foxtrick.dump('\n');
 			}
 		}
 		
