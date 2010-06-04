@@ -139,12 +139,15 @@ Foxtrick.Pages.Players = {
 					}
 				}
 
+				var paragraphs = allPlayers[i].getElementsByTagName("p");
+				var imgs = allPlayers[i].getElementsByTagName("img");
+				var as = allPlayers[i].getElementsByTagName("a");
+
 				var basicInformation;
 				if (isYouth) {
-					basicInformation = allPlayers[i].getElementsByTagName("p")[0];
+					basicInformation = paragraphs[0];
 				}
 				else {
-					var paragraphs = allPlayers[i].getElementsByTagName("p");
 					for (var j = 0; j < paragraphs.length; ++j) {
 						if (paragraphs[j].textContent.search("=") !== -1) {
 							basicInformation = paragraphs[j];
@@ -303,7 +306,6 @@ Foxtrick.Pages.Players = {
 					player.transferListed = false;
 				}
 
-				var imgs = allPlayers[i].getElementsByTagName("img");
 				for (var j = 0; j < imgs.length; ++j) {
 					if (imgs[j].className == "cardsOne") {
 						if (imgs[j].src.indexOf("red_card", 0) != -1) {
@@ -328,7 +330,6 @@ Foxtrick.Pages.Players = {
 				}
 
 				// last match
-				var as = allPlayers[i].getElementsByTagName("a");
 				var matchLink = null;
 				for (var j = 0; j < as.length; ++j) {
 					if (as[j].href.search(/matchid/i) != -1) {
@@ -352,6 +353,27 @@ Foxtrick.Pages.Players = {
 				if (matchLink) {
 					var position = matchLink.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
 					player.lastPosition = position;
+				}
+
+				if (this.isOldiesPage(doc) || this.isCoachesPage(doc)) {
+					var currentClubPara = null;
+					var currentClubLink = null;
+					for (var j = 0; j < paragraphs.length; ++j) {
+						var links = paragraphs[j].getElementsByTagName("a");
+						for (var k = 0; k < links.length; ++k) {
+							if (links[k].href && links[k].href.search(/TeamID=/i) !== -1) {
+								currentClubLink = links[k];
+								break;
+							}
+						}
+						if (currentClubLink !== null) {
+							currentClubPara = paragraphs[j];
+							break;
+						}
+					}
+					if (currentClubPara !== null && currentClubLink !== null) {
+						player.currentClubLink = currentClubLink.cloneNode(true);
+					}
 				}
 
 				playerList.push(player);
