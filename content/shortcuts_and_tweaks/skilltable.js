@@ -120,6 +120,9 @@ var FoxtrickSkillTable = {
 				}
 				cell.setAttribute("index", number);
 			};
+			var link = function(cell, link) {
+				cell.appendChild(link.cloneNode(true));
+			};
 			var nationality = function(cell, countryId) {
 				var flag = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
 				if (flag) {
@@ -315,7 +318,8 @@ var FoxtrickSkillTable = {
 				{ name : "Salary", property : "salary", alignRight : true },
 				{ name : "NrOfMatches", property : "matchCount" },
 				{ name : "LeagueGoals", property : "leagueGoals" },
-				{ name : "CareerGoals", property : "careerGoals" }
+				{ name : "CareerGoals", property : "careerGoals" },
+				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true }
 			];
 
 			for (var j = 0; j < columns.length; ++j) {
