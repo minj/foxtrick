@@ -193,7 +193,7 @@ var FoxtrickContextMenuCopy = {
 			ret = "[b]" + ret + "[/b]";
 		}
 		else if (nodeName === "emph" || nodeName === "i") {
-			ret = "[i]" + ret + "[/b]";
+			ret = "[i]" + ret + "[/i]";
 		}
 		else if (nodeName === "u") {
 			ret = "[u]" + ret + "[/u]";
