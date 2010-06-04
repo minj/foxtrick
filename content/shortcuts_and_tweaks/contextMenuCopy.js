@@ -24,12 +24,12 @@ var FoxtrickContextMenuCopy = {
 	TABLE : null,
 
 	ID : [
-		{ type : "Player", re : /\?playerId=(\d+)/i, tag : "playerid" },
+		{ type : "Player", re : /\/Player\.aspx\?playerId=(\d+)/i, tag : "playerid" },
 		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
-		{ type : "Team", re : /\?TeamID=(\d+)/i, tag : "teamid" },
+		{ type : "Team", re : /\/Club\/\?TeamID=(\d+)/i, tag : "teamid" },
 		{ type : "Youth Team", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
-		{ type : "Youth Match", re : /\?matchID=(\d+)&isYouth=True/i, tag : "youthmatchid" },
-		{ type : "Match", re : /\?matchID=(\d+)&/i, tag : "matchid" },
+		{ type : "Youth Match", re : /\/Match\.aspx\?matchID=(\d+)&isYouth=True/i, tag : "youthmatchid" },
+		{ type : "Match", re : /\/Match\.aspx\?matchID=(\d+)&/i, tag : "matchid" },
 		{ type : "Federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
 		{ type : "Series", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
 		{ type : "Youth Series", re : /\?YouthLeagueId=(\d+)/i, tag : "youthleagueid" },
