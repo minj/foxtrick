@@ -53,7 +53,7 @@ h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resource
 .ft_skilltable_links.customizing .customize_item { display: none; }
 .ft_skilltable_container { background-color: #fff; }
 .ft_skilltable_container.on_top { position: absolute; z-index: 100; padding: 1em; border: 2px solid #888; }
-.ft_skilltable th, .ft_skilltable td { padding: 1px 2px !important; }
+.ft_skilltable th, .ft_skilltable td { padding: 1px 2px !important; vertical-align: middle !important; }
 .ft_skilltable th { cursor: pointer; }
 .ft_skilltable td { border-bottom: 1px solid #dce0dc; }
 .ft_skilltable td.align-right { text-align: right !important; }
