@@ -3390,6 +3390,34 @@
 		<level text="катастрофалан" value="1" />
 		<level text="непостојећи" value="0" />
 	</levels>
+
+	<agreeability>
+		<level text="вољени члан тима" value="5" />
+		<level text="популаран лик" value="4" />
+		<level text="симпатичан тип" value="3" />
+		<level text="пријатан дечко" value="2" />
+		<level text="контроверзна особа" value="1" />
+		<level text="незгодан момак" value="0" />
+	</agreeability>
+
+	<honesty>
+		<level text="као светац" value="5" />
+		<level text="честит" value="4" />
+		<level text="праведан" value="3" />
+		<level text="частан" value="2" />
+		<level text="нечастан" value="1" />
+		<level text="озлоглашен" value="0" />
+	</honesty>
+
+	<aggressiveness>
+		<level text="нестабилан" value="5" />
+		<level text="пргав" value="4" />
+		<level text="темпераментан" value="3" />
+		<level text="уравнотежен" value="2" />
+		<level text="миран" value="1" />
+		<level text="спокојан" value="0" />
+	</aggressiveness>
+	
 </language>
 
 
