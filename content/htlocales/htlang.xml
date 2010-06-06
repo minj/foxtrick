@@ -1057,7 +1057,8 @@
 
 
 <!-- needs update -->
-<language name="fa" desc="Persian">
+<!-- farsi -->
+<language name="fa" desc="فارسی">
 	
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="هت‌‌تریک من" />
