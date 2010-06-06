@@ -2571,9 +2571,9 @@
 	<positions>
 		<position type="Keeper" value="Doelman" short="Ke" />
 		<position type="Central defender" value="Centrale Verdediger" short="Cd" />
-		<position type="Wing back" value="Flankverdediger" short="Wb" />
+		<position type="Wing back" value="Vleugelverdediger" short="Wb" />
 		<position type="Inner midfielder" value="Middenvelder" short="Im" />
-		<position type="Winger" value="Flankspeler" short="Wi" />
+		<position type="Winger" value="Vleugelspeler" short="Wi" />
 		<position type="Forward" value="Aanvaller" short="Fo" />
 	</positions>
 	
