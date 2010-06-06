@@ -150,7 +150,7 @@ FoxtrickExtendedPlayerDetailsWage = {
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 				}
 				if (Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") ) 
-						table_elm_bonus.innerHTML += '<br>'+Foxtrick.ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+' '+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
+						table_elm_bonus.innerHTML += '<br>'+Foxtrick.ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
              }   
 				
         } catch (e) {
