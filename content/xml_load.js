@@ -196,5 +196,24 @@ Foxtrick.XMLData = {
 		else {
 			return 0;
 		}
+	},
+
+	// this function returns level string of given level type and numeral value.
+	// type could be levels, for normal skills;
+	// agreeability, honesty, and aggressiveness, which are all obvious.
+	getLevelByTypeAndValue : function(type, val) {
+		var lang = FoxtrickPrefs.getString("htLanguage");
+		var path = "hattricklanguages/language[@name='" + lang + "']/" + type + "/level[@value='" + val + "']";
+		var text = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "text");
+		if (text === null) {
+			Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist in locale " + lang + ", try en instead.\n");
+			path = "hattricklanguages/language[@name='en']/" + type + "/level[@value='" + val + "']";
+			text = Foxtrick.xml_single_evaluate(this.htLanguagesXml, path, "text");
+			if (text === null) {
+				Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist, returning raw value.\n");
+				text = val;
+			}
+		}
+		return text;
 	}
 }

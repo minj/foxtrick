@@ -91,20 +91,6 @@ Foxtrick.TeamStats = {
 			var avgAgreeability = parseInt(totalAgreeability / playerList.length);
 			var avgHonesty = parseInt(totalHonesty / playerList.length);
 
-			var getLevel = function(type, val) {
-				var lang = FoxtrickPrefs.getString("htLanguage");
-				var path = "hattricklanguages/language[@name='" + lang + "']/" + type + "/level[@value='" + val + "']";
-				var text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-				if (text === null) {
-					path = "hattricklanguages/language[@name='en']/" + type + "/level[@value='" + val + "']";
-					text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
-					if (text === null) {
-						text = val;
-					}
-				}
-				return text;
-			}
-
 			var specsTable = "";
 			//If NT displays Total TSI
 			if (Foxtrick.Pages.Players.isNtPlayersPage(doc) && totalTSI) {
@@ -115,16 +101,16 @@ Foxtrick.TeamStats = {
 				specsTable += "<tr><td class=\"ch\">" + speciality + "</td><td>" + specialities[speciality] + "</td></tr>";
 			}
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "leadership")) {
-				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Leadership") + "</td><td>" + getLevel("levels", avgLeadership) + "</td></tr>";
+				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Leadership") + "</td><td>" + Foxtrick.XMLData.getLevelByTypeAndValue("levels", avgLeadership) + "</td></tr>";
 			}
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "aggressiveness")) {
-				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Aggressiveness") + "</td><td>" + getLevel("aggressiveness", avgAggressiveness) + "</td></tr>";
+				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Aggressiveness") + "</td><td>" + Foxtrick.XMLData.getLevelByTypeAndValue("aggressiveness", avgAggressiveness) + "</td></tr>";
 			}
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "agreeability")) {
-				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Agreeability") + "</td><td>" + getLevel("agreeability", avgAgreeability) + "</td></tr>";
+				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Agreeability") + "</td><td>" + Foxtrick.XMLData.getLevelByTypeAndValue("agreeability", avgAgreeability) + "</td></tr>";
 			}
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "honesty")) {
-				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Honesty") + "</td><td>" + getLevel("honesty", avgHonesty) + "</td></tr>";
+				specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("Honesty") + "</td><td>" + Foxtrick.XMLData.getLevelByTypeAndValue("honesty", avgHonesty) + "</td></tr>";
 			}
 			if (transferListed > 0) {
 				var img = '<img src="/Img/Icons/dollar.gif" class="transferListed" />';

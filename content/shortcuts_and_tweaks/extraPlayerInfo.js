@@ -32,8 +32,7 @@ FoxtrickExtraPlayerInfo = {
 
 				if (Foxtrick.isModuleFeatureEnabled(this, "CoachInfo")
 					&& player.trainerData !== undefined) {
-					var path = "hattricklanguages/language[@name='" + lang + "']/levels/level[@value='" + player.trainerData.skill + "']";
-					var trainerSkillStr = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "text");
+					var trainerSkillStr = Foxtrick.XMLData.getLevelByTypeAndValue("levels", player.trainerData.skill);
 					var trainerTypeStr = "";
 					if (player.trainerData.type == 0) {
 						trainerTypeStr = Foxtrickl10n.getString('foxtrick.defensiveTrainer');
