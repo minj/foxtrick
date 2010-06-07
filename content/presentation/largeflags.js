@@ -9,10 +9,10 @@ var FoxtrickLargeFlags = {
     MODULE_NAME : "LargeFlags",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
-	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.0.5",
-	LATEST_CHANGE : "Keep small flags unchanged if faces aren't shown.",
-	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,
+	DEFAULT_ENABLED : false,
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Disabled by default since it may crash the whole operating system under GNU/Linux.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
     init : function() {
     },

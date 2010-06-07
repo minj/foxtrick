@@ -276,3 +276,4 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", f
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenYapletPopup.enabled", false);
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenYapletFrame.enabled", false);
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenGabblyPopup.enabled", true);
+pref("extensions.foxtrick.prefs.module.LargeFlags.enabled", false);
