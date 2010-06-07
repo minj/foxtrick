@@ -148,50 +148,31 @@ Foxtrick.TeamStats = {
 					specsTable += "<tr><td class=\"ch\">" + Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayerToOld.label") + "</td><td>" + olderThanNineteen + "</td></tr>";
 				}
 			}
-			if (Foxtrick.Pages.Players.isOldiesPage(doc)
-				|| Foxtrick.Pages.Players.isCoachesPage(doc)) {
-				// Early test of country counter. Works, but has no finished design
-				var countries = {};
-				var found = false;
-				var allDivs2 = doc.getElementsByTagName( "p" );
-				for (var i = 0; i < allDivs2.length; i++) {
-					if( allDivs2[i].innerHTML.indexOf('TeamID=', 0) != -1 ) {
-						var ctrc = allDivs2[i].innerHTML;
-						// Foxtrick.dump('	['+ctrc + ']\n');
-						if(ctrc) {
-							// specialities
-							var ctrMatch = this._checkCountry( ctrc );
-							// Foxtrick.dump(' ==>' + ctrMatch+'\n');
-							if (ctrMatch != null) {
-								// Foxtrick.dump(' == ==>' + ctrMatch + '\n');
-								if (typeof(countries[ctrMatch]) == 'undefined') {
-									countries[ctrMatch] = 1;
-									found = true;
-								}
-								else {
-									countries[ctrMatch]++;
-								}
-							}
+
+			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "currentLeagueId")) {
+				var leagues = [];
+				for (var i in playerList) {
+					var id = playerList[i].currentLeagueId;
+					if (id !== undefined) {
+						if (leagues[id] === undefined) {
+							leagues[id] = 1;
+						}
+						else {
+							++leagues[id];
 						}
 					}
 				}
-				if (found) {
-					// put in array and sort
-					var landarray = new Array();
-					for (var land in countries) {
-						landarray.push({"land":land,"value":countries[land]});
-					}
-					landarray.sort(function (a,b) { return a["land"].localeCompare(b["land"])});
-					landarray.sort(function (a,b) { return a["value"]<b["value"]});
-
-					var countriesTable = '';
-					countriesTable += '<tr><td class="ch"><u>'+ Foxtrickl10n.getString("foxtrick.FTTeamStats.countries.label") + '</u></td></td>';
-					for (var i = 0; i < landarray.length; i++) {
-						countriesTable += "<tr><td class=\"\">" + landarray[i].land.replace(/\(|\)/g,"") + "</td><td>" + landarray[i].value + "</td></tr>";
-					}
-					specsTable += countriesTable;
-					// Foxtrick.dump(countries);
+				var leagueSummary = [];
+				for (var i in leagues) {
+					leagueSummary.push({ name: Foxtrick.XMLData.League[i].LeagueName, count: leagues[i] });
 				}
+				leagueSummary.sort(function (a,b) { return a.name.localeCompare(b.name) });
+				leagueSummary.sort(function (a,b) { return b.count - a.count });
+				var leagueTable = "<tr><th colspan=\"2\">" + Foxtrickl10n.getString("foxtrick.FTTeamStats.countries.label") + "</th></tr>";
+				for (var i in leagueSummary) {
+					leagueTable += "<tr><td>" + leagueSummary[i].name + "</td><td>" + leagueSummary[i].count + "</td></tr>";
+				}
+				specsTable += leagueTable;
 			}
 
 			var	table = doc.createElement("table");
@@ -208,153 +189,5 @@ Foxtrick.TeamStats = {
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
-	},
-
-	_checkCountry : function ( ctrc ) {
-		if (ctrc == null ) return;
-		//ctrc = Foxtrick._to_utf8(Foxtrick.substr(ctrc, Foxtrick.strrpos( ctrc, "</a>")+4, ctrc.lebgth));
-		//ctrc = Foxtrick._to_utf8(ctrc.replace(/<.+>/),'');
-		ctrc = ctrc.replace(/<.+>/);
-		//Foxtrick.dump('=> stripped => ' + ctrc + '\n');
-		var found = -1;
-		for (var i = 0; i < this.COUNTRYLIST.length; i++) {
-			if (ctrc.search(this.COUNTRYLIST[i]) != -1 ) {
-				found = i;
-				break;
-			}
-		}
-		if ( found != -1) {
-			//	 return Foxtrick._from_utf8(this.COUNTRYLIST[found]);
-			return this.COUNTRYLIST[found];
-		}
-		Foxtrick.dump('=> not found=> ' + this.COUNTRYLIST[found] + '\n');
-		return false;
-	},
-
-	COUNTRYLIST : new Array (
-		"Al Iraq",
-		"Al Kuwayt",
-		"Al Maghrib",
-		"Al Urdun",
-		"Al Yaman",
-		"Algérie",
-		"Andorra",
-		"Angola",
-		"Argentina",
-		"Azərbaycan",
-		"Bahrain",
-		"Bangladesh",
-		"Barbados",
-		"Belarus",
-		"Belgium",
-		"Benin",
-		"Bolivia",
-		"Bosna i Hercegovina",
-		"Brasil",
-		"Brunei",
-		"Bulgaria",
-		"Cabo Verde",
-		"Canada",
-		"Česká republika",
-		"Chile",
-		"China",
-		"Chinese Taipei",
-		"Colombia",
-		"Costa Rica",
-		"Côte d’Ivoire",
-		"Crna Gora",
-		"Cymru",
-		"Cyprus",
-		"Danmark",
-		"Dawlat Qatar",
-		"Deutschland",
-		"Dhivehi Raajje",
-		"Ecuador",
-		"Eesti",
-		"El Salvador",
-		"England",
-		"España",
-		"Føroyar",
-		"France",
-		"Ghana",
-		"Guatemala",
-		"Hanguk",
-		"Hayastan",
-		"Hellas",
-		"Honduras",
-		"Hong Kong",
-		"Hrvatska",
-		"India",
-		"Indonesia",
-		"Iran",
-		"Ireland",
-		"Ísland",
-		"Israel",
-		"Italia",
-		"Jamaica",
-		"Kampuchea",
-		"Kazakhstan",
-		"Kenya",
-		"Kyrgyzstan",
-		"Latvija",
-		"Lëtzebuerg",
-		"Liechtenstein",
-		"Lietuva",
-		"Lubnan",
-		"Magyarország",
-		"Makedonija",
-		"Malaysia",
-		"Malta",
-		"México",
-		"Misr",
-		"Moçambique",
-		"Moldova",
-		"Mongol Uls",
-		"Nederland",
-		"Nicaragua",
-		"Nigeria",
-		"Nippon",
-		"Norge",
-		"Northern Ireland",
-		"Oceania",
-		"Oman",
-		"Österreich",
-		"Pakistan",
-		"Panamá",
-		"Paraguay",
-		"Perú",
-		"Philippines",
-		"Polska",
-		"Portugal",
-		"Prathet Thai",
-		"Republica Dominicana",
-		"România",
-		"Rossiya",
-		"Sakartvelo",
-		"Saudi Arabia",
-		"Schweiz",
-		"Scotland",
-		"Sénégal",
-		"Shqiperia",
-		"Singapore",
-		"Slovenija",
-		"Slovensko",
-		"South Africa",
-		"Srbija",
-		"Suomi",
-		"Suriname",
-		"Suriyah",
-		"Sverige",
-		"Tanzania",
-		"Tounes",
-		"Trinidad &amp; Tobago",
-		"Türkiye",
-		"Uganda",
-		"Ukraina",
-		"United Arab Emirates",
-		"Uruguay",
-		"USA",
-		"Venezuela",
-		"Việt Nam"
-	)
+	}
 };

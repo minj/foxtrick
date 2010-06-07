@@ -95,3 +95,8 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	margin: 10px 0;
 	padding: 7px 10px;
 }
+
+/* TeamStats */
+#foxtrick_FTTeamStats_box table th {
+	text-decoration: underline;
+}
