@@ -100,3 +100,7 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 #foxtrick_FTTeamStats_box table th {
 	text-decoration: underline;
 }
+
+.ft-youth-series-estimation.near-start {
+	color: red;
+}
