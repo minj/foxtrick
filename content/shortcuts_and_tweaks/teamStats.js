@@ -86,10 +86,10 @@ Foxtrick.TeamStats = {
 				}
 			}
 
-			var avgLeadership = parseInt(totalLeadership / playerList.length);
-			var avgAggressiveness = parseInt(totalAggressiveness / playerList.length);
-			var avgAgreeability = parseInt(totalAgreeability / playerList.length);
-			var avgHonesty = parseInt(totalHonesty / playerList.length);
+			var avgLeadership = Math.round(totalLeadership / playerList.length);
+			var avgAggressiveness = Math.round(totalAggressiveness / playerList.length);
+			var avgAgreeability = Math.round(totalAgreeability / playerList.length);
+			var avgHonesty = Math.round(totalHonesty / playerList.length);
 
 			var specsTable = "";
 			//If NT displays Total TSI
