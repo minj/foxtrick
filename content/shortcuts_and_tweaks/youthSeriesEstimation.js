@@ -16,12 +16,6 @@ var FoxtrickYouthSeriesEstimation = {
 	TABLE_ID : "ctl00_CPMain_grdYouthSeries_ctl00",
 	ATTRIB_NAME : "estimated",
 
-/*	TIME_SECOND : 1000,
-	TIME_MINUTE : 60 * this.TIME_SECOND,
-	TIME_HOUR : 60 * this.TIME_MINUTE,
-	TIME_DAY : 24 * this.TIME_HOUR,
-	TIME_WEEK : 7 * TIME_DAY,*/
-
 	init : function() {
 	},
 
