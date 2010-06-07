@@ -356,7 +356,7 @@ Foxtrick.Pages.Players = {
 				}
 
 				if (this.isOldiesPage(doc) || this.isCoachesPage(doc)) {
-					var currentClubPara = null;
+					var currentPara = null;
 					var currentClubLink = null;
 					for (var j = 0; j < paragraphs.length; ++j) {
 						var links = paragraphs[j].getElementsByTagName("a");
@@ -367,12 +367,29 @@ Foxtrick.Pages.Players = {
 							}
 						}
 						if (currentClubLink !== null) {
-							currentClubPara = paragraphs[j];
+							currentPara = paragraphs[j];
 							break;
 						}
 					}
-					if (currentClubPara !== null && currentClubLink !== null) {
+					if (currentClubLink !== null) {
 						player.currentClubLink = currentClubLink.cloneNode(true);
+
+						// we concatenate the text nodes from the containing
+						// <p> to a string, and search for league names there.
+						var leagueText = "";
+						for (var j = 0; j < currentPara.childNodes.length; ++j) {
+							if (currentPara.childNodes[j].nodeName === "#text") {
+								// the text is in a child text node of currentPara,
+								// so we remove all tags
+								leagueText += currentPara.childNodes[j].textContent;
+							}
+						}
+						for (var j in Foxtrick.XMLData.League) {
+							if (leagueText.indexOf(Foxtrick.XMLData.League[j].LeagueName) !== -1) {
+								player.currentLeagueId = j;
+								break;
+							}
+						}
 					}
 				}
 
