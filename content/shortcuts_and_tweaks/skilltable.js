@@ -272,6 +272,12 @@ var FoxtrickSkillTable = {
 				cell.appendChild(abbr);
 				cell.setAttribute("index", pos);
 			};
+			var league = function(cell, leagueId) {
+				var link = doc.createElement("a");
+				link.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
+				link.textContent = Foxtrick.XMLData.League[leagueId].LeagueName;
+				cell.appendChild(link);
+			};
 
 // columns used for table information
 // name: name of the column, used for fetching l10nized string
@@ -319,7 +325,8 @@ var FoxtrickSkillTable = {
 				{ name : "NrOfMatches", property : "matchCount" },
 				{ name : "LeagueGoals", property : "leagueGoals" },
 				{ name : "CareerGoals", property : "careerGoals" },
-				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true }
+				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
+				{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true }
 			];
 
 			for (var j = 0; j < columns.length; ++j) {
