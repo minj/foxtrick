@@ -98,7 +98,9 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 
 /* TeamStats */
 #foxtrick_FTTeamStats_box table th {
+	font-size: 120%;
 	text-decoration: underline;
+	padding-bottom: 0.5em !important;
 }
 
 .ft-youth-series-estimation.near-start {
