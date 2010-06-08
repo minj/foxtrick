@@ -37,6 +37,7 @@ Foxtrick.TeamStats = {
 			var totalAgreeability = 0;
 			var totalAggressiveness = 0;
 			var totalHonesty = 0;
+			var hasSpecialities = false;
 			var specialities = {};
 
 			// we don't need to load XML data here
@@ -63,6 +64,7 @@ Foxtrick.TeamStats = {
 				}
 				if (current.speciality) {
 					if (!specialities[current.speciality]) {
+						hasSpecialities = true;
 						specialities[current.speciality] = 0;
 					}
 					++specialities[current.speciality];
@@ -166,10 +168,16 @@ Foxtrick.TeamStats = {
 				addRow(Foxtrickl10n.getString("Leadership"), Foxtrick.XMLData.getLevelByTypeAndValue("levels", avgLeadership));
 			}
 
-			if (specialities.length > 0) {
+			if (hasSpecialities) {
 				addHeader(Foxtrickl10n.getString("Speciality"));
+				var specSummary = [];
 				for (var speciality in specialities) {
-					addRow(speciality, specialities[speciality]);
+					specSummary.push({ type: speciality, count: specialities[speciality] });
+					specSummary.sort(function (a, b) { return a.type.localeCompare(b.type) });
+					specSummary.sort(function (a, b) { return b.count - a.count } );
+				}
+				for (var i in specSummary) {
+					addRow(specSummary[i].type, specSummary[i].count);
 				}
 			}
 
