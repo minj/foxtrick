@@ -210,7 +210,7 @@ var FoxtrickSkillTable = {
 			var skill = function(cell, skill) {
 				if (typeof(skill) === "object") {
 					// in youth team, returned skill is an object
-					cell.setAttribute("index", skill.current * 9 + skill.max + skill.maxed);
+					cell.setAttribute("index", skill.current * 18 + skill.max * 2 + skill.maxed);
 					if (skill.maxed) {
 						cell.className = "maxed";
 					}
