@@ -7,6 +7,8 @@
 
 if (!Foxtrick) var Foxtrick={};
 
+Foxtrick.StartTime = new Date();
+	
 Foxtrick.BuildFor='Chrome';
 Foxtrick.ResourcePath = chrome.extension.getURL('');
 

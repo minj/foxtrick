@@ -37,7 +37,7 @@ Foxtrick.XMLData = {
 
 		
 // get settings
-var portgetsettings = chrome.extension.connect({name: "ftpref-query"});
+/*var portgetsettings = chrome.extension.connect({name: "ftpref-query"});
 portgetsettings.onMessage.addListener(function(msg) {  
 	if (msg.set=='settings') {console.log('msg.is_settings '+msg.set);
 		FoxtrickPrefs.pref = msg.pref; 
@@ -68,4 +68,4 @@ if (typeof(xml_got_settings)=='undefined') {
 	portgetsettings.postMessage({reqtype: "get_settings"}); console.log('do get_settings');
 	portgetsettings.postMessage({reqtype: "get_hty_staff"});
 	var xml_got_settings=true;
-}
+}*/
