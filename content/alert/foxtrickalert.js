@@ -78,7 +78,7 @@ var FoxtrickAlert = {
 		message = menu.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message && Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) { 
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
-				//Foxtrick.dump(message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
+				Foxtrick.dump(message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
 				if (num_message > FoxtrickAlert.last_num_message) {						
 					var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
 					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/MyHattrick/Inbox/Default.aspx"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
@@ -159,7 +159,7 @@ var FoxtrickAlert = {
 			localStorage['news0']  = FoxtrickAlert.news[0];
 			localStorage['news1']  = FoxtrickAlert.news[1];
 			localStorage['news2']  = FoxtrickAlert.news[2];
-			portalert.postMessage({reqtype: "set_unreadticker_count",unreadticker_count: numunreadticker});
+			//portalert.postMessage({reqtype: "set_unreadticker_count",unreadticker_count: numunreadticker});				
 		}
         } catch(e) { Foxtrick.dump('error checkNews '+e); }
     },
@@ -191,7 +191,8 @@ var FoxtrickAlert = {
 		}
 
 		if (Foxtrick.isModuleFeatureEnabled(this, "AlertSlider")) {		
-			FoxtrickAlert.foxtrick_showAlert_std( message, href);
+			if (Foxtrick.BuildFor=='Chrome') FoxtrickAlert.foxtrick_showAlertChrome( message, href);
+			else FoxtrickAlert.foxtrick_showAlert_std( message, href);
 		}
 		else if (Foxtrick.isModuleFeatureEnabled(this, "AlertSliderGrowl")) {
 			FoxtrickAlert.foxtrick_showAlertGrowl(message);
@@ -279,6 +280,10 @@ var FoxtrickAlert = {
     		Foxtrick.LOG(e);
     	}
     },
+
+    foxtrick_showAlertChrome: function( message, href) {
+ 		portalert.postMessage({reqtype: "show_note",message: message});
+	},
 };
 
 
