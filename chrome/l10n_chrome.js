@@ -39,6 +39,6 @@ var Foxtrickl10n = {
 		var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" ); 
 		if (Foxtrickl10n.screenshots.search(string_regexp)!=-1) return Foxtrickl10n.screenshots.match(string_regexp)[1];
 		return '';
-	}catch(e){alert('getscreenshots '+e);}
+	}catch(e){console.log('getscreenshots '+e);}
     },
 };

@@ -167,7 +167,7 @@ function isHTUrl(url) {
 	req.open('GET', url , true); 
 	req.send(null);
 	
-} catch(e) {alert('resource init:' +e)}
+} catch(e) {console.log('resource init:' +e)}
 
 
 	/*try{
@@ -279,7 +279,7 @@ chrome.extension.onConnect.addListener(function(port) {
 					localStorage['properties']=properties;
 					port.postMessage({set:'lang_changed', properties: propertiesxhr.responseText, reload:msg.reload});
 				}
-			} catch(e) {alert('language doesnt exist: '+lang+' '+e);}			
+			} catch(e) {console.log('language doesnt exist: '+lang+' '+e);}			
 		} 
 	    else if (msg.reqtype == "delete_pref") {
 			// delete a preference			
@@ -288,17 +288,17 @@ chrome.extension.onConnect.addListener(function(port) {
 			console.log(string_regexp+' '+preftext.search(string_regexp));
 			preftext = preftext.replace(string_regexp,'');
 			localStorage['pref'] = preftext;
-			} catch(e) {alert('delete_pref '+e);}
+			} catch(e) {console.log('delete_pref '+e);}
 			//port.postMessage({pref_changed: 'true', prefs:preftext, properties: properties, reload:false});
 		} 
 	    else if (msg.reqtype == "delete_pref_list") {
 			// delete a preference			
 			try {
 			var string_regexp = new RegExp( 'user_pref\\("'+msg.pref+'".+\\n','g');
-			alert(string_regexp+' '+preftext.search(string_regexp));
+			console.log(string_regexp+' '+preftext.search(string_regexp));
 			preftext = preftext.replace(string_regexp,'');
 			localStorage['pref'] = preftext;
-			} catch(e) {alert('delete_pref '+e);}
+			} catch(e) {console.log('delete_pref '+e);}
 			port.postMessage({pref_changed: 'true', prefs:preftext, properties: properties, reload:false});
 		} 
 	  } catch(e) {alert('error msg.reqtype : '+msg.reqtype+' '+e);} 
@@ -308,14 +308,30 @@ chrome.extension.onConnect.addListener(function(port) {
 	{ //alert('ftpref: '+port.name);
 	port.onMessage.addListener(function(msg) {  
 	  try { 	
-		if (msg.reqtype == "get_old_alerts") {  
+		if (msg.reqtype == "show_note") {  
+			// Create a simple text notification:
+			var notification = webkitNotifications.createNotification(
+				'ht-favicon.ico',  // icon url - can be relative
+				'Hattrick',  // notification title
+				msg.message  // notification body text
+			);
+		
+			// Then show the notification.
+			notification.show();
+		
+			// close after 5 sec
+			setTimeout(function(){
+				notification.cancel();
+				}, '5000');
+        }
+		else if (msg.reqtype == "get_old_alerts") {  
 			if (newstart) port.postMessage({response:'resetalert'});
 			else port.postMessage({response:'noresetalert'});
 			newstart = false;
         }
 		else if (msg.reqtype == "set_mail_count") {  
 			mail_count = msg.mail_count;
-			getInboxCount(function(count) { //alert(mail_count);
+			getInboxCount(function(count) { 
 					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
 			});
 		}
@@ -325,14 +341,8 @@ chrome.extension.onConnect.addListener(function(port) {
 					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
 			});
 		}
-		else if (msg.reqtype == "set_unreadticker_count") {  
-			unreadticker_count = msg.unreadticker_count;
-			getInboxCount(function(count) {
-					updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
-			});
-		}
 		 else port.postMessage({});				    
-	  } catch(e) {alert('error msg.reqtype : '+msg.reqtype+' '+e);} 
+	  } catch(e) {console.log('error msg.reqtype : '+msg.reqtype+' '+e);} 
 	 });	
 	}
 	if (port.name == "chatoldserver") 
@@ -346,23 +356,6 @@ chrome.extension.onConnect.addListener(function(port) {
         }
 		})
 	}
-		/*if (port.name == "htms") { //alert('htms: '+port.name);
-		port.onMessage.addListener(function(msg) {  
-		  if (msg.reqtype=="get_htms") { 	
-			var req = new XMLHttpRequest();
-			var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
-			var stopTimer = function(){window.clearTimeout(abortTimerId); };
-			req.onreadystatechange = function(){ 
-				if (req.readyState == 4){ 
-					stopTimer(); 
-					port.postMessage({set:'htms', responseText: req.responseText});	
-				}
-			}
-			req.open('GET', msg.url , true); 
-			req.send(null);
-		  }
-	    });
-	}*/
 });
 
 
@@ -407,10 +400,7 @@ chrome.extension.onConnect.addListener(function(port) {
 });
 
 </script>
-  <script type="text/javascript" src=" background_ticker.js"></script>
 </head>
-<body onload="background_ticker_init()">
-<img id="logged_in" src="resources/img/foxtrick18grey.png">
-<canvas id="canvas" width="18" height="18"/>
+<body>
 </body>
 </html>
