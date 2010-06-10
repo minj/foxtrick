@@ -23,14 +23,23 @@ FoxtrickSmallerPages = {
 		if (doc.getElementById("hattrickNoSupporter")) {
 			// if the advertisement at the right side is blocked,
 			// non suppoters will still see a blank space on the right
-			// since a fixed width of 1024px is assigned.
+			// since a fixed width larger than needed is assigned.
 			// now we find if the ad is blocked, reduce the width of the
-			// container to 1001px, which is the width of the div with id
-			// "page", 981px, plus its margin at the left and right, 10px each.
+			// container.
 			var main = doc.getElementById("hattrickNoSupporter");
 			var skyscraperAd = doc.getElementById("google_ads_div_HT_Right");
 			if (!skyscraperAd) {
-				main.style.width = "1001px";
+				if (Foxtrick.isStandardLayout(doc)) {
+					// for standard theme, reduce to 1001px, which is the width
+					// of the div with id "page", 981px, plus its margin at the
+					// left and right, 10px each.
+					main.style.width = "1001px";
+				}
+				else {
+					// while for simple theme, it's merely the width of the div
+					// with id "page", which is 765px.
+					main.style.width = "765px";
+				}
 			}
 		}
 		if (page == "playerdetail") {
