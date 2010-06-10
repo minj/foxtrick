@@ -6,11 +6,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 FoxtrickSmallerPages = {
 
-	MODULE_NAME : "FoxtrickSmallerPages",
+	MODULE_NAME : "SmallerPages",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
-	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION : "0.5.0.5",
+	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Reduce page width for non supporters if advertisement on the right is blocked.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("ReduceBid"),
