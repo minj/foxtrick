@@ -106,3 +106,18 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 .ft-youth-series-estimation.near-start {
 	color: red;
 }
+
+#ft_dump {
+	border: 1px solid #abcdef;
+	font-size: 12px !important;
+	max-height: 250px;
+	overflow: auto;
+}
+
+#ft_dump h1 {
+	margin: 6px 0 15px 6px !important;
+}
+
+#ft_dump pre {
+	width: auto !important;
+}

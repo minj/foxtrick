@@ -2013,20 +2013,28 @@ Foxtrick.var_dump = function(arr,level) {
 
 Foxtrick.dump_HTML = '';
 Foxtrick.dump_flush = function(doc) {
-    if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '') {
-        try{
-            var div = doc.getElementById('ft_dump');
-            if (div == null) {
-                var div = doc.createElement('div');
-                div.setAttribute('style', 'border:1px solid#ABCDEF');
-                div.innerHTML = '<h1 style="margin: 6px 0 15px 6px">FoxTrick dump</h1><pre style="font-size:12px; white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -o-pre-wrap;">' + Foxtrick.dump_HTML + '</pre>';
-                div.id = 'ft_dump';
-                doc.getElementById('page').appendChild(div);
-            }
-			else { div.getElementsByTagName('pre')[0].innerHTML += Foxtrick.dump_HTML;
+	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '') {
+		try {
+			var div = doc.getElementById('ft_dump');
+			if (div == null) {
+				var div = doc.createElement('div');
+				div.id = "ft_dump";
+				var header = doc.createElement('h1');
+				header.textContent = "Foxtrick Log";
+				var pre = doc.createElement('pre');
+				pre.textContent = Foxtrick.dump_HTML;
+				div.appendChild(header);
+				div.appendChild(pre);
+				doc.getElementById('page').appendChild(div);
 			}
-            Foxtrick.dump_HTML = '';
-        } catch(e) {dump('dump_flush '+e+'\n');}
+			else {
+				div.getElementsByTagName('pre')[0].textContent += Foxtrick.dump_HTML;
+			}
+			Foxtrick.dump_HTML = '';
+		}
+		catch (e) {
+			dump('dump_flush '+e+'\n');
+		}
 	}
 }
 
