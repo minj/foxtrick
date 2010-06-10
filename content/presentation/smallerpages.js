@@ -6,57 +6,49 @@
 ////////////////////////////////////////////////////////////////////////////////
 FoxtrickSmallerPages = {
 
-    MODULE_NAME : "FoxtrickSmallerPages",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail','youthoverview'), 
-    DEFAULT_ENABLED : false,
+	MODULE_NAME : "FoxtrickSmallerPages",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('playerdetail','youthoverview'),
+	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Added: reduced size if playeravater is off on playerdetails page",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	OPTIONS : new Array( "ReduceBid"),
-    
-    init : function() {
-    },
+	OPTIONS : new Array("ReduceBid"),
 
-    run : function( page, doc ) {
-		switch(page) {
+	TABLE_ID : "foxtrick-smaller-pages-table",
+
+	init : function() {
+	},
+
+	run : function(page, doc) {
+		switch (page) {
 			case 'playerdetail':
 				if (!doc.getElementById('ctl00_CPMain_ucPlayerFace_pnlAvatar')) {
-					doc.getElementById('ctl00_CPMain_pnlplayerInfo').setAttribute('style','width:auto');
-				}			
-			
-				if (Foxtrick.isModuleFeatureEnabled( this, "ReduceBid")) {
+					doc.getElementById('ctl00_CPMain_pnlplayerInfo').style.width = "auto";
+				}
+
+				if (Foxtrick.isModuleFeatureEnabled(this, "ReduceBid")) {
 					//we move the bid div
-					this._move_bid( doc );
+					if (doc.getElementById(this.TABLE_ID)) {
+						this._move_bid( doc );
+					}
 					//then adjust it
 					this._adjust_bid( doc );
 				}
 				break;
 			case 'youthoverview':
 				if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
-					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].setAttribute('style','width:auto');
-				}
-				break;				
-		}
-    },
-	
-	change : function( page, doc ) {
-		switch(page) {
-			case 'playerdetail':
-				if (Foxtrick.isModuleFeatureEnabled( this, "ReduceBid")) {
-					//bid div has already been moved, need only to be adjusted
-					this._adjust_bid( doc );
+					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].style.width = "auto";
 				}
 				break;
-			case 'youthoverview':
-				if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
-					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].setAttribute('style','width:auto');
-				}
-				break;				
 		}
 	},
-    
-	_move_bid : function ( doc ) {
+
+	change : function(page, doc) {
+		this.run(page, doc);
+	},
+
+	_move_bid : function(doc) {
 		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
 		if (biddiv) {
 			try {
@@ -65,13 +57,14 @@ FoxtrickSmallerPages = {
 				//I get the skilltable and create a new table where to put skilltable and biddiv
 				var skilltable=skilldiv.getElementsByTagName('table').item(0);
 				var newtable=doc.createElement('table');
+				newtable.id = "foxtrick-smaller-pages-table";
 				skilldiv.appendChild(newtable);
 				newtable.insertRow(0);
 				newtable.rows[0].insertCell(0);
 				newtable.rows[0].insertCell(1);
 				newtable.rows[0].cells[0].appendChild(skilltable);
 				newtable.rows[0].cells[1].appendChild(biddiv);
-				
+
 				//Now reducing the bid div cutting strings
 				var toremove=biddiv.getElementsByTagName('strong');
 				for (i=0;toremove.length;i++) {
@@ -83,17 +76,15 @@ FoxtrickSmallerPages = {
 				}
 			}
 			catch (e) {
-				Foxtrick.LOG(e);
-				Foxtrick.dump("FoxtrickSmallerPages"+e);
+				Foxtrick.dumpError(e);
 			}
 		}
-        
 	},
-	
-	_adjust_bid : function ( doc ) {
+
+	_adjust_bid : function (doc) {
 		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
 		if (biddiv) {
-			try {				
+			try {
 				//Now reducing the bid div cutting strings
 				var toremove=biddiv.getElementsByTagName('strong');
 				for (i=0;toremove.length;i++) {
@@ -112,12 +103,8 @@ FoxtrickSmallerPages = {
 				//}
 			}
 			catch (e) {
-				Foxtrick.LOG(e);
-				Foxtrick.dump("FoxtrickSmallerPages"+e);
+				Foxtrick.dumpError(e);
 			}
 		}
-        
 	}
-
 };
-
