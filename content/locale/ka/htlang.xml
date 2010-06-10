@@ -1,0 +1,74 @@
+<language name="ka" desc="Georgian">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="ჩემი ჰეთთრიქი" />
+	<MyClub value="ჩემი კლუბი" />
+	<World value="მსოფლიო" />
+	<Forum value="ფორუმი" />
+	<Shop value="მაღაზია" />
+	<Help value="დახმარება" />
+	
+	<!-- rating sublevels appearing in match detail page -->
+	<ratingSubLevels>
+		<sublevel text="(ძალიან დაბალი)" value="0.0" />
+		<sublevel text="(დაბალი)" value="0.25" />
+		<sublevel text="(მაღალი)" value="0.50" />
+		<sublevel text="(ძალიან მაღალი)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page -->
+	<tactics>
+		<tactic type="normal" value="ჩვეულებრივი" />
+		<tactic type="pressing" value="პრესინგი" />
+		<tactic type="ca" value="კონტრ შეტევა" />
+		<tactic type="aow" value="ცენტრიდან შეტევა" />
+		<tactic type="aim" value="ფლანგებიდან შეტევა" />
+		<tactic type="creatively" value="შემოქმედებითად თამაში" />
+		<tactic type="longshots" value="შორეული დარტყმები" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy "value". translate "short" -->
+	<positions>
+		<position type="Keeper" value="მეკარე" short="Ke" />
+		<position type="Central defender" value="ცენტრალური მცველი" short="Cd" />
+		<position type="Wing back" value="განაპირა მცველი" short="Wb" />
+		<position type="Inner midfielder" value="ნახევარმცველი" short="Im" />
+		<position type="Winger" value="ფლანგი" short="Wi" />
+		<position type="Forward" value="თავდამსხმელი" short="Fo" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="ტექნიკური" short="Un" />
+		<specialty type="Powerful" value="სწრაფი" short="Po" />
+		<specialty type="Quick" value="ძლიერი" short="Qu" />
+		<specialty type="Technical" value="გამოუცნობი" short="Te" />
+		<specialty type="Head" value="თავი" short="He" />
+		<specialty type="Regainer" value="ტრავმების ამტანი" short="Re" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="ღვთაებრივი" value="20" />
+		<level text="ზღაპრული" value="19" />
+		<level text="ჯადოსნური" value="18" />
+		<level text="საარაკო" value="17" />
+		<level text="არამიწიერი" value="16" />
+		<level text="ბუმბერაზი" value="15" />
+		<level text="ზებუნებრივი" value="14" />
+		<level text="მსოფლიო დონის" value="13" />
+		<level text="დიდებული" value="12" />
+		<level text="ბრწყინვალე" value="11" />
+		<level text="საუცხოო" value="10" />
+		<level text="შესანიშნავი" value="9" />
+		<level text="ჩინებული" value="8" />
+		<level text="კარგი" value="7" />
+		<level text="ნორმალური" value="6" />
+		<level text="არასაკმარისი" value="5" />
+		<level text="სუსტი" value="4" />
+		<level text="ცუდი" value="3" />
+		<level text="უვარგისი" value="2" />
+		<level text="საშინელი" value="1" />
+		<level text="არანაირი" value="0" />
+	</levels>
+</language>

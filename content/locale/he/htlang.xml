@@ -1,0 +1,74 @@
+<language name="he" desc="עברית">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="האטריק שלי" />
+	<MyClub value="המועדון שלי" />
+	<World value="העולם" />
+	<Forum value="פורום" />
+	<Shop value="חנות" />
+	<Help value="עזרה" />
+	
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
+	<ratingSubLevels>
+		<sublevel text="(נמוך מאוד)" value="0.0" />
+		<sublevel text="(נמוך)" value="0.25" />
+		<sublevel text="(גבוה)" value="0.50" />
+		<sublevel text="(גבוה מאוד)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page. copy "value" -->
+	<tactics>
+		<tactic type="normal" value="רגילה" />
+		<tactic type="pressing" value="לחץ" />
+		<tactic type="ca" value="התקפות מתפרצות" />
+		<tactic type="aow" value="התקפה מהאגפים" />
+		<tactic type="aim" value="התקפה מהמרכז" />
+		<tactic type="creatively" value="משחק יצירתי" />
+		<tactic type="longshots" value="התקפה מרחוק" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy "value". translate "short" -->
+	<positions>
+		<position type="Keeper" value="Keeper" short="Ke" />
+		<position type="Central defender" value="Central defender" short="Cd" />
+		<position type="Wing back" value="Wing back" short="Wb" />
+		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
+		<position type="Winger" value="Winger" short="Wi" />
+		<position type="Forward" value="Forward" short="Fo" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
+		<specialty type="Powerful" value="Powerful" short="Po" />
+		<specialty type="Quick" value="Quick" short="Qu" />
+		<specialty type="Technical" value="Technical" short="Te" />
+		<specialty type="Head" value="Head" short="He" />
+		<specialty type="Regainer" value="Regainer" short="Re" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="divine" value="20" />
+		<level text="utopian" value="19" />
+		<level text="magical" value="18" />
+		<level text="mythical" value="17" />
+		<level text="extra-terrestrial" value="16" />
+		<level text="titanic" value="15" />
+		<level text="supernatural" value="14" />
+		<level text="world class" value="13" />
+		<level text="magnificent" value="12" />
+		<level text="brilliant" value="11" />
+		<level text="outstanding" value="10" />
+		<level text="formidable" value="9" />
+		<level text="excellent" value="8" />
+		<level text="solid" value="7" />
+		<level text="passable" value="6" />
+		<level text="inadequate" value="5" />
+		<level text="weak" value="4" />
+		<level text="poor" value="3" />
+		<level text="wretched" value="2" />
+		<level text="disastrous" value="1" />
+		<level text="non-existent" value="0" />
+	</levels>
+</language>

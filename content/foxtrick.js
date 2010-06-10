@@ -1795,19 +1795,6 @@ Foxtrick.LoadXML = function (xmlfile) {
 	return response;
 }
 
-
-Foxtrick.loadXmlIntoDOM = function(url) {
-		var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
-		req.open("GET", url, false);
-		req.send(null);
-		var doc = req.responseXML;
-		if (doc.documentElement.nodeName == "parsererror") {
-			Foxtrick.dump("error parsing " + url+"\n");
-			return null;
-		}
-		return doc;
-	}
-
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
 	var result = new Array();
 	if (xmlresponse) {

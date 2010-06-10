@@ -1,0 +1,74 @@
+<language name="fa" desc="فارسی">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="هت‌‌تریک من" />
+	<MyClub value="باشگاه من" />
+	<World value="بین‌‌المللی" />
+	<Forum value="انجمن‌‌ها" />
+	<Shop value="فروشگاه" />
+	<Help value="راهنمایی" />
+	
+	<!-- rating sublevels appearing in match detail page -->
+	<ratingSubLevels>
+		<sublevel text="(خيلي کم)" value="0.0" />
+		<sublevel text="(کم)" value="0.25" />
+		<sublevel text="(زياد)" value="0.50" />
+		<sublevel text="(خيلي زياد)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page -->
+	<tactics>
+		<tactic type="normal" value="عادی" />
+		<tactic type="pressing" value="پرسینگ" />
+		<tactic type="ca" value="ضد حمله" />
+		<tactic type="aow" value="حمله از جناحین" />
+		<tactic type="aim" value="حمله از عمق" />
+		<tactic type="creatively" value="بازی خلاقانه" />
+		<tactic type="longshots" value="شوت از راه دور" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy "value". translate "short" -->
+	<positions>
+		<position type="Keeper" value="Keeper" short="Ke" />
+		<position type="Central defender" value="Central defender" short="Cd" />
+		<position type="Wing back" value="Wing back" short="Wb" />
+		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
+		<position type="Winger" value="Winger" short="Wi" />
+		<position type="Forward" value="Forward" short="Fo" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
+		<specialty type="Powerful" value="Powerful" short="Po" />
+		<specialty type="Quick" value="Quick" short="Qu" />
+		<specialty type="Technical" value="Technical" short="Te" />
+		<specialty type="Head" value="Head" short="He" />
+		<specialty type="Regainer" value="Regainer" short="Re" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="کهکشاني" value="20" />
+		<level text="رماني" value="19" />
+		<level text="جادويي" value="18" />
+		<level text="فسانهاي" value="17" />
+		<level text="خارقالعاده" value="16" />
+		<level text="استثنايي" value="15" />
+		<level text="وقالعاده" value="14" />
+		<level text="بينالمللي" value="13" />
+		<level text="باشکوه" value="12" />
+		<level text="درخشان" value="11" />
+		<level text="برجسته" value="10" />
+		<level text="توانمند" value="9" />
+		<level text="عالي" value="8" />
+		<level text="خوب" value="7" />
+		<level text="قابل قبول" value="6" />
+		<level text="ناکافي" value="5" />
+		<level text="ضعيف" value="4" />
+		<level text="ناچيز" value="3" />
+		<level text="اسفبار" value="2" />
+		<level text="افتضاح" value="1" />
+		<level text="بدون مهارت" value="0" />
+	</levels>
+</language>

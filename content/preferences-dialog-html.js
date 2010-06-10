@@ -483,11 +483,33 @@ var FoxtrickPrefsDialogHTML = {
 		
 		var td= doc.createElement("td");
         tr.appendChild(td); 
-		
-		var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htLanguagesXml, "hattricklanguages/language", "desc", "name",  FoxtrickPrefs.getString("htLanguage"));
-		selectbox.setAttribute("id","htLanguage");
+
+		var selectbox = doc.createElement("select");
+		selectbox.id = "htLanguage";
+		var htLocales = [];
+		for (var i in Foxtrick.XMLData.htLanguagesXml) {
+			var desc = Foxtrick.XMLData.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
+			htLocales.push({ name: i,  desc: desc });
+		}
+		htLocales.sort(function (a, b) { return a.desc.localeCompare(b.desc); });
+		var selectedLang = FoxtrickPrefs.getString("htLanguage");
+		var selectedIndex = 0;
+		var currentIndex = 0;
+		for (var i in htLocales) {
+			var locale = htLocales[i];
+			var item = doc.createElement("option");
+			item.id = "htLanguage-" + locale.name;
+			item.setAttribute("value", locale.name);
+			item.textContent = locale.desc;
+			selectbox.appendChild(item);
+			if (selectedLang == locale.name) {
+				selectedIndex = currentIndex;
+			}
+			++currentIndex;
+		}
+		selectbox.selectedIndex = selectedIndex;
 		td.appendChild(selectbox);
-				
+
 		var td= doc.createElement("td");
         tr.appendChild(td);
 		var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled"); 

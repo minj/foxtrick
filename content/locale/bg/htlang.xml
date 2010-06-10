@@ -1,0 +1,74 @@
+<language name="bg" desc="Български">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Моят Hattrick" />
+	<MyClub value="Моят клуб" />
+	<World value="Светът" />
+	<Forum value="Форум" />
+	<Shop value="Магазин" />
+	<Help value="Помощ" />
+	
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
+	<ratingSubLevels>
+		<sublevel text="(мн. ниско)" value="0.0" />
+		<sublevel text="(ниско)" value="0.25" />
+		<sublevel text="(високо)" value="0.50" />
+		<sublevel text="(мн. високо)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page. copy "value" -->
+	<tactics>
+		<tactic type="normal" value="Нормална" />
+		<tactic type="pressing" value="Преса" />
+		<tactic type="ca" value="Контра атаки" />
+		<tactic type="aow" value="Атака по крилата" />
+		<tactic type="aim" value="Атака в средата" />
+		<tactic type="creatively" value="Играй креативно" />
+		<tactic type="longshots" value="Далечни удари" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy "value". translate "short" -->
+	<positions>
+		<position type="Keeper" value="Вратар" short="Ke" />
+		<position type="Central defender" value="Защитник" short="Cd" />
+		<position type="Wing back" value="Бек" short="Wb" />
+		<position type="Inner midfielder" value="Полузащитник" short="Im" />
+		<position type="Winger" value="Крило" short="Wi" />
+		<position type="Forward" value="Нападател" short="Fo" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Непредвидим" short="Un" />
+		<specialty type="Powerful" value="Powerful" short="Po" />
+		<specialty type="Quick" value="Бърз" short="Qu" />
+		<specialty type="Technical" value="Техничен" short="Te" />
+		<specialty type="Head" value="Игра с глава" short="He" />
+		<specialty type="Regainer" value="Regainer" short="Re" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="божествено" value="20" />
+		<level text="легендарно" value="19" />
+		<level text="вълшебно" value="18" />
+		<level text="митично" value="17" />
+		<level text="извънземно" value="16" />
+		<level text="титанично" value="15" />
+		<level text="свръхестествено" value="14" />
+		<level text="световна класа" value="13" />
+		<level text="великолепно" value="12" />
+		<level text="брилянтно" value="11" />
+		<level text="изключително" value="10" />
+		<level text="прекрасно" value="9" />
+		<level text="отлично" value="8" />
+		<level text="стабилно" value="7" />
+		<level text="задоволително" value="6" />
+		<level text="посредствено" value="5" />
+		<level text="слабо" value="4" />
+		<level text="лошо" value="3" />
+		<level text="ужасно" value="2" />
+		<level text="бедствено" value="1" />
+		<level text="липсващо" value="0" />
+	</levels>
+</language>

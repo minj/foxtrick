@@ -1,0 +1,74 @@
+<language name="gr" desc="Ελληνικά">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Το Hattrick μου" />
+	<MyClub value="Ο Σύλλογος μου" />
+	<World value="Κόσμος" />
+	<Forum value="Διασκέψεις" />
+	<Shop value="Κατάστημα" />
+	<Help value="Βοήθεια" />
+	
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
+	<ratingSubLevels>
+		<sublevel text="(πολύ χαμηλό)" value="0.0" />
+		<sublevel text="(χαμηλό)" value="0.25" />
+		<sublevel text="(υψηλό)" value="0.50" />
+		<sublevel text="(πολύ υψηλό)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page. copy "value" -->
+	<tactics>
+		<tactic type="normal" value="Φυσιολογικά" />
+		<tactic type="pressing" value="Πρεσάρισμα" />
+		<tactic type="ca" value="Αντεπιθέσεις" />
+		<tactic type="aow" value="Επίθεση από το κέντρο" />
+		<tactic type="aim" value="Επίθεση από τα πλάγια" />
+		<tactic type="creatively" value="Δημιουργικό Παιχνίδι" />
+		<tactic type="longshots" value="Μακρινά σουτ" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy "value". translate "short" -->
+	<positions>
+		<position type="Keeper" value="Τερματοφύλακας" short="Ke" />
+		<position type="Central defender" value="Κεντρικός Αμυντικός" short="Cd" />
+		<position type="Wing back" value="Πλάγιος Αμυντικός" short="Wb" />
+		<position type="Inner midfielder" value="Κεντρικός Μέσος" short="Im" />
+		<position type="Winger" value="Πλάγιος Μέσος" short="Wi" />
+		<position type="Forward" value="Επιθετικός" short="Fo" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Απρόβλεπτος" short="Un" />
+		<specialty type="Powerful" value="Δυνατός" short="Po" />
+		<specialty type="Quick" value="Γρήγορος" short="Qu" />
+		<specialty type="Technical" value="Τεχνικός" short="Te" />
+		<specialty type="Head" value="Κεφαλιά" short="He" />
+		<specialty type="Regainer" value="Ταχυθεραπεύσιμος" short="Re" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="θεϊκός" value="20" />
+		<level text="ουτοπικός" value="19" />
+		<level text="μαγικός" value="18" />
+		<level text="μυθικός" value="17" />
+		<level text="εξωπραγματικός" value="16" />
+		<level text="τιτάνιος" value="15" />
+		<level text="υπερφυσικός" value="14" />
+		<level text="παγκόσμιας κλάσης" value="13" />
+		<level text="εντυπωσιακός" value="12" />
+		<level text="εκπληκτικός" value="11" />
+		<level text="εξαιρετικός" value="10" />
+		<level text="άριστος" value="9" />
+		<level text="πολύ καλός" value="8" />
+		<level text="καλός" value="7" />
+		<level text="μέτριος" value="6" />
+		<level text="ανεπαρκής" value="5" />
+		<level text="αδύναμος" value="4" />
+		<level text="κακός" value="3" />
+		<level text="άθλιος" value="2" />
+		<level text="καταστροφικός" value="1" />
+		<level text="ανύπαρκτος" value="0" />
+	</levels>
+</language>

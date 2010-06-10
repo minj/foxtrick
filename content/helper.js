@@ -325,8 +325,8 @@ var FoxtrickHelper = {
 		try {
 			pos = pos.replace(/&nbsp;/," ");
 			var lang = FoxtrickPrefs.getString("htLanguage");
-			var path = "hattricklanguages/language[@name=\"" + lang + "\"]/positions/position[@value=\"" + pos + "\"]";
-			var shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
+			var path = "language/positions/position[@value=\"" + pos + "\"]";
+			var shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
 			return shortPos;
 		}
 		catch (e) {
@@ -347,8 +347,8 @@ var FoxtrickHelper = {
 			if (spec==='') return '';
 			spec = spec.replace(/&nbsp;/," ");
 			var lang = FoxtrickPrefs.getString("htLanguage");
-			var path = "hattricklanguages/language[@name=\"" + lang + "\"]/specialties/specialty[@value=\"" + spec + "\"]";
-			var shortSpec = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "short");
+			var path = "language/specialties/specialty[@value=\"" + spec + "\"]";
+			var shortSpec = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
 			return shortSpec;
 		}
 		catch (e) {

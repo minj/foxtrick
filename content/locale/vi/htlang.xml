@@ -1,0 +1,74 @@
+<language name="vi" desc="Tiếng Việt">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection -->
+	<MyHattrick value="Hattrick" />
+	<MyClub value="CLB của tôi" />
+	<World value="Thế giới" />
+	<Forum value="Diễn đàn" />
+	<Shop value="Cửa hàng" />
+	<Help value="Trợ giúp" />
+	
+	<!-- rating sublevels appearing in match detail page -->
+	<ratingSubLevels>
+		<sublevel text="(Rất thấp)" value="0.0" />
+		<sublevel text="(Thấp)" value="0.25" />
+		<sublevel text="(Cao)" value="0.50" />
+		<sublevel text="(Rất cao)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page -->
+	<tactics>
+		<tactic type="normal" value="Bình thường" />
+		<tactic type="pressing" value="Pressing" />
+		<tactic type="ca" value="Phòng thủ phản công" />
+		<tactic type="aow" value="Tấn công trung lộ" />
+		<tactic type="aim" value="Tấn công cánh" />
+		<tactic type="creatively" value="Chơi sáng tạo" />
+		<tactic type="longshots" value="Sút xa " />
+	</tactics>
+	
+	<!-- positions appearing on players page -->
+	<positions>
+		<position type="Keeper" value="Thủ môn" short="Tm" />
+		<position type="Central defender" value="Hậu vệ trung tâm" short="Ht" />
+		<position type="Wing back" value="Hậu vệ biên" short="Hb" />
+		<position type="Inner midfielder" value="Tiền vệ trung tâm" short="Tt" />
+		<position type="Winger" value="Tiền vệ cánh" short="Tc" />
+		<position type="Forward" value="Tiền đạo" short="Td" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Ngẫu hứng" short="Nh" />
+		<specialty type="Powerful" value="Sức mạnh" short="Sm" />
+		<specialty type="Quick" value="Nhanh nhẹn" short="Nn" />
+		<specialty type="Technical" value="Kỹ thuật" short="Kt" />
+		<specialty type="Head" value="Đánh đầu" short="Dd" />
+		<specialty type="Regainer" value="Hồi phục nhanh" short="Hn" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="thần thánh" value="20" />
+		<level text="không tưởng" value="19" />
+		<level text="ma thuật" value="18" />
+		<level text="huyền thoại" value="17" />
+		<level text="ngoài hành tinh" value="16" />
+		<level text="mê hoặc" value="15" />
+		<level text="siêu phàm" value="14" />
+		<level text="đẳng cấp quốc tế" value="13" />
+		<level text="tuyệt vời" value="12" />
+		<level text="phi thường" value="11" />
+		<level text="kỳ diệu" value="10" />
+		<level text="vượt trộ" value="9" />
+		<level text="xuất sắc" value="8" />
+		<level text="giỏi" value="7" />
+		<level text="khá" value="6" />
+		<level text="trung bình" value="5" />
+		<level text="yếu" value="4" />
+		<level text="kém" value="3" />
+		<level text="tồi tệ" value="2" />
+		<level text="thảm hại" value="1" />
+		<level text="bất tài" value="0" />
+	</levels>
+</language>

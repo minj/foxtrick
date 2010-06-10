@@ -4,11 +4,64 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 var Foxtrickl10n = {
+	locale : {
+		"84" : "be",
+		"43" : "bg",
+		"58" : "bs",
+		"66" : "ca",
+		"35" : "cs",
+		"8" : "da",
+		"3" : "de",
+		"36" : "ee",
+		"2" : "en",
+		"6" : "es",
+		"103" : "es_ca",
+		"51" : "es_SU",
+		"110" : "eu",
+		"75" : "fa",
+		"9" : "fi",
+		"5" : "fr",
+		"113" : "fur",
+		"109" : "fy",
+		"74" : "gl",
+		"34" : "gr",
+		"40" : "he",
+		"39" : "hr",
+		"33" : "hu",
+		"4" : "it",
+		"111" : "lb",
+		"56" : "lt",
+		"37" : "lv",
+		"83" : "mk",
+		"87" : "mt",
+		"10" : "nl",
+		"7" : "no",
+		"13" : "pl",
+		"11" : "pt",
+		"50" : "pt_BR",
+		"23" : "ro",
+		"14" : "ru",
+		"53" : "sk",
+		"45" : "sl",
+		"85" : "sq",
+		"32" : "sr",
+		"1" : "sv",
+		"19" : "tr",
+		"57" : "uk",
+		"55" : "vi",
+		"65" : "vls",
+		"15" : "zh",
+		"90" : "ka",
+		"84" : "be",
+		"17" : "ko",
+		"12" : "ja"
+	},
+
     _strings_bundle : null,
 	_strings_bundle_default : null,
 	_strings_bundle_screenshots:null,
 	_strings_bundle_screenshots_default:null,
-	
+
     init : function() {
         this._strings_bundle_default =
              Components.classes["@mozilla.org/intl/stringbundle;1"] 
@@ -127,4 +180,3 @@ var Foxtrickl10n = {
 		return link;
     },
 };
-

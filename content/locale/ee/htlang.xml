@@ -1,0 +1,74 @@
+<language name="ee" desc="Eesti">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Minu Hattrick" />
+	<MyClub value="Minu klubi" />
+	<World value="Maailm" />
+	<Forum value="Foorum" />
+	<Shop value="Pood" />
+	<Help value="Abi" />
+	
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
+	<ratingSubLevels>
+		<sublevel text="(väga madal)" value="0.0" />
+		<sublevel text="(madal)" value="0.25" />
+		<sublevel text="(kõrge)" value="0.50" />
+		<sublevel text="(väga kõrge)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page. copy "value" -->
+	<tactics>
+		<tactic type="normal" value="Tavaline" />
+		<tactic type="pressing" value="Pressing" />
+		<tactic type="ca" value="Vasturünnakud" />
+		<tactic type="aow" value="Ründa äärtelt" />
+		<tactic type="aim" value="Ründa keskelt" />
+		<tactic type="creatively" value="Mängi loovalt" />
+		<tactic type="longshots" value="Kauglöögid" />
+	</tactics>
+	
+	<!-- positions appearing on players page. copy "value". translate "short" -->
+	<positions>
+		<position type="Keeper" value="Väravavaht" short="Vv" />
+		<position type="Central defender" value="Keskkaitsja" short="Kk" />
+		<position type="Wing back" value="Äärekaitsja" short="Äk" />
+		<position type="Inner midfielder" value="Keskpoolkaitsja" short="Kpk" />
+		<position type="Winger" value="Äär" short="Äär" />
+		<position type="Forward" value="Ründaja" short="Rü" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Ettearvamatu" short="Un" />
+		<specialty type="Powerful" value="Jõuline " short="Po" />
+		<specialty type="Quick" value="Kiire" short="Qu" />
+		<specialty type="Technical" value="Tehniline" short="Te" />
+		<specialty type="Head" value="Peamäng" short="He" />
+		<specialty type="Regainer" value="Elujõuline" short="Re" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="jumalik" value="20" />
+		<level text="utoopiline" value="19" />
+		<level text="maagiline" value="18" />
+		<level text="müstiline" value="17" />
+		<level text="ulmeline" value="16" />
+		<level text="titaanlik" value="15" />
+		<level text="üleloomulik" value="14" />
+		<level text="maailmaklass" value="13" />
+		<level text="imepärane" value="12" />
+		<level text="hiilgav" value="11" />
+		<level text="silmapaistev" value="10" />
+		<level text="suurepärane" value="9" />
+		<level text="eeskujulik" value="8" />
+		<level text="hea" value="7" />
+		<level text="rahuldav" value="6" />
+		<level text="puudulik" value="5" />
+		<level text="nõrk" value="4" />
+		<level text="vilets" value="3" />
+		<level text="armetu" value="2" />
+		<level text="kohutav " value="1" />
+		<level text="olematu" value="0" />
+	</levels>
+</language>

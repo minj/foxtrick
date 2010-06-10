@@ -65,12 +65,31 @@ var FoxtrickPreferencesDialog = {
 		// HT language
 		var language = doc.getElementById("language");
 		language.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage");
-		var htLanguagesXml = doc.implementation.createDocument("", "", null);
-		htLanguagesXml.async = false;
-		htLanguagesXml.load("chrome://foxtrick/content/htlocales/htlang.xml", "text/xml");
-		document.getElementById("htLanguage").selectedIndex =
-			FoxtrickPreferencesDialog.fillListFromXml("htLanguagePopup", "htLanguage-",
-				htLanguagesXml, "language", "desc", "name", FoxtrickPrefs.getString("htLanguage"));
+		var languageMenu = document.getElementById("htLanguage");
+		var languagePopup = document.getElementById("htLanguagePopup");
+		var htLocales = [];
+		for (var i in Foxtrick.XMLData.htLanguagesXml) {
+			var desc = Foxtrick.XMLData.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
+			htLocales.push({ name: i,  desc: desc });
+		}
+		htLocales.sort(function (a, b) { return a.desc.localeCompare(b.desc); });
+		var selectedLang = FoxtrickPrefs.getString("htLanguage");
+		var selectedIndex = 0;
+		var currentIndex = 0;
+		for (var i in htLocales) {
+			var locale = htLocales[i];
+			var item = document.createElement("menuitem");
+			item.id = "htLanguage-" + locale.name;
+			item.setAttribute("value", locale.name);
+			item.setAttribute("label", locale.desc);
+			languagePopup.appendChild(item);
+			if (selectedLang == locale.name) {
+				selectedIndex = currentIndex;
+			}
+			++currentIndex;
+		}
+		languageMenu.selectedIndex = selectedIndex;
+
 		// sync with HT prefs
 		var readHtPrefs = doc.getElementById("ReadHtPrefs");
 		readHtPrefs.checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");

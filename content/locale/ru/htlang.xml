@@ -1,0 +1,74 @@
+<language name="ru" desc="Русский">
+	
+	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+	<MyHattrick value="Мой Hattrick" />
+	<MyClub value="Мой Клуб" />
+	<World value="Мир" />
+	<Forum value="Форум" />
+	<Shop value="Магазин" />
+	<Help value="Помощь" />
+	
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
+	<ratingSubLevels>
+		<sublevel text="(низкий)" value="0.0" />
+		<sublevel text="(средний)" value="0.25" />
+		<sublevel text="(высокий)" value="0.50" />
+		<sublevel text="(очень высокий)" value="0.75" />
+	</ratingSubLevels>
+	
+	<!-- tactics appearing in match detail page. copy "value" -->
+	<tactics>
+		<tactic type="normal" value="Нормально" />
+		<tactic type="pressing" value="Прессинг" />
+		<tactic type="ca" value="Контратаки" />
+		<tactic type="aow" value="Атака по флангам" />
+		<tactic type="aim" value="Атака в центре" />
+		<tactic type="creatively" value="Играть творчески" />
+		<tactic type="longshots" value="Дальние удары" />
+	</tactics>
+	
+	<!-- positions appearing on players page -->
+	<positions>
+		<position type="Keeper" value="Вратарь" short="Вр" />
+		<position type="Central defender" value="Центральный защитник" short="ЦЗ" />
+		<position type="Wing back" value="Крайний защитник" short="КЗ" />
+		<position type="Inner midfielder" value="Центральный полузащитник" short="ЦП" />
+		<position type="Winger" value="Крайний полузащитник" short="КП" />
+		<position type="Forward" value="Нападающий" short="Н" />
+	</positions>
+	
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Непредсказуемый" short="Нп" />
+		<specialty type="Powerful" value="Мощный" short="Мщ" />
+		<specialty type="Quick" value="Быстрый" short="Бы" />
+		<specialty type="Technical" value="Техничный" short="Те" />
+		<specialty type="Head" value="Игра головой" short="Иг" />
+		<specialty type="Regainer" value="Крепкое здоровье" short="Зд" />
+	</specialties>
+	
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="божественно" value="20" />
+		<level text="легендарно" value="19" />
+		<level text="волшебно" value="18" />
+		<level text="сказочно" value="17" />
+		<level text="запредельно" value="16" />
+		<level text="колоссально" value="15" />
+		<level text="сверхъестественно" value="14" />
+		<level text="мирового класса" value="13" />
+		<level text="потрясающе" value="12" />
+		<level text="блестяще" value="11" />
+		<level text="восхитительно" value="10" />
+		<level text="превосходно" value="9" />
+		<level text="отлично" value="8" />
+		<level text="хорошо" value="7" />
+		<level text="сносно" value="6" />
+		<level text="недостаточно" value="5" />
+		<level text="слабо" value="4" />
+		<level text="плохо" value="3" />
+		<level text="ужасно" value="2" />
+		<level text="катастрофично" value="1" />
+		<level text="отсутствует" value="0" />
+	</levels>
+</language>

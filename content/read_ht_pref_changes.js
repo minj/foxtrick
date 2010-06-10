@@ -13,67 +13,9 @@ var FoxtrickReadHtPrefs = {
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Checks language on MyHattrick",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-
-	codes:{},
 	
-    init : function() {
-			this.codes['84']='be';
-			this.codes['43']='bg';
-			this.codes['58']='bs';
-			this.codes['66']='ca';
-			this.codes['35']='cs';
-			this.codes['8']='da';
-			this.codes['3']='de';
-			this.codes['36']='ee';
-			this.codes['2']='en';
-			this.codes['6']='es';
-			this.codes['103']='es_ca';
-			this.codes['51']='es_SU';
-			this.codes['110']='eu';
-			this.codes['75']='fa';
-			this.codes['9']='fi';
-			this.codes['5']='fr';
-			this.codes['113']='fur';
-			this.codes['109']='fy';
-			this.codes['74']='gl';
-			this.codes['34']='gr';
-			this.codes['40']='he';
-			this.codes['39']='hr';
-			this.codes['33']='hu';
-			this.codes['4']='it';
-			this.codes['111']='lb';
-			this.codes['56']='lt';
-			this.codes['37']='lv';
-			this.codes['83']='mk';
-			this.codes['87']='mt';
-			this.codes['10']='nl';
-			this.codes['7']='no';
-			this.codes['13']='pl';
-			this.codes['11']='pt';
-			this.codes['50']='pt_BR';
-			this.codes['23']='ro';
-			this.codes['14']='ru';
-			this.codes['53']='sk';
-			this.codes['45']='sl';
-			this.codes['85']='sq';
-			this.codes['32']='sr';
-			this.codes['1']='sv';
-			this.codes['19']='tr';
-			this.codes['57']='uk';
-			this.codes['55']='vi';
-			this.codes['65']='vls';
-			this.codes['15']='zh';
-			this.codes['90']='ka';
-			this.codes['84']='be';
-			this.codes['17']='ko';
-			this.codes['12']='ja';
-			
-			// following don't have an own locale file yet
-	/*
-	<option value="86">Kyrgyz</option>
-	 */  
-			
-   },
+	init : function() {
+	},
 
     menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
@@ -86,15 +28,15 @@ var FoxtrickReadHtPrefs = {
 		if (doc.location.pathname.search(/MyHattrick\/$|^\/$/) !=-1) {
 			var menu = doc.getElementById('menu');
 			var as = menu.getElementsByTagName('a');
-			var languages = Foxtrick.XMLData.htLanguagesXml.getElementsByTagName('language');
+			var languages = Foxtrick.XMLData.htLanguagesXml;
 			//alert(decodeURIComponent(as[5].innerHTML));
 			if (as.length < 6) {
 				Foxtrick.dump('no prelogin lang check\n');
 				return; // prelogin
 			}
-			for (var k=0; k<languages.length; ++k) {
+			for (var k in languages) {
 				var found = true;
-				for (var i=0; i<6;++i) {
+				for (var i = 0; i < 6; ++i) {
 					var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
 					if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
 						found = false;
@@ -102,18 +44,18 @@ var FoxtrickReadHtPrefs = {
 					}
 				}
 				if (found) {
-					langval = languages[k].getAttribute('name');
-					Foxtrick.dump('lang detected: '+langval+' oldval:'+oldval+'\n');
+					langval = k;
+					Foxtrick.dump("Language detected: " + langval + ", old language: " + oldval + ".\n");
 					break;
 				}
 			}
 		}
-		
+
 		if (!langval && doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {		
 			var langid = doc.getElementById('ctl00_CPMain_ddlLanguages').value;
-			langval = this.codes[langid];
+			langval = Foxtrickl10n.locale[langid];
 		}
-			
+
 		if (langval && langval != oldval) {
 			FoxtrickPrefs.setString("htLanguage", langval);		
 			
@@ -128,15 +70,14 @@ var FoxtrickReadHtPrefs = {
 				FoxtrickReadHtPrefs.ShowChanged(doc);  	
 			}
 		}
-				
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 
     ShowChanged: function(doc) {	
 	try {
-			var path = "hattricklanguages/language[@name='" + FoxtrickPrefs.getString("htLanguage") + "']";
-			var langname = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "desc");
-			
+			var path = "language";
+			var langname = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[FoxtrickPrefs.getString("htLanguage")], path, "desc");
+
 			var mainBody = doc.getElementById('mainBody');	
 			var alertdiv=doc.createElement('div');
 			alertdiv.setAttribute('class','alert');

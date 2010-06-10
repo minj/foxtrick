@@ -98,8 +98,8 @@ Foxtrick.Matches = {
 
 		try {
 			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));			
-			var path = "hattricklanguages/language[@name='" + lang + "']/ratingSubLevels/sublevel[@text='" + subLevel + "']";
-			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "value");
+			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
+			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "value");
 			if (!subLevelValue)	return -1;
 		} catch (e) {
 			Foxtrick.dump('matches.js _getStatFromCell: '+e + "\n");
@@ -124,8 +124,8 @@ Foxtrick.Matches = {
 		}
 
 		try {
-			var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
-			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml, path, "type");
+			var path = "language/tactics/tactic[@value=\"" + tactics + "\"]";
+			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "type");
 			if (subLevelValue) return subLevelValue
 			else return -1;
 		} catch (e) {
