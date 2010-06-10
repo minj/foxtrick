@@ -1,18 +1,18 @@
 /**
  * FoxtrickSmallerPages.js
  * Reduces the dimension of some pages to adapt to small screens
- * @author taised
+ * @author taised, ryanli
  */
 ////////////////////////////////////////////////////////////////////////////////
 FoxtrickSmallerPages = {
 
 	MODULE_NAME : "FoxtrickSmallerPages",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail','youthoverview'),
+	PAGES : ["all"],
 	DEFAULT_ENABLED : false,
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Added: reduced size if playeravater is off on playerdetails page",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	NEW_AFTER_VERSION : "0.5.0.5",
+	LATEST_CHANGE : "Reduce page width for non supporters if advertisement on the right is blocked.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("ReduceBid"),
 
 	TABLE_ID : "foxtrick-smaller-pages-table",
@@ -21,26 +21,37 @@ FoxtrickSmallerPages = {
 	},
 
 	run : function(page, doc) {
-		switch (page) {
-			case 'playerdetail':
-				if (!doc.getElementById('ctl00_CPMain_ucPlayerFace_pnlAvatar')) {
-					doc.getElementById('ctl00_CPMain_pnlplayerInfo').style.width = "auto";
-				}
+		if (doc.getElementById("hattrickNoSupporter")) {
+			// if the advertisement at the right side is blocked,
+			// non suppoters will still see a blank space on the right
+			// since a fixed width of 1024px is assigned.
+			// now we find if the ad is blocked, reduce the width of the
+			// container to 1001px, which is the width of the div with id
+			// "page", 981px, plus its margin at the left and right, 10px each.
+			var main = doc.getElementById("hattrickNoSupporter");
+			var skyscraperAd = doc.getElementById("google_ads_div_HT_Right");
+			if (!skyscraperAd) {
+				main.style.width = "1001px";
+			}
+		}
+		if (page == "playerdetail") {
+			if (!doc.getElementById('ctl00_CPMain_ucPlayerFace_pnlAvatar')) {
+				doc.getElementById('ctl00_CPMain_pnlplayerInfo').style.width = "auto";
+			}
 
-				if (Foxtrick.isModuleFeatureEnabled(this, "ReduceBid")) {
-					//we move the bid div
-					if (doc.getElementById(this.TABLE_ID)) {
-						this._move_bid( doc );
-					}
-					//then adjust it
-					this._adjust_bid( doc );
+			if (Foxtrick.isModuleFeatureEnabled(this, "ReduceBid")) {
+				//we move the bid div
+				if (doc.getElementById(this.TABLE_ID)) {
+					this._move_bid( doc );
 				}
-				break;
-			case 'youthoverview':
-				if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
-					doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].style.width = "auto";
-				}
-				break;
+				//then adjust it
+				this._adjust_bid( doc );
+			}
+		}
+		else if (page == "youthoverview") {
+			if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
+				doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].style.width = "auto";
+			}
 		}
 	},
 
