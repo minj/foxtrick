@@ -499,10 +499,10 @@ var FoxtrickSkillTable = {
 				return 0;
 			}
 			if (FoxtrickSkillTable.sortAsc) {
-				return aContent > bContent;
+				return aContent - bContent;
 			}
 			else {
-				return aContent < bContent;
+				return bContent - aContent;
 			}
 		}
 	},
