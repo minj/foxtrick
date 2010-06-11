@@ -19,7 +19,7 @@ var FoxtrickReadHtPrefs = {
 
     menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
-    run : function(page, doc ) {  
+    run : function(page, doc) {
 	try{
 		var langval = null;
 		var oldval = FoxtrickPrefs.getString("htLanguage");
@@ -34,19 +34,33 @@ var FoxtrickReadHtPrefs = {
 				Foxtrick.dump('no prelogin lang check\n');
 				return; // prelogin
 			}
-			for (var k in languages) {
-				var found = true;
-				for (var i = 0; i < 6; ++i) {
-					var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
-					if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
-						found = false;
+			var unchanged = true;
+			for (var i = 0; i < 6; ++i) {
+				var atitle = languages[oldval].getElementsByTagName(this.menu_strings[i])[0];
+				if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
+					unchanged = false;
+					break;
+				}
+			}
+			if (unchanged) {
+				langval = oldval;
+				Foxtrick.dump("Language unchanged as " + langval + ".\n");
+			}
+			else {
+				for (var k in languages) {
+					var found = true;
+					for (var i = 0; i < 6; ++i) {
+						var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
+						if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
+							found = false;
+							break;
+						}
+					}
+					if (found) {
+						langval = k;
+						Foxtrick.dump("Language detected: " + langval + ", old language: " + oldval + ".\n");
 						break;
 					}
-				}
-				if (found) {
-					langval = k;
-					Foxtrick.dump("Language detected: " + langval + ", old language: " + oldval + ".\n");
-					break;
 				}
 			}
 		}
