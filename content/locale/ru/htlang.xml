@@ -1,5 +1,5 @@
 <language name="ru" desc="Русский">
-	
+	<!-- based on English part of htlang.xml r4990 -->
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Мой Hattrick" />
 	<MyClub value="Мой Клуб" />
@@ -7,7 +7,7 @@
 	<Forum value="Форум" />
 	<Shop value="Магазин" />
 	<Help value="Помощь" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(низкий)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(высокий)" value="0.50" />
 		<sublevel text="(очень высокий)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Нормально" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Играть творчески" />
 		<tactic type="longshots" value="Дальние удары" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page -->
 	<positions>
 		<position type="Keeper" value="Вратарь" short="Вр" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Крайний полузащитник" short="КП" />
 		<position type="Forward" value="Нападающий" short="Н" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредсказуемый" short="Нп" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Игра головой" short="Иг" />
 		<specialty type="Regainer" value="Крепкое здоровье" short="Зд" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божественно" value="20" />
@@ -71,4 +71,31 @@
 		<level text="катастрофично" value="1" />
 		<level text="отсутствует" value="0" />
 	</levels>
+
+	<agreeability>
+		<level text="всеобщий любимец" value="5" />
+		<level text="популярный парень" value="4" />
+		<level text="обаятельный парень" value="3" />
+		<level text="приятный парень" value="2" />
+		<level text="неприятный человек" value="1" />
+		<level text="мерзкий тип" value="0" />
+	</agreeability>
+
+	<honesty>
+		<level text="святой" value="5" />
+		<level text="праведный" value="4" />
+		<level text="справедливый" value="3" />
+		<level text="честный" value="2" />
+		<level text="нечестный" value="1" />
+		<level text="подлый" value="0" />
+	</honesty>
+
+	<aggressiveness>
+		<level text="агрессивный" value="5" />
+		<level text="вспыльчивый" value="4" />
+		<level text="темпераментный" value="3" />
+		<level text="уравновешенный" value="2" />
+		<level text="спокойный" value="1" />
+		<level text="безмятежный" value="0" />
+	</aggressiveness>
 </language>
