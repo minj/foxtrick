@@ -4,6 +4,10 @@
  */
 
 Foxtrick.Pages.YouthPlayer = {
+	isYouthPlayerPage : function(doc) {
+		return Foxtrick.isPage(Foxtrick.ht_pages["youthplayerdetail"], doc);
+	},
+
 	getJoinedDays : function(doc) {
 		try {
 			// we presume the dates are in this format:

@@ -4,6 +4,10 @@
  */
 
 Foxtrick.Pages.Player = {
+	isPlayerPage : function(doc) {
+		return Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc);
+	},
+
 	getAge : function(doc) {
 		try {
 			// returns age in the following format:
@@ -14,9 +18,10 @@ Foxtrick.Pages.Player = {
 			for (var i = 0; i < allDivs.length; i++) {
 				if (allDivs[i].className == "byline") {
 					birthdayCell = allDivs[i];
+					break;
 				}
 			}
-			var birthdayMatch = birthdayRe.exec(birthdayCell.innerHTML);
+			var birthdayMatch = birthdayRe.exec(birthdayCell.textContent);
 
 			var age = {
 				years : parseInt(birthdayMatch[1]),
