@@ -48,5 +48,28 @@ Foxtrick.Pages.Player = {
 	getId : function(doc) {
 		var url = String(doc.location);
 		return url.match(RegExp("PlayerID=(\\d+)", "i"))[1];
+	},
+
+	getNationalityId : function(doc) {
+		try {
+			var flag = doc.getElementsByClassName("flag")[0];
+			var link = flag.href;
+			var idMatch = link.match(/LeagueID=(\d+)/i);
+			return idMatch[1];
+		}
+		catch (e) {
+			return null;
+		}
+	},
+
+	getNationalityName : function(doc) {
+		try {
+			var flag = doc.getElementsByClassName("flag")[0];
+			var img = flag.getElementsByTagName("img")[0];
+			return img.title;
+		}
+		catch (e) {
+			return null;
+		}
 	}
 };
