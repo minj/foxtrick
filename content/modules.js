@@ -121,7 +121,6 @@ Foxtrick.modules = [
                     FoxtrickHeaderFixLeft,
                     FoxtrickNewMail,
                     FoxtrickPlayerBirthday,
-                    //FoxtrickAddHtLiveToOngoing, // obsolete
                     FoxtrickReadHtPrefs,
                     FoxtrickMyHT,
                     FoxtrickPrefsDialogHTML,

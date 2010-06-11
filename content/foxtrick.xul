@@ -72,7 +72,6 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/contextMenuCopy.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/copyTrainingReport.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/playerbirthday.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/addhtlivetoongoing.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/seasonstats.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/youthskillsHideUnknown.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/skilltable.js" />
