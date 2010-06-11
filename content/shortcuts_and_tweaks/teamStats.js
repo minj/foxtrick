@@ -161,11 +161,11 @@ Foxtrick.TeamStats = {
 			}
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "experience")) {
 				var avgExperience = Math.round(totalExperience / playerList.length);
-				addRow(Foxtrickl10n.getString("Experience"), Foxtrick.XMLData.getLevelByTypeAndValue("levels", avgExperience));
+				addRow(Foxtrickl10n.getString("Experience"), Foxtrickl10n.getLevelByTypeAndValue("levels", avgExperience));
 			}
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "leadership")) {
 				var avgLeadership = Math.round(totalLeadership / playerList.length);
-				addRow(Foxtrickl10n.getString("Leadership"), Foxtrick.XMLData.getLevelByTypeAndValue("levels", avgLeadership));
+				addRow(Foxtrickl10n.getString("Leadership"), Foxtrickl10n.getLevelByTypeAndValue("levels", avgLeadership));
 			}
 
 			if (hasSpecialities) {
@@ -188,9 +188,9 @@ Foxtrick.TeamStats = {
 				var avgAggressiveness = Math.round(totalAggressiveness / playerList.length);
 				var avgAgreeability = Math.round(totalAgreeability / playerList.length);
 				var avgHonesty = Math.round(totalHonesty / playerList.length);
-				addRow(Foxtrickl10n.getString("Aggressiveness"), Foxtrick.XMLData.getLevelByTypeAndValue("aggressiveness", avgAggressiveness));
-				addRow(Foxtrickl10n.getString("Agreeability"), Foxtrick.XMLData.getLevelByTypeAndValue("agreeability", avgAgreeability));
-				addRow(Foxtrickl10n.getString("Honesty"), Foxtrick.XMLData.getLevelByTypeAndValue("honesty", avgHonesty));
+				addRow(Foxtrickl10n.getString("Aggressiveness"), Foxtrickl10n.getLevelByTypeAndValue("aggressiveness", avgAggressiveness));
+				addRow(Foxtrickl10n.getString("Agreeability"), Foxtrickl10n.getLevelByTypeAndValue("agreeability", avgAgreeability));
+				addRow(Foxtrickl10n.getString("Honesty"), Foxtrickl10n.getLevelByTypeAndValue("honesty", avgHonesty));
 			}
 
 			if (transferListed || yellowCards || twoYellowCards || redCards || bruised || injured) {

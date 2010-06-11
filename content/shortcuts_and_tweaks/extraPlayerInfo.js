@@ -32,7 +32,7 @@ FoxtrickExtraPlayerInfo = {
 
 				if (Foxtrick.isModuleFeatureEnabled(this, "CoachInfo")
 					&& player.trainerData !== undefined) {
-					var trainerSkillStr = Foxtrick.XMLData.getLevelByTypeAndValue("levels", player.trainerData.skill);
+					var trainerSkillStr = Foxtrickl10n.getLevelByTypeAndValue("levels", player.trainerData.skill);
 					var trainerTypeStr = "";
 					if (player.trainerData.type == 0) {
 						trainerTypeStr = Foxtrickl10n.getString('foxtrick.defensiveTrainer');

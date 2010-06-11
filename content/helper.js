@@ -321,43 +321,6 @@ var FoxtrickHelper = {
 		Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');		
 	},
 
-	getShortPosition: function(pos) {
-		try {
-			pos = pos.replace(/&nbsp;/," ");
-			var lang = FoxtrickPrefs.getString("htLanguage");
-			var path = "language/positions/position[@value=\"" + pos + "\"]";
-			var shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
-			return shortPos;
-		}
-		catch (e) {
-			Foxtrick.dump("Error getting short position, fall back to automatic abbreviation:");
-			Foxtrick.dumpError(e);
-			var space = pos.search(/ /);
-			if (space == -1) {
-				return pos.substr(0, 2);
-			}
-			else {
-				return pos.substr(0, 1) + pos.substr(space + 1, 1);
-			}
-		}
-	},
-
-	getShortSpeciality: function(spec) {
-		try {
-			if (spec==='') return '';
-			spec = spec.replace(/&nbsp;/," ");
-			var lang = FoxtrickPrefs.getString("htLanguage");
-			var path = "language/specialties/specialty[@value=\"" + spec + "\"]";
-			var shortSpec = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
-			return shortSpec;
-		}
-		catch (e) {
-			Foxtrick.dump("Error getting short speciality, fall back to substr:");
-			Foxtrick.dumpError(e);
-			return spec.substr(0, 2);
-		}
-	},
-
 	createFlagFromCountryId : function(doc, countryId) {
 		var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
 		leagueName = "New Moon";

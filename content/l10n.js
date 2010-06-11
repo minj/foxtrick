@@ -179,4 +179,97 @@ var Foxtrickl10n = {
 		}
 		return link;
     },
+
+	// this function returns level string of given level type and numeral value.
+	// type could be levels, for normal skills;
+	// agreeability, honesty, and aggressiveness, which are all obvious.
+	getLevelByTypeAndValue : function(type, val) {
+		var lang = FoxtrickPrefs.getString("htLanguage");
+		var path = "language/" + type + "/level[@value='" + val + "']";
+		var text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "text");
+		if (text === null) {
+			Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist in locale " + lang + ", try en instead.\n");
+			text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml["en"], path, "text");
+			if (text === null) {
+				Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist, returning raw value.\n");
+				text = val;
+			}
+		}
+		return text;
+	},
+
+	getSublevelByValue : function(val) {
+		var lang = FoxtrickPrefs.getString("htLanguage");
+		var path = "language/ratingSubLevels/sublevel[@value='" + val + "']";
+		var text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "text");
+		if (text === null) {
+			Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist in locale " + lang + ", try en instead.\n");
+			text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml["en"], path, "text");
+			if (text === null) {
+				Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist, returning raw value.\n");
+				text = val;
+			}
+		}
+		return text;
+	},
+
+	getFullLevelByValue : function(val) {
+		var main = Math.floor(val);
+		var sub = val - main;
+		if (sub >= 0 && sub < 0.25) {
+			sub = "0.0";
+		}
+		else if (sub >= 0.25 && sub < 0.5) {
+			sub = "0.25";
+		}
+		else if (sub >= 0.5 && sub < 0.75) {
+			sub = "0.50";
+		}
+		else if (sub >= 0.75 && sub < 1) {
+			sub = "0.75";
+		}
+		var mainStr = this.getLevelByTypeAndValue("levels", main);
+		var subStr = this.getSublevelByValue(sub);
+		return mainStr + " " + subStr;
+	},
+
+	getShortPosition: function(pos) {
+		try {
+			if (pos === "") {
+				return "";
+			}
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "language/positions/position[@value=\"" + pos + "\"]";
+			var shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
+			return shortPos;
+		}
+		catch (e) {
+			Foxtrick.dump("Error getting short position, fall back to automatic abbreviation:");
+			Foxtrick.dumpError(e);
+			var space = pos.search(/ /);
+			if (space == -1) {
+				return pos.substr(0, 2);
+			}
+			else {
+				return pos.substr(0, 1) + pos.substr(space + 1, 1);
+			}
+		}
+	},
+
+	getShortSpeciality: function(spec) {
+		try {
+			if (spec === "") {
+				return "";
+			}
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "language/specialties/specialty[@value=\"" + spec + "\"]";
+			var shortSpec = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
+			return shortSpec;
+		}
+		catch (e) {
+			Foxtrick.dump("Error getting short speciality, fall back to substr:");
+			Foxtrick.dumpError(e);
+			return spec.substr(0, 2);
+		}
+	}
 };

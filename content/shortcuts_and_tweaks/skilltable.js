@@ -241,7 +241,7 @@ var FoxtrickSkillTable = {
 				}
 			}
 			var speciality = function(cell, spec) {
-				var shortSpec = FoxtrickHelper.getShortSpeciality(spec);
+				var shortSpec = Foxtrickl10n.getShortSpeciality(spec);
 				var abbr = doc.createElement("abbr");
 				abbr.appendChild(doc.createTextNode(shortSpec));
 				abbr.title = spec;
@@ -265,7 +265,7 @@ var FoxtrickSkillTable = {
 				}
 			};
 			var position = function(cell, pos) {
-				var shortPos = FoxtrickHelper.getShortPosition(pos);
+				var shortPos = Foxtrickl10n.getShortPosition(pos);
 				var abbr = doc.createElement("abbr");
 				abbr.appendChild(doc.createTextNode(shortPos));
 				abbr.title = pos;

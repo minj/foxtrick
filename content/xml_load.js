@@ -208,58 +208,5 @@ Foxtrick.XMLData = {
 		else {
 			return 0;
 		}
-	},
-
-	// this function returns level string of given level type and numeral value.
-	// type could be levels, for normal skills;
-	// agreeability, honesty, and aggressiveness, which are all obvious.
-	getLevelByTypeAndValue : function(type, val) {
-		var lang = FoxtrickPrefs.getString("htLanguage");
-		var path = "language/" + type + "/level[@value='" + val + "']";
-		var text = Foxtrick.xml_single_evaluate(this.htLanguagesXml[lang], path, "text");
-		if (text === null) {
-			Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist in locale " + lang + ", try en instead.\n");
-			text = Foxtrick.xml_single_evaluate(this.htLanguagesXml["en"], path, "text");
-			if (text === null) {
-				Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist, returning raw value.\n");
-				text = val;
-			}
-		}
-		return text;
-	},
-
-	getSublevelByValue : function(val) {
-		var lang = FoxtrickPrefs.getString("htLanguage");
-		var path = "language/ratingSubLevels/sublevel[@value='" + val + "']";
-		var text = Foxtrick.xml_single_evaluate(this.htLanguagesXml[lang], path, "text");
-		if (text === null) {
-			Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist in locale " + lang + ", try en instead.\n");
-			text = Foxtrick.xml_single_evaluate(this.htLanguagesXml["en"], path, "text");
-			if (text === null) {
-				Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist, returning raw value.\n");
-				text = val;
-			}
-		}
-		return text;
-	},
-
-	getFullLevelByValue : function(val) {
-		var main = Math.floor(val);
-		var sub = val - main;
-		if (sub >= 0 && sub < 0.25) {
-			sub = "0.0";
-		}
-		else if (sub >= 0.25 && sub < 0.5) {
-			sub = "0.25";
-		}
-		else if (sub >= 0.5 && sub < 0.75) {
-			sub = "0.50";
-		}
-		else if (sub >= 0.75 && sub < 1) {
-			sub = "0.75";
-		}
-		var mainStr = this.getLevelByTypeAndValue("levels", main);
-		var subStr = this.getSublevelByValue(sub);
-		return mainStr + " " + subStr;
 	}
 }
