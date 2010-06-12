@@ -157,15 +157,17 @@ var FoxtrickExtraShortcuts = {
 					var link = doc.createElement('a');                
                     link.className = 'ft_extra-shortcuts';
                     link.target="_blank";
-					link.href = "http://www.ht-radio.nl";                    
-                    
+					link.href = "http://www.ht-radio.nl";                                        
+                    link.id = 'ht_radio_link';					
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSCPrefs");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
-                    img1.id = 'ft_extra-shortcuts_ht_radio_icon';
-					
+                    img1.id = 'ht_radio_icon';					
+					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/radio-icon-offline.png') !important;");                    
+					img1.title = "Hattrick Radio offline";
                     link.appendChild(img1);
-                    if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+                    
+					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
 					else { 
 						if (targetNode.lastChild.nodeName=='BR') { 
 							targetNode.insertBefore(link,targetNode.lastChild);
@@ -175,48 +177,39 @@ var FoxtrickExtraShortcuts = {
 						}
 					}
 					
-					var online=false;
-					try {
-						var location = 'http://stream.ht-radio.nl/foxtrick-status.php'
-						var startTime = (new Date()).getTime();
+						var url = 'http://stream.ht-radio.nl/foxtrick-status.php';											
 						var req = new XMLHttpRequest();
-						req.open("GET", location, false);
-						//req.overrideMimeType('text/xml');
-
-						req.send(null);
-						if (req.status == 200) {
-							var endTime = (new Date()).getTime();
-							//Foxtrick.dump("Time used for "+location+": " + (endTime - startTime) + "ms. "
-							//	+ "(This estimation is inaccurate, please use Tamper Data or other tools for better estimation)\n");
-							var radio_xml = req.responseXML;					 
-							if (radio_xml.getElementsByTagName('HattrickRadio').length!=0) {
-								if (radio_xml.getElementsByTagName('status').length!=0) {
-									if (radio_xml.getElementsByTagName('status')[0].textContent==='online') {
-										online = true;
-										//doc.getElementById('ft_extra-shortcuts_ht_radio_icon').
-										img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/radio-icon.png') !important;");                    
-										img1.title = "Hattrick Radio now playing: "+radio_xml.getElementsByTagName('song')[0].textContent;
-										if (Foxtrick.isModuleFeatureEnabled( this, "HtRadioWinamp")) 
-											link.href = radio_xml.getElementsByTagName('winamp')[0].textContent;
-										else link.href = radio_xml.getElementsByTagName('windows')[0].textContent;
-										Foxtrick.dump('Hattrick Radio online\n');
+						var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
+						var stopTimer = function(){window.clearTimeout(abortTimerId); };
+						req.onreadystatechange = function(){
+							if (req.readyState == 4){ 
+								try {
+									stopTimer(); 
+									var radio_xml = req.responseXML;					 
+									if (radio_xml.getElementsByTagName('HattrickRadio').length!=0) {
+										if (radio_xml.getElementsByTagName('status').length!=0) {
+											var link = doc.getElementById('ht_radio_link');
+											if (radio_xml.getElementsByTagName('status')[0].textContent==='online') {
+												var img1 = doc.getElementById('ht_radio_icon');
+												img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/radio-icon.png') !important;");                    
+												img1.title = "Hattrick Radio now playing: "+radio_xml.getElementsByTagName('song')[0].textContent;
+												if (Foxtrick.isModuleFeatureEnabled( this, "HtRadioWinamp")) 
+													link.href = radio_xml.getElementsByTagName('winamp')[0].textContent;
+												else link.href = radio_xml.getElementsByTagName('windows')[0].textContent;
+											}
+											else link.href = radio_xml.getElementsByTagName('website')[0].textContent;                    
+										}
 									}
-									else link.href = radio_xml.getElementsByTagName('website')[0].textContent;                    
-								}
-							}							
+								}							
+								catch (e) {
+									Foxtrick.dump("Failure getting " + url + ": " + e + "\n");
+								}				
+							}
 						}
-						else {
-							Foxtrick.dump("Failure getting " + location + ", request status: " + req.status + ".\n");
-						}
-					}
-					catch (e) {
-						Foxtrick.dump("Failure getting " + location + ": " + e + "\n");
-					}				
-					//doc.getElementById('ft_extra-shortcuts_ht_radio_icon').
-					if (!online) {
-						img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/radio-icon-offline.png') !important;");                    
-						img1.title = "Hattrick Radio offline";
-					}
+						var url = 'http://stream.ht-radio.nl/foxtrick-status.php';
+						req.open('GET', url , true); 
+						//req.overrideMimeType('text/xml');
+						req.send(null);
                 }	
 				
 				
