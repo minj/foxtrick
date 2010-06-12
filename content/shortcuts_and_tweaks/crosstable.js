@@ -343,7 +343,8 @@ var FoxtrickCrossTable = {
 				else {position += (9-week[ii][weekcount+1]);}
 			}
 			for (var ii = 0; ii<8; ii++) {
-				var team = escape(week[ii][0]);
+				var team = encodeURIComponent(week[ii][0]);
+				//Foxtrick.dump('#'+week[ii][0]+'# #'+team+'##\n')
 				teams += team;
 				if (ii < 7) {
 					// not the last one
