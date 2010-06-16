@@ -1463,84 +1463,54 @@ Foxtrick.htDatePrintFormat = function(year, season, week, day, date) {
     }
 }
 
-Foxtrick.getDatefromCellHTML = function( date ) {
-    /*
-    Returns Date for given input
-    date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
-    separator or leading zero is irrelevant
-    */
-    if (date == '') return false;
-        date +=' ';
+Foxtrick.getDateFromText = function(text) {
+	/*
+		Returns Date object for given text.
+		Text could be like dd-mm-yyyy, mm-dd-yyyy or yyyy-mm-dd
+		according to date format setting,
+		trailing minute:second is optional,
+		while separator and leading zero are irrelevant.
+	*/
+	if (!text) {
+		return null;
+	}
 
-        // Foxtrick.dump ('  CELL :[' + date + ']\n');
+	var reLong = /(\d+)\D+(\d+)\D+(\d+)\D+(\d+)\D+(\d+)/;
+	var reShort = /(\d+)\D+(\d+)\D+(\d+)/;
+	var matches;
+	if (text.match(reLong)) {
+		matches = text.match(reLong);
+	}
+	else if (text.match(reShort)) {
+		matches = text.match(reShort);
+	}
+	else {
+		return null;
+	}
 
-        var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-        var ar = reg.exec(date);
-        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-        if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+	const DATEFORMAT = FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
+	switch (DATEFORMAT) {
+		case 'ddmmyyyy':
+			var day = matches[1];
+			var month = matches[2];
+			var year = matches[3];
+			break;
+		case 'mmddyyyy':
+			var day = matches[2];
+			var month = matches[1];
+			var year = matches[3];
+			break;
+		case 'yyyymmdd':
+			var day = matches[3];
+			var month = matches[2];
+			var year = matches[1];
+			break;
+	}
+	var hour = (matches.length == 6) ? matches[4] : 0;
+	var minute = (matches.length == 6) ? matches[5] : 0;
 
-        switch ( DATEFORMAT ) {
-            case 'ddmmyyyy':
-                var SD = ar[1];
-                var SM = ar[3];
-                var SY = ar[5];
-                break;
-            case 'mmddyyyy':
-                var SD = ar[3];
-                var SM = ar[1];
-                var SY = ar[5];
-                break;
-            case 'yyyymmdd':
-                var SD = ar[5];
-                var SM = ar[3];
-                var SY = ar[1];
-                break;
-        }
-
-        var SH = ar[7];
-        var SMn = ar[9];
-        var SS = '00';
-        // Foxtrick.dump('  TIME:' + date + ' = ' + SY + '-' + SM + '-' + SD + ' ' + SH + ':' + SMn + ':' + SS + '!\n');
-        var CellDate = new Date(SY, SM-1, SD, SH, SMn, SS);
-    return CellDate;
-}
-
-Foxtrick.getUniqueDayfromCellHTML = function( date ) {
-    /*
-    Returns Date for given input
-    date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
-    separator or leading zero is irrelevant
-    */
-    if (date == '') return false;
-        date +=' ';
-
-        // Foxtrick.dump ('  CELL :[' + date + ']\n');
-
-        var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})/i;
-		var ar = reg.exec(date);
-        var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-        if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
-
-        switch ( DATEFORMAT ) {
-            case 'ddmmyyyy':
-                var SD = ar[1];
-                var SM = ar[3];
-                var SY = ar[5];
-                break;
-            case 'mmddyyyy':
-                var SD = ar[3];
-                var SM = ar[1];
-                var SY = ar[5];
-                break;
-            case 'yyyymmdd':
-                var SD = ar[5];
-                var SM = ar[3];
-                var SY = ar[1];
-                break;
-        }
-        //Foxtrick.dump(date+' '+ar+' SY:'+SY+'\n');
-        var CellDays = SY*31*12+SM*31+SD;
-    return CellDays;
+	var date = new Date(year, month - 1, day, hour, minute);
+	return date;
 }
 
 TimeDifferenceToText = function( time_sec, short ) {

@@ -56,7 +56,7 @@ FoxtrickLastLogin = {
         if (div == null) 
         try {
 			var httime = doc.getElementById( "time" ).innerHTML;
-            var HT_date = Foxtrick.getDatefromCellHTML( httime );
+            var HT_date = Foxtrick.getDateFromText( httime );
             
             if (!Foxtrick.HT_date) return;
             var div = doc.getElementById( "pnlLogin" );
@@ -83,7 +83,7 @@ FoxtrickLastLogin = {
                 login_elm[i] = Foxtrick.trim(login_elm[i]);
                 var last = '';
                 if (login_elm[i].search(/\*\*\*\.\*\*\*/) != -1) {
-                    var ST_date = Foxtrick.getDatefromCellHTML( login_elm[i] );
+                    var ST_date = Foxtrick.getDateFromText( login_elm[i] );
 					
 				//	Foxtrick.dump(login_elm[i]+'\n'+ST_date+'\n');
                     var _s = Math.floor( (HT_date.getTime() - ST_date.getTime()) / 1000); //Sec

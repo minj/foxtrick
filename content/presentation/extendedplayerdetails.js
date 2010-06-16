@@ -51,7 +51,7 @@ FoxtrickExtendedPlayerDetails = {
 
             var ht_week = Foxtrick.gregorianToHT(joinedtime);
 
-            var JT_date = Foxtrick.getDatefromCellHTML( joinedtime );
+            var JT_date = Foxtrick.getDateFromText( joinedtime );
             if (!JT_date) return;
 
             var joined_s = Math.floor( (Foxtrick.HT_date.getTime() - JT_date.getTime()) / 1000); //Sec

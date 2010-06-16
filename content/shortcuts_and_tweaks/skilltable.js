@@ -89,7 +89,7 @@ var FoxtrickSkillTable = {
 					var as = allPlayerInfo[i].getElementsByTagName("a");
 					for (var j = 0; j < as.length; ++j) {
 						if (as[j].href.search(/matchid/i) != -1) {
-							var matchDay = Foxtrick.getUniqueDayfromCellHTML(as[j].innerHTML);
+							var matchDay = Foxtrick.getDateFromText(as[j].textContent).getTime();
 							if (matchDay > latestMatch) {
 								secondLatestMatch = latestMatch;
 								latestMatch = matchDay;
@@ -250,7 +250,7 @@ var FoxtrickSkillTable = {
 			};
 			var lastMatch = function(cell, last) {
 				if (last) {
-					var matchDay = Foxtrick.getUniqueDayfromCellHTML(last.innerHTML);
+					var matchDay = Foxtrick.getDateFromText(last.textContent).getTime();
 					cell.appendChild(last);
 					cell.setAttribute("index", matchDay);
 					if (matchDay == latestMatch) {

@@ -45,10 +45,10 @@ var FoxtrickYouthSeriesEstimation = {
 				}
 
 				var firstMatchCell = cells[3];
-				var date = Foxtrick.getDatefromCellHTML(firstMatchCell.textContent);
+				var date = Foxtrick.getDateFromText(firstMatchCell.textContent);
 				var time = date.getTime();
 				var nowTimeText = doc.getElementById("time").textContent;
-				var nowTime = Foxtrick.getDatefromCellHTML(nowTimeText).getTime();
+				var nowTime = Foxtrick.getDateFromText(nowTimeText).getTime();
 
 				const timeHour = 60 * 60 * 1000;
 				const timeDay = 24 * timeHour;

@@ -26,7 +26,7 @@ FoxtrickHTDateFormat = {
         //Foxtrick.dump('HTDateformat RUN '+page+'\n');
         var httime = doc.getElementById( "time" ).innerHTML;
 
-        Foxtrick.HT_date = Foxtrick.getDatefromCellHTML( httime );
+        Foxtrick.HT_date = Foxtrick.getDateFromText( httime );
         if (!Foxtrick.HT_date) return;
 
         var mainBody = doc.getElementById( "mainBody" );
