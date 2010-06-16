@@ -71,4 +71,31 @@
 		<level text="surkea" value="1" />
 		<level text="olematon" value="0" />
 	</levels>
+	
+	      <agreeability>
+                <level text="rakastettu joukkueen jäsen" value="5" />
+                <level text="suosittu kaveri" value="4" />
+                <level text="sympaattinen kaveri" value="3" />
+                <level text="miellyttävä heppu" value="2" />
+                <level text="kiistelty henkilö" value="1" />
+                <level text="ilkeä tyyppi" value="0" />
+        </agreeability>
+        
+        <honesty>
+                <level text="pyhimys" value="5" />
+                <level text="oikeudentuntoinen" value="4" />
+                <level text="suoraselkäinen" value="3" />
+                <level text="rehellinen" value="2" />
+                <level text="epärehellinen" value="1" />
+                <level text="täysin arvaamaton" value="0" />
+        </honesty>
+        
+        <aggressiveness>
+                <level text="epävakaa" value="5" />
+                <level text="tulisieluinen" value="4" />
+                <level text="temperamenttinen" value="3" />
+                <level text="tasapainoinen" value="2" />
+                <level text="levollinen" value="1" />
+                <level text="seesteinen" value="0" />
+        </aggressiveness>
 </language>
