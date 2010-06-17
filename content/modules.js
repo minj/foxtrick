@@ -140,7 +140,6 @@ Foxtrick.modules = [
                     //FoxtrickSingleline2,
                     FoxtrickYouthPromotes,
                     FoxtrickCountyList,
-                    FoxTrickPredefinedChallenges,
                     FoxtrickSmallerPages, // new not finished //after FoxtrickTransferListDeadline and probably also after all other player detail adjustment, so keep it in the end
                     FoxtrickHighlightBotTeams,
 					FoxtrickTransferCompareSort,
