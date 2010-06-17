@@ -95,7 +95,6 @@ Foxtrick.modules = [
                     FoxtrickLinksTracker,
 					FoxtrickLinksClubTransfers,
                     FoxtrickConfirmActions,
-                    FoxtrickEconomyDifference,
                     FoxtrickHideSignatures,
 					FoxtrickMarkUnread,
                     FoxtrickForumNextAndPrevious,
