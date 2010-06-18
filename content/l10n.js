@@ -234,18 +234,7 @@ var Foxtrickl10n = {
 	},
 
 	getShortPosition: function(pos) {
-		try {
-			if (pos === "") {
-				return "";
-			}
-			var lang = FoxtrickPrefs.getString("htLanguage");
-			var path = "language/positions/position[@value=\"" + pos + "\"]";
-			var shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
-			return shortPos;
-		}
-		catch (e) {
-			Foxtrick.dump("Error getting short position, fall back to automatic abbreviation:");
-			Foxtrick.dumpError(e);
+		var direct = function(str) {
 			var space = pos.search(/ /);
 			if (space == -1) {
 				return pos.substr(0, 2);
@@ -253,10 +242,26 @@ var Foxtrickl10n = {
 			else {
 				return pos.substr(0, 1) + pos.substr(space + 1, 1);
 			}
+		};
+		try {
+			if (pos === "") {
+				return "";
+			}
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "language/positions/position[@value=\"" + pos + "\"]";
+			var shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
+			return shortPos ? shortPos : direct(pos);
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+			return direct(pos);
 		}
 	},
 
 	getShortSpeciality: function(spec) {
+		var direct = function(str) {
+			return str.substr(0, 2);
+		};
 		try {
 			if (spec === "") {
 				return "";
@@ -264,12 +269,11 @@ var Foxtrickl10n = {
 			var lang = FoxtrickPrefs.getString("htLanguage");
 			var path = "language/specialties/specialty[@value=\"" + spec + "\"]";
 			var shortSpec = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
-			return shortSpec;
+			return shortSpec ? shortSpec : direct(spec);
 		}
 		catch (e) {
-			Foxtrick.dump("Error getting short speciality, fall back to substr:");
 			Foxtrick.dumpError(e);
-			return spec.substr(0, 2);
+			return direct(spec);
 		}
 	}
 };
