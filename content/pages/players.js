@@ -149,7 +149,7 @@ Foxtrick.Pages.Players = {
 				}
 				else {
 					for (var j = 0; j < paragraphs.length; ++j) {
-						if (paragraphs[j].textContent.search("=") !== -1) {
+						if (paragraphs[j].textContent.search("(=|:)") !== -1) {
 							basicInformation = paragraphs[j];
 							break;
 						}
@@ -161,7 +161,7 @@ Foxtrick.Pages.Players = {
 				var ageText = basicHtml;
 				// First we dump TSI out of the string, and then
 				// the first match is years and the second is days
-				var tsiMatch = ageText.match(RegExp("\\w+\\s*=\\s*[\\d\\s]*"));
+				var tsiMatch = ageText.match(RegExp("\\w+\\s*(=|:)\\s*[\\d\\s]*"));
 				if (tsiMatch) {
 					ageText = ageText.replace(tsiMatch[0], "");
 				}
@@ -185,12 +185,11 @@ Foxtrick.Pages.Players = {
 				if (this.isSeniorPlayersPage(doc) && !player.tsi) {
 					// youth players don't have TSI, and we can fetch directly
 					// from XML if it's there
-					var tsiMatch = basicHtml.match(RegExp("\\w+\\s*=\\s*[\\d\\s]*"));
+					var tsiMatch = basicHtml.match(RegExp("\\w+\\s*(=|:)\\s*([\\d\\s]*)"));
 					var tsi;
 					if (tsiMatch) {
-						tsi = tsiMatch[0];
+						tsi = tsiMatch[2];
 						tsi = tsi.replace(RegExp("\\s", "g"), "");
-						tsi = tsi.replace("TSI=", "");
 						tsi = parseInt(tsi);
 						player.tsi = tsi;
 					}
