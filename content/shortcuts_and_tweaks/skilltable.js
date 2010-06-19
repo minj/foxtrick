@@ -324,7 +324,10 @@ var FoxtrickSkillTable = {
 				{ name : "Salary", property : "salary", alignRight : true },
 				{ name : "NrOfMatches", property : "matchCount" },
 				{ name : "LeagueGoals", property : "leagueGoals" },
+				{ name : "CupGoals", property : "cupGoals" },
+				{ name : "FriendliesGoals", property : "friendliesGoals" },
 				{ name : "CareerGoals", property : "careerGoals" },
+				{ name : "Hattricks", property : "hattricks" },
 				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 				{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true }
 			];
