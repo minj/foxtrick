@@ -77,10 +77,28 @@ Foxtrick.Pages.Players = {
 									player.leagueGoals = parseInt(leagueGoals);
 								}
 							}
+							if (currentXMLPlayer.getElementsByTagName("CupGoals").length) {
+								var cupGoals = currentXMLPlayer.getElementsByTagName("CupGoals")[0].textContent;
+								if (cupGoals != "Not available") {
+									player.cupGoals = parseInt(cupGoals);
+								}
+							}
+							if (currentXMLPlayer.getElementsByTagName("FriendliesGoals").length) {
+								var friendliesGoals = currentXMLPlayer.getElementsByTagName("FriendliesGoals")[0].textContent;
+								if (friendliesGoals != "Not available") {
+									player.friendliesGoals = parseInt(friendliesGoals);
+								}
+							}
 							if (currentXMLPlayer.getElementsByTagName("CareerGoals").length) {
 								var careerGoals = currentXMLPlayer.getElementsByTagName("CareerGoals")[0].textContent;
 								if (careerGoals != "Not available") {
 									player.careerGoals = parseInt(careerGoals);
+								}
+							}
+							if (currentXMLPlayer.getElementsByTagName("CareerHattricks").length) {
+								var hattricks = currentXMLPlayer.getElementsByTagName("CareerHattricks")[0].textContent;
+								if (hattricks != "Not available") {
+									player.hattricks = parseInt(hattricks);
 								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("NationalTeamID").length) {
