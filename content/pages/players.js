@@ -258,10 +258,10 @@ Foxtrick.Pages.Players = {
 								var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
 								var rows = skillTable.getElementsByTagName("tr");
 								for (var j = 0; j < skillOrder.length; ++j) {
-									var cells = rows[j].getElementsByTagName("td");
-									var imgs = cells[1].getElementsByTagName("img");
-									var level = imgs[0].title.match(/-?\d+/);
-									player[skillOrder[j]] = parseInt(level);
+									var skillCell = rows[j].getElementsByTagName("td")[1];
+									var skillImg = skillCell.getElementsByTagName("img")[0];
+									var skillLevel = skillImg.title.match(/-?\d+/);
+									player[skillOrder[j]] = parseInt(skillLevel);
 								}
 							}
 							else {
@@ -280,12 +280,12 @@ Foxtrick.Pages.Players = {
 						var rows = skillTable.getElementsByTagName("tr");
 						for (var j = 0; j < skillOrder.length; ++j) {
 							player[skillOrder[j]] = {};
-							var skillBar = rows[j].getElementsByTagName("td")[1];
-							var imgs = skillBar.getElementsByTagName("img");
-							if (imgs.length > 0) {
-								var max = imgs[0].getAttribute("title").match(/\d/);
-								var current = imgs[1].title.match(/-?\d/);
-								var unknown = imgs[1].title.match(/-1/);
+							var skillCell = rows[j].getElementsByTagName("td")[1];
+							var skillImgs = skillCell.getElementsByTagName("img");
+							if (skillImgs.length > 0) {
+								var max = skillImgs[0].getAttribute("title").match(/\d/);
+								var current = skillImgs[1].title.match(/-?\d/);
+								var unknown = skillImgs[1].title.match(/-1/);
 								var maxed = !current;
 								player[skillOrder[j]].maxed = false;
 								if (maxed) {
@@ -331,7 +331,7 @@ Foxtrick.Pages.Players = {
 						player.bruised = true;
 					}
 					else if (imgs[j].className == "injuryInjured") {
-						player.injured = parseInt(imgs[j].nextSibling.innerHTML);
+						player.injured = parseInt(imgs[j].nextSibling.textContent);
 					}
 					else if (imgs[j].className == "transferListed") {
 						player.transferListed = true;
