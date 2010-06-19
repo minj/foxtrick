@@ -73,21 +73,13 @@ Foxtrick.Pages.Players = {
 							}
 							if (currentXMLPlayer.getElementsByTagName("LeagueGoals").length) {
 								var leagueGoals = currentXMLPlayer.getElementsByTagName("LeagueGoals")[0].textContent;
-								if (leagueGoals == "Not available") {
-									// if it's not available, use -1 to mark it
-									player.leagueGoals = -1;
-								}
-								else {
+								if (leagueGoals != "Not available") {
 									player.leagueGoals = parseInt(leagueGoals);
 								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("CareerGoals").length) {
 								var careerGoals = currentXMLPlayer.getElementsByTagName("CareerGoals")[0].textContent;
-								if (careerGoals == "Not available") {
-									// if it's not available, use -1 to mark it
-									player.careerGoals = -1;
-								}
-								else {
+								if (careerGoals != "Not available") {
 									player.careerGoals = parseInt(careerGoals);
 								}
 							}
