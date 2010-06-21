@@ -275,7 +275,7 @@ FoxtrickMatchPlayerColouring = {
 			
 		var links = content_div.getElementsByTagName("a");
         
-		 for (var i=0; i<links.length; i++) {
+		for (var i=0; i<links.length; i++) {
             if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
                 //Foxtrick.dump('['+links[i].href +']\n');
                 links[i].href+='&colored';
@@ -292,24 +292,28 @@ FoxtrickMatchPlayerColouring = {
 				} else {
 					var playerName = playerFullName;
 				}				
-				var foundA =false, foundFullA=false;
+				//Foxtrick.dump(playerName+' '+playerFullName+'\n');
+                var foundA =false, foundFullA=false;
 				for (var k=0;k<teamA.length;k++) { //Foxtrick.dump(teamA[k]+' '+playerName.indexOf(teamA[k])+'\t');
 					if (teamA[k].indexOf(playerFullName)>-1) {foundFullA=true;	break;}				
 					else if (playerName.indexOf(teamA[k])>-1) {foundA=true;}
 				}
 				var foundB =false, foundFullB=false;
-				for (var k=0;k<teamB.length;k++) { 
+				for (var k=0;k<teamB.length;k++) { //Foxtrick.dump(teamB[k]+' '+playerName.indexOf(teamB[k])+'\t');
 					if (teamB[k].indexOf(playerFullName)>-1) {foundFullB=true; break;}
 					else if (playerName.indexOf(teamB[k])>-1) {foundB=true;}
 				}
-                if ( (foundFullA && !foundFullB) || (foundA && !foundB) || (!foundA && !foundB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
+//				Foxtrick.dump('\np: "'+ playerName+'" A: '+foundFullA+' '+foundA+' B: '+foundFullB+' '+foundB+'\n');
+                if ( (foundFullA && !foundFullB) || (foundA && !foundB) || (!foundA && !foundB && !foundFullB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
+//					Foxtrick.dump(playerName+' colorA\n');
 					links[i].setAttribute("style", stlTeamA + 'padding:0px 2px;'); 
 					if (iseventsbox) {
 						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:left;'); 
 						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
 					}
  				} 
-				else if ((foundFullB && !foundFullA) || (foundB && !foundA) || (!foundA && !foundB && num_unknown_namesA==0 && num_unknown_namesB>0)) {
+				else if ((foundFullB && !foundFullA) || (foundB && !foundA) || (!foundA && !foundB && !foundFullA && num_unknown_namesA==0 && num_unknown_namesB>0)) {
+//					Foxtrick.dump(playerName+' colorB\n');
 					links[i].setAttribute("style", stlTeamB + 'padding:0px 2px;'); 
 					if (iseventsbox) {
 						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:right;'); 					
@@ -319,8 +323,7 @@ FoxtrickMatchPlayerColouring = {
                 else {
                     links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
                  }
-				 //Foxtrick.dump('\np: "'+ playerName+'" A: '+foundA+' B: '+foundB+'\n');
-             } 
+			 } 
 			 //Colors the name of the teams  on the right box like the players
 			 else { 
 			     if (FoxtrickMatchPlayerColouring._isLinkTeam(links[i].href)) {
