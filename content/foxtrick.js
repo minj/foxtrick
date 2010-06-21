@@ -260,6 +260,7 @@ var FoxtrickMain = {
 			Foxtrick.dump("Temporarily disabled: " + FoxtrickPrefs.getBool("disableTemporary") + "\n");
 			FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 			FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
+			//if (FoxtrickMain.isRTL) 
 			FoxtrickMain.new_start = false;
 			if (Foxtrick.main_css_loaded) Foxtrick.unload_css_permanent( Foxtrick.ResourcePath+'resources/css/foxtrick.css' ) ;
 			Foxtrick.main_css_loaded = false;
@@ -290,7 +291,8 @@ var FoxtrickMain = {
 					Foxtrick.reload_module_css(doc);
 				}
 			}
-
+			Foxtrick.dump('RTL: '+FoxtrickMain.isRTL+'\n');
+			
 			// If it's not only a CSS check, we go on to run the modules.
 			if (!is_only_css_check) {
 				// We run the modules that want to be run at every page.
@@ -516,6 +518,7 @@ Foxtrick.insertAtCursor = function( textarea, text ) {
 }
 
 Foxtrick.addStyleSheet = function( doc, css ) {
+	Foxtrick.dump('addStyleSheet: '+css+'\n');
 	var path = "head[1]";
 	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
 

@@ -643,6 +643,9 @@ var FoxtrickSkillTable = {
 	},
 
 	addTableDiv : function(doc) {
+		if (!FoxtrickMain.isRTL) Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/skilltable.css");
+		else Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/skilltable_rtl.css");
+
 		var tablediv = doc.createElement("div");
 		tablediv.id = "ft_skilltablediv";
 		tablediv.className = "ft_skilltablediv";

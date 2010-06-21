@@ -32,7 +32,9 @@ var FoxtrickCrossTable = {
 			var div = doc.getElementById('mainBody');
 
 
-			Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/crosstable.css");
+			Foxtrick.dump('RTL: '+FoxtrickMain.isRTL+'\n');
+			if (!FoxtrickMain.isRTL) Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/crosstable.css");
+			else Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/crosstable_rtl.css");
 
 			var tbl_fix = div.getElementsByTagName('TABLE')[0];
 
@@ -233,7 +235,8 @@ var FoxtrickCrossTable = {
 
 			var divmap = doc.createElement("div");
 			divmap.appendChild(heading);
-			divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+			if (!FoxtrickMain.isRTL)  divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+			else  divmap.setAttribute("style","width:"+width+"px;margin:10px -10px 10px 0px;border:1px dotted #EEEEEE;font-size:10px;");
 			divmap.setAttribute("id", "ft_div_cross");
 			Foxtrick.addEventListenerChangeSave( heading, "click", this.HeaderClick_Cross, false );
 			div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
@@ -316,7 +319,8 @@ var FoxtrickCrossTable = {
 
 			var divmap = doc.createElement("div");
 			divmap.appendChild(heading);
-			divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+			if (!FoxtrickMain.isRTL)  divmap.setAttribute("style","width:"+width+"px;margin:10px 0px 10px -10px;border:1px dotted #EEEEEE;font-size:10px;");
+			else  divmap.setAttribute("style","width:"+width+"px;margin:10px -10px 10px 0px;border:1px dotted #EEEEEE;font-size:10px;");
 			divmap.setAttribute("id", "ft_div_graph");
 			Foxtrick.addEventListenerChangeSave(heading, "click", this.HeaderClick_Graph, false );
 			div.insertBefore(divmap, div.getElementsByTagName('h1')[0].nextSibling);
@@ -437,7 +441,7 @@ var FoxtrickCrossTable = {
 				+ "&chdlp=b|l";
 
 			// Foxtrick.alert('URL: [' + url + ']\n')
-			Foxtrick.dump('\nurl' + url + '\n');
+			Foxtrick.dump('\nurl: ' + url + '\n');
 			var image = doc.createElement('img');
 			image.src = url;
 			image.title = doc.getElementsByTagName('h1')[0].textContent.replace(/(\ )|(\&nbsp\;)/g,'');
