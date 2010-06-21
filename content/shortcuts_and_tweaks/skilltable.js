@@ -15,6 +15,8 @@ var FoxtrickSkillTable = {
 	LATEST_CHANGE : "Merged cards/injuries/transfer-list into status column, and added player ID copying.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OtherTeams"),
+	CSS : Foxtrick.ResourcePath + "resources/css/skilltable.css",
+	CSS_RTL : Foxtrick.ResourcePath + "resources/css/skilltable_rtl.css",
 
 	// whether skill table is created
 	// returns a Boolean
@@ -643,9 +645,6 @@ var FoxtrickSkillTable = {
 	},
 
 	addTableDiv : function(doc) {
-		if (!FoxtrickMain.isRTL) Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/skilltable.css");
-		else Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/skilltable_rtl.css");
-
 		var tablediv = doc.createElement("div");
 		tablediv.id = "ft_skilltablediv";
 		tablediv.className = "ft_skilltablediv";

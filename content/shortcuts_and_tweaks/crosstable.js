@@ -14,6 +14,8 @@ var FoxtrickCrossTable = {
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Let table expand, and show full name in graph.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	CSS : Foxtrick.ResourcePath + "resources/css/crosstable.css",
+	CSS_RTL : Foxtrick.ResourcePath+"resources/css/crosstable_rtl.css",
 
 	_week : 14,
 
@@ -30,11 +32,6 @@ var FoxtrickCrossTable = {
 			}
 
 			var div = doc.getElementById('mainBody');
-
-
-			Foxtrick.dump('RTL: '+FoxtrickMain.isRTL+'\n');
-			if (!FoxtrickMain.isRTL) Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/crosstable.css");
-			else Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/crosstable_rtl.css");
 
 			var tbl_fix = div.getElementsByTagName('TABLE')[0];
 
