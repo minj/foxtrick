@@ -16,11 +16,11 @@
 if (!Foxtrick) var Foxtrick={};
  
 Foxtrick.ht_pages = {
+	'myhattrick'                : '/MyHattrick/$',
+	'myhattrickAll'             : '/MyHattrick/|org/$|pl/$|ws/$',
 	'all'                       : '',
 	'playerdetail'              : '/Club/Players/Player\.aspx',
 	'youthplayerdetail'         : '/Club/Players/YouthPlayer\.aspx',
-	'myhattrick'                : '/MyHattrick/$',
-	'myhattrickAll'             : '/MyHattrick/|org/$|pl/$|ws/$',
 	'forum'                     : '/Forum/',
 	'forumViewThread'           : '/Forum/Read',
 	'forumOverView'             : '/Forum/Overview', 

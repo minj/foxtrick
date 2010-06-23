@@ -13,20 +13,16 @@ var FoxtrickExtraShortcuts = {
 	NEW_AFTER_VERSION : "0.5.2.1",	
 	LATEST_CHANGE : "Optional extra space for shortcuts. Links to national Hattrick radios added",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioWmp","DTRadioWinamp"),
+	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioMediaPlayer","DTRadioWinamp"),
 	CSS:"",
 	
     init : function() {
-		/*Foxtrick.unload_css_permanent ( this.CSS );
-        else if (num_shown==1) {
-			this.CSS = Foxtrick.ResourcePath+"resources/css/shortcuts_one.css";
-		}*/
     },
 
 	change : function( page, doc ) {
 	},
 
-    run : function( page, doc ) {
+    run : function( page, doc ) { 
         var shortcuts = doc.getElementById ( 'shortcuts' );
 		if (!shortcuts) return;
 		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div');
@@ -152,7 +148,7 @@ var FoxtrickExtraShortcuts = {
 
 
 				if (Foxtrick.isModuleFeatureEnabled( this, "HtRadioWinamp")                
-					|| Foxtrick.isModuleFeatureEnabled( this, "HtRadioWmp")) {                
+					|| Foxtrick.isModuleFeatureEnabled( this, "HtRadioMediaPlayer")) {                
                     
 					var link = doc.createElement('a');                
                     link.className = 'ft_extra-shortcuts';

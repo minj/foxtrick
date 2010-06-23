@@ -24,7 +24,7 @@ var FoxtrickManagerButtons = {
 	},
 
 	run : function(page, doc) {
-		try {
+		try { 
 			var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
 			var teamId = Foxtrick.Pages.All.getTeamId(doc);
 

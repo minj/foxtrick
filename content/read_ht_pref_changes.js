@@ -123,7 +123,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 	},
 	
 	run : function(page, doc, newstart ) {  
-	try{
+	try{  
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
 		
@@ -209,10 +209,38 @@ var FoxtrickMyHT = {
 			{ 
 				var curVersion = FoxtrickPrefs.getString("curVersion");
 				FoxtrickPrefs.setString("oldVersion",curVersion);
+				
+				// set some special defaults
+				this.setDefaults(doc);
+								
 				// show foxtrickMyHT
 				this.ShowAlert(doc);
 			}
 		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
+	},
+
+	setDefaults :function(doc) {
+		
+		// set radio defaults as by appropriate countries
+		var country = FoxtrickPrefs.getString("htCountry");
+		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.DTRadioWinamp.enabled')===null) {
+			if (country==='Germany' || country==='Austria' || country==='Switzerland' || country==='Luxembourg') {
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.DTRadioWinamp.enabled',true)
+			}
+			else FoxtrickPrefs.setBool('module.ExtraShortcuts.DTRadioWinamp.enabled',false)
+		}
+		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadioWinamp.enabled')===null) {
+			if (country==='Belgium' || country==='Netherlands') {
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioWinamp.enabled',true)
+			}
+			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioWinamp.enabled',false)
+		}
+		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled')===null) {
+			if (country==='Belgium' || country==='Netherlands') {
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled',false)
+			}
+			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled',false)
+		}
 	},
 
 	ShowAlert :function(doc) {
