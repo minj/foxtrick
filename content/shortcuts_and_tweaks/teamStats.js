@@ -110,12 +110,13 @@ Foxtrick.TeamStats = {
 				table.appendChild(row);
 				return row;
 			}
-			var addRow = function(label, data, isLabelNode, isDataNode) {
+			// label and data could either be strings or document nodes
+			var addRow = function(label, data) {
 				var row = doc.createElement("tr");
 
 				var labelCell = doc.createElement("td");
 				labelCell.className = "ch";
-				if (isLabelNode) {
+				if (typeof(label) === "object") {
 					labelCell.appendChild(label);
 				}
 				else {
@@ -124,7 +125,7 @@ Foxtrick.TeamStats = {
 				row.appendChild(labelCell);
 
 				var dataCell = doc.createElement("td");
-				if (isDataNode) {
+				if (typeof(data) === "object") {
 					dataCell.appendChild(data);
 				}
 				else {
@@ -139,7 +140,16 @@ Foxtrick.TeamStats = {
 			addHeader(Foxtrickl10n.getString("General"));
 			if (totalTSI) {
 				var avgTSI = Math.round(totalTSI / playerList.length);
-				var data = Foxtrick.ReturnFormatedValue(totalTSI, " ") + " / " + Foxtrick.ReturnFormatedValue(avgTSI, " ");
+				var data = doc.createElement("span");
+				var total = doc.createElement("span");
+				total.className = "nowrap";
+				total.textContent = Foxtrick.ReturnFormatedValue(totalTSI, " ");
+				var avg = doc.createElement("span");
+				avg.className = "nowrap";
+				avg.textContent = Foxtrick.ReturnFormatedValue(avgTSI, " ");
+				data.appendChild(total);
+				data.appendChild(doc.createTextNode(" / "));
+				data.appendChild(avg);
 				addRow(Foxtrickl10n.getString("TSI.abbr"), data);
 			}
 			if (totalAge) {
@@ -200,31 +210,31 @@ Foxtrick.TeamStats = {
 				var img = doc.createElement("img");
 				img.src = "/Img/Icons/dollar.gif";
 				img.className = "transferListed";
-				addRow(img, transferListed, true);
+				addRow(img, transferListed);
 			}
 			if (yellowCards > 0) {
 				var img = doc.createElement("img");
 				img.src = "/Img/Icons/yellow_card.gif";
 				img.className = "cardsOne";
-				addRow(img, yellowCards, true);
+				addRow(img, yellowCards);
 			}
 			if (twoYellowCards > 0) {
 				var img = doc.createElement("img");
 				img.src = "/Img/Icons/dual_yellow_card.gif";
 				img.className = "cardsTwo";
-				addRow(img, twoYellowCards, true);
+				addRow(img, twoYellowCards);
 			}
 			if (redCards > 0) {
 				var img = doc.createElement("img");
 				img.src = "/Img/Icons/red_card.gif";
 				img.className = "cardsOne";
-				addRow(img, redCards, true);
+				addRow(img, redCards);
 			}
 			if (bruised > 0) {
 				var img = doc.createElement("img");
 				img.src = "/Img/Icons/bruised.gif";
 				img.className = "injuryBruised";
-				addRow(img, bruised, true);
+				addRow(img, bruised);
 			}
 			if (injured > 0) {
 				var img = doc.createElement("img");
@@ -239,7 +249,7 @@ Foxtrick.TeamStats = {
 				data.appendChild(weeks);
 				data.appendChild(doc.createTextNode(")"));
 
-				addRow(img, data, true, true);
+				addRow(img, data);
 			}
 
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "currentLeagueId")) {
