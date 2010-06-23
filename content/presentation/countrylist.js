@@ -187,8 +187,14 @@ var FoxtrickCountyList = {
             if (Foxtrick.isModuleFeatureEnabled( this, "HideFlagOntop")) {
                 league.setAttribute('style', 'display:none');
             }
-            var byline = Foxtrick.getElementsByClass("byline", doc)[0];
-            byline.innerHTML = '<a id="ft_cntr_fix" href="'+league.href+'">' + league.firstChild.title + '</a>,' + byline.innerHTML;
+            leaguenum = league.href.match(/\d+/);
+			Foxtrick.dump(leaguenum+'\n');
+			var htname = league.firstChild.title;
+			htname = FoxtrickHelper.getLeagueDataFromId(leaguenum).LeagueName;
+			league.firstChild.title = htname
+			
+			var byline = Foxtrick.getElementsByClass("byline", doc)[0];
+            byline.innerHTML = '<a id="ft_cntr_fix" href="'+league.href+'">' + htname + '</a>,' + byline.innerHTML;
         }
     },
     
