@@ -20,7 +20,7 @@ Foxtrick.modules = [
 					FoxtrickForumChangePosts,
                     FoxtrickShowForumPrefButton,
                     FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
-                    FoxtrickAddManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
+                    FoxtrickManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
                     FoxtrickMovePlayerStatement,
 					FoxtrickFixcssProblems,
 					FoxtrickSimplePresentation,
@@ -149,5 +149,6 @@ Foxtrick.modules = [
 					FoxtrickForumStage,
 					FoxtrickExtraPlayerInfo,
 					FoxtrickPlayerFilters,
-					FoxtrickYouthSeriesEstimation
+					FoxtrickYouthSeriesEstimation,
+					//FoxtrickLocalTime
 ];

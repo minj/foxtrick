@@ -5,18 +5,20 @@
  */
 
  ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickAddManagerButtons = {
+var FoxtrickManagerButtons = {
 
-	MODULE_NAME : "AddManagerButtons",
+	MODULE_NAME : "ManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("managerPage", "teamPage"),
-	DEFAULT_ENABLED : false,
+	DEFAULT_ENABLED : true,
+	OPTIONS : ["addGuestbooklink", "largeMailbox"],
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Updated to latest HT version.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	GUESTBOOK_LINK_ID : "guestbook_link_id",
 	CHALLENGE_LINK_ID : "ctl00_CPSidebar_ucVisitorActions_lnkChallenge",
+	MAIL_LINK_ID: "ctl00_CPSidebar_ucVisitorActions_lnkMail",
 
 	init : function() {
 	},
@@ -31,9 +33,14 @@ var FoxtrickAddManagerButtons = {
 				return;
 			}
 
-			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
+			if (Foxtrick.isModuleFeatureEnabled(this, "largeMailbox")) {
+				this.changeMaillink(page, doc);
+			}
+			
+			if (Foxtrick.isModuleFeatureEnabled(this, "addGuestbooklink") &&
+				!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
 				Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
-				this.addActionsBox(doc, page);
+				this.addGuestbooklink(doc, page);
 			}
 		}
 		catch (e) {
@@ -46,7 +53,32 @@ var FoxtrickAddManagerButtons = {
 		//this.run(page, doc);
 	},
 
-	addActionsBox : function(doc, page) {
+	changeMaillink : function(page, doc) {
+		// get user name
+		var username='';
+		if (page==='managerPage') {
+			var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
+			username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');                         
+        }
+		else if (page==='teamPage') {
+			var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
+			for (var i=0;i<mainBodylinks.length;++i) {
+				Foxtrick.dump(mainBodylinks[i].href+' '+mainBodylinks[i].href.search(/\/Club\/Manager\/?userId=/)+'\n');
+				if (mainBodylinks[i].href.search(/\/Club\/Manager\/\?userId=/i)!=-1) {
+					username = mainBodylinks[i].title;
+					break;
+				}	
+			}
+		}
+		
+		// change link to mailbox
+		var messageLink = doc.getElementById(this.MAIL_LINK_ID);		
+		messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
+		//if  (doc.location.href.search(/\/Club\/Youth/)!=-1) messageLink.href='/Club/?TeamID='+teamID+'&SendMessage=true';
+		//messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
+},
+
+	addGuestbooklink : function(doc, page) {
 	try {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 

@@ -68,10 +68,14 @@ pref("extensions.foxtrick.prefs.module.TeamPopupLinksMore.CustomLink.enabled", f
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.enabled", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinksMore.YouthMatches.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.AddLeft.enabled", true);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.AddSpace.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Transfers.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Prefs.enabled", false);
-pref("extensions.foxtrick.prefs.module.ExtraShortcuts.FoxTrickPrefs.enabled", true);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.FoxTrickPrefs.enabled", false);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.HtRadioWinamp.enabled", false);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.HtRadioWmp.enabled", false);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.DTRadioWinamp.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Forum_FoxLink_Headers.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabled", false);

@@ -113,10 +113,12 @@ var FoxtrickReadHtPrefsFromHeader = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,	
 	PAGES : new Array('all'),//'myhattrickAll'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Read country from page header",
+	NEW_AFTER_VERSION : "0.5.0.5",
+	LATEST_CHANGE : "Read country from page header",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-
+	
+	ht_dateformat : 'yyyy-mm-dd',
+	
     init : function() {
 	},
 	
@@ -147,7 +149,10 @@ var FoxtrickReadHtPrefsFromHeader = {
 					var timeDiffpos = scripts[i].innerHTML.search('timeDiff');
 					if (timeDiffpos != -1) {			
 						var timeDiffParams = scripts[i].innerHTML.substr(timeDiffpos+8);
-					
+						
+						this.ht_dateformat = timeDiffParams.substring(0,timeDiffParams.lastIndexOf('\''));
+						this.ht_dateformat = this.ht_dateformat.substr(this.ht_dateformat.lastIndexOf('\'')+1);
+						Foxtrick.dump('ht_dateformat: '+this.ht_dateformat+'\n');
 						var dateformat='ddmmyyyy';
 						if (timeDiffParams.search('y') < timeDiffParams.search('d')) {
 							dateformat='yyyymmdd';
