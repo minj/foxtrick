@@ -166,6 +166,12 @@ var FoxtrickMain = {
 			if (Foxtrick.isHt(doc)) {
 				FoxtrickMain.run(doc, true); // recheck css
 			}
+			else {
+				FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
+				FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
+				FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
+				FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
+			}
 		}
 		catch (e) {
 			dump('foxtrickmain onfocus '+e+'\n');
