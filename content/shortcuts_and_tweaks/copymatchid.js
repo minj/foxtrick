@@ -11,8 +11,8 @@ var FoxtrickCopyMatchID = {
  	PAGES : new Array('matches','matchesarchiv','matcheshistory',
 					'matchesLatest','arena','matchLineup','match'), 
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.1.3",
-	LATEST_CHANGE:"Added HT-ML tag",
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Removed HT-ML tag.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	init : function() {
@@ -42,15 +42,13 @@ var FoxtrickCopyMatchID = {
 						}
 					}
 					var matchid = href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
-					if ( href.search(/isYouth=True/gi) != -1 ) var ml = '[youthmatchid='+matchid+']';
-					else var ml = '[matchid='+matchid+']';
-					
+
 					var link = doc.createElement('a');
 					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
 					var link=doc.createElement('a');
 					link.appendChild(images[j].cloneNode(true));
 					link.href='javascript:void(0);';
-					link.setAttribute("matchid",ml);
+					link.setAttribute("matchid", matchid);
 					link.setAttribute("id","_"+this.MODULE_NAME+count);
 					link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
 					var div=images[j].parentNode;
@@ -75,14 +73,12 @@ var FoxtrickCopyMatchID = {
 					}
 				}
 				var matchid = href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
-				if ( href.search(/isYouth=True/gi) != -1 ) var ml = '[youthmatchid='+matchid+']';
-				else var ml = '[matchid='+matchid+']';
-					
+
 				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid')); 
 				var link=doc.createElement('a');
 				link.appendChild(images[i].cloneNode(true));
 				link.href='javascript:void(0);';
-				link.setAttribute("matchid",ml);
+				link.setAttribute("matchid", matchid);
 				link.setAttribute("id","_"+this.MODULE_NAME+count);
 				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );	
 				var div=images[i].parentNode;
