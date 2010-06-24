@@ -8,7 +8,7 @@ var FoxtrickLocalTime = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'), 
 	DEFAULT_ENABLED : false,
-	OPTIONS : new Array("show_local"),
+	OPTIONS : new Array("DefaultLocal"),
 	NEW_AFTER_VERSION : "0.5.2.1",	
 	LATEST_CHANGE : "Show optional local time",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -22,7 +22,7 @@ var FoxtrickLocalTime = {
 		localtime.id = 'localtime';
 		localtime.title = 'local time';
 		localtime.setAttribute('style','float:right; margin-left:5px; cursor:pointer;');
-		if (Foxtrick.isModuleFeatureEnabled( this, "show_local" )) {
+		if (Foxtrick.isModuleFeatureEnabled( this, "DefaultLocal" )) {
 			localtime.style.display='inline';		
 			httime.setAttribute('style','display:none; cursor: pointer;');
 		}

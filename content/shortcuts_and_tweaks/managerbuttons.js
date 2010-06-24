@@ -11,7 +11,7 @@ var FoxtrickManagerButtons = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("managerPage", "teamPage"),
 	DEFAULT_ENABLED : true,
-	OPTIONS : ["addGuestbooklink", "largeMailbox"],
+	OPTIONS : ["GuestBook", "LargeSendMail"],
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Updated to latest HT version.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -33,11 +33,11 @@ var FoxtrickManagerButtons = {
 				return;
 			}
 
-			if (Foxtrick.isModuleFeatureEnabled(this, "largeMailbox")) {
+			if (Foxtrick.isModuleFeatureEnabled(this, "LargeSendMail")) {
 				this.changeMaillink(page, doc);
 			}
 			
-			if (Foxtrick.isModuleFeatureEnabled(this, "addGuestbooklink") &&
+			if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook") &&
 				!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
 				Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
 				this.addGuestbooklink(doc, page);
