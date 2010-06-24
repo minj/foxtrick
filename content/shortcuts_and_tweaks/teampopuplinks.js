@@ -391,7 +391,7 @@ var FoxtrickTeamPopupLinks = {
                                         var a9 = doc.createElement("a");
                                         if (username!='') a9.setAttribute('href', '/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username);
 										//if (teamid==null) a9.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_sendmessage=true'+'&ft_popuplink=true');
-										else a9.setAttribute('href', '/Club/?TeamID='+teamid+'&SendMessage=true'+'&ft_popuplink=true');										
+										else a9.setAttribute('href', '/Club/?TeamID='+teamid+'&redir_to_mail=true'+'&ft_popuplink=true');										
                                         a9.setAttribute('target', FoxtrickTeamPopupLinks.Target);
 										a9.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'SendMessage' )));
                                         a9.innerHTML= a9.innerHTML.replace(/ /g,'&nbsp;');

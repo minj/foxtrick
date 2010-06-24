@@ -88,6 +88,21 @@ var FoxtrickRedirections = {
 		if (username.search(/&/)!=-1) username=username.replace(/&.+/,'');
 		teamid_input.value = username;
 	} 
+	//redirect to mail
+	if (doc.location.href.search(/redir_to_mail=true/i)!=-1 ) { 
+		var username='';
+		var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
+		for (var i=0;i<mainBodylinks.length;++i) {
+			if (mainBodylinks[i].href.search(/\/Club\/Manager\/\?userId=/i)!=-1) {
+				username = mainBodylinks[i].title;
+				break;
+			}	
+		}		
+		if (username!=='') {
+			var tar = serv+"/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
+			doc.location.replace(tar);
+		}
+	} 
 	//redirect to youthmatches
 	if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) { 
 		var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));

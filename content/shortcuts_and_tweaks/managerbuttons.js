@@ -63,7 +63,6 @@ var FoxtrickManagerButtons = {
 		else if (page==='teamPage') {
 			var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
 			for (var i=0;i<mainBodylinks.length;++i) {
-				Foxtrick.dump(mainBodylinks[i].href+' '+mainBodylinks[i].href.search(/\/Club\/Manager\/?userId=/)+'\n');
 				if (mainBodylinks[i].href.search(/\/Club\/Manager\/\?userId=/i)!=-1) {
 					username = mainBodylinks[i].title;
 					break;
