@@ -1,7 +1,7 @@
 /**
  * addmanagerbuttons.js
  * Adds Send Message and Write in Guestbook buttons to manager page
- * @author larsw84, Stephan57, ryanli
+ * @author larsw84, Stephan57, ryanli, convinedd
  */
 
  ////////////////////////////////////////////////////////////////////////////////
@@ -9,7 +9,7 @@ var FoxtrickManagerButtons = {
 
 	MODULE_NAME : "ManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array("managerPage", "teamPage"),
+	PAGES : new Array("managerPage", "teamPage","youthoverview"),
 	DEFAULT_ENABLED : true,
 	OPTIONS : ["GuestBook", "LargeSendMail"],
 	NEW_AFTER_VERSION : "0.5.1.3",
@@ -38,9 +38,10 @@ var FoxtrickManagerButtons = {
 			}
 			
 			if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook") &&
-				!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
-				Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)) {
-				this.addGuestbooklink(doc, page);
+					((!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
+						Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID))
+					|| page==='youthoverview'))	{
+				this.addmailLink(doc, page);
 			}
 		}
 		catch (e) {
@@ -54,11 +55,14 @@ var FoxtrickManagerButtons = {
 	},
 
 	changeMaillink : function(page, doc) {
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 		// get user name
 		var username='';
 		if (page==='managerPage') {
 			var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
 			username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');                         
+			var messageLink = doc.getElementById(this.MAIL_LINK_ID);		
+			messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
         }
 		else if (page==='teamPage') {
 			var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
@@ -68,17 +72,39 @@ var FoxtrickManagerButtons = {
 					break;
 				}	
 			}
+			var messageLink = doc.getElementById(this.MAIL_LINK_ID);		
+			messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
 		}
-		
-		// change link to mailbox
-		var messageLink = doc.getElementById(this.MAIL_LINK_ID);		
-		messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
-		//if  (doc.location.href.search(/\/Club\/Youth/)!=-1) messageLink.href='/Club/?TeamID='+teamID+'&SendMessage=true';
-		//messageLink.href = "../?TeamID=" + teamID + "&SendMessage=true";
-},
+		else if (page === "youthoverview") { 
+			parentDiv = doc.createElement("div");
+			parentDiv.id = "foxtrick_addactionsbox_parentDiv";					
+			var newBoxId = "foxtrick_actions_box";
 
-	addGuestbooklink : function(doc, page) {
-	try {
+			var mailLink = doc.createElement("a");
+			mailLink.className = "inner";
+			mailLink.href = '/Club/?TeamID='+teamId+'&redir_to_mail=true'+'&ft_popuplink=true';										
+            mailLink.title = Foxtrickl10n.getString("foxtrick.tweaks.sendmessage");
+
+			if (!FoxtrickMain.isStandard) {
+				mailLink.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.sendmessage");
+				mailLink.setAttribute('style','display:block;');
+			}
+			else {
+				var img = doc.createElement("img");
+				img.style.padding = "0px 5px 0px 0px";
+				img.className = "actionIcon";
+				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.sendmessage" );
+				img.src = "/App_Themes/Standard/images/ActionIcons/mail.png";
+				mailLink.appendChild(img);
+			}
+			parentDiv.appendChild(mailLink);
+			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+				"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+		}
+	},
+
+	addmailLink : function(doc, page) {
+	try { 
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
 		var isSupporter = false;
@@ -112,18 +138,32 @@ var FoxtrickManagerButtons = {
 					break;
 				}
 			}
-			var sidebarlinks = doc.getElementById('mainBody').getElementsByTagName("a");
-			for (var i=0;i<sidebarlinks.length;++i) {  
-				if (sidebarlinks[i].href.search(/Club\/Manager\/\?userId=/i)!=-1 ) {
-					username = sidebarlinks[i].innerHTML;
+			var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
+			for (var i=0;i<mainBodylinks.length;++i) {  
+				if (mainBodylinks[i].href.search(/Club\/Manager\/\?userId=/i)!=-1 ) {
+					username = mainBodylinks[i].innerHTML;
 					break;
 				}
 			}			
 		}
-
-		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID).parentNode;
-
-		//Display GuestBook button only if teamid is HT-Supporter - Stephan57
+		else if (page === "youthoverview") { 
+				isSupporter = true; // status unknown there. just add it anyways?
+		}
+		
+		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID);
+		if (parentDiv===null) {
+			parentDiv = doc.getElementById('foxtrick_addactionsbox_parentDiv');
+			if (parentDiv===null) {			
+				parentDiv = doc.createElement("div");
+				parentDiv.id = "foxtrick_addactionsbox_parentDiv";					
+				var newBoxId = "foxtrick_actions_box";
+				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+					"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+			}
+		}
+		else parentDiv = parentDiv.parentNode;
+		
+		//Display GuestBook button only if team is HT-Supporter
 		if (isSupporter) {
 			var guestbookLink = doc.createElement("a");
 			guestbookLink.className = "inner";
@@ -131,8 +171,9 @@ var FoxtrickManagerButtons = {
 			guestbookLink.title = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
 			guestbookLink.id = this.GUESTBOOK_LINK_ID;
 
-			if (doc.getElementById(this.CHALLENGE_LINK_ID).getElementsByTagName('img').length===0) {
+			if (!FoxtrickMain.isStandard) {
 				guestbookLink.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
+				guestbookLink.setAttribute('style','display:block;');
 			}
 			else {
 				var img = doc.createElement("img");

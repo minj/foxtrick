@@ -172,7 +172,7 @@ var FoxtrickTeamPopupLinks = {
 					var i = 0, aLink;
 					while ( aLink = aLinks[i++] ) {
 						if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons				
-						if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks) 
+						if ( ( aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && this.bTeamLinks) 
 						|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {                                
 							this._addSpan(doc,  aLink );
 						}
