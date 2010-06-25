@@ -9,10 +9,10 @@ var FoxtrickSkillTable = {
 
 	MODULE_NAME : "SkillTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array("players", "YouthPlayers"),
+	PAGES : new Array("players", "YouthPlayers", "TransferSearchResults"),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Merged cards/injuries/transfer-list into status column, and added player ID copying.",
+	LATEST_CHANGE : "Added skilltable to transferlist search results. Merged cards/injuries/transfer-list into status column, and added player ID copying.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OtherTeams"),
 	CSS : Foxtrick.ResourcePath + "resources/css/skilltable.css",
@@ -27,9 +27,15 @@ var FoxtrickSkillTable = {
 	// returns full type of the document in this format:
 	// { type : ["senior"|"youth"], subtype : ["own"|"others"|"nt"|"oldiesCoach"] }
 	getFullType : function(doc) {
-		var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
-
 		var fullType = { type : "", subtype : "" };
+		
+		if (Foxtrick.Pages.Players.isTransferSearchResultsPage(doc)) {
+			fullType.type = "TransferSearchResults";
+			fullType.subtype = "others";
+			return fullType;
+		}
+		
+		var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
 
 		if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
 			fullType.type = "senior";
@@ -65,11 +71,12 @@ var FoxtrickSkillTable = {
 
 	run : function(page, doc) {
 		try {
-			if (!this.getFullType(doc).subtype === "own"
+			if ( page!=='TransferSearchResults' 
+				&& !this.getFullType(doc).subtype === "own"
 				&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
 				return;
 			}
-			FoxtrickSkillTable.addTableDiv(doc);
+			FoxtrickSkillTable.addTableDiv(doc);			
 		}
 		catch(e) {
 			Foxtrick.dumpError(e);
@@ -82,10 +89,15 @@ var FoxtrickSkillTable = {
 	createTable : function(doc) {
 		try {
 			var fullType = this.getFullType(doc);
-			var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+			Foxtrick.dump(fullType.type+'\n');
+			if (fullType.type=='TransferSearchResults' ) var playerList = Foxtrick.Pages.Players.getTransferPlayerList(doc);
+			else var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
 
 			var latestMatch = 0, secondLatestMatch = 0;
-			if (fullType.subtype != "nt" && !fullType.subtype != "oldiesCoach") {
+			if ( fullType.type!='TransferSearchResults' 
+				&& fullType.subtype != "nt" 
+				&& !fullType.subtype != "oldiesCoach" ) {
+				
 				var allPlayerInfo = doc.getElementsByClassName("playerInfo");
 				for (var i = 0; i < allPlayerInfo.length; ++i) {
 					var as = allPlayerInfo[i].getElementsByTagName("a");
@@ -280,7 +292,10 @@ var FoxtrickSkillTable = {
 				link.textContent = Foxtrick.XMLData.League[leagueId].LeagueName;
 				cell.appendChild(link);
 			};
-
+			var date = function(cell, deadline) {
+				cell.appendChild(deadline);
+			};
+			
 // columns used for table information
 // name: name of the column, used for fetching l10nized string
 // property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
@@ -298,6 +313,11 @@ var FoxtrickSkillTable = {
 // img: images used in table headers as substitution of text
 
 			var columns = [
+				{ name : "Bookmark", property : "bookmarkLink", method : link, sortString : true },
+				{ name : "CurrentBid", property : "currentBid", alignRight : true },
+				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true},
+				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true},
+				{ name : "Deadline", property : "deadline", method : date, sortDate : true},
 				{ name : "PlayerNumber", property : "number", method : number, sortAsc : true },
 				{ name : "PlayerCategory", property : "category", method: category, sortAsc: true },
 				{ name : "Nationality", property : "countryId", method : nationality, sortString : true },
@@ -375,6 +395,9 @@ var FoxtrickSkillTable = {
 					if (columns[j].sortAsc) {
 						th.setAttribute("sort-asc", true);
 					}
+					if (columns[j].sortDate) {
+						th.setAttribute("sort-date", true);
+					}
 					Foxtrick.addEventListenerChangeSave(th, "click", FoxtrickSkillTable.sortClick, false);
 
 					var fullName = Foxtrickl10n.getString(columns[j].name);
@@ -441,7 +464,7 @@ var FoxtrickSkillTable = {
 								columns[j].method(cell, playerList[i][columns[j].property]);
 							}
 							else {
-								cell.appendChild(doc.createTextNode(playerList[i][columns[j].property]));
+								cell.innerHTML = Foxtrick.seperate_num(playerList[i][columns[j].property]);
 							}
 						}
 						if (columns[j].alignRight) {
@@ -495,9 +518,12 @@ var FoxtrickSkillTable = {
 			// always sort by ascending order
 			return aContent.localeCompare(bContent);
 		}
+		if (FoxtrickSkillTable.sortDate) {
+			return Foxtrick.getDateFromText(aContent) > Foxtrick.getDateFromText(bContent)
+		}
 		else {
-			aContent = parseFloat(aContent);
-			bContent = parseFloat(bContent);
+			aContent = parseFloat(Foxtrick.trimnum(aContent));
+			bContent = parseFloat(Foxtrick.trimnum(bContent));
 			aContent = isNaN(aContent) ? 0 : aContent;
 			bContent = isNaN(bContent) ? 0 : bContent;
 			if (aContent === bContent) {
@@ -518,6 +544,7 @@ var FoxtrickSkillTable = {
 			FoxtrickSkillTable.sortIndex = ev.currentTarget.getAttribute("s_index");
 			FoxtrickSkillTable.sortAsc = ev.currentTarget.hasAttribute("sort-asc");
 			FoxtrickSkillTable.sortString = ev.currentTarget.hasAttribute("sort-string");
+			FoxtrickSkillTable.sortDate = ev.currentTarget.hasAttribute("sort-date");
 
 			var table = doc.getElementById("ft_skilltable");
 			var table_old = table.cloneNode(true);
@@ -713,32 +740,37 @@ var FoxtrickSkillTable = {
 		tablediv.appendChild(container);
 
 		// insert tablediv
-		var playerList = doc.getElementsByClassName("playerList")[0];
-		if (playerList) {
-			// If there is playerList, as there is in youth/senior teams,
-			// insert before it. In such cases, there would be category headers
-			// for supporters, inserting before the first player would clutter
-			// up with the headers. Additionally, inserting before the list
-			// would be organized in a better way.
-			playerList.parentNode.insertBefore(tablediv, playerList);
+		if (doc.location.href.indexOf("TransfersSearchResult\.aspx") != -1) {
+			var resulttable = doc.getElementById('mainBody').getElementsByTagName("table")[0];
+			resulttable.parentNode.insertBefore(tablediv, resulttable);
 		}
 		else {
-			// otherwise, insert before the first player if there is any
-			var firstFace = doc.getElementsByClassName("faceCard")[0];
-			if (firstFace) {
-				// without playerList, players would have faces shown before
-				// playerInfo, if user enabled faces
-				firstFace.parentNode.insertBefore(tablediv, firstFace);
+			var playerList = doc.getElementsByClassName("playerList")[0];
+			if (playerList) {
+				// If there is playerList, as there is in youth/senior teams,
+				// insert before it. In such cases, there would be category headers
+				// for supporters, inserting before the first player would clutter
+				// up with the headers. Additionally, inserting before the list
+				// would be organized in a better way.
+				playerList.parentNode.insertBefore(tablediv, playerList);
 			}
 			else {
-				var firstPlayer = doc.getElementsByClassName("playerInfo")[0];
-				if (firstPlayer) {
-					// or... users haven't enabled faces
-					firstPlayer.parentNode.insertBefore(tablediv, firstPlayer);
+				// otherwise, insert before the first player if there is any
+				var firstFace = doc.getElementsByClassName("faceCard")[0];
+				if (firstFace) {
+					// without playerList, players would have faces shown before
+					// playerInfo, if user enabled faces
+					firstFace.parentNode.insertBefore(tablediv, firstFace);
+				}
+				else {
+					var firstPlayer = doc.getElementsByClassName("playerInfo")[0];
+					if (firstPlayer) {
+						// or... users haven't enabled faces
+						firstPlayer.parentNode.insertBefore(tablediv, firstPlayer);
+					}
 				}
 			}
 		}
-
 		return tablediv;
 	},
 

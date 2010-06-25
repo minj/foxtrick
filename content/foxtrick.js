@@ -581,6 +581,21 @@ Foxtrick.trimnum = function (text) {
   return text.replace(/&nbsp;/g,"").replace(/[\s]/g, '').match(/-\d+|\d+/);
 }
 
+Foxtrick.seperate_num = function (text) {
+  text=String(text);
+  var rtext='';
+  var j=0;
+  for (var i=text.length-1;i>=0;--i) {
+	rtext =  text.charAt(i) + rtext;
+	++j;
+	if (j==3) {
+		rtext =  '&nbsp;' + rtext;
+		j=0;
+	}
+  }
+  return rtext;
+}
+
 Foxtrick.substr_count = function ( haystack, needle, offset, length ) {
     // http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
     // Returns count of needle in a haystack.
