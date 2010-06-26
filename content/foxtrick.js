@@ -75,8 +75,7 @@ var FoxtrickMain = {
 			var module = Foxtrick.modules[i];
 			// if module has an init() function and is enabled
 			if (module.MODULE_NAME && Foxtrick.isModuleEnabled(module)) {
-				if (module.init)
-				{
+				if (module.init) {
 					try {
 						module.init();
 						//Foxtrick.dump("Foxtrick enabled module: " + module.MODULE_NAME + "\n");
@@ -84,9 +83,6 @@ var FoxtrickMain = {
 					catch (e) {
 						Foxtrick.dumpError(e);
 					}
-				}
-				else {
-					//Foxtrick.dump("Foxtrick disabled module: " + module.MODULE_NAME + "\n");
 				}
 			}
 
@@ -108,43 +104,46 @@ var FoxtrickMain = {
 	},
 
 	registerOnPageLoad : function(document) {
-	try{
-		// update status bar
-		Foxtrick.updateStatus();
+		try {
+			// update status bar
+			Foxtrick.updateStatus();
 
-		// status bar menu
-		var statusbarPreferences = document.getElementById("foxtrick-status-bar-preferences");
-		statusbarPreferences.setAttribute("label", Foxtrickl10n.getString("preferences"));
-		var statusbarDeactivate = document.getElementById("foxtrick-status-bar-deactivate");
-		statusbarDeactivate.setAttribute("label", Foxtrickl10n.getString(
-			"foxtrick.prefs.disableTemporaryLabel"));
-		statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
-		Foxtrick.statusbarDeactivate=statusbarDeactivate;
+			// status bar menu
+			var statusbarPreferences = document.getElementById("foxtrick-status-bar-preferences");
+			statusbarPreferences.setAttribute("label", Foxtrickl10n.getString("preferences"));
+			var statusbarDeactivate = document.getElementById("foxtrick-status-bar-deactivate");
+			statusbarDeactivate.setAttribute("label", Foxtrickl10n.getString(
+				"foxtrick.prefs.disableTemporaryLabel"));
+			statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+			Foxtrick.statusbarDeactivate=statusbarDeactivate;
 
-		FoxtrickContextMenuCopy.MENU_ID = document.getElementById("foxtrick-popup-copy-id");
-		FoxtrickContextMenuCopy.MENU_LINK = document.getElementById("foxtrick-popup-copy-link");
-		FoxtrickContextMenuCopy.MENU_HT_ML = document.getElementById("foxtrick-popup-copy-ht-ml");
-		FoxtrickContextMenuCopy.MENU_TABLE = document.getElementById("foxtrick-popup-copy-table");
+			FoxtrickContextMenuCopy.MENU_ID = document.getElementById("foxtrick-popup-copy-id");
+			FoxtrickContextMenuCopy.MENU_LINK = document.getElementById("foxtrick-popup-copy-link");
+			FoxtrickContextMenuCopy.MENU_HT_ML = document.getElementById("foxtrick-popup-copy-ht-ml");
+			FoxtrickContextMenuCopy.MENU_TABLE = document.getElementById("foxtrick-popup-copy-table");
 
-		// tools menu
-		var toolsMenu = document.getElementById("foxtrick-menu-preferences");
-		toolsMenu.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
+			// tools menu
+			var toolsMenu = document.getElementById("foxtrick-menu-preferences");
+			toolsMenu.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
 
-		var appcontent = document.getElementById("appcontent");
-		if (appcontent) {
-			// listen to page loads
-			appcontent.addEventListener("DOMContentLoaded", this.onPageLoad, true);
-			appcontent.addEventListener("unload", this.onPageUnLoad, true);
+			var appcontent = document.getElementById("appcontent");
+			if (appcontent) {
+				// listen to page loads
+				appcontent.addEventListener("DOMContentLoaded", this.onPageLoad, true);
+				appcontent.addEventListener("unload", this.onPageUnLoad, true);
 
-			// add listener to tab focus changes
-			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-					 .getService(Components.interfaces.nsIWindowMediator);
-			var browserEnumerator = wm.getEnumerator("navigator:browser");
-			var browserWin = browserEnumerator.getNext();
-			var tabbrowser = browserWin.getBrowser();
-			tabbrowser.tabContainer.onselect = FoxtrickMain.ontabfocus;
+				// add listener to tab focus changes
+				var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+						 .getService(Components.interfaces.nsIWindowMediator);
+				var browserEnumerator = wm.getEnumerator("navigator:browser");
+				var browserWin = browserEnumerator.getNext();
+				var tabbrowser = browserWin.getBrowser();
+				tabbrowser.tabContainer.onselect = FoxtrickMain.ontabfocus;
+			}
 		}
-	} catch(e){dump('Foxtrick registerOnPageLoad'+e)};
+		catch (e) {
+			dumpError(e);
+		}
 	},
 
 	ontabfocus : function(ev) {
@@ -289,8 +288,7 @@ var FoxtrickMain = {
 				else {
 					var curr_isStandard = Foxtrick.isStandardLayout(doc);
 					var curr_isRTL = Foxtrick.isRTLLayout(doc);
-					if (curr_isStandard != FoxtrickMain.isStandard || curr_isRTL != FoxtrickMain.isRTL)
-					{
+					if (curr_isStandard != FoxtrickMain.isStandard || curr_isRTL != FoxtrickMain.isRTL) {
 						FoxtrickMain.isStandard = curr_isStandard;
 						FoxtrickMain.isRTL = curr_isRTL;
 						Foxtrick.reload_module_css(doc);
@@ -389,7 +387,6 @@ var FoxtrickMain = {
 			Foxtrick.dump_flush(doc);
 		}
 	}
-
 };
 
 Foxtrick.updateStatus = function() {
@@ -441,8 +438,7 @@ Foxtrick.isStage = function(doc) {
 	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
 }
 
-
-	Foxtrick.registerModulePages = function(module) {
+Foxtrick.registerModulePages = function(module) {
 	try {
 		// if is enabled in preferences and has a run() function
 		if (module.run) {
@@ -970,8 +966,7 @@ Foxtrick.hasElement = function(doc, id) {
 * Note: if the header is the same as one of the other boxes in the sidebar,
 * the content will be added to that sidebarbox instead of creating a new one
 */
-Foxtrick.addBoxToSidebar =
-	function(doc, title, content, id, insertBefore, altInsertBefore, column) {
+Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altInsertBefore, column) {
 	try {
 		if (!id || !content.id) {
 			// No id, return
@@ -1155,8 +1150,8 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 							while (range = stat["countryidranges"][k++]) {
 								var r0=String(range[0]);
 								if (k==1) {
-										if (r0.length==2) r0='0'+r0;
-										else if (r0.length==1) r0='00'+r0;
+									if (r0.length==2) r0='0'+r0;
+									else if (r0.length==1) r0='00'+r0;
 								}
 								if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 								else countries += '[' + r0+']';
@@ -1173,8 +1168,8 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 						while (range = stat["owncountryidranges"][k++]) {
 							var r0=String(range[0]);
 							if (k==1) {
-									if (r0.length==2) r0='0'+r0;
-									else if (r0.length==1) r0='00'+r0;
+								if (r0.length==2) r0='0'+r0;
+								else if (r0.length==1) r0='00'+r0;
 							}
 							if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 							else countries += '[' + r0+']';
@@ -1218,8 +1213,8 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 								while (range = stat["nationalityranges"][k++]) {
 									var r0=String(range[0]);
 									if (countries=='') {
-											if (r0.length==2) r0='0'+r0;
-											else if (r0.length==1) r0='00'+r0;
+										if (r0.length==2) r0='0'+r0;
+										else if (r0.length==1) r0='00'+r0;
 									}
 									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
 									else countries += '[' + r0+']';
@@ -1230,17 +1225,17 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 						if (filtertype == "countryid"
 							&& stat["countryidranges"]
 							&& stat["countryidranges"].length!=0) {
-								var k=0,range;
-								while (range = stat["countryidranges"][k++]) {
-									var r0=String(range[0]);
-									if (countries=='') {
-											if (r0.length==2) r0='0'+r0;
-											else if (r0.length==1) r0='00'+r0;
-									}
-									if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
-									else countries += '[' + r0+']';
-									if (stat["countryidranges"][k]) 	countries+=',';
+							var k=0,range;
+							while (range = stat["countryidranges"][k++]) {
+								var r0=String(range[0]);
+								if (countries=='') {
+									if (r0.length==2) r0='0'+r0;
+									else if (r0.length==1) r0='00'+r0;
 								}
+								if (String(range[0])!=String(range[1])) countries += '[' + r0+'-'+ range[1]+ ']';
+								else countries += '[' + r0+']';
+								if (stat["countryidranges"][k]) 	countries+=',';
+							}
 						}
 					var has_entry=false;
 					for (var i = 0; i < module.OPTIONS.length; i++) {
@@ -1414,7 +1409,7 @@ Foxtrick.htDatePrintFormat = function(year, season, week, day, date) {
 		if (Foxtrick.isModuleFeatureEnabled(FoxtrickHTDateFormat, "LocalSaison"))
 			offset = FoxtrickPrefs.getInt("htSeasonOffset");
 	}
-	catch(e) {
+	catch (e) {
 		// Foxtrick.dump('offset: ' + e + '\n');
 		offset = 0;
 	}
