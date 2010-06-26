@@ -42,7 +42,8 @@ Foxtrick.Pages.Players = {
 
 			var player;
 			for (var i = 0; i < allPlayers.length; ++i) {
-				if (allPlayers[i].className.search("hidden")!=-1 ) continue; 
+				if (allPlayers[i].style.display=='none') continue; 
+				
 				player = {};
 				var hasFlag = (allPlayers[i].getElementsByClassName("flag").length > 0);
 				var nameLink = hasFlag ? allPlayers[i].getElementsByTagName("a")[1] : allPlayers[i].getElementsByTagName("a")[0];
