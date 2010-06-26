@@ -75,7 +75,7 @@ var FoxtrickMain = {
 			var module = Foxtrick.modules[i];
 			// if module has an init() function and is enabled
 			if (module.MODULE_NAME && Foxtrick.isModuleEnabled(module)) {
-				if (module.init) {
+				if (typeof(module.init) == "function") {
 					try {
 						module.init();
 						//Foxtrick.dump("Foxtrick enabled module: " + module.MODULE_NAME + "\n");
@@ -300,11 +300,14 @@ var FoxtrickMain = {
 				if (!is_only_css_check) {
 					// We run the modules that want to be run at every page.
 					for (var i in Foxtrick.run_every_page) {
-						try {
-							Foxtrick.run_every_page[i].run(doc);
-						}
-						catch (e) {
-							Foxtrick.dumpError(e);
+						var module = Foxtrick.run_every_page[i];
+						if (typeof(module.run) == "function") {
+							try {
+								module.run(doc);
+							}
+							catch (e) {
+								Foxtrick.dumpError(e);
+							}
 						}
 					}
 
@@ -316,19 +319,22 @@ var FoxtrickMain = {
 						if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
 							// on a specific page, run all handlers
 							for (var i in Foxtrick.run_on_page[page]) {
-								try {
-									var begin = (new Date()).getTime();
-									Foxtrick.run_on_page[page][i].run(page, doc);
-									var end = (new Date()).getTime();
-									var diff = end - begin;
-									if (diff > 50) {
-										// Show time used by a module if it's over
-										// 50ms.
-										Foxtrick.dump("Module time: " + diff + "ms | " + Foxtrick.run_on_page[page][i].MODULE_NAME + "\n");
+								var module = Foxtrick.run_on_page[page][i];
+								if (typeof(module.run) == "function") {
+									try {
+										var begin = (new Date()).getTime();
+										module.run(page, doc);
+										var end = (new Date()).getTime();
+										var diff = end - begin;
+										if (diff > 50) {
+											// Show time used by a module if it's over
+											// 50ms.
+											Foxtrick.dump("Module time: " + diff + "ms | " + module.MODULE_NAME + "\n");
+										}
 									}
-								}
-								catch (e) {
-									Foxtrick.dumpError(e);
+									catch (e) {
+										Foxtrick.dumpError(e);
+									}
 								}
 							}
 						}
@@ -351,18 +357,20 @@ var FoxtrickMain = {
 	// function run on every ht page change
 	change : function(doc, ev) {
 		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-		if((!(FoxtrickPrefs.getBool("disableOnStage") &&
-			Foxtrick.getHref(doc).search(stage_regexp) > -1))
-			&& (!FoxtrickPrefs.getBool("disableTemporary"))) {
+		if(!(FoxtrickPrefs.getBool("disableOnStage")
+			&& Foxtrick.getHref(doc).search(stage_regexp) > -1)
+			&& !FoxtrickPrefs.getBool("disableTemporary")) {
 
 			// call the modules that want to be run() on every hattrick page
 			Foxtrick.run_every_page.forEach(
 				function(fn) {
-					try {
-						fn.change(doc, ev);
-					}
-					catch (e) {
-						Foxtrick.dumpError(e);
+					if (typeof(fn.change) == "function") {
+						try {
+							fn.change(doc, ev);
+						}
+						catch (e) {
+							Foxtrick.dumpError(e);
+						}
 					}
 				});
 
@@ -375,11 +383,13 @@ var FoxtrickMain = {
 					// on a specific page, run all handlers
 					Foxtrick.run_on_page[i].forEach(
 						function(fn) {
-							try {
-								fn.change(i, doc, ev);
-							} catch (e) {
-								Foxtrick.dump ("Foxtrick module " + fn.MODULE_NAME + " change() exception at page " + i + "\n " + e + "\n");
-								Components.utils.reportError(e);
+							if (typeof(fn.change) == "function") {
+								try {
+										fn.change(i, doc, ev);
+								}
+								catch (e) {
+									Foxtrick.dumpError(e);
+								}
 							}
 						});
 				}
