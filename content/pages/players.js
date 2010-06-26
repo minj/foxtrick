@@ -426,7 +426,10 @@ Foxtrick.Pages.Players = {
 			var TransferPlayers = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 			for (var i=0; i<TransferPlayers.rows.length; ) {
 				player = {};
-							
+
+				var links = TransferPlayers.rows[i].getElementsByTagName("a");
+				var imgs = TransferPlayers.rows[i].getElementsByTagName("img");
+
 				// skip sold players
 				if (TransferPlayers.rows[i+1].cells[0].innerHTML.search(/borderSeparator/i)!==-1) {
 					i+=2;
@@ -477,10 +480,12 @@ Foxtrick.Pages.Players = {
 					player[skillOrder[j]] = parseInt(level);
 				}
 
-				var imgs = TransferPlayers.rows[i].getElementsByTagName("img");
-				
-				if (imgs[1].parentNode.href.search(/Bookmarks/)!==-1) player.bookmarkLink = imgs[1].parentNode.cloneNode(true);
-				
+				for (var j = 0; j < links.length; ++j) {
+					if (links[j].href.search(/Bookmarks/) !== -1) {
+						player.bookmarkLink = links[j].cloneNode(true);
+					}
+				}
+
 				// red/yellow cards and injuries, these are shown as images
 				player.redCard = 0;
 				player.yellowCard = 0;
@@ -513,7 +518,7 @@ Foxtrick.Pages.Players = {
 				player.currentClubLink = TransferPlayers.rows[i+2].cells[1].getElementsByTagName('a')[0].cloneNode(true);
 			
 				playerList.push(player);
-				i+=8
+				i+=8;
 			}
 			return playerList;
 		}
