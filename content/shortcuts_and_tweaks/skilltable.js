@@ -290,7 +290,12 @@ var FoxtrickSkillTable = {
 			};
 			var date = function(cell, deadline) {
 				cell.appendChild(deadline);
+				cell.setAttribute("index", Foxtrick.getDateFromText(deadline.textContent).getTime());
 			};
+			var formatNum = function(cell, num) {
+				cell.textContent = Foxtrick.formatNumber(num, " ");
+				cell.setAttribute("index", num);
+			}
 
 // columns used for table information
 // name: name of the column, used for fetching l10nized string
@@ -313,13 +318,13 @@ var FoxtrickSkillTable = {
 				{ name : "CurrentBid", property : "currentBid", alignRight : true },
 				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true },
 				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
-				{ name : "Deadline", property : "deadline", method : date, sortDate : true },
+				{ name : "Deadline", property : "deadline", method : date },
 				{ name : "PlayerNumber", property : "number", method : number, sortAsc : true },
 				{ name : "PlayerCategory", property : "category", method: category, sortAsc: true },
 				{ name : "Nationality", property : "countryId", method : nationality, sortString : true },
 				{ name : "Player", properties : ["nameLink", "nationalTeamId", "trainerData"], method : playerName, sortString : true },
 				{ name : "Age", property : "age", method : age, sortAsc : true },
-				{ name : "TSI", property : "tsi", alignRight : true },
+				{ name : "TSI", property : "tsi", alignRight : true, method : formatNum },
 				{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injured", "transferListed"], method : status },
 				{ name : "Speciality", property : "speciality", method : speciality, sortString : true },
 				{ name : "Leadership", property : "leadership" },
@@ -339,7 +344,7 @@ var FoxtrickSkillTable = {
 				{ name : "Last_match", property : "lastMatch", method : lastMatch },
 				{ name : "Last_stars", property : "lastRating", img : "/Img/Matches/star_blue.png" },
 				{ name : "Last_position", property : "lastPosition", method : position, sortString : true },
-				{ name : "Salary", property : "salary", alignRight : true },
+				{ name : "Salary", property : "salary", alignRight : true, method : formatNum },
 				{ name : "NrOfMatches", property : "matchCount" },
 				{ name : "LeagueGoals", property : "leagueGoals" },
 				{ name : "CupGoals", property : "cupGoals" },
@@ -390,9 +395,6 @@ var FoxtrickSkillTable = {
 					}
 					if (columns[j].sortAsc) {
 						th.setAttribute("sort-asc", true);
-					}
-					if (columns[j].sortDate) {
-						th.setAttribute("sort-date", true);
 					}
 					Foxtrick.addEventListenerChangeSave(th, "click", FoxtrickSkillTable.sortClick, false);
 
@@ -460,7 +462,7 @@ var FoxtrickSkillTable = {
 								columns[j].method(cell, playerList[i][columns[j].property]);
 							}
 							else {
-								cell.textContent = Foxtrick.formatNumber(playerList[i][columns[j].property], " ");
+								cell.textContent = playerList[i][columns[j].property];
 							}
 						}
 						if (columns[j].alignRight) {
@@ -514,12 +516,9 @@ var FoxtrickSkillTable = {
 			// always sort by ascending order
 			return aContent.localeCompare(bContent);
 		}
-		if (FoxtrickSkillTable.sortDate) {
-			return Foxtrick.getDateFromText(aContent) > Foxtrick.getDateFromText(bContent)
-		}
 		else {
-			aContent = parseFloat(Foxtrick.trimnum(aContent));
-			bContent = parseFloat(Foxtrick.trimnum(bContent));
+			aContent = parseFloat(aContent);
+			bContent = parseFloat(bContent);
 			aContent = isNaN(aContent) ? 0 : aContent;
 			bContent = isNaN(bContent) ? 0 : bContent;
 			if (aContent === bContent) {
@@ -540,7 +539,6 @@ var FoxtrickSkillTable = {
 			FoxtrickSkillTable.sortIndex = ev.currentTarget.getAttribute("s_index");
 			FoxtrickSkillTable.sortAsc = ev.currentTarget.hasAttribute("sort-asc");
 			FoxtrickSkillTable.sortString = ev.currentTarget.hasAttribute("sort-string");
-			FoxtrickSkillTable.sortDate = ev.currentTarget.hasAttribute("sort-date");
 
 			var table = doc.getElementById("ft_skilltable");
 			var table_old = table.cloneNode(true);
