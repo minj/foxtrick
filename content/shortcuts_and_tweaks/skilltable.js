@@ -11,9 +11,9 @@ var FoxtrickSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers", "TransferSearchResults"),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Added skilltable to transferlist search results. Merged cards/injuries/transfer-list into status column, and added player ID copying.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Added to transferlist search results and added some columns.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OtherTeams"),
 	CSS : Foxtrick.ResourcePath + "resources/css/skilltable.css",
 	CSS_RTL : Foxtrick.ResourcePath + "resources/css/skilltable_rtl.css",
@@ -25,16 +25,15 @@ var FoxtrickSkillTable = {
 	},
 
 	// returns full type of the document in this format:
-	// { type : ["senior"|"youth"], subtype : ["own"|"others"|"nt"|"oldiesCoach"] }
+	// { type : ["senior"|"youth"|"transfer"], subtype : ["own"|"others"|"nt"|"oldiesCoach"] }
 	getFullType : function(doc) {
 		var fullType = { type : "", subtype : "" };
-		
-		if (Foxtrick.Pages.Players.isTransferSearchResultsPage(doc)) {
-			fullType.type = "TransferSearchResults";
-			fullType.subtype = "others";
+
+		if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {
+			fullType.type = "transfer";
 			return fullType;
 		}
-		
+
 		var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
 
 		if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
@@ -71,14 +70,14 @@ var FoxtrickSkillTable = {
 
 	run : function(page, doc) {
 		try {
-			if ( page!=='TransferSearchResults' 
+			if (page !== "TransferSearchResults"
 				&& !this.getFullType(doc).subtype === "own"
 				&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
 				return;
 			}
-			FoxtrickSkillTable.addTableDiv(doc);			
+			FoxtrickSkillTable.addTableDiv(doc);
 		}
-		catch(e) {
+		catch (e) {
 			Foxtrick.dumpError(e);
 		}
 	},
@@ -89,15 +88,12 @@ var FoxtrickSkillTable = {
 	createTable : function(doc) {
 		try {
 			var fullType = this.getFullType(doc);
-			Foxtrick.dump(fullType.type+'\n');
-			if (fullType.type=='TransferSearchResults' ) var playerList = Foxtrick.Pages.Players.getTransferPlayerList(doc);
-			else var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+			var playerList = (fullType.type == "transfer") ? Foxtrick.Pages.TransferSearchResults.getPlayerList(doc) : Foxtrick.Pages.Players.getPlayerList(doc);
 
 			var latestMatch = 0, secondLatestMatch = 0;
-			if ( fullType.type!='TransferSearchResults' 
-				&& fullType.subtype != "nt" 
-				&& !fullType.subtype != "oldiesCoach" ) {
-				
+			if (fullType.type != "transfer"
+				&& fullType.subtype != "nt"
+				&& !fullType.subtype != "oldiesCoach") {
 				var allPlayerInfo = doc.getElementsByClassName("playerInfo");
 				for (var i = 0; i < allPlayerInfo.length; ++i) {
 					var as = allPlayerInfo[i].getElementsByTagName("a");
@@ -295,7 +291,7 @@ var FoxtrickSkillTable = {
 			var date = function(cell, deadline) {
 				cell.appendChild(deadline);
 			};
-			
+
 // columns used for table information
 // name: name of the column, used for fetching l10nized string
 // property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
@@ -315,9 +311,9 @@ var FoxtrickSkillTable = {
 			var columns = [
 				{ name : "Bookmark", property : "bookmarkLink", method : link, sortString : true },
 				{ name : "CurrentBid", property : "currentBid", alignRight : true },
-				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true},
-				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true},
-				{ name : "Deadline", property : "deadline", method : date, sortDate : true},
+				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true },
+				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
+				{ name : "Deadline", property : "deadline", method : date, sortDate : true },
 				{ name : "PlayerNumber", property : "number", method : number, sortAsc : true },
 				{ name : "PlayerCategory", property : "category", method: category, sortAsc: true },
 				{ name : "Nationality", property : "countryId", method : nationality, sortString : true },
@@ -675,6 +671,9 @@ var FoxtrickSkillTable = {
 		var tablediv = doc.createElement("div");
 		tablediv.id = "ft_skilltablediv";
 		tablediv.className = "ft_skilltablediv";
+		if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {
+			Foxtrick.addClass(tablediv, "transfer");
+		}
 
 		// table div head
 		var h2 = doc.createElement("h2");
@@ -740,9 +739,9 @@ var FoxtrickSkillTable = {
 		tablediv.appendChild(container);
 
 		// insert tablediv
-		if (doc.location.href.indexOf("TransfersSearchResult\.aspx") != -1) {
-			var resulttable = doc.getElementById('mainBody').getElementsByTagName("table")[0];
-			resulttable.parentNode.insertBefore(tablediv, resulttable);
+		if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {
+			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
+			transferTable.parentNode.insertBefore(tablediv, transferTable);
 		}
 		else {
 			var playerList = doc.getElementsByClassName("playerList")[0];
@@ -846,12 +845,19 @@ var FoxtrickSkillTable = {
 		return table;
 	},
 
+	fullTypeToString : function(fullType) {
+		if (fullType.subtype) {
+			return fullType.type + "." + fullType.subtype;
+		}
+		return fullType.type;
+	},
+
 	getColumnEnabled : function(fullType, name) {
-		return FoxtrickPrefs.getBool("module.SkillTable." + fullType.type + "." + fullType.subtype + "." + name);
+		return FoxtrickPrefs.getBool("module.SkillTable." + this.fullTypeToString(fullType) + "." + name);
 	},
 
 	setColumnEnabled : function(fullType, name, enabled) {
-		FoxtrickPrefs.setBool("module.SkillTable." + fullType.type + "." + fullType.subtype + "." + name, enabled);
+		FoxtrickPrefs.setBool("module.SkillTable." + this.fullTypeToString(fullType) + "." + name, enabled);
 	},
 
 	copyTable : function(ev) {

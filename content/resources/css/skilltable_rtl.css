@@ -1,6 +1,7 @@
 /*skilltable*/
-.ft_skilltablediv { margin-top: 35px; margin-bottom: 35px; margin-right: -10px; }
-.ft_skilltablediv h2 { cursor: pointer; margin: 10px 0 10px 0 !important; }
+.ft_skilltablediv { margin: 35px -8px 35px 0; }
+.ft_skilltablediv.transfer { margin: 35px 0; }
+.ft_skilltablediv h2 { cursor: pointer; margin: 10px 0 !important; }
 .ft_skilltablediv table { width: auto !important; max-width: 100%; margin: 0.1em auto 0.5em auto; white-space: nowrap; border-collapse: collapse; border: 1px solid #dce0dc; }
 .ft_skilltablediv table td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltablediv table td:nth-child(odd) { background-color: white; }
