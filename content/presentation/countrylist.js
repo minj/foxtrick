@@ -187,7 +187,8 @@ var FoxtrickCountyList = {
             if (Foxtrick.isModuleFeatureEnabled( this, "HideFlagOntop")) {
                 league.setAttribute('style', 'display:none');
             }
-            leaguenum = league.href.match(/\d+/);
+            Foxtrick.dump(league.href+'\n');
+			leaguenum = league.href.match(/LeagueID=(\d+)/i)[1];
 			Foxtrick.dump('leaguenum: '+leaguenum+'\n');
 			var htname = league.firstChild.title;
 			htname = FoxtrickHelper.getLeagueDataFromId(leaguenum).LeagueName;
