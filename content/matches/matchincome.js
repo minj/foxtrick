@@ -52,7 +52,7 @@ var FoxtrickMatchIncome = {
                 td2a.className = "ch";
                 td2a.textContent = Foxtrickl10n.getString('foxtrick.matches.income');
                 td2b.className = "nowrap";
-				td2b.textContent = Foxtrick.ReturnFormatedValue (Math.floor(sum), ' ')+' '+FoxtrickPrefs.getString("oldCurrencySymbol");
+				td2b.textContent = Foxtrick.formatNumber (Math.floor(sum), ' ')+' '+FoxtrickPrefs.getString("oldCurrencySymbol");
 			}
         }    
     },

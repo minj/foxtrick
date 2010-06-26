@@ -547,17 +547,6 @@ Foxtrick.addJavaScript = function( doc, js ) {
   head.appendChild(script);
 }
 
-// attaches a JavaScript snippet to the page
-Foxtrick.addJavaScriptSnippet = function( doc, code ) {
-  var path = "head[1]";
-	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-
-  var script = doc.createElement("script");
-  script.setAttribute("language", "JavaScript");
-  script.innerHTML=code;
-  head.appendChild(script);
-}
-
 Foxtrick.confirmDialog = function(msg) {
     var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
@@ -571,29 +560,28 @@ Foxtrick.alert = function( msg ) {
 }
 
 Foxtrick.trim = function (text) {
-  return text.replace(/^\s+/, "").replace(/\s+$/, '').replace(/&nbsp;/g,"");
+	return text.replace(/^\s+/, "").replace(/\s+$/, '').replace(/&nbsp;/g,"");
 }
 
-Foxtrick.trimnum = function (text) {
-  //return text.replace(/[\D\s]/g, '');
-  text +='';
-  if (text == null || text.length == 0) return 0;
-  return text.replace(/&nbsp;/g,"").replace(/[\s]/g, '').match(/-\d+|\d+/);
+Foxtrick.trimnum = function(text) {
+	text = String(text);
+	return text ? parseInt(text.replace(/&nbsp;/g, "").replace(/\s/g, "")) : 0;
 }
 
-Foxtrick.seperate_num = function (text) {
-  text=String(text);
-  var rtext='';
-  var j=0;
-  for (var i=text.length-1;i>=0;--i) {
-	rtext =  text.charAt(i) + rtext;
-	++j;
-	if (j==3) {
-		rtext =  '&nbsp;' + rtext;
-		j=0;
+Foxtrick.formatNumber = function(num, sep) {
+	num = String(num);
+	if (num.length > 3) {
+		var mod = num.length % 3;
+		var output = (num > 0 ? (num.substring(0, mod)) : "");
+		for (var i = 0; i < Math.floor(num.length / 3); ++i) {
+			if (mod == 0 && i == 0)
+				output += num.substring(mod+ 3 * i, mod + 3 * i + 3);
+			else
+				output += sep + num.substring(mod + 3 * i, mod + 3 * i + 3);
+		}
+		return output;
 	}
-  }
-  return rtext;
+	return num;
 }
 
 Foxtrick.substr_count = function ( haystack, needle, offset, length ) {
@@ -1304,23 +1292,6 @@ Foxtrick.substr = function( f_string, f_start, f_length ) {
 Foxtrick.strrpos = function( haystack, needle, offset){
     var i = (haystack+'').lastIndexOf( needle, offset ); // returns -1
     return i >= 0 ? i : false;
-}
-
-Foxtrick.ReturnFormatedValue = function( number, separator ) {
-    number = '' + number;
-    if (number.length > 3) {
-        var mod = number.length % 3;
-        var output = (mod > 0 ? (number.substring(0,mod)) : '');
-        for (var i=0 ; i < Math.floor(number.length / 3); i++) {
-            if ((mod == 0) && (i == 0))
-                output += number.substring(mod+ 3 * i, mod + 3 * i + 3);
-            else
-                output+= separator + number.substring(mod + 3 * i, mod + 3 * i + 3);
-        }
-        return (output);
-    }
-    else
-        return number;
 }
 
 Foxtrick.gregorianToHT  = function( date,weekdayoffset ) {

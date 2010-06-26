@@ -70,7 +70,7 @@ FoxtrickCurrencyConverter = {
 						var val=table_inner_stripped.match(myReg)[1]; 					
 					}
 					catch (e){return;} // catching currency symbol of tranfer bid
-					var conv = Foxtrick.ReturnFormatedValue(Math.floor(val * currencyRate / currencyRateNewCurr),'&nbsp;');
+					var conv = Foxtrick.formatNumber(Math.floor(val * currencyRate / currencyRateNewCurr),'&nbsp;');
 					conv = conv.replace(/\-\&nbsp\;/,'-'); 
 					
 					// add a <br> if there is only one entry

@@ -143,10 +143,10 @@ Foxtrick.TeamStats = {
 				var data = doc.createElement("span");
 				var total = doc.createElement("span");
 				total.className = "nowrap";
-				total.textContent = Foxtrick.ReturnFormatedValue(totalTSI, " ");
+				total.textContent = Foxtrick.formatNumber(totalTSI, " ");
 				var avg = doc.createElement("span");
 				avg.className = "nowrap";
-				avg.textContent = Foxtrick.ReturnFormatedValue(avgTSI, " ");
+				avg.textContent = Foxtrick.formatNumber(avgTSI, " ");
 				data.appendChild(total);
 				data.appendChild(doc.createTextNode(" / "));
 				data.appendChild(avg);

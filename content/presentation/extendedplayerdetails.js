@@ -133,7 +133,7 @@ FoxtrickExtendedPlayerDetailsWage = {
             
 			var wage = parseInt(part.replace('&nbsp;', '').replace(/ /g, '')); 
             part =  Math.floor( wage / 1.2);
-            part = Foxtrick.ReturnFormatedValue (part, '&nbsp;');
+            part = Foxtrick.formatNumber (part, '&nbsp;');
 			
 			// get space before currency symbol
 			part_1_save=part_1_save.replace(" "+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
@@ -150,7 +150,7 @@ FoxtrickExtendedPlayerDetailsWage = {
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 				}
 				if (Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") ) 
-						table_elm_bonus.innerHTML += '<br>'+Foxtrick.ReturnFormatedValue (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
+						table_elm_bonus.innerHTML += '<br>'+Foxtrick.formatNumber (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
              }   
 				
         } catch (e) {

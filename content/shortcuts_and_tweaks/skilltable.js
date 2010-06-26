@@ -460,7 +460,7 @@ var FoxtrickSkillTable = {
 								columns[j].method(cell, playerList[i][columns[j].property]);
 							}
 							else {
-								cell.innerHTML = Foxtrick.seperate_num(playerList[i][columns[j].property]);
+								cell.textContent = Foxtrick.formatNumber(playerList[i][columns[j].property], " ");
 							}
 						}
 						if (columns[j].alignRight) {
