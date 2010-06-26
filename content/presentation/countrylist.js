@@ -182,13 +182,13 @@ var FoxtrickCountyList = {
     _placeCountry: function (page, doc) {
         var cntr = doc.getElementById( 'ft_cntr_fix' );
 		if( cntr == null ) {
-            var league = Foxtrick.getElementsByClass("flag inner", doc)[0];
+            var league = Foxtrick.getElementsByClass("flag inner", doc.getElementById('mainWrapper'))[0];
             if (!league) return;
             if (Foxtrick.isModuleFeatureEnabled( this, "HideFlagOntop")) {
                 league.setAttribute('style', 'display:none');
             }
             leaguenum = league.href.match(/\d+/);
-			Foxtrick.dump(leaguenum+'\n');
+			Foxtrick.dump('leaguenum: '+leaguenum+'\n');
 			var htname = league.firstChild.title;
 			htname = FoxtrickHelper.getLeagueDataFromId(leaguenum).LeagueName;
 			league.firstChild.title = htname
