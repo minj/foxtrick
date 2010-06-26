@@ -163,6 +163,7 @@ FoxtrickPlayerFilters = {
 		}
 
 		filterSelect.setAttribute("scanned", "true");
+				
 	},
 
 	change : function(page, doc) {
@@ -299,6 +300,16 @@ FoxtrickPlayerFilters = {
 			// update player count
 			var h = body.getElementsByTagName("h1")[0];
 			h.innerHTML = h.innerHTML.replace(/\d+/, count);
+			
+			if (FoxtrickSkillTable.isTableCreated(doc)){
+				var table = doc.getElementById("ft_skilltable");;
+				table.parentNode.removeChild(table);
+				
+				var tablediv = doc.getElementById("ft_skilltablediv");
+				if (tablediv.getElementsByTagName('h2')[0].className.search('ft_boxBodyUnfolded')!=-1) {
+						setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);			
+				}
+			}
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
