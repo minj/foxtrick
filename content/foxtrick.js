@@ -580,6 +580,9 @@ Foxtrick.trimnum = function(text) {
 
 Foxtrick.formatNumber = function(num, sep) {
 	num = String(num);
+	if (sep === undefined) {
+		sep = " ";
+	}
 	if (num.length > 3) {
 		var mod = num.length % 3;
 		var output = (num > 0 ? (num.substring(0, mod)) : "");
