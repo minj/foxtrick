@@ -148,6 +148,7 @@ Foxtrick.modules = [
 	FoxtrickForumStage,
 	FoxtrickExtraPlayerInfo,
 	FoxtrickPlayerFilters,
-	FoxtrickYouthSeriesEstimation,
+	FoxtrickYouthSeriesEstimation,	
+	FoxtrickTransferSearchResultFilters,
 	//FoxtrickLocalTime
 ];

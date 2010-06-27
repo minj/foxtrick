@@ -9,7 +9,7 @@ var FoxtrickSkillTable = {
 
 	MODULE_NAME : "SkillTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array("players", "YouthPlayers", "TransferSearchResults"),
+	PAGES : new Array("players", "YouthPlayers", "transferListSearchResult"),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Added to transferlist search results and added some columns.",
@@ -70,7 +70,7 @@ var FoxtrickSkillTable = {
 
 	run : function(page, doc) {
 		try {
-			if (page !== "TransferSearchResults"
+			if (page !== "transferListSearchResult"
 				&& !this.getFullType(doc).subtype === "own"
 				&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
 				return;

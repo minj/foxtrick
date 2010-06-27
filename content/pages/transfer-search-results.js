@@ -22,6 +22,12 @@ Foxtrick.Pages.TransferSearchResults = {
 					i += 2;
 					continue;
 				}
+				// filter is on?
+				if (transferTable.rows[i].style.display=='none') {
+					i += 8;
+					continue; 
+				}
+				
 				player.deadline = transferTable.rows[i + 6].cells[1].getElementsByTagName("span")[0].cloneNode(true);
 
 				var overviewtable = transferTable.rows[i].getElementsByTagName("table")[0];

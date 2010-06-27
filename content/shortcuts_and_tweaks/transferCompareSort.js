@@ -8,7 +8,7 @@ var FoxtrickTransferCompareSort = {
     
     MODULE_NAME : "TransferCompareSort",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('TransferCompare'), 
+	PAGES : new Array('transferCompare'), 
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9",
 	LATEST_CHANGE:"Sorting transfer compare results",

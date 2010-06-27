@@ -453,16 +453,23 @@ Foxtrick.registerModulePages = function(module) {
 		// if is enabled in preferences and has a run() function
 		if (module.run) {
 			for (var i=0;i<module.PAGES.length;++i) {
-				if (module.ONPAGEPREF_PAGE) Foxtrick.may_run_on_page[module.ONPAGEPREF_PAGE].push(module);
-				else Foxtrick.may_run_on_page[module.PAGES[i]].push(module);
-				//Foxtrick.dump(module.PAGES[i]+'\n');
-				if (Foxtrick.isModuleEnabled(module))
-					Foxtrick.run_on_page[module.PAGES[i]].push(module);
+				//Foxtrick.dump('registerModulePages: '+module.MODULE_NAME+' '+module.PAGES[i]+'\n');
+				try {
+					if (module.ONPAGEPREF_PAGE) Foxtrick.may_run_on_page[module.ONPAGEPREF_PAGE].push(module);
+					else Foxtrick.may_run_on_page[module.PAGES[i]].push(module);
+					if (Foxtrick.isModuleEnabled(module))
+						Foxtrick.run_on_page[module.PAGES[i]].push(module);
+				}
+				catch (e) {
+					Foxtrick.dumpError(e);
+					Foxtrick.dump('registerModulePages: '+module.MODULE_NAME+'\n');
+					Foxtrick.dump('registerModulePages: '+module.PAGES[i]+'\n');
+				}
 			}
 		}
 	}
 	catch (e) {
-		Foxtrick.dump('registerModulePages: '+e+'\n');
+		Foxtrick.dumpError(e);
 	}
 }
 
@@ -749,7 +756,7 @@ Foxtrick.selectFileSave = function (parentWindow) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dump('selectFileSave'+e+'\n');
+		Foxtrick.dumpError(e);
 	}
 	return null;
 }
@@ -763,7 +770,7 @@ Foxtrick.selectFile = function (parentWindow) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dump('selectFile'+e+'\n');
+		Foxtrick.dumpError(e);
 	}
 	return null;
 }
@@ -950,7 +957,7 @@ Foxtrick.reload_module_css = function(doc) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dump('reload_module_css '+e+'\n');
+		Foxtrick.dumpError(e);
 	}
 }
 
@@ -1203,7 +1210,7 @@ Foxtrick.initOptionsLinks = function(module,linktype,extra_options) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dump('initOptionsLinks '+e+'\n');
+		Foxtrick.dumpError(e);
 	}
 }
 
@@ -1268,7 +1275,7 @@ Foxtrick.initOptionsLinksArray = function(module,linktypes) {
 		while (country_option = country_options[i++]) {module.OPTIONS.push({"key":country_option.key,"title":country_option.title.replace(/^\[0+/,'[')});}
 	}
 	catch (e) {
-		Foxtrick.dump('Foxtrick.initOptionsLinksArray : '+e+'\n');
+		Foxtrick.dumpError(e);
 	}
 }
 

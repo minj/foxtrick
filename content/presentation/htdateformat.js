@@ -7,7 +7,7 @@ FoxtrickHTDateFormat = {
 
     MODULE_NAME : "HTDateFormat",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
- 	PAGES : new Array('transfersTeam','TransfersPlayer','transfer','TransferCompare','match',
+ 	PAGES : new Array('transfersTeam','transfersPlayer','transfer','transferCompare','match',
 					'matches','matchesarchiv','teamPageGeneral','achievements',
 					'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'), 
 	ONPAGEPREF_PAGE : 'all', 
@@ -41,7 +41,7 @@ FoxtrickHTDateFormat = {
                 Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
-            case 'TransfersPlayer' :
+            case 'transfersPlayer' :
                 Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 				
@@ -68,7 +68,7 @@ FoxtrickHTDateFormat = {
                 Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
-            case 'TransferCompare' :
+            case 'transferCompare' :
                 Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
                 
