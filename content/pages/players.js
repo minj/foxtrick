@@ -62,8 +62,10 @@ Foxtrick.Pages.Players = {
 								player.matchCount = parseInt(currentXMLPlayer.getElementsByTagName("NrOfMatches")[0].textContent);
 							}
 							if (currentXMLPlayer.getElementsByTagName("PlayerCategoryId").length) {
-								// category === 0 means the player is not categorized
-								player.category = parseInt(currentXMLPlayer.getElementsByTagName("PlayerCategoryId")[0].textContent);
+								var category = currentXMLPlayer.getElementsByTagName("PlayerCategoryId")[0].textContent;
+								if (parseInt(category) > 0) {
+									player.category = parseInt(category);
+								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("Agreeability").length) {
 								player.agreeability = parseInt(currentXMLPlayer.getElementsByTagName("Agreeability")[0].textContent);
@@ -76,31 +78,31 @@ Foxtrick.Pages.Players = {
 							}
 							if (currentXMLPlayer.getElementsByTagName("LeagueGoals").length) {
 								var leagueGoals = currentXMLPlayer.getElementsByTagName("LeagueGoals")[0].textContent;
-								if (leagueGoals != "Not available") {
+								if (parseInt(leagueGoals) >= 0) {
 									player.leagueGoals = parseInt(leagueGoals);
 								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("CupGoals").length) {
 								var cupGoals = currentXMLPlayer.getElementsByTagName("CupGoals")[0].textContent;
-								if (cupGoals != "Not available") {
+								if (parseInt(cupGoals) >= 0) {
 									player.cupGoals = parseInt(cupGoals);
 								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("FriendliesGoals").length) {
 								var friendliesGoals = currentXMLPlayer.getElementsByTagName("FriendliesGoals")[0].textContent;
-								if (friendliesGoals != "Not available") {
+								if (parseInt(friendliesGoals) >= 0) {
 									player.friendliesGoals = parseInt(friendliesGoals);
 								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("CareerGoals").length) {
 								var careerGoals = currentXMLPlayer.getElementsByTagName("CareerGoals")[0].textContent;
-								if (careerGoals != "Not available") {
+								if (parseInt(careerGoals) >= 0) {
 									player.careerGoals = parseInt(careerGoals);
 								}
 							}
 							if (currentXMLPlayer.getElementsByTagName("CareerHattricks").length) {
 								var hattricks = currentXMLPlayer.getElementsByTagName("CareerHattricks")[0].textContent;
-								if (hattricks != "Not available") {
+								if (parseInt(hattricks) >= 0) {
 									player.hattricks = parseInt(hattricks);
 								}
 							}
@@ -145,7 +147,9 @@ Foxtrick.Pages.Players = {
 							if (currentXMLPlayer.getElementsByTagName("PlayerNumber").length) {
 								// number = 100 means this player hasn't been assigned one
 								var number = parseInt(currentXMLPlayer.getElementsByTagName("PlayerNumber")[0].textContent);
-								player.number = number;
+								if (number >= 1 && number < 100) {
+									player.number = number;
+								}
 							}
 							break;
 						}
