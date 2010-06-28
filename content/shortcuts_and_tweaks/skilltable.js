@@ -298,15 +298,14 @@ var FoxtrickSkillTable = {
 // img: images used in table headers as substitution of text
 
 			var columns = [
-				{ name : "Bookmark", property : "bookmarkLink", method : link, sortString : true },
-				{ name : "CurrentBid", property : "currentBid", method : formatNum, alignRight : true },
-				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true },
-				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
-				{ name : "Deadline", property : "deadline", method : date },
 				{ name : "PlayerNumber", property : "number", sortAsc : true },
 				{ name : "PlayerCategory", property : "category", method: category, sortAsc: true },
 				{ name : "Nationality", property : "countryId", method : nationality, sortString : true },
 				{ name : "Player", properties : ["nameLink", "nationalTeamId", "trainerData"], method : playerName, sortString : true },
+				{ name : "Bookmark", property : "bookmarkLink", method : link, sortString : true },
+				{ name : "CurrentBid", property : "currentBid", method : formatNum, alignRight : true },
+				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true },
+				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
 				{ name : "Age", property : "age", method : age, sortAsc : true },
 				{ name : "TSI", property : "tsi", alignRight : true, method : formatNum },
 				{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injured", "transferListed"], method : status },
@@ -335,6 +334,7 @@ var FoxtrickSkillTable = {
 				{ name : "FriendliesGoals", property : "friendliesGoals" },
 				{ name : "CareerGoals", property : "careerGoals" },
 				{ name : "Hattricks", property : "hattricks" },
+				{ name : "Deadline", property : "deadline", method : date },
 				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 				{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true }
 			];
