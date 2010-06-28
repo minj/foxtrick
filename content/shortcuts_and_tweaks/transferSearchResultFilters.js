@@ -15,9 +15,10 @@ FoxtrickTransferSearchResultFilters = {
 	//OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioMediaPlayer","DTRadioWinamp"),
 	advanced_option_on : false,
 	
-	filters : 	[ {name : 'injuryDays', type : 'minmax', properties : {min: '', max : ''} },
-				 {name : 'cards',  type : 'minmax', properties : {min: '', max : ''} },
-				{name : 'days',  type : 'minmax', properties : {min: '', max : ''} }
+	filters : 	[ {name : 'bruised', type : 'check', properties : {checked: false} },
+				  {name : 'injured', type : 'check', properties : {checked: false} },
+				  {name : 'cards',  type : 'minmax', properties : {min: '', max : ''} },
+				  {name : 'days',  type : 'minmax', properties : {min: '', max : ''} }
 	],
 
 	
@@ -62,6 +63,9 @@ FoxtrickTransferSearchResultFilters = {
 				this.addNewFilter(doc,table,j);
 			}
 			tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
+							
+			var buttonClear = doc.getElementById('ctl00_CPMain_butClear');	
+			buttonClear.addEventListener('click', this.clearFilters, false);					
 		}	
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -74,18 +78,21 @@ FoxtrickTransferSearchResultFilters = {
 			var tr = doc.createElement('tr');
 			table.appendChild(tr);
 			
-			var td = doc.createElement('td');
-			tr.appendChild(td);
-			var strong = doc.createElement('strong');
-			strong.innerHTML = filter.name;
-			td.appendChild(strong);
 			
 			if (filter.type=='minmax'){
 				var td = doc.createElement('td');
+				tr.appendChild(td);
+				var strong = doc.createElement('strong');
+				strong.innerHTML = Foxtrickl10n.getString(filter.name);
+				td.appendChild(strong);
+
+				var td = doc.createElement('td');
 				td.setAttribute('colspan','2');
-				td.innerHTML = 'Min.&nbsp;';
+				td.innerHTML = Foxtrickl10n.getString("min")+'&nbsp;';
 				tr.appendChild(td);			
 				var input = doc.createElement('input');
+				input.setAttribute('style','width:90px;')
+				input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.min';
 				input.index = j;
 				input.filter = 'min';
 				input.value = FoxtrickTransferSearchResultFilters.filters[j]['properties']['min'];
@@ -94,14 +101,32 @@ FoxtrickTransferSearchResultFilters = {
 				
 				var td = doc.createElement('td');
 				td.setAttribute('colspan','2');
-				td.innerHTML = 'Max.&nbsp;';
+				td.innerHTML = Foxtrickl10n.getString("max")+'&nbsp;';
 				tr.appendChild(td);			
 				var input = doc.createElement('input');
+				input.setAttribute('style','width:90px;')
+				input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.max';
 				input.index = j;
 				input.filter = 'max';
 				input.value = FoxtrickTransferSearchResultFilters.filters[j]['properties']['max'];
 				input.addEventListener('blur',this.saveEdit,false);
 				td.appendChild(input);
+			}
+			if (filter.type=='check') {
+				var td = doc.createElement('td');
+				td.setAttribute('colspan','5');
+				tr.appendChild(td);			
+				var input = doc.createElement('input');
+				input.type = 'checkbox';
+				input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.check';
+				input.index = j;
+				input.filter = 'checked';
+				if (FoxtrickTransferSearchResultFilters.filters[j]['properties']['checked']===true) input.setAttribute('checked', 'checked');
+				input.addEventListener('blur',this.saveEdit,false);
+				td.appendChild(input);
+				var label = doc.createElement('label');				
+				label.innerHTML = Foxtrickl10n.getString(filter.name);
+				td.appendChild(label);				
 			}
 		}
 		catch (e) {
@@ -111,14 +136,31 @@ FoxtrickTransferSearchResultFilters = {
 
 	saveEdit : function(ev) {
 		try {
+			if (ev.target.type=='text') FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter] = ev.target.value;
+			else if (ev.target.type=='checkbox') FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter] = ev.target.checked;			
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
+	},
+
+	clearFilters : function(ev) {
+		try {
 			var doc = ev.target.ownerDocument;
-			Foxtrick.dump('save\n');
-			Foxtrick.dump(ev.target.value+'\n');
-			Foxtrick.dump(ev.target.index+'\n');
-			Foxtrick.dump(ev.target.filter+'\n');
-			FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter] = ev.target.value;
-			Foxtrick.dump(FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter]+'\n');
-			Foxtrick.dump('\n');
+			
+			for (var j = 0; j < FoxtrickTransferSearchResultFilters.filters.length; ++j) {
+				var filter = FoxtrickTransferSearchResultFilters.filters[j];
+				if (filter.type=='minmax'){
+					FoxtrickTransferSearchResultFilters.filters[j]['properties']['min'] = '';
+					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.min').value='';
+					FoxtrickTransferSearchResultFilters.filters[j]['properties']['max'] = '';	
+					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.max').value='';
+				}
+				if (filter.type=='check') {
+					FoxtrickTransferSearchResultFilters.filters[j]['properties']['checked'] = false;					
+					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.check').removeAttribute('checked');
+				}
+			}
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -147,9 +189,8 @@ FoxtrickTransferSearchResultFilters = {
 				player.cards = 0;
 				player.redCard = 0;
 				player.yellowCard = 0;
-				player.injuredDays = 0;
 				player.bruised = false;
-				player.injured = 0;
+				player.injured = false;
 
 				for (var j = 0; j < imgs.length; ++j) {
 					if (imgs[j].className == "cardsOne") {
@@ -168,11 +209,9 @@ FoxtrickTransferSearchResultFilters = {
 					}
 					else if (imgs[j].className == "injuryBruised") {
 						player.bruised = true;
-						player.injuredDays += 0.5;				
 					}
 					else if (imgs[j].className == "injuryInjured") {
-						player.injured = parseInt(imgs[j].nextSibling.textContent);
-						player.injuredDays += player.injured;				
+						player.injured = true
 					}
 				}
 				
@@ -185,10 +224,15 @@ FoxtrickTransferSearchResultFilters = {
 							hide = true;
 							continue;							
 						}
-					}	
+					} else if (filter.type=='check') {
+						if  ( filter['properties']['checked']===true && player[filter.name] ) {
+							hide = true;
+							continue;							
+						}
+					}			
 				}
 				
-				//Foxtrick.dump(hide+' '+player.days+' '+player.cards+' '+player.injuredDays+'\n');
+				Foxtrick.dump(hide+' '+player.days+' '+player.cards+' '+player.bruised+' '+player.injured+'\n');
 				
 				for (var k = i; k < i+8 && k < transferTable.rows.length; k++) {
 					if (hide) transferTable.rows[k].style.display='none';
