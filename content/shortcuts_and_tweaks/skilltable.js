@@ -119,21 +119,9 @@ var FoxtrickSkillTable = {
 			// functions used to attach data to table cell
 			var category = function(cell, cat) {
 				categories = ["GK", "WB", "CD", "W", "IM", "FW", "S", "R", "E1", "E2"];
-				if (cat !== 0) {
-					cell.appendChild(doc.createTextNode(Foxtrickl10n.getString("categories." + categories[cat - 1])));
-					cell.setAttribute("index", cat);
-				}
-				else {
-					// make the uncategoried at the bottom
-					cell.setAttribute("index", 100);
-				}
+				cell.appendChild(doc.createTextNode(Foxtrickl10n.getString("categories." + categories[cat - 1])));
+				cell.setAttribute("index", cat);
 			}
-			var number = function(cell, number) {
-				if (number !== 100) {
-					cell.appendChild(doc.createTextNode(number));
-				}
-				cell.setAttribute("index", number);
-			};
 			var link = function(cell, link) {
 				cell.appendChild(link.cloneNode(true));
 			};
@@ -246,14 +234,6 @@ var FoxtrickSkillTable = {
 					cell.appendChild(doc.createTextNode(value));
 				}
 			};
-			var perhapsUnavailable = function(cell, value) {
-				if (value === -1) {
-					cell.appendChild(doc.createTextNode("?"));
-				}
-				else {
-					cell.appendChild(doc.createTextNode(value));
-				}
-			}
 			var speciality = function(cell, spec) {
 				var shortSpec = Foxtrickl10n.getShortSpeciality(spec);
 				var abbr = doc.createElement("abbr");
@@ -323,7 +303,7 @@ var FoxtrickSkillTable = {
 				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true },
 				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
 				{ name : "Deadline", property : "deadline", method : date },
-				{ name : "PlayerNumber", property : "number", method : number, sortAsc : true },
+				{ name : "PlayerNumber", property : "number", sortAsc : true },
 				{ name : "PlayerCategory", property : "category", method: category, sortAsc: true },
 				{ name : "Nationality", property : "countryId", method : nationality, sortString : true },
 				{ name : "Player", properties : ["nameLink", "nationalTeamId", "trainerData"], method : playerName, sortString : true },
