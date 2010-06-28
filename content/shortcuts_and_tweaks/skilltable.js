@@ -319,7 +319,7 @@ var FoxtrickSkillTable = {
 
 			var columns = [
 				{ name : "Bookmark", property : "bookmarkLink", method : link, sortString : true },
-				{ name : "CurrentBid", property : "currentBid", alignRight : true },
+				{ name : "CurrentBid", property : "currentBid", method : formatNum, alignRight : true },
 				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true },
 				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
 				{ name : "Deadline", property : "deadline", method : date },
