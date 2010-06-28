@@ -1126,6 +1126,32 @@ stats["maptrick_botmap"] =  {
 };
  
 
+stats["hat_com_coolness"] =  { 
+        "url" : "http://coolness.hat-com.com/",
+ 
+        "teamlink" : { "path"		: "countries.php",
+						"filters"	: [],
+						"params"	: { "teamid" : "team_id" }
+						},
+         
+        "title" : "Hat-com Coolness",
+         "img" : Foxtrick.ResourcePath+"resources/linkicons/hat-com.png"
+};
+ 
+stats["ht_deutschland_coolness"] =  { 
+        "url" : "http://www.ht-deutschland.de/",
+ 
+        "teamlink" : { "path"		: "usercoolness.php",
+						"filters"	: [],
+						"params"	: { "teamid" : "teamID", "" : "#login" }
+						},
+         
+        "title" : "Ht-Deutschland Coolness",
+         "img" : Foxtrick.ResourcePath+"resources/linkicons/ht-deutschland.png"
+};
+ 
+ 
+ 
 // HT-Dog
 stats["ht-dog"] =  { 
         "url" : "http://mikehell.kicks-ass.net/ht-dog/",
