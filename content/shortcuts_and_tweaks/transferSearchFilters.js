@@ -3,11 +3,11 @@
  * @author kolmis, bummerland
  */
 
-FoxtrickTransferListSearchFilters = {
+FoxtrickTransferSearchFilters = {
 
-	MODULE_NAME : "TransferListSearchFilters",
+	MODULE_NAME : "TransferSearchFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('transferListSearchForm'),
+	PAGES : new Array('transferSearchForm'),
 	DEFAULT_ENABLED : true,
 	_MAX_FILTER_DISP_LENGTH : 23,
 
@@ -62,7 +62,7 @@ FoxtrickTransferListSearchFilters = {
 			// add link
 			var addlink = doc.createElement("a");
 			addlink.id = "foxtrick_transferfilter_new";
-			addlink.addEventListener("click", FoxtrickTransferListSearchFilters.addNewFilter, false);
+			addlink.addEventListener("click", FoxtrickTransferSearchFilters.addNewFilter, false);
 			addlink.innerHTML = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
 			ownBoxBody.appendChild(addlink);
 
@@ -91,15 +91,15 @@ FoxtrickTransferListSearchFilters = {
 			var filtername = prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
 			if (filtername == '') return;
 
-			filtername = filtername.substring( 0, FoxtrickTransferListSearchFilters._MAX_FILTER_DISP_LENGTH );
+			filtername = filtername.substring( 0, FoxtrickTransferSearchFilters._MAX_FILTER_DISP_LENGTH );
 
 			var formString = "<root>";
-			for (var i in FoxtrickTransferListSearchFilters.backwardCompatibleCodes) {
-				var el = FoxtrickTransferListSearchFilters.findFormElement(i, doc);
+			for (var i in FoxtrickTransferSearchFilters.backwardCompatibleCodes) {
+				var el = FoxtrickTransferSearchFilters.findFormElement(i, doc);
 				if (el == null) {
-					var subst = FoxtrickTransferListSearchFilters.backwardCompatibleCodes[i];
+					var subst = FoxtrickTransferSearchFilters.backwardCompatibleCodes[i];
 					if (typeof(subst) != 'undefined') {
-						el = FoxtrickTransferListSearchFilters.findFormElement(subst, doc);
+						el = FoxtrickTransferSearchFilters.findFormElement(subst, doc);
 					}
 				}
 				if (el != null && el.type != "radio" && el.type != "checkbox" ) {
@@ -139,10 +139,10 @@ FoxtrickTransferListSearchFilters = {
 			FoxtrickPrefs.addPrefToList("transferfilterlist", filtername);
 			var table = doc.getElementById("table_transfer_filters");
 			if (table) {
-				FoxtrickTransferListSearchFilters._addFilter(doc, table, filtername);
+				FoxtrickTransferSearchFilters._addFilter(doc, table, filtername);
 			}
 		} catch (e) {
-			Foxtrick.dump('FoxtrickTransferListSearchFilters'+e);
+			Foxtrick.dump('FoxtrickTransferSearchFilters'+e);
 		}
 	},
 
@@ -179,11 +179,11 @@ FoxtrickTransferListSearchFilters = {
 				}
 
 				// set the value in form
-				var el = FoxtrickTransferListSearchFilters.findFormElement(name, doc);
+				var el = FoxtrickTransferSearchFilters.findFormElement(name, doc);
 				if (el == null) {
-					var subst = FoxtrickTransferListSearchFilters.backwardCompatibleCodes[name];
+					var subst = FoxtrickTransferSearchFilters.backwardCompatibleCodes[name];
 					if (typeof(subst) != 'undefined') {
-						el = FoxtrickTransferListSearchFilters.findFormElement(subst, doc);
+						el = FoxtrickTransferSearchFilters.findFormElement(subst, doc);
 					}
 				}
 				if (el != null && el.type != "radio") {

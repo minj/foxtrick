@@ -8,7 +8,7 @@ var FoxtrickCountyList = {
 
 	MODULE_NAME : "CountryList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-    PAGES : new Array ( 'country', 'transferListSearchForm', 'ads', 'press', 
+    PAGES : new Array ( 'country', 'transferSearchForm', 'ads', 'press', 
                         'statsTransfersBuyers', 'statsTeams', 'statsPlayers', 
                         'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
                         'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena',
@@ -29,7 +29,7 @@ var FoxtrickCountyList = {
 		if( list != null ) return;
         if (Foxtrick.isModuleFeatureEnabled( this, "SelectBoxes")) {
             switch (page) {
-                case 'transferListSearchForm' :
+                case 'transferSearchForm' :
                     this._changelist(page, doc, 'ctl00_CPMain_ddlZone', 10);
                     this._changelist(page, doc, 'ctl00_CPMain_ddlBornIn', 1);
                 break;
@@ -90,7 +90,7 @@ var FoxtrickCountyList = {
             }
         } else {
             switch (page) {
-                case 'transferListSearchForm' :
+                case 'transferSearchForm' :
                     this._activate(page, doc, 'ctl00_CPMain_ddlZone');
                     this._activate(page, doc, 'ctl00_CPMain_ddlBornIn');
                 break;

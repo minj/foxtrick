@@ -7,7 +7,7 @@ FoxtrickTransferSearchResultFilters = {
 
 	MODULE_NAME : "TransferSearchResultFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('transferListSearchForm','transferListSearchResult'),
+	PAGES : new Array('transferSearchForm','transferSearchResult'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",	
 	LATEST_CHANGE : "Filters the search transfer search results",
@@ -26,8 +26,8 @@ FoxtrickTransferSearchResultFilters = {
 
 	run : function(page, doc) {
 		try {
-			if ( page=='transferListSearchForm' ) this.addExtraFilters(doc);
-			else if ( page=='transferListSearchResult' ) this.filterResults(doc);
+			if ( page=='transferSearchForm' ) this.addExtraFilters(doc);
+			else if ( page=='transferSearchResult' ) this.filterResults(doc);
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);

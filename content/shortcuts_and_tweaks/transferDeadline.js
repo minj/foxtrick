@@ -3,11 +3,11 @@
  * @author spambot
  */
 
-FoxtrickTransferListDeadline = {
+FoxtrickTransferDeadline = {
 
-    MODULE_NAME : "TransferListDeadline",
+    MODULE_NAME : "TransferDeadline",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('transferListSearchResult','playerdetail','transfer'), 
+	PAGES : new Array('transferSearchResult','playerdetail','transfer'), 
     DEFAULT_ENABLED : true,
 
     init : function() {
@@ -21,7 +21,7 @@ FoxtrickTransferListDeadline = {
         if (!Foxtrick.HT_date) return;
 
         switch ( page ) {
-            case 'transferListSearchResult' :
+            case 'transferSearchResult' :
 
                 this._PlayerListDeatline ( doc, 'span' );
                 break;
@@ -131,7 +131,7 @@ FoxtrickTransferListDeadline = {
                 selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
             else Foxtrick.dump('  Could not create deadline (NaN)\n');
         } catch (e) {
-            Foxtrick.dump('FoxtrickTransferListDeadline'+e);
+            Foxtrick.dump('FoxtrickTransferDeadline'+e);
         }
     }
 };
