@@ -232,7 +232,7 @@ FoxtrickTransferSearchResultFilters = {
 					}			
 				}
 				
-				Foxtrick.dump(hide+' '+player.days+' '+player.cards+' '+player.bruised+' '+player.injured+'\n');
+				//Foxtrick.dump(hide+' '+player.days+' '+player.cards+' '+player.bruised+' '+player.injured+'\n');
 				
 				for (var k = i; k < i+8 && k < transferTable.rows.length; k++) {
 					if (hide) transferTable.rows[k].style.display='none';

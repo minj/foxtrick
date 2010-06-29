@@ -38,6 +38,10 @@ Foxtrick.Pages.TransferSearchResults = {
 					player.currentBidderLinkShort = bidderlink[0].cloneNode(true);
 					player.currentBidderLinkShort.textContent = "x";
 				}
+				else {
+					player.currentBidderLink = doc.createTextNode(" ");
+					player.currentBidderLinkShort = doc.createTextNode(" ");
+				}
 				player.currentBid = Foxtrick.trimnum(overviewtable.rows[0].cells[4].textContent);
 
 				var nameLink = overviewtable.rows[0].cells[1].getElementsByTagName("a")[0];

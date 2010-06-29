@@ -206,6 +206,9 @@ var FoxtrickSkillTable = {
 					cell.appendChild(img);
 					index += 1;
 				}
+				if (index===0) {
+					cell.appendChild(doc.createTextNode(' '));
+				}
 				Foxtrick.addClass(cell, "status");
 				cell.setAttribute("index", index);
 			};
@@ -494,10 +497,10 @@ var FoxtrickSkillTable = {
 			return 0;
 		}
 		// place empty cells at the bottom
-		if (aContent === "" || aContent === null || aContent === undefined) {
+		if (aContent === " " || aContent === "" || aContent === null || aContent === undefined) {
 			return 1;
 		}
-		if (bContent === "" || bContent === null || bContent === undefined) {
+		if (bContent === " " || bContent === "" || bContent === null || bContent === undefined) {
 			return -1;
 		}
 		if (FoxtrickSkillTable.sortString) {
