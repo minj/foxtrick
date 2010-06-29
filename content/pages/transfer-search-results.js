@@ -39,8 +39,8 @@ Foxtrick.Pages.TransferSearchResults = {
 					player.currentBidderLinkShort.textContent = "x";
 				}
 				else {
-					player.currentBidderLink = doc.createTextNode(" ");
-					player.currentBidderLinkShort = doc.createTextNode(" ");
+					player.currentBidderLink = doc.createTextNode("");
+					player.currentBidderLinkShort = doc.createTextNode("");
 				}
 				player.currentBid = Foxtrick.trimnum(overviewtable.rows[0].cells[4].textContent);
 
