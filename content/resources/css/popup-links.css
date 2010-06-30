@@ -3,14 +3,14 @@ span.myht1 {
 }
 div.myht2 {
 	display: none;
+}
+span.myht1:hover div.myht2 {
+	display: inline;
 	position: absolute;
 	background-color: #FFFFFF;
 	border: solid 1px #267F30;
 	padding: 0px;
 	z-index: 999;
-}
-span.myht1:hover div.myht2 {
-	display: block;
 }
 div.playerInfo {
 	overflow: visible !important;
