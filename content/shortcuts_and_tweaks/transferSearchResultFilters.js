@@ -15,8 +15,8 @@ FoxtrickTransferSearchResultFilters = {
 	//OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioMediaPlayer","DTRadioWinamp"),
 	advanced_option_on : false,
 	
-	filters : 	[ {name : 'bruised', type : 'check', properties : {checked: false} },
-				  {name : 'injured', type : 'check', properties : {checked: false} },
+	filters : 	[ {name : 'hide_bruised', type : 'check', properties : {checked: false} },
+				  {name : 'hide_injured', type : 'check', properties : {checked: false} },
 				  {name : 'cards',  type : 'minmax', properties : {min: '', max : ''} },
 				  {name : 'days',  type : 'minmax', properties : {min: '', max : ''} }
 	],
@@ -83,12 +83,12 @@ FoxtrickTransferSearchResultFilters = {
 				var td = doc.createElement('td');
 				tr.appendChild(td);
 				var strong = doc.createElement('strong');
-				strong.innerHTML = Foxtrickl10n.getString(filter.name);
+				strong.innerHTML = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.name);
 				td.appendChild(strong);
 
 				var td = doc.createElement('td');
 				td.setAttribute('colspan','2');
-				td.innerHTML = Foxtrickl10n.getString("min")+'&nbsp;';
+				td.innerHTML = Foxtrickl10n.getString("minimum")+'&nbsp;';
 				tr.appendChild(td);			
 				var input = doc.createElement('input');
 				input.setAttribute('style','width:90px;')
@@ -101,7 +101,7 @@ FoxtrickTransferSearchResultFilters = {
 				
 				var td = doc.createElement('td');
 				td.setAttribute('colspan','2');
-				td.innerHTML = Foxtrickl10n.getString("max")+'&nbsp;';
+				td.innerHTML = Foxtrickl10n.getString("maximum")+'&nbsp;';
 				tr.appendChild(td);			
 				var input = doc.createElement('input');
 				input.setAttribute('style','width:90px;')
@@ -125,7 +125,7 @@ FoxtrickTransferSearchResultFilters = {
 				input.addEventListener('blur',this.saveEdit,false);
 				td.appendChild(input);
 				var label = doc.createElement('label');				
-				label.innerHTML = Foxtrickl10n.getString(filter.name);
+				label.innerHTML = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.name);
 				td.appendChild(label);				
 			}
 		}
