@@ -225,9 +225,18 @@ FoxtrickTransferSearchResultFilters = {
 							continue;							
 						}
 					} else if (filter.type=='check') {
-						if  ( filter['properties']['checked']===true && player[filter.name] ) {
-							hide = true;
-							continue;							
+						if (filter.name.search(/^hide_/)!=-1) {
+							var name = filter.name.match(/^hide_(.+)/)[1];
+							if  ( filter['properties']['checked']===true && player[name] ) {
+								hide = true;
+								continue;							
+							}
+						}
+						else {
+							if  ( filter['properties']['checked']===true && !player[filter.name] ) {
+								hide = true;
+								continue;							
+							}
 						}
 					}			
 				}
