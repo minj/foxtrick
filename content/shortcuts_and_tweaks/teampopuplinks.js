@@ -1,7 +1,7 @@
 /**
  * teampopuplinks.js
  * Foxtrick show Team Popup
- * @author bummerland, convinced, ryanli
+ * @author bummerland/convinced
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickTeamPopupLinks = {
@@ -10,9 +10,9 @@ var FoxtrickTeamPopupLinks = {
 	PAGES : ["all_late"],
 	DEFAULT_ENABLED : true,
 	CSS : Foxtrick.ResourcePath + "resources/css/popup-links.css",
-	NEW_AFTER_VERSION : "0.5.2.1",
+	NEW_AFTER_VERSION : "0.5.0.5",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LATEST_CHANGE : "Removed link limit and faster at page load.",
+	LATEST_CHANGE : "Simple speed check added. Only adds about max 100 teampopup links per page (for performance reason)",
 	OPTIONS : ["OpenNewTab",
 		"TeamLinks",
 		"UserLinks",
@@ -117,51 +117,34 @@ var FoxtrickTeamPopupLinks = {
 			this.Target = '_self';
 			if (Foxtrick.isModuleFeatureEnabled(this, "OpenNewTab")) this.Target = '_blank';
 
-			// team links
-			var teamLinks = doc.getElementById("teamLinks");
-			if (teamLinks) {
-				teamLinks.addEventListener("mouseover", function(ev) { FoxtrickTeamPopupLinks.checkA(ev); }, false);
-			}
-
-			if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
+			//  team links
+			var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
+			if (aLink) this._addSpan(doc, aLink);
 
 			// all in mainWrapper (ie. not left boxes)
+			if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
+			var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
+			var i = 0, aLink,li=0;
+			while (aLink = aLinks[i++]) {
+				if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText')
+					continue; // don't add to buttons, and htlive tabs
+				if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks)
+				|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {
+					this._addSpan(doc, aLink);
+					if (li++>100) break;
+				}
+			 }
 
-			var mainBody = doc.getElementById("mainBody");
-			if (mainBody) {
-				mainBody.addEventListener("mouseover", function(ev) { FoxtrickTeamPopupLinks.checkA(ev); }, false);
-			}
-
-			var sidebar = doc.getElementById("sidebar");
+			var sidebar = doc.getElementById('sidebar');
 			if (sidebar) {
-				sidebar.addEventListener("mouseover", function(ev) { FoxtrickTeamPopupLinks.checkA(ev); }, false);
-			}
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
-	},
-
-	checkA : function(ev) {
-		try {
-			var a = ev.target;
-			const maxDepth = 1;
-			var i = 0;
-			while (a && a.nodeName.toLowerCase() !== "a" && i++ < maxDepth) {
-				// loop to find a parent node that is an a element
-				a = a.parentNode;
-			}
-			if (this.isValidA(a)) {
-				if (this._addSpan(ev.target.ownerDocument, a)) {
-					// a span is added, we dispatch an event ourselves
-					// since it may not necessarily be emitted automatically
-					//
-					// TODO - attach to popupshow() directly in the future
-					var dispEv = document.createEvent("MouseEvents");
-					dispEv.initMouseEvent("mouseover", true, false, ev.view, ev.detail,
-						ev.screenX, ev.screenY, ev.clientX, ev.clientY, ev.ctrlKey,
-						ev.altKey, ev.shiftKey, ev.metaKey, ev.button, null);
-					a.dispatchEvent(dispEv);
+				aLinks = sidebar.getElementsByTagName('a');
+				var i = 0, aLink;
+				while (aLink = aLinks[i++]) {
+					if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons
+					if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && this.bTeamLinks)
+						|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {
+						this._addSpan(doc,  aLink);
+					}
 				}
 			}
 		}
@@ -170,42 +153,20 @@ var FoxtrickTeamPopupLinks = {
 		}
 	},
 
-	isValidA : function(a) {
-		// to check whether a is good for popup links
-		if (!a)
-			return false;
-		if (a.nodeName.toLowerCase() !== "a")
-			return false;
-		if (a.getElementsByTagName("img").length)
-			return false;
-		if (a.parentNode.className == "liveTabText")
-			return false;
-		if (!a.href)
-			return false;
-		if (a.href.search(/redir_to/) > -1)
-			return false;
-		if (a.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks)
-			return true;
-		if (a.href.search(/lub\/Manager\/\?UserID=/i) > -1 && this.bUserLinks)
-			return true;
-	},
 
 	_addSpan : function (doc, aLink) {
 		var par = aLink.parentNode;
-		if (par.className === "myht1") {
-			// already added
-			return false;
-		}
 		var span = doc.createElement("span");
-		span.className = "myht1";
+		span.setAttribute('class', 'myht1');
 		par.insertBefore(span, aLink);
-		span.addEventListener("mouseover", FoxtrickTeamPopupLinks.popupshow, false);
+		span.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
 		span.appendChild(aLink);
-		return true;
 	},
+
 
 	change : function(page, doc) {
 	},
+
 
 	popupshow : function(evt) {
 		try {
