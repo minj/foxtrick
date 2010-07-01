@@ -2414,15 +2414,15 @@ stats["panamatracker"] = {
 
 
 stats["usatracker"] = { 
-  "url" : "http://usa.nattrick.ca/",
+  "url" : "http://usa.nattrick.ca",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "USA U20/NT Tracker",
   
-  "trackernationalteamlink" : { "path"       : "list.php",
+  "trackernationalteamlink" : { "path"       : "/list/",
                          "filters"    : ["countryid"], 
                          "params"     :  []
                        },
-  "trackerplayerlink" : { "path"       : "update.php",
+  "trackerplayerlink" : { "path"       : "/update/",
                    "filters"    : ["nationality"], 
                    "params"     : []
                  },
