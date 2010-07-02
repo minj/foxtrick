@@ -179,8 +179,10 @@ var FoxtrickMain = {
 			return;
 
 		// not on matchlineup
-		if (doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1) return;
-
+		if ( doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
+			 doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
+					return;
+		}
 		// ignore changes list
 		if (ev.originalTarget.className && (ev.originalTarget.className=='boxBody' || ev.originalTarget.className=='myht1'))
 			return;
@@ -193,7 +195,7 @@ var FoxtrickMain = {
 		var end = new Date();
 		var time = (end.getSeconds() - begin.getSeconds()) * 1000
 				 + end.getMilliseconds() - begin.getMilliseconds();
-		// Foxtrick.dump("Foxtrick change time: " + time + " ms\n");
+		Foxtrick.dump("Foxtrick change time: " + time + " ms\n");
 		// re-add event listener
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 	},
