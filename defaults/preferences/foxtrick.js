@@ -154,9 +154,6 @@ pref("extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.en
 pref("extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightBotTeams.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", true);
-pref("extensions.foxtrick.prefs.module.htmsStatistics.Home.enabled", false);
-pref("extensions.foxtrick.prefs.module.htmsStatistics.Draw.enabled", false);
-pref("extensions.foxtrick.prefs.module.htmsStatistics.Away.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthSkillNotes.OnlyOwnTeam.enabled", true);
 pref("extensions.foxtrick.prefs.module.RapidId.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.enabled", true);

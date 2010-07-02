@@ -849,6 +849,19 @@ var FoxtrickPrefsDialogHTML = {
 		a.target="_blank";
 		groupbox2.appendChild(a);				
 		groupbox2.appendChild(doc.createElement('br'));
+
+		// style tutorial
+		var style_tutorial = doc.createElement("div");
+		style_tutorial.className = "ft_pref_modul";
+		var style_tutorial_caption = doc.createElement("div");
+		style_tutorial_caption.className = "ft_pref_group_caption";
+		style_tutorial_caption.textContent = Foxtrickl10n.getString("StyleTutorial.title");
+		var style_tutorial_content = doc.createElement("div");
+		var style_example_uri = Foxtrick.ResourcePath + "resources/css/user-content-example.css"
+		style_tutorial_content.innerHTML = Foxtrickl10n.getString("StyleTutorial.content").replace(/\n/, "<br />").replace(/%s/, "<a href=\"" + style_example_uri + "\">" + style_example_uri + "</a>");
+		style_tutorial.appendChild(style_tutorial_caption);
+		style_tutorial.appendChild(style_tutorial_content);
+		preftab.appendChild(style_tutorial);
 	},
 
 	fill_about_list : function( doc ) {

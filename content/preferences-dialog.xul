@@ -331,6 +331,10 @@
 					<caption id="extlinks_caption" />
 					<vbox id="extlinks_list" />
 				</groupbox>
+				<groupbox id="style_tutorial">
+					<caption id="style_tutorial_caption" />
+					<description id="style_tutorial_content" />
+				</groupbox>
 				<groupbox id="headdeveloper">
 					<caption id="headdeveloper_caption" />
 					<vbox id="headdeveloper_list" />

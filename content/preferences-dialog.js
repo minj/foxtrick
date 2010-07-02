@@ -251,6 +251,11 @@ var FoxtrickPreferencesDialog = {
 			link.className = "text-link";
 		}
 
+		var style_tutorial_caption = doc.getElementById("style_tutorial_caption");
+		var style_tutorial_content = doc.getElementById("style_tutorial_content");
+		style_tutorial_caption.setAttribute("label", Foxtrickl10n.getString("StyleTutorial.title"));
+		style_tutorial_content.textContent = Foxtrickl10n.getString("StyleTutorial.content").replace(/%s/, Foxtrick.ResourcePath + "resources/css/user-content-example.css");
+
 		// head_developer
 		var headdeveloper_caption = doc.getElementById("headdeveloper_caption");
 		var headdeveloper_list = doc.getElementById("headdeveloper_list");
