@@ -43,7 +43,7 @@ var FoxtrickCopyTrainingReport = {
 	LATEST_CHANGE:"Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OpenHTYpage"),
-	
+
 	init : function() {
 	},
 	
@@ -124,8 +124,9 @@ var FoxtrickCopyTrainingReport = {
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
-				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"));
+				var note = Foxtrick.Note.create(doc, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"), null, true);
+				var noteArea = Foxtrick.Note.getNoteArea(doc);
+				noteArea.appendChild(note);
 			}
 		}
 	if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) 
@@ -144,7 +145,7 @@ var FoxtrickCopyScoutReport = {
 	LATEST_CHANGE:"Fixed missing specialty",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OpenHTYpage"),
-	
+
 	init : function() {
 	},
 	
@@ -257,12 +258,15 @@ var FoxtrickCopyScoutReport = {
 				
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
+
 				Foxtrick.copyStringToClipboard(plain);
-				if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"));
+				var note = Foxtrick.Note.create(doc, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"), null, true);
+				var noteArea = Foxtrick.Note.getNoteArea(note);
+				noteArea.appendChild(note);
+
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyScoutReport, "OpenHTYpage")) 
 					if (!rejectreport) Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/',false); 
-					else Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/site/player_myrejects_add/',true); 				
+					else Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/site/player_myrejects_add/',true);
 		}
 	} catch(e) {Foxtrick.dump('copyreport '+e+'\n');}
 	}
@@ -280,7 +284,7 @@ var FoxtrickCopyPlayerSource = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OpenHTYpage"),
 	page_html:'',
-	
+
 	init : function() {
 	},
 	
@@ -348,9 +352,12 @@ var FoxtrickCopyPlayerSource = {
 	copySource : function( ev ) {
 		var doc = ev.target.ownerDocument;
 		var html = '<html> '+doc.documentElement.innerHTML+' </html>';
+
 		Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
-		if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-					Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"));			
+		var note = Foxtrick.Note.create(doc, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
+		var noteArea = Foxtrick.Note.getNoteArea(doc);
+		noteArea.appendChild(note);
+
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPlayerSource, "OpenHTYpage")) 
 			Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/site/player_cp_add',true); 
 	},

@@ -99,10 +99,12 @@ var FoxtrickCopyMatchID = {
 		}
 	},	
 
-	_copy_matchid_to_clipboard : function(ev) { 
+	_copy_matchid_to_clipboard : function(ev) {
+		var doc = ev.target.ownerDocument;
 		var matchid = ev.target.parentNode.getAttribute("matchid");
 		Foxtrick.copyStringToClipboard(matchid);
-		if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-			Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"));
+		var note = Foxtrick.Note.create(doc, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true);
+		var noteArea = Foxtrick.Note.getNoteArea(doc);
+		noteArea.appendChild(note);
 	},	
 };

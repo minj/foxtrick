@@ -29,6 +29,12 @@ Foxtrick.Note = {
 	 */
 	create : function(doc, id, msg, buttons, hasClose) {
 		try {
+			// first we remove the old notes with same name
+			var old = doc.getElementById(id);
+			if (old) {
+				old.parentNode.removeChild(old);
+			}
+
 			var container = doc.createElement("div");
 			container.id = id;
 			container.className = "ft-note";
@@ -98,5 +104,12 @@ Foxtrick.Note = {
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
+	},
+
+	getNoteArea : function(doc) {
+		var area = doc.getElementById("ctl00_updNotifications")
+			|| doc.getElementById("ctl00_ctl00_CPContent_ucNotifications_updNotifications")
+			|| null;
+		return area;
 	}
 };

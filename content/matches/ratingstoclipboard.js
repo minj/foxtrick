@@ -279,18 +279,13 @@ var FoxtrickCopyRatingsToClipboard = {
 				}
 				ad = ad_s.join('[/tr]').replace(/\[tr\]\[\/tr\]/,'');
 			}
+			Foxtrick.copyStringToClipboard(ad);
+			var note = Foxtrick.Note.create(doc, "ft-ratings-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"), null, true);
+			var noteArea = Foxtrick.Note.getNoteArea(doc);
+			noteArea.appendChild(note);
 		}
 		catch (e) {
 			Foxtrick.dump('ratingscopied error: '+e+'\n');
-		}
-		try {
-			if (FoxtrickPrefs.getBool("copyfeedback")) {
-				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"));
-			}
-			Foxtrick.copyStringToClipboard(ad);
-		}
-		catch (e) {
-			Foxtrick.alert('ratingscopied '+e);
 		}
 	}
 };

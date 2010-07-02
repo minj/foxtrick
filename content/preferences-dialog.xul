@@ -288,7 +288,6 @@
 				</groupbox>
 				<groupbox>
 					<caption id="additionalOptions" />
-					<checkbox id="copyfeedback" />
 					<checkbox id="smallcopyicons" />
 					<checkbox id="OnPagePrefs"/>
 					<checkbox id="DisplayHTMLDebugOutput" />

@@ -217,10 +217,6 @@ var FoxtrickPreferencesDialog = {
 		// additional options
 		var additionalOptions = doc.getElementById("additionalOptions");
 		additionalOptions.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.AdditionalOptions"));
-		// copy confirm
-		var copyfeedback = doc.getElementById("copyfeedback");
-		copyfeedback.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.copyfeedback"));
-		copyfeedback.setAttribute("checked", FoxtrickPrefs.getBool("copyfeedback"));
 		// header icons
 		var smallcopyicons = doc.getElementById("smallcopyicons");
 		smallcopyicons.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.smallcopyicons"));
@@ -439,7 +435,6 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
 
 		// additional options
-		FoxtrickPrefs.setBool("copyfeedback", document.getElementById("copyfeedback").checked);
 		FoxtrickPrefs.setBool("smallcopyicons", document.getElementById("smallcopyicons").checked);		
 		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", document.getElementById("OnPagePrefs").checked);
 

@@ -14,7 +14,7 @@ var FoxtrickPlayerAdToClipboard = {
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Disabled on unknown players",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	
+
 	_PLAYMAKING : 3,
 	_PASSING : 5,
 	_WINGER : 4,
@@ -239,6 +239,7 @@ var FoxtrickPlayerAdToClipboard = {
 					ad += "\t";
 					ad += FoxtrickPlayerAdToClipboard.getAdjustedText(
 						skillLinks[posOne]);
+
 					ad += "\t";
 					ad += skillNames[posTwo];
 					ad += "\t";
@@ -261,12 +262,13 @@ var FoxtrickPlayerAdToClipboard = {
 					ad += "\n";
 				}
 			}
-			
+
 			Foxtrick.copyStringToClipboard(ad);
-			if (FoxtrickPrefs.getBool( "copyfeedback" )) 
-				Foxtrick.alert(Foxtrickl10n.getString("foxtrick.tweaks.copied"));
-			
-		} catch (e) {
+			var note = Foxtrick.Note.create(doc, "ft-playerad-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copied"), null, true);
+			var noteArea = Foxtrick.Note.getNoteArea(doc);
+			noteArea.appendChild(note);
+		}
+		catch (e) {
 			Foxtrick.alert('createPlayerAd '+e);
 		}
 	},
