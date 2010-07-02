@@ -166,8 +166,6 @@ FoxtrickPlayerFilters = {
 				
 	},
 
-	change : function(page, doc) {
-	},
 
 	changeListener : function(ev) {
 		try {

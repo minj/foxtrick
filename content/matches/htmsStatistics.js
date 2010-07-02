@@ -173,8 +173,6 @@ Foxtrick.htmsStatistics = {
 	},
 
 
-	change : function( page, doc ) { 
-	},
 
 	
 	show_result : function( doc, responseText ) { 

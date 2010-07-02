@@ -51,10 +51,6 @@ Foxtrick.AttVsDef = {
 
 	},
 	
-	change : function( page, doc ) {
-	
-	},
-	
 	_oldStyleBars: function (doc, ratingstable, bodydiv) {
 		var ratingsArray = new Array();
 		var ratingsTextArray = new Array();

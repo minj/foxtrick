@@ -37,6 +37,4 @@ var FoxtrickOriginalFace = {
 		}
 	},
 
-	change : function(page, doc) {
-	}
 };

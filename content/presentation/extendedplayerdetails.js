@@ -20,9 +20,6 @@ FoxtrickExtendedPlayerDetails = {
         this._Player_Joined ( doc );
     },
 
-	change : function( page, doc ) {
-
-	},
 
     _Player_Joined  : function ( doc ) {
         // Player in team since...
@@ -96,9 +93,6 @@ FoxtrickExtendedPlayerDetailsWage = {
         this._Player_Bonus ( doc );
     },
 
-	change : function( page, doc ) {
-
-	},
     _Player_Bonus  : function ( doc ) {
         
 		var div = doc.getElementById( "ft_bonuswage" );

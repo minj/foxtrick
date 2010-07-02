@@ -140,9 +140,6 @@ var FoxtrickStaffMarker = {
 	} catch(e){Foxtrick.dump('staffmarker: '+e+'\n');}
     },
 
-	change : function( page, doc ) {
-
-	},
 
     //Alias - Staff-Color
     _MarkAliases_thread : function (doc) {

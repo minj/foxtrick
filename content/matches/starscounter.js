@@ -119,8 +119,6 @@ var FoxtrickStarsCounter = {
 		}
 	},
 
-	change : function(page, doc) {
-	},
 
 	_getStar : function(doc, colour) {
 		var star = doc.createElement("img");

@@ -144,10 +144,6 @@ var FoxtrickGoToPostBox = {
 			
 		},
 	
-	change : function( page, doc ) {
-	
-	},
-	
 	_submit : function(e){
 		var doc = e.target.ownerDocument;
 		var key = e.keyCode;

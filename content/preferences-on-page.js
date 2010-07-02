@@ -84,8 +84,6 @@ var FoxtrickOnPagePrefs = {
 		}
 	},
 
-	change : function(doc) {
-	},
 
 	HeaderClick : function(ev) {
 		try {

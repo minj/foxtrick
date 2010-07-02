@@ -63,8 +63,6 @@ var FoxtrickPlayerBirthday = {
 		}
 	},
 
-	change : function(page, doc) {
-	},
 
 	sort : function(a, b) {
 		// this should sort players first by days and then by years

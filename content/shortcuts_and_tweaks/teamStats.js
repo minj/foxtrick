@@ -17,8 +17,6 @@ Foxtrick.TeamStats = {
 	init : function() {
 	},
 
-	change : function(page, doc) {
-	},
 
 	run : function(page, doc) {
 		try {

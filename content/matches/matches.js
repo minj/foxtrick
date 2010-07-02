@@ -35,8 +35,6 @@ Foxtrick.Matches = {
 	} catch(e){Foxtrick.dump('matches.js run: '+e+'\n');}*/
 	},
 
-	change : function(page,doc) {
-	},
 	
 	_getRatingsTable: function(doc) {
 		var ratingstable = null;

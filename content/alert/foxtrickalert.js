@@ -56,8 +56,6 @@ var FoxtrickAlert = {
 	}
     },
 	
-	change : function( page, doc ) {	
-	},
 		
 	checkAll : function( doc ) {							
 			// check new, mail and forum after pageload and show alerts if needed

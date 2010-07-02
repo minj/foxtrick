@@ -198,8 +198,6 @@ Foxtrick.XMLData = {
 
 	},
 
-	change : function(page,doc) {
-	},
 
 	getLeagueIdByCountryId : function(id) {
 		if (this.countryToLeague[id] !== undefined) {

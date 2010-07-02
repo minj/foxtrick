@@ -191,8 +191,6 @@ var FoxtrickLeagueNewsFilter = {
 		}
 	},
 
-	change : function( page, doc ) {
-	},
 
 	SelectClick : function(ev) {
 		try {
@@ -252,8 +250,6 @@ var FoxtrickShortPAs = {
 		}
 	},
 
-	change : function( page, doc ) {
-	},
 
 	showfull : function(ev) {
 		ev.target.parentNode.nextSibling.style.display='block';

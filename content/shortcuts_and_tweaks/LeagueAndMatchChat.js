@@ -167,8 +167,6 @@ var FoxtrickLeagueAndMatchChat = {
 		
 	},
 	
-	change : function( page, doc ) {
-	},	
 };
 
 

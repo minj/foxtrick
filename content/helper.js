@@ -18,9 +18,6 @@ var FoxtrickHelper = {
 		this.getOwnTeamInfo(doc);	
 	},
 
-	change : function( page, doc ) {
-		
-	},
 
 
 	//---------------------------------------------------------------------------    

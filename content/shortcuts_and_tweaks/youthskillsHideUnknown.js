@@ -51,7 +51,4 @@ var FoxtrickYouthSkillHideUnknown = {
 				}
 	},
 	
-	change : function( page, doc ) {
-	
-	},
 }

@@ -57,6 +57,4 @@ var FoxtrickMatchIncome = {
         }    
     },
 	
-	change : function( page, doc ) {
-	},
 };

@@ -20,6 +20,4 @@ var FoxtrickBackgroundFixed = {
     run : function( page, doc ) {
 	},
 	
-	change : function( page, doc ) {	
-	}
 };

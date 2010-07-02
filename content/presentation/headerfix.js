@@ -88,8 +88,6 @@ var FoxtrickHeaderFix = {
 	
 	},
 	
-	change : function( page, doc ) {	
-	}
 };
 
 var FoxtrickHeaderFixLeft = {
@@ -111,6 +109,4 @@ var FoxtrickHeaderFixLeft = {
     run : function( page, doc ) { 
 	},
 	
-	change : function( page, doc ) {	
-	}
 };

@@ -58,8 +58,6 @@ var FoxtrickSkinPlugin = {
         } //old medals
     },
 		
-    change : function( doc ) {	
-	}
 };
 
 

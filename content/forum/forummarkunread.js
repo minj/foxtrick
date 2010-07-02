@@ -81,7 +81,4 @@ var FoxtrickMarkUnread = {
 		}
 	},
 	
-	change : function( page, doc ) {
-	
-	}
 };

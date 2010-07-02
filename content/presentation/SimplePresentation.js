@@ -62,7 +62,4 @@ FoxtrickSimplePresentation = {
         }    */
     },
        
-        change : function( page, doc ) {
-
-        }    
 };

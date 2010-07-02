@@ -191,8 +191,6 @@ var FoxtrickCopyRatingsToClipboard = {
 		}
 	},
 
-	change : function(page, doc) {
-	},
 
 	createRatings : function(ev) {
 		try {

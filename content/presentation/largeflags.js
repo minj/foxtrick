@@ -69,7 +69,4 @@ var FoxtrickLargeFlags = {
 	}catch(e){Foxtrick.dump('FoxtrickLargeFlags: '+e+'\n');}
 	},
 	
-	change : function( page, doc ) {
-	
-	}
 };

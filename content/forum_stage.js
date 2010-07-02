@@ -51,6 +51,4 @@ var FoxtrickForumStage = {
 		} catch(e) {Foxtrick.dump('FoxtrickForumStage '+e+'\n');}
 	},
 
-	change : function( page, doc ) {
-	},
 };

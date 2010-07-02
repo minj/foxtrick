@@ -45,6 +45,4 @@ var FoxtrickSkillColoring = {
 		*/
 	},
 	
-	change : function( page, doc ) {
-	},    
 };

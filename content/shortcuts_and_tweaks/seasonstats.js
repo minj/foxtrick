@@ -244,8 +244,6 @@ var FoxtrickSeasonStats = {
 	catch (e) {Foxtrick.dump("FoxtrickSeasonStats->"+e);}		
 	},
 	
-	change : function( page, doc ) {
-	},
 	
 	SelectBox_Select : function(ev) {
 	try {

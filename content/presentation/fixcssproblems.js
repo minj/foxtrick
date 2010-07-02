@@ -53,6 +53,4 @@ FoxtrickFixcssProblems = {
 
     },
 
-    change : function( page, doc ) {
-    }
 };

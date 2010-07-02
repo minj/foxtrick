@@ -62,6 +62,4 @@ var FoxtrickNewMail = {
 		}	
  	},
 	
-	change : function( page, doc ) {	
-	}
 };

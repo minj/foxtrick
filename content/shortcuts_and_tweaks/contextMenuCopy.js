@@ -49,8 +49,6 @@ var FoxtrickContextMenuCopy = {
 		this.MENU_TABLE.setAttribute("label", Foxtrickl10n.getString("copy.table"));
 	},
 
-	change : function(page, doc) {
-	},
 
 	// if ID is found, will return an object like this:
 	// { type : "match", id : "123456789", tag : "matchid" },

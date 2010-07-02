@@ -102,8 +102,6 @@ var FoxtrickReadHtPrefs = {
 	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
 	},
 	
-	change : function(page, doc) {
-	}
 };
 
 
@@ -177,8 +175,6 @@ var FoxtrickReadHtPrefsFromHeader = {
 	} catch(e) {Foxtrick.dump('ReadHtPrefsFromHeader: '+e+'\n');}
 	},
 	
-	change : function(page, doc ) {
-	},
 
 };
 
@@ -500,6 +496,4 @@ var FoxtrickMyHT = {
 		} catch(e) {dump('showchanged: '+e+'\n');}
 	},
 	
-	change : function(page, doc) {
-	},		
 };

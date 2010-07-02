@@ -46,6 +46,4 @@ var FoxtrickYouthPromotes = {
 		}
 	},
 
-	change : function( page, doc ) {
-	}
 };

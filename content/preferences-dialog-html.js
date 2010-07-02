@@ -42,8 +42,6 @@ var FoxtrickPrefsDialogHTML = {
 	}catch (e){dump('HTMLPrefs '+e+'\n');}
 	},
 
-	change : function( doc ) { 
-	},
 	
 	add_pref_links : function( doc) {
 		if (doc.getElementById('id_configure_foxtrick')) return;

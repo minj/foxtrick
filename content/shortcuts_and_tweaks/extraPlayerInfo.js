@@ -73,6 +73,4 @@ FoxtrickExtraPlayerInfo = {
 		}
 	},
 
-	change : function(page, doc) {
-	}
 };

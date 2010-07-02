@@ -58,8 +58,6 @@ var FoxtrickFormatPostingText = {
 		textarea.value = FoxtrickFormatPostingText.format(textarea.value);
 	},
 
-	change : function(page, doc) {
-	}
 };
 
 var FoxtrickCopyPostID = {
@@ -79,8 +77,6 @@ var FoxtrickCopyPostID = {
 	run : function( page, doc ) {
 	},
 	
-	change : function( page, doc ) { return;
-	},	
 };
 
 //**********************************************************
@@ -106,8 +102,6 @@ var FoxtrickCopyPosting = {
 	run : function( page, doc ) {
 	},
 	
-	change : function( page, doc ) { return;
-	},	
 };
 
 //**********************************************************
@@ -146,9 +140,6 @@ var FoxtrickForumAlterHeaderLine = {
     run : function( page, doc ) {
 	},
 	
-	change : function( page, doc ) {
-	
-	}
 };
 
 
@@ -172,8 +163,6 @@ var FoxtrickForumRedirManagerToTeam = {
     run : function( page, doc ) { 		
     },
 	
-	change : function( page, doc ) {
-	},
 };
 
 
@@ -197,9 +186,6 @@ var FoxtrickMoveLinks = {
     run : function( page, doc ) { 
 	},
 	
-	change : function( page, doc ) {
-	
-	}
 };
 
 
@@ -223,8 +209,6 @@ var FoxtrickHideManagerAvatarUserInfo = {
     run : function( page, doc ) { 
 	},
        
-    change : function( page, doc ) {
-    }
 };
 
 
@@ -249,9 +233,6 @@ var FoxtrickAddDefaultFaceCard = {
     run : function( page, doc ) {
 	},
 	
-	change : function( page, doc ) {
-	
-	}
 };
 
 
@@ -277,9 +258,6 @@ var FoxtrickAlltidFlags = {
 	run : function( page, doc ) {  
 	},
 	
-	change : function( page, doc ) { 
-	},	
-						
 };
 
 
@@ -303,7 +281,4 @@ var FoxtrickForumSearch = {
 	run : function( page, doc ) {  
 	},
 	
-	change : function( page, doc ) { 
-	},	
-						
 };

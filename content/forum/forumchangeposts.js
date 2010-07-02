@@ -564,8 +564,6 @@ var FoxtrickForumChangePosts = {
 	} catch (e) { Foxtrick.dump('ForumChangePost '+e+'\n');}
 	},
 
-	change : function( page, doc ) {
-	},
 
 	_copy_postid_to_clipboard : function(ev) {
 		var doc = ev.target.ownerDocument;

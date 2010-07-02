@@ -81,8 +81,6 @@ FoxtrickTransferSearchFilters = {
 		}
 	},
 
-	change : function( page, doc ) {
-	},
 
 	addNewFilter : function(ev) {
 		try {

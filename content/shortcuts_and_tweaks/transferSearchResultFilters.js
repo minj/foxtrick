@@ -35,8 +35,6 @@ FoxtrickTransferSearchResultFilters = {
 		}
 	},
 
-	change : function( page, doc ) {
-	},
 
 	addExtraFilters : function(doc) {
 		try {

@@ -31,8 +31,6 @@ var FoxtrickMovePlayerSelectbox= {
 		catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox: "+e+'\n');}	
 	},
 	
-    change : function( page, doc ) {
-	},
 }
 
 
@@ -78,6 +76,4 @@ var FoxtrickMoveManagerOnline= {
 
 	},
 	
-    change : function( page, doc ) {
-	},
 }

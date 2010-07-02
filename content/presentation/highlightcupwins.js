@@ -70,6 +70,4 @@ var FoxtrickHighlightCupwins = {
 		catch(e){Foxtrick.dump(e);}
  	},
 
-	change : function( page, doc ) {
-	}
 };

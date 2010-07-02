@@ -82,8 +82,6 @@ var FoxtrickSkillTable = {
 		}
 	},
 
-	change : function(page, doc) {
-	},
 
 	createTable : function(doc) {
 		try {

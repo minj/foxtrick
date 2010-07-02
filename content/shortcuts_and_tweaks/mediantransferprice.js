@@ -67,8 +67,6 @@ var FoxtrickMedianTransferPrice = {
 	    }
 	},
 	
-	change : function ( page, doc ) {	
-	},
 	
 	group : function (astring, chr, size ) {
 		if ( typeof chr == 'undefined' ) chr = ",";

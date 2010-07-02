@@ -41,6 +41,4 @@ var FoxtrickMovePlayerStatement = {
 		}
 	},
 
-	change : function( page, doc ) {
-	}
 };

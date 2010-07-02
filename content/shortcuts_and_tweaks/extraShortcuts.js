@@ -19,8 +19,6 @@ var FoxtrickExtraShortcuts = {
     init : function() {
     },
 
-	change : function( page, doc ) {
-	},
 
     run : function( page, doc ) { 
         var shortcuts = doc.getElementById ( 'shortcuts' );

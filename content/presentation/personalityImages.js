@@ -47,6 +47,4 @@ var FoxtrickPersonalityImages = {
 		}
 	},
 
-	change : function( page, doc ) {
-	}
 };

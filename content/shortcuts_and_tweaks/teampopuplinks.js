@@ -164,8 +164,6 @@ var FoxtrickTeamPopupLinks = {
 	},
 
 
-	change : function(page, doc) {
-	},
 
 
 	popupshow : function(evt) {
@@ -723,6 +721,4 @@ var FoxtrickTeamPopupLinksMore = {
 	run : function(page, doc) {
 	},
 
-	change : function(page, doc) {
-	}
 };

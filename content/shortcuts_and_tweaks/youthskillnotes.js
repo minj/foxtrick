@@ -61,10 +61,6 @@ var FoxtrickYouthSkillNotes = {
         }
 	},
 	
-	change : function( page, doc ) {
-	
-	},
-	
 	saveSkills : function (ev) {
 		var doc = ev.target.ownerDocument;
 		var playerid = ev.target.getAttribute("name");

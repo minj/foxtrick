@@ -30,6 +30,4 @@ var FoxtrickShowForumPrefButton = {
 	},
  
  	
-	change : function( page, doc ) {
-	},	
 };

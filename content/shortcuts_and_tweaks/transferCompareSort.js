@@ -29,8 +29,6 @@ var FoxtrickTransferCompareSort = {
 		} catch(e) {Foxtrick.dump('FoxtrickTransferCompareSort.run error: '+e+'\n');}
 	},
 	
-	change : function( page, doc ) {	
-	},
 
 	sortfunction: function(a,b) {return a.cells[FoxtrickTransferCompareSort.s_index].innerHTML.localeCompare(b.cells[FoxtrickTransferCompareSort.s_index].innerHTML);},
 	sortnumberfunction: function(a,b) { return parseInt(a.cells[FoxtrickTransferCompareSort.s_index].innerHTML.replace(/ |&nbsp;/g,'')) < parseInt(b.cells[FoxtrickTransferCompareSort.s_index].innerHTML.replace(/ |&nbsp;/g,''));},

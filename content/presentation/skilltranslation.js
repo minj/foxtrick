@@ -212,7 +212,5 @@ team_confidence	: new Array(
 		}
 	},
 	
-	change : function( page, doc ) {
-	},
 
 };

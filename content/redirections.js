@@ -175,7 +175,5 @@ var FoxtrickRedirections = {
 	} catch(e) {dump('FoxtrickRedirections: +'+e+'\n');}
 	},
 	
-	change : function( doc ) {
-	},
 		
 };

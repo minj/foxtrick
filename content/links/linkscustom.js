@@ -26,8 +26,6 @@ var FoxtrickLinksCustom = {
     run : function( page, doc ) {	
 	},
 	
-	change : function( page, doc ) { 
-	},
 	
 	add : function( page, doc,ownBoxBody,pagemodule,info ) {
 		try {	

@@ -72,6 +72,4 @@ var FoxtrickForumStripHattrickLinks = {
 		}
 	},
 
-	change : function( page, doc ) {
-	},
 };
