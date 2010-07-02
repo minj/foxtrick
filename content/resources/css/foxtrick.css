@@ -65,6 +65,11 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	padding: 7px 10px;
 }
 
+.ft-note a.close {
+	cursor: pointer;
+	float: right;
+}
+
 /* TeamStats */
 #foxtrick_FTTeamStats_box table th {
 	font-size: 120%;
