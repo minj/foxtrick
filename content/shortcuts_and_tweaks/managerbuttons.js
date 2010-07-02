@@ -10,7 +10,7 @@ var FoxtrickManagerButtons = {
 	MODULE_NAME : "ManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("managerPage", "teamPage","youthoverview"),
-	DEFAULT_ENABLED : true,
+	DEFAULT_ENABLED : false,
 	OPTIONS : ["GuestBook", "LargeSendMail"],
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Updated to latest HT version.",
