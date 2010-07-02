@@ -1,0 +1,19 @@
+.ft-htms-bar {
+	height: 20px;
+	display: inline-block;
+}
+
+.ft-htms-stats-win {
+	background-color: rgb(110, 110, 0);
+	border: 1px solid #000000;
+}
+
+.ft-htms-stats-draw {
+	background-color: rgb(210, 210, 210);
+	float: right;
+}
+
+.ft-htms-stats-loss {
+	background-color: rgb(0, 110, 110);
+	float: right;
+}
