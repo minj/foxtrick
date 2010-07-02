@@ -125,6 +125,7 @@ Foxtrick.AttVsDef = {
 	},
 	
 	_newStyleBars: function (doc, ratingstable, bodydiv) {
+		try {
 		var sidebar = doc.getElementById("sidebar");
 		var percentArray=this._getPercentArray(doc, ratingstable);
 		var balldivnumber=7;
@@ -132,13 +133,18 @@ Foxtrick.AttVsDef = {
 			balldivnumber=5; //youth haven't the kit div
 		}
 		
-		var strangediv=sidebar.childNodes[balldivnumber].childNodes[1].childNodes[7];
+		/*var strangediv=sidebar.childNodes[balldivnumber].childNodes[1].childNodes[7];
 		//Foxtrick.LOG(sidebar.childNodes[balldivnumber].childNodes[1].innerHTML);
 		
 		if (strangediv) {}
 		else {
 			strangediv=sidebar.childNodes[balldivnumber].childNodes[8];
 		}
+		*/
+		
+		 var strangediv = doc.createElement('div');
+		 strangediv.setAttribute('style','clear: both;')
+		
 		var rdefText = Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
 		var lattText = Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
 		var cdefText = Foxtrickl10n.getString( "foxtrick.matches.center" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
@@ -168,7 +174,8 @@ Foxtrick.AttVsDef = {
 			bodydiv.appendChild(this._createTextBox(doc, 100-percentArray[i]));
 			
 			bodydiv.appendChild(strangediv.cloneNode(true));
-		}		
+		}	
+		} catch(e){Foxtrick.dumpError(e);}
 	},
 
 	_createTextBox: function(doc, percentage) {
