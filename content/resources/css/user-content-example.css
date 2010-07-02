@@ -4,11 +4,19 @@
  * user's preferences. There are comments that describes what module each
  * statement belongs to and their meanings.
  *
- * Generally, you need to have the basic CSS knowledge to modify the values.
+ * Generally, you don't need to have basic CSS knowledge. Just replace color names as prefered.
  *
  * After adjusting the values and saving it to a file, you could use
  * the SkinPlugin module of FoxTrick to load the CSS file in order to have the
  * user style in effect.
+ *
+ * Example basic color names: 
+ * maroon, red, yellow, olive, purple, fuchsia, white, lime, green,
+ * navy, blue, aqua, teal, black, silver, gray, orange
+ * 
+ * for more see eg:
+ * http://www.w3schools.com/css/css_colornames.asp
+ *
  */
 
 
