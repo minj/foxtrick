@@ -1,0 +1,49 @@
+/* Order by ascending priority since an element may have more than one class
+   so that the last declared one wins. */
+
+.ft-staff-hty {
+	background-image: url("../linkicons/hyouthclub_small.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 18px;
+}
+
+.ft-staff-foxtrick {
+	background-image: url("../linkicons/foxtrick_2.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 18px;
+}
+
+.ft-staff-chpp-holder {
+	background-image: url("../linkicons/chpp.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 24px;
+}
+
+.ft-staff-editor {
+	background-color: #7BB300;
+	color: white;
+}
+
+.ft-staff-chpp {
+	background-color: green;
+	color: white;
+}
+
+.ft-staff-la {
+	background-color: white;
+	color: green;
+}
+
+.ft-staff-mod {
+	background-color: yellow;
+	color: black;
+}
+
+.ft-staff-gm {
+	background-color: orange;
+	color: black;
+}
+
+.ft-staff-ht {
+	background-color: red;
+}
