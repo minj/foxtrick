@@ -92,13 +92,6 @@ var FoxtrickCopyMatchID = {
 	} catch(e) {Foxtrick.dump('FoxtrickCopyMatchID: '+e+'\n');}
 	},
 	
-	change : function( page, doc ) {
-		var spanId = "_"+this.MODULE_NAME+"0";  
-		if( !doc.getElementById ( spanId ) ) {
-			this.run( page, doc );
-		}
-	},	
-
 	_copy_matchid_to_clipboard : function(ev) {
 		var doc = ev.target.ownerDocument;
 		var matchid = ev.target.parentNode.getAttribute("matchid");

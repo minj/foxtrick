@@ -246,13 +246,6 @@ var FoxtrickLinksPlayerDetail = {
 	  } catch(e){Foxtrick.dump('LinksPlayerdetails: '+e+'\n');}
     },
 	
-	change : function( page, doc ) {
-		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		if( !doc.getElementById ( "foxtrick_links_content" ) 
-			&& !doc.getElementById ( "foxtrick_keeperlink_0" ) 
-			&& !doc.getElementById ( "foxtrick_injurylink_0" ) ) {
-			this.run( page, doc );
-		}
-	},
+
 };
 

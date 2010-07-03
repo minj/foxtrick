@@ -171,13 +171,13 @@ var FoxtrickCountyList = {
         
 	},
 
-	change : function( page, doc ) {
+	/*change : function( page, doc ) {
 		return;
         var list = doc.getElementById( 'ft_countrylist' );
 		if( list == null ) {
 			this.run( page, doc );
 		}
-	},
+	},*/
     
     _placeCountry: function (page, doc) {
         var cntr = doc.getElementById( 'ft_cntr_fix' );

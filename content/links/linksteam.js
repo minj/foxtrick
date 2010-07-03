@@ -53,7 +53,7 @@ var FoxtrickLinksTeam = {
 		catch (e) {Foxtrick.dump("teamlinks->add_leftright->"+e);}
 	},
 	
-	change : function( page, doc ) { // Foxtrick.dump('change : LinksTeam\n');
+	/*change : function( page, doc ) { // Foxtrick.dump('change : LinksTeam\n');
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 		var ownBoxId = "foxtrick_links_content";
 		var owncoachlinkId = "foxtrick_content_coach";
@@ -63,7 +63,7 @@ var FoxtrickLinksTeam = {
 		 	Foxtrick.dump('run again : LinksTeamRight\n');	
 			this.AddLinksRight(page,doc);
 		}
-	},
+	},*/
 	
 	isTeamPage : function(doc) {
         var site=doc.location.href; 

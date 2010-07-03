@@ -232,9 +232,26 @@ var FoxtrickMain = {
 				Foxtrick.dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search+'\n');
 				// listen to page content changes
 				var content = doc.getElementById("content");
-				if(content) {
-					content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+				if (content) {
+					var add_change = false;
+					for (var page in Foxtrick.ht_pages) {
+						if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
+							// on a specific page, run all handlers
+							for (var i in Foxtrick.run_on_page[page]) {
+								if (page=='all' || page=='all_late') continue;
+								var module = Foxtrick.run_on_page[page][i];
+								if (typeof(module.change) == "function") {
+									add_change = true;
+									Foxtrick.dump('module has change on page: '+page+' : '+module.MODULE_NAME+'\n');
+								}
+							}
+						}
+					}
+					if (add_change) {
+						content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);					
+					}
 				}
+				Foxtrick.dump('add_change: '+add_change+'\n')
 				Foxtrick.dump('---------------------- foxtrick onPageLoad end -------------------\n')
 			}
 		}

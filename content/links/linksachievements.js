@@ -49,11 +49,4 @@ var FoxtrickLinksAchievements = {
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid });	        
 	},
 	
-	change : function( page, doc ) {
-		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_links_content";
-		if( !doc.getElementById ( ownBoxId ) ) {
-			this.run( page, doc );
-		}
-	}, 
 };

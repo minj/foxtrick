@@ -18,10 +18,6 @@ Foxtrick.BookmarkAdjust = {
         this._adjust_bookmarks( doc );
     },
 	
-	change : function( page, doc ) {
-		this._adjust_bookmarks( doc );
-	},
-
     _bookmarkColor : function( imageObj, regexp, commentObj, color ) {
         if (commentObj.firstChild.nodeValue.search(regexp) > -1) {
            //imageObj.style.backgroundImage = "url("+Foxtrick.ResourcePath+"resources/notes/" + color + ".png)";

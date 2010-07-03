@@ -49,10 +49,6 @@ var FoxtrickManagerButtons = {
 		}
 	},
 
-	change : function(page, doc) {
-		// no onchange now. position isn't right and mostly gb-link will not be needed then
-		//this.run(page, doc);
-	},
 
 	changeMaillink : function(page, doc) {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);

@@ -74,11 +74,4 @@ var FoxtrickLinksNational = {
 		}catch(e){Foxtrick.dump("linksnational->"+e+'\n');}
     },
 	
-	change : function( page, doc ) {
-		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_links_content";
-		if( !doc.getElementById ( ownBoxId ) ) {
-			this.run( page, doc );
-		}
-	},
 };

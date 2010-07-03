@@ -103,7 +103,7 @@ FoxtrickHTDateFormat = {
         }
     },
 
-	change : function(page, doc) {
+/*	change : function(page, doc) {
     try{
 		if (doc.getElementById('mainBody').innerHTML.search('ft_HTDateFormat') > -1 ) return;
         else {
@@ -111,7 +111,7 @@ FoxtrickHTDateFormat = {
             this.run(page,doc);
         }
       } catch(e){Foxtrick.dump('HTDateformat CHG: '+e+'\n');}  
-	}     
+	} */    
 };
 
 

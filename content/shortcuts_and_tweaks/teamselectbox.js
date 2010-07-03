@@ -134,13 +134,6 @@ var FoxtrickTeamSelectBox= {
 		catch (e) {Foxtrick.dump("SelectBox->toList: "+e+'\n');}	
 	},
 	
-    change : function( page, doc ) {
-		
-		/*if( !doc.getElementById ( "ownselectboxHeaderID" ) ) {  // no good check as not allways available
-			this.run( page, doc ); 
-		}	*/
-	},
-
 	HeaderClick : function(ev) {
 		try { 
 			var doc = ev.target.ownerDocument;
