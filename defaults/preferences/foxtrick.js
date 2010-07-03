@@ -20,7 +20,7 @@ pref("extensions.foxtrick.prefs.module.FoxtrickAlert.AlertSliderGrowl.enabled", 
 pref("extensions.foxtrick.prefs.module.FoxtrickAlert.AlertSound.enabled", false);
 pref("extensions.foxtrick.prefs.module.FoxtrickAlert.NewMail.enabled", false);
 pref("extensions.foxtrick.prefs.module.FoxtrickAlert.NewForum.enabled", false);
-pref("extensions.foxtrick.prefs.disableOnStage", false);
+pref("extensions.foxtrick.prefs.disableOnStage", true);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
@@ -112,19 +112,10 @@ pref("extensions.foxtrick.prefs.module.MatchReportFormat.border_color_goal_home.
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.border_color_goal_away.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.normaltext.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.half_time.enabled", false);
-pref("extensions.foxtrick.prefs.module.CrossTable.cut_long_teamnames.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.Home.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.Away.enabled", false);
-pref("extensions.foxtrick.prefs.module.StaffMarker.HT.enabled", true);
-pref("extensions.foxtrick.prefs.module.StaffMarker.GM.enabled", true);
-pref("extensions.foxtrick.prefs.module.StaffMarker.MOD.enabled", true);
-pref("extensions.foxtrick.prefs.module.StaffMarker.LA.enabled", true);
-pref("extensions.foxtrick.prefs.module.StaffMarker.CHPP.enabled", true);
-pref("extensions.foxtrick.prefs.module.StaffMarker.editor.enabled", true);
-pref("extensions.foxtrick.prefs.module.StaffMarker.foxtrick-dev.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.flag.enabled", false);
-pref("extensions.foxtrick.prefs.module.StaffMarker.chpps.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumTemplates.CustomWidth.enabled", false);
 pref("extensions.foxtrick.prefs.module.TickerColoring.LoginWelcome.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerColoring.LoginSupporters.enabled", true);
@@ -288,7 +279,6 @@ pref("extensions.foxtrick.prefs.module.LinksTracker.srbijassttracker.enabled", f
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin1.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin2.enabled", false);
 pref("extensions.foxtrick.prefs.module.CopyTrainingReport.OpenHTYpage.enabled", false);
-pref("extensions.foxtrick.prefs.disableOnStage", true);
 pref("extensions.foxtrick.prefs.module.ForumTemplates.DefaultShow.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumStripHattrickLinks.NoConfirmStripping.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPosting.value", 2);
