@@ -23,7 +23,7 @@ var FoxtrickLinksPlayerDetail = {
 	  try{
 		//addExternalLinksToPlayerDetail
 		var teamdiv = doc.getElementById('teamLinks');
-		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
+		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;
 		
 		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
 		if ( biddiv ) { 

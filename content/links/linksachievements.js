@@ -20,8 +20,7 @@ var FoxtrickLinksAchievements = {
     run : function( page, doc ) { 
 
 		//addExternalLinksToManagerPage		
-		var teamdiv = doc.getElementById('teamLinks');
-		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
+		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;
 		
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainWrapper');

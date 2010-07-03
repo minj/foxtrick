@@ -19,17 +19,11 @@ var FoxtrickLinksYouthOverview = {
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
-		var ownteamid=0;
-		var owncountryid=0;
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
-		var teamdiv = doc.getElementById('teamLinks');
-		var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				if (ownleagueid!=null) {
-					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-					owncountryid = FoxtrickHelper.findCountryId(teamdiv);					
-				}		
+		var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
+		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;					
 		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 	
 	
@@ -80,18 +74,13 @@ var FoxtrickLinksYouthPlayerDetail = {
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
-		var ownteamid=0;
-		var owncountryid=0;
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
-		var teamdiv = doc.getElementById('teamLinks');
-		var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				if (ownleagueid!=null) {
-					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-					owncountryid = FoxtrickHelper.findCountryId(teamdiv);					
-				}		
-		
+		var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
+		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;					
+		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+	
 		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
@@ -167,13 +156,10 @@ var FoxtrickLinksYouthTraining = {
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
-		var teamdiv = doc.getElementById('teamLinks');
-		var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-				if (ownleagueid!=null) {
-					ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-					owncountryid = FoxtrickHelper.findCountryId(teamdiv);					
-				}		
-		
+		var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
+		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;					
+		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+	
 	
 	
 		//addExternalLinksToYouthOverview

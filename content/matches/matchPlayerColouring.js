@@ -6,7 +6,7 @@
 FoxtrickMatchPlayerColouring = {
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match','teamPageAny','myhattrick','playerdetail'), 
+	PAGES : new Array('match', 'playerdetail'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.2",
@@ -27,21 +27,6 @@ FoxtrickMatchPlayerColouring = {
     
     run : function( page, doc ) { 
 	try {
-		// get youthteam id from left menue, if teamid=leftmenue teamid
-		if (page=='teamPageAny' || page=='match')  {
-				var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
-				if  (this.OwnYouthTeamId==null) {
-					var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-					if (myTeamId==leftMenuTeamId) 
-						this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-					Foxtrick.dump('OwnYouthTeamId: '+this.OwnYouthTeamId+'\n');
-				}		
-			if (page=='teamPageAny') return;
-		}
-        if (page=='myhattrick') {
-			this.OwnYouthTeamId = null;
-			return;
-		} 
 		if (page=='playerdetail') { // add matchreport highlight links to playerdetails
 			var playername = doc.getElementById("mainWrapper").getElementsByTagName('a')[1].innerHTML;
 			playerlastname = playername.substr(playername.lastIndexOf(' ')+1);
@@ -74,8 +59,8 @@ FoxtrickMatchPlayerColouring = {
 		//Foxtrick.alert(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
 		
 		//Retrieve teams id
-		var myTeamId = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
-		if (isyouth) myTeamId = this.OwnYouthTeamId;
+		var myTeamId = FoxtrickHelper.ownTeam.ownTeamId;
+		if (isyouth) myTeamId = FoxtrickHelper.ownTeam.ownYouthTeamId;
 		var table = doc.getElementById('mainBody').getElementsByTagName('table');
 		if (!table[0]) {
 			// match not finished

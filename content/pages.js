@@ -16,8 +16,11 @@
 if (!Foxtrick) var Foxtrick={};
  
 Foxtrick.ht_pages = {
+	// following are mainly used for information gathering. keep on top
 	'myhattrick'                : '/MyHattrick/$',
 	'myhattrickAll'             : '/MyHattrick/|org/$|pl/$|ws/$',
+	'teamPageAny'               : '/Club/|/World/Series/Default\.aspx',
+
 	'all'                       : '',
 	'playerdetail'              : '/Club/Players/Player\.aspx',
 	'youthplayerdetail'         : '/Club/Players/YouthPlayer\.aspx',
@@ -61,7 +64,6 @@ Foxtrick.ht_pages = {
 	'matchOrders'               : '/MatchOrders\.aspx',
 	'flagCollection'            : '/Club/Flags/',
 	'teamPage'                  : '/Club/$|/Club/.TeamID=|/Club/default.aspx',
-	'teamPageAny'               : '/Club/',
 	'teamPageBrowser'           : '/Club/default.aspx',
 	'teamPageGeneral'           : '/Club/|/World/Series/',
 	'oldseries'                 : '/World/Series/OldSeries\.aspx',

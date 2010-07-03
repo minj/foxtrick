@@ -124,7 +124,7 @@ var FoxtrickLinksCustom = {
 					{
 						var mykey=mykeytag[i].replace(/\[/,"").replace(/\]/,"");
 						if (FoxtrickLinksCustom._info[mykey]) href=href.replace (mykeytag[i],FoxtrickLinksCustom._info[mykey] );
-						else  href=href.replace( mykeytag[i], FoxtrickHelper.OWNTEAMINFO[mykey] );
+						else  href=href.replace( mykeytag[i], FoxtrickHelper.ownTeam[mykey] );
 					}
 				} 				
 				try { // add icons
@@ -322,13 +322,13 @@ var FoxtrickLinksCustom = {
 				selectbox.appendChild(option);					
 			}
 			try {		
-				for (var key in FoxtrickHelper.OWNTEAMINFO) { 
-				var option = doc.createElement("option");
-				option.setAttribute("value",key);
-				option.innerHTML='['+key+']';
-				option.setAttribute("style","width:100%;");
-				selectbox.appendChild(option);					
-				}
+				for (var key in FoxtrickHelper.ownTeam) { 
+					var option = doc.createElement("option");
+					option.setAttribute("value",key);
+					option.innerHTML='['+key+']';
+					option.setAttribute("style","width:100%;");
+					selectbox.appendChild(option);					
+					}
 			} catch(e){Foxtrick.dump('tags: ownteaminfo not available\n');}
 			var trn2 = doc.createElement ("tr");
 			var tdn2 = doc.createElement ("td");

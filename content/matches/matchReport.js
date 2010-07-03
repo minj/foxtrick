@@ -39,15 +39,6 @@ FoxtrickMatchReportFormat = {
 
   
     run : function( page, doc ) {
-		// get first youthteam id, assume its your own
-		if (page=='teamPageAny')  {
-			if  (this.OwnYouthTeamId==null) this.OwnYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-			return;
-		}
-        if (page=='myhattrick') {
-			this.OwnYouthTeamId = null;
-			return;
-		}
 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
@@ -66,8 +57,8 @@ FoxtrickMatchReportFormat = {
         Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/MatchReport.js");
         
         //Retrieve teams id
-		var myTeamId=FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
-		if (isyouth) myTeamId = this.OwnYouthTeamId;
+		var myTeamId = FoxtrickHelper.ownTeam.ownTeamId;
+		if (isyouth) myTeamId = FoxtrickHelper.ownTeam.ownYouthTeamId;		
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		if (!table) return;  // match not finished
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);

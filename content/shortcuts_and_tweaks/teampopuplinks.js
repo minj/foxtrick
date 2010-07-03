@@ -106,12 +106,7 @@ var FoxtrickTeamPopupLinks = {
 				}
 			}
 
-			var teamdiv = doc.getElementById('teamLinks');
-			var ownleagueid = FoxtrickHelper.findLeagueLeveUnitId(teamdiv);
-			this.ownteamid=0;
-			if (ownleagueid != null) {
-				this.ownteamid = FoxtrickHelper.findTeamId(teamdiv);
-			}
+			this.ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
 			this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
 
 			this.Target = '_self';

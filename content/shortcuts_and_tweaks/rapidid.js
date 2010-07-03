@@ -165,7 +165,4 @@ var FoxtrickRapidId = {
 			Foxtrick.dump("RapidId(" + e.lineNumber + "): " + e + "\n");
 		}
 	},
-
-	change: function(doc) {
-	}
 };

@@ -28,8 +28,7 @@ var FoxtrickLinksManager = {
 		var userid = FoxtrickHelper.findUserId(mainBody);		
 		var leaguename = FoxtrickHelper.extractLeagueName(mainBody);
 		var leagueid = FoxtrickHelper.findLeagueLeveUnitId(mainBody);;
-   		var teamdiv = doc.getElementById('teamLinks');
-		var owncountryid =FoxtrickHelper.findCountryId(teamdiv);
+   		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;
 
 		var h1 = mainBody.getElementsByTagName('h1')[0];
 		var username = h1.innerHTML.replace(/<.+>/g,'').replace(/^\s+/,'').replace(/\s+$/,'').replace(/\(.+/,'').replace(/\s+$/g, '');

@@ -19,8 +19,7 @@ var FoxtrickSeniorTeamShortCuts = {
 
     run : function( page, doc ) {
 			try {
-				var teamdiv = doc.getElementById('teamLinks');
-				var ownteamid = FoxtrickHelper.findTeamId(teamdiv);;
+				var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
 						
 				var boxleft=doc.getElementById('ctl00_pnlSubMenu');
 				if (boxleft==null) {return;}

@@ -7,17 +7,52 @@ var FoxtrickHelper = {
 
 	
 	MODULE_NAME : "Helper",
-	PAGES : new Array('myhattrick'), 
+	PAGES : new Array('myhattrick', 'teamPageAny'), 
 	DEFAULT_ENABLED : true,
-	OWNTEAMINFO:"",
+	ownTeam: null,
 	
 	init : function() {
 	},
 	
 	run : function( page, doc ) {
-		this.getOwnTeamInfo(doc);	
+		this.getOwnTeamInfo(doc, page);	
 	},
 
+
+	//---------------------------------------------------------------------------    
+	getOwnTeamInfo : function(doc, page) {
+		var teamdiv = doc.getElementById('teamLinks');
+		var ownleagueid = this.findLeagueLeveUnitId(teamdiv);
+		if (this.ownTeam === null && ownleagueid != null) {
+			var owncountryid = this.findCountryId(teamdiv);
+			var ownleaguename = this.extractLeagueName(teamdiv);        		
+			var ownseriesnum = this.getSeriesNum(ownleaguename);
+			var ownlevelnum = this.getLevelNum(ownleaguename, owncountryid);
+			
+			this.ownTeam = {"ownTeamId": this.findTeamId(teamdiv),
+				"ownTeamName" : this.extractTeamName(teamdiv),
+				"ownCountryId" : owncountryid,
+				"ownLeagueName" : ownleaguename,        		
+				"ownSeriesNum" : ownseriesnum,
+				"ownLevelNum" : ownlevelnum };
+				
+			Foxtrick.dump('FoxtrickHelper.ownTeam\n'+
+					'ownTeamId ' + this.ownTeam.ownTeamId+'\n'+
+					'ownTeamName ' + this.ownTeam.ownTeamName+'\n'+
+					'ownCountryId ' + this.ownTeam.ownCountryId+'\n'+
+					'ownLeagueName ' + this.ownTeam.ownLeagueName+'\n'+        		
+					'ownSeriesNum ' + this.ownTeam.ownSeriesNum+'\n'+
+					'ownLevelNum ' + this.ownTeam.ownLevelNum+'\n');
+		} 
+		if (page=='teamPageAny') {
+			if  (this.ownTeam.ownYouthTeamId==null) {
+				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+				if (this.ownTeam.ownTeamId==leftMenuTeamId) 
+					this.ownTeam.ownYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+				Foxtrick.dump('FoxtrickHelper.ownTeam.ownYouthTeamId: '+this.ownTeam.ownYouthTeamId+'\n');
+			}		
+		}
+	},
 
 
 	//---------------------------------------------------------------------------    
@@ -92,18 +127,6 @@ var FoxtrickHelper = {
 		}
 		return null;
 	},
-
-	/* obsolete
-	//---------------------------------------------------------------------------    
-	findIsArchievedMatch : function(element) {
-		var links = element.getElementsByTagName('a');
-		for (var i=0; i < links.length; i++) {
-			if ( links[i].href.match(/Club\/Matches\/Match\.aspx/i) ) {
-				return (links[i].href.match(/useArchive/i));
-			}
-		}
-		return false;
-	},*/
 
 	//---------------------------------------------------------------------------    
 	findIsYouthMatch : function(href) {
@@ -262,27 +285,6 @@ var FoxtrickHelper = {
 		return null;
 	},
 	
-	//---------------------------------------------------------------------------    
-	getOwnTeamInfo : function(doc) {
-		var teamdiv = doc.getElementById('teamLinks');
-		var ownleagueid = this.findLeagueLeveUnitId(teamdiv);
-		if (ownleagueid!=null) {
-			var owncountryid =this.findCountryId(teamdiv);
-			var ownleaguename= this.extractLeagueName(teamdiv);        		
-			var ownseriesnum =this.getSeriesNum(ownleaguename);
-			var ownlevelnum = this.getLevelNum(ownleaguename, owncountryid);
-			
-			this.OWNTEAMINFO={"ownteamid": this.findTeamId(teamdiv),
-				"ownteamname" : this.extractTeamName(teamdiv),
-				"ownteamid" : this.findTeamId(teamdiv),
-				"owncountryid" : owncountryid,
-				"ownleaguename" : ownleaguename,        		
-				"ownseriesnum" : ownseriesnum,
-				"ownlevelnum" : ownlevelnum};
-				//Foxtrick.dump('got ownteaminfo\n');
-		} 
-	},
-
 	countryNameEnglishToLocal : function(engName) {
 		for (var i in Foxtrick.XMLData.League) {
 			if (Foxtrick.XMLData.League[i].EnglishName === engName) {

@@ -22,7 +22,7 @@ var FoxtrickLinksChallenges = {
 
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
-		var ownteamid = FoxtrickHelper.findTeamId(doc.getElementById('teamLinks'));
+		var ownteamid = FoxtrickHelper.ownTeam.ownCountryId;
 					
 		//addExternalLinksToChallengesDetail
         var links;

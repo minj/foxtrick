@@ -56,9 +56,8 @@ var FoxtrickLeagueAndMatchChat = {
 		var icon="http://hattrick.org/App_Themes/Simple/logo_green.png";
 		var icon2 = "http://hattrick.org/favicon.ico";
 
-		var teamlinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-		if (teamlinks.length) var nick = teamlinks[0].innerHTML;
-		else var nick='Guest';
+		var nick = FoxtrickHelper.ownTeam.ownTeamName;
+		if (!nick) nick='Guest';
 		if (Foxtrick.isModuleFeatureEnabled(this,'ChatNick') && FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text") && FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")!='')
 					nick = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text");
 		
