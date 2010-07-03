@@ -6,7 +6,7 @@
 FoxtrickMatchReportFormat = {
 	MODULE_NAME : "MatchReportFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match','teamPageAny','myhattrick'), 
+	PAGES : new Array('match'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.5",
@@ -411,11 +411,7 @@ FoxtrickMatchReportFormat = {
         }
 
     },
-
-	change : function( page, doc ) {
-        var div_check = Foxtrick.getElementsByClass('ft_mR_format', doc);
-        if  (div_check.length > 0) return;
-    },
+	
     nl2br : function(text) {
         text = escape(text);
 		var re_nlchar='';
