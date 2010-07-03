@@ -57,6 +57,7 @@
 /* Module StaffMarker */
 /* Order by ascending priority since an element may have more than one class
    so that the last declared one wins. */
+
 .ft-staff-hty {
 	background-image: url("../linkicons/hyouthclub_small.png");
 	background-repeat: no-repeat;
@@ -77,27 +78,27 @@
 
 .ft-staff-editor {
 	background-color: #7BB300;
-	color: white;
+	color: white !important;
 }
 
 .ft-staff-chpp {
 	background-color: green;
-	color: white;
+	color: white !important;
 }
 
 .ft-staff-la {
 	background-color: white;
-	color: green;
+	color: green !important;
 }
 
 .ft-staff-mod {
 	background-color: yellow;
-	color: black;
+	color: black !important;
 }
 
 .ft-staff-gm {
 	background-color: orange;
-	color: black;
+	color: black !important;
 }
 
 .ft-staff-ht {
