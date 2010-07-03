@@ -39,7 +39,7 @@ var FoxtrickStaffMarker = {
 	SELECT_ELEMENTS : ["ctl00_CPMain_ucThread_ucPagerTop_filterUser",
 		"ctl00_CPMain_ucThread_ucPagerBottom_filterUser",
 		"ctl00_CPMain_ddlRecipient"
-	),
+	],
 
 	init : function() {
 	},
