@@ -4,7 +4,11 @@
  * user's preferences. There are comments that describes what module each
  * statement belongs to and their meanings.
  *
- * Generally, you don't need to have basic CSS knowledge. Just replace color names as prefered.
+ * For instances given here, you don't need to know CSS in whole. Although a
+ * basic knowledge of CSS will help you a lot. For colors, just replace color
+ * names as preferred. To disable a statement, you could remove it or comment it
+ * out. Sometimes we need to use the "!important" keyword to overwrite the
+ * Hattrick rule.
  *
  * After adjusting the values and saving it to a file, you could use
  * the SkinPlugin module of FoxTrick to load the CSS file in order to have the
@@ -13,11 +17,23 @@
  * Example basic color names: 
  * maroon, red, yellow, olive, purple, fuchsia, white, lime, green,
  * navy, blue, aqua, teal, black, silver, gray, orange
- * 
- * for more see eg:
+ *
+ * For a general introduction to CSS:
+ * http://www.w3schools.com/css/css_intro.asp
+ *
+ * For a list of CSS colors:
  * http://www.w3schools.com/css/css_colornames.asp
  *
  */
+
+
+/* Module HighlightBotTeams */
+
+/* the link to bot teams at league page */
+.ft-bot {
+	color: white !important;
+	background-color: gray;
+}
 
 
 /* Module htmsstatistics */

@@ -1,49 +1,30 @@
 /**
  * Highlight Bot teams
- *  * @author ljushaff
+ * @author ljushaff, ryanli
  */
 
 FoxtrickHighlightBotTeams = {
 	MODULE_NAME : "HighlightBotTeams",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('league'), 
+	PAGES : new Array('league'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Highlight Bot teams on series pages",	
+	LATEST_CHANGE:"Highlight Bot teams on series pages",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : new Array("ChooseColorHighlight"),
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("background-image: url('"+Foxtrick.ResourcePath+"resources/img/bot.png'); background-repeat: no-repeat; padding: 0px 0px 0px 18px;" //BotHiglight
-											),        
-	CSS:"",
-    OLD_CSS:"",
-	
-    init : function() {
-		var zaw = ''
-		
-		+'@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
-		+'{'
-		/* HighlightBotTeams */
-		+'#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] table[class="indent"] .shy {'+this.get_color(this.OPTIONS[0])+'}'
-		+'}'
-		;
-		this.OLD_CSS = this.CSS;
-		if (Foxtrick.BuildFor=='Chrome') Foxtrick.load_css_permanent(zaw);
-		else this.CSS=Foxtrick.GetDataURIText(zaw);
-    },
 
-    run : function( page, doc ) {    		
-	},
-	
-	
-	get_color : function( option ) {	
-	    if (Foxtrick.isModuleFeatureEnabled( this, option)) {
-			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + option+"_text"); 
-			return color;
+	CSS : Foxtrick.ResourcePath + "resources/css/highlight-bots.css",
+
+	run : function(page, doc) {
+		try {
+			var span = doc.getElementById("ctl00_CPMain_repLeagueTable");
+			var table = span.getElementsByTagName("table")[0];
+			var bots = table.getElementsByClassName("shy");
+			for (var i = 0; i < bots.length; ++i) {
+				Foxtrick.addClass(bots[i], "ft-bot");
+			}
 		}
-		for (var i=0;i<this.OPTIONS.length;++i) {
-			if (this.OPTIONS[i]==option) return this.OPTION_TEXTS_DEFAULT_VALUES[i];
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
-		return "";
 	}
 };
