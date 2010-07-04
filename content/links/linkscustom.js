@@ -133,7 +133,7 @@ var FoxtrickLinksCustom = {
 					div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+key+'.title') );
 					div.setAttribute( "href", href );
 					div.setAttribute("onClick","window.open(\""+href+"\",\"_blank\");");
-					div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
+					div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/img/transparent16.png'>";
 					div.setAttribute('id','LinksCustomLinkID'+key);
 					ownBoxBody.appendChild(doc.createTextNode(" "));
 					ownBoxBody.appendChild(div); 
@@ -193,7 +193,7 @@ var FoxtrickLinksCustom = {
 				div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(basepref+'.'+key+'.img')+"') 50% no-repeat;");
 				div.setAttribute( "title", FoxtrickPrefs.getString(basepref+'.'+key+'.href') );
 				div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(basepref+'.'+key+'.href')+"\",\"_blank\");");
-				div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
+				div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/img/transparent16.png'>";
 				var tr1 = doc.createElement ("tr");
 				var td1 = doc.createElement ("td");
 				var td2 = doc.createElement ("td");
@@ -228,7 +228,7 @@ var FoxtrickLinksCustom = {
 			trn.height=20;
 			var tdn = doc.createElement ("td");
 			var divn = doc.createElement ("div"); 
-			divn.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
+			divn.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/img/transparent16.png'>";
 			tdn.appendChild(divn);				
 			trn.appendChild(tdn);				
 			table.appendChild(trn);				
@@ -241,9 +241,9 @@ var FoxtrickLinksCustom = {
 			var div = doc.createElement ("div"); 
 			div.setAttribute("id", "inputImgDivID");
 			div.setAttribute( "title", 'Tinntle') ;
-			div.innerHTML="<img id='inputImgIDName' src='"+Foxtrick.ResourcePath+"resources/linkicons/aiga.png'>";
-			div.imgref=Foxtrick.ResourcePath+'resources/linkicons/aiga.png';
-			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('"+Foxtrick.ResourcePath+"resources/linkicons/empty16.png') 50% no-repeat;");
+			div.innerHTML="<img id='inputImgIDName' src='"+Foxtrick.ResourcePath+"resources/img/aiga.png'>";
+			div.imgref=Foxtrick.ResourcePath+'resources/img/aiga.png';
+			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('"+Foxtrick.ResourcePath+"resources/img/empty16.png') 50% no-repeat;");
 				
 			// load image button
 			var loadIcon = doc.createElement ("a");	
@@ -360,7 +360,7 @@ var FoxtrickLinksCustom = {
 		
 			var helplink = doc.createElement ("a");	
 			helplink.setAttribute("href", "javascript: alert('"+Foxtrickl10n.getString('foxtrick.linkscustom.helptext')+' \n'+Foxtrickl10n.getString('foxtrick.linkscustom.helptext2')+"');");
-			helplink.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
+			helplink.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/img/transparent16.png'>";
 			helpdiv.appendChild(helplink);
 			
 			var tdn5b = doc.createElement ("td");
@@ -416,7 +416,7 @@ var FoxtrickLinksCustom = {
 			var baseprefnl = evt["target"]["baseprefnl"];
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
-			doc.getElementById("inputImgDivID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+Foxtrick.ResourcePath+"resources/linkicons/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
+			doc.getElementById("inputImgDivID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+Foxtrick.ResourcePath+"resources/img/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
 			doc.getElementById("inputImgDivID").imgref=FoxtrickPrefs.getString(baseprefnl+'.img');	
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
@@ -473,7 +473,7 @@ var FoxtrickLinksCustom = {
 			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
 			div.setAttribute( "title", FoxtrickPrefs.getString(baseprefnl+'.href') );
 			div.setAttribute("onClick","window.open(\""+FoxtrickPrefs.getString(baseprefnl+'.href')+"\",\"_blank\");");
-			div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
+			div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/img/transparent16.png'>";
 			
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -572,7 +572,7 @@ var FoxtrickLinksCustom = {
 			var div=doc.getElementById('inputImgDivID');
 			div.imgref=image;
 			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+div.imgref+"') 50% no-repeat;");
-			div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/linkicons/transparent16.png'>";
+			div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/img/transparent16.png'>";
 			 			
  		}
 		catch(e) {Foxtrick.dump('FoxtrickLinksCustom.LoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}

@@ -170,7 +170,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._q , false );
                 newimage.setAttribute( "class", "ft_q");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_q.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_q.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.q");
                 toolbar.insertBefore( newimage,target );
 			}
@@ -180,7 +180,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._br , false );
                 newimage.setAttribute( "class", "ft_br");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_br.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_br.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.br");
                 toolbar.insertBefore( newimage,target );
             }
@@ -190,7 +190,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._userid , false );
                 newimage.setAttribute( "class", "ft_uid");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_user.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_user.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.user");
                 toolbar.insertBefore( newimage,target );
             }
@@ -200,7 +200,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._kitid , false );
                 newimage.setAttribute( "class", "ft_kit");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_kit.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_kit.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.kit");
                 toolbar.insertBefore( newimage,target );
             }
@@ -210,7 +210,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._articleid , false );
                 newimage.setAttribute( "class", "ft_aid");
-                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_article.png') !important;");
+                newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_article.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.article");
                 toolbar.insertBefore( newimage,target );
             }
@@ -220,7 +220,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._clock , false );
                 newimage.setAttribute( "class", "ft_clock");
-                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_clock.png') !important;");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_clock.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.clock");
                 toolbar.insertBefore( newimage,target );
             }  
@@ -230,7 +230,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._spoiler , false );
                 newimage.setAttribute( "class", "ft_spoiler");
-                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_spoiler.png') !important;");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_spoiler.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.spoiler");
                 toolbar.insertBefore( newimage,target );
             }
@@ -240,7 +240,7 @@
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._pre , false );
                 newimage.setAttribute( "class", "ft_pre");
-                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/format_pre.png') !important;");
+                newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/format_pre.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.pre");
                 toolbar.insertBefore( newimage,target );
             }

@@ -59,19 +59,19 @@
    so that the last declared one wins. */
 
 .ft-staff-hty {
-	background-image: url("../linkicons/hyouthclub_small.png");
+	background-image: url("../img/hyouthclub_staff.png");
 	background-repeat: no-repeat;
 	padding: 1px 1px 1px 18px;
 }
 
 .ft-staff-foxtrick {
-	background-image: url("../linkicons/foxtrick_2.png");
+	background-image: url("../img/foxtrick_staff.png");
 	background-repeat: no-repeat;
 	padding: 1px 1px 1px 18px;
 }
 
 .ft-staff-chpp-holder {
-	background-image: url("../linkicons/chpp.png");
+	background-image: url("../img/chpp_lizence.png");
 	background-repeat: no-repeat;
 	padding: 1px 1px 1px 24px;
 }
