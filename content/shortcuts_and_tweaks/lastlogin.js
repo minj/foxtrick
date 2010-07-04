@@ -18,27 +18,25 @@ FoxtrickLastLogin = {
 
     run : function(page, doc) {
     if (doc.getElementById('ctl00_CPMain_upGB') != null) return;
-	try {
-		var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
-		var playerinfo; 
-		for (var i=0;i<divs.length;++i) {
-			if (divs[i].className=='playerInfo') {
-				playerinfo=divs[i];
-				break;
+		try {
+			var divs = doc.getElementById( "mainBody" ).getElementsByTagName('div');
+			var playerinfo; 
+			for (var i=0;i<divs.length;++i) {
+				if (divs[i].className=='playerInfo') {
+					playerinfo=divs[i];
+					break;
+				}
 			}
-		}
-		var playerinfodivs = playerinfo.getElementsByTagName('div');
-		var logindiv = playerinfodivs[playerinfodivs.length-1];
-		logindiv=playerinfo.removeChild(logindiv);
-		playerinfo.parentNode.insertBefore(logindiv,playerinfo.nextSibling );
-		
-		//var logindiv = doc.getElementById( "ctl00_CPMain_pnlLogins");
-		//logindiv.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;  */        			
-	} catch(e) {Foxtrick.dump('lastlogin run '+e+'\n');}
+			var playerinfodivs = playerinfo.getElementsByTagName('div');
+			var logindiv = playerinfodivs[playerinfodivs.length-1];
+			logindiv=playerinfo.removeChild(logindiv);
+			playerinfo.parentNode.insertBefore(logindiv,playerinfo.nextSibling );
+			
+		} catch(e) {Foxtrick.dump('lastlogin run '+e+'\n');}
     },
 
 	change : function( page, doc ) { 
-    if (doc.getElementById('ctl00_CPMain_upGB') != null) return;
+		if (doc.getElementById('ctl00_CPMain_upGB') != null) return;
         var div = doc.getElementById( "ft_lastlogin" );
         if (div != null) return;
 		FoxtrickLastLogin._Show(doc);
@@ -61,7 +59,6 @@ FoxtrickLastLogin = {
             if (!Foxtrick.HT_date) return;
             var div = doc.getElementById( "pnlLogin" );
 			if (!div) return;
-			//div.parentNode.removeEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
 			
 			var avatarstyle='margin-left:-10px'
 			/*var hasavatar=false;
@@ -96,8 +93,6 @@ FoxtrickLastLogin = {
             }
             newInner += '</div>';
 			div.innerHTML = newInner;
-			//div.parentNode.addEventListener("DOMSubtreeModified", FoxtrickLastLogin.loginchange, true ) ;          
-			
         } catch (e) {
             Foxtrick.dump('FoxtrickLastLogin '+e+'\n');
         }

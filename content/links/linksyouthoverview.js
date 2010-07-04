@@ -22,8 +22,8 @@ var FoxtrickLinksYouthOverview = {
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
-		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;					
+		var ownteamid = FoxtrickHelper.getOwnTeamId();
+		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 	
 	
@@ -70,8 +70,8 @@ var FoxtrickLinksYouthPlayerDetail = {
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
-		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;					
+		var ownteamid = FoxtrickHelper.getOwnTeamId();
+		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 	
 		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
@@ -142,8 +142,8 @@ var FoxtrickLinksYouthTraining = {
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft); 
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
-		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;					
+		var ownteamid = FoxtrickHelper.getOwnTeamId();
+		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 	
 	

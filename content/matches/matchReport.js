@@ -57,8 +57,8 @@ FoxtrickMatchReportFormat = {
         Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/MatchReport.js");
         
         //Retrieve teams id
-		var myTeamId = FoxtrickHelper.ownTeam.ownTeamId;
-		if (isyouth) myTeamId = FoxtrickHelper.ownTeam.ownYouthTeamId;		
+		var myTeamId = FoxtrickHelper.getOwnTeamId();
+		if (isyouth) myTeamId = FoxtrickHelper.getOwnYouthTeamId();		
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		if (!table) return;  // match not finished
 		var HomeTeamId=FoxtrickHelper.findTeamId(table.rows[0].cells[1]);

@@ -49,11 +49,26 @@ var FoxtrickHelper = {
 				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
 				if (this.ownTeam.ownTeamId==leftMenuTeamId) 
 					this.ownTeam.ownYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-				Foxtrick.dump('FoxtrickHelper.ownTeam.ownYouthTeamId: '+this.ownTeam.ownYouthTeamId+'\n');
+				Foxtrick.dump('FoxtrickHelper.getOwnYouthTeamId(): '+this.ownTeam.ownYouthTeamId+'\n');
 			}		
 		}
 	},
 
+	getOwnTeamId : function() {
+		if (this.ownTeam!==null) return this.ownTeam.ownTeamId;
+		return null;
+	},
+
+	getOwnYouthTeamId : function() {
+		if (this.ownTeam!==null) return this.ownTeam.ownYouthTeamId;
+		return null;
+	},
+
+	getOwnCountryId : function() {
+		if (this.ownTeam!==null) return this.ownTeam.ownCountryId;
+		return null;
+	},
+	
 
 	//---------------------------------------------------------------------------    
 	isSeriesDetailUrl : function(href) {

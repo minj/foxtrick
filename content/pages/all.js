@@ -6,7 +6,7 @@
 Foxtrick.Pages.All = {
 	getOwnTeamId : function(doc) {
 		try {
-			var id =  FoxtrickHelper.ownTeam.ownTeamId;
+			var id =  FoxtrickHelper.getOwnTeamId();
 			if (id) {
 				return id;
 			}

@@ -18,7 +18,7 @@ var FoxtrickLinksEconomy = {
     },
 
     run : function( page, doc ) {
-		var owncountryid = FoxtrickHelper.ownTeam.ownCountryId;
+		var owncountryid = FoxtrickHelper.getOwnCountryId();
 		
 		//addExternalLinksToEconomyDetail
 		var Cash=0, newCash=1;

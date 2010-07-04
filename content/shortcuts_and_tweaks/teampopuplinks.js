@@ -106,7 +106,7 @@ var FoxtrickTeamPopupLinks = {
 				}
 			}
 
-			this.ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
+			this.ownteamid = FoxtrickHelper.getOwnTeamId();
 			this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
 
 			this.Target = '_self';

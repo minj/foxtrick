@@ -20,7 +20,7 @@ var FoxtrickYouthSkillNotes = {
 
     run : function( page, doc ) {
 		
-		var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;
+		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
 		var is_ownteam = (ownteamid==teamid);
 

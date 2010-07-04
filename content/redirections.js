@@ -26,7 +26,7 @@ var FoxtrickRedirections = {
 			if (alldivs[j].className=="playerInfo") {
 				var teamid=FoxtrickHelper.findTeamId(alldivs[j]);
 				var leagueid=FoxtrickHelper.findLeagueLeveUnitId(alldivs[j]);
-				var ownteamid = FoxtrickHelper.ownTeam.ownTeamId;	
+				var ownteamid = FoxtrickHelper.getOwnTeamId();	
 				var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
 				
 				
