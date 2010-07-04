@@ -35,14 +35,14 @@ var FoxtrickExtraShortcuts = {
 				var style = doc.createElement("style");
 				style.setAttribute("type", "text/css"); 
 					// here
-					var zaw = 'div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:400px; left: 235px !important;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+					var zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:400px; left: 235px !important;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 					if (Foxtrick.isRTLLayout(doc)) 
-							zaw = 'div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:400px; left: 350px;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+							zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:400px; left: 350px;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 						
 					if (!Foxtrick.isStandardLayout ( doc )) 
-						{	 zaw = 'div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:275px; left: 165px !important;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+						{	 zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:275px; left: 165px !important;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 						if (Foxtrick.isRTLLayout(doc)) 
-							zaw = 'div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:275px; left: 350px;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
+							zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:275px; left: 350px;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
 						}			
 					style.appendChild(doc.createTextNode(zaw));
 					head.appendChild(style);
@@ -57,7 +57,7 @@ var FoxtrickExtraShortcuts = {
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSuppStats");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/chart_bar.png') !important;");
+                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/stats.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.statistics");
 
                     link.appendChild(img1);
@@ -81,7 +81,7 @@ var FoxtrickExtraShortcuts = {
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftMyTransfers");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/dollar.png') !important;");
+                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/transfers.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.transfers");
 
                     link.appendChild(img1);
@@ -105,7 +105,7 @@ var FoxtrickExtraShortcuts = {
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSCPrefs");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/linkicons/options.png') !important;");
+                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/options.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.prefs");
 
                     link.appendChild(img1);
@@ -129,7 +129,7 @@ var FoxtrickExtraShortcuts = {
                     var img1 = doc.createElement('img');
                     img1.setAttribute( "class", "ftSCPrefs");
                     img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
-                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/foxtrick22.png') !important;");
+                    img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/FT_icon.png') !important;");
                     img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ftprefs");
 
                     link.appendChild(img1);
