@@ -37,7 +37,8 @@ var FoxtrickManagerButtons = {
 				this.changeMailLink(page, doc);
 			}
 
-			if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook")) {
+			if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook")
+				&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
 				if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
 					&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
 					|| page === "youthoverview") {
@@ -48,6 +49,10 @@ var FoxtrickManagerButtons = {
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
+	},
+
+	change : function(page, doc) {
+		this.run(page, doc);
 	},
 
 	changeMailLink : function(page, doc) {
