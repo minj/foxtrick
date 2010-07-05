@@ -167,6 +167,8 @@ FoxtrickPlayerFilters = {
 
 	changeListener : function(ev) {
 		try {
+			var begin = new Date();
+			
 			var doc = ev.target.ownerDocument;
 			var filter = ev.target.value;
 
@@ -190,7 +192,7 @@ FoxtrickPlayerFilters = {
 					for (var i = 0; i < allElems.length; ++i) {
 						var elem = allElems[i];
 						if (Foxtrick.hasClass(elem, "faceCard")) {
-							Foxtrick.removeClass(elem, "hidden");
+							elem.style.display='block';
 						}
 						else if (Foxtrick.hasClass(elem, "category")
 							|| Foxtrick.hasClass(elem, "playerInfo")
@@ -198,7 +200,7 @@ FoxtrickPlayerFilters = {
 							|| Foxtrick.hasClass(elem, "separator")
 							|| Foxtrick.hasClass(elem, "youthnotes")) {
 							// these are attached infomation divisions
-							Foxtrick.addClass(elem, "hidden");
+							elem.style.display='none';
 						}
 					}
 
@@ -249,12 +251,12 @@ FoxtrickPlayerFilters = {
 					}
 					else if (Foxtrick.hasClass(elem, "playerInfo")) {
 						if (elem.getAttribute(filter) === "true") {
-							Foxtrick.removeClass(elem, "hidden");
+							elem.style.display='block';
 							hide = false;
 							hideCategory = false;
 						}
 						else {
-							Foxtrick.addClass(elem, "hidden");
+							elem.style.display='none';
 							hide = true;
 						}
 						if (lastFace) {
@@ -273,10 +275,10 @@ FoxtrickPlayerFilters = {
 						|| Foxtrick.hasClass(elem, "separator")
 						|| Foxtrick.hasClass(elem, "youthnotes")) {
 						if (hide === true) {
-							Foxtrick.addClass(elem, "hidden");
+							elem.style.display='none';
 						}
 						else {
-							Foxtrick.removeClass(elem, "hidden");
+							elem.style.display='block';
 						}
 					}
 					if (Foxtrick.hasClass(elem, "borderSeparator")
@@ -306,6 +308,13 @@ FoxtrickPlayerFilters = {
 					setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);			
 				}
 			}
+			
+			var end = new Date();
+			var time = (end.getSeconds() - begin.getSeconds()) * 1000
+				 + end.getMilliseconds() - begin.getMilliseconds();
+			Foxtrick.dump("calculate time: " + time + " ms\n");
+			//Foxtrick.dump("display time: " + time + " ms\n");
+		
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
