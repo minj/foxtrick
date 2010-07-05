@@ -115,8 +115,8 @@ var FoxtrickPlayerAdToClipboard = {
 			ad += Foxtrick.trim(byLine.textContent) + "\n\n";
 
 			if (Foxtrick.Pages.Player.getNationalityName(doc) !== null) {
-				ad += Foxtrickl10n.getString("foxtrick.tweaks.bornin");
-				ad += ": " + Foxtrick.Pages.Player.getNationalityName(doc) + "\n\n";
+				ad += Foxtrickl10n.getString("Nationality") + ": "
+					+ Foxtrick.Pages.Player.getNationalityName(doc) + "\n\n";
 			}
 
 			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
