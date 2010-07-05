@@ -1,7 +1,7 @@
 /**
  * playeradtoclipboard.js
  * Copies a player ad to the clipboard
- * @author larsw84
+ * @author larsw84, ryanli
  */
 
  ////////////////////////////////////////////////////////////////////////////////
@@ -9,16 +9,11 @@ var FoxtrickPlayerAdToClipboard = {
 
 	MODULE_NAME : "CopyPlayerAdToClipboard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('playerdetail'),
+	PAGES : ["playerdetail", "youthplayerdetail"],
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.0.5",
-	LATEST_CHANGE : "Disabled on unknown players",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-
-	_PLAYMAKING : 3,
-	_PASSING : 5,
-	_WINGER : 4,
-	_DEFENDING : 2,
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Now supporting youth players.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	init : function() {
 	},
@@ -29,7 +24,8 @@ var FoxtrickPlayerAdToClipboard = {
 			var links = main.getElementsByTagName("a");
 			var empty = true;
 			for (var i = 0; i < links.length; i++) {
-				if (links[i].href.match(/Club\/\?TeamID/i)) {
+				if (links[i].href.match(/Club\/\?TeamID/i)
+					|| links[i].href.match(/Youth\/Default\.aspx\?YouthTeamID=/i)) {
 					empty = false;
 					break;
 				}
@@ -50,7 +46,7 @@ var FoxtrickPlayerAdToClipboard = {
 			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 
 			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_third";
+			messageLink.className = "inner copyicon copyplayerad ci_fourth";
 			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad");
 			messageLink.id = "copyplayerad";
 			messageLink.addEventListener("click", this.createPlayerAd, false);
@@ -60,7 +56,7 @@ var FoxtrickPlayerAdToClipboard = {
 			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
 
 			messageLink.appendChild(img);
-			doc.getElementById('mainBody').insertBefore(messageLink,doc.getElementById('mainBody').firstChild);
+			doc.getElementById('mainBody').insertBefore(messageLink, doc.getElementById('mainBody').firstChild);
 		}
 		else {
 			var parentDiv = doc.createElement("div");
@@ -68,9 +64,8 @@ var FoxtrickPlayerAdToClipboard = {
 
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
-			messageLink.title = Foxtrickl10n.getString(
-				"foxtrick.tweaks.copyplayerad");
-			messageLink.setAttribute("style","cursor: pointer;");
+			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad");
+			messageLink.style.cursor = "pointer";
 			messageLink.addEventListener("click", this.createPlayerAd, false)
 
 			var img = doc.createElement("img");
@@ -97,144 +92,119 @@ var FoxtrickPlayerAdToClipboard = {
 
 	createPlayerAd : function(ev) {
 		var doc = ev.target.ownerDocument;
+		var isSenior = Foxtrick.Pages.Player.isSeniorPlayerPage(doc);
 		try {
 			var ad = "";
 
 			ad += Foxtrick.Pages.Player.getName(doc);
-			ad += " [playerid=" + Foxtrick.Pages.Player.getId(doc) + "]\n";
+			if (isSenior) {
+				ad += " [playerid=" + Foxtrick.Pages.Player.getId(doc) + "]\n";
+			}
+			else {
+				ad += " [youthplayerid=" + Foxtrick.Pages.Player.getId(doc) + "]\n";
+			}
 
 			//nationality, age and next birthday
-			var allDivs = doc.getElementsByTagName("div");
-			for (var i = 0; i < allDivs.length; i++) {
-				if (allDivs[i].className == "byline") {
-					var inner = allDivs[i].innerHTML;
-					var startPos = inner.search("<a ");
-					if (startPos!=-1) {
-						var endPos = inner.search("</a>")+4;
-						var substring = inner.substr(startPos,endPos-startPos);
-						inner = inner.replace(substring,"");
-						inner = inner.replace(/<br>/g,"");
-					}
-					inner = Foxtrick.trim(inner);
-					ad += inner + "\n\n";
-					break;
-				}
+			var byLine = doc.getElementsByClassName("byline")[0];
+			// add new lines before <p> so that textContent would have breaks
+			// at <p>s.
+			var byLinePars = byLine.getElementsByTagName("p");
+			for (var i = 0; i < byLinePars.length; ++i) {
+				byLinePars[i].parentNode.insertBefore(doc.createTextNode("\n"), byLinePars[i]);
 			}
-			var alla = doc.getElementsByTagName("a");
+			ad += Foxtrick.trim(byLine.textContent) + "\n\n";
+
 			if (Foxtrick.Pages.Player.getNationalityName(doc) !== null) {
 				ad += Foxtrickl10n.getString("foxtrick.tweaks.bornin");
 				ad += ": " + Foxtrick.Pages.Player.getNationalityName(doc) + "\n\n";
 			}
 
-			// create player skills array, needed for skillbars
+			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 
-			var skillLinks = [];
-			var skillNames = [];
-			// form, stamina, personality + speciality
-			var obj = doc.getElementById("ctl00_CPMain_pnlplayerInfo");
-			var staminaLink = obj.getElementsByTagName("a")[1];
-			skillLinks.push(staminaLink);
-			skillNames.push(Foxtrickl10n.getString("Stamina")+":");
-			var innerPElement = obj.getElementsByTagName("p")[0];
-			var innerP=innerPElement.innerHTML;
-			innerP = innerP.replace(/<br>/g,"\n");
-			for (var i=0; i < innerPElement.getElementsByTagName("a").length; i++) {
-				var startPos = innerP.search("<a ");
-				if (startPos!=-1) {
-					var endPos = innerP.search(">")+1;
-					innerP = innerP.replace(innerP.substr(startPos,endPos-startPos),"");
-					var startPos = innerP.search("<img ");
-					var endPos = innerP.search(">")+1;
-					if (startPos!=-1) innerP = innerP.replace(innerP.substr(startPos,endPos-startPos),"");
-					innerP = innerP.replace("</a>","");
+			// basic information
+			// for senior players:
+			// form, stamina, experience, leadership, personality (always there)
+			// for youth players:
+			// speciality (only when he has a speciality)
+			var basicInfo = playerInfo.getElementsByTagName("p")[0];
+			if (basicInfo) {
+				if (isSenior) {
+					// add new lines before <br> so that textContent would have breaks
+					// at <br>s.
+					var basicInfoBreaks = basicInfo.getElementsByTagName("br");
+					for (var i = 0; i < basicInfoBreaks.length; ++i) {
+						basicInfoBreaks[i].parentNode.insertBefore(doc.createTextNode("\n"), basicInfoBreaks[i]);
+					}
+					ad += Foxtrick.trim(basicInfo.textContent) + "\n\n";
+				}
+				else {
+					var speciality = Foxtrick.trim(basicInfo.textContent);
+					// we will bold the speciality part, right after
+					// colon plus space
+					var colonRe = new RegExp(":\\s*");
+					var colonIndex = speciality.search(colonRe);
+					var colonLength = speciality.match(colonRe)[0].length;
+					ad += speciality.substr(0, colonIndex + colonLength)
+						+ "[b]" + speciality.substr(colonIndex + colonLength, speciality.length) + "[/b]"
+						+ "\n\n";
 				}
 			}
-			ad += Foxtrick.trim(innerP) + "\n\n";
 
 			// owner, TSI wage, etc.
-			var table = obj.getElementsByTagName("table")[0];
-			for (var i = 0; i < table.rows.length; i++) {
-				ad += Foxtrick.trim(table.rows[i].cells[0].textContent);
-				// remove teampopuplinks
-				var cellCopy = table.rows[i].cells[1].cloneNode(true);
-				var popupLinks = cellCopy.getElementsByTagName("a");
-				for (var j = 1; j < popupLinks.length; j++) {
-					popupLinks[j].innerHTML = "";
+			var table = playerInfo.getElementsByTagName("table")[0];
+			if (table) {
+				for (var i = 0; i < table.rows.length; i++) {
+					ad += Foxtrick.trim(table.rows[i].cells[0].textContent) + " ";
+					// remove teampopuplinks
+					var cellCopy = table.rows[i].cells[1].cloneNode(true);
+					var popupLinks = cellCopy.getElementsByTagName("a");
+					for (var j = 1; j < popupLinks.length; j++) {
+						popupLinks[j].innerHTML = "";
+					}
+					// bolding for speciality
+					ad += (i==5?"[b]":"") + Foxtrick.trim(cellCopy.textContent.replace(/\n/g,"").replace(/\s+/g, " "))
+						+ (i==5?"[/b]":"") + "\n";
 				}
-				// bolding for speciality
-				ad += "\t" + (i==5?"[b]":"") + cellCopy.textContent.replace(/\n/g,"").replace(/	 /g,"") +
-							 (i==5?"[/b]":"") + "\n";
+				ad += "\n";
 			}
-			ad += "\n";
+
+			var formatSkill = function(text, value) {
+				if (value > 5) {
+					return "[b]" + text + "[/b]";
+				}
+				else if (value == 5) {
+					return "[i]" + text + "[/i]";
+				}
+				return text;
+			};
 
 			// skills
-			var skillBars = false;
-			for (var i=0; i < allDivs.length; i++) {
-				if (allDivs[i].className == "mainBox") {
-					var skillsTable = allDivs[i].getElementsByTagName("table")[0];
-
-					for (var i=0; i<skillsTable.rows.length; i++) {
-						var row = skillsTable.rows[i];
-						if (row.cells[0].className == "right") {
-							// skillbars
-							skillBars = true;
-							skillNames.push(Foxtrick.trim(row.cells[0].textContent));
-							skillLinks.push(row.cells[1].getElementsByTagName("a")[0]);
-						}
-						else {
-							if (i > 0) {
-								skillNames.push(Foxtrick.trim(row.cells[0].textContent));
-								skillLinks.push(row.cells[1].getElementsByTagName("a")[0]);
-							}
-							skillNames.push(Foxtrick.trim(row.cells[2].textContent));
-							skillLinks.push(row.cells[3].getElementsByTagName("a")[0]);
-						}
-					}
-					break;
-				}
-			}
-			// Add the player skills
-			// Test a link, if it doesn't have a href, there are no skills present
-			if (skillLinks[1]) {
-				for (var i = 0; i < 4; i++) {
-					var posOne;
-					var posTwo;
-					if (skillBars) {
-						switch(i) {
-							case 1:
-								posOne = FoxtrickPlayerAdToClipboard._PLAYMAKING;
-								posTwo = FoxtrickPlayerAdToClipboard._PASSING;
-								break;
-							case 2:
-								posOne = FoxtrickPlayerAdToClipboard._WINGER;
-								posTwo = FoxtrickPlayerAdToClipboard._DEFENDING;
-								break;
-							default:
-								posOne = 2*i;
-								posTwo = 2*i+1;
-								break;
-						}
+			var skills = Foxtrick.Pages.Player.getSkills(doc);
+			if (skills !== null) {
+				for (var i in skills.names) {
+					if (isSenior) {
+						ad += skills.names[i] + ": "
+							+ formatSkill(skills.texts[i], skills.values[i])
+							+ "\n";
 					}
 					else {
-						posOne = 2*i;
-						posTwo = 2*i + 1;
+						ad += formatSkill(skills.names[i], Math.max(skills.values[i].current, skills.values[i].max)) + ": "
+							+ (skills.values[i].maxed ? "[b]" : "")
+							+ skills.texts[i].current
+							+ " / "
+							+ skills.texts[i].max
+							+ (skills.values[i].maxed ? "[/b]" : "")
+							+ "\n";
 					}
-					ad += skillNames[posOne];
-					ad += "\t";
-					ad += FoxtrickPlayerAdToClipboard.getAdjustedText(skillLinks[posOne]);
-
-					ad += "\t";
-					ad += skillNames[posTwo];
-					ad += "\t";
-					ad += FoxtrickPlayerAdToClipboard.getAdjustedText(skillLinks[posTwo]);
-					ad += "\n";
 				}
 			}
+
+			// current bid information
 			var bidDiv = doc.getElementById("ctl00_CPMain_updBid");
 			if (bidDiv) {
 				ad += "\n";
 				var paragraphs = bidDiv.getElementsByTagName("p");
-				for (var i=0; i<paragraphs.length; i++) {
+				for (var i = 0; i < paragraphs.length; i++) {
 					var cellCopy = paragraphs[i].cloneNode(true);
 					var popupLinks = cellCopy.getElementsByTagName("a");
 					for (var j = 1; j < popupLinks.length; j++) {
@@ -253,21 +223,5 @@ var FoxtrickPlayerAdToClipboard = {
 		catch (e) {
 			Foxtrick.alert('createPlayerAd '+e);
 		}
-	},
-
-	getAdjustedText : function(link) {
-		var skillLevel = this.getSkillLevelFromLink(link);
-		if (skillLevel == 5) {
-			return "[i]" + link.textContent + "[/i]";
-		}
-		else if (skillLevel > 5) {
-			return "[b]" + link.textContent + "[/b]";
-		}
-		return link.textContent;
-	},
-
-	getSkillLevelFromLink : function(link) {
-		var value = link.href.replace(/.+(ll|labellevel)=/i, "").match(/^\d+/);
-		return value;
 	}
 };
