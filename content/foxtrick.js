@@ -697,63 +697,21 @@ Foxtrick.LOG = function (msg) {
 	consoleService.logStringMessage(msg);
 }
 
-Foxtrick.unique = function(a) {
-	var ret = [];
-	for (var i = 0; i < a.length; ++i) {
-		var duplicate = false;
-		for (var j = 0; j < ret.length; ++j) {
-			if (ret[j] === a[i]) {
-				duplicate = true;
-				break;
-			}
-		}
-		if (duplicate === false) {
-			ret.push(a[i]);
-		}
-	}
-	return ret;
-}
-
-Foxtrick.getClasses = function(obj) {
-	return Foxtrick.unique(String(obj.className).replace(/\s+/, " ").replace(/^\s+/, "").replace(/\s$/, "").split(" "));
-}
-
-Foxtrick.setClasses = function(obj, clses) {
-	var classes = Foxtrick.unique(clses);
-	obj.className = "";
-	for (var i in classes) {
-		obj.className += classes[i];
-		if (i !== classes.length - 1) {
-			obj.className += " ";
-		}
-	}
-}
-
 Foxtrick.hasClass = function(obj, cls) {
-	var classes = Foxtrick.getClasses(obj);
-	for (var i in classes) {
-		if (cls === classes[i]) {
-			return true;
-		}
-	}
-	return false;
+	return (obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
 }
 
 Foxtrick.addClass = function(obj, cls) {
-	var classes = Foxtrick.getClasses(obj);
-	classes.push(cls);
-	Foxtrick.setClasses(obj, classes);
+	if (!Foxtrick.hasClass(obj, cls)) {
+		obj.className += " " + cls;
+	}
 }
 
 Foxtrick.removeClass = function(obj, cls) {
-	var classes = Foxtrick.getClasses(obj);
-	var newClasses = [];
-	for (var i in classes) {
-		if (classes[i] !== cls) {
-			newClasses.push(classes[i]);
-		}
+	if (Foxtrick.hasClass(obj, cls)) {
+		var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)", "g");
+		obj.className = obj.className.replace(reg, " ");
 	}
-	Foxtrick.setClasses(obj, newClasses);
 }
 
 Foxtrick.toggleClass = function(obj, cls) {
