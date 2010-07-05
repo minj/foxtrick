@@ -26,7 +26,7 @@ ConfirmTL=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons
 ConfirmStaffChange=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/208-confirmstaffchange
 ContextMenuCopyId=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/62-contextmenuecopyid
 CopyMatchID=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/63-copymatchid
-CopyPlayerAdToClipboard=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/64-copyplayeradtoclipboard
+CopyPlayerAd=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/64-copyplayeradtoclipboard
 CopyPlayerSource=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/65-copyplayersource
 CopyScoutReport=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/66-copyscoutreport 
 CopyTrainingReport=http://foxtrick.foundationhorizont.org/index.php/shortcuts-and-add-ons/67-copytrainingreport
@@ -115,7 +115,7 @@ SkillTranslation=http://foxtrick.foundationhorizont.org/index.php/presentation-a
 # Matches
 AdvancedStarsCounter=http://foxtrick.foundationhorizont.org/index.php/matches/50-advancedstarscounter
 AttVsDef=http://foxtrick.foundationhorizont.org/index.php/matches/144-attvsdef
-CopyRatingsToClipboard=http://foxtrick.foundationhorizont.org/index.php/matches/146-copyratingstoclipboard
+CopyRatings=http://foxtrick.foundationhorizont.org/index.php/matches/146-copyratingstoclipboard
 FlipSidesInMatchOrders=http://foxtrick.foundationhorizont.org/index.php/matches/147-flipsidesinmatchorders
 FormationBoxInMatchOrders=http://foxtrick.foundationhorizont.org/index.php/matches/148-formationboxinmatchorders
 GoaldifferenceToTables=http://foxtrick.foundationhorizont.org/index.php/matches/149-goaldifferencetotables

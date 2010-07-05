@@ -1,13 +1,13 @@
 /**
- * playeradtoclipboard.js
+ * copyPlayerAd.js
  * Copies a player ad to the clipboard
  * @author larsw84, ryanli
  */
 
  ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickPlayerAdToClipboard = {
+var FoxtrickCopyPlayerAd = {
 
-	MODULE_NAME : "CopyPlayerAdToClipboard",
+	MODULE_NAME : "CopyPlayerAd",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "youthplayerdetail"],
 	DEFAULT_ENABLED : true,

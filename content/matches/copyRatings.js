@@ -1,12 +1,12 @@
 /**
- * ratingstoclipboard.js
- * Copies matchratings to the clipboard (table style)
+ * copyRatings.js
+ * Copies match ratings (HT-ML style)
  * @author spambot
  */
 
-var FoxtrickCopyRatingsToClipboard = {
+var FoxtrickCopyRatings = {
 
-	MODULE_NAME : "CopyRatingsToClipboard",
+	MODULE_NAME : "CopyRatings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 	DEFAULT_ENABLED : true,
