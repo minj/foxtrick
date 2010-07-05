@@ -16,7 +16,7 @@ var FoxtrickManagerButtons = {
 	LATEST_CHANGE : "Updated to latest HT version.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
-	GUESTBOOK_LINK_ID : "guestbook_link_id",
+	GUESTBOOK_LINK_ID : "ft-guest-book",
 	CHALLENGE_LINK_ID : "ctl00_CPSidebar_ucVisitorActions_lnkChallenge",
 	MAIL_LINK_ID: "ctl00_CPSidebar_ucVisitorActions_lnkMail",
 
@@ -34,14 +34,15 @@ var FoxtrickManagerButtons = {
 			}
 
 			if (Foxtrick.isModuleFeatureEnabled(this, "LargeSendMail")) {
-				this.changeMaillink(page, doc);
+				this.changeMailLink(page, doc);
 			}
-			
-			if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook") &&
-					((!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID) &&
-						Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID))
-					|| page==='youthoverview'))	{
-				this.addmailLink(doc, page);
+
+			if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook")) {
+				if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
+					&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
+					|| page === "youthoverview") {
+					this.addGuestBookLink(doc, page);
+				}
 			}
 		}
 		catch (e) {
@@ -49,8 +50,7 @@ var FoxtrickManagerButtons = {
 		}
 	},
 
-
-	changeMaillink : function(page, doc) {
+	changeMailLink : function(page, doc) {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 		// get user name
 		var username='';
@@ -99,20 +99,20 @@ var FoxtrickManagerButtons = {
 		}
 	},
 
-	addmailLink : function(doc, page) {
+	addGuestBookLink : function(doc, page) {
 	try { 
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
 		var isSupporter = false;
-		var username = '';
 
+		// first we check if the manager is a supporter
 		if (page === "managerPage") {
 			var sidebar = doc.getElementById("sidebar");
 			var sidebarlinks = sidebar.getElementsByTagName("a");
 			for (var i=0;i<sidebarlinks.length;++i) {
-				if (sidebarlinks[i].href==='/Club/Supporters/'
+				if (sidebarlinks[i].href === "/Club/Supporters/"
 					|| sidebarlinks[i].href.search(/Club\/\?TeamID=/i) !== -1
-					|| sidebarlinks[i].href.search(/Community\/Federations\/Federation.aspx\?AllianceID=/i) !== 1) {
+					|| sidebarlinks[i].href.search(/Community\/Federations\/Federation.aspx\?AllianceID=/i) !== -1) {
 					isSupporter = true;
 					break;
 				}
@@ -123,8 +123,6 @@ var FoxtrickManagerButtons = {
 					isSupporter = true;
 				}
 			}
-			var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
-			username = Foxtrick.trim(h1inner.replace(/\<.+\>|\(.+\)| /gi,''));
 		}
 		else if (page === "teamPage") { 
 			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName("a");
@@ -134,18 +132,11 @@ var FoxtrickManagerButtons = {
 					break;
 				}
 			}
-			var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
-			for (var i=0;i<mainBodylinks.length;++i) {  
-				if (mainBodylinks[i].href.search(/Club\/Manager\/\?userId=/i)!=-1 ) {
-					username = mainBodylinks[i].innerHTML;
-					break;
-				}
-			}			
 		}
 		else if (page === "youthoverview") { 
-				isSupporter = true; // status unknown there. just add it anyways?
+			isSupporter = true; // status unknown there. just add it anyways?
 		}
-		
+
 		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID);
 		if (parentDiv===null) {
 			parentDiv = doc.getElementById('foxtrick_addactionsbox_parentDiv');
@@ -158,26 +149,25 @@ var FoxtrickManagerButtons = {
 			}
 		}
 		else parentDiv = parentDiv.parentNode;
-		
+
 		//Display GuestBook button only if team is HT-Supporter
 		if (isSupporter) {
 			var guestbookLink = doc.createElement("a");
-			guestbookLink.className = "inner";
-			guestbookLink.href = "\/Club\/Manager\/Guestbook.aspx?teamid=" + teamId;
+			guestbookLink.href = "/Club/Manager/Guestbook.aspx?teamid=" + teamId;
 			guestbookLink.title = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
 			guestbookLink.id = this.GUESTBOOK_LINK_ID;
 
-			if (!FoxtrickMain.isStandard) {
-				guestbookLink.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
-				guestbookLink.setAttribute('style','display:block;');
-			}
-			else {
+			if (Foxtrick.isStandardLayout(doc)) {
+				guestbookLink.className = "inner";
 				var img = doc.createElement("img");
 				img.style.padding = "0px 5px 0px 0px";
 				img.className = "actionIcon";
 				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
 				img.src = Foxtrick.ResourcePath+"resources/img/guestbook.png";
 				guestbookLink.appendChild(img);
+			}
+			else {
+				guestbookLink.textContent = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
 			}
 			parentDiv.appendChild(guestbookLink);
 		}
