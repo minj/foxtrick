@@ -80,7 +80,7 @@ var FoxtrickCopyRatingsToClipboard = {
 
 				var copyBoth = doc.createElement("a");
 				copyBoth.id = "copyratings";
-				copyBoth.className = "inner copyicon copyratings ci_forth";
+				copyBoth.className = "inner copyicon copyratings ci_fourth";
 				copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
 				copyBoth.setAttribute("team1", "true");
 				copyBoth.setAttribute("team2", "true");
