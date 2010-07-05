@@ -34,7 +34,7 @@ FoxtrickPlayerFilters = {
 			// players
 			var option = doc.createElement("option");
 			option.value = "all";
-			option.innerHTML = "-- " + Foxtrickl10n.getString("Filter") + " --";
+			option.textContent = "-- " + Foxtrickl10n.getString("Filter") + " --";
 			filterSelect.appendChild(option);
 
 			var parentNode = sortSelect.parentNode
@@ -163,9 +163,7 @@ FoxtrickPlayerFilters = {
 		}
 
 		filterSelect.setAttribute("scanned", "true");
-				
 	},
-
 
 	changeListener : function(ev) {
 		try {
@@ -297,15 +295,15 @@ FoxtrickPlayerFilters = {
 			}
 			// update player count
 			var h = body.getElementsByTagName("h1")[0];
-			h.innerHTML = h.innerHTML.replace(/\d+/, count);
-			
+			h.textContent = h.textContent.replace(/\d+/, count);
+
 			if (FoxtrickSkillTable.isTableCreated(doc)){
 				var table = doc.getElementById("ft_skilltable");;
 				table.parentNode.removeChild(table);
-				
+
 				var tablediv = doc.getElementById("ft_skilltablediv");
-				if (tablediv.getElementsByTagName('h2')[0].className.search('ft_boxBodyUnfolded')!=-1) {
-						setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);			
+				if (Foxtrick.hasClass(tablediv.getElementsByTagName('h2')[0], "ft_boxBodyUnfolded")) {
+					setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);			
 				}
 			}
 		}
