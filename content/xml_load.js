@@ -156,28 +156,6 @@ Foxtrick.XMLData = {
 	},
 
 	run : function(page,doc) {
-	
-		try {
-			if (FoxtrickStaffMarker.hty_staff==null) {
-				FoxtrickStaffMarker.hty_staff = new Array();
-				var req = new XMLHttpRequest();
-				req.open('GET', 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml', false); 
-				req.send(null);
-				if (req.status == 200) {
-					//Foxtrick.dump(req.responseText+'\n');
-					var frag = doc.createElement('dummy');
-					frag.innerHTML = req.responseText;
-					var htyusers = frag.getElementsByTagName('user');
-					for (var i=0;i<htyusers.length;++i) {
-						FoxtrickStaffMarker.hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
-						//Foxtrick.dump(FoxtrickStaffMarker.hty_staff[i]+' ')
-					}
-					Foxtrick.dump('hty_staff loaded\n')
-				}
-				else {Foxtrick.dump('no connection to hty\n'); }				
-			}
-		}catch(e) {Foxtrick.dump('hty.xml: '+e+'\n'); }
-
 	/*try{
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
@@ -197,7 +175,6 @@ Foxtrick.XMLData = {
 	} catch(e){Foxtrick.dump('matches.js run: '+e+'\n');}*/
 
 	},
-
 
 	getLeagueIdByCountryId : function(id) {
 		if (this.countryToLeague[id] !== undefined) {

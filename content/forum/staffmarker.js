@@ -28,7 +28,7 @@ var FoxtrickStaffMarker = {
 	chppreg : /^CHPP-/i,
 	lareg : /^LA-/i,
 
-	hty_staff: null,
+	hty_staff: [],
 
 	ulist : {}, // users and colors
 
@@ -42,6 +42,24 @@ var FoxtrickStaffMarker = {
 	],
 
 	init : function() {
+		try {
+			var req = new XMLHttpRequest();
+			req.open("GET", "http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml", false);
+			req.send(null);
+			if (req.status == 200) {
+				var htyusers = req.responseXML.getElementsByTagName("User");
+				for (var i = 0; i < htyusers.length; ++i) {
+					this.hty_staff.push(htyusers[i].getElementsByTagName("Alias")[0].textContent);
+				}
+				Foxtrick.dump("Hattrick-youthclub staffs loaded.\n");
+			}
+			else {
+				Foxtrick.dump("Error: cannot connect to hattrick-youthclub.org.\n");
+			}
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	run : function(page, doc) {
@@ -198,7 +216,7 @@ var FoxtrickStaffMarker = {
 						}
 						if (this.hty_staff != null && Foxtrick.in_array(this.hty_staff,uname)) {
 							Foxtrick.addClass(option, "ft-staff-hty");
-						} 
+						}
 						if (this.foxtrickersArray[uid] != null) {
 							Foxtrick.addClass(option, "ft-staff-foxtrick");
 						}
