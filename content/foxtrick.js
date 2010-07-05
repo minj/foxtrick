@@ -698,7 +698,7 @@ Foxtrick.LOG = function (msg) {
 }
 
 Foxtrick.hasClass = function(obj, cls) {
-	return (obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
+	return (obj.className !== undefined && obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
 }
 
 Foxtrick.addClass = function(obj, cls) {
