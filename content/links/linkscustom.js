@@ -238,19 +238,17 @@ var FoxtrickLinksCustom = {
 			var table2=doc.createElement ("table"); 
 			table2.setAttribute('id','LinksCustomTable2ID');					 
 			
-			var div = doc.createElement ("div"); 
-			div.setAttribute("id", "inputImgDivID");
-			div.setAttribute( "title", 'Tinntle') ;
-			div.innerHTML="<img id='inputImgIDName' src='"+Foxtrick.ResourcePath+"resources/img/aiga.png'>";
-			div.imgref=Foxtrick.ResourcePath+'resources/img/aiga.png';
-			div.setAttribute("style","display:inline-block; width: 16; height: 16px; background: url('"+Foxtrick.ResourcePath+"resources/img/empty16.png') 50% no-repeat;");
-				
+			var img = doc.createElement("img");
+			img.id = "ft-links-custom-browse-img";
+			img.className = "ft-icon";
+			img.src = Foxtrick.ResourcePath + "resources/img/browse.png";
+
 			// load image button
-			var loadIcon = doc.createElement ("a");	
-			loadIcon.setAttribute("href", "javascript: void(0);");
-			loadIcon.className="inner";
+			var loadIcon = doc.createElement("a");	
+			loadIcon.href = "javascript: void(0);";
+			loadIcon.className = "inner";
+			loadIcon.textContent = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
 			Foxtrick.addEventListenerChangeSave( loadIcon, "click", FoxtrickLinksCustom.LoadDialog, false );
-			loadIcon.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
 			
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -258,14 +256,13 @@ var FoxtrickLinksCustom = {
 			var td2 = doc.createElement ("td");
 			td2.setAttribute("style","vertical-align:middle;");
 			td2.width="100%";					
-			td1.appendChild(div);
+			td1.appendChild(img);
 			td2.appendChild(loadIcon);
 			td2.setAttribute("colspan","4");
 			tr1.appendChild(td1);
 			tr1.appendChild(td2);
 			table.appendChild(tr1);
-				
-			
+
 			// titel edit field
 			var inputTitle = doc.createElement ("input");
 			inputTitle.setAttribute("name", "inputTitle");
