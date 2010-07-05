@@ -87,7 +87,7 @@ var FoxtrickCopyRatingsToClipboard = {
 				copyBoth.addEventListener("click", this.createRatings, false);
 				var img = doc.createElement("img");
 				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
-				img.src = Foxtrick.ResourcePath + "resources/img/transparent_002.gif";
+				img.src = Foxtrick.ResourcePath + "resources/img/transparent.gif";
 				copyBoth.appendChild(img);
 				boxHead.insertBefore(copyBoth, boxHead.firstChild);
 
@@ -99,7 +99,7 @@ var FoxtrickCopyRatingsToClipboard = {
 				copyHome.addEventListener("click", this.createRatings, false);
 				var img = doc.createElement("img");
 				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
-				img.src = Foxtrick.ResourcePath + "resources/img/transparent_002.gif";
+				img.src = Foxtrick.ResourcePath + "resources/img/transparent.gif";
 				copyHome.appendChild(img);
 				boxHead.insertBefore(copyHome, boxHead.firstChild);
 
@@ -111,7 +111,7 @@ var FoxtrickCopyRatingsToClipboard = {
 				copyAway.addEventListener("click", this.createRatings, false);
 				var img = doc.createElement("img");
 				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
-				img.src = Foxtrick.ResourcePath + "resources/img/transparent_002.gif";
+				img.src = Foxtrick.ResourcePath + "resources/img/transparent.gif";
 				copyAway.appendChild(img);
 				boxHead.insertBefore(copyAway, boxHead.firstChild);
 			}
@@ -131,7 +131,7 @@ var FoxtrickCopyRatingsToClipboard = {
 				img.setAttribute("style", "padding:0px 5px 0px 0px;");
 				img.className = "actionIcon";
 				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
-				img.src = Foxtrick.ResourcePath + "resources/img/copyMatchRatings.png";
+				img.src = Foxtrick.ResourcePath + "resources/img/copy/copyMatchRatings.png";
 				copyBoth.appendChild(img);
 
 				parentDiv.appendChild(copyBoth);
@@ -153,7 +153,7 @@ var FoxtrickCopyRatingsToClipboard = {
 				img.setAttribute("style", "padding:0px 5px 0px 0px;");
 				img.className = "actionIcon";
 				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
-				img.src = Foxtrick.ResourcePath+"resources/img/copyHomeRatings.png";
+				img.src = Foxtrick.ResourcePath+"resources/img/copy/copyHomeRatings.png";
 				copyHome.appendChild(img);
 
 				parentDiv.appendChild(copyHome);
@@ -175,7 +175,7 @@ var FoxtrickCopyRatingsToClipboard = {
 				img.setAttribute("style","padding:0px 5px 0px 0px;");
 				img.className = "actionIcon";
 				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
-				img.src = Foxtrick.ResourcePath + "resources/img/copyAwayRatings.png";
+				img.src = Foxtrick.ResourcePath + "resources/img/copy/copyAwayRatings.png";
 				copyAway.appendChild(img);
 
 				parentDiv.appendChild(copyAway);

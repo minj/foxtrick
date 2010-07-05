@@ -65,7 +65,7 @@ var FoxtrickCopyTrainingReport = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
+			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
 			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -81,7 +81,7 @@ var FoxtrickCopyTrainingReport = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyTrainingReport.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copy/copyTrainingReport.png";
 			messageLink.appendChild(img);
 			
 			var parentDiv = doc.createElement("div");
@@ -186,7 +186,7 @@ var FoxtrickCopyScoutReport = {
 			var img = doc.createElement("img");
 			img.id = "foxtrick_addyouthclubbox_parentDiv";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
+			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
 			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -207,7 +207,7 @@ var FoxtrickCopyScoutReport = {
 			img.style.padding = "0px 5px 5px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyScoutReport.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copy/copyScoutReport.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);
@@ -306,7 +306,7 @@ var FoxtrickCopyPlayerSource = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
-			img.src = Foxtrick.ResourcePath+"resources/img/transparent_002.gif";
+			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
 			
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -327,7 +327,7 @@ var FoxtrickCopyPlayerSource = {
 			img.style.padding = "0px 5px 0px 0px;";
 			img.className = "actionIcon";
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copyPlayerSource.png";
+			img.src = Foxtrick.ResourcePath+"resources/img/copy/copyPlayerSource.png";
 			messageLink.appendChild(img);
 				
 			parentDiv.appendChild(messageLink);

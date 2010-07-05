@@ -24,7 +24,7 @@ var FoxtrickShowForumPrefButton = {
 	}
 	var forumprefs = doc.createElement('a');
 	forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
-	forumprefs.innerHTML='<img src="'+Foxtrick.ResourcePath+'resources/img/transparent_002.gif">';
+	forumprefs.innerHTML='<img src="'+Foxtrick.ResourcePath+'resources/img/transparent.gif">';
 	forumprefs.setAttribute('class','forumSettings');
 	boxHead.insertBefore(forumprefs,boxHead.firstChild);
 	},

@@ -7,8 +7,8 @@
 
 .HT_thread { background: #FF7A7A;}
 
-.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy_small.png'); width: 16px; }
-.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy_yellow_small.png'); width: 16px; }
+.foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_small.png'); width: 16px; }
+.foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_yellow_small.png'); width: 16px; }
 .foxtrickHelp {background-image:url('chrome://foxtrick/content/resources/img/Aiga_help_green.png'); width: 16px; }
 .foxtrickHelp:hover {background-image: url('chrome://foxtrick/content/resources/img/Aiga_help_yellow.png'); width: 16px; }
 .foxtrickExport {background-image: url('chrome://foxtrick/content/resources/img/Aiga_downarrow_green.png'); width: 16px; }
