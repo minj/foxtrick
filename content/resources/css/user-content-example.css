@@ -114,24 +114,25 @@
 
 /* Module StaffMarker */
 /* Order by ascending priority since an element may have more than one class
-   so that the last declared one wins. */
+   so that the last declared one wins. 
+   Last number of padding is the size of the icon + .*/
 
 .ft-staff-hty {
 	background-image: url("../img/staff/hyouthclub.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px;
+	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-foxtrick {
 	background-image: url("../img/staff/foxtrick.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px;
+	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-chpp-holder {
 	background-image: url("../img/staff/chpp.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 24px;
+	padding: 1px 1px 1px 24px !important;
 }
 
 .ft-staff-editor {
