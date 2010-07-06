@@ -71,6 +71,47 @@
 }
 
 
+/* Module MatchPlayerOrdering */
+
+/* general styles for team names on the sidebar */
+.sidebarBox .ft-match-player-home, .sidebarBox .ft-match-player-away,
+.sidebarBox ,ft-match-player-mine, .sidebarBox .ft-match-player-unknown {
+	border: 1px solid #ccc;
+}
+
+/* general styles for all players */
+.ft-match-player-home, .ft-match-player-away,
+.ft-match-player-mine, .ft-match-player-unknown {
+	padding: 0 2px;
+}
+
+/* styles for home players */
+.ft-match-player-home {
+	background: #ffcdcd;
+	color: black !important;
+	border: 1px solid #CF8181;
+}
+
+/* styles for away players */
+.ft-match-player-away {
+	background: #d2cdff;
+	color: black !important;
+	border: 1px solid #8981CF;
+}
+
+/* styles for my players */
+.ft-match-player-mine {
+	background: white;
+	color: black !important;
+	border: none;
+}
+
+/* styles for players of unknown team */
+.ft-match-player-unknown {
+	background: #f0f0f0;
+}
+
+
 /* Module StaffMarker */
 /* Order by ascending priority since an element may have more than one class
    so that the last declared one wins. */

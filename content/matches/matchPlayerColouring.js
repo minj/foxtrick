@@ -9,19 +9,14 @@ FoxtrickMatchPlayerColouring = {
 	PAGES : new Array('match', 'playerdetail'), 
 	ONPAGEPREF_PAGE : 'match', 
     DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.1.2",
-	LATEST_CHANGE:"Uses now goalgetter's and substitutions full playernames",	
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Use CSS file for styling.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("color:black;", //My team
-											"background:#FFCDCD; color:black; border:1px solid #CF8181;", //Home #FFAFAF 
-                                            "background:#D2CDFF; color:black; border:1px solid #8981CF;" //Away #AFB0FF
-											),
-	OPTIONS : new Array("MyTeam", "Home", "Away"),
+
+	CSS : Foxtrick.ResourcePath + "resources/css/match-player-colouring.css",
 						
 	OwnYouthTeamId : null,
-    UNKNOWN_COLOUR : "#F0F0F0",
-	
+
 	init : function() {
     },
     
@@ -74,25 +69,9 @@ FoxtrickMatchPlayerColouring = {
 		Foxtrick.dump ('ownteam: '+myTeamId+'\n');
 		Foxtrick.dump ('HomeTeamId: '+HomeTeamId+'\n');
 		Foxtrick.dump ('AwayTeamId: '+AwayTeamId+'\n');
-		
-		//Retrieve colour parameters
-		if (Foxtrick.isModuleFeatureEnabled( this, "Home")) {
-            var stlTeamA = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Home_text");
-            if (!stlTeamA) stlTeamA = this.OPTION_TEXTS_DEFAULT_VALUES[1];
-        }
- 		if (Foxtrick.isModuleFeatureEnabled( this, "Away")) {
-            var stlTeamB = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Away_text");
-            if (!stlTeamB) stlTeamB = this.OPTION_TEXTS_DEFAULT_VALUES[2];
-        }
-		if (Foxtrick.isModuleFeatureEnabled( this, "MyTeam")) {
-            var stlMyTeam = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "MyTeam_text");
-            if (!stlMyTeam) stlMyTeam = this.OPTION_TEXTS_DEFAULT_VALUES[0];
-			//Replace myTeam colour
-			if (HomeTeamId == myTeamId) {stlTeamA = stlMyTeam; Foxtrick.dump ('ownteam = HomeTeam\n'); }
-			else if (AwayTeamId == myTeamId) {stlTeamB = stlMyTeam; Foxtrick.dump ('ownteam = AwayTeam\n'); }
-		}
-	
-				
+		const HOME_TEAM_CLASS_NAME = (myTeamId == HomeTeamId) ? "ft-match-player-mine" : "ft-match-player-home";
+		const AWAY_TEAM_CLASS_NAME = (myTeamId == AwayTeamId) ? "ft-match-player-mine" : "ft-match-player-away";
+
         var content_div = doc.getElementById('content');
         if (content_div == null) return;
         
@@ -254,8 +233,6 @@ FoxtrickMatchPlayerColouring = {
 			teamA.splice(0,teamA.length);
 			teamB.splice(0,teamB.length);
 			teamA.push(playerhighlight);
-			stlTeamA = this.OPTION_TEXTS_DEFAULT_VALUES[1];
-			this.UNKNOWN_COLOUR='';
 		}	
 			
 		var links = content_div.getElementsByTagName("a");
@@ -264,17 +241,16 @@ FoxtrickMatchPlayerColouring = {
             if (FoxtrickMatchPlayerColouring._isLinkPlayer(links[i].href)) {
                 //Foxtrick.dump('['+links[i].href +']\n');
                 links[i].href+='&colored';
-                links[i].style.border = "1px solid #ccc";
-				links[i].style.padding = "0px 2px";
   				var iseventsbox=(links[i].parentNode.tagName=="TD");
-							
+
 				var playerFullName = links[i].textContent;
 				if  (playerFullName.charAt(0)==" ") playerFullName = playerFullName.substr(1);
 				var b = playerFullName.search(" ");
 				var l = playerFullName.length;
 				if (b>=0) {
 					var playerName = playerFullName.substr(b+1,l-b+1);
-				} else {
+				}
+				else {
 					var playerName = playerFullName;
 				}				
 				//Foxtrick.dump(playerName+' '+playerFullName+'\n');
@@ -291,38 +267,39 @@ FoxtrickMatchPlayerColouring = {
 //				Foxtrick.dump('\np: "'+ playerName+'" A: '+foundFullA+' '+foundA+' B: '+foundFullB+' '+foundB+'\n');
                 if ( (foundFullA && !foundFullB) || (foundA && !foundB) || (!foundA && !foundB && !foundFullB && num_unknown_namesA>0 && num_unknown_namesB==0)) {
 //					Foxtrick.dump(playerName+' colorA\n');
-					links[i].setAttribute("style", stlTeamA + 'padding:0px 2px;'); 
+					Foxtrick.addClass(links[i], HOME_TEAM_CLASS_NAME);
 					if (iseventsbox) {
-						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:left;'); 
-						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
+						links[i].parentNode.parentNode.getElementsByTagName('td')[0].className = "left";
 					}
  				} 
 				else if ((foundFullB && !foundFullA) || (foundB && !foundA) || (!foundA && !foundB && !foundFullA && num_unknown_namesA==0 && num_unknown_namesB>0)) {
 //					Foxtrick.dump(playerName+' colorB\n');
-					links[i].setAttribute("style", stlTeamB + 'padding:0px 2px;'); 
+					Foxtrick.addClass(links[i], AWAY_TEAM_CLASS_NAME);
 					if (iseventsbox) {
-						links[i].parentNode.parentNode.getElementsByTagName('td')[0].setAttribute("style", 'text-align:right;'); 					
-						if (links[i].previousSibling) links[i].setAttribute("style", links[i].getAttribute("style") + 'margin-left:3px;'); 					
+						links[i].parentNode.parentNode.getElementsByTagName('td')[0].className = "right";
 					}
                  }    
                 else {
-                    links[i].style.backgroundColor = FoxtrickMatchPlayerColouring.UNKNOWN_COLOUR;
+                	Foxtrick.addClass(links[i], "ft-match-player-unknown");
                  }
 			 } 
 			 //Colors the name of the teams  on the right box like the players
-			 else { 
+			 else {
 			     if (FoxtrickMatchPlayerColouring._isLinkTeam(links[i].href)) {
-					 if (links[i].parentNode.parentNode.parentNode.parentNode.tagName=="TBODY") {
+			     	var linkParent = links[i];
+			     	while (linkParent && linkParent.className !== "sidebarBox") {
+			     		linkParent = linkParent.parentNode;
+			     	}
+			     	if (linkParent && linkParent.className === "sidebarBox") {
 						links[i].style.border = "1px solid #ccc";
-						links[i].style.padding = "0px 2px";
 						if (FirstTeam) {
-							links[i].setAttribute("style", stlTeamA + ' border:1px solid #ccc;padding:0px 2px;'); 
+							Foxtrick.addClass(links[i], HOME_TEAM_CLASS_NAME);
 							FirstTeam = false;
 						}
 						else {
-							links[i].setAttribute("style", stlTeamB + ' border:1px solid #ccc;padding:0px 2px;'); 
+							Foxtrick.addClass(links[i], AWAY_TEAM_CLASS_NAME);
 						}
-					 }
+					}
 				}
 			 }
          }

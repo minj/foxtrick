@@ -1,0 +1,31 @@
+.sidebarBox .ft-match-player-home, .sidebarBox .ft-match-player-away,
+.sidebarBox ,ft-match-player-mine, .sidebarBox .ft-match-player-unknown {
+	border: 1px solid #ccc;
+}
+
+.ft-match-player-home, .ft-match-player-away,
+.ft-match-player-mine, .ft-match-player-unknown {
+	padding: 0 2px;
+}
+
+.ft-match-player-home {
+	background: #ffcdcd;
+	color: black !important;
+	border: 1px solid #CF8181;
+}
+
+.ft-match-player-away {
+	background: #d2cdff;
+	color: black !important;
+	border: 1px solid #8981CF;
+}
+
+.ft-match-player-mine {
+	background: white;
+	color: black !important;
+	border: none;
+}
+
+.ft-match-player-unknown {
+	background: #f0f0f0;
+}
