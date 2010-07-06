@@ -27,6 +27,19 @@ FoxtrickMatchPlayerColouring = {
 				return;
 			}
 
+			if (doc.location.search.search(/&HighlightPlayerID=(\d+)/) != -1) {
+				// highlight single player
+				var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
+				var links = doc.getElementById("mainWrapper").getElementsByTagName("a");
+				for (var i = 0; i < links.length; ++i) {
+					if (links[i].href.indexOf(playerId) > -1) {
+						// add an arbitrarily home class
+						Foxtrick.addClass(links[i], "ft-match-player-home");
+					}
+				}
+				return;
+			}
+
 			var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 			var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
 			if (isprematch) return;
@@ -218,15 +231,6 @@ FoxtrickMatchPlayerColouring = {
 			Foxtrick.dump('A: '+teamA+'\n');
 			Foxtrick.dump('B: '+teamB+'\n');
 
-			// just highlight single player
-			if (doc.location.href.search(/highlight=.+/)!=-1) {
-				var playerhighlight = doc.location.href.match(/highlight=(.+)/)[1];
-				Foxtrick.dump(playerhighlight+'\n');
-				teamA.splice(0,teamA.length);
-				teamB.splice(0,teamB.length);
-				teamA.push(playerhighlight);
-			}
-
 			var links = content_div.getElementsByTagName("a");
 
 			for (var i=0; i<links.length; i++) {
@@ -307,13 +311,12 @@ FoxtrickMatchPlayerColouring = {
 	// add matchreport highlight links to playerdetails
 	addHighlightParam : function(doc) {
 		try {
-			var playerName = Foxtrick.Pages.Player.getName(doc);
-			playerLastName = playerName.substr(playerName.lastIndexOf(" ") + 1);
+			var playerId = Foxtrick.Pages.Player.getId(doc);
 			var as = doc.getElementById("mainBody").getElementsByTagName("a");
 			for (var i = 0; i < as.length; ++i) {
 				if (as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i) != -1
-					&& as[i].href.search(/highlight/i) == -1) {
-					as[i].href += "&highlight=" + playerlastname;
+					&& as[i].href.search(/HighlightPlayerID/) == -1) {
+					as[i].href += "&HighlightPlayerID=" + playerId;
 				}
 			}
 		}
