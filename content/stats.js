@@ -1581,6 +1581,18 @@ stats["hattrick-youthclub"] =  {
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
+        "youthplayerlistlink" : { "path"       : "site/players",
+                         "filters"    : [], 
+                         "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
+                       },
+ /*       "youthplayerdetaillink" : { "path"       : "site/player_details/player_id/",
+                         "filters"    : [], 
+                         "params"     : {"playerid" : "", "teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
+                       },*/
+        "youthmatchlistlink" : { "path"       : "site/matches",
+                         "filters"    : [], 
+                         "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
+                       },
         "youthtraininglink" : { "path"       : "",
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}

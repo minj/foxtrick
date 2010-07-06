@@ -99,7 +99,7 @@ var FoxtrickLinksYouthPlayerDetail = {
 	
 		//addExternalLinksToYouthdetail
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthplayerdetaillink", { "age" : age, "age_days":age_days, "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthplayerdetaillink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "playerid" : playerid, "age" : age, "age_days":age_days, "owncountryid": owncountryid }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -150,7 +150,103 @@ var FoxtrickLinksYouthTraining = {
 	
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthtraininglink", { "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthtraininglink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
+		if (links.length > 0) {
+			ownBoxBody = doc.createElement("div");
+			var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+			var ownBoxId = "foxtrick_links_box";
+			var ownBoxBodyId = "foxtrick_links_content";
+			ownBoxBody.setAttribute( "id", ownBoxBodyId );
+                                
+			for (var k = 0; k < links.length; k++) {
+				links[k].link.className ="inner";
+				ownBoxBody.appendChild(doc.createTextNode(" "));
+				ownBoxBody.appendChild(links[k].link);
+			}
+			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+		}
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});			
+    },
+	
+};
+
+////////////////////////////////////////////////////////////////////////////////
+var FoxtrickLinksYouthPlayerlist = {
+	
+    MODULE_NAME : "LinksYouthPlayerlist",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('YouthPlayers'), 
+	DEFAULT_ENABLED : true,
+	OPTIONS : {}, 	
+
+    init : function() {
+			Foxtrick.initOptionsLinks(this,"youthplayerlistlink");	
+	    },
+
+    run : function( page, doc ) {
+		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var ownteamid=0;
+		var owncountryid=0;
+		if (boxleft==null) {return;}
+		var teamid=FoxtrickHelper.findTeamId(boxleft); 
+		if (teamid=="") {return;}
+		var ownteamid = FoxtrickHelper.getOwnTeamId();
+		var owncountryid = FoxtrickHelper.getOwnCountryId();					
+		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		
+	
+		//addExternalLinksToYouthOverview
+        var ownBoxBody=null;
+		var links = Foxtrick.LinkCollection.getLinks("youthplayerlistlink", {  "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
+		if (links.length > 0) {
+			ownBoxBody = doc.createElement("div");
+			var header = Foxtrickl10n.getString(
+						"foxtrick.links.boxheader" );
+			var ownBoxId = "foxtrick_links_box";
+			var ownBoxBodyId = "foxtrick_links_content";
+			ownBoxBody.setAttribute( "id", ownBoxBodyId );
+                                
+			for (var k = 0; k < links.length; k++) {
+				links[k].link.className ="inner";
+				ownBoxBody.appendChild(doc.createTextNode(" "));
+				ownBoxBody.appendChild(links[k].link);
+			}
+			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+		}
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});			
+    },
+	
+};
+
+////////////////////////////////////////////////////////////////////////////////
+var FoxtrickLinksYouthMatchlist = {
+	
+    MODULE_NAME : "LinksYouthMatchlist",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+	PAGES : new Array('YouthMatchlist'), 
+	DEFAULT_ENABLED : true,
+	OPTIONS : {}, 	
+
+    init : function() {
+			Foxtrick.initOptionsLinks(this,"youthmatchlistlink");	
+	    },
+
+    run : function( page, doc ) {
+		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var ownteamid=0;
+		var owncountryid=0;
+		if (boxleft==null) {return;}
+		var teamid=FoxtrickHelper.findTeamId(boxleft); 
+		if (teamid=="") {return;}
+		var ownteamid = FoxtrickHelper.getOwnTeamId();
+		var owncountryid = FoxtrickHelper.getOwnCountryId();					
+		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		
+	
+		//addExternalLinksToYouthOverview
+        var ownBoxBody=null;
+		var links = Foxtrick.LinkCollection.getLinks("youthmatchlistlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
