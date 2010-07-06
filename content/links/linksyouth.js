@@ -24,12 +24,13 @@ var FoxtrickLinksYouthOverview = {
 		if (teamid=="") {return;}
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
-		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var server = Foxtrick.isStage(doc)?'stage':'www';
 	
 	
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -72,7 +73,8 @@ var FoxtrickLinksYouthPlayerDetail = {
 		if (teamid=="") {return;}
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
-		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var server = Foxtrick.isStage(doc)?'stage':'www';
 	
 		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
@@ -99,7 +101,7 @@ var FoxtrickLinksYouthPlayerDetail = {
 	
 		//addExternalLinksToYouthdetail
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthplayerdetaillink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "playerid" : playerid, "age" : age, "age_days":age_days, "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthplayerdetaillink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "playerid" : playerid, "age" : age, "age_days":age_days, "owncountryid": owncountryid, 'server':server }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -144,13 +146,14 @@ var FoxtrickLinksYouthTraining = {
 		if (teamid=="") {return;}
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
-		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var server = Foxtrick.isStage(doc)?'stage':'www';
 	
 	
 	
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthtraininglink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthtraininglink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -193,12 +196,13 @@ var FoxtrickLinksYouthPlayerlist = {
 		if (teamid=="") {return;}
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
-		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var server = Foxtrick.isStage(doc)?'stage':'www';
 		
 	
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthplayerlistlink", {  "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthplayerlistlink", {  "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -241,12 +245,13 @@ var FoxtrickLinksYouthMatchlist = {
 		if (teamid=="") {return;}
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
-		var youthteamid=FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var server = Foxtrick.isStage(doc)?'stage':'www';
 		
 	
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthmatchlistlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid }, doc,this);  
+		var links = Foxtrick.LinkCollection.getLinks("youthmatchlistlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);  
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

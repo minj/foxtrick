@@ -1574,10 +1574,15 @@ stats["magicyp"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/magicyp.png"
 };
 
+http://www.hattrick-youthclub.org/site/redirect/type/player_details/ht_id/XXXXXX
 
 stats["hattrick-youthclub"] =  { 
-        "url" : "http://www.hattrick-youthclub.org/",
-        "youthlink" : { "path"       : "",
+        "url" : "http://www.",
+        "urlfunction": function (filterparams) {
+                             var server = filterparams["server"];
+                             return "http://" +server + ".hattrick-youthclub.org/";
+                        },
+		"youthlink" : { "path"       : "",
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
@@ -1585,10 +1590,10 @@ stats["hattrick-youthclub"] =  {
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
- /*       "youthplayerdetaillink" : { "path"       : "site/player_details/player_id/",
+       "youthplayerdetaillink" : { "path"       : "/site/redirect/type/player_details/ht_id/",
                          "filters"    : [], 
                          "params"     : {"playerid" : "", "teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
-                       },*/
+                       },
         "youthmatchlistlink" : { "path"       : "site/matches",
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
