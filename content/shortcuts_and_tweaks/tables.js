@@ -13,6 +13,8 @@ var FoxtrickTables = {
     NEW_AFTER_VERSION : "0.5.0.5",	
     LATEST_CHANGE : "Fixed goal differences when it's positive",
 
+    CSS : Foxtrick.ResourcePath + "resources/css/goal-diff.css",
+
     init : function() {
     },
     
@@ -27,29 +29,36 @@ var FoxtrickTables = {
             
 			var tbl_promo = div.getElementsByTagName('TABLE')[0];
             tbl_promo.id = 'ft_goaldiff';
-            
+
             var newTH = doc.createElement('th');
-            newTH.setAttribute("style", "text-align:center");
+            newTH.className = "right";
             tbl_promo.rows[0].appendChild(newTH);
-            newTH.innerHTML = Foxtrickl10n.getString("foxtrick.seasonstats.goaldiff");
+            newTH.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.goaldiff");
 
             var tblBodyObj = tbl_promo.tBodies[0];
             for (var i=1; i<tblBodyObj.rows.length; i++) {
                 if (tblBodyObj.rows[i].cells[goalcell]) {
                     var newCell = tblBodyObj.rows[i].insertCell(-1);
-                    newCell.setAttribute("style", "text-align:right");
-                    var content = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell].innerHTML).split("-");
+                    newCell.className = "right";
+                    var content = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell].textContent).split("-");
                     if (Foxtrick.trim(content[0]) == '') { 
-                        content[0] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell-1].innerHTML); 
-                        content[1] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell+1].innerHTML);
+                        content[0] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell-1].textContent); 
+                        content[1] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell+1].textContent);
                     }
                     var result = Foxtrick.trim(content[0]) - Foxtrick.trim(content[1]);
-                    if (result > 0) newCell.innerHTML = '<span style="color:green">' + result + '</span>';
-                    if (result == 0) newCell.innerHTML = '<span style="color:black">' + result + '</span>';
-                    if (result < 0) newCell.innerHTML = '<span style="color:red">' + result + '</span>';
+                    newCell.textContent = result;
+                    if (result > 0)
+                        Foxtrick.addClass(newCell, "ft-gd-positive");
+                    else if (result == 0)
+                        Foxtrick.addClass(newCell, "ft-gd-zero");
+                    else // result < 0
+                        Foxtrick.addClass(newCell, "ft-gd-negative")
                 }
             }        
-        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ':' + e + '\n');}
+        }
+        catch (e) {
+            Foxtrick.dumpError(e);
+        }
     },
     
     change : function( page, doc ) {

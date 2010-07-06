@@ -26,6 +26,23 @@
  *
  */
 
+/* Module GoaldifferenceToTables */
+
+/* positive goal difference */
+.ft-gd-positive {
+	font-weight: bold;
+}
+
+/* goal difference is zero */
+.ft-gd-zero {
+	/* do nothing */
+}
+
+/* negative goal difference */
+.ft-gd-negative {
+	font-style: italic;
+}
+
 
 /* Module HighlightBotTeams */
 
