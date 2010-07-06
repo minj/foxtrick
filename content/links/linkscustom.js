@@ -238,10 +238,9 @@ var FoxtrickLinksCustom = {
 			var table2=doc.createElement ("table"); 
 			table2.setAttribute('id','LinksCustomTable2ID');					 
 			
-			var img = doc.createElement("img");
-			img.id = "ft-links-custom-browse-img";
-			img.className = "ft-icon";
-			img.src = Foxtrick.ResourcePath + "resources/img/browse.png";
+			var div = doc.createElement("div");
+			div.id = "inputImgDivID";
+			div.className = "ft_icon foxtrickBrowse";
 
 			// load image button
 			var loadIcon = doc.createElement("a");	
@@ -256,7 +255,7 @@ var FoxtrickLinksCustom = {
 			var td2 = doc.createElement ("td");
 			td2.setAttribute("style","vertical-align:middle;");
 			td2.width="100%";					
-			td1.appendChild(img);
+			td1.appendChild(div);
 			td2.appendChild(loadIcon);
 			td2.setAttribute("colspan","4");
 			tr1.appendChild(td1);
@@ -404,6 +403,7 @@ var FoxtrickLinksCustom = {
 			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
 		}
 		catch (e) {Foxtrick.dump("LinksCustom->edityLink->"+e+'\n');}
+
 	},
 
 	
@@ -413,7 +413,7 @@ var FoxtrickLinksCustom = {
 			var baseprefnl = evt["target"]["baseprefnl"];
 			doc.getElementById("inputHrefID").value= FoxtrickPrefs.getString(baseprefnl+'.href');
 			doc.getElementById("inputTitleID").value= FoxtrickPrefs.getString(baseprefnl+'.title');
-			doc.getElementById("inputImgDivID").setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+Foxtrick.ResourcePath+"resources/img/ownicons/"+FoxtrickPrefs.getString(baseprefnl+'.img')+"') 50% no-repeat;");
+			doc.getElementById("inputImgDivID").style.backgroundImage = "url('" + FoxtrickPrefs.getString(baseprefnl+'.img') +"')";
 			doc.getElementById("inputImgDivID").imgref=FoxtrickPrefs.getString(baseprefnl+'.img');	
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
@@ -568,9 +568,7 @@ var FoxtrickLinksCustom = {
 			if (image.length>2000) {Foxtrick.alert("Image too large.");return;}
 			var div=doc.getElementById('inputImgDivID');
 			div.imgref=image;
-			div.setAttribute("style","cursor:pointer; display:inline-block; width: 16; height: 16px; background: url('"+div.imgref+"') 50% no-repeat;");
-			div.innerHTML="<img src='"+Foxtrick.ResourcePath+"resources/img/transparent16.png'>";
-			 			
+			div.style.backgroundImage = "url('" + div.imgref + "')";
  		}
 		catch(e) {Foxtrick.dump('FoxtrickLinksCustom.LoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
 	},
