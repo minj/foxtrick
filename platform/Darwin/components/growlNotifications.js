@@ -109,8 +109,7 @@ var foxtrickGrowlNotificationsModule = {
   }
 };
 
-function NSGetModule(aCompMgr, aFileSpec)
-{
-  return foxtrickGrowlNotificationsModule;
-}
-
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([foxtrickGrowlNotificationsModule]);
+else
+  var NSGetModule = function(aCompMgr, aFileSpec) { return foxtrickGrowlNotificationsModule; };
