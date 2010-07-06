@@ -197,7 +197,7 @@ var FoxtrickLinksCustom = {
 				a.href = FoxtrickPrefs.getString(basepref+'.'+key+'.href');
 				a.setAttribute("target", "_blank");
 				var img = doc.createElement("img");
-				img.style.width = img.style.height = "16px";
+				img.className = "ft-links-custom-icon-edit";
 				img.src = FoxtrickPrefs.getString(basepref+'.'+key+'.img');
 				img.alt = FoxtrickPrefs.getString(basepref+'.'+key+'.title');
 				a.appendChild(img);
@@ -467,7 +467,7 @@ var FoxtrickLinksCustom = {
 			a.href = FoxtrickPrefs.getString(baseprefnl+'.href');
 			a.setAttribute("target", "_blank");
 			var img = doc.createElement("img");
-			img.style.width = img.style.height = "16px";
+			img.className = "ft-links-custom-icon-edit";
 			img.src = FoxtrickPrefs.getString(baseprefnl+'.img');
 			img.alt = FoxtrickPrefs.getString(baseprefnl+'.title');
 			a.appendChild(img);

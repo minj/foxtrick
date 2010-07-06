@@ -98,3 +98,14 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 #ft_dump pre {
 	width: auto !important;
 }
+
+#foxtrick_links_content a {
+	padding-left: 2px !important;
+}
+
+.ft-links-custom-icon-edit {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+}
