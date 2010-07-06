@@ -1009,14 +1009,10 @@ var FoxtrickPrefsDialogHTML = {
 
 	_screenshot : function(doc, link) {
 		var a = doc.createElement("a");
-		a.className = "ft_actionicon";
+		a.className = "ft_actionicon foxtrickScreenshot";
 		a.href = link;
 		a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
 		a.setAttribute('target','_blank');
-		var img = doc.createElement("img");
-		img.src = Foxtrick.ResourcePath + "resources/img/screenshot.png";
-		img.alt = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
-		a.appendChild(img);
 		return a;
 	},
 
