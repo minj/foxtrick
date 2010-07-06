@@ -36,7 +36,10 @@ var FoxtrickContextMenuCopy = {
 		{ type : "User", re : /\?userId=(\d+)/i, tag : "userid" },
 		{ type : "Kit", re : /\?KitID=(\d+)/i, tag : "kitid" },
 		{ type : "Article", re : /\?ArticleID=(\d+)/i, tag : "articleid" },
-		{ type : "Post", re : /\/Forum\/Read.aspx\?t=(\d+).*&n=(\d+)/i, tag : "post" }
+		{ type : "Post", re : /\/Forum\/Read.aspx\?t=(\d+).*&n=(\d+)/i, tag : "post" },
+		{ type : "Arena", re : /\/Club\/Arena\/Default\.aspx\?ArenaID=(\d+)/i },
+		{ type : "League", re : /\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i },
+		{ type : "Cup", re : /\/World\/Cup\/\?CupID=(\d+)/i }
 	],
 
 	init : function() {
@@ -73,18 +76,12 @@ var FoxtrickContextMenuCopy = {
 				var ret = {};
 				ret.type = current.type;
 				ret.id = id;
-				ret.tag = current.tag;
+				if (current.tag) {
+					// some ID types may not have corresponding tags
+					ret.tag = current.tag;
+				}
 				return ret;
 			}
-		}
-		// no tagged ID is found, go on to find if there is non-tagged ID
-		var generalRe = /([a-z]+)+ID=(\d+)/i;
-		if (link.search(generalRe) !== -1) {
-			var match = link.match(generalRe);
-			var ret = {};
-			ret.type = match[1];
-			ret.id = match[2];
-			return ret;
 		}
 		// return null if nothing is found
 		return null;
