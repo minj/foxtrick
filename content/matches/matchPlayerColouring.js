@@ -50,7 +50,7 @@ FoxtrickMatchPlayerColouring = {
 			//Foxtrick.alert(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
 
 			//Retrieve teams id
-			var myTeamId = isyouth ? FoxtrickHelper.getOwnTeamId() : FoxtrickHelper.getOwnYouthTeamId();
+			var myTeamId = isyouth ? FoxtrickHelper.getOwnYouthTeamId() : FoxtrickHelper.getOwnTeamId();
 			var table = doc.getElementById('mainBody').getElementsByTagName('table');
 			if (!table[0]) {
 				// match not finished
