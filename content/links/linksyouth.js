@@ -25,7 +25,7 @@ var FoxtrickLinksYouthOverview = {
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
-		var server = Foxtrick.isStage(doc)?'stage':'www';
+		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 	
 	
 		//addExternalLinksToYouthOverview
@@ -73,7 +73,7 @@ var FoxtrickLinksYouthPlayerDetail = {
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
-		var server = Foxtrick.isStage(doc)?'stage':'www';
+		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 	
 		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
@@ -145,7 +145,7 @@ var FoxtrickLinksYouthTraining = {
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
-		var server = Foxtrick.isStage(doc)?'stage':'www';
+		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 	
 	
 	
@@ -194,7 +194,7 @@ var FoxtrickLinksYouthPlayerlist = {
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
-		var server = Foxtrick.isStage(doc)?'stage':'www';
+		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 		
 	
 		//addExternalLinksToYouthOverview
@@ -242,7 +242,7 @@ var FoxtrickLinksYouthMatchlist = {
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();					
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
-		var server = Foxtrick.isStage(doc)?'stage':'www';
+		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 		
 	
 		//addExternalLinksToYouthOverview
