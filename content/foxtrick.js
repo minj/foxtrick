@@ -209,8 +209,7 @@ var FoxtrickMain = {
 
 			Foxtrick.updateStatus();
 
-			// hattrick URL check and run if on HT
-			if (Foxtrick.getHref(doc).search(FoxtrickPrefs.getString("HTURL")) > -1) {
+			if (Foxtrick.isHt(doc)) {
 				// check if it's in exclude list
 				for (var i in Foxtrick.pagesExcluded) {
 					var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
@@ -459,7 +458,8 @@ Foxtrick.getHostname = function(doc) {
 }
 
 Foxtrick.isHt = function(doc) {
-	return (Foxtrick.getHref(doc).search(FoxtrickPrefs.getString("HTURL")) > -1);
+//	return (Foxtrick.getHref(doc).search(FoxtrickPrefs.getString("HTURL")) > -1);
+	return (doc.getElementById('hattrick')!==null || doc.getElementById('hattrickNoSupporter')!==null); 
 }
 
 var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
