@@ -46,7 +46,6 @@ var FoxtrickLinksNational = {
                                
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
-				ownBoxBody.appendChild(doc.createTextNode(" "));
 				ownBoxBody.appendChild(links[k].link);
 				++added;
 			}
@@ -61,7 +60,6 @@ var FoxtrickLinksNational = {
 					var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*countryid+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
 					img.setAttribute('style',style); 
 					img.src="/Img/Icons/transparent.gif";
-					ownBoxBody.appendChild(doc.createTextNode(" "));
 					ownBoxBody.appendChild(links2[k].link);
 					++added;
 				}					

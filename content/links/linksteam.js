@@ -40,7 +40,6 @@ var FoxtrickLinksTeam = {
                		                 
 						for (var k = 0; k < links.length; k++) {
 							links[k].link.className ="inner";
-							ownBoxBody.appendChild(doc.createTextNode(" "));
 							ownBoxBody.appendChild(links[k].link);
 						}
 						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 	

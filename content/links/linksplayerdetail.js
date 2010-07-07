@@ -125,7 +125,6 @@ var FoxtrickLinksPlayerDetail = {
 							"form": form, "age" : age, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);  
 					for (var j=0; j< ilinks.length; j++) {
 						ilinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
-						container.appendChild(doc.createTextNode(" "));
 						container.appendChild(ilinks[j].link);
 					}
 				}
@@ -195,7 +194,6 @@ var FoxtrickLinksPlayerDetail = {
 						klinks[j].link.setAttribute("id", "foxtrick_keeperlink_"+j);
 						if (newtable) klinks[j].link.setAttribute("style", "margin-left:5px !important;");
 						if (goalkeeperskillnode) {
-							goalkeeperskillnode.parentNode.appendChild(doc.createTextNode(" "));
 							goalkeeperskillnode.parentNode.appendChild(klinks[j].link);
 						}
 						}										
@@ -214,7 +212,6 @@ var FoxtrickLinksPlayerDetail = {
 						if (links[l]!=null) {
 							for (var k = 0; k < links[l].length; k++) {
 								links[l][k].link.className ="inner"
-								ownBoxBody.appendChild(doc.createTextNode(" "));
 								ownBoxBody.appendChild(links[l][k].link);
 								++added;
 							}
@@ -231,7 +228,6 @@ var FoxtrickLinksPlayerDetail = {
 					var style="vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*nationality+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
 					img.setAttribute('style',style); 
 					img.src="/Img/Icons/transparent.gif";
- 					ownBoxBody.appendChild(doc.createTextNode(" "));
 					ownBoxBody.appendChild(links2[k].link);
 					++added;
 				}					

@@ -63,13 +63,11 @@ var FoxtrickLinksMatch = {
                                 
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
-				ownBoxBody.appendChild(doc.createTextNode(" "));
 				ownBoxBody.appendChild(links[k].link);
 			}
 			if (links2) {
 				for (var k = 0; k < links2.length; k++) {
 					links2[k].link.className ="inner";
-					ownBoxBody.appendChild(doc.createTextNode(" "));
 					ownBoxBody.appendChild(links2[k].link);
 				}
 			}			
