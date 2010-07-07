@@ -81,6 +81,10 @@ Foxtrick.Pages.Player = {
 		}
 	},
 
+	getSkills : function(doc) {
+		return this.getSkillsWithText(doc).values;
+	},
+
 	// For youth players, returns an object like this:
 	/*
 	{
@@ -103,7 +107,7 @@ Foxtrick.Pages.Player = {
 	*/
 	// For senior players, there is no current, max, maxed;
 	// values will contain simple integers while texts contain simple strings
-	getSkills : function(doc) {
+	getSkillsWithText : function(doc) {
 		try {
 			var skills = {};
 			var skillTexts = {};
@@ -120,7 +124,7 @@ Foxtrick.Pages.Player = {
 						var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
 						var skillText = Foxtrick.trim(skillLink.textContent);
 						var skillName = Foxtrick.trim(rows[i].getElementsByTagName("td")[0].textContent).replace(":", "");
-						skills[skillOrder[i]] = skillLevel;
+						skills[skillOrder[i]] = skillValue;
 						skillTexts[skillOrder[i]] = skillText;
 						skillNames[skillOrder[i]] = skillName;
 					}

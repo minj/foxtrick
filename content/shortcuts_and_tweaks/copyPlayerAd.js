@@ -179,7 +179,7 @@ var FoxtrickCopyPlayerAd = {
 			};
 
 			// skills
-			var skills = Foxtrick.Pages.Player.getSkills(doc);
+			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 			if (skills !== null) {
 				for (var i in skills.names) {
 					if (isSenior) {
