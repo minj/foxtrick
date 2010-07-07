@@ -42,7 +42,7 @@ var FoxtrickLinksCustom = {
                 
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-			
+
 			var alldivs = doc.getElementsByTagName('div');
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="sidebarBox" ) {
@@ -52,7 +52,6 @@ var FoxtrickLinksCustom = {
 						var hh=pn.removeChild(header);
 						var div = doc.createElement("div");
 						div.appendChild(hh);
-						div.setAttribute("style","cursor:pointer;");
 						div.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink") );
 						Foxtrick.addEventListenerChangeSave( div, "click", FoxtrickLinksCustom.HeaderClick, false );
 						ownBoxBody.setAttribute('basepref',basepref);
@@ -71,7 +70,6 @@ var FoxtrickLinksCustom = {
 					var delLink = doc.createElement("div");
 					delLink.setAttribute("class","ft_actionicon foxtrickRemove");
 					delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
-					delLink.setAttribute( "style","display:none;margin-left:-28px;margin-right:6px;");
 					Foxtrick.addEventListenerChangeSave( delLink, "click", FoxtrickLinksCustom.delStdLink, false );
 					ownBoxBody.insertBefore(delLink,all_links[i].nextSibling);
 				}
@@ -99,7 +97,6 @@ var FoxtrickLinksCustom = {
 				var key = all_links[i].getAttribute('key');
 				if (key) {
 					all_links[i].nextSibling.style.display="none";
-					all_links[i].style.padding="0 0 0 0";
 				}
 			}
 						
@@ -158,16 +155,14 @@ var FoxtrickLinksCustom = {
 			for (var i=0;i<all_links.length;++i) { 
 				var key = all_links[i].getAttribute('key');
 				if (key) {
-					all_links[i].nextSibling.style.display="inline-block";
-					all_links[i].style.padding="0 30px 0 0";
+					all_links[i].nextSibling.style.display="";
 				}
 			}
 									
-			var divED = doc.createElement ("div");
-			divED.setAttribute("class", "alert");
-			divED.setAttribute("id", "divEDId" );
-			divED.setAttribute('style', 'border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
-			
+			var divED = doc.createElement("div");
+			divED.id = "divEDId";
+			divED.className = "ft-note";
+
 			var table=doc.createElement ("table"); 
 			table.width="120px";
 			table.setAttribute('id','LinksCustomTableID');					 

@@ -21,14 +21,16 @@
 .foxtrickScreenshot:hover { background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png"); width: 16px; }
 .foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); width: 16px; }
 
+div.ft_sidebarBoxCollapsed, div.ft_sidebarBoxUnfolded, div.ft_sidebarBoxCollapsed_rtl, div.ft_sidebarBoxUnfolded_rtl { cursor: pointer; }
 div.ft_sidebarBoxCollapsed h2 { background-image: url("chrome://foxtrick/content/resources/img/link-down.png"); background-position:right ; background-repeat:no-repeat; }
 div.ft_sidebarBoxUnfolded h2 { background-image: url("chrome://foxtrick/content/resources/img/link-up.png"); background-position: right ; background-repeat:no-repeat; }
 div.ft_sidebarBoxCollapsed_rtl h2 { background-image: url("chrome://foxtrick/content/resources/img/link-down.png"); background-position: left ; background-repeat:no-repeat; }
 div.ft_sidebarBoxUnfolded_rtl h2 { background-image: url("chrome://foxtrick/content/resources/img/link-up.png"); background-position: left ; background-repeat:no-repeat; }
 
 /* sidebarbox h3 dropdown image */
-h3.ft_sidebarBoxCollapsed { padding-right:20px !important; background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}
-h3.ft_sidebarBoxUnfolded { padding-right:20px !important; background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right;}
+h3.ft_sidebarBoxCollapsed, h3.ft_sidebarBoxUnfolded { cursor: pointer; padding-right: 20px !important; background-repeat: no-repeat; background-position: right; }
+h3.ft_sidebarBoxCollapsed { background-image: url("chrome://foxtrick/content/resources/img/down.gif"); }
+h3.ft_sidebarBoxUnfolded { background-image: url("chrome://foxtrick/content/resources/img/up.gif"); }
 
 /*Forum HighlighthreadOpener PostID*/
 .ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000!important;}
@@ -100,7 +102,12 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 }
 
 #foxtrick_links_content a {
-	padding-left: 2px !important;
+	padding: 0 2px !important;
+}
+
+#foxtrick_links_content div.ft_actionicon {
+	display: inline-block;
+	padding-right: 5px !important;
 }
 
 .ft-links-custom-icon-edit {

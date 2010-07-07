@@ -70,7 +70,6 @@ var FoxtrickOnPagePrefs = {
 			var header = pn.removeChild(header);
 			var div = doc.createElement("div");
 			div.appendChild(header);
-			div.setAttribute("style","cursor:pointer;");
 			Foxtrick.addEventListenerChangeSave(div, "click", FoxtrickOnPagePrefs.HeaderClick, false );
 			pn.insertBefore(div,pn.firstChild);
 
@@ -118,7 +117,6 @@ var FoxtrickOnPagePrefs = {
 					alldivouter.setAttribute("class","onpageprefs_extraprefs");
 					var alldivheader = doc.createElement('h3');
 					alldivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.modules_allpages")));
-					alldivheader.setAttribute("style","cursor:pointer;");
 					alldivheader.setAttribute("class","ft_sidebarBoxCollapsed");
 					if (Foxtrick.isRTLLayout(doc)) alldivheader.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
 					Foxtrick.addEventListenerChangeSave(alldivheader, "click", FoxtrickOnPagePrefs.HeaderClickModulesAll, false );
@@ -132,7 +130,6 @@ var FoxtrickOnPagePrefs = {
 					linkdivouter.setAttribute("class","onpageprefs_extraprefs");
 					var linkdivheader = doc.createElement('h3');
 					linkdivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.LinksTab")));
-					linkdivheader.setAttribute("style","cursor:pointer;");
 					linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed");
 					if (Foxtrick.isRTLLayout(doc)) linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
 					Foxtrick.addEventListenerChangeSave(linkdivheader, "click", FoxtrickOnPagePrefs.HeaderClickLinks, false );
