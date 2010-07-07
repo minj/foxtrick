@@ -81,8 +81,116 @@ Foxtrick.Pages.Player = {
 		}
 	},
 
+	getTsi : function(doc) {
+		if (!this.isSeniorPlayerPage(doc)) {
+			return null;
+		}
+		try {
+			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
+			var infoTable = playerInfo.getElementsByTagName("table")[0];
+			var tsiString = infoTable.rows[1].cells[1].textContent.replace(/\D/g, "");
+			return parseInt(tsiString);
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+			return null;
+		}
+	},
+
+	// returns leadership, experience, stamina, form for senior players
+	// FIXME - find a better name….
+	getBasicSkills : function(doc) {
+		if (!this.isSeniorPlayerPage(doc)) {
+			return null;
+		}
+		try {
+			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
+			var basicInfo = playerInfo.getElementsByTagName("p")[0];
+			var basicSkills = basicInfo.getElementsByClassName("skill");
+			var ret = {};
+			if (basicSkills[1].href.indexOf("skillshort") !== -1) {
+				ret.form = FoxtrickHelper.getSkillLevelFromLink(basicSkills[1]);
+				ret.stamina = FoxtrickHelper.getSkillLevelFromLink(basicSkills[0]);
+			}
+			else {
+				ret.form = FoxtrickHelper.getSkillLevelFromLink(basicSkills[0]);
+				ret.stamina = FoxtrickHelper.getSkillLevelFromLink(basicSkills[1]);
+			}
+			if (basicSkills[3].href.indexOf("skillshort") !== -1) {
+				ret.leadership = FoxtrickHelper.getSkillLevelFromLink(basicSkills[3]);
+				ret.experience = FoxtrickHelper.getSkillLevelFromLink(basicSkills[2]);
+			}
+			else {
+				ret.leadership = FoxtrickHelper.getSkillLevelFromLink(basicSkills[2]);
+				ret.experience = FoxtrickHelper.getSkillLevelFromLink(basicSkills[3]);
+			}
+			return ret;
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+			return null;
+		}
+	},
+
+	getBruised : function(doc) {
+		var playerInfo = doc.getElementsByClassName("playerInfo")[0];
+		var infoTable = playerInfo.getElementsByTagName("table")[0];
+		var injuryCell = infoTable.rows[4].cells[1];
+		var injuryImages = injuryCell.getElementsByTagName("img");
+		if (injuryImages.length > 0) {
+			if (injuryImages[0].src.indexOf("bruised.gif") !== -1) {
+				return true;
+			}
+		}
+		return false;
+	},
+
+	getInjuryWeeks : function(doc) {
+		var playerInfo = doc.getElementsByClassName("playerInfo")[0];
+		var infoTable = playerInfo.getElementsByTagName("table")[0];
+		var injuryCell = infoTable.rows[4].cells[1];
+		var injuryImages = injuryCell.getElementsByTagName("img");
+		if (injuryImages.length > 0) {
+			if (injuryImages[0].src.indexOf("injured.gif") !== -1) {
+				return parseInt(injuryImages[0].nextSibling.textContent.match(/\d+/)[0]);
+			}
+		}
+		return 0;
+	},
+
+	// Returns an object like this:
+	/*
+	{
+		base : 5000,
+		bonus : 1000,
+		total : 6000
+	}
+	*/
+	getWage : function(doc) {
+		if (!this.isSeniorPlayerPage(doc)) {
+			return null;
+		}
+		try {
+			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
+			var infoTable = playerInfo.getElementsByTagName("table")[0];
+			var wageText = infoTable.rows[2].cells[1].textContent;
+			var hasBonus = (wageText.indexOf("%") > -1);
+			wageText = wageText.replace(/\s*(\d+)\s+/g, "$1");
+			var wage = parseInt(wageText);
+			if (hasBonus)
+				return { base : wage / 1.2, bonus : wage / 6,  total : wage };
+			else
+				return { base : wage, bonus : 0, total : wage };
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+			return null;
+		}
+	},
+
 	getSkills : function(doc) {
-		return this.getSkillsWithText(doc).values;
+		var skillsWithText = this.getSkillsWithText(doc);
+		return skillsWithText.values || null;
 	},
 
 	// For youth players, returns an object like this:
@@ -113,6 +221,9 @@ Foxtrick.Pages.Player = {
 			var skillTexts = {};
 			var skillNames = {};
 			var mainBox = doc.getElementsByClassName("mainBox")[0];
+			if (!mainBox) {
+				return null;
+			}
 			var skillTable = mainBox.getElementsByTagName("table")[0];
 			if (this.isSeniorPlayerPage(doc)) {
 				var hasBars = (skillTable.getElementsByClassName("percentImage").length > 0);
@@ -202,5 +313,19 @@ Foxtrick.Pages.Player = {
 			Foxtrick.dumpError(e);
 			return null;
 		}
+	},
+
+	getTransferDeadline : function(doc) {
+		try {
+			var bidDiv = doc.getElementById("ctl00_CPMain_updBid");
+			if (bidDiv) {
+				var bidPara = bidDiv.getElementsByTagName("p")[0];
+				return Foxtrick.getDateFromText(bidPara.textContent);
+			}
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
+		return null;
 	}
 };
