@@ -101,7 +101,7 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	width: auto !important;
 }
 
-#foxtrick_links_content a {
+#foxtrick_links_content a, a.ft-link-keeper, a.ft-link-injury {
 	padding: 0 2px !important;
 }
 
