@@ -502,11 +502,7 @@ Foxtrick.registerModulePages = function(module) {
  * the page name (from ht_pages) and current document.
  */
 Foxtrick.registerPageHandler = function(page, who) {
-
-	// if is enabled in preferences and has a run() function
-	if (who.run) {
-		Foxtrick.run_on_page[page].push(who);
-	}
+	Foxtrick.run_on_page[page].push(who);
 }
 
 /**
@@ -518,11 +514,8 @@ Foxtrick.registerPageHandler = function(page, who) {
  * the current document.
  */
 Foxtrick.registerAllPagesHandler = function(who) {
-	if (who.run) {
-		Foxtrick.run_every_page.push(who);
-	}
+	Foxtrick.run_every_page.push(who);
 }
-
 
 Foxtrick.stopListenToChange = function (doc) {
 	var content = doc.getElementById("content");
