@@ -143,9 +143,10 @@ var FoxtrickManagerButtons = {
 		}
 
 		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID);
-		if (parentDiv===null) {
+		var insertBefore = null;
+		if (parentDiv === null) {
 			parentDiv = doc.getElementById('foxtrick_addactionsbox_parentDiv');
-			if (parentDiv===null) {			
+			if (parentDiv === null) {			
 				parentDiv = doc.createElement("div");
 				parentDiv.id = "foxtrick_addactionsbox_parentDiv";					
 				var newBoxId = "foxtrick_actions_box";
@@ -153,7 +154,14 @@ var FoxtrickManagerButtons = {
 					"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
 			}
 		}
-		else parentDiv = parentDiv.parentNode;
+		else {
+			parentDiv = parentDiv.parentNode;
+			insertBefore = doc.getElementById(this.MAIL_LINK_ID);
+			if (insertBefore) {
+				// insert after the mail link
+				insertBefore = insertBefore.nextSibling;
+			}
+		}
 
 		//Display GuestBook button only if team is HT-Supporter
 		if (isSupporter) {
@@ -174,7 +182,7 @@ var FoxtrickManagerButtons = {
 			else {
 				guestbookLink.textContent = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
 			}
-			parentDiv.appendChild(guestbookLink);
+			parentDiv.insertBefore(guestbookLink, insertBefore);
 		}
 
 	} catch(e) {Foxtrick.dumpError(e);}
