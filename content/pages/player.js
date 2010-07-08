@@ -190,7 +190,7 @@ Foxtrick.Pages.Player = {
 
 	getSkills : function(doc) {
 		var skillsWithText = this.getSkillsWithText(doc);
-		return skillsWithText.values || null;
+		return (skillsWithText ? skillsWithText.values : null);
 	},
 
 	// For youth players, returns an object like this:
