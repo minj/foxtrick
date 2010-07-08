@@ -470,21 +470,26 @@ Foxtrick.isStage = function(doc) {
 
 Foxtrick.registerModulePages = function(module) {
 	try {
-		// if is enabled in preferences and has a run() function
-		if (module.run) {
-			for (var i=0;i<module.PAGES.length;++i) {
-				//Foxtrick.dump('registerModulePages: '+module.MODULE_NAME+' '+module.PAGES[i]+'\n');
-				try {
-					if (module.ONPAGEPREF_PAGE) Foxtrick.may_run_on_page[module.ONPAGEPREF_PAGE].push(module);
-					else Foxtrick.may_run_on_page[module.PAGES[i]].push(module);
-					if (Foxtrick.isModuleEnabled(module))
-						Foxtrick.run_on_page[module.PAGES[i]].push(module);
+		if (module.ONPAGEPREF_PAGE) {
+			// a module may specify on-page pref on which pages to
+			// be shown through ONPAGEPREF_PAGE
+			Foxtrick.may_run_on_page[module.ONPAGEPREF_PAGE].push(module);
+		}
+
+		for (var i=0;i<module.PAGES.length;++i) {
+			try {
+				if (!module.ONPAGEPREF_PAGE) {
+					// if ONPAGEPREF_PAGE is not set, add all
+					Foxtrick.may_run_on_page[module.PAGES[i]].push(module);
 				}
-				catch (e) {
-					Foxtrick.dumpError(e);
-					Foxtrick.dump('registerModulePages: '+module.MODULE_NAME+'\n');
-					Foxtrick.dump('registerModulePages: '+module.PAGES[i]+'\n');
+				if (Foxtrick.isModuleEnabled(module)) {
+					Foxtrick.run_on_page[module.PAGES[i]].push(module);
 				}
+			}
+			catch (e) {
+				Foxtrick.dumpError(e);
+				Foxtrick.dump('registerModulePages: '+module.MODULE_NAME+'\n');
+				Foxtrick.dump('registerModulePages: '+module.PAGES[i]+'\n');
 			}
 		}
 	}
