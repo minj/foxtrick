@@ -12,7 +12,7 @@ var FoxtrickCopyPlayerAd = {
 	PAGES : ["playerdetail", "youthplayerdetail"],
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Now supporting youth players.",
+	LATEST_CHANGE : "Now supporting youth players, and player's skills are sorted.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	run : function(page, doc) {
@@ -178,19 +178,58 @@ var FoxtrickCopyPlayerAd = {
 			// skills
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 			if (skills !== null) {
-				for (var i in skills.names) {
-					if (isSenior) {
-						ad += skills.names[i] + ": "
-							+ formatSkill(skills.texts[i], skills.values[i])
+				if (isSenior) {
+					var skillSort = function(a, b) {
+						return b.value - a.value;
+					}
+					var skillArray = [];
+					for (var i in skills.names) {
+						skillArray.push(
+							{
+								name : skills.names[i],
+								value : skills.values[i],
+								text : skills.texts[i]
+							});
+					}
+					// sort skills by level, descending
+					skillArray.sort(skillSort);
+					for (var i in skillArray) {
+						ad += skillArray[i].name + ": "
+							+ formatSkill(skillArray[i].text, skillArray[i].value)
 							+ "\n";
 					}
-					else {
-						ad += formatSkill(skills.names[i], Math.max(skills.values[i].current, skills.values[i].max)) + ": "
-							+ (skills.values[i].maxed ? "[b]" : "")
-							+ skills.texts[i].current
+				}
+				else {
+					var skillSort = function(a, b) {
+						if (a.current.value !== b.current.value) {
+							return b.current.value - a.current.value;
+						}
+						else if (a.max.value !== b.max.value) {
+							return b.max.value - a.max.value;
+						}
+						return b.maxed - a.maxed;
+					}
+					var skillArray = [];
+					for (var i in skills.names) {
+						skillArray.push(
+							{
+								name : skills.names[i],
+								current : { value : skills.values[i].current, text : skills.texts[i].current },
+								max : { value : skills.values[i].max, text : skills.texts[i].max },
+								maxed : skills.values[i].maxed
+							});
+					}
+					// sort skills by current level, maximum level,
+					// and whether the skill has reached the potential,
+					// descending
+					skillArray.sort(skillSort);
+					for (var i in skillArray) {
+						ad += formatSkill(skillArray[i].name, Math.max(skillArray[i].current.value, skillArray[i].max.value)) + ": "
+							+ (skillArray[i].maxed ? "[b]" : "")
+							+ skillArray[i].current.text
 							+ " / "
-							+ skills.texts[i].max
-							+ (skills.values[i].maxed ? "[/b]" : "")
+							+ skillArray[i].max.text
+							+ (skillArray[i].maxed ? "[/b]" : "")
 							+ "\n";
 					}
 				}
