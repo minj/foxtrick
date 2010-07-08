@@ -13,9 +13,6 @@ var FoxtrickYouthPromotes = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	LATEST_CHANGE: "Now working on all locales",
 
-	init : function() {
-	},
-
 	run : function( page, doc ) {
 		try {
 			var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
@@ -44,6 +41,5 @@ var FoxtrickYouthPromotes = {
 		catch (e) {
 			Foxtrick.dump("YouthPromotes: " + e + "\n");
 		}
-	},
-
+	}
 };

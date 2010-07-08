@@ -13,9 +13,6 @@ var FoxtrickStarsCounter = {
 	PAGES : new Array("matchLineup"),
 	DEFAULT_ENABLED : true,
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		var yellow = 0;
 		var brown = 0;

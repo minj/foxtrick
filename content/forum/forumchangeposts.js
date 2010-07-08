@@ -12,9 +12,6 @@ var FoxtrickForumChangePosts = {
 	bDetailedHeader:false,
 	CSS: Foxtrick.ResourcePath+"resources/css/changepost.css",
 
-	init : function() {
-	},
-
 	run : function( page, doc ) {
 	try{
 		//if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;

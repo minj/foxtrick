@@ -65,9 +65,6 @@ var FoxtrickSkillTable = {
 		return fullType;
 	},
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			if (page !== "transferSearchResult"

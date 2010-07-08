@@ -13,9 +13,6 @@ var FoxtrickLocalTime = {
 	LATEST_CHANGE : "Show optional local time",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
-    init : function() {
-    },
-
     run : function(page, doc) {
 		var httime = doc.getElementById('time');
 		var localtime = doc.createElement('div');

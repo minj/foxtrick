@@ -11,9 +11,6 @@ var FoxtrickMedianTransferPrice = {
 	PAGES : new Array('transferCompare'), 
 	DEFAULT_ENABLED : true,
 
-    init : function() {
-    },
-
     run : function( page, doc ) {
 		
         var table = doc.getElementsByTagName("table")[0];

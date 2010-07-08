@@ -17,9 +17,6 @@ FoxtrickHistoryStats= {
     Pages : new Array(),
     Offset : 0,
     
-    init : function() {
-    },
-
     run : function( page, doc ) {
         this.Buffer = Array();
         this.Pages = Array();

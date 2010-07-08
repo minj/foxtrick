@@ -14,10 +14,6 @@ Foxtrick.TeamStats = {
 	LATEST_CHANGE : "Added rows for leadership and personalities.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
-	init : function() {
-	},
-
-
 	run : function(page, doc) {
 		try {
 			var totalTSI = 0;

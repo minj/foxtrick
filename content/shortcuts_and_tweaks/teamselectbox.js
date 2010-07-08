@@ -16,9 +16,6 @@ var FoxtrickTeamSelectBox= {
 		OPTIONS : new Array("AlsoYouthPlayers"), 
 		listbox:"",
 
-    init : function() {
-    },
-
     run : function( page, doc ) {
 		try {
 			if (doc.location.href.search(/TeamID=/i)==-1) {return;}

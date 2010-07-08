@@ -14,9 +14,6 @@
 	LATEST_CHANGE:"Fix for threads with masked chars",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-	init : function() {
-	},
-
 	run : function( page, doc ) {
 	
 	try {
@@ -105,5 +102,3 @@
 		}
 	},
 };
-	 
-	    

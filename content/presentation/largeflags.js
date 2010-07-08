@@ -14,9 +14,6 @@ var FoxtrickLargeFlags = {
 	LATEST_CHANGE : "Disabled by default since it may crash the whole operating system under GNU/Linux.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	
-    init : function() {
-    },
-
     run : function( page, doc ) {
 	try{
 		var faceCardCount = doc.getElementsByClassName("faceCard").length;

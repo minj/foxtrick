@@ -10,9 +10,6 @@ FoxtrickTransferDeadline = {
 	PAGES : new Array('transferSearchResult','playerdetail','transfer'), 
     DEFAULT_ENABLED : true,
 
-    init : function() {
-    },
-
     run : function(page, doc) {
 
         var httime = doc.getElementById( "time" ).innerHTML;

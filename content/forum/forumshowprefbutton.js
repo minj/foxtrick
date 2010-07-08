@@ -11,11 +11,7 @@ var FoxtrickShowForumPrefButton = {
 	PAGES : new Array('forumViewThread','forumOverView','forumDefault'), 
 	DEFAULT_ENABLED : true,
 
-	init : function() {
-	},
-	
 	run : function( page, doc ) { 
-	
 	var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 	if (boxHead.className!='boxHead') return;
     if (Foxtrick.isStandardLayout ( doc ) ) {
@@ -27,7 +23,5 @@ var FoxtrickShowForumPrefButton = {
 	forumprefs.innerHTML='<img src="'+Foxtrick.ResourcePath+'resources/img/transparent.gif">';
 	forumprefs.setAttribute('class','forumSettings');
 	boxHead.insertBefore(forumprefs,boxHead.firstChild);
-	},
- 
- 	
+	}
 };

@@ -14,9 +14,6 @@ var FoxtrickCopyRatings = {
 	LATEST_CHANGE : "Copy links back to rating table.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch") !== null);

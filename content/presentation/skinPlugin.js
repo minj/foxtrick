@@ -56,10 +56,5 @@ var FoxtrickSkinPlugin = {
                         } //images
                     } //sidebar
         } //old medals
-    },
-		
+    }
 };
-
-
-
-

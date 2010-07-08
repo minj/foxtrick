@@ -15,9 +15,6 @@ var FoxtrickForumLastPost = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS: new Array('lastpage'),
 
-    init : function() {
-    },
-
     run : function( page, doc ) {
         this._change( page, doc );
 	},

@@ -27,9 +27,6 @@ var FoxtrickForumTemplates = {
     // _TEMPLATES_ENABLED : "usePostTemplates",
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
     
-    init : function() {
-    },
-
     run : function( page, doc ) {
 		switch( page )
         {

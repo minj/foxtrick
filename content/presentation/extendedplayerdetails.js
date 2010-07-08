@@ -13,13 +13,9 @@ FoxtrickExtendedPlayerDetails = {
 	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
     RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
-    init : function() {
-    },
-
     run : function(page, doc) {
         this._Player_Joined ( doc );
     },
-
 
     _Player_Joined  : function ( doc ) {
         // Player in team since...

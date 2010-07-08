@@ -16,10 +16,6 @@ Foxtrick.htmsStatistics = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS : Foxtrick.ResourcePath + "resources/css/htms-statistics.css",
 
-	init : function() {
-		Foxtrick.Matches.init();
-	},
-
 	run : function( page, doc ) { 
 		try {
 			var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);

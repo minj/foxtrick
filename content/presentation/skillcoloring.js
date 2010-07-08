@@ -32,17 +32,5 @@ var FoxtrickSkillColoring = {
 					this.OPTIONS_CSS[2] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-personal.css";
 		if  ( Foxtrick.isModuleFeatureEnabled( this, "skill_number_translated" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) ) 
                     this.OPTIONS_CSS[3] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-translated-personal.css";			            
-    },
-
-    run : function( page, doc ) {
-	
-	/*  // may need to be included above css files directly somehow
-        // Foxtrick.dump(this.MODULE_NAME + '\n');
-		var url = Foxtrick.getHref( doc );
-        var isMessage = (url.match(/Forum/i) || url.match(/Inbox/i));
-        // Foxtrick.dump( '\n >> ' + url + '\n');
-        if (isMessage) return;
-		*/
-	},
-	
+    }
 };

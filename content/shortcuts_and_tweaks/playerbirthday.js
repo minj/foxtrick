@@ -14,9 +14,6 @@ var FoxtrickPlayerBirthday = {
 	NEW_AFTER_VERSION : "0.4.8.9",
 	LATEST_CHANGE : "Birthdaybox fixed for russian lang",
 
-	init : function() {
-	},
-
     run : function(page, doc) {
 		try {
 			// array of players

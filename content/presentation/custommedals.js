@@ -13,9 +13,6 @@ var FoxtrickCustomMedals = {
 	PAGES : new Array('teamPage','history','national'), 
 	DEFAULT_ENABLED : false,
 		
-	init : function() {
-    },
-    
     run : function( page, doc ) {
 		var sidebar = doc.getElementById('sidebar');
 		if( sidebar ) {

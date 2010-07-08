@@ -29,12 +29,5 @@ FoxtrickForumPresentation = {
 								Foxtrick.ResourcePath+"resources/css/fixes/Forum_NewPostsInBracket.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/Forum_Link_Grey_Icons.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/moved_avatarinfo_fix.css"
-								),                            
-								
-    init : function() {
-    },
-                                                                     
-    run : function(page, doc) {       
-    },
-       
+								)
 };

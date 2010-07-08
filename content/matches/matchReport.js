@@ -33,11 +33,7 @@ FoxtrickMatchReportFormat = {
     UNKNOWN_COLOUR : "#F0F0F0",
 
 	OwnYouthTeamId: null,
-	
-	init : function() {
-    },
 
-  
     run : function( page, doc ) {
 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);

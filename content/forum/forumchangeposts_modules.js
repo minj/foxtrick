@@ -24,9 +24,6 @@ var FoxtrickFormatPostingText = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
 	
-	init : function() {
-	},
-	
 	run : function( page, doc ) {
 		try {
 			var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
@@ -56,8 +53,7 @@ var FoxtrickFormatPostingText = {
 		var doc = ev.target.ownerDocument;
 		var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
 		textarea.value = FoxtrickFormatPostingText.format(textarea.value);
-	},
-
+	}
 };
 
 var FoxtrickCopyPostID = {
@@ -69,14 +65,7 @@ var FoxtrickCopyPostID = {
 	LATEST_CHANGE:"Added [post=..] to copied post id",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
-	OPTIONS : new Array("AddCopyIcon"), 
-	
-	init : function() {
-	},
-	
-	run : function( page, doc ) {
-	},
-	
+	OPTIONS : new Array("AddCopyIcon")
 };
 
 //**********************************************************
@@ -94,14 +83,7 @@ var FoxtrickCopyPosting = {
 	LATEST_CHANGE:"Copy ht-ml style",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : true,
-	RADIO_OPTIONS : new Array("CopyUnformatted","CopyWikiStyle","CopyHT-MLQuoted"), 
-	
-	init : function() {
-	},
-	
-	run : function( page, doc ) {
-	},
-	
+	RADIO_OPTIONS : new Array("CopyUnformatted","CopyWikiStyle","CopyHT-MLQuoted")
 };
 
 //**********************************************************
@@ -132,14 +114,7 @@ var FoxtrickForumAlterHeaderLine = {
 							Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_RemoveSupporterStar.css",
 							Foxtrick.ResourcePath+"resources/css/fixes/BookmarkHeaderSmall.css"),
 
-	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css",
-
-    init : function() {
-    },
-	
-    run : function( page, doc ) {
-	},
-	
+	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css"
 };
 
 
@@ -155,14 +130,7 @@ var FoxtrickForumRedirManagerToTeam = {
     MODULE_NAME : "ForumRedirManagerToTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	DEFAULT_ENABLED : false,
-
-	init : function() {
-    },
-
-    run : function( page, doc ) { 		
-    },
-	
+	DEFAULT_ENABLED : false
 };
 
 
@@ -178,14 +146,7 @@ var FoxtrickMoveLinks = {
     MODULE_NAME : "MoveLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	DEFAULT_ENABLED : false,
-
-    init : function() {
-    },
-
-    run : function( page, doc ) { 
-	},
-	
+	DEFAULT_ENABLED : false
 };
 
 
@@ -201,14 +162,7 @@ var FoxtrickHideManagerAvatarUserInfo = {
     MODULE_NAME : "HideManagerAvatarUserInfo",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-    DEFAULT_ENABLED : false,
-
-    init : function() {
-    },
-
-    run : function( page, doc ) { 
-	},
-       
+    DEFAULT_ENABLED : false
 };
 
 
@@ -225,14 +179,7 @@ var FoxtrickAddDefaultFaceCard = {
     MODULE_NAME : "AddDefaultFaceCard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	DEFAULT_ENABLED : true,
-
-    init : function() {
-    },
-
-    run : function( page, doc ) {
-	},
-	
+	DEFAULT_ENABLED : true
 };
 
 
@@ -247,17 +194,7 @@ var FoxtrickAlltidFlags = {
 
 	MODULE_NAME : "AlltidFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
-	DEFAULT_ENABLED : false,
-	//RADIO_OPTIONS : new Array("LinkFlagToLeague","LinkFlagToAlltid"), 
-	//CSS: Foxtrick.ResourcePath+"resources/css/conference.css",
-
-	init : function() {
-	},
-
-	run : function( page, doc ) {  
-	},
-	
+	PAGES : new Array("forumViewThread")
 };
 
 
@@ -273,12 +210,5 @@ var FoxtrickForumSearch = {
 	MODULE_NAME : "ForumSearch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	DEFAULT_ENABLED : false,
-
-	init : function() {
-	},
-
-	run : function( page, doc ) {  
-	},
-	
+	DEFAULT_ENABLED : false
 };

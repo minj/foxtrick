@@ -16,9 +16,6 @@ var FoxtrickYouthSeriesEstimation = {
 	TABLE_ID : "ctl00_CPMain_grdYouthSeries_ctl00",
 	ATTRIB_NAME : "estimated",
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			var table = doc.getElementById(this.TABLE_ID);

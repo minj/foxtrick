@@ -12,14 +12,7 @@ var FoxtrickHeadercopyicons = {
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
 	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
 	CSS_SIMPLE_RTL: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple_rtl.css",
-	CSS_RTL : Foxtrick.ResourcePath+"resources/css/headercopyicons_rtl.css",	                                
-
-	init : function() {
-	},
-	
-	run : function( page, doc ) {
-	},
-	
+	CSS_RTL : Foxtrick.ResourcePath+"resources/css/headercopyicons_rtl.css"
 }
 
 
@@ -42,9 +35,6 @@ var FoxtrickCopyTrainingReport = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OpenHTYpage"),
 
-	init : function() {
-	},
-	
 	run : function( page, doc ) {
 		try {
 		if (doc.getElementById('ctl00_CPMain_butReadAll')!=null) return;
@@ -144,9 +134,6 @@ var FoxtrickCopyScoutReport = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OpenHTYpage"),
 
-	init : function() {
-	},
-	
 	run : function( page, doc ) {
 	try {
 
@@ -283,9 +270,6 @@ var FoxtrickCopyPlayerSource = {
 	OPTIONS : new Array("OpenHTYpage"),
 	page_html:'',
 
-	init : function() {
-	},
-	
 	run : function( page, doc ) {
 		try {
 			this.page_html = '<html> '+doc.documentElement.innerHTML+' </html>';
@@ -362,6 +346,5 @@ var FoxtrickCopyPlayerSource = {
 	
 	fixbr : function(text) {
         return text.replace(/\<br\>/g,'<br />' );
-    },
-
+    }
 };

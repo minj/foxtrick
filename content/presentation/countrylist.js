@@ -21,9 +21,6 @@ var FoxtrickCountyList = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS: Foxtrick.ResourcePath+"resources/css/CountyList.css",
 
-    init : function() {
-    },
-
 	run : function( page, doc ) {
 		var list = doc.getElementById( 'ft_countrylist' );
 		if( list != null ) return;

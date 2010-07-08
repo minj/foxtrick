@@ -15,9 +15,6 @@ FoxtrickPlayerFilters = {
 
 	FILTER_SELECT_ID : "foxtrick-filter-select",
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			var sortSelect = doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy");

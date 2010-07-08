@@ -11,9 +11,6 @@ Foxtrick.BookmarkAdjust = {
 	PAGES : new Array('bookmarks'), 
     DEFAULT_ENABLED : true,
     
-    init : function() {
-    },
-
     run : function( page, doc ) {
         this._adjust_bookmarks( doc );
     },

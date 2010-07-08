@@ -19,8 +19,6 @@ var FoxtrickLeagueAndMatchChat = {
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,true,true,false),
 	server:null,
 	
-	init : function() {},
-	
 	onclick : function(ev) { 
 	try{ 
 		var link = ev.target.parentNode; 

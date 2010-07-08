@@ -20,9 +20,6 @@ var FoxtrickManagerButtons = {
 	CHALLENGE_LINK_ID : "ctl00_CPSidebar_ucVisitorActions_lnkChallenge",
 	MAIL_LINK_ID: "ctl00_CPSidebar_ucVisitorActions_lnkMail",
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try { 
 			var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);

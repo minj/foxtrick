@@ -169,9 +169,6 @@ team_confidence	: new Array(
 	"non-existent"
 ),			
 	
-    init : function() {
-    },
-
     run : function( page, doc ) { Foxtrick.dump('in SkillTranslation\n');
 	try {
 		// no need to translate if language is already English
@@ -210,7 +207,5 @@ team_confidence	: new Array(
 			//Foxtrick.dump(org_skills+'\n'+org_skills[i-1]+'\n');
 			table.rows[index].cells[1].innerHTML += org_skills[i-1] + br + ' <span style="white-space:nowrap;" class="shy">('+denominations[i]+')</span><br>';
 		}
-	},
-	
-
+	}
 };

@@ -14,9 +14,6 @@ var FoxtrickGoToPostBox = {
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	
-    init : function() {
-    },
 
     run : function( page, doc ) {
             

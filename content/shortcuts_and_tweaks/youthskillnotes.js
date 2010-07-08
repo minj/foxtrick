@@ -15,9 +15,6 @@ var FoxtrickYouthSkillNotes = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("OnlyOwnTeam"), 
 
-    init : function() {
-    },
-
     run : function( page, doc ) {
 		
 		var ownteamid = FoxtrickHelper.getOwnTeamId();

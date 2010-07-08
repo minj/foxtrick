@@ -15,9 +15,6 @@ var FoxtrickTables = {
 
     CSS : Foxtrick.ResourcePath + "resources/css/goal-diff.css",
 
-    init : function() {
-    },
-    
     run : function( page, doc ) {
         var tbl_goaldiff = (doc.getElementById("ft_goaldiff")!=null);
         if (tbl_goaldiff) return;
@@ -80,9 +77,6 @@ var FoxtrickMatchTables = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS :  new Array("RemoveTime"), 
 	
-    init : function() {
-    },
-    
     run : function( page, doc ) {
         if (Foxtrick.isStandardLayout(doc)) return;
         

@@ -20,13 +20,6 @@ var FoxtrickLinksCustom = {
 	_basepref:"",
 	_info:"",
 	
-    init : function() {
-    },
-    
-    run : function( page, doc ) {	
-	},
-	
-	
 	add : function( page, doc,ownBoxBody,pagemodule,info ) {
 		try {	
 			FoxtrickLinksCustom._info=info;

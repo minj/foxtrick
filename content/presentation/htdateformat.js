@@ -19,9 +19,6 @@ FoxtrickHTDateFormat = {
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","0"),
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
-    init : function() {
-    },
-
     run : function(page, doc) {
         //Foxtrick.dump('HTDateformat RUN '+page+'\n');
         var httime = doc.getElementById( "time" ).innerHTML;

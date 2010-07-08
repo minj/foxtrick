@@ -15,9 +15,6 @@ var FoxtrickHighlightCupwins = {
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("HighlightCupsets"),
 
-    init : function() {
-    },
-
     run : function( page, doc ) {
 		try {
 			var highlightCupsets = Foxtrick.isModuleFeatureEnabled(this, "HighlightCupsets");

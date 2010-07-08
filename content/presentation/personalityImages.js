@@ -13,9 +13,6 @@ var FoxtrickPersonalityImages = {
 	LATEST_CHANGE : "Show aggressiveness value as HT denomination, and working on training page.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			var skills = doc.getElementsByClassName("skill");

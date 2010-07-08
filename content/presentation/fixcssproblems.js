@@ -40,9 +40,6 @@ FoxtrickFixcssProblems = {
 								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css"
                                 ),
 
-    init : function() {
-    },
-
     run : function(page, doc) {
 	   if ( Foxtrick.isRTLLayout(doc) && Foxtrick.isModuleFeatureEnabled( this, "RTL_Fixes" )) {
 				if (!Foxtrick.isStandardLayout( doc ) ) {

@@ -13,9 +13,6 @@ var FoxtrickForumSearch = {
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",	
 	LATEST_CHANGE:"Collects some search information",
-	
-    init : function() {
-    },
 
     run : function( page, doc ) {
         try {

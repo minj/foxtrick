@@ -20,9 +20,6 @@ var FoxtrickOriginalFace = {
 	LATEST_CHANGE : "Merged four modules to OriginalFace as options.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		if (Foxtrick.isModuleFeatureEnabled(FoxtrickSkillTable, "ColouredYouth")) {
 			if (Foxtrick.isPage(Foxtrick.ht_pages["YouthPlayer"], doc)

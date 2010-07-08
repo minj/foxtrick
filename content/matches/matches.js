@@ -11,31 +11,7 @@ Foxtrick.Matches = {
 	PAGES : new Array('match'), 
 
 	matchxmls: new Array(),
-	
-	init : function() {
-	},
-	
-	run : function(page,doc) {
-	/*try{
-		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
-		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
-		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
-		if (isprematch) return;
-		
-		if (isarchivedmatch && typeof(this.matchxmls[matchid]) == 'undefined') {
-			var req = new XMLHttpRequest();
-			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Matches/chppxml.axd?file=matchdetails&matchID='+matchid+'&matchEvents=true', false); 
-			req.send(null);
-			if (req.status == 200) {
-				this.matchxmls[matchid] = req.responseXML;
-				Foxtrick.dump('matches.js: get new xml\n');
-			}
-			else Foxtrick.dump('matches.js: xml request failed\n');
-		}
-	} catch(e){Foxtrick.dump('matches.js run: '+e+'\n');}*/
-	},
 
-	
 	_getRatingsTable: function(doc) {
 		var ratingstable = null;
 		var tables = doc.getElementById('mainBody').getElementsByTagName('table')

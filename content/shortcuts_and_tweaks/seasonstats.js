@@ -19,9 +19,6 @@ var FoxtrickSeasonStats = {
 	
 	_season:-1,
 	
-    init : function() {
-    },
-
     run : function( page, doc ) {
 	try  {
 	

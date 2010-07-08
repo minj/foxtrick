@@ -136,9 +136,6 @@ var FoxtrickRapidId = {
 		FoxtrickRapidId.displayForm(event.target.ownerDocument);
 	},
 
-	init: function() {
-	},
-
 	run: function(page, doc) {
 		try {
 			// get labels of optgroup and option

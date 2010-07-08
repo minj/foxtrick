@@ -46,9 +46,6 @@ FoxtrickTransferSearchFilters = {
 		"_32" : "ctl00$CPMain$chkUseGlobalMax"
 	},
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;

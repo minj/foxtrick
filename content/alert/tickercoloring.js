@@ -61,10 +61,6 @@ var FoxtrickTickerColoring = {
 								  
     },
 
-    run : function( page, doc ) {    		
-	},
-	
-	
 	get_color : function( option ) {	
 	    if (Foxtrick.isModuleFeatureEnabled( this, option)) {
 			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + option+"_text"); 

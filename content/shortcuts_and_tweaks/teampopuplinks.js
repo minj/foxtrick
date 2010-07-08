@@ -711,9 +711,5 @@ var FoxtrickTeamPopupLinksMore = {
 		this.bCustomLink = Foxtrick.isModuleFeatureEnabled(this, "CustomLink");
 		this.utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
 		if (!this.utext) this.utext = this.OPTION_TEXTS_DEFAULT_VALUES[13];
-	},
-
-	run : function(page, doc) {
-	},
-
+	}
 };

@@ -51,9 +51,6 @@ var FoxtrickMoveManagerOnline= {
 		LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 		LATEST_CHANGE: "Simple speed check added. Don't move if there are more than about 80 managers online",
 
-    init : function() {
-    },
-
     run : function( page, doc ) {
 		try {
 		var mainBody = doc.getElementById('mainBody');

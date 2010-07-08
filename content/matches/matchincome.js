@@ -12,9 +12,6 @@ var FoxtrickMatchIncome = {
 	PAGES : new Array('match'), 
 	DEFAULT_ENABLED : true,
 
-    init : function() {
-	},
-
     run : function( page, doc ) {
         var ft_match = doc.getElementById ('ft_matchincome');
         if (ft_match != null) return;

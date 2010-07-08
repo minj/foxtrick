@@ -42,9 +42,6 @@ var FoxtrickContextMenuCopy = {
 		{ type : "Cup", re : /\/World\/Cup\/\?CupID=(\d+)/i }
 	],
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		doc.addEventListener("contextmenu", this.onContext, false);
 		this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));

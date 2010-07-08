@@ -12,12 +12,5 @@ var FoxtrickBackgroundFixed = {
 	DEFAULT_ENABLED : false,
 	CSS: Foxtrick.ResourcePath+"resources/css/backgroundfixed.css",
 	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	
-    init : function() {
-    },
-
-    run : function( page, doc ) {
-	},
-	
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW
 };

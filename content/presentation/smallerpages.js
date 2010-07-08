@@ -17,9 +17,6 @@ FoxtrickSmallerPages = {
 
 	TABLE_ID : "foxtrick-smaller-pages-table",
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		if (doc.getElementById("hattrickNoSupporter")) {
 			// if the advertisement at the right side is blocked,

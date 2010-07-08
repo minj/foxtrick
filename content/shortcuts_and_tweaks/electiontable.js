@@ -13,9 +13,6 @@ var FoxtrickElectionTable = {
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LATEST_CHANGE:"adds percentage to election tables",
 
-	init : function() {
-    },
-
     run : function( page, doc ) {
         var tbl_election = (doc.getElementById("ft_election")!=null);
         if (tbl_election) return;

@@ -52,7 +52,8 @@ var FoxtrickMain = {
 */
 		// init core modules
 		for (var i in Foxtrick.core_modules) {
-			Foxtrick.core_modules[i].init();
+			if (typeof(Foxtrick.core_modules[i].init) == "function")
+				Foxtrick.core_modules[i].init();
 		}
 		Foxtrick.MakeStatsHash();
 

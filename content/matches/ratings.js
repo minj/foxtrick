@@ -17,7 +17,6 @@ Foxtrick.Ratings = {
 	ratingDefs :  {}, // will be filled in initOptions
 
 	init : function() {
-		Foxtrick.Matches.init();
 		this.initHtRatings();
 	},
 		

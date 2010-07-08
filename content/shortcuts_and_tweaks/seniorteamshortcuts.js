@@ -14,9 +14,6 @@ var FoxtrickSeniorTeamShortCuts = {
 	DEFAULT_ENABLED : true,
 	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"), 
 	
-    init : function() {
-    },
-
     run : function( page, doc ) {
 			try {
 				var ownteamid = FoxtrickHelper.getOwnTeamId();

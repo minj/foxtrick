@@ -21,10 +21,6 @@ FoxtrickTransferSearchResultFilters = {
 				  {name : 'days',  type : 'minmax', properties : {min: '', max : ''} }
 	],
 
-	
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			if ( page=='transferSearchForm' ) this.addExtraFilters(doc);

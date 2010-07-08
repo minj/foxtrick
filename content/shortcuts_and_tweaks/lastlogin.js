@@ -13,9 +13,6 @@ FoxtrickLastLogin = {
 	LATEST_CHANGE: "Modifies last login time with HT Dateformat",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	
-    init : function() {
-    },
-
     run : function(page, doc) {
     if (doc.getElementById('ctl00_CPMain_upGB') != null) return;
 		try {

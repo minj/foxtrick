@@ -12,9 +12,6 @@ var FoxtrickHideSignatures = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LATEST_CHANGE:"Hide Signature module is finally fixed.",
-	
-    init : function() {
-    },
 
     run : function( page, doc ) {
         //return;
@@ -56,6 +53,5 @@ var FoxtrickHideSignatures = {
                 } 
             }
 		}
-	},
-	
+	}
 };

@@ -15,9 +15,6 @@ var FoxtrickForumStripHattrickLinks = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS: new Array("NoConfirmStripping"),
 	
-	init : function() {
-	},
-
 	onclick : function( ev ) {
 		try{  
 			var a = ev.target; 

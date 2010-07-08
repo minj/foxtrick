@@ -22,12 +22,5 @@ var FoxtrickAlertCustomOff = {
 					/\/Club\/Manager\/Guestbook.aspx\?teamid=/gi,
 					/\/Inbox\//gi,
 					/\/Myhattrick\/\?actionType/gi
-					),
-											
-    init : function() {
-    },
-
-    run : function( page, doc ) {    		
-	},
-	
+					)
 };

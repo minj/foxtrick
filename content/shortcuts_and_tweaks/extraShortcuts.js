@@ -16,10 +16,6 @@ var FoxtrickExtraShortcuts = {
 	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioMediaPlayer","DTRadioWinamp"),
 	CSS:"",
 	
-    init : function() {
-    },
-
-
     run : function( page, doc ) { 
         var shortcuts = doc.getElementById ( 'shortcuts' );
 		if (!shortcuts) return;

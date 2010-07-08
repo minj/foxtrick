@@ -19,9 +19,6 @@
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
 
-    init : function() {
-    },
-
     run : function( page, doc ) {
     try {
         Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");

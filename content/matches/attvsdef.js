@@ -13,10 +13,6 @@ Foxtrick.AttVsDef = {
 	DEFAULT_ENABLED : true,
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseperated"),
 
-	init : function() {
-		Foxtrick.Matches.init();
-	},
-
 	run : function( page, doc ) {
 		try {
 			var ratingstable = Foxtrick.Matches._getRatingsTable(doc);

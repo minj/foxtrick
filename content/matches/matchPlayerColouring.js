@@ -17,9 +17,6 @@ FoxtrickMatchPlayerColouring = {
 
 	OwnYouthTeamId : null,
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			if (page == "playerdetail") {

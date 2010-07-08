@@ -16,9 +16,6 @@ var FoxtrickLeagueNewsFilter = {
 	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes','PAs'),
 	OPTIONS : new Array('highlight_set_lineup','highlight_wins','gray_bots'),
 
-	init : function() {
-	},
-
 	run : function( page, doc ) {
 		try {
 			var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');

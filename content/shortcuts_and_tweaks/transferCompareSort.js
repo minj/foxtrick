@@ -14,9 +14,6 @@ var FoxtrickTransferCompareSort = {
 	LATEST_CHANGE:"Sorting transfer compare results",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 		
-    init : function() {
-    },
-
     run : function( page, doc ) {
 		try  {
 			var table = doc. getElementById('mainBody').getElementsByTagName('table')[0];				

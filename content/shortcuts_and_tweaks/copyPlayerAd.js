@@ -15,9 +15,6 @@ var FoxtrickCopyPlayerAd = {
 	LATEST_CHANGE : "Now supporting youth players.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			var main = doc.getElementById("mainWrapper");

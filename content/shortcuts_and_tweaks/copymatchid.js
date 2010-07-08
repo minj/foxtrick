@@ -15,9 +15,6 @@ var FoxtrickCopyMatchID = {
 	LATEST_CHANGE : "Removed HT-ML tag.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-	init : function() {
-	},
-	
 	run : function( page, doc ) { 
 	try { 
 		var count = 0;

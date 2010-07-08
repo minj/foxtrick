@@ -36,9 +36,6 @@ var FoxtrickConfirmActions = {
 		CONFIRM_ID : "ft-staff-confirm"
 	},
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			// Bid, TransferList, NtChange, StaffChange

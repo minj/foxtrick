@@ -11,9 +11,6 @@ var FoxtrickMovePlayerStatement = {
 	PAGES : new Array('playerdetail','YouthPlayer'), 
 	DEFAULT_ENABLED : false,
 
-	init : function() {
-	},
-
 	run : function( page, doc ) {
 		try {
 			var contentSpeak = "";

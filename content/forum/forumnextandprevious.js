@@ -9,12 +9,5 @@ var FoxtrickForumNextAndPrevious = {
     MODULE_NAME : "ForumNextAndPrevious",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	DEFAULT_ENABLED : true,
-	CSS: Foxtrick.ResourcePath+"resources/css/nextandprevious.css",
-	
-    init : function() {
-    },
-
-    run : function( page, doc ) {
-	},
-	
+	CSS: Foxtrick.ResourcePath+"resources/css/nextandprevious.css"
 };

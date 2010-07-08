@@ -11,9 +11,6 @@ FoxtrickCurrencyConverter = {
 	LATEST_CHANGE : "Conversion rates fixed",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-    init : function() {
-    },
-
     run : function(page, doc) {
 	if ( doc.location.href.search(/Forum/i) != -1 ) return;                
     //if ( doc.location.href.search(/Forum/i) != -1 || doc.location.href.search(/\/Club\/ClassicYouth\/Default\.aspx/i) != -1 ) return;                

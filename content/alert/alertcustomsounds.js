@@ -45,9 +45,5 @@ var FoxtrickAlertCustomSounds = {
 			this.OPTION_TEXTS_DEFAULT_VALUES[6] = "http://foxtrick.foundationhorizont.org/alertsounds/MailToMe.mp3"; // MailToMe
 			this.OPTION_TEXTS_DEFAULT_VALUES[7] = "http://foxtrick.foundationhorizont.org/alertsounds/MyHTMessages.mp3"; // MyHTMessages
 		}       
-    },
-
-    run : function( page, doc ) {    		
-	},
-	
+    }
 };

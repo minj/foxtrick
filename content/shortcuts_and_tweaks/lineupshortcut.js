@@ -14,10 +14,6 @@ FoxtrickLineupShortcut = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
  	OPTIONS : new Array("HighlightPlayer"),
 
-    
-	init : function() {	
-    },
-
     run : function(page, doc) {
 
         switch ( page ) {
