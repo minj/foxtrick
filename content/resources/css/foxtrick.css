@@ -116,3 +116,7 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	height: 16px;
 	overflow: hidden;
 }
+
+.ft-last-login-diff {
+	margin-left: 10px;
+}
