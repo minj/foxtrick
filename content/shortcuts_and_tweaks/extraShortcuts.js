@@ -45,7 +45,8 @@ var FoxtrickExtraShortcuts = {
 			}
 			
 			
-			if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")) {
+			if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")
+				&& Foxtrick.isSupporter(doc)) {
                     var link = doc.createElement('a');                
                     link.className = 'ft_extra-shortcuts';
                     link.href = "../../World/Stats/";
