@@ -389,8 +389,8 @@ var FoxtrickTeamPopupLinks = {
 				var td8 = doc.createElement("td");
 				td8.setAttribute("nowrap", "nowrap");
 				var a8 = doc.createElement("a");
-				if (userid) a8.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+teamid+'&ft_popuplink=true');
-				else if (userid) a8.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_achievements=true'+'&ft_popuplink=true');
+				if (teamid && userid) a8.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+teamid+'&ft_popuplink=true');
+				else if (teamid==null) a8.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_achievements=true'+'&ft_popuplink=true');
 				else a8.setAttribute('href', '/Club/Manager/?teamId='+teamid+'&redir_to_achievements=true'+'&ft_popuplink=true');
 				a8.setAttribute('target', FoxtrickTeamPopupLinks.Target);
 				a8.appendChild(doc.createTextNode(Foxtrickl10n.getString('Achievements')));
