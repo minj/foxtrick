@@ -389,8 +389,8 @@ var FoxtrickTeamPopupLinks = {
 				var td8 = doc.createElement("td");
 				td8.setAttribute("nowrap", "nowrap");
 				var a8 = doc.createElement("a");
-				if (teamid && userid) a8.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+teamid+'&ft_popuplink=true');
-				else if (teamid==null) a8.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_achievements=true'+'&ft_popuplink=true');
+				if (userid) a8.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+teamid+'&ft_popuplink=true');
+				else if (userid) a8.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_achievements=true'+'&ft_popuplink=true');
 				else a8.setAttribute('href', '/Club/Manager/?teamId='+teamid+'&redir_to_achievements=true'+'&ft_popuplink=true');
 				a8.setAttribute('target', FoxtrickTeamPopupLinks.Target);
 				a8.appendChild(doc.createTextNode(Foxtrickl10n.getString('Achievements')));
@@ -604,7 +604,7 @@ var FoxtrickTeamPopupLinks = {
 			if (owntopteamlinks) top = -40;
 
 			var div = doc.createElement("div");
-			div.setAttribute('class', 'mainBox myht2');
+			div.className = "myht2";
 
 			var mainBody = doc.getElementById('mainBody');
 
@@ -628,7 +628,7 @@ var FoxtrickTeamPopupLinks = {
 			div.setAttribute('style','top:'+top+'px;'+'left:'+left+'px; z-index:10000;');
 			div.appendChild(tbl);
 
-			if (org_link.parentNode.lastChild.className=='mainBox myht2')
+			if (org_link.parentNode.lastChild.className == "myht2")
 				org_link.parentNode.removeChild(org_link.parentNode.lastChild);
 			org_link.parentNode.appendChild(div);
 			org_link.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
