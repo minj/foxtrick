@@ -5,7 +5,7 @@
 
 .ft-match-player-home, .ft-match-player-away,
 .ft-match-player-mine, .ft-match-player-unknown {
-	padding: 0 2px;
+	padding: 0 2px !important;
 }
 
 .ft-match-player-home {
