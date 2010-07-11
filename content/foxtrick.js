@@ -1554,7 +1554,7 @@ TimeDifferenceToText = function(time_sec, short) {
 		if (print_W != 0 && print_S != '') print_S += '&nbsp;';
 		if (print_W == 0) {print_W = '';} else {print_W = '<b>' + print_W + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks");}
 		if (print_D != 0) print_W += '&nbsp;';
-		if (print_D == 0) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");}
+		if (print_D == 0 && (print_S != 0 || print_W != 0)) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");}
 
 		// Foxtrick.dump(' SWD OPT[' + display_option + ']: ' + print_S + '/' + print_W + '/' + print_D + '\n');
 		return print_S + print_W + print_D;
