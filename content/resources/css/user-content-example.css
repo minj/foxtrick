@@ -71,6 +71,57 @@
 }
 
 
+/* Module MatchReportFormat */
+
+.ft-match-report-team-home, .ft-match-report-team-away, .ft-match-report-team-mine {
+	font-weight: bold;
+}
+
+/* link or text of home team */
+.ft-match-report-team-home {
+	color: #9f0202 !important;
+}
+
+/* link or text of away team */
+.ft-match-report-team-away {
+	color: #16029f !important;
+}
+
+/* link or text of my team */
+.ft-match-report-team-mine {
+	color: #55f !important;
+}
+
+/* normal events, involving players */
+.ft-match-report-event-normal {
+	background-color: #f5f5f5;
+}
+
+/* special events, including line-ups and half time break */
+.ft-match-report-event-special {
+	background-color: #e0e0e0;
+}
+
+/* goal scored by my team */
+.ft-match-report-goal-mine {
+	background-color: #e3e9ff;
+	border: 1px royalblue solid;
+	-moz-border-radius: 5px;
+}
+
+/* goal scored by home team */
+.ft-match-report-goal-home {
+	background-color: #ffe8e8;
+	border: 1px yellow solid;
+}
+
+/* goal scored by away team */
+.ft-match-report-goal-away {
+	background-color: #e0efe0;
+	border: 1px pink solid;
+}
+
+
 /* Module MatchPlayerOrdering */
 
 /* general styles for team names on the sidebar */
