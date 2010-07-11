@@ -41,3 +41,10 @@
 .ft-match-report-goal-away {
 	background-color: #e0efe0;
 }
+
+/* scoreboard, the "a" must be specified here to remove the underline */
+a.ft-match-report-scoreboard {
+	color: black !important;
+	text-decoration: none;
+	white-space: nowrap;
+}
