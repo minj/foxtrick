@@ -112,11 +112,13 @@ FoxtrickMatchPlayerColouring = {
 				}
 			}
 
-			// names is a hash mapping player names to teams
+			// lastNames is a hash mapping player last names to teams
+			// fullNames is a hash mapping player full names to teams
 			// ids is a hash mapping player IDs to teams
-			// keys are player names and IDs respectively
+			// keys are player last/full names and IDs respectively
 			// values could be "home", "away", or "unknown"
-			var names = {};
+			var lastNames = {};
+			var fullNames = {};
 			var ids = {};
 
 			var addPlayer = function(key, side, type) {
@@ -140,7 +142,7 @@ FoxtrickMatchPlayerColouring = {
 				}
 				for (var k = 0; k < squad.length; ++k) {
 					if (squad[k] !== "") {
-						addPlayer(squad[k], team, names);
+						addPlayer(squad[k], team, lastNames);
 					}
 				}
 			}
@@ -157,21 +159,21 @@ FoxtrickMatchPlayerColouring = {
 						hgoals = hg;
 						if (as.length != 0) {
 							addPlayer(as[0].href.match(/PlayerId=(\d+)/i)[1], "home", ids);
-							addPlayer(as[0].textContent, "home", names);
+							addPlayer(as[0].textContent, "home", fullNames);
 						}
 						else {
 							// sometimes the link may not be linked
-							addPlayer(spans[i + 1].textContent, "home", names);
+							addPlayer(spans[i + 1].textContent, "home", fullNames);
 						}
 					}
 					else {
 						// away goal
 						if (as.length != 0) {
 							addPlayer(as[0].href.match(/PlayerId=(\d+)/i)[1], "away", ids);
-							addPlayer(as[0].textContent, "away", names);
+							addPlayer(as[0].textContent, "away", fullNames);
 						}
 						else {
-							addPlayer(spans[i + 1].textContent, "away", names);
+							addPlayer(spans[i + 1].textContent, "away", fullNames);
 						}
 					}
 				}
@@ -180,61 +182,62 @@ FoxtrickMatchPlayerColouring = {
 				var span_img = spans[i].getElementsByTagName("img");
 				for (var j=0; j<span_img.length; j++) {
 					if (span_img[j].src.search(/sub_out/)!=-1) {
-						try {
-							// stores in/out players' name/id respectively
-							var inName = "", inId = 0;
-							var outName = "", outId = 0;
+						// stores in/out players' name/id respectively
+						var inName = "", inId = 0;
+						var outName = "", outId = 0;
 
-							var span_a = span_img[j].parentNode.childNodes;
-							for (var k=1;k<span_a.length;++k) {
-								if (!outName) {
-									if (span_a[k].nodeType == Node.TEXT_NODE && span_a[k].textContent.length>2) {
-										// unlinked
-										outName = span_a[k].textContent;
-										k+=2;
-									}
-									else if (span_a[k].nodeName=='A') {
-										outName = span_a[k].textContent;
-										outId = span_a[k].href.match(/PlayerId=(\d+)/i)[1];
-										k+=2;
-									}
+						var span_a = span_img[j].parentNode.childNodes;
+						for (var k=1;k<span_a.length;++k) {
+							if (!outName) {
+								if (span_a[k].nodeType == Node.TEXT_NODE && span_a[k].textContent.length>2) {
+									// unlinked
+									outName = span_a[k].textContent;
+									k+=2;
 								}
-								else if (!inName) {
-									if (span_a[k].nodeType == Node.TEXT_NODE && span_a[k].textContent.length>2) {
-										inName = span_a[k].textContent;
-										break;
-									}
-									else if (span_a[k].nodeName=='A') {
-										inName = span_a[k].textContent;
-										inId = span_a[k].href.match(/PlayerId=(\d+)/i)[1]
-										break;
-									}
+								else if (span_a[k].nodeName=='A') {
+									outName = span_a[k].textContent;
+									outId = span_a[k].href.match(/PlayerId=(\d+)/i)[1];
+									k+=2;
 								}
 							}
-							Foxtrick.dump("Player in: " + inName + " (" + inId + "), "
-								+ "player out: " + outName + " (" + outId + ").\n");
-
-							// search which team the out player is in
-							var foundId = false;
-							for (var k in ids) {
-								if (outId === k) {
-									addPlayer(inId, ids[k], ids);
-									addPlayer(inName, ids[k], names);
-									foundId = true;
+							else if (!inName) {
+								if (span_a[k].nodeType == Node.TEXT_NODE && span_a[k].textContent.length>2) {
+									inName = span_a[k].textContent;
+									break;
+								}
+								else if (span_a[k].nodeName=='A') {
+									inName = span_a[k].textContent;
+									inId = span_a[k].href.match(/PlayerId=(\d+)/i)[1]
 									break;
 								}
 							}
-							if (!foundId) {
-								for (var k in names) {
-									if (outName.indexOf(k) !== -1) {
-										addPlayer(inName, names[k], names);
-										addPlayer(inId, names[k], ids);
+						}
+
+						// search which team the out player is in
+						var foundId = false;
+						for (var k in ids) {
+							if (outId === k) {
+								addPlayer(inId, ids[k], ids);
+								addPlayer(inName, ids[k], fullNames);
+								foundId = true;
+								break;
+							}
+						}
+						if (!foundId) {
+							// if ID is not found, check full name
+							// and last name
+							if (fullNames[outName] !== undefined) {
+								addPlayer(inName, fullNames[k], fullNames);
+								addPlayer(inId, fullNames[k], ids);
+							}
+							else {
+								for (var k in lastNames) {
+									if (this.isLastName(k, outName)) {
+										addPlayer(inName, lastNames[k], fullNames);
+										addPlayer(inId, lastNames[k], ids);
 									}
 								}
 							}
-						}
-						catch(e) {
-							Foxtrick.dump('FoxtrickMatchPlayerColouring => Substitution=> ' + e+'\n');
 						}
 					}
 				}
@@ -250,39 +253,28 @@ FoxtrickMatchPlayerColouring = {
 
 					var id = links[i].href.match(/PlayerId=(\d+)/i)[1];
 					var fullName = links[i].textContent.replace(/^\s+/, "");
-					var lastName = fullName;
-					var b = fullName.indexOf(" ");
-					var l = fullName.length;
-					if (b >= 0) {
-						lastName = fullName.substr(b+1,l-b+1);
-					}
 
 					// if ID matches, surely it's the answer we want
 					var isHome = (ids[id] === "home");
 					var isAway = (ids[id] === "away");
-					// otherwise, look up the names
+					// otherwise, look up the fullNames
 					if (!isHome && !isAway) {
-						var fullNameInHome = false, fullNameInAway = false;
-						var lastNameInHome = false, lastNameInAway = false;
-						for (var j in names) {
-							if (fullName.indexOf(j) !== -1) {
-								if (names[j] === "home")
-									fullNameInHome = true;
-								else if (names[j] === "away")
-									fullNameInAway = true;
-
-								if (lastName.indexOf(j) !== -1) {
-									if (names[j] === "home")
+						isHome = (fullNames[fullName] === "home");
+						isAway = (fullNames[fullName] === "away");
+						if (!isHome && !isAway) {
+							// and then, look up lastNames
+							var lastNameInHome = false, lastNameInAway = false;
+							for (var j in lastNames) {
+								if (this.isLastName(j, fullName)) {
+									if (lastNames[j] === "home")
 										lastNameInHome = true;
-									else if (names[j] === "away")
+									else if (lastNames[j] === "away")
 										lastNameInAway = true;
 								}
 							}
+							isHome = (lastNameInHome > lastNameInAway);
+							isAway = (lastNameInHome < lastNameInAway);
 						}
-						var homeWeight = fullNameInHome * 2 + lastNameInHome;
-						var awayWeight = fullNameInAway * 2 + lastNameInAway;
-						isHome = (homeWeight > awayWeight);
-						isAway = (homeWeight < awayWeight);
 					}
 
 					// we adjust the image's position if it's in highlights
@@ -347,6 +339,18 @@ FoxtrickMatchPlayerColouring = {
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
+		}
+	},
+
+	isLastName : function(last, full) {
+		try {
+			var ret = (full.lastIndexOf(last) > -1)
+				&& (full.lastIndexOf(last) + last.length === full.length);
+			return ret;
+		}
+		catch (e) {
+			// throw the error away
+			return false;
 		}
 	},
 
