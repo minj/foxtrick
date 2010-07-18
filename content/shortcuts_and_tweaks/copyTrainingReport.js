@@ -117,8 +117,10 @@ var FoxtrickCopyTrainingReport = {
 				noteArea.appendChild(note);
 			}
 		}
-	if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) 
-		Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/',false); 
+		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
+			var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
+			Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/',false); 
+		}
 	}
 };
 
@@ -249,9 +251,11 @@ var FoxtrickCopyScoutReport = {
 				var noteArea = Foxtrick.Note.getNoteArea(note);
 				noteArea.appendChild(note);
 
-				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyScoutReport, "OpenHTYpage")) 
-					if (!rejectreport) Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/',false); 
-					else Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/site/player_myrejects_add/',true);
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
+					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
+					if (!rejectreport) Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/',false); 
+					else Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_myrejects_add/',true);
+				}
 		}
 	} catch(e) {Foxtrick.dump('copyreport '+e+'\n');}
 	}
@@ -340,8 +344,10 @@ var FoxtrickCopyPlayerSource = {
 		var noteArea = Foxtrick.Note.getNoteArea(doc);
 		noteArea.appendChild(note);
 
-		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPlayerSource, "OpenHTYpage")) 
-			Foxtrick.openAndReuseOneTabPerURL('http://www.hattrick-youthclub.org/site/player_cp_add',true); 
+		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
+					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
+					Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_cp_add',true); 
+		}
 	},
 	
 	fixbr : function(text) {
