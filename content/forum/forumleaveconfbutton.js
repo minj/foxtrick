@@ -127,7 +127,7 @@ var FoxtrickAddLeaveConfButton = {
             folderHeader.insertBefore( leaveConf, markAsReadButton);
         } 
         catch(e) {
-            Foxtrick.dump( ' => AddLeaveConfButton addButton ' + e + '\n');
+            Foxtrick.dumpError(e);
         }
 	}
 };
