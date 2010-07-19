@@ -1601,11 +1601,20 @@ stats["hattrick-youthclub"] =  {
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
-		"allowlink" : function(filterparams, stattype) {           
-            if (filterparams["teamid"] != filterparams["ownteamid"]) {
-                return false;
-            } else {
+        "playedyouthmatchlink" : { "path"       : "site/redirect/type/lineup/ht_id/",
+                         "filters"    : [], 
+                         "params"     : {"matchid" : "", "teamid":"ftfilter_teamid", "teamid2":"ftfilter_teamid2", "ownteamid":"ftfilter_ownteamid"}
+                       },
+					   
+		"allowlink" : function(filterparams, stattype) {
+			Foxtrick.dump(filterparams["ownyouthteamid"]+' '+filterparams["teamid"]+' '+filterparams["teamid"]+'\n')
+            if (filterparams["teamid"] === filterparams["ownteamid"] || 
+				(filterparams["ownyouthteamid"] !== null && 
+						(filterparams["teamid"] === filterparams["ownyouthteamid"] 
+					  || filterparams["teamid2"] === filterparams["ownyouthteamid"]) ) ) {
                 return true;
+            } else {
+                return false;
             }
         },
         "title" : "Hattrick Youthclub",

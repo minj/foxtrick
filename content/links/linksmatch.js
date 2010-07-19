@@ -28,6 +28,12 @@ var FoxtrickLinksMatch = {
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")==null);
 		//Foxtrick.dump('isarchivedmatch:'+isarchivedmatch+'\n');
+		var ownteamid = FoxtrickHelper.getOwnTeamId();
+		var owncountryid = FoxtrickHelper.getOwnCountryId();					
+		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
+		var ownyouthteamid = FoxtrickHelper.getOwnYouthTeamId();
+	
 		if (isarchivedmatch) {
 			var sidediv = doc.getElementById("sidebar");
 			teamid = FoxtrickHelper.findTeamId(sidediv);
@@ -42,7 +48,7 @@ var FoxtrickLinksMatch = {
 		var add_links=false;
 		//addExternalLinksToPlayedMatch
 		if (isarchivedmatch) {
-			if (youthmatch) {links = Foxtrick.LinkCollection.getLinks("playedyouthmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
+			if (youthmatch) {links = Foxtrick.LinkCollection.getLinks("playedyouthmatchlink", { "ownyouthteamid":ownyouthteamid, "matchid": matchid, "teamid" : teamid,"teamid2":teamid2, 'server':server}, doc, this); }
 			else {links = Foxtrick.LinkCollection.getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
 			if (links.length>0) add_links = true;
 		}    
