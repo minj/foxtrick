@@ -13,11 +13,11 @@ var FoxtrickForumThreadAutoIgnore = {
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Auto ignore of forum topics with user selected tags",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	tagmarkers: [['\\[','\\]'],['{','}']], // any more known?
-	tags: ['NT','U20','Stammtisch','cup'], // to be user set 
-	//OPTIONS : ["Tags"],
-	//OPTION_TEXTS : true,
-	//OPTION_TEXTS_DEFAULT_VALUES : [""],
+	tagmarkers : [['\\[','\\]'],['{','}']], // any more known?
+	tags : null,
+	whitelist : null,
+	OPTIONS : ["Tags","Whitelist_ThreadIDs"],
+	OPTION_TEXTS : true,
 	
     run : function( page, doc ) {
 		this.checkthreads(doc);
@@ -25,6 +25,30 @@ var FoxtrickForumThreadAutoIgnore = {
 		
     checkthreads : function( doc ) {
 		try {
+			if (!Foxtrick.isModuleFeatureEnabled(this,'Tags')) return;
+			var tags_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Tags_text");
+			if (!tags_string) return;
+			
+			// get tags. comma seperated in the prefs 
+			this.tags = tags_string.split(',');
+			for (var i=0; i<this.tags.length; ++i) {
+				this.tags[i] = this.tags[i].replace(/^\s+/,''); // leading space removed
+				this.tags[i] = this.tags[i].replace(/\s+$/,''); // trailing space removed
+			}
+
+			// get whitelisted threadIDs. comma seperated in the prefs 
+			if (Foxtrick.isModuleFeatureEnabled(this,'Whitelist_ThreadIDs')) {
+				var whitelist_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Whitelist_ThreadIDs_text");
+				if (whitelist_string) {
+					this.whitelist = whitelist_string.split(',');
+					for (var i=0; i<this.whitelist.length; ++i) {
+						this.whitelist[i] = this.whitelist[i].replace(/^\s+/,''); // leading space removed
+						this.whitelist[i] = this.whitelist[i].replace(/\s+$/,''); // trailing space removed
+						 Foxtrick.dump(this.whitelist[i]+'\n');
+					}
+				}
+			}
+			
 			var myForums = doc.getElementById('myForums');
 			var threadItems = myForums.getElementsByClassName('threadItem');
 			for (var i=0; i<threadItems.length; ++i) {
@@ -36,6 +60,22 @@ var FoxtrickForumThreadAutoIgnore = {
 						if (a.innerHTML.search(reg)!=-1) {
 							var ignore = threadItems[i].getElementsByClassName('ignore')[0];
 							if ( ignore ) {
+								// check whitelist
+								var whitelisted = false;
+								if (whitelist_string) {
+									var thread_id = a.href.match(/\/Forum\/Read.aspx\?t=(\d+)/)[1];
+									Foxtrick.dump(thread_id+'\n');
+									for (var l=0; l<this.whitelist.length; ++l){ 
+										Foxtrick.dump(l+'-'+thread_id+' : '+this.whitelist[l]+'\n');
+										if (this.whitelist[l]==thread_id) {
+											whitelisted = true;
+											continue;
+										}
+									}
+								}
+								if (whitelisted) continue;
+								
+								// ignore thread
 								var func = ignore.getAttribute('onclick');
 								doc.location.href = func;
 								Foxtrick.dump('autoignore '+this.tags[k]+': '+a.innerHTML+'\n');
