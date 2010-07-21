@@ -1589,7 +1589,7 @@ stats["hattrick-youthclub"] =  {
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
-       "youthplayerdetaillink" : { "path"       : "site/redirect/type/player_details/ht_id/",
+       "youthplayerdetaillink" : { "path"       : "redirect/type/player_details/ht_id/",
                          "filters"    : [], 
                          "params"     : {"playerid" : "", "teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
@@ -1601,7 +1601,7 @@ stats["hattrick-youthclub"] =  {
                          "filters"    : [], 
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
-        "playedyouthmatchlink" : { "path"       : "site/redirect/type/lineup/ht_id/",
+        "playedyouthmatchlink" : { "path"       : "redirect/type/lineup/ht_id/",
                          "filters"    : [], 
                          "params"     : {"matchid" : "", "teamid":"ftfilter_teamid", "teamid2":"ftfilter_teamid2", "ownteamid":"ftfilter_ownteamid"}
                        },
