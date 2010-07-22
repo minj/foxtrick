@@ -1,7 +1,7 @@
 /**
  * ForumThreadAutoIgnore.js
  * Foxtrick Leave Conference module
- * @author larsw84
+ * @author convincedd
  */
 
 var FoxtrickForumThreadAutoIgnore = {
@@ -13,16 +13,18 @@ var FoxtrickForumThreadAutoIgnore = {
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Auto ignore of forum topics with user selected tags",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	OPTIONS : ["Tags","Whitelist_ThreadIDs"],
+	OPTION_TEXTS : true,
 	tagmarkers : [['\\[','\\]'],['{','}']], // any more known?
 	tags : null,
 	whitelist : null,
-	OPTIONS : ["Tags","Whitelist_ThreadIDs"],
-	OPTION_TEXTS : true,
+
 	
     run : function( page, doc ) {
 		this.checkthreads(doc);
 	},
-		
+
+	
     checkthreads : function( doc ) {
 		try {
 			if (!Foxtrick.isModuleFeatureEnabled(this,'Tags')) return;
@@ -58,15 +60,14 @@ var FoxtrickForumThreadAutoIgnore = {
 					for (var k=0; k<this.tags.length; ++k){
 						var reg = new RegExp(this.tagmarkers[j][0] + this.tags[k] + this.tagmarkers[j][1], "i");
 						if (a.innerHTML.search(reg)!=-1) {
+							// only autoignore if there is ht's ignore option
 							var ignore = threadItems[i].getElementsByClassName('ignore')[0];
 							if ( ignore ) {
 								// check whitelist
 								var whitelisted = false;
 								if (whitelist_string) {
 									var thread_id = a.href.match(/\/Forum\/Read.aspx\?t=(\d+)/)[1];
-									Foxtrick.dump(thread_id+'\n');
 									for (var l=0; l<this.whitelist.length; ++l){ 
-										Foxtrick.dump(l+'-'+thread_id+' : '+this.whitelist[l]+'\n');
 										if (this.whitelist[l]==thread_id) {
 											whitelisted = true;
 											continue;
@@ -75,10 +76,12 @@ var FoxtrickForumThreadAutoIgnore = {
 								}
 								if (whitelisted) continue;
 								
-								// ignore thread
+								// ignore thread using ht's javascript link
 								var func = ignore.getAttribute('onclick');
 								doc.location.href = func;
 								Foxtrick.dump('autoignore '+this.tags[k]+': '+a.innerHTML+'\n');
+								
+								// only one at a time. recheck after page has changed
 								return;
 							}
 						}
@@ -91,7 +94,8 @@ var FoxtrickForumThreadAutoIgnore = {
 	},
 	
 	change : function( page, doc ) {
-		var forumprogress = doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_uppMain');
+		// after the reload alert is gone recheck for more threads
+		var forumprogress = doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_uppMain');		
 		if (forumprogress.getAttribute('style').search(/display: none;/)!=-1) {
 			this.checkthreads(doc);
 		}
