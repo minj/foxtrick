@@ -273,3 +273,5 @@ pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenGabblyPopup.enable
 pref("extensions.foxtrick.prefs.module.LargeFlags.enabled", false);
 pref("extensions.foxtrick.prefs.module.SmallerPages.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
+pref("extensions.foxtrick.prefs.table_separator", ' ');
+

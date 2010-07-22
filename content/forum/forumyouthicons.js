@@ -18,7 +18,7 @@
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',
-
+	
     run : function( page, doc ) {
     try {
         Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
@@ -242,13 +242,47 @@
                 toolbar.insertBefore( newimage,target );
             }
             if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "table")) {
-                var newimage = doc.createElement( "img" );
+				var span = doc.createElement("span");
+				span.setAttribute('class', 'myht1');
+
+				var newimage = doc.createElement( "img" );
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._table , false );
-                newimage.setAttribute( "class", "ft_table");
+                newimage.setAttribute('separator',FoxtrickPrefs.getString("table_separator"));
+				newimage.setAttribute('id','ft_table_button_id');
+				newimage.setAttribute( "class", "ft_table");
                 newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/format_table.png') !important;");
-                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.table");
-                toolbar.insertBefore( newimage,target );
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.table")+'"'+FoxtrickPrefs.getString("table_separator")+'"';
+                span.appendChild(newimage);
+				
+				var possibleSeparetors=[' ', ',', ';', '|'];
+				var left = 20;
+				var top = 0; if (Foxtrick.isStandardLayout(doc)) top = 0;
+				
+				var tbl = doc.createElement("table");
+				tbl.setAttribute("cell-padding", "2");
+				tbl.setAttribute("cell-spacing", "0");
+				for (var i=0; i<possibleSeparetors.length; ++i) { 
+					var tr1 = doc.createElement("tr");
+					tr1.setAttribute("height", "20");
+					var td1 = doc.createElement("td");
+					var a1 = doc.createElement("a");
+					a1.setAttribute('href', 'javascript:void();');
+					a1.addEventListener( "click", this._table , false );
+					a1.setAttribute('separator', possibleSeparetors[i]);
+					a1.appendChild(doc.createTextNode(Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator')+'"'+possibleSeparetors[i]+'"'));
+					td1.appendChild(a1);
+					tr1.appendChild(td1);
+					tbl.appendChild(tr1);
+					top = top - 20;
+				}
+				var div = doc.createElement("div");
+				div.className = "myht2";
+				div.setAttribute('style','top:'+top+'px;'+'left:'+left+'px; z-index:10000;white-space:nowrap');
+				div.appendChild(tbl);							
+				span.appendChild(div);
+			
+				toolbar.insertBefore( span,target );
             }
             
             
@@ -468,7 +502,12 @@
     },
 
     _table : function ( ev ) {
-        var doc = ev.target.ownerDocument;
+		var doc = ev.target.ownerDocument;
+
+        FoxtrickPrefs.setString("table_separator", ev.target.getAttribute('separator'));
+        doc.getElementById('ft_table_button_id').setAttribute('separator',ev.target.getAttribute('separator'));
+		doc.getElementById('ft_table_button_id').title = Foxtrickl10n.getString("ForumSpecialBBCode.table")+'"'+FoxtrickPrefs.getString("table_separator")+'"';
+                 		
         var mbox = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
         if ( mbox != null )FoxtrickForumYouthIcons.clickHandler(mbox, "[table][tr][td]ttt[/td][/tr][/table]", null, "ttt", null, doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen'), 3900)
         if ( doc.getElementById('ctl00_CPMain_ucEditorMain_txtBody') != null ) FoxtrickForumYouthIcons.clickHandler(doc.getElementById('ctl00_CPMain_ucEditorMain_txtBody'), "[table][tr][td]ttt[/td][/tr][/table]", null, "ttt", null,doc.getElementById('ctl00_CPMain_ucEditorMain_txtRemLen'), 1000)
@@ -495,12 +534,32 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 			
 			// table
 			if (replaceText == 'ttt'){
-             			newText = newText.replace(/ +/g,'[/td][td]');
+						var myReg = new RegExp( FoxtrickPrefs.getString("table_separator")+'+','g');
+             			newText = newText.replace(myReg,'[/td][td]');
 						newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
+						
+						var rows = newText.split('[/tr]');
+						var max_cells = 0;
+						for (var i=0; i<rows.length-1; ++i) {
+							max_cells =  Math.max(max_cells, rows[i].split('[/td]').length-1);
+						}
+						for (var i=0; i<rows.length-1; ++i) {
+							var missing_col = max_cells - (rows[i].split('[/td]').length-1);
+							if ( missing_col !==0 ) {
+								var last_td = rows[i].lastIndexOf('[td');
+								rows[i] = rows[i].substring(0,last_td+3)+' colspan='+String(missing_col+1)+rows[i].substr(last_td+3);
+							}
+						}
+						newText='';
+						for (var i=0; i<rows.length-1; ++i) {
+							newText += rows[i]+'[/tr]'
+						}
+						newText += '[/table]';
+						
 						// some formating
 						newText = newText.replace(/table\]/g,'table]\n');
 						newText = newText.replace(/\/tr\]/g,'/tr]\n');
-						newText = newText.replace(/\[td\]/g,' [td]');
+						newText = newText.replace(/\[td/g,' [td');
 						newText = newText.replace(/\[\/td\]/g,'[/td] ');
 			}
 
