@@ -600,7 +600,7 @@ var FoxtrickTeamPopupLinks = {
 					tbl.appendChild(tr7);
 					top = top - 20;
 			}
-			if (!Foxtrick.isStandardLayout(doc))  top += 18;
+			if (!Foxtrick.isStandardLayout(doc))  top += 20;
 			if (owntopteamlinks) top = -40;
 
 			var div = doc.createElement("div");
