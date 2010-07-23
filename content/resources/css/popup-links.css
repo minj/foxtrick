@@ -1,34 +1,40 @@
 span.myht1 {
 	position: relative;
 }
-div.myht2 {
+ul.ft-popup-list {
 	display: none;
-}
-span.myht1:hover div.myht2 {
-	display: inline;
 	position: absolute;
-	background-color: #FFFFFF;
-	border: solid 1px #267F30;
+	background-color: #ffffff;
+	border: solid 1px #267f30;
 	padding: 0px;
-	z-index: 999;
+	z-index: 10000;
 }
-div.playerInfo {
-	overflow: visible !important;
+span.myht1:hover ul.ft-popup-list {
+	display: block;
 }
-span.myht1 table>tr>td>a {
+ul.ft-popup-list > li {
+	white-space: nowrap;
+	height: 20px;
+	padding: 0px 2px !important;
+}
+ul.ft-popup-list > li > a,  ul.ft-popup-list > li > span {
+	text-align: left;
+	vertical-align: middle;
+	cursor: pointer;
+	display: block !important;
 	font-weight: normal !important;
 	text-decoration: underline !important;
 	color: #3f7137 !important;
 }
-span.myht1:hover table>tr:hover {
-	background-color: #C3E7C7 !important;
+ul.ft-popup-list > li:hover {
+	background-color: #c3e7c7 !important;
 }
-div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature {
+#ticker div ul.ft-popup-list, div.message span.myht1:hover ul.ft-popup-list, div.signature-trunc span.myht1:hover ul.ft-popup-list {
+	display: none;
+}
+div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature, div.playerInfo {
 	overflow: visible !important;
 }
 div.message {
 	overflow:auto;
-}
-#ticker div div.myht2, div.message span.myht1:hover div.myht2, div.signature-trunc span.myht1:hover div.myht2 {
-	display: none;
 }

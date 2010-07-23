@@ -158,9 +158,6 @@ var FoxtrickTeamPopupLinks = {
 		span.appendChild(aLink);
 	},
 
-
-
-
 	popupshow : function(evt) {
 		try {
 			var org_link = evt.target;
@@ -169,7 +166,7 @@ var FoxtrickTeamPopupLinks = {
 				//Foxtrick.dump(org_link.org_link+'\n');
 				org_link.removeEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);
 				if (org_link.getAttribute('more')=='true') show_more=true;
-				org_link = org_link.parentNode.parentNode.parentNode.parentNode.previousSibling;
+				org_link = org_link.parentNode.parentNode.previousSibling;
 			}
 			var doc = evt.target.ownerDocument;
 			if (org_link.style==null) org_link.setAttribute('style','display:inline');
@@ -209,28 +206,23 @@ var FoxtrickTeamPopupLinks = {
 
 			var owntopteamlinks = (org_link.parentNode.parentNode.tagName == "DIV" && org_link.parentNode.parentNode.id == "teamLinks");
 
-			var tbl = doc.createElement("table");
-			tbl.setAttribute("cell-padding", "2");
-			tbl.setAttribute("cell-spacing", "0");
+			var list = doc.createElement("ul");
+			list.className = "ft-popup-list";
 
 			if (userlink
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTeam) || (show_more && FoxtrickTeamPopupLinksMore.bTeam))) {
-				var tr1 = doc.createElement("tr");
-				tr1.setAttribute("height", "20");
-				var td1 = doc.createElement("td");
-				var a1 = doc.createElement("a");
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
 				if (teamid==null) {
-					a1.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_team=true'+'&ft_popuplink=true');
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_team=true'+'&ft_popuplink=true';
 				}
 				else {
-					a1.setAttribute('href', '/Club/?TeamID='+teamid+'&ft_popuplink=true');
+					link.href = '/Club/?TeamID='+teamid+'&ft_popuplink=true';
 				}
-				a1.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString('Team')));
-				a1.innerHTML= a1.innerHTML.replace(/ /g,'&nbsp;');
-				td1.appendChild(a1);
-				tr1.appendChild(td1);
-				tbl.appendChild(tr1);
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Team');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 			if (teamname!=null) {
@@ -240,299 +232,274 @@ var FoxtrickTeamPopupLinks = {
 
 			if ((!owntopteamlinks && !userlink)
 				&& ((!show_more && FoxtrickTeamPopupLinks.bManager) || (show_more && FoxtrickTeamPopupLinksMore.bManager))) {
-				var tr1 = doc.createElement("tr");
-				tr1.setAttribute("height", "20");
-				var td1 = doc.createElement("td");
-				var a1 = doc.createElement("a");
-				a1.setAttribute('href', '/Club/Manager/?teamId='+teamid+'&ft_popuplink=true');
-				a1.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString('Manager')));
-				a1.innerHTML= a1.innerHTML.replace(/ /g,'&nbsp;');
-				td1.appendChild(a1);
-				tr1.appendChild(td1);
-				tbl.appendChild(tr1);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				link.href = '/Club/Manager/?teamId='+teamid+'&ft_popuplink=true';
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Manager');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTeamAtAlltid) || (show_more && FoxtrickTeamPopupLinksMore.bTeamAtAlltid))) {
-				var tr1 = doc.createElement("tr");
-				tr1.setAttribute("height", "20");
-				var td1 = doc.createElement("td");
-				var a1 = doc.createElement("a");
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
 				if (teamid==null) {
-					a1.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_team_at_alltid=true'+'&ft_popuplink=true');
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_team_at_alltid=true'+'&ft_popuplink=true';
 				}
 				else {
-					a1.setAttribute('href', 'http://alltid.org/team/'+teamid+'&ft_popuplink=true');
+					link.href = 'http://alltid.org/team/'+teamid+'&ft_popuplink=true';
 				}
-				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString('TeamAtAlltid')));
-				a1.innerHTML = a1.innerHTML.replace(/ /g,'&nbsp;');
-				a1.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				td1.appendChild(a1);
-				tr1.appendChild(td1);
-				tbl.appendChild(tr1);
+				link.textContent = Foxtrickl10n.getString('TeamAtAlltid');
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (owntopteamlinks
 				|| ((!show_more && FoxtrickTeamPopupLinks.bMatches) || (show_more && FoxtrickTeamPopupLinksMore.bMatches))) {
-				var tr1 = doc.createElement("tr");
-				tr1.setAttribute("height", "20");
-				var td1 = doc.createElement("td");
-				var a1 = doc.createElement("a");
-				if (teamid==null) a1.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_matches=true'+'&ft_popuplink=true');
-				else a1.setAttribute('href', '/Club/Matches/?TeamID=' + teamid+'&ft_popuplink=true');
-				a1.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a1.appendChild(doc.createTextNode(Foxtrickl10n.getString('Matches')));
-				a1.innerHTML= a1.innerHTML.replace(/ /g,'&nbsp;');
-				td1.appendChild(a1);
-				tr1.appendChild(td1);
-				tbl.appendChild(tr1);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_matches=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Matches/?TeamID=' + teamid+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Matches');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (owntopteamlinks
 				|| ((!show_more && FoxtrickTeamPopupLinks.bPlayers) || (show_more && FoxtrickTeamPopupLinksMore.bPlayers))) {
-				var tr2 = doc.createElement("tr");
-				tr2.setAttribute("height", "20");
-				var td2 = doc.createElement("td");
-				var a2 = doc.createElement("a");
-				if (teamid==null) a2.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_players=true'+'&ft_popuplink=true');
-				else a2.setAttribute('href', '/Club/Players/?TeamID=' + teamid+'&ft_popuplink=true');
-				a2.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a2.appendChild(doc.createTextNode(Foxtrickl10n.getString('Players')));
-				a2.innerHTML= a2.innerHTML.replace(/ /g,'&nbsp;');
-				td2.appendChild(a2);
-				tr2.appendChild(td2);
-				tbl.appendChild(tr2);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_players=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Players/?TeamID=' + teamid+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Players');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bLast5IPs) || (show_more && FoxtrickTeamPopupLinksMore.bLast5IPs))) {
-				var tr3 = doc.createElement("tr");
-				tr3.setAttribute("height", "20");
-				var td3 = doc.createElement("td");
-				td3.setAttribute("nowrap", "nowrap");
-				var a3 = doc.createElement("a");
-				if (teamid==null) a3.setAttribute('href', '/Club/Manager/?userId=' + userid+'&ShowOldConnections=true'+'&ft_popuplink=true');
-				else a3.setAttribute('href', '/Club/Manager/?teamId=' + teamid+'&ShowOldConnections=true'+'&ft_popuplink=true');
-				a3.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a3.appendChild(doc.createTextNode(Foxtrickl10n.getString('last_5_ips')));
-				a3.innerHTML= a3.innerHTML.replace(/ /g,'&nbsp;');
-				td3.appendChild(a3);
-				tr3.appendChild(td3);
-				tbl.appendChild(tr3);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId=' + userid+'&ShowOldConnections=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Manager/?teamId=' + teamid+'&ShowOldConnections=true'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('last_5_ips');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bGuestbook) || (show_more && FoxtrickTeamPopupLinksMore.bGuestbook))) {
-				var tr4 = doc.createElement("tr");
-				tr4.setAttribute("height", "20");
-				var td4 = doc.createElement("td");
-				td4.setAttribute("nowrap", "nowrap");
-				var a4 = doc.createElement("a");
-				if (teamid==null) a4.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_guestbook=true'+'&ft_popuplink=true');
-				else a4.setAttribute('href', '/Club/Manager/Guestbook.aspx?teamid=' + teamid+'&ft_popuplink=true');
-				a4.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a4.appendChild(doc.createTextNode(Foxtrickl10n.getString('Guestbook')));
-				a4.innerHTML= a4.innerHTML.replace(/ /g,'&nbsp;');
-				td4.appendChild(a4);
-				tr4.appendChild(td4);
-				tbl.appendChild(tr4);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_guestbook=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Manager/Guestbook.aspx?teamid=' + teamid+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Guestbook');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bMessage) || (show_more && FoxtrickTeamPopupLinksMore.bMessage))) {
-				var tr9 = doc.createElement("tr");
-				tr9.setAttribute("height", "20");
-				var td9 = doc.createElement("td");
-				td9.setAttribute("nowrap", "nowrap");
-				var a9 = doc.createElement("a");
-				if (username!='') a9.setAttribute('href', '/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username);
-				//if (teamid==null) a9.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_sendmessage=true'+'&ft_popuplink=true');
-				else a9.setAttribute('href', '/Club/?TeamID='+teamid+'&redir_to_mail=true'+'&ft_popuplink=true');
-				a9.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a9.appendChild(doc.createTextNode(Foxtrickl10n.getString('SendMessage')));
-				a9.innerHTML= a9.innerHTML.replace(/ /g,'&nbsp;');
-				td9.appendChild(a9);
-				tr9.appendChild(td9);
-				tbl.appendChild(tr9);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (username!='') {
+					link.href = '/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username;
+				}
+				else {
+					link.href = '/Club/?TeamID='+teamid+'&redir_to_mail=true'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('SendMessage');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bChallenge) || (show_more && FoxtrickTeamPopupLinksMore.bChallenge))) {
-				var tr6 = doc.createElement("tr");
-				tr6.setAttribute("height", "20");
-				var td6 = doc.createElement("td");
-				td6.setAttribute("nowrap", "nowrap");
-				var a6 = doc.createElement("a");
-				if (teamid==null) a6.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_challenge=true'+'&ft_popuplink=true');
-				else a6.setAttribute('href', '/Club/Challenges/?TeamID='+teamid+'&challenge=true'+'&ft_popuplink=true');
-				a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a6.appendChild(doc.createTextNode(Foxtrickl10n.getString('Challenge')));
-				a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
-				td6.appendChild(a6);
-				tr6.appendChild(td6);
-				tbl.appendChild(tr6);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_challenge=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Challenges/?TeamID='+teamid+'&challenge=true'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Challenge');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bAchievements) || (show_more && FoxtrickTeamPopupLinksMore.bAchievements))) {
-				var tr8 = doc.createElement("tr");
-				tr8.setAttribute("height", "20");
-				var td8 = doc.createElement("td");
-				td8.setAttribute("nowrap", "nowrap");
-				var a8 = doc.createElement("a");
-				if (teamid && userid) a8.setAttribute('href', '/Club/Achievements/?userID='+userid+'&teamid='+teamid+'&ft_popuplink=true');
-				else if (teamid==null) a8.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_achievements=true'+'&ft_popuplink=true');
-				else a8.setAttribute('href', '/Club/Manager/?teamId='+teamid+'&redir_to_achievements=true'+'&ft_popuplink=true');
-				a8.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a8.appendChild(doc.createTextNode(Foxtrickl10n.getString('Achievements')));
-				a8.innerHTML= a8.innerHTML.replace(/ /g,'&nbsp;');
-				td8.appendChild(a8);
-				tr8.appendChild(td8);
-				tbl.appendChild(tr8);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid && userid) {
+					link.href = '/Club/Achievements/?userID='+userid+'&teamid='+teamid+'&ft_popuplink=true';
+				}
+				else if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_achievements=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Manager/?teamId='+teamid+'&redir_to_achievements=true'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Achievements');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bCoach) || (show_more && FoxtrickTeamPopupLinksMore.bCoach))) {
-				var tr5 = doc.createElement("tr");
-				tr5.setAttribute("height", "20");
-				var td5 = doc.createElement("td");
-				td5.setAttribute("nowrap", "nowrap");
-				var a5 = doc.createElement("a");
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
 				if (teamid==null) {
-					a5.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_coach=true'+'&ft_popuplink=true');
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_coach=true'+'&ft_popuplink=true';
+				}
+				else if (teamid!=FoxtrickTeamPopupLinks.ownteamid) {
+					link.href = '/Club/Players/?TeamID='+teamid+'&redir_to_coach=true'+'&ft_popuplink=true';
 				}
 				else {
-					if (teamid!=FoxtrickTeamPopupLinks.ownteamid) {
-						a5.setAttribute('href', '/Club/Players/?TeamID='+teamid+'&redir_to_coach=true'+'&ft_popuplink=true');
-					}
-					else {
-						a5.setAttribute('href', '/Club/Training/?redir_to_coach=true'+'&ft_popuplink=true');
-					}
+					link.href = '/Club/Training/?redir_to_coach=true'+'&ft_popuplink=true';
 				}
-				a5.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a5.appendChild(doc.createTextNode(Foxtrickl10n.getString('Coach')));
-				a5.innerHTML= a5.innerHTML.replace(/ /g,'&nbsp;');
-				td5.appendChild(a5);
-				tr5.appendChild(td5);
-				tbl.appendChild(tr5);
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('Coach');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTransferHistory) || (show_more && FoxtrickTeamPopupLinksMore.bTransferHistory))) {
-				var tr7 = doc.createElement("tr");
-				tr7.setAttribute("height", "20");
-				var td7 = doc.createElement("td");
-				td7.setAttribute("nowrap", "nowrap");
-				var a7 = doc.createElement("a");
-				if (teamid==null) a7.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_transferhistory=true'+'&ft_popuplink=true');
-				else a7.setAttribute('href', '/Club/Transfers/transfersTeam.aspx?teamId=' + teamid+'&ft_popuplink=true');
-				a7.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a7.appendChild(doc.createTextNode(Foxtrickl10n.getString('TransferHistory')));
-				a7.innerHTML= a7.innerHTML.replace(/ /g,'&nbsp;');
-				td7.appendChild(a7);
-				tr7.appendChild(td7);
-				tbl.appendChild(tr7);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_transferhistory=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Transfers/transfersTeam.aspx?teamId=' + teamid+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('TransferHistory');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTeamHistory) || (show_more && FoxtrickTeamPopupLinksMore.bTeamHistory))) {
-				var tr7 = doc.createElement("tr");
-				tr7.setAttribute("height", "20");
-				var td7 = doc.createElement("td");
-				td7.setAttribute("nowrap", "nowrap");
-				var a7 = doc.createElement("a");
-				if (teamid==null) a7.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_teamhistory=true'+'&ft_popuplink=true');
-				else a7.setAttribute('href', '/Club/History/?teamId=' + teamid+'&ft_popuplink=true');
-				a7.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a7.appendChild(doc.createTextNode(Foxtrickl10n.getString('TeamHistory')));
-				a7.innerHTML= a7.innerHTML.replace(/ /g,'&nbsp;');
-				td7.appendChild(a7);
-				tr7.appendChild(td7);
-				tbl.appendChild(tr7);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_teamhistory=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/History/?teamId=' + teamid+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('TeamHistory');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bLastLineup) || (show_more && FoxtrickTeamPopupLinksMore.bLastLineup))) {
-				var tr6 = doc.createElement("tr");
-				tr6.setAttribute("height", "20");
-				var td6 = doc.createElement("td");
-				td6.setAttribute("nowrap", "nowrap");
-				var a6 = doc.createElement("a");
-				if (teamid==null) a6.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_lastlineup=true'+'&ft_popuplink=true');
-				else a6.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True'+'&ft_popuplink=true');
-				a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a6.appendChild(doc.createTextNode(Foxtrickl10n.getString('LastLineup')));
-				a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
-				td6.appendChild(a6);
-				tr6.appendChild(td6);
-				tbl.appendChild(tr6);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_lastlineup=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('LastLineup');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bNextMatch) || (show_more && FoxtrickTeamPopupLinksMore.bNextMatch))) {
-				var tr6 = doc.createElement("tr");
-				tr6.setAttribute("height", "20");
-				var td6 = doc.createElement("td");
-				td6.setAttribute("nowrap", "nowrap");
-				var a6 = doc.createElement("a");
-				if (teamid==null) a6.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_nextmatch=true'+'&ft_popuplink=true');
-				else a6.setAttribute('href', '/Club/Matches/?TeamID='+teamid+'&redir_to_nextmatch=true'+'&ft_popuplink=true');
-				a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a6.appendChild(doc.createTextNode(Foxtrickl10n.getString('NextMatch')));
-				a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
-				td6.appendChild(a6);
-				tr6.appendChild(td6);
-				tbl.appendChild(tr6);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_nextmatch=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Matches/?TeamID='+teamid+'&redir_to_nextmatch=true'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('NextMatch');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bAddNextMatch) || (show_more && FoxtrickTeamPopupLinksMore.bAddNextMatch))) {
-				var tr6 = doc.createElement("tr");
-				tr6.setAttribute("height", "20");
-				var td6 = doc.createElement("td");
-				td6.setAttribute("nowrap", "nowrap");
-				var a6 = doc.createElement("a");
-				if (teamid==null) a6.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_addnextmatch=true'+'&ft_popuplink=true');
-				else a6.setAttribute('href', '/Club/Matches/?TeamID='+teamid+'&redir_to_addnextmatch=true'+'&ft_popuplink=true');
-				a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a6.appendChild(doc.createTextNode(Foxtrickl10n.getString('AddNextMatch')));
-				a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
-				td6.appendChild(a6);
-				tr6.appendChild(td6);
-				tbl.appendChild(tr6);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_addnextmatch=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Matches/?TeamID='+teamid+'&redir_to_addnextmatch=true'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('AddNextMatch');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bYouthMatches) || (show_more && FoxtrickTeamPopupLinksMore.bYouthMatches))) {
-				var tr6 = doc.createElement("tr");
-				tr6.setAttribute("height", "20");
-				var td6 = doc.createElement("td");
-				td6.setAttribute("nowrap", "nowrap");
-				var a6 = doc.createElement("a");
-				if (teamid==null) a6.setAttribute('href', '/Club/Manager/?userId='+userid+'&redir_to_youthmatches=true'+'&ft_popuplink=true');
-				else a6.setAttribute('href', '/Club/Matches/?TeamID='+teamid+'&redir_to_youthmatches=true'+'&ft_popuplink=true');
-				a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-				a6.appendChild(doc.createTextNode(Foxtrickl10n.getString('YouthMatches')));
-				a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
-				td6.appendChild(a6);
-				tr6.appendChild(td6);
-				tbl.appendChild(tr6);
+				var item = doc.createElement("li");
+				var link = doc.createElement("a");
+				if (teamid==null) {
+					link.href = '/Club/Manager/?userId='+userid+'&redir_to_youthmatches=true'+'&ft_popuplink=true';
+				}
+				else {
+					link.href = '/Club/Matches/?TeamID='+teamid+'&redir_to_youthmatches=true'+'&ft_popuplink=true';
+				}
+				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
+				link.textContent = Foxtrickl10n.getString('YouthMatches');
+				item.appendChild(link);
+				list.appendChild(item);
 				top = top - 20;
 			}
 
@@ -544,10 +511,7 @@ var FoxtrickTeamPopupLinks = {
 				var i=0,ownlink;
 				while (ownlink=ownlinks[i++]) {
 					ownlink+='</a>';
-					var tr6 = doc.createElement("tr");
-					tr6.setAttribute("height", "20");
-					var td6 = doc.createElement("td");
-					td6.setAttribute("nowrap", "nowrap");
+					var item = doc.createElement("li");
 					var redir_to_custom = false;
 					var a6inner = ownlink;
 					if (a6inner.search(/\[teamid\]/) != -1) {
@@ -560,51 +524,40 @@ var FoxtrickTeamPopupLinks = {
 					}
 
 					if (redir_to_custom) {
-						td6.innerHTML = a6inner;
-						var a6 = td6.getElementsByTagName('a')[0];
+						item.innerHTML = a6inner;
+						var a6 = item.getElementsByTagName('a')[0];
 						if (teamid==null) a6.href = '/Club/Manager/?userId='+userid+'&redir_to_custom=true'+'&'+a6.href;
 						else a6.href = '/Club/Manager/?teamId='+teamid+'&redir_to_custom=true'+'&'+a6.href;
 						a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-						a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
 					}
 					else {
-						td6.innerHTML = a6inner;
-						var a6 =td6.getElementsByTagName('a')[0];
+						item.innerHTML = a6inner;
+						var a6 = item.getElementsByTagName('a')[0];
 						a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
-						a6.innerHTML= a6.innerHTML.replace(/ /g,'&nbsp;');
 					}
-					tr6.appendChild(td6);
-					tbl.appendChild(tr6);
+					list.appendChild(item);
 					top = top - 20;
 				}
 			}
 
 			if (!owntopteamlinks && FoxtrickTeamPopupLinks.bMore) {
-					var tr7 = doc.createElement("tr");
-					tr7.setAttribute("height", "20");
-					var td7 = doc.createElement("td");
-					td7.setAttribute("nowrap", "nowrap");
-					var a7 = doc.createElement("a");
-					a7.setAttribute('href', 'javascript:void();');
-					if(!show_more) {
-						a7.setAttribute('more', 'true');
-						a7.appendChild(doc.createTextNode(Foxtrickl10n.getString('more')));
+					var item = doc.createElement("li");
+					var link = doc.createElement("span");
+					if (!show_more) {
+						link.setAttribute('more', 'true');
+						link.textContent = Foxtrickl10n.getString('more');
 					}
 					else {
-						a7.setAttribute('more', 'false');
-						a7.appendChild(doc.createTextNode(Foxtrickl10n.getString('less')));
+						link.setAttribute('more', 'false');
+						link.textContent = Foxtrickl10n.getString('less');
 					}
-					a7.addEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);
-					td7.appendChild(a7);
-					tr7.appendChild(td7);
-					tbl.appendChild(tr7);
+					link.addEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);
+					item.appendChild(link);
+					list.appendChild(item);
 					top = top - 20;
 			}
-			if (!Foxtrick.isStandardLayout(doc))  top += 20;
+			if (!Foxtrick.isStandardLayout(doc)) top += 20;
 			if (owntopteamlinks) top = -40;
-
-			var div = doc.createElement("div");
-			div.className = "myht2";
 
 			var mainBody = doc.getElementById('mainBody');
 
@@ -613,24 +566,23 @@ var FoxtrickTeamPopupLinks = {
 				var pT = Foxtrick.GetElementPosition(org_link,mainBody)['top'] - mainBody.scrollTop;
 				if (pT < mainBody.offsetHeight/2) {// = popdown
 					top = -10;
-					var more=tbl.removeChild(tbl.lastChild);
-					tbl.insertBefore(more,tbl.firstChild);
+					var more = list.removeChild(list.lastChild);
+					list.insertBefore(more, list.firstChild);
 				}
 			}
 			if (!owntopteamlinks && ismatchpreview) {
 				top = -10;
 				if (Foxtrick.isStandardLayout(doc)) top=10;
-				var more=tbl.removeChild(tbl.lastChild);
-				tbl.insertBefore(more,tbl.firstChild);
+				var more = list.removeChild(list.lastChild);
+				list.insertBefore(more, list.firstChild);
 			}
 
+			list.style.top = top + "px";
+			list.style.left = left + "px";
 
-			div.setAttribute('style','top:'+top+'px;'+'left:'+left+'px; z-index:10000;');
-			div.appendChild(tbl);
-
-			if (org_link.parentNode.lastChild.className == "myht2")
+			if (org_link.parentNode.lastChild.className == "ft-popup-list")
 				org_link.parentNode.removeChild(org_link.parentNode.lastChild);
-			org_link.parentNode.appendChild(div);
+			org_link.parentNode.appendChild(list);
 			org_link.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
 		}
 		catch (e) {
