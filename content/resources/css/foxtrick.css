@@ -120,3 +120,34 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 .ft-last-login-diff {
 	margin-left: 10px;
 }
+
+/* drop down lists that are displayed when hovering */
+span.ft-drop-down-span {
+	position: relative;
+	padding-right: 5px;
+	background: url(../img/drop-down.png) right center no-repeat;
+}
+ul.ft-drop-down {
+	background-color: #eee;
+	border: solid 1px #aaa;
+	border-bottom: 0px; /* use the border provided by the last item */
+	display: none;
+	position: absolute;
+	left: 0px;
+}
+span:hover ul.ft-drop-down {
+	display: block;
+}
+ul.ft-drop-down li {
+	white-space: nowrap;
+	padding: 2px 0px !important;
+	border-bottom: solid 1px #aaa;
+}
+ul.ft-drop-down li:hover {
+	background-color: #d0d0d0;
+}
+ul.ft-drop-down li a, ul.ft-drop-down span {
+	text-decoration: none;
+	display: block;
+	cursor: pointer;
+}

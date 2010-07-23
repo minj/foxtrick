@@ -243,9 +243,9 @@
             }
             if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "table")) {
 				var span = doc.createElement("span");
-				span.setAttribute('class', 'myht1');
+				span.className = "ft-drop-down-span";
 
-				var newimage = doc.createElement( "img" );
+				var newimage = doc.createElement("img");
                 newimage.src = "/Img/Icons/transparent.gif";
                 newimage.addEventListener( "click", this._table , false );
                 newimage.setAttribute('separator',FoxtrickPrefs.getString("table_separator"));
@@ -254,38 +254,23 @@
                 newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/format_table.png') !important;");
                 newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.table")+'"'+FoxtrickPrefs.getString("table_separator")+'"';
                 span.appendChild(newimage);
-				
+
 				var possibleSeparetors=[' ', ',', ';', '|'];
-				var left = 20;
-				var top = 0; if (Foxtrick.isStandardLayout(doc)) top = 0;
-				
-				var tbl = doc.createElement("table");
-				tbl.setAttribute("cell-padding", "2");
-				tbl.setAttribute("cell-spacing", "0");
+
+				var list = doc.createElement("ul");
+				list.className = "ft-drop-down";
 				for (var i=0; i<possibleSeparetors.length; ++i) { 
-					var tr1 = doc.createElement("tr");
-					tr1.setAttribute("height", "20");
-					var td1 = doc.createElement("td");
-					var a1 = doc.createElement("a");
-					a1.setAttribute('href', 'javascript:void();');
-					a1.addEventListener( "click", this._table , false );
-					a1.setAttribute('separator', possibleSeparetors[i]);
-					a1.appendChild(doc.createTextNode(Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator')+'"'+possibleSeparetors[i]+'"'));
-					td1.appendChild(a1);
-					tr1.appendChild(td1);
-					tbl.appendChild(tr1);
-					top = top - 20;
+					var item = doc.createElement("li");
+					var link = doc.createElement("span");
+					link.addEventListener("click", this._table, false);
+					link.setAttribute('separator', possibleSeparetors[i]);
+					link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator') + '"' + possibleSeparetors[i] + '"';
+					item.appendChild(link);
+					list.appendChild(item);
 				}
-				var div = doc.createElement("div");
-				div.className = "myht2";
-				div.setAttribute('style','top:'+top+'px;'+'left:'+left+'px; z-index:10000;white-space:nowrap');
-				div.appendChild(tbl);							
-				span.appendChild(div);
-			
-				toolbar.insertBefore( span,target );
+				span.appendChild(list);
+				toolbar.insertBefore(span,target);
             }
-            
-            
         }
 
         var toolbar_label = doc.createElement( "div" );
