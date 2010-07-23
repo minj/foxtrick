@@ -79,11 +79,10 @@ var FoxtrickCopyPosting = {
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"), 
-	NEW_AFTER_VERSION: "0.5.1.3",	
-	LATEST_CHANGE:"Copy ht-ml style",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	NEW_AFTER_VERSION: "0.5.2.1",	
+	LATEST_CHANGE:"Styles as popup",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
-	RADIO_OPTIONS : new Array("CopyUnformatted","CopyWikiStyle","CopyHT-MLQuoted")
 };
 
 //**********************************************************

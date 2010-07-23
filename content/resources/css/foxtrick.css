@@ -127,6 +127,12 @@ span.ft-drop-down-span {
 	padding-right: 5px;
 	background: url(../img/pop-up.png) right center no-repeat;
 }
+
+span.ft-drop-right-span {
+	position: relative;
+	/*padding-right: 5px;
+	background: url(../img/pop-up.png) right center no-repeat;*/
+}
 div.ft-drop-down {
 	background-color: #eee;
 	border: solid 1px #aaa;
