@@ -257,17 +257,22 @@
 
 				var possibleSeparetors=[' ', ',', ';', '|'];
 
-				var list = doc.createElement("ul");
+				var top = 12; if (Foxtrick.isStandardLayout(doc)) top = 12;
+				var list = doc.createElement("div");
 				list.className = "ft-drop-down";
 				for (var i=0; i<possibleSeparetors.length; ++i) { 
-					var item = doc.createElement("li");
+					var item = doc.createElement("div");
 					var link = doc.createElement("span");
 					link.addEventListener("click", this._table, false);
 					link.setAttribute('separator', possibleSeparetors[i]);
 					link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator').replace(/%s/, possibleSeparetors[i]);
 					item.appendChild(link);
 					list.appendChild(item);
+					top = top - 20;
 				}
+				list.style.top = top + "px";
+				list.style.left = "22px";
+			
 				span.appendChild(list);
 				toolbar.insertBefore(span,target);
             }

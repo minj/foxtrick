@@ -206,12 +206,13 @@ var FoxtrickTeamPopupLinks = {
 
 			var owntopteamlinks = (org_link.parentNode.parentNode.tagName == "DIV" && org_link.parentNode.parentNode.id == "teamLinks");
 
-			var list = doc.createElement("ul");
+			var list = doc.createElement("div");
 			list.className = "ft-popup-list";
 
 			if (userlink
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTeam) || (show_more && FoxtrickTeamPopupLinksMore.bTeam))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_team=true'+'&ft_popuplink=true';
@@ -232,7 +233,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if ((!owntopteamlinks && !userlink)
 				&& ((!show_more && FoxtrickTeamPopupLinks.bManager) || (show_more && FoxtrickTeamPopupLinksMore.bManager))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				link.href = '/Club/Manager/?teamId='+teamid+'&ft_popuplink=true';
 				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
@@ -244,7 +246,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTeamAtAlltid) || (show_more && FoxtrickTeamPopupLinksMore.bTeamAtAlltid))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_team_at_alltid=true'+'&ft_popuplink=true';
@@ -261,7 +264,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (owntopteamlinks
 				|| ((!show_more && FoxtrickTeamPopupLinks.bMatches) || (show_more && FoxtrickTeamPopupLinksMore.bMatches))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_matches=true'+'&ft_popuplink=true';
@@ -278,7 +282,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (owntopteamlinks
 				|| ((!show_more && FoxtrickTeamPopupLinks.bPlayers) || (show_more && FoxtrickTeamPopupLinksMore.bPlayers))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_players=true'+'&ft_popuplink=true';
@@ -295,7 +300,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bLast5IPs) || (show_more && FoxtrickTeamPopupLinksMore.bLast5IPs))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId=' + userid+'&ShowOldConnections=true'+'&ft_popuplink=true';
@@ -312,7 +318,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bGuestbook) || (show_more && FoxtrickTeamPopupLinksMore.bGuestbook))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_guestbook=true'+'&ft_popuplink=true';
@@ -329,7 +336,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bMessage) || (show_more && FoxtrickTeamPopupLinksMore.bMessage))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (username!='') {
 					link.href = '/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username;
@@ -346,7 +354,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bChallenge) || (show_more && FoxtrickTeamPopupLinksMore.bChallenge))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_challenge=true'+'&ft_popuplink=true';
@@ -363,7 +372,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bAchievements) || (show_more && FoxtrickTeamPopupLinksMore.bAchievements))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid && userid) {
 					link.href = '/Club/Achievements/?userID='+userid+'&teamid='+teamid+'&ft_popuplink=true';
@@ -383,7 +393,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bCoach) || (show_more && FoxtrickTeamPopupLinksMore.bCoach))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_coach=true'+'&ft_popuplink=true';
@@ -403,7 +414,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTransferHistory) || (show_more && FoxtrickTeamPopupLinksMore.bTransferHistory))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_transferhistory=true'+'&ft_popuplink=true';
@@ -420,7 +432,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bTeamHistory) || (show_more && FoxtrickTeamPopupLinksMore.bTeamHistory))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_teamhistory=true'+'&ft_popuplink=true';
@@ -437,7 +450,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bLastLineup) || (show_more && FoxtrickTeamPopupLinksMore.bLastLineup))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_lastlineup=true'+'&ft_popuplink=true';
@@ -454,7 +468,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bNextMatch) || (show_more && FoxtrickTeamPopupLinksMore.bNextMatch))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_nextmatch=true'+'&ft_popuplink=true';
@@ -471,7 +486,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bAddNextMatch) || (show_more && FoxtrickTeamPopupLinksMore.bAddNextMatch))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_addnextmatch=true'+'&ft_popuplink=true';
@@ -488,7 +504,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!owntopteamlinks
 				&& ((!show_more && FoxtrickTeamPopupLinks.bYouthMatches) || (show_more && FoxtrickTeamPopupLinksMore.bYouthMatches))) {
-				var item = doc.createElement("li");
+				var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 				var link = doc.createElement("a");
 				if (teamid==null) {
 					link.href = '/Club/Manager/?userId='+userid+'&redir_to_youthmatches=true'+'&ft_popuplink=true';
@@ -511,7 +528,8 @@ var FoxtrickTeamPopupLinks = {
 				var i=0,ownlink;
 				while (ownlink=ownlinks[i++]) {
 					ownlink+='</a>';
-					var item = doc.createElement("li");
+					var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 					var redir_to_custom = false;
 					var a6inner = ownlink;
 					if (a6inner.search(/\[teamid\]/) != -1) {
@@ -541,7 +559,8 @@ var FoxtrickTeamPopupLinks = {
 			}
 
 			if (!owntopteamlinks && FoxtrickTeamPopupLinks.bMore) {
-					var item = doc.createElement("li");
+					var item = doc.createElement("div");
+				item.className='ft-popup-list-item';
 					var link = doc.createElement("span");
 					if (!show_more) {
 						link.setAttribute('more', 'true');
