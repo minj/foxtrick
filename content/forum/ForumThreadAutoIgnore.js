@@ -46,7 +46,7 @@ var FoxtrickForumThreadAutoIgnore = {
 					for (var i=0; i<this.whitelist.length; ++i) {
 						this.whitelist[i] = this.whitelist[i].replace(/^\s+/,''); // leading space removed
 						this.whitelist[i] = this.whitelist[i].replace(/\s+$/,''); // trailing space removed
-						 Foxtrick.dump(this.whitelist[i]+'\n');
+						 //Foxtrick.dump(this.whitelist[i]+'\n');
 					}
 				}
 			}

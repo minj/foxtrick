@@ -488,8 +488,7 @@
 
     _table : function ( ev ) {
 		var doc = ev.target.ownerDocument;
-
-        FoxtrickPrefs.setString("table_separator", ev.target.getAttribute('separator'));
+		FoxtrickPrefs.setString("table_separator", ev.target.getAttribute('separator'));
         doc.getElementById('ft_table_button_id').setAttribute('separator',ev.target.getAttribute('separator'));
 		doc.getElementById('ft_table_button_id').title = Foxtrickl10n.getString("ForumSpecialBBCode.table")+'"'+FoxtrickPrefs.getString("table_separator")+'"';
                  		
@@ -540,6 +539,7 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 							newText += rows[i]+'[/tr]'
 						}
 						newText += '[/table]';
+						if (s.selectionLength===0) newText='[table][tr][td]cell1[/td][td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
 						
 						// some formating
 						newText = newText.replace(/table\]/g,'table]\n');
@@ -582,8 +582,8 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
                         ta.selectionEnd = ta.selectionStart + 3;
                     } 
 					if (replaceText == 'ttt' && s.selectionLength === 0){
-                        ta.selectionStart = s.selectionStart + 15;
-                        ta.selectionEnd = ta.selectionStart + 15;
+                        ta.selectionStart = s.selectionStart + 17;
+                        ta.selectionEnd = ta.selectionStart + 5;
                     } 
                 }
 
