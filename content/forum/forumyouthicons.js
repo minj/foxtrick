@@ -252,7 +252,7 @@
 				newimage.setAttribute('id','ft_table_button_id');
 				newimage.setAttribute( "class", "ft_table");
                 newimage.setAttribute("style", "margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/format_table.png') !important;");
-                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.table")+'"'+FoxtrickPrefs.getString("table_separator")+'"';
+                newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode.table").replace(/%s/, FoxtrickPrefs.getString("table_separator"));
                 span.appendChild(newimage);
 
 				var possibleSeparetors=[' ', ',', ';', '|'];
@@ -264,7 +264,7 @@
 					var link = doc.createElement("span");
 					link.addEventListener("click", this._table, false);
 					link.setAttribute('separator', possibleSeparetors[i]);
-					link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator') + '"' + possibleSeparetors[i] + '"';
+					link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator').replace(/%s/, possibleSeparetors[i]);
 					item.appendChild(link);
 					list.appendChild(item);
 				}
