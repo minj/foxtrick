@@ -19,6 +19,7 @@ var FoxtrickForumSortTable = {
 	sortNum : false,
 	sortYouthSkill : false,
 	sortAge : false,
+	sortOrdinal : false,
 	sortIndex : -1,			
 				
 	run : function( page, doc ) {
@@ -46,17 +47,19 @@ var FoxtrickForumSortTable = {
 			var index = j;	
 			Foxtrick.dump('index ' + index + '\n');
 			
-			var is_num = true, is_age=true, is_youthskill = true;;
+			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true;
 			for (var i = 1; i < table.rows.length; ++i) {
 		    	var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
 				//Foxtrick.dump( (inner!='')+' '+isNaN(parseFloat(inner))+' '+ parseInt(inner)+'\n');	
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;} 
 		    	if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;} 
 		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;} 
+		    	if (inner.search(/^\d+\.$/)==-1 && inner!='') {is_ordinal=false;} 
 		    }
 			Foxtrick.dump('is_num '+is_num+'\n');
 			Foxtrick.dump('is_youthskill '+is_youthskill+'\n');
 			Foxtrick.dump('is_age '+is_age+'\n');
+			Foxtrick.dump('is_ordinal '+is_ordinal+'\n');
 			
 			// old rows to array
 			var table_old = table.cloneNode(true);
@@ -69,6 +72,7 @@ var FoxtrickForumSortTable = {
 			FoxtrickForumSortTable.sortYouthSkill = is_youthskill;
 			FoxtrickForumSortTable.sortAge = is_age;
 			FoxtrickForumSortTable.sortNum = is_num;
+			FoxtrickForumSortTable.sortOrdinal = is_ordinal;			
 			FoxtrickForumSortTable.sortIndex = index;			
 			
 			// sort them
@@ -124,6 +128,11 @@ var FoxtrickForumSortTable = {
 			aContent = parseInt(aContent[1]) * 1000 + parseInt(aContent[2]) ;			
 			bContent = bContent.match(/^(\d+)\.(\d+)$/);
 			bContent = parseInt(bContent[1]) * 1000 + parseInt(bContent[2]);
+			return aContent - bContent;
+		}
+		else if (FoxtrickForumSortTable.sortOrdinal) {
+			aContent = parseInt(aContent.match(/^(\d+)\.$/)[1]);
+			bContent = parseInt(bContent.match(/^(\d+)\.$/)[1]);
 			return aContent - bContent;
 		}
 		else if (FoxtrickForumSortTable.sortNum) {
