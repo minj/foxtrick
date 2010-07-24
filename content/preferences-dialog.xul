@@ -50,6 +50,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumsearch.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/ForumPresentation.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/ForumThreadAutoIgnore.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumsorttable.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/matches.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/matchPlayerColouring.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/matchReport.js" />
