@@ -41,12 +41,18 @@ var FoxtrickFormatPostingText = {
 	},
 
 	format : function(string) {
-		return string
+		r_string = string
 			.replace(/·/gi, "")
 			.replace(/\n/g, "[FTbr]")
-			.replace(/(\<)(\S)/gi, "<·$2")
-			.replace(/\[pre\](.*?)\[(.*?)\](.*?)\[\/pre\]/gi, "[pre]$1[·$2]$3[/pre]")
-			.replace(/\[FTbr\]/g, "\n");
+			.replace(/(\<)(\S)/gi, "<·$2");
+		
+		var i=0;
+		while (r_string.search(/\[pre\](.*?)\[([^· ].*?)\[\/pre\]/gi)!=-1) {
+			r_string = r_string.replace(/\[pre\](.*?)\[([^· ].*?)\[\/pre\]/gi, "[pre]$1[·$2[/pre]");
+			if (++i > 1000) break;
+		}	
+		r_string = r_string.replace(/\[FTbr\]/g, "\n");
+		return r_string;
 	},
 
 	submitListener : function(ev) {
