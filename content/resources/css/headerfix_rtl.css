@@ -10,7 +10,7 @@ width: 764px;
 padding-right:10px;
 padding-left: 11px;
 background-color: white !important;
-z-index: 9999;
+z-index: 990;
 border-color: #DDDDDD;
 border-style: solid;
 border-width:  0 1px 0 1px;
@@ -89,6 +89,9 @@ margin-top:150px !important;
 #aspnetForm[action*="?TeamID="]:not([action*="Alltid"]) div#mainWrapper>div[class="main mainFull"] {
 margin-right:-135px !important;
 width: 765px !important;}
+
+/*forum search fix*/
+#ctl00_ctl00_CPContent_CPMain_updSearch { z-index:9999 !important;}
 
 
 

@@ -6,7 +6,7 @@
 position: fixed !important;
 top: 0px; 
 width: 949px;
-z-index: 9999;
+z-index: 990;
 }
 
 /* compensate for fixed header, move menu from the edge */
@@ -62,5 +62,10 @@ margin-top:125px !important;
 */
 
 /* --------------- */
+
+
+/*forum search fix*/
+#ctl00_ctl00_CPContent_CPMain_updSearch { z-index:9999 !important;}
+
 
 }
