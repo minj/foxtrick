@@ -20,7 +20,8 @@ var FoxtrickTableSort = {
 	sortYouthSkill : false,
 	sortAge : false,
 	sortOrdinal : false,
-	sortIndex : -1,			
+	sortIndex : -1,	
+	sortDirection: 1,
 				
 	run : function( page, doc ) {
 		try {
@@ -63,24 +64,36 @@ var FoxtrickTableSort = {
 				
 			Foxtrick.dump('index ' + index + '\n');
 			
+			var lastSortIndex = table.getAttribute('lastSortIndex');			
+			if (lastSortIndex==null || lastSortIndex!=index) {
+				FoxtrickTableSort.sortDirection = 1;
+				table.setAttribute('lastSortIndex', index);
+			}else {
+				FoxtrickTableSort.sortDirection = -1;
+				table.removeAttribute('lastSortIndex');
+			}
 			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true;
+			var num_cols = table.rows[1].cells.length;
 			for (var i = 1; i < table.rows.length; ++i) {
-		    	var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
+		    	if (num_cols != table.rows[i].cells.length) break;
+				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
 				//Foxtrick.dump( (inner!='')+' '+isNaN(parseFloat(inner))+' '+ parseInt(inner)+'\n');	
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;} 
 		    	if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;} 
 		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;} 
 		    	if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;} 
 		    }
+			var sort_rows = i;
 			Foxtrick.dump('is_num '+is_num+'\n');
 			Foxtrick.dump('is_youthskill '+is_youthskill+'\n');
 			Foxtrick.dump('is_age '+is_age+'\n');
 			Foxtrick.dump('is_ordinal '+is_ordinal+'\n');
+			Foxtrick.dump('sort_rows: '+sort_rows+'\n');
 			
 			// old rows to array
 			var table_old = table.cloneNode(true);
 			var rows = new Array();
-			for (var i = 1; i < table.rows.length; ++i) {
+			for (var i = 1; i < sort_rows; ++i) {
 				rows.push(table_old.rows[i].cloneNode(true));
 			}
 			
@@ -95,11 +108,11 @@ var FoxtrickTableSort = {
 			rows.sort(FoxtrickTableSort.sortCompare);
 			
 			// put them back
-			for (var i = 1; i < table.rows.length; ++i) {
+			for (var i = 1; i < sort_rows; ++i) {
 				table_old.rows[i].innerHTML = rows[i-1].innerHTML;
 			}
 			table.innerHTML = table_old.innerHTML;
-
+			
 	    	var ths = table.getElementsByTagName("th");  
 			for (var j = 0; j < ths.length; ++j) {
 				Foxtrick.addEventListenerChangeSave(ths[j], "click", FoxtrickTableSort.clickListener, false);
@@ -137,20 +150,20 @@ var FoxtrickTableSort = {
 			aContent = aContent[1] * 18 + aContent[2] * 2 + (a.cells[FoxtrickTableSort.sortIndex].getElementsByTagName('strong').length==0?0:1); 			
 			bContent = bContent.replace('-','0').match(/^(\d)\/(\d)$/);
 			bContent = bContent[1] * 18 + bContent[2] * 2 + (b.cells[FoxtrickTableSort.sortIndex].getElementsByTagName('strong').length==0?0:1); 
-			return bContent - aContent;
+			return FoxtrickTableSort.sortDirection*(bContent - aContent);
 		}
 		else if (FoxtrickTableSort.sortAge) {
 			aContent = aContent.match(/^(\d+)\.(\d+)$/);
 			aContent = parseInt(aContent[1]) * 1000 + parseInt(aContent[2]) ;			
 			bContent = bContent.match(/^(\d+)\.(\d+)$/);
 			bContent = parseInt(bContent[1]) * 1000 + parseInt(bContent[2]);
-			return aContent - bContent;
+			return FoxtrickTableSort.sortDirection*(aContent - bContent);
 		}
 		else if (FoxtrickTableSort.sortOrdinal) {
 			aContent = parseInt(aContent.match(/^(\d+)\./)[1]);
 			bContent = parseInt(bContent.match(/^(\d+)\./)[1]);
 			//Foxtrick.dump(aContent+' '+bContent+'\n')
-			return aContent - bContent;
+			return FoxtrickTableSort.sortDirection*(aContent - bContent);
 		}
 		else if (FoxtrickTableSort.sortNum) {
 			aContent = parseFloat(aContent);
@@ -162,12 +175,12 @@ var FoxtrickTableSort = {
 				return 0;
 			}			
 			else {
-				return bContent - aContent;
+				return FoxtrickTableSort.sortDirection*(bContent - aContent);
 			}
 		}
 		else { // sort string
 			// always sort by ascending order
-			return aContent.localeCompare(bContent);
+			return FoxtrickTableSort.sortDirection*(aContent.localeCompare(bContent));
 		}		
 	},
 
