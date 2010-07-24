@@ -153,6 +153,6 @@ Foxtrick.modules = [
 	FoxtrickYouthSeriesEstimation,	
 	FoxtrickTransferSearchResultFilters,
 	FoxtrickForumThreadAutoIgnore,
-	FoxtrickForumSortTable
+	FoxtrickTableSort
 	//FoxtrickLocalTime
 ];
