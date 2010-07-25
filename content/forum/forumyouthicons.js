@@ -243,7 +243,7 @@
             }
             if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "table")) {
 				var span = doc.createElement("span");
-				span.className = "ft-pop-down-span";
+				span.className = "ft-pop-up-span-icon";
 
 				var newimage = doc.createElement("img");
                 newimage.src = "/Img/Icons/transparent.gif";
@@ -257,21 +257,17 @@
 
 				var possibleSeparetors=[' ', ',', ';', '|'];
 
-				var top = 12; if (Foxtrick.isStandardLayout(doc)) top = 12;
-				var list = doc.createElement("li");
+				var list = doc.createElement("ul");
 				list.className = "ft-pop";
 				for (var i=0; i<possibleSeparetors.length; ++i) { 
-					var item = doc.createElement("ul");
+					var item = doc.createElement("li");
 					var link = doc.createElement("span");
 					link.addEventListener("click", this._table, false);
 					link.setAttribute('separator', possibleSeparetors[i]);
 					link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator').replace(/%s/, possibleSeparetors[i]);
 					item.appendChild(link);
 					list.appendChild(item);
-					top = top - 20;
 				}
-				list.style.top = top + "px";
-				list.style.left = "22px";
 			
 				span.appendChild(list);
 				toolbar.insertBefore(span,target);

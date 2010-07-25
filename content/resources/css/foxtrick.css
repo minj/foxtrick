@@ -122,39 +122,44 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 }
 
 /* pop lists that are displayed when hovering */
-span.ft-pop-down-span {
+span.ft-pop-up-span {
+	position: relative;
+}
+span.ft-pop-up-span-icon {
 	position: relative;
 	padding-right: 5px;
 	background: url(../img/pop-up.png) right center no-repeat;
 }
-
-span.ft-pop-right-span {
-	position: relative;
-	/*padding-right: 5px;
-	background: url(../img/pop-up.png) right center no-repeat;*/
+span.ft-pop-up-span > ul.ft-pop {
+	right:0px;
+	bottom:0px;
 }
-li.ft-pop {
+span.ft-pop-up-span-icon > ul.ft-pop {
+	right:0px;
+	bottom:12px;
+}
+ul.ft-pop {
 	background-color: #eee;
 	border: solid 1px #aaa;
 	border-bottom: 0px; /* use the border provided by the last item */
 	display: none;
 	position: absolute;
-	left: 0px;
 	list-style-type: none;
+	padding: 0px 0px;
 }
-span:hover li.ft-pop {
+span:hover ul.ft-pop {
 	display: block;
 }
-li.ft-pop > ul {
+ul.ft-pop > li {
 	white-space: nowrap;
 	padding: 2px 2px !important;
 	border-bottom: solid 1px #aaa;
 	margin: 0px 0px;
 }
-li.ft-pop > ul:hover {
+ul.ft-pop > li:hover {
 	background-color: #d0d0d0;
 }
-li.ft-pop > ul a, li.ft-pop span {
+ul.ft-pop > li a, ul.ft-pop span {
 	text-decoration: none;
 	display: block;
 	cursor: pointer;
