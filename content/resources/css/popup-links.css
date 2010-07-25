@@ -1,7 +1,7 @@
 span.myht1 {
 	position: relative;
 }
-li.ft-popup-list {
+ul.ft-popup-list {
 	display: none;
 	position: absolute;
 	background-color: #ffffff;
@@ -9,17 +9,28 @@ li.ft-popup-list {
 	padding: 0px;
 	z-index: 10000;
 	list-style-type: none;
+	margin:0px;
+	left:0px;
 }
-span.myht1:hover li.ft-popup-list {
+
+ul.ft-popup-list-up {
+	bottom:12px; /* = text height */
+}
+
+ul.ft-popup-list-down {
+	top:12px; /* = line height */
+}
+
+span.myht1:hover ul.ft-popup-list {
 	display: block;
 }
-li.ft-popup-list > ul {
+ul.ft-popup-list > li {
 	white-space: nowrap;
 	height: 20px;
 	padding: 0px 2px !important;
 	margin: 0px 0px;
 }
-li.ft-popup-list > ul  > a,  li.ft-popup-list > ul > span {
+ul.ft-popup-list > li  > a,  ul.ft-popup-list > li > span {
 	text-align: left;
 	vertical-align: middle;
 	cursor: pointer;
@@ -28,10 +39,10 @@ li.ft-popup-list > ul  > a,  li.ft-popup-list > ul > span {
 	text-decoration: underline !important;
 	color: #3f7137 !important;
 }
-li.ft-popup-list > ul:hover {
+ul.ft-popup-list > li:hover {
 	background-color: #c3e7c7 !important;
 }
-#ticker div li.ft-popup-list, div.message span.myht1:hover li.ft-popup-list, div.signature-trunc span.myht1:hover li.ft-popup-list {
+#ticker div ul.ft-popup-list, div.message span.myht1:hover ul.ft-popup-list, div.signature-trunc span.myht1:hover ul.ft-popup-list {
 	display: none;
 }
 div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature, div.playerInfo {
