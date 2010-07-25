@@ -121,38 +121,40 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	margin-left: 10px;
 }
 
-/* drop down lists that are displayed when hovering */
-span.ft-drop-down-span {
+/* pop lists that are displayed when hovering */
+span.ft-pop-down-span {
 	position: relative;
 	padding-right: 5px;
 	background: url(../img/pop-up.png) right center no-repeat;
 }
 
-span.ft-drop-right-span {
+span.ft-pop-right-span {
 	position: relative;
 	/*padding-right: 5px;
 	background: url(../img/pop-up.png) right center no-repeat;*/
 }
-div.ft-drop-down {
+li.ft-pop {
 	background-color: #eee;
 	border: solid 1px #aaa;
 	border-bottom: 0px; /* use the border provided by the last item */
 	display: none;
 	position: absolute;
 	left: 0px;
+	list-style-type: none;
 }
-span:hover div.ft-drop-down {
+span:hover li.ft-pop {
 	display: block;
 }
-div.ft-drop-down > div {
+li.ft-pop > ul {
 	white-space: nowrap;
-	padding: 2px 0px !important;
+	padding: 2px 2px !important;
 	border-bottom: solid 1px #aaa;
+	margin: 0px 0px;
 }
-div.ft-drop-down > div:hover {
+li.ft-pop > ul:hover {
 	background-color: #d0d0d0;
 }
-div.ft-drop-down > div a, div.ft-drop-down span {
+li.ft-pop > ul a, li.ft-pop span {
 	text-decoration: none;
 	display: block;
 	cursor: pointer;

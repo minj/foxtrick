@@ -1,23 +1,25 @@
 span.myht1 {
 	position: relative;
 }
-div.ft-popup-list {
+li.ft-popup-list {
 	display: none;
 	position: absolute;
 	background-color: #ffffff;
 	border: solid 1px #267f30;
 	padding: 0px;
 	z-index: 10000;
+	list-style-type: none;
 }
-span.myht1:hover div.ft-popup-list {
+span.myht1:hover li.ft-popup-list {
 	display: block;
 }
-div.ft-popup-list > div.ft-popup-list-item {
+li.ft-popup-list > ul {
 	white-space: nowrap;
 	height: 20px;
 	padding: 0px 2px !important;
+	margin: 0px 0px;
 }
-div.ft-popup-list > div.ft-popup-list-item  > a,  div.ft-popup-list > div.ft-popup-list-item > span {
+li.ft-popup-list > ul  > a,  li.ft-popup-list > ul > span {
 	text-align: left;
 	vertical-align: middle;
 	cursor: pointer;
@@ -26,10 +28,10 @@ div.ft-popup-list > div.ft-popup-list-item  > a,  div.ft-popup-list > div.ft-pop
 	text-decoration: underline !important;
 	color: #3f7137 !important;
 }
-div.ft-popup-list > div.ft-popup-list-item:hover {
+li.ft-popup-list > ul:hover {
 	background-color: #c3e7c7 !important;
 }
-#ticker div div.ft-popup-list, div.message span.myht1:hover div.ft-popup-list, div.signature-trunc span.myht1:hover div.ft-popup-list {
+#ticker div li.ft-popup-list, div.message span.myht1:hover li.ft-popup-list, div.signature-trunc span.myht1:hover li.ft-popup-list {
 	display: none;
 }
 div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature, div.playerInfo {

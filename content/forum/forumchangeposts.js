@@ -80,7 +80,7 @@ var FoxtrickForumChangePosts = {
 		img2.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPosting' )+': '+Foxtrickl10n.getString( 'style_'+FoxtrickPrefs.getString("CopyPostingStyle")));
 		
 		var copy_posting_span = doc.createElement("span");
-		copy_posting_span.className = "ft-drop-right-span";
+		copy_posting_span.className = "ft-pop-right-span";
 
 		var copy_posting_link = doc.createElement('a');
 		copy_posting_link.setAttribute('href','javascript:void(0);');
@@ -91,11 +91,11 @@ var FoxtrickForumChangePosts = {
 
 		var possibleStyles=['ht-ml', 'wiki', 'raw'];
 		var top = 30; if (Foxtrick.isStandardLayout(doc)) top = 30;
-		var list = doc.createElement("div");
+		var list = doc.createElement("li");
 		list.setAttribute('style', 'color:black; z-index:9999999;');
-		list.className = "ft-drop-down";
+		list.className = "ft-pop";
 		for (var i=0; i<possibleStyles.length; ++i) { 
-			var item = doc.createElement("div");
+			var item = doc.createElement("ul");
 			var link = doc.createElement("span");
 			link.setAttribute('copy_style', possibleStyles[i]);
 			link.textContent = Foxtrickl10n.getString('style_'+possibleStyles[i]);

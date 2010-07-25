@@ -243,7 +243,7 @@
             }
             if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "table")) {
 				var span = doc.createElement("span");
-				span.className = "ft-drop-down-span";
+				span.className = "ft-pop-down-span";
 
 				var newimage = doc.createElement("img");
                 newimage.src = "/Img/Icons/transparent.gif";
@@ -258,10 +258,10 @@
 				var possibleSeparetors=[' ', ',', ';', '|'];
 
 				var top = 12; if (Foxtrick.isStandardLayout(doc)) top = 12;
-				var list = doc.createElement("div");
-				list.className = "ft-drop-down";
+				var list = doc.createElement("li");
+				list.className = "ft-pop";
 				for (var i=0; i<possibleSeparetors.length; ++i) { 
-					var item = doc.createElement("div");
+					var item = doc.createElement("ul");
 					var link = doc.createElement("span");
 					link.addEventListener("click", this._table, false);
 					link.setAttribute('separator', possibleSeparetors[i]);
