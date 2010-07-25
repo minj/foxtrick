@@ -272,6 +272,7 @@ var FoxtrickSkillTable = {
 				cell.setAttribute("index", Foxtrick.getDateFromText(deadline.textContent).getTime());
 			};
 			var formatNum = function(cell, num) {
+				cell.className = "formatted-num";
 				cell.textContent = Foxtrick.formatNumber(num, " ");
 				cell.setAttribute("index", num);
 			}
@@ -868,6 +869,9 @@ var FoxtrickSkillTable = {
 					var cellContent = this._getNode(cell);
 					if (Foxtrick.hasClass(cell, "maxed")) {
 						cellContent = "[b]" + this._getNode(cell) + "[/b]";
+					}
+					else if (Foxtrick.hasClass(cell, "formatted-num")){
+						cellContent = Foxtrick.trimnum(this._getNode(cell));
 					}
 					ret += "[" + cellName + "]" + cellContent + "[/" + cellName +"]";
 				}
