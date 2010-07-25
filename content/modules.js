@@ -143,7 +143,7 @@ Foxtrick.modules = [
 	FoxtrickCountyList,
 	FoxtrickSmallerPages, // new not finished //after FoxtrickTransferDeadline and probably also after all other player detail adjustment, so keep it in the end
 	FoxtrickHighlightBotTeams,
-	FoxtrickTransferCompareSort,
+	//FoxtrickTransferCompareSort,
 	//FoxtrickTransferSearchResultsSort, //not finished
 	FoxtrickLeagueAndMatchChat,
 	FoxtrickRapidId,
