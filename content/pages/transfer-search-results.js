@@ -14,14 +14,12 @@ Foxtrick.Pages.TransferSearchResults = {
 
 			var player;
 			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
-			for (var i = 0; i < transferTable.rows.length; ) {
+			for (var i = 0; i < transferTable.rows.length-1; ++i ) {
 				player = {};
-
-				// skip sold players
-				if (transferTable.rows[i + 1].cells[0].getElementsByClassName("borderSeparator").length > 0) {
-					i += 2;
-					continue;
-				}
+				
+				// start defined by next row being first of skill rows
+				if (transferTable.rows[i+1].id==null || transferTable.rows[i+1].id.search(/TransferPlayer_r1$/i)==-1) continue;
+				
 				// filter is on?
 				if (transferTable.rows[i].style.display=='none') {
 					i += 8;
