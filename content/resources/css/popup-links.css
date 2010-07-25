@@ -10,7 +10,7 @@ ul.ft-popup-list {
 	z-index: 10000;
 	list-style-type: none;
 	margin:0px;
-	left:0px;
+	left:10px;
 }
 
 ul.ft-popup-list-up {
