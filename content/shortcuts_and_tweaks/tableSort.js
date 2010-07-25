@@ -8,10 +8,10 @@
 var FoxtrickTableSort = {
 
 	MODULE_NAME : "TableSort",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('forumViewThread','all_late'),
     NEW_AFTER_VERSION: "0.5.2.1",
-	LATEST_CHANGE:"Sort option for forum tables",
+	LATEST_CHANGE:"Sort option for some hattrick and forum tables",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	DEFAULT_ENABLED : true,
 	CSS: Foxtrick.ResourcePath + "resources/css/tableSort.css",
@@ -53,16 +53,21 @@ var FoxtrickTableSort = {
 	clickListener : function( ev ) {
 		try {
 			var this_th = ev.target;
-			var index = 0;
 			var table = this_th.parentNode.parentNode.parentNode;
-			for (var j = 0; j < table.rows[0].cells.length; ++j) {
-				if (table.rows[0].cells[j]===this_th) break;
-				var colspan = 1;
-				if (table.rows[0].cells[j].getAttribute('colspan')!=null) colspan = parseInt(table.rows[0].cells[j].getAttribute('colspan'));
-				index += colspan;
+			for (var i = 0; i < table.rows.length; ++i) {
+				var index = 0;
+				var found = false;
+				for (var j = 0; j < table.rows[i].cells.length; ++j) {
+					if (table.rows[i].cells[j]===this_th) { found = true; break; }
+					var colspan = 1;
+					if (table.rows[i].cells[j].getAttribute('colspan')!=null) colspan = parseInt(table.rows[i].cells[j].getAttribute('colspan'));
+					index += colspan;					
+				}
+				if (found) break;
 			}
-				
+			var sort_start = i;
 			Foxtrick.dump('index ' + index + '\n');
+			Foxtrick.dump('sort_start ' + sort_start + '\n');
 			
 			var lastSortIndex = table.getAttribute('lastSortIndex');			
 			if (lastSortIndex==null || lastSortIndex!=index) {
@@ -73,8 +78,8 @@ var FoxtrickTableSort = {
 				table.removeAttribute('lastSortIndex');
 			}
 			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true;
-			var num_cols = table.rows[1].cells.length;
-			for (var i = 1; i < table.rows.length; ++i) {
+			var num_cols = table.rows[sort_start+1].cells.length;
+			for (var i = sort_start+1; i < table.rows.length; ++i) {
 		    	if (num_cols != table.rows[i].cells.length) break;
 				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
 				//Foxtrick.dump( (inner!='')+' '+isNaN(parseFloat(inner))+' '+ parseInt(inner)+'\n');	
@@ -83,17 +88,17 @@ var FoxtrickTableSort = {
 		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;} 
 		    	if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;} 
 		    }
-			var sort_rows = i;
+			var sort_end = i;
+			Foxtrick.dump('sort_end: '+sort_end+'\n');
 			Foxtrick.dump('is_num '+is_num+'\n');
 			Foxtrick.dump('is_youthskill '+is_youthskill+'\n');
 			Foxtrick.dump('is_age '+is_age+'\n');
 			Foxtrick.dump('is_ordinal '+is_ordinal+'\n');
-			Foxtrick.dump('sort_rows: '+sort_rows+'\n');
 			
 			// old rows to array
 			var table_old = table.cloneNode(true);
 			var rows = new Array();
-			for (var i = 1; i < sort_rows; ++i) {
+			for (var i = sort_start+1; i < sort_end; ++i) {
 				rows.push(table_old.rows[i].cloneNode(true));
 			}
 			
@@ -108,8 +113,8 @@ var FoxtrickTableSort = {
 			rows.sort(FoxtrickTableSort.sortCompare);
 			
 			// put them back
-			for (var i = 1; i < sort_rows; ++i) {
-				table_old.rows[i].innerHTML = rows[i-1].innerHTML;
+			for (var i = sort_start+1; i < sort_end; ++i) {
+				table_old.rows[i].innerHTML = rows[i-1-sort_start].innerHTML;
 			}
 			table.innerHTML = table_old.innerHTML;
 			
