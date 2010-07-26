@@ -185,7 +185,6 @@ var FoxtrickTeamPopupLinks = {
 				if (longnick) username = longnick;
 			}
 
-			
 			var teamid=null;
 			var teamname=null;
 			var userid=null;
@@ -219,7 +218,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Team');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 			if (teamname!=null) {
 				if (org_link.title.search(teamname)==-1)
@@ -235,7 +233,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Manager');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -252,7 +249,6 @@ var FoxtrickTeamPopupLinks = {
 				link.setAttribute('target', FoxtrickTeamPopupLinks.Target);
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (owntopteamlinks
@@ -269,7 +265,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Matches');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (owntopteamlinks
@@ -286,7 +281,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Players');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -303,7 +297,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('last_5_ips');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -320,7 +313,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Guestbook');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -337,7 +329,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('SendMessage');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -354,7 +345,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Challenge');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -374,7 +364,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Achievements');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -394,7 +383,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('Coach');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -411,7 +399,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('TransferHistory');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -428,7 +415,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('TeamHistory');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -445,7 +431,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('LastLineup');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -462,7 +447,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('NextMatch');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -479,7 +463,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('AddNextMatch');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -496,7 +479,6 @@ var FoxtrickTeamPopupLinks = {
 				link.textContent = Foxtrickl10n.getString('YouthMatches');
 				item.appendChild(link);
 				list.appendChild(item);
-				
 			}
 
 			if (!owntopteamlinks
@@ -532,7 +514,6 @@ var FoxtrickTeamPopupLinks = {
 						a6.setAttribute('target', FoxtrickTeamPopupLinks.Target);
 					}
 					list.appendChild(item);
-					
 				}
 			}
 
@@ -550,9 +531,8 @@ var FoxtrickTeamPopupLinks = {
 					link.addEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);
 					item.appendChild(link);
 					list.appendChild(item);
-					
 			}
-			
+
 			var mainBody = doc.getElementById('mainBody');
 
 			if (!owntopteamlinks && FoxtrickTeamPopupLinks.hasScroll) {
@@ -570,8 +550,8 @@ var FoxtrickTeamPopupLinks = {
 
 			if (!down) list.className +=' ft-popup-list-up';
 			else list.className +=' ft-popup-list-down';
-			
-			if (org_link.parentNode.lastChild.className == "ft-popup-list")
+
+			if (Foxtrick.hasClass(org_link.parentNode.lastChild, "ft-popup-list"))
 				org_link.parentNode.removeChild(org_link.parentNode.lastChild);
 			org_link.parentNode.appendChild(list);
 			org_link.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
