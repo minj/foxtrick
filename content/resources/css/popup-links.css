@@ -28,11 +28,11 @@ ul.ft-popup-list > li {
 	white-space: nowrap;
 	height: 20px;
 	padding: 0px 2px !important;
-	margin: 0px 0px;
+	margin: 0px;
 }
 ul.ft-popup-list > li  > a,  ul.ft-popup-list > li > span {
+	height: 100%;
 	text-align: left;
-	vertical-align: middle;
 	cursor: pointer;
 	display: block !important;
 	font-weight: normal !important;
