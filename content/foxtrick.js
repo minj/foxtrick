@@ -225,7 +225,7 @@ var FoxtrickMain = {
 				var begin = new Date();
 
 				FoxtrickMain.run(doc);
-
+						
 				var end = new Date();
 				var time = (end.getSeconds() - begin.getSeconds()) * 1000
 						 + end.getMilliseconds() - begin.getMilliseconds();
@@ -446,7 +446,7 @@ Foxtrick.updateStatus = function() {
 }
 
 Foxtrick.isPage = function(page, doc) {
-	var htpage_regexp = new RegExp(page, "i");
+	var htpage_regexp = new RegExp(page.replace(/\//g,'\\/').replace(/\./g,'\\.').replace(/\?/g,'\\?'), "i");
 	return doc.location.href.search(htpage_regexp) > -1;
 }
 
