@@ -124,6 +124,7 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 /* pop lists that are displayed when hovering */
 span.ft-pop-up-span {
 	position: relative;
+	cursor: pointer;
 }
 span.ft-pop-up-span-icon {
 	position: relative;
