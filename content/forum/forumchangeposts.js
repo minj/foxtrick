@@ -108,7 +108,7 @@ var FoxtrickForumChangePosts = {
 		copy_posting_link_archive.setAttribute('href','javascript:void(0);');
 		copy_posting_link_archive.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPosting' )+' '+Foxtrickl10n.getString('style_ht-ml'));
 		copy_posting_link_archive.setAttribute('is_archive_link','true');		
-		copy_posting_link_archive.innerHTML = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' )+' ';
+		copy_posting_link_archive.textContent = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' );
 		copy_posting_link_archive.setAttribute('class','foxtrick-copyfromarchive');		
 		copy_posting_link_archive.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );
                             		
