@@ -519,7 +519,11 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 			
 			// table
 			if (replaceText == 'ttt'){
-						var myReg = new RegExp( FoxtrickPrefs.getString("table_separator")+'+','g');
+						var seperator = FoxtrickPrefs.getString("table_separator");
+						if (seperator=='|') seperator='\\|';
+						if (seperator==' ') seperator=' +';
+						
+						var myReg = new RegExp( seperator,'g');
              			newText = newText.replace(myReg,'[/td][td]');
 						newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
 						
@@ -535,6 +539,10 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 								rows[i] = rows[i].substring(0,last_td+3)+' colspan='+String(missing_col+1)+rows[i].substr(last_td+3);
 							}
 						}
+						// add header if first row is bold to some part
+						if (rows[0].search(/\[b\].+\[\/b\]/)!=-1) {
+							rows[0] = rows[0].replace(/\[\b\]/g,'').replace(/\[\/\b\]/g,'').replace(/td\]/g,'th]');
+						}
 						newText='';
 						for (var i=0; i<rows.length-1; ++i) {
 							newText += rows[i]+'[/tr]'
@@ -543,10 +551,12 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 						if (s.selectionLength===0) newText='[table][tr][td]cell1[/td][td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
 						
 						// some formating
-						newText = newText.replace(/table\]/g,'table]\n');
-						newText = newText.replace(/\/tr\]/g,'/tr]\n');
-						newText = newText.replace(/\[td/g,' [td');
-						newText = newText.replace(/\[\/td\]/g,'[/td] ');
+						newText = newText.replace(/table\]/g,'table]\n')
+										.replace(/\/tr\]/g,'/tr]\n')
+										.replace(/\[td/g,' [td')
+										.replace(/\[\/td\]/g,'[/td] ')
+										.replace(/\[th/g,' [th')
+										.replace(/\[\/th\]/g,'[/th] ');
 			}
 
             // Opera, Mozilla
