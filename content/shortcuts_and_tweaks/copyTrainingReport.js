@@ -112,9 +112,7 @@ var FoxtrickCopyTrainingReport = {
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
-				var note = Foxtrick.Note.create(doc, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"), null, true);
-				var noteArea = Foxtrick.Note.getNoteArea(doc);
-				noteArea.appendChild(note);
+				var note = Foxtrick.Note.add(doc, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"), null, true);
 			}
 		}
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
@@ -247,9 +245,7 @@ var FoxtrickCopyScoutReport = {
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 
 				Foxtrick.copyStringToClipboard(plain);
-				var note = Foxtrick.Note.create(doc, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"), null, true);
-				var noteArea = Foxtrick.Note.getNoteArea(note);
-				noteArea.appendChild(note);
+				var note = Foxtrick.Note.add(doc, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"), null, true);
 
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
@@ -340,9 +336,7 @@ var FoxtrickCopyPlayerSource = {
 		var html = '<html> '+doc.documentElement.innerHTML+' </html>';
 
 		Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
-		var note = Foxtrick.Note.create(doc, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
-		var noteArea = Foxtrick.Note.getNoteArea(doc);
-		noteArea.appendChild(note);
+		var note = Foxtrick.Note.add(doc, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
 
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';

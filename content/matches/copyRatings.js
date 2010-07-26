@@ -275,9 +275,7 @@ var FoxtrickCopyRatings = {
 				ad = ad_s.join('[/tr]').replace(/\[tr\]\[\/tr\]/,'');
 			}
 			Foxtrick.copyStringToClipboard(ad);
-			var note = Foxtrick.Note.create(doc, "ft-ratings-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"), null, true);
-			var noteArea = Foxtrick.Note.getNoteArea(doc);
-			noteArea.appendChild(note);
+			var note = Foxtrick.Note.add(doc, "ft-ratings-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"), null, true);
 		}
 		catch (e) {
 			Foxtrick.dump('ratingscopied error: '+e+'\n');

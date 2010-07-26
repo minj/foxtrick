@@ -8,9 +8,13 @@ Foxtrick.Note = {
 	// BUTTON_CANCEL has a default event listener to remove the note if
 	// listener/onClick parameters are not passed
 	BUTTON_CANCEL : { name : "button.cancel" },
-	/* Foxtrick.Note.create
+	
+	/* Foxtrick.Note.add
+	 * add a FoxTrick note to current page and turn to it
+	 * Foxtrick.Note.create
 	 * returns a FoxTrick note for confirmation or other uses
-	 * parameters:
+	 *
+	 * they share the same parameters:
 	 * doc - the HTML document
 	 * id - HTML id of the returned node
 	 * msg - message to be shown
@@ -27,14 +31,25 @@ Foxtrick.Note = {
 	 *     ]
 	 * hasClose - whether to add a link labelled "Close" for closing the note
 	 */
+
+	add : function(doc, id, msg, buttons, hasClose) {
+		// first we remove the old notes with same name
+		var old = doc.getElementById(id);
+		if (old) {
+			old.parentNode.removeChild(old);
+		}
+		var note = this.create(doc, id, msg, buttons, hasClose);
+		var noteArea = Foxtrick.Note.getNoteArea(doc);
+		if (noteArea) {
+			noteArea.appendChild(note);
+		}
+		// go to the note
+		doc.location = doc.location.href.replace(/#.*?$/, "") + "#" + id;
+		return note;
+	},
+
 	create : function(doc, id, msg, buttons, hasClose) {
 		try {
-			// first we remove the old notes with same name
-			var old = doc.getElementById(id);
-			if (old) {
-				old.parentNode.removeChild(old);
-			}
-
 			var container = doc.createElement("div");
 			container.id = id;
 			container.className = "ft-note";

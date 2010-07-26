@@ -252,9 +252,7 @@ var FoxtrickCopyPlayerAd = {
 			}
 
 			Foxtrick.copyStringToClipboard(ad);
-			var note = Foxtrick.Note.create(doc, "ft-playerad-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copied"), null, true);
-			var noteArea = Foxtrick.Note.getNoteArea(doc);
-			noteArea.appendChild(note);
+			var note = Foxtrick.Note.add(doc, "ft-playerad-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copied"), null, true);
 		}
 		catch (e) {
 			Foxtrick.alert('createPlayerAd '+e);
