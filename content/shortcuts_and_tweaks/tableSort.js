@@ -20,6 +20,8 @@ var FoxtrickTableSort = {
 	sortYouthSkill : false,
 	sortAge : false,
 	sortOrdinal : false,
+	sortDate : false,
+	sortSkill : false,
 	sortIndex : -1,	
 	sortDirection: 1,
 				
@@ -77,16 +79,18 @@ var FoxtrickTableSort = {
 				FoxtrickTableSort.sortDirection = -1;
 				table.removeAttribute('lastSortIndex');
 			}
-			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true;
+			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
 			var num_cols = table.rows[sort_start+1].cells.length;
 			for (var i = sort_start+1; i < table.rows.length; ++i) {
 		    	if (num_cols != table.rows[i].cells.length) break;
 				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
 				//Foxtrick.dump( (inner!='')+' '+isNaN(parseFloat(inner))+' '+ parseInt(inner)+'\n');	
-				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;} 
+				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
 		    	if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;} 
 		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;} 
 		    	if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;} 
+				if (inner.search(/^\d{1,4}(\.|\/)\d{1,2}(\.|\/)\d{1,4}/)==-1 && inner!='') {is_date=false;} 
+				if (table.rows[i].cells[index].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;} 								
 		    }
 			var sort_end = i;
 			Foxtrick.dump('sort_end: '+sort_end+'\n');
@@ -94,6 +98,8 @@ var FoxtrickTableSort = {
 			Foxtrick.dump('is_youthskill '+is_youthskill+'\n');
 			Foxtrick.dump('is_age '+is_age+'\n');
 			Foxtrick.dump('is_ordinal '+is_ordinal+'\n');
+			Foxtrick.dump('is_date '+is_date+'\n');
+			Foxtrick.dump('is_skill '+is_skill+'\n');
 			
 			// old rows to array
 			var table_old = table.cloneNode(true);
@@ -107,6 +113,8 @@ var FoxtrickTableSort = {
 			FoxtrickTableSort.sortAge = is_age;
 			FoxtrickTableSort.sortNum = is_num;
 			FoxtrickTableSort.sortOrdinal = is_ordinal;			
+			FoxtrickTableSort.sortDate = is_date;			
+			FoxtrickTableSort.sortSkill = is_skill;			
 			FoxtrickTableSort.sortIndex = index;			
 			
 			// sort them
@@ -150,7 +158,36 @@ var FoxtrickTableSort = {
 			return -1;
 		}
 		
-		if (FoxtrickTableSort.sortYouthSkill) {
+		if (FoxtrickTableSort.sortSkill) {
+			aContent = (a.cells[FoxtrickTableSort.sortIndex].innerHTML.match(/lt=skillshort&amp;ll=(\d+)/)[1]);
+			bContent = (b.cells[FoxtrickTableSort.sortIndex].innerHTML.match(/lt=skillshort&amp;ll=(\d+)/)[1]);
+			return FoxtrickTableSort.sortDirection*(bContent - aContent);										    
+		}
+		else if (FoxtrickTableSort.sortDate) {
+			var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
+			if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+			switch ( DATEFORMAT ) {
+				case 'ddmmyyyy':
+					var SD = 1;
+					var SM = 2
+					var SY = 3;
+					break;
+				case 'mmddyyyy':
+					var SD = 2;
+					var SM = 1;
+					var SY = 3;
+					break;
+				case 'yyyymmdd':
+					var SD = 3;
+					var SM = 2;
+					var SY = 1;
+					break;
+			}
+			var date1 = aContent.match(/(\d{1,4}).*?(\d{1,2}).*?(\d{1,4})/);
+			var date2 = bContent.match(/(\d{1,4}).*?(\d{1,2}).*?(\d{1,4})/);
+			return FoxtrickTableSort.sortDirection*((date1[SY]!=date2[SY]) ? (date1[SY]-date2[SY]) : ((date1[SM]!=date2[SM]) ? (date1[SM]-date2[SM]) : (date1[SD]-date2[SD])));
+		}
+		else if (FoxtrickTableSort.sortYouthSkill) {
 			aContent = aContent.replace('-','0').match(/^(\d)\/(\d)$/);
 			aContent = aContent[1] * 18 + aContent[2] * 2 + (a.cells[FoxtrickTableSort.sortIndex].getElementsByTagName('strong').length==0?0:1); 			
 			bContent = bContent.replace('-','0').match(/^(\d)\/(\d)$/);
