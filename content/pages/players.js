@@ -452,7 +452,7 @@ Foxtrick.Pages.Players = {
 			return null;
 		}
 		if (doc.getUserData !== undefined && doc.getUserData(USER_DATA_KEY) !== null) {
-			Foxtrick.dump("XML data already saved as user data, returning user data now.\n");
+			Foxtrick.dump(USER_DATA_KEY+" data already saved as user data, returning user data now.\n");
 			return doc.getUserData(USER_DATA_KEY);
 		}
 		// we load the XML only if the ExtraPlayerInfo module is enabled
