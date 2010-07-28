@@ -11,7 +11,8 @@
  * You can add new values here, but make sure your NEWLY added pages have names
  * in camelCase (it'd be hard to modify existing non-camelCase names), using the
  * name similar to the URI, and escape the URI correctly.
- * use '\\' to escape. '/', '.' and '?' are escaped automatically
+ * Use '\\' to escape (double backslash for escaping backslash itself).
+ * '.' and '?' will be escaped automatically.
  */
  
 if (!Foxtrick) var Foxtrick={};
@@ -54,7 +55,7 @@ Foxtrick.ht_pages = {
 	'transferSearchForm'        : '/World/Transfers/$|/World/Transfers/default.aspx',
 	'transferSearchResult'      : '/World/Transfers/TransfersSearchResult.aspx',
 	'match'                     : '/Club/Matches/Match.aspx',
-	'matches'                   : '/Club/Matches/.TeamID=|/Club/Matches/$|/Club/Matches/Default|/World/Matches/$',
+	'matches'                   : '/Club/Matches/?TeamID=|/Club/Matches/$|/Club/Matches/Default|/World/Matches/$',
 	'matchesarchiv'             : '/Club/Matches/Archive.aspx|/Club/Matches/YouthArchive',
 	'matchesLatest'             : '/Club/Matches/LatestMatches.aspx',
 	'matcheshistory'            : '/Club/Matches/history.aspx',
@@ -62,7 +63,7 @@ Foxtrick.ht_pages = {
 	'matchesLive'               : '/Club/Matches/Live.aspx',
 	'matchOrders'               : '/MatchOrders.aspx',
 	'flagCollection'            : '/Club/Flags/',
-	'teamPage'                  : '/Club/$|/Club/.TeamID=|/Club/default.aspx',
+	'teamPage'                  : '/Club/$|/Club/?TeamID=|/Club/default.aspx',
 	'teamPageBrowser'           : '/Club/default.aspx',
 	'teamPageGeneral'           : '/Club/|/World/Series/',
 	'oldseries'                 : '/World/Series/OldSeries.aspx',

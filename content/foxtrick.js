@@ -449,7 +449,7 @@ Foxtrick.updateStatus = function() {
 }
 
 Foxtrick.isPage = function(page, doc) {
-	var htpage_regexp = new RegExp(page.replace(/\//g,'\\/').replace(/\./g,'\\.').replace(/\?/g,'\\?'), "i");
+	var htpage_regexp = new RegExp(page.replace(/\./g,'\\.').replace(/\?/g,'\\?'), "i");
 	return doc.location.href.search(htpage_regexp) > -1;
 }
 
