@@ -313,7 +313,6 @@ var FoxtrickMain = {
 						Foxtrick.reload_module_css(doc);
 					}
 				}
-				Foxtrick.dump('RTL: '+FoxtrickMain.isRTL+'\n');
 
 				// If it's not only a CSS check, we go on to run the modules.
 				if (!is_only_css_check) {
@@ -325,6 +324,7 @@ var FoxtrickMain = {
 								module.run(doc);
 							}
 							catch (e) {
+								Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
 								Foxtrick.dumpError(e);
 							}
 						}
@@ -352,6 +352,7 @@ var FoxtrickMain = {
 										}
 									}
 									catch (e) {
+										Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
 										Foxtrick.dumpError(e);
 									}
 								}
@@ -388,6 +389,7 @@ var FoxtrickMain = {
 							fn.change(doc, ev);
 						}
 						catch (e) {
+							Foxtrick.dump("Error caught in module " + fn.MODULE_NAME + ":\n");
 							Foxtrick.dumpError(e);
 						}
 					}
@@ -404,9 +406,10 @@ var FoxtrickMain = {
 						function(fn) {
 							if (typeof(fn.change) == "function") {
 								try {
-										fn.change(i, doc, ev);
+									fn.change(i, doc, ev);
 								}
 								catch (e) {
+									Foxtrick.dump("Error caught in module " + fn.MODULE_NAME + ":\n");
 									Foxtrick.dumpError(e);
 								}
 							}
