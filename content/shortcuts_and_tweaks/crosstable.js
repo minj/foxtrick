@@ -526,7 +526,7 @@ var FoxtrickCrossTable = {
 				this.cross[away][0] = AwayTeamName;				
 				this.cross[home][away+1] = HomeGoals + '-' + AwayGoals;
 				this.crossgame[home][away+1] = MatchID;
-				this.weekcount = MatchRound-1;
+				this.weekcount = MatchRound;
 
 				var points_hm = 1000000, points_aw = 1000000;
 				if (HomeGoals > AwayGoals) {points_hm = 3000000; points_aw = 0;}
