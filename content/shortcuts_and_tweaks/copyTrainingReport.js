@@ -186,7 +186,7 @@ var FoxtrickCopyScoutReport = {
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner";
 			messageLink.title = Foxtrickl10n.getString( 
-				"foxtrick.tweaks.copyscoutreport" );
+				"foxtrick.tweaks.scoutreportcopied" );
 			messageLink.setAttribute("style","cursor: pointer;");
 			messageLink.addEventListener("click", this.copyReport, false)
 		
@@ -245,7 +245,7 @@ var FoxtrickCopyScoutReport = {
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 
 				Foxtrick.copyStringToClipboard(plain);
-				var note = Foxtrick.Note.add(doc, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport"), null, true);
+				var note = Foxtrick.Note.add(doc, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.scoutreportcopied"), null, true);
 
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
