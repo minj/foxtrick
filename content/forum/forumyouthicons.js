@@ -21,7 +21,6 @@
 	
     run : function( page, doc ) {
     try {
-        Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
         Foxtrick.dump('PAGE: ' + page + '\n');
         var show_main = false; var show_youth = false; 
         var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
@@ -41,8 +40,12 @@
 
         var div = doc.getElementById( "ft_youth_icons");
         if (div != null) return;
+        var textarea = doc.getElementsByTagName('textarea')[0]
+		if (textarea == null ) return;
+		
+        Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
         
-        if (doc.getElementById('ctl00_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
+		if (doc.getElementById('ctl00_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
         // Foxtrick.dump('YOUTH => ' + page +'\n');
         if ( (page == 'ads' ) && (!doc.getElementById('ctl00_CPMain_txtInsert'))) return;
 
