@@ -30,6 +30,8 @@ Foxtrick.globals=[];
 for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
 */
 
+var changecount = 0;
+	
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 	new_start:true,
@@ -175,10 +177,11 @@ var FoxtrickMain = {
 	},
 
 	onPageChange : function(ev) {
+		try {
 		var doc = ev.originalTarget.ownerDocument;
 		if (doc.nodeName != "#document")
 			return;
-
+				
 		// not on matchlineup
 		if ( doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
 			 doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
@@ -188,6 +191,9 @@ var FoxtrickMain = {
 		if (ev.originalTarget.className && (ev.originalTarget.className=='boxBody' || ev.originalTarget.className=='myht1'))
 			return;
 
+		if (changecount++ > 100) return;
+		Foxtrick.dump('changecount: '+changecount+' '+ev.target.nodeName+' '+ev.target.className+'\n');
+		
 		var content = doc.getElementById("content");
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
@@ -199,6 +205,7 @@ var FoxtrickMain = {
 		Foxtrick.dump("Foxtrick change time: " + time + " ms\n");
 		// re-add event listener
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+		} catch (e) {Foxtrick.dumpError(e);}
 	},
 
 	onPageLoad : function(ev) {
@@ -207,10 +214,11 @@ var FoxtrickMain = {
 			var doc = ev.originalTarget;
 			if (doc.nodeName != "#document")
 				return;
-
+				
 			Foxtrick.updateStatus();
 
 			if (Foxtrick.isHt(doc)) {
+				changecount = 0;
 				// check if it's in exclude list
 				for (var i in Foxtrick.pagesExcluded) {
 					var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
