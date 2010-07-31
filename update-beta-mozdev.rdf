@@ -4,7 +4,6 @@
 <RDF:Description RDF:about="urn:mozilla:extension:{9d1f059c-cada-4111-9696-41a62d64e3ba}">
 <em:updates xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 <RDF:Seq>
-	<RDF:li>
 	<!-- This Description describes an available update to version 2.2 of
 		 FooExtension - it defines a new maxVersion for the Firefox
 		 targetApplication (format of the targetApplication object is the
@@ -67,7 +66,7 @@
 				</RDF:Description>
 			</em:targetApplication>
 		</RDF:Description>
-	</RDF:li>
+</RDF:Seq>
 </em:updates>
 </RDF:Description>
 </RDF:RDF>
