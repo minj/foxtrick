@@ -1,73 +1,70 @@
 <?xml version="1.0"?>
 
 <RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-<RDF:Description RDF:about="urn:mozilla:extension:{9d1f059c-cada-4111-9696-41a62d64e3ba}">
-<em:updates xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-<RDF:Seq>
-	<!-- This Description describes an available update to version 2.2 of
-		 FooExtension - it defines a new maxVersion for the Firefox
-		 targetApplication (format of the targetApplication object is the
-		 same as for the install.rdf file, with the exception of the
-		 em:updateLink property, which contains a URL to the updated XPI) -->
-	<RDF:Description>
-		<em:version>0.5.2.1</em:version>
-			<em:targetApplication>
-				<RDF:Description>
-					<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-					<em:minVersion>2.0</em:minVersion>
-					<em:maxVersion>3.7a5pre</em:maxVersion>
-					<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
-					<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
-				</RDF:Description>
-			</em:targetApplication>
-			<em:targetApplication>
-				<RDF:Description>
-					<em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
-					<em:minVersion>1.7</em:minVersion>
-					<em:maxVersion>1.8</em:maxVersion>
-					<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
-					<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
-				</RDF:Description>
-			</em:targetApplication>
-			<em:targetApplication>
-				<RDF:Description>
-					<em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
-					<em:minVersion>2.0pre</em:minVersion>
-					<em:maxVersion>2.1a1pre</em:maxVersion>
-					<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
-					<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
-				</RDF:Description>
-			</em:targetApplication>
-			<em:targetApplication>
-				<RDF:Description>
-					<em:id>{3db10fab-e461-4c80-8b97-957ad5f8ea47}</em:id>
-					<em:minVersion>8.0</em:minVersion>
-					<em:maxVersion>9.0</em:maxVersion>
-					<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
-					<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
-				</RDF:Description>
-			</em:targetApplication>
-			<em:targetApplication>
-				<RDF:Description>
-					<em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
-					<em:minVersion>1.2.6</em:minVersion>
-					<em:maxVersion>2.5.5</em:maxVersion>
-					<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
-					<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
-				</RDF:Description>
-			</em:targetApplication>
-			<em:targetApplication>
-				<RDF:Description>
-					<em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
-					<em:minVersion>1.0a1</em:minVersion>
-					<em:maxVersion>1.0.*</em:maxVersion>
-					<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
-					<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
-				</RDF:Description>
-			</em:targetApplication>
-		</RDF:Description>
-</RDF:Seq>
-</em:updates>
-</RDF:Description>
+	<RDF:Description RDF:about="urn:mozilla:extension:{9d1f059c-cada-4111-9696-41a62d64e3ba}">
+		<em:updates xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+			<RDF:Seq>
+				<RDF:li>
+					<RDF:Description>
+						<em:version>0.5.2.1</em:version>
+						<em:targetApplication>
+							<RDF:Description>
+								<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+								<em:minVersion>2.0</em:minVersion>
+								<em:maxVersion>3.7a5pre</em:maxVersion>
+								<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
+								<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
+							</RDF:Description>
+						</em:targetApplication>
+						<em:targetApplication>
+							<RDF:Description>
+								<em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
+								<em:minVersion>1.7</em:minVersion>
+								<em:maxVersion>1.8</em:maxVersion>
+								<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
+								<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
+							</RDF:Description>
+						</em:targetApplication>
+						<em:targetApplication>
+							<RDF:Description>
+							<em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
+								<em:minVersion>2.0pre</em:minVersion>
+								<em:maxVersion>2.1a1pre</em:maxVersion>
+								<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
+							<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
+							</RDF:Description>
+						</em:targetApplication>
+						<em:targetApplication>
+							<RDF:Description>
+							<em:id>{3db10fab-e461-4c80-8b97-957ad5f8ea47}</em:id>
+								<em:minVersion>8.0</em:minVersion>
+								<em:maxVersion>9.0</em:maxVersion>
+								<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
+								<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
+							</RDF:Description>
+						</em:targetApplication>
+						<em:targetApplication>
+							<RDF:Description>
+								<em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
+								<em:minVersion>1.2.6</em:minVersion>
+								<em:maxVersion>2.5.5</em:maxVersion>
+								<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
+								<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
+							</RDF:Description>
+						</em:targetApplication>
+						<em:targetApplication>
+							<RDF:Description>
+								<em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
+								<em:minVersion>1.0a1</em:minVersion>
+								<em:maxVersion>1.0.*</em:maxVersion>
+								<em:updateLink>http://downloads.mozdev.org/foxtrick/foxtrick_0.5.2.1.xpi</em:updateLink>
+								<em:updateHash>sha1:5308b8246706217a9f34f0e2daeb634f901a94da</em:updateHash>
+							</RDF:Description>
+						</em:targetApplication>
+					</RDF:Description>
+				</RDF:li>
+			</RDF:Seq>
+		</em:updates>
+	</RDF:Description>
 </RDF:RDF>
 
