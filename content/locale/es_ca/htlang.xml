@@ -1,4 +1,5 @@
 <language name="es_ca" desc="EspaÃ±ol, Centroamericano">
+
 	
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Mi Hattrick" />
@@ -7,6 +8,7 @@
 	<Forum value="Foro" />
 	<Shop value="Tienda" />
 	<Help value="Ayuda" />
+
 	
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
@@ -15,6 +17,7 @@
 		<sublevel text="(Alto)" value="0.50" />
 		<sublevel text="(Muy alto)" value="0.75" />
 	</ratingSubLevels>
+
 	
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
@@ -25,9 +28,10 @@
 		<tactic type="aim" value="Atacar por el centro" />
 		<tactic type="creatively" value="Jugar creativamente" />
 		<tactic type="longshots" value="Tiros largos" />
+
 	</tactics>
 	
-	<!-- positions appearing on players page -->
+	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Portero" short="Po" />
 		<position type="Central defender" value="Defensor central" short="Dc" />
@@ -35,6 +39,7 @@
 		<position type="Inner midfielder" value="Medio central" short="Mc" />
 		<position type="Winger" value="Medio lateral" short="Ml" />
 		<position type="Forward" value="Delantero" short="De" />
+
 	</positions>
 	
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
@@ -45,11 +50,12 @@
 		<specialty type="Technical" value="TÃ©cnico" short="Te" />
 		<specialty type="Head" value="Cabeceador" short="Ca" />
 		<specialty type="Regainer" value="Regainer" short="Re" />
+
 	</specialties>
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
-		<level text="divino" value="20" />
+	<level text="divino" value="20" />
 		<level text="utÃ³pico" value="19" />
 		<level text="mÃ¡gico" value="18" />
 		<level text="mÃ­tico" value="17" />
@@ -70,5 +76,33 @@
 		<level text="horrible" value="2" />
 		<level text="desastroso" value="1" />
 		<level text="inexistente" value="0" />
+
 	</levels>
+
+	<agreeability>
+		<level text="querido compañero de equipo" value="5" />
+		<level text="popular" value="4" />
+		<level text="carismático" value="3" />
+		<level text="agradable" value="2" />
+		<level text="polémico" value="1" />
+		<level text="antipático" value="0" />
+	</agreeability>
+
+	<honesty>
+		<level text="santito" value="5" />
+		<level text="honorable" value="4" />
+		<level text="justo" value="3" />
+		<level text="honesto" value="2" />
+		<level text="deshonesto" value="1" />
+		<level text="nefasto" value="0" />
+	</honesty>
+
+	<aggressiveness>
+		<level text="inestable" value="5" />
+		<level text="iracundo" value="4" />
+		<level text="temperamental" value="3" />
+		<level text="estable" value="2" />
+		<level text="calmado" value="1" />
+		<level text="tranquilo" value="0" />
+	</aggressiveness>
 </language>
