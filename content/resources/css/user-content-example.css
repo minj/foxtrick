@@ -1,8 +1,8 @@
 /* user-content-example.css
  *
  * This file is a list of CSS statements for styling FoxTrick that satisfies
- * user's preferences. There are comments that describes what module each
- * statement belongs to and their meanings.
+ * user's preferences. There are comments (everything with / * ... * / are comments) 
+ * that describes what module each statement belongs to and their meanings.
  *
  * For instances given here, you don't need to know CSS in whole. Although a
  * basic knowledge of CSS will help you a lot. For colors, just replace color
@@ -10,7 +10,7 @@
  * out. Sometimes we need to use the "!important" keyword to overwrite the
  * Hattrick rule.
  *
- * After adjusting the values and saving it to a file, you could use
+ * After saving it to a file and adjusting the values, you can use
  * the SkinPlugin module of FoxTrick to load the CSS file in order to have the
  * user style in effect.
  *

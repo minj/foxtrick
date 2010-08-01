@@ -856,12 +856,19 @@ var FoxtrickPrefsDialogHTML = {
 		style_tutorial_caption.textContent = Foxtrickl10n.getString("StyleTutorial.title");
 		var style_tutorial_content = doc.createElement("div");
 		var style_example_uri = Foxtrick.ResourcePath + "resources/css/user-content-example.css"
-		style_tutorial_content.innerHTML = Foxtrickl10n.getString("StyleTutorial.content").replace(/\n/, "<br />").replace(/%s/, "<a href=\"" + style_example_uri + "\">" + style_example_uri + "</a>");
+		style_tutorial_content.innerHTML = Foxtrickl10n.getString("StyleTutorial.content").replace(/\n/, "<br />").replace(/%s/, "<a id='ft_popup_example_css' href='javascript:void();'>" + style_example_uri + "</a>");
 		style_tutorial.appendChild(style_tutorial_caption);
 		style_tutorial.appendChild(style_tutorial_content);
 		preftab.appendChild(style_tutorial);
+		var css_link = doc.getElementById('ft_popup_example_css');
+		css_link.addEventListener('click', this.popup_example_css, false);		
 	},
-
+	
+	popup_example_css: function (ev) {
+		var style_example_uri = Foxtrick.ResourcePath + "resources/css/user-content-example.css"
+		window.open(style_example_uri,'user-content-example.css');
+	},
+	
 	fill_about_list : function( doc ) {
 		var preftab = doc.getElementById('about');
 

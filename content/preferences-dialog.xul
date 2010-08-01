@@ -334,7 +334,7 @@
 				</groupbox>
 				<groupbox id="style_tutorial">
 					<caption id="style_tutorial_caption" />
-					<description id="style_tutorial_content" />
+					<vbox id="style_tutorial_content" />
 				</groupbox>
 				<groupbox id="headdeveloper">
 					<caption id="headdeveloper_caption" />

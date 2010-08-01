@@ -22,7 +22,7 @@ var FoxtrickPreferencesDialog = {
 		for each (cat in Foxtrick.moduleCategories) {
 			FoxtrickPreferencesDialog._fillModulesList(document, cat);
 		}
-	} catch(e) {alert('FoxtrickPreferencesDialog init: '+e+'\n');}
+	} catch(e) {Foxtrick.dumpError(e); alert('FoxtrickPreferencesDialog init: '+e+'\n');}
 	},
 
 	initCaptionsAndLabels : function(document) {
@@ -254,8 +254,19 @@ var FoxtrickPreferencesDialog = {
 		var style_tutorial_caption = doc.getElementById("style_tutorial_caption");
 		var style_tutorial_content = doc.getElementById("style_tutorial_content");
 		style_tutorial_caption.setAttribute("label", Foxtrickl10n.getString("StyleTutorial.title"));
-		style_tutorial_content.textContent = Foxtrickl10n.getString("StyleTutorial.content").replace(/%s/, Foxtrick.ResourcePath + "resources/css/user-content-example.css");
-
+		var item = doc.createElement("label");
+		style_tutorial_content.appendChild(item);
+		item.appendChild(doc.createTextNode(Foxtrickl10n.getString("StyleTutorial.content").split(/%s/)[0]));		
+		var link = doc.createElement("label");
+		style_tutorial_content.appendChild(item);
+		item.appendChild(link);
+		link.setAttribute("value",  Foxtrick.ResourcePath + "resources/css/user-content-example.css");
+		link.setAttribute("href",  Foxtrick.ResourcePath + "resources/css/user-content-example.css");
+		link.addEventListener('click', this.popup_example_css, false);	
+		link.className = "text-link";
+		style_tutorial_content.appendChild(item);
+		item.appendChild(doc.createTextNode(Foxtrickl10n.getString("StyleTutorial.content").split(/%s/)[1]));
+		
 		// head_developer
 		var headdeveloper_caption = doc.getElementById("headdeveloper_caption");
 		var headdeveloper_list = doc.getElementById("headdeveloper_list");
@@ -310,6 +321,11 @@ var FoxtrickPreferencesDialog = {
 			translations_list.appendChild(label);
 			label.setAttribute("value", translations[i]);
 		}
+	},
+
+	popup_example_css: function (ev) {
+		var style_example_uri = Foxtrick.ResourcePath + "resources/css/user-content-example.css"
+		window.open(style_example_uri,'user-content-example.css');
 	},
 
 	onDialogAccept : function() {
