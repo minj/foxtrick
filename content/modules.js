@@ -150,7 +150,7 @@ Foxtrick.modules = [
 	FoxtrickPlayerFilters,
 	FoxtrickYouthSeriesEstimation,	
 	FoxtrickTransferSearchResultFilters,
-	FoxtrickForumThreadAutoIgnore,
+	//FoxtrickForumThreadAutoIgnore,
 	FoxtrickTableSort
 	//FoxtrickLocalTime
 ];

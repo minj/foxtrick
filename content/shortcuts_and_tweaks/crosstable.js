@@ -32,7 +32,7 @@ var FoxtrickCrossTable = {
 				width = 440;
 			}
 
-			var fixtures_xml = this.get_xml(doc);
+			var fixtures_xml = null; //this.get_xml(doc);
 
 			this.cross = new Array(new Array('', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),
 						new Array('', -1 , -1 , -1 , -1 , -1, -1 , -1 , -1),

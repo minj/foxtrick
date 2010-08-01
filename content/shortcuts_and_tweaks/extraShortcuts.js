@@ -13,7 +13,7 @@ var FoxtrickExtraShortcuts = {
 	NEW_AFTER_VERSION : "0.5.2.1",	
 	LATEST_CHANGE : "Optional extra space for shortcuts. Links to national Hattrick radios added",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioMediaPlayer","DTRadioWinamp"),
+	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioMediaPlayer"),//,"DTRadioWinamp"),
 	CSS:"",
 	
     run : function( page, doc ) { 
@@ -177,7 +177,7 @@ var FoxtrickExtraShortcuts = {
 								try {
 									stopTimer(); 
 									var radio_xml = req.responseXML;					 
-									if (radio_xml.getElementsByTagName('HattrickRadio').length!=0) {
+									if (radio_xml != null && radio_xml.getElementsByTagName('HattrickRadio').length!=0) {
 										if (radio_xml.getElementsByTagName('status').length!=0) {
 											var link = doc.getElementById('ht_radio_link');
 											if (radio_xml.getElementsByTagName('status')[0].textContent==='online') {
@@ -204,7 +204,7 @@ var FoxtrickExtraShortcuts = {
                 }	
 				
 				
-				if (Foxtrick.isModuleFeatureEnabled( this, "DTRadioWinamp")) {
+				/*if (Foxtrick.isModuleFeatureEnabled( this, "DTRadioWinamp")) {
 					var link = doc.createElement('a');                
                     link.className = 'ft_extra-shortcuts';
                     link.target="_blank";
@@ -249,7 +249,7 @@ var FoxtrickExtraShortcuts = {
 						img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/dtradio_offline.png') !important;");                    
 						img1.title = "Radio downtime offline";
 					}				
-				}
+				}*/
 			}
             catch(e) {
                 Foxtrick.dump( ' => ExtraShortcuts: ' + e + '\n');

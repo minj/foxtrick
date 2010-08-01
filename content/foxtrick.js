@@ -192,7 +192,6 @@ var FoxtrickMain = {
 			return;
 
 		if (changecount++ > 100) return;
-		Foxtrick.dump('changecount: '+changecount+' '+ev.target.nodeName+' '+ev.target.className+'\n');
 		
 		var content = doc.getElementById("content");
 		// remove event listener while Foxtrick executes
@@ -202,7 +201,7 @@ var FoxtrickMain = {
 		var end = new Date();
 		var time = (end.getSeconds() - begin.getSeconds()) * 1000
 				 + end.getMilliseconds() - begin.getMilliseconds();
-		Foxtrick.dump("Foxtrick change time: " + time + " ms\n");
+		//Foxtrick.dump('changecount: '+changecount+' '+ev.target.nodeName+' '+ev.target.className+" " + time + " ms\n");
 		// re-add event listener
 		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		} catch (e) {Foxtrick.dumpError(e);}
