@@ -13,7 +13,7 @@ var FoxtrickSkillTable = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Added to transferlist search results and added some columns.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OtherTeams"),
 	CSS : Foxtrick.ResourcePath + "resources/css/skilltable.css",
 	CSS_RTL : Foxtrick.ResourcePath + "resources/css/skilltable_rtl.css",

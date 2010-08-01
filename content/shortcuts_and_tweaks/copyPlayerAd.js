@@ -13,7 +13,7 @@ var FoxtrickCopyPlayerAd = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Now supporting youth players, and player's skills are sorted.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		try {

@@ -12,7 +12,7 @@ var FoxtrickContextMenuCopy = {
 	OPTIONS : ["Id", "Link", "HtMl", "Table"],
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Option for copying selected content in HT-ML.",
+	LATEST_CHANGE : "Complete overhaul. Copying any selected content in HT-ML.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	MENU_ID : null,

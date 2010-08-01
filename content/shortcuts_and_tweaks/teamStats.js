@@ -12,7 +12,7 @@ Foxtrick.TeamStats = {
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Added rows for leadership and personalities.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		try {

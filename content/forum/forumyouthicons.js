@@ -13,8 +13,8 @@
     DEFAULT_ENABLED : true,
     OPTIONS :  new Array("user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Readded quotes on PA",
+	NEW_AFTER_VERSION: "0.5.2.1",
+	LATEST_CHANGE:"Added table button",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditor_tbBody',

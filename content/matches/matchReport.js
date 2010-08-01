@@ -10,7 +10,7 @@ FoxtrickMatchReportFormat = {
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Use CSS file for styling.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	CSS : Foxtrick.ResourcePath + "resources/css/match-report.css",
 

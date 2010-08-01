@@ -1319,7 +1319,7 @@ var FoxtrickPrefsDialogHTML = {
 				alertdiv.appendChild(alertdivInner);
 				FoxtrickPrefsDialogHTML.ShowAlertCommonInner(doc);
 				
-				var p=doc.createElement('p');				
+				/*var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtReleaseNotes")));				
 				p.appendChild(doc.createTextNode(" "));				
 				var a=doc.createElement('a');
@@ -1327,7 +1327,7 @@ var FoxtrickPrefsDialogHTML = {
 				a.innerHTML=Foxtrickl10n.getString("FoxtrickMyHtReleaseNotesLink");
 				a.target="_blank";
 				p.appendChild(a);				
-				alertdiv.appendChild(p);
+				alertdiv.appendChild(p);*/
 				
 		} catch(e) {dump('ShowAlertCommon '+e+'\n');}		
 	},
