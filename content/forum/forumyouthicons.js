@@ -524,7 +524,7 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 			if (replaceText == 'ttt'){
 						var seperator = FoxtrickPrefs.getString("table_separator");
 						if (seperator=='|') seperator='\\|';
-						if (seperator==' ') seperator=' +';
+						if (seperator==' ') seperator=' +|\\t';
 						
 						// deal with some nested tags
 						var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
