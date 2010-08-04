@@ -9,6 +9,12 @@
                    em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
                    em:updateInfoURL="http://foxtrick.mozdev.org/updateNotes/releaseNotes.xthml"
                    em:updateHash="sha1:5308b8246706217a9f34f0e2daeb634f901a94da" />
+  <RDF:Description RDF:about="rdf:#$lmODR1"
+                   em:version="0.5.3.0b1">
+    <em:targetApplication RDF:resource="rdf:#$omODR1"/>
+    <em:targetApplication RDF:resource="rdf:#$CmODR1"/>
+    <em:targetApplication RDF:resource="rdf:#$QmODR1"/>
+  </RDF:Description>
   <RDF:Description RDF:about="rdf:#$CmODR1"
                    em:id="{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"
                    em:minVersion="2.0pre"
@@ -25,13 +31,7 @@
                    em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
                    em:updateHash="sha1:5308b8246706217a9f34f0e2daeb634f901a94da" />
   <RDF:Description RDF:about="urn:mozilla:extension:{9d1f059c-cada-4111-9696-41a62d64e3ba}"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAC/wpfgJkIRD5QHg0ssu19dJu9Eo4Vtg9zxzrobS1Xqn0oZ84ra2fFFKDvkgtWmbQJ5vA2sAPcaE+lFi2ckL4RutpSal2gTqDgpBdk8z+TwOmlicKkKniChFajI8fC03hbWnD6wugMbENhU5ezbKIuhzlCHjQz9+tRqkRe0gqpQ+">
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAF7aajLirxHoY3xpxemIlrHYHeZti/BCHBnhUQb/soSlkAxs2cckNLpHku4AMpU3etAFVgXmQ5jvx4kIp707vMqQBInhoXt2RBXbPcVDb93UP5Ea1i4QZCHVWbxu+4kd/KDoFfKvQOG2TRMR/4EchOEVjBfBAQ9978Bq/KmlQDnr">
     <em:updates RDF:resource="rdf:#$kmODR1"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$lmODR1"
-                   em:version="0.5.2.1">
-    <em:targetApplication RDF:resource="rdf:#$omODR1"/>
-    <em:targetApplication RDF:resource="rdf:#$CmODR1"/>
-    <em:targetApplication RDF:resource="rdf:#$QmODR1"/>
   </RDF:Description>
 </RDF:RDF>
