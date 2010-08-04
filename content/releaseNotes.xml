@@ -5,7 +5,7 @@
 <version>0.5.3.0</version>
 <title>Release notes (selected features and issues only)</title>
 <lines>ContextCopy: Complete overhaul. Copying any selected content in HT-ML.</lines>
-<lines>ExtraShortcuts: NeuOptional extra space for shortcuts. Links to national Hattrick radios added</lines>
+<lines>ExtraShortcuts: Optional extra space for shortcuts. Links to national Hattrick radios added</lines>
 <lines>TableSort: Sort option for some hattrick and forum tables</lines>
 <lines>TransferSearchResultFilters: Filters the search transfer search results</lines>
 <lines>YouthSeriesEstimation: New module for estimating start time of youth series.</lines>

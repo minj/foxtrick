@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<release_note>
+
+<version>0.5.3.0</version>
+<title>Release notes (ausgewählte Funktionen)</title>
+<lines>ContextCopy: Komplett überarbeitet. Kopiert jeden ausgewählten Inhalt in HT-ML.</lines>
+<lines>ExtraShortcuts: Optionaler extra Platz  für Shortcuts. </lines>
+<lines>TableSort: Sortiertoption für alle 'richtigen' Tabellen in Hattrick (auch im Forum)</lines>
+<lines>TransferSearchResultFilters: Filtern der Transfersuchergebnisse</lines>
+<lines>YouthSeriesEstimation: Schätzt die Startzeit von Jugendligen.</lines>
+<lines>ForumYouthIcons: Konvertiere Text in Tabellen.</lines>
+
+
+<lines>SkillTable : Jetzt auch für Transfersuchergebnisse.</lines>
+<lines>FTTeamStats : Personalitäten und Führungsqualität zugefügt.</lines>
+<lines>CopyPlayerAd : Jetzt auch für Jugenspieler und sortiert nach Skillhöhe .</lines>
+
+<lines></lines> 
+<lines>Attention!</lines>
+<lines>Alle Foxtrick-Stiloption wurden in eine userstyle Datei verschoben. Alte Farbeinstellungen sind verloren. Siehe Hilfetab für Instruktionen um Foxtrickstile zu verändern</lines>
+ 	
+<lines></lines> 
+<lines>Der Link unten erlaubt das Schnelleinstellen der neuen Funktionen.</lines> 
+
+</release_note>
