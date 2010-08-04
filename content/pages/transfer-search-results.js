@@ -14,15 +14,19 @@ Foxtrick.Pages.TransferSearchResults = {
 
 			var player;
 			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
-			for (var i = 0; i < transferTable.rows.length-1; ++i ) {
+			for (var i = 0; i < transferTable.rows.length-1;  ) {
 				player = {};
 				
 				// start defined by next row being first of skill rows
-				if (transferTable.rows[i+1].id==null || transferTable.rows[i+1].id.search(/TransferPlayer_r1$/i)==-1) continue;
-				
+				if (transferTable.rows[i+1].id==null || transferTable.rows[i+1].id.search(/TransferPlayer_r1$/i)==-1) {
+					Foxtrick.dump('sold or psico row\n');
+					++i;
+					continue;
+				}
 				// filter is on?
 				if (transferTable.rows[i].style.display=='none') {
 					i += 8;
+					Foxtrick.dump('filter player\n');
 					continue; 
 				}
 				

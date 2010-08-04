@@ -163,17 +163,41 @@ FoxtrickTransferSearchResultFilters = {
 
 	filterResults : function(doc) {
 		try {  
+			
+			
+			for (var j = 0; j < this.filters.length; ++j) {
+					var filter = FoxtrickTransferSearchResultFilters.filters[j];
+					if (filter.type=='minmax') {
+						Foxtrick.dump(filter['name']+' '+filter.type+' '+filter['properties']['min']+' - '+filter['properties']['max']+'\n');				
+					} else if (filter.type=='check') {
+							Foxtrick.dump(filter['name']+' '+filter.type+' '+filter['properties']['checked']+'\n');
+					}			
+			}
+			Foxtrick.dump('hide days cards bruised injured\n');
+					
+			
+			
 			var player;
 			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
+			var hide = false;
 			for (var i = 0; i < transferTable.rows.length; ) {
 				player = {};
 
+				// with psico last row wasn't border but psico, hide one more
+				if (transferTable.rows[i].cells[0].getElementsByClassName("borderSeparator").length > 0) {
+					if (hide) transferTable.rows[i].style.display='none';
+					else transferTable.rows[i].style.display='';
+					i += 1;
+				}
+
+				
 				// skip sold players
 				if (transferTable.rows[i + 1].cells[0].getElementsByClassName("borderSeparator").length > 0) {
 					i += 2;
 					continue;
 				}
 				
+				hide = false;
 				player.ageText = transferTable.rows[i+3].cells[1].textContent;
 				var ageMatch = player.ageText.match(/(\d+)/g);
 				player.days = parseInt(ageMatch[1]);
@@ -209,7 +233,6 @@ FoxtrickTransferSearchResultFilters = {
 					}
 				}
 				
-				var hide = false;
 				for (var j = 0; j < this.filters.length; ++j) {
 					var filter = FoxtrickTransferSearchResultFilters.filters[j];
 					if (filter.type=='minmax') {
@@ -235,12 +258,12 @@ FoxtrickTransferSearchResultFilters = {
 					}			
 				}
 				
-				//Foxtrick.dump(hide+' '+player.days+' '+player.cards+' '+player.bruised+' '+player.injured+'\n');
+				Foxtrick.dump(i+' '+hide+' '+player.days+' '+player.cards+' '+player.bruised+' '+player.injured+'\n');
 				
 				for (var k = i; k < i+8 && k < transferTable.rows.length; k++) {
 					if (hide) transferTable.rows[k].style.display='none';
 					else transferTable.rows[k].style.display='';		
-				}
+				}				
 				i += 8;
 			}
 		}
