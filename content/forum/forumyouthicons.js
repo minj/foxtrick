@@ -526,10 +526,20 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 						if (seperator=='|') seperator='\\|';
 						if (seperator==' ') seperator=' +';
 						
+						// deal with some nested tags
+						var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
+             			newText = newText.replace(myReg,'[i]$1[/i]$2[i]$3[/i]');
+						var myReg = new RegExp('\\[u\\](.+)('+seperator+')(.+)\\[\\/u\\]','g');
+             			newText = newText.replace(myReg,'[u]$1[/u]$2[u]$3[/u]');
+						var myReg = new RegExp('\\[b\\](.+)('+seperator+')(.+)\\[\\/b\\]','g');
+             			newText = newText.replace(myReg,'[b]$1[/b]$2[b]$3[/b]');
+						
+						// make the table
 						var myReg = new RegExp( seperator,'g');
              			newText = newText.replace(myReg,'[/td][td]');
 						newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
 						
+						// add some colspan for too short rows
 						var rows = newText.split('[/tr]');
 						var max_cells = 0;
 						for (var i=0; i<rows.length-1; ++i) {
@@ -544,7 +554,7 @@ clickHandler : function (ta, openingTag, closingTag, replaceText, counter, field
 						}
 						// add header if first row is bold to some part
 						if (rows[0].search(/\[b\].+\[\/b\]/)!=-1) {
-							rows[0] = rows[0].replace(/\[\b\]/g,'').replace(/\[\/\b\]/g,'').replace(/td\]/g,'th]');
+							rows[0] = rows[0].replace(/\[b\]/g,'').replace(/\[\/b\]/g,'').replace(/td\]/g,'th]');
 						}
 						newText='';
 						for (var i=0; i<rows.length-1; ++i) {
