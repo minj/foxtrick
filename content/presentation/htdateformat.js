@@ -8,12 +8,13 @@ FoxtrickHTDateFormat = {
     MODULE_NAME : "HTDateFormat",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
  	PAGES : new Array('transfersTeam','transfersPlayer','transfer','transferCompare','match',
-					'matches','matchesarchiv','teamPageGeneral','achievements',
+					'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
 					'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'), 
 	ONPAGEPREF_PAGE : 'all', 
     DEFAULT_ENABLED : true,
-    NEW_AFTER_VERSION: "0.4.6.2",	
-	LATEST_CHANGE:"Option to set first day of week added",
+    NEW_AFTER_VERSION: "0.5.2.1",	
+	LATEST_CHANGE:"Added to playerevents",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS :  new Array("LocalSaison","FirstDayOfWeekOffset"), 
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","0"),
@@ -46,7 +47,11 @@ FoxtrickHTDateFormat = {
                 Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 				
-            case 'match' : 
+            case 'playerevents' : 
+                Foxtrick.modifyDates ( mainBody, false, 'h3', '&nbsp;' , '&nbsp;',weekdayoffset );
+                break;
+                
+			case 'match' : 
                 Foxtrick.modifyDates ( mainBody, false, 'div', '&nbsp;' , '&nbsp;',weekdayoffset, true );
                 break;
                 
