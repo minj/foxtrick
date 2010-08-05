@@ -74,7 +74,7 @@ Foxtrick.ht_pages = {
 	'training'                  : '/Club/Training/$',
 	'trainingStats'             : '/Club/Training/Statistics.aspx',
 	'YouthTraining'             : '/Club/Training/YouthTraining.aspx',
-	'managerPage'               : '/Club/Manager/?teamId=',
+	'managerPage'               : '/Club/Manager/?userId=',
 	'finances'                  : '/Club/Finances/$|/Club/Finances/Default.aspx',
 	'YouthPlayers'              : 'YouthPlayers.aspx',
 	'YouthPlayer'               : 'YouthPlayer.aspx',
