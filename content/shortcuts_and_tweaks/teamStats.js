@@ -94,7 +94,6 @@ Foxtrick.TeamStats = {
 			}
 
 			var table = doc.createElement("table");
-			table.className = "smallText";
 			var addHeader = function(label) {
 				var row = doc.createElement("tr");
 				var header = doc.createElement("th");
