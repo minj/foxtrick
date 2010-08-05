@@ -143,9 +143,9 @@ span.ft-pop-up-span {
 	cursor: pointer;
 }
 span.ft-pop-up-span-icon {
-	position: relative;
+	position: absolute;
 	padding-right: 5px;
-	background: url(../img/pop-up.png) right center no-repeat;
+	background: url(../img/pop-up.png) 24px 4px no-repeat;
 }
 span.ft-pop-up-span > ul.ft-pop {
 	right:0px;
