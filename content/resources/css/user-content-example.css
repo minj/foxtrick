@@ -71,6 +71,14 @@
 }
 
 
+/* Module HTThreadMarker */
+
+/* Link of threads by HT */
+.ft-ht-thread {
+	background: #ff7a7a;
+}
+
+
 /* Module MatchReportFormat */
 
 .ft-match-report-team-home, .ft-match-report-team-away, .ft-match-report-team-mine {

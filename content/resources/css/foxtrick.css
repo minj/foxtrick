@@ -5,8 +5,6 @@
 .ft_actionicon {cursor: pointer; height: 16px; background: 50% no-repeat; }
 .ft_icon {width: 16px; height: 16px; background: 50% no-repeat; }
 
-.HT_thread { background: #FF7A7A;}
-
 .foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_small.png'); width: 16px; }
 .foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_yellow_small.png'); width: 16px; }
 .foxtrickHelp {background-image:url('chrome://foxtrick/content/resources/img/help.png'); width: 16px; }
