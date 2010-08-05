@@ -79,18 +79,20 @@ FoxtrickMatchPlayerColouring = {
 
 			var content = content_div.getElementsByTagName("h1")[0].parentNode.innerHTML;
 			if (content.indexOf('ft_mR_format')==-1) {
-				// get part between fisrt '.' after formation and end of paragraph
+				// the full stop in Chinese is a little different from other languages
+				var fullstop = (FoxtrickPrefs.getString("htLanguage") == "zh") ? "。" : ".";
+				// get part between first full stop after formation and end of paragraph
 				var contentA = content.substring(content.search(/Default\.aspx\?ArenaID=/i));
-				contentA = contentA.substring(0,contentA.search(/\.\<br\>\<br\>/));
+				contentA = contentA.substring(0,contentA.search(RegExp(fullstop + "<br><br>")));
 				contentA=contentA.substring(contentA.search(/\d-\d-\d/));
-				contentA=contentA.substring(contentA.indexOf('.'));
+				contentA=contentA.substring(contentA.indexOf(fullstop));
 
-				// get part between fisrt '.' after formation and end of paragraph
+				// get part between first full stop after formation and end of paragraph
 				var contentB = content.substring(content.search(/Default\.aspx\?ArenaID=/i));
-				contentB = contentB.substring(contentB.search('.<br>')+9);
-				contentB=contentB.substring(0,contentB.search('.<br>'));
+				contentB = contentB.substring(contentB.search(RegExp(fullstop + "<br>")) + 9);
+				contentB=contentB.substring(0,contentB.search(RegExp(fullstop + "<br>")));
 				contentB=contentB.substring(contentB.search(/\d-\d-\d/));
-				contentB=contentB.substring(contentB.indexOf('.'));
+				contentB=contentB.substring(contentB.indexOf(fullstop));
 			}
 			else { // matchreport coloring active
 				var contentA=null;
