@@ -23,7 +23,7 @@ var FoxtrickHelper = {
 	getOwnTeamInfo : function(doc, page) {
 		var teamdiv = doc.getElementById('teamLinks');
 		var ownleagueid = this.findLeagueLeveUnitId(teamdiv);
-		if (this.ownTeam === null && ownleagueid != null) {
+		if (/*this.ownTeam === null &&*/ ownleagueid != null) {
 			var owncountryid = this.findCountryId(teamdiv);
 			var ownleaguename = this.extractLeagueName(teamdiv);        		
 			var ownseriesnum = this.getSeriesNum(ownleaguename);
@@ -36,20 +36,20 @@ var FoxtrickHelper = {
 				"ownSeriesNum" : ownseriesnum,
 				"ownLevelNum" : ownlevelnum };
 
-			Foxtrick.dump('FoxtrickHelper.ownTeam\n'+
+			/*Foxtrick.dump('FoxtrickHelper.ownTeam\n'+
 					'ownTeamId ' + this.ownTeam.ownTeamId+'\n'+
 					'ownTeamName ' + this.ownTeam.ownTeamName+'\n'+
 					'ownCountryId ' + this.ownTeam.ownCountryId+'\n'+
 					'ownLeagueName ' + this.ownTeam.ownLeagueName+'\n'+        		
 					'ownSeriesNum ' + this.ownTeam.ownSeriesNum+'\n'+
-					'ownLevelNum ' + this.ownTeam.ownLevelNum+'\n');
+					'ownLevelNum ' + this.ownTeam.ownLevelNum+'\n');*/
 		} 
 		if (page=='teamPageAny') {
-			if  (this.ownTeam.ownYouthTeamId==null) {
+			/*if  (this.ownTeam.ownYouthTeamId==null)*/ {
 				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
 				if (this.ownTeam.ownTeamId==leftMenuTeamId) {
 					this.ownTeam.ownYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-					Foxtrick.dump('FoxtrickHelper.getOwnYouthTeamId(): '+this.ownTeam.ownYouthTeamId+'\n');
+					//Foxtrick.dump('FoxtrickHelper.getOwnYouthTeamId(): '+this.ownTeam.ownYouthTeamId+'\n');
 				}
 			}
 		}
