@@ -162,6 +162,10 @@ var FoxtrickContextMenuCopy = {
 			if (node.href !== undefined) {
 				var linkMarkup = this.getMarkupFromLink(node.href);
 				if (linkMarkup !== null) {
+					if (ret === "(" + this.getIdFromLink(node.href).id + ")") {
+						// if the link is simply a representation of ID
+						ret = "";
+					}
 					ret += linkMarkup;
 				}
 			}
