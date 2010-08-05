@@ -100,6 +100,8 @@ var FoxtrickContextMenuCopy = {
 				var relLink = link.match(relRe)[1];
 				ret = "[link=" + relLink + "]";
 			}
+			// ignore some boring links
+			if (link.search(/\/Help\/Rules\/AppDenominations\.aspx/i) != -1) ret = "";			
 		}
 		return ret;
 	},
