@@ -2,36 +2,38 @@
 <RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
          xmlns:NC="http://home.netscape.com/NC-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="rdf:#$omODR1"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="3.0"
-                   em:maxVersion="4.0b3pre"
-                   em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
-                   em:updateInfoURL="http://foxtrick.mozdev.org/updateNotes/releaseNotes.xthml"
-                   em:updateHash="sha1:5308b8246706217a9f34f0e2daeb634f901a94da" />
-  <RDF:Description RDF:about="rdf:#$lmODR1"
-                   em:version="0.5.3.0b1">
-    <em:targetApplication RDF:resource="rdf:#$omODR1"/>
-    <em:targetApplication RDF:resource="rdf:#$CmODR1"/>
-    <em:targetApplication RDF:resource="rdf:#$QmODR1"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$CmODR1"
-                   em:id="{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"
-                   em:minVersion="2.0pre"
-                   em:maxVersion="2.1a1pre"
-                   em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
-                   em:updateHash="sha1:5308b8246706217a9f34f0e2daeb634f901a94da" />
-  <RDF:Seq RDF:about="rdf:#$kmODR1">
-    <RDF:li RDF:resource="rdf:#$lmODR1"/>
-  </RDF:Seq>
   <RDF:Description RDF:about="rdf:#$QmODR1"
                    em:id="{a463f10c-3994-11da-9945-000d60ca027b}"
                    em:minVersion="1.2.6"
                    em:maxVersion="2.5.5"
                    em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
-                   em:updateHash="sha1:5308b8246706217a9f34f0e2daeb634f901a94da" />
+                   em:updateInfoURL="http://foxtrick.mozdev.org/updateNotes/0530/releaseNotes.xthml"
+                   em:updateHash="sha1:2B8C291795D3CEBF272E82DFBF6E11384E48902B" />
+  <RDF:Description RDF:about="rdf:#$CmODR1"
+                   em:id="{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"
+                   em:minVersion="2.0pre"
+                   em:maxVersion="2.1a1pre"
+                   em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
+                   em:updateInfoURL="http://foxtrick.mozdev.org/updateNotes/0530/releaseNotes.xthml"
+                   em:updateHash="sha1:2B8C291795D3CEBF272E82DFBF6E11384E48902B" />
   <RDF:Description RDF:about="urn:mozilla:extension:{9d1f059c-cada-4111-9696-41a62d64e3ba}"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAF7aajLirxHoY3xpxemIlrHYHeZti/BCHBnhUQb/soSlkAxs2cckNLpHku4AMpU3etAFVgXmQ5jvx4kIp707vMqQBInhoXt2RBXbPcVDb93UP5Ea1i4QZCHVWbxu+4kd/KDoFfKvQOG2TRMR/4EchOEVjBfBAQ9978Bq/KmlQDnr">
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAIHFPFKUqewPz+UrCyxsdoZ2i+C7HvnQwAHQa1D1JK8gpROf4B/LGWdZy1uChkGpDVM7w+wfM88ZtjK7vE9/ep9QafBdLgy7JfFXpnC6wl2nbb8IpZTTRRKI+qqmvpuFXp1iZc6/QBg3OTranoXhuH3aOb0Qbrvwp/3um8LxqjWK">
     <em:updates RDF:resource="rdf:#$kmODR1"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$omODR1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="3.0"
+                   em:maxVersion="4.0b3pre"
+                   em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
+                   em:updateInfoURL="http://foxtrick.mozdev.org/updateNotes/0530/releaseNotes.xthml"
+                   em:updateHash="sha1:2B8C291795D3CEBF272E82DFBF6E11384E48902B" />
+  <RDF:Seq RDF:about="rdf:#$kmODR1">
+    <RDF:li RDF:resource="rdf:#$lmODR1"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$lmODR1"
+                   em:version="0.5.3.0b3">
+    <em:targetApplication RDF:resource="rdf:#$omODR1"/>
+    <em:targetApplication RDF:resource="rdf:#$CmODR1"/>
+    <em:targetApplication RDF:resource="rdf:#$QmODR1"/>
   </RDF:Description>
 </RDF:RDF>
