@@ -71,4 +71,32 @@
 		<level text="desastrós" value="1" />
 		<level text="inexistent" value="0" />
 	</levels>
+
+	<agreeability>
+		<level text="apreciat company d&#39;equip" value="5" />
+		<level text="noi popular" value="4" />
+		<level text="noi carismàtic" value="3" />
+		<level text="noi agradable" value="2" />
+		<level text="noi polèmic" value="1" />
+		<level text="noi malintencionat" value="0" />
+	</agreeability>
+
+	<honesty>
+		<level text="un sant" value="5" />
+		<level text="honorable" value="4" />
+		<level text="just" value="3" />
+		<level text="honest" value="2" />
+		<level text="deshonest" value="1" />
+		<level text="infame" value="0" />
+	</honesty>
+
+	<aggressiveness>
+		<level text="rabiós" value="5" />
+		<level text="iracund" value="4" />
+		<level text="temperamental" value="3" />
+		<level text="estable" value="2" />
+		<level text="calmat" value="1" />
+		<level text="tranquil" value="0" />
+	</aggressiveness>
+
 </language>
