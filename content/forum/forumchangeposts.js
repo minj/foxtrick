@@ -185,7 +185,7 @@ var FoxtrickForumChangePosts = {
                     while ( header_part = header.childNodes[k++]) {
                         if (header_part.className.search(/float_left/)!=-1 ) header_left = header_part;
                         if (header_part.className.search(/float_right/)!=-1 )
-                            if (header_right==null)header_right = header_part;
+                            if (header_right==null) header_right = header_part;
                     }
 					
                     /* add someting to test removal later
@@ -208,8 +208,19 @@ var FoxtrickForumChangePosts = {
                     var supporter_link2 = null;
                     var league_link1 = null;
                     var league_link2 = null;
-
-
+					var is_ignored = false;
+					if (do_single_header && header_right &&  header_right.innerHTML.search('showHide')!=-1) {
+						is_ignored = true;
+						var header_right_links = header_right.getElementsByTagName('a');
+						var k = 0, header_right_link;
+						while ( header_right_link = header_right_links[k++]) {
+							if (header_right_link.href.search('showHide')!=-1) {
+								header_right_link.parentNode.setAttribute('style','margin-left:3px;');
+								break;
+							}
+						}                    
+					}
+					
                     var k = 0, header_left_link;
                     if (header_left_links[0].href.search(/showMInd/)==-1 ) {this.bDetailedHeader = true; do_alltid_flags=false;}
                     while ( header_left_link = header_left_links[k++]) {
@@ -495,7 +506,11 @@ var FoxtrickForumChangePosts = {
                         }catch(e_bookmark) {Foxtrick.dump('Error SLH_Forum_Bookmark: ' + e_bookmark + '\n');}
                     }*/
 
-                    if (do_single_header && !do_single_header_allways) {
+                    if (do_single_header && is_ignored && header.className == "cfHeader doubleLine") {
+						wrapper.setAttribute('style','margin-bottom: 20px !important;');
+						//header.getElementsByTagName('p')[0].setAttribute('style','display:block !important;');
+					}
+					if (do_single_header && !do_single_header_allways && !is_ignored) {
                       if (header.className == "cfHeader doubleLine") {	
 						//Foxtrick.dump('d'+String(header.offsetTop-header_right.offsetTop)+'\n');
                         // Foxtrick.dump(header.innerHTML);
