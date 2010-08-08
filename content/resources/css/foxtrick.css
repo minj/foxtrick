@@ -143,8 +143,9 @@ span.ft-pop-up-span {
 	cursor: pointer;
 }
 span.ft-pop-up-span-icon {
-	position: absolute;
-	padding-right: 5px;
+	position: relative;
+	display: inline-block;
+	padding-right: 4px;
 	background: url(../img/pop-up.png) 24px 4px no-repeat;
 }
 span.ft-pop-up-span > ul.ft-pop {
