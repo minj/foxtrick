@@ -319,7 +319,7 @@ var FoxtrickMyHT = {
 				p.appendChild(a);				
 				alertdiv.appendChild(p);*/
 
-				var p=doc.createElement('p');				
+				/*var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.ChangesTab")+': '));				
 				p.appendChild(doc.createTextNode(" "));				
 				var a=doc.createElement('a');
@@ -330,14 +330,14 @@ var FoxtrickMyHT = {
 				commondiv.appendChild(p);
 
 
-				/*alertdiv.appendChild(doc.createElement('br'));				
+				alertdiv.appendChild(doc.createElement('br'));				
 				var p=doc.createElement('p');				
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("FoxtrickMyHtHint")));				
 				alertdiv.appendChild(p);
 				*/
 				
 				// changes quick set repeat
-				alertdiv.appendChild(doc.createElement('br'));				
+				/*alertdiv.appendChild(doc.createElement('br'));				
 				var p=doc.createElement('p');				
 				var a=doc.createElement('a');
 				a.href="javascript:void();";
@@ -352,8 +352,9 @@ var FoxtrickMyHT = {
 				a.setAttribute('style','float:right');
 				p.appendChild(a);				
 				
-				commondiv.appendChild(p);
-
+				commondiv.appendChild(p);*/
+				
+				FoxtrickMyHT.ShowChanged(doc);
 				
 		} catch(e){dump('MyHtShowAlert '+e+'\n');}
 	},
@@ -398,10 +399,10 @@ var FoxtrickMyHT = {
 	sortfunction4: function(a,b) {return a.NEW_AFTER_VERSION.localeCompare(b.NEW_AFTER_VERSION);},
 
 	
-	ShowChanged: function(ev) {
+	ShowChanged: function(doc) {
 		try{
 		
-		var doc = ev.target.ownerDocument;
+		//var doc = ev.target.ownerDocument;
 		
 		//FoxtrickMyHT.ShowOnce();
 		FoxtrickMain.IsNewVersion=false;
@@ -410,18 +411,25 @@ var FoxtrickMyHT = {
 		doc.addEventListener( "click", FoxtrickOnPagePrefs.ClickCapture, true );
 		
 		var FoxtrickMyHTCommon = doc.getElementById('FoxtrickMyHTCommon');
-		FoxtrickMyHTCommon.style.display='none';		
+		//FoxtrickMyHTCommon.style.display='none';		
 		
 		var alertdivOuter = doc.getElementById('idFoxtrickPrefsOuter');
 		var alertdiv=doc.createElement('div');
 		alertdiv.setAttribute('id','idFoxtrickPrefs');
+		alertdiv.setAttribute('style','border:1px solid #CCCCCC; padding:5px; margin-top:20px;');		
 		alertdivOuter.appendChild(alertdiv);
 		
+		var h2=doc.createElement('h2');
+		h2.innerHTML = Foxtrickl10n.getString("preferences");
+		h2.setAttribute('style','margin-top: 10px; margin-left:10px; color:#6B6B6B;font-size:1.5em;');
+		h2.className='ft_pref_list_caption';
+		alertdiv.appendChild(h2);				
+
 		var a=doc.createElement('a');
 		a.href="javascript:void();";
 		a.innerHTML=Foxtrickl10n.getString("Close");
 		Foxtrick.addEventListenerChangeSave(a, "click", FoxtrickMyHT.Close, false );
-		a.setAttribute('style','float:right');
+		a.setAttribute('style','float:right; margin-top:10px;');
 		alertdiv.appendChild(a);				
 
 		var prefsavediv=doc.createElement('div');	
@@ -479,7 +487,7 @@ var FoxtrickMyHT = {
 		a.href="javascript:void();";
 		a.innerHTML=Foxtrickl10n.getString("Close");
 		Foxtrick.addEventListenerChangeSave(a, "click", FoxtrickMyHT.Close, false );
-		a.setAttribute('style','float:right');
+		a.setAttribute('style','float:right;margin-top:10px;');
 		alertdiv.appendChild(a);				
 
 		var prefsavediv=doc.createElement('div');	
