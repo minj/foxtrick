@@ -32,6 +32,7 @@ Foxtrick.ht_pages = {
 	'forumWritePost'            : '/Forum/Write',
 	'forumModWritePost'         : '/Forum/Functions',
 	'messageWritePost'          : '/MyHattrick/Inbox/Default.aspx?actionType=newMail|/MyHattrick/Inbox/Default.aspx?actionType=readMail',
+	'ticket'					: '/MyHattrick/Inbox/Default.aspx?actionType=viewInfoTicket',
 	'forumSettings'             : '/MyHattrick/Preferences/ForumSettings.aspx',
 	'prefSettings'              : '/MyHattrick/Preferences/ProfileSettings.aspx',
 	'bookmarks'                 : '/MyHattrick/Bookmarks',
