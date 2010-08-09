@@ -227,13 +227,13 @@ var FoxtrickMyHT = {
 		}
 		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadioWinamp.enabled')===null) {
 			if (country==='Belgium' || country==='Netherlands') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioWinamp.enabled',true)
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioWinamp.enabled',false)
 			}
 			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioWinamp.enabled',false)
 		}
 		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled')===null) {
 			if (country==='Belgium' || country==='Netherlands') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled',false)
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled',true)
 			}
 			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled',false)
 		}
