@@ -90,9 +90,12 @@ var FoxtrickCopyMatchID = {
 	},
 	
 	_copy_matchid_to_clipboard : function(ev) {
+	try{
 		var doc = ev.target.ownerDocument;
 		var matchid = ev.target.parentNode.getAttribute("matchid");
+		var insertBefore = doc.getElementsByTagName('h1')[0];
 		Foxtrick.copyStringToClipboard(matchid);
-		var note = Foxtrick.Note.add(doc, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true);
+		var note = Foxtrick.Note.add(doc, insertBefore, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true, true);
+	} catch(e){Foxtrick.dumpError(e);}
 	}
 };

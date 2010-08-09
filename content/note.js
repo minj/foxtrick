@@ -32,19 +32,17 @@ Foxtrick.Note = {
 	 * hasClose - whether to add a link labelled "Close" for closing the note
 	 */
 
-	add : function(doc, id, msg, buttons, hasClose) {
+	add : function(doc, insertBefore, id, msg, buttons, hasClose, doJump) {
+		Foxtrick.dump(insertBefore.className+'\n');
 		// first we remove the old notes with same name
 		var old = doc.getElementById(id);
 		if (old) {
 			old.parentNode.removeChild(old);
 		}
 		var note = this.create(doc, id, msg, buttons, hasClose);
-		var noteArea = Foxtrick.Note.getNoteArea(doc);
-		if (noteArea) {
-			noteArea.appendChild(note);
-		}
+		insertBefore.parentNode.insertBefore(note,insertBefore);
 		// go to the note
-		doc.location = doc.location.href.replace(/#.*?$/, "") + "#" + id;
+		if (doJump) doc.location = doc.location.href.replace(/#.*?$/, "") + "#" + id;
 		return note;
 	},
 
@@ -120,11 +118,4 @@ Foxtrick.Note = {
 			Foxtrick.dumpError(e);
 		}
 	},
-
-	getNoteArea : function(doc) {
-		var area = doc.getElementById("ctl00_updNotifications")
-			|| doc.getElementById("ctl00_ctl00_CPContent_ucNotifications_updNotifications")
-			|| null;
-		return area;
-	}
 };

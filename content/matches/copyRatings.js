@@ -38,6 +38,7 @@ var FoxtrickCopyRatings = {
 			copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
 			copyBoth.setAttribute("team1", "true");
 			copyBoth.setAttribute("team2", "true");
+			copyBoth.setAttribute("place", "table");
 			copyBoth.addEventListener("click", this.createRatings, false);
 			tableHeader.appendChild(copyBoth);
 
@@ -47,6 +48,7 @@ var FoxtrickCopyRatings = {
 			copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
 			copyHome.setAttribute("team1", "true");
 			copyHome.setAttribute("team2", "false");
+			copyHome.setAttribute("place", "table");
 			copyHome.addEventListener("click", this.createRatings, false);
 			homeHeader.appendChild(copyHome);
 
@@ -56,6 +58,7 @@ var FoxtrickCopyRatings = {
 			copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
 			copyAway.setAttribute("team1", "false");
 			copyAway.setAttribute("team2", "true");
+			copyAway.setAttribute("place", "table");
 			copyAway.addEventListener("click", this.createRatings, false);
 			awayHeader.appendChild(copyAway);
 
@@ -193,6 +196,10 @@ var FoxtrickCopyRatings = {
 		try {
 			var doc = ev.target.ownerDocument;
 
+			if (ev.currentTarget.getAttribute("place")=="table") {
+				var insertBefore = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
+			} else var insertBefore = doc.getElementsByTagName('h1')[0];
+			
 			var team1 = (ev.currentTarget.getAttribute("team1") == "true");
 			var team2 = (ev.currentTarget.getAttribute("team2") == "true");
 
@@ -275,10 +282,10 @@ var FoxtrickCopyRatings = {
 				ad = ad_s.join('[/tr]').replace(/\[tr\]\[\/tr\]/,'');
 			}
 			Foxtrick.copyStringToClipboard(ad);
-			var note = Foxtrick.Note.add(doc, "ft-ratings-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"), null, true);
+			var note = Foxtrick.Note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"), null, true);
 		}
 		catch (e) {
-			Foxtrick.dump('ratingscopied error: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	}
 };

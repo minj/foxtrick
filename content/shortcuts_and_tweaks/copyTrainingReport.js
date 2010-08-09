@@ -92,6 +92,7 @@ var FoxtrickCopyTrainingReport = {
 	},
 
 	copyReport : function( ev ) {
+	try{
 		var doc = ev.target.ownerDocument;
 		var mainBody = doc.getElementById('mainBody');
 		var subDivs = mainBody.getElementsByTagName("div");
@@ -111,14 +112,16 @@ var FoxtrickCopyTrainingReport = {
 				plain=plain.replace(/\<br\>/ig,'\n');
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
+				var insertBefore = doc.getElementsByTagName('h1')[0];
 				Foxtrick.copyStringToClipboard(plain);
-				var note = Foxtrick.Note.add(doc, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"), null, true);
+				var note = Foxtrick.Note.add(doc, insertBefore, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.reportcopied"), null, true);
 			}
 		}
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 			var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 			Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/',false); 
 		}
+		} catch(e){Foxtrick.dumpError(e);}
 	}
 };
 
@@ -244,8 +247,9 @@ var FoxtrickCopyScoutReport = {
 				
 				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 
+				var insertBefore = doc.getElementsByTagName('h1')[0];
 				Foxtrick.copyStringToClipboard(plain);
-				var note = Foxtrick.Note.add(doc, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.scoutreportcopied"), null, true);
+				var note = Foxtrick.Note.add(doc, insertBefore, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.scoutreportcopied"), null, true);
 
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
@@ -253,7 +257,7 @@ var FoxtrickCopyScoutReport = {
 					else Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_myrejects_add/',true);
 				}
 		}
-	} catch(e) {Foxtrick.dump('copyreport '+e+'\n');}
+	} catch(e) {Foxtrick.dumpError(e);}
 	}
 };
 
@@ -332,16 +336,19 @@ var FoxtrickCopyPlayerSource = {
 	},
 
 	copySource : function( ev ) {
-		var doc = ev.target.ownerDocument;
+	try{
+	var doc = ev.target.ownerDocument;
 		var html = '<html> '+doc.documentElement.innerHTML+' </html>';
 
+		var insertBefore = doc.getElementsByTagName('h1')[0];
 		Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
-		var note = Foxtrick.Note.add(doc, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
+		var note = Foxtrick.Note.add(doc, insertBefore, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
 
 		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 					Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_cp_add',true); 
 		}
+	}catch(e){Foxtrick.dumpError(e);}
 	},
 	
 	fixbr : function(text) {
