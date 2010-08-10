@@ -142,12 +142,20 @@ span.ft-pop-up-span {
 	position: relative;
 	cursor: pointer;
 }
+
 span.ft-pop-up-span-icon {
 	position: relative;
 	display: inline-block;
 	padding-right: 4px;
 	background: url(../img/pop-up.png) 24px 4px no-repeat;
 }
+span.ft-pop-up-span-icon-header {
+	position: absolute;
+	display: inline-block;
+	padding-right: 4px;
+	background: url(../img/pop-up.png) 24px 4px no-repeat;
+}
+
 span.ft-pop-up-span > ul.ft-pop {
 	right:0px;
 	bottom:0px;
@@ -155,6 +163,10 @@ span.ft-pop-up-span > ul.ft-pop {
 span.ft-pop-up-span-icon > ul.ft-pop {
 	right:0px;
 	bottom:12px;
+}
+span.ft-pop-up-span-icon-header > ul.ft-pop {
+	bottom:-18px;
+	z-index:99999;
 }
 ul.ft-pop {
 	background-color: #eee;

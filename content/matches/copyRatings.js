@@ -10,8 +10,8 @@ var FoxtrickCopyRatings = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Copy links back to rating table.",
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Small copyicon options as popup",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
@@ -35,9 +35,8 @@ var FoxtrickCopyRatings = {
 			var copyBoth = doc.createElement("span");
 			copyBoth.className = "ft_copy_rating";
 			copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
-			copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
-			copyBoth.setAttribute("team1", "true");
-			copyBoth.setAttribute("team2", "true");
+			copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.both");
+			copyBoth.setAttribute("teams", "both");
 			copyBoth.setAttribute("place", "table");
 			copyBoth.addEventListener("click", this.createRatings, false);
 			tableHeader.appendChild(copyBoth);
@@ -46,8 +45,7 @@ var FoxtrickCopyRatings = {
 			copyHome.className = "ft_copy_rating";
 			copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 			copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
-			copyHome.setAttribute("team1", "true");
-			copyHome.setAttribute("team2", "false");
+			copyHome.setAttribute("teams", "home");
 			copyHome.setAttribute("place", "table");
 			copyHome.addEventListener("click", this.createRatings, false);
 			homeHeader.appendChild(copyHome);
@@ -56,8 +54,7 @@ var FoxtrickCopyRatings = {
 			copyAway.className = "ft_copy_rating";
 			copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 			copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
-			copyAway.setAttribute("team1", "false");
-			copyAway.setAttribute("team2", "true");
+			copyAway.setAttribute("teams", "away");
 			copyAway.setAttribute("place", "table");
 			copyAway.addEventListener("click", this.createRatings, false);
 			awayHeader.appendChild(copyAway);
@@ -79,42 +76,39 @@ var FoxtrickCopyRatings = {
 				}
 
 				var copyBoth = doc.createElement("a");
-				copyBoth.id = "copyratings";
-				copyBoth.className = "inner copyicon copyratings ci_fourth";
-				copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
-				copyBoth.setAttribute("team1", "true");
-				copyBoth.setAttribute("team2", "true");
+				copyBoth.className = "inner copyicon copyratings";
+				copyBoth.setAttribute('parent_id','copyratingsid');
+				copyBoth.id = "copyratingsid";
+				copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings."+FoxtrickPrefs.getString('copyratings.teams'));
+				copyBoth.setAttribute("teams", FoxtrickPrefs.getString('copyratings.teams'));
 				copyBoth.addEventListener("click", this.createRatings, false);
 				var img = doc.createElement("img");
-				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
 				img.src = Foxtrick.ResourcePath + "resources/img/transparent.gif";
 				copyBoth.appendChild(img);
-				boxHead.insertBefore(copyBoth, boxHead.firstChild);
 
-				var copyHome = doc.createElement("a");
-				copyHome.className = "inner copyicon copyratingshome ci_third";
-				copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
-				copyHome.setAttribute("team1", "true");
-				copyHome.setAttribute("team2", "false");
-				copyHome.addEventListener("click", this.createRatings, false);
-				var img = doc.createElement("img");
-				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
-				img.src = Foxtrick.ResourcePath + "resources/img/transparent.gif";
-				copyHome.appendChild(img);
-				boxHead.insertBefore(copyHome, boxHead.firstChild);
+				var span = doc.createElement("span");
+				span.className = "ft-pop-up-span-icon-header";
+				span.setAttribute("style", "right:55px;");
+				span.appendChild(copyBoth);
 
-				var copyAway = doc.createElement("a");
-				copyAway.className = "inner copyicon copyratingsaway ci_second";
-				copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away" );
-				copyAway.setAttribute("team1", "false");
-				copyAway.setAttribute("team2", "true");
-				copyAway.addEventListener("click", this.createRatings, false);
-				var img = doc.createElement("img");
-				img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
-				img.src = Foxtrick.ResourcePath + "resources/img/transparent.gif";
-				copyAway.appendChild(img);
-				boxHead.insertBefore(copyAway, boxHead.firstChild);
-			}
+				var versions=['both','home','away'];	
+				var list = doc.createElement("ul");
+				list.className = "ft-pop";
+				for (var j=0; j<versions.length; ++j) { 
+					var item = doc.createElement("li");
+					var link = doc.createElement("span");
+					link.addEventListener("click", this.createRatings, false);
+					link.setAttribute( "teams", versions[j]);
+					link.textContent = Foxtrickl10n.getString("foxtrick.tweaks.copyratings."+versions[j]);
+					link.setAttribute('parent_id', 'copyratingsid');
+					item.appendChild(link);
+					list.appendChild(item);
+				}
+											
+				span.appendChild(list);
+				boxHead.insertBefore(span, boxHead.firstChild);
+
+				}
 			else {
 				var parentDiv = doc.createElement("div");
 				parentDiv.id = "foxtrick_addactionsbox_parentDiv";
@@ -123,8 +117,8 @@ var FoxtrickCopyRatings = {
 				copyBoth.className = "inner";
 				copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
 				copyBoth.setAttribute("style", "cursor: pointer;");
-				copyBoth.setAttribute("team1", "true");
-				copyBoth.setAttribute("team2", "true");
+				copyBoth.setAttribute("teams", "both");
+				copyBoth.setAttribute("place", "box");
 				copyBoth.addEventListener("click", this.createRatings, false);
 
 				var img = doc.createElement("img");
@@ -145,8 +139,8 @@ var FoxtrickCopyRatings = {
 				copyHome.className = "inner";
 				copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
 				copyHome.setAttribute("style", "cursor: pointer;");
-				copyHome.setAttribute("team1", "true");
-				copyHome.setAttribute("team2", "false");
+				copyHome.setAttribute("place", "box");
+				copyHome.setAttribute("teams", "home");
 				copyHome.addEventListener("click", this.createRatings, false);
 
 				var img = doc.createElement("img");
@@ -167,8 +161,8 @@ var FoxtrickCopyRatings = {
 				copyAway.className = "inner";
 				copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
 				copyAway.setAttribute("style", "cursor: pointer;");
-				copyAway.setAttribute("team1", "false");
-				copyAway.setAttribute("team2", "true");
+				copyAway.setAttribute("place", "box");
+				copyAway.setAttribute("teams", "away");
 				copyAway.addEventListener("click", this.createRatings, false);
 
 				var img = doc.createElement("img");
@@ -198,10 +192,17 @@ var FoxtrickCopyRatings = {
 
 			if (ev.currentTarget.getAttribute("place")=="table") {
 				var insertBefore = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
-			} else var insertBefore = doc.getElementsByTagName('h1')[0];
-			
-			var team1 = (ev.currentTarget.getAttribute("team1") == "true");
-			var team2 = (ev.currentTarget.getAttribute("team2") == "true");
+			} 
+			else if (ev.currentTarget.getAttribute("place")=="box") {
+				var insertBefore = doc.getElementById('foxtrick_addactionsbox_parentDiv');
+			}
+			else {
+				var insertBefore = doc.getElementsByTagName('h1')[0];
+				FoxtrickPrefs.setString('copyratings.teams',ev.currentTarget.getAttribute("teams"));
+				doc.getElementById(ev.currentTarget.getAttribute("parent_id")).title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings."+FoxtrickPrefs.getString('copyratings.teams'));
+ 			}
+			var team1 = (ev.currentTarget.getAttribute("teams") == "both" || ev.currentTarget.getAttribute("teams") == "home");
+			var team2 = (ev.currentTarget.getAttribute("teams") == "both" || ev.currentTarget.getAttribute("teams") == "away");
 
 			var _d = Foxtrickl10n.getString("foxtrick.matchdetail.defence" );
 			var _m = Foxtrickl10n.getString("foxtrick.matchdetail.midfield" );

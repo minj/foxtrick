@@ -258,3 +258,4 @@ pref("extensions.foxtrick.prefs.module.SmallerPages.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.table_separator", ' ');
 pref("extensions.foxtrick.prefs.CopyPostingStyle", 'ht-ml');
+pref("extensions.foxtrick.prefs.copyratings.teams", 'both');
