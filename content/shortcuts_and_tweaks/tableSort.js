@@ -89,7 +89,7 @@ var FoxtrickTableSort = {
 		    	if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;} 
 		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;} 
 		    	if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;} 
-				if (inner.search(/^\d{1,4}(\.|\/)\d{1,2}(\.|\/)\d{1,4}/)==-1 && inner!='') {is_date=false;} 
+				if (!Foxtrick.getDateFromText(inner)) {is_date=false;}
 				if (table.rows[i].cells[index].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;} 								
 		    }
 			var sort_end = i;
@@ -164,28 +164,9 @@ var FoxtrickTableSort = {
 			return FoxtrickTableSort.sortDirection*(bContent - aContent);										    
 		}
 		else if (FoxtrickTableSort.sortDate) {
-			var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-			if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
-			switch ( DATEFORMAT ) {
-				case 'ddmmyyyy':
-					var SD = 1;
-					var SM = 2
-					var SY = 3;
-					break;
-				case 'mmddyyyy':
-					var SD = 2;
-					var SM = 1;
-					var SY = 3;
-					break;
-				case 'yyyymmdd':
-					var SD = 3;
-					var SM = 2;
-					var SY = 1;
-					break;
-			}
-			var date1 = aContent.match(/(\d{1,4}).*?(\d{1,2}).*?(\d{1,4})/);
-			var date2 = bContent.match(/(\d{1,4}).*?(\d{1,2}).*?(\d{1,4})/);
-			return FoxtrickTableSort.sortDirection*((date1[SY]!=date2[SY]) ? (date1[SY]-date2[SY]) : ((date1[SM]!=date2[SM]) ? (date1[SM]-date2[SM]) : (date1[SD]-date2[SD])));
+			var date1 = Foxtrick.getDateFromText(aContent);
+			var date2 = Foxtrick.getDateFromText(bContent);
+			return FoxtrickTableSort.sortDirection*(date2.getTime() - date1.getTime());
 		}
 		else if (FoxtrickTableSort.sortYouthSkill) {
 			aContent = aContent.replace('-','0').match(/^(\d)\/(\d)$/);
