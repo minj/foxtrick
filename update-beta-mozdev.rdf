@@ -23,7 +23,7 @@
   <RDF:Description RDF:about="rdf:#$omODR1"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="3.0"
-                   em:maxVersion="4.0b3pre"
+                   em:maxVersion="4.0b4pre"
                    em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
                    em:updateInfoURL="http://foxtrick.mozdev.org/updateNotes/0530/releaseNotes.xthml"
                    em:updateHash="sha1:2B8C291795D3CEBF272E82DFBF6E11384E48902B" />
