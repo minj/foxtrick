@@ -74,11 +74,12 @@ var FoxtrickStaffMarker = {
 			var users = '';
 			if (Foxtrick.isModuleFeatureEnabled( this, "own")) {
 				users = utext.match(/userid=(\d+)/ig);
+				
 				var ii=0,user;
 				while (user = users[ii++]) {
 					try {
-						var ustyle = utext.substring(utext.search(user)).match(/style=\'(.+)\'/)[1];
-						this.ulist[user.replace(/userid=/i,'')] = ustyle;
+						var ustyle = utext.substring(utext.search(user)).match(/style='(.+)'/)[1];
+						this.ulist[user.replace(/userid=/i,'')] = ustyle;						
 					}
 					catch (e) {
 						Foxtrick.dumpError(e);
@@ -133,7 +134,7 @@ var FoxtrickStaffMarker = {
 
 					// earlier overwrites later.
 					if (do_own && this.ulist[uid]!=null) {
-						a.style = this.ulist[uid];
+						a.setAttribute('style',this.ulist[uid]);
 					}
 
 					// exclusive categories
@@ -186,7 +187,8 @@ var FoxtrickStaffMarker = {
 					//Foxtrick.dump('forumSELECT => select box:'+ el_Select.id + '.\n');
 					var i = 1, option;
 					while ( option = el_Select.options[i++] ) {
-						var style = option.style;
+						var style = option.getAttribute('style');
+						if (style == null) style =''
 						//Foxtrick.dump('forumSELECT => select i:'+ i + '.\n');
 						var uname = Foxtrick.trim(option.textContent);
 						uname = uname.substring(0, uname.indexOf(' '));
@@ -225,12 +227,15 @@ var FoxtrickStaffMarker = {
 						}
 
 						if (do_own && this.ulist[uid]!=null) {
-							new_style = this.ulist[uid];
+							style += this.ulist[uid];							
 						}
 						if (do_flag) {
 							style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value.replace(/by_|to_/,'') + '.gif"); background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
 						}
-						option.setAttribute("style", style);
+							
+						if (style!='') {
+							option.setAttribute("style", style);
+						}
 					}
 				}
 			}
