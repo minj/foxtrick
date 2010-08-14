@@ -10,6 +10,7 @@
 <lines>TransferSearchResultFilters: Filters the search transfer search results</lines>
 <lines>YouthSeriesEstimation: New module for estimating start time of youth series.</lines>
 <lines>ForumYouthIcons: New button for converting text to tables.</lines>
+<lines>ForumThreadAutoIgnore: Automatically ignore forum threads with user selected tags</lines>
 
 
 <lines>SkillTable : Added to transferlist search results and added some columns.</lines>
