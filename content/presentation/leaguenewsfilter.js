@@ -98,7 +98,7 @@ var FoxtrickLeagueNewsFilter = {
 				for (var i=1; i<5; ++i) {
 					var link = tables[k].rows[i].cells[0].getElementsByTagName('a')[0];
 					// lineup set
-					if (Foxtrick.isModuleFeatureEnabled(this, 'highlight_set_lineup') && tables[k].className.search('right')!=-1) {
+					if (Foxtrick.isModuleFeatureEnabled(this, 'highlight_set_lineup') && tables[k].rows[i].cells.length>=3 && tables[k].rows[i].cells[2].innerHTML.search(/\/Club\/Matches\/Live\.aspx\?actionType=addMatch/i)!=-1) {
 						for (var j = 0; j < lineupSet.length; ++j) {
 							var pos = link.title.search(Foxtrick.stringToRegExp(lineupSet[j]));
 							if (pos == 0) {
