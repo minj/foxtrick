@@ -4,16 +4,16 @@
 }
 
 .ft-htms-stats-win {
-	background-color: rgb(110, 110, 0);
+	background-color: white;
 	border: 1px solid #000000;
 }
 
 .ft-htms-stats-draw {
-	background-color: rgb(210, 210, 210);
+	background-color: #ddd;
 	float: right;
 }
 
 .ft-htms-stats-loss {
-	background-color: rgb(0, 110, 110);
+	background-color: #849D84;
 	float: right;
 }

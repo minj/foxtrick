@@ -132,12 +132,13 @@ FoxtrickMatchReportFormat = {
 					if (dummy[i].indexOf('/Arena/') != -1) stage +=1;
 
 					if (stage>1) { //full report
+						if (fulltext<=2) textClass = SPECIAL_EVENT_CLASS_NAME;;
 						if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
 							fulltext++;
 							dummy[i] = dummy[i].replace(team1 + ' ', '<span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span> ');
 							dummy[i] = dummy[i].replace(' ' + team1, ' <span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span>');
 							if (fulltext <= 2) {
-								textClass = SPECIAL_EVENT_CLASS_NAME;
+								textClass = NORMAL_EVENT_CLASS_NAME;
 							}
 						}
 						if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
@@ -145,12 +146,12 @@ FoxtrickMatchReportFormat = {
 							dummy[i] = dummy[i].replace(team2 + ' ', '<span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span> ');
 							dummy[i] = dummy[i].replace(' ' + team2, ' <span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span>');
 							if (fulltext <= 2) {
-								textClass = SPECIAL_EVENT_CLASS_NAME;
+								textClass = NORMAL_EVENT_CLASS_NAME;
 								next = i+2;
 							}
 						}
 						if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
-
+						
 						part[1] += '<div id="ft_mR_div_' + i + '" class="' + textClass + '" style="'+ marg + padd +'">' + dummy[i] + '</div>\n\n';
 					}
 					else {
@@ -280,6 +281,7 @@ FoxtrickMatchReportFormat = {
 			var sidebar = doc.getElementById('sidebar');
 			var links = sidebar.getElementsByTagName('a');
 			for (var i=0; i < links.length; i++) {
+				if (links[i].getElementsByTagName('img').lngth!=0) continue;
 				if (links[i].href.search('TeamID=' + homeTeamId) > 0) {
 					Foxtrick.addClass(links[i], HOME_TEAM_CLASS_NAME);
 				}

@@ -9,21 +9,17 @@
 }
 
 .ft-match-player-home {
-	background: #ffcdcd;
-	color: black !important;
-	border: 1px solid #CF8181;
+	color: #849D84 !important;
+	border: 1px solid #849D84;
+	background-color: white !important;
 }
 
 .ft-match-player-away {
-	background: #d2cdff;
-	color: black !important;
-	border: 1px solid #8981CF;
+	background: none repeat scroll 0 0 #849D84;
+	color:white !important;
 }
 
 .ft-match-player-mine {
-	background: white;
-	color: black !important;
-	border: none;
 }
 
 .ft-match-player-unknown {
