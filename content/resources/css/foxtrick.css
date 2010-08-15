@@ -74,24 +74,24 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 }
 
 /* TeamStats */
-#foxtrick_FTTeamStats_box table {
+#foxtrick_TeamStats_box table {
 	table-layout:fixed;
 	width:180px;
 }
 
-#foxtrick_FTTeamStats_box table  tr+tr td{
+#foxtrick_TeamStats_box table  tr+tr td{
 	table-layout:fixed;
 	width:90px;
 	overflow:hidden;
 }
 
-#foxtrick_FTTeamStats_box table th {
+#foxtrick_TeamStats_box table th {
 	text-decoration: underline;
 	padding-bottom: 0.5em !important;
 	padding-top: 1em !important;
 }
 
-#foxtrick_FTTeamStats_box  table td {
+#foxtrick_TeamStats_box  table td {
 	font-size: 0.9em !important;
 }
 

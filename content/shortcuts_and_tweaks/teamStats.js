@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.TeamStats = {
 
-	MODULE_NAME : "FTTeamStats",
+	MODULE_NAME : "TeamStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),
 	DEFAULT_ENABLED : true,
@@ -155,12 +155,12 @@ Foxtrick.TeamStats = {
 				}
 				if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
 					var youngerThanNineteen = playerList.length - olderThanNineteen;
-					var row = addRow(Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayerNotToOld.label"), youngerThanNineteen);
+					var row = addRow(Foxtrickl10n.getString("foxtrick.TeamStats.PlayerNotToOld.label"), youngerThanNineteen);
 					if (youngerThanNineteen < 9) {
 						row.className = "red";
 					}
 					if (olderThanNineteen) {
-						var row = addRow(Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayerToOld.label"), olderThanNineteen);
+						var row = addRow(Foxtrickl10n.getString("foxtrick.TeamStats.PlayerToOld.label"), olderThanNineteen);
 						row.className = "red";
 					}
 				}
@@ -276,11 +276,11 @@ Foxtrick.TeamStats = {
 					}
 				}
 			}
-			var ownBoxId = "foxtrick_FTTeamStats_box";
+			var ownBoxId = "foxtrick_TeamStats_box";
 			var	ownBoxBody = doc.createElement("div");
-			ownBoxBody.id = "foxtrick_FTTeamStats_content";
+			ownBoxBody.id = "foxtrick_TeamStats_content";
 			ownBoxBody.appendChild(table);
-			var header = Foxtrickl10n.getString("foxtrick.FTTeamStats.label");
+			var header = Foxtrickl10n.getString("foxtrick.TeamStats.label");
 			Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "last", "");
 		}
 		catch (e) {

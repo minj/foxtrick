@@ -111,7 +111,7 @@ FoxtrickPlayerFilters = {
 			|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
 			var option = doc.createElement('option');
 			option.value = "cards";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Cards.label");
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label");
 			filterSelect.appendChild(option);
 		}
 
@@ -119,26 +119,26 @@ FoxtrickPlayerFilters = {
 			|| Foxtrick.Pages.Players.isPropertyInList(playerList, "bruised")) {
 			var option = doc.createElement("option");
 			option.value = "injured";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Injured.label");
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.Injured.label");
 			filterSelect.appendChild(option);
 		}
 
 		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "transferListed")) {
 			var option = doc.createElement("option");
 			option.value = "transfer-listed";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.TransferListed.label");
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.TransferListed.label");
 			filterSelect.appendChild(option);
 		}
 
 		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
 			var option = doc.createElement("option");
 			option.value = "played-latest";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.PlayedLatest.label");
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.PlayedLatest.label");
 			filterSelect.appendChild(option);
 
 			var option = doc.createElement("option");
 			option.value = "not-played-latest";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.NotPlayedLatest.label");
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.NotPlayedLatest.label");
 			filterSelect.appendChild(option);
 		}
 
@@ -155,7 +155,7 @@ FoxtrickPlayerFilters = {
 		if (faceCards.length > 0) {
 			var option = doc.createElement("option");
 			option.value = "face";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.FTTeamStats.Pictures.label");
+			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.Pictures.label");
 			filterSelect.appendChild(option);
 		}
 
