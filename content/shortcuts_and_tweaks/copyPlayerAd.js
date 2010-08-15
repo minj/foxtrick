@@ -10,9 +10,10 @@ var FoxtrickCopyPlayerAd = {
 	MODULE_NAME : "CopyPlayerAd",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "youthplayerdetail"],
+	OPTIONS : ["Sorted"],
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Now supporting youth players, and player's skills are sorted.",
+	LATEST_CHANGE : "Now supporting youth players, and added option to sort player's skills.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
@@ -179,9 +180,6 @@ var FoxtrickCopyPlayerAd = {
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 			if (skills !== null) {
 				if (isSenior) {
-					var skillSort = function(a, b) {
-						return b.value - a.value;
-					}
 					var skillArray = [];
 					for (var i in skills.names) {
 						skillArray.push(
@@ -191,24 +189,48 @@ var FoxtrickCopyPlayerAd = {
 								text : skills.texts[i]
 							});
 					}
-					// sort skills by level, descending
-					skillArray.sort(skillSort);
-					for (var i in skillArray) {
-						ad += skillArray[i].name + ": "
-							+ formatSkill(skillArray[i].text, skillArray[i].value)
-							+ "\n";
+					if (Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "Sorted")
+						|| doc.getElementsByClassName("percentImage").length > 0) {
+						// if skills are sorted or skill bars are enabled,
+						// the skills are arranged in a table with one cell
+						// in each row
+						if (Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "Sorted")) {
+							var skillSort = function(a, b) {
+								return b.value - a.value;
+							}
+							// sort skills by level, descending
+							skillArray.sort(skillSort);
+						}
+
+						ad += "[table]\n";
+						for (var i in skillArray) {
+							ad += "[tr]"
+								+ "[th]" + skillArray[i].name + "[/th]"
+								+ "[td]" + formatSkill(skillArray[i].text, skillArray[i].value) + "[/td]"
+								+ "[/tr]\n";
+						}
+						ad += "[/table]";
+					}
+					else {
+						// otherwise, they are arranged in a table with two
+						// cells in each row
+						ad += "[table]\n";
+						var index = 0;
+						for (var skill in skillArray) {
+							if (index % 2 == 0)
+								ad += "[tr]";
+							ad += "[th]" + skillArray[skill].name + "[/th]";
+							ad += "[td]" + skillArray[skill].text + "[/td]";
+							if (index % 2 == 1)
+								ad += "[/tr]\n";
+							++index;
+						}
+						ad += "[/table]";
 					}
 				}
 				else {
-					var skillSort = function(a, b) {
-						if (a.current.value !== b.current.value) {
-							return b.current.value - a.current.value;
-						}
-						else if (a.max.value !== b.max.value) {
-							return b.max.value - a.max.value;
-						}
-						return b.maxed - a.maxed;
-					}
+					// for youth players, always in a table with one cell
+					// in each row
 					var skillArray = [];
 					for (var i in skills.names) {
 						skillArray.push(
@@ -219,19 +241,36 @@ var FoxtrickCopyPlayerAd = {
 								maxed : skills.values[i].maxed
 							});
 					}
-					// sort skills by current level, maximum level,
-					// and whether the skill has reached the potential,
-					// descending
-					skillArray.sort(skillSort);
+
+					if (Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "Sorted")) {
+						var skillSort = function(a, b) {
+							if (a.current.value !== b.current.value) {
+								return b.current.value - a.current.value;
+							}
+							else if (a.max.value !== b.max.value) {
+								return b.max.value - a.max.value;
+							}
+							return b.maxed - a.maxed;
+						}
+						// sort skills by current level, maximum level,
+						// and whether the skill has reached the potential,
+						// descending
+						skillArray.sort(skillSort);
+					}
+					ad += "[table]\n";
 					for (var i in skillArray) {
-						ad += formatSkill(skillArray[i].name, Math.max(skillArray[i].current.value, skillArray[i].max.value)) + ": "
+						ad += "[tr]" 
+							+ "[th]" + formatSkill(skillArray[i].name, Math.max(skillArray[i].current.value, skillArray[i].max.value)) + "[/th]"
+							+ "[td]"
 							+ (skillArray[i].maxed ? "[b]" : "")
 							+ skillArray[i].current.text
 							+ " / "
 							+ skillArray[i].max.text
 							+ (skillArray[i].maxed ? "[/b]" : "")
-							+ "\n";
+							+ "[/td]"
+							+ "[/tr]\n";
 					}
+					ad += "[/table]";
 				}
 			}
 

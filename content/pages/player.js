@@ -241,13 +241,13 @@ Foxtrick.Pages.Player = {
 					}
 				}
 				else {
-					var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
+					var skillOrder = ["stamina", "keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 					var cells = skillTable.getElementsByTagName("td");
 					for (var i = 0; i < skillOrder.length; ++i) {
-						var skillLink = cells[2 * i + 3].getElementsByTagName("a")[0];
+						var skillLink = cells[2 * i + 1].getElementsByTagName("a")[0];
 						var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
 						var skillText = Foxtrick.trim(skillLink.textContent);
-						var skillName = Foxtrick.trim(cells[2 * i + 2].textContent).replace(":", "")
+						var skillName = Foxtrick.trim(cells[2 * i].textContent).replace(":", "")
 						skills[skillOrder[i]] = skillValue;
 						skillTexts[skillOrder[i]] = skillText;
 						skillNames[skillOrder[i]] = skillName;
