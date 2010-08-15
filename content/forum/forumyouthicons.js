@@ -47,7 +47,7 @@
 				{ type:"clock", 	class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				replace_text: "time"	},
 				{ type:"spoiler", 	class : "ft_spoiler",image : "format_spoiler.png",	string : "spoiler",	tags : "[spoiler]yyy[/spoiler]",replace_text: "yyy"		},
 				{ type:"pre", 		class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
-				{ type:"table", 	class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', ',', ';', '|','custom'], versions_string:'tableSeparator'},
+				{ type:"table", 	class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', 'TAB','custom'], versions_string:'tableSeparator'},
 			],
 	
 	youthicons : [
@@ -303,11 +303,17 @@
 		try {
 		var doc = ev.target.ownerDocument;
         
-		if ( ev.target.getAttribute('version') ){
-			Foxtrick.dump('version:'+  ev.target.getAttribute('version')+'\n');
-			FoxtrickPrefs.setString( ev.target.getAttribute('version_string'), ev.target.getAttribute('version'));
-			doc.getElementById(ev.target.getAttribute('parent_id')).setAttribute('current_version',ev.target.getAttribute('version'));
-			doc.getElementById(ev.target.getAttribute('parent_id')).title = doc.getElementById(ev.target.getAttribute('parent_id')).getAttribute('title_raw').replace(/%s/, ev.target.getAttribute('version'));
+		var version = ev.target.getAttribute('version');
+		if ( version ){
+			Foxtrick.dump(ev.target.getAttribute('version_string')+' '+ version+'\n');
+			if (version=='custom') {
+							var version = prompt(Foxtrickl10n.getString("ForumSpecialBBCode.enterSeparator"));
+							Foxtrick.dump('custom_seperator:'+ version+'\n');							
+							if (version == null || version=='') return;
+						}
+			FoxtrickPrefs.setString( ev.target.getAttribute('version_string'), version);
+			doc.getElementById(ev.target.getAttribute('parent_id')).setAttribute('current_version', version);
+			doc.getElementById(ev.target.getAttribute('parent_id')).title = doc.getElementById(ev.target.getAttribute('parent_id')).getAttribute('title_raw').replace(/%s/,version);
         }
 		for (var i=0; i<FoxtrickForumYouthIcons.fields.length;++i) {
 			var page = FoxtrickForumYouthIcons.fields[i].page;
@@ -338,14 +344,13 @@
 			// table
 			else if (replaceText == 'ttt'){
 						var seperator = FoxtrickPrefs.getString("tableSeparator");
-						if (seperator=='custom') {
-							var custom_seperator = prompt(Foxtrickl10n.getString("ForumSpecialBBCode.enterSeparator"));
-							Foxtrick.dump('custom_seperator:'+ custom_seperator+'\n');
-							if (custom_seperator == null || custom_seperator=='') return;
-							seperator = custom_seperator;
-						}
+						Foxtrick.dump('seperator'+seperator+'\n');
+						
+						if (seperator=='TAB') seperator='\\t';
 						if (seperator=='|') seperator='\\|';
-						if (seperator==' ') seperator=' +|\\t';
+						if (seperator=='+') seperator='\\+';
+						if (seperator=='.') seperator='\\.';
+						if (seperator==' ') seperator=' +';
 						
 						// deal with some nested tags
 						var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
