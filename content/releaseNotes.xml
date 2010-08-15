@@ -13,9 +13,10 @@
 <lines>ForumThreadAutoIgnore: Automatically ignore forum threads with user selected tags</lines>
 
 
-<lines>SkillTable : Added to transferlist search results and added some columns.</lines>
-<lines>FTTeamStats : Added rows for leadership and personalities.</lines>
-<lines>CopyPlayerAd : Now supporting youth players, and player's skills are sorted.</lines>
+<lines>SkillTable: Added to transferlist search results and added some columns.</lines>
+<lines>FTTeamStats: Added rows for leadership and personalities.</lines>
+<lines>CopyPlayerAd: Now supporting youth players, and player's skills are sorted.</lines>
+<lines>SmallerPages: Now reduce page width for non-supporters if banners are disabled.</lines>
 
 <lines></lines> 
 <lines>Attention!</lines>
