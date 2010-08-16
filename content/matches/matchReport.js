@@ -281,7 +281,7 @@ FoxtrickMatchReportFormat = {
 			var sidebar = doc.getElementById('sidebar');
 			var links = sidebar.getElementsByTagName('a');
 			for (var i=0; i < links.length; i++) {
-				if (links[i].getElementsByTagName('img').lngth!=0) continue;
+				if (links[i].getElementsByTagName('img').length > 0) continue;
 				if (links[i].href.search('TeamID=' + homeTeamId) > 0) {
 					Foxtrick.addClass(links[i], HOME_TEAM_CLASS_NAME);
 				}
