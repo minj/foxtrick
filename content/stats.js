@@ -1687,7 +1687,7 @@ stats["htarena"] =  {
         "url" : "http://www.htarena.org/",
         "arenalink" : { "path"       : "",
                          "filters"    : [], 
-                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
+                         "params"     : []                       
                        },
         "title" : "HTArena - the calculator",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htarena.png"
