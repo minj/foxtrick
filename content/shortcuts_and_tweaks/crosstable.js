@@ -518,7 +518,11 @@ var FoxtrickCrossTable = {
 				home = arraynum[HomeTeamID];
 				away = arraynum[AwayTeamID];
 			}
-
+			/*if (j<20) {
+				Foxtrick.dump(j+' '+MatchRound+' '+MatchID+' '+HomeTeamID+' '+AwayTeamID+'\n');
+				Foxtrick.dump(j+' '+HomeTeamName+' '+AwayTeamName+' '+HomeGoals+' '+AwayGoals+'\n');
+				Foxtrick.dump(j+' '+home+' '+away+' '+' '+'\n');
+			}*/
 			
 			if (!isNaN(HomeGoals) && !isNaN(AwayGoals)) { // = game has finished
 				// update names. they might have changed. ids stayed the same
@@ -540,7 +544,7 @@ var FoxtrickCrossTable = {
 			}
 			else {
 				//if (MatchRound==1) return; // no match yet
-				this.cross[HomeTeamID][AwayTeamID] = '-';
+				this.cross[home][away+1] = '-';
 				this.week[home][MatchRound] = this.week[home][MatchRound-1];
 				this.week[away][MatchRound] = this.week[away][MatchRound-1];
 			}
