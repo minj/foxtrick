@@ -618,18 +618,11 @@ Foxtrick.formatNumber = function(num, sep) {
 	if (sep === undefined) {
 		sep = " ";
 	}
-	if (num.length > 3) {
-		var mod = num.length % 3;
-		var output = (num > 0 ? (num.substring(0, mod)) : "");
-		for (var i = 0; i < Math.floor(num.length / 3); ++i) {
-			if (mod == 0 && i == 0)
-				output += num.substring(mod+ 3 * i, mod + 3 * i + 3);
-			else
-				output += sep + num.substring(mod + 3 * i, mod + 3 * i + 3);
-		}
-		return output;
+	var output = num.substr(num.length-3,3);
+	for (var pos = num.length-3; pos>0; pos-=3) {
+		output = num.substring(pos-3,pos) + sep + output;
 	}
-	return num;
+	return output;
 }
 
 Foxtrick.substr_count = function (haystack, needle, offset, length) {

@@ -55,6 +55,9 @@ var FoxtrickForumThreadAutoIgnore = {
 			var threadItems = myForums.getElementsByClassName('threadItem');
 			for (var i=0; i<threadItems.length; ++i) {
 				var url =  threadItems[i].getElementsByClassName('url')[0];
+				
+				if (url== null) continue;
+				
 				var a = url.getElementsByTagName('a')[0];
 				for (var j=0; j<this.tagmarkers.length; ++j){
 					for (var k=0; k<this.tags.length; ++k){
