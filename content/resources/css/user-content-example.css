@@ -105,7 +105,7 @@
 	background-color: #f5f5f5;
 }
 
-/* special events, including line-ups and half time break */
+/* special events, team events */
 .ft-match-report-event-special {
 	background-color: #e0e0e0;
 }
@@ -127,6 +127,13 @@
 .ft-match-report-goal-away {
 	background-color: #e0efe0;
 	border: 1px pink solid;
+}
+
+/* separates different parts, eg half time */
+.ft-match-report-separator {
+	border-bottom: 1px solid #849D84;
+	margin-bottom:30px !important;
+	margin-top:10px !important;
 }
 
 

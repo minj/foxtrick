@@ -11,6 +11,7 @@ FoxtrickMatchReportFormat = {
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Use CSS file for styling.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+	OPTIONS:['SeparateOwnTeamColors'],
 
 	CSS : Foxtrick.ResourcePath + "resources/css/match-report.css",
 
@@ -29,6 +30,7 @@ FoxtrickMatchReportFormat = {
 
 			// Retrieve team IDs
 			var myTeamId = isyouth ? FoxtrickHelper.getOwnYouthTeamId() : FoxtrickHelper.getOwnTeamId();
+			if (!Foxtrick.isModuleFeatureEnabled(this,'SeparateOwnTeamColors')) myTeamId=null;
 			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 			if (!table) return; // match not finished
 			var homeTeamId = FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
@@ -75,14 +77,14 @@ FoxtrickMatchReportFormat = {
 				/\<br \/\>br\<br \/\>br/g
 				);
 			var replace = new Array(
-				"-<span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>",
-				"$1<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>",
+				"-<span class='ft_mR_format' style='font-weight:bold;'>$1</span>",
+				"$1<span class='ft_mR_format' style='font-weight:bold;'>$2</span>",
 				"br",
 				"<br>\n"
 				);
 
 			// formation
-			part[0] = part[0].replace(/ (\d{1,2})-(\d{1,2})-(\d{1,2})([., \-])/g," <span class='ft_mR_format' style='font-weight:bold;color:black'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;color:black'>$3</span>$4");
+			part[0] = part[0].replace(/ (\d{1,2})-(\d{1,2})-(\d{1,2})([., \-])/g," <span class='ft_mR_format' style='font-weight:bold;'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;'>$3</span>$4");
 
 			// goal
 			part[1] = part[1].replace(/(\d{1,2})\! Gäste (\d{1,2})/g, "$1 - $2"); // Italiano LA's work...
@@ -94,29 +96,33 @@ FoxtrickMatchReportFormat = {
 				part[1] = part[1].replace(search[i], replace[i]);
 			}
 
-			dummy = (part[0] + part[1]).split('\n');
-
+			dummy = part[0].split(/\n|<br>/);
+			var match_start = dummy.length
+			dummy2 = part[1].split(/<br>/);
+			for (var i=0; i<dummy2.length;i++) {dummy.push(dummy2[i].replace(/<br \/>/g,''));}
+	
 			part[1]= '';
 			var stage = 0;
 			var fulltext = 0;
 			var marg = '';
 			var padd = '';
-			var next = 0;
 			var player = false;
-			for (var i=0; i<dummy.length;i++) {
+			var part_num = 0;
+			for (var i=0; i<dummy.length-2;i++) {
 				marg = 'margin-top:10px;'
 				padd = 'padding:2px;';
-				var textClass = NORMAL_EVENT_CLASS_NAME;
-				dummy[i] = Foxtrick.trim(dummy[i]);
-				if (dummy[i] == '<br>') dummy[i] = '';
-				if ( (!(dummy[i].indexOf('<br><br>')<0) && fulltext > 2) || (i > dummy.length-3)) {
-					if (dummy[i].indexOf('/Players/')<0) {
-						textClass = SPECIAL_EVENT_CLASS_NAME;
-					}
-					marg = 'margin-top:10px; margin-bottom:30px; ';
-					if (dummy[i].indexOf('/Players/')>0) marg = 'margin-top:30px; margin-bottom:10px; ';
+				var textClass = SPECIAL_EVENT_CLASS_NAME;
+				if (part_num<4 && dummy[i].search(/Player.aspx/g)!=-1) {
+								textClass = NORMAL_EVENT_CLASS_NAME;
 				}
-				dummy[i] = dummy[i].replace(/\<br\>/g, '');
+				dummy[i] = Foxtrick.trim(dummy[i]);
+				//Foxtrick.dump(i+' '+dummy[i].length+' '+dummy[i].substr(0,160)+' '+dummy[i+1].length+' '+ dummy[i+2].length+'\n');
+				var next_part=false;
+				if (dummy[i+1].length==0 && dummy[i+2].length==0) {
+					//Foxtrick.dump('-------next part--------\n');
+					next_part=true;
+					part_num++;
+				}
 				if (dummy[i] != '') {
 					if (dummy[i].split(' - ').length == 2 && stage == 0) { //header
 						// Foxtrick.dump('TEAMS FOUND\n');
@@ -129,35 +135,28 @@ FoxtrickMatchReportFormat = {
 					if (stage==1 && dummy[i].indexOf('<span>(')!=-1) {
 						dummy[i] = dummy[i].replace(/\<span\>\(/,'<span> (');
 					}
-					if (dummy[i].indexOf('/Arena/') != -1) stage +=1;
+					if (dummy[i].indexOf('/Arena/') != -1) {stage +=1;next_part=true;}
 
 					if (stage>1) { //full report
-						if (fulltext<=2) textClass = SPECIAL_EVENT_CLASS_NAME;;
 						if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
 							fulltext++;
 							dummy[i] = dummy[i].replace(team1 + ' ', '<span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span> ');
-							dummy[i] = dummy[i].replace(' ' + team1, ' <span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span>');
-							if (fulltext <= 2) {
-								textClass = NORMAL_EVENT_CLASS_NAME;
-							}
+							dummy[i] = dummy[i].replace(' ' + team1, ' <span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span>');							
 						}
 						if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
 							fulltext++;
 							dummy[i] = dummy[i].replace(team2 + ' ', '<span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span> ');
-							dummy[i] = dummy[i].replace(' ' + team2, ' <span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span>');
-							if (fulltext <= 2) {
-								textClass = NORMAL_EVENT_CLASS_NAME;
-								next = i+2;
-							}
-						}
-						if (next == i) marg = 'margin-top:10px; margin-bottom:40px; '
-						
+							dummy[i] = dummy[i].replace(' ' + team2, ' <span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span>');							
+						}						
 						part[1] += '<div id="ft_mR_div_' + i + '" class="' + textClass + '" style="'+ marg + padd +'">' + dummy[i] + '</div>\n\n';
 					}
 					else {
 						part[1] += dummy[i] + '\n\n';
 					}
+					
 				}
+				if (next_part) part[1] += '<div class="ft-match-report-separator"></div>'
+					
 			}
 			div_inner.innerHTML = part[1] + part[2];
 
@@ -241,8 +240,9 @@ FoxtrickMatchReportFormat = {
 			}
 
 			Foxtrick.dump('BEGIN GOALS\n');
-			for (var i = 0; i < divs.length; i++) {
-
+			var divs = doc.getElementsByTagName('h1')[0].parentNode.getElementsByTagName('div');
+			for (var i = 7; i < divs.length; i++) {
+				
 				var text = divs[i].textContent;
 				var toreplace = /\ \-\ /g;
 				text = text.replace(/(\d{1,2}) - (\d{1,2})/g, "$1-$2");
@@ -253,7 +253,7 @@ FoxtrickMatchReportFormat = {
 					Foxtrick.dump('- detected @' + divs[i].id + ' [' + score + '] old: [' + standing + ']\n');
 					if (score[1] > standing[0]) {
 						standing[0]++;
-						Foxtrick.addClass(divs[i], HOME_GOAL_CLASS_NAME);
+						divs[i].className = HOME_GOAL_CLASS_NAME;
 
 						var scorerep = standing[0] + '-' + standing[1];
 						scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep, '<a href="#'+divs[i].id+'" class="ft-match-report-scoreboard"><b>'+standing[0]+'</b> - '+standing[1]+'</a>');
@@ -261,8 +261,8 @@ FoxtrickMatchReportFormat = {
 					}
 					else if (score[2] > standing[1]) {
 						standing[1]++;
-						Foxtrick.addClass(divs[i], AWAY_GOAL_CLASS_NAME);
-
+						divs[i].className = AWAY_GOAL_CLASS_NAME;
+						
 						var scorerep = standing[0] + '-' + standing[1];
 						scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<a href="#'+divs[i].id+'" class="ft-match-report-scoreboard">'+standing[0]+' - <b>'+standing[1]+'</b></a>');
 						Foxtrick.dump('  GOAL for TEAM 2\n');

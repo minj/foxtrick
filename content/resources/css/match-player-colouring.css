@@ -15,6 +15,7 @@
 }
 
 .ft-match-player-away {
+	border: 1px solid white;
 	background: none repeat scroll 0 0 #849D84;
 	color:white !important;
 }

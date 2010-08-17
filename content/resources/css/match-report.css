@@ -11,6 +11,7 @@
 
 /* link or text of away team */
 .ft-match-report-team-away {
+	border: 1px solid white;
 	background-color: #849D84;
 	color: white !important;
 }
@@ -21,13 +22,20 @@
 
 /* normal events, involving players */
 .ft-match-report-event-normal {
+	background-color: #EEE;
 }
 
-/* special events, including line-ups and half time break */
+/* special events, team events */
 .ft-match-report-event-special {
-	border-bottom: 1px solid #849D84;
-	 padding-bottom:8px !important;
 }
+
+/* separates different parts, eg half time */
+.ft-match-report-separator {
+	border-bottom: 1px solid #849D84;
+	margin-bottom:30px !important;
+	margin-top:10px !important;
+}
+
 
 /* goal scored by my team */
 .ft-match-report-goal-mine {
@@ -35,12 +43,13 @@
 
 /* goal scored by home team */
 .ft-match-report-goal-home {
-	background-color: #EEEEEE;
+	border: 2px solid #849D84;
 }
 
 /* goal scored by away team */
 .ft-match-report-goal-away {
-	background-color: #EEEEEE;
+	background-color: #849D84;
+	color:white;
 }
 
 /* scoreboard, the "a" must be specified here to remove the underline */
