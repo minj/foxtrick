@@ -83,8 +83,8 @@ FoxtrickCurrencyConverter = {
 					} 
 					// std color green. but use color of span if there is one. 
 					var color='#377f31';
-					if (table_elm[i].firstChild && table_elm[i].firstChild.style) {
-						color = table_elm[i].firstChild.style.color;	
+					if (table_elm[i].getElementsByTagName('span')[0] && table_elm[i].getElementsByTagName('span')[0].style) {
+						color = table_elm[i].getElementsByTagName('span')[0].style.color;	
 					} 
 					if (conv.charAt(0)=='-') color='#aa0000';   // neg number red
 					if (val==0)  color="black";					// zero black
@@ -103,6 +103,6 @@ FoxtrickCurrencyConverter = {
 			}
 		}
     }
-    catch(e) {Foxtrick.dump('    >' + e + '\n');} 
+    catch(e) {Foxtrick.dumpError(e);} 
     }  
 };
