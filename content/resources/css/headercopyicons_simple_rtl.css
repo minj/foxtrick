@@ -7,11 +7,11 @@ a.copyicon {
 	 z-index:99;	
 }
 
-a.ci_first { left:14px;}
-a.ci_second { left:51px;}
-a.ci_third {left:88px;}
-a.ci_fourth{left:125px;}
-a.ci_fifth{left:162px;}
+.ci_first { left:6px;}
+.ci_second { left:31px;}
+.ci_third {left:56px;}
+.ci_fourth{left:81px;}
+.ci_fifth{left:106px;}
 
 
 .copyicon img {

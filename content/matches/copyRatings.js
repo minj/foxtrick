@@ -87,8 +87,8 @@ var FoxtrickCopyRatings = {
 				copyBoth.appendChild(img);
 
 				var span = doc.createElement("span");
-				span.className = "ft-pop-up-span-icon-header";
-				span.setAttribute("style", "right:55px;");
+				span.className = "ft-pop-up-span-icon-header ci_third";
+				//span.setAttribute("style", "right:55px;");
 				span.appendChild(copyBoth);
 
 				var versions=['both','home','away'];	

@@ -8,11 +8,11 @@ a.copyicon {
 }
 
 /* header icons postitions */
-a.ci_first { left:14px;}
-a.ci_second { left:51px;}
-a.ci_third {left:88px;}
-a.ci_fourth{left:125px;}
-a.ci_fifth{left:162px;}
+.ci_first { left:14px;}
+.ci_second { left:51px;}
+.ci_third {left:88px;}
+.ci_fourth{left:125px;}
+.ci_fifth{left:162px;}
 
 
 .copyicon img {

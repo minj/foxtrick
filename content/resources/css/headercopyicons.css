@@ -15,11 +15,11 @@ a.copyicon {
 }
 
 /* header icons postitions */
-a.ci_first { right:14px;}
-a.ci_second { right:51px;}
-a.ci_third {right:88px;}
-a.ci_fourth{right:125px;}
-a.ci_fifth{right:162px;}
+.ci_first { right:14px;}
+.ci_second { right:51px;}
+.ci_third {right:88px;}
+.ci_fourth{right:125px;}
+.ci_fifth{right:162px;}
 
 
 .copyplayerad img {
