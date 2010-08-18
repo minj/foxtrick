@@ -61,8 +61,9 @@ var FoxtrickOnPagePrefs = {
 			}
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
-			//var content=doc.getElementById('idFoxtrickPrefs');
-			//content.style.display='none';
+			var box=doc.getElementById(ownBoxId);
+			if (FoxtrickMain.isStandard) Foxtrick.addClass(box,'ft_onpage_prefs_std');
+			else Foxtrick.addClass(box,'ft_onpage_prefs_simple');
 
 			// clickable header
 			var header = doc.getElementById('foxtrick_OnPagePrefs_box').getElementsByTagName("h2")[0];
