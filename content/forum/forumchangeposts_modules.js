@@ -26,11 +26,10 @@ var FoxtrickFormatPostingText = {
 	
 	run : function( page, doc ) {
 		try {
-		
-			// format back
-			var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];  
-			if (textarea) textarea.value=textarea.value.replace(/\<·/g, "<").replace(/\[·/g, "[");
-		
+			//reformat
+			//var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
+			//textarea.value = textarea.value.replace(/·/g,'');
+			
 			var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
 		    for (var i = 0; i < targets.length; ++i) {
 		    	if (targets[i].type == "submit") {
@@ -47,12 +46,19 @@ var FoxtrickFormatPostingText = {
 
 	format : function(string) {
 		r_string = string
-			//.replace(/·/gi, "")
-			.replace(/(\[)(\S)/g, "[·$2")
-			.replace(/\[·pre]/g, "[pre]")
-			.replace(/\[·\/pre]/g, "[/pre]")
+			.replace(/·/gi, "")
 			.replace(/(\<)(\S)/gi, "<·$2");
+		/*
+		var before = r_string.replace(/\[pre\]/,'');
+		var after1 = r_string.replace(/.+?\[pre\]/gi,'');
+		var inner = after1.replace(/(.*?)(\[\/pre\])/gi,'$1');
+		var end = after1.replace(/(\[\/pre\])(.*?)/gi,'$2');
 		
+		Foxtrick.dump('r_string'+r_string+'\n');
+		Foxtrick.dump('before'+before+'\n');
+		Foxtrick.dump('after1'+after1+'\n');
+		Foxtrick.dump('inner'+inner+'\n');
+		Foxtrick.dump('end'+end+'\n');*/
 		return r_string;
 	},
 
