@@ -6,7 +6,12 @@
 .ft-match-report-team-home {
 	border: 1px solid #849D84;
 	color: #849D84 !important;
-	background-color: white !important
+	background-color: white !important;
+}
+
+.sidebarBox .ft-match-report-team-home {
+	line-height:1.7;
+	padding: 2px !important
 }
 
 /* link or text of away team */
@@ -14,6 +19,11 @@
 	border: 1px solid white;
 	background-color: #849D84;
 	color: white !important;
+}
+
+.sidebarBox .ft-match-report-team-away {
+	line-height:1.7;
+	padding: 2px !important
 }
 
 /* link or text of my team */
