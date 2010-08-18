@@ -26,6 +26,11 @@ var FoxtrickFormatPostingText = {
 	
 	run : function( page, doc ) {
 		try {
+		
+			// format back
+			var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];  
+			if (textarea) textarea.value=textarea.value.replace(/\<·/g, "<").replace(/\[·/g, "[");
+		
 			var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
 		    for (var i = 0; i < targets.length; ++i) {
 		    	if (targets[i].type == "submit") {
@@ -42,16 +47,12 @@ var FoxtrickFormatPostingText = {
 
 	format : function(string) {
 		r_string = string
-			.replace(/·/gi, "")
-			//.replace(/\n/g, "[FTbr]")
+			//.replace(/·/gi, "")
+			.replace(/(\[)(\S)/g, "[·$2")
+			.replace(/\[·pre]/g, "[pre]")
+			.replace(/\[·\/pre]/g, "[/pre]")
 			.replace(/(\<)(\S)/gi, "<·$2");
 		
-		var i=0;
-		while (r_string.search(/\[pre\](.*?)\[([^· ].*?)\[\/pre\]/gi)!=-1) {
-			r_string = r_string.replace(/\[pre\](.*?)\[([^· ].*?)\[\/pre\]/gi, "[pre]$1[·$2[/pre]");
-			if (++i > 1000) break;
-		}	
-		//r_string = r_string.replace(/\[·FTbr\]/g, "\n").replace(/\[·FTbr\]/g, "\n");
 		return r_string;
 	},
 
