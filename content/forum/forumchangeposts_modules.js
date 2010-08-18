@@ -43,7 +43,7 @@ var FoxtrickFormatPostingText = {
 	format : function(string) {
 		r_string = string
 			.replace(/·/gi, "")
-			.replace(/\n/g, "[FTbr]")
+			//.replace(/\n/g, "[FTbr]")
 			.replace(/(\<)(\S)/gi, "<·$2");
 		
 		var i=0;
@@ -51,7 +51,7 @@ var FoxtrickFormatPostingText = {
 			r_string = r_string.replace(/\[pre\](.*?)\[([^· ].*?)\[\/pre\]/gi, "[pre]$1[·$2[/pre]");
 			if (++i > 1000) break;
 		}	
-		r_string = r_string.replace(/\[·FTbr\]/g, "\n");
+		//r_string = r_string.replace(/\[·FTbr\]/g, "\n").replace(/\[·FTbr\]/g, "\n");
 		return r_string;
 	},
 
