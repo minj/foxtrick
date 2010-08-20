@@ -28,15 +28,8 @@ var FoxtrickFormatPostingText = {
 		try {
 			//reformat
 			var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
-			var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-            var rep = new Array("[pre]$1[/pre]", "");
-            var count_pre = Foxtrick.substr_count(textarea.value, '[pre');
-            for (var j = 0; j <= count_pre; j++) {
-                for ( var k = 0; k < org.length; k++) {
-                        textarea.value = textarea.value.replace(org[k],rep[k]);
-                }
-            }
-            
+			textarea.value = FoxtrickFormatPostingText.reformat(textarea.value);
+			
 			var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
 		    for (var i = 0; i < targets.length; ++i) {
 		    	if (targets[i].type == "submit") {
@@ -47,8 +40,22 @@ var FoxtrickFormatPostingText = {
 		    }
 		}
 		catch (e) {
-			Foxtrick.dump('FoxtrickFormatPostingText '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
+	},
+
+	reformat : function(string) {
+	try{
+			var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+            var rep = new Array("[pre]$1[/pre]", "");
+            var count_pre = Foxtrick.substr_count(string, '[pre');
+            for (var j = 0; j <= count_pre; j++) {
+                for ( var k = 0; k < org.length; k++) {
+                        string = string.replace(org[k],rep[k]);
+                }
+            }
+			return string;
+		} catch(e){Foxtrick.dumpError(e);}
 	},
 
 	format : function(string) {
@@ -77,6 +84,8 @@ var FoxtrickFormatPostingText = {
 		textarea.value = FoxtrickFormatPostingText.format(textarea.value);
 	}
 };
+
+
 
 var FoxtrickCopyPostID = {
 

@@ -404,11 +404,22 @@ var FoxtrickForumPreview = {
 
         try {
             var prev_div = doc.getElementById( "forum_preview" );
-            var text = Foxtrick.stripHTML( msg_window.value );
+            var text =  msg_window.value
+			
+			// format within pre
+			text = FoxtrickFormatPostingText.format(text);
+			
+			// replace &
+			text = text.replace(/\&/g, "&amp;");
+			// < with space after is allowed
+			text = text.replace(/< /g, "&lt; ");
 
-            text = text.replace(/\n/g, "<br />");
-			text = text.replace(/\[pre\](.*?)\[(i|u|b)\](.*?)\[\/pre\]/gi,'[pre]$1[ $2 ]$3[/pre]');
-
+			// strip links. replace <· with &lt;
+			text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there
+			text = Foxtrick.stripHTML( text);
+            
+			text = text.replace(/\n/g, "<br />");
+			
             var count_q = Foxtrick.substr_count(text, '[q');
             var count_s = Foxtrick.substr_count(text, '[spoil');
             var count_t = Foxtrick.substr_count(text, '[table');
@@ -427,11 +438,14 @@ var FoxtrickForumPreview = {
                     text = text.replace(search_nested[i],replace_nested[i]);
                 }
             }
-
-            prev_div.innerHTML = text;
+			
+			// reformat with pre
+			text = FoxtrickFormatPostingText.reformat(text);
+			
+			prev_div.innerHTML = text;
         }
         catch(e) {
-            Foxtrick.dump('FoxtrickForumPreview'+e);
+            Foxtrick.dumpError(e);
         }
 
     }
