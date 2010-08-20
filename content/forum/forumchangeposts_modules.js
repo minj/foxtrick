@@ -27,9 +27,16 @@ var FoxtrickFormatPostingText = {
 	run : function( page, doc ) {
 		try {
 			//reformat
-			//var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
-			//textarea.value = textarea.value.replace(/·/g,'');
-			
+			var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
+			var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+            var rep = new Array("[pre]$1[/pre]", "");
+            var count_pre = Foxtrick.substr_count(textarea.value, '[pre');
+            for (var j = 0; j <= count_pre; j++) {
+                for ( var k = 0; k < org.length; k++) {
+                        textarea.value = textarea.value.replace(org[k],rep[k]);
+                }
+            }
+            
 			var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
 		    for (var i = 0; i < targets.length; ++i) {
 		    	if (targets[i].type == "submit") {
@@ -45,21 +52,23 @@ var FoxtrickFormatPostingText = {
 	},
 
 	format : function(string) {
-		r_string = string
-			.replace(/·/gi, "")
-			.replace(/(\<)(\S)/gi, "<·$2");
-		/*
-		var before = r_string.replace(/\[pre\]/,'');
-		var after1 = r_string.replace(/.+?\[pre\]/gi,'');
-		var inner = after1.replace(/(.*?)(\[\/pre\])/gi,'$1');
-		var end = after1.replace(/(\[\/pre\])(.*?)/gi,'$2');
-		
-		Foxtrick.dump('r_string'+r_string+'\n');
-		Foxtrick.dump('before'+before+'\n');
-		Foxtrick.dump('after1'+after1+'\n');
-		Foxtrick.dump('inner'+inner+'\n');
-		Foxtrick.dump('end'+end+'\n');*/
-		return r_string;
+	try{
+			string = string
+				.replace(/·/gi, "")
+				.replace(/(\<)(\S)/gi, "<·$2");
+				
+				var vstring = string.split('[pre]');
+				var r_string = vstring[0]
+				for (var j = 1; j < vstring.length; j++) {
+					var ivstring = vstring[j].split('[/pre]');
+					r_string += '[pre]'+ivstring[0].replace(/\[/g,'[·');
+					
+					for ( var k = 1; k < ivstring.length; k++) {
+						r_string += '[/pre]'+ivstring[k];
+					}
+				}
+			return r_string;
+		} catch(e){Foxtrick.dumpError(e);}
 	},
 
 	submitListener : function(ev) {
