@@ -848,8 +848,8 @@ Foxtrick.reload_css_permanent = function(css) {
 
 Foxtrick.reload_module_css = function(doc) {
 	try {
-		var isStandard = Foxtrick.isStandardLayout(doc);
-		var isRTL = Foxtrick.isRTLLayout(doc);
+		var isStandard = FoxtrickMain.isStandard;
+		var isRTL = FoxtrickMain.isRTL;
 		Foxtrick.dump('reload_module_css - StdLayout: '+isStandard+' - RTL: '+isRTL+'\n');
 
 		if (isRTL) Foxtrick.load_css_permanent(Foxtrick.ResourcePath+'resources/css/rtl.css') ;
@@ -872,7 +872,7 @@ Foxtrick.reload_module_css = function(doc) {
 					Foxtrick.unload_css_permanent (module.OLD_CSS);
 				}
 				if (module.CSS_SIMPLE && module.CSS_SIMPLE!="") {
-					if (Foxtrick.isModuleEnabled(module) && !isStandard) {
+					if (Foxtrick.isModuleEnabled(module) && !FoxtrickMain.isStandard) {
 						if (!isRTL || !module.CSS_SIMPLE_RTL) {
 							Foxtrick.load_css_permanent (module.CSS_SIMPLE);
 							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL);
@@ -888,7 +888,7 @@ Foxtrick.reload_module_css = function(doc) {
 					}
 				}
 				if (module.CSS && module.CSS!="") {
-					if (Foxtrick.isModuleEnabled(module) && (!module.CSS_SIMPLE || isStandard)) {
+					if (Foxtrick.isModuleEnabled(module) && (!module.CSS_SIMPLE || FoxtrickMain.isStandard)) {
 						if (!isRTL || !module.CSS_RTL){
 							Foxtrick.load_css_permanent (module.CSS) ;
 							if (module.CSS_RTL) Foxtrick.unload_css_permanent (module.CSS_RTL);
@@ -1040,7 +1040,7 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altIn
 			insertBeforeObject = sidebar.firstChild;
 		}
 
-		if (Foxtrick.isStandardLayout(doc)) {
+		if (FoxtrickMain.isStandard) {
 			// Standard layout
 			if (existingBox) {
 				existingBox.id = id;
@@ -1639,17 +1639,39 @@ Foxtrick.copyStringToClipboard = function (string) {
 
 Foxtrick.isStandardLayout = function (doc) {
 	// Check if this is the simple or standard layout
-	var link = doc.getElementsByTagName("link")[0];
-	return link.href.search("Simple") == -1; // true = standard / false = simple
+	var links = doc.getElementsByTagName("head")[0].getElementsByTagName("link");
+	if (links.length!=0){
+		var i=0,link;
+		while (link=links[i++]) {
+			if (link.href.search(/\/App_Themes\/Simple/i)!=-1) return false;
+		}
+	}
+	else { // mobile internet may have style embedded 
+		var styles = doc.getElementsByTagName("head")[0].getElementsByTagName("style");
+		var i=0,style;
+		while (style=styles[i++]) {
+			if (style.textContent.search(/\/App_Themes\/Simple/i)!=-1) return false;
+		}
+	}
+	return true; // true = standard / false = simple
 }
 
 Foxtrick.isRTLLayout = function (doc) {
 	// Check if this is the simple or standard layout
 	var links = doc.getElementsByTagName("head")[0].getElementsByTagName("link");
 	var rtl=false;
-	var i=0,link;
-	while (link=links[i++]) {
-		if (link.href.search("_rtl.css") != -1) rtl = true;
+	if (links.length!=0) {
+		var i=0,link;
+		while (link=links[i++]) {
+			if (link.href.search("_rtl.css") != -1) rtl = true;
+		}
+	}
+	else { // mobile internet may have style embedded 
+		var styles = doc.getElementsByTagName("head")[0].getElementsByTagName("style");
+		var i=0,style;
+		while (style=styles[i++]) {
+			if (style.textContent.search(/direction:rtl/i)!=-1) rtl = true;
+		}
 	}
 	return rtl;
 }
