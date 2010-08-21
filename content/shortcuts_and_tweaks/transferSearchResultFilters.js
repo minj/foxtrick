@@ -12,7 +12,6 @@ FoxtrickTransferSearchResultFilters = {
 	NEW_AFTER_VERSION : "0.5.2.1",	
 	LATEST_CHANGE : "Filters the search transfer search results",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	//OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadioWinamp","HtRadioMediaPlayer","DTRadioWinamp"),
 	advanced_option_on : false,
 	
 	filters : 	[ {name : 'hide_bruised', type : 'check', properties : {checked: false} },
@@ -87,6 +86,7 @@ FoxtrickTransferSearchResultFilters = {
 				var input = doc.createElement('input');
 				input.setAttribute('style','width:90px;')
 				input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.min';
+				input.name = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.min';
 				input.index = j;
 				input.filter = 'min';
 				input.value = FoxtrickTransferSearchResultFilters.filters[j]['properties']['min'];
@@ -100,6 +100,7 @@ FoxtrickTransferSearchResultFilters = {
 				var input = doc.createElement('input');
 				input.setAttribute('style','width:90px;')
 				input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.max';
+				input.name = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.max';
 				input.index = j;
 				input.filter = 'max';
 				input.value = FoxtrickTransferSearchResultFilters.filters[j]['properties']['max'];
@@ -109,18 +110,19 @@ FoxtrickTransferSearchResultFilters = {
 			if (filter.type=='check') {
 				var td = doc.createElement('td');
 				td.setAttribute('colspan','5');
-				tr.appendChild(td);			
+				tr.appendChild(td);
 				var input = doc.createElement('input');
 				input.type = 'checkbox';
 				input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.check';
+				input.name = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.check';
 				input.index = j;
 				input.filter = 'checked';
 				if (FoxtrickTransferSearchResultFilters.filters[j]['properties']['checked']===true) input.setAttribute('checked', 'checked');
 				input.addEventListener('blur',this.saveEdit,false);
 				td.appendChild(input);
-				var label = doc.createElement('label');				
+				var label = doc.createElement('label');
 				label.innerHTML = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.name);
-				td.appendChild(label);				
+				td.appendChild(label);
 			}
 		}
 		catch (e) {
@@ -147,11 +149,11 @@ FoxtrickTransferSearchResultFilters = {
 				if (filter.type=='minmax'){
 					FoxtrickTransferSearchResultFilters.filters[j]['properties']['min'] = '';
 					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.min').value='';
-					FoxtrickTransferSearchResultFilters.filters[j]['properties']['max'] = '';	
+					FoxtrickTransferSearchResultFilters.filters[j]['properties']['max'] = '';
 					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.max').value='';
 				}
 				if (filter.type=='check') {
-					FoxtrickTransferSearchResultFilters.filters[j]['properties']['checked'] = false;					
+					FoxtrickTransferSearchResultFilters.filters[j]['properties']['checked'] = false;
 					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.check').removeAttribute('checked');
 				}
 			}

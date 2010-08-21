@@ -43,7 +43,14 @@ FoxtrickTransferSearchFilters = {
 		"_29" : "ctl00$CPMain$txtBidMax",
 //		"_30" : "ctl00_CPMain_txtBidMax_ClientState",
 		"_31" : "ctl00$CPMain$ddlGlobalSkillMax",
-		"_32" : "ctl00$CPMain$chkUseGlobalMax"
+		"_32" : "ctl00$CPMain$chkUseGlobalMax",
+		
+		"_51" : "FoxtrickTransferSearchResultFilters.hide_bruised.check",
+		"_52" : "FoxtrickTransferSearchResultFilters.hide_injured.check",
+		"_53" : "FoxtrickTransferSearchResultFilters.cards.min",
+		"_54" : "FoxtrickTransferSearchResultFilters.cards.max",
+		"_55" : "FoxtrickTransferSearchResultFilters.days.min",
+		"_56" : "FoxtrickTransferSearchResultFilters.days.max",
 	},
 
 	run : function(page, doc) {
@@ -181,7 +188,9 @@ FoxtrickTransferSearchFilters = {
 						el = FoxtrickTransferSearchFilters.findFormElement(subst, doc);
 					}
 				}
-				if (el != null && el.type != "radio") {
+				if (el == null) continue;
+				
+				if (el.type != "radio") {
 					el.value=value;
 				}
 				 //Foxtrick.dump(el.type + ' ');
