@@ -36,7 +36,7 @@ var FoxtrickTableSort = {
 				}
 				return;
 			}
-			var tables = doc.getElementById('mainBody').getElementsByClassName("indent");
+			var tables = doc.getElementById('mainBody').getElementsByTagName("table");
 			for (var i = 0; i < tables.length; ++i) {
 				var ths = tables[i].getElementsByTagName("th");
 				for (var j = 0; j < ths.length; ++j) {
