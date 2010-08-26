@@ -145,15 +145,30 @@ span.ft-pop-up-span {
 
 span.ft-pop-up-span-icon {
 	position: relative;
+	cursor: pointer;
 	display: inline-block;
 	padding-right: 4px;
-	background: url(../img/pop-up.png) 24px 4px no-repeat;
+	background: url(chrome://foxtrick/content/resources/img/pop-up.png) 24px 4px no-repeat;
 }
 span.ft-pop-up-span-icon-header {
 	position: absolute;
+	cursor: pointer;
 	display: inline-block;
 	padding-right: 4px;
-	background: url(../img/pop-up.png) 24px 4px no-repeat;
+	background: url(chrome://foxtrick/content/resources/img/pop-up.png) 24px 4px no-repeat;
+}
+span.ft-drop-down-span-icon {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	padding-right: 8px;
+	background: url(chrome://foxtrick/content/resources/img/drop-down.png) 24px bottom no-repeat;
+}
+
+span.ft-drop-down-span {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
 }
 
 span.ft-pop-up-span > ul.ft-pop {
@@ -168,6 +183,18 @@ span.ft-pop-up-span-icon-header > ul.ft-pop {
 	bottom:-18px;
 	z-index:99999;
 }
+span.ft-drop-down-span-icon > ul.ft-pop {
+	right:0px;
+	top:10px;
+	z-index:99999;
+}
+span.ft-drop-down-span > ul.ft-pop {
+	right:0px;
+	top:9px;
+	z-index:99999;
+	cursor: default;
+}
+
 ul.ft-pop {
 	background-color: #eee;
 	border: solid 1px #aaa;
@@ -185,6 +212,7 @@ ul.ft-pop > li {
 	padding: 2px 2px !important;
 	border-bottom: solid 1px #aaa;
 	margin: 0px 0px;
+	text-align:left;
 }
 ul.ft-pop > li:hover {
 	background-color: #d0d0d0;

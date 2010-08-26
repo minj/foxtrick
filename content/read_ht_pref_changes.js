@@ -200,7 +200,7 @@ var FoxtrickMyHT = {
     },
 
     run : function(page, doc ) {  
-		try{						
+		try{
 			if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
 			{ 
 				var curVersion = FoxtrickPrefs.getString("curVersion");
@@ -208,41 +208,40 @@ var FoxtrickMyHT = {
 				
 				// set some special defaults
 				this.setDefaults(doc);
-								
+				
 				// show foxtrickMyHT
 				this.ShowAlert(doc);
 			}
-		} catch(e){dump('FoxtrickMyHT: '+e+'\n');}
+		} catch(e){FoxTrick.dumpError(e);}
 	},
 
 	setDefaults :function(doc) {
 		
 		// set radio defaults as by appropriate countries
+		Foxtrick.dump(FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')+'\n');
+		
 		var country = FoxtrickPrefs.getString("htCountry");
-		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.DTRadioWinamp.enabled')===null) {
-			if (country==='Germany' || country==='Austria' || country==='Switzerland' || country==='Luxembourg') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.DTRadioWinamp.enabled',true)
+		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')===null) {
+			if (country==='Germany') {
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.No9.enabled',true)
+				Foxtrick.dump('No9 enabled\n');
 			}
-			else FoxtrickPrefs.setBool('module.ExtraShortcuts.DTRadioWinamp.enabled',false)
+			else FoxtrickPrefs.setBool('module.ExtraShortcuts.No9.enabled',false)
 		}
-		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadioWinamp.enabled')===null) {
+		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadio.enabled')===null) {
 			if (country==='Belgium' || country==='Netherlands') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioWinamp.enabled',false)
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',true)
+				Foxtrick.dump('HtRadio enabled\n');
+			
 			}
-			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioWinamp.enabled',false)
-		}
-		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled')===null) {
-			if (country==='Belgium' || country==='Netherlands') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled',true)
-			}
-			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadioMediaPlayer.enabled',false)
+			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',false)
 		}
 	},
 
 	ShowAlert :function(doc) {
 		try {  
 				var mainBody = doc.getElementById('mainBody');	
-								
+				
 				var alertdiv=doc.createElement('div');
 				alertdiv.setAttribute('id','idFoxtrickPrefsOuter');
 				alertdiv.setAttribute('class','alert');
