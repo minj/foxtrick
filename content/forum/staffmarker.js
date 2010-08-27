@@ -11,7 +11,7 @@ var FoxtrickStaffMarker = {
 	PAGES : new Array('forumViewThread','forumWritePost','teamPage'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Use CSS file for styling.",
+	LATEST_CHANGE : "Use CSS file for styling. Use asynchronous XHR to prevent freezing Firefox when hattrick-youthclub.org is down.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : ["flag", "own", "manager"],
 	OPTION_TEXTS : true,
@@ -41,21 +41,29 @@ var FoxtrickStaffMarker = {
 		"ctl00_CPMain_ddlRecipient"
 	],
 
+	updateHtyXML : function() {
+		var req = new XMLHttpRequest();
+		req.open("GET", "http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml", true);
+		req.onreadystatechange = function(aEvt) {
+			if (req.readyState == 4) {
+				if (req.status == 200) {
+					var htyusers = req.responseXML.getElementsByTagName("User");
+					for (var i = 0; i < htyusers.length; ++i) {
+						FoxtrickStaffMarker.hty_staff.push(htyusers[i].getElementsByTagName("Alias")[0].textContent);
+					}
+					Foxtrick.dump("Hattrick-youthclub staffs loaded.\n");
+				}
+				else {
+					Foxtrick.dump("Error: cannot connect to hattrick-youthclub.org.\n");
+				}
+			}
+		};
+		req.send(null);
+	},
+
 	init : function() {
 		try {
-			var req = new XMLHttpRequest();
-			req.open("GET", "http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml", false);
-			req.send(null);
-			if (req.status == 200) {
-				var htyusers = req.responseXML.getElementsByTagName("User");
-				for (var i = 0; i < htyusers.length; ++i) {
-					this.hty_staff.push(htyusers[i].getElementsByTagName("Alias")[0].textContent);
-				}
-				Foxtrick.dump("Hattrick-youthclub staffs loaded.\n");
-			}
-			else {
-				Foxtrick.dump("Error: cannot connect to hattrick-youthclub.org.\n");
-			}
+			this.updateHtyXML();
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -74,12 +82,12 @@ var FoxtrickStaffMarker = {
 			var users = '';
 			if (Foxtrick.isModuleFeatureEnabled( this, "own")) {
 				users = utext.match(/userid=(\d+)/ig);
-				
+
 				var ii=0,user;
 				while (user = users[ii++]) {
 					try {
 						var ustyle = utext.substring(utext.search(user)).match(/style='(.+)'/)[1];
-						this.ulist[user.replace(/userid=/i,'')] = ustyle;						
+						this.ulist[user.replace(/userid=/i,'')] = ustyle;
 					}
 					catch (e) {
 						Foxtrick.dumpError(e);
@@ -227,12 +235,12 @@ var FoxtrickStaffMarker = {
 						}
 
 						if (do_own && this.ulist[uid]!=null) {
-							style += this.ulist[uid];							
+							style += this.ulist[uid];
 						}
 						if (do_flag) {
 							style += ';background-image: url("http://flags.alltidhattrick.org/userflags/' + option.value.replace(/by_|to_/,'') + '.gif"); background-repeat:no-repeat; padding-left:2px; background-position:180px 50%; width:195px;border-bottom:dotted thin #ddd';
 						}
-							
+
 						if (style!='') {
 							option.setAttribute("style", style);
 						}
