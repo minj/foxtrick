@@ -27,17 +27,18 @@ span.myht1:hover ul.ft-popup-list {
 ul.ft-popup-list > li {
 	white-space: nowrap;
 	height: 20px;
+	line-height: 20px !important;
 	padding: 0px 2px !important;
 	margin: 0px;
 }
-ul.ft-popup-list > li  > a,  ul.ft-popup-list > li > span {
-	height: 100%;
+ul.ft-popup-list > li > a,  ul.ft-popup-list > li > span {
 	text-align: left;
 	cursor: pointer;
 	display: block !important;
 	font-weight: normal !important;
 	text-decoration: underline !important;
 	color: #3f7137 !important;
+	padding: 0 !important;
 }
 ul.ft-popup-list > li:hover {
 	background-color: #c3e7c7 !important;
