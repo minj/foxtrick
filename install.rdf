@@ -2,25 +2,19 @@
 <RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
          xmlns:NC="http://home.netscape.com/NC-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="rdf:#$AgQfX1"
-                   em:id="{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"
-                   em:minVersion="2.0pre"
-                   em:maxVersion="2.1a1pre" />
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
-                   em:version="0.5.3.0b4"
+                   em:version="0.5.3.0b5"
                    em:description="A set of presentation enhancements for hattrick.org"
                    em:creator="Karel Kolman"
                    em:homepageURL="http://ht-foxtrick.com/"
                    em:iconURL="chrome://foxtrick/skin/icon.png"
                    em:optionsURL="chrome://foxtrick/content/preferences-dialog.xul"
                    em:updateURL="http://downloads.mozdev.org/foxtrick/update-beta-mozdev.rdf"
-                   em:contributor="Aimo_Kanuuna"
                    em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2HU/mI1TH3yEthsle//gOPoHtHDUSOp5vcoE/weq+rZixwGJgp+5ZBYDLo/XF/mmFuBzusiwoAXkX4dnpdlDeUIG3e1ej92Ivkii0wO3kc6JCfKlbigE06voYgmX4nhq3gipAcgyTnaGwlppevolslNB9uAryVhEQ341Gm+6cHwIDAQAB">
     <em:targetApplication RDF:resource="rdf:#$TfQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$AgQfX1"/>
-    <em:targetApplication RDF:resource="rdf:#$6gQfX1"/>
     <em:developer>larsw84</em:developer>
     <em:developer>Mod-spambot</em:developer>
     <em:developer>convincedd</em:developer>
@@ -29,6 +23,7 @@
     <em:developer>smates</em:developer>
     <em:developer>baumanns</em:developer>
     <em:developer>ryanli</em:developer>
+    <em:contributor>Aimo_Kanuuna</em:contributor>
     <em:translator>Albanian: MOD-odris</em:translator>
     <em:translator>Bosnian: Mod-Marin, ljushaff</em:translator>
     <em:translator>Catalan: carlesmu</em:translator>
@@ -64,12 +59,12 @@
     <em:translator>Ukrainian: Grif_07</em:translator>
     <em:translator>中文（简体）: ryanli</em:translator>
   </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$6gQfX1"
-                   em:id="{a463f10c-3994-11da-9945-000d60ca027b}"
-                   em:minVersion="1.2.6"
-                   em:maxVersion="2.5.5" />
   <RDF:Description RDF:about="rdf:#$TfQfX1"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:maxVersion="4.0b5pre"
                    em:minVersion="3.0" />
+  <RDF:Description RDF:about="rdf:#$AgQfX1"
+                   em:id="{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"
+                   em:minVersion="2.0pre"
+                   em:maxVersion="2.1b1" />
 </RDF:RDF>
