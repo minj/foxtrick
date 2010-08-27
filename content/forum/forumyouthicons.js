@@ -19,23 +19,23 @@
 
 	fields : [
 				// Forum
-				{ page:"forumWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_qoute:false },
+				{ page:"forumWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
 				// ForumMOD
-				{ page:"forumModWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_qoute:false },
+				{ page:"forumModWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
 				// mail
-				{ page:"messageWritePost", textarea : "ctl00_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_CPMain_ucEditorMain_txtRemLen", length : 1000, add_qoute:false },
+				{ page:"messageWritePost", textarea : "ctl00_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_CPMain_ucEditorMain_txtRemLen", length : 1000, add_quote:false },
 				// newsletter
-				{ page:"newsletter", textarea : "ctl00_CPMain_tbNewsBody", counterfield : "ctl00_CPMain_txtCharsLeft", length : 1000, add_qoute:false },
+				{ page:"newsletter", textarea : "ctl00_CPMain_tbNewsBody", counterfield : "ctl00_CPMain_txtCharsLeft", length : 1000, add_quote:false },
 				// GB
-				{ page:"guestbook", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_qoute:false },
+				{ page:"guestbook", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_quote:false },
 				// PA
-				{ page:"announcements", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 1000, add_qoute:true },
+				{ page:"announcements", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 1000, add_quote:true },
 				// ticket
-				{ page:"ticket", textarea : "ctl00_CPMain_ucActionEditor_txtBody", counterfield : "ctl00_CPMain_ucActionEditor_txtRemLen", length : 2950, add_qoute:false },
+				{ page:"ticket", textarea : "ctl00_CPMain_ucActionEditor_txtBody", counterfield : "ctl00_CPMain_ucActionEditor_txtRemLen", length : 2950, add_quote:false },
 				// HT-Press Editor
-				//{ page:"unknown", textarea : "ctl00_CPMain_txtComment", counterfield : "ctl00_CPMain_txtCharsLeft3", length : 1800, add_qoute:false },
+				//{ page:"unknown", textarea : "ctl00_CPMain_txtComment", counterfield : "ctl00_CPMain_txtCharsLeft3", length : 1800, add_quote:false },
 				// signatur
-				{ page:"forumSettings", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_qoute:false },
+				{ page:"forumSettings", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_quote:false },
 			],
 	
 	icons : [
@@ -193,11 +193,11 @@
 			}
 			target=target.nextSibling;
 			
-			// add qoute tag
+			// add quote tag
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[0].type)) {
 				for (var j = 0; j < this.fields.length; j++) {
 					var page = FoxtrickForumYouthIcons.fields[j].page;
-					if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc) && FoxtrickForumYouthIcons.fields[j].add_qoute==true) {
+					if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc) && FoxtrickForumYouthIcons.fields[j].add_quote==true) {
 						var newimage = doc.createElement( "img" );
 						newimage.src = "/Img/Icons/transparent.gif";
 						newimage.addEventListener( "click", this.addTagsClick, false);
