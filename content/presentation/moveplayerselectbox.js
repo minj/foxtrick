@@ -5,12 +5,12 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMovePlayerSelectbox= {
-    
+
 		MODULE_NAME : "MovePlayerSelectbox",
         MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-		PAGES : new Array('playerdetail'), 
+		PAGES : new Array('playerdetail'),
         DEFAULT_ENABLED : false,
-		NEW_AFTER_VERSION: "0.4.7",	
+		NEW_AFTER_VERSION: "0.4.7",
 		LATEST_CHANGE:"option to move player select box up on playersdetail page (default off)",
 
     init : function() {
@@ -25,12 +25,12 @@ var FoxtrickMovePlayerSelectbox= {
 		box=box.parentNode.removeChild(box);
 		var sidebar=doc.getElementById('ctl00_CPSidebar_pnlRight');
 		sidebar.insertBefore(box,sidebar.firstChild);
-		
-		
+
+
 		}
-		catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox: "+e+'\n');}	
+		catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox: "+e+'\n');}
 	},
-	
+
 }
 
 
@@ -42,12 +42,12 @@ var FoxtrickMovePlayerSelectbox= {
  */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMoveManagerOnline= {
-    
+
 		MODULE_NAME : "MoveManagerOnline",
         MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-		PAGES : new Array('region'), 
+		PAGES : new Array('region'),
         DEFAULT_ENABLED : false,
-		NEW_AFTER_VERSION: "0.5.0.5",	
+		NEW_AFTER_VERSION: "0.5.0.5",
 		LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 		LATEST_CHANGE: "Simple speed check added. Don't move if there are more than about 80 managers online",
 
@@ -58,7 +58,7 @@ var FoxtrickMoveManagerOnline= {
 		var target=null;
 		for (var i=0;i<divs.length;++i) {
 			if (!target && divs[i].className=='separator') target=divs[i];
-			
+
 			if (divs[i].className=='mainBox') {
 				var table=divs[i].getElementsByTagName('table')[0];
 				if (table.className=='indent thin') continue;
@@ -68,9 +68,9 @@ var FoxtrickMoveManagerOnline= {
 				break;
 			}
 		}
-		
-	} catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox: "+e+'\n');}	
+
+	} catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox: "+e+'\n');}
 
 	},
-	
+
 }

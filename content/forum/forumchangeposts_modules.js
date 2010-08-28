@@ -23,13 +23,13 @@ var FoxtrickFormatPostingText = {
 	LATEST_CHANGE:"Fixes display error",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
-	
+
 	run : function( page, doc ) {
 		try {
 			//reformat
 			var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
 			textarea.value = FoxtrickFormatPostingText.reformat(textarea.value);
-			
+
 			var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
 		    for (var i = 0; i < targets.length; ++i) {
 		    	if (targets[i].type == "submit") {
@@ -63,13 +63,13 @@ var FoxtrickFormatPostingText = {
 			string = string
 				.replace(/·/gi, "")
 				.replace(/(\<)(\S)/gi, "<·$2");
-				
+
 				var vstring = string.split('[pre]');
 				var r_string = vstring[0]
 				for (var j = 1; j < vstring.length; j++) {
 					var ivstring = vstring[j].split('[/pre]');
 					r_string += '[pre]'+ivstring[0].replace(/\[/g,'[·');
-					
+
 					for ( var k = 1; k < ivstring.length; k++) {
 						r_string += '[/pre]'+ivstring[k];
 					}
@@ -91,7 +91,7 @@ var FoxtrickCopyPostID = {
 
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
+	PAGES : new Array("forumViewThread"),
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Added [post=..] to copied post id",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
@@ -109,8 +109,8 @@ var FoxtrickCopyPosting = {
 
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
-	NEW_AFTER_VERSION: "0.5.2.1",	
+	PAGES : new Array("forumViewThread"),
+	NEW_AFTER_VERSION: "0.5.2.1",
 	LATEST_CHANGE:"Styles as popup",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
@@ -124,10 +124,10 @@ var FoxtrickCopyPosting = {
  */
 
 var FoxtrickForumAlterHeaderLine = {
-	
+
     MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
+	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"HideOldTime fixing for some dateformats",
@@ -156,10 +156,10 @@ var FoxtrickForumAlterHeaderLine = {
  */
 
 var FoxtrickForumRedirManagerToTeam = {
-	
+
     MODULE_NAME : "ForumRedirManagerToTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
+	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : false
 };
 
@@ -172,10 +172,10 @@ var FoxtrickForumRedirManagerToTeam = {
  */
 
 var FoxtrickMoveLinks = {
-	
+
     MODULE_NAME : "MoveLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
+	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : false
 };
 
@@ -188,10 +188,10 @@ var FoxtrickMoveLinks = {
  */
 
 var FoxtrickHideManagerAvatarUserInfo = {
-       
+
     MODULE_NAME : "HideManagerAvatarUserInfo",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
+	PAGES : new Array("forumViewThread"),
     DEFAULT_ENABLED : false
 };
 
@@ -205,10 +205,10 @@ var FoxtrickHideManagerAvatarUserInfo = {
  */
 
 var FoxtrickAddDefaultFaceCard = {
-	
+
     MODULE_NAME : "AddDefaultFaceCard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
+	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : true
 };
 
@@ -239,6 +239,6 @@ var FoxtrickForumSearch = {
 
 	MODULE_NAME : "ForumSearch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"), 
+	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : false
 };

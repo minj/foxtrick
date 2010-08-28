@@ -31,7 +31,7 @@ for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtric
 */
 
 var changecount = 0;
-	
+
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 	new_start:true,
@@ -181,7 +181,7 @@ var FoxtrickMain = {
 		var doc = ev.originalTarget.ownerDocument;
 		if (doc.nodeName != "#document")
 			return;
-				
+
 		// not on matchlineup
 		if ( doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
 			 doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
@@ -192,7 +192,7 @@ var FoxtrickMain = {
 			return;
 
 		if (changecount++ > 100) return;
-		
+
 		var content = doc.getElementById("content");
 		// remove event listener while Foxtrick executes
 		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
@@ -213,7 +213,7 @@ var FoxtrickMain = {
 			var doc = ev.originalTarget;
 			if (doc.nodeName != "#document")
 				return;
-				
+
 			Foxtrick.updateStatus();
 
 			if (Foxtrick.isHt(doc)) {
@@ -232,7 +232,7 @@ var FoxtrickMain = {
 				var begin = new Date();
 
 				FoxtrickMain.run(doc);
-						
+
 				var end = new Date();
 				var time = (end.getSeconds() - begin.getSeconds()) * 1000
 						 + end.getMilliseconds() - begin.getMilliseconds();
@@ -255,7 +255,7 @@ var FoxtrickMain = {
 						}
 					}
 					if (add_change) {
-						content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);					
+						content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 					}
 				}
 				Foxtrick.dump('add_change: '+add_change+'\n')
@@ -470,7 +470,7 @@ Foxtrick.getHostname = function(doc) {
 
 Foxtrick.isHt = function(doc) {
 //	return (Foxtrick.getHref(doc).search(FoxtrickPrefs.getString("HTURL")) > -1);
-	return (doc.getElementById('hattrick')!==null || doc.getElementById('hattrickNoSupporter')!==null); 
+	return (doc.getElementById('hattrick')!==null || doc.getElementById('hattrickNoSupporter')!==null);
 }
 
 var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
@@ -1646,7 +1646,7 @@ Foxtrick.isStandardLayout = function (doc) {
 			if (link.href.search(/\/App_Themes\/Simple/i)!=-1) return false;
 		}
 	}
-	else { // mobile internet may have style embedded 
+	else { // mobile internet may have style embedded
 		var styles = doc.getElementsByTagName("head")[0].getElementsByTagName("style");
 		var i=0,style;
 		while (style=styles[i++]) {
@@ -1666,7 +1666,7 @@ Foxtrick.isRTLLayout = function (doc) {
 			if (link.href.search("_rtl.css") != -1) rtl = true;
 		}
 	}
-	else { // mobile internet may have style embedded 
+	else { // mobile internet may have style embedded
 		var styles = doc.getElementsByTagName("head")[0].getElementsByTagName("style");
 		var i=0,style;
 		while (style=styles[i++]) {

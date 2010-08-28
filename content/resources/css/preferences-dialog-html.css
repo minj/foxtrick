@@ -225,42 +225,42 @@ div.ft_icon foxtrickInfo:hover {
 #sidebar #idFoxtrickPrefs {
 	float: right;
 	position: relative;
-	border: 2px solid rgb(47, 49, 255); 
-	background-color: rgb(239, 239, 255); 
+	border: 2px solid rgb(47, 49, 255);
+	background-color: rgb(239, 239, 255);
 	z-index: 99;
 	padding: 5px;
-}	
+}
 
 .subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs{
 	float: left;
 	position: relative;
-	border: 2px solid rgb(47, 49, 255); 
-	background-color: rgb(239, 239, 255); 
+	border: 2px solid rgb(47, 49, 255);
+	background-color: rgb(239, 239, 255);
 	z-index: 99;
 	padding: 5px;
-}	
+}
 
 #sidebar .ft_onpage_prefs_simple  #idFoxtrickPrefs {
-	width: 617px; 
+	width: 617px;
 }
 
 .subMenuConf .ft_onpage_prefs_simple #idFoxtrickPrefs, .subMenu .ft_onpage_prefs_simple #idFoxtrickPrefs {
-	width: 750px; 
+	width: 750px;
 }
 
 #sidebar .ft_onpage_prefs_std  #idFoxtrickPrefs {
-	width: 763px; 
+	width: 763px;
 	margin-right: -5px;
 }
 
 .subMenuConf .ft_onpage_prefs_std #idFoxtrickPrefs, .subMenu .ft_onpage_prefs_std #idFoxtrickPrefs {
-	width: 936px; 
+	width: 936px;
 	margin-left: -5px;
 }
 
 .ft_onpage_prefs_std  div.ft_sidebarBoxUnfolded+div.boxBody+div.boxFooter {
 	display:none;
-} 
+}
 
 
 .onpageprefs_extraprefs {

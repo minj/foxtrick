@@ -6,29 +6,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickSeniorTeamShortCuts = {
-	
+
     MODULE_NAME : "SeniorTeamShortCuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('teamPageGeneral'), 
-	ONPAGEPREF_PAGE : 'all', 
+	PAGES : new Array('teamPageGeneral'),
+	ONPAGEPREF_PAGE : 'all',
 	DEFAULT_ENABLED : true,
-	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"), 
-	
+	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"),
+
     run : function( page, doc ) {
 			try {
 				var ownteamid = FoxtrickHelper.getOwnTeamId();
-						
+
 				var boxleft=doc.getElementById('ctl00_pnlSubMenu');
 				if (boxleft==null) {return;}
-				var teamid=FoxtrickHelper.findTeamId(boxleft); 
-				if (teamid==ownteamid && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) return; 
- 			
+				var teamid=FoxtrickHelper.findTeamId(boxleft);
+				if (teamid==ownteamid && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) return;
+
 				var pos1=-1; var pos2=-1;
 				var bl_header=boxleft.getElementsByTagName('li');
 				var bllink=boxleft.getElementsByTagName('a');
 				for (var j = 0; j < bllink.length; j++) {
 					if (pos1==-1 && bllink[j].href.search(/\/Club\/Players\/\?TeamID/i)>0) pos1=j;
-					if (pos1==-1 && bllink[j].href.search(/\/Club\/NationalTeam\/NTPlayers/i)>0) pos1=j;					
+					if (pos1==-1 && bllink[j].href.search(/\/Club\/NationalTeam\/NTPlayers/i)>0) pos1=j;
 					if (pos2==-1 && bllink[j].href.search(/\/Club\/Matches\/\?TeamID/i)>0) pos2=j;
 				}
 					if (pos1==-1) return; // not a team leftbox
@@ -40,10 +40,10 @@ var FoxtrickSeniorTeamShortCuts = {
 					var ownlastmatchlinkId = "foxtrick_content_lastmatch";
 					lastmatchlink.setAttribute( "id", ownlastmatchlinkId );
 					li.appendChild(lastmatchlink);
-                    
+
 					if (pos2!=-1) bl_header[pos2].parentNode.insertBefore(li,bl_header[pos2].nextSibling);
 					else bl_header[0].parentNode.appendChild(li);
-						 
+
 					// coach make link
 						var li2 = doc.createElement("li");
 						var coachlink = doc.createElement("a");
@@ -66,11 +66,11 @@ var FoxtrickSeniorTeamShortCuts = {
 						li2.appendChild(coachlink);
 						if (pos1!=-1) bl_header[pos1].parentNode.insertBefore(li2,bl_header[pos1].nextSibling);
 						else bl_header[0].parentNode.appendChild(li2);
-						
-				
+
+
 			}
 			catch (e) {Foxtrick.dump("SeniorTeamShortCuts->"+e);}
-		
+
 	},
-	
+
 };

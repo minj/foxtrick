@@ -1,7 +1,7 @@
 /* user-content-example.css
  *
  * This file is a list of CSS statements for styling FoxTrick that satisfies
- * user's preferences. There are comments (everything with / * ... * / are comments) 
+ * user's preferences. There are comments (everything with / * ... * / are comments)
  * that describes what module each statement belongs to and their meanings.
  *
  * For instances given here, you don't need to know CSS in whole. Although a
@@ -14,7 +14,7 @@
  * the SkinPlugin module of FoxTrick to load the CSS file in order to have the
  * user style in effect.
  *
- * Example basic color names: 
+ * Example basic color names:
  * maroon, red, yellow, olive, purple, fuchsia, white, lime, green,
  * navy, blue, aqua, teal, black, silver, gray, orange
  *
@@ -180,7 +180,7 @@
 
 /* Module StaffMarker */
 /* Order by ascending priority since an element may have more than one class
-   so that the last declared one wins. 
+   so that the last declared one wins.
    Last number of padding is the size of the icon + .*/
 
 .ft-staff-hty {

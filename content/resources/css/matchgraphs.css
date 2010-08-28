@@ -66,13 +66,13 @@ div.foxtrick-graphs-left-bar {
  display: table-cell;
  position: relative;
  width: 50px;
- text-align: left; 
+ text-align: left;
  border:1px solid #000000;
- font-size:9px; 
+ font-size:9px;
 }
 
 div.foxtrick-graphs-bar-container {
-  width: 100%; 
+  width: 100%;
   display: block; position: relative; z-index: 2; overflow: hidden;
 }
 
@@ -80,7 +80,7 @@ div.foxtrick-graphs-bar-inner {
  position: absolute;
  left: 0px; top: 0px;
  z-index: 1;
-  height: 100%; 
+  height: 100%;
 }
 
 div.foxtrick-graphs-bar-values {
@@ -91,6 +91,6 @@ div.foxtrick-graphs-right-bar {
  display: table-cell;
  width: 50px;
  border:1px solid #000000;
- background-color: #CC0000; 
+ background-color: #CC0000;
  font-size:9px;
 }

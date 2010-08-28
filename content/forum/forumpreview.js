@@ -44,7 +44,7 @@ var FoxtrickForumPreview = {
 			*/
             msg_window = doc.getElementById( 'ctl00_CPMain_tbNewsBody' ); //mailnewsletter
             if (msg_window != null) page = 'mailnewsletter';
-			
+
 			if (msg_window == null) {
                msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			}
@@ -71,11 +71,11 @@ var FoxtrickForumPreview = {
 		//var target = doc.getElementById("ctl00_CPMain_btnCancel");  // Forum
         var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
         var target = targets[targets.length-1];
-        
+
 		if (page=='forumWritePost') button_ok = targets[targets.length-2];
         if (page=='guestbook') target = null;
-        
-        
+
+
 		var msg_type = 0;
 		//var index =11;
 
@@ -200,7 +200,7 @@ var FoxtrickForumPreview = {
 		if (page == 'ads') div = doc.getElementById('ctl00_CPMain_txtInsert');              //ads
         if (page == 'newsletter') div = doc.getElementById('ctl00_CPMain_txtMessage');      //newsletter
         if (page == 'mailnewsletter') div = doc.getElementById('ctl00_CPMain_tbNewsBody');  //mailnewsletter
-        
+
 		div.parentNode.insertBefore( preview_div,div );
 	} catch(e){Foxtrick.dump('preview: '+e+'\n');}
     },
@@ -253,12 +253,12 @@ var FoxtrickForumPreview = {
                 msg_window.removeEventListener( "keyup", FoxtrickForumPreview._preview, false );
 				var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
 				for (var i=0;i< toolbar.length;++i) toolbar[i].removeEventListener( "click", FoxtrickForumPreview._preview, false );
-				
+
             } else {
                 msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
 				var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
 				for (var i=0;i< toolbar.length;++i) toolbar[i].addEventListener( "click", FoxtrickForumPreview._preview, false );
-				
+
                 FoxtrickForumPreview._preview( ev );
             }
         } catch(e) {
@@ -300,7 +300,7 @@ var FoxtrickForumPreview = {
         /\[q\=(.*?)\](.*?)\[\/q\]/gi,
 
         /\[spoiler\](.*?)\[\/spoiler\]/gi,
-        
+
         /\[pre\](.*?)\[\/pre\]/gi,
 
         /\[table\](.*?)\[\/table\]/gi,
@@ -347,17 +347,17 @@ var FoxtrickForumPreview = {
         "<br>",
         "<hr>"
         );
-        
+
         var replace_nested = new Array(
         "<blockquote class='quote'>$1</blockquote>",
         "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
         "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
-        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",        
+        "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
 
         "<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>",
-        
+
         "<pre>$1</pre>",
-        
+
         "<table class='htMlTable'><tbody>$1</tbody></table>",
         "<tr $1>$2</tr>",
         "<th $1 class=$2 $3>$4</th>",
@@ -405,10 +405,10 @@ var FoxtrickForumPreview = {
         try {
             var prev_div = doc.getElementById( "forum_preview" );
             var text =  msg_window.value
-			
+
 			// format within pre
 			text = FoxtrickFormatPostingText.format(text);
-			
+
 			// replace &
 			text = text.replace(/\&/g, "&amp;");
 			// < with space after is allowed
@@ -417,18 +417,18 @@ var FoxtrickForumPreview = {
 			// strip links. replace <· with &lt;
 			text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there
 			text = Foxtrick.stripHTML( text);
-            
+
 			text = text.replace(/\n/g, "<br />");
-			
+
             var count_q = Foxtrick.substr_count(text, '[q');
             var count_s = Foxtrick.substr_count(text, '[spoil');
             var count_t = Foxtrick.substr_count(text, '[table');
-            
+
             var count =  count_q;
             if (count < count_s) count = count_s;
             if (count < count_t) count = count_t;
-            
-            
+
+
             for ( var i = 0; i < search_single.length; i++) {
                 text = text.replace(search_single[i],replace_single[i]);
             }
@@ -438,10 +438,10 @@ var FoxtrickForumPreview = {
                     text = text.replace(search_nested[i],replace_nested[i]);
                 }
             }
-			
+
 			// reformat with pre
 			text = FoxtrickFormatPostingText.reformat(text);
-			
+
 			prev_div.innerHTML = text;
         }
         catch(e) {

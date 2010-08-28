@@ -7,7 +7,7 @@ FoxtrickTransferDeadline = {
 
     MODULE_NAME : "TransferDeadline",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('transferSearchResult','playerdetail','transfer'), 
+	PAGES : new Array('transferSearchResult','playerdetail','transfer'),
     DEFAULT_ENABLED : true,
 
     run : function(page, doc) {
@@ -92,12 +92,12 @@ FoxtrickTransferDeadline = {
 
             var div = doc.getElementById( 'ctl00_CPMain_updBid' );
             if (div == null ) return;
-            
+
             var spans = Foxtrick.getElementsByClass( "alert", div );
             if (spans == null) return;
-            
+
             var selltime_elm = spans[0].getElementsByTagName( "p" )[0];
-            
+
             if (selltime_elm == null) return;
             var selltime_clone = selltime_elm.cloneNode(true);
             if (selltime_clone == null) return;

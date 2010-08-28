@@ -6,13 +6,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickLinksTeam = {
-	
+
     MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('teamPage'), 
+	PAGES : new Array('teamPage'),
 	DEFAULT_ENABLED : true,
-	OPTIONS : {}, 
-	
+	OPTIONS : {},
+
     init : function() {
 			Foxtrick.initOptionsLinks(this,"teamlink" );
     },
@@ -20,7 +20,7 @@ var FoxtrickLinksTeam = {
     run : function( page, doc ) {
 		this.AddLinksRight(page,doc);
 	},
-	
+
     AddLinksRight : function( page, doc ) {
 		try {
 			if (!this.isTeamPage(doc)) {return;}
@@ -28,30 +28,30 @@ var FoxtrickLinksTeam = {
 			var ownBoxBody=null;
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="main mainRegular") {
-					var teaminfo = this.gatherLinks( alldivs[j], doc ); 
-		
-					var links = Foxtrick.LinkCollection.getLinks("teamlink", teaminfo, doc, this );				
+					var teaminfo = this.gatherLinks( alldivs[j], doc );
+
+					var links = Foxtrick.LinkCollection.getLinks("teamlink", teaminfo, doc, this );
 					if (links.length > 0) {
 						ownBoxBody = doc.createElement("div");
 						var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 						var ownBoxId = "foxtrick_links_box";
 						var ownBoxBodyId = "foxtrick_links_content";
 						ownBoxBody.setAttribute( "id", ownBoxBodyId );
-               		                 
+
 						for (var k = 0; k < links.length; k++) {
 							links[k].link.className ="inner";
 							ownBoxBody.appendChild(links[k].link);
 						}
-						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", ""); 	
+						Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 					}
 					break;
 				}
 			}
-			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);	
+			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);
 		}
 		catch (e) {Foxtrick.dump("teamlinks->add_leftright->"+e);}
 	},
-	
+
 	/*change : function( page, doc ) { // Foxtrick.dump('change : LinksTeam\n');
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 		var ownBoxId = "foxtrick_links_content";
@@ -59,17 +59,17 @@ var FoxtrickLinksTeam = {
 		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
 		if( !doc.getElementById ( ownBoxId )
 		   && this.isTeamPage(doc)) {
-		 	Foxtrick.dump('run again : LinksTeamRight\n');	
+		 	Foxtrick.dump('run again : LinksTeamRight\n');
 			this.AddLinksRight(page,doc);
 		}
 	},*/
-	
+
 	isTeamPage : function(doc) {
-        var site=doc.location.href; 
+        var site=doc.location.href;
         var remain=site.substr(site.search(/Club\//i)+5);  //Foxtrick.dump(remain+' '+remain.search(/TeamID=/i)+'\n');
     return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
 	},
-	
+
 	gatherLinks : function( thisdiv, doc ) {
 	try{
 		var countryid = FoxtrickHelper.findCountryId(thisdiv);
@@ -81,24 +81,24 @@ var FoxtrickLinksTeam = {
 		var userid = FoxtrickHelper.findUserId(thisdiv);
 		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 			leaguename="I";
-		} 
+		}
 		var leaguepos=0,fans=0;
 		try {
-		  var teamInfo=doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode; 
+		  var teamInfo=doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
 		  var ps=teamInfo.getElementsByTagName('p');
 		  try {leaguepos=ps[0].innerHTML.replace(/<.+>/,'').match(/(\d)/)[1];}
 		  catch(e){}; // running game, leaguepos not known
 		  var children=teamInfo.childNodes;
-		  var child,i=0,infocount=0;		
-		  while (child=children[i++]) { 
-			if (infocount==2 && child.nodeName=='P'){ 
+		  var child,i=0,infocount=0;
+		  while (child=children[i++]) {
+			if (infocount==2 && child.nodeName=='P'){
 			  fans=children[i+1].innerHTML.replace(/&nbsp;/g,'').replace(/<a.+\/a>/ig,'').match(/(\d+)/)[1];
 			  /*var l=children[i+1].innerHTML.lastIndexOf('(');
 			  if (children[i+1].innerHTML.search(/\(/)!=-1) fans=children[i+1].innerHTML.replace(/&nbsp;/g,'').substr(l).match(/(\d+)/)[1];
 			  else fans=children[i+1].innerHTML.replace('&nbsp;','').match(/(\d+)/)[1];*/
 			  break;
 			}
-			if (child.className && child.className=='info') infocount++;			
+			if (child.className && child.className=='info') infocount++;
 		  }
 		}catch(e){Foxtrick.dump('leaguepos/fans: '+e+'\n');}
 		return { "teamid": teamid, "teamname": teamname, "countryid" : countryid,
@@ -107,4 +107,4 @@ var FoxtrickLinksTeam = {
 	} catch(e){ Foxtrick.dump ('LinksTeam->gatherLinks: '+e+'\n');}
 	},
 };
-	
+

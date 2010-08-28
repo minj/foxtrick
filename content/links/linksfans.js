@@ -6,28 +6,28 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksFans = {
-	
+
     MODULE_NAME : "LinksFans",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('fans'), 
+	PAGES : new Array('fans'),
 	DEFAULT_ENABLED : false,
-	OPTIONS : {}, 
+	OPTIONS : {},
 
     init : function() {
 			Foxtrick.initOptionsLinks(this,"fanlink");
     },
 
-    run : function( page, doc ) { 
+    run : function( page, doc ) {
 
-		//addExternalLinksToManagerPage		
+		//addExternalLinksToManagerPage
 		var ownBoxBody = null;
 		var mainWrapper = doc.getElementById('mainWrapper');
-  		
+
 		var teamid = FoxtrickHelper.findTeamId(mainWrapper);
 		var teamname = FoxtrickHelper.extractTeamName(mainWrapper);
 		var fanmood='';
 		var fans = mainWrapper.getElementsByTagName('td')[1].innerHTML.match(/\d+/);
- 
+
 		var links = mainWrapper.getElementsByTagName('a');
 		var i=0,link;
 		while (link=links[i++]) {
@@ -36,8 +36,8 @@ var FoxtrickLinksFans = {
 				break;
 			}
 		}
-		
-		var links = Foxtrick.LinkCollection.getLinks("fanlink", { "teamid": teamid, "teamname": teamname, "fanmood" : fanmood }, doc, this);  
+
+		var links = Foxtrick.LinkCollection.getLinks("fanlink", { "teamid": teamid, "teamname": teamname, "fanmood" : fanmood }, doc, this);
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -45,16 +45,16 @@ var FoxtrickLinksFans = {
 			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                                
+
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-						
+
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname,
-																		"fans":fans, "fanmood" : fanmood });	        
+																		"fans":fans, "fanmood" : fanmood });
 	},
-	
+
 };

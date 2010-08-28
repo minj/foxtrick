@@ -8,7 +8,7 @@
 
     MODULE_NAME : "HTThreadMarker",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forum'), 
+	PAGES : new Array('forum'),
     DEFAULT_ENABLED : true,
     CSS : Foxtrick.ResourcePath + "resources/css/ht-thread.css",
 	NEW_AFTER_VERSION : "0.5.2.1",
@@ -24,8 +24,8 @@
 
 		var i = 0, div;
 		while (div = divs[++i]) {
-			cname = div.getAttribute( "class" ); 
-			if (cname == "url" ) {	
+			cname = div.getAttribute( "class" );
+			if (cname == "url" ) {
 				var inner =div.childNodes[0];
 				var strong = div.getElementsByTagName('strong');
 				if (strong != null && strong[0] != null) {
@@ -38,11 +38,11 @@
 				if (poster.match(/ HT-\S+/)) {
 					Foxtrick.addClass(div, "ft-ht-thread");
 				}
-			}	
+			}
 		}
 	},
 
-    change : function( page, doc ) {        
+    change : function( page, doc ) {
         this.run(page, doc);
 	},
 
@@ -54,14 +54,14 @@
 			for (var j=0;j<links.length;j++) {
 				var cname;
 
-				if (links[j].rows.length==0 
-					|| links[j].rows[0].cells.length==0 
+				if (links[j].rows.length==0
+					|| links[j].rows[0].cells.length==0
 					|| links[j].rows[0].cells[0].className.search('date')==-1) continue;
-				
+
 				for ( var i = 0; i < links[j].rows.length; ++i ) {
 					if (links[j].rows[i].cells.length<=1) continue;
 					var node = links[j].rows[i].cells[1].childNodes[1];
-					var title = node.getElementsByTagName( "a" )[0].title;					
+					var title = node.getElementsByTagName( "a" )[0].title;
 					if (title.match( /.* HT-[^\s]*$/i )) {
 						Foxtrick.addClass(node, "ft-ht-thread");
 					}

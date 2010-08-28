@@ -20,7 +20,7 @@ margin-left: 175px ;
 
 /* compensate for fixed left submenu Forum */
 #aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action*="Live.aspx"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #content #mainWrapper>div[class="main mainConf"] {
-float:left!important; 
+float:left!important;
 margin-left: -175px;
 width:655px !important;
 }

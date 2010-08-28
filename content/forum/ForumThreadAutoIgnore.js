@@ -19,26 +19,26 @@ var FoxtrickForumThreadAutoIgnore = {
 	tags : null,
 	whitelist : null,
 
-	
+
     run : function( page, doc ) {
 		this.checkthreads(doc);
 	},
 
-	
+
     checkthreads : function( doc ) {
 		try {
 			if (!Foxtrick.isModuleFeatureEnabled(this,'Tags')) return;
 			var tags_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Tags_text");
 			if (!tags_string) return;
-			
-			// get tags. comma seperated in the prefs 
+
+			// get tags. comma seperated in the prefs
 			this.tags = tags_string.split(',');
 			for (var i=0; i<this.tags.length; ++i) {
 				this.tags[i] = this.tags[i].replace(/^\s+/,''); // leading space removed
 				this.tags[i] = this.tags[i].replace(/\s+$/,''); // trailing space removed
 			}
 
-			// get whitelisted threadIDs. comma seperated in the prefs 
+			// get whitelisted threadIDs. comma seperated in the prefs
 			if (Foxtrick.isModuleFeatureEnabled(this,'Whitelist_ThreadIDs')) {
 				var whitelist_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Whitelist_ThreadIDs_text");
 				if (whitelist_string) {
@@ -50,14 +50,14 @@ var FoxtrickForumThreadAutoIgnore = {
 					}
 				}
 			}
-			
+
 			var myForums = doc.getElementById('myForums');
 			var threadItems = myForums.getElementsByClassName('threadItem');
 			for (var i=0; i<threadItems.length; ++i) {
 				var url =  threadItems[i].getElementsByClassName('url')[0];
-				
+
 				if (url== null) continue;
-				
+
 				var a = url.getElementsByTagName('a')[0];
 				for (var j=0; j<this.tagmarkers.length; ++j){
 					for (var k=0; k<this.tags.length; ++k){
@@ -70,7 +70,7 @@ var FoxtrickForumThreadAutoIgnore = {
 								var whitelisted = false;
 								if (whitelist_string) {
 									var thread_id = a.href.match(/\/Forum\/Read.aspx\?t=(\d+)/)[1];
-									for (var l=0; l<this.whitelist.length; ++l){ 
+									for (var l=0; l<this.whitelist.length; ++l){
 										if (this.whitelist[l]==thread_id) {
 											whitelisted = true;
 											continue;
@@ -78,27 +78,27 @@ var FoxtrickForumThreadAutoIgnore = {
 									}
 								}
 								if (whitelisted) continue;
-								
+
 								// ignore thread using ht's javascript link
 								var func = ignore.getAttribute('onclick');
 								doc.location.href = func;
 								Foxtrick.dump('autoignore '+this.tags[k]+': '+a.innerHTML+'\n');
-								
+
 								// only one at a time. recheck after page has changed
 								return;
 							}
 						}
 					}
 				}
-			}		
+			}
 		 } catch(e) {
             Foxtrick.dumpError(e);
         }
 	},
-	
+
 	change : function( page, doc ) {
 		// after the reload alert is gone recheck for more threads
-		var forumprogress = doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_uppMain');		
+		var forumprogress = doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_uppMain');
 		if (forumprogress.getAttribute('style').search(/display: none;/)!=-1) {
 			this.checkthreads(doc);
 		}

@@ -6,12 +6,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksCountry = {
-	
+
     MODULE_NAME : "LinksCountry",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('country'), 
+	PAGES : new Array('country'),
 	DEFAULT_ENABLED : true,
-	OPTIONS : {}, 
+	OPTIONS : {},
 
     init : function() {
 			Foxtrick.initOptionsLinks(this,"countrylink");
@@ -29,9 +29,9 @@ var FoxtrickLinksCountry = {
 					countryid = FoxtrickHelper.findCountryId(thisdiv);
 					}
 			}
-			
-        var links = Foxtrick.LinkCollection.getLinks("countrylink", { "countryid": countryid }, doc, this);  
-        
+
+        var links = Foxtrick.LinkCollection.getLinks("countrylink", { "countryid": countryid }, doc, this);
+
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -39,15 +39,15 @@ var FoxtrickLinksCountry = {
 			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                               
+
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-						
+
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-		}	
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );			            
+		}
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );
     },
-	
+
 };

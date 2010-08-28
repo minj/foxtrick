@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hattrickcurrencies>
 
-<!-- 
+<!--
      amount in euro = eurorate * amount in currency
 -->
 
@@ -18,7 +18,7 @@
 	<currency code="RON" shortname="Lei" name="Lei (Romanian Lei)" eurorate="0.05" />
 	<currency code="MDL" shortname="lei" name="Lei (Moldavian Lei)" eurorate="0.05" />
 	<currency code="JPY" shortname="JP¥" name="¥ (Japanese yen)" eurorate="0.01" />
-	<currency code="BRL" shortname="reais" name="R$ (Reais)" eurorate="0.5"/> 
+	<currency code="BRL" shortname="reais" name="R$ (Reais)" eurorate="0.5"/>
 	<currency code="DZD" shortname="Dinar" name="Dinar (Algerian dinar)" eurorate="0.01" />
 	<currency code="MAD" shortname="Dirhams" name="Dirhams (Moroccan dirham)" eurorate="0.1" />
 	<currency code="JOD" shortname="Dinar" name="Dinar (Jordanian dinar)" eurorate="0.5" />

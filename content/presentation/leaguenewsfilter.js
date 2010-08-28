@@ -108,7 +108,7 @@ var FoxtrickLeagueNewsFilter = {
 							}
 							else if (pos > 0) {
 								// away team has set lineup
-								var reg = new RegExp(/-&nbsp;(.+)/); 
+								var reg = new RegExp(/-&nbsp;(.+)/);
 								link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<strong>$1</strong>');
 							}
 						}
@@ -124,7 +124,7 @@ var FoxtrickLeagueNewsFilter = {
 							}
 							else if (pos > 0) {
 								// away team is bot
-								var reg = new RegExp(/-&nbsp;(.+)/); 
+								var reg = new RegExp(/-&nbsp;(.+)/);
 								link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<span class="shy">$1</span>');
 							}
 						}
@@ -135,12 +135,12 @@ var FoxtrickLeagueNewsFilter = {
 							var reg = new RegExp(/(.+)\&nbsp;-/);
 							link.innerHTML = link.innerHTML.replace(reg,'<strong>$1</strong>&nbsp;-');
 						} else if (parseInt(goals[0]) < parseInt(goals[1])) {
-							var reg = new RegExp(/\-&nbsp;(.+)/); 
+							var reg = new RegExp(/\-&nbsp;(.+)/);
 							link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<strong>$1</strong>');
 						}
 					}
 					link.innerHTML = link.innerHTML.replace(/ /g, "&nbsp;").replace(/&nbsp;-&nbsp;/g, " - ");
-				} 			
+				}
 			}
 		}
 		catch (e) {

@@ -1,6 +1,6 @@
 function gotoEvent(elementID) {
     if (elementID === '') {
-        
+
     } else {
         var element = getElementsByClass('ft_mR_format');
         for (var i = 0; i < element.length; i++){
@@ -55,9 +55,9 @@ function getElementsByClass(searchClass,node,tag) {
         offY = mouseY - objDrag.offsetTop;
 	}
 
-  
+
 	function doDrag(ereignis) {
-  	
+
         mouseX = ereignis.pageX;
         mouseY = ereignis.pageY;
 
@@ -65,7 +65,7 @@ function getElementsByClass(searchClass,node,tag) {
 
             objDrag.style.left = (mouseX - offX) + "px";
             objDrag.style.top = (mouseY - offY) + "px";
-          
+
             var sel = window.getSelection();
             sel.removeAllRanges();
         }
@@ -74,7 +74,7 @@ function getElementsByClass(searchClass,node,tag) {
 	function stopDrag(ereignis) {
         objDrag = null;
 	}
-    
+
     init();
     document.getElementById('scoreboard').onmousedown = function() {startDrag(this)};
     document.getElementById('scoreboard').firstChild.setAttribute('style', 'cursor:move')

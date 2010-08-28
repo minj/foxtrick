@@ -8,21 +8,21 @@ Foxtrick.BookmarkAdjust = {
 
     MODULE_NAME : "BookmarkAdjust",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('bookmarks'), 
+	PAGES : new Array('bookmarks'),
     DEFAULT_ENABLED : true,
-    
+
     run : function( page, doc ) {
         this._adjust_bookmarks( doc );
     },
-	
+
     _bookmarkColor : function( imageObj, regexp, commentObj, color ) {
         if (commentObj.firstChild.nodeValue.search(regexp) > -1) {
            //imageObj.style.backgroundImage = "url("+Foxtrick.ResourcePath+"resources/notes/" + color + ".png)";
            imageObj.style.background = "transparent url("+Foxtrick.ResourcePath+"resources/notes/" + color + ".png) no-repeat scroll 0 0";
-           commentObj.firstChild.nodeValue = commentObj.firstChild.nodeValue.replace(regexp, "");          
+           commentObj.firstChild.nodeValue = commentObj.firstChild.nodeValue.replace(regexp, "");
         }
     },
-	
+
 	_adjust_bookmarks : function ( doc ) {
 		var tableObj = doc.getElementById('ctl00_CPMain_repB').childNodes[1];
         for (var i=0; i<tableObj.rows.length; i++) {

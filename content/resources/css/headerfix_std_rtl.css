@@ -4,7 +4,7 @@
 /* Fix the header on screen */
 #aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #header {
 position: fixed !important;
-top: 0px; 
+top: 0px;
 width: 949px;
 z-index: 990;
 }
@@ -20,7 +20,7 @@ padding:0px 0px 0px 4px !important;
 
 /* Logout botton +radius */
 #aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #menu .logout {
-margin-left:11px !important; 
+margin-left:11px !important;
 }
 
 /* add whitespace below header */

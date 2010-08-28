@@ -7,7 +7,7 @@ FoxtrickExtendedPlayerDetails = {
 
     MODULE_NAME : "ExtendedPlayerDetails",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('playerdetail'), 
+	PAGES : new Array('playerdetail'),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
@@ -21,13 +21,13 @@ FoxtrickExtendedPlayerDetails = {
         // Player in team since...
         var div = doc.getElementById( "ft_since" );
         if (div != null) return;
-        
+
         try {
             var div = doc.getElementById( "ctl00_CPMain_pnlplayerInfo" );
             if (div == null) return;
-            
+
             var joined_elm = Foxtrick.getElementsByClass( "shy", div )[0];
-            if (joined_elm == null) return;            
+            if (joined_elm == null) return;
             //Foxtrick.dump('\n'+joined_elm.parentNode.innerHTML+'\n');
 
             var joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
@@ -48,15 +48,15 @@ FoxtrickExtendedPlayerDetails = {
             if (!JT_date) return;
 
             var joined_s = Math.floor( (Foxtrick.HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
-            
+
             var JoinedText = 'NaN';
             try {
                 JoinedText = TimeDifferenceToText (joined_s , true);
-            } 
+            }
             catch(ee) {
                 Foxtrick.dump('  JoinedText >' + ee + '\n');
             }
-    
+
             if (JoinedText.search("NaN") == -1) {
                 var part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
                 part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
@@ -75,7 +75,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 
     MODULE_NAME : "ExtendedPlayerDetailsWage",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('playerdetail'), 
+	PAGES : new Array('playerdetail'),
     DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.2",
 	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
@@ -90,26 +90,26 @@ FoxtrickExtendedPlayerDetailsWage = {
     },
 
     _Player_Bonus  : function ( doc ) {
-        
+
 		var div = doc.getElementById( "ft_bonuswage" );
         if (div != null) return;
-        
+
         try {
             var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
             try {
                 var table_elm_bonus = div.getElementsByTagName( "table" )[0].rows[2].cells[1];
             } catch(e) {Foxtrick.dump('    >' + e + '\n');}
-			
+
             var has_bonus=false;
 			var table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
             if (Foxtrick.strrpos( table_inner, "%") > 0 ) {
                 has_bonus=true;
             }
-            
+
 			table_inner = table_elm_bonus.innerHTML;
 
 			var cl = FoxtrickPrefs.getString("oldCurrencySymbol").length;
-			
+
             var part = Foxtrick.substr(table_inner, 0, table_inner.search(FoxtrickPrefs.getString("oldCurrencySymbol"))+ cl);
 
             var part_1_save = part;
@@ -117,32 +117,32 @@ FoxtrickExtendedPlayerDetailsWage = {
 
 			//this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
                  var part = Foxtrick.trim(part);
-                 for ( var i=0; i<10; i++ ) { 
-                  var part = part.replace('&nbsp;', ''); 
+                 for ( var i=0; i<10; i++ ) {
+                  var part = part.replace('&nbsp;', '');
                  }
-            
-			var wage = parseInt(part.replace('&nbsp;', '').replace(/ /g, '')); 
+
+			var wage = parseInt(part.replace('&nbsp;', '').replace(/ /g, ''));
             part =  Math.floor( wage / 1.2);
             part = Foxtrick.formatNumber (part, '&nbsp;');
-			
+
 			// get space before currency symbol
 			part_1_save=part_1_save.replace(" "+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
 			part_1_save=part_1_save.replace("&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"),FoxtrickPrefs.getString("oldCurrencySymbol"));
 			part_1_save=part_1_save.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol"));
-			
-			if (part != 'NaN') 
+
+			if (part != 'NaN')
             {    if (has_bonus && Foxtrick.isModuleFeatureEnabled( this, "WageWithoutBonus") ) {
-					table_elm_bonus.innerHTML = 
-                    part_1_save +//'&nbsp;'+ 
-                    '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' + 
-                    part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+			
-                    ')</span> ' + 
+					table_elm_bonus.innerHTML =
+                    part_1_save +//'&nbsp;'+
+                    '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' +
+                    part +'&nbsp;'+FoxtrickPrefs.getString("oldCurrencySymbol")+
+                    ')</span> ' +
                     part_2_save;//.replace(FoxtrickPrefs.getString("oldCurrencySymbol"),'');
 				}
-				if (Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") ) 
-						table_elm_bonus.innerHTML += '<br>'+Foxtrick.formatNumber (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason'); 
-             }   
-				
+				if (Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") )
+						table_elm_bonus.innerHTML += '<br>'+Foxtrick.formatNumber (wage*16, '&nbsp;')+"&nbsp;"+FoxtrickPrefs.getString("oldCurrencySymbol")+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason');
+             }
+
         } catch (e) {
             Foxtrick.dump('  PlayerBonus: ' + e + '\n');
         }

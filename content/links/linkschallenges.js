@@ -6,12 +6,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksChallenges = {
-	
+
     MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('challenges','youthchallenges'), 
+	PAGES : new Array('challenges','youthchallenges'),
 	DEFAULT_ENABLED : true,
-	OPTIONS : {}, 
+	OPTIONS : {},
 
 	init : function() {
 			var linktypes = new Array("challengeslink","youthchallengeslink");
@@ -20,14 +20,14 @@ var FoxtrickLinksChallenges = {
 
     run : function( page, doc ) {
 
-		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') ); 
+		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') );
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var ownteamid = FoxtrickHelper.getOwnCountryId();
-					
+
 		//addExternalLinksToChallengesDetail
         var links;
-		if (page=='challenges') links = Foxtrick.LinkCollection.getLinks("challengeslink", {'teamid':teamid, 'ownteamid':ownteamid}, doc, this);  
-		else links = Foxtrick.LinkCollection.getLinks("youthchallengeslink", {'teamid':teamid, 'youthteamid':youthteamid,'ownteamid':ownteamid}, doc, this);  
+		if (page=='challenges') links = Foxtrick.LinkCollection.getLinks("challengeslink", {'teamid':teamid, 'ownteamid':ownteamid}, doc, this);
+		else links = Foxtrick.LinkCollection.getLinks("youthchallengeslink", {'teamid':teamid, 'youthteamid':youthteamid,'ownteamid':ownteamid}, doc, this);
 		var ownBoxBody=null;
 
 		if (links.length > 0) {
@@ -37,15 +37,15 @@ var FoxtrickLinksChallenges = {
 			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
-					
+
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-						
+
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-		}	                                                           
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{} );            
+		}
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{} );
     },
-	
+
 };

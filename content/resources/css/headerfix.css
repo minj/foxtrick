@@ -5,7 +5,7 @@
 /* Fix the header on screen */
 #aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) #header {
 position: fixed !important;
-top: 0px; 
+top: 0px;
 margin-left: -11px;
 width: 764px;
 padding-right:10px;
@@ -42,7 +42,7 @@ min-height: 400px !important; /* temporary height hack before sticky footer */
 }
 /* Alltid fix */
 #aspnetForm[action*="Default.aspx?path=country"] #content #mainWrapper {
-min-height:0px !important ; 
+min-height:0px !important ;
 }
 
 #aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) div#shortcuts {

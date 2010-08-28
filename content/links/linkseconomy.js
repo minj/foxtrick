@@ -6,12 +6,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksEconomy = {
-	
+
     MODULE_NAME : "LinksEconomy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
 	DEFAULT_ENABLED : true,
-	OPTIONS : {}, 
+	OPTIONS : {},
 
     init : function() {
 			Foxtrick.initOptionsLinks(this,"economylink");
@@ -19,7 +19,7 @@ var FoxtrickLinksEconomy = {
 
     run : function( page, doc ) {
 		var owncountryid = FoxtrickHelper.getOwnCountryId();
-		
+
 		//addExternalLinksToEconomyDetail
 		var Cash=0, newCash=1;
 		var alldivs = doc.getElementsByTagName('div');
@@ -38,7 +38,7 @@ var FoxtrickLinksEconomy = {
 			Cash*=FoxtrickPrefs.getString("currencyRate");
 			CurrCode="EUR";
 		}*/
-		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);  
+		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);
 		var ownBoxBody=null
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
@@ -47,15 +47,15 @@ var FoxtrickLinksEconomy = {
 			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                                
+
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-						
+
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":CurrCode,"newCash":newCash} );					
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":CurrCode,"newCash":newCash} );
     },
-	
+
 };

@@ -8,7 +8,7 @@ var FoxtrickMovePlayerStatement = {
 
 	MODULE_NAME : "MovePlayerStatement",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail','YouthPlayer'), 
+	PAGES : new Array('playerdetail','YouthPlayer'),
 	DEFAULT_ENABLED : false,
 
 	run : function( page, doc ) {
@@ -27,7 +27,7 @@ var FoxtrickMovePlayerStatement = {
 			newImg.setAttribute("title",contentSpeak+"");
 			newImg.setAttribute("style","left: 65px; top: 134px;");
 			var elemsa = doc.getElementsByTagName("div");
-			for ( var b=0; b < elemsa.length; b++) { 
+			for ( var b=0; b < elemsa.length; b++) {
 				if( elemsa[b].className=='faceCard' && contentSpeak != "") {
 					elemsa[b].appendChild(newImg); Foxtrick.dump('add\n');
 				}

@@ -14,7 +14,7 @@ Foxtrick.TeamStats = {
 	LATEST_CHANGE : "Added rows for leadership and personalities.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("General","Speciality","Personality","Status","Current_league"),
-	
+
 	run : function(page, doc) {
 		try {
 			var totalTSI = 0;
@@ -200,7 +200,7 @@ Foxtrick.TeamStats = {
 					addRow(Foxtrickl10n.getString("Honesty"), Foxtrickl10n.getLevelByTypeAndValue("honesty", avgHonesty));
 				}
 			}
-			if (Foxtrick.isModuleFeatureEnabled( this, "Status")) {		
+			if (Foxtrick.isModuleFeatureEnabled( this, "Status")) {
 				if (transferListed || yellowCards || twoYellowCards || redCards || bruised || injured) {
 					addHeader(Foxtrickl10n.getString("Status"));
 				}
@@ -250,7 +250,7 @@ Foxtrick.TeamStats = {
 					addRow(img, data);
 				}
 			}
-			if (Foxtrick.isModuleFeatureEnabled( this, "Current_league")) {		
+			if (Foxtrick.isModuleFeatureEnabled( this, "Current_league")) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "currentLeagueId")) {
 					addHeader(Foxtrickl10n.getString("Current_league"));
 					var leagues = [];

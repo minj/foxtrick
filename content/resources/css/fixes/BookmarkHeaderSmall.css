@@ -1,7 +1,7 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 .bookmarkMessage img {
-	background:transparent url('chrome://foxtrick/content/resources/img/bookmark_post.png') no-repeat scroll 
+	background:transparent url('chrome://foxtrick/content/resources/img/bookmark_post.png') no-repeat scroll
 	0 0!important
 }
 .cfWrapper .bookmarkMessage {

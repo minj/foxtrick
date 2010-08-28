@@ -8,9 +8,9 @@ var FoxtrickTables = {
 
     MODULE_NAME : "GoaldifferenceToTables",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('promotion','oldseries','marathon'), 
+	PAGES : new Array('promotion','oldseries','marathon'),
     DEFAULT_ENABLED : true,
-    NEW_AFTER_VERSION : "0.5.0.5",	
+    NEW_AFTER_VERSION : "0.5.0.5",
     LATEST_CHANGE : "Fixed goal differences when it's positive",
 
     CSS : Foxtrick.ResourcePath + "resources/css/goal-diff.css",
@@ -18,12 +18,12 @@ var FoxtrickTables = {
     run : function( page, doc ) {
         var tbl_goaldiff = (doc.getElementById("ft_goaldiff")!=null);
         if (tbl_goaldiff) return;
-        
+
         try {
             var goalcell = 2;
             var div = doc.getElementById('ctl00_CPMain_pnlViewPromotion');
             if (!div) {div = doc.getElementById('mainBody'); goalcell = 3;}
-            
+
 			var tbl_promo = div.getElementsByTagName('TABLE')[0];
             tbl_promo.id = 'ft_goaldiff';
 
@@ -38,8 +38,8 @@ var FoxtrickTables = {
                     var newCell = tblBodyObj.rows[i].insertCell(-1);
                     newCell.className = "right";
                     var content = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell].textContent).split("-");
-                    if (Foxtrick.trim(content[0]) == '') { 
-                        content[0] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell-1].textContent); 
+                    if (Foxtrick.trim(content[0]) == '') {
+                        content[0] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell-1].textContent);
                         content[1] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell+1].textContent);
                     }
                     var result = Foxtrick.trim(content[0]) - Foxtrick.trim(content[1]);
@@ -51,13 +51,13 @@ var FoxtrickTables = {
                     else // result < 0
                         Foxtrick.addClass(newCell, "ft-gd-negative")
                 }
-            }        
+            }
         }
         catch (e) {
             Foxtrick.dumpError(e);
         }
     },
-    
+
     change : function( page, doc ) {
         var id = "ft_goaldiff";
         if(!doc.getElementById(id)) {
@@ -70,16 +70,16 @@ var FoxtrickMatchTables = {
 
     MODULE_NAME : "MatchTables",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('matchesarchiv', 'matches','league','youthleague'), 
+	PAGES : new Array('matchesarchiv', 'matches','league','youthleague'),
     DEFAULT_ENABLED : false,
-    NEW_AFTER_VERSION: "0.4.8.2",	
-    LATEST_CHANGE:"removes white space on match tables",    
+    NEW_AFTER_VERSION: "0.4.8.2",
+    LATEST_CHANGE:"removes white space on match tables",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS :  new Array("RemoveTime"), 
-	
+	OPTIONS :  new Array("RemoveTime"),
+
     run : function( page, doc ) {
         if (Foxtrick.isStandardLayout(doc)) return;
-        
+
 		// adjust league table
 		if (page=='league' || page== 'youthleague') {
 			Foxtrick.addStyleSheet(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_league.css");
@@ -90,12 +90,12 @@ var FoxtrickMatchTables = {
 		if (!Foxtrick.isModuleFeatureEnabled( this, "RemoveTime" ) ) {
 			if (page=='matchesarchiv' || page== 'matches') Foxtrick.addStyleSheet(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_matches.css");
 			return;
-		}		
-		
+		}
+
 		// adjust matchtable, remove hour
 		var id = "ft_matchtable";
         if (doc.getElementById(id)) return;
-        
+
         try {
             var div = doc.getElementById('mainBody');
             if (!div) return;
@@ -104,7 +104,7 @@ var FoxtrickMatchTables = {
             tbl.id = 'ft_matchtable';
             tbl.setAttribute('class', '');
             tbl.setAttribute('style', 'margin-left:-6px; margin-right:-6px; padding:0px;width:440px;');
-            
+
             var tblBodyObj = tbl.tBodies[0];
             var section = 0;
 			for (var i=0; i<tblBodyObj.rows.length; i++) {
@@ -118,18 +118,18 @@ var FoxtrickMatchTables = {
                     if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
 
                     switch ( DATEFORMAT ) {
-                        case 'ddmmyyyy': 
-                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                        case 'ddmmyyyy':
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>';
                             else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
                             if (ar.length>7) cell.title = ar[7] + ar[8] + ar[9] + ar[10];
                             break;
                         case 'mmddyyyy':
-                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>';
                             else cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2,4);
                             if (ar.length>7) cell.title = ar[7] + ar[8] + ar[9] + ar[10];
                             break;
                         case 'yyyymmdd':
-                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>'; 
+                            if (content.search(/\(/) > -1) cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4)  + '&nbsp;<span id="ft_HTDateFormat">(' + content.split('(')[1] + '</span>';
                             else cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2,4);
                             if (ar.length>7) cell.title = ar[7] + ar[8] + ar[9] + ar[10];
                             break;
@@ -143,19 +143,19 @@ var FoxtrickMatchTables = {
                     for(var j = 1; j < 7; j++) {
                         var cell = tblBodyObj.rows[i].cells[j];
                         if (cell) {
-                             
+
                             cell.setAttribute('style', "padding:1px; margin:0px;font-size:10px;vertical-align:middle;text-align:center");
-                            if (j != 2) 
-                                cell.innerHTML = cell.innerHTML.replace(/\&nbsp\;/gi, '').replace(' - ', ':'); 
+                            if (j != 2)
+                                cell.innerHTML = cell.innerHTML.replace(/\&nbsp\;/gi, '').replace(' - ', ':');
                             else
                                 cell.innerHTML = cell.innerHTML.replace(' - ', ':')
                         }
                     }
                 } else section ++;
-            }        
+            }
         } catch(e) {Foxtrick.dump(this.MODULE_NAME + ':' + e + '\n');}
     },
-    
+
     change : function( page, doc ) {
         var id = "ft_matchtable";
         if(!doc.getElementById(id)) {

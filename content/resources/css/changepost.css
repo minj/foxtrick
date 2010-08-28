@@ -1,4 +1,4 @@
-/* forum change post changes */ 
+/* forum change post changes */
 div[class="cfHeader ftdoubleLine"]  {height:30px !important;}
 div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
 div[class="cfHeader ftdoubleLine"] br {display:none !important; padding: 5px;}

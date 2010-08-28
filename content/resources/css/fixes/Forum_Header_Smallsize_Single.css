@@ -1,6 +1,6 @@
  @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-.cfHeader a[class="flag inner"] img 
+.cfHeader a[class="flag inner"] img
 { border: 0px solid #DDDDDD !important; }
 
 .cfHeader
@@ -8,7 +8,7 @@
     padding-left:0px !important;
 }
 
-.cfHeader, .cfHeader img, .cfHeader a,  .cfHeader .float_right 
+.cfHeader, .cfHeader img, .cfHeader a,  .cfHeader .float_right
 {
     padding-left:0px;
     padding-right:0px;
@@ -20,5 +20,5 @@
 	margin-left:-4px;
 }*/
 
- 
+
 }

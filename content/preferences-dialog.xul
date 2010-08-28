@@ -140,9 +140,9 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/tickercoloring.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/newmail.js" />
 
-<!-- following modules all run on 'all_late' pages. order of execution is determined be following order --> 
+<!-- following modules all run on 'all_late' pages. order of execution is determined be following order -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/currencyConverter.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/teampopuplinks.js" /> 
+<script type="application/x-javascript" src="chrome://foxtrick/content/shortcuts_and_tweaks/teampopuplinks.js" />
 
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog.js" />

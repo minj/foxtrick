@@ -5,10 +5,10 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 FoxtrickHistoryStats= {
-    
+
     MODULE_NAME : "HistoryStats",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('history'), 
+	PAGES : new Array('history'),
     DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Some style fixes",
@@ -16,19 +16,19 @@ FoxtrickHistoryStats= {
     Buffer : new Array(),
     Pages : new Array(),
     Offset : 0,
-    
+
     run : function( page, doc ) {
         this.Buffer = Array();
         this.Pages = Array();
         this._fetch(doc);
         this._paste(doc);
     },
-        
+
     change : function( page, doc ) {
         this._fetch(doc);
         this._paste(doc);
     },
-    
+
     _fetch : function(doc) {
         try {
             try {
@@ -39,14 +39,14 @@ FoxtrickHistoryStats= {
                 this.Pages.push(page);
                 Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(this.Pages) + '\n');
                 Foxtrick.dump('------------------------------------------------<br>\n');
-                
+
                 try {
                     var done = false;
                     var a = doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').getElementsByTagName('a');
                     for (var i = 0; i < a.length;i++){
                         if (a[i].href.search(/viewcup/) > -1) {
                             var check_season = a[i].textContent;
-                            
+
                             if(a[i].parentNode.previousSibling.previousSibling) season = a[i].parentNode.previousSibling.previousSibling.textContent;
                             var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
                             var ar = reg.exec(season);
@@ -67,9 +67,9 @@ FoxtrickHistoryStats= {
 					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1 ) continue;
 					// Foxtrick.dump(">>>>     OK <<<<<<");
                     dummy = Foxtrick.trim(table[i].innerHTML);
-                    
+
                     //Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(dummy) + '\n');
-                    
+
                         var buff = '';
                         var league = -1;
                         var leagueN = -1;
@@ -123,40 +123,40 @@ FoxtrickHistoryStats= {
                             } else {
                             }
                         }
-                        
+
                 }
-                Foxtrick.dump('Buffer:' + Foxtrick.var_dump(this.Buffer) + '\n');            
-                Foxtrick.dump('-----------------------------------------------------------------------------------------------<br>\n');          
+                Foxtrick.dump('Buffer:' + Foxtrick.var_dump(this.Buffer) + '\n');
+                Foxtrick.dump('-----------------------------------------------------------------------------------------------<br>\n');
             }
         } catch(e) {Foxtrick.dump(this.MODULE_NAME + ' fetch ' + e + '\n');}
     },
-    
+
     _paste : function(doc){
         if (this.Buffer.length==0) return;
         try {
-            var HistoryTable="<tr>" + 
-				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.season")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.season.short")+"</th>" + 
+            var HistoryTable="<tr>" +
+				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.season")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.season.short")+"</th>" +
 				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.cup")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.cup.short")+"</th>" +
 				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.league")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.league.short")+"</th>" +
 				"<th title='"+Foxtrickl10n.getString("foxtrick.HistoryStats.pos")+"'>"+Foxtrickl10n.getString("foxtrick.HistoryStats.pos.short")+"</th></tr>";
-            
+
             var last = -1;
             for (var i = 0; i< this.Buffer.length; i++){
                 var dummy = this.Buffer[i].split('|');
                 dummy[0] = parseInt(dummy[0]) - this.Offset + '|';
                 var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td title="%l_t'+dummy[0]+'">%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
                 // Foxtrick.dump(Foxtrick.var_dump(dummy));
-                
+
                 if (last == -1 || last != dummy[0]) {
                     HistoryTable += line;
                 }
-                
-                
+
+
                 HistoryTable = HistoryTable.replace("%s"+dummy[0],dummy[0]);
-                
+
                 if (dummy[3]){
                     HistoryTable = HistoryTable.replace("%p"+dummy[0],dummy[2]);
-                    if (dummy[3].length > 8) 
+                    if (dummy[3].length > 8)
 					{
 						HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3].substr(0,5) + '…');
 					}
@@ -164,18 +164,18 @@ FoxtrickHistoryStats= {
 					{
 						HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3]);
 					}
-                    HistoryTable = HistoryTable.replace("%l_t"+dummy[0],dummy[3]);					
+                    HistoryTable = HistoryTable.replace("%l_t"+dummy[0],dummy[3]);
                 } else{
                     HistoryTable = HistoryTable.replace("%c"+dummy[0],dummy[1]);
                 }
-                
+
                 last = dummy[0];
             }
             var	table = doc.createElement("table");
             table.setAttribute( "class", 'smallText historystats' );
             HistoryTable=HistoryTable.replace(/((\%c)|(\%p)|(\%l))\d{1,2}\|/gi,'-').replace(/\|/g,'');;
             table.innerHTML = HistoryTable;
-            
+
             try {
                 var	ownBoxBody = doc.createElement("div");
                 var header = Foxtrickl10n.getString("foxtrick.HistoryStats.label");

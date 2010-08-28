@@ -165,7 +165,7 @@ FoxtrickPlayerFilters = {
 	changeListener : function(ev) {
 		try {
 			var begin = new Date();
-			
+
 			var doc = ev.target.ownerDocument;
 			var filter = ev.target.value;
 
@@ -302,16 +302,16 @@ FoxtrickPlayerFilters = {
 
 				var tablediv = doc.getElementById("ft_skilltablediv");
 				if (Foxtrick.hasClass(tablediv.getElementsByTagName('h2')[0], "ft_boxBodyUnfolded")) {
-					setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);			
+					setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);
 				}
 			}
-			
+
 			var end = new Date();
 			var time = (end.getSeconds() - begin.getSeconds()) * 1000
 				 + end.getMilliseconds() - begin.getMilliseconds();
 			Foxtrick.dump("calculate time: " + time + " ms\n");
 			//Foxtrick.dump("display time: " + time + " ms\n");
-		
+
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);

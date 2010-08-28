@@ -85,7 +85,7 @@ var FoxtrickSkillTable = {
 			var content = doc.getElementById("content");
 			content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 			//Foxtrick.dump('change listner removed\n');
-				
+
 			var fullType = this.getFullType(doc);
 			var playerList = (fullType.type == "transfer") ? Foxtrick.Pages.TransferSearchResults.getPlayerList(doc) : Foxtrick.Pages.Players.getPlayerList(doc);
 
@@ -463,7 +463,7 @@ var FoxtrickSkillTable = {
 
 			var content = doc.getElementById("content");
 			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-			//Foxtrick.dump('change listner readded\n');				
+			//Foxtrick.dump('change listner readded\n');
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);

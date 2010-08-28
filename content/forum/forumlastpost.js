@@ -19,14 +19,14 @@ var FoxtrickForumLastPost = {
         this._change( page, doc );
 	},
 
-	change : function( page, doc ) {	
+	change : function( page, doc ) {
         this._change( page, doc );
 		Foxtrick.dump(this.MODULE_NAME+' change\n')
 	},
 
     _change : function( page, doc ){
         if (page == 'forum') {
-            
+
             var perpage = FoxtrickPrefs.getInt('perpage');
             if (perpage == null) perpage = 20;
             var lastpage = (Foxtrick.isModuleFeatureEnabled( this, "lastpage" ));
@@ -51,13 +51,13 @@ var FoxtrickForumLastPost = {
                     var id = Foxtrick.trim(divs[i].textContent);
                     if (id.search(/\//)>-1) continue;
                     if (lastpage) id = id - perpage + 1;
-                    if (id < 1) id = 1;                    
+                    if (id < 1) id = 1;
                     var url = divs[i].parentNode.parentNode.getElementsByTagName('a')[0];
                     url.href = url.href.replace(/n=\d+/,'n='+id);
                 }
             } catch(e) {Foxtrick.dump('ForumLastpost Pager ' + e);}
-            
-            
+
+
         } else {
             try {
                 var select = doc.getElementById('ctl00_CPMain_ddlMessagesPerPage');

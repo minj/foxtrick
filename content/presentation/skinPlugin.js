@@ -5,7 +5,7 @@
  * @author smates/convinced
  */
 var FoxtrickSkinPlugin = {
-    
+
     MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	DEFAULT_ENABLED : false,
@@ -18,24 +18,24 @@ var FoxtrickSkinPlugin = {
 	OPTION_TEXTS_LOAD_BUTTONS : new Array(true,true),
 	OPTIONS_CSS: new Array ("",""),
 	CSS:'',
-	
+
     init : function() {
 		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin1')) {
 			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
-			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);			
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);
 			else this.CSS = skinlink;
 		}
 		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin2')) {
 			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
-			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);			
+			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);
 			else this.CSS = skinlink;
-		}		
+		}
     },
 
     run : function(doc ) {
 
 		/*OLD MEDALS SCRIPT*/
-        if (FoxtrickPrefs.getBool("module.CustomMedals.enabled")){                    
+        if (FoxtrickPrefs.getBool("module.CustomMedals.enabled")){
                     var sidebar = doc.getElementById('sidebar');
                     if( sidebar ) {
                         var images = sidebar.getElementsByTagName('img');

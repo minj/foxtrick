@@ -25,7 +25,7 @@ var FoxtrickCrossTable = {
 
 		//var DefaultShow = Foxtrick.isModuleFeatureEnabled( this, "DefaultShow" );
 
-		//try 
+		//try
 		{
 			var width = 540;
 			if (!Foxtrick.isStandardLayout(doc)) {
@@ -61,20 +61,20 @@ var FoxtrickCrossTable = {
 						new Array('', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0),
 						new Array('', 0 , 0 , 0 , 0 , 0, 0 , 0 , 0, 0 , 0 , 0 , 0 , 0, 0));
 			this.weekcount=1;
-						
+
 			if (fixtures_xml===null){
 				this.getDataFromDoc(doc);
 			}
 			else {
 				this.getDataFromXml(fixtures_xml);
 			}
-			
+
 			var mainBody = doc.getElementById('mainBody');
 
 			// some result list design fixing (added seasons breaks it)
 			var tbl_fix = mainBody.getElementsByTagName('TABLE')[0];
 			tbl_fix.id = 'ft_fixture';
-			var tblBodyObj = tbl_fix.tBodies[0];			
+			var tblBodyObj = tbl_fix.tBodies[0];
 			var dayhead=0;
 			for (var j = 0; j<tblBodyObj.rows.length; j++){
 					if (dayhead==0) {
@@ -88,7 +88,7 @@ var FoxtrickCrossTable = {
 					tblBodyObj.rows[j].deleteCell(0);
 			}
 
-			
+
 			var head_class = "ft_ct_head_std";
 			if (!Foxtrick.isStandardLayout(doc) ) {head_class = "ft_ct_head_simple";}
 
@@ -334,7 +334,7 @@ var FoxtrickCrossTable = {
 		}
 	},*/
 
-	getDataFromDoc : function (doc) {				
+	getDataFromDoc : function (doc) {
 				var mainBody = doc.getElementById('mainBody');
 				var tbl_fix = mainBody.getElementsByTagName('TABLE')[0];
 				var tblBodyObj = tbl_fix.tBodies[0];
@@ -481,37 +481,37 @@ var FoxtrickCrossTable = {
 				}
 
 	},
-	
-	
+
+
 	getDataFromXml: function(fixtures_xml) {
-	
+
 		var allMatches = fixtures_xml.getElementsByTagName("Match");
 		var arraynum = {};
 		var i=0;
 		for (var j = 0; j < allMatches.length; ++j) {
 			var currentMatch = allMatches[j];
-			
+
 			var MatchRound = parseInt(currentMatch.getElementsByTagName("MatchRound")[0].textContent);
-			var MatchID = currentMatch.getElementsByTagName("MatchID")[0].textContent;			
+			var MatchID = currentMatch.getElementsByTagName("MatchID")[0].textContent;
 			var HomeTeamID = currentMatch.getElementsByTagName("HomeTeam")[0].getElementsByTagName("HomeTeamID")[0].textContent;
 			var AwayTeamID = currentMatch.getElementsByTagName("AwayTeam")[0].getElementsByTagName("AwayTeamID")[0].textContent;
 			var HomeTeamName = currentMatch.getElementsByTagName("HomeTeam")[0].getElementsByTagName("HomeTeamName")[0].textContent;
 			var AwayTeamName = currentMatch.getElementsByTagName("AwayTeam")[0].getElementsByTagName("AwayTeamName")[0].textContent;
-			
+
 			var HomeGoalsNode = currentMatch.getElementsByTagName("HomeGoals")[0];
 			var AwayGoalsNode = currentMatch.getElementsByTagName("AwayGoals")[0];
 			if (HomeGoalsNode) var HomeGoals = parseInt(HomeGoalsNode.textContent);
 			else var HomeGoals = parseInt('');
 			if (AwayGoalsNode) var AwayGoals = parseInt(AwayGoalsNode.textContent);
 			else var AwayGoals = parseInt('');
-			
+
 			if (MatchRound==1) {
 				// link ids to position in array
 				home = i;
 				arraynum[HomeTeamID] = i++;
-				
-				away = i;				
-				arraynum[AwayTeamID] = i++;	
+
+				away = i;
+				arraynum[AwayTeamID] = i++;
 			}
 			else {
 				// get array position from id
@@ -523,11 +523,11 @@ var FoxtrickCrossTable = {
 				Foxtrick.dump(j+' '+HomeTeamName+' '+AwayTeamName+' '+HomeGoals+' '+AwayGoals+'\n');
 				Foxtrick.dump(j+' '+home+' '+away+' '+' '+'\n');
 			}*/
-			
+
 			if (!isNaN(HomeGoals) && !isNaN(AwayGoals)) { // = game has finished
 				// update names. they might have changed. ids stayed the same
 				this.cross[home][0] = HomeTeamName;
-				this.cross[away][0] = AwayTeamName;				
+				this.cross[away][0] = AwayTeamName;
 				this.cross[home][away+1] = HomeGoals + '-' + AwayGoals;
 				this.crossgame[home][away+1] = MatchID;
 				this.weekcount = MatchRound;
@@ -535,12 +535,12 @@ var FoxtrickCrossTable = {
 				var points_hm = 1000000, points_aw = 1000000;
 				if (HomeGoals > AwayGoals) {points_hm = 3000000; points_aw = 0;}
 				if (HomeGoals < AwayGoals) {points_hm = 0; points_aw = 3000000;}
-				if (MatchRound==1) {var old_hm = 0; var old_aw = 0;} 
+				if (MatchRound==1) {var old_hm = 0; var old_aw = 0;}
 				else {old_hm = this.week[home][MatchRound-1]; old_aw = this.week[away][MatchRound-1];}
 				this.week[home][MatchRound] = points_hm + old_hm + ((HomeGoals - AwayGoals) * 1000);
 				this.week[away][MatchRound] = points_aw + old_aw + ((AwayGoals - HomeGoals) * 1000) + AwayGoals;
 				this.week[home][0] = HomeTeamName;
-				this.week[away][0] = AwayTeamName;								
+				this.week[away][0] = AwayTeamName;
 			}
 			else {
 				//if (MatchRound==1) return; // no match yet
@@ -548,10 +548,10 @@ var FoxtrickCrossTable = {
 				this.week[home][MatchRound] = this.week[home][MatchRound-1];
 				this.week[away][MatchRound] = this.week[away][MatchRound-1];
 			}
-		}			
+		}
 	},
-			
-			
+
+
 	getShortName : function(str) {
 		try {
 			const minLength = 3; // only suggested
@@ -663,7 +663,7 @@ var FoxtrickCrossTable = {
 		}
 		catch (e) {Foxtrick.dump("CrossTable -> HeaderClick_Cross: "+e+'\n');}
 	},
-	
+
 	get_xml : function(doc) {
 		const USER_DATA_KEY = "fixtures-xml";
 		if (doc.getUserData !== undefined && doc.getUserData(USER_DATA_KEY) !== null) {
@@ -672,7 +672,7 @@ var FoxtrickCrossTable = {
 		}
 		var leagueLevelUnitID = doc.location.href.match(/leagueLevelUnitID=(\d+)/i)[1];
 		var season = doc.location.href.match(/season=(\d+)/i)[1];
-		
+
 		var file = "file=leaguefixtures&leagueLevelUnitID="+leagueLevelUnitID+"&season="+season;
 
 		var location = "http://" + doc.location.hostname + "/Community/CHPP/Players/chppxml.axd?" + file;

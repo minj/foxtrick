@@ -4,7 +4,7 @@
 /* Fix the header on screen */
 #aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"])  #header  {
 position: fixed !important;
-top: 0px; 
+top: 0px;
 margin-right: -11px;
 width: 764px;
 padding-right:10px;
@@ -40,7 +40,7 @@ min-height: 400px !important; /* temporary height hack before sticky footer */
 }
 /* Alltid fix */
 #aspnetForm[action*="Default.aspx?path=country"]:not([action*="Alltid"]) #content #mainWrapper {
-min-height:0px !important ; 
+min-height:0px !important ;
 }
 
 #aspnetForm:not([action*="Simple.aspx?matchId="]):not([action*="Default.aspx?MatchID="]):not([action*="useFlashVersion=True"]):not([action="Live_Flash.aspx"]):not([action*="Alltid"]) div#shortcuts {
@@ -56,7 +56,7 @@ padding-right: 10px;
 
 /* STADIONIMAGEFIX */
 
-/* part 2 not needed now 
+/* part 2 not needed now
 #aspnetForm[action*="Default.aspx?ArenaID="] div#ctl00_CPMain_pnlMain>h1.hasByline {
 margin-top:-125px !important;
 }

@@ -100,7 +100,7 @@ FoxtrickMatchReportFormat = {
 			var match_start = dummy.length
 			dummy2 = part[1].split(/<br>/);
 			for (var i=0; i<dummy2.length;i++) {dummy.push(dummy2[i].replace(/<br \/>/g,''));}
-	
+
 			part[1]= '';
 			var stage = 0;
 			var fulltext = 0;
@@ -141,22 +141,22 @@ FoxtrickMatchReportFormat = {
 						if (dummy[i].indexOf(team1) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
 							fulltext++;
 							dummy[i] = dummy[i].replace(team1 + ' ', '<span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span> ');
-							dummy[i] = dummy[i].replace(' ' + team1, ' <span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span>');							
+							dummy[i] = dummy[i].replace(' ' + team1, ' <span class="' + HOME_TEAM_CLASS_NAME + '">' + team1 + '</span>');
 						}
 						if (dummy[i].indexOf(team2) > -1 && !(dummy[i].indexOf('/Arena/') > -1)) {
 							fulltext++;
 							dummy[i] = dummy[i].replace(team2 + ' ', '<span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span> ');
-							dummy[i] = dummy[i].replace(' ' + team2, ' <span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span>');							
-						}						
+							dummy[i] = dummy[i].replace(' ' + team2, ' <span class="' + AWAY_TEAM_CLASS_NAME + '">' + team2 + '</span>');
+						}
 						part[1] += '<div id="ft_mR_div_' + i + '" class="' + textClass + '" style="'+ marg + padd +'">' + dummy[i] + '</div>\n\n';
 					}
 					else {
 						part[1] += dummy[i] + '\n\n';
 					}
-					
+
 				}
 				if (next_part) part[1] += '<div class="ft-match-report-separator"></div>'
-					
+
 			}
 			div_inner.innerHTML = part[1] + part[2];
 
@@ -242,7 +242,7 @@ FoxtrickMatchReportFormat = {
 			Foxtrick.dump('BEGIN GOALS\n');
 			var divs = doc.getElementsByTagName('h1')[0].parentNode.getElementsByTagName('div');
 			for (var i = 7; i < divs.length; i++) {
-				
+
 				var text = divs[i].textContent;
 				var toreplace = /\ \-\ /g;
 				text = text.replace(/(\d{1,2}) - (\d{1,2})/g, "$1-$2");
@@ -262,7 +262,7 @@ FoxtrickMatchReportFormat = {
 					else if (score[2] > standing[1]) {
 						standing[1]++;
 						divs[i].className = AWAY_GOAL_CLASS_NAME;
-						
+
 						var scorerep = standing[0] + '-' + standing[1];
 						scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<a href="#'+divs[i].id+'" class="ft-match-report-scoreboard">'+standing[0]+' - <b>'+standing[1]+'</b></a>');
 						Foxtrick.dump('  GOAL for TEAM 2\n');

@@ -16,14 +16,14 @@ var FoxtrickPrefs = {
 
     getString : function( pref_name ) {
         var str;
-		try { 
+		try {
             str = FoxtrickPrefs._pref_branch.getComplexValue( encodeURI(pref_name),
                                  Components.interfaces.nsISupportsString ).data;
         } catch( e ) {
  				str = null;
 		}
 		if (str==null) {
-			try { 
+			try {
 				str = FoxtrickPrefs._pref_branch.getComplexValue( pref_name,
                                 Components.interfaces.nsISupportsString ).data;
  			} catch( e ) {
@@ -63,7 +63,7 @@ var FoxtrickPrefs = {
     },
 
     setBool : function( pref_name, value ) {
-        FoxtrickPrefs._pref_branch.setBoolPref( encodeURI(pref_name), value );		
+        FoxtrickPrefs._pref_branch.setBoolPref( encodeURI(pref_name), value );
     },
 
     getBool : function( pref_name ) {
@@ -73,13 +73,13 @@ var FoxtrickPrefs = {
             value = FoxtrickPrefs._pref_branch.getBoolPref( encodeURI(pref_name) );
         } catch( e ) {
 			value = null;
-        }	        
+        }
 		if (value == null) {
 			try {
 				value = FoxtrickPrefs._pref_branch.getBoolPref( pref_name );
 			} catch( e ) {
 				value = null;
-			}	        
+			}
 		}
 		return value;
     },
@@ -117,16 +117,16 @@ var FoxtrickPrefs = {
     getList : function( list_name ) {
         var names = FoxtrickPrefs._getElemNames( list_name );
 		var list = new Array();
-        for ( var i in names ) 
+        for ( var i in names )
 			list.push( FoxtrickPrefs.getString( names[i] ) );
-		
+
         return list;
     },
 
     _getElemNames : function( list_name ) {
         try {
 			var array = null;
-			if( list_name != "" ) 
+			if( list_name != "" )
 				array = FoxtrickPrefs._pref_branch.getChildList( encodeURI(list_name + "."), {} );
 			else
 				array = FoxtrickPrefs._pref_branch.getChildList( "", {} );
@@ -158,12 +158,12 @@ var FoxtrickPrefs = {
         for (var  i in values )
             FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
     },
-    
+
     deleteValue : function( value_name ){
     	//FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(value_name) );   // juste delete
     	if (FoxtrickPrefs._pref_branch.prefHasUserValue(encodeURI(value_name))) FoxtrickPrefs._pref_branch.clearUserPref( encodeURI(value_name) );   // reset to default
     },
-	
+
 
 	// ---------------------- common function --------------------------------------
 	setModuleEnableState : function( module_name, value ) {
@@ -177,7 +177,7 @@ var FoxtrickPrefs = {
 	setModuleValue : function( module_name, value ) {
 		FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
 	},
-	
+
 	getModuleDescription : function( module_name ) {
 		var name = "foxtrick." + module_name + ".desc";
 		if ( Foxtrickl10n.isStringAvailable( name ) )
@@ -187,7 +187,7 @@ var FoxtrickPrefs = {
 			return "No description";
 		}
 	},
-	
+
 	getModuleElementDescription : function( module_name, option ) {
 		var name = "foxtrick." + module_name + "." + option + ".desc";
 		if ( Foxtrickl10n.isStringAvailable( name ) )
@@ -257,7 +257,7 @@ var FoxtrickPrefs = {
         try {
 			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
 			else doc=document;
-			
+
 			var locpath=Foxtrick.selectFileSave(window);
 			if (locpath==null) {return;}
 			var File = Components.classes["@mozilla.org/file/local;1"].
@@ -323,7 +323,7 @@ var FoxtrickPrefs = {
 				//Foxtrick.dump(line+'\n');
 				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
 				var value=line.match(/\",(.+)\)\;/)[1];
-				var strval = value.match(/\"(.+)\"/); 
+				var strval = value.match(/\"(.+)\"/);
 				if (value == "\"\"") FoxtrickPrefs.setString(key,"");
 				else if (strval != null) FoxtrickPrefs.setString(key,strval[1].replace(/\\n/g,'\n'));
 				else if (value == "true") FoxtrickPrefs.setBool(key,true);

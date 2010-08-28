@@ -15,9 +15,9 @@ var FoxtrickForumStage = {
 
 	run : function( page, doc ) {
 		try {
-			var forum = doc.getElementById('mainWrapper').getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML; 
+			var forum = doc.getElementById('mainWrapper').getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML;
 			if (forum == 'Stage') {
-				var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0]; 
+				var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				var divalert = doc.createElement('div');
 				divalert.className = 'alert';
 				divalert.innerHTML = "Please <b>disable FoxTrick</b> and any other Hattrick extensions (Firefox menu: Tools -> Add-ons) before reporting a bug. Repeated ignorance = Stage kick."

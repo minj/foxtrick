@@ -1,10 +1,10 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 a.copyicon {
-	cursor: pointer; 
+	cursor: pointer;
 	position:absolute;
 	 top:6px;
-	 z-index:99;	
+	 z-index:99;
 }
 
 .ci_first { left:6px;}
@@ -15,9 +15,9 @@ a.copyicon {
 
 
 .copyicon img {
-	padding: 0px 0px 0px 0px; 
-	height:22px; 
-	width:22px; 
+	padding: 0px 0px 0px 0px;
+	height:22px;
+	width:22px;
 }
 
 .copyplayerad img {

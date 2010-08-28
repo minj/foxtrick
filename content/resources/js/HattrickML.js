@@ -64,13 +64,13 @@ function getSelection(ta) {
 
 function clickHandler(ta, openingTag, closingTag, replaceText, counter, fieldCounter, maxLength) {
     if (ta) {
-        // link tags 
+        // link tags
         if (replaceText) {
             var s = getSelection(ta);
             var newText = (s.selectionLength > 0) ? openingTag.replace(replaceText, s.selectedText) : openingTag;
 
 
-            // Opera, Mozilla 
+            // Opera, Mozilla
             if (ta.selectionStart || ta.selectionStart == '0') {
                 var st = ta.scrollTop;
                 ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
@@ -81,7 +81,7 @@ function clickHandler(ta, openingTag, closingTag, replaceText, counter, fieldCou
                     ta.selectionEnd = ta.selectionStart + openingTag.indexOf(' ') - openingTag.indexOf('=') - 1;
                 }
 
-                // MessageID 
+                // MessageID
                 else {
                     if (s.selectionLength === 0) {
                         ta.selectionStart = s.selectionStart + openingTag.indexOf('=') + 1;
@@ -95,7 +95,7 @@ function clickHandler(ta, openingTag, closingTag, replaceText, counter, fieldCou
 
             }
 
-            // IE 
+            // IE
             else if (document.selection) {
                 var IESel = document.selection.createRange();
                 IESel.text = newText;
@@ -105,7 +105,7 @@ function clickHandler(ta, openingTag, closingTag, replaceText, counter, fieldCou
                     IESel.moveEnd('character', openingTag.indexOf(' ') - newText.length);
                 }
 
-                // MessageID 
+                // MessageID
                 else {
                     if (s.selectionLength === 0) {
                         IESel.moveStart('character', openingTag.indexOf('=') + 1 - newText.length);
@@ -116,18 +116,18 @@ function clickHandler(ta, openingTag, closingTag, replaceText, counter, fieldCou
                 IESel.select();
             }
 
-            // Others 
+            // Others
             else {
                 ta.value += newText;
             }
         }
 
-        // start/end tags 
+        // start/end tags
         else if ((closingTag) && (counter >= 0)) {
             var s = getSelection(ta);
             var newText = (s.selectionLength > 0) ? openingTag + s.selectedText + closingTag : (counter % 2 == 1) ? openingTag : closingTag;
 
-            // Opera, Mozilla 
+            // Opera, Mozilla
             if (ta.selectionStart || ta.selectionStart == '0') {
                 var st = ta.scrollTop;
                 ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
@@ -137,29 +137,29 @@ function clickHandler(ta, openingTag, closingTag, replaceText, counter, fieldCou
                 ta.selectionEnd = ta.selectionStart;
             }
 
-            // IE 
+            // IE
             else if (document.selection) {
                 var IESel = document.selection.createRange();
                 IESel.text = newText;
                 IESel.select();
             }
 
-            // Others 
+            // Others
             else {
                 ta.value += newText;
             }
         }
 
-        // Quote 
+        // Quote
         else if ((closingTag) && !(counter)) {
             ta.value = quoteText + '\n' + ta.value;
         }
 
-        // HR 
+        // HR
         else {
             var s = getSelection(ta);
 
-            // Opera, Mozilla 
+            // Opera, Mozilla
             if (ta.selectionStart || ta.selectionStart == '0') {
                 var st = ta.scrollTop;
                 ta.value = s.textBeforeSelection + s.selectedText + openingTag + s.textAfterSelection;
@@ -169,14 +169,14 @@ function clickHandler(ta, openingTag, closingTag, replaceText, counter, fieldCou
                 ta.selectionEnd = ta.selectionStart;
             }
 
-            // IE 
+            // IE
             else if (document.selection) {
                 var IESel = document.selection.createRange();
                 IESel.text = s.selectedText + openingTag;
                 IESel.select();
             }
 
-            // Others 
+            // Others
             else {
                 ta.value += newText;
             }

@@ -1,6 +1,6 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-.cfHeader a[class="flag inner"] img 
+.cfHeader a[class="flag inner"] img
 { margin: 0 0px 2px 0 !important; }
 
 div[class="cfHeader doubleLine"] b:after {content:" " !important;}
@@ -8,25 +8,25 @@ div[class="cfHeader doubleLine"] b:after {content:" " !important;}
 .cfHeader a[class="bookmarkMessage"] img
 {margin: 0 0px -2px 0 !important;}
 
-div[class="cfHeader doubleLine"] 
+div[class="cfHeader doubleLine"]
 {height:14px!important;}
 
-div[class="cfHeader doubleLine"] br 
+div[class="cfHeader doubleLine"] br
 {display:none !important; padding: 5px;}
 
-div[class="cfHeader ftdoubleLine"] 
+div[class="cfHeader ftdoubleLine"]
 {height:30px !important;}
 
 div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
 
-/*obsoltete div[class="cfHeader ftdoubleLine"] br 
+/*obsoltete div[class="cfHeader ftdoubleLine"] br
 {display:none !important; padding: 5px;}*/
 
 div[class="cfHeader doubleLine"] p {display:inline;}
 
 
 /* broken dsign workaround*/
-div.cfHeader>div[class="float_right right"] 
+div.cfHeader>div[class="float_right right"]
 {padding: 0px 2px 1px;}
 
 .cfHeader
@@ -36,19 +36,19 @@ div.cfHeader>div[class="float_right right"]
 
 
 /* broken design workaround*/
-div.mainConf div.cfInnerWrapper, div.mainConf div.cfInnerWrapperGreen , div.mainConf div.cfInnerWrapperRed 
+div.mainConf div.cfInnerWrapper, div.mainConf div.cfInnerWrapperGreen , div.mainConf div.cfInnerWrapperRed
 {margin-top:18px;}
 
-div.cfHeader>div[class="float_right right"] 
+div.cfHeader>div[class="float_right right"]
 {background: inherit;/* #849D84;*/}
 
-div.mainConf div.cfMessage, div.mainConf div.cfUser, div.mainConf div.cfMessageNoAvatar 
+div.mainConf div.cfMessage, div.mainConf div.cfUser, div.mainConf div.cfMessageNoAvatar
 {padding-top:0px !important;}
 
-div.mainConf div.cfUser  div.faceCard 
+div.mainConf div.cfUser  div.faceCard
 { margin-bottom:-5px;}
 
-div.mainConf div.cfUser div.cfUserInfo 
+div.mainConf div.cfUser div.cfUserInfo
 { padding-top:5px;}
 
 }

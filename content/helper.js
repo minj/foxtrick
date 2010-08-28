@@ -5,41 +5,41 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickHelper = {
 
-	
+
 	MODULE_NAME : "Helper",
-	PAGES : new Array('all', 'teamPageAny'), 
+	PAGES : new Array('all', 'teamPageAny'),
 	DEFAULT_ENABLED : true,
 	ownTeam: null,
-	
+
 	init : function() {
 	},
-	
+
 	run : function( page, doc ) {
-		this.getOwnTeamInfo(doc, page);	
+		this.getOwnTeamInfo(doc, page);
 	},
 
 	ownTeam : { "ownTeamId": null,
 				"ownTeamName" : null,
 				"ownCountryId" : null,
-				"ownLeagueName" : null,        		
+				"ownLeagueName" : null,
 				"ownSeriesNum" : null,
 				"ownLevelNum" : null,
 				"ownYouthTeamId" :null	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getOwnTeamInfo : function(doc, page) {
 		var teamdiv = doc.getElementById('teamLinks');
 		if ( teamdiv.getElementsByTagName('a').length!=0 && (this.ownTeam.ownTeamId === null || this.ownTeam.ownTeamId != this.findTeamId(teamdiv))) {
 			var ownleagueid = this.findLeagueLeveUnitId(teamdiv);
 			var owncountryid = this.findCountryId(teamdiv);
-			var ownleaguename = this.extractLeagueName(teamdiv);        		
+			var ownleaguename = this.extractLeagueName(teamdiv);
 			var ownseriesnum = this.getSeriesNum(ownleaguename);
 			var ownlevelnum = this.getLevelNum(ownleaguename, owncountryid);
-			
+
 			this.ownTeam.ownTeamId = this.findTeamId(teamdiv);
 			this.ownTeam.ownTeamName = this.extractTeamName(teamdiv);
 			this.ownTeam.ownCountryId = owncountryid;
-			this.ownTeam.ownLeagueName = ownleaguename;        		
+			this.ownTeam.ownLeagueName = ownleaguename;
 			this.ownTeam.ownSeriesNum = ownseriesnum;
 			this.ownTeam.ownLevelNum = ownlevelnum ;
 
@@ -47,12 +47,12 @@ var FoxtrickHelper = {
 					'ownTeamId ' + this.ownTeam.ownTeamId+'\n'+
 					'ownTeamName ' + this.ownTeam.ownTeamName+'\n'+
 					'ownCountryId ' + this.ownTeam.ownCountryId+'\n'+
-					'ownLeagueName ' + this.ownTeam.ownLeagueName+'\n'+        		
+					'ownLeagueName ' + this.ownTeam.ownLeagueName+'\n'+
 					'ownSeriesNum ' + this.ownTeam.ownSeriesNum+'\n'+
 					'ownLevelNum ' + this.ownTeam.ownLevelNum+'\n');
-			
+
 			this.ownTeam.ownYouthTeamId = null;
-		} 
+		}
 		if (page=='teamPageAny') {
 			if  (this.ownTeam.ownYouthTeamId==null) {
 				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
@@ -78,21 +78,21 @@ var FoxtrickHelper = {
 		if (this.ownTeam!==null) return this.ownTeam.ownCountryId;
 		return null;
 	},
-	
 
-	//---------------------------------------------------------------------------    
+
+	//---------------------------------------------------------------------------
 	isSeriesDetailUrl : function(href) {
 		return href.match(/Series\/Default\.aspx/i) ;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getLeagueLeveUnitIdFromUrl : function(url) {
 		return url.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/);
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findCountryId : function(element) {
-		var links = element.getElementsByTagName('a');  
+		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
 			if ( links[i].href.match(/League\.aspx/i) ) {
 				return links[i].href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
@@ -101,9 +101,9 @@ var FoxtrickHelper = {
 		return null;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findUserId : function(element) {
-		var links = element.getElementsByTagName('a');  
+		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
 			if ( links[i].href.match(/userId/i) ) {
 				return links[i].href.replace(/.+userId=/i, "").match(/^\d+/)[0];
@@ -111,38 +111,38 @@ var FoxtrickHelper = {
 		}
 		return null;
 	},
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getUserIdFromUrl : function(url) {
 		return url.replace(/.+UserID=/i, "").match(/^\d+/);
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getTeamIdFromUrl : function(url) {
 		return url.replace(/.+TeamID=/i, "").match(/^\d+/);
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getMatchIdFromUrl : function(url) {
 		return url.replace(/.+matchID=/i, "").match(/^\d+/);
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	isTeamDetailUrl : function(href) {
 		return href.match(/.+TeamID=/i) ;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	extractTeamName : function(element) {
-		var links = element.getElementsByTagName('a'); 
+		var links = element.getElementsByTagName('a');
 		for (var i=0; i<links.length; i++) {
 			if (this.isTeamDetailUrl(links[i].href)) {
 				return Foxtrick.trim(links[i].text);
-			} 
-		} 
+			}
+		}
 		return null;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findMatchId : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -153,7 +153,7 @@ var FoxtrickHelper = {
 		return null;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findIsYouthMatch : function(href) {
 		if (href.match(/Club\/Matches\/Match\.aspx/i) ) {
 			return (href.search(/isYouth=true/i)!=-1);
@@ -161,7 +161,7 @@ var FoxtrickHelper = {
 		return false;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findTeamId : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -171,8 +171,8 @@ var FoxtrickHelper = {
 		}
 		return false;
 	},
-	
-	//---------------------------------------------------------------------------    
+
+	//---------------------------------------------------------------------------
 	findYouthTeamId : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -183,7 +183,7 @@ var FoxtrickHelper = {
 		return null;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findUserId : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -193,9 +193,9 @@ var FoxtrickHelper = {
 		}
 		return false;
 	},
-	
-	
-	//---------------------------------------------------------------------------    
+
+
+	//---------------------------------------------------------------------------
 	findSecondTeamId : function(element,firstteamid) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -207,7 +207,7 @@ var FoxtrickHelper = {
 		return 0;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findPlayerId : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -217,8 +217,8 @@ var FoxtrickHelper = {
 		}
 		return null;
 	},
-	
-	//---------------------------------------------------------------------------    
+
+	//---------------------------------------------------------------------------
 	findYouthPlayerId : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -229,24 +229,24 @@ var FoxtrickHelper = {
 		return null;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getSkillLevelFromLink : function(link) {
-		var value = link.href.replace(/.+(ll|labellevel)=/i, "").match(/^\d+/);   
+		var value = link.href.replace(/.+(ll|labellevel)=/i, "").match(/^\d+/);
 		return value;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	extractLeagueName : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i<links.length; i++) {
 			if (this.isSeriesDetailUrl(links[i].href)) {
 				return Foxtrick.trim(links[i].text);
-			} 
-		} 
-		return null;    
+			}
+		}
+		return null;
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getSeriesNum : function(leaguename) {
 		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 			return "1";
@@ -255,10 +255,10 @@ var FoxtrickHelper = {
 		}
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	getLevelNum : function(leaguename, countryid) {
-		if (leaguename == null || countryid == null) return null;  
-		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {        
+		if (leaguename == null || countryid == null) return null;
+		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 			// sweden
 			if (countryid == "1") {
 				if (leaguename.match(/^II[a-z]+/)) {
@@ -267,7 +267,7 @@ var FoxtrickHelper = {
 				if (leaguename.match(/^I[a-z]+/)) {
 					return "2";
 				}
-				return "1";            
+				return "1";
 			}
 			return "1";
 		} else {
@@ -281,7 +281,7 @@ var FoxtrickHelper = {
 		}
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	romantodecimal : function(roman) {
 		// very very stupid ....
 		switch (roman) {
@@ -291,7 +291,7 @@ var FoxtrickHelper = {
 		case ("IV"): return 4;
 		case ("V"): return 5;
 		case ("VI"): return 6;
-		case ("VII"): return 7;        
+		case ("VII"): return 7;
 		case ("VIII"): return 8;
 		case ("IX"): return 9;
 		case ("X"): return 10;
@@ -299,7 +299,7 @@ var FoxtrickHelper = {
 		}
 	},
 
-	//---------------------------------------------------------------------------    
+	//---------------------------------------------------------------------------
 	findLeagueLeveUnitId : function(element) {
 		var links = element.getElementsByTagName('a');
 		for (var i=0; i < links.length; i++) {
@@ -309,7 +309,7 @@ var FoxtrickHelper = {
 		}
 		return null;
 	},
-	
+
 	countryNameEnglishToLocal : function(engName) {
 		for (var i in Foxtrick.XMLData.League) {
 			if (Foxtrick.XMLData.League[i].EnglishName === engName) {
@@ -327,22 +327,22 @@ var FoxtrickHelper = {
 		}
 		return null;
 	},
-	
+
 	getLeagueDataFromId :function(id) {
 		var data=null;
 		try { data = Foxtrick.XMLData.League[id];}
 		catch(e){}
-		
+
 		if (data==null) Foxtrick.dump('getLeagueDataFromId error. id: '+id+'\n');
 		Foxtrick.dump_flush(document);
 		return data;
 	},
-	
+
 	getCurrencyRateFromId  :function(id) {
 		try {  dump(FoxtrickHelper.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.')+'\n')
 			return parseFloat(FoxtrickHelper.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.'))/10; }
-		catch(e){}	
-		Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');		
+		catch(e){}
+		Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');
 	},
 
 	createFlagFromCountryId : function(doc, countryId) {

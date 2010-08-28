@@ -5,10 +5,10 @@
  */
 
 var FoxtrickHideSignatures = {
-	
+
     MODULE_NAME : "HideSignatures",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumViewThread'), 
+	PAGES : new Array('forumViewThread'),
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.9",
 	LATEST_CHANGE:"Hide Signature module is finally fixed.",
@@ -29,7 +29,7 @@ var FoxtrickHideSignatures = {
                             sigId = "foxtrick-signature-"+p;
                             elems[i].id = sigId;
                         }
-                    
+
                         var showSig = [];
                         showSig[p] = doc.createElement("a");
                         showSig[p].setAttribute("id","foxtrick-st-link"+p);
@@ -50,7 +50,7 @@ var FoxtrickHideSignatures = {
                             }
                         }
                     } catch(e) {Foxtrick.dump('HideSignatures ERROR ' + e + '\n');}
-                } 
+                }
             }
 		}
 	}

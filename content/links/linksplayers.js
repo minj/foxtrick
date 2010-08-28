@@ -6,23 +6,23 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksPlayers = {
-	
+
     MODULE_NAME : "LinksPlayers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('players'), 
+	PAGES : new Array('players'),
 	DEFAULT_ENABLED : false,
-	OPTIONS : {}, 
+	OPTIONS : {},
 
     init : function() {
 			Foxtrick.initOptionsLinks(this,"playerslink");
     },
 
-    run : function( page, doc ) { 
+    run : function( page, doc ) {
 
-		//addExternalLinksToManagerPage		
+		//addExternalLinksToManagerPage
 		var ownBoxBody = null;
 		var mainWrapper = doc.getElementById('mainWrapper');
-  		
+
 		var teamid = FoxtrickHelper.findTeamId(mainWrapper);
 		var teamname = FoxtrickHelper.extractTeamName(mainWrapper);
 		var playerids='';
@@ -34,8 +34,8 @@ var FoxtrickLinksPlayers = {
 				break;
 			}
 		}
-		
-		var links = Foxtrick.LinkCollection.getLinks("playerslink", { "teamid": teamid, "teamname": teamname, "playerids" : playerids }, doc, this);  
+
+		var links = Foxtrick.LinkCollection.getLinks("playerslink", { "teamid": teamid, "teamname": teamname, "playerids" : playerids }, doc, this);
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -43,15 +43,15 @@ var FoxtrickLinksPlayers = {
 			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                                
+
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-						
+
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "playerids" : playerids });	        
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "playerids" : playerids });
 	},
-	
+
 };

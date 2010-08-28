@@ -1,6 +1,6 @@
 /**
  *
- * 
+ *
  * stats.js
  * Foxtrick links collection
  * @author other,convinced
@@ -14,7 +14,7 @@
  * "params"     : { "infocode" : "ftfilter_somename" }   -> parameter only used for allowlink function and will not be shown in link   //eg hattrickchallenge_friendly, first letters = ftfilter
  * for others use the 'paramfunction' eg natstats
  */
-  
+
 if (!Foxtrick) var Foxtrick={};
 
 Foxtrick.LinkCollection = {};
@@ -25,7 +25,7 @@ Foxtrick.LinkCollection.hslevels = {};
 
 
 with (Foxtrick.LinkCollection) {
- 
+
 hscountries["98"]="Albania";
 hscountries["118"]="Algeria";
 hscountries["105"]="Andorra";
@@ -310,121 +310,121 @@ hslevels["25"]= 	 9;
 
 //HT Newsfeeds
 
-stats["xray_newsfeed"] =  { 
-       "url" : "http://www.databased.at/hattrick/",  
+stats["xray_newsfeed"] =  {
+       "url" : "http://www.databased.at/hattrick/",
        "newslink" : { "path" : "rss/",
                       "filters"    : []
         },
        "title" : "HT Newsfeeds",
        "img" : Foxtrick.ResourcePath+"resources/linkicons/htrss2.gif"
-  
+
 }
 
 // hattriX-Ray Crossover
-stats["xray_crossover"] =  { 
-        "url" : "http://www.databased.at/hattrick/x-ray/",  
+stats["xray_crossover"] =  {
+        "url" : "http://www.databased.at/hattrick/x-ray/",
         "playerlink" : { "path"       : "?starter=crossover",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "playerid" : "pid" }
                        },
-        
+
         "title" : "hattriX-Ray Crossover",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_crossover.png"
-};    
+};
 
 
 // hattriX-Ray Backdraft
-stats["xray_backdraft"] =  { 
-        "url" : "http://www.databased.at/hattrick/x-ray/index.asp",  
+stats["xray_backdraft"] =  {
+        "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
         "teamlink" : { "path"       : "?starter=backdraft",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "teamid" }
                        },
-        
+
         "title" : "hattriX-Ray Backdraft",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_backdraft.png"
-};    
+};
 
 // hattriX-Ray ClubRay
-stats["xray_clubray"] =  { 
+stats["xray_clubray"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "teamlink" : { "path"       : "?starter=clubray",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "teamid" }
                        },
-        
+
         "title" : "hattriX-Ray clubray",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_clubray.png"
-};    
+};
 
 
 // hattriX-Ray Friendlier
 
-stats["xray_friendlier"] =  { 
+stats["xray_friendlier"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "challengeslink" : { "path"       : "?starter=friendlier",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {  }
                        },
-        
+
         "title" : "hattriX-Ray Friendlier",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_friendlier.png"
-};    
+};
 
 
 
 // hattriX-Ray Rounds 2 go
-stats["xray_roundstogo"] =  { 
+stats["xray_roundstogo"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "leaguelink" : { "path"       : "?starter=rounds2Go",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "leagueid" : "divID" }
                        },
-        
+
         "title" : "hattriX-Ray rounds to go",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_rounds2go.png"
-};    
+};
 
 // hattriX-Ray roundrate
-stats["xray_roundrate"] =  { 
+stats["xray_roundrate"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "leaguelink" : { "path"       : "?starter=roundrate",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "leagueid" : "divID" }
                        },
-        
+
         "title" : "hattriX-Ray roundRate",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_roundrate.png"
-};    
+};
 
 
 // hattriX-Ray leaguemates
-stats["xray_leaguemates"] =  { 
+stats["xray_leaguemates"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "leaguelink" : { "path"       : "?starter=leaguemates",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "leagueid" : "divID" }
                        },
-        
+
         "title" : "hattriX-Ray leaguemates",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_leaguemates.png"
-};    
+};
 
 
 // hattriX-Ray sunray
-stats["xray_sunray"] =  { 
+stats["xray_sunray"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "nextmatchlink" : { "path"       : "?starter=sunray",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "teamid" }
                        },
-        
+
         "title" : "hattriX-Ray sunray",
         //"post" : "true",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_sunray.png"
@@ -432,143 +432,143 @@ stats["xray_sunray"] =  {
 
 
 // hattriX-Ray live!
-stats["xray_live"] =  { 
+stats["xray_live"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "matchlink" : { "path"       : "?starter=live",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "matchid" }
                        },
-        
+
         "title" : "hattriX-Ray live!",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_live.png"
 };
 
 
 // hattriX-Ray live! review
-stats["xray_livereview"] =  { 
+stats["xray_livereview"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playedmatchlink" : { "path"       : "?starter=livereview",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "matchid" }
                        },
-        
+
         "title" : "hattriX-Ray live! (played matches)",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_live_review.png"
 };
 
 // hattriX-Ray head to head
-stats["xray_h2h"] =  { 
+stats["xray_h2h"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playedmatchlink" : { "path"       : "?starter=headtohead",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "matchid" }
                        },
-        
+
         "title" : "hattriX-Ray head to head (played matches)",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_h2h.png"
 };
 
 
 // hattriX-Ray healing
-stats["xray_healing"] =  { 
+stats["xray_healing"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playerhealinglink" : { "path"       : "?starter=healing",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "age" : "v1", "injuredweeks" : "v2", "playerid" : "pid"  }
                        },
-        
+
         "title" : "hattriX-Ray healing",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_healing_s.png"
 };
 
 // hattriX-Ray healing TSI
-stats["xray_healingtsi"] =  { 
+stats["xray_healingtsi"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "playerhealinglink" : { "path"       : "?starter=healingTSI",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "age" : "v1", "injuredweeks" : "v2", "tsi" : "v3", "playerid" : "pid"  }
                        },
-        
+
         "title" : "hattriX-Ray healing TSI",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_healingtsi_s.png"
 };
 
 // hattriX-Ray youngster
-stats["xray_youngster"] =  { 
+stats["xray_youngster"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp?starter=youngster",
 
         "youthpulllink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {  }
                        },
-        
+
         "title" : "hattriX-Ray youngster",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_youngster.png"
 };
 
 
 // hattriX-Ray youngster
-stats["xray_econray"] =  { 
+stats["xray_econray"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "economylink" : { "path"       : "?starter=econray",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {  }
                        },
-        
+
         "title" : "hattriX-Ray econray",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_econray.png"
 };
 
-stats["xray_keeper"] =  { 
+stats["xray_keeper"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
         "keeperlink" : { "path"       : "?starter=keepersup",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "tsi" : "tsi", "form": "form", "playerid" : "pid", "goalkeeping" : "v1"}
                        },
-        
+
         "title" : "hattriX-Ray keepers-up",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_keepersup_s.png"
 };
 
 
-stats["xray_coach"] =  { 
+stats["xray_coach"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/pages/coach.asp",
 
         "coachlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {  }
                        },
-        
+
         "title" : "hattriX-Ray Coach",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_coach.png"
 };
 
 // hattrick challenge
-stats["hattrickchallenge_friendly"] =  { 
+stats["hattrickchallenge_friendly"] =  {
         "url" : "http://www.hattrickchallenge.com/Tools/Entry.php",
 
         "challengeslink" : { "path"       : "?tool=friendly",
-                         "filters"    : [], 
+                         "filters"    : [],
                           "params"     : {"teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
                        },
 
 		"youthchallengeslink" : { "path"       : "?tool=youthfriendly",
-                         "filters"    : [], 
+                         "filters"    : [],
                           "params"     : {"youthteamid":"youthteamid","teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
                        },
-        
+
         "youthlink" : { "path"       : "?tool=youthfriendly",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"youthteamid":"youthteamid","teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
                        },
-		"allowlink" : function(filterparams, stattype) {           
+		"allowlink" : function(filterparams, stattype) {
             if (filterparams["teamid"] != filterparams["ownteamid"]) {
                 return false;
             } else {
@@ -580,21 +580,21 @@ stats["hattrickchallenge_friendly"] =  {
 };
 
 // hattrick challenge
-stats["hattrickchallenge"] =  { 
+stats["hattrickchallenge"] =  {
         "url" : "http://www.hattrickchallenge.com/Tools/Entry.php",
 
         "teamlink" : { "path"       : "?tool=myteam",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "teamid"}
                        },
-                       
+
         "countrylink" : { "path"       : "?tool=challenge",
-                       "filters"    : [], 
+                       "filters"    : [],
                        "params"     : { "countryid" : "countryid" }
                      },
 
         "leaguelink" : { "path"       : "?tool=forecast",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"leagueid" : "leagueid" }
                        },
 
@@ -604,11 +604,11 @@ stats["hattrickchallenge"] =  {
 
 
 // hattriX-Ray HTPE
-stats["HTPE"] =  { 
+stats["HTPE"] =  {
         "url" : "http://www.databased.at/hattrick/htpe/",
 
         "transfercomparelink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "playerid" : "pid", "teamid" : "tid",
                                           "tsi" : "tsi", "age" : "age", "form" : "form", "exp" : "exp",
                                           "stamina" : "st", "goalkeeping" : "gk", "playmaking" : "pm",
@@ -616,50 +616,50 @@ stats["HTPE"] =  {
                                           "scoring" : "sc", "setpieces" : "sp"
                           }
                        },
-        
+
         "title" : "hattriX-Ray HTPE",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htpe.png"
-};    
+};
 
 // Hattrick Hall of Fame
-stats["halloffame_match"] =  { 
+stats["halloffame_match"] =  {
         "url" : "http://www.databased.at/hattrick/halloffame/",
         "playedmatchlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "matchid" }
                        },
         "title" : "Hattrick Hall of Fame (match)",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hhof.png"
-};    
+};
 
-stats["halloffame_team"] =  { 
+stats["halloffame_team"] =  {
         "url" : "http://www.databased.at/hattrick/halloffame/",
         "teamlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "teamid" }
                        },
         "title" : "Hattrick Hall of Fame (team)",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hhof.png"
-};    
+};
 
-stats["halloffame_player"] =  { 
+stats["halloffame_player"] =  {
         "url" : "http://www.databased.at/hattrick/halloffame/",
         "playerlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "playerid" : "pid" }
                        },
         "title" : "Hattrick Hall of Fame (player)",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hhof.png"
-};    
+};
 
 // hattriX-Ray arenasizer
-stats["xray_arenasizer"] =  { 
+stats["xray_arenasizer"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
         "arenalink" : { "path"       : "?starter=arenasizer",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "terraces" : "v1", "basic": "v2", "roof" : "v3", "vip" : "v4"}
                        },
-        
+
         "title" : "hattriX-Ray arenasizer",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_arenasizer.png"
 };
@@ -668,413 +668,413 @@ stats["xray_arenasizer"] =  {
 // Alltid Hattrick Statistikk, International
 // Thomas Johnsenn
 
-stats["alltid"] =  { 
-    
+stats["alltid"] =  {
+
         "url" : "http://alltid.org/",
 
         "leaguelink" : { "path"       : "league/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "leagueid" : "" }
                        },
 
         "teamlink" : { "path"       : "team/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "" }
                        },
 
         "playerlink" : { "path"       : "player/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "playerid" : "" }
                        },
 
         "countrylink" : { "path"       : "countrylid/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "countryid" : "" }
                        },
 
         "federationlink" : { "path"       : "federation/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "federationid" : "" }
                        },
 		"playedmatchlink" : { "path"       : "match/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "","match":"" }
                        },
         "matchlink" : { "path"       : "teamcompare/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "","teamid2":"," }
                        },
-        
-        
+
+
         "title" : "Alltid Hattrick Statistics International",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/ahstats.png"
-};    
+};
 
-//HTLoto  
-stats["htloto "] =  { 
-       "url" : "http://www.htloto.org/",  
+//HTLoto
+stats["htloto "] =  {
+       "url" : "http://www.htloto.org/",
        "teamlink" : { "path" : "",
                       "filters"    : []
         },
        "title" : "HTLoto",
        "img" : Foxtrick.ResourcePath+"resources/linkicons/htloto.png"
-  
+
 };
 
 // HT-Deutschland
-stats["ht_deutschland"] =  { 
+stats["ht_deutschland"] =  {
   "url" : "http://www.ht-deutschland.de/",
-  
+
   "leaguelink" : { "path"       : "liga.php",
-                   "filters"    : ["countryid"], 
+                   "filters"    : ["countryid"],
                    "params"     : { "leaguename" : "leagueLevelUnitName",
                                     "levelnum" : "leagueLevel"
                                   }
                  },
-  
+
   "teamlink" : { "path"       : "teamview.php",
-                   "filters"    : ["countryid"], 
+                   "filters"    : ["countryid"],
                    "params"     : { "teamid" : "teamID" }
                  },
- 
+
  "countrylink" : { "path"       : "overview.php",
-                   "filters"    : ["countryid"], 
+                   "filters"    : ["countryid"],
                    "params"     : []
-				}, 
-  "countryidranges" : [[3, 3]], 
+				},
+  "countryidranges" : [[3, 3]],
   "title" : "HT-Deutschland",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/ht-deutschland.png"
-};    
+};
 
 
 // peasohtstats
-stats["htstats"] =  { 
+stats["htstats"] =  {
         "url" : "http://htstats.com/",
 
         "leaguelink" : { "path"       : "liga.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leagueid" : "htliga"}
                        },
 
         "teamlink" : { "path"       : "equipo.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "htequipo" }
                        },
        "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
 
-        "countryidranges" : [[36, 36]], 
-        
+        "countryidranges" : [[36, 36]],
+
         "title" : "Peaso Hattrick Stats",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htstats.png"
-};    
+};
 
-stats["htstats_all"] =  {  
+stats["htstats_all"] =  {
         "url" : "http://www.htstats.com/",
         "playedmatchlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "paramfunction" : function(params) {
 							var matchid=params["matchid"];
-							var lang=FoxtrickPrefs.getString("htLanguage"); 
+							var lang=FoxtrickPrefs.getString("htLanguage");
                             if (lang=='ca') lang='cat';
 							else if (lang=='es') lang='es';
                             else lang='en';
                             return "matchinfo-" + matchid + "&setlang=" + lang;
 							}
-						 }, 
+						 },
         "playedyouthmatchlink" : { "path"       : "",
-							"filters"    : [], 
+							"filters"    : [],
 							"paramfunction" : function(params) {
 							var matchid=params["matchid"];
-							var lang=FoxtrickPrefs.getString("htLanguage"); 
+							var lang=FoxtrickPrefs.getString("htLanguage");
                             if (lang=='ca') lang='cat';
 							else if (lang=='es') lang='es';
                             else lang='en';
                             return "matchinfoy-" + matchid + "&setlang=" + lang;
 							}
-						 }, 
+						 },
         "title" : "htstats (played match)",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/htstats.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htstats.png"
 };
 
-stats["htms_stats"] =  {  
+stats["htms_stats"] =  {
         "url" : "http://www.fantamondi.it/HTMS/index.php?page=predictor",
         "nextmatchlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "paramfunction" : function(params) {
-							var lang=FoxtrickPrefs.getString("htLanguage"); 
+							var lang=FoxtrickPrefs.getString("htLanguage");
                             if (lang!='it') lang='en';
                             return "&lang=" + lang;
 							}
-						 }, 
+						 },
         "title" : "htms predictor",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/htms.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htms.png"
 };
 
 
 // VnukStats
 
-stats["vnukstats"] =  { 
+stats["vnukstats"] =  {
         "url" : "http://vnukstats.hattrick-sk.com/",
 
         "leaguelink" : { "path"       : "league/details/",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leagueid" : "" }
                        },
 
         "teamlink" : { "path"       : "team/details/",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "" }
                        },
         "countrylink" : { "path"       : "top-series/default/",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "countryid" : "" }
-                       },             
+                       },
 
 
         "countryidranges" : [[52, 52],[67, 67]],  // CZ+SK
         "title" : "VnukStats",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/vnukstats.png"
-};    
+};
 
 
 // todohattrick
-stats["todohattrick"] =  { 
+stats["todohattrick"] =  {
         "url" : "http://www.stepi.org/todohattrick/",
 
         "leaguelink" : { "path"       : "grupo.asp",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leagueid" : "grupoID"
                                         }
                        },
 
         "teamlink" : { "path"       : "equipo.asp",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "equipoID" }
                        },
 
-        "countryidranges" : [[36, 36]], 
+        "countryidranges" : [[36, 36]],
         "title" : "TodoHattrick",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/todohattrick.png"
-};    
+};
 
 
-// ht-tools 
-stats["ekonomer"] =  { 
+// ht-tools
+stats["ekonomer"] =  {
         "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.asp",
 
         "economylink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
-                         "params"     : {"newCash" : "resultat","" : "kassa=0"} 
+                         "filters"    : ["owncountryid"],
+                         "params"     : {"newCash" : "resultat","" : "kassa=0"}
                        },
-		"owncountryidranges" : [[1, 1]], 
-        "title" : "Ekonomkalkylatorn",   
+		"owncountryidranges" : [[1, 1]],
+        "title" : "Ekonomkalkylatorn",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/httools_economy.png"
 };
 
-// 
-stats["ComunidadHattrickVenezuela"] =  { 
+//
+stats["ComunidadHattrickVenezuela"] =  {
         "url" : "http://www.hattrick.org.ve",
 
         "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : []
                        },
-		"countryidranges" : [[29, 29]], 
-        "title" : "Comunidad Hattrick Venezuela",   
+		"countryidranges" : [[29, 29]],
+        "title" : "Comunidad Hattrick Venezuela",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/chtvicon.png"
 };
 
-// 
-stats["ConvertidordeTiempo"] =  { 
+//
+stats["ConvertidordeTiempo"] =  {
         "url" : "http://www.hattrick.org.ve/herramientas/tiempo/",
 
         "transfercomparelink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["owncountryid"],
                          "params"     : {"deadline":"deadline"}
                        },
-		"owncountryidranges" : [[29, 29]], 
-        "title" : "Convertidor de Tiempo de Hattrick-Venezuela",   
+		"owncountryidranges" : [[29, 29]],
+        "title" : "Convertidor de Tiempo de Hattrick-Venezuela",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/iconotiempo.png"
 };
 
 
-stats["francestats"] =  { 
+stats["francestats"] =  {
         "url" : "http://www.francestats.fr/",
 
         "leaguelink" : { "path"       : "show_league.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leagueid" : "league"}
                        },
 
         "teamlink" : {   "path"       : "show_team.php",
-                         "filters"    : ["countryid"],         
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "teamid" }
                        },
        "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"],         
+                         "filters"    : ["countryid"],
                          "params"     : []
                        },
 
 	    "countryidranges" : [[5, 5]],
         "title" : "FranceStats",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/francestats.png"        
-};  
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/francestats.png"
+};
 
 
 // Hattrick Chile
-stats["estadisticas.hattrick.cl"] =  { 
+stats["estadisticas.hattrick.cl"] =  {
         "url" : "http://estadisticas.hattrick.cl/",
 
         "leaguelink" : { "path"       : "leagues/view/",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leagueid" : "" }
                        },
 
         "teamlink" : {   "path"       : "teams/view/",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "" }
                        },
-        
-        "countryidranges" : [[18, 18]], 
+
+        "countryidranges" : [[18, 18]],
         "title" : "Estadisticas Chile",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrick_cl.png"        
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrick_cl.png"
 };
 
 
-stats["hattrick.cl"] = { 
+stats["hattrick.cl"] = {
   "url" : "http://www.hattrick.cl/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrick_cl.png",
   "title" : "hattrick.cl",
-  
+
         "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
-        
-        "countryidranges" : [[18, 18]] 
+
+        "countryidranges" : [[18, 18]]
 };
-    
+
 
 // Hattristics
-stats["hattristics"] =  { 
+stats["hattristics"] =  {
         "url" : "http://www.hattristics.org/",
 
         "leaguelink" : { "path"       : "pub/viewLeague.php",
-                         "filters"    : ["levelnum","countryid"], 
+                         "filters"    : ["levelnum","countryid"],
                          "params"     : { "leaguename" : "leagueName" }
                        },
 
         "teamlink" : {   "path"       : "pub/viewTeam.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "teamID" }
                        },
         "teamlink" : {   "path"       : "index.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : []
                        },
-        "countryidranges" : [[46, 46]], 
+        "countryidranges" : [[46, 46]],
 		"levelnumranges" : [[1, 5]],
         "title" : "Hattristics",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrist.png"
-};    
+};
 
 
 // akickku USA
-stats["akickku"] =  { 
+stats["akickku"] =  {
         "url" : "http://www.akickku.com/",
 
         "leaguelink" : { "path"       : "series.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leaguename" : "seriesname" }
                        },
 
         "teamlink" : {   "path"       : "team.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "id",
                                           "teamname" : "name"}
                        },
         "countrylink" : {   "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : []
                        },
         "countryidranges" : [[8, 8]],
         "title" : "Akickku",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/akickku.png"
-};    
+};
 
 // HC Stats - Hellas, Cyprus
-stats["hcstatshellas"] =  { 
+stats["hcstatshellas"] =  {
         "url" : "http://www.hattrick.gr/",  //"http://www.hattrick.gr/~hcstats/", stats page not working atm
 
         "leaguelink" : { "path"       : "", 			//"content/db/series.php?lang=gr",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : {
                                         "leaguename" : "name",
                                         "countryid" : "country"
                                         },
                         "paramfunction" : function(params) {
-                            
+
                             if (params["levelnum"] == 1) {
                              return "&country=" + params["countryid"] + "&level=1";
                             } else {
-                             return "&country=" + params["countryid"] + "&name=" + params["leaguename"];                
+                             return "&country=" + params["countryid"] + "&name=" + params["leaguename"];
                             }
-                            
-                        }                                        
+
+                        }
                        },
 
-        "teamlink" : {   "path"       : "", //"content/db/team.php?lang=gr",        
-                         "filters"    : ["countryid"], 
+        "teamlink" : {   "path"       : "", //"content/db/team.php?lang=gr",
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "teamId", "countryid" : "country" }
                        },
-        "countrylink" : {   "path"       : "",        
-                         "filters"    : ["countryid"], 
+        "countrylink" : {   "path"       : "",
+                         "filters"    : ["countryid"],
                          "params"     : []
-                       },        
-        "countryidranges" : [[50, 50], [89, 89]], 
+                       },
+        "countryidranges" : [[50, 50], [89, 89]],
         "title" : "HC Stats",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/hcstats_hellas.png"        
-};    
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hcstats_hellas.png"
+};
 
 /* // down
 // HTTools Friendly Manager
-stats["httoolsfriendlymanager"] =  { 
+stats["httoolsfriendlymanager"] =  {
         "url" : "http://httoolsfriendlymanager.cretze.ro/",
 
         "challengeslink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : []
                        },
-        
+
         "title" : "HTTools Friendly Manager",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/httools_friendly.png"
-};  */  
+};  */
 
  // Maptrick
 
-stats["maptrick_coolness"] =  { 
+stats["maptrick_coolness"] =  {
         "url" : "http://www.maptrick.org/",
- 
+
         "teamlink" : { "path"		: "coolness.php",
 						"filters"	: [],
 						"params"	: { "teamid" : "team" ,"":"#results"}
 						},
-         
+
         "title" : "Maptrick Coolness",
          "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_cool.png"
 };
 
-stats["maptrick_hoc"] =  { 
+stats["maptrick_hoc"] =  {
         "url" : "http://www.maptrick.org/",
 
         "countrylink" : { "path"	: "hallofcool.php",
 						"filters"	: [],
 						"params"	: { "countryid" : "country" }
 						},
-		
+
 		"leaguelink" : { "path"		: "hallofcool.php",
 						"filters"	: [],
 						"params"	: { "leagueid" : "league" }
@@ -1083,123 +1083,123 @@ stats["maptrick_hoc"] =  {
 						"filters"	: [],
 						"params"	: { "federationid" : "alliance" }
 						},
-        
+
         "title" : "Maptrick Hall of Cool",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_hoc.png"
 };
 
-stats["maptrick_botmap"] =  { 
+stats["maptrick_botmap"] =  {
         "url" : "http://www.maptrick.org/",
 
         "countrylink" : { "path"	: "botmap.php",
 						"filters"	: [],
 						"params"	: { "countryid" : "country" }
 						},
-        
+
         "title" : "Maptrick Botmap",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_bot.png"
 };
- 
 
-stats["hat_com_coolness"] =  { 
+
+stats["hat_com_coolness"] =  {
         "url" : "http://coolness.hat-com.com/",
- 
+
         "teamlink" : { "path"		: "countries.php",
 						"filters"	: [],
 						"params"	: { "teamid" : "team_id" }
 						},
-         
+
         "title" : "Hat-com Coolness",
          "img" : Foxtrick.ResourcePath+"resources/linkicons/hat-com.png"
 };
- 
-stats["ht_deutschland_coolness"] =  { 
+
+stats["ht_deutschland_coolness"] =  {
         "url" : "http://www.ht-deutschland.de/",
- 
+
         "teamlink" : { "path"		: "usercoolness.php",
 						"filters"	: [],
 						"params"	: { "teamid" : "teamID", "" : "#login" }
 						},
-         
+
         "title" : "Ht-Deutschland Coolness",
          "img" : Foxtrick.ResourcePath+"resources/linkicons/ht-deutschland.png"
 };
- 
- 
- 
+
+
+
 // HT-Dog
-stats["ht-dog"] =  { 
+stats["ht-dog"] =  {
         "url" : "http://mikehell.kicks-ass.net/ht-dog/",
 
         "teamlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "teamid" : "otherTeamID" }
                        },
 
         "title" : "HT-Dog",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/ht-dog.png"
-};    
+};
 
 
-stats["healingkawasaki"] =  { 
+stats["healingkawasaki"] =  {
         "url" : "http://av.hattricknippon.org",
 
         "playerhealinglink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { }
                        },
-        
+
         "title" : "Kawasaki Tigers Injury Healing Time Prediction Tool",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/redcross_small.png"
 };
 
-stats["healingkawasaki2"] =  { 
+stats["healingkawasaki2"] =  {
         "url" : "http://av2.hattricknippon.org",
 
         "playerhealinglink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { }
                        },
-        
+
         "title" : "Kawasaki Tigers Injury Healing Time Prediction Tool 2",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/redcross_small.png"
 };
 
-stats["htbox_heal"] =  { 
+stats["htbox_heal"] =  {
         "url" : "http://www.ht-box.ru/",
 
         "playerhealinglink" : { "path"       : "healing.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                         "params"     : { "age" : "age",
-										"injuredweeks" : "inj", 
-										"tsi" : "tsi" 
+										"injuredweeks" : "inj",
+										"tsi" : "tsi"
 									 }
                         },
-        
+
         "title" : "HTBox Healing",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htbox_heal.gif"
 };
 
 
-stats["htbox_training"] =  { 
+stats["htbox_training"] =  {
         "url" : "http://www.ht-box.ru/",
 
         "playerlink" : { "path"       : "training.php",
-                         "filters"    : [], 
-                        "params"     : { "age" : "yr", 
+                         "filters"    : [],
+                        "params"     : { "age" : "yr",
 										"age_days" : "dy",
-										"goalkeeping" : "goalkeeping", 
+										"goalkeeping" : "goalkeeping",
 										"defending":"defending",
 										"playmaking":"playmaking",
-										"winger":"winger", 
+										"winger":"winger",
 										"passing":"passing",
 										"scoring":"scoring",
-										"setpieces":"setpieces" 
+										"setpieces":"setpieces"
 										}
                         },
-        
+
 		"traininglink" : { "path"       : "training.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"Coach":"coach","TI":"ti","STA":"ko","TrainingType":"type"}
 						},
         "title" : "HTBox Training",
@@ -1207,16 +1207,16 @@ stats["htbox_training"] =  {
 };
 
 //Training Team Evaluation
-stats["Training_Team_Evaluation"] =  { 
+stats["Training_Team_Evaluation"] =  {
         "url" : "http://www.adrianomoutinho.com/tte/",
 
         "playerlink" : { "path"       : "playertraining.php?PlayerId=",
-                         "filters"    : [], 
+                         "filters"    : [],
                         "params"     :  {"playerid" : "" }
                         },
-        
+
 		"traininglink" : { "path"       : "playertraining.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : []
 						},
         "title" : "Training Team Evaluation",
@@ -1224,14 +1224,14 @@ stats["Training_Team_Evaluation"] =  {
 };
 
 //NrgJack Wage Reduction Calculator
-stats["Wage_Reduction_Calculator"] =  { 
+stats["Wage_Reduction_Calculator"] =  {
         "url" : "http://www.nrgjack.altervista.org/",
 
         "playerlink" : { "path"       : "wagereduction.php",
-                         "filters"    : ["age"], 
+                         "filters"    : ["age"],
                         /*"params"     :  {"age" : "age",
 										 "wage" : "wage",
-										 "wagebonus" : "wagebonus" 
+										 "wagebonus" : "wagebonus"
 										}*/
 						 "paramfunction" : function(params) {
 							var wage=params["wage"];
@@ -1243,28 +1243,28 @@ stats["Wage_Reduction_Calculator"] =  {
 								wagebonus=Math.round(wagebonus*FoxtrickPrefs.getString("currencyRate"));
 								age=Math.round(age);
 							}
-                            return "?wage=" + wage + "&wagebonus=" + wagebonus + "&age=" + age;                                                        
+                            return "?wage=" + wage + "&wagebonus=" + wagebonus + "&age=" + age;
 						 }
                        },
-					   
+
 		"ageranges" : [[28, 99]],
         "title" : "Wage Reduction Calculator",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/wagereduction.png"
 };
 
 //Ht4u - Primary Skill drop Calculator
-stats["Ht4u"] =  { 
+stats["Ht4u"] =  {
         "url" : "http://ht4u.altervista.org",
 
         "playerlink" : { "path"       : "/index.php",
                          "filters"    : ["age"],
-                         "params"     : [], 
+                         "params"     : [],
 						 /* no data sharing with non chpp pages
 						 "params"     : { "lang":"lang", "age" : "age",
                                           "playmaking" : "pm",
                                           "passing" : "pass", "winger" : "wi", "defending" : "def",
                                           "scoring" : "sco", "setpieces":"sp", "wage":"wage"
-										} */                       						
+										} */
                        },
 		"ageranges" : [[27, 99]],
         "title" : "Primary Skill drop Calculator",
@@ -1272,91 +1272,91 @@ stats["Ht4u"] =  {
 };
 
 //Ht4u - Team Spirit Calculator
-stats["Ht4uTS"] =  { 
+stats["Ht4uTS"] =  {
         "url" : "http://ht4u.altervista.org/TSpredictor",
 
         "traininglink" : { "path"       : "/team_spirit_predictor.php",
                          "filters"    : [],
-                         "params"     : [],                        						
+                         "params"     : [],
                        },
         "title" : "Team Spirit Calculator",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/Ht4u.png"
 };
 
 //Team Confidence Calculator
-stats["confidence"] =  { 
+stats["confidence"] =  {
         "url" : "http://fptsj.brinkster.net",
 
         "traininglink" : { "path"       : "/confianca.aspx",
                          "filters"    : [],
-                         "params"     : [],                        						
+                         "params"     : [],
                        },
         "title" : "Team Confidence Calculator",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/confidence.png"
 };
 
-stats["ht-u20"] =  { 
+stats["ht-u20"] =  {
         "url" : "http://age.ht-u20.com/",
 
         "playerlink" : { "path"       : "",
-                         "filters"    : ["age"], 
-                        "params"     : { "age" : "years", 
+                         "filters"    : ["age"],
+                        "params"     : { "age" : "years",
 										"age_days" : "days",
 										}
                         },
         "youthplayerdetaillink" : { "path"       : "",
-                         "filters"    : [], 
-                        "params"     : { "age" : "years", 
+                         "filters"    : [],
+                        "params"     : { "age" : "years",
 										"age_days" : "days",
 										}
                         },
-        "ageranges" : [[15, 20]],         
+        "ageranges" : [[15, 20]],
         "title" : "HT-U20 Check age vs U-20 matches",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/u20.png"
 };
 
-stats["hottrickkeeper"] =  { 
+stats["hottrickkeeper"] =  {
         "url" : "http://www.hottrick.org/",
 
         "keeperlink" : { "path"       : "hattrick_keeper_tool.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { }
                        },
-        
+
         "title" : "Hottrick Keeper Tool",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/hottrick_small.png" 
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/hottrick_small.png"
 };
 
-stats["htnipponkeeper"] =  { 
+stats["htnipponkeeper"] =  {
         "url" : "http://keeper.hattricknippon.org/",
 
         "keeperlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "tsi" : "tsi", "form" : "form" }
                        },
-        
+
         "title" : "Keeper Level Prediction Tool",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hattricknippon_small.png"
 };
 
-stats["coachexperience"] =  { 
+stats["coachexperience"] =  {
         "url" : "http://www.manager.brygge.dk/Hattrick/experience.htm",
 
         "coachlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : []
                        },
-        
+
         "title" : "Coach experience table",
         "shorttitle" : "Cet"
 };
 
 
-stats["nrgjack_accountant_tool"] =  { 
+stats["nrgjack_accountant_tool"] =  {
         "url" : "http://nrgjack.altervista.org/",
 
         "economylink" : { "path"       : "accountant.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                           //"params"     : {"newCash" : "money","Currency":"Currency"}
 						 "paramfunction" : function(params) {
 							var newCash=params["newCash"];
@@ -1365,19 +1365,19 @@ stats["nrgjack_accountant_tool"] =  {
 								newCash=Math.round(newCash*FoxtrickPrefs.getString("currencyRate"));
 								CurrCode="EUR";
 							}
-                            return "?money=" + newCash;                                                        
-						 } 
+                            return "?money=" + newCash;
+						 }
                        },
-        
+
         "title" : "NrgJack Accountant Tool",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/nrgjackeconomists.png"
-};    
+};
 
-stats["htlinks_economists"] =  { 
+stats["htlinks_economists"] =  {
         "url" : "http://www.ht-links.de/Hattrick/Economist-Checker.html",
 
         "economylink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          //"params"     : {"Cash" : "Cash","Currency":"Currency"}
 						 "paramfunction" : function(params) {
 							var Cash=params["Cash"];
@@ -1386,231 +1386,231 @@ stats["htlinks_economists"] =  {
 								Cash=Math.round(Cash*FoxtrickPrefs.getString("currencyRate"));
 								CurrCode="EUR";
 							}
-                            return "?Cash=" + Cash + "&Currency=" + CurrCode;                                                        
-						 } 
+                            return "?Cash=" + Cash + "&Currency=" + CurrCode;
+						 }
                        },
-        
+
         "title" : "HT-Links.de Economist Checker",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks_lupe.png"
-};    
+};
 
-stats["htlinks_trainingspeedchecker"] =  { 
+stats["htlinks_trainingspeedchecker"] =  {
         "url" : "http://www.ht-links.de/Hattrick/TrainingsSpeedCheckerE.html",
 
         "traininglink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"Coach":"Trainer","TI":"TI","STA":"KO","TrainingType":"TrainingType"}
                        },
-        
+
         "title" : "HT-Links.de TrainingSpeedChecker",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks_lupe.png"
-};    
+};
 
-stats["htlinks_Goalkeeper_Checker"] =  { 
+stats["htlinks_Goalkeeper_Checker"] =  {
         "url" : "http://www.ht-links.de/Hattrick/Goalkeeper-Checker.html",
 
         "keeperlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "tsi" : "TSI", "form": "Form","age":"Age"}
                        },
-        
+
         "title" : "HT-Links.de  - Goalkeeper-Checker",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks_small.png"
 };
 
 
-stats["htlinks_ti_schrauber"] =  { 
+stats["htlinks_ti_schrauber"] =  {
         "url" : "http://www.ht-links.de/Hattrick/TISchrauber.html",
 
         "traininglink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
-                         "params"     : {},                      
+                         "filters"    : ["owncountryid"],
+                         "params"     : {},
 						 },
-        "owncountryidranges" : [[3, 3]], 
+        "owncountryidranges" : [[3, 3]],
         "title" : "HT-Links.de  - TISchrauber",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
 
-stats["htlinks_price_money"] =  { 
+stats["htlinks_price_money"] =  {
         "url" : "http://www.ht-links.de/Hattrick/PraemiephpE.html",
 
         "teamlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {  "fans" : "Fan",'leaguepos':'Platz','levelnum':'Liga'}
                        },
         "title" : "HT-Links.de  - price_money",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
-stats["htlinks_arena"] =  { 
+stats["htlinks_arena"] =  {
         "url" : "http://www.ht-links.de/Hattrick/ArenaCalculator2E.html?",
 
         "arenalink" : { "path"       : "",
-                         "filters"    : [], 
-                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
+                         "filters"    : [],
+                          "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}
                       },
         "title" : "HT-Links.de  - ArenaCalculator2",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
-stats["htlinks_Errungenschaften"] =  { 
+stats["htlinks_Errungenschaften"] =  {
         "url" : "http://www.ht-links.de/",
 
         "achievementslink" : { "path"       : "Hattrick/Errungenschaften.html",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["owncountryid"],
                          "params"     : []
                        },
-         "owncountryidranges" : [[3, 3]], 
+         "owncountryidranges" : [[3, 3]],
         "title" : "HT-Links.de - Errungenschaften",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks.png"
 };
 
 
 
-stats["Hattrick_training_speed_tool"] =  { 
+stats["Hattrick_training_speed_tool"] =  {
         "url" : "http://trainingspeed.freehostia.com/",
 
         "traininglink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"Coach":"Coach","TI":"TI","STA":"KO","TrainingType":"TrainingType"}
                        },
-        
+
         "title" : "Hattrick training speed tool",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/trainingspeed.png"
-};    
+};
 
 
 /*  // claims to have CHPP but doesn't. hence illegal
-stats["skillraise"] =  { 
+stats["skillraise"] =  {
         "url" : "http://www.htdaytrading.com/",
 
         "playerlink" : { "path"       : "?page=showplayer",
-                         "filters"    : ["age"], 
+                         "filters"    : ["age"],
                          "params"     : { "age" : "age",
                                           "stamina" : "stamina",  "playmaking" : "playmaking",
                                           "passing" : "passing", "winger" : "winger", "defending" : "defending",
                                           "scoring" : "scoring"
                           }
                        },
-                       
-        "ageranges" : [[17, 19]], 
+
+        "ageranges" : [[17, 19]],
 
         "title" : "SkillRaise Tool",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/skillraise.png"
-};  */  
+};  */
 
 
-stats["Hattrickstats_fr"] =  { 
+stats["Hattrickstats_fr"] =  {
         "url" : "http://friendly.cup.free.fr/",
 
         "leaguelink" : { "path"       : "Stats.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leagueid" : "id" }
                        },
 
         "teamlink" : { "path"       : "Stats.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "team" }
                        },
         "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : []
                        },
-                
-        "countryidranges" : [[5, 5]], 
+
+        "countryidranges" : [[5, 5]],
         "title" : "HATTRICKSTATS.WeB.SiTe",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrickstats_fr.gif"
-};    
+};
 
-stats["natstats"] =  { 
+stats["natstats"] =  {
   "url" : "http://doof92.co.uk/",
   "title" : "NatStats",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/natstats.png",
-  
+
   "nationalteamlink" : { "path"     : "",
                          "filters"  : [],
                          "params"   : {"ntteamid" : "id","LeagueOfficeTypeID":"LeagueOfficeTypeID" },
 						 "paramfunction" : function(params) {
-                            
+
                             if (params["LeagueOfficeTypeID"] == 2) {
                              return "HT/team.asp?id=" + params["ntteamid"];
                             } else {
-                             return "/HT/u20team.asp?id=" + params["ntteamid"];                
+                             return "/HT/u20team.asp?id=" + params["ntteamid"];
                             }
-                            
-                        } 
+
+                        }
   }
-  
+
 };
 
 
 // Hattrick Today
-stats["hattricktoday"] =  { 
+stats["hattricktoday"] =  {
         "url" : "http://www.frelive.net/",
         "matchlink" : { "path"       : "HT2D/Viewer/index.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "urlMatches" }
                        },
          "playedmatchlink" : { "path"       : "HT2D/Viewer/index.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "urlMatches" }
                        },
-        
+
         "title" : "Hattrick Today",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hattricktoday.png"
 };
 
- 
-stats["magicyp"] =  { 
+
+stats["magicyp"] =  {
         "url" : "http://www.rodelhang.at/magicyp",
 
         "youthpulllink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : []
                        },
-        
+
         "title" : "Magic Youthpull",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/magicyp.png"
 };
 
 
-stats["hattrick-youthclub"] =  { 
+stats["hattrick-youthclub"] =  {
         "url" : "http://www.",
         "urlfunction": function (filterparams) {
                              var server = filterparams["server"];
                              return "http://" +server + ".hattrick-youthclub.org/";
                         },
 		"youthlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
         "youthplayerlistlink" : { "path"       : "site/players",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
        "youthplayerdetaillink" : { "path"       : "redirect/type/player_details/ht_id/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"playerid" : "", "teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
         "youthmatchlistlink" : { "path"       : "site/matches",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
         "youthtraininglink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"teamid":"ftfilter_teamid","ownteamid":"ftfilter_ownteamid"}
                        },
         "playedyouthmatchlink" : { "path"       : "redirect/type/lineup/ht_id/",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {"matchid" : "", "teamid":"ftfilter_teamid", "teamid2":"ftfilter_teamid2", "ownteamid":"ftfilter_ownteamid"}
                        },
-					   
+
 		"allowlink" : function(filterparams, stattype) {
 			Foxtrick.dump(filterparams["ownyouthteamid"]+' '+filterparams["teamid"]+' '+filterparams["teamid"]+'\n')
-            if (filterparams["teamid"] === filterparams["ownteamid"] || 
-				(filterparams["ownyouthteamid"] !== null && 
-						(filterparams["teamid"] === filterparams["ownyouthteamid"] 
+            if (filterparams["teamid"] === filterparams["ownteamid"] ||
+				(filterparams["ownyouthteamid"] !== null &&
+						(filterparams["teamid"] === filterparams["ownyouthteamid"]
 					  || filterparams["teamid2"] === filterparams["ownyouthteamid"]) ) ) {
                 return true;
             } else {
@@ -1621,103 +1621,103 @@ stats["hattrick-youthclub"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hyouthclub.png"
 };
 
-// youth db links 
-stats["srbijayadb"] =  { 
+// youth db links
+stats["srbijayadb"] =  {
         "url" : "http://srbijayadb.freehostia.com/newslist.php",
         "youthlink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["owncountryid"],
                          "params"     : []
                        },
         "youthtraininglink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["owncountryid"],
                          "params"     : []
                        },
-		"owncountryidranges" : [[57, 57]], 
+		"owncountryidranges" : [[57, 57]],
         "title" : "Srbija YA DB",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 };
-stats["englandyadb"] =  { 
+stats["englandyadb"] =  {
         "url" : "http://www.realfootball.co.uk/hattrick/ya/",
         "youthlink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["owncountryid"],
                          "params"     : []
                        },
         "youthtraininglink" : { "path"       : "",
-                         "filters"    : ["owncountryid"], 
+                         "filters"    : ["owncountryid"],
                          "params"     : []
                        },
-		"owncountryidranges" : [[2, 2]], 
+		"owncountryidranges" : [[2, 2]],
         "title" : "England YA DB",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png"
 };
-stats["junnukoira"] =  { 
+stats["junnukoira"] =  {
         "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
 
         "youthplayerdetaillink" : { "path"       : "superlupaukset.html",
-                         "filters"    : ["owncountryid"], 
-                         "params"     : [], 
+                         "filters"    : ["owncountryid"],
+                         "params"     : [],
                        },
-		"owncountryidranges" : [[12, 12]], 
-        "title" : "Junnukoira - U-20 -superlupausten arvioija",   
+		"owncountryidranges" : [[12, 12]],
+        "title" : "Junnukoira - U-20 -superlupausten arvioija",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/puhuvakoira.png"
 };
-stats["treenikoira"] =  { 
+stats["treenikoira"] =  {
         "url" : "http://www.saunalahti.fi/pterasti/Hattrick/",
 
         "traininglink" : { "path"       : "treenikoira.html",
-                         "filters"    : ["owncountryid"], 
-                         "params"     :  {"Coach":"coach","TI":"ti","STA":"sta","TrainingType":"trainingtype"}, 
+                         "filters"    : ["owncountryid"],
+                         "params"     :  {"Coach":"coach","TI":"ti","STA":"sta","TrainingType":"trainingtype"},
                        },
-		"owncountryidranges" : [[12, 12]], 
-        "title" : "Treenikoira - treenilaskuri" ,   
+		"owncountryidranges" : [[12, 12]],
+        "title" : "Treenikoira - treenilaskuri" ,
         "img" : Foxtrick.ResourcePath+"resources/linkicons/puhuvakoira.png"
 };
 
-stats["arenaoptimizer"] =  { 
+stats["arenaoptimizer"] =  {
         "url" : "http://www.arenaoptimizer.es/",
         "arenalink" : { "path"       : "",
-                         "filters"    : [], 
-                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
+                         "filters"    : [],
+                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}
                        },
         "title" : "Arena Optimizer",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/arenaoptimizer.gif"
 };
 
-stats["htarena"] =  { 
+stats["htarena"] =  {
         "url" : "http://www.htarena.org/",
         "arenalink" : { "path"       : "",
-                         "filters"    : [], 
-                         "params"     : []                       
+                         "filters"    : [],
+                         "params"     : []
                        },
         "title" : "HTArena - the calculator",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htarena.png"
 };
 
-stats["nrg_eco"] =  { 
+stats["nrg_eco"] =  {
         "url" : "http://nrgjack.altervista.org/",
         "arenalink" : { "path"       : "eco.php",
-                         "filters"    : [], 
-                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}                       
+                         "filters"    : [],
+                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}
                        },
         "title" : "NRG ECO",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/eco.png"
 };
 
-stats["nrg_fc"] =  { 
+stats["nrg_fc"] =  {
         "url" : "http://nrgjack.altervista.org/",
 	    "coachlink" : { "path"       : "fc.php",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : {  }
                        },
         "title" : "NRG FC",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_fc.png"
 };
-					   
-stats["nrg_pop"] =  { 
+
+stats["nrg_pop"] =  {
         "url" : "http://nrgjack.altervista.org/",
 		"playerlink" : { "path"       : "pop.php",
-                         "filters"    : [], 
-                         "params"     : [], 
+                         "filters"    : [],
+                         "params"     : [],
 						 /* no data sharing with non chpp pages
 						 "params"     : { "tsi" : "tsi", "form" : "fo",
                                           "stamina" : "st",  "playmaking" : "pm",
@@ -1728,22 +1728,22 @@ stats["nrg_pop"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/nrg_pop.png"
 };
 
-stats["nrg_deffor"] =  { 
+stats["nrg_deffor"] =  {
         "url" : "http://nrgjack.altervista.org/",
 		"playerlink" : { "path"       : "trequartista.php",
-                         "filters"    : [], 
-                         "params"     : { "playmaking" : "pm", "passing" : "pa", 
+                         "filters"    : [],
+                         "params"     : { "playmaking" : "pm", "passing" : "pa",
                                           "winger" : "wi", "defending" : "df",
                                           "scoring" : "sc", "goalkeeping" : "gk" }
                           },
-        "allowlink" : function(filterparams, stattype) { 
-			if (parseInt(filterparams["passing"])+ parseInt(filterparams["scoring"])+ parseInt(filterparams["playmaking"]) > 
+        "allowlink" : function(filterparams, stattype) {
+			if (parseInt(filterparams["passing"])+ parseInt(filterparams["scoring"])+ parseInt(filterparams["playmaking"]) >
 				2*(parseInt(filterparams["winger"]) + parseInt(filterparams["defending"]) + parseInt(filterparams["goalkeeping"])))
 			/*var pa=filterparams["passing"];
             var sc=filterparams["scoring"];
-            if ((pa >= filterparams["playmaking"] && pa > filterparams["winger"] 
+            if ((pa >= filterparams["playmaking"] && pa > filterparams["winger"]
 				&& pa > filterparams["defending"] && pa > filterparams["goalkeeping"])
-			|| (sc >= filterparams["playmaking"] && sc > filterparams["winger"] 
+			|| (sc >= filterparams["playmaking"] && sc > filterparams["winger"]
 				&& sc > filterparams["defending"] && sc > filterparams["goalkeeping"]))*/ {
                 return true;
             } else {
@@ -1757,957 +1757,957 @@ stats["nrg_deffor"] =  {
 
 
 // ArgenStat
-stats["argenstat"] =  { 
+stats["argenstat"] =  {
         "url" : "http://argenstat.com.ar/",
         "leaguelink" : { "path"       : "?V=L",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "leagueid" : "ID" }
                        },
-                       
+
         "teamlink" : { "path"       : "?V=T",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     : { "teamid" : "ID" }
                        },
         "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
-        
-        "countryidranges" : [[7, 7]], 
+
+        "countryidranges" : [[7, 7]],
         "title" : "ArgenStat",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/argenstat.png"
 };
 
 
 // Gham live
-stats["gham"] =  { 
+stats["gham"] =  {
         "url" : "http://hattrickitalia.org/gham/live/",
 
         "matchlink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "matchid" : "matchId" }
                        },
-        
+
         "title" : "Gham live",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/gham.png"
 };
-   
-   
-   
+
+
+
 // HT-bet
-stats["ht_bet"] =  { 
+stats["ht_bet"] =  {
         "url" : "http://www.ht-bet.org/predict.php",
 
         "leaguelink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "leagueid" : "league_id" }
                        },
-        
+
         "title" : "HT-bet",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/ht_bet.png"
-};    
-   
+};
+
 
 // Team Position Probability Calculator
-stats["tppc"] =  { 
+stats["tppc"] =  {
         "url" : "http://www.adrianomoutinho.com/hattrick/index.php",
 
         "leaguelink" : { "path"       : "",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     : { "leagueid" : "leagueid" },
 						 "paramfunction" : function(params) {
 							return '?LeagueId'+params["leagueid"]+'&Language='+FoxtrickPrefs.getString("htLanguage");
 						}
                        },
-        
+
         "title" : "Team Position Probability Calculator",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/tppc.png"
-};    
-      
-   
+};
+
+
 // ----------------------------------------------------------------------
 // -------------- tracker & national teams ------------------------------
 // ----------------------------------------------------------------------
 
 // ------------------------- nattrick tracker --------------------------------
 
-stats["canadatracker"] = { 
+stats["canadatracker"] = {
   "url" : "http://nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Canada U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[17,17]] ,
-	"nationalityranges" : [[17,17]], 
+	"nationalityranges" : [[17,17]],
 };
 
-stats["suomitracker"] = { 
+stats["suomitracker"] = {
   "url" : "http://suomi.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Suomi U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[12,12]] ,
-	"nationalityranges" : [[12,12]], 
+	"nationalityranges" : [[12,12]],
 };
 
 
-stats["oceaniatracker"] = { 
+stats["oceaniatracker"] = {
   "url" : "http://oceania.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Oceania U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[15,15]] ,
-	"nationalityranges" : [[15,15]], 
+	"nationalityranges" : [[15,15]],
 };
 
 
-stats["kenyatracker"] = { 
+stats["kenyatracker"] = {
   "url" : "http://kenya.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Kenya U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[95,95]] ,
-	"nationalityranges" : [[95,95]], 
+	"nationalityranges" : [[95,95]],
 };
 
-stats["indiatracker"] = { 
+stats["indiatracker"] = {
   "url" : "http://india.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "India U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[20,20]] ,
-	"nationalityranges" : [[20,20]], 
+	"nationalityranges" : [[20,20]],
 };
 
-stats["panamatracker"] = { 
+stats["panamatracker"] = {
   "url" : "http://panama.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Panama U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[96,96]] ,
-	"nationalityranges" : [[96,96]], 
+	"nationalityranges" : [[96,96]],
 };
 
 
-stats["usatracker"] = { 
+stats["usatracker"] = {
   "url" : "http://usa.nattrick.ca",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "USA U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "/list/",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "/update/",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[8,8]] ,
-	"nationalityranges" : [[8,8]], 
+	"nationalityranges" : [[8,8]],
 };
 
 
-stats["irantracker"] = { 
+stats["irantracker"] = {
   "url" : "http://iran.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Iran U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[85,85]] ,
-	"nationalityranges" : [[85,85]], 
+	"nationalityranges" : [[85,85]],
 };
 
-stats["lebanontracker"] = { 
+stats["lebanontracker"] = {
   "url" : "http://lebanon.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Lebanon U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[120,120]] ,
-	"nationalityranges" : [[120,120]], 
+	"nationalityranges" : [[120,120]],
 };
 
 
 
 // -------- ht.quickly.co.il  tracker-----------------------
 
-stats["israeltracker"] = { 
+stats["israeltracker"] = {
   "url" : "http://ht.quickly.co.il",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Israel U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[63,63]] , 
-	"nationalityranges" : [[63,63]], 
+	"countryidranges" : [[63,63]] ,
+	"nationalityranges" : [[63,63]],
 };
 
-stats["suriyahtracker"] = { 
+stats["suriyahtracker"] = {
   "url" : "http://suriyah.ht.quickly.co.il/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Suriyah U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[140,140]] , 
-	"nationalityranges" : [[140,140]], 
+	"countryidranges" : [[140,140]] ,
+	"nationalityranges" : [[140,140]],
 };
 
 
-stats["philippinestracker"] = { 
+stats["philippinestracker"] = {
   "url" : "http://philippines.ht.quickly.co.il/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Philippines U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[55,55]] , 
-	"nationalityranges" : [[55,55]], 
+	"countryidranges" : [[55,55]] ,
+	"nationalityranges" : [[55,55]],
 };
 
-stats["barbadostracker"] = { 
+stats["barbadostracker"] = {
   "url" : "http://barbados.ht.quickly.co.il/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Barbados U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[124,124]] , 
-	"nationalityranges" : [[124,124]], 
+	"countryidranges" : [[124,124]] ,
+	"nationalityranges" : [[124,124]],
 };
 
 
-stats["indonesiatracker"] = { 
+stats["indonesiatracker"] = {
   "url" : "http://indonesia.ht.quickly.co.il/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Indonesia U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[54,54]] , 
-	"nationalityranges" : [[54,54]], 
+	"countryidranges" : [[54,54]] ,
+	"nationalityranges" : [[54,54]],
 };
 
-stats["moldovatracker"] = { 
+stats["moldovatracker"] = {
   "url" : "http://db.hattrick.md/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Moldova U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[103,103]] , 
-	"nationalityranges" : [[103,103]], 
+	"countryidranges" : [[103,103]] ,
+	"nationalityranges" : [[103,103]],
 };
 
 
 // --------------- own trackers --------------------------------
 
-stats["ht-fff"] =  { 
+stats["ht-fff"] =  {
         "url" : "http://www.ht-fff.org/",
 
         "trackerplayerlink" : { "path"       : "dtn_submitting.php",
-                         "filters"    : ["nationality"], 
+                         "filters"    : ["nationality"],
                          "params"     : []
                        },
 		"trackernationalteamlink" : { "path"       : "dtn_submitting.php",
-                   "filters"    : ["countryid"], 
+                   "filters"    : ["countryid"],
                    "params"     : []
-				}, 
+				},
         "nationalityranges" : [[5, 5]],
         "countryidranges" : [[5, 5]],
         "title" : "ht-fff.org | french scouting group.",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htfff.png"
-}; 
+};
 
-stats["scouting_mexico"] =  { 
+stats["scouting_mexico"] =  {
   "url" : "http://www.hattrick.org.mx/SN/",
- 
+
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
-				}, 
+				},
   "trackernationalteamlink" : { "path"       : "",
-                   "filters"    : ["countryid"], 
+                   "filters"    : ["countryid"],
                    "params"     : []
-				}, 
-  "nationalityranges" : [[6, 6]], 
-  "countryidranges" : [[6, 6]], 
+				},
+  "nationalityranges" : [[6, 6]],
+  "countryidranges" : [[6, 6]],
   "title" : "Hattrick México",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/mexico_scouting.png"
 };
 
-stats["brasileira_tracker"] =  { 
+stats["brasileira_tracker"] =  {
         "url" : "http://www.opendev.com.br/chpp/br/",
 
         "trackerplayerlink" : { "path"       : "",
-                         "filters"    : ["nationality"], 
+                         "filters"    : ["nationality"],
                          "params"     : []
                        },
         "trackernationalteamlink" : { "path"       : "",
-                   "filters"    : ["countryid"], 
+                   "filters"    : ["countryid"],
                    "params"     : []
-				}, 
-		"countryidranges" : [[16, 16]],   
+				},
+		"countryidranges" : [[16, 16]],
         "nationalityranges" : [[16, 16]],
         "title" : "Estatísticas da Seleçăo Brasileira",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/brasileira.png"
 };
 
-stats["benintracker"] = { 
+stats["benintracker"] = {
   "url" : "http://htbenin.athost.fr/index.php",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Benin NT/U20 Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[139,139]] ,
-	"nationalityranges" : [[139,139]], 
+	"nationalityranges" : [[139,139]],
 };
 
-stats["czechrepublic_nt"] = { 
+stats["czechrepublic_nt"] = {
   "url" : "http://tracker.kiekko.cz/players/submit/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/czech_nt_tracker.png",
   "title" : "Česká republika U20-NT Tracker",
-  
+
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
-                 },  
+                 },
     "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
-        
+
     "countryidranges" : [[52, 52]] ,
 	"nationalityranges" : [[52, 52]],
 };
 
 
-stats["crotracker"] = { 
+stats["crotracker"] = {
   "url" : "http://cro-tracker.com/index.php",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/cro-tracker.gif",
   "title" : "Hrvatska NT U20 Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[58,58]] ,
-	"nationalityranges" : [[58,58]], 
+	"nationalityranges" : [[58,58]],
 };
 
 
-stats["ghanatracker"] = { 
+stats["ghanatracker"] = {
   "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/ghana_tracker.gif",
   "title" : "Ghana U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[137,137]] ,
-	"nationalityranges" : [[137,137]], 
+	"nationalityranges" : [[137,137]],
 };
 
 
-stats["armenia_u20tracker"] = { 
+stats["armenia_u20tracker"] = {
   "url" : "http://www.hayastan-u20.de.tl/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Hayastan U20 Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[122,122]] , 
-	"nationalityranges" : [[122,122]], 
+	"countryidranges" : [[122,122]] ,
+	"nationalityranges" : [[122,122]],
 };
 
 
-stats["belgiumtracker"] = { 
+stats["belgiumtracker"] = {
   "url" : "http://belgium.beltrick.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "National Team Belgium Database",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[44,44]] ,
-	"nationalityranges" : [[44,44]], 
+	"nationalityranges" : [[44,44]],
 };
 
-stats["colombiatracker"] = { 
+stats["colombiatracker"] = {
   "url" : "http://seleccion.htcolombia.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Colombia U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[19,19]] ,
-	"nationalityranges" : [[19,19]], 
+	"nationalityranges" : [[19,19]],
 };
 
 
-stats["cyprustracker"] = { 
+stats["cyprustracker"] = {
   "url" : "http://www.hdb.gr",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Cyprus U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
-	"countryidranges" : [[89,89]] , 
-	"nationalityranges" : [[89,89]], 
+	"countryidranges" : [[89,89]] ,
+	"nationalityranges" : [[89,89]],
 };
 
 
-stats["englandtracker"] = { 
+stats["englandtracker"] = {
   "url" : "http://www.realfootball.co.uk/hattrick/tracker",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "England U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[2,2]] ,
-	"nationalityranges" : [[2,2]], 
+	"nationalityranges" : [[2,2]],
 };
 
 
-stats["nederlandtracker"] = { 
+stats["nederlandtracker"] = {
   "url" : "http://www.dutchscouts.nl/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Nederland U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[14,14]] ,
-	"nationalityranges" : [[14,14]], 
+	"nationalityranges" : [[14,14]],
 };
 
 
-stats["qatartracker"] = { 
+stats["qatartracker"] = {
   "url" : "http://www.tracker.comyr.com/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/qatartracker.png",
   "title" : "Dawlat Qatar U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[141,141]] ,
-	"nationalityranges" : [[141,141]], 
+	"nationalityranges" : [[141,141]],
 };
 
-stats["romaniatracker"] = { 
+stats["romaniatracker"] = {
   "url" : "http://rtc.fubar.ro",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Romania U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[37,37]] ,
-	"nationalityranges" : [[37,37]], 
+	"nationalityranges" : [[37,37]],
 };
 
 
-stats["hellastracker"] = { 
+stats["hellastracker"] = {
   "url" : "http://www.hdb.gr",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Hellas U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[50,50]] ,
-	"nationalityranges" : [[50,50]], 
+	"nationalityranges" : [[50,50]],
 };
 
 
-stats["surinametracker"] = { 
+stats["surinametracker"] = {
   "url" : "http://tracker.hattricksuriname.com/players.php",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Suriname U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[113,113]] ,
-	"nationalityranges" : [[113,113]], 
+	"nationalityranges" : [[113,113]],
 };
 
-stats["ugandatracker"] = { 
+stats["ugandatracker"] = {
   "url" : "http://uganda.site50.net",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Uganda U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[143,143]] ,
-	"nationalityranges" : [[143,143]], 
+	"nationalityranges" : [[143,143]],
 };
 
 
-stats["mozambiquetracker"] = { 
+stats["mozambiquetracker"] = {
   "url" : "http://mozambique.comuf.com",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Mozambique U20/NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[135,135]] ,
-	"nationalityranges" : [[135,135]], 
+	"nationalityranges" : [[135,135]],
 };
 
-stats["srbijatracker"] = { 
+stats["srbijatracker"] = {
   "url" : "http://srbijadb.foundationhorizont.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Serbian U-20/NT DB",
-  
+
   "trackernationalteamlink" : { "path"       : "homelist.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : {"playerid":"playerID", "playername":"name", "age":"years", "age_days":"days",
 									"teamname":"team","teamid":"teamID","exp":"exp","stamina":"sta","playmaking":"ply",
 									"winger":"win","scoring":"sco","goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
                  },
 	"countryidranges" : [[57,57]] ,
-	"nationalityranges" : [[57,57]], 
+	"nationalityranges" : [[57,57]],
 };
 
-stats["srbijassttracker"] =  { 
+stats["srbijassttracker"] =  {
     "title" : "SST Srbija WC tracker",
-    "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",        
+    "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
     "url" : "http://spydb.foundationhorizont.org/",
 
     "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
-                   "filters"    : [], 
+                   "filters"    : [],
                    "params"     : {"playerid":"playerID", "playername":"name", "nationality":"LeagueID",
 								   "age":"years", "age_days":"days","teamname":"team","teamid":"teamID",
 								   "exp":"exp","stamina":"sta","playmaking":"ply","winger":"win","scoring":"sco",
 								   "goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
-                 }, 				 
+                 },
 
-};  
+};
 
-stats["montenegrotracker"] = { 
+stats["montenegrotracker"] = {
   "url" : "http://cgdb.foundationhorizont.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Montenegro U-20/NT DB",
-  
+
   "trackernationalteamlink" : { "path"       : "homelist.php",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "Prijaveadd2.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : {"playerid":"playerID", "playername":"name", "age":"years", "age_days":"days",
 									"teamname":"team","teamid":"teamID","exp":"exp","stamina":"sta","playmaking":"ply",
 									"winger":"win","scoring":"sco","goalkeeping":"keep","passing":"pass","defending":"def","setpieces":"sp"}
                  },
 	"countryidranges" : [[131,131]] ,
-	"nationalityranges" : [[131,131]], 
+	"nationalityranges" : [[131,131]],
 };
 
-stats["scotlandtracker"] = { 
+stats["scotlandtracker"] = {
   "url" : "http://www.htscotland.co.uk",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Scotland U-20/NT DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[26,26]] ,
-	"nationalityranges" : [[26,26]], 
+	"nationalityranges" : [[26,26]],
 };
 
-  	 
-stats["tanzaniatracker"] = { 
+
+stats["tanzaniatracker"] = {
   "url" : "http://hattricktanzania.ic.cz",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Tanzania U-20/NT DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[142,142]] ,
-	"nationalityranges" : [[142,142]], 
+	"nationalityranges" : [[142,142]],
 };
 
-stats["turkeytracker"] = { 
+stats["turkeytracker"] = {
   "url" : "http://www.ht-turkiye.com",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Türkiye & Azebaycan Player Database",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[32,32],[129,129]] ,
-	"nationalityranges" : [[32,32],[129,129]], 
+	"nationalityranges" : [[32,32],[129,129]],
 };
 
 
-stats["southafricatracker"] = { 
+stats["southafricatracker"] = {
   "url" : "http://ht-southafrica.co.za/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "South Africa U-20/NT DB",
-  
+
   "trackernationalteamlink" : { "path"       : "latestNews.aspx",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "submitPlayerHT.aspx",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[27,27]] ,
-	"nationalityranges" : [[27,27]], 
+	"nationalityranges" : [[27,27]],
 };
 
-stats["norwayU20tracker"] = { 
+stats["norwayU20tracker"] = {
   "url" : "http://tracker.sletholt.net/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Norway U-20 DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid","LeagueOfficeTypeID"], 
+                         "filters"    : ["countryid","LeagueOfficeTypeID"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality","age"], 
+                   "filters"    : ["nationality","age"],
                    "params"     : []
                  },
 	"countryidranges" : [[9,9]] ,
 	"LeagueOfficeTypeIDranges": [[3,4]],
 	"nationalityranges" : [[9,9]],
-	"ageranges" : [[17,19]], 	
+	"ageranges" : [[17,19]],
 };
 
-stats["danmarktracker"] = { 
+stats["danmarktracker"] = {
   "url" : "http://www.hobbyisten.biz/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Danmark NT/U-20 DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[11,11]] ,
-	"nationalityranges" : [[11,11]],	
+	"nationalityranges" : [[11,11]],
 };
 
 
-stats["ukrainatracker"] = { 
+stats["ukrainatracker"] = {
   "url" : "http://nt.ht-bet.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Ukraina NT/U-20 DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[68,68]] ,
-	"nationalityranges" : [[68,68]],	
+	"nationalityranges" : [[68,68]],
 };
 
-stats["spaintracker"] = { 
+stats["spaintracker"] = {
   "url" : "http://www.htspain.com.es/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Espańa NT/U-20 DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "index.php?pag=ht_login",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[36,36]] ,
-	"nationalityranges" : [[36,36]],	
+	"nationalityranges" : [[36,36]],
 };
 
-stats["polskatracker"] = { 
+stats["polskatracker"] = {
   "url" : "http://www.ntdb.pl/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Polska NT/U-20 DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "index.php?page=Logging",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[24,24]] ,
-	"nationalityranges" : [[24,24]],	
+	"nationalityranges" : [[24,24]],
 };
 
 //  ------------- spreadsheets trackers ----------------
-stats["mongoltracker"] = { 
+stats["mongoltracker"] = {
   "url" : "http://spreadsheets.google.com/viewform?formkey=cGhyMThkSzVUdURSdmlWWHdmRldqUXc6MA..",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Mongol Uls U-20/NT DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[119,119]] ,
-	"nationalityranges" : [[119,119]], 
+	"nationalityranges" : [[119,119]],
 };
 
-stats["nippontracker"] = { 
+stats["nippontracker"] = {
   "url" : "http://spreadsheets.google.com/viewform?key=pPPtfeGUpefgXsyLLwuDrAw",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Nippon U-20 DB",
-  
+
   "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
                  },
 	"countryidranges" : [[22,22]] ,
-	"nationalityranges" : [[22,22]], 
+	"nationalityranges" : [[22,22]],
 };
 
 
 // global tracker
 /* links to sokker.org
-stats["u20_nt_tracker"] = { 
+stats["u20_nt_tracker"] = {
   "url" : "http://www.ant-db.net/index.php",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/nt_tracker.png",
   "title" : "Global U20 & NT Tracker",
-  
+
   "trackernationalteamlink" : { "path"       : "?action=select_country",
-                         "filters"    : ["countryid"], 
+                         "filters"    : ["countryid"],
                          "params"     :  { "countryid" : "id" }
                        },
   "trackerplayerlink" : { "path"       : "?action=player_submit&cat=1",
-                   "filters"    : ["nationality"], 
+                   "filters"    : ["nationality"],
                    "params"     : []
-                 },    
+                 },
 	"countryidranges" :   [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,35],[38,43],[46,46],[48,51],[53,53],[59,59],
 						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
 						[104,105,],[107,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
 	"nationalityranges" : [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,35],[38,43],[46,46],[48,51],[53,53],[59,59],
 						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
-						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]], 
+						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
 };  // own tracker: exclude all above
 */
 
-stats["htworld"] =  { 
+stats["htworld"] =  {
     "title" : "HT-World NT/U20 tracker",
-    "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",        
+    "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
     "url" : "",
     "urlfunction": function (filterparams) {
                              var countryid = filterparams["countryid"];
@@ -2719,15 +2719,15 @@ stats["htworld"] =  {
                              return "http://" + htworld[countryid];
                         },
   "trackernationalteamlink" : { "path"       : "/index.php?language=2",
-                         "filters"    : [], 
+                         "filters"    : [],
                          "params"     :  []
                        },
   "trackerplayerlink" : { "path"       : "/scouting.php?language=2",
-                   "filters"    : [], 
+                   "filters"    : [],
                    "params"     : []
-                 },    
+                 },
 
-};   
+};
 
 };
 
@@ -2739,7 +2739,7 @@ if (!Foxtrick) var Foxtrick={};
 
 Foxtrick.StatsHash = {};
 
-Foxtrick.MakeStatsHash = function(){		
+Foxtrick.MakeStatsHash = function(){
 		// create stats Hash for Foxtrick.LinkCollection
 		for (var key in Foxtrick.LinkCollection.stats) {
 			var stat = Foxtrick.LinkCollection.stats[key];
@@ -2758,22 +2758,22 @@ Foxtrick.MakeStatsHash = function(){
 
 
 
-Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc, overridesettings, module) { 
+Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc, overridesettings, module) {
     var links = [];
     var counter = 0;
-    
+
     for (var key in stats) {
 
-        if (!Foxtrick.isModuleFeatureEnabled(module, key)  && 
+        if (!Foxtrick.isModuleFeatureEnabled(module, key)  &&
 			!overridesettings) {
 			 continue;
-        } 
+        }
         var stat = stats[key];
         var statlink = stat[stattype];
         var filters = statlink["filters"];
-        
+
         var allowed = true;
-        
+
         if (filters.length == 0 && (typeof(stat["allowlink"]) == 'undefined')) {
             allowed = true;
         } else {
@@ -2784,20 +2784,20 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
                 var filtertype = filters[i];
                 var filterranges = stat[filtertype + "ranges"];
                 var temp = false;
-     			
+
 				for (var j=0; j<filterranges.length; j++) {
                   if ( (filterparams[filtertype] >= filterranges[j][0]) && (filterparams[filtertype] <= filterranges[j][1])) {
                     temp = true;
                     break;
                   }
                 }
-                
+
                 if (!temp) {
                   allowed = false;
                   break;
                 }
              }
-            
+
            } else {
                 if (typeof(stat["allowlink"]) != 'undefined') {
                     if (stat["allowlink"](filterparams, stattype)) {
@@ -2808,10 +2808,10 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
                 }
             }
         }
-        
+
         if (allowed) {
              var link = Foxtrick.LinkCollection.makelink(stat, statlink, filterparams, key, doc);
-             if (link != null) { 
+             if (link != null) {
                 links.push({"link" : Foxtrick.LinkCollection.getLinkElement(link, stat, doc, key, module.MODULE_NAME), "stat" : stat});
              }
         }
@@ -2821,12 +2821,12 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
 };
 
 
-Foxtrick.LinkCollection.getLinks  = function(stattype, filterparams, doc, module) { 
+Foxtrick.LinkCollection.getLinks  = function(stattype, filterparams, doc, module) {
   return Foxtrick.LinkCollection.getLinks2(Foxtrick.StatsHash[stattype], stattype, filterparams, doc, false, module);
 };
 
 
-Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, doc) { 
+Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, doc) {
 
     var params = statlink["params"];
     var args = "";
@@ -2835,15 +2835,15 @@ Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, 
         for (var paramkey in params) {
 		if (params[paramkey].search('ftfilter')==0) continue;
 			var temp;
-            
+
             if ((args == "") && statlink["path"].search(/\?/) == -1 && stat["url"].search(/\?/) == -1) {
                 temp = "?";
              } else {
                 temp = "&";
              }
-			 
+
              if (!params[paramkey].charAt(0).match(/\w+/)) {temp="";}
-			 //dump(params[paramkey].charAt(0)+' '+ (!params[paramkey].charAt(0).match(/\w+/))+' '+temp+' '+filterparams[paramkey]+'\n');	
+			 //dump(params[paramkey].charAt(0)+' '+ (!params[paramkey].charAt(0).match(/\w+/))+' '+temp+' '+filterparams[paramkey]+'\n');
              if (filterparams[paramkey] != null) {
                 args += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(filterparams[paramkey]);
 				}
@@ -2861,22 +2861,22 @@ Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, 
     } else {
         url = stat["urlfunction"](filterparams);
     }
-    
+
     if (url == null) return null;
-    
+
     var link;
-    
+
     if (typeof(stat["post"]) == 'undefined') {
         link = url + statlink["path"] + args;
     } else {
         var temp = "";
-       
+
         for (var paramkey in params) {
             temp = temp + "-" + params[paramkey] + "-" + filterparams[paramkey];
         }
-        
+
         link = "javascript:document.forms.namedItem('" + key + temp + "').submit();";
-  
+
         var form = doc.createElement("form");
         form.name = key + temp;
         form.action = url + statlink["path"];
@@ -2891,12 +2891,12 @@ Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, 
             input.value=filterparams[paramkey];
             form.appendChild(input);
         }
-        
+
         doc.getElementsByTagName("body")[0].appendChild(form);
-        
+
     }
-    
-    return link;    
+
+    return link;
 };
 
 
@@ -2906,13 +2906,13 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
     if (typeof(stat["post"]) == 'undefined') {
        if (typeof(stat["openinthesamewindow"]) == 'undefined') {
           statslink.target = "_stats";
-       }   
+       }
     }
     statslink.title = stat.title;
     //statslink.style.verticalAlign = "middle";
     statslink.setAttribute('key',key);
-	statslink.setAttribute('module',module_name); 
-	
+	statslink.setAttribute('module',module_name);
+
     if (typeof(stat["img"]) == 'undefined') {
         statslink.appendChild(doc.createTextNode(stat.shorttitle));
      } else {
@@ -2923,10 +2923,10 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
 		img.src = stat.img;
         statslink.appendChild(img);
     }
-    
+
     statslink.href = link;
 
-    return statslink;        
+    return statslink;
 };
 
 Foxtrick.LinkCollection.getSortedLinks = function(links) {

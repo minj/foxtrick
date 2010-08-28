@@ -1,11 +1,11 @@
 /**
  *
- * 
+ *
  * xml_load.js
  * xml loading
  * @author convinced
  */
-  
+
 if (!Foxtrick) var Foxtrick={};
 
 
@@ -13,7 +13,7 @@ Foxtrick.XMLData = {
 
     MODULE_NAME : "XMLData",
 	DEFAULT_ENABLED : true,
-	PAGES : new Array('all'), 
+	PAGES : new Array('all'),
 
 	League : {},
 	countryToLeague : {},
@@ -45,44 +45,44 @@ Foxtrick.XMLData = {
 		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
 		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");
 		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htdateformat.xml");
-		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");	
+		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
 
-		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/worlddetails.xml");	
-			
+		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/worlddetails.xml");
+
 		var data ={};
 		var name = 'HattrickData';
 		Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement,data,name);
-		
+
 		for (var i in data.HattrickData.LeagueList.League) {
 			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
 			this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 		}
-					
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');		
+
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');
 		for (var i=0;i<foxtrickstaff.length;++i)   {
 			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
 			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
+				var id=ids[k].match(/\d+/);
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('project_owner');		
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('project_owner');
 		for (var i=0;i<foxtrickstaff.length;++i)   {
 			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
 			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
+				var id=ids[k].match(/\d+/);
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('developer');		
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('developer');
 		for (var i=0;i<foxtrickstaff.length;++i)   {
 			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
 			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
+				var id=ids[k].match(/\d+/);
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('designer');		
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('designer');
 		for (var i=0;i<foxtrickstaff.length;++i) {
 			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
 			if(ids)
@@ -91,12 +91,12 @@ Foxtrick.XMLData = {
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('translation');		
+		var foxtrickstaff=this.aboutXML.getElementsByTagName('translation');
 		for (var i=0;i<foxtrickstaff.length;++i)   {
 			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
 			if(ids)
 			  for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
+				var id=ids[k].match(/\d+/);
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
@@ -117,11 +117,11 @@ Foxtrick.XMLData = {
 			var name= chpp[i].getAttribute('name');
 			FoxtrickStaffMarker.chppholder[id]=name;
 		}
-		
+
 	} catch(e){Foxtrick.dump('Foxtrick.XMLData.init: '+e+'\n');}
 	},
-	
-	
+
+
 	getchilds : function(el,parent,tag) {
 		var childs = el.childNodes;
 		var only_text=true;
@@ -129,7 +129,7 @@ Foxtrick.XMLData = {
 		var isarray=false;
 		if (parent[tag]) {
 			// if a tag is not unique, make an array and add nodes to that
-			isarray=true; 
+			isarray=true;
 			if (!parent[tag][0]) {
 				var old_val = parent[tag];
 				parent[tag] = new Array();
@@ -138,18 +138,18 @@ Foxtrick.XMLData = {
 			parent[tag].push({});
 		}
 		else {parent[tag] = {};} // assume unique tag and make a assosiative node
-		
+
 		for (var i=0;i<childs.length;++i) {
 			if (childs[i].nodeType==childs[i].ELEMENT_NODE ) {
 				only_text=false;
 				if (isarray) Foxtrick.XMLData.getchilds(childs[i], parent[tag][parent[tag].length-1], childs[i].nodeName);
-				else Foxtrick.XMLData.getchilds(childs[i], parent[tag], childs[i].nodeName);				
+				else Foxtrick.XMLData.getchilds(childs[i], parent[tag], childs[i].nodeName);
 			}
 			else if (childs[i].nodeType==childs[i].TEXT_NODE ) {
 				text = childs[i].textContent;
 			}
 		}
-		if (only_text) { 
+		if (only_text) {
 			if (isarray) parent[tag][parent[tag].length-1] = text;
 			else parent[tag] = text;
 		}
@@ -157,14 +157,14 @@ Foxtrick.XMLData = {
 
 	run : function(page,doc) {
 	/*try{
-		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href); 
+		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href);
 		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
 		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
-		
+
 		if (isarchivedmatch && typeof(this.matchxmls[matchid]) == 'undefined') {
 			var req = new XMLHttpRequest();
-			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Matches/chppxml.axd?file=matchdetails&matchID='+matchid+'&matchEvents=true', false); 
+			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Matches/chppxml.axd?file=matchdetails&matchID='+matchid+'&matchEvents=true', false);
 			req.send(null);
 			if (req.status == 200) {
 				this.matchxmls[matchid] = req.responseXML;
@@ -184,10 +184,10 @@ Foxtrick.XMLData = {
 			return 0;
 		}
 	},
-	
-	getCountryIdByLeagueId : function(id) { 
+
+	getCountryIdByLeagueId : function(id) {
 		if (this.League[id] !== undefined) {
-			return this.League[id].Country.CountryID;		
+			return this.League[id].Country.CountryID;
 		}
 		else {
 			return 0;

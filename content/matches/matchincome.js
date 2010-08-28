@@ -6,22 +6,22 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMatchIncome = {
-	
+
     MODULE_NAME : "MatchIncome",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match'), 
+	PAGES : new Array('match'),
 	DEFAULT_ENABLED : true,
 
     run : function( page, doc ) {
         var ft_match = doc.getElementById ('ft_matchincome');
         if (ft_match != null) return;
 		var youthmatch = FoxtrickHelper.findIsYouthMatch(doc.location.href);
-		
+
 		var isarchivedmatch=doc.location.href.search(/useArchive=true/i)!=-1;
 		var ownBoxBody=null;
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="sidebarBox" 
+			if (alldivs[j].className=="sidebarBox"
 			&& alldivs[j].getElementsByTagName('h2')[0].innerHTML.search(Foxtrickl10n.getString('foxtrick.matches.soldseats'))!=-1 ) {
 				var table=alldivs[j].getElementsByTagName('table')[0];
 				var tbody = table.getElementsByTagName('tbody')[0];
@@ -32,7 +32,7 @@ var FoxtrickMatchIncome = {
 
 				sum/=parseFloat(FoxtrickPrefs.getString("currencyRate"));
 				Foxtrick.dump('sum local:' +sum+' '+FoxtrickPrefs.getString("oldCurrencySymbol")+'\n');
-				
+
 				var tr2 = doc.createElement('tr');
 				var td2a = doc.createElement('td');
 				var td2b = doc.createElement('td');
@@ -45,7 +45,7 @@ var FoxtrickMatchIncome = {
                 td2b.className = "nowrap";
 				td2b.textContent = Foxtrick.formatNumber (Math.floor(sum), ' ')+' '+FoxtrickPrefs.getString("oldCurrencySymbol");
 			}
-        }    
+        }
     },
-	
+
 };

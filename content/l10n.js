@@ -64,39 +64,39 @@ var Foxtrickl10n = {
 
     init : function() {
         this._strings_bundle_default =
-             Components.classes["@mozilla.org/intl/stringbundle;1"] 
-             .getService(Components.interfaces.nsIStringBundleService)  
+             Components.classes["@mozilla.org/intl/stringbundle;1"]
+             .getService(Components.interfaces.nsIStringBundleService)
              .createBundle("chrome://foxtrick/content/foxtrick.properties");
-		this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage")); 
-		
+		this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage"));
+
 		this._strings_bundle_screenshots_default =
-             Components.classes["@mozilla.org/intl/stringbundle;1"] 
-             .getService(Components.interfaces.nsIStringBundleService)  
-             .createBundle("chrome://foxtrick/content/foxtrick.screenshots");		
+             Components.classes["@mozilla.org/intl/stringbundle;1"]
+             .getService(Components.interfaces.nsIStringBundleService)
+             .createBundle("chrome://foxtrick/content/foxtrick.screenshots");
     },
 
-	
-	get_strings_bundle :function ( localecode ) { 
+
+	get_strings_bundle :function ( localecode ) {
 	  try {
 		this._strings_bundle =
-             Components.classes["@mozilla.org/intl/stringbundle;1"] 
-             .getService(Components.interfaces.nsIStringBundleService)  
+             Components.classes["@mozilla.org/intl/stringbundle;1"]
+             .getService(Components.interfaces.nsIStringBundleService)
              .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
 		this._strings_bundle_screenshots =
-             Components.classes["@mozilla.org/intl/stringbundle;1"] 
-             .getService(Components.interfaces.nsIStringBundleService)  
+             Components.classes["@mozilla.org/intl/stringbundle;1"]
+             .getService(Components.interfaces.nsIStringBundleService)
              .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
 	  } catch (e) { Foxtrick.dump('Foxtrickl10n->get_strings_bundle: Error reading language file: '+e+'\n');}
 	},
 
-	
+
     getString : function( str ) {
         if ( this._strings_bundle )
         {
             try {
                 return this._strings_bundle.GetStringFromName( str );
             } catch( e ) {
-				try {  
+				try {
 					if ( this._strings_bundle_default ) return this._strings_bundle_default.GetStringFromName( str );
 				} catch( ee ) {
                     // DEBUG FOR RELEASE 0.4.3
@@ -104,7 +104,7 @@ var Foxtrickl10n = {
                     // DEBUG FOR RELEASE 0.4.3
                     return "** Localization error 1 **";
 				}
-			}            
+			}
         }
         else {
             // DEBUG FOR RELEASE 0.4.3
@@ -125,7 +125,7 @@ var Foxtrickl10n = {
 					return this._strings_bundle_default.formatStringFromName( str, key_array );
 				} catch( ee ) {
 					return "** Localization error **";
-				}  
+				}
 			}
         }
         else
@@ -138,43 +138,43 @@ var Foxtrickl10n = {
         {
             try {
                 return this._strings_bundle.GetStringFromName( str ) != null;
-			} catch( e ) {  
+			} catch( e ) {
                 try {
 					return this._strings_bundle_default.GetStringFromName( str ) != null;
-				} catch( e ) {  
+				} catch( e ) {
 					return false;
 				}
             }
-        } 
+        }
         return false;
     },
-	
+
 	isStringAvailableLocal : function( str )
     {
         if ( this._strings_bundle )
         {
             try {
                 return this._strings_bundle.GetStringFromName( str ) != null;
-			}  catch( e ) {  
+			}  catch( e ) {
 					return false;
 			}
-        } 
+        }
         return false;
     },
-	
+
 	getScreenshot : function( str ) {
 		var link="";
         if ( this._strings_bundle_screenshots )
         {
             try {
-                link = this._strings_bundle_screenshots.GetStringFromName( str );				
+                link = this._strings_bundle_screenshots.GetStringFromName( str );
             } catch( e ) {
 			}
 		}
 		if (link=="") {
-			try { 
+			try {
 				if ( this._strings_bundle_screenshots_default ) link = this._strings_bundle_screenshots_default.GetStringFromName( str );
-				} catch( ee ) { 
+				} catch( ee ) {
 				}
 		}
 		return link;

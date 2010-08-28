@@ -15,7 +15,7 @@ var FoxtrickAddLeaveConfButton = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     run : function( page, doc ) {
-		
+
 		switch( page ) {
 
             case 'forum':
@@ -26,7 +26,7 @@ var FoxtrickAddLeaveConfButton = {
                         var elems = doc.getElementsByTagName("div");
                         var foldersCounter = 0;
                         for(var i=0; i < elems.length; i++) {
-                            if(elems[i].className=="folderHeader" 
+                            if(elems[i].className=="folderHeader"
 							|| elems[i].className=="folderHeaderHighlight"){
 								if (elems[i].getElementsByTagName('div')[0].className.search('foxtrickRemove')!=-1) continue;
                                 var divLeaveConfBtn = doc.getElementById(
@@ -42,7 +42,7 @@ var FoxtrickAddLeaveConfButton = {
                 catch(e) {
                     Foxtrick.dump( ' => AddLeaveConfButton forum' + e + '\n');
                 }
-                                
+
 			case 'forumSettings':
 				var sUrl = Foxtrick.getHref( doc );
 				var confPos = sUrl.search(/LeaveConf=/i);
@@ -59,7 +59,7 @@ var FoxtrickAddLeaveConfButton = {
 								var inputs = subDivs[k+1].getElementsByTagName("input");
 								for(var j=0; j < inputs.length; j++) {
 									if (inputs[j].className == "leave"){
-										
+
 										var func = "javascript:__doPostBack('";
 										func += inputs[j].getAttribute("name");
 										func += "','')";
@@ -75,9 +75,9 @@ var FoxtrickAddLeaveConfButton = {
 				break;
 		}
 	},
-	
+
 	change : function( page, doc ) {
-			   
+
 		//Foxtrick.dump(this.MODULE_NAME+' change\n')
 		switch( page ) {
 			case 'forum':
@@ -87,7 +87,7 @@ var FoxtrickAddLeaveConfButton = {
 				break;
 		}
 	},
-	
+
 	getVValue : function( doc ) {
 		var sUrl = Foxtrick.getHref( doc );
 		var vPos = sUrl.search(/v=/i);
@@ -98,7 +98,7 @@ var FoxtrickAddLeaveConfButton = {
         // Foxtrick.dump (' => vValue: ' + vValue + '\n');
 		return vValue;
 	},
-	
+
 	addButton : function( doc, divId, folderHeader, foldersCounter, vValue ) {
 		try {
             // if (doc == null) return;
@@ -109,10 +109,10 @@ var FoxtrickAddLeaveConfButton = {
 			}
 			//Foxtrick.dump('=> link: ' + link + '\n');
 			if (link == null || link.lastChild == null || link.lastChild.data == null || link.innerHTML == null) return;
-            
+
             var confName = Foxtrick.trim( link.lastChild.data );
             //Foxtrick.dump('=> confName: ' + confName +'\n');
-            
+
             var leaveConf = doc.createElement("div");
             leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
             // Foxtrick.dump('=>counter: ' + foldersCounter +'\n');
@@ -125,7 +125,7 @@ var FoxtrickAddLeaveConfButton = {
             var markAsReadButton = folderHeader.childNodes[0];
 			// Foxtrick.dump('=>markAsReadButton: ' + markAsReadButton+'\n');
             folderHeader.insertBefore( leaveConf, markAsReadButton);
-        } 
+        }
         catch(e) {
             Foxtrick.dumpError(e);
         }

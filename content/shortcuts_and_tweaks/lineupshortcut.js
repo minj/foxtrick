@@ -7,7 +7,7 @@ FoxtrickLineupShortcut = {
 
     MODULE_NAME : "FoxtrickLineupShortcut",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'), 
+    PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Fix for Teams with problamatic names",
@@ -18,10 +18,10 @@ FoxtrickLineupShortcut = {
 
         switch ( page ) {
 
-            case 'playerdetail' : 
+            case 'playerdetail' :
                 this._Analyze_Player_Page ( doc );
                 break;
-			case 'YouthPlayer' : 
+			case 'YouthPlayer' :
                 this._Analyze_Youth_Player_Page ( doc );
                 break;
 			case 'statsBestgames':
@@ -65,7 +65,7 @@ FoxtrickLineupShortcut = {
 				Foxtrick.LOG('Error in lineupshortcut: serieId '+serieId+' not found!');
 
 			var issupporter = Foxtrick.getElementsByClass( "bookmark", mainbody );
-			
+
 			if (issupporter.length>0) {
 				//user is supporter, we check if there are stats
 				var divs=Foxtrick.getElementsByClass( "mainBox", mainbody );
@@ -76,7 +76,7 @@ FoxtrickLineupShortcut = {
 					//Own player, we must take previous div
 					lastdiv=divs[divs.length-2];
 				}
-				
+
 				//we get the table with rows of played match
 				var matchtable=lastdiv.getElementsByTagName('table');
 				if (matchtable.length>0) {
@@ -88,26 +88,26 @@ FoxtrickLineupShortcut = {
 					var teamname=FoxtrickHelper.extractTeamName(element);
 					// splitting teams with '- | -' in their name breaks the system
 					teamname_rep = teamname.replace(/\-\ /gi,'+ ').replace(/\ \-/gi,' +');
-					
+
 
 					//Fix for longteamname
 					if (teamname_rep.length>20) {
 						teamname_rep=teamname_rep.substr(0, 20)+"..";
 					}
-					
+
 					for (var i=0;i<matchtable.rows.length;i++) {
 						var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
 						var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href);
 						var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
-						
+
 						//Checking if the team is present
 						var matchTeams=link.text;
 						matchTeams = matchTeams.replace(teamname, teamname_rep);
 						matchTeams=matchTeams.split(" - ");
-					
+
 						if (matchTeams[0]) matchTeams[0] = Foxtrick.trim(matchTeams[0]);
 						if (matchTeams[1]) matchTeams[1] = Foxtrick.trim(matchTeams[1]);
-						
+
 						for (var j=0;j<matchTeams.length;j++) {
 							Foxtrick.dump( j + ' [' + matchTeams[j] + ']-[' + teamname_rep + ']');
 							switch(matchTeams[j])
@@ -116,18 +116,18 @@ FoxtrickLineupShortcut = {
 									Foxtrick.dump(' [TEAM]\n');
 									this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
 								break;
-								
+
 								case ntName:
 									Foxtrick.dump(' [NATIONAL TEAM]\n');
 									this._Add_Lineup_Link(doc, matchtable.rows[i], ntId, playerid, matchid, 'NT');
 								break;
-								
+
 								case u20Name:
 									Foxtrick.dump(' [U20 TEAM]\n');
 									this._Add_Lineup_Link(doc, matchtable.rows[i], u20Id, playerid, matchid, 'U20');
 								break;
-								
-								default: 
+
+								default:
 									Foxtrick.dump('\n');
 								break;
 							}
@@ -135,13 +135,13 @@ FoxtrickLineupShortcut = {
 					}
 				}
 			}
-			
+
         } catch (e) {
             Foxtrick.dump('FoxtrickLineupShortcut'+e);
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
         }
     },
-	
+
 	_Analyze_Stat_Page : function ( doc ) {
         try {
 			var teamid=doc.getElementById('ctl00_CPMain_ddlPreviousClubs').value;
@@ -164,7 +164,7 @@ FoxtrickLineupShortcut = {
             Foxtrick.dump('FoxtrickLineupShortcut'+e);
         }
     },
-	
+
 	//@param type = "normal"|"NT"|"U20"|"youth"
 	_Add_Lineup_Link : function(doc, row, teamid, playerid, matchid, type) {
 		//the link is: /Club/Matches/MatchLineup.aspx?MatchID=<matchid>&TeamID=<teamid>
@@ -196,7 +196,7 @@ FoxtrickLineupShortcut = {
 			Foxtrick.dump('FoxtrickLineupShortcut'+e);
 		}
 	},
-	
+
 	//***************** YOUTH TEAM ********************
 	_Analyze_Youth_Player_Page : function ( doc ) {
 		try {
@@ -211,7 +211,7 @@ FoxtrickLineupShortcut = {
 				//Player of another team, right element is the first (there is only one)
 				var matchElement=boxes[0];
 			}
-			
+
 			//we get the table with rows of played match
 			var matchtable=matchElement.getElementsByTagName('table');
 			if (matchtable.length>0) {
@@ -234,7 +234,7 @@ FoxtrickLineupShortcut = {
 			Foxtrick.LOG('FoxtrickLineupShortcut'+e);
 		}
 	},
-	
+
 	//************************ HIGHLIGHT PLAYER ***********************************
 	_Highlight_Player : function ( doc ) {
 		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightPlayer")) {

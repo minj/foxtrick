@@ -6,27 +6,27 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksStaff = {
-	
+
     MODULE_NAME : "LinksStaff",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('staff'), 
+	PAGES : new Array('staff'),
 	DEFAULT_ENABLED : false,
-	OPTIONS : {}, 
+	OPTIONS : {},
 
     init : function() {
 			Foxtrick.initOptionsLinks(this,"stafflink");
     },
 
-    run : function( page, doc ) { 
+    run : function( page, doc ) {
 
-		//addExternalLinksToManagerPage		
+		//addExternalLinksToManagerPage
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainWrapper');
-  		
+
 		var teamid = FoxtrickHelper.findTeamId(mainBody);
 		var teamname = FoxtrickHelper.extractTeamName(mainBody);
-		
-		var links = Foxtrick.LinkCollection.getLinks("stafflink", { "teamid": teamid, "teamname": teamname}, doc, this);  
+
+		var links = Foxtrick.LinkCollection.getLinks("stafflink", { "teamid": teamid, "teamname": teamname}, doc, this);
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -34,15 +34,15 @@ var FoxtrickLinksStaff = {
 			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
-                                
+
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-						
+
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname});	        
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname});
 	},
-	
+
 };

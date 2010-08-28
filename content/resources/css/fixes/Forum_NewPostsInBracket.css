@@ -13,13 +13,13 @@
 	padding-left:0px;
 }
 .threadInfo .highlight:before {
-	content:"("; 
-	color:black; 
+	content:"(";
+	color:black;
 	font-weight:400;
 }
-.threadInfo .highlight:after { 
-	content:")"; 
-	color:black; 
+.threadInfo .highlight:after {
+	content:")";
+	color:black;
 	font-weight:400;
 }
 

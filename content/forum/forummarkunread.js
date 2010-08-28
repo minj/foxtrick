@@ -5,7 +5,7 @@
  */
 
 var FoxtrickMarkUnread = {
-	
+
     MODULE_NAME : "MarkUnread",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
@@ -33,9 +33,9 @@ var FoxtrickMarkUnread = {
                 var ar = reg.exec(+' ' + forumtabs.href + ' ');
                 if (ar[2] != null) {
                     thread = '?t=' + ar[2];
-                }				
+                }
         } catch(e) {}
-*/		
+*/
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].className == "message") {
 				p++;
@@ -67,16 +67,16 @@ var FoxtrickMarkUnread = {
 								}
 								markunread[p].href = "javascript:try{document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction').selectedIndex=\"1\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber').value=\""+nr+"\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo').click();}catch(e){}";
 								// Foxtrick.dump ('\n' + markunread[p].href + '\n');
-                            }						
+                            }
                             if( divsInFooter[j].className == "float_right" ) {
                                 divsInFooter[j].innerHTML+='&nbsp;';
 								divsInFooter[j].appendChild(markunread[p]);
                             }
                         }
                     } catch(e) {Foxtrick.dump('MarkUnread ERROR ' + e + '\n');}
-                } 
+                }
             }
 		}
 	},
-	
+
 };

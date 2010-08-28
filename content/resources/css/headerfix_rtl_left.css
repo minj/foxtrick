@@ -6,7 +6,7 @@
 position: fixed;
 /* getting borders right if menu overflows content */
 background: white;
-margin-right: -11px !important; 
+margin-right: -11px !important;
 padding-right: 11px !important;
 border-color: #DDDDDD !important;
 border-style: solid !important;

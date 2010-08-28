@@ -8,10 +8,10 @@ var FoxtrickShowForumPrefButton = {
 
 	MODULE_NAME : "ShowForumPrefButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumViewThread','forumOverView','forumDefault'), 
+	PAGES : new Array('forumViewThread','forumOverView','forumDefault'),
 	DEFAULT_ENABLED : true,
 
-	run : function( page, doc ) { 
+	run : function( page, doc ) {
 	var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 	if (boxHead.className!='boxHead') return;
     if (Foxtrick.isStandardLayout ( doc ) ) {

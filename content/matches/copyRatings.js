@@ -91,10 +91,10 @@ var FoxtrickCopyRatings = {
 				//span.setAttribute("style", "right:55px;");
 				span.appendChild(copyBoth);
 
-				var versions=['both','home','away'];	
+				var versions=['both','home','away'];
 				var list = doc.createElement("ul");
 				list.className = "ft-pop";
-				for (var j=0; j<versions.length; ++j) { 
+				for (var j=0; j<versions.length; ++j) {
 					var item = doc.createElement("li");
 					var link = doc.createElement("span");
 					link.addEventListener("click", this.createRatings, false);
@@ -104,7 +104,7 @@ var FoxtrickCopyRatings = {
 					item.appendChild(link);
 					list.appendChild(item);
 				}
-											
+
 				span.appendChild(list);
 				boxHead.insertBefore(span, boxHead.firstChild);
 
@@ -192,7 +192,7 @@ var FoxtrickCopyRatings = {
 
 			if (ev.currentTarget.getAttribute("place")=="table") {
 				var insertBefore = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
-			} 
+			}
 			else if (ev.currentTarget.getAttribute("place")=="box") {
 				var insertBefore = doc.getElementById('foxtrick_addactionsbox_parentDiv');
 			}

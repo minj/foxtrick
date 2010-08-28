@@ -5,10 +5,10 @@
  */
 
 var FoxtrickTickerColoring = {
-	
+
     MODULE_NAME : "TickerColoring",
     MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
-	PAGES : new Array('all'), 
+	PAGES : new Array('all'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.1.2",
 	LATEST_CHANGE : "Moved to alert category",
@@ -24,13 +24,13 @@ var FoxtrickTickerColoring = {
 											"color:#000; background-color:#EEDFFF;",  // MailToMe
 											"color:#000; background-color:#DFDFDF;",  // MyHTMessages
 											"color:#000 !important; background-color: transparent !important;"  // Hover
-											),        
+											),
 	CSS:"",
     OLD_CSS:"",
-	
+
     init : function() {
 		var zaw = ''
-		
+
 		+'/*TICKERCOLOR_by_htbaumanns*/ @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws)'
 		+'{'
 		/* LoginWelcome */
@@ -58,12 +58,12 @@ var FoxtrickTickerColoring = {
 		this.OLD_CSS = this.CSS;
 		if (Foxtrick.BuildFor=='Chrome') Foxtrick.load_css_permanent(zaw);
 		else this.CSS=Foxtrick.GetDataURIText(zaw);
-								  
+
     },
 
-	get_color : function( option ) {	
+	get_color : function( option ) {
 	    if (Foxtrick.isModuleFeatureEnabled( this, option)) {
-			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + option+"_text"); 
+			var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + option+"_text");
 			return color;
 		}
 		for (var i=0;i<this.OPTIONS.length;++i) {

@@ -21,7 +21,7 @@ var FoxtrickManagerButtons = {
 	MAIL_LINK_ID: "ctl00_CPSidebar_ucVisitorActions_lnkMail",
 
 	run : function(page, doc) {
-		try { 
+		try {
 			var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
 			var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
@@ -58,8 +58,8 @@ var FoxtrickManagerButtons = {
 		var username='';
 		if (page==='managerPage') {
 			var h1inner = doc.getElementById('mainBody').getElementsByTagName("h1")[0].innerHTML;
-			username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');                         
-			var messageLink = doc.getElementById(this.MAIL_LINK_ID);		
+			username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');
+			var messageLink = doc.getElementById(this.MAIL_LINK_ID);
 			messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
         }
 		else if (page==='teamPage') {
@@ -68,19 +68,19 @@ var FoxtrickManagerButtons = {
 				if (mainBodylinks[i].href.search(/\/Club\/Manager\/\?userId=/i)!=-1) {
 					username = mainBodylinks[i].title;
 					break;
-				}	
+				}
 			}
-			var messageLink = doc.getElementById(this.MAIL_LINK_ID);		
+			var messageLink = doc.getElementById(this.MAIL_LINK_ID);
 			messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
 		}
-		else if (page === "youthoverview") { 
+		else if (page === "youthoverview") {
 			parentDiv = doc.createElement("div");
-			parentDiv.id = "foxtrick_addactionsbox_parentDiv";					
+			parentDiv.id = "foxtrick_addactionsbox_parentDiv";
 			var newBoxId = "foxtrick_actions_box";
 
 			var mailLink = doc.createElement("a");
 			mailLink.className = "inner";
-			mailLink.href = '/Club/?TeamID='+teamId+'&redir_to_mail=true'+'&ft_popuplink=true';										
+			mailLink.href = '/Club/?TeamID='+teamId+'&redir_to_mail=true'+'&ft_popuplink=true';
             mailLink.title = Foxtrickl10n.getString("foxtrick.tweaks.sendmessage");
 
 			if (!FoxtrickMain.isStandard) {
@@ -96,13 +96,13 @@ var FoxtrickManagerButtons = {
 				mailLink.appendChild(img);
 			}
 			parentDiv.appendChild(mailLink);
-			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
 				"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
 		}
 	},
 
 	addGuestBookLink : function(doc, page) {
-	try { 
+	try {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
 		var isSupporter = false;
@@ -126,16 +126,16 @@ var FoxtrickManagerButtons = {
 				}
 			}
 		}
-		else if (page === "teamPage") { 
+		else if (page === "teamPage") {
 			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName("a");
-			for (var i=0;i<sidebarlinks.length;++i) { 
+			for (var i=0;i<sidebarlinks.length;++i) {
 				if (sidebarlinks[i].href.search(/Club\/HallOfFame/i)!=-1 ) {
 					isSupporter = true;
 					break;
 				}
 			}
 		}
-		else if (page === "youthoverview") { 
+		else if (page === "youthoverview") {
 			isSupporter = true; // status unknown there. just add it anyways?
 		}
 
@@ -143,11 +143,11 @@ var FoxtrickManagerButtons = {
 		var insertBefore = null;
 		if (parentDiv === null) {
 			parentDiv = doc.getElementById('foxtrick_addactionsbox_parentDiv');
-			if (parentDiv === null) {			
+			if (parentDiv === null) {
 				parentDiv = doc.createElement("div");
-				parentDiv.id = "foxtrick_addactionsbox_parentDiv";					
+				parentDiv.id = "foxtrick_addactionsbox_parentDiv";
 				var newBoxId = "foxtrick_actions_box";
-				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString( 
+				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
 					"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
 			}
 		}
@@ -183,5 +183,5 @@ var FoxtrickManagerButtons = {
 		}
 
 	} catch(e) {Foxtrick.dumpError(e);}
-	}	
+	}
 };

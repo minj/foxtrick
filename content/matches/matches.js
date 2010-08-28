@@ -8,7 +8,7 @@ Foxtrick.Matches = {
 
     MODULE_NAME : "Matches",
 	DEFAULT_ENABLED : true,
-	PAGES : new Array('match'), 
+	PAGES : new Array('match'),
 
 	matchxmls: new Array(),
 
@@ -21,7 +21,7 @@ Foxtrick.Matches = {
 		}
 		return ratingstable;
 	},
-	
+
 	_isWalkOver: function(ratingstable) {
 		try {
 			for (var i = 1; i <= 7; i++) {
@@ -37,7 +37,7 @@ Foxtrick.Matches = {
 		}
 		return true;
 	},
-	
+
 	_isCorrectLanguage: function(ratingstable) {
 		try {
 			for (var i = 1; i <= 7; i++) {
@@ -61,9 +61,9 @@ Foxtrick.Matches = {
 		if (baseValue == -1) {
 			return 0; // non-existant
 		}
-		
+
 		var subLevelValue=0;
-				
+
 		try {
 		  var lang = FoxtrickPrefs.getString("htLanguage");
 		} catch (e) {
@@ -71,7 +71,7 @@ Foxtrick.Matches = {
 		}
 
 		try {
-			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));			
+			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));
 			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "value");
 			if (!subLevelValue)	return -1;

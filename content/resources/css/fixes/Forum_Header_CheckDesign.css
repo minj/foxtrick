@@ -1,16 +1,16 @@
 @-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
 
-div.mainConf div.cfMessage, div.mainConf div.cfUser 
+div.mainConf div.cfMessage, div.mainConf div.cfUser
 {padding-top:0px !important;}
 
-/*div.mainConf div.cfMessageNoAvatar 
+/*div.mainConf div.cfMessageNoAvatar
 {padding-top:0px !important;}*/
 
-div.mainConf div.cfUser  div.faceCard 
+div.mainConf div.cfUser  div.faceCard
 { margin-bottom:-5px;}
 
-div.mainConf div.cfUser div.cfUserInfo 
+div.mainConf div.cfUser div.cfUserInfo
 { padding-top:5px;}
 
 }

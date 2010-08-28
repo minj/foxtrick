@@ -256,17 +256,17 @@ var FoxtrickPreferencesDialog = {
 		style_tutorial_caption.setAttribute("label", Foxtrickl10n.getString("StyleTutorial.title"));
 		var item = doc.createElement("label");
 		style_tutorial_content.appendChild(item);
-		item.appendChild(doc.createTextNode(Foxtrickl10n.getString("StyleTutorial.content").split(/%s/)[0]));		
+		item.appendChild(doc.createTextNode(Foxtrickl10n.getString("StyleTutorial.content").split(/%s/)[0]));
 		var link = doc.createElement("label");
 		style_tutorial_content.appendChild(item);
 		item.appendChild(link);
 		link.setAttribute("value",  Foxtrick.ResourcePath + "resources/css/user-content-example.css");
 		link.setAttribute("href",  Foxtrick.ResourcePath + "resources/css/user-content-example.css");
-		link.addEventListener('click', this.popup_example_css, false);	
+		link.addEventListener('click', this.popup_example_css, false);
 		link.className = "text-link";
 		style_tutorial_content.appendChild(item);
 		item.appendChild(doc.createTextNode(Foxtrickl10n.getString("StyleTutorial.content").split(/%s/)[1]));
-		
+
 		// head_developer
 		var headdeveloper_caption = doc.getElementById("headdeveloper_caption");
 		var headdeveloper_list = doc.getElementById("headdeveloper_list");
@@ -339,13 +339,13 @@ var FoxtrickPreferencesDialog = {
 				if (FoxtrickPrefs.isPrefSetting(array[i]))
 					FoxtrickPrefs.deleteValue(array[i]);
 			}
-		
+
 		// set version
 		var curVersion = FoxtrickPrefs.getString("curVersion");
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		FoxtrickPrefs.setString("oldVersion", curVersion);
 		*/
-		
+
 		// reset main to default. set right bellow if needed
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
@@ -456,7 +456,7 @@ var FoxtrickPreferencesDialog = {
 		FoxtrickPrefs.setBool("disableTemporary", document.getElementById("disableTemporary").checked);
 
 		// additional options
-		FoxtrickPrefs.setBool("smallcopyicons", document.getElementById("smallcopyicons").checked);		
+		FoxtrickPrefs.setBool("smallcopyicons", document.getElementById("smallcopyicons").checked);
 		FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", document.getElementById("OnPagePrefs").checked);
 
 
@@ -778,7 +778,7 @@ var FoxtrickPreferencesDialog = {
 						load.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
 						load.addEventListener("command", function(ev) {
 							var textbox = document.getElementById(ev.target.id.replace(/_load$/, ""));
-							var file = Foxtrick.selectFile(window); 
+							var file = Foxtrick.selectFile(window);
 							if (file) {
 								textbox.value = "file://" + file;
 							}

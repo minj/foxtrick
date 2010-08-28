@@ -1,18 +1,18 @@
 /**
  * Forum Presentation Fixes
  * @author spambot, ljushaff
- */ 
- 
+ */
+
 FoxtrickForumPresentation = {
-       
+
     MODULE_NAME : "ForumPresentation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'), 
+	PAGES : new Array('forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'),
     DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Added module for additional Forum presentation options",	
+	LATEST_CHANGE:"Added module for additional Forum presentation options",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	
+
     OPTIONS :  new Array(           "HideFlagsInForumHeader",
 									"HideLeagueInForumHeader",
 									"Forum_Spoiler_reveal",

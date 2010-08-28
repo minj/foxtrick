@@ -37,7 +37,7 @@
 				// signatur
 				{ page:"forumSettings", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_quote:false },
 			],
-	
+
 	icons : [
 				{ type:"q", 		class : "ft_q", 	image : "format_q.png", 		string : "q", 		tags : "[q]qqq[/q]", 			replace_text: "qqq",	alt: "f_quote2" },
 				{ type:"line_br", 	class : "ft_br", 	image : "format_br.png", 		string : "br",		tags : "[br]",		 			},
@@ -49,18 +49,18 @@
 				{ type:"pre", 		class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
 				{ type:"table", 	class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', 'TAB','custom'], versions_string:'tableSeparator'},
 			],
-	
+
 	youthicons : [
 				{ type:"youth_player", 	class : "f_player", string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
 				{ type:"youth_team", 	class : "f_team", 	string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
 				{ type:"youth_match", 	class : "f_match", 	string : "youthmatchid", 	tags : "[youthmatchid=xxx]",  	replace_text: "xxx"	},
 				{ type:"youth_series", 	class : "f_series", string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
 			],
-	
+
 	run : function( page, doc ) {
 	try {
 		Foxtrick.dump('YouthIconPAGE: ' + page + '\n');
-		var show_main = false; var show_youth = false; 
+		var show_main = false; var show_youth = false;
 		var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
 		if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||
 			(Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "kit_id")) ||
@@ -80,12 +80,12 @@
 		if (div != null) return;
 		var textarea = doc.getElementsByTagName('textarea')[0]
 		if (textarea == null ) return;
-		
+
 		Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
-		
+
 		if (doc.getElementById('ctl00_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
 		// Foxtrick.dump('YOUTH => ' + page +'\n');
-		
+
 		if (page == 'newsletter' || page == 'mailnewsletter') {
 			if (page == 'newsletter' ) var textbox = 'ctl00_CPMain_txtMessage';
 			if (page == 'mailnewsletter' ) var textbox = 'ctl00_CPMain_tbNewsBody';
@@ -123,7 +123,7 @@
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				anchor.style.height = '300px';
 		}
-		
+
 		if (page == 'forumModWritePost' && enlarge) {
 				//var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
@@ -133,7 +133,7 @@
 		if (page == 'announcements' && enlarge) {
 				var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
 				anchor.style.height = '300px';
-		}		
+		}
 		var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
 		toolbar = toolbar[0];
 		if  (( toolbar == null ) && (!page == 'ads' )) return;
@@ -192,7 +192,7 @@
 				if (tooldivs[i].className=="f_ul") { target=tooldivs[i]; break;}
 			}
 			target=target.nextSibling;
-			
+
 			// add quote tag
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[0].type)) {
 				for (var j = 0; j < this.fields.length; j++) {
@@ -221,15 +221,15 @@
 						newimage.setAttribute( "class", this.icons[i].class);
 						newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[i].image+"') !important;");
 						newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[i].string);
-						
-						if (this.icons[i].versions) { 
+
+						if (this.icons[i].versions) {
 							var span = doc.createElement("span");
 							span.className = "ft-pop-up-span-icon";
 							span.appendChild(newimage);
-							
+
 							var list = doc.createElement("ul");
 							list.className = "ft-pop";
-							for (var j=0; j<this.icons[i].versions.length; ++j) { 
+							for (var j=0; j<this.icons[i].versions.length; ++j) {
 								var item = doc.createElement("li");
 								var link = doc.createElement("span");
 								link.addEventListener("click", this.addTagsClick, false);
@@ -242,13 +242,13 @@
 								item.appendChild(link);
 								list.appendChild(item);
 							}
-							newimage.setAttribute('title_raw', newimage.title);  
-							newimage.title = newimage.title.replace(/%s/, FoxtrickPrefs.getString(this.icons[i].versions_string));  
+							newimage.setAttribute('title_raw', newimage.title);
+							newimage.title = newimage.title.replace(/%s/, FoxtrickPrefs.getString(this.icons[i].versions_string));
 							newimage.setAttribute('id', this.icons[i].class+'_id');
 							newimage.setAttribute('parent_id', this.icons[i].class+'_id');
 							newimage.setAttribute('version', FoxtrickPrefs.getString(this.icons[i].versions_string));
 							newimage.setAttribute('version_string', this.icons[i].versions_string);
-							
+
 							span.appendChild(list);
 							toolbar.insertBefore(span,target);
 						}
@@ -269,7 +269,7 @@
 			try {
 				if (nextElement.id.search('ctl00_') == -1) {
 					nextElement.setAttribute("style","clear:both;");
-				}	
+				}
 				nextElement = nextElement.nextSibling;
 			} catch(e) { nextElement = nextElement.nextSibling; }
 		}
@@ -286,7 +286,7 @@
 			if (!show_youth) youthbar_label.setAttribute( "style" , "display:none;");
 			youthbar.appendChild( youthbar_label);
 
-			for (var i = 0; i < this.youthicons.length; i++) {				
+			for (var i = 0; i < this.youthicons.length; i++) {
 				if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.youthicons[i].type)) {
 						var newimage = doc.createElement( "img" );
 						newimage.src = "/Img/Icons/transparent.gif";
@@ -297,9 +297,9 @@
 						newimage.setAttribute("style","margin:2px;");
 						newimage.title = Foxtrickl10n.getString("ForumYouthIcons."+this.youthicons[i].string);
 						youthbar.appendChild( newimage );
-				}				
+				}
 			}
-			
+
 			var head = toolbar.parentNode;
 			head.insertBefore( youthbar, toolbar.nextSibling );
 		}
@@ -315,11 +315,11 @@
 			Foxtrick.dump(this.MODULE_NAME+' change\n')
 		}*/
 	},
-	
+
 	addTagsClick : function ( ev ) {
 		try {
 		var doc = ev.target.ownerDocument;
-		
+
 		var version = ev.target.getAttribute('version');
 		if ( version ){
 			Foxtrick.dump(ev.target.getAttribute('version_string')+' '+ version+'\n');
@@ -335,16 +335,16 @@
 		for (var i=0; i<FoxtrickForumYouthIcons.fields.length;++i) {
 			var page = FoxtrickForumYouthIcons.fields[i].page;
 			if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
-				FoxtrickForumYouthIcons.clickHandler(doc, FoxtrickForumYouthIcons.fields[i].textarea, ev.target.getAttribute('tags'), ev.target.getAttribute('replace_Text'), FoxtrickForumYouthIcons.fields[i].counterfield, FoxtrickForumYouthIcons.fields[i].length);				
+				FoxtrickForumYouthIcons.clickHandler(doc, FoxtrickForumYouthIcons.fields[i].textarea, ev.target.getAttribute('tags'), ev.target.getAttribute('replace_Text'), FoxtrickForumYouthIcons.fields[i].counterfield, FoxtrickForumYouthIcons.fields[i].length);
 				break;
-			}			
+			}
 		}
 		} catch(e) {Foxtrick.dumpError(e);}
 	},
-	
+
    	clickHandler : function (doc, textareaId, openingTag, replaceText, fieldCounterId, maxLength) {
 	try {
-	
+
 	var ta = doc.getElementById(textareaId);
 	var fieldCounter = doc.getElementById(fieldCounterId);
 	if (ta) {
@@ -355,23 +355,23 @@
 			var newText = (s.selectionLength > 0) ? openingTag.replace(replaceText, s.selectedText) : openingTag;
 			Foxtrick.dump('selectedText: '+s.selectedText+'\n');
 			Foxtrick.dump('newText: '+newText+'\n');
-			
+
 			// time
 			if (replaceText == 'time'){
 				newText = doc.getElementById('time').textContent;
 			}
-			
+
 			// table
 			else if (replaceText == 'ttt'){
 						var seperator = FoxtrickPrefs.getString("tableSeparator");
 						Foxtrick.dump('seperator'+seperator+'\n');
-						
+
 						if (seperator=='TAB') seperator='\\t';
 						if (seperator=='|') seperator='\\|';
 						if (seperator=='+') seperator='\\+';
 						if (seperator=='.') seperator='\\.';
 						if (seperator==' ') seperator=' +';
-						
+
 						// deal with some nested tags
 						var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
 			 			newText = newText.replace(myReg,'[i]$1[/i]$2[i]$3[/i]');
@@ -379,12 +379,12 @@
 			 			newText = newText.replace(myReg,'[u]$1[/u]$2[u]$3[/u]');
 						var myReg = new RegExp('\\[b\\](.+)('+seperator+')(.+)\\[\\/b\\]','g');
 			 			newText = newText.replace(myReg,'[b]$1[/b]$2[b]$3[/b]');
-						
+
 						// make the table
 						var myReg = new RegExp( seperator,'g');
 			 			newText = newText.replace(myReg,'[/td][td]');
 						newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
-						
+
 						// add some colspan for too short rows
 						var rows = newText.split('[/tr]');
 						var max_cells = 0;
@@ -408,7 +408,7 @@
 						}
 						newText += '[/table]';
 						if (s.selectionLength===0) newText='[table][tr][td]cell1[/td][td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
-						
+
 						// some formating
 						newText = newText.replace(/table\]/g,'table]\n')
 										.replace(/\/tr\]/g,'/tr]\n')
@@ -450,11 +450,11 @@
 					if (replaceText == 'qqq' && s.selectionLength === 0){
 						ta.selectionStart = s.selectionStart + 3;
 						ta.selectionEnd = ta.selectionStart + 3;
-					} 
+					}
 					if (replaceText == 'ttt' && s.selectionLength === 0){
 						ta.selectionStart = s.selectionStart + 17;
 						ta.selectionEnd = ta.selectionStart + 5;
-					} 
+					}
 				}
 
 			}

@@ -5,16 +5,16 @@
  */
 
 var FoxtrickSkillTranslation = {
-	
+
     MODULE_NAME : "SkillTranslation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('denominations'), 
+	PAGES : new Array('denominations'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION: "0.5.1.3",	
+	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	LATEST_CHANGE : "Updated to the latest version as of 7th May 2010.",
 
-player_abilities	: new Array(		
+player_abilities	: new Array(
 	"Player abilities",
 	"divine",
 	"utopian",
@@ -37,8 +37,8 @@ player_abilities	: new Array(
 	"wretched",
 	"disastrous",
 	"non-existent"
-),			
-coach_skills	: new Array(		
+),
+coach_skills	: new Array(
 	"Coach skills / Leadership / Form / Youth Squad",
 	"excellent",
 	"solid",
@@ -49,8 +49,8 @@ coach_skills	: new Array(
 	"wretched",
 	"disastrous",
 	"non-existent"
-),			
-formation_experience	: new Array(		
+),
+formation_experience	: new Array(
 	"Formation experience",
 	"outstanding",
 	"formidable",
@@ -60,8 +60,8 @@ formation_experience	: new Array(
 	"inadequate",
 	"weak",
 	"poor"
-),			
-sponsors	: new Array(		
+),
+sponsors	: new Array(
 	"Sponsors",
 	"Sending love poems to you",
 	"dancing in the streets",
@@ -73,8 +73,8 @@ sponsors	: new Array(
 	"irritated",
 	"furious",
 	"murderous"
-),			
-fan_mood	: new Array(		
+),
+fan_mood	: new Array(
 	"Fan mood",
 	"Sending love poems to you",
 	"dancing in the streets",
@@ -88,8 +88,8 @@ fan_mood	: new Array(
 	"angry",
 	"furious",
 	"murderous"
-),			
-fan_match_expectations	: new Array(		
+),
+fan_match_expectations	: new Array(
 	"Fan match expectations",
 	"Let's humiliate them",
 	"Piece of cake!",
@@ -102,8 +102,8 @@ fan_match_expectations	: new Array(
 	"We will lose",
 	"We are outclassed",
 	"Better not show up"
-),			
-fan_season_expectations	: new Array(		
+),
+fan_season_expectations	: new Array(
 	"Fan season expectations",
 	"We are so much better than this division!",
 	"We have to win this season",
@@ -113,8 +113,8 @@ fan_season_expectations	: new Array(
 	"We will have to fight to stay up",
 	"Every day in this division is a bonus",
 	"We are not worthy of this division"
-),			
-agreeability 	: new Array(		
+),
+agreeability 	: new Array(
 	"Agreeability",
 	"beloved team member",
 	"popular guy",
@@ -122,8 +122,8 @@ agreeability 	: new Array(
 	"pleasant guy",
 	"controversial person",
 	"nasty fellow"
-),			
-honesty	: new Array(		
+),
+honesty	: new Array(
 	"Honesty",
 	"saintly",
 	"righteous",
@@ -131,8 +131,8 @@ honesty	: new Array(
 	"honest",
 	"dishonest",
 	"infamous"
-),			
-aggressiveness	: new Array(		
+),
+aggressiveness	: new Array(
 	"Aggressiveness",
 	"unstable",
 	"fiery",
@@ -140,8 +140,8 @@ aggressiveness	: new Array(
 	"balanced",
 	"calm",
 	"tranquil"
-),			
-team_spirit	: new Array(		
+),
+team_spirit	: new Array(
 	"Team spirit",
 	"Paradise on Earth!",
 	"walking on clouds",
@@ -154,8 +154,8 @@ team_spirit	: new Array(
 	"furious",
 	"murderous",
 	"like the Cold War"
-),			
-team_confidence	: new Array(		
+),
+team_confidence	: new Array(
 	"Team confidence",
 	"completely exaggerated",
 	"exaggerated",
@@ -167,8 +167,8 @@ team_confidence	: new Array(
 	"wretched",
 	"disastrous",
 	"non-existent"
-),			
-	
+),
+
     run : function( page, doc ) { Foxtrick.dump('in SkillTranslation\n');
 	try {
 		// no need to translate if language is already English
@@ -176,10 +176,10 @@ team_confidence	: new Array(
 			return;
 		}
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-		
+
 		// is english test
 		if (table.rows[1].cells[0].getElementsByTagName('b')[0].innerHTML==this.player_abilities[0]) return;
-		
+
 			this.translate_category(doc,table,1,this.player_abilities,false);
 			this.translate_category(doc,table,2,this.coach_skills,false);
 			this.translate_category(doc,table,3,this.formation_experience,false);
@@ -196,7 +196,7 @@ team_confidence	: new Array(
 		doc.location.hash=doc.location.hash;
 	} catch(e) {Foxtrick.dump('SkillTranslation: '+e+'\n');}
 	},
-	
+
 	translate_category: function(doc,table,index,denominations,two_lines) {
 		var br='';
 		if (two_lines) br='<br>';

@@ -6,7 +6,7 @@
 
 body
 {
-	font: normal 10px verdana, helvetica, arial, sans-serif !important; 
+	font: normal 10px verdana, helvetica, arial, sans-serif !important;
 	line-height: 1.3em !important;
 	background-image: none !important;
 	background-color: #ccc !important;
@@ -28,7 +28,7 @@ body
 	width: 765px !important;
 }
 #page
-{       
+{
 	float: left !important;
 	width: 765px !important;
 	background-color: #fff !important;
@@ -80,7 +80,7 @@ height: 2px !important;
 #menu
 {
 
-  
+
 
 	width: 100% !important;
 	height: 16px !important;
@@ -124,7 +124,7 @@ background: none !important;
 {
 	height: 35px !important;
 	background: url(http://www.hattrick.org/App_themes/Simple/logo_green.png) top left no-repeat !important;
-	
+
 	width: 150px !important;
 	display: block !important;
 	position: relative !important;
@@ -191,7 +191,7 @@ h1
 h1 span
 {
 	color: #000 !important;
-	
+
 	font-size: 14px !important;
 }
 
@@ -212,15 +212,15 @@ div.byline
 
 div.byline a
 {
-font: normal 10px verdana, helvetica, arial, sans-serif !important; 
-text-decoration: underline !important; 
+font: normal 10px verdana, helvetica, arial, sans-serif !important;
+text-decoration: underline !important;
 color: #267F30 !important;
 }
 
 div.byline a:hover
 {
- 
-color: gray !important; 
+
+color: gray !important;
 text-decoration: none !important;
 }
 
@@ -229,7 +229,7 @@ h2
 	border-bottom: solid 2px #fc0 !important;
 	background-color: #fff !important;
 	color: #377f31 !important;
-	font: normal 11px verdana, helvetica, arial, sans-serif !important; 
+	font: normal 11px verdana, helvetica, arial, sans-serif !important;
 	font-weight: bold !important;
 	padding: 1px !important;
 }
@@ -241,7 +241,7 @@ h2.info
 	color: #FFF !important;
 	width: auto !important;
 	border: 0 !important;
-		font: normal 10px verdana, helvetica, arial, sans-serif !important; 
+		font: normal 10px verdana, helvetica, arial, sans-serif !important;
 }
 
 
@@ -254,14 +254,14 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 
   -moz-border-radius-topleft: 3px !important;
 	-moz-border-radius-topright: 3px !important;
-	
+
 	margin-top: 10px !important;
 	margin-bottom: 0px !important;
 	margin-right:-10px !important;
 
 	color: #FFF !important;
 	padding-left: 3px !important;
-	
+
 	height: 15px !important;
 	width: 118px !important;
 	border: 0 !important;
@@ -272,11 +272,11 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 {
 	margin-left: 0px !important;
 	margin-top:10px !important;
-	font: bold 10px verdana, helvetica, arial, sans-serif !important; 
+	font: bold 10px verdana, helvetica, arial, sans-serif !important;
 }
 
 /* ------------------
-		subMenu 
+		subMenu
    ------------------  */
 .subMenu
 {
@@ -308,14 +308,14 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 .subMenuBox ul
 {
 
-	
+
 	  width:118px !important;
     margin-bottom: 10px !important;
     padding: 3px 0 5px 0 !important;
-    
+
     border: solid 1px #666 !important;
     position:relative !important;
-    
+
 }
 .subMenuBox h1
 {
@@ -341,7 +341,7 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 }
 
 /* ------------------
-		main 
+		main
    ------------------  */
 
 .main .boxBody
@@ -375,7 +375,7 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 	width: 440px !important;
 	margin: 0 10px 0 0 !important;
 
-	
+
 	float: left !important;
 }
 
@@ -468,7 +468,7 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 }
 
 /* ------------------
-		sideBar 
+		sideBar
    ------------------  */
 #sidebar
 {
@@ -478,12 +478,12 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 
 #sidebar select
 {
-	width: 80px !important; 
+	width: 80px !important;
 }
 
 #sidebar select.wide
 {
-	width: 100% !important; 
+	width: 100% !important;
 }
 
 #sidebar ul li
@@ -504,7 +504,7 @@ background: #005826 url(http://u20.hattrick-cz.com/CHPP/mainheader.gif) no-repea
 }
 
 /* ------------------
-		TABLE 
+		TABLE
    ------------------  */
 table
 {
@@ -662,7 +662,7 @@ table.form td, th
 }
 
 /* ------------------
-		MISC 
+		MISC
    ------------------  */
 .left
 {
@@ -713,7 +713,7 @@ h3.feed
 	font-weight: bold !important;
 	padding: 1px !important;
 	font-size: 10px !important;
-	
+
 }
 div.feedItem
 {
@@ -895,9 +895,9 @@ p.strong, span.strong, .sidebarBox a.supporter, table td.ch /* cell heading */, 
 	font-size:0px !important;
 	margin: -35px 0 4px !important;
 	padding-bottom: 10px !important;
-	
+
 	display: block !important;
-	
+
 }
 #sidebar table
 {
@@ -913,7 +913,7 @@ p.strong, span.strong, .sidebarBox a.supporter, table td.ch /* cell heading */, 
 }
 
 /* ------------------
-      Highlights 
+      Highlights
    --------------- */
 .won, .positive
 {
@@ -1092,12 +1092,12 @@ div.forumprogress
     position: absolute !important;
     margin: 0px !important;
     width: 203px !important;
-    
+
 }
 
 #cfPoll
 {
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
 }
 
 div.cfPollStanding
@@ -1428,7 +1428,7 @@ table.folderList td.mark
 .cfFooter .float_right a
 {
 	margin-left: 5px !important;
-	
+
 }
 
 .cfDeleted
@@ -1467,7 +1467,7 @@ table.folderList td.mark
 	border-top: 1px solid #cccccc !important;
 	padding: 5px 0 !important;
 	color: #999 !important;
-	height: 1em !important;    
+	height: 1em !important;
 }
 
 .cfWrapper div.signature-expand
@@ -1502,11 +1502,11 @@ table.folderList td.mark
 .ad_bottom
 {       display: block !important;
         margin-top: 10px !important;
-        
+
 }
 
 .ad_top
-{     
+{
         position: fixed !important;
         left: auto !important;
         z-index: -2 !important;
@@ -2073,7 +2073,7 @@ div.ForumPager
 
 
 /* ------------------
-   Paging 
+   Paging
 ------------------ */
 .GridPager_Default .PagerLeft_Default a, .GridPager_Default .PagerLeft_Default span {
 border:solid 1px #ddd !important;
@@ -2083,11 +2083,11 @@ background-color:#edf1ed !important;
 padding:2px !important;
 line-height: 40px !important;
 }
-.GridPager_Default  .PagerLeft_Default input 
+.GridPager_Default  .PagerLeft_Default input
  {
- 	margin: 2px 2px 2px 2px !important; 	
+ 	margin: 2px 2px 2px 2px !important;
 }
- 	
+
 .GridPager_Default .PagerLeft_Default span{font-weight: bold !important;}
 
 .GridPager_Default{
@@ -2098,7 +2098,7 @@ input.rgPagePrev{
 width: 10px !important;
 border: none !important;
 background: url('Grid/PagingPrev.png') 60% 50% no-repeat !important;
-} 
+}
 
 input.rgPageNext{
 width: 10px !important;

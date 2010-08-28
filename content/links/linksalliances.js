@@ -6,20 +6,20 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksAlliances = {
-	
+
     MODULE_NAME : "LinksAlliances",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('federation'), 
+	PAGES : new Array('federation'),
 	DEFAULT_ENABLED : true,
-	OPTIONS : {}, 
+	OPTIONS : {},
 
     init : function() {
 			Foxtrick.initOptionsLinks(this,"federationlink");
     },
 
-    run : function( page, doc ) { 
+    run : function( page, doc ) {
 		//addExternalLinksToArenaPage
-		
+
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
@@ -28,8 +28,8 @@ var FoxtrickLinksAlliances = {
 				var allianceLink = thisdiv.getElementsByTagName("a")[2];
 				var startPos = allianceLink.href.search("=")+1;
 				var allianceId = allianceLink.href.substr(startPos);
-				
- 				var links = Foxtrick.LinkCollection.getLinks("federationlink", { "federationid" : allianceId}, doc, this );  
+
+ 				var links = Foxtrick.LinkCollection.getLinks("federationlink", { "federationid" : allianceId}, doc, this );
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(
@@ -37,18 +37,18 @@ var FoxtrickLinksAlliances = {
 					var ownBoxId = "foxtrick_links_box";
 					var ownBoxBodyId = "foxtrick_links_content";
 					ownBoxBody.setAttribute( "id", ownBoxBodyId );
-					
+
 					for (var k = 0; k < links.length; k++) {
 						links[k].link.className ="inner";
 						ownBoxBody.appendChild(links[k].link);
 					}
-						
-					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");				
+
+					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 					}
-				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "AllianceID" : allianceId} );	
+				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "AllianceID" : allianceId} );
 				break;
 			}
 		}
     },
-	
+
  };
