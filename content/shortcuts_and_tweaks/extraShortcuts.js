@@ -52,7 +52,7 @@ var FoxtrickExtraShortcuts = {
 				&& Foxtrick.isSupporter(doc)) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
-					link.href = "../../World/Stats/";
+					link.href = "/World/Stats/";
 
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSuppStats");
@@ -76,7 +76,7 @@ var FoxtrickExtraShortcuts = {
                 if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
-					link.href = "../../Club/Transfers/";
+					link.href = "/Club/Transfers/";
 
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftMyTransfers");
@@ -100,7 +100,7 @@ var FoxtrickExtraShortcuts = {
                 if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
-					link.href = "../../MyHattrick/Preferences/";
+					link.href = "/MyHattrick/Preferences/";
 
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
@@ -124,7 +124,7 @@ var FoxtrickExtraShortcuts = {
 				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
-					link.href = "../../MyHattrick/?configure_foxtrick=true&category=main/";
+					link.href = "/MyHattrick/?configure_foxtrick=true&category=main/";
 
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
