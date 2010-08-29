@@ -21,7 +21,7 @@ div#foxtrick_prefs_head div.ft_pref_head:hover {
 	margin: 20px 0;
 }
 
-#foxtrick_preftabs {
+#foxtrick_preftabs, #sidebar #idFoxtrickPrefs, .subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs {
 	border: 1px solid #ccc;
 	background-color: #eef;
 }
@@ -31,19 +31,11 @@ div#foxtrick_prefs_head div.ft_pref_head:hover {
 	margin-bottom: 10px;
 }
 
-.ft_pref_highlight {
+.ft_pref_highlight, .ft_pref_highlight:hover {
 	background-color: #77f !important;
 }
 
-.ft_pref_highlight:hover {
-	background-color: #77f !important;
-}
-
-#foxtrick_prefsave {
-	margin-left: 10px;
-}
-
-#foxtrick_prefcancel {
+#foxtrick_prefsave, #foxtrick_prefcancel {
 	margin-left: 10px;
 }
 
@@ -87,7 +79,7 @@ div.ft_pref_group_caption {
 #foxtrick_preftabs > div {
 	margin-left: 10px;
 	padding: 1px 20px 31px;
-	}
+}
 
 div.ft_icon foxtrickInfo {
 	width: 16px;
@@ -96,8 +88,6 @@ div.ft_icon foxtrickInfo {
 }
 
 div.ft_icon foxtrickInfo:hover {
-	width: 16px;
-	height: 16px;
 	background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') 50% no-repeat;
 }
 
@@ -108,10 +98,7 @@ div.ft_icon foxtrickInfo:hover {
 	border-bottom: 2px solid #fc0 !important;
 }
 
-.ft_prefs_check_div + .ft_pref_checkbox_group {
-	margin-top: 5px;
-}
-.ft_prefs_check_div + .ft_pref_radio_group {
+.ft_prefs_check_div + .ft_pref_checkbox_group, .ft_prefs_check_div + .ft_pref_radio_group {
 	margin-top: 5px;
 }
 .ft_prefs_check_div {
@@ -222,25 +209,21 @@ div.ft_icon foxtrickInfo:hover {
 	overflow: hidden;
 }
 
+#idFoxtrickPrefs {
+	position: relative;
+	z-index: 99;
+	padding: 5px;
+}
+
 #sidebar #idFoxtrickPrefs {
 	float: right;
-	position: relative;
-	border: 2px solid rgb(47, 49, 255);
-	background-color: rgb(239, 239, 255);
-	z-index: 99;
-	padding: 5px;
 }
 
-.subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs{
+.subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs {
 	float: left;
-	position: relative;
-	border: 2px solid rgb(47, 49, 255);
-	background-color: rgb(239, 239, 255);
-	z-index: 99;
-	padding: 5px;
 }
 
-#sidebar .ft_onpage_prefs_simple  #idFoxtrickPrefs {
+#sidebar .ft_onpage_prefs_simple #idFoxtrickPrefs {
 	width: 617px;
 }
 
@@ -258,12 +241,11 @@ div.ft_icon foxtrickInfo:hover {
 	margin-left: -5px;
 }
 
-.ft_onpage_prefs_std  div.ft_sidebarBoxUnfolded+div.boxBody+div.boxFooter {
-	display:none;
+.ft_onpage_prefs_std div.ft_sidebarBoxUnfolded + div.boxBody + div.boxFooter {
+	display: none;
 }
 
-
 .onpageprefs_extraprefs {
-	margin-top:20px;
+	margin-top: 20px;
 	margin-bottom:20px;
 }
