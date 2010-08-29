@@ -1204,15 +1204,14 @@ var FoxtrickPrefsDialogHTML = {
 			input_option_text.setAttribute( "value", option_text);
 			input_option_text.setAttribute( "class", "ft_pref_input_option_text");
 			td.appendChild( input_option_text);
-
-			if (!on_page) {
-			  if (!has_load_button) {
-				// add reset button
+			
+			if (!has_load_button) {
+				// add example button
 				var td = doc.createElement( "td" );
 				tr.appendChild( td );
 				var option_text_reset_button = doc.createElement( "input" );
 				option_text_reset_button.setAttribute('type', 'button');
-				option_text_reset_button.setAttribute('value', Foxtrickl10n.getString("foxtrick.prefs.buttonReset"));
+				option_text_reset_button.setAttribute('value', Foxtrickl10n.getString("foxtrick.prefs.buttonExample"));
 				option_text_reset_button.setAttribute( "sender_id", name);
 				option_text_reset_button.setAttribute( "default_text",  DefaultOptionText);
 				Foxtrick.addEventListenerChangeSave(option_text_reset_button, "click", function( ev ) {
@@ -1233,12 +1232,8 @@ var FoxtrickPrefsDialogHTML = {
 				button.setAttribute('id',"name+'_selectfile");
 				button.addEventListener('click',FoxtrickPrefsDialogHTML.selectfile,false);
 				td.appendChild(button);
-			  }
 			}
-
-
 		}
-
 		return div;
 	},
 
