@@ -1206,6 +1206,18 @@ stats["htbox_training"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/htbox_train.png"
 };
 
+//training speed calculator (updated)
+stats["updated_training"] =  {
+        "url" : "http://hattrick.pdg.pl/trening/new/en/",
+		
+		"traininglink" : { "path"       : "index.php",
+                         "filters"    : [],
+                         "params"     : []
+						},
+        "title" : "Training speed calculator (updated)",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/training.png"
+};
+
 //Training Team Evaluation
 stats["Training_Team_Evaluation"] =  {
         "url" : "http://www.adrianomoutinho.com/tte/",
