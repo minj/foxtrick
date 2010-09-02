@@ -221,6 +221,13 @@ var FoxtrickMyHT = {
 		Foxtrick.dump(FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')+'\n');
 
 		var country = FoxtrickPrefs.getString("htCountry");
+		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadio.enabled')===null) {
+			if (country==='Belgium' || country==='Netherlands') {
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',true)
+				Foxtrick.dump('HtRadio enabled\n');
+			}
+			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',false)
+		}
 		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')===null) {
 			if (country==='Germany') {
 				FoxtrickPrefs.setBool('module.ExtraShortcuts.No9.enabled',true)
@@ -228,13 +235,12 @@ var FoxtrickMyHT = {
 			}
 			else FoxtrickPrefs.setBool('module.ExtraShortcuts.No9.enabled',false)
 		}
-		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadio.enabled')===null) {
-			if (country==='Belgium' || country==='Netherlands') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',true)
-				Foxtrick.dump('HtRadio enabled\n');
-
+		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.Latehome.enabled')===null) {
+			if (country==='Germany' || country==='Austria') {
+				FoxtrickPrefs.setBool('module.ExtraShortcuts.Latehome.enabled',true)
+				Foxtrick.dump('Latehome enabled\n');
 			}
-			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',false)
+			else FoxtrickPrefs.setBool('module.ExtraShortcuts.Latehome.enabled',false)
 		}
 	},
 

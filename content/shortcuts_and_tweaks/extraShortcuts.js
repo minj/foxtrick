@@ -13,9 +13,9 @@ var FoxtrickExtraShortcuts = {
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Optional extra space for shortcuts. Links to national Hattrick radios added",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
-	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadio", "No9" ),//,"DTRadioWinamp"),
-	RADIOS: new Array("HtRadio", "No9"),
-	RADIO_URLS: new Array('http://stream.ht-radio.nl/foxtrick/status.php', 'http://no9-online.de/_no9/no9status.php'),
+	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadio", "No9", "Latehome" ),//,"DTRadioWinamp"),
+	RADIOS: new Array("HtRadio", "No9", "Latehome"),
+	RADIO_URLS: new Array('http://stream.ht-radio.nl/foxtrick/status.php', 'http://no9-online.de/_no9/no9status.php','http://www.latehome.de/foxtrick/status.php'),
 
 	CSS:"",
 
