@@ -19,25 +19,42 @@ var FoxtrickFormatPostingText = {
 	MODULE_NAME : "FormatPostingText",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
-    NEW_AFTER_VERSION: "0.5.1.2",
+	NEW_AFTER_VERSION: "0.5.1.2",
 	LATEST_CHANGE:"Fixes display error",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	DEFAULT_ENABLED : true,
 
 	run : function( page, doc ) {
 		try {
-			//reformat
-			var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
-			textarea.value = FoxtrickFormatPostingText.reformat(textarea.value);
-
+			//format view
+			if (page=='messageWritePost' || page=='guestbook') {
+				try{
+					var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+					var rep = new Array("<pre>$1</pre>", "");
+					var messages = Foxtrick.getElementsByClass("feedItem", doc );
+					for (var i = 0; i < messages.length; i++){
+						var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
+						// Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');
+						for (var j = 0; j <= count_pre; j++) {
+							for ( var k = 0; k < org.length; k++) {
+								messages[i].innerHTML = messages[i].innerHTML.replace(org[k],rep[k]);
+							}
+						}
+					}
+				} catch(e_format) {Foxtrick.dump('FormatPostingText: FORMAT TEXT ' + e_format + '\n');}
+			}
+			else { // reformat edit
+				var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
+				if (textarea) textarea.value = FoxtrickFormatPostingText.reformat(textarea.value);
+			}
+			
+			// add to all targets. send button unclear (eg MyHattrick/Inbox/Default.aspx?actionType=readMail) . doesn't harm to add it to all
 			var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
-		    for (var i = 0; i < targets.length; ++i) {
-		    	if (targets[i].type == "submit") {
-		    		// found the submit button, add the listener and we're done
-		    		targets[i].addEventListener("click", this.submitListener, false);
-		    		return;
-		    	}
-		    }
+			for (var i = 0; i < targets.length; ++i) {
+				if (targets[i].type == "submit") {
+					targets[i].addEventListener("click", this.submitListener, false);
+				}
+			}
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -47,19 +64,18 @@ var FoxtrickFormatPostingText = {
 	reformat : function(string) {
 	try{
 			var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-            var rep = new Array("[pre]$1[/pre]", "");
-            var count_pre = Foxtrick.substr_count(string, '[pre');
-            for (var j = 0; j <= count_pre; j++) {
-                for ( var k = 0; k < org.length; k++) {
-                        string = string.replace(org[k],rep[k]);
-                }
-            }
+			var rep = new Array("[pre]$1[/pre]", "");
+			var count_pre = Foxtrick.substr_count(string, '[pre');
+			for (var j = 0; j <= count_pre; j++) {
+				for ( var k = 0; k < org.length; k++) {
+						string = string.replace(org[k],rep[k]);
+				}
+			}
 			return string;
 		} catch(e){Foxtrick.dumpError(e);}
 	},
 
 	format : function(string) {
-	try{
 			string = string
 				.replace(/·/gi, "")
 				.replace(/(\<)(\S)/gi, "<·$2");
@@ -75,14 +91,36 @@ var FoxtrickFormatPostingText = {
 					}
 				}
 			return r_string;
-		} catch(e){Foxtrick.dumpError(e);}
 	},
 
 	submitListener : function(ev) {
+	try{
 		var doc = ev.target.ownerDocument;
 		var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
+		Foxtrick.dump(textarea.value+'\n')
 		textarea.value = FoxtrickFormatPostingText.format(textarea.value);
+	} catch(e){Foxtrick.dumpError(e);}
 	}
+};
+
+
+var FoxtrickEmbedMedia = {
+
+	MODULE_NAME : "EmbedMedia",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
+	NEW_AFTER_VERSION: "0.5.2.1",
+	LATEST_CHANGE:"Embeds pictures and some video links",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
+	DEFAULT_ENABLED : true,
+
+	run : function( page, doc ) {
+		try {
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
+	},
 };
 
 
@@ -125,7 +163,7 @@ var FoxtrickCopyPosting = {
 
 var FoxtrickForumAlterHeaderLine = {
 
-    MODULE_NAME : "ForumAlterHeaderLine",
+	MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : false,
@@ -157,7 +195,7 @@ var FoxtrickForumAlterHeaderLine = {
 
 var FoxtrickForumRedirManagerToTeam = {
 
-    MODULE_NAME : "ForumRedirManagerToTeam",
+	MODULE_NAME : "ForumRedirManagerToTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : false
@@ -173,7 +211,7 @@ var FoxtrickForumRedirManagerToTeam = {
 
 var FoxtrickMoveLinks = {
 
-    MODULE_NAME : "MoveLinks",
+	MODULE_NAME : "MoveLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : false
@@ -189,10 +227,10 @@ var FoxtrickMoveLinks = {
 
 var FoxtrickHideManagerAvatarUserInfo = {
 
-    MODULE_NAME : "HideManagerAvatarUserInfo",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	MODULE_NAME : "HideManagerAvatarUserInfo",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-    DEFAULT_ENABLED : false
+	DEFAULT_ENABLED : false
 };
 
 
@@ -206,7 +244,7 @@ var FoxtrickHideManagerAvatarUserInfo = {
 
 var FoxtrickAddDefaultFaceCard = {
 
-    MODULE_NAME : "AddDefaultFaceCard",
+	MODULE_NAME : "AddDefaultFaceCard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	DEFAULT_ENABLED : true
