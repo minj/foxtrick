@@ -101,7 +101,7 @@ var FoxtrickContextMenuCopy = {
 				ret = "[link=" + relLink + "]";
 			}
 			// ignore some boring links
-			if (link.search(/\/Help\/Rules\/AppDenominations\.aspx/i) != -1) ret = "";
+			if (link.search(/\/Help\/Rules\/AppDenominations\.aspx/i) != -1) ret = null;
 		}
 		return ret;
 	},
