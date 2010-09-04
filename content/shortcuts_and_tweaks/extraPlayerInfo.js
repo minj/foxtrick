@@ -25,7 +25,7 @@ FoxtrickExtraPlayerInfo = {
 				var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
 				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 
-				var basics = allPlayers[i].getElementsByTagName("p")[0];
+				var basics = allPlayers[i].getElementsByTagName("p")[1];
 
 				if (Foxtrick.isModuleFeatureEnabled(this, "CoachInfo")
 					&& player.trainerData !== undefined) {
@@ -40,10 +40,10 @@ FoxtrickExtraPlayerInfo = {
 					else {
 						trainerTypeStr = Foxtrickl10n.getString('foxtrick.balancedTrainer');
 					}
-					var trainerSkillLink = '<a href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.trainerData.skill+'#skill">'+trainerSkillStr+'</a>';
-					var title = allPlayers[i].getElementsByTagName("b")[0];
-					var trainerStr = trainerTypeStr.replace("%s", trainerSkillLink);
-					title.innerHTML += "<br/>" + trainerStr;
+					var trainerSkillLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.trainerData.skill+'#skill">'+trainerSkillStr+'</a>';
+					var trainerStr = trainerTypeStr.replace("%s", trainerSkillLink) + "<br>";
+					// insert after the second break
+					basics.innerHTML = basics.innerHTML.replace(/^(.+?<br>.+?<br>)(.+)$/, "$1" + trainerStr + "$2");
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "Flag")
 					&& player.countryId !== undefined) {
