@@ -10,8 +10,8 @@ var FoxtrickLeagueNewsFilter = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'),
 	DEFAULT_ENABLED : true,
-	NEW_AFTER_VERSION : "0.5.1.2",
-	LATEST_CHANGE : "Fixed the issue that some teams are not highlighted while some team names are wrong.",
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Fixed highlighting bots.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes','PAs'),
 	OPTIONS : new Array('highlight_set_lineup','highlight_wins','gray_bots'),
@@ -139,7 +139,6 @@ var FoxtrickLeagueNewsFilter = {
 							link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<strong>$1</strong>');
 						}
 					}
-					link.innerHTML = link.innerHTML.replace(/ /g, "&nbsp;").replace(/&nbsp;-&nbsp;/g, " - ");
 				}
 			}
 		}
