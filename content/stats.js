@@ -2741,6 +2741,17 @@ stats["htworld"] =  {
 
 };
 
+stats["natstats"] = {
+	url : "http://www.doof92.co.uk/HT/",
+	clubtransferslink : {
+		path : "forsale.asp",
+		filters : [],
+		params : []
+	},
+	title : "NT/U20 Players for Sale",
+	shorttitle : "NatStats"
+};
+
 };
 
 //------------------------------------------------------------------
