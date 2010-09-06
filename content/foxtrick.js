@@ -120,10 +120,19 @@ var FoxtrickMain = {
 			statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 			Foxtrick.statusbarDeactivate=statusbarDeactivate;
 
-			FoxtrickContextMenuCopy.MENU_ID = document.getElementById("foxtrick-popup-copy-id");
-			FoxtrickContextMenuCopy.MENU_LINK = document.getElementById("foxtrick-popup-copy-link");
-			FoxtrickContextMenuCopy.MENU_HT_ML = document.getElementById("foxtrick-popup-copy-ht-ml");
-			FoxtrickContextMenuCopy.MENU_TABLE = document.getElementById("foxtrick-popup-copy-table");
+			// calls module.onLoad() after the browser window is loaded
+			for (var i in Foxtrick.modules) {
+				var module = Foxtrick.modules[i];
+				if (typeof(module.onLoad) === "function") {
+					try {
+						module.onLoad(document);
+					}
+					catch (e) {
+						Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
+						Foxtrick.dumpError(e);
+					}
+				}
+			}
 
 			// tools menu
 			var toolsMenu = document.getElementById("foxtrick-menu-preferences");
@@ -164,11 +173,19 @@ var FoxtrickMain = {
 			if (Foxtrick.isHt(doc)) {
 				FoxtrickMain.run(doc, true); // recheck css
 			}
-			else {
-				FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
-				FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
-				FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
-				FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
+
+			// calls module.onTabChange() after the tab focus is changed
+			for (var i in Foxtrick.modules) {
+				var module = Foxtrick.modules[i];
+				if (typeof(module.onTabChange) === "function") {
+					try {
+						module.onTabChange(doc);
+					}
+					catch (e) {
+						Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
+						Foxtrick.dumpError(e);
+					}
+				}
 			}
 		}
 		catch (e) {

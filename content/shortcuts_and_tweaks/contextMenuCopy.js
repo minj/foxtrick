@@ -44,6 +44,22 @@ var FoxtrickContextMenuCopy = {
 		{ type : "National Team", re : /\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i }
 	],
 
+	onLoad : function(document) {
+		this.MENU_ID = document.getElementById("foxtrick-popup-copy-id");
+		this.MENU_LINK = document.getElementById("foxtrick-popup-copy-link");
+		this.MENU_HT_ML = document.getElementById("foxtrick-popup-copy-ht-ml");
+		this.MENU_TABLE = document.getElementById("foxtrick-popup-copy-table");
+	},
+
+	onTabChange : function(doc) {
+		if (!Foxtrick.isHt(doc)) {
+			this.MENU_ID.setAttribute("hidden", true);
+			this.MENU_LINK.setAttribute("hidden", true);
+			this.MENU_HT_ML.setAttribute("hidden", true);
+			this.MENU_TABLE.setAttribute("hidden", true);
+		}
+	},
+
 	run : function(page, doc) {
 		doc.addEventListener("contextmenu", this.onContext, false);
 		this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));
