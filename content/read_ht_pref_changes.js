@@ -33,7 +33,7 @@ var FoxtrickReadHtPrefs = {
 			for (var i = 0; i < 6; ++i) {
 				var atitle = languages[oldval].getElementsByTagName(this.menu_strings[i])[0];
 				if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
-					// language is unchanged
+					// language is changed
 					unchanged = false;
 					break;
 				}
@@ -67,7 +67,7 @@ var FoxtrickReadHtPrefs = {
 					// change language
 					Foxtrickl10n.get_strings_bundle(langval);
 					var language = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[langval], "language", "desc");
-					var msg = Foxtrickl10n.getString("HTLanguageChanged") + " " + language;
+					var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
 					Foxtrick.Note.add(doc, null, "ft-language-changed", msg, null, true, true);
 				}
 			}
