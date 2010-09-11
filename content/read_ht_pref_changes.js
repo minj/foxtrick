@@ -141,6 +141,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 					CurrencyName=CurrencyName.replace(/000\ /gi,'');
 					CurrencyRate=CurrencyRate/1000;
 				}
+				var CurrencyCode = Foxtrick.util.currency.getCodeByShortName(CurrencyName);
 
 				var scripts = doc.getElementsByTagName('script');
 				for (var i=0;i<scripts.length;++i) {
@@ -167,6 +168,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 				Foxtrick.dump('dateformat: ' +dateformat+'\n');
 
 				FoxtrickPrefs.setString("htCountry", CountryName);
+				FoxtrickPrefs.setString("htCurrency", CurrencyCode);
 				FoxtrickPrefs.setString("oldCurrencySymbol", CurrencyName);
 				FoxtrickPrefs.setString("currencyRate",CurrencyRate);
 				FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(CountryName)));

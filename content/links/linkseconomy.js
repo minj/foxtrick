@@ -33,11 +33,7 @@ var FoxtrickLinksEconomy = {
         		break;
 			}
 		}
-		var CurrCode=FoxtrickPrefs.getString("currencyCode")
-		/*if (CurrCode!="EUR" && CurrCode!="CHF"){
-			Cash*=FoxtrickPrefs.getString("currencyRate");
-			CurrCode="EUR";
-		}*/
+		var CurrCode=FoxtrickPrefs.getString("htCurrency");
 		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);
 		var ownBoxBody=null
 		if (links.length > 0) {

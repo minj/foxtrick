@@ -20,6 +20,9 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum_stage.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/note.js" />
 
+<!-- utilities -->
+<script type="application/x-javascript" src="chrome://foxtrick/content/util/currency.js" />
+
 <!-- page utilities -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages/pages.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages/all.js" />

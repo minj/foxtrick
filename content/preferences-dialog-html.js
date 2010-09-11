@@ -330,14 +330,13 @@ var FoxtrickPrefsDialogHTML = {
 
 
 			//Currency Converter
-
 			FoxtrickPrefs.setString("htCurrencyTo", doc.getElementById("htCurrencyTo").value);
-			FoxtrickPrefs.setString("currencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"sname",Foxtrick.XMLData.htCurrencyXml));
-			FoxtrickPrefs.setString("currencyRateTo", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"rate",Foxtrick.XMLData.htCurrencyXml));
+			FoxtrickPrefs.setString("currencySymbol", Foxtrick.util.currency.getShortNameByCode(doc.getElementById("htCurrencyTo").value));
+			FoxtrickPrefs.setString("currencyRateTo", Foxtrick.util.currency.getRateByCode(doc.getElementById("htCurrencyTo").value));
 
-			FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"sname",Foxtrick.XMLData.htCurrencyXml));
-			FoxtrickPrefs.setString("currencyRate", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",Foxtrick.XMLData.htCurrencyXml));
-			FoxtrickPrefs.setString("currencyCode", doc.getElementById("htCurrency").value);
+			FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
+			FoxtrickPrefs.setString("oldCurrencySymbol", Foxtrick.util.currency.getShortNameByCode(doc.getElementById("htCurrency").value));
+			FoxtrickPrefs.setString("currencyRate", Foxtrick.util.currency.getRateByCode(doc.getElementById("htCurrency").value));
 
 			//Statusbar
 			FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
@@ -1533,52 +1532,6 @@ var FoxtrickPrefsDialogHTML = {
 		catch (e) {
 			Foxtrick.dump('Offset search for '+ itemToSearch + ' ' + e + '\n');
 			return 0;
-		}
-	},
-
-	getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
-		try {
-			var returnedItemToSearch = "none";
-
-			try {
-				var values = xmlDoc.getElementsByTagName("currency");
-			}
-			catch (e) {
-				var tmp = document.createElement('tmp');
-				tmp.innerHTML = xmlDoc;
-				var values = tmp.getElementsByTagName("currency");
-			}
-
-			var langs = [];
-
-			for (var i=0; i<values.length; i++) {
-				var eurorate = values[i].attributes.getNamedItem("eurorate").textContent;
-				var code = values[i].attributes.getNamedItem("code").textContent;
-				var sname = values[i].attributes.getNamedItem("shortname").textContent;
-				langs.push([eurorate,code,sname]);
-			}
-
-			function sortfunction(a,b) {
-				return a[0].localeCompare(b[0]);
-			}
-
-			langs.sort(sortfunction);
-
-			for (var i=0; i<langs.length; i++) {
-				var eurorate = langs[i][0];
-				var code = langs[i][1];
-				var sname = langs[i][2];
-
-				if (options == "sname" && itemToSearch==code)
-					returnedItemToSearch = sname;
-				if (options == "rate" && itemToSearch==code)
-					returnedItemToSearch = eurorate;
-			}
-
-			return returnedItemToSearch;
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
 		}
 	}
 }

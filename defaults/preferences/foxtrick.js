@@ -4,7 +4,6 @@ pref("extensions.foxtrick.prefs.HTURL", "^http:\/\/(www\d\d|www|wwwxx|stage)\.ha
 pref("extensions.foxtrick.prefs.htLanguage", "en");
 pref("extensions.foxtrick.prefs.htCurrency", "EUR");
 pref("extensions.foxtrick.prefs.currencyRateTo", "1.0");
-pref("extensions.foxtrick.prefs.currencyCode", "EUR");
 pref("extensions.foxtrick.prefs.currencyRate", "1.0");
 pref("extensions.foxtrick.prefs.currencySymbol", "€");
 pref("extensions.foxtrick.prefs.oldCurrencySymbol", "€");

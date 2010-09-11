@@ -127,8 +127,7 @@ var FoxtrickPreferencesDialog = {
 		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
 		document.getElementById("htCurrency").selectedIndex =
 			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyPopup", "htCurrency-",
-				htCurrencyXml, "currency", "name", "code",
-				FoxtrickPreferencesDialog.getConverterCurrValue(FoxtrickPrefs.getString("oldCurrencySymbol"), "code",  Foxtrick.XMLData.htCurrencyXml));
+				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
 
 		// date format
 		var dateformat = doc.getElementById("dateformat");
@@ -429,12 +428,12 @@ var FoxtrickPreferencesDialog = {
 		//Currency Converter
 
 		FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
-		FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value, "sname", Foxtrick.XMLData.htCurrencyXml));
-		FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value, "rate", Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencySymbol", Foxtrick.util.currency.getShortNameByCode(document.getElementById("htCurrencyTo").value));
+		FoxtrickPrefs.setString("currencyRateTo", Foxtrick.util.currency.getRateByCode(document.getElementById("htCurrencyTo").value));
 
-		FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "sname", Foxtrick.XMLData.htCurrencyXml));
-		FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "rate", Foxtrick.XMLData.htCurrencyXml));
-		FoxtrickPrefs.setString("currencyCode", document.getElementById("htCurrency").value);
+		FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
+		FoxtrickPrefs.setString("oldCurrencySymbol", Foxtrick.util.currency.getShortNameByCode(document.getElementById("htCurrency").value));
+		FoxtrickPrefs.setString("currencyRate", Foxtrick.util.currency.getRateByCode(document.getElementById("htCurrency").value));
 
 		FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked);
 
@@ -480,46 +479,6 @@ var FoxtrickPreferencesDialog = {
 		catch (e) {
 			Foxtrick.dump('Offset search for '+ itemToSearch + ' ' + e + '\n');
 			return 0;
-		}
-	},
-
-	getConverterCurrValue: function (itemToSearch, options, xmlDoc) {
-		try {
-			var returnedItemToSearch = "none";
-
-			var values = xmlDoc.getElementsByTagName("currency");
-
-			var langs = [];
-
-			for (var i=0; i<values.length; ++i) {
-				var eurorate = values[i].attributes.getNamedItem("eurorate").textContent;
-				var code = values[i].attributes.getNamedItem("code").textContent;
-				var sname = values[i].attributes.getNamedItem("shortname").textContent;
-				langs.push([eurorate,code,sname]);
-			}
-
-			function sortfunction(a, b) {
-				return a[0].localeCompare(b[0]);
-			}
-
-			langs.sort(sortfunction);
-
-			for (var i = 0; i < langs.length; ++i) {
-				var eurorate = langs[i][0];
-				var code = langs[i][1];
-				var sname = langs[i][2];
-
-				if (options == "sname" && itemToSearch == code)
-					returnedItemToSearch = sname;
-				else if (options == "rate" && itemToSearch == code)
-					returnedItemToSearch = eurorate;
-				else if (options == "code" && itemToSearch == sname)
-					returnedItemToSearch = code;
-			}
-			return returnedItemToSearch;
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
 		}
 	},
 

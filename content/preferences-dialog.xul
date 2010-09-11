@@ -31,6 +31,9 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-on-page.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum_stage.js" />
 
+<!-- utilities -->
+<script type="application/x-javascript" src="chrome://foxtrick/content/util/currency.js" />
+
 <!-- individual modules -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumstriphattricklinks.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumchangeposts_modules.js" />
