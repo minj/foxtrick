@@ -6,47 +6,43 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickReadHtPrefs = {
-
-    MODULE_NAME : "ReadHtPrefs",
+	MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
-	PAGES : new Array('prefSettings','myhattrickAll'),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Checks language on MyHattrick",
+	PAGES : ["all"],
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Detect language on all pages.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-	init : function() {
-	},
+	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
-    menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
+	run : function(page, doc) {
+		try {
+			var langval = null;
+			var oldval = FoxtrickPrefs.getString("htLanguage");
 
-    run : function(page, doc) {
-	try{
-		var langval = null;
-		var oldval = FoxtrickPrefs.getString("htLanguage");
-
-		Foxtrick.dump('readlang: '+doc.location.pathname+' '+doc.location.pathname.search(/MyHattrick\/$|^\/$/)+'\n')
-		if (doc.location.pathname.search(/MyHattrick\/$|^\/$/) !=-1) {
 			var menu = doc.getElementById('menu');
 			var as = menu.getElementsByTagName('a');
 			var languages = Foxtrick.XMLData.htLanguagesXml;
-			//alert(decodeURIComponent(as[5].innerHTML));
+
 			if (as.length < 6) {
-				Foxtrick.dump('no prelogin lang check\n');
-				return; // prelogin
+				// pre-login
+				Foxtrick.dump("No language check at pre-login.\n");
+				return;
 			}
 			var unchanged = true;
 			for (var i = 0; i < 6; ++i) {
 				var atitle = languages[oldval].getElementsByTagName(this.menu_strings[i])[0];
 				if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
+					// language is unchanged
 					unchanged = false;
 					break;
 				}
 			}
 			if (unchanged) {
 				langval = oldval;
-				Foxtrick.dump("Language unchanged as " + langval + ".\n");
 			}
 			else {
+				// language has changed, look for the new one
 				for (var k in languages) {
 					var found = true;
 					for (var i = 0; i < 6; ++i) {
@@ -62,52 +58,29 @@ var FoxtrickReadHtPrefs = {
 						break;
 					}
 				}
+				FoxtrickPrefs.setString("htLanguage", langval);
+				if (Foxtrick.BuildFor == "Chrome") {
+					// change language
+					FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:langval, from:'readpref'});
+				}
+				else {
+					// change language
+					Foxtrickl10n.get_strings_bundle(langval);
+					var language = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[langval], "language", "desc");
+					var msg = Foxtrickl10n.getString("HTLanguageChanged") + " " + language;
+					Foxtrick.Note.add(doc, null, "ft-language-changed", msg, null, true, true);
+				}
 			}
 		}
-
-		if (!langval && doc.location.href.search(/\/MyHattrick\/Preferences\/ProfileSettings\.aspx\?actionType=save/i)!=-1) {
-			var langid = doc.getElementById('ctl00_CPMain_ddlLanguages').value;
-			langval = Foxtrickl10n.locale[langid];
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
-
-		if (langval && langval != oldval) {
-			FoxtrickPrefs.setString("htLanguage", langval);
-
-			if (Foxtrick.BuildFor=='Chrome') {
-				// change language
-				FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:langval, from:'readpref'});
-				// ShowChanged(doc); shown in the listener!
-			}
-			else {
-				// change language
-				Foxtrickl10n.get_strings_bundle(langval);
-				FoxtrickReadHtPrefs.ShowChanged(doc);
-			}
-		}
-	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
-	},
-
-    ShowChanged: function(doc) {
-	try {
-			var path = "language";
-			var langname = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[FoxtrickPrefs.getString("htLanguage")], path, "desc");
-
-			var mainBody = doc.getElementById('mainBody');
-			var alertdiv=doc.createElement('div');
-			alertdiv.setAttribute('class','alert');
-			alertdiv.setAttribute('id','idFoxtrickLocaleChanged');
-			alertdiv.setAttribute('style', 'margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
-			alertdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("HTLanguageChanged")+' '+langname));
-			mainBody.insertBefore(alertdiv,mainBody.firstChild);
-	  } catch(e) {Foxtrick.dump('FoxtrickLocaleChanged: '+e+'\n');}
-	},
-
+	}
 };
-
 
 var FoxtrickReadHtPrefsFromHeader = {
 
-    MODULE_NAME : "ReadHtPrefsFromHeader",
+	MODULE_NAME : "ReadHtPrefsFromHeader",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	PAGES : new Array('all'),//'myhattrickAll'),
 	DEFAULT_ENABLED : true,
@@ -116,9 +89,6 @@ var FoxtrickReadHtPrefsFromHeader = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	ht_dateformat : 'yyyy-mm-dd',
-
-    init : function() {
-	},
 
 	run : function(page, doc, newstart ) {
 	try{
@@ -136,7 +106,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 			if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1 || newstart) {
 				Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
 				var CurrencyName = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
-				var CurrencyRate =  FoxtrickHelper.getCurrencyRateFromId(LeagueId);
+				var CurrencyRate = FoxtrickHelper.getCurrencyRateFromId(LeagueId);
 				if (CurrencyName.search(/000\ /,'')!=-1) {
 					CurrencyName=CurrencyName.replace(/000\ /gi,'');
 					CurrencyRate=CurrencyRate/1000;
@@ -190,7 +160,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 
 var FoxtrickMyHT = {
 
-    MODULE_NAME : "FoxtrickMyHT",
+	MODULE_NAME : "FoxtrickMyHT",
 	PAGES : new Array('myhattrick'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
@@ -198,13 +168,10 @@ var FoxtrickMyHT = {
 
 	NewModules: null,
 
-    init : function() {
-    },
-
-    run : function(page, doc ) {
-		try{
-			if ( FoxtrickMain.IsNewVersion )   // uncomment to see it always for testing purposes
-			{
+	run : function(page, doc) {
+		try {
+			if (FoxtrickMain.IsNewVersion) {
+				// uncomment to see it always for testing purposes
 				var curVersion = FoxtrickPrefs.getString("curVersion");
 				FoxtrickPrefs.setString("oldVersion",curVersion);
 
@@ -214,7 +181,10 @@ var FoxtrickMyHT = {
 				// show foxtrickMyHT
 				this.ShowAlert(doc);
 			}
-		} catch(e){FoxTrick.dumpError(e);}
+		}
+		catch (e) {
+			FoxTrick.dumpError(e);
+		}
 	},
 
 	setDefaults :function(doc) {
@@ -388,7 +358,7 @@ var FoxtrickMyHT = {
 
 				// turn off youthskillnotes
 				if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
-				&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes')))  {
+				&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes'))) {
 					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false, true);
 					prefs_changed=true;
 				}
@@ -453,7 +423,7 @@ var FoxtrickMyHT = {
 		FoxtrickMyHT.NewModules = new Array();
 
 		var curVersion = FoxtrickPrefs.getString("curVersion");
-		var versions = Foxtrick.XML_evaluate(Foxtrick.XMLData.htversionsXML ,  "hattrickversions/version", "name", "code");
+		var versions = Foxtrick.XML_evaluate(Foxtrick.XMLData.htversionsXML, "hattrickversions/version", "name", "code");
 		var oldVersion = versions[versions.length-2][1];
 
 		for ( var i in Foxtrick.modules ) {

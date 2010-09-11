@@ -16,6 +16,8 @@ Foxtrick.Note = {
 	 *
 	 * they share the same parameters:
 	 * doc - the HTML document
+	 * insertBefore - the node before which we will insert the note, could be
+	 *     set to null, and the default insert position will be used.
 	 * id - HTML id of the returned node
 	 * msg - message to be shown
 	 * buttons - buttons to be shown, along with event listeners, in following
@@ -33,14 +35,22 @@ Foxtrick.Note = {
 	 */
 
 	add : function(doc, insertBefore, id, msg, buttons, hasClose, doJump) {
-		Foxtrick.dump(insertBefore.className+'\n');
 		// first we remove the old notes with same name
 		var old = doc.getElementById(id);
 		if (old) {
 			old.parentNode.removeChild(old);
 		}
 		var note = this.create(doc, id, msg, buttons, hasClose);
-		insertBefore.parentNode.insertBefore(note,insertBefore);
+		if (insertBefore && insertBefore.parentNode) {
+			insertBefore.parentNode.insertBefore(note, insertBefore);
+		}
+		else {
+			// default insert position
+			var appendTo = doc.getElementById("ctl00_updNotifications") ||
+				doc.getElementById("ctl00_ctl00_CPContent_ucNotifications_updNotifications");
+			appendTo.appendChild(note);
+		}
+
 		// go to the note
 		if (doJump) doc.location = doc.location.href.replace(/#.*?$/, "") + "#" + id;
 		return note;
