@@ -340,12 +340,12 @@ var FoxtrickPrefsDialogHTML = {
         //Currency Converter
 
         FoxtrickPrefs.setString("htCurrencyTo", doc.getElementById("htCurrencyTo").value);
-        FoxtrickPrefs.setString("currencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"new",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("currencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"sname",Foxtrick.XMLData.htCurrencyXml));
         FoxtrickPrefs.setString("currencyRateTo", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrencyTo").value,"rate",Foxtrick.XMLData.htCurrencyXml));
 
-        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"old",Foxtrick.XMLData.htCurrencyXml));
+        FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"sname",Foxtrick.XMLData.htCurrencyXml));
         FoxtrickPrefs.setString("currencyRate", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"rate",Foxtrick.XMLData.htCurrencyXml));
-		FoxtrickPrefs.setString("currencyCode", FoxtrickPrefsDialogHTML.getConverterCurrValue(doc.getElementById("htCurrency").value,"code",Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencyCode", doc.getElementById("htCurrency").value);
 
         //Statusbar
         FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
@@ -353,11 +353,6 @@ var FoxtrickPrefsDialogHTML = {
         //disable
 		FoxtrickPrefs.setBool("disableOnStage", doc.getElementById("stagepref").checked);
 		FoxtrickPrefs.setBool("disableTemporary", doc.getElementById("disableTemporary").checked);
-
-		// other
-		/* obsolete
-		FoxtrickPrefs.setString("oldVersion", doc.getElementById("htOldVersion").value);
-		*/
 
 		// additional options
         FoxtrickPrefs.setBool("smallcopyicons", doc.getElementById("smallcopyicons").checked);
@@ -1583,17 +1578,14 @@ var FoxtrickPrefsDialogHTML = {
         langs.sort(sortfunction);
 
         for (var i=0; i<langs.length; i++) {
-
             var eurorate = langs[i][0];
             var code = langs[i][1];
             var sname = langs[i][2];
 
-
-
-            if (options == "old" && itemToSearch==code){returnedItemToSearch = sname;}
-            if (options == "new" && itemToSearch==code){returnedItemToSearch = sname;}
-            if (options == "rate" && itemToSearch==code){returnedItemToSearch = eurorate;}
-            if (options == "code" && itemToSearch==code){returnedItemToSearch = code;}
+            if (options == "sname" && itemToSearch==code)
+            	returnedItemToSearch = sname;
+            if (options == "rate" && itemToSearch==code)
+            	returnedItemToSearch = eurorate;
         }
 
       return returnedItemToSearch;

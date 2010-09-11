@@ -177,6 +177,7 @@
 							<column flex="1" />
 						</columns>
 						<rows>
+							<checkbox id="ReadHtPrefs" />
 							<row>
 								<label id="language" control="htLanguage" />
 								<hbox>
@@ -185,12 +186,7 @@
 									</menulist>
 								</hbox>
 							</row>
-							<row>
-								<hbox />
-								<checkbox id="ReadHtPrefs" />
-							</row>
 							<checkbox id="ReadHtCountry" />
-							<description id="ReadHtCountryDescription" />
 							<row id="countryRow">
 								<label id="country" control="htCountry" />
 								<hbox>

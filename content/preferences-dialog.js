@@ -99,24 +99,16 @@ var FoxtrickPreferencesDialog = {
 		var readHtCountry = doc.getElementById("ReadHtCountry");
 		readHtCountry.checked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled");
 		readHtCountry.label = Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc");
-		var readHtCountryDescription = doc.getElementById("ReadHtCountryDescription");
-		readHtCountryDescription.appendChild(document.createTextNode(
-			Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc") + " " +
-			FoxtrickHelper.countryNameEnglishToLocal(FoxtrickPrefs.getString("htCountry")) + " / " +
-			FoxtrickPrefs.getString("oldCurrencySymbol") + " / " +
-			FoxtrickPrefs.getString("htDateformat")));
-		document.getElementById("countryRow").hidden = readHtCountry.checked;
-		document.getElementById("currencyRow").hidden = readHtCountry.checked;
-		document.getElementById("dateformatRow").hidden = readHtCountry.checked;
-		readHtCountryDescription.hidden = !readHtCountry.checked;
+		document.getElementById("htCountry").disabled = readHtCountry.checked;
+		document.getElementById("htCurrency").disabled = readHtCountry.checked;
+		document.getElementById("htDateformat").disabled = readHtCountry.checked;
 
 		readHtCountry.addEventListener("click", function(ev) {
 				var doc = ev.target.ownerDocument;
 				var checked = ev.target.checked;
-				doc.getElementById("countryRow").hidden = checked;
-				doc.getElementById("currencyRow").hidden = checked;
-				doc.getElementById("dateformatRow").hidden = checked;
-				doc.getElementById("ReadHtCountryDescription").hidden = !checked;
+				doc.getElementById("htCountry").disabled = checked;
+				doc.getElementById("htCurrency").disabled = checked;
+				doc.getElementById("htDateformat").disabled = checked;
 			},
 			false);
 
@@ -135,7 +127,8 @@ var FoxtrickPreferencesDialog = {
 		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
 		document.getElementById("htCurrency").selectedIndex =
 			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyPopup", "htCurrency-",
-				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
+				htCurrencyXml, "currency", "name", "code",
+				FoxtrickPreferencesDialog.getConverterCurrValue(FoxtrickPrefs.getString("oldCurrencySymbol"), "code",  Foxtrick.XMLData.htCurrencyXml));
 
 		// date format
 		var dateformat = doc.getElementById("dateformat");
@@ -153,9 +146,6 @@ var FoxtrickPreferencesDialog = {
 		var CurrencyConverter = doc.getElementById("CurrencyConverter");
 		CurrencyConverter.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.activeCurrencyConverter"));
 		CurrencyConverter.setAttribute("checked", FoxtrickPrefs.getBool("module.CurrencyConverter.enabled"));
-		var htCurrencyXml = document.implementation.createDocument("", "", null);
-		htCurrencyXml.async = false;
-		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
 		document.getElementById("htCurrencyTo").selectedIndex =
 			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyToPopup", "htCurrency-",
 				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
@@ -439,12 +429,12 @@ var FoxtrickPreferencesDialog = {
 		//Currency Converter
 
 		FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
-		FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value, "new", Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value, "sname", Foxtrick.XMLData.htCurrencyXml));
 		FoxtrickPrefs.setString("currencyRateTo", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrencyTo").value, "rate", Foxtrick.XMLData.htCurrencyXml));
 
-		FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "old", Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("oldCurrencySymbol", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "sname", Foxtrick.XMLData.htCurrencyXml));
 		FoxtrickPrefs.setString("currencyRate", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "rate", Foxtrick.XMLData.htCurrencyXml));
-		FoxtrickPrefs.setString("currencyCode", FoxtrickPreferencesDialog.getConverterCurrValue(document.getElementById("htCurrency").value, "code", Foxtrick.XMLData.htCurrencyXml));
+		FoxtrickPrefs.setString("currencyCode", document.getElementById("htCurrency").value);
 
 		FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked);
 
@@ -519,19 +509,17 @@ var FoxtrickPreferencesDialog = {
 				var code = langs[i][1];
 				var sname = langs[i][2];
 
-				if (options == "old" && itemToSearch == code)
+				if (options == "sname" && itemToSearch == code)
 					returnedItemToSearch = sname;
-				if (options == "new" && itemToSearch == code)
-					returnedItemToSearch = sname;
-				if (options == "rate" && itemToSearch == code)
+				else if (options == "rate" && itemToSearch == code)
 					returnedItemToSearch = eurorate;
-				if (options == "code" && itemToSearch == code)
+				else if (options == "code" && itemToSearch == sname)
 					returnedItemToSearch = code;
 			}
 			return returnedItemToSearch;
 		}
 		catch (e) {
-			Foxtrick.dump('CurrencyConverter-CurrValue(): ' + e + '\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 
