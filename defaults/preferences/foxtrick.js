@@ -23,7 +23,6 @@ pref("extensions.foxtrick.prefs.disableOnStage", true);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
-pref("extensions.foxtrick.prefs.onpageprefs", true);
 pref("extensions.foxtrick.prefs.SavePrefs_Prefs", true);
 pref("extensions.foxtrick.prefs.SavePrefs_Notes", true);
 pref("extensions.foxtrick.prefs.matchstat.vnukstats.enabled", true);
