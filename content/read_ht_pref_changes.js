@@ -32,11 +32,12 @@ var FoxtrickReadHtPrefs = {
 			var unchanged = true;
 			if (oldval) {
 				for (var i = 0; i < 6; ++i) {
-				var atitle = languages[oldval].getElementsByTagName(this.menu_strings[i])[0];
-				if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
-					// language is changed
-					unchanged = false;
-					break;
+					var atitle = languages[oldval].getElementsByTagName(this.menu_strings[i])[0];
+					if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
+						// language is changed
+						unchanged = false;
+						break;
+					}
 				}
 			}
 			else {
