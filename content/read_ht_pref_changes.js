@@ -34,7 +34,7 @@ var FoxtrickReadHtPrefs = {
 			var unchanged = true;
 			if (oldval) {
 				for (var i = 0; i < 6; ++i) {
-					if (as[i].textContent.search('Alltid')!=-1) {--i; continue;} // 5th entry might be alltid. skip it  
+					if (as[i].textContent.search('Alltid')!=-1) {++i;} // 5th entry might be alltid. skip it  
 					var atitle = languages[oldval].getElementsByTagName(this.menu_strings[i])[0];
 					if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
 						// language is changed
@@ -58,7 +58,7 @@ var FoxtrickReadHtPrefs = {
 				for (var k in languages) {
 					var menufound = true;
 					for (var i = 0; i < 6; ++i) {
-						if (as[i].textContent.search('Alltid')!=-1) {--i; continue;} // 5th entry might be alltid. skip it  
+						if (as[i].textContent.search('Alltid')!=-1) {++i;} // 5th entry might be alltid. skip it  
 						var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
 						if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
 							menufound = false;
