@@ -124,7 +124,7 @@ var FoxtrickContextMenuCopy = {
 
 	getMarkupFromNode : function(node) {
 		if (node.nodeName === undefined) {
-			return null;
+			return "";
 		}
 
 		var doc = node.ownerDocument;
@@ -169,7 +169,9 @@ var FoxtrickContextMenuCopy = {
 			var children = node.childNodes;
 			for (var i = 0; i < children.length; ++i) {
 				// recursively get the content of child nodes
-				ret += this.getMarkupFromNode(children[i]);
+				var childMarkup = this.getMarkupFromNode(children[i]);
+				if (childMarkup != null)
+					ret += childMarkup;
 				if (i !== children.length - 1) {
 					ret += " ";
 				}
@@ -179,8 +181,8 @@ var FoxtrickContextMenuCopy = {
 		if (nodeName === "a") {
 			if (node.href !== undefined) {
 				var linkMarkup = this.getMarkupFromLink(node.href);
-				if (linkMarkup !== null) {
-					if (ret === "(" + this.getIdFromLink(node.href).id + ")") {
+				if (linkMarkup !== null && linkMarkup.id !== undefined) {
+					if (ret === "(" + linkMarkup.id + ")") {
 						// if the link is simply a representation of ID
 						ret = "";
 					}
@@ -230,43 +232,63 @@ var FoxtrickContextMenuCopy = {
 	},
 
 	copyId : function() {
-		if (FoxtrickContextMenuCopy.MENU_ID) {
-			if (FoxtrickContextMenuCopy.MENU_ID.hasAttribute("copy")) {
-				Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.MENU_ID.getAttribute("copy"));
+		try {
+			if (FoxtrickContextMenuCopy.MENU_ID) {
+				if (FoxtrickContextMenuCopy.MENU_ID.hasAttribute("copy")) {
+					Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.MENU_ID.getAttribute("copy"));
+				}
 			}
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 	},
 
 	copyLink : function() {
-		if (FoxtrickContextMenuCopy.MENU_LINK) {
-			if (FoxtrickContextMenuCopy.MENU_LINK.hasAttribute("copy")) {
-				Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.MENU_LINK.getAttribute("copy"));
+		try {
+			if (FoxtrickContextMenuCopy.MENU_LINK) {
+				if (FoxtrickContextMenuCopy.MENU_LINK.hasAttribute("copy")) {
+					Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.MENU_LINK.getAttribute("copy"));
+				}
 			}
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 	},
 
 	copyHtMl : function() {
-		if (!FoxtrickContextMenuCopy.SELECTION) {
-			return;
-		}
-		var markup = "";
-		for (var i = 0; i < FoxtrickContextMenuCopy.SELECTION.rangeCount; ++i) {
-			markup += FoxtrickContextMenuCopy.getMarkupFromNode(FoxtrickContextMenuCopy.SELECTION.getRangeAt(i).cloneContents());
-			if (i !== FoxtrickContextMenuCopy.SELECTION.rangeCount - 1) {
-				markup += "\n";
+		try {
+			if (!FoxtrickContextMenuCopy.SELECTION) {
+				return;
 			}
+			var markup = "";
+			for (var i = 0; i < FoxtrickContextMenuCopy.SELECTION.rangeCount; ++i) {
+				markup += FoxtrickContextMenuCopy.getMarkupFromNode(FoxtrickContextMenuCopy.SELECTION.getRangeAt(i).cloneContents());
+				if (i !== FoxtrickContextMenuCopy.SELECTION.rangeCount - 1) {
+					markup += "\n";
+				}
+			}
+			markup = FoxtrickContextMenuCopy.trim(markup);
+			Foxtrick.copyStringToClipboard(markup);
 		}
-		markup = FoxtrickContextMenuCopy.trim(markup);
-		Foxtrick.copyStringToClipboard(markup);
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	copyTable : function() {
-		if (!FoxtrickContextMenuCopy.TABLE) {
-			return;
+		try {
+			if (!FoxtrickContextMenuCopy.TABLE) {
+				return;
+			}
+			var markup = FoxtrickContextMenuCopy.getMarkupFromNode(FoxtrickContextMenuCopy.TABLE);
+			markup = FoxtrickContextMenuCopy.trim(markup);
+			Foxtrick.copyStringToClipboard(markup);
 		}
-		var markup = FoxtrickContextMenuCopy.getMarkupFromNode(FoxtrickContextMenuCopy.TABLE);
-		markup = FoxtrickContextMenuCopy.trim(markup);
-		Foxtrick.copyStringToClipboard(markup);
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	onContext : function(event) {
