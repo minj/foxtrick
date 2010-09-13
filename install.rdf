@@ -5,7 +5,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:name>FoxTrick</em:name>
 		<em:id>{9d1f059c-cada-4111-9696-41a62d64e3ba}</em:id>
-		<em:version>0.5.3.0b5</em:version>
+		<em:version>0.5.3.0b6</em:version>
 		<em:description>A set of presentation enhancements for hattrick.org.</em:description>
 
 		<em:creator>Karel Kolman</em:creator>

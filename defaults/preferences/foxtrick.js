@@ -1,4 +1,4 @@
-pref("extensions.foxtrick.prefs.curVersion", "0.5.3.0b5"); // update with each release
+pref("extensions.foxtrick.prefs.curVersion", "0.5.3.0b6"); // update with each release
 pref("extensions.foxtrick.prefs.oldVersion", "0.4.9"); // don't change!! (unless you know what you do). shows changes form that version onwards after new installation
 pref("extensions.foxtrick.prefs.HTURL", "^http:\/\/(www\d\d|www|wwwxx|stage)\.hattrick\.(org|ws|interia\.pl)\/");
 pref("extensions.foxtrick.prefs.htLanguage", "en");
@@ -243,7 +243,7 @@ pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true
 pref("extensions.foxtrick.prefs.module.LinksTracker.srbijassttracker.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin1.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin2.enabled", false);
-pref("extensions.foxtrick.prefs.module.CopyTrainingReport.OpenHTYpage.enabled", false);
+pref("extensions.foxtrick.prefs.module.CopyTrainingReport.OpenHTYpage.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumTemplates.DefaultShow.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumStripHattrickLinks.NoConfirmStripping.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPosting.value", 2);
