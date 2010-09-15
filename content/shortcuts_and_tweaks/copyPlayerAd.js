@@ -206,7 +206,7 @@ var FoxtrickCopyPlayerAd = {
 						for (var i in skillArray) {
 							ad += "[tr]"
 								+ "[th]" + skillArray[i].name + "[/th]"
-								+ "[td]" + formatSkill(skillArray[i].text, skillArray[i].value) + "[/td]"
+								+ "[td]" + skillArray[i].text + "[/td]"
 								+ "[/tr]\n";
 						}
 						ad += "[/table]";
@@ -220,7 +220,7 @@ var FoxtrickCopyPlayerAd = {
 							if (index % 2 == 0)
 								ad += "[tr]";
 							ad += "[th]" + skillArray[skill].name + "[/th]";
-							ad += "[td]" + skillArray[skill].text + "[/td]";
+							ad += "[td]" + formatSkill(skillArray[skill].text, skillArray[skill].value) + "[/td]";
 							if (index % 2 == 1)
 								ad += "[/tr]\n";
 							++index;
@@ -260,7 +260,7 @@ var FoxtrickCopyPlayerAd = {
 					ad += "[table]\n";
 					for (var i in skillArray) {
 						ad += "[tr]" 
-							+ "[th]" + formatSkill(skillArray[i].name, Math.max(skillArray[i].current.value, skillArray[i].max.value)) + "[/th]"
+							+ "[th]" + skillArray[i].name + "[/th]"
 							+ "[td]"
 							+ (skillArray[i].maxed ? "[b]" : "")
 							+ skillArray[i].current.text
