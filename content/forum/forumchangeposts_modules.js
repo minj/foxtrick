@@ -97,7 +97,6 @@ var FoxtrickFormatPostingText = {
 	try{
 		var doc = ev.target.ownerDocument;
 		var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
-		Foxtrick.dump(textarea.value+'\n')
 		textarea.value = FoxtrickFormatPostingText.format(textarea.value);
 	} catch(e){Foxtrick.dumpError(e);}
 	}
