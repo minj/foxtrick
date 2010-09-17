@@ -158,7 +158,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 var FoxtrickMyHT = {
 
 	MODULE_NAME : "FoxtrickMyHT",
-	PAGES : new Array('myhattrick'),
+	PAGES : new Array('myhattrick_late'),
 	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LATEST_CHANGE:"FoxTrick MyHT message shorted. Changes moved to html preferences. Shown only once again",
@@ -187,7 +187,8 @@ var FoxtrickMyHT = {
 	setDefaults :function(doc) {
 
 		// set radio defaults as by appropriate countries
-		Foxtrick.dump(FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')+'\n');
+		Foxtrick.dump('No9:'+FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')+'\n');
+		Foxtrick.dump('Latehome:'+FoxtrickPrefs.getBool('module.ExtraShortcuts.Latehome.enabled')+'\n');
 
 		var country = FoxtrickPrefs.getString("htCountry");
 		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadio.enabled')===null) {
@@ -343,7 +344,7 @@ var FoxtrickMyHT = {
 		/*var curVersion=FoxtrickPrefs.getString("curVersion");
 		FoxtrickPrefs.setString("oldVersion",curVersion);	*/
 		FoxtrickMain.IsNewVersion=false;
-
+		Foxtrick.dump('FoxtrickMyHT close\n');
 		//FoxtrickMyHT.ShowOnce();
 	},
 
@@ -378,6 +379,7 @@ var FoxtrickMyHT = {
 
 		//var doc = ev.target.ownerDocument;
 
+		Foxtrick.dump('FoxtrickMyHT ShowChanged\n');
 		//FoxtrickMyHT.ShowOnce();
 		FoxtrickMain.IsNewVersion=false;
 

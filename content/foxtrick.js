@@ -63,8 +63,8 @@ var FoxtrickMain = {
 		var curVersion = FoxtrickPrefs.getString("curVersion");
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		Foxtrick.dump(curVersion+' > '+ oldVersion+': '+(curVersion>oldVersion)+'\n');
-		if (oldVersion<curVersion) {
-			FoxtrickMain.IsNewVersion=true;
+		if (oldVersion < curVersion) {
+			FoxtrickMain.IsNewVersion = true;
 		}
 
 		// create handler arrays for each recognized page
