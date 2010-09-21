@@ -12,6 +12,9 @@ var FoxtrickStarsCounter = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array("matchLineup"),
 	DEFAULT_ENABLED : true,
+	NEW_AFTER_VERSION : "0.5.2.1",
+	LATEST_CHANGE : "Correctly counting for RTL languages.",
+	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		var yellow = 0;
@@ -25,13 +28,19 @@ var FoxtrickStarsCounter = {
 			"star_brown.png" : { brown : 1 },
 			"star_red.png" : { red : 1 },
 			"star_yellow_to_brown.png" : { yellow : 0.5, brown : 0.5 },
+			"star_yellow_to_brown_rtl.png" : { yellow : 0.5, brown : 0.5 },
 			"star_yellow_to_red.png" : { yellow : 0.5, red : 0.5 },
+			"star_yellow_to_red_rtl.png" : { yellow : 0.5, red : 0.5 },
 			"star_half_yellow.png" : { yellow : 0.5 },
+			"star_half_yellow_rtl.png" : { yellow : 0.5 },
 			"star_half_brown.png" : { brown : 0.5 },
+			"star_half_brown_rtl.png" : { brown : 0.5 },
 			"star_half_red.png" : { red : 0.5 },
+			"star_half_red_rtl.png" : { red : 0.5 },
 			"star_big_blue.png" : { blue : 5 },
 			"star_blue.png" : { blue : 1 },
-			"star_half_blue.png" : { blue : 0.5 }
+			"star_half_blue.png" : { blue : 0.5 },
+			"star_half_blue_rtl.png" : { blue : 0.5 }
 		};
 
 		// get information from the page
