@@ -244,7 +244,7 @@ var FoxtrickPrefsDialogHTML = {
 				var module = Foxtrick.modules[i];
 
 				if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
-					// if main, set default and again right bellow if needed!
+					// if main, set default and again right below if needed!
 					//Foxtrick.dump('save '+module.MODULE_NAME+' : '+module.DEFAULT_ENABLED+'\n');
 					if (full_prefs) FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
 					continue;
@@ -320,7 +320,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			//Currency, Country, Dateformat
 			var checked = doc.getElementById("ReadHtCountryCurrencyDateFormat").checked;
-			FoxtrickPrefs.setBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled", checked);
+			FoxtrickPrefs.setBool("module.ReadHtPrefsFromHeader.enabled", checked);
 			if (!checked) {
 				FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
 				FoxtrickPrefs.setString("htCountry", doc.getElementById("htCountry").value);
@@ -438,7 +438,6 @@ var FoxtrickPrefsDialogHTML = {
 		}
 	},
 
-
 	fill_main_list : function( doc ) {
 		try {
 			var preftab = doc.getElementById('main');
@@ -446,133 +445,127 @@ var FoxtrickPrefsDialogHTML = {
 			var header = this._panelHeader(doc, "main");
 			preftab.appendChild(header);
 
-			// language & currency & dateformat & country
-			var groupboxouter = doc.createElement("div");
-			groupboxouter.setAttribute('class',"ft_pref_module");
-			preftab.appendChild(groupboxouter);
-			var groupbox = doc.createElement("div");
-			groupboxouter.appendChild(groupbox);
+			// basic preferences
+			var basicPrefs = this._emptyModule(doc, Foxtrickl10n.getString("foxtrick.prefs.basicPreferences"));
+			preftab.appendChild(basicPrefs);
 
-			var groupbox2= doc.createElement("div");
-			groupbox2.setAttribute('class',"ft_pref_module");
-			groupbox.appendChild(groupbox2);
+			var basicTable = doc.createElement("table");
+			basicPrefs.appendChild(basicTable);
 
-			var caption1= doc.createElement("div");
-			caption1.setAttribute('class',"ft_pref_group_caption");
-			caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage")));
-			groupbox2.appendChild(caption1);
+			var basicTable1 = doc.createElement("tr");
+			var basicTable2 = doc.createElement("tr");
+			var basicTable3 = doc.createElement("tr");
+			var basicTable4 = doc.createElement("tr");
+			var basicTable5 = doc.createElement("tr");
+			var basicTable6 = doc.createElement("tr");
 
-			var table= doc.createElement("table");
-			groupbox2.appendChild(table);
-			var tr= doc.createElement("tr");
-			table.appendChild(tr);
+			basicTable.appendChild(basicTable1);
+			basicTable.appendChild(basicTable2);
+			basicTable.appendChild(basicTable3);
+			basicTable.appendChild(basicTable4);
+			basicTable.appendChild(basicTable5);
+			basicTable.appendChild(basicTable6);
 
-			var td= doc.createElement("td");
-			tr.appendChild(td);
+			// ReadHTPrefs
+			var basicTable1_1 = doc.createElement("td");
+			basicTable1.appendChild(basicTable1_1);
+			basicTable1_1.setAttribute("colspan", 2);
+			var readLanguage = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
+			var languageDetect = this._getCheckBox(doc, "ReadHtPrefs", Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"), "", readLanguage);
+			basicTable1_1.appendChild(languageDetect);
 
-			var selectbox = doc.createElement("select");
-			selectbox.id = "htLanguage";
+			// language
+			var basicTable2_1 = doc.createElement("td");
+			basicTable2_1.textContent = Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage");
+			basicTable2.appendChild(basicTable2_1);
+
+			var basicTable2_2 = doc.createElement("td");
+			basicTable2.appendChild(basicTable2_2);
+			var languageSelect = doc.createElement("select");
+			basicTable2_2.appendChild(languageSelect);
+			languageSelect.id = "htLanguage";
 			var htLocales = [];
 			for (var i in Foxtrick.XMLData.htLanguagesXml) {
 				var desc = Foxtrick.XMLData.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
 				htLocales.push({ name: i, desc: desc });
 			}
-			htLocales.sort(function (a, b) { return a.desc.localeCompare(b.desc); });
+			htLocales.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
 			var selectedLang = FoxtrickPrefs.getString("htLanguage");
-			var selectedIndex = 0;
-			var currentIndex = 0;
 			for (var i in htLocales) {
 				var locale = htLocales[i];
 				var item = doc.createElement("option");
 				item.id = "htLanguage-" + locale.name;
 				item.setAttribute("value", locale.name);
 				item.textContent = locale.desc;
-				selectbox.appendChild(item);
 				if (selectedLang == locale.name) {
-					selectedIndex = currentIndex;
+					item.selected = "selected"
 				}
-				++currentIndex;
-			}
-			selectbox.selectedIndex = selectedIndex;
-			td.appendChild(selectbox);
-
-			var td= doc.createElement("td");
-			tr.appendChild(td);
-			var checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
-			var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtPrefs', Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc"),'', checked )
-			td.appendChild(checkdiv);
-
-
-			var ReadCountryCurrencyDateFormatChecked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.enabled");
-			var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, 'ReadHtCountryCurrencyDateFormat', Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc"),'', ReadCountryCurrencyDateFormatChecked )
-			groupbox.appendChild(checkdiv);
-			var currentCountryCurrencyDateFormatdiv = doc.createElement("div");
-			currentCountryCurrencyDateFormatdiv.id='CurrentHtCountryCurrencyDateFormat'
-			if (!ReadCountryCurrencyDateFormatChecked) {
-				currentCountryCurrencyDateFormatdiv.className = "hidden";
+				languageSelect.appendChild(item);
 			}
 
-			currentCountryCurrencyDateFormatdiv.innerHTML = '( '
-				+ Foxtrickl10n.getString("foxtrick.CurrentHtCountryCurrencyDateFormat.desc") + ' '
-				+ FoxtrickHelper.countryNameEnglishToLocal(FoxtrickPrefs.getString("htCountry")) + ' / '
-				+ FoxtrickPrefs.getString("oldCurrencySymbol") + ' / '
-				+ FoxtrickPrefs.getString("htDateformat") + ' )';
-			groupbox.appendChild(currentCountryCurrencyDateFormatdiv);
+			if (readLanguage)
+				languageSelect.disabled = "disabled";
+			doc.getElementById("ReadHtPrefs").addEventListener("click",
+				function(ev) {
+					if (ev.target.checked)
+						languageSelect.disabled = "disabled";
+					else
+						languageSelect.removeAttribute("disabled");
+				}, false);
 
-			Foxtrick.addEventListenerChangeSave(checkdiv.firstChild, "click", function( ev ) {
-					var check = ev.target;
-					var checked = check.checked;
-					var optiondiv = ev.target.ownerDocument.getElementById('groupboxCountryCurrency');
-					var currentdiv = ev.target.ownerDocument.getElementById('CurrentHtCountryCurrencyDateFormat');
-					if (checked) {
-						Foxtrick.addClass(optiondiv, "hidden");
-						Foxtrick.removeClass(currentdiv, "hidden");
-					}
+			// ReadHtPrefsFromHeader
+			var basicTable3_1 = doc.createElement("td");
+			basicTable3.appendChild(basicTable3_1);
+			basicTable3_1.setAttribute("colspan", 2);
+			var readPrefs = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.enabled");
+			var prefsDetect = this._getCheckBox(doc, "ReadHtCountryCurrencyDateFormat", Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc"), "", readPrefs);
+			basicTable3_1.appendChild(prefsDetect);
+
+			// country
+			basicTable4_1 = doc.createElement("td");
+			basicTable4.appendChild(basicTable4_1);
+			basicTable4_1.textContent = Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry");
+
+			basicTable4_2 = doc.createElement("td");
+			basicTable4.appendChild(basicTable4_2);
+			var countrySelect = Foxtrick.getSelectBoxFromXML3(doc, Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));
+			basicTable4_2.appendChild(countrySelect);
+			countrySelect.id = "htCountry";
+
+			// currency
+			basicTable5_1 = doc.createElement("td");
+			basicTable5.appendChild(basicTable5_1);
+			basicTable5_1.textContent = Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency");
+
+			basicTable5_2 = doc.createElement("td");
+			basicTable5.appendChild(basicTable5_2);
+			var currencySelect = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
+			basicTable5_2.appendChild(currencySelect);
+			currencySelect.id = "htCurrency";
+
+			// date format
+			basicTable6_1 = doc.createElement("td");
+			basicTable6.appendChild(basicTable6_1);
+			basicTable6_1.textContent = Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat");
+
+			basicTable6_2 = doc.createElement("td");
+			basicTable6.appendChild(basicTable6_2);
+			var dateFormatSelect = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htdateformat, "hattrickdateformats/dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
+			basicTable6_2.appendChild(dateFormatSelect);
+			dateFormatSelect.id = "htDateformat";
+
+			if (readPrefs)
+				countrySelect.disabled = currencySelect.disabled = dateFormatSelect.disabled = "disabled";
+			doc.getElementById("ReadHtCountryCurrencyDateFormat").addEventListener("click",
+				function(ev) {
+					if (ev.target.checked)
+						countrySelect.disabled = currencySelect.disabled = dateFormatSelect.disabled = "disabled";
 					else {
-						Foxtrick.removeClass(optiondiv, "hidden");
-						Foxtrick.addClass(currentdiv, "hidden");
+						countrySelect.removeAttribute("disabled");
+						currencySelect.removeAttribute("disabled");
+						dateFormatSelect.removeAttribute("disabled");
 					}
-				}, false );
-
-			var groupboxCountryCurrency = doc.createElement("div");
-			groupbox.appendChild(groupboxCountryCurrency);
-			groupboxCountryCurrency.id='groupboxCountryCurrency';
-			if (ReadCountryCurrencyDateFormatChecked) {
-				groupboxCountryCurrency.className = "hidden";
-			}
-
-			var groupboxcurrency= doc.createElement("div");
-			groupboxcurrency.setAttribute('class',"ft_pref_module");
-			groupboxCountryCurrency.appendChild(groupboxcurrency);
-			var caption1= doc.createElement("div");
-			caption1.setAttribute('class',"ft_pref_group_caption");
-			caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency")));
-			groupboxcurrency.appendChild(caption1);
-			var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
-			selectbox.setAttribute("id","htCurrency");
-			groupboxcurrency.appendChild(selectbox);
-
-			var groupboxcountry= doc.createElement("div");
-			groupboxcountry.setAttribute('class',"ft_pref_module");
-			groupboxCountryCurrency.appendChild(groupboxcountry);
-			var caption1= doc.createElement("div");
-			caption1.setAttribute('class',"ft_pref_group_caption");
-			caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTCountry")));
-			groupboxcountry.appendChild(caption1);
-			var selectbox = Foxtrick.getSelectBoxFromXML3(doc,Foxtrick.XMLData.League, "EnglishName", FoxtrickPrefs.getString("htCountry"));
-			selectbox.setAttribute("id","htCountry");
-			groupboxcountry.appendChild(selectbox);
-
-			var groupbox2= doc.createElement("div");
-			groupbox2.setAttribute('class',"ft_pref_module");
-			groupboxCountryCurrency.appendChild(groupbox2);
-			var caption1= doc.createElement("div");
-			caption1.setAttribute('class',"ft_pref_group_caption");
-			caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionHTDateformat")));
-			groupbox2.appendChild(caption1);
-			var selectbox = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htdateformat, "hattrickdateformats/dateformat", "name", "code", FoxtrickPrefs.getString("htDateformat"));
-			selectbox.setAttribute("id","htDateformat");
-			groupbox2.appendChild(selectbox);
+				}, false);
 
 			// currency converter
 			var groupbox= doc.createElement("div");
@@ -581,7 +574,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			var caption1= doc.createElement("div");
 			caption1.setAttribute('class',"ft_pref_group_caption");
-			caption1.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyConverter")));
+			caption1.textContent = Foxtrickl10n.getString("foxtrick.prefs.captionCurrencyConverter");
 			groupbox.appendChild(caption1);
 
 			var table= doc.createElement("table");
@@ -990,6 +983,16 @@ var FoxtrickPrefsDialogHTML = {
 		a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
 		a.setAttribute('target','_blank');
 		return a;
+	},
+
+	_emptyModule : function(doc, desc) {
+		var module = doc.createElement("div");
+		module.className = "ft_pref_module";
+		var caption = doc.createElement("div");
+		caption.className = "ft_pref_group_caption";
+		caption.textContent = desc;
+		module.appendChild(caption);
+		return module;
 	},
 
 	_radioModule : function(doc, module, entry, on_page ) {

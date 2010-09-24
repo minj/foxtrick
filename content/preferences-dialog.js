@@ -95,6 +95,11 @@ var FoxtrickPreferencesDialog = {
 		readHtPrefs.checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
 		readHtPrefs.label = Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc");
 
+		languageMenu.disabled = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
+		readHtPrefs.addEventListener("click", function(ev) {
+				languageMenu.disabled = ev.target.checked;
+			}, false);
+
 		// read HT country
 		var readHtCountry = doc.getElementById("ReadHtCountry");
 		readHtCountry.checked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled");
