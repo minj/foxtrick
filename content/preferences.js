@@ -234,7 +234,7 @@ var FoxtrickPrefs = {
 	disableAll : function (ev ) {
 		if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
 		else doc=document;
-		if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_moduls_ask' ) ) )  {
+		if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_modules_ask' ) ) )  {
 			try {
 				var array = FoxtrickPrefs._getElemNames("");
 				for(var i = 0; i < array.length; i++) {

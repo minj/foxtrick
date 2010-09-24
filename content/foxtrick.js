@@ -320,7 +320,7 @@ var FoxtrickMain = {
 					FoxtrickMain.new_start = true;
 				}
 
-				// check newstart or design change and reload modul css if needed
+				// check newstart or design change and reload module css if needed
 				if (FoxtrickMain.new_start) {
 					FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 					FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);

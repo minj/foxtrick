@@ -448,13 +448,13 @@ var FoxtrickPrefsDialogHTML = {
 
 			// language & currency & dateformat & country
 			var groupboxouter = doc.createElement("div");
-			groupboxouter.setAttribute('class',"ft_pref_modul");
+			groupboxouter.setAttribute('class',"ft_pref_module");
 			preftab.appendChild(groupboxouter);
 			var groupbox = doc.createElement("div");
 			groupboxouter.appendChild(groupbox);
 
 			var groupbox2= doc.createElement("div");
-			groupbox2.setAttribute('class',"ft_pref_modul");
+			groupbox2.setAttribute('class',"ft_pref_module");
 			groupbox.appendChild(groupbox2);
 
 			var caption1= doc.createElement("div");
@@ -542,7 +542,7 @@ var FoxtrickPrefsDialogHTML = {
 			}
 
 			var groupboxcurrency= doc.createElement("div");
-			groupboxcurrency.setAttribute('class',"ft_pref_modul");
+			groupboxcurrency.setAttribute('class',"ft_pref_module");
 			groupboxCountryCurrency.appendChild(groupboxcurrency);
 			var caption1= doc.createElement("div");
 			caption1.setAttribute('class',"ft_pref_group_caption");
@@ -553,7 +553,7 @@ var FoxtrickPrefsDialogHTML = {
 			groupboxcurrency.appendChild(selectbox);
 
 			var groupboxcountry= doc.createElement("div");
-			groupboxcountry.setAttribute('class',"ft_pref_modul");
+			groupboxcountry.setAttribute('class',"ft_pref_module");
 			groupboxCountryCurrency.appendChild(groupboxcountry);
 			var caption1= doc.createElement("div");
 			caption1.setAttribute('class',"ft_pref_group_caption");
@@ -564,7 +564,7 @@ var FoxtrickPrefsDialogHTML = {
 			groupboxcountry.appendChild(selectbox);
 
 			var groupbox2= doc.createElement("div");
-			groupbox2.setAttribute('class',"ft_pref_modul");
+			groupbox2.setAttribute('class',"ft_pref_module");
 			groupboxCountryCurrency.appendChild(groupbox2);
 			var caption1= doc.createElement("div");
 			caption1.setAttribute('class',"ft_pref_group_caption");
@@ -576,7 +576,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			// currency converter
 			var groupbox= doc.createElement("div");
-			groupbox.setAttribute('class',"ft_pref_modul");
+			groupbox.setAttribute('class',"ft_pref_module");
 			preftab.appendChild(groupbox);
 
 			var caption1= doc.createElement("div");
@@ -608,7 +608,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			// LoadSavePrefs
 			var groupbox= doc.createElement("div");
-			groupbox.setAttribute('class',"ft_pref_modul");
+			groupbox.setAttribute('class',"ft_pref_module");
 			preftab.appendChild(groupbox);
 
 			var caption1= doc.createElement("div");
@@ -666,7 +666,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			// changin all prefs
 			var groupbox= doc.createElement("div");
-			groupbox.setAttribute('class',"ft_pref_modul");
+			groupbox.setAttribute('class',"ft_pref_module");
 			preftab.appendChild(groupbox);
 
 			var caption1= doc.createElement("div");
@@ -717,7 +717,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			// disable options
 			var groupbox= doc.createElement("div");
-			groupbox.setAttribute('class',"ft_pref_modul");
+			groupbox.setAttribute('class',"ft_pref_module");
 			preftab.appendChild(groupbox);
 
 			var caption1= doc.createElement("div");
@@ -739,7 +739,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			// statusbar
 			var groupbox= doc.createElement("div");
-			groupbox.setAttribute('class',"ft_pref_modul");
+			groupbox.setAttribute('class',"ft_pref_module");
 			preftab.appendChild(groupbox);
 
 			var caption1= doc.createElement("div");
@@ -756,7 +756,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			// AdditionalOptions
 			var groupbox= doc.createElement("div");
-			groupbox.setAttribute('class',"ft_pref_modul");
+			groupbox.setAttribute('class',"ft_pref_module");
 			preftab.appendChild(groupbox);
 
 			var caption1= doc.createElement("div");
@@ -790,7 +790,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		// links
 		var groupbox2= doc.createElement("div");
-		groupbox2.setAttribute('class',"ft_pref_modul");
+		groupbox2.setAttribute('class',"ft_pref_module");
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
 		caption1.setAttribute('class',"ft_pref_group_caption");
@@ -818,7 +818,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		// style tutorial
 		var style_tutorial = doc.createElement("div");
-		style_tutorial.className = "ft_pref_modul";
+		style_tutorial.className = "ft_pref_module";
 		var style_tutorial_caption = doc.createElement("div");
 		style_tutorial_caption.className = "ft_pref_group_caption";
 		style_tutorial_caption.textContent = Foxtrickl10n.getString("StyleTutorial.title");
@@ -845,7 +845,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		// head_developer
 		var groupbox2= doc.createElement("div");
-		groupbox2.setAttribute('class',"ft_pref_modul");
+		groupbox2.setAttribute('class',"ft_pref_module");
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
 		caption1.setAttribute('class',"ft_pref_group_caption");
@@ -859,7 +859,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		// project_owners
 		var groupbox2= doc.createElement("div");
-		groupbox2.setAttribute('class',"ft_pref_modul");
+		groupbox2.setAttribute('class',"ft_pref_module");
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
 		caption1.setAttribute('class',"ft_pref_group_caption");
@@ -873,7 +873,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		// developers
 		var groupbox2= doc.createElement("div");
-		groupbox2.setAttribute('class',"ft_pref_modul");
+		groupbox2.setAttribute('class',"ft_pref_module");
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
 		caption1.setAttribute('class',"ft_pref_group_caption");
@@ -887,7 +887,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		// graphic designers
 		var groupbox2= doc.createElement("div");
-		groupbox2.setAttribute('class',"ft_pref_modul");
+		groupbox2.setAttribute('class',"ft_pref_module");
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
 		caption1.setAttribute('class',"ft_pref_group_caption");
@@ -901,7 +901,7 @@ var FoxtrickPrefsDialogHTML = {
 
 		// translations
 		var groupbox2= doc.createElement("div");
-		groupbox2.setAttribute('class',"ft_pref_modul");
+		groupbox2.setAttribute('class',"ft_pref_module");
 		preftab.appendChild(groupbox2);
 		var caption1= doc.createElement("div");
 		caption1.setAttribute('class',"ft_pref_group_caption");
@@ -1102,7 +1102,7 @@ var FoxtrickPrefsDialogHTML = {
 
 	_normalModule : function (doc, module, on_page) {
 		var entry = doc.createElement( "div" );
-		entry.setAttribute( "class", "ft_pref_modul" );
+		entry.setAttribute( "class", "ft_pref_module" );
 		entry.setAttribute( "prefname", module.MODULE_NAME );
 
 		var checkdiv = FoxtrickPrefsDialogHTML._getCheckBox (doc, module.MODULE_NAME, module.MODULE_NAME, FoxtrickPrefs.getModuleDescription( module.MODULE_NAME ), Foxtrick.isModuleEnabled( module ),null, null, false, on_page) ;
@@ -1383,7 +1383,7 @@ var FoxtrickPrefsDialogHTML = {
 				}
 				else td1.appendChild(doc.createTextNode(this.NewModules[i][0]));
 
-				// modul options
+				// module options
 				if (this.NewModules[i][6].OPTIONS) {
 					for (var k=0; k < this.NewModules[i][6].OPTIONS.length; ++k) {
 						var screenshot=Foxtrickl10n.getScreenshot(this.NewModules[i][0]+'.'+this.NewModules[i][6].OPTIONS[k]);

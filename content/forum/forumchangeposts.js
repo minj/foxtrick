@@ -301,7 +301,7 @@ var FoxtrickForumChangePosts = {
 					} // get user info
 
 
-					// +++++++++++++ moduls +++++++++++++++++++++++++++++++++++
+					// +++++++++++++ modules +++++++++++++++++++++++++++++++++++
 
 					// save for search ---------------------------------------------
 					/*if (do_forum_search) {
