@@ -1959,14 +1959,16 @@ Foxtrick.var_dump = function(arr,level) {
 
 Foxtrick.dump_HTML = '';
 Foxtrick.dump_flush = function(doc) {
-	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput") && Foxtrick.dump_HTML != '') {
+	if (doc.getElementById("page") != null
+		&& FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")
+		&& Foxtrick.dump_HTML != '') {
 		try {
 			var div = doc.getElementById('ft_dump');
 			if (div == null) {
 				var div = doc.createElement('div');
 				div.id = "ft_dump";
 				var header = doc.createElement('h1');
-				header.textContent = "Foxtrick Log";
+				header.textContent = "FoxTrick Log";
 				var pre = doc.createElement('pre');
 				pre.textContent = Foxtrick.dump_HTML;
 				div.appendChild(header);
@@ -1986,7 +1988,7 @@ Foxtrick.dump_flush = function(doc) {
 
 Foxtrick.dump = function(cnt) {
 	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
-	dump('ft: '+String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
+	dump('FT: '+String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
 }
 
 Foxtrick.dumpError = function(error) {
