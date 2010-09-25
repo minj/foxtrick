@@ -46,18 +46,6 @@ var FoxtrickPreferencesDialog = {
 	},
 
 	initMainPref : function(doc) {
-		// deafult warning
-		if (FoxtrickPrefs.getBool("PrefsSavedOnce")) {
-			var defaultWarning = doc.getElementById("defaultWarning");
-			defaultWarning.parentNode.removeChild(defaultWarning);
-		}
-		else {
-			var defaultWarningLabel = doc.getElementById("defaultWarningLabel");
-			defaultWarningLabel.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningLabel"));
-			var defaultWarningText = doc.getElementById("defaultWarningText");
-			defaultWarningText.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.PrefDefaultWarningText")));
-		}
-
 		// basic preferences
 		var basic = doc.getElementById("basic");
 		basic.label = Foxtrickl10n.getString("foxtrick.prefs.basicPreferences");
@@ -412,8 +400,6 @@ var FoxtrickPreferencesDialog = {
 				}
 			}
 		}
-		// disable warning
-		FoxtrickPrefs.setBool("PrefsSavedOnce", true);
 
 		//Lang
 		FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);

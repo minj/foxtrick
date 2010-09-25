@@ -168,10 +168,6 @@
 	<tabpanels id="tabpanels" class="tabpanels" flex="1">
 		<tabpanel class="panel">
 			<vbox id="main_list" flex="1">
-				<vbox id="defaultWarning" class="important">
-					<caption id="defaultWarningLabel" />
-					<description id="defaultWarningText" />
-				</vbox>
 				<groupbox>
 					<caption id="basic" />
 					<grid>

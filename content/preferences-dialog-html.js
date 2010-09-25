@@ -311,9 +311,6 @@ var FoxtrickPrefsDialogHTML = {
 				return;
 			}
 
-			// disable warning
-			FoxtrickPrefs.setBool( "PrefsSavedOnce" ,true);
-
 			//Lang
 			FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);
 			FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", doc.getElementById("ReadHtPrefs").checked);
