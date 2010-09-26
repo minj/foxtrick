@@ -1,5 +1,5 @@
 content foxtrick content/
-content	foxtrick content/ contentaccessible=yes
+content foxtrick content/ contentaccessible=yes
 overlay chrome://browser/content/browser.xul chrome://foxtrick/content/foxtrick.xul
 overlay chrome://navigator/content/navigator.xul chrome://foxtrick/content/foxtrick.xul
 style chrome://global/content/customizeToolbar.xul chrome://foxtrick/content/resources/css/overlay.css
@@ -8,4 +8,4 @@ component {6025df48-53f0-11dc-8314-0800200c9a66} platform/Darwin/components/grow
 contract @foxtrick/notifications;1 {6025df48-53f0-11dc-8314-0800200c9a66}
 category before-growl-registration foxtrickGrowlNotifications @foxtrick/notifications;1
 
-skin	foxtrick	classic/1.0	skin/
+skin foxtrick classic/1.0 skin/
