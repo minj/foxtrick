@@ -7,3 +7,11 @@
 #foxtrick-status-bar-img[status="disabled"] {
 	list-style-image: url("chrome://foxtrick/skin/disabled.png");
 }
+
+#foxtrick-toolbar-preferences {
+	list-style-image: url("chrome://foxtrick/skin/icon-24.png");
+}
+
+toolbar[iconsize="small"] #foxtrick-toolbar-preferences {
+	list-style-image: url("chrome://foxtrick/skin/icon-16.png");
+}
