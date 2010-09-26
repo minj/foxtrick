@@ -1,16 +1,12 @@
 /**
- *
- *
  * xml_load.js
  * xml loading
  * @author convinced
  */
 
-if (!Foxtrick) var Foxtrick={};
-
+if (!Foxtrick) var Foxtrick = {};
 
 Foxtrick.XMLData = {
-
     MODULE_NAME : "XMLData",
 	DEFAULT_ENABLED : true,
 	PAGES : new Array('all'),
@@ -19,17 +15,14 @@ Foxtrick.XMLData = {
 	countryToLeague : {},
 	htLanguagesXml : {},
 	htCurrencyXml : null,
-	htNTidsXml: null,
-	htversionsXML: null,
-	htdateformat: null,
-	aboutXML:null,
-
-	matchxmls: new Array(),
+	htNTidsXml : null,
+	htversionsXML : null,
+	htdateformat : null,
+	aboutXML : null,
 
 	locale : {},
 
 	init : function() {
-	try {
 		for (var i in Foxtrickl10n.locale) {
 			var locale = Foxtrickl10n.locale[i];
 			try {
@@ -49,9 +42,9 @@ Foxtrick.XMLData = {
 
 		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/worlddetails.xml");
 
-		var data ={};
+		var data = {};
 		var name = 'HattrickData';
-		Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement,data,name);
+		Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement, data, name);
 
 		for (var i in data.HattrickData.LeagueList.League) {
 			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
@@ -100,9 +93,6 @@ Foxtrick.XMLData = {
 				FoxtrickStaffMarker.foxtrickersArray[id]='x';
 			}
 		}
-		/*for (var i in FoxtrickStaffMarker.foxtrickersArray) {
-			Foxtrick.dump(i+' '+FoxtrickStaffMarker.foxtrickersArray[i]+'\n');
-		}*/
 
 		var editor=this.aboutXML.getElementsByTagName('editor');
 		for (var i=0;i<editor.length;++i)   {
@@ -117,10 +107,7 @@ Foxtrick.XMLData = {
 			var name= chpp[i].getAttribute('name');
 			FoxtrickStaffMarker.chppholder[id]=name;
 		}
-
-	} catch(e){Foxtrick.dump('Foxtrick.XMLData.init: '+e+'\n');}
 	},
-
 
 	getchilds : function(el,parent,tag) {
 		var childs = el.childNodes;
@@ -155,27 +142,6 @@ Foxtrick.XMLData = {
 		}
 	},
 
-	run : function(page,doc) {
-	/*try{
-		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href);
-		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
-		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
-		if (isprematch) return;
-
-		if (isarchivedmatch && typeof(this.matchxmls[matchid]) == 'undefined') {
-			var req = new XMLHttpRequest();
-			req.open('GET', 'http://'+doc.location.hostname+'/Community/CHPP/Matches/chppxml.axd?file=matchdetails&matchID='+matchid+'&matchEvents=true', false);
-			req.send(null);
-			if (req.status == 200) {
-				this.matchxmls[matchid] = req.responseXML;
-				Foxtrick.dump('matches.js: get new xml\n');
-			}
-			else Foxtrick.dump('matches.js: xml request failed\n');
-		}
-	} catch(e){Foxtrick.dump('matches.js run: '+e+'\n');}*/
-
-	},
-
 	getLeagueIdByCountryId : function(id) {
 		if (this.countryToLeague[id] !== undefined) {
 			return this.countryToLeague[id];
@@ -193,5 +159,4 @@ Foxtrick.XMLData = {
 			return 0;
 		}
 	}
-
 }

@@ -4,17 +4,12 @@
 */
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickHelper = {
-
-
 	MODULE_NAME : "Helper",
 	PAGES : new Array('all', 'teamPageAny'),
 	DEFAULT_ENABLED : true,
 	ownTeam: null,
 
-	init : function() {
-	},
-
-	run : function( page, doc ) {
+	run : function(page, doc) {
 		this.getOwnTeamInfo(doc, page);
 	},
 
@@ -43,13 +38,13 @@ var FoxtrickHelper = {
 			this.ownTeam.ownSeriesNum = ownseriesnum;
 			this.ownTeam.ownLevelNum = ownlevelnum ;
 
-			Foxtrick.dump('FoxtrickHelper.ownTeam\n'+
+			/*Foxtrick.dump('FoxtrickHelper.ownTeam\n'+
 					'ownTeamId ' + this.ownTeam.ownTeamId+'\n'+
 					'ownTeamName ' + this.ownTeam.ownTeamName+'\n'+
 					'ownCountryId ' + this.ownTeam.ownCountryId+'\n'+
 					'ownLeagueName ' + this.ownTeam.ownLeagueName+'\n'+
 					'ownSeriesNum ' + this.ownTeam.ownSeriesNum+'\n'+
-					'ownLevelNum ' + this.ownTeam.ownLevelNum+'\n');
+					'ownLevelNum ' + this.ownTeam.ownLevelNum+'\n');*/
 
 			this.ownTeam.ownYouthTeamId = null;
 		}
@@ -58,7 +53,7 @@ var FoxtrickHelper = {
 				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
 				if (this.ownTeam.ownTeamId==leftMenuTeamId) {
 					this.ownTeam.ownYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-					Foxtrick.dump('ownYouthTeamId: '+this.ownTeam.ownYouthTeamId+'\n');
+					// Foxtrick.dump('ownYouthTeamId: '+this.ownTeam.ownYouthTeamId+'\n');
 				}
 			}
 		}

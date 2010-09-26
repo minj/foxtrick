@@ -244,16 +244,14 @@ var FoxtrickMain = {
 					}
 				}
 
-				Foxtrick.dump('---------------------- foxtrick onPageLoad start ----------------\n');
+				//Foxtrick.dump('---------------------- foxtrick onPageLoad start ----------------\n');
 
 				var begin = new Date();
-
 				FoxtrickMain.run(doc);
-
 				var end = new Date();
 				var time = (end.getSeconds() - begin.getSeconds()) * 1000
 						 + end.getMilliseconds() - begin.getMilliseconds();
-				Foxtrick.dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search+'\n');
+				Foxtrick.dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search + '\n');
 				// listen to page content changes
 				var content = doc.getElementById("content");
 				if (content) {
@@ -266,7 +264,7 @@ var FoxtrickMain = {
 								var module = Foxtrick.run_on_page[page][i];
 								if (typeof(module.change) == "function") {
 									add_change = true;
-									Foxtrick.dump('module has change on page: '+page+' : '+module.MODULE_NAME+'\n');
+									// Foxtrick.dump('module has change on page "' + page + '": ' + module.MODULE_NAME + '.\n');
 								}
 							}
 						}
@@ -275,12 +273,12 @@ var FoxtrickMain = {
 						content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 					}
 				}
-				Foxtrick.dump('add_change: '+add_change+'\n')
-				Foxtrick.dump('---------------------- foxtrick onPageLoad end -------------------\n')
+				//Foxtrick.dump('add_change: '+add_change+'\n')
+				//Foxtrick.dump('---------------------- foxtrick onPageLoad end -------------------\n')
 			}
 		}
 		catch (e) {
-			Foxtrick.dump('onPageLoad: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 

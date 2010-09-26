@@ -7,15 +7,14 @@
 
 var FoxtrickRedirections = {
 
-    MODULE_NAME : "Redirections",
+	MODULE_NAME : "Redirections",
 	DEFAULT_ENABLED : true,
 
-    init : function() {
-            Foxtrick.registerAllPagesHandler(FoxtrickRedirections );
-   },
+	init : function() {
+		Foxtrick.registerAllPagesHandler(FoxtrickRedirections );
+	},
 
-    run : function( doc ) {
-	try {
+	run : function( doc ) {
 		if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return;
 
 		var serv = 'http://'+doc.location.hostname;
@@ -76,104 +75,103 @@ var FoxtrickRedirections = {
 				break;
 			}
 		}
-	//challenge
-	if (doc.location.href.search(/challenge=true/i)!=-1 ) {
-		var teamid_input = doc.getElementById('ctl00_CPSidebar_tbNewChallangeTeamId');
-		teamid_input.value = FoxtrickHelper.getTeamIdFromUrl(doc.location.href);
-	}
-	//mailto
-	if (doc.location.href.search(/mailto=/i)!=-1 ) {
-		var teamid_input = doc.getElementById('ctl00_CPMain_tbTo');
-		var username = doc.location.href.replace(/.+mailto=/i,'');
-		if (username.search(/&/)!=-1) username=username.replace(/&.+/,'');
-		teamid_input.value = username;
-	}
-	//redirect to mail
-	if (doc.location.href.search(/redir_to_mail=true/i)!=-1 ) {
-		var username='';
-		var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
-		for (var i=0;i<mainBodylinks.length;++i) {
-			if (mainBodylinks[i].href.search(/\/Club\/Manager\/\?userId=/i)!=-1) {
-				username = mainBodylinks[i].title;
-				break;
+		//challenge
+		if (doc.location.href.search(/challenge=true/i)!=-1 ) {
+			var teamid_input = doc.getElementById('ctl00_CPSidebar_tbNewChallangeTeamId');
+			teamid_input.value = FoxtrickHelper.getTeamIdFromUrl(doc.location.href);
+		}
+		//mailto
+		if (doc.location.href.search(/mailto=/i)!=-1 ) {
+			var teamid_input = doc.getElementById('ctl00_CPMain_tbTo');
+			var username = doc.location.href.replace(/.+mailto=/i,'');
+			if (username.search(/&/)!=-1) username=username.replace(/&.+/,'');
+			teamid_input.value = username;
+		}
+		//redirect to mail
+		if (doc.location.href.search(/redir_to_mail=true/i)!=-1 ) {
+			var username='';
+			var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
+			for (var i=0;i<mainBodylinks.length;++i) {
+				if (mainBodylinks[i].href.search(/\/Club\/Manager\/\?userId=/i)!=-1) {
+					username = mainBodylinks[i].title;
+					break;
+				}
+			}
+			if (username!=='') {
+				var tar = serv+"/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
+				doc.location.replace(tar);
 			}
 		}
-		if (username!=='') {
-			var tar = serv+"/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
+		//redirect to youthmatches
+		if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) {
+			var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+			var TeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+			var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; //Foxtrick.dump(tar+'\n');
 			doc.location.replace(tar);
 		}
-	}
-	//redirect to youthmatches
-	if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) {
-		var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-		var TeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-		var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; //Foxtrick.dump(tar+'\n');
-		doc.location.replace(tar);
-	}
-	// redirect to coach
-	if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) {
-		if (doc.location.href.search(/\/Club\/Players\//i)!=-1 ) {
-			// redirect to coach
+		// redirect to coach
+		if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) {
+			if (doc.location.href.search(/\/Club\/Players/i)!=-1 ) {
+				// redirect to coach
+				try {
+					var alldivs = doc.getElementsByTagName('div');
+					for (var j = 0; j < alldivs.length; j++) {
+						if (alldivs[j].className=="sidebarBox") {
+							var CoachId = FoxtrickHelper.findPlayerId(alldivs[j]);
+							var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
+							doc.location.replace(tar);
+							break;
+						}
+					}
+				}
+				catch (e) {dump("teamlinks->"+e);}
+			}
+			if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1 ){
+				try {
+					var ntinfo=doc.getElementById('teamInfo');
+					var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
+					var tar = serv+'/Club/Players/Player.aspx?playerId='+CoachId;
+					doc.location.replace(tar);
+					}
+
+				catch (e) {dump("teamlinks->"+e);}
+			}
+			if (doc.location.href.search(/\/Club\/Training/i)!=-1) {
+				try {
+				// redirect to coach
+					var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
+					var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
+					doc.location.replace(tar);
+				}
+				catch (e) {dump("ateamshortcuts->"+e);}
+			}
+		}
+		// redir to next match
+		if (doc.location.href.search(/\/Club\/Matches\/\?TeamID=/i)!=-1
+			&& (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1
+				|| doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )) {
 			try {
-				var alldivs = doc.getElementsByTagName('div');
-				for (var j = 0; j < alldivs.length; j++) {
-					if (alldivs[j].className=="sidebarBox") {
-						var CoachId = FoxtrickHelper.findPlayerId(alldivs[j]);
-						var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
+				var table = doc.getElementById('mainWrapper').getElementsByTagName('table')[0];
+				var headercount=0;
+				for (var i=0;i<table.rows.length;++i) {
+					if (table.rows[i].getElementsByTagName('h2')[0]) {
+						headercount++;
+						if (headercount==1) continue;
+
+						var matchid = table.rows[i+1].innerHTML.match(/matchid=(\d+)/i)[1];
+
+		 				if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 )
+									tar=serv+'/Club/Matches/Match.aspx?matchID='+matchid;
+						else if (doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )
+									tar=serv+'/Club/Matches/Live.aspx?actionType=addMatch&matchID='+matchid;
 						doc.location.replace(tar);
 						break;
 					}
 				}
 			}
-			catch (e) {dump("teamlinks->"+e);}
-		}
-		if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1 ){
-			try {
-				var ntinfo=doc.getElementById('teamInfo');
-				var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
-				var tar = serv+'/Club/Players/Player.aspx?playerId='+CoachId;
-				doc.location.replace(tar);
-				}
-
-			catch (e) {dump("teamlinks->"+e);}
-		}
-		if (doc.location.href.search(/\/Club\/Training\//i)!=-1) {
-			try {
-			// redirect to coach
-				var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
-				var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
-				doc.location.replace(tar);
+			catch (e) {
+				Foxtrick.dumpError(e);
 			}
-			catch (e) {dump("ateamshortcuts->"+e);}
 		}
-	  }
-	// redir to next match
-	if (doc.location.href.search(/\/Club\/Matches\/\?TeamID=/i)!=-1 &&
-				(doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 ||
-				doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )) {
-			try{
-			var table = doc.getElementById('mainWrapper').getElementsByTagName('table')[0];
-			var headercount=0;
-			for (var i=0;i<table.rows.length;++i) {
-				if (table.rows[i].getElementsByTagName('h2')[0]) {
-					headercount++;
-					if (headercount==1) continue;
-
-					var matchid = table.rows[i+1].innerHTML.match(/matchid=(\d+)/i)[1];
-
-	 				if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 )
-								tar=serv+'/Club/Matches/Match.aspx?matchID='+matchid;
-					else if (doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )
-								tar=serv+'/Club/Matches/Live.aspx?actionType=addMatch&matchID='+matchid;
-					doc.location.replace(tar);
-					break;
-				}
-			}
-			} catch(e){ dump('redir_to_(add)nextlineup: '+e+'\n');}
-		}
-
-	} catch(e) {dump('FoxtrickRedirections: +'+e+'\n');}
-	},
-
-
+	}
 };

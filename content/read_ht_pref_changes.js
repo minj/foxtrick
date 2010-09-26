@@ -88,7 +88,6 @@ var FoxtrickReadHtPrefsFromHeader = {
 	ht_dateformat : 'yyyy-mm-dd',
 
 	run : function(page, doc, newstart ) {
-	try{
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
 
@@ -101,7 +100,6 @@ var FoxtrickReadHtPrefsFromHeader = {
 			var OldCountryName = FoxtrickPrefs.getString("htCountry");
 
 			if (CountryName != OldCountryName || doc.location.href.search(/\/MyHattrick\/$/i)!=-1 || newstart) {
-				Foxtrick.dump('Country check. old:'+OldCountryName+' new:'+ CountryName +'\n');
 				var CurrencyName = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
 				var CurrencyRate = FoxtrickHelper.getCurrencyRateFromId(LeagueId);
 				if (CurrencyName.search(/000\ /,'')!=-1) {
@@ -118,7 +116,6 @@ var FoxtrickReadHtPrefsFromHeader = {
 
 						this.ht_dateformat = timeDiffParams.substring(0,timeDiffParams.lastIndexOf('\''));
 						this.ht_dateformat = this.ht_dateformat.substr(this.ht_dateformat.lastIndexOf('\'')+1);
-						Foxtrick.dump('ht_dateformat: '+this.ht_dateformat+'\n');
 						var dateformat='ddmmyyyy';
 						if (timeDiffParams.search('y') < timeDiffParams.search('d')) {
 							dateformat='yyyymmdd';
@@ -131,8 +128,9 @@ var FoxtrickReadHtPrefsFromHeader = {
 					}
 				}
 
-				Foxtrick.dump('CurrencyName:'+CurrencyName+' CurrencyRate:'+ CurrencyRate +'\n');
-				Foxtrick.dump('dateformat: ' +dateformat+'\n');
+				// Foxtrick.dump('Old country: ' + OldCountryName + ', new: ' + CountryName + '.\n');
+				// Foxtrick.dump('Currency: ' + CurrencyName + ', rate: ' + CurrencyRate + '.\n');
+				// Foxtrick.dump('Date format: ' + dateformat + '.\n');
 
 				FoxtrickPrefs.setString("htCountry", CountryName);
 				FoxtrickPrefs.setString("htCurrency", CurrencyCode);
@@ -141,10 +139,7 @@ var FoxtrickReadHtPrefsFromHeader = {
 				FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(CountryName)));
 			}
 		}
-	} catch(e) {Foxtrick.dump('ReadHtPrefsFromHeader: '+e+'\n');}
-	},
-
-
+	}
 };
 
 
@@ -349,24 +344,22 @@ var FoxtrickMyHT = {
 	},
 
 	ShowOnce : function() {
-			// show_once messages
-			if (!FoxtrickPrefs.getBool("v0481.show_once")) {
+		// show_once messages
+		if (!FoxtrickPrefs.getBool("v0481.show_once")) {
+			var prefs_changed=false;
 
-				var prefs_changed=false;
-
-				// turn off youthskillnotes
-				if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
-				&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes'))) {
-					FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false, true);
-					prefs_changed=true;
-				}
-
-				// reinitialize
-				if (prefs_changed) FoxtrickMain.init();
-
-				FoxtrickPrefs.setBool("v0481.show_once", true, true);
-
+			// turn off youthskillnotes
+			if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
+			&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes'))) {
+				FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false, true);
+				prefs_changed=true;
 			}
+
+			// reinitialize
+			if (prefs_changed) FoxtrickMain.init();
+
+			FoxtrickPrefs.setBool("v0481.show_once", true, true);
+		}
 	},
 
 	sortfunction0: function(a,b) {return a.MODULE_NAME.localeCompare(b.MODULE_NAME);},
@@ -478,6 +471,5 @@ var FoxtrickMyHT = {
 		prefsavediv.appendChild(prefsave);
 
 		} catch(e) {dump('showchanged: '+e+'\n');}
-	},
-
+	}
 };
