@@ -15,62 +15,81 @@ var FoxtrickReadHtPrefs = {
 
 	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
-	isLang : function(menuLinks, lang) {
-		var languages = Foxtrick.XMLData.htLanguagesXml;
-		var currentItem = 0; // index of menu item position
-		for (var i = 0; currentItem < this.menu_strings.length && i < menuLinks.length; ++i) {
-			if (menuLinks[i].textContent == "Alltid") // 5th entry might be alltid. skip it
-				continue;
-			var linkTitle = languages[lang].getElementsByTagName(this.menu_strings[currentItem])[0];
-			if (linkTitle === null || menuLinks[i].textContent.indexOf(linkTitle.getAttribute("value")) == -1) {
-				// not this language
-				return false;
-			}
-			++currentItem;
-		}
-		return true;
-	},
-
 	run : function(page, doc) {
-		var newLang = null;
-		var oldLang = FoxtrickPrefs.getString("htLanguage");
-		var languages = Foxtrick.XMLData.htLanguagesXml;
+		try {
+			//Foxtrick.dump("++++FoxtrickReadHtPrefs++++\n");
+			
+			var langval = null;
+			var oldval = FoxtrickPrefs.getString("htLanguage");
 
-		var menu = doc.getElementById("menu");
-		var menuLinks = menu.getElementsByTagName("a");
+			var menu = doc.getElementById('menu');
+			var as = menu.getElementsByTagName('a');
+			var languages = Foxtrick.XMLData.htLanguagesXml;
 
-		if (menuLinks.length < this.menu_strings.length) // pre-login
-			return;
-
-		var unchanged = (oldLang !== null) && this.isLang(menuLinks, oldLang);
-		if (!unchanged) {
-			// language has changed, look for the new one
-			var found = false;
-			for (var k in languages) {
-				if (this.isLang(menuLinks, k)) {
-					newLang = k;
-					found = true;
-					Foxtrick.dump("Language changed: " + newLang + ", old language: " + oldLang + ".\n");
-					break;
-				}
+			if (as.length < 6) {
+				// pre-login
+				Foxtrick.dump("No language check at pre-login.\n");
+				return;
 			}
-			if (found) {
-				FoxtrickPrefs.setString("htLanguage", newLang);
-				if (Foxtrick.BuildFor == "Chrome") {
-					// change language
-					FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:newLang, from:'readpref'});
-				}
-				else if (Foxtrick.BuildFor == "Gecko") {
-					// change language
-					Foxtrickl10n.get_strings_bundle(newLang);
-					var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
-					var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
-					Foxtrick.Note.add(doc, null, "ft-language-changed", msg, null, true, true);
+			var unchanged = true;
+			if (oldval) {
+				for (var i = 0; i < 6; ++i) {
+					if (as[i].textContent.search('Alltid')!=-1) {++i;} // 5th entry might be alltid. skip it  
+					var atitle = languages[oldval].getElementsByTagName(this.menu_strings[i])[0];
+					if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
+						// language is changed
+						unchanged = false;
+						break;
+					}
 				}
 			}
 			else {
-				Foxtrick.dump("Cannot detect language.\n");
+				// no oldlang set?
+				unchanged = false;
 			}
+			//Foxtrick.dump("unchanged: " + unchanged + ".\n");
+			
+			if (unchanged) {
+				langval = oldval;
+			}
+			else {
+				// language has changed, look for the new one
+				var found = false;
+				for (var k in languages) {
+					var menufound = true;
+					for (var i = 0; i < 6; ++i) {
+						if (as[i].textContent.search('Alltid')!=-1) {++i;} // 5th entry might be alltid. skip it  
+						var atitle = languages[k].getElementsByTagName(this.menu_strings[i])[0];
+						if (atitle === null || as[i].textContent.search(atitle.getAttribute('value')) === -1) {
+							menufound = false;
+							break;
+						}
+					}
+					if (menufound) {
+						langval = k;
+						found = true;
+						Foxtrick.dump("Language detected: " + langval + ", old language: " + oldval + ".\n");
+						break;
+					}
+				}
+				if (found) {
+					FoxtrickPrefs.setString("htLanguage", langval);
+					if (Foxtrick.BuildFor == "Chrome") {
+						// change language
+						FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:langval, from:'readpref'});
+					}
+					else {
+						// change language
+						Foxtrickl10n.get_strings_bundle(langval);
+						var language = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[langval], "language", "desc");
+						var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
+						Foxtrick.Note.add(doc, null, "ft-language-changed", msg, null, true, true);
+					}
+				}
+			}
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 	}
 };
