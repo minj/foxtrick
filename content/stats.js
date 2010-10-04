@@ -2375,7 +2375,8 @@ stats["romaniatracker"] = {
 	"nationalityranges" : [[37,37]],
 };
 
-
+// Currently offline(suspended)//
+/*
 stats["hellastracker"] = {
   "url" : "http://www.hdb.gr",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
@@ -2391,7 +2392,7 @@ stats["hellastracker"] = {
                  },
 	"countryidranges" : [[50,50]] ,
 	"nationalityranges" : [[50,50]],
-};
+};  */
 
 
 stats["surinametracker"] = {
@@ -2516,6 +2517,23 @@ stats["scotlandtracker"] = {
 	"nationalityranges" : [[26,26]],
 };
 
+
+stats["sverigetracker"] = {
+  "url" : "http://htsweden.htsv.se",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
+  "title" : "Sweden U20/NT Tracker",
+
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"],
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"],
+                   "params"     : []
+                 },
+	"countryidranges" : [[1,1]] ,
+	"nationalityranges" : [[1,1]],
+};
 
 stats["tanzaniatracker"] = {
   "url" : "http://hattricktanzania.ic.cz",
