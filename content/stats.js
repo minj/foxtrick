@@ -2375,8 +2375,7 @@ stats["romaniatracker"] = {
 	"nationalityranges" : [[37,37]],
 };
 
-// Currently offline(suspended)//
-/*
+
 stats["hellastracker"] = {
   "url" : "http://www.hdb.gr",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
@@ -2392,7 +2391,7 @@ stats["hellastracker"] = {
                  },
 	"countryidranges" : [[50,50]] ,
 	"nationalityranges" : [[50,50]],
-};  */
+};
 
 
 stats["surinametracker"] = {
