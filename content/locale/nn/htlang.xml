@@ -1,30 +1,30 @@
-<language name="en" desc="English">
+<language name="nn" desc="Norsk, nynorsk">
 	
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="My Hattrick" />
-	<MyClub value="My Club" />
-	<World value="World" />
+	<MyHattrick value="Mitt Hattrick" />
+	<MyClub value="Klubben min" />
+	<World value="Verda" />
 	<Forum value="Forum" />
-	<Shop value="Shop" />
-	<Help value="Help" />
+	<Shop value="Butikk" />
+	<Help value="Hjelp" />
 	
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
-		<sublevel text="(very low)" value="0.0" />
-		<sublevel text="(low)" value="0.25" />
-		<sublevel text="(high)" value="0.50" />
-		<sublevel text="(very high)" value="0.75" />
+		<sublevel text="(svært låg)" value="0.0" />
+		<sublevel text="(låg)" value="0.25" />
+		<sublevel text="(høg)" value="0.50" />
+		<sublevel text="(svært høg)" value="0.75" />
 	</ratingSubLevels>
 	
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
-		<tactic type="pressing" value="Pressing" />
-		<tactic type="ca" value="Counter-attacks" />
-		<tactic type="aow" value="Attack on wings" />
-		<tactic type="aim" value="Attack in the Middle" />
-		<tactic type="creatively" value="Play creatively" />
-		<tactic type="longshots" value="Long shots" />
+		<tactic type="pressing" value="Press" />
+		<tactic type="ca" value="Kontringsspel" />
+		<tactic type="aow" value="Angrip på kantane" />
+		<tactic type="aim" value="Angrip i midten" />
+		<tactic type="creatively" value="Spel kreativt" />
+		<tactic type="longshots" value="Skot frå distanse" />
 	</tactics>
 	
 	<!-- positions appearing on players page. copy "value". translate "short" -->
@@ -49,27 +49,27 @@
 	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
+		<level text="guddomleg" value="20" />
+		<level text="utopisk" value="19" />
+		<level text="magisk" value="18" />
+		<level text="mytisk" value="17" />
+		<level text="utanomjordisk" value="16" />
+		<level text="titanisk" value="15" />
+		<level text="eventyrleg" value="14" />
+		<level text="fantastisk" value="13" />
+		<level text="storveges" value="12" />
+		<level text="glitrande" value="11" />
+		<level text="framifrå" value="10" />
+		<level text="eineståande" value="9" />
+		<level text="utmerkt" value="8" />
 		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="brukbar" value="6" />
+		<level text="måteleg" value="5" />
+		<level text="veik" value="4" />
+		<level text="dårleg" value="3" />
+		<level text="elendig" value="2" />
+		<level text="katastrofal" value="1" />
+		<level text="fråverande" value="0" />
 	</levels>
 
 	<agreeability>
