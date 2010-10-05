@@ -340,32 +340,11 @@ var FoxtrickMyHT = {
 		FoxtrickPrefs.setString("oldVersion",curVersion);	*/
 		FoxtrickMain.IsNewVersion=false;
 		Foxtrick.dump('FoxtrickMyHT close\n');
-		//FoxtrickMyHT.ShowOnce();
-	},
-
-	ShowOnce : function() {
-		// show_once messages
-		if (!FoxtrickPrefs.getBool("v0481.show_once")) {
-			var prefs_changed=false;
-
-			// turn off youthskillnotes
-			if (FoxtrickPrefs.getBool("module.YouthSkillNotes.enabled" )
-			&& Foxtrick.confirmDialog(Foxtrickl10n.getString('v0481.show_once.DisableYouthSkillNotes'))) {
-				FoxtrickPrefs.setBool("module.YouthSkillNotes.enabled", false, true);
-				prefs_changed=true;
-			}
-
-			// reinitialize
-			if (prefs_changed) FoxtrickMain.init();
-
-			FoxtrickPrefs.setBool("v0481.show_once", true, true);
-		}
 	},
 
 	sortfunction0: function(a,b) {return a.MODULE_NAME.localeCompare(b.MODULE_NAME);},
 	sortfunction2: function(a,b) {return a.MODULE_CATEGORY.localeCompare(b.MODULE_CATEGORY);},
 	sortfunction4: function(a,b) {return a.NEW_AFTER_VERSION.localeCompare(b.NEW_AFTER_VERSION);},
-
 
 	ShowChanged: function(doc) {
 		try{
@@ -373,7 +352,6 @@ var FoxtrickMyHT = {
 		//var doc = ev.target.ownerDocument;
 
 		Foxtrick.dump('FoxtrickMyHT ShowChanged\n');
-		//FoxtrickMyHT.ShowOnce();
 		FoxtrickMain.IsNewVersion=false;
 
 		doc.addEventListener( "submit", FoxtrickOnPagePrefs.SubmitCapture, true );
