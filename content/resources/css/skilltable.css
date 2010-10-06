@@ -6,6 +6,7 @@
 .ft_skilltablediv table td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltablediv table td:nth-child(odd) { background-color: white; }
 .ft_skilltablediv table th { text-align: center !important; }
+.ft_skilltablediv table th, .ft_skilltablediv table td { padding: 1px 2px !important; vertical-align: middle !important; }
 .ft_skilltablediv a { cursor: pointer; }
 .ft_skilltable_wrapper, .ft_skilltable_customizewrapper { max-width: 100%; overflow: auto; }
 .ft_skilltable_links { margin-bottom: 0.5em !important; }
@@ -16,7 +17,6 @@
 .ft_skilltable_links.customizing .customize_item { display: none; }
 .ft_skilltable_container { background-color: #fff; }
 .ft_skilltable_container.on_top { position: absolute; z-index: 100; padding: 1em; border: 2px solid #888; }
-.ft_skilltable th, .ft_skilltable td { padding: 1px 2px !important; vertical-align: middle !important; }
 .ft_skilltable th { cursor: pointer; }
 .ft_skilltable td { border-bottom: 1px solid #dce0dc; }
 .ft_skilltable td.align-right { text-align: right !important; }
@@ -29,4 +29,3 @@
 /*boxBody h2 dropdown image*/
 h2.ft_boxBodyCollapsed {background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}
 h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right;}
-
