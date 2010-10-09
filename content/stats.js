@@ -1339,6 +1339,19 @@ stats["hottrickkeeper"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/hottrick_small.png"
 };
 
+//Stamin.IA! substitutions calculator tool//
+stats["staminia"] =  {
+        "url" : "http://lizardopoli.altervista.org/staminia/",
+
+        "playerlink" : { "path"       : "staminia.php",
+                         "filters"    : [],
+                         "params"     : []
+                       },
+
+        "title" : "Substitutions calculator tool",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/staminIA.png"
+};
+
 stats["htnipponkeeper"] =  {
         "url" : "http://keeper.hattricknippon.org/",
 
