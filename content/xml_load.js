@@ -13,27 +13,13 @@ Foxtrick.XMLData = {
 
 	League : {},
 	countryToLeague : {},
-	htLanguagesXml : {},
 	htCurrencyXml : null,
 	htNTidsXml : null,
 	htversionsXML : null,
 	htdateformat : null,
 	aboutXML : null,
 
-	locale : {},
-
 	init : function() {
-		for (var i in Foxtrickl10n.locale) {
-			var locale = Foxtrickl10n.locale[i];
-			try {
-				this.htLanguagesXml[locale] = Foxtrick.LoadXML("chrome://foxtrick/content/locale/" + locale + "/htlang.xml");
-			}
-			catch (e) {
-				Foxtrick.dump("Cannot load HT language for " + locale + ".\n");
-				Foxtrick.dumpError(e);
-			}
-		}
-
 		this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htcurrency.xml");
 		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
 		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");

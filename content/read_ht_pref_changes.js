@@ -16,7 +16,7 @@ var FoxtrickReadHtPrefs = {
 	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
 	isLang : function(menuLinks, lang) {
-		var languages = Foxtrick.XMLData.htLanguagesXml;
+		var languages = Foxtrickl10n.htLanguagesXml;
 		var currentItem = 0; // index of menu item position
 		for (var i = 0; currentItem < this.menu_strings.length && i < menuLinks.length; ++i) {
 			if (menuLinks[i].textContent == "Alltid") // 5th entry might be alltid. skip it
@@ -34,7 +34,7 @@ var FoxtrickReadHtPrefs = {
 	run : function(page, doc) {
 		var newLang = null;
 		var oldLang = FoxtrickPrefs.getString("htLanguage");
-		var languages = Foxtrick.XMLData.htLanguagesXml;
+		var languages = Foxtrickl10n.htLanguagesXml;
 
 		var menu = doc.getElementById("menu");
 		var menuLinks = menu.getElementsByTagName("a");

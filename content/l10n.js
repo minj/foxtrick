@@ -4,59 +4,60 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 var Foxtrickl10n = {
-	locale : {
-		"84" : "be",
-		"43" : "bg",
-		"58" : "bs",
-		"66" : "ca",
-		"35" : "cs",
-		"8" : "da",
-		"3" : "de",
-		"36" : "ee",
-		"2" : "en",
-		"6" : "es",
-		"103" : "es_ca",
-		"51" : "es_SU",
-		"110" : "eu",
-		"75" : "fa",
-		"9" : "fi",
-		"5" : "fr",
-		"113" : "fur",
-		"109" : "fy",
-		"74" : "gl",
-		"34" : "gr",
-		"40" : "he",
-		"39" : "hr",
-		"33" : "hu",
-		"4" : "it",
-		"111" : "lb",
-		"56" : "lt",
-		"37" : "lv",
-		"83" : "mk",
-		"87" : "mt",
-		"10" : "nl",
-		"7" : "no",
-		"136" : "nn",
-		"13" : "pl",
-		"11" : "pt",
-		"50" : "pt_BR",
-		"23" : "ro",
-		"14" : "ru",
-		"53" : "sk",
-		"45" : "sl",
-		"85" : "sq",
-		"32" : "sr",
-		"1" : "sv",
-		"19" : "tr",
-		"57" : "uk",
-		"55" : "vi",
-		"65" : "vls",
-		"15" : "zh",
-		"90" : "ka",
-		"84" : "be",
-		"17" : "ko",
-		"12" : "ja"
-	},
+	locales : [
+		"be",
+		"bg",
+		"bs",
+		"ca",
+		"cs",
+		"da",
+		"de",
+		"ee",
+		"en",
+		"es",
+		"es_ca",
+		"es_SU",
+		"eu",
+		"fa",
+		"fi",
+		"fr",
+		"fur",
+		"fy",
+		"gl",
+		"gr",
+		"he",
+		"hr",
+		"hu",
+		"it",
+		"ja",
+		"ka",
+		"ko",
+		"lb",
+		"lt",
+		"lv",
+		"mk",
+		"mt",
+		"nl",
+		"nn",
+		"no",
+		"pl",
+		"pt",
+		"pt_BR",
+		"ro",
+		"ru",
+		"sk",
+		"sl",
+		"sq",
+		"sr",
+		"sv",
+		"tr",
+		"uk",
+		"vi",
+		"vls",
+		"zh"
+	],
+
+	htLanguagesXml : {},
 
     _strings_bundle : null,
 	_strings_bundle_default : null,
@@ -64,6 +65,17 @@ var Foxtrickl10n = {
 	_strings_bundle_screenshots_default:null,
 
     init : function() {
+		for (var i in Foxtrickl10n.locales) {
+			var locale = Foxtrickl10n.locales[i];
+			try {
+				this.htLanguagesXml[locale] = Foxtrick.LoadXML("chrome://foxtrick/content/locale/" + locale + "/htlang.xml");
+			}
+			catch (e) {
+				Foxtrick.dump("Cannot load HT language for " + locale + ".\n");
+				Foxtrick.dumpError(e);
+			}
+		}
+
         this._strings_bundle_default =
              Components.classes["@mozilla.org/intl/stringbundle;1"]
              .getService(Components.interfaces.nsIStringBundleService)
@@ -187,10 +199,10 @@ var Foxtrickl10n = {
 	getLevelByTypeAndValue : function(type, val) {
 		var lang = FoxtrickPrefs.getString("htLanguage");
 		var path = "language/" + type + "/level[@value='" + val + "']";
-		var text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "text");
+		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "text");
 		if (text === null) {
 			Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist in locale " + lang + ", try en instead.\n");
-			text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml["en"], path, "text");
+			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml["en"], path, "text");
 			if (text === null) {
 				Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist, returning raw value.\n");
 				text = val;
@@ -202,10 +214,10 @@ var Foxtrickl10n = {
 	getSublevelByValue : function(val) {
 		var lang = FoxtrickPrefs.getString("htLanguage");
 		var path = "language/ratingSubLevels/sublevel[@value='" + val + "']";
-		var text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "text");
+		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "text");
 		if (text === null) {
 			Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist in locale " + lang + ", try en instead.\n");
-			text = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml["en"], path, "text");
+			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml["en"], path, "text");
 			if (text === null) {
 				Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist, returning raw value.\n");
 				text = val;
@@ -248,7 +260,7 @@ var Foxtrickl10n = {
 		try {
 			var lang = FoxtrickPrefs.getString("htLanguage");
 			var path = "language/positions/position[@value=\"" + pos + "\"]";
-			shortPos = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
+			shortPos = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "short");
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -264,7 +276,7 @@ var Foxtrickl10n = {
 		try {
 			var lang = FoxtrickPrefs.getString("htLanguage");
 			var path = "language/specialties/specialty[@value=\"" + spec + "\"]";
-			shortSpec = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htLanguagesXml[lang], path, "short");
+			shortSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "short");
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);

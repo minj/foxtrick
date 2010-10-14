@@ -56,8 +56,8 @@ var FoxtrickPreferencesDialog = {
 		var languageMenu = document.getElementById("htLanguage");
 		var languagePopup = document.getElementById("htLanguagePopup");
 		var htLocales = [];
-		for (var i in Foxtrick.XMLData.htLanguagesXml) {
-			var desc = Foxtrick.XMLData.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
+		for (var i in Foxtrickl10n.htLanguagesXml) {
+			var desc = Foxtrickl10n.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
 			htLocales.push({ name: i,  desc: desc });
 		}
 		htLocales.sort(function (a, b) { return a.desc.localeCompare(b.desc); });

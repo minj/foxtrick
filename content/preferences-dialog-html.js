@@ -482,8 +482,8 @@ var FoxtrickPrefsDialogHTML = {
 			basicTable2_2.appendChild(languageSelect);
 			languageSelect.id = "htLanguage";
 			var htLocales = [];
-			for (var i in Foxtrick.XMLData.htLanguagesXml) {
-				var desc = Foxtrick.XMLData.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
+			for (var i in Foxtrickl10n.htLanguagesXml) {
+				var desc = Foxtrickl10n.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
 				htLocales.push({ name: i, desc: desc });
 			}
 			htLocales.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
