@@ -513,18 +513,6 @@ stats["xray_youngster"] =  {
 
 
 // hattriX-Ray youngster
-stats["xray_econray"] =  {
-        "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
-
-        "economylink" : { "path"       : "?starter=econray",
-                         "filters"    : [],
-                         "params"     : {  }
-                       },
-
-        "title" : "hattriX-Ray econray",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_econray.png"
-};
-
 stats["xray_keeper"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
 
@@ -860,21 +848,6 @@ stats["todohattrick"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/todohattrick.png"
 };
 
-
-// ht-tools
-stats["ekonomer"] =  {
-        "url" : "http://ht-tools.sytes.net/ekonomer/ekonomer.asp",
-
-        "economylink" : { "path"       : "",
-                         "filters"    : ["owncountryid"],
-                         "params"     : {"newCash" : "resultat","" : "kassa=0"}
-                       },
-		"owncountryidranges" : [[1, 1]],
-        "title" : "Ekonomkalkylatorn",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/httools_economy.png"
-};
-
-//
 stats["ComunidadHattrickVenezuela"] =  {
         "url" : "http://www.hattrick.org.ve",
 
@@ -887,7 +860,6 @@ stats["ComunidadHattrickVenezuela"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/chtvicon.png"
 };
 
-//
 stats["ConvertidordeTiempo"] =  {
         "url" : "http://www.hattrick.org.ve/herramientas/tiempo/",
 
@@ -1374,49 +1346,6 @@ stats["coachexperience"] =  {
 
         "title" : "Coach experience table",
         "shorttitle" : "Cet"
-};
-
-
-stats["nrgjack_accountant_tool"] =  {
-        "url" : "http://nrgjack.altervista.org/",
-
-        "economylink" : { "path"       : "accountant.php",
-                         "filters"    : [],
-                          //"params"     : {"newCash" : "money","Currency":"Currency"}
-						 "paramfunction" : function(params) {
-							var newCash=params["newCash"];
-							var CurrCode=params["Currency"];
-                            if (CurrCode!="EUR"){
-								newCash=Math.round(newCash*FoxtrickPrefs.getString("currencyRate"));
-								CurrCode="EUR";
-							}
-                            return "?money=" + newCash;
-						 }
-                       },
-
-        "title" : "NrgJack Accountant Tool",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/nrgjackeconomists.png"
-};
-
-stats["htlinks_economists"] =  {
-        "url" : "http://www.ht-links.de/Hattrick/Economist-Checker.html",
-
-        "economylink" : { "path"       : "",
-                         "filters"    : [],
-                         //"params"     : {"Cash" : "Cash","Currency":"Currency"}
-						 "paramfunction" : function(params) {
-							var Cash=params["Cash"];
-							var CurrCode=params["Currency"];
-                            if (CurrCode!="EUR" && CurrCode!="CHF"){
-								Cash=Math.round(Cash*FoxtrickPrefs.getString("currencyRate"));
-								CurrCode="EUR";
-							}
-                            return "?Cash=" + Cash + "&Currency=" + CurrCode;
-						 }
-                       },
-
-        "title" : "HT-Links.de Economist Checker",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/htlinks_lupe.png"
 };
 
 stats["htlinks_trainingspeedchecker"] =  {
