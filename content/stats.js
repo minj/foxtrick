@@ -1321,7 +1321,7 @@ stats["staminia"] =  {
                        },
 
         "title" : "Substitutions calculator tool",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/staminIA.png"
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/StaminIA.png"
 };
 
 stats["htnipponkeeper"] =  {
