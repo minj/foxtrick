@@ -55,6 +55,11 @@
 
 /* Module htmsstatistics */
 
+/* the graph */
+.ft-htms-graph {
+	border: 1px solid black;
+}
+
 /* the bar indicating win probability */
 .ft-htms-stats-win {
 	background-color: green;

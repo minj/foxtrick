@@ -72,8 +72,6 @@ Foxtrick.htmsStatistics = {
             //Foxtrick.LOG('rows '+ratingstable.rows.length+' Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
 
 			//Creating params for link
-			var lang=FoxtrickPrefs.getString("htLanguage");
-            //if (!((lang=='it') || (lang=='fr'))) lang='en';
 			var params='&TAM='+midfieldLevel[0]+'&TBM='+midfieldLevel[1];
 			params+='&TARD='+rdefence[0]+'&TBRD='+rdefence[1];
 			params+='&TACD='+cdefence[0]+'&TBCD='+cdefence[1];
@@ -105,136 +103,107 @@ Foxtrick.htmsStatistics = {
 			if (tactics[1]=='ca') {
 				params+='&TBTAC=CA&TBTACLEV='+tacticsLevel[1];
 			}
-			//Foxtrick.LOG(tactics[0]+' - '+tactics[1]);
 
-			//Inserting a blank line
+			//Inserting the table
 			var htmstable = ratingstable.parentNode.insertBefore(doc.createElement('table'),ratingstable.nextSibling);
 			htmstable.id='htmstable';
-			htmstable.setAttribute('windrawloss',Foxtrickl10n.getString( "foxtrick.htmsStatistics.windrawloss" ));
 
 			//Inserting header
-			var br = doc.createElement('br');
-			htmstable.parentNode.insertBefore(br, htmstable);
-			var br = doc.createElement('br');
-			htmstable.parentNode.insertBefore(br, htmstable);
 			var h2 = doc.createElement('h2');
 			var a = doc.createElement('a');
 			a.href='http://www.fantamondi.it/HTMS/index.php?lang='+lang;
-			a.appendChild(doc.createTextNode(Foxtrickl10n.getString( "foxtrick.htmsStatistics.linkcaption" )));
-			a.target='_blanck';
+			a.textContent = Foxtrickl10n.getString("foxtrick.htmsStatistics.linkcaption");
+			a.target = '_blank';
 			h2.appendChild(a);
 			htmstable.parentNode.insertBefore(h2, htmstable);
 
-			var row = htmstable.insertRow(htmstable.rows.length);
-			var cell = row.insertCell(0);
-			cell.innerHTML='&nbsp;';
-
 			row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0);
-			cell.className='ch';
-			cell.innerHTML = Foxtrickl10n.getString( "foxtrick.htmsStatistics.prediction" );
+			cell.className = 'ch';
+			cell.textContent = Foxtrickl10n.getString("foxtrick.htmsStatistics.prediction");
 
-			var barwidth=320;
-			var framewidth=barwidth+10;
-			var barheight=50;
-			var frameheight=barheight+95;
-
-		var url= 'http://www.fantamondi.it/HTMS/dorequest.php?action=showpredict&lang='+lang+params+'&width='+barwidth+'&height='+barheight;
-		if (Foxtrick.BuildFor=='Chrome') {
-			porthtms.postMessage({reqtype: "get_htms",url:url});
-		}
-		else {
-			var req = new XMLHttpRequest();
-			req.open('GET', url, true);
-
-			req.onreadystatechange = function (aEvt) {
-				if (req.readyState == 4) {
-					if(req.status == 200)
-						Foxtrick.htmsStatistics.show_result( doc, req.responseText )
-					else Foxtrick.dump('no connection\n');
-				}
+			var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=showpredict&' + params;
+			if (Foxtrick.BuildFor=='Chrome') {
+				porthtms.postMessage({reqtype: "get_htms",url:url});
 			}
-			req.send(null);
+			else {
+				var req = new XMLHttpRequest();
+				req.open('GET', url, true);
+
+				req.onreadystatechange = function (aEvt) {
+					if (req.readyState == 4) {
+						if(req.status == 200)
+							Foxtrick.htmsStatistics.show_result( doc, req.responseText )
+						else Foxtrick.dump('no connection\n');
+					}
+				}
+				req.send(null);
+			}
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var p = doc.createElement('p');
+			var a = doc.createElement('a');
+			a.appendChild(doc.createTextNode(Foxtrickl10n.getString('foxtrick.htmsStatistics.changePrediction')));
+			a.href = "http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang="+lang+params;
+			a.target='_blank';
+			p.appendChild(a);
+			htmstable.parentNode.insertBefore(p, htmstable.nextSibling);
 		}
-		} catch (e) {
-			Foxtrick.dump('htmsStatistics.js run: '+e+"\n");
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
-		var p = doc.createElement('p');
-		var a = doc.createElement('a');
-		a.appendChild(doc.createTextNode(Foxtrickl10n.getString('foxtrick.htmsStatistics.changePrediction')));
-		a.href = "http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang="+lang+params;
-		a.target='_blanck';
-		p.appendChild(a);
-		htmstable.parentNode.insertBefore(p, htmstable.nextSibling);
 	},
 
-
-
-
-	show_result : function( doc, responseText ) {
-		try{
-			Foxtrick.stopListenToChange (doc);
+	show_result : function(doc, responseText) {
+		try {
+			Foxtrick.stopListenToChange(doc);
 
 			var frag = doc.createElement('dummy');
 			frag.innerHTML = responseText;
 
-			var htmstable=doc.getElementById('htmstable');
-			var  row = htmstable.rows[htmstable.rows.length-1];
+			var htmstable = doc.getElementById('htmstable');
+			var row = htmstable.rows[htmstable.rows.length-1];
 
-			var pred = frag.getElementsByTagName('strong')[0].innerHTML.split('-');
+			var pred = frag.getElementsByTagName('strong')[0].textContent.split('-');
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred[0]));
-			cell = row.insertCell(1); cell.appendChild(b); cell.setAttribute('style','text-align:left;');
-			cell = row.insertCell(2); cell.setAttribute('style','text-align:center;');
+			cell = row.insertCell(1); cell.appendChild(b); cell.className = "left";
+			cell = row.insertCell(2); cell.className = "center";
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred[1]));
-			cell = row.insertCell(3); cell.appendChild(b); cell.setAttribute('style','text-align:right;');
-			cell = row.insertCell(4);
+			cell = row.insertCell(3); cell.appendChild(b); cell.className = "right";
 
-			var homeprec= frag.getElementsByTagName('table')[0].rows[0].cells[2].innerHTML;
-			var drawprec= frag.getElementsByTagName('table')[0].rows[1].cells[2].innerHTML;
-			var lossprec= frag.getElementsByTagName('table')[0].rows[2].cells[2].innerHTML;
-			Foxtrick.dump(homeprec+' '+drawprec+' '+lossprec+'\n');
+			var winprob= frag.getElementsByTagName('table')[0].rows[0].cells[2].textContent;
+			var drawprob= frag.getElementsByTagName('table')[0].rows[1].cells[2].textContent;
+			var lossprob= frag.getElementsByTagName('table')[0].rows[2].cells[2].textContent;
 
-			var size_f=(Foxtrick.isStandardLayout(doc))?2.8:2.6;
 			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0);
 			cell = row.insertCell(1);
 			cell.setAttribute("colspan", 3);
-			cell.setAttribute('align', 'center');
-			var windiv = cell.appendChild(doc.createElement('div'));
+			var graph = cell.appendChild(doc.createElement('div'));
+			graph.className = "ft-htms-graph";
+			var windiv = graph.appendChild(doc.createElement('div'));
 			windiv.className = "ft-htms-bar ft-htms-stats-win";
-			windiv.style.width = 100 * size_f + "px";
-			var drawdiv = windiv.appendChild(doc.createElement('div'));
+			windiv.style.width = winprob;
+			var drawdiv = graph.appendChild(doc.createElement('div'));
 			drawdiv.className = "ft-htms-bar ft-htms-stats-draw";
-			drawdiv.style.width = (parseFloat(lossprec.replace('%', '')) + parseFloat(drawprec.replace('%',''))) * size_f + "px";
-			var lossdiv = drawdiv.appendChild(doc.createElement('div'));
+			drawdiv.style.width = drawprob;
+			var lossdiv = graph.appendChild(doc.createElement('div'));
 			lossdiv.className = "ft-htms-bar ft-htms-stats-loss";
-			lossdiv.style.width = parseFloat(lossprec.replace('%', '')) * size_f + "px";
-			cell = row.insertCell(2);
+			lossdiv.style.width = lossprob;
 
   			var row = htmstable.insertRow(htmstable.rows.length);
-			var b = doc.createElement('b');
-			var div = doc.createElement('div');
-			var div2 = doc.createElement('div');
-			if (Foxtrick.isStandardLayout(doc)) {
-				div.setAttribute('style','width:'+String(525-100*size_f-10-80)+'px;');
-				div2.setAttribute('style','width:+'+80+'px;');
-			}
-			else div.setAttribute('style','width:'+String(420-100*size_f)+'px;');
-			div.appendChild(doc.createTextNode(htmstable.getAttribute('windrawloss')));
-			b.appendChild(div);
-			cell = row.insertCell(0); cell.appendChild(b);
-			cell = row.insertCell(1); cell.appendChild(doc.createTextNode(homeprec)); cell.setAttribute('style','text-align:left;');
-			cell = row.insertCell(2); cell.appendChild(doc.createTextNode(drawprec)); cell.setAttribute('style','text-align:center;');
-			cell = row.insertCell(3); cell.appendChild(doc.createTextNode(lossprec)); cell.setAttribute('style','text-align:right;');
-			cell = row.insertCell(4); cell.appendChild(div2);
+			cell = row.insertCell(0); cell.className = "ch"; cell.textContent = Foxtrickl10n.getString("foxtrick.htmsStatistics.windrawloss");
+			cell = row.insertCell(1); cell.textContent = winprob; cell.className = "left";
+			cell = row.insertCell(2); cell.textContent = drawprob; cell.className = "center";
+			cell = row.insertCell(3); cell.textContent = lossprob; cell.className = "right";
 
 			Foxtrick.startListenToChange (doc);
-
-		}catch(e){Foxtrick.dump('show_htms :'+e);}
-	},
-
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
+	}
 };
 
 try {
@@ -245,4 +214,7 @@ porthtms.onMessage.addListener(function(msg) {
 		console.log('got htms ' + msg.set);
 		}
 	});
-} catch(e){}
+}
+catch (e) {
+	// throw it away
+}

@@ -3,17 +3,18 @@
 	display: inline-block;
 }
 
+.ft-htms-graph {
+	border: 1px solid black;
+}
+
 .ft-htms-stats-win {
 	background-color: white;
-	border: 1px solid #000000;
 }
 
 .ft-htms-stats-draw {
 	background-color: #ddd;
-	float: right;
 }
 
 .ft-htms-stats-loss {
-	background-color: #849D84;
-	float: right;
+	background-color: #849d84;
 }
