@@ -71,4 +71,32 @@
 		<level text="dezastruos" value="1" />
 		<level text="inexistent" value="0" />
 	</levels>
+	
+  <agreeability>
+    <level text="membru iubit al echipei" value="5" />
+    <level text="tip popular" value="4" />
+    <level text="tip simpatic" value="3" />
+    <level text="tip plăcut" value="2" />
+    <level text="tip controversat" value="1" />
+    <level text="tip antipatic" value="0" />
+  </agreeability>
+
+  <honesty>
+    <level text="angelic" value="5" />
+    <level text="incoruptibil" value="4" />
+    <level text="integru" value="3" />
+    <level text="cinstit" value="2" />
+    <level text="necinstit" value="1" />
+    <level text="infam" value="0" />
+  </honesty>
+
+  <aggressiveness>
+    <level text="instabil" value="5" />
+    <level text="irascibil" value="4" />
+    <level text="temperamental" value="3" />
+    <level text="echilibrat" value="2" />
+    <level text="calm" value="1" />
+    <level text="potolit" value="0" />
+  </aggressiveness>
+
 </language>
