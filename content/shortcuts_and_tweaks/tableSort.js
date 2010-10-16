@@ -100,11 +100,10 @@ var FoxtrickTableSort = {
 			Foxtrick.dump('is_date '+is_date+'\n');
 			Foxtrick.dump('is_skill '+is_skill+'\n');
 
-			// old rows to array
-			var table_old = table.cloneNode(true);
+			// rows to be sorted
 			var rows = new Array();
 			for (var i = sort_start+1; i < sort_end; ++i) {
-				rows.push(table_old.rows[i].cloneNode(true));
+				rows.push(table.rows[i].cloneNode(true));
 			}
 
 			// sort options
@@ -121,15 +120,8 @@ var FoxtrickTableSort = {
 
 			// put them back
 			for (var i = sort_start+1; i < sort_end; ++i) {
-				table_old.rows[i].innerHTML = rows[i-1-sort_start].innerHTML;
+				table.rows[i].innerHTML = rows[i-1-sort_start].innerHTML;
 			}
-			table.innerHTML = table_old.innerHTML;
-
-	    	var ths = table.getElementsByTagName("th");
-			for (var j = 0; j < ths.length; ++j) {
-				Foxtrick.addEventListenerChangeSave(ths[j], "click", FoxtrickTableSort.clickListener, false);
-			}
-
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);

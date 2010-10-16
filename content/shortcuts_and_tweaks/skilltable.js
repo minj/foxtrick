@@ -365,11 +365,9 @@ var FoxtrickSkillTable = {
 			var tr = doc.createElement("tr");
 			thead.appendChild(tr);
 			table.appendChild(thead);
-			var s_index = 0;
 			for (var j = 0; j < columns.length; j++) {
 				if (columns[j].enabled) {
 					var th = doc.createElement("th");
-					th.setAttribute("s_index", s_index++);
 					if (columns[j].sortString) {
 						th.setAttribute("sort-string", true);
 					}
@@ -519,33 +517,28 @@ var FoxtrickSkillTable = {
 
 	sortClick : function(ev) {
 		try {
+			var head = ev.currentTarget;
 			var doc = ev.target.ownerDocument;
-			FoxtrickSkillTable.sortIndex = ev.currentTarget.getAttribute("s_index");
-			FoxtrickSkillTable.sortAsc = ev.currentTarget.hasAttribute("sort-asc");
-			FoxtrickSkillTable.sortString = ev.currentTarget.hasAttribute("sort-string");
+			FoxtrickSkillTable.sortIndex = Foxtrick.getChildIndex(head);
+			FoxtrickSkillTable.sortAsc = head.hasAttribute("sort-asc");
+			FoxtrickSkillTable.sortString = head.hasAttribute("sort-string");
 
 			var table = doc.getElementById("ft_skilltable");
-			var table_old = table.cloneNode(true);
 
 			var rows = new Array();
 
 			FoxtrickSkillTable.sortByIndex = false;
 			for (var i = 1; i < table.rows.length; ++i) {
-				if (table_old.rows[i].cells[FoxtrickSkillTable.sortIndex].hasAttribute("index")) {
+				if (table.rows[i].cells[FoxtrickSkillTable.sortIndex].hasAttribute("index")) {
 					FoxtrickSkillTable.sortByIndex = true;
 				}
-				rows.push(table_old.rows[i].cloneNode(true));
+				rows.push(table.rows[i].cloneNode(true));
 			}
 
 			rows.sort(FoxtrickSkillTable.sortCompare);
 
 			for (var i = 1; i < table.rows.length; ++i) {
-				table_old.rows[i].innerHTML = rows[i-1].innerHTML;
-			}
-			table.innerHTML = table_old.innerHTML;
-
-			for (var i = 0; i < table.rows[0].cells.length; ++i) {
-				Foxtrick.addEventListenerChangeSave(table.rows[0].cells[i], "click", FoxtrickSkillTable.sortClick, false);
+				table.rows[i].innerHTML = rows[i-1].innerHTML;
 			}
 		}
 		catch (e) {

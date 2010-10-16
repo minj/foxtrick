@@ -969,6 +969,15 @@ Foxtrick.hasElement = function(doc, id) {
 	return false;
 }
 
+Foxtrick.getChildIndex = function(element) {
+	var count = 0;
+	while (element.previousSibling) {
+		++count;
+		element = element.previousSibling;
+	}
+	return count;
+}
+
 /* Foxtrick.addBoxToSidebar
 * Parameters:
 * doc - the document the box needs to be added to
