@@ -207,7 +207,11 @@ var FoxtrickSkillTable = {
 			var skill = function(cell, skill) {
 				if (typeof(skill) === "object") {
 					// in youth team, returned skill is an object
-					cell.setAttribute("index", skill.current * 18 + skill.max * 2 + skill.maxed);
+
+					// First we sort by the max of current and max skill,
+					// (multiplied by 10 since maximum is 9 for youth players)
+					// then only the current skill, finally whether it's maxed
+					cell.setAttribute("index", Math.max(skill.current, skill.max) * 10 + skill.current + skill.maxed);
 					if (skill.maxed) {
 						cell.className = "maxed";
 					}
