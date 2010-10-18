@@ -329,7 +329,7 @@ var FoxtrickHelper = {
 		catch(e){}
 
 		if (data==null) Foxtrick.dump('getLeagueDataFromId error. id: '+id+'\n');
-		Foxtrick.dump_flush(document);
+		Foxtrick.dumpFlush(document);
 		return data;
 	},
 

@@ -388,7 +388,7 @@ var FoxtrickMain = {
 					server.textContent += " / FoxTrick v" + FoxtrickPrefs.getString("curVersion");
 				}
 
-				Foxtrick.dump_flush(doc);
+				Foxtrick.dumpFlush(doc);
 			}
 		}
 		catch (e) {
@@ -438,7 +438,7 @@ var FoxtrickMain = {
 						});
 				}
 			}
-			Foxtrick.dump_flush(doc);
+			Foxtrick.dumpFlush(doc);
 		}
 	}
 };
@@ -1971,11 +1971,11 @@ Foxtrick.var_dump = function(arr,level) {
 	return dumped_text;
 }
 
-Foxtrick.dump_HTML = '';
-Foxtrick.dump_flush = function(doc) {
+Foxtrick.dumpCache = '';
+Foxtrick.dumpFlush = function(doc) {
 	if (doc.getElementById("page") != null
 		&& FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")
-		&& Foxtrick.dump_HTML != '') {
+		&& Foxtrick.dumpCache != '') {
 		try {
 			var div = doc.getElementById('ft_dump');
 			if (div == null) {
@@ -1984,25 +1984,26 @@ Foxtrick.dump_flush = function(doc) {
 				var header = doc.createElement('h1');
 				header.textContent = "FoxTrick Log";
 				var pre = doc.createElement('pre');
-				pre.textContent = Foxtrick.dump_HTML;
+				pre.textContent = Foxtrick.dumpCache;
 				div.appendChild(header);
 				div.appendChild(pre);
 				doc.getElementById('page').appendChild(div);
 			}
 			else {
-				div.getElementsByTagName('pre')[0].textContent += Foxtrick.dump_HTML;
+				div.getElementsByTagName('pre')[0].textContent += Foxtrick.dumpCache;
 			}
-			Foxtrick.dump_HTML = '';
+			Foxtrick.dumpCache = '';
 		}
 		catch (e) {
-			dump('dump_flush '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	}
 }
 
-Foxtrick.dump = function(cnt) {
-	if (FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")) Foxtrick.dump_HTML += cnt + '';
-	dump('FT: '+String(cnt).replace(/\<\w*\>|\<\/\w*\>/gi,''));
+Foxtrick.dump = function(content) {
+	content = String(content);
+	Foxtrick.dumpCache += content;
+	dump("FT: " + content);
 }
 
 Foxtrick.dumpError = function(error) {
@@ -2066,5 +2067,5 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 	catch (e) {
 		Foxtrick.dump('openAndReuseOneTabPerURL '+e+'\n');
 	}
-	Foxtrick.dump_flush(document);
+	Foxtrick.dumpFlush(document);
 }

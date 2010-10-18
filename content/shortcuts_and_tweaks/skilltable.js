@@ -551,7 +551,7 @@ var FoxtrickSkillTable = {
 		finally {
 			if (ev) ev.stopPropagation();
 		}
-		Foxtrick.dump_flush(doc);
+		Foxtrick.dumpFlush(doc);
 	},
 
 	toggleDisplay : function(ev) {
@@ -589,7 +589,7 @@ var FoxtrickSkillTable = {
 		catch (e) {
 			Foxtrick.dumpError(e);
 		}
-		Foxtrick.dump_flush(doc);
+		Foxtrick.dumpFlush(doc);
 	},
 
 	view : function(ev) {
