@@ -172,9 +172,9 @@ Foxtrick.htmsStatistics = {
 			b.appendChild(doc.createTextNode(pred[1]));
 			cell = row.insertCell(3); cell.appendChild(b); cell.className = "right";
 
-			var winprob= frag.getElementsByTagName('table')[0].rows[0].cells[2].textContent;
-			var drawprob= frag.getElementsByTagName('table')[0].rows[1].cells[2].textContent;
-			var lossprob= frag.getElementsByTagName('table')[0].rows[2].cells[2].textContent;
+			var winprob = frag.getElementsByTagName('table')[0].rows[0].cells[2].textContent;
+			var drawprob = frag.getElementsByTagName('table')[0].rows[1].cells[2].textContent;
+			var lossprob = frag.getElementsByTagName('table')[0].rows[2].cells[2].textContent;
 
 			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0);
@@ -190,7 +190,9 @@ Foxtrick.htmsStatistics = {
 			drawdiv.style.width = drawprob;
 			var lossdiv = graph.appendChild(doc.createElement('div'));
 			lossdiv.className = "ft-htms-bar ft-htms-stats-loss";
-			lossdiv.style.width = lossprob;
+			// use minus to prevent from overall sum exceeding 100%
+			// when there is rounding up
+			lossdiv.style.width = (100 - parseFloat(winprob) - parseFloat(drawprob)) + "%";
 
   			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0); cell.className = "ch"; cell.textContent = Foxtrickl10n.getString("foxtrick.htmsStatistics.windrawloss");
