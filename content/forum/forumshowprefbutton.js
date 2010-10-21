@@ -1,23 +1,27 @@
 /**
 * forumshowprefbutton.js
-* Foxtrick shows forum preference button on all forum pages
-* @author convinced
+* Foxtrick shows forum preference link on forum pages
+* @author convinced, ryanli
 */
 
 var FoxtrickShowForumPrefButton = {
-
 	MODULE_NAME : "ShowForumPrefButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread','forumOverView','forumDefault'),
 	DEFAULT_ENABLED : true,
 
-	run : function( page, doc ) {
-	var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
-	if (boxHead.className!='boxHead') return;
-	var forumprefs = doc.createElement('a');
-	forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
-	forumprefs.innerHTML='<img src="'+Foxtrick.ResourcePath+'resources/img/transparent.gif">';
-	forumprefs.setAttribute('class','forumSettings');
-	boxHead.insertBefore(forumprefs,boxHead.firstChild);
+	run : function(page, doc) {
+		var myForums = doc.getElementById("myForums");
+		if (!myForums)
+			return;
+		var separator = doc.createElement("div");
+		separator.className = "borderSeparator";
+		var strong = doc.createElement("strong");
+		var link = doc.createElement("a");
+		link.href = "/MyHattrick/Preferences/ForumSettings.aspx";
+		link.textContent = Foxtrickl10n.getString("forum.preferences");
+		strong.appendChild(link);
+		myForums.appendChild(separator);
+		myForums.appendChild(strong);
 	}
 };
