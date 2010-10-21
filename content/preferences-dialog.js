@@ -50,6 +50,26 @@ var FoxtrickPreferencesDialog = {
 		var basic = doc.getElementById("basic");
 		basic.label = Foxtrickl10n.getString("foxtrick.prefs.basicPreferences");
 
+		// ReadHtPrefs
+
+		// checkbox association
+		var readHtPrefs = doc.getElementById("ReadHtPrefs");
+		readHtPrefs.checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
+		readHtPrefs.label = Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc");
+
+		document.getElementById("htLanguage").disabled = readHtPrefs.checked;
+		document.getElementById("htCountry").disabled = readHtPrefs.checked;
+		document.getElementById("htCurrency").disabled = readHtPrefs.checked;
+		document.getElementById("htDateformat").disabled = readHtPrefs.checked;
+		readHtPrefs.addEventListener("click", function(ev) {
+				var doc = ev.target.ownerDocument;
+				var checked = ev.target.checked;
+				document.getElementById("htLanguage").disabled = ev.target.checked;
+				doc.getElementById("htCountry").disabled = checked;
+				doc.getElementById("htCurrency").disabled = checked;
+				doc.getElementById("htDateformat").disabled = checked;
+			}, false);
+
 		// HT language
 		var language = doc.getElementById("language");
 		language.value = Foxtrickl10n.getString("foxtrick.prefs.captionHTLanguage");
@@ -77,33 +97,6 @@ var FoxtrickPreferencesDialog = {
 			++currentIndex;
 		}
 		languageMenu.selectedIndex = selectedIndex;
-
-		// sync with HT prefs
-		var readHtPrefs = doc.getElementById("ReadHtPrefs");
-		readHtPrefs.checked = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
-		readHtPrefs.label = Foxtrickl10n.getString("foxtrick.ReadHtPrefs.desc");
-
-		languageMenu.disabled = FoxtrickPrefs.getBool("module.ReadHtPrefs.enabled");
-		readHtPrefs.addEventListener("click", function(ev) {
-				languageMenu.disabled = ev.target.checked;
-			}, false);
-
-		// read HT country
-		var readHtCountry = doc.getElementById("ReadHtCountry");
-		readHtCountry.checked = FoxtrickPrefs.getBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled");
-		readHtCountry.label = Foxtrickl10n.getString("foxtrick.ReadHtCountryCurrencyDateFormat.desc");
-		document.getElementById("htCountry").disabled = readHtCountry.checked;
-		document.getElementById("htCurrency").disabled = readHtCountry.checked;
-		document.getElementById("htDateformat").disabled = readHtCountry.checked;
-
-		readHtCountry.addEventListener("click", function(ev) {
-				var doc = ev.target.ownerDocument;
-				var checked = ev.target.checked;
-				doc.getElementById("htCountry").disabled = checked;
-				doc.getElementById("htCurrency").disabled = checked;
-				doc.getElementById("htDateformat").disabled = checked;
-			},
-			false);
 
 		// country
 		var country = doc.getElementById("country");
@@ -401,14 +394,12 @@ var FoxtrickPreferencesDialog = {
 			}
 		}
 
-		//Lang
-		FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
-		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", document.getElementById("ReadHtPrefs").checked);
+		// ReadHtPrefs
+		var readHtPrefs = document.getElementById("ReadHtPrefs").checked;
+		FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", readHtPrefs);
 
-		// country, currency
-		var readHtCountry = document.getElementById("ReadHtCountry").checked;
-		FoxtrickPrefs.setBool("module.ReadHtPrefsFromHeader.CountryCurrencyDateFormat.enabled", readHtCountry);
-		if (!readHtCountry) {
+		if (!readHtPrefs) {
+			FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
 			FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
 			FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
 			FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);

@@ -323,7 +323,6 @@ var FoxtrickMain = {
 					FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 					FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
 					Foxtrick.reload_module_css(doc);
-					FoxtrickReadHtPrefsFromHeader.run('', doc, true);
 					FoxtrickMain.new_start = false;
 				}
 				else {

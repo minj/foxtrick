@@ -120,8 +120,6 @@ pref("extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled
 pref("extensions.foxtrick.prefs.module.NewMail.CustomColor.enabled", false);
 pref("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true);
 pref("extensions.foxtrick.prefs.module.OnPagePrefs.enabled", true);
-pref("extensions.foxtrick.prefs.module.ReadHtPrefsFromHeader.enabled", true);
-pref("extensions.foxtrick.prefs.module.ReadHtPrefsFromHeader.Language.enabled", true);
 pref("extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.enabled", false);
 pref("extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightBotTeams.enabled", false);

@@ -26,10 +26,11 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/xml_load.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/stats.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/redirections.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/read_ht_pref_changes.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/read-ht-prefs.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-dialog-html.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/preferences-on-page.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum_stage.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/first-run.js" />
 
 <!-- utilities -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/util/currency.js" />
@@ -185,7 +186,6 @@
 									</menulist>
 								</hbox>
 							</row>
-							<checkbox id="ReadHtCountry" />
 							<row id="countryRow">
 								<label id="country" control="htCountry" />
 								<hbox>
