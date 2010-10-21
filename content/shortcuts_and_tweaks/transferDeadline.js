@@ -65,13 +65,12 @@ FoxtrickTransferDeadline = {
                     var selltime = Foxtrick.trim(selltime_elm.innerHTML);
                     // Foxtrick.dump ('\n>>>>>' + selltime + '<<<<<\n');
                     var ST_date = Foxtrick.getDateFromText( selltime );
-                    if (ST_date != null ) {
+                    if (ST_date != null) {
                         var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
-                        var DeadlineText = TimeDifferenceToText (deadline_s);
-                        // Foxtrick.dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
-                        if (DeadlineText.search("NaN") == -1)
+                        if (!isNaN(deadline_s)) {
+                            var DeadlineText = TimeDifferenceToText(deadline_s);
                             selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
-                        else Foxtrick.dump('  Could not create deadline (NaN)\n');
+                        }
                     }
                 }
             }
@@ -121,12 +120,10 @@ FoxtrickTransferDeadline = {
 
             var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
 
-            var DeadlineText = TimeDifferenceToText (deadline_s);
-
-            // Foxtrick.dump ('\n>>>>>' + DeadlineText + '<<<<<\n');
-            if (DeadlineText.search("NaN") == -1)
+            if (!isNaN(deadline_s)) {
+                var DeadlineText = TimeDifferenceToText (deadline_s);
                 selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
-            else Foxtrick.dump('  Could not create deadline (NaN)\n');
+            }
         } catch (e) {
             Foxtrick.dump('FoxtrickTransferDeadline'+e);
         }
