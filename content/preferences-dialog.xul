@@ -51,7 +51,6 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumshowprefbutton.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/htthreadmarker.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumgotopostbox.js" />
-<script type="application/x-javascript" src="chrome://foxtrick/content/forum/forumsearch.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/ForumPresentation.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/forum/ForumThreadAutoIgnore.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/matches/matches.js" />

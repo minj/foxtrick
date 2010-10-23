@@ -263,19 +263,3 @@ var FoxtrickAlltidFlags = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread")
 };
-
-
-/**
-* forumsearch.js
-* Foxtrick Show Alltid flags in forum posts module
-* @author convinced
-*/
-
-//**********************************************************
-var FoxtrickForumSearch = {
-
-	MODULE_NAME : "ForumSearch",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : false
-};
