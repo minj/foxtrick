@@ -234,3 +234,57 @@
 .ft-staff-ht {
 	background-color: red;
 }
+
+
+/* Module TickerColoring */
+
+/* ticker links */
+.ft-ticker-link {
+	margin: 2px;
+	color: black;
+}
+
+/* on mouse hover */
+.ft-ticker-link:hover {
+	background-color: transparent;
+}
+
+/* login welcome */
+.ft-ticker-welcome {
+	background-color: #dfefc2;
+}
+
+/* supporter login */
+.ft-ticker-supporer {
+	background-color: #ffe8cf;
+}
+
+/* forum reply */
+.ft-ticker-forum {
+	background-color: #dfeeff;
+}
+
+/* transfer */
+.ft-ticker-transfer {
+	background-color: #fffbcf;
+}
+
+/* challenge */
+.ft-ticker-challenge {
+	background-color: #ffdfe0;
+}
+
+/* guestbook */
+.ft-ticker-guestbook {
+	background-color: #dffffd;
+}
+
+/* mail */
+.ft-ticker-mail {
+	background-color: #eedfff;
+}
+
+/* My Hattrick message */
+.ft-ticker-myht {
+	background-color: #dfdfdf;
+}
