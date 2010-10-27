@@ -58,7 +58,6 @@
 			],
 
 	run : function( page, doc ) {
-	try {
 		Foxtrick.dump('YouthIconPAGE: ' + page + '\n');
 		var show_main = false; var show_youth = false;
 		var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
@@ -303,17 +302,13 @@
 			var head = toolbar.parentNode;
 			head.insertBefore( youthbar, toolbar.nextSibling );
 		}
-	} catch(e){Foxtrick.dump('FoxtrickForumYouthIcons error: '+e+'\n');}
 	},
 
-	change : function( page, doc ) {
-		/* needed?
-		var div = doc.getElementById( "ft_youth_icons");
-		if (div != null) return;
-		else {
+	change : function(page, doc) {
+		var div = doc.getElementById("ft_youth_icons");
+		if (!div) {
 			this.run(page, doc);
-			Foxtrick.dump(this.MODULE_NAME+' change\n')
-		}*/
+		}
 	},
 
 	addTagsClick : function ( ev ) {
