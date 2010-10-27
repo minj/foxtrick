@@ -2350,24 +2350,6 @@ stats["turkeytracker"] = {
 	"nationalityranges" : [[32,32],[129,129]],
 };
 
-
-stats["southafricatracker"] = {
-  "url" : "http://ht-southafrica.co.za/",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "South Africa U-20/NT DB",
-
-  "trackernationalteamlink" : { "path"       : "latestNews.aspx",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "submitPlayerHT.aspx",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[27,27]] ,
-	"nationalityranges" : [[27,27]],
-};
-
 stats["norwayU20tracker"] = {
   "url" : "http://tracker.sletholt.net/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
