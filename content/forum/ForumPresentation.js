@@ -4,7 +4,6 @@
  */
 
 FoxtrickForumPresentation = {
-
     MODULE_NAME : "ForumPresentation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'),

@@ -137,29 +137,24 @@ var FoxtrickRapidId = {
 	},
 
 	run: function(page, doc) {
-		try {
-			// get labels of optgroup and option
-			for (var i in this.options) {
-				this.options[i].label = Foxtrickl10n.getString(this.options[i].text);
-			}
-
-			var header = doc.getElementById("header");
-			var ticker = doc.getElementById("ticker");
-			var container = doc.createElement("div");
-			header.insertBefore(container, ticker);
-			container.id = "ft_rapidid";
-			container.className='float_right';
-			var indicator = doc.createElement("a");
-			container.appendChild(indicator);
-
-			// indicator
-			indicator.id = "ft_rapidid_indicator";
-			var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
-			indicator.appendChild(doc.createTextNode(viewById));
-			indicator.addEventListener("click", FoxtrickRapidId.onclick, true);
+		// get labels of optgroup and option
+		for (var i in this.options) {
+			this.options[i].label = Foxtrickl10n.getString(this.options[i].text);
 		}
-		catch (e) {
-			Foxtrick.dump("RapidId(" + e.lineNumber + "): " + e + "\n");
-		}
-	},
+
+		var header = doc.getElementById("header");
+		var ticker = doc.getElementById("ticker");
+		var container = doc.createElement("div");
+		header.insertBefore(container, ticker);
+		container.id = "ft_rapidid";
+		container.className='float_right';
+		var indicator = doc.createElement("a");
+		container.appendChild(indicator);
+
+		// indicator
+		indicator.id = "ft_rapidid_indicator";
+		var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
+		indicator.appendChild(doc.createTextNode(viewById));
+		indicator.addEventListener("click", FoxtrickRapidId.onclick, true);
+	}
 };

@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksCoach = {
-
     MODULE_NAME : "LinksCoach",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('coach'),
@@ -14,11 +13,10 @@ var FoxtrickLinksCoach = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"coachlink");
+		Foxtrick.initOptionsLinks(this,"coachlink");
     },
 
     run : function( page, doc ) {
-
 		//addExternalLinksToCoachPage
 		var links = Foxtrick.LinkCollection.getLinks("coachlink", {  }, doc, this);
 		var ownBoxBody=null;
@@ -39,6 +37,5 @@ var FoxtrickLinksCoach = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
-	},
-
+	}
 };

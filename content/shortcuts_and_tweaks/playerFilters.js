@@ -16,38 +16,33 @@ FoxtrickPlayerFilters = {
 	FILTER_SELECT_ID : "foxtrick-filter-select",
 
 	run : function(page, doc) {
-		try {
-			var sortSelect = doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy");
-			if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
-				sortSelect = doc.getElementById("ctl00_CPMain_ddlSortBy");
-			}
-
-			var filterSelect = doc.createElement("select");
-			filterSelect.id = this.FILTER_SELECT_ID;
-			Foxtrick.addEventListenerChangeSave(filterSelect, "click", function(ev) { FoxtrickPlayerFilters.selectClick(ev); }, false);
-			Foxtrick.addEventListenerChangeSave(filterSelect, "change", this.changeListener, false);
-
-			// this is used to clear filters, and we use this to select all
-			// players
-			var option = doc.createElement("option");
-			option.value = "all";
-			option.textContent = "-- " + Foxtrickl10n.getString("Filter") + " --";
-			filterSelect.appendChild(option);
-
-			var parentNode = sortSelect.parentNode
-			var insertBefore = sortSelect.nextSibling;
-			sortSelect.parentNode.removeChild(sortSelect);
-
-			var container = doc.createElement("div");
-			container.className = "ft-select-container";
-			container.appendChild(sortSelect);
-			container.appendChild(filterSelect);
-
-			parentNode.insertBefore(container, insertBefore);
+		var sortSelect = doc.getElementById("ctl00_CPMain_ucSorting_ddlSortBy");
+		if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+			sortSelect = doc.getElementById("ctl00_CPMain_ddlSortBy");
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
+
+		var filterSelect = doc.createElement("select");
+		filterSelect.id = this.FILTER_SELECT_ID;
+		Foxtrick.addEventListenerChangeSave(filterSelect, "click", function(ev) { FoxtrickPlayerFilters.selectClick(ev); }, false);
+		Foxtrick.addEventListenerChangeSave(filterSelect, "change", this.changeListener, false);
+
+		// this is used to clear filters, and we use this to select all
+		// players
+		var option = doc.createElement("option");
+		option.value = "all";
+		option.textContent = "-- " + Foxtrickl10n.getString("Filter") + " --";
+		filterSelect.appendChild(option);
+
+		var parentNode = sortSelect.parentNode
+		var insertBefore = sortSelect.nextSibling;
+		sortSelect.parentNode.removeChild(sortSelect);
+
+		var container = doc.createElement("div");
+		container.className = "ft-select-container";
+		container.appendChild(sortSelect);
+		container.appendChild(filterSelect);
+
+		parentNode.insertBefore(container, insertBefore);
 	},
 
 	selectClick : function(ev) {

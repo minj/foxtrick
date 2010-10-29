@@ -13,7 +13,6 @@ var FoxtrickForumChangePosts = {
 	CSS: Foxtrick.ResourcePath+"resources/css/changepost.css",
 
 	run : function( page, doc ) {
-	try{
 		//if (Foxtrick.isModuleEnabled(FoxtrickSingleline2)) return;
 
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID);
@@ -160,8 +159,8 @@ var FoxtrickForumChangePosts = {
 				}
 			}
 		} catch(e_format) {Foxtrick.dump('FORMAT TEXT ' + e_format + '\n');}
-		
-		
+
+
 		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
 		var alldivs = doc.getElementById('threadContent').childNodes;
@@ -604,9 +603,7 @@ var FoxtrickForumChangePosts = {
 			}
 		  }
 		}
-	} catch (e) { Foxtrick.dumpError(e);}
 	},
-
 
 	_copy_postid_to_clipboard : function(ev) {
 		var doc = ev.target.ownerDocument;
@@ -905,6 +902,5 @@ var FoxtrickForumChangePosts = {
 			Foxtrick.alert('_SaveForSearch '+e);
 		}
 	return true;
-	},
-
+	}
 };

@@ -1,5 +1,5 @@
 <language name="zh" desc="中文（简体）">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="我的 Hattrick" />
 	<MyClub value="我的俱乐部" />
@@ -7,7 +7,7 @@
 	<Forum value="论坛" />
 	<Shop value="HT 商店" />
 	<Help value="帮助" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(非常低)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(高)" value="0.50" />
 		<sublevel text="(非常高)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="常规" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="无限创意" />
 		<tactic type="longshots" value="远射" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page -->
 	<positions>
 		<position type="Keeper" value="守门员" short="门将" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="边锋" short="边锋" />
 		<position type="Forward" value="前锋" short="前锋" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="不可预测" short="不可" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="头球专家" short="头球" />
 		<specialty type="Regainer" value="不药而愈" short="不药" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="超凡入圣" value="20" />

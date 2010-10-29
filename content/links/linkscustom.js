@@ -6,10 +6,7 @@
 
  ////////////////////////////////////////////////////////////////////////////////
 
-
-
 var FoxtrickLinksCustom = {
-
     MODULE_NAME : "LinksCustom",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	DEFAULT_ENABLED : false,
@@ -625,6 +622,5 @@ var FoxtrickLinksCustom = {
 		var encoded = btoa(stream.readBytes(stream.available()));
 		return "data:" + contentType + ";base64," + encoded;
 	} catch (e) {Foxtrick.dump("FoxtrickLinks generateDataURI: "+e+'\n');}
-	},
-
+	}
 };

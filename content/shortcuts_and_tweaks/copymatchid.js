@@ -16,7 +16,6 @@ var FoxtrickCopyMatchID = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function( page, doc ) {
-	try {
 		var count = 0;
 
 		if (page=='matchesarchiv' || page =='matches' || page =='matcheshistory' || page =='matchesLatest'||page=='arena') {
@@ -86,7 +85,6 @@ var FoxtrickCopyMatchID = {
 
 			}
 		}
-	} catch(e) {Foxtrick.dump('FoxtrickCopyMatchID: '+e+'\n');}
 	},
 
 	_copy_matchid_to_clipboard : function(ev) {

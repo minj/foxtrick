@@ -259,7 +259,7 @@ var FoxtrickCopyPlayerAd = {
 					}
 					ad += "[table]\n";
 					for (var i in skillArray) {
-						ad += "[tr]" 
+						ad += "[tr]"
 							+ "[th]" + skillArray[i].name + "[/th]"
 							+ "[td]"
 							+ (skillArray[i].maxed ? "[b]" : "")

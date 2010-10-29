@@ -15,11 +15,9 @@ var FoxtrickAddLeaveConfButton = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     run : function( page, doc ) {
-
 		switch( page ) {
 
             case 'forum':
-                try {
                     var vValue = this.getVValue( doc );
 
                     if(vValue != "2") {
@@ -38,10 +36,6 @@ var FoxtrickAddLeaveConfButton = {
                         }
                     }
                     break;
-                }
-                catch(e) {
-                    Foxtrick.dump( ' => AddLeaveConfButton forum' + e + '\n');
-                }
 
 			case 'forumSettings':
 				var sUrl = Foxtrick.getHref( doc );
@@ -77,8 +71,6 @@ var FoxtrickAddLeaveConfButton = {
 	},
 
 	change : function( page, doc ) {
-
-		//Foxtrick.dump(this.MODULE_NAME+' change\n')
 		switch( page ) {
 			case 'forum':
 				this.run(page,doc);
@@ -95,39 +87,33 @@ var FoxtrickAddLeaveConfButton = {
 		if(vPos > -1) {
 			vValue = sUrl.substr(vPos+2,1);
 		}
-        // Foxtrick.dump (' => vValue: ' + vValue + '\n');
 		return vValue;
 	},
 
 	addButton : function( doc, divId, folderHeader, foldersCounter, vValue ) {
-		try {
-            // if (doc == null) return;
-            var a = folderHeader.getElementsByTagName("a");
-			var link;
-			if( a != null ) {
-				link = a[a.length-1];
-			}
-			//Foxtrick.dump('=> link: ' + link + '\n');
-			if (link == null || link.lastChild == null || link.lastChild.data == null || link.innerHTML == null) return;
+        // if (doc == null) return;
+        var a = folderHeader.getElementsByTagName("a");
+		var link;
+		if( a != null ) {
+			link = a[a.length-1];
+		}
+		//Foxtrick.dump('=> link: ' + link + '\n');
+		if (link == null || link.lastChild == null || link.lastChild.data == null || link.innerHTML == null) return;
 
-            var confName = Foxtrick.trim( link.lastChild.data );
-            //Foxtrick.dump('=> confName: ' + confName +'\n');
+        var confName = Foxtrick.trim( link.lastChild.data );
+        //Foxtrick.dump('=> confName: ' + confName +'\n');
 
-            var leaveConf = doc.createElement("div");
-            leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
-            // Foxtrick.dump('=>counter: ' + foldersCounter +'\n');
-            leaveConf.setAttribute("class","ft_actionicon foxtrickRemove float_right");
-            leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
-            leaveConf.setAttribute("onClick","if (confirm( \"" +	Foxtrickl10n.getString(
-                'leave_conf_button_alert')	+ "\" )) {window.open(\"/MyHattrick/"
-                + "Preferences/ForumSettings.aspx?LeaveConf=" + confName
-                + "\",\"_self\");} else return false;");
-            var markAsReadButton = folderHeader.childNodes[0];
-			// Foxtrick.dump('=>markAsReadButton: ' + markAsReadButton+'\n');
-            folderHeader.insertBefore( leaveConf, markAsReadButton);
-        }
-        catch(e) {
-            Foxtrick.dumpError(e);
-        }
+        var leaveConf = doc.createElement("div");
+        leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
+        // Foxtrick.dump('=>counter: ' + foldersCounter +'\n');
+        leaveConf.setAttribute("class","ft_actionicon foxtrickRemove float_right");
+        leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
+        leaveConf.setAttribute("onClick","if (confirm( \"" +	Foxtrickl10n.getString(
+            'leave_conf_button_alert')	+ "\" )) {window.open(\"/MyHattrick/"
+            + "Preferences/ForumSettings.aspx?LeaveConf=" + confName
+            + "\",\"_self\");} else return false;");
+        var markAsReadButton = folderHeader.childNodes[0];
+		// Foxtrick.dump('=>markAsReadButton: ' + markAsReadButton+'\n');
+        folderHeader.insertBefore( leaveConf, markAsReadButton);
 	}
 };

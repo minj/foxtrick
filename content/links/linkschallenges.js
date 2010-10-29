@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksChallenges = {
-
     MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('challenges','youthchallenges'),
@@ -14,12 +13,11 @@ var FoxtrickLinksChallenges = {
 	OPTIONS : {},
 
 	init : function() {
-			var linktypes = new Array("challengeslink","youthchallengeslink");
-			Foxtrick.initOptionsLinksArray(this,linktypes);
+		var linktypes = new Array("challengeslink","youthchallengeslink");
+		Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
     run : function( page, doc ) {
-
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') );
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var ownteamid = FoxtrickHelper.getOwnCountryId();
@@ -46,6 +44,5 @@ var FoxtrickLinksChallenges = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{} );
-    },
-
+    }
 };

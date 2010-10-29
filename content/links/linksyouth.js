@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksYouthOverview = {
-
     MODULE_NAME : "LinksYouthOverview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthoverview'),
@@ -14,8 +13,8 @@ var FoxtrickLinksYouthOverview = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"youthlink");
-	    },
+		Foxtrick.initOptionsLinks(this,"youthlink");
+    },
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -46,8 +45,7 @@ var FoxtrickLinksYouthOverview = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
-    },
-
+    }
 };
 
 
@@ -62,8 +60,8 @@ var FoxtrickLinksYouthPlayerDetail = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"youthplayerdetaillink");
-	    },
+		Foxtrick.initOptionsLinks(this,"youthplayerdetaillink");
+    },
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -116,10 +114,8 @@ var FoxtrickLinksYouthPlayerDetail = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
-    },
-
+    }
 };
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -132,8 +128,8 @@ var FoxtrickLinksYouthTraining = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"youthtraininglink");
-	    },
+		Foxtrick.initOptionsLinks(this,"youthtraininglink");
+    },
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -146,8 +142,6 @@ var FoxtrickLinksYouthTraining = {
 		var owncountryid = FoxtrickHelper.getOwnCountryId();
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-
-
 
 		//addExternalLinksToYouthOverview
         var ownBoxBody=null;
@@ -180,8 +174,8 @@ var FoxtrickLinksYouthPlayerList = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"youthplayerlistlink");
-	    },
+		Foxtrick.initOptionsLinks(this,"youthplayerlistlink");
+    },
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -226,8 +220,8 @@ var FoxtrickLinksYouthMatchList = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"youthmatchlistlink");
-	    },
+		Foxtrick.initOptionsLinks(this,"youthmatchlistlink");
+    },
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');

@@ -91,63 +91,57 @@ var FoxtrickTeamPopupLinks = {
 	},
 
 	run : function(page, doc) {
-		try {
-			var sUrl = Foxtrick.getHref(doc);
+		var sUrl = Foxtrick.getHref(doc);
 
-			this.userlink = false;
-			var redir_from_forum = (sUrl.search(/Forum/i) != -1);
-			if (sUrl.search(/ShowOldConnections=true/i) != -1) {
-				var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
-				if (a) {
-					var func = a.href;
-					if (func) {
-						doc.location.href = func;
-					}
-				}
-			}
-
-			this.ownteamid = FoxtrickHelper.getOwnTeamId();
-			this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
-
-			this.Target = '_self';
-			if (Foxtrick.isModuleFeatureEnabled(this, "OpenNewTab")) this.Target = '_blank';
-
-			//  team links
-			var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
-			if (aLink) this._addSpan(doc, aLink);
-
-			// all in mainWrapper (ie. not left boxes)
-			if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
-			var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
-			var i = 0, aLink,li=0;
-			while (aLink = aLinks[i++]) {
-				if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText')
-					continue; // don't add to buttons, and htlive tabs
-				if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks)
-				|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {
-					this._addSpan(doc, aLink);
-					if (li++>100) break;
-				}
-			 }
-
-			var sidebar = doc.getElementById('sidebar');
-			if (sidebar) {
-				aLinks = sidebar.getElementsByTagName('a');
-				var i = 0, aLink;
-				while (aLink = aLinks[i++]) {
-					if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons
-					if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && this.bTeamLinks)
-						|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {
-						this._addSpan(doc,  aLink);
-					}
+		this.userlink = false;
+		var redir_from_forum = (sUrl.search(/Forum/i) != -1);
+		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
+			var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
+			if (a) {
+				var func = a.href;
+				if (func) {
+					doc.location.href = func;
 				}
 			}
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
+
+		this.ownteamid = FoxtrickHelper.getOwnTeamId();
+		this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
+
+		this.Target = '_self';
+		if (Foxtrick.isModuleFeatureEnabled(this, "OpenNewTab")) this.Target = '_blank';
+
+		//  team links
+		var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
+		if (aLink) this._addSpan(doc, aLink);
+
+		// all in mainWrapper (ie. not left boxes)
+		if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
+		var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
+		var i = 0, aLink,li=0;
+		while (aLink = aLinks[i++]) {
+			if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText')
+				continue; // don't add to buttons, and htlive tabs
+			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && this.bTeamLinks)
+			|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {
+				this._addSpan(doc, aLink);
+				if (li++>100) break;
+			}
+		 }
+
+		var sidebar = doc.getElementById('sidebar');
+		if (sidebar) {
+			aLinks = sidebar.getElementsByTagName('a');
+			var i = 0, aLink;
+			while (aLink = aLinks[i++]) {
+				if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons
+				if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && this.bTeamLinks)
+					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && this.bUserLinks)) {
+					this._addSpan(doc,  aLink);
+				}
+			}
 		}
 	},
-
 
 	_addSpan : function (doc, aLink) {
 		var par = aLink.parentNode;

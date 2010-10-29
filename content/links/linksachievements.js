@@ -14,7 +14,7 @@ var FoxtrickLinksAchievements = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"achievementslink");
+		Foxtrick.initOptionsLinks(this,"achievementslink");
     },
 
     run : function( page, doc ) {
@@ -46,6 +46,5 @@ var FoxtrickLinksAchievements = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid });
-	},
-
+	}
 };

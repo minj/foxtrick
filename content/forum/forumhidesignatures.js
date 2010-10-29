@@ -5,7 +5,6 @@
  */
 
 var FoxtrickHideSignatures = {
-
     MODULE_NAME : "HideSignatures",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),

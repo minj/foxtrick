@@ -1,5 +1,5 @@
 <language name="vi" desc="Tiếng Việt">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="Hattrick" />
 	<MyClub value="CLB của tôi" />
@@ -7,7 +7,7 @@
 	<Forum value="Diễn đàn" />
 	<Shop value="Cửa hàng" />
 	<Help value="Trợ giúp" />
-	
+
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(Rất thấp)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(Cao)" value="0.50" />
 		<sublevel text="(Rất cao)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page -->
 	<tactics>
 		<tactic type="normal" value="Bình thường" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Chơi sáng tạo" />
 		<tactic type="longshots" value="Sút xa " />
 	</tactics>
-	
+
 	<!-- positions appearing on players page -->
 	<positions>
 		<position type="Keeper" value="Thủ môn" short="Tm" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Tiền vệ cánh" short="Tc" />
 		<position type="Forward" value="Tiền đạo" short="Td" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ngẫu hứng" short="Nh" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Đánh đầu" short="Dd" />
 		<specialty type="Regainer" value="Hồi phục nhanh" short="Hn" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="thần thánh" value="20" />

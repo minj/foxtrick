@@ -44,7 +44,7 @@ FoxtrickTransferSearchFilters = {
 //		"_30" : "ctl00_CPMain_txtBidMax_ClientState",
 		"_31" : "ctl00$CPMain$ddlGlobalSkillMax",
 		"_32" : "ctl00$CPMain$chkUseGlobalMax",
-		
+
 		"_51" : "FoxtrickTransferSearchResultFilters.hide_bruised.check",
 		"_52" : "FoxtrickTransferSearchResultFilters.hide_injured.check",
 		"_53" : "FoxtrickTransferSearchResultFilters.cards.min",
@@ -54,37 +54,31 @@ FoxtrickTransferSearchFilters = {
 	},
 
 	run : function(page, doc) {
-		try {
-			if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
+		if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
 
-			var ownBoxBody = doc.createElement("div");
-			var header = Foxtrickl10n.getString("foxtrick.transferfilter.Foxtrick_Filters");
-			var ownBoxId = "foxtrick_transferfilter_box";
-			var ownBoxBodyId = "foxtrick_transferfilter_content";
-			ownBoxBody.id = ownBoxBodyId;
+		var ownBoxBody = doc.createElement("div");
+		var header = Foxtrickl10n.getString("foxtrick.transferfilter.Foxtrick_Filters");
+		var ownBoxId = "foxtrick_transferfilter_box";
+		var ownBoxBodyId = "foxtrick_transferfilter_content";
+		ownBoxBody.id = ownBoxBodyId;
 
-			// add link
-			var addlink = doc.createElement("a");
-			addlink.id = "foxtrick_transferfilter_new";
-			addlink.addEventListener("click", FoxtrickTransferSearchFilters.addNewFilter, false);
-			addlink.innerHTML = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
-			ownBoxBody.appendChild(addlink);
+		// add link
+		var addlink = doc.createElement("a");
+		addlink.id = "foxtrick_transferfilter_new";
+		addlink.addEventListener("click", FoxtrickTransferSearchFilters.addNewFilter, false);
+		addlink.innerHTML = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
+		ownBoxBody.appendChild(addlink);
 
-			var namelist = FoxtrickPrefs.getList("transferfilterlist");
-			namelist.sort();
-			var table = doc.createElement("table");
-			table.id = "table_transfer_filters";
-			for (var i=0; i< namelist.length; i++) {
-				this._addFilter(doc, table, namelist[i]);
-			}
-			ownBoxBody.appendChild(table);
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
+		var namelist = FoxtrickPrefs.getList("transferfilterlist");
+		namelist.sort();
+		var table = doc.createElement("table");
+		table.id = "table_transfer_filters";
+		for (var i=0; i< namelist.length; i++) {
+			this._addFilter(doc, table, namelist[i]);
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
+		ownBoxBody.appendChild(table);
+		Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
 	},
-
 
 	addNewFilter : function(ev) {
 		try {
@@ -110,7 +104,6 @@ FoxtrickTransferSearchFilters = {
 					formString = formString + "<name>" + i + "</name>";
 					formString = formString + "<value>" + el.value + "</value>";
 					formString = formString + "</elem>";
-					//Foxtrick.dump(i+'\t'+el.value+'\n');
 				}
 
 				if (el != null && el.type != "radio" && el.type == "checkbox" ) {
@@ -118,7 +111,6 @@ FoxtrickTransferSearchFilters = {
 					formString = formString + "<name>" + i + "</name>";
 					formString = formString + "<value>" + el.checked + "</value>";
 					formString = formString + "</elem>";
-					//Foxtrick.dump(i+'\t'+el.checked+'\n');
 				}
 			}
 			formString = formString + "</root>";
@@ -143,8 +135,9 @@ FoxtrickTransferSearchFilters = {
 			if (table) {
 				FoxtrickTransferSearchFilters._addFilter(doc, table, filtername);
 			}
-		} catch (e) {
-			Foxtrick.dump('FoxtrickTransferSearchFilters'+e);
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 	},
 
@@ -189,12 +182,10 @@ FoxtrickTransferSearchFilters = {
 					}
 				}
 				if (el == null) continue;
-				
+
 				if (el.type != "radio") {
 					el.value=value;
 				}
-				 //Foxtrick.dump(el.type + ' ');
-				 //Foxtrick.dump(el.value + '\n');
 				if (el.type == 'checkbox' && value == 'true' ) {el.checked = true;} else {el.checked = false;}
 				el.disabled = false;
 			}
@@ -211,32 +202,27 @@ FoxtrickTransferSearchFilters = {
 	},
 
 	_addFilter : function(doc, table, name) {
-		try {
-			var filter = FoxtrickPrefs.getString("transferfilter." + name);
+		var filter = FoxtrickPrefs.getString("transferfilter." + name);
 
-			var tr = doc.createElement("tr");
-			tr.id = "filter_" + name;
-			table.appendChild(tr);
+		var tr = doc.createElement("tr");
+		tr.id = "filter_" + name;
+		table.appendChild(tr);
 
-			var td_fname = doc.createElement("td");
-			var td_remove = doc.createElement("td");
-			tr.appendChild(td_fname);
-			tr.appendChild(td_remove);
+		var td_fname = doc.createElement("td");
+		var td_remove = doc.createElement("td");
+		tr.appendChild(td_fname);
+		tr.appendChild(td_remove);
 
-			var link = doc.createElement("a");
-			link.addEventListener("click", this.fillForm, false);
-			link.innerHTML = name;
-			link.setAttribute("filter", filter);
-			td_fname.appendChild(link);
+		var link = doc.createElement("a");
+		link.addEventListener("click", this.fillForm, false);
+		link.innerHTML = name;
+		link.setAttribute("filter", filter);
+		td_fname.appendChild(link);
 
-			var remover = doc.createElement("div");
-			remover.className = "foxtrickRemove";
-			remover.msg = name;
-			remover.addEventListener("click", this.deleteFilter, false);
-			td_remove.appendChild(remover);
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
+		var remover = doc.createElement("div");
+		remover.className = "foxtrickRemove";
+		remover.msg = name;
+		remover.addEventListener("click", this.deleteFilter, false);
+		td_remove.appendChild(remover);
 	}
 };

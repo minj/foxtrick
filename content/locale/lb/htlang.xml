@@ -1,5 +1,5 @@
 <language name="lb" desc="Lëtzebuergesch">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="Mäin Hattrick" />
 	<MyClub value="Mäi Veräin" />
@@ -7,7 +7,7 @@
 	<Forum value="Forum" />
 	<Shop value="Shop" />
 	<Help value="Hëllef" />
-	
+
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(Ganz niddereg)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(Héich)" value="0.50" />
 		<sublevel text="(Ganz héich)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Kreativ spillen" />
 		<tactic type="longshots" value="Wäitschëss" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Goalkeeper" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Bande" short="Wi" />
 		<position type="Forward" value="Stiermer" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="onberechenbar" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="kappballstaark" short="He" />
 		<specialty type="Regainer" value="Gesondheetswonner" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="gëttlech" value="20" />

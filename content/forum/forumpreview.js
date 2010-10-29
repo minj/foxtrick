@@ -5,7 +5,6 @@
  */
 
 var FoxtrickForumPreview = {
-
     MODULE_NAME : "ForumPreview",
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
@@ -19,7 +18,6 @@ var FoxtrickForumPreview = {
     _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditorMain_txtBody',
 
     run : function( page, doc ) {
-	try{
         Foxtrick.dump('prev: ' + page + '\n');
         var check_div = doc.getElementById( "forum_preview" );
         if (check_div != null) return;
@@ -51,8 +49,8 @@ var FoxtrickForumPreview = {
             if (msg_window == null)
                 return;
         }
-        catch(e) {
-            Foxtrick.dump('\n' + 'FoxtrickForumPreview' + e + '\n');
+        catch (e) {
+            Foxtrick.dumpError(e);
         }
 
         // display preview and button above the message window
@@ -202,7 +200,6 @@ var FoxtrickForumPreview = {
         if (page == 'mailnewsletter') div = doc.getElementById('ctl00_CPMain_tbNewsBody');  //mailnewsletter
 
 		div.parentNode.insertBefore( preview_div,div );
-	} catch(e){Foxtrick.dump('preview: '+e+'\n');}
     },
 
 	change : function( page, doc ) {
@@ -414,8 +411,8 @@ var FoxtrickForumPreview = {
 			// < with space after is allowed
 			text = text.replace(/< /g, "&lt; ");
 
-			// strip links. replace <� with &lt;
-			text = text.replace(/<·/g,'&lt;'); // who know why that � is needed there
+			// strip links. replace <· with &lt;
+			text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there
 			text = Foxtrick.stripHTML( text);
 
 			text = text.replace(/\n/g, "<br />");

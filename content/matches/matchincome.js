@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMatchIncome = {
-
     MODULE_NAME : "MatchIncome",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
@@ -46,6 +45,5 @@ var FoxtrickMatchIncome = {
 				td2b.textContent = Foxtrick.formatNumber (Math.floor(sum), ' ')+' '+FoxtrickPrefs.getString("oldCurrencySymbol");
 			}
         }
-    },
-
+    }
 };

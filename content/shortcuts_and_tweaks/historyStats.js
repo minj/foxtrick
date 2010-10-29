@@ -37,8 +37,6 @@ FoxtrickHistoryStats= {
             } catch(e) {var page = 1;}
             if (!Foxtrick.in_array(this.Pages,page)) {
                 this.Pages.push(page);
-                Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(this.Pages) + '\n');
-                Foxtrick.dump('------------------------------------------------<br>\n');
 
                 try {
                     var done = false;
@@ -53,22 +51,19 @@ FoxtrickHistoryStats= {
                             var stime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
                             stime = Foxtrick.substr(stime, Foxtrick.strrpos( stime, ";"), stime.length);
                             season = Foxtrick.gregorianToHT(stime).split('/')[1].split(')')[0];
-                            //Foxtrick.dump('HT Season: ' + season + '\n');
                             this.Offset = parseInt(season)-parseInt(check_season);
-                            Foxtrick.dump(' > precheck: '+check_season+'||'+season+'||'+this.Offset+'||<br>\n');
                             done = true;
                         }
                         if (done) break;
                     }
-                } catch(e_offset) {Foxtrick.dump('Error Offset calc: ' + e_offset +'<br>\n');}
+                }
+                catch (e) {
+                    Foxtrick.dumpError(e);
+                }
                 var table = Foxtrick.getElementsByClass('otherEventText', doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').cloneNode(true));
                 for (var i = 0; i < table.length; i++) {
-					// Foxtrick.dump(table[i].innerHTML);
 					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1 ) continue;
-					// Foxtrick.dump(">>>>     OK <<<<<<");
                     dummy = Foxtrick.trim(table[i].innerHTML);
-
-                    //Foxtrick.dump('<br>' + i + ' | '+ Foxtrick.var_dump(dummy) + '\n');
 
                         var buff = '';
                         var league = -1;
@@ -81,7 +76,6 @@ FoxtrickHistoryStats= {
                         var stime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
                         stime = Foxtrick.substr(stime, Foxtrick.strrpos( stime, ";"), stime.length);
                         season = Foxtrick.gregorianToHT(stime).split('/')[1].split(')')[0];
-                        //Foxtrick.dump('HT Season: ' + season + '\n');
                         var a = table[i].getElementsByTagName('a');
                         for (var j = 0; j < a.length; j ++) {
                             if (a[j].href.search(/LeagueLevelUnitID/) > -1) {
@@ -125,10 +119,11 @@ FoxtrickHistoryStats= {
                         }
 
                 }
-                Foxtrick.dump('Buffer:' + Foxtrick.var_dump(this.Buffer) + '\n');
-                Foxtrick.dump('-----------------------------------------------------------------------------------------------<br>\n');
             }
-        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ' fetch ' + e + '\n');}
+        }
+        catch(e) {
+            Foxtrick.dumpError(e);
+        }
     },
 
     _paste : function(doc){
@@ -145,7 +140,6 @@ FoxtrickHistoryStats= {
                 var dummy = this.Buffer[i].split('|');
                 dummy[0] = parseInt(dummy[0]) - this.Offset + '|';
                 var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td title="%l_t'+dummy[0]+'">%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
-                // Foxtrick.dump(Foxtrick.var_dump(dummy));
 
                 if (last == -1 || last != dummy[0]) {
                     HistoryTable += line;
@@ -184,13 +178,14 @@ FoxtrickHistoryStats= {
                 ownBoxBody.setAttribute( "id", ownBoxBodyId );
                 ownBoxBody.appendChild(table);
                 Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
-            }catch(e_box){Foxtrick.dump('ERROR');}
+            }
+            catch (e) {
+                Foxtrick.dumpError(e);
+            }
             doc.getElementById('ft_HistoryStats').firstChild.innerHTML = table.innerHTML;
-        } catch(e) {Foxtrick.dump(this.MODULE_NAME + ' paste ' + e + '\n');}
-        Foxtrick.dump('FLUSHED');
+        }
+        catch (e) {
+            Foxtrick.dumpError(e);
+        }
     }
 };
-
-
-
-

@@ -25,18 +25,8 @@ var FoxtrickTableSort = {
 	sortDirection : 1,
 
 	run : function( page, doc ) {
-		try {
-			if (page=='forumViewThread') {
-				var tables = doc.getElementsByClassName("htMlTable");
-				for (var i = 0; i < tables.length; ++i) {
-					var ths = tables[i].getElementsByTagName("th");
-					for (var j = 0; j < ths.length; ++j) {
-						Foxtrick.addEventListenerChangeSave(ths[j], "click", FoxtrickTableSort.clickListener, false);
-					}
-				}
-				return;
-			}
-			var tables = doc.getElementById('mainBody').getElementsByTagName("table");
+		if (page=='forumViewThread') {
+			var tables = doc.getElementsByClassName("htMlTable");
 			for (var i = 0; i < tables.length; ++i) {
 				var ths = tables[i].getElementsByTagName("th");
 				for (var j = 0; j < ths.length; ++j) {
@@ -45,9 +35,14 @@ var FoxtrickTableSort = {
 			}
 			return;
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
+		var tables = doc.getElementById('mainBody').getElementsByTagName("table");
+		for (var i = 0; i < tables.length; ++i) {
+			var ths = tables[i].getElementsByTagName("th");
+			for (var j = 0; j < ths.length; ++j) {
+				Foxtrick.addEventListenerChangeSave(ths[j], "click", FoxtrickTableSort.clickListener, false);
+			}
 		}
+		return;
 	},
 
 	clickListener : function( ev ) {
@@ -66,8 +61,6 @@ var FoxtrickTableSort = {
 				if (found) break;
 			}
 			var sort_start = i;
-			Foxtrick.dump('index ' + index + '\n');
-			Foxtrick.dump('sort_start ' + sort_start + '\n');
 
 			var lastSortIndex = table.getAttribute('lastSortIndex');
 			if (lastSortIndex==null || lastSortIndex!=index) {
@@ -83,7 +76,6 @@ var FoxtrickTableSort = {
 			for (var i = sort_start+1; i < table.rows.length; ++i) {
 		    	if (num_cols != table.rows[i].cells.length) break;
 				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
-				//Foxtrick.dump( (inner!='')+' '+isNaN(parseFloat(inner))+' '+ parseInt(inner)+'\n');
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
 		    	if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
 		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
@@ -92,13 +84,6 @@ var FoxtrickTableSort = {
 				if (table.rows[i].cells[index].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
 		    }
 			var sort_end = i;
-			Foxtrick.dump('sort_end: '+sort_end+'\n');
-			Foxtrick.dump('is_num '+is_num+'\n');
-			Foxtrick.dump('is_youthskill '+is_youthskill+'\n');
-			Foxtrick.dump('is_age '+is_age+'\n');
-			Foxtrick.dump('is_ordinal '+is_ordinal+'\n');
-			Foxtrick.dump('is_date '+is_date+'\n');
-			Foxtrick.dump('is_skill '+is_skill+'\n');
 
 			// rows to be sorted
 			var rows = new Array();
@@ -176,13 +161,11 @@ var FoxtrickTableSort = {
 		else if (FoxtrickTableSort.sortOrdinal) {
 			aContent = parseInt(aContent.match(/^(\d+)\./)[1]);
 			bContent = parseInt(bContent.match(/^(\d+)\./)[1]);
-			//Foxtrick.dump(aContent+' '+bContent+'\n')
 			return FoxtrickTableSort.sortDirection*(aContent - bContent);
 		}
 		else if (FoxtrickTableSort.sortNum) {
 			aContent = parseFloat(aContent);
 			bContent = parseFloat(bContent);
-			//Foxtrick.dump(aContent+' '+bContent+'\n')
 			aContent = isNaN(aContent) ? 0 : aContent;
 			bContent = isNaN(bContent) ? 0 : bContent;
 			if (aContent === bContent) {

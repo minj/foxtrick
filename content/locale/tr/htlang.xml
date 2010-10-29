@@ -1,5 +1,5 @@
 <language name="tr" desc="Türkçe">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Hattrick&#39;im" />
 	<MyClub value="Kulübüm" />
@@ -7,7 +7,7 @@
 	<Forum value="Forum" />
 	<Shop value="Market" />
 	<Help value="Yardım" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(çok düşük)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(yüksek)" value="0.50" />
 		<sublevel text="(çok yüksek)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Yaratıcı oyna" />
 		<tactic type="longshots" value="Uzaktan şutlar" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Kaleci" short="Kal" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Kanat" short="Ka" />
 		<position type="Forward" value="Forvet" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Kestirilemez" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Kafa" short="He" />
 		<specialty type="Regainer" value="Çabuk İyileşen" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="mucizevi" value="20" />

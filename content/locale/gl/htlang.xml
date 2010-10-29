@@ -1,5 +1,5 @@
 <language name="gl" desc="Galego">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="O meu Hattrick" />
 	<MyClub value="O meu club" />
@@ -7,7 +7,7 @@
 	<Forum value="Conferencias" />
 	<Shop value="Tenda" />
 	<Help value="Axuda" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Moi baixo)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(Alto)" value="0.50" />
 		<sublevel text="(Moi alto)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Xogar creativamente" />
 		<tactic type="longshots" value="Tiros de lonxe" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Porteiro" short="Po" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Extremo" short="Ex" />
 		<position type="Forward" value="Dianteiro" short="Di" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisible" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Xogo aéreo" short="He" />
 		<specialty type="Regainer" value="Baril" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divino" value="20" />

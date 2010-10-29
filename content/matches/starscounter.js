@@ -125,7 +125,6 @@ var FoxtrickStarsCounter = {
 		}
 	},
 
-
 	_getStar : function(doc, colour) {
 		var star = doc.createElement("img");
 		star.className = "starWhole";

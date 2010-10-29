@@ -21,30 +21,25 @@ var FoxtrickManagerButtons = {
 	MAIL_LINK_ID: "ctl00_CPSidebar_ucVisitorActions_lnkMail",
 
 	run : function(page, doc) {
-		try {
-			var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
-			var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
-			if (ownTeamId === null || teamId === null || ownTeamId === teamId) {
-				// we don't add the buttons for your own page
-				return;
-			}
-
-			if (Foxtrick.isModuleFeatureEnabled(this, "LargeSendMail")) {
-				this.changeMailLink(page, doc);
-			}
-
-			if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook")
-				&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
-				if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
-					&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
-					|| page === "youthoverview") {
-					this.addGuestBookLink(doc, page);
-				}
-			}
+		if (ownTeamId === null || teamId === null || ownTeamId === teamId) {
+			// we don't add the buttons for your own page
+			return;
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
+
+		if (Foxtrick.isModuleFeatureEnabled(this, "LargeSendMail")) {
+			this.changeMailLink(page, doc);
+		}
+
+		if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook")
+			&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
+			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
+				&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
+				|| page === "youthoverview") {
+				this.addGuestBookLink(doc, page);
+			}
 		}
 	},
 
@@ -102,7 +97,6 @@ var FoxtrickManagerButtons = {
 	},
 
 	addGuestBookLink : function(doc, page) {
-	try {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
 		var isSupporter = false;
@@ -181,7 +175,5 @@ var FoxtrickManagerButtons = {
 			}
 			parentDiv.insertBefore(guestbookLink, insertBefore);
 		}
-
-	} catch(e) {Foxtrick.dumpError(e);}
 	}
 };

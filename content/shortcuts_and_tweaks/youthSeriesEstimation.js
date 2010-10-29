@@ -17,59 +17,54 @@ var FoxtrickYouthSeriesEstimation = {
 	ATTRIB_NAME : "estimated",
 
 	run : function(page, doc) {
-		try {
-			var table = doc.getElementById(this.TABLE_ID);
-			if (!table || table.hasAttribute(this.ATTRIB_NAME)) {
-				return;
-			}
-			var tbody;
-			for (var i = 0; i < table.childNodes.length; ++i) {
-				if (table.childNodes[i].nodeName.toLowerCase() === "tbody") {
-					tbody = table.childNodes[i];
-					break;
-				}
-			}
-			var rows = tbody.getElementsByTagName("tr");
-			for (var i = 0; i < rows.length; ++i) {
-				var row = rows[i];
-				var cells = row.getElementsByTagName("td");
-
-				var sizeCell = cells[2];
-				var size = sizeCell.textContent;
-				if (parseInt(size.split("/")[0]) === parseInt(size.split("/")[1])) {
-					// league is full, check next
-					continue;
-				}
-
-				var firstMatchCell = cells[3];
-				var date = Foxtrick.getDateFromText(firstMatchCell.textContent);
-				var time = date.getTime();
-				var nowTimeText = doc.getElementById("time").textContent;
-				var nowTime = Foxtrick.getDateFromText(nowTimeText).getTime();
-
-				const timeHour = 60 * 60 * 1000;
-				const timeDay = 24 * timeHour;
-				const timeWeek = 7 * timeDay;
-
-				var estimationTime = time + Math.ceil((nowTime - time) / (timeWeek)) * timeWeek;
-				var timeDiff = estimationTime - nowTime;
-				var days = Math.floor(timeDiff / timeDay);
-				var hours = Math.floor((timeDiff - days * timeDay) / timeHour);
-
-				var str = "(" + days + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.days") + " " + hours + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.hours") + ")";
-				var info = doc.createElement("span");
-				info.className = "ft-youth-series-estimation";
-				info.textContent = str;
-				if (days < 1) {
-					Foxtrick.addClass(info, "near-start");
-				}
-				firstMatchCell.appendChild(info);
-			}
-			table.setAttribute(this.ATTRIB_NAME, this.ATTRIB_NAME);
+		var table = doc.getElementById(this.TABLE_ID);
+		if (!table || table.hasAttribute(this.ATTRIB_NAME)) {
+			return;
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
+		var tbody;
+		for (var i = 0; i < table.childNodes.length; ++i) {
+			if (table.childNodes[i].nodeName.toLowerCase() === "tbody") {
+				tbody = table.childNodes[i];
+				break;
+			}
 		}
+		var rows = tbody.getElementsByTagName("tr");
+		for (var i = 0; i < rows.length; ++i) {
+			var row = rows[i];
+			var cells = row.getElementsByTagName("td");
+
+			var sizeCell = cells[2];
+			var size = sizeCell.textContent;
+			if (parseInt(size.split("/")[0]) === parseInt(size.split("/")[1])) {
+				// league is full, check next
+				continue;
+			}
+
+			var firstMatchCell = cells[3];
+			var date = Foxtrick.getDateFromText(firstMatchCell.textContent);
+			var time = date.getTime();
+			var nowTimeText = doc.getElementById("time").textContent;
+			var nowTime = Foxtrick.getDateFromText(nowTimeText).getTime();
+
+			const timeHour = 60 * 60 * 1000;
+			const timeDay = 24 * timeHour;
+			const timeWeek = 7 * timeDay;
+
+			var estimationTime = time + Math.ceil((nowTime - time) / (timeWeek)) * timeWeek;
+			var timeDiff = estimationTime - nowTime;
+			var days = Math.floor(timeDiff / timeDay);
+			var hours = Math.floor((timeDiff - days * timeDay) / timeHour);
+
+			var str = "(" + days + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.days") + " " + hours + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.hours") + ")";
+			var info = doc.createElement("span");
+			info.className = "ft-youth-series-estimation";
+			info.textContent = str;
+			if (days < 1) {
+				Foxtrick.addClass(info, "near-start");
+			}
+			firstMatchCell.appendChild(info);
+		}
+		table.setAttribute(this.ATTRIB_NAME, this.ATTRIB_NAME);
 	},
 
 	change : function(page, doc) {

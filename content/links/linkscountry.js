@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksCountry = {
-
     MODULE_NAME : "LinksCountry",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('country'),
@@ -14,11 +13,10 @@ var FoxtrickLinksCountry = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"countrylink");
+		Foxtrick.initOptionsLinks(this,"countrylink");
     },
 
     run : function( page, doc ) {
-
 		//addExternalLinksToCountryDetail
 		var ownBoxBody=null;
         var countryid;
@@ -48,6 +46,5 @@ var FoxtrickLinksCountry = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );
-    },
-
+    }
 };

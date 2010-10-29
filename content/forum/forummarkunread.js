@@ -77,6 +77,5 @@ var FoxtrickMarkUnread = {
                 }
             }
 		}
-	},
-
+	}
 };

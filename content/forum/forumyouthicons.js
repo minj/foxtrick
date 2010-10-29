@@ -58,7 +58,6 @@
 			],
 
 	run : function( page, doc ) {
-		Foxtrick.dump('YouthIconPAGE: ' + page + '\n');
 		var show_main = false; var show_youth = false;
 		var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
 		if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||

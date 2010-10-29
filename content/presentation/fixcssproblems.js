@@ -42,12 +42,10 @@ FoxtrickFixcssProblems = {
 
     run : function(page, doc) {
 	   if ( Foxtrick.isRTLLayout(doc) && Foxtrick.isModuleFeatureEnabled( this, "RTL_Fixes" )) {
-				if (!Foxtrick.isStandardLayout( doc ) ) {
-                        var css = Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes_simple.css";
-						Foxtrick.addStyleSheet( doc, css );
-				}
+			if (!Foxtrick.isStandardLayout( doc ) ) {
+                var css = Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes_simple.css";
+				Foxtrick.addStyleSheet( doc, css );
 			}
-
-    },
-
+		}
+    }
 };

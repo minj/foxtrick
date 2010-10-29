@@ -1,5 +1,5 @@
 <language name="nn" desc="Norsk, nynorsk">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Mitt Hattrick" />
 	<MyClub value="Klubben min" />
@@ -7,7 +7,7 @@
 	<Forum value="Forum" />
 	<Shop value="Butikk" />
 	<Help value="Hjelp" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(svært låg)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(høg)" value="0.50" />
 		<sublevel text="(svært høg)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Spel kreativt" />
 		<tactic type="longshots" value="Skot frå distanse" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Keeper" short="GK" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Winger" short="WI" />
 		<position type="Forward" value="Forward" short="FW" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Head" short="He" />
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="guddomleg" value="20" />

@@ -5,7 +5,6 @@
  */
 
 var FoxtrickForumTemplates = {
-
     MODULE_NAME : "ForumTemplates",
     MODULE_AUTHOR : "Mod-PaV",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,

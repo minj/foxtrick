@@ -7,7 +7,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickLinksLeague = {
-
     MODULE_NAME : "LinksLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('league'),
@@ -15,7 +14,7 @@ var FoxtrickLinksLeague = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"leaguelink");
+		Foxtrick.initOptionsLinks(this,"leaguelink");
     },
 
     run : function( page, doc ) {
@@ -67,6 +66,5 @@ var FoxtrickLinksLeague = {
 				break;
 			}
 		}
-	},
-
+	}
 };

@@ -14,32 +14,27 @@ var FoxtrickYouthPromotes = {
 	LATEST_CHANGE: "Now working on all locales",
 
 	run : function( page, doc ) {
-		try {
-			var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
-			if (!isNaN(daysToPromote)) {
-				var message = "";
-				if (daysToPromote > 0) { // you have to wait to promote
-					message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_d") + " " +
-						daysToPromote + " " + Foxtrickl10n.getString("foxtrick.youthpromotedays.days");
-				}
-				else { // can be promoted already
-					message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t");
-				}
-
-				var birthdayCell;
-				var allDivs = doc.getElementsByTagName("div");
-				for (var i = 0; i < allDivs.length; i++) {
-					if (allDivs[i].className == "byline") {
-						birthdayCell = allDivs[i];
-					}
-				}
-				var promotionCell = doc.createElement("p");
-				promotionCell.appendChild(doc.createTextNode(message));
-				birthdayCell.appendChild(promotionCell);
+		var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
+		if (!isNaN(daysToPromote)) {
+			var message = "";
+			if (daysToPromote > 0) { // you have to wait to promote
+				message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_d") + " " +
+					daysToPromote + " " + Foxtrickl10n.getString("foxtrick.youthpromotedays.days");
 			}
-		}
-		catch (e) {
-			Foxtrick.dump("YouthPromotes: " + e + "\n");
+			else { // can be promoted already
+				message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t");
+			}
+
+			var birthdayCell;
+			var allDivs = doc.getElementsByTagName("div");
+			for (var i = 0; i < allDivs.length; i++) {
+				if (allDivs[i].className == "byline") {
+					birthdayCell = allDivs[i];
+				}
+			}
+			var promotionCell = doc.createElement("p");
+			promotionCell.appendChild(doc.createTextNode(message));
+			birthdayCell.appendChild(promotionCell);
 		}
 	}
 };

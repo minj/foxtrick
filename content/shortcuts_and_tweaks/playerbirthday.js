@@ -15,51 +15,45 @@ var FoxtrickPlayerBirthday = {
 	LATEST_CHANGE : "Birthdaybox fixed for russian lang",
 
     run : function(page, doc) {
-		try {
-			// array of players
-			var birthdayToday = new Array();
-			var birthdayFuture = new Array();
-			var birthdayPast = new Array();
+		// array of players
+		var birthdayToday = new Array();
+		var birthdayFuture = new Array();
+		var birthdayPast = new Array();
 
-			var playerList = Foxtrick.Pages.Players.getPlayerList(doc, true);
+		var playerList = Foxtrick.Pages.Players.getPlayerList(doc, true);
 
-			for (var i = 0; i < playerList.length; ++i) {
-				if (playerList[i].age !== undefined) {
-					if (playerList[i].age.days === 0) {
-						birthdayToday.push(playerList[i]);
-					}
-					else if (playerList[i].age.days > 105) {
-						birthdayFuture.push(playerList[i]);
-					}
-					else if (playerList[i].age.days < 7) {
-						birthdayPast.push(playerList[i]);
-					}
+		for (var i = 0; i < playerList.length; ++i) {
+			if (playerList[i].age !== undefined) {
+				if (playerList[i].age.days === 0) {
+					birthdayToday.push(playerList[i]);
+				}
+				else if (playerList[i].age.days > 105) {
+					birthdayFuture.push(playerList[i]);
+				}
+				else if (playerList[i].age.days < 7) {
+					birthdayPast.push(playerList[i]);
 				}
 			}
-
-			// sorting of arrays according to days and then years
-			birthdayToday.sort(this.sort);
-			birthdayFuture.sort(this.sort);
-			birthdayPast.sort(this.sort);
-
-			var parentDiv = doc.createElement("div");
-			parentDiv.id = "foxtrick_addactionsbox_parentDiv";
-
-			FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayToday'), birthdayToday, doc);
-			FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayNextWeek'), birthdayFuture, doc);
-			FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayLastWeek'), birthdayPast, doc);
-
-			// Append the box to the sidebar
-			var newBoxId = "foxtrick_birthday_box";
-			if (birthdayToday.length + birthdayFuture.length + birthdayPast.length > 0) {
-				Foxtrick.addBoxToSidebar(doc, Foxtrickl10n.getString("foxtrick.tweaks.Birthdays"), parentDiv, newBoxId, "last", "");
-			}
 		}
-		catch (e) {
-			Foxtrick.dump('PlayerBirthday: ' + e + '\n');
+
+		// sorting of arrays according to days and then years
+		birthdayToday.sort(this.sort);
+		birthdayFuture.sort(this.sort);
+		birthdayPast.sort(this.sort);
+
+		var parentDiv = doc.createElement("div");
+		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
+
+		FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayToday'), birthdayToday, doc);
+		FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayNextWeek'), birthdayFuture, doc);
+		FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayLastWeek'), birthdayPast, doc);
+
+		// Append the box to the sidebar
+		var newBoxId = "foxtrick_birthday_box";
+		if (birthdayToday.length + birthdayFuture.length + birthdayPast.length > 0) {
+			Foxtrick.addBoxToSidebar(doc, Foxtrickl10n.getString("foxtrick.tweaks.Birthdays"), parentDiv, newBoxId, "last", "");
 		}
 	},
-
 
 	sort : function(a, b) {
 		// this should sort players first by days and then by years

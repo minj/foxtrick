@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksMatch = {
-
     MODULE_NAME : "LinksMatch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('match'),
@@ -14,12 +13,11 @@ var FoxtrickLinksMatch = {
 	OPTIONS : {},
 
     init : function() {
-			var linktypes = new Array("playedmatchlink","nextmatchlink","matchlink");
-			Foxtrick.initOptionsLinksArray(this,linktypes);
+		var linktypes = new Array("playedmatchlink","nextmatchlink","matchlink");
+		Foxtrick.initOptionsLinksArray(this,linktypes);
     },
 
     run : function( page, doc ) {
-
 		// get ids
 		var youthmatch = FoxtrickHelper.findIsYouthMatch(doc.location.href);
 		var teamid,teamid2;
@@ -89,6 +87,5 @@ var FoxtrickLinksMatch = {
 		if (!isarchivedmatch && !youthmatch) {
 	        FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
         }
-	},
-
+	}
 };

@@ -327,13 +327,6 @@ var FoxtrickCrossTable = {
 		} //catch(e) {Foxtrick.dumpError(e);}
 	},
 
-	/*change : function( page, doc ) {
-		var id = "ft_cross";
-		if(!doc.getElementById(id)) {
-			this.run( page, doc );
-		}
-	},*/
-
 	getDataFromDoc : function (doc) {
 				var mainBody = doc.getElementById('mainBody');
 				var tbl_fix = mainBody.getElementsByTagName('TABLE')[0];

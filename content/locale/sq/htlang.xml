@@ -1,5 +1,5 @@
 <language name="sq" desc="Albanian">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Hattrick-u Im" />
 	<MyClub value="Klubi Im" />
@@ -7,7 +7,7 @@
 	<Forum value="Forumi" />
 	<Shop value="Dyqani" />
 	<Help value="Ndihmë" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Sh. ulët)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(Lartë)" value="0.50" />
 		<sublevel text="(Sh. lartë)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Lojë me fantazi" />
 		<tactic type="longshots" value="Goditje nga distanca" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Portier" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Mesfushor krahu" short="Wi" />
 		<position type="Forward" value="Sulmues" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="I paparashikueshëm" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Me Kokë" short="He" />
 		<specialty type="Regainer" value="Ripërtëritës" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="hyjnor" value="20" />

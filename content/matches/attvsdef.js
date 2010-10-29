@@ -14,37 +14,31 @@ Foxtrick.AttVsDef = {
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
 
 	run : function( page, doc ) {
-		try {
-			var ratingstable = Foxtrick.Matches._getRatingsTable(doc);
-			if (ratingstable == null) return;
-			if (Foxtrick.Matches._isWalkOver(ratingstable)) return;
+		var ratingstable = Foxtrick.Matches._getRatingsTable(doc);
+		if (ratingstable == null) return;
+		if (Foxtrick.Matches._isWalkOver(ratingstable)) return;
 
-			var header = Foxtrickl10n.getString("foxtrick.matches.attackdefensebars" );
-			var boxId = "foxtrick_attvsdefbars_box";
+		var header = Foxtrickl10n.getString("foxtrick.matches.attackdefensebars" );
+		var boxId = "foxtrick_attvsdefbars_box";
 
-			var bodydiv=doc.createElement('div');
-			var bodydivid = "foxtrick_attvsdefbars_content";
-			bodydiv.setAttribute( "id", bodydivid );
+		var bodydiv=doc.createElement('div');
+		var bodydivid = "foxtrick_attvsdefbars_content";
+		bodydiv.setAttribute( "id", bodydivid );
 
-			if (Foxtrick.Matches._isCorrectLanguage(ratingstable)) {
-				if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") >= 1) {
-					this._oldStyleBars(doc, ratingstable, bodydiv);
-				}
-				else {
-					this._newStyleBars(doc, ratingstable, bodydiv);
-				}
-			} else {
-				bodydiv.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
+		if (Foxtrick.Matches._isCorrectLanguage(ratingstable)) {
+			if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") >= 1) {
+				this._oldStyleBars(doc, ratingstable, bodydiv);
 			}
-			var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
-			Foxtrick.addBoxToSidebar( doc, header, bodydiv, boxId, suppstats, "last");
-
-			if (Foxtrick.isStandardLayout(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
-
-		} catch (e) {
-			Foxtrick.LOG('attvsdef.js run: '+e+"\n");
+			else {
+				this._newStyleBars(doc, ratingstable, bodydiv);
+			}
+		} else {
+			bodydiv.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
 		}
+		var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
+		Foxtrick.addBoxToSidebar( doc, header, bodydiv, boxId, suppstats, "last");
 
+		if (Foxtrick.isStandardLayout(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
 	},
 
 	_oldStyleBars: function (doc, ratingstable, bodydiv) {
@@ -121,7 +115,6 @@ Foxtrick.AttVsDef = {
 	},
 
 	_newStyleBars: function (doc, ratingstable, bodydiv) {
-		try {
 		var sidebar = doc.getElementById("sidebar");
 		var percentArray=this._getPercentArray(doc, ratingstable);
 		var balldivnumber=7;
@@ -171,7 +164,6 @@ Foxtrick.AttVsDef = {
 
 			bodydiv.appendChild(strangediv.cloneNode(true));
 		}
-		} catch(e){Foxtrick.dumpError(e);}
 	},
 
 	_createTextBox: function(doc, percentage) {
@@ -310,5 +302,4 @@ Foxtrick.AttVsDef = {
 
 		return values;
 	}
-
 };

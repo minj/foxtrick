@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksPlayerDetail = {
-
     MODULE_NAME : "LinksPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('playerdetail'),
@@ -18,150 +17,145 @@ var FoxtrickLinksPlayerDetail = {
     },
 
     run : function(page, doc) {
-		try {
-			//addExternalLinksToPlayerDetail
-			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
-			var infoTable = playerInfo.getElementsByTagName("table")[0];
-			var mainBox = doc.getElementsByClassName("mainBox")[0];
-			var skillTable = mainBox ? mainBox.getElementsByTagName("table")[0] : null;
+		//addExternalLinksToPlayerDetail
+		var playerInfo = doc.getElementsByClassName("playerInfo")[0];
+		var infoTable = playerInfo.getElementsByTagName("table")[0];
+		var mainBox = doc.getElementsByClassName("mainBox")[0];
+		var skillTable = mainBox ? mainBox.getElementsByTagName("table")[0] : null;
 
-			var owncountryid = FoxtrickHelper.getOwnCountryId();
+		var owncountryid = FoxtrickHelper.getOwnCountryId();
 
-			var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
-			var deadline = "";
-			if (deadlineDate !== null) {
-				deadline = deadlineDate.getFullYear() + "-"
-					+ (deadlineDate.getMonth() + 1) + "-" // getMonth() returns 0-11
-					+ deadlineDate.getDate() + " "
-					+ deadlineDate.getHours() + ":"
-					+ deadlineDate.getMinutes();
+		var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
+		var deadline = "";
+		if (deadlineDate !== null) {
+			deadline = deadlineDate.getFullYear() + "-"
+				+ (deadlineDate.getMonth() + 1) + "-" // getMonth() returns 0-11
+				+ deadlineDate.getDate() + " "
+				+ deadlineDate.getHours() + ":"
+				+ deadlineDate.getMinutes();
+		}
+
+		var teamid = Foxtrick.Pages.All.getTeamId(doc);
+		var teamname = Foxtrick.Pages.All.getTeamName(doc);
+		var nationality = Foxtrick.Pages.Player.getNationalityId(doc);
+		var playerid = Foxtrick.Pages.Player.getId(doc);
+		var playername = Foxtrick.Pages.Player.getName(doc);
+		var tsi = Foxtrick.Pages.Player.getTsi(doc);
+
+		// age
+		var age = Foxtrick.Pages.Player.getAge(doc);
+		var years = age.years;
+		var days = age.days;
+
+		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
+		var form = basicSkills.form;
+		var sta = basicSkills.stamina;
+		var exp = basicSkills.experience;
+		var ls = basicSkills.leadership;
+
+		var wageObj = Foxtrick.Pages.Player.getWage(doc);
+		var wage = wageObj.base;
+		var wagebonus = wageObj.bonus;
+
+		var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
+		if (injuredweeks > 0) {
+			var ilinks = Foxtrick.LinkCollection.getLinks("playerhealinglink", { "playerid": playerid,
+				"form": form, "age" : years, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);
+			for (var i = 0; i < ilinks.length; ++i) {
+				ilinks[i].link.className = "ft-link-injury";
+				infoTable.rows[4].cells[1].appendChild(ilinks[i].link);
 			}
+		}
 
-			var teamid = Foxtrick.Pages.All.getTeamId(doc);
-			var teamname = Foxtrick.Pages.All.getTeamName(doc);
-			var nationality = Foxtrick.Pages.Player.getNationalityId(doc);
-			var playerid = Foxtrick.Pages.Player.getId(doc);
-			var playername = Foxtrick.Pages.Player.getName(doc);
-			var tsi = Foxtrick.Pages.Player.getTsi(doc);
+		var skills = Foxtrick.Pages.Player.getSkills(doc);
 
-			// age
-			var age = Foxtrick.Pages.Player.getAge(doc);
-			var years = age.years;
-			var days = age.days;
+		var ownBoxBody = null;
+		var added = 0;
+		// links
+		var params = [];
+		var links = new Array(2);
+		if (skills) {
+			var stamina = skills.stamina;
+			var goalkeeping = skills.keeper;
+			var playmaking = skills.playmaking;
+			var passing = skills.passing;
+			var winger = skills.winger;
+			var defending = skills.defending;
+			var scoring = skills.scoring;
+			var setpieces = skills.setPieces;
 
-			var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
-			var form = basicSkills.form;
-			var sta = basicSkills.stamina;
-			var exp = basicSkills.experience;
-			var ls = basicSkills.leadership;
+			params = {
+				"teamid": teamid, "teamname" : teamname, "playerid" : playerid,
+				"playername" : playername, "nationality": nationality,
+				"tsi" : tsi, "age" : years, "age_days": days, "form" : form, "exp" : exp, "leadership" : ls,
+				"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
+				"passing" : passing, "winger" : winger, "defending" : defending,
+				"scoring" : scoring, "setpieces" : setpieces, "wage" : wage, "wagebonus" : wagebonus,
+				"owncountryid" : owncountryid , 'deadline' : deadline, 'lang' : FoxtrickPrefs.getString("htLanguage")
+				};
+			links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this);
+			links[1] = Foxtrick.LinkCollection.getLinks("transfercomparelink", params, doc,this);
+			if (goalkeeping > 3 && skillTable) {
+				var newtable = (skillTable.rows.length === 7);
+				var goalkeeperskillnode = newtable ? skillTable.rows[0].cells[1] : skillTable.rows[0].cells[3];
+				goalkeeperskillnode = goalkeeperskillnode.getElementsByTagName("a")[0];
 
-			var wageObj = Foxtrick.Pages.Player.getWage(doc);
-			var wage = wageObj.base;
-			var wagebonus = wageObj.bonus;
-
-			var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
-			if (injuredweeks > 0) {
-				var ilinks = Foxtrick.LinkCollection.getLinks("playerhealinglink", { "playerid": playerid,
-					"form": form, "age" : years, "injuredweeks" : injuredweeks, "tsi" : tsi }, doc, this);
-				for (var i = 0; i < ilinks.length; ++i) {
-					ilinks[i].link.className = "ft-link-injury";
-					infoTable.rows[4].cells[1].appendChild(ilinks[i].link);
-				}
-			}
-
-			var skills = Foxtrick.Pages.Player.getSkills(doc);
-
-			var ownBoxBody = null;
-			var added = 0;
-			// links
-			var params = [];
-			var links = new Array(2);
-			if (skills) {
-				var stamina = skills.stamina;
-				var goalkeeping = skills.keeper;
-				var playmaking = skills.playmaking;
-				var passing = skills.passing;
-				var winger = skills.winger;
-				var defending = skills.defending;
-				var scoring = skills.scoring;
-				var setpieces = skills.setPieces;
-
-				params = {
-					"teamid": teamid, "teamname" : teamname, "playerid" : playerid,
-					"playername" : playername, "nationality": nationality,
-					"tsi" : tsi, "age" : years, "age_days": days, "form" : form, "exp" : exp, "leadership" : ls,
-					"stamina" : stamina, "goalkeeping" : goalkeeping, "playmaking" : playmaking,
-					"passing" : passing, "winger" : winger, "defending" : defending,
-					"scoring" : scoring, "setpieces" : setpieces, "wage" : wage, "wagebonus" : wagebonus,
-					"owncountryid" : owncountryid , 'deadline' : deadline, 'lang' : FoxtrickPrefs.getString("htLanguage")
-					};
-				links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this);
-				links[1] = Foxtrick.LinkCollection.getLinks("transfercomparelink", params, doc,this);
-				if (goalkeeping > 3 && skillTable) {
-					var newtable = (skillTable.rows.length === 7);
-					var goalkeeperskillnode = newtable ? skillTable.rows[0].cells[1] : skillTable.rows[0].cells[3];
-					goalkeeperskillnode = goalkeeperskillnode.getElementsByTagName("a")[0];
-
-					// keeper links
-					var klinks = Foxtrick.LinkCollection.getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
-						"form" : form, "goalkeeping" : goalkeeping, "age" : years,"owncountryid":owncountryid }, doc,this);
-					for (var i = 0; i < klinks.length; ++i) {
-						klinks[i].link.className = "ft-link-keeper";
-						if (goalkeeperskillnode) {
-							goalkeeperskillnode.parentNode.appendChild(klinks[i].link);
-						}
+				// keeper links
+				var klinks = Foxtrick.LinkCollection.getLinks("keeperlink", { "playerid": playerid, "tsi" : tsi,
+					"form" : form, "goalkeeping" : goalkeeping, "age" : years,"owncountryid":owncountryid }, doc,this);
+				for (var i = 0; i < klinks.length; ++i) {
+					klinks[i].link.className = "ft-link-keeper";
+					if (goalkeeperskillnode) {
+						goalkeeperskillnode.parentNode.appendChild(klinks[i].link);
 					}
 				}
 			}
-			else {
-				params = { "teamid": teamid, "playerid": playerid, "nationality": nationality,
-					"tsi" : tsi, "age" : years, "age_days" : days, "form" : form, "exp" : exp, "leadership" : ls,
-					"stamina" : stamina, "wage" : wage, "wagebonus" : wagebonus,
-					"owncountryid" : owncountryid,'lang':FoxtrickPrefs.getString("htLanguage") };
-				links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this);
-			}
-			var num_links = links[0].length;
-			if (links[1] != null) {
-				num_links += links[1].length;
-			}
-			if (num_links>0) {
-				ownBoxBody = doc.createElement("div");
-				var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
-				var ownBoxId = "foxtrick_links_box";
-				var ownBoxBodyId = "foxtrick_links_content";
-				ownBoxBody.id = ownBoxBodyId;
+		}
+		else {
+			params = { "teamid": teamid, "playerid": playerid, "nationality": nationality,
+				"tsi" : tsi, "age" : years, "age_days" : days, "form" : form, "exp" : exp, "leadership" : ls,
+				"stamina" : stamina, "wage" : wage, "wagebonus" : wagebonus,
+				"owncountryid" : owncountryid,'lang':FoxtrickPrefs.getString("htLanguage") };
+			links[0] = Foxtrick.LinkCollection.getLinks("playerlink", params, doc,this);
+		}
+		var num_links = links[0].length;
+		if (links[1] != null) {
+			num_links += links[1].length;
+		}
+		if (num_links>0) {
+			ownBoxBody = doc.createElement("div");
+			var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
+			var ownBoxId = "foxtrick_links_box";
+			var ownBoxBodyId = "foxtrick_links_content";
+			ownBoxBody.id = ownBoxBodyId;
 
-				for (var i = 0; i < links.length; ++i) {
-					if (links[i] != null) {
-						for (var j = 0; j < links[i].length; ++j) {
-							links[i][j].link.className ="inner"
-							ownBoxBody.appendChild(links[i][j].link);
-							++added;
-						}
-					}
-				}
-			}
-
-			if (Foxtrick.isModuleEnabled(FoxtrickLinksTracker)) {
-				var links2 = Foxtrick.LinkCollection.getLinks("trackerplayerlink", params, doc,FoxtrickLinksTracker);
-				if (links2.length > 0) {
-					for (var i = 0; i < links2.length; ++i) {
-						links2[i].link.className ="flag inner";
-						var img = links2[i].link.getElementsByTagName('img')[0];
-						var style = "vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*nationality+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
-						img.setAttribute('style',style);
-						img.src="/Img/Icons/transparent.gif";
-						ownBoxBody.appendChild(links2[i].link);
+			for (var i = 0; i < links.length; ++i) {
+				if (links[i] != null) {
+					for (var j = 0; j < links[i].length; ++j) {
+						links[i][j].link.className ="inner"
+						ownBoxBody.appendChild(links[i][j].link);
 						++added;
 					}
 				}
 			}
-			if (added) Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "first", "");
+		}
 
-			FoxtrickLinksCustom.add(page, doc, ownBoxBody, this.MODULE_NAME, params);
+		if (Foxtrick.isModuleEnabled(FoxtrickLinksTracker)) {
+			var links2 = Foxtrick.LinkCollection.getLinks("trackerplayerlink", params, doc,FoxtrickLinksTracker);
+			if (links2.length > 0) {
+				for (var i = 0; i < links2.length; ++i) {
+					links2[i].link.className ="flag inner";
+					var img = links2[i].link.getElementsByTagName('img')[0];
+					var style = "vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*nationality+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+					img.setAttribute('style',style);
+					img.src="/Img/Icons/transparent.gif";
+					ownBoxBody.appendChild(links2[i].link);
+					++added;
+				}
+			}
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
+		if (added) Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "first", "");
+
+		FoxtrickLinksCustom.add(page, doc, ownBoxBody, this.MODULE_NAME, params);
     }
 };

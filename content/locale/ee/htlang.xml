@@ -1,5 +1,5 @@
 <language name="ee" desc="Eesti">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Minu Hattrick" />
 	<MyClub value="Minu klubi" />
@@ -7,7 +7,7 @@
 	<Forum value="Foorum" />
 	<Shop value="Pood" />
 	<Help value="Abi" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(väga madal)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(kõrge)" value="0.50" />
 		<sublevel text="(väga kõrge)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Tavaline" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Mängi loovalt" />
 		<tactic type="longshots" value="Kauglöögid" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Väravavaht" short="Vv" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Äär" short="Äär" />
 		<position type="Forward" value="Ründaja" short="Rü" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ettearvamatu" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Peamäng" short="He" />
 		<specialty type="Regainer" value="Elujõuline" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jumalik" value="20" />

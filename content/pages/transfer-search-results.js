@@ -16,7 +16,7 @@ Foxtrick.Pages.TransferSearchResults = {
 			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
 			for (var i = 0; i < transferTable.rows.length-1;  ) {
 				player = {};
-				
+
 				// start defined by next row being first of skill rows
 				if (transferTable.rows[i+1].id==null || transferTable.rows[i+1].id.search(/TransferPlayer_r1$/i)==-1) {
 					Foxtrick.dump('sold or psico row\n');
@@ -27,9 +27,9 @@ Foxtrick.Pages.TransferSearchResults = {
 				if (transferTable.rows[i].style.display=='none') {
 					i += 8;
 					Foxtrick.dump('filter player\n');
-					continue; 
+					continue;
 				}
-				
+
 				player.deadline = transferTable.rows[i + 6].cells[1].getElementsByTagName("span")[0].cloneNode(true);
 
 				var overviewtable = transferTable.rows[i].getElementsByTagName("table")[0];

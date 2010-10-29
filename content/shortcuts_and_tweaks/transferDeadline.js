@@ -11,7 +11,6 @@ FoxtrickTransferDeadline = {
     DEFAULT_ENABLED : true,
 
     run : function(page, doc) {
-
         var httime = doc.getElementById( "time" ).innerHTML;
 
         Foxtrick.HT_date = Foxtrick.getDateFromText( httime );
@@ -41,7 +40,6 @@ FoxtrickTransferDeadline = {
         if (!Foxtrick.HT_date) return;
 
         switch ( page ) {
-
             case 'playerdetail' :
                 this._PlayerDetailsDeatline ( doc );
                 break;
@@ -52,30 +50,25 @@ FoxtrickTransferDeadline = {
         var spans = doc.getElementsByTagName( element );
         var j = 0;
         for (var i=0; i<spans.length; i++) {
-            try {
-                var cell = "ctl00_CPMain_lstBids_ctrl"+ j + "_jsonDeadLine";
+            var cell = "ctl00_CPMain_lstBids_ctrl"+ j + "_jsonDeadLine";
+            var selltime_elm = doc.getElementById( cell );
+
+            if (selltime_elm == null) {
+                var cell = "ctl00_CPMain_dl_ctrl"+ j +"_TransferPlayer_lblDeadline";
                 var selltime_elm = doc.getElementById( cell );
+            }
 
-                if (selltime_elm == null) {
-                    var cell = "ctl00_CPMain_dl_ctrl"+ j +"_TransferPlayer_lblDeadline";
-                    var selltime_elm = doc.getElementById( cell );
-                }
-
-                if (selltime_elm != null ) {
-                    var selltime = Foxtrick.trim(selltime_elm.innerHTML);
-                    // Foxtrick.dump ('\n>>>>>' + selltime + '<<<<<\n');
-                    var ST_date = Foxtrick.getDateFromText( selltime );
-                    if (ST_date != null) {
-                        var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
-                        if (!isNaN(deadline_s) && deadline_s >= 0) {
-                            var DeadlineText = TimeDifferenceToText(deadline_s);
-                            selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
-                        }
+            if (selltime_elm != null ) {
+                var selltime = Foxtrick.trim(selltime_elm.innerHTML);
+                // Foxtrick.dump ('\n>>>>>' + selltime + '<<<<<\n');
+                var ST_date = Foxtrick.getDateFromText( selltime );
+                if (ST_date != null) {
+                    var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
+                    if (!isNaN(deadline_s) && deadline_s >= 0) {
+                        var DeadlineText = TimeDifferenceToText(deadline_s);
+                        selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
                     }
                 }
-            }
-            catch (e) {
-                Foxtrick.dump (e);
             }
             j++;
         }
@@ -84,48 +77,44 @@ FoxtrickTransferDeadline = {
     _PlayerDetailsDeatline : function ( doc ) {
         if ( doc.location.href.search(/Player.aspx/i) < 0 ) return;
 
-        try {
-            //Check if deadline already set
-			var deadline_span = doc.getElementById( "ft_deadline" );
-            if  (deadline_span != null ) return;
+        //Check if deadline already set
+		var deadline_span = doc.getElementById( "ft_deadline" );
+        if  (deadline_span != null ) return;
 
-            var div = doc.getElementById( 'ctl00_CPMain_updBid' );
-            if (div == null ) return;
+        var div = doc.getElementById( 'ctl00_CPMain_updBid' );
+        if (div == null ) return;
 
-            var spans = Foxtrick.getElementsByClass( "alert", div );
-            if (spans == null) return;
+        var spans = Foxtrick.getElementsByClass( "alert", div );
+        if (spans == null) return;
 
-            var selltime_elm = spans[0].getElementsByTagName( "p" )[0];
+        var selltime_elm = spans[0].getElementsByTagName( "p" )[0];
 
-            if (selltime_elm == null) return;
-            var selltime_clone = selltime_elm.cloneNode(true);
-            if (selltime_clone == null) return;
+        if (selltime_elm == null) return;
+        var selltime_clone = selltime_elm.cloneNode(true);
+        if (selltime_clone == null) return;
 
-            var selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
+        var selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
 
-            var selltime = selltimeInner;
+        var selltime = selltimeInner;
 
-            // suporters check
-            var startPos = selltimeInner.search("<a ");
+        // suporters check
+        var startPos = selltimeInner.search("<a ");
 
-            if(startPos != -1) {
-                selltime = selltimeInner.substr(0,startPos);
-            }
+        if(startPos != -1) {
+            selltime = selltimeInner.substr(0,startPos);
+        }
 
-            selltime = Foxtrick.substr(selltime, Foxtrick.strrpos( selltime, ";")+1, selltime.length);
-            // Foxtrick.dump('ST: ' + selltime + '\n');
+        selltime = Foxtrick.substr(selltime, Foxtrick.strrpos( selltime, ";")+1, selltime.length);
+        // Foxtrick.dump('ST: ' + selltime + '\n');
 
-            var ST_date = Foxtrick.getDateFromText( selltime );
-            if (!ST_date) return;
+        var ST_date = Foxtrick.getDateFromText( selltime );
+        if (!ST_date) return;
 
-            var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
+        var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
 
-            if (!isNaN(deadline_s) && deadline_s >= 0) {
-                var DeadlineText = TimeDifferenceToText (deadline_s);
-                selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
-            }
-        } catch (e) {
-            Foxtrick.dump('FoxtrickTransferDeadline'+e);
+        if (!isNaN(deadline_s) && deadline_s >= 0) {
+            var DeadlineText = TimeDifferenceToText (deadline_s);
+            selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
         }
     }
 };

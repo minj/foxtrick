@@ -14,10 +14,10 @@ var FoxtrickForumStripHattrickLinks = {
 	LATEST_CHANGE: "Module back.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS: new Array("NoConfirmStripping"),
-	
+
 	onclick : function( ev ) {
-		try{  
-			var a = ev.target; 
+		try{
+			var a = ev.target;
 			if (a.nodeName=='A') {
 				var hostname = ev.target.ownerDocument.location.hostname;
 				if ( a.href.search(/wiki/i)==-1 && a.href.search(/.+hattrick\.(org|ws|interia\.pl).*?/i)!=-1 && a.href.search(hostname)==-1) {
@@ -35,21 +35,16 @@ var FoxtrickForumStripHattrickLinks = {
 	},
 
 	run : function( page, doc ) {
-		try{
-			doc.getElementById('mainBody').addEventListener('click',this.onclick,true);
-			if (page=='forumViewThread') return;
-	
-			var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
-		    var target = targets[targets.length-1];
-		    var button_ok = null;
-			if (page=='forumWritePost') button_ok = targets[targets.length-2];
-		    if (page=='guestbook') target = null;
+		doc.getElementById('mainBody').addEventListener('click',this.onclick,true);
+		if (page=='forumViewThread') return;
 
-			button_ok.addEventListener("click", this.submitListener, false);
-		}
-		catch (e) {
-			Foxtrick.dump('FoxtrickForumStripHattrickLinks '+e+'\n');
-		}
+		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
+	    var target = targets[targets.length-1];
+	    var button_ok = null;
+		if (page=='forumWritePost') button_ok = targets[targets.length-2];
+	    if (page=='guestbook') target = null;
+
+		button_ok.addEventListener("click", this.submitListener, false);
 	},
 
 	strip : function(string) {
@@ -67,6 +62,5 @@ var FoxtrickForumStripHattrickLinks = {
 				textarea.value = FoxtrickForumStripHattrickLinks.strip(textarea.value);
 			}
 		}
-	},
-
+	}
 };

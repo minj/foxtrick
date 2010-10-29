@@ -41,6 +41,5 @@ var FoxtrickCustomMedals = {
 				}
 			}
 		}
-	},
-
+	}
 };

@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksClubTransfers = {
-
     MODULE_NAME : "LinksClubTransfers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'),
@@ -17,7 +16,7 @@ var FoxtrickLinksClubTransfers = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"clubtransferslink");
+		Foxtrick.initOptionsLinks(this,"clubtransferslink");
     },
 
     run : function( page, doc ) {
@@ -49,6 +48,5 @@ var FoxtrickLinksClubTransfers = {
 				break;
 			}
 		}
-    },
-
- };
+    }
+};

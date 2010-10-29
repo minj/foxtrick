@@ -1,5 +1,5 @@
 <language name="he" desc="עברית">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="האטריק שלי" />
 	<MyClub value="המועדון שלי" />
@@ -7,7 +7,7 @@
 	<Forum value="פורום" />
 	<Shop value="חנות" />
 	<Help value="עזרה" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(נמוך מאוד)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(גבוה)" value="0.50" />
 		<sublevel text="(גבוה מאוד)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="רגילה" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="משחק יצירתי" />
 		<tactic type="longshots" value="התקפה מרחוק" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Keeper" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Winger" short="Wi" />
 		<position type="Forward" value="Forward" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Head" short="He" />
 		<specialty type="Regainer" value="Regainer" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divine" value="20" />

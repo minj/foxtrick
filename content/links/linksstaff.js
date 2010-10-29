@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksStaff = {
-
     MODULE_NAME : "LinksStaff",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('staff'),
@@ -14,11 +13,10 @@ var FoxtrickLinksStaff = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"stafflink");
+		Foxtrick.initOptionsLinks(this,"stafflink");
     },
 
     run : function( page, doc ) {
-
 		//addExternalLinksToManagerPage
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainWrapper');
@@ -43,6 +41,5 @@ var FoxtrickLinksStaff = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname});
-	},
-
+	}
 };

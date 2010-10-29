@@ -14,7 +14,7 @@ var FoxtrickLinksAlliances = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"federationlink");
+		Foxtrick.initOptionsLinks(this,"federationlink");
     },
 
     run : function( page, doc ) {
@@ -49,6 +49,5 @@ var FoxtrickLinksAlliances = {
 				break;
 			}
 		}
-    },
-
- };
+    }
+};

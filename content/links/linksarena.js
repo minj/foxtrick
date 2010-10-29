@@ -14,7 +14,7 @@ var FoxtrickLinksArena = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"arenalink");
+		Foxtrick.initOptionsLinks(this,"arenalink");
     },
 
     run : function( page, doc ) {
@@ -54,6 +54,5 @@ var FoxtrickLinksArena = {
 				break;
 			}
 		}
-    },
-
- };
+    }
+};

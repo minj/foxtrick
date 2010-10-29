@@ -66,25 +66,18 @@ var FoxtrickSkillTable = {
 	},
 
 	run : function(page, doc) {
-		try {
-			if (page !== "transferSearchResult"
-				&& !this.getFullType(doc).subtype === "own"
-				&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
-				return;
-			}
-			FoxtrickSkillTable.addTableDiv(doc);
+		if (page !== "transferSearchResult"
+			&& !this.getFullType(doc).subtype === "own"
+			&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
+			return;
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
+		FoxtrickSkillTable.addTableDiv(doc);
 	},
-
 
 	createTable : function(doc) {
 		try {
 			var content = doc.getElementById("content");
 			content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-			//Foxtrick.dump('change listner removed\n');
 
 			var fullType = this.getFullType(doc);
 			var playerList = (fullType.type == "transfer") ? Foxtrick.Pages.TransferSearchResults.getPlayerList(doc) : Foxtrick.Pages.Players.getPlayerList(doc);
@@ -465,7 +458,6 @@ var FoxtrickSkillTable = {
 
 			var content = doc.getElementById("content");
 			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-			//Foxtrick.dump('change listner readded\n');
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -556,8 +548,6 @@ var FoxtrickSkillTable = {
 
 	toggleDisplay : function(ev) {
 		try {
-			Foxtrick.dump('SkillTable: toggleDisplay\n');
-
 			var doc = ev.target.ownerDocument;
 			var tablediv = doc.getElementById("ft_skilltablediv");
 

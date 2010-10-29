@@ -20,7 +20,6 @@ var FoxtrickExtraShortcuts = {
 	CSS:"",
 
 	run : function( page, doc ) {
-	try {
 		var shortcuts = doc.getElementById ( 'shortcuts' );
 		if (!shortcuts) return;
 		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div');
@@ -178,10 +177,6 @@ var FoxtrickExtraShortcuts = {
 				}
 			}
 		}
-	}
-	catch(e) {
-		Foxtrick.dumpError(e);
-	}
 	},
 
 	checkRadio : function( doc, url, radio ) {
@@ -194,7 +189,6 @@ var FoxtrickExtraShortcuts = {
 					try {
 						stopTimer();
 						var radio_xml = req.responseXML;
-						//Foxtrick.dump(req.responseText+'\n');
 
 						if (radio_xml != null && radio_xml.getElementsByTagName('radio').length!=0) {
 							if (radio_xml.getElementsByTagName('status').length!=0) {

@@ -20,8 +20,6 @@ var FoxtrickSeasonStats = {
 	_season:-1,
 
     run : function( page, doc ) {
-	try  {
-
 		// ----------------------------- season select box ---------------------------------
 
 		// get current season
@@ -236,17 +234,16 @@ var FoxtrickSeasonStats = {
 		}
 
 		Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
-
-	}
-	catch (e) {Foxtrick.dump("FoxtrickSeasonStats->"+e);}
 	},
 
 
 	SelectBox_Select : function(ev) {
-	try {
-		var doc = ev.target.ownerDocument;
-		doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]);
-	} catch (e) {Foxtrick.dump("FoxtrickTeamSelectBox_Select: "+e+'\n');}
-	},
+		try {
+			var doc = ev.target.ownerDocument;
+			doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]);
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
+	}
 };
-

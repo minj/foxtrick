@@ -170,7 +170,6 @@ team_confidence	: new Array(
 ),
 
     run : function( page, doc ) { Foxtrick.dump('in SkillTranslation\n');
-	try {
 		// no need to translate if language is already English
 		if (FoxtrickPrefs.getString("htLanguage") === "en") {
 			return;
@@ -194,7 +193,6 @@ team_confidence	: new Array(
 			this.translate_category(doc,table,12,this.team_confidence,false);
 
 		doc.location.hash=doc.location.hash;
-	} catch(e) {Foxtrick.dump('SkillTranslation: '+e+'\n');}
 	},
 
 	translate_category: function(doc,table,index,denominations,two_lines) {

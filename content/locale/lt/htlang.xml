@@ -1,5 +1,5 @@
 <language name="lt" desc="Lietuvių">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Mano Hattrick" />
 	<MyClub value="Mano komanda" />
@@ -7,7 +7,7 @@
 	<Forum value="Forumai" />
 	<Shop value="Parduotuvė" />
 	<Help value="Pagalba" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(min.)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(aukštas)" value="0.50" />
 		<sublevel text="(maks.)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normalus" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Žaisti išradingai" />
 		<tactic type="longshots" value="Tolimi smūgiai" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Vartininkas" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Krašto saugas" short="Wi" />
 		<position type="Forward" value="Puolėjas" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nenuspėjamas" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Aukštas" short="He" />
 		<specialty type="Regainer" value="Atsigaunantis" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="dieviškas" value="20" />

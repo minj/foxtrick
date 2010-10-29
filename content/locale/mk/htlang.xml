@@ -1,5 +1,5 @@
 <language name="mk" desc="Македонски">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Мој Hattrick " />
 	<MyClub value="Мојот Клуб" />
@@ -7,7 +7,7 @@
 	<Forum value="Форум" />
 	<Shop value="Продавница" />
 	<Help value="Помош" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Многу ниско)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(Високо)" value="0.50" />
 		<sublevel text="(Многу високо)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Нормално" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Играј креативно" />
 		<tactic type="longshots" value="Удари од далечина" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Голман" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Крило" short="Wi" />
 		<position type="Forward" value="Напаѓач" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредвидлив" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Игра со Глава" short="He" />
 		<specialty type="Regainer" value="Нескршлив" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божествен" value="20" />

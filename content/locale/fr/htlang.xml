@@ -1,5 +1,5 @@
 <language name="fr" desc="Français">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Mon Hattrick" />
 	<MyClub value="Mon club" />
@@ -7,7 +7,7 @@
 	<Forum value="Forums" />
 	<Shop value="Boutique" />
 	<Help value="Aide" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(très bas)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(haut)" value="0.50" />
 		<sublevel text="(très haut)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Jeu créatif" />
 		<tactic type="longshots" value="Tirs lointains" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Gardien" short="Ga" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Ailier" short="Ai" />
 		<position type="Forward" value="Attaquant" short="At" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprévisible" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Joueur de tête" short="He" />
 		<specialty type="Regainer" value="Guérison accéléréé" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="divin" value="20" />

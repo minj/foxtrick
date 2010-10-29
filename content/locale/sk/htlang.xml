@@ -1,5 +1,5 @@
 <language name="sk" desc="Slovenčina">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Môj Hattrick" />
 	<MyClub value="Môj klub" />
@@ -7,7 +7,7 @@
 	<Forum value="Konferencie" />
 	<Shop value="Obchod" />
 	<Help value="Pomoc" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(veľmi nízky)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(vysoký)" value="0.50" />
 		<sublevel text="(veľmi vysoký)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normálna taktika" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Kreatívna hra" />
 		<tactic type="longshots" value="Strely z diaľky" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Brankár" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Krajný záložník" short="Wi" />
 		<position type="Forward" value="Útočník" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nepredvídateľný" short="Ne" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Hlavičkár" short="Hl" />
 		<specialty type="Regainer" value="Nezmar" short="Nez" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="božský" value="20" />

@@ -1021,7 +1021,7 @@ stats["htbox_training"] =  {
 //training speed calculator (updated)
 stats["updated_training"] =  {
         "url" : "http://hattrick.pdg.pl/trening/new/en/",
-		
+
 		"traininglink" : { "path"       : "index.php",
                          "filters"    : [],
                          "params"     : []

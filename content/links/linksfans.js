@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksFans = {
-
     MODULE_NAME : "LinksFans",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('fans'),
@@ -14,7 +13,7 @@ var FoxtrickLinksFans = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"fanlink");
+		Foxtrick.initOptionsLinks(this,"fanlink");
     },
 
     run : function( page, doc ) {
@@ -55,6 +54,5 @@ var FoxtrickLinksFans = {
 			}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname,
 																		"fans":fans, "fanmood" : fanmood });
-	},
-
+	}
 };

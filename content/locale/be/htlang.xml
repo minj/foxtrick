@@ -1,5 +1,5 @@
 <language name="be" desc="Беларуская">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Мой Hattrick" />
 	<MyClub value="Мой клюб" />
@@ -7,7 +7,7 @@
 	<Forum value="Форум" />
 	<Shop value="Крама" />
 	<Help value="Дапамога" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(надта нізкі)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(высокі)" value="0.50" />
 		<sublevel text="(вельмі высокі)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Нармальна" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Гуляць творча" />
 		<tactic type="longshots" value="Удары здалёк" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page -->
 	<positions>
 		<position type="Keeper" value="Брамнік" short="Бр" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Вінгер" short="Ві" />
 		<position type="Forward" value="Форвард" short="Фо" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непрадказальны" short="Не" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Гульня галавою" short="Гг" />
 		<specialty type="Regainer" value="Адраджэнец" short="Ад" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="боска" value="20" />

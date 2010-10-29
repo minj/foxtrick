@@ -8,7 +8,7 @@ Foxtrick.Note = {
 	// BUTTON_CANCEL has a default event listener to remove the note if
 	// listener/onClick parameters are not passed
 	BUTTON_CANCEL : { name : "button.cancel" },
-	
+
 	/* Foxtrick.Note.add
 	 * add a FoxTrick note to current page and turn to it
 	 * Foxtrick.Note.create

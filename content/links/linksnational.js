@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksNational = {
-
     MODULE_NAME : "LinksNational",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('national'),
@@ -14,11 +13,10 @@ var FoxtrickLinksNational = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"nationalteamlink");
+		Foxtrick.initOptionsLinks(this,"nationalteamlink");
     },
 
     run : function( page, doc ) {
-		try{
 		//addExternalLinksToNationalDetail
         var countryid;
 		var ntteamid;
@@ -68,8 +66,5 @@ var FoxtrickLinksNational = {
 		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID } );
-
-		}catch(e){Foxtrick.dump("linksnational->"+e+'\n');}
-    },
-
+    }
 };

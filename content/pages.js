@@ -14,9 +14,9 @@
  * Use '\\' to escape (double backslash for escaping backslash itself).
  * '.' and '?' will be escaped automatically.
  */
- 
+
 if (!Foxtrick) var Foxtrick={};
- 
+
 Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
 	'myhattrick'                : '/MyHattrick/$',
@@ -27,7 +27,7 @@ Foxtrick.ht_pages = {
 	'playerdetail'              : '/Club/Players/Player.aspx',
 	'forum'                     : '/Forum/',
 	'forumViewThread'           : '/Forum/Read',
-	'forumOverView'             : '/Forum/Overview', 
+	'forumOverView'             : '/Forum/Overview',
 	'forumDefault'              : '/Forum/Default',
 	'forumWritePost'            : '/Forum/Write',
 	'forumModWritePost'         : '/Forum/Functions',
@@ -112,7 +112,7 @@ Foxtrick.ht_pages = {
 	'search'                    : '/Search/|/Search/Default.aspx',
 	'myhattrick_late'           : '/MyHattrick/$|/MyHattrick/#',
 	'all_late'                  : '/',
-	
+
 };
 
 Foxtrick.pagesExcluded = {

@@ -6,7 +6,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickAlert = {
-
     MODULE_NAME : "FoxtrickAlert",
     MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
     DEFAULT_ENABLED : true,
@@ -35,7 +34,6 @@ var FoxtrickAlert = {
     },
 
     run : function( doc ) {
-	try {
 		if (Foxtrick.BuildFor=='Chrome') {
 			if (doc.location.href.search(/hattrick.org\/$|hattrick.ws\/$|hattrick.interia.ws\/$/)==-1)
 				portalert.postMessage({reqtype: "get_old_alerts"});
@@ -51,11 +49,7 @@ var FoxtrickAlert = {
 
 				FoxtrickAlert.checkAll( doc );
             }
-	} catch (e) {
-		Foxtrick.dump('FoxtrickAlert.js run: '+e);
-	}
     },
-
 
 	checkAll : function( doc ) {
 			// check new, mail and forum after pageload and show alerts if needed
@@ -70,7 +64,6 @@ var FoxtrickAlert = {
 	},
 
 	showMailAlert : function(doc) {
-   	try {
 		var message;
 		var  menu = doc.getElementById('menu');
 		message = menu.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
@@ -104,7 +97,6 @@ var FoxtrickAlert = {
 			portalert.postMessage({reqtype: "set_mail_count",mail_count:num_message});
 			portalert.postMessage({reqtype: "set_forum_count",forum_count:numforum});
 		}
-	} catch (e) {Foxtrick.dump('showMailAlert: '+e+'\n');}
 	},
 
     checkNewsEvent : function(evt) {
@@ -114,44 +106,40 @@ var FoxtrickAlert = {
     },
 
 	checkNews : function(doc) {
-       try {
-//			Foxtrick.dump('checkNews\n');
-
-			var tickerdiv = doc.getElementById('ticker').getElementsByTagName('div');
-            var message="";
-			var href="";
-            var elemText = new Array();
-            //getting text
-			var numunreadticker=0;
-            for (var i=0; i<tickerdiv.length;i++)
+		var tickerdiv = doc.getElementById('ticker').getElementsByTagName('div');
+        var message="";
+		var href="";
+        var elemText = new Array();
+        //getting text
+		var numunreadticker=0;
+        for (var i=0; i<tickerdiv.length;i++)
+        {
+			var tickelem=tickerdiv[i].firstChild.firstChild;
+            if (tickelem.nodeType!=tickelem.TEXT_NODE)
             {
-				var tickelem=tickerdiv[i].firstChild.firstChild;
-                if (tickelem.nodeType!=tickelem.TEXT_NODE)
-                {
-                    //there is the strong tag
-					numunreadticker++;
-					elemText[i]=tickelem.firstChild.nodeValue;
-                    message=tickelem.firstChild.nodeValue;
-					href=tickerdiv[i].getElementsByTagName('a')[0].href;
-					//Foxtrick.dump(message+'\t'+href+'\n');
-					var isequal = false;
-					for (var j=0;j<=3;j++)
-					{
-						if (elemText[i]==FoxtrickAlert.news[j])
-							isequal=true;
-					}
-                    if (!isequal) {
-						FoxtrickAlert.ALERTS.push({'message':message,'href':href});	Foxtrick.dump('->add ticker alert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
-					}
-                } else {
-					elemText[i]=tickelem.nodeValue;
+                //there is the strong tag
+				numunreadticker++;
+				elemText[i]=tickelem.firstChild.nodeValue;
+                message=tickelem.firstChild.nodeValue;
+				href=tickerdiv[i].getElementsByTagName('a')[0].href;
+				//Foxtrick.dump(message+'\t'+href+'\n');
+				var isequal = false;
+				for (var j=0;j<=3;j++)
+				{
+					if (elemText[i]==FoxtrickAlert.news[j])
+						isequal=true;
 				}
-            }
-            for (var i=0; i<tickerdiv.length;i++)
-            {
-			    FoxtrickAlert.news[i]=elemText[i];
+                if (!isequal) {
+					FoxtrickAlert.ALERTS.push({'message':message,'href':href});	Foxtrick.dump('->add ticker alert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
+				}
+            } else {
+				elemText[i]=tickelem.nodeValue;
 			}
-			FoxtrickAlert.foxtrick_showAlert(false);
+        }
+        for (var i=0; i<tickerdiv.length;i++) {
+		    FoxtrickAlert.news[i]=elemText[i];
+		}
+		FoxtrickAlert.foxtrick_showAlert(false);
 
         if (Foxtrick.BuildFor=='Chrome') {
 			localStorage['news0']  = FoxtrickAlert.news[0];
@@ -159,7 +147,6 @@ var FoxtrickAlert = {
 			localStorage['news2']  = FoxtrickAlert.news[2];
 			//portalert.postMessage({reqtype: "set_unreadticker_count",unreadticker_count: numunreadticker});
 		}
-        } catch(e) { Foxtrick.dump('error checkNews '+e); }
     },
 
     foxtrick_showAlert: function( ) {

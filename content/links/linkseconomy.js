@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksEconomy = {
-
     MODULE_NAME : "LinksEconomy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
@@ -14,7 +13,7 @@ var FoxtrickLinksEconomy = {
 	OPTIONS : {},
 
     init : function() {
-			Foxtrick.initOptionsLinks(this,"economylink");
+		Foxtrick.initOptionsLinks(this,"economylink");
     },
 
     run : function( page, doc ) {
@@ -52,6 +51,5 @@ var FoxtrickLinksEconomy = {
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":CurrCode,"newCash":newCash} );
-    },
-
+    }
 };

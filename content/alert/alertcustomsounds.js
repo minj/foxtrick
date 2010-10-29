@@ -5,13 +5,12 @@
  */
 
 var FoxtrickAlertCustomSounds = {
-	
     MODULE_NAME : "AlertCustomSounds",
     MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
-	PAGES : new Array('all'), 
+	PAGES : new Array('all'),
 	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION : "0.5.1.2",
-	LATEST_CHANGE : "Moved to alert category.",	
+	LATEST_CHANGE : "Moved to alert category.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
 	OPTION_TEXTS : true,
@@ -23,7 +22,7 @@ var FoxtrickAlertCustomSounds = {
 											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // Guestbook
 											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // MailToMe
 											Foxtrick.ResourcePath+"resources/sounds/DingLing.wav"  // MyHTMessages
-											),        
+											),
 	urls: new Array(/\/MyHattrick\/$/gi,
 					/\/Club\/Manager\/\?teamId=/gi,
 					/\/Forum\//gi,
@@ -33,7 +32,7 @@ var FoxtrickAlertCustomSounds = {
 					/\/Inbox\//gi,
 					/\/Myhattrick\/\?actionType/gi
 					),
-											
+
     init : function() {
 		if (Foxtrick.BuildFor=='Chrome') {
 			this.OPTION_TEXTS_DEFAULT_VALUES[0] = "http://foxtrick.googlecode.com/svn/branches/chrome/resources/sounds/DingLing.mp3";  // LoginWelcome
@@ -44,6 +43,6 @@ var FoxtrickAlertCustomSounds = {
 			this.OPTION_TEXTS_DEFAULT_VALUES[5] = "http://foxtrick.foundationhorizont.org/alertsounds/Guestbook.mp3"; // Guestbook
 			this.OPTION_TEXTS_DEFAULT_VALUES[6] = "http://foxtrick.foundationhorizont.org/alertsounds/MailToMe.mp3"; // MailToMe
 			this.OPTION_TEXTS_DEFAULT_VALUES[7] = "http://foxtrick.foundationhorizont.org/alertsounds/MyHTMessages.mp3"; // MyHTMessages
-		}       
+		}
     }
 };

@@ -1,5 +1,5 @@
 <language name="sr" desc="Српски">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="Мој Хеттрик" />
 	<MyClub value="Мој клуб" />
@@ -7,7 +7,7 @@
 	<Forum value="Форум" />
 	<Shop value="Продавница" />
 	<Help value="Помоћ" />
-	
+
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(Веома низак)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(Висок)" value="0.50" />
 		<sublevel text="(Веома висок)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page -->
 	<tactics>
 		<tactic type="normal" value="Нормално" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Креативна игра" />
 		<tactic type="longshots" value="Шутеви из даљине" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page -->
 	<positions>
 		<position type="Keeper" value="Голман" short="Го" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Крило" short="Кр" />
 		<position type="Forward" value="Нападач" short="На" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредвидив" short="Не" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Игра главом" short="Иг" />
 		<specialty type="Regainer" value="Регенерисање" short="Ре" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="божански" value="20" />
@@ -98,5 +98,5 @@
 		<level text="миран" value="1" />
 		<level text="спокојан" value="0" />
 	</aggressiveness>
-	
+
 </language>

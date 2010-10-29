@@ -12,24 +12,24 @@ FoxtrickCurrencyConverter = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     run : function(page, doc) {
-	if ( doc.location.href.search(/Forum/i) != -1 ) return;
-    //if ( doc.location.href.search(/Forum/i) != -1 || doc.location.href.search(/\/Club\/ClassicYouth\/Default\.aspx/i) != -1 ) return;
+		if ( doc.location.href.search(/Forum/i) != -1 ) return;
+		//if ( doc.location.href.search(/Forum/i) != -1 || doc.location.href.search(/\/Club\/ClassicYouth\/Default\.aspx/i) != -1 ) return;
 
-    /*CURRENCY TYPE AND RATE*/
+		/*CURRENCY TYPE AND RATE*/
 
-	var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
-	var oldSymbolLength = oldCurrencySymbol.length;
-	var currencySymbol = FoxtrickPrefs.getString("currencySymbol");//
-	var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
-	var currencyRateNewCurr = FoxtrickPrefs.getString("currencyRateTo");
-	var myReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol);
-	var myDelReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol+'|<.+>');
+		var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
+		var oldSymbolLength = oldCurrencySymbol.length;
+		var currencySymbol = FoxtrickPrefs.getString("currencySymbol");//
+		var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
+		var currencyRateNewCurr = FoxtrickPrefs.getString("currencyRateTo");
+		var myReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol);
+		var myDelReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol+'|<.+>');
 
 
-    // near all currencies are im tables
-   	this.drawNewCurrency(doc, 'td',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);
-	// some might be in alert boxes which use <p>
-    this.drawNewCurrency(doc, 'p',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);
+		// near all currencies are im tables
+	   	this.drawNewCurrency(doc, 'td',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);
+		// some might be in alert boxes which use <p>
+		this.drawNewCurrency(doc, 'p',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);
     },
 
 	change : function( page, doc ) {
@@ -38,7 +38,6 @@ FoxtrickCurrencyConverter = {
 
 
 	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, oldSymbolLength, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {
-	try {
 		var div = doc.getElementById( 'page' );
 		var table_elm = div.getElementsByTagName( tagname );
    		for ( var i = 0; i < table_elm.length; i++) {
@@ -102,7 +101,5 @@ FoxtrickCurrencyConverter = {
 				table_elm[i].id="foxtrick-currency-converter";
 			}
 		}
-    }
-    catch(e) {Foxtrick.dumpError(e);}
     }
 };

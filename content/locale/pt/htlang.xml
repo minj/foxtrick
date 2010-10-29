@@ -1,5 +1,5 @@
 <language name="pt" desc="Português">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Menu Hattrick" />
 	<MyClub value="O Meu Clube" />
@@ -7,7 +7,7 @@
 	<Forum value="Fórum" />
 	<Shop value="Loja" />
 	<Help value="Ajuda" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(mt baixo)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(alto)" value="0.50" />
 		<sublevel text="(mt alto)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Espontaneidade" />
 		<tactic type="longshots" value="Remates de longe" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Guarda-Redes" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Ala" short="Wi" />
 		<position type="Forward" value="Avançado" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisível" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Jogo aéreo" short="He" />
 		<specialty type="Regainer" value="Reabilitação" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="lendário" value="20" />

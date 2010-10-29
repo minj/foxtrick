@@ -1,5 +1,5 @@
 <language name="de" desc="Deutsch">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Mein Hattrick" />
 	<MyClub value="Mein Verein" />
@@ -7,7 +7,7 @@
 	<Forum value="Forum" />
 	<Shop value="Shop" />
 	<Help value="Hilfe" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="min." value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="hoch" value="0.50" />
 		<sublevel text="max." value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="normal" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="kreativ spielen" />
 		<tactic type="longshots" value="Weitschüsse" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page -->
 	<positions>
 		<position type="Keeper" value="Torwart" short="T" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Flügelspieler" short="Fl" />
 		<position type="Forward" value="Stürmer" short="St" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="unberechenbar" short="un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Kopfballstärke" short="Ko" />
 		<specialty type="Regainer" value="Geneser" short="Ge" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="göttlich" value="20" />
@@ -71,7 +71,7 @@
 		<level text="katastrophal" value="1" />
 		<level text="nicht vorhanden" value="0" />
 	</levels>
-	
+
 		<agreeability>
 		<level text="eine Integrationsfigur" value="5" />
 		<level text="ein beliebter Spieler" value="4" />

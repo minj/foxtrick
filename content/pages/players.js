@@ -27,7 +27,7 @@ Foxtrick.Pages.Players = {
 	isCoachesPage : function(doc) {
 		return (doc.location.href.indexOf("Coaches\.aspx") != -1);
 	},
-	
+
 	getPlayerList : function(doc, disableXML) {
 		try {
 			// preparation steps

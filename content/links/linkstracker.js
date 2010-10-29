@@ -6,7 +6,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksTracker = {
-
     MODULE_NAME : "LinksTracker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	NEW_AFTER_VERSION: "0.4.8.3",
@@ -17,10 +16,5 @@ var FoxtrickLinksTracker = {
 
     init : function() {
 		Foxtrick.initOptionsLinks(this,"trackerplayerlink");
- 	 },
-
-    run : function( page, doc ) {
-	},
-
-
+ 	 }
 };

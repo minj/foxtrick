@@ -39,8 +39,6 @@ var FoxtrickLeagueAndMatchChat = {
 
 
 	run : function( page, doc ) {
-	try {
-
 		// fixing yaplet close link
 		this.server = doc.location.href;
 		if (Foxtrick.BuildFor=='Chrome') {
@@ -158,12 +156,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var lasta = sidebox1_a[sidebox1_a.length-1];
 			lasta.parentNode.insertBefore(a,lasta.nextSibling);
 		}
-
-
-	} catch(e) {Foxtrick.dump('LeagueAndMatchChat: '+e+'\n');}
-
-	},
-
+	}
 };
 
 
@@ -182,4 +175,3 @@ if (document.location.href.search(/.+\.yaplet.com/)!=-1) {
 }
 
 }
-

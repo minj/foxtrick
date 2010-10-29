@@ -1,5 +1,5 @@
 <language name="ka" desc="Georgian">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="ჩემი ჰეთთრიქი" />
 	<MyClub value="ჩემი კლუბი" />
@@ -7,7 +7,7 @@
 	<Forum value="ფორუმი" />
 	<Shop value="მაღაზია" />
 	<Help value="დახმარება" />
-	
+
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(ძალიან დაბალი)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(მაღალი)" value="0.50" />
 		<sublevel text="(ძალიან მაღალი)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page -->
 	<tactics>
 		<tactic type="normal" value="ჩვეულებრივი" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="შემოქმედებითად თამაში" />
 		<tactic type="longshots" value="შორეული დარტყმები" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="მეკარე" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="ფლანგი" short="Wi" />
 		<position type="Forward" value="თავდამსხმელი" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="ტექნიკური" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="თავი" short="He" />
 		<specialty type="Regainer" value="ტრავმების ამტანი" short="Re" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="ღვთაებრივი" value="20" />

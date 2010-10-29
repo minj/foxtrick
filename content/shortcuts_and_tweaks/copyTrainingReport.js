@@ -36,7 +36,6 @@ var FoxtrickCopyTrainingReport = {
 	OPTIONS : new Array("OpenHTYpage"),
 
 	run : function( page, doc ) {
-		try {
 		if (doc.getElementById('ctl00_CPMain_butReadAll')!=null) return;
 
 
@@ -81,7 +80,6 @@ var FoxtrickCopyTrainingReport = {
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
 		}
-		} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
 	},
 
 	change : function( page, doc ) {
@@ -92,42 +90,43 @@ var FoxtrickCopyTrainingReport = {
 	},
 
 	copyReport : function( ev ) {
-	try{
-		var doc = ev.target.ownerDocument;
-		var mainBody = doc.getElementById('mainBody');
-		var subDivs = mainBody.getElementsByTagName("div");
-		for(var i = 0; i < subDivs.length; i++) {
-			if(subDivs[i].className == "playerInfo") {
-				var clone = subDivs[i].cloneNode(true);
-				for(var j = 0; j < 5; j++) {  // remove greeting
-					clone.removeChild(clone.firstChild);
-				}
-				for(var j = 0; j < 6; j++) { // remove end phrase
-					clone.removeChild(clone.lastChild);
-				}
-				var plain = clone.innerHTML;
-				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
-				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
-				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
-				plain=plain.replace(/\<br\>/ig,'\n');
+		try {
+			var doc = ev.target.ownerDocument;
+			var mainBody = doc.getElementById('mainBody');
+			var subDivs = mainBody.getElementsByTagName("div");
+			for(var i = 0; i < subDivs.length; i++) {
+				if(subDivs[i].className == "playerInfo") {
+					var clone = subDivs[i].cloneNode(true);
+					for(var j = 0; j < 5; j++) {  // remove greeting
+						clone.removeChild(clone.firstChild);
+					}
+					for(var j = 0; j < 6; j++) { // remove end phrase
+						clone.removeChild(clone.lastChild);
+					}
+					var plain = clone.innerHTML;
+					plain=plain.replace(/^\s+/,'');  // remove leading whitespace
+					plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
+					plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
+					plain=plain.replace(/\<br\>/ig,'\n');
 
-				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
-				var insertBefore = doc.getElementsByTagName('h1')[0];
-				Foxtrick.copyStringToClipboard(plain);
-				var note = Foxtrick.Note.add(doc, insertBefore, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.trainingreportcopied"), null, true);
+					while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
+					var insertBefore = doc.getElementsByTagName('h1')[0];
+					Foxtrick.copyStringToClipboard(plain);
+					var note = Foxtrick.Note.add(doc, insertBefore, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.trainingreportcopied"), null, true);
+				}
+			}
+			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
+				var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
+				Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/',false);
 			}
 		}
-		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
-			var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-			Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/',false);
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
-		} catch(e){Foxtrick.dumpError(e);}
 	}
 };
 
-
 var FoxtrickCopyScoutReport = {
-
 	MODULE_NAME : "CopyScoutReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail','youthoverview'),
@@ -138,76 +137,73 @@ var FoxtrickCopyScoutReport = {
 	OPTIONS : new Array("OpenHTYpage"),
 
 	run : function( page, doc ) {
-	try {
+		var has_report = false;
+		if (page=='youthoverview') {
+			has_report = doc.getElementById('ctl00_CPMain_butScoutPropYes')!=null;
+		}
 
-	var has_report = false;
-	if (page=='youthoverview') {
-		has_report = doc.getElementById('ctl00_CPMain_butScoutPropYes')!=null;
-	}
+		if (page=='youthplayerdetail' || has_report) {
+			if (has_report) {
+				var alertdiv = doc.getElementById('ctl00_CPMain_butScoutPropYes').parentNode;
+				if (alertdiv.parentNode.getElementsByTagName('a')[0]==null) {
+					var a=doc.createElement('a');
+					a.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
+					a.setAttribute('style','float:right; margin-bottom:5px;');
+					a.href='javascript:void()';
+					a.addEventListener("click", this.copyReport, false)
+					alertdiv.parentNode.insertBefore(a,alertdiv);
+				}
+			}
+			var id = "foxtrick_addyouthclubbox_parentDiv";
+			if (doc.getElementById(id)!=null) return;
 
-	if (page=='youthplayerdetail' || has_report) {
-		if (has_report) {
-			var alertdiv = doc.getElementById('ctl00_CPMain_butScoutPropYes').parentNode;
-			if (alertdiv.parentNode.getElementsByTagName('a')[0]==null) {
-				var a=doc.createElement('a');
-				a.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
-				a.setAttribute('style','float:right; margin-bottom:5px;');
-				a.href='javascript:void()';
-				a.addEventListener("click", this.copyReport, false)
-				alertdiv.parentNode.insertBefore(a,alertdiv);
+			if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
+				if (doc.getElementById('copyscoutreport')) return;
+				var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
+				if (boxHead.className!='boxHead') return;
+
+				if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
+
+				var messageLink = doc.createElement("a");
+				messageLink.className = "inner copyicon copyscoutreport ci_second";
+				messageLink.id='copyscoutreport';
+				messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
+				messageLink.addEventListener("click", this.copyReport, false)
+
+				var img = doc.createElement("img");
+				img.id = "foxtrick_addyouthclubbox_parentDiv";
+				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
+				img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+
+				messageLink.appendChild(img);
+				boxHead.insertBefore(messageLink,boxHead.firstChild);
+			}
+			else {
+				var parentDiv = doc.createElement("div");
+				parentDiv.id = "foxtrick_addyouthclubbox_parentDiv";
+				parentDiv.setAttribute("style","display: inline;");
+
+				var messageLink = doc.createElement("a");
+				messageLink.className = "inner";
+				messageLink.title = Foxtrickl10n.getString(
+					"foxtrick.tweaks.scoutreportcopied" );
+				messageLink.setAttribute("style","cursor: pointer;");
+				messageLink.addEventListener("click", this.copyReport, false)
+
+				var img = doc.createElement("img");
+				img.style.padding = "0px 5px 5px 0px;";
+				img.className = "actionIcon";
+				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
+				img.src = Foxtrick.ResourcePath+"resources/img/copy/copyScoutReport.png";
+				messageLink.appendChild(img);
+
+				parentDiv.appendChild(messageLink);
+
+				var newBoxId = "foxtrick_actions_box";
+				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
+					"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
 			}
 		}
-		var id = "foxtrick_addyouthclubbox_parentDiv";
-		if (doc.getElementById(id)!=null) return;
-
-		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
-			if (doc.getElementById('copyscoutreport')) return;
-			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
-			if (boxHead.className!='boxHead') return;
-
-			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
-
-			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyscoutreport ci_second";
-			messageLink.id='copyscoutreport';
-			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
-			messageLink.addEventListener("click", this.copyReport, false)
-
-			var img = doc.createElement("img");
-			img.id = "foxtrick_addyouthclubbox_parentDiv";
-			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
-
-			messageLink.appendChild(img);
-			boxHead.insertBefore(messageLink,boxHead.firstChild);
-		}
-		else {
-			var parentDiv = doc.createElement("div");
-			parentDiv.id = "foxtrick_addyouthclubbox_parentDiv";
-			parentDiv.setAttribute("style","display: inline;");
-
-			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.title = Foxtrickl10n.getString(
-				"foxtrick.tweaks.scoutreportcopied" );
-			messageLink.setAttribute("style","cursor: pointer;");
-			messageLink.addEventListener("click", this.copyReport, false)
-
-			var img = doc.createElement("img");
-			img.style.padding = "0px 5px 5px 0px;";
-			img.className = "actionIcon";
-			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/copy/copyScoutReport.png";
-			messageLink.appendChild(img);
-
-			parentDiv.appendChild(messageLink);
-
-			var newBoxId = "foxtrick_actions_box";
-			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
-				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
-		}
-	}
-	} catch(e) { Foxtrick.dump('FoxtrickCopyTrainingReport: '+e+'\n'); }
 	},
 
 	change : function( page, doc ) {
@@ -275,8 +271,7 @@ var FoxtrickCopyPlayerSource = {
 	page_html:'',
 
 	run : function( page, doc ) {
-		try {
-			this.page_html = '<html> '+doc.documentElement.innerHTML+' </html>';
+		this.page_html = '<html> '+doc.documentElement.innerHTML+' </html>';
 
 		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
 			if (doc.getElementById('copyplayerscource')) return;
@@ -324,8 +319,6 @@ var FoxtrickCopyPlayerSource = {
 			Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
 				"foxtrick.tweaks.youthclub" ), parentDiv, newBoxId, "first", "");
 		}
-
-		} catch(e) { Foxtrick.dump('FoxtrickCopyPlayerSource: '+e+'\n'); }
 	},
 
 	change : function( page, doc ) {
@@ -336,19 +329,22 @@ var FoxtrickCopyPlayerSource = {
 	},
 
 	copySource : function( ev ) {
-	try{
-	var doc = ev.target.ownerDocument;
-		var html = '<html> '+doc.documentElement.innerHTML+' </html>';
+		try {
+		var doc = ev.target.ownerDocument;
+			var html = '<html> '+doc.documentElement.innerHTML+' </html>';
 
-		var insertBefore = doc.getElementsByTagName('h1')[0];
-		Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
-		var note = Foxtrick.Note.add(doc, insertBefore, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
+			var insertBefore = doc.getElementsByTagName('h1')[0];
+			Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
+			var note = Foxtrick.Note.add(doc, insertBefore, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
 
-		if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
-					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-					Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_cp_add',true);
+			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
+						var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
+						Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_cp_add',true);
+			}
 		}
-	}catch(e){Foxtrick.dumpError(e);}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	fixbr : function(text) {

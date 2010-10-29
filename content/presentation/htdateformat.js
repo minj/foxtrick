@@ -101,19 +101,6 @@ FoxtrickHTDateFormat = {
 			case 'statsMatchesHeadToHead' :
                 Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
                 break;
-
         }
-    },
-
-/*	change : function(page, doc) {
-    try{
-		if (doc.getElementById('mainBody').innerHTML.search('ft_HTDateFormat') > -1 ) return;
-        else {
-            // Foxtrick.dump('HTDateformat CHG RUN\n');
-            this.run(page,doc);
-        }
-      } catch(e){Foxtrick.dump('HTDateformat CHG: '+e+'\n');}
-	} */
+    }
 };
-
-

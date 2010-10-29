@@ -4,7 +4,6 @@
  */
 
 FoxtrickSimplePresentation = {
-
     MODULE_NAME : "SimplePresentation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'),

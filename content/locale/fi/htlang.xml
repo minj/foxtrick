@@ -1,5 +1,5 @@
 <language name="fi" desc="Suomi">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="Hattrick" />
 	<MyClub value="Seura" />
@@ -7,7 +7,7 @@
 	<Forum value="Foorumi" />
 	<Shop value="Kauppa" />
 	<Help value="Ohje" />
-	
+
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(erittäin matala)" value="0.0" />
@@ -15,7 +15,7 @@
 		<sublevel text="(korkea)" value="0.50" />
 		<sublevel text="(erittäin korkea)" value="0.75" />
 	</ratingSubLevels>
-	
+
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normaali" />
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Luova peli" />
 		<tactic type="longshots" value="Kaukolaukaukset" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Maalivahti" short="Mv" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Laituri" short="Lt" />
 		<position type="Forward" value="Hyökkääjä" short="Hy" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Arvaamaton" short="Ar" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Pääpeli" short="Pp" />
 		<specialty type="Regainer" value="Toipuja" short="To" />
 	</specialties>
-	
+
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="jumalainen" value="20" />
@@ -71,7 +71,7 @@
 		<level text="surkea" value="1" />
 		<level text="olematon" value="0" />
 	</levels>
-	
+
 	      <agreeability>
                 <level text="rakastettu joukkueen jäsen" value="5" />
                 <level text="suosittu kaveri" value="4" />
@@ -80,7 +80,7 @@
                 <level text="kiistelty henkilö" value="1" />
                 <level text="ilkeä tyyppi" value="0" />
         </agreeability>
-        
+
         <honesty>
                 <level text="pyhimys" value="5" />
                 <level text="oikeudentuntoinen" value="4" />
@@ -89,7 +89,7 @@
                 <level text="epärehellinen" value="1" />
                 <level text="täysin arvaamaton" value="0" />
         </honesty>
-        
+
         <aggressiveness>
                 <level text="epävakaa" value="5" />
                 <level text="tulisieluinen" value="4" />

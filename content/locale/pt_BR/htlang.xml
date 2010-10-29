@@ -1,5 +1,5 @@
 <language name="pt_BR" desc="Português Brasil">
-	
+
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="Meu Hattrick" />
 	<MyClub value="Meu Clube" />
@@ -7,7 +7,7 @@
 	<Forum value="Fórum" />
 	<Shop value="Loja" />
 	<Help value="Ajuda" />
-	
+
 	<!-- Subníveis que aparecem na página de detalhes do jogo -->
 	<ratingSubLevels>
 		<sublevel text="(mt. baixo)" value="0.0"/>
@@ -15,7 +15,7 @@
 		<sublevel text="(alto)" value="0.50"/>
 		<sublevel text="(mt. alto)" value="0.75"/>
 	</ratingSubLevels>
-	
+
 	<!-- Táticas que aparecem na página de detalhes do jogo -->
 	<tactics>
 		<tactic type="normal" value="Normal"/>
@@ -26,7 +26,7 @@
 		<tactic type="creatively" value="Jogar com criatividade"/>
 		<tactic type="longshots" value="Chutes de longa distância" />
 	</tactics>
-	
+
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Goleiro" short="Ke" />
@@ -36,7 +36,7 @@
 		<position type="Winger" value="Ala" short="Wi" />
 		<position type="Forward" value="Atacante" short="Fo" />
 	</positions>
-	
+
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Imprevisibilidade" short="Un" />
@@ -46,7 +46,7 @@
 		<specialty type="Head" value="Cabeceio" short="He" />
 		<specialty type="Regainer" value="Cura Rápida" short="Re" />
 	</specialties>
-	
+
 	<!-- Habilidades -->
 	<levels>
 		<level text="lendária" value="20" />
