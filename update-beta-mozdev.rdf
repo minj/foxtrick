@@ -12,7 +12,7 @@
   <RDF:Description RDF:about="rdf:#$omODR1"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="3.0"
-                   em:maxVersion="4.0b8pre"
+                   em:maxVersion="4.0.*"
                    em:updateLink="http://downloads.mozdev.org/foxtrick/foxtrick_0.5.3.0.xpi"
                    em:updateInfoURL="http://foxtrick.mozdev.org/releaseNotes0530.xhtml"
                    em:updateHash="sha1:2DC8ACB6714BE0582998D06BDE332AF6B1ECCEAC" />
@@ -20,7 +20,7 @@
     <RDF:li RDF:resource="rdf:#$lmODR1"/>
   </RDF:Seq>
   <RDF:Description RDF:about="rdf:#$lmODR1"
-                   em:version="0.5.3.0b7">
+                   em:version="0.5.3">
     <em:targetApplication RDF:resource="rdf:#$omODR1"/>
     <em:targetApplication RDF:resource="rdf:#$CmODR1"/>
   </RDF:Description>

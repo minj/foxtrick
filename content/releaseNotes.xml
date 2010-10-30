@@ -2,28 +2,27 @@
 
 <release_note>
 
-<version>0.5.3.0</version>
+<version>0.5.3</version>
 <title>Release notes (selected features and issues only)</title>
-<lines>ContextCopy : Complete overhaul. Copying any selected content in HT-ML.</lines>
-<lines>ExtraShortcuts : Optional extra space for shortcuts. Links to national Hattrick radios added</lines>
-<lines>TableSort : Sort option for some hattrick and forum tables</lines>
-<lines>TeamStats : Added rows for leadership and personalities (optional).  Renamed, old settings are lost</lines>
-<lines>TransferSearchResultFilters : Filters the search transfer search results</lines>
-<lines>YouthSeriesEstimation : New module for estimating start time of youth series.</lines>
-<lines>ForumYouthIcons : New button for converting text to tables.</lines>
-<lines>ForumThreadAutoIgnore : Automatically ignore forum threads with user selected tags</lines>
+<lines>ContextCopy: Complete overhaul. Copying any selected content in HT-ML.</lines>
+<lines>ExtraShortcuts: Optional extra space for shortcuts. Links to national Hattrick radios added</lines>
+<lines>TableSort: Sort option for some hattrick and forum tables</lines>
+<lines>TeamStats: Added rows for leadership and personalities (optional).  Renamed, old settings are lost</lines>
+<lines>TransferSearchResultFilters: Filters the search transfer search results</lines>
+<lines>YouthSeriesEstimation: New module for estimating start time of youth series.</lines>
+<lines>ForumYouthIcons: New button for converting text to tables.</lines>
+<lines>ForumThreadAutoIgnore: Automatically ignore forum threads with user selected tags</lines>
 
 
-<lines>SkillTable : Added to transferlist search results and added some columns.</lines>
-<lines>CopyPlayerAd : Now supporting youth players, and player's skills are optionally sorted.</lines>
-<lines>CopyMatchRatings : Now options as popup.</lines>
-<lines>SmallerPages : Now reduce page width for non-supporters if banners are disabled.</lines>
-<lines>Matchreport : New colors.</lines>
-<lines>Quickfix for 'n' on league page.</lines>
+<lines>SkillTable: Added to transferlist search results and added some columns.</lines>
+<lines>CopyPlayerAd: Now supporting youth players, and player's skills are optionally sorted.</lines>
+<lines>CopyMatchRatings: Now options as popup.</lines>
+<lines>SmallerPages: Now reduce page width for non-supporters if banners are disabled.</lines>
+<lines>Matchreport: New colors.</lines>
 
 
 <lines></lines>
 <lines>Attention!</lines>
-<lines>All custom colors have been moved to a userstyle file in order to offer greater flexibility for users and to clean up FoxTrick options. Your previous custom colors are lost. See the Help Tab in FoxTrick preferences for instructions on howto set custom colors now. It's not realy difficult.</lines>
+<lines>All custom colors have been moved to a user style file in order to offer greater flexibility for users and to clean up FoxTrick options. Your previous custom colors are lost. See the Help Tab in FoxTrick preferences for instructions on how to set custom colors now. It's not really difficult.</lines>
 
 </release_note>

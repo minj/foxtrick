@@ -5,7 +5,7 @@
 APP_NAME=foxtrick
 CHROME_PROVIDERS="content skin"
 CLEAN_UP=1
-ROOT_FILES="HACKING"
+ROOT_FILES="HACKING icon.png"
 ROOT_DIRS="defaults platform"
 BEFORE_BUILD=
 AFTER_BUILD=
