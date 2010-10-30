@@ -33,7 +33,6 @@ Foxtrick.modules = [
 	Foxtrick.BookmarkAdjust,
 	FoxtrickAddDefaultFaceCard,
 	FoxtrickMoveLinks,   // keep before FoxtrickHideManagerAvatarUserInfo
-	//FoxtrickAlltidFlags,  // keep before FoxtrickHideManagerAvatarUserInfo
 	FoxtrickForumAlterHeaderLine,
 	FoxtrickTeamPopupLinks,
 	FoxtrickTeamPopupLinksMore,
@@ -128,7 +127,6 @@ Foxtrick.modules = [
 	FoxtrickShortPAs,
 	FoxtrickCopyPosting,
 	FoxtrickMoveManagerOnline,
-	// FoxtrickForumSearch,  // new not finished
 	FoxtrickTables,
 	FoxtrickMatchTables,
 	FoxtrickCrossTable,
@@ -137,10 +135,9 @@ Foxtrick.modules = [
 	FoxtrickElectionTable,
 	FoxtrickSkillTranslation,
 	FoxtrickLineupShortcut,
-	//FoxtrickSingleline2,
 	FoxtrickYouthPromotes,
 	FoxtrickCountyList,
-	FoxtrickSmallerPages, // new not finished //after FoxtrickTransferDeadline and probably also after all other player detail adjustment, so keep it in the end
+	FoxtrickSmallerPages, //after FoxtrickTransferDeadline and probably also after all other player detail adjustment, so keep it in the end
 	FoxtrickHighlightBotTeams,
 	FoxtrickLeagueAndMatchChat,
 	FoxtrickRapidId,
@@ -151,5 +148,4 @@ Foxtrick.modules = [
 	FoxtrickTransferSearchResultFilters,
 	FoxtrickForumThreadAutoIgnore,
 	FoxtrickTableSort
-	//FoxtrickLocalTime
 ];
