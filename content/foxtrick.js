@@ -483,8 +483,11 @@ Foxtrick.getHostname = function(doc) {
 }
 
 Foxtrick.isHt = function(doc) {
-//	return (Foxtrick.getHref(doc).search(FoxtrickPrefs.getString("HTURL")) > -1);
 	return (doc.getElementById('hattrick')!==null || doc.getElementById('hattrickNoSupporter')!==null);
+}
+
+Foxtrick.isHtUrl = function(url) {
+	return (url.search(FoxtrickPrefs.getString("HTURL")) > -1);
 }
 
 var stage_regexp = /http:\/\/stage\.hattrick\.org/i;

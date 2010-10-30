@@ -111,13 +111,22 @@ var FoxtrickContextMenuCopy = {
 			ret = "[" + idObj.tag + "=" + idObj.id + "]";
 		}
 		else if (typeof(link) === "string") {
+			// ignoring boring links
+			const ignore = ["/Help/Rules/AppDenominations.aspx"];
+			for (var i = 0; i < ignore.length; ++i)
+				if (link.indexOf(ignore[i]) > -1)
+					return null;
+
 			const relRe = new RegExp("http://[^/]+(/.+)", "i");
 			if (link.match(relRe) !== null) {
-				var relLink = link.match(relRe)[1];
-				ret = "[link=" + relLink + "]";
+				const matched = link.match(relRe);
+				const relLink = matched[1];
+				// if it's relative link of Hattrick, remove the host
+				if (Foxtrick.isHtUrl(link))
+					ret = "[link=" + relLink + "]";
+				else
+					ret = "[link=" + link + "]";
 			}
-			// ignore some boring links
-			if (link.search(/\/Help\/Rules\/AppDenominations\.aspx/i) != -1) ret = null;
 		}
 		return ret;
 	},
