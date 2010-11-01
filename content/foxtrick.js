@@ -59,11 +59,12 @@ var FoxtrickMain = {
 		}
 		Foxtrick.MakeStatsHash();
 
-		// check if this is a new version
+		// check if this is a different version
 		var curVersion = FoxtrickPrefs.getString("curVersion");
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
-		Foxtrick.dump(curVersion+' > '+ oldVersion+': '+(curVersion>oldVersion)+'\n');
-		if (oldVersion < curVersion) {
+		if (oldVersion !== curVersion) {
+			// since the versioning scheme ordering is not exactly the same
+			// as string ordering, only use "!==" here as Firefox itself does. 
 			FoxtrickMain.IsNewVersion = true;
 		}
 
