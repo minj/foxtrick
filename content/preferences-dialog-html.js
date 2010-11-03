@@ -54,7 +54,7 @@ var FoxtrickPrefsDialogHTML = {
 		var foxtrick_pref_link = doc.createElement('a');
 		foxtrick_pref_link.setAttribute('id','id_configure_foxtrick');
 		foxtrick_pref_link.setAttribute('href','/MyHattrick/?configure_foxtrick=true&category=main');
-		foxtrick_pref_link.appendChild(doc.createTextNode('FoxTrick'));
+		foxtrick_pref_link.textContent = Foxtrickl10n.getString("foxtrick");
 		var li = doc.createElement('li');
 		li.appendChild(foxtrick_pref_link);
 		if (FoxtrickMain.IsNewVersion) {
