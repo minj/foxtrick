@@ -1063,8 +1063,8 @@ stats["Wage_Reduction_Calculator"] =  {
 							var age=params["age"];
 							var CurrCode=params["Currency"];
                             if (CurrCode!="EUR"){
-								wage=Math.round(wage*FoxtrickPrefs.getString("currencyRate"));
-								wagebonus=Math.round(wagebonus*FoxtrickPrefs.getString("currencyRate"));
+								wage=Math.round(wage*Foxtrick.util.currency.getRate());
+								wagebonus=Math.round(wagebonus*Foxtrick.util.currency.getRate());
 								age=Math.round(age);
 							}
                             return "?wage=" + wage + "&wagebonus=" + wagebonus + "&age=" + age;

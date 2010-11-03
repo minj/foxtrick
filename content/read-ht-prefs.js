@@ -15,9 +15,12 @@ var FoxtrickReadHtPrefs = {
 
 	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
+	first_run : true,
+
 	run : function(page, doc) {
 		this.readLanguage(doc);
 		this.readOthers(doc);
+		this.first_run = false;
 	},
 
 	isLang : function(menuLinks, lang) {
@@ -90,15 +93,14 @@ var FoxtrickReadHtPrefs = {
 		var CountryName = FoxtrickHelper.getLeagueDataFromId(LeagueId).EnglishName;
 		var OldCountryName = FoxtrickPrefs.getString("htCountry");
 
-		if (CountryName != OldCountryName) {
-			var CurrencyName = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
-			var CurrencyRate = FoxtrickHelper.getCurrencyRateFromId(LeagueId);
-			if (CurrencyName.search(/000\ /,'')!=-1) {
-				CurrencyName=CurrencyName.replace(/000\ /gi,'');
-				CurrencyRate=CurrencyRate/1000;
-			}
-			var CurrencyCode = Foxtrick.util.currency.getCodeByShortName(CurrencyName);
+		if (this.first_run || CountryName != OldCountryName) {
+			// currency
+			var currencySymbol = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
+			var currencyCode = Foxtrick.util.currency.getCodeBySymbol(currencySymbol);
+			Foxtrick.util.currency.setByCode(currencyCode);
+			// Foxtrick.dump("Currency symbol: " + currencySymbol + ", code: " + currencyCode + ".\n");
 
+			// date format
 			var scripts = doc.getElementsByTagName('script');
 			for (var i = 0; i < scripts.length; ++i) {
 				var timeDiffpos = scripts[i].innerHTML.search('timeDiff');
@@ -118,9 +120,6 @@ var FoxtrickReadHtPrefs = {
 			}
 
 			FoxtrickPrefs.setString("htCountry", CountryName);
-			FoxtrickPrefs.setString("htCurrency", CurrencyCode);
-			FoxtrickPrefs.setString("oldCurrencySymbol", CurrencyName);
-			FoxtrickPrefs.setString("currencyRate", CurrencyRate);
 			FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(CountryName)));
 		}
 	}

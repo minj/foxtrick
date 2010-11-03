@@ -288,8 +288,6 @@ var FoxtrickPrefsDialogHTML = {
 			}
 
 			if (doc.getElementById("OnPagePrefs")) FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
-			if (doc.getElementById("CurrencyConverter")) FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("CurrencyConverter").checked);
-
 
 			// check if not whole prefs. in that case stop here
 			if (!full_prefs) {
@@ -312,20 +310,16 @@ var FoxtrickPrefsDialogHTML = {
 
 			if (!readHtPrefs) {
 				FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);
-				FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
-				FoxtrickPrefs.setString("htCountry", doc.getElementById("htCountry").value);
+				FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
+				Foxtrick.util.currency.setByCode(document.getElementById("htCurrency").value);
 				FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
 			}
 			FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(doc.getElementById("htCountry").value)));
 
 			//Currency Converter
+			if (doc.getElementById("CurrencyConverter"))
+				FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("CurrencyConverter").checked);
 			FoxtrickPrefs.setString("htCurrencyTo", doc.getElementById("htCurrencyTo").value);
-			FoxtrickPrefs.setString("currencySymbol", Foxtrick.util.currency.getShortNameByCode(doc.getElementById("htCurrencyTo").value));
-			FoxtrickPrefs.setString("currencyRateTo", Foxtrick.util.currency.getRateByCode(doc.getElementById("htCurrencyTo").value));
-
-			FoxtrickPrefs.setString("htCurrency", doc.getElementById("htCurrency").value);
-			FoxtrickPrefs.setString("oldCurrencySymbol", Foxtrick.util.currency.getShortNameByCode(doc.getElementById("htCurrency").value));
-			FoxtrickPrefs.setString("currencyRate", Foxtrick.util.currency.getRateByCode(doc.getElementById("htCurrency").value));
 
 			//Statusbar
 			FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
@@ -508,7 +502,7 @@ var FoxtrickPrefsDialogHTML = {
 
 			basicTable4_2 = doc.createElement("td");
 			basicTable4.appendChild(basicTable4_2);
-			var currencySelect = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
+			var currencySelect = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", Foxtrick.util.currency.getCode());
 			basicTable4_2.appendChild(currencySelect);
 			currencySelect.id = "htCurrency";
 

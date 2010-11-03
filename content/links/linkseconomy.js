@@ -32,8 +32,8 @@ var FoxtrickLinksEconomy = {
         		break;
 			}
 		}
-		var CurrCode=FoxtrickPrefs.getString("htCurrency");
-		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":CurrCode,"owncountryid":owncountryid}, doc, this);
+		var currencySymbol = Foxtrick.util.currency.getSymbol();
+		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":currencySymbol,"owncountryid":owncountryid}, doc, this);
 		var ownBoxBody=null
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
@@ -50,6 +50,6 @@ var FoxtrickLinksEconomy = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":CurrCode,"newCash":newCash} );
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":currencySymbol,"newCash":newCash} );
     }
 };

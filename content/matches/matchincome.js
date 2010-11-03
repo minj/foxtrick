@@ -29,8 +29,7 @@ var FoxtrickMatchIncome = {
 					+ Foxtrick.trimnum(table.rows[2].cells[1].textContent)*18
 					+ Foxtrick.trimnum(table.rows[3].cells[1].textContent)*32.5;
 
-				sum/=parseFloat(FoxtrickPrefs.getString("currencyRate"));
-				Foxtrick.dump('sum local:' +sum+' '+FoxtrickPrefs.getString("oldCurrencySymbol")+'\n');
+				sum/=parseFloat(Foxtrick.util.currency.getRate());
 
 				var tr2 = doc.createElement('tr');
 				var td2a = doc.createElement('td');
@@ -42,7 +41,7 @@ var FoxtrickMatchIncome = {
                 td2a.className = "ch";
                 td2a.textContent = Foxtrickl10n.getString('foxtrick.matches.income');
                 td2b.className = "nowrap";
-				td2b.textContent = Foxtrick.formatNumber (Math.floor(sum), ' ')+' '+FoxtrickPrefs.getString("oldCurrencySymbol");
+				td2b.textContent = Foxtrick.formatNumber(Math.floor(sum), ' ')+' '+Foxtrick.util.currency.getSymbol();
 			}
         }
     }

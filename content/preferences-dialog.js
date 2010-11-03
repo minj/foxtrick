@@ -113,7 +113,7 @@ var FoxtrickPreferencesDialog = {
 		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
 		document.getElementById("htCurrency").selectedIndex =
 			FoxtrickPreferencesDialog.fillListFromXml("htCurrencyPopup", "htCurrency-",
-				htCurrencyXml, "currency", "name", "code", FoxtrickPrefs.getString("htCurrency"));
+				htCurrencyXml, "currency", "name", "code", Foxtrick.util.currency.getCode());
 
 		// date format
 		var dateformat = doc.getElementById("dateformat");
@@ -401,23 +401,15 @@ var FoxtrickPreferencesDialog = {
 		if (!readHtPrefs) {
 			FoxtrickPrefs.setString("htLanguage", document.getElementById("htLanguage").value);
 			FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
-			FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
+			Foxtrick.util.currency.setByCode(document.getElementById("htCurrency").value);
 			FoxtrickPrefs.setString("htDateformat", document.getElementById("htDateformat").value);
 		}
 
 		FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPreferencesDialog.getOffsetValue(document.getElementById("htCountry").value)));
 
 		//Currency Converter
-
-		FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
-		FoxtrickPrefs.setString("currencySymbol", Foxtrick.util.currency.getShortNameByCode(document.getElementById("htCurrencyTo").value));
-		FoxtrickPrefs.setString("currencyRateTo", Foxtrick.util.currency.getRateByCode(document.getElementById("htCurrencyTo").value));
-
-		FoxtrickPrefs.setString("htCurrency", document.getElementById("htCurrency").value);
-		FoxtrickPrefs.setString("oldCurrencySymbol", Foxtrick.util.currency.getShortNameByCode(document.getElementById("htCurrency").value));
-		FoxtrickPrefs.setString("currencyRate", Foxtrick.util.currency.getRateByCode(document.getElementById("htCurrency").value));
-
 		FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", document.getElementById("CurrencyConverter").checked);
+		FoxtrickPrefs.setString("htCurrencyTo", document.getElementById("htCurrencyTo").value);
 
 		//Statusbar
 		FoxtrickPrefs.setBool("statusbarshow", document.getElementById("statusbarpref").checked);

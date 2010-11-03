@@ -113,7 +113,7 @@ Foxtrick.Pages.Players = {
 								player.nationalTeamId = parseInt(currentXMLPlayer.getElementsByTagName("NationalTeamID")[0].textContent);
 							}
 							if (currentXMLPlayer.getElementsByTagName("Salary").length) {
-								var currencyRate = FoxtrickPrefs.getString("currencyRate");
+								var currencyRate = Foxtrick.util.currency.getRate();
 								// from krone to € to user-defined
 								player.salary = Math.floor(parseInt(currentXMLPlayer.getElementsByTagName("Salary")[0].textContent) / (10 * currencyRate));
 							}

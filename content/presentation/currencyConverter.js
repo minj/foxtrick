@@ -17,25 +17,26 @@ FoxtrickCurrencyConverter = {
 
 		/*CURRENCY TYPE AND RATE*/
 
-		var oldCurrencySymbol = FoxtrickPrefs.getString("oldCurrencySymbol");//currencysymbol which in the your country
-		var oldSymbolLength = oldCurrencySymbol.length;
-		var currencySymbol = FoxtrickPrefs.getString("currencySymbol");//
-		var currencyRate = FoxtrickPrefs.getString("currencyRate"); // this is value of tag CODE from htcurrency.xml
-		var currencyRateNewCurr = FoxtrickPrefs.getString("currencyRateTo");
-		var myReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol);
-		var myDelReg = new RegExp('(-\\d+|\\d+)'+oldCurrencySymbol+'|<.+>');
+		var oldSymbol = Foxtrick.util.currency.getSymbol(); //currencysymbol which in the your country
+		var oldLength = oldCurrencySymbol.length;
+		var oldRate = Foxtrick.util.currency.getRate();
 
+		var code = FoxtrickPrefs.getString("htCurrencyTo");
+		var symbol = Foxtrick.util.currency.getSymbolByCode(code);
+		var rate = Foxtrick.util.currency.getRateByCode(code);
+
+		var myReg = new RegExp('(-\\d+|\\d+)' + oldSymbol);
+		var myDelReg = new RegExp('(-\\d+|\\d+)' + oldSymbol + '|<.+>');
 
 		// near all currencies are im tables
-	   	this.drawNewCurrency(doc, 'td',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);
+	   	this.drawNewCurrency(doc, 'td', oldSymbol, oldLength, symbol, oldRate, rate, myReg, myDelReg);
 		// some might be in alert boxes which use <p>
-		this.drawNewCurrency(doc, 'p',  oldCurrencySymbol, oldSymbolLength, currencySymbol,currencyRate, currencyRateNewCurr, myReg, myDelReg);
+		this.drawNewCurrency(doc, 'p', oldSymbol, oldLength, symbol, oldRate, rate, myReg, myDelReg);
     },
 
 	change : function( page, doc ) {
 		this.run(page, doc);
 	},
-
 
 	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, oldSymbolLength, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {
 		var div = doc.getElementById( 'page' );
