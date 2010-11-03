@@ -18,7 +18,7 @@ FoxtrickCurrencyConverter = {
 		/*CURRENCY TYPE AND RATE*/
 
 		var oldSymbol = Foxtrick.util.currency.getSymbol(); //currencysymbol which in the your country
-		var oldLength = oldCurrencySymbol.length;
+		var oldLength = oldSymbol.length;
 		var oldRate = Foxtrick.util.currency.getRate();
 
 		var code = FoxtrickPrefs.getString("htCurrencyTo");
