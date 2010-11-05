@@ -227,6 +227,7 @@ pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true
 pref("extensions.foxtrick.prefs.module.LinksTracker.srbijassttracker.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin1.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.Skin2.enabled", false);
+pref("extensions.foxtrick.prefs.module.CopyPlayerAd.Sorted.enabled", false);
 pref("extensions.foxtrick.prefs.module.CopyTrainingReport.OpenHTYpage.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumTemplates.DefaultShow.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumStripHattrickLinks.NoConfirmStripping.enabled", true);
