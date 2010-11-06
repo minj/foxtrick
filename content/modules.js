@@ -147,5 +147,6 @@ Foxtrick.modules = [
 	FoxtrickYouthSeriesEstimation,
 	FoxtrickTransferSearchResultFilters,
 	FoxtrickForumThreadAutoIgnore,
-	FoxtrickTableSort
+	FoxtrickTableSort,
+	FoxtrickLiveAlert
 ];

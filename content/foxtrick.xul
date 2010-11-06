@@ -139,6 +139,7 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/alertcustomsounds.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/tickercoloring.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/alert/newmail.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/alert/live-alert.js" />
 
 <!-- following modules all run on 'all_late' pages. order of execution is determined be following order -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/presentation/currencyConverter.js" />
