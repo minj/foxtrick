@@ -14,9 +14,6 @@ var FoxtrickOnPagePrefs = {
 	LATEST_CHANGE:"Fix for latest forum change",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-	init : function() {
-	},
-
 	run : function(page, doc) {
 		try {
 			if (doc.getElementById('ctl00_ucSubMenu_txtUserName')) return;
