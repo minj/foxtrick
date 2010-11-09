@@ -154,13 +154,6 @@
 	FoxtrickMain.init();
 </script>
 
-<!-- attach run to load listener -->
-<script type="text/javascript">
-	window.addEventListener("load",
-		function() { FoxtrickMain.registerOnPageLoad(document); },
-		false);
-</script>
-
 <!-- Mozilla Tools menu -->
 <menupopup id="taskPopup">
 	<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPreferencesDialog.show();"/>

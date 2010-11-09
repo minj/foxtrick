@@ -32,7 +32,6 @@ for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtric
 
 var changecount = 0;
 
-////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMain = {
 	new_start:true,
 	isStandard:true,
@@ -42,16 +41,6 @@ var FoxtrickMain = {
 
 	init : function() {
 		Foxtrick.dump('-------------- FoxtrickMain.init start ------------------\n');
-/*		// remove before release
-		if (!Foxtrick.numglobals) {
-				for (var i=0;i<Foxtrick.globals.length;++i) Foxtrick.dump('global: ' +Foxtrick.globals[i]+'\n');
-				Foxtrick.numglobals=Foxtrick.globals.length;
-		}
-		else {
-			for (var i=Foxtrick.numglobals;i<Foxtrick.globals.length;++i)
-				if (Foxtrick.globals[i]!='QueryInterface') Foxtrick.dump('undeclared local global variable: ' +Foxtrick.globals[i]+'\n');
-		}
-*/
 		// init core modules
 		for (var i in Foxtrick.core_modules) {
 			if (typeof(Foxtrick.core_modules[i].init) == "function")
@@ -64,7 +53,7 @@ var FoxtrickMain = {
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		if (oldVersion !== curVersion) {
 			// since the versioning scheme ordering is not exactly the same
-			// as string ordering, only use "!==" here as Firefox itself does. 
+			// as string ordering, only use "!==" here as Firefox itself does.
 			FoxtrickMain.IsNewVersion = true;
 		}
 
@@ -82,7 +71,6 @@ var FoxtrickMain = {
 				if (typeof(module.init) == "function") {
 					try {
 						module.init();
-						//Foxtrick.dump("Foxtrick enabled module: " + module.MODULE_NAME + "\n");
 					}
 					catch (e) {
 						Foxtrick.dumpError(e);
@@ -443,6 +431,12 @@ var FoxtrickMain = {
 	}
 };
 
+window.addEventListener("load",
+	function() {
+		FoxtrickMain.registerOnPageLoad(document);
+	},
+	false);
+
 Foxtrick.updateStatus = function() {
 	var icon = document.getElementById("foxtrick-status-bar-img");
 	var doc = content.document; // get the document of current tab
@@ -491,8 +485,8 @@ Foxtrick.isHtUrl = function(url) {
 	return (url.search(FoxtrickPrefs.getString("HTURL")) > -1);
 }
 
-var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 Foxtrick.isStage = function(doc) {
+	const stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
 }
 
@@ -1506,7 +1500,7 @@ Foxtrick.getDateFromText = function(text) {
 	return date;
 }
 
-TimeDifferenceToText = function(time_sec, short) {
+Foxtrick.TimeDifferenceToText = function(time_sec, short) {
 
 	var org_time = time_sec;
 	// Returns the time differnce as DDD days, HHh MMm
@@ -1585,7 +1579,7 @@ TimeDifferenceToText = function(time_sec, short) {
 			} // switch
 		} // try
 		catch(e_print) {
-			// Foxtrick.dump('TimeDifferenceToText'+e_print);
+			// Foxtrick.dump('Foxtrick.TimeDifferenceToText'+e_print);
 		}
 		if (print_S == 0) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons");}
 		if (print_W != 0 && print_S != '') print_S += '&nbsp;';

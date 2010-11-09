@@ -65,7 +65,7 @@ FoxtrickTransferDeadline = {
                 if (ST_date != null) {
                     var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
                     if (!isNaN(deadline_s) && deadline_s >= 0) {
-                        var DeadlineText = TimeDifferenceToText(deadline_s);
+                        var DeadlineText = Foxtrick.TimeDifferenceToText(deadline_s);
                         selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
                     }
                 }
@@ -113,7 +113,7 @@ FoxtrickTransferDeadline = {
         var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
 
         if (!isNaN(deadline_s) && deadline_s >= 0) {
-            var DeadlineText = TimeDifferenceToText (deadline_s);
+            var DeadlineText = Foxtrick.TimeDifferenceToText (deadline_s);
             selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
         }
     }

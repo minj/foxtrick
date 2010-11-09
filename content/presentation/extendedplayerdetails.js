@@ -49,7 +49,7 @@ FoxtrickExtendedPlayerDetails = {
 
         var JoinedText = 'NaN';
         try {
-            JoinedText = TimeDifferenceToText (joined_s , true);
+            JoinedText = Foxtrick.TimeDifferenceToText (joined_s , true);
         }
         catch(ee) {
             Foxtrick.dump('  JoinedText >' + ee + '\n');

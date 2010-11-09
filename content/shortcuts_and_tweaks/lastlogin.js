@@ -38,7 +38,7 @@ FoxtrickLastLogin = {
 				var ST_date = Foxtrick.getDateFromText(login_elm[i]);
 
 				var _s = Math.floor((HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
-				var DiffText = TimeDifferenceToText(_s);
+				var DiffText = Foxtrick.TimeDifferenceToText(_s);
 				if (DiffText.search("NaN") == -1)
 					last += '<span class="date smallText ft-last-login-diff">(' + DiffText + ')</span>';
 				else Foxtrick.dump('Could not create timediff (NaN)\n');
