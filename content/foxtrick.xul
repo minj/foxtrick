@@ -148,10 +148,18 @@
 <script type="application/x-javascript" src="chrome://foxtrick/content/modules.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/foxtrick.js" />
 
-
 <!-- run init -->
 <script type="text/javascript">
 	FoxtrickMain.init();
+</script>
+
+<!-- load listeners -->
+<script type="application/x-javascript">
+	window.addEventListener("load",
+	function() {
+		FoxtrickMain.registerOnPageLoad(document);
+	},
+	false);
 </script>
 
 <!-- Mozilla Tools menu -->

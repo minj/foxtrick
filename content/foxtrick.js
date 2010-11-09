@@ -431,12 +431,6 @@ var FoxtrickMain = {
 	}
 };
 
-window.addEventListener("load",
-	function() {
-		FoxtrickMain.registerOnPageLoad(document);
-	},
-	false);
-
 Foxtrick.updateStatus = function() {
 	var icon = document.getElementById("foxtrick-status-bar-img");
 	var doc = content.document; // get the document of current tab
