@@ -19,11 +19,11 @@
 	<currency code="MDL" symbol="lei" name="Lei (Moldavian Lei)" eurorate="0.05" />
 	<currency code="JPY" symbol="JP¥" name="¥ (Japanese yen)" eurorate="0.01" />
 	<currency code="BRL" symbol="reais" name="R$ (Reais)" eurorate="0.5"/>
-	<currency code="DZD" symbol="Dinar" name="Dinar (Algerian dinar)" eurorate="0.01" />
-	<currency code="MAD" symbol="Dirhams" name="Dirhams (Moroccan dirham)" eurorate="0.1" />
-	<currency code="JOD" symbol="Dinar" name="Dinar (Jordanian dinar)" eurorate="0.5" />
+	<currency code="DZD" symbol="DZD" name="Dinar (Algerian dinar)" eurorate="0.01" />
+	<currency code="MAD" symbol="dirhams" name="Dirhams (Moroccan dirham)" eurorate="0.1" />
+	<currency code="JOD" symbol="JOD" name="Dinar (Jordanian dinar)" eurorate="0.5" />
 	<currency code="ARS" symbol="Pesos" name="Pesos (Argentine peso)" eurorate="1" />
-	<currency code="BHD" symbol="Dinar" name="Dinar (Bahraini dinar)" eurorate="2" />
+	<currency code="BHD" symbol="BHD" name="Dinar (Bahraini dinar)" eurorate="2" />
 	<currency code="BBD" symbol="Bds$" name="Bds$ (Barbados dollar)" eurorate="0.5" />
 	<currency code="BOB" symbol="Bs" name="Bs (Bolivian boliviano)" eurorate="0.1" />
 	<currency code="BAM" symbol="KM" name="KM (Bosnia and Herzegovina Convertible Mark)" eurorate="0.5" />
@@ -51,7 +51,7 @@
 	<currency code="JMD" symbol="JMD" name="JMD (Jamaican dollar)" eurorate="0.05" />
 	<currency code="KZT" symbol="Tenge" name="Tenge (Kazakhstan)" eurorate="0.01" />
 	<currency code="KES" symbol="KES" name="KES (Kenyan shilling)" eurorate="0.05" />
-	<currency code="KWD" symbol="Dinar" name="Dinar (Kuwaiti dinar)" eurorate="2.5" />
+	<currency code="KWD" symbol="dinar" name="Dinar (Kuwaiti dinar)" eurorate="2.5" />
 	<currency code="KGS" symbol="Som" name="Som (Kyrgyzstani som)" eurorate="0.02" />
 	<currency code="LVL" symbol="Lats" name="Lats (Latvian lat)" eurorate="2" />
 	<currency code="LTL" symbol="Lt" name="Lt (Lithuanian litas)" eurorate="0.25" />
