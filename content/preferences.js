@@ -334,7 +334,25 @@ function initChangesTab()
 
 function initHelpTab()
 {
-	$("#pane-help").text("Not finished yet!");
+	// external links
+	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
+	const links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
+	for (var i = 0; i < links.length; ++i) {
+		var item = document.createElement("li");
+		$("#external-links-list").append($(item));
+		var link = document.createElement("a");
+		item.appendChild(link);
+		link.textContent = Foxtrickl10n.getString("foxtrick.prefs." + links[i][0]);
+		link.href = links[i][1];
+	}
+
+	// style tutorial
+	var styleTutorial = Foxtrickl10n.getString("StyleTutorial.content").split(/%s/);
+	$("#style-tutorial-text").text(styleTutorial[0]);
+	var styleLink = document.createElement("a");
+	styleLink.href = styleLink.textContent = Foxtrick.ResourcePath + "resources/css/user-content-example.css";
+	$("#style-tutorial-text").append($(styleLink));
+	$("#style-tutorial-text").append(document.createTextNode(styleTutorial[1]));
 }
 
 function initAboutTab()
