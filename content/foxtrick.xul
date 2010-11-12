@@ -5,7 +5,7 @@
 <overlay id="foxtrick"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<script type="application/x-javascript" src="chrome://foxtrick/content/preferences.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/prefs.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/const.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/l10n.js" />

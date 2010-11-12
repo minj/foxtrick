@@ -143,7 +143,7 @@ var FoxtrickMain = {
 			}
 		}
 		catch (e) {
-			dumpError(e);
+			Foxtrick.dumpError(e);
 		}
 	},
 

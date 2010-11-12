@@ -18,7 +18,7 @@
 	<key id="close-key" modifiers="accel" key="C" oncommand="cancelDialog();" />
 </keyset>
 
-<script type="application/x-javascript" src="chrome://foxtrick/content/preferences.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/prefs.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/const.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/l10n.js" />

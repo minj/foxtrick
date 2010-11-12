@@ -1,350 +1,374 @@
-/**
- * preferences.js
- * Foxtrick preferences service
- * @author Mod-PaV
- */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickPrefs = {
+function init()
+{
+	initCoreModules();
+	initListeners();
+	initTabs();
+	initTextAndValues();
+	$("#cancel").hover(function() { $(this).hide("slow"); });
+}
 
-    _pref_branch : null,
+function initCoreModules()
+{
+	const core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+	for (var i in core)
+		core[i].init();
+}
 
-    init : function() {
-		var prefs = Components.classes[ "@mozilla.org/preferences-service;1"].
-                           getService( Components.interfaces.nsIPrefService );
-		FoxtrickPrefs._pref_branch = prefs.getBranch( "extensions.foxtrick.prefs." );
-    },
+function initListeners()
+{
+	$("#save").click(function() { save(); });
+}
 
-    getString : function( pref_name ) {
-        var str;
-		try {
-            str = FoxtrickPrefs._pref_branch.getComplexValue( encodeURI(pref_name),
-                                 Components.interfaces.nsISupportsString ).data;
-        } catch( e ) {
- 				str = null;
-		}
-		if (str==null) {
-			try {
-				str = FoxtrickPrefs._pref_branch.getComplexValue( pref_name,
-                                Components.interfaces.nsISupportsString ).data;
- 			} catch( e ) {
-				str = null;
-			}
-		}
- 		return str;
-    },
+function initTabs()
+{
+	$("#tabs li a").each(function() {
+		$(this).attr("href", "#" + $(this).parent().attr("id").replace(/^tab-/, "pane-"));
+	});
+	$("#tabs li a").click(function() {
+		$("#panes > div[id^='pane-']").hide();
+		$("#tabs > li").removeClass("active");
+		$("#" + $(this).parent().attr("id").replace(/^tab-/, "pane-")).show();
+		$(this).parent().addClass("active");
+	});
+	$("#tab-main a").click();
+	initMainTab();
+	initModuleTabs();
+	initChangesTab();
+	initHelpTab();
+	initAboutTab();
+}
 
-    setString : function( pref_name, value ) {
-        var str = Components.classes[ "@mozilla.org/supports-string;1" ].
-                     createInstance( Components.interfaces.nsISupportsString );
-        str.data = value;
-        FoxtrickPrefs._pref_branch.setComplexValue( encodeURI(pref_name),
-                                Components.interfaces.nsISupportsString, str );
-    },
-
-    setInt : function( pref_name, value ) {
-        FoxtrickPrefs._pref_branch.setIntPref( encodeURI(pref_name), value );
-    },
-
-    getInt : function( pref_name ) {
-        var value;
-		try {
-            value = FoxtrickPrefs._pref_branch.getIntPref( encodeURI(pref_name) );
-        } catch( e ) {
-			value = null;
-        }
-        if (value==null) {
-			try {
-				value = FoxtrickPrefs._pref_branch.getIntPref( pref_name );
-			} catch( e ) {
-				value = null;
-			}
-		}
-		return value;
-    },
-
-    setBool : function( pref_name, value ) {
-        FoxtrickPrefs._pref_branch.setBoolPref( encodeURI(pref_name), value );
-    },
-
-    getBool : function( pref_name ) {
-		// no dump in FoxtrickPrefs function !!!!!!!!
-		var value;
-		try {
-            value = FoxtrickPrefs._pref_branch.getBoolPref( encodeURI(pref_name) );
-        } catch( e ) {
-			value = null;
-        }
-		if (value == null) {
-			try {
-				value = FoxtrickPrefs._pref_branch.getBoolPref( pref_name );
-			} catch( e ) {
-				value = null;
-			}
-		}
-		return value;
-    },
-
-    /** Add a new preference "pref_name" of under "list_name".
-     * Creates the list if not present.
-     * Returns true if added (false if empty or already on the list).
-     */
-    addPrefToList : function( list_name, pref_value ) {
-
-        if ( pref_value == "" )
-            return false;
-
-        var existing = FoxtrickPrefs.getList( list_name );
-
-        // already exists?
-        var exists = existing.some(
-            function( el ) {
-                if ( el == pref_value ) {
-                    return true;
-                }
-            }
-        );
-
-        if ( !exists ) {
-            existing.push( pref_value );
-            FoxtrickPrefs._populateList( list_name, existing );
-
-            return true;
-        }
-
-        return false
-    },
-
-    getList : function( list_name ) {
-        var names = FoxtrickPrefs._getElemNames( list_name );
-		var list = new Array();
-        for ( var i in names )
-			list.push( FoxtrickPrefs.getString( names[i] ) );
-
-        return list;
-    },
-
-    _getElemNames : function( list_name ) {
-        try {
-			var array = null;
-			if( list_name != "" )
-				array = FoxtrickPrefs._pref_branch.getChildList( encodeURI(list_name + "."), {} );
+function initTextAndValues()
+{
+	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
+	// initialize text
+	$("body [text]").each(function() {
+		if ($(this).attr("text"))
+			$(this).text(Foxtrickl10n.getString($(this).attr("text")));
+	});
+	// jQuery doesn't select <a>s with the code above, so adding this:
+	$("#tabs li a").each(function() {
+		if ($(this).attr("text"))
+			$(this).text(Foxtrickl10n.getString($(this).attr("text")));
+	});
+	// initialize checkboxes
+	$("body input:checkbox[pref]").each(function() {
+		if ($(this).attr("pref"))
+			if (FoxtrickPrefs.getBool($(this).attr("pref")))
+				$(this).attr("checked", "checked");
+	});
+	// initialize elements with blockers
+	$("body [blocked-by]").each(function() {
+		var blockee = $(this);
+		var blocker = $("#" + blockee.attr("blocked-by"));
+		blocker.click(function() {
+			if (blocker.is(":checked"))
+				blockee.attr("disabled", "disabled");
 			else
-				array = FoxtrickPrefs._pref_branch.getChildList( "", {} );
-			for (var i=0;i<array.length;++i) {array[i] = decodeURI(array[i]);}
-			return array;
-        } catch( e ) {
-            return null;
-        }
-    },
+				blockee.removeAttr("disabled");
+		});
+		if (blocker.is(":checked"))
+			blockee.attr("disabled", "disabled");
+	});
+}
 
-    /** Remove a list element. */
-    delListPref : function( list_name, pref_value ) {
-        var existing = FoxtrickPrefs.getList( list_name );
+function initMainTab()
+{
+	var htLocales = [];
+	for (var i in Foxtrickl10n.htLanguagesXml) {
+		var desc = Foxtrickl10n.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
+		htLocales.push({ name: i,  desc: desc });
+	}
+	htLocales.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
+	const selectedLang = FoxtrickPrefs.getString("htLanguage");
+	for (var i in htLocales) {
+		var locale = htLocales[i];
+		var item = document.createElement("option");
+		item.value = locale.name;
+		item.textContent = locale.desc;
+		if (selectedLang == item.value)
+			item.selected = "selected";
+		$("#pref-read-language").append($(item));
+	}
 
-        existing = existing.filter(
-            function( el ) {
-                if ( el != pref_value )
-                    return el;
-            }
-        );
+	var leagues = [];
+	for (var i in Foxtrick.XMLData.League) {
+		var league = Foxtrick.XMLData.League[i]["EnglishName"];
+		leagues.push(league);
+	}
+	leagues.sort(function(a, b) { return a.localeCompare(b); });
+	const selectedLeague = FoxtrickPrefs.getString("htCountry");
+	for (var i in leagues) {
+		var item = document.createElement("option");
+		item.value = leagues[i];
+		item.textContent = leagues[i];
+		if (selectedLeague == item.value)
+			item.selected = "selected";
+		$("#pref-read-country").append($(item));
+	}
 
-        FoxtrickPrefs._populateList( list_name, existing );
-    },
+	var currencies = [];
+	var htCurrencyXml = document.implementation.createDocument("", "", null);
+	htCurrencyXml.async = false;
+	htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+	var currencyNodes = htCurrencyXml.getElementsByTagName("currency");
+	for (var i = 0; i < currencyNodes.length; ++i) {
+		var code = currencyNodes[i].attributes.getNamedItem("code").textContent;
+		var desc = currencyNodes[i].attributes.getNamedItem("name").textContent;
+		currencies.push({ code: code, desc : desc });
+	}
+	currencies.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
+	const selectedCurrency = FoxtrickPrefs.getString("htCurrency");
+	for (var i in currencies) {
+		var item = document.createElement("option");
+		item.value = currencies[i].code;
+		item.textContent = currencies[i].desc;
+		if (selectedCurrency == item.value)
+			item.selected = "selected";
+		$("#pref-read-currency").append($(item));
+	}
 
-    /** Populate list_name with given array deleting if exists */
-    _populateList : function( list_name, values )
-    {
-        FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(list_name) );
-        for (var  i in values )
-            FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
-    },
+	var dateFormats = [];
+	var htDateFormatXml = document.implementation.createDocument("", "", null);
+	htDateFormatXml.async = false;
+	htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
+	var dateFormatNodes = htDateFormatXml.getElementsByTagName("dateformat");
+	for (var i = 0; i < dateFormatNodes.length; ++i) {
+		var code = dateFormatNodes[i].attributes.getNamedItem("code").textContent;
+		var desc = dateFormatNodes[i].attributes.getNamedItem("name").textContent;
+		dateFormats.push({ code: code, desc : desc });
+	}
+	dateFormats.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
+	const selectedDateFormat = FoxtrickPrefs.getString("htDateFormat");
+	for (var i in dateFormats) {
+		var item = document.createElement("option");
+		item.value = dateFormats[i].code;
+		item.textContent = dateFormats[i].desc;
+		if (selectedDateFormat == item.value)
+			item.selected = "selected";
+		$("#pref-read-date-format").append($(item));
+	}
 
-    deleteValue : function( value_name ){
-    	//FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(value_name) );   // juste delete
-    	if (FoxtrickPrefs._pref_branch.prefHasUserValue(encodeURI(value_name))) FoxtrickPrefs._pref_branch.clearUserPref( encodeURI(value_name) );   // reset to default
-    },
+	const selectedCurrencyTo = FoxtrickPrefs.getString("htCurrencyTo");
+	for (var i in currencies) {
+		var item = document.createElement("option");
+		item.value = currencies[i].code;
+		item.textContent = currencies[i].desc;
+		if (selectedCurrencyTo == item.value)
+			item.selected = "selected";
+		$("#pref-currency-converter-select").append($(item));
+	}
+}
 
+function initModuleTabs()
+{
+	var categories = {
+		"shortcuts" : [],
+		"presentation" : [],
+		"matches" : [],
+		"forum" : [],
+		"links" : [],
+		"alert" : []
+	}
+	for (var i in Foxtrick.modules) {
+		const category = Foxtrick.modules[i].MODULE_CATEGORY;
+		if (category == Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS)
+			categories["shortcuts"].push(i);
+		else if (category == Foxtrick.moduleCategories.PRESENTATION)
+			categories["presentation"].push(i);
+		else if (category == Foxtrick.moduleCategories.MATCHES)
+			categories["matches"].push(i);
+		else if (category == Foxtrick.moduleCategories.FORUM)
+			categories["forum"].push(i);
+		else if (category == Foxtrick.moduleCategories.LINKS)
+			categories["links"].push(i);
+		else if (category == Foxtrick.moduleCategories.ALERT)
+			categories["alert"].push(i);
+	}
+	for (var i in categories)
+		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME > Foxtrick.modules[b].MODULE_NAME; });
+	for (var i in categories)
+		for (var j in categories[i])
+			$("#pane-" + i).append(getModule(Foxtrick.modules[categories[i][j]]));
+}
 
-	// ---------------------- common function --------------------------------------
-	setModuleEnableState : function( module_name, value ) {
-		FoxtrickPrefs.setBool( "module." + module_name + ".enabled", value );
-	},
+function getModule(module)
+{
+	var enabled = Foxtrick.isModuleEnabled(module);
 
-	setModuleOptionsText : function( module_name, value ) {
-		FoxtrickPrefs.setString( "module." + module_name, value );
-	},
+	var entry = document.createElement("div");
+	entry.id = "pref-" + module.MODULE_NAME;
+	entry.className = "module";
 
-	setModuleValue : function( module_name, value ) {
-		FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
-	},
+	var title = document.createElement("h3");
+	title.id = entry.id + "-title";
+	entry.appendChild(title);
 
-	getModuleDescription : function( module_name ) {
-		var name = "foxtrick." + module_name + ".desc";
-		if ( Foxtrickl10n.isStringAvailable( name ) )
-			return Foxtrickl10n.getString( name );
-		else {
-			//dump( "Foxtrick string MODULE " + module_name + " missing!\n");
-			return "No description";
-		}
-	},
+	var label = document.createElement("label");
+	var check = document.createElement("input");
+	check.id = entry.id + "-check";
+	check.type = "checkbox";
+	check.setAttribute("module", module.MODULE_NAME);
+	if (enabled)
+		check.setAttribute("checked", "checked");
+	label.appendChild(check);
+	label.appendChild(document.createTextNode(module.MODULE_NAME));
+	title.appendChild(label);
 
-	getModuleElementDescription : function( module_name, option ) {
-		var name = "foxtrick." + module_name + "." + option + ".desc";
-		if ( Foxtrickl10n.isStringAvailable( name ) )
-			return Foxtrickl10n.getString( name );
-		else {
-			//dump( "Foxtrick string ELEMENT " + name + " missing!\n");
-			//return "No description";
-			return option;
-		}
-	},
+	var desc = document.createElement("p");
+	desc.id = entry.id + "-desc";
+	desc.textContent = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+	entry.appendChild(desc);
 
+	// options container
+	var options = document.createElement("div");
+	options.id = entry.id + "-options";
+	entry.appendChild(options);
 
-	isPrefSetting : function ( setting) {
-		return  setting.search( /^YouthPlayer\./ ) == -1
-			&& setting.search( "transferfilter" ) == -1
-			&& setting.search( "post_templates" ) == -1
-			&& setting.search( "mail_templates" ) == -1
-			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
-	},
+	if (!enabled)
+		$(options).hide();
+	$(check).click(function() { $(this).is(":checked") ? $(options).show() : $(options).hide(); });
 
-	confirmCleanupBranch : function ( ev ) {
-		if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-		else doc=document;
-		if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
-			try {
-				var array = FoxtrickPrefs._getElemNames("");
-				for(var i = 0; i < array.length; i++) {
-					if (FoxtrickPrefs.isPrefSetting(array[i])) {
-						FoxtrickPrefs.deleteValue(array[i]);
-					}
+	// checkbox options
+	if (module.OPTIONS) {
+		var checkboxes = document.createElement("ul");
+		options.appendChild(checkboxes);
+		checkboxes.id = module.MODULE_NAME + "-checkboxes";
+
+		for (var i in module.OPTIONS) {
+			var item = document.createElement("li");
+			checkboxes.appendChild(item);
+			var label = document.createElement("label");
+			item.appendChild(label);
+			var checkbox = document.createElement("input");
+			checkbox.type = "checkbox";
+			checkbox.setAttribute("module", module.MODULE_NAME);
+			label.appendChild(checkbox);
+
+			var key, title;
+			if (module.OPTIONS[i]["key"]) {
+				key = module.OPTIONS[i]["key"];
+				title = module.OPTIONS[i]["title"];
+			}
+			else {
+				key = module.OPTIONS[i];
+				title = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
+			}
+			checkbox.id = entry.id + "-" + key;
+			checkbox.setAttribute("option", key);
+			if (Foxtrick.isModuleFeatureEnabled(module, key))
+				checkbox.setAttribute("checked", "checked");
+			label.appendChild(document.createTextNode(title));
+
+			if (module.OPTION_TEXTS &&
+				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+				var textDiv = document.createElement("div");
+				textDiv.id = checkbox.id + "-text-div";
+				item.appendChild(textDiv);
+				var textInput = document.createElement("input");
+				textInput.id = checkbox.id + "-text";
+				textInput.setAttribute("module", module.MODULE_NAME);
+				textInput.setAttribute("option", module.OPTIONS[i] + "_text");
+				textDiv.appendChild(textInput);
+
+				if (!Foxtrick.isModuleFeatureEnabled(module, key)) {
+					$(textDiv).hide();
 				}
-				FoxtrickMain.init();
-				if (!ev) close();
-				else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-			}
-			catch (e) {
-				Foxtrick.dump('confirmCleanupBranch error:'+e+'\n');
-			}
-		}
-		return true;
-	},
 
+				$(checkbox).click(function() { $(this).is(":checked") ? $(textDiv).show() : $(textDiv).hide(); });
 
-	disableAll : function (ev ) {
-		if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-		else doc=document;
-		if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_modules_ask' ) ) )  {
-			try {
-				var array = FoxtrickPrefs._getElemNames("");
-				for(var i = 0; i < array.length; i++) {
-					if( array[i].search( /enabled$/ ) != -1) {
-						FoxtrickPrefs.setBool( array[i], false );
-					}
+				var val = FoxtrickPrefs.getString("module." + module.MODULE_NAME + "." + textInput.getAttribute("option"));
+				if (val === null && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]) {
+					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
 				}
-				FoxtrickMain.init();
-				if (!ev) close();
-				else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-			}
-			catch (e) {
-				Foxtrick.dump('disable all'+e+'\n');
-			}
-		}
-		return true;
-	},
+				textInput.value = val;
 
-	SavePrefs : function (ev) {
-        try {
-			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-			else doc=document;
-
-			var locpath=Foxtrick.selectFileSave(window);
-			if (locpath==null) {return;}
-			var File = Components.classes["@mozilla.org/file/local;1"].
-                     createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(locpath);
-
-			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-                         createInstance(Components.interfaces.nsIFileOutputStream);
-			foStream.init(File, 0x02 | 0x08 | 0x20, 0666, 0);
-			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-                   .createInstance(Components.interfaces.nsIConverterOutputStream);
-			os.init(foStream, "UTF-8", 0, 0x0000);
-
-			var array = FoxtrickPrefs._getElemNames(""); array.sort();
-			for(var i = 0; i < array.length; i++) { //Foxtrick.dump(array[i]);
-				if ((FoxtrickPrefs.isPrefSetting(array[i]) && doc.getElementById("saveprefsid").checked)
-					|| (!FoxtrickPrefs.isPrefSetting(array[i]) && doc.getElementById("savenotesid").checked)) {
-
-					var value=FoxtrickPrefs.getString(array[i]);
-					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
-					else { value=FoxtrickPrefs.getInt(array[i]);
-						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
-						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
-						}
-					//Foxtrick.dump(' : save\n');
-					}
-				//else Foxtrick.dump(' : dont save\n');
+				// load buttons
+				if (module.OPTION_TEXTS_LOAD_BUTTONS && module.OPTION_TEXTS_LOAD_BUTTONS[i]) {
+					var load = document.createElement("button");
+					textDiv.appendChild(load);
+					load.id = textInput.id + "-load";
+					$(load).attr("text", "foxtrick.prefs.buttonLoadPrefs");
+					$(load).click(function() {
+						const text = $("#" + $(this).attr("id").replace(/-load$/, ""));
+						var file = Foxtrick.selectFile(window);
+						if (file)
+							text[0].value = "file://" + file;
+					});
 				}
-			os.close();
-			foStream.close();
-
-			if(!ev) close();
+			}
 		}
-		catch (e) {
-			Foxtrick.alert('FoxtrickPrefs.SavePrefs '+e);
-        }
-    return true;
-	},
+	}
 
-	LoadPrefs : function (ev) {
-        try {
-			// nsifile
-			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-			else doc=document;
-			var locpath=Foxtrick.selectFile(window);
-			if (locpath==null) return;
-			var File = Components.classes["@mozilla.org/file/local;1"].
-                     createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(locpath);
-			// converter
-			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"]
-                          .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
-			converter.charset = "UTF-8";
-			var fis = Components.classes["@mozilla.org/network/file-input-stream;1"]
-                    .createInstance(Components.interfaces.nsIFileInputStream);
-			fis.init(File, -1, -1, 0);
-			var lis = fis.QueryInterface(Components.interfaces.nsILineInputStream);
-			var lineData = {};
-			var cont;
-			do {
-				cont = lis.readLine(lineData);
-				var line = converter.ConvertToUnicode(lineData.value);
-				//Foxtrick.dump(line+'\n');
-				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
-				var value=line.match(/\",(.+)\)\;/)[1];
-				var strval = value.match(/\"(.+)\"/);
-				if (value == "\"\"") FoxtrickPrefs.setString(key,"");
-				else if (strval != null) FoxtrickPrefs.setString(key,strval[1].replace(/\\n/g,'\n'));
-				else if (value == "true") FoxtrickPrefs.setBool(key,true);
-				else if (value == "false") FoxtrickPrefs.setBool(key,false);
-				else FoxtrickPrefs.setInt(key,value);
-			} while (cont);
+	// radio options
+	if (module.RADIO_OPTIONS) {
+		var radios = document.createElement("ul");
+		radios.id = entry.id + "-radios";
+		options.appendChild(radios);
 
-			fis.close();
-			FoxtrickMain.init();
-			if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-
+		var selectedValue = Foxtrick.getModuleValue(module);
+		for (var i in module.RADIO_OPTIONS) {
+			var item = document.createElement("li");
+			radios.appendChild(item);
+			var label = document.createElement("label");
+			item.appendChild(label);
+			var radio = document.createElement("input");
+			radio.type = "radio";
+			radio.name = entry.id + "-radio";
+			if (selectedValue == i) {
+				radio.setAttribute("selected", "selected");
+			}
+			label.appendChild(radio);
+			label.appendChild(document.createTextNode(
+				FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.RADIO_OPTIONS[i])));
 		}
-		catch (e) {
-			Foxtrick.alert('FoxtrickPrefs.LoadPrefs '+e);
-        }
-    return true;
-	},
-};
+	}
 
+	return entry;
+}
 
+function initChangesTab()
+{
+	$("#pane-changes").text("Not finished yet!");
+}
 
+function initHelpTab()
+{
+	$("#pane-help").text("Not finished yet!");
+}
 
+function initAboutTab()
+{
+	$("#pane-about").text("Not finished yet!");
+}
 
+function save()
+{
+	// global preferences
+	$("body [pref]").each(function() {
+		if ($(this).attr("pref")) {
+			const pref = $(this).attr("pref");
+			if ($(this).is(":checkbox"))
+				FoxtrickPrefs.setBool(pref, $(this).is(":checked"));
+			else if ($(this)[0].nodeName == "select")
+				FoxtrickPrefs.setString(pref, $(this)[0].value); // calculated just-in-time, so jQuery would fail here
+			else if ($(this).is(":input"))
+				FoxtrickPrefs.setString(pref, $(this).attr("value"));
+		}
+	});
+
+	// per-module preferences
+	$("body [module]").each(function() {
+		const module = $(this).attr("module");
+		if ($(this).attr("option")) {
+			// option of module
+			const option = $(this).attr("option");
+			if ($(this).is(":checkbox"))
+				FoxtrickPrefs.setModuleEnableState(module + "." + option, $(this).is(":checked"));
+			else if ($(this).is(":input"))
+				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(this)[0].value);
+		}
+		else
+			FoxtrickPrefs.setModuleEnableState(module, $(this).is(":checked"));
+	});
+}

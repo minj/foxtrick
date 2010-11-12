@@ -1,0 +1,106 @@
+body
+{
+	font-size: 15px;
+	background-color: #eef;
+}
+
+ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+h3
+{
+	margin: 5px 0 0;
+}
+
+p
+{
+	margin: 2px 0;
+}
+
+input, button
+{
+	color: #2e2e2e;
+	background-color: white;
+	border: 1px solid #b4bac0;
+	padding: 3px;
+	margin-right: 5px;
+}
+
+input
+{
+	width: 450px;
+}
+
+.module
+{
+	border: 1px solid #ccc;
+	margin: 5px;
+	padding: 5px;
+}
+
+.module:hover
+{
+	background-color: #f8f8ff;
+	border-color: black;
+}
+
+.clear
+{
+	clear: both;
+}
+
+ul#tabs li
+{
+	display: inline-block;
+	background-color: white;
+	border: 1px solid #ccc;
+	-moz-border-radius: 8px 8px 0px 0px;
+	border-bottom: none;
+	padding: 4px;
+	margin: 0;
+}
+
+ul#tabs li.active
+{
+	background-color: #eef;
+	border: 3px solid #a8a8a8;
+	border-bottom: none;
+}
+
+ul#tabs li a
+{
+	text-decoration: none;
+	color: #444;
+}
+
+ul#tabs li a:hover
+{
+	text-decoration: underline;
+}
+
+div#panes
+{
+	border: 1px solid #ccc;
+	clear: both;
+	max-height: 500px;
+	overflow-y: auto;
+}
+
+#balloon
+{
+	position: fixed;
+	right: 20px;
+	top: 20px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	background-color: #aaa;
+}
+
+#save
+{
+	font-weight: bold;
+}
