@@ -396,7 +396,7 @@ function save()
 			FoxtrickPrefs.setModuleEnableState(module, $(this).is(":checked"));
 	});
 
-	notice("Preferences saved!");
+	notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
 }
 
 function notice(msg)
