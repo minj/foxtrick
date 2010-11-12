@@ -339,7 +339,15 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	$("#pane-about").text("Not finished yet!");
+	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
+	$(".about-list").each(function() {
+		const items = Foxtrick.XML_evaluate(aboutXml, $(this).attr("path"), "value");
+		for (var i = 0; i < items.length; ++i) {
+			var item = document.createElement("li");
+			item.textContent = items[i];
+			$(this).append($(item));
+		}
+	});
 }
 
 function save()
