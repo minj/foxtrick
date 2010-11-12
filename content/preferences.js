@@ -148,16 +148,6 @@ function initMainTab()
 			item.selected = "selected";
 		$("#pref-read-date-format").append($(item));
 	}
-
-	const selectedCurrencyTo = FoxtrickPrefs.getString("htCurrencyTo");
-	for (var i in currencies) {
-		var item = document.createElement("option");
-		item.value = currencies[i].code;
-		item.textContent = currencies[i].desc;
-		if (selectedCurrencyTo == item.value)
-			item.selected = "selected";
-		$("#pref-currency-converter-select").append($(item));
-	}
 }
 
 function initModuleTabs()
@@ -228,6 +218,13 @@ function getModule(module)
 	if (!enabled)
 		$(options).hide();
 	$(check).click(function() { $(this).is(":checked") ? $(options).show() : $(options).hide(); });
+
+	// module-provided function for generating options
+	if (module.OPTION_FUNC) {
+		var genOptions = module.OPTION_FUNC(document);
+		if (genOptions)
+			options.appendChild(genOptions);
+	}
 
 	// checkbox options
 	if (module.OPTIONS) {

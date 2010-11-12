@@ -5,11 +5,37 @@
 FoxtrickCurrencyConverter = {
 
     MODULE_NAME : "CurrencyConverter",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
+    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all_late'),
 	NEW_AFTER_VERSION : "0.5.1.2",
 	LATEST_CHANGE : "Conversion rates fixed",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
+
+	OPTION_FUNC : function(doc) {
+		var currencySelect = doc.createElement("select");
+		currencySelect.setAttribute("pref", "htCurrencyTo");
+		var currencies = [];
+		var htCurrencyXml = doc.implementation.createDocument("", "", null);
+		htCurrencyXml.async = false;
+		htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
+		var currencyNodes = htCurrencyXml.getElementsByTagName("currency");
+		for (var i = 0; i < currencyNodes.length; ++i) {
+			var code = currencyNodes[i].attributes.getNamedItem("code").textContent;
+			var desc = currencyNodes[i].attributes.getNamedItem("name").textContent;
+			currencies.push({ code: code, desc : desc });
+		}
+		currencies.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
+		const selectedCurrencyTo = FoxtrickPrefs.getString("htCurrencyTo");
+		for (var i in currencies) {
+			var item = doc.createElement("option");
+			item.value = currencies[i].code;
+			item.textContent = currencies[i].desc;
+			if (selectedCurrencyTo == item.value)
+				item.selected = "selected";
+			currencySelect.appendChild(item);
+		}
+		return currencySelect;
+	},
 
     run : function(page, doc) {
 		if ( doc.location.href.search(/Forum/i) != -1 ) return;
