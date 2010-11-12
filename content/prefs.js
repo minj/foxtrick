@@ -340,11 +340,17 @@ var FoxtrickPrefs = {
 		catch (e) {
 			Foxtrick.alert('FoxtrickPrefs.LoadPrefs '+e);
         }
-    return true;
+    	return true;
 	},
+
+	show : function() {
+		gBrowser.selectedTab = gBrowser.addTab("chrome://foxtrick/content/preferences.xhtml");
+	},
+
+	disable : function() {
+		var statusBarImg = document.getElementById("foxtrick-status-bar-img");
+		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+		Foxtrick.updateStatus();
+		FoxtrickMain.init();
+	}
 };
-
-
-
-
-

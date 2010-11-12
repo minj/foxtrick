@@ -6,7 +6,7 @@
  * functions for retrieving page-specific information, and serve like libraries.
  *
  * Hence they only need to be included in foxtrick.xul, not needed to include
- * in foxtrick-preferences-dialog.xul.
+ * in foxtrick-preferences.xhtml.
  *
  * Furthermore, since the functions here are page-specific, generally speaking
  * their first arguments need to be `doc'.

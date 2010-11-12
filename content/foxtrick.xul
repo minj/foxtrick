@@ -164,21 +164,21 @@
 
 <!-- Mozilla Tools menu -->
 <menupopup id="taskPopup">
-	<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPreferencesDialog.show();"/>
+	<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPrefs.show();"/>
 </menupopup>
 
 <!-- Firefox Tools menu -->
 <menupopup id="menu_ToolsPopup">
 	<menu id="hattricktools_menu" label="Hattrick">
 		<menupopup id="hattricktools_menupopup">
-			<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPreferencesDialog.show();"/>
+			<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPrefs.show();"/>
 		</menupopup>
 	</menu>
 </menupopup>
 
 <!-- browser toolbar palette -->
 <toolbarpalette id="BrowserToolbarPalette">
-	<toolbarbutton id="foxtrick-toolbar-preferences" class="toolbarbutton-1" label="FoxTrick" oncommand="FoxtrickPreferencesDialog.show();"/>
+	<toolbarbutton id="foxtrick-toolbar-preferences" class="toolbarbutton-1" label="FoxTrick" oncommand="FoxtrickPrefs.show();"/>
 </toolbarpalette>
 
 <!-- popup menu -->
@@ -193,12 +193,12 @@
 	<statusbarpanel	id="foxtrick-status-bar-image" context="foxtrick-status-bar-menu">
 		<image id="foxtrick-status-bar-img"
 			onload="Foxtrick.setStatusIconStyle(event);"
-			onclick="FoxtrickPreferencesDialog.show(event.button);"
+			onclick="if (!event.button) FoxtrickPrefs.show();"
 		/>
 	</statusbarpanel>
 	<menupopup id="foxtrick-status-bar-menu">
-		<menuitem id="foxtrick-status-bar-preferences" oncommand="FoxtrickPreferencesDialog.show();"/>
-		<menuitem id="foxtrick-status-bar-deactivate" oncommand="FoxtrickPreferencesDialog.deactivate();" type="checkbox" autocheck="true"/>
+		<menuitem id="foxtrick-status-bar-preferences" oncommand="FoxtrickPrefs.show();"/>
+		<menuitem id="foxtrick-status-bar-deactivate" oncommand="FoxtrickPrefs.disable();" type="checkbox" autocheck="true"/>
    </menupopup>
 </statusbar>
 </overlay>

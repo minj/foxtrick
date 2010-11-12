@@ -10,7 +10,7 @@
                    em:creator="Karel Kolman"
                    em:homepageURL="http://ht-foxtrick.com/"
                    em:iconURL="chrome://foxtrick/skin/icon.png"
-                   em:optionsURL="chrome://foxtrick/content/preferences-dialog.xul"
+                   em:optionsURL="chrome://foxtrick/content/preferences.xhtml"
                    em:updateURL="http://downloads.mozdev.org/foxtrick/update-beta-mozdev.rdf"
                    em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2HU/mI1TH3yEthsle//gOPoHtHDUSOp5vcoE/weq+rZixwGJgp+5ZBYDLo/XF/mmFuBzusiwoAXkX4dnpdlDeUIG3e1ej92Ivkii0wO3kc6JCfKlbigE06voYgmX4nhq3gipAcgyTnaGwlppevolslNB9uAryVhEQ341Gm+6cHwIDAQAB">
     <em:targetApplication RDF:resource="rdf:#$TfQfX1"/>
