@@ -90,17 +90,37 @@ div#panes
 	overflow-y: auto;
 }
 
-#balloon
+#fixed
 {
 	position: fixed;
 	right: 20px;
 	top: 20px;
+}
+
+#balloon
+{
 	padding: 10px;
 	border: 1px solid #ccc;
 	background-color: #aaa;
+	float: right;
 }
 
 #save
 {
 	font-weight: bold;
+}
+
+#note
+{
+	display: none;
+	cursor: pointer;
+	position: relative;
+	z-index: 10;
+	top: 20px;
+	right: 20px;
+	font-size: 250%;
+	font-weight: bold;
+	padding: 40px;
+	color: #b3b3b3;
+	background-color: #7da;
 }

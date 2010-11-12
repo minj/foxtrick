@@ -17,6 +17,7 @@ function initCoreModules()
 function initListeners()
 {
 	$("#save").click(function() { save(); });
+	$("#note").click(function() { $(this).hide("slow"); });
 }
 
 function initTabs()
@@ -394,4 +395,12 @@ function save()
 		else
 			FoxtrickPrefs.setModuleEnableState(module, $(this).is(":checked"));
 	});
+
+	notice("Preferences saved!");
+}
+
+function notice(msg)
+{
+	$("#note").text(msg);
+	$("#note").show("slow");
 }
