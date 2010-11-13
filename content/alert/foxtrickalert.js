@@ -69,10 +69,9 @@ var FoxtrickAlert = {
 		message = menu.getElementsByTagName('a')[0].getElementsByTagName('span')[0];
 		if (message && Foxtrick.isModuleFeatureEnabled( this, "NewMail" ) ) {
 				var num_message = parseInt(message.innerHTML.replace(/\(|\)/g,''));
-				Foxtrick.dump(message.innerHTML+' num_message '+num_message +' last_num_message: '+ FoxtrickAlert.last_num_message+'\n');
 				if (num_message > FoxtrickAlert.last_num_message) {
 					var message = String(parseInt(num_message-FoxtrickAlert.last_num_message))+' '+Foxtrickl10n.getString( "foxtrick.newmailtoyou");
-					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/MyHattrick/Inbox/Default.aspx"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
+					FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/MyHattrick/Inbox/Default.aspx"});
 				}
 				FoxtrickAlert.last_num_message = num_message;
 			}
@@ -83,7 +82,7 @@ var FoxtrickAlert = {
 		if (numforum && Foxtrick.isModuleFeatureEnabled( this, "NewForum" )) {
 			if (numforum > FoxtrickAlert.last_num_forum && doc.location.pathname.search(/\/Forum\/Default.aspx/)==-1) {
 				var message = String(parseInt(numforum-FoxtrickAlert.last_num_forum))+' '+Foxtrickl10n.getString( "foxtrick.newforumtoyou");
-				FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/Forum/Default.aspx?actionType=refresh"});Foxtrick.dump('->add MailAlert to list. in list:'+FoxtrickAlert.ALERTS.length+'\n');
+				FoxtrickAlert.ALERTS.push({'message':message,'href':'http://'+doc.location.hostname + "/Forum/Default.aspx?actionType=refresh"});
 			}
 			FoxtrickAlert.last_num_forum = numforum;
 		}
@@ -168,7 +167,6 @@ var FoxtrickAlert = {
 				var url = FoxtrickAlertCustomOff.urls[i];
 				//Foxtrick.dump('try '+url+' '+href.search(url)+' '+ FoxtrickAlertCustomOff.OPTIONS[i] +' '+Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomOff, FoxtrickAlertCustomOff.OPTIONS[i])+'\n');
 				if (href.search(url) != -1 && Foxtrick.isModuleFeatureEnabled( FoxtrickAlertCustomOff, FoxtrickAlertCustomOff.OPTIONS[i])) {
-					Foxtrick.dump('dont show '+url+' '+ FoxtrickAlertCustomOff.OPTIONS[i] +'\n');
 					FoxtrickAlert.foxtrick_showAlert(true); // show next
 					return;
 				}
@@ -215,30 +213,30 @@ var FoxtrickAlert = {
 		var clickable = true;
         var listener = { observe:
                 function(subject, topic, data) {
-                    try{ Foxtrick.dump('callback: '+topic+'\n');
+                    try {
 						if (topic=="alertclickcallback") {
-							Foxtrick.dump('alertclickcallback:' +'link to: '+data+'\n');
 							Foxtrick.openAndReuseOneTabPerURL(href,true);
 						}
 						if (topic=="alertfinished") {
 							FoxtrickAlert.foxtrick_showAlert(true);
 						}
-					} catch(e){Foxtrick.dump('alertcallback: '+e+'\n');}
+					}
+					catch (e) {
+						Foxtrick.dumpError(e);
+					}
                 }
 		};
 
 		try {
-                FoxtrickAlert.alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
-                FoxtrickAlert.alertWin.showAlertNotification(img, title, message, clickable, href, listener);
-				Foxtrick.dump('ticker: using alerts-service\n');
+            FoxtrickAlert.alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
+            FoxtrickAlert.alertWin.showAlertNotification(img, title, message, clickable, href, listener);
 		} catch (e) {
-                // fix for when alerts-service is not available (e.g. SUSE)
-                FoxtrickAlert.alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-                    .getService(Components.interfaces.nsIWindowWatcher)
-                    .openWindow(null, "chrome://global/content/alerts/alert.xul",
-                                "_blank", "chrome,titlebar=no,popup=yes", null);
-                FoxtrickAlert.alertWin.arguments = [img, "www.hattrick.org", message, clickable, href,0,listener];
-				Foxtrick.dump('ticker: using fallback alert.xul\n');
+            // fix for when alerts-service is not available (e.g. SUSE)
+            FoxtrickAlert.alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+                .getService(Components.interfaces.nsIWindowWatcher)
+                .openWindow(null, "chrome://global/content/alerts/alert.xul",
+                            "_blank", "chrome,titlebar=no,popup=yes", null);
+            FoxtrickAlert.alertWin.arguments = [img, "www.hattrick.org", message, clickable, href,0,listener];
         }
     } catch (e) {
             Foxtrick.dump('foxtrick_showAlert_std'+e);
