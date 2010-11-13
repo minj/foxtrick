@@ -395,7 +395,7 @@ function save()
 				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(this)[0].value);
 		}
 		else if ($(this).is(":radio")) {
-			 if ($(this).is(":checked"))
+			if ($(this).is(":checked"))
 			 	FoxtrickPrefs.setModuleValue(module, $(this).attr("value"));
 		}
 		else
