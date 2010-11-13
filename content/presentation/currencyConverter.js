@@ -38,10 +38,9 @@ FoxtrickCurrencyConverter = {
 	},
 
     run : function(page, doc) {
-		if ( doc.location.href.search(/Forum/i) != -1 ) return;
-		//if ( doc.location.href.search(/Forum/i) != -1 || doc.location.href.search(/\/Club\/ClassicYouth\/Default\.aspx/i) != -1 ) return;
-
-		/*CURRENCY TYPE AND RATE*/
+    	// don't run on forum pages, don't run if nothing to change
+		if (doc.location.href.search(/Forum/i) != -1 || Foxtrick.util.currency.getCode() == FoxtrickPrefs.getString("htCurrencyTo"))
+			return;
 
 		var oldSymbol = Foxtrick.util.currency.getSymbol(); //currencysymbol which in the your country
 		var oldLength = oldSymbol.length;
