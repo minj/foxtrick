@@ -313,8 +313,10 @@ function getModule(module)
 			var radio = document.createElement("input");
 			radio.type = "radio";
 			radio.name = entry.id + "-radio";
+			radio.value = i;
+			radio.setAttribute("module", module.MODULE_NAME);
 			if (selectedValue == i) {
-				radio.setAttribute("selected", "selected");
+				radio.setAttribute("checked", "checked");
 			}
 			label.appendChild(radio);
 			label.appendChild(document.createTextNode(
@@ -391,6 +393,10 @@ function save()
 				FoxtrickPrefs.setModuleEnableState(module + "." + option, $(this).is(":checked"));
 			else if ($(this).is(":input"))
 				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(this)[0].value);
+		}
+		else if ($(this).is(":radio")) {
+			 if ($(this).is(":checked"))
+			 	FoxtrickPrefs.setModuleValue(module, $(this).attr("value"));
 		}
 		else
 			FoxtrickPrefs.setModuleEnableState(module, $(this).is(":checked"));
