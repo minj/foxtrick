@@ -52,7 +52,7 @@
 	<currency code="KZT" symbol="Tenge" name="Tenge (Kazakhstan)" eurorate="0.01" />
 	<currency code="KES" symbol="KES" name="KES (Kenyan shilling)" eurorate="0.05" />
 	<currency code="KWD" symbol="dinar" name="Dinar (Kuwaiti dinar)" eurorate="2.5" />
-	<currency code="KGS" symbol="Som" name="Som (Kyrgyzstani som)" eurorate="0.02" />
+	<currency code="KGS" symbol="som" name="Som (Kyrgyzstani som)" eurorate="0.02" />
 	<currency code="LVL" symbol="Lats" name="Lats (Latvian lat)" eurorate="2" />
 	<currency code="LTL" symbol="Lt" name="Lt (Lithuanian litas)" eurorate="0.25" />
 	<currency code="LBP" symbol="000 LBP" name="LL (Lebanese pound)" eurorate="0.5" />
