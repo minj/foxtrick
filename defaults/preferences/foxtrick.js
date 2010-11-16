@@ -85,7 +85,6 @@ pref("extensions.foxtrick.prefs.module.SimplePresentation.HideUnseenMatchesPanel
 pref("extensions.foxtrick.prefs.module.ForumPresentation.HideFlagsInForumHeader.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.HideLeagueInForumHeader.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Spoiler_reveal.enabled", false);
-pref("extensions.foxtrick.prefs.module.ForumPresentation.hideForumNotificationBox.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_NewPostsInBracket.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Icons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Grey_Icons.enabled", false);
