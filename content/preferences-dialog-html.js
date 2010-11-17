@@ -318,7 +318,7 @@ var FoxtrickPrefsDialogHTML = {
 			//Currency Converter
 			if (doc.getElementById("CurrencyConverter"))
 				FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("CurrencyConverter").checked);
-			FoxtrickPrefs.setString("htCurrencyTo", doc.getElementById("htCurrencyTo").value);
+			FoxtrickPrefs.setString("module.CurrencyConverter.to", doc.getElementById("htCurrencyTo").value);
 
 			//Statusbar
 			FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
@@ -554,7 +554,7 @@ var FoxtrickPrefsDialogHTML = {
 			td.setAttribute('style',"width:260px");
 			tr.appendChild(td);
 			td.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.captionCurrencySymbolTo")));
-			var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("htCurrencyTo"));
+			var selectbox = Foxtrick.getSelectBoxFromXML2(doc,Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", FoxtrickPrefs.getString("module.CurrencyConverter.to"));
 			selectbox.setAttribute("id","htCurrencyTo");
 			td.appendChild(selectbox);
 

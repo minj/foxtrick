@@ -13,7 +13,7 @@ FoxtrickCurrencyConverter = {
 
 	OPTION_FUNC : function(doc) {
 		var currencySelect = doc.createElement("select");
-		currencySelect.setAttribute("pref", "htCurrencyTo");
+		currencySelect.setAttribute("pref", "module.CurrencyConverter.to");
 		var currencies = [];
 		var htCurrencyXml = doc.implementation.createDocument("", "", null);
 		htCurrencyXml.async = false;
@@ -25,7 +25,7 @@ FoxtrickCurrencyConverter = {
 			currencies.push({ code: code, desc : desc });
 		}
 		currencies.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-		const selectedCurrencyTo = FoxtrickPrefs.getString("htCurrencyTo");
+		const selectedCurrencyTo = FoxtrickPrefs.getString("module.CurrencyConverter.to");
 		for (var i in currencies) {
 			var item = doc.createElement("option");
 			item.value = currencies[i].code;
@@ -39,14 +39,14 @@ FoxtrickCurrencyConverter = {
 
     run : function(page, doc) {
     	// don't run on forum pages, don't run if nothing to change
-		if (doc.location.href.search(/Forum/i) != -1 || Foxtrick.util.currency.getCode() == FoxtrickPrefs.getString("htCurrencyTo"))
+		if (doc.location.href.search(/Forum/i) != -1 || Foxtrick.util.currency.getCode() == FoxtrickPrefs.getString("module.CurrencyConverter.to"))
 			return;
 
 		var oldSymbol = Foxtrick.util.currency.getSymbol(); //currencysymbol which in the your country
 		var oldLength = oldSymbol.length;
 		var oldRate = Foxtrick.util.currency.getRate();
 
-		var code = FoxtrickPrefs.getString("htCurrencyTo");
+		var code = FoxtrickPrefs.getString("module.CurrencyConverter.to");
 		var symbol = Foxtrick.util.currency.getSymbolByCode(code);
 		var rate = Foxtrick.util.currency.getRateByCode(code);
 

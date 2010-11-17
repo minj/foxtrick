@@ -3,9 +3,9 @@ pref("extensions.foxtrick.prefs.oldVersion", "0.4.9"); // don't change!! (unless
 pref("extensions.foxtrick.prefs.HTURL", "^http:\/\/(www\d\d|www|wwwxx|stage)\.hattrick\.(org|ws|interia\.pl)\/");
 pref("extensions.foxtrick.prefs.htLanguage", "en");
 pref("extensions.foxtrick.prefs.htCurrency", "EUR");
-pref("extensions.foxtrick.prefs.htCurrencyTo", "EUR");
 pref("extensions.foxtrick.prefs.htDateformat", "ddmmyyyy");
 pref("extensions.foxtrick.prefs.htCountry", "Sweden");
+pref("extensions.foxtrick.prefs.module.CurrencyConverter.to", "EUR");
 pref("extensions.foxtrick.prefs.module.HTDateFormat.LocalSaison.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtendedPlayerDetails.value", 0);
 pref("extensions.foxtrick.prefs.statusbarshow", true);
