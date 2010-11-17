@@ -55,10 +55,10 @@ var FoxtrickConfirmActions = {
 								.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
 								.split("").reverse().join("");
 							var msg = msgTemplate.replace(/\%s/, price);
-							var confirm = Foxtrick.Note.create(doc, FoxtrickConfirmActions.BID.CONFIRM_ID, msg,
+							var confirm = Foxtrick.util.note.create(doc, FoxtrickConfirmActions.BID.CONFIRM_ID, msg,
 								[
 									{
-										type : Foxtrick.Note.BUTTON_OK,
+										type : Foxtrick.util.note.BUTTON_OK,
 										listener : function(ev) {
 											var doc = ev.target.ownerDocument;
 											var bidText = doc.getElementById(FoxtrickConfirmActions.BID.TEXT_ID);
@@ -68,7 +68,7 @@ var FoxtrickConfirmActions = {
 										}
 									},
 									{
-										type : Foxtrick.Note.BUTTON_CANCEL,
+										type : Foxtrick.util.note.BUTTON_CANCEL,
 										listener : function(ev) {
 											var doc = ev.target.ownerDocument;
 											var bidButton = doc.getElementById(FoxtrickConfirmActions.BID.BUTTON_ID);
@@ -104,10 +104,10 @@ var FoxtrickConfirmActions = {
 								.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
 								.split("").reverse().join("");
 							var msg = msgTemplate.replace(/\%s/, price);
-							var confirm = Foxtrick.Note.create(doc, FoxtrickConfirmActions.SELL.CONFIRM_ID, msg,
+							var confirm = Foxtrick.util.note.create(doc, FoxtrickConfirmActions.SELL.CONFIRM_ID, msg,
 								[
 									{
-										type : Foxtrick.Note.BUTTON_OK,
+										type : Foxtrick.util.note.BUTTON_OK,
 										listener : function(ev) {
 											var doc = ev.target.ownerDocument;
 											var sellText = doc.getElementById(FoxtrickConfirmActions.SELL.TEXT_ID);
@@ -117,7 +117,7 @@ var FoxtrickConfirmActions = {
 										}
 									},
 									{
-										type : Foxtrick.Note.BUTTON_CANCEL,
+										type : Foxtrick.util.note.BUTTON_CANCEL,
 										listener : function(ev) {
 											var doc = ev.target.ownerDocument;
 											var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
@@ -178,10 +178,10 @@ var FoxtrickConfirmActions = {
 									msgTemplate = Foxtrickl10n.getString("foxtrick.staffconfirmationsack");
 								}
 								var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
-								var confirm = Foxtrick.Note.create(doc, FoxtrickConfirmActions.STAFF.CONFIRM_ID, msg,
+								var confirm = Foxtrick.util.note.create(doc, FoxtrickConfirmActions.STAFF.CONFIRM_ID, msg,
 									[
 										{
-											type : Foxtrick.Note.BUTTON_OK,
+											type : Foxtrick.util.note.BUTTON_OK,
 											listener : function(ev) {
 												var doc = ev.target.ownerDocument;
 												var actionSelect = doc.getElementById(FoxtrickConfirmActions.STAFF.ACTION_SELECT_ID);
@@ -196,7 +196,7 @@ var FoxtrickConfirmActions = {
 											}
 										},
 										{
-											type : Foxtrick.Note.BUTTON_CANCEL,
+											type : Foxtrick.util.note.BUTTON_CANCEL,
 											listener : function(ev) {
 												var doc = ev.target.ownerDocument;
 												var submitButton = doc.getElementById(FoxtrickConfirmActions.STAFF.SUBMIT_BUTTON_ID);

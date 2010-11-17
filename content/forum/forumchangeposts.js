@@ -620,7 +620,7 @@ var FoxtrickForumChangePosts = {
 		}
 		var insertBefore = ev.target.parentNode.parentNode.parentNode.parentNode; // cfWrapper
 		Foxtrick.copyStringToClipboard("[post="+PostID+"]");
-		var note = Foxtrick.Note.add(doc, insertBefore, "ft-post-id-copy-note-" + PostID.replace(/\D/g, "-"),
+		var note = Foxtrick.util.note.add(doc, insertBefore, "ft-post-id-copy-note-" + PostID.replace(/\D/g, "-"),
 			Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", PostID),
 			null, true);
 	},
@@ -857,7 +857,7 @@ var FoxtrickForumChangePosts = {
 			if (copy_style=='ht-ml') message+='[/q]';
 
 			Foxtrick.copyStringToClipboard(headstr+message);
-			var note = Foxtrick.Note.add(doc, insertBefore, "ft-posting-copy-note-" + post_id1.replace(/\D/, "-"),
+			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-posting-copy-note-" + post_id1.replace(/\D/, "-"),
 				Foxtrickl10n.getString("foxtrick.tweaks.postingcopied").replace("%s", post_id1),
 				null, true);
 		} catch(e){ Foxtrick.dumpError(e);}

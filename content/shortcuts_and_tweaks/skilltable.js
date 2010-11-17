@@ -835,7 +835,7 @@ var FoxtrickSkillTable = {
 			var table = doc.getElementsByClassName("ft_skilltable")[0];
 			Foxtrick.copyStringToClipboard(FoxtrickSkillTable.toHtMl(table));
 
-			var note = Foxtrick.Note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.skilltablecopied"), null, true);
+			var note = Foxtrick.util.note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.skilltablecopied"), null, true);
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);

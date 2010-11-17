@@ -1,17 +1,20 @@
 /* note.js
- * Foxtrick.Note used for creating FoxTrick notes.
+ * Foxtrick.util.note used for creating FoxTrick notes.
  * @author ryanli
  */
-if (!Foxtrick) var Foxtrick = {};
-Foxtrick.Note = {
+
+if (!Foxtrick) Foxtrick = {};
+if (!Foxtrick.util) Foxtrick.util = {};
+
+Foxtrick.util.note = {
 	BUTTON_OK : { name : "button.ok" },
 	// BUTTON_CANCEL has a default event listener to remove the note if
 	// listener/onClick parameters are not passed
 	BUTTON_CANCEL : { name : "button.cancel" },
 
-	/* Foxtrick.Note.add
+	/* Foxtrick.util.note.add
 	 * add a FoxTrick note to current page and turn to it
-	 * Foxtrick.Note.create
+	 * Foxtrick.util.note.create
 	 * returns a FoxTrick note for confirmation or other uses
 	 *
 	 * they share the same parameters:
@@ -24,7 +27,7 @@ Foxtrick.Note = {
 	 *     format:
 	 *     [
 	 *         {
-	 *             type: Foxtrick.Note.BUTTON_XXX,
+	 *             type: Foxtrick.util.note.BUTTON_XXX,
 	 *             listener: function() { ... },
 	 *             // if listener is not specified, we will use onclick instead
 	 *             onClick: "..."

@@ -73,7 +73,7 @@ var FoxtrickReadHtPrefs = {
 					Foxtrickl10n.get_strings_bundle(newLang);
 					var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
 					var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
-					Foxtrick.Note.add(doc, null, "ft-language-changed", msg, null, true, true);
+					Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
 				}
 			}
 			else {

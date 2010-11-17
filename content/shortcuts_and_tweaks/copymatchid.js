@@ -93,7 +93,7 @@ var FoxtrickCopyMatchID = {
 		var matchid = ev.target.parentNode.getAttribute("matchid");
 		var insertBefore = doc.getElementsByTagName('h1')[0];
 		Foxtrick.copyStringToClipboard(matchid);
-		var note = Foxtrick.Note.add(doc, insertBefore, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true, true);
+		var note = Foxtrick.util.note.add(doc, insertBefore, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true, true);
 	} catch(e){Foxtrick.dumpError(e);}
 	}
 };

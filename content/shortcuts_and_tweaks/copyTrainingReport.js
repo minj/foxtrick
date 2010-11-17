@@ -112,7 +112,7 @@ var FoxtrickCopyTrainingReport = {
 					while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 					var insertBefore = doc.getElementsByTagName('h1')[0];
 					Foxtrick.copyStringToClipboard(plain);
-					var note = Foxtrick.Note.add(doc, insertBefore, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.trainingreportcopied"), null, true);
+					var note = Foxtrick.util.note.add(doc, insertBefore, "ft-training-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.trainingreportcopied"), null, true);
 				}
 			}
 			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
@@ -245,7 +245,7 @@ var FoxtrickCopyScoutReport = {
 
 				var insertBefore = doc.getElementsByTagName('h1')[0];
 				Foxtrick.copyStringToClipboard(plain);
-				var note = Foxtrick.Note.add(doc, insertBefore, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.scoutreportcopied"), null, true);
+				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.scoutreportcopied"), null, true);
 
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
@@ -335,7 +335,7 @@ var FoxtrickCopyPlayerSource = {
 
 			var insertBefore = doc.getElementsByTagName('h1')[0];
 			Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
-			var note = Foxtrick.Note.add(doc, insertBefore, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
+			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
 
 			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 						var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
