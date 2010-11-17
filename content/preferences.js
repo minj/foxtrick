@@ -43,14 +43,9 @@ function initTextAndValues()
 {
 	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
 	// initialize text
-	$("body [text]").each(function() {
-		if ($(this).attr("text"))
-			$(this).text(Foxtrickl10n.getString($(this).attr("text")));
-	});
-	// jQuery doesn't select <a>s with the code above, so adding this:
-	$("#tabs li a").each(function() {
-		if ($(this).attr("text"))
-			$(this).text(Foxtrickl10n.getString($(this).attr("text")));
+	$("body [text-key]").each(function() {
+		if ($(this).attr("text-key"))
+			$(this).text(Foxtrickl10n.getString($(this).attr("text-key")));
 	});
 	// initialize checkboxes
 	$("body input:checkbox[pref]").each(function() {

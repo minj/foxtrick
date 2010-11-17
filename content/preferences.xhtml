@@ -146,112 +146,112 @@
 	<title>FoxTrick Preferences</title>
 </head>
 <body onload="init();">
-<h1 id="title" text="foxtrick.prefs.preferences"></h1>
+<h1 id="title" text-key="foxtrick.prefs.preferences"></h1>
 
 <ul id="tabs">
-<li id="tab-main"><a text="foxtrick.prefs.MainTab"></a></li>
-<li id="tab-shortcuts"><a text="foxtrick.prefs.ShortcutsTab"></a></li>
-<li id="tab-presentation"><a text="foxtrick.prefs.PresentationTab"></a></li>
-<li id="tab-matches"><a text="foxtrick.prefs.MatchesTab"></a></li>
-<li id="tab-forum"><a text="foxtrick.prefs.ForumTab"></a></li>
-<li id="tab-links"><a text="foxtrick.prefs.LinksTab"></a></li>
-<li id="tab-alert"><a text="foxtrick.prefs.AlertTab"></a></li>
-<li id="tab-changes"><a text="foxtrick.prefs.ChangesTab"></a></li>
-<li id="tab-help"><a text="foxtrick.prefs.HelpTab"></a></li>
-<li id="tab-about"><a text="foxtrick.prefs.AboutTab"></a></li>
+<li id="tab-main"><a text-key="foxtrick.prefs.MainTab"></a></li>
+<li id="tab-shortcuts"><a text-key="foxtrick.prefs.ShortcutsTab"></a></li>
+<li id="tab-presentation"><a text-key="foxtrick.prefs.PresentationTab"></a></li>
+<li id="tab-matches"><a text-key="foxtrick.prefs.MatchesTab"></a></li>
+<li id="tab-forum"><a text-key="foxtrick.prefs.ForumTab"></a></li>
+<li id="tab-links"><a text-key="foxtrick.prefs.LinksTab"></a></li>
+<li id="tab-alert"><a text-key="foxtrick.prefs.AlertTab"></a></li>
+<li id="tab-changes"><a text-key="foxtrick.prefs.ChangesTab"></a></li>
+<li id="tab-help"><a text-key="foxtrick.prefs.HelpTab"></a></li>
+<li id="tab-about"><a text-key="foxtrick.prefs.AboutTab"></a></li>
 </ul>
 
 <div id="panes">
 <div id="pane-main">
 	<div class="module"><!-- ReadHtPrefs -->
-		<h3 id="pref-read-ht-prefs-title" text="foxtrick.prefs.basicPreferences"></h3>
+		<h3 id="pref-read-ht-prefs-title" text-key="foxtrick.prefs.basicPreferences"></h3>
 		<input type="checkbox" id="pref-read-ht-prefs" pref="module.ReadHtPrefs.enabled" />
-		<label id="pref-read-ht-prefs-label" for="pref-read-ht-prefs" text="foxtrick.ReadHtPrefs.desc"></label>
+		<label id="pref-read-ht-prefs-label" for="pref-read-ht-prefs" text-key="foxtrick.ReadHtPrefs.desc"></label>
 		<table>
 			<tr>
-				<td><label id="pref-read-language-label" for="pref-read-language" text="foxtrick.prefs.captionHTLanguage"></label></td>
+				<td><label id="pref-read-language-label" for="pref-read-language" text-key="foxtrick.prefs.captionHTLanguage"></label></td>
 				<td><select id="pref-read-language" pref="htLanguage" blocked-by="pref-read-ht-prefs"></select></td>
 			</tr>
 			<tr>
-				<td><label id="pref-read-country-label" for="pref-read-country" text="foxtrick.prefs.captionHTCountry"></label></td>
+				<td><label id="pref-read-country-label" for="pref-read-country" text-key="foxtrick.prefs.captionHTCountry"></label></td>
 				<td><select id="pref-read-country" pref="htCountry" blocked-by="pref-read-ht-prefs"></select></td>
 			</tr>
 			<tr>
-				<td><label id="pref-read-currency-label" for="pref-read-currency" text="foxtrick.prefs.captionHTCurrency"></label></td>
+				<td><label id="pref-read-currency-label" for="pref-read-currency" text-key="foxtrick.prefs.captionHTCurrency"></label></td>
 				<td><select id="pref-read-currency" pref="htCurrency" blocked-by="pref-read-ht-prefs"></select></td>
 			</tr>
 			<tr>
-				<td><label id="pref-read-date-format-label" for="pref-read-date-format" text="foxtrick.prefs.captionHTDateformat"></label></td>
+				<td><label id="pref-read-date-format-label" for="pref-read-date-format" text-key="foxtrick.prefs.captionHTDateformat"></label></td>
 				<td><select id="pref-read-date-format" pref="htDateformat" blocked-by="pref-read-ht-prefs"></select></td>
 			</tr>
 		</table>
 	</div><!-- ReadHtPrefs -->
 	<div class="module"><!-- LoadSavePrefs -->
-		<h3 id="pref-load-save-title" text="foxtrick.prefs.captionLoadSavePrefs"></h3>
-		<h4 id="pref-save" text="foxtrick.prefs.labelSavePrefs"></h4>
+		<h3 id="pref-load-save-title" text-key="foxtrick.prefs.captionLoadSavePrefs"></h3>
+		<h4 id="pref-save" text-key="foxtrick.prefs.labelSavePrefs"></h4>
 		<div>
 			<ul>
 				<li>
 					<input type="checkbox" id="pref-save-pref" pref="SavePrefs_Prefs" />
-					<label id="pref-save-pref-label" for="pref-save-pref" text="foxtrick.prefs.labelSavePrefs_Prefs"></label>
+					<label id="pref-save-pref-label" for="pref-save-pref" text-key="foxtrick.prefs.labelSavePrefs_Prefs"></label>
 				</li>
 				<li>
 					<input type="checkbox" id="pref-save-data" pref="SavePrefs_Notes" />
-					<label id="pref-save-data-label" for="pref-save-data" text="foxtrick.prefs.labelSavePrefs_Notes"></label>
+					<label id="pref-save-data-label" for="pref-save-data" text-key="foxtrick.prefs.labelSavePrefs_Notes"></label>
 				</li>
 			</ul>
-			<button id="pref-save-do" text="foxtrick.prefs.buttonSavePrefs"></button>
+			<button id="pref-save-do" text-key="foxtrick.prefs.buttonSavePrefs"></button>
 		</div>
-		<h4 id="pref-load" text="foxtrick.prefs.labelLoadPrefs"></h4>
+		<h4 id="pref-load" text-key="foxtrick.prefs.labelLoadPrefs"></h4>
 		<div>
-			<button id="pref-load-do" text="foxtrick.prefs.buttonLoadPrefs"></button>
+			<button id="pref-load-do" text-key="foxtrick.prefs.buttonLoadPrefs"></button>
 		</div>
 	</div><!-- LoadSavePrefs -->
 	<div class="module"><!-- StoredPrefs -->
-		<h3 id="pref-stored-title" text="foxtrick.prefs.captionCleanupBranch"></h3>
+		<h3 id="pref-stored-title" text-key="foxtrick.prefs.captionCleanupBranch"></h3>
 		<table>
 			<tr>
-				<td><label id="pref-stored-restore-label" text="foxtrick.prefs.labelCleanupBranch"></label></td>
-				<td><button id="pref-stored-restore" text="foxtrick.prefs.buttonCleanupBranch"></button></td>
+				<td><label id="pref-stored-restore-label" text-key="foxtrick.prefs.labelCleanupBranch"></label></td>
+				<td><button id="pref-stored-restore" text-key="foxtrick.prefs.buttonCleanupBranch"></button></td>
 			</tr>
 			<tr>
-				<td><label id="pref-stored-disable-label" text="foxtrick.prefs.labelDisableAll"></label></td>
-				<td><button id="pref-stored-disable" text="foxtrick.prefs.buttonDisableAll"></button></td>
+				<td><label id="pref-stored-disable-label" text-key="foxtrick.prefs.labelDisableAll"></label></td>
+				<td><button id="pref-stored-disable" text-key="foxtrick.prefs.buttonDisableAll"></button></td>
 			</tr>
 		</table>
 	</div><!-- StoredPrefs -->
 	<div class="module"><!-- disable -->
-		<h3 id="pref-disable-title" text="foxtrick.prefs.captionDisableSettings"></h3>
+		<h3 id="pref-disable-title" text-key="foxtrick.prefs.captionDisableSettings"></h3>
 		<ul>
 			<li>
 				<input type="checkbox" id="pref-disable-on-stage" pref="disableOnStage" />
-				<label id="pref-disable-on-stage-label" for="pref-disable-on-stage" text="foxtrick.prefs.stagepref"></label>
+				<label id="pref-disable-on-stage-label" for="pref-disable-on-stage" text-key="foxtrick.prefs.stagepref"></label>
 			</li>
 			<li>
 				<input type="checkbox" id="pref-disable-temporarily" pref="disableTemporary" />
-				<label id="pref-disable-temporarily-label" for="pref-disable-temporarily" text="foxtrick.prefs.disableTemporaryLabel"></label>
+				<label id="pref-disable-temporarily-label" for="pref-disable-temporarily" text-key="foxtrick.prefs.disableTemporaryLabel"></label>
 			</li>
 		</ul>
 	</div><!-- disable -->
 	<div class="module"><!-- status bar icon -->
-		<h3 id="pref-status-bar-icon-title" text="foxtrick.prefs.captionShowOnStatusBar"></h3>
+		<h3 id="pref-status-bar-icon-title" text-key="foxtrick.prefs.captionShowOnStatusBar"></h3>
 		<input type="checkbox" id="pref-status-bar-icon" pref="statusbarshow" />
-		<label id="pref-status-bar-icon-label" for="pref-status-bar-icon" text="foxtrick.prefs.statusbarpref"></label>
+		<label id="pref-status-bar-icon-label" for="pref-status-bar-icon" text-key="foxtrick.prefs.statusbarpref"></label>
 	</div><!-- status bar icon -->
 	<div class="module"><!-- additional -->
-		<h3 id="pref-additional-title" text="foxtrick.prefs.AdditionalOptions"></h3>
+		<h3 id="pref-additional-title" text-key="foxtrick.prefs.AdditionalOptions"></h3>
 		<ul>
 			<li>
 				<input type="checkbox" id="pref-header-icon" pref="smallcopyicons" />
-				<label id="pref-header-icon-label" for="pref-header-icon" text="foxtrick.prefs.smallcopyicons"></label>
+				<label id="pref-header-icon-label" for="pref-header-icon" text-key="foxtrick.prefs.smallcopyicons"></label>
 			</li>
 			<li>
 				<input type="checkbox" id="pref-on-page-prefs" pref="module.OnPagePrefs.enabled" />
-				<label id="pref-on-page-prefs-label" for="pref-on-page-prefs" text="foxtrick.OnPagePrefs.desc"></label>
+				<label id="pref-on-page-prefs-label" for="pref-on-page-prefs" text-key="foxtrick.OnPagePrefs.desc"></label>
 			</li>
 			<li>
 				<input type="checkbox" id="pref-debug-info" pref="DisplayHTMLDebugOutput" />
-				<label id="pref-debug-info-label" for="pref-debug-info" text="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
+				<label id="pref-debug-info-label" for="pref-debug-info" text-key="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
 			</li>
 		</ul>
 	</div>
@@ -265,33 +265,33 @@
 <div id="pane-changes"></div>
 <div id="pane-help">
 	<div class="module">
-		<h3 text="foxtrick.prefs.links"></h3>
+		<h3 text-key="foxtrick.prefs.links"></h3>
 		<ul id="external-links-list"></ul>
 	</div>
 	<div class="module">
-		<h3 text="StyleTutorial.title"></h3>
+		<h3 text-key="StyleTutorial.title"></h3>
 		<p id="style-tutorial-text"></p>
 	</div>
 </div>
 <div id="pane-about">
 	<div class="module">
-		<h3 text="about.headDevelopers"></h3>
+		<h3 text-key="about.headDevelopers"></h3>
 		<ul id="about-head-developers" class="about-list" path="about/head_developers/head_developer"></ul>
 	</div>
 	<div class="module">
-		<h3 text="about.projectOwners"></h3>
+		<h3 text-key="about.projectOwners"></h3>
 		<ul id="about-project-owners" class="about-list" path="about/project_owners/project_owner"></ul>
 	</div>
 	<div class="module">
-		<h3 text="about.developers"></h3>
+		<h3 text-key="about.developers"></h3>
 		<ul id="about-developers" class="about-list" path="about/developers/developer"></ul>
 	</div>
 	<div class="module">
-		<h3 text="about.translators"></h3>
+		<h3 text-key="about.translators"></h3>
 		<ul id="about-translators" class="about-list" path="about/translations/translation"></ul>
 	</div>
 	<div class="module">
-		<h3 text="about.designers"></h3>
+		<h3 text-key="about.designers"></h3>
 		<ul id="about-designers" class="about-list" path="about/graphics/designer"></ul>
 	</div>
 </div>
@@ -299,8 +299,8 @@
 
 <div id="fixed">
 	<div id="balloon">
-		<button id="save" text="foxtrick.prefs.buttonSave"></button>
-		<button id="cancel" text="foxtrick.prefs.buttonCancel"></button>
+		<button id="save" text-key="foxtrick.prefs.buttonSave"></button>
+		<button id="cancel" text-key="foxtrick.prefs.buttonCancel"></button>
 	</div>
 	<div id="note"></div>
 </div>
