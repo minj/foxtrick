@@ -40,6 +40,7 @@ var FoxtrickTeamPopupLinks = {
 			"YouthMatches"];
 
 		var table = doc.createElement("table");
+		table.className = "bordered";
 
 		var caption = doc.createElement("caption");
 		caption.setAttribute("text-key", "TeamPopupLinks.prefsCaption");

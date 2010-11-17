@@ -35,6 +35,19 @@ input
 	width: 450px;
 }
 
+table.bordered, table.bordered td, table.bordered th {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+
+table {
+	margin-top: 20px;
+}
+
+table th:first-child {
+	text-align: left;
+}
+
 .module
 {
 	border: 1px solid #ccc;
