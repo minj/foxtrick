@@ -34,7 +34,6 @@ function initTabs()
 	$("#tab-main a").click();
 	initMainTab();
 	initModuleTabs();
-	initChangesTab();
 	initHelpTab();
 	initAboutTab();
 }
@@ -338,11 +337,6 @@ function getScreenshot(link)
 	a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
 	a.setAttribute('target','_blank');
 	return a;
-}
-
-function initChangesTab()
-{
-	$("#pane-changes").text("Not finished yet!");
 }
 
 function initHelpTab()
