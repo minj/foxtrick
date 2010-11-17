@@ -281,7 +281,7 @@ function getModule(module)
 					var load = document.createElement("button");
 					textDiv.appendChild(load);
 					load.id = textInput.id + "-load";
-					$(load).attr("text", "foxtrick.prefs.buttonLoadPrefs");
+					$(load).attr("text-key", "foxtrick.prefs.buttonLoadPrefs");
 					$(load).click(function() {
 						const text = $("#" + $(this).attr("id").replace(/-load$/, ""));
 						var file = Foxtrick.selectFile(window);
