@@ -41,6 +41,10 @@ var FoxtrickTeamPopupLinks = {
 
 		var table = doc.createElement("table");
 
+		var caption = doc.createElement("caption");
+		caption.setAttribute("text-key", "TeamPopupLinks.prefsCaption");
+		table.appendChild(caption);
+
 		var headerRow = doc.createElement("tr");
 		table.appendChild(headerRow);
 
