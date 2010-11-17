@@ -314,7 +314,6 @@ var FoxtrickPrefsDialogHTML = {
 				Foxtrick.util.currency.setByCode(document.getElementById("htCurrency").value);
 				FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
 			}
-			FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(doc.getElementById("htCountry").value)));
 
 			//Currency Converter
 			if (doc.getElementById("CurrencyConverter"))
@@ -1487,23 +1486,6 @@ var FoxtrickPrefsDialogHTML = {
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
-		}
-	},
-
-	getOffsetValue: function (itemToSearch) {
-		try {
-			var returnedOffset = 0;
-				for (var i in Foxtrick.XMLData.League) {
-					if (itemToSearch == FoxtrickHelper.getLeagueDataFromId(i).EnglishName) {
-						returnedOffset = FoxtrickHelper.getLeagueDataFromId(1).Season - FoxtrickHelper.getLeagueDataFromId(i).Season; // sweden season - selected
-						break;
-					}
-				}
-				return returnedOffset;
-		}
-		catch (e) {
-			Foxtrick.dump('Offset search for '+ itemToSearch + ' ' + e + '\n');
-			return 0;
 		}
 	}
 }

@@ -1427,11 +1427,17 @@ Foxtrick.gregorianToHT = function(date,weekdayoffset) {
 Foxtrick.htDatePrintFormat = function(year, season, week, day, date) {
 	var offset = 0;
 	try {
-		if (Foxtrick.isModuleFeatureEnabled(FoxtrickHTDateFormat, "LocalSaison"))
-			offset = FoxtrickPrefs.getInt("htSeasonOffset");
+		if (Foxtrick.isModuleFeatureEnabled(FoxtrickHTDateFormat, FoxtrickPrefs.getString("htCountry"))) {
+			// try and find the offset
+			for (var i in Foxtrick.XMLData.League) {
+				if (itemToSearch == FoxtrickHelper.getLeagueDataFromId(i).EnglishName) {
+					returnedOffset = FoxtrickHelper.getLeagueDataFromId(1).Season - FoxtrickHelper.getLeagueDataFromId(i).Season; // sweden season - selected
+					break;
+				}
+			}
+		}
 	}
 	catch (e) {
-		// Foxtrick.dump('offset: ' + e + '\n');
 		offset = 0;
 	}
 	 //Foxtrick.dump ('offset:' +Foxtrick.isModuleFeatureEnabled(FoxtrickHTDateFormat, "LocalSaison")+' '+ offset + '\n');

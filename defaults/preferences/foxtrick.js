@@ -6,7 +6,6 @@ pref("extensions.foxtrick.prefs.htCurrency", "EUR");
 pref("extensions.foxtrick.prefs.htCurrencyTo", "EUR");
 pref("extensions.foxtrick.prefs.htDateformat", "ddmmyyyy");
 pref("extensions.foxtrick.prefs.htCountry", "Sweden");
-pref("extensions.foxtrick.prefs.htSeasonOffset", 0);
 pref("extensions.foxtrick.prefs.module.HTDateFormat.LocalSaison.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtendedPlayerDetails.value", 0);
 pref("extensions.foxtrick.prefs.statusbarshow", true);

@@ -120,7 +120,6 @@ var FoxtrickReadHtPrefs = {
 			}
 
 			FoxtrickPrefs.setString("htCountry", CountryName);
-			FoxtrickPrefs.setInt("htSeasonOffset", Math.floor(FoxtrickPrefsDialogHTML.getOffsetValue(CountryName)));
 		}
 	}
 };
