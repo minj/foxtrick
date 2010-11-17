@@ -219,10 +219,17 @@ function getModule(module)
 	$(check).click(function() { $(this).is(":checked") ? $(options).show() : $(options).hide(); });
 
 	// module-provided function for generating options
-	if (module.OPTION_FUNC) {
+	// OPTION_FUNC either returns an HTML object or an array of HTML objects
+	if (typeof(module.OPTION_FUNC) == "function") {
 		var genOptions = module.OPTION_FUNC(document);
-		if (genOptions)
-			options.appendChild(genOptions);
+		if (genOptions) {
+			if ($.isArray(genOptions)) {
+				for (var field in genOptions)
+					options.appendChild(field);
+			}
+			else
+				options.appendChild(genOptions);
+		}
 	}
 
 	// checkbox options
