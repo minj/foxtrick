@@ -218,20 +218,6 @@ function getModule(module)
 		$(options).hide();
 	$(check).click(function() { $(this).is(":checked") ? $(options).show() : $(options).hide(); });
 
-	// module-provided function for generating options
-	// OPTION_FUNC either returns an HTML object or an array of HTML objects
-	if (typeof(module.OPTION_FUNC) == "function") {
-		var genOptions = module.OPTION_FUNC(document);
-		if (genOptions) {
-			if ($.isArray(genOptions)) {
-				for (var field in genOptions)
-					options.appendChild(field);
-			}
-			else
-				options.appendChild(genOptions);
-		}
-	}
-
 	// checkbox options
 	if (module.OPTIONS) {
 		var checkboxes = document.createElement("ul");
@@ -330,6 +316,20 @@ function getModule(module)
 			label.appendChild(radio);
 			label.appendChild(document.createTextNode(
 				FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.RADIO_OPTIONS[i])));
+		}
+	}
+
+	// module-provided function for generating options
+	// OPTION_FUNC either returns an HTML object or an array of HTML objects
+	if (typeof(module.OPTION_FUNC) == "function") {
+		var genOptions = module.OPTION_FUNC(document);
+		if (genOptions) {
+			if ($.isArray(genOptions)) {
+				for (var field in genOptions)
+					options.appendChild(field);
+			}
+			else
+				options.appendChild(genOptions);
 		}
 	}
 

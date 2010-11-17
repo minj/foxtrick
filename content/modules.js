@@ -35,7 +35,6 @@ Foxtrick.modules = [
 	FoxtrickMoveLinks,   // keep before FoxtrickHideManagerAvatarUserInfo
 	FoxtrickForumAlterHeaderLine,
 	FoxtrickTeamPopupLinks,
-	FoxtrickTeamPopupLinksMore,
 	FoxtrickHideManagerAvatarUserInfo,
 	FoxtrickGoToPostBox,
 	FoxtrickContextMenuCopy,
