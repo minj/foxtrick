@@ -4,11 +4,12 @@ function init()
 	initListeners();
 	initTabs();
 	initTextAndValues();
-	$("#cancel").hover(function() { $(this).hide("slow"); });
+	$("#cancel").hover(function() { $(this).hide("slow"); }); // trick!
 }
 
 function initCoreModules()
 {
+	// core functions needed for preferences, localization, etc.
 	const core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	for (var i in core)
 		core[i].init();
@@ -22,6 +23,7 @@ function initListeners()
 
 function initTabs()
 {
+	// attach each tab with corresponding pane
 	$("#tabs li a").each(function() {
 		$(this).attr("href", "#" + $(this).parent().attr("id").replace(/^tab-/, "pane-"));
 	});
@@ -31,7 +33,8 @@ function initTabs()
 		$("#" + $(this).parent().attr("id").replace(/^tab-/, "pane-")).show();
 		$(this).parent().addClass("active");
 	});
-	$("#tab-main a").click();
+	$("#tab-main a").click(); // by default we are at main tab
+	// initialize the tabs
 	initMainTab();
 	initModuleTabs();
 	initHelpTab();
@@ -69,6 +72,8 @@ function initTextAndValues()
 
 function initMainTab()
 {
+	// basic preferences
+	// language
 	var htLocales = [];
 	for (var i in Foxtrickl10n.htLanguagesXml) {
 		var desc = Foxtrickl10n.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
@@ -86,6 +91,7 @@ function initMainTab()
 		$("#pref-read-language").append($(item));
 	}
 
+	// country
 	var leagues = [];
 	for (var i in Foxtrick.XMLData.League) {
 		var league = Foxtrick.XMLData.League[i]["EnglishName"];
@@ -102,6 +108,7 @@ function initMainTab()
 		$("#pref-read-country").append($(item));
 	}
 
+	// currency
 	var currencies = [];
 	var htCurrencyXml = document.implementation.createDocument("", "", null);
 	htCurrencyXml.async = false;
@@ -123,6 +130,7 @@ function initMainTab()
 		$("#pref-read-currency").append($(item));
 	}
 
+	// date format
 	var dateFormats = [];
 	var htDateFormatXml = document.implementation.createDocument("", "", null);
 	htDateFormatXml.async = false;
@@ -170,6 +178,7 @@ function initModuleTabs()
 		else if (category == Foxtrick.moduleCategories.ALERT)
 			categories["alert"].push(i);
 	}
+	// sort modules in alphabetical order and add to category's tab
 	for (var i in categories)
 		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME > Foxtrick.modules[b].MODULE_NAME; });
 	for (var i in categories)
