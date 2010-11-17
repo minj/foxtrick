@@ -19,7 +19,8 @@ FoxtrickFixcssProblems = {
                                     "MatchOrder_Lineheight",
                                     "RTL_Fixes",
                                     "ForumScrollBarFix",
-									"MatchReportRatingsFontFix"
+									"MatchReportRatingsFontFix",
+									"BrasilToollbarFix"
 								),
 	OPTIONS_CSS: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -28,7 +29,8 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/MatchOrder_Lineheight.css",
                                 "",
                                 Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toollbar.css"
 								),
     OPTIONS_CSS_RTL: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -37,7 +39,8 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/MatchOrder_Lineheight.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toollbar.css"
                                 ),
 
     run : function(page, doc) {
