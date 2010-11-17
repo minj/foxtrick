@@ -48,6 +48,19 @@ input
 	border-color: black;
 }
 
+.screenshot
+{
+	float: right;
+	width: 16px;
+	height: 16px;
+	background: url("chrome://foxtrick/content/resources/img/screenshot.png") no-repeat 50% 50%;
+}
+
+.screenshot:hover
+{
+	background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png");
+}
+
 .clear
 {
 	clear: both;

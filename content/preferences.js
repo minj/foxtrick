@@ -206,6 +206,10 @@ function getModule(module)
 	label.appendChild(document.createTextNode(module.MODULE_NAME));
 	title.appendChild(label);
 
+	// screenshot
+	if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME))
+		title.appendChild(getScreenshot(screenshotLink));
+
 	var desc = document.createElement("p");
 	desc.id = entry.id + "-desc";
 	desc.textContent = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
@@ -257,6 +261,10 @@ function getModule(module)
 			if (Foxtrick.isModuleFeatureEnabled(module, key))
 				checkbox.setAttribute("checked", "checked");
 			label.appendChild(document.createTextNode(title));
+
+			// screenshot
+			if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + "." + key))
+				label.appendChild(getScreenshot(screenshotLink));
 
 			if (module.OPTION_TEXTS &&
 				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
@@ -325,6 +333,16 @@ function getModule(module)
 	}
 
 	return entry;
+}
+
+function getScreenshot(link)
+{
+	var a = document.createElement("a");
+	a.className = "screenshot";
+	a.href = link;
+	a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
+	a.setAttribute('target','_blank');
+	return a;
 }
 
 function initChangesTab()
