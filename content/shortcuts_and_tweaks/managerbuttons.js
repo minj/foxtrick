@@ -75,7 +75,7 @@ var FoxtrickManagerButtons = {
 
 			var mailLink = doc.createElement("a");
 			mailLink.className = "inner";
-			mailLink.href = '/Club/?TeamID='+teamId+'&redir_to_mail=true'+'&ft_popuplink=true';
+			mailLink.href = '/Club/?TeamID='+teamId+'&redir_to_mail=true';
             mailLink.title = Foxtrickl10n.getString("foxtrick.tweaks.sendmessage");
 
 			if (!FoxtrickMain.isStandard) {
