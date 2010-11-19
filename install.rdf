@@ -11,8 +11,7 @@
                    em:homepageURL="http://ht-foxtrick.com/"
                    em:iconURL="chrome://foxtrick/skin/icon.png"
                    em:optionsURL="chrome://foxtrick/content/preferences.xhtml"
-                   em:updateURL="http://downloads.mozdev.org/foxtrick/update-beta-mozdev.rdf"
-                   em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2HU/mI1TH3yEthsle//gOPoHtHDUSOp5vcoE/weq+rZixwGJgp+5ZBYDLo/XF/mmFuBzusiwoAXkX4dnpdlDeUIG3e1ej92Ivkii0wO3kc6JCfKlbigE06voYgmX4nhq3gipAcgyTnaGwlppevolslNB9uAryVhEQ341Gm+6cHwIDAQAB">
+                   em:updateURL="https://www.mozdev.org/p/updates/foxtrick/{9d1f059c-cada-4111-9696-41a62d64e3ba}/update.rdf">
     <em:targetApplication RDF:resource="rdf:#$TfQfX1"/>
     <em:targetApplication RDF:resource="rdf:#$AgQfX1"/>
     <em:developer>larsw84</em:developer>
