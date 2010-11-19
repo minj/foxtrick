@@ -5,7 +5,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{9d1f059c-cada-4111-9696-41a62d64e3ba}"
                    em:name="FoxTrick"
-                   em:version="0.5.3"
+                   em:version="0.5.4b"
                    em:description="A set of presentation enhancements for hattrick.org"
                    em:creator="Karel Kolman"
                    em:homepageURL="http://ht-foxtrick.com/"
