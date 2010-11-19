@@ -620,22 +620,26 @@ Foxtrick.trimnum = function(text) {
 }
 
 Foxtrick.formatNumber = function(num, sep) {
-	num = String(num);
+	var num = Number(num);
+	var negative = (num < 0);
+	num = String(Math.abs(num));
+	var output = num;
 	if (sep === undefined) {
 		sep = " ";
 	}
 	if (num.length > 3) {
 		var mod = num.length % 3;
-		var output = (num > 0 ? (num.substring(0, mod)) : "");
+		output = (num > 0 ? (num.substring(0, mod)) : "");
 		for (var i = 0; i < Math.floor(num.length / 3); ++i) {
 			if (mod == 0 && i == 0)
 				output += num.substring(mod+ 3 * i, mod + 3 * i + 3);
 			else
 				output += sep + num.substring(mod + 3 * i, mod + 3 * i + 3);
 		}
-		return output;
 	}
-	return num;
+	if (negative)
+		output = "-" + output;
+	return output;
 }
 
 Foxtrick.substr_count = function (haystack, needle, offset, length) {
