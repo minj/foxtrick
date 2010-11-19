@@ -20,7 +20,7 @@ FoxtrickFixcssProblems = {
                                     "RTL_Fixes",
                                     "ForumScrollBarFix",
 									"MatchReportRatingsFontFix",
-									"BrasilToollbarFix"
+									"BrasilToolbarFix"
 								),
 	OPTIONS_CSS: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -30,7 +30,7 @@ FoxtrickFixcssProblems = {
                                 "",
                                 Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toollbar.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toolbar.css"
 								),
     OPTIONS_CSS_RTL: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -40,7 +40,7 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toollbar.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toolbar.css"
                                 ),
 
     run : function(page, doc) {
