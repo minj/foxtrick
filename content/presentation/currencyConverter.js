@@ -70,28 +70,31 @@ FoxtrickCurrencyConverter = {
 			if (table_elm[i].getElementsByTagName('td').length!=0) continue;  // don't do nested. only most inner gets converted
 			else if (table_elm[i].getElementsByTagName('p').length!=0) continue;  // don't do nested. only most inner gets converted
 
-            var pos = table_elm[i].innerHTML.search(oldCurrencySymbol);
-			if (pos > 0 && (table_elm[i].id != "foxtrick-currency-converter" || table_elm[i].innerHTML.search(currencySymbol)==-1) ){
+            var pos = table_elm[i].innerHTML.indexOf(oldCurrencySymbol);
+			if (pos > 0 && (!Foxtrick.hasClass(table_elm[i], "foxtrick-currency-converter") || table_elm[i].innerHTML.indexOf(currencySymbol)==-1)) {
 				var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
 				var inner_raw = table_elm[i].innerHTML;
 				var bdo_br='';
-				if (doc.location.href.search(/Club\/Finances\//)!=-1) bdo_br='<br>';
+				if (doc.location.href.search(/Club\/Finances\//)!=-1)
+					bdo_br='<br>';
 				if (inner_raw.search(/bdo dir="ltr"/)!=-1) {
-					//bdo_br='<br>';
-				//	var style = 'style="direction:ltr !important;';
-					//if (table_elm[i].getElementsByTagName('bdo')[0].className == 'red') style += ' color:#aa0000 !important;';
 					inner_raw = table_elm[i].innerHTML.replace(/<bdo dir="ltr">/,'').replace(/<\/bdo>/,'') ;
-					}
+				}
 				var res="";
 				var only_one_number = false;
 				var first = true;
-				while (pos!=-1) { pos+=oldSymbolLength;
+				while (pos!=-1) {
+					pos+=oldSymbolLength;
 					var table_inner_stripped = inner_raw.replace(/\s|\&nbsp\;/g,'');
-					if (first==true && table_inner_stripped.replace(myDelReg,'')=='') only_one_number=true; // remove html tags and currency to check if this is the only real entry.
+					if (first==true && table_inner_stripped.replace(myDelReg,'')=='')
+						only_one_number=true; // remove html tags and currency to check if this is the only real entry.
 					try {
 						var val=table_inner_stripped.match(myReg)[1];
 					}
-					catch (e){return;} // catching currency symbol of tranfer bid
+					catch (e) {
+						// catching currency symbol of tranfer bid
+						return;
+					}
 					var conv = Foxtrick.formatNumber(Math.floor(val * currencyRate / currencyRateNewCurr),'&nbsp;');
 					conv = conv.replace(/\-\&nbsp\;/,'-');
 
@@ -101,30 +104,26 @@ FoxtrickCurrencyConverter = {
 					// add a space at the end if the next symbol is not ')'
 					var space=' ';
 					var next_char=inner_raw.charAt(pos);
-					if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',') space='';
+					if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',')
+						space='';
 					if (inner_raw.charAt(pos)=='<') {
 						next_char=inner_raw.substr(pos).replace(myDelReg,'').charAt(0);
-						if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',') space='';
+						if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',')
+							space='';
 					}
-					// std color green. but use color of span if there is one.
-					var color='#377f31';
-					if (table_elm[i].getElementsByTagName('span')[0] && table_elm[i].getElementsByTagName('span')[0].style) {
-						color = table_elm[i].getElementsByTagName('span')[0].style.color;
-					}
-					if (conv.charAt(0)=='-') color='#aa0000';   // neg number red
-					if (val==0)  color="black";					// zero black
 
 					// add left part plus converted
-					res+=inner_raw.substr(0,pos)+' '+br+'<span class="smallText" style="direction:ltr !important; font-weight: normal; color:'+color+';white-space: nowrap;">('+conv+'&nbsp;'+currencySymbol+')</span>'+space+bdo_br;
+					res+=inner_raw.substr(0,pos)+' '+br+'<span>('+conv+'&nbsp;'+currencySymbol+')</span>'+space+bdo_br;
 
 					// get the remains and check them in next loop
 					inner_raw = inner_raw.substring(pos);
 					pos= inner_raw.search(oldCurrencySymbol);
-					first=false;	bdo_br='';
+					bdo_br='';
+					first=false;
 				}
 
 				table_elm[i].innerHTML = res + inner_raw;
-				table_elm[i].id="foxtrick-currency-converter";
+				Foxtrick.addClass(table_elm[i], "foxtrick-currency-converter");
 			}
 		}
     }
