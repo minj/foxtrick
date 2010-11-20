@@ -24,7 +24,7 @@ var FoxtrickLiveAlert = {
 
 	getScoreFromTab : function(tab) {
 		if (tab.getElementsByClassName("liveTabScore").length > 0) {
-			const scoreRe = new RegExp("^(\\d+)\\s*-\\s*(\\d+)$");
+			const scoreRe = new RegExp("^\\s*(\\d+)\\s*-\\s*(\\d+)\\s*$");
 			var score = tab.getElementsByClassName("liveTabScore")[0].textContent;
 			score = Foxtrick.trim(score);
 			var scoreMatch = score.match(scoreRe);
