@@ -41,36 +41,13 @@ Foxtrick.util.currency = {
 		return null;
 	},
 
-	getCodeBySymbol : function(lookup) {
-		var xml = Foxtrick.XMLData.htCurrencyXml;
-		var nodes = xml.getElementsByTagName("currency");
-		var currencies = {};
-
-		for (var i = 0; i < nodes.length; ++i) {
-			var code = nodes[i].attributes.getNamedItem("code").textContent;
-			var symbol = nodes[i].attributes.getNamedItem("symbol").textContent;
-			currencies[symbol] = code;
-		}
-
-		if (currencies[lookup] !== undefined) {
-			return currencies[lookup];
-		}
-		return null;
-	},
-
-	setByCode : function(code) {
-		FoxtrickPrefs.setString("htCurrency", code);
-	},
-
-	getCode : function() {
-		return FoxtrickPrefs.getString("htCurrency");
-	},
-
 	getSymbol : function() {
-		return this.getSymbolByCode(this.getCode());
+		var leagueId = FoxtrickHelper.getOwnCountryId();
+		return FoxtrickHelper.getLeagueDataFromId(leagueId).Country.CurrencyName;
 	},
 
 	getRate : function() {
-		return this.getRateByCode(this.getCode());
+		var leagueId = FoxtrickHelper.getOwnCountryId();
+		return parseFloat(FoxtrickHelper.getLeagueDataFromId(leagueId).Country.CurrencyRate.replace(",", ".")) / 10;
 	}
 };

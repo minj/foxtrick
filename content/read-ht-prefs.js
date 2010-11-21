@@ -94,12 +94,6 @@ var FoxtrickReadHtPrefs = {
 		var OldCountryName = FoxtrickPrefs.getString("htCountry");
 
 		if (this.first_run || CountryName != OldCountryName) {
-			// currency
-			var currencySymbol = FoxtrickHelper.getLeagueDataFromId(LeagueId).Country.CurrencyName;
-			var currencyCode = Foxtrick.util.currency.getCodeBySymbol(currencySymbol);
-			Foxtrick.util.currency.setByCode(currencyCode);
-			// Foxtrick.dump("Currency symbol: " + currencySymbol + ", code: " + currencyCode + ".\n");
-
 			// date format
 			var scripts = doc.getElementsByTagName('script');
 			for (var i = 0; i < scripts.length; ++i) {

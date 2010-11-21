@@ -311,7 +311,6 @@ var FoxtrickPrefsDialogHTML = {
 			if (!readHtPrefs) {
 				FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);
 				FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
-				Foxtrick.util.currency.setByCode(document.getElementById("htCurrency").value);
 				FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
 			}
 
@@ -437,13 +436,11 @@ var FoxtrickPrefsDialogHTML = {
 			var basicTable1 = doc.createElement("tr");
 			var basicTable2 = doc.createElement("tr");
 			var basicTable3 = doc.createElement("tr");
-			var basicTable4 = doc.createElement("tr");
 			var basicTable5 = doc.createElement("tr");
 
 			basicTable.appendChild(basicTable1);
 			basicTable.appendChild(basicTable2);
 			basicTable.appendChild(basicTable3);
-			basicTable.appendChild(basicTable4);
 			basicTable.appendChild(basicTable5);
 
 			// ReadHtPrefs
@@ -494,17 +491,6 @@ var FoxtrickPrefsDialogHTML = {
 			basicTable3_2.appendChild(countrySelect);
 			countrySelect.id = "htCountry";
 
-			// currency
-			basicTable4_1 = doc.createElement("td");
-			basicTable4.appendChild(basicTable4_1);
-			basicTable4_1.textContent = Foxtrickl10n.getString("foxtrick.prefs.captionHTCurrency");
-
-			basicTable4_2 = doc.createElement("td");
-			basicTable4.appendChild(basicTable4_2);
-			var currencySelect = Foxtrick.getSelectBoxFromXML2(doc, Foxtrick.XMLData.htCurrencyXml, "hattrickcurrencies/currency", "name", "code", Foxtrick.util.currency.getCode());
-			basicTable4_2.appendChild(currencySelect);
-			currencySelect.id = "htCurrency";
-
 			// date format
 			basicTable5_1 = doc.createElement("td");
 			basicTable5.appendChild(basicTable5_1);
@@ -519,17 +505,16 @@ var FoxtrickPrefsDialogHTML = {
 			// checkbox association
 			if (readHtPrefs) {
 				languageSelect.disabled = countrySelect.disabled
-					= currencySelect.disabled = dateFormatSelect.disabled = "disabled";
+					= dateFormatSelect.disabled = "disabled";
 			}
 			readHtPrefsCheck.addEventListener("click",
 				function(ev) {
 					if (ev.target.checked)
 						languageSelect.disabled = countrySelect.disabled
-							= currencySelect.disabled = dateFormatSelect.disabled = "disabled";
+							= dateFormatSelect.disabled = "disabled";
 					else
 						languageSelect.removeAttribute("disabled");
 						countrySelect.removeAttribute("disabled");
-						currencySelect.removeAttribute("disabled");
 						dateFormatSelect.removeAttribute("disabled");
 
 				}, false);

@@ -38,8 +38,8 @@ FoxtrickCurrencyConverter = {
 	},
 
     run : function(page, doc) {
-    	// don't run on forum pages, don't run if nothing to change
-		if (doc.location.href.search(/Forum/i) != -1 || Foxtrick.util.currency.getCode() == FoxtrickPrefs.getString("module.CurrencyConverter.to"))
+    	// don't run on forum pages
+		if (doc.location.href.search(/Forum/i) != -1)
 			return;
 
 		var oldSymbol = Foxtrick.util.currency.getSymbol(); //currencysymbol which in the your country

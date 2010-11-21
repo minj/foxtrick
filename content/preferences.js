@@ -108,28 +108,6 @@ function initMainTab()
 		$("#pref-read-country").append($(item));
 	}
 
-	// currency
-	var currencies = [];
-	var htCurrencyXml = document.implementation.createDocument("", "", null);
-	htCurrencyXml.async = false;
-	htCurrencyXml.load("chrome://foxtrick/content/htlocales/htcurrency.xml", "text/xml");
-	var currencyNodes = htCurrencyXml.getElementsByTagName("currency");
-	for (var i = 0; i < currencyNodes.length; ++i) {
-		var code = currencyNodes[i].attributes.getNamedItem("code").textContent;
-		var desc = currencyNodes[i].attributes.getNamedItem("name").textContent;
-		currencies.push({ code: code, desc : desc });
-	}
-	currencies.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-	const selectedCurrency = FoxtrickPrefs.getString("htCurrency");
-	for (var i in currencies) {
-		var item = document.createElement("option");
-		item.value = currencies[i].code;
-		item.textContent = currencies[i].desc;
-		if (selectedCurrency == item.value)
-			item.selected = "selected";
-		$("#pref-read-currency").append($(item));
-	}
-
 	// date format
 	var dateFormats = [];
 	var htDateFormatXml = document.implementation.createDocument("", "", null);
