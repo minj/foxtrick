@@ -172,7 +172,7 @@ var FoxtrickTeamPopupLinks = {
 		this.ownteamid = FoxtrickHelper.getOwnTeamId();
 		this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
 
-		//  team links
+		// team links
 		var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
 		if (aLink) this._addSpan(doc, aLink);
 
@@ -198,7 +198,7 @@ var FoxtrickTeamPopupLinks = {
 				if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons
 				if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && Foxtrick.isModuleFeatureEnabled(this, "TeamLinks"))
 					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && Foxtrick.isModuleFeatureEnabled(this, "UserLinks"))) {
-					this._addSpan(doc,  aLink);
+					this._addSpan(doc, aLink);
 				}
 			}
 		}
@@ -209,7 +209,7 @@ var FoxtrickTeamPopupLinks = {
 		var span = doc.createElement("span");
 		span.setAttribute('class', 'myht1');
 		par.insertBefore(span, aLink);
-		span.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
+		aLink.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
 		span.appendChild(aLink);
 	},
 
@@ -222,17 +222,17 @@ var FoxtrickTeamPopupLinks = {
 
 	popupshow : function(evt) {
 		try {
+			Foxtrick.dump("show\n");
 			var org_link = evt.target;
 			var show_more = false;
 			if (org_link.getAttribute('more')) {
 				org_link.removeEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);
-				if (org_link.getAttribute('more')=='true') show_more=true;
+				if (org_link.getAttribute('more')=='true')
+					show_more=true;
 				org_link = org_link.parentNode.parentNode.previousSibling;
 			}
 			var doc = evt.target.ownerDocument;
-			if (org_link.style==null) org_link.setAttribute('style','display:inline');
-	  		evt.target.parentNode.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
-			var ismatchpreview = doc.getElementById("ctl00_CPMain_pnlPreMatch");
+			evt.target.parentNode.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
 
 			var teamid = FoxtrickHelper.getTeamIdFromUrl(org_link.href);
 			if (teamid)
@@ -347,13 +347,11 @@ var FoxtrickTeamPopupLinks = {
 					var down=true;
 				}
 			}
-			if (ismatchpreview) {
-				var more = list.removeChild(list.lastChild);
-				list.insertBefore(more, list.firstChild);
-			}
 
-			if (!down) list.className +=' ft-popup-list-up';
-			else list.className +=' ft-popup-list-down';
+			if (!down)
+				Foxtrick.addClass(list, "ft-popup-list-up");
+			else
+				Foxtrick.addClass(list, "ft-popup-list-down");
 
 			if (Foxtrick.hasClass(org_link.parentNode.lastChild, "ft-popup-list"))
 				org_link.parentNode.removeChild(org_link.parentNode.lastChild);
