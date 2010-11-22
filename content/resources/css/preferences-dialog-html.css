@@ -1,27 +1,8 @@
-div#foxtrick_prefs_head div.ft_pref_head {
-	display: inline-block;
-	background: #fff;
-	border: 1px solid #ccc;
-	border-radius: 8px 8px 0px 0px;
-	-moz-border-radius: 8px 8px 0px 0px;
-	border-bottom: none;
-	padding: 4px;
-}
-
-div#foxtrick_prefs_head div.ft_pref_head:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.ft_pref_head_active {
-	background-color: #eef !important;
-}
-
 #foxtrick_prefs_body {
 	margin: 20px 0;
 }
 
-#foxtrick_preftabs, #sidebar #idFoxtrickPrefs, .subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs {
+#sidebar #idFoxtrickPrefs, .subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs {
 	border: 1px solid #ccc;
 	background-color: #eef;
 }
@@ -29,10 +10,6 @@ div#foxtrick_prefs_head div.ft_pref_head:hover {
 #foxtrick_prefs_save {
 	margin-top: 10px;
 	margin-bottom: 10px;
-}
-
-.ft_pref_highlight, .ft_pref_highlight:hover {
-	background-color: #bbf !important;
 }
 
 #foxtrick_prefsave, #foxtrick_prefcancel {
