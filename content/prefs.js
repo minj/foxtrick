@@ -208,17 +208,15 @@ var FoxtrickPrefs = {
 			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
 	},
 
-	cleanupBranch : function ( ev ) {
+	cleanupBranch : function () {
 		try {
 			var array = FoxtrickPrefs._getElemNames("");
-			for(var i = 0; i < array.length; i++) {
+			for (var i = 0; i < array.length; i++) {
 				if (FoxtrickPrefs.isPrefSetting(array[i])) {
 					FoxtrickPrefs.deleteValue(array[i]);
 				}
 			}
 			FoxtrickMain.init();
-			if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
