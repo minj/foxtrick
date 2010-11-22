@@ -208,105 +208,88 @@ var FoxtrickPrefs = {
 			&& (setting.search( "LinksCustom" ) == -1 || setting.search( "LinksCustom.enabled" ) != -1) ;
 	},
 
-	confirmCleanupBranch : function ( ev ) {
-		if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-		else doc=document;
-		if ( Foxtrick.confirmDialog( Foxtrickl10n.getString( 'delete_foxtrick_branches_ask' ) ) )  {
-			try {
-				var array = FoxtrickPrefs._getElemNames("");
-				for(var i = 0; i < array.length; i++) {
-					if (FoxtrickPrefs.isPrefSetting(array[i])) {
-						FoxtrickPrefs.deleteValue(array[i]);
-					}
+	cleanupBranch : function ( ev ) {
+		try {
+			var array = FoxtrickPrefs._getElemNames("");
+			for(var i = 0; i < array.length; i++) {
+				if (FoxtrickPrefs.isPrefSetting(array[i])) {
+					FoxtrickPrefs.deleteValue(array[i]);
 				}
-				FoxtrickMain.init();
-				if (!ev) close();
-				else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
 			}
-			catch (e) {
-				Foxtrick.dump('confirmCleanupBranch error:'+e+'\n');
-			}
+			FoxtrickMain.init();
+			if (!ev) close();
+			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+			return false;
 		}
 		return true;
 	},
 
-
-	disableAll : function (ev ) {
-		if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-		else doc=document;
-		if ( Foxtrick.confirmDialog(  Foxtrickl10n.getString( 'disable_all_foxtrick_modules_ask' ) ) )  {
-			try {
-				var array = FoxtrickPrefs._getElemNames("");
-				for(var i = 0; i < array.length; i++) {
-					if( array[i].search( /enabled$/ ) != -1) {
-						FoxtrickPrefs.setBool( array[i], false );
-					}
+	disableAll : function () {
+		try {
+			var array = FoxtrickPrefs._getElemNames("");
+			for (var i = 0; i < array.length; i++) {
+				if (array[i].search(/enabled$/) != -1) {
+					FoxtrickPrefs.setBool(array[i], false);
 				}
-				FoxtrickMain.init();
-				if (!ev) close();
-				else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
 			}
-			catch (e) {
-				Foxtrick.dump('disable all'+e+'\n');
-			}
+			FoxtrickMain.init();
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+			return false;
 		}
 		return true;
 	},
 
-	SavePrefs : function (ev) {
+	SavePrefs : function (file, savePrefs, saveNotes) {
         try {
-			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-			else doc=document;
-
-			var locpath=Foxtrick.selectFileSave(window);
-			if (locpath==null) {return;}
 			var File = Components.classes["@mozilla.org/file/local;1"].
                      createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(locpath);
+			File.initWithPath(file);
 
-			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-                         createInstance(Components.interfaces.nsIFileOutputStream);
+			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
+				.createInstance(Components.interfaces.nsIFileOutputStream);
 			foStream.init(File, 0x02 | 0x08 | 0x20, 0666, 0);
 			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-                   .createInstance(Components.interfaces.nsIConverterOutputStream);
+				.createInstance(Components.interfaces.nsIConverterOutputStream);
 			os.init(foStream, "UTF-8", 0, 0x0000);
 
-			var array = FoxtrickPrefs._getElemNames(""); array.sort();
+			var array = FoxtrickPrefs._getElemNames("");
+			array.sort();
 			for(var i = 0; i < array.length; i++) { //Foxtrick.dump(array[i]);
-				if ((FoxtrickPrefs.isPrefSetting(array[i]) && doc.getElementById("saveprefsid").checked)
-					|| (!FoxtrickPrefs.isPrefSetting(array[i]) && doc.getElementById("savenotesid").checked)) {
+				if ((FoxtrickPrefs.isPrefSetting(array[i]) && savePrefs)
+					|| (!FoxtrickPrefs.isPrefSetting(array[i]) && saveNotes)) {
 
 					var value=FoxtrickPrefs.getString(array[i]);
-					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
-					else { value=FoxtrickPrefs.getInt(array[i]);
-						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
+					if (value !== null)
+						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
+					else {
+						value = FoxtrickPrefs.getInt(array[i]);
+						if (value === null)
+							value=FoxtrickPrefs.getBool(array[i]);
 						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
-						}
-					//Foxtrick.dump(' : save\n');
 					}
-				//else Foxtrick.dump(' : dont save\n');
+					}
 				}
 			os.close();
 			foStream.close();
-
-			if(!ev) close();
 		}
 		catch (e) {
 			Foxtrick.alert('FoxtrickPrefs.SavePrefs '+e);
+			return false;
         }
-    return true;
+    	return true;
 	},
 
-	LoadPrefs : function (ev) {
+	LoadPrefs : function (file) {
         try {
 			// nsifile
-			if (ev) {window = ev.target.ownerDocument.defaultView; doc = ev.target.ownerDocument;}
-			else doc=document;
-			var locpath=Foxtrick.selectFile(window);
-			if (locpath==null) return;
 			var File = Components.classes["@mozilla.org/file/local;1"].
                      createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(locpath);
+			File.initWithPath(file);
 			// converter
 			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"]
                           .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
@@ -333,12 +316,10 @@ var FoxtrickPrefs = {
 
 			fis.close();
 			FoxtrickMain.init();
-			if (!ev) close();
-			else doc.location.href='/MyHattrick/Preferences?configure_foxtrick=true&category=main';
-
 		}
 		catch (e) {
 			Foxtrick.alert('FoxtrickPrefs.LoadPrefs '+e);
+			return false;
         }
     	return true;
 	},

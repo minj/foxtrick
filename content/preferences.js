@@ -129,6 +129,36 @@ function initMainTab()
 			item.selected = "selected";
 		$("#pref-read-date-format").append($(item));
 	}
+
+	// save preferences
+	$("#pref-save-do").click(function() {
+		var file = Foxtrick.selectFile(this.ownerDocument.defaultView);
+		if (file !== null) {
+			var savePrefs = $("#pref-save-pref").is(":checked");
+			var saveNotes = $("#pref-save-data").is(":checked");
+			FoxtrickPrefs.SavePrefs(file, savePrefs, saveNotes);
+		}
+	});
+
+	// load preferences
+	$("#pref-load-do").click(function() {
+		var file = Foxtrick.selectFile(this.ownerDocument.defaultView);
+		if (file !== null) {
+			FoxtrickPrefs.LoadPrefs(file);
+		}
+	});
+
+	// restore to default
+	$("#pref-stored-restore").click(function() {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask")))
+			FoxtrickPrefs.cleanupBranch();
+	});
+
+	// disable all
+	$("#pref-stored-disable").click(function() {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask")))
+			FoxtrickPrefs.disableAll();
+	});
 }
 
 function initModuleTabs()
