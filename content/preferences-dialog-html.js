@@ -14,22 +14,17 @@ var FoxtrickPrefsDialogHTML = {
 
 	CSS : Foxtrick.ResourcePath + "resources/css/preferences-dialog-html.css",
 
-	save : function( ev ) { //dump('pref save\n');
+	save : function( ev ) {
 		try {
 			var doc = ev.target.ownerDocument;
 			if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = false;
 
-			var full_prefs = (doc.getElementById("htLanguage")!=null); // check if full pref page (not newversionquickset or onpageprefs)
-
 			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
 
-				if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN ) {
-					// if main, set default and again right below if needed!
-					//Foxtrick.dump('save '+module.MODULE_NAME+' : '+module.DEFAULT_ENABLED+'\n');
-					if (full_prefs) FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, module.DEFAULT_ENABLED);
-					continue;
-				}
+				if (!module.MODULE_CATEGORY || module.MODULE_CATEGORY==Foxtrick.moduleCategories.MAIN )
+					continue; // no main prefs
+
 				if (doc.getElementById(module.MODULE_NAME)) {
 					var checked = doc.getElementById(module.MODULE_NAME).checked;
 					FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME, checked);
@@ -58,64 +53,14 @@ var FoxtrickPrefsDialogHTML = {
 						FoxtrickPrefs.setModuleEnableState(module.MODULE_NAME+'.'+key, doc.getElementById(module.MODULE_NAME+'.'+key).checked);
 
 						if (module.OPTION_TEXTS != null && module.OPTION_TEXTS
-						&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])
-						&& doc.getElementById(module.MODULE_NAME+'.'+key+'_text')) {
-
+							&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])
+							&& doc.getElementById(module.MODULE_NAME+'.'+key+'_text')) {
 							FoxtrickPrefs.setModuleOptionsText( module.MODULE_NAME + "." + key+ "_text",
-														doc.getElementById(module.MODULE_NAME+'.'+key+'_text').value );
+								doc.getElementById(module.MODULE_NAME+'.'+key+'_text').value );
 						}
 					}
 				}
 			}
-
-			if (doc.getElementById("OnPagePrefs")) FoxtrickPrefs.setBool("module.OnPagePrefs.enabled", doc.getElementById("OnPagePrefs").checked);
-
-			// check if not whole prefs. in that case stop here
-			if (!full_prefs) {
-				if (Foxtrick.BuildFor=='Chrome') {
-					FoxtrickPrefs.do_dump = true;
-					//Foxtrick.reload_module_css(document);
-					portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});
-					portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
-				}
-				else { FoxtrickMain.init();
-					doc.location.reload();
-				}
-				return;
-			}
-
-			// ReadHtPrefs
-
-			var readHtPrefs = doc.getElementById("ReadHtPrefs").checked;
-			FoxtrickPrefs.setBool("module.ReadHtPrefs.enabled", readHtPrefs);
-
-			if (!readHtPrefs) {
-				FoxtrickPrefs.setString("htLanguage", doc.getElementById("htLanguage").value);
-				FoxtrickPrefs.setString("htCountry", document.getElementById("htCountry").value);
-				FoxtrickPrefs.setString("htDateformat", doc.getElementById("htDateformat").value);
-			}
-
-			//Currency Converter
-			if (doc.getElementById("CurrencyConverter"))
-				FoxtrickPrefs.setBool("module.CurrencyConverter.enabled", doc.getElementById("CurrencyConverter").checked);
-			FoxtrickPrefs.setString("module.CurrencyConverter.to", doc.getElementById("htCurrencyTo").value);
-
-			//Statusbar
-			FoxtrickPrefs.setBool("statusbarshow", doc.getElementById("statusbarpref").checked);
-
-			//disable
-			FoxtrickPrefs.setBool("disableOnStage", doc.getElementById("stagepref").checked);
-			FoxtrickPrefs.setBool("disableTemporary", doc.getElementById("disableTemporary").checked);
-
-			// additional options
-			FoxtrickPrefs.setBool("smallcopyicons", doc.getElementById("smallcopyicons").checked);
-
-
-			FoxtrickPrefs.setBool("SavePrefs_Prefs", doc.getElementById("saveprefsid").checked);
-			FoxtrickPrefs.setBool("SavePrefs_Notes", doc.getElementById("savenotesid").checked);
-
-
-			FoxtrickPrefs.setBool("DisplayHTMLDebugOutput", doc.getElementById("DisplayHTMLDebugOutput").checked);
 
 			if (Foxtrick.BuildFor=='Chrome') {
 				FoxtrickPrefs.do_dump = true;
@@ -127,8 +72,8 @@ var FoxtrickPrefsDialogHTML = {
 				FoxtrickMain.init();
 				doc.location.reload();
 			}
-			//dump('end save\n');
-		} catch (e) {
+		}
+		catch (e) {
 			if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = true;
 			Foxtrick.dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');
 		}
