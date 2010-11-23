@@ -283,6 +283,11 @@ var FoxtrickMain = {
 		try {
 			//Foxtrick.dump('----- foxtrickmain run. is_only_css_check: '+(is_only_css_check!=null)+'\n');
 
+			if (FoxtrickPrefs.getBool("preferences.updated")) {
+				FoxtrickMain.init();
+				FoxtrickPrefs.setBool("preferences.updated", false);
+			}
+
 			Foxtrick.updateStatus();
 
 			// don't execute if on stage server and user doesn't want Foxtrick to be executed there

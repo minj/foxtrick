@@ -434,6 +434,8 @@ function save()
 	});
 
 	notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
+
+	FoxtrickPrefs.setBool("preferences.updated", true);
 }
 
 function notice(msg)

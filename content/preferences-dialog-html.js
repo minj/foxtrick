@@ -69,7 +69,7 @@ var FoxtrickPrefsDialogHTML = {
 				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
 			}
 			else {
-				FoxtrickMain.init();
+				FoxtrickPrefs.setBool("preferences.updated", true);
 				doc.location.reload();
 			}
 		}
