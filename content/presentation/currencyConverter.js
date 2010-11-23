@@ -50,6 +50,9 @@ FoxtrickCurrencyConverter = {
 		var symbol = Foxtrick.util.currency.getSymbolByCode(code);
 		var rate = Foxtrick.util.currency.getRateByCode(code);
 
+		if ((oldSymbol == symbol) && (oldRate == rate))
+			return; // don't convert if both symbol and rate are identical
+
 		var myReg = new RegExp('(-\\d+|\\d+)' + oldSymbol);
 		var myDelReg = new RegExp('(-\\d+|\\d+)' + oldSymbol + '|<.+>');
 
