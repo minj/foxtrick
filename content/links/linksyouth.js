@@ -9,7 +9,6 @@ var FoxtrickLinksYouthOverview = {
     MODULE_NAME : "LinksYouthOverview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthoverview'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {
@@ -56,7 +55,6 @@ var FoxtrickLinksYouthPlayerDetail = {
     MODULE_NAME : "LinksYouthPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthplayerdetail'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {
@@ -124,7 +122,6 @@ var FoxtrickLinksYouthTraining = {
     MODULE_NAME : "LinksYouthTraining",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthTraining'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {
@@ -170,7 +167,6 @@ var FoxtrickLinksYouthPlayerList = {
 	MODULE_NAME : "LinksYouthPlayerList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthPlayers'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {
@@ -216,7 +212,6 @@ var FoxtrickLinksYouthMatchList = {
 	MODULE_NAME : "LinksYouthMatchList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthMatchlist'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {

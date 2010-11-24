@@ -8,7 +8,6 @@ var FoxtrickForumChangePosts = {
 
 	MODULE_NAME : "ForumChangePosts",
 	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : true,
 	bDetailedHeader:false,
 	CSS: Foxtrick.ResourcePath+"resources/css/changepost.css",
 

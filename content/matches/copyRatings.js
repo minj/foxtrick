@@ -9,7 +9,6 @@ var FoxtrickCopyRatings = {
 	MODULE_NAME : "CopyRatings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Small copyicon options as popup",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

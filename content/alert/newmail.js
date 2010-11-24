@@ -8,7 +8,6 @@ var FoxtrickNewMail = {
     MODULE_NAME : "NewMail",
     MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : new Array ( 'all' ),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.1",
 	LATEST_CHANGE:"Moved to alert tab in preferences",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

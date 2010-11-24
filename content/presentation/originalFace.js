@@ -8,7 +8,6 @@ var FoxtrickOriginalFace = {
 	MODULE_NAME : "OriginalFace",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["playerdetail", "players", "YouthPlayer", "YouthPlayers"],
-	DEFAULT_ENABLED : false,
 	OPTIONS : ["HideTransfer", "HideInjury", "HideSuspended", "ColouredYouth"],
 	OPTIONS_CSS : [
 		Foxtrick.ResourcePath + "resources/css/HideFaceTransferImages.css",

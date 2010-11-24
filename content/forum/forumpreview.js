@@ -9,7 +9,6 @@ var FoxtrickForumPreview = {
     MODULE_AUTHOR : "spambot",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
-    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.2",
 	LATEST_CHANGE:"Added ArticleID-Tag to preview",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

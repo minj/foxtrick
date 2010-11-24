@@ -10,7 +10,6 @@ var FoxtrickLinksArena = {
     MODULE_NAME : "LinksArena",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('arena'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {

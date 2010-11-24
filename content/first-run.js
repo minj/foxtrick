@@ -6,10 +6,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickFirstRun = {
-
 	MODULE_NAME : "FoxtrickFirstRun",
+	CORE_MODULE : true,
 	PAGES : new Array('myhattrick_late'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Renamed module to FoxtrickFirstRun",
 

@@ -7,7 +7,6 @@ FoxtrickLastLogin = {
 	MODULE_NAME : "LastLogin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('managerPage'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Prettier layout for pages with faces disabled.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

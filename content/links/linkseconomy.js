@@ -9,7 +9,6 @@ var FoxtrickLinksEconomy = {
     MODULE_NAME : "LinksEconomy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {

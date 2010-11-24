@@ -9,7 +9,6 @@ var FoxtrickSkillColoring = {
     MODULE_NAME : "SkillColoring",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'),
-	DEFAULT_ENABLED : true,
     OPTIONS : new Array( "skill_color",
 						  "only_skill_color",
 						  "skill_number",

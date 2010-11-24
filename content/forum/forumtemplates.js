@@ -9,7 +9,6 @@ var FoxtrickForumTemplates = {
     MODULE_AUTHOR : "Mod-PaV",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','htpress','forumModWritePost'),
-    DEFAULT_ENABLED : true,
 	OPTIONS : new Array("DefaultShow","CustomWidth"),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","125"),

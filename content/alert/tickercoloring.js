@@ -8,7 +8,6 @@ var FoxtrickTickerColoring = {
     MODULE_NAME : "TickerColoring",
     MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : new Array('all'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Use CSS file for coloring.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

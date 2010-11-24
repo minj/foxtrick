@@ -7,7 +7,6 @@
 var FoxtrickPrefsDialogHTML = {
 
 	MODULE_NAME : "PrefsDialogHTML",
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed ex/importing preferences",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

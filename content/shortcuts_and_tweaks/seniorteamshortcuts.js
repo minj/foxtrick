@@ -10,7 +10,6 @@ var FoxtrickSeniorTeamShortCuts = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('teamPageGeneral'),
 	ONPAGEPREF_PAGE : 'all',
-	DEFAULT_ENABLED : true,
 	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"),
 
     run : function( page, doc ) {

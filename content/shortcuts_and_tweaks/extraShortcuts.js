@@ -9,7 +9,6 @@ var FoxtrickExtraShortcuts = {
     MODULE_NAME : "ExtraShortcuts",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
-    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Optional extra space for shortcuts. Links to national Hattrick radios added",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

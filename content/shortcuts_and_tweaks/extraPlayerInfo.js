@@ -7,7 +7,6 @@ FoxtrickExtraPlayerInfo = {
 	MODULE_NAME : "ExtraPlayerInfo",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["players"],
-	DEFAULT_ENABLED : true,
 	OPTIONS : ["CoachInfo", "Flag"],
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Splitted extra player information from TeamStats as a module, and updated to match latest HT version.",

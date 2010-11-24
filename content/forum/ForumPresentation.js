@@ -7,7 +7,6 @@ FoxtrickForumPresentation = {
     MODULE_NAME : "ForumPresentation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'),
-    DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION : "0.5.3",
 	LATEST_CHANGE : "Removed hideForumNotificationBox option.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

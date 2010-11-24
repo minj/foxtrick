@@ -8,7 +8,6 @@ var FoxtrickRapidId = {
 	MODULE_NAME: "RapidId",
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
-	DEFAULT_ENABLED: true,
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE: "Browser auto-completion is now independent for each category. Added option for Senior and Youth Series",
 	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.FIX,

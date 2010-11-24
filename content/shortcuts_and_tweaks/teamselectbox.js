@@ -9,7 +9,6 @@ var FoxtrickTeamSelectBox= {
     MODULE_NAME : "TeamSelectBox",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players','YouthPlayers'),
-    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Some speedup",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

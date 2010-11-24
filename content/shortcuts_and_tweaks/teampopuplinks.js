@@ -8,7 +8,6 @@ var FoxtrickTeamPopupLinks = {
 	MODULE_NAME : "TeamPopupLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all_late"],
-	DEFAULT_ENABLED : true,
 	CSS : Foxtrick.ResourcePath + "resources/css/popup-links.css",
 	NEW_AFTER_VERSION : "0.5.0.5",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

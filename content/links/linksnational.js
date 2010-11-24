@@ -9,7 +9,6 @@ var FoxtrickLinksNational = {
     MODULE_NAME : "LinksNational",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('national'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {

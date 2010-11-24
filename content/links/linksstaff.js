@@ -9,7 +9,6 @@ var FoxtrickLinksStaff = {
     MODULE_NAME : "LinksStaff",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('staff'),
-	DEFAULT_ENABLED : false,
 	OPTIONS : {},
 
     init : function() {

@@ -5,10 +5,9 @@
 */
 
 var FoxtrickForumStage = {
-
 	MODULE_NAME : "ForumStage",
+	CORE_MODULE : true,
 	PAGES : new Array('forumWritePost'),
-    DEFAULT_ENABLED : true,
 
 	init : function() {
 	},

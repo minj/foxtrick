@@ -8,7 +8,6 @@ var FoxtrickGoToPostBox = {
     MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : true,
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Fix for latest forum change",

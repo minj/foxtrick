@@ -10,7 +10,6 @@ Foxtrick.AttVsDef = {
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	DEFAULT_ENABLED : true,
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
 
 	run : function( page, doc ) {

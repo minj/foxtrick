@@ -9,7 +9,6 @@ var FoxtrickStaffMarker = {
 	MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread','forumWritePost','teamPage'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Use CSS file for styling. Use asynchronous XHR to prevent freezing Firefox when hattrick-youthclub.org is down.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

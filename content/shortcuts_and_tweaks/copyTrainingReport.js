@@ -8,7 +8,6 @@
 // dummy for loading right css
 var FoxtrickHeadercopyicons = {
     MODULE_NAME : "Headercopyicons",
-    DEFAULT_ENABLED : true,
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
 	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
 	CSS_SIMPLE_RTL: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple_rtl.css",
@@ -29,7 +28,6 @@ var FoxtrickCopyTrainingReport = {
 	MODULE_NAME : "CopyTrainingReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthTraining'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
@@ -130,7 +128,6 @@ var FoxtrickCopyScoutReport = {
 	MODULE_NAME : "CopyScoutReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail','youthoverview'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.2",
 	LATEST_CHANGE:"Fixed missing specialty",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
@@ -263,7 +260,6 @@ var FoxtrickCopyPlayerSource = {
 	MODULE_NAME : "CopyPlayerSource",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.0.5",
 	LATEST_CHANGE:"Open hty page after copying",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

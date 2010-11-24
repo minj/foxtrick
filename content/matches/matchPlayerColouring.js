@@ -8,7 +8,6 @@ FoxtrickMatchPlayerColouring = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match', 'playerdetail'),
 	ONPAGEPREF_PAGE : 'match',
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Use CSS file for styling.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

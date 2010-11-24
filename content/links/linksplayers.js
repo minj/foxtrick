@@ -9,7 +9,6 @@ var FoxtrickLinksPlayers = {
     MODULE_NAME : "LinksPlayers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('players'),
-	DEFAULT_ENABLED : false,
 	OPTIONS : {},
 
     init : function() {

@@ -9,7 +9,6 @@ var FoxtrickCrossTable = {
 	MODULE_NAME : "CrossTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("fixtures"),
-	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("allway_show_cross", "allway_show_graph"),
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Let table expand, and show full name in graph.",

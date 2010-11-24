@@ -9,7 +9,6 @@ var FoxtrickLinksTeam = {
     MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {

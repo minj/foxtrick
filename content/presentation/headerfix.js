@@ -10,7 +10,6 @@ var FoxtrickHeaderFix = {
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('match','arena'),
 	ONPAGEPREF_PAGE : 'all',
-    DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Disabled on new lineup pages",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
@@ -86,7 +85,6 @@ var FoxtrickHeaderFix = {
 
 var FoxtrickHeaderFixLeft = {
     MODULE_NAME : "HeaderFixLeft",
-    DEFAULT_ENABLED : false,
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix_left.css",
 	CSS_SIMPLE_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_rtl_left.css",
 	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std_left.css",

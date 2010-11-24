@@ -21,7 +21,6 @@ var FoxtrickFormatPostingText = {
 	NEW_AFTER_VERSION: "0.5.1.2",
 	LATEST_CHANGE:"Fixes display error",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	DEFAULT_ENABLED : true,
 
 	run : function( page, doc ) {
 		//format view
@@ -105,7 +104,6 @@ var FoxtrickCopyPostID = {
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Added [post=..] to copied post id",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	DEFAULT_ENABLED : true,
 	OPTIONS : new Array("AddCopyIcon")
 };
 
@@ -123,7 +121,6 @@ var FoxtrickCopyPosting = {
 	NEW_AFTER_VERSION: "0.5.2.1",
 	LATEST_CHANGE:"Styles as popup",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	DEFAULT_ENABLED : true,
 };
 
 //**********************************************************
@@ -137,7 +134,6 @@ var FoxtrickForumAlterHeaderLine = {
 	MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"HideOldTime fixing for some dateformats",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
@@ -167,7 +163,6 @@ var FoxtrickForumRedirManagerToTeam = {
 	MODULE_NAME : "ForumRedirManagerToTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : false
 };
 
 //**********************************************************
@@ -181,7 +176,6 @@ var FoxtrickMoveLinks = {
 	MODULE_NAME : "MoveLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : false
 };
 
 //**********************************************************
@@ -195,7 +189,6 @@ var FoxtrickHideManagerAvatarUserInfo = {
 	MODULE_NAME : "HideManagerAvatarUserInfo",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : false
 };
 
 //**********************************************************
@@ -209,7 +202,6 @@ var FoxtrickAddDefaultFaceCard = {
 	MODULE_NAME : "AddDefaultFaceCard",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	DEFAULT_ENABLED : true
 };
 
 /**

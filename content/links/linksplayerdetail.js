@@ -9,7 +9,6 @@ var FoxtrickLinksPlayerDetail = {
     MODULE_NAME : "LinksPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('playerdetail'),
-	DEFAULT_ENABLED : true,
 
     init : function() {
 		var linktypes = new Array("playerhealinglink","playerlink","keeperlink","transfercomparelink");

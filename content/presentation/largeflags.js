@@ -8,7 +8,6 @@ var FoxtrickLargeFlags = {
     MODULE_NAME : "LargeFlags",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
-	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Disabled by default since it may crash the whole operating system under GNU/Linux. Fixed the flag of Chinese Taipei.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

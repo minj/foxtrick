@@ -9,7 +9,6 @@ var FoxtrickLinksClubTransfers = {
     MODULE_NAME : "LinksClubTransfers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.0.5",
 	LATEST_CHANGE : "Custom links for club transfer page enabled",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

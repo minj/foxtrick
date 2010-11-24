@@ -9,7 +9,6 @@ var FoxtrickYouthSkillHideUnknown = {
     MODULE_NAME : "YouthSkillHideUnknown",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayers'),
-	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE: "Added option to hide 'maximal' key word to gain more space if facecards are enabled",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

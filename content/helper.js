@@ -5,8 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickHelper = {
 	MODULE_NAME : "Helper",
+	CORE_MODULE : true,
 	PAGES : new Array('all', 'teamPageAny'),
-	DEFAULT_ENABLED : true,
 	ownTeam: null,
 
 	run : function(page, doc) {

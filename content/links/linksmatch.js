@@ -9,7 +9,6 @@ var FoxtrickLinksMatch = {
     MODULE_NAME : "LinksMatch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('match'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
     init : function() {

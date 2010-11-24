@@ -11,7 +11,6 @@ FoxtrickHTDateFormat = {
 					'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
 					'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'),
 	ONPAGEPREF_PAGE : 'all',
-    DEFAULT_ENABLED : true,
     NEW_AFTER_VERSION: "0.5.2.1",
 	LATEST_CHANGE:"Added to playerevents",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

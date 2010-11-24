@@ -6,9 +6,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickRedirections = {
-
 	MODULE_NAME : "Redirections",
-	DEFAULT_ENABLED : true,
+	CORE_MODULE : true,
 
 	init : function() {
 		Foxtrick.registerAllPagesHandler(FoxtrickRedirections );

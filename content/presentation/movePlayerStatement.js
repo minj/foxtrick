@@ -9,7 +9,6 @@ var FoxtrickMovePlayerStatement = {
 	MODULE_NAME : "MovePlayerStatement",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','YouthPlayer'),
-	DEFAULT_ENABLED : false,
 
 	run : function( page, doc ) {
 		var contentSpeak = "";

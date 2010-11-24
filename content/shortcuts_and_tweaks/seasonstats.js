@@ -11,7 +11,6 @@ var FoxtrickSeasonStats = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('matchesarchiv','matches'),
 	ONPAGEPREF_PAGE : 'matchesarchiv',
-    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed wrong home draws assignment",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,

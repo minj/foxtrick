@@ -11,7 +11,6 @@ FoxtrickFlagCollectionToMap = {
 	NEW_AFTER_VERSION: "0.5.1.3",
 	LATEST_CHANGE:"Lesotho fix",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-    DEFAULT_ENABLED : true,
 
 	own_countryid:0,
 	own_countryvisited:false,

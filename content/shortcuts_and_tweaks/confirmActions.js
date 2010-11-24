@@ -8,7 +8,6 @@ var FoxtrickConfirmActions = {
 	MODULE_NAME : "ConfirmActions",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "staff"],
-	DEFAULT_ENABLED : true,
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
 	NEW_AFTER_VERSION : "0.5.1.3",
 	LATEST_CHANGE : "Use FoxTrick note for confirmation (not available for NT change).",

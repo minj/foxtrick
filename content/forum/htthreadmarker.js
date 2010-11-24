@@ -9,7 +9,6 @@
     MODULE_NAME : "HTThreadMarker",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
-    DEFAULT_ENABLED : true,
     CSS : Foxtrick.ResourcePath + "resources/css/ht-thread.css",
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Use CSS file for styling.",

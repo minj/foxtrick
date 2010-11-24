@@ -8,7 +8,6 @@ var FoxtrickMedianTransferPrice = {
 	MODULE_NAME : "MedianTransferPrice",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('transferCompare'),
-	DEFAULT_ENABLED : true,
 
 	run : function( page, doc ) {
 		var table = doc.getElementsByTagName("table")[0];

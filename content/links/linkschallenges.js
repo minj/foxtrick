@@ -9,7 +9,6 @@ var FoxtrickLinksChallenges = {
     MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('challenges','youthchallenges'),
-	DEFAULT_ENABLED : true,
 	OPTIONS : {},
 
 	init : function() {

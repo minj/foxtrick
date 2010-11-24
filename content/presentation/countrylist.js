@@ -14,7 +14,6 @@ var FoxtrickCountyList = {
                         'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena',
                         'help_contact'
                         ),
-	DEFAULT_ENABLED : true,
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
 	NEW_AFTER_VERSION: "0.5.0.0",
 	LATEST_CHANGE:"Fixed module not working",

@@ -9,7 +9,6 @@ var FoxtrickForumStripHattrickLinks = {
 	MODULE_NAME : "ForumStripHattrickLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost","forumViewThread"),
-    DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION: "0.5.1.2",
 	LATEST_CHANGE: "Module back.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,

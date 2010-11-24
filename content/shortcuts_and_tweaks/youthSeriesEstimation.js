@@ -8,7 +8,6 @@ var FoxtrickYouthSeriesEstimation = {
 	MODULE_NAME : "YouthSeriesEstimation",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["search"],
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.3",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	LATEST_CHANGE : "Repaired prediction when series start in the future.",

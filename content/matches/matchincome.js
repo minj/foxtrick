@@ -9,7 +9,6 @@ var FoxtrickMatchIncome = {
     MODULE_NAME : "MatchIncome",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	DEFAULT_ENABLED : true,
 
     run : function( page, doc ) {
         var ft_match = doc.getElementById ('ft_matchincome');

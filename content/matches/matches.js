@@ -7,7 +7,6 @@
 Foxtrick.Matches = {
 
     MODULE_NAME : "Matches",
-	DEFAULT_ENABLED : true,
 	PAGES : new Array('match'),
 
 	matchxmls: new Array(),

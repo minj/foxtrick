@@ -8,7 +8,6 @@ var FoxtrickLeagueNewsFilter = {
 	MODULE_NAME : "LeagueNewsFilter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Fixed highlighting bots.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
@@ -198,7 +197,6 @@ var FoxtrickShortPAs = {
 	MODULE_NAME : "ShortPAs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'),
-	DEFAULT_ENABLED : false,
 	NEW_AFTER_VERSION: "0.4.8.1",
 	LATEST_CHANGE:"Fix for PAs with horizontal lines",
 

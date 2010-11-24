@@ -87,7 +87,7 @@ specifications:
   up the list of categories in the file content/const.js.
 # A property named PAGES, which is an array containing the pages that the module
   should run on. The pages are listed at content/pages.js.
-# There are also other properties including OPTIONS, DEFAULT_ENABLED, CSS, etc.
+# There are also other properties including OPTIONS, CSS, etc.
   You could refer to the source of existing modules for their uses. Of course,
   usually they mean what their names imply.
 # A property function init(), which will be run once as soon as FoxTrick is
@@ -117,8 +117,9 @@ foxtrick.modules.MyModule.desc=This is my module.
 If you have options for your module, descriptions of the options should also
 be added.
 
-The final step is modifying foxtrick/defaults/preferences/foxtrick.js if you
-want to enable/disable your module by default.
+The final step is modifying foxtrick/defaults/preferences/foxtrick.js and state
+there if the module is to be enabled/disabled by default. No matter what, this
+step is necessary.
 
 There are many other interesting aspects of a module, and you can gain knowledge
 from existing modules. The YouthPromotes module, which is in the file

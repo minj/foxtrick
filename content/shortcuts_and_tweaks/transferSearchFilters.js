@@ -8,7 +8,6 @@ FoxtrickTransferSearchFilters = {
 	MODULE_NAME : "TransferSearchFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('transferSearchForm'),
-	DEFAULT_ENABLED : true,
 	_MAX_FILTER_DISP_LENGTH : 23,
 
 	backwardCompatibleCodes : {

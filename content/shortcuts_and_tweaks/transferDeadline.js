@@ -8,7 +8,6 @@ FoxtrickTransferDeadline = {
     MODULE_NAME : "TransferDeadline",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('transferSearchResult','playerdetail','transfer'),
-    DEFAULT_ENABLED : true,
 
     run : function(page, doc) {
         var httime = doc.getElementById( "time" ).innerHTML;

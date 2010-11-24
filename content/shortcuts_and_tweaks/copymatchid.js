@@ -10,7 +10,6 @@ var FoxtrickCopyMatchID = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
  	PAGES : new Array('matches','matchesarchiv','matcheshistory',
 					'matchesLatest','arena','matchLineup','match'),
-	DEFAULT_ENABLED : true,
 	NEW_AFTER_VERSION : "0.5.2.1",
 	LATEST_CHANGE : "Removed HT-ML tag.",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
