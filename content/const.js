@@ -9,7 +9,6 @@ if (!Foxtrick) var Foxtrick={};
 Foxtrick.BuildFor = 'Gecko';
 Foxtrick.ResourcePath = 'chrome://foxtrick/content/';
 
-
 // List of categories
 Foxtrick.moduleCategories = {
     MAIN : 'main',  // to be added manually to main tab
@@ -24,8 +23,7 @@ Foxtrick.moduleCategories = {
 	// following are only used for html preferences
     CHANGES : 'changes',
     HELP : 'help',
-    ABOUT : 'about',
-
+    ABOUT : 'about'
 };
 
 
