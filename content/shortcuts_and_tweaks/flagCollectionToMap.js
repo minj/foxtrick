@@ -125,7 +125,7 @@ FoxtrickFlagCollectionToMap = {
         this.own_countryid = FoxtrickHelper.getOwnCountryId();
 
         var mapId = 0;
-		var mainbox = Foxtrick.getElementsByClass('mainBox', doc);
+		var mainbox = doc.getElementsByClassName("mainBox");
         for (var i=0; i< mainbox.length; i++) {
             var divElement = mainbox[i];
 

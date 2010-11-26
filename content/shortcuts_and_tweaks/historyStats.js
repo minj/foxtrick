@@ -59,7 +59,7 @@ FoxtrickHistoryStats= {
                 catch (e) {
                     Foxtrick.dumpError(e);
                 }
-                var table = Foxtrick.getElementsByClass('otherEventText', doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').cloneNode(true));
+                var table = doc.getElementById("ctl00_CPMain_ucOtherEvents_ctl00").cloneNode(true).getElementsByClassName("otherEventText");
                 for (var i = 0; i < table.length; i++) {
 					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1 ) continue;
                     dummy = Foxtrick.trim(table[i].innerHTML);

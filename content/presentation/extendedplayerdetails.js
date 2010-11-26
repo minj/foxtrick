@@ -23,7 +23,7 @@ FoxtrickExtendedPlayerDetails = {
         var div = doc.getElementById( "ctl00_CPMain_pnlplayerInfo" );
         if (div == null) return;
 
-        var joined_elm = Foxtrick.getElementsByClass( "shy", div )[0];
+        var joined_elm = div.getElementsByClassName("shy")[0];
         if (joined_elm == null) return;
         //Foxtrick.dump('\n'+joined_elm.parentNode.innerHTML+'\n');
 

@@ -28,7 +28,7 @@ var FoxtrickFormatPostingText = {
 			try{
 				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
 				var rep = new Array("<pre>$1</pre>", "");
-				var messages = Foxtrick.getElementsByClass("feedItem", doc );
+				var messages = doc.getElementsByClassName("feedItem");
 				for (var i = 0; i < messages.length; i++){
 					var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
 					// Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');

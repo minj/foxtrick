@@ -178,7 +178,7 @@ var FoxtrickCountyList = {
     _placeCountry: function (page, doc) {
         var cntr = doc.getElementById( 'ft_cntr_fix' );
 		if( cntr == null ) {
-            var league = Foxtrick.getElementsByClass("flag inner", doc.getElementById('mainWrapper'))[0];
+            var league = doc.getElementById("mainWrapper").getElementsByClassName("flag")[0];
             if (!league) return;
             if (Foxtrick.isModuleFeatureEnabled( this, "HideFlagOntop")) {
                 league.setAttribute('style', 'display:none');
@@ -190,7 +190,7 @@ var FoxtrickCountyList = {
 			htname = FoxtrickHelper.getLeagueDataFromId(leaguenum).LeagueName;
 			league.firstChild.title = htname
 
-			var byline = Foxtrick.getElementsByClass("byline", doc)[0];
+			var byline = doc.getElementsByClassName("byline")[0];
             byline.innerHTML = '<a id="ft_cntr_fix" href="'+league.href+'">' + htname + '</a>,' + byline.innerHTML;
         }
     },

@@ -48,8 +48,7 @@ FoxtrickMatchReportFormat = {
 		Foxtrick.addClass(homeLineupLink, HOME_TEAM_CLASS_NAME);
 		Foxtrick.addClass(awayLineupLink, AWAY_TEAM_CLASS_NAME);
 
-		var div_inner = Foxtrick.getElementsByClass('', div)[3];
-		if (!Foxtrick.isSupporter(doc)) div_inner = Foxtrick.getElementsByClass('', div)[2];
+		var div_inner = div.getElementsByTagName("*")[Foxtrick.isSupporter(doc) ? 3 : 2];
 		var start = div_inner.innerHTML.indexOf('<br><br>');
 		var end = div_inner.innerHTML.indexOf('<div class="separator">');
 

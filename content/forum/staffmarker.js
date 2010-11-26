@@ -116,7 +116,7 @@ var FoxtrickStaffMarker = {
 	_MarkAliases_thread : function (doc) {
 		var do_own = Foxtrick.isModuleFeatureEnabled( this, "own");
 
-		var userDivs = Foxtrick.getElementsByClass("float_left", doc.getElementById('mainWrapper'));
+		var userDivs = doc.getElementById("mainWrapper").getElementsByClassName("float_left");
 		var i=0, user;
 		while ( user = userDivs[i++] ) {
 			var as = user.getElementsByTagName('a');

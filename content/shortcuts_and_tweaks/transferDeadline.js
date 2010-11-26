@@ -83,8 +83,8 @@ FoxtrickTransferDeadline = {
         var div = doc.getElementById( 'ctl00_CPMain_updBid' );
         if (div == null ) return;
 
-        var spans = Foxtrick.getElementsByClass( "alert", div );
-        if (spans == null) return;
+        var spans = div.getElementsByClassName("alert");
+        if (spans.length == 0) return;
 
         var selltime_elm = spans[0].getElementsByTagName( "p" )[0];
 

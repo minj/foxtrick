@@ -247,12 +247,12 @@ var FoxtrickForumPreview = {
         try {
             if( prev_div.style.display == "none" ) {
                 msg_window.removeEventListener( "keyup", FoxtrickForumPreview._preview, false );
-				var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
+				var toolbar = doc.getElementsByClassName("HTMLToolbar");
 				for (var i=0;i< toolbar.length;++i) toolbar[i].removeEventListener( "click", FoxtrickForumPreview._preview, false );
 
             } else {
                 msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
-				var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
+				var toolbar = doc.getElementsByClassName("HTMLToolbar");
 				for (var i=0;i< toolbar.length;++i) toolbar[i].addEventListener( "click", FoxtrickForumPreview._preview, false );
 
                 FoxtrickForumPreview._preview( ev );

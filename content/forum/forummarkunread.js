@@ -22,7 +22,7 @@ var FoxtrickMarkUnread = {
 		var thread = '';
 
         try {
-                var forumtabs = Foxtrick.getElementsByClass( 'active', doc )[0];
+                var forumtabs = doc.getElementsByClassName("active")[0];
                 var reg = /^(.*?)\&v\=(\d+)(.*?)/;
                 var ar = reg.exec(+' ' + forumtabs.href + ' ');
                 if (ar[2] != null) {

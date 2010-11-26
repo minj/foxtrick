@@ -124,7 +124,7 @@ var FoxtrickForumChangePosts = {
 		// loop through postings
 		/*
 		if (do_linebreak) {
-			var divs  = Foxtrick.getElementsByClass("message", doc );
+			var divs  = doc.getElementsByClassName("message");
 			for (var i=0; i < divs.length; i++) {
 				//divs[i].innerHTML = Foxtrick.linebreak(divs[i].innerHTML, 50);
 			}
@@ -147,7 +147,7 @@ var FoxtrickForumChangePosts = {
 		if (do_format_text) try {
 			var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
 			var rep = new Array("<pre>$1</pre>", "");
-			var messages = Foxtrick.getElementsByClass("message", doc );
+			var messages = doc.getElementsByClassName("message");
 			for (var i = 0; i < messages.length; i++){
 				var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
 				// Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');

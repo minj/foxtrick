@@ -131,15 +131,14 @@
 				var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
 				anchor.style.height = '300px';
 		}
-		var toolbar = Foxtrick.getElementsByClass( "HTMLToolbar", doc );
-		toolbar = toolbar[0];
+		var toolbar = doc.getElementsByClassName("HTMLToolbar")[0];
 		if  (( toolbar == null ) && (!page == 'ads' )) return;
 		var toolbar_main = toolbar;
 
 
 		if ( (page == 'messageWritePost' ) && ( !Foxtrick.isStandardLayout( doc ) ) )
 			try {
-				var mainbbox = Foxtrick.getElementsByClass( "mainBox", doc )[0];
+				var mainbbox = doc.getElementsByClassName("mainBox")[0];
 				mainbbox.setAttribute( "style", "padding-bottom:25px;");
 			}
 			catch (e)
@@ -180,9 +179,8 @@
 
 
 		//simple test if new icons are set up by HTs
-		var toolbar_test = Foxtrick.getElementsByClass( "f_hr", doc );
-		//Foxtrick.dump('Document child class "f_hr": ['+toolbar_test+']\n');
-		if (toolbar_test.length != null) {
+		var toolbar_test = doc.getElementsByClassName("f_hr");
+		if (toolbar_test.length > 0) {
 			var target=toolbar.lastChild;
 			var tooldivs = doc.getElementsByTagName('img');
 			for (var i = 0; i < tooldivs.length; i++) {
@@ -209,7 +207,7 @@
 			}
 			for (var i = 1; i < this.icons.length; i++) {
 				if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[i].type)) {
-					if (this.icons[i].alt==null || Foxtrick.getElementsByClass( this.icons[i].alt, doc ).length==0) {
+					if (this.icons[i].alt==null || doc.getElementsByClassName(this.icons[i].alt).length==0) {
 						var newimage = doc.createElement( "img" );
 						newimage.src = "/Img/Icons/transparent.gif";
 						newimage.addEventListener( "click", this.addTagsClick, false );

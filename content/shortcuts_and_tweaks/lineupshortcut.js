@@ -43,7 +43,7 @@ FoxtrickLineupShortcut = {
     _Analyze_Player_Page  : function ( doc ) {
 		var mainbody = doc.getElementById( "mainBody" );
 		//first getting the serieID to get ntName and u20Name
-		var flagElem= Foxtrick.getElementsByClass( "flag inner", mainbody );
+		var flagElem = mainbody.getElementsByClassName("flag");
 		var ntName='';
 		var ntId=0;
 		var u20Name='';
@@ -61,11 +61,11 @@ FoxtrickLineupShortcut = {
 		else
 			Foxtrick.LOG('Error in lineupshortcut: serieId '+serieId+' not found!');
 
-		var issupporter = Foxtrick.getElementsByClass( "bookmark", mainbody );
+		var isSupporter = Foxtrick.isSupporter(doc)
 
-		if (issupporter.length>0) {
+		if (isSupporter) {
 			//user is supporter, we check if there are stats
-			var divs=Foxtrick.getElementsByClass( "mainBox", mainbody );
+			var divs=mainbody.getElementsByClassName("mainBox");
 			//Otherwise there aren't matches
 			//var divs=mainbody.getElementsByTagName('div');
 			var lastdiv=divs[divs.length-1];
@@ -184,7 +184,7 @@ FoxtrickLineupShortcut = {
 	_Analyze_Youth_Player_Page : function ( doc ) {
 		var mainbody = doc.getElementById( "mainBody" );
 		//First thing is to understand if it an own player or a player of another team
-		var boxes=Foxtrick.getElementsByClass("mainBox", mainbody);
+		var boxes=mainbody.getElementsByClassName("mainBox");
 		if (boxes.length>1) {
 			//Own player, the right element is the second
 			var matchElement=boxes[1];
@@ -219,7 +219,7 @@ FoxtrickLineupShortcut = {
 			//Getting playerid from url
 			var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, "").match(/^\d+/);
 			if (passedid) {
-				var playerdivs = Foxtrick.getElementsByClass( "name", doc );
+				var playerdivs = doc.getElementsByClassName("name");
 				for (var i = 0; i < playerdivs.length; i++) {
 					var playerid=FoxtrickHelper.findPlayerId(playerdivs[i]);
 					if (playerid==passedid) {
