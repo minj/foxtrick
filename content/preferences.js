@@ -97,24 +97,59 @@ function initTextAndValues()
 		if ($(this).attr("text-key"))
 			$(this).text(Foxtrickl10n.getString($(this).attr("text-key")));
 	});
+	// initialize modules
+	$("body [module]").each(function() {
+		const module = $(this).attr("module");
+		if ($(this).attr("option")) {
+			const option = $(this).attr("option");
+			// module option
+			if ($(this).is(":checkbox")) {
+				 if (Foxtrick.isModuleFeatureEnabled(module, option))
+					$(this).attr("checked", "checked");
+			}
+			else if ($(this).is(":input")) // text input
+				$(this)[0].value = FoxtrickPrefs.getString("module." + module + "." + option);
+		}
+		else if ($(this).is(":radio")) {
+			// radio input
+			const selected = Foxtrick.getModuleValue(module);
+			if ($(this).attr("value") == selected)
+				$(this).attr("checked", "checked");
+		}
+		else if (Foxtrick.isModuleEnabled(module)) // module itself
+			$(this).attr("checked", "checked");
+	});
 	// initialize checkboxes
 	$("body input:checkbox[pref]").each(function() {
 		if ($(this).attr("pref"))
 			if (FoxtrickPrefs.getBool($(this).attr("pref")))
 				$(this).attr("checked", "checked");
 	});
-	// initialize elements with blockers
+	// initialize elements with blockers, disable if blocker enabled
 	$("body [blocked-by]").each(function() {
 		var blockee = $(this);
 		var blocker = $("#" + blockee.attr("blocked-by"));
-		blocker.click(function() {
+		var updateStatus = function() {
 			if (blocker.is(":checked"))
 				blockee.attr("disabled", "disabled");
 			else
 				blockee.removeAttr("disabled");
-		});
-		if (blocker.is(":checked"))
-			blockee.attr("disabled", "disabled");
+		};
+		blocker.click(function() { updateStatus(); });
+		updateStatus();
+	});
+	// initialize elements with dependency, show only if dependency met
+	$("body [depends-on]").each(function() {
+		var depender = $(this);
+		var dependee = $("#" + depender.attr("depends-on"));
+		var updateStatus = function() {
+			if (dependee.is(":checked"))
+				depender.show();
+			else
+				depender.hide();
+		};
+		dependee.click(function() { updateStatus(); });
+		updateStatus();
 	});
 }
 
@@ -244,8 +279,6 @@ function initModuleTabs()
 
 function getModule(module)
 {
-	var enabled = Foxtrick.isModuleEnabled(module);
-
 	var entry = document.createElement("div");
 	entry.id = "pref-" + module.MODULE_NAME;
 	entry.className = "module";
@@ -259,8 +292,6 @@ function getModule(module)
 	check.id = entry.id + "-check";
 	check.type = "checkbox";
 	check.setAttribute("module", module.MODULE_NAME);
-	if (enabled)
-		check.setAttribute("checked", "checked");
 	label.appendChild(check);
 	label.appendChild(document.createTextNode(module.MODULE_NAME));
 	title.appendChild(label);
@@ -285,11 +316,8 @@ function getModule(module)
 	// options container
 	var options = document.createElement("div");
 	options.id = entry.id + "-options";
+	options.setAttribute("depends-on", check.id);
 	entry.appendChild(options);
-
-	if (!enabled)
-		$(options).hide();
-	$(check).click(function() { $(this).is(":checked") ? $(options).show() : $(options).hide(); });
 
 	// checkbox options
 	if (module.OPTIONS) {
@@ -318,8 +346,6 @@ function getModule(module)
 			}
 			checkbox.id = entry.id + "-" + key;
 			checkbox.setAttribute("option", key);
-			if (Foxtrick.isModuleFeatureEnabled(module, key))
-				checkbox.setAttribute("checked", "checked");
 			label.appendChild(document.createTextNode(title));
 
 			// screenshot
@@ -330,24 +356,14 @@ function getModule(module)
 				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
 				var textDiv = document.createElement("div");
 				textDiv.id = checkbox.id + "-text-div";
+				textDiv.setAttribute("depends-on", checkbox.id);
 				item.appendChild(textDiv);
+
 				var textInput = document.createElement("input");
 				textInput.id = checkbox.id + "-text";
 				textInput.setAttribute("module", module.MODULE_NAME);
 				textInput.setAttribute("option", module.OPTIONS[i] + "_text");
 				textDiv.appendChild(textInput);
-
-				if (!Foxtrick.isModuleFeatureEnabled(module, key)) {
-					$(textDiv).hide();
-				}
-
-				$(checkbox).click(function() { $(this).is(":checked") ? $(textDiv).show() : $(textDiv).hide(); });
-
-				var val = FoxtrickPrefs.getString("module." + module.MODULE_NAME + "." + textInput.getAttribute("option"));
-				if (val === null && module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]) {
-					val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
-				}
-				textInput.value = val;
 
 				// load buttons
 				if (module.OPTION_TEXTS_LOAD_BUTTONS && module.OPTION_TEXTS_LOAD_BUTTONS[i]) {
@@ -372,7 +388,6 @@ function getModule(module)
 		radios.id = entry.id + "-radios";
 		options.appendChild(radios);
 
-		var selectedValue = Foxtrick.getModuleValue(module);
 		for (var i in module.RADIO_OPTIONS) {
 			var item = document.createElement("li");
 			radios.appendChild(item);
@@ -383,9 +398,6 @@ function getModule(module)
 			radio.name = entry.id + "-radio";
 			radio.value = i;
 			radio.setAttribute("module", module.MODULE_NAME);
-			if (selectedValue == i) {
-				radio.setAttribute("checked", "checked");
-			}
 			label.appendChild(radio);
 			label.appendChild(document.createTextNode(
 				FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + "." + module.RADIO_OPTIONS[i])));

@@ -694,18 +694,20 @@ Foxtrick.isCoreModule = function(module) {
 
 Foxtrick.isModuleEnabled = function(module) {
 	try {
-		var val = FoxtrickPrefs.getBool("module." + module.MODULE_NAME + ".enabled");
-		return Boolean(val);
+		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		const val = Boolean(FoxtrickPrefs.getBool("module." + moduleName + ".enabled"));
+		return val;
 	}
 	catch (e) {
 		return false;
 	}
 }
 
-Foxtrick.isModuleFeatureEnabled = function(module , feature) {
+Foxtrick.isModuleFeatureEnabled = function(module, feature) {
 	try {
-		var val = FoxtrickPrefs.getBool("module." + module.MODULE_NAME + "." + feature + ".enabled");
-		return Boolean(val);
+		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		const val = Boolean(FoxtrickPrefs.getBool("module." + moduleName + "." + feature + ".enabled"));
+		return val;
 	}
 	catch (e) {
 		return false;
@@ -714,11 +716,12 @@ Foxtrick.isModuleFeatureEnabled = function(module , feature) {
 
 Foxtrick.getModuleValue = function(module) {
 	try {
-		var val = FoxtrickPrefs.getInt("module." + module.MODULE_NAME + ".value");
-		return (val != null) ? val : 0;
+		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		const val = Number(FoxtrickPrefs.getInt("module." + module.MODULE_NAME + ".value"));
+		return val;
 	}
 	catch (e) {
-		return false;
+		return 0;
 	}
 }
 
