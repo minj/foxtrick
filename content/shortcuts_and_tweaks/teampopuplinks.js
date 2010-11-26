@@ -221,7 +221,6 @@ var FoxtrickTeamPopupLinks = {
 
 	popupshow : function(evt) {
 		try {
-			Foxtrick.dump("show\n");
 			var org_link = evt.target;
 			var show_more = false;
 			if (org_link.getAttribute('more')) {
