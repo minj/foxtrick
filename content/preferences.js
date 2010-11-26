@@ -5,6 +5,7 @@ function init()
 	initTabs();
 	initTextAndValues();
 	$("#cancel").hover(function() { $(this).hide("slow"); }); // trick!
+	locateFragment(window.location.toString()); // locate element by fragment
 }
 
 function initCoreModules()
@@ -13,6 +14,58 @@ function initCoreModules()
 	const core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	for (var i in core)
 		core[i].init();
+}
+
+// see http://tools.ietf.org/html/rfc3986#section-3.5
+function parseFragment(fragment)
+{
+	const pairs = String(fragment).split(/&/); // key - value pairs use ampersand (&) as delimiter
+	var ret = {};
+	for (var i in pairs) {
+		var pair = pairs[i].split(/=/); // key and value are separated by equal sign (=)
+		if (pair.length == 2)
+			ret[pair[0]] = pair[1];
+	}
+	return ret;
+}
+
+function locateFragment(uri)
+{
+	var fragment = "";
+	if (uri.indexOf("#") > -1)
+		fragment = uri.replace(/^.+#/, ""); // only keep the fragment
+	const param = parseFragment(fragment);
+	if (param["module"])
+		showModule(param["module"]);
+	else if (param["tab"])
+		showTab(param["tab"]);
+	else
+		showTab("main"); // show the main tab by default
+}
+
+function showTab(tab)
+{
+	$("#panes > div[id^='pane-']").hide();
+	$("#tabs > li").removeClass("active");
+	$("#tab-" + tab).addClass("active");
+	$("#pane-" + tab).show();
+}
+
+function showModule(module)
+{
+	const moduleObj = $("#pref-" + String(module));
+	const tab = moduleObj.parent().attr("id").replace(/^pane-/, "");
+	showTab(tab);
+	moduleObj[0].scrollIntoView(true);
+}
+
+function generateURI(tab, module)
+{
+	const location = window.location.toString().replace(/#.*$/, "");
+	if (tab)
+		return location + "#tab=" + tab;
+	else if (module)
+		return location + "#module=" + module;
 }
 
 function initListeners()
@@ -25,15 +78,10 @@ function initTabs()
 {
 	// attach each tab with corresponding pane
 	$("#tabs li a").each(function() {
-		$(this).attr("href", "#" + $(this).parent().attr("id").replace(/^tab-/, "pane-"));
+		const tab = $(this).parent().attr("id").replace(/^tab-/, "");
+		$(this).attr("href", generateURI(tab));
+		$(this).click(function() { locateFragment($(this).attr("href")); });
 	});
-	$("#tabs li a").click(function() {
-		$("#panes > div[id^='pane-']").hide();
-		$("#tabs > li").removeClass("active");
-		$("#" + $(this).parent().attr("id").replace(/^tab-/, "pane-")).show();
-		$(this).parent().addClass("active");
-	});
-	$("#tab-main a").click(); // by default we are at main tab
 	// initialize the tabs
 	initMainTab();
 	initModuleTabs();
@@ -207,6 +255,7 @@ function getModule(module)
 	entry.appendChild(title);
 
 	var label = document.createElement("label");
+	var link = document.createElement("a");
 	var check = document.createElement("input");
 	check.id = entry.id + "-check";
 	check.type = "checkbox";
@@ -216,6 +265,14 @@ function getModule(module)
 	label.appendChild(check);
 	label.appendChild(document.createTextNode(module.MODULE_NAME));
 	title.appendChild(label);
+
+	// link to module
+	var link = document.createElement("a");
+	link.className = "module-link";
+	link.setAttribute("text-key", "foxtrick.prefs.moduleLink");
+	link.href = generateURI(null, module.MODULE_NAME);
+	$(link).click(function() { locateFragment($(this).attr("href")); });
+	title.appendChild(link);
 
 	// screenshot
 	if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME))

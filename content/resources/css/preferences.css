@@ -61,6 +61,14 @@ table th:first-child {
 	border-color: black;
 }
 
+.module-link
+{
+	color: #333;
+	text-decoration: none;
+	font-size: 75%;
+	margin-left: 2em;
+}
+
 .screenshot
 {
 	float: right;
