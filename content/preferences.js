@@ -255,7 +255,6 @@ function getModule(module)
 	entry.appendChild(title);
 
 	var label = document.createElement("label");
-	var link = document.createElement("a");
 	var check = document.createElement("input");
 	check.id = entry.id + "-check";
 	check.type = "checkbox";
