@@ -156,7 +156,7 @@ Foxtrick.util.time = {
 		return date;
 	},
 
-	timeDifferenceToText = function(time_sec, useShort) {
+	timeDifferenceToText : function(time_sec, useShort) {
 		var org_time = time_sec;
 		// Returns the time differnce as DDD days, HHh MMm
 		// if useShort, only DDD day(s) will be returned
