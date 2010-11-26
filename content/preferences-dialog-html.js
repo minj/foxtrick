@@ -5,12 +5,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickPrefsDialogHTML = {
-
 	MODULE_NAME : "PrefsDialogHTML",
+	CORE_MODULE : true,
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed ex/importing preferences",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-
 	CSS : Foxtrick.ResourcePath + "resources/css/preferences-dialog-html.css",
 
 	save : function( ev ) {
