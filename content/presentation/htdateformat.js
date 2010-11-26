@@ -23,7 +23,7 @@ FoxtrickHTDateFormat = {
         //Foxtrick.dump('HTDateformat RUN '+page+'\n');
         var httime = doc.getElementById( "time" ).innerHTML;
 
-        Foxtrick.HT_date = Foxtrick.getDateFromText( httime );
+        Foxtrick.HT_date = Foxtrick.util.time.getDateFromText( httime );
         if (!Foxtrick.HT_date) return;
 
         var mainBody = doc.getElementById( "mainBody" );
@@ -35,70 +35,70 @@ FoxtrickHTDateFormat = {
         switch ( page ) {
 
             case 'transfersTeam' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'transfersPlayer' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'transfer' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'playerevents' :
-                Foxtrick.modifyDates ( mainBody, false, 'h3', '&nbsp;' , '&nbsp;',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, false, 'h3', '&nbsp;' , '&nbsp;',weekdayoffset );
                 break;
 
 			case 'match' :
-                Foxtrick.modifyDates ( mainBody, false, 'div', '&nbsp;' , '&nbsp;',weekdayoffset, true );
+                Foxtrick.util.time.modifyDates ( mainBody, false, 'div', '&nbsp;' , '&nbsp;',weekdayoffset, true );
                 break;
 
             case 'matches' :
-				Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;' , '',weekdayoffset );
-                //Foxtrick.modifyDates ( mainBody, false, 'td', '<br>' , '',weekdayoffset ); //see FoxtrickMatchTables
+				Foxtrick.util.time.modifyDates ( mainBody, false, 'td', '&nbsp;' , '',weekdayoffset );
+                //Foxtrick.util.time.modifyDates ( mainBody, false, 'td', '<br>' , '',weekdayoffset ); //see FoxtrickMatchTables
                 break;
 
             case 'matchesarchiv' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;' , '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;' , '',weekdayoffset );
                 break;
 
             case 'teamPageGeneral' :
 				if (doc.location.href.search(/Club\/Matches\/Live.aspx/i)!=-1) return;
-				//Foxtrick.modifyDates ( mainBody, false, 'span', '&nbsp;', '',weekdayoffset );
-                Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
+				//Foxtrick.util.time.modifyDates ( mainBody, false, 'span', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'transferCompare' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'achievements' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'teamevents' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'history' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'arena' :
-                Foxtrick.modifyDates ( mainBody, true, 'td', '&nbsp;', '' ,weekdayoffset);
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'td', '&nbsp;', '' ,weekdayoffset);
                 break;
 
             case 'league' :
-                Foxtrick.modifyDates ( mainBody, true, 'h3', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'h3', '&nbsp;', '',weekdayoffset );
                 break;
 
             case 'HallOfFame' :
-                Foxtrick.modifyDates ( mainBody, true, 'p', '&nbsp;', '',weekdayoffset, true );
+                Foxtrick.util.time.modifyDates ( mainBody, true, 'p', '&nbsp;', '',weekdayoffset, true );
                 break;
 
 			case 'statsMatchesHeadToHead' :
-                Foxtrick.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
+                Foxtrick.util.time.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
                 break;
         }
     }

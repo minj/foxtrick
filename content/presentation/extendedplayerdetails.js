@@ -41,14 +41,14 @@ FoxtrickExtendedPlayerDetails = {
 
         var ht_week = Foxtrick.gregorianToHT(joinedtime);
 
-        var JT_date = Foxtrick.getDateFromText( joinedtime );
+        var JT_date = Foxtrick.util.time.getDateFromText( joinedtime );
         if (!JT_date) return;
 
         var joined_s = Math.floor( (Foxtrick.HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
 
         var JoinedText = 'NaN';
         try {
-            JoinedText = Foxtrick.TimeDifferenceToText (joined_s , true);
+            JoinedText = Foxtrick.util.time.timeDifferenceToText (joined_s , true);
         }
         catch(ee) {
             Foxtrick.dump('  JoinedText >' + ee + '\n');

@@ -90,7 +90,7 @@ var FoxtrickSkillTable = {
 					var as = allPlayerInfo[i].getElementsByTagName("a");
 					for (var j = 0; j < as.length; ++j) {
 						if (as[j].href.search(/matchid/i) != -1) {
-							var matchDay = Foxtrick.getDateFromText(as[j].textContent).getTime();
+							var matchDay = Foxtrick.util.time.getDateFromText(as[j].textContent).getTime();
 							if (matchDay > latestMatch) {
 								secondLatestMatch = latestMatch;
 								latestMatch = matchDay;
@@ -235,7 +235,7 @@ var FoxtrickSkillTable = {
 			};
 			var lastMatch = function(cell, last) {
 				if (last) {
-					var matchDay = Foxtrick.getDateFromText(last.textContent).getTime();
+					var matchDay = Foxtrick.util.time.getDateFromText(last.textContent).getTime();
 					cell.appendChild(last);
 					cell.setAttribute("index", matchDay);
 					if (matchDay == latestMatch) {
@@ -265,7 +265,7 @@ var FoxtrickSkillTable = {
 			};
 			var date = function(cell, deadline) {
 				cell.appendChild(deadline);
-				cell.setAttribute("index", Foxtrick.getDateFromText(deadline.textContent).getTime());
+				cell.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
 			};
 			var formatNum = function(cell, num) {
 				cell.className = "formatted-num";

@@ -25,7 +25,7 @@ FoxtrickLastLogin = {
 			return;
 		}
 		var httime = doc.getElementById("time").textContent;
-		var HT_date = Foxtrick.getDateFromText(httime);
+		var HT_date = Foxtrick.util.time.getDateFromText(httime);
 		if (!HT_date) return;
 
 		var login_elm = div.innerHTML.split('<br>');
@@ -34,10 +34,10 @@ FoxtrickLastLogin = {
 			login_elm[i] = Foxtrick.trim(login_elm[i]);
 			var last = '';
 			if (login_elm[i].search(/\*\*\*\.\*\*\*/) != -1) {
-				var ST_date = Foxtrick.getDateFromText(login_elm[i]);
+				var ST_date = Foxtrick.util.time.getDateFromText(login_elm[i]);
 
 				var _s = Math.floor((HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
-				var DiffText = Foxtrick.TimeDifferenceToText(_s);
+				var DiffText = Foxtrick.util.time.timeDifferenceToText(_s);
 				if (DiffText.search("NaN") == -1)
 					last += '<span class="date smallText ft-last-login-diff">(' + DiffText + ')</span>';
 				else Foxtrick.dump('Could not create timediff (NaN)\n');

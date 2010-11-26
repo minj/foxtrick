@@ -12,7 +12,7 @@ FoxtrickTransferDeadline = {
     run : function(page, doc) {
         var httime = doc.getElementById( "time" ).innerHTML;
 
-        Foxtrick.HT_date = Foxtrick.getDateFromText( httime );
+        Foxtrick.HT_date = Foxtrick.util.time.getDateFromText( httime );
         if (!Foxtrick.HT_date) return;
 
         switch ( page ) {
@@ -35,7 +35,7 @@ FoxtrickTransferDeadline = {
 
 	change : function( page, doc ) {
 		var httime = doc.getElementById( "time" ).innerHTML;
-		Foxtrick.HT_date = Foxtrick.getDateFromText( httime );
+		Foxtrick.HT_date = Foxtrick.util.time.getDateFromText( httime );
         if (!Foxtrick.HT_date) return;
 
         switch ( page ) {
@@ -60,11 +60,11 @@ FoxtrickTransferDeadline = {
             if (selltime_elm != null ) {
                 var selltime = Foxtrick.trim(selltime_elm.innerHTML);
                 // Foxtrick.dump ('\n>>>>>' + selltime + '<<<<<\n');
-                var ST_date = Foxtrick.getDateFromText( selltime );
+                var ST_date = Foxtrick.util.time.getDateFromText( selltime );
                 if (ST_date != null) {
                     var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
                     if (!isNaN(deadline_s) && deadline_s >= 0) {
-                        var DeadlineText = Foxtrick.TimeDifferenceToText(deadline_s);
+                        var DeadlineText = Foxtrick.util.time.timeDifferenceToText(deadline_s);
                         selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
                     }
                 }
@@ -106,13 +106,13 @@ FoxtrickTransferDeadline = {
         selltime = Foxtrick.substr(selltime, Foxtrick.strrpos( selltime, ";")+1, selltime.length);
         // Foxtrick.dump('ST: ' + selltime + '\n');
 
-        var ST_date = Foxtrick.getDateFromText( selltime );
+        var ST_date = Foxtrick.util.time.getDateFromText( selltime );
         if (!ST_date) return;
 
         var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
 
         if (!isNaN(deadline_s) && deadline_s >= 0) {
-            var DeadlineText = Foxtrick.TimeDifferenceToText (deadline_s);
+            var DeadlineText = Foxtrick.util.time.timeDifferenceToText (deadline_s);
             selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
         }
     }

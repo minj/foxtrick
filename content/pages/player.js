@@ -320,7 +320,7 @@ Foxtrick.Pages.Player = {
 			var bidDiv = doc.getElementById("ctl00_CPMain_updBid");
 			if (bidDiv) {
 				var bidPara = bidDiv.getElementsByTagName("p")[0];
-				return Foxtrick.getDateFromText(bidPara.textContent);
+				return Foxtrick.util.time.getDateFromText(bidPara.textContent);
 			}
 		}
 		catch (e) {

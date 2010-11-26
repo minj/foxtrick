@@ -79,7 +79,7 @@ var FoxtrickTableSort = {
 		    	if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
 		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
 		    	if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;}
-				if (!Foxtrick.getDateFromText(inner)) {is_date=false;}
+				if (!Foxtrick.util.time.getDateFromText(inner)) {is_date=false;}
 				if (table.rows[i].cells[index].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
 		    }
 			var sort_end = i;
@@ -139,8 +139,8 @@ var FoxtrickTableSort = {
 			return FoxtrickTableSort.sortDirection*(bContent - aContent);
 		}
 		else if (FoxtrickTableSort.sortDate) {
-			var date1 = Foxtrick.getDateFromText(aContent);
-			var date2 = Foxtrick.getDateFromText(bContent);
+			var date1 = Foxtrick.util.time.getDateFromText(aContent);
+			var date2 = Foxtrick.util.time.getDateFromText(bContent);
 			return FoxtrickTableSort.sortDirection*(date2.getTime() - date1.getTime());
 		}
 		else if (FoxtrickTableSort.sortYouthSkill) {

@@ -23,6 +23,7 @@
 <!-- utilities -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/util/currency.js" />
 <script type="application/x-javascript" src="chrome://foxtrick/content/util/note.js" />
+<script type="application/x-javascript" src="chrome://foxtrick/content/util/time.js" />
 
 <!-- page utilities -->
 <script type="application/x-javascript" src="chrome://foxtrick/content/pages/pages.js" />
