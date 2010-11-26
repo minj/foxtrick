@@ -20,13 +20,13 @@ Foxtrick.XMLData = {
 	aboutXML : null,
 
 	init : function() {
-		this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htcurrency.xml");
-		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htNTidList.xml");
-		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htversions.xml");
-		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/htdateformat.xml");
-		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
+		this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htcurrency.xml");
+		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htNTidList.xml");
+		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/htversions.xml");
+		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/data/htdateformat.xml");
+		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
 
-		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/worlddetails.xml");
+		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/worlddetails.xml");
 
 		var data = {};
 		var name = 'HattrickData';

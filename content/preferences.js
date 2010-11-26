@@ -157,15 +157,15 @@ function initMainTab()
 {
 	// basic preferences
 	// language
-	var htLocales = [];
+	var data = [];
 	for (var i in Foxtrickl10n.htLanguagesXml) {
 		var desc = Foxtrickl10n.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
-		htLocales.push({ name: i,  desc: desc });
+		data.push({ name: i,  desc: desc });
 	}
-	htLocales.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
+	data.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
 	const selectedLang = FoxtrickPrefs.getString("htLanguage");
-	for (var i in htLocales) {
-		var locale = htLocales[i];
+	for (var i in data) {
+		var locale = data[i];
 		var item = document.createElement("option");
 		item.value = locale.name;
 		item.textContent = locale.desc;
@@ -195,7 +195,7 @@ function initMainTab()
 	var dateFormats = [];
 	var htDateFormatXml = document.implementation.createDocument("", "", null);
 	htDateFormatXml.async = false;
-	htDateFormatXml.load("chrome://foxtrick/content/htlocales/htdateformat.xml", "text/xml");
+	htDateFormatXml.load("chrome://foxtrick/content/data/htdateformat.xml", "text/xml");
 	var dateFormatNodes = htDateFormatXml.getElementsByTagName("dateformat");
 	for (var i = 0; i < dateFormatNodes.length; ++i) {
 		var code = dateFormatNodes[i].attributes.getNamedItem("code").textContent;
@@ -434,7 +434,7 @@ function getScreenshot(link)
 function initHelpTab()
 {
 	// external links
-	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
+	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
 	const links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
 	for (var i = 0; i < links.length; ++i) {
 		var item = document.createElement("li");
@@ -456,7 +456,7 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/htlocales/foxtrick_about.xml");
+	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
 	$(".about-list").each(function() {
 		const items = Foxtrick.XML_evaluate(aboutXml, $(this).attr("path"), "value");
 		for (var i = 0; i < items.length; ++i) {
