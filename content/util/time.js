@@ -15,7 +15,7 @@ Foxtrick.util.time = {
 		*/
 		if (date == '') return false;
 		date +=' ';
-		if(!weekdayoffset) weekdayoffset=0;
+		weekdayOffset = parseInt(weekdayOffset) || 0;
 		var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
 		var ar = reg.exec(date);
 		var months = [];
@@ -73,7 +73,7 @@ Foxtrick.util.time = {
 				var year = parseInt(ar[1]);
 				break;
 		}
-		var dayCount = years[year-2000] + months[month] + (day) -parseInt(weekdayoffset);
+		var dayCount = years[year-2000] + months[month] + (day) - weekdayOffset;
 
 		// leap year
 		if (year % 4 == 0 && month > 2)
@@ -297,9 +297,9 @@ Foxtrick.util.time = {
 
 						if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
 							if (!strip)
-								node.innerHTML = dt_inner + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
+								node.innerHTML = dt_inner + before + Foxtrick.util.time.gregorianToHT(td_date,weekdayoffset) + after;
 							else
-								node.innerHTML = node.innerHTML + before + Foxtrick.gregorianToHT(td_date,weekdayoffset) + after;
+								node.innerHTML = node.innerHTML + before + Foxtrick.util.time.gregorianToHT(td_date,weekdayoffset) + after;
 						}
 					}
 				}

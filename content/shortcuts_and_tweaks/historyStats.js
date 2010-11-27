@@ -49,7 +49,7 @@ FoxtrickHistoryStats= {
                             var ar = reg.exec(season);
                             var stime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
                             stime = Foxtrick.substr(stime, Foxtrick.strrpos( stime, ";"), stime.length);
-                            season = Foxtrick.gregorianToHT(stime).split('/')[1].split(')')[0];
+                            season = Foxtrick.util.time.gregorianToHT(stime).split('/')[1].split(')')[0];
                             this.Offset = parseInt(season)-parseInt(check_season);
                             done = true;
                         }
@@ -74,7 +74,7 @@ FoxtrickHistoryStats= {
                         var ar = reg.exec(season);
                         var stime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
                         stime = Foxtrick.substr(stime, Foxtrick.strrpos( stime, ";"), stime.length);
-                        season = Foxtrick.gregorianToHT(stime).split('/')[1].split(')')[0];
+                        season = Foxtrick.util.time.gregorianToHT(stime).split('/')[1].split(')')[0];
                         var a = table[i].getElementsByTagName('a');
                         for (var j = 0; j < a.length; j ++) {
                             if (a[j].href.search(/LeagueLevelUnitID/) > -1) {

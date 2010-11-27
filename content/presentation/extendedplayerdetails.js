@@ -37,9 +37,9 @@ FoxtrickExtendedPlayerDetails = {
         joinedtime = Foxtrick.substr(joinedtime, Foxtrick.strrpos( joinedtime, ";"), joinedtime.length);
 
         // Foxtrick.dump('  Joindate: ' + joinedtime + '\n');
-        // Foxtrick.dump('  HT Week: ' + this._Foxtrick.gregorianToHT(joinedtime) + '\n');
+        // Foxtrick.dump('  HT Week: ' + this._Foxtrick.util.time.gregorianToHT(joinedtime) + '\n');
 
-        var ht_week = Foxtrick.gregorianToHT(joinedtime);
+        var ht_week = Foxtrick.util.time.gregorianToHT(joinedtime);
 
         var JT_date = Foxtrick.util.time.getDateFromText( joinedtime );
         if (!JT_date) return;
