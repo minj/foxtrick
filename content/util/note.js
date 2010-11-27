@@ -54,8 +54,9 @@ Foxtrick.util.note = {
 			appendTo.appendChild(note);
 		}
 
-		// go to the note
-		if (doJump) doc.location = doc.location.href.replace(/#.*?$/, "") + "#" + id;
+		// ensure the note is visible
+		if (doJump)
+			note.scrollIntoView(false);
 		return note;
 	},
 
