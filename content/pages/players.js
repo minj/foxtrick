@@ -462,7 +462,11 @@ Foxtrick.Pages.Players = {
 			var selection = ""; // default current players
 
 			// determine xml file
-			var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
+			var teamid = "";
+			if (doc.location.href.match(/teamid=(\d)/i))
+				teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
+			else
+				teamid = FoxtrickHelper.getOwnTeamId();
 			var Oldies = this.isOldiesPage(doc);
 			var Coaches = this.isCoachesPage(doc);
 			var NTplayers = this.isNtPlayersPage(doc);
