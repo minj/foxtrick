@@ -180,19 +180,6 @@ var FoxtrickMoveLinks = {
 
 //**********************************************************
 /**
- * forumhideavataruserinfo.js
- * Foxtrick Hide Manager Avatar User Info module
- * @author larsw84/convinced
- */
-
-var FoxtrickHideManagerAvatarUserInfo = {
-	MODULE_NAME : "HideManagerAvatarUserInfo",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"),
-};
-
-//**********************************************************
-/**
  * forumadddefaultfacecard.js
  * Foxtrick Add default faceCard module
  * @author larsw84

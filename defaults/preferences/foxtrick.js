@@ -182,7 +182,6 @@ pref("extensions.foxtrick.prefs.module.GoToPostBox.enabled", true);
 pref("extensions.foxtrick.prefs.module.HeaderFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.RemoveFlicker.enabled", false);
-pref("extensions.foxtrick.prefs.module.HideManagerAvatarUserInfo.enabled", false);
 pref("extensions.foxtrick.prefs.module.HideSignatures.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightBotTeams.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightCupwins.enabled", true);

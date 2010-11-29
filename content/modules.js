@@ -32,10 +32,9 @@ Foxtrick.modules = [
 	FoxtrickForumYouthIcons,
 	Foxtrick.BookmarkAdjust,
 	FoxtrickAddDefaultFaceCard,
-	FoxtrickMoveLinks,   // keep before FoxtrickHideManagerAvatarUserInfo
+	FoxtrickMoveLinks,
 	FoxtrickForumAlterHeaderLine,
 	FoxtrickTeamPopupLinks,
-	FoxtrickHideManagerAvatarUserInfo,
 	FoxtrickGoToPostBox,
 	FoxtrickContextMenuCopy,
 	FoxtrickHeadercopyicons,

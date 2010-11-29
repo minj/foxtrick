@@ -17,7 +17,6 @@ var FoxtrickForumChangePosts = {
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID);
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon");
 		var do_copy_posting = Foxtrick.isModuleEnabled(FoxtrickCopyPosting);
-		var do_hide_user_info = Foxtrick.isModuleEnabled(FoxtrickHideManagerAvatarUserInfo);
 		var do_default_facecard = Foxtrick.isModuleEnabled(FoxtrickAddDefaultFaceCard);
 		var do_format_text = Foxtrick.isModuleEnabled(FoxtrickFormatPostingText);
 		var do_move_links = Foxtrick.isModuleEnabled(FoxtrickMoveLinks);
@@ -579,23 +578,6 @@ var FoxtrickForumChangePosts = {
 								+ " url(/Img/Avatar/silhouettes/sil1.png);");
 							user.insertBefore(user_avatar,user.firstChild);
 					} //Foxtrick.dump ('end add default facecard \n');
-
-
-					// hide user info --------------------------------
-					if ( do_hide_user_info && user_info ) {
-						user.removeChild( user_info );
-						user_info = null;
-						// all gone? make space for message
-						if ( user_avatar == null ) {
-							message.setAttribute('style','width:96%');
-
-							try {
-								wrapper.removeChild(user)
-							} catch(error_user){Foxtrick.dump('ERROR userinforemove: ' + error_user + '\n')}
-							user = null;
-						}
-					}  //Foxtrick.dump ('end hide user info \n');
-					//Foxtrick.dump (num_wrapper+'\n');
 
 					++num_wrapper;
 				}
