@@ -36,13 +36,10 @@ FoxtrickExtendedPlayerDetails = {
 
         joinedtime = Foxtrick.substr(joinedtime, Foxtrick.strrpos( joinedtime, ";"), joinedtime.length);
 
-        // Foxtrick.dump('  Joindate: ' + joinedtime + '\n');
-        // Foxtrick.dump('  HT Week: ' + this._Foxtrick.util.time.gregorianToHT(joinedtime) + '\n');
-
-        var ht_week = Foxtrick.util.time.gregorianToHT(joinedtime);
-
-        var JT_date = Foxtrick.util.time.getDateFromText( joinedtime );
-        if (!JT_date) return;
+        var JT_date = Foxtrick.util.time.getDateFromText(joinedtime);
+        if (!JT_date)
+            return;
+        var season_week = Foxtrick.util.time.gregorianToHT(JT_date);
 
         var joined_s = Math.floor( (Foxtrick.HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
 
@@ -57,7 +54,7 @@ FoxtrickExtendedPlayerDetails = {
         if (JoinedText.search("NaN") == -1) {
             var part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
             part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
-            joined_elm.innerHTML = part1 + ' <span id="ft_HTDateFormat">'+ ht_week + '</span>, ' + JoinedText + ')</span>';
+            joined_elm.innerHTML = part1 + ' <span>('+ season_week.week + '/' + season_week.season + ')</span>, ' + JoinedText + ')</span>';
         }
         else Foxtrick.dump('  Could not create jointime (NaN)\n');
     }

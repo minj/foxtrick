@@ -7,107 +7,20 @@ if (!Foxtrick) Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 
 Foxtrick.util.time = {
+	/*
+		Returns HT week and season like { season : 37, week : 15 }
+		date is a JavaScript Date object
+	*/
 	gregorianToHT : function(date, weekdayOffset) {
-		/*
-			Returns HT Week and Season like (15/37)
-			date can be like dd.mm.yyyyy or d.m.yy or dd/mm/yy
-			separator or leading zero is irrelevant
-		*/
-		if (date == '') return false;
-		date +=' ';
+		// 23th Aug 1997 should be the first day of first season
+		const origin = new Date(1997, 8, 23);
 		weekdayOffset = parseInt(weekdayOffset) || 0;
-		var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-		var ar = reg.exec(date);
-		var months = [];
-		var years = [];
+		const msDiff = date.getTime() - origin.getTime();
+		const dayDiff = msDiff / 1000 / 60 / 60 / 24 - weekdayOffset;
+		const season = Math.floor(dayDiff / (16 * 7)) + 1;
+		const week = Math.floor((dayDiff % (16 * 7)) / 7) + 1;
 
-		months[1] = 0;
-		months[2] = months[1] + 31;
-		months[3] = months[2] + 28;
-		months[4] = months[3] + 31;
-		months[5] = months[4] + 30;
-		months[6] = months[5] + 31;
-		months[7] = months[6] + 30;
-		months[8] = months[7] + 31;
-		months[9] = months[8] + 31;
-		months[10] = months[9] + 30;
-		months[11] = months[10] + 31;
-		months[12] = months[11] + 30;
-
-		// Check http://www.hattrick.org/Club/History/Default.aspx?teamId=100
-		// The season start/end was not really a fixed date.
-
-		years[0] = 830;			// From 2000
-		years[1] = years[0] + 366; // leap year
-		years[2] = years[1] + 365;
-		years[3] = years[2] + 365;
-		years[4] = years[3] + 365;
-		years[5] = years[4] + 366; // leap year
-		years[6] = years[5] + 365;
-		years[7] = years[6] + 365;
-		years[8] = years[7] + 365;
-		years[9] = years[8] + 366; // leap year
-		years[10] = years[9] + 365;
-
-		for (var i = 0; i < ar.length; i++) {
-			ar[i] = ar[i].replace(/^(0+)/g, '');
-		}
-
-		var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-		if (DATEFORMAT == null) DATEFORMAT = 'ddmmyyyy';
-
-		switch (DATEFORMAT) {
-			case 'ddmmyyyy':
-				var day = parseInt(ar[1]);
-				var month = parseInt(ar[3]);
-				var year = parseInt(ar[5]);
-				break;
-			case 'mmddyyyy':
-				var day = parseInt(ar[3]);
-				var month = parseInt(ar[1]);
-				var year = parseInt(ar[5]);
-				break;
-			case 'yyyymmdd':
-				var day = parseInt(ar[5]);
-				var month = parseInt(ar[3]);
-				var year = parseInt(ar[1]);
-				break;
-		}
-		var dayCount = years[year-2000] + months[month] + (day) - weekdayOffset;
-
-		// leap year
-		if (year % 4 == 0 && month > 2)
-			++dayCount;
-
-		var htDate = this.htDatePrintFormat(
-						year,
-						(Math.floor(dayCount/(16*7)) + 1),
-						(Math.floor((dayCount%(16*7))/7) +1),
-						dayCount%7 + 1,
-						date);
-		return htDate;
-	},
-
-	htDatePrintFormat : function(year, season, week, day, date) {
-		var offset = 0;
-		try {
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickHTDateFormat, FoxtrickPrefs.getString("htCountry"))) {
-				// try and find the offset
-				for (var i in Foxtrick.XMLData.League) {
-					if (itemToSearch == FoxtrickHelper.getLeagueDataFromId(i).EnglishName) {
-						returnedOffset = FoxtrickHelper.getLeagueDataFromId(1).Season - FoxtrickHelper.getLeagueDataFromId(i).Season; // sweden season - selected
-						break;
-					}
-				}
-			}
-		}
-		catch (e) {
-			offset = 0;
-		}
-		if (year <= 2000)
-			return "";
-		else
-			return "<span id='ft_HTDateFormat'>(" + week + "/" + (Math.floor(season) - offset) + ")</span>";
+		return { season : season, week : week };
 	},
 
 	getDateFromText : function(text) {
@@ -263,47 +176,5 @@ Foxtrick.util.time = {
 		Text += Minutes + Foxtrickl10n.getString("foxtrick.datetimestrings.minutes");
 
 		return Text;
-	},
-
-	modifyDates : function (doc, useShort, elm, before, after ,weekdayoffset, strip) {
-		/*
-		Returns HT-Week & Season
-		useShort == true => Date is without time.
-
-		don't use span as elm! use next outer nodetype instead
-		*/
-		var tds = doc.getElementsByTagName(elm);
-		for (var i = 0; tds[i] != null; ++i) {
-			var node = tds[i];
-			if (node.getElementsByTagName('span').length!=0)
-				node = node.getElementsByTagName('span')[0];
-
-			// not nested
-			if (node.getElementsByTagName(elm).length!=0) {
-				continue;
-			}
-
-			if (node.id == 'ft_HTDateFormat') return;
-			if (!strip) var dt_inner = Foxtrick.trim(node.innerHTML);
-			else var dt_inner = Foxtrick.trim(Foxtrick.stripHTML(node.innerHTML));
-
-			if (!Foxtrick.strrpos(dt_inner, "ft_HTDateFormat")) {
-				if ((dt_inner.length <= 11 && useShort) || (dt_inner.length <= 17 && !useShort) || strip) {
-					var reg = /(\d{1,4})(\W{1})(\d{1,2})(\W{1})(\d{1,4})(.*?)/g;
-					var ar = reg.exec(dt_inner);
-
-					if (ar != null) {
-						var td_date = ar[1] + '.' + ar[3] + '.' + ar[5] + ' 00.00.01';
-
-						if (Foxtrick.trim(td_date).match(reg) != null && ar[1] != '' && ar[3] != '' && ar[5] != '') {
-							if (!strip)
-								node.innerHTML = dt_inner + before + Foxtrick.util.time.gregorianToHT(td_date,weekdayoffset) + after;
-							else
-								node.innerHTML = node.innerHTML + before + Foxtrick.util.time.gregorianToHT(td_date,weekdayoffset) + after;
-						}
-					}
-				}
-			}
-		}
 	}
 };
