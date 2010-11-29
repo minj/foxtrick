@@ -44,12 +44,10 @@ FoxtrickHistoryStats= {
                         if (a[i].href.search(/viewcup/) > -1) {
                             var check_season = a[i].textContent;
 
-                            if(a[i].parentNode.previousSibling.previousSibling) season = a[i].parentNode.previousSibling.previousSibling.textContent;
-                            var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-                            var ar = reg.exec(season);
-                            var stime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
-                            stime = Foxtrick.substr(stime, Foxtrick.strrpos( stime, ";"), stime.length);
-                            season = Foxtrick.util.time.gregorianToHT(stime).split('/')[1].split(')')[0];
+                            if(a[i].parentNode.previousSibling.previousSibling)
+                                season = a[i].parentNode.previousSibling.previousSibling.textContent;
+                            var date = Foxtrick.util.time.getDateFromText(season);
+                            season = Foxtrick.util.time.gregorianToHT(date).season;
                             this.Offset = parseInt(season)-parseInt(check_season);
                             done = true;
                         }
@@ -69,12 +67,10 @@ FoxtrickHistoryStats= {
                         var leagueN = -1;
                         var season = -1;
                         var cup = -1;
-                        if(table[i].previousSibling.previousSibling) season = table[i].previousSibling.previousSibling.textContent;
-                        var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-                        var ar = reg.exec(season);
-                        var stime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
-                        stime = Foxtrick.substr(stime, Foxtrick.strrpos( stime, ";"), stime.length);
-                        season = Foxtrick.util.time.gregorianToHT(stime).split('/')[1].split(')')[0];
+                        if(table[i].previousSibling.previousSibling)
+                            season = table[i].previousSibling.previousSibling.textContent;
+                        var date = Foxtrick.util.time.getDateFromText(season);
+                        season = Foxtrick.util.time.gregorianToHT(date).season;
                         var a = table[i].getElementsByTagName('a');
                         for (var j = 0; j < a.length; j ++) {
                             if (a[j].href.search(/LeagueLevelUnitID/) > -1) {
