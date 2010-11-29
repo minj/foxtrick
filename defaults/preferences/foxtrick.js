@@ -254,6 +254,7 @@ pref("extensions.foxtrick.prefs.module.NewMail.CustomColor_text", "red");
 pref("extensions.foxtrick.prefs.module.NewMail.enabled", true);
 pref("extensions.foxtrick.prefs.module.NewMail.HighlightNewForum.enabled", true);
 pref("extensions.foxtrick.prefs.module.NewMail.HighlightNewMailIcon.enabled", true);
+pref("extensions.foxtrick.prefs.module.OldStyleFaces.enabled", false);
 pref("extensions.foxtrick.prefs.module.OnPagePrefs.enabled", true);
 pref("extensions.foxtrick.prefs.module.OriginalFace.ColouredYouth.enabled", false);
 pref("extensions.foxtrick.prefs.module.OriginalFace.enabled", false);

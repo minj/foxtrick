@@ -146,5 +146,6 @@ Foxtrick.modules = [
 	FoxtrickTransferSearchResultFilters,
 	FoxtrickForumThreadAutoIgnore,
 	FoxtrickTableSort,
-	FoxtrickLiveAlert
+	FoxtrickLiveAlert,
+	FoxtrickOldStyleFace
 ];

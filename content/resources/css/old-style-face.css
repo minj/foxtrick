@@ -1,0 +1,12 @@
+.faceCard
+{
+	padding: 0px 10px 0px 0px !important;
+	margin: 10px 0px 0px 28px !important;
+	height: 49px !important;
+	width: 47px !important;
+}
+
+#sidebar .faceCard
+{
+	margin-left: 64px !important;
+}
