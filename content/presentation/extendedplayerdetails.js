@@ -80,7 +80,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 		var div = doc.getElementById( "ft_bonuswage" );
         if (div != null) return;
 
-        var div = doc.getElementById( 'ctl00_CPMain_pnlplayerInfo' );
+        var div = doc.getElementsByClassName("playerInfo")[0];
         try {
             var table_elm_bonus = div.getElementsByTagName( "table" )[0].rows[2].cells[1];
         } catch(e) {Foxtrick.dump('    >' + e + '\n');}
