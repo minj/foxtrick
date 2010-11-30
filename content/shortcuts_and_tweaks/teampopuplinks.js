@@ -205,7 +205,7 @@ var FoxtrickTeamPopupLinks = {
 			var span = doc.createElement("span");
 			span.setAttribute('class', 'myht1');
 			par.insertBefore(span, aLink);
-			aLink.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
+			aLink.addEventListener("mouseover", function(ev) { FoxtrickTeamPopupLinks.popupshow(ev); } ,false);
 			span.appendChild(aLink);
 		}
 	},
@@ -286,8 +286,9 @@ var FoxtrickTeamPopupLinks = {
 					}
 				}
 
-				if (Foxtrick.isModuleFeatureEnabled(this, "CustomLinks")) {
-					ownlinks = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
+				if (Foxtrick.isModuleFeatureEnabled(this, "CustomLink")) {
+					var ownlinks = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
+					Foxtrick.dump("Own links: " + ownlinks);
 					ownlinks = ownlinks.split(/<\/a>\s+/);
 					var i=0,ownlink;
 					while (ownlink=ownlinks[i++]) {
@@ -328,7 +329,7 @@ var FoxtrickTeamPopupLinks = {
 					link.setAttribute('more', 'false');
 					link.textContent = Foxtrickl10n.getString('less');
 				}
-				link.addEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);
+				link.addEventListener('click', function(ev) { FoxtrickTeamPopupLinks.popupshow(ev); },true);
 				item.appendChild(link);
 				list.appendChild(item);
 			}
