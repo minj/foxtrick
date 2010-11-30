@@ -50,9 +50,9 @@ var FoxtrickHelper = {
 		}
 		if (page=='teamPageAny') {
 			if  (this.ownTeam.ownYouthTeamId==null) {
-				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementsByClassName("subMenu")[0]);
 				if (this.ownTeam.ownTeamId==leftMenuTeamId) {
-					this.ownTeam.ownYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+					this.ownTeam.ownYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
 					// Foxtrick.dump('ownYouthTeamId: '+this.ownTeam.ownYouthTeamId+'\n');
 				}
 			}
