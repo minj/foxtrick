@@ -17,26 +17,17 @@ FoxtrickExtendedPlayerDetails = {
 
     _Player_Joined  : function ( doc ) {
         // Player in team since...
-        var div = doc.getElementById( "ft_since" );
-        if (div != null) return;
+        var processed = doc.getElementsByClassName("ft_since");
+        if (processed.length > 0)
+        	return;
 
-        var div = doc.getElementById( "ctl00_CPMain_pnlplayerInfo" );
+        var div = doc.getElementsByClassName("playerInfo")[0];
         if (div == null) return;
 
         var joined_elm = div.getElementsByClassName("shy")[0];
         if (joined_elm == null) return;
-        //Foxtrick.dump('\n'+joined_elm.parentNode.innerHTML+'\n');
 
-        var joinedtimeInner = Foxtrick.trim(joined_elm.innerHTML);
-
-        var reg = /(\d+)(.*?)(\d+)(.*?)(\d+)(.*?)/i;
-        var ar = reg.exec(joinedtimeInner);
-
-        var joinedtime = ar[0] + '.' + ar[2] + '.' + ar[4] + ' 00.00.01';
-
-        joinedtime = Foxtrick.substr(joinedtime, Foxtrick.strrpos( joinedtime, ";"), joinedtime.length);
-
-        var JT_date = Foxtrick.util.time.getDateFromText(joinedtime);
+        var JT_date = Foxtrick.util.time.getDateFromText(joined_elm.textContent);
         if (!JT_date)
             return;
         var season_week = Foxtrick.util.time.gregorianToHT(JT_date);
@@ -53,7 +44,7 @@ FoxtrickExtendedPlayerDetails = {
 
         if (JoinedText.search("NaN") == -1) {
             var part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
-            part1 = part1.replace('(', '<span class="date smallText" id ="ft_since"><br>(');
+            part1 = part1.replace('(', '<span class="date smallText ft_since"><br>(');
             joined_elm.innerHTML = part1 + ' <span>('+ season_week.week + '/' + season_week.season + ')</span>, ' + JoinedText + ')</span>';
         }
         else Foxtrick.dump('  Could not create jointime (NaN)\n');
