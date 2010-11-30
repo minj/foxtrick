@@ -35,6 +35,11 @@ input
 	width: 450px;
 }
 
+input[type] /* only set width for text input */
+{
+	width: auto;
+}
+
 table.bordered, table.bordered td, table.bordered th {
 	border: 1px solid #ccc;
 	border-collapse: collapse;
