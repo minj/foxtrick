@@ -173,43 +173,41 @@ var FoxtrickTeamPopupLinks = {
 
 		// team links
 		var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
-		if (aLink) this._addSpan(doc, aLink);
+		if (aLink)
+			this._addSpan(doc, aLink);
 
 		// all in mainWrapper (ie. not left boxes)
 		if (sUrl.search(/Forum\/Default/i)!=-1) return; // not in forum overview
 		var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
-		var i = 0, aLink,li=0;
+		var i = 0, aLink;
 		while (aLink = aLinks[i++]) {
 			if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText')
 				continue; // don't add to buttons, and htlive tabs
-			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1)
-			|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1)) {
-				this._addSpan(doc, aLink);
-				if (li++>100) break;
-			}
-		 }
+			this._addSpan(doc, aLink);
+		}
 
 		var sidebar = doc.getElementById('sidebar');
 		if (sidebar) {
 			aLinks = sidebar.getElementsByTagName('a');
 			var i = 0, aLink;
 			while (aLink = aLinks[i++]) {
-				if (aLink.getElementsByTagName('img')[0] != null) continue; // don't add to buttons
-				if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && Foxtrick.isModuleFeatureEnabled(this, "TeamLinks"))
-					|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && Foxtrick.isModuleFeatureEnabled(this, "UserLinks"))) {
-					this._addSpan(doc, aLink);
-				}
+				if (aLink.getElementsByTagName('img')[0] != null)
+					continue; // don't add to buttons
+				this._addSpan(doc, aLink);
 			}
 		}
 	},
 
 	_addSpan : function (doc, aLink) {
-		var par = aLink.parentNode;
-		var span = doc.createElement("span");
-		span.setAttribute('class', 'myht1');
-		par.insertBefore(span, aLink);
-		aLink.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
-		span.appendChild(aLink);
+		if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && Foxtrick.isModuleFeatureEnabled(this, "TeamLinks"))
+			|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && Foxtrick.isModuleFeatureEnabled(this, "UserLinks"))) {
+			var par = aLink.parentNode;
+			var span = doc.createElement("span");
+			span.setAttribute('class', 'myht1');
+			par.insertBefore(span, aLink);
+			aLink.addEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
+			span.appendChild(aLink);
+		}
 	},
 
 	isEnabledWithinContext : function(option, more) {
