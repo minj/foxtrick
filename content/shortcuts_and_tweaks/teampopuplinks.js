@@ -288,7 +288,6 @@ var FoxtrickTeamPopupLinks = {
 
 				if (Foxtrick.isModuleFeatureEnabled(this, "CustomLink")) {
 					var ownlinks = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
-					Foxtrick.dump("Own links: " + ownlinks);
 					ownlinks = ownlinks.split(/<\/a>\s+/);
 					var i=0,ownlink;
 					while (ownlink=ownlinks[i++]) {
