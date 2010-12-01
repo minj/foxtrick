@@ -317,7 +317,7 @@ Foxtrick.Pages.Player = {
 
 	getTransferDeadline : function(doc) {
 		try {
-			var bidDiv = doc.getElementById("ctl00_CPMain_updBid");
+			var bidDiv = doc.getElementById("ctl00_ctl00_CPContent_CPMain_updBid");
 			if (bidDiv) {
 				var bidPara = bidDiv.getElementsByTagName("p")[0];
 				return Foxtrick.util.time.getDateFromText(bidPara.textContent);
