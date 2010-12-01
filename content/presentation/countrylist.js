@@ -26,16 +26,16 @@ var FoxtrickCountyList = {
         if (Foxtrick.isModuleFeatureEnabled( this, "SelectBoxes")) {
             switch (page) {
                 case 'transferSearchForm' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlZone', 10);
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlBornIn', 1);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlZone', 10);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn', 1);
                 break;
 
                 case 'country' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
                 break;
 
                 case 'ads' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
                 break;
 
                 case 'press' :
@@ -43,43 +43,43 @@ var FoxtrickCountyList = {
                 break;
 
                 case 'statsTransfersBuyers' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
                 break;
 
                 case 'statsTeams' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
                 break;
 
                 case 'statsPlayers' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
                 break;
 
                 case 'statsRegions' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
                 break;
 
                 case 'statsNationalTeams' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
                 break;
 
                 case 'statsConfs' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
                 break;
 
                 case 'statsBookmarks' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
                 break;
 
                 case 'trainingStats' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
                 break;
 
                 case 'statsArena' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
                 break;
 
                 case 'help_contact' :
-                    this._changelist(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues', 3);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 3);
                 break;
 
 
@@ -87,16 +87,16 @@ var FoxtrickCountyList = {
         } else {
             switch (page) {
                 case 'transferSearchForm' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlZone');
-                    this._activate(page, doc, 'ctl00_CPMain_ddlBornIn');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlZone');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn');
                 break;
 
                 case 'country' :
-                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
                 break;
 
                 case 'ads' :
-                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
                 break;
 
                 case 'press' :
@@ -104,43 +104,43 @@ var FoxtrickCountyList = {
                 break;
 
                 case 'statsTransfersBuyers' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues');
                 break;
 
                 case 'statsTeams' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
                 break;
 
                 case 'statsPlayers' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
                 break;
 
                 case 'statsRegions' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
                 break;
 
                 case 'statsNationalTeams' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
                 break;
 
                 case 'statsConfs' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
                 break;
 
                 case 'statsBookmarks' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
                 break;
 
                 case 'trainingStats' :
-                    this._activate(page, doc, 'ctl00_CPMain_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues');
                 break;
 
                 case 'statsArena' :
-                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
                 break;
 
                 case 'help_contact' :
-                    this._activate(page, doc, 'ctl00_CPMain_ucLeaguesDropdown_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
                 break;
             }
         }
@@ -148,11 +148,11 @@ var FoxtrickCountyList = {
         if (Foxtrick.isModuleFeatureEnabled( this, "TeamPage")) {
             switch (page) {
                 case 'teamPage' :
-                    this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                    this._placeCountry(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
                 break;
 
                 case 'teamPageBrowser' :
-                    this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                    this._placeCountry(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
                 break;
             }
         }
@@ -160,7 +160,7 @@ var FoxtrickCountyList = {
         if (Foxtrick.isModuleFeatureEnabled( this, "ManagerPage")) {
             switch (page) {
                 case 'managerPage' :
-                    this._placeCountry(page, doc, 'ctl00_CPMain_ddlLeagues', 1);
+                    this._placeCountry(page, doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
                 break;
             }
         }
