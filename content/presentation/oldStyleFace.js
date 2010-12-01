@@ -27,8 +27,7 @@ var FoxtrickOldStyleFace = {
 			for (var j = 0; j < imgs.length; ++j) {
 				var img = imgs[j];
 				var imgInfo = this.parseSrc(img.getAttribute("src"));
-				if (imgInfo)
-					this.processImg(img, imgInfo.part, imgInfo.id);
+				this.processImg(img, imgInfo);
 			}
 		}
 	},
@@ -45,14 +44,18 @@ var FoxtrickOldStyleFace = {
 			return null;
 	},
 
-	processImg : function(img, part, id) {
-		if (this.IMG_MAP[part] && this.IMG_MAP[part][id]) {
+	processImg : function(img, imgInfo) {
+		if (imgInfo
+			&& this.IMG_MAP[imgInfo.part]
+			&& this.IMG_MAP[imgInfo.part][imgInfo.id]) {
 			// clear the style first
 			img.style.left = "";
 			img.style.top = "";
 			img.style.width = "47px";
 			img.style.height = "49px";
-			img.src =  "http://www.kotikone.fi/hattrick/oldStylePlayer/" + part + "/" + this.IMG_MAP[part][id] + ".png";
+			img.src = "http://www.kotikone.fi/hattrick/oldStylePlayer/"
+				+ imgInfo.part + "/"
+				+ this.IMG_MAP[imgInfo.part][imgInfo.id] + ".png";
 		}
 		else {
 			// hide the parts that we don't have yet
