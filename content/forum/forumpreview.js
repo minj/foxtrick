@@ -13,8 +13,8 @@ var FoxtrickForumPreview = {
 	LATEST_CHANGE:"Added ArticleID-Tag to preview",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
-    _NEW_MESSAGE_WINDOW : 'ctl00_CPMain_ucHattrickMLEditor_txtBody',
-    _MAIL_MESSAGE_WINDOW : 'ctl00_CPMain_ucEditorMain_txtBody',
+    _NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
+    _MAIL_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody',
 
     run : function( page, doc ) {
         Foxtrick.dump('prev: ' + page + '\n');
@@ -23,23 +23,7 @@ var FoxtrickForumPreview = {
 
         try {
 			var msg_window=null;
-/*			var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum / PA
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_txtInsert' ); //ads
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_txtMessage' ); //newsletter
-            if (msg_window == null) {
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbNewsBody' ); //mailnewsletter
-                if (msg_window != null) page = 'mailnewsletter';
-            }
-			if (msg_window == null)
-                return;
-			*/
-            msg_window = doc.getElementById( 'ctl00_CPMain_tbNewsBody' ); //mailnewsletter
+            msg_window = doc.getElementById( 'ctl00_ctl00_CPContent_CPMain_tbNewsBody' ); //mailnewsletter
             if (msg_window != null) page = 'mailnewsletter';
 
 			if (msg_window == null) {
@@ -56,7 +40,7 @@ var FoxtrickForumPreview = {
 		var head = doc.getElementsByTagName("head")[0];
         var cssstyle = doc.createElement("style");
         cssstyle.setAttribute("type", "text/css");
-		cssstyle.appendChild(doc.createTextNode("#ctl00_CPMain_btnOK, #ctl00_CPMain_btnSendNew, #ctl00_CPMain_btnCancel {font-weight:bold;} #idFTPreview {margin-left:10px;}"));
+		cssstyle.appendChild(doc.createTextNode("#ctl00_ctl00_CPContent_CPMain_btnOK, #ctl00_ctl00_CPContent_CPMain_btnSendNew, #ctl00_ctl00_CPContent_CPMain_btnCancel {font-weight:bold;} #idFTPreview {margin-left:10px;}"));
         //cssstyle.appendChild(doc.createTextNode("#idFTPreview {display:inline-block;float:right;}"));
         head.appendChild(cssstyle);
 
@@ -64,8 +48,7 @@ var FoxtrickForumPreview = {
 		var preview_ctrl_div = doc.createElement( "div" );
         preview_ctrl_div.style.marginTop = "1em";
 
-        var button_ok = null;//doc.getElementById("ctl00_CPMain_btnOK");
-		//var target = doc.getElementById("ctl00_CPMain_btnCancel");  // Forum
+        var button_ok = null;
         var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
         var target = targets[targets.length-1];
 
@@ -79,14 +62,14 @@ var FoxtrickForumPreview = {
         var index =12;
 
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnSendNew");  // Mail
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnSendNew");  // Mail
                 index=6;
                 /*index=5;*/
                 var msg_type = 1;
             }
 
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnActionSend");  // Ticket
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnActionSend");  // Ticket
                 if (target) {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
@@ -95,7 +78,7 @@ var FoxtrickForumPreview = {
                 }
             }
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnAdd");  // GB
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnAdd");  // GB
                 if (target) {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
@@ -104,7 +87,7 @@ var FoxtrickForumPreview = {
                 }
         }
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnCreateInsert");  // ads
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnCreateInsert");  // ads
                 if (target) {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
@@ -113,7 +96,7 @@ var FoxtrickForumPreview = {
                 }
         }
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnSendNewsletter");  // newsletter
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnSendNewsletter");  // newsletter
                 if (target) {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
@@ -122,7 +105,7 @@ var FoxtrickForumPreview = {
                 }
         }
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnNewsSend");  // mailnewsletter
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnNewsSend");  // mailnewsletter
                 if (target) {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
@@ -131,7 +114,7 @@ var FoxtrickForumPreview = {
                 }
         }
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnEdit");  // AnnouncementEdit
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnEdit");  // AnnouncementEdit
                 if (target) {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
@@ -140,7 +123,7 @@ var FoxtrickForumPreview = {
                 }
         }
         if (!target) {
-                target=doc.getElementById("ctl00_CPMain_btnThreadCloseReplyOK");  // forumModWritePost
+                target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnThreadCloseReplyOK");  // forumModWritePost
                 if (target) {
                     msg_window.setAttribute( "tabindex",  1);
                     target.setAttribute( "tabindex",  2);
@@ -194,9 +177,9 @@ var FoxtrickForumPreview = {
 		var divs=doc.getElementById('mainBody').getElementsByTagName('div');
 		var i=0,div;
 		while (div=divs[i++]) if (div.className=='HTMLToolbar') break;
-		if (page == 'ads') div = doc.getElementById('ctl00_CPMain_txtInsert');              //ads
-        if (page == 'newsletter') div = doc.getElementById('ctl00_CPMain_txtMessage');      //newsletter
-        if (page == 'mailnewsletter') div = doc.getElementById('ctl00_CPMain_tbNewsBody');  //mailnewsletter
+		if (page == 'ads') div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtInsert');              //ads
+        if (page == 'newsletter') div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtMessage');      //newsletter
+        if (page == 'mailnewsletter') div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tbNewsBody');  //mailnewsletter
 
 		div.parentNode.insertBefore( preview_div,div );
     },
@@ -222,20 +205,6 @@ var FoxtrickForumPreview = {
 		}
 
         try {
- /*           var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_txtInsert' ); //ads
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_txtMessage' ); //newsletter
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbNewsBody' ); //mailnewsletter
-            if (msg_window == null)
-				return;
-*/
 			var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
         }
         catch(e) {
@@ -378,20 +347,6 @@ var FoxtrickForumPreview = {
         var doc = ev.target.ownerDocument;
 
         try {
-/*            var msg_window = doc.getElementById( 'ctl00_CPMain_ucHattrickMLEditor_txtBody' ); //forum
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucEditorMain_txtBody' ); //mail
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_ucActionEditor_txtBody' ); //ticket
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_txtInsert' ); //ads
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_txtMessage' ); //newsletter
-            if (msg_window == null)
-                msg_window = doc.getElementById( 'ctl00_CPMain_tbNewsBody' ); //mailnewsletter
-            if (msg_window == null)
-                return;
-*/
 			var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
         }
         catch(e) {
