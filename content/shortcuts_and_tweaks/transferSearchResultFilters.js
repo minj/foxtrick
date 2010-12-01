@@ -26,7 +26,7 @@ FoxtrickTransferSearchResultFilters = {
 
 
 	addExtraFilters : function(doc) {
-		var tableAdvanced = doc.getElementById('ctl00_CPMain_tblAdvanced');
+		var tableAdvanced = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblAdvanced');
 		if (tableAdvanced===null) {
 			this.advanced_option_on = false;
 			return;  //only show if advanced filters is on
