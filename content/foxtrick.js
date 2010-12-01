@@ -478,7 +478,8 @@ Foxtrick.getHostname = function(doc) {
 }
 
 Foxtrick.isHt = function(doc) {
-	return (doc.getElementById('hattrick')!==null || doc.getElementById('hattrickNoSupporter')!==null);
+	return (doc.getElementsByClassName("hattrick").length > 0
+		|| doc.getElementsByClassName("hattrickNoSupporter").length > 0);
 }
 
 Foxtrick.isHtUrl = function(url) {
@@ -1254,8 +1255,7 @@ Foxtrick.isRTLLayout = function (doc) {
 
 
 Foxtrick.isSupporter = function (doc) {
-	if (doc.getElementById('hattrickNoSupporter')) return false;
-	return true;
+	return (doc.getElementsByClassName("hattrickNoSupporter").length === 0);
 }
 
 Foxtrick.hasMainBodyScroll = function (doc) {
