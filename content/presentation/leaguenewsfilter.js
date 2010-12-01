@@ -15,7 +15,7 @@ var FoxtrickLeagueNewsFilter = {
 	OPTIONS : new Array('highlight_set_lineup','highlight_wins','gray_bots'),
 
 	run : function( page, doc ) {
-		var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
+		var newsfeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
 		var selectdiv=doc.createElement('div');
 		selectdiv.setAttribute('style','display:block');
 		selectdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.Filter")));
