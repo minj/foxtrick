@@ -31,7 +31,7 @@ FoxtrickHistoryStats= {
     _fetch : function(doc) {
         try {
             try {
-                var pager = doc.getElementById('ctl00_CPMain_ucOtherEvents_ucPagerBottom_divWrapper');
+                var pager = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ucPagerBottom_divWrapper');
                 var page = parseInt(pager.getElementsByTagName('strong')[0].textContent);
             } catch(e) {var page = 1;}
             if (!Foxtrick.in_array(this.Pages,page)) {
@@ -39,7 +39,7 @@ FoxtrickHistoryStats= {
 
                 try {
                     var done = false;
-                    var a = doc.getElementById('ctl00_CPMain_ucOtherEvents_ctl00').getElementsByTagName('a');
+                    var a = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ctl00').getElementsByTagName('a');
                     for (var i = 0; i < a.length;i++){
                         if (a[i].href.search(/viewcup/) > -1) {
                             var check_season = a[i].textContent;
@@ -57,7 +57,7 @@ FoxtrickHistoryStats= {
                 catch (e) {
                     Foxtrick.dumpError(e);
                 }
-                var table = doc.getElementById("ctl00_CPMain_ucOtherEvents_ctl00").cloneNode(true).getElementsByClassName("otherEventText");
+                var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ctl00").cloneNode(true).getElementsByClassName("otherEventText");
                 for (var i = 0; i < table.length; i++) {
 					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1 ) continue;
                     dummy = Foxtrick.trim(table[i].innerHTML);
