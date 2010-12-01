@@ -135,12 +135,12 @@ FoxtrickLineupShortcut = {
     },
 
 	_Analyze_Stat_Page : function ( doc ) {
-		var teamid=doc.getElementById('ctl00_CPMain_ddlPreviousClubs').value;
+		var teamid=doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlPreviousClubs').value;
 		//Now getting playerid from top of the page:
 		var element=doc.getElementById('mainWrapper');
 		var playerid=FoxtrickHelper.findPlayerId(element);
 		var lineuplabel = Foxtrickl10n.getString( "foxtrick.shortcut.matchlineup" );
-		var matchtable=doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('table').item(0);
+		var matchtable=doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1').getElementsByTagName('table').item(0);
 		//adding lineup to header row
 		var newhead=doc.createElement('th');
 		newhead.innerHTML=lineuplabel;
