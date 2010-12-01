@@ -174,6 +174,10 @@ var FoxtrickPrefs = {
 		FoxtrickPrefs.setString( "module." + module_name, value );
 	},
 
+	getModuleValue : function( module_name ) {
+		return FoxtrickPrefs.getInt( "module." + module_name + ".value" );
+	},
+
 	setModuleValue : function( module_name, value ) {
 		FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
 	},
