@@ -29,12 +29,8 @@ img[src="/Img/Avatar/mouths/m31a.png"],
 img[src="/Img/Avatar/mouths/m32a.png"],
 img[src="/Img/Avatar/mouths/m40a.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1a.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1a.png");
 }
 
 img[src="/Img/Avatar/mouths/m4a.png"],
@@ -62,12 +58,8 @@ img[src="/Img/Avatar/mouths/m37a.png"],
 img[src="/Img/Avatar/mouths/m38a.png"],
 img[src="/Img/Avatar/mouths/m39a.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2a.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2a.png");
 }
 
 img[src="/Img/Avatar/mouths/m1b.png"],
@@ -100,12 +92,8 @@ img[src="/Img/Avatar/mouths/m31b.png"],
 img[src="/Img/Avatar/mouths/m32b.png"],
 img[src="/Img/Avatar/mouths/m40b.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1b.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1b.png");
 }
 
 img[src="/Img/Avatar/mouths/m4b.png"],
@@ -133,12 +121,8 @@ img[src="/Img/Avatar/mouths/m37b.png"],
 img[src="/Img/Avatar/mouths/m38b.png"],
 img[src="/Img/Avatar/mouths/m39b.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2b.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2b.png");
 }
 
 img[src="/Img/Avatar/mouths/m1c.png"],
@@ -171,12 +155,8 @@ img[src="/Img/Avatar/mouths/m31c.png"],
 img[src="/Img/Avatar/mouths/m32c.png"],
 img[src="/Img/Avatar/mouths/m40c.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1c.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1c.png");
 }
 
 img[src="/Img/Avatar/mouths/m4c.png"],
@@ -204,12 +184,8 @@ img[src="/Img/Avatar/mouths/m37c.png"],
 img[src="/Img/Avatar/mouths/m38c.png"],
 img[src="/Img/Avatar/mouths/m39c.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2c.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2c.png");
 }
 
 
@@ -237,12 +213,8 @@ img[src="/Img/Avatar/mouths/y_m31a.png"],
 img[src="/Img/Avatar/mouths/y_m32a.png"],
 img[src="/Img/Avatar/mouths/y_m40a.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1a.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1a.png");
 }
 
 img[src="/Img/Avatar/mouths/y_m4a.png"],
@@ -266,12 +238,8 @@ img[src="/Img/Avatar/mouths/y_m37a.png"],
 img[src="/Img/Avatar/mouths/y_m38a.png"],
 img[src="/Img/Avatar/mouths/y_m39a.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2a.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2a.png");
 }
 
 img[src="/Img/Avatar/mouths/y_m1b.png"],
@@ -295,12 +263,8 @@ img[src="/Img/Avatar/mouths/y_m31b.png"],
 img[src="/Img/Avatar/mouths/y_m32b.png"],
 img[src="/Img/Avatar/mouths/y_m40b.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1b.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1b.png");
 }
 
 img[src="/Img/Avatar/mouths/y_m4b.png"],
@@ -324,12 +288,8 @@ img[src="/Img/Avatar/mouths/y_m37b.png"],
 img[src="/Img/Avatar/mouths/y_m38b.png"],
 img[src="/Img/Avatar/mouths/y_m39b.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2b.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2b.png");
 }
 
 img[src="/Img/Avatar/mouths/y_m1c.png"],
@@ -353,12 +313,8 @@ img[src="/Img/Avatar/mouths/y_m31c.png"],
 img[src="/Img/Avatar/mouths/y_m32c.png"],
 img[src="/Img/Avatar/mouths/y_m40c.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1c.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m1c.png");
 }
 
 img[src="/Img/Avatar/mouths/y_m4c.png"],
@@ -382,10 +338,6 @@ img[src="/Img/Avatar/mouths/y_m37c.png"],
 img[src="/Img/Avatar/mouths/y_m38c.png"],
 img[src="/Img/Avatar/mouths/y_m39c.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2c.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2c.png");
 }

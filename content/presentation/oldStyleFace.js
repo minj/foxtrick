@@ -13,9 +13,7 @@ var FoxtrickOldStyleFace = {
 		Foxtrick.ResourcePath + "resources/css/old-style-face/beards.css",
 		Foxtrick.ResourcePath + "resources/css/old-style-face/eyes.css",
 		Foxtrick.ResourcePath + "resources/css/old-style-face/faces.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/goatees.css",
 		Foxtrick.ResourcePath + "resources/css/old-style-face/hair.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/managerAvatar.css",
 		Foxtrick.ResourcePath + "resources/css/old-style-face/mouths.css",
 		Foxtrick.ResourcePath + "resources/css/old-style-face/noses.css"
 	]

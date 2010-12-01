@@ -3,12 +3,8 @@ img[src="/Img/Avatar/noses/n3.png"],
 img[src="/Img/Avatar/noses/n16.png"],
 img[src="/Img/Avatar/noses/n35.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n1.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n1.png");
 }
 
 img[src="/Img/Avatar/noses/n2.png"],
@@ -16,12 +12,8 @@ img[src="/Img/Avatar/noses/n15.png"],
 img[src="/Img/Avatar/noses/n20.png"],
 img[src="/Img/Avatar/noses/n40.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n2.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n2.png");
 }
 
 img[src="/Img/Avatar/noses/n4.png"],
@@ -33,12 +25,8 @@ img[src="/Img/Avatar/noses/n34.png"],
 img[src="/Img/Avatar/noses/n37.png"],
 img[src="/Img/Avatar/noses/n39.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n3.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n3.png");
 }
 
 img[src="/Img/Avatar/noses/n12.png"],
@@ -51,12 +39,8 @@ img[src="/Img/Avatar/noses/n32.png"],
 img[src="/Img/Avatar/noses/n33.png"],
 img[src="/Img/Avatar/noses/n36.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n4.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n4.png");
 }
 
 img[src="/Img/Avatar/noses/n5.png"],
@@ -65,12 +49,8 @@ img[src="/Img/Avatar/noses/n11.png"],
 img[src="/Img/Avatar/noses/n27.png"],
 img[src="/Img/Avatar/noses/n28.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n5.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n5.png");
 }
 
 img[src="/Img/Avatar/noses/n1.png"],
@@ -82,24 +62,16 @@ img[src="/Img/Avatar/noses/n21.png"],
 img[src="/Img/Avatar/noses/n25.png"],
 img[src="/Img/Avatar/noses/n38.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n6.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n6.png");
 }
 
 img[src="/Img/Avatar/noses/n9.png"],
 img[src="/Img/Avatar/noses/n6.png"],
 img[src="/Img/Avatar/noses/n7.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n7.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n7.png");
 }
 
 
@@ -110,12 +82,8 @@ img[src="/Img/Avatar/noses/y_n3.png"],
 img[src="/Img/Avatar/noses/y_n16.png"],
 img[src="/Img/Avatar/noses/y_n35.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n1.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n1.png");
 }
 
 img[src="/Img/Avatar/noses/y_n2.png"],
@@ -123,12 +91,8 @@ img[src="/Img/Avatar/noses/y_n15.png"],
 img[src="/Img/Avatar/noses/y_n20.png"],
 img[src="/Img/Avatar/noses/y_n40.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n2.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n2.png");
 }
 
 img[src="/Img/Avatar/noses/y_n4.png"],
@@ -140,12 +104,8 @@ img[src="/Img/Avatar/noses/y_n34.png"],
 img[src="/Img/Avatar/noses/y_n37.png"],
 img[src="/Img/Avatar/noses/y_n39.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n3.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n3.png");
 }
 
 img[src="/Img/Avatar/noses/y_n12.png"],
@@ -158,12 +118,8 @@ img[src="/Img/Avatar/noses/y_n32.png"],
 img[src="/Img/Avatar/noses/y_n33.png"],
 img[src="/Img/Avatar/noses/y_n36.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n4.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n4.png");
 }
 
 img[src="/Img/Avatar/noses/y_n5.png"],
@@ -172,12 +128,8 @@ img[src="/Img/Avatar/noses/y_n11.png"],
 img[src="/Img/Avatar/noses/y_n27.png"],
 img[src="/Img/Avatar/noses/y_n28.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n5.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n5.png");
 }
 
 img[src="/Img/Avatar/noses/y_n1.png"],
@@ -189,22 +141,14 @@ img[src="/Img/Avatar/noses/y_n21.png"],
 img[src="/Img/Avatar/noses/y_n25.png"],
 img[src="/Img/Avatar/noses/y_n38.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n6.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n6.png");
 }
 
 img[src="/Img/Avatar/noses/y_n9.png"],
 img[src="/Img/Avatar/noses/y_n6.png"],
 img[src="/Img/Avatar/noses/y_n7.png"]
 {
-padding-top: 49px !important;
-width: 47px !important;
-height: 0 !important;
-top: 0px !important;
-left: 0px !important;
-background: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n7.png") no-repeat !important;
+display: inline;
+background-image: url("chrome://foxtrick/content/resources/img/old-style-face/noses/n7.png");
 }
