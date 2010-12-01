@@ -49,7 +49,7 @@ FoxtrickTransferSearchResultFilters = {
 		}
 		tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
 
-		var buttonClear = doc.getElementById('ctl00_CPMain_butClear');
+		var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');
 		buttonClear.addEventListener('click', this.clearFilters, false);
 	},
 
