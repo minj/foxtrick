@@ -47,7 +47,7 @@ var FoxtrickLinksPlayerDetail = {
 
 		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
 		var form = basicSkills.form;
-		var sta = basicSkills.stamina;
+		var stamina = basicSkills.stamina;
 		var exp = basicSkills.experience;
 		var ls = basicSkills.leadership;
 
@@ -73,7 +73,6 @@ var FoxtrickLinksPlayerDetail = {
 		var params = [];
 		var links = new Array(2);
 		if (skills) {
-			var stamina = skills.stamina;
 			var goalkeeping = skills.keeper;
 			var playmaking = skills.playmaking;
 			var passing = skills.passing;
