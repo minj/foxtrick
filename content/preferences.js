@@ -112,7 +112,7 @@ function initTextAndValues()
 		}
 		else if ($(this).is(":radio")) {
 			// radio input
-			const selected = Foxtrick.getModuleValue(module);
+			const selected = FoxtrickPrefs.getModuleValue(module);
 			if ($(this).attr("value") == selected)
 				$(this).attr("checked", "checked");
 		}
