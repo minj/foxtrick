@@ -22,19 +22,19 @@
 				// ForumMOD
 				{ page:"forumModWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
 				// mail
-				{ page:"messageWritePost", textarea : "ctl00_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_CPMain_ucEditorMain_txtRemLen", length : 1000, add_quote:false },
+				{ page:"messageWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtRemLen", length : 1000, add_quote:false },
 				// newsletter
-				{ page:"newsletter", textarea : "ctl00_CPMain_tbNewsBody", counterfield : "ctl00_CPMain_txtCharsLeft", length : 1000, add_quote:false },
+				{ page:"newsletter", textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
 				// GB
-				{ page:"guestbook", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_quote:false },
+				{ page:"guestbook", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_quote:false },
 				// PA
-				{ page:"announcements", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 1000, add_quote:true },
+				{ page:"announcements", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 1000, add_quote:true },
 				// ticket
-				{ page:"ticket", textarea : "ctl00_CPMain_ucActionEditor_txtBody", counterfield : "ctl00_CPMain_ucActionEditor_txtRemLen", length : 2950, add_quote:false },
+				{ page:"ticket", textarea : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtRemLen", length : 2950, add_quote:false },
 				// HT-Press Editor
-				//{ page:"unknown", textarea : "ctl00_CPMain_txtComment", counterfield : "ctl00_CPMain_txtCharsLeft3", length : 1800, add_quote:false },
+				//{ page:"unknown", textarea : "ctl00_ctl00_CPContent_CPMain_txtComment", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft3", length : 1800, add_quote:false },
 				// signatur
-				{ page:"forumSettings", textarea : "ctl00_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_quote:false },
+				{ page:"forumSettings", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_quote:false },
 			],
 
 	icons : [
@@ -80,17 +80,17 @@
 
 		Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
 
-		if (doc.getElementById('ctl00_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
+		if (doc.getElementById('ctl00_ctl00_CPContent_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
 		// Foxtrick.dump('YOUTH => ' + page +'\n');
 
 		if (page == 'newsletter' || page == 'mailnewsletter') {
-			if (page == 'newsletter' ) var textbox = 'ctl00_CPMain_txtMessage';
-			if (page == 'mailnewsletter' ) var textbox = 'ctl00_CPMain_tbNewsBody';
+			if (page == 'newsletter' ) var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
+			if (page == 'mailnewsletter' ) var textbox = 'ctl00_ctl00_CPContent_CPMain_tbNewsBody';
 
 			var anchor = doc.getElementById(textbox);
 
 			if (page == 'newsletter') {
-				var count = "ctl00_CPMain_txtCharsLeft";
+				var count = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
 				var chars = 1000;
 				if (enlarge) {
 					anchor.setAttribute('rows','20');
@@ -99,8 +99,8 @@
 			}
 			if (page == 'mailnewsletter') {
 				var counter = doc.getElementsByName('remlennews')[0];
-				counter.id = "ctl00_CPMain_txtCharsLeft";
-				var count = "ctl00_CPMain_txtCharsLeft";
+				counter.id = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
+				var count = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
 				var chars = 1000;
 				{
 					anchor.setAttribute('rows','20');
@@ -116,19 +116,19 @@
 		}
 
 		if (page == 'forumWritePost' && enlarge) {
-				//var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
+				//var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				anchor.style.height = '300px';
 		}
 
 		if (page == 'forumModWritePost' && enlarge) {
-				//var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
+				//var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				anchor.style.height = '300px';
 		}
 
 		if (page == 'announcements' && enlarge) {
-				var anchor = doc.getElementById('ctl00_CPMain_ucHattrickMLEditor_txtBody');
+				var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 				anchor.style.height = '300px';
 		}
 		var toolbar = doc.getElementsByClassName("HTMLToolbar")[0];
@@ -150,7 +150,7 @@
 
 		if (page == 'guestbook')
 			try {
-				var textbox = doc.getElementById( "ctl00_CPMain_ucHattrickMLEditor_txtBody" );
+				var textbox = doc.getElementById( "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody" );
 				textbox.setAttribute('style' , 'height:100px; width:100%');
 			}
 			catch (e)
@@ -162,9 +162,9 @@
 		var nextElement = toolbar.firstChild;
 		while (nextElement) {
 			try {
-				if ( nextElement.id == 'ctl00_CPMain_ucHattrickMLEditor_pnlTags' ||
-					 nextElement.id == 'ctl00_CPMain_ucActionEditor_pnlTags' ||
-					 nextElement.id == 'ctl00_CPMain_ucEditorMain_pnlTags' ||
+				if ( nextElement.id == 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_pnlTags' ||
+					 nextElement.id == 'ctl00_ctl00_CPContent_CPMain_ucActionEditor_pnlTags' ||
+					 nextElement.id == 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_pnlTags' ||
 					 nextElement.id.search('ctl00_ctl00_CPContent_CPMain_uc') != -1 ||
 					 nextElement.href != null
 				   ) {
