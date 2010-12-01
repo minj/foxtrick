@@ -29,9 +29,9 @@ var FoxtrickLinksTraining = {
 						break;
 					}
 				}
-				STA = doc.getElementById("ctl00_CPMain_txtTrainingLevelStamina").value;
-				TI = doc.getElementById("ctl00_CPMain_txtTrainingLevel").value;
-				TrainingType = doc.getElementById("ctl00_CPMain_ddlTrainingType").value;
+				STA = doc.getElementById("ctl00_ctl00_CPContent_CPMain_txtTrainingLevelStamina").value;
+				TI = doc.getElementById("ctl00_ctl00_CPContent_CPMain_txtTrainingLevel").value;
+				TrainingType = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlTrainingType").value;
 				owncountryid = FoxtrickHelper.getOwnCountryId();
 
 
