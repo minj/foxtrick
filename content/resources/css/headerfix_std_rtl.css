@@ -44,15 +44,15 @@ z-index: 0 !important;
 /* STADIONIMAGEFIX */
 
 /*part 2 not needed now
-#aspnetForm[action*="Default.aspx?ArenaID="]   div#ctl00_CPMain_pnlMain>div.mainBox {
+#aspnetForm[action*="Default.aspx?ArenaID="]   div#ctl00_ctl00_CPContent_CPMain_pnlMain>div.mainBox {
 margin-top:-420px !important;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="]  div#ctl00_CPMain_pnlMain>div.mainBox table {
+#aspnetForm[action*="Default.aspx?ArenaID="]  div#ctl00_ctl00_CPContent_CPMain_pnlMain>div.mainBox table {
 margin-top:-360px !important;
 }
 
-#aspnetForm[action*="Default.aspx?ArenaID="]  div#ctl00_CPMain_pnlMain>div.arenaInfo {
+#aspnetForm[action*="Default.aspx?ArenaID="]  div#ctl00_ctl00_CPContent_CPMain_pnlMain>div.arenaInfo {
 margin-top:100px !important;
 }
 
