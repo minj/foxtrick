@@ -31,10 +31,10 @@ var FoxtrickGoToPostBox = {
 
 
 
-		var HTGotoInput = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_txtMessageNumber');
-		var HTGotoButton = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_btnViewMessage');
-		var HTGotoInput2 = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_txtMessageNumber');
-		var HTGotoButton2 = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_btnViewMessage');
+		var HTGotoInput = null;
+		var HTGotoButton = null;
+		var HTGotoInput2 = null;
+		var HTGotoButton2 = null;
 
 		var inputs = doc.getElementById('mainWrapper').getElementsByTagName('input');
 		for (var i=0;i<inputs.length;++i) {
@@ -52,13 +52,8 @@ var FoxtrickGoToPostBox = {
 			}
 		}
 
-		//if (HTGotoInput) HTGotoInput.parentNode.removeChild(HTGotoInput);
-		//if (HTGotoButton) HTGotoButton.parentNode.removeChild(HTGotoButton);
-		//if (HTGotoInput2) HTGotoInput2.parentNode.removeChild(HTGotoInput2);
-		//if (HTGotoButton2) HTGotoButton2.parentNode.removeChild(HTGotoButton2);
-
-        var selectBoxTop = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerTop_filterUser');
-		var selectBoxBottom = null;//doc.getElementById('ctl00_CPMain_ucThread_ucPagerBottom_filterUser');
+        var selectBoxTop = null;
+		var selectBoxBottom = null;
 
 		var selects = doc.getElementById('mainWrapper').getElementsByTagName('select');
 		for (var i=0;i<selects.length;++i) {
@@ -85,20 +80,6 @@ var FoxtrickGoToPostBox = {
 				continue;
 			var selectBox = aSelectBoxes[i];
 
-			/*
-			var tglButton = doc.createElement('input');
-			tglButton.setAttribute('id', 'foxtrick_forum_postbox_tglbutton_' + i);
-			tglButton.setAttribute('type', 'button');
-			tglButton.setAttribute('value', 'i');
-			tglButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
-			tglButton.setAttribute('onClick',
-				'function show_tgl(elm) {var el_1 = document.getElementById(\"ctl00_ctl00_CPContent_CPMain_ucThread_ucPager\" + elm); if (el_1.style.display != \"inline\") {el_1.style.display = \"inline\";} else {el_1.style.display = \"none\";}} ' +
-				'show_tgl(\"Top_txtMessageNumber\"); show_tgl(\"Top_btnGo\"); show_tgl(\"Top_ddlAction\"); show_tgl(\"Bottom_txtMessageNumber\"); show_tgl(\"Bottom_btnGo\"); show_tgl(\"Bottom_ddlAction\"); '
-
-			);
-			selectBox.parentNode.appendChild(tglButton);
-			*/
-
 			var inputBoxTop = doc.createElement('input');
 			inputBoxTop.setAttribute('type', 'text');
 			inputBoxTop.setAttribute('size', '4');
@@ -123,7 +104,7 @@ var FoxtrickGoToPostBox = {
 				);
 
 			var inputBoxLabel = doc.createElement('span');
-            inputBoxLabel.innerHTML = '&nbsp;'/* + Foxtrickl10n.getString("foxtrick.GoToPostBox.label") + ':&nbsp;'*/;
+            inputBoxLabel.innerHTML = '&nbsp;'
             selectBox.parentNode.appendChild(inputBoxLabel);
 
 			selectBox.parentNode.appendChild(inputBoxTop);
