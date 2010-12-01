@@ -13,7 +13,7 @@ var FoxtrickLargeFlags = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     run : function(page, doc) {
-		var faceCard = doc.getElementById("ctl00_CPMain_ucPlayerFace_pnlAvatar");
+		var faceCard = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar");
 		if (!faceCard) {
 			// if player faces aren't shown, remain with tiny flags
 			// since large flags breaks page layout
