@@ -829,53 +829,67 @@ Foxtrick.unload_module_css = function() {
 	}
 }
 
-Foxtrick.unload_css_permanent = function(css) {
-	try {
+Foxtrick.unload_css_permanent = function(cssList) {
+	var unload_css_permanent_impl = function(css) {
 		try {
-			var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-			var uri = ios.newURI(css, null, null);
+			try {
+				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				var uri = ios.newURI(css, null, null);
+			}
+			catch (e) {
+				return;
+			}
+			// try unload
+			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
+				sss.unregisterSheet(uri, sss.USER_SHEET);
+				Foxtrick.dump('unload ' + css + '\n');
+			}
 		}
 		catch (e) {
-			return;
+			Foxtrick.dump ('> load_css_permanent ' + e + '\n');
 		}
-		// try unload
-		if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
-				sss.unregisterSheet(uri, sss.USER_SHEET);
-				Foxtrick.dump('unload '+css.substr(0,65)+'\n');
-		}
-		//else Foxtrick.dump('not loaded '+css+'\n');
-	}
-	catch (e) {
-		Foxtrick.dump ('> load_css_permanent ' + e + '\n');
-	}
+	};
+	if (typeof(cssList) === "string")
+		unload_css_permanent_impl(cssList);
+	else if (typeof(cssList) === "object") {
+		for (var i in cssList)
+			unload_css_permanent_impl(cssList[i]);
+	}		
 }
 
-Foxtrick.load_css_permanent = function(css) {
-	try {
+Foxtrick.load_css_permanent = function(cssList) {
+	var load_css_permanent_impl = function(css) {
 		try {
-			var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-			var uri = ios.newURI(css, null, null);
+			try {
+				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				var uri = ios.newURI(css, null, null);
+			}
+			catch (e) {
+				return;
+			}
+			// load
+			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
+				sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+				Foxtrick.dump('load ' + css + '\n');
+			}
 		}
 		catch (e) {
-			return;
+			Foxtrick.dump ('> ERROR load_css_permanent: ' + css + '\n');
 		}
-		// load
-		if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-					sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
-					Foxtrick.dump('load '+css.substr(0,65)+'\n');
-		}
-		//else Foxtrick.dump('was loaded '+css+'\n');
-	}
-	catch (e) {
-		Foxtrick.dump ('> ERROR load_css_permanent: ' + css + '\n');
+	};
+	if (typeof(cssList) === "string")
+		load_css_permanent_impl(cssList);
+	else if (typeof(cssList) === "object") {
+		for (var i in cssList)
+			load_css_permanent_impl(cssList[i]);
 	}
 }
 
 Foxtrick.reload_css_permanent = function(css) {
-	Foxtrick.unload_css_permanent (css) ;
-	Foxtrick.load_css_permanent (css) ;
+	Foxtrick.unload_css_permanent(css);
+	Foxtrick.load_css_permanent(css);
 }
 
 Foxtrick.reload_module_css = function(doc) {
