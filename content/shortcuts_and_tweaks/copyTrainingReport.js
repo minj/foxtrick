@@ -34,7 +34,7 @@ var FoxtrickCopyTrainingReport = {
 	OPTIONS : new Array("OpenHTYpage"),
 
 	run : function( page, doc ) {
-		if (doc.getElementById('ctl00_CPMain_butReadAll')!=null) return;
+		if (doc.getElementById('ctl00_ctl00_CPContent_CPMain_butReadAll')!=null) return;
 
 
 		if (FoxtrickPrefs.getBool( "smallcopyicons" )) {
@@ -136,12 +136,12 @@ var FoxtrickCopyScoutReport = {
 	run : function( page, doc ) {
 		var has_report = false;
 		if (page=='youthoverview') {
-			has_report = doc.getElementById('ctl00_CPMain_butScoutPropYes')!=null;
+			has_report = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes')!=null;
 		}
 
 		if (page=='youthplayerdetail' || has_report) {
 			if (has_report) {
-				var alertdiv = doc.getElementById('ctl00_CPMain_butScoutPropYes').parentNode;
+				var alertdiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
 				if (alertdiv.parentNode.getElementsByTagName('a')[0]==null) {
 					var a=doc.createElement('a');
 					a.innerHTML=Foxtrickl10n.getString("foxtrick.tweaks.copyscoutreport" );
