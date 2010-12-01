@@ -15,7 +15,7 @@ FoxtrickMatchReportFormat = {
 	CSS : Foxtrick.ResourcePath + "resources/css/match-report.css",
 
 	run : function(page, doc) {
-		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
+		var isarchivedmatch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
 
 		var isyouth = (doc.location.search.search(/isYouth=/i) > -1);
