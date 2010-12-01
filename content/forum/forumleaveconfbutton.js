@@ -42,7 +42,7 @@ var FoxtrickAddLeaveConfButton = {
 				if (confPos > -1){
 					var confName =sUrl.substr(confPos+10).replace(/\%20/g," ");
 					//Foxtrick.dump('confName: ' + confName + '\n');
-					var ul = doc.getElementById("ctl00_CPMain_rlFolders__rbl");
+					var ul = doc.getElementById("ctl00_ctl00_CPContent_CPMain_rlFolders__rbl");
 					var liElems = ul.getElementsByTagName("li");
 					for(var i=0; i < liElems.length; i++) {
 						var subDivs = liElems[i].firstChild.getElementsByTagName("div");
