@@ -14,24 +14,24 @@ var FoxtrickConfirmActions = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	BID : {
-		ALERT_ID : "ctl00_CPMain_updBid",
-		BUTTON_ID : "ctl00_CPMain_btnBid",
-		TEXT_ID : "ctl00_CPMain_txtBid",
+		ALERT_ID : "ctl00_ctl00_CPContent_CPMain_updBid",
+		BUTTON_ID : "ctl00_ctl00_CPContent_CPMain_btnBid",
+		TEXT_ID : "ctl00_ctl00_CPContent_CPMain_txtBid",
 		CONFIRM_ID : "ft-bid-confirm"
 	},
 
 	SELL : {
-		BUTTON_ID : "ctl00_CPSidebar_ucOwnerActions_btnSell",
-		CANCEL_ID : "ctl00_CPSidebar_ucOwnerActions_btnSellCancel",
-		TEXT_ID : "ctl00_CPSidebar_ucOwnerActions_txtPrice",
+		BUTTON_ID : "ctl00_ctl00_CPContent_CPSidebar_ucOwnerActions_btnSell",
+		CANCEL_ID : "ctl00_ctl00_CPContent_CPSidebar_ucOwnerActions_btnSellCancel",
+		TEXT_ID : "ctl00_ctl00_CPContent_CPSidebar_ucOwnerActions_txtPrice",
 		CONFIRM_ID : "ft-sell-confirm"
 	},
 
 	STAFF : {
-		SUBMIT_BUTTON_ID : "ctl00_CPMain_btnStaffAction",
-		ACTION_SELECT_ID : "ctl00_CPMain_ddlStaffAction",
-		AMOUNT_TEXT_ID : "ctl00_CPMain_txtAmount",
-		ROLE_SELECT_ID : "ctl00_CPMain_ddlStaffRole",
+		SUBMIT_BUTTON_ID : "ctl00_ctl00_CPContent_CPMain_btnStaffAction",
+		ACTION_SELECT_ID : "ctl00_ctl00_CPContent_CPMain_ddlStaffAction",
+		AMOUNT_TEXT_ID : "ctl00_ctl00_CPContent_CPMain_txtAmount",
+		ROLE_SELECT_ID : "ctl00_ctl00_CPContent_CPMain_ddlStaffRole",
 		CONFIRM_ID : "ft-staff-confirm"
 	},
 
