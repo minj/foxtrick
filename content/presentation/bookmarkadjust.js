@@ -23,7 +23,7 @@ Foxtrick.BookmarkAdjust = {
     },
 
 	_adjust_bookmarks : function ( doc ) {
-		var tableObj = doc.getElementById('ctl00_CPMain_repB').childNodes[1];
+		var tableObj = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repB').childNodes[1];
         for (var i=0; i<tableObj.rows.length; i++) {
             //If there aren't 4 cells on the row is a separator row
             if (tableObj.rows[i].cells.length==4) {
