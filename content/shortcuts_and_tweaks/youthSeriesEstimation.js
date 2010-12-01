@@ -12,7 +12,7 @@ var FoxtrickYouthSeriesEstimation = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	LATEST_CHANGE : "Repaired prediction when series start in the future.",
 
-	TABLE_ID : "ctl00_CPMain_grdYouthSeries_ctl00",
+	TABLE_ID : "ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00",
 	ATTRIB_NAME : "estimated",
 
 	run : function(page, doc) {
