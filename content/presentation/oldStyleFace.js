@@ -22,7 +22,7 @@ var FoxtrickOldStyleFace = {
 		var faceCards = doc.getElementsByClassName("faceCard");
 		for (var i = 0; i < faceCards.length; ++i) {
 			var card = faceCards[i];
-			card.style.background = "url(\"http://www.kotikone.fi/hattrick/oldStylePlayer/silhouette.png\")";
+			card.style.background = "url(\"chrome://foxtrick/content/resources/img/old-style-face/silhouette.png\")";
 			var imgs = card.getElementsByTagName("img"); // all parts of card
 			for (var j = 0; j < imgs.length; ++j) {
 				var img = imgs[j];
@@ -53,7 +53,7 @@ var FoxtrickOldStyleFace = {
 			img.style.top = "";
 			img.style.width = "47px";
 			img.style.height = "49px";
-			img.src = "http://www.kotikone.fi/hattrick/oldStylePlayer/"
+			img.src = "chrome://foxtrick/content/resources/img/old-style-face/"
 				+ imgInfo.part + "/"
 				+ this.IMG_MAP[imgInfo.part][imgInfo.id] + ".png";
 		}
