@@ -35,11 +35,6 @@ var FoxtrickStaffMarker = {
 	editorsArray : [],
 	foxtrickersArray : [],
 
-	SELECT_ELEMENTS : ["ctl00_CPMain_ucThread_ucPagerTop_filterUser",
-		"ctl00_CPMain_ucThread_ucPagerBottom_filterUser",
-		"ctl00_CPMain_ddlRecipient"
-	],
-
 	updateHtyXML : function() {
 		var req = new XMLHttpRequest();
 		req.open("GET", "http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml", true);
