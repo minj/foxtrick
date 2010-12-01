@@ -19,7 +19,7 @@ var FoxtrickTables = {
         if (tbl_goaldiff) return;
 
         var goalcell = 2;
-        var div = doc.getElementById('ctl00_CPMain_pnlViewPromotion');
+        var div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlViewPromotion');
         if (!div) {div = doc.getElementById('mainBody'); goalcell = 3;}
 
 		var tbl_promo = div.getElementsByTagName('TABLE')[0];
