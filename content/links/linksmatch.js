@@ -21,7 +21,7 @@ var FoxtrickLinksMatch = {
 
 		var alldivs = doc.getElementsByTagName('div');
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href);
-		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")==null);
+		var isarchivedmatch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")==null);
 		//Foxtrick.dump('isarchivedmatch:'+isarchivedmatch+'\n');
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var owncountryid = FoxtrickHelper.getOwnCountryId();
@@ -35,7 +35,7 @@ var FoxtrickLinksMatch = {
 			teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);
 		}
 		else {
-			var sidediv = doc.getElementById("ctl00_CPMain_pnlTeamInfo");
+			var sidediv = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlTeamInfo");
 			teamid = FoxtrickHelper.findTeamId(sidediv);
 			teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);
 		}
