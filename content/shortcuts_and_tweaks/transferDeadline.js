@@ -49,11 +49,11 @@ FoxtrickTransferDeadline = {
         var spans = doc.getElementsByTagName( element );
         var j = 0;
         for (var i=0; i<spans.length; i++) {
-            var cell = "ctl00_CPMain_lstBids_ctrl"+ j + "_jsonDeadLine";
+            var cell = "ctl00_ctl00_CPContent_CPMain_lstBids_ctrl"+ j + "_jsonDeadLine";
             var selltime_elm = doc.getElementById( cell );
 
             if (selltime_elm == null) {
-                var cell = "ctl00_CPMain_dl_ctrl"+ j +"_TransferPlayer_lblDeadline";
+                var cell = "ctl00_ctl00_CPContent_CPMain_dl_ctrl"+ j +"_TransferPlayer_lblDeadline";
                 var selltime_elm = doc.getElementById( cell );
             }
 
@@ -80,7 +80,7 @@ FoxtrickTransferDeadline = {
 		var deadline_span = doc.getElementById( "ft_deadline" );
         if  (deadline_span != null ) return;
 
-        var div = doc.getElementById( 'ctl00_CPMain_updBid' );
+        var div = doc.getElementById( 'ctl00_ctl00_CPContent_CPMain_updBid' );
         if (div == null ) return;
 
         var spans = div.getElementsByClassName("alert");
