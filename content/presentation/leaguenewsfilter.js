@@ -201,7 +201,7 @@ var FoxtrickShortPAs = {
 	LATEST_CHANGE:"Fix for PAs with horizontal lines",
 
 	run : function( page, doc ) {
-		var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
+		var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
 
 		var items = newsfeed.getElementsByTagName('div');
 		for (var i=0;i<items.length;++i) {
