@@ -36,8 +36,8 @@ FoxtrickMatchPlayerColouring = {
 			return;
 		}
 
-		var isarchivedmatch = (doc.getElementById("ctl00_CPMain_lblMatchInfo")==null);
-		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+		var isarchivedmatch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchInfo")==null);
+		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
 
 		var isyouth = false;
