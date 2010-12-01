@@ -1,0 +1,131 @@
+/*****************************************PLAYERCARD*****************************************/
+
+.faceCard
+{
+padding-top: 49px !important;
+padding-bottom: 0px !important;
+padding-left: 0px !important;
+padding-right: 10px !important;
+height: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/silhouette.png") no-repeat !important;
+width: 47px !important;
+float: left !important;
+margin-top: 10px !important;
+margin-right: 0px !important;
+margin-left: 28px !important;
+margin-bottom: 0px !important;
+position: relative !important;
+}
+
+#sidebar .faceCard
+{
+margin-left:64px !important;
+}
+
+/******************************************BACKGROUND**************************************/
+img[src="/Img/Avatar/backgrounds/bg_blue_int.png"],
+img[src="/Img/Avatar/backgrounds/bg_blue.png"]
+{
+padding-top: 49px !important;
+width: 47px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/backgrounds/bg.png") no-repeat !important;
+}
+
+img[src="/Img/Avatar/backgrounds/y_bg_blue.png"]
+{
+padding-top: 49px !important;
+width: 47px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/backgrounds/y_bg.png") no-repeat !important;
+}
+
+img[src="/Img/Avatar/backgrounds/bg_hof.png"]
+{
+padding-top: 49px !important;
+width: 47px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/backgrounds/hof_bg.png") no-repeat !important;
+}
+
+
+/*****************************************INJURY/MISC****************************************/
+img[src="/Img/Avatar/misc/f1injury.png"],
+img[src="/Img/Avatar/misc/f2injury.png"],
+img[src="/Img/Avatar/misc/f3injury.png"],
+img[src="/Img/Avatar/misc/f4injury.png"],
+img[src="/Img/Avatar/misc/f5injury.png"],
+img[src="/Img/Avatar/misc/f6injury.png"],
+img[src="/Img/Avatar/misc/f7injury.png"],
+img[src="/Img/Avatar/misc/f8injury.png"],
+img[src="/Img/Avatar/misc/f9injury.png"]
+{
+display:none!important;
+}
+
+img[src="/Img/Avatar/misc/injuredbutplaying.png"]
+{
+display:none!important;
+}
+
+img[src="/Img/Avatar/misc/t1.png"],
+img[src="/Img/Avatar/misc/t2.png"],
+img[src="/Img/Avatar/misc/t3.png"],
+img[src="/Img/Avatar/misc/t4.png"],
+img[src="/Img/Avatar/misc/t5.png"],
+img[src="/Img/Avatar/misc/t6.png"]
+{
+display:none!important;
+}
+
+img[src="/Img/Avatar/misc/yellow.png"]
+{
+display:none!important;
+}
+
+img[src="/Img/Avatar/misc/red.png"]
+{
+display:none!important;
+}
+
+
+/******************************************BODIES**************************************/
+img[src*="body1.png"],
+img[src*="body2.png"],
+img[src*="body3.png"],
+img[src*="body4.png"],
+img[src*="body5.png"],
+img[src*="body6.png"],
+img[src*="body7.png"],
+img[src*="body8.png"],
+img[src*="body9.png"],
+img[src*="body10.png"],
+img[src*="body11.png"],
+img[src*="body12.png"]
+{
+display:none!important;
+}
+
+img[src*="/Img/Avatar/bodies/"]
+{
+display:none!important;
+}
+
+img[src*="/Img/Avatar/bodies_hof/"]
+{
+display:none!important;
+}
+
+
+/*****************************************NUMBERS*******************************************/
+img[src*="/Img/Avatar/numbers/"]
+{
+display:none!important;
+}

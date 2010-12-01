@@ -1,0 +1,171 @@
+/*****************************************MANAGERAVATAR*****************************************/
+img[src*="/Img/Avatar/bodies_f/"],
+img[src*="/Img/Avatar/faces_f/"],
+img[src*="/Img/Avatar/eyes_f/"],
+img[src*="/Img/Avatar/mouths_f/"],
+img[src*="/Img/Avatar/noses_f/"],
+img[src*="/Img/Avatar/hair_f/"],
+#ctl00_CPMain_repHairColors_ctl03_imgHairColor,
+#ctl00_CPMain_repHairColors_ctl04_imgHairColor,
+#ctl00_CPMain_repHairColors_ctl07_imgHairColor,
+#ctl00_CPMain_repHairColors_ctl09_imgHairColor,
+#ctl00_CPMain_repHairColors_ctl10_imgHairColor,
+#ctl00_CPMain_repFaceTones_ctl02_imgFaceTone,
+#ctl00_CPMain_repFaceTones_ctl09_imgFaceTone,
+#ctl00_CPMain_repFaceTones_ctl11_imgFaceTone,
+#ctl00_CPMain_ddlEyeMood
+{
+display:none!important;
+}
+
+
+/*****************************************MANAGERAVATAR-FACETONE*****************************************/
+img[src="/Img/Avatar/colors/ft_a.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_a.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_b.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_b.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_d.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_d.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_e.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_e.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_f.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_f.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_g.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_g.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_h.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_h.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_i.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_i.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_k.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_k.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/ft_m.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_m.png") no-repeat !important;
+}
+
+
+
+
+/*****************************************MANAGERAVATAR-HAIRCOLOR*****************************************/
+img[src="/Img/Avatar/colors/hc_a.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_a.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/hc_b.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_b.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/hc_c.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_c.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/hc_f.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_d.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/hc_g.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_e.png") no-repeat !important;
+}
+img[src="/Img/Avatar/colors/hc_i.png"]
+{
+padding-top: 12px !important;
+width: 12px !important;
+height: 0 !important;
+top: 0px !important;
+left: 0px !important;
+background: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_f.png") no-repeat !important;
+}
