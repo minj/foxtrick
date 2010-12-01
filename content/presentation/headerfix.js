@@ -29,23 +29,23 @@ var FoxtrickHeaderFix = {
     run : function( page, doc ) {
 		if (doc.location.href.search(/isYouth/i)!=-1) return;
 
-		var ctl00_CPMain_pnl = doc.getElementById("ctl00_CPMain_pnlPreMatch");
-		if (page=='arena')  ctl00_CPMain_pnl = doc.getElementById("ctl00_CPMain_pnlMain");
-		var ctl00_CPMain_pnlTeamInfo = doc.getElementById("ctl00_CPMain_pnlTeamInfo");
-		var ctl00_CPMain_pnlArenaFlash = doc.getElementById("ctl00_CPMain_pnlArenaFlash");
+		var ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch");
+		if (page=='arena')  ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
+		var ctl00_ctl00_CPContent_CPMain_pnlTeamInfo = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlTeamInfo");
+		var ctl00_ctl00_CPContent_CPMain_pnlArenaFlash = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlArenaFlash");
 
 		// check right page and is supporter
-		if (page=='match' && (!ctl00_CPMain_pnl || !ctl00_CPMain_pnlTeamInfo)) return;
-		if (page=='arena' && !ctl00_CPMain_pnl) return;
-		if (!ctl00_CPMain_pnlArenaFlash) return;
+		if (page=='match' && (!ctl00_ctl00_CPContent_CPMain_pnl || !ctl00_ctl00_CPContent_CPMain_pnlTeamInfo)) return;
+		if (page=='arena' && !ctl00_ctl00_CPContent_CPMain_pnl) return;
+		if (!ctl00_ctl00_CPContent_CPMain_pnlArenaFlash) return;
 
-		if (page=='arena' && ctl00_CPMain_pnl.getElementsByTagName('h1').length > 1) return; // don't move if arena is under constriction
+		if (page=='arena' && ctl00_ctl00_CPContent_CPMain_pnl.getElementsByTagName('h1').length > 1) return; // don't move if arena is under constriction
 
 		// get some divs to move
-		var arenaInfo = ctl00_CPMain_pnlArenaFlash.nextSibling;
+		var arenaInfo = ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.nextSibling;
 		var separator=null;
 		var mainBox=null;
-		var divs = ctl00_CPMain_pnl.getElementsByTagName('div');
+		var divs = ctl00_ctl00_CPContent_CPMain_pnl.getElementsByTagName('div');
 		for (var i=0;i<divs.length;++i) {
 			if (divs[i].className=='arenaInfo') {arenaInfo=divs[i];}
 			if (divs[i].className=='separator') {separator=divs[i];}
@@ -53,7 +53,7 @@ var FoxtrickHeaderFix = {
 		}
 
 		// reduce margins of new top div
-		if (ctl00_CPMain_pnlTeamInfo) ctl00_CPMain_pnlTeamInfo.setAttribute('style','float:left !important; margin-top:-20px;');
+		if (ctl00_ctl00_CPContent_CPMain_pnlTeamInfo) ctl00_ctl00_CPContent_CPMain_pnlTeamInfo.setAttribute('style','float:left !important; margin-top:-20px;');
 		else {
 			mainBox.getElementsByTagName('h2')[0].setAttribute('style',' margin-top:-20px;');
 			if (Foxtrick.isStandardLayout(doc)) mainBox.setAttribute('style',' margin-bottom:0px;');
@@ -61,13 +61,13 @@ var FoxtrickHeaderFix = {
 
 		// move or delete seperator
 		if (separator && (page=='match' || !Foxtrick.isStandardLayout(doc))) {
-			separator = ctl00_CPMain_pnl.removeChild(separator);
-			ctl00_CPMain_pnl.appendChild(separator);
+			separator = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(separator);
+			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(separator);
 		}
 		// move areainfo
 		if (arenaInfo) {
-			arenaInfo = ctl00_CPMain_pnl.removeChild(arenaInfo);
-			ctl00_CPMain_pnl.appendChild(arenaInfo);
+			arenaInfo = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(arenaInfo);
+			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(arenaInfo);
 			var margin;
 			if (page=='arena') margin='margin-right:18px';
 			else margin='';
@@ -76,10 +76,10 @@ var FoxtrickHeaderFix = {
 		}
 
 		// move flash
-		ctl00_CPMain_pnlArenaFlash = ctl00_CPMain_pnl.removeChild(ctl00_CPMain_pnlArenaFlash);
-		ctl00_CPMain_pnl.appendChild(ctl00_CPMain_pnlArenaFlash);
-		ctl00_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px;');
-		if (page=='arena') 	ctl00_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px; margin-left:-8px !important; margin-right:-3px !important;');
+		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(ctl00_ctl00_CPContent_CPMain_pnlArenaFlash);
+		ctl00_ctl00_CPContent_CPMain_pnl.appendChild(ctl00_ctl00_CPContent_CPMain_pnlArenaFlash);
+		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px;');
+		if (page=='arena') 	ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px; margin-left:-8px !important; margin-right:-3px !important;');
 	}
 };
 
