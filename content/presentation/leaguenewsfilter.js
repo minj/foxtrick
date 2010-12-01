@@ -141,7 +141,7 @@ var FoxtrickLeagueNewsFilter = {
 	},
 
 	ShowHide:function(doc) {
-		var newsfeed = doc.getElementById('ctl00_CPMain_repLLUFeed');
+		var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
 		var selected=doc.getElementById('ft_ownselectboxID').value;
 
 		var feed_count=0;
@@ -150,10 +150,11 @@ var FoxtrickLeagueNewsFilter = {
 		var items = newsfeed.getElementsByTagName('div');
 		for (var i=0;i<items.length;++i) {
 			item=items[i];
-			if (item.className!='feedItem' && item.className!='feedItem user') continue;
+			if (!Foxtrick.hasClass(item, "feedItem"))
+				continue;
 
 			// show last date if there was an entry shown for that date
-			if (item.previousSibling.previousSibling.className=='feed') {
+			if (Foxtrick.hasClass(item.previousSibling.previousSibling, "feed")) {
 				if (last_feed) {
 					if (feed_count==0) last_feed.style.display='none';
 					else last_feed.style.display='block';
