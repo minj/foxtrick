@@ -45,12 +45,12 @@ var FoxtrickOldStyleFace = {
 	},
 
 	processImg : function(img, imgInfo) {
+		// clear the style first
+		img.style.left = "0px";
+		img.style.top = "0px";
 		if (imgInfo
 			&& this.IMG_MAP[imgInfo.part]
 			&& this.IMG_MAP[imgInfo.part][imgInfo.id]) {
-			// clear the style first
-			img.style.left = "";
-			img.style.top = "";
 			img.style.width = "47px";
 			img.style.height = "49px";
 			img.src = "chrome://foxtrick/content/resources/img/old-style-face/"
