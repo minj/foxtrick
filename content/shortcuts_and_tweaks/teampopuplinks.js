@@ -159,7 +159,7 @@ var FoxtrickTeamPopupLinks = {
 		this.userlink = false;
 		var redir_from_forum = (sUrl.search(/Forum/i) != -1);
 		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
-			var a = doc.getElementById("ctl00_CPMain_lnkShowLogins");
+			var a = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lnkShowLogins");
 			if (a) {
 				var func = a.href;
 				if (func) {
