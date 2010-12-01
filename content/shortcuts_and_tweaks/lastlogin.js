@@ -13,7 +13,7 @@ FoxtrickLastLogin = {
 
 	change : function(page, doc) {
 		// FIXME - what does this mean? (cvd: i guess no lastlogins on guestbookpage)
-		if (doc.getElementById('ctl00_CPMain_upGB') != null) return;
+		if (doc.getElementById('ctl00_ctl00_CPContent_CPMain_upGB') != null) return;
 		FoxtrickLastLogin._Show(doc);
 	},
 
