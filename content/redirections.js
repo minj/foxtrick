@@ -81,7 +81,7 @@ var FoxtrickRedirections = {
 		}
 		//mailto
 		if (doc.location.href.search(/mailto=/i)!=-1 ) {
-			var teamid_input = doc.getElementById('ctl00_CPMain_tbTo');
+			var teamid_input = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tbTo');
 			var username = doc.location.href.replace(/.+mailto=/i,'');
 			if (username.search(/&/)!=-1) username=username.replace(/&.+/,'');
 			teamid_input.value = username;
