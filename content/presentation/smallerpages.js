@@ -41,8 +41,8 @@ FoxtrickSmallerPages = {
 			}
 		}
 		if (page == "playerdetail") {
-			if (!doc.getElementById('ctl00_CPMain_ucPlayerFace_pnlAvatar')) {
-				doc.getElementById('ctl00_CPMain_pnlplayerInfo').style.width = "auto";
+			if (!doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar')) {
+				doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').style.width = "auto";
 			}
 
 			if (Foxtrick.isModuleFeatureEnabled(this, "ReduceBid")) {
@@ -55,8 +55,8 @@ FoxtrickSmallerPages = {
 			}
 		}
 		else if (page == "youthoverview") {
-			if (!doc.getElementById('ctl00_CPMain_ucScoutProposalFace_pnlAvatar')) {
-				doc.getElementById('ctl00_CPMain_UpdatePanel1').getElementsByTagName('div')[0].style.width = "auto";
+			if (!doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucScoutProposalFace_pnlAvatar')) {
+				doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1').getElementsByTagName('div')[0].style.width = "auto";
 			}
 		}
 	},
@@ -66,7 +66,7 @@ FoxtrickSmallerPages = {
 	},
 
 	_move_bid : function(doc) {
-		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
+		var biddiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
 		if (biddiv) {
 			try {
 				//We move the bid div, i get the skill div
@@ -99,7 +99,7 @@ FoxtrickSmallerPages = {
 	},
 
 	_adjust_bid : function (doc) {
-		var biddiv = doc.getElementById('ctl00_CPMain_updBid');
+		var biddiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
 		if (biddiv) {
 			try {
 				//Now reducing the bid div cutting strings
