@@ -50,7 +50,7 @@ var FoxtrickForumLastPost = {
             }
         }
         else {
-            var select = doc.getElementById('ctl00_CPMain_ddlMessagesPerPage');
+            var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMessagesPerPage');
             if (select == null) return;
             var id = select.options[select.selectedIndex ].text;
             id = parseInt(id);
