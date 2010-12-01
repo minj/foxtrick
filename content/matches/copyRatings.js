@@ -14,7 +14,7 @@ var FoxtrickCopyRatings = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
-		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch") !== null);
+		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") !== null);
 		if (isprematch) {
 			return;
 		}
