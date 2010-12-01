@@ -2740,4 +2740,3 @@ Foxtrick.LinkCollection.getSortedLinks = function(links) {
   links.sort(sortfunction);
   return links;
 };
-

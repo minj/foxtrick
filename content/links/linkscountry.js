@@ -9,11 +9,9 @@ var FoxtrickLinksCountry = {
     MODULE_NAME : "LinksCountry",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('country'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"countrylink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "countrylink");
+	},
 
     run : function( page, doc ) {
 		//addExternalLinksToCountryDetail

@@ -9,11 +9,9 @@ var FoxtrickLinksNational = {
     MODULE_NAME : "LinksNational",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('national'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"nationalteamlink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "nationalteamlink");
+	},
 
     run : function( page, doc ) {
 		//addExternalLinksToNationalDetail

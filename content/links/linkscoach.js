@@ -9,11 +9,9 @@ var FoxtrickLinksCoach = {
     MODULE_NAME : "LinksCoach",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('coach'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"coachlink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "coachlink");
+	},
 
     run : function( page, doc ) {
 		//addExternalLinksToCoachPage

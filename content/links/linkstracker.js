@@ -11,9 +11,7 @@ var FoxtrickLinksTracker = {
 	NEW_AFTER_VERSION: "0.4.8.3",
 	LATEST_CHANGE: "Fixed saving of preference saving. All tracker settings are back to default on unfortunatelly",
 	//PAGES : new Array('trackerplayerlink'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"trackerplayerlink");
- 	 }
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "trackerplayerlink");
+	}
 };

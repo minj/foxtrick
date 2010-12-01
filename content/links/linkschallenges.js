@@ -9,12 +9,10 @@ var FoxtrickLinksChallenges = {
     MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('challenges','youthchallenges'),
-	OPTIONS : {},
-
-	init : function() {
-		var linktypes = new Array("challengeslink","youthchallengeslink");
-		Foxtrick.initOptionsLinksArray(this,linktypes);
-    },
+	LINK_TYPES : [ "challengeslink", "youthchallengeslink" ],
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
+	},
 
     run : function( page, doc ) {
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') );

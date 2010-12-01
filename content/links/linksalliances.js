@@ -10,10 +10,8 @@ var FoxtrickLinksAlliances = {
     MODULE_NAME : "LinksAlliances",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('federation'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"federationlink");
+    OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "federationlink");
     },
 
     run : function( page, doc ) {

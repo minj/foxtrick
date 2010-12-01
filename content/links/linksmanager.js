@@ -9,11 +9,9 @@ var FoxtrickLinksManager = {
     MODULE_NAME : "LinksManager",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('managerPage'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"managerlink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "managerlink");
+	},
 
     run : function( page, doc ) {
 

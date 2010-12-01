@@ -10,11 +10,9 @@ var FoxtrickLinksArena = {
     MODULE_NAME : "LinksArena",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('arena'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"arenalink");
-    },
+	OPTION_FUNC : function (doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "arenalink");
+	},
 
     run : function( page, doc ) {
 		//addExternalLinksToArenaPage

@@ -9,11 +9,10 @@ var FoxtrickLinksPlayerDetail = {
     MODULE_NAME : "LinksPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('playerdetail'),
-
-    init : function() {
-		var linktypes = new Array("playerhealinglink","playerlink","keeperlink","transfercomparelink");
-		Foxtrick.initOptionsLinksArray(this,linktypes);
-    },
+	LINK_TYPES : [ "playerhealinglink", "playerlink", "keeperlink", "transfercomparelink" ],
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
+	},
 
     run : function(page, doc) {
 		//addExternalLinksToPlayerDetail

@@ -9,11 +9,9 @@ var FoxtrickLinksStaff = {
     MODULE_NAME : "LinksStaff",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('staff'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"stafflink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "stafflink");
+	},
 
     run : function( page, doc ) {
 		//addExternalLinksToManagerPage

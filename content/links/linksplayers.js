@@ -9,11 +9,9 @@ var FoxtrickLinksPlayers = {
     MODULE_NAME : "LinksPlayers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('players'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"playerslink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "playerslink");
+	},
 
     run : function( page, doc ) {
 		//addExternalLinksToManagerPage

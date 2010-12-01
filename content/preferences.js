@@ -335,18 +335,11 @@ function getModule(module)
 			checkbox.setAttribute("module", module.MODULE_NAME);
 			label.appendChild(checkbox);
 
-			var key, title;
-			if (module.OPTIONS[i]["key"]) {
-				key = module.OPTIONS[i]["key"];
-				title = module.OPTIONS[i]["title"];
-			}
-			else {
-				key = module.OPTIONS[i];
-				title = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
-			}
+			var key = module.OPTIONS[i];
+			var desc = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
 			checkbox.id = entry.id + "-" + key;
 			checkbox.setAttribute("option", key);
-			label.appendChild(document.createTextNode(title));
+			label.appendChild(document.createTextNode(desc));
 
 			// screenshot
 			if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + "." + key))

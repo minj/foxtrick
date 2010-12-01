@@ -10,11 +10,10 @@ var FoxtrickLinksAchievements = {
     MODULE_NAME : "LinksAchievements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('achievements'),
-	OPTIONS : {},
 
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"achievementslink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "achievementslink");
+	},
 
     run : function( page, doc ) {
 

@@ -10,11 +10,9 @@ var FoxtrickLinksLeague = {
     MODULE_NAME : "LinksLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('league'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"leaguelink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "leaguelink");
+	},
 
     run : function( page, doc ) {
 		//addExternalLinksToLeagueDetail

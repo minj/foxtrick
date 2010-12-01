@@ -9,11 +9,9 @@ var FoxtrickLinksTeam = {
     MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"teamlink" );
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "teamlink");
+	},
 
     run : function( page, doc ) {
 		this.AddLinksRight(page,doc);

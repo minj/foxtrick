@@ -9,11 +9,9 @@ var FoxtrickLinksYouthOverview = {
     MODULE_NAME : "LinksYouthOverview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthoverview'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"youthlink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthlink");
+	},
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -55,11 +53,9 @@ var FoxtrickLinksYouthPlayerDetail = {
     MODULE_NAME : "LinksYouthPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthplayerdetail'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"youthplayerdetaillink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthplayerdetaillink");
+	},
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -122,11 +118,9 @@ var FoxtrickLinksYouthTraining = {
     MODULE_NAME : "LinksYouthTraining",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthTraining'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"youthtraininglink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthtraininglink");
+	},
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -167,11 +161,9 @@ var FoxtrickLinksYouthPlayerList = {
 	MODULE_NAME : "LinksYouthPlayerList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthPlayers'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"youthplayerlistlink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthplayerlistlink");
+	},
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
@@ -212,11 +204,9 @@ var FoxtrickLinksYouthMatchList = {
 	MODULE_NAME : "LinksYouthMatchList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthMatchlist'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"youthmatchlistlink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthmatchlistlink");
+	},
 
     run : function( page, doc ) {
 		var boxleft=doc.getElementById('ctl00_pnlSubMenu');

@@ -9,11 +9,9 @@ var FoxtrickLinksEconomy = {
     MODULE_NAME : "LinksEconomy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"economylink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "economylink");
+	},
 
     run : function( page, doc ) {
 		var owncountryid = FoxtrickHelper.getOwnCountryId();

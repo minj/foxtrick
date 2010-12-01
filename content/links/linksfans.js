@@ -9,11 +9,9 @@ var FoxtrickLinksFans = {
     MODULE_NAME : "LinksFans",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('fans'),
-	OPTIONS : {},
-
-    init : function() {
-		Foxtrick.initOptionsLinks(this,"fanlink");
-    },
+	OPTION_FUNC : function(doc) {
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "fanlink");
+	},
 
     run : function( page, doc ) {
 
