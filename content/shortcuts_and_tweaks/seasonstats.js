@@ -58,7 +58,7 @@ var FoxtrickSeasonStats = {
 			--s;
         }
 		selectbox.value=selected_season;
-        doc.getElementById('mainBody').insertBefore(selectbox,doc.getElementById('ctl00_CPMain_ddlMatchType'));
+        doc.getElementById('mainBody').insertBefore(selectbox,doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType'));
 
 
 		// ------------------------------ season stats --------------------------------------
