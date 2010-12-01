@@ -16,7 +16,7 @@ Foxtrick.htmsStatistics = {
 	CSS : Foxtrick.ResourcePath + "resources/css/htms-statistics.css",
 
 	run : function( page, doc ) {
-		var isprematch = (doc.getElementById("ctl00_CPMain_pnlPreMatch")!=null);
+		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
 
 		var ratingstable = Foxtrick.Matches._getRatingsTable(doc);
