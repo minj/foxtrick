@@ -6,7 +6,7 @@
 
 if (!Foxtrick) var Foxtrick={};
 
-if (chrome) {
+if (typeof(chrome) === "object") {
 	Foxtrick.BuildFor = "Chrome";
 	Foxtrick.ResourcePath = chrome.extension.getURL("") + "content/";
 }
