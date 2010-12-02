@@ -31,42 +31,52 @@ Foxtrick.util.time = {
 			trailing minute:second is optional,
 			while separator and leading zero are irrelevant.
 		*/
-		if (!text)
-			return null;
+		try {
+			var reLong = /(\d{2,4})\D+(\d{2})\D+(\d{2,4})\D+(\d{2})\D+(\d{2})/;
+			var reShort = /(\d{2,4})\D+(\d{2})\D+(\d{2,4})/;
+			var matches;
+			if (text.match(reLong))
+				matches = text.match(reLong);
+			else if (text.match(reShort))
+				matches = text.match(reShort);
+			else
+				return null;
 
-		var reLong = /(\d+)\D+(\d+)\D+(\d+)\D+(\d+)\D+(\d+)/;
-		var reShort = /(\d+)\D+(\d+)\D+(\d+)/;
-		var matches;
-		if (text.match(reLong))
-			matches = text.match(reLong);
-		else if (text.match(reShort))
-			matches = text.match(reShort);
-		else
-			return null;
+			for (var i = 1; i < matches.length; ++i)
+				matches[i] = parseInt(matches[i]); // change strings to integers
 
-		const DATEFORMAT = FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
-		switch (DATEFORMAT) {
-			case 'ddmmyyyy':
-				var day = matches[1];
-				var month = matches[2];
-				var year = matches[3];
-				break;
-			case 'mmddyyyy':
-				var day = matches[2];
-				var month = matches[1];
-				var year = matches[3];
-				break;
-			case 'yyyymmdd':
-				var day = matches[3];
-				var month = matches[2];
-				var year = matches[1];
-				break;
+			const DATEFORMAT = FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
+			switch (DATEFORMAT) {
+				case 'ddmmyyyy':
+					var day = matches[1];
+					var month = matches[2];
+					var year = matches[3];
+					break;
+				case 'mmddyyyy':
+					var day = matches[2];
+					var month = matches[1];
+					var year = matches[3];
+					break;
+				case 'yyyymmdd':
+					var day = matches[3];
+					var month = matches[2];
+					var year = matches[1];
+					break;
+			}
+			var hour = (matches.length == 6) ? matches[4] : 0;
+			var minute = (matches.length == 6) ? matches[5] : 0;
+
+			if ((0 <= minute < 60) && (0 <= hour < 24) && (0 <= day <= 31)
+				&& (1 <= month <= 12) && (1970 < year)) {
+				// check validity of values
+				var date = new Date(year, month - 1, day, hour, minute);
+				return date;
+			}
 		}
-		var hour = (matches.length == 6) ? matches[4] : 0;
-		var minute = (matches.length == 6) ? matches[5] : 0;
-
-		var date = new Date(year, month - 1, day, hour, minute);
-		return date;
+		catch (e) {
+			// don't throw errors, just return null
+			return null;
+		}
 	},
 
 	getHtDate : function(doc) {
