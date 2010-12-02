@@ -287,8 +287,8 @@ var FoxtrickOnPagePrefs = {
 
 	ClickCapture : function(ev) {
 		try {
-			var hasonclick=ev.originalTarget.getAttribute('onclick')!=null;
-			var haspostback=ev.originalTarget.href && ev.originalTarget.href.search('javascript')!=-1;
+			var hasonclick=ev.target.getAttribute('onclick')!=null;
+			var haspostback=ev.target.href && ev.target.href.search('javascript')!=-1;
 			//dump('ClickCapture - hasonclick: ' +hasonclick+' haspostback: '+haspostback+'- return: '+!(hasonclick || haspostback)+'\n');
 			if ( !(hasonclick || haspostback)) return;
 			var doc = ev.target.ownerDocument;
