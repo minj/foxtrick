@@ -15,7 +15,7 @@ var FoxtrickLinksChallenges = {
 	},
 
     run : function( page, doc ) {
-		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu') );
+		var teamid = FoxtrickHelper.findTeamId(doc.getElementsByClassName("subMenu")[0] );
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var ownteamid = FoxtrickHelper.getOwnCountryId();
 

@@ -103,8 +103,8 @@ var FoxtrickRedirections = {
 		}
 		//redirect to youthmatches
 		if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) {
-			var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementById('ctl00_pnlSubMenu'));
-			var TeamId = FoxtrickHelper.findTeamId(doc.getElementById('ctl00_pnlSubMenu'));
+			var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
+			var TeamId = FoxtrickHelper.findTeamId(doc.getElementsByClassName("subMenu")[0]);
 			var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; //Foxtrick.dump(tar+'\n');
 			doc.location.replace(tar);
 		}

@@ -14,7 +14,7 @@ var FoxtrickLinksYouthOverview = {
 	},
 
     run : function( page, doc ) {
-		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft);
 		if (teamid=="") {return;}
@@ -58,7 +58,7 @@ var FoxtrickLinksYouthPlayerDetail = {
 	},
 
     run : function( page, doc ) {
-		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		if (boxleft==null) {return;}
 		var teamid=FoxtrickHelper.findTeamId(boxleft);
 		if (teamid=="") {return;}
@@ -123,7 +123,7 @@ var FoxtrickLinksYouthTraining = {
 	},
 
     run : function( page, doc ) {
-		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;
 		if (boxleft==null) {return;}
@@ -166,7 +166,7 @@ var FoxtrickLinksYouthPlayerList = {
 	},
 
     run : function( page, doc ) {
-		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;
 		if (boxleft==null) {return;}
@@ -209,7 +209,7 @@ var FoxtrickLinksYouthMatchList = {
 	},
 
     run : function( page, doc ) {
-		var boxleft=doc.getElementById('ctl00_pnlSubMenu');
+		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;
 		if (boxleft==null) {return;}
