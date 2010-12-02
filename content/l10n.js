@@ -59,139 +59,143 @@ var Foxtrickl10n = {
 
 	htLanguagesXml : {},
 
-    _strings_bundle : null,
+	_strings_bundle : null,
 	_strings_bundle_default : null,
 	_strings_bundle_screenshots:null,
 	_strings_bundle_screenshots_default:null,
 
-    init : function() {
+	init : function() {
 		for (var i in Foxtrickl10n.locales) {
 			var locale = Foxtrickl10n.locales[i];
 			try {
-				this.htLanguagesXml[locale] = Foxtrick.LoadXML("chrome://foxtrick/content/locale/" + locale + "/htlang.xml");
+				var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+				if (Foxtrick.BuildFor === "Gecko") {
+					this.htLanguagesXml[locale] = Foxtrick.LoadXML(url);
+				}
 			}
 			catch (e) {
 				Foxtrick.dump("Cannot load HT language for " + locale + ".\n");
 				Foxtrick.dumpError(e);
 			}
 		}
+		if (Foxtrick.BuildFor === "Gecko") {
+			this._strings_bundle_default =
+				Components.classes["@mozilla.org/intl/stringbundle;1"]
+				.getService(Components.interfaces.nsIStringBundleService)
+				.createBundle("chrome://foxtrick/content/foxtrick.properties");
+			this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage"));
 
-        this._strings_bundle_default =
-             Components.classes["@mozilla.org/intl/stringbundle;1"]
-             .getService(Components.interfaces.nsIStringBundleService)
-             .createBundle("chrome://foxtrick/content/foxtrick.properties");
-		this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage"));
-
-		this._strings_bundle_screenshots_default =
-             Components.classes["@mozilla.org/intl/stringbundle;1"]
-             .getService(Components.interfaces.nsIStringBundleService)
-             .createBundle("chrome://foxtrick/content/foxtrick.screenshots");
-    },
-
-
-	get_strings_bundle :function ( localecode ) {
-	  try {
-		this._strings_bundle =
-             Components.classes["@mozilla.org/intl/stringbundle;1"]
-             .getService(Components.interfaces.nsIStringBundleService)
-             .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
-		this._strings_bundle_screenshots =
-             Components.classes["@mozilla.org/intl/stringbundle;1"]
-             .getService(Components.interfaces.nsIStringBundleService)
-             .createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
-	  } catch (e) { Foxtrick.dump('Foxtrickl10n->get_strings_bundle: Error reading language file: '+e+'\n');}
+			this._strings_bundle_screenshots_default =
+				Components.classes["@mozilla.org/intl/stringbundle;1"]
+				.getService(Components.interfaces.nsIStringBundleService)
+				.createBundle("chrome://foxtrick/content/foxtrick.screenshots");
+		}
 	},
 
+	get_strings_bundle :function(localecode) {
+		try {
+			this._strings_bundle =
+				Components.classes["@mozilla.org/intl/stringbundle;1"]
+				.getService(Components.interfaces.nsIStringBundleService)
+				.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
+			this._strings_bundle_screenshots =
+				Components.classes["@mozilla.org/intl/stringbundle;1"]
+				.getService(Components.interfaces.nsIStringBundleService)
+				.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
+	},
 
-    getString : function( str ) {
-        if ( this._strings_bundle )
-        {
-            try {
-                return this._strings_bundle.GetStringFromName( str );
-            } catch( e ) {
+	getString : function(str) {
+		if (this._strings_bundle) {
+			try {
+				return this._strings_bundle.GetStringFromName(str);
+			}
+			catch (e) {
 				try {
-					if ( this._strings_bundle_default ) return this._strings_bundle_default.GetStringFromName( str );
-				} catch( ee ) {
-                    // DEBUG FOR RELEASE 0.4.3
-                    Foxtrick.dump("** Localization error 1 ** '" + str + "'\n");
-                    // DEBUG FOR RELEASE 0.4.3
-                    return "** Localization error 1 **";
+					if (this._strings_bundle_default)
+						return this._strings_bundle_default.GetStringFromName(str);
+				}
+				catch (ee) {
+					Foxtrick.dump("** Localization error 1 ** '" + str + "'\n");
+					return "** Localization error 1 **";
 				}
 			}
-        }
-        else {
-            // DEBUG FOR RELEASE 0.4.3
-            Foxtrick.dump("** Localization error 2 ** '" + str + "'\n");
-            // DEBUG FOR RELEASE 0.4.3
-            return "** Localization error 2 **";
-        }
-    },
+		}
+		else {
+			Foxtrick.dump("** Localization error 2 ** '" + str + "'\n");
+			return "** Localization error 2 **";
+		}
+	},
 
-    getFormattedString : function( str, key_array )
-    {
-        if ( this._strings_bundle )
-        {
-            try {
-                return this._strings_bundle.formatStringFromName( str, key_array );
-            } catch( e ) {
+	getFormattedString : function(str, key_array) {
+		if (this._strings_bundle) {
+			try {
+				return this._strings_bundle.formatStringFromName( str, key_array );
+			}
+			catch (e) {
 				try {
 					return this._strings_bundle_default.formatStringFromName( str, key_array );
-				} catch( ee ) {
+				}
+				catch (ee) {
 					return "** Localization error **";
 				}
 			}
-        }
-        else
-            return "** Localization error **";
-    },
+		}
+		else
+			return "** Localization error **";
+	},
 
-    isStringAvailable : function( str )
-    {
-        if ( this._strings_bundle )
-        {
-            try {
-                return this._strings_bundle.GetStringFromName( str ) != null;
-			} catch( e ) {
-                try {
+	isStringAvailable : function(str) {
+		if (this._strings_bundle) {
+			try {
+				return this._strings_bundle.GetStringFromName( str ) != null;
+			}
+			catch (e) {
+				try {
 					return this._strings_bundle_default.GetStringFromName( str ) != null;
-				} catch( e ) {
+				}
+				catch (e) {
 					return false;
 				}
-            }
-        }
-        return false;
-    },
-
-	isStringAvailableLocal : function( str )
-    {
-        if ( this._strings_bundle )
-        {
-            try {
-                return this._strings_bundle.GetStringFromName( str ) != null;
-			}  catch( e ) {
-					return false;
 			}
-        }
-        return false;
-    },
+		}
+		return false;
+	},
 
-	getScreenshot : function( str ) {
-		var link="";
-        if ( this._strings_bundle_screenshots )
-        {
-            try {
-                link = this._strings_bundle_screenshots.GetStringFromName( str );
-            } catch( e ) {
+	isStringAvailableLocal : function(str) {
+		if (this._strings_bundle) {
+			try {
+				return this._strings_bundle.GetStringFromName( str ) != null;
+			}
+			catch (e) {
+				return false;
+			}
+		}
+		return false;
+	},
+
+	getScreenshot : function(str) {
+		var link = "";
+		if (this._strings_bundle_screenshots) {
+			try {
+				link = this._strings_bundle_screenshots.GetStringFromName( str );
+			}
+			catch (e) {
 			}
 		}
 		if (link=="") {
 			try {
-				if ( this._strings_bundle_screenshots_default ) link = this._strings_bundle_screenshots_default.GetStringFromName( str );
-				} catch( ee ) {
-				}
+				if (this._strings_bundle_screenshots_default)
+					link = this._strings_bundle_screenshots_default.GetStringFromName( str );
+			}
+			catch (ee) {
+			}
 		}
 		return link;
-    },
+	},
 
 	// this function returns level string of given level type and numeral value.
 	// type could be levels, for normal skills;
