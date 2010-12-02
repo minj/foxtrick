@@ -105,8 +105,7 @@ Foxtrick.Pages.Player = {
 		}
 		try {
 			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
-			var basicInfo = playerInfo.getElementsByTagName("p")[0];
-			var basicSkills = basicInfo.getElementsByClassName("skill");
+			var basicSkills = playerInfo.getElementsByClassName("skill");
 			var ret = {};
 			if (basicSkills[1].href.indexOf("skillshort") !== -1) {
 				ret.form = FoxtrickHelper.getSkillLevelFromLink(basicSkills[1]);
