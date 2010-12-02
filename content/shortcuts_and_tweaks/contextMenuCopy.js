@@ -60,10 +60,12 @@ var FoxtrickContextMenuCopy = {
 	},
 
 	run : function(page, doc) {
-		doc.addEventListener("contextmenu", this.onContext, false);
-		this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));
-		this.MENU_HT_ML.setAttribute("label", Foxtrickl10n.getString("copy.ht-ml"));
-		this.MENU_TABLE.setAttribute("label", Foxtrickl10n.getString("copy.table"));
+		if (Foxttrick.BuildFor === "Gecko") {
+			doc.addEventListener("contextmenu", this.onContext, false);
+			this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));
+			this.MENU_HT_ML.setAttribute("label", Foxtrickl10n.getString("copy.ht-ml"));
+			this.MENU_TABLE.setAttribute("label", Foxtrickl10n.getString("copy.table"));
+		}
 	},
 
 
