@@ -123,7 +123,9 @@ var FoxtrickRedirections = {
 						}
 					}
 				}
-				catch (e) {dump("teamlinks->"+e);}
+				catch (e) {
+					Foxtrick.dumpError(e);
+				}
 			}
 			if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1 ){
 				try {
@@ -133,7 +135,9 @@ var FoxtrickRedirections = {
 					doc.location.replace(tar);
 					}
 
-				catch (e) {dump("teamlinks->"+e);}
+				catch (e) {
+					Foxtrick.dumpError(e);
+				}
 			}
 			if (doc.location.href.search(/\/Club\/Training/i)!=-1) {
 				try {
@@ -142,7 +146,9 @@ var FoxtrickRedirections = {
 					var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
 					doc.location.replace(tar);
 				}
-				catch (e) {dump("ateamshortcuts->"+e);}
+				catch (e) {
+					Foxtrick.dumpError(e);
+				}
 			}
 		}
 		// redir to next match

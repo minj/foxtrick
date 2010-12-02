@@ -77,7 +77,7 @@ var FoxtrickOnPagePrefs = {
 			if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 		}
 		catch (e) {
-			dump('FoxtrickOnPagePrefs '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 
@@ -222,7 +222,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			dump('OnPagePrefClick: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 
@@ -243,7 +243,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			dump('OnPagePrefClick: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 
@@ -264,7 +264,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			dump('OnPagePrefClick: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 
@@ -281,7 +281,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			dump('OnPagePrefClick: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 
@@ -302,7 +302,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			dump('OnPagePrefClick: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	}
 }
