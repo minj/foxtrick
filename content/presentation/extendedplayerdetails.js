@@ -22,17 +22,14 @@ FoxtrickExtendedPlayerDetails = {
         	return;
 
         var div = doc.getElementsByClassName("playerInfo")[0];
-        if (div == null) return;
-
         var joined_elm = div.getElementsByClassName("shy")[0];
-        if (joined_elm == null) return;
 
-        var JT_date = Foxtrick.util.time.getDateFromText(joined_elm.textContent);
-        if (!JT_date)
-            return;
-        var season_week = Foxtrick.util.time.gregorianToHT(JT_date);
+        var dateObj = Foxtrick.util.time.getDateFromText(joined_elm.textContent);
+        var season_week = Foxtrick.util.time.gregorianToHT(dateObj);
 
-        var joined_s = Math.floor( (Foxtrick.HT_date.getTime() - JT_date.getTime()) / 1000); //Sec
+		var htDate = Foxtrick.util.time.getHtDate(doc)
+
+        var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
 
         var JoinedText = 'NaN';
         try {

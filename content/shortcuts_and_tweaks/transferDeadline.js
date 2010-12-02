@@ -10,87 +10,65 @@ FoxtrickTransferDeadline = {
 	PAGES : new Array('transferSearchResult','playerdetail','transfer'),
 
     run : function(page, doc) {
-        var httime = doc.getElementById( "time" ).innerHTML;
-
-        Foxtrick.HT_date = Foxtrick.util.time.getDateFromText( httime );
-        if (!Foxtrick.HT_date) return;
-
-        switch ( page ) {
+        switch (page) {
             case 'transferSearchResult' :
-
-                this._PlayerListDeatline ( doc, 'span' );
+                this._PlayerListDeadline ( doc, 'span' );
                 break;
 
             case 'playerdetail' :
-
-                this._PlayerDetailsDeatline ( doc );
+                this._PlayerDetailsDeadline ( doc );
                 break;
 
             case 'transfer' :
-
-                this._PlayerListDeatline ( doc, 'div' );
+                this._PlayerListDeadline ( doc, 'div' );
                 break;
         }
     },
 
 	change : function( page, doc ) {
-		var httime = doc.getElementById( "time" ).innerHTML;
-		Foxtrick.HT_date = Foxtrick.util.time.getDateFromText( httime );
-        if (!Foxtrick.HT_date) return;
-
         switch ( page ) {
             case 'playerdetail' :
-                this._PlayerDetailsDeatline ( doc );
+                this._PlayerDetailsDeadline ( doc );
                 break;
         }
 	},
 
-    _PlayerListDeatline : function ( doc, element ) {
-        var spans = doc.getElementsByTagName( element );
-        var j = 0;
-        for (var i=0; i<spans.length; i++) {
-            var cell = "ctl00_ctl00_CPContent_CPMain_lstBids_ctrl"+ j + "_jsonDeadLine";
-            var selltime_elm = doc.getElementById( cell );
+    _PlayerListDeadline : function (doc, element) {
+        var htDate = Foxtrick.util.time.getHtDate(doc);
+        var ended = false;
+        for (var i = 0; !ended; ++i) {
+            var cell = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lstBids_ctrl"+ i + "_jsonDeadLine")
+                || doc.getElementById("ctl00_ctl00_CPContent_CPMain_dl_ctrl"+ i +"_TransferPlayer_lblDeadline");
+            ended = !cell;
 
-            if (selltime_elm == null) {
-                var cell = "ctl00_ctl00_CPContent_CPMain_dl_ctrl"+ j +"_TransferPlayer_lblDeadline";
-                var selltime_elm = doc.getElementById( cell );
-            }
-
-            if (selltime_elm != null ) {
-                var selltime = Foxtrick.trim(selltime_elm.innerHTML);
-                // Foxtrick.dump ('\n>>>>>' + selltime + '<<<<<\n');
-                var ST_date = Foxtrick.util.time.getDateFromText( selltime );
-                if (ST_date != null) {
-                    var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
+            if (!ended) {
+                var deadline = cell.textContent;
+                var dateObj = Foxtrick.util.time.getDateFromText(deadline);
+                if (dateObj) {
+                    var deadline_s = Math.floor((dateObj.getTime() - htDate.getTime()) / 1000); //Sec
                     if (!isNaN(deadline_s) && deadline_s >= 0) {
                         var DeadlineText = Foxtrick.util.time.timeDifferenceToText(deadline_s);
-                        selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
+                        cell.innerHTML += '<span class="date smallText ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
                     }
                 }
             }
-            j++;
         }
     },
 
-    _PlayerDetailsDeatline : function ( doc ) {
+    _PlayerDetailsDeadline : function ( doc ) {
         if ( doc.location.href.search(/Player.aspx/i) < 0 ) return;
 
-        //Check if deadline already set
-		var deadline_span = doc.getElementById( "ft_deadline" );
-        if  (deadline_span != null ) return;
+        // Check if deadline already set
+		var deadline_span = doc.getElementsByClassName("ft_deadline");
+        if (deadline_span.length > 0)
+            return;
+
+        var htDate = Foxtrick.util.time.getHtDate(doc);
 
         var div = doc.getElementById( 'ctl00_ctl00_CPContent_CPMain_updBid' );
-        if (div == null ) return;
-
         var spans = div.getElementsByClassName("alert");
-        if (spans.length == 0) return;
-
-        var selltime_elm = spans[0].getElementsByTagName( "p" )[0];
-
-        if (selltime_elm == null) return;
+        var selltime_elm = spans[0].getElementsByTagName("p")[0];
         var selltime_clone = selltime_elm.cloneNode(true);
-        if (selltime_clone == null) return;
 
         var selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
 
@@ -106,14 +84,12 @@ FoxtrickTransferDeadline = {
         selltime = Foxtrick.substr(selltime, Foxtrick.strrpos( selltime, ";")+1, selltime.length);
         // Foxtrick.dump('ST: ' + selltime + '\n');
 
-        var ST_date = Foxtrick.util.time.getDateFromText( selltime );
-        if (!ST_date) return;
-
-        var deadline_s = Math.floor( (ST_date.getTime()-Foxtrick.HT_date.getTime()) / 1000); //Sec
+        var dateObj = Foxtrick.util.time.getDateFromText(selltime);
+        var deadline_s = Math.floor((dateObj.getTime() - htDate.getTime()) / 1000); //Sec
 
         if (!isNaN(deadline_s) && deadline_s >= 0) {
-            var DeadlineText = Foxtrick.util.time.timeDifferenceToText (deadline_s);
-            selltime_elm.innerHTML +=  '<span class="date smallText" id="ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
+            var DeadlineText = Foxtrick.util.time.timeDifferenceToText(deadline_s);
+            selltime_elm.innerHTML += '<span class="date smallText ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>'
         }
     }
 };

@@ -69,6 +69,17 @@ Foxtrick.util.time = {
 		return date;
 	},
 
+	getHtDate : function(doc) {
+		try {
+			var time = doc.getElementById("time").textContent;
+			var date = Foxtrick.util.time.getDateFromText(time);
+			return date;
+		}
+		catch (e) {
+			return null;
+		}
+	},
+
 	timeDifferenceToText : function(time_sec, useShort) {
 		var org_time = time_sec;
 		// Returns the time differnce as DDD days, HHh MMm
