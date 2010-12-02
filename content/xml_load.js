@@ -20,78 +20,80 @@ Foxtrick.XMLData = {
 	aboutXML : null,
 
 	init : function() {
-		this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htcurrency.xml");
-		this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htNTidList.xml");
-		this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/htversions.xml");
-		this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/data/htdateformat.xml");
-		this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
+		if (Foxtrick.BuildFor === "Gecko") {
+			this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htcurrency.xml");
+			this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htNTidList.xml");
+			this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/htversions.xml");
+			this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/data/htdateformat.xml");
+			this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
 
-		var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/worlddetails.xml");
+			var worlddetailsXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/worlddetails.xml");
 
-		var data = {};
-		var name = 'HattrickData';
-		Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement, data, name);
+			var data = {};
+			var name = 'HattrickData';
+			Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement, data, name);
 
-		for (var i in data.HattrickData.LeagueList.League) {
-			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
-			this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
-		}
-
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
+			for (var i in data.HattrickData.LeagueList.League) {
+				this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
+				this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('project_owner');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('developer');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('designer');
-		for (var i=0;i<foxtrickstaff.length;++i) {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			if(ids)
-			  for (var k=0;k<ids.length;++k) {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('translation');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			if(ids)
-			  for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
 
-		var editor=this.aboutXML.getElementsByTagName('editor');
-		for (var i=0;i<editor.length;++i)   {
-			var id = editor[i].getAttribute('value');
-			var name= editor[i].getAttribute('name');
-			FoxtrickStaffMarker.editorsArray[id]=name;
-		}
+			var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');
+			for (var i=0;i<foxtrickstaff.length;++i)   {
+				var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+				for (var k=0;k<ids.length;++k)   {
+					var id=ids[k].match(/\d+/);
+					FoxtrickStaffMarker.foxtrickersArray[id]='x';
+				}
+			}
+			var foxtrickstaff=this.aboutXML.getElementsByTagName('project_owner');
+			for (var i=0;i<foxtrickstaff.length;++i)   {
+				var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+				for (var k=0;k<ids.length;++k)   {
+					var id=ids[k].match(/\d+/);
+					FoxtrickStaffMarker.foxtrickersArray[id]='x';
+				}
+			}
+			var foxtrickstaff=this.aboutXML.getElementsByTagName('developer');
+			for (var i=0;i<foxtrickstaff.length;++i)   {
+				var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+				for (var k=0;k<ids.length;++k)   {
+					var id=ids[k].match(/\d+/);
+					FoxtrickStaffMarker.foxtrickersArray[id]='x';
+				}
+			}
+			var foxtrickstaff=this.aboutXML.getElementsByTagName('designer');
+			for (var i=0;i<foxtrickstaff.length;++i) {
+				var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+				if(ids)
+				  for (var k=0;k<ids.length;++k) {
+					var id=ids[k].match(/\d+/);
+					FoxtrickStaffMarker.foxtrickersArray[id]='x';
+				}
+			}
+			var foxtrickstaff=this.aboutXML.getElementsByTagName('translation');
+			for (var i=0;i<foxtrickstaff.length;++i)   {
+				var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
+				if(ids)
+				  for (var k=0;k<ids.length;++k)   {
+					var id=ids[k].match(/\d+/);
+					FoxtrickStaffMarker.foxtrickersArray[id]='x';
+				}
+			}
 
-		var chpp=this.aboutXML.getElementsByTagName('chpp');
-		for (var i=0;i<chpp.length;++i)   {
-			var id = chpp[i].getAttribute('value');
-			var name= chpp[i].getAttribute('name');
-			FoxtrickStaffMarker.chppholder[id]=name;
+			var editor=this.aboutXML.getElementsByTagName('editor');
+			for (var i=0;i<editor.length;++i)   {
+				var id = editor[i].getAttribute('value');
+				var name= editor[i].getAttribute('name');
+				FoxtrickStaffMarker.editorsArray[id]=name;
+			}
+
+			var chpp=this.aboutXML.getElementsByTagName('chpp');
+			for (var i=0;i<chpp.length;++i)   {
+				var id = chpp[i].getAttribute('value');
+				var name= chpp[i].getAttribute('name');
+				FoxtrickStaffMarker.chppholder[id]=name;
+			}
 		}
 	},
 

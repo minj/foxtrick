@@ -388,7 +388,7 @@ var FoxtrickMain = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dump('Foxtrick.run: '+e+'\n');
+			Foxtrick.dumpError(e);
 		}
 	},
 
@@ -440,30 +440,32 @@ var FoxtrickMain = {
 };
 
 Foxtrick.updateStatus = function() {
-	var icon = document.getElementById("foxtrick-status-bar-img");
-	var doc = content.document; // get the document of current tab
+	if (Foxtrick.BuildFor === "Gecko") {
+		var icon = document.getElementById("foxtrick-status-bar-img");
+		var doc = content.document; // get the document of current tab
 
-	var statusText;
+		var statusText;
 
-	if (FoxtrickPrefs.getBool("disableTemporary")) {
-		// FoxTrick is disabled temporarily
-		icon.setAttribute("status", "disabled");
-		statusText = Foxtrickl10n.getString("status.disabled");
+		if (FoxtrickPrefs.getBool("disableTemporary")) {
+			// FoxTrick is disabled temporarily
+			icon.setAttribute("status", "disabled");
+			statusText = Foxtrickl10n.getString("status.disabled");
+		}
+		else if (Foxtrick.isHt(doc)
+			&& !(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))) {
+			// FoxTrick is enabled, and active on current page
+			icon.setAttribute("status", "active");
+			statusText = Foxtrickl10n.getString("status.active");
+		}
+		else {
+			// FoxTrick is enabled, but not active on current page
+			icon.setAttribute("status", "enabled");
+			var hostname = Foxtrick.getHostname(doc);
+			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
+		}
+		var tooltipText = Foxtrickl10n.getString("foxtrick") + " (" + statusText + ")";
+		icon.setAttribute("tooltiptext", tooltipText);
 	}
-	else if (Foxtrick.isHt(doc)
-		&& !(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))) {
-		// FoxTrick is enabled, and active on current page
-		icon.setAttribute("status", "active");
-		statusText = Foxtrickl10n.getString("status.active");
-	}
-	else {
-		// FoxTrick is enabled, but not active on current page
-		icon.setAttribute("status", "enabled");
-		var hostname = Foxtrick.getHostname(doc);
-		statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
-	}
-	var tooltipText = Foxtrickl10n.getString("foxtrick") + " (" + statusText + ")";
-	icon.setAttribute("tooltiptext", tooltipText);
 }
 
 Foxtrick.isPage = function(page, doc) {
@@ -1329,15 +1331,17 @@ Foxtrick.GetDataURIText = function (filetext) {
 
 
 Foxtrick.LoadXML = function(xmlfile) {
-	var req = new XMLHttpRequest();
-	req.open("GET", xmlfile, false);
-	req.send(null);
-	var response = req.responseXML;
-	if (response.documentElement.nodeName == "parsererror") {
-		Foxtrick.dump("error parsing " + xmlfile + "\n");
-		return null;
+	if (Foxtrick.BuildFor === "Gecko") {
+		var req = new XMLHttpRequest();
+		req.open("GET", xmlfile, false);
+		req.send(null);
+		var response = req.responseXML;
+		if (response.documentElement.nodeName == "parsererror") {
+			Foxtrick.dump("error parsing " + xmlfile + "\n");
+			return null;
+		}
+		return response;
 	}
-	return response;
 }
 
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
@@ -1522,7 +1526,10 @@ Foxtrick.dumpError = function(error) {
 		Components.utils.reportError(error);
 	}
 	else if (Foxtrick.BuildFor === "Chrome") {
-		Foxtrick.dump(error);
+		var msg = "";
+		for (var i in error)
+			msg += i + ": " + error[i] + "; ";
+		Foxtrick.dump(msg + "\n");
 	}
 }
 
