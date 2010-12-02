@@ -6,53 +6,56 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickPrefs = {
 
-    _pref_branch : null,
+	_pref_branch : null,
 
-    init : function() {
-		var prefs = Components.classes[ "@mozilla.org/preferences-service;1"].
-                           getService( Components.interfaces.nsIPrefService );
-		FoxtrickPrefs._pref_branch = prefs.getBranch( "extensions.foxtrick.prefs." );
-    },
+	init : function() {
+		if (Foxtrick.BuildFor === "Gecko") {
+			var prefs = Components
+				.classes["@mozilla.org/preferences-service;1"]
+				.getService(Components.interfaces.nsIPrefService);
+			FoxtrickPrefs._pref_branch = prefs.getBranch("extensions.foxtrick.prefs.");
+		}
+	},
 
-    getString : function( pref_name ) {
-        var str;
+	getString : function( pref_name ) {
+		var str;
 		try {
-            str = FoxtrickPrefs._pref_branch.getComplexValue( encodeURI(pref_name),
-                                 Components.interfaces.nsISupportsString ).data;
-        } catch( e ) {
+			str = FoxtrickPrefs._pref_branch.getComplexValue( encodeURI(pref_name),
+								 Components.interfaces.nsISupportsString ).data;
+		} catch( e ) {
  				str = null;
 		}
 		if (str==null) {
 			try {
 				str = FoxtrickPrefs._pref_branch.getComplexValue( pref_name,
-                                Components.interfaces.nsISupportsString ).data;
+								Components.interfaces.nsISupportsString ).data;
  			} catch( e ) {
 				str = null;
 			}
 		}
  		return str;
-    },
+	},
 
-    setString : function( pref_name, value ) {
-        var str = Components.classes[ "@mozilla.org/supports-string;1" ].
-                     createInstance( Components.interfaces.nsISupportsString );
-        str.data = value;
-        FoxtrickPrefs._pref_branch.setComplexValue( encodeURI(pref_name),
-                                Components.interfaces.nsISupportsString, str );
-    },
+	setString : function( pref_name, value ) {
+		var str = Components.classes[ "@mozilla.org/supports-string;1" ].
+					 createInstance( Components.interfaces.nsISupportsString );
+		str.data = value;
+		FoxtrickPrefs._pref_branch.setComplexValue( encodeURI(pref_name),
+								Components.interfaces.nsISupportsString, str );
+	},
 
-    setInt : function( pref_name, value ) {
-        FoxtrickPrefs._pref_branch.setIntPref( encodeURI(pref_name), value );
-    },
+	setInt : function( pref_name, value ) {
+		FoxtrickPrefs._pref_branch.setIntPref( encodeURI(pref_name), value );
+	},
 
-    getInt : function( pref_name ) {
-        var value;
+	getInt : function( pref_name ) {
+		var value;
 		try {
-            value = FoxtrickPrefs._pref_branch.getIntPref( encodeURI(pref_name) );
-        } catch( e ) {
+			value = FoxtrickPrefs._pref_branch.getIntPref( encodeURI(pref_name) );
+		} catch( e ) {
 			value = null;
-        }
-        if (value==null) {
+		}
+		if (value==null) {
 			try {
 				value = FoxtrickPrefs._pref_branch.getIntPref( pref_name );
 			} catch( e ) {
@@ -60,20 +63,20 @@ var FoxtrickPrefs = {
 			}
 		}
 		return value;
-    },
+	},
 
-    setBool : function( pref_name, value ) {
-        FoxtrickPrefs._pref_branch.setBoolPref( encodeURI(pref_name), value );
-    },
+	setBool : function( pref_name, value ) {
+		FoxtrickPrefs._pref_branch.setBoolPref( encodeURI(pref_name), value );
+	},
 
-    getBool : function( pref_name ) {
+	getBool : function( pref_name ) {
 		// no dump in FoxtrickPrefs function !!!!!!!!
 		var value;
 		try {
-            value = FoxtrickPrefs._pref_branch.getBoolPref( encodeURI(pref_name) );
-        } catch( e ) {
+			value = FoxtrickPrefs._pref_branch.getBoolPref( encodeURI(pref_name) );
+		} catch( e ) {
 			value = null;
-        }
+		}
 		if (value == null) {
 			try {
 				value = FoxtrickPrefs._pref_branch.getBoolPref( pref_name );
@@ -82,49 +85,49 @@ var FoxtrickPrefs = {
 			}
 		}
 		return value;
-    },
+	},
 
-    /** Add a new preference "pref_name" of under "list_name".
-     * Creates the list if not present.
-     * Returns true if added (false if empty or already on the list).
-     */
-    addPrefToList : function( list_name, pref_value ) {
+	/** Add a new preference "pref_name" of under "list_name".
+	 * Creates the list if not present.
+	 * Returns true if added (false if empty or already on the list).
+	 */
+	addPrefToList : function( list_name, pref_value ) {
 
-        if ( pref_value == "" )
-            return false;
+		if ( pref_value == "" )
+			return false;
 
-        var existing = FoxtrickPrefs.getList( list_name );
+		var existing = FoxtrickPrefs.getList( list_name );
 
-        // already exists?
-        var exists = existing.some(
-            function( el ) {
-                if ( el == pref_value ) {
-                    return true;
-                }
-            }
-        );
+		// already exists?
+		var exists = existing.some(
+			function( el ) {
+				if ( el == pref_value ) {
+					return true;
+				}
+			}
+		);
 
-        if ( !exists ) {
-            existing.push( pref_value );
-            FoxtrickPrefs._populateList( list_name, existing );
+		if ( !exists ) {
+			existing.push( pref_value );
+			FoxtrickPrefs._populateList( list_name, existing );
 
-            return true;
-        }
+			return true;
+		}
 
-        return false
-    },
+		return false
+	},
 
-    getList : function( list_name ) {
-        var names = FoxtrickPrefs._getElemNames( list_name );
+	getList : function( list_name ) {
+		var names = FoxtrickPrefs._getElemNames( list_name );
 		var list = new Array();
-        for ( var i in names )
+		for ( var i in names )
 			list.push( FoxtrickPrefs.getString( names[i] ) );
 
-        return list;
-    },
+		return list;
+	},
 
-    _getElemNames : function( list_name ) {
-        try {
+	_getElemNames : function( list_name ) {
+		try {
 			var array = null;
 			if( list_name != "" )
 				array = FoxtrickPrefs._pref_branch.getChildList( encodeURI(list_name + "."), {} );
@@ -132,37 +135,37 @@ var FoxtrickPrefs = {
 				array = FoxtrickPrefs._pref_branch.getChildList( "", {} );
 			for (var i=0;i<array.length;++i) {array[i] = decodeURI(array[i]);}
 			return array;
-        } catch( e ) {
-            return null;
-        }
-    },
+		} catch( e ) {
+			return null;
+		}
+	},
 
-    /** Remove a list element. */
-    delListPref : function( list_name, pref_value ) {
-        var existing = FoxtrickPrefs.getList( list_name );
+	/** Remove a list element. */
+	delListPref : function( list_name, pref_value ) {
+		var existing = FoxtrickPrefs.getList( list_name );
 
-        existing = existing.filter(
-            function( el ) {
-                if ( el != pref_value )
-                    return el;
-            }
-        );
+		existing = existing.filter(
+			function( el ) {
+				if ( el != pref_value )
+					return el;
+			}
+		);
 
-        FoxtrickPrefs._populateList( list_name, existing );
-    },
+		FoxtrickPrefs._populateList( list_name, existing );
+	},
 
-    /** Populate list_name with given array deleting if exists */
-    _populateList : function( list_name, values )
-    {
-        FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(list_name) );
-        for (var  i in values )
-            FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
-    },
+	/** Populate list_name with given array deleting if exists */
+	_populateList : function( list_name, values )
+	{
+		FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(list_name) );
+		for (var  i in values )
+			FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
+	},
 
-    deleteValue : function( value_name ){
-    	//FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(value_name) );   // juste delete
-    	if (FoxtrickPrefs._pref_branch.prefHasUserValue(encodeURI(value_name))) FoxtrickPrefs._pref_branch.clearUserPref( encodeURI(value_name) );   // reset to default
-    },
+	deleteValue : function( value_name ){
+		//FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(value_name) );   // juste delete
+		if (FoxtrickPrefs._pref_branch.prefHasUserValue(encodeURI(value_name))) FoxtrickPrefs._pref_branch.clearUserPref( encodeURI(value_name) );   // reset to default
+	},
 
 
 	// ---------------------- common function --------------------------------------
@@ -247,9 +250,9 @@ var FoxtrickPrefs = {
 	},
 
 	SavePrefs : function (file, savePrefs, saveNotes) {
-        try {
+		try {
 			var File = Components.classes["@mozilla.org/file/local;1"].
-                     createInstance(Components.interfaces.nsILocalFile);
+					 createInstance(Components.interfaces.nsILocalFile);
 			File.initWithPath(file);
 
 			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
@@ -282,22 +285,22 @@ var FoxtrickPrefs = {
 		catch (e) {
 			Foxtrick.alert('FoxtrickPrefs.SavePrefs '+e);
 			return false;
-        }
-    	return true;
+		}
+		return true;
 	},
 
 	LoadPrefs : function (file) {
-        try {
+		try {
 			// nsifile
 			var File = Components.classes["@mozilla.org/file/local;1"].
-                     createInstance(Components.interfaces.nsILocalFile);
+					 createInstance(Components.interfaces.nsILocalFile);
 			File.initWithPath(file);
 			// converter
 			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"]
-                          .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
+						  .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
 			converter.charset = "UTF-8";
 			var fis = Components.classes["@mozilla.org/network/file-input-stream;1"]
-                    .createInstance(Components.interfaces.nsIFileInputStream);
+					.createInstance(Components.interfaces.nsIFileInputStream);
 			fis.init(File, -1, -1, 0);
 			var lis = fis.QueryInterface(Components.interfaces.nsILineInputStream);
 			var lineData = {};
@@ -322,8 +325,8 @@ var FoxtrickPrefs = {
 		catch (e) {
 			Foxtrick.alert('FoxtrickPrefs.LoadPrefs '+e);
 			return false;
-        }
-    	return true;
+		}
+		return true;
 	},
 
 	show : function() {

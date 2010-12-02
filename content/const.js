@@ -6,8 +6,14 @@
 
 if (!Foxtrick) var Foxtrick={};
 
-Foxtrick.BuildFor = 'Gecko';
-Foxtrick.ResourcePath = 'chrome://foxtrick/content/';
+if (chrome) {
+	Foxtrick.BuildFor = "Chrome";
+	Foxtrick.ResourcePath = chrome.extension.getURL("") + "content/";
+}
+else {
+	Foxtrick.BuildFor = "Gecko";
+	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
+}
 
 // List of categories
 Foxtrick.moduleCategories = {
