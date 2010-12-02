@@ -98,6 +98,8 @@ var FoxtrickMain = {
 
 	registerOnPageLoad : function(document) {
 		try {
+			if (!(Foxtrick.BuildFor === "Gecko"))
+				return;
 			// update status bar
 			Foxtrick.updateStatus();
 
@@ -607,15 +609,25 @@ Foxtrick.addJavaScript = function(doc, js) {
 }
 
 Foxtrick.confirmDialog = function(msg) {
-	var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-		.getService(Components.interfaces.nsIPromptService);
-	return promptService.confirm(null, null, msg);
+	if (Foxtrick.BuildFor === "Gecko") {
+		var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+			.getService(Components.interfaces.nsIPromptService);
+		return promptService.confirm(null, null, msg);
+	}
+	else {
+		return window.confirm(msg);
+	}
 }
 
 Foxtrick.alert = function(msg) {
-	var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-		.getService(Components.interfaces.nsIPromptService);
-	return promptService.alert(null, null, msg);
+	if (Foxtrick.BuildFor === "Gecko") {
+		var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+			.getService(Components.interfaces.nsIPromptService);
+		return promptService.alert(null, null, msg);
+	}
+	else {
+		window.alert(msg);
+	}
 }
 
 Foxtrick.trim = function (text) {
@@ -726,12 +738,6 @@ Foxtrick.getModuleValue = function(module) {
 	}
 }
 
-Foxtrick.LOG = function (msg) {
-	var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
-		 .getService(Components.interfaces.nsIConsoleService);
-	consoleService.logStringMessage(msg);
-}
-
 Foxtrick.hasClass = function(obj, cls) {
 	return (obj.className !== undefined && obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
 }
@@ -760,11 +766,13 @@ Foxtrick.toggleClass = function(obj, cls) {
 
 Foxtrick.selectFileSave = function (parentWindow) {
 	try {
-		var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
-		fp.init(parentWindow, "", fp.modeSave);
-		var ret=fp.show();
-		if (ret == fp.returnOK || ret==fp.returnReplace) {
-			return fp.file.path;
+		if (Foxtrick.BuildFor === "Gecko") {
+			var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
+			fp.init(parentWindow, "", fp.modeSave);
+			var ret=fp.show();
+			if (ret == fp.returnOK || ret==fp.returnReplace) {
+				return fp.file.path;
+			}
 		}
 	}
 	catch (e) {
@@ -775,10 +783,12 @@ Foxtrick.selectFileSave = function (parentWindow) {
 
 Foxtrick.selectFile = function (parentWindow) {
 	try {
-		var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
-		fp.init(parentWindow, "", fp.modeOpen);
-		if (fp.show() == fp.returnOK) {
-			return fp.file.path;
+		if (Foxtrick.BuildFor === "Gecko") {
+			var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
+			fp.init(parentWindow, "", fp.modeOpen);
+			if (fp.show() == fp.returnOK) {
+				return fp.file.path;
+			}
 		}
 	}
 	catch (e) {
@@ -789,16 +799,21 @@ Foxtrick.selectFile = function (parentWindow) {
 
 Foxtrick.playSound = function(url) {
 	try {
-		Foxtrick.dump('playSound: '+url+'\n');
-		var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-		var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-		soundService.play(ioService.newURI(url, null, null));
+		if (Foxtrick.BuildFor === "Gecko") {
+			var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
+			var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+			soundService.play(ioService.newURI(url, null, null));
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			// not working yet to chrome bug: http://code.google.com/p/chromium/issues/detail?id=22152
+			var music = new Audio(url);
+			music.play();
+		}
 	}
 	catch (e) {
-		Foxtrick.dump('playSound'+e+'\n');
+		Foxtrick.dumpError(e);
 	}
 }
-
 
 Foxtrick.unload_module_css = function() {
 	Foxtrick.dump('unload permanents css\n');
@@ -833,18 +848,24 @@ Foxtrick.unload_module_css = function() {
 Foxtrick.unload_css_permanent = function(cssList) {
 	var unload_css_permanent_impl = function(css) {
 		try {
-			try {
-				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-				var uri = ios.newURI(css, null, null);
-			}
-			catch (e) {
-				return;
-			}
-			// try unload
-			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
-				sss.unregisterSheet(uri, sss.USER_SHEET);
-				Foxtrick.dump('unload ' + css + '\n');
+			if (Foxtrick.BuildFor === "Gecko") {
+				try {
+					var sss = Components
+						.classes["@mozilla.org/content/style-sheet-service;1"]
+						.getService(Components.interfaces.nsIStyleSheetService);
+					var ios = Components
+						.classes["@mozilla.org/network/io-service;1"]
+						.getService(Components.interfaces.nsIIOService);
+					var uri = ios.newURI(css, null, null);
+				}
+				catch (e) {
+					return;
+				}
+				// try unload
+				if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
+					sss.unregisterSheet(uri, sss.USER_SHEET);
+					Foxtrick.dump('unload ' + css + '\n');
+				}
 			}
 		}
 		catch (e) {
@@ -862,18 +883,23 @@ Foxtrick.unload_css_permanent = function(cssList) {
 Foxtrick.load_css_permanent = function(cssList) {
 	var load_css_permanent_impl = function(css) {
 		try {
-			try {
-				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-				var uri = ios.newURI(css, null, null);
+			if (Foxtrick.BuildFor === "Gecko") {
+				try {
+					var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+					var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+					var uri = ios.newURI(css, null, null);
+				}
+				catch (e) {
+					return;
+				}
+				// load
+				if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
+					sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+					Foxtrick.dump('load ' + css + '\n');
+				}
 			}
-			catch (e) {
-				return;
-			}
-			// load
-			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-				sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
-				Foxtrick.dump('load ' + css + '\n');
+			else if (Foxtrick.BuildFor === "Chrome") {
+				Foxtrick.cssfiles += css+'\n';
 			}
 		}
 		catch (e) {
@@ -1210,8 +1236,12 @@ Foxtrick.strrpos = function(haystack, needle, offset){
 }
 
 Foxtrick.copyStringToClipboard = function (string) {
-	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
-	gClipboardHelper.copyString(string);
+	if (Foxtrick.BuildFor === "Gecko") {
+		var gClipboardHelper = Components
+			.classes["@mozilla.org/widget/clipboardhelper;1"]
+			.getService(Components.interfaces.nsIClipboardHelper);
+		gClipboardHelper.copyString(string);
+	}
 }
 
 Foxtrick.isStandardLayout = function (doc) {
@@ -1298,8 +1328,8 @@ Foxtrick.GetDataURIText = function (filetext) {
 }
 
 
-Foxtrick.LoadXML = function (xmlfile) {
-	var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
+Foxtrick.LoadXML = function(xmlfile) {
+	var req = new XMLHttpRequest();
 	req.open("GET", xmlfile, false);
 	req.send(null);
 	var response = req.responseXML;
@@ -1479,13 +1509,21 @@ Foxtrick.dumpFlush = function(doc) {
 Foxtrick.dump = function(content) {
 	content = String(content);
 	Foxtrick.dumpCache += content;
-	dump("FT: " + content);
+	if (Foxtrick.BuildFor === "Gecko")
+		dump("FT: " + content);
+	else if (Foxtrick.BuildFor === "Chrome")
+		console.log(content);
 }
 
 Foxtrick.dumpError = function(error) {
-	Foxtrick.dump(error.fileName + "(" + error.lineNumber + "): " + error + "\n");
-	Foxtrick.dump("Stack trace:\n" + error.stack + "\n\n");
-	Components.utils.reportError(error);
+	if (Foxtrick.BuildFor === "Gecko") {
+		Foxtrick.dump(error.fileName + "(" + error.lineNumber + "): " + error + "\n");
+		Foxtrick.dump("Stack trace:\n" + error.stack + "\n\n");
+		Components.utils.reportError(error);
+	}
+	else if (Foxtrick.BuildFor === "Chrome") {
+		Foxtrick.dump(error);
+	}
 }
 
 

@@ -22,7 +22,7 @@ Foxtrick.htmsStatistics = {
 		var ratingstable = Foxtrick.Matches._getRatingsTable(doc);
 		if (ratingstable == null) return;
 		var tacticRow=ratingstable.rows.length-2;
-		//Foxtrick.LOG('got table '+tacticRow+' : '+ratingstable.rows[tacticRow].innerHTML)
+		//Foxtrick.dump('got table '+tacticRow+' : '+ratingstable.rows[tacticRow].innerHTML)
 		if (Foxtrick.Matches._isWalkOver(ratingstable)) return;
 		if (!Foxtrick.Matches._isCorrectLanguage(ratingstable)) { // incorrect language
 
@@ -67,7 +67,7 @@ Foxtrick.htmsStatistics = {
 		tactics=new Array(Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
 		tacticsLevel=new Array(Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
 
-        //Foxtrick.LOG('rows '+ratingstable.rows.length+' Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
+        //Foxtrick.dump('rows '+ratingstable.rows.length+' Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
 
 		//Creating params for link
 		var params='&TAM='+midfieldLevel[0]+'&TBM='+midfieldLevel[1];

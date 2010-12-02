@@ -56,10 +56,10 @@ FoxtrickLineupShortcut = {
 			ntId=obj.getElementsByTagName('NTid').item(0).firstChild.nodeValue;
 			u20Name=obj.getElementsByTagName('U20Name').item(0).firstChild.nodeValue;
 			u20Id=obj.getElementsByTagName('U20id').item(0).firstChild.nodeValue;
-			//Foxtrick.LOG('ok: '+ntName+':'+ntId+' - '+u20Name+':'+u20Id);
+			//Foxtrick.dump('ok: '+ntName+':'+ntId+' - '+u20Name+':'+u20Id);
 		}
 		else
-			Foxtrick.LOG('Error in lineupshortcut: serieId '+serieId+' not found!');
+			Foxtrick.dump('Error in lineupshortcut: serieId '+serieId+' not found!');
 
 		var isSupporter = Foxtrick.isSupporter(doc)
 

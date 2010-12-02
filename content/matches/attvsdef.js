@@ -122,7 +122,7 @@ Foxtrick.AttVsDef = {
 		}
 
 		/*var strangediv=sidebar.childNodes[balldivnumber].childNodes[1].childNodes[7];
-		//Foxtrick.LOG(sidebar.childNodes[balldivnumber].childNodes[1].innerHTML);
+		//Foxtrick.dump(sidebar.childNodes[balldivnumber].childNodes[1].innerHTML);
 
 		if (strangediv) {}
 		else {

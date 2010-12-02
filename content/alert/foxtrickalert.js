@@ -259,7 +259,7 @@ var FoxtrickAlert = {
     		var title = "Hattrick.org";
     		grn.sendNotification("Hattrick.org (Foxtrick)", img, title, text, "", null);
     	} catch (e) {
-    		Foxtrick.LOG(e);
+    		Foxtrick.dump(e);
     	}
     },
 
