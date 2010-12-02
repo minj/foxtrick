@@ -4,9 +4,31 @@
  * @author Mod-PaV
  */
 ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickPrefs = {
 
+if (Foxtrick.BuildFor === "Chrome") {
+	var portsetpref = chrome.extension.connect({name: "ftpref-query"});
+	portsetpref.onMessage.addListener(function(msg) {   
+		if (msg.set == 'lang_changed') {
+			console.log('lang_changed');
+			Foxtrickl10n.properties = msg.properties;
+			if (msg.reload)
+				document.location.reload();
+		}
+		else if (msg.set=='css_text_set') {
+			console.log('css_text_set');
+			var begin = new Date();
+			Foxtrick.addStyleSheetSnippet(document, msg.css_text);
+			var end = new Date();
+			var time = end.getTime() - begin.getTime();
+			console.log("load css_text time: " + time + " ms\n");
+		}
+	});
+}
+
+var FoxtrickPrefs = {
 	_pref_branch : null,
+	pref_default:'',
+	do_dump: true,
 
 	init : function() {
 		if (Foxtrick.BuildFor === "Gecko") {
@@ -17,74 +39,156 @@ var FoxtrickPrefs = {
 		}
 	},
 
-	getString : function( pref_name ) {
-		var str;
-		try {
-			str = FoxtrickPrefs._pref_branch.getComplexValue( encodeURI(pref_name),
-								 Components.interfaces.nsISupportsString ).data;
-		} catch( e ) {
- 				str = null;
-		}
-		if (str==null) {
+	getString : function(pref_name) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			var str;
 			try {
-				str = FoxtrickPrefs._pref_branch.getComplexValue( pref_name,
-								Components.interfaces.nsISupportsString ).data;
- 			} catch( e ) {
-				str = null;
+				str = FoxtrickPrefs._pref_branch.getComplexValue(encodeURI(pref_name),
+					Components.interfaces.nsISupportsString).data;
+			}
+			catch (e) {
+	 				str = null;
+			}
+			if (str == null) {
+				try {
+					str = FoxtrickPrefs._pref_branch.getComplexValue( pref_name,
+									Components.interfaces.nsISupportsString ).data;
+	 			}
+	 			catch (e) {
+					str = null;
+				}
+			}
+	 		return str;
+ 		}
+ 		else if (Foxtrick.BuildFor === "Chrome") {
+ 			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.' + pref_name + '",\\s*"(.+)"\\);');
+			if (FoxtrickPrefs.pref.match(string_regexp) !== null) {
+				try {
+					return FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,chrome.extension.getURL(''));
+				}
+				catch (e) {
+					return "";
+				}
+			}
+			if (FoxtrickPrefs.pref_default.match(string_regexp) !== null) {
+				try {
+					return FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,chrome.extension.getURL(''));
+				}
+				catch (e) {
+					return "";
+				}
+			}
+ 		}
+	},
+
+	setString : function(pref_name, value) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			var str = Components
+				.classes[ "@mozilla.org/supports-string;1" ]
+				.createInstance(Components.interfaces.nsISupportsString);
+			str.data = value;
+			FoxtrickPrefs._pref_branch.setComplexValue(encodeURI(pref_name),
+				Components.interfaces.nsISupportsString, str);
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\);');
+			if (FoxtrickPrefs.pref.search(string_regexp) !=-1) 
+				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'", "'+value+'");');
+			else
+				FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'", "'+value+'");\n';
+			if (FoxtrickPrefs.do_dump==true) {
+				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
 			}
 		}
- 		return str;
 	},
 
-	setString : function( pref_name, value ) {
-		var str = Components.classes[ "@mozilla.org/supports-string;1" ].
-					 createInstance( Components.interfaces.nsISupportsString );
-		str.data = value;
-		FoxtrickPrefs._pref_branch.setComplexValue( encodeURI(pref_name),
-								Components.interfaces.nsISupportsString, str );
-	},
-
-	setInt : function( pref_name, value ) {
-		FoxtrickPrefs._pref_branch.setIntPref( encodeURI(pref_name), value );
-	},
-
-	getInt : function( pref_name ) {
-		var value;
-		try {
-			value = FoxtrickPrefs._pref_branch.getIntPref( encodeURI(pref_name) );
-		} catch( e ) {
-			value = null;
+	setInt : function(pref_name, value) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			FoxtrickPrefs._pref_branch.setIntPref(encodeURI(pref_name), value);
 		}
-		if (value==null) {
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'", .+\);');
+			if (FoxtrickPrefs.pref.search(string_regexp) != -1)
+				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'", '+value+');')
+			else
+				FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'", '+value+');\n';
+			if (FoxtrickPrefs.do_dump == true) {
+				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
+			}
+		}
+	},
+
+	getInt : function(pref_name) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			var value;
 			try {
-				value = FoxtrickPrefs._pref_branch.getIntPref( pref_name );
-			} catch( e ) {
+				value = FoxtrickPrefs._pref_branch.getIntPref(encodeURI(pref_name));
+			}
+			catch (e) {
 				value = null;
 			}
+			if (value == null) {
+				try {
+					value = FoxtrickPrefs._pref_branch.getIntPref(pref_name);
+				}
+				catch (e) {
+					value = null;
+				}
+			}
+			return value;
 		}
-		return value;
-	},
-
-	setBool : function( pref_name, value ) {
-		FoxtrickPrefs._pref_branch.setBoolPref( encodeURI(pref_name), value );
-	},
-
-	getBool : function( pref_name ) {
-		// no dump in FoxtrickPrefs function !!!!!!!!
-		var value;
-		try {
-			value = FoxtrickPrefs._pref_branch.getBoolPref( encodeURI(pref_name) );
-		} catch( e ) {
-			value = null;
-		}
-		if (value == null) {
-			try {
-				value = FoxtrickPrefs._pref_branch.getBoolPref( pref_name );
-			} catch( e ) {
-				value = null;
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",\\s*(\\d+)\\);');
+			if (FoxtrickPrefs.pref.match(string_regexp) !== null)
+				return parseInt(FoxtrickPrefs.pref.match(string_regexp)[1]);
+			if (FoxtrickPrefs.pref_default.match(string_regexp) !== null) {
+				return parseInt(FoxtrickPrefs.pref_default.match(string_regexp)[1]);
 			}
 		}
-		return value;
+	},
+
+	setBool : function(pref_name, value) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			FoxtrickPrefs._pref_branch.setBoolPref(encodeURI(pref_name), value);
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",\\s*.+\\);');
+			if (FoxtrickPrefs.pref.search(string_regexp) != -1)
+				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'", '+value+');')				
+			else
+				FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'", '+value+');\n';	
+			if (FoxtrickPrefs.do_dump==true) {
+				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
+			}
+		}
+	},
+
+	getBool : function(pref_name) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			var value;
+			try {
+				value = FoxtrickPrefs._pref_branch.getBoolPref(encodeURI(pref_name));
+			}
+			catch (e) {
+				value = null;
+			}
+			if (value == null) {
+				try {
+					value = FoxtrickPrefs._pref_branch.getBoolPref(pref_name);
+				}
+				catch (e) {
+					value = null;
+				}
+			}
+			return value;
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.' + pref_name + '",\\s*(.+)\\);');		
+			if (FoxtrickPrefs.pref.match(string_regexp) !== null)
+				return (FoxtrickPrefs.pref.match(string_regexp)[1] == "true");
+			if (FoxtrickPrefs.pref_default.match(string_regexp) !== null)
+				return (FoxtrickPrefs.pref_default.match(string_regexp)[1] == "true");
+		}
 	},
 
 	/** Add a new preference "pref_name" of under "list_name".
@@ -128,14 +232,27 @@ var FoxtrickPrefs = {
 
 	_getElemNames : function( list_name ) {
 		try {
-			var array = null;
-			if( list_name != "" )
-				array = FoxtrickPrefs._pref_branch.getChildList( encodeURI(list_name + "."), {} );
-			else
-				array = FoxtrickPrefs._pref_branch.getChildList( "", {} );
-			for (var i=0;i<array.length;++i) {array[i] = decodeURI(array[i]);}
-			return array;
-		} catch( e ) {
+			if (Foxtrick.BuildFor === "Gecko") {
+				var array = null;
+				if( list_name != "" )
+					array = FoxtrickPrefs._pref_branch.getChildList( encodeURI(list_name + "."), {} );
+				else
+					array = FoxtrickPrefs._pref_branch.getChildList( "", {} );
+				for (var i=0;i<array.length;++i) {array[i] = decodeURI(array[i]);}
+				return array;
+			}
+			else if (Foxtrick.BuildFor === "Chrome") {
+				var string_regexp = new RegExp('"extensions.foxtrick.prefs.('+list_name+'.+),"','g');
+				var array = FoxtrickPrefs.pref.match(string_regexp);
+				if (array) {
+					for (var i=0;i<array.length;++i)
+						array[i]=array[i].replace(/"|,|extensions.foxtrick.prefs./g,'');
+					return array;
+				} 
+				else return [];
+			}
+		}
+		catch (e) {
 			return null;
 		}
 	},
@@ -151,20 +268,38 @@ var FoxtrickPrefs = {
 			}
 		);
 
-		FoxtrickPrefs._populateList( list_name, existing );
+		FoxtrickPrefs._populateList(list_name, existing);
 	},
 
 	/** Populate list_name with given array deleting if exists */
-	_populateList : function( list_name, values )
+	_populateList : function(list_name, values)
 	{
-		FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(list_name) );
-		for (var  i in values )
-			FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
+		if (Foxtrick.BuildFor === "Gecko") {
+			FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(list_name) );
+			for (var i in values )
+				FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			FoxtrickPrefs.do_dump = false;
+			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+list_name+'.+\\);\\n','g');
+			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'');
+		    for (var i in values)
+		        FoxtrickPrefs.setString( list_name + "." + i, values[i]);
+			FoxtrickPrefs.do_dump = true;
+			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
+		}
 	},
 
-	deleteValue : function( value_name ){
-		//FoxtrickPrefs._pref_branch.deleteBranch( encodeURI(value_name) );   // juste delete
-		if (FoxtrickPrefs._pref_branch.prefHasUserValue(encodeURI(value_name))) FoxtrickPrefs._pref_branch.clearUserPref( encodeURI(value_name) );   // reset to default
+	deleteValue : function(value_name){
+		if (Foxtrick.BuildFor === "Gecko") {
+			if (FoxtrickPrefs._pref_branch.prefHasUserValue(encodeURI(value_name)))
+				FoxtrickPrefs._pref_branch.clearUserPref(encodeURI(value_name));   // reset to default
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+value_name+'".+\\n','g');
+			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'');
+			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
+		}
 	},
 
 

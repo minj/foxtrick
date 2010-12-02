@@ -599,6 +599,14 @@ Foxtrick.addStyleSheet = function(doc, css) {
 	head.appendChild(link);
 }
 
+Foxtrick.addStyleSheetSnippet = function(doc, css) {
+	var head = doc.getElementsByTagName("head")[0];
+    var style = doc.createElement("style");
+    style.setAttribute("type", "text/css");
+	style.appendChild(doc.createTextNode(css));
+    head.appendChild(style);
+}
+
 // attaches a JavaScript file to the page
 Foxtrick.addJavaScript = function(doc, js) {
 	var path = "head[1]";
@@ -950,7 +958,8 @@ Foxtrick.reload_module_css = function(doc) {
 					if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module)) && !FoxtrickMain.isStandard) {
 						if (!isRTL || !module.CSS_SIMPLE_RTL) {
 							Foxtrick.load_css_permanent (module.CSS_SIMPLE);
-							if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL);
+							if (module.CSS_SIMPLE_RTL)
+								Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL);
 						}
 						else {
 							Foxtrick.load_css_permanent (module.CSS_SIMPLE_RTL) ;
@@ -959,14 +968,16 @@ Foxtrick.reload_module_css = function(doc) {
 					}
 					else {
 						Foxtrick.unload_css_permanent (module.CSS_SIMPLE) ;
-						if (module.CSS_SIMPLE_RTL) Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL) ;
+						if (module.CSS_SIMPLE_RTL)
+							Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL) ;
 					}
 				}
 				if (module.CSS) {
 					if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module)) && (!module.CSS_SIMPLE || FoxtrickMain.isStandard)) {
 						if (!isRTL || !module.CSS_RTL){
 							Foxtrick.load_css_permanent (module.CSS) ;
-							if (module.CSS_RTL) Foxtrick.unload_css_permanent (module.CSS_RTL);
+							if (module.CSS_RTL)
+								Foxtrick.unload_css_permanent (module.CSS_RTL);
 						}
 						else {
 							Foxtrick.load_css_permanent (module.CSS_RTL);
@@ -975,7 +986,8 @@ Foxtrick.reload_module_css = function(doc) {
 					}
 					else {
 						Foxtrick.unload_css_permanent (module.CSS) ;
-						if (module.CSS_RTL&& module.CSS!="") Foxtrick.unload_css_permanent (module.CSS_RTL) ;
+						if (module.CSS_RTL && module.CSS!="")
+							Foxtrick.unload_css_permanent (module.CSS_RTL) ;
 					}
 				}
 				if (module.OPTIONS_CSS) {
@@ -983,7 +995,7 @@ Foxtrick.reload_module_css = function(doc) {
 						if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module)) && Foxtrick.isModuleFeatureEnabled(module, module.OPTIONS[k])) {
 							if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
 						 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
-										Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
+									Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
 								Foxtrick.load_css_permanent (module.OPTIONS_CSS[k]) ;
 							}
 							else {
@@ -1001,14 +1013,16 @@ Foxtrick.reload_module_css = function(doc) {
 						}
 						else {
 							if (module.OPTIONS_CSS[k] != "")
-									Foxtrick.unload_css_permanent (module.OPTIONS_CSS[k]) ;
+								Foxtrick.unload_css_permanent (module.OPTIONS_CSS[k]) ;
 							if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
-									Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
+								Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
 						}
 					}
 				}
 			}
 		}
+		if (Foxtrick.BuildFor === "Chrome")
+			portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});
 	}
 	catch (e) {
 		Foxtrick.dumpError(e);

@@ -1,8 +1,8 @@
 pref("extensions.foxtrick.prefs.CopyPostingStyle", "ht-ml");
 pref("extensions.foxtrick.prefs.copyratings.teams", "both");
 pref("extensions.foxtrick.prefs.cssSkin.value", "chrome://foxtrick/content/resources/css/mainr.css");
-pref("extensions.foxtrick.prefs.curVersion", "0.5.4b"); // update with each release
-pref("extensions.foxtrick.prefs.disableOnStage", true);
+pref("extensions.foxtrick.prefs.curVersion", "0.5.4b");
+pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
 pref("extensions.foxtrick.prefs.htCountry", "Sweden");

@@ -109,24 +109,44 @@ var Foxtrickl10n = {
 	},
 
 	getString : function(str) {
-		if (this._strings_bundle) {
-			try {
-				return this._strings_bundle.GetStringFromName(str);
-			}
-			catch (e) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			if (this._strings_bundle) {
 				try {
-					if (this._strings_bundle_default)
-						return this._strings_bundle_default.GetStringFromName(str);
+					return this._strings_bundle.GetStringFromName(str);
 				}
-				catch (ee) {
-					Foxtrick.dump("** Localization error 1 ** '" + str + "'\n");
-					return "** Localization error 1 **";
+				catch (e) {
+					try {
+						if (this._strings_bundle_default)
+							return this._strings_bundle_default.GetStringFromName(str);
+					}
+					catch (ee) {
+						Foxtrick.dump("** Localization error 1 ** '" + str + "'\n");
+						return "** Localization error 1 **";
+					}
 				}
+			}
+			else {
+				Foxtrick.dump("** Localization error 2 ** '" + str + "'\n");
+				return "** Localization error 2 **";
 			}
 		}
-		else {
-			Foxtrick.dump("** Localization error 2 ** '" + str + "'\n");
-			return "** Localization error 2 **";
+		else if (Foxtrick.BuildFor === "Chrome") {
+			try {
+				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
+				if (Foxtrickl10n.properties.search(string_regexp)!=-1)
+					value = Foxtrickl10n.properties.match(string_regexp)[1];
+				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
+					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
+				else {
+					value = str;
+					console.log('getString error' +str);
+				}
+				return value;
+			}
+			catch (e) {
+				Foxtrick.dumpError(e);
+				return str;
+			}
 		}
 	},
 
@@ -149,52 +169,78 @@ var Foxtrickl10n = {
 	},
 
 	isStringAvailable : function(str) {
-		if (this._strings_bundle) {
-			try {
-				return this._strings_bundle.GetStringFromName( str ) != null;
-			}
-			catch (e) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			if (this._strings_bundle) {
 				try {
-					return this._strings_bundle_default.GetStringFromName( str ) != null;
+					return this._strings_bundle.GetStringFromName( str ) != null;
+				}
+				catch (e) {
+					try {
+						return this._strings_bundle_default.GetStringFromName( str ) != null;
+					}
+					catch (e) {
+						return false;
+					}
+				}
+			}
+			return false;
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp('\\s'+str+'=(.+)\\s', "i");
+			return (Foxtrickl10n.properties.search(string_regexp)!=-1 
+				|| Foxtrickl10n.properties_default.search(string_regexp)!=-1);
+		}
+	},
+
+	isStringAvailableLocal : function(str) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			if (this._strings_bundle) {
+				try {
+					return this._strings_bundle.GetStringFromName( str ) != null;
 				}
 				catch (e) {
 					return false;
 				}
 			}
+			return false;
 		}
-		return false;
-	},
-
-	isStringAvailableLocal : function(str) {
-		if (this._strings_bundle) {
-			try {
-				return this._strings_bundle.GetStringFromName( str ) != null;
-			}
-			catch (e) {
-				return false;
-			}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
+			return (Foxtrickl10n.properties.search(string_regexp)!=-1); 
 		}
-		return false;
 	},
 
 	getScreenshot : function(str) {
-		var link = "";
-		if (this._strings_bundle_screenshots) {
-			try {
-				link = this._strings_bundle_screenshots.GetStringFromName( str );
+		if (Foxtrick.BuildFor === "Gecko") {
+			var link = "";
+			if (this._strings_bundle_screenshots) {
+				try {
+					link = this._strings_bundle_screenshots.GetStringFromName( str );
+				}
+				catch (e) {
+				}
+			}
+			if (link=="") {
+				try {
+					if (this._strings_bundle_screenshots_default)
+						link = this._strings_bundle_screenshots_default.GetStringFromName( str );
+				}
+				catch (ee) {
+				}
+			}
+			return link;
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			try{  
+				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" ); 
+				if (Foxtrickl10n.screenshots.search(string_regexp)!=-1)
+					return Foxtrickl10n.screenshots.match(string_regexp)[1];
+				return '';
 			}
 			catch (e) {
+				console.log('getscreenshots '+e);
 			}
 		}
-		if (link=="") {
-			try {
-				if (this._strings_bundle_screenshots_default)
-					link = this._strings_bundle_screenshots_default.GetStringFromName( str );
-			}
-			catch (ee) {
-			}
-		}
-		return link;
 	},
 
 	// this function returns level string of given level type and numeral value.

@@ -5,8 +5,8 @@
 <overlay id="foxtrick"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<script type="application/x-javascript" src="./prefs.js" />
 <script type="application/x-javascript" src="./const.js" />
+<script type="application/x-javascript" src="./prefs.js" />
 <script type="application/x-javascript" src="./pages.js" />
 <script type="application/x-javascript" src="./l10n.js" />
 <script type="application/x-javascript" src="./helper.js" />
