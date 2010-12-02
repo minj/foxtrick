@@ -42,7 +42,7 @@ body
 	display: none !important;
 }
 
-#ctl00_CPSidebar_UpdateProgress1{
+#ctl00_ctl00_CPContent_CPSidebar_UpdateProgress1{
 display: none !important;
 width: 2px !important;
 height: 2px !important;

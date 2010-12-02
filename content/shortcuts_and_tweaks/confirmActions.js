@@ -140,7 +140,7 @@ var FoxtrickConfirmActions = {
 				}
 			}
 			if (Foxtrick.isModuleFeatureEnabled(this, "NtChange")) {
-				var submitLink = doc.getElementById("ctl00_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction");
+				var submitLink = doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction");
 				if (submitLink) {
 					var sOnclick = submitLink.href.replace(/javascript\:/, "");
 					if (sOnclick.search(/confirm/) == -1){ // already added?

@@ -76,7 +76,7 @@ var FoxtrickRedirections = {
 		}
 		//challenge
 		if (doc.location.href.search(/challenge=true/i)!=-1 ) {
-			var teamid_input = doc.getElementById('ctl00_CPSidebar_tbNewChallangeTeamId');
+			var teamid_input = doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_tbNewChallangeTeamId');
 			teamid_input.value = FoxtrickHelper.getTeamIdFromUrl(doc.location.href);
 		}
 		//mailto

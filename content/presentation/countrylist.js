@@ -39,7 +39,7 @@ var FoxtrickCountyList = {
                 break;
 
                 case 'press' :
-                    this._changelist(page, doc, 'ctl00_CPSidebar_ucLeagues2_ddlLeagues', 1);
+                    this._changelist(page, doc, 'ctl00_ctl00_CPContent_CPSidebar_ucLeagues2_ddlLeagues', 1);
                 break;
 
                 case 'statsTransfersBuyers' :
@@ -100,7 +100,7 @@ var FoxtrickCountyList = {
                 break;
 
                 case 'press' :
-                    this._activate(page, doc, 'ctl00_CPSidebar_ucLeagues2_ddlLeagues');
+                    this._activate(page, doc, 'ctl00_ctl00_CPContent_CPSidebar_ucLeagues2_ddlLeagues');
                 break;
 
                 case 'statsTransfersBuyers' :

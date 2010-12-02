@@ -16,8 +16,8 @@ var FoxtrickManagerButtons = {
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	GUESTBOOK_LINK_ID : "ft-guest-book",
-	CHALLENGE_LINK_ID : "ctl00_CPSidebar_ucVisitorActions_lnkChallenge",
-	MAIL_LINK_ID: "ctl00_CPSidebar_ucVisitorActions_lnkMail",
+	CHALLENGE_LINK_ID : "ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkChallenge",
+	MAIL_LINK_ID: "ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkMail",
 
 	run : function(page, doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);

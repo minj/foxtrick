@@ -12,12 +12,12 @@ var FoxtrickMovePlayerSelectbox= {
 	LATEST_CHANGE:"option to move player select box up on playersdetail page (default off)",
 
     run : function( page, doc ) {
-		var select =doc.getElementById('ctl00_CPSidebar_ddlSquad');
+		var select =doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_ddlSquad');
 		if (!select) return;
 		var box=select.parentNode;
 		if (box.className!='sidebarBox') box=box.parentNode;
 		box=box.parentNode.removeChild(box);
-		var sidebar=doc.getElementById('ctl00_CPSidebar_pnlRight');
+		var sidebar=doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_pnlRight');
 		sidebar.insertBefore(box,sidebar.firstChild);
 	}
 }
