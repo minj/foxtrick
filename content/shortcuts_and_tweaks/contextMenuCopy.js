@@ -60,7 +60,7 @@ var FoxtrickContextMenuCopy = {
 	},
 
 	run : function(page, doc) {
-		if (Foxttrick.BuildFor === "Gecko") {
+		if (Foxtrick.BuildFor === "Gecko") {
 			doc.addEventListener("contextmenu", this.onContext, false);
 			this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));
 			this.MENU_HT_ML.setAttribute("label", Foxtrickl10n.getString("copy.ht-ml"));
