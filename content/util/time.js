@@ -43,7 +43,7 @@ Foxtrick.util.time = {
 				return null;
 
 			for (var i = 1; i < matches.length; ++i)
-				matches[i] = parseInt(matches[i]); // change strings to integers
+				matches[i] = parseInt(matches[i], 10); // leading zero -> octal
 
 			const DATEFORMAT = FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
 			switch (DATEFORMAT) {
