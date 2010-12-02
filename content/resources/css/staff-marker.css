@@ -2,19 +2,19 @@
    so that the last declared one wins. */
 
 .ft-staff-hty {
-	background-image: url("../img/staff/hyouthclub.png");
+	background-image: url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat;
 	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-foxtrick {
-	background-image: url("../img/staff/foxtrick.png");
+	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
 	background-repeat: no-repeat;
 	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-chpp-holder {
-	background-image: url("../img/staff/chpp.png");
+	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png");
 	background-repeat: no-repeat;
 	padding: 1px 1px 1px 24px !important;
 }
