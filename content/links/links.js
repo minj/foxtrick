@@ -60,8 +60,8 @@ Foxtrick.links.getLinkOptions = function(module, linktype, extra_options) {
 		var keysortfunction = function(a, b) {
 			return a["title"].localeCompare(b["title"]);
 		}
-		options.sort(Foxtrick.keysortfunction);
-		country_options.sort(Foxtrick.keysortfunction);
+		options.sort(keysortfunction);
+		country_options.sort(keysortfunction);
 		var i=0,country_option;
 		while (country_option = country_options[i++]) {
 			options.push({
@@ -139,8 +139,11 @@ Foxtrick.links.getLinkOptionsArray = function(module, linktypes) {
 				}
 			}
 		}
-		options.sort(Foxtrick.keysortfunction);
-		options.sort(Foxtrick.keysortfunction);
+		var keysortfunction = function(a, b) {
+			return a["title"].localeCompare(b["title"]);
+		}
+		options.sort(keysortfunction);
+		options.sort(keysortfunction);
 		var i=0,country_option;
 		while (country_option = country_options[i++]) {
 			options.push({
