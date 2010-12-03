@@ -285,8 +285,8 @@ var FoxtrickCrossTable = {
 				weeks += '|' + jj;
 			}
 			var x_offset = '6.25';
-			if (this.weekcount != 0) {
-				x_offset = Math.floor((1/(this.weekcount-1))*10000)/100;
+			if (this.weekcount > 1) {
+				x_offset = Math.floor((1/(this.weekcount - 1))*10000)/100;
 				Foxtrick.dump(x_offset + '\n');
 			}
 
@@ -663,7 +663,9 @@ var FoxtrickCrossTable = {
 			return doc.getUserData(USER_DATA_KEY);
 		}
 		var leagueLevelUnitID = doc.location.href.match(/leagueLevelUnitID=(\d+)/i)[1];
-		var season = doc.location.href.match(/season=(\d+)/i)[1];
+		// get season from select since the URL doesn't change when switching
+		// different seasons
+		var season = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucSeasonsDropdown_ddlSeasons").value;
 
 		var file = "file=leaguefixtures&leagueLevelUnitID="+leagueLevelUnitID+"&season="+season;
 
