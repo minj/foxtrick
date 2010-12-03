@@ -23,7 +23,7 @@ FoxtrickExtraPlayerInfo = {
 			var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
 			var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 
-			var basics = allPlayers[i].getElementsByTagName("p")[1];
+			var basics = allPlayers[i].getElementsByTagName("p")[0];
 
 			if (Foxtrick.isModuleFeatureEnabled(this, "CoachInfo")
 				&& player.trainerData !== undefined) {
@@ -39,9 +39,9 @@ FoxtrickExtraPlayerInfo = {
 					trainerTypeStr = Foxtrickl10n.getString('foxtrick.balancedTrainer');
 				}
 				var trainerSkillLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.trainerData.skill+'#skill">'+trainerSkillStr+'</a>';
-				var trainerStr = trainerTypeStr.replace("%s", trainerSkillLink) + "<br>";
+				var trainerStr = "<br>" + trainerTypeStr.replace("%s", trainerSkillLink);
 				// insert after the second break
-				basics.innerHTML = basics.innerHTML.replace(/^(.+?<br>.+?<br>)(.+)$/, "$1" + trainerStr + "$2");
+				basics.innerHTML += trainerStr;
 			}
 			if (Foxtrick.isModuleFeatureEnabled(this, "Flag")
 				&& player.countryId !== undefined) {
