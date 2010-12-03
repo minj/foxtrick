@@ -16,8 +16,6 @@ var FoxtrickTeamSelectBox= {
 	listbox:"",
 
     run : function( page, doc ) {
-		if (doc.location.href.search(/TeamID=/i)==-1) {return;}
-
 		if (Foxtrick.isStandardLayout(doc) )  {
 			if (!Foxtrick.isRTLLayout(doc))  Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/linkscustom_std.css");
 			else Foxtrick.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/linkscustom_std_rtl.css");
