@@ -49,7 +49,7 @@ var FoxtrickMain = {
 		Foxtrick.MakeStatsHash();
 
 		// check if this is a different version
-		var curVersion = FoxtrickPrefs.getString("curVersion");
+		var curVersion = Foxtrick.version();
 		var oldVersion = FoxtrickPrefs.getString("oldVersion");
 		if (oldVersion !== curVersion) {
 			// since the versioning scheme ordering is not exactly the same
@@ -381,7 +381,7 @@ var FoxtrickMain = {
 					// show version number
 					var bottom = doc.getElementById("bottom");
 					var server = bottom.getElementsByClassName("currentServer")[0];
-					server.textContent += " / FoxTrick v" + FoxtrickPrefs.getString("curVersion");
+					server.textContent += " / FoxTrick " + Foxtrick.version();
 				}
 
 				Foxtrick.dumpFlush(doc);
@@ -439,6 +439,10 @@ var FoxtrickMain = {
 	}
 };
 
+Foxtrick.version = function() {
+	return FoxtrickPrefs.getString("version");
+};
+
 Foxtrick.updateStatus = function() {
 	if (Foxtrick.BuildFor === "Gecko") {
 		var icon = document.getElementById("foxtrick-status-bar-img");
@@ -463,7 +467,7 @@ Foxtrick.updateStatus = function() {
 			var hostname = Foxtrick.getHostname(doc);
 			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + this.version() + " (" + statusText + ")";
 		icon.setAttribute("tooltiptext", tooltipText);
 	}
 }

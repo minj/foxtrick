@@ -17,7 +17,7 @@ var FoxtrickFirstRun = {
 	run : function(page, doc) {
 		if (FoxtrickMain.IsNewVersion) {
 			// uncomment to see it always for testing purposes
-			var curVersion = FoxtrickPrefs.getString("curVersion");
+			var curVersion = Foxtrick.version();
 			FoxtrickPrefs.setString("oldVersion",curVersion);
 
 			// set some special defaults
