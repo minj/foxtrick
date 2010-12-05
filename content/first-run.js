@@ -66,7 +66,7 @@ var FoxtrickFirstRun = {
 		alertdiv.setAttribute('style','margin-top:20px; margin-bottom:20px; border: solid 1px #2F31FF !important; background-color: #EFEFFF !important;');
 		mainBody.insertBefore(alertdiv,mainBody.firstChild);
 
-		var curVersion=FoxtrickPrefs.getString("curVersion");
+		var curVersion = Foxtrick.version();
 		alertdiv.innerHTML = "<h2 style='background-color:#EFEFFF; text-align:center !important; color:#2F31FF !important; font-size:1.1em; '>FoxTrick "+curVersion+"</h2>";
 
 		var commondiv=doc.createElement('div');
