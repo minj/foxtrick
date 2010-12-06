@@ -12,8 +12,8 @@ Foxtrick.util.time = {
 		date is a JavaScript Date object
 	*/
 	gregorianToHT : function(date, weekdayOffset) {
-		// 23th Aug 1997 should be the first day of first season
-		const origin = new Date(1997, 8, 23);
+		// 22th Aug 1997 should be the first day of first season by calculation
+		const origin = new Date(1997, 8, 22);
 		weekdayOffset = parseInt(weekdayOffset) || 0;
 		const msDiff = date.getTime() - origin.getTime();
 		const dayDiff = msDiff / 1000 / 60 / 60 / 24 - weekdayOffset;
