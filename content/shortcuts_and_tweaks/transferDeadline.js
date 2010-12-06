@@ -7,7 +7,7 @@ FoxtrickTransferDeadline = {
 
     MODULE_NAME : "TransferDeadline",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('transferSearchResult','playerdetail','transfer'),
+	PAGES : new Array('teamPageGeneral','transferSearchResult','playerdetail','transfer'),
 
     run : function(page, doc) {
         switch (page) {
@@ -20,6 +20,11 @@ FoxtrickTransferDeadline = {
                 break;
 
             case 'transfer' :
+                this._PlayerListDeadline ( doc, 'div' );
+                break;
+			
+			//the following is for when a player is added to hotlist
+			case 'teamPageGeneral' :
                 this._PlayerListDeadline ( doc, 'div' );
                 break;
         }
