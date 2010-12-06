@@ -299,7 +299,7 @@ function getModule(module)
 	// link to module
 	var link = document.createElement("a");
 	link.className = "module-link";
-	link.setAttribute("text-key", "foxtrick.prefs.moduleLink");
+	link.textContent = "¶";
 	link.href = generateURI(null, module.MODULE_NAME);
 	$(link).click(function() { locateFragment($(this).attr("href")); });
 	title.appendChild(link);
