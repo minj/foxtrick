@@ -162,18 +162,7 @@ Foxtrick.Pages.Players = {
 				var imgs = allPlayers[i].getElementsByTagName("img");
 				var as = allPlayers[i].getElementsByTagName("a");
 
-				var basicInformation;
-				if (isYouth) {
-					basicInformation = paragraphs[0];
-				}
-				else {
-					for (var j = 0; j < paragraphs.length; ++j) {
-						if (paragraphs[j].textContent.search("(=|:)") !== -1) {
-							basicInformation = paragraphs[j];
-							break;
-						}
-					}
-				}
+				var basicInformation = paragraphs[0];
 
 				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
 
