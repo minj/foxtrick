@@ -32,8 +32,18 @@ Foxtrick.util.time = {
 			while separator and leading zero are irrelevant.
 		*/
 		try {
-			var reLong = /(\d{2,4})\D+(\d{2})\D+(\d{2,4})\D+(\d{2})\D+(\d{2})/;
-			var reShort = /(\d{2,4})\D+(\d{2})\D+(\d{2,4})/;
+			const DATEFORMAT = FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
+			switch (DATEFORMAT) {
+				case "ddmmyyyy":
+				case "mmddyyyy":
+					var reLong = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})\D+(\d{2})\D+(\d{2})/;
+					var reShort = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})/;
+					break;
+				case "yyyymmdd":
+					var reLong = /(\d{4})\D+(\d{1,2})\D+(\d{1,2})\D+(\d{2})\D+(\d{2})/;
+					var reShort = /(\d{4})\D+(\d{1,2})\D+(\d{1,2})/;
+					break;
+			}
 			var matches;
 			if (text.match(reLong))
 				matches = text.match(reLong);
@@ -45,19 +55,18 @@ Foxtrick.util.time = {
 			for (var i = 1; i < matches.length; ++i)
 				matches[i] = parseInt(matches[i], 10); // leading zero -> octal
 
-			const DATEFORMAT = FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
 			switch (DATEFORMAT) {
-				case 'ddmmyyyy':
+				case "ddmmyyyy":
 					var day = matches[1];
 					var month = matches[2];
 					var year = matches[3];
 					break;
-				case 'mmddyyyy':
+				case "mmddyyyy":
 					var day = matches[2];
 					var month = matches[1];
 					var year = matches[3];
 					break;
-				case 'yyyymmdd':
+				case "yyyymmdd":
 					var day = matches[3];
 					var month = matches[2];
 					var year = matches[1];
