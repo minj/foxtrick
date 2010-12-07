@@ -374,9 +374,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", request.url, true);
 	xhr.onreadystatechange = function(aEvt) {
-		if (req.readyState == 4) {
-			if (req.status == 200
-				|| req.status == 0) {
+		if (xhr.readyState == 4) {
+			if (xhr.status == 200
+				|| xhr.status == 0) {
 				sendResponse({data : xhr.responseXML});
 			}
 		}
