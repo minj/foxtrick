@@ -504,6 +504,8 @@ Foxtrick.getPanel = function(doc) {
 			return doc.getElementsByClassName("hattrick")[0];
 		else if (doc.getElementsByClassName("hattrickNoSupporter").length > 0)
 			return doc.getElementsByClassName("hattrickNoSupporter")[0];
+		else
+			return null;
 	}
 	catch (e) {
 		return null;
