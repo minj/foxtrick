@@ -187,8 +187,8 @@ var FoxtrickMain = {
 
 	onPageChange : function(ev) {
 		try {
-		var doc = ev.originalTarget.ownerDocument;
-		if (doc.nodeName != "#document")
+		var doc = ev.target.ownerDocument;
+		if (ev.target.nodeType !== Node.ELEMENT_NODE)
 			return;
 
 		// not on matchlineup
@@ -202,9 +202,9 @@ var FoxtrickMain = {
 
 		if (changecount++ > 100) return;
 
-		var content = doc.getElementById("content");
+		var panel = Foxtrick.getPanel(doc);
 		// remove event listener while Foxtrick executes
-		content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+		panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		var begin = new Date();
 		FoxtrickMain.change(doc, ev);
 		var end = new Date();
@@ -212,7 +212,7 @@ var FoxtrickMain = {
 				 + end.getMilliseconds() - begin.getMilliseconds();
 		//Foxtrick.dump('changecount: '+changecount+' '+ev.target.nodeName+' '+ev.target.className+" " + time + " ms\n");
 		// re-add event listener
-		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+		panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		} catch (e) {Foxtrick.dumpError(e);}
 	},
 
@@ -245,8 +245,8 @@ var FoxtrickMain = {
 						 + end.getMilliseconds() - begin.getMilliseconds();
 				Foxtrick.dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search + '\n');
 				// listen to page content changes
-				var content = doc.getElementById("content");
-				if (content) {
+				var panel = Foxtrick.getPanel(doc);
+				if (panel) {
 					var add_change = false;
 					for (var page in Foxtrick.ht_pages) {
 						if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
@@ -256,13 +256,15 @@ var FoxtrickMain = {
 								var module = Foxtrick.run_on_page[page][i];
 								if (typeof(module.change) == "function") {
 									add_change = true;
-									// Foxtrick.dump('module has change on page "' + page + '": ' + module.MODULE_NAME + '.\n');
+									break;
 								}
 							}
 						}
+						if (add_change)
+							break;
 					}
 					if (add_change) {
-						content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+						panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 					}
 				}
 				//Foxtrick.dump('add_change: '+add_change+'\n')
@@ -484,8 +486,7 @@ Foxtrick.getHostname = function(doc) {
 }
 
 Foxtrick.isHt = function(doc) {
-	return (doc.getElementsByClassName("hattrick").length > 0
-		|| doc.getElementsByClassName("hattrickNoSupporter").length > 0);
+	return (Foxtrick.getPanel(doc) !== null);
 }
 
 Foxtrick.isHtUrl = function(url) {
@@ -495,6 +496,18 @@ Foxtrick.isHtUrl = function(url) {
 Foxtrick.isStage = function(doc) {
 	const stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
+}
+
+Foxtrick.getPanel = function(doc) {
+	try {
+		if (doc.getElementsByClassName("hattrick").length > 0)
+			return doc.getElementsByClassName("hattrick")[0];
+		else if (doc.getElementsByClassName("hattrickNoSupporter").length > 0)
+			return doc.getElementsByClassName("hattrickNoSupporter")[0];
+	}
+	catch (e) {
+		return null;
+	}
 }
 
 Foxtrick.registerModulePages = function(module) {
@@ -553,13 +566,13 @@ Foxtrick.registerAllPagesHandler = function(who) {
 }
 
 Foxtrick.stopListenToChange = function (doc) {
-	var content = doc.getElementById("content");
-	content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+	var panel = Foxtrick.getPanel(doc);
+	panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 }
 
-Foxtrick.startListenToChange = function (doc) {
-	var content = doc.getElementById("content");
-	content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+Foxtrick.startListenToChange = function(doc) {
+	var panel = Foxtrick.getPanel(doc);
+	panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 }
 
 Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
@@ -567,10 +580,10 @@ Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
 			type,
 			function(ev){
 				var doc = ev.target.ownerDocument;
-				var content = doc.getElementById("content");
-				content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-					fkt(ev);
-				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+				var panel = Foxtrick.getPanel(doc);
+				panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+				fkt(ev);
+				panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 			},
 			trickle
 	);
