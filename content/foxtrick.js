@@ -219,7 +219,7 @@ var FoxtrickMain = {
 	onPageLoad : function(ev) {
 		try {
 			//Foxtrick.dump('onPageLoad\n');
-			var doc = ev.originalTarget;
+			var doc = ev.originalTarget.ownerDocument;
 			if (doc.nodeName != "#document")
 				return;
 
