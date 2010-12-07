@@ -59,6 +59,8 @@ var FoxtrickOnPagePrefs = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "", column);
 			var box=doc.getElementById(ownBoxId);
+			if (!box)
+				return; // return quietly if no sidebar is found
 			if (FoxtrickMain.isStandard) Foxtrick.addClass(box,'ft_onpage_prefs_std');
 			else Foxtrick.addClass(box,'ft_onpage_prefs_simple');
 
