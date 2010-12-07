@@ -67,16 +67,12 @@ var Foxtrickl10n = {
 	init : function() {
 		for (var i in Foxtrickl10n.locales) {
 			var locale = Foxtrickl10n.locales[i];
-			try {
-				var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
-				if (Foxtrick.BuildFor === "Gecko") {
-					this.htLanguagesXml[locale] = Foxtrick.LoadXML(url);
-				}
-			}
-			catch (e) {
-				Foxtrick.dump("Cannot load HT language for " + locale + ".\n");
-				Foxtrick.dumpError(e);
-			}
+			var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+			Foxtrick.LoadXML(url, (function(locale) {
+				return function(xml) {
+					Foxtrickl10n.htLanguagesXml[locale] = xml;
+				};
+			})(locale));
 		}
 		if (Foxtrick.BuildFor === "Gecko") {
 			this._strings_bundle_default =
