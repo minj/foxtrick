@@ -394,9 +394,7 @@ var FoxtrickMain = {
 
 	// function run on every ht page change
 	change : function(doc, ev) {
-		var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-		if(!(FoxtrickPrefs.getBool("disableOnStage")
-			&& Foxtrick.getHref(doc).search(stage_regexp) > -1)
+		if(!(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
 			&& !FoxtrickPrefs.getBool("disableTemporary")) {
 
 			// call the modules that want to be run() on every hattrick page
