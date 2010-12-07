@@ -10,32 +10,23 @@ FoxtrickTransferDeadline = {
 	PAGES : new Array('teamPageGeneral','transferSearchResult','playerdetail','transfer'),
 
     run : function(page, doc) {
-        switch (page) {
-            case 'transferSearchResult' :
-                this._PlayerListDeadline ( doc, 'span' );
-                break;
+        // Check if deadline already set
+        if (doc.getElementsByClassName("ft_deadline").length > 0)
+            return;
 
-            case 'playerdetail' :
-                this._PlayerDetailsDeadline ( doc );
-                break;
-
-            case 'transfer' :
-                this._PlayerListDeadline ( doc, 'div' );
-                break;
-			
-			//the following is for when a player is added to hotlist
-			case 'teamPageGeneral' :
-                this._PlayerListDeadline ( doc, 'div' );
-                break;
-        }
+        if (Foxtrick.isPage(Foxtrick.ht_pages["transferSearchResult"], doc))
+            this._PlayerListDeadline ( doc, 'span' );
+        else if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc))
+            this._PlayerDetailsDeadline ( doc );
+        else if (Foxtrick.isPage(Foxtrick.ht_pages["transfer"], doc))
+            this._PlayerListDeadline ( doc, 'div' );
+		else if (Foxtrick.isPage(Foxtrick.ht_pages["teamPageGeneral"], doc))
+            this._PlayerListDeadline ( doc, 'div' );
     },
 
 	change : function( page, doc ) {
-        switch ( page ) {
-            case 'playerdetail' :
-                this._PlayerDetailsDeadline ( doc );
-                break;
-        }
+        if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc))
+            this._PlayerDetailsDeadline (doc);
 	},
 
     _PlayerListDeadline : function (doc, element) {
@@ -62,11 +53,6 @@ FoxtrickTransferDeadline = {
 
     _PlayerDetailsDeadline : function ( doc ) {
         if ( doc.location.href.search(/Player.aspx/i) < 0 ) return;
-
-        // Check if deadline already set
-		var deadline_span = doc.getElementsByClassName("ft_deadline");
-        if (deadline_span.length > 0)
-            return;
 
         var htDate = Foxtrick.util.time.getHtDate(doc);
 
