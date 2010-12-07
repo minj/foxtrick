@@ -38,14 +38,12 @@
 <!-- userids in barkets are used for staffmarker! -->
 <translations value="Translations">
 <translation value="* Albanian - GM-Eagle (2090503)" />
-<translation value="* Bosnian - Mod-Marin (5345125)" />
+<translation value="* Bosnian - Mod-Marin (5345125), ljushaff (4342858)" />
 <translation value="* Catalan - carlesmu (753905)" />
 <translation value="* Čeština - gucan (1132186)" />
-<translation value="* Croatian - GM-damyr (2809993)" />
 <translation value="* Dansk - LasseSvendsen (6779565)" />
 <translation value="* Deutsch - Mod-spambot (2336766)" />
 <translation value="* Ellinika - GTTWINS (5055092)" />
-<translation value="* English - (developers)" />
 <translation value="* Español - franory (6345528)" />
 <translation value="* Español, Centroamericano - baler0 (335181)" />
 <translation value="* Español, Sudamericano - baler0 (335181), ElChiquitin (6927256)" />
@@ -53,14 +51,16 @@
 <translation value="* Frysk - Foppe- (440454)" />
 <translation value="* فارسی - Slash-ss (9630939), MohammadSS (9956242)" />
 <translation value="* Galego - Piper_101 (524111)" />
+<translation value="* Hrvatski - GM-damyr (2809993)" />
 <translation value="* Hungarian - csajszi (2172516)" />
-<translation value="* Italiano - caracca (2902659), Sam-Vimes (9559302)" />
+<translation value="* Italiano - caracca (2902659), taised (765274), Sam-Vimes (9559302)" />
 <translation value="* Lithuanian - Mod-summercloud (2765378)" />
 <translation value="* Luxembourgish - Mod-Karlthegreat (2884072)" />
 <translation value="* Macedonian - white_eagle" />
 <translation value="* Malti - LA-saviour26 (4149232)" />
 <translation value="* Nederlands - eekels (5577946)" />
 <translation value="* Norwegian, bokmål - Skoglund (6350285)" />
+<translation value="* Norwegian, nynorsk - Krasher (4387847)" />
 <translation value="* Polski - Homzik (6801903), SilesiaVratislavia (10167326)" />
 <translation value="* Português - _recluso_ (3961483), GM-ei04004 (6307374), McTripas (7135171)" />
 <translation value="* Português, Brasil - MarceloFBrandao (8277378)" />
