@@ -176,13 +176,11 @@ var FoxtrickStaffMarker = {
 		var selects = doc.getElementById('mainWrapper').getElementsByTagName('select');
 		for (var k=0;k<selects.length;++k) {
 			el_Select = selects[k];
-			if (el_Select.id.search(/filter/i)!=-1) {
+			if (el_Select.id.search(/filter/i) > -1
+				|| el_Select.id.search(/recipient/i) > -1) {
 				//Foxtrick.dump('forumSELECT => select box:'+ el_Select.id + '.\n');
 				var i = 1, option;
 				while ( option = el_Select.options[i++] ) {
-					var style = option.getAttribute('style');
-					if (style == null) style =''
-					//Foxtrick.dump('forumSELECT => select i:'+ i + '.\n');
 					var uname = Foxtrick.trim(option.textContent);
 					uname = uname.substring(0, uname.indexOf(' '));
 					if (uname == '') uname = Foxtrick.trim( option.text );
@@ -219,6 +217,7 @@ var FoxtrickStaffMarker = {
 						Foxtrick.addClass(option, "ft-staff-chpp-holder");
 					}
 
+					var style = option.getAttribute("style") || "";
 					if (do_own && this.ulist[uid]!=null) {
 						style += this.ulist[uid];
 					}
