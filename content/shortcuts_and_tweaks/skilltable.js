@@ -65,12 +65,18 @@ var FoxtrickSkillTable = {
 	},
 
 	run : function(page, doc) {
+		if (doc.getElementById("ft_skilltablediv"))
+			return;
 		if (page !== "transferSearchResult"
 			&& !this.getFullType(doc).subtype === "own"
 			&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
 			return;
 		}
 		FoxtrickSkillTable.addTableDiv(doc);
+	},
+
+	change : function(page, doc) {
+		this.run(page, doc);
 	},
 
 	createTable : function(doc) {

@@ -15,6 +15,9 @@ FoxtrickPlayerFilters = {
 	FILTER_SELECT_ID : "foxtrick-filter-select",
 
 	run : function(page, doc) {
+		if (doc.getElementById(this.FILTER_SELECT_ID))
+			return;
+
 		var sortSelect = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucSorting_ddlSortBy");
 		if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
 			sortSelect = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlSortBy");
@@ -42,6 +45,10 @@ FoxtrickPlayerFilters = {
 		container.appendChild(filterSelect);
 
 		parentNode.insertBefore(container, insertBefore);
+	},
+
+	change : function(page, doc) {
+		this.run(page, doc);
 	},
 
 	selectClick : function(ev) {
