@@ -32,12 +32,16 @@ var FoxtrickYouthSkillHideUnknown = {
 							trs[j].setAttribute('style','display:none;');
 					}
 					if (Foxtrick.isModuleFeatureEnabled( this, "HideMaximalKeyWord" ) && is_ownteam) {
-						if (tds[2]) {
-							var childs = tds[2].childNodes;
-							for (var k=0;k<childs.length;++k) {
-								if (childs[k].nodeType==3) {
-									if (k==2) childs[k].nodeValue=' / ';
-									else childs[k].nodeValue=' ';
+						var skillBars = doc.getElementsByClassName("youthSkillBar");
+						for (var k = 0; k < skillBars.length; ++k) {
+							var skillBar = skillBars[k];
+							var textNodeIndex = 0;
+							for (var l = 0; l < skillBar.childNodes.length; ++l) {
+								if (skillBar.childNodes[l].nodeType == Node.TEXT_NODE) {
+									if (textNodeIndex++ == 1)
+										skillBar.childNodes[l].textContent = " / ";
+									else
+										skillBar.childNodes[l].textContent = " ";
 								}
 							}
 						}
