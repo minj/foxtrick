@@ -57,6 +57,8 @@ FoxtrickTransferDeadline = {
         var htDate = Foxtrick.util.time.getHtDate(doc);
 
         var div = doc.getElementById( 'ctl00_ctl00_CPContent_CPMain_updBid' );
+        if (!div)
+            return;
         var spans = div.getElementsByClassName("alert");
         var selltime_elm = spans[0].getElementsByTagName("p")[0];
         var selltime_clone = selltime_elm.cloneNode(true);
