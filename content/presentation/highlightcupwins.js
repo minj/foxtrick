@@ -9,9 +9,6 @@ var FoxtrickHighlightCupwins = {
     MODULE_NAME : "HighlightCupwins",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('cupmatches'),
-	NEW_AFTER_VERSION: "0.5.1.3",
-	LATEST_CHANGE : "Added a column to show the № of matches",
-	LATEST_CHANGE_CATEGORY: Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("HighlightCupsets"),
 
     run : function( page, doc ) {

@@ -8,9 +8,6 @@ FoxtrickPlayerFilters = {
 	MODULE_NAME : "PlayerFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),
-	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Splitted player filters from TeamStats as a module.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	FILTER_SELECT_ID : "foxtrick-filter-select",
 

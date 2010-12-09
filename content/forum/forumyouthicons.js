@@ -12,9 +12,6 @@
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","forumModWritePost","ticket"),
 	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
 
-	NEW_AFTER_VERSION: "0.5.2.1",
-	LATEST_CHANGE:"Added table button",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	fields : [
 				// Forum

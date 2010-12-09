@@ -9,9 +9,6 @@ var FoxtrickTeamPopupLinks = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all_late"],
 	CSS : Foxtrick.ResourcePath + "resources/css/popup-links.css",
-	NEW_AFTER_VERSION : "0.5.0.5",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LATEST_CHANGE : "Simple speed check added. Only adds about max 100 teampopup links per page (for performance reason)",
 
 	OPTIONS : [ "TeamLinks", "UserLinks", "CustomLink" ],
 	OPTION_TEXTS : true,

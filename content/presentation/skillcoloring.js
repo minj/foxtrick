@@ -22,9 +22,6 @@ var FoxtrickSkillColoring = {
                                 Foxtrick.ResourcePath+"resources/skillcolors/skill-number-selectoption.css",
                                 Foxtrick.ResourcePath+"resources/skillcolors/no-skill-links.css"
                            ),
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Numbers to team sprit and confidence. Small translated skills fix",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     init : function() {
 		if  ( Foxtrick.isModuleFeatureEnabled( this, "skill_number" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) )

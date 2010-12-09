@@ -8,9 +8,6 @@ FoxtrickTransferSearchResultFilters = {
 	MODULE_NAME : "TransferSearchResultFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('transferSearchForm','transferSearchResult'),
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Filters the search transfer search results",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	advanced_option_on : false,
 
 	filters : 	[ {name : 'hide_bruised', type : 'check', properties : {checked: false} },

@@ -9,9 +9,6 @@ var FoxtrickForumThreadAutoIgnore = {
     MODULE_NAME : "ForumThreadAutoIgnore",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
-	NEW_AFTER_VERSION: "0.5.2.1",
-	LATEST_CHANGE:"Auto ignore of forum topics with user selected tags",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : ["Tags","Whitelist_ThreadIDs"],
 	OPTION_TEXTS : true,
 	tagmarkers : [['\\[','\\]'],['{','}']], // any more known?

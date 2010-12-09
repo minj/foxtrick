@@ -8,9 +8,6 @@ FoxtrickExtraPlayerInfo = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["players"],
 	OPTIONS : ["CoachInfo", "Flag"],
-	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Splitted extra player information from TeamStats as a module, and updated to match latest HT version.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	// used for coloring NT players when AddFlags is enabled
 	NT_COLOR : "#FFCC00",

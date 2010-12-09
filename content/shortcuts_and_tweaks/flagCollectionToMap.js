@@ -8,9 +8,6 @@ FoxtrickFlagCollectionToMap = {
     MODULE_NAME : "FlagCollectionToMap",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('flagCollection'),
-	NEW_AFTER_VERSION: "0.5.1.3",
-	LATEST_CHANGE:"Lesotho fix",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	own_countryid:0,
 	own_countryvisited:false,

@@ -14,9 +14,6 @@ var FoxtrickForumTemplates = {
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("","125"),
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
 
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Fix for latest forum change",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     _MAX_TEMPLATE_DISP_LENGTH : 60,
 	_DISPLAY_WIDTH:125,

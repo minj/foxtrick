@@ -15,9 +15,6 @@ var FoxtrickOriginalFace = {
 		Foxtrick.ResourcePath + "resources/css/HideFaceSuspendedImages.css",
 		null
 	],
-	NEW_AFTER_VERSION : "0.5.0.5",
-	LATEST_CHANGE : "Merged four modules to OriginalFace as options.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	run : function(page, doc) {
 		if (Foxtrick.isModuleFeatureEnabled(FoxtrickSkillTable, "ColouredYouth")) {

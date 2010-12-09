@@ -9,9 +9,6 @@ var FoxtrickMarkUnread = {
     MODULE_NAME : "MarkUnread",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"adds a link to mark hread unread until",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
     run : function( page, doc ) {
         //return;

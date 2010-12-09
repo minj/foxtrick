@@ -9,9 +9,6 @@ var FoxtrickGoToPostBox = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Fix for latest forum change",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     run : function( page, doc ) {
         Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");

@@ -8,11 +8,7 @@ Foxtrick.htmsStatistics = {
 
 	MODULE_NAME : "htmsStatistics",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	PAGES : new Array('match'),
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"Added custom colors",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS : Foxtrick.ResourcePath + "resources/css/htms-statistics.css",
 
 	run : function( page, doc ) {

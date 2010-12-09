@@ -18,9 +18,6 @@ var FoxtrickFormatPostingText = {
 	MODULE_NAME : "FormatPostingText",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
-	NEW_AFTER_VERSION: "0.5.1.2",
-	LATEST_CHANGE:"Fixes display error",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function( page, doc ) {
 		//format view
@@ -101,9 +98,6 @@ var FoxtrickCopyPostID = {
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	NEW_AFTER_VERSION: "0.5.1.3",
-	LATEST_CHANGE:"Added [post=..] to copied post id",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("AddCopyIcon")
 };
 
@@ -118,9 +112,6 @@ var FoxtrickCopyPosting = {
 	MODULE_NAME : "CopyPosting",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	NEW_AFTER_VERSION: "0.5.2.1",
-	LATEST_CHANGE:"Styles as popup",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 };
 
 //**********************************************************
@@ -134,9 +125,6 @@ var FoxtrickForumAlterHeaderLine = {
 	MODULE_NAME : "ForumAlterHeaderLine",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"HideOldTime fixing for some dateformats",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName","HideOldTime",
 						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar","BookmarkHeaderSmall","HighlightThreadOpener"),
 	OPTIONS_CSS: new Array (Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single.css",

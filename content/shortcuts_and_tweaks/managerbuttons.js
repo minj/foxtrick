@@ -11,9 +11,6 @@ var FoxtrickManagerButtons = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("managerPage", "teamPage","youthoverview"),
 	OPTIONS : ["GuestBook", "LargeSendMail"],
-	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Updated to latest HT version.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	GUESTBOOK_LINK_ID : "ft-guest-book",
 	CHALLENGE_LINK_ID : "ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkChallenge",

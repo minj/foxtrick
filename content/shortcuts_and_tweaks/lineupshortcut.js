@@ -8,9 +8,6 @@ FoxtrickLineupShortcut = {
     MODULE_NAME : "FoxtrickLineupShortcut",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
     PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'),
-	NEW_AFTER_VERSION: "0.5.1.3",
-	LATEST_CHANGE:"Fix for Teams with problamatic names",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
  	OPTIONS : new Array("HighlightPlayer"),
 
     run : function(page, doc) {

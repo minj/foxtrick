@@ -8,9 +8,6 @@ var FoxtrickYouthPromotes = {
 	MODULE_NAME : "YouthPromotes",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayer'),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LATEST_CHANGE: "Now working on all locales",
 
 	run : function( page, doc ) {
 		var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);

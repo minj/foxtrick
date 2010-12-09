@@ -10,9 +10,6 @@ var FoxtrickContextMenuCopy = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all"],
 	OPTIONS : ["Id", "Link", "HtMl", "Table"],
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Complete overhaul. Copying any selected content in HT-ML.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	MENU_ID : null,
 	MENU_LINK : null,

@@ -8,8 +8,6 @@ var FoxtrickPersonalityImages = {
 	MODULE_NAME : "PersonalityImages",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array("playerdetail", "training"),
-	LATEST_CHANGE : "Show aggressiveness value as HT denomination, and working on training page.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		var skills = doc.getElementsByClassName("skill");

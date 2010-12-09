@@ -8,9 +8,6 @@ var FoxtrickSkinPlugin = {
 
     MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Moved to presentation tab. Old skins need to get reloaded",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array('Skin1','Skin2'),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array("", ""),

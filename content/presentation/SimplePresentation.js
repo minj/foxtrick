@@ -7,9 +7,6 @@ FoxtrickSimplePresentation = {
     MODULE_NAME : "SimplePresentation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all'),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Added module for presentation options",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
     OPTIONS :  new Array(           "League_Table",
 									"Guestbook",

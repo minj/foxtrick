@@ -11,9 +11,6 @@ var FoxtrickStarsCounter = {
 	MODULE_NAME : "StarsCounter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array("matchLineup"),
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Correctly counting for RTL languages.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		var yellow = 0;

@@ -9,9 +9,6 @@ var FoxtrickConfirmActions = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "staff"],
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
-	NEW_AFTER_VERSION : "0.5.1.3",
-	LATEST_CHANGE : "Use FoxTrick note for confirmation (not available for NT change).",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	BID : {
 		ALERT_ID : "ctl00_ctl00_CPContent_CPMain_updBid",

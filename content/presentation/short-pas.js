@@ -8,8 +8,6 @@ var FoxtrickShortPAs = {
 	MODULE_NAME : "ShortPAs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'),
-	NEW_AFTER_VERSION: "0.4.8.1",
-	LATEST_CHANGE:"Fix for PAs with horizontal lines",
 
 	run : function( page, doc ) {
 		var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');

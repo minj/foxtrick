@@ -9,8 +9,6 @@ var FoxtrickTables = {
     MODULE_NAME : "GoaldifferenceToTables",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('promotion','oldseries','marathon'),
-    NEW_AFTER_VERSION : "0.5.0.5",
-    LATEST_CHANGE : "Fixed goal differences when it's positive",
 
     CSS : Foxtrick.ResourcePath + "resources/css/goal-diff.css",
 
@@ -65,9 +63,6 @@ var FoxtrickMatchTables = {
     MODULE_NAME : "MatchTables",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('matchesarchiv', 'matches','league','youthleague'),
-    NEW_AFTER_VERSION: "0.4.8.2",
-    LATEST_CHANGE:"removes white space on match tables",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS :  new Array("RemoveTime"),
 
     run : function( page, doc ) {

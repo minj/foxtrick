@@ -7,8 +7,6 @@ FoxtrickExtendedPlayerDetails = {
     MODULE_NAME : "ExtendedPlayerDetails",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'),
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
     RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
     run : function(page, doc) {
@@ -54,9 +52,6 @@ FoxtrickExtendedPlayerDetailsWage = {
     MODULE_NAME : "ExtendedPlayerDetailsWage",
     MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail'),
-	NEW_AFTER_VERSION: "0.4.8.2",
-	LATEST_CHANGE:"Bonus and wage moved to seperate modules and made optional",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
 
     run : function(page, doc) {

@@ -10,8 +10,6 @@ var FoxtrickPlayerBirthday = {
     MODULE_NAME : "PlayerBirthday",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players','YouthPlayers'),
-	NEW_AFTER_VERSION : "0.4.8.9",
-	LATEST_CHANGE : "Birthdaybox fixed for russian lang",
 
     run : function(page, doc) {
 		// array of players

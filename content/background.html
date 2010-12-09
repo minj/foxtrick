@@ -102,11 +102,6 @@ function isHTUrl(url) {
 	htNTidListxhr.open("GET", listUrl, false);
 	htNTidListxhr.send();
 
-	listUrl = chrome.extension.getURL("content/data/htversions.xml");
-	var htversionsxhr = new XMLHttpRequest();
-	htversionsxhr.open("GET", listUrl, false);
-	htversionsxhr.send();
-
 	listUrl = chrome.extension.getURL("content/data/htdateformat.xml");
 	var htdateformatxhr = new XMLHttpRequest();
 	htdateformatxhr.open("GET", listUrl, false);
@@ -171,7 +166,6 @@ chrome.extension.onConnect.addListener(function(port) {
 						screenshots: screenshotsxhr.responseText,
 						htcurrency: htcurrencyxhr.responseText,
 						htNTidList: htNTidListxhr.responseText,
-						htversions: htversionsxhr.responseText,
 						htdateformat: htdateformatxhr.responseText,
 						about: aboutxhr.responseText,
 						League: League,

@@ -10,9 +10,6 @@
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
     CSS : Foxtrick.ResourcePath + "resources/css/ht-thread.css",
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Use CSS file for styling.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function( page, doc ) {
 		this.ColorLatest(doc, "threadContent", "folderitem");

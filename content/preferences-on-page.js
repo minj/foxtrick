@@ -10,9 +10,6 @@ var FoxtrickOnPagePrefs = {
 	MODULE_NAME : "OnPagePrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	PAGES : new Array('all_late'),
-	NEW_AFTER_VERSION: "0.4.9",
-	LATEST_CHANGE:"Fix for latest forum change",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		try {

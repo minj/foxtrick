@@ -11,7 +11,6 @@ a "b", denoting "beta" follows a major version number.
 Keep in mind to modify the following files:
 * install.rdf
 * manifest.json
-* content/data/htversions.xml
 * default/preferences/foxtrick.js
 
 

@@ -8,8 +8,6 @@ var FoxtrickMovePlayerSelectbox= {
 	MODULE_NAME : "MovePlayerSelectbox",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
-	NEW_AFTER_VERSION: "0.4.7",
-	LATEST_CHANGE:"option to move player select box up on playersdetail page (default off)",
 
     run : function( page, doc ) {
 		var select =doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_ddlSquad');
@@ -34,9 +32,6 @@ var FoxtrickMoveManagerOnline= {
 	MODULE_NAME : "MoveManagerOnline",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('region'),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LATEST_CHANGE: "Simple speed check added. Don't move if there are more than about 80 managers online",
 
     run : function( page, doc ) {
 		var mainBody = doc.getElementById('mainBody');

@@ -9,9 +9,6 @@ var FoxtrickReadHtPrefs = {
 	MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	PAGES : ["all"],
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Detect language on all pages. Merged all preference detection options.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 

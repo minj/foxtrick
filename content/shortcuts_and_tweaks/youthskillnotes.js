@@ -9,9 +9,6 @@ var FoxtrickYouthSkillNotes = {
     MODULE_NAME : "YouthSkillNotes",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayer','YouthPlayers'),
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE:"Option to show it only for own team.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
     OPTIONS : new Array("OnlyOwnTeam"),
 
     run : function( page, doc ) {

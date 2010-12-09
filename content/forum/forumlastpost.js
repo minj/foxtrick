@@ -8,9 +8,6 @@ var FoxtrickForumLastPost = {
     MODULE_NAME : "ForumLastPost",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
     PAGES : new Array("forum", "forumSettings"),
-	NEW_AFTER_VERSION: "0.4.9.1",
-	LATEST_CHANGE: "replaces the links on forum thread list to last posting of read threads",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS: new Array('lastpage'),
 
     run : function( page, doc ) {

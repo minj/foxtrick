@@ -9,9 +9,6 @@ var FoxtrickTableSort = {
 	MODULE_NAME : "TableSort",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('forumViewThread','all_late'),
-    NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Sort option for some hattrick and forum tables",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	CSS : Foxtrick.ResourcePath + "resources/css/tableSort.css",
 
 	sortNum : false,

@@ -9,9 +9,6 @@ var FoxtrickSkillTranslation = {
     MODULE_NAME : "SkillTranslation",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('denominations'),
-	NEW_AFTER_VERSION: "0.5.1.3",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
-	LATEST_CHANGE : "Updated to the latest version as of 7th May 2010.",
 
 player_abilities	: new Array(
 	"Player abilities",

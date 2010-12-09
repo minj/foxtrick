@@ -9,9 +9,6 @@ var FoxtrickCopyRatings = {
 	MODULE_NAME : "CopyRatings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Small copyicon options as popup",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") !== null);

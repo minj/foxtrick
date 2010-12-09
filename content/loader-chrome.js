@@ -96,7 +96,6 @@ portgetsettings.onMessage.addListener(function(msg) {
 		Foxtrickl10n.htLanguagesXml = parser.parseFromString(msg.htlang,"text/xml");
 		Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(msg.htcurrency,"text/xml");
 		Foxtrick.XMLData.htNTidsXml = parser.parseFromString(msg.htNTidList,"text/xml");
-		Foxtrick.XMLData.htversionsXML = parser.parseFromString(msg.htversions,"text/xml");
 		Foxtrick.XMLData.htdateformat = parser.parseFromString(msg.htdateformat,"text/xml");
 		Foxtrick.XMLData.aboutXML = parser.parseFromString(msg.about,"text/xml");
 		Foxtrick.XMLData.League = msg.League; 

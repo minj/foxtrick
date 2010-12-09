@@ -28,9 +28,6 @@ var FoxtrickCopyTrainingReport = {
 	MODULE_NAME : "CopyTrainingReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthTraining'),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Open hty page after copying",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OpenHTYpage"),
 
 	run : function( page, doc ) {
@@ -128,9 +125,6 @@ var FoxtrickCopyScoutReport = {
 	MODULE_NAME : "CopyScoutReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail','youthoverview'),
-	NEW_AFTER_VERSION: "0.5.1.2",
-	LATEST_CHANGE:"Fixed missing specialty",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("OpenHTYpage"),
 
 	run : function( page, doc ) {
@@ -260,9 +254,6 @@ var FoxtrickCopyPlayerSource = {
 	MODULE_NAME : "CopyPlayerSource",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('youthplayerdetail'),
-	NEW_AFTER_VERSION: "0.5.0.5",
-	LATEST_CHANGE:"Open hty page after copying",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 	OPTIONS : new Array("OpenHTYpage"),
 	page_html:'',
 

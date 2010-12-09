@@ -8,9 +8,6 @@ var FoxtrickAlertCustomSounds = {
     MODULE_NAME : "AlertCustomSounds",
     MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : new Array('all'),
-	NEW_AFTER_VERSION : "0.5.1.2",
-	LATEST_CHANGE : "Moved to alert category.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array("LoginWelcome","LoginSupporters","ForumReplyToMe","TransferMarket","Challenges","Guestbook","MailToMe","MyHTMessages"),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DEFAULT_VALUES : new Array(Foxtrick.ResourcePath+"resources/sounds/DingLing.wav",  // LoginWelcome

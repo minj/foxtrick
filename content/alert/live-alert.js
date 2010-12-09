@@ -8,9 +8,6 @@ var FoxtrickLiveAlert = {
 	MODULE_NAME : "LiveAlert",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : [ "matchesLive" ],
-	NEW_AFTER_VERSION : "0.5.3",
-	LATEST_CHANGE : "Module for alerting HT Live goals",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.NEW,
 
 	store : {},
 

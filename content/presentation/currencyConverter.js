@@ -7,9 +7,6 @@ FoxtrickCurrencyConverter = {
     MODULE_NAME : "CurrencyConverter",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all_late'),
-	NEW_AFTER_VERSION : "0.5.1.2",
-	LATEST_CHANGE : "Conversion rates fixed",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	OPTION_FUNC : function(doc) {
 		var currencySelect = doc.createElement("select");

@@ -11,9 +11,6 @@ var FoxtrickCopyPlayerAd = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "youthplayerdetail"],
 	OPTIONS : ["Sorted"],
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Now supporting youth players, and added option to sort player's skills.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
 	run : function(page, doc) {
 		try {

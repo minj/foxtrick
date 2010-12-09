@@ -8,8 +8,6 @@ var FoxtrickHideSignatures = {
     MODULE_NAME : "HideSignatures",
     MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE:"Hide Signature module is finally fixed.",
 
     run : function( page, doc ) {
         //return;

@@ -15,7 +15,6 @@ Foxtrick.XMLData = {
 	countryToLeague : {},
 	htCurrencyXml : null,
 	htNTidsXml : null,
-	htversionsXML : null,
 	htdateformat : null,
 	aboutXML : null,
 
@@ -23,7 +22,6 @@ Foxtrick.XMLData = {
 		if (Foxtrick.BuildFor === "Gecko") {
 			this.htCurrencyXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htcurrency.xml");
 			this.htNTidsXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/htNTidList.xml");
-			this.htversionsXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/htversions.xml");
 			this.htdateformat = Foxtrick.LoadXML("chrome://foxtrick/content/data/htdateformat.xml");
 			this.aboutXML = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
 

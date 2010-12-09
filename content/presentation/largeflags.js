@@ -8,9 +8,6 @@ var FoxtrickLargeFlags = {
     MODULE_NAME : "LargeFlags",
     MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
-	NEW_AFTER_VERSION : "0.5.2.1",
-	LATEST_CHANGE : "Disabled by default since it may crash the whole operating system under GNU/Linux. Fixed the flag of Chinese Taipei.",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 
     run : function(page, doc) {
 		var faceCard = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar");

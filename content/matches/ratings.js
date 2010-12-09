@@ -9,9 +9,6 @@ Foxtrick.Ratings = {
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	NEW_AFTER_VERSION: "0.4.8.9",
-	LATEST_CHANGE: "Fixed ratings for youth matches",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	OPTIONS : new Array ("hatstats", "hatstatstotal", "loddarstats", "peasostats", "vnukstats", "htitavals", "gardierstats"),
 	ratingDefs :  {}, // will be filled in initOptions
 

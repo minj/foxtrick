@@ -15,9 +15,6 @@ var FoxtrickCountyList = {
                         'help_contact'
                         ),
     OPTIONS :  new Array("SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"),
-	NEW_AFTER_VERSION: "0.5.0.0",
-	LATEST_CHANGE:"Fixed module not working",
-	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS: Foxtrick.ResourcePath+"resources/css/CountyList.css",
 
 	run : function( page, doc ) {
