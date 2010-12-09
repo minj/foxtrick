@@ -21,6 +21,11 @@ var FoxtrickPrefsDialogHTML = {
 				gBrowser.selectedTab = gBrowser.addTab(ev.target.href);
 			}
 		}, true);
+
+		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
+			gBrowser.selectedTab = gBrowser.addTab("chrome://foxtrick/content/preferences.xhtml#tab=changes");
+			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
+		}
 	},
 
 	save : function( ev ) {

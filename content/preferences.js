@@ -59,9 +59,14 @@ function showModule(module)
 	moduleObj[0].scrollIntoView(true);
 }
 
+function baseURI()
+{
+	return window.location.toString().replace(/#.*$/, "");
+}
+
 function generateURI(tab, module)
 {
-	const location = window.location.toString().replace(/#.*$/, "");
+	const location = baseURI();
 	if (tab)
 		return location + "#tab=" + tab;
 	else if (module)
@@ -72,6 +77,12 @@ function initListeners()
 {
 	$("#save").click(function() { save(); });
 	$("#note").click(function() { $(this).hide("slow"); });
+	$("body").click(function(ev) {
+		if (ev.target.nodeName.toLowerCase() == "a"
+			&& ev.target.href.indexOf(baseURI()) == 0) {
+			locateFragment(ev.target.href);
+		}
+	});
 }
 
 function initTabs()
@@ -80,11 +91,11 @@ function initTabs()
 	$("#tabs li a").each(function() {
 		const tab = $(this).parent().attr("id").replace(/^tab-/, "");
 		$(this).attr("href", generateURI(tab));
-		$(this).click(function() { locateFragment($(this).attr("href")); });
 	});
 	// initialize the tabs
 	initMainTab();
 	initModuleTabs();
+	initChangesTab();
 	initHelpTab();
 	initAboutTab();
 }
@@ -301,7 +312,6 @@ function getModule(module)
 	link.className = "module-link";
 	link.textContent = "¶";
 	link.href = generateURI(null, module.MODULE_NAME);
-	$(link).click(function() { locateFragment($(this).attr("href")); });
 	title.appendChild(link);
 
 	// screenshot
@@ -422,6 +432,52 @@ function getScreenshot(link)
 	a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
 	a.setAttribute('target','_blank');
 	return a;
+}
+
+function initChangesTab()
+{
+	const releaseNotes = Foxtrick.LoadXML("chrome://foxtrick/content/releaseNotes.xml");
+	const noteElements = releaseNotes.getElementsByTagName("note");
+	var notes = {};
+
+	var select = $("#pref-version-release-notes")[0];
+	for (var i = 0; i < noteElements.length; ++i) {
+		const version = noteElements[i].getAttribute("version");
+		var item = document.createElement("option");
+		item.textContent = version;
+		item.value = version;
+		notes[version] = noteElements[i];
+		select.appendChild(item);
+	}
+
+	var updateNotepad = function() {
+		const version = select.options[select.selectedIndex].value;
+		var list = $("#pref-notepad-list")[0];
+		list.textContent = ""; // clear list
+		const note = notes[version];
+		if (!note)
+			return;
+		var items = note.getElementsByTagName("item");
+		for (var i = 0; i < items.length; ++i) {
+			var item = document.createElement("li");
+			list.appendChild(item);
+			for (var j = 0; j < items[i].childNodes.length; ++j) {
+				const node = items[i].childNodes[j];
+				if (node.nodeType == Node.TEXT_NODE)
+					item.appendChild(document.createTextNode(node.textContent));
+				else if (node.nodeType == Node.ELEMENT_NODE
+					&& node.nodeName.toLowerCase() == "module") {
+					var link = document.createElement("a");
+					link.textContent = node.textContent;
+					link.href = "chrome://foxtrick/content/preferences.xhtml#module=" + link.textContent;
+					item.appendChild(link);
+				}
+			}
+		}
+	}
+
+	updateNotepad();
+	$(select).change(updateNotepad);
 }
 
 function initHelpTab()

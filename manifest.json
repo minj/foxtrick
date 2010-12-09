@@ -14,7 +14,6 @@
 			"content/preferences-dialog-html.js",
 			"content/preferences-on-page.js",
 			"content/forum_stage.js",
-			"content/first-run.js",
 			"content/util/currency.js",
 			"content/util/note.js",
 			"content/util/time.js",

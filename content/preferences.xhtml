@@ -18,7 +18,6 @@
 	<script type="application/x-javascript" src="./preferences-dialog-html.js"></script>
 	<script type="application/x-javascript" src="./preferences-on-page.js"></script>
 	<script type="application/x-javascript" src="./forum_stage.js"></script>
-	<script type="application/x-javascript" src="./first-run.js"></script>
 
 	<!-- utilities -->
 	<script type="application/x-javascript" src="./util/currency.js"></script>
@@ -161,6 +160,7 @@
 <li id="tab-forum"><a text-key="foxtrick.prefs.ForumTab"></a></li>
 <li id="tab-links"><a text-key="foxtrick.prefs.LinksTab"></a></li>
 <li id="tab-alert"><a text-key="foxtrick.prefs.AlertTab"></a></li>
+<li id="tab-changes"><a text-key="foxtrick.prefs.ChangesTab"></a></li>
 <li id="tab-help"><a text-key="foxtrick.prefs.HelpTab"></a></li>
 <li id="tab-about"><a text-key="foxtrick.prefs.AboutTab"></a></li>
 </ul>
@@ -263,6 +263,15 @@
 <div id="pane-forum"></div>
 <div id="pane-links"></div>
 <div id="pane-alert"></div>
+<div id="pane-changes">
+	<div>
+		<label for="pref-version-release-notes" text-key="foxtrick.versionReleaseNotes"></label>
+		<select id="pref-version-release-notes"></select>
+	</div>
+	<div id="pref-notepad">
+		<ul id="pref-notepad-list"></ul>
+	</div>
+</div>
 <div id="pane-help">
 	<div class="module">
 		<h3 text-key="foxtrick.prefs.links"></h3>

@@ -14,7 +14,6 @@ if (!Foxtrick) var Foxtrick={};
 Foxtrick.modules = [
 	Foxtrick.XMLData,
 	FoxtrickReadHtPrefs,
-	FoxtrickFirstRun,
 	FoxtrickPrefsDialogHTML,
 	FoxtrickOnPagePrefs,
 	Foxtrick.Matches,

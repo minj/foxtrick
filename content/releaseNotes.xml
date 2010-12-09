@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<release_note>
+<notes>
+<note version="0.5.4b2">
+<item>Some fixes for latest Hattrick changes.</item>
+</note>
 
-<version>0.5.4</version>
-<title>Release notes (selected features and issues only)</title>
-<lines>New preferences interface.</lines>
-<lines>LiveAlert module for alerting at HT Live goals.</lines>
-</release_note>
+<note version="0.5.4b1">
+<item>New preferences interface.</item>
+<item><module>LiveAlert</module> for alerting at HT Live goals.</item>
+<item><module>OldStyleFace</module> for showing faces in old Hattrick style.</item>
+</note>
+</notes>
