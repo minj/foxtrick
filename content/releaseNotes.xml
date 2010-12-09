@@ -2,7 +2,11 @@
 
 <notes>
 <note version="0.5.4b2">
+<item>Added Belarusian locale by LA-Stolik.</item>
 <item>Some fixes for latest Hattrick changes.</item>
+<item>Changes tab for showing release notes in preferences interface.</item>
+<item>FoxTrick preferences links clickable inside Hattrick.</item>
+<item>Radio options in ExtraShortcuts are disabled by default.</item>
 </note>
 
 <note version="0.5.4b1">
