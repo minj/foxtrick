@@ -161,14 +161,12 @@ var FoxtrickForumChangePosts = {
 
 		// loop through cfWrapper --------------------------------------------
 		var num_wrapper = 0;  // message counter
-		var alldivs = doc.getElementById('threadContent').childNodes;
+		var wrappers = doc.getElementsByClassName("cfWrapper");
 		var i = 0, wrapper;
-		while ( wrapper = alldivs[++i] ) {
-		  if ( wrapper.className=="cfWrapper" || wrapper.className=="cfDim" ) {
-
-		  var allwrapperdivs = wrapper.childNodes;
+		while ( wrapper = wrappers[i++] ) {
+			var allwrapperdivs = wrapper.childNodes;
 			var ii = 0, header;
-			while ( header = allwrapperdivs[++ii] ) {
+			while ( header = allwrapperdivs[ii++] ) {
 				if (header.className=="cfDim") header = header.firstChild;
 				if ( header.className && header.className.search(/cfHeader/)!=-1 ) {
 
@@ -582,7 +580,6 @@ var FoxtrickForumChangePosts = {
 					++num_wrapper;
 				}
 			}
-		  }
 		}
 	},
 
