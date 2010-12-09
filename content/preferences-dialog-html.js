@@ -7,10 +7,21 @@
 var FoxtrickPrefsDialogHTML = {
 	MODULE_NAME : "PrefsDialogHTML",
 	CORE_MODULE : true,
+	PAGES : [ "all" ],
 	NEW_AFTER_VERSION: "0.4.9.1",
 	LATEST_CHANGE:"Fixed ex/importing preferences",
 	LATEST_CHANGE_CATEGORY : Foxtrick.latestChangeCategories.FIX,
 	CSS : Foxtrick.ResourcePath + "resources/css/preferences-dialog-html.css",
+
+	run : function(page, doc) {
+		doc.addEventListener("click", function(ev) {
+			// make chrome:// links clickable
+			if (ev.target.nodeName.toLowerCase() === "a"
+				&& ev.target.href.indexOf("chrome://foxtrick/") == 0) {
+				gBrowser.selectedTab = gBrowser.addTab(ev.target.href);
+			}
+		}, true);
+	},
 
 	save : function( ev ) {
 		try {
