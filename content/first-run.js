@@ -20,40 +20,8 @@ var FoxtrickFirstRun = {
 			var curVersion = Foxtrick.version();
 			FoxtrickPrefs.setString("oldVersion",curVersion);
 
-			// set some special defaults
-			this.setDefaults(doc);
-
 			// show foxtrickMyHT
 			this.ShowAlert(doc);
-		}
-	},
-
-	setDefaults :function(doc) {
-		// set radio defaults as by appropriate countries
-		Foxtrick.dump('No9:'+FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')+'\n');
-		Foxtrick.dump('Latehome:'+FoxtrickPrefs.getBool('module.ExtraShortcuts.Latehome.enabled')+'\n');
-
-		var country = FoxtrickPrefs.getString("htCountry");
-		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.HtRadio.enabled')===null) {
-			if (country==='Belgium' || country==='Netherlands') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',true)
-				Foxtrick.dump('HtRadio enabled\n');
-			}
-			else FoxtrickPrefs.setBool('module.ExtraShortcuts.HtRadio.enabled',false)
-		}
-		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.No9.enabled')===null) {
-			if (country==='Germany') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.No9.enabled',true)
-				Foxtrick.dump('No9 enabled\n');
-			}
-			else FoxtrickPrefs.setBool('module.ExtraShortcuts.No9.enabled',false)
-		}
-		if (FoxtrickPrefs.getBool('module.ExtraShortcuts.Latehome.enabled')===null) {
-			if (country==='Germany' || country==='Austria') {
-				FoxtrickPrefs.setBool('module.ExtraShortcuts.Latehome.enabled',true)
-				Foxtrick.dump('Latehome enabled\n');
-			}
-			else FoxtrickPrefs.setBool('module.ExtraShortcuts.Latehome.enabled',false)
 		}
 	},
 
