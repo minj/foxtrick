@@ -113,15 +113,10 @@ var FoxtrickRedirections = {
 			if (doc.location.href.search(/\/Club\/Players/i)!=-1 ) {
 				// redirect to coach
 				try {
-					var alldivs = doc.getElementsByTagName('div');
-					for (var j = 0; j < alldivs.length; j++) {
-						if (alldivs[j].className=="sidebarBox") {
-							var CoachId = FoxtrickHelper.findPlayerId(alldivs[j]);
-							var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
-							doc.location.replace(tar);
-							break;
-						}
-					}
+					var sidebarBox = doc.getElementById("sidebar").getElementsByClassName("sidebarBox")[0];
+					var coachId = FoxtrickHelper.findPlayerId(sidebarBox);
+					var location = serv+"/Club/Players/Player.aspx?playerId=" + coachId;
+					doc.location.replace(location);
 				}
 				catch (e) {
 					Foxtrick.dumpError(e);
