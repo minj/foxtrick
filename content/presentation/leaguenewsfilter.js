@@ -94,7 +94,7 @@ var FoxtrickLeagueNewsFilter = {
 				// lineup set
 				if (Foxtrick.isModuleFeatureEnabled(this, 'highlight_set_lineup') && tables[k].rows[i].cells.length>=3 && tables[k].rows[i].cells[2].innerHTML.search(/\/Club\/Matches\/Live\.aspx\?actionType=addMatch/i)!=-1) {
 					for (var j = 0; j < lineupSet.length; ++j) {
-						var pos = link.title.search(Foxtrick.stringToRegExp(lineupSet[j]));
+						var pos = link.title.indexOf(lineupSet[j]);
 						if (pos == 0) {
 							// home team has set lineup
 							var reg = new RegExp(/(.+)&nbsp;-/);
@@ -110,7 +110,7 @@ var FoxtrickLeagueNewsFilter = {
 				// bots
 				if (Foxtrick.isModuleFeatureEnabled(this, 'gray_bots')) {
 					for (var j = 0; j < bots.length; ++j) {
-						var pos = link.title.search(Foxtrick.stringToRegExp(bots[j]));
+						var pos = link.title.indexOf(bots[j]);
 						if (pos == 0) {
 							// home team is bot
 							var reg = new RegExp(/(.+)&nbsp;-/);

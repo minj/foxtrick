@@ -709,24 +709,6 @@ Foxtrick.substr_count = function (haystack, needle, offset, length) {
 	return cnt;
 }
 
-// this function is used to escape special characters in strings so that they
-// can be used in RegExp. Otherwise, a single unescaped special charcater like
-// "*"(asterisk) used in RegExp matching will result in an "invalid quantifier"
-// error.
-Foxtrick.stringToRegExp = function(string) {
-	var ret = "";
-	var special = [];
-	special["*"] = special["+"] = special["?"] = special["$"] = special["^"]
-		= special["{"] = special["}"] = special["("] = special[")"] = true;
-	for (var i = 0; i < string.length; ++i) {
-		if (special[string[i]] === true) {
-			ret += "\\"; // escape it here
-		}
-		ret += string[i];
-	}
-	return RegExp(ret);
-};
-
 Foxtrick.isCoreModule = function(module) {
 	// core modules must be executed no matter what user's preference is
 	return (module.CORE_MODULE === true);
