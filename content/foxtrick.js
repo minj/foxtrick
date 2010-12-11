@@ -30,8 +30,6 @@ Foxtrick.globals=[];
 for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
 */
 
-var changecount = 0;
-
 var FoxtrickMain = {
 	new_start:true,
 	isStandard:true,
@@ -200,7 +198,6 @@ var FoxtrickMain = {
 		if (ev.originalTarget.className && (ev.originalTarget.className=='boxBody' || ev.originalTarget.className=='myht1'))
 			return;
 
-		if (changecount++ > 100) return;
 
 		var panel = Foxtrick.getPanel(doc);
 		// remove event listener while Foxtrick executes
@@ -210,7 +207,6 @@ var FoxtrickMain = {
 		var end = new Date();
 		var time = (end.getSeconds() - begin.getSeconds()) * 1000
 				 + end.getMilliseconds() - begin.getMilliseconds();
-		//Foxtrick.dump('changecount: '+changecount+' '+ev.target.nodeName+' '+ev.target.className+" " + time + " ms\n");
 		// re-add event listener
 		panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		} catch (e) {Foxtrick.dumpError(e);}
@@ -226,7 +222,6 @@ var FoxtrickMain = {
 			Foxtrick.updateStatus();
 
 			if (Foxtrick.isHt(doc)) {
-				changecount = 0;
 				// check if it's in exclude list
 				for (var i in Foxtrick.pagesExcluded) {
 					var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
