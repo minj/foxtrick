@@ -41,12 +41,13 @@ FoxtrickHistoryStats= {
                         if (a[i].href.search(/viewcup/) > -1) {
                             var check_season = a[i].textContent;
 
-                            if (a[i].parentNode.parentNode.getElementsByClassName("date").length > 0)
+                            if (a[i].parentNode.parentNode.getElementsByClassName("date").length > 0) {
                                 var season = a[i].parentNode.parentNode.getElementsByClassName("date")[0].textContent;
-                            var date = Foxtrick.util.time.getDateFromText(season);
-                            season = Foxtrick.util.time.gregorianToHT(date).season;
-                            this.Offset = parseInt(season)-parseInt(check_season);
-                            done = true;
+                                var date = Foxtrick.util.time.getDateFromText(season);
+                                season = Foxtrick.util.time.gregorianToHT(date).season;
+                                this.Offset = parseInt(season)-parseInt(check_season);
+                                done = true;
+                            }
                         }
                         if (done) break;
                     }
