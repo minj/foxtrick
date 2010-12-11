@@ -232,7 +232,7 @@ pref("extensions.foxtrick.prefs.module.LinksYouthOverview.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthPlayerDetail.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthPlayerList.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.enabled", true);
-pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", false);
+pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.LargeSendMail.enabled", false);
