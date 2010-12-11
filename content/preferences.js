@@ -204,13 +204,11 @@ function initMainTab()
 
 	// date format
 	var dateFormats = [];
-	var htDateFormatXml = document.implementation.createDocument("", "", null);
-	htDateFormatXml.async = false;
-	htDateFormatXml.load("chrome://foxtrick/content/data/htdateformat.xml", "text/xml");
-	var dateFormatNodes = htDateFormatXml.getElementsByTagName("dateformat");
+	var dateFormatXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/htdateformat.xml");
+	var dateFormatNodes = dateFormatXml.getElementsByTagName("dateformat");
 	for (var i = 0; i < dateFormatNodes.length; ++i) {
-		var code = dateFormatNodes[i].attributes.getNamedItem("code").textContent;
-		var desc = dateFormatNodes[i].attributes.getNamedItem("name").textContent;
+		var code = dateFormatNodes[i].getAttribute("code");
+		var desc = dateFormatNodes[i].getAttribute("name");
 		dateFormats.push({ code: code, desc : desc });
 	}
 	dateFormats.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
@@ -266,7 +264,7 @@ function initModuleTabs()
 		"alert" : []
 	}
 	for (var i in Foxtrick.modules) {
-		const category = Foxtrick.modules[i].MODULE_CATEGORY;
+		var category = Foxtrick.modules[i].MODULE_CATEGORY;
 		if (category == Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS)
 			categories["shortcuts"].push(i);
 		else if (category == Foxtrick.moduleCategories.PRESENTATION)
@@ -282,7 +280,7 @@ function initModuleTabs()
 	}
 	// sort modules in alphabetical order and add to category's tab
 	for (var i in categories)
-		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME > Foxtrick.modules[b].MODULE_NAME; });
+		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME.localeCompare(Foxtrick.modules[b].MODULE_NAME); });
 	for (var i in categories)
 		for (var j in categories[i])
 			$("#pane-" + i).append(getModule(Foxtrick.modules[categories[i][j]]));
@@ -436,13 +434,13 @@ function getScreenshot(link)
 
 function initChangesTab()
 {
-	const releaseNotes = Foxtrick.LoadXML("chrome://foxtrick/content/releaseNotes.xml");
+	const releaseNotes = Foxtrick.LoadXML(Foxtrick.ResourcePath + "releaseNotes.xml");
 	const noteElements = releaseNotes.getElementsByTagName("note");
 	var notes = {};
 
 	var select = $("#pref-version-release-notes")[0];
 	for (var i = 0; i < noteElements.length; ++i) {
-		const version = noteElements[i].getAttribute("version");
+		var version = noteElements[i].getAttribute("version");
 		var item = document.createElement("option");
 		item.textContent = version;
 		item.value = version;
@@ -451,7 +449,7 @@ function initChangesTab()
 	}
 
 	var updateNotepad = function() {
-		const version = select.options[select.selectedIndex].value;
+		var version = select.options[select.selectedIndex].value;
 		var list = $("#pref-notepad-list")[0];
 		list.textContent = ""; // clear list
 		const note = notes[version];
@@ -462,14 +460,14 @@ function initChangesTab()
 			var item = document.createElement("li");
 			list.appendChild(item);
 			for (var j = 0; j < items[i].childNodes.length; ++j) {
-				const node = items[i].childNodes[j];
+				var node = items[i].childNodes[j];
 				if (node.nodeType == Node.TEXT_NODE)
 					item.appendChild(document.createTextNode(node.textContent));
 				else if (node.nodeType == Node.ELEMENT_NODE
 					&& node.nodeName.toLowerCase() == "module") {
 					var link = document.createElement("a");
 					link.textContent = node.textContent;
-					link.href = "chrome://foxtrick/content/preferences.xhtml#module=" + link.textContent;
+					link.href = Foxtrick.ResourcePath + "preferences.xhtml#module=" + link.textContent;
 					item.appendChild(link);
 				}
 			}
@@ -483,7 +481,7 @@ function initChangesTab()
 function initHelpTab()
 {
 	// external links
-	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
+	const aboutXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 	const links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
 	for (var i = 0; i < links.length; ++i) {
 		var item = document.createElement("li");
@@ -505,7 +503,7 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	const aboutXml = Foxtrick.LoadXML("chrome://foxtrick/content/data/foxtrick_about.xml");
+	const aboutXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 	$(".about-list").each(function() {
 		const items = Foxtrick.XML_evaluate(aboutXml, $(this).attr("path"), "value");
 		for (var i = 0; i < items.length; ++i) {

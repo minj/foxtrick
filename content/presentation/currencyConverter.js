@@ -12,13 +12,11 @@ FoxtrickCurrencyConverter = {
 		var currencySelect = doc.createElement("select");
 		currencySelect.setAttribute("pref", "module.CurrencyConverter.to");
 		var currencies = [];
-		var htCurrencyXml = doc.implementation.createDocument("", "", null);
-		htCurrencyXml.async = false;
-		htCurrencyXml.load("chrome://foxtrick/content/data/htcurrency.xml", "text/xml");
-		var currencyNodes = htCurrencyXml.getElementsByTagName("currency");
+		var currencyXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/htcurrency.xml");
+		var currencyNodes = currencyXml.getElementsByTagName("currency");
 		for (var i = 0; i < currencyNodes.length; ++i) {
-			var code = currencyNodes[i].attributes.getNamedItem("code").textContent;
-			var desc = currencyNodes[i].attributes.getNamedItem("name").textContent;
+			var code = currencyNodes[i].getAttribute("code");
+			var desc = currencyNodes[i].getAttribute("name");
 			currencies.push({ code: code, desc : desc });
 		}
 		currencies.sort(function(a, b) { return a.desc.localeCompare(b.desc); });

@@ -68,11 +68,16 @@ var Foxtrickl10n = {
 		for (var i in Foxtrickl10n.locales) {
 			var locale = Foxtrickl10n.locales[i];
 			var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
-			Foxtrick.LoadXML(url, (function(locale) {
-				return function(xml) {
-					Foxtrickl10n.htLanguagesXml[locale] = xml;
-				};
-			})(locale));
+			try {
+				Foxtrick.LoadXML(url, (function(locale) {
+					return function(xml) {
+						Foxtrickl10n.htLanguagesXml[locale] = xml;
+					};
+				})(locale));
+			}
+			catch (e) {
+				// in content script
+			}
 		}
 		if (Foxtrick.BuildFor === "Gecko") {
 			this._strings_bundle_default =
@@ -85,6 +90,42 @@ var Foxtrickl10n = {
 				Components.classes["@mozilla.org/intl/stringbundle;1"]
 				.getService(Components.interfaces.nsIStringBundleService)
 				.createBundle("chrome://foxtrick/content/foxtrick.screenshots");
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			try {
+				// used only from options page
+				// get strings
+				listUrl = chrome.extension.getURL("content/foxtrick.properties");
+				var properties_defaultxhr = new XMLHttpRequest();
+				properties_defaultxhr.open("GET", listUrl, false);
+				properties_defaultxhr.send();
+				this.properties_default = properties_defaultxhr.responseText;
+
+				var session_lang ='en';
+				try {
+					var propertiesxhr = new XMLHttpRequest();
+					var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
+					session_lang =  preftext.match(string_regexp)[1];
+					listUrl = chrome.extension.getURL('locale/'+session_lang+"/foxtrick.properties");
+					propertiesxhr.open("GET", listUrl, false);
+					propertiesxhr.send();
+					var properties = propertiesxhr.responseText;
+				}
+				catch(e) {
+					var properties = properties_defaultxhr.responseText;
+				}
+				this.properties = properties;
+
+				// get other non changeable ersources
+				listUrl = chrome.extension.getURL("content/foxtrick.screenshots");
+				var screenshotsxhr = new XMLHttpRequest();
+				screenshotsxhr.open("GET", listUrl, false);
+				screenshotsxhr.send();
+				this.screenshots = screenshotsxhr.responseText;
+			}
+			catch (e) {
+				// in content script
+			}
 		}
 	},
 
