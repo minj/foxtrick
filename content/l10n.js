@@ -65,19 +65,15 @@ var Foxtrickl10n = {
 	_strings_bundle_screenshots_default:null,
 
 	init : function() {
-		for (var i in Foxtrickl10n.locales) {
-			var locale = Foxtrickl10n.locales[i];
-			var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
-			try {
-				Foxtrick.LoadXML(url, (function(locale) {
-					return function(xml) {
-						Foxtrickl10n.htLanguagesXml[locale] = xml;
-					};
-				})(locale));
+		try {
+			for (var i in Foxtrickl10n.locales) {
+				var locale = Foxtrickl10n.locales[i];
+				var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.LoadXML(url);
 			}
-			catch (e) {
-				// in content script
-			}
+		}
+		catch (e) {
+			// in content script
 		}
 		if (Foxtrick.BuildFor === "Gecko") {
 			this._strings_bundle_default =
