@@ -59,23 +59,15 @@ FoxtrickTransferDeadline = {
         var div = doc.getElementById( 'ctl00_ctl00_CPContent_CPMain_updBid' );
         if (!div)
             return;
-        var spans = div.getElementsByClassName("alert");
-        var selltime_elm = spans[0].getElementsByTagName("p")[0];
-        var selltime_clone = selltime_elm.cloneNode(true);
+        var alert = div.getElementsByClassName("alert")[0];
+        var selltime_elm = alert.getElementsByTagName("p")[0];
 
-        var selltimeInner = Foxtrick.trim(selltime_clone.innerHTML);
-
-        var selltime = selltimeInner;
-
-        // suporters check
-        var startPos = selltimeInner.search("<a ");
-
-        if(startPos != -1) {
-            selltime = selltimeInner.substr(0,startPos);
-        }
-
-        selltime = Foxtrick.substr(selltime, Foxtrick.strrpos( selltime, ";")+1, selltime.length);
-        // Foxtrick.dump('ST: ' + selltime + '\n');
+        // remove old deadlines
+        var oldDeadline = selltime_elm.getElementsByClassName("ft_deadline");
+        for (var i = 0; i < oldDeadline.length; ++i)
+            oldDeadline[i].parentNode.removeChild(oldDeadline[i]);
+        
+        var selltime = Foxtrick.trim(selltime_elm.textContent);
 
         var dateObj = Foxtrick.util.time.getDateFromText(selltime);
         var deadline_s = Math.floor((dateObj.getTime() - htDate.getTime()) / 1000); //Sec
