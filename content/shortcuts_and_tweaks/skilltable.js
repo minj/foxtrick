@@ -532,12 +532,13 @@ var FoxtrickSkillTable = {
 				}
 				rows.push(table.rows[i].cloneNode(true));
 			}
-
 			rows.sort(FoxtrickSkillTable.sortCompare);
 
-			for (var i = 1; i < table.rows.length; ++i) {
-				table.rows[i].innerHTML = rows[i-1].innerHTML;
-			}
+			var newBody = doc.createElement("tbody");
+			for (var i = 0; i < rows.length; ++i)
+				newBody.appendChild(rows[i]);
+
+			table.getElementsByTagName("tbody")[0].innerHTML = newBody.innerHTML;
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
