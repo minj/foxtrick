@@ -4,15 +4,19 @@
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_read.png");
 }
 
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=reportmessage&t="] {
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_reportmessage.png");
+}
+
 .cfFooter a[href*="/Forum/Write.aspx?t="]{
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_reply.png");
 }
 
-.cfFooter a[href*="/Forum/Write.aspx?actionType=edit&t="]{
+.cfFooter a[href*="/Forum/Write.aspx?actionTypeWrite=edit&t="]{
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_edit.png");
 }
 
-.cfFooter a[href*="/Forum/Functions.aspx?actionType=delete&t="]{
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=delete&t="]{
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_del.png");
 }
 
@@ -20,7 +24,7 @@
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_fav.png");
 }
 
-.cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="]{
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=ignore&t="]{
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_ignore.png");
 }
 .cfFooter .foxtrick-signaturetoggle{
@@ -35,11 +39,12 @@
 }
 
 .cfFooter a[href*="/Forum/Read.aspx?t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=reportmessage&t="],
 .cfFooter a[href*="/Forum/Write.aspx?t="],
-.cfFooter a[href*="/Forum/Write.aspx?actionType=edit&t="],
-.cfFooter a[href*="/Forum/Functions.aspx?actionType=delete&t="],
+.cfFooter a[href*="/Forum/Write.aspx?actionTypeWrite=edit&t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=delete&t="],
 .cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="],
-.cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=ignore&t="],
 .cfFooter .foxtrick-signaturetoggle,
 .cfFooter .foxtrick-unreadlink,
 .cfFooter .foxtrick-copyfromarchive
