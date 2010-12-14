@@ -91,6 +91,7 @@
 <script type="application/x-javascript" src="./shortcuts_and_tweaks/playerFilters.js" />
 <script type="application/x-javascript" src="./shortcuts_and_tweaks/youthSeriesEstimation.js" />
 <script type="application/x-javascript" src="./shortcuts_and_tweaks/transferSearchResultFilters.js" />
+<script type="application/x-javascript" src="./shortcuts_and_tweaks/nt-peek.js" />
 <script type="application/x-javascript" src="./presentation/extendedplayerdetails.js" />
 <script type="application/x-javascript" src="./presentation/originalFace.js" />
 <script type="application/x-javascript" src="./presentation/movePlayerStatement.js" />

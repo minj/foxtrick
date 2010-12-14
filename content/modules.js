@@ -146,5 +146,6 @@ Foxtrick.modules = [
 	FoxtrickForumThreadAutoIgnore,
 	FoxtrickTableSort,
 	FoxtrickLiveAlert,
-	FoxtrickOldStyleFace
+	FoxtrickOldStyleFace,
+	FoxtrickNtPeek
 ];
