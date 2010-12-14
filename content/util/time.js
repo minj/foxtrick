@@ -23,7 +23,7 @@ Foxtrick.util.time = {
 		return { season : season, week : week };
 	},
 
-	getDateFromText : function(text) {
+	getDateFromText : function(text, dateFormat) {
 		/*
 			Returns Date object for given text.
 			Text could be like dd-mm-yyyy, mm-dd-yyyy or yyyy-mm-dd
@@ -32,7 +32,8 @@ Foxtrick.util.time = {
 			while separator and leading zero are irrelevant.
 		*/
 		try {
-			const DATEFORMAT = FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
+			const DATEFORMAT = dateFormat
+				|| FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
 			switch (DATEFORMAT) {
 				case "ddmmyyyy":
 				case "mmddyyyy":
