@@ -110,8 +110,10 @@ var FoxtrickNtPeek = {
 
 		var matchCell = doc.createElement("td");
 		var matchLink = doc.createElement("a");
-		matchLink.textContent = homeTeam + " - " + awayTeam;
 		matchLink.href = "/Club/Matches/Match.aspx?matchID=" + id;
+		matchLink.title = homeTeam + " - " + awayTeam;
+		matchLink.textContent = homeTeam.substr(0, 15) + " - "
+			+ awayTeam.substr(0, 15);
 		matchCell.appendChild(matchLink);
 		row.appendChild(matchCell);
 

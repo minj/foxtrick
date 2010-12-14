@@ -1,9 +1,14 @@
 .ft-nt-peek-left {
-	width: 45%;
+	width: 48%;
 	float: left;
 }
 
 .ft-nt-peek-right {
-	width: 55%;
+	width: 48%;
 	float: right;
+}
+
+.ft-nt-peek td {
+	padding-right: 0; /* save some space */
+	white-space: nowrap;
 }
