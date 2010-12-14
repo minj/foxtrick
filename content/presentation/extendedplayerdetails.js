@@ -68,11 +68,9 @@ FoxtrickExtendedPlayerDetailsWage = {
             var table_elm_bonus = div.getElementsByTagName( "table" )[0].rows[2].cells[1];
         } catch(e) {Foxtrick.dump('    >' + e + '\n');}
 
-        var has_bonus=false;
-		var table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
-        if (Foxtrick.strrpos( table_inner, "%") > 0 ) {
-            has_bonus=true;
-        }
+		var nationality = Foxtrick.Pages.Player.getNationalityId(doc);
+		var teamNation = FoxtrickHelper.getOwnCountryId();
+        var has_bonus = (nationality !== teamNation);
 
 		table_inner = table_elm_bonus.innerHTML;
 
