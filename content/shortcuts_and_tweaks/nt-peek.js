@@ -131,6 +131,18 @@ var FoxtrickNtPeek = {
 				resultCell.className = "lost";
 			}
 		}
+		else {
+			// add HT-Live
+			var liveLink = doc.createElement("a");
+			liveLink.href = "/Club/Matches/Live.aspx?actionType=addMatch&matchID="
+				+ id;
+			var liveImg = doc.createElement("img");
+			liveImg.className = "matchHTLive";
+			liveImg.src = "/Img/Icons/transparent.gif";
+			liveImg.alt = liveImg.title = Foxtrickl10n.getString("htLive");
+			liveLink.appendChild(liveImg);
+			resultCell.appendChild(liveLink);
+		}
 		row.appendChild(resultCell);
 		return row;
 	}
