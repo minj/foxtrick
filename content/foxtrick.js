@@ -1077,7 +1077,8 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altIn
 			boxClass = "sidebarBox";
 		}
 		else {
-			sidebar = doc.getElementsByClassName("subMenuConf")[0];
+			sidebar = doc.getElementsByClassName("subMenu")[0]
+				|| doc.getElementsByClassName("subMenuConf")[0];
 			boxClass = "subMenuBox";
 		}
 		if (!sidebar) {
