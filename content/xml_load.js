@@ -34,63 +34,6 @@ Foxtrick.XMLData = {
 			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
 			this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 		}
-
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('head_developer');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('project_owner');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('developer');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('designer');
-		for (var i=0;i<foxtrickstaff.length;++i) {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			if(ids)
-			  for (var k=0;k<ids.length;++k) {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=this.aboutXML.getElementsByTagName('translation');
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			if(ids)
-			  for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-
-		var editor=this.aboutXML.getElementsByTagName('editor');
-		for (var i=0;i<editor.length;++i)   {
-			var id = editor[i].getAttribute('value');
-			var name= editor[i].getAttribute('name');
-			FoxtrickStaffMarker.editorsArray[id]=name;
-		}
-
-		var chpp=this.aboutXML.getElementsByTagName('chpp');
-		for (var i=0;i<chpp.length;++i)   {
-			var id = chpp[i].getAttribute('value');
-			var name= chpp[i].getAttribute('name');
-			FoxtrickStaffMarker.chppholder[id]=name;
-		}
 	},
 
 	getchilds : function(el,parent,tag) {

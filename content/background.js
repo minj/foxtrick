@@ -127,26 +127,6 @@ for (var i in data.HattrickData.LeagueList.League) {
 	countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 }
 
-var hty_staff = new Array();
-var req = new XMLHttpRequest();
-var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
-var stopTimer = function(){window.clearTimeout(abortTimerId); };
-req.onreadystatechange = function(){
-	if (req.readyState == 4){
-		stopTimer();
-		var frag = document.createElement('dummy');
-		frag.innerHTML = req.responseText;
-		var htyusers = frag.getElementsByTagName('user');
-		for (var i=0;i<htyusers.length;++i) {
-			hty_staff.push(htyusers[i].getElementsByTagName('alias')[0].innerHTML);
-		}
-	}
-}
-var url = 'http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml';
-req.open('GET', url , true);
-req.send(null);
-
-
 // send resource to content scripts
 chrome.extension.onConnect.addListener(function(port) {
 	if (port.name == "ftpref-query") {
@@ -167,12 +147,6 @@ chrome.extension.onConnect.addListener(function(port) {
 						League: League,
 						countryid_to_leagueid: countryid_to_leagueid,
 						});
-				}
-				else if (msg.reqtype == "get_hty_staff") {
-					port.postMessage({
-						set:'hty_staff',
-						hty_staff: hty_staff,
-					});
 				}
 				else if (msg.reqtype == "get_css_text") {
 					try {
@@ -362,14 +336,11 @@ chrome.extension.onConnect.addListener(function(port) {
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", request.url, true);
 	xhr.onreadystatechange = function(aEvt) {
 		if (xhr.readyState == 4) {
-			if (xhr.status == 200
-				|| xhr.status == 0) {
-				sendResponse({data : xhr.responseXML});
-			}
+			sendResponse({data : xhr.responseText});
 		}
 	};
+	xhr.open("GET", request.url, true);
 	xhr.send();
 });

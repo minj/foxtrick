@@ -101,63 +101,15 @@ portgetsettings.onMessage.addListener(function(msg) {
 		Foxtrick.XMLData.League = msg.League; 
 		Foxtrick.XMLData.countryid_to_leagueid = msg.countryid_to_leagueid;
 
-		var foxtrickstaff=Foxtrick.XMLData.aboutXML.getElementsByTagName('head_developer');		
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=Foxtrick.XMLData.aboutXML.getElementsByTagName('project_owner');		
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=Foxtrick.XMLData.aboutXML.getElementsByTagName('developer');		
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=Foxtrick.XMLData.aboutXML.getElementsByTagName('designer');		
-		for (var i=0;i<foxtrickstaff.length;++i) {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			if(ids)
-			  for (var k=0;k<ids.length;++k) {
-				var id=ids[k].match(/\d+/);
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-		var foxtrickstaff=Foxtrick.XMLData.aboutXML.getElementsByTagName('translation');		
-		for (var i=0;i<foxtrickstaff.length;++i)   {
-			var ids = foxtrickstaff[i].getAttribute('value').match(/\((\d+)\)/g);
-			if(ids)
-			  for (var k=0;k<ids.length;++k)   {
-				var id=ids[k].match(/\d+/);			
-				FoxtrickStaffMarker.foxtrickersArray[id]='x';
-			}
-		}
-//		FoxtrickStaffMarker.hty_staff = msg.hty_staff;
 		console.log('got pref '+msg.set);
 		has_settings=true;
 		if (is_reload) runScript();
-	}
-	else if (msg.set=='hty_staff') {// alert('msg.is_hty_staff : '+msg.set)
-		FoxtrickStaffMarker.hty_staff = msg.hty_staff;
-		console.log('got hty_staff ' +msg.set);
 	}
 });
 
 function get_settings() {
 	console.log('do get_settings');
 	portgetsettings.postMessage({reqtype: "get_settings"});
-	portgetsettings.postMessage({reqtype: "get_hty_staff"});
 }
 	
 // action

@@ -45,12 +45,41 @@ var FoxtrickStaffMarker = {
 				catch (e) {
 					Foxtrick.dumpError(e);
 				}
-			}
+			},
+			true
 		);
 	},
 
 	init : function() {
+		// Hattrick youth club
 		this.updateHtyXML();
+		// FoxTrick
+		var ftTags = [ "head_developer", "project_owner", "developer",
+			"designer", "translation" ];
+		for (var i = 0; i < ftTags.length; ++i) {
+			var tags = Foxtrick.XMLData.aboutXML.getElementsByTagName(ftTags[i]);
+			for (var j = 0; j < tags.length; ++j) {
+				var idList = tags[j].getAttribute("value").match(/\(\d+\)/g);
+				for (var k = 0; idList && k < idList.length; ++k) {
+					var id = idList[k].match(/\d+/)[0];
+					this.foxtrickersArray[id] = "x";
+				}
+			}
+		}
+
+		var editor = Foxtrick.XMLData.aboutXML.getElementsByTagName("editor");
+		for (var i = 0; i < editor.length; ++i) {
+			var id = editor[i].getAttribute("value");
+			var name = editor[i].getAttribute("name");
+			this.editorsArray[id]=name;
+		}
+
+		var chpp=Foxtrick.XMLData.aboutXML.getElementsByTagName("chpp");
+		for (var i = 0; i < chpp.length; ++i) {
+			var id = chpp[i].getAttribute("value");
+			var name = chpp[i].getAttribute("name");
+			this.chppholder[id] = name;
+		}
 	},
 
 	run : function(page, doc) {
