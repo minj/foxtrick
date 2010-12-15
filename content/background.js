@@ -71,15 +71,15 @@ properties_defaultxhr.send();
 var session_lang ='en';
 try {
 	var propertiesxhr = new XMLHttpRequest();
-	var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
+	var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.htLanguage", "(.+?)"\\);');
 	session_lang =  preftext.match(string_regexp)[1];
-	listUrl = chrome.extension.getURL('locale/'+session_lang+"/foxtrick.properties");
+	listUrl = chrome.extension.getURL("content/locale/" + session_lang + "/foxtrick.properties");
 	propertiesxhr.open("GET", listUrl, false);
 	propertiesxhr.send();
 	var properties = propertiesxhr.responseText;
 }
 catch(e) {
-		var properties = properties_defaultxhr.responseText;
+	var properties = properties_defaultxhr.responseText;
 }
 
 // get other non changeable ersources

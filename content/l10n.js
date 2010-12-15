@@ -97,12 +97,10 @@ var Foxtrickl10n = {
 				properties_defaultxhr.send();
 				this.properties_default = properties_defaultxhr.responseText;
 
-				var session_lang ='en';
 				try {
 					var propertiesxhr = new XMLHttpRequest();
-					var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
-					session_lang =  preftext.match(string_regexp)[1];
-					listUrl = chrome.extension.getURL('locale/'+session_lang+"/foxtrick.properties");
+					var lang = FoxtrickPrefs.getString("htLanguage");
+					listUrl = chrome.extension.getURL("content/locale/" + lang + "/foxtrick.properties");
 					propertiesxhr.open("GET", listUrl, false);
 					propertiesxhr.send();
 					var properties = propertiesxhr.responseText;
