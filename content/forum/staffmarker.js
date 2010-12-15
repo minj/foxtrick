@@ -33,30 +33,20 @@ var FoxtrickStaffMarker = {
 	foxtrickersArray : [],
 
 	updateHtyXML : function() {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var req = new XMLHttpRequest();
-			req.open("GET", "http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml", true);
-			req.onreadystatechange = function(aEvt) {
+		Foxtrick.LoadXML("http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml",
+			function(xml) {
 				try {
-					if (req.readyState == 4) {
-						if (req.status == 200) {
-							var htyusers = req.responseXML.getElementsByTagName("User");
-							for (var i = 0; i < htyusers.length; ++i) {
-								FoxtrickStaffMarker.hty_staff.push(htyusers[i].getElementsByTagName("Alias")[0].textContent);
-							}
-							Foxtrick.dump("Hattrick-youthclub staffs loaded.\n");
-						}
-						else {
-							Foxtrick.dump("Error: cannot connect to hattrick-youthclub.org.\n");
-						}
+					var htyusers = xml.getElementsByTagName("User");
+					for (var i = 0; i < htyusers.length; ++i) {
+						FoxtrickStaffMarker.hty_staff.push(htyusers[i].getElementsByTagName("Alias")[0].textContent);
 					}
+					Foxtrick.dump("Hattrick-youthclub staffs loaded.\n");
 				}
 				catch (e) {
 					Foxtrick.dumpError(e);
 				}
-			};
-			req.send(null);
-		}
+			}
+		);
 	},
 
 	init : function() {
