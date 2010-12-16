@@ -25,7 +25,7 @@ chrome.extension.onConnect.addListener(function(port) {
 			else if (msg.req == "set") {
 				localStorage.clear();
 				for (var i in msg.pref)
-					localStorage.setItem(i, msg.pref[i]);
+					localStorage.setItem(i, JSON.stringify(msg.pref[i]));
 				init();
 				post();
 			}

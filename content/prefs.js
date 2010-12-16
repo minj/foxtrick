@@ -47,8 +47,16 @@ var FoxtrickPrefs = {
 					FoxtrickPrefs.pref = {};
 					var length = localStorage.length;
 					for (var i = 0; i < length; ++i) {
-						FoxtrickPrefs.pref[localStorage.key(i)]
-							= JSON.parse(localStorage.getItem(localStorage.key(i)));
+						var key = localStorage.key(i);
+						var value = localStorage.getItem(key);
+						try {
+							FoxtrickPrefs.pref[key] = JSON.parse(value);
+						}
+						catch (e) {
+							Foxtrick.dump("Preference parse error: "
+								+ "key: " + key
+								+ ", value: " + value + "\n");
+						}
 					}
 
 					var prefUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
