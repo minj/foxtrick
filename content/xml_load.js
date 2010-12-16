@@ -40,7 +40,7 @@ Foxtrick.XMLData = {
 			port.onMessage.addListener(function(msg) {
 				var parser = new DOMParser();
 				Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(msg.currency, "text/xml");
-				Foxtrick.XMLData.htNTidsXml = parser.parseFromString(msg.nt, "text/xml");
+				Foxtrick.XMLData.htNTidsXml = parser.parseFromString(msg.ntId, "text/xml");
 				Foxtrick.XMLData.htdateformat = parser.parseFromString(msg.dateFormat, "text/xml");
 				Foxtrick.XMLData.aboutXML = parser.parseFromString(msg.about, "text/xml");
 				Foxtrick.XMLData.League = msg.league;
