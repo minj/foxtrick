@@ -11,13 +11,19 @@ var FoxtrickPrefsDialogHTML = {
 	CSS : Foxtrick.ResourcePath + "resources/css/preferences-dialog-html.css",
 
 	run : function(page, doc) {
-		doc.addEventListener("click", function(ev) {
-			// make chrome:// links clickable
-			if (ev.target.nodeName.toLowerCase() === "a"
-				&& ev.target.href.indexOf("chrome://foxtrick/") == 0) {
-				Foxtrick.newTab(ev.target.href);
-			}
-		}, true);
+		// make chrome:// links clickable
+		if (Foxtrick.BuildFor == "Gecko") {
+			doc.addEventListener("click", function(ev) {
+				var target = ev.target;
+				// nested
+				if (target.nodeName.toLowerCase() != "a" && target.parentNode)
+					target = target.parentNode;
+				if (target.nodeName.toLowerCase() == "a"
+					&& target.href.indexOf("chrome://foxtrick/") == 0) {
+					Foxtrick.newTab(target.href);
+				}
+			}, true);
+		}
 
 		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
 			Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=changes");

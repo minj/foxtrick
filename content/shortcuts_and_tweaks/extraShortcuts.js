@@ -119,9 +119,7 @@ var FoxtrickExtraShortcuts = {
 				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
-					link.href = "chrome://foxtrick/content/preferences.xhtml";
-					link.addEventListener("click",
-						function() { FoxtrickPrefs.show(); }, false);
+					link.href = Foxtrick.ResourcePath + "preferences.xhtml";
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
 					img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
