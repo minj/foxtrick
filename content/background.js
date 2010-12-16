@@ -1,14 +1,19 @@
 var resources_changed = true;
 var newstart = true;
 
-init();
-
-// get resources
 function init() {
 	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
 	for (var i in core)
 		core[i].init();
 }
+
+function update() {
+	FoxtrickPrefs.init();
+	Foxtrickl10n.init();
+}
+
+init();
+
 // send resource to content scripts
 chrome.extension.onConnect.addListener(function(port) {
 	if (port.name == "pref") {
@@ -20,13 +25,18 @@ chrome.extension.onConnect.addListener(function(port) {
 				});
 			}
 			if (msg.req == "get") {
+				if (localStorage["preferences.updated"]
+					&& JSON.parse(localStorage["preferences.updated"])) {
+					update();
+					localStorage.removeItem("preferences.updated");
+				}
 				post();
 			}
 			else if (msg.req == "set") {
 				localStorage.clear();
 				for (var i in msg.pref)
 					localStorage.setItem(i, JSON.stringify(msg.pref[i]));
-				init();
+				update();
 				post();
 			}
 		});
