@@ -317,7 +317,7 @@ pref("extensions.foxtrick.prefs.module.LinksTeam.ht-dog.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.ht_deutschland.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.ht_deutschland_coolness.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.htlinks_price_money.enabled", true);
-pref("extensions.foxtrick.prefs.module.LinksTeam.htloto%20.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksTeam.htloto.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.htstats.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.maptrick_coolness.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.todohattrick.enabled", true);

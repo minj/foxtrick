@@ -539,7 +539,7 @@ stats["alltid"] =  {
 };
 
 //HTLoto
-stats["htloto "] =  {
+stats["htloto"] =  {
        "url" : "http://www.htloto.org/",
        "teamlink" : { "path" : "",
                       "filters"    : []
