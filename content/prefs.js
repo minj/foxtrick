@@ -43,31 +43,49 @@ var FoxtrickPrefs = {
 			// in content script since access to localStorage is forbidden
 			if (Foxtrick.chromeContext() == "background") {
 				try {
-					if (localStorage["pref"] === undefined
-						|| localStorage["pref"] == "") {
-						// default prefs
-						listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
-						var prefxhr = new XMLHttpRequest();
-						prefxhr.open("GET", listUrl, false);
-						prefxhr.send();
-						var preftext = prefxhr.responseText;
-						preftext = preftext.replace(/(^|\n|\r)pref/g, "$1" + "user_pref");
+					// user preferences
+					FoxtrickPrefs.pref = {};
+					var length = localStorage.length;
+					for (var i = 0; i < length; ++i) {
+						FoxtrickPrefs.pref[localStorage.key(i)]
+							= JSON.parse(localStorage.getItem(localStorage.key(i)));
 					}
-					else
-						var preftext = localStorage["pref"];  // save prefs in extension settings
-					FoxtrickPrefs.pref = preftext;
 
-					listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
-					var prefdefaultxhr = new XMLHttpRequest();
-					prefdefaultxhr.open("GET", listUrl, false);
-					prefdefaultxhr.send();
-					FoxtrickPrefs.pref_default = prefdefaultxhr.responseText;
+					var prefUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
+					var prefXhr = new XMLHttpRequest();
+					prefXhr.open("GET", prefUrl, false);
+					prefXhr.send();
+					var prefList = prefXhr.responseText.split(/[\n\r]+/);
+					const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
+					FoxtrickPrefs.prefDefault = {};
+					for (var i = 0; i < prefList.length; ++i) {
+						var pref = prefList[i];
+						var matches = pref.match(prefRe);
+						if (matches) {
+							var key = matches[1];
+							var value = matches[2];
+							if (value == "true")
+								FoxtrickPrefs.prefDefault[key] = true;
+							else if (value == "false")
+								FoxtrickPrefs.prefDefault[key] = false;
+							else if (!isNaN(Number(value)))
+								FoxtrickPrefs.prefDefault[key] = Number(value)
+							else if (value.match(/^"(.*)"$/))
+								FoxtrickPrefs.prefDefault[key] = String(value.match(/^"(.*)"$/)[1]);
+						}
+					}
 				}
 				catch (e) {
-					// in content script
+					Foxtrick.dumpError(e);
 				}
 			}
 			else if (Foxtrick.chromeContext() == "content") {
+				var port = chrome.extension.connect({name : "pref"});
+				port.onMessage.addListener(function(msg) {
+					FoxtrickPrefs.pref = msg.pref;
+					FoxtrickPrefs.prefDefault = msg.prefDefault;
+				});
+				port.postMessage({req : "get"});
 			}
 		}
 	},
@@ -92,26 +110,10 @@ var FoxtrickPrefs = {
 				}
 			}
 	 		return str;
- 		}
- 		else if (Foxtrick.BuildFor === "Chrome") {
- 			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.' + pref_name + '",\\s*"(.+)"\\);');
-			if (FoxtrickPrefs.pref.match(string_regexp) !== null) {
-				try {
-					return FoxtrickPrefs.pref.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,chrome.extension.getURL(''));
-				}
-				catch (e) {
-					return "";
-				}
-			}
-			if (FoxtrickPrefs.pref_default.match(string_regexp) !== null) {
-				try {
-					return FoxtrickPrefs.pref_default.match(string_regexp)[1].replace(/chrome:\/\/foxtrick\/content\//gi,chrome.extension.getURL(''));
-				}
-				catch (e) {
-					return "";
-				}
-			}
- 		}
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			return this.getValue(pref_name);
+		}
 	},
 
 	setString : function(pref_name, value) {
@@ -124,30 +126,7 @@ var FoxtrickPrefs = {
 				Components.interfaces.nsISupportsString, str);
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",.+\\);');
-			if (FoxtrickPrefs.pref.search(string_regexp) !=-1) 
-				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'", "'+value+'");');
-			else
-				FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'", "'+value+'");\n';
-			if (FoxtrickPrefs.do_dump==true) {
-				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
-			}
-		}
-	},
-
-	setInt : function(pref_name, value) {
-		if (Foxtrick.BuildFor === "Gecko") {
-			FoxtrickPrefs._pref_branch.setIntPref(encodeURI(pref_name), value);
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'", .+\\);');
-			if (FoxtrickPrefs.pref.search(string_regexp) != -1)
-				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'", '+value+');')
-			else
-				FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'", '+value+');\n';
-			if (FoxtrickPrefs.do_dump == true) {
-				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
-			}
+			this.setValue(pref_name, value);
 		}
 	},
 
@@ -171,28 +150,16 @@ var FoxtrickPrefs = {
 			return value;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.'+ pref_name+ '",\\s*(\\d+)\\);');
-			if (FoxtrickPrefs.pref.match(string_regexp) !== null)
-				return parseInt(FoxtrickPrefs.pref.match(string_regexp)[1]);
-			if (FoxtrickPrefs.pref_default.match(string_regexp) !== null) {
-				return parseInt(FoxtrickPrefs.pref_default.match(string_regexp)[1]);
-			}
+			return this.getValue(pref_name);
 		}
 	},
 
-	setBool : function(pref_name, value) {
+	setInt : function(pref_name, value) {
 		if (Foxtrick.BuildFor === "Gecko") {
-			FoxtrickPrefs._pref_branch.setBoolPref(encodeURI(pref_name), value);
+			FoxtrickPrefs._pref_branch.setIntPref(encodeURI(pref_name), value);
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp('"extensions.foxtrick.prefs.'+pref_name+'",\\s*.+\\);');
-			if (FoxtrickPrefs.pref.search(string_regexp) != -1)
-				FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'"extensions.foxtrick.prefs.'+ pref_name+'", '+value+');')				
-			else
-				FoxtrickPrefs.pref += 'user_pref("extensions.foxtrick.prefs.'+pref_name+'", '+value+');\n';	
-			if (FoxtrickPrefs.do_dump==true) {
-				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
-			}
+			this.setValue(pref_name, value);
 		}
 	},
 
@@ -216,11 +183,16 @@ var FoxtrickPrefs = {
 			return value;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.' + pref_name + '",\\s*(.+)\\);');		
-			if (FoxtrickPrefs.pref.match(string_regexp) !== null)
-				return (FoxtrickPrefs.pref.match(string_regexp)[1] == "true");
-			if (FoxtrickPrefs.pref_default.match(string_regexp) !== null)
-				return (FoxtrickPrefs.pref_default.match(string_regexp)[1] == "true");
+			return this.getValue(pref_name);
+		}
+	},
+
+	setBool : function(pref_name, value) {
+		if (Foxtrick.BuildFor === "Gecko") {
+			FoxtrickPrefs._pref_branch.setBoolPref(encodeURI(pref_name), value);
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			this.setValue(pref_name, value);
 		}
 	},
 
@@ -508,3 +480,38 @@ var FoxtrickPrefs = {
 		FoxtrickMain.init();
 	}
 };
+
+if (Foxtrick.BuildFor == "Chrome") {
+	FoxtrickPrefs.getValue = function(key) {
+		if (this.pref[key] !== undefined)
+			return this.pref[key];
+		else if (this.prefDefault[key] !== undefined)
+			return this.prefDefault[key];
+		else
+			return false;
+	}
+	FoxtrickPrefs.setValue = function(key, value) {
+		if (this.prefDefault[key] === value)
+			delete(this.pref[key]); // set to default, delete it
+		else
+			this.pref[key] = value; // not default, set it
+
+		if (Foxtrick.chromeContext() == "background") {
+			if (this.prefDefault[key] === value)
+				localStorage.removeItem(key);
+			else
+				localStorage.setItem(key, JSON.stringify(value));
+		}
+		else if (Foxtrick.chromeContext() == "content") {
+			if (this.do_dump) // whether write to localStorage
+				this.dumpPrefs();
+		}
+	}
+	FoxtrickPrefs.dumpPrefs = function() {
+		var port = chrome.extension.connect({name : "pref"});
+		port.postMessage({
+			req : "set",
+			pref : FoxtrickPrefs.pref
+		})
+	}
+}

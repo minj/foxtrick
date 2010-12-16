@@ -1,154 +1,76 @@
 var resources_changed = true;
 var newstart = true;
 
-function getchilds(el,parent,tag) {
-	var childs = el.childNodes;
-	var only_text=true;
-	var text=null;
-	var isarray=false;
-	if (parent[tag]) {
-		// if a tag is not unique, make an array and add nodes to that
-		isarray=true;
-		if (!parent[tag][0]) {
-			var old_val = parent[tag];
-			parent[tag] = new Array();
-			parent[tag].push(old_val);
-		}
-		parent[tag].push({});
-	}
-	else {parent[tag] = {};} // assume unique tag and make a assosiative node
-
-	for (var i=0;i<childs.length;++i) {
-		if (childs[i].nodeType==childs[i].ELEMENT_NODE ) {
-			only_text=false;
-			if (isarray) getchilds(childs[i], parent[tag][parent[tag].length-1], childs[i].nodeName);
-			else getchilds(childs[i], parent[tag], childs[i].nodeName);
-		}
-		else if (childs[i].nodeType==childs[i].TEXT_NODE ) {
-			text = childs[i].textContent;
-		}
-	}
-	if (only_text) {
-		if (isarray) parent[tag][parent[tag].length-1] = text;
-		else parent[tag] = text;
-	}
-}
-
-function isHTUrl(url) {
-  if (url.search(/hattrick.org|hattrick.ws|hattrick.interia.ws/) == -1) return false;
-  return true;
-}
-
+init();
 
 // get resources
-
-// get prefrences
-// if prefs not set in extension settings, get default values
-if (localStorage["pref"] === undefined
-	|| localStorage["pref"] == "") {
-	// default prefs
-	listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
-	var prefxhr = new XMLHttpRequest();
-	prefxhr.open("GET", listUrl, false);
-	prefxhr.send();
-	var preftext = prefxhr.responseText;
-	preftext = preftext.replace(/(^|\n|\r)pref/g, "$1" + "user_pref");
+function init() {
+	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
+	for (var i in core)
+		core[i].init();
 }
-else
-	var preftext = localStorage["pref"];  // save prefs in extension settings
-
-listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
-var prefdefaultxhr = new XMLHttpRequest();
-prefdefaultxhr.open("GET", listUrl, false);
-prefdefaultxhr.send();
-
-// get strings
-listUrl = chrome.extension.getURL("content/foxtrick.properties");
-var properties_defaultxhr = new XMLHttpRequest();
-properties_defaultxhr.open("GET", listUrl, false);
-properties_defaultxhr.send();
-
-var session_lang ='en';
-try {
-	var propertiesxhr = new XMLHttpRequest();
-	var string_regexp = new RegExp('user_pref\\("extensions.foxtrick.prefs.htLanguage", "(.+?)"\\);');
-	session_lang =  preftext.match(string_regexp)[1];
-	listUrl = chrome.extension.getURL("content/locale/" + session_lang + "/foxtrick.properties");
-	propertiesxhr.open("GET", listUrl, false);
-	propertiesxhr.send();
-	var properties = propertiesxhr.responseText;
-}
-catch(e) {
-	var properties = properties_defaultxhr.responseText;
-}
-
-// get other non changeable ersources
-listUrl = chrome.extension.getURL("content/foxtrick.screenshots");
-var screenshotsxhr = new XMLHttpRequest();
-screenshotsxhr.open("GET", listUrl, false);
-screenshotsxhr.send();
-
-listUrl = chrome.extension.getURL("content/data/htcurrency.xml");
-var htcurrencyxhr = new XMLHttpRequest();
-htcurrencyxhr.open("GET", listUrl, false);
-htcurrencyxhr.send();
-
-listUrl = chrome.extension.getURL("content/data/htNTidList.xml");
-var htNTidListxhr = new XMLHttpRequest();
-htNTidListxhr.open("GET", listUrl, false);
-htNTidListxhr.send();
-
-listUrl = chrome.extension.getURL("content/data/htdateformat.xml");
-var htdateformatxhr = new XMLHttpRequest();
-htdateformatxhr.open("GET", listUrl, false);
-htdateformatxhr.send();
-
-listUrl = chrome.extension.getURL("content/data/foxtrick_about.xml");
-var aboutxhr = new XMLHttpRequest();
-aboutxhr.open("GET", listUrl, false);
-aboutxhr.send();
-
-// worlddetails
-listUrl = chrome.extension.getURL("content/data/worlddetails.xml");
-var worlddetailsxhr = new XMLHttpRequest();
-worlddetailsxhr.open("GET", listUrl, false);
-worlddetailsxhr.send();
-
-var League = {};
-var countryid_to_leagueid = {};
-
-var data ={};
-var name = 'HattrickData';
-getchilds(worlddetailsxhr.responseXML.documentElement, data, name);
-
-// reindex: by leagueid and countryid
-for (var i in data.HattrickData.LeagueList.League) {
-	League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
-	countryid_to_leagueid[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
-}
-
 // send resource to content scripts
 chrome.extension.onConnect.addListener(function(port) {
+	if (port.name == "pref") {
+		port.onMessage.addListener(function(msg) {
+			function post() {
+				port.postMessage({
+					pref : FoxtrickPrefs.pref,
+					prefDefault : FoxtrickPrefs.prefDefault
+				});
+			}
+			if (msg.req == "get") {
+				post();
+			}
+			else if (msg.req == "set") {
+				localStorage.clear();
+				for (var i in msg.pref)
+					localStorage.setItem(i, msg.pref[i]);
+				init();
+				post();
+			}
+		});
+	}
+	else if (port.name == "locale") {
+		port.onMessage.addListener(function(msg) {
+			if (msg.req == "get") {
+				var htLanguagesText = {};
+				var serializer = new XMLSerializer();
+				for (var i in Foxtrickl10n.htLanguagesXml) {
+					htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
+				}
+				port.postMessage({
+					htLang : htLanguagesText,
+					propsDefault : Foxtrickl10n.properties_default,
+					props : Foxtrickl10n.properties,
+					screenshots : Foxtrickl10n.screenshots
+				});
+			}
+		});
+	}
+	else if (port.name == "xml") {
+		port.onMessage.addListener(function(msg) {
+			if (msg.req == "get") {
+				var serializer = new XMLSerializer();
+				var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
+				var ntId = serializer.serializeToString(Foxtrick.XMLData.htNTidsXml);
+				var dateFormat = serializer.serializeToString(Foxtrick.XMLData.htdateformat);
+				var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
+				port.postMessage({
+					currency : currency,
+					ntId : ntId,
+					dateFormat : dateFormat,
+					about : about,
+					league : Foxtrick.XMLData.League,
+					countryToLeague : Foxtrick.XMLData.countryToLeague
+				});
+			}
+		});
+	}
 	if (port.name == "ftpref-query") {
 		port.onMessage.addListener(function(msg) {
 			try {  //alert(msg.reqtype);
-				if (msg.reqtype == "get_settings") {
-					port.postMessage({
-						set:'settings',
-						pref: preftext,
-						pref_default: prefdefaultxhr.responseText,
-						properties: properties,
-						properties_default: properties_defaultxhr.responseText,
-						screenshots: screenshotsxhr.responseText,
-						htcurrency: htcurrencyxhr.responseText,
-						htNTidList: htNTidListxhr.responseText,
-						htdateformat: htdateformatxhr.responseText,
-						about: aboutxhr.responseText,
-						League: League,
-						countryid_to_leagueid: countryid_to_leagueid,
-						});
-				}
-				else if (msg.reqtype == "get_css_text") {
+				if (msg.reqtype == "get_css_text") {
 					try {
 						var css_text_from_response='';
 						var cssUrl = msg.css_filelist.split('\n');
@@ -181,57 +103,6 @@ chrome.extension.onConnect.addListener(function(port) {
 						alert('css xhr '+e);
 						alert(cssUrl[i]);
 					}
-				}
-				else if (msg.reqtype == "export_prefs") {
-					var newwin = window.open("about:blank","FoxTrick Preferences","menubar=yes,location=no,resizable=yes,width=400,height=400");
-					newwin.document.write('<!DOCTYPE html><html><head><title>Export preferences</title></head><body>// Copy content to a text file and save it<br>'+msg.prefs.replace(/\n/gi,'<br>')+'</body></html>');
-					newwin.focus();
-				}
-				else if (msg.reqtype == "save_prefs") {
-					// save new session properties
-					preftext = msg.prefs;
-					// save in extension settings
-					localStorage['pref'] = preftext;
-
-					try {  // set new lang
-						var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.htLanguage","(.+)"\\);', "i" );
-						try{ var lang =  preftext.match(string_regexp)[1];
-						}catch(e) { var lang =  prefdefaultxhr.responseText.match(string_regexp)[1];}
-						if (lang != session_lang || msg.reload==true) {
-							listUrl = chrome.extension.getURL('locale/'+lang+"/foxtrick.properties");
-							propertiesxhr.open("GET", listUrl, false);
-							propertiesxhr.send();
-							properties = propertiesxhr.responseText;
-							localStorage['properties']=properties;
-							port.postMessage({set:'lang_changed', properties: propertiesxhr.responseText, reload:msg.reload});
-						}
-					}
-					catch (e) {
-						console.log('language doesnt exist: '+lang+' '+e);
-					}
-				}
-				else if (msg.reqtype == "delete_pref") {
-					// delete a preference
-					try {
-						var string_regexp = new RegExp( 'user_pref\\("'+msg.pref+'".+\\n','g');
-						console.log(string_regexp+' '+preftext.search(string_regexp));
-						preftext = preftext.replace(string_regexp,'');
-						localStorage['pref'] = preftext;
-					}
-					catch (e) {
-						console.log('delete_pref '+e);
-					}
-					//port.postMessage({pref_changed: 'true', prefs:preftext, properties: properties, reload:false});
-				}
-				else if (msg.reqtype == "delete_pref_list") {
-					// delete a preference
-					try {
-					var string_regexp = new RegExp( 'user_pref\\("'+msg.pref+'".+\\n','g');
-					console.log(string_regexp+' '+preftext.search(string_regexp));
-					preftext = preftext.replace(string_regexp,'');
-					localStorage['pref'] = preftext;
-					} catch(e) {console.log('delete_pref '+e);}
-					port.postMessage({pref_changed: 'true', prefs:preftext, properties: properties, reload:false});
 				}
 			}
 			catch (e) {

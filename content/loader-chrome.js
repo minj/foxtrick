@@ -29,15 +29,12 @@ Foxtrick.Loader = function(){
 
 is_reload = false;
 
-function runScript() { 
-	if (!has_settings) {
-		is_reload=true;
-		console.log("is_reload");
+function runScript() {
+	if (!inited()) {
+		Foxtrick.dump("Not even initialized!\n");
 		return;
 	}
 
-	console.log("run script");
-	
 	// check if it's in exclude list
 	for (var i in Foxtrick.pagesExcluded) {
 		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
@@ -69,42 +66,18 @@ function runScript() {
 	Foxtrick.dump(log);
 }
 
-// get settings
-var portgetsettings = chrome.extension.connect({name: "ftpref-query"});
-portgetsettings.onMessage.addListener(function(msg) {  
-	if (msg.set == "settings") {
-		console.log("msg.is_settings " + msg.set);
-		FoxtrickPrefs.pref = msg.pref; 
-		FoxtrickPrefs.pref_default = msg.pref_default; 
-		Foxtrickl10n.properties = msg.properties; 
-		Foxtrickl10n.properties_default = msg.properties_default;
-		
-		parser = new DOMParser();
-		Foxtrickl10n.screenshots = msg.screenshots; 
-		Foxtrickl10n.htLanguagesXml = parser.parseFromString(msg.htlang,"text/xml");
-		Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(msg.htcurrency,"text/xml");
-		Foxtrick.XMLData.htNTidsXml = parser.parseFromString(msg.htNTidList,"text/xml");
-		Foxtrick.XMLData.htdateformat = parser.parseFromString(msg.htdateformat,"text/xml");
-		Foxtrick.XMLData.aboutXML = parser.parseFromString(msg.about,"text/xml");
-		Foxtrick.XMLData.League = msg.League; 
-		Foxtrick.XMLData.countryid_to_leagueid = msg.countryid_to_leagueid;
-
-		console.log("got pref " + msg.set);
-		has_settings = true;
-		if (is_reload)
-			runScript();
-	}
-});
-
-function get_settings() {
-	console.log("do get_settings");
-	portgetsettings.postMessage({reqtype: "get_settings"});
+function init() {
+	FoxtrickPrefs.init();
+	Foxtrickl10n.init();
+	Foxtrick.XMLData.init();
 }
-	
-// action
-if (typeof(did_action) == "undefined"){
-	has_settings=false;
-	get_settings();
-	window.addEventListener("DOMContentLoaded", runScript, false);
-	var did_action=true;
+
+function inited() {
+	return (typeof(Foxtrick.XMLData.countryToLeague) == "object"
+		&& typeof(Foxtrickl10n.screenshots) == "string"
+		&& typeof(FoxtrickPrefs.pref) == "object");
 }
+
+init();
+
+window.addEventListener("DOMContentLoaded", runScript, false);

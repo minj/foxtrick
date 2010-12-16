@@ -28,7 +28,8 @@ var FoxtrickPrefsDialogHTML = {
 	save : function( ev ) {
 		try {
 			var doc = ev.target.ownerDocument;
-			if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = false;
+			if (Foxtrick.BuildFor == "Chrome")
+				FoxtrickPrefs.do_dump = false;
 
 			for ( var i in Foxtrick.modules ) {
 				var module = Foxtrick.modules[i];
@@ -75,9 +76,8 @@ var FoxtrickPrefsDialogHTML = {
 
 			if (Foxtrick.BuildFor=='Chrome') {
 				FoxtrickPrefs.do_dump = true;
-				//Foxtrick.reload_module_css(document);
 				portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});
-				portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:true});
+				Foxtrick.dumpPrefs();
 			}
 			else {
 				FoxtrickPrefs.setBool("preferences.updated", true);

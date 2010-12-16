@@ -36,6 +36,19 @@ Foxtrick.XMLData = {
 				this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 			}
 		}
+		else if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content") {
+			var port = chrome.extension.connect({name : "xml"});
+			port.onMessage.addListener(function(msg) {
+				var parser = new DOMParser();
+				Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(msg.currency, "text/xml");
+				Foxtrick.XMLData.htNTidsXml = parser.parseFromString(msg.nt, "text/xml");
+				Foxtrick.XMLData.htdateformat = parser.parseFromString(msg.dateFormat, "text/xml");
+				Foxtrick.XMLData.aboutXML = parser.parseFromString(msg.about, "text/xml");
+				Foxtrick.XMLData.League = msg.league;
+				Foxtrick.XMLData.countryToLeague = msg.countryToLeague;
+			});
+			port.postMessage({req : "get"});
+		}
 	},
 
 	getchilds : function(el,parent,tag) {

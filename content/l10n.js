@@ -119,6 +119,19 @@ var Foxtrickl10n = {
 				screenshotsxhr.send();
 				this.screenshots = screenshotsxhr.responseText;
 			}
+			else if (Foxtrick.chromeContext() == "content") {
+				var port = chrome.extension.connect({name : "locale"});
+				port.onMessage.addListener(function(msg) {
+					var parser = new DOMParser();
+					for (var i in msg.htLang) {
+						Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(msg.htLang[i], "text/xml");
+					}
+					Foxtrickl10n.properties_default = msg.propsDefault;
+					Foxtrickl10n.properties = msg.props;
+					Foxtrickl10n.screenshots = msg.screenshots;
+				});
+				port.postMessage({req : "get"});
+			}
 		}
 	},
 
