@@ -23,7 +23,7 @@ Foxtrick.may_run_on_page = [];
 
 /** Core Foxtrick modules, always used.
  * Don't add here unless you have a good reason to. */
-Foxtrick.core_modules = [ FoxtrickPrefs, Foxtrickl10n ];
+Foxtrick.core_modules = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
 
 /*// remove before release
 Foxtrick.globals=[];
@@ -39,10 +39,13 @@ var FoxtrickMain = {
 
 	init : function() {
 		Foxtrick.dump('-------------- FoxtrickMain.init start ------------------\n');
-		// init core modules
-		for (var i in Foxtrick.core_modules) {
-			if (typeof(Foxtrick.core_modules[i].init) == "function")
-				Foxtrick.core_modules[i].init();
+		// init core modules, for Chrome they are initialized in
+		// loader-chrome.js
+		if (Foxtrick.BuildFor !== "Chrome") {
+			for (var i in Foxtrick.core_modules) {
+				if (typeof(Foxtrick.core_modules[i].init) == "function")
+					Foxtrick.core_modules[i].init();
+			}
 		}
 		Foxtrick.MakeStatsHash();
 

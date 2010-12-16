@@ -8,7 +8,6 @@ if (!Foxtrick) var Foxtrick = {};
 
 Foxtrick.XMLData = {
     MODULE_NAME : "XMLData",
-    CORE_MODULE : true,
 	PAGES : new Array('all'),
 
 	League : {},

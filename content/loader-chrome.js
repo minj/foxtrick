@@ -6,29 +6,6 @@
 
 if (!Foxtrick) var Foxtrick={};
 
-Foxtrick.StatsHash = {};
-
-Foxtrick.Loader = function(){		
-	var pub = {};	
-	pub.Load = function(){	
-		// create stats Hash for Foxtrick.LinkCollection
-		for (var key in Foxtrick.LinkCollection.stats) {
-			var stat = Foxtrick.LinkCollection.stats[key];
-			for (var prop in stat) {
-				if (prop.match(/link/)) {
-					if (typeof(Foxtrick.StatsHash[prop]) == "undefined") {
-						Foxtrick.StatsHash[prop] = {};
-					}
-					Foxtrick.StatsHash[prop][key] = stat;
-				}
-			}
-		}
-	};
-	return pub;	
-}();
-
-is_reload = false;
-
 function runScript() {
 	if (!inited()) {
 		Foxtrick.dump("Not even initialized!\n");
@@ -46,7 +23,6 @@ function runScript() {
 
 	var begin = new Date();
 
-	Foxtrick.Loader.Load();	
 	FoxtrickMain.init();
 	Foxtrick.reload_module_css(document);
 	var mid = new Date();

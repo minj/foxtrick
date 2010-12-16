@@ -12,7 +12,6 @@
 if (!Foxtrick) var Foxtrick={};
 
 Foxtrick.modules = [
-	Foxtrick.XMLData,
 	FoxtrickReadHtPrefs,
 	FoxtrickPrefsDialogHTML,
 	FoxtrickOnPagePrefs,
