@@ -61,17 +61,13 @@ var FoxtrickReadHtPrefs = {
 			}
 			if (found) {
 				FoxtrickPrefs.setString("htLanguage", newLang);
-				if (Foxtrick.BuildFor == "Chrome") {
-					// change language
-					FoxtrickPrefs.portsetlang.postMessage({pref: "extensions.foxtrick.prefs.htLanguage", value:newLang, from:'readpref'});
-				}
-				else if (Foxtrick.BuildFor == "Gecko") {
+				if (Foxtrick.BuildFor == "Gecko") {
 					// change language
 					Foxtrickl10n.get_strings_bundle(newLang);
-					var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
-					var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
-					Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
 				}
+				var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
+				var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
+				Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
 			}
 			else {
 				Foxtrick.dump("Cannot detect language.\n");
