@@ -76,7 +76,8 @@ FoxtrickExtendedPlayerDetailsWage = {
 
 		table_inner = table_elm_bonus.innerHTML;
 
-        var currency = Foxtrick.util.currency.getSymbol();
+		// replace currency with spaces inside since it's &nbsp; in HTML
+        var currency = Foxtrick.util.currency.getSymbol().replace(/ /, "&nbsp;");
 		var cl = currency.length;
 
         var part = Foxtrick.substr(table_inner, 0, table_inner.indexOf(currency)+ cl);
