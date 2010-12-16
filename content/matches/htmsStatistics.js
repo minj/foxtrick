@@ -103,6 +103,7 @@ Foxtrick.htmsStatistics = {
 		htmstable.id='htmstable';
 
 		//Inserting header
+		var lang = FoxtrickPrefs.getString("htLanguage");
 		var h2 = doc.createElement('h2');
 		var a = doc.createElement('a');
 		a.href='http://www.fantamondi.it/HTMS/index.php?lang='+lang;
@@ -113,7 +114,8 @@ Foxtrick.htmsStatistics = {
 
 		row = htmstable.insertRow(htmstable.rows.length);
 		cell = row.insertCell(0);
-		cell.className = 'ch';
+		cell.className = 'ch ft-htms-leftcell';
+		cell.style.width = '160px';
 		cell.textContent = Foxtrickl10n.getString("foxtrick.htmsStatistics.prediction");
 
 		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=showpredict&' + params;
@@ -133,7 +135,7 @@ Foxtrick.htmsStatistics = {
 			}
 			req.send(null);
 		}
-		var lang = FoxtrickPrefs.getString("htLanguage");
+		
 		var p = doc.createElement('p');
 		var a = doc.createElement('a');
 		a.appendChild(doc.createTextNode(Foxtrickl10n.getString('foxtrick.htmsStatistics.changePrediction')));
