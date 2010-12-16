@@ -15,12 +15,12 @@ var FoxtrickPrefsDialogHTML = {
 			// make chrome:// links clickable
 			if (ev.target.nodeName.toLowerCase() === "a"
 				&& ev.target.href.indexOf("chrome://foxtrick/") == 0) {
-				gBrowser.selectedTab = gBrowser.addTab(ev.target.href);
+				Foxtrick.newTab(ev.target.href);
 			}
 		}, true);
 
 		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
-			gBrowser.selectedTab = gBrowser.addTab("chrome://foxtrick/content/preferences.xhtml#tab=changes");
+			Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=changes");
 			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
 		}
 	},

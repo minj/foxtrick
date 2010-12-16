@@ -1362,7 +1362,7 @@ Foxtrick.LoadXML = function(xmlfile, callback, crossSite) {
 		&& chrome.extension.sendRequest && callback && crossSite) {
 		// the evil Chrome that requires us to send a message to
 		// background script for cross-site requests
-		chrome.extension.sendRequest({url : xmlfile},
+		chrome.extension.sendRequest({req : "xml", url : xmlfile},
 			function(response) {
 				var parser = new DOMParser();
 				var xml = parser.parseFromString(response.data, "text/xml");
@@ -1592,6 +1592,17 @@ Foxtrick.dumpError = function(error) {
 	}
 }
 
+Foxtrick.newTab = function(url) {
+	if (Foxtrick.BuildFor == "Gecko") {
+		gBrowser.selectedTab = gBrowser.addTab(url);
+	}
+	else if (Foxtrick.BuildFor == "Chrome") {
+		chrome.extension.sendRequest({
+			req : "newTab",
+			url : url
+		})
+	}
+}
 
 // find first occurence of host and open+focus there
 Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {

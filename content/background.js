@@ -206,12 +206,17 @@ chrome.extension.onConnect.addListener(function(port) {
 });
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(aEvt) {
-		if (xhr.readyState == 4) {
-			sendResponse({data : xhr.responseText});
-		}
-	};
-	xhr.open("GET", request.url, true);
-	xhr.send();
+	if (request.req == "xml") {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(aEvt) {
+			if (xhr.readyState == 4) {
+				sendResponse({data : xhr.responseText});
+			}
+		};
+		xhr.open("GET", request.url, true);
+		xhr.send();
+	}
+	else if (request.req == "newTab") {
+		chrome.tabs.create({url : request.url});
+	}
 });
