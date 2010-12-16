@@ -1361,8 +1361,8 @@ Foxtrick.GetDataURIText = function (filetext) {
 
 
 Foxtrick.LoadXML = function(xmlfile, callback, crossSite) {
-	if (Foxtrick.BuildFor === "Chrome" && chrome && chrome.extension
-		&& chrome.extension.sendRequest && callback && crossSite) {
+	if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
+		&& crossSite) {
 		// the evil Chrome that requires us to send a message to
 		// background script for cross-site requests
 		chrome.extension.sendRequest({req : "xml", url : xmlfile},
