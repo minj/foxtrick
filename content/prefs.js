@@ -41,29 +41,33 @@ var FoxtrickPrefs = {
 			// get prefrences
 			// this is used when loading from options page, not valid
 			// in content script since access to localStorage is forbidden
-			try {
-				if (localStorage["pref"] === undefined
-					|| localStorage["pref"] == "") {
-					// default prefs
-					listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
-					var prefxhr = new XMLHttpRequest();
-					prefxhr.open("GET", listUrl, false);
-					prefxhr.send();
-					var preftext = prefxhr.responseText;
-					preftext = preftext.replace(/(^|\n|\r)pref/g, "$1" + "user_pref");
-				}
-				else
-					var preftext = localStorage["pref"];  // save prefs in extension settings
-				FoxtrickPrefs.pref = preftext;
+			if (Foxtrick.chromeContext() == "background") {
+				try {
+					if (localStorage["pref"] === undefined
+						|| localStorage["pref"] == "") {
+						// default prefs
+						listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
+						var prefxhr = new XMLHttpRequest();
+						prefxhr.open("GET", listUrl, false);
+						prefxhr.send();
+						var preftext = prefxhr.responseText;
+						preftext = preftext.replace(/(^|\n|\r)pref/g, "$1" + "user_pref");
+					}
+					else
+						var preftext = localStorage["pref"];  // save prefs in extension settings
+					FoxtrickPrefs.pref = preftext;
 
-				listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
-				var prefdefaultxhr = new XMLHttpRequest();
-				prefdefaultxhr.open("GET", listUrl, false);
-				prefdefaultxhr.send();
-				FoxtrickPrefs.pref_default = prefdefaultxhr.responseText;
+					listUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
+					var prefdefaultxhr = new XMLHttpRequest();
+					prefdefaultxhr.open("GET", listUrl, false);
+					prefdefaultxhr.send();
+					FoxtrickPrefs.pref_default = prefdefaultxhr.responseText;
+				}
+				catch (e) {
+					// in content script
+				}
 			}
-			catch (e) {
-				// in content script
+			else if (Foxtrick.chromeContext() == "content") {
 			}
 		}
 	},

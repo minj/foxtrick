@@ -1255,6 +1255,24 @@ Foxtrick.copyStringToClipboard = function (string) {
 	}
 }
 
+// to tell which context the chrome script is running at
+// either background page, or content script
+Foxtrick.chromeContext = function() {
+	if (Foxtrick.BuildFor != "Chrome")
+		return null;
+	try {
+		if (chrome.bookmarks) {
+			return "background";
+		}
+		else {
+			return "content";
+		}
+	}
+	catch (e) {
+		return "content";
+	}
+}
+
 Foxtrick.isStandardLayout = function (doc) {
 	// Check if this is the simple or standard layout
 	var links = doc.getElementsByTagName("head")[0].getElementsByTagName("link");

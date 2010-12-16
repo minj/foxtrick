@@ -66,14 +66,18 @@ var Foxtrickl10n = {
 
 	init : function() {
 		try {
-			for (var i in Foxtrickl10n.locales) {
-				var locale = Foxtrickl10n.locales[i];
-				var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
-				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.LoadXML(url);
+			if (Foxtrick.BuildFor == "Gecko"
+				|| (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "background")) {
+				// get htlang.xml for each locale
+				for (var i in Foxtrickl10n.locales) {
+					var locale = Foxtrickl10n.locales[i];
+					var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.LoadXML(url);
+				}
 			}
 		}
 		catch (e) {
-			// in content script
+			Foxtrick.dumpError(e);
 		}
 		if (Foxtrick.BuildFor === "Gecko") {
 			this._strings_bundle_default =
@@ -88,9 +92,7 @@ var Foxtrickl10n = {
 				.createBundle("chrome://foxtrick/content/foxtrick.screenshots");
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			try {
-				// used only from options page
-				// get strings
+			if (Foxtrick.chromeContext() == "background") {
 				listUrl = chrome.extension.getURL("content/foxtrick.properties");
 				var properties_defaultxhr = new XMLHttpRequest();
 				properties_defaultxhr.open("GET", listUrl, false);
@@ -116,9 +118,6 @@ var Foxtrickl10n = {
 				screenshotsxhr.open("GET", listUrl, false);
 				screenshotsxhr.send();
 				this.screenshots = screenshotsxhr.responseText;
-			}
-			catch (e) {
-				// in content script
 			}
 		}
 	},
