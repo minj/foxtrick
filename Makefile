@@ -6,6 +6,7 @@ ZIP = zip -q
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
 ROOT_FOLDERS_FIREFOX = defaults/ platform/
+ROOT_FOLDERS_CHROME = defaults/ skin/
 CONTENT_FOLDERS = alert/ data/ forum/ links/ locale/ matches/ pages/ \
 	presentation/ resources/ shortcuts_and_tweaks/ util/
 CONTENT_FILES = const.js forum_stage.js foxtrick.js foxtrick.properties \
@@ -14,8 +15,11 @@ CONTENT_FILES = const.js forum_stage.js foxtrick.js foxtrick.properties \
 	preferences-on-page.js prefs.js read-ht-prefs.js redirections.js \
 	releaseNotes.xml stats.js xml_load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul
-CONTENT_FILES_CHROME = background.html background.js loader-chrome.js
+CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
+	loader-chrome.js
 
+
+all: firefox chrome
 
 firefox: clean
 	mkdir $(BUILD_DIR)
@@ -40,6 +44,19 @@ firefox: clean
 		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
 	fi; \
 	$(ZIP) -r ../$(APP_NAME).xpi *
+	make clean
+
+chrome: clean
+	mkdir $(BUILD_DIR)
+	cp -r $(ROOT_FILES_CHROME) $(ROOT_FOLDERS_CHROME) $(BUILD_DIR)
+	# content/
+	mkdir $(BUILD_DIR)/content
+	cd content/; \
+	cp -r $(CONTENT_FOLDERS) $(CONTENT_FILES_CHROME) \
+		../$(BUILD_DIR)/content
+	# make crx
+	./crxmake.sh $(BUILD_DIR) chrome_dev.pem
+	mv $(BUILD_DIR).crx $(APP_NAME).crx
 	make clean
 
 clean:
