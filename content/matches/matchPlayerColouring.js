@@ -281,15 +281,9 @@ FoxtrickMatchPlayerColouring = {
 				var iseventsbox=(links[i].parentNode.tagName=="TD");
 				if (isHome) {
 					Foxtrick.addClass(links[i], HOME_TEAM_CLASS_NAME);
-					if (iseventsbox) {
-						links[i].parentNode.parentNode.getElementsByTagName('td')[0].className = "left";
-					}
 				}
 				else if (isAway) {
 					Foxtrick.addClass(links[i], AWAY_TEAM_CLASS_NAME);
-					if (iseventsbox) {
-						links[i].parentNode.parentNode.getElementsByTagName('td')[0].className = "right";
-					}
 				}
 				else {
 					Foxtrick.addClass(links[i], "ft-match-player-unknown");
