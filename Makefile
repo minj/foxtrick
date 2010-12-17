@@ -21,9 +21,11 @@ CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 
 all: firefox chrome
 
-firefox: clean
+firefox:
+	make clean-firefox clean-build
 	mkdir $(BUILD_DIR)
-	cp $(ROOT_FILES_FIREFOX) build
+	# copy root files
+	cp -r $(ROOT_FILES_FIREFOX) $(ROOT_FOLDERS_FIREFOX) $(BUILD_DIR)
 	# content/
 	mkdir -p $(BUILD_DIR)/chrome/content
 	cd content/; \
@@ -42,12 +44,17 @@ firefox: clean
 		then \
 		sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
 		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
-	fi; \
+	fi;
+	# make xpi
+	cd $(BUILD_DIR); \
 	$(ZIP) -r ../$(APP_NAME).xpi *
-	make clean
+	# clean up
+	make clean-build
 
-chrome: clean
+chrome:
+	make clean-chrome clean-build
 	mkdir $(BUILD_DIR)
+	# copy root files
 	cp -r $(ROOT_FILES_CHROME) $(ROOT_FOLDERS_CHROME) $(BUILD_DIR)
 	# content/
 	mkdir $(BUILD_DIR)/content
@@ -57,7 +64,17 @@ chrome: clean
 	# make crx
 	./crxmake.sh $(BUILD_DIR) chrome_dev.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
-	make clean
+	# clean up
+	make clean-build
+
+clean-firefox:
+	rm -rf *.xpi
+
+clean-chrome:
+	rm -rf *.crx
+
+clean-build:
+	rm -rf $(BUILD_DIR)
 
 clean:
-	rm -rf $(BUILD_DIR)
+	make clean-firefox clean-chrome clean-build
