@@ -1,6 +1,7 @@
 /**
- * ExtendedPlayerDetails (displays wage without 20% Bouns and time since player joined a team)
- * @author spambot
+ * ExtendedPlayerDetails
+ * @desc displays wage without 20% bonus and time since player joined a team
+ * @author spambot, ryanli
  */
 
 FoxtrickExtendedPlayerDetails = {
@@ -55,61 +56,52 @@ FoxtrickExtendedPlayerDetailsWage = {
     OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
 
     run : function(page, doc) {
-        this._Player_Bonus ( doc );
-    },
-
-    _Player_Bonus  : function ( doc ) {
-
-		var div = doc.getElementById( "ft_bonuswage" );
+		var div = doc.getElementById("ft_bonuswage");
         if (div != null) return;
 
-        var div = doc.getElementsByClassName("playerInfo")[0];
         try {
-            var table_elm_bonus = div.getElementsByTagName( "table" )[0].rows[2].cells[1];
-        } catch(e) {Foxtrick.dump('    >' + e + '\n');}
-
-        var has_bonus=false;
-		var table_inner = Foxtrick.trim(table_elm_bonus.innerHTML);
-        if (Foxtrick.strrpos( table_inner, "%") > 0 ) {
-            has_bonus=true;
+        	var div = doc.getElementsByClassName("playerInfo")[0];
+            var wageElm = div.getElementsByTagName("table")[0].rows[2].cells[1];
+        }
+        catch (e) {
+        	// no such thing, return
+        	return;
         }
 
-		table_inner = table_elm_bonus.innerHTML;
+		var wageText = wageElm.textContent;
+        var hasBonus = wageText.indexOf("%") > 0;
 
-		// replace currency with spaces inside since it's &nbsp; in HTML
-        var currency = Foxtrick.util.currency.getSymbol().replace(/ /, "&nbsp;");
-		var cl = currency.length;
+        var currency = Foxtrick.util.currency.getSymbol();
+		var currencyLen = currency.length;
+		var splitPos = wageText.indexOf(currency) + currencyLen;
+        var part1 = wageText.substr(0, splitPos);
+        var part2 = wageText.substr(splitPos);
 
-        var part = Foxtrick.substr(table_inner, 0, table_inner.indexOf(currency)+ cl);
+		var wage = parseInt(part1.replace(/\s/g, ""));
+		if (isNaN(wage))
+			return;
 
-        var part_1_save = part;
-        var part_2_save = table_inner.substring(table_inner.indexOf(currency)+ cl);
-
-		//this loop removing 10 &nbsp;  From 15 000 000 make 15000000  BUG FIXED BY SMATES
-             var part = Foxtrick.trim(part);
-             for ( var i=0; i<10; i++ ) {
-              var part = part.replace('&nbsp;', '');
-             }
-
-		var wage = parseInt(part.replace('&nbsp;', '').replace(/ /g, ''));
-        part =  Math.floor( wage / 1.2);
-        part = Foxtrick.formatNumber (part, '&nbsp;');
+        if (!hasBonus)
+	        var formattedWage = Foxtrick.formatNumber(wage, "&nbsp;");
+	    else {
+	    	var reducedWage =  Math.floor(wage / 1.2);
+	    	var formattedWage = Foxtrick.formatNumber(reducedWage, "&nbsp;");
+	    }
 
 		// get space before currency symbol
-		part_1_save=part_1_save.replace(" " + currency, currency);
-		part_1_save=part_1_save.replace("&nbsp;" + currency, currency);
-		part_1_save=part_1_save.replace(currency, "&nbsp;" + currency);
+		part1 = part1.replace(" " + currency, currency);
+		part1 = part1.replace(currency, "&nbsp;" + currency);
 
-		if (part != 'NaN')
-        {    if (has_bonus && Foxtrick.isModuleFeatureEnabled( this, "WageWithoutBonus") ) {
-				table_elm_bonus.innerHTML =
-                part_1_save +//'&nbsp;'+
-                '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">(' +
-                part +'&nbsp;' + currency + ')</span> ' +
-                part_2_save;
-			}
-			if (Foxtrick.isModuleFeatureEnabled( this, "SeasonWage") )
-				table_elm_bonus.innerHTML += '<br>'+Foxtrick.formatNumber (wage*16, '&nbsp;')+"&nbsp;"+currency+Foxtrickl10n.getString('foxtrick.ExtendedPlayerDetails.perseason');
-         }
+	    if (hasBonus && Foxtrick.isModuleFeatureEnabled(this, "WageWithoutBonus")) {
+			wageElm.innerHTML = part1
+			+ '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">('
+			+ formattedWage + '&nbsp;' + currency + ')</span> '
+			+ part2;
+		}
+		if (Foxtrick.isModuleFeatureEnabled(this, "SeasonWage"))
+			wageElm.innerHTML += "<br>"
+				+ Foxtrick.formatNumber(wage * 16, "&nbsp;") + "&nbsp;"
+				+ currency
+				+ Foxtrickl10n.getString("foxtrick.ExtendedPlayerDetails.perseason");
     }
 };
