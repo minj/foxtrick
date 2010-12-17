@@ -8,7 +8,8 @@ if (!Foxtrick) var Foxtrick={};
 
 function runScript() {
 	if (!inited()) {
-		Foxtrick.dump("Not even initialized!\n");
+		Foxtrick.dump("Not even initialized! Let's try again 500 ms later.\n");
+		setTimeout(runScript, 500);
 		return;
 	}
 
