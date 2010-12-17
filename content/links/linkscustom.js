@@ -69,7 +69,9 @@ var FoxtrickLinksCustom = {
 				FoxtrickLinksCustom.showLinks(doc,ownBoxBody,basepref);
 			}
 		}
-		catch(e){Foxtrick.dump("CustomLinks->"+e);}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	showLinks : function(doc,ownBoxBody,basepref){
@@ -99,7 +101,10 @@ var FoxtrickLinksCustom = {
 				var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
 				var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
 				var title=FoxtrickPrefs.getString(basepref+'.'+key+'.title');
-				if (href==null||imgref==null||title==null) {Foxtrick.dump('customLink '+key+' incomplete\n');continue; }
+				if (href==null||imgref==null||title==null) {
+					Foxtrick.dump('customLink '+key+' incomplete\n');
+					continue;
+				}
 				// replace tags
 
 				var mykeytag=href.match(/\[\w+\]/ig);
@@ -124,10 +129,16 @@ var FoxtrickLinksCustom = {
 					img.alt = FoxtrickPrefs.getString(basepref+'.'+key+'.title');
 					a.appendChild(img);
 					ownBoxBody.appendChild(a);
-				} catch(e){Foxtrick.dump('showLinks_adddiv: '+e);continue;}
+				}
+				catch(e) {
+					Foxtrick.dumpError(e);
+					continue;
+				}
 			}
 		}
-		catch(e){Foxtrick.dump("CustomLinks->showLinks->"+e+'\n');}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	showEdit : function( doc , ownBoxBody, basepref) {
@@ -307,7 +318,10 @@ var FoxtrickLinksCustom = {
 					option.setAttribute("style","width:100%;");
 					selectbox.appendChild(option);
 					}
-			} catch(e){Foxtrick.dump('tags: ownteaminfo not available\n');}
+			}
+			catch (e) {
+				Foxtrick.dump('tags: ownteaminfo not available\n');
+			}
 			var trn2 = doc.createElement ("tr");
 			var tdn2 = doc.createElement ("td");
 			var divn2 = doc.createElement ("div");
@@ -348,7 +362,9 @@ var FoxtrickLinksCustom = {
 			ownBoxBody.appendChild(divED);
 
 		}
-		catch (e) {Foxtrick.dump("LinksCustom->show_edit->"+e+'\n');}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 
@@ -363,9 +379,10 @@ var FoxtrickLinksCustom = {
 			par.removeChild(evt["target"]);
 			FoxtrickPrefs.setBool( "module." + module_name+'.'+key + ".enabled",false);
 		}
-		catch (e) {Foxtrick.dump("LinksCustom->edityLink->"+e+'\n');}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
-
 
 	delMyLink : function (evt) {
 		try {
@@ -380,8 +397,9 @@ var FoxtrickLinksCustom = {
 			FoxtrickPrefs.delListPref(baseprefnl+'.img');
 			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
 		}
-		catch (e) {Foxtrick.dump("LinksCustom->edityLink->"+e+'\n');}
-
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 
@@ -395,7 +413,9 @@ var FoxtrickLinksCustom = {
 			doc.getElementById("inputImgDivID").imgref=FoxtrickPrefs.getString(baseprefnl+'.img');
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
-		catch (e) {Foxtrick.dump("LinksCustom->editOldLink->"+e+'\n');}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 
@@ -429,7 +449,9 @@ var FoxtrickLinksCustom = {
 			os.close();
 			foStream.close();
 		}
-		catch (e) {Foxtrick.dump("LinksCustom->exportLink->"+e+'\n');}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	saveMyLink : function (evt) {
@@ -485,48 +507,56 @@ var FoxtrickLinksCustom = {
 			table.width="100px";
 			table.insertBefore(tr1,table.lastChild.previousSibling);
 		}
-		catch(e) {Foxtrick.dump("LinksCustom->saveMyLink->"+e+'\n');}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 	GetDelLink  : function(doc,mylink,baseprefnl) {
-	try {
-		var delLink = doc.createElement("div");
-		delLink.setAttribute("class","ft_actionicon foxtrickRemove");
-		delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
-		Foxtrick.addEventListenerChangeSave(delLink, "click", FoxtrickLinksCustom.delMyLink, false );
-		delLink.baseprefnl = baseprefnl;
-		delLink.mylink = mylink;
-		return delLink;
-	}
-	catch(e) {Foxtrick.dump("LinksCustom->FoxtrickLinksCustom.GetDelLink->"+e+'\n');}
+		try {
+			var delLink = doc.createElement("div");
+			delLink.setAttribute("class","ft_actionicon foxtrickRemove");
+			delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
+			Foxtrick.addEventListenerChangeSave(delLink, "click", FoxtrickLinksCustom.delMyLink, false );
+			delLink.baseprefnl = baseprefnl;
+			delLink.mylink = mylink;
+			return delLink;
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 
 	GetEditOldLink  : function(doc,mylink,baseprefnl) {
-	try {
-		var editOld = doc.createElement("div");
-		editOld.setAttribute("class","ft_actionicon foxtrickCopy float_right");
-		editOld.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.copy"));
-		Foxtrick.addEventListenerChangeSave(editOld, "click", FoxtrickLinksCustom.editOldLink, false );
-		editOld.baseprefnl = baseprefnl;
-		editOld.mylink = mylink;
-		return editOld;
-	}
-	catch(e) {Foxtrick.dump("LinksCustom->FoxtrickLinksCustom.GetEditOldLink->"+e+'\n');}
+		try {
+			var editOld = doc.createElement("div");
+			editOld.setAttribute("class","ft_actionicon foxtrickCopy float_right");
+			editOld.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.copy"));
+			Foxtrick.addEventListenerChangeSave(editOld, "click", FoxtrickLinksCustom.editOldLink, false );
+			editOld.baseprefnl = baseprefnl;
+			editOld.mylink = mylink;
+			return editOld;
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 
 	GetExportLink  : function(doc,mylink,baseprefnl) {
-	try {
-		var ExportLink = doc.createElement("div");
-		ExportLink.setAttribute("class","ft_actionicon foxtrickExport float_right");
-		ExportLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.export"));
-		Foxtrick.addEventListenerChangeSave(ExportLink, "click", FoxtrickLinksCustom.Export, false );
-		ExportLink.baseprefnl = baseprefnl;
-		ExportLink.mylink = mylink;
-		return ExportLink;
-	}
-	catch(e) {Foxtrick.dump("LinksCustom->FoxtrickLinksGetExpostLink->"+e+'\n');}
+		try {
+			var ExportLink = doc.createElement("div");
+			ExportLink.setAttribute("class","ft_actionicon foxtrickExport float_right");
+			ExportLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.export"));
+			Foxtrick.addEventListenerChangeSave(ExportLink, "click", FoxtrickLinksCustom.Export, false );
+			ExportLink.baseprefnl = baseprefnl;
+			ExportLink.mylink = mylink;
+			return ExportLink;
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 
@@ -552,9 +582,12 @@ var FoxtrickLinksCustom = {
 			div.imgref=image;
 			div.style.backgroundImage = "url('" + div.imgref + "')";
  		}
-		catch(e) {Foxtrick.dump('FoxtrickLinksCustom.LoadDialog->'+e);Foxtrick.alert(aFileURL+" not found");return;}
+		catch (e) {
+			Foxtrick.dumpError(e);
+			Foxtrick.alert(aFileURL+" not found");
+			return;
+		}
 	},
-
 
 	HeaderClick : function(evt) {
 		try {
@@ -590,34 +623,41 @@ var FoxtrickLinksCustom = {
 				FoxtrickLinksCustom.showLinks(doc,ownBoxBody,basepref);
 			}
 		}
-		catch(e) { Foxtrick.dump("LinksCustom->HeaderClick->"+e+'\n'); }
+		catch(e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
 
 	SelectBox_Select : function(evt) {
-	try {
-		var doc = evt.target.ownerDocument;
-		var value = doc.getElementById ( "inputHrefID" ).value;
-		if (value.search(/\?/)==-1) value+="\?"; else  value+="&";
-		value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
-		doc.getElementById ( "inputHrefID" ).value=value;
-	} catch (e) {Foxtrick.dump("FoxtrickLinksCustom.SelectBox_Select: "+e+'\n');}
+		try {
+			var doc = evt.target.ownerDocument;
+			var value = doc.getElementById ( "inputHrefID" ).value;
+			if (value.search(/\?/)==-1) value+="\?"; else  value+="&";
+			value+=evt["target"]["value"]+'=['+evt["target"]["value"]+']';
+			doc.getElementById ( "inputHrefID" ).value=value;
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	},
 
-
 	generateDataURI : function(file) {
-	try {
-		var contentType = Components.classes["@mozilla.org/mime;1"]
-                              .getService(Components.interfaces.nsIMIMEService)
-                              .getTypeFromFile(file);
-		var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
-                              .createInstance(Components.interfaces.nsIFileInputStream);
-		inputStream.init(file, 0x01, 0600, 0);
-		var stream = Components.classes["@mozilla.org/binaryinputstream;1"]
-                         .createInstance(Components.interfaces.nsIBinaryInputStream);
-		stream.setInputStream(inputStream);
-		var encoded = btoa(stream.readBytes(stream.available()));
-		return "data:" + contentType + ";base64," + encoded;
-	} catch (e) {Foxtrick.dump("FoxtrickLinks generateDataURI: "+e+'\n');}
+		try {
+			var contentType = Components.classes["@mozilla.org/mime;1"]
+		                          .getService(Components.interfaces.nsIMIMEService)
+		                          .getTypeFromFile(file);
+			var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
+		                          .createInstance(Components.interfaces.nsIFileInputStream);
+			inputStream.init(file, 0x01, 0600, 0);
+			var stream = Components.classes["@mozilla.org/binaryinputstream;1"]
+		                     .createInstance(Components.interfaces.nsIBinaryInputStream);
+			stream.setInputStream(inputStream);
+			var encoded = btoa(stream.readBytes(stream.available()));
+			return "data:" + contentType + ";base64," + encoded;
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
+		}
 	}
 };
