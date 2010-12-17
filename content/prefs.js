@@ -120,7 +120,7 @@ var FoxtrickPrefs = {
 	 		return str;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			return this.getValue(pref_name);
+			return String(this.getValue(pref_name));
 		}
 	},
 
@@ -134,7 +134,7 @@ var FoxtrickPrefs = {
 				Components.interfaces.nsISupportsString, str);
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			this.setValue(pref_name, value);
+			this.setValue(pref_name, String(value));
 		}
 	},
 
@@ -158,7 +158,7 @@ var FoxtrickPrefs = {
 			return value;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			return this.getValue(pref_name);
+			return Number(this.getValue(pref_name));
 		}
 	},
 
@@ -167,7 +167,7 @@ var FoxtrickPrefs = {
 			FoxtrickPrefs._pref_branch.setIntPref(encodeURI(pref_name), value);
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			this.setValue(pref_name, value);
+			this.setValue(pref_name, Number(value));
 		}
 	},
 
@@ -191,16 +191,19 @@ var FoxtrickPrefs = {
 			return value;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			return this.getValue(pref_name);
+			return Boolean(this.getValue(pref_name));
 		}
 	},
 
 	setBool : function(pref_name, value) {
+		if (pref_name.indexOf("ExtendedPlayer") > -1) {
+			Foxtrick.dump(pref_name + ": " + typeof(value) + ", " + value + "\n");
+		}
 		if (Foxtrick.BuildFor === "Gecko") {
 			FoxtrickPrefs._pref_branch.setBoolPref(encodeURI(pref_name), value);
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			this.setValue(pref_name, value);
+			this.setValue(pref_name, Boolean(value));
 		}
 	},
 
@@ -325,12 +328,15 @@ var FoxtrickPrefs = {
 		FoxtrickPrefs.setString( "module." + module_name, value );
 	},
 
-	getModuleValue : function( module_name ) {
-		return FoxtrickPrefs.getInt( "module." + module_name + ".value" );
+	getModuleValue : function(module) {
+		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		const val = FoxtrickPrefs.getInt("module." + moduleName + ".value");
+		return val;
 	},
 
-	setModuleValue : function( module_name, value ) {
-		FoxtrickPrefs.setInt( "module." + module_name + ".value", value );
+	setModuleValue : function(module, value) {
+		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		FoxtrickPrefs.setInt("module." + moduleName + ".value", value);
 	},
 
 	getModuleDescription : function( module_name ) {

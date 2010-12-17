@@ -132,7 +132,7 @@ var FoxtrickPrefsDialogHTML = {
 		optiondiv.setAttribute( "class", "ft_pref_radio_group" );
 		optiondiv.setAttribute( "id", module.MODULE_NAME + '_radio' );
 
-		var selectedValue = Foxtrick.getModuleValue( module );
+		var selectedValue = FoxtrickPrefs.getModuleValue(module);
 		for (var i = 0; i < module.RADIO_OPTIONS.length; i++) {
 			var selected;
 			if (selectedValue == i) {

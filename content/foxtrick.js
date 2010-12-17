@@ -734,17 +734,6 @@ Foxtrick.isModuleFeatureEnabled = function(module, feature) {
 	}
 }
 
-Foxtrick.getModuleValue = function(module) {
-	try {
-		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
-		const val = Number(FoxtrickPrefs.getInt("module." + module.MODULE_NAME + ".value"));
-		return val;
-	}
-	catch (e) {
-		return 0;
-	}
-}
-
 Foxtrick.hasClass = function(obj, cls) {
 	return (obj.className !== undefined && obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
 }
