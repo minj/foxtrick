@@ -91,8 +91,9 @@ var FoxtrickPrefsDialogHTML = {
 			}
 		}
 		catch (e) {
-			if (Foxtrick.BuildFor=='Chrome') FoxtrickPrefs.do_dump = true;
-			Foxtrick.dump ('FoxtrickPrefsDialogHTML->save: '+e+'\n');
+			if (Foxtrick.BuildFor=='Chrome')
+				FoxtrickPrefs.do_dump = true;
+			Foxtrick.dumpError(e);
 		}
 	},
 
