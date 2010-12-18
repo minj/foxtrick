@@ -92,7 +92,7 @@ var FoxtrickNtPeek = {
 							matchId, side, homeTeam, awayTeam, homeGoals,
 							awayGoals);
 					}
-					else if (status == "UPCOMING") {
+					else if (status == "UPCOMING" || status == "ONGOING") {
 						var matchRow = FoxtrickNtPeek.getMatchRow(doc,
 							matchId, side, homeTeam, awayTeam);
 					}
