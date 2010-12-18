@@ -15,13 +15,13 @@ FoxtrickTransferDeadline = {
             return;
 
         if (Foxtrick.isPage(Foxtrick.ht_pages["transferSearchResult"], doc))
-            this._PlayerListDeadline ( doc, 'span' );
+            this._PlayerListDeadline(doc);
         else if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc))
-            this._PlayerDetailsDeadline ( doc );
+            this._PlayerDetailsDeadline(doc);
         else if (Foxtrick.isPage(Foxtrick.ht_pages["transfer"], doc))
-            this._PlayerListDeadline ( doc, 'div' );
+            this._PlayerListDeadline(doc);
 		else if (Foxtrick.isPage(Foxtrick.ht_pages["teamPageGeneral"], doc))
-            this._PlayerListDeadline ( doc, 'div' );
+            this._PlayerListDeadline(doc);
     },
 
 	change : function( page, doc ) {
@@ -29,7 +29,7 @@ FoxtrickTransferDeadline = {
             this._PlayerDetailsDeadline (doc);
 	},
 
-    _PlayerListDeadline : function (doc, element) {
+    _PlayerListDeadline : function(doc) {
         var htDate = Foxtrick.util.time.getHtDate(doc);
         var ended = false;
         for (var i = 0; !ended; ++i) {
@@ -51,7 +51,7 @@ FoxtrickTransferDeadline = {
         }
     },
 
-    _PlayerDetailsDeadline : function ( doc ) {
+    _PlayerDetailsDeadline : function(doc) {
         if ( doc.location.href.search(/Player.aspx/i) < 0 ) return;
 
         var htDate = Foxtrick.util.time.getHtDate(doc);
