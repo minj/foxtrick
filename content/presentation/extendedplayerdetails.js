@@ -71,7 +71,8 @@ FoxtrickExtendedPlayerDetailsWage = {
 		var wageText = wageElm.textContent;
 		var hasBonus = wageText.indexOf("%") > 0;
 
-		var currency = Foxtrick.util.currency.getSymbol();
+		// replace spaces in the currency to non-break spaces (U+00A0)
+		var currency = Foxtrick.util.currency.getSymbol().replace(" ", "\u00a0");
 		var currencyLen = currency.length;
 		var splitPos = wageText.indexOf(currency) + currencyLen;
 		var part1 = wageText.substr(0, splitPos);
