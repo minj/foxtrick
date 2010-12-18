@@ -77,7 +77,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 		var part1 = wageText.substr(0, splitPos);
 		var part2 = wageText.substr(splitPos);
 
-		var wage = parseInt(part1.replace(/\s/g, ""));
+		var wage = parseInt(part1.replace(currency, "").replace(/\s/g, ""));
 		if (isNaN(wage))
 			return;
 
@@ -87,10 +87,6 @@ FoxtrickExtendedPlayerDetailsWage = {
 			var reducedWage = Math.floor(wage / 1.2);
 			var formattedWage = Foxtrick.formatNumber(reducedWage, "&nbsp;");
 		}
-
-		// get space before currency symbol
-		part1 = part1.replace(" " + currency, currency);
-		part1 = part1.replace(currency, "&nbsp;" + currency);
 
 		if (hasBonus && Foxtrick.isModuleFeatureEnabled(this, "WageWithoutBonus")) {
 			wageElm.innerHTML = part1
