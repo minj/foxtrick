@@ -196,9 +196,6 @@ var FoxtrickPrefs = {
 	},
 
 	setBool : function(pref_name, value) {
-		if (pref_name.indexOf("ExtendedPlayer") > -1) {
-			Foxtrick.dump(pref_name + ": " + typeof(value) + ", " + value + "\n");
-		}
 		if (Foxtrick.BuildFor === "Gecko") {
 			FoxtrickPrefs._pref_branch.setBoolPref(encodeURI(pref_name), value);
 		}
