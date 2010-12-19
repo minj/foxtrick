@@ -16,7 +16,8 @@ FoxtrickFixcssProblems = {
                                     "RTL_Fixes",
                                     "ForumScrollBarFix",
 									"MatchReportRatingsFontFix",
-									"BrasilToolbarFix"
+									"BrasilToolbarFix",
+									"RemoveForumSneakPeak"
 								),
 	OPTIONS_CSS: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -26,7 +27,8 @@ FoxtrickFixcssProblems = {
                                 "",
                                 Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toolbar.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toolbar.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/RemoveForumSneakPeak.css"
 								),
     OPTIONS_CSS_RTL: new Array (
                                 Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -36,7 +38,8 @@ FoxtrickFixcssProblems = {
                                 Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes.css",
                                 Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 								Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
-								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toolbar.css"
+								Foxtrick.ResourcePath+"resources/css/fixes/brasil_toolbar.css",
+								Foxtrick.ResourcePath+"resources/css/fixes/RemoveForumSneakPeak.css"
                                 ),
 
     run : function(page, doc) {
