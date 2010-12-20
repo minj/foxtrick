@@ -21,7 +21,7 @@ CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 REVISION = `git svn find-rev master`
 
 DIST_TYPE = nightly
-NIGHTLY_UPDATE_URL = https://foxtrick.c6.ixwebhosting.com/nightly/download/update.rdf
+NIGHTLY_UPDATE_URL = https://foxtrick.c6.ixwebhosting.com/nightly/update.rdf
 
 all: firefox chrome
 

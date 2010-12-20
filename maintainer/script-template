@@ -1,6 +1,5 @@
 open {HOST}
 user {USER} {PASSWORD}
-cd download
 put {PATH}/foxtrick.xpi -o {FILENAME}
 put update.rdf -o update.rdf
 exit
