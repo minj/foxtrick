@@ -137,11 +137,11 @@
 <script type="application/x-javascript" src="./links/linksclubtransfers.js" />
 <script type="application/x-javascript" src="./links/linksstaff.js" />
 <script type="application/x-javascript" src="./links/linkstracker.js" />
-<script type="application/x-javascript" src="./alert/foxtrickalert.js" />
-<script type="application/x-javascript" src="./alert/alertcustom.js" />
-<script type="application/x-javascript" src="./alert/alertcustomsounds.js" />
-<script type="application/x-javascript" src="./alert/tickercoloring.js" />
-<script type="application/x-javascript" src="./alert/newmail.js" />
+<script type="application/x-javascript" src="./alert/foxtrick-alert.js" />
+<script type="application/x-javascript" src="./alert/alert-custom.js" />
+<script type="application/x-javascript" src="./alert/alert-custom-sounds.js" />
+<script type="application/x-javascript" src="./alert/ticker-coloring.js" />
+<script type="application/x-javascript" src="./alert/new-mail.js" />
 <script type="application/x-javascript" src="./alert/live-alert.js" />
 
 <!-- following modules all run on 'all_late' pages. order of execution is determined be following order -->

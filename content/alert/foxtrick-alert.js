@@ -1,5 +1,5 @@
 /**
- * foxtrickalert.js
+ * foxtrick-alert.js
  * give a growl notification on news ticker
  * @author taised, convincedd
  */
