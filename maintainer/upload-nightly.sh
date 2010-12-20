@@ -19,9 +19,11 @@ MAJOR_VERSION=`cd ${SOURCE_DIR} && grep '<em:version>' install.rdf | \
 	sed -r -e 's|^.+<em:version>(.+)</em:version>|\1|'`
 REVISION=`cd ${SOURCE_DIR} && git svn find-rev master`
 VERSION="${MAJOR_VERSION}.r${REVISION}"
+SHA1SUM=`sha1sum "${SOURCE_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
 
 cp update-template.rdf update.rdf
-sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/downloads/foxtrick-r${REVISION}.xpi|g" update.rdf
+sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/foxtrick-r${REVISION}.xpi|g" update.rdf
+sed -i "s|{UPDATE_HASH}|sha1:${SHA1SUM}|g" update.rdf
 sed -i "s|{VERSION}|${VERSION}|g" update.rdf
 
 cp script-template script

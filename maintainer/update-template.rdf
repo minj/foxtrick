@@ -15,6 +15,7 @@
 								<em:minVersion>3.0</em:minVersion>
 								<em:maxVersion>4.0.*</em:maxVersion>
 								<em:updateLink>{UPDATE_LINK}</em:updateLink>
+								<em:updateHash>{UPDATE_HASH}</em:updateHash>
 							</RDF:Description>
 						</em:targetApplication>
 					</RDF:Description>
@@ -29,6 +30,7 @@
 								<em:minVersion>2.0</em:minVersion>
 								<em:maxVersion>2.1.*</em:maxVersion>
 								<em:updateLink>{UPDATE_LINK}</em:updateLink>
+								<em:updateHash>{UPDATE_HASH}</em:updateHash>
 							</RDF:Description>
 						</em:targetApplication>
 					</RDF:Description>
