@@ -1,5 +1,5 @@
 /**
-* copymatchid.js
+* copy-match-id.js
 * Foxtrick Copies post id to clipboard
 * @author convinced
 */

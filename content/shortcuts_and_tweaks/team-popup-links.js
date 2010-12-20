@@ -1,5 +1,5 @@
 /**
- * teampopuplinks.js
+ * team-popup-links.js
  * Foxtrick show Team Popup
  * @author bummerland, convinced, ryanli
  */

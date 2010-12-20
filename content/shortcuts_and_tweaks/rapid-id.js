@@ -1,5 +1,5 @@
 /**
- * rapidid.js
+ * rapid-id.js
  * rapid way to view something by id
  * @author ryanli
  */

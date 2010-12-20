@@ -1,5 +1,5 @@
 /**
- * teamStats.js
+ * team-stats.js
  * Foxtrick team overview
  * @author OBarros, spambot, convinced, ryanli
  */

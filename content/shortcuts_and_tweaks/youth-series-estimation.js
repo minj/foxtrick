@@ -1,5 +1,5 @@
 /*
- * youthSeriesEstimation.js
+ * youth-series-estimation.js
  * Estimation of start time of youth series
  * @author ryanli
  */

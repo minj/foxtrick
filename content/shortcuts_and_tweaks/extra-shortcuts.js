@@ -1,5 +1,5 @@
 /**
-* extraShortcuts.js
+* extra-shortcuts.js
 * Adds an imagelink to the shortcut
 * @author baumanns, spambot
 */

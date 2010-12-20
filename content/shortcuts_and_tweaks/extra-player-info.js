@@ -1,4 +1,4 @@
-/* extraPlayerInfo.js
+/* extra-player-info.js
  * Add extra information for players in players page
  * @author convincedd, ryanli
  */

@@ -1,5 +1,5 @@
 /**
- * crosstable.js
+ * cross-table.js
  * adds cross table to fixtures
  * @author spambot
  */
@@ -243,11 +243,11 @@ var FoxtrickCrossTable = {
 						country = FoxtrickHelper.getLeagueDataFromId(i).LeagueID;
 						break;
 					}
-				if (!leagues) {Foxtrick.dump('crosstable.js countries: league not found:' +country+ "\n");; return -1;}
+				if (!leagues) {Foxtrick.dump('cross-table.js countries: league not found:' +country+ "\n");; return -1;}
 				var league = FoxtrickHelper.getLevelNum(RomanLeague,country);
 				Foxtrick.dump('country: ' + country + ' league: ' + league + ' leagues: ' + leagues + '\n');
 			} catch (exml) {
-				Foxtrick.dump('crosstable.js countries: '+exml + "\n");
+				Foxtrick.dump('cross-table.js countries: '+exml + "\n");
 			}
 
 

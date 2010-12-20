@@ -1,5 +1,5 @@
 /**
- * playerbirthday.js
+ * player-birthday.js
  * show information about past and coming birthdays
  * @author jurosz, ryanli
  */

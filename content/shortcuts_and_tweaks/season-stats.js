@@ -1,5 +1,5 @@
 /**
- * seasonstats.js
+ * season-stats.js
  * Foxtrick add stats to match archive
  * @author convinced
  */

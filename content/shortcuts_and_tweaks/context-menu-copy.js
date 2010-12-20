@@ -1,5 +1,5 @@
 /**
- * contextMenuCopy.js
+ * context-menu-copy.js
  * Options at the context menu for copying ID and/or link and content in HT-ML
  * @author convinced, ryanli
  */

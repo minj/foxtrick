@@ -1,5 +1,5 @@
 /**
- * teamselectbox.js
+ * team-select-box.js
  * Foxtrick team select box
  * @author convinced
  */

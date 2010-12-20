@@ -1,5 +1,5 @@
 /**
- * mediantransferprice.js
+ * median-transfer-price.js
  * Foxtrick Add median transfer price
  * @author bummerland
  */

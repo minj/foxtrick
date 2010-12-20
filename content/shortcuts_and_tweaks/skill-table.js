@@ -1,5 +1,5 @@
 /**
-	* skilltable.js
+	* skill-table.js
 	* Show a skill table on players list page
 	* @authors: convincedd, ryanli
 	*/

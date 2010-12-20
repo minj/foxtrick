@@ -1,5 +1,5 @@
 /**
- * addmanagerbuttons.js
+ * addmanager-buttons.js
  * Adds Send Message and Write in Guestbook buttons to manager page
  * @author larsw84, Stephan57, ryanli, convinedd
  */

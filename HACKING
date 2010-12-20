@@ -123,7 +123,7 @@ step is necessary.
 
 There are many other interesting aspects of a module, and you can gain knowledge
 from existing modules. The YouthPromotes module, which is in the file
-content/shortcuts_and_tweaks/youthPromotes.js, is very simple and could help
+content/shortcuts_and_tweaks/youth-promotes.js, is very simple and could help
 you understand the basics. If you have problems, feel free to ask the
 developers.
 

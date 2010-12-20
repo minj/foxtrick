@@ -1,5 +1,5 @@
 /**
- * youthskillnotes.js
+ * youth-skill-notes.js
  * Make your own notes about skills...
  * @Authors:  smates, larsw84
  */

@@ -1,5 +1,5 @@
 /**
- * historyStats.js
+ * history-stats.js
  * Foxtrick team history stats
  * @author spambot
  */

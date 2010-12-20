@@ -1,5 +1,5 @@
 /*
- * playerFilters.js
+ * player-filters.js
  * Add a select box for filtering players
  * @author OBarros, spambot, convinced, ryanli
  */

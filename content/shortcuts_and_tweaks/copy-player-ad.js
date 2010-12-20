@@ -1,5 +1,5 @@
 /**
- * copyPlayerAd.js
+ * copy-player-ad.js
  * Copies a player ad to the clipboard
  * @author larsw84, ryanli
  */

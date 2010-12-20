@@ -1,5 +1,5 @@
 /**
- * confirmActions.js
+ * confirm-actions.js
  * Ask user to confirm before certain actions
  * @author bummerland, larsw84, convincedd, ryanli
  */

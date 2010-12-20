@@ -1,5 +1,5 @@
 /*
- * youthPromotes.js
+ * youth-promotes.js
  * Shows days to promote a youth player
  * @Author: smates, ryanli
  */
