@@ -112,7 +112,7 @@ var FoxtrickCopyTrainingReport = {
 			}
 			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 				var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-				Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/',false);
+				Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/');
 			}
 		}
 		catch (e) {
@@ -240,8 +240,8 @@ var FoxtrickCopyScoutReport = {
 
 				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-					if (!rejectreport) Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/',false);
-					else Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_myrejects_add/',true);
+					if (!rejectreport) Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/');
+					else Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/site/player_myrejects_add/');
 				}
 		}
 	} catch(e) {Foxtrick.dumpError(e);}
@@ -326,7 +326,7 @@ var FoxtrickCopyPlayerSource = {
 
 			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
 						var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-						Foxtrick.openAndReuseOneTabPerURL('http://'+server+'.hattrick-youthclub.org/site/player_cp_add',true);
+						Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/site/player_cp_add');
 			}
 		}
 		catch (e) {

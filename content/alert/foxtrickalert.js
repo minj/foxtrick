@@ -211,7 +211,7 @@ var FoxtrickAlert = {
                 function(subject, topic, data) {
                     try {
 						if (topic=="alertclickcallback") {
-							Foxtrick.openAndReuseOneTabPerURL(href,true);
+							Foxtrick.newTab(href);
 						}
 						if (topic=="alertfinished") {
 							FoxtrickAlert.foxtrick_showAlert(true);
