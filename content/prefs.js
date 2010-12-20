@@ -7,7 +7,7 @@
 
 if (Foxtrick.BuildFor === "Chrome") {
 	var portsetpref = chrome.extension.connect({name: "ftpref-query"});
-	portsetpref.onMessage.addListener(function(msg) {   
+	portsetpref.onMessage.addListener(function(msg) {
 		if (msg.set == 'lang_changed') {
 			console.log('lang_changed');
 			Foxtrickl10n.properties = msg.properties;
@@ -261,7 +261,7 @@ var FoxtrickPrefs = {
 					for (var i=0;i<array.length;++i)
 						array[i]=array[i].replace(/"|,|extensions.foxtrick.prefs./g,'');
 					return array;
-				} 
+				}
 				else return [];
 			}
 		}

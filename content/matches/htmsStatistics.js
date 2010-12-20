@@ -135,7 +135,7 @@ Foxtrick.htmsStatistics = {
 			}
 			req.send(null);
 		}
-		
+
 		var p = doc.createElement('p');
 		var a = doc.createElement('a');
 		a.appendChild(doc.createTextNode(Foxtrickl10n.getString('foxtrick.htmsStatistics.changePrediction')));

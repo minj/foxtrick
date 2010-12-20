@@ -13,7 +13,7 @@ Foxtrick.BookmarkAdjust = {
     run : function( page, doc ) {
         this._adjust_bookmarks( doc );
     },
-	
+
 	change : function( page, doc ) {
 		this._adjust_bookmarks( doc );
 	},
@@ -29,7 +29,7 @@ Foxtrick.BookmarkAdjust = {
 	_adjust_bookmarks : function ( doc ) {
 		var spanObj=doc.getElementById('ctl00_ctl00_CPContent_CPMain_repB')
 		var tableObj = spanObj.getElementsByTagName('table').item(0);
-		
+
 		//checking if deadline already set
 		var deadline_span = doc.getElementsByClassName("ft_deadline");
         if (deadline_span.length > 0) {
@@ -38,7 +38,7 @@ Foxtrick.BookmarkAdjust = {
 		else {
 			var setDeadline=true;
 		}
-		
+
 		//Now running through the table
         for (var i=0; i<tableObj.rows.length; i++) {
             //If there aren't 4 cells on the row is a separator row
@@ -67,7 +67,7 @@ Foxtrick.BookmarkAdjust = {
 					this._bookmarkColor(imageObj, /\[white\]/i,      commentObj, "white");
 					this._bookmarkColor(imageObj, /\[yellow\]/i,     commentObj, "yellow");
                 }
-				
+
 				if (setDeadline) {
 					var dateCell=tableObj.rows[i].cells[0].getElementsByClassName('date');
 					if (dateCell.length>0) {
@@ -77,8 +77,8 @@ Foxtrick.BookmarkAdjust = {
             }
         }
 	},
-	
-	_add_deadLine : function ( doc, cell ) {	
+
+	_add_deadLine : function ( doc, cell ) {
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var deadline = cell.textContent;
 		var dateObj = Foxtrick.util.time.getDateFromText(deadline);

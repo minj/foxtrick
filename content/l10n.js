@@ -230,7 +230,7 @@ var Foxtrickl10n = {
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
 			var string_regexp = new RegExp('\\s'+str+'=(.+)\\s', "i");
-			return (Foxtrickl10n.properties.search(string_regexp)!=-1 
+			return (Foxtrickl10n.properties.search(string_regexp)!=-1
 				|| Foxtrickl10n.properties_default.search(string_regexp)!=-1);
 		}
 	},
@@ -249,7 +249,7 @@ var Foxtrickl10n = {
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
 			var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
-			return (Foxtrickl10n.properties.search(string_regexp)!=-1); 
+			return (Foxtrickl10n.properties.search(string_regexp)!=-1);
 		}
 	},
 
@@ -274,8 +274,8 @@ var Foxtrickl10n = {
 			return link;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			try{  
-				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" ); 
+			try{
+				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
 				if (Foxtrickl10n.screenshots.search(string_regexp)!=-1)
 					return Foxtrickl10n.screenshots.match(string_regexp)[1];
 				return '';

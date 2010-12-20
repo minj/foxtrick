@@ -873,7 +873,7 @@ Foxtrick.unload_css_permanent = function(cssList) {
 	else if (typeof(cssList) === "object") {
 		for (var i in cssList)
 			unload_css_permanent_impl(cssList[i]);
-	}		
+	}
 }
 
 Foxtrick.load_css_permanent = function(cssList) {
