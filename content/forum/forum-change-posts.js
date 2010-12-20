@@ -1,5 +1,5 @@
 /**
-* forumchangeposts.js
+* forum-change-posts.js
 * Foxtrick Copies post id to clipboard
 * @author convinced
 */

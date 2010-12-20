@@ -1,5 +1,5 @@
 /**
- * ForumThreadAutoIgnore.js
+ * forum-thread-auto-ignore.js
  * Foxtrick Leave Conference module
  * @author convincedd
  */

@@ -1,5 +1,5 @@
 /**
- * forumnextandprevious.js
+ * forum-next-and-previous.js
  * Foxtrick Remove Disabled Next and Previous buttons
  * @author smates
  */

@@ -1,5 +1,5 @@
 /**
- * forummarkunread.js
+ * mark-unread.js
  * adds a link to mark hread unread until...
  * @author spambot
  */

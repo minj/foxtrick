@@ -1,5 +1,5 @@
 /**
- * htthreadmarker.js
+ * ht-thread-marker.js
  * Marks threads created by HTs.
  * @author Mod-PaV
  */

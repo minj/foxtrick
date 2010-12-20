@@ -1,5 +1,5 @@
 /**
- * forumpreview.js
+ * forum-preview.js
  * Foxtrick forum post preview
  * @author spambot
  */

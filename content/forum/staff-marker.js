@@ -1,5 +1,5 @@
 /**
- * staffmarker.js
+ * staff-marker.js
  * Foxtrick forum staff (HT, GM, Mod, CHPP, LA) marker
  * @author bummerland, ryanli
  */

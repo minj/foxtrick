@@ -1,5 +1,5 @@
 /**
- * forumyouthicons.js
+ * forum-youth-icons.js
  * Foxtrick forum post youth icons
  * @author spambot
  */

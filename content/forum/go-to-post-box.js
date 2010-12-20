@@ -1,5 +1,5 @@
 /**
- * forumgotopostbox.js
+ * go-to-post-box.js
  * Foxtrick Go to post box module
  * @author bummerland
  */

@@ -1,7 +1,7 @@
 //**********************************************************
 /**
-* forumchangeposts_modules.js
-* module collection of forumchangeposts.js
+* forum-change-posts-modules.js
+* module collection of forum-change-posts.js
 * @author convinced
 */
 

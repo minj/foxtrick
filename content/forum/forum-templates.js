@@ -1,5 +1,5 @@
 /**
- * forumtemplates.js
+ * forum-templates.js
  * Foxtrick forum template handling service
  * @author Mod-PaV, convincedd
  */
