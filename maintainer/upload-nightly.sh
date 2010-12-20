@@ -13,7 +13,7 @@ if [[ -z "${USER}" || -z "${PASSWORD}" ]]; then
 	exit 1
 fi
 
-cd ${SOURCE_DIR} && make firefox DIST_TYPE=nightly
+(cd ${SOURCE_DIR} && make firefox DIST_TYPE=nightly)
 
 MAJOR_VERSION=`cd ${SOURCE_DIR} && grep '<em:version>' install.rdf | \
 	sed -r -e 's|^.+<em:version>(.+)</em:version>|\1|'`
