@@ -1,5 +1,5 @@
 /**
- * skilltranslation.js
+ * skill-translation.js
  * Script which add trasnlations to english to skills
  * @author convincedd
  */

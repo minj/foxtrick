@@ -1,5 +1,5 @@
 /**
- * personalityImages.js
+ * personality-images.js
  * Script which add character image
  * @author smates/convinced
  */

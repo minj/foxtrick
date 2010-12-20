@@ -1,5 +1,5 @@
 /**
- * skinPlugin.js
+ * skin-plugin.js
  * Script which including skins
  * chrome://foxtrick/content/resources/css/mainr.css
  * @author smates/convinced

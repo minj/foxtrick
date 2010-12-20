@@ -1,5 +1,5 @@
 /**
- * oldStyleFace.js
+ * old-style-face.js
  * Show player's original face
  * @author Aimo_Kanuuna, ryanli
  */

@@ -1,5 +1,5 @@
 /**
- * bookmarkadjust.js
+ * bookmark-adjust.js
  * Colors bookmark icon extracting code from bookmark comment
  * @author taised
  */

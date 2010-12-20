@@ -1,5 +1,5 @@
 /**
- * custommedals.js
+ * custom-medals.js
  * Replaces medals with old Hattrick medals
  * Intention is to have this module expanded later to allow more medal sets
  * @author larsw84

@@ -1,5 +1,5 @@
 /**
- * originalFace.js
+ * original-face.js
  * Show player's original face
  * @author smates
  */

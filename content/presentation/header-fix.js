@@ -1,5 +1,5 @@
 /**
- * headerfix.js
+ * header-fix.js
  * Script which fixes the header
  * @author htbaumanns, CSS by Catalyst2950
  */

@@ -1,5 +1,5 @@
 /**
-* countrylist.js
+* country-list.js
 * displays country names in dropdown in different way
 * @author spambot
 */
@@ -214,7 +214,7 @@ var FoxtrickCountyList = {
 					options[i].text = htname;
 
                 } catch (exml) {
-                    Foxtrick.dump('countrylist.js countries: '+exml + "\n");
+                    Foxtrick.dump('country-list.js countries: '+exml + "\n");
                 }
             }
         } catch(e) {Foxtrick.dump('countrylist: '+e+'\n');}

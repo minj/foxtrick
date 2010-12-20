@@ -1,5 +1,5 @@
 /**
- * leaguenewsfilter.js
+ * league-news-filter.js
  * filters to league news
  * @author convinced
  */

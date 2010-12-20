@@ -1,5 +1,5 @@
 /**
- * movePlayerStatement.js
+ * move-player-statement.js
  * Move player statement to face
  * @author smates
  */

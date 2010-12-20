@@ -1,5 +1,5 @@
 /**
- * moveplayerselectbox.js
+ * move-player-select-box.js
  * option to move player select box up on playersdetail page
  * @author convinced
  */
