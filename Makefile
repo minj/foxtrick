@@ -18,6 +18,10 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 	loader-chrome.js
 
+REVISION = `git svn find-rev master`
+
+DIST_TYPE = nightly
+NIGHTLY_UPDATE_URL = https://foxtrick.c6.ixwebhosting.com/nightly/download/update.rdf
 
 all: firefox chrome
 
@@ -44,7 +48,18 @@ firefox:
 		then \
 		sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
 		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
-	fi;
+	fi
+	# modify according to distribution type
+ifeq ($(DIST_TYPE),nightly)
+	cd $(BUILD_DIR); \
+	sed -i -r 's|<em:updateURL>.+</em:updateURL>|<em:updateURL>'$(NIGHTLY_UPDATE_URL)'</em:updateURL>|' install.rdf; \
+	sed -i -r '/<em:updateKey>.+<\/em:updateKey>/d' install.rdf; \
+	sed -i -r 's|(<em:version>.+)(</em:version>)|\1.r'$(REVISION)'\2|' install.rdf; \
+	sed -i -r 's|(\"extensions\.foxtrick\.prefs\.version\", \".+)(\")|\1.r'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+else ifeq ($(DIST_TYPE),beta)
+else ifeq ($(DIST_TYPE),stable)
+	# to be added
+endif
 	# make xpi
 	cd $(BUILD_DIR); \
 	$(ZIP) -r ../$(APP_NAME).xpi *
@@ -62,7 +77,7 @@ chrome:
 	cp -r $(CONTENT_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
 	# make crx
-	./crxmake.sh $(BUILD_DIR) chrome_dev.pem
+	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome_dev.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
 	# clean up
 	make clean-build
