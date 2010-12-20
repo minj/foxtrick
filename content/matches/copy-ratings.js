@@ -1,5 +1,5 @@
 /**
- * copyRatings.js
+ * copy-ratings.js
  * Copies match ratings (HT-ML style)
  * @author spambot
  */

@@ -1,5 +1,5 @@
 /**
- * starscounter.js
+ * stars-counter.js
  * Count stars in match lineup page
  * @author larsw84, ryanli
  */

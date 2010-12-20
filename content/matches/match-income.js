@@ -1,5 +1,5 @@
 /**
- * matchincome.js
+ * match-income.js
  * Foxtrick add links to played matches pages
  * @author convinced
  */
