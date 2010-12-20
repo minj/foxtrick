@@ -27,7 +27,12 @@ input, button
 	background-color: white;
 	border: 1px solid #b4bac0;
 	padding: 3px;
-	margin-right: 5px;
+	margin: 0 5px 0 0;
+}
+
+html[dir="rtl"] input, html[dir="rtl"] button
+{
+	margin: 0 0 0 5px;
 }
 
 input
@@ -53,6 +58,10 @@ table th:first-child {
 	text-align: left;
 }
 
+html[dir="rtl"] table th:first-child {
+	text-align: right;
+}
+
 .module
 {
 	border: 1px solid #ccc;
@@ -71,7 +80,12 @@ table th:first-child {
 	color: #333;
 	text-decoration: none;
 	font-size: 75%;
-	margin-left: 2em;
+	margin: 0 0 0 2em;
+}
+
+html[dir="rtl"] .module-link
+{
+	margin: 0 2em 0 0;
 }
 
 .screenshot
@@ -80,6 +94,11 @@ table th:first-child {
 	width: 16px;
 	height: 16px;
 	background: url("chrome://foxtrick/content/resources/img/screenshot.png") no-repeat 50% 50%;
+}
+
+html[dir="rtl"] .screenshot
+{
+	float: left;
 }
 
 .screenshot:hover
@@ -136,12 +155,23 @@ div#panes
 	top: 20px;
 }
 
+html[dir="rtl"] #fixed
+{
+	right: auto;
+	left: 20px;
+}
+
 #balloon
 {
 	padding: 10px;
 	border: 1px solid #ccc;
 	background-color: #aaa;
 	float: right;
+}
+
+html[dir="rtl"] #fixed
+{
+	float: left;
 }
 
 #save
@@ -162,4 +192,10 @@ div#panes
 	padding: 40px;
 	color: #b3b3b3;
 	background-color: #7da;
+}
+
+html[dir="rtl"] #note
+{
+	right: auto;
+	left: 20px;
 }
