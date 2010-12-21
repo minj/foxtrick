@@ -56,11 +56,16 @@ FoxtrickTransferDeadline = {
 
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 
-		var div = doc.getElementById( 'ctl00_ctl00_CPContent_CPMain_updBid' );
-		if (!div)
+		try {
+			var div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
+			var alert = div.getElementsByClassName("alert")[0];
+			var selltime_elm = alert.getElementsByTagName("p")[0];
+		}
+		catch (e) {
+			// these may not be present
+		}
+		if (!selltime_elm)
 			return;
-		var alert = div.getElementsByClassName("alert")[0];
-		var selltime_elm = alert.getElementsByTagName("p")[0];
 
 		// remove old deadlines
 		var oldDeadline = selltime_elm.getElementsByClassName("ft_deadline");
