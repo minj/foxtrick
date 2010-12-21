@@ -41,6 +41,9 @@ function runScript() {
 	log += "Foxtrick total time: " + totalTime + " ms\n" ;		
 	
 	Foxtrick.dump(log);
+
+	if (panel = Foxtrick.getPanel(document))
+		panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 }
 
 function init() {
