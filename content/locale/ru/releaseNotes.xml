@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<release_note>
+<notes>
+ <note version="0.5.4b2">
+  <item>Новый модуль <module>NtPeek</module> для скрытия матчей сборной из Моего Hattrick'а.</item>
+  <item>Добавлен белорусский перевод (by LA-Stolik).</item>
+  <item>Некоторые исправления для соответствия последним изменениям HT.</item>
+  <item>Изменения в отображении информации о выпуске в экране настроек.</item>
+  <item>Ссылки на настройки FoxTrick внутри Hattrick'а.</item>
+  <item>Ссылки на радио теперь выключены по умолчанию.</item>
+ </note>
 
-<version>0.5.4</version>
-<title>Информация о выпуске (основные изменения и новые возможности)</title>
-<lines>Новый интерфейс настроек.</lines>
-<lines>Модуль LiveAlert для уведомлений о событиях HT Live.</lines>
-</release_note>
+ <note version="0.5.4b1">
+  <item>Новый интерфейс настроек.</item>
+  <item>Модуль <module>LiveAlert</module> для уведомления о голах в HT Live.</item>
+  <item>Модуль <module>OldStyleFace</module> для отображения лиц в старом стиле Hattrick.</item>
+ </note>
+</notes>
