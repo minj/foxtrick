@@ -76,6 +76,14 @@ chrome:
 	cd content/; \
 	cp -r $(CONTENT_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
+	# modify according to distribution type
+ifeq ($(DIST_TYPE),nightly)
+	cd $(BUILD_DIR); \
+	sed -i -r 's|("version" : "([0-9]+\.)*)([0-9]+)"|\1'$(REVISION)'"|' manifest.json;
+else ifeq ($(DIST_TYPE),release)
+	cd $(BUILD_DIR); \
+	sed -i -r '/update_url/d' manifest.json;
+endif
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome_dev.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx

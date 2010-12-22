@@ -1,5 +1,8 @@
 open {HOST}
 user {USER} {PASSWORD}
-put {PATH}/foxtrick.xpi -o {FILENAME}
+put {PATH}/foxtrick.xpi -o {GECKO_FILENAME}
 put update.rdf -o update.rdf
+cd chrome/
+put {PATH}/foxtrick.crx -o {CHROME_FILENAME}
+put update.xml -o update.xml
 exit
