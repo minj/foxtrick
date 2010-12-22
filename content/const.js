@@ -1,7 +1,7 @@
 /**
  * const.js
  * Foxtrick constants
- * @author kolmis
+ * @author FoxTrick developers
  */
 
 if (!Foxtrick) var Foxtrick={};
@@ -17,24 +17,11 @@ else {
 
 // List of categories
 Foxtrick.moduleCategories = {
-    MAIN : 'main',  // to be added manually to main tab
-
+	MAIN : 'main', // to be added manually to main tab
 	SHORTCUTS_AND_TWEAKS : 'shortcuts_and_tweaks',
-    PRESENTATION : 'presentation',
+	PRESENTATION : 'presentation',
 	MATCHES : 'matches',
-    FORUM : 'forum',
-    LINKS : 'links',
-    ALERT : 'alert',
-
-	// following are only used for html preferences
-    CHANGES : 'changes',
-    HELP : 'help',
-    ABOUT : 'about'
-};
-
-
-// List of latestChangeCategories
-Foxtrick.latestChangeCategories = {
-    NEW : 'new',  // will appear in 'set new modules' list.
-	FIX : 'fix'   // only appears in the 'show new modules' list (same if value not set at all)
+	FORUM : 'forum',
+	LINKS : 'links',
+	ALERT : 'alert'
 };
