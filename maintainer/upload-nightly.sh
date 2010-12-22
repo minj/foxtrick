@@ -32,7 +32,7 @@ cp update-template.xml update.xml
 CHROME_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep '"version"' manifest.json | \
 	sed -r -e 's|^.*"version" : "(([0-9]+\.)*)[0-9]+".*$|\1|'`
 CHROME_VERSION="${CHROME_MAJOR_VERSION}${REVISION}"
-sed -i "s|{CODEBASE}|http://foxtrick.foundationhorizont.org/nightly/chrome/foxtrick-r${REVISION}.xpi|g" update.xml
+sed -i "s|{CODEBASE}|http://foxtrick.foundationhorizont.org/nightly/chrome/foxtrick-r${REVISION}.crx|g" update.xml
 sed -i "s|{VERSION}|${CHROME_VERSION}|g" update.xml
 
 cp script-template script
