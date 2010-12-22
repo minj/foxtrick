@@ -1,5 +1,5 @@
 /**
- * linksteam.js
+ * links-team.js
  * Foxtrick add links to team pages
  * @author convinced
  */

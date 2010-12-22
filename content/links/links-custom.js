@@ -1,5 +1,5 @@
 /**
- * linkscustom.js
+ * links-custom.js
  * Allows to adds custom links
  * @author convinced
  */

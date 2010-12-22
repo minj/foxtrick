@@ -1,5 +1,5 @@
 /**
- * linksleague.js
+ * links-league.js
  * Foxtrick add links to league pages
  * @author convinced
  */

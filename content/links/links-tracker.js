@@ -1,5 +1,5 @@
 /**
- * linkstracker.js
+ * links-tracker.js
  * Foxtrick add links to national pages
  * @author convinced
  */

@@ -1,5 +1,5 @@
 /**
- * linksnational.js
+ * links-national.js
  * Foxtrick add links to national pages
  * @author convinced
  */

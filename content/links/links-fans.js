@@ -1,5 +1,5 @@
 /**
- * linksplayers.js
+ * links-players.js
  * Foxtrick add links to fans pages
  * @author convinced
  */

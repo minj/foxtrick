@@ -1,5 +1,5 @@
 /**
- * linksstaff.js
+ * links-staff.js
  * Foxtrick add links to manager pages
  * @author convinced
  */

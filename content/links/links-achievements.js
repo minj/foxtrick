@@ -1,5 +1,5 @@
 /**
- * linksachievements.js
+ * links-achievements.js
  * Foxtrick add links to manager pages
  * @author convinced
  */

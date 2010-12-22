@@ -1,31 +1,22 @@
 /**
- * linksleague.js
- * Foxtrick add links to country pages
+ * links-league.js
+ * Foxtrick add links to coach pages
  * @author convinced
  */
 
 ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksCountry = {
-    MODULE_NAME : "LinksCountry",
+var FoxtrickLinksCoach = {
+    MODULE_NAME : "LinksCoach",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('country'),
+	PAGES : new Array('coach'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "countrylink");
+		return Foxtrick.links.getOptionsHtml(doc, this, false, "coachlink");
 	},
 
     run : function( page, doc ) {
-		//addExternalLinksToCountryDetail
+		//addExternalLinksToCoachPage
+		var links = Foxtrick.LinkCollection.getLinks("coachlink", {  }, doc, this);
 		var ownBoxBody=null;
-        var countryid;
-		var alldivs = doc.getElementsByTagName('div');
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="main mainRegular") {
-					var thisdiv = alldivs[j];
-					countryid = FoxtrickHelper.findCountryId(thisdiv);
-					}
-			}
-
-        var links = Foxtrick.LinkCollection.getLinks("countrylink", { "countryid": countryid }, doc, this);
 
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
@@ -41,7 +32,7 @@ var FoxtrickLinksCountry = {
 			}
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );
-    }
+			}
+		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
+	}
 };
