@@ -47,7 +47,7 @@ FoxtrickMatchReportFormat = {
 
 		// lets keep in mind, there could be another problem with supporters
 		// var div_inner = div.getElementsByTagName("*")[Foxtrick.isSupporter(doc) ? 3 : 2];
-		var div_inner = div.getElementsByTagName("*")[4];
+		var div_inner = div.getElementsByTagName("*")[Foxtrick.isSupporter(doc) ? 4 : 2];
 		var start = div_inner.innerHTML.indexOf('<br><br>');
 		var end = div_inner.innerHTML.indexOf('<div class="separator">');
 
