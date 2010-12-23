@@ -83,6 +83,13 @@ var FoxtrickStaffMarker = {
 	},
 
 	run : function(page, doc) {
+		// wait till hty xml is available
+		if (FoxtrickStaffMarker.hty_staff.length === 0) {
+			setTimeout(function() {
+				FoxtrickStaffMarker.run(page, doc);
+			}, 500);
+		}
+
 		// not on open new thread
 		if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
 
