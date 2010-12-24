@@ -295,6 +295,11 @@ var FoxtrickMain = {
 
 			Foxtrick.updateStatus();
 
+			// update Foxtrick.lastHost, which is used when opening links
+			// from browser chrome
+			Foxtrick.setLastHost(doc.location.protocol + "//"
+				+ doc.location.hostname);
+
 			// don't execute if on stage server and user doesn't want Foxtrick to be executed there
 			// or disabled temporarily
 			if ((FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
@@ -510,6 +515,14 @@ Foxtrick.getPanel = function(doc) {
 	catch (e) {
 		return null;
 	}
+}
+
+Foxtrick.setLastHost = function(host) {
+	FoxtrickPrefs.setString("last-host", String(host));
+}
+
+Foxtrick.getLastHost = function(host) {
+	return FoxtrickPrefs.getString("last-host");
 }
 
 Foxtrick.registerModulePages = function(module) {

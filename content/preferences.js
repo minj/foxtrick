@@ -512,7 +512,10 @@ function initHelpTab()
 		var link = document.createElement("a");
 		item.appendChild(link);
 		link.textContent = Foxtrickl10n.getString("foxtrick.prefs." + links[i][0]);
-		link.href = links[i][1];
+		var linkAddress = links[i][1];
+		if (linkAddress[0] == "/")
+			linkAddress = Foxtrick.getLastHost() + linkAddress;
+		link.href = linkAddress;
 	}
 
 	// style tutorial
