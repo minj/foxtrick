@@ -15,7 +15,7 @@ FoxtrickTransferDeadline = {
 			return;
 
 		if (Foxtrick.isPage(Foxtrick.ht_pages["transferSearchResult"], doc))
-			this._PlayerListDeadline(doc);
+			this._TransferResultDeadline(doc);
 		else if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc))
 			this._PlayerDetailsDeadline(doc);
 		else if (Foxtrick.isPage(Foxtrick.ht_pages["transfer"], doc))
@@ -29,12 +29,27 @@ FoxtrickTransferDeadline = {
 			this._PlayerDetailsDeadline (doc);
 	},
 
+	_TransferResultDeadline : function(doc) {
+		var htDate = Foxtrick.util.time.getHtDate(doc);
+		var dates = doc.getElementsByClassName("date");
+		for (var i = 0; i < dates.length; ++i) {
+			var innerDate = dates[i].getElementsByTagName("span")[0];
+			var deadline = Foxtrick.util.time.getDateFromText(innerDate.textContent);
+			if (deadline) {
+				var countdown = Math.floor((deadline.getTime() - htDate.getTime()) / 1000);
+				if (!isNaN(countdown) && countdown >= 0) {
+					var countdownText = Foxtrick.util.time.timeDifferenceToText(countdown);
+					dates[i].innerHTML += "<span class=\"smallText ft_deadline\" style=\"margin-left: 10px; color: #800000;\">(" + countdownText + ")</span>";
+				}
+			}
+		}
+	},
+
 	_PlayerListDeadline : function(doc) {
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var ended = false;
 		for (var i = 0; !ended; ++i) {
-			var cell = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lstBids_ctrl"+ i + "_jsonDeadLine")
-				|| doc.getElementById("ctl00_ctl00_CPContent_CPMain_dl_ctrl"+ i +"_TransferPlayer_lblDeadline");
+			var cell = doc.getElementById("ctl00_ctl00_CPContent_CPMain_dl_ctrl"+ i +"_TransferPlayer_lblDeadline");
 			ended = !cell;
 
 			if (!ended) {
