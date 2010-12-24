@@ -443,16 +443,31 @@ function getScreenshot(link)
 function initChangesTab()
 {
 	const releaseNotes = Foxtrick.LoadXML(Foxtrick.ResourcePath + "releaseNotes.xml");
-	const noteElements = releaseNotes.getElementsByTagName("note");
+	const releaseNotesLocalized = Foxtrick.LoadXML(Foxtrick.ResourcePath
+		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/releaseNotes.xml");
 	var notes = {};
+	var notesLocalized = {};
+
+	var parseNotes = function(xml, dest) {
+		if (!xml) {
+			dest = {};
+			return;
+		}
+		var noteElements = xml.getElementsByTagName("note");
+		for (var i = 0; i < noteElements.length; ++i) {
+			var version = noteElements[i].getAttribute("version");
+			dest[version] = noteElements[i];
+		}
+	}
+	parseNotes(releaseNotes, notes);
+	parseNotes(releaseNotesLocalized, notesLocalized);
 
 	var select = $("#pref-version-release-notes")[0];
-	for (var i = 0; i < noteElements.length; ++i) {
-		var version = noteElements[i].getAttribute("version");
+	for (var i in notes) {
+		var version = notes[i].getAttribute("version");
 		var item = document.createElement("option");
 		item.textContent = version;
 		item.value = version;
-		notes[version] = noteElements[i];
 		select.appendChild(item);
 	}
 
@@ -460,7 +475,7 @@ function initChangesTab()
 		var version = select.options[select.selectedIndex].value;
 		var list = $("#pref-notepad-list")[0];
 		list.textContent = ""; // clear list
-		const note = notes[version];
+		const note = notesLocalized[version] || notes[version];
 		if (!note)
 			return;
 		var items = note.getElementsByTagName("item");
