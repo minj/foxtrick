@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<notes>
+<note version="0.5.4b3">
+<item>Опција за не приказивање 'Провири на форум' на страници лиге и државе у <module>FixcssProblems</module> модулу (ljushaff).</item>
+<item>Нова сива иконица за линк 'пријави поруку Модовима' на форуму (ljushaff).</item>
+<item>Поправке за <module>ExtendedPlayerDetailsWage</module> и модул <module>MatchReportFormat</module>.</item>
+<item>Мање поправке за разне модуле и нарочито за Chrome.</item>
+</note>
+
+<note version="0.5.4b2">
+<item><module>NtPeek</module> за преглед мечева репрезентација на страници Мој Хеттрик.</item>
+<item>Додат превод за белоруски (LA-Stolik).</item>
+<item>Неколико поправки у складу са Хеттрик изменама.</item>
+<item>Таб за приказивање промена у односу на претходну верзију је убачен у интерфејс за подешавања.</item>
+<item>Активирани су линкови до FoxTrick подешавања унутар Хеттрика.</item>
+<item>Опције за радио у ExtraShortcuts модулу су искључене у стандардним подешавањима.</item>
+</note>
+
+<note version="0.5.4b1">
+<item>Нов интерфејс за подешавања.</item>
+<item><module>LiveAlert</module> обавештења о постигнутим головима за мечеве у ХТ уживо.</item>
+<item><module>OldStyleFace</module> модул за приказивење слика играча и менаџера у старом ХТ стилу.</item>
+</note>
+</notes>
