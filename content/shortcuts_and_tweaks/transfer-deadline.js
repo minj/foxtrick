@@ -51,9 +51,9 @@ FoxtrickTransferDeadline = {
 	runPlayerList : function(doc) {
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var htTime = htDate.getTime();
-		var dates = doc.getElementsByClassName("date");
-		for (var i = 0; i < dates.length; ++i)
-			this.processNode(dates[i], htTime);
+		var i = 0;
+		while (element = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lstBids_ctrl" + (i++) + "_jsonDeadLine"))
+			this.processNode(element, htTime);
 	},
 
 	runPlayerDetail : function(doc) {
