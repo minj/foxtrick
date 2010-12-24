@@ -1352,48 +1352,54 @@ Foxtrick.GetDataURIText = function (filetext) {
 
 
 Foxtrick.LoadXML = function(xmlfile, callback, crossSite) {
-	if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
-		&& crossSite) {
-		// the evil Chrome that requires us to send a message to
-		// background script for cross-site requests
-		chrome.extension.sendRequest({req : "xml", url : xmlfile},
-			function(response) {
-				var parser = new DOMParser();
-				var xml = parser.parseFromString(response.data, "text/xml");
-				callback(xml);
-			}
-		);
-	}
-	else {
-		var req = new XMLHttpRequest();
-		if (!callback) {
-			req.open("GET", xmlfile, false);
-			req.send(null);
-			var response = req.responseXML;
-			if (response.documentElement.nodeName == "parsererror") {
-				Foxtrick.dump("error parsing " + xmlfile + "\n");
-				return null;
-			}
-			return response;
+	try {
+		if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
+			&& crossSite) {
+			// the evil Chrome that requires us to send a message to
+			// background script for cross-site requests
+			chrome.extension.sendRequest({req : "xml", url : xmlfile},
+				function(response) {
+					var parser = new DOMParser();
+					var xml = parser.parseFromString(response.data, "text/xml");
+					callback(xml);
+				}
+			);
 		}
 		else {
-			req.open("GET", xmlfile, true);
-			req.onreadystatechange = function(aEvt) {
-				try {
-					if (req.readyState == 4) {
-						// only HTTP request has status 200, 0 for file://, etc
-						if (req.status == 200
-							|| req.status == 0) {
-							callback(req.responseXML);
+			var req = new XMLHttpRequest();
+			if (!callback) {
+				req.open("GET", xmlfile, false);
+				req.send(null);
+				var response = req.responseXML;
+				if (response.documentElement.nodeName == "parsererror") {
+					Foxtrick.dump("error parsing " + xmlfile + "\n");
+					return null;
+				}
+				return response;
+			}
+			else {
+				req.open("GET", xmlfile, true);
+				req.onreadystatechange = function(aEvt) {
+					try {
+						if (req.readyState == 4) {
+							// only HTTP request has status 200, 0 for file://, etc
+							if (req.status == 200
+								|| req.status == 0) {
+								callback(req.responseXML);
+							}
 						}
 					}
-				}
-				catch (e) {
-					Foxtrick.dumpError(e);
-				}
-			};
-			req.send();
+					catch (e) {
+						Foxtrick.dumpError(e);
+					}
+				};
+				req.send();
+			}
 		}
+	}
+	catch (e) {
+		Foxtrick.dumpError(e);
+		return null;
 	}
 }
 
