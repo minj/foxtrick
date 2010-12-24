@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <notes>
+<note version="0.5.4b3">
+<item>Option to hide forum sneak-peek in <module>FixcssProblems</module> by ljushaff.</item>
+<item>New grey icon for report link by ljushaff.</item>
+<item>Fixes for <module>ExtendedPlayerDetailsWage</module> and <module>MatchReportFormat</module>.</item>
+<item>Othre trivial fixes for various modules and especially for Chrome.</item>
+</note>
+
 <note version="0.5.4b2">
 <item><module>NtPeek</module> for peeking NT/U20 matches at My Hattrick.</item>
 <item>Added Belarusian locale by LA-Stolik.</item>
