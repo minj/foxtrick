@@ -14,8 +14,7 @@
 		<em:iconURL>chrome://foxtrick/skin/icon.png</em:iconURL>
 		<em:icon64URL>chrome://foxtrick/skin/icon-64.png</em:icon64URL>
 		<em:optionsURL>chrome://foxtrick/content/preferences.xhtml</em:optionsURL>
-		<em:updateURL>http://foxtrick.mozdev.org/update-beta.rdf</em:updateURL>
-		<em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+ymKUP7cV1XyUU4o5lLQRcvxXKNS79hhtKIhOnUjb4wqdPMMMB5koQN5ZkzG4SW4yVn81S4dCYQ17K7QPHo4lMacyyNviZu48M4/sY0eIu63FDAPHb3TG7GlTL9P7nKgiL9t2SrCftpWAcuoGW436gpqlIIrx97+E7lWVdo6WtQIDAQAB</em:updateKey>
+		<em:updateURL>https://foxtrick.c6.ixwebhosting.com/nightly/update.rdf</em:updateURL>
 
 		<em:developer>larsw84</em:developer>
 		<em:developer>Mod-spambot</em:developer>

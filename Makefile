@@ -21,7 +21,6 @@ CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 REVISION = `git svn find-rev master`
 
 DIST_TYPE = nightly
-NIGHTLY_UPDATE_URL = https://foxtrick.c6.ixwebhosting.com/nightly/update.rdf
 
 all: firefox chrome
 
@@ -52,8 +51,6 @@ firefox:
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|<em:updateURL>.+</em:updateURL>|<em:updateURL>'$(NIGHTLY_UPDATE_URL)'</em:updateURL>|' install.rdf; \
-	sed -i -r '/<em:updateKey>.+<\/em:updateKey>/d' install.rdf; \
 	sed -i -r 's|(<em:version>.+)(</em:version>)|\1.r'$(REVISION)'\2|' install.rdf; \
 	sed -i -r 's|(\"extensions\.foxtrick\.prefs\.version\", \".+)(\")|\1.r'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 else ifeq ($(DIST_TYPE),beta)
