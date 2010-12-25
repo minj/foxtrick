@@ -1,6 +1,0 @@
-.cfHeader a.bookmarkSmall {
-    display:none
-}
-.cfHeader a[href^="/Forum"] ~ a.bookmarkSmall {
-    display:inline
-}

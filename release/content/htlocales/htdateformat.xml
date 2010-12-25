@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<hattrickdateformats>
-    <dateformat code="ddmmyyyy" shortname="dmy" name="DD-MM-YYYY"/>
-    <dateformat code="yyyymmdd" shortname="ymd" name="YYYY-MM-DD"/>
-    <dateformat code="mmddyyyy" shortname="mdy" name="MM-DD-YYYY"/>
-</hattrickdateformats>
