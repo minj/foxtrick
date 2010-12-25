@@ -522,7 +522,7 @@ Foxtrick.setLastHost = function(host) {
 }
 
 Foxtrick.getLastHost = function(host) {
-	return FoxtrickPrefs.getString("last-host");
+	return FoxtrickPrefs.getString("last-host") || "http://www.hattrick.org";
 }
 
 Foxtrick.registerModulePages = function(module) {
