@@ -1,2 +1,0 @@
-#stageLogo {top:3px !important; padding-bottom: 5px !important; height:50px !important; background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;}
-#stageLogo ~ #teamLinks , #stageLogo ~ #time , #stageLogo ~ #online, #stageLogo ~ #ft_rapidid {margin-top:0px !important;}

@@ -1,9 +1,0 @@
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
-
-img.disabledFirst ,
-img.disabledPrev ,
-img.disabledNext ,
-img.disabledLast {visibility:hidden !important;}
-
-}
-

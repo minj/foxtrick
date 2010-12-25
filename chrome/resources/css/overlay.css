@@ -1,9 +1,0 @@
-#foxtrick-status-bar-img {
-	width: 16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/active.png);
-}
-#foxtrick-status-bar-img[status="enabled"] {
-	list-style-image: url("chrome://foxtrick/skin/enabled.png");
-}
-#foxtrick-status-bar-img[status="disabled"] {
-	list-style-image: url("chrome://foxtrick/skin/disabled.png");
-}

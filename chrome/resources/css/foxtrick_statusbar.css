@@ -1,6 +1,0 @@
-#foxtrick-status-bar-img {
-	width: 16px; height: 16px; cursor: pointer; list-style-image: url(chrome://foxtrick/skin/foxtrick.png);
-}
-#foxtrick-status-bar-img[suspended="on"] {
-	list-style-image: url(chrome://foxtrick/skin/foxtrick_deactivated.png);
-}

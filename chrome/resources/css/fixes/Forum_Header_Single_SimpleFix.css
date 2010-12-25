@@ -1,8 +1,0 @@
-@-moz-document domain(hattrick.org), domain(hattrick.interia.pl), domain(hattrick.ws) {
-
-
-/* broken dsign workaround*/
-div.cfHeader>div[class="float_right right"] 
-{background: inherit;/* #999999 !important;*/}
-
-}
