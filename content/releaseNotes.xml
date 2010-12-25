@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <notes>
-<note version="0.5.4b3">
-<item>Option to hide forum sneak-peek in <module>FixcssProblems</module> by ljushaff.</item>
-<item>New grey icon for report link by ljushaff.</item>
-<item>Fixes for <module>ExtendedPlayerDetailsWage</module> and <module>MatchReportFormat</module>.</item>
-<item>Othre trivial fixes for various modules and especially for Chrome.</item>
+<note version="Development build">
+<item>Please view commit history at Google Code for details: http://code.google.com/p/foxtrick/source/list.</item>
 </note>
 
-<note version="0.5.4b2">
-<item><module>NtPeek</module> for peeking NT/U20 matches at My Hattrick.</item>
-<item>Added Belarusian locale by LA-Stolik.</item>
-<item>Some fixes for latest Hattrick changes.</item>
-<item>Changes tab for showing release notes in preferences interface.</item>
-<item>FoxTrick preferences links clickable inside Hattrick.</item>
-<item>Radio options in ExtraShortcuts are disabled by default.</item>
-</note>
-
-<note version="0.5.4b1">
+<note version="0.5.4">
 <item>New preferences interface.</item>
-<item><module>LiveAlert</module> for alerting at HT Live goals.</item>
-<item><module>OldStyleFace</module> for showing faces in old Hattrick style.</item>
+<item><module>LiveAlert</module> for alerting at HT Live goals by ryanli.</item>
+<item><module>OldStyleFace</module> for showing faces in old Hattrick style by Aimo_Kanuuna.</item>
+<item><module>NtPeek</module> for peeking NT/U20 matches at My Hattrick by ryanli.</item>
+<item>Option to hide forum sneak-peek in <module>FixcssProblems</module> by ljushaff.</item>
+<item>Belarusian locale by LA-Stolik.</item>
+<item>New grey icon for report links by ljushaff.</item>
+<item>Most features working under Google Chrome.</item>
+<item>Some trivial fixes for latest Hattrick changes.</item>
+<item>Radio options in <module>ExtraShortcuts</module> are disabled by default.</item>
 </note>
 </notes>
