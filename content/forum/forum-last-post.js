@@ -34,7 +34,7 @@ var FoxtrickForumLastPost = {
                 url.href = url.href.replace(/n=\d+/,'n='+id);
             }
 
-            var pager = doc.getElementById('threadContent');
+            var pager = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updLatestThreads');
             if (pager == null) return;
             var divs = doc.getElementsByClassName("fplThreadInfo");
             for (i=0; i < divs.length; i++) {
