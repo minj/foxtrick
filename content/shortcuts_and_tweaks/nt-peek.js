@@ -106,14 +106,23 @@ var FoxtrickNtPeek = {
 	},
 
 	getMatchRow : function(doc, id, side, homeTeam, awayTeam, homeGoals, awayGoals) {
+		const rtl = Foxtrick.isRTLLayout(doc);
+
 		var row = doc.createElement("tr");
 
 		var matchCell = doc.createElement("td");
 		var matchLink = doc.createElement("a");
 		matchLink.href = "/Club/Matches/Match.aspx?matchID=" + id;
-		matchLink.title = homeTeam + " - " + awayTeam;
-		matchLink.textContent = homeTeam.substr(0, 15) + " - "
-			+ awayTeam.substr(0, 15);
+		if (!rtl) {
+			matchLink.title = homeTeam + " - " + awayTeam;
+			matchLink.textContent = homeTeam.substr(0, 15) + " - "
+				+ awayTeam.substr(0, 15);
+		}
+		else {
+			matchLink.title = awayTeam + " - " + homeTeam;
+			matchLink.textContent = awayTeam.substr(0, 15) + " - "
+				+ homeTeam.substr(0, 15);
+		}
 		matchCell.appendChild(matchLink);
 		row.appendChild(matchCell);
 
