@@ -47,7 +47,7 @@ var FoxtrickCopyPlayerAd = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad");
-			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+			img.src = "/Img/Icons/transparent.gif";
 
 			messageLink.appendChild(img);
 			doc.getElementById('mainBody').insertBefore(messageLink, doc.getElementById('mainBody').firstChild);

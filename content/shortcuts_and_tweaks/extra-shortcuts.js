@@ -51,7 +51,7 @@ var FoxtrickExtraShortcuts = {
 
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSuppStats");
-					img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+					img1.src = "/Img/Icons/transparent.gif";
 					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/stats.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.statistics");
 
@@ -75,7 +75,7 @@ var FoxtrickExtraShortcuts = {
 
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftMyTransfers");
-					img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+					img1.src = "/Img/Icons/transparent.gif";
 					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/transfers.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.transfers");
 
@@ -99,7 +99,7 @@ var FoxtrickExtraShortcuts = {
 
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
-					img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+					img1.src = "/Img/Icons/transparent.gif";
 					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/options.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.prefs");
 
@@ -122,7 +122,7 @@ var FoxtrickExtraShortcuts = {
 					link.href = Foxtrick.ResourcePath + "preferences.xhtml";
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
-					img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+					img1.src = "/Img/Icons/transparent.gif";
 					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/foxtrick.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ftprefs");
 
@@ -148,7 +148,7 @@ var FoxtrickExtraShortcuts = {
 					link.id = radio+'Id';
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
-					img1.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+					img1.src = "/Img/Icons/transparent.gif";
 					img1.id = radio+'Icon';
 					if (FoxtrickPrefs.getString(radio+'CurrentIcon') != null)
 						img1.setAttribute("style","margin-left:2px; background-image: url('"+FoxtrickPrefs.getString(radio+'CurrentIcon')+"') !important;");

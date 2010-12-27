@@ -186,14 +186,6 @@ var FoxtrickForumChangePosts = {
 							if (header_right==null) header_right = header_part;
 					}
 
-					/* add someting to test removal later
-					var forumprefs = doc.createElement('a');
-					forumprefs.href = '/MyHattrick/Preferences/ForumSettings.aspx';
-					forumprefs.innerHTML='<img src='+Foxtrick.ResourcePath+"resources/img/transparent.gif">';
-					forumprefs.setAttribute('class','bookmarkMessage');
-					if (header_right_inner) header_right_inner.appendChild(forumprefs);
-					*/
-
 					// get post_links, poster_links, poster_id from header
 					var header_left_links = header_left.getElementsByTagName('a');
 					var post_link1 = null;

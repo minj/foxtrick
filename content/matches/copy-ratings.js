@@ -78,7 +78,7 @@ var FoxtrickCopyRatings = {
 			copyBoth.setAttribute("teams", FoxtrickPrefs.getString('copyratings.teams'));
 			copyBoth.addEventListener("click", this.createRatings, false);
 			var img = doc.createElement("img");
-			img.src = Foxtrick.ResourcePath + "resources/img/transparent.gif";
+			img.src = "/Img/Icons/transparent.gif";
 			copyBoth.appendChild(img);
 
 			var span = doc.createElement("span");

@@ -49,7 +49,7 @@ var FoxtrickCopyTrainingReport = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copytrainingreport" );
-			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+			img.src = "/Img/Icons/transparent.gif";
 
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -164,7 +164,7 @@ var FoxtrickCopyScoutReport = {
 				var img = doc.createElement("img");
 				img.id = "foxtrick_addyouthclubbox_parentDiv";
 				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyscoutreport" );
-				img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+				img.src = "/Img/Icons/transparent.gif";
 
 				messageLink.appendChild(img);
 				boxHead.insertBefore(messageLink,boxHead.firstChild);
@@ -276,7 +276,7 @@ var FoxtrickCopyPlayerSource = {
 
 			var img = doc.createElement("img");
 			img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.copyplayerscource" );
-			img.src = Foxtrick.ResourcePath+"resources/img/transparent.gif";
+			img.src = "/Img/Icons/transparent.gif";
 
 			messageLink.appendChild(img);
 			boxHead.insertBefore(messageLink,boxHead.firstChild);
