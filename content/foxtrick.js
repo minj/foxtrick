@@ -1260,6 +1260,9 @@ Foxtrick.copyStringToClipboard = function (string) {
 			.getService(Components.interfaces.nsIClipboardHelper);
 		gClipboardHelper.copyString(string);
 	}
+	else if (Foxtrick.BuildFor === "Chrome") {
+		chrome.extension.sendRequest({req : "clipboard", content : string});
+	}
 }
 
 // to tell which context the chrome script is running at

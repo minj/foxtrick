@@ -229,4 +229,16 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	else if (request.req == "newTab") {
 		chrome.tabs.create({url : request.url});
 	}
+	else if (request.req == "clipboard") {
+		try {
+			clipboardStore = document.getElementById("clipboard-store");
+			clipboardStore.value = request.content;
+			clipboardStore.select();
+			document.execCommand("Copy");
+			sendResponse({status : true});
+		}
+		catch (e) {
+			sendResponse({status : false});
+		}
+	}
 });
