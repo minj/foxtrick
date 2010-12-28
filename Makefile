@@ -7,13 +7,38 @@ ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
 ROOT_FOLDERS_FIREFOX = defaults/ platform/
 ROOT_FOLDERS_CHROME = defaults/ skin/
-CONTENT_FOLDERS = alert/ data/ forum/ links/ locale/ matches/ pages/ \
-	presentation/ resources/ shortcuts_and_tweaks/ util/
-CONTENT_FILES = const.js forum_stage.js foxtrick.js foxtrick.properties \
-	foxtrick.screenshots header-copy-icons.js helper.js jquery.js l10n.js modules.js \
-	pages.js preferences.js preferences.xhtml preferences-dialog-html.js \
-	preferences-on-page.js prefs.js read-ht-prefs.js redirections.js \
-	releaseNotes.xml stats.js xml_load.js
+CONTENT_FOLDERS = alert/ \
+	data/ \
+	forum/ \
+	links/ \
+	locale/ \
+	matches/ \
+	pages/ \
+	presentation/ \
+	resources/ \
+	shortcuts_and_tweaks/ \
+	util/
+CONTENT_FILES = const.js \
+	forum_stage.js \
+	foxtrick.js \
+	foxtrick.properties \
+	foxtrick.screenshots \
+	header-copy-icons.js \
+	helper.js \
+	jquery.js \
+	l10n.js \
+	modules.js \
+	pages.js \
+	preferences.js \
+	preferences.xhtml \
+	preferences-dialog-html.js \
+	preferences-on-page.js \
+	prefs.js \
+	read-ht-prefs.js \
+	redirections.js \
+	releaseNotes.xml \
+	stats.js \
+	xml_load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 	loader-chrome.js
