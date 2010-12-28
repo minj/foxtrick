@@ -17,6 +17,7 @@
 <script type="application/x-javascript" src="./preferences-dialog-html.js" />
 <script type="application/x-javascript" src="./preferences-on-page.js" />
 <script type="application/x-javascript" src="./forum_stage.js" />
+<script type="application/x-javascript" src="./header-copy-icons.js" />
 
 <!-- utilities -->
 <script type="application/x-javascript" src="./util/currency.js" />

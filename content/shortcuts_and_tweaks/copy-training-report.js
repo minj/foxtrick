@@ -1,24 +1,5 @@
 /**
 * copytrainingreport.js
-* Foxtrick Copies some reports to clipboard
-* @author larsw84, convincedd
-*/
-
-
-// dummy for loading right css
-var FoxtrickHeadercopyicons = {
-    MODULE_NAME : "Headercopyicons",
-	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headercopyicons_simple.css",
-	CSS: Foxtrick.ResourcePath+"resources/css/headercopyicons.css",
-	CSS_SIMPLE_RTL: Foxtrick.ResourcePath+"resources/css/headercopyicons_simple_rtl.css",
-	CSS_RTL : Foxtrick.ResourcePath+"resources/css/headercopyicons_rtl.css"
-}
-
-
-
-
-/**
-* copytrainingreport.js
 * Foxtrick Copies youth training report to clipboard
 * @author larsw84, convincedd
 */
