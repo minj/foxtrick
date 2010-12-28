@@ -67,4 +67,5 @@ tr>td a.ft-match-report-scoreboard {
 	color: black !important;
 	text-decoration: none;
 	white-space: nowrap;
+	cursor: pointer;
 }

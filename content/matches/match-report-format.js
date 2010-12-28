@@ -252,7 +252,8 @@ FoxtrickMatchReportFormat = {
 					divs[i].className = HOME_GOAL_CLASS_NAME;
 
 					var scorerep = standing[0] + '-' + standing[1];
-					scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep, '<a href="#'+divs[i].id+'" class="ft-match-report-scoreboard"><b>'+standing[0]+'</b> - '+standing[1]+'</a>');
+					scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,
+						'<a onclick="goToElementById(\'' + divs[i].id + '\');" class="ft-match-report-scoreboard"><b>'+standing[0]+'</b> - '+standing[1]+'</a>');
 					Foxtrick.dump('  GOAL for TEAM 1\n');
 				}
 				else if (score[2] > standing[1]) {
@@ -260,7 +261,8 @@ FoxtrickMatchReportFormat = {
 					divs[i].className = AWAY_GOAL_CLASS_NAME;
 
 					var scorerep = standing[0] + '-' + standing[1];
-					scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,'<a href="#'+divs[i].id+'" class="ft-match-report-scoreboard">'+standing[0]+' - <b>'+standing[1]+'</b></a>');
+					scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,
+						'<a onclick="goToElementById(\'' + divs[i].id + '\');" class="ft-match-report-scoreboard">'+standing[0]+' - <b>'+standing[1]+'</b></a>');
 					Foxtrick.dump('  GOAL for TEAM 2\n');
 				}
 				else Foxtrick.dump('  NO GOALS\n');

@@ -1,3 +1,14 @@
+function goToElementById(id) {
+    // need to use this in case HeaderFix is enabled
+    try {
+        var element = document.getElementById(id);
+        scroll(0, 0);
+        window.scrollBy(0, element.offsetTop);
+    }
+    catch (e) {
+    }
+}
+
 function gotoEvent(elementID) {
     if (elementID === '') {
 
