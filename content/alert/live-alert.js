@@ -20,14 +20,20 @@ var FoxtrickLiveAlert = {
 	},
 
 	getScoreFromTab : function(tab) {
-		if (tab.getElementsByClassName("liveTabScore").length > 0) {
-			const scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
-			var score = tab.getElementsByClassName("liveTabScore")[0].textContent;
-			score = Foxtrick.trim(score);
-			var scoreMatch = score.match(scoreRe);
-			return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];
+		try {
+			if (tab.getElementsByClassName("liveTabScore").length > 0) {
+				const scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
+				var score = tab.getElementsByClassName("liveTabScore")[0].textContent;
+				var scoreMatch = score.match(scoreRe);
+				return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];
+			}
+			return null;
 		}
-		return null;
+		catch (e) {
+			Foxtrick.dump("Cannot parse score \"" + score + "\":\n");
+			Foxtrick.dumpError(e);
+			return null;
+		}
 	},
 
 	getTeamsFromTab : function(tab) {
