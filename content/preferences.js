@@ -485,14 +485,16 @@ function initChangesTab()
 			list.appendChild(item);
 			for (var j = 0; j < items[i].childNodes.length; ++j) {
 				var node = items[i].childNodes[j];
-				if (node.nodeType == Node.TEXT_NODE)
-					item.appendChild(document.createTextNode(node.textContent));
-				else if (node.nodeType == Node.ELEMENT_NODE
+				if (node.nodeType == Node.ELEMENT_NODE
 					&& node.nodeName.toLowerCase() == "module") {
 					var link = document.createElement("a");
 					link.textContent = node.textContent;
 					link.href = Foxtrick.ResourcePath + "preferences.xhtml#module=" + link.textContent;
 					item.appendChild(link);
+				}
+				else {
+					var importedNode = document.importNode(node, true);
+					item.appendChild(importedNode);
 				}
 			}
 		}
