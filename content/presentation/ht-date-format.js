@@ -4,109 +4,96 @@
  */
 
 FoxtrickHTDateFormat = {
-
-    MODULE_NAME : "HTDateFormat",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
- 	PAGES : new Array('transfersTeam','transfersPlayer','transfer','transferCompare','match',
-					'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
-					'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'),
+	MODULE_NAME : "HTDateFormat",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : ['transfersTeam','transfersPlayer','transfer','transferCompare','match',
+		'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
+		'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'],
 	ONPAGEPREF_PAGE : 'all',
-	OPTIONS :  new Array("LocalSaison","FirstDayOfWeekOffset"),
+	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("","0"),
-	OPTION_TEXTS_DISABLED_LIST : new Array(true,false),
+	OPTION_TEXTS_DISABLED_LIST : [true, false],
 
-    run : function(page, doc) {
-        //Foxtrick.dump('HTDateformat RUN '+page+'\n');
-        var httime = doc.getElementById( "time" ).innerHTML;
+	run : function(page, doc) {
+		var mainBody = doc.getElementById("mainBody");
+		if (!mainBody) return;
 
-        Foxtrick.HT_date = Foxtrick.util.time.getDateFromText( httime );
-        if (!Foxtrick.HT_date) return;
+		switch ( page ) {
+			case 'transfersTeam' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-        var mainBody = doc.getElementById( "mainBody" );
-        if (!mainBody) return;
+			case 'transfersPlayer' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-		var weekdayoffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "FirstDayOfWeekOffset_text");
-		if (!weekdayoffset) weekdayoffset = this.OPTION_TEXTS_DEFAULT_VALUES[1];
+			case 'transfer' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-        switch ( page ) {
-
-            case 'transfersTeam' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
-                break;
-
-            case 'transfersPlayer' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
-                break;
-
-            case 'transfer' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
-                break;
-
-            case 'playerevents' :
-                this.modifyDates ( mainBody, false, 'h3', '&nbsp;' , '&nbsp;',weekdayoffset );
-                break;
+			case 'playerevents' :
+				this.modifyDates(mainBody, false, 'h3', '&nbsp;' , '&nbsp;');
+				break;
 
 			case 'match' :
-                this.modifyDates ( mainBody, false, 'div', '&nbsp;' , '&nbsp;',weekdayoffset, true );
-                break;
+				this.modifyDates(mainBody, false, 'div', '&nbsp;' , '&nbsp;', true);
+				break;
 
-            case 'matches' :
-				this.modifyDates ( mainBody, false, 'td', '&nbsp;' , '',weekdayoffset );
-                //this.modifyDates ( mainBody, false, 'td', '<br>' , '',weekdayoffset ); //see FoxtrickMatchTables
-                break;
+			case 'matches' :
+				this.modifyDates(mainBody, false, 'td', '&nbsp;' , '');
+				break;
 
-            case 'matchesarchiv' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;' , '',weekdayoffset );
-                break;
+			case 'matchesarchiv' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;' , '');
+				break;
 
-            case 'teamPageGeneral' :
+			case 'teamPageGeneral' :
 				if (doc.location.href.search(/Club\/Matches\/Live.aspx/i)!=-1) return;
-				//this.modifyDates ( mainBody, false, 'span', '&nbsp;', '',weekdayoffset );
-                this.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
-                break;
+				this.modifyDates(mainBody, false, 'td', '&nbsp;', '');
+				break;
 
-            case 'transferCompare' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
-                break;
+			case 'transferCompare' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-            case 'achievements' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
-                break;
+			case 'achievements' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-            case 'teamevents' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
-                break;
+			case 'teamevents' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-            case 'history' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '',weekdayoffset );
-                break;
+			case 'history' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-            case 'arena' :
-                this.modifyDates ( mainBody, true, 'td', '&nbsp;', '' ,weekdayoffset);
-                break;
+			case 'arena' :
+				this.modifyDates(mainBody, true, 'td', '&nbsp;', '');
+				break;
 
-            case 'league' :
-                this.modifyDates ( mainBody, true, 'h3', '&nbsp;', '',weekdayoffset );
-                break;
+			case 'league' :
+				this.modifyDates(mainBody, true, 'h3', '&nbsp;', '');
+				break;
 
-            case 'HallOfFame' :
-                this.modifyDates ( mainBody, true, 'p', '&nbsp;', '',weekdayoffset, true );
-                break;
+			case 'HallOfFame' :
+				this.modifyDates(mainBody, true, 'p', '&nbsp;', '', true);
+				break;
 
 			case 'statsMatchesHeadToHead' :
-                this.modifyDates ( mainBody, false, 'td', '&nbsp;', '',weekdayoffset );
-                break;
-        }
-    },
+				this.modifyDates(mainBody, false, 'td', '&nbsp;', '');
+				break;
+		}
+	},
 
 	/*
 		modify dates in HTML
 		useShort == true => Date is without time.
 		don't use span as elm! use next outer nodetype instead
 	*/
-    modifyDates : function (doc, useShort, elm, before, after ,weekdayoffset, strip) {
-    	const useLocal = Foxtrick.isModuleFeatureEnabled(this, "LocalSaison");
+	modifyDates : function (doc, useShort, elm, before, after, strip) {
+		const useLocal = Foxtrick.isModuleFeatureEnabled(this, "LocalSeason");
+		const weekOffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "FirstDayOfWeekOffset_text")
 		var tds = doc.getElementsByTagName(elm);
 		for (var i = 0; tds[i] != null; ++i) {
 			var node = tds[i];
@@ -125,7 +112,7 @@ FoxtrickHTDateFormat = {
 			if ((dt_inner.length <= 11 && useShort) || (dt_inner.length <= 17 && !useShort) || strip) {
 				var date = Foxtrick.util.time.getDateFromText(dt_inner);
 				if (date) {
-					var htDate = Foxtrick.util.time.gregorianToHT(date, weekdayoffset, useLocal);
+					var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
 					Foxtrick.addClass(node, "ft-date");
 					if (!strip)
 						node.innerHTML = dt_inner + before + "(" + htDate.week + "/" + htDate.season + ")" + after;
