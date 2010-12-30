@@ -105,6 +105,7 @@ chrome:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|("version" : "([0-9]+\.)*)([0-9]+)"|\1'$(REVISION)'"|' manifest.json;
+	sed -i -r 's|(\"extensions\.foxtrick\.prefs\.version\", \".+)(\")|\1.r'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
 	sed -i -r '/update_url/d' manifest.json;
