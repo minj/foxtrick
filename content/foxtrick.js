@@ -198,11 +198,15 @@ var FoxtrickMain = {
 					return;
 		}
 		// ignore changes list
-		if (ev.originalTarget
-			&& ev.originalTarget.className
-			&& (ev.originalTarget.className=='boxBody'
-				|| ev.originalTarget.className=='myht1'))
-			return;
+		try {
+			if (ev.originalTarget.className
+				&& (ev.originalTarget.className=='boxBody'
+					|| ev.originalTarget.className=='myht1'))
+				return;
+		}
+		catch (e) {
+			// some browsers doesn't support ev.originalTarget
+		}
 
 		var panel = Foxtrick.getPanel(doc);
 		// remove event listener while Foxtrick executes
