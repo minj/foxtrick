@@ -111,6 +111,7 @@ function initTextAndValues()
 		}
 
 	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
+	$("#version").text(Foxtrick.version());
 	// initialize text
 	$("body [text-key]").each(function() {
 		if ($(this).attr("text-key"))

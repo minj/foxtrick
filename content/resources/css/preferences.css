@@ -111,6 +111,14 @@ html[dir="rtl"] .screenshot
 	clear: both;
 }
 
+#version
+{
+	font-family: Georgia;
+	font-style: italic;
+	font-size: 50%;
+	vertical-align: top;
+}
+
 ul#tabs li
 {
 	display: inline-block;
