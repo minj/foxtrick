@@ -104,15 +104,18 @@ chrome:
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|("version" : "([0-9]+\.)*)([0-9]+)"|\1'$(REVISION)'"|' manifest.json;
+	sed -i -r 's|("version" : "([0-9]+\.)*)([0-9]+)"|\1'$(REVISION)'"|' manifest.json; \
 	sed -i -r 's|(\"extensions\.foxtrick\.prefs\.version\", \".+)(\")|\1.r'$(REVISION)'\2|' defaults/preferences/foxtrick.js
-else ifeq ($(DIST_TYPE),release)
-	cd $(BUILD_DIR); \
-	sed -i -r '/update_url/d' manifest.json;
-endif
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome_dev.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
+else ifeq ($(DIST_TYPE),stable)
+	cd $(BUILD_DIR); \
+	sed -i -r '/update_url/d' manifest.json; \
+	sed -i -r 's|("version" : "([0-9]+\.)*)([0-9]+)"|\1'$(REVISION)'"|' manifest.json; \
+	sed -i -r 's|(\"extensions\.foxtrick\.prefs\.version\", \".+)(\")|\1.r'$(REVISION)'\2|' defaults/preferences/foxtrick.js; \
+	$(ZIP) -r ../$(APP_NAME).zip *
+endif
 	# clean up
 	make clean-build
 
@@ -121,6 +124,7 @@ clean-firefox:
 
 clean-chrome:
 	rm -rf *.crx
+	rm -rf *.zip
 
 clean-build:
 	rm -rf $(BUILD_DIR)
