@@ -106,6 +106,7 @@ FoxtrickHTDateFormat = {
 		don't use span as elm! use next outer nodetype instead
 	*/
     modifyDates : function (doc, useShort, elm, before, after ,weekdayoffset, strip) {
+    	const useLocal = Foxtrick.isModuleFeatureEnabled(this, "LocalSaison");
 		var tds = doc.getElementsByTagName(elm);
 		for (var i = 0; tds[i] != null; ++i) {
 			var node = tds[i];
@@ -124,7 +125,7 @@ FoxtrickHTDateFormat = {
 			if ((dt_inner.length <= 11 && useShort) || (dt_inner.length <= 17 && !useShort) || strip) {
 				var date = Foxtrick.util.time.getDateFromText(dt_inner);
 				if (date) {
-					var htDate = Foxtrick.util.time.gregorianToHT(date, weekdayoffset);
+					var htDate = Foxtrick.util.time.gregorianToHT(date, weekdayoffset, useLocal);
 					Foxtrick.addClass(node, "ft-date");
 					if (!strip)
 						node.innerHTML = dt_inner + before + "(" + htDate.week + "/" + htDate.season + ")" + after;

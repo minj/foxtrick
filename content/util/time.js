@@ -11,13 +11,15 @@ Foxtrick.util.time = {
 		Returns HT week and season like { season : 37, week : 15 }
 		date is a JavaScript Date object
 	*/
-	gregorianToHT : function(date, weekdayOffset) {
+	gregorianToHT : function(date, weekdayOffset, useLocal) {
 		// 22th Aug 1997 should be the first day of first season by calculation
 		const origin = new Date(1997, 8, 22);
 		weekdayOffset = parseInt(weekdayOffset) || 0;
 		const msDiff = date.getTime() - origin.getTime();
 		const dayDiff = msDiff / 1000 / 60 / 60 / 24 - weekdayOffset;
-		const season = Math.floor(dayDiff / (16 * 7)) + 1;
+		var season = Math.floor(dayDiff / (16 * 7)) + 1;
+		if (useLocal)
+			season -= this.getSeasonOffset();
 		const week = Math.floor((dayDiff % (16 * 7)) / 7) + 1;
 
 		return { season : season, week : week };
@@ -97,6 +99,17 @@ Foxtrick.util.time = {
 		}
 		catch (e) {
 			return null;
+		}
+	},
+
+	getSeasonOffset : function() {
+		const country = FoxtrickPrefs.getString("htCountry");
+		for (var i in Foxtrick.XMLData.League) {
+			if (country == FoxtrickHelper.getLeagueDataFromId(i).EnglishName) {
+				const offset = FoxtrickHelper.getLeagueDataFromId(1).Season
+					- FoxtrickHelper.getLeagueDataFromId(i).Season;
+				return offset;
+			}
 		}
 	},
 
