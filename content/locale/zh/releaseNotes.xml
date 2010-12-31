@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Notes for localization -->
+<!-- Please keep the overall structure and the tags like <note>, <item>,
+     <module> unchanged, and basically translate the text.
+     You could also add HTML tags with namespace specified, like <xhtml:a>
+     instead of <a>. -->
+<!-- For each note, keep the attribute "version" unchanged, and you could
+     translate the "localized-version" attribute. -->
+
+<notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<note version="nightly" localized-version="开发版本">
+<item>请查阅Google Code上的<xhtml:a href="http://code.google.com/p/foxtrick/source/list">版本历史</xhtml:a>.</item>
+</note>
+
+<note version="0.5.4">
+<item>新的选项界面.</item>
+<item>用于提醒新的 HT Live 进球的 <module>LiveAlert</module> (ryanli).</item>
+<item>用于显示旧风格头像的 <module>OldStyleFace</module> (Aimo_Kanuuna).</item>
+<item>用于在“我的 Hattrick”处显示 NT/U20 比赛的 <module>NtPeek</module> (ryanli).</item>
+<item><module>FixcssProblems</module> 选项, 用于隐藏论坛快速浏览, (ljushaff).</item>
+<item>白俄罗斯语语言 (LA-Stolik).</item>
+<item>新的灰色图标, 用于举报链接 (ljushaff).</item>
+<item>大部分功能在 Google Chrome 下可用.</item>
+<item>一些为适应 Hattrick 更改的修正.</item>
+<item><module>ExtraShortcuts</module> 中的收音机选项默认被关闭.</item>
+</note>
+</notes>
