@@ -13,7 +13,7 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
-<note version="0.5.4">
+<note version="0.6">
 <item>New preferences interface.</item>
 <item><module>LiveAlert</module> for alerting at HT Live goals by ryanli.</item>
 <item><module>OldStyleFace</module> for showing faces in old Hattrick style by Aimo_Kanuuna.</item>
