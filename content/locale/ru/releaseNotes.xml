@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<notes>
- <note version="0.5.4b2">
-  <item>Новый модуль <module>NtPeek</module> для скрытия матчей сборной из Моего Hattrick'а.</item>
-  <item>Добавлен белорусский перевод (by LA-Stolik).</item>
-  <item>Некоторые исправления для соответствия последним изменениям HT.</item>
-  <item>Изменения в отображении информации о выпуске в экране настроек.</item>
-  <item>Ссылки на настройки FoxTrick внутри Hattrick'а.</item>
-  <item>Ссылки на радио теперь выключены по умолчанию.</item>
- </note>
+<notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<note version="Версия для разработчиков">
+<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
+</note>
 
- <note version="0.5.4b1">
-  <item>Новый интерфейс настроек.</item>
-  <item>Модуль <module>LiveAlert</module> для уведомления о голах в HT Live.</item>
-  <item>Модуль <module>OldStyleFace</module> для отображения лиц в старом стиле Hattrick.</item>
- </note>
+<note version="0.5.4">
+<item>NНовый интерфейс настроек.</item>
+<item>Модуль <module>LiveAlert</module> для уведомления о голах в HT Live (ryanli).</item>
+<item>Модуль <module>OldStyleFace</module> для отображения лиц в старом стиле Hattrick (Aimo_Kanuuna).</item>
+<item>Модуль <module>NtPeek</module> для скрытия матчей сборной из Моего Hattrick'а (ryanli).</item>
+<item>Параметр для скрытия быстрого взгляда на форумыв модуле <module>FixcssProblems</module> (ljushaff).</item>
+<item>Добавлен белорусский перевод (LA-Stolik).</item>
+<item>Новый значок для ссылок на отчёты (ljushaff).</item>
+<item>Большая часть расширений теперь работают под Google Chrome.</item>
+<item>Некоторые исправления для соответствия последним изменениям HT.</item>
+<item>Параметры радио в модуле <module>ExtraShortcuts</module> теперь выключены по умолчанию.</item>
+</note>
 </notes>
