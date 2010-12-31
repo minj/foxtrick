@@ -1594,8 +1594,10 @@ Foxtrick.dump = function(content) {
 	Foxtrick.dumpCache += content;
 	if (Foxtrick.BuildFor === "Gecko")
 		dump("FT: " + content);
-	else if (Foxtrick.BuildFor === "Chrome")
+	else if (Foxtrick.BuildFor === "Chrome") {
 		console.log(content);
+		Foxtrick.dumpFlush(document);
+	}
 }
 
 Foxtrick.dumpError = function(error) {
