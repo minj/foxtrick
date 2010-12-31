@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<note version="Версия для разработчиков">
+<note version="nightly" localized-version="Версия для разработчиков">
 <item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 </note>
 

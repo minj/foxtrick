@@ -465,9 +465,18 @@ function initChangesTab()
 
 	var select = $("#pref-version-release-notes")[0];
 	for (var i in notes) {
+		// unique version name
 		var version = notes[i].getAttribute("version");
+		// localized version name
+		// search by:
+		// 1. localized-version in localized release notes
+		// 2. localized-version in master release notes
+		// 3. version as fall-back
+		var localizedVersion = (notesLocalized[version] && notesLocalized[version].getAttribute("localized-version"))
+			|| (notes[version] && notes[version].getAttribute("localized-version"))
+			|| version;
 		var item = document.createElement("option");
-		item.textContent = version;
+		item.textContent = localizedVersion;
 		item.value = version;
 		select.appendChild(item);
 	}
