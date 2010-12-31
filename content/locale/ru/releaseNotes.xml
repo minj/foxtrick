@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- Notes for localization -->
+<!-- Please keep the overall structure and the tags like <note>, <item>,
+     <module> unchanged, and basically translate the text.
+     You could also add HTML tags with namespace specified, like <xhtml:a>
+     instead of <a>. -->
+<!-- For each note, keep the attribute "version" unchanged, and you could
+     translate the "localized-version" attribute. -->
+
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="Версия для разработчиков">
 <item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 </note>
 
-<note version="0.5.4">
+<note version="0.6">
 <item>NНовый интерфейс настроек.</item>
 <item>Модуль <module>LiveAlert</module> для уведомления о голах в HT Live (ryanli).</item>
 <item>Модуль <module>OldStyleFace</module> для отображения лиц в старом стиле Hattrick (Aimo_Kanuuna).</item>
