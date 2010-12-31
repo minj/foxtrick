@@ -494,29 +494,37 @@ var FoxtrickPrefs = {
 
 if (Foxtrick.BuildFor == "Chrome") {
 	FoxtrickPrefs.getValue = function(key) {
-		if (this.pref[key] !== undefined)
-			return this.pref[key];
-		else if (this.prefDefault[key] !== undefined)
-			return this.prefDefault[key];
-		else
+		try {
+			if (this.pref[key] !== undefined)
+				return this.pref[key];
+			else if (this.prefDefault[key] !== undefined)
+				return this.prefDefault[key];
+			else
+				return false;
+		}
+		catch (e) {
 			return false;
+		}
 	}
 	FoxtrickPrefs.setValue = function(key, value) {
-		if (this.prefDefault[key] === value)
-			delete(this.pref[key]); // set to default, delete it
-		else
-			this.pref[key] = value; // not default, set it
-
-		if (Foxtrick.chromeContext() == "background") {
+		try {
 			if (this.prefDefault[key] === value)
-				localStorage.removeItem(key);
+				delete(this.pref[key]); // set to default, delete it
 			else
-				localStorage.setItem(key, JSON.stringify(value));
+				this.pref[key] = value; // not default, set it
+
+			if (Foxtrick.chromeContext() == "background") {
+				if (this.prefDefault[key] === value)
+					localStorage.removeItem(key);
+				else
+					localStorage.setItem(key, JSON.stringify(value));
+			}
+			else if (Foxtrick.chromeContext() == "content") {
+				if (this.do_dump) // whether write to localStorage
+					this.dumpPrefs();
+			}
 		}
-		else if (Foxtrick.chromeContext() == "content") {
-			if (this.do_dump) // whether write to localStorage
-				this.dumpPrefs();
-		}
+		catch (e) {}
 	}
 	FoxtrickPrefs.dumpPrefs = function() {
 		var port = chrome.extension.connect({name : "pref"});
