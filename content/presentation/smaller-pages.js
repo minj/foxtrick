@@ -21,9 +21,10 @@ FoxtrickSmallerPages = {
 			// now we find if the ad is blocked, reduce the width of the
 			// container.
 			var main = doc.getElementsByClassName("hattrickNoSupporter")[0];
-			var skyscraperAd = doc.getElementsByClassName("ad_skyscraper")[0]
-				.getElementsByTagName("object");
-			if (skyscraperAd.length === 0) {
+			var adSkyscraper = doc.getElementsByClassName("ad_skyscraper")[0];
+			var hasAd = (adSkyscraper.getElementsByTagName("object") > 0)
+				|| (adSkyscraper.getElementsByTagName("iframe") > 0);
+			if (hasAd) {
 				if (Foxtrick.isStandardLayout(doc)) {
 					// for standard theme, reduce to 1001px, which is the width
 					// of the div with id "page", 981px, plus its margin at the
