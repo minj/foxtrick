@@ -22,9 +22,10 @@ FoxtrickSmallerPages = {
 			// container.
 			var main = doc.getElementsByClassName("hattrickNoSupporter")[0];
 			var adSkyscraper = doc.getElementsByClassName("ad_skyscraper")[0];
-			var hasAd = (adSkyscraper.getElementsByTagName("object") > 0)
-				|| (adSkyscraper.getElementsByTagName("iframe") > 0);
-			if (hasAd) {
+			var hasAd = (adSkyscraper.getElementsByTagName("object").length > 0)
+				|| (adSkyscraper.getElementsByTagName("iframe").length > 0)
+				|| (adSkyscraper.getElementsByTagName("a").length > 0);
+			if (!hasAd) {
 				if (Foxtrick.isStandardLayout(doc)) {
 					// for standard theme, reduce to 1001px, which is the width
 					// of the div with id "page", 981px, plus its margin at the
