@@ -21,11 +21,15 @@ var FoxtrickLiveAlert = {
 
 	getScoreFromTab : function(tab) {
 		try {
+			var doc = tab.ownerDocument;
 			if (tab.getElementsByClassName("liveTabScore").length > 0) {
 				const scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
 				var score = tab.getElementsByClassName("liveTabScore")[0].textContent;
 				var scoreMatch = score.match(scoreRe);
-				return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];
+				if (!Foxtrick.isRTLLayout(doc))
+					return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];
+				else
+					return [parseInt(scoreMatch[2]), parseInt(scoreMatch[1])];
 			}
 			return null;
 		}
