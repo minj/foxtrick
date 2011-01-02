@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Notes for localization -->
+<!-- Please keep the overall structure and the tags like <note>, <item>,
+     <module> unchanged, and basically translate the text.
+     You could also add HTML tags with namespace specified, like <xhtml:a>
+     instead of <a>. -->
+<!-- For each note, keep the attribute "version" unchanged, and you could
+     translate the "localized-version" attribute. -->
 
-<notes>
-<note version="0.5.4b3">
+<notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<note version="nightly" localized-version="Тест верзија">
+<item>За детаље о променама погледајте  на <xhtml:a href="http://code.google.com/p/foxtrick/source/list">Google Code</xhtml:a> сајту.</item>
+</note>
+
+<note version="0.6">
 <item>Опција за не приказивање 'Провири на форум' на страници лиге и државе у <module>FixcssProblems</module> модулу (ljushaff).</item>
 <item>Нова сива иконица за линк 'пријави поруку Модовима' на форуму (ljushaff).</item>
 <item>Поправке за <module>ExtendedPlayerDetailsWage</module> и модул <module>MatchReportFormat</module>.</item>
