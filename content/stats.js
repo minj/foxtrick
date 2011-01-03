@@ -1997,43 +1997,6 @@ stats["crotracker"] = {
 	"nationalityranges" : [[58,58]],
 };
 
-
-stats["ghanatracker"] = {
-  "url" : "http://www.ghana.comoj.com/?pg=submitPlayer",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/ghana_tracker.gif",
-  "title" : "Ghana U20/NT Tracker",
-
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[137,137]] ,
-	"nationalityranges" : [[137,137]],
-};
-
-
-stats["armenia_u20tracker"] = {
-  "url" : "http://www.hayastan-u20.de.tl/",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Hayastan U20 Tracker",
-
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[122,122]] ,
-	"nationalityranges" : [[122,122]],
-};
-
-
 stats["belgiumtracker"] = {
   "url" : "http://belgium.beltrick.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
