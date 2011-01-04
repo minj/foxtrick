@@ -1660,41 +1660,6 @@ stats["suomitracker"] = {
 };
 
 
-stats["oceaniatracker"] = {
-  "url" : "http://oceania.nattrick.ca/",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Oceania U20/NT Tracker",
-
-  "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "update.php",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[15,15]] ,
-	"nationalityranges" : [[15,15]],
-};
-
-
-stats["kenyatracker"] = {
-  "url" : "http://kenya.nattrick.ca/",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Kenya U20/NT Tracker",
-
-  "trackernationalteamlink" : { "path"       : "list.php",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[95,95]] ,
-	"nationalityranges" : [[95,95]],
-};
-
 stats["indiatracker"] = {
   "url" : "http://india.nattrick.ca/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
@@ -1892,23 +1857,6 @@ stats["moldovatracker"] = {
 
 
 // --------------- own trackers --------------------------------
-
-stats["ht-fff"] =  {
-        "url" : "http://www.ht-fff.org/",
-
-        "trackerplayerlink" : { "path"       : "dtn_submitting.php",
-                         "filters"    : ["nationality"],
-                         "params"     : []
-                       },
-		"trackernationalteamlink" : { "path"       : "dtn_submitting.php",
-                   "filters"    : ["countryid"],
-                   "params"     : []
-				},
-        "nationalityranges" : [[5, 5]],
-        "countryidranges" : [[5, 5]],
-        "title" : "ht-fff.org | french scouting group.",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/htfff.png"
-};
 
 stats["scouting_mexico"] =  {
   "url" : "http://www.hattrick.org.mx/SN/",
@@ -2402,23 +2350,6 @@ stats["polskatracker"] = {
 };
 
 //  ------------- spreadsheets trackers ----------------
-stats["mongoltracker"] = {
-  "url" : "http://spreadsheets.google.com/viewform?formkey=cGhyMThkSzVUdURSdmlWWHdmRldqUXc6MA..",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Mongol Uls U-20/NT DB",
-
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[119,119]] ,
-	"nationalityranges" : [[119,119]],
-};
-
 stats["nippontracker"] = {
   "url" : "http://spreadsheets.google.com/viewform?key=pPPtfeGUpefgXsyLLwuDrAw",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
@@ -2438,28 +2369,6 @@ stats["nippontracker"] = {
 
 
 // global tracker
-/* links to sokker.org
-stats["u20_nt_tracker"] = {
-  "url" : "http://www.ant-db.net/index.php",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/nt_tracker.png",
-  "title" : "Global U20 & NT Tracker",
-
-  "trackernationalteamlink" : { "path"       : "?action=select_country",
-                         "filters"    : ["countryid"],
-                         "params"     :  { "countryid" : "id" }
-                       },
-  "trackerplayerlink" : { "path"       : "?action=player_submit&cat=1",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" :   [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,35],[38,43],[46,46],[48,51],[53,53],[59,59],
-						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
-						[104,105,],[107,109],[111,112],[114,116],[117,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
-	"nationalityranges" : [[1,1],[4,4],[7,7],[9,10],[13,13],[18,18],[21,21],[23,23],[25,25],[28,35],[38,43],[46,46],[48,51],[53,53],[59,59],
-						[61,62],[64,67],[69,74],[76,76],[78,78],[80,83],[86,88],[90,94],[97,100],
-						[104,105],[107,109],[111,112],[114,116],[118,119],[121,121],[125,126],[128,131],[139,139],[142,142],[144,200]],
-};  // own tracker: exclude all above
-*/
 
 stats["htworld"] =  {
     "title" : "HT-World NT/U20 tracker",
