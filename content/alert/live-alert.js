@@ -23,8 +23,10 @@ var FoxtrickLiveAlert = {
 		try {
 			var doc = tab.ownerDocument;
 			if (tab.getElementsByClassName("liveTabScore").length > 0) {
-				const scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
 				var score = tab.getElementsByClassName("liveTabScore")[0].textContent;
+				if (score == "")
+					return;
+				const scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
 				var scoreMatch = score.match(scoreRe);
 				if (!Foxtrick.isRTLLayout(doc))
 					return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];
@@ -35,7 +37,6 @@ var FoxtrickLiveAlert = {
 		}
 		catch (e) {
 			Foxtrick.dump("Cannot parse score \"" + score + "\":\n");
-			Foxtrick.dumpError(e);
 			return null;
 		}
 	},
