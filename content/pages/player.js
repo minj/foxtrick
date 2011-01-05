@@ -157,6 +157,19 @@ Foxtrick.Pages.Player = {
 		return 0;
 	},
 
+	getOwnerClub : function(doc) {
+		try {
+			const head = doc.getElementsByClassName("main")[0].getElementsByTagName("h2")[0];
+			const links = head.getElementsByTagName("a");
+			if (links.length < 2)
+				return null; // free agent
+			return links[0].textContent;
+		}
+		catch (e) {
+			return null;
+		}
+	},
+
 	// Returns an object like this:
 	/*
 	{
@@ -172,7 +185,11 @@ Foxtrick.Pages.Player = {
 		try {
 			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 			var infoTable = playerInfo.getElementsByTagName("table")[0];
-			var wageText = infoTable.rows[2].cells[1].textContent;
+			// wage position varies for free agents
+			if (this.getOwnerClub(doc))
+				var wageText = infoTable.rows[2].cells[1].textContent;
+			else
+				var wageText = infoTable.rows[1].cells[1].textContent;
 			var hasBonus = (wageText.indexOf("%") > -1);
 			wageText = wageText.replace(/\s*(\d+)\s+/g, "$1");
 			var wage = parseInt(wageText);
