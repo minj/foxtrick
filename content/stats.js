@@ -688,31 +688,6 @@ stats["todohattrick"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/todohattrick.png"
 };
 
-stats["ComunidadHattrickVenezuela"] =  {
-        "url" : "http://www.hattrick.org.ve",
-
-        "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     : []
-                       },
-		"countryidranges" : [[29, 29]],
-        "title" : "Comunidad Hattrick Venezuela",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/chtvicon.png"
-};
-
-stats["ConvertidordeTiempo"] =  {
-        "url" : "http://www.hattrick.org.ve/herramientas/tiempo/",
-
-        "transfercomparelink" : { "path"       : "",
-                         "filters"    : ["owncountryid"],
-                         "params"     : {"deadline":"deadline"}
-                       },
-		"owncountryidranges" : [[29, 29]],
-        "title" : "Convertidor de Tiempo de Hattrick-Venezuela",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/iconotiempo.png"
-};
-
-
 stats["francestats"] =  {
         "url" : "http://www.francestats.fr/",
 
@@ -1274,49 +1249,6 @@ stats["Hattrick_training_speed_tool"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/trainingspeed.png"
 };
 
-
-/*  // claims to have CHPP but doesn't. hence illegal
-stats["skillraise"] =  {
-        "url" : "http://www.htdaytrading.com/",
-
-        "playerlink" : { "path"       : "?page=showplayer",
-                         "filters"    : ["age"],
-                         "params"     : { "age" : "age",
-                                          "stamina" : "stamina",  "playmaking" : "playmaking",
-                                          "passing" : "passing", "winger" : "winger", "defending" : "defending",
-                                          "scoring" : "scoring"
-                          }
-                       },
-
-        "ageranges" : [[17, 19]],
-
-        "title" : "SkillRaise Tool",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/skillraise.png"
-};  */
-
-
-stats["Hattrickstats_fr"] =  {
-        "url" : "http://friendly.cup.free.fr/",
-
-        "leaguelink" : { "path"       : "Stats.php",
-                         "filters"    : ["countryid"],
-                         "params"     : { "leagueid" : "id" }
-                       },
-
-        "teamlink" : { "path"       : "Stats.php",
-                         "filters"    : ["countryid"],
-                         "params"     : { "teamid" : "team" }
-                       },
-        "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     : []
-                       },
-
-        "countryidranges" : [[5, 5]],
-        "title" : "HATTRICKSTATS.WeB.SiTe",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrickstats_fr.gif"
-};
-
 stats["natstats"] =  {
   "url" : "http://doof92.co.uk/",
   "title" : "NatStats",
@@ -1337,37 +1269,6 @@ stats["natstats"] =  {
   }
 
 };
-
-
-// Hattrick Today
-stats["hattricktoday"] =  {
-        "url" : "http://www.frelive.net/",
-        "matchlink" : { "path"       : "HT2D/Viewer/index.php",
-                         "filters"    : [],
-                         "params"     : { "matchid" : "urlMatches" }
-                       },
-         "playedmatchlink" : { "path"       : "HT2D/Viewer/index.php",
-                         "filters"    : [],
-                         "params"     : { "matchid" : "urlMatches" }
-                       },
-
-        "title" : "Hattrick Today",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattricktoday.png"
-};
-
-
-stats["magicyp"] =  {
-        "url" : "http://www.rodelhang.at/magicyp",
-
-        "youthpulllink" : { "path"       : "",
-                         "filters"    : [],
-                         "params"     : []
-                       },
-
-        "title" : "Magic Youthpull",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/magicyp.png"
-};
-
 
 stats["hattrick-youthclub"] =  {
         "url" : "http://www.",
