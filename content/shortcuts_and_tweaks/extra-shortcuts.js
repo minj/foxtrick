@@ -154,8 +154,8 @@ var FoxtrickExtraShortcuts = {
 						img1.setAttribute("style","margin-left:2px; background-image: url('"+FoxtrickPrefs.getString(radio+'CurrentIcon')+"') !important;");
 					link.appendChild(img1);
 
-					var span = doc.createElement("span");
-					span.className = "ft-drop-down-span";
+					var span = doc.createElement("div");
+					span.className = "ft-pop-up-container";
 					span.id = radio+'Span';
 					span.appendChild(link);
 

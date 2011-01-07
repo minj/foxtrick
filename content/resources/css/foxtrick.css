@@ -138,73 +138,32 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 
 
 /* pop lists that are displayed when hovering */
-span.ft-pop-up-span {
-	position: relative;
+.ft-pop-up-container {
+	display: inline-block;
 	cursor: pointer;
 }
 
-span.ft-pop-up-span-icon {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
+.ft-pop-up-container.icon {
 	padding-right: 4px;
 	background: url(chrome://foxtrick/content/resources/img/pop-up.png) 24px 4px no-repeat;
 }
-span.ft-pop-up-span-icon-header {
+.ft-pop-up-container.icon.header {
 	position: absolute;
-	cursor: pointer;
-	display: inline-block;
 	padding-right: 4px;
 	background: url(chrome://foxtrick/content/resources/img/pop-up.png) 24px 4px no-repeat;
-}
-span.ft-drop-down-span-icon {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
-	padding-right: 8px;
-	background: url(chrome://foxtrick/content/resources/img/drop-down.png) 24px bottom no-repeat;
-}
-
-span.ft-drop-down-span {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
-}
-
-span.ft-pop-up-span > ul.ft-pop {
-	right:0px;
-	bottom:0px;
-}
-span.ft-pop-up-span-icon > ul.ft-pop {
-	right:0px;
-	bottom:12px;
-}
-span.ft-pop-up-span-icon-header > ul.ft-pop {
-	bottom:-18px;
-	z-index:99999;
-}
-span.ft-drop-down-span-icon > ul.ft-pop {
-	right:0px;
-	top:10px;
-	z-index:99999;
-}
-span.ft-drop-down-span > ul.ft-pop {
-	right:0px;
-	top:9px;
-	z-index:99999;
-	cursor: default;
 }
 
 ul.ft-pop {
+	color: #000;
 	background-color: #eee;
 	border: solid 1px #aaa;
 	border-bottom: 0px; /* use the border provided by the last item */
 	display: none;
 	position: absolute;
 	list-style-type: none;
-	padding: 0px 0px;
+	z-index: 100;
 }
-span:hover ul.ft-pop {
+.ft-pop-up-container:hover > ul.ft-pop {
 	display: block;
 }
 ul.ft-pop > li {

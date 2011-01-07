@@ -67,14 +67,13 @@ var FoxtrickForumChangePosts = {
 		copy_posting_img.title = Foxtrickl10n.getString('CopyPosting.abbr').replace('%s', Foxtrickl10n.getString('CopyPosting.style.last') );
 		copy_posting_img.setAttribute('copy_style','last');
 
-		var copy_posting_span = doc.createElement("span");
-		copy_posting_span.className = "ft-pop-up-span";
+		var copy_posting_div = doc.createElement("div");
+		copy_posting_div.className = "ft-pop-up-container";
 
-		copy_posting_span.appendChild(copy_posting_img);
+		copy_posting_div.appendChild(copy_posting_img);
 
 		var possibleStyles=['ht-ml', 'wiki', 'raw'];
 		var list = doc.createElement("ul");
-		list.setAttribute('style', 'color:black; z-index:9999999;');
 		list.className = "ft-pop";
 		for (var i=0; i<possibleStyles.length; ++i) {
 			var item = doc.createElement("li");
@@ -86,7 +85,7 @@ var FoxtrickForumChangePosts = {
 			item.appendChild(link);
 			list.appendChild(item);
 		}
-		copy_posting_span.appendChild(list);
+		copy_posting_div.appendChild(list);
 
 		var copy_posting_link_archive = doc.createElement('a');
 		copy_posting_link_archive.setAttribute('href','javascript:void(0);');
@@ -270,17 +269,17 @@ var FoxtrickForumChangePosts = {
 
 			// copy posting ---------------------------------------------
 			if (do_copy_posting) {
-				var copy_span = copy_posting_span.cloneNode(true);
-				var copy_img = copy_span.getElementsByTagName('img')[0];
+				var copy_div = copy_posting_div.cloneNode(true);
+				var copy_img = copy_div.getElementsByTagName('img')[0];
 				copy_img.id = 'ft_copy_posting_link_id' + num_wrapper;
 				copy_img.addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );
 				copy_img.setAttribute('post_nr',num_wrapper);
-				var copy_links = copy_span.getElementsByTagName('span');
+				var copy_links = copy_div.getElementsByTagName('span');
 				for (var cl=0; cl<possibleStyles.length; ++cl){
 					copy_links[cl].addEventListener( "click", FoxtrickForumChangePosts._copy_posting_to_clipboard, false );
 					copy_links[cl].setAttribute('post_nr',num_wrapper);
 				}
-				header_right_inner.appendChild(copy_span);
+				header_right_inner.appendChild(copy_div);
 
 				if (isArchive) {
 					var copy_link = copy_posting_link_archive.cloneNode(true);

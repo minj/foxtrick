@@ -215,8 +215,8 @@
 						newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[i].string);
 
 						if (this.icons[i].versions) {
-							var span = doc.createElement("span");
-							span.className = "ft-pop-up-span-icon";
+							var span = doc.createElement("div");
+							span.className = "ft-pop-up-container icon";
 							span.appendChild(newimage);
 
 							var list = doc.createElement("ul");
