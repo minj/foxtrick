@@ -4,8 +4,8 @@
 
 FoxtrickCurrencyConverter = {
 
-    MODULE_NAME : "CurrencyConverter",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	MODULE_NAME : "CurrencyConverter",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('all_late'),
 
 	OPTION_FUNC : function(doc) {
@@ -32,8 +32,8 @@ FoxtrickCurrencyConverter = {
 		return currencySelect;
 	},
 
-    run : function(page, doc) {
-    	// don't run on forum pages
+	run : function(page, doc) {
+		// don't run on forum pages
 		if (doc.location.href.search(/Forum/i) != -1)
 			return;
 
@@ -55,7 +55,7 @@ FoxtrickCurrencyConverter = {
 	   	this.drawNewCurrency(doc, 'td', oldSymbol, oldLength, symbol, oldRate, rate, myReg, myDelReg);
 		// some might be in alert boxes which use <p>
 		this.drawNewCurrency(doc, 'p', oldSymbol, oldLength, symbol, oldRate, rate, myReg, myDelReg);
-    },
+	},
 
 	change : function( page, doc ) {
 		this.run(page, doc);
@@ -68,7 +68,7 @@ FoxtrickCurrencyConverter = {
 			if (table_elm[i].getElementsByTagName('td').length!=0) continue;  // don't do nested. only most inner gets converted
 			else if (table_elm[i].getElementsByTagName('p').length!=0) continue;  // don't do nested. only most inner gets converted
 
-            var pos = table_elm[i].innerHTML.indexOf(oldCurrencySymbol);
+			var pos = table_elm[i].innerHTML.indexOf(oldCurrencySymbol);
 			if (pos > 0 && (!Foxtrick.hasClass(table_elm[i], "foxtrick-currency-converter") || table_elm[i].innerHTML.indexOf(currencySymbol)==-1)) {
 				var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
 				var inner_raw = table_elm[i].innerHTML;
@@ -124,5 +124,5 @@ FoxtrickCurrencyConverter = {
 				Foxtrick.addClass(table_elm[i], "foxtrick-currency-converter");
 			}
 		}
-    }
+	}
 };

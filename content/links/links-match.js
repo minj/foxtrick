@@ -6,7 +6,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksMatch = {
-    MODULE_NAME : "LinksMatch",
+	MODULE_NAME : "LinksMatch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('match'),
 	LINK_TYPES : [ "playedmatchlink", "nextmatchlink", "matchlink" ],
@@ -14,7 +14,7 @@ var FoxtrickLinksMatch = {
 		return Foxtrick.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		// get ids
 		var youthmatch = FoxtrickHelper.findIsYouthMatch(doc.location.href);
 		var teamid,teamid2;
@@ -49,7 +49,7 @@ var FoxtrickLinksMatch = {
 		}
 		//addExternalLinksToCommingMatch
 		if (!isarchivedmatch && !youthmatch) {
-	        links = Foxtrick.LinkCollection.getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid ,"teamid2":teamid2  }, doc,this);
+			links = Foxtrick.LinkCollection.getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid ,"teamid2":teamid2  }, doc,this);
 			links2 = Foxtrick.LinkCollection.getLinks("matchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc,this);
 			if (links.length+links2.length>0) add_links = true;
  		}
@@ -82,7 +82,7 @@ var FoxtrickLinksMatch = {
 			FoxtrickLinksCustom.add( page, doc,ownBoxBody,prefset,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
 		}
 		if (!isarchivedmatch && !youthmatch) {
-	        FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
-        }
+			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
+		}
 	}
 };

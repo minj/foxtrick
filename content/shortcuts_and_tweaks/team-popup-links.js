@@ -12,7 +12,6 @@ var FoxtrickTeamPopupLinks = {
 
 	OPTIONS : [ "TeamLinks", "UserLinks", "CustomLink" ],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : [ "", "", "<a href='http://www.alltid.org/team/[teamid]'>mylink</a>" ],
 	OPTION_TEXTS_DISABLED_LIST : [ true, true, false],
 
 	LINKS : {

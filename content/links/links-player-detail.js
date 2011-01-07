@@ -6,7 +6,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksPlayerDetail = {
-    MODULE_NAME : "LinksPlayerDetail",
+	MODULE_NAME : "LinksPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('playerdetail'),
 	LINK_TYPES : [ "playerhealinglink", "playerlink", "keeperlink", "transfercomparelink" ],
@@ -14,7 +14,7 @@ var FoxtrickLinksPlayerDetail = {
 		return Foxtrick.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
 	},
 
-    run : function(page, doc) {
+	run : function(page, doc) {
 		//addExternalLinksToPlayerDetail
 		var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 		var infoTable = playerInfo.getElementsByTagName("table")[0];
@@ -154,5 +154,5 @@ var FoxtrickLinksPlayerDetail = {
 		if (added) Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "first", "");
 
 		FoxtrickLinksCustom.add(page, doc, ownBoxBody, this.MODULE_NAME, params);
-    }
+	}
 };

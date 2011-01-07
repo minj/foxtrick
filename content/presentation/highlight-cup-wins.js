@@ -6,12 +6,12 @@
 
 var FoxtrickHighlightCupwins = {
 
-    MODULE_NAME : "HighlightCupwins",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	MODULE_NAME : "HighlightCupwins",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('cupmatches'),
 	OPTIONS : new Array("HighlightCupsets"),
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		var highlightCupsets = Foxtrick.isModuleFeatureEnabled(this, "HighlightCupsets");
 		// matches of Hattrick Masters aren't arranged by cup ranks
 		var isMasters = (doc.location.search.search(/\bCupId=183\b/i) !== -1);

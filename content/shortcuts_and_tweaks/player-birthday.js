@@ -7,11 +7,11 @@
  ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickPlayerBirthday = {
 
-    MODULE_NAME : "PlayerBirthday",
+	MODULE_NAME : "PlayerBirthday",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('players','YouthPlayers'),
 
-    run : function(page, doc) {
+	run : function(page, doc) {
 		// array of players
 		var birthdayToday = new Array();
 		var birthdayFuture = new Array();

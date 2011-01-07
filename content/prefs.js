@@ -296,8 +296,8 @@ var FoxtrickPrefs = {
 			FoxtrickPrefs.do_dump = false;
 			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+list_name+'.+\\);\\n','g');
 			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'');
-		    for (var i in values)
-		        FoxtrickPrefs.setString( list_name + "." + i, values[i]);
+			for (var i in values)
+				FoxtrickPrefs.setString( list_name + "." + i, values[i]);
 			FoxtrickPrefs.do_dump = true;
 			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
 		}

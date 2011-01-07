@@ -6,12 +6,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickYouthSkillHideUnknown = {
 
-    MODULE_NAME : "YouthSkillHideUnknown",
+	MODULE_NAME : "YouthSkillHideUnknown",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayers'),
 	OPTIONS: new Array('HideUnknown','HideMaximalKeyWord'),
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
 		var is_ownteam = (ownteamid==teamid);

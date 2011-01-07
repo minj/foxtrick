@@ -6,10 +6,10 @@
 
  var FoxtrickHTThreadMarker = {
 
-    MODULE_NAME : "HTThreadMarker",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	MODULE_NAME : "HTThreadMarker",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
-    CSS : Foxtrick.ResourcePath + "resources/css/ht-thread.css",
+	CSS : Foxtrick.ResourcePath + "resources/css/ht-thread.css",
 
 	run : function( page, doc ) {
 		this.ColorLatest(doc, "threadContent", "folderitem");
@@ -38,8 +38,8 @@
 		}
 	},
 
-    change : function( page, doc ) {
-        this.run(page, doc);
+	change : function( page, doc ) {
+		this.run(page, doc);
 	},
 
 	ColorLatest : function (doc,id,classname) {

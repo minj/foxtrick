@@ -6,14 +6,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksClubTransfers = {
-    MODULE_NAME : "LinksClubTransfers",
+	MODULE_NAME : "LinksClubTransfers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'),
 	OPTION_FUNC : function(doc) {
 		Foxtrick.links.getOptionsHtml(doc, this, false, "clubtransferslink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToClubTransfersPage
 
 		var alldivs = doc.getElementsByTagName('div');
@@ -42,5 +42,5 @@ var FoxtrickLinksClubTransfers = {
 				break;
 			}
 		}
-    }
+	}
 };

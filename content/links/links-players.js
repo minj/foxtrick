@@ -6,14 +6,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksPlayers = {
-    MODULE_NAME : "LinksPlayers",
+	MODULE_NAME : "LinksPlayers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('players'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "playerslink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToManagerPage
 		var ownBoxBody = null;
 		var mainWrapper = doc.getElementById('mainWrapper');

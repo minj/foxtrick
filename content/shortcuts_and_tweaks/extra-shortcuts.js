@@ -6,8 +6,8 @@
 
 var FoxtrickExtraShortcuts = {
 
-    MODULE_NAME : "ExtraShortcuts",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_NAME : "ExtraShortcuts",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
 	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadio", "No9", "Latehome" ),//,"DTRadioWinamp"),
 	RADIOS: new Array("HtRadio", "No9", "Latehome"),
@@ -65,10 +65,10 @@ var FoxtrickExtraShortcuts = {
 							targetNode.appendChild(link);
 						}
 					}
-                }
+				}
 
 
-                if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {
+				if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/Club/Transfers/";
@@ -89,10 +89,10 @@ var FoxtrickExtraShortcuts = {
 							targetNode.appendChild(link);
 						}
 					}
-                }
+				}
 
 
-                if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) {
+				if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/MyHattrick/Preferences/";
@@ -113,7 +113,7 @@ var FoxtrickExtraShortcuts = {
 							targetNode.appendChild(link);
 						}
 					}
-                }
+				}
 
 
 				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {

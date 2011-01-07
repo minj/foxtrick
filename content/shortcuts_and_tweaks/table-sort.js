@@ -70,15 +70,15 @@ var FoxtrickTableSort = {
 			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
 			var num_cols = table.rows[sort_start+1].cells.length;
 			for (var i = sort_start+1; i < table.rows.length; ++i) {
-		    	if (num_cols != table.rows[i].cells.length) break;
+				if (num_cols != table.rows[i].cells.length) break;
 				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
-		    	if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
-		    	if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
-		    	if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;}
+				if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
+				if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
+				if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;}
 				if (!Foxtrick.util.time.getDateFromText(inner)) {is_date=false;}
 				if (table.rows[i].cells[index].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
-		    }
+			}
 			var sort_end = i;
 
 			// rows to be sorted

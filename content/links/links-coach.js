@@ -6,14 +6,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksCoach = {
-    MODULE_NAME : "LinksCoach",
+	MODULE_NAME : "LinksCoach",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('coach'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "coachlink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToCoachPage
 		var links = Foxtrick.LinkCollection.getLinks("coachlink", {  }, doc, this);
 		var ownBoxBody=null;

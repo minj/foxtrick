@@ -52,7 +52,7 @@ var FoxtrickManagerButtons = {
 			username = h1inner.replace(/\<.+\>|\(.+\)| /gi,'');
 			var messageLink = doc.getElementById(this.MAIL_LINK_ID);
 			messageLink.href = "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto="+username;
-        }
+		}
 		else if (page==='teamPage') {
 			var mainBodylinks = doc.getElementById('mainBody').getElementsByTagName("a");
 			for (var i=0;i<mainBodylinks.length;++i) {
@@ -72,7 +72,7 @@ var FoxtrickManagerButtons = {
 			var mailLink = doc.createElement("a");
 			mailLink.className = "inner";
 			mailLink.href = '/Club/?TeamID='+teamId+'&redir_to_mail=true';
-            mailLink.title = Foxtrickl10n.getString("foxtrick.tweaks.sendmessage");
+			mailLink.title = Foxtrickl10n.getString("foxtrick.tweaks.sendmessage");
 
 			if (!FoxtrickMain.isStandard) {
 				mailLink.innerHTML = Foxtrickl10n.getString("foxtrick.tweaks.sendmessage");

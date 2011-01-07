@@ -7,14 +7,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksAlliances = {
 
-    MODULE_NAME : "LinksAlliances",
+	MODULE_NAME : "LinksAlliances",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('federation'),
-    OPTION_FUNC : function(doc) {
+	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "federationlink");
-    },
+	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToArenaPage
 
 		var alldivs = doc.getElementsByTagName('div');
@@ -46,5 +46,5 @@ var FoxtrickLinksAlliances = {
 				break;
 			}
 		}
-    }
+	}
 };

@@ -11,7 +11,6 @@ var FoxtrickLeagueAndMatchChat = {
 	PAGES : new Array('league','youthleague','match','cupoverview','cupmatches','federation'),
 	OPTIONS : new Array('OpenYapletPopup','OpenYapletFrame','OpenGabblyPopup','ChatNick'),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("","","","Guest"),
 	OPTION_TEXTS_DISABLED_LIST : new Array(true,true,true,false),
 	server:null,
 

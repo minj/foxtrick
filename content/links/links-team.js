@@ -6,18 +6,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickLinksTeam = {
-    MODULE_NAME : "LinksTeam",
+	MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "teamlink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		this.AddLinksRight(page,doc);
 	},
 
-    AddLinksRight : function( page, doc ) {
+	AddLinksRight : function( page, doc ) {
 		if (!this.isTeamPage(doc)) {return;}
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
@@ -58,9 +58,9 @@ var FoxtrickLinksTeam = {
 	},*/
 
 	isTeamPage : function(doc) {
-        var site=doc.location.href;
-        var remain=site.substr(site.search(/Club\//i)+5);  //Foxtrick.dump(remain+' '+remain.search(/TeamID=/i)+'\n');
-    return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
+		var site=doc.location.href;
+		var remain=site.substr(site.search(/Club\//i)+5);  //Foxtrick.dump(remain+' '+remain.search(/TeamID=/i)+'\n');
+	return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
 	},
 
 	gatherLinks : function( thisdiv, doc ) {

@@ -280,15 +280,15 @@ var FoxtrickSkillTable = {
 // name: name of the column, used for fetching l10nized string
 // property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
 // method: which function to use in order to attach data to cell, should be a
-//          function with two arguments, first is table cell(td), second is
-//          raw data from playerList. If properties is given (multiple column),
-//          then the player is given as date; if property is given instead
-//          (single column), the specified property is given. By default the
-//          data is treated as plain text and appended to the cell.
+//   function with two arguments, first is table cell(td), second is
+//   raw data from playerList. If properties is given (multiple column),
+//   then the player is given as date; if property is given instead
+//   (single column), the specified property is given. By default the
+//   data is treated as plain text and appended to the cell.
 // sortAsc: whether to sort the column in ascending order, default is in
-//           descending order.
+//   descending order.
 // sortString: whether to sort the column with values as string, default is as
-//              numbers. If set to true, sortAsc is always on.
+//   numbers. If set to true, sortAsc is always on.
 // alignRight: whether to align the data cells to the right
 // img: images used in table headers as substitution of text
 

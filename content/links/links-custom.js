@@ -7,7 +7,7 @@
  ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickLinksCustom = {
-    MODULE_NAME : "LinksCustom",
+	MODULE_NAME : "LinksCustom",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 
 	_ownBoxBody:"",
@@ -25,7 +25,7 @@ var FoxtrickLinksCustom = {
 				var ownBoxId = "foxtrick_links_box";
 				var ownBoxBodyId = "foxtrick_links_content";
 				var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-                ownBoxBody.setAttribute( "id", ownBoxBodyId );
+				ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
@@ -427,14 +427,14 @@ var FoxtrickLinksCustom = {
 			var locpath=Foxtrick.selectFileSave(doc.defaultView);
 			if (locpath==null) {return;}
 			var File = Components.classes["@mozilla.org/file/local;1"].
-                     createInstance(Components.interfaces.nsILocalFile);
+					 createInstance(Components.interfaces.nsILocalFile);
 			File.initWithPath(locpath);
 
 			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-                         createInstance(Components.interfaces.nsIFileOutputStream);
+						 createInstance(Components.interfaces.nsIFileOutputStream);
 			foStream.init(File, 0x02 | 0x08 | 0x10, 0666, 0);  // write, create, append
 			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-                   .createInstance(Components.interfaces.nsIConverterOutputStream);
+				   .createInstance(Components.interfaces.nsIConverterOutputStream);
 			os.init(foStream, "UTF-8", 0, 0x0000);
 
 			var array = FoxtrickPrefs._getElemNames(baseprefnl);
@@ -645,13 +645,13 @@ var FoxtrickLinksCustom = {
 	generateDataURI : function(file) {
 		try {
 			var contentType = Components.classes["@mozilla.org/mime;1"]
-		                          .getService(Components.interfaces.nsIMIMEService)
-		                          .getTypeFromFile(file);
+								  .getService(Components.interfaces.nsIMIMEService)
+								  .getTypeFromFile(file);
 			var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
-		                          .createInstance(Components.interfaces.nsIFileInputStream);
+								  .createInstance(Components.interfaces.nsIFileInputStream);
 			inputStream.init(file, 0x01, 0600, 0);
 			var stream = Components.classes["@mozilla.org/binaryinputstream;1"]
-		                     .createInstance(Components.interfaces.nsIBinaryInputStream);
+							 .createInstance(Components.interfaces.nsIBinaryInputStream);
 			stream.setInputStream(inputStream);
 			var encoded = btoa(stream.readBytes(stream.available()));
 			return "data:" + contentType + ";base64," + encoded;

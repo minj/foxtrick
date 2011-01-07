@@ -6,13 +6,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickSeniorTeamShortCuts = {
-    MODULE_NAME : "SeniorTeamShortCuts",
+	MODULE_NAME : "SeniorTeamShortCuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('teamPageGeneral'),
 	ONPAGEPREF_PAGE : 'all',
 	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"),
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 
 		var boxleft=doc.getElementsByClassName("subMenu")[0];

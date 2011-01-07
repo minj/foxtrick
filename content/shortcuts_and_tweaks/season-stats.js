@@ -7,7 +7,7 @@
 
 var FoxtrickSeasonStats = {
 
-    MODULE_NAME : "SeasonStats",
+	MODULE_NAME : "SeasonStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('matchesarchiv','matches'),
 	ONPAGEPREF_PAGE : 'matchesarchiv',
@@ -15,7 +15,7 @@ var FoxtrickSeasonStats = {
 
 	_season:-1,
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		// ----------------------------- season select box ---------------------------------
 
 		// get current season
@@ -49,13 +49,13 @@ var FoxtrickSeasonStats = {
 		var s=this._season;
 		for (var ls=local_season;ls>0;--ls) {
 			var option = doc.createElement("option");
-            option.setAttribute("value",s);
-            option.innerHTML=ls;
-            selectbox.appendChild(option);
+			option.setAttribute("value",s);
+			option.innerHTML=ls;
+			selectbox.appendChild(option);
 			--s;
-        }
+		}
 		selectbox.value=selected_season;
-        doc.getElementById('mainBody').insertBefore(selectbox,doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType'));
+		doc.getElementById('mainBody').insertBefore(selectbox,doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType'));
 
 
 		// ------------------------------ season stats --------------------------------------

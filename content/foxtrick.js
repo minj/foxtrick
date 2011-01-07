@@ -630,10 +630,10 @@ Foxtrick.addStyleSheet = function(doc, css) {
 
 Foxtrick.addStyleSheetSnippet = function(doc, css) {
 	var head = doc.getElementsByTagName("head")[0];
-    var style = doc.createElement("style");
-    style.setAttribute("type", "text/css");
+	var style = doc.createElement("style");
+	style.setAttribute("type", "text/css");
 	style.appendChild(doc.createTextNode(css));
-    head.appendChild(style);
+	head.appendChild(style);
 }
 
 // attaches a JavaScript file to the page

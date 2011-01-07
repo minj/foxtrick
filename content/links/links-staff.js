@@ -6,14 +6,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksStaff = {
-    MODULE_NAME : "LinksStaff",
+	MODULE_NAME : "LinksStaff",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('staff'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "stafflink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToManagerPage
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainWrapper');

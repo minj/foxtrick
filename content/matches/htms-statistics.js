@@ -55,15 +55,9 @@ Foxtrick.htmsStatistics = {
 		lattack[1]=lattack[1]*4+1;
 		var tactics;
 		var tacticsLevel;
-		// var tacticRow=14;
-		// if (FoxtrickHelper.findIsYouthMatch(doc.location.href)) {
-			// tacticRow=10;
-		// }
 
 		tactics=new Array(Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
 		tacticsLevel=new Array(Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
-
-        //Foxtrick.dump('rows '+ratingstable.rows.length+' Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
 
 		//Creating params for link
 		var params='&TAM='+midfieldLevel[0]+'&TBM='+midfieldLevel[1];

@@ -5,8 +5,7 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.Matches = {
-
-    MODULE_NAME : "Matches",
+	MODULE_NAME : "Matches",
 	PAGES : new Array('match'),
 
 	matchxmls: new Array(),

@@ -5,23 +5,20 @@
  */
 
 var FoxtrickNewMail = {
-    MODULE_NAME : "NewMail",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
+	MODULE_NAME : "NewMail",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : new Array ( 'all' ),
 	CSS:  "",
-    OLD_CSS:"",
-
+	OLD_CSS:"",
 	OPTIONS : new Array("CustomColor","HighlightNewMailIcon","HighlightNewForum"),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : new Array("red","",""),
 	OPTION_TEXTS_DISABLED_LIST : new Array(false,true,true),
 	NewMailColor:"red",
 
-    init : function() {
-		FoxtrickNewMail.NewMailColor = this.OPTION_TEXTS_DEFAULT_VALUES[0];
+	init : function() {
+		FoxtrickNewMail.NewMailColor = "red";
 		if (Foxtrick.isModuleFeatureEnabled( this, "CustomColor")) {
-				var color = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomColor_text");
-				if (color) 	FoxtrickNewMail.NewMailColor=color;
+			FoxtrickNewMail.NewMailColor = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomColor_text");
 		}
 		var HighlightNewMailIconCss="img.scNewMail {background: url('"+Foxtrick.ResourcePath+"resources/img/new_mail.png') !important;}";
 
@@ -43,9 +40,9 @@ var FoxtrickNewMail = {
 		this.OLD_CSS = this.CSS;
 		if (Foxtrick.BuildFor=='Chrome') Foxtrick.load_css_permanent(zaw);
 		else this.CSS=Foxtrick.GetDataURIText(zaw);
-    },
+	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightNewForum")) {
 			var  menu=doc.getElementById('menu');
 			if (menu) {

@@ -49,7 +49,7 @@ Foxtrick.Ratings = {
 			tactics=new Array(Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[10].cells[1]), Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[10].cells[2]));
 			tacticsLevel=new Array(Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[1]), Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[11].cells[2]));
 		}
-        Foxtrick.dump('Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
+		Foxtrick.dump('Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
 
 		var defenceLevel = new Array();
 		defenceLevel[0]=ldefence[0] + cdefence[0] + rdefence[0];
@@ -74,9 +74,9 @@ Foxtrick.Ratings = {
 				var cell = row.insertCell(i+1);
 				try {
 					if (typeof (this.ratingDefs[selectedRating]["total2"]) != 'undefined') {
-                        if (tactics[i] == null) {
-                            tactics[i] = -1;
-                        }
+						if (tactics[i] == null) {
+							tactics[i] = -1;
+						}
 						if (tactics[i] != null) {
 							cell.innerHTML = "<b>" +
 												this.ratingDefs[selectedRating]["total2"](midfieldLevel[i], lattack[i], cattack[i], rattack[i],
@@ -160,7 +160,7 @@ Foxtrick.Ratings = {
 			total2: function( midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
 										tactics, tacticsLevel ) {
-                if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
+				if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
 				midfieldLevel = this.base + this.weight*midfieldLevel;
 				lattack = this.base + this.weight*lattack;
 				cattack = this.base + this.weight*cattack;
@@ -203,9 +203,9 @@ Foxtrick.Ratings = {
 
 				var rounded = Math.round(value*100)/100;
 
-                if (tactics == 'longshots') return '<font color="#808080">' + rounded + '</font>';
+				if (tactics == 'longshots') return '<font color="#808080">' + rounded + '</font>';
 
-                return rounded;
+				return rounded;
 			}
 
 		 };
@@ -296,9 +296,9 @@ Foxtrick.Ratings = {
 
 			total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
 
-                if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
+				if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
 
-                leftAtt = (this.base + this.weight*leftAtt);
+				leftAtt = (this.base + this.weight*leftAtt);
 				centralAtt = (this.base + this.weight*centralAtt);
 				rightAtt = (this.base + this.weight*rightAtt);
 
@@ -325,7 +325,7 @@ Foxtrick.Ratings = {
 				var value = tempReal + tempTactica;
 				var rounded = Math.round(value);
 				if (tactics == 'longshots') return '<font color="#808080">' + rounded + '</font>';
-                return rounded;
+				return rounded;
 			}
 		};
 	}

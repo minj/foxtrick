@@ -6,14 +6,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksTraining = {
-    MODULE_NAME : "LinksTraining",
+	MODULE_NAME : "LinksTraining",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('training'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "traininglink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		if (doc.location.href.search(/ChangeCoach/i)>-1 || doc.location.href.search(/YouthTraining/i)>-1) {return;}
 		//addExternalLinksToCoachPage
 
@@ -50,10 +50,10 @@ var FoxtrickLinksTraining = {
 					}
 
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
-			    }
+				}
 					FoxtrickLinksCustom.add( page, doc,ownBoxBody,
 							this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );
-            }
+			}
 		}
-    }
+	}
 };

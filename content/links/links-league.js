@@ -7,14 +7,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var FoxtrickLinksLeague = {
-    MODULE_NAME : "LinksLeague",
+	MODULE_NAME : "LinksLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('league'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "leaguelink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToLeagueDetail
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;

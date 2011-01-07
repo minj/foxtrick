@@ -6,7 +6,7 @@
 
 var FoxtrickForumThreadAutoIgnore = {
 
-    MODULE_NAME : "ForumThreadAutoIgnore",
+	MODULE_NAME : "ForumThreadAutoIgnore",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
 	OPTIONS : ["Tags","Whitelist_ThreadIDs"],
@@ -15,11 +15,11 @@ var FoxtrickForumThreadAutoIgnore = {
 	tags : null,
 	whitelist : null,
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		this.checkthreads(doc);
 	},
 
-    checkthreads : function( doc ) {
+	checkthreads : function( doc ) {
 		if (!Foxtrick.isModuleFeatureEnabled(this,'Tags')) return;
 		var tags_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Tags_text");
 		if (!tags_string) return;

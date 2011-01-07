@@ -6,10 +6,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMovePlayerSelectbox= {
 	MODULE_NAME : "MovePlayerSelectbox",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		var select =doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_ddlSquad');
 		if (!select) return;
 		var box=select.parentNode;
@@ -30,10 +30,10 @@ var FoxtrickMovePlayerSelectbox= {
 var FoxtrickMoveManagerOnline= {
 
 	MODULE_NAME : "MoveManagerOnline",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('region'),
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		var mainBody = doc.getElementById('mainBody');
 		var divs=mainBody.getElementsByTagName('div');
 		var target=null;

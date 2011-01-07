@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksAchievements = {
 
-    MODULE_NAME : "LinksAchievements",
+	MODULE_NAME : "LinksAchievements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('achievements'),
 
@@ -15,7 +15,7 @@ var FoxtrickLinksAchievements = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "achievementslink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 
 		//addExternalLinksToManagerPage
 		var owncountryid = FoxtrickHelper.getOwnCountryId();

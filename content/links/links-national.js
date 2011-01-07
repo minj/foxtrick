@@ -6,16 +6,16 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksNational = {
-    MODULE_NAME : "LinksNational",
+	MODULE_NAME : "LinksNational",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('national'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "nationalteamlink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToNationalDetail
-        var countryid;
+		var countryid;
 		var ntteamid;
 		var LeagueOfficeTypeID=doc.location.href.replace(/.+LeagueOfficeTypeID=/i, "").match(/^\d+/);
 		var ownBoxBody=null;
@@ -28,7 +28,7 @@ var FoxtrickLinksNational = {
 					}
 			}
 
-        var links = Foxtrick.LinkCollection.getLinks("nationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);
+		var links = Foxtrick.LinkCollection.getLinks("nationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);
 
 		var added=0;
 		ownBoxBody = doc.createElement("div");
@@ -59,5 +59,5 @@ var FoxtrickLinksNational = {
 		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 
 		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID } );
-    }
+	}
 };

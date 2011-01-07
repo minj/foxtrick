@@ -5,26 +5,26 @@
  */
 
 var FoxtrickGoToPostBox = {
-    MODULE_NAME : "GoToPostBox",
+	MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
 
-    run : function( page, doc ) {
-        Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");
+	run : function( page, doc ) {
+		Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");
 
 		if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:70px');
 
-        //set up tab on left forums menu
-        var tab = ''
-        try {
-            var forumtabs = doc.getElementsByClassName('active')[0];
-            var reg = /^(.*?)\&v\=(\d+)(.*?)/;
-            var ar = reg.exec(+' ' + forumtabs.href + ' ');
-            if (ar[2] != null) {
-                tab = '&v=' + ar[2];
-            }
-        } catch(e) {}
+		//set up tab on left forums menu
+		var tab = ''
+		try {
+			var forumtabs = doc.getElementsByClassName('active')[0];
+			var reg = /^(.*?)\&v\=(\d+)(.*?)/;
+			var ar = reg.exec(+' ' + forumtabs.href + ' ');
+			if (ar[2] != null) {
+				tab = '&v=' + ar[2];
+			}
+		} catch(e) {}
 
 
 
@@ -49,7 +49,7 @@ var FoxtrickGoToPostBox = {
 			}
 		}
 
-        var selectBoxTop = null;
+		var selectBoxTop = null;
 		var selectBoxBottom = null;
 
 		var selects = doc.getElementById('mainWrapper').getElementsByTagName('select');
@@ -80,10 +80,10 @@ var FoxtrickGoToPostBox = {
 			var inputBoxTop = doc.createElement('input');
 			inputBoxTop.setAttribute('type', 'text');
 			inputBoxTop.setAttribute('size', '4');
-            inputBoxTop.setAttribute('value', '(xxx.)yyy');
-            inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
-            inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
-            inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
+			inputBoxTop.setAttribute('value', '(xxx.)yyy');
+			inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
+			inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
+			inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
 
 			var goButton = doc.createElement('input');
 			goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
@@ -101,14 +101,14 @@ var FoxtrickGoToPostBox = {
 				);
 
 			var inputBoxLabel = doc.createElement('span');
-            inputBoxLabel.innerHTML = '&nbsp;'
-            selectBox.parentNode.appendChild(inputBoxLabel);
+			inputBoxLabel.innerHTML = '&nbsp;'
+			selectBox.parentNode.appendChild(inputBoxLabel);
 
 			selectBox.parentNode.appendChild(inputBoxTop);
 
-            var inputBoxLabel2 = doc.createElement('span');
-            inputBoxLabel2.innerHTML = '&nbsp';
-            selectBox.parentNode.appendChild(inputBoxLabel2);
+			var inputBoxLabel2 = doc.createElement('span');
+			inputBoxLabel2.innerHTML = '&nbsp';
+			selectBox.parentNode.appendChild(inputBoxLabel2);
 
 			selectBox.parentNode.appendChild(goButton);
 			inputBoxTop.addEventListener("keyup" , FoxtrickGoToPostBox._submit, false);
@@ -120,10 +120,10 @@ var FoxtrickGoToPostBox = {
 		var doc = e.target.ownerDocument;
 		var key = e.keyCode;
 		if(key == 13){
-            var goButtonID = e.target.getAttribute("id").replace(/postboxnum/, "okbutton");
-            var goButton = doc.getElementById(goButtonID);
-            if (goButton) goButton.click();
-            return false;
-        }
+			var goButtonID = e.target.getAttribute("id").replace(/postboxnum/, "okbutton");
+			var goButton = doc.getElementById(goButtonID);
+			if (goButton) goButton.click();
+			return false;
+		}
 	}
 };

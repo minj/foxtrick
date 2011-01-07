@@ -6,7 +6,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksTracker = {
-    MODULE_NAME : "LinksTracker",
+	MODULE_NAME : "LinksTracker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	//PAGES : new Array('trackerplayerlink'),
 	OPTION_FUNC : function(doc) {

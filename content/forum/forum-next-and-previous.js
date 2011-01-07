@@ -5,7 +5,7 @@
  */
 
 var FoxtrickForumNextAndPrevious = {
-    MODULE_NAME : "ForumNextAndPrevious",
+	MODULE_NAME : "ForumNextAndPrevious",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	CSS: Foxtrick.ResourcePath+"resources/css/nextandprevious.css"
 };

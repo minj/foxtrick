@@ -11,9 +11,6 @@ var FoxtrickStaffMarker = {
 	PAGES : new Array('forumViewThread','forumWritePost','teamPage'),
 	OPTIONS : ["flag", "own", "manager"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DEFAULT_VALUES : ["",
-		"userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'", //own
-		""],
 	OPTION_TEXTS_DISABLED_LIST : [true, false, true],
 
 	CSS : Foxtrick.ResourcePath + "resources/css/staff-marker.css",
@@ -96,8 +93,6 @@ var FoxtrickStaffMarker = {
 
 		// getting userids and colors
 		var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
-		if (!utext)
-			utext = this.OPTION_TEXTS_DEFAULT_VALUES[7];
 		var users = '';
 		if (Foxtrick.isModuleFeatureEnabled( this, "own")) {
 			users = utext.match(/userid=(\d+)/ig);

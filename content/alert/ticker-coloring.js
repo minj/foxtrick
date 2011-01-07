@@ -5,8 +5,8 @@
  */
 
 var FoxtrickTickerColoring = {
-    MODULE_NAME : "TickerColoring",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
+	MODULE_NAME : "TickerColoring",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : new Array('all'),
 	CSS : Foxtrick.ResourcePath + "resources/css/ticker-coloring.css",
 

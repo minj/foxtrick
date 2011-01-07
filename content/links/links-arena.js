@@ -7,14 +7,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksArena = {
 
-    MODULE_NAME : "LinksArena",
+	MODULE_NAME : "LinksArena",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('arena'),
 	OPTION_FUNC : function (doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "arenalink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		//addExternalLinksToArenaPage
 
 		var alldivs = doc.getElementsByTagName('div');
@@ -25,9 +25,9 @@ var FoxtrickLinksArena = {
 				var arenaTable = thisdiv.getElementsByTagName("table")[0];
 
  				var links = Foxtrick.LinkCollection.getLinks("arenalink", { "terraces" : Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
-                                            "basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
-                                            "roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
-                                            "vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  }, doc, this );
+											"basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
+											"roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
+											"vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  }, doc, this );
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(
@@ -44,12 +44,12 @@ var FoxtrickLinksArena = {
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 				}
 				FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "terraces" : Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
-                                            "basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
-                                            "roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
-                                            "vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  });
+											"basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
+											"roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
+											"vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  });
 
 				break;
 			}
 		}
-    }
+	}
 };

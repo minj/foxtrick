@@ -7,17 +7,16 @@
 
  ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickCustomMedals = {
-
-    MODULE_NAME : "CustomMedals",
+	MODULE_NAME : "CustomMedals",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('teamPage','history','national'),
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 		var sidebar = doc.getElementById('sidebar');
 		if( sidebar ) {
 			var images = sidebar.getElementsByTagName('img');
 			for(var i = 0; i < images.length; i++) {
-                var img = images[i];
+				var img = images[i];
 				var imgClass = img.className;
 
 				// sweden fix

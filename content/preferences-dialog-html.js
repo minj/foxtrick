@@ -189,28 +189,21 @@ var FoxtrickPrefsDialogHTML = {
 			}
 
 			var OptionText = null;
-			var DefaultOptionText = null;
 			var has_load_button=false;
 			if ( module.OPTION_TEXTS != null && module.OPTION_TEXTS
 				&& (!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
 
 				var val = FoxtrickPrefs.getString( "module." + module.MODULE_NAME + "." + key + "_text" );
-				if (module.OPTION_TEXTS_DEFAULT_VALUES && module.OPTION_TEXTS_DEFAULT_VALUES[i]){
-					if (val==null) val = module.OPTION_TEXTS_DEFAULT_VALUES[i];
-					DefaultOptionText = module.OPTION_TEXTS_DEFAULT_VALUES[i];
-				}
-				if (val==null) val='';
 				OptionText = val;
 
 				if (module.OPTION_TEXTS_LOAD_BUTTONS && module.OPTION_TEXTS_LOAD_BUTTONS[i]){
 					has_load_button = module.OPTION_TEXTS_LOAD_BUTTONS[i];
 				}
-				//Foxtrick.dump(module.MODULE_NAME+'.'+key+' o:'+OptionText+' d:'+DefaultOptionText+'\n');
 			}
 
 			var checked = Foxtrick.isModuleFeatureEnabled( module, key)
 			var group = module.MODULE_NAME + '.' + key;
-			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, DefaultOptionText, has_load_button, on_page ));
+			optiondiv.appendChild(FoxtrickPrefsDialogHTML._getCheckBox(doc, group, title, title_long, checked, OptionText, has_load_button, on_page ));
 		}
 		if (module_checked) {
 			Foxtrick.removeClass(optiondiv, "hidden");
@@ -233,7 +226,7 @@ var FoxtrickPrefsDialogHTML = {
 		return entry;
 	},
 
-	_getCheckBox : function (doc, name, label, label_long, checked, option_text, DefaultOptionText, has_load_button, on_page) {
+	_getCheckBox : function (doc, name, label, label_long, checked, option_text, has_load_button, on_page) {
 		var div = doc.createElement( "div" );
 		div.className = "ft_prefs_check_div";
 
@@ -296,28 +289,6 @@ var FoxtrickPrefsDialogHTML = {
 			td.appendChild( input_option_text);
 
 			if (!has_load_button) {
-				// add example button
-				var td = doc.createElement( "td" );
-				tr.appendChild( td );
-				var option_text_reset_button = doc.createElement( "input" );
-				option_text_reset_button.setAttribute('type', 'button');
-				option_text_reset_button.setAttribute('value', Foxtrickl10n.getString("foxtrick.prefs.buttonExample"));
-				option_text_reset_button.setAttribute( "sender_id", name);
-				option_text_reset_button.setAttribute( "default_text", DefaultOptionText);
-				Foxtrick.addEventListenerChangeSave(option_text_reset_button, "click", function( ev ) {
-					try {
-						var default_text = ev.currentTarget.getAttribute('default_text');
-						var input_option_text = ev.target.ownerDocument.getElementById(ev.currentTarget.getAttribute('sender_id')+'_text');
-						input_option_text.setAttribute( "value", default_text);
-					}
-					catch (e) {
-						Foxtrick.dumpError(e);
-					}
-				}, false );
-				td.appendChild(option_text_reset_button);
-			}
-			else {
-				// add load button
 				var td = doc.createElement( "td" );
 				tr.appendChild( td );
 				var button= doc.createElement("input");

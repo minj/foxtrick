@@ -5,7 +5,6 @@
 */
 
 var FoxtrickCopyTrainingReport = {
-
 	MODULE_NAME : "CopyTrainingReport",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthTraining'),
@@ -316,6 +315,6 @@ var FoxtrickCopyPlayerSource = {
 	},
 
 	fixbr : function(text) {
-        return text.replace(/\<br\>/g,'<br />' );
-    }
+		return text.replace(/\<br\>/g,'<br />' );
+	}
 };

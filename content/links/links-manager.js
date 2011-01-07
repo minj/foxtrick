@@ -6,14 +6,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksManager = {
-    MODULE_NAME : "LinksManager",
+	MODULE_NAME : "LinksManager",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('managerPage'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "managerlink");
 	},
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 
 		//addExternalLinksToManagerPage
 		var ownBoxBody = null;

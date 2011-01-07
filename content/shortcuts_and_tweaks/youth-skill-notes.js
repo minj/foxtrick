@@ -6,12 +6,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickYouthSkillNotes = {
 
-    MODULE_NAME : "YouthSkillNotes",
+	MODULE_NAME : "YouthSkillNotes",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('YouthPlayer','YouthPlayers'),
-    OPTIONS : new Array("OnlyOwnTeam"),
+	OPTIONS : new Array("OnlyOwnTeam"),
 
-    run : function( page, doc ) {
+	run : function( page, doc ) {
 
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
@@ -21,9 +21,9 @@ var FoxtrickYouthSkillNotes = {
 
 
 		switch( page )
-        {
-            case 'YouthPlayer':
-            	//////////////////////////////////////////////////////////////////////////////////////////////////////
+		{
+			case 'YouthPlayer':
+				//////////////////////////////////////////////////////////////////////////////////////////////////////
 				var sUrl = Foxtrick.getHref( doc );
 				var playerid = sUrl.replace(/.+YouthPlayerID=/i, "").match(/^\d+/)[0];
 				var allDivs = doc.getElementsByTagName("div");
@@ -33,7 +33,7 @@ var FoxtrickYouthSkillNotes = {
 						this.foxtrick_youthskilltable( doc, page, playerid, allDivs[i] );
 					}
 				}
-                break;
+				break;
 			case 'YouthPlayers':
 
 				if (!Foxtrick.isStandardLayout(doc)) Foxtrick.addStyleSheet( doc, Foxtrick.ResourcePath+"resources/css/youthskill_simple.css" );
@@ -51,7 +51,7 @@ var FoxtrickYouthSkillNotes = {
 					}
 				}
 				break;
-        }
+		}
 	},
 
 	saveSkills : function (ev) {
@@ -103,9 +103,9 @@ var FoxtrickYouthSkillNotes = {
 
 	getYouthPlayerSkill : function(playerid, skill) {
 //		Foxtrick.dump("getYouthPlayerSkill: " + "YouthPlayer." + playerid + ".skill" + skill + "\n");
-	    var ret;
-	    try{
-	    	ret = FoxtrickPrefs.getString("YouthPlayer." + playerid + ".skill" + skill);
+		var ret;
+		try{
+			ret = FoxtrickPrefs.getString("YouthPlayer." + playerid + ".skill" + skill);
 		}
 		catch(ex){
 			ret = "unknown";
@@ -130,7 +130,7 @@ var FoxtrickYouthSkillNotes = {
 		const STR_S_ST = Foxtrickl10n.getString( "Stamina");
 
 
-	    if( page == 'YouthPlayer' ) {
+		if( page == 'YouthPlayer' ) {
 			var refreshBtn = doc.createElement("a");
 				refreshBtn.setAttribute("href","/Club/Players/YouthPlayer.aspx"
 				+ "?YouthPlayerID="+playerid);
@@ -182,10 +182,10 @@ var FoxtrickYouthSkillNotes = {
 				}
 				//Foxtrick.addStyleSheet( doc, tdstyle);
 				var head = doc.getElementsByTagName("head")[0];
-                var cssstyle = doc.createElement("style");
-                cssstyle.setAttribute("type", "text/css");
+				var cssstyle = doc.createElement("style");
+				cssstyle.setAttribute("type", "text/css");
 				cssstyle.appendChild(doc.createTextNode(tdstyle));
-                head.appendChild(cssstyle);
+				head.appendChild(cssstyle);
 
 			}
 			divobj.setAttribute("style",style);

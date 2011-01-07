@@ -5,28 +5,28 @@
 
 FoxtrickLineupShortcut = {
 
-    MODULE_NAME : "FoxtrickLineupShortcut",
-    MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-    PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'),
+	MODULE_NAME : "FoxtrickLineupShortcut",
+	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'),
  	OPTIONS : new Array("HighlightPlayer"),
 
-    run : function(page, doc) {
-        switch ( page ) {
+	run : function(page, doc) {
+		switch ( page ) {
 
-            case 'playerdetail' :
-                this._Analyze_Player_Page ( doc );
-                break;
+			case 'playerdetail' :
+				this._Analyze_Player_Page ( doc );
+				break;
 			case 'YouthPlayer' :
-                this._Analyze_Youth_Player_Page ( doc );
-                break;
+				this._Analyze_Youth_Player_Page ( doc );
+				break;
 			case 'statsBestgames':
 				this._Analyze_Stat_Page ( doc );
 				break;
 			case 'matchLineup':
 				this._Highlight_Player ( doc );
 				break;
-        }
-    },
+		}
+	},
 
 	change : function( page, doc ) {
 		switch ( page ) {
@@ -37,7 +37,7 @@ FoxtrickLineupShortcut = {
 	},
 
 	//***********************MAIN TEAM
-    _Analyze_Player_Page  : function ( doc ) {
+	_Analyze_Player_Page  : function ( doc ) {
 		var mainbody = doc.getElementById( "mainBody" );
 		//first getting the serieID to get ntName and u20Name
 		var flagElem = mainbody.getElementsByClassName("flag");
@@ -129,7 +129,7 @@ FoxtrickLineupShortcut = {
 				}
 			}
 		}
-    },
+	},
 
 	_Analyze_Stat_Page : function ( doc ) {
 		var teamid=doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlPreviousClubs').value;
@@ -148,7 +148,7 @@ FoxtrickLineupShortcut = {
 			var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
 			this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
 		}
-    },
+	},
 
 	//@param type = "normal"|"NT"|"U20"|"youth"
 	_Add_Lineup_Link : function(doc, row, teamid, playerid, matchid, type) {
