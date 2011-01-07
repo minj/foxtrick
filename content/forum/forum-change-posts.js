@@ -62,7 +62,7 @@ var FoxtrickForumChangePosts = {
 		}
 		copy_posting_img.style.verticalAlign = "middle";
 		copy_posting_img.style.marginLeft = "3px";
-		copy_posting_img.title = Foxtrickl10n.getString('CopyPosting.abbr').replace('%s', Foxtrickl10n.getString('CopyPosting.style.last') );
+		copy_posting_img.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('CopyPosting.style.last') );
 		copy_posting_img.setAttribute('copy_style','last');
 
 		var copy_posting_div = doc.createElement("div");
