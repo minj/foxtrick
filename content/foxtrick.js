@@ -89,11 +89,6 @@ var FoxtrickMain = {
 			Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 		}
 
-		// reload skins
-		Foxtrick.reload_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick.css') ;
-		Foxtrick.main_css_loaded = true;
-		FoxtrickMain.new_start = true;
-
 		Foxtrick.dump('-------------- FoxtrickMain.init end --------------------\n');
 	},
 
