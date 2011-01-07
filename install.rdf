@@ -14,6 +14,7 @@
 		<em:iconURL>chrome://foxtrick/skin/icon.png</em:iconURL>
 		<em:icon64URL>chrome://foxtrick/skin/icon-64.png</em:icon64URL>
 		<em:optionsURL>chrome://foxtrick/content/preferences.xhtml</em:optionsURL>
+		<em:aboutURL>chrome://foxtrick/content/preferences.xhtml#tab=about</em:aboutURL>
 		<em:updateURL>https://foxtrick.c6.ixwebhosting.com/nightly/update.rdf</em:updateURL>
 
 		<em:developer>larsw84</em:developer>
