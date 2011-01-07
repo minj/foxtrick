@@ -78,7 +78,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 		var part1 = wageText.substr(0, splitPos);
 		var part2 = wageText.substr(splitPos);
 
-		var wage = parseInt(part1.replace(currency, "").replace(/\s/g, ""));
+		var wage = parseInt(part1.replace(currency, "").replace(/\s/g, "").match(/\d+/)[0]);
 		if (isNaN(wage))
 			return;
 
