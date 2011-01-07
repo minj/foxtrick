@@ -638,6 +638,7 @@ pref("extensions.foxtrick.prefs.module.YouthSkillNotes.OnlyOwnTeam.enabled", tru
 pref("extensions.foxtrick.prefs.preferences.updated", false);
 pref("extensions.foxtrick.prefs.SavePrefs_Notes", true);
 pref("extensions.foxtrick.prefs.SavePrefs_Prefs", true);
+pref("extensions.foxtrick.prefs.showReleaseNotes", true);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.statusbarshow", true);
 pref("extensions.foxtrick.prefs.table_separator", " ");

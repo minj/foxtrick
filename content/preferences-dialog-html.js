@@ -26,7 +26,8 @@ var FoxtrickPrefsDialogHTML = {
 		}
 
 		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
-			Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=changes");
+			if (FoxtrickPrefs.getBool("showReleaseNotes"))
+				Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=changes");
 			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
 		}
 	},
