@@ -1987,59 +1987,6 @@ stats["hellastracker"] = {
 	"nationalityranges" : [[50,50]],
 };
 
-
-stats["surinametracker"] = {
-  "url" : "http://tracker.hattricksuriname.com/players.php",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Suriname U20/NT Tracker",
-
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[113,113]] ,
-	"nationalityranges" : [[113,113]],
-};
-
-stats["ugandatracker"] = {
-  "url" : "http://uganda.site50.net",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Uganda U20/NT Tracker",
-
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[143,143]] ,
-	"nationalityranges" : [[143,143]],
-};
-
-
-stats["mozambiquetracker"] = {
-  "url" : "http://mozambique.comuf.com",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Mozambique U20/NT Tracker",
-
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[135,135]] ,
-	"nationalityranges" : [[135,135]],
-};
-
 stats["srbijatracker"] = {
   "url" : "http://srbijadb.foundationhorizont.org/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
