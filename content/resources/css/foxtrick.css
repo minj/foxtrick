@@ -163,6 +163,9 @@ ul.ft-pop {
 	list-style-type: none;
 	z-index: 100;
 }
+ul.ft-pop.right {
+	right: 0px;
+}
 .ft-pop-up-container:hover > ul.ft-pop {
 	display: block;
 }
