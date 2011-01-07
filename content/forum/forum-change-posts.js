@@ -137,6 +137,8 @@ var FoxtrickForumChangePosts = {
 		var wrappers = doc.getElementsByClassName("cfWrapper");
 		var i = 0, wrapper;
 		while ( wrapper = wrappers[i++] ) {
+			if (wrapper.getElementsByClassName("cfDeleted").length > 0)
+				continue; // post deleted, process next
 			var header = wrapper.getElementsByClassName("cfHeader")[0];
 
 			// +++++++++++ gather info and nodes +++++++++++++++++++++++++
