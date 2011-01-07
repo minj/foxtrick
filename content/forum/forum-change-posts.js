@@ -56,8 +56,6 @@ var FoxtrickForumChangePosts = {
 			copy_posting_img.style.background = 'url("' + Foxtrick.ResourcePath + 'resources/img/copy/copyNormal_s.png") no-repeat scroll 0 0 transparent';
 			copy_posting_img.style.height = "22px";
 			copy_posting_img.style.width = "21px";
-			copy_posting_img.style.top = "3px";
-			copy_posting_img.style.position = "relative";
 		}
 		else {
 			copy_posting_img.src = Foxtrick.ResourcePath + "resources/img/copy/copy_yellow_small.png";
@@ -69,12 +67,13 @@ var FoxtrickForumChangePosts = {
 
 		var copy_posting_div = doc.createElement("div");
 		copy_posting_div.className = "ft-pop-up-container";
-
+		if (Foxtrick.isSupporter(doc))
+			copy_posting_div.style.top = "3px";
 		copy_posting_div.appendChild(copy_posting_img);
 
 		var possibleStyles=['ht-ml', 'wiki', 'raw'];
 		var list = doc.createElement("ul");
-		list.className = "ft-pop right";
+		list.className = "ft-pop right top";
 		for (var i=0; i<possibleStyles.length; ++i) {
 			var item = doc.createElement("li");
 			var link = doc.createElement("span");
