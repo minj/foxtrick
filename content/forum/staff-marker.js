@@ -88,6 +88,7 @@ var FoxtrickStaffMarker = {
 			setTimeout(function() {
 				FoxtrickStaffMarker.run(page, doc);
 			}, 500);
+			return;
 		}
 
 		// not on open new thread
