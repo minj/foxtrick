@@ -394,7 +394,6 @@ pref("extensions.foxtrick.prefs.module.LinksYouthTraining.srbijayadb.enabled", t
 pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
-pref("extensions.foxtrick.prefs.module.ManagerButtons.LargeSendMail.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkUnread.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);
