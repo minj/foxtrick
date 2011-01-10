@@ -78,8 +78,10 @@ function initListeners()
 	$("#save").click(function() { save(); });
 	$("#note").click(function() { $(this).hide("slow"); });
 	$("body").click(function(ev) {
-		if (ev.target.nodeName.toLowerCase() == "a"
-			&& ev.target.href.indexOf(baseURI()) == 0) {
+		if ((ev.target.nodeName.toLowerCase() == "a"
+			|| ev.target.nodeName.toLowerCase() == "xhtml:a")
+			&& (ev.target.href.indexOf(baseURI()) == 0
+			|| ev.target.href[0] == "#")) {
 			locateFragment(ev.target.href);
 		}
 	});
