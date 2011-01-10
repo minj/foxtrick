@@ -185,8 +185,15 @@ var FoxtrickSkillTable = {
 					img.alt = Foxtrickl10n.getString("Injured.abbr");
 					img.title = Foxtrickl10n.getString("Injured");
 					cell.appendChild(img);
-					cell.appendChild(doc.createTextNode(player.injured));
-					index += player.injured * 100;
+					// player.injured is number from players page,
+					// or boolean from transfer result page.
+					if (typeof(player.injured) == "number") {
+						cell.appendChild(doc.createTextNode(player.injured));
+						index += player.injured * 100;
+					}
+					else {
+						index += 100;
+					}
 				}
 				if (player.transferListed) {
 					var img = doc.createElement("img");

@@ -91,7 +91,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.redCard = 0;
 				player.yellowCard = 0;
 				player.bruised = false;
-				player.injured = 0;
+				player.injured = false;
 
 				for (var j = 0; j < imgs.length; ++j) {
 					if (imgs[j].className == "cardsOne") {
@@ -109,7 +109,7 @@ Foxtrick.Pages.TransferSearchResults = {
 						player.bruised = true;
 					}
 					else if (imgs[j].className == "injuryInjured") {
-						player.injured = parseInt(imgs[j].nextSibling.textContent);
+						player.injured = true;
 					}
 				}
 				player.currentClubLink = transferTable.rows[i+2].cells[1].getElementsByTagName("a")[0].cloneNode(true);
