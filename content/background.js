@@ -126,9 +126,9 @@ chrome.extension.onConnect.addListener(function(port) {
 				if (msg.reqtype == "show_note") {
 					// Create a simple text notification:
 					var notification = webkitNotifications.createNotification(
-						'ht-favicon.ico',  // icon url - can be relative
-						'Hattrick',  // notification title
-						msg.message  // notification body text
+						"resources/img/hattrick-logo.png", // logo location
+						"Hattrick", // notification title
+						msg.message // notification body text
 					);
 
 					// Then show the notification.
@@ -136,8 +136,8 @@ chrome.extension.onConnect.addListener(function(port) {
 
 					// close after 5 sec
 					setTimeout(function(){
-						notification.cancel();
-						}, '5000');
+							notification.cancel();
+						}, 5000);
 				}
 				else if (msg.reqtype == "get_old_alerts") {
 					if (newstart) port.postMessage({response:'resetalert'});
