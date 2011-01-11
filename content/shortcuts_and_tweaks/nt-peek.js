@@ -12,6 +12,14 @@ var FoxtrickNtPeek = {
 	CSS : Foxtrick.ResourcePath + "resources/css/nt-peek.css",
 
 	run : function(page, doc) {
+		var buildTeamHeader = function(name, id) {
+			var header = doc.createElement("h2");
+			var link = doc.createElement("a");
+			link.textContent = name;
+			link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId=" + id;
+			header.appendChild(link);
+			return header;
+		};
 		FoxtrickHelper.getOwnTeamInfo(doc, page);
 		const countryId = FoxtrickHelper.getOwnCountryId();
 		const ntIdXml = Foxtrick.XMLData.htNTidsXml;
@@ -34,8 +42,7 @@ var FoxtrickNtPeek = {
 		var ntContainer = doc.createElement("div");
 		ntContainer.className = "ft-nt-peek-left";
 		container.appendChild(ntContainer);
-		var ntHeader = doc.createElement("h2");
-		ntHeader.textContent = Foxtrickl10n.getString("matches.nt");
+		var ntHeader = buildTeamHeader(ntName, ntId);
 		ntContainer.appendChild(ntHeader);
 		var ntTable = doc.createElement("table");
 		ntContainer.appendChild(ntTable);
@@ -43,8 +50,7 @@ var FoxtrickNtPeek = {
 		var u20Container = doc.createElement("div");
 		u20Container.className = "ft-nt-peek-right";
 		container.appendChild(u20Container);
-		var u20Header = doc.createElement("h2");
-		u20Header.textContent = Foxtrickl10n.getString("matches.u20");
+		var u20Header = buildTeamHeader(u20Name, u20Id);
 		u20Container.appendChild(u20Header);
 		var u20Table = doc.createElement("table");
 		u20Container.appendChild(u20Table);
