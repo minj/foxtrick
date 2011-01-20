@@ -19,6 +19,7 @@
 <item><module>LiveAlert</module> for alerting at HT Live goals by ryanli.</item>
 <item><module>OldStyleFace</module> for showing faces in old Hattrick style by Aimo_Kanuuna.</item>
 <item><module>NtPeek</module> for peeking NT/U20 matches at My Hattrick by ryanli.</item>
+<item><module>GuestbookHTMSFlags</module> for showing user country and series in guestbook by taised. It's based on the earlier GuestbookAlltidFlags module, images provided by <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>.</item>
 <item>Option to hide forum sneak-peek in <module>FixcssProblems</module> by ljushaff.</item>
 <item>Belarusian locale by LA-Stolik.</item>
 <item>New grey icon for report links by ljushaff.</item>
