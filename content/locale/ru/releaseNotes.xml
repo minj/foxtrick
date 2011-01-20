@@ -11,6 +11,7 @@
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="Версия для разработчиков">
 <item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
+<item>Вы можете отключить показ этого сообщения после каждого обновления, запретив "Показать информацию о выпуске после обновления FoxTrick" на вкладке <xhtml:a href="#tab=main">Главные</xhtml:a> настроек.</item>
 </note>
 
 <note version="0.6">
@@ -18,6 +19,7 @@
 <item>Модуль <module>LiveAlert</module> для уведомления о голах в HT Live (ryanli).</item>
 <item>Модуль <module>OldStyleFace</module> для отображения лиц в старом стиле Hattrick (Aimo_Kanuuna).</item>
 <item>Модуль <module>NtPeek</module> для скрытия матчей сборной из Моего Hattrick'а (ryanli).</item>
+<item>Модуль <module>GuestbookHTMSFlags</module> для показа флага и лиги оставившего сообщение в гостевой книге (taised). Он основан на ранее присутствовавшем модуле GuestbookAlltidFlags, изображения предоставлены <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>.</item>
 <item>Параметр для скрытия быстрого взгляда на форумыв модуле <module>FixcssProblems</module> (ljushaff).</item>
 <item>Добавлен белорусский перевод (LA-Stolik).</item>
 <item>Новый значок для ссылок на отчёты (ljushaff).</item>
