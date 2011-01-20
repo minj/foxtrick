@@ -176,6 +176,7 @@ pref("extensions.foxtrick.prefs.module.GuestbookHTMSFlags.AddHTMSFlags.enabled",
 pref("extensions.foxtrick.prefs.module.GuestbookHTMSFlags.HideAnswerToLinks.enabled", false);
 pref("extensions.foxtrick.prefs.module.GuestbookHTMSFlags.AddHTMSFlagsToSupporters.enabled", true);
 pref("extensions.foxtrick.prefs.module.GuestbookHTMSFlags.AddHTMSFlagsToVisitors.enabled", true);
+pref("extensions.foxtrick.prefs.module.GuestbookHTMSFlags.AddHTMSFlagsToOldies.enabled", true);
 pref("extensions.foxtrick.prefs.module.HeaderFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.RemoveFlicker.enabled", false);

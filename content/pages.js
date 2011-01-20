@@ -112,6 +112,8 @@ Foxtrick.ht_pages = {
 	'search'                    : '/Search/|/Search/Default.aspx',
 	'myhattrick_late'           : '/MyHattrick/$|/MyHattrick/#',
 	'all_late'                  : '/',
+	'oldplayers'                : '/Club/Players/Oldies.aspx',
+	'oldcoaches'                : '/Club/Players/Coaches.aspx',
 
 };
 
