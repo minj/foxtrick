@@ -13,7 +13,7 @@ var FoxtrickGuestbookHTMSFlags = {
 
 	MODULE_NAME : "GuestbookHTMSFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('guestbook', 'teamPage'), 
+	PAGES : new Array('guestbook', 'teamPage', 'league'), 
 	DEFAULT_ENABLED : true,
 	LATEST_CHANGE:"Inserted as copy of Alltid flags",
 	OPTIONS : new Array("AddHTMSFlags","HideAnswerToLinks", "AddHTMSFlagsToSupporters", "AddHTMSFlagsToVisitors"),
@@ -26,16 +26,16 @@ var FoxtrickGuestbookHTMSFlags = {
 		var AddHTMSFlags = Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlags");
 		var HideAnswerToLinks = Foxtrick.isModuleFeatureEnabled( this, "HideAnswerToLinks");
 		
-		
+		var lang = FoxtrickPrefs.getString("htLanguage");
 		var flagspage = "http://www.fantamondi.it/HTMS/userstat.php?userid=";
-		var linkpage = "http://www.fantamondi.it/HTMS/index.php?page=userstats&userid=";
+		var linkpage = "http://www.fantamondi.it/HTMS/index.php?page=userstats&lang="+lang+"&userid=";
 		var style ="vertical-align: middle; background-color:#849D84;";
 		
 		var outerdiv = doc.getElementById('mainWrapper');
 		var count =0; 
 		var linksArray = outerdiv.getElementsByTagName('a');
 		var div = null;
-		for (var j=0; j<linksArray.length-1; j++) {
+		for (var j=0; j<linksArray.length; j++) {
 			var link = linksArray[j];
 			//Foxtrick.dump(link.href+'\n');
 			div=null;
@@ -43,13 +43,40 @@ var FoxtrickGuestbookHTMSFlags = {
 				//checking if the flag has to be added
 				var toadd=false;
 				var addSupporter=false;
-				if (linksArray[j+1].href.search(/Supporter/i)!=-1) {
-					if (page=='teamPage') {
-						//we have to check
-						var parentClass=link.parentNode.parentNode.className;
+				var addVisitor=false;
+				
+				if (page=='guestbook') {
+					if (linksArray[j+1].href.search(/Supporter/i)!=-1) {
+						toadd=true;
+					}
+				}
+				else {
+					//we have to check and skip the just added element
+					if (link.getElementsByTagName('img').length==0) {
+						var myparent=link.parentNode;
+						while (myparent.nodeName!='DIV') {
+							myparent=myparent.parentNode;
+						}
+						var parentClass=myparent.parentNode.className;
 						//Foxtrick.dump('link '+link.innerHTML+' parentClass: '+parentClass+'\n');
-						if (parentClass=='float_left teamInfo') {
-							//nothing to do, it's the main box
+						if (myparent.getElementsByTagName('table').length>0) {
+							//there's a table inside the mainBox: it is the visitor list
+							//Foxtrick.dump('link '+link.innerHTML+' visitor\n');
+							if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToVisitors")) {
+								toadd=true;
+								addVisitor=true;
+							}
+						}
+						
+						if (parentClass=='boxBody') {
+							//could be guestbook or user, let's check
+							if (myparent.className=='float_left teamInfo') {
+								//nothing to do, it's the main box
+							}
+							if (myparent.className=='mainBox') {
+								//yes, this is the guestbook, add it
+								toadd=true;
+							}
 						}
 						if (parentClass=='sidebarBox') {
 							//last supporter
@@ -58,47 +85,7 @@ var FoxtrickGuestbookHTMSFlags = {
 								addSupporter=true;
 							}
 						}
-						if (parentClass=='mainBox') {
-							//yes, this is the guestbook, add it
-							toadd=true;
-						}
-					}
-					else {
-						//we are in guestbook page, always to add
-						toadd=true;
-					}
-				}
-				else {
-					if (page=='teamPage') {
-						//we have to check
-						//Foxtrick.dump('link '+link.innerHTML+'\n');
-						var myparent=link.parentNode;
-						while (myparent.nodeName!='DIV') {
-							myparent=myparent.parentNode;
-						}
-						var parentClass=myparent.parentNode.className;
-						if (parentClass=='sidebarBox') {
-							//have to work on it, understing where we are
-							var boxContent=myparent.parentNode.getElementsByClassName('boxBody').item(0);
-							//Foxtrick.dump('dump '+boxContent.innerHTML+'\n');
-							if (myparent.getElementsByTagName('table').length>0) {
-								//there's a table inside the mainBox: it is the visitor list
-								//Foxtrick.dump('link '+link.innerHTML+' visitor\n');
-								if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToVisitors")) {
-									toadd=true;
-									j++; //skipping the next to avoid rechecking of the same element
-								}
-							}
-							else {
-								//there isn't: we are in the supporter list, we add
-								//Foxtrick.dump('link '+link.innerHTML+' supporter\n');
-								if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToSupporters")) {
-									toadd=true;
-									addSupporter=true;
-									j++; //skipping the next to avoid rechecking of the same element
-								}
-							}
-						}
+						
 					}
 				}
 				if (toadd) {
@@ -121,8 +108,14 @@ var FoxtrickGuestbookHTMSFlags = {
 							link.parentNode.insertBefore(mySpan, link.nextSibling);
 						}
 						else {
-							link.parentNode.insertBefore(mySpan, target);
+							if (addVisitor) {
+								link.parentNode.appendChild(mySpan);
+							}
+							else {
+								link.parentNode.insertBefore(mySpan, target);
+							}
 						}
+						
 					}
 					count++;
 				}
