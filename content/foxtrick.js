@@ -749,7 +749,9 @@ Foxtrick.isModuleFeatureEnabled = function(module, feature) {
 }
 
 Foxtrick.hasClass = function(obj, cls) {
-	return (obj.className !== undefined && obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
+	return (obj
+		&& obj.className !== undefined
+		&& obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
 }
 
 Foxtrick.addClass = function(obj, cls) {
