@@ -19,35 +19,3 @@ var FoxtrickMovePlayerSelectbox= {
 		sidebar.insertBefore(box,sidebar.firstChild);
 	}
 }
-
-
-/**
- * movemanageronline.js
- * option to move player select box up on playersdetail page
- * @author convinced
- */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickMoveManagerOnline= {
-
-	MODULE_NAME : "MoveManagerOnline",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('region'),
-
-	run : function( page, doc ) {
-		var mainBody = doc.getElementById('mainBody');
-		var divs=mainBody.getElementsByTagName('div');
-		var target=null;
-		for (var i=0;i<divs.length;++i) {
-			if (!target && divs[i].className=='separator') target=divs[i];
-
-			if (divs[i].className=='mainBox') {
-				var table=divs[i].getElementsByTagName('table')[0];
-				if (table.className=='indent thin') continue;
-				if (divs[i].getElementsByTagName('a').length>100) return;
-				var div=mainBody.removeChild(divs[i]);
-				mainBody.insertBefore(div,target);
-				break;
-			}
-		}
-	}
-}
