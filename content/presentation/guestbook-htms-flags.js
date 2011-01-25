@@ -62,16 +62,6 @@ var FoxtrickGuestbookHTMSFlags = {
 						}
 						var parentClass=myparent.parentNode.className;
 						//Foxtrick.dump('link '+link.innerHTML+' parentClass: '+parentClass+'\n');
-						if (myparent.getElementsByTagName('table').length>0) {
-							//there's a table inside the mainBox: it is the visitor list
-							//Foxtrick.dump('link '+link.innerHTML+' visitor\n');
-							if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToVisitors")) {
-								toadd=true;
-								var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
-								addVisitor=true;
-							}
-						}
-						
 						if (parentClass=='boxBody') {
 							//could be guestbook or user, let's check
 							if (myparent.className=='float_left teamInfo') {
@@ -83,12 +73,25 @@ var FoxtrickGuestbookHTMSFlags = {
 								var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
 							}
 						}
-						if (parentClass=='sidebarBox') {
-							//last supporter
-							if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToSupporters")) {
+						
+						if (myparent.getElementsByTagName('table').length>0) {
+							//there's a table inside the mainBox: it is the visitor list
+							//Foxtrick.dump('link '+link.innerHTML+' visitor\n');
+							if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToVisitors")) {
 								toadd=true;
 								var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
-								addSupporter=true;
+								addVisitor=true;
+							}
+						}
+						else {
+							if (parentClass=='sidebarBox') {
+								//supporter box
+								//Foxtrick.dump('link '+link.innerHTML+' supporter\n');
+								if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToSupporters")) {
+									toadd=true;
+									var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
+									addSupporter=true;
+								}
 							}
 						}
 					}
