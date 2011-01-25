@@ -35,5 +35,42 @@
 {
     border-right: 2px solid #DCE0DC;
 }
+/*Youth series*/
+
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl00_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl01_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl02_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl03_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl04_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl05_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl06_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl07_td1,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl08_td1
+{
+    border-left: 2px solid #DCE0DC;
+}
+
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl00_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl01_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl02_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl03_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl04_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl05_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl06_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl07_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl08_td3,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl00_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl01_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl02_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl03_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl04_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl05_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl06_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl07_td4,
+#ctl00_ctl00_CPContent_CPMain_repLeague_ctl08_td4
+{
+    border-right: 2px solid #DCE0DC;
+}
+
 
 }
