@@ -8,7 +8,7 @@ var FoxtrickForumPreview = {
 	MODULE_NAME : "ForumPreview",
 	MODULE_AUTHOR : "spambot",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter','forumSettings',"forumModWritePost"),
 
 	_NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
 	_MAIL_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody',
