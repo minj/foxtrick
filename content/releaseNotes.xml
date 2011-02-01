@@ -23,6 +23,7 @@
 <item>Option to hide forum sneak-peek in <module>FixcssProblems</module> by ljushaff.</item>
 <item>Belarusian locale by LA-Stolik.</item>
 <item>New grey icon for report links by ljushaff.</item>
+<item><module>YouthPromotes</module> also shows the earliest date to promote a player.</item>
 <item>Most features working under Google Chrome.</item>
 <item>Some trivial fixes for latest Hattrick changes.</item>
 <item>Radio options in <module>ExtraShortcuts</module> are disabled by default.</item>

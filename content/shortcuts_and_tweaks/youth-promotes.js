@@ -14,11 +14,14 @@ var FoxtrickYouthPromotes = {
 		if (!isNaN(daysToPromote)) {
 			var message = "";
 			if (daysToPromote > 0) { // you have to wait to promote
-				message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_d") + " " +
-					daysToPromote + " " + Foxtrickl10n.getString("foxtrick.youthpromotedays.days");
+				date = Foxtrick.util.time.addDaysToDate(new Date(), daysToPromote);
+				date = Foxtrick.util.time.buildDate(date);
+				message = Foxtrickl10n.getString("YouthPromotes.future")
+					.replace(/%1/, daysToPromote)
+					.replace(/%2/, date)
 			}
 			else { // can be promoted already
-				message = Foxtrickl10n.getString("foxtrick.youthpromotedays.prom_t");
+				message = Foxtrickl10n.getString("YouthPromotes.today");
 			}
 
 			var birthdayCell;
