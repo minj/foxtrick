@@ -101,7 +101,7 @@ var FoxtrickReadHtPrefs = {
 					else if (timeDiffParams.search('m') < timeDiffParams.search('d')) {
 						dateformat='mmddyyyy';
 					}
-					FoxtrickPrefs.setString("htDateformat", dateformat);
+					Foxtrick.util.time.setDateFormat(dateformat);
 					break;
 				}
 			}

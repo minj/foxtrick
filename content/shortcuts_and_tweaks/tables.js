@@ -101,8 +101,7 @@ var FoxtrickMatchTables = {
 				var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)/i;
 				if (content.search(':') > -1) reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d{2})(.*?)(\d{2})(.*?)/i;
 				var ar = reg.exec(content);
-				var DATEFORMAT = FoxtrickPrefs.getString("htDateformat");
-				if  (DATEFORMAT == null ) DATEFORMAT = 'ddmmyyyy';
+				var DATEFORMAT = Foxtrick.utils.time.getDateFormat();
 
 				switch ( DATEFORMAT ) {
 					case 'ddmmyyyy':

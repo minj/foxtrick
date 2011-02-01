@@ -8,6 +8,19 @@ if (!Foxtrick.util) Foxtrick.util = {};
 
 Foxtrick.util.time = {
 	/*
+		Returns the date format of Hattrick
+		Value could be "ddmmyyyy", "mmddyyy", or "yyyymmdd"
+	 */
+	getDateFormat : function() {
+		return FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
+	},
+
+	/* Sets the date format of Hattrick */
+	setDateFormat : function(format) {
+		FoxtrickPrefs.setString("htDateformat", format);
+	},
+
+	/*
 		Returns HT week and season like { season : 37, week : 15 }
 		date is a JavaScript Date object
 	*/
@@ -34,8 +47,7 @@ Foxtrick.util.time = {
 			while separator and leading zero are irrelevant.
 		*/
 		try {
-			const DATEFORMAT = dateFormat
-				|| FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
+			const DATEFORMAT = dateFormat || this.getDateFormat();
 			switch (DATEFORMAT) {
 				case "ddmmyyyy":
 				case "mmddyyyy":
@@ -110,6 +122,18 @@ Foxtrick.util.time = {
 					- FoxtrickHelper.getLeagueDataFromId(i).Season;
 				return offset;
 			}
+		}
+	},
+
+	buildDate : function(date) {
+		const format = this.getDateFormat();
+		switch (format) {
+			case "ddmmyyyy":
+				return [date.getDay(), date.getMonth(), date.getFullYear()].join("-");
+			case "mmddyyyy":
+				return [date.getMonth(), date.getDay(), date.getFullYear()].join("-");
+			case "yyyymmdd":
+				return [date.getFullYear(), date.getMonth(), date.getDay()].join("-");
 		}
 	},
 

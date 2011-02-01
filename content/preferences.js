@@ -223,7 +223,7 @@ function initMainTab()
 		dateFormats.push({ code: code, desc : desc });
 	}
 	dateFormats.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-	const selectedDateFormat = FoxtrickPrefs.getString("htDateformat");
+	const selectedDateFormat = Foxtrick.util.time.getDateFormat();
 	for (var i in dateFormats) {
 		var item = document.createElement("option");
 		item.value = dateFormats[i].code;
