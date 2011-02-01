@@ -23,6 +23,7 @@
 <item>Параметр для скрытия быстрого взгляда на форумыв модуле <module>FixcssProblems</module> (ljushaff).</item>
 <item>Добавлен белорусский перевод (LA-Stolik).</item>
 <item>Новый значок для ссылок на отчёты (ljushaff).</item>
+<item>Модуль <module>YouthPromotes</module> также показывает и самый ранний день для вызова игрока.</item>
 <item>Большая часть расширений теперь работают под Google Chrome.</item>
 <item>Некоторые исправления для соответствия последним изменениям HT.</item>
 <item>Параметры радио в модуле <module>ExtraShortcuts</module> теперь выключены по умолчанию.</item>
