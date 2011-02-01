@@ -125,15 +125,23 @@ Foxtrick.util.time = {
 		}
 	},
 
+	addDaysToDate : function(date, days) {
+		var timestamp = date.getTime();
+		timestamp += days * 24 * 60 * 60 * 1000;
+		var ret = new Date();
+		ret.setTime(timestamp);
+		return ret;
+	},
+
 	buildDate : function(date) {
 		const format = this.getDateFormat();
 		switch (format) {
 			case "ddmmyyyy":
-				return [date.getDay(), date.getMonth(), date.getFullYear()].join("-");
+				return [date.getDate(), date.getMonth() + 1, date.getFullYear()].join("-");
 			case "mmddyyyy":
-				return [date.getMonth(), date.getDay(), date.getFullYear()].join("-");
+				return [date.getMonth() + 1, date.getDate(), date.getFullYear()].join("-");
 			case "yyyymmdd":
-				return [date.getFullYear(), date.getMonth(), date.getDay()].join("-");
+				return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join("-");
 		}
 	},
 
