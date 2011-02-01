@@ -362,7 +362,9 @@ Foxtrick.Pages.Players = {
 					player.lastPosition = position;
 				}
 
-				if (this.isOldiesPage(doc) || this.isCoachesPage(doc)) {
+				if (this.isOldiesPage(doc)
+					|| this.isCoachesPage(doc)
+					|| this.isNtPlayersPage(doc)) {
 					var currentPara = null;
 					var currentClubLink = null;
 					for (var j = 0; j < paragraphs.length; ++j) {
@@ -381,20 +383,22 @@ Foxtrick.Pages.Players = {
 					if (currentClubLink !== null) {
 						player.currentClubLink = currentClubLink.cloneNode(true);
 
-						// we concatenate the text nodes from the containing
-						// <p> to a string, and search for league names there.
-						var leagueText = "";
-						for (var j = 0; j < currentPara.childNodes.length; ++j) {
-							if (currentPara.childNodes[j].nodeName === "#text") {
-								// the text is in a child text node of currentPara,
-								// so we remove all tags
-								leagueText += currentPara.childNodes[j].textContent;
+						if (!this.isNtPlayersPage(doc)) { // not applicable for NT players
+							// we concatenate the text nodes from the containing
+							// <p> to a string, and search for league names there.
+							var leagueText = "";
+							for (var j = 0; j < currentPara.childNodes.length; ++j) {
+								if (currentPara.childNodes[j].nodeName === "#text") {
+									// the text is in a child text node of currentPara,
+									// so we remove all tags
+									leagueText += currentPara.childNodes[j].textContent;
+								}
 							}
-						}
-						for (var j in Foxtrick.XMLData.League) {
-							if (leagueText.indexOf(Foxtrick.XMLData.League[j].LeagueName) !== -1) {
-								player.currentLeagueId = j;
-								break;
+							for (var j in Foxtrick.XMLData.League) {
+								if (leagueText.indexOf(Foxtrick.XMLData.League[j].LeagueName) !== -1) {
+									player.currentLeagueId = j;
+									break;
+								}
 							}
 						}
 					}
