@@ -1,7 +1,7 @@
 /**
  * highlight-cup-wins.js
  * Highlight winners of cup matches and cupsets (optional)
- * @author convincedd
+ * @author convincedd, ryanli
  */
 
 var FoxtrickHighlightCupwins = {
@@ -43,19 +43,15 @@ var FoxtrickHighlightCupwins = {
 			var draw = (goalsHome === goalsAway); // 0 - 0 if match isn't played yet
 			var lose = (goalsHome < goalsAway);
 			var matchlink = table.rows[i].cells[3].getElementsByTagName('a')[0];
-			var firstsep=matchlink.innerHTML.indexOf(' - ' );
-			var hometeam = matchlink.innerHTML.substring(0,firstsep);
-			// if there are names with ' - ' take the last part for away only
-			var lastsep=matchlink.innerHTML.lastIndexOf(' - ' )+3;
-			var awayteam = matchlink.innerHTML.substring(lastsep);
+			[homeTeam, awayTeam] = matchlink.textContent.split(/\s+\-\s+/);
 			if (win) {
 				if (highlightHomeWin) {
 					table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
 				}
-				matchlink.innerHTML = '<strong>'+hometeam+'</strong> - '+awayteam;
+				matchlink.innerHTML = '<strong>' + homeTeam + '</strong>&nbsp;-&nbsp;' + awayTeam;
 			}
 			else if (lose) {
-				matchlink.innerHTML = hometeam+' - <strong>'+awayteam+'</strong>';
+				matchlink.innerHTML = homeTeam + '&nbsp;-&nbsp;<strong>' + awayTeam + '</strong>';
 			}
 		}
  	}
