@@ -13,7 +13,7 @@ var FoxtrickGuestbookHTMSFlags = {
 
 	MODULE_NAME : "GuestbookHTMSFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('guestbook', 'teamPage', 'league', 'youthleague', 'oldcoaches', 'oldplayers'), 
+	PAGES : new Array('guestbook', 'teamPage', 'league', 'youthleague', 'oldcoaches', 'oldplayers', 'federation'), 
 	DEFAULT_ENABLED : true,
 	LATEST_CHANGE:"Inserted as copy of Alltid flags",
 	OPTIONS : new Array("AddHTMSFlags","HideAnswerToLinks", "AddHTMSFlagsToSupporters", "AddHTMSFlagsToVisitors", "AddHTMSFlagsToOldies"),
