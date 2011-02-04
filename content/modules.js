@@ -134,7 +134,7 @@ Foxtrick.modules = [
 	FoxtrickYouthPromotes,
 	FoxtrickCountyList,
 	FoxtrickSmallerPages, //after FoxtrickTransferDeadline and probably also after all other player detail adjustment, so keep it in the end
-	FoxtrickHighlightBotTeams,
+	FoxtrickHighlightOwnerless,
 	FoxtrickLeagueAndMatchChat,
 	FoxtrickRapidId,
 	FoxtrickForumStage,

@@ -44,10 +44,10 @@
 }
 
 
-/* Module HighlightBotTeams */
+/* Module HighlightOwnerless */
 
-/* the link to bot teams at league page */
-.ft-bot {
+/* the link to ownerless teams at league page */
+.ft-ownerless {
 	color: white !important;
 	background-color: gray;
 }
