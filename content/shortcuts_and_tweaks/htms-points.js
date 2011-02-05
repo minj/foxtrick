@@ -53,7 +53,7 @@ var FoxtrickHTMSPoints = {
 		var ptable=doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').getElementsByTagName('table').item(0);
 		var nrow=ptable.insertRow(ptable.rows.length);
 		var hcell=nrow.insertCell(0);
-		hcell.innerHTML='<a href="'+linkpage+skillList+'" target="_blank">HTMS Points</a>';
+		hcell.innerHTML='<a href="'+linkpage+skillList+'" target="_blank">'+Foxtrickl10n.getString('foxtrick.htmsPoints.points')+' <span style="width: 16px; height: 16px; cursor: pointer;" class="foxtrickInfo">&nbsp; &nbsp;&nbsp;</span></a>';
 		var ccell=nrow.insertCell(1);
 		ccell.id='ft-htms-points';
 
@@ -71,7 +71,7 @@ var FoxtrickHTMSPoints = {
 
 			//Foxtrick.dump('now: '+pointsNow+' - 28: '+points28);
 
-			doc.getElementById('ft-htms-points').textContent = pointsNow+' / '+points28;
+			doc.getElementById('ft-htms-points').textContent = Foxtrickl10n.getString('foxtrick.htmsPoints.ability') + ': ' + pointsNow + ' / ' + Foxtrickl10n.getString('foxtrick.htmsPoints.potential') + ': ' + points28;
 
 			Foxtrick.startListenToChange(doc);
 		}
