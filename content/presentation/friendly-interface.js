@@ -28,18 +28,17 @@ FoxtrickFriendlyInterface = {
 		}
 		if (page == "playerdetail"
 			&& Foxtrick.isModuleFeatureEnabled(this, "NtLinkForNtPlayer")) {
+			// show national team names as links in national players' page
 			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 			// a player has highlight <=> he is a national player
 			var highlight = playerInfo.getElementsByClassName("highlight")[0];
 			if (highlight) {
 				const text = highlight.textContent;
 				const leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-				Foxtrick.dump("League ID: " + leagueId + "\n");
 				const ntIdXml = Foxtrick.XMLData.htNTidsXml;
 				const ntNode = ntIdXml.evaluate("/leagues/league[@id='" + leagueId + "'][1]",
 					ntIdXml, null, XPathResult.ANY_TYPE, null).iterateNext();
 				const u20Name = ntNode.getElementsByTagName("U20Name")[0].textContent;
-				Foxtrick.dump("U20 name: " + u20Name + "\n");
 				const u20Id = ntNode.getElementsByTagName("U20id")[0].textContent;
 				const ntName = ntNode.getElementsByTagName("NTName")[0].textContent;
 				const ntId = ntNode.getElementsByTagName("NTid")[0].textContent;
