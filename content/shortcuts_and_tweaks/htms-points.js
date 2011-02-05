@@ -17,8 +17,10 @@ var FoxtrickHTMSPoints = {
 		var pageBase = "http://www.fantamondi.it/HTMS/nt.php?action=calc";
 		var linkpage = "http://www.fantamondi.it/HTMS/index.php?page=nt&lang="+lang+"&action=calc";
 
-		var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 		var age = Foxtrick.Pages.Player.getAge(doc);
+		var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
+		if (skills === null)
+			return; // no skills available, goodbye
 
 		var skillList='&anni='+age.years+'&giorni='+age.days;
 		//checking if bars or not
