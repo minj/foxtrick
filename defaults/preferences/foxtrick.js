@@ -193,6 +193,8 @@ pref("extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled
 pref("extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset_text", "0");
 pref("extensions.foxtrick.prefs.module.HTDateFormat.LocalSeason.enabled", false);
 pref("extensions.foxtrick.prefs.module.HTMSPoints.enabled", false);
+pref("extensions.foxtrick.prefs.module.HTMSPoints.addToPlayer.enabled", true);
+pref("extensions.foxtrick.prefs.module.HTMSPoints.addToSearchResult.enabled", true);
 pref("extensions.foxtrick.prefs.module.htmsStatistics.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTThreadMarker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LargeFlags.enabled", false);
