@@ -148,5 +148,6 @@ Foxtrick.modules = [
 	FoxtrickOldStyleFace,
 	FoxtrickNtPeek,
 	FoxtrickGuestbookHTMSFlags,
-	FoxtrickHTMSPoints
+	FoxtrickHTMSPoints,
+	FoxtrickFriendlyInterface
 ];
