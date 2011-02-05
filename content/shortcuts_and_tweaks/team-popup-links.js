@@ -273,7 +273,7 @@ var FoxtrickTeamPopupLinks = {
 				for (var link in FoxtrickTeamPopupLinks.LINKS) {
 					if (FoxtrickTeamPopupLinks.isEnabledWithinContext(link, show_more)) {
 						addItem(link,
-							(teamid === FoxtrickTeamPopupLinks.ownteamid),
+							(teamid == FoxtrickTeamPopupLinks.ownteamid),
 							teamid, userid, username,
 							FoxtrickTeamPopupLinks.LINKS[link].ownLink,
 							FoxtrickTeamPopupLinks.LINKS[link].linkByTeam,
