@@ -297,27 +297,23 @@ Foxtrick.Pages.Player = {
 					}
 					var currentText = "";
 					var maxText = "";
-					if (rows[i].getElementsByTagName("td").length > 2) {
-						// images are present, the third cell contains text
-						var skillTextCell = rows[i].getElementsByTagName("td")[2];
-						for (var j = 0; j < skillTextCell.childNodes.length; ++j) {
-							// could either be a skill or unknown
-							if (Foxtrick.hasClass(skillTextCell.childNodes[j], "skill")
-								|| Foxtrick.hasClass(skillTextCell.childNodes[j], "shy")) {
-								if (currentText === "") {
-									currentText = Foxtrick.trim(skillTextCell.childNodes[j].textContent);
-								}
-								else {
-									maxText = Foxtrick.trim(skillTextCell.childNodes[j].textContent);
-									break;
-								}
-							}
+					var skillCell = rows[i].getElementsByTagName("td")[1];
+					if (skillCell.getElementsByClassName("youthSkillBar").length > 0) {
+						// bar is present
+						// skills could either be a skill or unknown
+						var isSkill = function(node) {
+							return Foxtrick.hasClass(node, "skill")
+								|| Foxtrick.hasClass(node, "shy");
+						};
+						var textNodes = Foxtrick.filter(skillCell.getElementsByClassName("youthSkillBar")[0].childNodes, isSkill);
+						Foxtrick.dump("Length: " + textNodes.length + "\n");
+						if (textNodes.length >= 2) {
+							[currentText, maxText] = [textNodes[0].textContent, textNodes[1].textContent];
 						}
 					}
 					else {
-						// no images, the second cell says "unknown"
-						var skillTextCell = rows[i].getElementsByTagName("td")[1];
-						currentText = maxText = Foxtrick.trim(skillTextCell.textContent);
+						// no images, the cell says "unknown"
+						currentText = maxText = Foxtrick.trim(skillCell.textContent);
 					}
 					skillTexts[skillOrder[i]] = { current : currentText, max : maxText };
 					skillNames[skillOrder[i]] = Foxtrick.trim(rows[i].getElementsByTagName("td")[0].textContent).replace(":", "");
