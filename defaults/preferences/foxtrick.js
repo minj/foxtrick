@@ -189,6 +189,8 @@ pref("extensions.foxtrick.prefs.module.HTDateFormat.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled", false);
 pref("extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset_text", "0");
 pref("extensions.foxtrick.prefs.module.HTDateFormat.LocalSeason.enabled", false);
+pref("extensions.foxtrick.prefs.module.HTMSPoints.enabled", true);
+pref("extensions.foxtrick.prefs.module.HTMSPoints.AddToPlayerPage.enabled", true);
 pref("extensions.foxtrick.prefs.module.htmsStatistics.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTThreadMarker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LargeFlags.enabled", false);
