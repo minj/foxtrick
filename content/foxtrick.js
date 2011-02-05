@@ -1254,6 +1254,22 @@ Foxtrick.strrpos = function(haystack, needle, offset){
 	return i >= 0 ? i : false;
 }
 
+Foxtrick.map = function(array, func) {
+	var ret = [];
+	for (var i = 0; i < array.length; ++i)
+		ret.push(func(array[i]));
+	return ret;
+}
+
+Foxtrick.filter = function(array, func) {
+	var ret = [];
+	for (var i = 0; i < array.length; ++i) {
+		if (func(array[i]))
+			ret.push(array[i]);
+	}
+	return ret;
+}
+
 Foxtrick.copyStringToClipboard = function (string) {
 	if (Foxtrick.BuildFor === "Gecko") {
 		var gClipboardHelper = Components
