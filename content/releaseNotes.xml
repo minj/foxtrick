@@ -16,16 +16,18 @@
 
 <note version="0.6">
 <item>New preferences interface.</item>
-<item><module>LiveAlert</module> for alerting at HT Live goals by ryanli.</item>
-<item><module>OldStyleFace</module> for showing faces in old Hattrick style by Aimo_Kanuuna.</item>
-<item><module>NtPeek</module> for peeking NT/U20 matches at My Hattrick by ryanli.</item>
-<item><module>GuestbookHTMSFlags</module> for showing user country and series in guestbook by taised. It's based on the earlier GuestbookAlltidFlags module, images provided by <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>.</item>
-<item>Option to hide forum sneak-peek in <module>FixcssProblems</module> by ljushaff.</item>
-<item>Belarusian locale by LA-Stolik.</item>
-<item>New grey icon for report links by ljushaff.</item>
-<item><module>YouthPromotes</module> also shows the earliest date to promote a player.</item>
-<item>Most features working under Google Chrome.</item>
-<item>Some trivial fixes for latest Hattrick changes.</item>
-<item>Radio options in <module>ExtraShortcuts</module> are disabled by default.</item>
+<item><module>LiveAlert</module> for alerting at HT Live goals. (ryanli)</item>
+<item><module>OldStyleFace</module> for showing faces in old Hattrick style. (Aimo_Kanuuna)</item>
+<item><module>NtPeek</module> for peeking NT/U20 matches at My Hattrick. (ryanli)</item>
+<item><module>GuestbookHTMSFlags</module> for showing user country and series in guestbook. It's based on the earlier GuestbookAlltidFlags module, images provided by <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>. (taised)</item>
+<item><module>HTMSPoints</module> for showing player's <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Points</xhtml:a>, i.e. numeralized ability and potential. (taised)</item>
+<item><module>FriendlyInterface</module> with options for showing player's full name in match line up page and showing national teams in links for NT players. (ryanli)</item>
+<item>Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)</item>
+<item>Belarusian locale. (LA-Stolik)</item>
+<item>New grey icon for report links. (ljushaff)</item>
+<item><module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)</item>
+<item>Most features working under Google Chrome. (ryanli)</item>
+<item>Some trivial fixes for latest Hattrick changes. (ryanli)</item>
+<item>Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)</item>
 </note>
 </notes>
