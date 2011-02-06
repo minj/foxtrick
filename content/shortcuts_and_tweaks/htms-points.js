@@ -10,17 +10,17 @@
 var FoxtrickHTMSPoints = {
 	MODULE_NAME : "HTMSPoints",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["playerdetail", "transferSearchResult"],
-	OPTIONS : new Array("addToPlayer","addToSearchResult"),
+	PAGES : ["playerdetail", "transferSearchResult", "players"],
+	OPTIONS : new Array("addToPlayer","addToSearchResult", "addToPlayerList"),
 
 	run : function(page, doc) {
-		FoxtrickHTMSPoints.currNumber=0;
 		var lang = FoxtrickPrefs.getString("htLanguage");
 		var pageBase = "http://www.fantamondi.it/HTMS/nt.php?action=calc";
 		var linkpage = "http://www.fantamondi.it/HTMS/index.php?page=nt&lang="+lang+"&action=calc";
 
 		var AddToPlayer = Foxtrick.isModuleFeatureEnabled( this, "addToPlayer");
 		var AddToSearchResult = Foxtrick.isModuleFeatureEnabled( this, "addToSearchResult");
+		var AddToPlayerList = Foxtrick.isModuleFeatureEnabled( this, "addToPlayerList");
 		
 		try {
 			if ((page=="playerdetail") && AddToPlayer) {
@@ -66,7 +66,7 @@ var FoxtrickHTMSPoints = {
 				var ccell=nrow.insertCell(1);
 				ccell.id='ft-htms-points-0';
 
-				Foxtrick.LoadXML(pageBase + skillList, function(xml) {
+				Foxtrick.LoadXML(pageBase + skillList+ "&loadto=0", function(xml) {
 					FoxtrickHTMSPoints.show_result(doc, xml, ccell.id);
 				}, true);
 			}
@@ -97,8 +97,39 @@ var FoxtrickHTMSPoints = {
 					var pcell2=prow.insertCell(prow.cells.length);
 					pcell2.id='ft-htms-points-'+cellId;
 					//Foxtrick.dump('adding '+cellId+'\n');
+					
+					Foxtrick.LoadXML(pageBase + skillList + "&loadto="+cellId, function(xml) {
+						FoxtrickHTMSPoints.show_result(doc, xml);
+					}, true);
 					cellId++;
-					Foxtrick.LoadXML(pageBase + skillList, function(xml) {
+				}
+			}
+			if ((page=="players") && AddToPlayerList) {
+				var htmsValues=new Array('parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp');
+				var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
+				var players=Foxtrick.Pages.Players.getPlayerList(doc, true);
+				var playersHtml=doc.getElementsByClassName("playerList")[0].getElementsByClassName("playerInfo");
+				for (var p=0;p<players.length;p++) {
+					
+					//getting skills...
+					var skillList='&anni='+players[p].age.years+'&giorni='+players[p].age.days;
+					for (var i=0;i<7;i++) {
+						skillList+='&'+htmsValues[i]+'='+players[p][skillOrder[i]];
+					}
+					
+					//creating elements
+					var parag=playersHtml[p].getElementsByTagName('p')[0];
+					parag.appendChild(doc.createElement('br'));
+					var htmsLink=doc.createElement('a');
+					htmsLink.href=linkpage+skillList;
+					htmsLink.target='_blank';
+					htmsLink.textContent=Foxtrickl10n.getString('HTMSPoints')+" ";
+					parag.appendChild(htmsLink);
+					var htmsPoints=doc.createElement('span');
+					htmsPoints.id='ft-htms-points-'+p;
+					parag.appendChild(htmsPoints);
+					
+					Foxtrick.LoadXML(pageBase + skillList + "&loadto="+p, function(xml) {
 						FoxtrickHTMSPoints.show_result(doc, xml);
 					}, true);
 				}
@@ -115,13 +146,12 @@ var FoxtrickHTMSPoints = {
 
 			var pointsNow=responseXML.getElementsByTagName('HTMS_points').item(0).firstChild.nodeValue;
 			var points28=responseXML.getElementsByTagName('HTMS_points_28').item(0).firstChild.nodeValue;
+			var loadto=responseXML.getElementsByTagName('loadto').item(0).firstChild.nodeValue;
 
 			//Foxtrick.dump('now: '+pointsNow+' - 28: '+points28);
 			//elemId.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
 			
-			var elemId='ft-htms-points-'+FoxtrickHTMSPoints.currNumber;
-			//Foxtrick.dump('currnumber: '+FoxtrickHTMSPoints.currNumber+'\n');
-			FoxtrickHTMSPoints.currNumber++;
+			var elemId='ft-htms-points-'+loadto;
 			
 			if (doc.getElementById(elemId)) {
 				doc.getElementById(elemId).textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
