@@ -255,14 +255,17 @@ var FoxtrickPrefs = {
 				return array;
 			}
 			else if (Foxtrick.BuildFor === "Chrome") {
-				var string_regexp = new RegExp('"extensions.foxtrick.prefs.('+list_name+'.+),"','g');
-				var array = FoxtrickPrefs.pref.match(string_regexp);
-				if (array) {
-					for (var i=0;i<array.length;++i)
-						array[i]=array[i].replace(/"|,|extensions.foxtrick.prefs./g,'');
-					return array;
+				var array = [];
+				for (var i in this.pref) {
+					if (i.indexOf(list_name + ".") == 0)
+						if (!this.prefDefault[i]) // only if not default to eliminate duplicacy
+							array.push(i);
 				}
-				else return [];
+				for (var i in this.prefDefault) {
+					if (i.indexOf(list_name + ".") == 0)
+						array.push(i);
+				}
+				return array;
 			}
 		}
 		catch (e) {
