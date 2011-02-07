@@ -60,7 +60,7 @@ var FoxtrickYouthSeriesEstimation = {
 			var info = doc.createElement("span");
 			info.className = "ft-youth-series-estimation";
 			info.textContent = str;
-			if (days < 1) {
+			if (days < 2) { // minimum 1 day
 				Foxtrick.addClass(info, "near-start");
 			}
 			firstMatchCell.appendChild(info);
