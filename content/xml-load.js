@@ -1,5 +1,5 @@
 /**
- * xml_load.js
+ * xml-load.js
  * xml loading
  * @author convinced
  */

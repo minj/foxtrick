@@ -16,10 +16,10 @@ CONTENT_FOLDERS = alert/ \
 	pages/ \
 	presentation/ \
 	resources/ \
-	shortcuts_and_tweaks/ \
+	shortcuts-and-tweaks/ \
 	util/
 CONTENT_FILES = const.js \
-	forum_stage.js \
+	forum-stage.js \
 	foxtrick.js \
 	foxtrick.properties \
 	foxtrick.screenshots \
@@ -36,9 +36,9 @@ CONTENT_FILES = const.js \
 	prefs.js \
 	read-ht-prefs.js \
 	redirections.js \
-	releaseNotes.xml \
+	release-notes.xml \
 	stats.js \
-	xml_load.js
+	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 	loader-chrome.js

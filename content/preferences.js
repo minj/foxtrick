@@ -445,9 +445,9 @@ function getScreenshot(link)
 
 function initChangesTab()
 {
-	const releaseNotes = Foxtrick.LoadXML(Foxtrick.ResourcePath + "releaseNotes.xml");
+	const releaseNotes = Foxtrick.LoadXML(Foxtrick.ResourcePath + "release-notes.xml");
 	const releaseNotesLocalized = Foxtrick.LoadXML(Foxtrick.ResourcePath
-		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/releaseNotes.xml");
+		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/release-notes.xml");
 	var notes = {};
 	var notesLocalized = {};
 
