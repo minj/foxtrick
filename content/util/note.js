@@ -43,7 +43,8 @@ Foxtrick.util.note = {
 		if (old) {
 			old.parentNode.removeChild(old);
 		}
-		var note = this.create(doc, id, msg, buttons, hasClose);
+		var note = this.create(doc, msg, buttons, hasClose);
+		note.id = id;
 		if (insertBefore && insertBefore.parentNode) {
 			insertBefore.parentNode.insertBefore(note, insertBefore);
 		}
@@ -60,15 +61,20 @@ Foxtrick.util.note = {
 		return note;
 	},
 
-	create : function(doc, id, msg, buttons, hasClose) {
+	create : function(doc, msg, buttons, hasClose) {
 		try {
 			var container = doc.createElement("div");
-			container.id = id;
 			container.className = "ft-note";
 
-			var par = doc.createElement("p");
-			par.textContent = msg;
-			container.appendChild(par);
+			// msg could be either a string or an HTML node
+			if (typeof(msg) == "string") { 
+				var par = doc.createElement("p");
+				par.textContent = msg;
+				container.appendChild(par);
+			}
+			else {
+				container.appendChild(msg);
+			}
 
 			if (buttons && buttons.length) {
 				var buttonContainer = doc.createElement("div");
@@ -132,4 +138,16 @@ Foxtrick.util.note = {
 			Foxtrick.dumpError(e);
 		}
 	},
+
+	createLoading : function(doc) {
+		const loadingText = Foxtrickl10n.getString("Loading");
+		var container = doc.createElement("div");
+		var img = doc.createElement("img");
+		img.src = "/Img/Icons/loading.gif";
+		img.alt = loadingText;
+		container.appendChild(img);
+		container.appendChild(doc.createTextNode(" "));
+		container.appendChild(doc.createTextNode(loadingText));
+		return this.create(doc, container, null, false);
+	}
 };

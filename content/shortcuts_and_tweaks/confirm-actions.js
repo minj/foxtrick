@@ -51,7 +51,7 @@ var FoxtrickConfirmActions = {
 								.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
 								.split("").reverse().join("");
 							var msg = msgTemplate.replace(/\%s/, price);
-							var confirm = Foxtrick.util.note.create(doc, FoxtrickConfirmActions.BID.CONFIRM_ID, msg,
+							var confirm = Foxtrick.util.note.create(doc, msg,
 								[
 									{
 										type : Foxtrick.util.note.BUTTON_OK,
@@ -76,6 +76,7 @@ var FoxtrickConfirmActions = {
 										}
 									}
 								]);
+							confirm.id = FoxtrickConfirmActions.BID.CONFIRM_ID;
 							bidAlert.getElementsByTagName("div")[0].appendChild(confirm);
 							Foxtrick.addClass(bidButton, "hidden");
 							bidText.disabled = "disabled";
@@ -100,7 +101,7 @@ var FoxtrickConfirmActions = {
 								.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
 								.split("").reverse().join("");
 							var msg = msgTemplate.replace(/\%s/, price);
-							var confirm = Foxtrick.util.note.create(doc, FoxtrickConfirmActions.SELL.CONFIRM_ID, msg,
+							var confirm = Foxtrick.util.note.create(doc, msg,
 								[
 									{
 										type : Foxtrick.util.note.BUTTON_OK,
@@ -127,6 +128,7 @@ var FoxtrickConfirmActions = {
 										}
 									}
 								]);
+							confirm.id = FoxtrickConfirmActions.SELL.CONFIRM_ID;
 							sellButton.parentNode.appendChild(confirm);
 							Foxtrick.addClass(sellButton, "hidden");
 							Foxtrick.addClass(cancelButton, "hidden");
@@ -174,7 +176,7 @@ var FoxtrickConfirmActions = {
 									msgTemplate = Foxtrickl10n.getString("foxtrick.staffconfirmationsack");
 								}
 								var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
-								var confirm = Foxtrick.util.note.create(doc, FoxtrickConfirmActions.STAFF.CONFIRM_ID, msg,
+								var confirm = Foxtrick.util.note.create(doc, msg,
 									[
 										{
 											type : Foxtrick.util.note.BUTTON_OK,
@@ -208,6 +210,7 @@ var FoxtrickConfirmActions = {
 											}
 										}
 									]);
+								confirm.id = FoxtrickConfirmActions.STAFF.CONFIRM_ID;
 								submitButton.parentNode.appendChild(confirm);
 								confirmAdded = true;
 								Foxtrick.addClass(submitButton, "hidden");
