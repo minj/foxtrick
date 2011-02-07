@@ -14,9 +14,40 @@ var FoxtrickHTMSPoints = {
 	OPTIONS : ["AddToPlayer", "AddToSearchResult", "AddToPlayerList"],
 
 	run : function(page, doc) {
-		var lang = FoxtrickPrefs.getString("htLanguage");
-		var pageBase = "http://www.fantamondi.it/HTMS/nt.php?action=calc";
-		var linkpage = "http://www.fantamondi.it/HTMS/index.php?page=nt&lang="+lang+"&action=calc";
+		var getLink = function(skillList) {
+			const lang = FoxtrickPrefs.getString("htLanguage");
+			const prefix = "http://www.fantamondi.it/HTMS/index.php?page=nt&lang="+lang+"&action=calc";
+			var link = doc.createElement("a");
+			link.textContent = Foxtrickl10n.getString("HTMSPoints");
+			link.href = prefix + skillList;
+			return link;
+		};
+
+		var request = function(skillList, target) {
+			var showResult = function(target, responseXML) {
+				try {
+					Foxtrick.stopListenToChange(doc);
+
+					var pointsNow=responseXML.getElementsByTagName('HTMS_points').item(0).firstChild.nodeValue;
+					var points28=responseXML.getElementsByTagName('HTMS_points_28').item(0).firstChild.nodeValue;
+
+					// Foxtrick.dump('now: '+pointsNow+' - 28: '+points28);
+
+					target.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
+						.replace(/%1/, pointsNow)
+						.replace(/%2/, points28);
+
+					Foxtrick.startListenToChange(doc);
+				}
+				catch (e) {
+					Foxtrick.dumpError(e);
+				}
+			};
+			const prefix = "http://www.fantamondi.it/HTMS/nt.php?action=calc";
+			Foxtrick.LoadXML(prefix + skillList, function(xml) {
+				showResult(target, xml);
+			}, true);
+		};
 
 		var AddToPlayer = Foxtrick.isModuleFeatureEnabled(this, "AddToPlayer");
 		var AddToSearchResult = Foxtrick.isModuleFeatureEnabled(this, "AddToSearchResult");
@@ -58,18 +89,14 @@ var FoxtrickHTMSPoints = {
 			}
 
 			//creating the new element
-			var ptable=doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').getElementsByTagName('table').item(0);
-			var nrow=ptable.insertRow(ptable.rows.length);
-			var hcell=nrow.insertCell(0);
-			hcell.innerHTML='<a href="'+linkpage+skillList+'" target="_blank">'+Foxtrickl10n.getString('HTMSPoints')+'</a>';
-			var ccell=nrow.insertCell(1);
-			ccell.id='ft-htms-points-0';
+			var table = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').getElementsByTagName('table').item(0);
+			var row = table.insertRow(table.rows.length);
+			row.className = "ft-htms-points";
+			var link = row.insertCell(0);
+			link.appendChild(getLink(skillList));
+			var points = row.insertCell(1);
 
-			Foxtrick.LoadXML(pageBase + skillList, (function(target) {
-					return function(xml) {
-						FoxtrickHTMSPoints.show_result(target, xml);
-					};
-					})(ccell), true);
+			request(skillList, points);
 		}
 		if ((page=="transferSearchResult") && AddToSearchResult) {
 			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
@@ -80,7 +107,7 @@ var FoxtrickHTMSPoints = {
 			var pcells=new Array();
 			var cellId=0;
 			var rowId=-8;
-			for (var p=0;p<players.length;p++) {
+			for (var p=0; p<players.length; ++p, ++cellId) {
 				//searching in which row is the player
 				do {
 					rowId=rowId+8;
@@ -92,18 +119,15 @@ var FoxtrickHTMSPoints = {
 					skillList+='&'+htmsValues[i]+'='+players[cellId][skillOrder[i]];
 				}
 				//creating element
-				var prow=transferTable.rows[rowId].getElementsByTagName('table')[0].rows[0];
-				var pcell=prow.insertCell(prow.cells.length);
-				pcell.innerHTML='<a href="'+linkpage+skillList+'" target="_blank">'+Foxtrickl10n.getString('HTMSPoints')+'</a>';
-				var pcell2=prow.insertCell(prow.cells.length);
-				pcell2.id='ft-htms-points-'+cellId;
+				var row = transferTable.rows[rowId].getElementsByTagName('table')[0].rows[0];
+				var container = row.insertCell(row.cells.length);
+				container.className = "ft-htms-points";
+				container.appendChild(getLink(skillList));
+				container.appendChild(doc.createTextNode(" "));
+				var points = doc.createElement("span");
+				container.appendChild(points);
 
-				Foxtrick.LoadXML(pageBase + skillList, (function(target) {
-					return function(xml) {
-						FoxtrickHTMSPoints.show_result(target, xml);
-					};
-					})(pcell2), true);
-				cellId++;
+				request(skillList, points);
 			}
 		}
 		if ((page=="players") && AddToPlayerList) {
@@ -112,52 +136,27 @@ var FoxtrickHTMSPoints = {
 			var players=Foxtrick.Pages.Players.getPlayerList(doc, true);
 			var playersHtml=doc.getElementsByClassName("playerList")[0].getElementsByClassName("playerInfo");
 			for (var p=0;p<players.length;p++) {
-
 				//getting skills...
 				var skillList='&anni='+players[p].age.years+'&giorni='+players[p].age.days;
 				for (var i=0;i<7;i++) {
 					skillList+='&'+htmsValues[i]+'='+players[p][skillOrder[i]];
 				}
 
-				//creating elements
-				var parag=playersHtml[p].getElementsByTagName('p')[0];
-				parag.appendChild(doc.createElement('br'));
-				var htmsLink=doc.createElement('a');
-				htmsLink.href=linkpage+skillList;
-				htmsLink.target='_blank';
-				htmsLink.textContent=Foxtrickl10n.getString('HTMSPoints')+" ";
-				parag.appendChild(htmsLink);
-				var htmsPoints=doc.createElement('span');
-				htmsPoints.id='ft-htms-points-'+p;
-				parag.appendChild(htmsPoints);
+				// create elements
+				var container = doc.createElement("div");
+				container.className = "ft-htms-points";
+				container.appendChild(getLink(skillList));
+				container.appendChild(doc.createTextNode(" "));
+				var points = doc.createElement("span");
+				container.appendChild(points);
 
-				Foxtrick.LoadXML(pageBase + skillList, (function(target) {
-					return function(xml) {
-						FoxtrickHTMSPoints.show_result(target, xml);
-					};
-					})(htmsPoints), true);
+				// insert it
+				var tables = playersHtml[p].getElementsByTagName("table");
+				var before = tables.item(0).nextSibling;
+				before.parentNode.insertBefore(container, before);
+
+				request(skillList, points);
 			}
-		}
-	},
-
-	show_result : function(target, responseXML) {
-		try {
-			var doc = target.ownerDocument;
-			Foxtrick.stopListenToChange(doc);
-
-			var pointsNow=responseXML.getElementsByTagName('HTMS_points').item(0).firstChild.nodeValue;
-			var points28=responseXML.getElementsByTagName('HTMS_points_28').item(0).firstChild.nodeValue;
-
-			// Foxtrick.dump('now: '+pointsNow+' - 28: '+points28);
-
-			target.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
-				.replace(/%1/, pointsNow)
-				.replace(/%2/, points28);
-
-			Foxtrick.startListenToChange(doc);
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
 		}
 	}
 };
