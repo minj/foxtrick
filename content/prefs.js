@@ -28,7 +28,6 @@ if (Foxtrick.BuildFor === "Chrome") {
 var FoxtrickPrefs = {
 	_pref_branch : null,
 	pref_default:'',
-	do_dump: true,
 
 	init : function() {
 		if (Foxtrick.BuildFor === "Gecko") {
@@ -317,8 +316,7 @@ var FoxtrickPrefs = {
 				localStorage.removeItem(key);
 			}
 			else if (Foxtrick.chromeContext() == "content") {
-				if (this.do_dump) // whether write to localStorage
-					this.dumpPrefs();
+				this.dumpPrefs();
 			}
 		}
 	},
@@ -523,8 +521,7 @@ if (Foxtrick.BuildFor == "Chrome") {
 					localStorage.setItem(key, JSON.stringify(value));
 				}
 				else if (Foxtrick.chromeContext() == "content") {
-					if (this.do_dump) // whether write to localStorage
-						this.dumpPrefs();
+					this.dumpPrefs();
 				}
 			}
 		}
