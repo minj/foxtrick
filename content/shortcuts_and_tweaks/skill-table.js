@@ -323,6 +323,8 @@ var FoxtrickSkillTable = {
 				{ name : "Passing", property : "passing", method: skill },
 				{ name : "Scoring", property : "scoring", method: skill },
 				{ name : "Set_pieces", property : "setPieces", method: skill },
+				{ name : "HTMS_Ability", property : "htmsAbility" },
+				{ name : "HTMS_Potential", property : "htmsPotential" },
 				{ name : "Agreeability", property : "agreeability" },
 				{ name : "Aggressiveness", property : "aggressiveness" },
 				{ name : "Honesty", property : "honesty" },
