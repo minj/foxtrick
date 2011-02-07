@@ -488,7 +488,7 @@ var FoxtrickPrefs = {
 	},
 
 	show : function() {
-		gBrowser.selectedTab = gBrowser.addTab("chrome://foxtrick/content/preferences.xhtml");
+		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml");
 	},
 
 	disable : function() {
