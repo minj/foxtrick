@@ -336,6 +336,17 @@ Foxtrick.Pages.Players = {
 					}
 				}
 
+				// HTMS points
+				var htmsPoints = allPlayers[i].getElementsByClassName("ft-htms-points").item(0);
+				if (htmsPoints) {
+					var points = htmsPoints.getElementsByTagName("span")[0].textContent;
+					const matched = points.match(/([\-0-9]+).+?([\-0-9]+)/);
+					if (matched) {
+						player.htmsAbility = parseInt(matched[1]);
+						player.htmsPotential = parseInt(matched[2]);
+					}
+				}
+
 				// last match
 				var matchLink = null;
 				for (var j = 0; j < as.length; ++j) {

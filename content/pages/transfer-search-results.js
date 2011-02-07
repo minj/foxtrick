@@ -51,6 +51,17 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.nameLink = nameLink.cloneNode(true);
 				player.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(transferTable.rows[i].getElementsByTagName("a")[0].href.match(/leagueId=(\d+)/i)[1]);
 
+				// HTMS Points
+				var htmsPoints = overviewtable.getElementsByClassName("ft-htms-points").item(0);
+				if (htmsPoints) {
+					var points = htmsPoints.getElementsByTagName("span")[0].textContent;
+					const matched = points.match(/([\-0-9]+).+?([\-0-9]+)/);
+					if (matched) {
+						player.htmsAbility = parseInt(matched[1]);
+						player.htmsPotential = parseInt(matched[2]);
+					}
+				}
+
 				player.ageText = transferTable.rows[i+3].cells[1].textContent;
 				var ageMatch = player.ageText.match(/(\d+)/g);
 				player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
