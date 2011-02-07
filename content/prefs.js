@@ -296,13 +296,13 @@ var FoxtrickPrefs = {
 				FoxtrickPrefs.setString( decodeURI(list_name + "." + i), values[i] );
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			FoxtrickPrefs.do_dump = false;
-			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+list_name+'.+\\);\\n','g');
-			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'');
-			for (var i in values)
-				FoxtrickPrefs.setString( list_name + "." + i, values[i]);
-			FoxtrickPrefs.do_dump = true;
-			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
+			const array = this._getElemNames(list_name);
+			for (var i in array) {
+				this.deleteValue(i);
+			}
+			for (var i in values) {
+				this.setValue(list_name + "." + i, values[i]);
+			}
 		}
 	},
 
