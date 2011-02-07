@@ -1,9 +1,9 @@
-.ft-nt-peek-left {
+.ft-nt-peek div:nth-child(2) {
 	width: 48%;
 	float: left;
 }
 
-.ft-nt-peek-right {
+.ft-nt-peek div:nth-child(3) {
 	width: 48%;
 	float: right;
 }

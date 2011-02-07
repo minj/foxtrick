@@ -12,14 +12,25 @@ var FoxtrickNtPeek = {
 	CSS : Foxtrick.ResourcePath + "resources/css/nt-peek.css",
 
 	run : function(page, doc) {
-		var buildTeamHeader = function(name, id) {
-			var header = doc.createElement("h2");
-			var link = doc.createElement("a");
-			link.textContent = name;
-			link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId=" + id;
-			header.appendChild(link);
-			return header;
-		};
+		var buildContainer = function(team, id) {
+			var buildTeamHeader = function() {
+				var header = doc.createElement("h2");
+				var link = doc.createElement("a");
+				link.textContent = team;
+				link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId=" + id;
+				header.appendChild(link);
+				return header;
+			}
+			var container = doc.createElement("div");
+			var header = buildTeamHeader();
+			container.appendChild(header);
+			var table = doc.createElement("table");
+			var loadingRow = table.insertRow(0);
+			var loadingCell = loadingRow.insertCell(0);
+			loadingCell.appendChild(Foxtrick.util.note.createLoading(doc));
+			container.appendChild(table);
+			return container;
+		}
 		FoxtrickHelper.getOwnTeamInfo(doc, page);
 		const countryId = FoxtrickHelper.getOwnCountryId();
 		const ntIdXml = Foxtrick.XMLData.htNTidsXml;
@@ -38,22 +49,13 @@ var FoxtrickNtPeek = {
 		var title = doc.createElement("h1");
 		title.textContent = Foxtrickl10n.getString("ntpeek.title");
 		container.appendChild(title);
+		
 		// NT container
-		var ntContainer = doc.createElement("div");
-		ntContainer.className = "ft-nt-peek-left";
+		var ntContainer = buildContainer(ntName, ntId);
 		container.appendChild(ntContainer);
-		var ntHeader = buildTeamHeader(ntName, ntId);
-		ntContainer.appendChild(ntHeader);
-		var ntTable = doc.createElement("table");
-		ntContainer.appendChild(ntTable);
 		// U20 container
-		var u20Container = doc.createElement("div");
-		u20Container.className = "ft-nt-peek-right";
+		var u20Container = buildContainer(u20Name, u20Id);doc.createElement("div");
 		container.appendChild(u20Container);
-		var u20Header = buildTeamHeader(u20Name, u20Id);
-		u20Container.appendChild(u20Header);
-		var u20Table = doc.createElement("table");
-		u20Container.appendChild(u20Table);
 		// separator
 		var separator = doc.createElement("div");
 		separator.className = "separator";
@@ -63,18 +65,20 @@ var FoxtrickNtPeek = {
 			+ "/Community/CHPP/Matches/chppxml.axd?file=matches&teamID="
 			+ ntId;
 		var ntReq = Foxtrick.LoadXML(ntXml, function(xml) {
-			FoxtrickNtPeek.addMatches(doc, ntTable, xml);
+			FoxtrickNtPeek.addMatches(doc, ntContainer, xml);
 		});
 		const u20Xml = "http://" + doc.location.hostname
 			+ "/Community/CHPP/Matches/chppxml.axd?file=matches&teamID="
 			+ u20Id;
 		var u20Req = Foxtrick.LoadXML(u20Xml, function(xml) {
-			FoxtrickNtPeek.addMatches(doc, u20Table, xml);
+			FoxtrickNtPeek.addMatches(doc, u20Container, xml);
 		});
 	},
 
 	addMatches : function(doc, container, xml) {
 		try {
+			var table = container.getElementsByTagName("table")[0];
+			table.textContent = ""; // clear loading notice
 			var dateNow = Foxtrick.util.time.getHtDate(doc);
 			var id = xml.getElementsByTagName("TeamID")[0].textContent;
 			var matches = xml.getElementsByTagName("Match");
@@ -102,7 +106,7 @@ var FoxtrickNtPeek = {
 						var matchRow = FoxtrickNtPeek.getMatchRow(doc,
 							matchId, side, homeTeam, awayTeam);
 					}
-					container.appendChild(matchRow);
+					table.appendChild(matchRow);
 				}
 			}
 		}
