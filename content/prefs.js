@@ -306,18 +306,22 @@ var FoxtrickPrefs = {
 		}
 	},
 
-	deleteValue : function(value_name){
+	deleteValue : function(value_name) {
 		if (Foxtrick.BuildFor === "Gecko") {
 			if (FoxtrickPrefs._pref_branch.prefHasUserValue(encodeURI(value_name)))
 				FoxtrickPrefs._pref_branch.clearUserPref(encodeURI(value_name));   // reset to default
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp( 'user_pref\\("extensions.foxtrick.prefs.'+value_name+'".+\\n','g');
-			FoxtrickPrefs.pref = FoxtrickPrefs.pref.replace(string_regexp,'');
-			portsetpref.postMessage({reqtype: "save_prefs", prefs: FoxtrickPrefs.pref, reload:false});
+			delete(this.pref[value_name]);
+			if (Foxtrick.chromeContext() == "background") {
+				localStorage.removeItem(key);
+			}
+			else if (Foxtrick.chromeContext() == "content") {
+				if (this.do_dump) // whether write to localStorage
+					this.dumpPrefs();
+			}
 		}
 	},
-
 
 	// ---------------------- common function --------------------------------------
 	setModuleEnableState : function( module_name, value ) {
@@ -512,19 +516,16 @@ if (Foxtrick.BuildFor == "Chrome") {
 	FoxtrickPrefs.setValue = function(key, value) {
 		try {
 			if (this.prefDefault[key] === value)
-				delete(this.pref[key]); // set to default, delete it
-			else
+				this.deleteValue(key);
+			else {
 				this.pref[key] = value; // not default, set it
-
-			if (Foxtrick.chromeContext() == "background") {
-				if (this.prefDefault[key] === value)
-					localStorage.removeItem(key);
-				else
+				if (Foxtrick.chromeContext() == "background") {
 					localStorage.setItem(key, JSON.stringify(value));
-			}
-			else if (Foxtrick.chromeContext() == "content") {
-				if (this.do_dump) // whether write to localStorage
-					this.dumpPrefs();
+				}
+				else if (Foxtrick.chromeContext() == "content") {
+					if (this.do_dump) // whether write to localStorage
+						this.dumpPrefs();
+				}
 			}
 		}
 		catch (e) {}
