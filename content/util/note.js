@@ -37,7 +37,7 @@ Foxtrick.util.note = {
 	 * hasClose - whether to add a link labelled "Close" for closing the note
 	 */
 
-	add : function(doc, insertBefore, id, msg, buttons, hasClose, doJump) {
+	add : function(doc, insertBefore, id, msg, buttons, hasClose, doJump, inline) {
 		// first we remove the old notes with same name
 		var old = doc.getElementById(id);
 		if (old) {
@@ -139,15 +139,23 @@ Foxtrick.util.note = {
 		}
 	},
 
-	createLoading : function(doc) {
+	createLoading : function(doc, inline) {
 		const loadingText = Foxtrickl10n.getString("Loading");
-		var container = doc.createElement("div");
-		var img = doc.createElement("img");
-		img.src = "/Img/Icons/loading.gif";
-		img.alt = loadingText;
-		container.appendChild(img);
-		container.appendChild(doc.createTextNode(" "));
-		container.appendChild(doc.createTextNode(loadingText));
-		return this.create(doc, container, null, false);
+		if (inline) {
+			// if the note is inline, return a span with nothing special
+			var container = doc.createElement("span");
+			container.textContent = loadingText;
+			return container;
+		}
+		else {
+			var container = doc.createElement("div");
+			var img = doc.createElement("img");
+			img.src = "/Img/Icons/loading.gif";
+			img.alt = loadingText;
+			container.appendChild(img);
+			container.appendChild(doc.createTextNode(" "));
+			container.appendChild(doc.createTextNode(loadingText));
+			return this.create(doc, container, null, false);
+		}
 	}
 };

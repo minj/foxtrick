@@ -95,7 +95,7 @@ var FoxtrickHTMSPoints = {
 			var link = row.insertCell(0);
 			link.appendChild(getLink(skillList));
 			var points = row.insertCell(1);
-			points.appendChild(Foxtrick.util.note.createLoading(doc));
+			points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 
 			request(skillList, points);
 		}
@@ -126,7 +126,7 @@ var FoxtrickHTMSPoints = {
 				container.appendChild(getLink(skillList));
 				container.appendChild(doc.createTextNode(" "));
 				var points = doc.createElement("span");
-				points.appendChild(Foxtrick.util.note.createLoading(doc));
+				points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 				container.appendChild(points);
 
 				request(skillList, points);
@@ -150,7 +150,7 @@ var FoxtrickHTMSPoints = {
 				container.appendChild(getLink(skillList));
 				container.appendChild(doc.createTextNode(" "));
 				var points = doc.createElement("span");
-				points.appendChild(Foxtrick.util.note.createLoading(doc));
+				points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 				container.appendChild(points);
 
 				// insert it
