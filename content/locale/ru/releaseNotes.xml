@@ -20,7 +20,9 @@
 <item>Модуль <module>OldStyleFace</module> для отображения лиц в старом стиле Hattrick (Aimo_Kanuuna).</item>
 <item>Модуль <module>NtPeek</module> для скрытия матчей сборной из Моего Hattrick'а (ryanli).</item>
 <item>Модуль <module>GuestbookHTMSFlags</module> для показа флага и лиги оставившего сообщение в гостевой книге (taised). Он основан на ранее присутствовавшем модуле GuestbookAlltidFlags, изображения предоставлены <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>.</item>
-<item>Параметр для скрытия быстрого взгляда на форумыв модуле <module>FixcssProblems</module> (ljushaff).</item>
+<item>Модуль <module>HTMSPoints</module> для показа <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">очков HTMS</xhtml:a> игрока, т.е. цифровые уровни навыков и потенциала. (taised)</item>
+<item>Модуль <module>FriendlyInterface</module> с параметрами для отображения полного имени игрока в окне расстановки и перехода на сборные для их игроков. (ryanli)</item>
+<item>Параметр для скрытия быстрого взгляда на форумы в модуле <module>FixcssProblems</module> (ljushaff).</item>
 <item>Добавлен белорусский перевод (LA-Stolik).</item>
 <item>Новый значок для ссылок на отчёты (ljushaff).</item>
 <item>Модуль <module>YouthPromotes</module> также показывает и самый ранний день для вызова игрока.</item>
