@@ -241,82 +241,90 @@ Foxtrick.Pages.Player = {
 				return null;
 			}
 			var skillTable = mainBox.getElementsByTagName("table")[0];
-			if (this.isSeniorPlayerPage(doc)) {
-				var hasBars = (skillTable.getElementsByClassName("percentImage").length > 0);
-				if (hasBars) {
+			if (skillTable) {
+				if (this.isSeniorPlayerPage(doc)) {
+					var hasBars = (skillTable.getElementsByClassName("percentImage").length > 0);
+					if (hasBars) {
+						var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
+						var rows = skillTable.getElementsByTagName("tr");
+						for (var i = 0; i < skillOrder.length; ++i) {
+							var skillLink = rows[i].getElementsByTagName("a")[0];
+							if (skillLink.href.match(/ll=(\d+)/)===null) {
+								break; //skills are not visible
+							}
+							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
+							var skillText = Foxtrick.trim(skillLink.textContent);
+							var skillName = Foxtrick.trim(rows[i].getElementsByTagName("td")[0].textContent).replace(":", "");
+							skills[skillOrder[i]] = skillValue;
+							skillTexts[skillOrder[i]] = skillText;
+							skillNames[skillOrder[i]] = skillName;
+						}
+					}
+					else {
+						var skillOrder = ["stamina", "keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
+						var cells = skillTable.getElementsByTagName("td");
+						for (var i = 0; i < skillOrder.length; ++i) {
+							var skillLink = cells[2 * i + 1].getElementsByTagName("a")[0];
+							if (skillLink.href.match(/ll=(\d+)/)===null) {
+								break; //skills are not visible
+							}
+							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
+							var skillText = Foxtrick.trim(skillLink.textContent);
+							var skillName = Foxtrick.trim(cells[2 * i].textContent).replace(":", "")
+							skills[skillOrder[i]] = skillValue;
+							skillTexts[skillOrder[i]] = skillText;
+							skillNames[skillOrder[i]] = skillName;
+						}
+					}
+				}
+				else if (this.isYouthPlayerPage(doc)) {
 					var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
 					var rows = skillTable.getElementsByTagName("tr");
 					for (var i = 0; i < skillOrder.length; ++i) {
-						var skillLink = rows[i].getElementsByTagName("a")[0];
-						var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
-						var skillText = Foxtrick.trim(skillLink.textContent);
-						var skillName = Foxtrick.trim(rows[i].getElementsByTagName("td")[0].textContent).replace(":", "");
-						skills[skillOrder[i]] = skillValue;
-						skillTexts[skillOrder[i]] = skillText;
-						skillNames[skillOrder[i]] = skillName;
-					}
-				}
-				else {
-					var skillOrder = ["stamina", "keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
-					var cells = skillTable.getElementsByTagName("td");
-					for (var i = 0; i < skillOrder.length; ++i) {
-						var skillLink = cells[2 * i + 1].getElementsByTagName("a")[0];
-						var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
-						var skillText = Foxtrick.trim(skillLink.textContent);
-						var skillName = Foxtrick.trim(cells[2 * i].textContent).replace(":", "")
-						skills[skillOrder[i]] = skillValue;
-						skillTexts[skillOrder[i]] = skillText;
-						skillNames[skillOrder[i]] = skillName;
-					}
-				}
-			}
-			else if (this.isYouthPlayerPage(doc)) {
-				var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
-				var rows = skillTable.getElementsByTagName("tr");
-				for (var i = 0; i < skillOrder.length; ++i) {
-					skills[skillOrder[i]] = {};
-					var skillImgs = rows[i].getElementsByTagName("img");
-					if (skillImgs.length > 0) {
-						var max = skillImgs[0].getAttribute("title").match(/\d/);
-						var current = skillImgs[1].title.match(/-?\d/);
-						var unknown = skillImgs[1].title.match(/-1/);
-						var maxed = !current;
-						skills[skillOrder[i]].maxed = false;
-						if (maxed) {
-							current = max;
-							skills[skillOrder[i]].maxed = true;
+						skills[skillOrder[i]] = {};
+						var skillImgs = rows[i].getElementsByTagName("img");
+						if (skillImgs.length > 0) {
+							var max = skillImgs[0].getAttribute("title").match(/\d/);
+							var current = skillImgs[1].title.match(/-?\d/);
+							var unknown = skillImgs[1].title.match(/-1/);
+							var maxed = !current;
+							skills[skillOrder[i]].maxed = false;
+							if (maxed) {
+								current = max;
+								skills[skillOrder[i]].maxed = true;
+							}
+							// if current and/or max is unknown, mark it as 0
+							skills[skillOrder[i]].current = parseInt(unknown ? 0 : current);
+							skills[skillOrder[i]].max = parseInt(max ? max : 0);
 						}
-						// if current and/or max is unknown, mark it as 0
-						skills[skillOrder[i]].current = parseInt(unknown ? 0 : current);
-						skills[skillOrder[i]].max = parseInt(max ? max : 0);
-					}
-					else {
-						// no image is present, meaning nothing about
-						// that skill has been revealed
-						skills[skillOrder[i]] = { current : 0, max : 0, maxed : false };
-					}
-					var currentText = "";
-					var maxText = "";
-					var skillCell = rows[i].getElementsByTagName("td")[1];
-					if (skillCell.getElementsByClassName("youthSkillBar").length > 0) {
-						// bar is present
-						// skills could either be a skill or unknown
-						var isSkill = function(node) {
-							return Foxtrick.hasClass(node, "skill")
-								|| Foxtrick.hasClass(node, "shy");
-						};
-						var textNodes = Foxtrick.filter(skillCell.getElementsByClassName("youthSkillBar")[0].childNodes, isSkill);
-						Foxtrick.dump("Length: " + textNodes.length + "\n");
-						if (textNodes.length >= 2) {
-							[currentText, maxText] = [textNodes[0].textContent, textNodes[1].textContent];
+						else {
+							// no image is present, meaning nothing about
+							// that skill has been revealed
+							skills[skillOrder[i]] = { current : 0, max : 0, maxed : false };
 						}
+						var currentText = "";
+						var maxText = "";
+						var skillCell = rows[i].getElementsByTagName("td")[1];
+						if (skillCell.getElementsByClassName("youthSkillBar").length > 0) {
+							// bar is present
+							// skills could either be a skill or unknown
+							var isSkill = function(node) {
+								return Foxtrick.hasClass(node, "skill")
+									|| Foxtrick.hasClass(node, "shy");
+							};
+							var textNodes = Foxtrick.filter(skillCell.getElementsByClassName("youthSkillBar")[0].childNodes, isSkill);
+							Foxtrick.dump("Length: " + textNodes.length + "\n");
+							if (textNodes.length >= 2) {
+								[currentText, maxText] = [textNodes[0].textContent, textNodes[1].textContent];
+							}
+						}
+						else {
+							// no images, the cell says "unknown"
+							currentText = maxText = Foxtrick.trim(skillCell.textContent);
+						}
+						skillTexts[skillOrder[i]] = { current : currentText, max : maxText };
+						skillNames[skillOrder[i]] = Foxtrick.trim(rows[i].getElementsByTagName("td")[0].textContent).replace(":", "");
 					}
-					else {
-						// no images, the cell says "unknown"
-						currentText = maxText = Foxtrick.trim(skillCell.textContent);
-					}
-					skillTexts[skillOrder[i]] = { current : currentText, max : maxText };
-					skillNames[skillOrder[i]] = Foxtrick.trim(rows[i].getElementsByTagName("td")[0].textContent).replace(":", "");
 				}
 			}
 			return { values : skills, texts : skillTexts, names : skillNames };

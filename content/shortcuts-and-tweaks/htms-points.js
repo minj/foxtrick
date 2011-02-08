@@ -56,9 +56,16 @@ var FoxtrickHTMSPoints = {
 		if ((page=="playerdetail") && AddToPlayer) {
 			var age = Foxtrick.Pages.Player.getAge(doc);
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
-			if (skills === null)
+			if (skills === null) {
 				return; // no skills available, goodbye
-
+			}
+			else {
+				//sometimes skills is not null, but skills aren't visible and skills.values is undefined
+				if (skills.values) {
+					return;
+				}
+			}
+				
 			var skillList='&anni='+age.years+'&giorni='+age.days;
 			//checking if bars or not
 			var hasBars = (doc.getElementsByClassName("percentImage").length > 0);
@@ -133,32 +140,40 @@ var FoxtrickHTMSPoints = {
 			}
 		}
 		if ((page=="players") && AddToPlayerList) {
-			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 			var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
+			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 			var players=Foxtrick.Pages.Players.getPlayerList(doc, true);
+			//check if skill are visible isn't possible because skills are always set
+			//if (players[0][skillOrder[0]]==0) return;
+
 			var playersHtml=doc.getElementsByClassName("playerList")[0].getElementsByClassName("playerInfo");
 			for (var p=0;p<players.length;p++) {
 				//getting skills...
+				var totSkills=0;
 				var skillList='&anni='+players[p].age.years+'&giorni='+players[p].age.days;
 				for (var i=0;i<7;i++) {
 					skillList+='&'+htmsValues[i]+'='+players[p][skillOrder[i]];
+					totSkills+=players[p][skillOrder[i]];
 				}
 
-				// create elements
-				var container = doc.createElement("div");
-				container.className = "ft-htms-points";
-				container.appendChild(getLink(skillList));
-				container.appendChild(doc.createTextNode(" "));
-				var points = doc.createElement("span");
-				points.appendChild(Foxtrick.util.note.createLoading(doc, true));
-				container.appendChild(points);
+				//Only if skill are relevant we show points
+				if (totSkills>0) {
+					// create elements
+					var container = doc.createElement("div");
+					container.className = "ft-htms-points";
+					container.appendChild(getLink(skillList));
+					container.appendChild(doc.createTextNode(" "));
+					var points = doc.createElement("span");
+					points.appendChild(Foxtrick.util.note.createLoading(doc, true));
+					container.appendChild(points);
 
-				// insert it
-				var tables = playersHtml[p].getElementsByTagName("table");
-				var before = tables.item(0).nextSibling;
-				before.parentNode.insertBefore(container, before);
-
-				request(skillList, points);
+					// insert it
+					var tables = playersHtml[p].getElementsByTagName("table");
+					var before = tables.item(0).nextSibling;
+					before.parentNode.insertBefore(container, before);
+				
+					request(skillList, points);
+				}
 			}
 		}
 	}
