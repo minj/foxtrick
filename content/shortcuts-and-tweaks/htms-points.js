@@ -59,16 +59,11 @@ var FoxtrickHTMSPoints = {
 			if (skills === null) {
 				return; // no skills available, goodbye
 			}
-			else {
-				//sometimes skills is not null, but skills aren't visible and skills.values is undefined
-				if (skills.values) {
-					return;
-				}
-			}
 				
 			var skillList='&anni='+age.years+'&giorni='+age.days;
 			//checking if bars or not
 			var hasBars = (doc.getElementsByClassName("percentImage").length > 0);
+			var totSkills=0;
 			if (hasBars) {
 				//bars
 				var htmsValues = ['parate', 'difesa', 'regia', 'cross', 'passaggi', 'attacco', 'cp'];
@@ -76,6 +71,7 @@ var FoxtrickHTMSPoints = {
 				for (var i in skills.names) {
 					//Foxtrick.dump('text: '+skills.texts[i]+' name: '+skills.names[i]+'\n');
 					skillList+='&'+htmsValues[j]+'='+skills.values[i];
+					totSkills+=skills.values[i];
 					j++;
 				}
 			}
@@ -90,21 +86,24 @@ var FoxtrickHTMSPoints = {
 					}
 					else {
 						skillList+='&'+htmsValues[j]+'='+skills.values[i];
+						totSkills+=skills.values[i];
 						j++;
 					}
 				}
 			}
 
-			//creating the new element
-			var table = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').getElementsByTagName('table').item(0);
-			var row = table.insertRow(table.rows.length);
-			row.className = "ft-htms-points";
-			var link = row.insertCell(0);
-			link.appendChild(getLink(skillList));
-			var points = row.insertCell(1);
-			points.appendChild(Foxtrick.util.note.createLoading(doc, true));
+			if (totSkills>0) {
+				//creating the new element
+				var table = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').getElementsByTagName('table').item(0);
+				var row = table.insertRow(table.rows.length);
+				row.className = "ft-htms-points";
+				var link = row.insertCell(0);
+				link.appendChild(getLink(skillList));
+				var points = row.insertCell(1);
+				points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 
-			request(skillList, points);
+				request(skillList, points);
+			}
 		}
 		if ((page=="transferSearchResult") && AddToSearchResult) {
 			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
@@ -118,25 +117,36 @@ var FoxtrickHTMSPoints = {
 			for (var p=0; p<players.length; ++p, ++cellId) {
 				//searching in which row is the player
 				do {
-					rowId=rowId+8;
+					rowId+=8;
 				} while (transferTable.rows[rowId].style.display=='none');
 
-				//getting skills
-				var skillList='&anni='+players[cellId].age.years+'&giorni='+players[cellId].age.days;
-				for (var i=0;i<7;i++) {
-					skillList+='&'+htmsValues[i]+'='+players[cellId][skillOrder[i]];
-				}
-				//creating element
-				var row = transferTable.rows[rowId].getElementsByTagName('table')[0].rows[0];
-				var container = row.insertCell(row.cells.length);
-				container.className = "ft-htms-points";
-				container.appendChild(getLink(skillList));
-				container.appendChild(doc.createTextNode(" "));
-				var points = doc.createElement("span");
-				points.appendChild(Foxtrick.util.note.createLoading(doc, true));
-				container.appendChild(points);
+				//Foxtrick.dump('htmsp: '+rowId+' : '+transferTable.rows[rowId+1].id+'\n');
+				//if in the next row there isn't the following id, player is sold and skills aren't visible
+				if (transferTable.rows[rowId+1].id.match(/_TransferPlayer_r1/)) {
+					//getting skills
+					var skillList='&anni='+players[cellId].age.years+'&giorni='+players[cellId].age.days;
+					for (var i=0;i<7;i++) {
+						skillList+='&'+htmsValues[i]+'='+players[cellId][skillOrder[i]];
+					}
+					//creating element
+					var row = transferTable.rows[rowId].getElementsByTagName('table')[0].rows[0];
+					var container = row.insertCell(row.cells.length);
+					container.className = "ft-htms-points";
+					container.appendChild(getLink(skillList));
+					container.appendChild(doc.createTextNode(" "));
+					var points = doc.createElement("span");
+					points.appendChild(Foxtrick.util.note.createLoading(doc, true));
+					container.appendChild(points);
 
-				request(skillList, points);
+					request(skillList, points);
+				}
+				else {
+					//player is sold, there aren't the skills, we have to come back
+					rowId-=6;
+					//player is also not inserted in list, we come back
+					p--;
+					cellId--;
+				}
 			}
 		}
 		if ((page=="players") && AddToPlayerList) {
