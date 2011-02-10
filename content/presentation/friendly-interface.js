@@ -23,7 +23,29 @@ FoxtrickFriendlyInterface = {
 				name.style.whiteSpace = "nowrap";
 				name.style.maxWidth = "73px";
 				var link = name.getElementsByTagName("a")[0];
-				link.textContent = link.title;
+				var setName = function(s) {
+					link.textContent = s;
+				};
+				const original = link.textContent; // original name shown in link
+				const full = link.title; // full name shown in link title
+				if (original.substr(1, 2) == ". ") { // in form like "J. Doe"
+					const initial = original[0]; // first character of first name
+					const lastNameShown = original.substr(3);
+					// ellipsis as the last two characters, remove it
+					if (lastNameShown.substr(lastNameShown.length - 2) == "..") {
+						const firstNameLength = original.match(RegExp("^(" + initial + "\\S*)\\s"))[1].length;
+						const remaining = full.substr(firstNameLength + 1); // remove space after first name
+						const lastNamePos = remaining.indexOf(lastNameShown.substr(0, lastNameShown.length - 2));
+						const lastName = remaining.substr(lastNamePos);
+						setName(initial + ". " + lastName);
+					}
+					else {
+						setName(original);
+					}
+				}
+				else { // in form like "Jesus"
+					setName(full);
+				}
 			}
 		}
 		if (page == "playerdetail"

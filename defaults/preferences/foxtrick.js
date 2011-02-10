@@ -170,7 +170,7 @@ pref("extensions.foxtrick.prefs.module.FoxtrickAlert.NewMail.enabled", false);
 pref("extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.enabled", true);
 pref("extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.enabled", false);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.enabled", true);
-pref("extensions.foxtrick.prefs.module.FriendlyInterface.FullPlayerNameInLineUp.enabled", false);
+pref("extensions.foxtrick.prefs.module.FriendlyInterface.FullPlayerNameInLineUp.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.NtLinkForNtPlayer.enabled", true);
 pref("extensions.foxtrick.prefs.module.GoaldifferenceToTables.enabled", true);
 pref("extensions.foxtrick.prefs.module.GoToPostBox.enabled", true);
