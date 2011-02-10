@@ -1270,6 +1270,13 @@ Foxtrick.filter = function(array, func) {
 	return ret;
 }
 
+Foxtrick.some = function(array, func) {
+	for (var i = 0; i < array.length; ++i)
+		if (func(array[i]))
+			return true;
+	return false;
+}
+
 Foxtrick.copyStringToClipboard = function (string) {
 	if (Foxtrick.BuildFor === "Gecko") {
 		var gClipboardHelper = Components
