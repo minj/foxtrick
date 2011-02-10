@@ -119,8 +119,9 @@ var FoxtrickGuestbookHTMSFlags = {
 				var mySpan = doc.createElement('span');
 				var spanId = "foxtrick_htmsspan_"+count;
 				mySpan.setAttribute( "id", spanId );
-				mySpan.innerHTML = ' <a href="' + linkpage + userId +
-					'"target="_blank"><img style="' + style + '" src="' + 
+				mySpan.innerHTML = ' <a href="' + link.href
+					+ '&redir_to_league=true"' +
+					'><img style="' + style + '" src="' + 
 					flagspage + userId + '" border="0"' +
 					'height="12" /></a>';
 				var target = link.nextSibling;
