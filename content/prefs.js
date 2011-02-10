@@ -215,13 +215,8 @@ var FoxtrickPrefs = {
 		var existing = FoxtrickPrefs.getList( list_name );
 
 		// already exists?
-		var exists = existing.some(
-			function( el ) {
-				if ( el == pref_value ) {
-					return true;
-				}
-			}
-		);
+		var exists = Foxtrick.some(existing,
+			function(val) { return (val == pref_value); });
 
 		if ( !exists ) {
 			existing.push( pref_value );
@@ -275,15 +270,10 @@ var FoxtrickPrefs = {
 	/** Remove a list element. */
 	delListPref : function( list_name, pref_value ) {
 		var existing = FoxtrickPrefs.getList( list_name );
+		var remaining = Foxtrick.filter(existing,
+			function(val) { return (val != pref_value); });
 
-		existing = existing.filter(
-			function( el ) {
-				if ( el != pref_value )
-					return el;
-			}
-		);
-
-		FoxtrickPrefs._populateList(list_name, existing);
+		FoxtrickPrefs._populateList(list_name, remaining);
 	},
 
 	/** Populate list_name with given array deleting if exists */
