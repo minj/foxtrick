@@ -120,18 +120,20 @@ var FoxtrickCopyPlayerAd = {
 			// form, stamina, experience, leadership, personality (always there)
 			// for youth players:
 			// speciality (only when he has a speciality)
-			var basicInfo = playerInfo.getElementsByTagName("p")[0];
-			if (basicInfo) {
-				if (isSenior) {
-					// add new lines before <br> so that textContent would have breaks
-					// at <br>s.
-					var basicInfoBreaks = basicInfo.getElementsByTagName("br");
-					for (var i = 0; i < basicInfoBreaks.length; ++i) {
-						basicInfoBreaks[i].parentNode.insertBefore(doc.createTextNode("\n"), basicInfoBreaks[i]);
-					}
-					ad += Foxtrick.trim(basicInfo.textContent) + "\n\n";
+			if (isSenior) {
+				// add new lines before <br> so that textContent would have breaks
+				// at <br>s.
+				var basicInfo = playerInfo.cloneNode(true);
+				basicInfo.removeChild(basicInfo.getElementsByTagName("table")[0]);
+				var basicInfoBreaks = basicInfo.getElementsByTagName("br");
+				for (var i = 0; i < basicInfoBreaks.length; ++i) {
+					basicInfoBreaks[i].parentNode.insertBefore(doc.createTextNode("\n"), basicInfoBreaks[i]);
 				}
-				else {
+				ad += Foxtrick.trim(basicInfo.textContent) + "\n\n";
+			}
+			else {
+				var basicInfo = playerInfo.getElementsByTagName("p")[0];
+				if (basicInfo) {
 					var speciality = Foxtrick.trim(basicInfo.textContent);
 					// we will bold the speciality part, right after
 					// colon plus space
