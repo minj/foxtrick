@@ -43,7 +43,9 @@ var FoxtrickHighlightCupwins = {
 			var draw = (goalsHome === goalsAway); // 0 - 0 if match isn't played yet
 			var lose = (goalsHome < goalsAway);
 			var matchlink = table.rows[i].cells[3].getElementsByTagName('a')[0];
-			[homeTeam, awayTeam] = matchlink.textContent.split(/\s+\-\s+/);
+			const teams = matchlink.textContent.split(/\s+\-\s+/);
+			const homeTeam = teams[0];
+			const awayTeam = teams[1];
 			if (win) {
 				if (highlightHomeWin) {
 					table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
