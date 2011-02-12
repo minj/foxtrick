@@ -58,7 +58,7 @@ var FoxtrickSeriesFlags = {
 			// add to current owner
 			var mainBody = doc.getElementById("mainBody");
 			var links = mainBody.getElementsByTagName("a");
-			var teamLinks = Foxtrick.filter(links, function(n) { return (Foxtrick.isTeamDetailUrl(n.href) >= 0); });
+			var teamLinks = Foxtrick.filter(links, function(n) { return (FoxtrickHelper.isTeamDetailUrl(n.href)); });
 			modifyTeamLinks(teamLinks);
 		}
 	}
