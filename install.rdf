@@ -10,59 +10,12 @@
 
 		<em:creator>Karel Kolman</em:creator>
 
-		<em:homepageURL>http://ht-foxtrick.com/</em:homepageURL>
+		<em:homepageURL>http://code.google.com/p/foxtrick/</em:homepageURL>
 		<em:iconURL>chrome://foxtrick/skin/icon.png</em:iconURL>
 		<em:icon64URL>chrome://foxtrick/skin/icon-64.png</em:icon64URL>
 		<em:optionsURL>chrome://foxtrick/content/preferences.xhtml</em:optionsURL>
 		<em:aboutURL>chrome://foxtrick/content/preferences.xhtml#tab=about</em:aboutURL>
 		<em:updateURL>https://foxtrick.c6.ixwebhosting.com/nightly/update.rdf</em:updateURL>
-
-		<em:developer>larsw84</em:developer>
-		<em:developer>Mod-spambot</em:developer>
-		<em:developer>convincedd</em:developer>
-		<em:developer>bummerland</em:developer>
-		<em:developer>taised</em:developer>
-		<em:developer>smates</em:developer>
-		<em:developer>baumanns</em:developer>
-		<em:developer>ryanli</em:developer>
-
-		<em:contributor>Aimo_Kanuuna</em:contributor>
-
-		<em:translator>Albanian: MOD-odris</em:translator>
-		<em:translator>Bosnian: Mod-Marin, ljushaff</em:translator>
-		<em:translator>Беларуская : LA-Stolik</em:translator>
-		<em:translator>Catalan: carlesmu</em:translator>
-		<em:translator>Cesky: gucan</em:translator>
-		<em:translator>Croatian: GM-damyr</em:translator>
-		<em:translator>Dansk: 05erth, LasseSvendsen</em:translator>
-		<em:translator>Deutsch: Mod-spambot</em:translator>
-		<em:translator>Dutch: eekels</em:translator>
-		<em:translator>Ellinika: GTTWINS</em:translator>
-		<em:translator>Español: franory</em:translator>
-		<em:translator>Español, Centroamericano: baler0</em:translator>
-		<em:translator>Español, Sudamericano: baler0, ElChiquitin</em:translator>
-		<em:translator>Francais: stephan57, Mod-Karlthegreat</em:translator>
-		<em:translator>Frysk: LA-Foppe</em:translator>
-		<em:translator>Galego: Piper_101</em:translator>
-		<em:translator>Hungarian: csajszi</em:translator>
-		<em:translator>Italiano: caracca</em:translator>
-		<em:translator>Lithuanian: Mod-summercloud</em:translator>
-		<em:translator>Luxembourgish: Mod-Karlthegreat</em:translator>
-		<em:translator>Macedonian: white_eagle</em:translator>
-		<em:translator>Malti: LA-saviour26</em:translator>
-		<em:translator>Norwegian, bokmal: Skoglund</em:translator>
-		<em:translator>Polski: Homzik</em:translator>
-		<em:translator>Portugues: _recluso_, ei04004, McTripas, MEO_Comandante</em:translator>
-		<em:translator>Portugues, Brasil: MarceloFBrandao</em:translator>
-		<em:translator>Romanian: slader</em:translator>
-		<em:translator>Russian: _KOHb_</em:translator>
-		<em:translator>Slovak: JAM3SoN</em:translator>
-		<em:translator>Srpski: ljushaff</em:translator>
-		<em:translator>Suomi: Pyntsa, ElChiquitin</em:translator>
-		<em:translator>Svenska: GM-murko, GM-Nanouk</em:translator>
-		<em:translator>Tiếng Việt: Murtagsh</em:translator>
-		<em:translator>Ukrainian: Grif_07</em:translator>
-		<em:translator>中文（简体）: ryanli</em:translator>
 
 		<!-- Firefox -->
 		<em:targetApplication>
