@@ -147,7 +147,7 @@ Foxtrick.modules = [
 	FoxtrickLiveAlert,
 	FoxtrickOldStyleFace,
 	FoxtrickNtPeek,
-	FoxtrickGuestbookHTMSFlags,
+	FoxtrickSeriesFlags,
 	FoxtrickHTMSPoints,
 	FoxtrickFriendlyInterface
 ];

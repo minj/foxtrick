@@ -1,15 +1,15 @@
 /**
  * friendly-interface
  * More friendly interface tweaks
- * @author ryanli
+ * @author ryanli, convincedd
  */
 
 FoxtrickFriendlyInterface = {
 	MODULE_NAME : "FriendlyInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["matchLineup", "playerdetail"],
+	PAGES : ["matchLineup", "playerdetail", "guestbook"],
 
-	OPTIONS : ["FullPlayerNameInLineUp", "NtLinkForNtPlayer"],
+	OPTIONS : ["FullPlayerNameInLineUp", "NtLinkForNtPlayer", "HideAnswerTo"],
 
 	run : function(page, doc) {
 		if (page == "matchLineup"
@@ -78,6 +78,17 @@ FoxtrickFriendlyInterface = {
 				else if (text.indexOf(ntName) > -1) // nt player
 					replace(ntName, ntId);
 			}
+		}
+		if (page == "guestbook"
+			&& Foxtrick.isModuleFeatureEnabled(this, "HideAnswerTo")) {
+			var answerToLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/Guestbook\.aspx/i) >= 0); });
+			Foxtrick.map(answerToLinks, function(n) {
+				n.style.display="none";
+				n.parentNode.style.marginBottom = "2px";
+				n.parentNode.style.marginTop = "-15px";
+				n.parentNode.style.cssFloat = "right";
+				n.parentNode.style.backgroundColor = "white";
+			});
 		}
 	}
 };
