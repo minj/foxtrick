@@ -26,17 +26,17 @@ FoxtrickFriendlyInterface = {
 				var setName = function(s) {
 					link.textContent = s;
 				};
-				const original = link.textContent; // original name shown in link
-				const full = link.title; // full name shown in link title
+				var original = link.textContent; // original name shown in link
+				var full = link.title; // full name shown in link title
 				if (original.substr(1, 2) == ". ") { // in form like "J. Doe"
-					const initial = original[0]; // first character of first name
-					const lastNameShown = original.substr(3);
+					var initial = original[0]; // first character of first name
+					var lastNameShown = original.substr(3);
 					// ellipsis as the last two characters, remove it
 					if (lastNameShown.substr(lastNameShown.length - 2) == "..") {
-						const firstNameLength = original.match(RegExp("^(" + initial + "\\S*)\\s"))[1].length;
-						const remaining = full.substr(firstNameLength + 1); // remove space after first name
-						const lastNamePos = remaining.indexOf(lastNameShown.substr(0, lastNameShown.length - 2));
-						const lastName = remaining.substr(lastNamePos);
+						var firstNameLength = original.match(RegExp("^(" + initial + "\\S*)\\s"))[1].length;
+						var remaining = full.substr(firstNameLength + 1); // remove space after first name
+						var lastNamePos = remaining.indexOf(lastNameShown.substr(0, lastNameShown.length - 2));
+						var lastName = remaining.substr(lastNamePos);
 						setName(initial + ". " + lastName);
 					}
 					else {
