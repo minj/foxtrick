@@ -1,5 +1,5 @@
 /**
-* guestbookhtmsflags.js
+* guestbook-htms-flags.js
 * Foxtrick Show HTMS flags in guestbook posts module
 * is an adaptation of old guestbookalltidflags.js module, removed since r4686
 * @author taised
@@ -7,33 +7,27 @@
 */
 
 ////////////////////////////////////////////////// //////////////////////////////
-//---------------------------------------------------------------------------    
+//---------------------------------------------------------------------------
 
 var FoxtrickGuestbookHTMSFlags = {
 
 	MODULE_NAME : "GuestbookHTMSFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('guestbook', 'teamPage', 'league', 'youthleague', 'oldcoaches', 'oldplayers', 'federation'), 
-	DEFAULT_ENABLED : true,
-	LATEST_CHANGE:"Inserted as copy of Alltid flags",
-	OPTIONS : new Array("AddHTMSFlags","HideAnswerToLinks", "AddHTMSFlagsToSupporters", "AddHTMSFlagsToVisitors", "AddHTMSFlagsToOldies"),
-	
-	init : function() {
-	},
+	PAGES : ['guestbook', 'teamPage', 'league', 'youthleague', 'oldcoaches', 'oldplayers', 'federation'],
+	OPTIONS : ["AddHTMSFlags","HideAnswerToLinks", "AddHTMSFlagsToSupporters", "AddHTMSFlagsToVisitors", "AddHTMSFlagsToOldies"],
 
 	run : function( page, doc ) {
-	try{
 		var AddHTMSFlags = Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlags");
 		var HideAnswerToLinks = Foxtrick.isModuleFeatureEnabled( this, "HideAnswerToLinks");
-		
+
 		var lang = FoxtrickPrefs.getString("htLanguage");
 		var flagspageBase = "http://www.fantamondi.it/HTMS/userstat.php?";
 		var flagspage = flagspageBase;
 		var linkpage = "http://www.fantamondi.it/HTMS/index.php?page=userstats&lang="+lang+"&userid=";
 		var style ="vertical-align: middle; background-color:#849D84;";
-		
+
 		var outerdiv = doc.getElementById('mainWrapper');
-		var count =0; 
+		var count =0;
 		var linksArray = outerdiv.getElementsByTagName('a');
 		var div = null;
 		for (var j=0; j<linksArray.length; j++) {
@@ -73,7 +67,7 @@ var FoxtrickGuestbookHTMSFlags = {
 								var userId = link.href.replace(/.+userId=/i, "").match(/^\d+/);
 							}
 						}
-						
+
 						if (myparent.getElementsByTagName('table').length>0) {
 							//there's a table inside the mainBox: it is the visitor list
 							//Foxtrick.dump('link '+link.innerHTML+' visitor\n');
@@ -101,11 +95,11 @@ var FoxtrickGuestbookHTMSFlags = {
 				if ((page=='oldplayers') || (page=='oldcoaches')) {
 					if (Foxtrick.isModuleFeatureEnabled( this, "AddHTMSFlagsToOldies")) {
 						var myparent=link.parentNode;
-						while (myparent.nodeName!='DIV') {
+						while (myparent
+							&& myparent.nodeName.toLowerCase() != "div") {
 							myparent=myparent.parentNode;
 						}
 						if (myparent.className=='playerInfo') {
-							Foxtrick.dump('link '+link.innerHTML+'\n');
 							flagspage=flagspageBase + 'teamid=';
 							toadd=true;
 							var userId = link.href.replace(/.+TeamID=/i, "").match(/^\d+/);
@@ -121,7 +115,7 @@ var FoxtrickGuestbookHTMSFlags = {
 				mySpan.setAttribute( "id", spanId );
 				mySpan.innerHTML = ' <a href="' + link.href
 					+ '&redir_to_league=true"' +
-					'><img style="' + style + '" src="' + 
+					'><img style="' + style + '" src="' +
 					flagspage + userId + '" border="0"' +
 					'height="12" /></a>';
 				var target = link.nextSibling;
@@ -140,7 +134,7 @@ var FoxtrickGuestbookHTMSFlags = {
 							link.parentNode.insertBefore(mySpan, target);
 						}
 					}
-					
+
 				}
 				count++;
 			}
@@ -151,15 +145,5 @@ var FoxtrickGuestbookHTMSFlags = {
 				if (div) div.style.padding='5px 5px 10px';
 			}
 		}
-		
-		} catch (e) {Foxtrick.dump('FoxtrickGuestbookHTMSFlags->'+e+'\n');}
-	},
-	
-	change : function( page, doc ) {
-		var spanId = "foxtrick_htmsspan_0";  // id of first added flag
-		if( !doc.getElementById ( spanId ) ) {
-			this.run( page, doc );
-		}
-	}	
-						
+	}
 };
