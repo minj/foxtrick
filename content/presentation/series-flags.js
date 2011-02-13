@@ -1,8 +1,7 @@
 /**
 * series-flags.js
 * Show series flags beside manager links and/or team links
-* adapted from old guestbookalltidflags.js, removed since r4686
-* @author convinced, taised, ryanli
+* @author taised, ryanli
 */
 
 ////////////////////////////////////////////////// //////////////////////////////
@@ -36,25 +35,41 @@ var FoxtrickSeriesFlags = {
 			});
 		};
 
-		if (page == "guestbook"
-			&& Foxtrick.isModuleFeatureEnabled(this, "Guestbook")) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "Guestbook")
+			&& (page == "guestbook")) {
 			// add to guest managers
 			var mainWrapper = doc.getElementById("mainWrapper");
 			var links = mainWrapper.getElementsByTagName("a");
 			var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
 			modifyUserLinks(userLinks);
 		}
-		else if ((page == "teamPage" || page == "league"
-			|| page == "youthleague" || page == "federation")
-			&& Foxtrick.isModuleFeatureEnabled(this, "Visitors")) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "Supporters")
+			&& (page == "teamPage")) {
+			// add to supporters
+			var sideBar = doc.getElementById("sidebar");
+			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");
+			// supporters box is among the boxes without a table
+			var nonVisitorsBoxes = Foxtrick.filter(sideBarBoxes, function(n) { return n.getElementsByTagName("table").length == 0; });
+			Foxtrick.map(nonVisitorsBoxes, function(b) {
+				var links = b.getElementsByTagName("a");
+				var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
+				modifyUserLinks(userLinks);
+			});
+		}
+		if (Foxtrick.isModuleFeatureEnabled(this, "Visitors")
+			&& (page == "teamPage" || page == "league"
+				|| page == "youthleague" || page == "federation")) {
 			// add to visitors
 			var sideBar = doc.getElementById("sidebar");
-			var links = sideBar.getElementsByTagName("a");
+			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");
+			// visitors box is the box with a table
+			var visitorsBox = Foxtrick.filter(sideBarBoxes, function(n) { return n.getElementsByTagName("table").length > 0; })[0];
+			var links = visitorsBox.getElementsByTagName("a");
 			var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
 			modifyUserLinks(userLinks);
 		}
-		else if ((page == "oldcoaches" || page == "oldplayers")
-			&& Foxtrick.isModuleFeatureEnabled(this, "Oldies")) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "Oldies")
+			&& (page == "oldcoaches" || page == "oldplayers")) {
 			// add to current owner
 			var mainBody = doc.getElementById("mainBody");
 			var links = mainBody.getElementsByTagName("a");
