@@ -51,7 +51,7 @@ var FoxtrickMain = {
 		// initialize all enabled modules
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module))
+			if (Foxtrick.isModuleEnabled(module)
 				&& (typeof(module.init) == "function")) {
 				try {
 					module.init();
@@ -463,8 +463,7 @@ Foxtrick.registerModulePages = function(module) {
 					// if ONPAGEPREF_PAGE is not set, add all
 					Foxtrick.may_run_on_page[module.PAGES[i]].push(module);
 				}
-				if (Foxtrick.isCoreModule(module)
-					|| Foxtrick.isModuleEnabled(module)) {
+				if (Foxtrick.isModuleEnabled(module)) {
 					Foxtrick.run_on_page[module.PAGES[i]].push(module);
 				}
 			}
@@ -596,6 +595,8 @@ Foxtrick.isCoreModule = function(module) {
 
 Foxtrick.isModuleEnabled = function(module) {
 	try {
+		if (module.CORE_MODULE)
+			return true;
 		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
 		const val = Boolean(FoxtrickPrefs.getBool("module." + moduleName + ".enabled"));
 		return val;
@@ -731,7 +732,7 @@ Foxtrick.reload_module_css = function(doc) {
 					Foxtrick.unload_css_permanent (module.OLD_CSS);
 				}
 				if (module.CSS_SIMPLE) {
-					if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module)) && !FoxtrickMain.isStandard) {
+					if (Foxtrick.isModuleEnabled(module) && !FoxtrickMain.isStandard) {
 						if (!isRTL || !module.CSS_SIMPLE_RTL) {
 							Foxtrick.load_css_permanent (module.CSS_SIMPLE);
 							if (module.CSS_SIMPLE_RTL)
@@ -749,7 +750,7 @@ Foxtrick.reload_module_css = function(doc) {
 					}
 				}
 				if (module.CSS) {
-					if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module)) && (!module.CSS_SIMPLE || FoxtrickMain.isStandard)) {
+					if (Foxtrick.isModuleEnabled(module) && (!module.CSS_SIMPLE || FoxtrickMain.isStandard)) {
 						if (!isRTL || !module.CSS_RTL){
 							Foxtrick.load_css_permanent (module.CSS) ;
 							if (module.CSS_RTL)
@@ -768,7 +769,7 @@ Foxtrick.reload_module_css = function(doc) {
 				}
 				if (module.OPTIONS_CSS) {
 					for (var k=0; k<module.OPTIONS_CSS.length;++k) {
-						if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module)) && Foxtrick.isModuleFeatureEnabled(module, module.OPTIONS[k])) {
+						if (Foxtrick.isModuleEnabled(module) && Foxtrick.isModuleFeatureEnabled(module, module.OPTIONS[k])) {
 							if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
 						 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
 									Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
