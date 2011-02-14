@@ -66,28 +66,13 @@ var FoxtrickMain = {
 			}
 		}
 
-		if (Foxtrick && Foxtrick.statusbarDeactivate) {
-			Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
-		}
-
 		Foxtrick.dump("FoxTrick initialization completed.\n");
 	},
 
 	registerOnPageLoad : function(document) {
 		try {
-			if (!(Foxtrick.BuildFor === "Gecko"))
+			if (Foxtrick.BuildFor !== "Gecko")
 				return;
-			// update status bar
-			Foxtrick.updateStatus();
-
-			// status bar menu
-			var statusbarPreferences = document.getElementById("foxtrick-status-bar-preferences");
-			statusbarPreferences.setAttribute("label", Foxtrickl10n.getString("preferences"));
-			var statusbarDeactivate = document.getElementById("foxtrick-status-bar-deactivate");
-			statusbarDeactivate.setAttribute("label", Foxtrickl10n.getString(
-				"foxtrick.prefs.disableTemporaryLabel"));
-			statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
-			Foxtrick.statusbarDeactivate=statusbarDeactivate;
 
 			// calls module.onLoad() after the browser window is loaded
 			for (var i in Foxtrick.modules) {
@@ -102,10 +87,6 @@ var FoxtrickMain = {
 					}
 				}
 			}
-
-			// tools menu
-			var toolsMenu = document.getElementById("foxtrick-menu-preferences");
-			toolsMenu.setAttribute("label", Foxtrickl10n.getString("foxtrick.prefs.preferences"));
 
 			var appcontent = document.getElementById("appcontent");
 			if (appcontent) {
@@ -137,11 +118,7 @@ var FoxtrickMain = {
 			var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);
 			var doc = currentBrowser.contentDocument;
 
-			Foxtrick.updateStatus();
-
-			if (Foxtrick.isHt(doc)) {
-				FoxtrickMain.run(doc, true); // recheck css
-			}
+			FoxtrickMain.run(doc, true); // recheck css
 
 			// calls module.onTabChange() after the tab focus is changed
 			for (var i in Foxtrick.modules) {
@@ -203,8 +180,6 @@ var FoxtrickMain = {
 			if (doc.nodeName != "#document")
 				return;
 
-			Foxtrick.updateStatus();
-
 			if (Foxtrick.isHt(doc)) {
 				// check if it's in exclude list
 				for (var i in Foxtrick.pagesExcluded) {
@@ -241,10 +216,10 @@ var FoxtrickMain = {
 		try {
 			if (FoxtrickPrefs.getBool("preferences.updated")) {
 				FoxtrickMain.init();
+				Foxtrick.reload_module_css(doc);
+				FoxtrickMain.cssLoaded = true;
 				FoxtrickPrefs.setBool("preferences.updated", false);
 			}
-
-			Foxtrick.updateStatus();
 
 			// update Foxtrick.lastHost, which is used when opening links
 			// from browser chrome
@@ -375,35 +350,6 @@ var FoxtrickMain = {
 Foxtrick.version = function() {
 	return FoxtrickPrefs.getString("version");
 };
-
-Foxtrick.updateStatus = function() {
-	if (Foxtrick.BuildFor === "Gecko") {
-		var icon = document.getElementById("foxtrick-status-bar-img");
-		var doc = content.document; // get the document of current tab
-
-		var statusText;
-
-		if (FoxtrickPrefs.getBool("disableTemporary")) {
-			// FoxTrick is disabled temporarily
-			icon.setAttribute("status", "disabled");
-			statusText = Foxtrickl10n.getString("status.disabled");
-		}
-		else if (Foxtrick.isHt(doc)
-			&& !(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))) {
-			// FoxTrick is enabled, and active on current page
-			icon.setAttribute("status", "active");
-			statusText = Foxtrickl10n.getString("status.active");
-		}
-		else {
-			// FoxTrick is enabled, but not active on current page
-			icon.setAttribute("status", "enabled");
-			var hostname = doc.location.hostname;
-			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
-		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + this.version() + " (" + statusText + ")";
-		icon.setAttribute("tooltiptext", tooltipText);
-	}
-}
 
 Foxtrick.isPage = function(page, doc) {
 	var htpage_regexp = new RegExp(page.replace(/\./g,'\\.').replace(/\?/g,'\\?'), "i");
