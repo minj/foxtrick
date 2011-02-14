@@ -482,7 +482,7 @@ var FoxtrickPrefs = {
 	disable : function() {
 		var statusBarImg = document.getElementById("foxtrick-status-bar-img");
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
-		Foxtrick.updateStatus();
+		FoxtrickCore.updateStatus();
 		FoxtrickMain.init();
 	}
 };
