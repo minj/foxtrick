@@ -58,8 +58,10 @@ var FoxtrickOnPagePrefs = {
 			var box=doc.getElementById(ownBoxId);
 			if (!box)
 				return; // return quietly if no sidebar is found
-			if (FoxtrickMain.isStandard) Foxtrick.addClass(box,'ft_onpage_prefs_std');
-			else Foxtrick.addClass(box,'ft_onpage_prefs_simple');
+			if (Foxtrick.isStandardLayout(doc))
+				Foxtrick.addClass(box,'ft_onpage_prefs_std');
+			else
+				Foxtrick.addClass(box,'ft_onpage_prefs_simple');
 
 			// clickable header
 			var header = doc.getElementById('foxtrick_OnPagePrefs_box').getElementsByTagName("h2")[0];

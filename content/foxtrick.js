@@ -25,20 +25,12 @@ Foxtrick.may_run_on_page = [];
  * Don't add here unless you have a good reason to. */
 Foxtrick.core_modules = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
 
-/*// remove before release
-Foxtrick.globals=[];
-for (Foxtrick.global in this){Foxtrick.globals.push(Foxtrick.global);} //Foxtrick.globals.sort();
-*/
-
 var FoxtrickMain = {
-	new_start:true,
-	isStandard:true,
-	isRTL:false,
-	vars:null,
-	IsNewVersion:false,
+	isStandard : true,
+	isRTL : false,
 
 	init : function() {
-		Foxtrick.dump('-------------- FoxtrickMain.init start ------------------\n');
+		Foxtrick.dump("Initializing FoxTrick…\n");
 		// init core modules, for Chrome they are initialized in
 		// loader-chrome.js
 		if (Foxtrick.BuildFor !== "Chrome") {
@@ -49,34 +41,23 @@ var FoxtrickMain = {
 		}
 		Foxtrick.MakeStatsHash();
 
-		// check if this is a different version
-		var curVersion = Foxtrick.version();
-		var oldVersion = FoxtrickPrefs.getString("oldVersion");
-		if (oldVersion !== curVersion) {
-			// since the versioning scheme ordering is not exactly the same
-			// as string ordering, only use "!==" here as Firefox itself does.
-			FoxtrickMain.IsNewVersion = true;
-		}
-
-		// create handler arrays for each recognized page
+		// create arrays for each recognized page that contains modules
+		// that run on it
 		for (var i in Foxtrick.ht_pages) {
-			Foxtrick.run_on_page[i] = new Array();
-			Foxtrick.may_run_on_page[i] = new Array();
+			Foxtrick.run_on_page[i] = [];
+			Foxtrick.may_run_on_page[i] = [];
 		}
 
-		// init all modules
+		// initialize all enabled modules
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			// if module has an init() function and is enabled
-			if (module.MODULE_NAME
-				&& (Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module))) {
-				if (typeof(module.init) == "function") {
-					try {
-						module.init();
-					}
-					catch (e) {
-						Foxtrick.dumpError(e);
-					}
+			if ((Foxtrick.isCoreModule(module) || Foxtrick.isModuleEnabled(module))
+				&& (typeof(module.init) == "function")) {
+				try {
+					module.init();
+				}
+				catch (e) {
+					Foxtrick.dumpError(e);
 				}
 			}
 
@@ -89,7 +70,7 @@ var FoxtrickMain = {
 			Foxtrick.statusbarDeactivate.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 		}
 
-		Foxtrick.dump('-------------- FoxtrickMain.init end --------------------\n');
+		Foxtrick.dump("FoxTrick initialization completed.\n");
 	},
 
 	registerOnPageLoad : function(document) {
@@ -183,37 +164,36 @@ var FoxtrickMain = {
 
 	onPageChange : function(ev) {
 		try {
-		var doc = ev.target.ownerDocument;
-		if (ev.target.nodeType !== Node.ELEMENT_NODE)
-			return;
-
-		// not on matchlineup
-		if ( doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
-			 doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
-					return;
-		}
-		// ignore changes list
-		try {
-			if (ev.originalTarget.className
-				&& (ev.originalTarget.className=='boxBody'
-					|| ev.originalTarget.className=='myht1'))
+			var doc = ev.target.ownerDocument;
+			if (ev.target.nodeType !== Node.ELEMENT_NODE)
 				return;
+
+			// not on matchlineup
+			if (doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
+				doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
+				return;
+			}
+			// ignore changes list
+			try {
+				if (ev.originalTarget.className
+					&& (ev.originalTarget.className=='boxBody'
+						|| ev.originalTarget.className=='myht1'))
+					return;
+			}
+			catch (e) {
+				// some browsers doesn't support ev.originalTarget
+			}
+
+			var panel = Foxtrick.getPanel(doc);
+			// remove event listener while Foxtrick executes
+			panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+			FoxtrickMain.change(doc, ev);
+			// re-add event listener
+			panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		}
 		catch (e) {
-			// some browsers doesn't support ev.originalTarget
+			Foxtrick.dumpError(e);
 		}
-
-		var panel = Foxtrick.getPanel(doc);
-		// remove event listener while Foxtrick executes
-		panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-		var begin = new Date();
-		FoxtrickMain.change(doc, ev);
-		var end = new Date();
-		var time = (end.getSeconds() - begin.getSeconds()) * 1000
-				 + end.getMilliseconds() - begin.getMilliseconds();
-		// re-add event listener
-		panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-		} catch (e) {Foxtrick.dumpError(e);}
 	},
 
 	onPageLoad : function(ev) {
@@ -235,8 +215,6 @@ var FoxtrickMain = {
 					}
 				}
 
-				//Foxtrick.dump('---------------------- foxtrick onPageLoad start ----------------\n');
-
 				var begin = new Date();
 				FoxtrickMain.run(doc);
 				var end = new Date();
@@ -246,28 +224,8 @@ var FoxtrickMain = {
 				// listen to page content changes
 				var panel = Foxtrick.getPanel(doc);
 				if (panel) {
-					var add_change = false;
-					for (var page in Foxtrick.ht_pages) {
-						if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
-							// on a specific page, run all handlers
-							for (var i in Foxtrick.run_on_page[page]) {
-								if (page=='all' || page=='all_late') continue;
-								var module = Foxtrick.run_on_page[page][i];
-								if (typeof(module.change) == "function") {
-									add_change = true;
-									break;
-								}
-							}
-						}
-						if (add_change)
-							break;
-					}
-					if (add_change) {
-						panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-					}
+					panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 				}
-				//Foxtrick.dump('add_change: '+add_change+'\n')
-				//Foxtrick.dump('---------------------- foxtrick onPageLoad end -------------------\n')
 			}
 		}
 		catch (e) {
@@ -275,18 +233,12 @@ var FoxtrickMain = {
 		}
 	},
 
-	onPageUnLoad : function(ev) {
-		//Foxtrick.dump('onPageUnLoad\n');
-		var doc = ev.originalTarget;
-		if (doc.nodeName != "#document")
-			return;
-	},
+	// do nothing
+	onPageUnLoad : function(ev) { },
 
 	// main entry run on every ht page load
 	run : function(doc, is_only_css_check) {
 		try {
-			//Foxtrick.dump('----- foxtrickmain run. is_only_css_check: '+(is_only_css_check!=null)+'\n');
-
 			if (FoxtrickPrefs.getBool("preferences.updated")) {
 				FoxtrickMain.init();
 				FoxtrickPrefs.setBool("preferences.updated", false);
@@ -306,46 +258,59 @@ var FoxtrickMain = {
 				// potenial disable cleanup
 				Foxtrick.dump("On Stage: " + Foxtrick.isStage(doc) + ", disabled on stage: " + FoxtrickPrefs.getBool("disableOnStage") + ".\n");
 				Foxtrick.dump("Temporarily disabled: " + FoxtrickPrefs.getBool("disableTemporary") + "\n");
+				Foxtrick.unload_module_css();
+				FoxtrickMain.cssLoaded = false;
+				return;
+			}
+
+			// reload CSS if not loaded or page layout changed
+			if (!FoxtrickMain.cssLoaded
+				|| (Foxtrick.isStandardLayout(doc) !== FoxtrickMain.isStandard)
+				|| (Foxtrick.isRTLLayout(doc) !== FoxtrickMain.isRTL)) {
 				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
 				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
-				//if (FoxtrickMain.isRTL)
-				FoxtrickMain.new_start = false;
-				if (Foxtrick.main_css_loaded) Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick.css') ;
-				Foxtrick.main_css_loaded = false;
-				Foxtrick.unload_module_css();
+				Foxtrick.reload_module_css(doc);
+				FoxtrickMain.cssLoaded = true;
 			}
-			else {
-				if (!Foxtrick.main_css_loaded) {
-					Foxtrick.load_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick.css') ;
-					Foxtrick.main_css_loaded = true;
-					FoxtrickMain.new_start = true;
-				}
 
-				// check newstart or design change and reload module css if needed
-				if (FoxtrickMain.new_start) {
-					FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
-					FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
-					Foxtrick.reload_module_css(doc);
-					FoxtrickMain.new_start = false;
-				}
-				else {
-					var curr_isStandard = Foxtrick.isStandardLayout(doc);
-					var curr_isRTL = Foxtrick.isRTLLayout(doc);
-					if (curr_isStandard != FoxtrickMain.isStandard || curr_isRTL != FoxtrickMain.isRTL) {
-						FoxtrickMain.isStandard = curr_isStandard;
-						FoxtrickMain.isRTL = curr_isRTL;
-						Foxtrick.reload_module_css(doc);
+			// if only a CSS check, return now.
+			if (is_only_css_check)
+				return;
+
+			// We run the modules that want to be run at every page.
+			for (var i in Foxtrick.run_every_page) {
+				var module = Foxtrick.run_every_page[i];
+				if (typeof(module.run) == "function") {
+					try {
+						module.run(doc);
+					}
+					catch (e) {
+						Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
+						Foxtrick.dumpError(e);
 					}
 				}
+			}
 
-				// If it's not only a CSS check, we go on to run the modules.
-				if (!is_only_css_check) {
-					// We run the modules that want to be run at every page.
-					for (var i in Foxtrick.run_every_page) {
-						var module = Foxtrick.run_every_page[i];
+			// call all modules that registered as page listeners
+			// if their page is loaded
+
+			// find current page index/name and run all handlers for this page
+			for (var page in Foxtrick.ht_pages) {
+				if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
+					// on a specific page, run all handlers
+					for (var i in Foxtrick.run_on_page[page]) {
+						var module = Foxtrick.run_on_page[page][i];
 						if (typeof(module.run) == "function") {
 							try {
-								module.run(doc);
+								var begin = (new Date()).getTime();
+								module.run(page, doc);
+								var end = (new Date()).getTime();
+								var diff = end - begin;
+								if (diff > 50) {
+									// Show time used by a module if it's over
+									// 50ms.
+									Foxtrick.dump("Module time: " + diff + "ms | " + module.MODULE_NAME + "\n");
+								}
 							}
 							catch (e) {
 								Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
@@ -353,45 +318,9 @@ var FoxtrickMain = {
 							}
 						}
 					}
-
-					// call all modules that registered as page listeners
-					// if their page is loaded
-
-					// find current page index/name and run all handlers for this page
-					for (var page in Foxtrick.ht_pages) {
-						if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
-							// on a specific page, run all handlers
-							for (var i in Foxtrick.run_on_page[page]) {
-								var module = Foxtrick.run_on_page[page][i];
-								if (typeof(module.run) == "function") {
-									try {
-										var begin = (new Date()).getTime();
-										module.run(page, doc);
-										var end = (new Date()).getTime();
-										var diff = end - begin;
-										if (diff > 50) {
-											// Show time used by a module if it's over
-											// 50ms.
-											Foxtrick.dump("Module time: " + diff + "ms | " + module.MODULE_NAME + "\n");
-										}
-									}
-									catch (e) {
-										Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
-										Foxtrick.dumpError(e);
-									}
-								}
-							}
-						}
-					}
-
-					// show version number
-					var bottom = doc.getElementById("bottom");
-					var server = bottom.getElementsByClassName("currentServer")[0];
-					server.textContent += " / FoxTrick " + Foxtrick.version();
 				}
-
-				Foxtrick.dumpFlush(doc);
 			}
+			Foxtrick.dumpFlush(doc);
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -468,7 +397,7 @@ Foxtrick.updateStatus = function() {
 		else {
 			// FoxTrick is enabled, but not active on current page
 			icon.setAttribute("status", "enabled");
-			var hostname = Foxtrick.getHostname(doc);
+			var hostname = doc.location.hostname;
 			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 		}
 		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + this.version() + " (" + statusText + ")";
@@ -483,10 +412,6 @@ Foxtrick.isPage = function(page, doc) {
 
 Foxtrick.getHref = function(doc) {
 	return doc.location.href;
-}
-
-Foxtrick.getHostname = function(doc) {
-	return Foxtrick.getHref(doc).replace(RegExp("^[a-zA-Z0-9]+:\/\/"), "").replace(RegExp("\/.*"), "");
 }
 
 Foxtrick.isHt = function(doc) {
@@ -591,21 +516,16 @@ Foxtrick.startListenToChange = function(doc) {
 
 Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
 	node.addEventListener(
-			type,
-			function(ev){
-				var doc = ev.target.ownerDocument;
-				var panel = Foxtrick.getPanel(doc);
-				panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-				fkt(ev);
-				panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-			},
-			trickle
+		type,
+		function(ev){
+			var doc = ev.target.ownerDocument;
+			var panel = Foxtrick.getPanel(doc);
+			panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+			fkt(ev);
+			panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+		},
+		trickle
 	);
-}
-
-/** Remove any occurences of tags ("<something>") from text */
-Foxtrick.stripHTML = function(text) {
-	return text.replace(/(<([^>]+)>)/ig,"");
 }
 
 /** Insert text in given textarea at the current position of the cursor */
@@ -669,58 +589,6 @@ Foxtrick.alert = function(msg) {
 	}
 }
 
-Foxtrick.trim = function (text) {
-	return text.replace(/^\s+/, "").replace(/\s+$/, '').replace(/&nbsp;/g,"");
-}
-
-Foxtrick.trimnum = function(text) {
-	text = String(text);
-	return text ? parseInt(text.replace(/&nbsp;/g, "").replace(/\s/g, "")) : 0;
-}
-
-Foxtrick.formatNumber = function(num, sep) {
-	var num = Number(num);
-	var negative = (num < 0);
-	num = String(Math.abs(num));
-	var output = num;
-	if (sep === undefined) {
-		sep = " ";
-	}
-	if (num.length > 3) {
-		var mod = num.length % 3;
-		output = (num > 0 ? (num.substring(0, mod)) : "");
-		for (var i = 0; i < Math.floor(num.length / 3); ++i) {
-			if (mod == 0 && i == 0)
-				output += num.substring(mod+ 3 * i, mod + 3 * i + 3);
-			else
-				output += sep + num.substring(mod + 3 * i, mod + 3 * i + 3);
-		}
-	}
-	if (negative)
-		output = "-" + output;
-	return output;
-}
-
-Foxtrick.substr_count = function (haystack, needle, offset, length) {
-	// http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
-	// Returns count of needle in a haystack.
-	var pos = 0, cnt = 0;
-	haystack += '';
-	needle += '';
-	if(isNaN(offset)) offset = 0;
-	if(isNaN(length)) length = 0;
-	offset--;
-	while ((offset = haystack.indexOf(needle, offset+1)) != -1) {
-		if (length > 0 && (offset+needle.length) > length) {
-			return false;
-		}
-		else {
-			cnt++;
-		}
-	}
-	return cnt;
-}
-
 Foxtrick.isCoreModule = function(module) {
 	// core modules must be executed no matter what user's preference is
 	return (module.CORE_MODULE === true);
@@ -748,91 +616,8 @@ Foxtrick.isModuleFeatureEnabled = function(module, feature) {
 	}
 }
 
-Foxtrick.hasClass = function(obj, cls) {
-	return (obj
-		&& obj.className !== undefined
-		&& obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
-}
-
-Foxtrick.addClass = function(obj, cls) {
-	if (!Foxtrick.hasClass(obj, cls)) {
-		obj.className += " " + cls;
-	}
-}
-
-Foxtrick.removeClass = function(obj, cls) {
-	if (Foxtrick.hasClass(obj, cls)) {
-		var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)", "g");
-		obj.className = obj.className.replace(reg, " ");
-	}
-}
-
-Foxtrick.toggleClass = function(obj, cls) {
-	if (Foxtrick.hasClass(obj, cls)) {
-		Foxtrick.removeClass(obj, cls);
-	}
-	else {
-		Foxtrick.addClass(obj, cls);
-	}
-}
-
-Foxtrick.selectFileSave = function (parentWindow) {
-	try {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
-			fp.init(parentWindow, "", fp.modeSave);
-			var ret=fp.show();
-			if (ret == fp.returnOK || ret==fp.returnReplace) {
-				return fp.file.path;
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.dumpError(e);
-	}
-	return null;
-}
-
-Foxtrick.selectFile = function (parentWindow) {
-	try {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
-			fp.init(parentWindow, "", fp.modeOpen);
-			if (fp.show() == fp.returnOK) {
-				return fp.file.path;
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.dumpError(e);
-	}
-	return null;
-}
-
-Foxtrick.playSound = function(url) {
-	try {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-			var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-			soundService.play(ioService.newURI(url, null, null));
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			// not working yet to chrome bug: http://code.google.com/p/chromium/issues/detail?id=22152
-			var music = new Audio(url);
-			music.play();
-		}
-	}
-	catch (e) {
-		Foxtrick.dumpError(e);
-	}
-}
-
 Foxtrick.unload_module_css = function() {
 	Foxtrick.dump('unload permanents css\n');
-
-	Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/rtl.css') ;
-	Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick_stage_simple.css') ;
-	Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick_stage.css') ;
 
 	for (var i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
@@ -937,17 +722,6 @@ Foxtrick.reload_module_css = function(doc) {
 		var isRTL = FoxtrickMain.isRTL;
 		Foxtrick.dump('reload_module_css - StdLayout: '+isStandard+' - RTL: '+isRTL+'\n');
 
-		if (isRTL) Foxtrick.load_css_permanent(Foxtrick.ResourcePath+'resources/css/rtl.css') ;
-		else Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/rtl.css') ;
-
-		if (isStandard) {
-			Foxtrick.load_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick_stage.css') ;
-			Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick_stage_simple.css') ;
-		}
-		else {
-			Foxtrick.load_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick_stage_simple.css') ;
-			Foxtrick.unload_css_permanent(Foxtrick.ResourcePath+'resources/css/foxtrick_stage.css') ;
-		}
 		// check permanant css
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
@@ -1031,190 +805,6 @@ Foxtrick.reload_module_css = function(doc) {
 	}
 }
 
-Foxtrick.hasElement = function(doc, id) {
-	if (doc.getElementById(id)) {
-		return true;
-	}
-	return false;
-}
-
-Foxtrick.getChildIndex = function(element) {
-	var count = 0;
-	while (element.previousSibling) {
-		++count;
-		element = element.previousSibling;
-	}
-	return count;
-}
-
-/* Foxtrick.addBoxToSidebar
-* Parameters:
-* doc - the document the box needs to be added to
-* title - the title of the new box
-* content - the content of the new box (should be a DOM element)
-* id - the id the new box should get (has to be unique!)
-* insertBefore - the header of the reference-object: the new box will be placed *before* this reference-object;
-* 	-- Should be a string with the header, e.g. "Actions"
-* 	-- or a string "last" if it should be put at the very bottom of the sidebar
-* 	-- or a string "first" if it should be put at the very top
-*	-- if left empty, it'll be placed on top
-* altInsertBefore - specify an alternative header if the referenceHeader cannot be found
-* 	-- Can be left empty
-* column - specify which column the box shall be added to
-*
-* Note: if the header is the same as one of the other boxes in the sidebar,
-* the content will be added to that sidebarbox instead of creating a new one
-*/
-Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altInsertBefore, column) {
-	try {
-		if (!id || !content.id) {
-			// No id, return
-			Foxtrick.dump("addBoxToSidebar: error: id should be specified and content should have an id.\n");
-			return;
-		}
-
-		if (Foxtrick.hasElement(doc, id) || Foxtrick.hasElement(doc, content.id)) {
-			// Box with same id already existed, return
-			return;
-		}
-
-		var sidebar = null;
-		var boxClass;
-		if (!column || column == "right") {
-			sidebar = doc.getElementById("sidebar");
-			boxClass = "sidebarBox";
-		}
-		else {
-			sidebar = doc.getElementsByClassName("subMenu")[0]
-				|| doc.getElementsByClassName("subMenuConf")[0];
-			boxClass = "subMenuBox";
-		}
-		if (!sidebar) {
-			// No sidebar, nothing can be added.
-			// An option to create sidebar could be implemented sometime.
-			return;
-		}
-
-		var divs = sidebar.getElementsByTagName("div");
-
-		// Check if any of the other sidebarboxes have the same header
-		// and find the (alternative/normal) reference-object in the process
-		var existingBox = null;
-		var insertBeforeObject = null;
-		var altInsertBeforeObject = null;
-		var currentBox, i = 0;
-		while (currentBox = divs[i++]) {
-			// Check if this child is of box_class
-			if (currentBox.className === boxClass) {
-				var header = currentBox.getElementsByTagName("h2")[0];
-				if (header.innerHTML === title) {
-					existingBox = currentBox;
-				}
-				if (header.innerHTML === insertBefore) {
-					insertBeforeObject = currentBox;
-				}
-				if (header.innerHTML === altInsertBefore) {
-					altInsertBeforeObject = currentBox;
-				}
-			}
-			currentBox = currentBox.nextSibling;
-		}
-
-		if (!insertBeforeObject && insertBefore != "first"
-			&& insertBefore != "last") {
-			// the reference header could not be found; try the alternative
-			if (!altInsertBeforeObject && altInsertBefore != "first"
-				&& altInsertBefore != "last") {
-				// alternative header couldn't be found either
-				// place the box on top
-				Foxtrick.dump("addBoxToSidebar: Could not find insertBefore " +
-				insertBefore + "\n" + "nor altInsertBefore " +
-				altInsertBefore + "\n");
-				insertBefore = "first";
-			}
-			else {
-				insertBeforeObject = altInsertBeforeObject;
-				insertBefore = altInsertBefore;
-			}
-		}
-		if (insertBefore == "first") {
-			insertBeforeObject = sidebar.firstChild;
-		}
-
-		if (FoxtrickMain.isStandard) {
-			// Standard layout
-			if (existingBox) {
-				existingBox.id = id;
-				var boxBody = existingBox.getElementsByClassName("boxBody")[0];
-				boxBody.insertBefore(content, boxBody.firstChild);
-				return existingBox;
-			}
-			else {
-				// sidebarBox
-				var sidebarBox = doc.createElement("div");
-				sidebarBox.id = id;
-				sidebarBox.className = boxClass;
-				// boxHead
-				var boxHead = doc.createElement("div");
-				boxHead.className = "boxHead";
-				sidebarBox.appendChild(boxHead);
-				// boxHead - boxLeft
-				var headBoxLeft = doc.createElement("div");
-				headBoxLeft.className = "boxLeft";
-				boxHead.appendChild(headBoxLeft);
-				// boxHead - boxLeft - h2
-				var h2 = doc.createElement("h2");
-				h2.innerHTML = title;
-				headBoxLeft.appendChild(h2);
-				// boxBody
-				var boxBody = doc.createElement("div");
-				boxBody.className = "boxBody";
-				sidebarBox.appendChild(boxBody);
-				// append content to boxBody
-				boxBody.appendChild(content);
-				// boxFooter
-				var boxFooter = doc.createElement("div");
-				boxFooter.className = "boxFooter";
-				sidebarBox.appendChild(boxFooter);
-				// boxFooter - boxLeft
-				var footBoxLeft = doc.createElement("div");
-				footBoxLeft.className = "boxLeft";
-				footBoxLeft.innerHTML = "&nbsp;";
-				boxFooter.appendChild(footBoxLeft);
-
-				// insert the sidebar box
-				sidebar.insertBefore(sidebarBox, insertBeforeObject);
-			}
-		}
-		else {
-			// Simple layout
-			if (existingBox) {
-				var existingBoxHeader = existingBox.getElementsByTagName("h2")[0];
-				existingBox.id = id;
-				existingBox.insertBefore(content, existingBoxHeader.nextSibling);
-			}
-			else {
-				// sidebar box
-				var sidebarBox = doc.createElement("div");
-				sidebarBox.id = id;
-				sidebarBox.className = boxClass;
-				// header
-				var header = doc.createElement("h2");
-				header.innerHTML = title;
-				sidebarBox.appendChild(header);
-				// append content to body
-				sidebarBox.appendChild(content);
-
-				// insert the sidebar box
-				sidebar.insertBefore(sidebarBox, insertBeforeObject);
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.dumpError(e);
-	}
-}
-
 Foxtrick.setStatusIconStyle = function(ev) {
 	var image = ev.target;
 	if (FoxtrickPrefs.getBool("statusbarshow")) {
@@ -1222,70 +812,6 @@ Foxtrick.setStatusIconStyle = function(ev) {
 	}
 	else {
 		image.style.display = "none";
-	}
-}
-
-Foxtrick.substr = function(f_string, f_start, f_length) {
-	f_string += '';
-
-	if(f_start < 0) {
-		f_start += f_string.length;
-	}
-
-	if(f_length == undefined) {
-		f_length = f_string.length;
-	}
-	else if (f_length < 0){
-		f_length += f_string.length;
-	}
-	else {
-		f_length += f_start;
-	}
-
-	if (f_length < f_start) {
-		f_length = f_start;
-	}
-
-	return f_string.substring(f_start, f_length);
-}
-
-Foxtrick.strrpos = function(haystack, needle, offset){
-	var i = (haystack+'').lastIndexOf(needle, offset); // returns -1
-	return i >= 0 ? i : false;
-}
-
-Foxtrick.map = function(array, func) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i)
-		ret.push(func(array[i]));
-	return ret;
-}
-
-Foxtrick.filter = function(array, func) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i) {
-		if (func(array[i]))
-			ret.push(array[i]);
-	}
-	return ret;
-}
-
-Foxtrick.some = function(array, func) {
-	for (var i = 0; i < array.length; ++i)
-		if (func(array[i]))
-			return true;
-	return false;
-}
-
-Foxtrick.copyStringToClipboard = function (string) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		var gClipboardHelper = Components
-			.classes["@mozilla.org/widget/clipboardhelper;1"]
-			.getService(Components.interfaces.nsIClipboardHelper);
-		gClipboardHelper.copyString(string);
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({req : "clipboard", content : string});
 	}
 }
 
@@ -1357,200 +883,6 @@ Foxtrick.hasMainBodyScroll = function (doc) {
 	var i = 0, child;
 	while (child = mainBodyChildren[i++])
 		if (child.nodeName == 'SCRIPT' && child.innerHTML && child.innerHTML.search(/adjustHeight\(\'mainBody\'/) != -1) return true;
-	return false;
-	}
-
-
-Foxtrick.setActiveTextBox = function (field, cssClass, text) {
-	var fieldObj = document.getElementById(field);
-	fieldObj.className = cssClass;
-	if (fieldObj.value == text) {
-		fieldObj.value = "";
-		return true;
-	}
-}
-
-Foxtrick.setInactiveTextBox = function (field, cssClass, text) {
-	var fieldObj = document.getElementById(field);
-	if (fieldObj.value.length === 0) {
-		fieldObj.className = cssClass;
-		fieldObj.value = text;
-	}
-	return true;
-}
-
-
-Foxtrick.GetElementPosition = function (This,ref){
-	var el = This;var pT = 0; var pL = 0;
-	while(el && el!=ref){pT+=el.offsetTop; pL+=el.offsetLeft; el=el.offsetParent;}
-	return {'top':pT,'left':pL};
-}
-
-Foxtrick.GetDataURIText = function (filetext) {
-	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
-}
-
-
-Foxtrick.LoadXML = function(xmlfile, callback, crossSite) {
-	try {
-		if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
-			&& crossSite) {
-			// the evil Chrome that requires us to send a message to
-			// background script for cross-site requests
-			chrome.extension.sendRequest({req : "xml", url : xmlfile},
-				function(response) {
-					var parser = new DOMParser();
-					var xml = parser.parseFromString(response.data, "text/xml");
-					callback(xml);
-				}
-			);
-		}
-		else {
-			var req = new XMLHttpRequest();
-			if (!callback) {
-				req.open("GET", xmlfile, false);
-				req.send(null);
-				var response = req.responseXML;
-				if (response.documentElement.nodeName == "parsererror") {
-					Foxtrick.dump("error parsing " + xmlfile + "\n");
-					return null;
-				}
-				return response;
-			}
-			else {
-				req.open("GET", xmlfile, true);
-				req.onreadystatechange = function(aEvt) {
-					try {
-						if (req.readyState == 4) {
-							// only HTTP request has status 200, 0 for file://, etc
-							if (req.status == 200
-								|| req.status == 0) {
-								callback(req.responseXML);
-							}
-						}
-					}
-					catch (e) {
-						Foxtrick.dumpError(e);
-					}
-				};
-				req.send();
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.dumpError(e);
-		return null;
-	}
-}
-
-Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
-	var result = new Array();
-	if (xmlresponse) {
-		//var nodes = xmlresponse.evaluate(basenodestr, xmlresponse, null, 7 , null);
-		var splitpath = basenodestr.split(/\/|\[/g);
-		var base = xmlresponse;
-			for (var j=0;j<splitpath.length-1;++j) {
-				base = base.getElementsByTagName(splitpath[j])[0];
-			}
-		var nodes = base.getElementsByTagName(splitpath[j]);
-		for (var i = 0; i < nodes.length; i++) {
-		//for (var i = 0; i < nodes.snapshotLength; i++) {
-			//var node = nodes.snapshotItem(i);
-			var node = nodes[i];
-			var label = node.getAttribute(labelstr);
-			var value = null;
-			var value2=null;
-			var value3=null;
-
-			if (valuestr) value = node.getAttribute(valuestr);
-			if (value2str) value2 = node.getAttribute(value2str);
-			if (value3str) value3 = node.getAttribute(value3str);
-
-			if (valuestr) result.push([label,value,value2,value3]);
-			else result.push(label);
-		}
-	}
-	return result;
-}
-
-
-Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
-	//var path = "hattricklanguages/language[@name='" + lang + "']/tactics/tactic[@value=\"" + tactics + "\"]";
-	/*try {
-		splitpath = path.split(/\/|\[/g);
-		var result = xmldoc;
-		for (var j=0;j<splitpath.length;++j) {
-			if (j!=splitpath.lenght-1 && splitpath[j+1].search('@')==-1) continue;
-			result = xmldoc.getElementsByTagName(splitpath[j]);
-			var s_attr = splitpath[j+1].match(/@(.+)=/)[1];
-			var s_val = splitpath[j+1].match(/=(.+)\]/)[1].replace(/'|"/g,'');
-			//dump(splitpath[j+1]+' a:'+s_attr+' v:'+s_val+'\n');
-			for (var i=0;i<result.length;++i) { if(result[i].getAttribute(s_attr)==s_val) {
-				result = result[i]; break;}}
-			j++;
-		}
-		if (attribute) result = result.getAttribute(attribute);
-		//dump (attribute+' '+result+'\n');
-		return result;
-	} catch (e) {return null;}*/
-
-	var obj = xmldoc.evaluate(path,xmldoc,null,xmldoc.DOCUMENT_NODE,null).singleNodeValue;
-	if (obj)
-		if (attribute) return obj.attributes.getNamedItem(attribute).textContent;
-		else return obj;
-	else
-		return null;
-}
-
-Foxtrick.linebreak = function (txt, where) {
-	try {
-		if (txt == null) return '';
-		txt = txt.replace(/\<br\>/gi, ' <br> ');
-		var d = txt.split(' ');
-		// Foxtrick.dump ('TEXT= [' + d + ']\n');
-		for (var j = 0; j < d.length; j++) {
-			//Foxtrick.dump(' LB [' + j + '] => "'+ d[j] + '"\n');
-			if (d[j].length > where && d[j].search(/href\=|title\=/i) == -1) {
-				d[j] = Foxtrick.cut_word(d[j], where);
-				//Foxtrick.dump(' LB [' + j + '] <= "'+ d[j] + '"\n');
-			}
-		}
-		return d.join(" ");
-	}
-	catch (e) {
-		Foxtrick.dump('LINEBREAK: ' + e + '\n');
-	}
-}
-
-Foxtrick.cut_word = function (txt, where) {
-	try {
-		if (txt == null) return '';
-		txt = txt.replace(/\<\//g, ' </')
-		var c, a=0, g=0, d = new Array();
-		for (c = 0; c < txt.length; c++) {
-
-			d[c + g] = txt[c];
-			if (txt[c] != " ") a++;
-			else if (txt[c] == " ") a = 0;
-			if (a == where) {
-				g++;
-				d[c+g] = " ";
-				a = 0;
-			}
-
-		}
-		return d.join("");
-	}
-	catch (e) {
-		Foxtrick.dump('CUT WORD: ' + e + '\n');
-	}
-}
-
-Foxtrick.in_array = function(arr, needle) {
-	for (var i=0; i < arr.length; i++) {
-		if (arr[i] === needle) return true;
-		if (i>10000) return false;
-	}
 	return false;
 }
 
@@ -1631,17 +963,5 @@ Foxtrick.dumpError = function(error) {
 		for (var i in error)
 			msg += i + ": " + error[i] + "; ";
 		Foxtrick.dump(msg + "\n");
-	}
-}
-
-Foxtrick.newTab = function(url) {
-	if (Foxtrick.BuildFor == "Gecko") {
-		gBrowser.selectedTab = gBrowser.addTab(url);
-	}
-	else if (Foxtrick.BuildFor == "Chrome") {
-		chrome.extension.sendRequest({
-			req : "newTab",
-			url : url
-		})
 	}
 }

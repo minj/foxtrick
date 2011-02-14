@@ -24,12 +24,6 @@ var FoxtrickPrefsDialogHTML = {
 				}
 			}, true);
 		}
-
-		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
-			if (FoxtrickPrefs.getBool("showReleaseNotes"))
-				Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=changes");
-			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
-		}
 	},
 
 	save : function( ev ) {

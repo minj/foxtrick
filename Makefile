@@ -19,6 +19,7 @@ CONTENT_FOLDERS = alert/ \
 	shortcuts-and-tweaks/ \
 	util/
 CONTENT_FILES = const.js \
+	core.js \
 	forum-stage.js \
 	foxtrick.js \
 	foxtrick.properties \

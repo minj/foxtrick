@@ -1,6 +1,8 @@
 /* settings here apply to all pages, including non hattrick pages.
    so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
 
+#stageLogo {background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;}
+
 /* icons and hover icons */
 .ft_actionicon {cursor: pointer; height: 16px; background: 50% no-repeat; }
 .ft_icon {width: 16px; height: 16px; background: 50% no-repeat; }
