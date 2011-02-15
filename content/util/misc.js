@@ -107,41 +107,35 @@ Foxtrick.newTab = function(url) {
 	}
 }
 
-Foxtrick.LoadXML = function(xmlfile, callback, crossSite) {
+Foxtrick.load = function(url, callback, crossSite) {
 	try {
 		if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
 			&& crossSite) {
 			// the evil Chrome that requires us to send a message to
 			// background script for cross-site requests
-			chrome.extension.sendRequest({req : "xml", url : xmlfile},
+			chrome.extension.sendRequest({req : "xml", url : url},
 				function(response) {
-					var parser = new DOMParser();
-					var xml = parser.parseFromString(response.data, "text/xml");
-					callback(xml);
+					callback(response.data);
 				}
 			);
 		}
 		else {
 			var req = new XMLHttpRequest();
 			if (!callback) {
-				req.open("GET", xmlfile, false);
+				req.open("GET", url, false);
 				req.send(null);
-				var response = req.responseXML;
-				if (response.documentElement.nodeName == "parsererror") {
-					Foxtrick.dump("error parsing " + xmlfile + "\n");
-					return null;
-				}
+				var response = req.responseText;
 				return response;
 			}
 			else {
-				req.open("GET", xmlfile, true);
+				req.open("GET", url, true);
 				req.onreadystatechange = function(aEvt) {
 					try {
 						if (req.readyState == 4) {
 							// only HTTP request has status 200, 0 for file://, etc
 							if (req.status == 200
 								|| req.status == 0) {
-								callback(req.responseXML);
+								callback(req.responseText);
 							}
 						}
 					}
@@ -151,6 +145,28 @@ Foxtrick.LoadXML = function(xmlfile, callback, crossSite) {
 				};
 				req.send();
 			}
+		}
+	}
+	catch (e) {
+		Foxtrick.dumpError(e);
+		return null;
+	}
+};
+
+Foxtrick.LoadXML = function(url, callback, crossSite) {
+	try {
+		if (callback) {
+			Foxtrick.load(url, function(text) {
+				var parser = new DOMParser();
+				var xml = parser.parseFromString(text, "text/xml");
+				callback(xml);
+			}, crossSite);
+		}
+		else {
+			var text = Foxtrick.load(url);
+			var parser = new DOMParser();
+			var xml = parser.parseFromString(text, "text/xml");
+			return xml;
 		}
 	}
 	catch (e) {
