@@ -114,7 +114,6 @@
 <script type="application/x-javascript" src="./presentation/simple-presentation.js" />
 <script type="application/x-javascript" src="./presentation/header-fix.js" />
 <script type="application/x-javascript" src="./presentation/league-news-filter.js" />
-<script type="application/x-javascript" src="./presentation/short-pas.js" />
 <script type="application/x-javascript" src="./presentation/move-player-select-box.js" />
 <script type="application/x-javascript" src="./presentation/highlight-cup-wins.js" />
 <script type="application/x-javascript" src="./presentation/skill-translation.js" />

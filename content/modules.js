@@ -121,7 +121,6 @@ Foxtrick.modules = [
 	FoxtrickNewMail,
 	FoxtrickPlayerBirthday,
 	FoxtrickLeagueNewsFilter,
-	FoxtrickShortPAs,
 	FoxtrickCopyPosting,
 	FoxtrickMoveManagerOnline,
 	FoxtrickTables,

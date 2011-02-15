@@ -440,7 +440,6 @@ pref("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeasonStats.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeniorTeamShortCuts.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeniorTeamShortCuts.value", 0 );
-pref("extensions.foxtrick.prefs.module.ShortPAs.enabled", false);
 pref("extensions.foxtrick.prefs.module.ShowForumPrefButton.enabled", true);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.Guestbook.enabled", false);
