@@ -8,7 +8,7 @@ var FoxtrickLeagueNewsFilter = {
 	MODULE_NAME : "LeagueNewsFilter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'),
-	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes','PAs'),
+	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes'),
 	OPTIONS : new Array('highlight_set_lineup','highlight_wins','gray_bots'),
 
 	run : function( page, doc ) {
@@ -37,10 +37,6 @@ var FoxtrickLeagueNewsFilter = {
 		option.setAttribute('value','3');
 		option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.lineup_changes");
 		select.appendChild(option);
-		var option=doc.createElement('option');
-		option.setAttribute('value','4');
-		option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.PAs");
-		select.appendChild(option);
 		select.value=FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value");
 		selectdiv.appendChild(select);
 
@@ -54,10 +50,7 @@ var FoxtrickLeagueNewsFilter = {
 			if (item.className!='feedItem' && item.className!='feedItem user') continue;
 
 			var as=item.getElementsByTagName('a');
-			if (item.className=='feedItem user') { // 4 = PAs, className = 'feedItem user'
-				item.setAttribute('ft_news','4');
-			}
-			else if (as.length==1 && item.className!='feedItem user') {	// 1 = friendlies, not above & one link
+			if (as.length==1 && item.className!='feedItem user') {	// 1 = friendlies, not above & one link
 				item.setAttribute('ft_news','1');
 			}
 			else if (as.length==2) {		// two links for transfers and lineup
@@ -88,13 +81,30 @@ var FoxtrickLeagueNewsFilter = {
 			}
 		}
 
+		var isFixtureTable = function(table) {
+			try {
+				var row = table.rows[1];
+				return (row.cells.length >= 2)
+					&& (row.cells[1].innerHTML.indexOf("/Club/Matches/Live.aspx?actionType=addMatch") >= 0);
+			}
+			catch (e) {
+				return false;
+			}
+		};
+		var isResultTable = function(table) {
+			return Foxtrick.hasClass(table, "left");
+		};
+
 		for (var k=1; k<tables.length; ++k) {
-			for (var i=1; i<5; ++i) {
-				var link = tables[k].rows[i].cells[0].getElementsByTagName('a')[0];
-				// lineup set
-				if (Foxtrick.isModuleFeatureEnabled(this, 'highlight_set_lineup')
-					&& tables[k].rows[i].cells.length >= 2
-					&& tables[k].rows[i].cells[1].innerHTML.indexOf("/Club/Matches/Live.aspx?actionType=addMatch") >= 0) {
+			var table = tables[k];
+			for (var i=1; i<table.rows.length; ++i) {
+				var row = table.rows[i];
+				if (row.cells.length < 2)
+					continue; // not a valid fixture/result row
+				var link = row.cells[0].getElementsByTagName('a')[0];
+				// lineup set (for future matches only)
+				if (isFixtureTable(table)
+					&& Foxtrick.isModuleFeatureEnabled(this, 'highlight_set_lineup')) {
 					for (var j = 0; j < lineupSet.length; ++j) {
 						var pos = link.title.indexOf(lineupSet[j]);
 						if (pos == 0) {
@@ -109,7 +119,7 @@ var FoxtrickLeagueNewsFilter = {
 						}
 					}
 				}
-				// bots
+				// bots (for both results and future matches)
 				if (Foxtrick.isModuleFeatureEnabled(this, 'gray_bots')) {
 					for (var j = 0; j < bots.length; ++j) {
 						var pos = link.title.indexOf(bots[j]);
@@ -125,8 +135,10 @@ var FoxtrickLeagueNewsFilter = {
 						}
 					}
 				}
-				if (Foxtrick.isModuleFeatureEnabled(this, 'highlight_wins') && tables[k].className.search('left')!=-1) {
-					var goals = tables[k].rows[i].cells[1].innerHTML.replace(/&nbsp;/g,'').split('-');
+				// wins (for results only)
+				if (isResultTable(table)
+					&& Foxtrick.isModuleFeatureEnabled(this, 'highlight_wins')) {
+					var goals = row.cells[1].innerHTML.replace(/&nbsp;/g,'').split('-');
 					if (parseInt(goals[0]) > parseInt(goals[1])) {
 						var reg = new RegExp(/(.+)\&nbsp;-/);
 						link.innerHTML = link.innerHTML.replace(reg,'<strong>$1</strong>&nbsp;-');
