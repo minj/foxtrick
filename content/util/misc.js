@@ -3,7 +3,7 @@
  * Miscellaneous utilities
  */
 
-if (!Foxtrick) Foxtrick = {};
+if (!Foxtrick) var Foxtrick = {};
 
 Foxtrick.selectFileSave = function (parentWindow) {
 	try {

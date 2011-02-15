@@ -3,7 +3,7 @@
  * @author ryanli
  */
 
-if (!Foxtrick) Foxtrick = {};
+if (!Foxtrick) var Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 
 Foxtrick.util.note = {

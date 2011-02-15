@@ -3,7 +3,7 @@
  * Utilities for string processing
  */
 
-if (!Foxtrick) Foxtrick = {};
+if (!Foxtrick) var Foxtrick = {};
 
 /** Remove any occurences of tags ("<something>") from text */
 Foxtrick.stripHTML = function(text) {

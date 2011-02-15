@@ -3,7 +3,7 @@
  * Utilities for HTML and DOM
  */
 
-if (!Foxtrick) Foxtrick = {};
+if (!Foxtrick) var Foxtrick = {};
 
 Foxtrick.hasClass = function(obj, cls) {
 	return (obj
