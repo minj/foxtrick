@@ -18,7 +18,8 @@ CONTENT_FOLDERS = alert/ \
 	resources/ \
 	shortcuts-and-tweaks/ \
 	util/
-CONTENT_FILES = const.js \
+CONTENT_FILES = api-proxy.js \
+	const.js \
 	core.js \
 	forum-stage.js \
 	foxtrick.js \
@@ -29,6 +30,7 @@ CONTENT_FILES = const.js \
 	jquery.js \
 	l10n.js \
 	modules.js \
+	oauth.js \
 	pages.js \
 	preferences.js \
 	preferences.xhtml \
@@ -38,6 +40,7 @@ CONTENT_FILES = const.js \
 	read-ht-prefs.js \
 	redirections.js \
 	release-notes.xml \
+	sha1.js \
 	stats.js \
 	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul
