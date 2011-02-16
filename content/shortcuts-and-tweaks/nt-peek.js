@@ -80,7 +80,9 @@ var FoxtrickNtPeek = {
 	addMatches : function(doc, container, xml) {
 		try {
 			if (xml === null) {
-				return; // no XML available
+				// no XML available
+				container.textContent = Foxtrickl10n.getString("oauth.unauthorized");
+				return;
 			}
 			var table = container.getElementsByTagName("table")[0];
 			table.textContent = ""; // clear loading notice
