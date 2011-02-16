@@ -61,22 +61,27 @@ var FoxtrickNtPeek = {
 		separator.className = "separator";
 		container.appendChild(separator);
 
-		const ntXml = "http://" + doc.location.hostname
-			+ "/Community/CHPP/Matches/chppxml.axd?file=matches&teamID="
-			+ ntId;
-		var ntReq = Foxtrick.LoadXML(ntXml, function(xml) {
+		const ntArgs = [
+			["file", "matches"],
+			["teamID", ntId]
+		];
+		Foxtrick.ApiProxy.retrieve(doc, ntArgs, function(xml) {
 			FoxtrickNtPeek.addMatches(doc, ntContainer, xml);
 		});
-		const u20Xml = "http://" + doc.location.hostname
-			+ "/Community/CHPP/Matches/chppxml.axd?file=matches&teamID="
-			+ u20Id;
-		var u20Req = Foxtrick.LoadXML(u20Xml, function(xml) {
+		const u20Args = [
+			["file", "matches"],
+			["teamID", u20Id]
+		];
+		Foxtrick.ApiProxy.retrieve(doc, u20Args, function(xml) {
 			FoxtrickNtPeek.addMatches(doc, u20Container, xml);
 		});
 	},
 
 	addMatches : function(doc, container, xml) {
 		try {
+			if (xml === null) {
+				return; // no XML available
+			}
 			var table = container.getElementsByTagName("table")[0];
 			table.textContent = ""; // clear loading notice
 			var dateNow = Foxtrick.util.time.getHtDate(doc);
