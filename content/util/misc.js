@@ -132,11 +132,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 				req.onreadystatechange = function(aEvt) {
 					try {
 						if (req.readyState == 4) {
-							// only HTTP request has status 200, 0 for file://, etc
-							if (req.status == 200
-								|| req.status == 0) {
-								callback(req.responseText);
-							}
+							callback(req.responseText, req.status);
 						}
 					}
 					catch (e) {
@@ -156,10 +152,10 @@ Foxtrick.load = function(url, callback, crossSite) {
 Foxtrick.LoadXML = function(url, callback, crossSite) {
 	try {
 		if (callback) {
-			Foxtrick.load(url, function(text) {
+			Foxtrick.load(url, function(text, status) {
 				var parser = new DOMParser();
 				var xml = parser.parseFromString(text, "text/xml");
-				callback(xml);
+				callback(xml, status);
 			}, crossSite);
 		}
 		else {
