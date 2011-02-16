@@ -18,22 +18,14 @@ Foxtrick.ApiProxy = {
 	requestTokenUrl : "https://chpp.hattrick.org/oauth/request_token.ashx",
 	authorizeUrl : "https://chpp.hattrick.org/oauth/authorize.aspx",
 	accessTokenUrl : "https://chpp.hattrick.org/oauth/access_token.ashx",
+	resourceUrl : "http://chpp.hattrick.org/chppxml.ashx",
 
-	run : function(page, doc) {
-		var teamId = FoxtrickHelper.getOwnTeamId();
-		if (teamId && !this.authorized(teamId)) {
-			Foxtrick.util.note.add(doc, null, "ft-api-proxy",
-				this.authorize(doc), null, null, false);
-		}
-	},
-
-	authorized : function(teamId) {
-		return FoxtrickPrefs.getString("oauth." + teamId + ".accessToken")
-			&& FoxtrickPrefs.getString("oauth." + teamId + ".accessTokenSecret");
+	authorized : function() {
+		return Foxtrick.ApiProxy.getAccessToken()
+			&& Foxtrick.ApiProxy.getAccessTokenSecret();
 	},
 
 	authorize : function(doc) {
-		var teamId = FoxtrickHelper.getOwnTeamId();
 		var div = doc.createElement("div");
 		var accessor = {
 			consumerSecret : Foxtrick.ApiProxy.consumerSecret,
@@ -93,8 +85,8 @@ Foxtrick.ApiProxy = {
 						Foxtrick.load(accessTokenUrl, function(text) {
 							var accessToken = text.split(/&/)[0].split(/=/)[1];
 							var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
-							FoxtrickPrefs.setString("oauth." + teamId + ".accessToken", accessToken);
-							FoxtrickPrefs.setString("oauth." + teamId + ".accessTokenSecret", accessTokenSecret);
+							Foxtrick.ApiProxy.setAccessToken(accessToken);
+							Foxtrick.ApiProxy.setAccessTokenSecret(accessTokenSecret);
 							showFinished();
 						}, true);
 					}, false);
@@ -115,9 +107,63 @@ Foxtrick.ApiProxy = {
 		var showFinished = function() {
 			div.textContent = Foxtrickl10n.getString("oauth.success");
 		}
-		return div;
+		Foxtrick.util.note.add(doc, null, "ft-api-proxy-auth", div, null,
+			false, false, false);
 	},
 
-	retrieve : function(doc, file, parameters) {
-	}
+	retrieve : function(doc, parameters, callback) {
+		if (!Foxtrick.ApiProxy.authorized()) {
+			Foxtrick.ApiProxy.authorize(doc);
+			callback(null);
+			return;
+		}
+		var accessor = {
+			consumerSecret : Foxtrick.ApiProxy.consumerSecret,
+			tokenSecret : Foxtrick.ApiProxy.getAccessTokenSecret()
+		};
+		var msg = {
+			action : Foxtrick.ApiProxy.resourceUrl,
+			method : "get",
+			parameters : parameters
+		};
+		OAuth.setParameters(msg, [
+			["oauth_consumer_key", Foxtrick.ApiProxy.consumerKey],
+			["oauth_token", Foxtrick.ApiProxy.getAccessToken()],
+			["oauth_signature_method", Foxtrick.ApiProxy.signatureMethod],
+			["oauth_signature", ""],
+			["oauth_timestamp", ""],
+			["oauth_nonce", ""],
+		]);
+		OAuth.setTimestampAndNonce(msg);
+		OAuth.SignatureMethod.sign(msg, accessor);
+		var url = OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
+		Foxtrick.dump("URL: " + url + "\n");
+		Foxtrick.LoadXML(url, function(x, status) {
+			Foxtrick.dump("Status: " + status + "\n" + x + "\n");
+			if (status == 200)
+				callback(x);
+			else
+				Foxtrick.ApiProxy.authorize(doc);
+		}, true);
+	},
+
+	getAccessToken : function() {
+		const teamId = FoxtrickHelper.getOwnTeamId();
+		return FoxtrickPrefs.getString("oauth." + teamId + ".accessToken");
+	},
+
+	setAccessToken : function(token) {
+		const teamId = FoxtrickHelper.getOwnTeamId();
+		FoxtrickPrefs.setString("oauth." + teamId + ".accessToken", token);
+	},
+
+	getAccessTokenSecret : function() {
+		const teamId = FoxtrickHelper.getOwnTeamId();
+		return FoxtrickPrefs.getString("oauth." + teamId + ".accessTokenSecret");
+	},
+
+	setAccessTokenSecret : function(secret) {
+		const teamId = FoxtrickHelper.getOwnTeamId();
+		FoxtrickPrefs.setString("oauth." + teamId + ".accessTokenSecret", secret);
+	},
 };
