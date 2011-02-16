@@ -137,14 +137,20 @@ Foxtrick.ApiProxy = {
 		OAuth.setTimestampAndNonce(msg);
 		OAuth.SignatureMethod.sign(msg, accessor);
 		var url = OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
-		Foxtrick.dump("URL: " + url + "\n");
 		Foxtrick.LoadXML(url, function(x, status) {
-			Foxtrick.dump("Status: " + status + "\n" + x + "\n");
 			if (status == 200)
 				callback(x);
-			else
+			else {
+				callback(null);
+				Foxtrick.ApiProxy.invalidateAccessToken(doc);
 				Foxtrick.ApiProxy.authorize(doc);
+			}
 		}, true);
+	},
+
+	invalidateAccessToken : function() {
+		Foxtrick.ApiProxy.setAccessToken("");
+		Foxtrick.ApiProxy.setAccessTokenSecret("");
 	},
 
 	getAccessToken : function() {
