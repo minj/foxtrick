@@ -209,6 +209,9 @@ var FoxtrickCopyScoutReport = {
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
 				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
 				plain=plain.replace(/\<br\>|\<\/h2\> |\<\/h3\>/ig,'\n');
+				var paragraphs = plain.split(/\n/);
+				paragraphs = paragraphs.splice(0, paragraphs.length - 2); // remove last two paragraphs
+				plain = paragraphs.join("\n");
 				Foxtrick.dump(plain+'\n');
 
 
