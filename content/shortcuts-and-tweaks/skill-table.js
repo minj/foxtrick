@@ -77,13 +77,21 @@ var FoxtrickSkillTable = {
 	},
 
 	createTable : function(doc) {
+		var fullType = this.getFullType(doc);
+		if (fullType.type == "transfer") {
+			var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+			FoxtrickSkillTable.showTable(doc, playerList);
+		}
+		else {
+			Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
+				FoxtrickSkillTable.showTable(doc, list);
+			});
+		}
+	},
+
+	showTable : function(doc, playerList) {
 		try {
-			var content = doc.getElementById("content");
-			content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
-
-			var fullType = this.getFullType(doc);
-			var playerList = (fullType.type == "transfer") ? Foxtrick.Pages.TransferSearchResults.getPlayerList(doc) : Foxtrick.Pages.Players.getPlayerList(doc);
-
+			var fullType = FoxtrickSkillTable.getFullType(doc);
 			var latestMatch = 0, secondLatestMatch = 0;
 			if (fullType.type != "transfer"
 				&& fullType.subtype != "nt"
@@ -466,9 +474,6 @@ var FoxtrickSkillTable = {
 			if (FoxtrickPrefs.getBool("module.SkillTable.top")) {
 				Foxtrick.addClass(container, "on_top");
 			}
-
-			var content = doc.getElementById("content");
-			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
