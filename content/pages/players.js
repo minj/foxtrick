@@ -46,11 +46,11 @@ Foxtrick.Pages.Players = {
 			else {
 				args.push(["file", "players"]);
 				if (doc.location.href.match(/teamid=(\d)/i))
-					args.push("teamId", doc.location.href.match(/teamid=(\d+)/i)[1]);
+					args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
 				if (Foxtrick.Pages.Players.isOldiesPage(doc))
-					args.push("actionType", "viewOldies");
+					args.push(["actionType", "viewOldies"]);
 				else if (Foxtrick.Pages.Players.isCoachesPage(doc))
-					args.push("actionType", "viewOldCoaches");
+					args.push(["actionType", "viewOldCoaches"]);
 			}
 			Foxtrick.ApiProxy.retrieve(doc, args, callback);
 		};
