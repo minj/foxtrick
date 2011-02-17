@@ -172,9 +172,9 @@ Foxtrick.Pages.Players = {
 				var playerNode = playerNodes[i];
 				if (playerNode.style.display == "none")
 					continue;
-				var hasFlag = (playerNode.getElementsByClassName("flag").length > 0);
-				var nameLink = hasFlag ? playerNode.getElementsByTagName("a")[1] : playerNode.getElementsByTagName("a")[0];
-				var id = Number(nameLink.href.replace(/.+playerID=/i, "").match(/^\d+/)[0]);
+				var nameLink = Foxtrick.filter(playerNode.getElementsByTagName("a"),
+					function(n) { return n.getElementsByClassName("flag").length == 0; })[0];
+				var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 				// see if player is already in playerList, add if not
 				var player = Foxtrick.filter(playerList, function(n) { return n.id == id; })[0];
 				if (!player) {
@@ -480,9 +480,9 @@ Foxtrick.Pages.Players = {
 	},
 
 	getPlayerId : function(playerInfo) {
-		var hasFlag = (playerInfo.getElementsByTagName("a")[0].innerHTML.search(/flags.gif/i)!=-1);
-		var offset = hasFlag ? 1 : 0;
-		var id = Number(playerInfo.getElementsByTagName("a")[offset].href.replace(/.+playerID=/i, "").match(/^\d+/)[0]);
+		var nameLink = Foxtrick.filter(playerInfo.getElementsByTagName("a"),
+			function(n) { return !Foxtrick.hasClass(n, "flag"); })[0];
+		var id = Number(nameLink.href.match(/playerID=(\d+)/i)[1]);
 		return id;
 	},
 
