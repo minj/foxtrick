@@ -14,24 +14,6 @@ Foxtrick.TeamStats = {
 	CSS : Foxtrick.ResourcePath + "resources/css/team-stats.css",
 
 	run : function(page, doc) {
-		var boxId = "ft-team-stats-box";
-		var	boxBody = doc.createElement("div");
-		boxBody.id = "ft-team-stats-content";
-		var header = Foxtrickl10n.getString("foxtrick.TeamStats.label");
-		Foxtrick.addBoxToSidebar(doc, header, boxBody, boxId, "last", "");
-
-		var loading = Foxtrick.util.note.createLoading(doc);
-		boxBody.appendChild(loading);
-
-		Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
-			try {
-				show(list);
-			}
-			catch (e) {
-				Foxtrick.dumpError(e);
-			}
-		});
-
 		var show = function(playerList) {
 			var totalTSI = 0;
 			var totalAge = 0;
@@ -290,5 +272,23 @@ Foxtrick.TeamStats = {
 			boxBody.textContent = "";
 			boxBody.appendChild(table);
 		};
+
+		var boxId = "ft-team-stats-box";
+		var	boxBody = doc.createElement("div");
+		boxBody.id = "ft-team-stats-content";
+		var header = Foxtrickl10n.getString("foxtrick.TeamStats.label");
+		Foxtrick.addBoxToSidebar(doc, header, boxBody, boxId, "last", "");
+
+		var loading = Foxtrick.util.note.createLoading(doc);
+		boxBody.appendChild(loading);
+
+		Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
+			try {
+				show(list);
+			}
+			catch (e) {
+				Foxtrick.dumpError(e);
+			}
+		});
 	}
 };
