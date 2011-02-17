@@ -112,6 +112,7 @@ Foxtrick.ApiProxy = {
 	},
 
 	retrieve : function(doc, parameters, callback) {
+		Foxtrick.dump("ApiProxy attempting to retrieve: " + parameters + "…\n");
 		if (!Foxtrick.ApiProxy.authorized()) {
 			Foxtrick.ApiProxy.authorize(doc);
 			callback(null);
@@ -138,9 +139,12 @@ Foxtrick.ApiProxy = {
 		OAuth.SignatureMethod.sign(msg, accessor);
 		var url = OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
 		Foxtrick.LoadXML(url, function(x, status) {
-			if (status == 200)
+			if (status == 200) {
+				Foxtrick.dump("ApiProxy retrieval success.\n");
 				callback(x);
+			}
 			else {
+				Foxtrick.dump("ApiProxy error: " + status + ".\n");
 				callback(null);
 				Foxtrick.ApiProxy.invalidateAccessToken(doc);
 				Foxtrick.ApiProxy.authorize(doc);
