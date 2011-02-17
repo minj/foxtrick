@@ -421,7 +421,7 @@ Foxtrick.Pages.Players = {
 					if (currentClubLink !== null) {
 						player.currentClubLink = currentClubLink.cloneNode(true);
 
-						if (!this.isNtPlayersPage(doc)) { // not applicable for NT players
+						if (!Foxtrick.Pages.Players.isNtPlayersPage(doc)) { // not applicable for NT players
 							// we concatenate the text nodes from the containing
 							// <p> to a string, and search for league names there.
 							var leagueText = "";
