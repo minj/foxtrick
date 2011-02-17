@@ -152,7 +152,7 @@ var FoxtrickHTMSPoints = {
 		if ((page=="players") && AddToPlayerList) {
 			var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
-			var players=Foxtrick.Pages.Players.getPlayerList(doc, true);
+			var players=Foxtrick.Pages.Players.getPlayerList(doc);
 			//check if skill are visible isn't possible because skills are always set
 			//if (players[0][skillOrder[0]]==0) return;
 
