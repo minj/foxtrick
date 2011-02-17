@@ -173,7 +173,7 @@ Foxtrick.Pages.Players = {
 				if (playerNode.style.display == "none")
 					continue;
 				var nameLink = Foxtrick.filter(playerNode.getElementsByTagName("a"),
-					function(n) { return n.getElementsByClassName("flag").length == 0; })[0];
+					function(n) { return !Foxtrick.hasClass(n, "flag"); })[0];
 				var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 				// see if player is already in playerList, add if not
 				var player = Foxtrick.filter(playerList, function(n) { return n.id == id; })[0];
