@@ -172,8 +172,6 @@ Foxtrick.Pages.Players = {
 				var playerNode = playerNodes[i];
 				if (playerNode.style.display == "none")
 					continue;
-				var nameLink = Foxtrick.filter(playerNode.getElementsByTagName("a"),
-					function(n) { return !Foxtrick.hasClass(n, "flag"); })[0];
 				var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 				// see if player is already in playerList, add if not
 				var player = Foxtrick.filter(playerList, function(n) { return n.id == id; })[0];
@@ -181,6 +179,8 @@ Foxtrick.Pages.Players = {
 					playerList.push({id : id});
 					player = playerList[playerList.length - 1];
 				}
+				var nameLink = Foxtrick.filter(playerNode.getElementsByTagName("a"),
+					function(n) { return !Foxtrick.hasClass(n, "flag"); })[0];
 				player.nameLink = nameLink.cloneNode(true);
 
 				var paragraphs = playerNode.getElementsByTagName("p");
