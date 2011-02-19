@@ -58,7 +58,7 @@ FoxtrickPlayerFilters = {
 			return;
 		}
 
-		var playerList = Foxtrick.Pages.Players.getPlayerList(doc, true);
+		var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
 		var lastMatch = 0;
 		for (var i = 0; i < playerList.length; ++i) {
 			if (playerList[i].lastMatch) {
