@@ -46,7 +46,6 @@ Foxtrick.modules = [
 	FoxtrickStaffMarker,
 	FoxtrickHTThreadMarker,
 	FoxtrickMedianTransferPrice,
-	FoxtrickYouthSkillNotes,
 	FoxtrickAddLeaveConfButton,
 	FoxtrickStarsCounter,
 	FoxtrickFlagCollectionToMap,

@@ -660,8 +660,6 @@ pref("extensions.foxtrick.prefs.module.YouthSeriesEstimation.enabled", true);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.HideMaximalKeyWord.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.HideUnknown.enabled", false);
-pref("extensions.foxtrick.prefs.module.YouthSkillNotes.enabled", false);
-pref("extensions.foxtrick.prefs.module.YouthSkillNotes.OnlyOwnTeam.enabled", true);
 pref("extensions.foxtrick.prefs.preferences.updated", false);
 pref("extensions.foxtrick.prefs.SavePrefs_Notes", true);
 pref("extensions.foxtrick.prefs.SavePrefs_Prefs", true);
