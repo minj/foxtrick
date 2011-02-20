@@ -63,10 +63,15 @@ var FoxtrickSeriesFlags = {
 			var sideBar = doc.getElementById("sidebar");
 			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");
 			// visitors box is the box with a table
-			var visitorsBox = Foxtrick.filter(sideBarBoxes, function(n) { return n.getElementsByTagName("table").length > 0; })[0];
-			var links = visitorsBox.getElementsByTagName("a");
-			var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
-			modifyUserLinks(userLinks);
+			Foxtrick.map(
+				Foxtrick.filter(sideBarBoxes,
+					function(n) { return n.getElementsByTagName("table").length > 0; }),
+				function(n) {
+					var links = n.getElementsByTagName("a");
+					var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
+					modifyUserLinks(userLinks);
+				}
+			);
 		}
 		if (Foxtrick.isModuleFeatureEnabled(this, "Oldies")
 			&& (page == "oldcoaches" || page == "oldplayers")) {
