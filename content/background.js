@@ -1,6 +1,8 @@
 var resources_changed = true;
 var newstart = true;
 
+var sessionStore = {};
+
 function init() {
 	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
 	for (var i in core)
@@ -240,5 +242,11 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		catch (e) {
 			sendResponse({status : false});
 		}
+	}
+	else if (request.req == "sessionSet") {
+		sessionStore[request.key] = request.value;
+	}
+	else if (request.req == "sessionGet") {
+		sendResponse({value : sessionStore[request.key]});
 	}
 });

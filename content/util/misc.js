@@ -212,3 +212,36 @@ Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
 	else
 		return null;
 }
+
+/*
+ * sessionSet() and sessionGet() are a pair of functions that can store some
+ * useful information that has its life spanning the browser session.
+ * The stored value must be a JSON-serializable object, or of native types.
+ * Since for Google Chrome, the content scripts cannot store values across
+ * pages, we store it in background script and thus requires asynchronous
+ * callback in sessionGet().
+ */
+Foxtrick.sessionStore = {};
+Foxtrick.sessionSet = function(key, value) {
+	if (Foxtrick.BuildFor === "Gecko") {
+		Foxtrick.sessionStore[key] = value;
+	}
+	else if (Foxtrick.BuildFor === "Chrome") {
+		chrome.extension.sendRequest({
+			req : "sessionSet",
+			key : key,
+			value : value
+		});
+	}
+};
+Foxtrick.sessionGet = function(key, callback) {
+	if (Foxtrick.BuildFor === "Gecko") {
+		callback(Foxtrick.sessionStore[key]);
+	}
+	else if (Foxtrick.BuildFor === "Chrome") {
+		chrome.extension.sendRequest({
+				req : "sessionGet",
+				key : key
+			}, function(n) { callback(n.value); });
+	}
+};
