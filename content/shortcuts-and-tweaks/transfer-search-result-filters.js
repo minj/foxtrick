@@ -1,34 +1,33 @@
 /**
+ * transfer-search-result-filters.js
  * Transfer list filters
- * @author kolmis, bummerland
+ * @author convincedd
  */
 
 FoxtrickTransferSearchResultFilters = {
-
 	MODULE_NAME : "TransferSearchResultFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('transferSearchForm','transferSearchResult'),
-	advanced_option_on : false,
+	PAGES : ['transferSearchForm','transferSearchResult'],
 
-	filters : 	[ {name : 'hide_bruised', type : 'check', properties : {checked: false} },
-				  {name : 'hide_injured', type : 'check', properties : {checked: false} },
-				  {name : 'cards',  type : 'minmax', properties : {min: '', max : ''} },
-				  {name : 'days',  type : 'minmax', properties : {min: '', max : ''} }
+	filters : [
+		{ name : 'hide_bruised', type : 'check', properties : {checked: false} },
+		{ name : 'hide_injured', type : 'check', properties : {checked: false} },
+		{ name : 'cards',  type : 'minmax', properties : {min: '', max : ''} },
+		{ name : 'days',  type : 'minmax', properties : {min: '', max : ''} }
 	],
 
 	run : function(page, doc) {
-		if ( page=='transferSearchForm' ) this.addExtraFilters(doc);
-		else if ( page=='transferSearchResult' ) this.filterResults(doc);
+		if (page == 'transferSearchForm')
+			this.addExtraFilters(doc);
+		else if (page == 'transferSearchResult')
+			this.filterResults(doc);
 	},
-
 
 	addExtraFilters : function(doc) {
 		var tableAdvanced = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblAdvanced');
-		if (tableAdvanced===null) {
-			this.advanced_option_on = false;
+		if (tableAdvanced === null) {
 			return;  //only show if advanced filters is on
 		}
-		this.advanced_option_on = true;
 
 		var table = doc.createElement('table');
 
@@ -112,8 +111,10 @@ FoxtrickTransferSearchResultFilters = {
 
 	saveEdit : function(ev) {
 		try {
-			if (ev.target.type=='text') FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter] = ev.target.value;
-			else if (ev.target.type=='checkbox') FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter] = ev.target.checked;
+			if (ev.target.type=='text')
+				FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter] = ev.target.value;
+			else if (ev.target.type=='checkbox')
+				FoxtrickTransferSearchResultFilters.filters[ev.target.index]['properties'][ev.target.filter] = ev.target.checked;
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
@@ -156,8 +157,10 @@ FoxtrickTransferSearchResultFilters = {
 
 			// with psico last row wasn't border but psico, hide one more
 			if (transferTable.rows[i].cells[0].getElementsByClassName("borderSeparator").length > 0) {
-				if (hide) transferTable.rows[i].style.display='none';
-				else transferTable.rows[i].style.display='';
+				if (hide)
+					transferTable.rows[i].style.display='none';
+				else
+					transferTable.rows[i].style.display='';
 				i += 1;
 			}
 
@@ -207,21 +210,22 @@ FoxtrickTransferSearchResultFilters = {
 			for (var j = 0; j < this.filters.length; ++j) {
 				var filter = FoxtrickTransferSearchResultFilters.filters[j];
 				if (filter.type=='minmax') {
-					if  (  filter['properties']['min']!=='' && filter['properties']['min'] > player[filter.name]
-						|| filter['properties']['max']!=='' && filter['properties']['max'] < player[filter.name] ) {
+					if (filter['properties']['min']!=='' && filter['properties']['min'] > player[filter.name]
+						|| filter['properties']['max']!=='' && filter['properties']['max'] < player[filter.name]) {
 						hide = true;
 						continue;
 					}
-				} else if (filter.type=='check') {
+				}
+				else if (filter.type=='check') {
 					if (filter.name.search(/^hide_/)!=-1) {
 						var name = filter.name.match(/^hide_(.+)/)[1];
-						if  ( filter['properties']['checked']===true && player[name] ) {
+						if  (filter['properties']['checked']===true && player[name]) {
 							hide = true;
 							continue;
 						}
 					}
 					else {
-						if  ( filter['properties']['checked']===true && !player[filter.name] ) {
+						if (filter['properties']['checked']===true && !player[filter.name]) {
 							hide = true;
 							continue;
 						}
