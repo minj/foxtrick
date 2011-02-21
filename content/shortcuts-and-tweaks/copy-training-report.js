@@ -209,13 +209,13 @@ var FoxtrickCopyScoutReport = {
 				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
 				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
 				plain=plain.replace(/\<br\>|\<\/h2\> |\<\/h3\>/ig,'\n');
+				plain=Foxtrick.stripHTML(plain);
+
+				// remove last three paragraphs (two newlines and a sentence
+				// like "What do you say? Should we give him a chance?"
 				var paragraphs = plain.split(/\n/);
-				paragraphs = paragraphs.splice(0, paragraphs.length - 2); // remove last two paragraphs
+				paragraphs = paragraphs.splice(0, paragraphs.length - 3);
 				plain = paragraphs.join("\n");
-				Foxtrick.dump(plain+'\n');
-
-
-				while (plain.search(/\<.+>/)!=-1) plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 
 				var insertBefore = doc.getElementsByTagName('h1')[0];
 				Foxtrick.copyStringToClipboard(plain);
