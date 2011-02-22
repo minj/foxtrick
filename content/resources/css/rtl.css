@@ -1,5 +1,7 @@
-
 .ft_prefs_check_div > input { float: right !important; width: 14px; }
 .ft_prefs_check_div > label { float: right !important; }
 .ft_prefs_check_div > a { float: left !important; }
 
+/* h2 dropdown */
+h2.ft_boxBodyCollapsed {background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:left;}
+h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:left;}

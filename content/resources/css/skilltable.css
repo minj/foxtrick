@@ -1,7 +1,6 @@
-/*skilltable*/
 .ft_skilltablediv { margin: 35px 0 35px -8px; }
 .ft_skilltablediv.transfer { margin: 35px 0; }
-.ft_skilltablediv h2 { cursor: pointer; margin: 10px 0 !important; }
+.ft_skilltablediv h2 { margin: 10px 0 !important; }
 .ft_skilltablediv table { width: auto !important; max-width: 100%; margin: 0.1em auto 0.5em auto; white-space: nowrap; border-collapse: collapse; border: 1px solid #dce0dc; }
 .ft_skilltablediv table td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltablediv table td:nth-child(odd) { background-color: white; }
@@ -25,7 +24,3 @@
 .ft_skilltable td.maxed { font-weight: bold; }
 .ft_skilltable td.status img:nth-child(1) { margin-left: 0; }
 .ft_skilltable td.status img { margin-left: 0.5em; }
-
-/*boxBody h2 dropdown image*/
-h2.ft_boxBodyCollapsed {background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right;}
-h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right;}

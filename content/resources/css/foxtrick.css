@@ -30,6 +30,11 @@ div.ft_sidebarBoxUnfolded h2 { background-image: url("chrome://foxtrick/content/
 div.ft_sidebarBoxCollapsed_rtl h2 { background-image: url("chrome://foxtrick/content/resources/img/link-down.png"); background-position: left ; background-repeat:no-repeat; }
 div.ft_sidebarBoxUnfolded_rtl h2 { background-image: url("chrome://foxtrick/content/resources/img/link-up.png"); background-position: left ; background-repeat:no-repeat; }
 
+/* h2 dropdown */
+h2.ft_boxBodyCollapsed, h2.ft_boxBodyUnfolded { cursor: pointer; }
+h2.ft_boxBodyCollapsed { background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right; }
+h2.ft_boxBodyUnfolded { background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right; }
+
 /* sidebarbox h3 dropdown image */
 h3.ft_sidebarBoxCollapsed, h3.ft_sidebarBoxUnfolded { cursor: pointer; padding-right: 20px !important; background-repeat: no-repeat; background-position: right; }
 h3.ft_sidebarBoxCollapsed { background-image: url("chrome://foxtrick/content/resources/img/down.gif"); }

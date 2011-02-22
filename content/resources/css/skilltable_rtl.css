@@ -1,4 +1,3 @@
-/*skilltable*/
 .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltablediv.transfer { margin: 35px 0; }
 .ft_skilltablediv h2 { cursor: pointer; margin: 10px 0 !important; }
@@ -25,7 +24,3 @@
 .ft_skilltable td.maxed { font-weight: bold; }
 .ft_skilltable td.status img:nth-child(1) { margin-right: 0; }
 .ft_skilltable td.status img { margin-right: 0.5em; }
-
-/*boxBody h2 dropdown image*/
-h2.ft_boxBodyCollapsed {background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:left;}
-h2.ft_boxBodyUnfolded {background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:left;}
