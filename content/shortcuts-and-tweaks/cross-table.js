@@ -54,20 +54,35 @@ var FoxtrickCrossTable = {
 		table.className = "hidden";
 		insertBefore.parentNode.insertBefore(table, insertBefore);
 
+		var rememberState = function(object, state) {
+			FoxtrickPrefs.setBool("module.CrossTable." + object, state);
+		};
+		var recallState = function(object) {
+			return FoxtrickPrefs.getBool("module.CrossTable." + object);
+		};
+
 		var toggleGraph = function() {
 			Foxtrick.toggleClass(graphHeader, "ft_boxBodyCollapsed");
 			Foxtrick.toggleClass(graphHeader, "ft_boxBodyUnfolded");
 			Foxtrick.toggleClass(graph, "hidden");
+			rememberState("graph.expanded", !Foxtrick.hasClass(graph, "hidden"));
 		};
 
 		var toggleTable = function() {
 			Foxtrick.toggleClass(tableHeader, "ft_boxBodyCollapsed");
 			Foxtrick.toggleClass(tableHeader, "ft_boxBodyUnfolded");
 			Foxtrick.toggleClass(table, "hidden");
+			rememberState("table.expanded", !Foxtrick.hasClass(table, "hidden"));
 		};
 
 		graphHeader.addEventListener("click", toggleGraph, false);
 		tableHeader.addEventListener("click", toggleTable, false);
+
+		// if graph or table was expanded last time, expand it now.
+		if (recallState("graph.expanded"))
+			toggleGraph();
+		if (recallState("table.expanded"))
+			toggleTable();
 
 		var processMatches = function(matchNodes) {
 			for (var j = 0; j < matchNodes.length; ++j) {
