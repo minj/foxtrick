@@ -20,9 +20,9 @@ var FoxtrickCrossTable = {
 				id : id,
 				name : "",
 				match : {},
-				point : [0],
-				goalsFor : [0],
-				goalsAgainst : [0],
+				point : [],
+				goalsFor : [],
+				goalsAgainst : [],
 				position : []
 			};
 			teams.push(created);
@@ -102,7 +102,10 @@ var FoxtrickCrossTable = {
 				home.match[away.id].round = round;
 
 				var appendIncrement = function(array, inc) {
-					array.push(array[array.length - 1] + inc);
+					if (array.length === 0)
+						array.push(inc);
+					else
+						array.push(array[array.length - 1] + inc);
 				};
 				// if game has finished
 				if (!isNaN(homeGoals) && !isNaN(awayGoals)) {
@@ -236,7 +239,7 @@ var FoxtrickCrossTable = {
 				return b.goalsFor[r] - a.goalsFor[r];
 			};
 			// get position after each round
-			for (var i = 0; i <= roundsPlayed; ++i) {
+			for (var i = 0; i < roundsPlayed; ++i) {
 				teams.sort(function(a, b) { return sorter(i, a, b); });
 				for (var j = 0; j < teams.length; ++j) {
 					// first team has a position of 8, bottom has 1
@@ -248,10 +251,10 @@ var FoxtrickCrossTable = {
 				+ "&chs=" + width + "x200" // size
 				+ "&chds=0.5,8.5"
 				+ "&chxt=x,y" // X, Y axis
-				+ "&chxr=0,0," + roundsPlayed // X-axis label
+				+ "&chxr=0,1," + roundsPlayed // X-axis label
 				+ "&chxl=1:|8|7|6|5|4|3|2|1|" // Y-axis label
 				+ "&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75" // Y-axis label position
-				+ "&chg=" + (100 / (roundsPlayed + 1)) + ",0" // Separate lines parallel with Y-axis
+				+ "&chg=" + (100 / roundsPlayed) + ",0" // Separate lines parallel with Y-axis
 				+ "&chco=008000,FF9900,4684EE,DC3912,00E100,FF00FF,A7A7A7,000080"
 				+ "&chd=t:" + Foxtrick.map(teams, function(n) { return n.position.join(","); }).join("|")
 				+ "&chdl=" + Foxtrick.map(teams, function(n) { return n.name; }).join("|")
