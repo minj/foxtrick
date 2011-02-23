@@ -303,7 +303,7 @@ var FoxtrickPrefs = {
 		else if (Foxtrick.BuildFor === "Chrome") {
 			delete(this.pref[value_name]);
 			if (Foxtrick.chromeContext() == "background") {
-				localStorage.removeItem(key);
+				localStorage.removeItem(value_name);
 			}
 			else if (Foxtrick.chromeContext() == "content") {
 				this.dumpPrefs();
