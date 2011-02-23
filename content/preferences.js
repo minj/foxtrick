@@ -235,20 +235,15 @@ function initMainTab()
 
 	// save preferences
 	$("#pref-save-do").click(function() {
-		var file = Foxtrick.selectFile(this.ownerDocument.defaultView);
-		if (file !== null) {
-			var savePrefs = $("#pref-save-pref").is(":checked");
-			var saveNotes = $("#pref-save-data").is(":checked");
-			FoxtrickPrefs.SavePrefs(file, savePrefs, saveNotes);
-		}
+		var savePrefs = $("#pref-save-pref").is(":checked");
+		var saveNotes = $("#pref-save-data").is(":checked");
+		$("#pref-save-text").val(FoxtrickPrefs.SavePrefs(savePrefs, saveNotes));
 	});
 
 	// load preferences
 	$("#pref-load-do").click(function() {
-		var file = Foxtrick.selectFile(this.ownerDocument.defaultView);
-		if (file !== null) {
-			FoxtrickPrefs.LoadPrefs(file);
-		}
+		FoxtrickPrefs.LoadPrefs($("#pref-load-text").val());
+		notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
 	});
 
 	// restore to default
@@ -595,6 +590,6 @@ function save()
 
 function notice(msg)
 {
-	$("#note").text(msg);
+	$("#note-content").text(msg);
 	$("#note").show("slow");
 }

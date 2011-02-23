@@ -119,7 +119,10 @@ var FoxtrickPrefs = {
 	 		return str;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			return String(this.getValue(pref_name));
+			var value = this.getValue(pref_name);
+			if (typeof(value) == "string")
+				return value;
+			return null;
 		}
 	},
 
@@ -157,7 +160,10 @@ var FoxtrickPrefs = {
 			return value;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			return Number(this.getValue(pref_name));
+			var value = this.getValue(pref_name);
+			if (typeof(value) == "number")
+				return value;
+			return null;
 		}
 	},
 
@@ -190,7 +196,10 @@ var FoxtrickPrefs = {
 			return value;
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			return Boolean(this.getValue(pref_name));
+			var value = this.getValue(pref_name);
+			if (typeof(value) == "boolean")
+				return value;
+			return null;
 		}
 	},
 
@@ -239,24 +248,22 @@ var FoxtrickPrefs = {
 
 	_getElemNames : function( list_name ) {
 		try {
+			var prefix = (list_name == "") ? "" : encodeURI(list_name + ".");
 			if (Foxtrick.BuildFor === "Gecko") {
-				var array = null;
-				if( list_name != "" )
-					array = FoxtrickPrefs._pref_branch.getChildList( encodeURI(list_name + "."), {} );
-				else
-					array = FoxtrickPrefs._pref_branch.getChildList( "", {} );
-				for (var i=0;i<array.length;++i) {array[i] = decodeURI(array[i]);}
+				var array = FoxtrickPrefs._pref_branch.getChildList(prefix, {});
+				for (var i = 0; i < array.length; ++i)
+					array[i] = decodeURI(array[i]);
 				return array;
 			}
 			else if (Foxtrick.BuildFor === "Chrome") {
 				var array = [];
 				for (var i in this.pref) {
-					if (i.indexOf(list_name + ".") == 0)
+					if (i.indexOf(prefix) == 0)
 						if (!this.prefDefault[i]) // only if not default to eliminate duplicacy
 							array.push(i);
 				}
 				for (var i in this.prefDefault) {
-					if (i.indexOf(list_name + ".") == 0)
+					if (i.indexOf(prefix) == 0)
 						array.push(i);
 				}
 				return array;
@@ -395,84 +402,61 @@ var FoxtrickPrefs = {
 		return true;
 	},
 
-	SavePrefs : function (file, savePrefs, saveNotes) {
+	SavePrefs : function(savePrefs, saveNotes) {
 		try {
-			var File = Components.classes["@mozilla.org/file/local;1"].
-					 createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(file);
-
-			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
-				.createInstance(Components.interfaces.nsIFileOutputStream);
-			foStream.init(File, 0x02 | 0x08 | 0x20, 0666, 0);
-			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-				.createInstance(Components.interfaces.nsIConverterOutputStream);
-			os.init(foStream, "UTF-8", 0, 0x0000);
-
+			const format = 'user_pref("extensions.foxtrick.prefs.%key",%value);';
+			var ret = "";
 			var array = FoxtrickPrefs._getElemNames("");
 			array.sort();
-			for(var i = 0; i < array.length; i++) { //Foxtrick.dump(array[i]);
-				if ((FoxtrickPrefs.isPrefSetting(array[i]) && savePrefs)
-					|| (!FoxtrickPrefs.isPrefSetting(array[i]) && saveNotes)) {
+			for (var i = 0; i < array.length; i++) {
+				var key = array[i];
+				if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
+					|| (!FoxtrickPrefs.isPrefSetting(key) && saveNotes)) {
+					var item = format.replace(/%key/, key);
 
-					var value=FoxtrickPrefs.getString(array[i]);
+					var value = null;
+					if ((value = FoxtrickPrefs.getString(key)) !== null)
+						item = item.replace(/%value/, "\"" + value.replace(/\n/g, "\\n") + "\"");
+					else if ((value = FoxtrickPrefs.getInt(key)) !== null)
+						item = item.replace(/%value/, value);
+					else if ((value = FoxtrickPrefs.getBool(key)) !== null)
+						item = item.replace(/%value/, value);
 					if (value !== null)
-						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value.replace(/\n/g,"\\n")+'");\n');
-					else {
-						value = FoxtrickPrefs.getInt(array[i]);
-						if (value === null)
-							value=FoxtrickPrefs.getBool(array[i]);
-						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
-					}
-					}
+						ret += item + "\n";
 				}
-			os.close();
-			foStream.close();
+			}
+			return ret;
 		}
 		catch (e) {
-			Foxtrick.alert('FoxtrickPrefs.SavePrefs '+e);
-			return false;
+			Foxtrick.dumpError(e);
+			return null;
 		}
-		return true;
 	},
 
-	LoadPrefs : function (file) {
-		try {
-			// nsifile
-			var File = Components.classes["@mozilla.org/file/local;1"].
-					 createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(file);
-			// converter
-			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"]
-						  .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
-			converter.charset = "UTF-8";
-			var fis = Components.classes["@mozilla.org/network/file-input-stream;1"]
-					.createInstance(Components.interfaces.nsIFileInputStream);
-			fis.init(File, -1, -1, 0);
-			var lis = fis.QueryInterface(Components.interfaces.nsILineInputStream);
-			var lineData = {};
-			var cont;
-			do {
-				cont = lis.readLine(lineData);
-				var line = converter.ConvertToUnicode(lineData.value);
-				//Foxtrick.dump(line+'\n');
-				var key = line.match(/user_pref\("extensions\.foxtrick\.prefs\.(.+)",/)[1];
-				var value=line.match(/\",(.+)\)\;/)[1];
-				var strval = value.match(/\"(.+)\"/);
-				if (value == "\"\"") FoxtrickPrefs.setString(key,"");
-				else if (strval != null) FoxtrickPrefs.setString(key,strval[1].replace(/\\n/g,'\n'));
-				else if (value == "true") FoxtrickPrefs.setBool(key,true);
-				else if (value == "false") FoxtrickPrefs.setBool(key,false);
-				else FoxtrickPrefs.setInt(key,value);
-			} while (cont);
-
-			fis.close();
-			FoxtrickMain.init();
+	LoadPrefs : function(string) {
+		const format = /user_pref\("extensions\.foxtrick\.prefs\.(.+)",(.+)\);/;
+		var lines = string.split("\n");
+		for (var i = 0; i < lines.length; ++i) {
+			try {
+				var line = lines[i];
+				var matches = line.match(format);
+				if (!matches)
+					continue;
+				var key = matches[1];
+				var value = matches[2];
+				if (value.match(/^".+"$/))
+					FoxtrickPrefs.setString(key, value.match(/^"(.+)"$/)[1]);
+				else if (!isNaN(value))
+					FoxtrickPrefs.setInt(key, Number(value));
+				else if (value == "true" || value == "false")
+					FoxtrickPrefs.setBool(key, value == "true");
+			}
+			catch (e) {
+				Foxtrick.dump("Value: " + matches[2]);
+				Foxtrick.dumpError(e);
+			}
 		}
-		catch (e) {
-			Foxtrick.alert('FoxtrickPrefs.LoadPrefs '+e);
-			return false;
-		}
-		return true;
+		FoxtrickPrefs.setBool("preferences.updated", true);
 	},
 
 	show : function() {
@@ -495,10 +479,10 @@ if (Foxtrick.BuildFor == "Chrome") {
 			else if (this.prefDefault[key] !== undefined)
 				return this.prefDefault[key];
 			else
-				return false;
+				return null;
 		}
 		catch (e) {
-			return false;
+			return null;
 		}
 	}
 	FoxtrickPrefs.setValue = function(key, value) {

@@ -215,11 +215,15 @@
 					<label id="pref-save-data-label" for="pref-save-data" text-key="foxtrick.prefs.labelSavePrefs_Notes"></label>
 				</li>
 			</ul>
-			<button id="pref-save-do" text-key="foxtrick.prefs.buttonSavePrefs"></button>
+			<p><button id="pref-save-do" text-key="foxtrick.prefs.buttonSavePrefs"></button></p>
+			<p><textarea id="pref-save-text"></textarea></p>
+			<p text-key="foxtrick.prefs.saveNotice"></p>
 		</div>
 		<h4 id="pref-load" text-key="foxtrick.prefs.labelLoadPrefs"></h4>
 		<div>
-			<button id="pref-load-do" text-key="foxtrick.prefs.buttonLoadPrefs"></button>
+			<p text-key="foxtrick.prefs.loadNotice"></p>
+			<p><textarea id="pref-load-text"></textarea></p>
+			<p><button id="pref-load-do" text-key="foxtrick.prefs.buttonLoadPrefs"></button></p>
 		</div>
 	</div><!-- LoadSavePrefs -->
 	<div class="module"><!-- StoredPrefs -->
@@ -329,7 +333,10 @@
 		<button id="save" text-key="foxtrick.prefs.buttonSave"></button>
 		<button id="cancel" text-key="foxtrick.prefs.buttonCancel"></button>
 	</div>
-	<div id="note"></div>
+	<div id="note">
+		<p id="note-content"></p>
+		<p id="dismiss-notice" text-key="foxtrick.prefs.dismissNotice"></p>
+	</div>
 </div>
 </body>
 </html>
