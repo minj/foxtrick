@@ -98,7 +98,7 @@ html[dir="rtl"] .module-link
 	float: right;
 	width: 16px;
 	height: 16px;
-	background: url("chrome://foxtrick/content/resources/img/screenshot.png") no-repeat 50% 50%;
+	background: url("../img/screenshot.png") no-repeat 50% 50%;
 }
 
 html[dir="rtl"] .screenshot
@@ -108,7 +108,7 @@ html[dir="rtl"] .screenshot
 
 .screenshot:hover
 {
-	background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png");
+	background-image: url("../img/screenshot-hover.png");
 }
 
 .clear
