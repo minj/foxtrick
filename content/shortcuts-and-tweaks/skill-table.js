@@ -681,15 +681,15 @@ var FoxtrickSkillTable = {
 		// links: customize
 		var customize = doc.createElement("a");
 		customize.className = "customize_item";
-		customize.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCustomize")));
+		customize.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.customize")));
 		Foxtrick.addEventListenerChangeSave(customize, "click", FoxtrickSkillTable.customize, false);
 		// links: save
 		var save = doc.createElement("a");
-		save.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonSave")));
+		save.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.save")));
 		Foxtrick.addEventListenerChangeSave(save, "click", FoxtrickSkillTable.save, false);
 		// links: cancel
 		var cancel = doc.createElement("a");
-		cancel.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.buttonCancel")));
+		cancel.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.cancel")));
 		Foxtrick.addEventListenerChangeSave(cancel, "click", FoxtrickSkillTable.cancel, false);
 		// links: all children
 		links.appendChild(copy);

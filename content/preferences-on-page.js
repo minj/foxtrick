@@ -108,7 +108,7 @@ var FoxtrickOnPagePrefs = {
 					var prefsave=doc.createElement('input');
 					prefsave.setAttribute('id','foxtrick_prefsave');
 					prefsave.setAttribute('type','button');
-					prefsave.setAttribute('value',Foxtrickl10n.getString("foxtrick.prefs.buttonSave"));
+					prefsave.setAttribute('value',Foxtrickl10n.getString("button.save"));
 					prefsave.addEventListener('click',FoxtrickPrefsDialogHTML.save,false);
 					prefsavediv.appendChild(prefsave);
 

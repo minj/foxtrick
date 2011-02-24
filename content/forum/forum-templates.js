@@ -175,7 +175,7 @@ var FoxtrickForumTemplates = {
 			inputTitle.focus();
 
 			var button_ok = doc.createElement( "input" );
-			button_ok.setAttribute( "value", Foxtrickl10n.getString( 'ok' ));
+			button_ok.setAttribute( "value", Foxtrickl10n.getString( 'button.ok' ));
 			button_ok.setAttribute( "id",  "ForumTemplatesOKId" );
 			button_ok.setAttribute( "type",  "button" );
 			button_ok.setAttribute( "tabindex", "5" );
@@ -183,7 +183,7 @@ var FoxtrickForumTemplates = {
 			inputTitleDiv.appendChild(button_ok);
 
 			var button_cancel = doc.createElement( "input" );
-			button_cancel.setAttribute( "value", Foxtrickl10n.getString( 'foxtrick.prefs.buttonCancel' ));
+			button_cancel.setAttribute( "value", Foxtrickl10n.getString( 'button.cancel' ));
 			button_cancel.setAttribute( "id",  "ForumTemplatesCancelId" );
 			button_cancel.setAttribute( "type",  "button" );
 			//button_cancel.setAttribute( "tabindex", "" );

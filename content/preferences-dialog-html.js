@@ -286,7 +286,7 @@ var FoxtrickPrefsDialogHTML = {
 				var td = doc.createElement( "td" );
 				tr.appendChild( td );
 				var button= doc.createElement("input");
-				button.setAttribute("value",Foxtrickl10n.getString("foxtrick.prefs.buttonLoadPrefs"));
+				button.setAttribute("value",Foxtrickl10n.getString("button.import"));
 				button.setAttribute( "type", "button" );
 				button.setAttribute('inputid', name+'_text');
 				button.setAttribute('id',"name+'_selectfile");
