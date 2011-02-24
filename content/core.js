@@ -13,7 +13,10 @@ var FoxtrickCore = {
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
 		Foxtrick.ResourcePath + "resources/css/foxtrick-simple.css"
 	],
-	CSS_RTL : Foxtrick.ResourcePath + "resources/css/rtl.css",
+	CSS_RTL : [
+		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
+		Foxtrick.ResourcePath + "resources/css/rtl.css"
+	],
 
 	// called after browser loaded (Gecko-only), with browser chrome
 	// as the argument

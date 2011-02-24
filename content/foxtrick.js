@@ -669,78 +669,79 @@ Foxtrick.reload_module_css = function(doc) {
 		var isRTL = FoxtrickMain.isRTL;
 		Foxtrick.dump('reload_module_css - StdLayout: '+isStandard+' - RTL: '+isRTL+'\n');
 
-		// check permanant css
+		// unload all CSS files
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			// if module has an css) function and is enabled
-			if (module.MODULE_NAME) {
-				if (module.OLD_CSS && module.OLD_CSS!="") {
-					Foxtrick.unload_css_permanent (module.OLD_CSS);
+			var list = [module.OLD_CSS, module.CSS, module.CSS_SIMPLE, module.CSS_RTL, module.CSS_SIMPLE_RTL];
+			for (var j = 0; j < list.length; ++j)
+				if (list[j])
+					Foxtrick.unload_css_permanent(list[j]);
+		}
+
+		// load CSS
+		for (var i in Foxtrick.modules) {
+			var module = Foxtrick.modules[i];
+			if (!Foxtrick.isModuleEnabled(module))
+				continue;
+			var loadCss = function(normal, simple, rtl, simpleRtl) {
+				var loadSimpleRtl = function() {
+					if (simpleRtl)
+						Foxtrick.load_css_permanent(simpleRtl);
+					else if (loadRtl(true))
+						;
+					else if (loadSimple(true))
+						;
+					else
+						load();
+				};
+				var loadRtl = function(noFallback) {
+					if (rtl)
+						Foxtrick.load_css_permanent(rtl);
+					else if (!noFallback)
+						load();
+					else
+						return false;
+					return true;
+				};
+				var loadSimple = function(noFallback) {
+					if (simple)
+						Foxtrick.load_css_permanent(simple);
+					else if (!noFallback)
+						load();
+					else
+						return false;
+					return true;
+				};
+				var load = function() {
+					if (normal)
+						Foxtrick.load_css_permanent(normal);
+				};
+				if (!isStandard) {
+					if (isRTL)
+						loadSimpleRtl();
+					else
+						loadSimple();
 				}
-				if (module.CSS_SIMPLE) {
-					if (Foxtrick.isModuleEnabled(module) && !FoxtrickMain.isStandard) {
-						if (!isRTL || !module.CSS_SIMPLE_RTL) {
-							Foxtrick.load_css_permanent (module.CSS_SIMPLE);
-							if (module.CSS_SIMPLE_RTL)
-								Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL);
-						}
-						else {
-							Foxtrick.load_css_permanent (module.CSS_SIMPLE_RTL) ;
-							Foxtrick.unload_css_permanent (module.CSS_SIMPLE);
-							}
-					}
-					else {
-						Foxtrick.unload_css_permanent (module.CSS_SIMPLE) ;
-						if (module.CSS_SIMPLE_RTL)
-							Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL) ;
-					}
+				else {
+					if (isRTL)
+						loadRtl();
+					else
+						load();
 				}
-				if (module.CSS) {
-					if (Foxtrick.isModuleEnabled(module) && (!module.CSS_SIMPLE || FoxtrickMain.isStandard)) {
-						if (!isRTL || !module.CSS_RTL){
-							Foxtrick.load_css_permanent (module.CSS) ;
-							if (module.CSS_RTL)
-								Foxtrick.unload_css_permanent (module.CSS_RTL);
-						}
-						else {
-							Foxtrick.load_css_permanent (module.CSS_RTL);
-							Foxtrick.unload_css_permanent (module.CSS);
-						}
-					}
-					else {
-						Foxtrick.unload_css_permanent (module.CSS) ;
-						if (module.CSS_RTL && module.CSS!="")
-							Foxtrick.unload_css_permanent (module.CSS_RTL) ;
-					}
-				}
-				if (module.OPTIONS_CSS) {
-					for (var k=0; k<module.OPTIONS_CSS.length;++k) {
-						if (Foxtrick.isModuleEnabled(module) && Foxtrick.isModuleFeatureEnabled(module, module.OPTIONS[k])) {
-							if (module.OPTIONS_CSS[k] != "" && (!isRTL || !module.OPTIONS_CSS_RTL)) {
-						 		if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
-									Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
-								Foxtrick.load_css_permanent (module.OPTIONS_CSS[k]) ;
-							}
-							else {
-								if (module.OPTIONS_CSS[k] != "")
-										Foxtrick.unload_css_permanent (module.OPTIONS_CSS[k]) ;
-								if (isRTL) {
-									if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
-										Foxtrick.load_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
-								}
-								else {
-									if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
-										Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
-								}
-							}
-						}
-						else {
-							if (module.OPTIONS_CSS[k] != "")
-								Foxtrick.unload_css_permanent (module.OPTIONS_CSS[k]) ;
-							if (module.OPTIONS_CSS_RTL && module.OPTIONS_CSS_RTL[k] != "")
-								Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
-						}
-					}
+			}
+
+			// load module main CSS
+			loadCss(module.CSS, module.CSS_SIMPLE, module.CSS_RTL, module.CSS_SIMPLE_RTL);
+
+			// load module options CSS
+			if (module.OPTIONS_CSS) {
+				for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
+					if (!Foxtrick.isModuleFeatureEnabled(module, module.OPTIONS[j]))
+						continue;
+					loadCss(module.OPTIONS_CSS[j],
+						null,
+						module.OPTIONS_CSS_RTL ? module.OPTIONS_CSS_RTL[j] : null,
+						null);
 				}
 			}
 		}
