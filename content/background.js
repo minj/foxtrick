@@ -222,7 +222,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(aEvt) {
 			if (xhr.readyState == 4) {
-				sendResponse({data : xhr.responseText});
+				sendResponse({data : xhr.responseText, status : xhr.status});
 			}
 		};
 		xhr.open("GET", request.url, true);

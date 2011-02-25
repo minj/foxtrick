@@ -115,7 +115,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 			// background script for cross-site requests
 			chrome.extension.sendRequest({req : "xml", url : url},
 				function(response) {
-					callback(response.data);
+					callback(response.data, response.status);
 				}
 			);
 		}
