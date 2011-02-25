@@ -81,13 +81,14 @@ FoxtrickLineupShortcut = {
 				var playerid=FoxtrickHelper.findPlayerId(element);
 				var teamname=FoxtrickHelper.extractTeamName(element);
 				// splitting teams with '- | -' in their name breaks the system
-				teamname_rep = teamname.replace(/\-\ /gi,'+ ').replace(/\ \-/gi,' +');
+				//teamname_rep = teamname.replace(/\-\ /gi,'+ ').replace(/\ \-/gi,' +');
+				teamname_rep = teamname.replace(/\-/gi,'+');
 
 
-				//Fix for longteamname
-				if (teamname_rep.length>20) {
-					teamname_rep=teamname_rep.substr(0, 20)+"..";
-				}
+				//Fix for longteamname --- no longer necessary using titles
+				// if (teamname_rep.length>20) {
+					// teamname_rep=teamname_rep.substr(0, 20)+"..";
+				// }
 
 				for (var i=0;i<matchtable.rows.length;i++) {
 					var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
@@ -95,9 +96,13 @@ FoxtrickLineupShortcut = {
 					var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
 
 					//Checking if the team is present
-					var matchTeams=link.text;
-					matchTeams = matchTeams.replace(teamname, teamname_rep);
-					matchTeams=matchTeams.split(" - ");
+					// var matchTeamsText=link.textContent;
+					// matchTeamsText = matchTeamsText.replace(teamname, teamname_rep);
+					// var matchTeams = matchTeamsText.split("/\s-\s/");
+					// Foxtrick.dump('original '+matchTeamsText+' split in:  '+matchTeams.length+'\n');
+					var matchTeamsText=link.title;
+					matchTeamsText = matchTeamsText.replace(teamname, teamname_rep);
+					var matchTeams = matchTeamsText.split("-");
 
 					if (matchTeams[0]) matchTeams[0] = Foxtrick.trim(matchTeams[0]);
 					if (matchTeams[1]) matchTeams[1] = Foxtrick.trim(matchTeams[1]);
