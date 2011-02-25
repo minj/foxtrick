@@ -168,7 +168,8 @@
 		"tabs",
 		"notifications",
 		"http://www.hattrick-youthclub.org/*",
-		"http://www.fantamondi.it/*"
+		"http://www.fantamondi.it/*",
+		"*://*.hattrick.org/*"
 	],
 	"browser_action" : {
 		"default_title" : "FoxTrick",
