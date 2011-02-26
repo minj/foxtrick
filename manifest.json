@@ -151,7 +151,7 @@
 			"content/loader-chrome.js"
 		],
 		"matches" : [
-			"*://*"
+			"*://*/*"
 		],
 		"run_at" : "document_start"
 	} ],
