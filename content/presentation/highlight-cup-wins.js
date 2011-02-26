@@ -12,6 +12,7 @@ var FoxtrickHighlightCupwins = {
 	OPTIONS : new Array("HighlightCupsets"),
 
 	run : function( page, doc ) {
+		const rtl = Foxtrick.isRTLLayout(doc);
 		var highlightCupsets = Foxtrick.isModuleFeatureEnabled(this, "HighlightCupsets");
 		// matches of Hattrick Masters aren't arranged by cup ranks
 		var isMasters = (doc.location.search.search(/\bCupId=183\b/i) !== -1);
@@ -44,16 +45,22 @@ var FoxtrickHighlightCupwins = {
 			var lose = (goalsHome < goalsAway);
 			var matchlink = table.rows[i].cells[3].getElementsByTagName('a')[0];
 			var teams = matchlink.textContent.split(/\s+\-\s+/);
-			var homeTeam = teams[0];
-			var awayTeam = teams[1];
+			var homeTeam = !rtl ? teams[0] : teams[1];
+			var awayTeam = !rtl ? teams[1] : teams[0];
 			if (win) {
 				if (highlightHomeWin) {
 					table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
 				}
-				matchlink.innerHTML = '<strong>' + homeTeam + '</strong>&nbsp;-&nbsp;' + awayTeam;
+				if (!rtl)
+					matchlink.innerHTML = '<strong>' + homeTeam + '</strong>&nbsp;-&nbsp;' + awayTeam;
+				else
+					matchlink.innerHTML = '<strong>' + awayTeam + '</strong>&nbsp;-&nbsp;' + homeTeam;
 			}
 			else if (lose) {
-				matchlink.innerHTML = homeTeam + '&nbsp;-&nbsp;<strong>' + awayTeam + '</strong>';
+				if (!rtl)
+					matchlink.innerHTML = homeTeam + '&nbsp;-&nbsp;<strong>' + awayTeam + '</strong>';
+				else
+					matchlink.innerHTML = awayTeam + '&nbsp;-&nbsp;<strong>' + homeTeam + '</strong>';
 			}
 		}
  	}
