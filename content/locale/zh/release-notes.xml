@@ -10,19 +10,27 @@
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="开发版本">
-<item>请查阅Google Code上的<xhtml:a href="http://code.google.com/p/foxtrick/source/list">版本历史</xhtml:a>.</item>
+<item>请查阅 Google Code 上的<xhtml:a href="http://code.google.com/p/foxtrick/source/list">版本历史</xhtml:a>.</item>
 </note>
 
-<note version="0.5.4">
-<item>新的选项界面.</item>
-<item>用于提醒新的 HT Live 进球的 <module>LiveAlert</module> (ryanli).</item>
-<item>用于显示旧风格头像的 <module>OldStyleFace</module> (Aimo_Kanuuna).</item>
-<item>用于在“我的 Hattrick”处显示 NT/U20 比赛的 <module>NtPeek</module> (ryanli).</item>
-<item><module>FixcssProblems</module> 选项, 用于隐藏论坛快速浏览, (ljushaff).</item>
-<item>白俄罗斯语语言 (LA-Stolik).</item>
-<item>新的灰色图标, 用于举报链接 (ljushaff).</item>
-<item>大部分功能在 Google Chrome 下可用.</item>
-<item>一些为适应 Hattrick 更改的修正.</item>
-<item><module>ExtraShortcuts</module> 中的收音机选项默认被关闭.</item>
+<note version="0.6">
+<item>新的选项界面. (ryanli)</item>
+<item>经由新的 Hattrick API 认证的 OAuth 认证界面. (ryanli)</item>
+<item><module>LiveAlert</module> 模块, 用于提醒 HT Live 中新的进球. (ryanli)</item>
+<item><module>OldStyleFace</module> 模块, 用于显示旧风格头像. (Aimo_Kanuuna)</item>
+<item><module>NtPeek</module> 模块, 用于在“我的 Hattrick”处显示最近的国家队比赛. (ryanli)</item>
+<item><module>SeriesFlags</module> 模块, 用于在球队/经理链接旁显示国家与联赛. 图像由 <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a> 提供. (taised, ryanli)</item>
+<item><module>HTMSPoints</module> 模块, 用于显示球员的 <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS 技能点</xhtml:a>, 即数字化的能力与潜力. (taised)</item>
+<item><module>FriendlyInterface</module> 模块, 可以在比赛阵容页面显示球员的全名, 以及在国家队球员页面中显示到国家队的链接. (ryanli)</item>
+<item>HighlightBotTeams 模块被重命名为 <module>HighlightOwnerless</module>. (ryanli)</item>
+<item>移除了 YouthSkillNotes 和 ShortPA 模块. (ryanli)</item>
+<item><module>FixcssProblems</module> 中用于隐藏论坛快速浏览的新选项. (ljushaff)</item>
+<item><module>CopyPlayerAd</module> 中可以以文本方式 (没有表格) 复制广告的选项. (ryanli)</item>
+<item>白俄罗斯语语言. (LA-Stolik)</item>
+<item>新的灰色图标, 用于举报链接. (ljushaff)</item>
+<item><module>YouthPromotes</module> 现在显示能够提升球员的最早日期. (ryanli)</item>
+<item>大部分功能在 Google Chrome 下可用. (ryanli)</item>
+<item>一些为适应 Hattrick 更改的修正. (ryanli, taised, ljushaff)</item>
+<item><module>ExtraShortcuts</module> 中的收音机选项默认被关闭. (ryanli)</item>
 </note>
 </notes>
