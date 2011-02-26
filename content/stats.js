@@ -2164,7 +2164,7 @@ stats["ukrainatracker"] = {
 };
 
 stats["spaintracker"] = {
-  "url" : "http://www.htspain.com.es/",
+  "url" : "http://www.htspain.es/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Espańa NT/U-20 DB",
 
