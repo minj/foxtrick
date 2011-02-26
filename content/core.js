@@ -46,7 +46,8 @@ var FoxtrickCore = {
 	run : function(page, doc) {
 		this.showChangeLog(doc);
 		this.showVersion(doc);
-		this.updateStatus()
+		this.updateStatus();
+		this.updateLastHost(doc);
 	},
 
 	updateStatus : function() {
@@ -84,6 +85,13 @@ var FoxtrickCore = {
 		}
 		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
 		icon.setAttribute("tooltiptext", tooltipText);
+	},
+
+	updateLastHost : function(doc) {
+		// update Foxtrick.lastHost, which is used when opening links
+		// from browser chrome
+		Foxtrick.setLastHost(doc.location.protocol + "//"
+			+ doc.location.hostname);
 	},
 
 	showChangeLog : function(doc) {
