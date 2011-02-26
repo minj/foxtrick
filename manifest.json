@@ -151,10 +151,7 @@
 			"content/loader-chrome.js"
 		],
 		"matches" : [
-			"http://*.hattrick.org/*",
-			"http://*.hattrick.ws/*",
-			"http://*.hattrick.interia.pl/*",
-			"http://*.yaplet.com/*"
+			"*://*"
 		],
 		"run_at" : "document_start"
 	} ],
