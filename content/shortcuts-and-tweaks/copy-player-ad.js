@@ -10,7 +10,7 @@ var FoxtrickCopyPlayerAd = {
 	MODULE_NAME : "CopyPlayerAd",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "youthplayerdetail"],
-	OPTIONS : ["Sorted"],
+	OPTIONS : ["Sorted", "NonTableStyle"],
 
 	run : function(page, doc) {
 		try {
@@ -200,30 +200,56 @@ var FoxtrickCopyPlayerAd = {
 							skillArray.sort(skillSort);
 						}
 
-						ad += "[table]\n";
-						for (var i in skillArray) {
-							ad += "[tr]"
-								+ "[th]" + skillArray[i].name + "[/th]"
-								+ "[td]" + skillArray[i].text + "[/td]"
-								+ "[/tr]\n";
+						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
+							ad += "[table]\n";
+							for (var i in skillArray) {
+								ad += "[tr]"
+									+ "[th]" + skillArray[i].name + "[/th]"
+									+ "[td]" + skillArray[i].text + "[/td]"
+									+ "[/tr]\n";
+							}
+							ad += "[/table]";
 						}
-						ad += "[/table]";
+						else {
+							ad += "\n";
+							for (var i in skillArray) {
+								ad += skillArray[i].name + ": "
+									+ skillArray[i].text + "\n";
+							}
+							ad += "\n";
+						}
 					}
 					else {
 						// otherwise, they are arranged in a table with two
 						// cells in each row
-						ad += "[table]\n";
-						var index = 0;
-						for (var skill in skillArray) {
-							if (index % 2 == 0)
-								ad += "[tr]";
-							ad += "[th]" + skillArray[skill].name + "[/th]";
-							ad += "[td]" + formatSkill(skillArray[skill].text, skillArray[skill].value) + "[/td]";
-							if (index % 2 == 1)
-								ad += "[/tr]\n";
-							++index;
+						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
+							ad += "[table]\n";
+							var index = 0;
+							for (var skill in skillArray) {
+								if (index % 2 == 0)
+									ad += "[tr]";
+								ad += "[th]" + skillArray[skill].name + "[/th]";
+								ad += "[td]" + formatSkill(skillArray[skill].text, skillArray[skill].value) + "[/td]";
+								if (index % 2 == 1)
+									ad += "[/tr]\n";
+								++index;
+							}
+							ad += "[/table]";
 						}
-						ad += "[/table]";
+						else {
+							ad += "\n";
+							var index = 0;
+							for (var skill in skillArray) {
+								if (index % 2 == 1)
+									ad += " ";
+								ad += skillArray[skill].name + ": "
+									+ formatSkill(skillArray[skill].text, skillArray[skill].value);
+								if (index % 2 == 1)
+									ad += "\n";
+								++index;
+							}
+							ad += "\n";
+						}
 					}
 				}
 				else {
@@ -255,20 +281,35 @@ var FoxtrickCopyPlayerAd = {
 						// descending
 						skillArray.sort(skillSort);
 					}
-					ad += "[table]\n";
-					for (var i in skillArray) {
-						ad += "[tr]"
-							+ "[th]" + skillArray[i].name + "[/th]"
-							+ "[td]"
-							+ (skillArray[i].maxed ? "[b]" : "")
-							+ skillArray[i].current.text
-							+ " / "
-							+ skillArray[i].max.text
-							+ (skillArray[i].maxed ? "[/b]" : "")
-							+ "[/td]"
-							+ "[/tr]\n";
+					if (!Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
+						ad += "[table]\n";
+						for (var i in skillArray) {
+							ad += "[tr]"
+								+ "[th]" + skillArray[i].name + "[/th]"
+								+ "[td]"
+								+ (skillArray[i].maxed ? "[b]" : "")
+								+ skillArray[i].current.text
+								+ " / "
+								+ skillArray[i].max.text
+								+ (skillArray[i].maxed ? "[/b]" : "")
+								+ "[/td]"
+								+ "[/tr]\n";
+						}
+						ad += "[/table]";
 					}
-					ad += "[/table]";
+					else {
+						ad += "\n";
+						for (var i in skillArray) {
+							ad += skillArray[i].name + ": "
+								+ (skillArray[i].maxed ? "[b]" : "")
+								+ skillArray[i].current.text
+								+ " / "
+								+ skillArray[i].max.text
+								+ (skillArray[i].maxed ? "[/b]" : "")
+								+ "\n";
+						}
+						ad += "\n";
+					}
 				}
 			}
 

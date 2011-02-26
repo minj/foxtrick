@@ -26,6 +26,7 @@
 <item>Module HighlightBotTeams renamed to <module>HighlightOwnerless</module>. (ryanli)</item>
 <item>Module YouthSkillNotes and ShortPA removed. (ryanli)</item>
 <item>Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)</item>
+<item>Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)</item>
 <item>Belarusian locale. (LA-Stolik)</item>
 <item>New grey icon for report links. (ljushaff)</item>
 <item><module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)</item>

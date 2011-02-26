@@ -53,6 +53,7 @@ pref("extensions.foxtrick.prefs.module.ContextMenuCopy.Table.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyMatchID.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPlayerAd.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPlayerAd.Sorted.enabled", false);
+pref("extensions.foxtrick.prefs.module.CopyPlayerAd.NonTableStyle.enabled", false);
 pref("extensions.foxtrick.prefs.module.CopyPlayerSource.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPlayerSource.OpenHTYpage.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPostID.AddCopyIcon.enabled", true);
