@@ -10,27 +10,27 @@
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="Тест верзија">
 <item>За детаље о променама погледајте  на <xhtml:a href="http://code.google.com/p/foxtrick/source/list">Google Code</xhtml:a> сајту.</item>
+<item>Уколико желите да вам Фокстрик не приказује обавештење о променама после сваког ажурирања искључите опцију "Прикажи поруку о променама после ажурирања Фокстрика" у табу <xhtml:a href="#tab=main">"Главне опције"</xhtml:a>.</item>
 </note>
 
 <note version="0.6">
-<item>Опција за не приказивање 'Провири на форум' на страници лиге и државе у <module>FixcssProblems</module> модулу (ljushaff).</item>
-<item>Нова сива иконица за линк 'пријави поруку Модовима' на форуму (ljushaff).</item>
-<item>Поправке за <module>ExtendedPlayerDetailsWage</module> и модул <module>MatchReportFormat</module>.</item>
-<item>Мање поправке за разне модуле и нарочито за Chrome.</item>
-</note>
-
-<note version="0.5.4b2">
-<item><module>NtPeek</module> за преглед мечева репрезентација на страници Мој Хеттрик.</item>
-<item>Додат превод за белоруски (LA-Stolik).</item>
-<item>Неколико поправки у складу са Хеттрик изменама.</item>
-<item>Таб за приказивање промена у односу на претходну верзију је убачен у интерфејс за подешавања.</item>
-<item>Активирани су линкови до FoxTrick подешавања унутар Хеттрика.</item>
-<item>Опције за радио у ExtraShortcuts модулу су искључене у стандардним подешавањима.</item>
-</note>
-
-<note version="0.5.4b1">
-<item>Нов интерфејс за подешавања.</item>
-<item><module>LiveAlert</module> обавештења о постигнутим головима за мечеве у ХТ уживо.</item>
-<item><module>OldStyleFace</module> модул за приказивење слика играча и менаџера у старом ХТ стилу.</item>
+<item>Нови интерфејс за подешавања. (ryanli)</item>
+<item>OAuth интерфејс за нов систем ауторизације (Hattrick CHPP API). (ryanli)</item>
+<item>Mодул<module>LiveAlert</module> за обавештења о головима на мечевима које пратите у HT Live. (ryanli)</item>
+<item><module>OldStyleFace</module> модул за приказивење слика играча и менаџера у старом ХТ стилу.(Aimo_Kanuuna)</item>
+<item><module>NtPeek</module> за преглед мечева репрезентација на страници Мој Хеттрик.(ryanli)</item>
+<item><module>SeriesFlags</module> модул за приказивање заставице и лиге корисника уписаних у књигу гостију. Заставице обетбедио<xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>. (taised, ryanli)</item>
+<item>ж<module>HTMS-бодови</module> за приказивање вештина и потенцијала за тренинг играча<xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Бодови</xhtml:a>(taised)</item>
+<item><module>FriendlyInterface</module> модул са опцијама за приказивање пуног имена играча на страници поставе и приказивање линкова ка националном тиму код репрезентативаца. (ryanli)</item>
+<item>Mодул HighlightBotTeams преименован у <module>HighlightOwnerless</module>. (ryanli)</item>
+<item>Обрисани модули YouthSkillNotes и ShortPA. (ryanli)</item>
+<item>Опција за не приказивање 'Провири на форум' на страници лиге и државе у модулу <module>FixcssProblems</module>. (ljushaff)</item>
+<item>Опција за копирање играча у старом стилу (без табеле) у модулу<module>CopyPlayerAd</module>. (ryanli)</item>
+<item>Белоруски језик. (LA-Stolik)</item>
+<item>Нова иконица за линк "Пријави поруку модераторима". (ljushaff)</item>
+<item><module>YouthPromotes</module> модул сада приказује и најранији дату за промоцију играча. (ryanli)</item>
+<item>Већина функција ради и у Google Chrome. (ryanli)</item>
+<item>Мање исправке за најновије промене на Хеттрику. (ryanli, taised, ljushaff)</item>
+<item>Опције за радио у модулу<module>ExtraShortcuts</module> су искључене у стандардним подешавањима. (ryanli)</item>
 </note>
 </notes>
