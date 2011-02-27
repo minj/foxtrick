@@ -162,7 +162,6 @@
 	},
 	"name" : "FoxTrick",
 	"permissions" : [
-		"tabs",
 		"notifications",
 		"http://www.hattrick-youthclub.org/*",
 		"http://www.fantamondi.it/*",
