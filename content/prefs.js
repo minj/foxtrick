@@ -463,10 +463,18 @@ var FoxtrickPrefs = {
 	},
 
 	disable : function() {
-		var statusBarImg = document.getElementById("foxtrick-status-bar-img");
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
-		FoxtrickCore.updateStatus();
-		FoxtrickMain.init();
+		if (Foxtrick.BuildFor === "Gecko") {
+			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
+			FoxtrickCore.updateStatus();
+			FoxtrickMain.init();
+		}
+		else if (Foxtrick.BuildFor === "Chrome") {
+	 		if (FoxtrickPrefs.getBool("disableTemporary"))
+ 				chrome.browserAction.setIcon({path : "../skin/disabled-24.png"});
+ 			else
+ 				chrome.browserAction.setIcon({path : "../skin/icon-24.png"});
+		}
 	}
 };
 

@@ -16,6 +16,8 @@ function update() {
 
 init();
 
+chrome.browserAction.onClicked.addListener(function() { FoxtrickPrefs.disable(); });
+
 // send resource to content scripts
 chrome.extension.onConnect.addListener(function(port) {
 	if (port.name == "pref") {
