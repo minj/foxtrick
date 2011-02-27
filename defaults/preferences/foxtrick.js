@@ -179,6 +179,7 @@ pref("extensions.foxtrick.prefs.module.SeriesFlags.Guestbook.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeriesFlags.Supporters.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeriesFlags.Visitors.enabled", false);
 pref("extensions.foxtrick.prefs.module.SeriesFlags.Oldies.enabled", true);
+pref("extensions.foxtrick.prefs.module.SeriesFlags.CountryOnly.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.RemoveFlicker.enabled", false);
