@@ -104,7 +104,7 @@ var FoxtrickPrefsDialogHTML = {
 		var a = doc.createElement("a");
 		a.className = "ft_actionicon foxtrickScreenshot";
 		a.href = link;
-		a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
+		a.title = Foxtrickl10n.getString("prefs.screenshot");
 		a.setAttribute('target','_blank');
 		return a;
 	},

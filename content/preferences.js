@@ -433,7 +433,7 @@ function getScreenshot(link)
 	var a = document.createElement("a");
 	a.className = "screenshot";
 	a.href = link;
-	a.title = Foxtrickl10n.getString("foxtrick.prefs.commented_screenshots");
+	a.title = Foxtrickl10n.getString("prefs.screenshot");
 	a.setAttribute('target','_blank');
 	return a;
 }
