@@ -13,6 +13,14 @@ function runScript() {
 		return;
 	}
 
+	if (!Foxtrick.isHt(document)
+		|| (FoxtrickPrefs.getBool("disableOnStage")
+			&& Foxtrick.isStage(document))
+		|| FoxtrickPrefs.getBool("disableTemporary")) {
+		// not on Hattrick or disabled
+		return;
+	}
+
 	// check if it's in exclude list
 	for (var i in Foxtrick.pagesExcluded) {
 		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
