@@ -17,15 +17,13 @@ var FoxtrickOriginalFace = {
 	],
 
 	run : function(page, doc) {
-		if (Foxtrick.isModuleFeatureEnabled(FoxtrickSkillTable, "ColouredYouth")) {
-			if (Foxtrick.isPage(Foxtrick.ht_pages["YouthPlayer"], doc)
-				|| Foxtrick.isPage(Foxtrick.ht_pages["YouthPlayers"], doc)) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "ColouredYouth")) {
+			if (page=="YouthPlayer" || page=="YouthPlayers") {
 				var imgs = doc.getElementsByTagName("img");
-				for (var i=0; i < imgs.length; i++) {
-					if (imgs[i].src.match(/\/Img\/Avatar/i)) {
-						imgs[i].src = imgs[i].src.replace(/y_/, "");
-					}
-				}
+				var avatarImages = Foxtrick.filter(imgs, function(n) { return (n.src.search(/\/Img\/Avatar/i) >= 0); });
+				Foxtrick.map(avatarImages, function(n) {
+					n.src = n.src.replace(/y_/, "");
+				});
 			}
 		}
 	}
