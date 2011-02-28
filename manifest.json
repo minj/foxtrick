@@ -166,9 +166,9 @@
 	"name" : "FoxTrick",
 	"permissions" : [
 		"notifications",
+		"*://*.hattrick.org/*",
 		"http://www.hattrick-youthclub.org/*",
 		"http://www.fantamondi.it/*",
-		"*://*.hattrick.org/*"
 	],
 	"browser_action" : {
 		"default_title" : "FoxTrick",
