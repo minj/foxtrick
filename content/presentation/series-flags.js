@@ -30,12 +30,14 @@ var FoxtrickSeriesFlags = {
 		};
 		var modifyUserLinks = function(links) {
 			Foxtrick.map(links, function(n) {
-				n.parentNode.insertBefore(buildFlag(n.href, FoxtrickHelper.getUserIdFromUrl(n.href), null), n.nextSibling);
+				var flag = n.parentNode.insertBefore(buildFlag(n.href, FoxtrickHelper.getUserIdFromUrl(n.href), null), n.nextSibling);
+				n.parentNode.insertBefore(doc.createTextNode(" "), flag);
 			});
 		};
 		var modifyTeamLinks = function(links) {
 			Foxtrick.map(links, function(n) {
-				n.parentNode.insertBefore(buildFlag(n.href, null, FoxtrickHelper.getTeamIdFromUrl(n.href)), n.nextSibling);
+				var flag = n.parentNode.insertBefore(buildFlag(n.href, null, FoxtrickHelper.getTeamIdFromUrl(n.href)), n.nextSibling);
+				n.parentNode.insertBefore(doc.createTextNode(" "), flag);
 			});
 		};
 		if (Foxtrick.isModuleFeatureEnabled(this, "Guestbook")
