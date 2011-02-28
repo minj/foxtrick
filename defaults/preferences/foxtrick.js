@@ -436,6 +436,7 @@ pref("extensions.foxtrick.prefs.module.Ratings.htitavals.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.loddarstats.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.peasostats.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.vnukstats.enabled", true);
+pref("extensions.foxtrick.prefs.module.Ratings.hatstatsOnRatings.enabled", false);
 pref("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeasonStats.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeniorTeamShortCuts.enabled", true);
