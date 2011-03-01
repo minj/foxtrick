@@ -20,12 +20,12 @@ Foxtrick.XMLData = {
 	init : function() {
 		if (Foxtrick.BuildFor == "Gecko"
 			|| (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "background")) {
-			this.htCurrencyXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/htcurrency.xml");
-			this.htNTidsXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/htNTidList.xml");
-			this.htdateformat = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/htdateformat.xml");
-			this.aboutXML = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
+			this.htCurrencyXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htcurrency.xml");
+			this.htNTidsXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htNTidList.xml");
+			this.htdateformat = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htdateformat.xml");
+			this.aboutXML = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 
-			var worlddetailsXML = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/worlddetails.xml");
+			var worlddetailsXML = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/worlddetails.xml");
 			var data = {};
 			var name = 'HattrickData';
 			Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement, data, name);

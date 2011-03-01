@@ -12,7 +12,7 @@ FoxtrickCurrencyConverter = {
 		var currencySelect = doc.createElement("select");
 		currencySelect.setAttribute("pref", "module.CurrencyConverter.to");
 		var currencies = [];
-		var currencyXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/htcurrency.xml");
+		var currencyXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htcurrency.xml");
 		var currencyNodes = currencyXml.getElementsByTagName("currency");
 		for (var i = 0; i < currencyNodes.length; ++i) {
 			var code = currencyNodes[i].getAttribute("code");

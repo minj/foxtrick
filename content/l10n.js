@@ -72,7 +72,7 @@ var Foxtrickl10n = {
 				for (var i in Foxtrickl10n.locales) {
 					var locale = Foxtrickl10n.locales[i];
 					var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
-					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.LoadXML(url);
+					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
 				}
 			}
 		}

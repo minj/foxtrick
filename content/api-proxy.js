@@ -139,7 +139,7 @@ Foxtrick.ApiProxy = {
 		OAuth.setTimestampAndNonce(msg);
 		OAuth.SignatureMethod.sign(msg, accessor);
 		var url = OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
-		Foxtrick.LoadXML(url, function(x, status) {
+		Foxtrick.loadXml(url, function(x, status) {
 			if (status == 200) {
 				Foxtrick.dump("ApiProxy: retrieval success.\n");
 				callback(x);

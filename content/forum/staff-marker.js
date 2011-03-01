@@ -30,7 +30,7 @@ var FoxtrickStaffMarker = {
 	foxtrickersArray : [],
 
 	updateHtyXML : function() {
-		Foxtrick.LoadXML("http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml",
+		Foxtrick.loadXml("http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml",
 			function(xml) {
 				try {
 					var htyusers = xml.getElementsByTagName("User");

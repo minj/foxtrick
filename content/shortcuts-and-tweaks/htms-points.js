@@ -44,7 +44,7 @@ var FoxtrickHTMSPoints = {
 				}
 			};
 			const prefix = "http://www.fantamondi.it/HTMS/nt.php?action=calc";
-			Foxtrick.LoadXML(prefix + skillList, function(xml) {
+			Foxtrick.loadXml(prefix + skillList, function(xml) {
 				showResult(target, xml);
 			}, true);
 		};

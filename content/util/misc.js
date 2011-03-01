@@ -138,7 +138,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 	}
 };
 
-Foxtrick.LoadXML = function(url, callback, crossSite) {
+Foxtrick.loadXml = function(url, callback, crossSite) {
 	if (callback) {
 		Foxtrick.load(url, function(text, status) {
 			try {

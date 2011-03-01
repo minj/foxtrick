@@ -215,7 +215,7 @@ function initMainTab()
 
 	// date format
 	var dateFormats = [];
-	var dateFormatXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/htdateformat.xml");
+	var dateFormatXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htdateformat.xml");
 	var dateFormatNodes = dateFormatXml.getElementsByTagName("dateformat");
 	for (var i = 0; i < dateFormatNodes.length; ++i) {
 		var code = dateFormatNodes[i].getAttribute("code");
@@ -440,8 +440,8 @@ function getScreenshot(link)
 
 function initChangesTab()
 {
-	const releaseNotes = Foxtrick.LoadXML(Foxtrick.ResourcePath + "release-notes.xml");
-	const releaseNotesLocalized = Foxtrick.LoadXML(Foxtrick.ResourcePath
+	const releaseNotes = Foxtrick.loadXml(Foxtrick.ResourcePath + "release-notes.xml");
+	const releaseNotesLocalized = Foxtrick.loadXml(Foxtrick.ResourcePath
 		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/release-notes.xml");
 	var notes = {};
 	var notesLocalized = {};
@@ -513,7 +513,7 @@ function initChangesTab()
 function initHelpTab()
 {
 	// external links
-	const aboutXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
+	const aboutXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 	const links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
 	for (var i = 0; i < links.length; ++i) {
 		var item = document.createElement("li");
@@ -538,7 +538,7 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	const aboutXml = Foxtrick.LoadXML(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
+	const aboutXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 	$(".about-list").each(function() {
 		const items = Foxtrick.XML_evaluate(aboutXml, $(this).attr("path"), "value");
 		for (var i = 0; i < items.length; ++i) {
