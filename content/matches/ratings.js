@@ -9,7 +9,7 @@ Foxtrick.Ratings = {
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	OPTIONS : new Array ("hatstats", "hatstatstotal", "loddarstats", "peasostats", "vnukstats", "htitavals", "gardierstats", "hatstatsOnRatings"),
+	OPTIONS : ["HatStats", "HatStatsTotal", "HatStatsSeparated", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
 	ratingDefs :  {}, // will be filled in initOptions
 
 	init : function() {
@@ -17,7 +17,9 @@ Foxtrick.Ratings = {
 	},
 
 	run : function( page, doc ) {
-		var ratingsArray=new Array ("hatstats", "hatstatstotal", "loddarstats", "peasostats", "vnukstats", "htitavals", "gardierstats");
+		var ratingsArray = Foxtrick.filter(Foxtrick.Ratings.OPTIONS, function(x) {
+			return x != "HatStatsSeparated";
+		});
 		
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
@@ -121,7 +123,7 @@ Foxtrick.Ratings = {
 		}
 		
 		//Finally adding hatstatsOnRatings
-		if (Foxtrick.isModuleFeatureEnabled(this, "hatstatsOnRatings")) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "HatStatsSeparated")) {
 			for (var j=1;j<3;j++) {
 				for (var i=1;i<8;i++) {
 					var tempvalue=Foxtrick.Matches._getStatFromCell(ratingstable.rows[i].cells[j]);
@@ -150,9 +152,9 @@ Foxtrick.Ratings = {
 	initHtRatings: function () {
 		this.ratingDefs=new Array();
 
-		this.ratingDefs["hatstats"] = {	base : 1.0, weight : 4.0,
-			label : function(){return Foxtrickl10n.getString('HatStatsDetailed');},
-			title : function(){return Foxtrickl10n.getString('HatStatsDetailed');},
+		this.ratingDefs["HatStats"] = { base : 1.0, weight : 4.0,
+			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
+			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 
 			attack : function(attackLevel) {
 				return (3.0*this.base + this.weight*attackLevel);
@@ -170,15 +172,15 @@ Foxtrick.Ratings = {
 			}
 		};
 
-		this.ratingDefs["hatstatstotal"] = {
-			label : function(){return Foxtrickl10n.getString("HatStatsTotalOnly");},
-			title : function(){return Foxtrickl10n.getString("HatStatsTotalOnly");},
+		this.ratingDefs["HatStatsTotal"] = {
+			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
+			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return Foxtrick.Ratings.ratingDefs["hatstats"].total(midfieldLevel, attackLevel, defenceLevel);
+				return Foxtrick.Ratings.ratingDefs["HatStats"].total(midfieldLevel, attackLevel, defenceLevel);
 			}
 		};
 
-		this.ratingDefs["loddarstats"] = {	base : 1.0, weight : 4.0,
+		this.ratingDefs["LoddarStats"] = { base : 1.0, weight : 4.0,
 			label : function(){return "LoddarStats";},
 			title : function(){return "LoddarStats";},
 
@@ -239,11 +241,9 @@ Foxtrick.Ratings = {
 
 		 };
 
-
-
-		this.ratingDefs["vnukstats"] = { base : 1.0,
-			label : function(){return "Vnukstats";},
-			title : function(){return "Vnukstats";},
+		this.ratingDefs["VnukStats"] = { base : 1.0,
+			label : function(){return Foxtrickl10n.getString("ratings.VnukStats");},
+			title : function(){return Foxtrickl10n.getString("ratings.VnukStats");},
 
 			special : function(rattack, cattack, lattack) {
 			return this.mystyle(rattack) + " " + this.mystyle(cattack)
@@ -264,9 +264,9 @@ Foxtrick.Ratings = {
 			}
 		};
 
-		this.ratingDefs["peasostats"] = {	base : 1.0, weight : 4.0,
-			label : function(){return "PStats";},
-			title : function(){return "PStats";},
+		this.ratingDefs["PeasoStats"] = { base : 1.0, weight : 4.0,
+			label : function(){return Foxtrickl10n.getString("ratings.PeasoStats");},
+			title : function(){return Foxtrickl10n.getString("ratings.PeasoStats");},
 
 			total2: function( midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
@@ -291,9 +291,9 @@ Foxtrick.Ratings = {
 			}
 		};
 
-		this.ratingDefs["htitavals"] = {	base : 1.0, weight : 4.0,
-			label : function(){return "HTitaVal";},
-			title : function(){return "HTitaVal";},
+		this.ratingDefs["HTitaVal"] = { base : 1.0, weight : 4.0,
+			label : function(){return Foxtrickl10n.getString("ratings.HTitaVal");},
+			title : function(){return Foxtrickl10n.getString("ratings.HTitaVal");},
 
 			total2: function( midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
@@ -318,10 +318,10 @@ Foxtrick.Ratings = {
 			}
 		};
 
-		this.ratingDefs["gardierstats"] = {
+		this.ratingDefs["GardierStats"] = {
 			base : 1.0, weight : 4.0,
-			label : function(){return "GardierStats";},
-			title : function(){return "GardierStats";},
+			label : function(){return Foxtrickl10n.getString("ratings.GardierStats");},
+			title : function(){return Foxtrickl10n.getString("ratings.GardierStats");},
 
 			total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
 
