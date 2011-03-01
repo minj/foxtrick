@@ -54,54 +54,64 @@ Foxtrick.ApiProxy = {
 			Foxtrick.load(requestTokenUrl, function(text) {
 				var requestToken = text.split(/&/)[0].split(/=/)[1];
 				var requestTokenSecret = text.split(/&/)[1].split(/=/)[1];
-				var addInput = function() {
-					var input = doc.createElement("input");
-					div.appendChild(input);
-					var button = doc.createElement("input");
-					button.type = "button";
-					button.value = Foxtrickl10n.getString("button.authorize");
-					button.addEventListener("click", function(ev) {
-						var accessor = {
-							consumerSecret : Foxtrick.ApiProxy.consumerSecret,
-							tokenSecret : requestTokenSecret
-						};
-						var msg = {
-							action : Foxtrick.ApiProxy.accessTokenUrl,
-							method : "get",
-							parameters : [
-								["oauth_consumer_key", Foxtrick.ApiProxy.consumerKey],
-								["oauth_token", requestToken],
-								["oauth_signature_method", Foxtrick.ApiProxy.signatureMethod],
-								["oauth_signature", ""],
-								["oauth_timestamp", ""],
-								["oauth_nonce", ""],
-								["oauth_verifier", input.value]
-							]
-						};
-						OAuth.setTimestampAndNonce(msg);
-						OAuth.SignatureMethod.sign(msg, accessor);
-						var query = OAuth.formEncode(msg.parameters);
-						var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
-						Foxtrick.load(accessTokenUrl, function(text) {
-							var accessToken = text.split(/&/)[0].split(/=/)[1];
-							var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
-							Foxtrick.ApiProxy.setAccessToken(accessToken);
-							Foxtrick.ApiProxy.setAccessTokenSecret(accessTokenSecret);
-							showFinished();
-						}, true);
-					}, false);
-					div.appendChild(button);
-				};
-				var authorizeTokenUrl = Foxtrick.ApiProxy.authorizeUrl + "?" + text;
-				Foxtrick.newTab(authorizeTokenUrl);
-				addInput();
-			}, true); // cross-site
-		}, false);
+				// link
+				var linkPar = doc.createElement("p");
+				div.appendChild(linkPar);
+				var link = doc.createElement("a");
+				link.textContent = link.href = Foxtrick.ApiProxy.authorizeUrl + "?" + text;
+				link.target = "_blank";
+				linkPar.appendChild(link);
+				// input
+				var inputPar = doc.createElement("p");
+				div.appendChild(inputPar);
+				var input = doc.createElement("input");
+				inputPar.appendChild(input);
+				var button = doc.createElement("input");
+				button.type = "button";
+				button.value = Foxtrickl10n.getString("button.authorize");
+				button.addEventListener("click", function(ev) {
+					var accessor = {
+						consumerSecret : Foxtrick.ApiProxy.consumerSecret,
+						tokenSecret : requestTokenSecret
+					};
+					var msg = {
+						action : Foxtrick.ApiProxy.accessTokenUrl,
+						method : "get",
+						parameters : [
+							["oauth_consumer_key", Foxtrick.ApiProxy.consumerKey],
+							["oauth_token", requestToken],
+							["oauth_signature_method", Foxtrick.ApiProxy.signatureMethod],
+							["oauth_signature", ""],
+							["oauth_timestamp", ""],
+							["oauth_nonce", ""],
+							["oauth_verifier", input.value]
+						]
+					};
+					OAuth.setTimestampAndNonce(msg);
+					OAuth.SignatureMethod.sign(msg, accessor);
+					var query = OAuth.formEncode(msg.parameters);
+					var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
+					Foxtrick.load(accessTokenUrl, function(text) {
+						var accessToken = text.split(/&/)[0].split(/=/)[1];
+						var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
+						Foxtrick.ApiProxy.setAccessToken(accessToken);
+						Foxtrick.ApiProxy.setAccessTokenSecret(accessTokenSecret);
+						showFinished();
+					}, true); // save token and secret
+				}, false); // after hitting "authorize" button
+				inputPar.appendChild(button);
+			}, true); // get authorize URL with Foxtrick.load()
+		}, false); // initial authorize link event listener
 		div.appendChild(link);
 		var showNotice = function() {
 			div.removeChild(link);
 			var notice = doc.createElement("p");
-			notice.textContent = Foxtrickl10n.getString("oauth.instructions");
+			var paragraphs = Foxtrickl10n.getString("oauth.instructions").split(/\n/);
+			for (var i = 0; i < paragraphs.length; ++i) {
+				notice.appendChild(doc.createTextNode(paragraphs[i]));
+				if (i != paragraphs.length - 1)
+					notice.appendChild(doc.createElement("br"));
+			}
 			div.appendChild(notice);
 		};
 		var showFinished = function() {
