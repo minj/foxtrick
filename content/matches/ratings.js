@@ -122,19 +122,23 @@ Foxtrick.Ratings = {
 			}
 		}
 		
-		//Finally adding hatstatsOnRatings
+		//Finally adding HatStats per rating
 		if (Foxtrick.isModuleFeatureEnabled(this, "HatStatsSeparated")) {
 			for (var j=1;j<3;j++) {
 				for (var i=1;i<8;i++) {
-					var tempvalue=Foxtrick.Matches._getStatFromCell(ratingstable.rows[i].cells[j]);
+					var value = Foxtrick.Matches._getStatFromCell(ratingstable.rows[i].cells[j]);
 					if (i==1) {
 						//midfield have to be multiplied by 3
-						tempvalue=(tempvalue*4+1)*3;
+						value = (value*4+1)*3;
 					}
 					else {
-						tempvalue=tempvalue*4+3;
+						value=value*4+3;
 					}
-					ratingstable.rows[i].cells[j].innerHTML+=" ("+tempvalue+")";
+					var span = doc.createElement("span");
+					span.className = "ft-ratings-hatstats";
+					span.textContent = "(" + value + ")";
+					ratingstable.rows[i].cells[j].appendChild(doc.createTextNode(" "));
+					ratingstable.rows[i].cells[j].appendChild(span);
 				}
 			}
 		}

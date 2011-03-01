@@ -69,7 +69,7 @@ Foxtrick.Matches = {
 		}
 
 		try {
-			var subLevel = Foxtrick.trim(link.parentNode.textContent.substring(link.textContent.length));
+			var subLevel = Foxtrick.trim(link.nextSibling.textContent);
 			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");
 			if (!subLevelValue)	return -1;
