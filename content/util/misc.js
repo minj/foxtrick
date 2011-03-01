@@ -108,66 +108,61 @@ Foxtrick.newTab = function(url) {
 }
 
 Foxtrick.load = function(url, callback, crossSite) {
-	try {
-		if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
-			&& crossSite) {
-			// the evil Chrome that requires us to send a message to
-			// background script for cross-site requests
-			chrome.extension.sendRequest({req : "xml", url : url},
-				function(response) {
-					callback(response.data, response.status);
-				}
-			);
+	if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
+		&& crossSite) {
+		// the evil Chrome that requires us to send a message to
+		// background script for cross-site requests
+		chrome.extension.sendRequest({req : "xml", url : url},
+			function(response) {
+				callback(response.data, response.status);
+			}
+		);
+	}
+	else {
+		var req = new XMLHttpRequest();
+		if (!callback) {
+			req.open("GET", url, false);
+			req.send(null);
+			var response = req.responseText;
+			return response;
 		}
 		else {
-			var req = new XMLHttpRequest();
-			if (!callback) {
-				req.open("GET", url, false);
-				req.send(null);
-				var response = req.responseText;
-				return response;
-			}
-			else {
-				req.open("GET", url, true);
-				req.onreadystatechange = function(aEvt) {
-					try {
-						if (req.readyState == 4) {
-							callback(req.responseText, req.status);
-						}
-					}
-					catch (e) {
-						Foxtrick.dumpError(e);
-					}
-				};
-				req.send();
-			}
+			req.open("GET", url, true);
+			req.onreadystatechange = function(aEvt) {
+				if (req.readyState == 4) {
+					callback(req.responseText, req.status);
+				}
+			};
+			req.send();
 		}
-	}
-	catch (e) {
-		Foxtrick.dumpError(e);
-		return null;
 	}
 };
 
 Foxtrick.LoadXML = function(url, callback, crossSite) {
-	try {
-		if (callback) {
-			Foxtrick.load(url, function(text, status) {
+	if (callback) {
+		Foxtrick.load(url, function(text, status) {
+			try {
 				var parser = new DOMParser();
 				var xml = parser.parseFromString(text, "text/xml");
 				callback(xml, status);
-			}, crossSite);
-		}
-		else {
+			}
+			catch (e) {
+				// invalid XML
+				callback(null, status);
+			}
+		}, crossSite);
+	}
+	else {
+		try {
 			var text = Foxtrick.load(url);
 			var parser = new DOMParser();
 			var xml = parser.parseFromString(text, "text/xml");
 			return xml;
 		}
-	}
-	catch (e) {
-		Foxtrick.dumpError(e);
-		return null;
+		catch (e) {
+			// invalid XML
+			return null;
+		}
 	}
 }
 

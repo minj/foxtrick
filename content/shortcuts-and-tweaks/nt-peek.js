@@ -81,7 +81,7 @@ var FoxtrickNtPeek = {
 		try {
 			if (xml === null) {
 				// no XML available
-				container.textContent = Foxtrickl10n.getString("oauth.unauthorized");
+				container.textContent = Foxtrickl10n.getString("api.failure");
 				return;
 			}
 			var table = container.getElementsByTagName("table")[0];

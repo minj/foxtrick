@@ -112,8 +112,9 @@ Foxtrick.ApiProxy = {
 	},
 
 	retrieve : function(doc, parameters, callback) {
-		Foxtrick.dump("ApiProxy attempting to retrieve: " + parameters + "…\n");
+		Foxtrick.dump("ApiProxy: attempting to retrieve: " + parameters + "…\n");
 		if (!Foxtrick.ApiProxy.authorized()) {
+			Foxtrick.dump("ApiProxy: unauthorized.\n");
 			Foxtrick.ApiProxy.authorize(doc);
 			callback(null);
 			return;
@@ -140,14 +141,18 @@ Foxtrick.ApiProxy = {
 		var url = OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
 		Foxtrick.LoadXML(url, function(x, status) {
 			if (status == 200) {
-				Foxtrick.dump("ApiProxy retrieval success.\n");
+				Foxtrick.dump("ApiProxy: retrieval success.\n");
 				callback(x);
 			}
-			else {
-				Foxtrick.dump("ApiProxy error: " + status + ".\n");
-				callback(null);
+			else if (status == 401) {
+				Foxtrick.dump("ApiProxy: error 401, unauthorized.\n");
 				Foxtrick.ApiProxy.invalidateAccessToken(doc);
 				Foxtrick.ApiProxy.authorize(doc);
+				callback(null);
+			}
+			else {
+				Foxtrick.dump("ApiProxy: error " + status + ".\n");
+				callback(null);
 			}
 		}, true);
 	},
