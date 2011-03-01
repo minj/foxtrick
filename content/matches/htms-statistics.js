@@ -15,12 +15,12 @@ Foxtrick.htmsStatistics = {
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
 
-		var ratingstable = Foxtrick.Matches._getRatingsTable(doc);
+		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (ratingstable == null) return;
 		var tacticRow=ratingstable.rows.length-2;
 		//Foxtrick.dump('got table '+tacticRow+' : '+ratingstable.rows[tacticRow].innerHTML)
-		if (Foxtrick.Matches._isWalkOver(ratingstable)) return;
-		if (!Foxtrick.Matches._isCorrectLanguage(ratingstable)) { // incorrect language
+		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
+		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
 
 			var htmstable = ratingstable.parentNode.insertBefore(doc.createElement('table'),ratingstable.nextSibling);
 			var row = htmstable.insertRow(0);
@@ -32,32 +32,32 @@ Foxtrick.htmsStatistics = {
 
 		Foxtrick.addJavaScript(doc, "chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/resources/js/gauge.js");
 
-		var midfieldLevel=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[1].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[1].cells[2]));
+		var midfieldLevel=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[2]));
 		midfieldLevel[0]=midfieldLevel[0]*4+1;
 		midfieldLevel[1]=midfieldLevel[1]*4+1;
-		var rdefence=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[2].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[2].cells[2]));
+		var rdefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[2]));
 		rdefence[0]=rdefence[0]*4+1;
 		rdefence[1]=rdefence[1]*4+1;
-		var cdefence=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[3].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[3].cells[2]));
+		var cdefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[2]));
 		cdefence[0]=cdefence[0]*4+1;
 		cdefence[1]=cdefence[1]*4+1;
-		var ldefence=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[4].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[4].cells[2]));
+		var ldefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[2]));
 		ldefence[0]=ldefence[0]*4+1;
 		ldefence[1]=ldefence[1]*4+1;
-		var rattack=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[5].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[5].cells[2]));
+		var rattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[2]));
 		rattack[0]=rattack[0]*4+1;
 		rattack[1]=rattack[1]*4+1;
-		var cattack=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[6].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[6].cells[2]));
+		var cattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[2]));
 		cattack[0]=cattack[0]*4+1;
 		cattack[1]=cattack[1]*4+1;
-		var lattack=new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[7].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[7].cells[2]));
+		var lattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[2]));
 		lattack[0]=lattack[0]*4+1;
 		lattack[1]=lattack[1]*4+1;
 		var tactics;
 		var tacticsLevel;
 
-		tactics=new Array(Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Matches._getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
-		tacticsLevel=new Array(Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Matches._getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
+		tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
+		tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
 
 		//Creating params for link
 		var params='&TAM='+midfieldLevel[0]+'&TBM='+midfieldLevel[1];

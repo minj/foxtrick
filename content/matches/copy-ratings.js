@@ -16,7 +16,7 @@ var FoxtrickCopyRatings = {
 			return;
 		}
 
-		var table = Foxtrick.Matches._getRatingsTable(doc);
+		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (!table) {
 			return;
 		}

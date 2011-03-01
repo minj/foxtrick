@@ -51,9 +51,6 @@ FoxtrickMatchPlayerColouring = {
 		}
 
 		var matchid = FoxtrickHelper.getMatchIdFromUrl(doc.location.href);
-		// exmaple xml use
-		//Foxtrick.dump(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
-		//Foxtrick.alert(Foxtrick.Matches.matchxmls[matchid].getElementsByTagName('AwayTeam')[0].getElementsByTagName('RatingMidfield')[0].textContent+'\n');
 
 		//Retrieve teams id
 		var myTeamId = isyouth ? FoxtrickHelper.getOwnYouthTeamId() : FoxtrickHelper.getOwnTeamId();

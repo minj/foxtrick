@@ -13,9 +13,9 @@ Foxtrick.AttVsDef = {
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
 
 	run : function( page, doc ) {
-		var ratingstable = Foxtrick.Matches._getRatingsTable(doc);
+		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (ratingstable == null) return;
-		if (Foxtrick.Matches._isWalkOver(ratingstable)) return;
+		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 
 		var header = Foxtrickl10n.getString("foxtrick.matches.attackdefensebars" );
 		var boxId = "foxtrick_attvsdefbars_box";
@@ -24,7 +24,7 @@ Foxtrick.AttVsDef = {
 		var bodydivid = "foxtrick_attvsdefbars_content";
 		bodydiv.setAttribute( "id", bodydivid );
 
-		if (Foxtrick.Matches._isCorrectLanguage(ratingstable)) {
+		if (Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) {
 			if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") >= 1) {
 				this._oldStyleBars(doc, ratingstable, bodydiv);
 			}
@@ -44,13 +44,13 @@ Foxtrick.AttVsDef = {
 		var ratingsArray = new Array();
 		var ratingsTextArray = new Array();
 		for (var i = 2; i <= 7; i++) { // normal ratings in rows 2 to 7
-			ratingsArray.push(new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[i].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[i].cells[2])));
+			ratingsArray.push(new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[2])));
 			ratingsTextArray.push(new Array(ratingstable.rows[i].cells[1], ratingstable.rows[i].cells[2]));
 		}
 
 		if (ratingstable.rows.length > 12) { // if there are ratings for indirect free kicks, they are in rows 10 and 11
 			for (var i = 10; i <= 11; i++) {
-				ratingsArray.push(new Array(Foxtrick.Matches._getStatFromCell(ratingstable.rows[i].cells[1]), Foxtrick.Matches._getStatFromCell(ratingstable.rows[i].cells[2])));
+				ratingsArray.push(new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[2])));
 				ratingsTextArray.push(new Array(ratingstable.rows[i].cells[1], ratingstable.rows[i].cells[2]));
 			}
 		}
@@ -283,18 +283,18 @@ Foxtrick.AttVsDef = {
 
 		for (j=2;j<8;j++)
 		{
-			var val1=Foxtrick.Matches._getStatFromCell(table.rows[j].cells[1]);
-			var val2=Foxtrick.Matches._getStatFromCell(table.rows[9-j].cells[2]);
+			var val1=Foxtrick.Pages.Match.getStatFromCell(table.rows[j].cells[1]);
+			var val2=Foxtrick.Pages.Match.getStatFromCell(table.rows[9-j].cells[2]);
 			var percentage=(val1/(val1+val2))*100;
 			values.push(Math.round(percentage));
 		}
 		if (table.rows.length > 12) {
-			val1=Foxtrick.Matches._getStatFromCell(table.rows[10].cells[1]);
-			val2=Foxtrick.Matches._getStatFromCell(table.rows[11].cells[2]);
+			val1=Foxtrick.Pages.Match.getStatFromCell(table.rows[10].cells[1]);
+			val2=Foxtrick.Pages.Match.getStatFromCell(table.rows[11].cells[2]);
 			percentage=(val1/(val1+val2))*100;
 			values.push(Math.round(percentage));
-			val1=Foxtrick.Matches._getStatFromCell(table.rows[11].cells[1]);
-			val2=Foxtrick.Matches._getStatFromCell(table.rows[10].cells[2]);
+			val1=Foxtrick.Pages.Match.getStatFromCell(table.rows[11].cells[1]);
+			val2=Foxtrick.Pages.Match.getStatFromCell(table.rows[10].cells[2]);
 			percentage=(val1/(val1+val2))*100;
 			values.push(Math.round(percentage));
 		}

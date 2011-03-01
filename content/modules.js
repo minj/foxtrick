@@ -17,7 +17,6 @@ Foxtrick.modules = [
 	FoxtrickReadHtPrefs,
 	FoxtrickPrefsDialogHTML,
 	FoxtrickOnPagePrefs,
-	Foxtrick.Matches,
 	Foxtrick.HeaderCopyIcons,
 	FoxtrickForumStripHattrickLinks,
 	FoxtrickForumChangePosts,

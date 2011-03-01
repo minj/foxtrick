@@ -1,16 +1,11 @@
 /**
- * matches.js
- * adds info on matches page
+ * match.js
+ * utilities on match page
  * @author taised, Jestar
  */
 ////////////////////////////////////////////////////////////////////////////////
-Foxtrick.Matches = {
-	MODULE_NAME : "Matches",
-	PAGES : new Array('match'),
-
-	matchxmls: new Array(),
-
-	_getRatingsTable: function(doc) {
+Foxtrick.Pages.Match = {
+	getRatingsTable: function(doc) {
 		var ratingstable = null;
 		var tables = doc.getElementById('mainBody').getElementsByTagName('table')
 		if (tables) { //match is ended
@@ -20,40 +15,41 @@ Foxtrick.Matches = {
 		return ratingstable;
 	},
 
-	_isWalkOver: function(ratingstable) {
+	isWalkOver: function(ratingstable) {
 		try {
 			for (var i = 1; i <= 7; i++) {
 				for (var j = 1; j <= 2; j++) {
-					var value = this._getStatFromCell(ratingstable.rows[i].cells[j]);
+					var value = this.getStatFromCell(ratingstable.rows[i].cells[j]);
 					if (value > 0) { // no Walk-over
 						return false;
 					}
 				}
 			}
-		} catch (e) {
-			Foxtrick.dump('matches.js _isWalkOver: ' +e + "\n");
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 		return true;
 	},
 
-	_isCorrectLanguage: function(ratingstable) {
+	isCorrectLanguage: function(ratingstable) {
 		try {
 			for (var i = 1; i <= 7; i++) {
 				for (var j = 1; j <= 2; j++) {
-					var value = this._getStatFromCell(ratingstable.rows[i].cells[j]);
+					var value = this.getStatFromCell(ratingstable.rows[i].cells[j]);
 					if (value < 0) { // wrong language
 						return false;
 					}
 				}
 			}
-		} catch (e) {
-			Foxtrick.dump('matches.js _isCorrectLanguage: ' +e + "\n");
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 		return true;
 	},
 
-	_getStatFromCell: function(cell)
-	{
+	getStatFromCell: function(cell) {
 		var link = cell.firstChild;
 		var baseValue = parseInt(link.href.replace(/.+lt=skill/i, "").replace(/.+ll=/i, "").match(/^\d+/)) - 1;
 		if (baseValue == -1) {
@@ -62,48 +58,43 @@ Foxtrick.Matches = {
 
 		var subLevelValue=0;
 
-		try {
-		  var lang = FoxtrickPrefs.getString("htLanguage");
-		} catch (e) {
-		  lang = "en";
-		}
+		var lang = FoxtrickPrefs.getString("htLanguage");
 
 		try {
 			var subLevel = Foxtrick.trim(link.nextSibling.textContent);
 			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");
 			if (!subLevelValue)	return -1;
-		} catch (e) {
-			Foxtrick.dump('matches.js _getStatFromCell: '+e + "\n");
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 
 		return baseValue+parseFloat(subLevelValue);
 	},
 
-	_getTacticsLevelFromCell: function(cell) {
+	getTacticsLevelFromCell: function(cell) {
 		var basevalue=0;
 		if (cell.firstChild.nodeName=='A')
 			basevalue=parseInt(cell.firstChild.href.replace(/.+lt=skill/i, "").replace(/.+ll=/i, "").match(/^\d+/));
 		return basevalue;
 	},
 
-	_getTacticsFromCell: function(cell) {
+	getTacticsFromCell: function(cell) {
 		var tactics=Foxtrick.trim(cell.innerHTML);
-		try {
-			var lang = FoxtrickPrefs.getString("htLanguage");
-		} catch (e) {
-			lang = "en";
-		}
+		var lang = FoxtrickPrefs.getString("htLanguage");
 
 		try {
 			var path = "language/tactics/tactic[@value=\"" + tactics + "\"]";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "type");
-			if (subLevelValue) return subLevelValue
-			else return -1;
-		} catch (e) {
-			Foxtrick.dump('matches.js _getTacticsFromCell: '+e + "\n");
+			if (subLevelValue)
+				return subLevelValue;
+			else
+				return -1;
+		}
+		catch (e) {
+			Foxtrick.dumpError(e);
 		}
 		return null;
-
-	},
+	}
 };
