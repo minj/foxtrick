@@ -127,12 +127,10 @@ Foxtrick.Ratings = {
 			for (var j=1;j<3;j++) {
 				for (var i=1;i<8;i++) {
 					var value = Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[j]);
+					value=value*4+1;
 					if (i==1) {
 						//midfield have to be multiplied by 3
-						value = (value*4+1)*3;
-					}
-					else {
-						value=value*4+3;
+						value = value*3;
 					}
 					var span = doc.createElement("span");
 					span.className = "ft-ratings-hatstats";
