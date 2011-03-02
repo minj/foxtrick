@@ -61,7 +61,7 @@ Foxtrick.Pages.Match = {
 		var lang = FoxtrickPrefs.getString("htLanguage");
 
 		try {
-			var subLevelNode = Foxtrick.filter(link.parentNodes.childNodes,
+			var subLevelNode = Foxtrick.filter(link.parentNode.childNodes,
 				function(n) {
 					var nn = n.nodeName.toLowerCase();
 					return nn != "a" && nn !== "span"
