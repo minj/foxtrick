@@ -61,11 +61,13 @@ Foxtrick.Pages.Match = {
 		var lang = FoxtrickPrefs.getString("htLanguage");
 
 		try {
+			// first node that is neither <a> nor <span> and is non-empty
 			var subLevelNode = Foxtrick.filter(link.parentNode.childNodes,
 				function(n) {
 					var nn = n.nodeName.toLowerCase();
 					return nn != "a" && nn !== "span"
-				})[0]; // first node that is neither <a> nor <span>
+						&& Foxtrick.trim(n.textContent) !== ""
+				})[0];
 			var subLevel = Foxtrick.trim(subLevelNode.textContent);
 			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");
