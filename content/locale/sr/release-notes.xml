@@ -27,10 +27,13 @@
 <item>Опција за не приказивање 'Провири на форум' на страници лиге и државе у модулу <module>FixcssProblems</module>. (ljushaff)</item>
 <item>Опција за копирање играча у старом стилу (без табеле) у модулу<module>CopyPlayerAd</module>. (ryanli)</item>
 <item>Белоруски језик. (LA-Stolik)</item>
+<item>Опција која приказује HatStats за сваки део терена у <module>Ratings</module> модулу. (taised)</item>
 <item>Нова иконица за линк "Пријави поруку модераторима". (ljushaff)</item>
 <item><module>YouthPromotes</module> модул сада приказује и најранији дату за промоцију играча. (ryanli)</item>
 <item>Већина функција ради и у Google Chrome. (ryanli)</item>
 <item>Мање исправке за најновије промене на Хеттрику. (ryanli, taised, ljushaff)</item>
 <item>Опције за радио у модулу<module>ExtraShortcuts</module> су искључене у стандардним подешавањима. (ryanli)</item>
+<item>Модул <module>TeamSelectBox</module> стандардно искључен. (ryanli)</item>
+<item>Модул <module>SmallerPages</module> стандардно искључен. (ljushaff)</item>
 </note>
 </notes>
