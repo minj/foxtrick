@@ -9,7 +9,7 @@ Foxtrick.Ratings = {
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	OPTIONS : ["HatStats", "HatStatsTotal", "HatStatsSeparated", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
+	OPTIONS : ["HatStats", "HatStatsDetailed", "HatStatsSeparated", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
 	ratingDefs :  {}, // will be filled in initOptions
 
 	init : function() {
@@ -93,7 +93,7 @@ Foxtrick.Ratings = {
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  rattack[i], cattack[i], lattack[i]);
 				
 				try {
-					if (typeof (this.ratingDefs[selectedRating]["total2"]) != 'undefined') {
+					if (typeof(this.ratingDefs[selectedRating]["total2"]) == "function") {
 						if (tactics[i] == null) {
 							tactics[i] = -1;
 						}
@@ -108,7 +108,8 @@ Foxtrick.Ratings = {
 																									)
 											+ "</b>";
 						}
-					} else {
+					}
+					else if (typeof(this.ratingDefs[selectedRating]["total"]) == "function") {
 						if (cell.innerHTML.length>2) {
 							cell.innerHTML+="<br />"+Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": ";
 						}
@@ -116,7 +117,8 @@ Foxtrick.Ratings = {
 											this.ratingDefs[selectedRating]["total"](midfieldLevel[i], attackLevel[i], defenceLevel[i])
 										+ "</b>";
 					}
-				} catch (e) {
+				}
+				catch (e) {
 					Foxtrick.dump('ratings.js error in rating print ('+selectedRating+'): '+e+"\n");
 				}				
 			}
@@ -154,7 +156,18 @@ Foxtrick.Ratings = {
 	initHtRatings: function () {
 		this.ratingDefs=new Array();
 
-		this.ratingDefs["HatStats"] = { base : 1.0, weight : 4.0,
+		this.ratingDefs["HatStats"] = {
+			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
+			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
+			total: function(midfieldLevel, attackLevel, defenceLevel) {
+				return Foxtrick.Ratings.ratingDefs["HatStatsDetailed"].midfield(midfieldLevel)
+					+ Foxtrick.Ratings.ratingDefs["HatStatsDetailed"].attack(attackLevel)
+					+ Foxtrick.Ratings.ratingDefs["HatStatsDetailed"].defence(defenceLevel);
+			}
+		};
+
+		this.ratingDefs["HatStatsDetailed"] = {
+			base : 1.0, weight : 4.0,
 			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 
@@ -166,19 +179,6 @@ Foxtrick.Ratings = {
 			},
 			midfield : function(midfieldLevel) {
 				return 3.0*(this.base + this.weight*midfieldLevel);
-			},
-			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return this.attack(attackLevel)+
-					this.defence(defenceLevel)+
-					this.midfield(midfieldLevel);
-			}
-		};
-
-		this.ratingDefs["HatStatsTotal"] = {
-			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
-			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
-			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return Foxtrick.Ratings.ratingDefs["HatStats"].total(midfieldLevel, attackLevel, defenceLevel);
 			}
 		};
 
