@@ -20,18 +20,21 @@
 		<item>Модуль <module>LiveAlert</module> для уведомления о голах в HT Live (ryanli).</item>
 		<item>Модуль <module>OldStyleFace</module> для отображения лиц в старом стиле Hattrick (Aimo_Kanuuna).</item>
 		<item>Модуль <module>NtPeek</module> для скрытия матчей сборной из Моего Hattrick'а (ryanli).</item>
-		<item>Модуль <module>SeriesFlags</module> для показа флага и лиги оставившего сообщение в гостевой книге.  Он основан на ранее присутствовавшем модуле GuestbookAlltidFlags, изображения предоставлены <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a> (taised).</item>
+		<item>Модуль <module>SeriesFlags</module> для показа флага и лиги рядом со ссылками на клуб и менеджера.  Он основан на ранее присутствовавшем модуле GuestbookAlltidFlags, изображения предоставлены <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a> (taised).</item>
 		<item>Модуль <module>HTMSPoints</module> для показа <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">очкий HTMS</xhtml:a> игрока, т.е. цифрового представления текущих навыков и потенциала (taised).</item>
 		<item>Модуль <module>FriendlyInterface</module> с параметрами для отображения полного имени игрока в окне расстановки и перехода на сборные для их игроков (ryanli).</item>
 		<item>Модуль HighlightBotTeams переименован в <module>HighlightOwnerless</module> (ryanli).</item>
 		<item>Модули YouthSkillNotes и ShortPA удалены (ryanli).</item>
 		<item>Параметр для скрытия быстрого взгляда на форумы в модуле <module>FixcssProblems</module> (ljushaff).</item>
 		<item>Параметр для копирования данных игрока в стиле 'как есть', без таблиц в моделе <module>CopyPlayerAd</module> (ryanli).</item>
+		<item>Параметр для показа рейтинга HatStats по линиям в модуле <module>Ratings</module> (taised).</item>
 		<item>Добавлен белорусский перевод (LA-Stolik).</item>
 		<item>Новый значок для ссылок на отчёты (ljushaff).</item>
 		<item>Модуль <module>YouthPromotes</module> также показывает и самый ранний день для вызова игрока.</item>
 		<item>Большая часть модулей расширения теперь работает под Google Chrome.</item>
 		<item>Некоторые исправления для соответствия последним изменениям HT.</item>
+		<item>Модуль <module>TeamSelectBox</module> по умолчанию отключен (ryanli).</item>
+		<item>Модуль <module>SmallerPages</module> по умолчанию отключен (ljushaff).</item>
 		<item>Параметры радио в модуле <module>ExtraShortcuts</module> теперь выключены по умолчанию.</item>
 	</note>
 </notes>
