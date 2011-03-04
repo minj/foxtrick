@@ -21,6 +21,7 @@ var FoxtrickStaffMarker = {
 	chppreg : /^CHPP-/i,
 	lareg : /^LA-/i,
 
+	htySessionKey : "staff-marker-hty-list",
 	hty_staff: [],
 
 	ulist : {}, // users and colors
@@ -29,27 +30,27 @@ var FoxtrickStaffMarker = {
 	editorsArray : [],
 	foxtrickersArray : [],
 
-	updateHtyXML : function() {
-		Foxtrick.loadXml("http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml",
-			function(xml) {
-				try {
-					var htyusers = xml.getElementsByTagName("User");
-					for (var i = 0; i < htyusers.length; ++i) {
-						FoxtrickStaffMarker.hty_staff.push(htyusers[i].getElementsByTagName("Alias")[0].textContent);
-					}
+	getHtyList : function(callback) {
+		Foxtrick.sessionGet(FoxtrickStaffMarker.htySessionKey, function(stored) {
+			if (stored == undefined) {
+				const htyUri = "http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml";
+				Foxtrick.loadXml(htyUri, function(xml) {
+					var list = [];
+					var nodes = xml.getElementsByTagName("User");
+					for (var i = 0; i < nodes.length; ++i)
+						list.push(nodes[i].getElementsByTagName("Alias")[0].textContent);
+					Foxtrick.sessionSet(FoxtrickStaffMarker.htySessionKey, list);
 					Foxtrick.dump("Hattrick-youthclub staffs loaded.\n");
-				}
-				catch (e) {
-					Foxtrick.dumpError(e);
-				}
-			},
-			true
-		);
+					callback(list);
+				}, true);
+			}
+			else {
+				callback(stored);
+			}
+		});
 	},
 
 	init : function() {
-		// Hattrick youth club
-		this.updateHtyXML();
 		// FoxTrick
 		var ftTags = [ "head_developer", "project_owner", "developer",
 			"designer", "translation" ];
@@ -80,52 +81,46 @@ var FoxtrickStaffMarker = {
 	},
 
 	run : function(page, doc) {
-		// wait till hty xml is available
-		if (FoxtrickStaffMarker.hty_staff.length === 0) {
-			setTimeout(function() {
-				FoxtrickStaffMarker.run(page, doc);
-			}, 500);
-			return;
-		}
+		FoxtrickStaffMarker.getHtyList(function(htyList) {
+			// save a copy at FoxtrickStaffMarker.hty_staff otherwise it's lost
+			FoxtrickStaffMarker.hty_staff = htyList.splice(0, htyList.length);
+			// not on open new thread
+			if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
 
-		// not on open new thread
-		if (doc.location.href.search(/\/Forum\/Write\.aspx\?v=/)!=-1) return;
+			// getting userids and colors
+			var utext = FoxtrickPrefs.getString("module." + FoxtrickStaffMarker.MODULE_NAME + "." + "own_text");
+			var users = '';
+			if (Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "own")) {
+				users = utext.match(/userid=(\d+)/ig);
 
-		// getting userids and colors
-		var utext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "own_text");
-		var users = '';
-		if (Foxtrick.isModuleFeatureEnabled( this, "own")) {
-			users = utext.match(/userid=(\d+)/ig);
-
-			var ii=0,user;
-			while (user = users[ii++]) {
-				try {
-					var ustyle = utext.substring(utext.search(user)).match(/style='(.+)'/)[1];
-					this.ulist[user.replace(/userid=/i,'')] = ustyle;
-				}
-				catch (e) {
-					Foxtrick.dumpError(e);
+				var ii=0,user;
+				while (user = users[ii++]) {
+					try {
+						var ustyle = utext.substring(utext.search(user)).match(/style='(.+)'/)[1];
+						FoxtrickStaffMarker.ulist[user.replace(/userid=/i,'')] = ustyle;
+					}
+					catch (e) {
+						Foxtrick.dumpError(e);
+					}
 				}
 			}
-		}
-		switch( page ) {
-			case 'forumViewThread':
-				// Foxtrick.dump('forumViewThread\n');
-				FoxtrickStaffMarker._MarkAliases_thread(doc);
-				FoxtrickStaffMarker._MarkAliases_select(doc);
-			break;
-
-			case 'forumWritePost':
-				// Foxtrick.dump('forumWritePost\n');
-				FoxtrickStaffMarker._MarkAliases_select(doc);
-			break;
-
-			case 'teamPage':
-				if (Foxtrick.isModuleFeatureEnabled( this, "manager")) {
+			switch( page ) {
+				case 'forumViewThread':
 					FoxtrickStaffMarker._MarkAliases_thread(doc);
-				}
-			break;
-		}
+					FoxtrickStaffMarker._MarkAliases_select(doc);
+				break;
+
+				case 'forumWritePost':
+					FoxtrickStaffMarker._MarkAliases_select(doc);
+				break;
+
+				case 'teamPage':
+					if (Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "manager")) {
+						FoxtrickStaffMarker._MarkAliases_thread(doc);
+					}
+				break;
+			}
+		});
 	},
 
 	//Alias - Staff-Color
