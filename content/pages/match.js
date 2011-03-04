@@ -61,14 +61,16 @@ Foxtrick.Pages.Match = {
 		var lang = FoxtrickPrefs.getString("htLanguage");
 
 		try {
-			// first node that is neither <a> nor <span> and is non-empty
-			var subLevelNode = Foxtrick.filter(link.parentNode.childNodes,
+			// remove <a> (baseValue above) and <span> (could be added
+			// by HatStatsSeparated in module Ratings
+			var nodeCloned = cell.cloneNode(true);
+			var toRemove = Foxtrick.filter(nodeCloned.childNodes,
 				function(n) {
-					var nn = n.nodeName.toLowerCase();
-					return nn != "a" && nn !== "span"
-						&& Foxtrick.trim(n.textContent) !== ""
-				})[0];
-			var subLevel = Foxtrick.trim(subLevelNode.textContent);
+					const nn = n.nodeName.toLowerCase();
+					return nn == "a" || nn == "span";
+				});
+			Foxtrick.map(toRemove, function(n) { nodeCloned.removeChild(n); });
+			var subLevel = Foxtrick.trim(nodeCloned.textContent);
 			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");
 			if (!subLevelValue)	return -1;
