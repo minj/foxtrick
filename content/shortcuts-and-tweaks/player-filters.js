@@ -22,150 +22,120 @@ FoxtrickPlayerFilters = {
 
 		var filterSelect = doc.createElement("select");
 		filterSelect.id = this.FILTER_SELECT_ID;
-		Foxtrick.addEventListenerChangeSave(filterSelect, "click", function(ev) { FoxtrickPlayerFilters.selectClick(ev); }, false);
-		Foxtrick.addEventListenerChangeSave(filterSelect, "change", this.changeListener, false);
 
-		// this is used to clear filters, and we use this to select all
-		// players
-		var option = doc.createElement("option");
-		option.value = "all";
-		option.textContent = "-- " + Foxtrickl10n.getString("Filter") + " --";
-		filterSelect.appendChild(option);
+		var selectClick = function() {
+			Foxtrick.dump("eer");
+			if (filterSelect.getAttribute("scanned") === "true") {
+				// we only scan the players for once and mark it as scanned
+				return;
+			}
 
-		var parentNode = sortSelect.parentNode
-		var insertBefore = sortSelect.nextSibling;
-		sortSelect.parentNode.removeChild(sortSelect);
-
-		var container = doc.createElement("div");
-		container.className = "ft-select-container";
-		container.appendChild(sortSelect);
-		container.appendChild(filterSelect);
-
-		parentNode.insertBefore(container, insertBefore);
-	},
-
-	change : function(page, doc) {
-		this.run(page, doc);
-	},
-
-	selectClick : function(ev) {
-		var doc = ev.target.ownerDocument;
-
-		var filterSelect = doc.getElementById(this.FILTER_SELECT_ID);
-
-		if (filterSelect.getAttribute("scanned") === "true") {
-			// we only scan the players for once and mark it as scanned
-			return;
-		}
-
-		var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
-		var lastMatch = 0;
-		for (var i = 0; i < playerList.length; ++i) {
-			if (playerList[i].lastMatch) {
-				var matchDate = Foxtrick.util.time.getDateFromText(playerList[i].lastMatch.textContent).getTime();
-				if (matchDate > lastMatch) {
-					lastMatch = matchDate;
+			var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+			var lastMatch = 0;
+			for (var i = 0; i < playerList.length; ++i) {
+				if (playerList[i].lastMatch) {
+					var matchDate = Foxtrick.util.time.getDateFromText(playerList[i].lastMatch.textContent).getTime();
+					if (matchDate > lastMatch) {
+						lastMatch = matchDate;
+					}
 				}
 			}
-		}
 
-		var specialities = {};
-		var specialityCount = 0;
+			var specialities = {};
+			var specialityCount = 0;
 
-		var allPlayers = doc.getElementsByClassName("playerInfo");
-		for (var i = 0; i < allPlayers.length; ++i) {
-			var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
-			var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-			// All players have attribute "all" set to "true", so that the
-			// filter can be cleared using an "all" filter
-			allPlayers[i].setAttribute("all", "true");
-			if (player.redCard || player.yellowCard) {
-				allPlayers[i].setAttribute("cards", "true");
-			}
-			if (player.transferListed) {
-				allPlayers[i].setAttribute("transfer-listed", "true");
-			}
-			if (player.bruised || player.injured) {
-				allPlayers[i].setAttribute("injured", "true");
-			}
-			if (player.speciality) {
-				if (specialities[player.speciality] === undefined) {
-					specialities[player.speciality] = specialityCount++;
+			var allPlayers = doc.getElementsByClassName("playerInfo");
+			for (var i = 0; i < allPlayers.length; ++i) {
+				var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
+				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
+				// All players have attribute "all" set to "true", so that the
+				// filter can be cleared using an "all" filter
+				allPlayers[i].setAttribute("all", "true");
+				if (player.redCard || player.yellowCard) {
+					allPlayers[i].setAttribute("cards", "true");
 				}
-				allPlayers[i].setAttribute("speciality-" + specialities[player.speciality], "true");
-			}
-			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
-				if (player.lastMatch
-					&& (lastMatch === Foxtrick.util.time.getDateFromText(player.lastMatch.textContent).getTime())) {
-					allPlayers[i].setAttribute("played-latest", "true");
+				if (player.transferListed) {
+					allPlayers[i].setAttribute("transfer-listed", "true");
 				}
-				else {
-					allPlayers[i].setAttribute("not-played-latest", "true");
+				if (player.bruised || player.injured) {
+					allPlayers[i].setAttribute("injured", "true");
+				}
+				if (player.speciality) {
+					if (specialities[player.speciality] === undefined) {
+						specialities[player.speciality] = specialityCount++;
+					}
+					allPlayers[i].setAttribute("speciality-" + specialities[player.speciality], "true");
+				}
+				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
+					if (player.lastMatch
+						&& (lastMatch === Foxtrick.util.time.getDateFromText(player.lastMatch.textContent).getTime())) {
+						allPlayers[i].setAttribute("played-latest", "true");
+					}
+					else {
+						allPlayers[i].setAttribute("not-played-latest", "true");
+					}
 				}
 			}
-		}
 
-		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
-			|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
-			var option = doc.createElement('option');
-			option.value = "cards";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label");
-			filterSelect.appendChild(option);
-		}
-
-		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "injured")
-			|| Foxtrick.Pages.Players.isPropertyInList(playerList, "bruised")) {
-			var option = doc.createElement("option");
-			option.value = "injured";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.Injured.label");
-			filterSelect.appendChild(option);
-		}
-
-		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "transferListed")) {
-			var option = doc.createElement("option");
-			option.value = "transfer-listed";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.TransferListed.label");
-			filterSelect.appendChild(option);
-		}
-
-		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
-			var option = doc.createElement("option");
-			option.value = "played-latest";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.PlayedLatest.label");
-			filterSelect.appendChild(option);
-
-			var option = doc.createElement("option");
-			option.value = "not-played-latest";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.NotPlayedLatest.label");
-			filterSelect.appendChild(option);
-		}
-
-		if (Foxtrick.Pages.Players.isPropertyInList(playerList, "speciality")) {
-			for (var speciality in specialities) {
-				var option = doc.createElement("option");
-				option.value = "speciality-" + specialities[speciality];
-				option.innerHTML = speciality;
+			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
+				|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
+				var option = doc.createElement('option');
+				option.value = "cards";
+				option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label");
 				filterSelect.appendChild(option);
 			}
-		}
 
-		var faceCards = doc.getElementsByClassName("faceCard");
-		if (faceCards.length > 0) {
-			var option = doc.createElement("option");
-			option.value = "face";
-			option.innerHTML = Foxtrickl10n.getString("foxtrick.TeamStats.Pictures.label");
-			filterSelect.appendChild(option);
-		}
+			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "injured")
+				|| Foxtrick.Pages.Players.isPropertyInList(playerList, "bruised")) {
+				var option = doc.createElement("option");
+				option.value = "injured";
+				option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Injured.label");
+				filterSelect.appendChild(option);
+			}
 
-		filterSelect.setAttribute("scanned", "true");
-	},
+			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "transferListed")) {
+				var option = doc.createElement("option");
+				option.value = "transfer-listed";
+				option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.TransferListed.label");
+				filterSelect.appendChild(option);
+			}
 
-	changeListener : function(ev) {
-		try {
+			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
+				var option = doc.createElement("option");
+				option.value = "played-latest";
+				option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.PlayedLatest.label");
+				filterSelect.appendChild(option);
+
+				var option = doc.createElement("option");
+				option.value = "not-played-latest";
+				option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.NotPlayedLatest.label");
+				filterSelect.appendChild(option);
+			}
+
+			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "speciality")) {
+				for (var speciality in specialities) {
+					var option = doc.createElement("option");
+					option.value = "speciality-" + specialities[speciality];
+					option.textContent = speciality;
+					filterSelect.appendChild(option);
+				}
+			}
+
+			var faceCards = doc.getElementsByClassName("faceCard");
+			if (faceCards.length > 0) {
+				var option = doc.createElement("option");
+				option.value = "face";
+				option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Pictures.label");
+				filterSelect.appendChild(option);
+			}
+
+			filterSelect.setAttribute("scanned", "true");
+		};
+
+		var changeListener = function(ev) {
 			var begin = new Date();
 
-			var doc = ev.target.ownerDocument;
-			var filter = ev.target.value;
+			var filter = filterSelect.value;
 
 			var body = doc.getElementById("mainBody");
 
@@ -295,7 +265,7 @@ FoxtrickPlayerFilters = {
 			h.textContent = h.textContent.replace(/\d+/, count);
 
 			if (FoxtrickSkillTable.isTableCreated(doc)){
-				var table = doc.getElementById("ft_skilltable");;
+				var table = doc.getElementById("ft_skilltable");
 				table.parentNode.removeChild(table);
 
 				var tablediv = doc.getElementById("ft_skilltablediv");
@@ -308,11 +278,45 @@ FoxtrickPlayerFilters = {
 			var time = (end.getSeconds() - begin.getSeconds()) * 1000
 				 + end.getMilliseconds() - begin.getMilliseconds();
 			Foxtrick.dump("calculate time: " + time + " ms\n");
-			//Foxtrick.dump("display time: " + time + " ms\n");
+		};
 
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
+		filterSelect.addEventListener("click", function() {
+			try {
+				selectClick();
+			}
+			catch (e) {
+				Foxtrick.dumpError(e);
+			}
+		}, false);
+		filterSelect.addEventListener("change", function() {
+			try {
+				changeListener();
+			}
+			catch (e) {
+				Foxtrick.dumpError(e);
+			}
+		}, false);
+
+		// this is used to clear filters, and we use this to select all
+		// players
+		var option = doc.createElement("option");
+		option.value = "all";
+		option.textContent = "-- " + Foxtrickl10n.getString("Filter") + " --";
+		filterSelect.appendChild(option);
+
+		var parentNode = sortSelect.parentNode
+		var insertBefore = sortSelect.nextSibling;
+		sortSelect.parentNode.removeChild(sortSelect);
+
+		var container = doc.createElement("div");
+		container.className = "ft-select-container";
+		container.appendChild(sortSelect);
+		container.appendChild(filterSelect);
+
+		parentNode.insertBefore(container, insertBefore);
+	},
+
+	change : function(page, doc) {
+		this.run(page, doc);
 	}
 };
