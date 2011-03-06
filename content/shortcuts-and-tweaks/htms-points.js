@@ -150,13 +150,11 @@ var FoxtrickHTMSPoints = {
 			}
 		}
 		if ((page=="players") && AddToPlayerList) {
+			var playersHtml = doc.getElementsByClassName("playerInfo");
+			var players = Foxtrick.Pages.Players.getPlayerList(doc);
+
 			var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
-			var players=Foxtrick.Pages.Players.getPlayerList(doc);
-			//check if skill are visible isn't possible because skills are always set
-			//if (players[0][skillOrder[0]]==0) return;
-
-			var playersHtml=doc.getElementsByClassName("playerList")[0].getElementsByClassName("playerInfo");
 			for (var p=0;p<players.length;p++) {
 				//getting skills...
 				var totSkills=0;
