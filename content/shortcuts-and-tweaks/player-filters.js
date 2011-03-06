@@ -24,7 +24,6 @@ FoxtrickPlayerFilters = {
 		filterSelect.id = this.FILTER_SELECT_ID;
 
 		var selectClick = function() {
-			Foxtrick.dump("eer");
 			if (filterSelect.getAttribute("scanned") === "true") {
 				// we only scan the players for once and mark it as scanned
 				return;
