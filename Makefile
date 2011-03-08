@@ -21,6 +21,7 @@ CONTENT_FOLDERS = alert/ \
 CONTENT_FILES = api-proxy.js \
 	const.js \
 	core.js \
+	faq.xml \
 	forum-stage.js \
 	foxtrick.js \
 	foxtrick.properties \

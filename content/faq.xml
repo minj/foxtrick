@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<faq xmlns:xhtml="http://www.w3.org/1999/xhtml">
+	<item id="style">
+		<question>How could I style my FoxTrick?</question>
+		<answer>
+			<xhtml:p>
+				FoxTrick provides a set of presentation interfaces for users to customise their own styles.
+				These interfaces are provided through HTML IDs and classes, and you can use CSS to define your preferred style.
+			</xhtml:p>
+			<xhtml:p>
+				An example user style file can be found <xhtml:a href="chrome://foxtrick/content/resources/css/user-content-example.css">here</xhtml:a>, which you can modify to satisfy your need.
+				After saving the file, you can use the SkinPlugin module for loading the CSS file to have the user style in effect.
+			</xhtml:p>
+		</answer>
+	</item>
+</faq>

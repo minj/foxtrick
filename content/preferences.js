@@ -527,13 +527,42 @@ function initHelpTab()
 		link.href = linkAddress;
 	}
 
-	// style tutorial
-	var styleTutorial = Foxtrickl10n.getString("StyleTutorial.content").split(/%s/);
-	$("#style-tutorial-text").text(styleTutorial[0]);
-	var styleLink = document.createElement("a");
-	styleLink.href = styleLink.textContent = Foxtrick.ResourcePath + "resources/css/user-content-example.css";
-	$("#style-tutorial-text").append($(styleLink));
-	$("#style-tutorial-text").append(document.createTextNode(styleTutorial[1]));
+	// FAQ (faq.xml or localized locale/code/faq.xml
+	const faq = Foxtrick.loadXml(Foxtrick.ResourcePath + "faq.xml");
+	const faqLocal = Foxtrick.loadXml(Foxtrick.ResourcePath + "locale/"
+		+ FoxtrickPrefs.getString("htLanguage") + "/faq.xml");
+	const items = {};
+	const itemsLocal = {};
+	var parseFaq = function(src, dest) {
+		if (!src)
+			return;
+		var items = src.getElementsByTagName("item");
+		for (var i = 0; i < items.length; ++i) {
+			var item = items[i];
+			dest[item.getAttribute("id")] = item;
+		}
+	};
+	parseFaq(faq, items);
+	parseFaq(faqLocal, itemsLocal);
+	for (var i in items) {
+		// we prefer localized ones
+		var item = itemsLocal[i] || items[i];
+		// container for question and answer
+		var block = document.createElement("div");
+		block.className = "module";
+		$("#pane-help").append($(block));
+		// question
+		var header = document.createElement("h3");
+		header.textContent = item.getElementsByTagName("question")[0].textContent;
+		block.appendChild(header);
+		// answer
+		var content = document.createElement("p");
+		// import child nodes one by one as we may use XHTML there
+		var answerChilds = item.getElementsByTagName("answer")[0].childNodes;
+		for (var j = 0; j < answerChilds.length; ++j)
+			content.appendChild(document.importNode(answerChilds[j], true));
+		block.appendChild(content);
+	}
 }
 
 function initAboutTab()
