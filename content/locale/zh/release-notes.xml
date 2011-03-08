@@ -26,11 +26,14 @@
 <item>移除了 YouthSkillNotes 和 ShortPA 模块. (ryanli)</item>
 <item><module>FixcssProblems</module> 中用于隐藏论坛快速浏览的新选项. (ljushaff)</item>
 <item><module>CopyPlayerAd</module> 中可以以文本方式 (没有表格) 复制广告的选项. (ryanli)</item>
+<item><module>Ratings</module>中可以分评级显示的 HatStats. (taised)</item>
 <item>白俄罗斯语语言. (LA-Stolik)</item>
 <item>新的灰色图标, 用于举报链接. (ljushaff)</item>
 <item><module>YouthPromotes</module> 现在显示能够提升球员的最早日期. (ryanli)</item>
 <item>大部分功能在 Google Chrome 下可用. (ryanli)</item>
 <item>一些为适应 Hattrick 更改的修正. (ryanli, taised, ljushaff)</item>
+<item><module>TeamSelectBox</module> 模块 默认被禁用. (ryanli)</item>
+<item><module>SmallerPages</module> 模块默认被禁用. (ljushaff)</item>
 <item><module>ExtraShortcuts</module> 中的收音机选项默认被关闭. (ryanli)</item>
 </note>
 </notes>
