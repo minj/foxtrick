@@ -10,6 +10,7 @@ ROOT_FOLDERS_CHROME = defaults/ skin/
 CONTENT_FOLDERS = alert/ \
 	data/ \
 	forum/ \
+	lib/ \
 	links/ \
 	locale/ \
 	matches/ \
@@ -28,10 +29,8 @@ CONTENT_FILES = api-proxy.js \
 	foxtrick.screenshots \
 	header-copy-icons.js \
 	helper.js \
-	jquery.js \
 	l10n.js \
 	modules.js \
-	oauth.js \
 	pages.js \
 	preferences.js \
 	preferences.xhtml \
@@ -41,7 +40,6 @@ CONTENT_FILES = api-proxy.js \
 	read-ht-prefs.js \
 	redirections.js \
 	release-notes.xml \
-	sha1.js \
 	stats.js \
 	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul
