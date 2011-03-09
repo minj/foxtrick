@@ -29,6 +29,7 @@
 		<item>Параметр для копирования данных игрока в стиле 'как есть', без таблиц в моделе <module>CopyPlayerAd</module> (ryanli).</item>
 		<item>Параметр для показа рейтинга HatStats по линиям в модуле <module>Ratings</module> (taised).</item>
 		<item>Добавлен белорусский перевод (LA-Stolik).</item>
+		<item>Добавлен небольшой FAQ во вкледке <xhtml:a href="#tab=help">Помощь</xhtml:a> (ryanli).</item>
 		<item>Новый значок для ссылок на отчёты (ljushaff).</item>
 		<item>Модуль <module>YouthPromotes</module> также показывает и самый ранний день для вызова игрока.</item>
 		<item>Большая часть модулей расширения теперь работает под Google Chrome.</item>
