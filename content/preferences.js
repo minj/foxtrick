@@ -39,6 +39,8 @@ function locateFragment(uri)
 		showModule(param["module"]);
 	else if (param["tab"])
 		showTab(param["tab"]);
+	else if (param["faq"])
+		showFaq(param["faq"]);
 	else
 		showTab("main"); // show the main tab by default
 }
@@ -57,6 +59,12 @@ function showModule(module)
 	const tab = moduleObj.parent().attr("id").replace(/^pane-/, "");
 	showTab(tab);
 	moduleObj[0].scrollIntoView(true);
+}
+
+function showFaq(id)
+{
+	showTab("help");
+	$("#faq-" + id)[0].scrollIntoView(true);
 }
 
 function baseURI()
@@ -79,10 +87,17 @@ function initListeners()
 	$("#note").click(function() { $(this).hide("slow"); });
 	$("body").click(function(ev) {
 		if ((ev.target.nodeName.toLowerCase() == "a"
-			|| ev.target.nodeName.toLowerCase() == "xhtml:a")
-			&& (ev.target.href.indexOf(baseURI()) == 0
-			|| ev.target.href[0] == "#")) {
-			locateFragment(ev.target.href);
+			|| ev.target.nodeName.toLowerCase() == "xhtml:a")) {
+			if ((ev.target.href.indexOf(baseURI()) == 0
+				|| ev.target.getAttribute("href")[0] == "#")) {
+				locateFragment(ev.target.href);
+			}
+			else if (ev.target.getAttribute("href").indexOf("http://www.hattrick.org") == 0) {
+				// we redirect links starting with
+				// "http://www.hattrick.org" to last Hattrick host
+				ev.target.setAttribute("href",
+					ev.target.getAttribute("href").replace(/^http:\/\/www\.hattrick\.org/, Foxtrick.getLastHost()));
+			}
 		}
 	});
 }
@@ -489,20 +504,7 @@ function initChangesTab()
 		for (var i = 0; i < items.length; ++i) {
 			var item = document.createElement("li");
 			list.appendChild(item);
-			for (var j = 0; j < items[i].childNodes.length; ++j) {
-				var node = items[i].childNodes[j];
-				if (node.nodeType == Node.ELEMENT_NODE
-					&& node.nodeName.toLowerCase() == "module") {
-					var link = document.createElement("a");
-					link.textContent = node.textContent;
-					link.href = Foxtrick.ResourcePath + "preferences.xhtml#module=" + link.textContent;
-					item.appendChild(link);
-				}
-				else {
-					var importedNode = document.importNode(node, true);
-					item.appendChild(importedNode);
-				}
-			}
+			importContent(items[i], item);
 		}
 	}
 
@@ -521,10 +523,7 @@ function initHelpTab()
 		var link = document.createElement("a");
 		item.appendChild(link);
 		link.textContent = Foxtrickl10n.getString("link." + links[i][0]);
-		var linkAddress = links[i][1];
-		if (linkAddress[0] == "/")
-			linkAddress = Foxtrick.getLastHost() + linkAddress;
-		link.href = linkAddress;
+		link.href = links[i][1];
 	}
 
 	// FAQ (faq.xml or localized locale/code/faq.xml
@@ -549,18 +548,23 @@ function initHelpTab()
 		var item = itemsLocal[i] || items[i];
 		// container for question and answer
 		var block = document.createElement("div");
+		block.id = "faq-" + i;
 		block.className = "module";
 		$("#pane-help").append($(block));
 		// question
 		var header = document.createElement("h3");
 		header.textContent = item.getElementsByTagName("question")[0].textContent;
 		block.appendChild(header);
+		// link to question
+		var link = document.createElement("a");
+		link.textContent = "¶";
+		link.className = "module-link";
+		link.href = "#faq=" + i;
+		header.appendChild(link);
 		// answer
 		var content = document.createElement("p");
 		// import child nodes one by one as we may use XHTML there
-		var answerChilds = item.getElementsByTagName("answer")[0].childNodes;
-		for (var j = 0; j < answerChilds.length; ++j)
-			content.appendChild(document.importNode(answerChilds[j], true));
+		importContent(item.getElementsByTagName("answer")[0], content);
 		block.appendChild(content);
 	}
 }
@@ -621,4 +625,22 @@ function notice(msg)
 {
 	$("#note-content").text(msg);
 	$("#note").show("slow");
+}
+
+function importContent(from, to)
+{
+	for (var i = 0; i < from.childNodes.length; ++i) {
+		var node = from.childNodes[i];
+		if (node.nodeType == Node.ELEMENT_NODE
+			&& node.nodeName.toLowerCase() == "module") {
+			var link = document.createElement("a");
+			link.textContent = node.textContent;
+			link.href = Foxtrick.ResourcePath + "preferences.xhtml#module=" + link.textContent;
+			to.appendChild(link);
+		}
+		else {
+			var importedNode = document.importNode(node, true);
+			to.appendChild(importedNode);
+		}
+	}
 }

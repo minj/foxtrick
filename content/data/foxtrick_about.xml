@@ -5,7 +5,7 @@
 <links value="links">
 <link title="homepage" value="http://code.google.com/p/foxtrick/" />
 <link title="bugTracker" value="http://code.google.com/p/foxtrick/issues/" />
-<link title="hattrickForum" value="/Forum/Overview.aspx?v=0&amp;f=173635" />
+<link title="hattrickForum" value="http://www.hattrick.org/Forum/Overview.aspx?v=0&amp;f=173635" />
 <link title="screenshots" value="http://foxtrick.foundationhorizont.org/index.php" />
 <link title="nightlyFirefox" value="http://foxtrick.foundationhorizont.org/nightly/" />
 <link title="nightlyChrome" value="http://foxtrick.foundationhorizont.org/nightly/chrome/" />
