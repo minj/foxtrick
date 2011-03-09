@@ -8,14 +8,24 @@ var FoxtrickCore = {
 	MODULE_NAME : "Core",
 	CORE_MODULE : true,
 	PAGES : ["all"],
-	CSS : Foxtrick.ResourcePath + "resources/css/foxtrick.css",
+	CSS : [
+		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
+		Foxtrick.ResourcePath + "resources/css/headercopyicons.css"
+	],
 	CSS_SIMPLE : [
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
-		Foxtrick.ResourcePath + "resources/css/foxtrick-simple.css"
+		Foxtrick.ResourcePath + "resources/css/foxtrick-simple.css",
+		Foxtrick.ResourcePath + "resources/css/headercopyicons_simple.css"
 	],
 	CSS_RTL : [
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
-		Foxtrick.ResourcePath + "resources/css/rtl.css"
+		Foxtrick.ResourcePath + "resources/css/rtl.css",
+		Foxtrick.ResourcePath + "resources/css/headercopyicons_rtl.css"
+	],
+	CSS_SIMPLE_RTL : [
+		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
+		Foxtrick.ResourcePath + "resources/css/rtl.css",
+		Foxtrick.ResourcePath + "resources/css/headercopyicons_simple_rtl.css"
 	],
 
 	// called after browser loaded (Gecko-only), with browser chrome

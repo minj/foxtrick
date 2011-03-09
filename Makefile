@@ -27,7 +27,6 @@ CONTENT_FILES = api-proxy.js \
 	foxtrick.js \
 	foxtrick.properties \
 	foxtrick.screenshots \
-	header-copy-icons.js \
 	helper.js \
 	l10n.js \
 	modules.js \

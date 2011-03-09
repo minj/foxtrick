@@ -14,7 +14,6 @@
 			"content/preferences-dialog-html.js",
 			"content/preferences-on-page.js",
 			"content/forum-stage.js",
-			"content/header-copy-icons.js",
 			"content/core.js",
 			"content/api-proxy.js",
 			"content/lib/oauth.js",
