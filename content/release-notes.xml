@@ -29,6 +29,7 @@
 <item>Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)</item>
 <item>Option to show HatStats per rating in <module>Ratings</module>. (taised)</item>
 <item>Belarusian locale. (LA-Stolik)</item>
+<item>Add some frequently asked questions at <xhtml:a href="#tab=help">Help tab</xhtml:a>. (ryanli)</item>
 <item>New grey icon for report links. (ljushaff)</item>
 <item><module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)</item>
 <item>Most features working under Google Chrome. (ryanli)</item>
