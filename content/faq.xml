@@ -47,4 +47,26 @@
 			</xhtml:ul>
 		</answer>
 	</item>
+	<item id="privacy">
+		<question>How will FoxTrick protect my privacy?</question>
+		<answer>
+			<xhtml:p>
+				FoxTrick will not upload any of your data or preferences to a server of FoxTrick;
+				neither will FoxTrick send any of your private data,
+				including but not restricted to your username, password, and player ID associated with skills to third parties.
+			</xhtml:p>
+			<xhtml:p>
+				Most data passed to third parties, unless explicitly stated below, are sent with HTTP GET method, and will only be sent upon you clicking a link.
+			</xhtml:p>
+			<xhtml:p>
+				That is, you will be able to see what data are passed by inspecting the URI (Uniform Resource Identifier) of an external link,
+				and no data will be sent without your consent.
+				As stated above, no private data is involved.
+			</xhtml:p>
+			<xhtml:p>
+				The only exceptions are module <xhtml:a href="#module=HTMSPoints">HTMSPoints</xhtml:a> and <xhtml:a href="#module=htmsStatistics">htmsStatistics</xhtml:a>,
+				where player skills and match ratings respectively are passed to <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Statistics</xhtml:a>.
+			</xhtml:p>
+		</answer>
+	</item>
 </faq>
