@@ -51,12 +51,19 @@ Foxtrick.ApiProxy = {
 		link.textContent = Foxtrickl10n.getString("oauth.authorize");
 		link.addEventListener("click", function(ev) {
 			showNotice();
-			Foxtrick.load(requestTokenUrl, function(text) {
+			var linkPar = doc.createElement("p");
+			div.appendChild(linkPar);
+			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
+			Foxtrick.load(requestTokenUrl, function(text, status) {
+				linkPar.textContent = ""; // clear linkPar first
+				if (status != 200) {
+					// failed to fetch link
+					linkPar.textContent = Foxtrickl10n.getString("exception.error").replace(/%s/, status);
+					return;
+				}
 				var requestToken = text.split(/&/)[0].split(/=/)[1];
 				var requestTokenSecret = text.split(/&/)[1].split(/=/)[1];
 				// link
-				var linkPar = doc.createElement("p");
-				div.appendChild(linkPar);
 				var link = doc.createElement("a");
 				link.textContent = link.href = Foxtrick.ApiProxy.authorizeUrl + "?" + text;
 				link.target = "_blank";
