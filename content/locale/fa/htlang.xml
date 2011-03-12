@@ -1,10 +1,10 @@
 <language name="fa" desc="فارسی">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="هت‌‌تریک من" />
+	<MyHattrick value="هت&#8204;&#8204;تریک من" />
 	<MyClub value="باشگاه من" />
-	<World value="بین‌‌المللی" />
-	<Forum value="انجمن‌‌ها" />
+	<World value="جهان" />
+	<Forum value="انجمن&#8204;&#8204;ها" />
 	<Shop value="فروشگاه" />
 	<Help value="راهنمایی" />
 
