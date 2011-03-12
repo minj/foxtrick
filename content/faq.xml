@@ -65,7 +65,7 @@
 			</xhtml:p>
 			<xhtml:p>
 				The only exceptions are module <xhtml:a href="#module=HTMSPoints">HTMSPoints</xhtml:a> and <xhtml:a href="#module=htmsStatistics">htmsStatistics</xhtml:a>,
-				where player skills and match ratings respectively are passed to <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Statistics</xhtml:a>.
+				where player skills and match ratings respectively are passed to <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Statistics</xhtml:a> with XMLHttpRequest.
 			</xhtml:p>
 		</answer>
 	</item>
