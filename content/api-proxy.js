@@ -121,6 +121,11 @@ Foxtrick.ApiProxy = {
 					notice.appendChild(doc.createElement("br"));
 			}
 			div.appendChild(notice);
+			// link to FAQ
+			var more = doc.createElement("a");
+			more.textContent = Foxtrickl10n.getString("oauth.why");
+			more.href = Foxtrick.ResourcePath + "preferences.xhtml#faq=authorize";
+			div.appendChild(more);
 		};
 		var showFinished = function() {
 			div.textContent = Foxtrickl10n.getString("oauth.success");
