@@ -106,7 +106,8 @@ Foxtrick.ApiProxy = {
 		var showNotice = function() {
 			div.removeChild(link);
 			var notice = doc.createElement("p");
-			var paragraphs = Foxtrickl10n.getString("oauth.instructions").split(/\n/);
+			// in Firefox "\n" as literal is translated into line feed
+			var paragraphs = Foxtrickl10n.getString("oauth.instructions").replace(/\n/g, "\\n").split(/\\n/);
 			for (var i = 0; i < paragraphs.length; ++i) {
 				notice.appendChild(doc.createTextNode(paragraphs[i]));
 				if (i != paragraphs.length - 1)
