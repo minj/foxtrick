@@ -76,6 +76,7 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	clear: both;
 	margin: 10px 0;
 	padding: 7px 10px;
+	overflow: hidden;
 }
 
 .ft-note a.close {
