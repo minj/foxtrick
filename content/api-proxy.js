@@ -65,7 +65,8 @@ Foxtrick.ApiProxy = {
 				var requestTokenSecret = text.split(/&/)[1].split(/=/)[1];
 				// link
 				var link = doc.createElement("a");
-				link.textContent = link.href = Foxtrick.ApiProxy.authorizeUrl + "?" + text;
+				link.title = link.href = Foxtrick.ApiProxy.authorizeUrl + "?" + text;
+				link.textContent = Foxtrickl10n.getString("oauth.link");
 				link.target = "_blank";
 				linkPar.appendChild(link);
 				// input
