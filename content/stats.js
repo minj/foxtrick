@@ -2197,25 +2197,6 @@ stats["polskatracker"] = {
 	"nationalityranges" : [[24,24]],
 };
 
-//  ------------- spreadsheets trackers ----------------
-stats["nippontracker"] = {
-  "url" : "http://spreadsheets.google.com/viewform?key=pPPtfeGUpefgXsyLLwuDrAw",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
-  "title" : "Nippon U-20 DB",
-
-  "trackernationalteamlink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-  "trackerplayerlink" : { "path"       : "",
-                   "filters"    : ["nationality"],
-                   "params"     : []
-                 },
-	"countryidranges" : [[22,22]] ,
-	"nationalityranges" : [[22,22]],
-};
-
-
 // global tracker
 
 stats["htworld"] =  {
