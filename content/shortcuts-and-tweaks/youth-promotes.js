@@ -14,7 +14,8 @@ var FoxtrickYouthPromotes = {
 		if (!isNaN(daysToPromote)) {
 			var message = "";
 			if (daysToPromote > 0) { // you have to wait to promote
-				date = Foxtrick.util.time.addDaysToDate(new Date(), daysToPromote);
+				const htDate = Foxtrick.util.time.getHtDate(doc);
+				date = Foxtrick.util.time.addDaysToDate(htDate, daysToPromote);
 				date = Foxtrick.util.time.buildDate(date);
 				message = Foxtrickl10n.getString("YouthPromotes.future")
 					.replace(/%1/, daysToPromote)
