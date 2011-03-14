@@ -8,11 +8,11 @@
 var FoxtrickNtPeek = {
 	MODULE_NAME : "NtPeek",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["myhattrick"],
+	PAGES : ["myhattrick", "country"],
 	CSS : Foxtrick.ResourcePath + "resources/css/nt-peek.css",
 
 	run : function(page, doc) {
-		var buildContainer = function(team, id) {
+		var buildContainer = function(team, id, isNt) {
 			var buildTeamHeader = function() {
 				var header = doc.createElement("h2");
 				var link = doc.createElement("a");
@@ -22,6 +22,10 @@ var FoxtrickNtPeek = {
 				return header;
 			}
 			var container = doc.createElement("div");
+			if (isNt)
+				container.className = "ft-nt-peek-nt";
+			else
+				container.className = "ft-nt-peek-u20";
 			var header = buildTeamHeader();
 			container.appendChild(header);
 			var table = doc.createElement("table");
@@ -31,8 +35,15 @@ var FoxtrickNtPeek = {
 			container.appendChild(table);
 			return container;
 		}
-		FoxtrickHelper.getOwnTeamInfo(doc, page);
-		const countryId = FoxtrickHelper.getOwnCountryId();
+
+		var countryId;
+		if (page == "myhattrick") {
+			FoxtrickHelper.getOwnTeamInfo(doc, page);
+			countryId = FoxtrickHelper.getOwnCountryId();
+		}
+		else if (page == "country")
+			countryId = Foxtrick.Pages.Country.getId(doc);
+
 		const ntIdXml = Foxtrick.XMLData.htNTidsXml;
 		const ntNode = ntIdXml.evaluate("/leagues/league[@id='" + countryId + "'][1]",
 			ntIdXml, null, XPathResult.ANY_TYPE, null).iterateNext();
@@ -41,20 +52,27 @@ var FoxtrickNtPeek = {
 		const u20Id = ntNode.getElementsByTagName("U20id")[0].textContent;
 		const u20Name = ntNode.getElementsByTagName("U20Name")[0].textContent;
 
-		var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
+		var insertBefore;
+		if (page == "myhattrick")
+			insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
+		else if (page == "country")
+			insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek");
+
 		var container = doc.createElement("div");
 		container.className = "ft-nt-peek";
 		insertBefore.parentNode.insertBefore(container, insertBefore);
-		// title
-		var title = doc.createElement("h1");
-		title.textContent = Foxtrickl10n.getString("ntpeek.title");
-		container.appendChild(title);
-		
+		// title (only at My Hattrick page)
+		if (page == "myhattrick") {
+			var title = doc.createElement("h1");
+			title.textContent = Foxtrickl10n.getString("ntpeek.title");
+			container.appendChild(title);
+		}
+
 		// NT container
-		var ntContainer = buildContainer(ntName, ntId);
+		var ntContainer = buildContainer(ntName, ntId, true);
 		container.appendChild(ntContainer);
 		// U20 container
-		var u20Container = buildContainer(u20Name, u20Id);doc.createElement("div");
+		var u20Container = buildContainer(u20Name, u20Id, false);
 		container.appendChild(u20Container);
 		// separator
 		var separator = doc.createElement("div");
