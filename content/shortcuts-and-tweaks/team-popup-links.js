@@ -326,7 +326,7 @@ var FoxtrickTeamPopupLinks = {
 				}
 
 				var item = doc.createElement("li");
-				var link = doc.createElement("span");
+				var link = doc.createElement("a");
 				if (!show_more) {
 					link.setAttribute('more', 'true');
 					link.textContent = Foxtrickl10n.getString('more');
