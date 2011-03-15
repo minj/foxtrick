@@ -215,7 +215,18 @@ var FoxtrickTeamPopupLinks = {
 
 	popupshow : function(evt) {
 		try {
-			var org_link = evt.target;
+			var findLink = function(node) {
+				if (node.nodeName.toLowerCase() == "a")
+					return node;
+				if (!node.parentNode)
+					return null;
+				return findLink(node.parentNode);
+			}
+			// need to find <a> recursively as <a> may have children
+			// like <bdo>
+			var org_link = findLink(evt.target);
+			if (org_link === null)
+				return; // no link found
 			var show_more = false;
 			if (org_link.getAttribute('more')) {
 				org_link.removeEventListener('click',FoxtrickTeamPopupLinks.popupshow,true);
