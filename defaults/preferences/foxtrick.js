@@ -644,7 +644,6 @@ pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.more", tru
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.UserLinks.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.more", false);
-pref("extensions.foxtrick.prefs.module.TeamSelectBox.AlsoYouthPlayers.enabled", false);
 pref("extensions.foxtrick.prefs.module.TeamSelectBox.enabled", false);
 pref("extensions.foxtrick.prefs.module.TeamStats.Current_league.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamStats.enabled", true);
