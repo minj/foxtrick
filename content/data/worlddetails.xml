@@ -3,7 +3,7 @@
   <FileName>worlddetails.xml</FileName>
   <Version>1.3</Version>
   <UserID>8342420</UserID>
-  <FetchedDate>2011-03-16 06:55:19</FetchedDate>
+  <FetchedDate>2011-03-16 10:55:13</FetchedDate>
   <LeagueList>
     <League>
       <LeagueID>1</LeagueID>
@@ -26,8 +26,8 @@
       </Cup>
       <NationalTeamId>3000</NationalTeamId>
       <U20TeamId>3041</U20TeamId>
-      <ActiveUsers>19745</ActiveUsers>
-      <WaitingUsers>27</WaitingUsers>
+      <ActiveUsers>19752</ActiveUsers>
+      <WaitingUsers>20</WaitingUsers>
       <TrainingDate>2011-03-17 22:00:00</TrainingDate>
       <EconomyDate>2011-03-20 00:00:01</EconomyDate>
       <CupMatchDate>2011-03-16 19:00:00</CupMatchDate>
@@ -55,7 +55,7 @@
       </Cup>
       <NationalTeamId>3001</NationalTeamId>
       <U20TeamId>3042</U20TeamId>
-      <ActiveUsers>7338</ActiveUsers>
+      <ActiveUsers>7352</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 21:00:00</TrainingDate>
       <EconomyDate>2011-03-18 21:00:00</EconomyDate>
@@ -84,8 +84,8 @@
       </Cup>
       <NationalTeamId>3002</NationalTeamId>
       <U20TeamId>3043</U20TeamId>
-      <ActiveUsers>60574</ActiveUsers>
-      <WaitingUsers>68</WaitingUsers>
+      <ActiveUsers>60571</ActiveUsers>
+      <WaitingUsers>69</WaitingUsers>
       <TrainingDate>2011-03-18 00:30:00</TrainingDate>
       <EconomyDate>2011-03-19 00:00:01</EconomyDate>
       <CupMatchDate>2011-03-22 18:00:00</CupMatchDate>
@@ -113,8 +113,8 @@
       </Cup>
       <NationalTeamId>3003</NationalTeamId>
       <U20TeamId>3044</U20TeamId>
-      <ActiveUsers>77066</ActiveUsers>
-      <WaitingUsers>230</WaitingUsers>
+      <ActiveUsers>77073</ActiveUsers>
+      <WaitingUsers>226</WaitingUsers>
       <TrainingDate>2011-03-17 23:45:00</TrainingDate>
       <EconomyDate>2011-03-19 02:00:00</EconomyDate>
       <CupMatchDate>2011-03-22 19:00:00</CupMatchDate>
@@ -142,8 +142,8 @@
       </Cup>
       <NationalTeamId>3004</NationalTeamId>
       <U20TeamId>3045</U20TeamId>
-      <ActiveUsers>35923</ActiveUsers>
-      <WaitingUsers>58</WaitingUsers>
+      <ActiveUsers>35914</ActiveUsers>
+      <WaitingUsers>59</WaitingUsers>
       <TrainingDate>2011-03-18 05:15:00</TrainingDate>
       <EconomyDate>2011-03-19 02:30:00</EconomyDate>
       <CupMatchDate>2011-03-16 15:00:00</CupMatchDate>
@@ -171,7 +171,7 @@
       </Cup>
       <NationalTeamId>3005</NationalTeamId>
       <U20TeamId>3046</U20TeamId>
-      <ActiveUsers>4180</ActiveUsers>
+      <ActiveUsers>4175</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 03:45:00</TrainingDate>
       <EconomyDate>2011-03-20 01:00:00</EconomyDate>
@@ -200,8 +200,8 @@
       </Cup>
       <NationalTeamId>3006</NationalTeamId>
       <U20TeamId>3047</U20TeamId>
-      <ActiveUsers>21272</ActiveUsers>
-      <WaitingUsers>39</WaitingUsers>
+      <ActiveUsers>21252</ActiveUsers>
+      <WaitingUsers>38</WaitingUsers>
       <TrainingDate>2011-03-18 06:00:00</TrainingDate>
       <EconomyDate>2011-03-19 03:30:00</EconomyDate>
       <CupMatchDate>2011-03-17 01:30:00</CupMatchDate>
@@ -229,7 +229,7 @@
       </Cup>
       <NationalTeamId>3007</NationalTeamId>
       <U20TeamId>3048</U20TeamId>
-      <ActiveUsers>5237</ActiveUsers>
+      <ActiveUsers>5231</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-18 03:30:00</TrainingDate>
       <EconomyDate>2011-03-20 01:30:00</EconomyDate>
@@ -258,8 +258,8 @@
       </Cup>
       <NationalTeamId>3008</NationalTeamId>
       <U20TeamId>3049</U20TeamId>
-      <ActiveUsers>9855</ActiveUsers>
-      <WaitingUsers>40</WaitingUsers>
+      <ActiveUsers>9863</ActiveUsers>
+      <WaitingUsers>41</WaitingUsers>
       <TrainingDate>2011-03-17 20:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:00:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:00:00</CupMatchDate>
@@ -287,8 +287,8 @@
       </Cup>
       <NationalTeamId>3022</NationalTeamId>
       <U20TeamId>3063</U20TeamId>
-      <ActiveUsers>15198</ActiveUsers>
-      <WaitingUsers>37</WaitingUsers>
+      <ActiveUsers>15205</ActiveUsers>
+      <WaitingUsers>33</WaitingUsers>
       <TrainingDate>2011-03-18 03:00:00</TrainingDate>
       <EconomyDate>2011-03-20 01:20:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:30:00</CupMatchDate>
@@ -316,8 +316,8 @@
       </Cup>
       <NationalTeamId>3023</NationalTeamId>
       <U20TeamId>3064</U20TeamId>
-      <ActiveUsers>21474</ActiveUsers>
-      <WaitingUsers>14</WaitingUsers>
+      <ActiveUsers>21467</ActiveUsers>
+      <WaitingUsers>15</WaitingUsers>
       <TrainingDate>2011-03-18 05:00:00</TrainingDate>
       <EconomyDate>2011-03-19 00:20:00</EconomyDate>
       <CupMatchDate>2011-03-22 20:00:00</CupMatchDate>
@@ -345,8 +345,8 @@
       </Cup>
       <NationalTeamId>3025</NationalTeamId>
       <U20TeamId>3066</U20TeamId>
-      <ActiveUsers>30805</ActiveUsers>
-      <WaitingUsers>16</WaitingUsers>
+      <ActiveUsers>30788</ActiveUsers>
+      <WaitingUsers>13</WaitingUsers>
       <TrainingDate>2011-03-18 01:05:00</TrainingDate>
       <EconomyDate>2011-03-20 02:00:00</EconomyDate>
       <CupMatchDate>2011-03-16 17:00:00</CupMatchDate>
@@ -374,7 +374,7 @@
       </Cup>
       <NationalTeamId>3009</NationalTeamId>
       <U20TeamId>3050</U20TeamId>
-      <ActiveUsers>2578</ActiveUsers>
+      <ActiveUsers>2572</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 04:00:00</TrainingDate>
       <EconomyDate>2011-03-19 00:10:00</EconomyDate>
@@ -403,7 +403,7 @@
       </Cup>
       <NationalTeamId>3024</NationalTeamId>
       <U20TeamId>3065</U20TeamId>
-      <ActiveUsers>13716</ActiveUsers>
+      <ActiveUsers>13670</ActiveUsers>
       <WaitingUsers>7</WaitingUsers>
       <TrainingDate>2011-03-18 00:05:00</TrainingDate>
       <EconomyDate>2011-03-20 01:45:00</EconomyDate>
@@ -432,7 +432,7 @@
       </Cup>
       <NationalTeamId>3010</NationalTeamId>
       <U20TeamId>3051</U20TeamId>
-      <ActiveUsers>1676</ActiveUsers>
+      <ActiveUsers>1680</ActiveUsers>
       <WaitingUsers>2</WaitingUsers>
       <TrainingDate>2011-03-18 07:30:00</TrainingDate>
       <EconomyDate>2011-03-20 02:15:00</EconomyDate>
@@ -461,7 +461,7 @@
       </Cup>
       <NationalTeamId>3026</NationalTeamId>
       <U20TeamId>3067</U20TeamId>
-      <ActiveUsers>17124</ActiveUsers>
+      <ActiveUsers>17120</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-18 08:15:00</TrainingDate>
       <EconomyDate>2011-03-20 03:30:00</EconomyDate>
@@ -490,7 +490,7 @@
       </Cup>
       <NationalTeamId>3011</NationalTeamId>
       <U20TeamId>3052</U20TeamId>
-      <ActiveUsers>5687</ActiveUsers>
+      <ActiveUsers>5678</ActiveUsers>
       <WaitingUsers>3</WaitingUsers>
       <TrainingDate>2011-03-18 06:30:00</TrainingDate>
       <EconomyDate>2011-03-20 03:40:00</EconomyDate>
@@ -519,7 +519,7 @@
       </Cup>
       <NationalTeamId>3027</NationalTeamId>
       <U20TeamId>3068</U20TeamId>
-      <ActiveUsers>498</ActiveUsers>
+      <ActiveUsers>496</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 06:05:00</TrainingDate>
       <EconomyDate>2011-03-19 04:44:00</EconomyDate>
@@ -548,7 +548,7 @@
       </Cup>
       <NationalTeamId>3012</NationalTeamId>
       <U20TeamId>3053</U20TeamId>
-      <ActiveUsers>977</ActiveUsers>
+      <ActiveUsers>979</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 05:45:00</TrainingDate>
       <EconomyDate>2011-03-19 01:45:00</EconomyDate>
@@ -577,7 +577,7 @@
       </Cup>
       <NationalTeamId>3028</NationalTeamId>
       <U20TeamId>3069</U20TeamId>
-      <ActiveUsers>671</ActiveUsers>
+      <ActiveUsers>667</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 04:15:00</TrainingDate>
       <EconomyDate>2011-03-19 03:15:00</EconomyDate>
@@ -606,7 +606,7 @@
       </Cup>
       <NationalTeamId>3013</NationalTeamId>
       <U20TeamId>3054</U20TeamId>
-      <ActiveUsers>5275</ActiveUsers>
+      <ActiveUsers>5273</ActiveUsers>
       <WaitingUsers>4</WaitingUsers>
       <TrainingDate>2011-03-18 05:30:00</TrainingDate>
       <EconomyDate>2011-03-20 02:25:00</EconomyDate>
@@ -635,8 +635,8 @@
       </Cup>
       <NationalTeamId>3029</NationalTeamId>
       <U20TeamId>3070</U20TeamId>
-      <ActiveUsers>56847</ActiveUsers>
-      <WaitingUsers>154</WaitingUsers>
+      <ActiveUsers>56857</ActiveUsers>
+      <WaitingUsers>160</WaitingUsers>
       <TrainingDate>2011-03-18 02:30:00</TrainingDate>
       <EconomyDate>2011-03-19 23:45:00</EconomyDate>
       <CupMatchDate>2011-03-16 18:00:00</CupMatchDate>
@@ -664,7 +664,7 @@
       </Cup>
       <NationalTeamId>3014</NationalTeamId>
       <U20TeamId>3055</U20TeamId>
-      <ActiveUsers>27421</ActiveUsers>
+      <ActiveUsers>27438</ActiveUsers>
       <WaitingUsers>11</WaitingUsers>
       <TrainingDate>2011-03-17 19:00:00</TrainingDate>
       <EconomyDate>2011-03-19 01:30:00</EconomyDate>
@@ -722,7 +722,7 @@
       </Cup>
       <NationalTeamId>3015</NationalTeamId>
       <U20TeamId>3056</U20TeamId>
-      <ActiveUsers>271</ActiveUsers>
+      <ActiveUsers>270</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:00:00</TrainingDate>
       <EconomyDate>2011-03-19 04:27:00</EconomyDate>
@@ -751,7 +751,7 @@
       </Cup>
       <NationalTeamId>3031</NationalTeamId>
       <U20TeamId>3072</U20TeamId>
-      <ActiveUsers>4776</ActiveUsers>
+      <ActiveUsers>4773</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 23:00:00</TrainingDate>
       <EconomyDate>2011-03-20 03:41:00</EconomyDate>
@@ -780,8 +780,8 @@
       </Cup>
       <NationalTeamId>3016</NationalTeamId>
       <U20TeamId>3057</U20TeamId>
-      <ActiveUsers>2718</ActiveUsers>
-      <WaitingUsers>2</WaitingUsers>
+      <ActiveUsers>2714</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 06:15:00</TrainingDate>
       <EconomyDate>2011-03-20 03:15:00</EconomyDate>
       <CupMatchDate>2011-03-16 23:30:00</CupMatchDate>
@@ -809,8 +809,8 @@
       </Cup>
       <NationalTeamId>3032</NationalTeamId>
       <U20TeamId>3073</U20TeamId>
-      <ActiveUsers>1580</ActiveUsers>
-      <WaitingUsers>12</WaitingUsers>
+      <ActiveUsers>1578</ActiveUsers>
+      <WaitingUsers>11</WaitingUsers>
       <TrainingDate>2011-03-18 04:45:00</TrainingDate>
       <EconomyDate>2011-03-19 04:40:00</EconomyDate>
       <CupMatchDate>2011-03-23 02:00:00</CupMatchDate>
@@ -838,7 +838,7 @@
       </Cup>
       <NationalTeamId>3017</NationalTeamId>
       <U20TeamId>3058</U20TeamId>
-      <ActiveUsers>444</ActiveUsers>
+      <ActiveUsers>452</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 04:20:00</TrainingDate>
       <EconomyDate>2011-03-19 02:20:00</EconomyDate>
@@ -867,11 +867,11 @@
       </Cup>
       <NationalTeamId>3033</NationalTeamId>
       <U20TeamId>3074</U20TeamId>
-      <ActiveUsers>23279</ActiveUsers>
-      <WaitingUsers>2</WaitingUsers>
+      <ActiveUsers>23239</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
       <TrainingDate>2011-03-17 16:06:00</TrainingDate>
       <EconomyDate>2011-03-19 04:30:00</EconomyDate>
-      <CupMatchDate>2011-03-16 08:00:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 08:00:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 15:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
@@ -896,7 +896,7 @@
       </Cup>
       <NationalTeamId>3018</NationalTeamId>
       <U20TeamId>3059</U20TeamId>
-      <ActiveUsers>297</ActiveUsers>
+      <ActiveUsers>295</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 04:07:00</TrainingDate>
       <EconomyDate>2011-03-18 15:07:00</EconomyDate>
@@ -925,11 +925,11 @@
       </Cup>
       <NationalTeamId>3034</NationalTeamId>
       <U20TeamId>3075</U20TeamId>
-      <ActiveUsers>2013</ActiveUsers>
-      <WaitingUsers>2</WaitingUsers>
+      <ActiveUsers>2022</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
       <TrainingDate>2011-03-17 14:30:00</TrainingDate>
       <EconomyDate>2011-03-18 22:30:00</EconomyDate>
-      <CupMatchDate>2011-03-16 07:00:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 07:00:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 07:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
@@ -954,11 +954,11 @@
       </Cup>
       <NationalTeamId>3019</NationalTeamId>
       <U20TeamId>3060</U20TeamId>
-      <ActiveUsers>3762</ActiveUsers>
-      <WaitingUsers>15</WaitingUsers>
+      <ActiveUsers>3757</ActiveUsers>
+      <WaitingUsers>17</WaitingUsers>
       <TrainingDate>2011-03-17 18:30:00</TrainingDate>
       <EconomyDate>2011-03-19 23:40:00</EconomyDate>
-      <CupMatchDate>2011-03-16 08:30:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 08:30:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 08:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
@@ -983,8 +983,8 @@
       </Cup>
       <NationalTeamId>3035</NationalTeamId>
       <U20TeamId>3076</U20TeamId>
-      <ActiveUsers>72849</ActiveUsers>
-      <WaitingUsers>9</WaitingUsers>
+      <ActiveUsers>72829</ActiveUsers>
+      <WaitingUsers>11</WaitingUsers>
       <TrainingDate>2011-03-18 01:00:00</TrainingDate>
       <EconomyDate>2011-03-19 01:00:00</EconomyDate>
       <CupMatchDate>2011-03-16 12:00:00</CupMatchDate>
@@ -1012,11 +1012,11 @@
       </Cup>
       <NationalTeamId>3020</NationalTeamId>
       <U20TeamId>3061</U20TeamId>
-      <ActiveUsers>27754</ActiveUsers>
+      <ActiveUsers>27779</ActiveUsers>
       <WaitingUsers>5</WaitingUsers>
       <TrainingDate>2011-03-17 21:15:00</TrainingDate>
       <EconomyDate>2011-03-18 23:15:00</EconomyDate>
-      <CupMatchDate>2011-03-16 10:00:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 10:00:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 10:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
@@ -1070,11 +1070,11 @@
       </Cup>
       <NationalTeamId>3039</NationalTeamId>
       <U20TeamId>3080</U20TeamId>
-      <ActiveUsers>7387</ActiveUsers>
-      <WaitingUsers>6</WaitingUsers>
+      <ActiveUsers>7381</ActiveUsers>
+      <WaitingUsers>5</WaitingUsers>
       <TrainingDate>2011-03-18 07:00:00</TrainingDate>
       <EconomyDate>2011-03-19 23:52:00</EconomyDate>
-      <CupMatchDate>2011-03-16 09:30:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 09:30:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 09:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
@@ -1099,7 +1099,7 @@
       </Cup>
       <NationalTeamId>3037</NationalTeamId>
       <U20TeamId>3078</U20TeamId>
-      <ActiveUsers>23664</ActiveUsers>
+      <ActiveUsers>23642</ActiveUsers>
       <WaitingUsers>24</WaitingUsers>
       <TrainingDate>2011-03-18 01:00:00</TrainingDate>
       <EconomyDate>2011-03-20 00:25:00</EconomyDate>
@@ -1128,7 +1128,7 @@
       </Cup>
       <NationalTeamId>3040</NationalTeamId>
       <U20TeamId>3081</U20TeamId>
-      <ActiveUsers>492</ActiveUsers>
+      <ActiveUsers>491</ActiveUsers>
       <WaitingUsers>2</WaitingUsers>
       <TrainingDate>2011-03-18 08:00:00</TrainingDate>
       <EconomyDate>2011-03-19 01:50:00</EconomyDate>
@@ -1157,11 +1157,11 @@
       </Cup>
       <NationalTeamId>3038</NationalTeamId>
       <U20TeamId>3079</U20TeamId>
-      <ActiveUsers>32363</ActiveUsers>
-      <WaitingUsers>46</WaitingUsers>
+      <ActiveUsers>32371</ActiveUsers>
+      <WaitingUsers>45</WaitingUsers>
       <TrainingDate>2011-03-17 23:15:00</TrainingDate>
       <EconomyDate>2011-03-19 02:15:00</EconomyDate>
-      <CupMatchDate>2011-03-16 10:30:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 10:30:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 17:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
@@ -1186,7 +1186,7 @@
       </Cup>
       <NationalTeamId>3036</NationalTeamId>
       <U20TeamId>3077</U20TeamId>
-      <ActiveUsers>417</ActiveUsers>
+      <ActiveUsers>416</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 00:15:00</TrainingDate>
       <EconomyDate>2011-03-19 03:27:00</EconomyDate>
@@ -1215,11 +1215,11 @@
       </Cup>
       <NationalTeamId>3089</NationalTeamId>
       <U20TeamId>3098</U20TeamId>
-      <ActiveUsers>7383</ActiveUsers>
+      <ActiveUsers>7395</ActiveUsers>
       <WaitingUsers>4</WaitingUsers>
       <TrainingDate>2011-03-17 17:15:00</TrainingDate>
       <EconomyDate>2011-03-18 23:25:00</EconomyDate>
-      <CupMatchDate>2011-03-16 09:45:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 09:45:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 11:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
@@ -1244,11 +1244,11 @@
       </Cup>
       <NationalTeamId>3082</NationalTeamId>
       <U20TeamId>3091</U20TeamId>
-      <ActiveUsers>17328</ActiveUsers>
-      <WaitingUsers>81</WaitingUsers>
+      <ActiveUsers>17332</ActiveUsers>
+      <WaitingUsers>78</WaitingUsers>
       <TrainingDate>2011-03-17 17:45:00</TrainingDate>
       <EconomyDate>2011-03-18 23:15:00</EconomyDate>
-      <CupMatchDate>2011-03-16 09:45:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 09:45:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 15:30:00</SeriesMatchDate>
       <NumberOfLevels>7</NumberOfLevels>
     </League>
@@ -1273,8 +1273,8 @@
       </Cup>
       <NationalTeamId>3090</NationalTeamId>
       <U20TeamId>3099</U20TeamId>
-      <ActiveUsers>15154</ActiveUsers>
-      <WaitingUsers>40</WaitingUsers>
+      <ActiveUsers>15169</ActiveUsers>
+      <WaitingUsers>44</WaitingUsers>
       <TrainingDate>2011-03-17 17:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:30:00</EconomyDate>
       <CupMatchDate>2011-03-16 14:00:00</CupMatchDate>
@@ -1302,7 +1302,7 @@
       </Cup>
       <NationalTeamId>3083</NationalTeamId>
       <U20TeamId>3092</U20TeamId>
-      <ActiveUsers>3434</ActiveUsers>
+      <ActiveUsers>3430</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 18:45:00</TrainingDate>
       <EconomyDate>2011-03-18 23:15:00</EconomyDate>
@@ -1331,11 +1331,11 @@
       </Cup>
       <NationalTeamId>3084</NationalTeamId>
       <U20TeamId>3093</U20TeamId>
-      <ActiveUsers>1141</ActiveUsers>
+      <ActiveUsers>1133</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 17:00:00</TrainingDate>
       <EconomyDate>2011-03-18 23:00:00</EconomyDate>
-      <CupMatchDate>2011-03-16 07:45:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 07:45:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 09:00:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
@@ -1389,8 +1389,8 @@
       </Cup>
       <NationalTeamId>3086</NationalTeamId>
       <U20TeamId>3095</U20TeamId>
-      <ActiveUsers>2386</ActiveUsers>
-      <WaitingUsers>5</WaitingUsers>
+      <ActiveUsers>2394</ActiveUsers>
+      <WaitingUsers>6</WaitingUsers>
       <TrainingDate>2011-03-17 18:15:00</TrainingDate>
       <EconomyDate>2011-03-18 23:45:00</EconomyDate>
       <CupMatchDate>2011-03-16 12:15:00</CupMatchDate>
@@ -1418,7 +1418,7 @@
       </Cup>
       <NationalTeamId>3087</NationalTeamId>
       <U20TeamId>3096</U20TeamId>
-      <ActiveUsers>5525</ActiveUsers>
+      <ActiveUsers>5524</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 16:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:20:00</EconomyDate>
@@ -1447,11 +1447,11 @@
       </Cup>
       <NationalTeamId>3088</NationalTeamId>
       <U20TeamId>3097</U20TeamId>
-      <ActiveUsers>6930</ActiveUsers>
+      <ActiveUsers>6941</ActiveUsers>
       <WaitingUsers>10</WaitingUsers>
       <TrainingDate>2011-03-17 16:45:00</TrainingDate>
       <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-16 08:45:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 08:45:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 13:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
@@ -1476,11 +1476,11 @@
       </Cup>
       <NationalTeamId>3102</NationalTeamId>
       <U20TeamId>3103</U20TeamId>
-      <ActiveUsers>433</ActiveUsers>
+      <ActiveUsers>430</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:30:00</TrainingDate>
       <EconomyDate>2011-03-18 22:45:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:00:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 11:00:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 08:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
@@ -1534,7 +1534,7 @@
       </Cup>
       <NationalTeamId>3104</NationalTeamId>
       <U20TeamId>3105</U20TeamId>
-      <ActiveUsers>355</ActiveUsers>
+      <ActiveUsers>354</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 15:30:00</TrainingDate>
       <EconomyDate>2011-03-18 21:30:00</EconomyDate>
@@ -1563,7 +1563,7 @@
       </Cup>
       <NationalTeamId>3106</NationalTeamId>
       <U20TeamId>3107</U20TeamId>
-      <ActiveUsers>5840</ActiveUsers>
+      <ActiveUsers>5841</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 15:30:00</TrainingDate>
       <EconomyDate>2011-03-18 22:15:00</EconomyDate>
@@ -1592,8 +1592,8 @@
       </Cup>
       <NationalTeamId>3108</NationalTeamId>
       <U20TeamId>3109</U20TeamId>
-      <ActiveUsers>12632</ActiveUsers>
-      <WaitingUsers>63</WaitingUsers>
+      <ActiveUsers>12631</ActiveUsers>
+      <WaitingUsers>62</WaitingUsers>
       <TrainingDate>2011-03-17 15:30:00</TrainingDate>
       <EconomyDate>2011-03-18 22:15:00</EconomyDate>
       <CupMatchDate>2011-03-22 20:30:00</CupMatchDate>
@@ -1621,8 +1621,8 @@
       </Cup>
       <NationalTeamId>3110</NationalTeamId>
       <U20TeamId>3111</U20TeamId>
-      <ActiveUsers>4987</ActiveUsers>
-      <WaitingUsers>34</WaitingUsers>
+      <ActiveUsers>4980</ActiveUsers>
+      <WaitingUsers>33</WaitingUsers>
       <TrainingDate>2011-03-17 15:30:00</TrainingDate>
       <EconomyDate>2011-03-18 22:17:00</EconomyDate>
       <CupMatchDate>2011-03-22 19:30:00</CupMatchDate>
@@ -1650,8 +1650,8 @@
       </Cup>
       <NationalTeamId>3113</NationalTeamId>
       <U20TeamId>3114</U20TeamId>
-      <ActiveUsers>4390</ActiveUsers>
-      <WaitingUsers>9</WaitingUsers>
+      <ActiveUsers>4388</ActiveUsers>
+      <WaitingUsers>8</WaitingUsers>
       <TrainingDate>2011-03-17 17:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:30:00</EconomyDate>
       <CupMatchDate>2011-03-16 19:20:00</CupMatchDate>
@@ -1679,7 +1679,7 @@
       </Cup>
       <NationalTeamId>3116</NationalTeamId>
       <U20TeamId>3117</U20TeamId>
-      <ActiveUsers>6959</ActiveUsers>
+      <ActiveUsers>6954</ActiveUsers>
       <WaitingUsers>2</WaitingUsers>
       <TrainingDate>2011-03-17 17:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:30:00</EconomyDate>
@@ -1708,11 +1708,11 @@
       </Cup>
       <NationalTeamId>3118</NationalTeamId>
       <U20TeamId>3119</U20TeamId>
-      <ActiveUsers>2361</ActiveUsers>
+      <ActiveUsers>2360</ActiveUsers>
       <WaitingUsers>9</WaitingUsers>
       <TrainingDate>2011-03-17 18:30:00</TrainingDate>
       <EconomyDate>2011-03-19 23:50:00</EconomyDate>
-      <CupMatchDate>2011-03-16 08:15:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 08:15:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 09:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
@@ -1737,7 +1737,7 @@
       </Cup>
       <NationalTeamId>3112</NationalTeamId>
       <U20TeamId>3115</U20TeamId>
-      <ActiveUsers>4129</ActiveUsers>
+      <ActiveUsers>4127</ActiveUsers>
       <WaitingUsers>6</WaitingUsers>
       <TrainingDate>2011-03-17 16:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:20:00</EconomyDate>
@@ -1766,7 +1766,7 @@
       </Cup>
       <NationalTeamId>3120</NationalTeamId>
       <U20TeamId>3121</U20TeamId>
-      <ActiveUsers>1523</ActiveUsers>
+      <ActiveUsers>1533</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 17:15:00</TrainingDate>
       <EconomyDate>2011-03-18 22:30:00</EconomyDate>
@@ -1824,7 +1824,7 @@
       </Cup>
       <NationalTeamId>3124</NationalTeamId>
       <U20TeamId>3125</U20TeamId>
-      <ActiveUsers>733</ActiveUsers>
+      <ActiveUsers>734</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 09:35:00</TrainingDate>
       <EconomyDate>2011-03-18 23:15:00</EconomyDate>
@@ -1853,7 +1853,7 @@
       </Cup>
       <NationalTeamId>3128</NationalTeamId>
       <U20TeamId>3129</U20TeamId>
-      <ActiveUsers>388</ActiveUsers>
+      <ActiveUsers>386</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 09:35:00</TrainingDate>
       <EconomyDate>2011-03-18 23:45:00</EconomyDate>
@@ -1882,7 +1882,7 @@
       </Cup>
       <NationalTeamId>3130</NationalTeamId>
       <U20TeamId>3131</U20TeamId>
-      <ActiveUsers>946</ActiveUsers>
+      <ActiveUsers>944</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 09:40:00</TrainingDate>
       <EconomyDate>2011-03-18 22:45:00</EconomyDate>
@@ -1911,7 +1911,7 @@
       </Cup>
       <NationalTeamId>3126</NationalTeamId>
       <U20TeamId>3127</U20TeamId>
-      <ActiveUsers>160</ActiveUsers>
+      <ActiveUsers>159</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:00:00</TrainingDate>
       <EconomyDate>2011-03-19 04:33:00</EconomyDate>
@@ -1969,13 +1969,13 @@
       </Cup>
       <NationalTeamId>3134</NationalTeamId>
       <U20TeamId>3135</U20TeamId>
-      <ActiveUsers>381</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
+      <ActiveUsers>383</ActiveUsers>
+      <WaitingUsers>5</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 01:12:00</EconomyDate>
       <CupMatchDate>2011-03-16 20:50:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 15:25:00</SeriesMatchDate>
-      <NumberOfLevels>4</NumberOfLevels>
+      <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>79</LeagueID>
@@ -2004,7 +2004,7 @@
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:20:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:20:00</SeriesMatchDate>
-      <NumberOfLevels>4</NumberOfLevels>
+      <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>80</LeagueID>
@@ -2027,13 +2027,13 @@
       </Cup>
       <NationalTeamId>3148</NationalTeamId>
       <U20TeamId>3149</U20TeamId>
-      <ActiveUsers>373</ActiveUsers>
+      <ActiveUsers>371</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 00:47:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:45:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:15:00</SeriesMatchDate>
-      <NumberOfLevels>4</NumberOfLevels>
+      <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>81</LeagueID>
@@ -2056,7 +2056,7 @@
       </Cup>
       <NationalTeamId>3138</NationalTeamId>
       <U20TeamId>3139</U20TeamId>
-      <ActiveUsers>418</ActiveUsers>
+      <ActiveUsers>417</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 07:45:00</TrainingDate>
       <EconomyDate>2011-03-20 03:33:00</EconomyDate>
@@ -2091,7 +2091,7 @@
       <EconomyDate>2011-03-20 00:49:00</EconomyDate>
       <CupMatchDate>2011-03-16 18:45:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 11:50:00</SeriesMatchDate>
-      <NumberOfLevels>4</NumberOfLevels>
+      <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>84</LeagueID>
@@ -2114,7 +2114,7 @@
       </Cup>
       <NationalTeamId>3146</NationalTeamId>
       <U20TeamId>3147</U20TeamId>
-      <ActiveUsers>479</ActiveUsers>
+      <ActiveUsers>481</ActiveUsers>
       <WaitingUsers>3</WaitingUsers>
       <TrainingDate>2011-03-18 04:40:00</TrainingDate>
       <EconomyDate>2011-03-19 23:39:00</EconomyDate>
@@ -2143,8 +2143,8 @@
       </Cup>
       <NationalTeamId>3150</NationalTeamId>
       <U20TeamId>3151</U20TeamId>
-      <ActiveUsers>7946</ActiveUsers>
-      <WaitingUsers>5</WaitingUsers>
+      <ActiveUsers>7937</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
       <TrainingDate>2011-03-18 06:06:00</TrainingDate>
       <EconomyDate>2011-03-19 03:23:00</EconomyDate>
       <CupMatchDate>2011-03-16 15:45:00</CupMatchDate>
@@ -2201,7 +2201,7 @@
       </Cup>
       <NationalTeamId>3140</NationalTeamId>
       <U20TeamId>3141</U20TeamId>
-      <ActiveUsers>563</ActiveUsers>
+      <ActiveUsers>564</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 17:15:00</TrainingDate>
       <EconomyDate>2011-03-18 23:25:00</EconomyDate>
@@ -2234,7 +2234,7 @@
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 18:30:00</TrainingDate>
       <EconomyDate>2011-03-20 00:44:00</EconomyDate>
-      <CupMatchDate>2011-03-16 09:15:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 09:15:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 10:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
@@ -2259,7 +2259,7 @@
       </Cup>
       <NationalTeamId>3164</NationalTeamId>
       <U20TeamId>3165</U20TeamId>
-      <ActiveUsers>197</ActiveUsers>
+      <ActiveUsers>195</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 15:30:00</TrainingDate>
       <EconomyDate>2011-03-18 22:15:00</EconomyDate>
@@ -2317,7 +2317,7 @@
       </Cup>
       <NationalTeamId>3162</NationalTeamId>
       <U20TeamId>3163</U20TeamId>
-      <ActiveUsers>103</ActiveUsers>
+      <ActiveUsers>102</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 00:44:00</EconomyDate>
@@ -2346,7 +2346,7 @@
       </Cup>
       <NationalTeamId>3166</NationalTeamId>
       <U20TeamId>3167</U20TeamId>
-      <ActiveUsers>375</ActiveUsers>
+      <ActiveUsers>374</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 00:45:00</TrainingDate>
       <EconomyDate>2011-03-20 03:31:00</EconomyDate>
@@ -2375,11 +2375,11 @@
       </Cup>
       <NationalTeamId>3158</NationalTeamId>
       <U20TeamId>3159</U20TeamId>
-      <ActiveUsers>696</ActiveUsers>
+      <ActiveUsers>700</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 16:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-16 10:15:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 10:15:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 12:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
@@ -2404,8 +2404,8 @@
       </Cup>
       <NationalTeamId>3178</NationalTeamId>
       <U20TeamId>3179</U20TeamId>
-      <ActiveUsers>695</ActiveUsers>
-      <WaitingUsers>37</WaitingUsers>
+      <ActiveUsers>740</ActiveUsers>
+      <WaitingUsers>40</WaitingUsers>
       <TrainingDate>2011-03-17 16:30:00</TrainingDate>
       <EconomyDate>2011-03-18 23:20:00</EconomyDate>
       <CupMatchDate>2011-03-22 20:45:00</CupMatchDate>
@@ -2433,7 +2433,7 @@
       </Cup>
       <NationalTeamId>3170</NationalTeamId>
       <U20TeamId>3171</U20TeamId>
-      <ActiveUsers>107</ActiveUsers>
+      <ActiveUsers>106</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 03:45:00</TrainingDate>
       <EconomyDate>2011-03-20 03:28:00</EconomyDate>
@@ -2462,7 +2462,7 @@
       </Cup>
       <NationalTeamId>3168</NationalTeamId>
       <U20TeamId>3169</U20TeamId>
-      <ActiveUsers>119</ActiveUsers>
+      <ActiveUsers>118</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-18 03:50:00</TrainingDate>
       <EconomyDate>2011-03-20 03:10:00</EconomyDate>
@@ -2491,7 +2491,7 @@
       </Cup>
       <NationalTeamId>3174</NationalTeamId>
       <U20TeamId>3175</U20TeamId>
-      <ActiveUsers>510</ActiveUsers>
+      <ActiveUsers>511</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 04:25:00</TrainingDate>
       <EconomyDate>2011-03-19 02:00:00</EconomyDate>
@@ -2524,7 +2524,7 @@
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 06:03:00</TrainingDate>
       <EconomyDate>2011-03-19 02:23:00</EconomyDate>
-      <CupMatchDate>2011-03-16 07:30:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 07:30:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 07:30:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
@@ -2549,7 +2549,7 @@
       </Cup>
       <NationalTeamId>3176</NationalTeamId>
       <U20TeamId>3177</U20TeamId>
-      <ActiveUsers>823</ActiveUsers>
+      <ActiveUsers>822</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 18:30:00</TrainingDate>
       <EconomyDate>2011-03-20 00:54:00</EconomyDate>
@@ -2578,8 +2578,8 @@
       </Cup>
       <NationalTeamId>3182</NationalTeamId>
       <U20TeamId>3183</U20TeamId>
-      <ActiveUsers>1778</ActiveUsers>
-      <WaitingUsers>27</WaitingUsers>
+      <ActiveUsers>1779</ActiveUsers>
+      <WaitingUsers>26</WaitingUsers>
       <TrainingDate>2011-03-17 18:30:00</TrainingDate>
       <EconomyDate>2011-03-20 00:58:00</EconomyDate>
       <CupMatchDate>2011-03-16 14:20:00</CupMatchDate>
@@ -2607,7 +2607,7 @@
       </Cup>
       <NationalTeamId>3186</NationalTeamId>
       <U20TeamId>3187</U20TeamId>
-      <ActiveUsers>200</ActiveUsers>
+      <ActiveUsers>197</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 06:25:00</TrainingDate>
       <EconomyDate>2011-03-19 01:28:00</EconomyDate>
@@ -2642,7 +2642,7 @@
       <EconomyDate>2011-03-20 01:19:00</EconomyDate>
       <CupMatchDate>2011-03-16 18:40:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 18:40:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>107</LeagueID>
@@ -2665,8 +2665,8 @@
       </Cup>
       <NationalTeamId>3184</NationalTeamId>
       <U20TeamId>3185</U20TeamId>
-      <ActiveUsers>256</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
+      <ActiveUsers>254</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 04:30:00</TrainingDate>
       <EconomyDate>2011-03-20 03:20:00</EconomyDate>
       <CupMatchDate>2011-03-17 01:10:00</CupMatchDate>
@@ -2723,7 +2723,7 @@
       </Cup>
       <NationalTeamId>3190</NationalTeamId>
       <U20TeamId>3191</U20TeamId>
-      <ActiveUsers>84</ActiveUsers>
+      <ActiveUsers>80</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 01:15:00</TrainingDate>
       <EconomyDate>2011-03-20 03:26:00</EconomyDate>
@@ -2752,7 +2752,7 @@
       </Cup>
       <NationalTeamId>3188</NationalTeamId>
       <U20TeamId>3189</U20TeamId>
-      <ActiveUsers>367</ActiveUsers>
+      <ActiveUsers>365</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-18 06:04:00</TrainingDate>
       <EconomyDate>2011-03-19 02:24:00</EconomyDate>
@@ -2810,7 +2810,7 @@
       </Cup>
       <NationalTeamId>3204</NationalTeamId>
       <U20TeamId>3205</U20TeamId>
-      <ActiveUsers>256</ActiveUsers>
+      <ActiveUsers>255</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 05:18:00</TrainingDate>
       <EconomyDate>2011-03-19 01:59:00</EconomyDate>
@@ -2839,13 +2839,13 @@
       </Cup>
       <NationalTeamId>3196</NationalTeamId>
       <U20TeamId>3197</U20TeamId>
-      <ActiveUsers>277</ActiveUsers>
+      <ActiveUsers>278</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:11:00</TrainingDate>
       <EconomyDate>2011-03-20 01:12:00</EconomyDate>
       <CupMatchDate>2011-03-16 20:10:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 19:25:00</SeriesMatchDate>
-      <NumberOfLevels>4</NumberOfLevels>
+      <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>119</LeagueID>
@@ -2872,7 +2872,7 @@
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 14:29:00</TrainingDate>
       <EconomyDate>2011-03-18 22:29:00</EconomyDate>
-      <CupMatchDate>2011-03-16 07:50:00</CupMatchDate>
+      <CupMatchDate>2011-03-23 07:50:00</CupMatchDate>
       <SeriesMatchDate>2011-03-19 07:50:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
@@ -2903,7 +2903,7 @@
       <EconomyDate>2011-03-20 01:09:00</EconomyDate>
       <CupMatchDate>2011-03-16 17:40:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 14:40:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>121</LeagueID>
@@ -2990,7 +2990,7 @@
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:50:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:50:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>124</LeagueID>
@@ -3071,7 +3071,7 @@
       </Cup>
       <NationalTeamId>3208</NationalTeamId>
       <U20TeamId>3209</U20TeamId>
-      <ActiveUsers>50</ActiveUsers>
+      <ActiveUsers>52</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:00:00</TrainingDate>
       <EconomyDate>2011-03-19 04:33:00</EconomyDate>
@@ -3100,13 +3100,13 @@
       </Cup>
       <NationalTeamId>3220</NationalTeamId>
       <U20TeamId>3221</U20TeamId>
-      <ActiveUsers>76</ActiveUsers>
+      <ActiveUsers>78</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:10:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:10:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>128</LeagueID>
@@ -3129,13 +3129,13 @@
       </Cup>
       <NationalTeamId>3216</NationalTeamId>
       <U20TeamId>3217</U20TeamId>
-      <ActiveUsers>51</ActiveUsers>
+      <ActiveUsers>55</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:25:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:25:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>129</LeagueID>
@@ -3158,7 +3158,7 @@
       </Cup>
       <NationalTeamId>3218</NationalTeamId>
       <U20TeamId>3219</U20TeamId>
-      <ActiveUsers>345</ActiveUsers>
+      <ActiveUsers>344</ActiveUsers>
       <WaitingUsers>4</WaitingUsers>
       <TrainingDate>2011-03-17 18:30:00</TrainingDate>
       <EconomyDate>2011-03-20 00:58:00</EconomyDate>
@@ -3187,7 +3187,7 @@
       </Cup>
       <NationalTeamId>3222</NationalTeamId>
       <U20TeamId>3223</U20TeamId>
-      <ActiveUsers>76</ActiveUsers>
+      <ActiveUsers>75</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
       <TrainingDate>2011-03-17 13:00:00</TrainingDate>
       <EconomyDate>2011-03-19 04:27:00</EconomyDate>
@@ -3245,7 +3245,7 @@
       </Cup>
       <NationalTeamId>3224</NationalTeamId>
       <U20TeamId>3225</U20TeamId>
-      <ActiveUsers>77</ActiveUsers>
+      <ActiveUsers>78</ActiveUsers>
       <WaitingUsers>2</WaitingUsers>
       <TrainingDate>2011-03-18 06:07:00</TrainingDate>
       <EconomyDate>2011-03-19 02:22:00</EconomyDate>
@@ -3280,7 +3280,7 @@
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:35:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:35:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>134</LeagueID>
@@ -3309,7 +3309,7 @@
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:40:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:40:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>135</LeagueID>
@@ -3390,7 +3390,7 @@
       </Cup>
       <NationalTeamId>3236</NationalTeamId>
       <U20TeamId>3237</U20TeamId>
-      <ActiveUsers>48</ActiveUsers>
+      <ActiveUsers>49</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 01:12:00</EconomyDate>
@@ -3419,7 +3419,7 @@
       </Cup>
       <NationalTeamId>3238</NationalTeamId>
       <U20TeamId>3239</U20TeamId>
-      <ActiveUsers>49</ActiveUsers>
+      <ActiveUsers>50</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 17:15:00</TrainingDate>
       <EconomyDate>2011-03-18 22:30:00</EconomyDate>
@@ -3448,7 +3448,7 @@
       </Cup>
       <NationalTeamId>3240</NationalTeamId>
       <U20TeamId>3241</U20TeamId>
-      <ActiveUsers>57</ActiveUsers>
+      <ActiveUsers>58</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:00:00</TrainingDate>
       <EconomyDate>2011-03-19 04:33:00</EconomyDate>
@@ -3477,13 +3477,13 @@
       </Cup>
       <NationalTeamId>3242</NationalTeamId>
       <U20TeamId>3243</U20TeamId>
-      <ActiveUsers>46</ActiveUsers>
+      <ActiveUsers>47</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:35:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:35:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>141</LeagueID>
@@ -3512,7 +3512,7 @@
       <EconomyDate>2011-03-20 00:18:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:10:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:10:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>142</LeagueID>
@@ -3535,7 +3535,7 @@
       </Cup>
       <NationalTeamId>3247</NationalTeamId>
       <U20TeamId>3248</U20TeamId>
-      <ActiveUsers>41</ActiveUsers>
+      <ActiveUsers>42</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:15:00</TrainingDate>
       <EconomyDate>2011-03-20 00:44:00</EconomyDate>
@@ -3603,7 +3603,7 @@
     </League>
     <League>
       <LeagueID>145</LeagueID>
-      <LeagueName>O'zbekiston </LeagueName>
+      <LeagueName>O'zbekiston</LeagueName>
       <Season>0</Season>
       <MatchRound>16</MatchRound>
       <ShortName>Uzbekistan</ShortName>
@@ -3651,7 +3651,7 @@
       </Cup>
       <NationalTeamId>3254</NationalTeamId>
       <U20TeamId>3255</U20TeamId>
-      <ActiveUsers>0</ActiveUsers>
+      <ActiveUsers>1</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-17 13:00:00</TrainingDate>
       <EconomyDate>2011-03-19 04:33:00</EconomyDate>
@@ -3680,7 +3680,7 @@
       </Cup>
       <NationalTeamId>3256</NationalTeamId>
       <U20TeamId>3257</U20TeamId>
-      <ActiveUsers>0</ActiveUsers>
+      <ActiveUsers>2</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
       <TrainingDate>2011-03-18 00:50:00</TrainingDate>
       <EconomyDate>2011-03-20 03:25:00</EconomyDate>
@@ -3715,7 +3715,7 @@
       <EconomyDate>2011-03-20 00:23:00</EconomyDate>
       <CupMatchDate>2011-03-16 16:10:00</CupMatchDate>
       <SeriesMatchDate>2011-03-20 16:15:00</SeriesMatchDate>
-      <NumberOfLevels>3</NumberOfLevels>
+      <NumberOfLevels>4</NumberOfLevels>
     </League>
   </LeagueList>
 </HattrickData>
