@@ -44,10 +44,10 @@ FoxtrickLineupShortcut = {
 		var path = "//League[LeagueID='" + leagueId + "']";
 		var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml, path);
 		if (obj) {
-			ntName = obj.getElementsByTagName("LeagueName").item(0).firstChild.nodeValue;
-			ntId = obj.getElementsByTagName("NationalTeamId").item(0).firstChild.nodeValue;
-			u20Name = "U-20 " + ntName;
-			u20Id=obj.getElementsByTagName('U20TeamId').item(0).firstChild.nodeValue;
+			var ntName = obj.getElementsByTagName("LeagueName").item(0).firstChild.nodeValue;
+			var ntId = obj.getElementsByTagName("NationalTeamId").item(0).firstChild.nodeValue;
+			var u20Name = "U-20 " + ntName;
+			var u20Id = obj.getElementsByTagName('U20TeamId').item(0).firstChild.nodeValue;
 		}
 		else
 			Foxtrick.dump('LineupShortcut: leagueId ' + leagueId + ' not found!\n');
