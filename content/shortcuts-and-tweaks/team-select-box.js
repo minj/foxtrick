@@ -8,10 +8,6 @@ var FoxtrickTeamSelectBox = {
 	MODULE_NAME : "TeamSelectBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["players", "YouthPlayers"],
-	CSS : Foxtrick.ResourcePath + "resources/css/linkscustom_std.css",
-	CSS_SIMPLE : Foxtrick.ResourcePath + "resources/css/linkscustom_simple.css",
-	CSS_RTL : Foxtrick.ResourcePath + "resources/css/linkscustom_std_rtl.css",
-	CSS_RTL_SIMPLE : Foxtrick.ResourcePath + "resources/css/linkscustom_simple_rtl.css",
 
 	run : function(page, doc) {
 		var listBox; // sidebarBox containing player list
