@@ -74,7 +74,7 @@ chrome.extension.onConnect.addListener(function(port) {
 					currency : currency,
 					dateFormat : dateFormat,
 					about : about,
-					worldDetails : worldDetails
+					worldDetails : worldDetails,
 					league : Foxtrick.XMLData.League,
 					countryToLeague : Foxtrick.XMLData.countryToLeague
 				});
