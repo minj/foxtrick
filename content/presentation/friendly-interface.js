@@ -57,13 +57,12 @@ FoxtrickFriendlyInterface = {
 			if (highlight) {
 				const text = highlight.textContent;
 				const leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-				const ntIdXml = Foxtrick.XMLData.htNTidsXml;
-				const ntNode = ntIdXml.evaluate("/leagues/league[@id='" + leagueId + "'][1]",
-					ntIdXml, null, XPathResult.ANY_TYPE, null).iterateNext();
-				const u20Name = ntNode.getElementsByTagName("U20Name")[0].textContent;
-				const u20Id = ntNode.getElementsByTagName("U20id")[0].textContent;
-				const ntName = ntNode.getElementsByTagName("NTName")[0].textContent;
-				const ntId = ntNode.getElementsByTagName("NTid")[0].textContent;
+				const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
+					"//League[LeagueID='" + leagueId + "']");
+				const ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
+				const ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
+				const u20Name = "U-20 " + ntName;
+				const u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
 				var replace = function(team, id) {
 					highlight.textContent = text.substr(0, text.indexOf(team));
 					var link = doc.createElement("a");

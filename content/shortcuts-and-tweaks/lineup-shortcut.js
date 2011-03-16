@@ -40,23 +40,17 @@ FoxtrickLineupShortcut = {
 	_Analyze_Player_Page  : function ( doc ) {
 		var mainbody = doc.getElementById( "mainBody" );
 		//first getting the serieID to get ntName and u20Name
-		var flagElem = mainbody.getElementsByClassName("flag");
-		var ntName='';
-		var ntId=0;
-		var u20Name='';
-		var u20Id=0;
-		var serieId=FoxtrickHelper.findCountryId(flagElem[0].parentNode);
-		var path = "leagues/league[@id='" + serieId + "']";
-		var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.htNTidsXml, path);
+		const leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
+		var path = "//League[LeagueID='" + leagueId + "']";
+		var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml, path);
 		if (obj) {
-			ntName=obj.getElementsByTagName('NTName').item(0).firstChild.nodeValue;
-			ntId=obj.getElementsByTagName('NTid').item(0).firstChild.nodeValue;
-			u20Name=obj.getElementsByTagName('U20Name').item(0).firstChild.nodeValue;
-			u20Id=obj.getElementsByTagName('U20id').item(0).firstChild.nodeValue;
-			//Foxtrick.dump('ok: '+ntName+':'+ntId+' - '+u20Name+':'+u20Id);
+			ntName = obj.getElementsByTagName("LeagueName").item(0).firstChild.nodeValue;
+			ntId = obj.getElementsByTagName("NationalTeamId").item(0).firstChild.nodeValue;
+			u20Name = "U-20 " + ntName;
+			u20Id=obj.getElementsByTagName('U20TeamId').item(0).firstChild.nodeValue;
 		}
 		else
-			Foxtrick.dump('Error in lineupshortcut: serieId '+serieId+' not found!');
+			Foxtrick.dump('LineupShortcut: leagueId ' + leagueId + ' not found!\n');
 
 		var isSupporter = Foxtrick.isSupporter(doc)
 

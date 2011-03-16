@@ -13,7 +13,6 @@ Foxtrick.XMLData = {
 	League : {},
 	countryToLeague : {},
 	htCurrencyXml : null,
-	htNTidsXml : null,
 	htdateformat : null,
 	aboutXML : null,
 
@@ -21,14 +20,13 @@ Foxtrick.XMLData = {
 		if (Foxtrick.BuildFor == "Gecko"
 			|| (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "background")) {
 			this.htCurrencyXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htcurrency.xml");
-			this.htNTidsXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htNTidList.xml");
 			this.htdateformat = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htdateformat.xml");
 			this.aboutXML = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 
-			var worlddetailsXML = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/worlddetails.xml");
+			this.worldDetailsXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/worlddetails.xml");
 			var data = {};
 			var name = 'HattrickData';
-			Foxtrick.XMLData.getchilds(worlddetailsXML.documentElement, data, name);
+			Foxtrick.XMLData.getchilds(this.worldDetailsXml.documentElement, data, name);
 
 			for (var i in data.HattrickData.LeagueList.League) {
 				this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
@@ -40,9 +38,9 @@ Foxtrick.XMLData = {
 			port.onMessage.addListener(function(msg) {
 				var parser = new DOMParser();
 				Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(msg.currency, "text/xml");
-				Foxtrick.XMLData.htNTidsXml = parser.parseFromString(msg.ntId, "text/xml");
 				Foxtrick.XMLData.htdateformat = parser.parseFromString(msg.dateFormat, "text/xml");
 				Foxtrick.XMLData.aboutXML = parser.parseFromString(msg.about, "text/xml");
+				Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(msg.worldDetails, "text/xml");
 				Foxtrick.XMLData.League = msg.league;
 				Foxtrick.XMLData.countryToLeague = msg.countryToLeague;
 			});

@@ -67,14 +67,14 @@ chrome.extension.onConnect.addListener(function(port) {
 			if (msg.req == "get") {
 				var serializer = new XMLSerializer();
 				var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
-				var ntId = serializer.serializeToString(Foxtrick.XMLData.htNTidsXml);
 				var dateFormat = serializer.serializeToString(Foxtrick.XMLData.htdateformat);
 				var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
+				var worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
 				port.postMessage({
 					currency : currency,
-					ntId : ntId,
 					dateFormat : dateFormat,
 					about : about,
+					worldDetails : worldDetails
 					league : Foxtrick.XMLData.League,
 					countryToLeague : Foxtrick.XMLData.countryToLeague
 				});
