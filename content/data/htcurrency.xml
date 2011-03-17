@@ -75,7 +75,7 @@
 	<currency code="DOP" symbol="RD$" name="RD$ (Dominican peso)" eurorate="0.05" />
 	<currency code="GEL" symbol="ლარი" name="ლარი (Georgian lari)" eurorate="0.5" />
 	<currency code="SAR" symbol="Riyal" name="Riyal (Saudi riyal)" eurorate="0.25" />
-	<currency code="XOF" symbol="000 XOF" name="XOF (CFA franc)" eurorate="2" />
+	<currency code="XOF" symbol="000 XOF" name="XOF (West African CFA franc)" eurorate="2" />
 	<currency code="ALL" symbol="000 Lek" name="Lek (Albanian lek)" eurorate="5" />
 	<currency code="SGD" symbol="S$" name="S$ (Singapore dollar)" eurorate="0.5" />
 	<currency code="ZAR" symbol="Rand" name="Rand (South Africa)" eurorate="0.125" />
@@ -98,5 +98,7 @@
 	<currency code="UGX" symbol="000 shill" name="USh (Ugandan shilling)" eurorate=".5" />
 	<currency code="AED" symbol="د.إ" name="د.إ (United Arab Emirates dirham)" eurorate="0.4" />
 	<currency code="BDT" symbol="Tk" name="Tk (Bangladeshi taka)" eurorate="0.01" />
-
+	<currency code="XAF" symbol="XAF" name="XAF (Central African CFA franc)" eurorate="0.002" />
+	<currency code="CUP" symbol="$" name="$ (Cuban peso)" eurorate="1" />
+	<currency code="UZS" symbol="som" name="som (Uzbekistani som)" eurorate="0.001" />
 </hattrickcurrencies>
