@@ -1,4 +1,4 @@
-<language name="ar" desc="Arabian">
+<language name="ar" desc="Arabic">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="هاتريك الشخصي" />
@@ -10,10 +10,10 @@
 
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
-		<sublevel text="(very low)" value="0.0" />
-		<sublevel text="(low)" value="0.25" />
-		<sublevel text="(high)" value="0.50" />
-		<sublevel text="(very high)" value="0.75" />
+		<sublevel text="(منخفض جدا)" value="0.0" />
+		<sublevel text="(منخفض)" value="0.25" />
+		<sublevel text="(عالي)" value="0.50" />
+		<sublevel text="(عالي جدا)" value="0.75" />
 	</ratingSubLevels>
 
 	<!-- tactics appearing in match detail page. copy "value" -->
@@ -29,12 +29,12 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="GK" />
-		<position type="Central defender" value="Central defender" short="CD" />
-		<position type="Wing back" value="Wing back" short="WB" />
-		<position type="Inner midfielder" value="Inner midfielder" short="IM" />
-		<position type="Winger" value="Winger" short="WI" />
-		<position type="Forward" value="Forward" short="FW" />
+		<position type="Keeper" value="حارس مرمى" short="GK" />
+		<position type="Central defender" value="مدافع وسط" short="CD" />
+		<position type="Wing back" value="ظهير" short="WB" />
+		<position type="Inner midfielder" value="لاعب وسط" short="IM" />
+		<position type="Winger" value="جناح" short="WI" />
+		<position type="Forward" value="مهاجم" short="FW" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
