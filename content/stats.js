@@ -1152,15 +1152,15 @@ stats["htnipponkeeper"] =  {
 };
 
 stats["coachexperience"] =  {
-        "url" : "http://www.manager.brygge.dk/Hattrick/experience.htm",
+        "url" : "http://www.hattrickinfo.com/en/players/134/#129",
 
         "coachlink" : { "path"       : "",
                          "filters"    : [],
                          "params"     : []
                        },
 
-        "title" : "Coach experience table",
-        "shorttitle" : "Cet"
+        "title" : "Experience table",
+        "shorttitle" : "Exp"
 };
 
 stats["htlinks_trainingspeedchecker"] =  {
