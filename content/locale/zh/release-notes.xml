@@ -28,6 +28,7 @@
 <item><module>CopyPlayerAd</module> 中可以以文本方式 (没有表格) 复制广告的选项. (ryanli)</item>
 <item><module>Ratings</module>中可以分评级显示的 HatStats. (taised)</item>
 <item>白俄罗斯语语言. (LA-Stolik)</item>
+<item>在<xhtml:a href="#tab=help">帮助标签</xhtml:a>下加入了一些常见的问题与解答. (ryanli)</item>
 <item>新的灰色图标, 用于举报链接. (ljushaff)</item>
 <item><module>YouthPromotes</module> 现在显示能够提升球员的最早日期. (ryanli)</item>
 <item>大部分功能在 Google Chrome 下可用. (ryanli)</item>
