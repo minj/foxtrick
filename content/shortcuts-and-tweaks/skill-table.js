@@ -221,7 +221,7 @@ var FoxtrickSkillTable = {
 					// First we sort by the max of current and max skill,
 					// (multiplied by 10 since maximum is 9 for youth players)
 					// then only the current skill, finally whether it's maxed
-					cell.setAttribute("index", Math.max(skill.current, skill.max) * 10 + skill.current + skill.maxed);
+					cell.setAttribute("index", Math.max(skill.current, skill.max) * 10 + skill.current + !skill.maxed);
 					if (skill.maxed) {
 						cell.className = "maxed";
 					}
