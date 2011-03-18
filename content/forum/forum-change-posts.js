@@ -624,9 +624,9 @@ var FoxtrickForumChangePosts = {
 			message_raw = message_raw.replace(/<blockquote class="quote">/g,'[q]').replace(/<\/blockquote>/g,'[/q]');
 
 			message_raw = message_raw.replace(/<table class="htMlTable"\>/g,'[table]').replace(/<\/table>/g,'[/table]');
-			message_raw = message_raw.replace(/<th>/g,'[th]').replace(/<\/th>/g,'[/th]');
+			message_raw = message_raw.replace(/<th([^>]*)>/g,'[th$1]').replace(/<\/th>/g,'[/th]');
 			message_raw = message_raw.replace(/<tr>/g,'[tr]').replace(/<\/tr>/g,'[/tr]');
-			message_raw = message_raw.replace(/<td>/g,'[td]').replace(/<\/td>/g,'[/td]');
+			message_raw = message_raw.replace(/<td([^>]*)>/g,'[td$1]').replace(/<\/td>/g,'[/td]');
 		}
 
 		message_raw = message_raw.replace(/\<a href="\/Club\/Players\/Player.aspx\?playerId=\d+" title="\(\d+\)" alt="\(\d+\)"\>\((\d+)\)\<\/a\>/gi,'[playerid=$1]');
