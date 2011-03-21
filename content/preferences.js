@@ -508,6 +508,14 @@ function initChangesTab()
 		}
 	}
 
+	var version = Foxtrick.version();
+	for (var i = 0; i < select.options.length; ++i) {
+		if (select.options[i].value == version) {
+			select.selectedIndex = i;
+			break;
+		}
+	}
+
 	updateNotepad();
 	$(select).change(updateNotepad);
 }
