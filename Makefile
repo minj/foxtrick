@@ -81,7 +81,12 @@ ifeq ($(DIST_TYPE),nightly)
 	sed -i -r 's|(<em:version>.+)(</em:version>)|\1.'$(REVISION)'\2|' install.rdf; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 else ifeq ($(DIST_TYPE),stable)
-	# to be added
+	cd $(BUILD_DIR); \
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1https://www.mozdev.org/p/updates/foxtrick/{9d1f059c-cada-4111-9696-41a62d64e3ba}/update.rdf\2|' install.rdf
+else ifeq ($(DIST_TYPE),amo)
+	# used on addons.mozilla.org, with no update URL
+	cd $(BUILD_DIR); \
+	sed -i '/<em:updateURL>/d' install.rdf
 endif
 	# make xpi
 	cd $(BUILD_DIR); \
