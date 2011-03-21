@@ -115,8 +115,6 @@ ifeq ($(DIST_TYPE),nightly)
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
 	sed -i -r '/update_url/d' manifest.json; \
-	sed -i -r 's|("version" : ".+)(")|\1.'$(REVISION)'\2|' manifest.json; \
-	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js; \
 	$(ZIP) -r ../$(APP_NAME).zip *
 endif
 	# clean up
