@@ -20,7 +20,7 @@
 <item><module>OldStyleFace</module> модул за приказивење слика играча и менаџера у старом ХТ стилу.(Aimo_Kanuuna)</item>
 <item><module>NtPeek</module> за преглед мечева репрезентација на страници 'Мој Хеттрик'.(ryanli)</item>
 <item><module>SeriesFlags</module> модул за приказивање заставице и лиге корисника уписаних у књигу гостију. Заставице обезбедио сајт <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>. (taised, ryanli)</item>
-<item><module>HTMS-бодови</module> за приказивање вештина и потенцијала за тренинг играча<xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Бодови</xhtml:a>(taised)</item>
+<item><module>HTMSPoints</module> модул за приказивање вештина и потенцијала за тренинг играча <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Бодови</xhtml:a>(taised)</item>
 <item><module>FriendlyInterface</module> модул са опцијама за приказивање пуног имена играча на страници поставе и приказивање линкова ка националном тиму код репрезентативаца. (ryanli)</item>
 <item>Mодул HighlightBotTeams преименован у <module>HighlightOwnerless</module>. (ryanli)</item>
 <item>Обрисани модули YouthSkillNotes и ShortPA. (ryanli)</item>
