@@ -1,24 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<release_note>
+<!-- Notes for localization -->
+<!-- Please keep the overall structure and the tags like <note>, <item>,
+     <module> unchanged, and basically translate the text.
+     You could also add HTML tags with namespace specified, like <xhtml:a>
+     instead of <a>. -->
+<!-- For each note, keep the attribute "version" unchanged, and you could
+     translate the "localized-version" attribute. -->
 
-<version>0.5.3.0</version>
-<title>Release notes (ausgewählte Funktionen)</title>
-<lines>ContextCopy: Komplett überarbeitet. Kopiert jeden ausgewählten Inhalt in HT-ML.</lines>
-<lines>ExtraShortcuts: Optionaler extra Platz  für Shortcuts. </lines>
-<lines>TableSort: Sortiertoption für alle 'richtigen' Tabellen in Hattrick (auch im Forum)</lines>
-<lines>TransferSearchResultFilters: Filtern der Transfersuchergebnisse</lines>
-<lines>YouthSeriesEstimation: Schätzt die Startzeit von Jugendligen.</lines>
-<lines>ForumYouthIcons: Konvertiere Text in Tabellen.</lines>
-<lines>ForumThreadAutoIgnore: Automatisch Forenthemen mit ausgewählten Tags ignorieren</lines>
+<notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<note version="nightly" localized-version="Development build">
+<item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
+<item>You could prevent FoxTrick from poping up this release note after each update by disabling "Show release notes after FoxTrick updates" in <xhtml:a href="#tab=main">main tab</xhtml:a>.</item>
+</note>
 
-
-<lines>SkillTable : Jetzt auch für Transfersuchergebnisse.</lines>
-<lines>TeamStats : Personalitäten und Führungsqualität zugefügt.</lines>
-<lines>CopyPlayerAd : Jetzt auch für Jugenspieler und sortiert nach Skillhöhe .</lines>
-
-<lines></lines>
-<lines>Achtung!</lines>
-<lines>Alle Foxtrick-Stiloption wurden in eine userstyle Datei verschoben. Alte Farbeinstellungen sind verloren. Siehe Hilfetab für Instruktionen um Foxtrickstile zu verändern</lines>
-
-</release_note>
+<note version="0.6">
+<item>Neues Interface für die Einstellungen. (ryanli)</item>
+<item>OAuth Interface implementiert für die neue Hattrick CHPP API. (ryanli)</item>
+<item>Modul <module>LiveAlert</module> für HT Live Toralarm. (ryanli)</item>
+<item>Modul <module>OldStyleFace</module> für die Anzeige von Gesichtern im alten Hattrick Style. (Aimo_Kanuuna)</item>
+<item>Modul <module>NtPeek</module> zur Anzeige von NT/U20 Spielen auf der Mein Hattrick Seite. (ryanli)</item>
+<item>Modul <module>SeriesFlags</module> für die Anzeige von Länderflagge und Ligaflagge bei Manager- und Teamlinks. Die Bilder stammen von <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>. (taised, ryanli)</item>
+<item>Modul <module>HTMSPoints</module> für die Anzeige von Spieler <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Punkten</xhtml:a>, zB. Fähigkeiten und Potential in numerischen Werten. (taised)</item>
+<item>Modul <module>FriendlyInterface</module> mit der Option Spielernamen komplett in der Aufstellung anzuzeigen und die Nationalspieler haben nun einen Link zu ihrer Nationalmanschaft. (ryanli)</item>
+<item>Modul HighlightBotTeams umbenannt in <module>HighlightOwnerless</module>. (ryanli)</item>
+<item>Modul YouthSkillNotes und ShortPA entfernt. (ryanli)</item>
+<item>Option um die Forenvorschau auszuschalten: <module>FixcssProblems</module>. (ljushaff)</item>
+<item>Option um Anzeigen in nicht-tabellen-Format zu kopieren: <module>CopyPlayerAd</module>. (ryanli)</item>
+<item>Option um HatStats für einzelne Positionen aufzuschlüsseln: <module>Ratings</module>. (taised)</item>
+<item>Weißrussische Übersetzung. (LA-Stolik)</item>
+<item>Einige Fragen in eine FAQ aufgenommen: <xhtml:a href="#tab=help">Help tab</xhtml:a>. (ryanli)</item>
+<item>New grey icon for report links. (ljushaff)</item>
+<item><module>YouthPromotes</module> zeigt nun das früheste Datum für das Befördern von Spielern. (ryanli)</item>
+<item>Fast alle Features arbeiten auch in Google Chrome. (ryanli)</item>
+<item>Einige grundlegende Anpassungen auf Grund von Hattrick-Änderungen. (ryanli, taised, ljushaff)</item>
+<item>Modul <module>TeamSelectBox</module> grundsätzlich ausgeschaltet. (ryanli)</item>
+<item>Modul <module>SmallerPages</module> grundsätzlich ausgeschaltet. (ljushaff)</item>
+<item>Radio-Optionen in <module>ExtraShortcuts</module> sind grundsätzlich ausgeschaltet. (ryanli)</item>
+</note>
+</notes>
