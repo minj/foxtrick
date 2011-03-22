@@ -179,30 +179,6 @@ chrome.extension.onConnect.addListener(function(port) {
 	}
 });
 
-
-chrome.extension.onConnect.addListener(function(port) {
-	if (port.name == "htms") {
-		port.onMessage.addListener(function(msg) {
-			if (msg.reqtype=="get_htms") {
-				var req = new XMLHttpRequest();
-				var abortTimerId = window.setTimeout(function(){req.abort()}, 20000);
-				var stopTimer = function(){window.clearTimeout(abortTimerId); };
-				req.onreadystatechange = function(){
-					if (req.readyState == 4){
-						stopTimer();
-						port.postMessage({set:'htms', responseText: req.responseText});
-					}
-				}
-				req.open('GET', msg.url , true);
-				req.send(null);
-			}
-			else
-				port.postMessage({});
-		});
-	}
-});
-
-
 // reload strings after lang change
 chrome.extension.onConnect.addListener(function(port) {
 	if (port.name == "setpref") {

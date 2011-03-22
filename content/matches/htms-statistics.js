@@ -113,22 +113,9 @@ Foxtrick.htmsStatistics = {
 		cell.textContent = Foxtrickl10n.getString("foxtrick.htmsStatistics.prediction");
 
 		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=showpredict&' + params;
-		if (Foxtrick.BuildFor=='Chrome') {
-			porthtms.postMessage({reqtype: "get_htms",url:url});
-		}
-		else {
-			var req = new XMLHttpRequest();
-			req.open('GET', url, true);
-
-			req.onreadystatechange = function (aEvt) {
-				if (req.readyState == 4) {
-					if(req.status == 200)
-						Foxtrick.htmsStatistics.show_result( doc, req.responseText )
-					else Foxtrick.dump('no connection\n');
-				}
-			}
-			req.send(null);
-		}
+		Foxtrick.loadXml(url, function(xml) {
+				Foxtrick.htmsStatistics.show_result(doc, xml);
+			}, true);
 
 		var p = doc.createElement('p');
 		var a = doc.createElement('a');
@@ -139,17 +126,14 @@ Foxtrick.htmsStatistics = {
 		htmstable.parentNode.insertBefore(p, htmstable.nextSibling);
 	},
 
-	show_result : function(doc, responseText) {
+	show_result : function(doc, xml) {
 		try {
 			Foxtrick.stopListenToChange(doc);
-
-			var frag = doc.createElement('dummy');
-			frag.innerHTML = responseText;
 
 			var htmstable = doc.getElementById('htmstable');
 			var row = htmstable.rows[htmstable.rows.length-1];
 
-			var pred = frag.getElementsByTagName('strong')[0].textContent.split('-');
+			var pred = xml.getElementsByTagName('strong')[0].textContent.split('-');
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred[0]));
 			cell = row.insertCell(1); cell.appendChild(b); cell.className = "left";
@@ -158,9 +142,9 @@ Foxtrick.htmsStatistics = {
 			b.appendChild(doc.createTextNode(pred[1]));
 			cell = row.insertCell(3); cell.appendChild(b); cell.className = "right";
 
-			var winprob = frag.getElementsByTagName('table')[0].rows[0].cells[2].textContent;
-			var drawprob = frag.getElementsByTagName('table')[0].rows[1].cells[2].textContent;
-			var lossprob = frag.getElementsByTagName('table')[0].rows[2].cells[2].textContent;
+			var winprob = xml.getElementsByTagName('table')[0].rows[0].cells[2].textContent;
+			var drawprob = xml.getElementsByTagName('table')[0].rows[1].cells[2].textContent;
+			var lossprob = xml.getElementsByTagName('table')[0].rows[2].cells[2].textContent;
 
 			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0);
@@ -193,16 +177,3 @@ Foxtrick.htmsStatistics = {
 		}
 	}
 };
-
-try {
-var porthtms = chrome.extension.connect({name: "htms"});
-porthtms.onMessage.addListener(function(msg) {
-	if ( msg.set=='htms') {
-		Foxtrick.htmsStatistics.show_result( document, msg.responseText );
-		console.log('got htms ' + msg.set);
-		}
-	});
-}
-catch (e) {
-	// throw it away
-}
