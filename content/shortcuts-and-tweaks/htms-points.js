@@ -20,6 +20,7 @@ var FoxtrickHTMSPoints = {
 			var link = doc.createElement("a");
 			link.textContent = Foxtrickl10n.getString("HTMSPoints");
 			link.href = prefix + skillList;
+			link.target = "_blank";
 			return link;
 		};
 
