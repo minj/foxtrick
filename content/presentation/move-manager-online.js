@@ -10,20 +10,11 @@ var FoxtrickMoveManagerOnline= {
 	PAGES : ["region"],
 
 	run : function(page, doc) {
-		var isManagersList = function(node) {
-			var table = node.getElementsByTagName("table")[0];
-			return table && !Foxtrick.hasClass(table, "thin");
-		};
 		var mainBody = doc.getElementById("mainBody");
 		var mainBoxes = mainBody.getElementsByClassName("mainBox");
-		var target = doc.getElementsByClassName("separator")[0].nextSibling;
-		for (var i = 0; i < mainBoxes.length; ++i) {
-			var box = mainBoxes[i];
-			if (isManagersList(box)) {
-				var div = mainBody.removeChild(box);
-				mainBody.insertBefore(div, target);
-				break;
-			}
-		}
+		// consider managerBox as the last mainBox
+		var managerBox = mainBoxes[mainBoxes.length - 1];
+		var target = mainBody.getElementsByClassName("separator")[0].nextSibling;
+		target.parentNode.insertBefore(managerBox, target);
 	}
 }
