@@ -27,8 +27,6 @@ var FoxtrickHTMSPoints = {
 		var request = function(skillList, target) {
 			var showResult = function(target, responseXML) {
 				try {
-					Foxtrick.stopListenToChange(doc);
-
 					var pointsNow=responseXML.getElementsByTagName('HTMS_points').item(0).firstChild.nodeValue;
 					var points28=responseXML.getElementsByTagName('HTMS_points_28').item(0).firstChild.nodeValue;
 
@@ -37,8 +35,6 @@ var FoxtrickHTMSPoints = {
 					target.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
 						.replace(/%1/, pointsNow)
 						.replace(/%2/, points28);
-
-					Foxtrick.startListenToChange(doc);
 				}
 				catch (e) {
 					Foxtrick.dumpError(e);
