@@ -37,25 +37,27 @@ var FoxtrickHTMSPoints = {
 				
 			var skillList='&anni='+age.years+'&giorni='+age.days;
 			var skillArray=new Array();
-			skillArray['anni']=age.years;
-			skillArray['giorni']=age.days;
+			skillArray['years']=age.years;
+			skillArray['days']=age.days;
 			//checking if bars or not
 			var hasBars = (doc.getElementsByClassName("percentImage").length > 0);
 			var totSkills=0;
 			if (hasBars) {
 				//bars
+				var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
 				var htmsValues = ['parate', 'difesa', 'regia', 'cross', 'passaggi', 'attacco', 'cp'];
 				var j=0;
 				for (var i in skills.names) {
 					//Foxtrick.dump('text: '+skills.texts[i]+' name: '+skills.names[i]+'\n');
 					skillList+='&'+htmsValues[j]+'='+skills.values[i];
-					skillArray[htmsValues[j]]=skills.values[i];
+					skillArray[skillOrder[j]]=skills.values[i];
 					totSkills+=skills.values[i];
 					j++;
 				}
 			}
 			else {
 				//normal, we skip stamina
+				var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 				var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 				var skipStamina=true;
 				var j=0;
@@ -65,7 +67,7 @@ var FoxtrickHTMSPoints = {
 					}
 					else {
 						skillList+='&'+htmsValues[j]+'='+skills.values[i];
-						skillArray[htmsValues[j]]=skills.values[i];
+						skillArray[skillOrder[j]]=skills.values[i];
 						totSkills+=skills.values[i];
 						j++;
 					}
@@ -84,14 +86,11 @@ var FoxtrickHTMSPoints = {
 				points.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
 						.replace(/%1/, calcResult[0])
 						.replace(/%2/, calcResult[1]);
-				//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
-
-				//request(skillList, points);
 			}
 		}
 		if ((page=="transferSearchResult") && AddToSearchResult) {
-			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 			var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
+			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 			var players=Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 			//Foxtrick.dump('found pp '+players.length+'\n');
 			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
@@ -110,12 +109,12 @@ var FoxtrickHTMSPoints = {
 					//getting skills
 					var skillList='&anni='+players[cellId].age.years+'&giorni='+players[cellId].age.days;
 					var skillArray=new Array();
-					skillArray['anni']=players[cellId].age.years;
-					skillArray['giorni']=players[cellId].age.days;
+					skillArray['years']=players[cellId].age.years;
+					skillArray['days']=players[cellId].age.days;
 
 					for (var i=0;i<7;i++) {
 						skillList+='&'+htmsValues[i]+'='+players[cellId][skillOrder[i]];
-						skillArray[htmsValues[i]]=players[cellId][skillOrder[i]];
+						skillArray[skillOrder[i]]=players[cellId][skillOrder[i]];
 					}
 					//creating element
 					var row = transferTable.rows[rowId].getElementsByTagName('table')[0].rows[0];
@@ -153,12 +152,12 @@ var FoxtrickHTMSPoints = {
 				var totSkills=0;
 				var skillList='&anni='+players[p].age.years+'&giorni='+players[p].age.days;
 				var skillArray=new Array();
-				skillArray['anni']=players[p].age.years;
-				skillArray['giorni']=players[p].age.days;
+				skillArray['years']=players[p].age.years;
+				skillArray['days']=players[p].age.days;
 
 				for (var i=0;i<7;i++) {
 					skillList+='&'+htmsValues[i]+'='+players[p][skillOrder[i]];
-					skillArray[htmsValues[i]]=players[p][skillOrder[i]];
+					skillArray[skillOrder[i]]=players[p][skillOrder[i]];
 					totSkills+=players[p][skillOrder[i]];
 				}
 
@@ -181,8 +180,6 @@ var FoxtrickHTMSPoints = {
 					var tables = playersHtml[p].getElementsByTagName("table");
 					var before = tables.item(0).nextSibling;
 					before.parentNode.insertBefore(container, before);
-				
-					//request(skillList, points);
 				}
 			}
 		}
@@ -210,7 +207,7 @@ var FoxtrickHTMSPoints = {
 		pointsAge[34]=7.07;
 		pointsAge[35]=6.87;
 		
-		//(`livello`, `parate`, `difesa`, `regia`, `cross`, `passaggi`, `attacco`, `cp`)
+		//keeper, defending, playmaking, winger, passing, scoring, setPieces
 		var pointsSkills=new Array();
 		pointsSkills[0]=[0, 0, 0, 0, 0, 0, 0];
 		pointsSkills[1]=[2, 4, 4, 2, 3, 4, 1];
@@ -234,34 +231,36 @@ var FoxtrickHTMSPoints = {
 		pointsSkills[19]=[747, 1356, 1153, 800, 1063, 1200, 246];
 		pointsSkills[20]=[872, 1583, 1346, 934, 1242, 1402, 287];
 	
-		var actValue=pointsSkills[skills['parate']][0];
-		actValue+=pointsSkills[skills['difesa']][1];
-		actValue+=pointsSkills[skills['regia']][2];
-		actValue+=pointsSkills[skills['cross']][3];
-		actValue+=pointsSkills[skills['passaggi']][4];
-		actValue+=pointsSkills[skills['attacco']][5];
-		actValue+=pointsSkills[skills['cp']][6];
+		var actValue=pointsSkills[skills['keeper']][0];
+		actValue+=pointsSkills[skills['defending']][1];
+		actValue+=pointsSkills[skills['playmaking']][2];
+		actValue+=pointsSkills[skills['winger']][3];
+		actValue+=pointsSkills[skills['passing']][4];
+		actValue+=pointsSkills[skills['scoring']][5];
+		actValue+=pointsSkills[skills['setPieces']][6];
 		
-		//now potential at 28yo
-		var diff_anno=0;
-		if (skills['anni']<28) {
-			//aggiungiamo i giorni del suo anno fino ad arrivare a 112
-			diff_anno=((112-skills['giorni'])/7)*pointsAge[skills['anni']];
-			//aggiungiamo 16 settimane per ogni anno intero fino ad arrivare a 28
-			for (var i=skills['anni']+1;i<28;i++) {
-				diff_anno+=16*pointsAge[i];
+		//now calculating the potential at 28yo
+		var points_diff=0;
+		if (skills['years']<28) {
+			//we add days of his year to reach 112
+			points_diff=((112-skills['days'])/7)*pointsAge[skills['years']];
+			//adding 16 weeks per whole year until 28 y.o.
+			for (var i=skills['years']+1;i<28;i++) {
+				points_diff+=16*pointsAge[i];
+				Foxtrick.dump("adding "+pointsAge[i]+"\n");
 			}
 		}
 		else {
-			//dobbiamo togliere i giorni del suo anno fino ad arrivare a 112
-			diff_anno=(skills['giorni']/7)*pointsAge[skills['anni']];
-			//togliamo 16 settimane per ogni anno intero fino ad arrivare a 28
-			for (var i=skills['anni'];i>28;i--) {
-				diff_anno+=16*pointsAge[i];
+			//we subtract days of his year to reach 112
+			points_diff=(skills['days']/7)*pointsAge[skills['years']];
+			//subtracting 16 weeks per whole year until 28
+			for (var i=skills['years'];i>28;i--) {
+				points_diff+=16*pointsAge[i];
+				Foxtrick.dump("sub "+pointsAge[i]+"\n");
 			}
-			diff_anno=-diff_anno;
+			points_diff=-points_diff;
 		}
-		var potValue=actValue+diff_anno;
+		var potValue=actValue+points_diff;
 		
 		return (new Array(actValue, Math.round(potValue)));
 	}
