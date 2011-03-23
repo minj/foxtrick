@@ -112,7 +112,7 @@ Foxtrick.htmsStatistics = {
 		cell.style.width = '160px';
 		cell.textContent = Foxtrickl10n.getString("foxtrick.htmsStatistics.prediction");
 
-		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=showpredict&' + params;
+		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
 		Foxtrick.loadXml(url, function(xml) {
 				Foxtrick.htmsStatistics.show_result(doc, xml);
 			}, true);
@@ -133,18 +133,19 @@ Foxtrick.htmsStatistics = {
 			var htmstable = doc.getElementById('htmstable');
 			var row = htmstable.rows[htmstable.rows.length-1];
 
-			var pred = xml.getElementsByTagName('strong')[0].textContent.split('-');
+			var pred1 = xml.getElementsByTagName('T1').item(0).firstChild.nodeValue;
+			var pred2 = xml.getElementsByTagName('T2').item(0).firstChild.nodeValue;
 			var b = doc.createElement('b');
-			b.appendChild(doc.createTextNode(pred[0]));
+			b.appendChild(doc.createTextNode(pred1));
 			cell = row.insertCell(1); cell.appendChild(b); cell.className = "left";
 			cell = row.insertCell(2); cell.className = "center";
 			var b = doc.createElement('b');
-			b.appendChild(doc.createTextNode(pred[1]));
+			b.appendChild(doc.createTextNode(pred2));
 			cell = row.insertCell(3); cell.appendChild(b); cell.className = "right";
 
-			var winprob = xml.getElementsByTagName('table')[0].rows[0].cells[2].textContent;
-			var drawprob = xml.getElementsByTagName('table')[0].rows[1].cells[2].textContent;
-			var lossprob = xml.getElementsByTagName('table')[0].rows[2].cells[2].textContent;
+			var winprob = xml.getElementsByTagName('S1P').item(0).firstChild.nodeValue;
+			var drawprob = xml.getElementsByTagName('SXP').item(0).firstChild.nodeValue;;
+			var lossprob = xml.getElementsByTagName('S2P').item(0).firstChild.nodeValue;
 
 			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0);
@@ -154,10 +155,10 @@ Foxtrick.htmsStatistics = {
 			graph.className = "ft-htms-graph";
 			var windiv = graph.appendChild(doc.createElement('div'));
 			windiv.className = "ft-htms-bar ft-htms-stats-win";
-			windiv.style.width = winprob;
+			windiv.style.width = winprob+"%";
 			var drawdiv = graph.appendChild(doc.createElement('div'));
 			drawdiv.className = "ft-htms-bar ft-htms-stats-draw";
-			drawdiv.style.width = drawprob;
+			drawdiv.style.width = drawprob+"%";
 			var lossdiv = graph.appendChild(doc.createElement('div'));
 			lossdiv.className = "ft-htms-bar ft-htms-stats-loss";
 			// use minus to prevent from overall sum exceeding 100%
