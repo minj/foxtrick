@@ -39,10 +39,13 @@ var FoxtrickCrossTable = {
 		graphHeader.textContent = Foxtrickl10n.getString("CrossTable.graph");
 		graphHeader.className = "ft_boxBodyCollapsed";
 		insertBefore.parentNode.insertBefore(graphHeader, insertBefore);
+		var graphContainer = doc.createElement("div");
+		graphContainer.id = "ft-season-graph-container";
+		graphContainer.className = "hidden";
+		insertBefore.parentNode.insertBefore(graphContainer, insertBefore);
 		var graph = doc.createElement("img");
 		graph.id = "ft-season-graph";
-		graph.className = "hidden";
-		insertBefore.parentNode.insertBefore(graph, insertBefore);
+		graphContainer.appendChild(graph);
 
 		// cross table
 		var tableHeader = doc.createElement("h2");
@@ -64,8 +67,8 @@ var FoxtrickCrossTable = {
 		var toggleGraph = function() {
 			Foxtrick.toggleClass(graphHeader, "ft_boxBodyCollapsed");
 			Foxtrick.toggleClass(graphHeader, "ft_boxBodyUnfolded");
-			Foxtrick.toggleClass(graph, "hidden");
-			rememberState("graph.expanded", !Foxtrick.hasClass(graph, "hidden"));
+			Foxtrick.toggleClass(graphContainer, "hidden");
+			rememberState("graph.expanded", !Foxtrick.hasClass(graphContainer, "hidden"));
 		};
 
 		var toggleTable = function() {
@@ -261,20 +264,28 @@ var FoxtrickCrossTable = {
 					teams[j].position[i] = teams.length - j;
 				}
 			}
-			var url = "http://chart.apis.google.com/chart"
-				+ "?cht=lc"
-				+ "&chs=" + width + "x200" // size
-				+ "&chds=0.5,8.5"
-				+ "&chxt=x,y" // X, Y axis
-				+ "&chxr=0,1," + roundsPlayed // X-axis label
-				+ "&chxl=1:|8|7|6|5|4|3|2|1|" // Y-axis label
-				+ "&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75" // Y-axis label position
-				+ "&chg=" + (100 / roundsPlayed) + ",0" // Separate lines parallel with Y-axis
-				+ "&chco=008000,FF9900,4684EE,DC3912,00E100,FF00FF,A7A7A7,000080"
-				+ "&chd=t:" + Foxtrick.map(teams, function(n) { return n.position.join(","); }).join("|")
-				+ "&chdl=" + Foxtrick.map(teams, function(n) { return n.name; }).join("|")
-				+ "&chdlp=r|l";
-			graph.src = url;
+			if (roundsPlayed == 0) {
+				// no matches played, display a message instead of the graph
+				graphContainer.removeChild(graph);
+				var noMatches = Foxtrick.util.note.create(doc, Foxtrickl10n.getString("CrossTable.noMatches"));
+				graphContainer.appendChild(noMatches);
+			}
+			else {
+				var url = "http://chart.apis.google.com/chart"
+					+ "?cht=lc"
+					+ "&chs=" + width + "x200" // size
+					+ "&chds=0.5,8.5"
+					+ "&chxt=x,y" // X, Y axis
+					+ "&chxr=0,1," + roundsPlayed // X-axis label
+					+ "&chxl=1:|8|7|6|5|4|3|2|1|" // Y-axis label
+					+ "&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75" // Y-axis label position
+					+ "&chg=" + (100 / roundsPlayed) + ",0" // Separate lines parallel with Y-axis
+					+ "&chco=008000,FF9900,4684EE,DC3912,00E100,FF00FF,A7A7A7,000080"
+					+ "&chd=t:" + Foxtrick.map(teams, function(n) { return n.position.join(","); }).join("|")
+					+ "&chdl=" + Foxtrick.map(teams, function(n) { return n.name; }).join("|")
+					+ "&chdlp=r|l";
+				graph.src = url;
+			}
 		};
 
 		var leagueId = doc.location.href.match(/leagueLevelUnitID=(\d+)/i)[1];
