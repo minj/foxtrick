@@ -103,6 +103,7 @@
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/nt-peek.js" />
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/extended-player-details.js" />
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/htms-points.js" />
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/my-monitor.js" />
 <script type="application/x-javascript" src="./presentation/original-face.js" />
 <script type="application/x-javascript" src="./presentation/move-player-statement.js" />
 <script type="application/x-javascript" src="./presentation/personality-images.js" />

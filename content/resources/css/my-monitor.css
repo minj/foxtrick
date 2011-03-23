@@ -1,0 +1,26 @@
+#ft-monitor-add-remove {
+	float: right;
+}
+
+#ft-monitor-container {
+	clear: both;
+}
+
+.ft-monitor-frame {
+	width: 48%;
+	margin: 0 1%;
+	float: left;
+}
+
+.ft-monitor-remove {
+	background-image: url("chrome://foxtrick/content/resources/img/cross_small.png");
+	width: 12px;
+	height: 12px;
+	float: right;
+	display: block;
+	cursor: pointer;
+}
+
+.ft-monitor-remove:hover {
+	background-image: url("chrome://foxtrick/content/resources/img/crossRed_small.png");
+}

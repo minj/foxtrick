@@ -24,6 +24,7 @@ Foxtrick.ht_pages = {
 	'teamPageAny'               : '/Club/|/World/Series/Default.aspx',
 
 	'all'                       : '',
+	'dashboard'                 : '/MyHattrick/Dashboard.aspx',
 	'playerdetail'              : '/Club/Players/Player.aspx',
 	'forum'                     : '/Forum/',
 	'forumViewThread'           : '/Forum/Read',

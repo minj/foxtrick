@@ -4,7 +4,7 @@
 #stageLogo {background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;}
 
 /* faux-link */
-.ft-link { cursor: pointer; }
+.ft-link { cursor: pointer; text-decoration: underline; }
 
 /* icons and hover icons */
 .ft_actionicon {cursor: pointer; height: 16px; background: 50% no-repeat; }

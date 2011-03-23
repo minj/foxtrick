@@ -148,6 +148,8 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 			}
 			catch (e) {
 				// invalid XML
+				Foxtrick.dumpError(e);
+				Foxtrick.dump("Cannot parse XML:\n" + text + "\n");
 				callback(null, status);
 			}
 		}, crossSite);
@@ -161,6 +163,8 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 		}
 		catch (e) {
 			// invalid XML
+			Foxtrick.dumpError(e);
+			Foxtrick.dump("Cannot parse XML:\n" + text + "\n");
 			return null;
 		}
 	}

@@ -8,11 +8,8 @@
 var FoxtrickNtPeek = {
 	MODULE_NAME : "NtPeek",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["myhattrick", "country"],
+	PAGES : ["country"],
 	CSS : Foxtrick.ResourcePath + "resources/css/nt-peek.css",
-	OPTIONS : ["CustomId"],
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [false],
 
 	run : function(page, doc) {
 		var buildContainer = function(team, id, isNt) {
@@ -39,18 +36,7 @@ var FoxtrickNtPeek = {
 			return container;
 		}
 
-		var leagueId;
-		if (page == "myhattrick") {
-			FoxtrickHelper.getOwnTeamInfo(doc, page);
-			leagueId = FoxtrickHelper.getOwnCountryId();
-			if (Foxtrick.isModuleFeatureEnabled(this, "CustomId")) {
-				var customId = parseInt(FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomId_text"));
-				if (customId > 0 && customId < 148)
-					leagueId = customId;
-			}
-		}
-		else if (page == "country")
-			leagueId = Foxtrick.Pages.Country.getId(doc);
+		var leagueId = Foxtrick.Pages.Country.getId(doc);
 
 		const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 			"//League[LeagueID='" + leagueId + "']");
@@ -59,11 +45,7 @@ var FoxtrickNtPeek = {
 		const u20Name = "U-20 " + ntName;
 		const u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
 
-		var insertBefore;
-		if (page == "myhattrick")
-			insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
-		else if (page == "country")
-			insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek");
+		var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek");
 
 		var container = doc.createElement("div");
 		container.className = "ft-nt-peek";
