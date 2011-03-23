@@ -10,6 +10,10 @@ var FoxtrickNtPeek = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["myhattrick", "country"],
 	CSS : Foxtrick.ResourcePath + "resources/css/nt-peek.css",
+	OPTIONS : new Array("CustomID"),
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DISABLED_LIST : new Array(false),
+	CustomID : "1",
 
 	run : function(page, doc) {
 		var buildContainer = function(team, id, isNt) {
@@ -43,6 +47,13 @@ var FoxtrickNtPeek = {
 		}
 		else if (page == "country")
 			leagueId = Foxtrick.Pages.Country.getId(doc);
+			
+		if (Foxtrick.isModuleFeatureEnabled( this, "CustomID")) {
+			FoxtrickNtPeek.CustomID = parseInt(FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomID_text"));
+			if ((FoxtrickNtPeek.CustomID > 0) && (FoxtrickNtPeek.CustomID < 148)) {
+				leagueId = FoxtrickNtPeek.CustomID;
+			}
+		}
 
 		const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 			"//League[LeagueID='" + leagueId + "']");
