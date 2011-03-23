@@ -16,34 +16,12 @@ var FoxtrickHTMSPoints = {
 	run : function(page, doc) {
 		var getLink = function(skillList) {
 			const lang = FoxtrickPrefs.getString("htLanguage");
-			const prefix = "http://www.fantamondi.it/HTMS/index.php?page=nt&lang="+lang+"&action=calc";
+			const prefix = "http://www.fantamondi.it/HTMS/index.php?page=htmspoints&lang="+lang+"&action=calc";
 			var link = doc.createElement("a");
 			link.textContent = Foxtrickl10n.getString("HTMSPoints");
 			link.href = prefix + skillList;
 			link.target = "_blank";
 			return link;
-		};
-
-		var request = function(skillList, target) {
-			var showResult = function(target, responseXML) {
-				try {
-					var pointsNow=responseXML.getElementsByTagName('HTMS_points').item(0).firstChild.nodeValue;
-					var points28=responseXML.getElementsByTagName('HTMS_points_28').item(0).firstChild.nodeValue;
-
-					// Foxtrick.dump('now: '+pointsNow+' - 28: '+points28);
-
-					target.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
-						.replace(/%1/, pointsNow)
-						.replace(/%2/, points28);
-				}
-				catch (e) {
-					Foxtrick.dumpError(e);
-				}
-			};
-			const prefix = "http://www.fantamondi.it/HTMS/nt.php?action=calc";
-			Foxtrick.loadXml(prefix + skillList, function(xml) {
-				showResult(target, xml);
-			}, true);
 		};
 
 		var AddToPlayer = Foxtrick.isModuleFeatureEnabled(this, "AddToPlayer");
@@ -58,6 +36,9 @@ var FoxtrickHTMSPoints = {
 			}
 				
 			var skillList='&anni='+age.years+'&giorni='+age.days;
+			var skillArray=new Array();
+			skillArray['anni']=age.years;
+			skillArray['giorni']=age.days;
 			//checking if bars or not
 			var hasBars = (doc.getElementsByClassName("percentImage").length > 0);
 			var totSkills=0;
@@ -68,6 +49,7 @@ var FoxtrickHTMSPoints = {
 				for (var i in skills.names) {
 					//Foxtrick.dump('text: '+skills.texts[i]+' name: '+skills.names[i]+'\n');
 					skillList+='&'+htmsValues[j]+'='+skills.values[i];
+					skillArray[htmsValues[j]]=skills.values[i];
 					totSkills+=skills.values[i];
 					j++;
 				}
@@ -83,6 +65,7 @@ var FoxtrickHTMSPoints = {
 					}
 					else {
 						skillList+='&'+htmsValues[j]+'='+skills.values[i];
+						skillArray[htmsValues[j]]=skills.values[i];
 						totSkills+=skills.values[i];
 						j++;
 					}
@@ -97,9 +80,13 @@ var FoxtrickHTMSPoints = {
 				var link = row.insertCell(0);
 				link.appendChild(getLink(skillList));
 				var points = row.insertCell(1);
-				points.appendChild(Foxtrick.util.note.createLoading(doc, true));
+				var calcResult=this.calc(skillArray);
+				points.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
+						.replace(/%1/, calcResult[0])
+						.replace(/%2/, calcResult[1]);
+				//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 
-				request(skillList, points);
+				//request(skillList, points);
 			}
 		}
 		if ((page=="transferSearchResult") && AddToSearchResult) {
@@ -122,8 +109,13 @@ var FoxtrickHTMSPoints = {
 				if (transferTable.rows[rowId+1].id.match(/_TransferPlayer_r1/)) {
 					//getting skills
 					var skillList='&anni='+players[cellId].age.years+'&giorni='+players[cellId].age.days;
+					var skillArray=new Array();
+					skillArray['anni']=players[cellId].age.years;
+					skillArray['giorni']=players[cellId].age.days;
+
 					for (var i=0;i<7;i++) {
 						skillList+='&'+htmsValues[i]+'='+players[cellId][skillOrder[i]];
+						skillArray[htmsValues[i]]=players[cellId][skillOrder[i]];
 					}
 					//creating element
 					var row = transferTable.rows[rowId].getElementsByTagName('table')[0].rows[0];
@@ -132,10 +124,14 @@ var FoxtrickHTMSPoints = {
 					container.appendChild(getLink(skillList));
 					container.appendChild(doc.createTextNode(" "));
 					var points = doc.createElement("span");
-					points.appendChild(Foxtrick.util.note.createLoading(doc, true));
+					var calcResult=this.calc(skillArray);
+					points.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
+						.replace(/%1/, calcResult[0])
+						.replace(/%2/, calcResult[1]);
+					//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 					container.appendChild(points);
 
-					request(skillList, points);
+					//request(skillList, points);
 				}
 				else {
 					//player is sold, there aren't the skills, we have to come back
@@ -156,8 +152,13 @@ var FoxtrickHTMSPoints = {
 				//getting skills...
 				var totSkills=0;
 				var skillList='&anni='+players[p].age.years+'&giorni='+players[p].age.days;
+				var skillArray=new Array();
+				skillArray['anni']=players[p].age.years;
+				skillArray['giorni']=players[p].age.days;
+
 				for (var i=0;i<7;i++) {
 					skillList+='&'+htmsValues[i]+'='+players[p][skillOrder[i]];
+					skillArray[htmsValues[i]]=players[p][skillOrder[i]];
 					totSkills+=players[p][skillOrder[i]];
 				}
 
@@ -169,7 +170,11 @@ var FoxtrickHTMSPoints = {
 					container.appendChild(getLink(skillList));
 					container.appendChild(doc.createTextNode(" "));
 					var points = doc.createElement("span");
-					points.appendChild(Foxtrick.util.note.createLoading(doc, true));
+					//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
+					var calcResult=this.calc(skillArray);
+					points.textContent = Foxtrickl10n.getString("HTMSPoints.AbilityAndPotential")
+						.replace(/%1/, calcResult[0])
+						.replace(/%2/, calcResult[1]);
 					container.appendChild(points);
 
 					// insert it
@@ -177,9 +182,87 @@ var FoxtrickHTMSPoints = {
 					var before = tables.item(0).nextSibling;
 					before.parentNode.insertBefore(container, before);
 				
-					request(skillList, points);
+					//request(skillList, points);
 				}
 			}
 		}
+	},
+	
+	calc : function(skills) {
+		var pointsAge=new Array();
+		pointsAge[17]=10;
+		pointsAge[18]=9.92;
+		pointsAge[19]=9.81;
+		pointsAge[20]=9.69;
+		pointsAge[21]=9.54;
+		pointsAge[22]=9.39;
+		pointsAge[23]=9.22;
+		pointsAge[24]=9.04;
+		pointsAge[25]=8.85;
+		pointsAge[26]=8.66;
+		pointsAge[27]=8.47;
+		pointsAge[28]=8.27;
+		pointsAge[29]=8.07;
+		pointsAge[30]=7.87;
+		pointsAge[31]=7.67;
+		pointsAge[32]=7.47;
+		pointsAge[33]=7.27;
+		pointsAge[34]=7.07;
+		pointsAge[35]=6.87;
+		
+		//(`livello`, `parate`, `difesa`, `regia`, `cross`, `passaggi`, `attacco`, `cp`)
+		var pointsSkills=new Array();
+		pointsSkills[0]=[0, 0, 0, 0, 0, 0, 0];
+		pointsSkills[1]=[2, 4, 4, 2, 3, 4, 1];
+		pointsSkills[2]=[7, 13, 11, 8, 10, 12, 2];
+		pointsSkills[3]=[16, 29, 25, 17, 23, 26, 5];
+		pointsSkills[4]=[29, 52, 44, 31, 41, 46, 9];
+		pointsSkills[5]=[45, 81, 69, 48, 64, 72, 15];
+		pointsSkills[6]=[64, 116, 99, 68, 91, 103, 21];
+		pointsSkills[7]=[86, 157, 133, 92, 123, 139, 28];
+		pointsSkills[8]=[112, 203, 172, 120, 159, 179, 37];
+		pointsSkills[9]=[140, 254, 216, 150, 199, 225, 46];
+		pointsSkills[10]=[171, 310, 263, 183, 243, 274, 56];
+		pointsSkills[11]=[206, 373, 317, 220, 293, 330, 68];
+		pointsSkills[12]=[245, 444, 378, 262, 349, 393, 81];
+		pointsSkills[13]=[289, 525, 447, 310, 412, 465, 95];
+		pointsSkills[14]=[340, 617, 525, 364, 484, 546, 112];
+		pointsSkills[15]=[398, 722, 614, 426, 566, 639, 131];
+		pointsSkills[16]=[465, 844, 717, 498, 662, 747, 153];
+		pointsSkills[17]=[544, 987, 840, 582, 774, 874, 179];
+		pointsSkills[18]=[638, 1157, 984, 683, 908, 1025, 210];
+		pointsSkills[19]=[747, 1356, 1153, 800, 1063, 1200, 246];
+		pointsSkills[20]=[872, 1583, 1346, 934, 1242, 1402, 287];
+	
+		var actValue=pointsSkills[skills['parate']][0];
+		actValue+=pointsSkills[skills['difesa']][1];
+		actValue+=pointsSkills[skills['regia']][2];
+		actValue+=pointsSkills[skills['cross']][3];
+		actValue+=pointsSkills[skills['passaggi']][4];
+		actValue+=pointsSkills[skills['attacco']][5];
+		actValue+=pointsSkills[skills['cp']][6];
+		
+		//now potential at 28yo
+		var diff_anno=0;
+		if (skills['anni']<28) {
+			//aggiungiamo i giorni del suo anno fino ad arrivare a 112
+			diff_anno=((112-skills['giorni'])/7)*pointsAge[skills['anni']];
+			//aggiungiamo 16 settimane per ogni anno intero fino ad arrivare a 28
+			for (var i=skills['anni']+1;i<28;i++) {
+				diff_anno+=16*pointsAge[i];
+			}
+		}
+		else {
+			//dobbiamo togliere i giorni del suo anno fino ad arrivare a 112
+			diff_anno=(skills['giorni']/7)*pointsAge[skills['anni']];
+			//togliamo 16 settimane per ogni anno intero fino ad arrivare a 28
+			for (var i=skills['anni'];i>28;i--) {
+				diff_anno+=16*pointsAge[i];
+			}
+			diff_anno=-diff_anno;
+		}
+		var potValue=actValue+diff_anno;
+		
+		return (new Array(actValue, Math.round(potValue)));
 	}
 };
