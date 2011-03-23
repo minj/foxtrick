@@ -7,9 +7,14 @@
 FoxtrickFriendlyInterface = {
 	MODULE_NAME : "FriendlyInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["matchLineup", "playerdetail", "guestbook"],
+	PAGES : ["matchLineup", "playerdetail", "guestbook", "dashboard"],
 
-	OPTIONS : ["FullPlayerNameInLineUp", "NtLinkForNtPlayer", "HideAnswerTo"],
+	OPTIONS : [
+		"FullPlayerNameInLineUp",
+		"NtLinkForNtPlayer",
+		"HideAnswerTo",
+		"HideSpeechlessSecretary"
+	],
 
 	run : function(page, doc) {
 		if (page == "matchLineup"
@@ -88,6 +93,17 @@ FoxtrickFriendlyInterface = {
 				n.parentNode.style.cssFloat = "right";
 				n.parentNode.style.backgroundColor = "white";
 			});
+		}
+		if (page == "dashboard"
+			&& Foxtrick.isModuleFeatureEnabled(this, "HideSpeechlessSecretary")) {
+			var speech = doc.getElementsByClassName("pmSpeech")[0];
+			if (!speech)
+				return; // speech not present
+			if (speech.getElementsByTagName("a").length > 0)
+				return; // has links, not speechless
+			// speechless, container should be marked as hidden
+			var container = doc.getElementsByClassName("pmContainer")[0];
+			Foxtrick.addClass(container, "hidden");
 		}
 	}
 };

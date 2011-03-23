@@ -172,6 +172,7 @@ pref("extensions.foxtrick.prefs.module.FriendlyInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.FullPlayerNameInLineUp.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.NtLinkForNtPlayer.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.HideAnswerTo.enabled", false);
+pref("extensions.foxtrick.prefs.module.FriendlyInterface.HideSpeechlessSecretary.enabled", false);
 pref("extensions.foxtrick.prefs.module.GoaldifferenceToTables.enabled", true);
 pref("extensions.foxtrick.prefs.module.GoToPostBox.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeriesFlags.enabled", true);
