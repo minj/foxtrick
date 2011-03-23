@@ -3,295 +3,376 @@
 <about>
 
 <links value="links">
-<link title="homepage" value="http://code.google.com/p/foxtrick/" />
-<link title="bugTracker" value="http://code.google.com/p/foxtrick/issues/" />
-<link title="hattrickForum" value="http://www.hattrick.org/Forum/Overview.aspx?v=0&amp;f=173635" />
-<link title="screenshots" value="http://foxtrick.foundationhorizont.org/index.php" />
-<link title="nightlyFirefox" value="http://foxtrick.foundationhorizont.org/nightly/" />
-<link title="nightlyChrome" value="http://foxtrick.foundationhorizont.org/nightly/chrome/" />
-<link title="recentChanges" value="http://code.google.com/p/foxtrick/source/list" />
+	<link title="homepage" value="http://code.google.com/p/foxtrick/" />
+	<link title="bugTracker" value="http://code.google.com/p/foxtrick/issues/" />
+	<link title="hattrickForum" value="http://www.hattrick.org/Forum/Overview.aspx?v=0&amp;f=173635" />
+	<link title="screenshots" value="http://foxtrick.foundationhorizont.org/index.php" />
+	<link title="nightlyFirefox" value="http://foxtrick.foundationhorizont.org/nightly/" />
+	<link title="nightlyChrome" value="http://foxtrick.foundationhorizont.org/nightly/chrome/" />
+	<link title="recentChanges" value="http://code.google.com/p/foxtrick/source/list" />
 </links>
 
-
-<!-- userids in barkets are used for staffmarker! -->
 <head_developers value="Head Developer">
-<head_developer value="Mod-spambot (2336766) CHPP licence holder" />
+	<head_developer id="2336766" name="Mod-spambot" />
 </head_developers>
 
-<!-- userids in barkets are used for staffmarker! -->
 <project_owners value="Project Owners">
-<project_owner value="larsw84 (1270528)" />
-<project_owner value="Mod-spambot (2336766)" />
-<project_owner value="convincedd (7776339)" />
-<project_owner value="ryanli (8342420)" />
+	<project_owner id="1270528" name="larsw84" />
+	<project_owner id="2336766" name="Mod-spambot" />
+	<project_owner id="7776339" name="convincedd" />
+	<project_owner id="8342420" name="ryanli" />
 </project_owners>
 
-<!-- userids in barkets are used for staffmarker! -->
 <developers value="Developers">
-<developer value="taised (765274)" />
-<developer value="bummerland (8378622)" />
-<developer value="Jestar (3542943)" />
-<developer value="smates (6228713)" />
-<developer value="OBarros (3737795)" />
-<developer value="stephan57 (7409095)" />
-<developer value="baumanns (637644)" />
-<developer value="ljushaff (4342858)" />
-<developer value="Aimo_Kanuuna (3410980)" />
+	<developer id="765274" name="taised" />
+	<developer id="8378622" name="bummerland" />
+	<developer id="3542943" name="Jestar" />
+	<developer id="6228713" name="smates" />
+	<developer id="3737795" name="OBarros" />
+	<developer id="7409095" name="stephan57" />
+	<developer id="637644" name="baumanns" />
+	<developer id="4342858" name="ljushaff" />
+	<developer id="3410980" name="Aimo_Kanuuna" />
 </developers>
 
-<!-- userids in barkets are used for staffmarker! -->
 <translations value="Translations">
-<translation value="* Albanian - GM-Eagle (2090503)" />
-<translation value="* Bosnian - Mod-Marin (5345125), ljushaff (4342858)" />
-<translation value="* Беларуская - LA-Stolik (1512628)" />
-<translation value="* Catalan - carlesmu (753905)" />
-<translation value="* Čeština - gucan (1132186)" />
-<translation value="* Dansk - LasseSvendsen (6779565)" />
-<translation value="* Deutsch - Mod-spambot (2336766)" />
-<translation value="* Ellinika - GTTWINS (5055092)" />
-<translation value="* Español - franory (6345528)" />
-<translation value="* Español, Centroamericano - baler0 (335181)" />
-<translation value="* Español, Sudamericano - baler0 (335181), ElChiquitin (6927256)" />
-<translation value="* Français - stephan57 (7409095)" />
-<translation value="* Frysk - Foppe- (440454)" />
-<translation value="* فارسی - Slash-ss (9630939), MohammadSS (9956242)" />
-<translation value="* Galego - Piper_101 (524111)" />
-<translation value="* Hrvatski - GM-damyr (2809993)" />
-<translation value="* Hungarian - csajszi (2172516)" />
-<translation value="* Italiano - caracca (2902659), taised (765274), Sam-Vimes (9559302)" />
-<translation value="* Lithuanian - Mod-summercloud (2765378)" />
-<translation value="* Luxembourgish - Mod-Karlthegreat (2884072)" />
-<translation value="* Macedonian - white_eagle" />
-<translation value="* Malti - LA-saviour26 (4149232)" />
-<translation value="* Nederlands - eekels (5577946)" />
-<translation value="* Norwegian, bokmål - Skoglund (6350285)" />
-<translation value="* Norwegian, nynorsk - Krasher (4387847)" />
-<translation value="* Polski - Homzik (6801903), SilesiaVratislavia (10167326)" />
-<translation value="* Português - _recluso_ (3961483), GM-ei04004 (6307374), McTripas (7135171), MEO_Comandante (9469076)" />
-<translation value="* Português, Brasil - MarceloFBrandao (8277378)" />
-<translation value="* Romanian - slader (552640)" />
-<translation value="* Russian - _KOHb_ (621456)" />
-<translation value="* Slovak - JAM3SoN (7873605)" />
-<translation value="* Srpski - ljushaff (4342858)" />
-<translation value="* Suomi - Pyntsa (2689296), ElChiquitin (6927256)" />
-<translation value="* Svenska - GM-murko (12166), GM-Nanouk (6680572)" />
-<translation value="* Tiếng Việt - Murtagsh (9372637)" />
-<translation value="* Ukrainian - Grif_07" />
-<translation value="* 中文（简体） - ryanli (8342420)" />
+	<translation language="Albanian">
+		<translator id="2090503" name="GM-Eagle" />
+	</translation>
+	<translation language="Bosnian">
+		<translator id="5345125" name="Mod-Marin" />
+		<translator id="4342858" name="ljushaff" />
+	</translation>
+	<translation language="Беларуская">
+		<translator id="1512628" name="LA-Stolik" />
+	</translation>
+	<translation language="Catalan">
+		<translator id="753905" name="carlesmu" />
+	</translation>
+	<translation language="Čeština">
+		<translator id="1132186" name="gucan" />
+	</translation>
+	<translation language="Dansk">
+		<translator id="6779565" name="LasseSvendsen" />
+	</translation>
+	<translation language="Deutsch">
+		<translator id="2336766" name="Mod-spambot" />
+		<translator id="7776339" name="convincedd" />
+	</translation>
+	<translation language="Ελληνικά">
+		<translator id="5055092" name="GTTWINS" />
+	</translation>
+	<translation language="Español">
+		<translator id="6345528" name="franory" />
+	</translation>
+	<translation language="Español, Centroamericano">
+		<translator id="335181" name="Baler0" />
+	</translation>
+	<translation language="Español, Sudamericano">
+		<translator id="335181" name="Baler0" />
+		<translator id="6927256" name="ElChiquitin" />
+	</translation>
+	<translation language="Français">
+		<translator id="7409095" name="stephan57" />
+	</translation>
+	<translation language="Frysk">
+		<translator id="440454" name="Foppe-" />
+	</translation>
+	<translation language="فارسی">
+		<translator id="9630939" name="Slash-ss" />
+		<translator id="9956242" name="MohammadSS" />
+	</translation>
+	<translation language="Galego">
+		<translator id="524111" name="Piper_101" />
+	</translation>
+	<translation language="Hrvatski">
+		<translator id="2809993" name="GM-damyr" />
+	</translation>
+	<translation language="Hungarian">
+		<translator id="2172516" name="csajszi" />
+	</translation>
+	<translation language="Italiano">
+		<translator id="2902659" name="caracca" />
+		<translator id="765274" name="taised" />
+		<translator id="9559302" name="Sam-Vimes" />
+	</translation>
+	<translation language="Lithuanian">
+		<translator id="2765378" name="Mod-summercloud" />
+	</translation>
+	<translation language="Luxembourgish">
+		<translator id="2884072" name="Mod-Karlthegreat" />
+	</translation>
+	<translation language="Macedonian">
+		<translator name="white_eagle" />
+	</translation>
+	<translation language="Malti">
+		<translator id="4149232" name="LA-saviour26" />
+	</translation>
+	<translation language="Nederlands">
+		<translator id="5577946" name="eekels" />
+	</translation>
+	<translation language="Norwegian, bokmål">
+		<translator id="6350285" name="Skoglund" />
+	</translation>
+	<translation language="Norwegian, nynorsk">
+		<translator id="4387847" name="Krasher" />
+	</translation>
+	<translation language="Polski">
+		<translator id="6801903" name="Homzik" />
+		<translator id="10167326" name="SilesiaVratislavia" />
+	</translation>
+	<translation language="Português">
+		<translator id="3961483" name="_recluso_" />
+		<translator id="6307374" name="GM-ei04004" />
+		<translator id="7135171" name="McTripas" />
+		<translator id="9469076" name="MEO_Comandante" />
+	</translation>
+	<translation language="Português, Brasil">
+		<translator id="8277378" name="MarceloFBrandao" />
+	</translation>
+	<translation language="Romanian">
+		<translator id="552640" name="slader" />
+	</translation>
+	<translation language="Russian">
+		<translator id="621456" name="_KOHb_" />
+	</translation>
+	<translation language="Slovak">
+		<translator id="7873605" name="JAM3SoN" />
+	</translation>
+	<translation language="Srpski">
+		<translator id="4342858" name="ljushaff" />
+	</translation>
+	<translation language="Suomi">
+		<translator id="2689296" name="Pyntsa" />
+		<translator id="6927256" name="ElChiquitin" />
+	</translation>
+	<translation language="Svenska">
+		<translator id="12166" name="GM-murko" />
+		<translator id="6680572" name="GM-Nanouk" />
+	</translation>
+	<translation language="Tiếng Việt">
+		<translator id="9372637" name="Murtagsh" />
+	</translation>
+	<translation language="Ukrainian">
+		<translator name="Grif_07" />
+	</translation>
+	<translation language="中文（简体）">
+		<translator id="8342420" name="ryanli" />
+	</translation>
 </translations>
 
 <graphics value="Graphic Designers">
-	<designer value="Aimo_Kanuuna (3410980)" />
+	<designer id="3410980" name="Aimo_Kanuuna" />
 </graphics>
 
 <editors>
-<editor value="553432" name="-Juge-" />
-<editor value="6200845" name="Abu_Ahmed" />
-<editor value="1598884" name="Aleksandar-GIGANT" />
-<editor value="7615038" name="Andrisfoci" />
-<editor value="6723662" name="Arlequin" />
-<editor value="3799710" name="AroKing" />
-<editor value="6872278" name="Buska" />
-<editor value="299466" name="CoachDinamo" />
-<editor value="5345028" name="Ed-corb" />
-<editor value="2596442" name="Ed-pptolomeo" />
-<editor value="7533491" name="Ed-relu_" />
-<editor value="3712230" name="Editor-JDelhaRD" />
-<editor value="9456848" name="FCB-Ier" />
-<editor value="6931397" name="Frattaglia" />
-<editor value="5353154" name="GM-7areega" />
-<editor value="666723" name="GM-Gizmo" />
-<editor value="2579834" name="GM-Mjoelnir" />
-<editor value="3954787" name="GM-Vinicius" />
-<editor value="791586" name="GM-Yarka" />
-<editor value="1560881" name="GM-Zelts" />
-<editor value="1757844" name="GM-kakker4-ever" />
-<editor value="7989844" name="GM-monad" />
-<editor value="553575" name="GM-unrockbar" />
-<editor value="8405258" name="Guatemala" />
-<editor value="2690274" name="Ishuaia" />
-<editor value="1013109" name="Krat64" />
-<editor value="1077817" name="LA-GQPOZ" />
-<editor value="9372637" name="LA-Murtagsh" />
-<editor value="2804923" name="MELAFEFON" />
-<editor value="8910276" name="MOD-Sjoher" />
-<editor value="1113488" name="Mod-Hurrican" />
-<editor value="8907600" name="Mod-Kanito" />
-<editor value="2884072" name="Mod-Karlthegreat" />
-<editor value="9311330" name="Mod-OmaniMilani" />
-<editor value="7564618" name="Mod-Shamil" />
-<editor value="3930566" name="Mod-animator" />
-<editor value="8593425" name="Ngavlora" />
-<editor value="6874430" name="Nickkc" />
-<editor value="1655586" name="Pedro-Dusbaum" />
-<editor value="1191014" name="Peluza" />
-<editor value="98655" name="Petrovitsj" />
-<editor value="3982901" name="PuCeK17" />
-<editor value="4229748" name="Reallo" />
-<editor value="1759252" name="Richard_B_Riddick" />
-<editor value="64154" name="SH-Patrick" />
-<editor value="7745399" name="SLV-Andersen" />
-<editor value="2747096" name="Sir-Kiko" />
-<editor value="3500819" name="SkyfireX" />
-<editor value="3089655" name="Spiney" />
-<editor value="931128" name="Suli_sul" />
-<editor value="8964618" name="Zolfaghar" />
-<editor value="4584362" name="ZurrieqGiants" />
-<editor value="4494340" name="acarl" />
-<editor value="608193" name="alea_iacta_est" />
-<editor value="8508209" name="bacardi444" />
-<editor value="1265154" name="bot_fl" />
-<editor value="9158849" name="c0stas" />
-<editor value="6764830" name="canaria1907" />
-<editor value="4310990" name="cenzuriran_apovsic" />
-<editor value="7838996" name="christ14" />
-<editor value="6150102" name="daZOOpolitis" />
-<editor value="783202" name="ermpson" />
-<editor value="4680707" name="flexor_01" />
-<editor value="3614556" name="hallenberg" />
-<editor value="1048018" name="ivo_stoyanov" />
-<editor value="9164403" name="jaredjamesr" />
-<editor value="5488550" name="kikso" />
-<editor value="3622447" name="krespim" />
-<editor value="9697725" name="mfabiom" />
-<editor value="4441039" name="mikesoft" />
-<editor value="7194991" name="pacsey" />
-<editor value="6523021" name="rcesantos" />
-<editor value="8216203" name="storm_lord" />
-<editor value="8029188" name="ulrikbachmann" />
-<editor value="873814" name="vichenze" />
+	<editor id="553432" name="-Juge-" />
+	<editor id="6200845" name="Abu_Ahmed" />
+	<editor id="1598884" name="Aleksandar-GIGANT" />
+	<editor id="7615038" name="Andrisfoci" />
+	<editor id="6723662" name="Arlequin" />
+	<editor id="3799710" name="AroKing" />
+	<editor id="6872278" name="Buska" />
+	<editor id="299466" name="CoachDinamo" />
+	<editor id="5345028" name="Ed-corb" />
+	<editor id="2596442" name="Ed-pptolomeo" />
+	<editor id="7533491" name="Ed-relu_" />
+	<editor id="3712230" name="Editor-JDelhaRD" />
+	<editor id="9456848" name="FCB-Ier" />
+	<editor id="6931397" name="Frattaglia" />
+	<editor id="5353154" name="GM-7areega" />
+	<editor id="666723" name="GM-Gizmo" />
+	<editor id="2579834" name="GM-Mjoelnir" />
+	<editor id="3954787" name="GM-Vinicius" />
+	<editor id="791586" name="GM-Yarka" />
+	<editor id="1560881" name="GM-Zelts" />
+	<editor id="1757844" name="GM-kakker4-ever" />
+	<editor id="7989844" name="GM-monad" />
+	<editor id="553575" name="GM-unrockbar" />
+	<editor id="8405258" name="Guatemala" />
+	<editor id="2690274" name="Ishuaia" />
+	<editor id="1013109" name="Krat64" />
+	<editor id="1077817" name="LA-GQPOZ" />
+	<editor id="9372637" name="LA-Murtagsh" />
+	<editor id="2804923" name="MELAFEFON" />
+	<editor id="8910276" name="MOD-Sjoher" />
+	<editor id="1113488" name="Mod-Hurrican" />
+	<editor id="8907600" name="Mod-Kanito" />
+	<editor id="2884072" name="Mod-Karlthegreat" />
+	<editor id="9311330" name="Mod-OmaniMilani" />
+	<editor id="7564618" name="Mod-Shamil" />
+	<editor id="3930566" name="Mod-animator" />
+	<editor id="8593425" name="Ngavlora" />
+	<editor id="6874430" name="Nickkc" />
+	<editor id="1655586" name="Pedro-Dusbaum" />
+	<editor id="1191014" name="Peluza" />
+	<editor id="98655" name="Petrovitsj" />
+	<editor id="3982901" name="PuCeK17" />
+	<editor id="4229748" name="Reallo" />
+	<editor id="1759252" name="Richard_B_Riddick" />
+	<editor id="64154" name="SH-Patrick" />
+	<editor id="7745399" name="SLV-Andersen" />
+	<editor id="2747096" name="Sir-Kiko" />
+	<editor id="3500819" name="SkyfireX" />
+	<editor id="3089655" name="Spiney" />
+	<editor id="931128" name="Suli_sul" />
+	<editor id="8964618" name="Zolfaghar" />
+	<editor id="4584362" name="ZurrieqGiants" />
+	<editor id="4494340" name="acarl" />
+	<editor id="608193" name="alea_iacta_est" />
+	<editor id="8508209" name="bacardi444" />
+	<editor id="1265154" name="bot_fl" />
+	<editor id="9158849" name="c0stas" />
+	<editor id="6764830" name="canaria1907" />
+	<editor id="4310990" name="cenzuriran_apovsic" />
+	<editor id="7838996" name="christ14" />
+	<editor id="6150102" name="daZOOpolitis" />
+	<editor id="783202" name="ermpson" />
+	<editor id="4680707" name="flexor_01" />
+	<editor id="3614556" name="hallenberg" />
+	<editor id="1048018" name="ivo_stoyanov" />
+	<editor id="9164403" name="jaredjamesr" />
+	<editor id="5488550" name="kikso" />
+	<editor id="3622447" name="krespim" />
+	<editor id="9697725" name="mfabiom" />
+	<editor id="4441039" name="mikesoft" />
+	<editor id="7194991" name="pacsey" />
+	<editor id="6523021" name="rcesantos" />
+	<editor id="8216203" name="storm_lord" />
+	<editor id="8029188" name="ulrikbachmann" />
+	<editor id="873814" name="vichenze" />
 </editors>
 
 <chpps>
-<chpp value="7486010" name="--MK--" />
-<chpp value="1137774" name="-Edke" />
-<chpp value="9544213" name="-beawolf-" />
-<chpp value="4875337" name="-tof-" />
-<chpp value="816713" name="0scar" />
-<chpp value="3450392" name="8noortje8" />
-<chpp value="460090" name="Adjanakis" />
-<chpp value="9754830" name="AndyGJones" />
-<chpp value="1822820" name="Anosmie" />
-<chpp value="2954769" name="Asseon" />
-<chpp value="5246225" name="BANditopoli" />
-<chpp value="4428988" name="Belette" />
-<chpp value="9547828" name="Birne_Helene" />
-<chpp value="110259" name="Brzi_" />
-<chpp value="8996419" name="CAT-jaumebd" />
-<chpp value="256786" name="CHPP-Alf" />
-<chpp value="505687" name="CHPP-Finke" />
-<chpp value="2238308" name="CHPP-IndianaRed" />
-<chpp value="763236" name="CHPP-gardier" />
-<chpp value="653581" name="CHPP-teles" />
-<chpp value="1379674" name="Canhao" />
-<chpp value="1111924" name="Causea" />
-<chpp value="2554426" name="DerKanzler" />
-<chpp value="980430" name="DorkPower" />
-<chpp value="100856" name="Frederic-HT2D" />
-<chpp value="255676" name="FreshT" />
-<chpp value="2579834" name="GM-Mjoelnir" />
-<chpp value="3169226" name="GM-Scazi" />
-<chpp value="145471" name="GOD-Jalonen" />
-<chpp value="10679926" name="Ginkeltjes" />
-<chpp value="3431302" name="GrafLem" />
-<chpp value="7424279" name="GustavoClaudio" />
-<chpp value="434323" name="Guyroux" />
-<chpp value="8248727" name="HT-Bodin" />
-<chpp value="9449300" name="HT-Chris" />
-<chpp value="1034057" name="HT-weird_ed" />
-<chpp value="2767522" name="Hitman_47" />
-<chpp value="1088541" name="Hoedinie" />
-<chpp value="487851" name="Joselo1971" />
-<chpp value="1229170" name="KeithoR" />
-<chpp value="3206114" name="Kusco" />
-<chpp value="185572" name="Lobster" />
-<chpp value="40280" name="Loke_" />
-<chpp value="521166" name="MD-JakobTrier" />
-<chpp value="2728631" name="Mackalito" />
-<chpp value="1532705" name="Mackshot" />
-<chpp value="1184611" name="MarcicoX" />
-<chpp value="1451294" name="Mati-JFC" />
-<chpp value="146464" name="Minkfish" />
-<chpp value="2255366" name="Mistr_Moon" />
-<chpp value="2287367" name="Mod-Jacome" />
-<chpp value="2336766" name="Mod-spambot" />
-<chpp value="2346409" name="Mr_Clean" />
-<chpp value="443557" name="Multiplex" />
-<chpp value="1515063" name="Nils-N" />
-<chpp value="2279589" name="Odiobill" />
-<chpp value="9820024" name="Ophiuchus" />
-<chpp value="296966" name="Ostekiks" />
-<chpp value="2301951" name="PatrickBrans" />
-<chpp value="1313253" name="Peaso" />
-<chpp value="2199352" name="Perseo_FIC" />
-<chpp value="3009945" name="Poul_UA" />
-<chpp value="968700" name="Pupske" />
-<chpp value="6885137" name="Quintela" />
-<chpp value="10912787" name="RLLAMAS" />
-<chpp value="236425" name="Re4VeR" />
-<chpp value="1575597" name="Rheuma-Kai" />
-<chpp value="694668" name="RinghioCoach" />
-<chpp value="368411" name="Robin" />
-<chpp value="4984086" name="RoniMenashe" />
-<chpp value="5043273" name="SKaLeRoi" />
-<chpp value="3797490" name="SLV-Kvalheim" />
-<chpp value="4681300" name="Scratchy" />
-<chpp value="6496748" name="SirHenry" />
-<chpp value="1627403" name="Siramthar" />
-<chpp value="9979330" name="Thorlius" />
-<chpp value="4248137" name="USER___" />
-<chpp value="2123928" name="Wladi" />
-<chpp value="429263" name="Xirius" />
-<chpp value="4853091" name="aYcon" />
-<chpp value="636733" name="a_alvarez" />
-<chpp value="1126347" name="abubilla" />
-<chpp value="1379792" name="abyssahx" />
-<chpp value="1271547" name="accusor" />
-<chpp value="3797495" name="adrianomm" />
-<chpp value="1252134" name="alcek2004" />
-<chpp value="10844159" name="alessandro1977" />
-<chpp value="629771" name="allsports" />
-<chpp value="1028462" name="beebop" />
-<chpp value="10207412" name="bennh" />
-<chpp value="2124359" name="borzos" />
-<chpp value="753905" name="carlesmu" />
-<chpp value="6158967" name="dApAp0" />
-<chpp value="2063250" name="dbdbdb" />
-<chpp value="499303" name="destor77" />
-<chpp value="999111" name="doof92" />
-<chpp value="1336001" name="dynamosmurfen" />
-<chpp value="4096489" name="fabdan14" />
-<chpp value="8200747" name="faebuva" />
-<chpp value="569159" name="gegevert" />
-<chpp value="53246" name="groton" />
-<chpp value="52820" name="hayde" />
-<chpp value="1624795" name="hybris0" />
-<chpp value="9891611" name="jmac73" />
-<chpp value="9730244" name="joeridb" />
-<chpp value="7959838" name="jtesh80" />
-<chpp value="1109386" name="kuznec" />
-<chpp value="8211239" name="magnusts" />
-<chpp value="718548" name="makam" />
-<chpp value="423674" name="me9mill" />
-<chpp value="8509005" name="mesanchez" />
-<chpp value="1065875" name="mikehell" />
-<chpp value="4027272" name="mogito" />
-<chpp value="8758483" name="nickasimir" />
-<chpp value="120014" name="obsy_" />
-<chpp value="2540769" name="reuvem" />
-<chpp value="2370875" name="rodrigobolso" />
-<chpp value="6886447" name="seralph" />
-<chpp value="11073910" name="stylomylo" />
-<chpp value="4305473" name="suchywojtas" />
-<chpp value="765274" name="taised" />
-<chpp value="3654508" name="taxitzis" />
-<chpp value="659104" name="trews" />
-<chpp value="7423139" name="uncoke" />
-<chpp value="873814" name="vichenze" />
-<chpp value="6931827" name="vitrail" />
-<chpp value="8661936" name="vlaFN" />
-<chpp value="7160958" name="walperg" />
-<chpp value="1430685" name="wysota" />
-<chpp value="1482307" name="yeltzin" />
+	<chpp id="7486010" name="--MK--" />
+	<chpp id="1137774" name="-Edke" />
+	<chpp id="9544213" name="-beawolf-" />
+	<chpp id="4875337" name="-tof-" />
+	<chpp id="816713" name="0scar" />
+	<chpp id="3450392" name="8noortje8" />
+	<chpp id="460090" name="Adjanakis" />
+	<chpp id="9754830" name="AndyGJones" />
+	<chpp id="1822820" name="Anosmie" />
+	<chpp id="2954769" name="Asseon" />
+	<chpp id="5246225" name="BANditopoli" />
+	<chpp id="4428988" name="Belette" />
+	<chpp id="9547828" name="Birne_Helene" />
+	<chpp id="110259" name="Brzi_" />
+	<chpp id="8996419" name="CAT-jaumebd" />
+	<chpp id="256786" name="CHPP-Alf" />
+	<chpp id="505687" name="CHPP-Finke" />
+	<chpp id="2238308" name="CHPP-IndianaRed" />
+	<chpp id="763236" name="CHPP-gardier" />
+	<chpp id="653581" name="CHPP-teles" />
+	<chpp id="1379674" name="Canhao" />
+	<chpp id="1111924" name="Causea" />
+	<chpp id="2554426" name="DerKanzler" />
+	<chpp id="980430" name="DorkPower" />
+	<chpp id="100856" name="Frederic-HT2D" />
+	<chpp id="255676" name="FreshT" />
+	<chpp id="2579834" name="GM-Mjoelnir" />
+	<chpp id="3169226" name="GM-Scazi" />
+	<chpp id="145471" name="GOD-Jalonen" />
+	<chpp id="10679926" name="Ginkeltjes" />
+	<chpp id="3431302" name="GrafLem" />
+	<chpp id="7424279" name="GustavoClaudio" />
+	<chpp id="434323" name="Guyroux" />
+	<chpp id="8248727" name="HT-Bodin" />
+	<chpp id="9449300" name="HT-Chris" />
+	<chpp id="1034057" name="HT-weird_ed" />
+	<chpp id="2767522" name="Hitman_47" />
+	<chpp id="1088541" name="Hoedinie" />
+	<chpp id="487851" name="Joselo1971" />
+	<chpp id="1229170" name="KeithoR" />
+	<chpp id="3206114" name="Kusco" />
+	<chpp id="185572" name="Lobster" />
+	<chpp id="40280" name="Loke_" />
+	<chpp id="521166" name="MD-JakobTrier" />
+	<chpp id="2728631" name="Mackalito" />
+	<chpp id="1532705" name="Mackshot" />
+	<chpp id="1184611" name="MarcicoX" />
+	<chpp id="1451294" name="Mati-JFC" />
+	<chpp id="146464" name="Minkfish" />
+	<chpp id="2255366" name="Mistr_Moon" />
+	<chpp id="2287367" name="Mod-Jacome" />
+	<chpp id="2336766" name="Mod-spambot" />
+	<chpp id="2346409" name="Mr_Clean" />
+	<chpp id="443557" name="Multiplex" />
+	<chpp id="1515063" name="Nils-N" />
+	<chpp id="2279589" name="Odiobill" />
+	<chpp id="9820024" name="Ophiuchus" />
+	<chpp id="296966" name="Ostekiks" />
+	<chpp id="2301951" name="PatrickBrans" />
+	<chpp id="1313253" name="Peaso" />
+	<chpp id="2199352" name="Perseo_FIC" />
+	<chpp id="3009945" name="Poul_UA" />
+	<chpp id="968700" name="Pupske" />
+	<chpp id="6885137" name="Quintela" />
+	<chpp id="10912787" name="RLLAMAS" />
+	<chpp id="236425" name="Re4VeR" />
+	<chpp id="1575597" name="Rheuma-Kai" />
+	<chpp id="694668" name="RinghioCoach" />
+	<chpp id="368411" name="Robin" />
+	<chpp id="4984086" name="RoniMenashe" />
+	<chpp id="5043273" name="SKaLeRoi" />
+	<chpp id="3797490" name="SLV-Kvalheim" />
+	<chpp id="4681300" name="Scratchy" />
+	<chpp id="6496748" name="SirHenry" />
+	<chpp id="1627403" name="Siramthar" />
+	<chpp id="9979330" name="Thorlius" />
+	<chpp id="4248137" name="USER___" />
+	<chpp id="2123928" name="Wladi" />
+	<chpp id="429263" name="Xirius" />
+	<chpp id="4853091" name="aYcon" />
+	<chpp id="636733" name="a_alvarez" />
+	<chpp id="1126347" name="abubilla" />
+	<chpp id="1379792" name="abyssahx" />
+	<chpp id="1271547" name="accusor" />
+	<chpp id="3797495" name="adrianomm" />
+	<chpp id="1252134" name="alcek2004" />
+	<chpp id="10844159" name="alessandro1977" />
+	<chpp id="629771" name="allsports" />
+	<chpp id="1028462" name="beebop" />
+	<chpp id="10207412" name="bennh" />
+	<chpp id="2124359" name="borzos" />
+	<chpp id="753905" name="carlesmu" />
+	<chpp id="6158967" name="dApAp0" />
+	<chpp id="2063250" name="dbdbdb" />
+	<chpp id="499303" name="destor77" />
+	<chpp id="999111" name="doof92" />
+	<chpp id="1336001" name="dynamosmurfen" />
+	<chpp id="4096489" name="fabdan14" />
+	<chpp id="8200747" name="faebuva" />
+	<chpp id="569159" name="gegevert" />
+	<chpp id="53246" name="groton" />
+	<chpp id="52820" name="hayde" />
+	<chpp id="1624795" name="hybris0" />
+	<chpp id="9891611" name="jmac73" />
+	<chpp id="9730244" name="joeridb" />
+	<chpp id="7959838" name="jtesh80" />
+	<chpp id="1109386" name="kuznec" />
+	<chpp id="8211239" name="magnusts" />
+	<chpp id="718548" name="makam" />
+	<chpp id="423674" name="me9mill" />
+	<chpp id="8509005" name="mesanchez" />
+	<chpp id="1065875" name="mikehell" />
+	<chpp id="4027272" name="mogito" />
+	<chpp id="8758483" name="nickasimir" />
+	<chpp id="120014" name="obsy_" />
+	<chpp id="2540769" name="reuvem" />
+	<chpp id="2370875" name="rodrigobolso" />
+	<chpp id="6886447" name="seralph" />
+	<chpp id="11073910" name="stylomylo" />
+	<chpp id="4305473" name="suchywojtas" />
+	<chpp id="765274" name="taised" />
+	<chpp id="3654508" name="taxitzis" />
+	<chpp id="659104" name="trews" />
+	<chpp id="7423139" name="uncoke" />
+	<chpp id="873814" name="vichenze" />
+	<chpp id="6931827" name="vitrail" />
+	<chpp id="8661936" name="vlaFN" />
+	<chpp id="7160958" name="walperg" />
+	<chpp id="1430685" name="wysota" />
+	<chpp id="1482307" name="yeltzin" />
 </chpps>
 </about>

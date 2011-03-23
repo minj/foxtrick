@@ -27,4 +27,4 @@ userSet = set(userList)
 userList = list(userSet)
 userList.sort(key=lambda x: x[1])
 for pair in userList:
-	print '<%s value="%s" name="%s" />' % (sys.argv[1], pair[0], pair[1])
+	print '<%s id="%s" name="%s" />' % (sys.argv[1], pair[0], pair[1])

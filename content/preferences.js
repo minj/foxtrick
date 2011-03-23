@@ -581,11 +581,30 @@ function initAboutTab()
 {
 	const aboutXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 	$(".about-list").each(function() {
-		const items = Foxtrick.XML_evaluate(aboutXml, $(this).attr("path"), "value");
-		for (var i = 0; i < items.length; ++i) {
+		var iterator = aboutXml.evaluate($(this).attr("path"), aboutXml, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+		var currentNode = iterator.iterateNext();
+		while (currentNode) {
 			var item = document.createElement("li");
-			item.textContent = items[i];
+			var id = currentNode.hasAttribute("id") ? currentNode.getAttribute("id") : null;
+			var name = currentNode.getAttribute("name");
+
+			if (currentNode.nodeName == "translator") {
+				var translation = currentNode.parentNode;
+				var language = translation.getAttribute("language");
+				item.appendChild(document.createTextNode(language + ": "));
+			}
+
+			item.appendChild(document.createTextNode(name));
+			if (id) {
+				item.appendChild(document.createTextNode(" "));
+				var link = document.createElement("a");
+				link.href = "http://www.hattrick.org/Club/Manager/?userId=" + id;
+				link.textContent = "(%s)".replace(/%s/, id);
+				item.appendChild(link);
+			}
 			$(this).append($(item));
+
+			currentNode = iterator.iterateNext();
 		}
 	});
 }
