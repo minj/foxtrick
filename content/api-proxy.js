@@ -137,6 +137,7 @@ Foxtrick.ApiProxy = {
 	},
 
 	retrieve : function(doc, parameters, callback) {
+		FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
 		Foxtrick.dump("ApiProxy: attempting to retrieve: " + parameters + "…\n");
 		if (!Foxtrick.ApiProxy.authorized()) {
 			Foxtrick.dump("ApiProxy: unauthorized.\n");

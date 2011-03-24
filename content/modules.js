@@ -13,6 +13,7 @@ if (!Foxtrick) var Foxtrick={};
 
 Foxtrick.modules = [
 	FoxtrickCore,
+	FoxtrickHelper,
 	Foxtrick.ApiProxy,
 	FoxtrickReadHtPrefs,
 	FoxtrickPrefsDialogHTML,
@@ -101,7 +102,6 @@ Foxtrick.modules = [
 	FoxtrickSkillColoring,
 	FoxtrickSkinPlugin,
 	FoxtrickMatchIncome,
-	FoxtrickHelper,
 	FoxtrickLargeFlags,
 	FoxtrickTeamSelectBox,
 	FoxtrickSeniorTeamShortCuts,
