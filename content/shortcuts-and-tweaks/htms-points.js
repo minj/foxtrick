@@ -206,6 +206,16 @@ var FoxtrickHTMSPoints = {
 		pointsAge[33]=7.27;
 		pointsAge[34]=7.07;
 		pointsAge[35]=6.87;
+		pointsAge[36]=6.67;
+		pointsAge[37]=6.47;
+		pointsAge[38]=6.26;
+		pointsAge[39]=6.06;
+		pointsAge[40]=5.86;
+		pointsAge[41]=5.65;
+		pointsAge[42]=6.45;
+		pointsAge[43]=6.24;
+		pointsAge[44]=6.04;
+		pointsAge[45]=5.83;
 		
 		//keeper, defending, playmaking, winger, passing, scoring, setPieces
 		var pointsSkills=new Array();
