@@ -671,6 +671,10 @@ Foxtrick.reload_module_css = function(doc) {
 			for (var j = 0; j < list.length; ++j)
 				if (list[j])
 					Foxtrick.unload_css_permanent(list[j]);
+			if (module.OPTIONS_CSS) {
+				for (var j = 0; j < module.OPTIONS_CSS.length; ++j)
+					Foxtrick.unload_css_permanent(module.OPTIONS_CSS[j]);
+			}
 		}
 
 		// load CSS
