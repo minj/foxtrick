@@ -11,6 +11,14 @@
 <note version="nightly" localized-version="Тест верзија">
 <item>За детаље о променама погледајте  на <xhtml:a href="http://code.google.com/p/foxtrick/source/list">Google Code</xhtml:a> сајту.</item>
 <item>Уколико желите да вам Фокстрик не приказује обавештење о променама после сваког ажурирања искључите опцију "Прикажи поруку о променама после ажурирања Фокстрика" у табу <xhtml:a href="#tab=main">"Главне опције"</xhtml:a>.</item>
+
+</note>
+<note version="0.6.1">
+<item>Модул <module>HTMSPoints</module> од сада калкулише бодове без повеѕиванја на HTMS вебсајт. (taised)</item>
+<item>Модул <module>htmsStatistics</module> правилно учитава предвиђање исхода меча. (taised)</item>
+<item>Ажурирани превод. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)</item>
+<item>Компатибилан са граном Фајерфокс 4.2. (ryanli)</item>
+<item>Још неке ситне поправке. (ryanli)</item>
 </note>
 
 <note version="0.6">
