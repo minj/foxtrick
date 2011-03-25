@@ -10,34 +10,51 @@
 var FoxtrickSeriesFlags = {
 	MODULE_NAME : "SeriesFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["guestbook", "teamPage", "league", "youthleague", "federation", "oldcoaches", "oldplayers"],
+	PAGES : ["guestbook", "teamPage", "league", "youthleague", "federation"],
 	OPTIONS : ["Guestbook", "Supporters", "Visitors", "Oldies", "CountryOnly"],
 
 	run : function(page, doc) {
-		var buildFlag = function(url, userId, teamId) {
-			var userLinkCountry = "";
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickSeriesFlags, "CountryOnly")) {
-				userLinkCountry = "countryonly=true&";
-			}
-			const userLinkBase = "http://www.fantamondi.it/HTMS/userstat.php?"+userLinkCountry+"userid=";
-			const teamLinkBase = "http://www.fantamondi.it/HTMS/userstat.php?teamid=";
-			var link = doc.createElement("a");
-			link.href = url + "&redir_to_league=true";
-			var img = doc.createElement("img");
-			img.src = userId ? (userLinkBase + userId) : (teamLinkBase + teamId);
-			link.appendChild(img);
-			return link;
+		var buildFlag = function(arg, callback) {
+			var args = [["file", "teamdetails"]];
+			args.push(arg);
+			Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
+				var flag = doc.createElement("span");
+				flag.className = "ft-series-flag";
+				var leagueId = xml.getElementsByTagName("LeagueID")[0].textContent;
+				var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
+				var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
+				flag.appendChild(country);
+				if (!Foxtrick.isModuleFeatureEnabled(FoxtrickSeriesFlags, "CountryOnly")) {
+					var seriesName = xml.getElementsByTagName("LeagueLevelUnitName")[0].textContent;
+					var seriesId = xml.getElementsByTagName("LeagueLevelUnitID")[0].textContent;
+					var series = doc.createElement("a");
+					series.textContent = seriesName;
+					series.href = "/World/Series/Default.aspx?LeagueLevelUnitID=" + seriesId;
+					flag.appendChild(series);
+				}
+				callback(flag);
+			});
 		};
 		var modifyUserLinks = function(links) {
 			Foxtrick.map(links, function(n) {
-				var flag = n.parentNode.insertBefore(buildFlag(n.href, FoxtrickHelper.getUserIdFromUrl(n.href), null), n.nextSibling);
-				n.parentNode.insertBefore(doc.createTextNode(" "), flag);
+				buildFlag(
+					["userID", FoxtrickHelper.getUserIdFromUrl(n.href)],
+					function(flag) {
+						n.parentNode.insertBefore(flag, n.nextSibling);
+						n.parentNode.insertBefore(doc.createTextNode(" "), flag);
+					}
+				);
 			});
 		};
 		var modifyTeamLinks = function(links) {
 			Foxtrick.map(links, function(n) {
-				var flag = n.parentNode.insertBefore(buildFlag(n.href, null, FoxtrickHelper.getTeamIdFromUrl(n.href)), n.nextSibling);
-				n.parentNode.insertBefore(doc.createTextNode(" "), flag);
+				buildFlag(
+					["teamID", FoxtrickHelper.getTeamIdFromUrl(n.href)],
+					function(flag) {
+						n.parentNode.insertBefore(flag, n.nextSibling);
+						n.parentNode.insertBefore(doc.createTextNode(" "), flag);
+					}
+				);
 			});
 		};
 		if (Foxtrick.isModuleFeatureEnabled(this, "Guestbook")
@@ -87,14 +104,6 @@ var FoxtrickSeriesFlags = {
 					modifyUserLinks(userLinks);
 				}
 			);
-		}
-		if (Foxtrick.isModuleFeatureEnabled(this, "Oldies")
-			&& (page == "oldcoaches" || page == "oldplayers")) {
-			// add to current owner
-			var mainBody = doc.getElementById("mainBody");
-			var links = mainBody.getElementsByTagName("a");
-			var teamLinks = Foxtrick.filter(links, function(n) { return (FoxtrickHelper.isTeamDetailUrl(n.href)); });
-			modifyTeamLinks(teamLinks);
 		}
 	}
 };
