@@ -344,7 +344,7 @@ var FoxtrickHelper = {
 
 	createFlagFromCountryId : function(doc, countryId) {
 		var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
-		leagueName = "New Moon";
+		var leagueName = "New Moon";
 		if (leagueId) {
 			leagueName = FoxtrickHelper.getLeagueDataFromId(leagueId).LeagueName;
 		}
