@@ -36,7 +36,9 @@
 			<xhtml:ul>
 				<xhtml:li><xhtml:a href="#module=CrossTable">CrossTable</xhtml:a></xhtml:li>
 				<xhtml:li><xhtml:a href="#module=ExtraPlayerInfo">ExtraPlayerInfo</xhtml:a></xhtml:li>
+				<xhtml:li><xhtml:a href="#module=MyMonitor">MyMonitor</xhtml:a></xhtml:li>
 				<xhtml:li><xhtml:a href="#module=NtPeek">NtPeek</xhtml:a></xhtml:li>
+				<xhtml:li><xhtml:a href="#module=SeriesFlags">SeriesFlags</xhtml:a></xhtml:li>
 			</xhtml:ul>
 			<xhtml:p>
 				А неки модули вам могу пружити и додатне информације, под условом да Фокстрику дозволите приступ подацима cа Хеттрикa:

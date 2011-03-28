@@ -13,6 +13,13 @@
 <item>Уколико желите да вам Фокстрик не приказује обавештење о променама после сваког ажурирања искључите опцију "Прикажи поруку о променама после ажурирања Фокстрика" у табу <xhtml:a href="#tab=main">"Главне опције"</xhtml:a>.</item>
 
 </note>
+
+<note version="0.6.2">
+<item>Модул <module>SeriesFlags</module> податке директно са Хеттрика. (ryanli)</item>
+<item>Ажурирани превод. (ljushaff, csajszi, Mod-spambot)</item>
+<item>Још неке ситне поправке. (ryanli)</item>
+</note>
+
 <note version="0.6.1">
 <item>Модул <module>HTMSPoints</module> од сада калкулише бодове без повеѕиванја на HTMS вебсајт. (taised)</item>
 <item>Модул <module>htmsStatistics</module> правилно учитава предвиђање исхода меча. (taised)</item>
