@@ -38,7 +38,7 @@
 				<xhtml:li><xhtml:a href="#module=ExtraPlayerInfo">ExtraPlayerInfo</xhtml:a></xhtml:li>
 				<xhtml:li><xhtml:a href="#module=MyMonitor">MyMonitor</xhtml:a></xhtml:li>
 				<xhtml:li><xhtml:a href="#module=NtPeek">NtPeek</xhtml:a></xhtml:li>
-				<xhtml:li><xhtml:a href="#module=NtPeek">SeriesFlags</xhtml:a></xhtml:li>
+				<xhtml:li><xhtml:a href="#module=SeriesFlags">SeriesFlags</xhtml:a></xhtml:li>
 			</xhtml:ul>
 			<xhtml:p>
 				Some modules could provide extensive info if they can access data from Hattrick:
@@ -66,7 +66,7 @@
 				As stated above, no private data is involved.
 			</xhtml:p>
 			<xhtml:p>
-				The only exceptions is module <xhtml:a href="#module=htmsStatistics">htmsStatistics</xhtml:a>,
+				The only exception is module <xhtml:a href="#module=htmsStatistics">htmsStatistics</xhtml:a>,
 				where match ratings are passed to <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Statistics</xhtml:a> with XMLHttpRequest.
 			</xhtml:p>
 		</answer>
