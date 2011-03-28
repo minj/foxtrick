@@ -343,6 +343,7 @@ var FoxtrickMain = {
 };
 
 Foxtrick.version = function() {
+	FoxtrickPrefs.deleteValue("version");
 	return FoxtrickPrefs.getString("version");
 };
 
