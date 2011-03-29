@@ -16,6 +16,10 @@
 	float: left;
 }
 
+.ft-monitor-frame:nth-child(odd) {
+	clear: left; /* two in a row */
+}
+
 .ft-monitor-remove {
 	background-image: url("chrome://foxtrick/content/resources/img/cross_small.png");
 	width: 12px;
