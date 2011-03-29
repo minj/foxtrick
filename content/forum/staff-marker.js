@@ -182,7 +182,7 @@ var FoxtrickStaffMarker = {
 		var selects = doc.getElementById("mainWrapper").getElementsByTagName("select");
 		Foxtrick.map(selects, function(select) {
 			if (select.id.search(/filter/i) == -1
-				|| select.id.search(/recipient/i) == -1)
+				&& select.id.search(/recipient/i) == -1)
 				return;
 
 			var i = 1;
