@@ -14,6 +14,20 @@
 		<item>Вы можете отключить показ этого сообщения после каждого обновления, запретив "Показать информацию о выпуске после обновления FoxTrick" на вкладке <xhtml:a href="#tab=main">Главные</xhtml:a> настроек.</item>
 	</note>
 
+	<note version="0.6.2">
+		<item>Модуль <module>SeriesFlags</module> теперь получает данные напрямую из Hattrick (ryanli).</item>
+		<item>Обновление переводов (ljushaff, csajszi, Mod-spambot).</item>
+		<item>Несколько мелких исправлений (ryanli).</item>
+	</note>
+
+	<note version="0.6.1">
+		<item>Модуль <module>HTMSPoints</module> теперь считает очки локально, без связи с сайтом HTMS (taised).</item>
+		<item>Модуль <module>htmsStatistics</module> теперь корректно загружает прогноз (taised).</item>
+		<item>Обновление переводов(Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante).</item>
+		<item>Теперь совместимо с веткой Firefox 4.2 (ryanli).</item>
+		<item>Несколько мелких исправлений (ryanli).</item>
+	</note>
+
 	<note version="0.6">
 		<item>NНовый интерфейс настроек (ryanli).</item>
 		<item>Интерфейс OAuth для доступа к новому CHPP API Hattrick-а (ryanli).</item>
