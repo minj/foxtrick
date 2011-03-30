@@ -232,6 +232,6 @@ var FoxtrickExtraShortcuts = {
 					span.appendChild(list);
 				}
 			}
-		}
+		});
 	}
 }
