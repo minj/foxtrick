@@ -7,7 +7,7 @@
 var FoxtrickMarkAllAsRead = {
 	MODULE_NAME : "MarkAllAsRead",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : ["forumViewThread", "forumOverView", "forumDefault"],
+	PAGES : ["forumViewThread", "forumOverView", "forumDefault", "forumWritePost"],
 	CSS : Foxtrick.ResourcePath + "resources/css/mark-all-as-read.css",
 
 	run : function(page, doc) {
