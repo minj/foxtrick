@@ -4,6 +4,21 @@
  */
 
 Foxtrick.Pages.All = {
+	getId : function(doc) {
+		var parseId = function(span) {
+			var matched = span.textContent.match(/^\((\d+)\)$/);
+			if (matched)
+				return Number(matched[1]);
+			return null;
+		};
+		var header = doc.getElementsByTagName("h1")[0];
+		var spans = header.getElementsByTagName("span");
+		var idContainer = Foxtrick.filter(spans, function(n) {
+			return parseId(n) !== null;
+		})[0];
+		if (idContainer)
+			return parseId(idContainer);
+	},
 	getOwnTeamId : function(doc) {
 		try {
 			var id =  FoxtrickHelper.getOwnTeamId();

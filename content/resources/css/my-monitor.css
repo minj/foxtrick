@@ -32,3 +32,7 @@
 .ft-monitor-remove:hover {
 	background-image: url("chrome://foxtrick/content/resources/img/crossRed_small.png");
 }
+
+#ft-monitor-sidebar-box .hidden {
+	display: none !important; /* need to overwrite */
+}

@@ -7,37 +7,17 @@
 var FoxtrickMyMonitor = {
 	MODULE_NAME : "MyMonitor",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["myhattrick", "dashboard"],
+	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
 	CSS : Foxtrick.ResourcePath + "resources/css/my-monitor.css",
 
 	run : function(page, doc) {
-		// get saved teams from preferences
-		var getSavedTeams = function() {
-			var savedTeams = FoxtrickPrefs.getString("MyMonitor.teams");
-			try {
-				var teams = JSON.parse(savedTeams);
-			}
-			catch (e) {
-				Foxtrick.dump("Cannot parse saved teams: " + savedTeams + ".\n");
-			}
-			if (!teams) {
-				// return national teams if first run
-				FoxtrickHelper.getOwnTeamInfo(doc, page);
-				var leagueId = FoxtrickHelper.getOwnCountryId();
-				const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
-					"//League[LeagueID='" + leagueId + "']");
-				const ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
-				const ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
-				const u20Name = "U-20 " + ntName;
-				const u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
-				teams = [{ id : ntId, name : ntName }, { id : u20Id, name : u20Name }];
-			}
-			return teams;
-		};
-		var setSavedTeams = function(teams) {
-			FoxtrickPrefs.setString("MyMonitor.teams", JSON.stringify(teams));
-		};
+		if (page == "myhattrick" || page == "dashboard")
+			FoxtrickMyMonitor.display(page, doc);
+		else if (page == "teamPage" || page == "youthoverview" || page == "national")
+			FoxtrickMyMonitor.showSidebar(page, doc);
+	},
 
+	display : function(page, doc) {
 		if (page == "myhattrick")
 			var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
 		else if (page == "dashboard")
@@ -61,46 +41,21 @@ var FoxtrickMyMonitor = {
 		addLink.className = "ft-link";
 		addLink.textContent = Foxtrickl10n.getString("button.add");
 		addLink.addEventListener("click", function() {
-			while (note = doc.getElementById("ft-monitor-add-note")) {
-				// remove old notes
+			const noteId = "ft-monitor-add-note";
+			while (note = doc.getElementById(noteId))
 				note.parentNode.removeChild(note);
-			}
-			// box for adding a team
-			var addBox = doc.createElement("div");
-			addBox.id = "ft-monitor-add-box";
-			// label prompting for team ID
-			var addLabel = doc.createElement("label");
-			addLabel.id = "ft-monitor-add-label";
-			addLabel.htmlFor = "ft-monitor-add-input";
-			addLabel.textContent = Foxtrickl10n.getString("MyMonitor.inputTeamId");
-			addBox.appendChild(addLabel);
-			addBox.appendChild(doc.createTextNode(" "));
-			// input for team ID
-			var addInput = doc.createElement("input");
-			addInput.id = "ft-monitor-add-input";
-			addBox.appendChild(addInput);
-			// button for submitting team id add
-			var addButton = doc.createElement("input");
-			addButton.id = "ft-monitor-add-button";
-			addButton.type = "button";
-			addButton.value = Foxtrickl10n.getString("button.add");
-			addButton.addEventListener("click", function(ev) {
-				var id = addInput.value;
-				// name will be loaded after XML loads
-				var team = { id : id, name : "#" + id };
-				teams.push(team);
-				setSavedTeams(teams);
-				addTeam(team);
-			}, false);
-			addBox.appendChild(addButton);
-			// add note
-			var note = Foxtrick.util.note.create(doc, addBox, null, true);
-			note.id = "ft-monitor-add-note";
+			var note = Foxtrick.util.note.create(
+				doc,
+				Foxtrickl10n.getString("MyMonitor.addHelp"),
+				null,
+				true
+			);
+			note.id = noteId;
 			parent.insertBefore(note, container);
 		}, false);
 		addRemove.appendChild(addLink);
 
-		// slash separating add and remove links
+		// slash separating add and remove
 		addRemove.appendChild(doc.createTextNode(" / "));
 
 		// link for removing a team
@@ -109,11 +64,10 @@ var FoxtrickMyMonitor = {
 		removeLink.className = "ft-link";
 		removeLink.textContent = Foxtrickl10n.getString("button.remove");
 		removeLink.addEventListener("click", function() {
-			// add note when clicking the link
-			while (note = doc.getElementById("ft-monitor-remove-note")) {
-				// remove old notes
+			const noteId = "ft-monitor-remove-note"
+			while (note = doc.getElementById(noteId))
 				note.parentNode.removeChild(note);
-			}
+
 			var removeBox = doc.createElement("div");
 			removeBox.id = "ft-monitor-remove-box";
 			// label prompting to select a team for removal
@@ -142,14 +96,14 @@ var FoxtrickMyMonitor = {
 				var index = removeSelect.selectedIndex;
 				removeSelect.removeChild(removeSelect.options[index]);
 				teams.splice(index, 1); // remove the selected from teams
-				setSavedTeams(teams);
+				FoxtrickMyMonitor.setSavedTeams(teams);
 				var frame = doc.getElementsByClassName("ft-monitor-frame")[index];
 				frame.parentNode.removeChild(frame);
 			}, false);
 			removeBox.appendChild(removeButton);
 			// add note
 			var note = Foxtrick.util.note.create(doc, removeBox, null, true);
-			note.id = "ft-monitor-remove-note";
+			note.id = noteId;
 			parent.insertBefore(note, container);
 		}, false);
 		addRemove.appendChild(removeLink);
@@ -165,9 +119,18 @@ var FoxtrickMyMonitor = {
 		container.appendChild(separator);
 
 		// add the teams
-		var teams = getSavedTeams();
+		var teams = FoxtrickMyMonitor.getSavedTeams();
 		const dateNow = Foxtrick.util.time.getHtDate(doc);
 		var addTeam = function(team) {
+			var buildLink = function(team, link) {
+				link.textContent = team.name;
+				if (team.type == "nt")
+					link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId" + team.id;
+				else if (team.type == "youth")
+					link.href = "/Club/Youth/Default.aspx?YouthTeamID=" + team.id;
+				else // default as senior
+					link.href = "/Club/?TeamID=" + team.id;
+			};
 			// frame for each team
 			var frame = doc.createElement("div");
 			frame.className = "ft-monitor-frame";
@@ -176,10 +139,10 @@ var FoxtrickMyMonitor = {
 			// team header
 			var header = doc.createElement("h2");
 			frame.appendChild(header);
-			// span containing team name
-			var nameSpan = doc.createElement("span");
-			nameSpan.textContent = team.name;
-			header.appendChild(nameSpan);
+			// link containing team name
+			var nameLink = doc.createElement("a");
+			buildLink(team, nameLink);
+			header.appendChild(nameLink);
 
 			// matches table
 			var matches = doc.createElement("table");
@@ -189,17 +152,23 @@ var FoxtrickMyMonitor = {
 				["file", "matches"],
 				["teamID", team.id]
 			];
+			if (team.type == "youth")
+				args.push(["isYouth", "true"]);
+
 			Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
 				if (xml == null) {
 					frame.removeChild(matches);
 					frame.appendChild(doc.createTextNode(Foxtrickl10n.getString("api.failure")));
 					return;
 				}
-				team.id = xml.getElementsByTagName("TeamID")[0].textContent
+				// update team info
+				team.id = xml.getElementsByTagName("TeamID")[0].textContent;
 				team.name = xml.getElementsByTagName("TeamName")[0].textContent;
-				nameSpan.textContent = team.name;
-				
-				setSavedTeams(teams);
+				FoxtrickMyMonitor.setSavedTeams(teams);
+
+				// update frame header (team link)
+				buildLink(team, nameLink);
+
 				Foxtrick.map(xml.getElementsByTagName("Match"), function(match) {
 					const dateText = match.getElementsByTagName("MatchDate")[0].textContent;
 					const date = Foxtrick.util.time.getDateFromText(dateText, "yyyymmdd");
@@ -232,5 +201,89 @@ var FoxtrickMyMonitor = {
 			});
 		};
 		Foxtrick.map(teams, addTeam);
+	},
+
+	showSidebar : function(page, doc) {
+		if (page == "teamPage")
+			var type = "senior";
+		else if (page == "youthoverview")
+			var type = "youth";
+		else if (page == "national")
+			var type = "nt";
+
+		var teams = FoxtrickMyMonitor.getSavedTeams();
+		var teamId = Foxtrick.Pages.All.getId(doc);
+		var existing = Foxtrick.filter(teams, function(n) {
+			return n.id == teamId && n.type == type;
+		});
+		var container = doc.createElement("div");
+		container.id = "ft-monitor-sidebar-box-container";
+		// link to add team
+		var addLink = doc.createElement("a");
+		addLink.className = "ft-link";
+		addLink.textContent = Foxtrickl10n.getString("MyMonitor.add");
+		addLink.addEventListener("click", function() {
+			teams.push({ id : teamId, type : type, name : "#" + teamId });
+			FoxtrickMyMonitor.setSavedTeams(teams);
+			Foxtrick.addClass(addLink, "hidden");
+			Foxtrick.removeClass(removeLink, "hidden");
+		}, false);
+		container.appendChild(addLink);
+		// link to remove team
+		var removeLink = doc.createElement("a");
+		removeLink.className = "ft-link";
+		removeLink.textContent = Foxtrickl10n.getString("MyMonitor.remove");
+		removeLink.addEventListener("click", function() {
+			teams = Foxtrick.filter(teams, function(n) {
+				return n.id != teamId || n.type != type;
+			})
+			FoxtrickMyMonitor.setSavedTeams(teams);
+			Foxtrick.removeClass(addLink, "hidden");
+			Foxtrick.addClass(removeLink, "hidden");
+		}, false);
+		container.appendChild(removeLink);
+
+		if (existing.length > 0)
+			Foxtrick.addClass(addLink, "hidden");
+		else
+			Foxtrick.addClass(removeLink, "hidden");
+
+		var sidebar = Foxtrick.addBoxToSidebar(
+			doc,
+			Foxtrickl10n.getString("MyMonitor.header"),
+			container,
+			"ft-monitor-sidebar-box",
+			"first"
+		);
+	},
+
+	getSavedTeams : function() {
+		var savedTeams = FoxtrickPrefs.getString("MyMonitor.teams");
+		try {
+			var teams = JSON.parse(savedTeams);
+		}
+		catch (e) {
+			Foxtrick.dump("Cannot parse saved teams: " + savedTeams + ".\n");
+		}
+		if (!teams) {
+			// return national teams if first run
+			FoxtrickHelper.getOwnTeamInfo(doc, page);
+			var leagueId = FoxtrickHelper.getOwnCountryId();
+			const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
+				"//League[LeagueID='" + leagueId + "']");
+			const ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
+			const ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
+			const u20Name = "U-20 " + ntName;
+			const u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
+			teams = [
+				{ id : ntId, name : ntName, type : "nt" },
+				{ id : u20Id, name : u20Name, type : "nt" }
+			];
+		}
+		return teams;
+	},
+
+	setSavedTeams : function(teams) {
+		FoxtrickPrefs.setString("MyMonitor.teams", JSON.stringify(teams));
 	}
 };
