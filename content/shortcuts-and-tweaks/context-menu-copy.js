@@ -25,7 +25,7 @@ var FoxtrickContextMenuCopy = {
 		{ type : "Team", re : /\/Club\/\?TeamID=(\d+)/i, tag : "teamid" },
 		{ type : "Youth Team", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
 		{ type : "Youth Match", re : /\/Match\.aspx\?matchID=(\d+)&isYouth=True/i, tag : "youthmatchid" },
-		{ type : "Match", re : /\/Match\.aspx\?matchID=(\d+)&/i, tag : "matchid" },
+		{ type : "Match", re : /\/Match\.aspx\?matchID=(\d+)/i, tag : "matchid" },
 		{ type : "Federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
 		{ type : "Series", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
 		{ type : "Youth Series", re : /\?YouthLeagueId=(\d+)/i, tag : "youthleagueid" },
