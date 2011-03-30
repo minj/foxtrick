@@ -139,7 +139,9 @@ var FoxtrickConfirmActions = {
 				}
 			}
 			if (Foxtrick.isModuleFeatureEnabled(this, "NtChange")) {
-				var submitLink = doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction");
+				// one may coach both a U-20 and an NT team
+				var submitLink = doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction")
+					|| doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl01_lnkNTAction");
 				if (submitLink) {
 					var sOnclick = submitLink.href.replace(/javascript\:/, "");
 					if (sOnclick.search(/confirm/) == -1){ // already added?
