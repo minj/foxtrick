@@ -128,7 +128,7 @@ var FoxtrickMyMonitor = {
 			var buildLink = function(team, link) {
 				link.textContent = team.name;
 				if (team.type == "nt")
-					link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId" + team.id;
+					link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId=" + team.id;
 				else if (team.type == "youth")
 					link.href = "/Club/Youth/Default.aspx?YouthTeamID=" + team.id;
 				else // default as senior
