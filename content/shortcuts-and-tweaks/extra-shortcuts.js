@@ -174,87 +174,64 @@ var FoxtrickExtraShortcuts = {
 		}
 	},
 
-	checkRadio : function( doc, url, radio ) {
-		try {
-			var req = new XMLHttpRequest();
-			var abortTimerId = window.setTimeout(function(){req.abort()}, 5000);
-			var stopTimer = function(){window.clearTimeout(abortTimerId); };
-			req.onreadystatechange = function(){
-				if (req.readyState == 4){
-					try {
-						stopTimer();
-						var radio_xml = req.responseXML;
+	checkRadio : function(doc, url, radio) {
+		Foxtrick.loadXml(url, function(radio_xml) {
+			if (radio_xml != null && radio_xml.getElementsByTagName('radio').length!=0) {
+				if (radio_xml.getElementsByTagName('status').length!=0) {
+					var span = doc.getElementById(radio+'Span');
 
-						if (radio_xml != null && radio_xml.getElementsByTagName('radio').length!=0) {
-							if (radio_xml.getElementsByTagName('status').length!=0) {
-								var span = doc.getElementById(radio+'Span');
-
-								var list = span.getElementsByTagName('ul');
-								list = doc.createElement("ul");
-								list.className = "ft-pop";
+					var list = span.getElementsByTagName('ul');
+					list = doc.createElement("ul");
+					list.className = "ft-pop";
 
 
-								if (radio_xml.getElementsByTagName('status')[0].textContent==='online') {
+					if (radio_xml.getElementsByTagName('status')[0].textContent==='online') {
 
-									var item = doc.createElement("li");
-									item.innerHTML = '<h2>'+radio_xml.getElementsByTagName('iconOnline')[0].getAttribute('value').replace(/javascript/gi,'')+'</h2>';
-									list.appendChild(item);
+						var item = doc.createElement("li");
+						item.innerHTML = '<h2>'+radio_xml.getElementsByTagName('iconOnline')[0].getAttribute('value').replace(/javascript/gi,'')+'</h2>';
+						list.appendChild(item);
 
-									var item = doc.createElement("li");
-									item.innerHTML = radio_xml.getElementsByTagName('song')[0].getAttribute('value').replace(/javascript/gi,'')+ '<br>'
-													+ radio_xml.getElementsByTagName('song')[0].textContent.replace(/javascript/gi,'');
-									list.appendChild(item);
+						var item = doc.createElement("li");
+						item.innerHTML = radio_xml.getElementsByTagName('song')[0].getAttribute('value').replace(/javascript/gi,'')+ '<br>'
+										+ radio_xml.getElementsByTagName('song')[0].textContent.replace(/javascript/gi,'');
+						list.appendChild(item);
 
-									var streams = radio_xml.getElementsByTagName('stream')
-									for (var j=0; j<streams.length; ++j) {
-										var item = doc.createElement("li");
-										var link = doc.createElement("a");
-										link.href = streams[j].textContent.replace(/javascript/gi,'');
-										link.target='_blank';
-										link.textContent = streams[j].getAttribute('value');
-										item.appendChild(link);
-										list.appendChild(item);
-									}
-
-									var img1 = doc.getElementById(radio+'Icon');
-									img1.setAttribute("style","margin-left:2px; background-repeat:no-repeat; background-image: url('"+radio_xml.getElementsByTagName('iconOnline')[0].textContent.replace(/javascript/gi,'')+"') !important;");
-									FoxtrickPrefs.setString(radio+'CurrentIcon',radio_xml.getElementsByTagName('iconOnline')[0].textContent.replace(/javascript/gi,''));
-								}
-								else {
-									var item = doc.createElement("li");
-									item.innerHTML = '<h2>'+radio_xml.getElementsByTagName('iconOffline')[0].getAttribute('value').replace(/javascript/gi,'')+'</h2>';
-									list.appendChild(item);
-									var img1 = doc.getElementById(radio+'Icon');
-									img1.setAttribute("style","margin-left:2px; background-repeat:no-repeat; background-image: url('"+radio_xml.getElementsByTagName('iconOffline')[0].textContent.replace(/javascript/gi,'')+"') !important;");
-									FoxtrickPrefs.setString(radio+'CurrentIcon',radio_xml.getElementsByTagName('iconOffline')[0].textContent.replace(/javascript/gi,''));
-								}
-								var websites = radio_xml.getElementsByTagName('website')
-								for (var j=0; j<websites.length; ++j) {
-									var item = doc.createElement("li");
-									var link = doc.createElement("a");
-									link.href = websites[j].textContent.replace(/javascript/gi,'');
-									link.target='_blank';
-									link.textContent = websites[j].getAttribute('value');
-									item.appendChild(link);
-									list.appendChild(item);
-								}
-								span.appendChild(list);
-							}
+						var streams = radio_xml.getElementsByTagName('stream')
+						for (var j=0; j<streams.length; ++j) {
+							var item = doc.createElement("li");
+							var link = doc.createElement("a");
+							link.href = streams[j].textContent.replace(/javascript/gi,'');
+							link.target='_blank';
+							link.textContent = streams[j].getAttribute('value');
+							item.appendChild(link);
+							list.appendChild(item);
 						}
+
+						var img1 = doc.getElementById(radio+'Icon');
+						img1.setAttribute("style","margin-left:2px; background-repeat:no-repeat; background-image: url('"+radio_xml.getElementsByTagName('iconOnline')[0].textContent.replace(/javascript/gi,'')+"') !important;");
+						FoxtrickPrefs.setString(radio+'CurrentIcon',radio_xml.getElementsByTagName('iconOnline')[0].textContent.replace(/javascript/gi,''));
 					}
-					catch (e) {
-						Foxtrick.dump("Failure getting " + url + "\n");
-						Foxtrick.dumpError(e);
+					else {
+						var item = doc.createElement("li");
+						item.innerHTML = '<h2>'+radio_xml.getElementsByTagName('iconOffline')[0].getAttribute('value').replace(/javascript/gi,'')+'</h2>';
+						list.appendChild(item);
+						var img1 = doc.getElementById(radio+'Icon');
+						img1.setAttribute("style","margin-left:2px; background-repeat:no-repeat; background-image: url('"+radio_xml.getElementsByTagName('iconOffline')[0].textContent.replace(/javascript/gi,'')+"') !important;");
+						FoxtrickPrefs.setString(radio+'CurrentIcon',radio_xml.getElementsByTagName('iconOffline')[0].textContent.replace(/javascript/gi,''));
 					}
+					var websites = radio_xml.getElementsByTagName('website')
+					for (var j=0; j<websites.length; ++j) {
+						var item = doc.createElement("li");
+						var link = doc.createElement("a");
+						link.href = websites[j].textContent.replace(/javascript/gi,'');
+						link.target='_blank';
+						link.textContent = websites[j].getAttribute('value');
+						item.appendChild(link);
+						list.appendChild(item);
+					}
+					span.appendChild(list);
 				}
 			}
-			req.open('GET', url , true);
-			req.overrideMimeType('text/xml');
-			req.send(null);
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
-	},
+	}
 }
-// EOF
