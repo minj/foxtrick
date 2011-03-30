@@ -84,7 +84,10 @@ var FoxtrickMyMonitor = {
 			// add options to select box
 			Foxtrick.map(teams, function(team) {
 				var option = doc.createElement("option");
-				option.textContent = "%n (%i)".replace(/%n/, team.name).replace(/%i/, team.id);
+				option.textContent = Foxtrickl10n.getString("MyMonitor.removeTeamFormat")
+					.replace(/%n/, team.name)
+					.replace(/%t/, Foxtrickl10n.getString("MyMonitor.type." + team.type))
+					.replace(/%i/, team.id);
 				removeSelect.appendChild(option);
 			});
 			// button committing removal
