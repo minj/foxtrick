@@ -376,10 +376,10 @@ var FoxtrickForumChangePosts = {
 			if (do_HighlightThreadOpener && TName_lng) {
 				try {
 					if (poster_link1.innerHTML == TName_lng) {
-						poster_link1.previousSibling.previousSibling.setAttribute('class','ft_slH_PID_left');
+						poster_link1.parentNode.parentNode.firstChild.nextSibling.setAttribute('class','ft_slH_PID_left');
 					}
 					else if (poster_link2.innerHTML == TName_lng) {
-						poster_link2.previousSibling.previousSibling.setAttribute('class','ft_slH_PID_right');
+						poster_link2.parentNode.parentNode.firstChild.setAttribute('class','ft_slH_PID_right');
 					}
 				}
 				catch (e) {
