@@ -28,6 +28,7 @@ var FoxtrickSeriesFlags = {
 					var seriesName = xml.getElementsByTagName("LeagueLevelUnitName")[0].textContent;
 					var seriesId = xml.getElementsByTagName("LeagueLevelUnitID")[0].textContent;
 					var series = doc.createElement("a");
+					series.className = "inner";
 					series.textContent = seriesName;
 					series.href = "/World/Series/Default.aspx?LeagueLevelUnitID=" + seriesId;
 					flag.appendChild(series);
