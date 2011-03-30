@@ -147,9 +147,10 @@ var FoxtrickMyMonitor = {
 			buildLink(team, nameLink);
 			header.appendChild(nameLink);
 
-			// matches table
-			var matches = doc.createElement("table");
-			frame.appendChild(matches);
+			// matches container
+			var matchesContainer = doc.createElement("div");
+			Foxtrick.util.matchView.startLoad(matchesContainer);
+			frame.appendChild(matchesContainer);
 
 			var args = [
 				["file", "matches"],
@@ -159,48 +160,7 @@ var FoxtrickMyMonitor = {
 				args.push(["isYouth", "true"]);
 
 			Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
-				if (xml == null) {
-					frame.removeChild(matches);
-					frame.appendChild(doc.createTextNode(Foxtrickl10n.getString("api.failure")));
-					return;
-				}
-				// update team info
-				team.id = xml.getElementsByTagName("TeamID")[0].textContent;
-				team.name = xml.getElementsByTagName("TeamName")[0].textContent;
-				FoxtrickMyMonitor.setSavedTeams(teams);
-
-				// update frame header (team link)
-				buildLink(team, nameLink);
-
-				Foxtrick.map(xml.getElementsByTagName("Match"), function(match) {
-					const dateText = match.getElementsByTagName("MatchDate")[0].textContent;
-					const date = Foxtrick.util.time.getDateFromText(dateText, "yyyymmdd");
-					const dateDiff = Math.abs(date.getTime() - dateNow.getTime());
-					if (dateDiff > 7 * 24 * 60 * 60 * 1000)
-						return; // only if within a week
-
-					var matchId = match.getElementsByTagName("MatchID")[0].textContent;
-					var homeTeam = match.getElementsByTagName("HomeTeamName")[0].textContent;
-					var awayTeam = match.getElementsByTagName("AwayTeamName")[0].textContent;
-					var homeId = match.getElementsByTagName("HomeTeamID")[0].textContent;
-					var awayId = match.getElementsByTagName("AwayTeamID")[0].textContent;
-					var side = (team.id == homeId) ? "home" : "away";
-					var status = match.getElementsByTagName("Status")[0].textContent;
-					// FIXME - we steal the function from FoxtrickNtPeek now,
-					// should move the function outside in the future
-					if (status == "FINISHED") {
-						var homeGoals = match.getElementsByTagName("HomeGoals")[0].textContent;
-						var awayGoals = match.getElementsByTagName("AwayGoals")[0].textContent;
-						var matchRow = FoxtrickNtPeek.getMatchRow(doc,
-							matchId, side, homeTeam, awayTeam, homeGoals,
-							awayGoals);
-					}
-					else if (status == "UPCOMING" || status == "ONGOING") {
-						var matchRow = FoxtrickNtPeek.getMatchRow(doc,
-							matchId, side, homeTeam, awayTeam);
-					}
-					matches.appendChild(matchRow);
-				});
+				Foxtrick.util.matchView.fillMatches(matchesContainer, xml);
 			});
 		};
 		Foxtrick.map(teams, addTeam);

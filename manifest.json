@@ -20,6 +20,7 @@
 			"content/lib/sha1.js",
 			"content/util/currency.js",
 			"content/util/html.js",
+			"content/util/match-view.js",
 			"content/util/misc.js",
 			"content/util/note.js",
 			"content/util/string.js",
