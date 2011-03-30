@@ -68,6 +68,7 @@ Foxtrick.modules = [
 	FoxtrickBackgroundFixed,
 	FoxtrickCopyPlayerAd,
 	FoxtrickCopyRatings,
+	FoxtrickMyMonitor,
 	FoxtrickLinksCustom,
 	FoxtrickLinksLeague,
 	FoxtrickLinksCountry,
@@ -148,6 +149,5 @@ Foxtrick.modules = [
 	FoxtrickSeriesFlags,
 	FoxtrickHTMSPoints,
 	FoxtrickFriendlyInterface,
-	FoxtrickMyMonitor,
 	FoxtrickMarkAllAsRead
 ];
