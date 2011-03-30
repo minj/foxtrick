@@ -15,7 +15,11 @@ var FoxtrickMarkAllAsRead = {
 		if (threads.length == 0)
 			return; // no threads!
 		var threadLinks = Foxtrick.map(threads, function(n) {
-			return n.getElementsByClassName("url")[0].getElementsByTagName("a")[0];
+			//check if there are url or urlShort
+			var urltest = n.getElementsByClassName("url");
+			var urlclass = (urltest.length != 0) ? "url" : "urlShort";
+			return n.getElementsByClassName(urlclass)[0].getElementsByTagName("a")[0];
+			
 		});
 		var threadIds = Foxtrick.map(threadLinks, function(n) {
 			return n.href.match(/\/Forum\/Read\.aspx\?t=(\d+)/)[1];
