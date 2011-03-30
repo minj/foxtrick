@@ -148,5 +148,6 @@ Foxtrick.modules = [
 	FoxtrickSeriesFlags,
 	FoxtrickHTMSPoints,
 	FoxtrickFriendlyInterface,
-	FoxtrickMyMonitor
+	FoxtrickMyMonitor,
+	FoxtrickMarkAllAsRead
 ];

@@ -49,6 +49,7 @@
 			"content/forum/go-to-post-box.js",
 			"content/forum/forum-presentation.js",
 			"content/forum/forum-thread-auto-ignore.js",
+			"content/forum/mark-all-as-read.js",
 			"content/matches/match-player-colouring.js",
 			"content/matches/match-report-format.js",
 			"content/matches/ratings.js",

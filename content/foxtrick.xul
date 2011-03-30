@@ -60,6 +60,7 @@
 <script type="application/x-javascript" src="./forum/go-to-post-box.js" />
 <script type="application/x-javascript" src="./forum/forum-presentation.js" />
 <script type="application/x-javascript" src="./forum/forum-thread-auto-ignore.js" />
+<script type="application/x-javascript" src="./forum/mark-all-as-read.js" />
 <script type="application/x-javascript" src="./matches/match-player-colouring.js" />
 <script type="application/x-javascript" src="./matches/match-report-format.js" />
 <script type="application/x-javascript" src="./matches/ratings.js" />
