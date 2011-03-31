@@ -2,7 +2,7 @@
     background: url("chrome://foxtrick/content/resources/img/tick2.png") no-repeat scroll 50% 50% transparent;
     cursor: pointer;
     height: 16px;
-    margin: 0 0 0 2px;
+    margin: 0 7px 0 2px;
     width: 12px;
     float: right;
 }
