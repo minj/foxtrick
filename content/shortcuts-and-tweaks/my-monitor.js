@@ -160,6 +160,12 @@ var FoxtrickMyMonitor = {
 				args.push(["isYouth", "true"]);
 
 			Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
+				if (xml !== null) {
+					team.name = xml.getElementsByTagName("TeamName")[0].textContent;
+					team.id = xml.getElementsByTagName("TeamID")[0].textContent;
+					FoxtrickMyMonitor.setSavedTeams(teams);
+					buildLink(team, nameLink);
+				}
 				Foxtrick.util.matchView.fillMatches(matchesContainer, xml);
 			});
 		};
