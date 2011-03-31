@@ -26,6 +26,7 @@ FoxtrickLineupShortcut = {
 				this._Highlight_Player ( doc );
 				break;
 		}
+		Foxtrick.dump('FoxtrickLineupShortcut run was here...\n');
 	},
 
 	change : function( page, doc ) {
@@ -34,6 +35,7 @@ FoxtrickLineupShortcut = {
 				this._Analyze_Stat_Page ( doc );
 				break;
 		}
+		Foxtrick.dump('FoxtrickLineupShortcut change was here...\n');
 	},
 
 	//***********************MAIN TEAM
@@ -137,15 +139,20 @@ FoxtrickLineupShortcut = {
 		var playerid=FoxtrickHelper.findPlayerId(element);
 		var lineuplabel = Foxtrickl10n.getString( "foxtrick.shortcut.matchlineup" );
 		var matchtable=doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1').getElementsByTagName('table').item(0);
-		//adding lineup to header row
-		var newhead=doc.createElement('th');
-		newhead.innerHTML=lineuplabel;
-		matchtable.rows[0].appendChild(newhead);
-		//We start from second row because first is header
-		for (var i=1;i<matchtable.rows.length;i++) {
-			var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
-			var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
-			this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
+		var checktables = matchtable.getElementsByClassName("ft_lineupheader");
+		if (checktables.length == 0)
+		{
+			//adding lineup to header row
+			var newhead=doc.createElement('th');
+			newhead.className="ft_lineupheader";
+			newhead.innerHTML=lineuplabel;
+			matchtable.rows[0].appendChild(newhead);
+			//We start from second row because first is header
+			for (var i=1;i<matchtable.rows.length;i++) {
+				var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
+				var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
+				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
+			}
 		}
 	},
 
