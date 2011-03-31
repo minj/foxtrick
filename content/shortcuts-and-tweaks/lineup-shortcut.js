@@ -26,7 +26,7 @@ FoxtrickLineupShortcut = {
 				this._Highlight_Player ( doc );
 				break;
 		}
-		Foxtrick.dump('FoxtrickLineupShortcut run was here...\n');
+		// Foxtrick.dump('FoxtrickLineupShortcut run was here...\n');
 	},
 
 	change : function( page, doc ) {
@@ -35,7 +35,7 @@ FoxtrickLineupShortcut = {
 				this._Analyze_Stat_Page ( doc );
 				break;
 		}
-		Foxtrick.dump('FoxtrickLineupShortcut change was here...\n');
+		// Foxtrick.dump('FoxtrickLineupShortcut change was here...\n');
 	},
 
 	//***********************MAIN TEAM
