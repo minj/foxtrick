@@ -11,15 +11,6 @@ var FoxtrickTableSort = {
 	PAGES : new Array('forumViewThread','all_late'),
 	CSS : Foxtrick.ResourcePath + "resources/css/tableSort.css",
 
-	sortNum : false,
-	sortYouthSkill : false,
-	sortAge : false,
-	sortOrdinal : false,
-	sortDate : false,
-	sortSkill : false,
-	sortIndex : -1,
-	sortDirection : 1,
-
 	run : function( page, doc ) {
 		if (page=='forumViewThread') {
 			var tables = doc.getElementsByClassName("htMlTable");
