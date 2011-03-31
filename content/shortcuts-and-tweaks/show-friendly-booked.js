@@ -1,6 +1,6 @@
 /*
  * show-friendly-booked.js
- * Show whether team has booked a friendly on series page
+ * Show whether a team has booked friendly on series page
  * @author ryanli
  */
 
