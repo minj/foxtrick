@@ -41,15 +41,16 @@ var FoxtrickShowFriendlyBooked = {
 					destCell.title = Foxtrickl10n.getString("api.failure");
 					return;
 				}
+				// reset textContent and title
+				destCell.textContent = "";
+				destCell.removeAttribute("title");
 				var friendly = xml.getElementsByTagName("FriendlyTeamID")[0];
 				if (friendly.textContent != "0") {
 					// friendly booked
-					destCell.textContent = Foxtrickl10n.getString("team.status.booked.abbr");
-					destCell.title = Foxtrickl10n.getString("team.status.booked");
-				}
-				else {
-					// available for challenge, reset textContent and title
-					destCell.textContent = destCell.title = "";
+					var img = doc.createElement("img");
+					img.src = Foxtrick.ResourcePath + "resources/img/friendly_small.png";
+					img.alt = img.title = Foxtrickl10n.getString("team.status.booked");
+					destCell.appendChild(img);
 				}
 			});
 		});
