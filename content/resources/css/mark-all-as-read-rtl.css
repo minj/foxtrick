@@ -1,0 +1,8 @@
+.ft-mark-all-as-read {
+    background: url("chrome://foxtrick/content/resources/img/tick2.png") no-repeat scroll 50% 50% transparent;
+    cursor: pointer;
+    height: 16px;
+    margin: 0 2px 0 7px;
+    width: 12px;
+    float: left;
+}
