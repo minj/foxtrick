@@ -140,7 +140,7 @@ Foxtrick.util.note = {
 	},
 
 	createLoading : function(doc, inline) {
-		const loadingText = Foxtrickl10n.getString("Loading");
+		const loadingText = Foxtrickl10n.getString("status.loading");
 		if (inline) {
 			// if the note is inline, return a span with nothing special
 			var container = doc.createElement("span");
