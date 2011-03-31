@@ -54,6 +54,7 @@ Foxtrick.ApiProxy = {
 			var linkPar = doc.createElement("p");
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
+			Foxtrick.dump("Requesting token at: " + requestTokenUrl + "\n");
 			Foxtrick.load(requestTokenUrl, function(text, status) {
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
@@ -99,6 +100,7 @@ Foxtrick.ApiProxy = {
 					OAuth.SignatureMethod.sign(msg, accessor);
 					var query = OAuth.formEncode(msg.parameters);
 					var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
+					Foxtrick.dump("Requesting access token at: " + accessTokenUrl + "\n");
 					Foxtrick.load(accessTokenUrl, function(text) {
 						var accessToken = text.split(/&/)[0].split(/=/)[1];
 						var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
@@ -165,19 +167,19 @@ Foxtrick.ApiProxy = {
 		OAuth.setTimestampAndNonce(msg);
 		OAuth.SignatureMethod.sign(msg, accessor);
 		var url = OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
+		Foxtrick.dump("Fetching XML data from " + url + "\n");
 		Foxtrick.loadXml(url, function(x, status) {
 			if (status == 200) {
-				Foxtrick.dump("ApiProxy: retrieval success.\n");
 				callback(x);
 			}
 			else if (status == 401) {
-				Foxtrick.dump("ApiProxy: error 401, unauthorized.\n");
+				Foxtrick.dump("ApiProxy: error 401, unauthorized. Arguments: " + parameters + ".\n");
 				Foxtrick.ApiProxy.invalidateAccessToken(doc);
 				Foxtrick.ApiProxy.authorize(doc);
 				callback(null);
 			}
 			else {
-				Foxtrick.dump("ApiProxy: error " + status + ".\n");
+				Foxtrick.dump("ApiProxy: error " + status + ". Arguments: " + parameters + "\n");
 				callback(null);
 			}
 		}, true);
