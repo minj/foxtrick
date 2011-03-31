@@ -2,6 +2,7 @@ span.myht1 {
 	position: relative;
 }
 ul.ft-popup-list {
+	font-size: 11px;
 	display: none;
 	position: absolute;
 	background-color: #ffffff;
