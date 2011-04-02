@@ -116,7 +116,7 @@ var FoxtrickSkillTable = {
 
 			// functions used to attach data to table cell
 			var category = function(cell, cat) {
-				categories = ["GK", "WB", "CD", "W", "IM", "FW", "S", "R", "E1", "E2"];
+				const categories = ["GK", "WB", "CD", "W", "IM", "FW", "S", "R", "E1", "E2"];
 				cell.appendChild(doc.createTextNode(Foxtrickl10n.getString("categories." + categories[cat - 1])));
 				cell.setAttribute("index", cat);
 			}
@@ -467,8 +467,18 @@ var FoxtrickSkillTable = {
 			}
 
 			var tablediv = doc.getElementById("ft_skilltablediv");
-			FoxtrickSkillTable.insertCustomizeTable(tablediv, customizeTable);
-			FoxtrickSkillTable.insertSkillTable(tablediv, table);
+			var insertCustomizeTable = function(customizeTable) {
+				var wrapper = tablediv.getElementsByClassName("ft_skilltable_customizewrapper")[0];
+				wrapper.appendChild(customizeTable);
+			};
+
+			var insertSkillTable = function(skillTable) {
+				var wrapper = tablediv.getElementsByClassName("ft_skilltable_wrapper")[0];
+				wrapper.appendChild(skillTable);
+			};
+
+			insertCustomizeTable(customizeTable);
+			insertSkillTable(table);
 
 			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 			if (FoxtrickPrefs.getBool("module.SkillTable.top")) {
@@ -480,73 +490,72 @@ var FoxtrickSkillTable = {
 		}
 	},
 
-	/* sortCompare
-		sortClick() will first check whether every cell in that column has the
-		attribute `index'. If so, they will be ordered with that attribute as
-		key. Otherwise, we use their textContent.
-	*/
-
-	sortCompare : function(a, b) {
-		var aContent, bContent;
-		if (FoxtrickSkillTable.sortByIndex) {
-			aContent = a.cells[FoxtrickSkillTable.sortIndex].getAttribute("index");
-			bContent = b.cells[FoxtrickSkillTable.sortIndex].getAttribute("index");
-		}
-		else {
-			aContent = a.cells[FoxtrickSkillTable.sortIndex].textContent;
-			bContent = b.cells[FoxtrickSkillTable.sortIndex].textContent;
-		}
-		if (aContent === bContent) {
-			return 0;
-		}
-		// place empty cells at the bottom
-		if (aContent === "" || aContent === null || aContent === undefined) {
-			return 1;
-		}
-		if (bContent === "" || bContent === null || bContent === undefined) {
-			return -1;
-		}
-		if (FoxtrickSkillTable.sortString) {
-			// always sort by ascending order
-			return aContent.localeCompare(bContent);
-		}
-		else {
-			aContent = parseFloat(aContent);
-			bContent = parseFloat(bContent);
-			aContent = isNaN(aContent) ? 0 : aContent;
-			bContent = isNaN(bContent) ? 0 : bContent;
-			if (aContent === bContent) {
-				return 0;
-			}
-			if (FoxtrickSkillTable.sortAsc) {
-				return aContent - bContent;
-			}
-			else {
-				return bContent - aContent;
-			}
-		}
-	},
-
 	sortClick : function(ev) {
 		try {
 			var head = ev.currentTarget;
 			var doc = ev.target.ownerDocument;
-			FoxtrickSkillTable.sortIndex = Foxtrick.getChildIndex(head);
-			FoxtrickSkillTable.sortAsc = head.hasAttribute("sort-asc");
-			FoxtrickSkillTable.sortString = head.hasAttribute("sort-string");
+			var sortIndex = Foxtrick.getChildIndex(head);
+			var sortAsc = head.hasAttribute("sort-asc");
+			var sortString = head.hasAttribute("sort-string");
 
 			var table = doc.getElementById("ft_skilltable");
 
-			var rows = new Array();
+			var rows = [];
 
-			FoxtrickSkillTable.sortByIndex = false;
-			for (var i = 1; i < table.rows.length; ++i) {
-				if (table.rows[i].cells[FoxtrickSkillTable.sortIndex].hasAttribute("index")) {
-					FoxtrickSkillTable.sortByIndex = true;
-				}
+			var sortByIndex = Foxtrick.some(table.rows, function(n) {
+				return n.cells[sortIndex].hasAttribute("index");
+			});
+
+			for (var i = 1; i < table.rows.length; ++i)
 				rows.push(table.rows[i].cloneNode(true));
-			}
-			rows.sort(FoxtrickSkillTable.sortCompare);
+
+			/* sortCompare
+				sortClick() will first check whether every cell in that column has the
+				attribute `index'. If so, they will be ordered with that attribute as
+				key. Otherwise, we use their textContent.
+			*/
+			var sortCompare = function(a, b) {
+				var aContent, bContent;
+				if (sortByIndex) {
+					aContent = a.cells[sortIndex].getAttribute("index");
+					bContent = b.cells[sortIndex].getAttribute("index");
+				}
+				else {
+					aContent = a.cells[sortIndex].textContent;
+					bContent = b.cells[sortIndex].textContent;
+				}
+				if (aContent === bContent) {
+					return 0;
+				}
+				// place empty cells at the bottom
+				if (aContent === "" || aContent === null || aContent === undefined) {
+					return 1;
+				}
+				if (bContent === "" || bContent === null || bContent === undefined) {
+					return -1;
+				}
+				if (sortString) {
+					// always sort by ascending order
+					return aContent.localeCompare(bContent);
+				}
+				else {
+					aContent = parseFloat(aContent);
+					bContent = parseFloat(bContent);
+					aContent = isNaN(aContent) ? 0 : aContent;
+					bContent = isNaN(bContent) ? 0 : bContent;
+					if (aContent === bContent) {
+						return 0;
+					}
+					if (sortAsc) {
+						return aContent - bContent;
+					}
+					else {
+						return bContent - aContent;
+					}
+				}
+			};
+
+			rows.sort(sortCompare);
 
 			var newBody = doc.createElement("tbody");
 			for (var i = 0; i < rows.length; ++i)
@@ -558,43 +567,8 @@ var FoxtrickSkillTable = {
 			Foxtrick.dumpError(e);
 		}
 		finally {
-			if (ev) ev.stopPropagation();
-		}
-		Foxtrick.dumpFlush(doc);
-	},
-
-	toggleDisplay : function(ev) {
-		try {
-			var doc = ev.target.ownerDocument;
-			var tablediv = doc.getElementById("ft_skilltablediv");
-
-			if (!FoxtrickSkillTable.isTableCreated(doc)) {
-				setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);
-			}
-
-			var h2 = tablediv.getElementsByTagName("h2")[0];
-			Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
-			Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
-			var show = Foxtrick.hasClass(h2, "ft_boxBodyUnfolded");
-
-			var links = tablediv.getElementsByClassName("ft_skilltable_links")[0];
-			var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
-			var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
-			if (show) {
-				// show the objects
-				Foxtrick.removeClass(links, "hidden");
-				Foxtrick.removeClass(container, "hidden");
-			}
-			else {
-				// hide the objects
-				Foxtrick.removeClass(links, "customizing");
-				Foxtrick.addClass(links, "hidden");
-				Foxtrick.addClass(customizeTable, "hidden");
-				Foxtrick.addClass(container, "hidden");
-			}
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
+			if (ev)
+				ev.stopPropagation();
 		}
 		Foxtrick.dumpFlush(doc);
 	},
@@ -661,11 +635,42 @@ var FoxtrickSkillTable = {
 			Foxtrick.addClass(tablediv, "transfer");
 		}
 
+		var tableCreated = false;
+
 		// table div head
 		var h2 = doc.createElement("h2");
 		h2.className = "ft_boxBodyCollapsed";
 		h2.appendChild(doc.createTextNode(Foxtrickl10n.getString("Skill_table")));
-		Foxtrick.addEventListenerChangeSave(h2, "click", FoxtrickSkillTable.toggleDisplay, false);
+		var toggleDisplay = function() {
+			try {
+				if (!tableCreated) {
+					tableCreated = true;
+					FoxtrickSkillTable.createTable(doc);
+				}
+
+				Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
+				Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
+				var show = Foxtrick.hasClass(h2, "ft_boxBodyUnfolded");
+
+				var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
+				if (show) {
+					// show the objects
+					Foxtrick.removeClass(links, "hidden");
+					Foxtrick.removeClass(container, "hidden");
+				}
+				else {
+					// hide the objects
+					Foxtrick.removeClass(links, "customizing");
+					Foxtrick.addClass(links, "hidden");
+					Foxtrick.addClass(customizeTable, "hidden");
+					Foxtrick.addClass(container, "hidden");
+				}
+			}
+			catch (e) {
+				Foxtrick.dumpError(e);
+			}
+		};
+		Foxtrick.addEventListenerChangeSave(h2, "click", toggleDisplay, false);
 		tablediv.appendChild(h2);
 
 		// links
@@ -757,16 +762,6 @@ var FoxtrickSkillTable = {
 			}
 		}
 		return tablediv;
-	},
-
-	insertCustomizeTable : function(tablediv, customizeTable) {
-		var wrapper = tablediv.getElementsByClassName("ft_skilltable_customizewrapper")[0];
-		wrapper.appendChild(customizeTable);
-	},
-
-	insertSkillTable : function(tablediv, skillTable) {
-		var wrapper = tablediv.getElementsByClassName("ft_skilltable_wrapper")[0];
-		wrapper.appendChild(skillTable);
 	},
 
 	createCustomizeTable : function(properties, doc) {
