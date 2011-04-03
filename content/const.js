@@ -17,7 +17,7 @@ else {
 
 // List of categories
 Foxtrick.moduleCategories = {
-	MAIN : 'main', // to be added manually to main tab
+	INFORMATION_AGGREGATION : 'information_aggregation',
 	SHORTCUTS_AND_TWEAKS : 'shortcuts_and_tweaks',
 	PRESENTATION : 'presentation',
 	MATCHES : 'matches',

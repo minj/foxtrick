@@ -9,7 +9,7 @@
 
 var FoxtrickSeriesFlags = {
 	MODULE_NAME : "SeriesFlags",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["guestbook", "teamPage", "league", "youthleague", "federation"],
 	OPTIONS : ["Guestbook", "Supporters", "Visitors", "CountryOnly"],
 

@@ -5,7 +5,7 @@
 
 FoxtrickExtraPlayerInfo = {
 	MODULE_NAME : "ExtraPlayerInfo",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players"],
 	OPTIONS : ["CoachInfo", "Flag"],
 

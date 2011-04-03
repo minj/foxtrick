@@ -9,7 +9,7 @@
 
 var FoxtrickHTMSPoints = {
 	MODULE_NAME : "HTMSPoints",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["playerdetail", "transferSearchResult", "players"],
 	OPTIONS : ["AddToPlayer", "AddToSearchResult", "AddToPlayerList"],
 

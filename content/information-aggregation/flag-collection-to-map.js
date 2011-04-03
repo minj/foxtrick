@@ -6,7 +6,7 @@
 FoxtrickFlagCollectionToMap = {
 
 	MODULE_NAME : "FlagCollectionToMap",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('flagCollection'),
 
 	own_countryid:0,

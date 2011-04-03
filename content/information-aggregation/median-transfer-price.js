@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMedianTransferPrice = {
 	MODULE_NAME : "MedianTransferPrice",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('transferCompare'),
 
 	run : function( page, doc ) {

@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickTeamSelectBox = {
 	MODULE_NAME : "TeamSelectBox",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["players", "YouthPlayers"],
 
 	run : function(page, doc) {

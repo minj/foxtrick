@@ -6,7 +6,7 @@
 
 FoxtrickExtendedPlayerDetails = {
 	MODULE_NAME : "ExtendedPlayerDetails",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('playerdetail'),
 	RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
@@ -51,7 +51,7 @@ FoxtrickExtendedPlayerDetails = {
 FoxtrickExtendedPlayerDetailsWage = {
 
 	MODULE_NAME : "ExtendedPlayerDetailsWage",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('playerdetail'),
 	OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
 

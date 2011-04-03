@@ -6,7 +6,7 @@
 
 var FoxtrickCrossTable = {
 	MODULE_NAME : "CrossTable",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["fixtures"],
 	CSS : Foxtrick.ResourcePath + "resources/css/cross-table.css",
 

@@ -10,6 +10,7 @@ ROOT_FOLDERS_CHROME = defaults/ skin/
 CONTENT_FOLDERS = alert/ \
 	data/ \
 	forum/ \
+	information-aggregation/ \
 	lib/ \
 	links/ \
 	locale/ \

@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickMyMonitor = {
 	MODULE_NAME : "MyMonitor",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
 	CSS : Foxtrick.ResourcePath + "resources/css/my-monitor.css",
 

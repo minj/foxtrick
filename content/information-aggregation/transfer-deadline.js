@@ -5,7 +5,7 @@
 
 FoxtrickTransferDeadline = {
 	MODULE_NAME : "TransferDeadline",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["teamPageGeneral", "transferSearchResult", "playerdetail", "transfer"],
 	CSS : Foxtrick.ResourcePath + "resources/css/transfer-deadline.css",
 

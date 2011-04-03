@@ -7,7 +7,7 @@
 var FoxtrickYouthSkillHideUnknown = {
 
 	MODULE_NAME : "YouthSkillHideUnknown",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('YouthPlayers'),
 	OPTIONS: new Array('HideUnknown','HideMaximalKeyWord'),
 

@@ -276,29 +276,13 @@ function initMainTab()
 
 function initModuleTabs()
 {
-	var categories = {
-		"shortcuts" : [],
-		"presentation" : [],
-		"matches" : [],
-		"forum" : [],
-		"links" : [],
-		"alert" : []
-	}
-	for (var i in Foxtrick.modules) {
-		var category = Foxtrick.modules[i].MODULE_CATEGORY;
-		if (category == Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS)
-			categories["shortcuts"].push(i);
-		else if (category == Foxtrick.moduleCategories.PRESENTATION)
-			categories["presentation"].push(i);
-		else if (category == Foxtrick.moduleCategories.MATCHES)
-			categories["matches"].push(i);
-		else if (category == Foxtrick.moduleCategories.FORUM)
-			categories["forum"].push(i);
-		else if (category == Foxtrick.moduleCategories.LINKS)
-			categories["links"].push(i);
-		else if (category == Foxtrick.moduleCategories.ALERT)
-			categories["alert"].push(i);
-	}
+	var categories = {};
+	for (var i in Foxtrick.moduleCategories)
+		categories[Foxtrick.moduleCategories[i]] = [];
+	for (var i in Foxtrick.modules)
+		if (Foxtrick.modules[i].MODULE_CATEGORY)
+			categories[Foxtrick.modules[i].MODULE_CATEGORY].push(i);
+
 	// sort modules in alphabetical order and add to category's tab
 	for (var i in categories)
 		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME.localeCompare(Foxtrick.modules[b].MODULE_NAME); });

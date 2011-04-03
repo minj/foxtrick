@@ -6,7 +6,7 @@
 
 var FoxtrickYouthSeriesEstimation = {
 	MODULE_NAME : "YouthSeriesEstimation",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["search"],
 
 	TABLE_ID : "ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00",
