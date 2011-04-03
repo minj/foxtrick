@@ -33,14 +33,15 @@ FoxtrickFriendlyInterface = {
 				};
 				var original = link.textContent; // original name shown in link
 				var full = link.title; // full name shown in link title
-				if (original.substr(1, 2) == ". ") { // in form like "J. Doe"
+				if (original.substr(1, 3) == ".  ") { // in form like "J.  Doe"
 					var initial = original[0]; // first character of first name
-					var lastNameShown = original.substr(3);
+					var lastNameShown = original.substr(4);
 					// ellipsis as the last two characters, remove it
 					if (lastNameShown.substr(lastNameShown.length - 2) == "..") {
-						var firstNameLength = original.match(RegExp("^(" + initial + "\\S*)\\s"))[1].length;
+						lastNameShown = lastNameShown.substr(0, lastNameShown.length - 2);
+						var firstNameLength = full.match(RegExp("^(" + initial + "\\S*)\\s"))[1].length;
 						var remaining = full.substr(firstNameLength + 1); // remove space after first name
-						var lastNamePos = remaining.indexOf(lastNameShown.substr(0, lastNameShown.length - 2));
+						var lastNamePos = remaining.indexOf(lastNameShown);
 						var lastName = remaining.substr(lastNamePos);
 						setName(initial + ". " + lastName);
 					}
