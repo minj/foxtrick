@@ -8,12 +8,10 @@ var FoxtrickForumTemplates = {
 	MODULE_NAME : "ForumTemplates",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forumWritePost','messageWritePost','htpress','forumModWritePost'],
-	OPTIONS : ["DefaultShow","CustomWidth"],
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [true,false],
+	OPTIONS : ["DefaultShow"],
 
-	_MAX_TEMPLATE_DISP_LENGTH : 60,
-	_DISPLAY_WIDTH:125,
+	CSS : Foxtrick.ResourcePath + "resources/css/forum-templates.css",
+
 	_TEMPLATES_DIV_ID : "post_templates",
 	_TEMPLATES_PREFLIST : "post_templates",
 	_NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
@@ -40,11 +38,6 @@ var FoxtrickForumTemplates = {
 				FoxtrickForumTemplates._TEMPLATES_DIV_ID = "htpress_templates";
 				FoxtrickForumTemplates._TEMPLATES_PREFLIST = "htpress_templates";
 			break;
-		}
-
-		FoxtrickForumTemplates._DISPLAY_WIDTH=125;
-		if (Foxtrick.isModuleFeatureEnabled(this, "CustomWidth")) {
-			var widthtext = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomWidth_text");
 		}
 
 		var sControlsID = "foxtrick_forumtemplates_controls_div";
@@ -241,30 +234,19 @@ var FoxtrickForumTemplates = {
 				text=text.replace(/\[title=[^\]]+\]/,'');
 		}
 
-		var tr = doc.createElement("div");
-		tr.setAttribute('style','display:inline-block !important; width:'+FoxtrickForumTemplates._DISPLAY_WIDTH+'px;padding-top:5px;');
-		var td1 = doc.createElement("div");
-		td1.setAttribute("style","display:inline-block !important; vertical-align:middle;width:17px;");
-		var td2 = doc.createElement("div");
-		td2.setAttribute("style","width:"+parseInt(FoxtrickForumTemplates._DISPLAY_WIDTH-25)+"px; display:inline-block !important; overflow:hidden; vertical-align:middle; white-space:nowrap !important;");
-		tr.appendChild(td1);
-		tr.appendChild(td2);
-		var remover = doc.createElement("div");
-		remover.setAttribute("class", "ft_actionicon foxtrickRemove");
+		var container = doc.createElement("span");
+		container.className = "ft-forum-template-container";
+		where.appendChild(container);
+		var remover = doc.createElement("span");
+		remover.className = "ft-forum-template-remover ft_actionicon foxtrickRemove";
 		remover.msg = fulltext;
 		remover.addEventListener("click", FoxtrickForumTemplates._removeTemplate, false);
-		td1.appendChild(remover);
-		where.appendChild(tr);
-
-		var curr = doc.createElement("a");
-		curr.setAttribute("href", "javascript:void(0)");
-		curr.msg = text;
-		curr.title = title;//.substring(0, FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH);
-		curr.innerHTML = title;//.substring(0, FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH);
-		/*if (title.length > FoxtrickForumTemplates._MAX_TEMPLATE_DISP_LENGTH)
-			curr.innerHTML += "...";
-		*/
-		curr.addEventListener("click", FoxtrickForumTemplates._fillMsgWindow, false);
-		td2.appendChild(curr);
+		container.appendChild(remover);
+		var name = doc.createElement("a");
+		name.className = "ft-link ft-forum-template-name";
+		name.msg = text;
+		name.title = name.textContent = title;
+		name.addEventListener("click", FoxtrickForumTemplates._fillMsgWindow, false);
+		container.appendChild(name);
 	}
 };

@@ -1,0 +1,16 @@
+.ft-forum-template-container {
+	display: inline-block;
+	width: 125px;
+	overflow: hidden;
+}
+
+.ft-forum-template-remover {
+	display: inline-block;
+	margin-right: 2px;
+}
+
+.ft-forum-template-name {
+	display: inline-block;
+	width: 100px;
+	overflow: hidden;
+}
