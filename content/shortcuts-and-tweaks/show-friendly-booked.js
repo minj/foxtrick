@@ -45,7 +45,7 @@ var FoxtrickShowFriendlyBooked = {
 				destCell.textContent = "";
 				destCell.removeAttribute("title");
 				var friendly = xml.getElementsByTagName("FriendlyTeamID")[0];
-				if (friendly.getAttribute("Available") != "True"
+				if (friendly.getAttribute("Available") == "True"
 					&& friendly.textContent != "0") {
 					// friendly booked
 					var img = doc.createElement("img");
