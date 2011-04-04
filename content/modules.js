@@ -122,7 +122,7 @@ Foxtrick.modules = [
 	FoxtrickLeagueNewsFilter,
 	FoxtrickCopyPosting,
 	FoxtrickMoveManagerOnline,
-	FoxtrickTables,
+	FoxtrickGoalDifferenceToTables,
 	FoxtrickMatchTables,
 	FoxtrickCrossTable,
 	FoxtrickYouthSkillHideUnknown,
