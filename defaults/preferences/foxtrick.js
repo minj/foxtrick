@@ -163,8 +163,6 @@ pref("extensions.foxtrick.prefs.module.FoxtrickAlert.AlertSound_text", "chrome:/
 pref("extensions.foxtrick.prefs.module.FoxtrickAlert.enabled", true);
 pref("extensions.foxtrick.prefs.module.FoxtrickAlert.NewForum.enabled", false);
 pref("extensions.foxtrick.prefs.module.FoxtrickAlert.NewMail.enabled", false);
-pref("extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.enabled", true);
-pref("extensions.foxtrick.prefs.module.FoxtrickLineupShortcut.HighlightPlayer.enabled", false);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.FullPlayerNameInLineUp.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.NtLinkForNtPlayer.enabled", true);
@@ -203,6 +201,8 @@ pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_set_lineup.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.highlight_wins.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.value", 0);
+pref("extensions.foxtrick.prefs.module.LineupShortcut.enabled", true);
+pref("extensions.foxtrick.prefs.module.LineupShortcut.HighlightPlayer.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksAchievements.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksAlliances.alltid.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksAlliances.enabled", true);

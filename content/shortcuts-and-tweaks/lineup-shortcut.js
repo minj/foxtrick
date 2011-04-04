@@ -4,8 +4,7 @@
  */
 
 FoxtrickLineupShortcut = {
-
-	MODULE_NAME : "FoxtrickLineupShortcut",
+	MODULE_NAME : "LineupShortcut",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('playerdetail','statsBestgames','matchLineup', 'YouthPlayer'),
  	OPTIONS : new Array("HighlightPlayer"),
