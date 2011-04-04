@@ -21,22 +21,24 @@ var FoxtrickNewMail = {
 		}
 		// mail count in left menu
 		var subMenu = doc.getElementsByClassName("subMenu")[0];
-		var subMenuBox = subMenu.getElementsByClassName("subMenuBox")[0];
-		var listItems = subMenuBox.getElementsByTagName("li");
-		var mailCountItems = Foxtrick.filter(listItems, function(n) {
-			return n.getElementsByTagName("span").length > 0;
-		});
-		if (mailCountItems.length) {
-			var mailCount = mailCountItems[0].getElementsByTagName("span")[0];
-			mailCount.className = "ft-new-mail";
+		if (subMenu) {
+			var subMenuBox = subMenu.getElementsByClassName("subMenuBox")[0];
+			var listItems = subMenuBox.getElementsByTagName("li");
+			var mailCountItems = Foxtrick.filter(listItems, function(n) {
+				return n.getElementsByTagName("span").length > 0;
+			});
+			if (mailCountItems.length) {
+				var mailCount = mailCountItems[0].getElementsByTagName("span")[0];
+				mailCount.className = "ft-new-mail";
+			}
 		}
 		// new forum message
 		var forum = menu.getElementsByTagName("a")[3];
 		if (forum.textContent.indexOf("(") > -1) {
 			// has new message, no span this time, we need to add it
 			forum.innerHTML = forum.innerHTML.replace(
-				/^(.+)(\(\d+\))(.+)$/,
-				"$1<span class=\"ft-new-forum-msg\">$2</span>$3"
+				/(\(\d+\))/,
+				"<span class=\"ft-new-forum-msg\">$1</span>"
 			);
 		}
  	}
