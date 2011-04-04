@@ -186,7 +186,7 @@ pref("extensions.foxtrick.prefs.module.HTMSPoints.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTMSPoints.AddToPlayer.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTMSPoints.AddToSearchResult.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTMSPoints.AddToPlayerList.enabled", true);
-pref("extensions.foxtrick.prefs.module.htmsStatistics.enabled", true);
+pref("extensions.foxtrick.prefs.module.HTMSPrediction.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTThreadMarker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LargeFlags.enabled", false);
 pref("extensions.foxtrick.prefs.module.LastLogin.enabled", true);
