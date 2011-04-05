@@ -13,6 +13,20 @@
 <item>请查阅 Google Code 上的<xhtml:a href="http://code.google.com/p/foxtrick/source/list">版本历史</xhtml:a>.</item>
 </note>
 
+<note version="0.6.2">
+<item><module>SeriesFlags</module> 模块现在直接从 Hattrick 获取数据. (ryanli)</item>
+<item>语言更新. (ljushaff, csajszi, Mod-spambot)</item>
+<item>其他一些细微的修改. (ryanli)</item>
+</note>
+
+<note version="0.6.1">
+<item><module>HTMSPoints</module> 模块现在在本地执行运算, 而无须连接到 HTMS. (taised)</item>
+<item><module>htmsStatistics</module> 模块现在能够正确地载入预测. (taised)</item>
+<item>语言更新. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)</item>
+<item>与 Firefox 4.2 分支兼容. (ryanli)</item>
+<item>其他一些细微的修改. (ryanli)</item>
+</note>
+
 <note version="0.6">
 <item>新的选项界面. (ryanli)</item>
 <item>经由新的 Hattrick API 认证的 OAuth 认证界面. (ryanli)</item>
