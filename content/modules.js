@@ -61,9 +61,7 @@ Foxtrick.modules = [
 	FoxtrickHTMSPrediction,
 	FoxtrickSkillTable,
 	Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
-	FoxtrickAlert,
-	FoxtrickAlertCustomOff,
-	FoxtrickAlertCustomSounds,
+	FoxtrickTickerAlert,
 	FoxtrickOriginalFace,
 	FoxtrickBackgroundFixed,
 	FoxtrickCopyPlayerAd,

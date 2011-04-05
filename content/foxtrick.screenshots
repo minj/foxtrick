@@ -167,8 +167,7 @@ LinksCustom=http://foxtrick.foundationhorizont.org/index.php/links/52-linkscusto
 LinksTracker=http://foxtrick.foundationhorizont.org/index.php/links/187-linkstracker
 
 # Alert
-AlertCustomSounds=http://foxtrick.foundationhorizont.org/index.php/alert/217-alertcustomsounds
-FoxtrickAlert=http://foxtrick.foundationhorizont.org/index.php/alert/218-foxtrickalert
+TickerAlert=http://foxtrick.foundationhorizont.org/index.php/alert/218-foxtrickalert
 NewMail.CustomColor=http://foxtrick.foundationhorizont.org/index.php/alert/222-newmailcustomcolor
 NewMail.HighlightNewMailIcon=http://foxtrick.foundationhorizont.org/index.php/alert/220-newmailhighlightnewmailicon
 NewMail=http://foxtrick.foundationhorizont.org/index.php/alert/219-newmail
