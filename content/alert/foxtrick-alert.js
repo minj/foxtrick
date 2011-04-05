@@ -86,14 +86,6 @@ var FoxtrickAlert = {
 		else
 			FoxtrickAlert.last_num_forum=0;
 		FoxtrickAlert.foxtrick_showAlert(false);
-
-		if (Foxtrick.BuildFor=='Chrome') {
-			localStorage['last_num_message'] = FoxtrickAlert.last_num_message;
-			localStorage['last_num_forum']  = FoxtrickAlert.last_num_forum;
-			if (!numforum) numforum=0;
-			portalert.postMessage({reqtype: "set_mail_count",mail_count:num_message});
-			portalert.postMessage({reqtype: "set_forum_count",forum_count:numforum});
-		}
 	},
 
 	checkNewsEvent : function(evt) {
@@ -260,27 +252,7 @@ var FoxtrickAlert = {
 		}
 	},
 
-	foxtrick_showAlertChrome: function(message, href) {
- 		portalert.postMessage({reqtype: "show_note", message: message});
+	foxtrick_showAlertChrome: function(msg, href) {
+		chrome.extension.sendRequest({req : "notify", msg : msg});
 	}
 };
-
-
-if (Foxtrick.BuildFor=='Chrome') {
-var portalert = chrome.extension.connect({name: "alert"});
-portalert.onMessage.addListener(function(msg) {
-	if (msg.response=='resetalert') {  //Foxtrick.dump('resetalert');
-		localStorage['last_num_message']=0;
-		localStorage['last_num_forum']=0;
-		localStorage['news0']='';
-		localStorage['news1']='';
-		localStorage['news2']='';
-	}
-	FoxtrickAlert.last_num_message = localStorage['last_num_message'];
-	FoxtrickAlert.last_num_forum  = localStorage['last_num_forum'];
-	FoxtrickAlert.news[0]  = localStorage['news0'];
-	FoxtrickAlert.news[1]  = localStorage['news1'];
-	FoxtrickAlert.news[2]  = localStorage['news2'];
-	FoxtrickAlert.checkAll(document);
-});
-}

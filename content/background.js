@@ -1,4 +1,3 @@
-var resources_changed = true;
 var newstart = true;
 
 var sessionStore = {};
@@ -124,49 +123,6 @@ chrome.extension.onConnect.addListener(function(port) {
 			}
 		});
 	}
-	if (port.name == "alert") {
-		port.onMessage.addListener(function(msg) {
-			try {
-				if (msg.reqtype == "show_note") {
-					// Create a simple text notification:
-					var notification = webkitNotifications.createNotification(
-						"resources/img/hattrick-logo.png", // logo location
-						"Hattrick", // notification title
-						msg.message // notification body text
-					);
-
-					// Then show the notification.
-					notification.show();
-
-					// close after 5 sec
-					setTimeout(function(){
-							notification.cancel();
-						}, 5000);
-				}
-				else if (msg.reqtype == "get_old_alerts") {
-					if (newstart) port.postMessage({response:'resetalert'});
-					else port.postMessage({response:'noresetalert'});
-					newstart = false;
-				}
-				else if (msg.reqtype == "set_mail_count") {
-					mail_count = msg.mail_count;
-					getInboxCount(function(count) {
-							updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
-					});
-				}
-				else if (msg.reqtype == "set_forum_count") {
-					forum_count = msg.forum_count;
-					getInboxCount(function(count) {
-							updateUnreadCount(String(parseInt(mail_count)+parseInt(forum_count))+'/'+String(unreadticker_count));
-					});
-				}
-				 else port.postMessage({});
-			}
-			catch (e) {
-				console.log('error msg.reqtype : '+msg.reqtype+' '+e);
-			}
-		});
-	}
 	if (port.name == "chatoldserver") {
 		port.onMessage.addListener(function(msg) {
 			if (msg.reqtype == "set_last_server") {
@@ -195,8 +151,14 @@ chrome.extension.onConnect.addListener(function(port) {
 	}
 });
 
+// one-time message channel
+// use with chrome.extension.sendRequest({req : "{TYPE}", parameters...}, callback)
+// callback will be called with a sole Object as argument
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	if (request.req == "xml") {
+		// @param url - the URL of resource to load with XMLHttpRequest
+		// @callback_param data - response text
+		// @callback_param status - HTTP status of request
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(aEvt) {
 			if (xhr.readyState == 4) {
@@ -207,9 +169,12 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		xhr.send();
 	}
 	else if (request.req == "newTab") {
+		// @param url - the URL of new tab to create
 		chrome.tabs.create({url : request.url});
 	}
 	else if (request.req == "clipboard") {
+		// @param content - content to copy
+		// @callback_param status - success status
 		try {
 			clipboardStore = document.getElementById("clipboard-store");
 			clipboardStore.value = request.content;
@@ -221,10 +186,28 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			sendResponse({status : false});
 		}
 	}
+	else if (request.req == "notify") {
+		// @param msg - message to notify the user
+		var notification = webkitNotifications.createNotification(
+			"resources/img/hattrick-logo.png", // logo location
+			"Hattrick", // notification title
+			request.msg // notification body text
+		);
+
+		// Then show the notification.
+		notification.show();
+
+		// close after 5 sec
+		setTimeout(notification.cancel, 5000);
+	}
 	else if (request.req == "sessionSet") {
+		// @param key - key of session store
+		// @param value - value to store
 		sessionStore[request.key] = request.value;
 	}
 	else if (request.req == "sessionGet") {
+		// @param key - key of session store
+		// @callback_param value - contains the object stored
 		sendResponse({value : sessionStore[request.key]});
 	}
 });
